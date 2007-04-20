@@ -21,21 +21,6 @@ L:RegisterTranslations("enUS", function() return {
 	bdbar_display = "Blade Dance",
 } end)
 
-L:RegisterTranslations("koKR", function() return {
-} end)
-
-L:RegisterTranslations("zhCN", function() return {
-} end)
-
-L:RegisterTranslations("zhTW", function() return {
-} end)
-
-L:RegisterTranslations("deDE", function() return {
-} end)
-
-L:RegisterTranslations("frFR", function() return {
-} end)
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
@@ -45,7 +30,7 @@ mod.partyContent = true
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Shattered Halls"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"bdwarn", "bdbar", "bosskill"}
-mod.revision = tonumber(string.sub("$Revision: 10001 $", 12, -3))
+mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
 --      Initialization      --
@@ -74,10 +59,10 @@ end
 function mod:BigWigs_RecvSync( sync ) 
 	if sync ~= "WarchiefBD" then return end
 	if self.db.profile.bdwarn then
-		self:ScheduleEvent("BigWigs_Message", 25, L["bdwarn_alert"], "Urgent")
+		self:DelayedMessage(25, L["bdwarn_alert"], "Urgent")
 	end
 	if self.db.profile.bdbar then
-		self:TriggerEvent("BigWigs_StartBar", self, L["bdbar_display"], 30, "Interface\\Icons\\Ability_DualWield")
+		self:Bar(L["bdbar_display"], 30, "Ability_DualWield")
 	end
 	if self.db.profile.bdbar or self.db.profile.bdwarn then
 		self:ScheduleEvent("BigWigs_SendSync", 35, "WarchiefBD");
@@ -91,5 +76,5 @@ function mod:BigWigs_RecvSync( sync )
 end
 
 function mod:CheckForEngage()
-	self:TriggerEvent("BigWigs_SendSync", "WarchiefBD")
+	self:Sync("WarchiefBD")
 end

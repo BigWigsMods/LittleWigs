@@ -18,22 +18,6 @@ L:RegisterTranslations("enUS", function() return {
 	shell_trigger1 = "Dark Shell fades",
 	shell_alert1 = "Dark Shell: Stop Spells and Melee DPS!",
 	shell_alert2 = "Shell Down, Attack!",
-
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-} end )
-
-L:RegisterTranslations("koKR", function() return {
 } end )
 
 ----------------------------------
@@ -45,7 +29,7 @@ mod.partyContent = true
 mod.zonename = AceLibrary("Babble-Zone-2.2")["Mana-Tombs"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"shell", "bosskill"}
-mod.revision = tonumber(string.sub("$Revision: 10000 $", 12, -3))
+mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
 --      Initialization      --
@@ -62,13 +46,13 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if msg == L["shell_trigger1"] and self.db.profile.shell then
-		self:TriggerEvent("BigWigs_Message", L["shell_alert1"], "Attention")
+	if self.db.profile.shell and msg == L["shell_trigger1"] then
+		self:Message(L["shell_alert1"], "Attention")
 	end
 end
 
 function mod:CHAT_MSG_SPELL_AURA_GONE_OTHER(msg)
-	if msg:find(L["shell_trigger2"]) and self.db.profile.shell then
-		self:TriggerEvent("BigWigs_Message", L["shell_alert2"], "Attention")
+	if self.db.profile.shell and msg:find(L["shell_trigger2"]) then
+		self:Message(L["shell_alert2"], "Attention")
 	end
 end

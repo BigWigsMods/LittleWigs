@@ -3,7 +3,7 @@
 ## Title: Big Wigs |cffff0000+|r|cffffffffLittle Wigs|r
 ## Notes: Boss warnings for 5-man instances.
 ## Author: Ulic
-## X-Build: $Rev: 10000 $
+## X-Build: $Rev$
 ## X-Category: Party
 ## X-BigWigs-LoadInParty: 1
 
