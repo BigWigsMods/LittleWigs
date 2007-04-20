@@ -1,0 +1,16 @@
+﻿## Interface: 20003
+
+## Title: Big Wigs [|cffeda55fThe Mechanar|r]
+## Notes: Big Wigs Mechanar Modules
+## Author: Dorita
+## Version: 2.0
+## LoadOnDemand: 1
+
+## X-Website: http://www.wowace.com/index.php/BigWigs_5mans
+## X-Category: Party
+
+## X-BigWigs-LoadInZone: The Mechanar
+
+## Dependencies: BigWigs
+
+Capacitus.lua

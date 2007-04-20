@@ -1,0 +1,17 @@
+﻿## Interface: 20003
+
+## Title: Big Wigs [|cffeda55fThe Blood Furnace|r]
+## Notes: Big Wigs Blood Furnace Modules
+## Author: Dorita
+## Version: 2.0
+## LoadOnDemand: 1
+
+## X-Website: http://www.wowace.com/index.php/BigWigs_5mans
+## X-Category: Party
+
+## X-BigWigs-LoadInZone: The Blood Furnace
+
+## Dependencies: BigWigs
+
+Broggok.lua
+Kelidan.lua

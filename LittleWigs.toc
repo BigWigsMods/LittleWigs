@@ -1,0 +1,18 @@
+## Interface: 20003
+
+## Title: Big Wigs |cffff0000+|r|cffffffffBC 5-mans|r
+## Notes: Boss warnings for 5-man instances.
+## Author: Dorita
+## X-Build: $Rev: 10000 $
+## X-Category: Party
+
+## Dependencies: BigWigs
+## OptionalDeps: Ace2
+
+BloodFurnace\Broggok.lua
+BloodFurnace\Kelidan.lua
+ManaTombs\Pandemonius.lua
+SethekkHalls\Ikiss.lua
+Mechanar\Capacitus.lua
+ShadowLab\Murmur.lua
+ShatteredHalls\Warchief.lua

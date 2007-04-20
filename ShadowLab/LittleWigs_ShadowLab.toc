@@ -1,0 +1,16 @@
+﻿## Interface: 20003
+
+## Title: Big Wigs [|cffeda55fShadow Labyrinth|r]
+## Notes: Big Wigs Shadow Labyrinth Modules
+## Author: Dorita
+## Version: 2.0
+## LoadOnDemand: 1
+
+## X-Website: http://www.wowace.com/index.php/BigWigs_5mans
+## X-Category: Party
+
+## X-BigWigs-LoadInZone: Shadow Labyrinth
+
+## Dependencies: BigWigs
+
+Murmur.lua
