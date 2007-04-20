@@ -1,6 +1,6 @@
 ## Interface: 20003
 
-## Title: Big Wigs |cffff0000+|r|cffffffffLittle Wigs|r
+## Title: Little Wigs |cff7fff7f -Ace2-|r
 ## Notes: Boss warnings for 5-man instances.
 ## Author: Ulic
 ## X-Build: $Rev$
