@@ -17,5 +17,3 @@ move SethekkHalls ..\LittleWigs_SethekkHalls
 move ShadowLab ..\LittleWigs_ShadowLab
 move ShatteredHalls ..\LittleWigs_ShatteredHalls
 
-cd ..
-rmdir /s /q LittleWigs

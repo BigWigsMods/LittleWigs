@@ -16,6 +16,3 @@ mv Mechanar ../LittleWigs_Mechanar
 mv SethekkHalls ../LittleWigs_SethekkHalls
 mv ShadowLab ../LittleWigs_ShadowLab
 mv ShatteredHalls ../LittleWigs_ShatteredHalls
-
-cd ..
-rm -Rf LittleWigs
