@@ -41,6 +41,7 @@ L:RegisterTranslations("frFR", function() return {
 ----------------------------------
 
 local mod = BigWigs:NewModule(boss)
+mod.partyContent = true
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Shattered Halls"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"bdwarn", "bdbar", "bosskill"}

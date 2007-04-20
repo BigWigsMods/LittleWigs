@@ -39,6 +39,7 @@ L:RegisterTranslations("koKR", function() return {
 ----------------------------------
 
 local mod = BigWigs:NewModule(boss)
+mod.partyContent = true
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Blood Furnace"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"nova", "bosskill"}

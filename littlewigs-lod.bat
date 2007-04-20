@@ -1,21 +1,21 @@
 @echo off
 
 cd ..
-rmdir /s /q BigWigs_BloodFurnace
-rmdir /s /q BigWigs_ManaTombs
-rmdir /s /q BigWigs_Mechanar
-rmdir /s /q BigWigs_SethekkHalls
-rmdir /s /q BigWigs_ShadowLab
-rmdir /s /q BigWigs_ShatteredHalls
+rmdir /s /q LittleWigs_BloodFurnace
+rmdir /s /q LittleWigs_ManaTombs
+rmdir /s /q LittleWigs_Mechanar
+rmdir /s /q LittleWigs_SethekkHalls
+rmdir /s /q LittleWigs_ShadowLab
+rmdir /s /q LittleWigs_ShatteredHalls
 
-cd BigWigs_BC5Mans
+cd LittleWigs
 
-move BloodFurnace ..\BigWigs_BloodFurnace
-move ManaTombs ..\BigWigs_ManaTombs
-move Mechanar ..\BigWigs_Mechanar
-move SethekkHalls ..\BigWigs_SethekkHalls
-move ShadowLab ..\BigWigs_ShadowLab
-move ShatteredHalls ..\BigWigs_ShatteredHalls
+move BloodFurnace ..\LittleWigs_BloodFurnace
+move ManaTombs ..\LittleWigs_ManaTombs
+move Mechanar ..\LittleWigs_Mechanar
+move SethekkHalls ..\LittleWigs_SethekkHalls
+move ShadowLab ..\LittleWigs_ShadowLab
+move ShatteredHalls ..\LittleWigs_ShatteredHalls
 
 cd ..
-rmdir /s /q BigWigs_BC5Mans
+rmdir /s /q LittleWigs

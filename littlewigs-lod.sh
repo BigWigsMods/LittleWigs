@@ -1,21 +1,21 @@
 #/bin/bash
 
 cd ..
-rm -rf BigWigs_BloodFurnace
-rm -rf BigWigs_ManaTombs
-rm -rf BigWigs_Mechanar
-rm -rf BigWigs_SethekkHalls
-rm -rf BigWigs_ShadowLab
-rm -rf BigWigs_ShatteredHalls
+rm -rf LittleWigs_BloodFurnace
+rm -rf LittleWigs_ManaTombs
+rm -rf LittleWigs_Mechanar
+rm -rf LittleWigs_SethekkHalls
+rm -rf LittleWigs_ShadowLab
+rm -rf LittleWigs_ShatteredHalls
 
-cd BigWigs_BC5mans
+cd LittleWigs
 
-mv BloodFurnace ../BigWigs_BloodFurnace
-mv ManaTombs ../BigWigs_ManaTombs
-mv Mechanar ../BigWigs_Mechanar
-mv SethekkHalls ../BigWigs_SethekkHalls
-mv ShadowLab ../BigWigs_ShadowLab
-mv ShatteredHalls ../BigWigs_ShatteredHalls
+mv BloodFurnace ../LittleWigs_BloodFurnace
+mv ManaTombs ../LittleWigs_ManaTombs
+mv Mechanar ../LittleWigs_Mechanar
+mv SethekkHalls ../LittleWigs_SethekkHalls
+mv ShadowLab ../LittleWigs_ShadowLab
+mv ShatteredHalls ../LittleWigs_ShatteredHalls
 
 cd ..
-rm -Rf BigWigs_BC5manss
+rm -Rf LittleWigs

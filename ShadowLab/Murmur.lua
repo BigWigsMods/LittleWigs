@@ -55,6 +55,7 @@ L:RegisterTranslations("frFR", function() return {
 ----------------------------------
 
 local mod = BigWigs:NewModule(boss)
+mod.partyContent = true
 mod.zonename = AceLibrary("Babble-Zone-2.2")["Shadow Labyrinth"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"sonicboom", -1, "touchtimer", "youtouch", "elsetouch", "icon", "bosskill"}

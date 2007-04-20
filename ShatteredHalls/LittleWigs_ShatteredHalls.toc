@@ -1,14 +1,15 @@
 ﻿## Interface: 20003
 
-## Title: Big Wigs [|cffeda55fShattered Halls|r]
+## Title: Little Wigs [|cffeda55fShattered Halls|r]
 ## Notes: Big Wigs Shattered Halls Modules
-## Author: Dorita
+## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1
 
-## X-Website: http://www.wowace.com/index.php/BigWigs_5mans
+## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-Category: Party
 
+## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: The Shattered Halls
 
 ## Dependencies: BigWigs

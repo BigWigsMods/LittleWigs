@@ -1,10 +1,11 @@
 ## Interface: 20003
 
-## Title: Big Wigs |cffff0000+|r|cffffffffBC 5-mans|r
+## Title: Big Wigs |cffff0000+|r|cffffffffLittle Wigs|r
 ## Notes: Boss warnings for 5-man instances.
-## Author: Dorita
+## Author: Ulic
 ## X-Build: $Rev: 10000 $
 ## X-Category: Party
+## X-BigWigs-LoadInParty: 1
 
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2

@@ -41,6 +41,7 @@ L:RegisterTranslations("koKR", function() return {
 ----------------------------------
 
 local mod = BigWigs:NewModule(boss)
+mod.partyContent = true
 mod.zonename = AceLibrary("Babble-Zone-2.2")["Mana-Tombs"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"shell", "bosskill"}
