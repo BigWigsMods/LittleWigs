@@ -5,7 +5,9 @@
 ## Author: Ulic
 ## X-Build: $Rev$
 ## X-Category: Party
+## LoadOnDemand: 1
 ## X-BigWigs-LoadInParty: 1
+## X-BigWigs-LoadInZone: The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Shattered Halls
 
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2
