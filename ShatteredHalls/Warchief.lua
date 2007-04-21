@@ -11,13 +11,15 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Warchief",
-
+	
+	engage_trigger = "I am called Bladefist for a reason. As you will see.",
+	
 	bdwarn = "Warn for Blade Dance",
-	bdwarn_desc = "Warn just before Warchief starts to Blade Dance",
+	bdwarn_desc = "Estimated Blade Dance timers",
 	bdwarn_alert = "5 seconds until Blade Dance!",
 
 	bdbar = "Blade Dance Bar",
-	bdbar_desc = "Display count down bar for for Warchief's Blade Dance",
+	bdbar_desc = "Display count down estimate for Blade Dance",
 	bdbar_display = "Blade Dance",
 } end)
 
@@ -37,27 +39,21 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	if self:ValidateEngageSync(sync, rest) and not started then
-		started = true
-		if self:IsEventRegistered("PLAYER_REGEN_DISABLED") then
-			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
-		end
-	end
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:RegisterEvent("BigWigs_RecvSync")
-	self:TriggerEvent("BigWigs_ThrottleSync", "MagBD", 5)
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
+function mod:CHAT_MSG_MONSTER_YELL(msg) 
+	if msg == L["engage_trigger"] then
+		mod:DanceSoon()
+	end
+end
 
-function mod:BigWigs_RecvSync( sync ) 
-	if sync ~= "WarchiefBD" then return end
+function mod:DanceSoon()
 	if self.db.profile.bdwarn then
 		self:DelayedMessage(25, L["bdwarn_alert"], "Urgent")
 	end
@@ -65,16 +61,6 @@ function mod:BigWigs_RecvSync( sync )
 		self:Bar(L["bdbar_display"], 30, "Ability_DualWield")
 	end
 	if self.db.profile.bdbar or self.db.profile.bdwarn then
-		self:ScheduleEvent("BigWigs_SendSync", 35, "WarchiefBD");
+		self:ScheduleEvent("bladedance", self.DanceSoon, 35, self)
 	end
-	if self:ValidateEngageSync(sync, rest) and not started then
-		started = true
-		if self:IsEventRegistered("PLAYER_REGEN_DISABLED") then
-			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
-		end
-	end
-end
-
-function mod:CheckForEngage()
-	self:Sync("WarchiefBD")
 end
