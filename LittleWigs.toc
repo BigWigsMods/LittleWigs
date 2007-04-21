@@ -5,17 +5,18 @@
 ## Author: Ulic
 ## X-Build: $Rev$
 ## X-Category: Party
-## LoadOnDemand: 1
+## X-Website: http://www.wowace.com/index.php/LittleWigs
+## X-AceForum: 5751
 ## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Shattered Halls
 
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2
 
-BloodFurnace\Broggok.lua
-BloodFurnace\Kelidan.lua
-ManaTombs\Pandemonius.lua
-SethekkHalls\Ikiss.lua
-Mechanar\Capacitus.lua
-ShadowLab\Murmur.lua
-ShatteredHalls\Warchief.lua
+HellfireCitadel\Broggk.lua
+HellfireCitadel\Kelidan.lua
+HellfireCitadel\Warchief.lua
+Auchindoun\Pandemonius.lua
+Auchindoun\Ikiss.lua
+Auchindoun\Murmur.lua
+TempestKeep\Capacitus.lua

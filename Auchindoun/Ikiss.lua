@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Keli'dan the Breaker"]
+local boss = AceLibrary("Babble-Boss-2.2")["Talon King Ikiss"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -10,12 +10,12 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	cmd = "Keli'dan",
+	cmd = "Ikiss",
 
-	nova = "Burning Nova Alert",
-	nova_desc = "Warn for Burning Nova",
-	nova_trigger = "Come closer",
-	nova_message = "Burning Nova Incoming!",
+	ae = "Arcane Explosion Alert",
+	ae_desc = "Warn for Arcane Explosion",
+	ae_trigger = "Talon King Ikiss begins to cast Arcane Explosion.",
+	ae_message = "Casting Arcane Explosion!",
 } end )
 
 ----------------------------------
@@ -24,9 +24,10 @@ L:RegisterTranslations("enUS", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
-mod.zonename = AceLibrary("Babble-Zone-2.2")["The Blood Furnace"]
+mod.otherMenu = "Auchindoun"
+mod.zonename = AceLibrary("Babble-Zone-2.2")["Sethekk Halls"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"nova", "bosskill"}
+mod.toggleoptions = {"ae", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -34,7 +35,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 end
 
@@ -42,8 +43,8 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.nova and msg:find(L["nova_trigger"]) then
-		self:Message(L["nova_message"], "Attention")
+function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
+	if self.db.profile.ae and msg == L["ae_trigger"] then
+		self:Message(L["ae_message"], "Attention")
 	end
 end

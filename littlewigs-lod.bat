@@ -1,19 +1,12 @@
 @echo off
 
 cd ..
-rmdir /s /q LittleWigs_BloodFurnace
-rmdir /s /q LittleWigs_ManaTombs
-rmdir /s /q LittleWigs_Mechanar
-rmdir /s /q LittleWigs_SethekkHalls
-rmdir /s /q LittleWigs_ShadowLab
-rmdir /s /q LittleWigs_ShatteredHalls
+rmdir /s /q LittleWigs_Auchindoun
+rmdir /s /q LittleWigs_HellfireCitadel
+rmdir /s /q LittleWigs_TempestKeep
 
 cd LittleWigs
 
-move BloodFurnace ..\LittleWigs_BloodFurnace
-move ManaTombs ..\LittleWigs_ManaTombs
-move Mechanar ..\LittleWigs_Mechanar
-move SethekkHalls ..\LittleWigs_SethekkHalls
-move ShadowLab ..\LittleWigs_ShadowLab
-move ShatteredHalls ..\LittleWigs_ShatteredHalls
-
+move Auchindoun ..\LittleWigs_Auchindoun
+move HellfireCitadel ..\LittleWigs_HellfireCitadel
+move TempestKeep ..\LittleWigs_TempestKeep

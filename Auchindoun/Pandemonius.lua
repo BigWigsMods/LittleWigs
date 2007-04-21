@@ -26,6 +26,7 @@ L:RegisterTranslations("enUS", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
+mod.otherMenu = "Auchindoun"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["Mana-Tombs"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"shell", "bosskill"}

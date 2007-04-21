@@ -24,6 +24,7 @@ L:RegisterTranslations("enUS", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
+mod.otherMenu = "Hellfire Citadel"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Blood Furnace"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"poison", "bosskill"}

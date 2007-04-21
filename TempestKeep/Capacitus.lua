@@ -36,6 +36,7 @@ L:RegisterTranslations("enUS", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
+mod.otherMenu = "Tempest Keep"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Mechanar"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"magic", "dmg", "bosskill"}
