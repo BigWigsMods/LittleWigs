@@ -15,7 +15,7 @@ L:RegisterTranslations("enUS", function() return {
 	nova = "Burning Nova Alert",
 	nova_desc = "Warn for Burning Nova",
 	nova_trigger = "Come closer",
-	nova_message = "Back away!",
+	nova_message = "Burning Nova Incoming!",
 } end )
 
 ----------------------------------
