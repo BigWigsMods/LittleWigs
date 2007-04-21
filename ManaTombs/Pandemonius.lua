@@ -15,7 +15,7 @@ L:RegisterTranslations("enUS", function() return {
 	shell = "Dark Shell Alert",
 	shell_desc = "Warn when Dark Shell is cast",
 	shell_trigger1 = "gains Dark Shell",
-	shell_trigger1 = "Dark Shell fades",
+	shell_trigger2 = "Dark Shell fades",
 	shell_alert1 = "Dark Shell: Stop Spells and Melee DPS!",
 	shell_alert2 = "Shell Down, Attack!",
 } end )
