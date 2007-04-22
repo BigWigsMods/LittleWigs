@@ -19,6 +19,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	touchtimer = "Bar for when the bomb goes off",
 	touchtimer_desc = "Shows a 13 second bar for when the bomb goes off at the target.",
+	touchtimer_bar = "%s: Murmur's Touch",
 
 	youtouch = "You are the bomb alert",
 	youtouch_desc = "Warn when you are the bomb",
@@ -31,7 +32,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	sonicboom = "Sonic Boom",
 	sonicboom_desc = "Warns when Murmur begins casting his Sonic Boom",
-	sonicboom_trigger = "Murmur begins to cast Sonic Boom.",
+	sonicboom_trigger = "draws energy from the air...",
 	sonicboom_alert = "Sonic Boom in 5 seconds!",
 } end)
 
@@ -55,7 +56,7 @@ function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "Event")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "Event")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "Event")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
+	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 
 	self:RegisterEvent("BigWigs_RecvSync")
@@ -77,8 +78,8 @@ function mod:Event(msg)
 	end
 end
 
-function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
-	if msg == L["sonicboom_trigger"] then
+function mod:CHAT_MSG_MONSTER_EMOTE(msg)
+	if msg:find(L["sonicboom_trigger"]) then
 		self:Sync("MurmurBoom")
 	end
 end
@@ -96,7 +97,7 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		end
 
 		if self.db.profile.touchtimer then
-			self:Bar(L["bombtimer_bar"]:format(player), 13, "Spell_Shadow_MindBomb", "Red")
+			self:Bar(L["touchtimer_bar"]:format(player), 13, "Spell_Shadow_MindBomb", "Red")
 		end
 
 		if self.db.profile.icon then
