@@ -20,6 +20,15 @@ L:RegisterTranslations("enUS", function() return {
 	shell_alert2 = "Dark Shell Down!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	shell = "암흑의 보호막 알림",
+	shell_desc = "암흑의 보호막 시전 시 알립니다.",
+	shell_trigger1 = "암흑의 보호막 효과를 얻었습니다.", -- check
+	shell_trigger2 = "암흑의 보호막 효과가 사라졌습니다.", -- check
+	shell_alert1 = "암흑의 보호막!",
+	shell_alert2 = "암흑의 보호막 사라짐!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

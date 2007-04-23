@@ -18,6 +18,13 @@ L:RegisterTranslations("enUS", function() return {
 	ae_message = "Casting Arcane Explosion!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	ae = "신비한 폭발 경고",
+	ae_desc = "신비한 폭발에 대한 경고입니다.",
+	ae_trigger = "갈퀴대왕 이키스|1이;가; 신비한 폭발 시전을 시작합니다.", -- check
+	ae_message = "신비한 폭발 시전!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
