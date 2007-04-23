@@ -50,7 +50,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg) 
 	if msg == L["engage_trigger"] then
-		mod:DanceSoon()
+		self:DanceSoon()
 	end
 end
 

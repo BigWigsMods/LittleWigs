@@ -5,6 +5,8 @@
 local boss = AceLibrary("Babble-Boss-2.2")["Mechano-Lord Capacitus"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local aura = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
