@@ -14,19 +14,15 @@ L:RegisterTranslations("enUS", function() return {
 
 	shell = "Dark Shell Alert",
 	shell_desc = "Warn when Dark Shell is cast",
-	shell_trigger1 = "gains Dark Shell",
-	shell_trigger2 = "Dark Shell fades",
-	shell_alert1 = "Dark Shell!",
-	shell_alert2 = "Dark Shell Down!",
+	shell_trigger = "gains Dark Shell",
+	shell_alert = "Dark Shell!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
 	shell = "암흑의 보호막 알림",
 	shell_desc = "암흑의 보호막 시전 시 알립니다.",
-	shell_trigger1 = "암흑의 보호막 효과를 얻었습니다.", -- check
-	shell_trigger2 = "암흑의 보호막 효과가 사라졌습니다.", -- check
-	shell_alert1 = "암흑의 보호막!",
-	shell_alert2 = "암흑의 보호막 사라짐!",
+	shell_trigger = "암흑의 보호막 효과를 얻었습니다.", -- check
+	shell_alert = "암흑의 보호막!",
 } end )
 
 ----------------------------------
@@ -47,7 +43,6 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
-	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 end
 
@@ -58,11 +53,5 @@ end
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 	if self.db.profile.shell and msg == L["shell_trigger1"] then
 		self:Message(L["shell_alert1"], "Attention")
-	end
-end
-
-function mod:CHAT_MSG_SPELL_AURA_GONE_OTHER(msg)
-	if self.db.profile.shell and msg:find(L["shell_trigger2"]) then
-		self:Message(L["shell_alert2"], "Attention")
 	end
 end

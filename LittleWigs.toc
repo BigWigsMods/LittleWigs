@@ -8,7 +8,7 @@
 ## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-AceForum: 5751
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Shattered Halls
+## X-BigWigs-LoadInZone: The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Botanica, The Shattered Halls
 
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2
@@ -20,3 +20,4 @@ Auchindoun\Pandemonius.lua
 Auchindoun\Ikiss.lua
 Auchindoun\Murmur.lua
 TempestKeep\Capacitus.lua
+TempestKeep\Laj.lua

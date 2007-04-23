@@ -12,8 +12,9 @@
 
 ## X-BigWigs-Menu: Tempest Keep
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: The Mechanar
+## X-BigWigs-LoadInZone: The Mechanar, The Botanica
 
 ## Dependencies: BigWigs
 
 Capacitus.lua
+Laj.lua

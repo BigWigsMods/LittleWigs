@@ -21,24 +21,25 @@ If you want to make each instance load on demand just run the LOD script to move
 Bosses-
 
 The Blood Furnace
- :: Broggok - Warns for Poison Cloud **Needs Testing**
+ :: Broggok - Warns for Poison Cloud **Needs Testing: enUS**
  :: Keli'dan the Breaker - Warns for Burning Nova
 
 Mana-Tombs
  :: Pandemonius - Warns for Dark Shell to halt Spell & melee damage **Needs Testing**
 
 Sethekk Halls
- :: Talon King Ikiss - Warns for cast of Arcane Explosion **Needs Testing**
+ :: Talon King Ikiss - Warns for cast of Arcane Explosion **Needs Testing: koKR frFR**
 
 The Mechanar
- :: Mechano-Lord Capacitus - Warns for Damage & Spell Reflect **Needs Testing** (haven't run this zone yet, just copied similar abilities from Major Domo)
+ :: Mechano-Lord Capacitus - Warns for Damage & Spell Reflect **Needs Testing: enUS** 
+ :: Laj - Warns for Allergic Reaction **Needs Testing: enUS**
 
 Shadow Labyrinth
- :: Murmur - Warns for Sonic Boom **Needs Testing**
-           - Several options for Murmur's Touch (similar to Baron Geddon's Bomb) **Needs Testing**
+ :: Murmur - Warns for Sonic Boom **Needs Testing: enUS**
+           - Several options for Murmur's Touch (similar to Baron Geddon's Bomb)
 
 The Shattered Halls
- :: Warchief Kargath Bladefist - Warns for Blade Dance **Needs Testing** (in the testing my initial testing, 3-4 attempts, I couldn't get the warning to hit quite at the right time, but my tank also wasn't running the addon to send the initial Engage Sync message)
+ :: Warchief Kargath Bladefist - Warns for Blade Dance **Needs Testing: enUS** (in the testing my initial testing, 3-4 attempts, I couldn't get the warning to hit quite at the right time, but my tank also wasn't running the addon to send the initial Engage Sync message)
 
 
 Contributions-

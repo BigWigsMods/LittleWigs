@@ -25,6 +25,14 @@ L:RegisterTranslations("koKR", function() return {
 	ae_message = "신비한 폭발 시전!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+   ae = "Explosion des Arcanes", --check
+   ae_desc = "Pr\195\169viens de l'Explosion des Arcanes", --check
+   ae_trigger = "Roi-serre Ikiss se met ? canaliser l'\195\169nergie des arcanes...", --check
+   ae_message = "Explosion des Arcanes imminente !", --check
+} end )
+
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
