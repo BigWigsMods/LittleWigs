@@ -51,7 +51,8 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if self.db.profile.shell and msg == L["shell_trigger1"] then
-		self:Message(L["shell_alert1"], "Attention")
+	if self.db.profile.shell and msg == L["shell_trigger"] then
+		self:Message(L["shell_alert"], "Attention")
 	end
 end
+
