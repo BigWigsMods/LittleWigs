@@ -19,7 +19,7 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	shell = "암흑의 보호막 알림",
+	shell = "암흑의 보호막",
 	shell_desc = "암흑의 보호막 시전 시 알립니다.",
 	shell_trigger = "암흑의 보호막 효과를 얻었습니다.", -- check
 	shell_alert = "암흑의 보호막!",

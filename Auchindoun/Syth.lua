@@ -18,6 +18,13 @@ L:RegisterTranslations("enUS", function() return {
 	summon_message = "Elementals Summoned!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	summon = "정령 알림",
+	summon_desc = "정령 소환 시 알립니다.",
+	summon_trigger = "나도... 부하들이 있다!", -- "casts Summon Syth Arcane Elemental",
+	summon_message = "정령 소환!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

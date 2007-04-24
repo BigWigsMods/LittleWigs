@@ -18,6 +18,13 @@ L:RegisterTranslations("enUS", function() return {
 	nova_message = "Burning Nova Incoming!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	nova = "불타는 회오리",
+	nova_desc = "불타는 회오리에 대한 경고",
+	nova_trigger = "가까이.. 더 가까이..", -- check
+	nova_message = "불타는 회오리 시전!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

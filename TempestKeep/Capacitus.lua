@@ -35,6 +35,29 @@ L:RegisterTranslations("enUS", function() return {
 	polarity_warn = "Polarity Shift in 3 seconds!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	trigger1 = "마법 반사 효과를 얻었습니다.", -- check
+	trigger2 = "피해 보호막 효과를 얻었습니다.", -- check
+	trigger3 = "마법 반사 효과가 사라졌습니다.", -- check
+	trigger4 = "피해 보호막 효과가 사라졌습니다.", -- check
+
+	warn1 = "마법 반사!",
+	warn2 = "피해 보호막!",
+	warn3 = "마법 반사 사라짐!",
+	warn4 = "피해 보호막 사라짐!",
+
+	magic = "마법 반사",
+	magic_desc = "마법 반사에 대한 경고",
+
+	dmg = "피해 보호막",
+	dmg_desc = "피해 보호막에 대한 경고",
+
+	polarity = "Polarity Shift(영웅)",
+	polarity_desc = "Warn when Polarity Shift is cast",
+	polarity_trigger = "begins to cast Polarity Shift",
+	polarity_warn = "Polarity Shift in 3 seconds!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

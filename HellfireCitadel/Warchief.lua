@@ -23,6 +23,18 @@ L:RegisterTranslations("enUS", function() return {
 	bdbar_display = "Blade Dance",
 } end)
 
+L:RegisterTranslations("koKR", function() return {
+	engage_trigger = "내가 블레이드피스트", -- check
+	
+	bdwarn = "칼춤",
+	bdwarn_desc = "칼춤 지속 시간 타이머",
+	bdwarn_alert = "5 초 동안 칼춤!",
+
+	bdbar = "칼춤 바",
+	bdbar_desc = "칼춤의 지속 시간 표시",
+	bdbar_display = "칼춤",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

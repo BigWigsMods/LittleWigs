@@ -24,6 +24,18 @@ L:RegisterTranslations("enUS", function() return {
 	mc_warn = " is Mind Controlled!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	summon = "망령 소환",
+	summon_desc = "황천의 망령 소환 시 경고",
+	summon_trigger = "날 위해 일해 줘야겠다!", -- "casts Summon Nether Wraith",
+	summon_warn = "황천의 망령 소환!",
+
+	mc = "정신 지배",
+	mc_desc = "정신 지배에 대한 경고",
+	mc_trigger = "^([^|;%s]*)(.*)지배에 걸렸습니다.", -- check
+	mc_warn = " 정신 지배!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

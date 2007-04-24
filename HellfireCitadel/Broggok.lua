@@ -18,6 +18,13 @@ L:RegisterTranslations("enUS", function() return {
 	poison_message = "Poison Cloud!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	poison = "독구름",
+	poison_desc = "독구름 경고",
+	poison_trigger = "브로고크|1이;가; 독구름|1을;를; 시전합니다.", -- check
+	poison_message = "독구름!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
