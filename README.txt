@@ -25,13 +25,18 @@ The Blood Furnace
  :: Keli'dan the Breaker - Warns for Burning Nova
 
 Mana-Tombs
- :: Pandemonius - Warns for Dark Shell to halt Spell & melee damage **Needs Testing**
+ :: Pandemonius - Warns for Dark Shell to halt Spell & melee damage **Needs Testing: enUS koKR frFR**
 
 Sethekk Halls
  :: Talon King Ikiss - Warns for cast of Arcane Explosion **Needs Testing: koKR frFR**
+ :: Darkweaver Syth - Announced Summons **Needs Testing: enUS**
 
 The Mechanar
- :: Mechano-Lord Capacitus - Warns for Damage & Spell Reflect **Needs Testing: enUS** 
+ :: Mechano-Lord Capacitus - Damage/Spell Reflect(Normal) & Phase Shift(Heroic) **Needs Testing: enUS**
+ :: Gatewatcher Iron-Hand - Jackhammer & Shadow Power abilities **Needs Testing: enUS**
+ :: Pathaleon the Calculator - Summoned Wraiths & Mind Control **Needs Testing: enUS**
+
+The Botanica
  :: Laj - Warns for Allergic Reaction **Needs Testing: enUS**
 
 Shadow Labyrinth
@@ -39,7 +44,7 @@ Shadow Labyrinth
            - Several options for Murmur's Touch (similar to Baron Geddon's Bomb)
 
 The Shattered Halls
- :: Warchief Kargath Bladefist - Warns for Blade Dance **Needs Testing: enUS** (in the testing my initial testing, 3-4 attempts, I couldn't get the warning to hit quite at the right time, but my tank also wasn't running the addon to send the initial Engage Sync message)
+ :: Warchief Kargath Bladefist - Warns for Blade Dance **Needs Testing: enUS**
 
 
 Contributions-

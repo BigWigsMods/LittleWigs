@@ -12,7 +12,7 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Keli'dan",
 
-	nova = "Burning Nova Alert",
+	nova = "Burning Nova",
 	nova_desc = "Warn for Burning Nova",
 	nova_trigger = "Come closer",
 	nova_message = "Burning Nova Incoming!",

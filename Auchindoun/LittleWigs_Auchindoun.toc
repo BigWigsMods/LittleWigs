@@ -16,6 +16,7 @@
 
 ## Dependencies: BigWigs
 
-Pandemonius.lua
 Ikiss.lua
+Pandemonius.lua
 Murmur.lua
+Syth.lua

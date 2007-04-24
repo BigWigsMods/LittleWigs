@@ -16,8 +16,11 @@
 HellfireCitadel\Broggk.lua
 HellfireCitadel\Kelidan.lua
 HellfireCitadel\Warchief.lua
-Auchindoun\Pandemonius.lua
 Auchindoun\Ikiss.lua
 Auchindoun\Murmur.lua
+Auchindoun\Pandemonius.lua
+Auchindoun\Syth.lua
 TempestKeep\Capacitus.lua
+TempestKeep\Ironhand.lua
 TempestKeep\Laj.lua
+TempestKeep\Pathaleon.lua

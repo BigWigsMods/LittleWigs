@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Pandemonius"]
+local boss = AceLibrary("Babble-Boss-2.2")["Darkweaver Syth"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -10,19 +10,12 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	cmd = "Pandemonius",
+	cmd = "Syth",
 
-	shell = "Dark Shell",
-	shell_desc = "Warn when Dark Shell is cast",
-	shell_trigger = "gains Dark Shell",
-	shell_alert = "Dark Shell!",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	shell = "암흑의 보호막 알림",
-	shell_desc = "암흑의 보호막 시전 시 알립니다.",
-	shell_trigger = "암흑의 보호막 효과를 얻었습니다.", -- check
-	shell_alert = "암흑의 보호막!",
+	summon = "Elementals Alert",
+	summon_desc = "Warn for Summoned Elementals",
+	summon_trigger = "casts Summon Syth Arcane Elemental",
+	summon_message = "Elementals Summoned!",
 } end )
 
 ----------------------------------
@@ -32,9 +25,9 @@ L:RegisterTranslations("koKR", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Auchindoun"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["Mana-Tombs"]
+mod.zonename = AceLibrary("Babble-Zone-2.2")["Sethekk Halls"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"shell", "bosskill"}
+mod.toggleoptions = {"summon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -42,7 +35,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 end
 
@@ -50,8 +43,8 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if self.db.profile.shell and msg == L["shell_trigger1"] then
-		self:Message(L["shell_alert1"], "Attention")
+function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
+	if self.db.profile.summon and msg:find(L["summon_trigger"]) then
+		self:Message(L["summon_message"], "Attention")
 	end
 end

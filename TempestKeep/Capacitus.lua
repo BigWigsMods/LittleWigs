@@ -4,7 +4,6 @@
 
 local boss = AceLibrary("Babble-Boss-2.2")["Mechano-Lord Capacitus"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
 local aura = nil
 
 ----------------------------
@@ -24,12 +23,16 @@ L:RegisterTranslations("enUS", function() return {
 	warn3 = "Magic Reflection down!",
 	warn4 = "Damage Shield down!",
 
-	magic = "Magic Reflection alert",
+	magic = "Magic Reflection",
 	magic_desc = "Warn for Magic Reflection",
 
-	dmg = "Damage Shields alert",
+	dmg = "Damage Shields",
 	dmg_desc = "Warn for Damage Shields",
 
+	polarity = "Polarity Shift(Heroic)",
+	polarity_desc = "Warn when Polarity Shift is cast",
+	polarity_trigger = "begins to cast Polarity Shift",
+	polarity_warn = "Polarity Shift in 3 seconds!",
 } end )
 
 ----------------------------------
@@ -41,7 +44,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Mechanar"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"magic", "dmg", "bosskill"}
+mod.toggleoptions = {"magic", "dmg", -1, "polarity", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -50,6 +53,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 	aura = nil
@@ -61,9 +65,9 @@ end
 
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 	if not aura and self.db.profile.magic and msg:find(L["trigger1"]) then
-		self:NewPowers(1)
+		mod:NewPowers(1)
 	elseif not aura and self.db.profile.dmg and msg:find(L["trigger2"]) then
-		self:NewPowers(2)
+		mod:NewPowers(2)
 	end
 end
 
@@ -77,4 +81,10 @@ end
 function mod:NewPowers(power)
 	aura = power
 	self:Message(power == 1 and L["warn1"] or L["warn2"], "Important")
+end
+
+function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
+	if self.db.profile.polarity and msg:find(L["polarity_trigger"]) then
+		self:Message(L["polarity_warn"])
+	end
 end

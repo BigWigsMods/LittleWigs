@@ -12,7 +12,7 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Ikiss",
 
-	ae = "Arcane Explosion Alert",
+	ae = "Arcane Explosion",
 	ae_desc = "Warn for Arcane Explosion",
 	ae_trigger = "Talon King Ikiss begins to cast Arcane Explosion.",
 	ae_message = "Casting Arcane Explosion!",

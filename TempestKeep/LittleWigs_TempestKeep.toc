@@ -17,4 +17,6 @@
 ## Dependencies: BigWigs
 
 Capacitus.lua
+Ironhand.lua
 Laj.lua
+Pathaleon.lua

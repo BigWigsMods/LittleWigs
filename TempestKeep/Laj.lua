@@ -13,7 +13,7 @@ local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Laj",
 
-	allergic = "Allergic Reaction Alert",
+	allergic = "Allergic Reaction",
 	allergic_desc = "Warn for Allergic Reaction",
 	allergic_trigger = "^([^%s]+) ([^%s]+) afflicted by Allergic Reaction",
 	allergic_warn = " is Allergic!",

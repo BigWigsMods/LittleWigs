@@ -14,7 +14,7 @@ L:RegisterTranslations("enUS", function() return {
 	
 	engage_trigger = "I am called Bladefist for a reason. As you will see.",
 	
-	bdwarn = "Warn for Blade Dance",
+	bdwarn = "Blade Dance",
 	bdwarn_desc = "Estimated Blade Dance timers",
 	bdwarn_alert = "5 seconds until Blade Dance!",
 
