@@ -14,7 +14,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	ae = "Arcane Explosion",
 	ae_desc = "Warn for Arcane Explosion",
-	ae_trigger = "Talon King Ikiss begins to cast Arcane Explosion.",
+	ae_trigger = "Talon King Ikiss casts Blink.",
 	ae_message = "Casting Arcane Explosion!",
 } end )
 
