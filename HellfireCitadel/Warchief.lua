@@ -13,6 +13,7 @@ L:RegisterTranslations("enUS", function() return {
 	cmd = "Warchief",
 	
 	engage_trigger = "I am called Bladefist for a reason. As you will see.",
+	engage_trigger2 = "I'll carve the meat from your bones!",
 	
 	bdwarn = "Blade Dance",
 	bdwarn_desc = "Estimated Blade Dance timers",
@@ -61,7 +62,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg) 
-	if msg == L["engage_trigger"] then
+	if msg == L["engage_trigger"] or msg == L["engage_trigger2"] then
 		self:DanceSoon()
 	end
 end
