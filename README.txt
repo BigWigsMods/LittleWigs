@@ -29,7 +29,7 @@ Mana-Tombs
 
 Sethekk Halls
  :: Talon King Ikiss - Warns for cast of Arcane Explosion **Needs Testing: koKR frFR**
- :: Darkweaver Syth - Announced Summons **Needs Testing: enUS**
+ :: Darkweaver Syth - Announced Summons
 
 The Mechanar
  :: Mechano-Lord Capacitus - Damage/Spell Reflect(Normal) & Phase Shift(Heroic) **Needs Testing: enUS**

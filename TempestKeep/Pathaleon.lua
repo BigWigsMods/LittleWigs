@@ -16,7 +16,11 @@ L:RegisterTranslations("enUS", function() return {
 	summon = "Summoned Wraiths",
 	summon_desc = "Warn when Nether Wraiths are summoned",
 	summon_trigger = "casts Summon Nether Wraith",
-	summon_warn = "Nether Wraith's Summoned!",
+	summon_warn = "Nether Wraiths Summoned!",
+	
+	despawn = "Despawned Wraiths",
+	despawn_desc = "Warn when Nether Wraiths are about to despawn",
+	despawn_warn = "Nether Wraiths Despawning Soon!",
 
 	mc = "Mind Control",
 	mc_desc = "Warn for Mind Control",
@@ -45,7 +49,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Mechanar"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"summon", "mc", "icon", "bosskill"}
+mod.toggleoptions = {"summon", "despawn", -1, "mc", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -54,6 +58,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	summon_time = 0
+	self:RegisterEvent("UNIT_HEALTH")	
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
@@ -79,4 +84,14 @@ function mod:CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE(msg)
 		end
 		if self.db.profile.mc then self:Message(player .. L["mc_warn"], "Important") end
 	end	
+end
+
+function mod:UNIT_HEALTH(arg1)
+	if not self.db.profile.despawn then return end
+	if UnitName(arg1) == boss then
+		local health = UnitHealth(arg1)
+		if health > 20 and health <= 25 then
+			self:Message(L["despawn_warn"], "Important")
+		end
+	end
 end
