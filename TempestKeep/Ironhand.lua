@@ -26,12 +26,12 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	hammer = "착암기",
 	hammer_desc = "착암기 효과 시전 시 경고",
-	hammer_trigger = "문지기 무쇠주먹이 자신의 망치를 위협적으로 치켜듭니다...", -- check
+	hammer_trigger = "자신의 망치를 위협적으로 치켜듭니다...", -- check
 	hammer_warn = "3초 이내 착암기!",
 
 	shadow = "어둠의 힘",
 	shadow_desc = "어둠의 힘을 얻을 시 경고",
-	shadow_trigger = "begins to cast Shadow Power", -- check
+	shadow_trigger = "문지기 무쇠주먹|1이;가; 암흑 마법 강화 시전을 시작합니다.", -- check
 	shadow_warn = "2초 이내 어둠의 힘!",
 } end )
 

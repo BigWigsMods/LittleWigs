@@ -31,8 +31,12 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	summon = "망령 소환",
 	summon_desc = "황천의 망령 소환 시 경고",
-	summon_trigger = "날 위해 일해 줘야겠다!", -- "casts Summon Nether Wraith",
+	summon_trigger = "철두철미한 파탈리온|1이;가; 황천의 망령 소환|1을;를; 시전합니다.", -- check
 	summon_warn = "황천의 망령 소환!",
+	
+	despawn = "망령 사라짐",
+	despawn_desc = "황천의 망령 사라짐에 대한 알림",
+	despawn_warn = "잠시 후 황천의 망령 사라짐!",
 
 	mc = "정신 지배",
 	mc_desc = "정신 지배에 대한 경고",

@@ -26,6 +26,7 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	engage_trigger = "내가 블레이드피스트", -- check
+	engage_trigger2 = "I'll carve the meat from your bones!", -- check
 	
 	bdwarn = "칼춤",
 	bdwarn_desc = "칼춤 지속 시간 타이머",

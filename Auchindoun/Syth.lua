@@ -21,7 +21,7 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	summon = "정령 알림",
 	summon_desc = "정령 소환 시 알립니다.",
-	summon_trigger = "나도... 부하들이 있다!", -- "casts Summon Syth Arcane Elemental",
+	summon_trigger = "흑마술사 시스|1이;가; 시스의 비전 정령|1을;를; 시전합니다.", -- check
 	summon_message = "정령 소환!",
 } end )
 
