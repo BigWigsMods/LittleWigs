@@ -11,10 +11,11 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Warchief",
-	
-	engage_trigger = "I am called Bladefist for a reason. As you will see.",
-	engage_trigger2 = "I'll carve the meat from your bones!",
-	
+
+	engage_trigger1 = "^I am called",
+	engage_trigger2 = "^I'll carve",
+	engage_trigger3 = "^Ours is",
+
 	bdwarn = "Blade Dance",
 	bdwarn_desc = "Estimated Blade Dance timers",
 	bdwarn_alert = "5 seconds until Blade Dance!",
@@ -25,9 +26,9 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	engage_trigger = "내가 블레이드피스트", -- check
+	engage_trigger1 = "^내가", -- check
 	engage_trigger2 = "I'll carve the meat from your bones!", -- check
-	
+
 	bdwarn = "칼춤",
 	bdwarn_desc = "칼춤 지속 시간 타이머",
 	bdwarn_alert = "5 초 동안 칼춤!",
@@ -63,7 +64,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg) 
-	if msg == L["engage_trigger"] or msg == L["engage_trigger2"] then
+	if msg:find(L["engage_trigger1"]) or msg:find(L["engage_trigger2"]) or msg:find(L["engage_trigger3"]) then
 		self:DanceSoon()
 	end
 end
