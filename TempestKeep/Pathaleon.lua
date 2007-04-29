@@ -96,7 +96,7 @@ function mod:CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE(msg)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if mod:find(L["despawn_trigger"]) and self.db.profile.despawn then
+	if msg:find(L["despawn_trigger"]) and self.db.profile.despawn then
 		self:Message(L["despawn_done"], "Important")
 	end
 end
