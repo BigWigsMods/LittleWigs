@@ -21,6 +21,9 @@ L:RegisterTranslations("enUS", function() return {
 	despawn = "Despawned Wraiths",
 	despawn_desc = "Warn when Nether Wraiths are about to despawn",
 	despawn_warn = "Nether Wraiths Despawning Soon!",
+	
+	despawn_trigger = "I prefer the direct",
+	despawn_done = "Nether Wraiths despawning!",
 
 	mc = "Mind Control",
 	mc_desc = "Warn for Mind Control",
@@ -62,6 +65,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	summon_time = 0
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("UNIT_HEALTH")	
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE")
@@ -81,13 +85,20 @@ function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
 end
 
 function mod:CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE(msg)
+	if not self.db.profile.mc then return end
 	local player, type = select(3, msg:find(L["mc_trigger"]))
 	if player and type then
 		if player == L2["you"] and type == L2["are"] then
 			player = UnitName("player")
 		end
-		if self.db.profile.mc then self:Message(player .. L["mc_warn"], "Important") end
+		self:Message(player .. L["mc_warn"], "Important") 
 	end	
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(msg)
+	if mod:find(L["despawn_trigger"]) and self.db.profile.despawn then
+		self:Message(L["despawn_done"], "Important")
+	end
 end
 
 function mod:UNIT_HEALTH(arg1)
