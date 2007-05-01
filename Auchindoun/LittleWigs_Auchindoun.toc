@@ -12,11 +12,12 @@
 
 ## X-BigWigs-Menu: Auchindoun
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Mana-Tombs, Sethekk Halls, Shadow Labyrinth
+## X-BigWigs-LoadInZone: Auchenai Crypts, Mana-Tombs, Sethekk Halls, Shadow Labyrinth
 
 ## Dependencies: BigWigs
 
 Ikiss.lua
 Pandemonius.lua
+Maladaar.lua
 Murmur.lua
 Syth.lua

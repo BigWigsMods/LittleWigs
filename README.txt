@@ -21,14 +21,18 @@ If you want to make each instance load on demand just run the LOD script to move
 Bosses-
 
 The Blood Furnace
- :: Broggok - Warns for Poison Cloud **Needs Testing: enUS**
- :: Keli'dan the Breaker - Warns for Burning Nova
+ :: Broggok - Poison Cloud **Needs Testing: enUS**
+ :: Keli'dan the Breaker - Burning Nova
 
 Mana-Tombs
- :: Pandemonius - Warns for Dark Shell to halt Spell & melee damage **Needs Testing: enUS koKR frFR**
+ :: Pandemonius - Dark Shell **Needs Testing: enUS koKR frFR**
+
+Auchenai Crypts
+ :: Exarch Maladaar - Stolen Soul **Needs Testing: enUS**
+                    - Avatar of the Martyred **Needs Testing: enUS**
 
 Sethekk Halls
- :: Talon King Ikiss - Warns for cast of Arcane Explosion **Needs Testing: koKR frFR**
+ :: Talon King Ikiss - Arcane Explosion **Needs Testing: koKR frFR**
  :: Darkweaver Syth - Announced Summons
 
 The Mechanar
@@ -38,6 +42,11 @@ The Mechanar
 
 The Botanica
  :: Laj - Warns for Allergic Reaction **Needs Testing: enUS**
+
+The Steamvault
+ :: Mekgineer Steamrigger - Summoned Mechanics **Needs Testing: enUS**
+ :: Warlord Kalithresh - Spell Reflection **Needs Testing: enUS**
+                       - Rage Channeling **Needs Testing: enUS**
 
 Shadow Labyrinth
  :: Murmur - Warns for Sonic Boom **Needs Testing: enUS**
