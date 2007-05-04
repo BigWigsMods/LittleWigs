@@ -23,6 +23,20 @@ L:RegisterTranslations("enUS", function() return {
 	avatar_message = "Avatar of the Martyred spawning!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	cmd = "말라다르",
+
+	soul = "잃어버린 영혼 ",
+	soul_desc = "잃어버린 영혼에 대한 경고",
+	soul_trigger = "총독 말라다르|1이;가; 영혼 훔치기 사용을 시작합니다.", -- check
+	soul_message = "잠시후 영혼을 훔칩니다!",
+
+	avatar = "순교자의 화신",
+	avatar_desc = "순교자의 화신 소환 경고",
+	avatar_trigger = "일어나라, 나의 형제들이여. 일어나 싸워라!",
+	avatar_message = "순교자의 화신 소환!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
