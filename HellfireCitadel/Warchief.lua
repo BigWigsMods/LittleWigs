@@ -26,12 +26,13 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	engage_trigger1 = "^내가", -- check
-	engage_trigger2 = "I'll carve the meat from your bones!", -- check
+	engage_trigger1 = "내 별명이 칼주먹인데는 다 이유가 있다. 너희도 곧 알게 될 것이다.",
+	engage_trigger2 = "한 놈도 살려두지 않겠다!", -- check
+	engage_trigger3 = "우리가 진정한 호드이자 유일한 호드이다!",
 
 	bdwarn = "칼춤",
 	bdwarn_desc = "칼춤 지속 시간 타이머",
-	bdwarn_alert = "5 초 동안 칼춤!",
+	bdwarn_alert = "잠시후 5 초 동안 칼춤!",
 
 	bdbar = "칼춤 바",
 	bdbar_desc = "칼춤의 지속 시간 표시",
