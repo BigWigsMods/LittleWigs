@@ -17,18 +17,18 @@ L:RegisterTranslations("enUS", function() return {
 	summon_desc = "Warn when Nether Wraiths are summoned",
 	summon_trigger = "casts Summon Nether Wraith",
 	summon_warn = "Nether Wraiths Summoned!",
-	
+
 	despawn = "Despawned Wraiths",
 	despawn_desc = "Warn when Nether Wraiths are about to despawn",
 	despawn_warn = "Nether Wraiths Despawning Soon!",
-	
+
 	despawn_trigger = "I prefer the direct",
 	despawn_done = "Nether Wraiths despawning!",
 
 	mc = "Mind Control",
 	mc_desc = "Warn for Mind Control",
-	mc_trigger = "^([^%s]+) ([^%s]+) afflicted by Domination.",
-	mc_warn = " is Mind Controlled!",
+	mc_trigger = "^([^%s]+) ([^%s]+) afflicted by Domination.$",
+	mc_warn = "%s is Mind Controlled!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -36,7 +36,7 @@ L:RegisterTranslations("koKR", function() return {
 	summon_desc = "황천의 망령 소환 시 경고",
 	summon_trigger = "철두철미한 파탈리온|1이;가; 황천의 망령 소환|1을;를; 시전합니다.", -- check
 	summon_warn = "황천의 망령 소환!",
-	
+
 	despawn = "망령 사라짐",
 	despawn_desc = "황천의 망령 사라짐에 대한 알림",
 	despawn_warn = "잠시 후 황천의 망령 사라짐!",
@@ -44,7 +44,7 @@ L:RegisterTranslations("koKR", function() return {
 	mc = "정신 지배",
 	mc_desc = "정신 지배에 대한 경고",
 	mc_trigger = "^([^|;%s]*)(.*)지배에 걸렸습니다.", -- check
-	mc_warn = " 정신 지배!",
+	mc_warn = "%s 정신 지배!",
 } end )
 
 ----------------------------------
@@ -55,7 +55,7 @@ local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Mechanar"]
-mod.enabletrigger = boss 
+mod.enabletrigger = boss
 mod.toggleoptions = {"summon", "despawn", -1, "mc", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -66,7 +66,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	summon_time = 0
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	self:RegisterEvent("UNIT_HEALTH")	
+	self:RegisterEvent("UNIT_HEALTH")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
@@ -91,12 +91,12 @@ function mod:CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE(msg)
 		if player == L2["you"] and type == L2["are"] then
 			player = UnitName("player")
 		end
-		self:Message(player .. L["mc_warn"], "Important") 
-	end	
+		self:Message(L["mc_warn"]:format(player), "Important")
+	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg:find(L["despawn_trigger"]) and self.db.profile.despawn then
+	if self.db.profile.despawn and msg:find(L["despawn_trigger"]) then
 		self:Message(L["despawn_done"], "Important")
 	end
 end
