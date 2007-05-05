@@ -108,6 +108,6 @@ end
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
 	if self.db.profile.polarity and msg:find(L["polarity_trigger"]) then
-		self:Message(L["polarity_warn"])
+		self:Message(L["polarity_warn"], "Urgent")
 	end
 end

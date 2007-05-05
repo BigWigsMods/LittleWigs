@@ -52,6 +52,6 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if self.db.profile.nova and msg:find(L["nova_trigger"]) then
-		self:Message(L["nova_message"], "Attention")
+		self:Message(L["nova_message"], "Important")
 	end
 end

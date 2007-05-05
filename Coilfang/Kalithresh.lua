@@ -60,6 +60,6 @@ end
 function mod:Channel(msg)
 	if self.db.profile.rage then return end
 	if msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"] then
-		self:Message(L["rage_message"], "Attention")
+		self:Message(L["rage_message"], "Urgent")
 	end
 end
