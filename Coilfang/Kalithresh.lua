@@ -19,10 +19,9 @@ L:RegisterTranslations("enUS", function() return {
 
 	rage = "Warlord's Rage",
 	rage_desc = "Warn for channeling of rage",
-	rage_trigger = "^%s begins to channel",
+	rage_trigger1 = "^%s begins to channel",
+	rage_trigger2 = "This is not nearly over...",
 	rage_message = "Warlord is channeling!",
-
-	--ragegone_trigger = "Warlord's Rage fades from", --need a working trigger
 } end )
 
 ----------------------------------
@@ -42,9 +41,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	--aura = 0
-	--self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
+	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "Channel")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Channel")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 end
@@ -59,16 +57,9 @@ function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 	end
 end
 
-function mod:CHAT_MSG_MONSTER_EMOTE(msg)
-	if self.db.profile.rage and msg:find(L["rage_trigger"]) then
+function mod:Channel(msg)
+	if self.db.profile.rage then return end
+	if msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"] then
 		self:Message(L["rage_message"], "Attention")
 	end
 end
-
---[[ can probably just shedule this, doesn't work atm so commented out, need the time from start > end, either that or maybe theres a death message for the distillers
-function mod:CHAT_MSG_SPELL_AURA_GONE_OTHER(msg)
-	if msg:find(L["ragegone_trigger"]) then
-		aura = 0
-	end
-end
-]]

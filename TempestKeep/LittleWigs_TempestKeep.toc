@@ -1,7 +1,7 @@
 ﻿## Interface: 20003
 
-## Title: Little Wigs [|cffeda55fThe Mechanar|r]
-## Notes: Big Wigs Mechanar Modules
+## Title: Little Wigs [|cffeda55fTempest Keep|r]
+## Notes: Big Wigs Tempest Keep Modules
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1
