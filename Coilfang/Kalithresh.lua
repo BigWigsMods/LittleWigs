@@ -58,7 +58,7 @@ function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 end
 
 function mod:Channel(msg)
-	if self.db.profile.rage then return end
+	if not self.db.profile.rage then return end
 	if msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"] then
 		self:Message(L["rage_message"], "Urgent")
 	end
