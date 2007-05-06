@@ -33,7 +33,7 @@ L:RegisterTranslations("koKR", function() return {
 
 	avatar = "순교자의 화신",
 	avatar_desc = "순교자의 화신 소환 경고",
-	avatar_trigger = "일어나라, 나의 형제들이여. 일어나 싸워라!",
+	avatar_trigger = "총독 말라다르|1이;가; 순교자의 화신 소환 사용을 시작합니다.",
 	avatar_message = "순교자의 화신 소환!",
 } end )
 
