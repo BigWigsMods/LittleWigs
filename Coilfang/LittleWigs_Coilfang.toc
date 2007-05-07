@@ -18,3 +18,4 @@
 
 Kalithresh.lua
 Steamrigger.lua
+Thespia.lua

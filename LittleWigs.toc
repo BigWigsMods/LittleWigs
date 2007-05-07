@@ -9,7 +9,7 @@
 ## X-AceForum: 5751
 ## X-RelSite-Curse: 7476
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Botanica, The Shattered Halls, The Steamvault, Auchenai Crypts
+## X-BigWigs-LoadInZone: The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Botanica, The Shattered Halls, The Steamvault, Auchenai Crypts, The Arcatraz
 
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2
@@ -19,12 +19,14 @@ HellfireCitadel\Kelidan.lua
 HellfireCitadel\Warchief.lua
 Coilfang\Kalithresh.lua
 Coilfang\Steamrigger.lua
+Coilfang\Thespia.lua
 Auchindoun\Ikiss.lua
 Auchindoun\Maladaar.lua
 Auchindoun\Murmur.lua
 Auchindoun\Pandemonius.lua
 Auchindoun\Syth.lua
 TempestKeep\Capacitus.lua
+TempestKeep\Dalliah.lua
 TempestKeep\Ironhand.lua
 TempestKeep\Laj.lua
 TempestKeep\Pathaleon.lua

@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Mekgineer Steamrigger"]
+local boss = AceLibrary("Babble-Boss-2.2")["Hydromancer Thespia"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -10,21 +10,12 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	cmd = "Steamrigger",
+	cmd = "Thespia",
 
-	mech = "Steamrigger Mechanics",
-	mech_desc = "Warn for incoming mechanics",
-	mech_trigger = "Tune 'em up good, boys!",
-	mech_message = "Steamrigger Mechanics coming soon!",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	cmd = "스팀리거",
-
-	mech = "스팀리거 정비사",
-	mech_desc = "스팀리거 정비사 소환 경고",
-	mech_trigger = "얘들아, 쟤네들을 부드럽게 만져줘라!",
-	mech_message = "스팀리거 정비사 소환!",
+	storm = "Lightning Cloud",
+	storm_desc = "Warn for Lightning Cloud",
+	storm_trigger = "Enjoy the storm warm bloods!",
+	storm_message = "Lightning Cloud!",
 } end )
 
 ----------------------------------
@@ -36,7 +27,7 @@ mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Steamvault"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"mech", "bosskill"}
+mod.toggleoptions = {"storm", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -53,7 +44,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.mech and msg == L["mech_trigger"] then
-		self:Message(L["mech_message"], "Attention")
+	if self.db.profile.storm and msg == L["storm_trigger"] then
+		self:Message(L["storm_message"], "Attention")
 	end
 end

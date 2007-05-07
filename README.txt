@@ -43,10 +43,13 @@ The Mechanar
 The Botanica
  :: Laj - Warns for Allergic Reaction **Needs Testing: enUS**
 
+The Arcatraz
+ :: Dalliah the Doomsayer - Whirlwind & Gift of the Doomsayer
+
 The Steamvault
+ :: Hydromancer Thespia - Lightning Cloud
  :: Mekgineer Steamrigger - Summoned Mechanics **Needs Testing: enUS**
- :: Warlord Kalithresh - Spell Reflection **Needs Testing: enUS**
-                       - Rage Channeling **Needs Testing: enUS**
+ :: Warlord Kalithresh - Spell Reflection & Rage Channeling
 
 Shadow Labyrinth
  :: Murmur - Warns for Sonic Boom **Needs Testing: enUS**
@@ -59,7 +62,6 @@ The Shattered Halls
 Contributions-
 
 If you would like to contribute you can do it in a few ways.
-1) Download and install Transcriptor(from wowace.com), activate it when you start your instance run and turn it off when you're done. It will log all the necessary messages for creating new warnings. Note: Not EVERYTHING can be warned, for example the mushrooms during Hungarfen in Underbog.
+1) Download and install Transcriptor(http://files.wowace.com/Transcriptor/), activate it when you start the boss fight and turn it off when you're done.  It will log all the necessary messages for creating new warnings.  Note: Not EVERYTHING can be warned, for example the mushrooms during Hungarfen in Underbog.
 2) Write & Test the module yourself then send to me to include
-3) Simply write me an e-mail and request it.  I'm in a small guild and don't get in ALOT of instance runs, and we don't progress at break-neck speed, but I'll add it to the to-do list and get to as soon as I can.
-4) Report any problems or inaccuracies you have with a module
+3) Report any problems, inaccuracies, or suggestions you have to the wowace forum(http://www.wowace.com/forums/index.php?topic=5751).
