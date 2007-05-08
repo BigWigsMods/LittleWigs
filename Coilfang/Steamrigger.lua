@@ -19,12 +19,10 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	cmd = "스팀리거",
-
 	mech = "스팀리거 정비사",
 	mech_desc = "스팀리거 정비사 소환 경고",
 	mech_trigger = "얘들아, 쟤네들을 부드럽게 만져줘라!",
-	mech_message = "스팀리거 정비사 소환!",
+	mech_message = "잠시 후 스팀리거 정비사 등장!",
 } end )
 
 ----------------------------------

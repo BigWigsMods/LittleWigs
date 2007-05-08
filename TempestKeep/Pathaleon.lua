@@ -40,10 +40,13 @@ L:RegisterTranslations("koKR", function() return {
 	despawn = "망령 사라짐",
 	despawn_desc = "황천의 망령 사라짐에 대한 알림",
 	despawn_warn = "잠시 후 황천의 망령 사라짐!",
+	
+	despawn_trigger = "진짜 싸움을 시작해 볼까...", 
+	despawn_done = "황천의 망령 사라짐!",
 
 	mc = "정신 지배",
 	mc_desc = "정신 지배에 대한 경고",
-	mc_trigger = "^([^|;%s]*)(.*)지배에 걸렸습니다.", -- check
+	mc_trigger = "^([^|;%s]*)(.*)지배에 걸렸습니다.$", -- check
 	mc_warn = "%s 정신 지배!",
 } end )
 

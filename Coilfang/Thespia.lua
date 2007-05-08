@@ -18,6 +18,13 @@ L:RegisterTranslations("enUS", function() return {
 	storm_message = "Lightning Cloud!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+        storm = "먹구름",
+	storm_desc = "먹구름에 대한 경고",
+	storm_trigger = "피를 끓게 하는 폭풍의 힘을 즐겨라!",
+	storm_message = "먹구름!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -22,8 +22,8 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	allergic = "알레르기 반응",
 	allergic_desc = "알레르기 반응에 대한 알림",
-	allergic_trigger = "^([^|;%s]*)(.*)알레르기 반응에 걸렸습니다.", -- check
-	allergic_warn = "%s 알레그기!",
+	allergic_trigger = "^([^|;%s]*)(.*)알레르기 반응에 걸렸습니다%.$", -- check
+	allergic_warn = "%s 알레르기!",
 } end )
 
 ----------------------------------

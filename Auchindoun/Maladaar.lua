@@ -24,8 +24,6 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	cmd = "말라다르",
-
 	soul = "잃어버린 영혼 ",
 	soul_desc = "잃어버린 영혼에 대한 경고",
 	soul_trigger = "총독 말라다르|1이;가; 영혼 훔치기 사용을 시작합니다.", -- check

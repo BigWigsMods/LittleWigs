@@ -26,6 +26,21 @@ L:RegisterTranslations("enUS", function() return {
 	gift_bar = "Gifted: %s",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	ww = "소용돌이",
+	ww_desc = "달리아의 소용돌이에 대한 경고",
+	ww_trigger1 = "산산조각 내 버리겠어!",
+	ww_trigger2 = "소용돌이를 받아라!",
+	-- Could be more yell triggers
+	ww_message = "달리아 소용돌이 시작!",
+
+	gift = "파멸의 예언자의 선물",
+	gift_desc = "달리아의 파멸의 예언자의 선물 디버프에 대한 알림",
+	gift_trigger = "^([^%s]+) ([^%s]+) 파멸의 예언자의 선물에 걸렸습니다%.$",
+	gift_message = "%s 파멸의 예언자의 선물!",
+	gift_bar = "예언자의 선물: %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
