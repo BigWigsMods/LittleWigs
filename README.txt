@@ -21,42 +21,43 @@ If you want to make each instance load on demand just run the LOD script to move
 Bosses-
 
 The Blood Furnace
- :: Broggok - Poison Cloud **Needs Testing: enUS**
+ :: Broggok - Poison Cloud
  :: Keli'dan the Breaker - Burning Nova
 
 Mana-Tombs
- :: Pandemonius - Dark Shell **Needs Testing: enUS koKR frFR**
+ :: Pandemonius - Dark Shell
 
 Auchenai Crypts
- :: Exarch Maladaar - Stolen Soul **Needs Testing: enUS**
-                    - Avatar of the Martyred **Needs Testing: enUS**
+ :: Exarch Maladaar - Stolen Soul
+                    - Avatar of the Martyred
 
 Sethekk Halls
- :: Talon King Ikiss - Arcane Explosion **Needs Testing: koKR frFR**
+ :: Talon King Ikiss - Arcane Explosion
  :: Darkweaver Syth - Announced Summons
 
 The Mechanar
- :: Mechano-Lord Capacitus - Damage/Spell Reflect(Normal) & Phase Shift(Heroic) **Needs Testing: enUS**
- :: Gatewatcher Iron-Hand - Jackhammer & Shadow Power abilities **Needs Testing: enUS**
- :: Pathaleon the Calculator - Summoned Wraiths & Mind Control **Needs Testing: enUS**
+ :: Mechano-Lord Capacitus - Damage/Spell Reflect(Normal) & Phase Shift(Heroic)
+ :: Gatewatcher Iron-Hand - Jackhammer & Shadow Power abilities
+ :: Pathaleon the Calculator - Summoned Wraiths & Mind Control
 
 The Botanica
- :: Laj - Warns for Allergic Reaction **Needs Testing: enUS**
+ :: Laj - Warns for Allergic Reaction
 
 The Arcatraz
+ :: Zereketh the Unbound - Shadow Nova, Void Zones, and Seed of Corruption
  :: Dalliah the Doomsayer - Whirlwind & Gift of the Doomsayer
 
 The Steamvault
  :: Hydromancer Thespia - Lightning Cloud
- :: Mekgineer Steamrigger - Summoned Mechanics **Needs Testing: enUS**
+ :: Mekgineer Steamrigger - Summoned Mechanics
  :: Warlord Kalithresh - Spell Reflection & Rage Channeling
 
 Shadow Labyrinth
- :: Murmur - Warns for Sonic Boom **Needs Testing: enUS**
+ :: Murmur - Warns for Sonic Boom
            - Several options for Murmur's Touch (similar to Baron Geddon's Bomb)
 
 The Shattered Halls
- :: Warchief Kargath Bladefist - Warns for Blade Dance **Needs Testing: enUS**
+ :: Warchief Kargath Bladefist - Warns for Blade Dance
 
 
 Contributions-

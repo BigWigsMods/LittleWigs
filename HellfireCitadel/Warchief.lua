@@ -22,7 +22,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	bdbar = "Blade Dance Bar",
 	bdbar_desc = "Display count down estimate for Blade Dance",
-	bdbar_display = "Blade Dance",
+	bdbar_display = "~Blade Dance",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

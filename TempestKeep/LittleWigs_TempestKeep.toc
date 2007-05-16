@@ -21,3 +21,4 @@ Dalliah.lua
 Ironhand.lua
 Laj.lua
 Pathaleon.lua
+Zereketh.lua

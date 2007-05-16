@@ -4,6 +4,7 @@
 
 local boss = AceLibrary("Babble-Boss-2.2")["Dalliah the Doomsayer"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
 ----------------------------
 --      Localization      --
