@@ -36,7 +36,7 @@ L:RegisterTranslations("koKR", function() return {
 
 	bdbar = "칼춤 바",
 	bdbar_desc = "칼춤의 지속 시간 표시",
-	bdbar_display = "칼춤",
+	bdbar_display = "~칼춤",
 } end)
 
 ----------------------------------

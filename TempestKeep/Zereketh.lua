@@ -33,6 +33,27 @@ L:RegisterTranslations("enUS", function() return {
 	icon_desc = "Put a Raid Icon on the person who has Seed of Corruption. (Requires promoted or higher)",		
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	nova = "암흑 회오리",
+	nova_desc = "암흑 회오리에 대한 경고",
+	nova_trigger = "암흑 회오리 시전을 시작합니다.$",
+	nova_warning = "2초 이내 암흑 회오리!",
+
+	void = "공허의 지역",
+	void_desc = "새로운 공허의 지역에 대한 경고",
+	void_trigger = "공허의 지역|1을;를; 시전합니다.$",
+	void_warning = "잠시 후 공허의 지역!",
+
+	seed = "부패의 씨앗",
+	seed_desc = "부패의 씨앗에 걸린 사람에 대한 경고",
+	seed_trigger = "^([^|;%s]*)(.*)파멸의 예전자의 선물에 걸렸습니다.",
+	seed_warning = "%s에 부패의 씨앗!",
+	seed_bar = "~폭발",
+
+	icon = "부패의 씨앗 공격대 아이콘",
+	icon_desc = "부패의 씨앗에 걸린 사람에 공격대 아이콘 지정. (승급자 이상의 권한 요구)",		
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
