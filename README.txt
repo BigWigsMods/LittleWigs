@@ -46,6 +46,7 @@ The Botanica
 The Arcatraz
  :: Zereketh the Unbound - Shadow Nova, Void Zones, and Seed of Corruption
  :: Dalliah the Doomsayer - Whirlwind & Gift of the Doomsayer
+ :: Harbinger Skyriss - Mind Control
 
 The Steamvault
  :: Hydromancer Thespia - Lightning Cloud

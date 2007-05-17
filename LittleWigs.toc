@@ -30,4 +30,5 @@ TempestKeep\Dalliah.lua
 TempestKeep\Ironhand.lua
 TempestKeep\Laj.lua
 TempestKeep\Pathaleon.lua
+TempestKeep\Skyriss.lua
 TempestKeep\Zereketh.lua

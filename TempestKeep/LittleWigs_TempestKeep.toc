@@ -21,4 +21,5 @@ Dalliah.lua
 Ironhand.lua
 Laj.lua
 Pathaleon.lua
+Skyriss.lua
 Zereketh.lua
