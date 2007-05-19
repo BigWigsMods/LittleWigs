@@ -25,7 +25,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	seed = "Seed of Corruption",
 	seed_desc = "Warn for who get's Seed of Corruption",
-	seed_trigger = "^([^%s]+) ([^%s]+) afflicted by Gift of the Doomsayer.",
+	seed_trigger = "^([^%s]+) ([^%s]+) afflicted by Seed of Corruption.",
 	seed_warning = "Seed of Corruption is on %s!",
 	seed_bar = "~Detonation",
 
