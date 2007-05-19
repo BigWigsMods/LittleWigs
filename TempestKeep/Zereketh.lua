@@ -24,9 +24,9 @@ L:RegisterTranslations("enUS", function() return {
 	void_warning = "Void Zone incomimg!",
 
 	seed = "Seed of Corruption",
-	seed_desc = "Warn for who get's Seed of Corruption",
+	seed_desc = "Warn for who gets Seed of Corruption",
 	seed_trigger = "^([^%s]+) ([^%s]+) afflicted by Seed of Corruption.",
-	seed_warning = "Seed of Corruption is on %s!",
+	seed_warning = "Seed of Corruption on %s!",
 	seed_bar = "~Detonation",
 
 	icon = "Seed of Corruption Raid Icon",
