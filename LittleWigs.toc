@@ -25,6 +25,7 @@ Auchindoun\Maladaar.lua
 Auchindoun\Murmur.lua
 Auchindoun\Pandemonius.lua
 Auchindoun\Syth.lua
+Auchindoun\Vorpil.lua
 TempestKeep\Capacitus.lua
 TempestKeep\Dalliah.lua
 TempestKeep\Ironhand.lua
