@@ -34,6 +34,7 @@ L:RegisterTranslations("enUS", function() return {
 	sonicboom_desc = "Warns when Murmur begins casting his Sonic Boom",
 	sonicboom_trigger = "draws energy from the air...",
 	sonicboom_alert = "Sonic Boom in 5 seconds!",
+	sonicboom_bar = "Sonic Boom casting!",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
@@ -129,5 +130,6 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		end
 	elseif sync == "MurmurBoom" and self.db.profile.sonicboom then
 		self:Message(L["sonicboom_alert"], "Important")
+		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
 	end
 end
