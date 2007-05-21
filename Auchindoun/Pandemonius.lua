@@ -62,6 +62,7 @@ end
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 	if self.db.profile.shell and msg:find(L["shell_trigger"]) then
 		self:Message(L["shell_alert"], "Attention")
+		self:Bar(L["shell_alert"], 6, "Spell_Shadow_AntiShadow")
 	end
 end
 
