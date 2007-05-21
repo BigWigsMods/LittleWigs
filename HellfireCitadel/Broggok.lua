@@ -25,6 +25,15 @@ L:RegisterTranslations("koKR", function() return {
 	poison_message = "독구름!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "布洛克",
+
+	poison = "Poison Cloud",
+	poison_desc = "Warn for Poison Cloud",
+	poison_trigger = "Broggok casts Poison Cloud.",
+	poison_message = "Poison Cloud!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

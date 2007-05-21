@@ -54,6 +54,29 @@ L:RegisterTranslations("koKR", function() return {
 	icon_desc = "부패의 씨앗에 걸린 사람에 공격대 아이콘 지정. (승급자 이상의 권한 요구)",		
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "Zereketh",
+
+	nova = "Shadow Nova",
+	nova_desc = "Warn for Shadow Nova",
+	nova_trigger = "begins to cast Shadow Nova.$",
+	nova_warning = "Shadow Nova in 2 seconds!",
+
+	void = "Void Zone",
+	void_desc = "Warns for new Void Zones",
+	void_trigger = "casts Void Zone.$",
+	void_warning = "Void Zone incomimg!",
+
+	seed = "Seed of Corruption",
+	seed_desc = "Warn for who get's Seed of Corruption",
+	seed_trigger = "^([^%s]+) ([^%s]+) afflicted by Gift of the Doomsayer.",
+	seed_warning = "Seed of Corruption is on %s!",
+	seed_bar = "~Detonation",
+
+	icon = "Seed of Corruption Raid Icon",
+	icon_desc = "Put a Raid Icon on the person who has Seed of Corruption. (Requires promoted or higher)",		
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -62,6 +62,34 @@ L:RegisterTranslations("koKR", function() return {
 	sonicboom_bar = "음파 폭발 시전!",
 } end)
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "莫爾墨",
+
+--	touch_trigger = "^([^%s]+) ([^%s]+) afflicted by 莫爾墨之觸",
+	touch_trigger = "^(.+)受到(.*)莫爾墨之觸的傷害。",
+	touch_message_you = "你是炸彈！ 遠離隊友！",
+	touch_message_other = "%s 是炸彈！ 遠離隊友！",
+
+	touchtimer = "炸彈倒數計時條",
+	touchtimer_desc = "顯示炸彈倒數 13 秒計時條",
+	touchtimer_bar = "%s: 莫爾墨之觸",
+
+	youtouch = "自身炸彈警報",
+	youtouch_desc = "當自己成為炸彈時發出警報",
+
+	elsetouch = "隊友炸彈警報",
+	elsetouch_desc = "當隊友變成炸彈時發出警報",
+
+	icon = "炸彈標記",
+	icon_desc = "在被變成炸彈的隊友頭上標記（需要助理或領隊權限）",
+
+	sonicboom = "音速波",
+	sonicboom_desc = "當莫爾墨開始施放音速波時發出警報",
+	sonicboom_trigger = "從空中吸取能量……",
+	sonicboom_alert = "5 秒後音速波，快跑出音速波範圍！",
+	sonicboom_bar = "Sonic Boom casting!",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

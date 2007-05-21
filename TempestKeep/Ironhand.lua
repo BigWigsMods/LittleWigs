@@ -35,6 +35,20 @@ L:RegisterTranslations("koKR", function() return {
 	shadow_warn = "2초 이내 어둠의 힘!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "看守者",
+
+	hammer = "千斤錘特效",
+	hammer_desc = "看守者發動千斤錘特效時發出警報",
+	hammer_trigger = "威嚇地舉起他的錘子……",
+	hammer_warn = "3 秒後發動千斤錘！ 近戰退後！",
+
+	shadow = "暗影強化",
+	shadow_desc = "看守者施放暗影強化時發出警報",
+	shadow_trigger = "開始施放暗影強化。",
+	shadow_warn = "2 秒後施放暗影強化！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

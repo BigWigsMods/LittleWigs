@@ -25,6 +25,15 @@ L:RegisterTranslations("koKR", function() return {
 	mech_message = "잠시 후 스팀리거 정비사 등장!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "米克吉勒·蒸氣操控者",
+
+	mech = "蒸氣操控者技師",
+	mech_desc = "呼叫蒸氣操控者技師時發出警報",
+	mech_trigger = "好好的修理它們，孩子們!",
+	mech_message = "蒸氣操控者技師出現了，恐懼/AE！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

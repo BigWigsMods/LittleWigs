@@ -25,6 +25,15 @@ L:RegisterTranslations("koKR", function() return {
 	summon_message = "정령 소환!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "暗法師希斯",
+
+	summon = "召喚元素警報",
+	summon_desc = "召喚元素生物時發出警報",
+	summon_trigger = "施放了召喚希斯祕法元素。",
+	summon_message = "希斯元素已被召喚出來！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

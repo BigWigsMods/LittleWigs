@@ -25,6 +25,15 @@ L:RegisterTranslations("koKR", function() return {
 	nova_message = "불타는 회오리 시전!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "破壞者·凱利丹",
+
+	nova = "Burning Nova",
+	nova_desc = "Warn for Burning Nova",
+	nova_trigger = "Come closer",
+	nova_message = "Burning Nova Incoming!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

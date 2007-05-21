@@ -32,6 +32,14 @@ L:RegisterTranslations("frFR", function() return {
    ae_message = "Explosion des Arcanes imminente !", --check
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "鷹王伊奇斯",
+
+	ae = "魔爆術",
+	ae_desc = "魔爆術警報",
+	ae_trigger = "鷹王伊奇斯開始施放魔爆術。",
+	ae_message = "即將施放魔爆術！ 快找掩蔽物！",
+} end )
 
 ----------------------------------
 --      Module Declaration      --

@@ -39,6 +39,22 @@ L:RegisterTranslations("koKR", function() return {
 	bdbar_display = "~칼춤",
 } end)
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "大酋長卡喀斯·刃拳",
+
+	engage_trigger1 = "^我被叫做刃拳是有原因的。你馬上就會知道了。",
+	engage_trigger2 = "^I'll carve",
+	engage_trigger3 = "^我們的部落才是真正的部落!唯一的部落!",
+
+	bdwarn = "劍刃之舞",
+	bdwarn_desc = "估算劍刃之舞計時器",
+	bdwarn_alert = "劍刃之舞持續 5 秒，散開！",
+
+	bdbar = "劍刃之舞計時條",
+	bdbar_desc = "顯示估算劍刃之舞倒數",
+	bdbar_display = "劍刃之舞",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -26,6 +26,16 @@ L:RegisterTranslations("koKR", function() return {
 	allergic_warn = "%s 알레르기!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "拉杰",
+
+	allergic = "過敏反應",
+	allergic_desc = "過敏反應警報",
+--	allergic_trigger = "^([^%s]+) ([^%s]+) afflicted by Allergic Reaction",
+	allergic_trigger = "^(.+)受到(.*)過敏反應效果的影響。",
+	allergic_warn = "過敏反應: %s！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

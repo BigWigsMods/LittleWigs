@@ -50,6 +50,28 @@ L:RegisterTranslations("koKR", function() return {
 	mc_warn = "%s 정신 지배!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "操綜者帕薩里歐",
+
+	summon = "召喚虛空幻影",
+	summon_desc = "操綜者帕薩里歐召喚虛空幻影時發出警報",
+	summon_trigger = "施放了召喚虛空幻影。",
+	summon_warn = "虛空幻影已被召喚出來！",
+
+	despawn = "召回虛空幻影",
+	despawn_desc = "即將召回虛空幻影時發出警報",
+	despawn_warn = "虛空幻影將被召回！",
+
+	despawn_trigger = "我比較喜歡直接的方法……",
+	despawn_done = "虛空幻影已被召回，帕薩里歐進入狂怒狀態！",
+
+	mc = "支配",
+	mc_desc = "支配警報",
+--	mc_trigger = "^([^%s]+) ([^%s]+) afflicted by Domination.$",
+	mc_trigger = "^(.+)受到(.*)支配效果的影響。",
+	mc_warn = "%s 受到支配！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

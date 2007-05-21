@@ -25,6 +25,15 @@ L:RegisterTranslations("koKR", function() return {
 	shell_alert = "암흑의 보호막!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "班提蒙尼厄斯",
+
+	shell = "Dark Shell",
+	shell_desc = "當 Dark Shell 施放時發出警報",
+	shell_trigger = "gains Dark Shell",
+	shell_alert = "Dark Shell！ 停止攻擊！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
