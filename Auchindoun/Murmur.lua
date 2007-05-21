@@ -59,6 +59,7 @@ L:RegisterTranslations("koKR", function() return {
 	sonicboom_desc = "음파 폭발 시전 시 경고합니다.",
 	sonicboom_trigger = "대기에서 에너지를 흡수합니다...", -- check
 	sonicboom_alert = "5초 이내 음파 폭발!",
+	sonicboom_bar = "음파 폭발 시전!",
 } end)
 
 ----------------------------------

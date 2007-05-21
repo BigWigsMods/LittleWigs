@@ -46,7 +46,7 @@ L:RegisterTranslations("koKR", function() return {
 
 	seed = "부패의 씨앗",
 	seed_desc = "부패의 씨앗에 걸린 사람에 대한 경고",
-	seed_trigger = "^([^|;%s]*)(.*)파멸의 예전자의 선물에 걸렸습니다.",
+	seed_trigger = "^([^|;%s]*)(.*)부패의 씨앗에 걸렸습니다.",
 	seed_warning = "%s에 부패의 씨앗!",
 	seed_bar = "~폭발",
 
