@@ -19,7 +19,7 @@ L:RegisterTranslations("enUS", function() return {
 	teleport_warning = "Teleport in ~5sec!",
 	teleport_bar = "Teleport",
 	
-	teleport_pretrigger = "I'll make an offering of your",	
+	engage_trigger = "I'll make an offering of your blood",	
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -54,7 +54,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.teleport and msg:find(L["teleport_pretrigger"]) then
+	if self.db.profile.teleport and msg:find(L["engage_trigger"]) then
 			self:Bar(L["teleport_bar"], 45, "Spell_Magic_LesserInvisibilty")
 			self:DelayedMessage(40, L["teleport_warning"], "Attention")
 	end
