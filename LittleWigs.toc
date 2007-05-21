@@ -1,7 +1,8 @@
-## Interface: 20003
+﻿## Interface: 20003
 
 ## Title: Little Wigs |cff7fff7f -Ace2-|r
 ## Notes: Boss warnings for 5-man instances.
+## Notes-zhTW: 五人副本首領警告
 ## Author: Ulic
 ## X-Build: $Rev$
 ## X-Category: Party
