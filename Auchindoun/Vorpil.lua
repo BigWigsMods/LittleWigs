@@ -19,7 +19,7 @@ L:RegisterTranslations("enUS", function() return {
 	teleport_warning = "Teleport in ~5sec!",
 	teleport_bar = "Teleport",
 	
-	teleport_pretrigger = "I'll make an offering of your!",	
+	teleport_pretrigger = "I'll make an offering of your",	
 } end )
 
 L:RegisterTranslations("koKR", function() return {
