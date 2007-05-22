@@ -39,6 +39,19 @@ L:RegisterTranslations("zhTW", function() return {
 	rage_message = "即將發動督軍之怒！ DPS 蒸餾器！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	spell = "Renvoi de sort",
+	spell_desc = "Préviens quand Kalithresh renvoye les sorts.",
+	spell_trigger = "gagne Renvoi de sort.$",
+	spell_message = "Renvoi de sort !",
+
+	rage = "Rage du seigneur de guerre",
+	rage_desc = "Préviens quand Kalithresh canalise de la rage.",
+	rage_trigger1 = "^%s commence à canaliser", -- à vérifier
+	rage_trigger2 = "This is not nearly over...", -- à traduire
+	rage_message = "Canalisation en cours !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

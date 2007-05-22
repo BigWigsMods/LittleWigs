@@ -34,6 +34,13 @@ L:RegisterTranslations("zhTW", function() return {
 	summon_message = "希斯元素已被召喚出來！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	summon = "Élémentaires",
+	summon_desc = "Préviens quand Syth invoque ses élémentaires.",
+	summon_trigger = "lance Invocation d'élémentaire des arcanes Syth",
+	summon_message = "Élémentaires invoqués !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

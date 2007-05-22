@@ -3,6 +3,7 @@
 ## Title: Little Wigs |cff7fff7f -Ace2-|r
 ## Notes: Boss warnings for 5-man instances.
 ## Notes-zhTW: 五人副本首領警告
+## Notes-frFR: Avertissements pour les boss des instances à 5 joueurs.
 ## Author: Ulic
 ## X-Build: $Rev$
 ## X-Category: Party

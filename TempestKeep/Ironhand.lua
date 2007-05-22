@@ -49,6 +49,18 @@ L:RegisterTranslations("zhTW", function() return {
 	shadow_warn = "2 秒後施放暗影強化！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	hammer = "Marteau-piqueur",
+	hammer_desc = "Préviens quand le Marteau-piqueur est incanté.",
+	hammer_trigger = "raises his hammer menacingly", -- à traduire
+	hammer_warn = "Marteau-piqueur dans 3 sec. !",
+
+	shadow = "Puissance de l'ombre",
+	shadow_desc = "Préviens quand Main-en-fer gagne la Puissance de l'ombre.",
+	shadow_trigger = "commence à lancer Puissance de l'ombre",
+	shadow_warn = "Puissance de l'ombre dans 2 sec. !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

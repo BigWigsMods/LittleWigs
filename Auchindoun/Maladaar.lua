@@ -49,6 +49,18 @@ L:RegisterTranslations("zhTW", function() return {
 	avatar_message = "馬丁瑞德的化身出現，MT 坦住！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	soul = "Âme volée",
+	soul_desc = "Préviens quand une âme est volée.",
+	soul_trigger = "commence à exécuter Âme volée",
+	soul_message = "Une âme a été volée !",
+
+	avatar = "Avatar du martyr",
+	avatar_desc = "Préviens quand l'Avatar du martyr est invoqué.",
+	avatar_trigger = "commence à exécuter Invocation du roi-esprits", -- à vérifier
+	avatar_message = "Avatar du martyr invoqué !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

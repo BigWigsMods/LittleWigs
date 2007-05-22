@@ -30,7 +30,7 @@ L:RegisterTranslations("enUS", function() return {
 	seed_bar = "~Detonation",
 
 	icon = "Seed of Corruption Raid Icon",
-	icon_desc = "Put a Raid Icon on the person who has Seed of Corruption. (Requires promoted or higher)",		
+	icon_desc = "Put a Raid Icon on the person who has Seed of Corruption. (Requires promoted or higher)",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -51,7 +51,7 @@ L:RegisterTranslations("koKR", function() return {
 	seed_bar = "~폭발",
 
 	icon = "부패의 씨앗 공격대 아이콘",
-	icon_desc = "부패의 씨앗에 걸린 사람에 공격대 아이콘 지정. (승급자 이상의 권한 요구)",		
+	icon_desc = "부패의 씨앗에 걸린 사람에 공격대 아이콘 지정. (승급자 이상의 권한 요구)",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -74,7 +74,28 @@ L:RegisterTranslations("zhTW", function() return {
 	seed_bar = "~Detonation",
 
 	icon = "Seed of Corruption Raid Icon",
-	icon_desc = "Put a Raid Icon on the person who has Seed of Corruption. (Requires promoted or higher)",		
+	icon_desc = "Put a Raid Icon on the person who has Seed of Corruption. (Requires promoted or higher)",
+} end )
+
+L:RegisterTranslations("frFR", function() return {
+	nova = "Nova de l'ombre",
+	nova_desc = "Préviens de l'arrivée des Novas de l'ombre.",
+	nova_trigger = "commence à lancer Nova de l'ombre.$",
+	nova_warning = "Nova de l'ombre dans 2 sec. !",
+
+	void = "Zone de vide",
+	void_desc = "Préviens quand de nouvelles Zones de vide apparaissent.",
+	void_trigger = "lance Zone de vide.$",
+	void_warning = "Arrivée d'une Zone de vie !",
+
+	seed = "Graine de Corruption",
+	seed_desc = "Préviens quand un joueur est affecté par la Graine de Corruption.",
+	seed_trigger = "^([^%s]+) ([^%s]+) subit les effets .* Graine de Corruption.",
+	seed_warning = "Graine de Corruption sur %s !",
+	seed_bar = "~Détonation",
+
+	icon = "Icône Graine de Corruption",
+	icon_desc = "Place une icône de raid sur la personne affecté par la Graine de Corruption (nécessite d'être promu ou mieux).",
 } end )
 
 ----------------------------------

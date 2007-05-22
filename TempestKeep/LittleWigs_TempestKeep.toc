@@ -1,7 +1,9 @@
 ﻿## Interface: 20100
 
 ## Title: Little Wigs [|cffeda55fTempest Keep|r]
+## Title-frFR: Little Wigs [|cffeda55fDonjon de la Tempête|r]
 ## Notes: Big Wigs Tempest Keep Modules
+## Notes-frFR: Modules Big Wigs concernant le Donjon de la Tempête.
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

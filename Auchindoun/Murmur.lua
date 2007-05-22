@@ -28,7 +28,7 @@ L:RegisterTranslations("enUS", function() return {
 	elsetouch_desc = "Warn when others are the bomb",
 
 	icon = "Raid Icon on bomb",
-	icon_desc = "Put a Raid Icon on the person who's the bomb. (Requires promoted or higher)",	
+	icon_desc = "Put a Raid Icon on the person who's the bomb. (Requires promoted or higher)",
 
 	sonicboom = "Sonic Boom",
 	sonicboom_desc = "Warns when Murmur begins casting his Sonic Boom",
@@ -88,6 +88,31 @@ L:RegisterTranslations("zhTW", function() return {
 	sonicboom_trigger = "從空中吸取能量……",
 	sonicboom_alert = "5 秒後音速波，快跑出音速波範圍！",
 	sonicboom_bar = "Sonic Boom casting!",
+} end)
+
+L:RegisterTranslations("frFR", function() return {
+	touch_trigger = "^([^%s]+) ([^%s]+) les effets de Toucher de Marmon.",
+	touch_message_you = "Vous êtes la bombe !",
+	touch_message_other = "%s est la bombe !",
+
+	touchtimer = "Délais avant explosion de la bombe",
+	touchtimer_desc = "Affiche une barre de 13 secondes indiquant quand la bombe explose sur la cible.",
+	touchtimer_bar = "%s : Toucher de Marmon",
+
+	youtouch = "Bombe (vous)",
+	youtouch_desc = "Préviens quand vous êtes la bombe.",
+
+	elsetouch = "Bombe (les autres)",
+	elsetouch_desc = "Préviens quand les autres sont la bombe.",
+
+	icon = "Icône",
+	icon_desc = "Place une icône de raid sur la personne qui est la bombe (nécessite d'être promu ou mieux).",
+
+	sonicboom = "Grondement sonore",
+	sonicboom_desc = "Préviens quand Marmon commence à lancer son Grondement sonore.",
+	sonicboom_trigger = "draws energy from the air...", -- à traduire
+	sonicboom_alert = "Grondement sonore dans 5 sec. !",
+	sonicboom_bar = "Grondement sonore en incantation !",
 } end)
 
 ----------------------------------

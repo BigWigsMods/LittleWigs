@@ -34,6 +34,13 @@ L:RegisterTranslations("zhTW", function() return {
 	mech_message = "蒸氣操控者技師出現了，恐懼/AE！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	mech = "Mécaniciens Montevapeur",
+	mech_desc = "Préviens quand Montevapeur appelle ses mécaniciens.",
+	mech_trigger = "Faites leur une vidange, les gars !",
+	mech_message = "Mécaniciens Montevapeur en approche !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

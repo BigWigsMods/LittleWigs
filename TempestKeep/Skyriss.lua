@@ -36,6 +36,23 @@ L:RegisterTranslations("koKR", function() return {
 	mc_warning = "%s 정신 지배!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	mc = "Contrôle mental",
+	mc_desc = "Préviens quand un joueur est contrôlé.",
+	mc_trigger = "^([^%s]+) ([^%s]+) les effets .* Domination.$",
+	mc_warning = "%s est sous Contrôle mental !",
+
+	split = "Division",
+	split_desc = "Préviens quand le Messager Skyriss se divise.",
+	split_trigger = "^Nous nous étendons sur l'univers, aussi innombrables que les étoiles !$",
+	split_warning = "%s s'est divisé.",
+
+	mr = "Pourfendre l'esprit",
+	mr_desc = "Préviens quand un joueur est affecté par Pourfendre l'esprit.",
+	mr_trigger = "^([^%s]+) ([^%s]+) les effets .* Pourfendre l'esprit.$",
+	mr_warning = "Pourfendre l'esprit : %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

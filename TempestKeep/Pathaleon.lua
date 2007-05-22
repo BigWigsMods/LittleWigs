@@ -72,6 +72,25 @@ L:RegisterTranslations("zhTW", function() return {
 	mc_warn = "%s 受到支配！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	summon = "Âmes en peine invoquées",
+	summon_desc = "Préviens quand les âmes en peine du Néant sont invoquées.",
+	summon_trigger = "lance Invocation d'une âme en peine du Néant",
+	summon_warn = "Âmes en peine du Néant invoquées !",
+
+	despawn = "Âmes en peine disparues",
+	despawn_desc = "Préviens quand les âmes en peine du Néant sont sur le point de disparaître.",
+	despawn_warn = "Disparition des âmes en peine du Néant imminente !",
+
+	despawn_trigger = "Je préfère", -- à vérifier
+	despawn_done = "Âmes en peine du Néant disparues !",
+
+	mc = "Contrôle mental",
+	mc_desc = "Préviens quand un joueur est contrôlé.",
+	mc_trigger = "^([^%s]+) ([^%s]+) les effets .* Domination.$",
+	mc_warn = "%s est sous Contrôle mental !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

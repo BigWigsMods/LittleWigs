@@ -34,6 +34,13 @@ L:RegisterTranslations("zhTW", function() return {
 	storm_message = "落雷之雲！ 注意閃躲！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	storm = "Nuage d'éclairs",
+	storm_desc = "Préviens quand Thespia lance un Nuage d'éclairs.",
+	storm_trigger = "Enjoy the storm warm bloods!", -- à traduire
+	storm_message = "Nuage d'éclairs !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -19,12 +19,23 @@ L:RegisterTranslations("enUS", function() return {
 	teleport_warning = "Teleport in ~5sec!",
 	teleport_bar = "Teleport",
 	
-	engage_trigger = "I'll make an offering of your blood",	
+	engage_trigger = "I'll make an offering of your blood",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
 
 
+} end )
+
+L:RegisterTranslations("frFR", function() return {
+	teleport = "Téléportation",
+	teleport_desc = "Préviens quand Vorpil se téléporte avec le groupe.",
+	teleport_trigger = "gagne Attirer les ombres.",
+	teleport_message = "Téléportation !",
+	teleport_warning = "Téléportation dans ~5 sec. !",
+	teleport_bar = "Téléportation",
+
+	engage_trigger = "Je ferai une offrande de ton sang", -- à vérifier
 } end )
 
 ----------------------------------

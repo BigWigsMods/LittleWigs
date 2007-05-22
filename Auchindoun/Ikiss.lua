@@ -25,13 +25,6 @@ L:RegisterTranslations("koKR", function() return {
 	ae_message = "신비한 폭발 시전!",
 } end )
 
-L:RegisterTranslations("frFR", function() return {
-   ae = "Explosion des Arcanes", --check
-   ae_desc = "Pr\195\169viens de l'Explosion des Arcanes", --check
-   ae_trigger = "Roi-serre Ikiss se met ? canaliser l'\195\169nergie des arcanes...", --check
-   ae_message = "Explosion des Arcanes imminente !", --check
-} end )
-
 L:RegisterTranslations("zhTW", function() return {
 	cmd = "鷹王伊奇斯",
 
@@ -39,6 +32,13 @@ L:RegisterTranslations("zhTW", function() return {
 	ae_desc = "魔爆術警報",
 	ae_trigger = "鷹王伊奇斯開始施放魔爆術。",
 	ae_message = "即將施放魔爆術！ 快找掩蔽物！",
+} end )
+
+L:RegisterTranslations("frFR", function() return {
+	ae = "Explosion des arcanes",
+	ae_desc = "Préviens quand Ikiss lance son Explosion des arcanes.",
+	ae_trigger = "Roi-serre Ikiss lance Transfert.",
+	ae_message = "Explosion des arcanes en incantation !",
 } end )
 
 ----------------------------------

@@ -2,6 +2,7 @@
 
 ## Title: Little Wigs [|cffeda55fAuchindoun|r]
 ## Notes: Big Wigs Auchindoun Modules
+## Notes: Modules Big Wigs concernant Auchindoun.
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

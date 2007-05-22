@@ -34,6 +34,13 @@ L:RegisterTranslations("zhTW", function() return {
 	nova_message = "Burning Nova Incoming!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	nova = "Nova ardente",
+	nova_desc = "Préviens de l'arrivée des Novas ardentes.",
+	nova_trigger = "Approchez",
+	nova_message = "Nova ardente imminente !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -83,6 +83,29 @@ L:RegisterTranslations("zhTW", function() return {
 	polarity_warn = "3 秒後極性轉換，注意跑位！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	trigger1 = "commence à lancer Bouclier réflecteur de magie.$",
+	trigger2 = "commence à lancer Bouclier réflecteur de dégâts.$",
+	trigger3 = "Bouclier réflecteur de magie sur Mécano-seigneur Capacitus vient de se dissiper.",
+	trigger4 = "Bouclier réflecteur de dégâts sur Mécano-seigneur Capacitus vient de se dissiper.",
+
+	warn1 = "Réflection de la magie dans 2 sec. !",
+	warn2 = "Réflection des dégâts dans 2 sec. !",
+	warn3 = "Réflection de la magie terminée !",
+	warn4 = "Réflection des dégâts terminée !",
+
+	magic = "Réflection de la magie",
+	magic_desc = "Préviens quand Capacitus est protégé par un Bouclier réflecteur de magie.",
+
+	dmg = "Réflection des dégâts",
+	dmg_desc = "Préviens quand Capacitus est protégé par un Bouclier réflecteur de dégâts.",
+
+	polarity = "Changement de polarité (Héroïque)",
+	polarity_desc = "Préviens quand le Changement de polarité est incanté.",
+	polarity_trigger = "commence à lancer Changement de polarité",
+	polarity_warn = "Changement de polarité dans 3 sec. !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -60,6 +60,21 @@ L:RegisterTranslations("zhTW", function() return {
 	gift_bar = "賜福: %s",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	ww = "Tourbillon",
+	ww_desc = "Préviens quand Dalliah fait son Tourbillon.",
+	ww_trigger1 = "I'll cut you to pieces!", -- à traduire
+	ww_trigger2 = "Reap the whirlwind!", -- à traduire
+	-- Could be more yell triggers
+	ww_message = "Dalliah gagne Tourbillon !",
+
+	gift = "Don de l'auspice funeste",
+	gift_desc = "Préviens quand quelqu'un est affecté par le Don de l'auspice funeste.",
+	gift_trigger = "^([^%s]+) ([^%s]+) les effets .* Don de l'auspice funeste.",
+	gift_message = "%s a le Don de l'auspice funeste !",
+	gift_bar = "Don : %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

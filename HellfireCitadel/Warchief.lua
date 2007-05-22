@@ -55,6 +55,20 @@ L:RegisterTranslations("zhTW", function() return {
 	bdbar_display = "劍刃之舞",
 } end)
 
+L:RegisterTranslations("frFR", function() return {
+	engage_trigger1 = "^On m'appelle", -- à vérifier
+	engage_trigger2 = "^Je vais vous découper", -- à vérifier
+	engage_trigger3 = "^Nous sommes la", -- à vérifier
+
+	bdwarn = "Danse des lames",
+	bdwarn_desc = "Délais estimés avant les Danses des lames.",
+	bdwarn_alert = "5 sec. avant Danse des lames !",
+
+	bdbar = "Barre Danse des lames",
+	bdbar_desc = "Affiche un compte à rebours d'estimation pour la Danse des lames.",
+	bdbar_display = "~Danse des lames",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

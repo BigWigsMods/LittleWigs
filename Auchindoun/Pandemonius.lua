@@ -34,6 +34,13 @@ L:RegisterTranslations("zhTW", function() return {
 	shell_alert = "Dark Shell！ 停止攻擊！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	shell = "Cocon de ténèbres",
+	shell_desc = "Préviens quand Pandemonius est protégé par son Cocon de ténèbres.",
+	shell_trigger = "gagne Cocon de ténèbres",
+	shell_alert = "Cocon de ténèbres !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

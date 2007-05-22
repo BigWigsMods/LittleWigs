@@ -34,6 +34,13 @@ L:RegisterTranslations("zhTW", function() return {
 	poison_message = "Poison Cloud!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	poison = "Nuage empoisonné",
+	poison_desc = "Préviens de l'arrivée des Nuages empoisonnés.",
+	poison_trigger = "Broggok lance Nuage empoisonné.",
+	poison_message = "Nuage empoisonné !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

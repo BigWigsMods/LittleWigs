@@ -1,7 +1,9 @@
 ﻿## Interface: 20100
 
 ## Title: Little Wigs [|cffeda55fHellfire Citadel|r]
+## Title-frFR: Little Wigs [|cffeda55fCitadelle des Flammes infernales|r]
 ## Notes: Big Wigs Hellfire Citadel Modules
+## Notes-frFR: Modules Big Wigs concernant la Citadelle des Flammes infernales.
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

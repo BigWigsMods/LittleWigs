@@ -36,6 +36,13 @@ L:RegisterTranslations("zhTW", function() return {
 	allergic_warn = "過敏反應: %s！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	allergic = "Réaction allergique",
+	allergic_desc = "Préviens quand un joueur fait une Réaction allergique.",
+	allergic_trigger = "^([^%s]+) ([^%s]+) les effets .* Réaction allergique",
+	allergic_warn = "%s est allergique !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
