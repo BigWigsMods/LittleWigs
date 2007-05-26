@@ -28,10 +28,10 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	cmd = "布洛克",
 
-	poison = "Poison Cloud",
-	poison_desc = "Warn for Poison Cloud",
-	poison_trigger = "Broggok casts Poison Cloud.",
-	poison_message = "Poison Cloud!",
+	poison = "毒雲術",
+	poison_desc = "布洛克施放毒雲術時發出警報",
+	poison_trigger = "%s施放了毒雲術",
+	poison_message = "毒雲術！ 注意閃避！",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
