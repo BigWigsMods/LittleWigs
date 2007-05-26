@@ -28,10 +28,10 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	cmd = "班提蒙尼厄斯",
 
-	shell = "Dark Shell",
-	shell_desc = "當 Dark Shell 施放時發出警報",
-	shell_trigger = "gains Dark Shell",
-	shell_alert = "Dark Shell！ 停止攻擊！",
+	shell = "黑暗之殼",
+	shell_desc = "當班提蒙尼厄斯施放黑暗之殼時發出警報",
+	shell_trigger = "獲得了黑暗之殼的效果。",
+	shell_alert = "黑暗之殼！ 停止攻擊！",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

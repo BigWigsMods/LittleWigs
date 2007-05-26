@@ -98,6 +98,29 @@ L:RegisterTranslations("frFR", function() return {
 	icon_desc = "Place une icône de raid sur la personne affecté par la Graine de Corruption (nécessite d'être promu ou mieux).",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "無約束的希瑞奇斯",
+
+	nova = "暗影新星",
+	nova_desc = "暗影新星警報",
+	nova_trigger = "開始施放暗影新星。$",
+	nova_warning = "2 秒後暗影新星！",
+
+	void = "虛空地區",
+	void_desc = "虛空地區警報",
+	void_trigger = "施放了虛空地區。$",
+	void_warning = "虛空地區來臨！",
+
+	seed = "腐蝕種子",
+	seed_desc = "隊友受到腐蝕種子的傷害時發出警報",
+	seed_trigger = "^(.+)受到(.*)腐蝕種子的傷害。",
+	seed_warning = "%s 受到腐蝕種子的傷害！",
+	seed_bar = "引爆",
+
+	icon = "腐蝕種子團隊標記",
+	icon_desc = "在受到腐蝕種子的隊友頭上標記（需要助理或領隊權限）",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

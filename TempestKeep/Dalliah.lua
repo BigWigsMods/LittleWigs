@@ -53,9 +53,8 @@ L:RegisterTranslations("zhTW", function() return {
 	ww_message = "達利亞要發動旋風斬了！",
 
 	gift = "末日預言者的賜福",
-	gift_desc = "末日預言者達利亞獲得末日預言者的賜福時發出警報",
---	gift_trigger = "^([^%s]+) ([^%s]+) afflicted by Gift of the Doomsayer.",
-	gift_trigger = "^(.+)受到(.*)末日預言者的賜福的傷害。",
+	gift_desc = "達利亞獲得末日預言者的賜福時發出警報",
+	gift_trigger = "^(.+)受到(.*)末日預言者的賜福效果的影響。",
 	gift_message = "%s 受到末日預言者的賜福的傷害！",
 	gift_bar = "賜福: %s",
 } end )

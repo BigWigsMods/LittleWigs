@@ -38,6 +38,19 @@ L:RegisterTranslations("frFR", function() return {
 	engage_trigger = "Je ferai une offrande de ton sang", -- à vérifier
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "領導者瓦皮歐",
+
+	teleport = "傳送",
+	teleport_desc = "領導者瓦皮歐施放傳送時發出警報",
+	teleport_trigger = "獲得了抽取暗影的效果。",
+	teleport_message = "傳送！ 迅速離開平台！",
+	teleport_warning = "5 秒後傳送！",
+	teleport_bar = "傳送",
+	
+	engage_trigger = "很好，一次值得的犧牲!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

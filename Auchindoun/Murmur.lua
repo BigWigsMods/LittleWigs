@@ -65,7 +65,6 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	cmd = "莫爾墨",
 
---	touch_trigger = "^([^%s]+) ([^%s]+) afflicted by 莫爾墨之觸",
 	touch_trigger = "^(.+)受到(.*)莫爾墨之觸的傷害。",
 	touch_message_you = "你是炸彈！ 遠離隊友！",
 	touch_message_other = "%s 是炸彈！ 遠離隊友！",
@@ -87,7 +86,7 @@ L:RegisterTranslations("zhTW", function() return {
 	sonicboom_desc = "當莫爾墨開始施放音速波時發出警報",
 	sonicboom_trigger = "從空中吸取能量……",
 	sonicboom_alert = "5 秒後音速波，快跑出音速波範圍！",
-	sonicboom_bar = "Sonic Boom casting!",
+	sonicboom_bar = "施放音速波",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

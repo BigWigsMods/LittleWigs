@@ -67,7 +67,6 @@ L:RegisterTranslations("zhTW", function() return {
 
 	mc = "支配",
 	mc_desc = "支配警報",
---	mc_trigger = "^([^%s]+) ([^%s]+) afflicted by Domination.$",
 	mc_trigger = "^(.+)受到(.*)支配效果的影響。",
 	mc_warn = "%s 受到支配！",
 } end )

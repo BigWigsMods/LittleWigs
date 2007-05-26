@@ -28,10 +28,10 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	cmd = "破壞者·凱利丹",
 
-	nova = "Burning Nova",
-	nova_desc = "Warn for Burning Nova",
-	nova_trigger = "Come closer",
-	nova_message = "Burning Nova Incoming!",
+	nova = "燃燒新星",
+	nova_desc = "破壞者·凱利丹施放燃燒新星時發出警報",
+	nova_trigger = "靠近一點!再靠近一點…然後燃燒吧!",
+	nova_message = "即將施放燃燒新星！ 迅速離開凱利丹！",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
