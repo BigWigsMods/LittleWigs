@@ -103,12 +103,12 @@ L:RegisterTranslations("zhTW", function() return {
 
 	nova = "暗影新星",
 	nova_desc = "暗影新星警報",
-	nova_trigger = "開始施放暗影新星。$",
+	nova_trigger = "%s開始施放暗影新星。",
 	nova_warning = "2 秒後暗影新星！",
 
 	void = "虛空地區",
 	void_desc = "虛空地區警報",
-	void_trigger = "施放了虛空地區。$",
+	void_trigger = "%s施放了虛空地區。",
 	void_warning = "虛空地區來臨！",
 
 	seed = "腐蝕種子",
