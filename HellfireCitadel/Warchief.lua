@@ -40,7 +40,7 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "大酋長卡喀斯·刃拳",
+	cmd = "大酋長卡加斯·刃拳",
 
 	engage_trigger1 = "^我被叫做刃拳是有原因的。你馬上就會知道了。",
 	engage_trigger2 = "^I'll carve",
