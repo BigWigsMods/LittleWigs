@@ -41,10 +41,12 @@ The Mechanar
  :: Pathaleon the Calculator - Summoned Wraiths & Mind Control
 
 The Botanica
+ :: High Botanist Freywinn - Tranquility
  :: Laj - Warns for Allergic Reaction
 
 The Arcatraz
  :: Zereketh the Unbound - Shadow Nova, Void Zones, and Seed of Corruption
+ :: Wrath-Scryer Soccothrates - Knock Away
  :: Dalliah the Doomsayer - Whirlwind & Gift of the Doomsayer
  :: Harbinger Skyriss - Mind Control
 

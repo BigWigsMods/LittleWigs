@@ -30,8 +30,10 @@ Auchindoun\Syth.lua
 Auchindoun\Vorpil.lua
 TempestKeep\Capacitus.lua
 TempestKeep\Dalliah.lua
+TempestKeep\Freywinn.lua
 TempestKeep\Ironhand.lua
 TempestKeep\Laj.lua
 TempestKeep\Pathaleon.lua
 TempestKeep\Skyriss.lua
+TempestKeep\Soccothrates.lua
 TempestKeep\Zereketh.lua

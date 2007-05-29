@@ -20,8 +20,10 @@
 
 Capacitus.lua
 Dalliah.lua
+Freywinn.lua
 Ironhand.lua
 Laj.lua
 Pathaleon.lua
 Skyriss.lua
+Soccothrates.lua
 Zereketh.lua

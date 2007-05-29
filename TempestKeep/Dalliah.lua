@@ -105,6 +105,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if not self.db.profile.ww then return end
 	if msg == L["ww_trigger1"] or msg == L["ww_trigger2"] then
 		self:Message(L["ww_message"], "Important")
+		self:Bar(L["ww"], 6, "Ability_Whirlwind")
 	end
 end
 
