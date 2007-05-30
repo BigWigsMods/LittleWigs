@@ -22,6 +22,7 @@ L:RegisterTranslations("enUS", function() return {
 	split_desc = "Warn when Harbinger Skyriss splits",
 	split_trigger = "^We span the universe, as countless as the stars!$",
 	split_warning = "%s has split.",
+	split_soon_warning = "Split soon!",
 	
 	mr = "Mind Rend",
 	mr_desc = "Warn for Mind Rend",
@@ -89,8 +90,12 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	firstSplitAnnounced = nil
+	secondSplitAnnounced = nil
+	
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")	
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE")	
+	self:RegisterEvent("UNIT_HEALTH")	
 	
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "MrEvent")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "MrEvent")
@@ -130,5 +135,19 @@ end
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if self.db.profile.split and msg == L["split_trigger"] then
 		self:Message(L["split_warning"]:format(boss), "Urgent")
+	end
+end
+
+function mod:UNIT_HEALTH(msg)
+	if not self.db.profile.split then return end
+	if UnitName(msg) == boss then
+		local hp = UnitHealth(msg)
+		if hp > 66 and hp < 70 and not firstSplitAnnounced then
+			self:Message(L["split_soon_warning"], "Attention")
+			firstSplitAnnounced = true
+		elseif hp > 33 and hp < 37 and not secondSplitAnnounced then
+			self:Message(L["split_soon_warning"], "Attention")
+			secondSplitAnnounced = true
+		end
 	end
 end
