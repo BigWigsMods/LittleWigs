@@ -16,7 +16,7 @@ L:RegisterTranslations("enUS", function() return {
 	tranq_desc = "Warn for Tranquility",
 	tranq_trigger = "Nature bends to my will....",
 	tranq_warning = "Tranquility cast!",
-	tranqfade_warning "Tranquility fading in ~5s!",
+	tranqfade_warning = "Tranquility fading in ~5s!",
 } end )
 
 ----------------------------------
