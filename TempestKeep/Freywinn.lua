@@ -19,6 +19,16 @@ L:RegisterTranslations("enUS", function() return {
 	tranqfade_warning = "Tranquility fading in ~5s!",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "大植物學家費瑞衛恩",
+
+	tranq = "寧靜",
+	tranq_desc = "費瑞衛恩施放寧靜時發出警報",
+	tranq_trigger = "Nature bends to my will....",
+	tranq_warning = "費瑞衛恩施放寧靜了！",
+	tranqfade_warning = "5 秒後寧靜消散！ DPS！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

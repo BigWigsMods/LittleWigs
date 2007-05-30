@@ -19,6 +19,16 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	cmd = "怒鐮者索寇斯瑞特",
+
+	knock = "Knock Away",
+	knock_desc = "Warn for Knock Away",
+	knock_trigger = "gains Knock Away.$",
+	knock_warning = "Knock Away!",
+
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
