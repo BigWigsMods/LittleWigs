@@ -16,11 +16,13 @@ L:RegisterTranslations("enUS", function() return {
 	hammer_desc = "Warn when Jackhammer Effect is cast",
 	hammer_trigger = "raises his hammer menacingly",
 	hammer_warn = "Jackhammer in 3 seconds!",
+	hammer_bar = "Jackhammer",
 
 	shadow = "Shadow Power",
 	shadow_desc = "Warn when Iron-Hand gains Shadow Power",
 	shadow_trigger = "begins to cast Shadow Power",
 	shadow_warn = "Shadow Power in 2 seconds!",
+	shadow_bar = "Shadow Power",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -42,11 +44,13 @@ L:RegisterTranslations("zhTW", function() return {
 	hammer_desc = "看守者發動千斤錘特效時發出警報",
 	hammer_trigger = "威嚇地舉起他的錘子……",
 	hammer_warn = "3 秒後發動千斤錘！ 近戰退後！",
+	hammer_bar = "千斤錘特效",
 
 	shadow = "暗影強化",
 	shadow_desc = "看守者施放暗影強化時發出警報",
 	shadow_trigger = "開始施放暗影強化。",
 	shadow_warn = "2 秒後施放暗影強化！",
+	shadow_bar = "暗影強化",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

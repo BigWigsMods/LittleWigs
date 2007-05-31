@@ -82,6 +82,7 @@ L:RegisterTranslations("zhTW", function() return {
 	polarity_desc = "當極性轉換時警報（僅英雄模式）",
 	polarity_trigger = "開始施放兩極移形。",
 	polarity_warn = "3 秒後極性轉換，注意跑位！",
+	polarity_bar = "極性轉換",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
