@@ -90,11 +90,13 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 	if self.db.profile.hammer and msg:find(L["hammer_trigger"]) then
 		self:Message(L["hammer_warn"], "Important")
+		self:Bar(L["hammer"], 3, "INV_Hammer_07")
 	end
 end
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
 	if self.db.profile.shadow and msg:find(L["shadow_trigger"]) then
 		self:Message(L["shadow_warn"], "Important")
+		self:Bar(L["shadow"], 2, "Spell_Shadow_Metamorphosis")
 	end
 end

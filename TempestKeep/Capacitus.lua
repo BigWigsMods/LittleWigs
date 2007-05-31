@@ -33,6 +33,7 @@ L:RegisterTranslations("enUS", function() return {
 	polarity_desc = "Warn when Polarity Shift is cast",
 	polarity_trigger = "begins to cast Polarity Shift",
 	polarity_warn = "Polarity Shift in 3 seconds!",
+	polarity_bar = "Polarity Shift",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -157,5 +158,6 @@ end
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
 	if self.db.profile.polarity and msg:find(L["polarity_trigger"]) then
 		self:Message(L["polarity_warn"], "Urgent")
+		self:Bar(L["polarity_bar"], 3, "Spell_Nature_Lightning")
 	end
 end
