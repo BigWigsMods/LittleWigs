@@ -57,6 +57,7 @@ L:RegisterTranslations("koKR", function() return {
 	polarity_desc = "극성 변환 시전 시 경고",
 	polarity_trigger = "기계군주 캐퍼시투스|1이;가; 극성 변환 시전을 시작합니다.", -- check
 	polarity_warn = "3초 이내 극성 변환!",
+	polarity_bar = "극성 변환",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
