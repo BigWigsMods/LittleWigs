@@ -51,10 +51,10 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "操綜者帕薩里歐",
+	cmd = "操縱者帕薩里歐",
 
 	summon = "召喚虛空幻影",
-	summon_desc = "操綜者帕薩里歐召喚虛空幻影時發出警報",
+	summon_desc = "操縱者帕薩里歐召喚虛空幻影時發出警報",
 	summon_trigger = "施放了召喚虛空幻影。",
 	summon_warn = "虛空幻影已被召喚出來！",
 
