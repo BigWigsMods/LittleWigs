@@ -41,6 +41,13 @@ L:RegisterTranslations("frFR", function() return {
 	storm_message = "Nuage d'éclairs !",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	storm = "Gewitterwolke",
+	storm_desc = "Warnt vor Gewitterwolke",
+	storm_trigger = "Genie\195\159t den Sturm, Warmbl\195\188ter!",
+	storm_message = "Gewitterwolke!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

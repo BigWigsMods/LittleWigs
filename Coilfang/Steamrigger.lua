@@ -41,6 +41,13 @@ L:RegisterTranslations("frFR", function() return {
 	mech_message = "Mécaniciens Montevapeur en approche !",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	mech = "Dampfhammers Mechaniker",
+	mech_desc = "Warnt vor Mechanikern",
+	mech_trigger = "Legt sie tiefer, Jungs!",
+	mech_message = "Dampfhammers Mechaniker kommen bald!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

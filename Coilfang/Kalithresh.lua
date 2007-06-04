@@ -52,6 +52,19 @@ L:RegisterTranslations("frFR", function() return {
 	rage_message = "Canalisation en cours !",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	spell = "Zauberreflexion",
+	spell_desc = "Warnt vor Zauberreflexion",
+	spell_trigger = "bekommt Zauberreflexion.$",
+	spell_message = "Zauberreflexion!",
+
+	rage = "Zorn des Kriegsf\195\188rsten",
+	rage_desc = "Warnt, wenn Kalithresh kanalisiert",
+	rage_trigger1 = "^%s beginnt Energien aus dem nahegelegenen Destillierer zu ziehen...",
+	rage_trigger2 = "Wir sind noch lange nicht am Ende...",
+	rage_message = "Kalithresh kanalisiert!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

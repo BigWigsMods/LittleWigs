@@ -2,6 +2,7 @@
 
 ## Title: Little Wigs [|cffeda55fCoilfang Reservoir|r]
 ## Title-frFR: Little Wigs [|cffeda55fRéservoir de Glisseroc|r]
+## Title-deDE: Little Wigs [|cffeda55fDer Echsenkessel|r]
 ## Notes: Big Wigs Coilfang Reservoir Modules
 ## Notes-frFR: Modules Big Wigs concernant le Réservoir de Glisseroc.
 ## Author: Ulic
