@@ -29,6 +29,14 @@ L:RegisterTranslations("zhTW", function() return {
 	tranqfade_warning = "5 秒後寧靜消散！ DPS！",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	tranq = "Tranquillité ",
+	tranq_desc = "Préviens quand Freywinn lance sa Tranquillité.",
+	tranq_trigger = "Nature bends to my will....", -- à traduire
+	tranq_warning = "Tranquilité incanté !",
+	tranqfade_warning = "Fin de Tranquillité dans ~5 sec. !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

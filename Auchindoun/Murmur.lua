@@ -109,7 +109,7 @@ L:RegisterTranslations("frFR", function() return {
 
 	sonicboom = "Grondement sonore",
 	sonicboom_desc = "Préviens quand Marmon commence à lancer son Grondement sonore.",
-	sonicboom_trigger = "draws energy from the air...", -- à traduire
+	sonicboom_trigger = "tire de l'énergie de l'air...",
 	sonicboom_alert = "Grondement sonore dans 5 sec. !",
 	sonicboom_bar = "Grondement sonore en incantation !",
 } end)

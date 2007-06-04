@@ -47,6 +47,7 @@ L:RegisterTranslations("frFR", function() return {
 	split_desc = "Préviens quand le Messager Skyriss se divise.",
 	split_trigger = "^Nous nous étendons sur l'univers, aussi innombrables que les étoiles !$",
 	split_warning = "%s s'est divisé.",
+	split_soon_warning = "Division imminente !",
 
 	mr = "Pourfendre l'esprit",
 	mr_desc = "Préviens quand un joueur est affecté par Pourfendre l'esprit.",

@@ -29,6 +29,13 @@ L:RegisterTranslations("zhTW", function() return {
 
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	knock = "Repousser au loin",
+	knock_desc = "Préviens quand Soccothrates gagne Repousser au loin.",
+	knock_trigger = "gagne Repousser au loin.$",
+	knock_warning = "Repousser au loin !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

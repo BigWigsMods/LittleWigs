@@ -58,13 +58,15 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("frFR", function() return {
 	hammer = "Marteau-piqueur",
 	hammer_desc = "Préviens quand le Marteau-piqueur est incanté.",
-	hammer_trigger = "raises his hammer menacingly", -- à traduire
+	hammer_trigger = "lève son marteau d'un air menaçant...",
 	hammer_warn = "Marteau-piqueur dans 3 sec. !",
+	hammer_bar = "Marteau-piqueur",
 
 	shadow = "Puissance de l'ombre",
 	shadow_desc = "Préviens quand Main-en-fer gagne la Puissance de l'ombre.",
 	shadow_trigger = "commence à lancer Puissance de l'ombre",
 	shadow_warn = "Puissance de l'ombre dans 2 sec. !",
+	shadow_bar = "Puissance de l'ombre",
 } end )
 
 ----------------------------------

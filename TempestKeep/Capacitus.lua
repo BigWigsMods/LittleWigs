@@ -107,6 +107,7 @@ L:RegisterTranslations("frFR", function() return {
 	polarity_desc = "Préviens quand le Changement de polarité est incanté.",
 	polarity_trigger = "commence à lancer Changement de polarité",
 	polarity_warn = "Changement de polarité dans 3 sec. !",
+	polarity_bar = "Changement de polarité",
 } end )
 
 ----------------------------------
