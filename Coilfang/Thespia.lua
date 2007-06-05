@@ -26,8 +26,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "海法師希斯比亞",
-
 	storm = "落雷之雲",
 	storm_desc = "施放落雷之雲時發出警報",
 	storm_trigger = "享受風暴溫暖的血!",

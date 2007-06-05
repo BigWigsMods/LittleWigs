@@ -26,8 +26,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "破壞者·凱利丹",
-
 	nova = "燃燒新星",
 	nova_desc = "破壞者·凱利丹施放燃燒新星時發出警報",
 	nova_trigger = "靠近一點!再靠近一點…然後燃燒吧!",

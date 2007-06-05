@@ -43,8 +43,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "末日預言者達利亞",
-
 	ww = "旋風斬",
 	ww_desc = "旋風斬警報",
 	ww_trigger1 = "我將把你碎屍萬段!",

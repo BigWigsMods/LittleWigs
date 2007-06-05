@@ -99,8 +99,6 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "無約束的希瑞奇斯",
-
 	nova = "暗影新星",
 	nova_desc = "暗影新星警報",
 	nova_trigger = "%s開始施放暗影新星。",

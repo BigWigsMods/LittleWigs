@@ -26,8 +26,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "鷹王伊奇斯",
-
 	ae = "魔爆術",
 	ae_desc = "魔爆術警報",
 	ae_trigger = "鷹王伊奇斯開始施放魔爆術。",

@@ -39,8 +39,6 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "領導者瓦皮歐",
-
 	teleport = "傳送",
 	teleport_desc = "領導者瓦皮歐施放傳送時發出警報",
 	teleport_trigger = "獲得了抽取暗影的效果。",

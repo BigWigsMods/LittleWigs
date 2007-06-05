@@ -25,8 +25,6 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "督軍卡利斯瑞",
-
 	spell = "法術反射",
 	spell_desc = "法術反射警報",
 	spell_trigger = "獲得了法術反射的效果。$",

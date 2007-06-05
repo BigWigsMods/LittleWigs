@@ -56,8 +56,6 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "先驅者史蓋力司",
-
 	mc = "支配",
 	mc_desc = "隊友受到支配時發出警報",
 	mc_trigger = "^(.+)受到(.*)支配的傷害。$",

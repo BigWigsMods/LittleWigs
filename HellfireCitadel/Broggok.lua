@@ -26,8 +26,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "布洛克",
-
 	poison = "毒雲術",
 	poison_desc = "布洛克施放毒雲術時發出警報",
 	poison_trigger = "%s施放了毒雲術",

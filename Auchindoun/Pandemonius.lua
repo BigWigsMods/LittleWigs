@@ -26,8 +26,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "班提蒙尼厄斯",
-
 	shell = "黑暗之殼",
 	shell_desc = "當班提蒙尼厄斯施放黑暗之殼時發出警報",
 	shell_trigger = "獲得了黑暗之殼的效果。",

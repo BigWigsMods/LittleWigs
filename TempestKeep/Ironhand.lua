@@ -40,8 +40,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "看守者",
-
 	hammer = "千斤錘特效",
 	hammer_desc = "看守者發動千斤錘特效時發出警報",
 	hammer_trigger = "威嚇地舉起他的錘子……",

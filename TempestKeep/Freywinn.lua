@@ -20,8 +20,6 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "大植物學家費瑞衛恩",
-
 	tranq = "寧靜",
 	tranq_desc = "費瑞衛恩施放寧靜時發出警報",
 	tranq_trigger = "Nature bends to my will....",

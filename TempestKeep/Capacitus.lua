@@ -61,8 +61,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "機械王卡帕希特斯",
-
 	trigger1 = "獲得了反射魔法護盾",
 	trigger2 = "獲得了反射傷害護盾",
 	trigger3 = "反射魔法護盾效果從",

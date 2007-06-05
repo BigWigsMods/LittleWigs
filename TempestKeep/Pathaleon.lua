@@ -51,8 +51,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "操縱者帕薩里歐",
-
 	summon = "召喚虛空幻影",
 	summon_desc = "操縱者帕薩里歐召喚虛空幻影時發出警報",
 	summon_trigger = "施放了召喚虛空幻影。",
@@ -62,7 +60,7 @@ L:RegisterTranslations("zhTW", function() return {
 	despawn_desc = "即將召回虛空幻影時發出警報",
 	despawn_warn = "虛空幻影將被召回！",
 
-	despawn_trigger = "我比較喜歡直接的方法……",
+	despawn_trigger = "我比較喜歡親自動手...",
 	despawn_done = "虛空幻影已被召回，帕薩里歐進入狂怒狀態！",
 
 	mc = "支配",
