@@ -19,7 +19,8 @@ L:RegisterTranslations("enUS", function() return {
 	teleport_warning = "Teleport in ~5sec!",
 	teleport_bar = "Teleport",
 	
-	engage_trigger = "I'll make an offering of your blood",
+	engage_trigger1 = "I'll make an offering of your blood",
+	engage_trigger2 = "Good, a worthy sacrifice!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -30,7 +31,7 @@ L:RegisterTranslations("koKR", function() return {
 	teleport_warning = "약 5초 이내 순간 이동!",
 	teleport_bar = "순간 이동",
 	
-	engage_trigger = "네 피를 제물로 바칠 것이다.", -- check
+	engage_trigger1 = "네 피를 제물로 바칠 것이다.", -- check
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -41,7 +42,7 @@ L:RegisterTranslations("frFR", function() return {
 	teleport_warning = "Téléportation dans ~5 sec. !",
 	teleport_bar = "Téléportation",
 
-	engage_trigger = "Je ferai une offrande de ton sang", -- à vérifier
+	engage_trigger1 = "Je ferai une offrande de ton sang", -- à vérifier
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -52,7 +53,7 @@ L:RegisterTranslations("zhTW", function() return {
 	teleport_warning = "5 秒後傳送！",
 	teleport_bar = "傳送",
 	
-	engage_trigger = "很好，一次值得的犧牲!",
+	engage_trigger1 = "很好，一次值得的犧牲!",
 } end )
 
 ----------------------------------
@@ -82,7 +83,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.teleport and msg:find(L["engage_trigger"]) then
+	if self.db.profile.teleport and (msg:find(L["engage_trigger1"]) or msg == L["engage_trigger2"]) then
 			self:Bar(L["teleport_bar"], 45, "Spell_Magic_LesserInvisibilty")
 			self:DelayedMessage(40, L["teleport_warning"], "Attention")
 	end
