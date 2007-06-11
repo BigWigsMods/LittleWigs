@@ -32,7 +32,7 @@ L:RegisterTranslations("koKR", function() return {
 
 	bdwarn = "칼춤",
 	bdwarn_desc = "칼춤 지속 시간 타이머",
-	bdwarn_alert = "5초 후 칼춤!",
+	bdwarn_alert = "칼춤까지 5초 전!",
 
 	bdbar = "칼춤 바",
 	bdbar_desc = "칼춤의 지속 시간 표시",

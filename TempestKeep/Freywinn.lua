@@ -35,6 +35,13 @@ L:RegisterTranslations("frFR", function() return {
 	tranqfade_warning = "Fin de Tranquillité dans ~5 sec. !",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	tranq = "평온",
+	tranq_desc = "평온에 대한 경고",
+	tranq_trigger = "자연의 힘이 내 손안에 있다...", -- check
+	tranq_warning = "평온 시전!",
+	tranqfade_warning = "약 5초 이내 평온 사라짐!",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

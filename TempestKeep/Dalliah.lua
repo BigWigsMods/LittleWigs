@@ -37,7 +37,7 @@ L:RegisterTranslations("koKR", function() return {
 
 	gift = "파멸의 예언자의 선물",
 	gift_desc = "달리아의 파멸의 예언자의 선물 디버프에 대한 알림",
-	gift_trigger = "^([^%s]+) ([^%s]+) 파멸의 예언자의 선물에 걸렸습니다%.$",
+	gift_trigger = "^([^|;%s]*)(.*)파멸의 예언자의 선물에 걸렸습니다%.$",
 	gift_message = "%s 파멸의 예언자의 선물!",
 	gift_bar = "예언자의 선물: %s",
 } end )

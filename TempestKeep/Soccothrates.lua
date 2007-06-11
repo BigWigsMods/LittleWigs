@@ -36,6 +36,13 @@ L:RegisterTranslations("frFR", function() return {
 	knock_warning = "Repousser au loin !",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	knock = "지옥 대포 정렬",
+	knock_desc = "지옥 대포 정렬에 대한 경고",
+	knock_trigger = "gains Knock Away.$", -- check
+	knock_warning = "지옥 대포 정렬!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

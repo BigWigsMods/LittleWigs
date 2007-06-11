@@ -23,8 +23,14 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-
-
+	teleport = "순간 이동 경고",
+	teleport_desc = "순간 이동에 대한 경고",
+	teleport_trigger = "어둠 풀어놓기 효과를 얻었습니다.", -- check
+	teleport_message = "순간 이동!",
+	teleport_warning = "약 5초 이내 순간 이동!",
+	teleport_bar = "순간 이동",
+	
+	engage_trigger = "네 피를 제물로 바칠 것이다.", -- check
 } end )
 
 L:RegisterTranslations("frFR", function() return {
