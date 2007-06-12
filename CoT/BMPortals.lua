@@ -1,4 +1,4 @@
-------------------------------
+ï»¿------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -17,13 +17,13 @@ BB = nil
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "bmportals",
-	
+
 	name = "The Black Morass Portals",
 	name_desc = "Options for warnings and timers for portal openings",
 	On = "On",
 	toggle = "Toggles the option on and off.",
 	announcement = "%s: Please keep in mind that if you take an extra long time to kill the Rift-Keepers/Lords you could get a second portal up that would throw off the timers.",
-	
+
 	next_portal = "Next Portal",
 
 	portal = "Portal Warnings",
@@ -33,7 +33,7 @@ L:RegisterTranslations("enUS", function() return {
 	portalbar_desc = "Display approximate timer bars for the next portal.",
 
 	portal_bar = "~%s: Wave %s",
-	
+
 	portal_warning20s = "%s in ~20 seconds!",
 	portal_warning140s = "%s in ~140 seconds!",
 
@@ -41,17 +41,16 @@ L:RegisterTranslations("enUS", function() return {
 	portal_trigger2 = "You will never defeat us all!",
 	portal_trigger3 = "You will accomplish nothing!",
 	portal_trigger4 = "Time... is on our side.",
-	portal_trigger5 = "My death means... little.",	
+	portal_trigger5 = "My death means... little.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-
 	name = "¶Â¦âªh¿A¶Ç°eªù",
 	name_desc = "¶Ç°eªù¶}±Ò­p®É¾¹¤ÎÄµ³ø",
 	On = "¶}±Ò",
 	toggle = "¤Á´«¦¹¿ï¶µ¶}±Ò©Î¬OÃö³¬",
 	announcement = "%s: ½Ð°O¦í¡A¦pªG§Aªá¶O¤Ó¦h®É¶¡¥hÀ»±þ µõÁ_¬Ý¦uªÌ/»â¥D¡A§A¥i¯à¨Ï±o²Ä¤G­Ó¶Ç°eªù±Ò°Ê¦Ó¥^¥^©ß±¼­p®É¾¹¡C",
-	
+
 	next_portal = "¤U¤@­Ó¶Ç°eªù",
 
 	portal = "¶Ç°eªùÄµ³ø",
@@ -61,7 +60,7 @@ L:RegisterTranslations("zhTW", function() return {
 	portalbar_desc = "Åã¥Ü¤U¤@­Ó¶Ç°eªùªº­p®É±ø",
 
 	portal_bar = "~%s: Wave %s",
-	
+
 	portal_warning20s = "20 ¬í«á %s ªi¡I",
 	portal_warning140s = "140 ¬í«á %s ªi¡I",
 
@@ -69,7 +68,7 @@ L:RegisterTranslations("zhTW", function() return {
 	portal_trigger2 = "You will never defeat us all!",
 	portal_trigger3 = "You will accomplish nothing!",
 	portal_trigger4 = "Time... is on our side.",
-	portal_trigger5 = "My death means... little.",	
+	portal_trigger5 = "My death means... little.",
 } end )
 
 local mod = BigWigs:NewModule(name)
@@ -111,7 +110,7 @@ mod.consoleOptions = {
 					mod:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 				end
 			end,
-		},		
+		},
 	}
 }
 
@@ -155,7 +154,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 				self:Bar(L["portal_bar"]:format(L["next_portal"],wave), 140, "INV_Misc_ShadowEgg")
 			else
 				self:Bar(L["portal_bar"]:format(L["next_portal"],wave), 20, "INV_Misc_ShadowEgg")
-			end			
+			end
 		end
 		wave = wave + 1
 	end
