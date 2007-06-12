@@ -44,6 +44,34 @@ L:RegisterTranslations("enUS", function() return {
 	portal_trigger5 = "My death means... little.",	
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+
+	name = "黑色沼澤傳送門",
+	name_desc = "傳送門開啟計時器及警報",
+	On = "開啟",
+	toggle = "切換此選項開啟或是關閉",
+	announcement = "%s: 請記住，如果你花費太多時間去擊殺 裂縫看守者/領主，你可能使得第二個傳送門啟動而匆匆拋掉計時器。",
+	
+	next_portal = "下一個傳送門",
+
+	portal = "傳送門警報",
+	portal_desc = "廣播下一個傳送門即將開啟的警報訊息",
+
+	portalbar = "傳送門計時條",
+	portalbar_desc = "顯示下一個傳送門的計時條",
+
+	portal_bar = "~%s: Wave %s",
+	
+	portal_warning20s = "20 秒後 %s 波！",
+	portal_warning140s = "140 秒後 %s 波！",
+
+	portal_trigger1 = "No! The rift...",
+	portal_trigger2 = "You will never defeat us all!",
+	portal_trigger3 = "You will accomplish nothing!",
+	portal_trigger4 = "Time... is on our side.",
+	portal_trigger5 = "My death means... little.",	
+} end )
+
 local mod = BigWigs:NewModule(name)
 mod.defaultDB = {
 	portal = true,
