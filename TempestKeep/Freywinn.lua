@@ -22,7 +22,7 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	tranq = "寧靜",
 	tranq_desc = "費瑞衛恩施放寧靜時發出警報",
-	tranq_trigger = "Nature bends to my will....",
+	tranq_trigger = "自然順從我的意志……",
 	tranq_warning = "費瑞衛恩施放寧靜了！",
 	tranqfade_warning = "5 秒後寧靜消散！ DPS！",
 } end )

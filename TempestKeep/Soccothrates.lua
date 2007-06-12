@@ -20,12 +20,10 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	cmd = "怒鐮者索寇斯瑞特",
-
-	knock = "Knock Away",
-	knock_desc = "Warn for Knock Away",
-	knock_trigger = "gains Knock Away.$",
-	knock_warning = "Knock Away!",
+	knock = "擊退",
+	knock_desc = "擊退警報",
+	knock_trigger = "獲得了擊退的效果。",
+	knock_warning = "近戰被擊退！",
 
 } end )
 
