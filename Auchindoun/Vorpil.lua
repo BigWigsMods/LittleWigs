@@ -84,8 +84,8 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if self.db.profile.teleport and (msg:find(L["engage_trigger1"]) or msg == L["engage_trigger2"]) then
-			self:Bar(L["teleport_bar"], 45, "Spell_Magic_LesserInvisibilty")
-			self:DelayedMessage(40, L["teleport_warning"], "Attention")
+			self:Bar(L["teleport_bar"], 40, "Spell_Magic_LesserInvisibilty")
+			self:DelayedMessage(35, L["teleport_warning"], "Attention")
 	end
 end
 
