@@ -2,21 +2,18 @@
 --      Are you local?      --
 ------------------------------
 
-local BB = AceLibrary("Babble-Boss-2.2")
-local BZ = AceLibrary("Babble-Zone-2.2")
-
-local name = "The Black Morass Portals"
-local BMPortals = AceLibrary("AceAddon-2.0"):new("AceConsole-2.0")
+local name = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..name)
 
+local BB = AceLibrary("Babble-Boss-2.2")
+local boss = BB["Medivh"]
 local boss1 = BB["Chrono Lord Deja"]
 local boss2 = BB["Temporus"]
 local boss3 = BB["Aeonus"]
-
 BB = nil
 
 L:RegisterTranslations("enUS", function() return {
-	cmd = "bmportals",
+	cmd = "Blackmorass",
 
 	name = "The Black Morass Portals",
 	name_desc = "Options for warnings and timers for portal openings",
@@ -79,56 +76,39 @@ L:RegisterTranslations("zhTW", function() return {
 	death_trigger5 = "My death means... little.",
 } end )
 
+----------------------------------
+--      Module Declaration      --
+----------------------------------
+
 local mod = BigWigs:NewModule(name)
-mod.defaultDB = {
-	portal = true,
-	portalbar = true,
-}
-
-mod.consoleCmd = L["cmd"]
-mod.consoleOptions = {
-	type = "group",
-	name = L["name"],
-	desc = L["name_desc"],
-	args   = {
-		[L["portal"]] = {
-			type = "toggle",
-			name = L["portal"],
-			desc = L["portal_desc"],
-			get = function() return mod.db.profile.portal end,
-			set = function(v)
-				mod.db.profile.portal = v
-				if v then
-					mod:ZONE_CHANGED_NEW_AREA()
-				elseif mod:IsEventRegistered("CHAT_MSG_MONSTER_YELL") and not mod.db.profile.portalbar then
-					mod:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
-				end
-			end,
-		},
-		[L["portalbar"]] = {
-			type = "toggle",
-			name = L["portalbar"],
-			desc = L["portalbar_desc"],
-			get = function() return mod.db.profile.portalbar end,
-			set = function(v)
-				mod.db.profile.portalbar = v
-				if v then
-					mod:ZONE_CHANGED_NEW_AREA()
-				elseif mod:IsEventRegistered("CHAT_MSG_MONSTER_YELL") and not mod.db.profile.portal then
-					mod:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
-				end
-			end,
-		},
-	}
-}
-
+mod.partyContent = true
+mod.otherMenu = "Caverns of Time"
+mod.zonename = AceLibrary("Babble-Zone-2.2")["Old Hillsbrad Foothills"]
+mod.enabletrigger = boss
+mod.toggleoptions = {"portal", "portalbar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
-mod.external = true
+
+------------------------------
+--      Initialization      --
+------------------------------
+
+function mod:OnRegister()
+	-- Big evul hack to enable the module when entering Kel'Thuzads chamber.
+	self:RegisterEvent("ZONE_CHANGED")
+end
+
+function mod:OnDisable()
+	self:RegisterEvent("ZONE_CHANGED")
+end
 
 function mod:OnEnable()
-	self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-	self:ZONE_CHANGED_NEW_AREA()
+	self:RegisterEvent("ZONE_CHANGED")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
+
+------------------------------
+--      Event Handlers      --
+------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if not self.db.profile.portal and not self.db.profile.portalbar then return end
@@ -169,13 +149,12 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		wave = 2
 	end
 	if (msg == L["spawn_trigger1"] or msg == L["spawn_trigger2"] or msg == L["spawn_trigger3"]) and self.db.profile.portalbar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["multiportal_bar"])
 		self:Bar(L["multiportal_bar"], 125, "INV_Misc_ShadowEgg")
 	end
 end
 
-function mod:ZONE_CHANGED_NEW_AREA()
-	if GetRealZoneText() ~= BZ["The Black Morass"] then return end
-	if (self.db.profile.portal or self.db.profile.portalbar) and not self:IsEventRegistered("CHAT_MSG_MONSTER_YELL") then
-		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	end	
+function mod:ZONE_CHANGED(msg)
+	if GetMinimapZoneText() ~= AceLibrary("Babble-Zone-2.2")["The Black Morass"] or BigWigs:IsModuleActive(name) then return end
+	BigWigs:EnableModule(name)
 end
