@@ -1,0 +1,19 @@
+﻿## Interface: 20100
+
+## Title: Little Wigs [|cffeda55fCaverns of Time|r]
+## Notes: Big Wigs Tempest Keep Modules
+## Author: Ulic
+## Version: 2.0
+## LoadOnDemand: 1
+
+## X-Website: http://www.wowace.com/index.php/LittleWigs
+## X-AceForum: 5751
+## X-Category: Party
+
+## X-BigWigs-Menu: Caverns of Time
+## X-BigWigs-LoadInParty: 1
+## X-BigWigs-LoadInZone: The Black Morass
+
+## Dependencies: BigWigs
+
+BlackMorass.lua
