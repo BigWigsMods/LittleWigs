@@ -4,6 +4,7 @@
 
 local name = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..name)
+local wave = 1
 
 local BB = AceLibrary("Babble-Boss-2.2")
 local boss = BB["Medivh"]
@@ -48,32 +49,6 @@ L:RegisterTranslations("enUS", function() return {
 	spawn_trigger1 = "Let the siege begin!",--Time-Keeper/Lord
 	spawn_trigger2 = "History is about to be rewritten!", --Time-Keeper/Lord
 	spawn_trigger3 = "The sands of time shall be scattered to the winds!", --Time-Keeper/Lord
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	name = "黑色沼澤傳送門",
-	name_desc = "傳送門開啟計時器及警報",
-	On = "開啟",
-	toggle = "切換此選項開啟或是關閉",
-
-	next_portal = "下一個傳送門",
-
-	portal = "傳送門警報",
-	portal_desc = "廣播下一個傳送門即將開啟的警報訊息",
-
-	portalbar = "傳送門計時條",
-	portalbar_desc = "顯示下一個傳送門的計時條",
-
-	portal_bar = "~%s: Wave %s",
-
-	portal_warning20s = "20 秒後 %s 波！",
-	portal_warning140s = "140 秒後 %s 波！",
-
-	death_trigger1 = "No! The rift...",
-	death_trigger2 = "You will never defeat us all!",
-	death_trigger3 = "You will accomplish nothing!",
-	death_trigger4 = "Time... is on our side.",
-	death_trigger5 = "My death means... little.",
 } end )
 
 ----------------------------------

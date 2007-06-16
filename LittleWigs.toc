@@ -37,3 +37,4 @@ TempestKeep\Pathaleon.lua
 TempestKeep\Skyriss.lua
 TempestKeep\Soccothrates.lua
 TempestKeep\Zereketh.lua
+CoT\BlackMorass.lua
