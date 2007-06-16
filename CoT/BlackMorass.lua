@@ -83,17 +83,18 @@ L:RegisterTranslations("zhTW", function() return {
 local mod = BigWigs:NewModule(name)
 mod.partyContent = true
 mod.otherMenu = "Caverns of Time"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["Old Hillsbrad Foothills"]
+mod.zonename = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"portal", "portalbar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
+mod.synctoken = name
 
 ------------------------------
 --      Initialization      --
 ------------------------------
 
 function mod:OnRegister()
-	-- Big evul hack to enable the module when entering Kel'Thuzads chamber.
+	-- Big evul hack to enable the module when entering The Black Morass
 	self:RegisterEvent("ZONE_CHANGED")
 end
 
