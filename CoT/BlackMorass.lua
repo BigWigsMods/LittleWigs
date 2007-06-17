@@ -16,11 +16,6 @@ BB = nil
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Blackmorass",
 
-	name = "The Black Morass Portals",
-	name_desc = "Options for warnings and timers for portal openings",
-	On = "On",
-	toggle = "Toggles the option on and off.",
-
 	next_portal = "Next Portal",
 
 	portal = "Portal Warnings",
@@ -36,6 +31,8 @@ L:RegisterTranslations("enUS", function() return {
 	portal_warning140s = "%s in ~140 seconds!",
 
 	engage_trigger = "^The time has come! Gul'dan",
+	disable_trigger = "We will triumph. It is only a matter... of time.",
+	disable_warning = "%s has been saved!",
 
 	-- These triggers generate warnings & bars bars based on mob deaths
 	death_trigger1 = "No! The rift...", --Time-Keeper/Lord
@@ -49,14 +46,20 @@ L:RegisterTranslations("enUS", function() return {
 	spawn_trigger1 = "Let the siege begin!",--Time-Keeper/Lord
 	spawn_trigger2 = "History is about to be rewritten!", --Time-Keeper/Lord
 	spawn_trigger3 = "The sands of time shall be scattered to the winds!", --Time-Keeper/Lord
+
+	-- Bosses
+	frenzy = "Aeonus - Frenzy",
+	frenzy_desc = "Warn when Aeonus goes into a frenzy.",
+	frenzy_trigger = "%s goes into a frenzy!",
+	frenzy_warning = "Frenzy Alert!",
+
+	hasten = "Temporus - Hasten",
+	hasten_desc = "Warns when Temporus gains hasten.",
+	hasten_trigger = "Temporus gains Hasten.",
+	hasten_warning = "Temporus gains Hasten!",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	name = "黑色沼澤傳送門",
-	name_desc = "傳送門開啟計時器及警報",
-	On = "開啟",
-	toggle = "切換此選項開啟或是關閉",
-
 	next_portal = "下一個傳送門",
 
 	portal = "傳送門警報",
@@ -96,7 +99,7 @@ mod.partyContent = true
 mod.otherMenu = "Caverns of Time"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
 mod.enabletrigger = boss
-mod.toggleoptions = {"portal", "portalbar", "bosskill"}
+mod.toggleoptions = {"portal", "portalbar", -1, "hasten", -1, "frenzy", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 mod.synctoken = name
 
@@ -105,7 +108,6 @@ mod.synctoken = name
 ------------------------------
 
 function mod:OnRegister()
-	-- Big evul hack to enable the module when entering The Black Morass
 	self:RegisterEvent("ZONE_CHANGED")
 end
 
@@ -116,6 +118,8 @@ end
 function mod:OnEnable()
 	self:RegisterEvent("ZONE_CHANGED")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
+	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
 end
 
 ------------------------------
@@ -164,9 +168,25 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		self:TriggerEvent("BigWigs_StopBar", self, L["multiportal_bar"])
 		self:Bar(L["multiportal_bar"], 125, "INV_Misc_ShadowEgg")
 	end
+	if msg == L["disable_trigger"] then
+		if self.db.profile.bosskill then self:Message(L["disable_warning"]:format(boss), "Bosskill", nil, "Victory") end
+		BigWigs:ToggleModuleActive(self, false)
+	end
 end
 
 function mod:ZONE_CHANGED(msg)
 	if GetMinimapZoneText() ~= AceLibrary("Babble-Zone-2.2")["The Black Morass"] or BigWigs:IsModuleActive(name) then return end
 	BigWigs:EnableModule(name)
+end
+
+function mod:CHAT_MSG_MONSTER_EMOTE(msg)
+	if self.db.profile.frenzy and msg == L["frenzy_trigger"] then
+		self:Message(L["frenzy_warning"], "Important", nil, "Alert")
+	end
+end
+
+function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
+	if self.db.profile.hasten and msg == L["hasten_trigger"] then
+		self:Message(L["hasten_warning"], "Important", nil, "Alert")
+	end
 end
