@@ -51,6 +51,42 @@ L:RegisterTranslations("enUS", function() return {
 	spawn_trigger3 = "The sands of time shall be scattered to the winds!", --Time-Keeper/Lord
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	name = "黑色沼澤傳送門",
+	name_desc = "傳送門開啟計時器及警報",
+	On = "開啟",
+	toggle = "切換此選項開啟或是關閉",
+
+	next_portal = "下一個傳送門",
+
+	portal = "傳送門警報",
+	portal_desc = "廣播下一個傳送門即將開啟的警報訊息",
+
+	portalbar = "傳送門計時條",
+	portalbar_desc = "顯示下一個傳送門的計時條",
+
+	portal_bar = "~%s: Wave %s",
+	multiportal_bar = "同時存在多個傳送門",
+
+	portal_warning20s = "20 秒後 %s 波！",
+	portal_warning140s = "140 秒後 %s 波！",
+
+	engage_trigger = "^The time has come! Gul'dan",
+
+	-- These triggers generate warnings & bars bars based on mob deaths
+	death_trigger1 = "不!裂縫……", --Time-Keeper/Lord
+	death_trigger2 = "你永遠也不會擊敗我們全部的人!", --Time-Keeper/Lord
+	death_trigger3 = "你會一無所成!", --Time-Keeper/Lord
+	death_trigger4 = "時間……是站在我們這一邊的。", --Chrono Lord Deja
+	death_trigger5 = "我的死……微不足道。", -- Temporus
+
+	-- These triggers generate a bar indicating that a second portal will open if the current portal's elite is not defeated
+	-- I am not sure if it is possible for a second portal to open on a boss fight
+	spawn_trigger1 = "Let the siege begin!",--Time-Keeper/Lord
+	spawn_trigger2 = "History is about to be rewritten!", --Time-Keeper/Lord
+	spawn_trigger3 = "The sands of time shall be scattered to the winds!", --Time-Keeper/Lord
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
