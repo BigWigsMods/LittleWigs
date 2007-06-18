@@ -63,6 +63,19 @@ L:RegisterTranslations("deDE", function() return {
 	rage_message = "Kalithresh kanalisiert!",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	spell = "주문 반사",
+	spell_desc = "주문 반사에 대한 경고",
+	spell_trigger = "주문 반사 효과를 얻었습니다.$",
+	spell_message = "주문 반사!",
+
+	rage = "장군의 분노",
+	rage_desc = "분노의 채널링에 대한 알림",
+	rage_trigger1 = "^%s begins to channel", -- check
+	rage_trigger2 = "아직 끝나지 않았다...",
+	rage_message = "장군 채널링!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

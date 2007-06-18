@@ -90,6 +90,50 @@ L:RegisterTranslations("zhTW", function() return {
 	spawn_trigger3 = "The sands of time shall be scattered to the winds!", --Time-Keeper/Lord
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	next_portal = "다음 차원문",
+
+	portal = "차원문 경고",
+	portal_desc = "다음 차원문에 대한 접근 경고 메세지를 알립니다.",
+
+	portalbar = "차원문 바",
+	portalbar_desc = "다음 차원문에 대한 접근 타이머 바를 표시합니다.",
+
+	portal_bar = "~%s: %s 균열",
+	multiportal_bar = "~차원문 겹침",
+
+	portal_warning20s = "약 20초 이내 %s!",
+	portal_warning140s = "약 140초 이내 %s!",
+
+	engage_trigger = "^때가 왔다, 굴단!",
+	disable_trigger = "We will triumph. It is only a matter... of time.", -- check
+	disable_warning = "%s has been saved!",
+
+	-- These triggers generate warnings & bars bars based on mob deaths
+	death_trigger1 = "안 돼! 균열을...", --Time-Keeper/Lord
+	death_trigger2 = "우리 모두를 꺾지는 못할 것이다!", --Time-Keeper/Lord
+	death_trigger3 = "너희는 아무것도 이루지 못할 것이다!", --Time-Keeper/Lord
+	death_trigger4 = "시간은... 우리 편이다.", --Chrono Lord Deja
+	death_trigger5 = "나의 죽음으로 달라질 것은... 없다.", -- Temporus
+
+	-- These triggers generate a bar indicating that a second portal will open if the current portal's elite is not defeated
+	-- I am not sure if it is possible for a second portal to open on a boss fight
+	spawn_trigger1 = "공격을 시작하자!",--Time-Keeper/Lord
+	spawn_trigger2 = "이제 역사가 다시 쓰일 것이다!", --Time-Keeper/Lord
+	spawn_trigger3 = "시간의 모래가 바람에 흩어질지니!", --Time-Keeper/Lord
+
+	-- Bosses
+	frenzy = "아에누스 - 광란",
+	frenzy_desc = "아에누스가 광란 시 경고합니다.",
+	frenzy_trigger = "%s|1이;가; 광란의 상태에 빠집니다!",
+	frenzy_warning = "광란 경고!",
+
+	hasten = "템퍼루스 - 독촉",
+	hasten_desc = "템퍼루스가 독촉에 걸릴 시 경고합니다.",
+	hasten_trigger = "템퍼루스|1이;가; 독촉 효과를 얻었습니다.",
+	hasten_warning = "템퍼루스 독촉!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
