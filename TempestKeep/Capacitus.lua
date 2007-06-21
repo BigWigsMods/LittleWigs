@@ -13,13 +13,13 @@ local aura = nil
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Capacitus",
 
-	trigger1 = "begins to cast Reflective Magic Shield.$",
-	trigger2 = "begins to cast Reflective Damage Shield.$",
+	trigger1 = "gains Reflective Magic Shield.$",
+	trigger2 = "gains Reflective Damage Shield.$",
 	trigger3 = "^Reflective Magic Shield fades",
 	trigger4 = "^Reflective Damage Shield fades",
 
-	warn1 = "Magic Reflection in 2 seconds!",
-	warn2 = "Damage Shield in 2 seconds!",
+	warn1 = "Magic Reflection up!",
+	warn2 = "Damage Shield up!",
 	warn3 = "Magic Reflection down!",
 	warn4 = "Damage Shield down!",
 
