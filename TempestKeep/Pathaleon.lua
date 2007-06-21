@@ -6,6 +6,9 @@ local boss = AceLibrary("Babble-Boss-2.2")["Pathaleon the Calculator"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
+local despawnannounced
+local summon_time = 0
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -106,6 +109,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	summon_time = 0
+	despawnannounced = nil
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("UNIT_HEALTH")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
@@ -146,8 +150,11 @@ function mod:UNIT_HEALTH(arg1)
 	if not self.db.profile.despawn then return end
 	if UnitName(arg1) == boss then
 		local health = UnitHealth(arg1)
-		if health > 20 and health <= 25 then
+		if health > 20 and health <= 25 and not despawnannounced then
+			despawnannounced = true
 			self:Message(L["despawn_warn"], "Important")
+		elseif health > 30 and despawnannounced then
+			despawnannounced = nil
 		end
 	end
 end
