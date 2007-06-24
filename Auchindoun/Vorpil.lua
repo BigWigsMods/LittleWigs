@@ -53,8 +53,9 @@ L:RegisterTranslations("zhTW", function() return {
 	teleport_message = "傳送！ 迅速離開平台！",
 	teleport_warning = "5 秒後傳送！",
 	teleport_bar = "傳送",
-	
-	engage_trigger1 = "很好，一次值得的犧牲!",
+
+	engage_trigger1 = "你會是其他人很好的榜樣!",
+	engage_trigger2 = "很好，一次值得的犧牲!",
 } end )
 
 ----------------------------------

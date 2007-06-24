@@ -63,7 +63,7 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	touch_trigger = "^(.+)受到(.*)莫爾墨之觸的傷害。",
+	touch_trigger = "^(.+)受到(.*)莫爾墨之觸",
 	touch_message_you = "你是炸彈！ 遠離隊友！",
 	touch_message_other = "%s 是炸彈！ 遠離隊友！",
 
