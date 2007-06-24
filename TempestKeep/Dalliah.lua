@@ -45,14 +45,14 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	ww = "旋風斬",
 	ww_desc = "旋風斬警報",
-	ww_trigger1 = "我將把你碎屍萬段!",
+	ww_trigger1 = "遭受旋風的報應!",
 	ww_trigger2 = "獲得了旋風斬的效果。",
 	-- Could be more yell triggers
 	ww_message = "達利亞要發動旋風斬了！",
 
 	gift = "末日預言者的賜福",
 	gift_desc = "達利亞獲得末日預言者的賜福時發出警報",
-	gift_trigger = "^(.+)受到(.*)末日預言者的賜福效果的影響。",
+	gift_trigger = "^(.+)受到(.*)末日預言者的賜福",
 	gift_message = "%s 受到末日預言者的賜福的傷害！",
 	gift_bar = "賜福: %s",
 } end )
