@@ -20,6 +20,9 @@ If you want to make each instance load on demand just run the LOD script to move
 
 Bosses-
 
+Hellfire Ramparts
+ :: Omor the Unscarred - Treacherous Aura
+
 The Blood Furnace
  :: Broggok - Poison Cloud
  :: Keli'dan the Breaker - Burning Nova
@@ -58,6 +61,11 @@ The Steamvault
 Shadow Labyrinth
  :: Murmur - Warns for Sonic Boom
            - Several options for Murmur's Touch (similar to Baron Geddon's Bomb)
+
+The Black Morass
+ :: Portal Timers and warnings
+ :: Temporus - Warns for Hasten
+ :: Aeonus - Warns for Frenzy
 
 The Shattered Halls
  :: Warchief Kargath Bladefist - Warns for Blade Dance
