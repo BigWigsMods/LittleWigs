@@ -37,7 +37,7 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	summon = "망령 소환",
 	summon_desc = "황천의 망령 소환 시 경고",
-	summon_trigger = "철두철미한 파탈리온|1이;가; 황천의 망령 소환|1을;를; 시전합니다.", -- check
+	summon_trigger = "철두철미한 파탈리온|1이;가; 황천의 망령 소환|1을;를; 시전합니다.",
 	summon_warn = "황천의 망령 소환!",
 
 	despawn = "망령 사라짐",

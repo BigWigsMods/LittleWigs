@@ -37,13 +37,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	trigger1 = "마법 반사 보호막 시전을 시작합니다.$",
-	trigger2 = "피해 반사 보호막 시전을 시작합니다.$",
+	trigger1 = "마법 반사 보호막 효과를 얻었습니다.$",
+	trigger2 = "피해 반사 보호막 효과를 얻었습니다.$",
 	trigger3 = "마법 반사 효과가 사라졌습니다.", -- check
 	trigger4 = "피해 반사 보호막 효과가 사라졌습니다.", -- check
 
-	warn1 = "2초 이내 마법 반사!",
-	warn2 = "2초 이내 피해 반사 보호막!",
+	warn1 = "마법 반사!",
+	warn2 = "피해 반사 보호막!",
 	warn3 = "마법 반사 사라짐!",
 	warn4 = "피해 반사 보호막 사라짐!",
 

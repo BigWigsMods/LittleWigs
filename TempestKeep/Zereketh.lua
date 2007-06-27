@@ -50,8 +50,8 @@ L:RegisterTranslations("koKR", function() return {
 	seed_warning = "%s에 부패의 씨앗!",
 	seed_bar = "~폭발",
 
-	icon = "부패의 씨앗 공격대 아이콘",
-	icon_desc = "부패의 씨앗에 걸린 사람에 공격대 아이콘 지정. (승급자 이상의 권한 요구)",
+	icon = "전술 표시",
+	icon_desc = "부패의 씨앗에 걸린 사람에 전술 표시를 지정합니다. (승급자 이상의 권한 요구)",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

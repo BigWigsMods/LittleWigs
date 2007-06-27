@@ -41,13 +41,13 @@ L:RegisterTranslations("koKR", function() return {
 
 	split = "분리",
 	split_desc = "스키리스 분리 시 경고",
-	split_trigger = "^밤하늘의 무한한 별처럼 온 우주를 덮으리라!$", -- check
+	split_trigger = "^밤하늘의 무한한 별처럼 온 우주를 덮으리라!$",
 	split_warning = "%s 분리",
 	split_soon_warning = "잠시 후 분리!",
 	
 	mr = "정신 분열",
 	mr_desc = "정신 분열에 대한 경고",
-	mr_trigger = "^([^|;%s]*)(.*)정신 분열에 걸렸습니다.$", -- check
+	mr_trigger = "^([^|;%s]*)(.*)정신 분열에 걸렸습니다.$",
 	mr_warning = "정신 분열: %s",
 } end )
 

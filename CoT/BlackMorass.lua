@@ -106,8 +106,8 @@ L:RegisterTranslations("koKR", function() return {
 	portal_warning140s = "약 140초 이내 %s!",
 
 	engage_trigger = "^때가 왔다, 굴단!",
-	disable_trigger = "We will triumph. It is only a matter... of time.", -- check
-	disable_warning = "%s has been saved!",
+	disable_trigger = "우리는 승리한다. 단지 시간문제일 뿐...", -- check
+	disable_warning = "%s|1을;를; 지켰습니다!",
 
 	-- These triggers generate warnings & bars bars based on mob deaths
 	death_trigger1 = "안 돼! 균열을...", --Time-Keeper/Lord
