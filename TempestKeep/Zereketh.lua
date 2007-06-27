@@ -146,10 +146,10 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
-	if not self.db.profile.nova and msg:find(L["nova_trigger"]) then
+	if self.db.profile.nova and msg:find(L["nova_trigger"]) then
 		self:Message(L["nova_warning"], "Important")
 	end
-	if not self.db.profile.void and msg:find(L["void_trigger"]) then
+	if self.db.profile.void and msg:find(L["void_trigger"]) then
 		self:Message(L["void_warning"], "Important")
 	end
 end

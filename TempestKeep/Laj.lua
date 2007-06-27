@@ -68,6 +68,7 @@ end
 ------------------------------
 
 function mod:CheckAllergic(msg)
+	if not self.db.profile.allergic then return end
 	local player, type = select(3, msg:find(L["allergic_trigger"]))
 	if player and type then
 		if player == L2["you"] and type == L2["are"] then
