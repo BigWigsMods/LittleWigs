@@ -45,8 +45,8 @@ L:RegisterTranslations("frFR", function() return {
 
 	rage = "Rage du seigneur de guerre",
 	rage_desc = "Préviens quand Kalithresh canalise de la rage.",
-	rage_trigger1 = "^%s commence à canaliser", -- à vérifier
-	rage_trigger2 = "This is not nearly over...", -- à traduire
+	rage_trigger1 = "^%s commence à canaliser un transfert du distillateur qui se trouve à côté…",
+	rage_trigger2 = "C’est loin d’être terminé…",
 	rage_message = "Canalisation en cours !",
 } end )
 

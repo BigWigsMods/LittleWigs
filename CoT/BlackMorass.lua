@@ -134,6 +134,50 @@ L:RegisterTranslations("koKR", function() return {
 	hasten_warning = "템퍼루스 독촉!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	next_portal = "Prochain portail",
+
+	portal = "Alertes des portails",
+	portal_desc = "Préviens régulièrement quand apparaîtra le prochain portail.",
+
+	portalbar = "Barres des portails",
+	portalbar_desc = "Indique l'apparition probable du prochain portail via une barre temporelle.",
+
+	portal_bar = "~%s : Vague %s",
+	multiportal_bar = "~Plusieurs portails en même temps",
+
+	portal_warning20s = "%s dans ~20 sec. !",
+	portal_warning140s = "%s dans ~140 sec. !",
+
+	engage_trigger = "^L'heure est venue ! Gul'dan",
+	disable_trigger = "Nous triompherons. Ce n'est qu'une question... de temps.",
+	disable_warning = "%s a été sauvé !",
+
+	-- These triggers generate warnings & bars bars based on mob deaths
+	death_trigger1 = "Non ! La faille…", --Time-Keeper/Lord
+	death_trigger2 = "Vous ne pourrez jamais nous vaincre tous !", --Time-Keeper/Lord
+	death_trigger3 = "Vous n'arriverez à rien !", --Time-Keeper/Lord
+	death_trigger4 = "Le temps... est avec nous.", --Chrono Lord Deja
+	death_trigger5 = "Ma mort ne signifie... rien.", -- Temporus
+
+	-- These triggers generate a bar indicating that a second portal will open if the current portal's elite is not defeated
+	-- I am not sure if it is possible for a second portal to open on a boss fight
+	spawn_trigger1 = "Que le siège commence !",--Time-Keeper/Lord
+	spawn_trigger2 = "L'histoire va être réécrite !", --Time-Keeper/Lord
+	spawn_trigger3 = "Les sables du temps vont être dispersés aux quatre vents !", --Time-Keeper/Lord
+
+	-- Bosses
+	frenzy = "Aeonus - Frénésie",
+	frenzy_desc = "Préviens quand Aeonus est pris de frénésie.",
+	frenzy_trigger = "%s est pris de frénésie !",
+	frenzy_warning = "Frénésie !",
+
+	hasten = "Temporus - Précipiter",
+	hasten_desc = "Préviens quand Temporus gagne Précipiter.",
+	hasten_trigger = "Temporus gagne Précipiter.",
+	hasten_warning = "Temporus gagne Précipiter !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

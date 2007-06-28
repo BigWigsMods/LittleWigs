@@ -35,7 +35,7 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("frFR", function() return {
 	storm = "Nuage d'éclairs",
 	storm_desc = "Préviens quand Thespia lance un Nuage d'éclairs.",
-	storm_trigger = "Enjoy the storm warm bloods!", -- à traduire
+	storm_trigger = "Profitez bien de la tempête, sang-tiède !",
 	storm_message = "Nuage d'éclairs !",
 } end )
 

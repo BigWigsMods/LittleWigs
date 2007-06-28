@@ -85,13 +85,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	trigger1 = "commence à lancer Bouclier réflecteur de magie.$",
-	trigger2 = "commence à lancer Bouclier réflecteur de dégâts.$",
+	trigger1 = "gagne Bouclier réflecteur de magie.$",
+	trigger2 = "gagne Bouclier réflecteur de dégâts.$",
 	trigger3 = "Bouclier réflecteur de magie sur Mécano-seigneur Capacitus vient de se dissiper.",
 	trigger4 = "Bouclier réflecteur de dégâts sur Mécano-seigneur Capacitus vient de se dissiper.",
 
-	warn1 = "Réflection de la magie dans 2 sec. !",
-	warn2 = "Réflection des dégâts dans 2 sec. !",
+	warn1 = "Réflection de la magie en place !",
+	warn2 = "Réflection des dégâts en place !",
 	warn3 = "Réflection de la magie terminée !",
 	warn4 = "Réflection des dégâts terminée !",
 

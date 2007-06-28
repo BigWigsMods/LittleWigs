@@ -23,6 +23,17 @@ L:RegisterTranslations("enUS", function() return {
 	icon_desc = "Put a Raid Icon on the person who has the Treacherous Aura. (Requires promoted or higher)",
 } end)
 
+L:RegisterTranslations("frFR", function() return {
+	aura = "Aura traîtresse",
+	aura_desc = "Préviens quand un joueur subit les effets de l'Aura traîtresse.",
+	aura_trigger = "^([^%s]+) ([^%s]+) les effets .* Aura traîtresse.",
+	aura_warning = "%s a l'Aura traîtresse !",
+	aura_bar = "%s : Aura traîtresse",
+
+	icon = "Icône",
+	icon_desc = "Place une icône de raid sur le dernier joueur affecté par l'Aura traîtresse (nécessite d'être promu ou mieux).",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
