@@ -14,3 +14,6 @@ move Coilfang ..\LittleWigs_Coilfang
 move HellfireCitadel ..\LittleWigs_HellfireCitadel
 move TempestKeep ..\LittleWigs_TempestKeep
 move CoT ..\LittleWigs_CoT
+
+del /q modules.xml
+
