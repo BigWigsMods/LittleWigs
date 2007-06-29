@@ -34,6 +34,17 @@ L:RegisterTranslations("frFR", function() return {
 	icon_desc = "Place une icône de raid sur le dernier joueur affecté par l'Aura traîtresse (nécessite d'être promu ou mieux).",
 } end)
 
+L:RegisterTranslations("koKR", function() return {
+	aura = "배반의 오라 ",
+	aura_desc = "배반의 오라에 걸린 사람을 알립니다.",
+	aura_trigger = "^([^|;%s]*)(.*)배반의 오라에 걸렸습니다%.$",
+	aura_warning = "%s에게 배반의 오라!",
+	aura_bar = "%s: 배반의 오라",
+
+	icon = "전술 표시",
+	icon_desc = "배반의 오라에 걸린 사람에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
