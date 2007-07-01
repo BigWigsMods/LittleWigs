@@ -32,6 +32,16 @@ L:RegisterTranslations("zhTW", function() return {
 	nova_message = "即將施放燃燒新星！ 迅速離開凱利丹！",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://Cwowaddon.com
+--击碎者克里丹
+L:RegisterTranslations("zhCN", function() return {
+	nova = "燃烧新星",
+	nova_desc = "施放燃烧新星时发送警报",
+	nova_trigger = "Come closer",--check
+	nova_message = "燃烧新星 即将发动！ 远离！",
+
+} end )
 L:RegisterTranslations("frFR", function() return {
 	nova = "Nova ardente",
 	nova_desc = "Préviens de l'arrivée des Novas ardentes.",

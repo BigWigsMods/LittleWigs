@@ -53,6 +53,23 @@ L:RegisterTranslations("zhTW", function() return {
 	bdbar_display = "劍刃之舞",
 } end)
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://Cwowaddon.com
+--黑手酋长
+L:RegisterTranslations("zhCN", function() return {
+	engage_trigger1 = "^I am called",--check
+	engage_trigger2 = "^I'll carve",
+	engage_trigger3 = "^Ours is",
+
+	bdwarn = "刃舞",
+	bdwarn_desc = "预计刃舞发动时间",
+	bdwarn_alert = "刃舞 持续5秒， 散开！",
+
+	bdbar = "刃舞计时条",
+	bdbar_desc = "显示刃舞下次发动时间",
+	bdbar_display = "~刃舞",
+} end)
+
 L:RegisterTranslations("frFR", function() return {
 	engage_trigger1 = "^On m'appelle", -- à vérifier
 	engage_trigger2 = "^Je vais vous découper", -- à vérifier

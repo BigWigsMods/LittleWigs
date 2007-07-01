@@ -46,6 +46,16 @@ L:RegisterTranslations("deDE", function() return {
 	mech_message = "Dampfhammers Mechaniker kommen bald!",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://Cwowaddon.com
+--机械师斯蒂里格
+L:RegisterTranslations("zhCN", function() return {
+	mech = "斯蒂里格技师",
+	mech_desc = "呼叫斯蒂里格技师时发出警报！",
+	mech_trigger = "Tune 'em up good, boys!",--check
+	mech_message = "斯蒂里格技师出现了！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

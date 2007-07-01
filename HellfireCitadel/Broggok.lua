@@ -32,6 +32,15 @@ L:RegisterTranslations("zhTW", function() return {
 	poison_message = "毒雲術！ 注意閃避！",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://Cwowaddon.com
+--布洛戈克
+L:RegisterTranslations("zhCN", function() return {
+	poison = "毒云术",
+	poison_desc = "施放毒云术发出警报",
+	poison_trigger = "布洛戈克施放了毒云术",
+	poison_message = "毒云术 ！",
+} end )
 L:RegisterTranslations("frFR", function() return {
 	poison = "Nuage empoisonné",
 	poison_desc = "Préviens de l'arrivée des Nuages empoisonnés.",

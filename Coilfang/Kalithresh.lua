@@ -76,6 +76,22 @@ L:RegisterTranslations("koKR", function() return {
 	rage_message = "장군 채널링!",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://Cwowaddon.com
+--督军卡利瑟里斯
+L:RegisterTranslations("zhCN", function() return {
+	spell = "法术反射",
+	spell_desc = "法术反射警报",
+	spell_trigger = "获得了法术反射",
+	spell_message = "法术反射!",
+
+	rage = "督军之怒",
+	rage_desc = "督军之怒警报",
+	rage_trigger1 = "^%s begins to channel",--check
+	rage_trigger2 = "This is not nearly over...",
+	rage_message = "督军之怒 即将发动！ DPS",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

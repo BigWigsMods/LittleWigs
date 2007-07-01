@@ -46,6 +46,16 @@ L:RegisterTranslations("deDE", function() return {
 	storm_message = "Gewitterwolke!",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://Cwowaddon.com
+--水术师瑟丝比娅
+L:RegisterTranslations("zhCN", function() return {
+	storm = "落雷之云",
+	storm_desc = "落雷之云发动时发出警报",
+	storm_trigger = "Enjoy the storm warm bloods!",
+	storm_message = "落雷之云!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
