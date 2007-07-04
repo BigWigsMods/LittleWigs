@@ -71,10 +71,10 @@ L:RegisterTranslations("zhTW", function() return {
 	portal_bar = "~%s: Wave %s",
 	multiportal_bar = "同時存在多個傳送門",
 
-	portal_warning20s = "20 秒後 %s 波！",
-	portal_warning140s = "140 秒後 %s 波！",
+	portal_warning20s = "20 秒後 %s ！",
+	portal_warning140s = "140 秒後 %s ！",
 
-	engage_trigger = "^The time has come! Gul'dan",
+	engage_trigger = "^時候到了!古爾丹",
 
 	-- These triggers generate warnings & bars bars based on mob deaths
 	death_trigger1 = "不!裂縫……", --Time-Keeper/Lord
@@ -85,9 +85,9 @@ L:RegisterTranslations("zhTW", function() return {
 
 	-- These triggers generate a bar indicating that a second portal will open if the current portal's elite is not defeated
 	-- I am not sure if it is possible for a second portal to open on a boss fight
-	spawn_trigger1 = "Let the siege begin!",--Time-Keeper/Lord
-	spawn_trigger2 = "History is about to be rewritten!", --Time-Keeper/Lord
-	spawn_trigger3 = "The sands of time shall be scattered to the winds!", --Time-Keeper/Lord
+	spawn_trigger1 = "繼續戰鬥!不要畏縮!",--Time-Keeper/Lord
+	spawn_trigger2 = "歷史要改寫了!", --Time-Keeper/Lord
+	spawn_trigger3 = "時間的沙塵將被散落風中!", --Time-Keeper/Lord
 } end )
 
 L:RegisterTranslations("koKR", function() return {

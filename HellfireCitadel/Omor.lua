@@ -58,6 +58,17 @@ L:RegisterTranslations("zhCN", function() return {
 	icon_desc = "当中了背叛光环，用团队标记标上 (需要团长或助理权限)",
 } end)
 
+L:RegisterTranslations("zhTW", function() return {
+	aura = "背叛之禍",
+	aura_desc = "當有人中了背叛之禍時發出警報",
+	aura_trigger = "^(.+)受到(.*)背叛之禍",
+	aura_warning = "%s 中了背叛之禍！",
+	aura_bar = "%s: 背叛之禍",
+
+	icon = "團隊標記",
+	icon_desc = "在中了背叛之禍的隊友頭上標記（需要助理或領隊權限）",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
