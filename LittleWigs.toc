@@ -18,10 +18,4 @@
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2
 
-## LoadOnDemand: 1
-## LoadWith: BigWigs
-
-## LoadManagers: AddonLoader
-## X-LoadOn-Zone: Hellfire Ramparts, The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Botanica, The Shattered Halls, The Steamvault, Auchenai Crypts, The Arcatraz
-
 modules.xml
