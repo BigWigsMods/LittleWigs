@@ -9,13 +9,16 @@
 
 ## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-AceForum: 5751
-## X-Category: Party
+## X-Category: Raid
 
 ## X-BigWigs-Menu: Auchindoun
 ## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: Auchenai Crypts, Mana-Tombs, Sethekk Halls, Shadow Labyrinth
 
 ## Dependencies: BigWigs
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Zone: Auchenai Crypts, Mana-Tombs, Sethekk Halls, Shadow Labyrinth
 
 Ikiss.lua
 Pandemonius.lua

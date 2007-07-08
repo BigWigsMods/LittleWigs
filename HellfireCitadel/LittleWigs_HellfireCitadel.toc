@@ -18,6 +18,9 @@
 
 ## Dependencies: BigWigs
 
+## LoadManagers: AddonLoader
+## X-LoadOn-Zone: Hellfire Ramparts, The Blood Furnace, The Shattered Halls
+
 Broggok.lua
 Kelidan.lua
 Omor.lua

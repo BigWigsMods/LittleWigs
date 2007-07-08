@@ -11,13 +11,16 @@
 
 ## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-AceForum: 5751
-## X-Category: Party
+## X-Category: Raid
 
 ## X-BigWigs-Menu: Coilfang Reservoir
 ## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: The Steamvault
 
 ## Dependencies: BigWigs
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Zone: The Steamvault
 
 Kalithresh.lua
 Steamrigger.lua
