@@ -88,7 +88,7 @@ L:RegisterTranslations("zhTW", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	touch_trigger = "^([^%s]+) ([^%s]+) les effets de Toucher de Marmon.",
+	touch_trigger = "^([^%s]+) ([^%s]+) les effets .* Toucher de Marmon.",
 	touch_message_you = "Vous êtes la bombe !",
 	touch_message_other = "%s est la bombe !",
 
