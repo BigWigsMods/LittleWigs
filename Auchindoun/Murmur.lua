@@ -112,6 +112,31 @@ L:RegisterTranslations("frFR", function() return {
 	sonicboom_bar = "Grondement sonore en incantation !",
 } end)
 
+L:RegisterTranslations("deDE", function() return {
+	touch_trigger = "^([^%s]+) ([^%s]+) ist von Murmurs Ber\195\188hrung betroffen.",
+	touch_message_you = "Du bist die Bombe!",
+	touch_message_other = "%s ist die Bombe!",
+
+	touchtimer = "Leiste die anzeigt, wann die Bombe explodiert",
+	touchtimer_desc = "Eine 13sek\195\188ndige Leiste die anzeigt, wann die Bombe auf dem Ziel explodiert.",
+	touchtimer_bar = "%s: Murmurs Ber\195\188hrung",
+
+	youtouch = "Du bist die Bombe - Warnung",
+	youtouch_desc = "Warnt wenn du die Bombe bist",
+
+	elsetouch = "Jemand anders ist die Bombe - Warnung",
+	elsetouch_desc = "Warnt wenn jemand anders die Bombe ist",
+
+	icon = "Raidsymbol auf Bombe",
+	icon_desc = "Setzt ein Raidsymbol auf die Person die die Bombe ist. (Ben\195\182tigt bef\195\182rderten Status oder h\195\182her)",
+
+	sonicboom = "\195\156berschallknall",
+	sonicboom_desc = "Warnt wenn Murmur beginnt, seinen \195\156berschallknall zu wirken.",
+	sonicboom_trigger = "entzieht der Luft Energie...",
+	sonicboom_alert = "\195\156berschallknall in 5 Sekunden!",
+	sonicboom_bar = "\195\156berschallknall wird gewirkt!",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

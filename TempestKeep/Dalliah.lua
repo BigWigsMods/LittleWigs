@@ -72,6 +72,22 @@ L:RegisterTranslations("frFR", function() return {
 	gift_bar = "Don : %s",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	ww = "Wirbelwind",
+	ww_desc = "Warnt vor Dalliah's Wirbelwind",
+	ww_trigger1 = "Ich werde Euch in St\195\188cke schneiden!",
+	ww_trigger2 = "Reap the whirlwind!",
+	-- Could be more yell triggers
+	ww_message = "Dalliah beginnt mit Wirbelwind!",
+
+	gift = "Gabe des Verdammnisverk\195\188nders",
+	gift_desc = "Warnt vor Dalliah's 'Gabe des Verdammnisverk\195\188nders'-Debuff",
+	gift_trigger = "^([^%s]+) ([^%s]+) ist von Gabe des Verdammnisverk\195\188nders betroffen.",
+	gift_message = "%s hat Gabe des Verdammnisverk\195\188nders!",
+	gift_bar = "Gabe: %s",
+} end )
+
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

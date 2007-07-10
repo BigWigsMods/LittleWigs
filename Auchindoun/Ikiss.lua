@@ -39,6 +39,13 @@ L:RegisterTranslations("frFR", function() return {
 	ae_message = "Explosion des arcanes en incantation !",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	ae = "Arkane Explosion",
+	ae_desc = "Warnt vor Arkaner Explosion",
+	ae_trigger = "Klauenk\195\182nig Ikiss wirkt Blinzeln.",
+	ae_message = "Wirkt Arkane Explosion!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

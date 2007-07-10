@@ -58,6 +58,18 @@ L:RegisterTranslations("zhTW", function() return {
 	engage_trigger2 = "很好，一次值得的犧牲!",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	teleport = "Teleport-Warnung",
+	teleport_desc = "Warnt vor dem Teleport",
+	teleport_trigger = "bekommt 'Schatten anziehen'.",
+	teleport_message = "Teleport!",
+	teleport_warning = "Teleport in ~5sek!",
+	teleport_bar = "Teleport",
+	
+	engage_trigger1 = "I'll make an offering of your blood", --- still needs translation
+	engage_trigger2 = "Gut, ein w\195\188rdiges Opfer!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

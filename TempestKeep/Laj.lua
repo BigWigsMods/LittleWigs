@@ -40,6 +40,13 @@ L:RegisterTranslations("frFR", function() return {
 	allergic_warn = "%s est allergique !",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	allergic = "Allergische Reaktion",
+	allergic_desc = "Warnt vor Allergischer Reaktion",
+	allergic_trigger = "^([^%s]+) ([^%s]+) ist von Allergische Reaktion betroffen.",
+	allergic_warn = "%s ist allergisch!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

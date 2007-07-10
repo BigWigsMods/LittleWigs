@@ -39,6 +39,13 @@ L:RegisterTranslations("frFR", function() return {
 	summon_message = "Élémentaires invoqués !",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	summon = "Elementare-Warnung",
+	summon_desc = "Warnt vor herbefohlenen Elementaren",
+	summon_trigger = "wirkt Syths Arkanelementar beschw\195\182ren",
+	summon_message = "Elementare herbefohlen!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

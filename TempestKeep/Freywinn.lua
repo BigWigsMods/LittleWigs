@@ -42,6 +42,15 @@ L:RegisterTranslations("koKR", function() return {
 	tranq_warning = "평온 시전!",
 	tranqfade_warning = "약 5초 이내 평온 사라짐!",
 } end )
+
+L:RegisterTranslations("deDE", function() return {
+	tranq = "Gelassenheit",
+	tranq_desc = "Warnt vor Gelassenheit",
+	tranq_trigger = "Die Natur unterwirft sich meinem Willen.",
+	tranq_warning = "Gelassenheit wird gecastet!",
+	tranqfade_warning = "Gelassenheit schwindet in ~5s!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
