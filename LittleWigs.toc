@@ -8,7 +8,7 @@
 ## Notes-frFR: Avertissements pour les boss des instances à 5 joueurs.
 ## Author: Ulic
 ## X-Build: $Rev$
-## X-Category: Raid
+## X-Category: Party
 ## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-AceForum: 5751
 ## X-RelSite-Curse: 7476

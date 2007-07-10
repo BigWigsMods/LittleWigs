@@ -9,6 +9,7 @@
 
 ## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-AceForum: 5751
+## X-Category: Party
 
 ## X-BigWigs-Menu: Auchindoun
 ## X-BigWigs-LoadInParty: 1
