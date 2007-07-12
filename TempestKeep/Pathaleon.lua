@@ -91,6 +91,26 @@ L:RegisterTranslations("frFR", function() return {
 	mc_warn = "%s est sous Contrôle mental !",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+
+	summon = "Beschworene Nethergespenster",
+	summon_desc = "Warnt wenn Nethergespenster beschworen werden",
+	summon_trigger = "wirkt Nethergespenster beschw\195\182ren",
+	summon_warn = "Nethergespenster beschworen!",
+
+	despawn = "Verschwindende Nethergespenster",
+	despawn_desc = "Warnt wenn Nethergespenster kurz davor sind zu verschwinden",
+	despawn_warn = "Nethergespenster verschwinden bald!",
+
+	despawn_trigger = "Ich mag es lieber praktisch...",
+	despawn_done = "Nethergespenster verschwinden!",
+
+	mc = "Gedankenkontrolle",
+	mc_desc = "Warnt vor Gedankenkontrolle",
+	mc_trigger = "^([^%s]+) ([^%s]+) ist von Vorherrschaft betroffen.$",
+	mc_warn = "%s ist \195\188bernommen!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
