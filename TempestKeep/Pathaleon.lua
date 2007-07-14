@@ -26,6 +26,7 @@ L:RegisterTranslations("enUS", function() return {
 	despawn_warn = "Nether Wraiths Despawning Soon!",
 
 	despawn_trigger = "I prefer the direct",
+	despawn_trigger2 = "I prefer to be hands",
 	despawn_done = "Nether Wraiths despawning!",
 
 	mc = "Mind Control",
@@ -161,7 +162,7 @@ function mod:CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE(msg)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.despawn and msg:find(L["despawn_trigger"]) then
+	if self.db.profile.despawn and (msg:find(L["despawn_trigger"]) or msg:find(L["despawn_trigger2"])) then
 		self:Message(L["despawn_done"], "Important")
 	end
 end
