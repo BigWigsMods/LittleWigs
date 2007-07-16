@@ -19,9 +19,9 @@ L:RegisterTranslations("enUS", function() return {
 	trigger4 = "^Reflective Damage Shield fades",
 
 	warn1 = "Magic Reflection up!",
-	warn2 = "Damage Shield up!",
+	warn2 = "Damage Reflection up!",
 	warn3 = "Magic Reflection down!",
-	warn4 = "Damage Shield down!",
+	warn4 = "Damage Reflection down!",
 
 	magic = "Magic Reflection",
 	magic_desc = "Warn for Magic Reflection",
@@ -125,7 +125,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
+	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
@@ -136,7 +136,7 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
+function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 	if not aura and self.db.profile.magic and msg:find(L["trigger1"]) then
 		mod:NewPowers(1)
 	elseif not aura and self.db.profile.dmg and msg:find(L["trigger2"]) then
