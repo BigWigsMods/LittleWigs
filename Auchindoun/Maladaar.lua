@@ -55,7 +55,7 @@ L:RegisterTranslations("frFR", function() return {
 
 	avatar = "Avatar du martyr",
 	avatar_desc = "Préviens quand l'Avatar du martyr est invoqué.",
-	avatar_trigger = "commence à exécuter Invocation du roi-esprits", -- à vérifier
+	avatar_trigger = "commence à exécuter Invocation de l'avatar des martyrs",
 	avatar_message = "Avatar du martyr invoqué !",
 } end )
 

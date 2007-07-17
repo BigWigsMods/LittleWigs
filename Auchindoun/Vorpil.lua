@@ -43,7 +43,8 @@ L:RegisterTranslations("frFR", function() return {
 	teleport_warning = "Téléportation dans ~5 sec. !",
 	teleport_bar = "Téléportation",
 
-	engage_trigger1 = "Je ferai une offrande de ton sang", -- à vérifier
+	engage_trigger1 = "Tu feras un bon exemple pour les autres !",
+	engage_trigger2 = "Bien, un digne sacrifice !",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
