@@ -65,6 +65,7 @@ L:RegisterTranslations("zhTW", function() return {
 	despawn_warn = "虛空幻影將被召回！",
 
 	despawn_trigger = "我比較喜歡親自動手...",
+	despawn_trigger2 = "I prefer to be hands",
 	despawn_done = "虛空幻影已被召回，帕薩里歐進入狂怒狀態！",
 
 	mc = "支配",

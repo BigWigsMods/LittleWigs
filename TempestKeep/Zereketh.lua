@@ -78,17 +78,17 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	nova = "暗影新星",
 	nova_desc = "暗影新星警報",
-	nova_trigger = "%s開始施放暗影新星。",
+	nova_trigger = "開始施放暗影新星。$",
 	nova_warning = "2 秒後暗影新星！",
 
-	void = "虛空地區",
-	void_desc = "虛空地區警報",
-	void_trigger = "%s施放了虛空地區。",
-	void_warning = "虛空地區來臨！",
+	void = "虛無地區",
+	void_desc = "虛無地區警報",
+	void_trigger = "施放了虛無地區。",
+	void_warning = "虛無地區來臨！",
 
 	seed = "腐蝕種子",
 	seed_desc = "隊友受到腐蝕種子的傷害時發出警報",
-	seed_trigger = "^(.+)受到(.*)腐蝕種子的傷害。",
+	seed_trigger = "^(.+)受到(.*)腐蝕種子",
 	seed_warning = "%s 受到腐蝕種子的傷害！",
 	seed_bar = "引爆",
 

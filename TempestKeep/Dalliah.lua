@@ -45,7 +45,7 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	ww = "旋風斬",
 	ww_desc = "旋風斬警報",
-	ww_trigger1 = "遭受旋風的報應!",
+	ww_trigger1 = "我將把你碎屍萬段!",
 	ww_trigger2 = "獲得了旋風斬的效果。",
 	-- Could be more yell triggers
 	ww_message = "達利亞要發動旋風斬了！",
