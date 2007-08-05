@@ -15,7 +15,8 @@ L:RegisterTranslations("enUS", function() return {
 
 	aura = "Treacherous Aura",
 	aura_desc = "Announce who has the Trecherous Aura",
-	aura_trigger = "^([^%s]+) ([^%s]+) afflicted by Treacherous Aura.",
+	aura_trigger1 = "^([^%s]+) ([^%s]+) afflicted by Treacherous Aura.",
+	aura_trigger2 = "^([^%s]+) ([^%s]+) afflicted by Bane of Treachery.",
 	aura_warning = "%s has Treacherous Aura!",
 	aura_bar = "%s: Treacherous Aura",
 
@@ -97,7 +98,12 @@ end
 ------------------------------
 
 function mod:Event(msg)
-	local player, type = select(3, msg:find(L["aura_trigger"]))
+	if msg:find(L["aura_trigger1"]) then
+		local player, type = select(3, msg:find(L["aura_trigger1"]))
+	end
+	if msg:find(L["aura_trigger2"]) then
+		local player, type = select(3, msg:find(L["aura_trigger2"]))
+	end
 	if player and type then
 		if player == L2["you"] and type == L2["are"] then
 			player = UnitName("player")
