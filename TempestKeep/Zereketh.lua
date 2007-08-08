@@ -21,7 +21,7 @@ L:RegisterTranslations("enUS", function() return {
 	void = "Void Zone",
 	void_desc = "Warns for new Void Zones",
 	void_trigger = "casts Void Zone.$",
-	void_warning = "Void Zone incomimg!",
+	void_warning = "Void Zone incoming!",
 
 	seed = "Seed of Corruption",
 	seed_desc = "Warn for who gets Seed of Corruption",
