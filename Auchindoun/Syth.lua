@@ -46,6 +46,13 @@ L:RegisterTranslations("deDE", function() return {
 	summon_message = "Elementare herbefohlen!",
 } end )
 
+L:RegisterTranslations("esES", function() return {
+	summon = "Alerta de Elementales",
+	summon_desc = "Aviso de Invocaci?n de Elementales",
+	summon_trigger = "lanza Invocar elemental Arcano Syth",
+	summon_message = "Elementales Invocados!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
