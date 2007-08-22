@@ -96,6 +96,7 @@ end
 function mod:Event(msg)
 	if not self.db.profile.aura then return end
 	local Aplayer, Atype, Aspell = select(3, msg:find(L["aura_trigger"]))
+	if ASpell ~= "Treacherous Aura" and ASpell ~= "Bane of Treachery" then return end
 	if Aplayer and Atype then
 		if Aplayer == L2["you"] and Atype == L2["are"] then
 			Aplayer = UnitName("player")
