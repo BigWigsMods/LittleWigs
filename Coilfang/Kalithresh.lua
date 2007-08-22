@@ -92,6 +92,19 @@ L:RegisterTranslations("zhCN", function() return {
 	rage_message = "督军之怒 即将发动！ DPS",
 } end )
 
+L:RegisterTranslations("esES", function() return {
+	spell = "Reflejo de Hechizos",
+	spell_desc = "Avisa cuando Kalithresh refleja hechizos",
+	spell_trigger = "gana Reflejo de hechizos.$",
+	spell_message = "Reflejo de Hechizos!",
+
+	rage = "Warlord's Rage",
+	rage_desc = "Avisa cuando Kalithresh est\195\161 canalizando ira",
+	rage_trigger1 = "^%s comienza a canalizar",
+	rage_trigger2 = "Esto todav\195\173a no ha terminado...", 
+	rage_message = "Kalithresh est\195\161 canalizando ira!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

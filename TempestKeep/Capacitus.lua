@@ -108,6 +108,14 @@ L:RegisterTranslations("frFR", function() return {
 	polarity_bar = "Changement de polarité",
 } end )
 
+L:RegisterTranslations("esES", function() return {
+	polarity = "Cambio de polaridad (Heroico)",
+	polarity_desc = "Avisa cuando Capacitus lanza cambio de polaridad",
+	polarity_trigger = "comienza a lanzar Cambio de polaridad",
+	polarity_warn = "Cambio de polaridad en 3 segundos!",
+	polarity_bar = "Cambio de polaridad",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

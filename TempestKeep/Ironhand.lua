@@ -67,6 +67,20 @@ L:RegisterTranslations("frFR", function() return {
 	shadow_bar = "Puissance de l'ombre",
 } end )
 
+L:RegisterTranslations("esES", function() return {
+	hammer = "Martillo",
+	hammer_desc = "Avisa cuando Manoyerro alza su martillo",
+	hammer_trigger = "alza su martillo amenazadoramente",
+	hammer_warn = "Martillo en 3 segundos!",
+	hammer_bar = "Martillo",
+
+	shadow = "Shadow Power",
+	shadow_desc = "Avisa cuando Manoyerro lanza Poder de las Sombras",
+	shadow_trigger = "comienza a lanzar Poder de las Sombras",
+	shadow_warn = "Poder de las Sombras en 2 segundos!",
+	shadow_bar = "Poder de las Sombras",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

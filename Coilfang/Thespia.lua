@@ -56,6 +56,13 @@ L:RegisterTranslations("zhCN", function() return {
 	storm_message = "落雷之云!",
 } end )
 
+L:RegisterTranslations("esES", function() return {
+	storm = "Nube de rel\195\161mpagos",
+	storm_desc = "Aviso por Nube de rel\195\161mpagos",
+	storm_trigger = "Disfruta de la tormenta, sangre caliente!",
+	storm_message = "Nube de rel\195\161mpagos!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

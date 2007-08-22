@@ -56,6 +56,13 @@ L:RegisterTranslations("zhCN", function() return {
 	mech_message = "斯蒂里格技师出现了！",
 } end )
 
+L:RegisterTranslations("esES", function() return {
+	mech = "Mekigeniero Vaporino",
+	mech_desc = "Aviso de la llegada de los mec\195\161nicos",
+	mech_trigger = "Dadles lo suyo, chicos!",
+	mech_message = "Llegan los Mec\195\161nicos Vaporinos",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

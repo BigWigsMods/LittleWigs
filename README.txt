@@ -77,3 +77,8 @@ If you would like to contribute you can do it in a few ways.
 1) Download and install Transcriptor(http://files.wowace.com/Transcriptor/), activate it when you start the boss fight and turn it off when you're done.  It will log all the necessary messages for creating new warnings.  Note: Not EVERYTHING can be warned, for example the mushrooms during Hungarfen in Underbog.
 2) Write & Test the module yourself then send to me to include
 3) Report any problems, inaccuracies, or suggestions you have to the wowace forum(http://www.wowace.com/forums/index.php?topic=5751).
+
+Credits-
+Big Wigs Core: Ammo, Rabbit
+Transcriptor Logs: OrionShock, Arrowmaster, Elp, Piett, Eraslin, SuperZorro
+Translations: fenlis, Erfeal, verotas, scorpio0920, Farook, Zauberfee, bailon
