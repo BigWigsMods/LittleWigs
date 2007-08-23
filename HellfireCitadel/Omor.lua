@@ -19,6 +19,9 @@ L:RegisterTranslations("enUS", function() return {
 	aura_warning = "%s has %s!",
 	aura_bar = "%s: %s",
 
+	aura_normal = "Treacherous Aura",
+	aura_heroic = "Bane of Treachery",
+
 	icon = "Raid Icon",
 	icon_desc = "Put a Raid Icon on the person who has the Treacherous Aura. (Requires promoted or higher)",
 } end)
@@ -96,7 +99,7 @@ end
 function mod:Event(msg)
 	if not self.db.profile.aura then return end
 	local Aplayer, Atype, Aspell = select(3, msg:find(L["aura_trigger"]))
-	if ASpell ~= "Treacherous Aura" and ASpell ~= "Bane of Treachery" then return end
+	if Aspell ~= L["aura_normal"] and Aspell ~= L["aura_heroic"] then return end
 	if Aplayer and Atype then
 		if Aplayer == L2["you"] and Atype == L2["are"] then
 			Aplayer = UnitName("player")
