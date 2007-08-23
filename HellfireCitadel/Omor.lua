@@ -13,14 +13,12 @@ local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Omor",
 
-	aura = "Treacherous Aura",
+	aura = "Treacherous Aura", -- needs to be exactly what it's called in game.
+	aura_heroic = "Bane of Treachery",
 	aura_desc = "Announce who has the Trecherous Aura",
 	aura_trigger = "^([^%s]+) ([^%s]+) afflicted by ([^%t]+)%.$",
 	aura_warning = "%s has %s!",
 	aura_bar = "%s: %s",
-
-	aura_normal = "Treacherous Aura",
-	aura_heroic = "Bane of Treachery",
 
 	icon = "Raid Icon",
 	icon_desc = "Put a Raid Icon on the person who has the Treacherous Aura. (Requires promoted or higher)",
@@ -99,7 +97,7 @@ end
 function mod:Event(msg)
 	if not self.db.profile.aura then return end
 	local Aplayer, Atype, Aspell = select(3, msg:find(L["aura_trigger"]))
-	if Aspell ~= L["aura_normal"] and Aspell ~= L["aura_heroic"] then return end
+	if Aspell ~= L["aura"] and Aspell ~= L["aura_heroic"] then return end
 	if Aplayer and Atype then
 		if Aplayer == L2["you"] and Atype == L2["are"] then
 			Aplayer = UnitName("player")
