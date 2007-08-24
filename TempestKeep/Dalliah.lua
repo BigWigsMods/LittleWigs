@@ -60,7 +60,7 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("frFR", function() return {
 	ww = "Tourbillon",
 	ww_desc = "Préviens quand Dalliah fait son Tourbillon.",
-	ww_trigger1 = "I'll cut you to pieces!", -- à traduire
+	ww_trigger1 = "Je vais vous découper en petits morceaux !",
 	ww_trigger2 = "Récoltez la tempête !",
 	-- Could be more yell triggers
 	ww_message = "Dalliah gagne Tourbillon !",

@@ -26,13 +26,14 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	aura = "Aura traîtresse",
-	aura_desc = "Préviens quand un joueur subit les effets de l'Aura traîtresse.",
+	aura_heroic = "Plaie de traîtrise",
+	aura_desc = "Préviens quand un joueur subit les effets de l'Aura/Plaie traîtresse.",
 	aura_trigger = "^([^%s]+) ([^%s]+) les effets .* ([^%t]+)%.$",
-	aura_warning = "%s a %s!",
+	aura_warning = "%s a %s !",
 	aura_bar = "%s : %s",
 
 	icon = "Icône",
-	icon_desc = "Place une icône de raid sur le dernier joueur affecté par l'Aura traîtresse (nécessite d'être promu ou mieux).",
+	icon_desc = "Place une icône de raid sur le dernier joueur affecté par l'Aura/Plaie traîtresse (nécessite d'être promu ou mieux).",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
