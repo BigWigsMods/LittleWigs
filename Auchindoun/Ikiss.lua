@@ -46,6 +46,13 @@ L:RegisterTranslations("deDE", function() return {
 	ae_message = "Wirkt Arkane Explosion!",
 } end )
 
+L:RegisterTranslations("esES", function() return {
+	ae = "Deflagraci\195\179n Arcana",
+	ae_desc = "Avisa cuando el Rey Garra Ikiss va a lanzar deflagraci\195\179n arcana",
+	ae_trigger = "Rey Garra Ikiss comienza a lanzar Deflagraci\195\179n Arcana.",
+	ae_message = "Deflagraci\195\179n Arcana!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
