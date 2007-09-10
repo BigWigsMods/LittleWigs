@@ -51,6 +51,13 @@ L:RegisterTranslations("deDE", function() return {
 	tranqfade_warning = "Gelassenheit schwindet in ~5s!",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	tranq = "宁静",
+	tranq_desc = "宁静警报",
+	tranq_trigger = "Nature bends to my will....",
+	tranq_warning = "宁静 施放!",
+	tranqfade_warning = "5后 宁静消失!",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

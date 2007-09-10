@@ -88,6 +88,22 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 
+--末日预言者达尔莉安
+L:RegisterTranslations("zhCN", function() return {
+	ww = "旋风斩",
+	ww_desc = "达尔莉安旋风斩警报",
+	ww_trigger1 = "I'll cut you to pieces!",
+	ww_trigger2 = "Reap the whirlwind!",
+	-- Could be more yell triggers
+	ww_message = "旋风斩!",
+
+	gift = "末日预言者的礼物",
+	gift_desc = "当达尔莉安获得末日预言者的礼物时发出警报",
+	gift_trigger = "^([^%s]+)受([^%s]+)了末日预言者的礼物效果的影响。$",
+	gift_message = "%s 受到了末日预言者的礼物!",
+	gift_bar = "礼物: %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

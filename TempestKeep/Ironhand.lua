@@ -81,6 +81,21 @@ L:RegisterTranslations("esES", function() return {
 	shadow_bar = "Poder de las Sombras",
 } end )
 
+--看守者埃隆汉
+L:RegisterTranslations("zhCN", function() return {
+	hammer = "风钻",
+	hammer_desc = "风钻特效施放时发出警告",--Jackhammer Effect
+	hammer_trigger = "raises his hammer menacingly",
+	hammer_warn = "3秒后风钻!",
+	hammer_bar = "风钻",
+
+	shadow = "暗影能量",
+	shadow_desc = "施放暗影能量时发出警报",
+	shadow_trigger = "开始施放暗影能量",
+	shadow_warn = "2秒后 暗影能量!",
+	shadow_bar = "暗影能量",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

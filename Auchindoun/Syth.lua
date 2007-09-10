@@ -53,6 +53,16 @@ L:RegisterTranslations("esES", function() return {
 	summon_message = "Elementales Invocados!",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://cwowaddon.com
+--黑暗编织者塞斯
+L:RegisterTranslations("zhCN", function() return {
+	summon = "元素警报",
+	summon_desc = "召唤元素警报",
+	summon_trigger = "释放了召唤塞斯奥术元素",
+	summon_message = "元素已被召唤!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -137,6 +137,34 @@ L:RegisterTranslations("deDE", function() return {
 	sonicboom_bar = "\195\156berschallknall wird gewirkt!",
 } end)
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://cwowaddon.com
+--摩摩尔
+L:RegisterTranslations("zhCN", function() return {
+	touch_trigger = "^([^%s]+)受([^%s]+)了摩摩尔之触效果的影响。$",
+	touch_message_you = "你是炸弹! 远离队友!",
+	touch_message_other = "%s 是炸弹! 远离队友",
+
+	touchtimer = "炸弹倒计时条",
+	touchtimer_desc = "显示炸弹倒数13秒记时条.",
+	touchtimer_bar = "%s: 摩摩尔之触",
+
+	youtouch = "你是炸弹警告",
+	youtouch_desc = "当自己称为炸弹发出警报",
+
+	elsetouch = "队友炸弹警告",
+	elsetouch_desc = "当队友是炸弹时发出警告",
+
+	icon = "团队标记炸弹",
+	icon_desc = "在被成为炸弹的队友打上团队标记. (需要助理或更高)",
+
+	sonicboom = "音爆",
+	sonicboom_desc = "当摩摩尔开始施放音爆发出警告",
+	sonicboom_trigger = "draws energy from the air...",
+	sonicboom_alert = "5秒后发动 音爆! 快闪~",
+	sonicboom_bar = "正在施放音爆!",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

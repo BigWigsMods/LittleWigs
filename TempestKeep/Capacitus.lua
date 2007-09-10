@@ -116,6 +116,31 @@ L:RegisterTranslations("esES", function() return {
 	polarity_bar = "Cambio de polaridad",
 } end )
 
+--机械领主卡帕西图斯
+L:RegisterTranslations("zhCN", function() return {
+	trigger1 = "获得了魔法反射护盾。$",
+	trigger2 = "获得了物理反射护盾。.$",
+	trigger3 = "^魔法反射护盾从",
+	trigger4 = "^物理反射护盾从",
+
+	warn1 = "魔法护盾！打开 法系停止攻击!",
+	warn2 = "物理护盾！打开 近战停止攻击!",
+	warn3 = "魔法护盾! 消失 法系攻击",
+	warn4 = "物理护盾! 消失 近战攻击",
+
+	magic = "魔法反射护盾",
+	magic_desc = "魔法反射护盾警报",
+
+	dmg = "物理护盾",
+	dmg_desc = "物理反射护盾",
+
+	polarity = "极性转换(英雄模式)",
+	polarity_desc = "当极性转换时发出警报",
+	polarity_trigger = "开始施放极性转换",
+	polarity_warn = "3秒后 极性转换!",
+	polarity_bar = "极性转换",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

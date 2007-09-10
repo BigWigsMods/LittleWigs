@@ -50,8 +50,10 @@ L:RegisterTranslations("koKR", function() return {
 --无疤者奥摩尔
 L:RegisterTranslations("zhCN", function() return {
 	aura = "背叛光环",
+	aura_heroic = "背叛者之祸",
 	aura_desc = "当中了背叛光环发出警报",
-	aura_warning = "%s 中了背叛光环!",
+	aura_trigger = "^([^%s]+)受([^%s]+)了([^%t]+)效果的影响。$",
+	aura_warning = "%s 中了 %s!",
 	aura_bar = "%s: %s",
 
 	icon = "团队标记",

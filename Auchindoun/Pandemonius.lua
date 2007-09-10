@@ -39,6 +39,16 @@ L:RegisterTranslations("frFR", function() return {
 	shell_alert = "Cocon de ténèbres !",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://cwowaddon.com
+--潘德莫努斯
+L:RegisterTranslations("zhCN", function() return {
+	shell = "黑暗之壳",
+	shell_desc = "黑暗之壳施放警报",
+	shell_trigger = "获得了黑暗之壳的效果。$",
+	shell_alert = "黑暗之壳! 停止攻击",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

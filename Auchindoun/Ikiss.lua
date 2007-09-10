@@ -53,6 +53,16 @@ L:RegisterTranslations("esES", function() return {
 	ae_message = "Deflagraci\195\179n Arcana!",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://Cwowaddon.com
+--利爪之王艾吉斯
+L:RegisterTranslations("zhCN", function() return {
+	ae = "魔爆术",
+	ae_desc = "魔爆术警报",
+	ae_trigger = "利爪之王艾吉斯施放了闪现术。",
+	ae_message = "施放 魔爆术!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -59,6 +59,21 @@ L:RegisterTranslations("frFR", function() return {
 	avatar_message = "Avatar du martyr invoqué !",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://cwowaddon.com
+--大主教玛拉达尔
+L:RegisterTranslations("zhCN", function() return {
+	soul = "被偷走的灵魂",
+	soul_desc = "被偷走的灵魂警报",
+	soul_trigger = "开始施展被偷走的灵魂",
+	soul_message = "队友灵魂被偷取! 速度击杀!!",
+
+	avatar = "殉难者的化身",
+	avatar_desc = "召唤殉难者的化身发出警报",
+	avatar_trigger = "开始施展召唤殉难者的化身",
+	avatar_message = "殉难者的化身出现! MT顶啊~~~~",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

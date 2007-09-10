@@ -38,7 +38,7 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	nova = "燃烧新星",
 	nova_desc = "施放燃烧新星时发送警报",
-	nova_trigger = "Come closer",--check
+	nova_trigger = "靠近一点",--check
 	nova_message = "燃烧新星 即将发动！ 远离！",
 
 } end )
