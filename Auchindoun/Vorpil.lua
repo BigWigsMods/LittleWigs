@@ -71,6 +71,20 @@ L:RegisterTranslations("deDE", function() return {
 	engage_trigger2 = "Gut, ein w\195\188rdiges Opfer!",
 } end )
 
+--Chinese Translation: 月色狼影@CWDG
+--CWDG site: http://cwowaddon.com
+--沃匹尔大师
+L:RegisterTranslations("zhCN", function() return {
+	teleport = "传送警告",
+	teleport_desc = "传送警报",
+	teleport_trigger = "获得了暗影牵制的效果。$",
+	teleport_message = "传送! 快离开平台!",
+	teleport_warning = "~5后 传送!",
+	teleport_bar = "传送",
+	
+	engage_trigger1 = "I'll make an offering of your blood",
+	engage_trigger2 = "Good, a worthy sacrifice!",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
