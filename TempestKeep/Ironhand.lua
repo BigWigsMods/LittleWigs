@@ -96,6 +96,20 @@ L:RegisterTranslations("zhCN", function() return {
 	shadow_bar = "暗影能量",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	hammer = "Hammer",
+	hammer_desc = "Vor Hammer Warnen",
+	hammer_trigger = "erhebt seinen Hammer bedrohlich",
+	hammer_warn = "Hammer in 3 Sekunden!",
+	hammer_bar = "Hammer",
+
+	shadow = "Schattenmacht",
+	shadow_desc = "Warnen, wenn Eisenhand Schattenmacht bekommt",
+	shadow_trigger = "beginnt Schattenmacht zu wirken",
+	shadow_warn = "Schattenmacht in 2 Sekunden!",
+	shadow_bar = "Schattenmacht",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

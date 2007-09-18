@@ -141,6 +141,30 @@ L:RegisterTranslations("zhCN", function() return {
 	polarity_bar = "极性转换",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	trigger1 = "gains Reflective Magic Shield.$",
+	trigger2 = "gains Reflective Damage Shield.$",
+	trigger3 = "^Reflective Magic Shield fades",
+	trigger4 = "^Reflective Damage Shield fades",
+
+	warn1 = "Magiereflektion!",
+	warn2 = "Schadensreflektion!",
+	warn3 = "Magiereflektion beendet!",
+	warn4 = "Schadensreflektion beendet!",
+
+	magic = "Magiereflektion",
+	magic_desc = "Vor Magiereflektion warnen",
+
+	dmg = "Schadensschild",
+	dmg_desc = "Vor Schadensreflektion warnen",
+
+	polarity = "Polarit\195\164tsver\195\164nderung (Heroisch)",
+	polarity_desc = "Warnen, wenn Polarit\195\164tsver\195\164nderung gewirkt wird",
+	polarity_trigger = "beginnt Polarit\195\164tsver\195\164nderung zu wirken",
+	polarity_warn = "Polarit\195\164tsver\195\164nderung in 3 Sekunden!",
+	polarity_bar = "Polarit\195\164tsver\195\164nderung",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
