@@ -48,6 +48,14 @@ L:RegisterTranslations("frFR", function() return {
 	poison_message = "Nuage empoisonné !",
 } end )
 
+--German Translation: Domestica@Baelgun
+L:RegisterTranslations("deDE", function() return {
+   poison = "Giftwolke",
+   poison_desc = "Warnt vor der Giftwolke",
+   poison_trigger = "Broggok zaubert Giftwolke.",
+   poison_message = "Giftwolke!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

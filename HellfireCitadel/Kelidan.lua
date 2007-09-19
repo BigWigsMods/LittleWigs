@@ -42,11 +42,20 @@ L:RegisterTranslations("zhCN", function() return {
 	nova_message = "燃烧新星 即将发动！ 远离！",
 
 } end )
+
 L:RegisterTranslations("frFR", function() return {
 	nova = "Nova ardente",
 	nova_desc = "Préviens de l'arrivée des Novas ardentes.",
 	nova_trigger = "Approchez",
 	nova_message = "Nova ardente imminente !",
+} end )
+
+--German Translation: Domestica@Baelgun
+L:RegisterTranslations("deDE", function() return {
+   nova = "Feuernova",
+   nova_desc = "Warnung vor der Feuernova",
+   nova_trigger = "Kommt! Kommt n?her... und brennt!",
+   nova_message = "Feuernova!",
 } end )
 
 ----------------------------------

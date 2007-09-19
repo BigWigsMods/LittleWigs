@@ -70,6 +70,19 @@ L:RegisterTranslations("zhTW", function() return {
 	icon_desc = "在中了背叛之禍的隊友頭上標記（需要助理或領隊權限）",
 } end)
 
+--German Translation: Domestica@Baelgun
+L:RegisterTranslations("deDE", function() return {
+   aura = "Verr\195\164terische Aura",
+   aura_heroic = "Bane of Treachery",
+   aura_desc = "Ank\195\188ndigung wer die Verr\195\164terische Aura hat",
+   aura_trigger = "^([^%s]+) ([^%s]+) ist betroffen von ([^%t]+)%.$",
+   aura_warning = "%s hat %s!",
+   aura_bar = "%s: %s",
+
+   icon = "Raid Symbol",
+   icon_desc = "Setzt ein Raidsymbol auf die betroffene Person der Aura (Ben\195\182tigt h\195\182heren Status)",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

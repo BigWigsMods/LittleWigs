@@ -74,6 +74,19 @@ L:RegisterTranslations("zhCN", function() return {
 	avatar_message = "殉难者的化身出现! MT顶啊~~~~",
 } end )
 
+--German Translation: Domestica@Baelgun
+L:RegisterTranslations("deDE", function() return {
+   soul = "Gestohlene Seele",
+   soul_desc = "Warnt vor gestohlener Seele",
+   soul_trigger = "beginnt Gestohlene Seele auszuf\195\188hren",
+   soul_message = "Seele gestohlen!",
+
+   avatar = "Avatar des Gemarterten",
+   avatar_desc = "Warnt vor der Avatar des Gemarterten Beschw\195\182rung",
+   avatar_trigger = "beginnt Avatar des Gemarterten beschw\195\182ren auszuf\195\188hren",
+   avatar_message = "Avatar beschworen!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
