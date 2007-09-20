@@ -142,10 +142,10 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-	trigger1 = "gains Reflective Magic Shield.$",
-	trigger2 = "gains Reflective Damage Shield.$",
-	trigger3 = "^Reflective Magic Shield fades",
-	trigger4 = "^Reflective Damage Shield fades",
+	trigger1 = "bekommt 'Reflektierender Magieschild'.$",
+	trigger2 = "bekommt 'Reflektierender Schadenschild'.$",
+	trigger3 = "^Reflektierender Magieschild schwindet",
+	trigger4 = "^Reflektierender Schadenschild schwindet",
 
 	warn1 = "Magiereflektion!",
 	warn2 = "Schadensreflektion!",

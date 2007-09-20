@@ -236,6 +236,51 @@ L:RegisterTranslations("zhCN", function() return {
 	hasten_warning = "时光加速!",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+
+	next_portal = "N\195\164chstes Portal",
+
+	portal = "Portalwarnungen",
+	portal_desc = "Ungef\195\164hre Warnung f\195\188r das n\195\164chste Portal.",
+
+	portalbar = "Portalleiste",
+	portalbar_desc = "Zeige ungef\195\164hre Zeitleiste f\195\188r das n\195\164chste Portal..",
+
+	portal_bar = "~%s: Welle %s",
+	multiportal_bar = "~Mehrere Portale gleichzeitig",
+
+	portal_warning20s = "%s in ~20 Sekunden!",
+	portal_warning140s = "%s in ~140 Sekunden!",
+
+	engage_trigger = "^Die Zeit ist gekommen! Gul'dan",
+	disable_trigger = "Wir werden siegen. Es ist nur eine Frage der Zeit...",
+	disable_warning = "%s wurde gerettet!",
+
+	-- These triggers generate warnings & bars bars based on mob deaths
+	death_trigger1 = "Nein! Nicht das Loch...", --Time-Keeper/Lord
+	death_trigger2 = "Ihr werdet uns niemals alle besiegen k?nnen!", --Time-Keeper/Lord
+	death_trigger3 = "Ihr werdet nichts erreichen!", --Time-Keeper/Lord
+	death_trigger4 = "Die Zeit... ist mit uns.", --Chrono Lord Deja
+	death_trigger5 = "Mein Tod hat keine... Bedeutung.", -- Temporus
+
+	-- These triggers generate a bar indicating that a second portal will open if the current portal's elite is not defeated
+	-- I am not sure if it is possible for a second portal to open on a boss fight
+	spawn_trigger1 = "M\195\182ge die Belagerung beginnen!",--Time-Keeper/Lord
+	spawn_trigger2 = "Die Geschichte wird neu geschrieben werden!", --Time-Keeper/Lord
+	spawn_trigger3 = "Die Sande der Zeit werden im Winde vergehen!", --Time-Keeper/Lord
+
+	-- Bosses
+	frenzy = "Aeonus - Raserei",
+	frenzy_desc = "Warnen, wenn Aeonus in Raserei verf\195\164llt.",
+	frenzy_trigger = "%s ger\195\164t in Raserei!",
+	frenzy_warning = "Frenzy Alert!",
+
+	hasten = "Temporus - Hasten",
+	hasten_desc = "Warnen, wenn Temporus 'Hasten' bekommt",
+	hasten_trigger = "Temporus bekommt 'Hasten'.",
+	hasten_warning = "Temporus bekommt 'Hasten'!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -96,6 +96,27 @@ L:RegisterTranslations("zhTW", function() return {
 	icon_desc = "在受到腐蝕種子的隊友頭上標記（需要助理或領隊權限）",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	nova = "Schattennova",
+	nova_desc = "Vor Schattennova warnen",
+	nova_trigger = "beginnt Schattennova zu wirken.$",
+	nova_warning = "Schattennova in 2 Sekunden!",
+
+	void = "Zone der Leere",
+	void_desc = "Vor neuen Zonen der Leere warnen",
+	void_trigger = "wirkt Zone der Leere.$",
+	void_warning = "Zone der Leere kommt!",
+
+	seed = "Saat der Verderbnis",
+	seed_desc = "Warnen wer Saat der Verderbnis bekommt",
+	seed_trigger = "^([^%s]+) ([^%s]+) (durch Saat der Verderbnis).",
+	seed_warning = "Saat der Verderbnis auf %s!",
+	seed_bar = "~Explosion",
+
+	icon = "Saat der Verderbnis Raid Symbol",
+	icon_desc = "Ein Raid Symbol auf die Person setzen, die von Saat der Verderbnis betroffen ist. (Ben\195\182tigt h\195\182heren Rang)",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
