@@ -16,6 +16,9 @@ BB = nil
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Blackmorass",
 
+	-- To let people know of possible issues with this module
+	note = "Please note:  This module is know to not work 100% accurately ALL the time, it will be updated/fixed as time permits",
+	
 	next_portal = "Next Portal",
 
 	portal = "Portal Warnings",
@@ -311,6 +314,7 @@ function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
+	self:Print(L["note"])
 end
 
 ------------------------------
