@@ -273,7 +273,7 @@ L:RegisterTranslations("deDE", function() return {
 	frenzy = "Aeonus - Raserei",
 	frenzy_desc = "Warnen, wenn Aeonus in Raserei verf\195\164llt.",
 	frenzy_trigger = "%s ger\195\164t in Raserei!",
-	frenzy_warning = "Frenzy Alert!",
+	frenzy_warning = "Raserei! - Einlullender Schuss!",
 
 	hasten = "Temporus - Hasten",
 	hasten_desc = "Warnen, wenn Temporus 'Hasten' bekommt",

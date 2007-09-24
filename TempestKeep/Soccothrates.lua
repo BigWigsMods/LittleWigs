@@ -16,7 +16,6 @@ L:RegisterTranslations("enUS", function() return {
 	knock_desc = "Warn for Knock Away",
 	knock_trigger = "gains Knock Away.$",
 	knock_warning = "Knock Away!",
-
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

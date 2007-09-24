@@ -109,7 +109,7 @@ L:RegisterTranslations("deDE", function() return {
 
 	mc = "Gedankenkontrolle",
 	mc_desc = "Warnt vor Gedankenkontrolle",
-	mc_trigger = "^([^%s]+) ([^%s]+) ist von Vorherrschaft betroffen.$",
+	mc_trigger = "^([^%s]+) ([^%s]+) von Vorherrschaft betroffen.$",
 	mc_warn = "%s ist \195\188bernommen!",
 } end )
 

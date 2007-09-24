@@ -113,7 +113,7 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
-	touch_trigger = "^([^%s]+) ([^%s]+) ist von Murmurs Ber\195\188hrung betroffen.",
+	touch_trigger = "^([^%s]+) ([^%s]+) von Murmurs Ber\195\188hrung betroffen.",
 	touch_message_you = "Du bist die Bombe!",
 	touch_message_other = "%s ist die Bombe!",
 

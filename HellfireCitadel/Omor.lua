@@ -75,7 +75,7 @@ L:RegisterTranslations("deDE", function() return {
    aura = "Verr\195\164terische Aura",
    aura_heroic = "Bane of Treachery",
    aura_desc = "Ank\195\188ndigung wer die Verr\195\164terische Aura hat",
-   aura_trigger = "^([^%s]+) ([^%s]+) ist betroffen von ([^%t]+)%.$",
+   aura_trigger = "^([^%s]+) ([^%s]+) betroffen von ([^%t]+)%.$",
    aura_warning = "%s hat %s!",
    aura_bar = "%s: %s",
 

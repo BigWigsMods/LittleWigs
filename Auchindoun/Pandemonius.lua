@@ -49,6 +49,14 @@ L:RegisterTranslations("zhCN", function() return {
 	shell_alert = "黑暗之壳! 停止攻击",
 } end )
 
+--German Translation: Domestica@Baelgun
+L:RegisterTranslations("deDE", function() return {
+	shell = "Dunkle H\195\182lle",
+	shell_desc = "Warnung wenn Dunkle H\195\182lle gecasted wird",
+	shell_trigger = "bekommt 'Dunkle H\195\182lle'.",
+	shell_alert = "Dunkle H\195\182lle!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

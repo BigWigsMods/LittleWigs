@@ -82,7 +82,7 @@ L:RegisterTranslations("deDE", function() return {
 
 	gift = "Gabe des Verdammnisverk\195\188nders",
 	gift_desc = "Warnt vor Dalliah's 'Gabe des Verdammnisverk\195\188nders'-Debuff",
-	gift_trigger = "^([^%s]+) ([^%s]+) ist von Gabe des Verdammnisverk\195\188nders betroffen.",
+	gift_trigger = "^([^%s]+) ([^%s]+) von Gabe des Verdammnisverk\195\188nders betroffen.",
 	gift_message = "%s hat Gabe des Verdammnisverk\195\188nders!",
 	gift_bar = "Gabe: %s",
 } end )

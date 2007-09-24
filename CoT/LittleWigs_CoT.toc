@@ -3,7 +3,7 @@
 ## Title: Little Wigs [|cffeda55fCaverns of Time|r]
 ## Notes: Big Wigs Caverns of Time Modules
 ## Title-frFR: Little Wigs [|cffeda55fGrottes du temps|r]
-## Title-frFR: Modules Big Wigs concernant les Grottes du temps.
+## Notes-frFR: Modules Big Wigs concernant les Grottes du temps.
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1
