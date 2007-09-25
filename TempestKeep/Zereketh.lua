@@ -109,7 +109,7 @@ L:RegisterTranslations("deDE", function() return {
 
 	seed = "Saat der Verderbnis",
 	seed_desc = "Warnen wer Saat der Verderbnis bekommt",
-	seed_trigger = "^([^%s]+) ([^%s]+) (durch Saat der Verderbnis).",
+	seed_trigger = "^([^%s]+) ([^%s]+) von Saat der Verderbnis betroffen.",
 	seed_warning = "Saat der Verderbnis auf %s!",
 	seed_bar = "~Explosion",
 

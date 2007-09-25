@@ -54,7 +54,7 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("deDE", function() return {
    nova = "Feuernova",
    nova_desc = "Warnung vor der Feuernova",
-   nova_trigger = "Kommt! Kommt n?her... und brennt!",
+   nova_trigger = "Kommt! Kommt n\195\164her... und brennt!",
    nova_message = "Feuernova!",
 } end )
 

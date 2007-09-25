@@ -63,6 +63,13 @@ L:RegisterTranslations("zhCN", function() return {
 	summon_message = "元素已被召唤!",
 } end )
 
+L:RegisterTranslations("deDE", function() return {
+	summon = "Elementare-Warnung",
+	summon_desc = "Warnt vor beschworenen Elementaren",
+	summon_trigger = "wirkt Syths Arkanelementar beschw\195\182ren",
+	summon_message = "Elementare beschworen!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
