@@ -109,6 +109,22 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("esES", function() return {
+	trigger1 = "gana Escudo reflectante de magia.",
+	trigger2 = "gana Escudo reflectante de da\195\177o.",
+	trigger3 = "Escudo reflectante de magia desaparece",
+	trigger4 = "Escudo reflectante de da\195\177o desaparece",
+
+	warn1 = "Iniciado Reflejo de Magia",
+	warn2 = "Iniciado Reflejo de Da\195\177o",
+	warn3 = "Reflejo de Magia Finalizado",
+	warn4 = "Reflejo de Da\195\177o Finalizado",
+
+	magic = "Reflexi\195\179n de Magia",
+	magic_desc = "Aviso de Reflexi\195\179n de Magia",
+
+	dmg = "Reflexi\195\179n de Da\195\177o",
+	dmg_desc = "Aviso de Reflexi\195\179n de Da\195\177o",
+
 	polarity = "Cambio de polaridad (Heroico)",
 	polarity_desc = "Avisa cuando Capacitus lanza cambio de polaridad",
 	polarity_trigger = "comienza a lanzar Cambio de polaridad",
