@@ -15,9 +15,9 @@ L:RegisterTranslations("enUS", function() return {
 
 	ww = "Whirlwind",
 	ww_desc = "Warns for Dalliah's Whirlwind",
-	ww_trigger1 = "I'll cut you to pieces!",
-	ww_trigger2 = "Reap the whirlwind!",
-	-- Could be more yell triggers
+	ww_trigger = "Dalliah the Doomsayer gains Whirlwind.", --she doesn't yell everytime, this is more effective.
+	ww_trigger1 = "Place holder 1", --This is for backwards compatibility and will be removed shorty.
+	ww_trigger2 = "Place holder 2", --This is for backwards compatibility and will be removed shorty.
 	ww_message = "Dalliah begins to Whirlwind!",
 
 	gift = "Gift of the Doomsayer",
@@ -25,6 +25,11 @@ L:RegisterTranslations("enUS", function() return {
 	gift_trigger = "^([^%s]+) ([^%s]+) afflicted by Gift of the Doomsayer.",
 	gift_message = "%s has Gift of the Doomsayer!",
 	gift_bar = "Gifted: %s",
+
+	heal = "Healing",
+	heal_desc = "Warns when Dalliah is casting a heal",
+	heal_trigger = "Dalliah the Doomsayer begins to cast Heal.",
+	heal_message = "Casting Heal!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -76,7 +81,7 @@ L:RegisterTranslations("deDE", function() return {
 	ww = "Wirbelwind",
 	ww_desc = "Warnt vor Dalliah's Wirbelwind",
 	ww_trigger1 = "Ich werde Euch in St\195\188cke schneiden!",
-	ww_trigger2 = "Reap the whirlwind!",
+	ww_trigger2 = "Erntet den Sturm!",
 	-- Could be more yell triggers
 	ww_message = "Dalliah beginnt mit Wirbelwind!",
 
@@ -113,7 +118,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Arcatraz"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"ww", "gift", "bosskill"}
+mod.toggleoptions = {"ww", "gift", "heal", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -121,9 +126,11 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE", "Event")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE", "Event")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "WW")
+	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS", "WW")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF", "Heal")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE", "Gift")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE", "Gift")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 end
 
@@ -131,15 +138,15 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
+function mod:WW(msg)
 	if not self.db.profile.ww then return end
-	if msg == L["ww_trigger1"] or msg == L["ww_trigger2"] then
+	if msg == L["ww_trigger1"] or msg == L["ww_trigger2"] or msg == L["ww_trigger"] then
 		self:Message(L["ww_message"], "Important")
 		self:Bar(L["ww"], 6, "Ability_Whirlwind")
 	end
 end
 
-function mod:Event(msg)
+function mod:Gift(msg)
 	if not self.db.profile.gift then return end
 	local player, type = select(3, msg:find(L["gift_trigger"]))
 	if player and type then
@@ -148,5 +155,12 @@ function mod:Event(msg)
 		end
 		self:Message(L["gift_message"]:format(player), "Urgent")
 		self:Bar(L["gift_bar"]:format(player), 10, "Spell_Shadow_AntiShadow")
+	end
+end
+
+function mod:Heal(msg)
+	if not self.db.profile.heal then return end
+	if msg == L["heal_trigger"] then
+		self:Message(L["heal_message"], Urgent)
 	end
 end

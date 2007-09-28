@@ -50,8 +50,8 @@ The Botanica
 The Arcatraz
  :: Zereketh the Unbound - Shadow Nova, Void Zones, and Seed of Corruption
  :: Wrath-Scryer Soccothrates - Knock Away
- :: Dalliah the Doomsayer - Whirlwind & Gift of the Doomsayer
- :: Harbinger Skyriss - Mind Control
+ :: Dalliah the Doomsayer - Whirlwind, Gift of the Doomsayer, & Healing
+ :: Harbinger Skyriss - Split, Mind Rend, Mind Control
 
 The Steamvault
  :: Hydromancer Thespia - Lightning Cloud
