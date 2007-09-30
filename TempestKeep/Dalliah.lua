@@ -15,9 +15,9 @@ L:RegisterTranslations("enUS", function() return {
 
 	ww = "Whirlwind",
 	ww_desc = "Warns for Dalliah's Whirlwind",
-	ww_trigger = "Dalliah the Doomsayer gains Whirlwind.", --she doesn't yell everytime, this is more effective.
-	ww_trigger1 = "Place holder 1", --This is for backwards compatibility and will be removed shorty.
-	ww_trigger2 = "Place holder 2", --This is for backwards compatibility and will be removed shorty.
+	ww_trigger1 = "I'll cut you to pieces!", --Yell 1
+	ww_trigger2 = "Reap the whirlwind!", --Yell 2
+	ww_trigger3 = "Dalliah the Doomsayer gains Whirlwind.", --she doesn't yell everytime so watch this too
 	ww_message = "Dalliah begins to Whirlwind!",
 
 	gift = "Gift of the Doomsayer",
@@ -80,9 +80,9 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("deDE", function() return {
 	ww = "Wirbelwind",
 	ww_desc = "Warnt vor Dalliah's Wirbelwind",
-	ww_trigger1 = "Ich werde Euch in St\195\188cke schneiden!",
-	ww_trigger2 = "Erntet den Sturm!",
-	-- Could be more yell triggers
+	ww_trigger1 = "Ich werde Euch in St\195\188cke schneiden!", -- Yell 1
+	ww_trigger2 = "Erntet den Sturm!", -- Yell 2
+	ww_trigger3 = "Dalliah die Verdammnisverk\195\188nderin bekommt 'Wirbelwind'.", --she doesn't yell everytime so watch this too
 	ww_message = "Dalliah beginnt mit Wirbelwind!",
 
 	gift = "Gabe des Verdammnisverk\195\188nders",
@@ -140,7 +140,7 @@ end
 
 function mod:WW(msg)
 	if not self.db.profile.ww then return end
-	if msg == L["ww_trigger1"] or msg == L["ww_trigger2"] or msg == L["ww_trigger"] then
+	if msg == L["ww_trigger1"] or msg == L["ww_trigger2"] or msg == L["ww_trigger3"] then
 		self:Message(L["ww_message"], "Important")
 		self:Bar(L["ww"], 6, "Ability_Whirlwind")
 	end
