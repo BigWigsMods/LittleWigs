@@ -34,6 +34,12 @@ L:RegisterTranslations("enUS", function() return {
 	polarity_trigger = "begins to cast Polarity Shift",
 	polarity_warn = "Polarity Shift in 3 seconds!",
 	polarity_bar = "Polarity Shift",
+
+	enrage = "Enrage(Heroic)",
+	enrage_desc = "Warn at 15 and 45 seconds before Enrage",
+	enrage_trigger = "^You should split while you can.$",
+	enrage_warn = "%ss until enraged!",
+	enrage_bar = "<Enrage>",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -190,7 +196,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Mechanar"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"magic", "dmg", -1, "polarity", "bosskill"}
+mod.toggleoptions = {"magic", "dmg", -1, "polarity", "enrage", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -198,6 +204,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
@@ -233,5 +240,14 @@ function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
 	if self.db.profile.polarity and msg:find(L["polarity_trigger"]) then
 		self:Message(L["polarity_warn"], "Urgent")
 		self:Bar(L["polarity_bar"], 3, "Spell_Nature_Lightning")
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(msg)
+	if not self.db.profile.enrage then return end
+	if msg == L["enrage_trigger"] then
+		self:Bar(L["enrage_bar"], 180, "Spell_Shadow_UnholyFrenzy")
+		self:DelayedMessage(135, L["enrage_warn"]:format("45"), "Important")		
+		self:DelayedMessage(165, L["enrage_warn"]:format("15"), "Important")		
 	end
 end
