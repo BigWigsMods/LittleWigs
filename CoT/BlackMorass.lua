@@ -151,7 +151,9 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	next_portal = "Prochain portail",
+	note = "Attention : ce module n'est pas précis à 100% à tous les coups, cela sera corrigé quand le temps le permettra.",
+
+	next_portal = "Proch. portail",
 
 	portal = "Alertes des portails",
 	portal_desc = "Préviens régulièrement quand apparaîtra le prochain portail.",
