@@ -95,6 +95,11 @@ L:RegisterTranslations("deDE", function() return {
 	gift_trigger = "^([^%s]+) ([^%s]+) von Gabe des Verdammnisverk\195\188nders betroffen.",
 	gift_message = "%s hat Gabe des Verdammnisverk\195\188nders!",
 	gift_bar = "Gabe: %s",
+
+	heal = "Heilen",
+	heal_desc = "Warnt, wenn Dalliah sich heilt",
+	heal_trigger = "Dalliah die Verdammnisverk\195\188nderin beginnt Heilen zu wirken.",
+	heal_message = "Zaubert Heilung!",
 } end )
 
 

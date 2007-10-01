@@ -88,6 +88,25 @@ L:RegisterTranslations("zhTW", function() return {
 	mr_warning = "心靈撕裂: %s",
 } end )
 
+--German Translation: Domestica@Baelgun
+L:RegisterTranslations("deDE", function() return {
+	mc = "Beherrschung",
+	mc_desc = "Warnt vor Beherrschung",
+	mc_trigger = "^([^%s]+) ([^%s]+) von Beherrschung betroffen.$",
+	mc_warning = "%s ist \195\188bernommen!",
+
+	split = "Teilung",
+	split_desc = "Warnt, wenn der Herold sich teilt",
+	split_trigger = "^Das Universum ist unser Zuhause, wir sind zahllos wie die Sterne!$",
+	split_warning = "%s hat sich geteilt.",
+	split_soon_warning = "Teilung bald!",
+	
+	mr = "Gedankenwunde",
+	mr_desc = "Warnt vor Gedankenwunde",
+	mr_trigger = "^([^%s]+) ([^%s]+) von Gedankenwunde betroffen.$",
+	mr_warning = "Gedankenwunde: %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
