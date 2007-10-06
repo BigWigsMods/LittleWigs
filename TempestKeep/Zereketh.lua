@@ -96,6 +96,28 @@ L:RegisterTranslations("zhTW", function() return {
 	icon_desc = "在受到腐蝕種子的隊友頭上標記（需要助理或領隊權限）",
 } end )
 
+--自由的瑟雷凯斯
+L:RegisterTranslations("zhCN", function() return {
+	nova = "暗影新星",
+	nova_desc = "暗影新星警报",
+	nova_trigger = "开始施放暗影新星。$",
+	nova_warning = "2秒后 暗影新星!",
+
+	void = "虚空领域",
+	void_desc = "虚空领域警报",
+	void_trigger = "施放了虚空领域。$",
+	void_warning = "虚空领域 来了！",
+
+	seed = "腐蚀之种",
+	seed_desc = "队员受到腐蚀伤害发出警报",
+	seed_trigger = "^([^%s]+)受([^%s]+)了腐蚀之种效果的影响。",
+	seed_warning = "%s受到了 腐蚀之种!",
+	seed_bar = "~引爆",
+
+	icon = "团队标记",
+	icon_desc = "为中腐蚀之种的队员打上团队标记",
+} end )
+
 L:RegisterTranslations("deDE", function() return {
 	nova = "Schattennova",
 	nova_desc = "Vor Schattennova warnen",

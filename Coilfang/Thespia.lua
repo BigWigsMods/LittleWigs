@@ -52,7 +52,7 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	storm = "落雷之云",
 	storm_desc = "落雷之云发动时发出警报",
-	storm_trigger = "Enjoy the storm warm bloods!",
+	storm_trigger = "享受热血之雨吧！",
 	storm_message = "落雷之云!",
 } end )
 

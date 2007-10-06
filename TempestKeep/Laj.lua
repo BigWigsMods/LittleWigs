@@ -33,6 +33,14 @@ L:RegisterTranslations("zhTW", function() return {
 	allergic_warn = "過敏反應: %s！",
 } end )
 
+--拉伊
+L:RegisterTranslations("zhCN", function() return {
+	allergic = "过敏反应",
+	allergic_desc = "过敏反应警告",
+	allergic_trigger = "^(.+)受(.+)了过敏反应效果的影响。",
+	allergic_warn = "过敏反应： %s！",
+} end )
+
 L:RegisterTranslations("frFR", function() return {
 	allergic = "Réaction allergique",
 	allergic_desc = "Préviens quand un joueur fait une Réaction allergique.",

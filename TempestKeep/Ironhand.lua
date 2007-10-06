@@ -85,7 +85,7 @@ L:RegisterTranslations("esES", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	hammer = "风钻",
 	hammer_desc = "风钻特效施放时发出警告",--Jackhammer Effect
-	hammer_trigger = "raises his hammer menacingly",
+	hammer_trigger = "%s阴险地举起战锤……",
 	hammer_warn = "3秒后风钻!",
 	hammer_bar = "风钻",
 

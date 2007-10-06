@@ -107,8 +107,8 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	ww = "旋风斩",
 	ww_desc = "达尔莉安旋风斩警报",
-	ww_trigger1 = "I'll cut you to pieces!",
-	ww_trigger2 = "Reap the whirlwind!",
+	ww_trigger1 = "我要把你们削成碎片！",
+	ww_trigger2 = "旋风斩！",
 	-- Could be more yell triggers
 	ww_message = "旋风斩!",
 

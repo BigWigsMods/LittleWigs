@@ -140,10 +140,10 @@ L:RegisterTranslations("esES", function() return {
 
 --机械领主卡帕西图斯
 L:RegisterTranslations("zhCN", function() return {
-	trigger1 = "获得了魔法反射护盾。$",
-	trigger2 = "获得了物理反射护盾。.$",
-	trigger3 = "^魔法反射护盾从",
-	trigger4 = "^物理反射护盾从",
+	trigger1 = "获得了魔法反射护盾的效果。$",
+	trigger2 = "获得了物理反射护盾的效果。$",
+	trigger3 = "^魔法反射护盾效果从",
+	trigger4 = "^物理反射护盾效果从",
 
 	warn1 = "魔法护盾！打开 法系停止攻击!",
 	warn2 = "物理护盾！打开 近战停止攻击!",

@@ -57,9 +57,9 @@ L:RegisterTranslations("zhTW", function() return {
 --CWDG site: http://Cwowaddon.com
 --黑手酋长
 L:RegisterTranslations("zhCN", function() return {
-	engage_trigger1 = "^I am called",--check
-	engage_trigger2 = "^I'll carve",
-	engage_trigger3 = "^Ours is",
+	engage_trigger1 = "^我这“刃拳”的名号可不是白来的！",--check
+	engage_trigger2 = "^我要把你碎尸万段",
+	engage_trigger3 = "^我们才是",
 
 	bdwarn = "刃舞",
 	bdwarn_desc = "预计刃舞发动时间",

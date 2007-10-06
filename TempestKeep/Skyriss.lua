@@ -88,6 +88,25 @@ L:RegisterTranslations("zhTW", function() return {
 	mr_warning = "心靈撕裂: %s",
 } end )
 
+--预言者斯克瑞斯
+L:RegisterTranslations("zhCN", function() return {
+	mc = "精神控制",
+	mc_desc = "精神控制发出警报",
+	mc_trigger = "^([^%s]+)受([^%s]+)了支配效果的影响。$",
+	mc_warning = "精神控制：%s!",
+
+	split = "分身",
+	split_desc = "预言者斯克瑞斯分身时发出警报",
+	split_trigger = "^我们遍布宇宙的每一个角落，像群星一样无穷无尽！$",
+	split_warning = "%s 分身！ 击杀.",
+	split_soon_warning = "即将分身!",
+	
+	mr = "心灵撕裂",
+	mr_desc = "心灵撕裂时发出警报",
+	mr_trigger = "^([^%s]+)受([^%s]+)了心灵撕裂效果的影响。$",
+	mr_warning = "心灵撕裂: %s",
+} end )
+
 --German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
 	mc = "Beherrschung",

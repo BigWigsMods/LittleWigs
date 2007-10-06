@@ -82,14 +82,14 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	spell = "法术反射",
 	spell_desc = "法术反射警报",
-	spell_trigger = "获得了法术反射",
+	spell_trigger = "获得了法术反射的效果",
 	spell_message = "法术反射!",
 
 	rage = "督军之怒",
 	rage_desc = "督军之怒警报",
-	rage_trigger1 = "^%s begins to channel",--check
-	rage_trigger2 = "This is not nearly over...",
-	rage_message = "督军之怒 即将发动！ DPS",
+	rage_trigger1 = "^%s开始从附近的蒸馏器里吸取着什么……",
+	rage_trigger2 = "还没完呢……",
+	rage_message = "督军之怒 即将发动！ DPS！",
 } end )
 
 L:RegisterTranslations("esES", function() return {

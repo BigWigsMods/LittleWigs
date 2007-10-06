@@ -26,6 +26,15 @@ L:RegisterTranslations("zhTW", function() return {
 
 } end )
 
+--天怒预言者苏克拉底
+L:RegisterTranslations("zhCN", function() return {
+	knock = "击退",
+	knock_desc = "击退警报",
+	knock_trigger = "获得了击退的效果。$",
+	knock_warning = "近战被击退!",
+
+} end )
+
 L:RegisterTranslations("frFR", function() return {
 	knock = "Repousser au loin",
 	knock_desc = "Préviens quand Soccothrates gagne Repousser au loin.",

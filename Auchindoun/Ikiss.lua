@@ -59,8 +59,8 @@ L:RegisterTranslations("esES", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	ae = "魔爆术",
 	ae_desc = "魔爆术警报",
-	ae_trigger = "利爪之王艾吉斯施放了闪现术。",
-	ae_message = "施放 魔爆术!",
+	ae_trigger = "利爪之王艾吉斯开始施放魔爆术。",
+	ae_message = "施放 魔爆术! 快躲！",
 } end )
 
 ----------------------------------

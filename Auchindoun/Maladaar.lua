@@ -71,7 +71,7 @@ L:RegisterTranslations("zhCN", function() return {
 	avatar = "殉难者的化身",
 	avatar_desc = "召唤殉难者的化身发出警报",
 	avatar_trigger = "开始施展召唤殉难者的化身",
-	avatar_message = "殉难者的化身出现! MT顶啊~~~~",
+	avatar_message = "殉难者的化身出现! MT顶住~~~~",
 } end )
 
 --German Translation: Domestica@Baelgun

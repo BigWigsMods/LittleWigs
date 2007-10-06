@@ -74,6 +74,27 @@ L:RegisterTranslations("zhTW", function() return {
 	mc_warn = "%s 受到支配！",
 } end )
 
+--计算者帕萨雷恩
+L:RegisterTranslations("zhCN", function() return {
+	summon = "虚空怨灵",
+	summon_desc = "召唤虚空怨灵时发出警报",
+	summon_trigger = "施放了虚空怨灵。",
+	summon_warn = "虚空怨灵 出现!",
+
+	despawn = "召回虚空",
+	despawn_desc = "召回虚空怨灵时发出警报",
+	despawn_warn = "虚空怨灵召回， 帕萨雷恩进入狂暴状态!",
+
+	despawn_trigger = "I prefer the direct",
+	despawn_trigger2 = "我喜欢自己动手……",
+	despawn_done = "虚空怨灵 被召回！ BOSS进入狂怒状态",
+
+	mc = "精神控制",
+	mc_desc = "精神控制警报",
+	mc_trigger = "^([^%s]+)受([^%s]+)了支配效果的影响。$",
+	mc_warn = "精神控制 ：%s!",
+} end )
+
 L:RegisterTranslations("frFR", function() return {
 	summon = "Âmes en peine invoquées",
 	summon_desc = "Préviens quand les âmes en peine du Néant sont invoquées.",

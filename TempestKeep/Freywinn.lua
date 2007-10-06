@@ -54,9 +54,9 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	tranq = "宁静",
 	tranq_desc = "宁静警报",
-	tranq_trigger = "Nature bends to my will....",
+	tranq_trigger = "自然的力量听我调遣……",
 	tranq_warning = "宁静 施放!",
-	tranqfade_warning = "5后 宁静消失!",
+	tranqfade_warning = "5秒后 宁静消失!",
 } end )
 ----------------------------------
 --      Module Declaration      --

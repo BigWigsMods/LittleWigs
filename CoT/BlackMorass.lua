@@ -212,27 +212,27 @@ L:RegisterTranslations("zhCN", function() return {
 	portal_warning20s = "20秒后 - %s !",
 	portal_warning140s = "140秒后 %s !",
 
-	engage_trigger = "^The time has come! Gul'dan",
-	disable_trigger = "We will triumph. It is only a matter... of time.",
-	disable_warning = "%s has been saved!",
+	engage_trigger = "^时机成熟了！古尔丹，命令你的术士们加倍努力！",
+	disable_trigger = "我们会胜利的。这只是个……时间问题。",
+	disable_warning = "%s 获救了",
 
 	-- These triggers generate warnings & bars bars based on mob deaths
-	death_trigger1 = "No! The rift...", --Time-Keeper/Lord
-	death_trigger2 = "You will never defeat us all!", --Time-Keeper/Lord
-	death_trigger3 = "You will accomplish nothing!", --Time-Keeper/Lord
-	death_trigger4 = "Time... is on our side.", --Chrono Lord Deja
-	death_trigger5 = "My death means... little.", -- Temporus
+	death_trigger1 = "不！裂缝……", --Time-Keeper/Lord
+	death_trigger2 = "别想打败我们！", --Time-Keeper/Lord
+	death_trigger3 = "你终将一事无成！", --Time-Keeper/Lord
+	death_trigger4 = "时间……在我们的掌握中。", --Chrono Lord Deja
+	death_trigger5 = "我的死亡……不值一提。", -- Temporus
 
 	-- These triggers generate a bar indicating that a second portal will open if the current portal's elite is not defeated
 	-- I am not sure if it is possible for a second portal to open on a boss fight
-	spawn_trigger1 = "Let the siege begin!",--Time-Keeper/Lord
-	spawn_trigger2 = "History is about to be rewritten!", --Time-Keeper/Lord
-	spawn_trigger3 = "The sands of time shall be scattered to the winds!", --Time-Keeper/Lord
+	spawn_trigger1 = "继续战斗下去！不要胆怯！",--Time-Keeper/Lord
+	spawn_trigger2 = "历史就要被改写了！", --Time-Keeper/Lord
+	spawn_trigger3 = "时间之沙将随风而散！", --Time-Keeper/Lord
 
 	-- Bosses
 	frenzy = "埃欧努斯 - 狂乱",
 	frenzy_desc = "当埃欧努斯进入狂乱时发出警报",
-	frenzy_trigger = "%s goes into a frenzy!",
+	frenzy_trigger = "%s变得狂怒无比！",
 	frenzy_warning = "狂乱!",
 
 	hasten = "坦普卢斯 - 时光加速",
