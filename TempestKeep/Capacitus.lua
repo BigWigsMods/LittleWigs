@@ -185,6 +185,12 @@ L:RegisterTranslations("deDE", function() return {
 	polarity_trigger = "beginnt Polarit\195\164tsver\195\164nderung zu wirken",
 	polarity_warn = "Polarit\195\164tsver\195\164nderung in 3 Sekunden!",
 	polarity_bar = "Polarit\195\164tsver\195\164nderung",
+
+	enrage = "Enrage(Heroisch)",
+	enrage_desc = "15 und 45 Sekunden bevor Enrage warnen",
+	enrage_trigger = "^Verzieht Euch, solange Ihr noch k\195\182nnt.$",
+	enrage_warn = "%ss bis Enrage!",
+	enrage_bar = "<Enrage>",
 } end )
 
 ----------------------------------

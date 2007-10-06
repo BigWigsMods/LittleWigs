@@ -53,7 +53,7 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("deDE", function() return {
 	spell = "Zauberreflexion",
 	spell_desc = "Warnt vor Zauberreflexion",
-	spell_trigger = "bekommt Zauberreflexion.$",
+	spell_trigger = "bekommt 'Zauberreflexion'.$",
 	spell_message = "Zauberreflexion!",
 
 	rage = "Zorn des Kriegsf\195\188rsten",

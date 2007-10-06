@@ -51,10 +51,10 @@ L:RegisterTranslations("zhCN", function() return {
 
 --German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
-	shell = "Dunkle H\195\182lle",
-	shell_desc = "Warnung wenn Dunkle H\195\182lle gecasted wird",
-	shell_trigger = "bekommt 'Dunkle H\195\182lle'.",
-	shell_alert = "Dunkle H\195\182lle!",
+	shell = "Dunkle H\195\188lle",
+	shell_desc = "Warnung wenn Dunkle H\195\188lle gecasted wird",
+	shell_trigger = "bekommt 'Dunkle H\195\188lle'.",
+	shell_alert = "Dunkle H\195\188lle!",
 } end )
 
 ----------------------------------
