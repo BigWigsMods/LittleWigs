@@ -108,15 +108,20 @@ L:RegisterTranslations("zhCN", function() return {
 	ww = "旋风斩",
 	ww_desc = "达尔莉安旋风斩警报",
 	ww_trigger1 = "我要把你们削成碎片！",
-	ww_trigger2 = "旋风斩！",
-	-- Could be more yell triggers
-	ww_message = "旋风斩!",
+	ww_trigger2 = "旋风斩！", 
+	ww_trigger3 = "末日预言者达尔莉安获得了旋风斩的效果。",
+	ww_message = "即将 旋风斩!",
 
 	gift = "末日预言者的礼物",
 	gift_desc = "当达尔莉安获得末日预言者的礼物时发出警报",
 	gift_trigger = "^([^%s]+)受([^%s]+)了末日预言者的礼物效果的影响。$",
 	gift_message = "%s 受到了末日预言者的礼物!",
 	gift_bar = "礼物: %s",
+	
+	heal = "治疗",
+	heal_desc = "当首领施放治疗发出警报",
+	heal_trigger = "末日预言者达尔莉安开始施放治疗术。",
+	heal_message = "正在治疗!",
 } end )
 
 ----------------------------------

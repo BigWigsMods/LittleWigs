@@ -81,4 +81,4 @@ If you would like to contribute you can do it in a few ways.
 Credits-
 Big Wigs Core: Ammo, Rabbit
 Transcriptor Logs: OrionShock, Arrowmaster, Elp, Piett, Eraslin, SuperZorro
-Translations: fenlis, Erfeal, verotas, scorpio0920, Farook, Zauberfee, bailon, Domestica, AgentRocket
+Translations: fenlis, Erfeal, verotas, scorpio0920, Farook, Zauberfee, bailon, Domestica, AgentRocket, wolftankk@cwdg
