@@ -102,7 +102,6 @@ L:RegisterTranslations("deDE", function() return {
 	heal_message = "Zaubert Heilung!",
 } end )
 
-
 --末日预言者达尔莉安
 L:RegisterTranslations("zhCN", function() return {
 	ww = "旋风斩",

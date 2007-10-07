@@ -80,7 +80,6 @@ L:RegisterTranslations("zhTW", function() return {
 	split_trigger = "我們跨越宇宙之間，被我們摧毀的世界像星星一樣數不盡!",
 	split_warning = "%s 分身了，擊殺分身！",
 	split_soon_warning = "即將分身！",
-
 	
 	mr = "心靈撕裂",
 	mr_desc = "隊友受到心靈撕裂時發出警報",
