@@ -82,8 +82,8 @@ L:RegisterTranslations("deDE", function() return {
    soul_message = "Seele gestohlen!",
 
    avatar = "Avatar des Gemarterten",
-   avatar_desc = "Warnt vor der Avatar des Gemarterten Beschw\195\182rung",
-   avatar_trigger = "beginnt Avatar des Gemarterten beschw\195\182ren auszuf\195\188hren",
+   avatar_desc = "Warnt vor der Avatar Beschw\195\182rung",
+   avatar_trigger = "beginnt Avatar beschw\195\182ren auszuf\195\188hren",
    avatar_message = "Avatar beschworen!",
 } end )
 
