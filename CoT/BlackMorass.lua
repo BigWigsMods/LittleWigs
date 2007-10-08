@@ -313,6 +313,7 @@ end
 
 function mod:OnEnable()
 	self:RegisterEvent("ZONE_CHANGED")
+--	self:RegisterEvent("UPDATE_WORLD_STATES") -- keep this commented out, function is at the bottom for Ulic though
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
@@ -387,3 +388,18 @@ function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 		self:Message(L["hasten_warning"], "Important", nil, "Alert")
 	end
 end
+
+--[[ Addded this commented out, it's code to fix the Black Morass module similar to HyjalSummit
+-- Someone who does Black Morass more often can use this to fix the module
+-- I did do some testing and the GetWorldStateUIInfo() call is the correct one.
+-- The whole module can be fixed by using an Enable on hovering over Medivh as well instead of the ZONE_CHANGED hack which is not needed.
+function mod:UPDATE_WORLD_STATES()
+	if self.zonename ~= GetRealZoneText() then return end -- bail out in case we were left running in another zone
+	local uiType, state, text = GetWorldStateUIInfo(2) -- Portals Opened %d/%d, tested and tried, it is GetWorldStateUIInfo(2)
+	local num = tonumber((text or ""):match("(%d)") or nil) -- this needs a better match() string '%d/%d' I think
+	if num and num > wave then
+		-- new portal opened
+		-- basically the wave code should be done here. 
+	end
+end
+--]]
