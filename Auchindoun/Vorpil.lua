@@ -82,7 +82,7 @@ L:RegisterTranslations("zhCN", function() return {
 	teleport_warning = "~5秒后 传送!",
 	teleport_bar = "传送",
 	
-	engage_trigger1 = "I'll make an offering of your blood",
+	engage_trigger1 = "我要用你的血当祭品！",
 	engage_trigger2 = "很好，一个完美的祭品！",
 } end )
 ----------------------------------
