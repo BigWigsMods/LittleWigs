@@ -81,10 +81,10 @@ L:RegisterTranslations("zhTW", function() return {
 	nova_trigger = "開始施放暗影新星。$",
 	nova_warning = "2 秒後暗影新星！",
 
-	void = "虛無地區",
-	void_desc = "虛無地區警報",
-	void_trigger = "施放了虛無地區。",
-	void_warning = "虛無地區來臨！",
+	void = "虛無區域",
+	void_desc = "虛無區域警報",
+	void_trigger = "施放了虛無區域。",
+	void_warning = "虛無區域來臨！",
 
 	seed = "腐蝕種子",
 	seed_desc = "隊友受到腐蝕種子的傷害時發出警報",
