@@ -78,7 +78,7 @@ L:RegisterTranslations("zhCN", function() return {
 L:RegisterTranslations("deDE", function() return {
    soul = "Gestohlene Seele",
    soul_desc = "Warnt vor gestohlener Seele",
-   soul_trigger = "beginnt Gestohlene Seele auszuf\195\188hren",
+   soul_trigger = "Schaut in die Finsternis Eurer Seele.",
    soul_message = "Seele gestohlen!",
 
    avatar = "Avatar des Gemarterten",

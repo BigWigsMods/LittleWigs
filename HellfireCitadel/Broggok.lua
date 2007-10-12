@@ -54,7 +54,7 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("deDE", function() return {
    poison = "Giftwolke",
    poison_desc = "Warnt vor der Giftwolke",
-   poison_trigger = "Broggok zaubert Giftwolke.",
+   poison_trigger = "Broggok wirkt Giftwolke.",
    poison_message = "Giftwolke!",
 } end )
 
