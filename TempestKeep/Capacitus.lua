@@ -161,6 +161,12 @@ L:RegisterTranslations("zhCN", function() return {
 	polarity_trigger = "开始施放极性转换",
 	polarity_warn = "3秒后 极性转换!",
 	polarity_bar = "极性转换",
+	
+	enrage = "激怒(英雄模式)",
+	enrage_desc = "在激怒前的15和45秒发出警报",
+	enrage_trigger = "^You should split while you can.$",
+	enrage_warn = "%s秒后 激怒!",
+	enrage_bar = "<激怒>",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

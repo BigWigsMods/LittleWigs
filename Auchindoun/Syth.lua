@@ -52,7 +52,7 @@ L:RegisterTranslations("esES", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	summon = "元素警报",
 	summon_desc = "召唤元素警报",
-	summon_trigger = "释放了召唤塞斯奥术元素",
+	summon_trigger = "施放了召唤塞斯奥术元素。",
 	summon_message = "元素已被召唤!",
 } end )
 

@@ -197,6 +197,7 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	note = "请注意:  此模块不能完美的工作,在接下来的几周内我们将会完善此模块.同时请发送团队战斗纪录,以便更快的更新.",
 
 	next_portal = "下一传送门",
 
