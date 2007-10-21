@@ -55,22 +55,22 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	summon = "召喚虛空幻影",
-	summon_desc = "操縱者帕薩里歐召喚虛空幻影時發出警報",
-	summon_trigger = "施放了召喚虛空幻影。",
-	summon_warn = "虛空幻影已被召喚出來！",
+	summon = "召喚虛空怨靈",
+	summon_desc = "操縱者帕薩里歐召喚虛空怨靈時發出警報",
+	summon_trigger = "施放了召喚虛空怨靈。",
+	summon_warn = "虛空怨靈已被召喚出來！",
 
-	despawn = "召回虛空幻影",
-	despawn_desc = "即將召回虛空幻影時發出警報",
-	despawn_warn = "虛空幻影將被召回！",
+	despawn = "召回虛空怨靈",
+	despawn_desc = "即將召回虛空怨靈時發出警報",
+	despawn_warn = "虛空怨靈將被召回！",
 
-	despawn_trigger = "我比較喜歡親自動手...",
+	despawn_trigger = "我比較喜歡自己動手做……",
 	despawn_trigger2 = "I prefer to be hands",
-	despawn_done = "虛空幻影已被召回，帕薩里歐進入狂怒狀態！",
+	despawn_done = "虛空怨靈已被召回，帕薩里歐進入狂怒狀態！",
 
 	mc = "支配",
 	mc_desc = "支配警報",
-	mc_trigger = "^(.+)受到(.*)支配效果的影響。",
+	mc_trigger = "^(.+)受到([了]*)支配效果的影響。",
 	mc_warn = "%s 受到支配！",
 } end )
 

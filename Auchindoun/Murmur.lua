@@ -63,13 +63,13 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	touch_trigger = "^(.+)受到(.*)莫爾墨之觸",
-	touch_message_you = "你是炸彈！ 遠離隊友！",
-	touch_message_other = "%s 是炸彈！ 遠離隊友！",
+	touch_trigger = "^(.+)受到([了]*)莫爾墨之觸",
+	touch_message_you = "你是炸彈! 遠離隊友!",
+	touch_message_other = "%s 是炸彈! 遠離隊友!",
 
 	touchtimer = "炸彈倒數計時條",
 	touchtimer_desc = "顯示炸彈倒數 13 秒計時條",
-	touchtimer_bar = "%s: 莫爾墨之觸",
+	touchtimer_bar = "莫爾墨之觸: %s",
 
 	youtouch = "自身炸彈警報",
 	youtouch_desc = "當自己成為炸彈時發出警報",
@@ -83,7 +83,7 @@ L:RegisterTranslations("zhTW", function() return {
 	sonicboom = "音速波",
 	sonicboom_desc = "當莫爾墨開始施放音速波時發出警報",
 	sonicboom_trigger = "從空中吸取能量……",
-	sonicboom_alert = "5 秒後音速波，快跑出音速波範圍！",
+	sonicboom_alert = "5 秒後音速波，快跑出音速波範圍!",
 	sonicboom_bar = "施放音速波",
 } end)
 

@@ -1,8 +1,10 @@
 ﻿## Interface: 20200
 
 ## Title: Little Wigs [|cffeda55fAuchindoun|r]
+## Title-zhTW: Little Wigs [|cffeda55f奧齊頓|r]
 ## Notes: Big Wigs Auchindoun Modules
-## Notes: Modules Big Wigs concernant Auchindoun.
+## Notes-frFR: Modules Big Wigs concernant Auchindoun.
+## Notes-zhTW: Little Wigs 奧齊頓模組
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

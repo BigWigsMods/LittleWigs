@@ -28,13 +28,13 @@ L:RegisterTranslations("zhTW", function() return {
 	spell = "法術反射",
 	spell_desc = "法術反射警報",
 	spell_trigger = "獲得了法術反射的效果。$",
-	spell_message = "法術反射！ 法系停火！",
+	spell_message = "法術反射! 法系停火!",
 
 	rage = "督軍之怒",
 	rage_desc = "督軍之怒警報",
 	rage_trigger1 = "^%s開始從附近的蒸餾器輸送……",
 	rage_trigger2 = "這離結束還差的遠……",
-	rage_message = "即將發動督軍之怒！ DPS 蒸餾器！",
+	rage_message = "即將發動督軍之怒! 快打蒸餾器!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

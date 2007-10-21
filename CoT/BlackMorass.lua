@@ -74,12 +74,12 @@ L:RegisterTranslations("zhTW", function() return {
 	portal_bar = "~%s: Wave %s",
 	multiportal_bar = "同時存在多個傳送門",
 
-	portal_warning20s = "20 秒後 %s ！",
-	portal_warning140s = "140 秒後 %s ！",
+	portal_warning20s = "20 秒後 %s !",
+	portal_warning140s = "140 秒後 %s !",
 
 	engage_trigger = "^時候到了!古爾丹",
 	disable_trigger = "我們會獲勝。這只是……時間的問題。",
-	disable_warning = "%s 獲救了！",
+	disable_warning = "%s 獲救了!",
 
 	-- These triggers generate warnings & bars bars based on mob deaths
 	death_trigger1 = "不!裂縫……", --Time-Keeper/Lord
@@ -98,12 +98,12 @@ L:RegisterTranslations("zhTW", function() return {
 	frenzy = "艾奧那斯 - 狂亂",
 	frenzy_desc = "艾奧那斯狂亂時發出警報",
 	frenzy_trigger = "%s獲得了狂亂的效果。",
-	frenzy_warning = "艾奧那斯狂亂了！",
+	frenzy_warning = "艾奧那斯狂亂了!",
 
 	hasten = "坦普拉斯 - 迅速",
 	hasten_desc = "坦普拉斯獲得迅速時發出警報",
 	hasten_trigger = "坦普拉斯獲得了迅速的效果。",
-	hasten_warning = "坦普拉斯獲得了迅速！",
+	hasten_warning = "坦普拉斯獲得了迅速!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {

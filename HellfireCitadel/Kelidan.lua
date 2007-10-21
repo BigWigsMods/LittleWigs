@@ -29,7 +29,7 @@ L:RegisterTranslations("zhTW", function() return {
 	nova = "燃燒新星",
 	nova_desc = "破壞者·凱利丹施放燃燒新星時發出警報",
 	nova_trigger = "靠近一點!再靠近一點…然後燃燒吧!",
-	nova_message = "即將施放燃燒新星！ 迅速離開凱利丹！",
+	nova_message = "即將施放燃燒新星! 遠離凱利丹!",
 } end )
 
 --Chinese Translation: 月色狼影@CWDG

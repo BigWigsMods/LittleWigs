@@ -46,7 +46,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 	bdwarn = "劍刃之舞",
 	bdwarn_desc = "估算劍刃之舞計時器",
-	bdwarn_alert = "劍刃之舞持續 5 秒，散開！",
+	bdwarn_alert = "劍刃之舞持續 5 秒，散開!",
 
 	bdbar = "劍刃之舞計時條",
 	bdbar_desc = "顯示估算劍刃之舞倒數",

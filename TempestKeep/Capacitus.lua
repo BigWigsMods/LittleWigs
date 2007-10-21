@@ -72,10 +72,10 @@ L:RegisterTranslations("zhTW", function() return {
 	trigger3 = "反射魔法護盾效果從",
 	trigger4 = "反射傷害護盾效果從",
 
-	warn1 = "魔法護盾 開啟！ 法系停火！",
-	warn2 = "傷害護盾 開啟！ 近戰停火！",
-	warn3 = "魔法護盾 關閉！ 法系開火！",
-	warn4 = "傷害護盾 關閉！ 近戰開火！",
+	warn1 = "魔法護盾 開啟! 法系停火!",
+	warn2 = "傷害護盾 開啟! 近戰停火!",
+	warn3 = "魔法護盾 關閉! 法系開火!",
+	warn4 = "傷害護盾 關閉! 近戰開火!",
 
 	magic = "反射魔法護盾",
 	magic_desc = "反射魔法護盾警報",
@@ -86,7 +86,7 @@ L:RegisterTranslations("zhTW", function() return {
 	polarity = "極性轉換（英雄模式）",
 	polarity_desc = "當極性轉換時警報（僅英雄模式）",
 	polarity_trigger = "開始施放兩極移形。",
-	polarity_warn = "3 秒後極性轉換，注意跑位！",
+	polarity_warn = "3 秒後極性轉換，注意跑位!",
 	polarity_bar = "極性轉換",
 } end )
 

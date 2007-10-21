@@ -29,7 +29,7 @@ L:RegisterTranslations("zhTW", function() return {
 	storm = "落雷之雲",
 	storm_desc = "施放落雷之雲時發出警報",
 	storm_trigger = "享受風暴溫暖的血!",
-	storm_message = "落雷之雲！ 注意閃躲！",
+	storm_message = "落雷之雲! 注意閃躲!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

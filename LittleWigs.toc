@@ -3,7 +3,7 @@
 ## Title: Little Wigs |cff7fff7f -Ace2-|r
 ## Notes: Boss warnings for 5-man instances.
 ## Title-zhCN: |cff7fff7f-Ace2-|r Little Wigs
-## Notes-zhTW: 五人副本首領警告
+## Notes-zhTW: 五人副本首領警報。需先安裝 Big Wigs
 ## Notes-zhCN: 用于TBC的5人副本，BOSS警告器。需配合BigWigs方可使用。
 ## Notes-frFR: Avertissements pour les boss des instances à 5 joueurs.
 ## Author: Ulic

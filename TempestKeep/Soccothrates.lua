@@ -22,7 +22,7 @@ L:RegisterTranslations("zhTW", function() return {
 	knock = "擊退",
 	knock_desc = "擊退警報",
 	knock_trigger = "獲得了擊退的效果。",
-	knock_warning = "近戰被擊退！",
+	knock_warning = "近戰被擊退!",
 } end )
 
 --天怒预言者苏克拉底

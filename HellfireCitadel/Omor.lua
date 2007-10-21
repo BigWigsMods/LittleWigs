@@ -64,8 +64,8 @@ L:RegisterTranslations("zhCN", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	aura = "背叛之禍",
 	aura_desc = "當有人中了背叛之禍時發出警報",
-	aura_trigger = "^(.+)受到(.*)(.+)效果的影響。$",
-	aura_warning = "%s 中了背叛之禍！",
+	aura_trigger = "^(.+)受到([了]*)(.*)效果的影響。$",
+	aura_warning = "%s 中了背叛之禍!",
 	aura_bar = "%s: %s",
 
 	icon = "團隊標記",

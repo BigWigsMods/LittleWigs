@@ -51,8 +51,8 @@ L:RegisterTranslations("zhTW", function() return {
 	teleport = "傳送",
 	teleport_desc = "領導者瓦皮歐施放傳送時發出警報",
 	teleport_trigger = "獲得了抽取暗影的效果。",
-	teleport_message = "傳送！ 迅速離開平台！",
-	teleport_warning = "5 秒後傳送！",
+	teleport_message = "傳送! 迅速離開平台!",
+	teleport_warning = "5 秒後傳送!",
 	teleport_bar = "傳送",
 
 	engage_trigger1 = "你會是其他人很好的榜樣!",

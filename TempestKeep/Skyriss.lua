@@ -72,8 +72,8 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	mc = "支配",
 	mc_desc = "隊友受到支配時發出警報",
-	mc_trigger = "^(.+)受到(.*)支配效果的影響。$",
-	mc_warning = "%s 被支配了！",
+	mc_trigger = "^(.+)受到([了]*)支配效果的影響。$",
+	mc_warning = "支配: %s",
 
 	split = "分身",
 	split_desc = "先驅者史蓋力司施放分身時發出警報",
@@ -83,7 +83,7 @@ L:RegisterTranslations("zhTW", function() return {
 	
 	mr = "心靈撕裂",
 	mr_desc = "隊友受到心靈撕裂時發出警報",
-	mr_trigger = "^(.+)受到(.*)心靈撕裂效果的影響。$",
+	mr_trigger = "^(.+)受到([了]*)心靈撕裂效果的影響。$",
 	mr_warning = "心靈撕裂: %s",
 } end )
 

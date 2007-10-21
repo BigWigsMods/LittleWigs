@@ -28,8 +28,8 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	poison = "毒雲術",
 	poison_desc = "布洛克施放毒雲術時發出警報",
-	poison_trigger = "%s施放了毒雲術。",
-	poison_message = "毒雲術！ 注意閃避！",
+	poison_trigger = "布洛克施放了毒雲術。",
+	poison_message = "毒雲術! 注意閃避!",
 } end )
 
 --Chinese Translation: 月色狼影@CWDG
