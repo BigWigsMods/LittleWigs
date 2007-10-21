@@ -65,7 +65,7 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	soul = "被偷走的灵魂",
 	soul_desc = "被偷走的灵魂警报",
-	soul_trigger = "开始施展被偷走的灵魂",
+	soul_trigger = "开始施展被偷走的灵魂。",
 	soul_message = "队友灵魂被偷取! 速度击杀!!",
 
 	avatar = "殉难者的化身",

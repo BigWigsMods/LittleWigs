@@ -51,6 +51,7 @@ L:RegisterTranslations("deDE", function() return {
 	tranqfade_warning = "Gelassenheit schwindet in ~5s!",
 } end )
 
+--高级植物学家弗雷温
 L:RegisterTranslations("zhCN", function() return {
 	tranq = "宁静",
 	tranq_desc = "宁静警报",

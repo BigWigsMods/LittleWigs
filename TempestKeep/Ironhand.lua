@@ -91,7 +91,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	shadow = "暗影能量",
 	shadow_desc = "施放暗影能量时发出警报",
-	shadow_trigger = "开始施放暗影能量",
+	shadow_trigger = "开始施放暗影能量。",
 	shadow_warn = "2秒后 暗影能量!",
 	shadow_bar = "暗影能量",
 } end )
