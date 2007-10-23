@@ -41,7 +41,7 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
 	engage_trigger1 = "^我被叫做刃拳是有原因的。你馬上就會知道了。",
-	engage_trigger2 = "^I'll carve",
+	engage_trigger2 = "^我會把肉從你的骨頭上切出來!",
 	engage_trigger3 = "^我們的部落才是真正的部落!唯一的部落!",
 
 	bdwarn = "劍刃之舞",
