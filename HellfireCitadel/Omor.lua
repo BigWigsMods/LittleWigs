@@ -121,7 +121,7 @@ function mod:Event(msg)
 			Aplayer = UnitName("player")
 		end
 		self:Message(L["aura_warning"]:format(Aplayer, Aspell), "Urgent")
-		self:Bar(L["aura_bar"]:format(Aplayer, Aspell), 15, "Spell_Shaddow_DeadofNight", "Red")
+		self:Bar(L["aura_bar"]:format(Aplayer, Aspell), 15, "Spell_Shadow_DeadofNight", "Red")
 		if self.db.profile.icon then
 			self:Icon(Aplayer)
 		end
