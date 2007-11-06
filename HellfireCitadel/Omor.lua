@@ -64,14 +64,15 @@ L:RegisterTranslations("zhCN", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	aura = "背叛之禍",
-	aura_desc = "當有人中了背叛之禍時發出警報",
+	aura = "背叛光環",
+	aura_heroic = "背叛之禍",
+	aura_desc = "當有人中了背叛光環時發出警報",
 	aura_trigger = "^(.+)受到([了]*)(.*)效果的影響。$",
-	aura_warning = "%s 中了背叛之禍!",
+	aura_warning = "%s 中了 %s!",
 	aura_bar = "%s: %s",
 
 	icon = "團隊標記",
-	icon_desc = "在中了背叛之禍的隊友頭上標記（需要助理或領隊權限）",
+	icon_desc = "在中了背叛光環的隊友頭上標記（需要助理或領隊權限）",
 } end)
 
 --German Translation: Domestica@Baelgun
