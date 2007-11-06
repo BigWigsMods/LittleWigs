@@ -36,12 +36,12 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	mc = "정신 지배",
 	mc_desc = "정신 지배에 대한 경고",
-	mc_trigger = "^([^|;%s]*)(.*)지배에 걸렸습니다.$", -- check
+	mc_trigger = "^([^|;%s]*)(.*)지배에 걸렸습니다.",
 	mc_warning = "%s 정신 지배!",
 
 	split = "분리",
 	split_desc = "스키리스 분리 시 경고",
-	split_trigger = "^밤하늘의 무한한 별처럼 온 우주를 덮으리라!$",
+	split_trigger = "밤하늘의 무한한 별처럼 온 우주를 덮으리라!",
 	split_warning = "%s 분리",
 	split_soon_warning = "잠시 후 분리!",
 	

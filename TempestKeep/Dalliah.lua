@@ -35,14 +35,14 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	ww = "소용돌이",
 	ww_desc = "달리아의 소용돌이에 대한 경고",
-	ww_trigger1 = "산산조각 내 버리겠어!",
-	ww_trigger2 = "소용돌이를 받아라!",
-	-- Could be more yell triggers
+	ww_trigger1 = "산산조각 내 버리겠어!", --Yell 1
+	ww_trigger2 = "소용돌이를 받아라!", --Yell 2
+	ww_trigger3 = "파멸의 예언자 달리아|1이;가; 소용돌이 효과를 얻었습니다.", --she doesn't yell everytime so watch this too
 	ww_message = "달리아 소용돌이 시작!",
 
 	gift = "파멸의 예언자의 선물",
 	gift_desc = "달리아의 파멸의 예언자의 선물 디버프에 대한 알림",
-	gift_trigger = "^([^|;%s]*)(.*)파멸의 예언자의 선물에 걸렸습니다%.$",
+	gift_trigger = "^([^|;%s]*)(.*)파멸의 예언자의 선물에 걸렸습니다.",
 	gift_message = "%s 파멸의 예언자의 선물!",
 	gift_bar = "예언자의 선물: %s",
 } end )

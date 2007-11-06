@@ -36,12 +36,12 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	nova = "암흑 회오리",
 	nova_desc = "암흑 회오리에 대한 경고",
-	nova_trigger = "암흑 회오리 시전을 시작합니다.$",
+	nova_trigger = "암흑 회오리 시전을 시작합니다.",
 	nova_warning = "2초 이내 암흑 회오리!",
 
 	void = "공허의 지대",
 	void_desc = "새로운 공허의 지대에 대한 경고",
-	void_trigger = "공허의 지대|1을;를; 시전합니다.$", -- check
+	void_trigger = "공허의 지대|1을;를; 시전합니다.",
 	void_warning = "잠시 후 공허의 지대!",
 
 	seed = "부패의 씨앗",
