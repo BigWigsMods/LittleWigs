@@ -33,9 +33,9 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
         --engage_trigger1 = "I despise all of your kind!",
-	--engage_trigger2 = "Your head will roll!",
+	engage_trigger2 = "你會人頭落地!",
 	--engage_trigger3 = "Ba'ahn tha sol'dorei!",
-	--engage_message = "開戰 - 15 秒後可能輸送!",
+	engage_message = "開戰 - 15 秒後可能輸送!",
 	
 	spell = "法術反射",
 	spell_desc = "法術反射警報",
