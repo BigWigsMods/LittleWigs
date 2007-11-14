@@ -15,16 +15,16 @@ local boss3 = BB["Aeonus"]
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Blackmorass",
 
-	next_portal = "Next Portal",
+	next_portal = "Next Wave",
 
-	portal = "Portal Warnings",
-	portal_desc = "Announce approximate warning messages for the next portal.",
+	portal = "Wave Warnings",
+	portal_desc = "Announce approximate warning messages for the next wave.",
 
-	portalbar = "Portal Bars",
-	portalbar_desc = "Display approximate timer bars for the next portal.",
+	portalbar = "Wave Bars",
+	portalbar_desc = "Display approximate timer bars for the next wave.",
 
 	portal_bar = "~%s: Wave %s",
-	multiportal_bar = "~Until Multiple portals",
+	multiportal_bar = "~Until Multiple waves",
 
 	portal_warning15s = "%s in ~15 seconds!",
 	portal_warning140s = "%s in ~140 seconds!",
