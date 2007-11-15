@@ -155,7 +155,7 @@ L:RegisterTranslations("zhCN", function() return {
 	disable_trigger = "我们会胜利的。这只是个……时间问题。",
 	disable_warning = "%s 获救了",
 	death_trigger = "(.+)死亡了。",
-	reset_trigger = "No! Damn this feeble, mortal coil!
+	--reset_trigger = "No! Damn this feeble, mortal coil!",
 
 	-- Bosses
 	frenzy = "埃欧努斯 - 狂乱",
