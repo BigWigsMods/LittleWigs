@@ -67,7 +67,7 @@ L:RegisterTranslations("zhTW", function() return {
 	aura = "奸詐光環",
 	aura_heroic = "背叛之禍",
 	aura_desc = "當有人中了奸詐光環時發出警報",
-	aura_trigger = "^(.+)受到([了]*)(.*)效果的影響。$",
+	aura_trigger = "^(.+)受(到[了]*)(.*)效果的影響。$",
 	aura_warning = "%s 中了 %s!",
 	aura_bar = "%s: %s",
 

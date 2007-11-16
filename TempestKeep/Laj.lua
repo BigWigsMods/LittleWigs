@@ -29,7 +29,7 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	allergic = "過敏反應",
 	allergic_desc = "過敏反應警報",
-	allergic_trigger = "^(.+)受到([了]*)過敏反應效果的影響。",
+	allergic_trigger = "^(.+)受(到[了]*)過敏反應效果的影響。",
 	allergic_warn = "過敏反應: %s",
 } end )
 

@@ -88,7 +88,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 	seed = "腐蝕種子",
 	seed_desc = "隊友受到腐蝕種子的傷害時發出警報",
-	seed_trigger = "^(.+)受到([了]*)腐蝕種子",
+	seed_trigger = "^(.+)受(到[了]*)腐蝕種子",
 	seed_warning = "%s 受到腐蝕種子的傷害!",
 	seed_bar = "引爆",
 
