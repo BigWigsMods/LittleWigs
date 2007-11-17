@@ -51,8 +51,8 @@ L:RegisterTranslations("zhTW", function() return {
 	ww = "旋風斬",
 	ww_desc = "旋風斬警報",
 	ww_trigger1 = "我將把你碎屍萬段!",
-	ww_trigger2 = "獲得了旋風斬的效果。",
-	-- Could be more yell triggers
+	ww_trigger2 = "Reap the whirlwind!",
+	ww_trigger3 = "末日預言者達利亞獲得了旋風斬的效果。", --she doesn't yell everytime so watch this too
 	ww_message = "達利亞要發動旋風斬了!",
 
 	gift = "末日預言者的賜福",

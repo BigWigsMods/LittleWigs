@@ -32,7 +32,7 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-        --engage_trigger1 = "I despise all of your kind!",
+        engage_trigger1 = "我瞧不起你們族人!",
 	engage_trigger2 = "你會人頭落地!",
 	--engage_trigger3 = "Ba'ahn tha sol'dorei!",
 	engage_message = "開戰 - 15 秒後可能輸送!",
