@@ -207,6 +207,7 @@ local mod = BigWigs:NewModule(name)
 mod.partyContent = true
 mod.otherMenu = "Caverns of Time"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
+mod.synctoken = "The Black Morass"
 mod.enabletrigger = boss
 mod.toggleoptions = {"portal", "portalbar", -1, "hasten", -1, "frenzy", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
