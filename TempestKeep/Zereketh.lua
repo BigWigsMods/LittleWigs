@@ -188,3 +188,4 @@ function mod:CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE(msg)
 		end
 	end
 end
+

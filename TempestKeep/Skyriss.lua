@@ -106,7 +106,6 @@ L:RegisterTranslations("zhCN", function() return {
 	mr_warning = "心灵撕裂: %s",
 } end )
 
---German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
 	mc = "Beherrschung",
 	mc_desc = "Warnt vor Beherrschung",
@@ -203,3 +202,4 @@ function mod:UNIT_HEALTH(msg)
 		end
 	end
 end
+

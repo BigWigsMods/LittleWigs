@@ -46,9 +46,6 @@ L:RegisterTranslations("esES", function() return {
 	summon_message = "Elementales Invocados!",
 } end )
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://cwowaddon.com
---黑暗编织者塞斯
 L:RegisterTranslations("zhCN", function() return {
 	summon = "元素警报",
 	summon_desc = "召唤元素警报",
@@ -93,3 +90,4 @@ function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
 		self:Message(L["summon_message"], "Attention")
 	end
 end
+

@@ -47,7 +47,6 @@ L:RegisterTranslations("koKR", function() return {
 	knock_warning = "지옥 대포 정렬!",
 } end )
 
---German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
 	knock = "Wegschlagen",
 	knock_desc = "Warnt vor dem Wegschlagen",
@@ -85,3 +84,4 @@ function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 		self:Message(L["knock_warning"], "Important")
 	end
 end
+

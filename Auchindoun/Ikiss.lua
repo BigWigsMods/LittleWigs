@@ -53,9 +53,6 @@ L:RegisterTranslations("esES", function() return {
 	ae_message = "Deflagraci\195\179n Arcana!",
 } end )
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://Cwowaddon.com
---利爪之王艾吉斯
 L:RegisterTranslations("zhCN", function() return {
 	ae = "魔爆术",
 	ae_desc = "魔爆术警报",
@@ -93,3 +90,4 @@ function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
 		self:Message(L["ae_message"], "Attention")
 	end
 end
+

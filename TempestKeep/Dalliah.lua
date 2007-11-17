@@ -178,3 +178,4 @@ function mod:Heal(msg)
 		self:Message(L["heal_message"], Urgent)
 	end
 end
+

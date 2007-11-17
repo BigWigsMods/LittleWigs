@@ -232,9 +232,10 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L["reset_trigger"] then
 		self:TriggerEvent("BigWigs_RebootModule", self)
 		wave = 0
-	end
-	if msg == L["disable_trigger"] then
-		if self.db.profile.bosskill then self:Message(L["disable_warning"]:format(boss), "Bosskill", nil, "Victory") end
+	elseif msg == L["disable_trigger"] then
+		if self.db.profile.bosskill then
+			self:Message(L["disable_warning"]:format(boss), "Bosskill", nil, "Victory")
+		end
 		BigWigs:ToggleModuleActive(self, false)
 	end
 end
@@ -252,8 +253,8 @@ function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 end
 
 function mod:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
-	mob = select(3, msg:find(L["death_trigger"]))
-	if not ((mob == boss1) or (mob == boss2) or (mob == boss3)) then return end
+	local mob = select(3, msg:find(L["death_trigger"]))
+	if mob ~= boss1 and mob ~= boss2 and mob ~= boss3 then return end
 	if self.db.profile.portal then
 		self:Message(L["portal_warning140s"]:format(L["next_portal"]), "Attention")
 	end
@@ -268,7 +269,7 @@ function mod:UPDATE_WORLD_STATES()
 	local _, _, text = GetWorldStateUIInfo(2)
 	local num = tonumber((text or ""):match("(%d+)") or nil)
 	if num and num > wave then
-		wave = wave + 1		
+		wave = wave + 1
 		if self.db.profile.portal then
 			if wave == 6 then
 				self:Message(L["portal_warning15s"]:format(boss1), "Attention")
@@ -282,7 +283,7 @@ function mod:UPDATE_WORLD_STATES()
 		end
 		if self.db.profile.portalbar then
 			self:TriggerEvent("BigWigs_StopBar", self, L["multiportal_bar"])
-			self:Bar(L["multiportal_bar"], 127, "INV_Misc_ShadowEgg")			
+			self:Bar(L["multiportal_bar"], 127, "INV_Misc_ShadowEgg")
 			if wave == 6 then
 				self:Bar(L["portal_bar"]:format(boss1,wave), 15, "INV_Misc_ShadowEgg")
 			elseif wave == 12 then
@@ -295,3 +296,4 @@ function mod:UPDATE_WORLD_STATES()
 		end
 	end
 end
+

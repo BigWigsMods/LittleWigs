@@ -89,6 +89,7 @@ function mod:CheckAllergic(msg)
 		if player == L2["you"] and type == L2["are"] then
 			player = UnitName("player")
 		end
-		if self.db.profile.allergic then self:Message(L["allergic_warn"]:format(player), "Important") end
+		self:Message(L["allergic_warn"]:format(player), "Important")
 	end
 end
+

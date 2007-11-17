@@ -48,9 +48,6 @@ L:RegisterTranslations("koKR", function() return {
 	icon_desc = "배반의 오라에 걸린 사람에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
 } end)
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://Cwowaddon.com
---无疤者奥摩尔
 L:RegisterTranslations("zhCN", function() return {
 	aura = "背叛光环",
 	aura_heroic = "背叛者之祸",
@@ -75,7 +72,6 @@ L:RegisterTranslations("zhTW", function() return {
 	icon_desc = "在中了奸詐光環的隊友頭上標記（需要助理或領隊權限）",
 } end)
 
---German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
    aura = "Verr\195\164terische Aura",
    aura_heroic = "Bann des Verrats",
@@ -130,3 +126,4 @@ function mod:Event(msg)
 		end
 	end
 end
+

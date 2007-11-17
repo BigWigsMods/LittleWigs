@@ -111,9 +111,6 @@ L:RegisterTranslations("koKR", function() return {
 	rage_soonbar = "~채널링 대기시간",
 } end )
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://Cwowaddon.com
---督军卡利瑟里斯
 L:RegisterTranslations("zhCN", function() return {
 	--engage_trigger1 = "I despise all of your kind!",
 	--engage_trigger2 = "Your head will roll!",
@@ -162,7 +159,7 @@ local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod.zonename = AceLibrary("Babble-Zone-2.2")["The Steamvault"]
-mod.enabletrigger = boss 
+mod.enabletrigger = boss
 mod.toggleoptions = {"spell", "rage", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -189,18 +186,11 @@ function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 end
 
 function mod:Channel(msg)
-    if msg == L["engage_trigger1"] or msg == L["engage_trigger2"] or msg:find(L["engage_trigger3"]) then
-		if self.db.profile.engage then
-			self:Message(L["engage_message"], "Attention")
-			self:Bar(L["rage_soonbar"], 15, "Spell_Nature_WispSplode")
-		end
-	elseif not self.db.profile.rage then return end
-	if msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"] then
+    if self.db.profile.engage and (msg == L["engage_trigger1"] or msg == L["engage_trigger2"] or msg:find(L["engage_trigger3"])) then
+		self:Message(L["engage_message"], "Attention")
+		self:Bar(L["rage_soonbar"], 15, "Spell_Nature_WispSplode")
+	elseif self.db.profile.rage and (msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"]) then
 		self:Message(L["rage_message"], "Urgent")
 	end
 end
 
-function mod:Nextrage()
-	self:DelayedMessage(44, L["rage_soon"], "Attention")
-	self:Bar(L["rage_soonbar"], 49, "Spell_Nature_WispSplode")
-end

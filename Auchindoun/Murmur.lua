@@ -137,9 +137,6 @@ L:RegisterTranslations("deDE", function() return {
 	sonicboom_bar = "\195\156berschallknall wird gewirkt!",
 } end)
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://cwowaddon.com
---摩摩尔
 L:RegisterTranslations("zhCN", function() return {
 	touch_trigger = "^([^%s]+)受([^%s]+)了摩摩尔之触效果的影响。$",
 	touch_message_you = "你是炸弹! 远离队友!",
@@ -237,3 +234,4 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
 	end
 end
+

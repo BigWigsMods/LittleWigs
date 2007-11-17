@@ -115,7 +115,6 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-
 	summon = "Beschworene Nethergespenster",
 	summon_desc = "Warnt wenn Nethergespenster beschworen werden",
 	summon_trigger = "wirkt Nethergespenster beschw\195\182ren",
@@ -165,7 +164,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
-	if ( (time() - summon_time) < 3) then return end
+	if (time() - summon_time) < 3 then return end
 	if self.db.profile.summon and msg:find(L["summon_trigger"]) then
 		self:Message(L["summon_warn"], "Important")
 		summon_time = time()
@@ -201,3 +200,4 @@ function mod:UNIT_HEALTH(arg1)
 		end
 	end
 end
+

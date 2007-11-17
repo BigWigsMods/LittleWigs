@@ -53,9 +53,6 @@ L:RegisterTranslations("zhTW", function() return {
 	bdbar_display = "劍刃之舞",
 } end)
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://Cwowaddon.com
---黑手酋长
 L:RegisterTranslations("zhCN", function() return {
 	engage_trigger1 = "^我这“刃拳”的名号可不是白来的！",--check
 	engage_trigger2 = "^我要把你碎尸万段",
@@ -126,3 +123,4 @@ function mod:DanceSoon()
 		self:ScheduleEvent("bladedance", self.DanceSoon, 35, self)
 	end
 end
+

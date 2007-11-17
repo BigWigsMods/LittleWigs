@@ -59,9 +59,6 @@ L:RegisterTranslations("frFR", function() return {
 	avatar_message = "Avatar du martyr invoqué !",
 } end )
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://cwowaddon.com
---大主教玛拉达尔
 L:RegisterTranslations("zhCN", function() return {
 	soul = "被偷走的灵魂",
 	soul_desc = "被偷走的灵魂警报",
@@ -74,17 +71,16 @@ L:RegisterTranslations("zhCN", function() return {
 	avatar_message = "殉难者的化身出现! MT顶啊~~~~",
 } end )
 
---German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
-   soul = "Gestohlene Seele",
-   soul_desc = "Warnt vor gestohlener Seele",
-   soul_trigger = "Schaut in die Finsternis Eurer Seele.",
-   soul_message = "Seele gestohlen!",
+	soul = "Gestohlene Seele",
+	soul_desc = "Warnt vor gestohlener Seele",
+	soul_trigger = "Schaut in die Finsternis Eurer Seele.",
+	soul_message = "Seele gestohlen!",
 
-   avatar = "Avatar des Gemarterten",
-   avatar_desc = "Warnt vor der Avatar Beschw\195\182rung",
-   avatar_trigger = "beginnt Avatar beschw\195\182ren auszuf\195\188hren",
-   avatar_message = "Avatar beschworen!",
+	avatar = "Avatar des Gemarterten",
+	avatar_desc = "Warnt vor der Avatar Beschw\195\182rung",
+	avatar_trigger = "beginnt Avatar beschw\195\182ren auszuf\195\188hren",
+	avatar_message = "Avatar beschworen!",
 } end )
 
 ----------------------------------
@@ -124,3 +120,4 @@ function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
 		self:Message(L["avatar_message"], "Attention")
 	end
 end
+

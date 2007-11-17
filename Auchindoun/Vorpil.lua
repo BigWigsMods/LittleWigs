@@ -71,9 +71,6 @@ L:RegisterTranslations("deDE", function() return {
 	engage_trigger2 = "Gut, ein w\195\188rdiges Opfer!",
 } end )
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://cwowaddon.com
---沃匹尔大师
 L:RegisterTranslations("zhCN", function() return {
 	teleport = "传送警告",
 	teleport_desc = "传送警报",
@@ -85,6 +82,7 @@ L:RegisterTranslations("zhCN", function() return {
 	engage_trigger1 = "我要用你的血当祭品！",
 	engage_trigger2 = "很好，一个完美的祭品！",
 } end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
@@ -113,8 +111,8 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if self.db.profile.teleport and (msg:find(L["engage_trigger1"]) or msg == L["engage_trigger2"]) then
-			self:Bar(L["teleport_bar"], 40, "Spell_Magic_LesserInvisibilty")
-			self:DelayedMessage(35, L["teleport_warning"], "Attention")
+		self:Bar(L["teleport_bar"], 40, "Spell_Magic_LesserInvisibilty")
+		self:DelayedMessage(35, L["teleport_warning"], "Attention")
 	end
 end
 
@@ -125,3 +123,4 @@ function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 		self:DelayedMessage(32, L["teleport_warning"], "Attention")
 	end
 end
+

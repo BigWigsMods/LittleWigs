@@ -32,15 +32,11 @@ L:RegisterTranslations("zhTW", function() return {
 	nova_message = "即將施放燃燒新星! 遠離凱利丹!",
 } end )
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://Cwowaddon.com
---击碎者克里丹
 L:RegisterTranslations("zhCN", function() return {
 	nova = "燃烧新星",
 	nova_desc = "施放燃烧新星时发送警报",
 	nova_trigger = "靠近点！再近点……燃烧吧！",--check
 	nova_message = "燃烧新星 即将发动！ 远离！",
-
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -50,7 +46,6 @@ L:RegisterTranslations("frFR", function() return {
 	nova_message = "Nova ardente imminente !",
 } end )
 
---German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
    nova = "Feuernova",
    nova_desc = "Warnung vor der Feuernova",
@@ -88,3 +83,4 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		self:Message(L["nova_message"], "Important")
 	end
 end
+

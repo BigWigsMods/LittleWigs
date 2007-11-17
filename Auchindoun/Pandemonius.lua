@@ -39,9 +39,6 @@ L:RegisterTranslations("frFR", function() return {
 	shell_alert = "Cocon de ténèbres !",
 } end )
 
---Chinese Translation: 月色狼影@CWDG
---CWDG site: http://cwowaddon.com
---潘德莫努斯
 L:RegisterTranslations("zhCN", function() return {
 	shell = "黑暗之壳",
 	shell_desc = "黑暗之壳施放警报",
@@ -49,7 +46,6 @@ L:RegisterTranslations("zhCN", function() return {
 	shell_alert = "黑暗之壳! 停止攻击",
 } end )
 
---German Translation: Domestica@Baelgun
 L:RegisterTranslations("deDE", function() return {
 	shell = "Dunkle H\195\188lle",
 	shell_desc = "Warnung wenn Dunkle H\195\188lle gecasted wird",

@@ -88,6 +88,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if self.db.profile.tranq and msg == L["tranq_trigger"] then
 		self:Message(L["tranq_warning"], "Important")
 		self:DelayedMessage(10, L["tranqfade_warning"], "Attention")
-		self:Bar(L["tranq"], 15, "Spell_Nature_Tranquility")		
+		self:Bar(L["tranq"], 15, "Spell_Nature_Tranquility")
 	end
 end
+

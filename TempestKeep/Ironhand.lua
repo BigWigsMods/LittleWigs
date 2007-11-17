@@ -149,3 +149,4 @@ function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
 		self:Bar(L["shadow"], 2, "Spell_Shadow_Metamorphosis")
 	end
 end
+
