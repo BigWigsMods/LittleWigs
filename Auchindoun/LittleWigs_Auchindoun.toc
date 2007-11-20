@@ -5,6 +5,8 @@
 ## Notes: Big Wigs Auchindoun Modules
 ## Notes-frFR: Modules Big Wigs concernant Auchindoun.
 ## Notes-zhTW: Little Wigs 奧齊頓模組
+## Title-zhCN: Little Wigs [|cffeda55f奥金顿|r]
+## Notes-zhCN: Big Wigs 奥金顿模块
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

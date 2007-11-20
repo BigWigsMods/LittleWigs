@@ -37,7 +37,7 @@ L:RegisterTranslations("zhCN", function() return {
 	poison_desc = "施放毒云术发出警报",
 
 	poison_trigger = "布洛戈克施放了毒云。",
-	poison_message = "毒云术！注意躲避！",
+	poison_message = "毒云！注意躲避！",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

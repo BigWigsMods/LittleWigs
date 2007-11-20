@@ -6,6 +6,8 @@
 ## Notes: Big Wigs Hellfire Citadel Modules
 ## Notes-frFR: Modules Big Wigs concernant la Citadelle des Flammes infernales.
 ## Notes-zhTW: Little Wigs 地獄火堡壘模組
+## Title-zhCN: Little Wigs [|cffeda55f地狱火堡垒|r]
+## Notes-zhCN: Big Wigs 地狱火堡垒模块
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

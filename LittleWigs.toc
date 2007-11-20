@@ -4,7 +4,7 @@
 ## Notes: Boss warnings for 5-man instances.
 ## Title-zhCN: |cff7fff7f-Ace2-|r Little Wigs
 ## Notes-zhTW: 五人副本首領警報。需先安裝 Big Wigs
-## Notes-zhCN: 用于TBC的5人副本，BOSS警告器。需配合BigWigs方可使用。
+## Notes-zhCN: 用于 TBC 的5人副本，Boss 警告器。需配合 BigWigs 方可使用。
 ## Notes-frFR: Avertissements pour les boss des instances à 5 joueurs.
 ## Author: Ulic
 ## X-Build: $Rev$

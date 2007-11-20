@@ -6,6 +6,8 @@
 ## Notes: Big Wigs Tempest Keep Modules
 ## Notes-frFR: Modules Big Wigs concernant le Donjon de la Tempête.
 ## Notes-zhTW: Little Wigs 風暴要塞模組
+## Title-zhCN: Little Wigs [|cffeda55f风暴要塞|r]
+## Notes-zhCN: Big Wigs 风暴要塞模块
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1
