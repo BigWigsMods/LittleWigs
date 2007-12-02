@@ -15,9 +15,23 @@
 ## X-AceForum: 5751
 ## X-Category: Party
 
-## X-BigWigs-Menu: Auchindoun
+## X-BigWigs-Menu-enUS: Auchindoun
+## X-BigWigs-Menu-frFR: Auchindoun
+## X-BigWigs-Menu-deDE: Auchindoun
+## X-BigWigs-Menu-koKR: 아킨둔
+## X-BigWigs-Menu-zhTW: 奧齊頓
+## X-BigWigs-Menu-zhCN: 奥金顿
+## X-BigWigs-Menu-eES: Auchindoun
+
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Auchenai Crypts, Mana-Tombs, Sethekk Halls, Shadow Labyrinth
+
+## X-BigWigs-LoadInZone-enUS: Auchenai Crypts, Mana-Tombs, Sethekk Halls, Shadow Labyrinth
+## X-BigWigs-LoadInZone-frFR: Cryptes Auchenaï, Tombes-mana, Les salles des Sethekk, Labyrinthe des ombres
+## X-BigWigs-LoadInZone-deDE: Auchenaikrypta, Managruft, Sethekkhallen, Schattenlabyrinth
+## X-BigWigs-LoadInZone-koKR: 아키나이 납골당, 마나 무덤, 세데크 전당, 어둠의 미궁
+## X-BigWigs-LoadInZone-zhTW: 奧奇奈地穴, 法力墓地, 塞司克大廳, 暗影迷宮
+## X-BigWigs-LoadInZone-zhCN: 奥金尼地穴, 法力陵墓, 塞泰克大厅, 暗影迷宫
+## X-BigWigs-LoadInZone-esES: Criptas Auchenai, Tumbas de Man\195\161, Salas Sethekk, Laberinto de las Sombras
 
 ## Dependencies: BigWigs
 

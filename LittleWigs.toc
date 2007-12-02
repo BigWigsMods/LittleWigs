@@ -13,7 +13,14 @@
 ## X-AceForum: 5751
 ## X-RelSite-Curse: 7476
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Hellfire Ramparts, The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Botanica, The Shattered Halls, The Steamvault, Auchenai Crypts, The Arcatraz
+
+## X-BigWigs-LoadInZone-enUS: Hellfire Ramparts, The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Botanica, The Shattered Halls, The Steamvault, Auchenai Crypts, The Arcatraz
+## X-BigWigs-LoadInZone-frFR: Remparts des Flammes infernales, La Fournaise du sang, Tombes-mana, Le Méchanar, Les salles des Sethekk, Labyrinthe des ombres, La Botanica, Les Salles brisées, Le Caveau de la vapeur, Cryptes Auchenaï, L'Arcatraz
+## X-BigWigs-LoadInZone-deDE: H\195\182llenfeuerbollwerk, Der Blutkessel, Managruft, Die Mechanar, Sethekkhallen, Schattenlabyrinth, Die Botanika, Die zerschmetterten Hallen, Die Dampfkammer, Auchenaikrypta, Die Arkatraz
+## X-BigWigs-LoadInZone-koKR: 지옥불 성루, 피의 용광로, 마나 무덤, 메카나르, 세데크 전당, 어둠의 미궁, 신록의 정원, 으스러진 손의 전당, 증기 저장고, 아키나이 납골당, 알카트라즈
+## X-BigWigs-LoadInZone-zhTW: 地獄火壁壘, 血熔爐, 法力墓地, 麥克納爾, 塞司克大廳, 暗影迷宮, 波塔尼卡, 破碎大廳, 蒸汽洞窟, 奧奇奈地穴, 亞克崔茲
+## X-BigWigs-LoadInZone-zhCN: 地狱火城墙, 鲜血熔炉, 法力陵墓, 能源舰, 塞泰克大厅, 暗影迷宫, 生态船, 破碎大厅, 蒸汽地窟, 奥金尼地穴, 禁魔监狱
+## X-BigWigs-LoadInZone-esES: Murallas del Fuego Infernal, El Horno de Sangre, Tumbas de Man\195\161, El Mechanar, Salas Sethekk, Laberinto de las Sombras, El Invern\195\161culo, Las Salas Arrasadas, La C\195\161mara de Vapor, Criptas Auchenai, El Alcatraz
 
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2

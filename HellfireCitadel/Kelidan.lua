@@ -59,8 +59,8 @@ L:RegisterTranslations("deDE", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
-mod.otherMenu = "Hellfire Citadel"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["The Blood Furnace"]
+mod.zonename = {GetAddOnMetadata("LittleWigs_HellfireCitadel", "X-BigWigs-LoadInZone")} or AceLibrary("AceLocale-2.2"):new("BigWigs_Hellfire")["The Blood Furnace"]
+mod.otherMenu = GetAddOnMetadata("LittleWigs_HellfireCitadel", "X-BigWigs-Menu") or AceLibrary("AceLocale-2.2"):new("BigWigs_Hellfire")["Hellfire Citadel"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"nova", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))

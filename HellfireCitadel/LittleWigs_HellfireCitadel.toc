@@ -16,9 +16,23 @@
 ## X-AceForum: 5751
 ## X-Category: Party
 
-## X-BigWigs-Menu: Hellfire Citadel
+## X-BigWigs-Menu-enUS: Hellfire Citadel
+## X-BigWigs-Menu-frFR: Citadelle des Flammes infernales
+## X-BigWigs-Menu-deDE: H\195\182llenfeuerzitadelle
+## X-BigWigs-Menu-koKR: 지옥불 성채
+## X-BigWigs-Menu-zhTW: 地獄火堡壘
+## X-BigWigs-Menu-zhCN: 地狱火堡垒
+## X-BigWigs-Menu-esES: Ciudadela del Fuego Infernal
+
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Hellfire Ramparts, The Blood Furnace, The Shattered Halls
+
+## X-BigWigs-LoadInZone-enUS: Hellfire Ramparts, The Blood Furnace, The Shattered Halls
+## X-BigWigs-LoadInZone-frFR: Remparts des Flammes infernales, La Fournaise du sang, Les Salles brisées
+## X-BigWigs-LoadInZone-deDE: H\195\182llenfeuerbollwerk, Der Blutkessel, Die zerschmetterten Hallen
+## X-BigWigs-LoadInZone-koKR: 지옥불 성루, 피의 용광로, 으스러진 손의 전당
+## X-BigWigs-LoadInZone-zhTW: 地獄火壁壘, 血熔爐, 破碎大廳
+## X-BigWigs-LoadInZone-zhCN: 地狱火城墙, 鲜血熔炉, 破碎大厅
+## X-BigWigs-LoadInZone-esES: Murallas del Fuego Infernal, El Horno de Sangre, Las Salas Arrasadas
 
 ## Dependencies: BigWigs
 

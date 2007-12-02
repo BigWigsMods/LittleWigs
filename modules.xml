@@ -1,15 +1,18 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
+<Script file="HellfireCitadel\Zone.lua"/>
 <Script file="HellfireCitadel\Broggok.lua"/>
 <Script file="HellfireCitadel\Kelidan.lua"/>
 <Script file="HellfireCitadel\Omor.lua"/>
 <Script file="HellfireCitadel\Warchief.lua"/>
 
+<Script file="Coilfang\Zone.lua"/>
 <Script file="Coilfang\Kalithresh.lua"/>
 <Script file="Coilfang\Steamrigger.lua"/>
 <Script file="Coilfang\Thespia.lua"/>
 
+<Script file="Auchindoun\Zone.lua"/>
 <Script file="Auchindoun\Ikiss.lua"/>
 <Script file="Auchindoun\Maladaar.lua"/>
 <Script file="Auchindoun\Murmur.lua"/>
@@ -17,6 +20,7 @@
 <Script file="Auchindoun\Syth.lua"/>
 <Script file="Auchindoun\Vorpil.lua"/>
 
+<Script file="TempestKeep\Zone.lua"/>
 <Script file="TempestKeep\Capacitus.lua"/>
 <Script file="TempestKeep\Dalliah.lua"/>
 <Script file="TempestKeep\Freywinn.lua"/>
@@ -27,6 +31,7 @@
 <Script file="TempestKeep\Soccothrates.lua"/>
 <Script file="TempestKeep\Zereketh.lua"/>
 
+<Script file="CoT\Zone.lua"/>
 <Script file="CoT\BlackMorass.lua"/>
 
 </Ui>

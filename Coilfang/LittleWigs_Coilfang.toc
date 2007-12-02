@@ -17,9 +17,23 @@
 ## X-AceForum: 5751
 ## X-Category: Party
 
-## X-BigWigs-Menu: Coilfang Reservoir
+## X-BigWigs-Menu-enUS: Coilfang Reservoir
+## X-BigWigs-Menu-frFR: Réservoir de Glissecroc
+## X-BigWigs-Menu-deDE: Der Echsenkessel
+## X-BigWigs-Menu-koKR: 갈퀴송곳니 저수지
+## X-BigWigs-Menu-zhTW: 盤牙洞穴
+## X-BigWigs-Menu-zhCN: 盘牙水库
+## X-BigWigs-Menu-esES: Reserva Colmillo Torcido
+
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: The Steamvault
+
+## X-BigWigs-LoadInZone-enUS: The Steamvault
+## X-BigWigs-LoadInZone-frFR: Le Caveau de la vapeur
+## X-BigWigs-LoadInZone-deDE: Die Dampfkammer
+## X-BigWigs-LoadInZone-koKR: 증기 저장고
+## X-BigWigs-LoadInZone-zhTW: 蒸汽洞窟
+## X-BigWigs-LoadInZone-zhCN: 蒸汽地窟
+## X-BigWigs-LoadInZone-esES: La C\195\161mara de Vapor
 
 ## Dependencies: BigWigs
 

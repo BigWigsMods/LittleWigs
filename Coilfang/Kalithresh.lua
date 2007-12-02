@@ -157,8 +157,8 @@ L:RegisterTranslations("esES", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
-mod.otherMenu = "Coilfang Reservoir"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["The Steamvault"]
+mod.zonename = {GetAddOnMetadata("LittleWigs_Coilfang", "X-BigWigs-LoadInZone")} or AceLibrary("AceLocale-2.2"):new("BigWigs_Coilfang")["The Steamvault"]
+mod.otherMenu = GetAddOnMetadata("LittleWigs_Coilfang", "X-BigWigs-Menu") or AceLibrary("AceLocale-2.2"):new("BigWigs_Coilfang")["Coilfang Reservoir"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"spell", "rage", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
