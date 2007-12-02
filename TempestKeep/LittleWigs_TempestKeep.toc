@@ -16,23 +16,9 @@
 ## X-AceForum: 5751
 ## X-Category: Party
 
-## X-BigWigs-Menu-enUS: Tempest Keep
-## X-BigWigs-Menu-frFR: Donjon de la Tempête
-## X-BigWigs-Menu-deDE: Festung der St\195\188rme
-## X-BigWigs-Menu-koKR: 폭풍우 요새
-## X-BigWigs-Menu-zhTW: 風暴要塞
-## X-BigWigs-Menu-zhCN: 风暴要塞
-## X-BigWigs-Menu-esES: El Castillo de la Tempestad
-
+## X-BigWigs-Menu: Tempest Keep
 ## X-BigWigs-LoadInParty: 1
-
-## X-BigWigs-LoadInZone-enUS: The Mechanar, The Botanica, The Arcatraz
-## X-BigWigs-LoadInZone-frFR: Le Méchanar, La Botanica, L'Arcatraz
-## X-BigWigs-LoadInZone-deDE: Die Mechanar, Die Botanika, Die Arkatraz
-## X-BigWigs-LoadInZone-koKR: 메카나르, 신록의 정원, 알카트라즈
-## X-BigWigs-LoadInZone-zhTW: 麥克納爾, 波塔尼卡, 亞克崔茲
-## X-BigWigs-LoadInZone-zhCN: 能源舰, 生态船, 禁魔监狱
-## X-BigWigs-LoadInZone-esES: El Mechanar, El Invern\195\161culo, El Alcatraz
+## X-BigWigs-LoadInZone: The Mechanar, The Botanica, The Arcatraz
 
 ## Dependencies: BigWigs
 

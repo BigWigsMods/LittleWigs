@@ -90,8 +90,8 @@ L:RegisterTranslations("deDE", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
-mod.zonename = {GetAddOnMetadata("LittleWigs_HellfireCitadel", "X-BigWigs-LoadInZone")} or AceLibrary("AceLocale-2.2"):new("BigWigs_Hellfire")["Hellfire Ramparts"]
-mod.otherMenu = GetAddOnMetadata("LittleWigs_HellfireCitadel", "X-BigWigs-Menu") or AceLibrary("AceLocale-2.2"):new("BigWigs_Hellfire")["Hellfire Citadel"]
+mod.otherMenu = "Hellfire Citadel"
+mod.zonename = AceLibrary("Babble-Zone-2.2")["Hellfire Ramparts"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"aura", "icon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))

@@ -205,8 +205,8 @@ L:RegisterTranslations("deDE", function() return {
 
 local mod = BigWigs:NewModule(name)
 mod.partyContent = true
-mod.zonename = {GetAddOnMetadata("LittleWigs_CoT", "X-BigWigs-LoadInZone")} or AceLibrary("AceLocale-2.2"):new("BigWigs_CoT")["The Black Morass"]
-mod.otherMenu = GetAddOnMetadata("LittleWigs_CoT", "X-BigWigs-Menu") or AceLibrary("AceLocale-2.2"):new("BigWigs_CoT")["Caverns of Time"]
+mod.otherMenu = "Caverns of Time"
+mod.zonename = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
 mod.synctoken = "The Black Morass"
 mod.enabletrigger = boss
 mod.toggleoptions = {"portal", "portalbar", -1, "hasten", -1, "frenzy", "bosskill"}

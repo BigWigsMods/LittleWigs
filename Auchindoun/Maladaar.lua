@@ -89,8 +89,8 @@ L:RegisterTranslations("deDE", function() return {
 
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
-mod.zonename = {GetAddOnMetadata("LittleWigs_Auchindoun", "X-BigWigs-LoadInZone")} or AceLibrary("AceLocale-2.2"):new("BigWigs_Auchindoun")["Auchenai Crypts"]
-mod.otherMenu = GetAddOnMetadata("LittleWigs_Auchindoun", "X-BigWigs-Menu") or AceLibrary("AceLocale-2.2"):new("BigWigs_Auchindoun")["Auchindoun"]
+mod.otherMenu = "Auchindoun"
+mod.zonename = AceLibrary("Babble-Zone-2.2")["Auchenai Crypts"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"soul", "avatar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))

@@ -16,23 +16,9 @@
 ## X-AceForum: 5751
 ## X-Category: Party
 
-## X-BigWigs-Menu-enUS: Caverns of Time
-## X-BigWigs-Menu-frFR: Grottes du temps
-## X-BigWigs-Menu-deDE: Die H\195\182hlen der Zeit
-## X-BigWigs-Menu-koKR: 시간의 동굴
-## X-BigWigs-Menu-zhTW: 時光之穴
-## X-BigWigs-Menu-zhCN: 时光之穴
-## X-BigWigs-Menu-esES: Cavernas del Tiempo
-
+## X-BigWigs-Menu: Caverns of Time
 ## X-BigWigs-LoadInParty: 1
-
-## X-BigWigs-LoadInZone-enUS: The Black Morass
-## X-BigWigs-LoadInZone-frFR: Le Noir Marécage
-## X-BigWigs-LoadInZone-deDE: Der schwarze Morast
-## X-BigWigs-LoadInZone-koKR: 검은늪
-## X-BigWigs-LoadInZone-zhTW: 黑色沼澤
-## X-BigWigs-LoadInZone-zhCN: 黑色沼泽
-## X-BigWigs-LoadInZone-esES: La Ci\195\169naga Negra
+## X-BigWigs-LoadInZone: The Black Morass
 
 ## Dependencies: BigWigs
 
