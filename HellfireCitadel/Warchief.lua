@@ -81,6 +81,21 @@ L:RegisterTranslations("frFR", function() return {
 	bdbar_display = "~Danse des lames",
 } end)
 
+L:RegisterTranslations("deDE", function() return {
+	engage_trigger1 = "^Man nennt",
+	engage_trigger2 = "^Ich werde",
+	engage_trigger3 = "^Wir sind",
+
+	bdwarn = "Klingentanz",
+	bdwarn_desc = "Gesch\195\164tzte Zeit bis Klingentanz",
+	bdwarn_alert = "5 Sekunden bis zum Klingentanz!",
+
+	bdbar = "Klingentanz-Leiste",
+	bdbar_desc = "Zeite Countdown-Sch\195\164tzung f\195\182r Klingentanz",
+	bdbar_display = "~Klingentanz",
+} end)
+
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
