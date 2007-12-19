@@ -162,6 +162,31 @@ L:RegisterTranslations("zhCN", function() return {
 	sonicboom_bar = "正在施放音爆!",
 } end)
 
+L:RegisterTranslations("esES", function() return {
+	touch_trigger = "^([^%s]+) ([^%s]+) sufre Toque de Murmur.",
+	touch_message_you = "Tu eres la bomba!",
+	touch_message_other = "%s es la bomba!",
+
+	touchtimer = "Retardo de explosi\195\179n de la bomba",
+	touchtimer_desc = "Muestra una barra de 13 segundos de forma que sepas cuando va a estallar la bomba.",
+	touchtimer_bar = "%s : Toque de Murmur",
+
+	youtouch = "Bomba (tu)",
+	youtouch_desc = "Aviso para cuando tu eres la bomba",
+
+	elsetouch = "Bomba (los otros)",
+	elsetouch_desc = "Aviso para cuando otros son la bomba",
+
+	icon = "Icono de Raid para la bomba",
+	icon_desc = "Pone un icono de Raid en la persona que es la bomba (Requiere promocionado o superior).",
+
+	sonicboom = "Bum s\195\179nico",
+	sonicboom_desc = "Aviso cuando Murmur comienza a lanzar Bum s\195\179nico",
+	sonicboom_trigger = "extrae energ\195\173a del aire...",
+	sonicboom_alert = "Bum s\195\179nico en 5 segundos!",
+	sonicboom_bar = "Lanzando Bum s\195\179nico!",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
