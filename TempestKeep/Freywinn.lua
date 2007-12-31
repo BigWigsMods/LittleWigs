@@ -14,7 +14,8 @@ L:RegisterTranslations("enUS", function() return {
 
 	tranq = "Tranquility",
 	tranq_desc = "Warn for Tranquility",
-	tranq_trigger = "Nature bends to my will....",
+	tranq_trigger1 = "Nature bends to my will....",
+	tranq_trigger2 = "Endorel anuminor!",
 	tranq_warning = "Tranquility cast!",
 	tranqfade_warning = "Tranquility fading in ~5s!",
 } end )
@@ -55,7 +56,8 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	tranq = "宁静",
 	tranq_desc = "宁静警报",
-	tranq_trigger = "自然的力量听我调遣……",
+	tranq_trigger1 = "自然的力量听我调遣……",
+	tranq_trigger2 = "Endorel anuminor！",
 	tranq_warning = "宁静 施放!",
 	tranqfade_warning = "5秒后 宁静消失!",
 } end )
@@ -85,7 +87,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.tranq and msg == L["tranq_trigger"] then
+	if self.db.profile.tranq and (msg == L["tranq_trigger1"] or msg == L["tranq_trigger2"] )then
 		self:Message(L["tranq_warning"], "Important")
 		self:DelayedMessage(10, L["tranqfade_warning"], "Attention")
 		self:Bar(L["tranq"], 15, "Spell_Nature_Tranquility")
