@@ -254,7 +254,13 @@ end
 
 function mod:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
 	local mob = select(3, msg:find(L["death_trigger"]))
-	if mob ~= boss1 and mob ~= boss2 and mob ~= boss3 then return end
+	if mob == boss1 then
+		wave = 7
+	elseif mob == boss2 then
+		wave = 13
+	else
+		return
+	end
 	if self.db.profile.portal then
 		self:Message(L["portal_warning140s"]:format(L["next_portal"]), "Attention")
 	end
