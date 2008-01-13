@@ -108,22 +108,25 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	next_portal = "Proch. portail",
+	next_portal = "Proch. vague",
 
-	portal = "Alertes des portails",
-	portal_desc = "Préviens régulièrement quand apparaîtra le prochain portail.",
+	portal = "Alertes des vagues",
+	portal_desc = "Préviens régulièrement quand apparaîtra la prochaine vague.",
 
-	portalbar = "Barres des portails",
-	portalbar_desc = "Indique l'apparition probable du prochain portail via une barre temporelle.",
+	portalbar = "Barres des vagues",
+	portalbar_desc = "Indique l'apparition probable de la prochaine vague via une barre temporelle.",
 
 	portal_bar = "~%s : Vague %s",
-	multiportal_bar = "~Plusieurs portails en même temps",
+	multiportal_bar = "~Plusieurs vagues",
 
 	portal_warning15s = "%s dans ~15 sec. !",
 	portal_warning140s = "%s dans ~140 sec. !",
 
 	disable_trigger = "Nous triompherons. Ce n'est qu'une question... de temps.",
 	disable_warning = "%s a été sauvé !",
+
+	death_trigger = "(.+) meurt%.",
+	reset_trigger = "Non ! Maudite soit cette enveloppe mortelle !",
 
 	-- Bosses
 	frenzy = "Aeonus - Frénésie",
