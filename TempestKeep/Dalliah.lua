@@ -45,6 +45,11 @@ L:RegisterTranslations("koKR", function() return {
 	gift_trigger = "^([^|;%s]*)(.*)파멸의 예언자의 선물에 걸렸습니다.",
 	gift_message = "%s 파멸의 예언자의 선물!",
 	gift_bar = "예언자의 선물: %s",
+	
+	heal = "치유",
+	heal_desc = "달리아의 치유 마법 시전을 알립니다.",
+	heal_trigger = "파멸의 예언자 달리아|1이;가; 치유 시전을 시작합니다.",
+	heal_message = "달리아 치유 시전!",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

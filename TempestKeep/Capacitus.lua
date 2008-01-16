@@ -45,7 +45,7 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	trigger1 = "마법 반사 보호막 효과를 얻었습니다.$",
 	trigger2 = "피해 반사 보호막 효과를 얻었습니다.$",
-	trigger3 = "마법 반사 효과가 사라졌습니다.", -- check
+	trigger3 = "마법 반사 보호막 효과가 사라졌습니다.", -- check
 	trigger4 = "피해 반사 보호막 효과가 사라졌습니다.", -- check
 
 	warn1 = "마법 반사!",

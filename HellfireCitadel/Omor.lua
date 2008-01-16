@@ -45,7 +45,7 @@ L:RegisterTranslations("koKR", function() return {
 	aura_bar = "%s: %s",
 
 	icon = "전술 표시",
-	icon_desc = "배반의 오라에 걸린 사람에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
+	icon_desc = "배반의 오라/파멸에 걸린 사람에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

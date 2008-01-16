@@ -41,8 +41,8 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("koKR", function() return {
 	tranq = "평온",
 	tranq_desc = "평온에 대한 경고",
-	tranq_trigger1 = "자연의 힘이 내 손안에 있다...", -- check
-	tranq_trigger2 = "Endorel anuminor!", --needs localization
+	tranq_trigger1 = "자연의 힘이 내 손안에 있다...",
+	tranq_trigger2 = "엔도렐 아누미노르!",
 	tranq_warning = "평온 시전!",
 	tranqfade_warning = "약 5초 이내 평온 사라짐!",
 } end )
