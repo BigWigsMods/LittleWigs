@@ -261,9 +261,9 @@ end
 function mod:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
 	local mob = select(3, msg:find(L["death_trigger"]))
 	if mob == boss1 then
-		wave = 7
+		wave = 6
 	elseif mob == boss2 then
-		wave = 13
+		wave = 12
 	else
 		return
 	end
