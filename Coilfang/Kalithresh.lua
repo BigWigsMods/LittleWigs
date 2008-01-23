@@ -74,7 +74,7 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("deDE", function() return {
 	--engage_trigger1 = "I despise all of your kind!",
 	--engage_trigger2 = "Your head will roll!",
-	--engage_trigger3 = "Ba'ahn tha sol'dorei!",
+	engage_trigger3 = "Ba'anthalso-dorei!",
 	--engage_message = "Engaged - channeling in ~15sec!",
 	
 	spell = "Zauberreflexion",
