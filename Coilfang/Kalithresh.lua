@@ -104,8 +104,8 @@ L:RegisterTranslations("koKR", function() return {
 
 	rage = "장군의 분노",
 	rage_desc = "분노의 채널링에 대한 알림",
-	rage_trigger1 = "^%s begins to channel", -- check
-	rage_trigger2 = "아직 끝나지 않았다...",
+	rage_trigger1 = "^%s|1이;가; 근처의 추출기로부터 시전을 시작합니다...", -- check
+	rage_trigger2 = "아직 끝나지 않았다.",
 	rage_message = "장군 채널링!",
 	rage_soon = "잠시후 채널링!",
 	rage_soonbar = "~채널링 대기시간",
