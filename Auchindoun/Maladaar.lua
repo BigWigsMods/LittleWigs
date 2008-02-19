@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Exarch Maladaar"]
+local boss = BB["Exarch Maladaar"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -90,7 +90,7 @@ L:RegisterTranslations("deDE", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Auchindoun"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["Auchenai Crypts"]
+mod.zonename = BZ["Auchenai Crypts"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"soul", "avatar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))

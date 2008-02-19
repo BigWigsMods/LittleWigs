@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Murmur"]
+local boss = BB["Murmur"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
@@ -194,7 +194,7 @@ L:RegisterTranslations("esES", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Auchindoun"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["Shadow Labyrinth"]
+mod.zonename = BZ["Shadow Labyrinth"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"sonicboom", -1, "touchtimer", "youtouch", "elsetouch", "icon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))

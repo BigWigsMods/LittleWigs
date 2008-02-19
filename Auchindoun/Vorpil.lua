@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Grandmaster Vorpil"]
+local boss = BB["Grandmaster Vorpil"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -90,7 +90,7 @@ L:RegisterTranslations("zhCN", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Auchindoun"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["Shadow Labyrinth"]
+mod.zonename = BZ["Shadow Labyrinth"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"teleport", "bosskill"}
 mod.revision = tonumber(("$Revision: 33724 $"):sub(12, -3))
