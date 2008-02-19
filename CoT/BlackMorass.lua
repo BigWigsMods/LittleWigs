@@ -2,11 +2,10 @@
 --      Are you local?      --
 ------------------------------
 
-local name = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
+local name = BZ["The Black Morass"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..name)
 local wave = 0
 
-local BB = AceLibrary("Babble-Boss-2.2")
 local boss = BB["Medivh"]
 local boss1 = BB["Chrono Lord Deja"]
 local boss2 = BB["Temporus"]
@@ -212,7 +211,7 @@ L:RegisterTranslations("deDE", function() return {
 local mod = BigWigs:NewModule(name)
 mod.partyContent = true
 mod.otherMenu = "Caverns of Time"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["The Black Morass"]
+mod.zonename = BZ["The Black Morass"]
 mod.synctoken = "The Black Morass"
 mod.enabletrigger = boss
 mod.toggleoptions = {"portal", "portalbar", -1, "hasten", -1, "frenzy", "bosskill"}
