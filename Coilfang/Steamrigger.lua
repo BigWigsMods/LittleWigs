@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Mekgineer Steamrigger"]
+local boss = BB["Mekgineer Steamrigger"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -67,7 +67,7 @@ L:RegisterTranslations("esES", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["The Steamvault"]
+mod.zonename = BZ["The Steamvault"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"mech", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
