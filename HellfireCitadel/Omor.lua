@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Omor the Unscarred"]
+local boss = BB["Omor the Unscarred"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
@@ -91,7 +91,7 @@ L:RegisterTranslations("deDE", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Hellfire Citadel"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["Hellfire Ramparts"]
+mod.zonename = BZ["Hellfire Ramparts"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"aura", "icon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))

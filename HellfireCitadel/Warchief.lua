@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Warchief Kargath Bladefist"]
+local boss = BB["Warchief Kargath Bladefist"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -103,7 +103,7 @@ L:RegisterTranslations("deDE", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Hellfire Citadel"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["The Shattered Halls"]
+mod.zonename = BZ["The Shattered Halls"]
 mod.enabletrigger = boss
 mod.toggleoptions = {"bdwarn", "bdbar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))

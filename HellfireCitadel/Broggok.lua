@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = AceLibrary("Babble-Boss-2.2")["Broggok"]
+local boss = BB["Broggok"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -61,7 +61,7 @@ L:RegisterTranslations("deDE", function() return {
 local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Hellfire Citadel"
-mod.zonename = AceLibrary("Babble-Zone-2.2")["The Blood Furnace"]
+mod.zonename = BZ["The Blood Furnace"]
 mod.enabletrigger = boss 
 mod.toggleoptions = {"poison", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
