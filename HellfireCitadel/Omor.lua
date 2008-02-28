@@ -17,7 +17,8 @@ L:RegisterTranslations("enUS", function() return {
 	aura_heroic = "Bane of Treachery",
 	aura_desc = "Announce who has the Trecherous Aura",
 	aura_trigger = "^(%S+) (%S+) afflicted by (.+)%.$",
-	aura_warning = "%s has %s!",
+	aura_message = "%s has %s!",
+	aura_message_you = "You have %s!",
 	aura_bar = "%s: %s",
 
 	icon = "Raid Icon",
@@ -29,7 +30,7 @@ L:RegisterTranslations("frFR", function() return {
 	aura_heroic = "Plaie de traîtrise",
 	aura_desc = "Préviens quand un joueur subit les effets de l'Aura/Plaie traîtresse.",
 	aura_trigger = "^(%S+) (%S+) les effets (.+)%.$",
-	aura_warning = "%s a %s !",
+	aura_message = "%s a %s !",
 	aura_bar = "%s : %s",
 
 	icon = "Icône",
@@ -41,7 +42,7 @@ L:RegisterTranslations("koKR", function() return {
 	aura_heroic = "배반의 파멸",
 	aura_desc = "배반의 오라에 걸린 사람을 알립니다.",
 	aura_trigger = "^([^|;%s]*)(%s+)(.*)에 걸렸습니다%.$",
-	aura_warning = "%s : %s!",
+	aura_message = "%s : %s!",
 	aura_bar = "%s: %s",
 
 	icon = "전술 표시",
@@ -53,7 +54,7 @@ L:RegisterTranslations("zhCN", function() return {
 	aura_heroic = "背叛者之祸",
 	aura_desc = "当中了背叛光环发出警报",
 	aura_trigger = "^([^%s]+)受([^%s]+)了(.+)效果的影响。$",
-	aura_warning = "%s 中了 %s!",
+	aura_message = "%s 中了 %s!",
 	aura_bar = "%s: %s",
 
 	icon = "团队标记",
@@ -65,7 +66,7 @@ L:RegisterTranslations("zhTW", function() return {
 	aura_heroic = "背叛之禍",
 	aura_desc = "當有人中了奸詐光環時發出警報",
 	aura_trigger = "^(.+)受(到[了]*)(.*)效果的影響。$",
-	aura_warning = "%s 中了 %s!",
+	aura_message = "%s 中了 %s!",
 	aura_bar = "%s: %s",
 
 	icon = "團隊標記",
@@ -73,15 +74,15 @@ L:RegisterTranslations("zhTW", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
-   aura = "Verr\195\164terische Aura",
-   aura_heroic = "Bann des Verrats",
-   aura_desc = "Ank\195\188ndigung wer die Verr\195\164terische Aura hat",
-   aura_trigger = "^(%S+) (%S+) von (.+) betroffen%.$",
-   aura_warning = "%s hat %s!",
-   aura_bar = "%s: %s",
+	aura = "Verr\195\164terische Aura",
+	aura_heroic = "Bann des Verrats",
+	aura_desc = "Ank\195\188ndigung wer die Verr\195\164terische Aura hat",
+	aura_trigger = "^(%S+) (%S+) von (.+) betroffen%.$",
+	aura_message = "%s hat %s!",
+	aura_bar = "%s: %s",
 
-   icon = "Raid Symbol",
-   icon_desc = "Setzt ein Raidsymbol auf die betroffene Person der Aura (Ben\195\182tigt h\195\182heren Status)",
+	icon = "Raid Symbol",
+	icon_desc = "Setzt ein Raidsymbol auf die betroffene Person der Aura (Ben\195\182tigt h\195\182heren Status)",
 } end)
 
 ----------------------------------
@@ -101,6 +102,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Curse", 30695, 37566, 30697, 37567, 39298) -- from wowhead, 30695(Treacherous Aura) & 37566(Bane of Treachery) are probably the correct ones
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "Event")
@@ -113,6 +115,18 @@ end
 --      Event Handlers      --
 ------------------------------
 
+function mod:Curse(player, spellID)
+	if player and self.db.profile.aura then
+		local spellName = GetSpellInfo(spellID)
+		self:Message(L["aura_message"]:format(player, spellName), "Urgent")
+		self:Bar(L["aura_bar"]:format(player, spellName), 15, spellID, "Red")
+		self:Whisper(player, L["aura_message_you"]:format(spellName))
+		if self.db.profile.icon then
+			self:Icon(player)
+		end	
+	end
+end
+
 function mod:Event(msg)
 	if not self.db.profile.aura then return end
 	local Aplayer, Atype, Aspell = select(3, msg:find(L["aura_trigger"]))
@@ -121,7 +135,7 @@ function mod:Event(msg)
 		if Aplayer == L2["you"] and Atype == L2["are"] then
 			Aplayer = UnitName("player")
 		end
-		self:Message(L["aura_warning"]:format(Aplayer, Aspell), "Urgent")
+		self:Message(L["aura_message"]:format(Aplayer, Aspell), "Urgent")
 		self:Bar(L["aura_bar"]:format(Aplayer, Aspell), 15, "Spell_Shadow_DeadofNight", "Red")
 		if self.db.profile.icon then
 			self:Icon(Aplayer)
