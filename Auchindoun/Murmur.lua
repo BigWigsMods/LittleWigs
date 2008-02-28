@@ -14,6 +14,7 @@ L:RegisterTranslations("enUS", function() return {
 	cmd = "Murmur",
 
 	touch_trigger = "^([^%s]+) ([^%s]+) afflicted by Murmur's Touch.",
+	touch_message = "%s has %s!",
 	touch_message_you = "You are the bomb!",
 	touch_message_other = "%s is the bomb!",
 
@@ -205,6 +206,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Touch", 33711, 33760, 38794) -- from wowhead, 33711 is probably the correct one
 
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "Event")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "Event")
@@ -213,13 +215,26 @@ function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 
 	self:RegisterEvent("BigWigs_RecvSync")
-	self:TriggerEvent("BigWigs_ThrottleSync", "MurmurBoom", 2)
 	self:TriggerEvent("BigWigs_ThrottleSync", "MurmurTouch", 2)
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
+
+function mod:Touch(player, spellID)
+	if player and self.db.profile.youtouch then
+		spellName = GetSpellInfo(spellID)
+		self:Message(L["touch_message"]:format(player, spellName), "Attention")
+		self:Whisper(player, L["touch_message_you"])
+	end
+	if player and self.db.profile.touchtimer then
+		self:Bar(L["touchtimer_bar"]:format(player), 13, spellID, "Red")
+	end
+	if player and self.db.profile.icon then
+		self:Icon(player)
+	end	
+end
 
 function mod:Event(msg)
 	local player, type = select(3, msg:find(L["touch_trigger"]))
@@ -233,7 +248,8 @@ end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if msg:find(L["sonicboom_trigger"]) then
-		self:Sync("MurmurBoom")
+		self:Message(L["sonicboom_alert"], "Important")
+		self:Bar(L["sonicboom_bar"], 5, 33666, "Red")
 	end
 end
 
@@ -256,8 +272,5 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		if self.db.profile.icon then
 			self:Icon(player)
 		end
-	elseif sync == "MurmurBoom" and self.db.profile.sonicboom then
-		self:Message(L["sonicboom_alert"], "Important")
-		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
 	end
 end
