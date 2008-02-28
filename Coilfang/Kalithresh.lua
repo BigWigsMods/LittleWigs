@@ -168,6 +168,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "Channel")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Channel")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
@@ -193,4 +195,3 @@ function mod:Channel(msg)
 		self:Message(L["rage_message"], "Urgent")
 	end
 end
-

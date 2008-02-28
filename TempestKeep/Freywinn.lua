@@ -81,6 +81,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 end
@@ -96,4 +98,3 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		self:Bar(L["tranq"], 15, "Spell_Nature_Tranquility")
 	end
 end
-
