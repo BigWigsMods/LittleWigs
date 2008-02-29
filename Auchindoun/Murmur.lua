@@ -249,7 +249,7 @@ end
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if msg:find(L["sonicboom_trigger"]) then
 		self:Message(L["sonicboom_alert"], "Important")
-		self:Bar(L["sonicboom_bar"], 5, 33666, "Red")
+		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
 	end
 end
 
