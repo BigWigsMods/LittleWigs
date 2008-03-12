@@ -21,9 +21,13 @@ L:RegisterTranslations("enUS", function() return {
 	glapse_message = "Gravity Lapse Soon!",
 	glapse_bar = "Gravity Lapse",
 
-	summon = "Summon Phoenix",
-	summon_desc = "Warn when a Phoenix is summoned",
-	summon_message = "Phoenix summoned!",
+	phoenix = "Summon Phoenix",
+	phoenix_desc = "Warn when a Phoenix is summoned",
+	phoenix_message = "Phoenix summoned!",
+
+	flamestrike = "Flame Strike",
+	flamestrike_desc = "Warn when a Flame Strike is cast",
+	flamestrike_message = "Flame Strike!",
 
 	barrier = "Shock Barrier (Heroic)",
 	barrier_desc = "Warn when Kael'thas gains Shock Barrier",
@@ -45,7 +49,7 @@ local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"glapse","summon",-1,"barrier","bosskill"}
+mod.toggleoptions = {"glapse","phoenix","flamestrike",-1,"barrier","bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -57,7 +61,8 @@ function mod:OnEnable()
 	self:RegisterEvent("UNIT_HEALTH")
 
 	self:AddCombatListener("SPELL_CAST_START", "Lapse", 44224)
-	self:AddCombatListener("SPELL_SUMMON", "Summon", 44194)
+	self:AddCombatListener("SPELL_SUMMON", "Phoenix", 44194)
+	self:AddCombatListener("SPELL_SUMMON", "FlameStrike", 44192)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	db = self.db.profile
@@ -86,8 +91,14 @@ function mod:Lapse()
 	end
 end
 
-function mod:Summon()
-	if db.summon then
-		self:Message(L["summon_message"], "Important", nil, nil, nil, 44194)
+function mod:Phoenix()
+	if db.phoenix then
+		self:Message(L["phoenix_message"], "Important", nil, nil, nil, 44194)
+	end
+end
+
+function mod:FlameStrike()
+	if db.flamestrike then
+		self:Message(L["flamestrike_message"], "Important", nil, nil, nil, 44192)
 	end
 end
