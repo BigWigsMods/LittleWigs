@@ -29,4 +29,8 @@
 
 <Script file="CoT\BlackMorass.lua"/>
 
+<Script file="MagistersTerrace\SelinFireheart.lua"/>
+<Script file="MagistersTerrace\Vexallus.lua"/>
+<Script file="MagistersTerrace\PriestessDelrissa.lua"/>
+<Script file="MagistersTerrace\Kael'thasSunstrider.lua"/>
 </Ui>

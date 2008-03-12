@@ -1,0 +1,21 @@
+﻿## Interface: 20400
+
+## Title: Little Wigs (BETA) [|cffeda55fMagisters' Terrace|r]
+## Notes: Little Wigs Magisters' Terrace Modules
+## Author: Ulic
+## Version: 2.0
+## LoadOnDemand: 1
+
+## X-Website: http://www.wowace.com/index.php/BigWigs
+## X-Category: Party
+
+## X-BigWigs-LoadInParty: 1
+## X-BigWigs-LoadInZone: Magisters' Terrace 
+
+## Dependencies: BigWigs
+
+MTBeta.lua
+SelinFireheart.lua
+Vexallus.lua
+PriestessDelrissa.lua
+Kael'thasSunstrider.lua
