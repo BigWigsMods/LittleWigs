@@ -5,7 +5,7 @@
 if not GetSpellInfo then return end
 
 local boss = BB["Kael'thas Sunstrider"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss.."MT")
 local db = nil
 local glapseannounced = nil
 
