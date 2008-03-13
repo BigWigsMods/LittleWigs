@@ -40,10 +40,10 @@ L:RegisterTranslations("koKR", function() return {
 	adds_message = "순수한 마력덩어리 방출!",
 	adds_trigger = "순수한 마력덩어리를 방출합니다!",
 
-	feedback = "Energy Feedback",
-	feedback_desc = "Energy Feedback 디버프가 걸린 플레이어를 알립니다.",
-	feedback_you = "당신은 Energy Feedback!",
-	feedback_other = "Energy Feedback: %s!",
+	feedback = "에너지 역류",
+	feedback_desc = "에너지 역류 디버프가 걸린 플레이어를 알립니다.",
+	feedback_you = "당신은 에너지 역류!",
+	feedback_other = "에너지 역류: %s!",
 } end )
 
 ----------------------------------
