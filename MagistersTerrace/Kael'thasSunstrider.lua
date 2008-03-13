@@ -41,6 +41,25 @@ L:RegisterTranslations("enUS", function() return {
 	localize, just be aware that you may need to change it frequently.
 ]]--
 
+L:RegisterTranslations("koKR", function() return {
+	glapse = "중력 붕괴",
+	glapse_desc = "중력 붕괴에 대해 알립니다.",
+	glapse_message = "잠시후 중력 붕괴!",
+	glapse_bar = "중력 붕괴",
+
+	phoenix = "불사조 소환",
+	phoenix_desc = "불사조 소환에 대해 알립니다.",
+	phoenix_message = "불사조 소환!",
+
+	flamestrike = "화염구",
+	flamestrike_desc = "화염구 시전에 대해 알립니다.",
+	flamestrike_message = "화염구!",
+
+	barrier = "Shock Barrier (영웅)",
+	barrier_desc = "캘타스가 Shock Barrier 획득에 대해 알립니다.",
+	barrier_message = "Shock Barrier Up!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

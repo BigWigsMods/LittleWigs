@@ -34,6 +34,18 @@ L:RegisterTranslations("enUS", function() return {
 	localize, just be aware that you may need to change it frequently.
 ]]--
 
+L:RegisterTranslations("koKR", function() return {
+	adds = "순수한 마력덩어리",
+	adds_desc = "순수한 마력덩어리 방출에 대해 알립니다.",
+	adds_message = "순수한 마력덩어리 방출!",
+	adds_trigger = "순수한 마력덩어리를 방출합니다!",
+
+	feedback = "Energy Feedback",
+	feedback_desc = "Energy Feedback 디버프가 걸린 플레이어를 알립니다.",
+	feedback_you = "당신은 Energy Feedback!",
+	feedback_other = "Energy Feedback: %s!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
