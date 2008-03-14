@@ -64,7 +64,7 @@ L:RegisterTranslations("koKR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local mod = BigWigs:NewModule(boss.."MT")
 mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
