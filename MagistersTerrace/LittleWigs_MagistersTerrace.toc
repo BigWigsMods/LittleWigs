@@ -1,7 +1,9 @@
 ﻿## Interface: 20400
 
 ## Title: Little Wigs (BETA) [|cffeda55fMagisters' Terrace|r]
+## Titles-frFR: Little Wigs (BETA) [|cffeda55fTerrasse des Magistères|r]
 ## Notes: Little Wigs Magisters' Terrace Modules
+## Notes-frFR: Modules Little Wigs concernant la Terrasse des Magistères.
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

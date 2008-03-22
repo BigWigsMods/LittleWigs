@@ -60,6 +60,25 @@ L:RegisterTranslations("koKR", function() return {
 	barrier_message = "Shock Barrier Up!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	glapse = "Rupture de gravité",
+	glapse_desc = "Préviens de l'arrivée des Ruptures de gravité.",
+	glapse_message = "Rupture de gravité imminente !",
+	glapse_bar = "Rupture de gravité",
+
+	phoenix = "Phénix",
+	phoenix_desc = "Préviens quand un phénix est invoqué.",
+	phoenix_message = "Phénix invoqué !",
+
+	flamestrike = "Frappe de flammes",
+	flamestrike_desc = "Préviens quand une Frappe de flammes est incantée.",
+	flamestrike_message = "Frappe de flammes !",
+
+	barrier = "Barrière de choc (Héroïque)",
+	barrier_desc = "Préviens quand Kael'thas gagne Barrière de choc.",
+	barrier_message = "Barrière de choc !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
