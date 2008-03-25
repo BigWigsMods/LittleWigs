@@ -45,6 +45,18 @@ L:RegisterTranslations("koKR", function() return {
 	feedback_other = "에너지 역류: %s!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	adds = "Energie pure",
+	adds_desc = "Préviens quand l'Energie pure est déchargée.",
+	adds_message = "Energie pure déchargée !",
+	adds_trigger = "discharges pure energy!", -- à traduire
+
+	feedback = "Réaction énergétique",
+	feedback_desc = "Préviens quand un joueur subit les effets de la Réaction énergétique.",
+	feedback_you = "Réaction énergétique sur VOUS !",
+	feedback_other = "Réaction énergétique sur %s !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

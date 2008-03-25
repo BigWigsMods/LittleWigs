@@ -120,11 +120,25 @@ L:RegisterTranslations("frFR", function() return {
 	dmg = "Réflection des dégâts",
 	dmg_desc = "Préviens quand Capacitus est protégé par un Bouclier réflecteur de dégâts.",
 
+	shields = "Boucliers réflecteurs",
+	shields_desc = "Préviens de l'arrivée des boucliers réflecteurs de magie & de dégâts.",
+	shields_message = "%s en place !",
+	shieldsremoved_message = "%s terminé !",
+
+	shieldbar = "Barre du bouclier",
+	shieldbar_desc = "Affiche une barre indiquant la durée des boucliers réflecteurs.",
+
 	polarity = "Changement de polarité (Héroïque)",
 	polarity_desc = "Préviens quand le Changement de polarité est incanté.",
 	polarity_trigger = "commence à lancer Changement de polarité",
 	polarity_message = "Changement de polarité dans 3 sec. !",
 	polarity_bar = "Changement de polarité",
+
+	enrage = "Enrager (Héroïque)",
+	enrage_desc = "Préviens 15 et 45 secondes avant l'Enrager.",
+	enrage_trigger = "^Dégagez tant que vous le pouvez.$", -- à vérifier
+	enrage_message = "Enrager dans %s sec. !",
+	enrage_bar = "<Enrager>",
 } end )
 
 L:RegisterTranslations("esES", function() return {

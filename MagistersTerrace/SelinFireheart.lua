@@ -1,4 +1,4 @@
-------------------------------
+ï»¿------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -28,10 +28,17 @@ L:RegisterTranslations("enUS", function() return {
 ]]--
 
 L:RegisterTranslations("koKR", function() return {
-	channel = "ºĞ³ëÀÇ ¸¶³ª",
-	channel_desc = "¼¿¸° ÆÄÀÌ¾îÇÏÆ®°¡ Áö¿Á ¼öÁ¤¿¡¼­ ¸¶·Â Èí¼ö¿¡ ´ëÇØ ¾Ë¸³´Ï´Ù.",
-	channel_message = "ºĞ³ëÀÇ ¸¶³ª!",
-	channel_trigger = "±ÙÃ³ÀÇ Áö¿Á ¼öÁ¤¿¡¼­ ÈûÀ» ²ø¾î³À´Ï´Ù...",
+	channel = "ÂºÃÂ³Ã«Ã€Ã‡ Â¸Â¶Â³Âª",
+	channel_desc = "Â¼Â¿Â¸Â° Ã†Ã„Ã€ÃŒÂ¾Ã®Ã‡ÃÃ†Â®Â°Â¡ ÃÃ¶Â¿Ã Â¼Ã¶ÃÂ¤Â¿Â¡Â¼Â­ Â¸Â¶Â·Ã‚ ÃˆÃ­Â¼Ã¶Â¿Â¡ Â´Ã«Ã‡Ã˜ Â¾Ã‹Â¸Â³Â´ÃÂ´Ã™.",
+	channel_message = "ÂºÃÂ³Ã«Ã€Ã‡ Â¸Â¶Â³Âª!",
+	channel_trigger = "Â±Ã™ÃƒÂ³Ã€Ã‡ ÃÃ¶Â¿Ã Â¼Ã¶ÃÂ¤Â¿Â¡Â¼Â­ ÃˆÃ»Ã€Â» Â²Ã¸Â¾Ã®Â³Ã€Â´ÃÂ´Ã™...",
+} end )
+
+L:RegisterTranslations("frFR", function() return {
+	channel = "Canalise du mana",
+	channel_desc = "PrÃ©viens quand Selin Coeur-de-feu canalise du mana Ã  partir d'un gangrecristal.",
+	channel_message = "Canalise du mana !",
+	channel_trigger = "commence Ã  canaliser l'Ã©nergie du gangrecristal tout proche",
 } end )
 
 ----------------------------------
