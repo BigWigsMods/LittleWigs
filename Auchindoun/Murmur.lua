@@ -6,6 +6,10 @@ local boss = BB["Murmur"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
+local pName = UnitName("player")
+local db = nil
+local fmt = string.format
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -15,21 +19,21 @@ L:RegisterTranslations("enUS", function() return {
 
 	touch_trigger = "^([^%s]+) ([^%s]+) afflicted by Murmur's Touch.",
 	touch_message = "%s has %s!",
-	touch_message_you = "You are the bomb!",
-	touch_message_other = "%s is the bomb!",
+	touch_message_you = "You have Murmur's Touch!",
+	touch_message_other = "%s has Murmur's Touch!",
 
-	touchtimer = "Bar for when the bomb goes off",
-	touchtimer_desc = "Shows a 13 second bar for when the bomb goes off at the target.",
+	touchtimer = "Bar for when Murmur's Touch goes off",
+	touchtimer_desc = "Shows a 13 second bar for when Murmur's Touch goes off on the target.",
 	touchtimer_bar = "%s: Murmur's Touch",
 
-	youtouch = "You are the bomb alert",
-	youtouch_desc = "Warn when you are the bomb",
+	youtouch = "You Touch Alert",
+	youtouch_desc = "Warn when you have Murmur's Touch",
 
-	elsetouch = "Someone else is the bomb alert",
-	elsetouch_desc = "Warn when others are the bomb",
+	othertouch = "Someone else Touch Alert",
+	othertouch_desc = "Warn when others have Murmur's Touch",
 
 	icon = "Raid Icon on bomb",
-	icon_desc = "Put a Raid Icon on the person who's the bomb. (Requires promoted or higher)",
+	icon_desc = "Put a Raid Icon on the person who has Murmur's Touch. (Requires promoted or higher)",
 
 	sonicboom = "Sonic Boom",
 	sonicboom_desc = "Warns when Murmur begins casting his Sonic Boom",
@@ -50,8 +54,8 @@ L:RegisterTranslations("koKR", function() return {
 	youtouch = "자신의 폭탄 알림",
 	youtouch_desc = "당신이 폭탄일 때 알립니다.",
 
-	elsetouch = "타인의 폭탄 알림",
-	elsetouch_desc = "타인이 폭탄일 때 알립니다.",
+	othertouch = "타인의 폭탄 알림",
+	othertouch_desc = "타인이 폭탄일 때 알립니다.",
 
 	icon = "폭탄 공격대 아이콘",
 	icon_desc = "폭탄인 사람에게 공격대 아이콘을 지정합니다. (승급자 이상 권한 요구)",
@@ -75,8 +79,8 @@ L:RegisterTranslations("zhTW", function() return {
 	youtouch = "自身炸彈警報",
 	youtouch_desc = "當自己成為炸彈時發出警報",
 
-	elsetouch = "隊友炸彈警報",
-	elsetouch_desc = "當隊友變成炸彈時發出警報",
+	othertouch = "隊友炸彈警報",
+	othertouch_desc = "當隊友變成炸彈時發出警報",
 
 	icon = "炸彈標記",
 	icon_desc = "在被變成炸彈的隊友頭上標記（需要助理或領隊權限）",
@@ -100,8 +104,8 @@ L:RegisterTranslations("frFR", function() return {
 	youtouch = "Bombe (vous)",
 	youtouch_desc = "Préviens quand vous êtes la bombe.",
 
-	elsetouch = "Bombe (les autres)",
-	elsetouch_desc = "Préviens quand les autres sont la bombe.",
+	othertouch = "Bombe (les autres)",
+	othertouch_desc = "Préviens quand les autres sont la bombe.",
 
 	icon = "Icône",
 	icon_desc = "Place une icône de raid sur la personne qui est la bombe (nécessite d'être promu ou mieux).",
@@ -125,8 +129,8 @@ L:RegisterTranslations("deDE", function() return {
 	youtouch = "Du bist die Bombe - Warnung",
 	youtouch_desc = "Warnt wenn du die Bombe bist",
 
-	elsetouch = "Jemand anders ist die Bombe - Warnung",
-	elsetouch_desc = "Warnt wenn jemand anders die Bombe ist",
+	othertouch = "Jemand anders ist die Bombe - Warnung",
+	othertouch_desc = "Warnt wenn jemand anders die Bombe ist",
 
 	icon = "Raidsymbol auf Bombe",
 	icon_desc = "Setzt ein Raidsymbol auf die Person die die Bombe ist. (Ben\195\182tigt bef\195\182rderten Status oder h\195\182her)",
@@ -150,8 +154,8 @@ L:RegisterTranslations("zhCN", function() return {
 	youtouch = "你是炸弹警告",
 	youtouch_desc = "当自己称为炸弹发出警报",
 
-	elsetouch = "队友炸弹警告",
-	elsetouch_desc = "当队友是炸弹时发出警告",
+	othertouch = "队友炸弹警告",
+	othertouch_desc = "当队友是炸弹时发出警告",
 
 	icon = "团队标记炸弹",
 	icon_desc = "在被成为炸弹的队友打上团队标记. (需要助理或更高)",
@@ -175,8 +179,8 @@ L:RegisterTranslations("esES", function() return {
 	youtouch = "Bomba (tu)",
 	youtouch_desc = "Aviso para cuando tu eres la bomba",
 
-	elsetouch = "Bomba (los otros)",
-	elsetouch_desc = "Aviso para cuando otros son la bomba",
+	othertouch = "Bomba (los otros)",
+	othertouch_desc = "Aviso para cuando otros son la bomba",
 
 	icon = "Icono de Raid para la bomba",
 	icon_desc = "Pone un icono de Raid en la persona que es la bomba (Requiere promocionado o superior).",
@@ -197,7 +201,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Shadow Labyrinth"]
 mod.enabletrigger = boss
-mod.toggleoptions = {"sonicboom", -1, "touchtimer", "youtouch", "elsetouch", "icon", "bosskill"}
+mod.toggleoptions = {"sonicboom", -1, "touchtimer", "youtouch", "othertouch", "icon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -216,6 +220,8 @@ function mod:OnEnable()
 
 	self:RegisterEvent("BigWigs_RecvSync")
 	self:TriggerEvent("BigWigs_ThrottleSync", "MurmurTouch", 2)
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -223,15 +229,17 @@ end
 ------------------------------
 
 function mod:Touch(player, spellID)
-	if player and self.db.profile.youtouch then
-		spellName = GetSpellInfo(spellID)
-		self:Message(L["touch_message"]:format(player, spellName), "Attention")
+	if player == pName and db.youtouch then
+		self:Message(L["touch_message_you"], "Personal", true)
+		self:Message(fmt(L["touch_message_other"], player), "Attention", nil, nil, true)		
+	elseif db.othertouch then
+		self:Message(fmt(L["touch_message_other"], player), "Attention")
 		self:Whisper(player, L["touch_message_you"])
 	end
-	if player and self.db.profile.touchtimer then
-		self:Bar(L["touchtimer_bar"]:format(player), 13, spellID, "Red")
+	if player and db.touchtimer then
+		self:Bar(fmt(L["touchtimer_bar"], player), 13, spellID, "Red")
 	end
-	if player and self.db.profile.icon then
+	if player and db.icon then
 		self:Icon(player)
 	end	
 end
@@ -247,7 +255,7 @@ function mod:Event(msg)
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
-	if msg:find(L["sonicboom_trigger"]) then
+	if db.sonicboom and msg:find(L["sonicboom_trigger"]) then
 		self:Message(L["sonicboom_alert"], "Important")
 		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
 	end
@@ -257,19 +265,19 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 	if sync == "MurmurTouch" and rest then
 		local player = rest
 
-		if player == UnitName("player") and self.db.profile.youtouch then
+		if player == UnitName("player") and db.youtouch then
 			self:Message(L["touch_message_you"], "Personal", true)
-			self:Message(L["touch_message_other"]:format(player), "Attention", nil, nil, true)
-		elseif self.db.profile.elsetouch then
-			self:Message(L["touch_message_other"]:format(player), "Attention")
+			self:Message(fmt(L["touch_message_other"], player), "Attention", nil, nil, true)
+		elseif db.othertouch then
+			self:Message(fmt(L["touch_message_other"], player), "Attention")
 			self:Whisper(player, L["touch_message_you"])
 		end
 
-		if self.db.profile.touchtimer then
-			self:Bar(L["touchtimer_bar"]:format(player), 13, "Spell_Shadow_MindBomb", "Red")
+		if db.touchtimer then
+			self:Bar(fmt(L["touchtimer_bar"], player), 13, "Spell_Shadow_MindBomb", "Red")
 		end
 
-		if self.db.profile.icon then
+		if db.icon then
 			self:Icon(player)
 		end
 	end

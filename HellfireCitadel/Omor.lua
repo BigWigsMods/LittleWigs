@@ -6,6 +6,9 @@ local boss = BB["Omor the Unscarred"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
+local db = nil
+local fmt = string.format
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -103,12 +106,15 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Curse", 30695, 37566, 30697, 37567, 39298) -- from wowhead, 30695(Treacherous Aura) & 37566(Bane of Treachery) are probably the correct ones
+	self:AddCombatListener("SPELL_AURA_REMOVED", "CurseRemove", 30695, 37566, 30697, 37567, 39298) -- from wowhead, 30695(Treacherous Aura) & 37566(Bane of Treachery) are probably the correct ones
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "Event")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "Event")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "Event")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -116,28 +122,32 @@ end
 ------------------------------
 
 function mod:Curse(player, spellID)
-	if player and self.db.profile.aura then
+	if player and db.aura then
 		local spellName = GetSpellInfo(spellID)
-		self:Message(L["aura_message"]:format(player, spellName), "Urgent")
-		self:Bar(L["aura_bar"]:format(player, spellName), 15, spellID, "Red")
-		self:Whisper(player, L["aura_message_you"]:format(spellName))
-		if self.db.profile.icon then
+		self:Message(fmt(L["aura_message"], player, spellName), "Urgent")
+		self:Bar(fmt(L["aura_bar"], player, spellName), 15, spellID, "Red")
+		self:Whisper(player, fmt(L["aura_message_you"], spellName))
+		if db.icon then
 			self:Icon(player)
 		end	
 	end
 end
 
+function mod:CurseRemove()
+	self:TriggerEvent("BigWigs_RemoveRaidIcon")
+end
+
 function mod:Event(msg)
-	if not self.db.profile.aura then return end
+	if not db.aura then return end
 	local Aplayer, Atype, Aspell = select(3, msg:find(L["aura_trigger"]))
 	if Aspell ~= L["aura"] and Aspell ~= L["aura_heroic"] then return end
 	if Aplayer and Atype then
 		if Aplayer == L2["you"] and Atype == L2["are"] then
 			Aplayer = UnitName("player")
 		end
-		self:Message(L["aura_message"]:format(Aplayer, Aspell), "Urgent")
-		self:Bar(L["aura_bar"]:format(Aplayer, Aspell), 15, "Spell_Shadow_DeadofNight", "Red")
-		if self.db.profile.icon then
+		self:Message(fmt(L["aura_message"], Aplayer, Aspell), "Urgent")
+		self:Bar(fmt(L["aura_bar"], Aplayer, Aspell), 15, "Spell_Shadow_DeadofNight", "Red")
+		if db.icon then
 			self:Icon(Aplayer)
 		end
 	end

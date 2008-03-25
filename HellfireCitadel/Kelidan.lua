@@ -5,6 +5,8 @@
 local boss = BB["Keli'dan the Breaker"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -47,10 +49,10 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-   nova = "Feuernova",
-   nova_desc = "Warnung vor der Feuernova",
-   nova_trigger = "Kommt! Kommt n\195\164her... und brennt!",
-   nova_message = "Feuernova!",
+	nova = "Feuernova",
+	nova_desc = "Warnung vor der Feuernova",
+	nova_trigger = "Kommt! Kommt n\195\164her... und brennt!",
+	nova_message = "Feuernova!",
 } end )
 
 ----------------------------------
@@ -74,6 +76,8 @@ function mod:OnEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -81,7 +85,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.nova and msg:find(L["nova_trigger"]) then
+	if db.nova and msg:find(L["nova_trigger"]) then
 		self:Message(L["nova_message"], "Important")
 	end
 end

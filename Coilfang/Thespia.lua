@@ -5,6 +5,8 @@
 local boss = BB["Hydromancer Thespia"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -81,6 +83,8 @@ function mod:OnEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -88,7 +92,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.storm and msg == L["storm_trigger"] then
+	if db.storm and msg == L["storm_trigger"] then
 		self:Message(L["storm_message"], "Attention")
 	end
 end

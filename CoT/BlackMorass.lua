@@ -11,6 +11,9 @@ local boss1 = BB["Chrono Lord Deja"]
 local boss2 = BB["Temporus"]
 local boss3 = BB["Aeonus"]
 
+local db = nil
+local fmt = string.format
+
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Blackmorass",
 
@@ -25,11 +28,11 @@ L:RegisterTranslations("enUS", function() return {
 	portal_bar = "~%s: Wave %s",
 	multiportal_bar = "~Until Multiple waves",
 
-	portal_warning15s = "%s in ~15 seconds!",
-	portal_warning140s = "%s in ~140 seconds!",
+	portal_message15s = "%s in ~15 seconds!",
+	portal_message140s = "%s in ~140 seconds!",
 
 	disable_trigger = "We will triumph. It is only a matter... of time.",
-	disable_warning = "%s has been saved!",
+	disable_message = "%s has been saved!",
 
 	death_trigger = "(.+) dies%.",
 	reset_trigger = "No! Damn this feeble, mortal coil!",
@@ -38,12 +41,12 @@ L:RegisterTranslations("enUS", function() return {
 	frenzy = "Aeonus - Frenzy",
 	frenzy_desc = "Warn when Aeonus goes into a frenzy.",
 	frenzy_trigger = "%s goes into a frenzy!",
-	frenzy_warning = "Frenzy Alert!",
+	frenzy_message = "Frenzy Alert!",
 
 	hasten = "Temporus - Hasten",
 	hasten_desc = "Warns when Temporus gains hasten.",
 	hasten_trigger = "Temporus gains Hasten.",
-	hasten_warning = "Temporus gains Hasten!",
+	hasten_message = "Temporus gains Hasten!",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -58,22 +61,22 @@ L:RegisterTranslations("zhTW", function() return {
 	portal_bar = "~%s: Wave %s",
 	multiportal_bar = "同時存在多個傳送門",
 
-	portal_warning15s = "15 秒後 %s !",
-	portal_warning140s = "140 秒後 %s !",
+	portal_message15s = "15 秒後 %s !",
+	portal_message140s = "140 秒後 %s !",
 
 	disable_trigger = "我們會獲勝。這只是……時間的問題。",
-	disable_warning = "%s 獲救了!",
+	disable_message = "%s 獲救了!",
 
 	-- Bosses
 	frenzy = "艾奧那斯 - 狂亂",
 	frenzy_desc = "艾奧那斯狂亂時發出警報",
 	frenzy_trigger = "%s獲得了狂亂的效果。",
-	frenzy_warning = "艾奧那斯狂亂了!",
+	frenzy_message = "艾奧那斯狂亂了!",
 
 	hasten = "坦普拉斯 - 迅速",
 	hasten_desc = "坦普拉斯獲得迅速時發出警報",
 	hasten_trigger = "坦普拉斯獲得了迅速的效果。",
-	hasten_warning = "坦普拉斯獲得了迅速!",
+	hasten_message = "坦普拉斯獲得了迅速!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -88,11 +91,11 @@ L:RegisterTranslations("koKR", function() return {
 	portal_bar = "~%s: %s 균열",
 	multiportal_bar = "~차원문 겹침",
 
-	portal_warning15s = "약 15초 이내 %s!",
-	portal_warning140s = "약 140초 이내 %s!",
+	portal_message15s = "약 15초 이내 %s!",
+	portal_message140s = "약 140초 이내 %s!",
 
 	disable_trigger = "우리는 승리한다. 단지 시간문제일 뿐...", -- check
-	disable_warning = "%s|1을;를; 지켰습니다!",
+	disable_message = "%s|1을;를; 지켰습니다!",
 
 	death_trigger = "(.+)|1이;가; 죽었습니다%.",
 	reset_trigger = "안 돼! 이런 나약한 무리에게 당하다니!",
@@ -101,12 +104,12 @@ L:RegisterTranslations("koKR", function() return {
 	frenzy = "아에누스 - 광란",
 	frenzy_desc = "아에누스가 광란 시 경고합니다.",
 	frenzy_trigger = "%s|1이;가; 광란의 상태에 빠집니다!",
-	frenzy_warning = "광란 경고!",
+	frenzy_message = "광란 경고!",
 
 	hasten = "템퍼루스 - 독촉",
 	hasten_desc = "템퍼루스가 독촉에 걸릴 시 경고합니다.",
 	hasten_trigger = "템퍼루스|1이;가; 독촉 효과를 얻었습니다.",
-	hasten_warning = "템퍼루스 독촉!",
+	hasten_message = "템퍼루스 독촉!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -121,11 +124,11 @@ L:RegisterTranslations("frFR", function() return {
 	portal_bar = "~%s : Vague %s",
 	multiportal_bar = "~Plusieurs vagues",
 
-	portal_warning15s = "%s dans ~15 sec. !",
-	portal_warning140s = "%s dans ~140 sec. !",
+	portal_message15s = "%s dans ~15 sec. !",
+	portal_message140s = "%s dans ~140 sec. !",
 
 	disable_trigger = "Nous triompherons. Ce n'est qu'une question... de temps.",
-	disable_warning = "%s a été sauvé !",
+	disable_message = "%s a été sauvé !",
 
 	death_trigger = "(.+) meurt%.",
 	reset_trigger = "Non ! Maudite soit cette enveloppe mortelle !",
@@ -134,12 +137,12 @@ L:RegisterTranslations("frFR", function() return {
 	frenzy = "Aeonus - Frénésie",
 	frenzy_desc = "Préviens quand Aeonus est pris de frénésie.",
 	frenzy_trigger = "%s est pris de frénésie !",
-	frenzy_warning = "Frénésie !",
+	frenzy_message = "Frénésie !",
 
 	hasten = "Temporus - Précipiter",
 	hasten_desc = "Préviens quand Temporus gagne Précipiter.",
 	hasten_trigger = "Temporus gagne Précipiter.",
-	hasten_warning = "Temporus gagne Précipiter !",
+	hasten_message = "Temporus gagne Précipiter !",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -154,11 +157,11 @@ L:RegisterTranslations("zhCN", function() return {
 	portal_bar = "~%s: 波 %s",
 	multiportal_bar = "~同时存在多个传送门",
 
-	portal_warning15s = "15秒后 - %s !",
-	portal_warning140s = "140秒后 %s !",
+	portal_message15s = "15秒后 - %s !",
+	portal_message140s = "140秒后 %s !",
 
 	disable_trigger = "我们会胜利的。这只是个……时间问题。",
-	disable_warning = "%s 获救了",
+	disable_message = "%s 获救了",
 	death_trigger = "(.+)死亡了。",
 	--reset_trigger = "No! Damn this feeble, mortal coil!",
 
@@ -166,12 +169,12 @@ L:RegisterTranslations("zhCN", function() return {
 	frenzy = "埃欧努斯 - 狂乱",
 	frenzy_desc = "当埃欧努斯进入狂乱时发出警报",
 	frenzy_trigger = "%s变得狂怒无比！",
-	frenzy_warning = "狂乱!",
+	frenzy_message = "狂乱!",
 
 	hasten = "坦普卢斯 - 时光加速",
 	hasten_desc = "当获得了时光加速时发出警报",
 	hasten_trigger = "坦普卢斯获得了时光加速的效果。",
-	hasten_warning = "时光加速!",
+	hasten_message = "时光加速!",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -186,22 +189,22 @@ L:RegisterTranslations("deDE", function() return {
 	portal_bar = "~%s: Welle %s",
 	multiportal_bar = "~Mehrere Portale gleichzeitig",
 
-	portal_warning15s = "%s in ~15 Sekunden!",
-	portal_warning140s = "%s in ~140 Sekunden!",
+	portal_message15s = "%s in ~15 Sekunden!",
+	portal_message140s = "%s in ~140 Sekunden!",
 
 	disable_trigger = "Wir werden siegen. Es ist nur eine Frage der Zeit...",
-	disable_warning = "%s wurde gerettet!",
+	disable_message = "%s wurde gerettet!",
 
 	-- Bosses
 	frenzy = "Aeonus - Raserei",
 	frenzy_desc = "Warnen, wenn Aeonus in Raserei verf\195\164llt.",
 	frenzy_trigger = "%s ger\195\164t in Raserei!",
-	frenzy_warning = "Raserei! - Einlullender Schuss!",
+	frenzy_message = "Raserei! - Einlullender Schuss!",
 
 	hasten = "Temporus - Hasten",
 	hasten_desc = "Warnen, wenn Temporus 'Hasten' bekommt",
 	hasten_trigger = "Temporus bekommt 'Hasten'.",
-	hasten_warning = "Temporus bekommt 'Hasten'!",
+	hasten_message = "Temporus bekommt 'Hasten'!",
 } end )
 
 ----------------------------------
@@ -222,11 +225,15 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Hasten", 31458)
+
 	self:RegisterEvent("UPDATE_WORLD_STATES")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -238,22 +245,28 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		self:TriggerEvent("BigWigs_RebootModule", self)
 		wave = 0
 	elseif msg == L["disable_trigger"] then
-		if self.db.profile.bosskill then
-			self:Message(L["disable_warning"]:format(boss), "Bosskill", nil, "Victory")
+		if db.bosskill then
+			self:Message(fmt(L["disable_message"], boss), "Bosskill", nil, "Victory")
 		end
 		BigWigs:ToggleModuleActive(self, false)
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
-	if self.db.profile.frenzy and msg == L["frenzy_trigger"] then
-		self:Message(L["frenzy_warning"], "Important", nil, "Alert")
+	if db.frenzy and msg == L["frenzy_trigger"] then
+		self:Message(L["frenzy_message"], "Important", nil, "Alert")
 	end
 end
 
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if self.db.profile.hasten and msg == L["hasten_trigger"] then
-		self:Message(L["hasten_warning"], "Important", nil, "Alert")
+	if db.hasten and msg == L["hasten_trigger"] then
+		self:Message(L["hasten_message"], "Important", nil, "Alert")
+	end
+end
+
+function mod:Hasten()
+	if db.hasten then
+		self:Message(L["hasten_message"], "Important", nil, "Alert")
 	end
 end
 
@@ -266,11 +279,11 @@ function mod:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
 	else
 		return
 	end
-	if self.db.profile.portal then
-		self:Message(L["portal_warning140s"]:format(L["next_portal"]), "Attention")
+	if db.portal then
+		self:Message(fmt(L["portal_message140s"], L["next_portal"]), "Attention")
 	end
-	if self.db.profile.portalbar then
-		self:Bar(L["portal_bar"]:format(L["next_portal"],wave+1), 125, "INV_Misc_ShadowEgg")
+	if db.portalbar then
+		self:Bar(fmt(L["portal_bar"], L["next_portal"],wave+1), 125, "INV_Misc_ShadowEgg")
 	end
 end
 
@@ -281,28 +294,28 @@ function mod:UPDATE_WORLD_STATES()
 	local num = tonumber((text or ""):match("(%d+)") or nil)
 	if num and num > wave then
 		wave = wave + 1
-		if self.db.profile.portal then
+		if db.portal then
 			if wave == 6 then
-				self:Message(L["portal_warning15s"]:format(boss1), "Attention")
+				self:Message(fmt(L["portal_message15s"], boss1), "Attention")
 			elseif wave == 12 then
-				self:Message(L["portal_warning15s"]:format(boss2), "Attention")
+				self:Message(fmt(L["portal_message15s"], boss2), "Attention")
 			elseif wave == 18 then
-				self:Message(L["portal_warning15s"]:format(boss3), "Attention")
+				self:Message(fmt(L["portal_message15s"], boss3), "Attention")
 			else
-				self:Message(L["portal_warning15s"]:format(L["next_portal"]), "Attention")
+				self:Message(fmt(L["portal_message15s"], L["next_portal"]), "Attention")
 			end
 		end
-		if self.db.profile.portalbar then
+		if db.portalbar then
 			self:TriggerEvent("BigWigs_StopBar", self, L["multiportal_bar"])
 			self:Bar(L["multiportal_bar"], 127, "INV_Misc_ShadowEgg")
 			if wave == 6 then
-				self:Bar(L["portal_bar"]:format(boss1,wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(fmt(L["portal_bar"], boss1, wave), 15, "INV_Misc_ShadowEgg")
 			elseif wave == 12 then
-				self:Bar(L["portal_bar"]:format(boss2,wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(fmt(L["portal_bar"], boss2, wave), 15, "INV_Misc_ShadowEgg")
 			elseif wave == 18 then
-				self:Bar(L["portal_bar"]:format(boss3,wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(fmt(L["portal_bar"], boss3, wave), 15, "INV_Misc_ShadowEgg")
 			else
-				self:Bar(L["portal_bar"]:format(L["next_portal"],wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(fmt(L["portal_bar"], L["next_portal"], wave), 15, "INV_Misc_ShadowEgg")
 			end
 		end
 	end

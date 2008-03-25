@@ -5,6 +5,9 @@
 local boss = BB["Exarch Maladaar"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+local fmt = string.format
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -16,6 +19,7 @@ L:RegisterTranslations("enUS", function() return {
 	soul_desc = "Warn for Stolen Souls",
 	soul_trigger = "begins to perform Stolen Soul",
 	soul_message = "A soul has been stolen!",
+	soul_message_new = "%s's soul stolen!",
 
 	avatar = "Avatar of the Martyred",
 	avatar_desc = "Warn for the summoning of the Avatar of the Martyred",
@@ -100,11 +104,15 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED","Soul", 32346)
+	--self:AddCombatListener("SPELL_CAST_START","Avatar", 32346) -- Can't find the spellId for this on wowhead
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -112,13 +120,25 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
-	if self.db.profile.soul and msg:find(L["soul_trigger"]) then
+	if db.soul and msg:find(L["soul_trigger"]) then
 		self:Message(L["soul_message"], "Attention")
 	end
 end
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
-	if self.db.profile.avatar and msg:find(L["avatar_trigger"]) then
+	if db.avatar and msg:find(L["avatar_trigger"]) then
+		self:Message(L["avatar_message"], "Attention")
+	end
+end
+
+function mod:Soul(player)
+	if db.soul then
+		self:Message(fmt(L["soul_message_new"], player), "Attention")
+	end
+end
+
+function mod:Avatar()
+	if db.avatar then
 		self:Message(L["avatar_message"], "Attention")
 	end
 end

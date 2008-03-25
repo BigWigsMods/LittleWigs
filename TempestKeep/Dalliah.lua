@@ -6,6 +6,9 @@ local boss = BB["Dalliah the Doomsayer"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
+local db = nil
+local fmt = string.format
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -145,14 +148,18 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	--self:AddCombatListener("SPELL_CAST_START", "Heal", #####) Need to find out spellId
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Gift", 36173, 39009)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "WW")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS", "WW")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF", "Heal")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE", "Gift")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE", "Gift")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE", "GiftOld")
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE", "GiftOld")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -160,15 +167,15 @@ end
 ------------------------------
 
 function mod:WW(msg)
-	if not self.db.profile.ww then return end
+	if not db.ww then return end
 	if msg == L["ww_trigger1"] or msg == L["ww_trigger2"] or msg == L["ww_trigger3"] then
 		self:Message(L["ww_message"], "Important")
 		self:Bar(L["ww"], 6, "Ability_Whirlwind")
 	end
 end
 
-function mod:Gift(msg)
-	if not self.db.profile.gift then return end
+function mod:GiftOld(msg)
+	if not db.gift then return end
 	local player, type = select(3, msg:find(L["gift_trigger"]))
 	if player and type then
 		if player == L2["you"] and type == L2["are"] then
@@ -180,8 +187,14 @@ function mod:Gift(msg)
 end
 
 function mod:Heal(msg)
-	if not self.db.profile.heal then return end
+	if not db.heal then return end
 	if msg == L["heal_trigger"] then
 		self:Message(L["heal_message"], Urgent)
 	end
+end
+
+function mod:Gift(player, spellId)
+	if not player or not db.gift then return end
+	self:Message(fmt(L["gift_message"], player), "Urgent")
+	self:Bar(fmt(L["gift_bar"], player), 10, spellId)
 end

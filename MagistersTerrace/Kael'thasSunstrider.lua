@@ -2,10 +2,8 @@
 --      Are you local?      --
 ------------------------------
 
-if not GetSpellInfo then return end
-
 local boss = BB["Kael'thas Sunstrider"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss.."MT")
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss.."(MT)")
 local db = nil
 local glapseannounced = nil
 
@@ -60,30 +58,11 @@ L:RegisterTranslations("koKR", function() return {
 	barrier_message = "Shock Barrier Up!",
 } end )
 
-L:RegisterTranslations("frFR", function() return {
-	glapse = "Rupture de gravité",
-	glapse_desc = "Préviens de l'arrivée des Ruptures de gravité.",
-	glapse_message = "Rupture de gravité imminente !",
-	glapse_bar = "Rupture de gravité",
-
-	phoenix = "Phénix",
-	phoenix_desc = "Préviens quand un phénix est invoqué.",
-	phoenix_message = "Phénix invoqué !",
-
-	flamestrike = "Frappe de flammes",
-	flamestrike_desc = "Préviens quand une Frappe de flammes est incantée.",
-	flamestrike_message = "Frappe de flammes !",
-
-	barrier = "Barrière de choc (Héroïque)",
-	barrier_desc = "Préviens quand Kael'thas gagne Barrière de choc.",
-	barrier_message = "Barrière de choc !",
-} end )
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss.."MT")
+local mod = BigWigs:NewModule(boss.."(MT)")
 mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 

@@ -5,6 +5,8 @@
 local boss = BB["Darkweaver Syth"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -77,10 +79,13 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_CAST_START", "Summon", 33538)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -88,8 +93,13 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
-	if self.db.profile.summon and msg:find(L["summon_trigger"]) then
+	if db.summon and msg:find(L["summon_trigger"]) then
 		self:Message(L["summon_message"], "Attention")
 	end
 end
 
+function mod:Summon()
+	if db.summon then
+		self:Message(L["summon_message"], "Attention")
+	end
+end

@@ -5,6 +5,8 @@
 local boss = BB["Warchief Kargath Bladefist"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -117,6 +119,8 @@ function mod:OnEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -130,13 +134,13 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 end
 
 function mod:DanceSoon()
-	if self.db.profile.bdwarn then
+	if db.bdwarn then
 		self:DelayedMessage(25, L["bdwarn_alert"], "Urgent")
 	end
-	if self.db.profile.bdbar then
+	if db.bdbar then
 		self:Bar(L["bdbar_display"], 30, "Ability_DualWield")
 	end
-	if self.db.profile.bdbar or self.db.profile.bdwarn then
+	if db.bdbar or db.bdwarn then
 		self:ScheduleEvent("bladedance", self.DanceSoon, 35, self)
 	end
 end

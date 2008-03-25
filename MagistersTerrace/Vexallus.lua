@@ -2,10 +2,9 @@
 --      Are you local?      --
 ------------------------------
 
-if not GetSpellInfo then return end
-
 local boss = BB["Vexallus"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
 local pName = UnitName("player")
 local db = nil
 
@@ -46,18 +45,6 @@ L:RegisterTranslations("koKR", function() return {
 	feedback_other = "에너지 역류: %s!",
 } end )
 
-L:RegisterTranslations("frFR", function() return {
-	adds = "Energie pure",
-	adds_desc = "Préviens quand l'Energie pure est déchargée.",
-	adds_message = "Energie pure déchargée !",
-	adds_trigger = "discharges pure energy!", -- à traduire
-
-	feedback = "Réaction énergétique",
-	feedback_desc = "Préviens quand un joueur subit les effets de la Réaction énergétique.",
-	feedback_you = "Réaction énergétique sur VOUS !",
-	feedback_other = "Réaction énergétique sur %s !",
-} end )
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
@@ -95,7 +82,7 @@ end
 
 function mod:Feedback(player, spellID)
 	if db.feedback then
-		local other = L["feedback_other"]:format(player)
+		local other = fmt(L["feedback_other"], player)
 		if player == pName then
 			self:Message(L["feedback_you"], "Personal", true, "Alert", nil, spellID)
 			self:Message(other, "Attention", nil, nil, true)
@@ -108,6 +95,6 @@ end
 
 function mod:FeedbackRemove(player)
 	if db.feedback then
-		self:TriggerEvent("BigWigs_StopBar", self, L["feedback_other"]:format(player))
+		self:TriggerEvent("BigWigs_StopBar", self, fmt(L["feedback_other"], player))
 	end
 end

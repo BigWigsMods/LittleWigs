@@ -2,10 +2,9 @@
 --      Are you local?      --
 ------------------------------
 
-if not GetSpellInfo then return end
-
 local boss = BB["Selin Fireheart"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
 local db = nil
 
 ----------------------------
@@ -33,13 +32,6 @@ L:RegisterTranslations("koKR", function() return {
 	channel_desc = "¼¿¸° ÆÄÀÌ¾îÇÏÆ®°¡ Áö¿Á ¼öÁ¤¿¡¼­ ¸¶·Â Èí¼ö¿¡ ´ëÇØ ¾Ë¸³´Ï´Ù.",
 	channel_message = "ºĞ³ëÀÇ ¸¶³ª!",
 	channel_trigger = "±ÙÃ³ÀÇ Áö¿Á ¼öÁ¤¿¡¼­ ÈûÀ» ²ø¾î³À´Ï´Ù...",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	channel = "Canalise du mana",
-	channel_desc = "Préviens quand Selin Coeur-de-feu canalise du mana à partir d'un gangrecristal.",
-	channel_message = "Canalise du mana !",
-	channel_trigger = "commence à canaliser l'énergie du gangrecristal tout proche",
 } end )
 
 ----------------------------------

@@ -4,7 +4,12 @@
 
 local boss = BB["Mechano-Lord Capacitus"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+local db = nil
 local aura = nil
+if GetSpellInfo then local charge = GetSpellInfo(39088) end --Positive Charge, check spellId
+local positive = nil
+local fmt = string.format
 
 ----------------------------
 --      Localization      --
@@ -29,16 +34,24 @@ L:RegisterTranslations("enUS", function() return {
 	dmg = "Damage Shields",
 	dmg_desc = "Warn for Damage Shields",
 
+	shields = "Reflective Shields",
+	shields_desc = "Warnings for damage & spell reflecting shields",
+	shields_message = "%s up!",
+	shieldsremoved_message = "%s down!",
+
+	shieldbar = "Shield Bar",
+	shieldbar_desc = "Display a bar for the duration of Magic & Damage Shields",
+
 	polarity = "Polarity Shift(Heroic)",
 	polarity_desc = "Warn when Polarity Shift is cast",
 	polarity_trigger = "begins to cast Polarity Shift",
-	polarity_warn = "Polarity Shift in 3 seconds!",
+	polarity_message = "Polarity Shift in 3 seconds!",
 	polarity_bar = "Polarity Shift",
 
 	enrage = "Enrage(Heroic)",
 	enrage_desc = "Warn at 15 and 45 seconds before Enrage",
 	enrage_trigger = "^You should split while you can.$",
-	enrage_warn = "%ss until enraged!",
+	enrage_message = "%ss until enraged!",
 	enrage_bar = "<Enrage>",
 } end )
 
@@ -62,7 +75,7 @@ L:RegisterTranslations("koKR", function() return {
 	polarity = "극성 변환(영웅)",
 	polarity_desc = "극성 변환 시전 시 경고",
 	polarity_trigger = "기계군주 캐퍼시투스|1이;가; 극성 변환 시전을 시작합니다.", -- check
-	polarity_warn = "3초 이내 극성 변환!",
+	polarity_message = "3초 이내 극성 변환!",
 	polarity_bar = "극성 변환",
 } end )
 
@@ -86,7 +99,7 @@ L:RegisterTranslations("zhTW", function() return {
 	polarity = "極性轉換（英雄模式）",
 	polarity_desc = "當極性轉換時警報（僅英雄模式）",
 	polarity_trigger = "開始施放兩極移形。",
-	polarity_warn = "3 秒後極性轉換，注意跑位!",
+	polarity_message = "3 秒後極性轉換，注意跑位!",
 	polarity_bar = "極性轉換",
 } end )
 
@@ -110,7 +123,7 @@ L:RegisterTranslations("frFR", function() return {
 	polarity = "Changement de polarité (Héroïque)",
 	polarity_desc = "Préviens quand le Changement de polarité est incanté.",
 	polarity_trigger = "commence à lancer Changement de polarité",
-	polarity_warn = "Changement de polarité dans 3 sec. !",
+	polarity_message = "Changement de polarité dans 3 sec. !",
 	polarity_bar = "Changement de polarité",
 } end )
 
@@ -134,7 +147,7 @@ L:RegisterTranslations("esES", function() return {
 	polarity = "Cambio de polaridad (Heroico)",
 	polarity_desc = "Avisa cuando Capacitus lanza cambio de polaridad",
 	polarity_trigger = "comienza a lanzar Cambio de polaridad",
-	polarity_warn = "Cambio de polaridad en 3 segundos!",
+	polarity_message = "Cambio de polaridad en 3 segundos!",
 	polarity_bar = "Cambio de polaridad",
 } end )
 
@@ -159,13 +172,13 @@ L:RegisterTranslations("zhCN", function() return {
 	polarity = "极性转换(英雄模式)",
 	polarity_desc = "当极性转换时发出警报",
 	polarity_trigger = "开始施放极性转换",
-	polarity_warn = "3秒后 极性转换!",
+	polarity_message = "3秒后 极性转换!",
 	polarity_bar = "极性转换",
 	
 	enrage = "激怒(英雄模式)",
 	enrage_desc = "在激怒前的15和45秒发出警报",
 	enrage_trigger = "^You should split while you can.$",
-	enrage_warn = "%s秒后 激怒!",
+	enrage_message = "%s秒后 激怒!",
 	enrage_bar = "<激怒>",
 } end )
 
@@ -189,13 +202,13 @@ L:RegisterTranslations("deDE", function() return {
 	polarity = "Polarit\195\164tsver\195\164nderung (Heroisch)",
 	polarity_desc = "Warnen, wenn Polarit\195\164tsver\195\164nderung gewirkt wird",
 	polarity_trigger = "beginnt Polarit\195\164tsver\195\164nderung zu wirken",
-	polarity_warn = "Polarit\195\164tsver\195\164nderung in 3 Sekunden!",
+	polarity_message = "Polarit\195\164tsver\195\164nderung in 3 Sekunden!",
 	polarity_bar = "Polarit\195\164tsver\195\164nderung",
 
 	enrage = "Enrage(Heroisch)",
 	enrage_desc = "15 und 45 Sekunden bevor Enrage warnen",
 	enrage_trigger = "^Verzieht Euch, solange Ihr noch k\195\182nnt.$",
-	enrage_warn = "%ss bis Enrage!",
+	enrage_message = "%ss bis Enrage!",
 	enrage_bar = "<Enrage>",
 } end )
 
@@ -208,7 +221,11 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"magic", "dmg", -1, "polarity", "enrage", "bosskill"}
+if GetSpellInfo then
+	mod.toggleoptions = {"shields", "shieldbar", -1, "polarity", "enrage", "bosskill"}
+else
+	mod.toggleoptions = {"magic", "dmg", -1, "polarity", "enrage", "bosskill"}
+end
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -216,6 +233,12 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Shield", 35158)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Shield", 35159)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "ShieldRemoved", 35158)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "ShieldRemoved", 35159)
+	self:AddCombatListener("SPELL_CAST_START", "Polarity", 39096, 28089) --find out which one it really is
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "PolarityScane", 39096, 28089) --find out which one it really is
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
@@ -223,7 +246,10 @@ function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 	aura = nil
+	positive = nil
 end
 
 ------------------------------
@@ -231,9 +257,9 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if not aura and self.db.profile.magic and msg:find(L["trigger1"]) then
+	if not aura and db.magic and msg:find(L["trigger1"]) then
 		mod:NewPowers(1)
-	elseif not aura and self.db.profile.dmg and msg:find(L["trigger2"]) then
+	elseif not aura and db.dmg and msg:find(L["trigger2"]) then
 		mod:NewPowers(2)
 	end
 end
@@ -251,17 +277,72 @@ function mod:NewPowers(power)
 end
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
-	if self.db.profile.polarity and msg:find(L["polarity_trigger"]) then
-		self:Message(L["polarity_warn"], "Urgent")
+	if db.polarity and msg:find(L["polarity_trigger"]) then
+		self:Message(L["polarity_message"], "Urgent")
 		self:Bar(L["polarity_bar"], 3, "Spell_Nature_Lightning")
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if not self.db.profile.enrage then return end
+	if not db.enrage or GetInstanceDifficulty() == 1 then return end
 	if msg == L["enrage_trigger"] then
 		self:Bar(L["enrage_bar"], 180, "Spell_Shadow_UnholyFrenzy")
-		self:DelayedMessage(135, L["enrage_warn"]:format("45"), "Important")
-		self:DelayedMessage(165, L["enrage_warn"]:format("15"), "Important")
+		self:DelayedMessage(135, fmt(L["enrage_message"], "45"), "Important")
+		self:DelayedMessage(165, fmt(L["enrage_message"], "15"), "Important")
+	end
+end
+
+function mod:Shield(spellId)
+	local spellName = GetSpellInfo(spellId)
+	if db.magic and spellId == 35158 then
+		self:Message(fmt(L["shields_message"], spellName), "Urgent", nil, "Alert", nil, 35158)
+	elseif db.dmg and spellId == 35159 then
+		self:Message(fmt(L["shields_message"], spellName), "Urgent", nil, "Alert", nil, 35159)
+	end
+	if db.shieldbar then
+		self:Bar(spellName, 10, spellId)
+	end
+end
+
+function mod:ShieldRemoved(spellId)
+	local spellName = GetSpellInfo(spellId)
+	if db.magic and spellId == 35158 then
+		self:Message(fmt(L["shieldsremoved_message"], spellName), "Urgent", nil, "Alert", nil, 35158)
+	elseif db.dmg and spellId == 35159 then
+		self:Message(fmt(L["shieldsremoved_message"], spellName), "Urgent", nil, "Alert", nil, 35159)
+	end
+end
+
+function mod:Polarity()
+	if db.polarity then
+		self:Message(L["polarity_message"], "Urgent", nil, "Alert", nil, 39096)
+		self:Bar(L["polarity_bar"], 3, 39096)
+	end
+end
+
+local function hasBuff(player, buff)
+	local i = 1
+	local name = UnitBuff(player, i)
+	while name do
+		if name == buff then return true end
+		i = i + 1
+		name = UnitBuff(player, i)
+	end
+	return false
+end
+
+function mod:PolarityScan()
+	if positive then
+		for k,v in positive do
+			self:TriggerEvent("BigWigs_StopBar", self, v)
+		end
+		positive = nil
+	end
+	if hasBuff("player", charge) then table.insert(positive, UnitName("player")) end
+	for i=1, 4 do
+		if hasBuff("party"..i, charge) then table.insert(positive, UnitName("party"..i)) end
+	end
+	for k,v in positive do
+		self:Bar(v, 60, 39088, "red")
 	end
 end

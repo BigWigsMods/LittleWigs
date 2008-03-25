@@ -5,6 +5,8 @@
 local boss = BB["Warlord Kalithresh"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -168,12 +170,15 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Reflection", 30887)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "Channel")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Channel")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -181,17 +186,24 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-    if self.db.profile.spell and msg:find(L["spell_trigger"]) then
+	if db.spell and msg:find(L["spell_trigger"]) then
 		self:Message(L["spell_message"], "Attention")
 		self:Bar(L["spell"], 8, "Spell_Shadow_AntiShadow")
 	end
 end
 
 function mod:Channel(msg)
-    if self.db.profile.engage and (msg == L["engage_trigger1"] or msg == L["engage_trigger2"] or msg:find(L["engage_trigger3"])) then
+	if db.engage and (msg == L["engage_trigger1"] or msg == L["engage_trigger2"] or msg:find(L["engage_trigger3"])) then
 		self:Message(L["engage_message"], "Attention")
 		self:Bar(L["rage_soonbar"], 15, "Spell_Nature_WispSplode")
 	elseif self.db.profile.rage and (msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"]) then
 		self:Message(L["rage_message"], "Urgent")
+	end
+end
+
+function mod:Reflection(spellId)
+	if db.spell then
+		self:Message(L["spell_message"], "Attention")
+		self:Bar(L["spell"], 8, spellId)
 	end
 end

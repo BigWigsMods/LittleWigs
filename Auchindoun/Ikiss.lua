@@ -5,6 +5,8 @@
 local boss = BB["Talon King Ikiss"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -77,10 +79,14 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	-- Way to many possible Blink spellIds, need to find the right one
+	--self:AddCombatListener("SPELL_CAST_START","AE", #####)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -89,6 +95,12 @@ end
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE(msg)
 	if self.db.profile.ae and msg == L["ae_trigger"] then
+		self:Message(L["ae_message"], "Attention")
+	end
+end
+
+function mod:AE()
+	if db.ae then
 		self:Message(L["ae_message"], "Attention")
 	end
 end

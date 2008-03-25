@@ -5,6 +5,8 @@
 local boss = BB["Broggok"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -48,10 +50,10 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-   poison = "Giftwolke",
-   poison_desc = "Warnt vor der Giftwolke",
-   poison_trigger = "Broggok wirkt Giftwolke.",
-   poison_message = "Giftwolke!",
+	poison = "Giftwolke",
+	poison_desc = "Warnt vor der Giftwolke",
+	poison_trigger = "Broggok wirkt Giftwolke.",
+	poison_message = "Giftwolke!",
 } end )
 
 ----------------------------------
@@ -71,10 +73,13 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_DAMAGE", "Cloud", 31259, 23861) -- Find out which one is correct
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -82,7 +87,13 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE(msg)
-	if self.db.profile.poison and msg == L["poison_trigger"] then
+	if db.poison and msg == L["poison_trigger"] then
+		self:Message(L["poison_message"], "Attention")
+	end
+end
+
+function mod:Cloud()
+	if db.poison then
 		self:Message(L["poison_message"], "Attention")
 	end
 end

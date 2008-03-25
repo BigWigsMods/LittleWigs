@@ -5,6 +5,8 @@
 local boss = BB["Grandmaster Vorpil"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local db = nil
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -100,11 +102,14 @@ mod.revision = tonumber(("$Revision: 33724 $"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Teleport", 33563)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
+
+	db = self.db.profile
 end
 
 ------------------------------
@@ -112,14 +117,22 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.teleport and (msg:find(L["engage_trigger1"]) or msg == L["engage_trigger2"]) then
+	if db.teleport and (msg:find(L["engage_trigger1"]) or msg == L["engage_trigger2"]) then
 		self:Bar(L["teleport_bar"], 40, "Spell_Magic_LesserInvisibilty")
 		self:DelayedMessage(35, L["teleport_warning"], "Attention")
 	end
 end
 
 function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if self.db.profile.teleport and msg:find(L["teleport_trigger"]) then
+	if db.teleport and msg:find(L["teleport_trigger"]) then
+		self:Message(L["teleport_message"], "Urgent", nil, "Alert")
+		self:Bar(L["teleport_bar"], 37, "Spell_Magic_LesserInvisibilty")
+		self:DelayedMessage(32, L["teleport_warning"], "Attention")
+	end
+end
+
+function mod:Teleport()
+	if db.teleport then
 		self:Message(L["teleport_message"], "Urgent", nil, "Alert")
 		self:Bar(L["teleport_bar"], 37, "Spell_Magic_LesserInvisibilty")
 		self:DelayedMessage(32, L["teleport_warning"], "Attention")
