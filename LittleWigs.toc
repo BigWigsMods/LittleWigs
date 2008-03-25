@@ -1,4 +1,4 @@
-﻿## Interface: 20300
+﻿## Interface: 20400
 
 ## Title: Little Wigs |cff7fff7f -Ace2-|r
 ## Notes: Boss warnings for 5-man instances.

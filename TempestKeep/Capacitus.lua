@@ -7,7 +7,7 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 local db = nil
 local aura = nil
-if GetSpellInfo then local charge = GetSpellInfo(39088) end --Positive Charge, check spellId
+local charge = GetSpellInfo(39088)
 local positive = nil
 local fmt = string.format
 
