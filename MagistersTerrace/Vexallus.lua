@@ -6,6 +6,7 @@ local boss = BB["Vexallus"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 local pName = UnitName("player")
+local fmt = string.format
 local db = nil
 
 ----------------------------
