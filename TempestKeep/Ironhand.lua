@@ -22,7 +22,6 @@ L:RegisterTranslations("enUS", function() return {
 
 	shadow = "Shadow Power",
 	shadow_desc = "Warn when Iron-Hand gains Shadow Power",
-	shadow_trigger = "begins to cast Shadow Power",
 	shadow_message = "Shadow Power in 2 seconds!",
 	shadow_bar = "Shadow Power",
 } end )
@@ -36,7 +35,6 @@ L:RegisterTranslations("koKR", function() return {
 
 	shadow = "어둠의 힘",
 	shadow_desc = "어둠의 힘을 얻을 시 경고",
-	shadow_trigger = "문지기 무쇠주먹|1이;가; 암흑 마법 강화 시전을 시작합니다.", -- check
 	shadow_message = "2초 이내 어둠의 힘!",
 	shadow_bar = "어둠의 힘",
 } end )
@@ -50,7 +48,6 @@ L:RegisterTranslations("zhTW", function() return {
 
 	shadow = "暗影強化",
 	shadow_desc = "看守者施放暗影強化時發出警報",
-	shadow_trigger = "開始施放暗影強化。",
 	shadow_message = "2 秒後施放暗影強化!",
 	shadow_bar = "暗影強化",
 } end )
@@ -64,7 +61,6 @@ L:RegisterTranslations("frFR", function() return {
 
 	shadow = "Puissance de l'ombre",
 	shadow_desc = "Préviens quand Main-en-fer gagne la Puissance de l'ombre.",
-	shadow_trigger = "commence à lancer Puissance de l'ombre",
 	shadow_message = "Puissance de l'ombre dans 2 sec. !",
 	shadow_bar = "Puissance de l'ombre",
 } end )
@@ -78,7 +74,6 @@ L:RegisterTranslations("esES", function() return {
 
 	shadow = "Shadow Power",
 	shadow_desc = "Avisa cuando Manoyerro lanza Poder de las Sombras",
-	shadow_trigger = "comienza a lanzar Poder de las Sombras",
 	shadow_message = "Poder de las Sombras en 2 segundos!",
 	shadow_bar = "Poder de las Sombras",
 } end )
@@ -93,7 +88,6 @@ L:RegisterTranslations("zhCN", function() return {
 
 	shadow = "暗影能量",
 	shadow_desc = "施放暗影能量时发出警报",
-	shadow_trigger = "开始施放暗影能量。",
 	shadow_message = "2秒后 暗影能量!",
 	shadow_bar = "暗影能量",
 } end )
@@ -107,7 +101,6 @@ L:RegisterTranslations("deDE", function() return {
 
 	shadow = "Schattenmacht",
 	shadow_desc = "Warnen, wenn Eisenhand Schattenmacht bekommt",
-	shadow_trigger = "beginnt Schattenmacht zu wirken",
 	shadow_message = "Schattenmacht in 2 Sekunden!",
 	shadow_bar = "Schattenmacht",
 } end )
@@ -129,12 +122,9 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Shadow", 35322)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF")
-	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 
 	db = self.db.profile
 end
@@ -150,14 +140,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 	end
 end
 
-function mod:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
-	if db.shadow and msg:find(L["shadow_trigger"]) then
-		self:Message(L["shadow_message"], "Important")
-		self:Bar(L["shadow"], 2, "Spell_Shadow_Metamorphosis")
-	end
-end
-
-function mod:ShadowF()
+function mod:Shadow()
 	if db.shadow then
 		self:Message(L["shadow_message"], "Important")
 		self:Bar(L["shadow"], 2, "Spell_Shadow_Metamorphosis")

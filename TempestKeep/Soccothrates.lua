@@ -16,14 +16,12 @@ L:RegisterTranslations("enUS", function() return {
 
 	knock = "Knock Away",
 	knock_desc = "Warn for Knock Away",
-	knock_trigger = "gains Knock Away.$",
 	knock_message = "Knock Away!",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
 	knock = "擊退",
 	knock_desc = "擊退警報",
-	knock_trigger = "獲得了擊退的效果。",
 	knock_message = "近戰被擊退!",
 } end )
 
@@ -31,28 +29,24 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	knock = "击退",
 	knock_desc = "击退警报",
-	knock_trigger = "获得了击退的效果。$",
 	knock_message = "近战被击退!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 	knock = "Repousser au loin",
 	knock_desc = "Préviens quand Soccothrates gagne Repousser au loin.",
-	knock_trigger = "gagne Repousser au loin.$",
 	knock_message = "Repousser au loin !",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
 	knock = "지옥 대포 정렬",
 	knock_desc = "지옥 대포 정렬에 대한 경고",
-	knock_trigger = "지옥 대포 정렬|1을;를; 시전합니다.",
 	knock_message = "지옥 대포 정렬!",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 	knock = "Wegschlagen",
 	knock_desc = "Warnt vor dem Wegschlagen",
-	knock_trigger = "bekommt 'Wegschlagen'.$",
 	knock_message = "Knockback!",
 } end )
 
@@ -77,21 +71,12 @@ function mod:OnEnable()
 	--self:AddCombatListener("SPELL_CAST_START", "Knock", #####)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")	
-	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
-
 	db = self.db.profile
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
-
-function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if db.knock and msg:find(L["knock_trigger"]) then
-		self:Message(L["knock_message"], "Important")
-	end
-end
 
 function mod:Knock()
 	if db.knock then
