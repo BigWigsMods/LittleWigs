@@ -21,7 +21,6 @@ L:RegisterTranslations("enUS", function() return {
 
 	spell = "Spell Reflection",
 	spell_desc = "Warn for Spell Reflection",
-	spell_trigger = "gains Spell Reflection.$",
 	spell_message = "Spell Reflection!",
 
 	rage = "Warlord's Rage",
@@ -41,7 +40,6 @@ L:RegisterTranslations("zhTW", function() return {
 	
 	spell = "法術反射",
 	spell_desc = "法術反射警報",
-	spell_trigger = "獲得了法術反射的效果。$",
 	spell_message = "法術反射! 法系停火!",
 
 	rage = "督軍之怒",
@@ -61,7 +59,6 @@ L:RegisterTranslations("frFR", function() return {
 	
 	spell = "Renvoi de sort",
 	spell_desc = "Préviens quand Kalithresh renvoye les sorts.",
-	spell_trigger = "gagne Renvoi de sort.$",
 	spell_message = "Renvoi de sort !",
 
 	rage = "Rage du seigneur de guerre",
@@ -81,7 +78,6 @@ L:RegisterTranslations("deDE", function() return {
 	
 	spell = "Zauberreflexion",
 	spell_desc = "Warnt vor Zauberreflexion",
-	spell_trigger = "bekommt 'Zauberreflexion'.$",
 	spell_message = "Zauberreflexion!",
 
 	rage = "Zorn des Kriegsf\195\188rsten",
@@ -101,7 +97,6 @@ L:RegisterTranslations("koKR", function() return {
 	
 	spell = "주문 반사",
 	spell_desc = "주문 반사에 대한 경고",
-	spell_trigger = "주문 반사 효과를 얻었습니다.$",
 	spell_message = "주문 반사!",
 
 	rage = "장군의 분노",
@@ -121,7 +116,6 @@ L:RegisterTranslations("zhCN", function() return {
 	
 	spell = "法术反射",
 	spell_desc = "法术反射警报",
-	spell_trigger = "获得了法术反射的效果。$",
 	spell_message = "法术反射!",
 
 	rage = "督军之怒",
@@ -141,7 +135,6 @@ L:RegisterTranslations("esES", function() return {
 	
 	spell = "Reflejo de Hechizos",
 	spell_desc = "Avisa cuando Kalithresh refleja hechizos",
-	spell_trigger = "gana Reflejo de hechizos.$",
 	spell_message = "Reflejo de Hechizos!",
 
 	rage = "Warlord's Rage",
@@ -172,11 +165,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Reflection", 30887)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "Channel")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Channel")
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
-	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
 
 	db = self.db.profile
 end
@@ -184,13 +174,6 @@ end
 ------------------------------
 --      Event Handlers      --
 ------------------------------
-
-function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if db.spell and msg:find(L["spell_trigger"]) then
-		self:Message(L["spell_message"], "Attention")
-		self:Bar(L["spell"], 8, "Spell_Shadow_AntiShadow")
-	end
-end
 
 function mod:Channel(msg)
 	if db.engage and (msg == L["engage_trigger1"] or msg == L["engage_trigger2"] or msg:find(L["engage_trigger3"])) then
