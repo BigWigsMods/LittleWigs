@@ -45,7 +45,6 @@ L:RegisterTranslations("enUS", function() return {
 
 	hasten = "Temporus - Hasten",
 	hasten_desc = "Warns when Temporus gains hasten.",
-	hasten_trigger = "Temporus gains Hasten.",
 	hasten_message = "Temporus gains Hasten!",
 } end )
 
@@ -75,7 +74,6 @@ L:RegisterTranslations("zhTW", function() return {
 
 	hasten = "坦普拉斯 - 迅速",
 	hasten_desc = "坦普拉斯獲得迅速時發出警報",
-	hasten_trigger = "坦普拉斯獲得了迅速的效果。",
 	hasten_message = "坦普拉斯獲得了迅速!",
 } end )
 
@@ -108,7 +106,6 @@ L:RegisterTranslations("koKR", function() return {
 
 	hasten = "템퍼루스 - 독촉",
 	hasten_desc = "템퍼루스가 독촉에 걸릴 시 경고합니다.",
-	hasten_trigger = "템퍼루스|1이;가; 독촉 효과를 얻었습니다.",
 	hasten_message = "템퍼루스 독촉!",
 } end )
 
@@ -141,7 +138,6 @@ L:RegisterTranslations("frFR", function() return {
 
 	hasten = "Temporus - Précipiter",
 	hasten_desc = "Préviens quand Temporus gagne Précipiter.",
-	hasten_trigger = "Temporus gagne Précipiter.",
 	hasten_message = "Temporus gagne Précipiter !",
 } end )
 
@@ -173,7 +169,6 @@ L:RegisterTranslations("zhCN", function() return {
 
 	hasten = "坦普卢斯 - 时光加速",
 	hasten_desc = "当获得了时光加速时发出警报",
-	hasten_trigger = "坦普卢斯获得了时光加速的效果。",
 	hasten_message = "时光加速!",
 } end )
 
@@ -203,7 +198,6 @@ L:RegisterTranslations("deDE", function() return {
 
 	hasten = "Temporus - Hasten",
 	hasten_desc = "Warnen, wenn Temporus 'Hasten' bekommt",
-	hasten_trigger = "Temporus bekommt 'Hasten'.",
 	hasten_message = "Temporus bekommt 'Hasten'!",
 } end )
 
@@ -226,12 +220,12 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Hasten", 31458)
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	self:RegisterEvent("UPDATE_WORLD_STATES")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
 
 	db = self.db.profile
 end
@@ -258,23 +252,16 @@ function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	end
 end
 
-function mod:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
-	if db.hasten and msg == L["hasten_trigger"] then
-		self:Message(L["hasten_message"], "Important", nil, "Alert")
-	end
-end
-
 function mod:Hasten()
 	if db.hasten then
 		self:Message(L["hasten_message"], "Important", nil, "Alert")
 	end
 end
 
-function mod:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
-	local mob = select(3, msg:find(L["death_trigger"]))
-	if mob == boss1 then
+function mod:BossDeath(source)
+	if source == boss1 then
 		wave = 6
-	elseif mob == boss2 then
+	elseif source == boss2 then
 		wave = 12
 	else
 		return
