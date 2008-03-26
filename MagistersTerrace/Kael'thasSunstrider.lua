@@ -30,12 +30,14 @@ L:RegisterTranslations("enUS", function() return {
 	barrier = "Shock Barrier (Heroic)",
 	barrier_desc = "Warn when Kael'thas gains Shock Barrier",
 	barrier_message = "Shock Barrier Up!",
+	barrier_next_bar = "~ Next Shield Barrier",
+	barrier_soon_message = "Shield Barrier Soon!",
 } end )
 
 --[[
 	Magister's Terrace modules are PTR beta, as so localization is not
 	supported in any way. This gives the authors the freedom to change the
-	modules in way that	can potentially break localization.  Feel free to
+	modules in way that can potentially break localization.  Feel free to
 	localize, just be aware that you may need to change it frequently.
 ]]--
 
@@ -94,12 +96,17 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	glapseannounce = nil
-	self:RegisterEvent("UNIT_HEALTH")
+	started = nil
 
+	self:RegisterEvent("UNIT_HEALTH")
 	self:AddCombatListener("SPELL_CAST_START", "Lapse", 44224)
 	self:AddCombatListener("SPELL_SUMMON", "Phoenix", 44194)
 	self:AddCombatListener("SPELL_SUMMON", "FlameStrike", 44192)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
+	self:RegisterEvent("BigWigs_RecvSync")
 
 	db = self.db.profile
 end
@@ -136,5 +143,18 @@ end
 function mod:FlameStrike()
 	if db.flamestrike then
 		self:Message(L["flamestrike_message"], "Important", nil, nil, nil, 44192)
+	end
+end
+
+function mod:BigWigs_RecvSync(sync, rest, nick)
+	if self:ValidateEngageSync(sync, rest) and not started then
+		started = true
+		if self:IsEventRegistered("PLAYER_REGEN_DISABLED") then
+			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
+		end
+		if db.barrier and GetInstanceDifficulty() == 2 then
+			self:Bar(L["next_barrier_bar"], 60) --need a spellId for Shield Barrier
+			self:DelayedMessage(50, L["barrier_soon_message"], "Attention")
+		end
 	end
 end
