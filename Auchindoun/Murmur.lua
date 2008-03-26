@@ -17,7 +17,6 @@ local fmt = string.format
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Murmur",
 
-	touch_trigger = "^([^%s]+) ([^%s]+) afflicted by Murmur's Touch.",
 	touch_message = "%s has %s!",
 	touch_message_you = "You have Murmur's Touch!",
 	touch_message_other = "%s has Murmur's Touch!",
@@ -43,7 +42,6 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	touch_trigger = "^([^|;%s]*)(.*)울림의 손길에 걸렸습니다%.$", -- check
 	touch_message_you = "당신은 폭탄입니다!",
 	touch_message_other = "%s님이 폭탄입니다!",
 
@@ -68,7 +66,6 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	touch_trigger = "^(.+)受(到[了]*)莫爾墨之觸",
 	touch_message_you = "你是炸彈! 遠離隊友!",
 	touch_message_other = "%s 是炸彈! 遠離隊友!",
 
@@ -93,7 +90,6 @@ L:RegisterTranslations("zhTW", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	touch_trigger = "^([^%s]+) ([^%s]+) les effets .* Toucher de Marmon.",
 	touch_message_you = "Vous êtes la bombe !",
 	touch_message_other = "%s est la bombe !",
 
@@ -118,7 +114,6 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
-	touch_trigger = "^([^%s]+) ([^%s]+) von Murmurs Ber\195\188hrung betroffen.",
 	touch_message_you = "Du bist die Bombe!",
 	touch_message_other = "%s ist die Bombe!",
 
@@ -143,7 +138,6 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	touch_trigger = "^([^%s]+)受([^%s]+)了摩摩尔之触效果的影响。$",
 	touch_message_you = "你是炸弹! 远离队友!",
 	touch_message_other = "%s 是炸弹! 远离队友",
 
@@ -168,7 +162,6 @@ L:RegisterTranslations("zhCN", function() return {
 } end)
 
 L:RegisterTranslations("esES", function() return {
-	touch_trigger = "^([^%s]+) ([^%s]+) sufre Toque de Murmur.",
 	touch_message_you = "Tu eres la bomba!",
 	touch_message_other = "%s es la bomba!",
 
@@ -211,15 +204,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Touch", 33711, 33760, 38794) -- from wowhead, 33711 is probably the correct one
-
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "Event")
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "Event")
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "Event")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
-	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
-
-	self:RegisterEvent("BigWigs_RecvSync")
-	self:TriggerEvent("BigWigs_ThrottleSync", "MurmurTouch", 2)
 
 	db = self.db.profile
 end
@@ -244,41 +229,9 @@ function mod:Touch(player, spellID)
 	end	
 end
 
-function mod:Event(msg)
-	local player, type = select(3, msg:find(L["touch_trigger"]))
-	if player and type then
-		if player == L2["you"] and type == L2["are"] then
-			player = UnitName("player")
-		end
-		self:Sync("MurmurTouch "..player)
-	end
-end
-
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if db.sonicboom and msg:find(L["sonicboom_trigger"]) then
 		self:Message(L["sonicboom_alert"], "Important")
 		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
-	end
-end
-
-function mod:BigWigs_RecvSync(sync, rest, nick)
-	if sync == "MurmurTouch" and rest then
-		local player = rest
-
-		if player == UnitName("player") and db.youtouch then
-			self:Message(L["touch_message_you"], "Personal", true)
-			self:Message(fmt(L["touch_message_other"], player), "Attention", nil, nil, true)
-		elseif db.othertouch then
-			self:Message(fmt(L["touch_message_other"], player), "Attention")
-			self:Whisper(player, L["touch_message_you"])
-		end
-
-		if db.touchtimer then
-			self:Bar(fmt(L["touchtimer_bar"], player), 13, "Spell_Shadow_MindBomb", "Red")
-		end
-
-		if db.icon then
-			self:Icon(player)
-		end
 	end
 end
