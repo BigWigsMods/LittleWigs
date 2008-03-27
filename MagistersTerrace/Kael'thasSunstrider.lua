@@ -34,13 +34,6 @@ L:RegisterTranslations("enUS", function() return {
 	barrier_soon_message = "Shield Barrier Soon!",
 } end )
 
---[[
-	Magister's Terrace modules are PTR beta, as so localization is not
-	supported in any way. This gives the authors the freedom to change the
-	modules in way that can potentially break localization.  Feel free to
-	localize, just be aware that you may need to change it frequently.
-]]--
-
 L:RegisterTranslations("koKR", function() return {
 	glapse = "중력 붕괴",
 	glapse_desc = "중력 붕괴에 대해 알립니다.",

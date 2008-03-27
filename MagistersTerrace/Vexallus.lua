@@ -27,13 +27,6 @@ L:RegisterTranslations("enUS", function() return {
 	feedback_other = "Energy Feedback on %s!",
 } end )
 
---[[
-	Magister's Terrace modules are PTR beta, as so localization is not
-	supported in any way. This gives the authors the freedom to change the
-	modules in way that	can potentially break localization.  Feel free to
-	localize, just be aware that you may need to change it frequently.
-]]--
-
 L:RegisterTranslations("koKR", function() return {
 	adds = "순수한 마력덩어리",
 	adds_desc = "순수한 마력덩어리 방출에 대해 알립니다.",

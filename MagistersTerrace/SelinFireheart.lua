@@ -20,13 +20,6 @@ L:RegisterTranslations("enUS", function() return {
 	channel_trigger = "channel from the nearby Fel Crystal",
 } end )
 
---[[
-	Magister's Terrace modules are PTR beta, as so localization is not
-	supported in any way. This gives the authors the freedom to change the
-	modules in way that	can potentially break localization.  Feel free to
-	localize, just be aware that you may need to change it frequently.
-]]--
-
 L:RegisterTranslations("koKR", function() return {
 	channel = "분노의 마나",
 	channel_desc = "셀린 파이어하트가 지옥 수정에서 마력 흡수에 대해 알립니다.",
