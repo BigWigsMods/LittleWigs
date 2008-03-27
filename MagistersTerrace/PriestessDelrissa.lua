@@ -26,7 +26,7 @@ L:RegisterTranslations("enUS", function() return {
 	apoko_lhw = "Apoko - Lesser Healing Wave",
 	apoko_lhw_desc = "Warn for casting heals",
 	apoko_lhw_message = "Apoko Healing!",
-	apoko_wf = "Apoki - Windfury Totem",
+	apoko_wf = "Apoko - Windfury Totem",
 	apoko_wf_desc = "",
 	apoko_wf_message = "",
 
@@ -50,6 +50,36 @@ L:RegisterTranslations("enUS", function() return {
 	modules in way that	can potentially break localization.  Feel free to
 	localize, just be aware that you may need to change it frequently.
 ]]--
+
+L:RegisterTranslations("koKR", function() return {
+	pri_flashheal = "여사제 델리사 - 순간 치유",
+	pri_flashheal_desc = "치유 시전에 대해 알립니다.",
+	pri_flashheal_message = "델리사 치유 시전!",
+	pri_shield = "여사제 델리사 - 신의 권능: 보호막",
+	pri_shield_desc = "신의 권능: 보호막의 사용에 대해 알립니다.",
+	pri_shield_message = "%s: 보호막!",
+
+	Apoko = "아포코", --need the add name translated, maybe we'll add it to BabbleBoss
+	apoko_lhw = "아포코 - 하급 치유의 물결",
+	apoko_lhw_desc = "치유 시전에 대해 알립니다.",
+	apoko_lhw_message = "아포코 치유 시전!",
+	apoko_wf = "아포코 - 질풍의 토템",
+	apoko_wf_desc = "",
+	apoko_wf_message = "",
+
+	Ellyrs = "앨리스 더스크할로우", --need the add name translated, maybe we'll add it to BabbleBoss
+	ellrys_soc = "앨리스 - 부패의 씨앗",
+	ellrys_soc_desc = "",
+	ellrys_soc_message = "",
+
+	Yazzai = "야자이", --need the add name translated, maybe we'll add it to BabbleBoss
+	yazzai_bliz = "야자이 - 눈보라",
+	yazzai_bliz_desc = "",
+	yazzai_bliz_message = "",
+	yazzai_poly = "야자이 - 변이",
+	yazzai_poly_desc = "",
+	yazzai_poly_message = "",
+} end )
 
 ----------------------------------
 --      Module Declaration      --

@@ -28,10 +28,10 @@ L:RegisterTranslations("enUS", function() return {
 ]]--
 
 L:RegisterTranslations("koKR", function() return {
-	channel = "ºÐ³ëÀÇ ¸¶³ª",
-	channel_desc = "¼¿¸° ÆÄÀÌ¾îÇÏÆ®°¡ Áö¿Á ¼öÁ¤¿¡¼­ ¸¶·Â Èí¼ö¿¡ ´ëÇØ ¾Ë¸³´Ï´Ù.",
-	channel_message = "ºÐ³ëÀÇ ¸¶³ª!",
-	channel_trigger = "±ÙÃ³ÀÇ Áö¿Á ¼öÁ¤¿¡¼­ ÈûÀ» ²ø¾î³À´Ï´Ù...",
+	channel = "분노의 마나",
+	channel_desc = "셀린 파이어하트가 지옥 수정에서 마력 흡수에 대해 알립니다.",
+	channel_message = "분노의 마나!",
+	channel_trigger = "근처의 지옥 수정에서 힘을 끌어냅니다...",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

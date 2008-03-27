@@ -55,9 +55,11 @@ L:RegisterTranslations("koKR", function() return {
 	flamestrike_desc = "화염구 시전에 대해 알립니다.",
 	flamestrike_message = "화염구!",
 
-	barrier = "Shock Barrier (영웅)",
-	barrier_desc = "캘타스가 Shock Barrier 획득에 대해 알립니다.",
-	barrier_message = "Shock Barrier Up!",
+	barrier = "충격 방벽 (영웅)",
+	barrier_desc = "캘타스가 충격 방벽 얻었을 때 알립니다.",
+	barrier_message = "충격 방벽!",
+	barrier_next_bar = "~ 다음 방어 방벽",
+	barrier_soon_message = "잠시후 방어 방벽!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
