@@ -38,7 +38,7 @@ L:RegisterTranslations("frFR", function() return {
 	channel = "Canalise du mana",
 	channel_desc = "Préviens quand Selin Coeur-de-feu canalise du mana à partir d'un gangrecristal.",
 	channel_message = "Canalise du mana !",
-	channel_trigger = "commence à canaliser l'énergie du gangrecristal tout proche",
+	channel_trigger = "commence à canaliser l'énergie du gangrecristal tout proche…",
 } end )
 
 ----------------------------------
@@ -70,6 +70,6 @@ end
 
 function mod:Channel(msg)
 	if db.channel and msg:find(L["channel_trigger"]) then
-		self:Message(channel_message, "Important")
+		self:Message(L["channel_message"], "Important")
 	end
 end

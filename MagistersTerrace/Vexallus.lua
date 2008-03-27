@@ -50,7 +50,7 @@ L:RegisterTranslations("frFR", function() return {
 	adds = "Energie pure",
 	adds_desc = "Préviens quand l'Energie pure est déchargée.",
 	adds_message = "Energie pure déchargée !",
-	adds_trigger = "discharges pure energy!", -- à traduire
+	adds_trigger = "envoie une décharge d'énergie pure !",
 
 	feedback = "Réaction énergétique",
 	feedback_desc = "Préviens quand un joueur subit les effets de la Réaction énergétique.",

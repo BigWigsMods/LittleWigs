@@ -79,6 +79,8 @@ L:RegisterTranslations("frFR", function() return {
 	barrier = "Barrière de choc (Héroïque)",
 	barrier_desc = "Préviens quand Kael'thas gagne sa Barrière de choc.",
 	barrier_message = "Barrière de choc !",
+	barrier_next_bar = "~Prochaine Barrière",
+	barrier_soon_message = "Barrière de choc imminente !",
 } end )
 
 ----------------------------------
