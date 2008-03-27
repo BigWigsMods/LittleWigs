@@ -89,7 +89,7 @@ local mod = BigWigs:NewModule(boss.."(MT)")
 mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"glapse","phoenix","flamestrike",-1,"barrier","bosskill"}
+mod.toggleoptions = {"glapse", "phoenix", "flamestrike", -1, "barrier", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

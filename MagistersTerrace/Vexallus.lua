@@ -77,6 +77,7 @@ function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE","AddSpawned")
 
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Feedback", 44335)
+	self:AddCombatListener("SPELL_AURA_APPLIED_DOSE", "FeedbackDose", 44335)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "FeedbackRemove", 44335)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
@@ -93,15 +94,23 @@ function mod:AddSpawned(msg)
 	end
 end
 
-function mod:Feedback(player, spellID)
+function mod:Feedback(player, spellId)
 	if db.feedback then
 		local other = fmt(L["feedback_other"], player)
 		if player == pName then
-			self:Message(L["feedback_you"], "Personal", true, "Alert", nil, spellID)
+			self:Message(L["feedback_you"], "Personal", true, "Alert", nil, spellId)
 			self:Message(other, "Attention", nil, nil, true)
 		else
-			self:Message(other, "Attention", nil, nil, nil, spellID)
+			self:Message(other, "Attention", nil, nil, nil, spellId)
 		end
+		self:Bar(other, 30, spellID)
+	end
+end
+
+function mod:FeedbackDose(player, spellId)
+	if db.feedback then
+		local other = fmt(L["feedback_other"], player)
+		self:TriggerEvent("BigWigs_StopBar", self, other)
 		self:Bar(other, 30, spellID)
 	end
 end
