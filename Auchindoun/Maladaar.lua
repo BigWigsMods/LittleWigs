@@ -39,6 +39,7 @@ L:RegisterTranslations("zhTW", function() return {
 	soul = "偷取的靈魂",
 	soul_desc = "主教瑪拉達爾施放靈魂偷取時發出警報",
 	soul_message = "隊友靈魂被偷取，速度擊殺!",
+	soul_message_new = "%s 的靈魂被偷取!",
 
 	avatar = "馬丁瑞德的化身",
 	avatar_desc = "召喚馬丁瑞德的化身時發出警報",

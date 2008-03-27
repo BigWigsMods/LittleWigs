@@ -61,10 +61,25 @@ L:RegisterTranslations("zhTW", function() return {
 	warn3 = "魔法護盾 關閉! 法系開火!",
 	warn4 = "傷害護盾 關閉! 近戰開火!",
 
+	shields = "反射護盾",
+	shields_desc = "發動傷害&魔法護盾時發出警報",
+	shields_message = "%s 啟動!",			--need to check
+	shieldsremoved_message = "%s 關閉!",		--need to check
+
+	shieldbar = "護盾計時條",
+	shieldbar_desc = "顯示護盾計時條",
+
 	polarity = "極性轉換（英雄模式）",
 	polarity_desc = "當極性轉換時警報（僅英雄模式）",
 	polarity_message = "3 秒後極性轉換，注意跑位!",
 	polarity_bar = "極性轉換",
+
+	enrage = "狂暴（英雄模式）",
+	enrage_desc = "狂暴前 15 及 45 秒發出警報",
+	enrage_trigger = "^You should split while you can.$",		--need to translation.
+	enrage_message = "%s 秒後狂暴!",
+	enrage_bar = "<Enrage>",
+
 } end )
 
 L:RegisterTranslations("frFR", function() return {

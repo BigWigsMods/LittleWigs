@@ -28,7 +28,6 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	summon = "召喚元素警報",
 	summon_desc = "召喚元素生物時發出警報",
-	summon_trigger = "施放了召喚希斯秘法元素。",
 	summon_message = "希斯元素已被召喚出來!",
 } end )
 

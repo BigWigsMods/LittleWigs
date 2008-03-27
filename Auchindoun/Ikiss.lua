@@ -28,7 +28,6 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	ae = "魔爆術",
 	ae_desc = "魔爆術警報",
-	ae_trigger = "鷹王伊奇斯開始施放魔爆術。",
 	ae_message = "即將施放魔爆術! 快找掩蔽!",
 } end )
 
