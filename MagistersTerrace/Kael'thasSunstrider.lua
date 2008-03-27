@@ -157,7 +157,7 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
 		end
 		if db.barrier and GetInstanceDifficulty() == 2 then
-			self:Bar(L["next_barrier_bar"], 60) --need a spellId for Shield Barrier
+			self:Bar(L["barrier_next_bar"], 60) --need a spellId for Shield Barrier
 			self:DelayedMessage(50, L["barrier_soon_message"], "Attention")
 		end
 	end
