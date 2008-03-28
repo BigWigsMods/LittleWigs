@@ -63,8 +63,8 @@ L:RegisterTranslations("koKR", function() return {
 	apoko_wf_desc = "",
 	apoko_wf_message = "",
 
-	Ellyrs = "앨리스 더스크할로우", --need the add name translated, maybe we'll add it to BabbleBoss
-	ellrys_soc = "앨리스 - 부패의 씨앗",
+	Ellyrs = "엘리스 더스크할로우", --need the add name translated, maybe we'll add it to BabbleBoss
+	ellrys_soc = "엘리스 - 부패의 씨앗",
 	ellrys_soc_desc = "",
 	ellrys_soc_message = "",
 
