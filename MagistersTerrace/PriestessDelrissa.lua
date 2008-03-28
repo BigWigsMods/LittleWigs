@@ -60,21 +60,21 @@ L:RegisterTranslations("koKR", function() return {
 	apoko_lhw_desc = "치유 시전에 대해 알립니다.",
 	apoko_lhw_message = "아포코 치유 시전!",
 	apoko_wf = "아포코 - 질풍의 토템",
-	apoko_wf_desc = "",
-	apoko_wf_message = "",
+	apoko_wf_desc = "질풍의 토템에 대해 알립니다.",
+	apoko_wf_message = "질풍의 토템!",
 
 	Ellyrs = "엘리스 더스크할로우", --need the add name translated, maybe we'll add it to BabbleBoss
 	ellrys_soc = "엘리스 - 부패의 씨앗",
-	ellrys_soc_desc = "",
-	ellrys_soc_message = "",
+	ellrys_soc_desc = "부패의 씨앗에 대해 알립니다.",
+	ellrys_soc_message = "부패의 씨앗!",
 
 	Yazzai = "야자이", --need the add name translated, maybe we'll add it to BabbleBoss
 	yazzai_bliz = "야자이 - 눈보라",
-	yazzai_bliz_desc = "",
-	yazzai_bliz_message = "",
+	yazzai_bliz_desc = "눈보라에 대해 알립니다.",
+	yazzai_bliz_message = "눈보라!",
 	yazzai_poly = "야자이 - 변이",
-	yazzai_poly_desc = "",
-	yazzai_poly_message = "",
+	yazzai_poly_desc = "변이에 대해 알립니다.",
+	yazzai_poly_message = "변이!",
 } end )
 
 ----------------------------------
