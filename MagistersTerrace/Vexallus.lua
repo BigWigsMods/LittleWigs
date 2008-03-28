@@ -51,6 +51,18 @@ L:RegisterTranslations("frFR", function() return {
 	feedback_other = "Réaction énergétique sur %s !",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	adds = "纯净能量",
+	adds_desc = "当纯净能力被释放发出警报",
+	adds_message = "纯净能量释放!",
+	adds_trigger = "discharges pure energy!",--need check
+
+	feedback = "能量反噬",
+	feedback_desc = "当队友受到能量反噬发出警报",
+	feedback_you = "能量反噬 > 你 <",
+	feedback_other = "能量反噬 > %s <",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

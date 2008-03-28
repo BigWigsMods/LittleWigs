@@ -34,6 +34,12 @@ L:RegisterTranslations("frFR", function() return {
 	channel_trigger = "commence à canaliser l'énergie du gangrecristal tout proche…",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	channel = "法力通道",
+	channel_desc = "当塞林·火心从魔能水晶获取法力时发出警报",
+	channel_message = "法力通道!",
+	channel_trigger = "channel from the nearby Fel Crystal",--need check
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -77,6 +77,38 @@ L:RegisterTranslations("koKR", function() return {
 	yazzai_poly_message = "변이!",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	pri_flashheal = "女祭司德莉西亚 - 快速治疗",
+	pri_flashheal_desc = "施放治疗发出警报",
+	pri_flashheal_message = "正在施放 -> 快速治疗!",
+	pri_renew = "女祭司德莉西亚 - 恢复",
+	pri_renew_desc = "当施放恢复时发出警报",
+	pri_renew_message = "恢复 > %s <",
+	pri_shield = "女祭司德莉西亚 - 真言术：盾",
+	pri_shield_desc = "受到真言术:盾发出警报",
+	pri_shield_message = "真言术：盾 > %s <",
+
+	Apoko = "Apoko", --need the add name translated, maybe we'll add it to BabbleBoss
+	apoko_lhw = "Apoko - 次级治疗波",
+	apoko_lhw_desc = "施放治疗时发出警报",
+	apoko_lhw_message = "Apoko 治疗!",
+	apoko_wf = "Apoko - 风怒图腾",
+	apoko_wf_desc = "出现风怒图腾发出警报",
+	apoko_wf_message = "风怒图腾 > 出现 <!",
+
+	Ellyrs = "Ellrys Duskhallow", --need the add name translated, maybe we'll add it to BabbleBoss
+	ellrys_soc = "Ellrys - 腐蚀之种",
+	ellrys_soc_desc = "",
+	ellrys_soc_message = "",
+
+	Yazzai = "Yazzai", --need the add name translated, maybe we'll add it to BabbleBoss
+	yazzai_bliz = "Yazzai - 暴风雪",
+	yazzai_bliz_desc = "",
+	yazzai_bliz_message = "",
+	yazzai_poly = "Yazzai - 变形术",
+	yazzai_poly_desc = "",
+	yazzai_poly_message = "",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
