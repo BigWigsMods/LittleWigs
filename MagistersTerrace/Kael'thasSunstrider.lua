@@ -30,8 +30,8 @@ L:RegisterTranslations("enUS", function() return {
 	barrier = "Shock Barrier (Heroic)",
 	barrier_desc = "Warn when Kael'thas gains Shock Barrier",
 	barrier_message = "Shock Barrier Up!",
-	barrier_next_bar = "~ Next Shield Barrier",
-	barrier_soon_message = "Shield Barrier Soon!",
+	barrier_next_bar = "~ Next Shock Barrier",
+	barrier_soon_message = "Shock Barrier Soon!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -119,6 +119,7 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Lapse", 44224)
 	self:AddCombatListener("SPELL_SUMMON", "Phoenix", 44194)
 	self:AddCombatListener("SPELL_SUMMON", "FlameStrike", 44192)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Barrier", 46165)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
@@ -163,6 +164,12 @@ function mod:FlameStrike()
 	end
 end
 
+function mod:Barrier()
+	if db.barrier then
+		self:Message(L["barrier_message"], "Important", nil, nil, nil, 46165)
+	end
+end
+
 function mod:BigWigs_RecvSync(sync, rest, nick)
 	if self:ValidateEngageSync(sync, rest) and not started then
 		started = true
@@ -170,8 +177,8 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
 		end
 		if db.barrier and GetInstanceDifficulty() == 2 then
-			self:Bar(L["barrier_next_bar"], 60) --need a spellId for Shield Barrier
-			self:DelayedMessage(50, L["barrier_soon_message"], "Attention")
+			self:Bar(L["barrier_next_bar"], 60, 46165) --need a spellId for Shield Barrier
+			self:DelayedMessage(50, L["barrier_soon_message"], "Attention", nil, nil, nil, 46165)
 		end
 	end
 end
