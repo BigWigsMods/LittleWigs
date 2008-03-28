@@ -145,10 +145,10 @@ L:RegisterTranslations("zhCN", function() return {
 	next_portal = "下一传送门",
 
 	portal = "传送门警告",
-	portal_desc = "通知全队注意下一传送门即将打开!.",
+	portal_desc = "通知全队注意下一传送门即将打开。",
 
 	portalbar = "传送门记时条",
-	portalbar_desc = "显示下一个传送们打开的计时",
+	portalbar_desc = "显示下一个传送们打开的计时。",
 
 	portal_bar = "~%s: 波 %s",
 	multiportal_bar = "~同时存在多个传送门",
@@ -157,19 +157,19 @@ L:RegisterTranslations("zhCN", function() return {
 	portal_message140s = "140秒后 %s !",
 
 	disable_trigger = "我们会胜利的。这只是个……时间问题。",
-	disable_message = "%s 获救了",
+	disable_message = "%s 获救了！",
 	death_trigger = "(.+)死亡了。",
 	--reset_trigger = "No! Damn this feeble, mortal coil!",
 
 	-- Bosses
 	frenzy = "埃欧努斯 - 狂乱",
-	frenzy_desc = "当埃欧努斯进入狂乱时发出警报",
+	frenzy_desc = "当埃欧努斯进入狂乱时发出警报。",
 	frenzy_trigger = "%s变得狂怒无比！",
-	frenzy_message = "狂乱!",
+	frenzy_message = "狂乱！",
 
 	hasten = "坦普卢斯 - 时光加速",
-	hasten_desc = "当获得了时光加速时发出警报",
-	hasten_message = "时光加速!",
+	hasten_desc = "当获得了时光加速时发出警报。",
+	hasten_message = "时光加速！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

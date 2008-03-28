@@ -61,12 +61,12 @@ L:RegisterTranslations("zhCN", function() return {
 	engage_trigger3 = "^我们才是",
 
 	bdwarn = "刃舞",
-	bdwarn_desc = "预计刃舞发动时间",
-	bdwarn_alert = "刃舞 持续5秒， 散开！",
+	bdwarn_desc = "预计刃舞发动时间。",
+	bdwarn_alert = "刃舞 持续5秒，散开！",
 
 	bdbar = "刃舞计时条",
-	bdbar_desc = "显示刃舞下次发动时间",
-	bdbar_display = "~刃舞",
+	bdbar_desc = "显示刃舞下次发动时间。",
+	bdbar_display = "<刃舞>",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

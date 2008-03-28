@@ -39,8 +39,8 @@ L:RegisterTranslations("frFR", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	shell = "黑暗之壳",
-	shell_desc = "黑暗之壳施放警报",
-	shell_message = "黑暗之壳! 停止攻击",
+	shell_desc = "当施放黑暗之壳时发出警报。",
+	shell_message = "黑暗之壳！停止攻击！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

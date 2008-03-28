@@ -57,13 +57,13 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	soul = "被偷走的灵魂",
-	soul_desc = "被偷走的灵魂警报",
-	soul_message = "队友灵魂被偷取! 速度击杀!!",
+	soul = "灵魂偷取",
+	soul_desc = "施放灵魂偷取时发出警报。",
+	soul_message = "队友灵魂被偷取！速度击杀！",
 
 	avatar = "殉难者的化身",
-	avatar_desc = "召唤殉难者的化身发出警报",
-	avatar_message = "殉难者的化身出现! MT顶啊~~~~",
+	avatar_desc = "当召唤殉难者的化身时发出警报。",
+	avatar_message = "殉难者的化身出现！MT 顶啊~~~",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

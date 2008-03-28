@@ -50,7 +50,7 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	mech = "斯蒂里格技师",
-	mech_desc = "呼叫斯蒂里格技师时发出警报！",
+	mech_desc = "呼叫斯蒂里格技师时发出警报。",
 	mech_trigger = "好好修理他们，伙计们！",
 	mech_message = "斯蒂里格技师出现了！速度杀！",
 } end )

@@ -60,11 +60,11 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	tranq = "宁静",
-	tranq_desc = "宁静警报",
+	tranq_desc = "当宁静时发出警报。",
 	tranq_trigger1 = "自然的力量听我调遣……",
 	tranq_trigger2 = "Endorel anuminor！",
-	tranq_message = "宁静 施放!",
-	tranqfade_message = "5秒后 宁静消失!",
+	tranq_message = "宁静 施放！",
+	tranqfade_message = "5秒后 宁静消失！",
 } end )
 ----------------------------------
 --      Module Declaration      --

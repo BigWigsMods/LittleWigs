@@ -35,8 +35,8 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	allergic = "过敏反应",
-	allergic_desc = "过敏反应警告",
-	allergic_message = "过敏反应： %s！",
+	allergic_desc = "当受到过敏反应时发出警告。",
+	allergic_message = "过敏反应：>%s<！",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

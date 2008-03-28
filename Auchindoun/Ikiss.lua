@@ -51,8 +51,8 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	ae = "魔爆术",
-	ae_desc = "魔爆术警报",
-	ae_message = "施放 魔爆术! 快躲！",
+	ae_desc = "当魔爆术时发出警报。",
+	ae_message = "施放 魔爆术！快躲！",
 } end )
 
 ----------------------------------

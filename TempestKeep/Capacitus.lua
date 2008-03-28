@@ -121,20 +121,20 @@ L:RegisterTranslations("esES", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	warn1 = "魔法护盾！打开 法系停止攻击!",
-	warn2 = "物理护盾！打开 近战停止攻击!",
-	warn3 = "魔法护盾! 消失 法系攻击",
-	warn4 = "物理护盾! 消失 近战攻击",
+	warn1 = "魔法护盾打启！ 法系停止攻击！",
+	warn2 = "物理护盾打启！ 近战停止攻击！",
+	warn3 = "魔法护盾消失！ 法系攻击！",
+	warn4 = "物理护盾消失！ 近战攻击！",
 
-	polarity = "极性转换(英雄模式)",
-	polarity_desc = "当极性转换时发出警报",
+	polarity = "极性转换（英雄模式）",
+	polarity_desc = "当极性转换时发出警报。",
 	polarity_trigger = "开始施放极性转换",
-	polarity_message = "3秒后 极性转换!",
-	polarity_bar = "极性转换",
+	polarity_message = "3秒后 极性转换！",
+	polarity_bar = "<极性转换>",
 	
-	enrage = "激怒(英雄模式)",
-	enrage_desc = "在激怒前的15和45秒发出警报",
-	enrage_message = "%s秒后 激怒!",
+	enrage = "激怒（英雄模式）",
+	enrage_desc = "在激怒前的15和45秒发出警报。",
+	enrage_message = "%s秒后 激怒！",
 	enrage_bar = "<激怒>",
 } end )
 

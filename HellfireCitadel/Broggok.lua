@@ -33,7 +33,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	poison = "毒云术",
-	poison_desc = "施放毒云术发出警报",
+	poison_desc = "施放毒云术时发出警报。",
 	poison_message = "毒云！注意躲避！",
 } end )
 

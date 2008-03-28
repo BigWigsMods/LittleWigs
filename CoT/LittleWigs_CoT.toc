@@ -1,13 +1,13 @@
 ﻿## Interface: 20400
 
 ## Title: Little Wigs [|cffeda55fCaverns of Time|r]
-## Notes: Big Wigs Caverns of Time Modules
+## Notes: Little Wigs Caverns of Time Modules
 ## Title-frFR: Little Wigs [|cffeda55fGrottes du temps|r]
-## Notes-frFR: Modules Big Wigs concernant les Grottes du temps.
+## Notes-frFR: Modules Little Wigs concernant les Grottes du temps.
 ## Title-zhTW: Little Wigs [|cffeda55f時光之穴|r]
 ## Notes-zhTW: Little Wigs 時光之穴模組
 ## Title-zhCN: Little Wigs [|cffeda55f时光之穴|r]
-## Notes-zhCN: Big Wigs 时光之穴模块
+## Notes-zhCN: Little Wigs 时光之穴模块
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

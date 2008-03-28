@@ -81,15 +81,15 @@ L:RegisterTranslations("esES", function() return {
 --看守者埃隆汉
 L:RegisterTranslations("zhCN", function() return {
 	hammer = "风钻",
-	hammer_desc = "风钻特效施放时发出警告",--Jackhammer Effect
+	hammer_desc = "风钻特效施放时发出警告。",
 	hammer_trigger = "%s阴险地举起战锤……",
-	hammer_message = "3秒后风钻!",
-	hammer_bar = "风钻",
+	hammer_message = "3秒后 风钻！",
+	hammer_bar = "<风钻>",
 
 	shadow = "暗影能量",
-	shadow_desc = "施放暗影能量时发出警报",
-	shadow_message = "2秒后 暗影能量!",
-	shadow_bar = "暗影能量",
+	shadow_desc = "施放暗影能量时发出警报。",
+	shadow_message = "2秒后 暗影能量！",
+	shadow_bar = "<暗影能量>",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

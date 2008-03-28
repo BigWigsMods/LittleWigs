@@ -70,10 +70,10 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	teleport = "传送警告",
-	teleport_desc = "传送警报",
-	teleport_message = "传送! 快离开平台!",
-	teleport_warning = "~5秒后 传送!",
-	teleport_bar = "传送",
+	teleport_desc = "当传送时发出警报。",
+	teleport_message = "传送！快离开平台！",
+	teleport_warning = "～5秒后 传送！",
+	teleport_bar = "<传送>",
 	
 	engage_trigger1 = "我要用你的血当祭品！",
 	engage_trigger2 = "很好，一个完美的祭品！",

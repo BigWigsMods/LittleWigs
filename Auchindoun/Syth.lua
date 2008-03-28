@@ -45,8 +45,8 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	summon = "元素警报",
-	summon_desc = "召唤元素警报",
-	summon_message = "元素已被召唤!",
+	summon_desc = "当召唤元素时发出警报。",
+	summon_message = "元素已被召唤！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

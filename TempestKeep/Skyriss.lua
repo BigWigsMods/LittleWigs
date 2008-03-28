@@ -82,21 +82,20 @@ L:RegisterTranslations("zhTW", function() return {
 	mr_message = "心靈撕裂: %s",
 } end )
 
---预言者斯克瑞斯
 L:RegisterTranslations("zhCN", function() return {
 	mc = "精神控制",
-	mc_desc = "精神控制发出警报",
-	mc_message = "精神控制：%s!",
+	mc_desc = "当精神控制时发出警报。",
+	mc_message = "精神控制：>%s<！",
 
 	split = "分身",
-	split_desc = "预言者斯克瑞斯分身时发出警报",
+	split_desc = "预言者斯克瑞斯分身时发出警报。",
 	split_trigger = "^我们遍布宇宙的每一个角落，像群星一样无穷无尽！$",
-	split_message = "%s 分身！ 击杀.",
-	split_soon_message = "即将分身!",
+	split_message = "%s分身！ 击杀！",
+	split_soon_message = "即将分身！",
 	
 	mr = "心灵撕裂",
-	mr_desc = "心灵撕裂时发出警报",
-	mr_message = "心灵撕裂: %s",
+	mr_desc = "当心灵撕裂时发出警报。",
+	mr_message = "心灵撕裂：>%s<！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

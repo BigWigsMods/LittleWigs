@@ -4,13 +4,13 @@
 ## Title-frFR: Little Wigs [|cffeda55fTerrasse des Magistères|r]
 ## Title-zhCN: Little Wigs [|cffeda55f魔导师平台|r]
 ## Notes: Little Wigs Magisters' Terrace Modules
-## Notes: Little Wigs 魔导师平台首领模块
+## Notes-zhCN: Little Wigs 魔导师平台模块
 ## Notes-frFR: Modules Little Wigs concernant la Terrasse des Magistères.
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1
 
-## X-Website: http://www.wowace.com/index.php/BigWigs
+## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-Category: Party
 
 ## X-BigWigs-LoadInParty: 1

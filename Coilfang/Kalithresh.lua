@@ -115,11 +115,11 @@ L:RegisterTranslations("zhCN", function() return {
 	--engage_message = "Engaged - channeling in ~15sec!",
 	
 	spell = "法术反射",
-	spell_desc = "法术反射警报",
-	spell_message = "法术反射!",
+	spell_desc = "当法术反射时发出警报。",
+	spell_message = "法术反射！",
 
 	rage = "督军之怒",
-	rage_desc = "督军之怒警报",
+	rage_desc = "当督军之怒时发出警报。",
 	rage_trigger1 = "^%s开始从附近的蒸馏器里吸取着什么……",--check
 	rage_trigger2 = "还没完呢……",
 	rage_message = "督军之怒 即将发动！ DPS！",
