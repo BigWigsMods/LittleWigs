@@ -3,9 +3,11 @@
 ## Title: Little Wigs [|cffeda55fMagisters' Terrace|r]
 ## Title-frFR: Little Wigs [|cffeda55fTerrasse des Magistères|r]
 ## Title-zhCN: Little Wigs [|cffeda55f魔导师平台|r]
+## Title-zhTW: Little Wigs [|cffeda55f博學者殿堂|r]
 ## Notes: Little Wigs Magisters' Terrace Modules
-## Notes-zhCN: Little Wigs 魔导师平台模块
 ## Notes-frFR: Modules Little Wigs concernant la Terrasse des Magistères.
+## Notes-zhCN: Little Wigs 魔导师平台模块
+## Notes-zhTW: Little Wigs 博學者殿堂模組
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

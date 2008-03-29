@@ -109,6 +109,40 @@ L:RegisterTranslations("zhCN", function() return {
 	yazzai_poly_desc = "施放变形术时发出警报。",
 	yazzai_poly_message = "变形术！",
 } end )
+
+L:RegisterTranslations("zhTW", function() return {
+	pri_flashheal = "女牧師戴利莎 - 快速治療",
+	pri_flashheal_desc = "當女牧師戴利莎施放快速治療時發出警報",
+	pri_flashheal_message = "女牧師戴利莎正在施放 [快速治療]",
+	pri_renew = "女牧師戴利莎 - 恢復",
+	pri_renew_desc = "當女牧師戴利莎施放恢復時發出警報",
+	pri_renew_message = "恢復: >%s<",
+	pri_shield = "女牧師戴利莎 - 真言術:盾",
+	pri_shield_desc = "當女牧師戴利莎施放真言術:盾時發出警報",
+	pri_shield_message = "真言術:盾: >%s<",
+
+	Apoko = "阿波考", --need the add name translated, maybe we'll add it to BabbleBoss
+	apoko_lhw = "阿波考 - 次級治療波",
+	apoko_lhw_desc = "當阿波考施放次級治療波時發出警報",
+	apoko_lhw_message = "阿波考正在施放 [次級治療波]",
+	apoko_wf = "阿波考 - 風怒圖騰",
+	apoko_wf_desc = "當阿波考施放風怒圖騰時發出警報",
+	apoko_wf_message = "風怒圖騰 >出現<",
+
+	Ellyrs = "艾爾里斯·聖暮", --need the add name translated, maybe we'll add it to BabbleBoss
+	ellrys_soc = "艾爾里斯·聖暮 - 腐蝕種子",
+	ellrys_soc_desc = "當艾爾里斯·聖暮施放腐蝕種子時發出警報",
+	ellrys_soc_message = "腐蝕種子",
+
+	Yazzai = "耶賽", --need the add name translated, maybe we'll add it to BabbleBoss
+	yazzai_bliz = "耶賽 - 暴風雪",
+	yazzai_bliz_desc = "當耶賽施放暴風雪時發出警報",
+	yazzai_bliz_message = "暴風雪",
+	yazzai_poly = "耶賽 - 變形術",
+	yazzai_poly_desc = "當耶賽施放變形術時發出警報",
+	yazzai_poly_message = "變形術",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -96,6 +96,28 @@ L:RegisterTranslations("zhCN", function() return {
 	barrier_next_bar = "<下一震击屏障>",
 	barrier_soon_message = "即将 震击屏障！",
 } end )
+
+L:RegisterTranslations("zhTW", function() return {
+	glapse = "引力失效",
+	glapse_desc = "當凱爾薩斯發動引力失效時發出警報",
+	glapse_message = "即將發動引力失效!",
+	glapse_bar = "<引力失效>",
+
+	phoenix = "召喚鳳凰",
+	phoenix_desc = "當凱爾薩斯召喚鳳凰時發出警報",
+	phoenix_message = "已召喚鳳凰!",
+
+	flamestrike = "烈焰打擊",
+	flamestrike_desc = "當凱爾薩斯發動烈焰打擊時發出警報",
+	flamestrike_message = "烈焰打擊!",
+
+	barrier = "震擊屏障（英雄）",
+	barrier_desc = "當凱爾薩斯獲得震擊屏障發出警報",
+	barrier_message = "震擊屏障 開啟!",
+	barrier_next_bar = "<下一次震擊屏障>",
+	barrier_soon_message = "即將施放震擊屏障!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

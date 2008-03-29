@@ -40,6 +40,14 @@ L:RegisterTranslations("zhCN", function() return {
 	channel_message = "法力通道！",
 	channel_trigger = "channel from the nearby Fel Crystal",--need check
 } end )
+
+L:RegisterTranslations("zhTW", function() return {
+	channel = "法力通道",
+	channel_desc = "當賽林·炎心以魔能水晶獲取法力時發出警報。",
+	channel_message = "法力通道!",
+	channel_trigger = "賽林·炎心開始從附近的惡魔水晶進行導引……",--need check
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
