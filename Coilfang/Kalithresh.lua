@@ -163,7 +163,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Reflection", 30887)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Reflection", 31534)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "Channel")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Channel")
@@ -179,14 +179,14 @@ function mod:Channel(msg)
 	if db.engage and (msg == L["engage_trigger1"] or msg == L["engage_trigger2"] or msg:find(L["engage_trigger3"])) then
 		self:Message(L["engage_message"], "Attention")
 		self:Bar(L["rage_soonbar"], 15, "Spell_Nature_WispSplode")
-	elseif self.db.profile.rage and (msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"]) then
+	elseif db.rage and (msg:find(L["rage_trigger1"]) or msg == L["rage_trigger2"]) then
 		self:Message(L["rage_message"], "Urgent")
 	end
 end
 
 function mod:Reflection(spellId)
 	if db.spell then
-		self:Message(L["spell_message"], "Attention")
+		self:Message(L["spell_message"], "Attention", nil, nil, nil, spellId)
 		self:Bar(L["spell"], 8, spellId)
 	end
 end

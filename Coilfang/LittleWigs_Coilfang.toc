@@ -23,6 +23,13 @@
 
 ## Dependencies: BigWigs
 
+Ghaz'an.lua
+Hungarfen.lua
 Kalithresh.lua
+Mennu.lua
+Quagmirran.lua
+Rokmar.lua
+Stalker.lua
 Steamrigger.lua
+Swamplord.lua
 Thespia.lua
