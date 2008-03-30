@@ -4,10 +4,6 @@
 
 local boss = BB["Omor the Unscarred"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
-
-local db = nil
-local fmt = string.format
 
 ----------------------------
 --      Localization      --
@@ -99,29 +95,29 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Curse", 30695, 37566, 30697, 37567, 39298) -- from wowhead, 30695(Treacherous Aura) & 37566(Bane of Treachery) are probably the correct ones
-	self:AddCombatListener("SPELL_AURA_REMOVED", "CurseRemove", 30695, 37566, 30697, 37567, 39298) -- from wowhead, 30695(Treacherous Aura) & 37566(Bane of Treachery) are probably the correct ones
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Curse", 30695, 37566, 37567, 39298) -- verify 37566(Bane of Treachery) on heroic 
+	self:AddCombatListener("SPELL_AURA_REMOVED", "CurseRemove", 30695, 37566, 37567, 39298) -- verify 37566(Bane of Treachery) on heroic
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-
-	db = self.db.profile
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
-function mod:Curse(player, spellID)
-	if player and db.aura then
-		local spellName = GetSpellInfo(spellID)
-		self:Message(fmt(L["aura_message"], player, spellName), "Urgent")
-		self:Bar(fmt(L["aura_bar"], player, spellName), 15, spellID, "Red")
-		self:Whisper(player, fmt(L["aura_message_you"], spellName))
-		if db.icon then
+function mod:Curse(player, spellId)
+	if player and self.db.profile.aura then
+		local spellName = GetSpellInfo(spellId)
+		self:Message(L["aura_message"]:format(player, spellName), "Urgent", nil, nil, nil, spellId)
+		self:Bar(fmt(L["aura_bar"], player, spellName), 15, spellId)
+		self:Whisper(player, L["aura_message_you"]:format(spellName))
+		if self.db.profile.icon then
 			self:Icon(player)
 		end	
 	end
 end
 
-function mod:CurseRemove()
+function mod:CurseRemove(player, spellId)
+	local spellName = GetSpellInfo(spellId)
 	self:TriggerEvent("BigWigs_RemoveRaidIcon")
+	self:TriggerEvent("BigWigs_StopBar", self, L["aura_bar"]:format(player, spellName))
 end
