@@ -163,6 +163,10 @@ function mod:UNIT_HEALTH(arg1)
 			glapseannounced = nil
 		end
 	end
+	if glapseannounced and self.db.profile.barrier then
+		self:CancelScheduledEvent("barrier")
+		self:TriggerEvent("BigWigs_StopBar", self, L["barrier_next_bar"])
+	end	
 end
 
 function mod:Lapse()
@@ -173,7 +177,7 @@ end
 
 function mod:Phoenix()
 	if self.db.profile.phoenix then
-		self:IfMessage(L["phoenix_message"], "Important", 44194)
+		self:IfMessage(L["phoenix_message"], "Urgent", 44194)
 	end
 end
 
@@ -197,8 +201,7 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		end
 		if self.db.profile.barrier and GetInstanceDifficulty() == 2 then
 			self:Bar(L["barrier_next_bar"], 60, 46165)
-			self:DelayedMessage(50, L["barrier_soon_message"], "Attention")
+			self:ScheduleEvent("barrier", "BigWigs_Message", 50, L["barrier_soon_message"], "Attention")
 		end
 	end
 end
-

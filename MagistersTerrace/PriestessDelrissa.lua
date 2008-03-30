@@ -5,9 +5,6 @@
 local boss = BB["Priestess Delrissa"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-local db = nil
-local fmt = string.format
-
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -35,16 +32,16 @@ L:RegisterTranslations("enUS", function() return {
 
 	Ellyrs = "Ellrys Duskhallow", --need the add name translated, maybe we'll add it to BabbleBoss
 	ellrys_soc = "Ellrys - Seed of Corruption",
-	ellrys_soc_desc = "",
-	ellrys_soc_message = "",
+	ellrys_soc_desc = "Warn when Ellrys casts Seed of Corruption on a player",
+	ellrys_soc_message = "Seed: %s",
 
 	Yazzai = "Yazzai", --need the add name translated, maybe we'll add it to BabbleBoss
 	yazzai_bliz = "Yazzai - Blizzard",
-	yazzai_bliz_desc = "",
-	yazzai_bliz_message = "",
+	yazzai_bliz_desc = "Warn when Yazzai casts Blizzard",
+	yazzai_bliz_message = "Blizzard!",
 	yazzai_poly = "Yazzai - Polymorph",
-	yazzai_poly_desc = "",
-	yazzai_poly_message = "",
+	yazzai_poly_desc = "Warn when Yazzai polymorphs a player",
+	yazzai_poly_message = "Polymorph: %s",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -151,7 +148,7 @@ local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"pri_flashheal", "pri_renew", "pri_shield", -1, "apoko_lhw", "apoko_wf", -1, "bosskill"}
+mod.toggleoptions = {"pri_flashheal", "pri_renew", "pri_shield", -1, "apoko_lhw", "apoko_wf", -1, "yazzai_bliz", "yazzai_poly", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -163,15 +160,13 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "PriShield", "44175")
 	self:AddCombatListener("SPELL_CAST_START", "PriHeal", "17843")
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "PriRenew", "44174")
-	self:AddCombatListener("SPELL_CAST_START", "ApokoHeal", "44256")
+	self:AddCombatListener("SPELL_CAST_START", "ApokoHeal", "46181")
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "ApokoWF", "27621")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "EllrysSoC", "44141")
-	--self:AddCombatListener("SPELL_AURA_APPLIED", "YazzaiPoly", "#####")
-	--self:AddCombatListener("SPELL_CAST_START", "YazzaiBliz", "#####")
+	self:AddCombatListener("SPELL_AURA_APPLIED", "YazzaiPoly", "13323")
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "YazzaiBliz", "44178")
 
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")	
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -179,41 +174,49 @@ end
 ------------------------------
 
 function mod:PriShield(player)
-	if db.pri_shield and source == boss then
-		self:Message(fmt(L["pri_shield_message"], player), "Attention", nil, nil, nil, 44175)
+	if self.db.profile.pri_shield then
+		self:IfMessage(L["pri_shield_message"]:format(player), "Attention", 44175)
 	end
 end
 
--- 
-function mod:PriHeal(source)
-	if db.pri_heal and source == boss then
-		self:Message(L["pri_heal_message"], "Attention", nil, nil, nil, 17843)
+function mod:PriHeal()
+	if self.db.profile.pri_heal then
+		self:IfMessage(L["pri_heal_message"], "Attention", 17843)
 	end
 end
 
-function mod:PriRenew(source, player)
-	if db.pri_renew and source == boss then
-		self:Message(fmt(L["pri_renew_message"], player), "Attention", nil, nil, nil, 44174)
+function mod:PriRenew(player)
+	if self.db.profile.pri_renew then
+		self:IfMessage(L["pri_renew_message"]:format(player), "Attention", 44174)
 	end
 end
 
-function mod:ApokoHeal(source)
-	if db.apoko_heal and source == L["Apoko"] then
-		self:Message(L["apoko_heal_message"], "Attention", nil, nil, nil, 44256)
+function mod:ApokoHeal()
+	if self.db.profile.apoko_heal then
+		self:IfMessage(L["apoko_heal_message"], "Attention", 46181)
 	end	
 end
 
-function mod:ApokoWF(source)
-	if db.apoko_wf and source == L["Apoko"] then
-		self:Message(L["apoko_wf_message"], "Attention", nil, nil, nil, 27621)
+function mod:ApokoWF()
+	if self.db.profile.apoko_wf then
+		self:IfMessage(L["apoko_wf_message"], "Attention", 27621)
 	end	
 end
 
 function mod:EllrysSoC(player, spellId)
+	if self.db.profile.ellrys_soc then
+		self:IfMessage(L["ellrys_soc_message"]:format(player), "Attention", spellId)
+	end		
 end
 
---[[function mod:YazzaiPoly(player, spellId)
+function mod:YazzaiPoly(player, spellId)
+	if self.db.profile.yazzai_poly then
+		self:IfMessage(L["yazzai_poly_message"]:format(player), "Attention", spellId)
+	end	
 end
 
-function mod:YazzaiBliz(source)
-end]]--
+function mod:YazzaiBliz(spellId)
+	if self.db.profile.yazzai_bliz then
+		self:IfMessage(L["yazzai_blizz_message"], "Attention", spellId)
+	end	
+end

@@ -4,11 +4,8 @@
 
 local boss = BB["Murmur"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
 local pName = UnitName("player")
-local db = nil
-local fmt = string.format
 
 ----------------------------
 --      Localization      --
@@ -205,32 +202,30 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Touch", 33711, 33760, 38794) -- from wowhead, 33711 is probably the correct one
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
-
-	db = self.db.profile
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
-function mod:Touch(player, spellID)
-	if player == pName and db.youtouch then
-		self:Message(L["touch_message_you"], "Personal", true)
-		self:Message(fmt(L["touch_message_other"], player), "Attention", nil, nil, true)		
-	elseif db.othertouch then
-		self:Message(fmt(L["touch_message_other"], player), "Attention")
+function mod:Touch(player, spellId)
+	if player == pName and self.db.profile.youtouch then
+		self:LocalMessage(L["touch_message_you"], "Personal", spellId, "Alarm")
+		self:Message(L["touch_message_other"]:format(player), "Attention", nil, nil, true, spellId)		
+	elseif self.db.profile.othertouch then
+		self:IfMessage(L["touch_message_other"]:format(player), "Attention", spellId)
 		self:Whisper(player, L["touch_message_you"])
 	end
-	if player and db.touchtimer then
-		self:Bar(fmt(L["touchtimer_bar"], player), 13, spellID, "Red")
+	if self.db.profile.touchtimer then
+		self:Bar(L["touchtimer_bar"]:format(player), 13, spellID, "Red")
 	end
-	if player and db.icon then
+	if self.db.profile.icon then
 		self:Icon(player)
 	end	
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
-	if db.sonicboom and msg:find(L["sonicboom_trigger"]) then
+	if self.db.profile.sonicboom and msg:find(L["sonicboom_trigger"]) then
 		self:Message(L["sonicboom_alert"], "Important")
 		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
 	end

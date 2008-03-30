@@ -5,11 +5,9 @@
 local boss = BB["Mechano-Lord Capacitus"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-local db = nil
 local aura = nil
 local charge = GetSpellInfo(39088)
 local positive = nil
-local fmt = string.format
 
 ----------------------------
 --      Localization      --
@@ -182,7 +180,6 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "PolarityScan", 39096, 28089) --find out which one it really is
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
-	db = self.db.profile
 	aura = nil
 	positive = nil
 end
@@ -195,35 +192,33 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if not db.enrage or GetInstanceDifficulty() == 1 then return end
 	if msg == L["enrage_trigger"] then
 		self:Bar(L["enrage_bar"], 180, "Spell_Shadow_UnholyFrenzy")
-		self:DelayedMessage(135, fmt(L["enrage_message"], "45"), "Important")
-		self:DelayedMessage(165, fmt(L["enrage_message"], "15"), "Important")
+		self:DelayedMessage(135, L["enrage_message"]:format("45"), "Important")
+		self:DelayedMessage(165, L["enrage_message"]:format("15"), "Important")
 	end
 end
 
-function mod:Shield(spellId)
-	local spellName = GetSpellInfo(spellId)
+function mod:Shield(_, spellId, _, _, spellName)
 	if db.magic and spellId == 35158 then
-		self:Message(fmt(L["shields_message"], spellName), "Urgent", nil, "Alert", nil, 35158)
+		self:IfMessage(L["shields_message"]:format(spellName), "Urgent", 35158)
 	elseif db.dmg and spellId == 35159 then
-		self:Message(fmt(L["shields_message"], spellName), "Urgent", nil, "Alert", nil, 35159)
+		self:IfMessage(L["shields_message"]:format(spellName), "Urgent", 35159)
 	end
 	if db.shieldbar then
 		self:Bar(spellName, 10, spellId)
 	end
 end
 
-function mod:ShieldRemoved(spellId)
-	local spellName = GetSpellInfo(spellId)
+function mod:ShieldRemoved(_, spellId, _, _, spellName)
 	if db.magic and spellId == 35158 then
-		self:Message(fmt(L["shieldsremoved_message"], spellName), "Urgent", nil, "Alert", nil, 35158)
+		self:IfMessage(L["shieldsremoved_message"]:format(spellName), "Positive", 35158)
 	elseif db.dmg and spellId == 35159 then
-		self:Message(fmt(L["shieldsremoved_message"], spellName), "Urgent", nil, "Alert", nil, 35159)
+		self:IfMessage(L["shieldsremoved_message"]:format(spellName), "Positive", 35159)
 	end
 end
 
 function mod:Polarity()
 	if db.polarity then
-		self:Message(L["polarity_message"], "Urgent", nil, "Alert", nil, 39096)
+		self:IfMessage(L["polarity_message"], "Urgent", 39096)
 		self:Bar(L["polarity_bar"], 3, 39096)
 	end
 end

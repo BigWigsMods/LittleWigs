@@ -104,9 +104,8 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:Curse(player, spellId)
+function mod:Curse(player, spellId, _, _, spellName)
 	if player and self.db.profile.aura then
-		local spellName = GetSpellInfo(spellId)
 		self:Message(L["aura_message"]:format(player, spellName), "Urgent", nil, nil, nil, spellId)
 		self:Bar(fmt(L["aura_bar"], player, spellName), 15, spellId)
 		self:Whisper(player, L["aura_message_you"]:format(spellName))
@@ -116,8 +115,7 @@ function mod:Curse(player, spellId)
 	end
 end
 
-function mod:CurseRemove(player, spellId)
-	local spellName = GetSpellInfo(spellId)
+function mod:CurseRemove(player, spellId, _, _, spellName)
 	self:TriggerEvent("BigWigs_RemoveRaidIcon")
 	self:TriggerEvent("BigWigs_StopBar", self, L["aura_bar"]:format(player, spellName))
 end
