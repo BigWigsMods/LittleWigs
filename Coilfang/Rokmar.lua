@@ -20,6 +20,12 @@ L:RegisterTranslations("enUS", function() return {
 	enrage_message = "Enraged Soon!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	enrage = "Enrager (Héroïque)",
+	enrage_desc = "Préviens quand Rokmar est sûr le point de devenir enragé.",
+	enrage_message = "Bientôt enragé !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

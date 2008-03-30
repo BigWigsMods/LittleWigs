@@ -24,6 +24,16 @@ L:RegisterTranslations("enUS", function() return {
 	spores_message = "Foul Spores Soon!",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	shroom = "Champignon de Basse-tourbière",
+	shroom_desc = "Préviens quand un Champignon de Basse-tourbière apparaît.",
+	shroom_message = "Apparition d'un Champignon de Basse-tourbière !",
+
+	spores = "Spores nauséabondes",
+	spores_desc = "Préviens quand Hungarfen se sarmente et incante ses Spores nauséabondes.",
+	spores_message = "Spores nauséabondes imminentes !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -140,6 +140,39 @@ L:RegisterTranslations("zhTW", function() return {
 	yazzai_poly_message = "變形術",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	pri_flashheal = "Delrissa - Soins rapides",
+	pri_flashheal_desc = "Préviens quand Delrissa incante des Soins rapides.",
+	pri_flashheal_message = "Delrissa incante des Soins rapides !",
+	pri_renew = "Delrissa - Rénovation",
+	pri_renew_desc = "Préviens quand Delrissa soigne un allié avec sa Rénovation.",
+	pri_renew_message = "Rénovation sur %s !",
+	pri_shield = "Delrissa - Mot de pouvoir : Bouclier",
+	pri_shield_desc = "Préviens quand Delrissa protège un allié avec son Mot de pouvoir : Bouclier.",
+	pri_shield_message = "Mot de pouvoir : Bouclier sur %s !",
+
+	Apoko = "Apoko", --need the add name translated, maybe we'll add it to BabbleBoss
+	apoko_lhw = "Apoko - Vague de soins inférieurs",
+	apoko_lhw_desc = "Préviens quand Apoko incante une Vague de soins inférieurs.",
+	apoko_lhw_message = "Apoko incante une Vague de soins inférieurs !",
+	apoko_wf = "Apoko - Totem Furie-des-vents",
+	apoko_wf_desc = "Préviens quand Apoko pose un Totem Furie-des-vents.",
+	apoko_wf_message = "Totem Furie-des-vents posé !",
+
+	Ellyrs = "Ellrys Sanctebrune", --need the add name translated, maybe we'll add it to BabbleBoss
+	ellrys_soc = "Ellrys - Graîne de Corruption",
+	ellrys_soc_desc = "Préviens quand un joueur subit les effets de la Graîne de Corruption de Ellrys.",
+	ellrys_soc_message = "Graîne : %s",
+
+	Yazzai = "Yazzai", --need the add name translated, maybe we'll add it to BabbleBoss
+	yazzai_bliz = "Yazzai - Blizzard",
+	yazzai_bliz_desc = "Préviens quand Yazzai incante un Blizzard.",
+	yazzai_bliz_message = "Blizzard !",
+	yazzai_poly = "Yazzai - Métamorphose",
+	yazzai_poly_desc = "Préviens quand un joueur subit les effets de la Métamorphose de Yazzai.",
+	yazzai_poly_message = "Métamorphose : %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
@@ -166,7 +199,7 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "YazzaiPoly", "13323")
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "YazzaiBliz", "44178")
 
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")	
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ------------------------------
@@ -194,29 +227,29 @@ end
 function mod:ApokoHeal()
 	if self.db.profile.apoko_heal then
 		self:IfMessage(L["apoko_heal_message"], "Attention", 46181)
-	end	
+	end
 end
 
 function mod:ApokoWF()
 	if self.db.profile.apoko_wf then
 		self:IfMessage(L["apoko_wf_message"], "Attention", 27621)
-	end	
+	end
 end
 
 function mod:EllrysSoC(player, spellId)
 	if self.db.profile.ellrys_soc then
 		self:IfMessage(L["ellrys_soc_message"]:format(player), "Attention", spellId)
-	end		
+	end
 end
 
 function mod:YazzaiPoly(player, spellId)
 	if self.db.profile.yazzai_poly then
 		self:IfMessage(L["yazzai_poly_message"]:format(player), "Attention", spellId)
-	end	
+	end
 end
 
 function mod:YazzaiBliz(spellId)
 	if self.db.profile.yazzai_bliz then
 		self:IfMessage(L["yazzai_blizz_message"], "Attention", spellId)
-	end	
+	end
 end
