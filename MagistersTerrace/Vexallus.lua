@@ -107,7 +107,7 @@ end
 
 function mod:Feedback(player, spellID)
 	if self.db.profile.feedback then
-		local other = fmt(L["feedback_other"], player)
+		local other = L["feedback_other"]:format(player)
 		if UnitIsUnit(player, "player") then
 			self:LocalMessage(L["feedback_you"], "Personal", spellID, "Alert")
 			self:WideMessage(other)
@@ -120,12 +120,12 @@ end
 
 function mod:FeedbackDose(player, spellID)
 	if self.db.profile.feedback then
-		self:Bar(fmt(L["feedback_other"], player), 30, spellID)
+		self:Bar(L["feedback_other"]:format(player), 30, spellID)
 	end
 end
 
 function mod:FeedbackRemove(player)
 	if self.db.profile.feedback then
-		self:TriggerEvent("BigWigs_StopBar", self, fmt(L["feedback_other"], player))
+		self:TriggerEvent("BigWigs_StopBar", self, L["feedback_other"]:format(player))
 	end
 end
