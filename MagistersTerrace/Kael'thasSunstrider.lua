@@ -4,7 +4,6 @@
 
 local boss = BB["Kael'thas Sunstrider"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss.."(MT)")
-local db = nil
 local glapseannounced = nil
 
 ----------------------------
@@ -15,20 +14,20 @@ L:RegisterTranslations("enUS", function() return {
 	cmd = "Kael'thas",
 
 	glapse = "Gravity Lapse",
-	glapse_desc = "Warn for Gravity Lapse",
+	glapse_desc = "Warn for Gravity Lapse.",
 	glapse_message = "Gravity Lapse Soon!",
 	glapse_bar = "Gravity Lapse",
 
 	phoenix = "Summon Phoenix",
-	phoenix_desc = "Warn when a Phoenix is summoned",
+	phoenix_desc = "Warn when a Phoenix is summoned.",
 	phoenix_message = "Phoenix summoned!",
 
 	flamestrike = "Flame Strike",
-	flamestrike_desc = "Warn when a Flame Strike is cast",
+	flamestrike_desc = "Warn when a Flame Strike is cast.",
 	flamestrike_message = "Flame Strike!",
 
 	barrier = "Shock Barrier (Heroic)",
-	barrier_desc = "Warn when Kael'thas gains Shock Barrier",
+	barrier_desc = "Warn when Kael'thas gains Shock Barrier.",
 	barrier_message = "Shock Barrier Up!",
 	barrier_next_bar = "~ Next Shock Barrier",
 	barrier_soon_message = "Shock Barrier Soon!",
@@ -147,8 +146,6 @@ function mod:OnEnable()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:RegisterEvent("BigWigs_RecvSync")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -156,39 +153,39 @@ end
 ------------------------------
 
 function mod:UNIT_HEALTH(arg1)
-	if not db.glapse then return end
+	if not self.db.profile.glapse then return end
 	if UnitName(arg1) == boss then
 		local health = UnitHealth(arg1)
 		if health > 48 and health <= 52 and not glapseannounced then
 			glapseannounced = true
-			self:Message(L["glapse_message"], "Important", nil, nil, nil, 44224)
-		elseif health > 30 and glapseannounced then
+			self:IfMessage(L["glapse_message"], "Important", 44224)
+		elseif health > 60 and glapseannounced then
 			glapseannounced = nil
 		end
 	end
 end
 
 function mod:Lapse()
-	if db.glapse then 
+	if self.db.profile.glapse then 
 		self:Bar(L["glapse_bar"], 35, 44224)
 	end
 end
 
 function mod:Phoenix()
-	if db.phoenix then
-		self:Message(L["phoenix_message"], "Important", nil, nil, nil, 44194)
+	if self.db.profile.phoenix then
+		self:IfMessage(L["phoenix_message"], "Important", 44194)
 	end
 end
 
 function mod:FlameStrike()
-	if db.flamestrike then
-		self:Message(L["flamestrike_message"], "Important", nil, nil, nil, 44192)
+	if self.db.profile.flamestrike then
+		self:IfMessage(L["flamestrike_message"], "Important", 44192)
 	end
 end
 
 function mod:Barrier()
-	if db.barrier then
-		self:Message(L["barrier_message"], "Important", nil, nil, nil, 46165)
+	if self.db.profile.barrier then
+		self:IfMessage(L["barrier_message"], "Important", 46165)
 	end
 end
 
@@ -198,9 +195,10 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		if self:IsEventRegistered("PLAYER_REGEN_DISABLED") then
 			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
 		end
-		if db.barrier and GetInstanceDifficulty() == 2 then
-			self:Bar(L["barrier_next_bar"], 60, 46165) --need a spellId for Shield Barrier
-			self:DelayedMessage(50, L["barrier_soon_message"], "Attention", nil, nil, nil, 46165)
+		if self.db.profile.barrier and GetInstanceDifficulty() == 2 then
+			self:Bar(L["barrier_next_bar"], 60, 46165)
+			self:DelayedMessage(50, L["barrier_soon_message"], "Attention")
 		end
 	end
 end
+
