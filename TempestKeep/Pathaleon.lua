@@ -8,8 +8,6 @@ local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
 local despawnannounced
 local summon_time = 0
-local db = nil
-local fmt = string.format
 
 ----------------------------
 --      Localization      --
@@ -32,7 +30,7 @@ L:RegisterTranslations("enUS", function() return {
 	mc = "Mind Control",
 	mc_desc = "Warn for Mind Control",
 	mc_message = "%s is Mind Controlled!",
-	mb_bar = "%s - Mind Control",
+	mc_bar = "%s - Mind Control",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -145,8 +143,6 @@ function mod:OnEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("UNIT_HEALTH")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -154,13 +150,13 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if db.despawn and (msg:find(L["despawn_trigger"]) or msg:find(L["despawn_trigger2"])) then
+	if self.db.profile.despawn and (msg:find(L["despawn_trigger"]) or msg:find(L["despawn_trigger2"])) then
 		self:Message(L["despawn_done"], "Important")
 	end
 end
 
 function mod:UNIT_HEALTH(arg1)
-	if not db.despawn then return end
+	if not self.db.profile.despawn then return end
 	if UnitName(arg1) == boss then
 		local health = UnitHealth(arg1)
 		if health > 20 and health <= 25 and not despawnannounced then
@@ -173,13 +169,14 @@ function mod:UNIT_HEALTH(arg1)
 end
 
 function mod:Summon()
-	if db.summon then
-		self:Message(L["summon_message"], "Important")
+	if self.db.profile.summon then
+		self:IfMessage(L["summon_message"], "Important", 35285)
 	end
 end
 
 function mod:MC(player, spellId)
-	if not player or not db.mc then return end
-	self:Message(fmt(L["mc_message"], player), "Important")
-	self:Bar(fmt(L["mc_bar"], player), 10, spellId) --Double check time once we know exact spellId 
+	if self.db.profile.mc then
+		self:IfMessage(L["mc_message"]:format(player), "Important", spellId)
+		self:Bar(L["mc_bar"]:format(player), 10, spellId) --Double check time once we know exact spellId 
+	end
 end
