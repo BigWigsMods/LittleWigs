@@ -100,12 +100,12 @@ L:RegisterTranslations("koKR", function() return {
 	spell_message = "주문 반사!",
 
 	rage = "장군의 분노",
-	rage_desc = "분노의 채널링에 대한 알림",
+	rage_desc = "분노의 채널링에 대한 알립니다.",
 	rage_trigger1 = "^%s|1이;가; 근처의 추출기로부터 시전을 시작합니다...", -- check
 	rage_trigger2 = "아직 끝나지 않았다.",
-	rage_message = "장군 채널링!",
-	rage_soon = "잠시후 채널링!",
-	rage_soonbar = "~채널링 대기시간",
+	rage_message = "장군의 분노!",
+	rage_soon = "잠시 후 장군의 분노!",
+	rage_soonbar = "~장군의 분노 가능",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

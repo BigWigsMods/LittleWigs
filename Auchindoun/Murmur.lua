@@ -39,25 +39,26 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	touch_message_you = "당신은 폭탄입니다!",
-	touch_message_other = "%s님이 폭탄입니다!",
+	touch_message = "%s has %s!",
+	touch_message_you = "당신은 울림의 손길!",
+	touch_message_other = "%s에 울림의 손길!",
 
-	touchtimer = "폭발 시점에 대한 바",
-	touchtimer_desc = "울림의 손길에 걸린 사람이 폭발할 때 까지의 13초 바를 표시합니다.",
+	touchtimer = "울림의 손길 폭발에 대한 바",
+	touchtimer_desc = "울림의 손길에 걸린 플레이어가 폭발까지의 13초 바를 보여줍니다.",
 	touchtimer_bar = "%s: 울림의 손길",
 
-	youtouch = "자신의 폭탄 알림",
-	youtouch_desc = "당신이 폭탄일 때 알립니다.",
+	youtouch = "자신의 손길 알림",
+	youtouch_desc = "당신의 울림의 손길에 대해 알립니다.",
 
-	othertouch = "타인의 폭탄 알림",
-	othertouch_desc = "타인이 폭탄일 때 알립니다.",
+	othertouch = "타인의 손길 알림",
+	othertouch_desc = "타인의 울림의 손길에 대해 알립니다.",
 
 	icon = "폭탄 공격대 아이콘",
-	icon_desc = "폭탄인 사람에게 공격대 아이콘을 지정합니다. (승급자 이상 권한 요구)",
+	icon_desc = "울림의 손길에 걸린 플레이어에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
 
 	sonicboom = "음파 폭발",
 	sonicboom_desc = "음파 폭발 시전 시 경고합니다.",
-	sonicboom_trigger = "대기에서 에너지를 흡수합니다...", -- check
+	sonicboom_trigger = "대기에서 에너지를 흡수합니다...",
 	sonicboom_alert = "5초 이내 음파 폭발!",
 	sonicboom_bar = "음파 폭발 시전!",
 } end)

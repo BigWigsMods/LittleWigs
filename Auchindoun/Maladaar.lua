@@ -28,7 +28,8 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	soul = "잃어버린 영혼 ",
 	soul_desc = "잃어버린 영혼에 대한 경고",
-	soul_message = "잠시후 영혼을 훔칩니다!",
+	soul_message = "영혼을 도난당함!",
+	soul_message_new = "%s에 잃어버린 영혼!",
 
 	avatar = "순교자의 화신",
 	avatar_desc = "순교자의 화신 소환 경고",

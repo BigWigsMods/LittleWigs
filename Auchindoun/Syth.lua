@@ -21,7 +21,7 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	summon = "정령 알림",
-	summon_desc = "정령 소환 시 알립니다.",
+	summon_desc = "정령 소환에 대해 알립니다.",
 	summon_message = "정령 소환!",
 } end )
 

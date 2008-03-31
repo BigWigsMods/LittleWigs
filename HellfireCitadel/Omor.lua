@@ -37,8 +37,9 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("koKR", function() return {
 	aura = "배반의 오라",
 	aura_heroic = "배반의 파멸",
-	aura_desc = "배반의 오라에 걸린 사람을 알립니다.",
-	aura_message = "%s : %s!",
+	aura_desc = "배반의 오라에 걸린 플레이어를 알립니다.",
+	aura_message = "%s: %s!",
+	aura_message_you = "당신은 %s!",
 	aura_bar = "%s: %s",
 
 	icon = "전술 표시",

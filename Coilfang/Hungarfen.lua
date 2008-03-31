@@ -34,6 +34,16 @@ L:RegisterTranslations("frFR", function() return {
 	spores_message = "Spores nauséabondes imminentes !",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	shroom = "지하수렁 버섯",
+	shroom_desc = "지하수렁 버섯 생성에 대해 알립니다.",
+	shroom_message = "지하수렁 버섯 생성!",
+
+	spores = "더러운 곰팡이",
+	spores_desc = "헝가르펜의 자신의 뿌리감기 후 더러운 곰팡이 시전에 대해 알립니다.",
+	spores_message = "잠시후 더러운 곰팡이!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

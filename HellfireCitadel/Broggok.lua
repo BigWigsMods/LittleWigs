@@ -21,7 +21,7 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	poison = "독구름",
-	poison_desc = "독구름 경고",
+	poison_desc = "독구름에 대해 알립니다.",
 	poison_message = "독구름!",
 } end )
 

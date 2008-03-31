@@ -26,6 +26,12 @@ L:RegisterTranslations("frFR", function() return {
 	enrage_message = "Bientôt enragé !",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	enrage = "격노 (영웅)",
+	enrage_desc = "로크마르 격노에 대해 알립니다.",
+	enrage_message = "잠시후 격노!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

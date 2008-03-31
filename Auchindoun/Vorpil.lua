@@ -31,8 +31,8 @@ L:RegisterTranslations("koKR", function() return {
 	teleport_warning = "약 5초 이내 순간 이동!",
 	teleport_bar = "순간 이동",
 	
-	engage_trigger1 = "네 피를 제물로 바칠 것이다.", -- check
-	engage_trigger2 = "너는 다른 자들에게 좋은 표본이 될 것이다.", -- check
+	engage_trigger1 = "네 피를 제물로 바칠 것이다.",
+	engage_trigger2 = "너는 다른 자들에게 좋은 표본이 될 것이다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

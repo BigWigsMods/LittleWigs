@@ -28,13 +28,13 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	hammer = "착암기",
-	hammer_desc = "착암기 효과 시전 시 경고",
+	hammer_desc = "착암기 효과 시전시 알립니다.",
 	hammer_trigger = "자신의 망치를 위협적으로 치켜듭니다...", -- check
 	hammer_message = "3초 이내 착암기!",
 	hammer_bar = "착암기",
 
 	shadow = "어둠의 힘",
-	shadow_desc = "어둠의 힘을 얻을 시 경고",
+	shadow_desc = "어둠의 힘을 획득시 알립니다.",
 	shadow_message = "2초 이내 어둠의 힘!",
 	shadow_bar = "어둠의 힘",
 } end )

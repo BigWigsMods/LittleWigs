@@ -35,17 +35,18 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	summon = "망령 소환",
-	summon_desc = "황천의 망령 소환 시 경고",
+	summon_desc = "황천의 망령 소환에 대해 알립니다.",
 	summon_message = "황천의 망령 소환!",
 
 	despawn = "망령 사라짐",
-	despawn_desc = "황천의 망령 사라짐에 대한 알림",
+	despawn_desc = "황천의 망령 사라짐에 대해 알립니다.",
 	despawn_message = "잠시 후 황천의 망령 사라짐!",
 	despawn_trigger = "진짜 싸움을 시작해 볼까...", 
+	despawn_trigger2 = "I prefer to be hands",	--need to translation.
 	despawn_done = "황천의 망령 사라짐!",
 
 	mc = "정신 지배",
-	mc_desc = "정신 지배에 대한 경고",
+	mc_desc = "정신 지배에 대해 알립니다.",
 	mc_message = "%s 정신 지배!",
 } end )
 

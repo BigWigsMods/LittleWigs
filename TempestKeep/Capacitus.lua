@@ -42,15 +42,29 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	warn1 = "마법 반사!",
+	warn1 = "마법 반사 보호막!",
 	warn2 = "피해 반사 보호막!",
-	warn3 = "마법 반사 사라짐!",
+	warn3 = "마법 반사 보호막 사라짐!",
 	warn4 = "피해 반사 보호막 사라짐!",
+	
+	shields = "Reflective Shields",
+	shields_desc = "피해 & 마법 반사 보호막에 대해 알립니다.",
+	shields_message = "%s !",
+	shieldsremoved_message = "%s 사라짐!",
+
+	shieldbar = "보호막 바",
+	shieldbar_desc = "피해 & 마법 반사 보호막 지속에 대한 바를 표시합니다.",
 
 	polarity = "극성 변환(영웅)",
-	polarity_desc = "극성 변환 시전 시 경고",
+	polarity_desc = "극성 변환 시전시 알립니다.",
 	polarity_message = "3초 이내 극성 변환!",
 	polarity_bar = "극성 변환",
+	
+	enrage = "격노(영웅)",
+	enrage_desc = "격노까지 15 와 45 초 남았을 경우 알립니다.",
+	enrage_trigger = "^You should split while you can.$",	--need to translation.
+	enrage_message = "%ss초 후 격노!",
+	enrage_bar = "<격노>",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

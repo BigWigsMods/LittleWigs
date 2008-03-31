@@ -35,15 +35,15 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	nova = "암흑 회오리",
-	nova_desc = "암흑 회오리에 대한 경고",
+	nova_desc = "암흑 회오리에 대해 알립니다.",
 	nova_message = "2초 이내 암흑 회오리!",
 
 	void = "공허의 지대",
-	void_desc = "새로운 공허의 지대에 대한 경고",
+	void_desc = "새로운 공허의 지대에 대해 알립니다.",
 	void_message = "잠시 후 공허의 지대!",
 
 	seed = "부패의 씨앗",
-	seed_desc = "부패의 씨앗에 걸린 사람에 대한 경고",
+	seed_desc = "부패의 씨앗에 걸린 사람에 대해 알립니다.",
 	seed_message = "%s에 부패의 씨앗!",
 	seed_bar = "~폭발",
 

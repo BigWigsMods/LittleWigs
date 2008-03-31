@@ -48,6 +48,9 @@ L:RegisterTranslations("koKR", function() return {
 	pri_flashheal = "여사제 델리사 - 순간 치유",
 	pri_flashheal_desc = "치유 시전에 대해 알립니다.",
 	pri_flashheal_message = "델리사 치유 시전!",
+	pri_renew = "여사제 델리사 - 소생",
+	pri_renew_desc = "소생을 누구에게 시전했는지 알립니다.",
+	pri_renew_message = "%s 소생!",
 	pri_shield = "여사제 델리사 - 신의 권능: 보호막",
 	pri_shield_desc = "신의 권능: 보호막의 사용에 대해 알립니다.",
 	pri_shield_message = "%s: 보호막!",
@@ -62,16 +65,16 @@ L:RegisterTranslations("koKR", function() return {
 
 	Ellyrs = "엘리스 더스크할로우", --need the add name translated, maybe we'll add it to BabbleBoss
 	ellrys_soc = "엘리스 - 부패의 씨앗",
-	ellrys_soc_desc = "부패의 씨앗에 대해 알립니다.",
-	ellrys_soc_message = "부패의 씨앗!",
+	ellrys_soc_desc = "부패의 씨앗의 시전이 대상이된 플레이어를 알립니다.",
+	ellrys_soc_message = "씨앗: %s",
 
 	Yazzai = "야자이", --need the add name translated, maybe we'll add it to BabbleBoss
 	yazzai_bliz = "야자이 - 눈보라",
-	yazzai_bliz_desc = "눈보라에 대해 알립니다.",
+	yazzai_bliz_desc = "야자이의 눈보라 시전에 대해 알립니다.",
 	yazzai_bliz_message = "눈보라!",
 	yazzai_poly = "야자이 - 변이",
-	yazzai_poly_desc = "변이에 대해 알립니다.",
-	yazzai_poly_message = "변이!",
+	yazzai_poly_desc = "야자이가 변이한 플레이어에 대해 알립니다.",
+	yazzai_poly_message = "변이: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

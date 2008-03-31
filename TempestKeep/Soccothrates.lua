@@ -40,7 +40,7 @@ L:RegisterTranslations("frFR", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	knock = "지옥 대포 정렬",
-	knock_desc = "지옥 대포 정렬에 대한 경고",
+	knock_desc = "지옥 대포 정렬에 대해 알립니다.",
 	knock_message = "지옥 대포 정렬!",
 } end )
 
