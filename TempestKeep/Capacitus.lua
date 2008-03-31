@@ -203,7 +203,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if not db.enrage or GetInstanceDifficulty() == 1 then return end
+	if not self.db.profileenrage or GetInstanceDifficulty() == 1 then return end
 	if msg == L["enrage_trigger"] then
 		self:Bar(L["enrage_bar"], 180, "Spell_Shadow_UnholyFrenzy")
 		self:DelayedMessage(135, L["enrage_message"]:format("45"), "Important")
@@ -212,26 +212,26 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 end
 
 function mod:Shield(_, spellId, _, _, spellName)
-	if db.magic and spellId == 35158 then
+	if self.db.profile.magic and spellId == 35158 then
 		self:IfMessage(L["shields_message"]:format(spellName), "Urgent", 35158)
-	elseif db.dmg and spellId == 35159 then
+	elseif self.db.profile.dmg and spellId == 35159 then
 		self:IfMessage(L["shields_message"]:format(spellName), "Urgent", 35159)
 	end
-	if db.shieldbar then
+	if self.db.profile.shieldbar then
 		self:Bar(spellName, 10, spellId)
 	end
 end
 
 function mod:ShieldRemoved(_, spellId, _, _, spellName)
-	if db.magic and spellId == 35158 then
+	if self.db.profile.magic and spellId == 35158 then
 		self:IfMessage(L["shieldsremoved_message"]:format(spellName), "Positive", 35158)
-	elseif db.dmg and spellId == 35159 then
+	elseif self.db.profile.dmg and spellId == 35159 then
 		self:IfMessage(L["shieldsremoved_message"]:format(spellName), "Positive", 35159)
 	end
 end
 
 function mod:Polarity()
-	if db.polarity then
+	if self.db.profile.polarity then
 		self:IfMessage(L["polarity_message"], "Urgent", 39096)
 		self:Bar(L["polarity_bar"], 3, 39096)
 	end
