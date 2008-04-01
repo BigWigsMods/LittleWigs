@@ -97,7 +97,7 @@ L:RegisterTranslations("zhCN", function() return {
 	void_message = "虚空领域 来临！",
 
 	seed = "腐蚀之种",
-	seed_desc = "当受到腐蚀伤害发出警报。",
+	seed_desc = "当受到腐蚀伤害时发出警报。",
 	seed_message = "腐蚀之种：>%s<！",
 	seed_bar = "<腐蚀之种 - 引爆>",
 

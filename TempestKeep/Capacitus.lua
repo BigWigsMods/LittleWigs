@@ -139,7 +139,7 @@ L:RegisterTranslations("zhCN", function() return {
 	warn4 = "物理护盾消失！ 近战攻击！",
 
 	shields = "反射护盾",
-	shields_desc = "启动伤害/魔法护盾时发出警报。",
+	shields_desc = "当启动伤害/魔法护盾时发出警报。",
 	shields_message = "%s 开启！",
 	shieldsremoved_message = "%s 关闭！",
 

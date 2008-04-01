@@ -90,13 +90,13 @@ L:RegisterTranslations("zhCN", function() return {
 	mb_bar = "<精神控制：%s>",
 
 	split = "分身",
-	split_desc = "预言者斯克瑞斯分身时发出警报。",
+	split_desc = "当施放分身时发出警报。",
 	split_trigger = "^我们遍布宇宙的每一个角落，像群星一样无穷无尽！$",
 	split_message = "%s分身！ 击杀！",
 	split_soon_message = "即将分身！",
 	
 	mr = "心灵撕裂",
-	mr_desc = "当心灵撕裂时发出警报。",
+	mr_desc = "当施放心灵撕裂时发出警报。",
 	mr_message = "心灵撕裂：>%s<！",
 } end )
 

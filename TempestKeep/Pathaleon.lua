@@ -70,15 +70,15 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	summon = "虚空怨灵",
-	summon_desc = "召唤虚空怨灵时发出警报。",
+	summon_desc = "当召唤虚空怨灵时发出警报。",
 	summon_message = "虚空怨灵 出现！",
 
 	despawn = "召回虚空",
-	despawn_desc = "召回虚空怨灵时发出警报。",
+	despawn_desc = "当召回虚空怨灵时发出警报。",
 	despawn_message = "虚空怨灵召回，帕萨雷恩进入狂暴状态！",
 	despawn_trigger = "I prefer the direct",
 	despawn_trigger2 = "我喜欢自己动手……",
-	despawn_done = "虚空怨灵被召回！Boss 进入狂怒状态！",
+	despawn_done = "虚空怨灵被召回！进入狂怒状态！",
 
 	mc = "精神控制",
 	mc_desc = "当精神控制时发出警报。",

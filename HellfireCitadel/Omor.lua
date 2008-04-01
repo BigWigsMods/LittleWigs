@@ -49,7 +49,7 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	aura = "背叛光环",
 	aura_heroic = "背叛者之祸",
-	aura_desc = "当中了背叛光环发出警报。",
+	aura_desc = "当中了背叛光环时发出警报。",
 	aura_message = ">%s< 中了 %s！",
 	aura_bar = "<%s：%s>",
 

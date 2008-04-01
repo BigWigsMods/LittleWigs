@@ -123,8 +123,8 @@ L:RegisterTranslations("zhCN", function() return {
 	rage_trigger1 = "^%s开始从附近的蒸馏器里吸取着什么……",--check
 	rage_trigger2 = "还没完呢……",
 	rage_message = "督军之怒 即将发动！ DPS！",
-	--rage_soon = "channeling soon!",
-	--rage_soonbar = "~Possible channeling",
+	rage_soon = "即将 传送！",
+	rage_soonbar = "<可能传送>",
 } end )
 
 L:RegisterTranslations("esES", function() return {

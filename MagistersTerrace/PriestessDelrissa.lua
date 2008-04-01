@@ -79,21 +79,21 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	pri_flashheal = "女祭司德莉西亚 - 快速治疗",
-	pri_flashheal_desc = "施放治疗发出警报。",
+	pri_flashheal_desc = "当施放快速治疗时发出警报。",
 	pri_flashheal_message = "正在施放 -> 快速治疗！",
 	pri_renew = "女祭司德莉西亚 - 恢复",
 	pri_renew_desc = "当施放恢复时发出警报。",
 	pri_renew_message = "恢复：>%s<！",
 	pri_shield = "女祭司德莉西亚 - 真言术：盾",
-	pri_shield_desc = "受到真言术：盾发出警报。",
+	pri_shield_desc = "当受到真言术：盾时发出警报。",
 	pri_shield_message = "真言术：盾：>%s<！",
 
 	Apoko = "埃波克",
 	apoko_lhw = "埃波克 - 次级治疗波",
-	apoko_lhw_desc = "当施放治疗时发出警报。",
+	apoko_lhw_desc = "当施放次级治疗波时发出警报。",
 	apoko_lhw_message = "埃波克 治疗！",
 	apoko_wf = "埃波克 - 风怒图腾",
-	apoko_wf_desc = "当出现风怒图腾发出警报。",
+	apoko_wf_desc = "当出现风怒图腾时发出警报。",
 	apoko_wf_message = "风怒图腾 出现！",
 
 	Ellyrs = "艾尔蕾丝",

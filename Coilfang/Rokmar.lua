@@ -32,6 +32,12 @@ L:RegisterTranslations("koKR", function() return {
 	enrage_message = "잠시후 격노!",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	enrage = "激怒（英雄）",
+	enrage_desc = "当激怒时发出警报。",
+	enrage_message = "巨钳鲁克玛尔 激怒！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

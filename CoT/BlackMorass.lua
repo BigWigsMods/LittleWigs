@@ -148,13 +148,13 @@ L:RegisterTranslations("zhCN", function() return {
 	portal_desc = "通知全队注意下一传送门即将打开。",
 
 	portalbar = "传送门记时条",
-	portalbar_desc = "显示下一个传送们打开的计时。",
+	portalbar_desc = "显示下一个传送门打开的计时。",
 
-	portal_bar = "~%s: 波 %s",
-	multiportal_bar = "~同时存在多个传送门",
+	portal_bar = "~%s：波 %s",
+	multiportal_bar = "<同时存在多个传送门>",
 
-	portal_message15s = "15秒后 - %s !",
-	portal_message140s = "140秒后 %s !",
+	portal_message15s = "15秒后 - %s ！",
+	portal_message140s = "140秒后 %s ！",
 
 	disable_trigger = "我们会胜利的。这只是个……时间问题。",
 	disable_message = "%s 获救了！",

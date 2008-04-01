@@ -153,9 +153,9 @@ L:RegisterTranslations("zhCN", function() return {
 	icon_desc = "在被成为炸弹的队友打上团队标记。（需要助理或更高权限）",
 
 	sonicboom = "音爆",
-	sonicboom_desc = "当摩摩尔开始施放音爆发出警告。",
+	sonicboom_desc = "当开始施放音爆时发出警告。",
 	sonicboom_trigger = "从空气中吸取能量……",
-	sonicboom_alert = "5秒后发动 音爆！快速跑出音爆范围～",
+	sonicboom_alert = "5秒后，发动音爆！快速跑出音爆范围！",
 	sonicboom_bar = "<正在施放音爆>",
 } end)
 
