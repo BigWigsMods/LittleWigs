@@ -82,6 +82,7 @@ L:RegisterTranslations("zhCN", function() return {
 	mc = "精神控制",
 	mc_desc = "当精神控制时发出警报。",
 	mc_message = "精神控制：>%s<！",
+	mc_bar = "<精神控制：%s>",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

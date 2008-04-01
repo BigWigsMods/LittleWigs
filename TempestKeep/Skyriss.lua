@@ -86,6 +86,7 @@ L:RegisterTranslations("zhCN", function() return {
 	mc = "精神控制",
 	mc_desc = "当精神控制时发出警报。",
 	mc_message = "精神控制：>%s<！",
+	mb_bar = "<精神控制：%s>",
 
 	split = "分身",
 	split_desc = "预言者斯克瑞斯分身时发出警报。",

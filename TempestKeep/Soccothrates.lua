@@ -25,11 +25,10 @@ L:RegisterTranslations("zhTW", function() return {
 	knock_message = "近戰被擊退!",
 } end )
 
---天怒预言者苏克拉底
 L:RegisterTranslations("zhCN", function() return {
 	knock = "击退",
-	knock_desc = "击退警报",
-	knock_message = "近战被击退!",
+	knock_desc = "当被击退时发出警报。",
+	knock_message = "近战被击退！",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

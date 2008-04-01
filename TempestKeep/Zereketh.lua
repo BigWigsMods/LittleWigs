@@ -90,7 +90,7 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	nova = "暗影新星",
 	nova_desc = "当暗影新星时发出警报。",
-	nova_message = "2秒后 暗影新星！",
+	nova_message = "2秒后，暗影新星！",
 
 	void = "虚空领域",
 	void_desc = "当虚空领域时发出警报。",
