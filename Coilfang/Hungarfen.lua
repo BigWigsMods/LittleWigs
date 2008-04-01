@@ -41,7 +41,7 @@ L:RegisterTranslations("koKR", function() return {
 
 	spores = "더러운 곰팡이",
 	spores_desc = "헝가르펜의 자신의 뿌리감기 후 더러운 곰팡이 시전에 대해 알립니다.",
-	spores_message = "잠시후 더러운 곰팡이!",
+	spores_message = "잠시 후 더러운 곰팡이!",
 } end )
 
 ----------------------------------

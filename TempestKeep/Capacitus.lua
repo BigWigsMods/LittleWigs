@@ -47,7 +47,7 @@ L:RegisterTranslations("koKR", function() return {
 	warn3 = "마법 반사 보호막 사라짐!",
 	warn4 = "피해 반사 보호막 사라짐!",
 	
-	shields = "Reflective Shields",
+	shields = "반사 보호막",
 	shields_desc = "피해 & 마법 반사 보호막에 대해 알립니다.",
 	shields_message = "%s !",
 	shieldsremoved_message = "%s 사라짐!",

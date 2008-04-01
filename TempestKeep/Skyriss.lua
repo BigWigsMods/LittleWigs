@@ -38,6 +38,7 @@ L:RegisterTranslations("koKR", function() return {
 	mc = "정신 지배",
 	mc_desc = "정신 지배에 대해 알립니다.",
 	mc_message = "%s - 정신 지배!",
+	mb_bar = "%s - 정신 지배",
 
 	split = "분리",
 	split_desc = "스키리스 분리에 대해 알립니다.",

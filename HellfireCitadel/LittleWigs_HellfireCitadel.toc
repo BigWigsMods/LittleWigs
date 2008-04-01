@@ -8,6 +8,7 @@
 ## Notes-zhTW: Little Wigs 地獄火堡壘模組
 ## Title-zhCN: Little Wigs [|cffeda55f地狱火堡垒|r]
 ## Notes-zhCN: Little Wigs 地狱火堡垒模块
+## Notes-koKR: Little Wigs 지옥불 성채 경고
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

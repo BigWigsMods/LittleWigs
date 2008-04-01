@@ -8,6 +8,7 @@
 ## Notes-zhTW: Little Wigs 時光之穴模組
 ## Title-zhCN: Little Wigs [|cffeda55f时光之穴|r]
 ## Notes-zhCN: Little Wigs 时光之穴模块
+## Notes-koKR: Little Wigs 시간의 동굴 경고
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

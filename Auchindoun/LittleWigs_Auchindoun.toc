@@ -7,6 +7,7 @@
 ## Notes-zhTW: Little Wigs 奧齊頓模組
 ## Title-zhCN: Little Wigs [|cffeda55f奥金顿|r]
 ## Notes-zhCN: Little Wigs 奥金顿模块
+## Notes-koKR: Little Wigs 아킨둔 경고
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

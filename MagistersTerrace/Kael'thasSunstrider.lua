@@ -51,7 +51,7 @@ L:RegisterTranslations("koKR", function() return {
 	barrier_desc = "캘타스가 충격 방벽 얻었을 때 알립니다.",
 	barrier_message = "충격 방벽!",
 	barrier_next_bar = "~ 다음 방어 방벽",
-	barrier_soon_message = "잠시후 방어 방벽!",
+	barrier_soon_message = "잠시 후 방어 방벽!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

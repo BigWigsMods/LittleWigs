@@ -6,6 +6,7 @@
 ## Notes-zhTW: 五人副本首領警報。需先安裝 Big Wigs
 ## Notes-zhCN: 用于 TBC 的5人副本，Boss 警告器。需配合 BigWigs 方可使用。
 ## Notes-frFR: Avertissements pour les boss des instances à 5 joueurs.
+## Notes-koKR: 5인 던전용 보스 경고 애드온
 ## Author: Ulic
 ## X-Build: $Rev$
 ## X-Category: Party

@@ -9,6 +9,7 @@
 ## Notes-zhTW: Little Wigs 盤牙洞穴模組
 ## Title-zhCN: Little Wigs [|cffeda55f盘牙水库|r]
 ## Notes-zhCN: Little Wigs 盘牙水库模块
+## Notes-koKR: Little Wigs 송곳니 저수지 경고
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

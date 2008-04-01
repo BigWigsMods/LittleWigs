@@ -8,6 +8,7 @@
 ## Notes-zhTW: Little Wigs 風暴要塞模組
 ## Title-zhCN: Little Wigs [|cffeda55f风暴要塞|r]
 ## Notes-zhCN: Little Wigs 风暴要塞模块
+## Notes-koKR: Little Wigs 폭풍우 요새 경고
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

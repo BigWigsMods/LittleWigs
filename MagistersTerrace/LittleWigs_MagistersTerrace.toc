@@ -8,6 +8,7 @@
 ## Notes-frFR: Modules Little Wigs concernant la Terrasse des Magistères.
 ## Notes-zhCN: Little Wigs 魔导师平台模块
 ## Notes-zhTW: Little Wigs 博學者殿堂模組
+## Notes-koKR: Little Wigs 마법학자의 정원 경고
 ## Author: Ulic
 ## Version: 2.0
 ## LoadOnDemand: 1

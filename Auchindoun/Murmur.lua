@@ -39,7 +39,7 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	touch_message = "%s has %s!",
+	touch_message = "%s에 %s!",
 	touch_message_you = "당신은 울림의 손길!",
 	touch_message_other = "%s에 울림의 손길!",
 
