@@ -88,25 +88,25 @@ L:RegisterTranslations("zhCN", function() return {
 	pri_shield_desc = "受到真言术：盾发出警报。",
 	pri_shield_message = "真言术：盾：>%s<！",
 
-	Apoko = "Apoko", --need the add name translated, maybe we'll add it to BabbleBoss
-	apoko_lhw = "Apoko - 次级治疗波",
-	apoko_lhw_desc = "施放治疗时发出警报。",
-	apoko_lhw_message = "Apoko 治疗！",
-	apoko_wf = "Apoko - 风怒图腾",
-	apoko_wf_desc = "出现风怒图腾发出警报。",
-	apoko_wf_message = "风怒图腾 >出现<！",
+	Apoko = "埃波克",
+	apoko_lhw = "埃波克 - 次级治疗波",
+	apoko_lhw_desc = "当施放治疗时发出警报。",
+	apoko_lhw_message = "埃波克 治疗！",
+	apoko_wf = "埃波克 - 风怒图腾",
+	apoko_wf_desc = "当出现风怒图腾发出警报。",
+	apoko_wf_message = "风怒图腾 出现！",
 
-	Ellyrs = "Ellrys Duskhallow", --need the add name translated, maybe we'll add it to BabbleBoss
-	ellrys_soc = "Ellrys - 腐蚀之种",
-	ellrys_soc_desc = "施放腐蚀之种时发出警报。",
+	Ellyrs = "艾尔蕾丝",
+	ellrys_soc = "艾尔蕾丝 - 腐蚀之种",
+	ellrys_soc_desc = "当施放腐蚀之种时发出警报。",
 	ellrys_soc_message = "腐蚀之种！",
 
 	Yazzai = "Yazzai", --need the add name translated, maybe we'll add it to BabbleBoss
 	yazzai_bliz = "Yazzai - 暴风雪",
-	yazzai_bliz_desc = "施放暴风雪时发出警报。",
+	yazzai_bliz_desc = "当施放暴风雪时发出警报。",
 	yazzai_bliz_message = "暴风雪！",
 	yazzai_poly = "Yazzai - 变形术",
-	yazzai_poly_desc = "施放变形术时发出警报。",
+	yazzai_poly_desc = "当施放变形术时发出警报。",
 	yazzai_poly_message = "变形术！",
 } end )
 
