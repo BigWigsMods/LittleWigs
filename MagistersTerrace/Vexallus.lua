@@ -63,7 +63,7 @@ L:RegisterTranslations("zhTW", function() return {
 	adds = "純淨能量",
 	adds_desc = "當維克索魯斯釋放純淨能量時發出警報",
 	adds_message = "純淨能量釋放!",
-	adds_trigger = "無……法……控制。",
+	adds_trigger = "發出純淨能量!",
 
 	feedback = "能量反噬",
 	feedback_desc = "當隊友受到能量反噬時發出警報",
