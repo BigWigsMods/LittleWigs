@@ -138,22 +138,23 @@ L:RegisterTranslations("zhCN", function() return {
 	warn3 = "魔法护盾消失！ 法系攻击！",
 	warn4 = "物理护盾消失！ 近战攻击！",
 
-	shields = "Reflective Shields",
-	shields_desc = "Warnings for damage & spell reflecting shields",
-	shields_message = "%s up!",
-	shieldsremoved_message = "%s down!",
+	shields = "反射护盾",
+	shields_desc = "启动伤害/魔法护盾时发出警报。",
+	shields_message = "%s 开启！",
+	shieldsremoved_message = "%s 关闭！",
 
-	shieldbar = "Shield Bar",
-	shieldbar_desc = "Display a bar for the duration of Magic & Damage Shields",
+	shieldbar = "护盾计时条",
+	shieldbar_desc = "显示伤害/魔法护盾计时条。",
 
 	polarity = "极性转换（英雄模式）",
 	polarity_desc = "当极性转换时发出警报。",
-	polarity_message = "3秒后 极性转换！",
+	polarity_message = "3秒后，极性转换！",
 	polarity_bar = "<极性转换>",
 
 	enrage = "激怒（英雄模式）",
 	enrage_desc = "在激怒前的15和45秒发出警报。",
-	enrage_message = "%s秒后 激怒！",
+	enrage_trigger = "",--Need Combatlog
+	enrage_message = "%s秒后，激怒！",
 	enrage_bar = "<激怒>",
 } end )
 
