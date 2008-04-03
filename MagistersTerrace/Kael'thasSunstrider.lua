@@ -97,24 +97,24 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	glapse = "引力失效",
-	glapse_desc = "當凱爾薩斯發動引力失效時發出警報",
-	glapse_message = "即將發動引力失效!",
-	glapse_bar = "<引力失效>",
+	glapse = "重力流逝",
+	glapse_desc = "當凱爾薩斯發動重力流逝時發出警告",
+	glapse_message = "即將發動重力流逝!",
+	glapse_bar = "<重力流逝>",
 
 	phoenix = "召喚鳳凰",
-	phoenix_desc = "當凱爾薩斯召喚鳳凰時發出警報",
-	phoenix_message = "已召喚鳳凰!",
+	phoenix_desc = "當凱爾薩斯召喚鳳凰時發出警告",
+	phoenix_message = "鳳凰 - 已召喚!",
 
-	flamestrike = "烈焰打擊",
-	flamestrike_desc = "當凱爾薩斯發動烈焰打擊時發出警報",
-	flamestrike_message = "烈焰打擊!",
+	flamestrike = "烈焰風暴",
+	flamestrike_desc = "當凱爾薩斯發動烈焰風暴時發出警告",
+	flamestrike_message = "烈焰風暴!",
 
-	barrier = "震擊屏障（英雄）",
-	barrier_desc = "當凱爾薩斯獲得震擊屏障發出警報",
-	barrier_message = "震擊屏障 開啟!",
-	barrier_next_bar = "<下一次震擊屏障>",
-	barrier_soon_message = "即將施放震擊屏障!",
+	barrier = "震擊屏障（英雄）", -- need check
+	barrier_desc = "當凱爾薩斯獲得震擊屏障發出警告", -- need check
+	barrier_message = "震擊屏障 開啟!", -- need check
+	barrier_next_bar = "<下一次震擊屏障>", -- need check
+	barrier_soon_message = "即將施放震擊屏障!", -- need check
 } end )
 
 ----------------------------------
