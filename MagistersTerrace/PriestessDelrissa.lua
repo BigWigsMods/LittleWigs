@@ -101,12 +101,12 @@ L:RegisterTranslations("zhCN", function() return {
 	ellrys_soc_desc = "当施放腐蚀之种时发出警报。",
 	ellrys_soc_message = "腐蚀之种！",
 
-	Yazzai = "Yazzai", --need the add name translated, maybe we'll add it to BabbleBoss
-	yazzai_bliz = "Yazzai - 暴风雪",
-	yazzai_bliz_desc = "当施放暴风雪时发出警报。",
+	Yazzai = "亚赛",
+	yazzai_bliz = "亚赛 - 暴风雪",
+	yazzai_bliz_desc = "施放暴风雪时发出警报。",
 	yazzai_bliz_message = "暴风雪！",
-	yazzai_poly = "Yazzai - 变形术",
-	yazzai_poly_desc = "当施放变形术时发出警报。",
+	yazzai_poly = "亚赛 - 变形术",
+	yazzai_poly_desc = "施放变形术时发出警报。",
 	yazzai_poly_message = "变形术！",
 } end )
 
