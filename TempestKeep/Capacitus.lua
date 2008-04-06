@@ -211,7 +211,7 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if not self.db.profileenrage or GetInstanceDifficulty() == 1 then return end
+	if not self.db.profile.enrage or GetInstanceDifficulty() == 1 then return end
 	if msg == L["enrage_trigger"] then
 		self:Bar(L["enrage_bar"], 180, "Spell_Shadow_UnholyFrenzy")
 		self:DelayedMessage(135, L["enrage_message"]:format("45"), "Important")

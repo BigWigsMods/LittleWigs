@@ -4,7 +4,9 @@
 
 local boss = BB["Kael'thas Sunstrider"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss.."(MT)")
+
 local glapseannounced = nil
+local started = nil
 
 ----------------------------
 --      Localization      --
