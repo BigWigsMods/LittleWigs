@@ -6,10 +6,18 @@
 <Script file="HellfireCitadel\Omor.lua"/>
 <Script file="HellfireCitadel\Warchief.lua"/>
 
+<Script file="Coilfang\Ghaz'an.lua"/>
+<Script file="Coilfang\Hungarfen.lua"/>
 <Script file="Coilfang\Kalithresh.lua"/>
+<Script file="Coilfang\Mennu.lua"/>
+<Script file="Coilfang\Quagmirran.lua"/>
+<Script file="Coilfang\Rokmar.lua"/>
+<Script file="Coilfang\Stalker.lua"/>
 <Script file="Coilfang\Steamrigger.lua"/>
 <Script file="Coilfang\Thespia.lua"/>
 
+<Script file="Auchindoun\Blackheart.lua"/>
+<Script file="Auchindoun\Hellmaw.lua"/>
 <Script file="Auchindoun\Ikiss.lua"/>
 <Script file="Auchindoun\Maladaar.lua"/>
 <Script file="Auchindoun\Murmur.lua"/>

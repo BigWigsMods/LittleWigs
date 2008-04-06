@@ -200,9 +200,9 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Touch", 33711)
+	self:AddCombatListener("SPELL_CAST_START", "Boom", 33923)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Touch", 33711, 33760, 38794) -- from wowhead, 33711 is probably the correct one
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 end
 
 ------------------------------
@@ -212,7 +212,7 @@ end
 function mod:Touch(player, spellId)
 	if player == pName and self.db.profile.youtouch then
 		self:LocalMessage(L["touch_message_you"], "Personal", spellId, "Alarm")
-		self:Message(L["touch_message_other"]:format(player), "Attention", nil, nil, true, spellId)		
+		self:WideMessage(L["touch_message_other"]:format(player))
 	elseif self.db.profile.othertouch then
 		self:IfMessage(L["touch_message_other"]:format(player), "Attention", spellId)
 		self:Whisper(player, L["touch_message_you"])
@@ -225,9 +225,9 @@ function mod:Touch(player, spellId)
 	end	
 end
 
-function mod:CHAT_MSG_MONSTER_EMOTE(msg)
-	if self.db.profile.sonicboom and msg:find(L["sonicboom_trigger"]) then
-		self:Message(L["sonicboom_alert"], "Important")
-		self:Bar(L["sonicboom_bar"], 5, "Spell_Nature_AstralRecal", "Red")
+function mod:Boom()
+	if self.db.profile.sonicboom then
+		self:IfMessage(L["sonicboom_alert"], "Important", 33923)
+		self:Bar(L["sonicboom_bar"], 5, 33923, "Red")
 	end
 end

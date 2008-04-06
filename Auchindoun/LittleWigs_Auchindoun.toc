@@ -22,6 +22,8 @@
 
 ## Dependencies: BigWigs
 
+Blackheart.lua
+Hellmaw.lua
 Ikiss.lua
 Pandemonius.lua
 Maladaar.lua
