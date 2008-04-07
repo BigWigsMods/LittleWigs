@@ -16,6 +16,11 @@ L:RegisterTranslations("enUS", function() return {
 	chaos_desc = "Display a bar for the duration of the Incite Chaos",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	chaos = "煽动混乱计时条",
+	chaos_desc = "显示煽动混乱计时条。",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

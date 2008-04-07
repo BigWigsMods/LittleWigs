@@ -25,6 +25,17 @@ L:RegisterTranslations("enUS", function() return {
 	enrage_bar = "Enrage",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	fear = "恐惧冷却",
+	fear_desc = "当即将施放恐惧时发出警报。",
+	fear_message = "即将施放 恐惧！",
+	fear_bar = "<恐惧 冷却>",
+	
+	enrage = "激怒（英雄）",
+	enrage_desc = "当即将激怒时发出警报。",
+	enrage_message = "%s秒后，激怒！",
+	enrage_bar = "<激怒>",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

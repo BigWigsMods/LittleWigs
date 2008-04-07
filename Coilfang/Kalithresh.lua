@@ -84,7 +84,7 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	--engage_message = "Engaged - channeling in ~15sec!",
+	engage_message = "开战 - 15秒后，即将传送！",
 	
 	spell = "法术反射",
 	spell_desc = "当法术反射时发出警报。",
