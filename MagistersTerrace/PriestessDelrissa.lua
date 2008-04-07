@@ -12,9 +12,9 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Delrissa",
 
-	pri_flashheal = "Priestess Delrissa - Flash Heal",
-	pri_flashheal_desc = "Warn for casting heals",
-	pri_flashheal_message = "Priestess casting Flash Heal!",
+	pri_heal = "Priestess Delrissa - Flash Heal",
+	pri_heal_desc = "Warn for casting heals",
+	pri_heal_message = "Priestess casting Flash Heal!",
 	pri_renew = "Priestess Delrissa - Renew",
 	pri_renew_desc = "Warn for who she casts renew on",
 	pri_renew_message = "Renew on %s!",
@@ -23,9 +23,9 @@ L:RegisterTranslations("enUS", function() return {
 	pri_shield_message = "Power Word: Shield on %s!",
 
 	Apoko = "Apoko", --need the add name translated, maybe we'll add it to BabbleBoss
-	apoko_lhw = "Apoko - Lesser Healing Wave",
-	apoko_lhw_desc = "Warn for casting heals",
-	apoko_lhw_message = "Apoko Healing!",
+	apoko_heal = "Apoko - Lesser Healing Wave",
+	apoko_heal_desc = "Warn for casting heals",
+	apoko_heal_message = "Apoko Healing!",
 	apoko_wf = "Apoko - Windfury Totem",
 	apoko_wf_desc = "Warn when a Windfury Totem is dropped",
 	apoko_wf_message = "Windfury Totem dropped!",
@@ -45,9 +45,9 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	pri_flashheal = "여사제 델리사 - 순간 치유",
-	pri_flashheal_desc = "치유 시전에 대해 알립니다.",
-	pri_flashheal_message = "델리사 치유 시전!",
+	pri_heal = "여사제 델리사 - 순간 치유",
+	pri_heal_desc = "치유 시전에 대해 알립니다.",
+	pri_heal_message = "델리사 치유 시전!",
 	pri_renew = "여사제 델리사 - 소생",
 	pri_renew_desc = "소생을 누구에게 시전했는지 알립니다.",
 	pri_renew_message = "%s 소생!",
@@ -56,16 +56,16 @@ L:RegisterTranslations("koKR", function() return {
 	pri_shield_message = "%s: 보호막!",
 
 	Apoko = "아포코", --need the add name translated, maybe we'll add it to BabbleBoss
-	apoko_lhw = "아포코 - 하급 치유의 물결",
-	apoko_lhw_desc = "치유 시전에 대해 알립니다.",
-	apoko_lhw_message = "아포코 치유 시전!",
+	apoko_heal = "아포코 - 하급 치유의 물결",
+	apoko_heal_desc = "치유 시전에 대해 알립니다.",
+	apoko_heal_message = "아포코 치유 시전!",
 	apoko_wf = "아포코 - 질풍의 토템",
 	apoko_wf_desc = "질풍의 토템에 대해 알립니다.",
 	apoko_wf_message = "질풍의 토템!",
 
 	Ellyrs = "엘리스 더스크할로우", --need the add name translated, maybe we'll add it to BabbleBoss
 	ellrys_soc = "엘리스 - 부패의 씨앗",
-	ellrys_soc_desc = "부패의 씨앗의 시전이 대상이된 플레이어를 알립니다.",
+	ellrys_soc_desc = "부패의 씨앗의 시전 대상이된 플레이어를 알립니다.",
 	ellrys_soc_message = "씨앗: %s",
 
 	Yazzai = "야자이", --need the add name translated, maybe we'll add it to BabbleBoss
@@ -78,9 +78,9 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	pri_flashheal = "女祭司德莉西亚 - 快速治疗",
-	pri_flashheal_desc = "当施放快速治疗时发出警报。",
-	pri_flashheal_message = "正在施放 -> 快速治疗！",
+	pri_heal = "女祭司德莉西亚 - 快速治疗",
+	pri_heal_desc = "当施放快速治疗时发出警报。",
+	pri_heal_message = "正在施放 -> 快速治疗！",
 	pri_renew = "女祭司德莉西亚 - 恢复",
 	pri_renew_desc = "当施放恢复时发出警报。",
 	pri_renew_message = "恢复：>%s<！",
@@ -90,8 +90,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 	Apoko = "埃波克",
 	apoko_lhw = "埃波克 - 次级治疗波",
-	apoko_lhw_desc = "当施放次级治疗波时发出警报。",
-	apoko_lhw_message = "埃波克 治疗！",
+	apoko_heal_desc = "当施放次级治疗波时发出警报。",
+	apoko_heal_message = "埃波克 治疗！",
 	apoko_wf = "埃波克 - 风怒图腾",
 	apoko_wf_desc = "当出现风怒图腾时发出警报。",
 	apoko_wf_message = "风怒图腾 出现！",
@@ -111,9 +111,9 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	pri_flashheal = "女牧師戴利莎 - 快速治療",
-	pri_flashheal_desc = "當女牧師戴利莎施放快速治療時發出警報",
-	pri_flashheal_message = "女牧師戴利莎正在施放 [快速治療]",
+	pri_heal = "女牧師戴利莎 - 快速治療",
+	pri_heal_desc = "當女牧師戴利莎施放快速治療時發出警報",
+	pri_heal_message = "女牧師戴利莎正在施放 [快速治療]",
 	pri_renew = "女牧師戴利莎 - 恢復",
 	pri_renew_desc = "當女牧師戴利莎施放恢復時發出警報",
 	pri_renew_message = "恢復: >%s<",
@@ -122,9 +122,9 @@ L:RegisterTranslations("zhTW", function() return {
 	pri_shield_message = "真言術:盾: >%s<",
 
 	Apoko = "阿波考", --need the add name translated, maybe we'll add it to BabbleBoss
-	apoko_lhw = "阿波考 - 次級治療波",
-	apoko_lhw_desc = "當阿波考施放次級治療波時發出警報",
-	apoko_lhw_message = "阿波考正在施放 [次級治療波]",
+	apoko_heal = "阿波考 - 次級治療波",
+	apoko_heal_desc = "當阿波考施放次級治療波時發出警報",
+	apoko_heal_message = "阿波考正在施放 [次級治療波]",
 	apoko_wf = "阿波考 - 風怒圖騰",
 	apoko_wf_desc = "當阿波考施放風怒圖騰時發出警報",
 	apoko_wf_message = "風怒圖騰 >出現<",
@@ -144,9 +144,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	pri_flashheal = "Delrissa - Soins rapides",
-	pri_flashheal_desc = "Préviens quand Delrissa incante des Soins rapides.",
-	pri_flashheal_message = "Delrissa incante des Soins rapides !",
+	pri_heal = "Delrissa - Soins rapides",
+	pri_heal_desc = "Préviens quand Delrissa incante des Soins rapides.",
+	pri_heal_message = "Delrissa incante des Soins rapides !",
 	pri_renew = "Delrissa - Rénovation",
 	pri_renew_desc = "Préviens quand Delrissa soigne un allié avec sa Rénovation.",
 	pri_renew_message = "Rénovation sur %s !",
@@ -155,9 +155,9 @@ L:RegisterTranslations("frFR", function() return {
 	pri_shield_message = "Mot de pouvoir : Bouclier sur %s !",
 
 	Apoko = "Apoko", --need the add name translated, maybe we'll add it to BabbleBoss
-	apoko_lhw = "Apoko - Vague de soins inférieurs",
-	apoko_lhw_desc = "Préviens quand Apoko incante une Vague de soins inférieurs.",
-	apoko_lhw_message = "Apoko incante une Vague de soins inférieurs !",
+	apoko_heal = "Apoko - Vague de soins inférieurs",
+	apoko_heal_desc = "Préviens quand Apoko incante une Vague de soins inférieurs.",
+	apoko_heal_message = "Apoko incante une Vague de soins inférieurs !",
 	apoko_wf = "Apoko - Totem Furie-des-vents",
 	apoko_wf_desc = "Préviens quand Apoko pose un Totem Furie-des-vents.",
 	apoko_wf_message = "Totem Furie-des-vents posé !",
@@ -253,6 +253,6 @@ end
 
 function mod:YazzaiBliz(spellId)
 	if self.db.profile.yazzai_bliz then
-		self:IfMessage(L["yazzai_blizz_message"], "Attention", spellId)
+		self:IfMessage(L["yazzai_bliz_message"], "Attention", spellId)
 	end
 end

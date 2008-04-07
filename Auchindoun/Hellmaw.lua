@@ -36,6 +36,19 @@ L:RegisterTranslations("zhCN", function() return {
 	enrage_message = "%s秒后，激怒！",
 	enrage_bar = "<激怒>",
 } end )
+
+L:RegisterTranslations("koKR", function() return {
+	fear = "공포 대기시간",
+	fear_desc = "사자 지옥아귀의 공포 재사용 대기시간을 위한 경고와 바입니다.",
+	fear_message = "공포 대기시간 종료!",
+	fear_bar = "공포 대기시간",
+	
+	enrage = "격노(영웅)",
+	enrage_desc = "Warnings and bar for when 사자 지옥아귀의 격노에 대한 바와 경고입니다.",
+	enrage_message = "%s초 이내 격노",
+	enrage_bar = "격노",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
