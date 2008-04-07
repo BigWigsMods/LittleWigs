@@ -126,7 +126,7 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		end
 		if self.db.profile.teleport then
 			self:Bar(L["teleport_bar"], 40, 33563)
-			self:DelayedMessage(35, L["teleport_warning"], "Attention", nil, nil, nil 33563)
+			self:DelayedMessage(35, L["teleport_warning"], "Attention", nil, nil, nil, 33563)
 		end
 	end
 end
