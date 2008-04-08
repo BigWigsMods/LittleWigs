@@ -89,7 +89,7 @@ L:RegisterTranslations("zhCN", function() return {
 	pri_shield_message = "真言术：盾：>%s<！",
 
 	Apoko = "埃波克",
-	apoko_lhw = "埃波克 - 次级治疗波",
+	apoko_heal = "埃波克 - 次级治疗波",
 	apoko_heal_desc = "当施放次级治疗波时发出警报。",
 	apoko_heal_message = "埃波克 治疗！",
 	apoko_wf = "埃波克 - 风怒图腾",
