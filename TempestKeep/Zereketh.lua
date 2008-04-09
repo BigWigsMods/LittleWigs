@@ -6,9 +6,6 @@ local boss = BB["Zereketh the Unbound"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
-local db = nil
-local fmt = string.format
-
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -140,13 +137,10 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	-- Lots of Shadow Nova spells on wowhead, need the right one
-	--self:AddCombatListener("SPELL_START_CAST", "Nova", #####)
-	self:AddCombatListener("SPELL_START_CAST", "VoidZone", 30533)  --Double check spellId
-	self:AddCombatListener("SPELL_AURA_APPLIES", "SoC", 32863)  --Double check spellId
+	self:AddCombatListener("SPELL_START_CAST", "Nova", 39005) --39005 is heroic need to check normal
+	self:AddCombatListener("SPELL_START_CAST", "VoidZone", 36119, 30533)  --36119 is heroic need to check normal
+	self:AddCombatListener("SPELL_AURA_APPLIES", "SoC", 39367, 32863)  --39367 is heroic need to check normal
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -154,22 +148,23 @@ end
 ------------------------------
 
 function mod:Nova()
-	if db.nova then
+	if self.db.profile.nova then
 		self:Message(L["nova_message"], "Important")
 	end
 end
 
 function mod:VoidZone()
-	if db.void then
+	if self.db.profile.void then
 		self:Message(L["void_message"], "Important")
 	end
 end
 
 function mod:SoC(player, spellId)
-	if not player or not db.seed then return end
-	self:Message(fmt(L["seed_message"], player), "Urgent")
-	self:Bar(fmt(L["seed_bar"], player), 18, spellId)
-	if db.icon then
+	if self.db.profile.seed then
+		self:IfMessage(L["seed_message"]:format(player), "Urgent", spellId)
+		self:Bar(L["seed_bar"]:format(player), 18, spellId)
+	end
+	if self.db.profile.icon then
 		self:Icon(player)
 	end
 end

@@ -6,10 +6,8 @@ local boss = BB["Harbinger Skyriss"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
-local firstSplitAnnounced
-local secondSplitAnnounced
-local db = nil
-local fmt = string.format
+local firstSplitAnnounced = nil
+local secondSplitAnnounced = nil
 
 ----------------------------
 --      Localization      --
@@ -124,7 +122,7 @@ local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Arcatraz"]
-mod.enabletrigger = boss 
+mod.enabletrigger = {boss, BB["Warden Mellichar"]}
 mod.toggleoptions = {"mc", "mr", "split", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -137,13 +135,11 @@ function mod:OnEnable()
 	secondSplitAnnounced = nil
 
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 30923, 35280, 37122, 38626) --These seem the most likely Ids, find the real one
-	self:AddCombatListener("SPELL_AURA_APPLIED", "MindRend", 36924, 36929, 39017, 39021) --Probably 36924, find the real one
+	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 39019)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "MindRend", 39017)
 	
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")	
 	self:RegisterEvent("UNIT_HEALTH")	
-	
-	db = self.db.profile
 end
 
 ------------------------------
@@ -151,13 +147,13 @@ end
 ------------------------------
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if db.split and msg == L["split_trigger"] then
+	if self.db.profile.split and msg == L["split_trigger"] then
 		self:Message(L["split_message"]:format(boss), "Urgent")
 	end
 end
 
 function mod:UNIT_HEALTH(msg)
-	if not db.split then return end
+	if not self.db.profile.split then return end
 	if UnitName(msg) == boss then
 		local hp = UnitHealth(msg)
 		if hp > 66 and hp < 70 and not firstSplitAnnounced then
@@ -171,12 +167,14 @@ function mod:UNIT_HEALTH(msg)
 end
 
 function mod:MC(player, spellId)
-	if not player or not db.mc then return end
-	self:Message(fmt(L["mc_message"], player), "Important")
-	self:Bar(fmt(L["mc_bar"], player), 10, spellId) --Double check time once we know exact spellId 
+	if self.db.profile.mc then
+		self:IfMessage(L["mc_message"]:format(player), "Important", spellId)
+		self:Bar(L["mc_bar"]:format(player), 6, spellId)
+	end
 end
 
 function mod:MindRend(player)
-	if not db.mr then return end
-	self:Message(fmt(L["mr_message"], player), "Important")
+	if self.db.profile.mr then
+		self:IfMessage(L["mr_message"]:format(player), "Important", 39017)
+	end
 end

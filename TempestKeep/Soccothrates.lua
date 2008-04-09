@@ -5,8 +5,6 @@
 local boss = BB["Wrath-Scryer Soccothrates"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-local db = nil
-
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -66,11 +64,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	-- There are about a bazillion Knock Away spells on wowhead, need to find the right one
-	--self:AddCombatListener("SPELL_CAST_START", "Knock", #####)
+	self:AddCombatListener("SPELL_CAST_START", "Knock", 36512)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -78,7 +73,7 @@ end
 ------------------------------
 
 function mod:Knock()
-	if db.knock then
+	if self.db.profile.knock then
 		self:Message(L["knock_message"], "Important")
 	end
 end

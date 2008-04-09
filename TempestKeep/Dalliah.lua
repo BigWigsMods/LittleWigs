@@ -6,9 +6,6 @@ local boss = BB["Dalliah the Doomsayer"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
-local db = nil
-local fmt = string.format
-
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -147,45 +144,34 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	--self:AddCombatListener("SPELL_CAST_START", "Heal", #####) Need to find out spellId
-	self:AddCombatListener("SPELL_CAST_START", "WW", 36142) --Find the right spellId
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Gift", 36173, 39009)
+	self:AddCombatListener("SPELL_CAST_START", "Heal", 39013)
+	self:AddCombatListener("SPELL_CAST_START", "WW", 36142)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Gift", 39009)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "WWYell")
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "GenericBossDeath")
-
-	db = self.db.profile
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
-function mod:WWYell(msg)
-	if not db.ww then return end
-	if msg == L["ww_trigger1"] or msg == L["ww_trigger2"] then
-		self:DoWW()
+function mod:WW()
+	if self.db.profile.ww then
+		self:IfMessage(L["ww_message"], "Important", 39009)
+		self:Bar(L["ww"], 6, 39009)
 	end
 end
 
-function mod:WW()
-	if not db.ww then return end
-	self:DoWW()
-end
-
-function mod:DoWW()
-	self:Message(L["ww_message"], "Important")
-	self:Bar(L["ww"], 6, 36142)
-end
-
 function mod:Heal()
-	if not db.heal then return end
-	self:Message(L["heal_message"], Urgent)
+	if self.db.profile.heal then
+		self:IfMessage(L["heal_message"], Urgent, 39013)
+	end
 end
 
 function mod:Gift(player, spellId)
-	if not player or not db.gift then return end
-	self:Message(fmt(L["gift_message"], player), "Urgent")
-	self:Bar(fmt(L["gift_bar"], player), 10, spellId)
+	if self.db.profile.gift then
+		self:IfMessage(L["gift_message"]:format(player), "Urgent", spellId)
+		self:Bar(L["gift_bar"]:format(player), 10, spellId)
+	end
 end
