@@ -19,7 +19,7 @@ L:RegisterTranslations("enUS", function() return {
 	mc = "Mind Control",
 	mc_desc = "Warn for Mind Control",
 	mc_message = "%s is Mind Controlled!",
-	mb_bar = "%s - Mind Control",
+	mc_bar = "%s - Mind Control",
 
 	split = "Split",
 	split_desc = "Warn when Harbinger Skyriss splits",
@@ -36,7 +36,7 @@ L:RegisterTranslations("koKR", function() return {
 	mc = "정신 지배",
 	mc_desc = "정신 지배에 대해 알립니다.",
 	mc_message = "%s - 정신 지배!",
-	mb_bar = "%s - 정신 지배",
+	mc_bar = "%s - 정신 지배",
 
 	split = "분리",
 	split_desc = "스키리스 분리에 대해 알립니다.",
@@ -85,7 +85,7 @@ L:RegisterTranslations("zhCN", function() return {
 	mc = "精神控制",
 	mc_desc = "当精神控制时发出警报。",
 	mc_message = "精神控制：>%s<！",
-	mb_bar = "<精神控制：%s>",
+	mc_bar = "<精神控制：%s>",
 
 	split = "分身",
 	split_desc = "当施放分身时发出警报。",
