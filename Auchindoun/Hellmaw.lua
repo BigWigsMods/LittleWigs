@@ -49,6 +49,18 @@ L:RegisterTranslations("koKR", function() return {
 	enrage_bar = "격노",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	fear = "Temps de recharge Peur",
+	fear_desc = "Affiche une barre et des avertissements concernant la Peur de l'Ambassadeur Gueule-d'enfer.",
+	fear_message = "Temps de recharge de Peur expiré !",
+	fear_bar = "Cooldown Peur",
+
+	enrage = "Enrager (Héroïque)",
+	enrage_desc = "Affiche une barre et des avertissements indiquant quand l'Ambassadeur Gueule-d'enfer deviendra enragé.",
+	enrage_message = "Enrager dans %s sec.",
+	enrage_bar = "Enrager",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

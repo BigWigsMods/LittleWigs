@@ -88,21 +88,22 @@ L:RegisterTranslations("zhTW", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	touch_message_you = "Vous êtes la bombe !",
-	touch_message_other = "%s est la bombe !",
+	touch_message = "%s a le %s !",
+	touch_message_you = "Vous avez le Toucher de Marmon !",
+	touch_message_other = "%s a le Toucher de Marmon !",
 
-	touchtimer = "Délais avant explosion de la bombe",
-	touchtimer_desc = "Affiche une barre de 13 secondes indiquant quand la bombe explose sur la cible.",
+	touchtimer = "Délais avant fin du Toucher",
+	touchtimer_desc = "Affiche une barre de 13 secondes indiquant quand le Toucher de Marmon se termine sur la cible.",
 	touchtimer_bar = "%s : Toucher de Marmon",
 
-	youtouch = "Bombe (vous)",
-	youtouch_desc = "Préviens quand vous êtes la bombe.",
+	youtouch = "Toucher de Marmon sur vous",
+	youtouch_desc = "Préviens quand vous subissez les effets du Toucher de Marmon.",
 
-	othertouch = "Bombe (les autres)",
-	othertouch_desc = "Préviens quand les autres sont la bombe.",
+	othertouch = "Toucher de Marmon sur les autres",
+	othertouch_desc = "Préviens quand un autre joueur subit les effets du Toucher de Marmon.",
 
 	icon = "Icône",
-	icon_desc = "Place une icône de raid sur la personne qui est la bombe (nécessite d'être promu ou mieux).",
+	icon_desc = "Place une icône de raid sur le dernier joueur affecté par le Toucher de Marmon (nécessite d'être promu ou mieux).",
 
 	sonicboom = "Grondement sonore",
 	sonicboom_desc = "Préviens quand Marmon commence à lancer son Grondement sonore.",

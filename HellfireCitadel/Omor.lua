@@ -28,6 +28,7 @@ L:RegisterTranslations("frFR", function() return {
 	aura_heroic = "Plaie de traîtrise",
 	aura_desc = "Préviens quand un joueur subit les effets de l'Aura/Plaie traîtresse.",
 	aura_message = "%s a %s !",
+	aura_message_you = "Vous avez %s !"
 	aura_bar = "%s : %s",
 
 	icon = "Icône",

@@ -35,9 +35,9 @@ L:RegisterTranslations("frFR", function() return {
 	tranq = "Tranquillité ",
 	tranq_desc = "Préviens quand Freywinn lance sa Tranquillité.",
 	tranq_trigger1 = "Nature bends to my will....", -- à traduire
-	tranq_trigger2 = "Endorel anuminor!", --needs localization
+	tranq_trigger2 = "Endorel anuminor!", -- à traduire
 	tranq_message = "Tranquilité incanté !",
-	tranqfade_message = "Fin de Tranquillité dans ~5 sec. !",
+	tranqfade_message = "Fin de la Tranquillité dans ~5 sec. !",
 } end )
 
 L:RegisterTranslations("koKR", function() return {

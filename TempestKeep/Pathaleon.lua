@@ -95,11 +95,13 @@ L:RegisterTranslations("frFR", function() return {
 	despawn_desc = "Préviens quand les âmes en peine du Néant sont sur le point de disparaître.",
 	despawn_message = "Disparition des âmes en peine du Néant imminente !",
 	despawn_trigger = "Je préfère", -- à vérifier
+	despawn_trigger2 = "I prefer to be hands", -- à traduire
 	despawn_done = "Âmes en peine du Néant disparues !",
 
 	mc = "Contrôle mental",
 	mc_desc = "Préviens quand un joueur est contrôlé.",
 	mc_message = "%s est sous Contrôle mental !",
+	mc_bar = "%s - Contrôle mental",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

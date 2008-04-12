@@ -26,6 +26,11 @@ L:RegisterTranslations("koKR", function() return {
 	chaos_desc = "혼돈 유발의 지속 시간에 대한 바를 표시합니다.",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	chaos = "Barre Provoquer le chaos",
+	chaos_desc = "Affiche une barre indiquant la durée de Provoquer le chaos.",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
