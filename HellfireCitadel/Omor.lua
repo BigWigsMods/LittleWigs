@@ -14,7 +14,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	aura = "Treacherous Aura", -- needs to be exactly what it's called in game.
 	aura_heroic = "Bane of Treachery",
-	aura_desc = "Announce who has the Trecherous Aura",
+	aura_desc = "Announce who has the Trecherous Aura.",
 	aura_message = "%s has %s!",
 	aura_message_you = "You have %s!",
 	aura_bar = "%s: %s",
@@ -30,7 +30,7 @@ L:RegisterTranslations("frFR", function() return {
 	aura_message = "%s a %s !",
 	aura_message_you = "Vous avez %s !",
 	aura_bar = "%s : %s",
-	
+
 	icon = "Icône",
 	icon_desc = "Place une icône de raid sur le dernier joueur affecté par l'Aura/Plaie traîtresse (nécessite d'être promu ou mieux).",
 } end)
@@ -107,13 +107,11 @@ end
 ------------------------------
 
 function mod:Curse(player, spellId, _, _, spellName)
-	if player and self.db.profile.aura then
-		self:Message(L["aura_message"]:format(player, spellName), "Urgent", nil, nil, nil, spellId)
-		self:Bar(fmt(L["aura_bar"], player, spellName), 15, spellId)
+	if self.db.profile.aura then
+		self:IfMessage(L["aura_message"]:format(player, spellName), "Urgent", spellId)
+		self:Bar(L["aura_bar"]:format(player, spellName), 15, spellId)
 		self:Whisper(player, L["aura_message_you"]:format(spellName))
-		if self.db.profile.icon then
-			self:Icon(player)
-		end	
+		self:Icon(player, "icon")
 	end
 end
 
