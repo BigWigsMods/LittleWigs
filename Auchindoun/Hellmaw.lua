@@ -37,6 +37,18 @@ L:RegisterTranslations("zhCN", function() return {
 	enrage_bar = "<激怒>",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	fear = "恐懼冷卻",
+	fear_desc = "當即將施放恐懼時發出警報",
+	fear_message = "即將施放 恐懼!",
+	fear_bar = "<恐懼冷卻>",
+	
+	enrage = "狂暴（英雄）",
+	enrage_desc = "當即將狂暴時發出警報。",
+	enrage_message = "%s 秒後狂暴!",
+	enrage_bar = "<狂暴>",
+} end )
+
 L:RegisterTranslations("koKR", function() return {
 	fear = "공포 대기시간",
 	fear_desc = "사자 지옥아귀의 공포 재사용 대기시간을 위한 경고와 바입니다.",

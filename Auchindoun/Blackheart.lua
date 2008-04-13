@@ -21,6 +21,11 @@ L:RegisterTranslations("zhCN", function() return {
 	chaos_desc = "显示煽动混乱计时条。",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	chaos = "煽動混亂計時條",
+	chaos_desc = "顯示煽動混亂計時條。",
+} end )
+
 L:RegisterTranslations("koKR", function() return {
 	chaos = "혼돈 유발 바",
 	chaos_desc = "혼돈 유발의 지속 시간에 대한 바를 표시합니다.",

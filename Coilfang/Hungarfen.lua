@@ -54,6 +54,16 @@ L:RegisterTranslations("zhCN", function() return {
 	spores_message = "邪恶孢子！躲避！",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	shroom = "幽暗沼澤蘑菇",
+	shroom_desc = "當施放幽暗沼澤蘑菇時發出警報。",
+	shroom_message = "幽暗沼澤蘑菇幼體! 躲避!",
+
+	spores = "邪惡孢子",
+	spores_desc = "當施放邪惡孢子時發出警報。",
+	spores_message = "邪惡孢子! 躲避!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

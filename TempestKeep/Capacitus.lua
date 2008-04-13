@@ -90,7 +90,7 @@ L:RegisterTranslations("zhTW", function() return {
 	enrage_desc = "狂暴前 15 及 45 秒發出警報",
 	enrage_trigger = "^You should split while you can.$",		--need to translation.
 	enrage_message = "%s 秒後狂暴!",
-	enrage_bar = "<Enrage>",
+	enrage_bar = "<狂暴>",
 
 } end )
 

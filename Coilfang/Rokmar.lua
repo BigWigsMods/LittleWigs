@@ -38,6 +38,12 @@ L:RegisterTranslations("zhCN", function() return {
 	enrage_message = "巨钳鲁克玛尔 激怒！",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	enrage = "激怒（英雄）",
+	enrage_desc = "當激怒時發出警報。",
+	enrage_message = "巨鉗魯克瑪爾 激怒！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
