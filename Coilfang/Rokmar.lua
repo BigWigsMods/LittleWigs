@@ -39,9 +39,9 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	enrage = "激怒（英雄）",
-	enrage_desc = "當激怒時發出警報。",
-	enrage_message = "巨鉗魯克瑪爾 激怒！",
+       enrage = "狂怒（英雄）",
+       enrage_desc = "當狂怒時發出警報。",
+       enrage_message = "爆裂者洛克瑪 狂怒!",
 } end )
 
 ----------------------------------
