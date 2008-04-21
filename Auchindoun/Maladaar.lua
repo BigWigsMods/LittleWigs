@@ -5,9 +5,6 @@
 local boss = BB["Exarch Maladaar"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-local db = nil
-local fmt = string.format
-
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -96,10 +93,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED","Soul", 32346)
-	--self:AddCombatListener("SPELL_CAST_START","Avatar", 32346) -- Can't find the spellId for this on wowhead
+	self:AddCombatListener("SPELL_CAST_START","Avatar", 32424)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -107,13 +102,13 @@ end
 ------------------------------
 
 function mod:Soul(player)
-	if db.soul then
-		self:Message(fmt(L["soul_message_new"], player), "Attention")
+	if self.db.profile.soul then
+		self:IfMessage(L["soul_message_new"]:format(player), "Attention", 32346)
 	end
 end
 
 function mod:Avatar()
-	if db.avatar then
+	if self.db.profile.avatar then
 		self:Message(L["avatar_message"], "Attention")
 	end
 end
