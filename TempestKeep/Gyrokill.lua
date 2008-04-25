@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = BB["Gatewatcher Iron-Hand"]
+local boss = BB["Gatewatcher Gyro-Kill"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -10,21 +10,15 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	cmd = "Iron-Hand",
+	cmd = "Gyro-Kill",
 
-	hammer = "Jackhammer",
-	hammer_desc = "Warn when Jackhammer Effect is cast",
-	hammer_trigger = "raises his hammer menacingly",
-	hammer_message = "Jackhammer in 3 seconds!",
-	hammer_bar = "Jackhammer",
-
-	shadow = "Shadow Power",
-	shadow_desc = "Warn when Iron-Hand gains Shadow Power",
+	shadow = "Shadow Power Cast",
+	shadow_desc = "Warn when Iron-Hand casts Shadow Power",
 	shadow_message = "Shadow Power in 2 seconds!",
 
 	shadowaura = "Shadow Power Gained",
 	shadowaura_desc = "Warn when Gyro-Kill gains Shadow Power",
-	shadowaura_message ="Gyro-Kill gains Shadow Power",	
+	shadowaura_message ="Gyro-Kill gains Shadow Power",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -37,6 +31,7 @@ L:RegisterTranslations("koKR", function() return {
 	shadow = "어둠의 힘",
 	shadow_desc = "어둠의 힘을 획득시 알립니다.",
 	shadow_message = "2초 이내 어둠의 힘!",
+	shadow_bar = "어둠의 힘",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -49,6 +44,7 @@ L:RegisterTranslations("zhTW", function() return {
 	shadow = "暗影強化",
 	shadow_desc = "看守者施放暗影強化時發出警報",
 	shadow_message = "2 秒後施放暗影強化!",
+	shadow_bar = "暗影強化",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -61,6 +57,7 @@ L:RegisterTranslations("frFR", function() return {
 	shadow = "Puissance de l'ombre",
 	shadow_desc = "Préviens quand Main-en-fer gagne la Puissance de l'ombre.",
 	shadow_message = "Puissance de l'ombre dans 2 sec. !",
+	shadow_bar = "Puissance de l'ombre",
 } end )
 
 L:RegisterTranslations("esES", function() return {
@@ -73,6 +70,7 @@ L:RegisterTranslations("esES", function() return {
 	shadow = "Shadow Power",
 	shadow_desc = "Avisa cuando Manoyerro lanza Poder de las Sombras",
 	shadow_message = "Poder de las Sombras en 2 segundos!",
+	shadow_bar = "Poder de las Sombras",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -85,6 +83,7 @@ L:RegisterTranslations("zhCN", function() return {
 	shadow = "暗影能量",
 	shadow_desc = "当施放暗影能量时发出警报。",
 	shadow_message = "2秒后，暗影能量！",
+	shadow_bar = "<暗影能量>",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -97,6 +96,7 @@ L:RegisterTranslations("deDE", function() return {
 	shadow = "Schattenmacht",
 	shadow_desc = "Warnen, wenn Eisenhand Schattenmacht bekommt",
 	shadow_message = "Schattenmacht in 2 Sekunden!",
+	shadow_bar = "Schattenmacht",
 } end )
 
 ----------------------------------
@@ -108,7 +108,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"hammer", "shadow", "shadowaura", "bosskill"}
+mod.toggleoptions = {"shadow", "shadowaura", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -116,7 +116,6 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:AddCombatListener("SPELL_CAST_START", "Shadow", 39193)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "ShadowApplied", 39193)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "ShadowRemoved", 39193)
@@ -134,9 +133,9 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 	end
 end
 
-function mod:Shadow(_, spellId)
+function mod:Shadow()
 	if self.db.profile.shadow then
-		self:IfMessage(L["shadow_message"], "Important", spellId)
+		self:Message(L["shadow_message"], "Important")
 	end
 end
 

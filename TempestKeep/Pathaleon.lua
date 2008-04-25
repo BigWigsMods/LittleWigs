@@ -143,7 +143,7 @@ function mod:OnEnable()
 	-- original code I suspect that he casts each of the four spells once, so we only
 	-- need to check for one to be cast, the four Ids are 35285, 35286, 35287, 35288
 	self:AddCombatListener("SPELL_CAST_START", "Summon", 35285)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 30923, 35280, 37122, 38626) --These seem the most likely Ids, find the real one
+	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 35280)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
@@ -164,7 +164,7 @@ function mod:UNIT_HEALTH(arg1)
 	if not self.db.profile.despawn then return end
 	if UnitName(arg1) == boss then
 		local health = UnitHealth(arg1)
-		if health > 20 and health <= 25 and not despawnannounced then
+		if health > 23 and health <= 28 and not despawnannounced then
 			despawnannounced = true
 			self:Message(L["despawn_message"], "Important")
 		elseif health > 30 and despawnannounced then

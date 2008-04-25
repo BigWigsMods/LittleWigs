@@ -26,6 +26,7 @@
 Capacitus.lua
 Dalliah.lua
 Freywinn.lua
+Gyrokill.lua
 Ironhand.lua
 Laj.lua
 Pathaleon.lua

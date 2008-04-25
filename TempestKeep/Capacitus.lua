@@ -6,7 +6,7 @@ local boss = BB["Mechano-Lord Capacitus"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 local aura = nil
-local charge = GetSpellInfo(39088)
+local charge = GetSpellInfo(39090)
 local positive = nil
 
 ----------------------------
@@ -198,8 +198,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Shield", 35159)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "ShieldRemoved", 35158)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "ShieldRemoved", 35159)
-	self:AddCombatListener("SPELL_CAST_START", "Polarity", 39096, 28089) --find out which one it really is
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "PolarityScan", 39096, 28089) --find out which one it really is
+	self:AddCombatListener("SPELL_CAST_START", "Polarity", 39096)
+	--self:AddCombatListener("SPELL_CAST_SUCCESS", "PolarityScan", 39096) --success isn't getting logged right now
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	aura = nil
@@ -242,6 +242,7 @@ function mod:Polarity()
 	if self.db.profile.polarity then
 		self:IfMessage(L["polarity_message"], "Urgent", 39096)
 		self:Bar(L["polarity_bar"], 3, 39096)
+		self:ScheduleEvent("polarityscan", self.PolarityScan, 4, self)
 	end
 end
 
@@ -268,6 +269,6 @@ function mod:PolarityScan()
 		if hasBuff("party"..i, charge) then table.insert(positive, UnitName("party"..i)) end
 	end
 	for k,v in positive do
-		self:Bar(v, 60, 39088, "red")
+		self:Bar(v, 60, 39090, "red")
 	end
 end
