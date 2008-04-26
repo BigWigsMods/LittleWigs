@@ -262,13 +262,15 @@ function mod:PolarityScan()
 		for k,v in positive do
 			self:TriggerEvent("BigWigs_StopBar", self, v)
 		end
-		positive = nil
+		positive = nil 
 	end
 	if hasBuff("player", charge) then table.insert(positive, UnitName("player")) end
 	for i=1, 4 do
 		if hasBuff("party"..i, charge) then table.insert(positive, UnitName("party"..i)) end
 	end
-	for k,v in positive do
-		self:Bar(v, 60, 39090, "red")
+	if positive then
+		for k,v in pairs(positive) do
+			self:Bar(v, 60, 39090, "red")
+		end
 	end
 end
