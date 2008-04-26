@@ -35,16 +35,13 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	hammer = "千斤錘特效",
-	hammer_desc = "看守者發動千斤錘特效時發出警報",
-	hammer_trigger = "威嚇地舉起他的錘子……",
-	hammer_message = "3 秒後發動千斤錘! 近戰退後!",
-	hammer_bar = "千斤錘特效",
-
-	shadow = "暗影強化",
-	shadow_desc = "看守者施放暗影強化時發出警報",
+	shadow = "施放暗影強化",
+	shadow_desc = "當看守者蓋洛奇歐施放暗影強化時發出警報",
 	shadow_message = "2 秒後施放暗影強化!",
-	shadow_bar = "暗影強化",
+
+	shadowaura = "獲得暗影強化",
+	shadowaura_desc = "當看守者蓋洛奇歐獲得暗影強化時發出警報",
+	shadowaura_message ="看守者蓋洛奇歐獲得暗影強化!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

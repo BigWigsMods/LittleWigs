@@ -38,7 +38,7 @@ L:RegisterTranslations("zhTW", function() return {
 	rage_desc = "督軍之怒警報",
 	rage_message = "即將發動督軍之怒! 快打蒸餾器!",
 	rage_soon = "即將輸送!",
-	rage_soonbar = "~可能輸送",
+	rage_soonbar = "<可能輸送>",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

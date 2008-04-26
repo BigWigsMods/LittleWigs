@@ -68,17 +68,17 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	mc = "支配",
 	mc_desc = "隊友受到支配時發出警報",
-	mc_message = "支配: %s",
+	mc_message = "支配: [%s]",
 
 	split = "分身",
 	split_desc = "先驅者史蓋力司施放分身時發出警報",
 	split_trigger = "我們跨越宇宙之間，被我們摧毀的世界像星星一樣數不盡!",
-	split_message = "%s 分身了，擊殺分身！",
-	split_soon_message = "即將分身！",
+	split_message = "%s 分身了，擊殺分身!",
+	split_soon_message = "即將分身!",
 	
 	mr = "心靈撕裂",
 	mr_desc = "隊友受到心靈撕裂時發出警報",
-	mr_message = "心靈撕裂: %s",
+	mr_message = "心靈撕裂: [%s]",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

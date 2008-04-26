@@ -84,7 +84,7 @@ L:RegisterTranslations("zhTW", function() return {
 	polarity = "極性轉換（英雄模式）",
 	polarity_desc = "當極性轉換時警報（僅英雄模式）",
 	polarity_message = "3 秒後極性轉換，注意跑位!",
-	polarity_bar = "極性轉換",
+	polarity_bar = "<極性轉換>",
 
 	enrage = "狂暴（英雄模式）",
 	enrage_desc = "狂暴前 15 及 45 秒發出警報",

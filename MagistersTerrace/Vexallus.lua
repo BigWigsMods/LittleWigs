@@ -67,8 +67,8 @@ L:RegisterTranslations("zhTW", function() return {
 
 	feedback = "能量反噬",
 	feedback_desc = "當隊友受到能量反噬時發出警報",
-	feedback_you = "能量反噬: >你<",
-	feedback_other = "能量反噬: >%s<",
+	feedback_you = "能量反噬: [你]",
+	feedback_other = "能量反噬: [%s]",
 } end )
 
 ----------------------------------

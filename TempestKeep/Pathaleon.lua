@@ -64,8 +64,8 @@ L:RegisterTranslations("zhTW", function() return {
 	despawn_done = "虛空怨靈已被召回，帕薩里歐進入狂怒狀態！",
 
 	mc = "支配",
-	mc_desc = "支配警報",
-	mc_message = "%s 受到支配！",
+	mc_desc = "隊友受到支配時發出警報",
+	mc_message = "支配: [%s]",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

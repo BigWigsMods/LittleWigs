@@ -78,7 +78,7 @@ L:RegisterTranslations("zhTW", function() return {
 	seed = "腐蝕種子",
 	seed_desc = "隊友受到腐蝕種子的傷害時發出警報",
 	seed_message = "%s 受到腐蝕種子的傷害!",
-	seed_bar = "引爆",
+	seed_bar = "<腐蝕種子引爆>",
 
 	icon = "腐蝕種子團隊標記",
 	icon_desc = "在受到腐蝕種子的隊友頭上標記（需要助理或領隊權限）",

@@ -1,11 +1,11 @@
 ﻿## Interface: 20400
 
 ## Title: Little Wigs [|cffeda55fAuchindoun|r]
+## Title-zhCN: Little Wigs [|cffeda55f奥金顿|r]
 ## Title-zhTW: Little Wigs [|cffeda55f奧齊頓|r]
 ## Notes: Little Wigs Auchindoun Modules
 ## Notes-frFR: Modules Little Wigs concernant Auchindoun.
 ## Notes-zhTW: Little Wigs 奧齊頓模組
-## Title-zhCN: Little Wigs [|cffeda55f奥金顿|r]
 ## Notes-zhCN: Little Wigs 奥金顿模块
 ## Notes-koKR: Little Wigs 아킨둔 경고
 ## Author: Ulic

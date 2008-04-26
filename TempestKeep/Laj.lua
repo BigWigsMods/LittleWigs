@@ -30,7 +30,7 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	allergic = "過敏反應",
 	allergic_desc = "過敏反應警報",
-	allergic_message = "過敏反應: %s",
+	allergic_message = "過敏反應: [%s]",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

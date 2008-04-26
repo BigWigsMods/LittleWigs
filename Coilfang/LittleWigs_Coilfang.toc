@@ -3,11 +3,11 @@
 ## Title: Little Wigs [|cffeda55fCoilfang Reservoir|r]
 ## Title-frFR: Little Wigs [|cffeda55fRéservoir de Glisseroc|r]
 ## Title-deDE: Little Wigs [|cffeda55fDer Echsenkessel|r]
-## Title-zhTW: Little Wigs [|cffeda55f盤牙洞穴|r]
+## Title-zhTW: Little Wigs [|cffeda55f盤牙蓄湖|r]
+## Title-zhCN: Little Wigs [|cffeda55f盘牙水库|r]
 ## Notes: Little Wigs Coilfang Reservoir Modules
 ## Notes-frFR: Modules Little Wigs concernant le Réservoir de Glisseroc.
-## Notes-zhTW: Little Wigs 盤牙洞穴模組
-## Title-zhCN: Little Wigs [|cffeda55f盘牙水库|r]
+## Notes-zhTW: Little Wigs 盤牙蓄湖模組
 ## Notes-zhCN: Little Wigs 盘牙水库模块
 ## Notes-koKR: Little Wigs 송곳니 저수지 경고
 ## Author: Ulic

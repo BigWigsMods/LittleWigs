@@ -63,8 +63,8 @@ L:RegisterTranslations("zhTW", function() return {
 	gift = "末日預言者的賜福",
 	gift_desc = "達利亞獲得末日預言者的賜福時發出警報",
 	gift_trigger = "^(.+)受(到[了]*)末日預言者的賜福效果的影響。",
-	gift_message = "末日預言者的賜福: %s",
-	gift_bar = "末日預言者的賜福: %s",
+	gift_message = "末日預言者的賜福: [%s]",
+	gift_bar = "<末日預言者的賜福: [%s]>",
 
 	heal = "治療",
 	heal_desc = "當達利亞施放治療發出警報",

@@ -60,10 +60,10 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
 	aura = "奸詐光環",
-	aura_heroic = "背叛之禍",
+	aura_heroic = "背叛之禍 (英雄)",
 	aura_desc = "當有人中了奸詐光環時發出警報",
 	aura_message = "%s 中了 %s!",
-	aura_bar = "%s: %s",
+	aura_bar = "<%s: %s>",
 
 	icon = "團隊標記",
 	icon_desc = "在中了奸詐光環的隊友頭上標記（需要助理或領隊權限）",

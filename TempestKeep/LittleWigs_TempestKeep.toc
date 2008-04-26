@@ -2,12 +2,12 @@
 
 ## Title: Little Wigs [|cffeda55fTempest Keep|r]
 ## Title-frFR: Little Wigs [|cffeda55fDonjon de la Tempête|r]
+## Title-zhCN: Little Wigs [|cffeda55f风暴要塞|r]
 ## Title-zhTW: Little Wigs [|cffeda55f風暴要塞|r]
 ## Notes: Little Wigs Tempest Keep Modules
 ## Notes-frFR: Modules Little Wigs concernant le Donjon de la Tempête.
-## Notes-zhTW: Little Wigs 風暴要塞模組
-## Title-zhCN: Little Wigs [|cffeda55f风暴要塞|r]
 ## Notes-zhCN: Little Wigs 风暴要塞模块
+## Notes-zhTW: Little Wigs 風暴要塞模組
 ## Notes-koKR: Little Wigs 폭풍우 요새 경고
 ## Author: Ulic
 ## Version: 2.0
