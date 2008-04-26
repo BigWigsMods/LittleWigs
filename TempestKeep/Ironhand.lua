@@ -77,14 +77,18 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	hammer = "风钻",
-	hammer_desc = "当施放风钻特效时发出警告。",
+	hammer_desc = "当施放风钻特效时发出警报。",
 	hammer_trigger = "%s阴险地举起战锤……",
 	hammer_message = "3秒后，风钻！",
 	hammer_bar = "<风钻>",
 
 	shadow = "暗影能量",
-	shadow_desc = "当施放暗影能量时发出警报。",
+	shadow_desc = "当埃隆汉施放暗影能量时发出警报。",
 	shadow_message = "2秒后，暗影能量！",
+
+	shadowaura = "获得暗影能量",
+	shadowaura_desc = "当盖罗基尔施放暗影能量时发出警报。",
+	shadowaura_message ="盖罗基尔 - 暗影能量！",	
 } end )
 
 L:RegisterTranslations("deDE", function() return {
