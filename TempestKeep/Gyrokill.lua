@@ -22,16 +22,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	hammer = "착암기",
-	hammer_desc = "착암기 효과 시전시 알립니다.",
-	hammer_trigger = "자신의 망치를 위협적으로 치켜듭니다...", -- check
-	hammer_message = "3초 이내 착암기!",
-	hammer_bar = "착암기",
-
-	shadow = "어둠의 힘",
-	shadow_desc = "어둠의 힘을 획득시 알립니다.",
+	shadow = "어둠의 힘 시전",
+	shadow_desc = "무쇠주먹의 어둠의 힘 시전에 대해 알립니다.",
 	shadow_message = "2초 이내 어둠의 힘!",
-	shadow_bar = "어둠의 힘",
+		
+	shadowaura = "어둠의 힘 획득",
+	shadowaura_desc = "회전톱날의 어둠의 힘 회득에 대해 알립니다.",
+	shadowaura_message ="회전톱날 어둠의 힘 획득",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

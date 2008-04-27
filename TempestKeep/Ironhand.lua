@@ -35,8 +35,12 @@ L:RegisterTranslations("koKR", function() return {
 	hammer_bar = "착암기",
 
 	shadow = "어둠의 힘",
-	shadow_desc = "어둠의 힘을 획득시 알립니다.",
+	shadow_desc = "무쇠주먹의 어둠의 힘을 획득시 알립니다.",
 	shadow_message = "2초 이내 어둠의 힘!",
+	
+	shadowaura = "어둠의 힘 획득",
+	shadowaura_desc = "회전톱날의 ㅇ둠의 힘 획득에 대해 알립니다.",
+	shadowaura_message ="회전톱날 어둠의 힘 획득",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
