@@ -32,4 +32,5 @@ Laj.lua
 Pathaleon.lua
 Skyriss.lua
 Soccothrates.lua
+Thorngrin.lua
 Zereketh.lua

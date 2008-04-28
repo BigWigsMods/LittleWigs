@@ -33,6 +33,7 @@
 <Script file="TempestKeep\Pathaleon.lua"/>
 <Script file="TempestKeep\Skyriss.lua"/>
 <Script file="TempestKeep\Soccothrates.lua"/>
+<Script file="TempestKeep\Thorngrin.lua"/>
 <Script file="TempestKeep\Zereketh.lua"/>
 
 <Script file="CoT\BlackMorass.lua"/>

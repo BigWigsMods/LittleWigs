@@ -4,10 +4,6 @@
 
 local boss = BB["Laj"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
-
-local db = nil
-local fmt = string.format
 
 ----------------------------
 --      Localization      --
@@ -68,10 +64,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Allergies", 34697, 34700) --Probably just 34697 check and remove
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Allergies", 34697)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -79,6 +73,7 @@ end
 ------------------------------
 
 function mod:Allergies(player)
-	if not db.allergic then return end
-	self:Message(fmt(L["allergic_message"], player), "Important", nil, nil, nil, 34697)
+	if self.db.profile.allergic then
+		self:IfMessage(L["allergic_message"]:format(player), "Important", 34697)
+	end
 end
