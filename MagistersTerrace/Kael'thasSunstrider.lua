@@ -85,14 +85,14 @@ L:RegisterTranslations("zhCN", function() return {
 
 	phoenix = "召唤凤凰",
 	phoenix_desc = "当凤凰被召唤时发出警报。",
-	phoenix_message = "凤凰 -> 召唤！",
+	phoenix_message = "召唤 - 凤凰！",
 
 	flamestrike = "烈焰打击",
 	flamestrike_desc = "当烈焰打击施放时发出警报。",
 	flamestrike_message = "烈焰打击！",
 
 	barrier = "震击屏障（英雄）",
-	barrier_desc = "当凯尔萨斯获得震击屏障时发出警报。",
+	barrier_desc = "当获得震击屏障时发出警报。",
 	barrier_message = "震击屏障！",
 	barrier_next_bar = "<下一震击屏障>",
 	barrier_soon_message = "即将 震击屏障！",

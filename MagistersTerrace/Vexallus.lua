@@ -51,7 +51,7 @@ L:RegisterTranslations("zhCN", function() return {
 	adds = "纯净能量",
 	adds_desc = "当纯净能力被释放时发出警报。",
 	adds_message = "纯净能量释放！",
-	adds_trigger = "discharges pure energy!",--need check
+	adds_trigger = "放射出纯净的能量！",
 
 	feedback = "能量反噬",
 	feedback_desc = "当队友受到能量反噬时发出警报。",

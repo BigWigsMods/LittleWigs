@@ -80,7 +80,7 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	pri_heal = "女祭司德莉西亚 - 快速治疗",
 	pri_heal_desc = "当施放快速治疗时发出警报。",
-	pri_heal_message = "正在施放 -> 快速治疗！",
+	pri_heal_message = "正在施放 - 快速治疗！",
 	pri_renew = "女祭司德莉西亚 - 恢复",
 	pri_renew_desc = "当施放恢复时发出警报。",
 	pri_renew_message = "恢复：>%s<！",
