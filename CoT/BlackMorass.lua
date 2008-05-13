@@ -92,8 +92,8 @@ L:RegisterTranslations("koKR", function() return {
 	portal_message15s = "약 15초 이내 %s!",
 	portal_message140s = "약 140초 이내 %s!",
 
-	disable_trigger = "우리는 승리한다. 단지 시간문제일 뿐...", -- check
-	disable_message = "%s|1을;를; 지켰습니다!",
+	disable_trigger = "우리는 승리한다. 단지 시간문제일 뿐...",
+	disable_message = "%s를 지켰습니다!",
 
 	death_trigger = "(.+)|1이;가; 죽었습니다%.",
 	reset_trigger = "안 돼! 이런 나약한 무리에게 당하다니!",
