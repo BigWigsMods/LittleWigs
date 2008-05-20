@@ -109,7 +109,12 @@ L:RegisterTranslations("deDE", function() return {
 	shadow = "Schattenmacht",
 	shadow_desc = "Warnen, wenn Eisenhand Schattenmacht bekommt",
 	shadow_message = "Schattenmacht in 2 Sekunden!",
+
+	shadowaura = "Schattenmacht bekommen",
+	shadowaura_desc = "Warnen wenn Eisenhand Schattenmacht bekommt",
+	shadowaura_message ="Eisenhand bekommt Schattenmacht",	
 } end )
+
 
 ----------------------------------
 --      Module Declaration      --

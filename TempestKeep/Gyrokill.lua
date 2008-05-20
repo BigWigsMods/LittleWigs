@@ -13,7 +13,7 @@ L:RegisterTranslations("enUS", function() return {
 	cmd = "Gyro-Kill",
 
 	shadow = "Shadow Power Cast",
-	shadow_desc = "Warn when Iron-Hand casts Shadow Power",
+	shadow_desc = "Warn when Gyro-Kill casts Shadow Power",
 	shadow_message = "Shadow Power in 2 seconds!",
 
 	shadowaura = "Shadow Power Gained",
@@ -42,12 +42,6 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	hammer = "Marteau-piqueur",
-	hammer_desc = "Préviens quand le Marteau-piqueur est incanté.",
-	hammer_trigger = "lève son marteau d'un air menaçant...",
-	hammer_message = "Marteau-piqueur dans 3 sec. !",
-	hammer_bar = "Marteau-piqueur",
-
 	shadow = "Puissance de l'ombre",
 	shadow_desc = "Préviens quand Main-en-fer gagne la Puissance de l'ombre.",
 	shadow_message = "Puissance de l'ombre dans 2 sec. !",
@@ -55,12 +49,6 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("esES", function() return {
-	hammer = "Martillo",
-	hammer_desc = "Avisa cuando Manoyerro alza su martillo",
-	hammer_trigger = "alza su martillo amenazadoramente",
-	hammer_message = "Martillo en 3 segundos!",
-	hammer_bar = "Martillo",
-
 	shadow = "Shadow Power",
 	shadow_desc = "Avisa cuando Manoyerro lanza Poder de las Sombras",
 	shadow_message = "Poder de las Sombras en 2 segundos!",
@@ -78,16 +66,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-	hammer = "Hammer",
-	hammer_desc = "Vor Hammer Warnen",
-	hammer_trigger = "erhebt seinen Hammer bedrohlich",
-	hammer_message = "Hammer in 3 Sekunden!",
-	hammer_bar = "Hammer",
-
 	shadow = "Schattenmacht",
-	shadow_desc = "Warnen, wenn Eisenhand Schattenmacht bekommt",
+	shadow_desc = "Warnen, wenn Gyrotod Schattenmacht bekommt",
 	shadow_message = "Schattenmacht in 2 Sekunden!",
-	shadow_bar = "Schattenmacht",
+
+	shadowaura = "Schattenmacht bekommen",
+	shadowaura_desc = "Warnen wenn Gyrotod Schattenmacht bekommt",
+	shadowaura_message ="Gyrotod bekommt Schattenmacht",	
 } end )
 
 ----------------------------------
