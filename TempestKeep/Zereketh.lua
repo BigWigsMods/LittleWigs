@@ -137,9 +137,9 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_START_CAST", "Nova", 39005) --39005 is heroic need to check normal
-	self:AddCombatListener("SPELL_START_CAST", "VoidZone", 36119, 30533)  --36119 is heroic need to check normal
-	self:AddCombatListener("SPELL_AURA_APPLIES", "SoC", 39367, 32863)  --39367 is heroic need to check normal
+	self:AddCombatListener("SPELL_START_CAST", "Nova", 39005, 36127)
+	self:AddCombatListener("SPELL_START_CAST", "VoidZone", 36119, 30533)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "SoC", 39367, 32863)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 end
 
