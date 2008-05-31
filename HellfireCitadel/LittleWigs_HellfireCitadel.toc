@@ -25,5 +25,6 @@
 
 Broggok.lua
 Kelidan.lua
+Maker.lua
 Omor.lua
 Warchief.lua
