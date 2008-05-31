@@ -56,8 +56,8 @@ L:RegisterTranslations("koKR", function() return {
 	fear_bar = "공포 대기시간",
 	
 	enrage = "격노(영웅)",
-	enrage_desc = "Warnings and bar for when 사자 지옥아귀의 격노에 대한 바와 경고입니다.",
-	enrage_message = "%s초 이내 격노",
+	enrage_desc = "사자 지옥아귀의 격노에 대한 바와 경고입니다.",
+	enrage_message = "%s초 후 격노",
 	enrage_bar = "격노",
 } end )
 

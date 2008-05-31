@@ -27,7 +27,7 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	chaos = "혼돈 유발 바",
+	chaos = "혼돈 유발",
 	chaos_desc = "혼돈 유발의 지속 시간에 대한 바를 표시합니다.",
 } end )
 

@@ -18,6 +18,13 @@ L:RegisterTranslations("enUS", function() return {
 	mc_bar = "%s - Mind Control",
 } end )
 
+L:RegisterTranslations("enUS", function() return {
+	mc = "정신 지배",
+	mc_desc = "정신 지배를 알립니다.",
+	mc_message = "%s 정신 지배!",
+	mc_bar = "%s - 정신 지배",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
