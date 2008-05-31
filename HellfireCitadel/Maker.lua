@@ -18,11 +18,18 @@ L:RegisterTranslations("enUS", function() return {
 	mc_bar = "%s - Mind Control",
 } end )
 
-L:RegisterTranslations("enUS", function() return {
+L:RegisterTranslations("koKR", function() return {
 	mc = "정신 지배",
 	mc_desc = "정신 지배를 알립니다.",
 	mc_message = "%s 정신 지배!",
 	mc_bar = "%s - 정신 지배",
+} end )
+
+L:RegisterTranslations("zhTW", function() return {
+	mc = "心靈控制",
+	mc_desc = "心靈控制警報",
+	mc_message = "%s 受到心靈控制!",
+	mc_bar = "%s - 心靈控制",
 } end )
 
 ----------------------------------
