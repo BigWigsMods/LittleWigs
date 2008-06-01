@@ -146,6 +146,8 @@ end
 function mod:Channel()
 	if self.db.profile.rage then
 		self:IfMessage(L["rage_message"], "Urgent", 31543)
+		self:Bar(L["rage_soonbar"], 40, 31543)
+		self:DelayedMessage(35, L["rage_soon"], "Urgent")
 	end
 end
 
