@@ -73,7 +73,7 @@ end
 ------------------------------
 
 function mod:Nova()
-	if self.db.profiel.nova then
+	if self.db.profile.nova then
 		self:IfMessage(L["nova_message"], "Important", 30940)
 	end
 end
