@@ -38,10 +38,10 @@ L:RegisterTranslations("zhTW", function() return {
 	storm_desc = "施放落雷之雲時發出警報",
 	storm_message = "落雷之雲! 注意閃躲!",
 	
-	--burst = "Lung Burst",
-	--burst_desc = "Warn for Lung Burst",
-	--burst_message = "%s is Lung Burst!",
-	--burst_bar = "%s - Lung Burst",
+	burst = "肺部爆炸",
+	burst_desc = "肺部爆炸警報",
+	burst_message = "%s 受到肺部爆炸!",
+	burst_bar = "%s - 肺部爆炸",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -71,10 +71,10 @@ L:RegisterTranslations("zhCN", function() return {
 	storm_desc = "当施放落雷之云时发出警报。",
 	storm_message = "落雷之云！躲避！",
 	
-	--burst = "Lung Burst",
-	--burst_desc = "Warn for Lung Burst",
-	--burst_message = "%s is Lung Burst!",
-	--burst_bar = "%s - Lung Burst",
+	burst = "内爆",
+	burst_desc = "当玩家受到内爆时发出警报。",
+	burst_message = "内爆：>%s<！",
+	burst_bar = "<内爆：%s>",
 } end )
 
 L:RegisterTranslations("esES", function() return {
