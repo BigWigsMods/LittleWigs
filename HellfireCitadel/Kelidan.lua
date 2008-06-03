@@ -32,7 +32,7 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	nova = "燃烧新星",
 	nova_desc = "当施放燃烧新星时发出警报。",
-	nova_message = "燃烧新星 即将发动！ 远离！",
+	nova_message = "即将 燃烧新星！远离！",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
