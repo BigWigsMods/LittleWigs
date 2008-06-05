@@ -23,7 +23,7 @@ L:RegisterTranslations("enUS", function() return {
 	rage = "Warlord's Rage",
 	rage_desc = "Warn for channeling of rage",
 	rage_message = "Warlord is channeling!",
-	rage_soon = "channeling soon!",
+	rage_soon = "Channeling Soon",
 	rage_soonbar = "~Possible channeling",
 } end )
 
