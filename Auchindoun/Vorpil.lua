@@ -20,6 +20,11 @@ L:RegisterTranslations("enUS", function() return {
 	teleport_warning = "Teleport in ~5sec!",
 	teleport_bar = "Teleport",
 	
+	banish = "Banish (Heroic)",
+	banish_desc = "Warn for Banish.",
+	banish_message = "%s is Banish!",
+	banish_bar = "%s - Banish",
+	
 	engage_trigger1 = "I'll make an offering of your blood",
 	engage_trigger2 = "Good, a worthy sacrifice!",
 } end )
@@ -31,6 +36,11 @@ L:RegisterTranslations("koKR", function() return {
 	teleport_warning = "약 5초 이내 순간 이동!",
 	teleport_bar = "순간 이동",
 	
+	banish = "추방 (영웅)",
+	banish_desc = "추방을 알립니다.",
+	banish_message = "%s 허파 파열!",
+	banish_bar = "%s - 허파 파열",
+	
 	engage_trigger1 = "네 피를 제물로 바칠 것이다.",
 	engage_trigger2 = "너는 다른 자들에게 좋은 표본이 될 것이다.",
 } end )
@@ -41,6 +51,11 @@ L:RegisterTranslations("frFR", function() return {
 	teleport_message = "Téléportation !",
 	teleport_warning = "Téléportation dans ~5 sec. !",
 	teleport_bar = "Téléportation",
+	
+	--banish = "Banish (Heroic)",
+	--banish_desc = "Warn for Banish.",
+	--banish_message = "%s is Banish!",
+	--banish_bar = "%s - Banish",
 
 	engage_trigger1 = "Je ferai une offrande de ton sang !",
 	engage_trigger2 = "Bien, un digne sacrifice !",
@@ -52,6 +67,11 @@ L:RegisterTranslations("zhTW", function() return {
 	teleport_message = "傳送! 迅速離開平台!",
 	teleport_warning = "5 秒後傳送!",
 	teleport_bar = "傳送",
+	
+	--banish = "Banish (Heroic)",
+	--banish_desc = "Warn for Banish.",
+	--banish_message = "%s is Banish!",
+	--banish_bar = "%s - Banish",
 
 	engage_trigger1 = "你會是其他人很好的榜樣!",
 	engage_trigger2 = "很好，一次值得的犧牲!",
@@ -64,6 +84,11 @@ L:RegisterTranslations("deDE", function() return {
 	teleport_warning = "Teleport in ~5sek!",
 	teleport_bar = "Teleport",
 	
+	--banish = "Banish (Heroic)",
+	--banish_desc = "Warn for Banish.",
+	--banish_message = "%s is Banish!",
+	--banish_bar = "%s - Banish",
+	
 	engage_trigger1 = "I'll make an offering of your blood", --- still needs translation
 	engage_trigger2 = "Gut, ein w\195\188rdiges Opfer!",
 } end )
@@ -74,6 +99,11 @@ L:RegisterTranslations("zhCN", function() return {
 	teleport_message = "传送！快离开平台！",
 	teleport_warning = "5秒后，传送！",
 	teleport_bar = "<传送>",
+	
+	--banish = "Banish (Heroic)",
+	--banish_desc = "Warn for Banish.",
+	--banish_message = "%s is Banish!",
+	--banish_bar = "%s - Banish",
 	
 	engage_trigger1 = "我要用你的血当祭品！",
 	engage_trigger2 = "很好，一个完美的祭品！",
@@ -88,7 +118,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Shadow Labyrinth"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"teleport", "bosskill"}
+mod.toggleoptions = {"teleport", "banish", "bosskill"}
 mod.revision = tonumber(("$Revision: 33724 $"):sub(12, -3))
 
 ------------------------------
@@ -99,6 +129,7 @@ function mod:OnEnable()
 	started = nil
 
 	self:AddCombatListener("SPELL_AURA_SUCCESS", "Teleport", 33563)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Banish", 38791)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
@@ -117,6 +148,14 @@ function mod:Teleport()
 		self:DelayedMessage(32, L["teleport_warning"], "Attention")
 	end
 end
+
+function mod:Banish()
+	if self.db.profile.banish then
+		self:IfMessage(L["banish_message"]:format(player), "Important", spellId)
+		self:Bar(L["banish_bar"]:format(player), 8, spellId) 
+	end
+end
+
 
 function mod:BigWigs_RecvSync(sync, rest, nick)
 	if self:ValidateEngageSync(sync, rest) and not started then

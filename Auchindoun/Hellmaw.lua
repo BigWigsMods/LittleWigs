@@ -16,7 +16,8 @@ L:RegisterTranslations("enUS", function() return {
 
 	fear = "Fear Cooldown",
 	fear_desc = "Bar and warning for the cooldown on Ambassador Hellmaw's fear.",
-	fear_message = "Fear cooldown expired!",
+	fear_message = "Fear cooldown!",
+	fear_warning = "Fear cooldown expired!",
 	fear_bar = "Fear Cooldown",
 	
 	enrage = "Enrage(Heroic)",
@@ -28,7 +29,8 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	fear = "恐惧冷却",
 	fear_desc = "当即将施放恐惧时发出警报。",
-	fear_message = "即将施放 恐惧！",
+	--fear_message = "Fear cooldown!",
+	fear_warning = "即将施放 恐惧！",
 	fear_bar = "<恐惧 冷却>",
 	
 	enrage = "激怒（英雄）",
@@ -40,7 +42,8 @@ L:RegisterTranslations("zhCN", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	fear = "恐懼冷卻",
 	fear_desc = "當即將施放恐懼時發出警報",
-	fear_message = "即將施放 恐懼!",
+	--fear_message = "Fear cooldown!",
+	fear_warning = "即將施放 恐懼!",
 	fear_bar = "<恐懼冷卻>",
 	
 	enrage = "狂暴（英雄）",
@@ -52,7 +55,8 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("koKR", function() return {
 	fear = "공포 대기시간",
 	fear_desc = "사자 지옥아귀의 공포 재사용 대기시간을 위한 경고와 바입니다.",
-	fear_message = "공포 대기시간 종료!",
+	fear_message = "공포 대기시간!",
+	fear_warning = "공포 대기시간 종료!",
 	fear_bar = "공포 대기시간",
 	
 	enrage = "격노(영웅)",
@@ -64,7 +68,8 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("frFR", function() return {
 	fear = "Temps de recharge Peur",
 	fear_desc = "Affiche une barre et des avertissements concernant la Peur de l'Ambassadeur Gueule-d'enfer.",
-	fear_message = "Temps de recharge de Peur expiré !",
+	--fear_message = "Fear cooldown!",
+	fear_warning = "Temps de recharge de Peur expiré !",
 	fear_bar = "Cooldown Peur",
 
 	enrage = "Enrager (Héroïque)",
@@ -107,8 +112,9 @@ end
 
 function mod:Fear()
 	if self.db.profile.fear then
-		self:Bar(L["fear_bar"], 25, 33547)
 		self:IfMessage(L["fear_message"], "Attention", 33547)
+		self:Bar(L["fear_bar"], 25, 33547)
+		self:DelayedMessage(25, L["stomp_warning"], "Attention")
 	end
 end
 
@@ -117,6 +123,10 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		started = true
 		if self:IsEventRegistered("PLAYER_REGEN_DISABLED") then
 			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
+		end
+		if self.db.profile.fear then
+			self:IfMessage(L["engage_message"], "Attention")
+			self:Bar(L["fear_bar"], 15, 33547)
 		end
 		if self.db.profile.enrage and GetInstanceDifficulty() == 2 then
 			self:Bar(L["enrage_bar"], 180, 32964)
