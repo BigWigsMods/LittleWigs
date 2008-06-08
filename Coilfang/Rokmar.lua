@@ -14,34 +14,59 @@ local enrageannounced = nil
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Rokmar",
+	
+	throw = "Grievous Wound",
+	throw_desc = "Warn who is afflicted by Grievous Wound.",
+	throw_message = "%s has Grievous Wound",
 
 	enrage = "Enrage (Heroic)",
 	enrage_desc = "Warn befor Rokmar enrages",
-	enrage_message = "Enraged Soon!",
+	enrage_warning = "Enraged Soon!",
+	enrage_message = "Enraged!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	--throw = "Grievous Wound",
+	--throw_desc = "Warn who is afflicted by Grievous Wound.",
+	--throw_message = "%s has Grievous Wound",
+
 	enrage = "Enrager (Héroïque)",
 	enrage_desc = "Préviens quand Rokmar est sûr le point de devenir enragé.",
-	enrage_message = "Bientôt enragé !",
+	enrage_warning = "Bientôt enragé !",
+	--enrage_message = "Enraged!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	throw = "치명상",
+	throw_desc = "치명상에 걸린 플레이어를 알립니다.",
+	throw_message = "%s 치명상",
+	
 	enrage = "격노 (영웅)",
 	enrage_desc = "로크마르 격노에 대해 알립니다.",
-	enrage_message = "잠시후 격노!",
+	enrage_warning = "잠시후 격노!",
+	enrage_message = "격노!",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	--throw = "Grievous Wound",
+	--throw_desc = "Warn who is afflicted by Grievous Wound.",
+	--throw_message = "%s has Grievous Wound",
+	
 	enrage = "激怒（英雄）",
 	enrage_desc = "当激怒时发出警报。",
-	enrage_message = "巨钳鲁克玛尔 激怒！",
+	enrage_warning = "巨钳鲁克玛尔 激怒！",
+	--enrage_message = "Enraged!",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-       enrage = "狂怒（英雄）",
-       enrage_desc = "當爆裂者洛克瑪狂怒時發出警報",
-       enrage_message = "爆裂者洛克瑪 狂怒!",
+	--throw = "Grievous Wound",
+	--throw_desc = "Warn who is afflicted by Grievous Wound.",
+	--throw_message = "%s has Grievous Wound",
+	
+	enrage = "狂怒（英雄）",
+	enrage_desc = "當爆裂者洛克瑪狂怒時發出警報",
+	enrage_warning = "爆裂者洛克瑪 狂怒!",
+	--enrage_message = "Enraged!",
 } end )
 
 ----------------------------------
@@ -53,7 +78,7 @@ mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod.zonename = BZ["The Slave Pens"]
 mod.enabletrigger = boss
-mod.toggleoptions = {"enrage", "bosskill"}
+mod.toggleoptions = {"wound", -1, "enrage", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -61,6 +86,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Wound", 31956, 38801)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Enrage", 34970)
 	self:RegisterEvent("UNIT_HEALTH")
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
@@ -72,6 +99,18 @@ end
 --      Event Handlers      --
 ------------------------------
 
+function mod:Wound(player, spellID)
+	if db.wound then
+		self:IfMessage(L["whrow_message"]:format(player), "Attention", spellID)
+	end
+end
+
+function mod:Enrage(_, spellID)
+	if db.enrage then
+		self:IfMessage(L["enrage_message"], "Important", spellID)
+	end
+end
+
 function mod:UNIT_HEALTH(arg1)
 	if not db.enrage or GetInstanceDifficulty() ~= 2 then
 		self:UnregisterEvent("UNIT_HEALTH")
@@ -81,7 +120,7 @@ function mod:UNIT_HEALTH(arg1)
 		local health = UnitHealth(arg1)
 		if health > 18 and health <= 24 and not enrageannounced then
 			enrageannounced = true
-			self:Message(L["enrage_message"], "Important")
+			self:Message(L["enrage_warning"], "Attention")
 		elseif health > 28 and enrageannounced then
 			enrageannounced = nil
 		end
