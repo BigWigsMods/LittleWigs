@@ -31,8 +31,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	knock = "Repousser au loin",
-	knock_desc = "Préviens quand Soccothrates gagne Repousser au loin.",
-	knock_message = "Repousser au loin !",
+	knock_desc = "Prévient quand Soccothrates utilise Repousser au loin.",
+	knock_message = "Repousser au loin !",
 } end )
 
 L:RegisterTranslations("koKR", function() return {

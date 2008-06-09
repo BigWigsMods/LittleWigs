@@ -88,28 +88,28 @@ L:RegisterTranslations("zhTW", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	touch_message = "%s a le %s !",
-	touch_message_you = "Vous avez le Toucher de Marmon !",
-	touch_message_other = "%s a le Toucher de Marmon !",
+	touch_message = "%s a le %s !",
+	touch_message_you = "Vous avez le Toucher de Marmon !",
+	touch_message_other = "%s a le Toucher de Marmon !",
 
 	touchtimer = "Délais avant fin du Toucher",
 	touchtimer_desc = "Affiche une barre de 13 secondes indiquant quand le Toucher de Marmon se termine sur la cible.",
-	touchtimer_bar = "%s : Toucher de Marmon",
+	touchtimer_bar = "%s : Toucher de Marmon",
 
 	youtouch = "Toucher de Marmon sur vous",
-	youtouch_desc = "Préviens quand vous subissez les effets du Toucher de Marmon.",
+	youtouch_desc = "Prévient quand vous subissez les effets du Toucher de Marmon.",
 
 	othertouch = "Toucher de Marmon sur les autres",
-	othertouch_desc = "Préviens quand un autre joueur subit les effets du Toucher de Marmon.",
+	othertouch_desc = "Prévient quand un autre joueur subit les effets du Toucher de Marmon.",
 
 	icon = "Icône",
 	icon_desc = "Place une icône de raid sur le dernier joueur affecté par le Toucher de Marmon (nécessite d'être promu ou mieux).",
 
 	sonicboom = "Grondement sonore",
-	sonicboom_desc = "Préviens quand Marmon commence à lancer son Grondement sonore.",
+	sonicboom_desc = "Prévient quand Marmon commence à lancer son Grondement sonore.",
 	sonicboom_trigger = "tire de l'énergie de l'air...",
-	sonicboom_alert = "Grondement sonore dans 5 sec. !",
-	sonicboom_bar = "Grondement sonore en incantation !",
+	sonicboom_alert = "Grondement sonore dans 5 sec. !",
+	sonicboom_bar = "Grondement sonore !",
 } end)
 
 L:RegisterTranslations("deDE", function() return {

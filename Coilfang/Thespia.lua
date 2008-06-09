@@ -46,13 +46,13 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	storm = "Nuage d'éclairs",
-	storm_desc = "Préviens quand Thespia lance un Nuage d'éclairs.",
-	storm_message = "Nuage d'éclairs !",
-	
-	--burst = "Lung Burst",
-	--burst_desc = "Warn for Lung Burst",
-	--burst_message = "%s is Lung Burst!",
-	--burst_bar = "%s - Lung Burst",
+	storm_desc = "Prévient quand Thespia lance un Nuage d'éclairs.",
+	storm_message = "Nuage d'éclairs !",
+
+	burst = "Eclatement pulmonaire",
+	burst_desc = "Prévient quand un joueur subit les effets de l'Eclatement pulmonaire.",
+	burst_message = "Eclatement pulmonaire sur %s !",
+	burst_bar = "%s - Eclatement pulmonaire",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

@@ -88,20 +88,20 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	summon = "Âmes en peine invoquées",
-	summon_desc = "Préviens quand les âmes en peine du Néant sont invoquées.",
-	summon_message = "Âmes en peine du Néant invoquées !",
+	summon_desc = "Prévient quand les âmes en peine du Néant sont invoquées.",
+	summon_message = "Âmes en peine du Néant invoquées !",
 
 	despawn = "Âmes en peine disparues",
-	despawn_desc = "Préviens quand les âmes en peine du Néant sont sur le point de disparaître.",
-	despawn_message = "Disparition des âmes en peine du Néant imminente !",
+	despawn_desc = "Prévient quand les âmes en peine du Néant sont sur le point de disparaître.",
+	despawn_message = "Disparition des âmes en peine du Néant imminente !",
 	despawn_trigger = "Je préfère", -- à vérifier
 	despawn_trigger2 = "I prefer to be hands", -- à traduire
-	despawn_done = "Âmes en peine du Néant disparues !",
+	despawn_done = "Âmes en peine du Néant disparues !",
 
-	mc = "Contrôle mental",
-	mc_desc = "Préviens quand un joueur est contrôlé.",
-	mc_message = "%s est sous Contrôle mental !",
-	mc_bar = "%s - Contrôle mental",
+	mc = "Domination",
+	mc_desc = "Prévient quand un joueur subit les effets de la Domination.",
+	mc_message = "Domination sur %s !",
+	mc_bar = "%s - Domination",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

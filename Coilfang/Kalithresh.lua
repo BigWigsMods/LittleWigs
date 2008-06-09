@@ -45,13 +45,13 @@ L:RegisterTranslations("frFR", function() return {
 	engage_message = "Engagé - Canalisation dans ~15 sec. !",
 
 	spell = "Renvoi de sort",
-	spell_desc = "Préviens quand Kalithresh renvoye les sorts.",
-	spell_message = "Renvoi de sort !",
+	spell_desc = "Prévient quand Kalithresh renvoye les sorts.",
+	spell_message = "Renvoi de sort !",
 
 	rage = "Rage du seigneur de guerre",
-	rage_desc = "Préviens quand Kalithresh canalise de la rage.",
-	rage_message = "Canalisation en cours !",
-	rage_soon = "Canalisation imminente !",
+	rage_desc = "Prévient quand Kalithresh canalise de la rage.",
+	rage_message = "Canalisation en cours !",
+	rage_soon = "Canalisation imminente !",
 	rage_soonbar = "~Canalisation probable",
 } end )
 

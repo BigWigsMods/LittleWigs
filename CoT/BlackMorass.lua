@@ -113,7 +113,7 @@ L:RegisterTranslations("frFR", function() return {
 	next_portal = "Proch. vague",
 
 	portal = "Alertes des vagues",
-	portal_desc = "Préviens régulièrement quand apparaîtra la prochaine vague.",
+	portal_desc = "Prévient régulièrement quand apparaîtra la prochaine vague.",
 
 	portalbar = "Barres des vagues",
 	portalbar_desc = "Indique l'apparition probable de la prochaine vague via une barre temporelle.",
@@ -121,24 +121,24 @@ L:RegisterTranslations("frFR", function() return {
 	portal_bar = "~%s : Vague %s",
 	multiportal_bar = "~Plusieurs vagues",
 
-	portal_message15s = "%s dans ~15 sec. !",
-	portal_message140s = "%s dans ~140 sec. !",
+	portal_message15s = "%s dans ~15 sec. !",
+	portal_message140s = "%s dans ~140 sec. !",
 
 	disable_trigger = "Nous triompherons. Ce n'est qu'une question... de temps.",
-	disable_message = "%s a été sauvé !",
+	disable_message = "%s a été sauvé !",
 
 	death_trigger = "(.+) meurt%.",
 	reset_trigger = "Non ! Maudite soit cette enveloppe mortelle !",
 
 	-- Bosses
 	frenzy = "Aeonus - Frénésie",
-	frenzy_desc = "Préviens quand Aeonus est pris de frénésie.",
+	frenzy_desc = "Prévient quand Aeonus est pris de frénésie.",
 	frenzy_trigger = "%s est pris de frénésie !",
-	frenzy_message = "Frénésie !",
+	frenzy_message = "Frénésie !",
 
 	hasten = "Temporus - Précipiter",
-	hasten_desc = "Préviens quand Temporus gagne Précipiter.",
-	hasten_message = "Temporus gagne Précipiter !",
+	hasten_desc = "Prévient quand Temporus gagne Précipiter.",
+	hasten_message = "Temporus gagne Précipiter !",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

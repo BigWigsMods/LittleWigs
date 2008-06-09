@@ -33,8 +33,8 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	summon = "Élémentaires",
-	summon_desc = "Préviens quand Syth invoque ses élémentaires.",
-	summon_message = "Élémentaires invoqués !",
+	summon_desc = "Prévient quand Syth invoque ses élémentaires.",
+	summon_message = "Élémentaires invoqués !",
 } end )
 
 L:RegisterTranslations("esES", function() return {

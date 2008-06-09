@@ -47,15 +47,15 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	teleport = "Téléportation",
-	teleport_desc = "Préviens quand Vorpil se téléporte avec le groupe.",
-	teleport_message = "Téléportation !",
-	teleport_warning = "Téléportation dans ~5 sec. !",
+	teleport_desc = "Prévient quand Vorpil se téléporte avec le groupe.",
+	teleport_message = "Téléportation !",
+	teleport_warning = "Téléportation dans ~5 sec. !",
 	teleport_bar = "Téléportation",
-	
-	--banish = "Banish (Heroic)",
-	--banish_desc = "Warn for Banish.",
-	--banish_message = "%s is Banish!",
-	--banish_bar = "%s - Banish",
+
+	banish = "Bannir (Héroïque)",
+	banish_desc = "Prévient quand un membre du groupe est banni.",
+	banish_message = "%s est banni !",
+	banish_bar = "%s - Bannir",
 
 	engage_trigger1 = "Je ferai une offrande de ton sang !",
 	engage_trigger2 = "Bien, un digne sacrifice !",

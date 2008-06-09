@@ -95,28 +95,28 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	warn1 = "Réflection de la magie en place !",
-	warn2 = "Réflection des dégâts en place !",
-	warn3 = "Réflection de la magie terminée !",
-	warn4 = "Réflection des dégâts terminée !",
+	warn1 = "Réflection de la magie actif !",
+	warn2 = "Réflection des dégâts actif !",
+	warn3 = "Réflection de la magie terminée !",
+	warn4 = "Réflection des dégâts terminée !",
 
 	shields = "Boucliers réflecteurs",
-	shields_desc = "Préviens de l'arrivée des boucliers réflecteurs de magie & de dégâts.",
-	shields_message = "%s en place !",
-	shieldsremoved_message = "%s terminé !",
+	shields_desc = "Prévient de l'arrivée des boucliers réflecteurs de magie & de dégâts.",
+	shields_message = "%s actif !",
+	shieldsremoved_message = "%s terminé !",
 
 	shieldbar = "Barre du bouclier",
 	shieldbar_desc = "Affiche une barre indiquant la durée des boucliers réflecteurs.",
 
 	polarity = "Changement de polarité (Héroïque)",
-	polarity_desc = "Préviens quand le Changement de polarité est incanté.",
-	polarity_message = "Changement de polarité dans 3 sec. !",
+	polarity_desc = "Prévient quand le Changement de polarité est incanté.",
+	polarity_message = "Changement de polarité dans 3 sec. !",
 	polarity_bar = "Changement de polarité",
 
 	enrage = "Enrager (Héroïque)",
-	enrage_desc = "Préviens 15 et 45 secondes avant l'Enrager.",
+	enrage_desc = "Prévient 15 et 45 secondes avant l'Enrager.",
 	enrage_trigger = "^Dégagez tant que vous le pouvez.$", -- à vérifier
-	enrage_message = "Enrager dans %s sec. !",
+	enrage_message = "Enrager dans %s sec. !",
 	enrage_bar = "<Enrager>",
 } end )
 

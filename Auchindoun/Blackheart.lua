@@ -53,13 +53,13 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--engage_message = "Engaged - Incite Chaos in ~15sec!",
-	
-	chaos = "Barre Provoquer le chaos",
+	engage_message = "Engagé - Provoquer le chaos dans ~15 sec. !",
+
+	chaos = "Provoquer le chaos",
 	chaos_desc = "Affiche une barre indiquant la durée de Provoquer le chaos.",
-	--chaos_message = "Incite Chaos! Next in ~60sec",
-	--chaos_warning = "Incite Chaos Soon!",
-	--chaos_nextbar = "~Possible Incite Chaos",
+	chaos_message = "Provoquer le chaos ! Prochain dans ~60 sec.",
+	chaos_warning = "Provoquer le chaos imminent !",
+	chaos_nextbar = "~Provoquer le chaos probable",
 } end )
 
 ----------------------------------

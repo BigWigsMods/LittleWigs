@@ -37,8 +37,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	nova = "Nova ardente",
-	nova_desc = "Préviens de l'arrivée des Novas ardentes.",
-	nova_message = "Nova ardente imminente !",
+	nova_desc = "Prévient de l'arrivée des Novas ardentes.",
+	nova_message = "Nova ardente imminente !",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

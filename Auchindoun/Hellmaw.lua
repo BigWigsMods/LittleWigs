@@ -68,8 +68,8 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("frFR", function() return {
 	fear = "Temps de recharge Peur",
 	fear_desc = "Affiche une barre et des avertissements concernant la Peur de l'Ambassadeur Gueule-d'enfer.",
-	--fear_message = "Fear cooldown!",
-	fear_warning = "Temps de recharge de Peur expiré !",
+	fear_message = "Peur !",
+	fear_warning = "Temps de recharge de Peur expiré !",
 	fear_bar = "Cooldown Peur",
 
 	enrage = "Enrager (Héroïque)",
@@ -87,7 +87,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Shadow Labyrinth"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"fear", -1, "enrage", "bosskill"}
+mod.toggleoptions = {"fear", "enrage", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

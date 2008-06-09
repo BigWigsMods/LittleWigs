@@ -23,8 +23,8 @@ L:RegisterTranslations("enUS", function() return {
 	shadow_message = "Shadow Power in 2 seconds!",
 
 	shadowaura = "Shadow Power Gained",
-	shadowaura_desc = "Warn when Gyro-Kill gains Shadow Power",
-	shadowaura_message ="Gyro-Kill gains Shadow Power",	
+	shadowaura_desc = "Warn when Iron-Hand gains Shadow Power",
+	shadowaura_message ="Iron-Hand gains Shadow Power",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -61,14 +61,18 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	hammer = "Marteau-piqueur",
-	hammer_desc = "Préviens quand le Marteau-piqueur est incanté.",
+	hammer_desc = "Prévient quand le Marteau-piqueur est incanté.",
 	hammer_trigger = "lève son marteau d'un air menaçant...",
-	hammer_message = "Marteau-piqueur dans 3 sec. !",
+	hammer_message = "Marteau-piqueur dans 3 sec. !",
 	hammer_bar = "Marteau-piqueur",
 
-	shadow = "Puissance de l'ombre",
-	shadow_desc = "Préviens quand Main-en-fer gagne la Puissance de l'ombre.",
-	shadow_message = "Puissance de l'ombre dans 2 sec. !",
+	shadow = "Puissance de l'ombre incanté",
+	shadow_desc = "Prévient quand Main-en-fer incante la Puissance de l'ombre.",
+	shadow_message = "Puissance de l'ombre dans 2 sec. !",
+
+	shadowaura = "Puissance de l'ombre gagné",
+	shadowaura_desc = "Prévient quand Main-en-fer gagne la Puissance de l'ombre.",
+	shadowaura_message ="Gyro-Meurtre gagne Puissance de l'ombre !",
 } end )
 
 L:RegisterTranslations("esES", function() return {

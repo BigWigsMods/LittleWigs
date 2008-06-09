@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -35,6 +35,12 @@ L:RegisterTranslations("zhTW", function() return {
 	totem = "墮落新星圖騰",
 	totem_desc = "當施放墮落新星圖騰時發出警報",
 	totem_message = "墮落新星圖騰!",
+} end )
+
+L:RegisterTranslations("frFR", function() return {
+	totem = "Totem Nova corrompu",
+	totem_desc = "Prévient quand un Totem Nova corrompu est posé.",
+	totem_message = "Totem Nova corrompu !",
 } end )
 
 ----------------------------------

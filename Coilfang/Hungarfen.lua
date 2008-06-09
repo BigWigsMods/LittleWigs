@@ -26,12 +26,12 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	shroom = "Champignon de Basse-tourbière",
-	shroom_desc = "Préviens quand un Champignon de Basse-tourbière apparaît.",
-	shroom_message = "Apparition d'un Champignon de Basse-tourbière !",
+	shroom_desc = "Prévient quand un Champignon de Basse-tourbière apparaît.",
+	shroom_message = "Apparition d'un Champignon de Basse-tourbière !",
 
 	spores = "Spores nauséabondes",
-	spores_desc = "Préviens quand Hungarfen se sarmente et incante ses Spores nauséabondes.",
-	spores_message = "Spores nauséabondes imminentes !",
+	spores_desc = "Prévient quand Hungarfen se sarmente et incante ses Spores nauséabondes.",
+	spores_message = "Spores nauséabondes imminentes !",
 } end )
 
 L:RegisterTranslations("koKR", function() return {

@@ -58,23 +58,23 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	glapse = "Rupture de gravité",
-	glapse_desc = "Préviens de l'arrivée des Ruptures de gravité.",
-	glapse_message = "Rupture de gravité imminente !",
+	glapse_desc = "Prévient de l'arrivée des Ruptures de gravité.",
+	glapse_message = "Rupture de gravité imminente !",
 	glapse_bar = "Rupture de gravité",
 
 	phoenix = "Phénix",
-	phoenix_desc = "Préviens quand un phénix est invoqué.",
-	phoenix_message = "Phénix invoqué !",
+	phoenix_desc = "Prévient quand un phénix est invoqué.",
+	phoenix_message = "Phénix invoqué !",
 
 	flamestrike = "Frappe de flammes",
-	flamestrike_desc = "Préviens quand une Frappe de flammes est incantée.",
-	flamestrike_message = "Frappe de flammes !",
+	flamestrike_desc = "Prévient quand une Frappe de flammes est incantée.",
+	flamestrike_message = "Frappe de flammes !",
 
 	barrier = "Barrière de choc (Héroïque)",
-	barrier_desc = "Préviens quand Kael'thas gagne sa Barrière de choc.",
-	barrier_message = "Barrière de choc !",
+	barrier_desc = "Prévient quand Kael'thas gagne sa Barrière de choc.",
+	barrier_message = "Barrière de choc !",
 	barrier_next_bar = "~Prochaine Barrière",
-	barrier_soon_message = "Barrière de choc imminente !",
+	barrier_soon_message = "Barrière de choc imminente !",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

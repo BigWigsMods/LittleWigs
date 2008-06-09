@@ -37,8 +37,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	allergic = "Réaction allergique",
-	allergic_desc = "Préviens quand un joueur fait une Réaction allergique.",
-	allergic_message = "%s est allergique !",
+	allergic_desc = "Prévient quand un joueur subit les effets de la Réaction allergique.",
+	allergic_message = "Réaction allergique sur %s !",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

@@ -46,13 +46,13 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	soul = "Âme volée",
-	soul_desc = "Préviens quand une âme est volée.",
-	soul_message = "Une âme a été volée !",
-	soul_message_new = "L'âme de %s a été volée !",
+	soul_desc = "Prévient quand une âme est volée.",
+	soul_message = "Une âme a été volée !",
+	soul_message_new = "L'âme de %s a été volée !",
 
 	avatar = "Avatar du martyr",
-	avatar_desc = "Préviens quand l'Avatar du martyr est invoqué.",
-	avatar_message = "Avatar du martyr invoqué !",
+	avatar_desc = "Prévient quand l'Avatar du martyr est invoqué.",
+	avatar_message = "Avatar du martyr invoqué !",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

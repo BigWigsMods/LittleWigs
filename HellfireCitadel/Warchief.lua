@@ -76,7 +76,7 @@ L:RegisterTranslations("frFR", function() return {
 
 	bdwarn = "Danse des lames",
 	bdwarn_desc = "Délais estimés avant les Danses des lames.",
-	bdwarn_alert = "5 sec. avant Danse des lames !",
+	bdwarn_alert = "5 sec. avant Danse des lames !",
 
 	bdbar = "Barre Danse des lames",
 	bdbar_desc = "Affiche un compte à rebours d'estimation pour la Danse des lames.",

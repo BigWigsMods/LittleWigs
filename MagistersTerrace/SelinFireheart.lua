@@ -29,8 +29,8 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	channel = "Canalise du mana",
-	channel_desc = "Préviens quand Selin Coeur-de-feu canalise du mana à partir d'un gangrecristal.",
-	channel_message = "Canalise du mana !",
+	channel_desc = "Prévient quand Selin Coeur-de-feu canalise du mana à partir d'un gangrecristal.",
+	channel_message = "Canalise du mana !",
 	channel_trigger = "commence à canaliser l'énergie du gangrecristal tout proche…",
 } end )
 

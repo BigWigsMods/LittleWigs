@@ -26,14 +26,14 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--throw = "Grievous Wound",
-	--throw_desc = "Warn who is afflicted by Grievous Wound.",
-	--throw_message = "%s has Grievous Wound",
+	throw = "Blessures graves",
+	throw_desc = "Prévient quand un joueur subit les effets des Blessures graves.",
+	throw_message = "Blessures graves sur %s !",
 
 	enrage = "Enrager (Héroïque)",
-	enrage_desc = "Préviens quand Rokmar est sûr le point de devenir enragé.",
-	enrage_warning = "Bientôt enragé !",
-	--enrage_message = "Enraged!",
+	enrage_desc = "Prévient quand Rokmar est sûr le point de devenir enragé.",
+	enrage_warning = "Bientôt enragé !",
+	enrage_message = "Enragé !",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -78,7 +78,7 @@ mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod.zonename = BZ["The Slave Pens"]
 mod.enabletrigger = boss
-mod.toggleoptions = {"wound", -1, "enrage", "bosskill"}
+mod.toggleoptions = {"throw", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

@@ -36,9 +36,9 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	mech = "Mécaniciens Montevapeur",
-	mech_desc = "Préviens quand Montevapeur appelle ses mécaniciens.",
+	mech_desc = "Prévient quand Montevapeur appelle ses mécaniciens.",
 	mech_trigger = "Faites leur une vidange, les gars !",
-	mech_message = "Mécaniciens Montevapeur en approche !",
+	mech_message = "Mécaniciens Montevapeur en approche !",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

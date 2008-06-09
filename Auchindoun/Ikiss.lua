@@ -31,8 +31,8 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	ae = "Explosion des arcanes",
-	ae_desc = "Préviens quand Ikiss lance son Explosion des arcanes.",
-	ae_message = "Explosion des arcanes en incantation !",
+	ae_desc = "Prévient quand Ikiss lance son Explosion des arcanes.",
+	ae_message = "Explosion des arcanes en incantation !",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

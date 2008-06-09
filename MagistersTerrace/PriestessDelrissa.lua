@@ -145,35 +145,35 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	pri_heal = "Delrissa - Soins rapides",
-	pri_heal_desc = "Préviens quand Delrissa incante des Soins rapides.",
-	pri_heal_message = "Delrissa incante des Soins rapides !",
+	pri_heal_desc = "Prévient quand Delrissa incante des Soins rapides.",
+	pri_heal_message = "Delrissa incante des Soins rapides !",
 	pri_renew = "Delrissa - Rénovation",
-	pri_renew_desc = "Préviens quand Delrissa soigne un allié avec sa Rénovation.",
-	pri_renew_message = "Rénovation sur %s !",
+	pri_renew_desc = "Prévient quand Delrissa soigne un allié avec sa Rénovation.",
+	pri_renew_message = "Rénovation sur %s !",
 	pri_shield = "Delrissa - Mot de pouvoir : Bouclier",
-	pri_shield_desc = "Préviens quand Delrissa protège un allié avec son Mot de pouvoir : Bouclier.",
-	pri_shield_message = "Mot de pouvoir : Bouclier sur %s !",
+	pri_shield_desc = "Prévient quand Delrissa protège un allié avec son Mot de pouvoir : Bouclier.",
+	pri_shield_message = "Mot de pouvoir : Bouclier sur %s !",
 
 	Apoko = "Apoko", --need the add name translated, maybe we'll add it to BabbleBoss
 	apoko_heal = "Apoko - Vague de soins inférieurs",
-	apoko_heal_desc = "Préviens quand Apoko incante une Vague de soins inférieurs.",
+	apoko_heal_desc = "Prévient quand Apoko incante une Vague de soins inférieurs.",
 	apoko_heal_message = "Apoko incante une Vague de soins inférieurs !",
 	apoko_wf = "Apoko - Totem Furie-des-vents",
-	apoko_wf_desc = "Préviens quand Apoko pose un Totem Furie-des-vents.",
-	apoko_wf_message = "Totem Furie-des-vents posé !",
+	apoko_wf_desc = "Prévient quand Apoko pose un Totem Furie-des-vents.",
+	apoko_wf_message = "Totem Furie-des-vents posé !",
 
 	Ellyrs = "Ellrys Sanctebrune", --need the add name translated, maybe we'll add it to BabbleBoss
 	ellrys_soc = "Ellrys - Graîne de Corruption",
-	ellrys_soc_desc = "Préviens quand un joueur subit les effets de la Graîne de Corruption de Ellrys.",
-	ellrys_soc_message = "Graîne : %s",
+	ellrys_soc_desc = "Prévient quand un joueur subit les effets de la Graîne de Corruption de Ellrys.",
+	ellrys_soc_message = "Graîne sur %s !",
 
 	Yazzai = "Yazzai", --need the add name translated, maybe we'll add it to BabbleBoss
 	yazzai_bliz = "Yazzai - Blizzard",
-	yazzai_bliz_desc = "Préviens quand Yazzai incante un Blizzard.",
-	yazzai_bliz_message = "Blizzard !",
+	yazzai_bliz_desc = "Prévient quand Yazzai incante un Blizzard.",
+	yazzai_bliz_message = "Blizzard !",
 	yazzai_poly = "Yazzai - Métamorphose",
-	yazzai_poly_desc = "Préviens quand un joueur subit les effets de la Métamorphose de Yazzai.",
-	yazzai_poly_message = "Métamorphose : %s",
+	yazzai_poly_desc = "Prévient quand un joueur subit les effets de la Métamorphose de Yazzai.",
+	yazzai_poly_message = "Métamorphose sur %s !",
 } end )
 
 ----------------------------------

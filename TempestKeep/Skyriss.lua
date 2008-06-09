@@ -50,19 +50,19 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	mc = "Contrôle mental",
-	mc_desc = "Préviens quand un joueur est contrôlé.",
-	mc_message = "%s est sous Contrôle mental !",
+	mc = "Domination totale",
+	mc_desc = "Prévient quand un joueur subit les effets de la Domination totale.",
+	mc_message = "Domination totale sur %s !",
 
 	split = "Division",
-	split_desc = "Préviens quand le Messager Skyriss se divise.",
+	split_desc = "Prévient quand le Messager Skyriss se divise.",
 	split_trigger = "^Nous nous étendons sur l'univers, aussi innombrables que les étoiles !$",
-	split_message = "%s s'est divisé.",
-	split_soon_message = "Division imminente !",
+	split_message = "%s s'est divisé !",
+	split_soon_message = "Division imminente !",
 
 	mr = "Pourfendre l'esprit",
-	mr_desc = "Préviens quand un joueur est affecté par Pourfendre l'esprit.",
-	mr_message = "Pourfendre l'esprit : %s",
+	mr_desc = "Prévient quand un joueur subit les effets de Pourfendre l'esprit.",
+	mr_message = "Pourfendre l'esprit sur %s !",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

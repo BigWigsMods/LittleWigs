@@ -50,20 +50,20 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	nova = "Nova de l'ombre",
-	nova_desc = "Préviens de l'arrivée des Novas de l'ombre.",
-	nova_message = "Nova de l'ombre dans 2 sec. !",
+	nova_desc = "Prévient de l'arrivée des Novas de l'ombre.",
+	nova_message = "Nova de l'ombre dans 2 sec. !",
 
 	void = "Zone de vide",
-	void_desc = "Préviens quand de nouvelles Zones de vide apparaissent.",
-	void_message = "Arrivée d'une Zone de vie !",
+	void_desc = "Prévient quand de nouvelles Zones de vide apparaissent.",
+	void_message = "Arrivée d'une Zone de vie !",
 
 	seed = "Graine de Corruption",
-	seed_desc = "Préviens quand un joueur est affecté par la Graine de Corruption.",
-	seed_message = "Graine de Corruption sur %s !",
+	seed_desc = "Prévient quand un joueur subit les effets de la Graine de Corruption.",
+	seed_message = "Graine de Corruption sur %s !",
 	seed_bar = "~Détonation",
 
-	icon = "Icône Graine de Corruption",
-	icon_desc = "Place une icône de raid sur la personne affecté par la Graine de Corruption (nécessite d'être promu ou mieux).",
+	icon = "Icône",
+	icon_desc = "Place une icône de raid sur le dernier joueur affecté par la Graine de Corruption (nécessite d'être promu ou mieux).",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

@@ -49,10 +49,10 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	sacrifice = "Sacrifice",
-	sacrifice_desc = "Préviens quand un joueur est sacrifié.",
-	sacrifice_message = "%s est sacrifié !",
-	sacrifice_bar = "Sacrifice : %s",
-	sacrifice_soon = "Sacrifice imminent !",
+	sacrifice_desc = "Prévient quand un joueur subit les effets du Sacrifice.",
+	sacrifice_message = "Sacrifice sur %s !",
+	sacrifice_bar = "Sacrifice : %s",
+	sacrifice_soon = "Sacrifice imminent !",
 	sacrifice_soonbar = "~Sacrifice probable",
 } end )
 

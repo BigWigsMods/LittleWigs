@@ -37,8 +37,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	poison = "Nuage empoisonné",
-	poison_desc = "Préviens de l'arrivée des Nuages empoisonnés.",
-	poison_message = "Nuage empoisonné !",
+	poison_desc = "Prévient de l'arrivée des Nuages empoisonnés.",
+	poison_message = "Nuage empoisonné !",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
