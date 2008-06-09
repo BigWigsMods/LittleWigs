@@ -41,13 +41,13 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
 	fear = "恐懼冷卻",
-	fear_desc = "當即將施放恐懼時發出警報",
-	--fear_message = "Fear cooldown!",
+	fear_desc = "即將施放恐懼時發出警報",
+	fear_message = "恐懼冷卻!",
 	fear_warning = "即將施放 恐懼!",
 	fear_bar = "<恐懼冷卻>",
 	
 	enrage = "狂暴（英雄）",
-	enrage_desc = "當即將狂暴時發出警報。",
+	enrage_desc = "即將狂暴時發出警報",
 	enrage_message = "%s 秒後狂暴!",
 	enrage_bar = "<狂暴>",
 } end )

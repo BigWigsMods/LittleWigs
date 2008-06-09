@@ -31,6 +31,12 @@ L:RegisterTranslations("zhCN", function() return {
 	totem_message = "堕落新星图腾！",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	totem = "墮落新星圖騰",
+	totem_desc = "當施放墮落新星圖騰時發出警報",
+	totem_message = "墮落新星圖騰!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

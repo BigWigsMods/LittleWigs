@@ -68,10 +68,10 @@ L:RegisterTranslations("zhTW", function() return {
 	teleport_warning = "5 秒後傳送!",
 	teleport_bar = "傳送",
 	
-	--banish = "Banish (Heroic)",
-	--banish_desc = "Warn for Banish.",
-	--banish_message = "%s is Banish!",
-	--banish_bar = "%s - Banish",
+	banish = "放逐 (英雄)",
+	banish_desc = "放逐警報",
+	banish_message = ">%s< 被放逐!",
+	banish_bar = "%s - 放逐",
 
 	engage_trigger1 = "你會是其他人很好的榜樣!",
 	engage_trigger2 = "很好，一次值得的犧牲!",
