@@ -100,10 +100,10 @@ L:RegisterTranslations("zhCN", function() return {
 	teleport_warning = "5秒后，传送！",
 	teleport_bar = "<传送>",
 	
-	--banish = "Banish (Heroic)",
-	--banish_desc = "Warn for Banish.",
-	--banish_message = "%s is Banish!",
-	--banish_bar = "%s - Banish",
+	banish = "放逐术（英雄）",
+	banish_desc = "当玩家受到放逐术时发出警报。",
+	banish_message = ">%s< 被放逐！",
+	banish_bar = "<放逐术：%s>",
 	
 	engage_trigger1 = "我要用你的血当祭品！",
 	engage_trigger2 = "很好，一个完美的祭品！",

@@ -23,13 +23,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	--engage_message = "Engaged - Incite Chaos in ~15sec!",
+	engage_message = "战斗开始 - 约15秒后，煽动混乱！",
 	
 	chaos = "煽动混乱计时条",
 	chaos_desc = "显示煽动混乱计时条。",
-	--chaos_message = "Incite Chaos! Next in ~60sec",
-	--chaos_warning = "Incite Chaos Soon!",
-	--chaos_nextbar = "~Possible Incite Chaos",
+	chaos_message = "约60秒后，煽动混乱！",
+	chaos_warning = "即将 煽动混乱！",
+	chaos_nextbar = "<可能 煽动混乱>",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

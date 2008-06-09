@@ -25,6 +25,12 @@ L:RegisterTranslations("koKR", function() return {
 	totem_message = "타락의 회오리 토템!",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	totem = "堕落新星图腾",
+	totem_desc = "当施放堕落新星图腾时发出警报。",
+	totem_message = "堕落新星图腾！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

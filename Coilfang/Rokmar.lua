@@ -48,14 +48,14 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	--throw = "Grievous Wound",
-	--throw_desc = "Warn who is afflicted by Grievous Wound.",
-	--throw_message = "%s has Grievous Wound",
+	throw = "痛苦之伤",
+	throw_desc = "当玩家受到痛苦之伤时发出警报。",
+	throw_message = "痛苦之伤：>%s<！",
 	
 	enrage = "激怒（英雄）",
 	enrage_desc = "当激怒时发出警报。",
 	enrage_warning = "巨钳鲁克玛尔 激怒！",
-	--enrage_message = "Enraged!",
+	enrage_message = "激怒！",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

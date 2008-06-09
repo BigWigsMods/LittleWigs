@@ -29,7 +29,7 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	fear = "恐惧冷却",
 	fear_desc = "当即将施放恐惧时发出警报。",
-	--fear_message = "Fear cooldown!",
+	fear_message = "恐惧 冷却！",
 	fear_warning = "即将施放 恐惧！",
 	fear_bar = "<恐惧 冷却>",
 	
