@@ -72,7 +72,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Summon", 33538)
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "Summon", 33538)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 
 	db = self.db.profile
