@@ -24,6 +24,8 @@ L:RegisterTranslations("enUS", function() return {
 	enrage_desc = "Warnings and bar for when Ambassador Hellmaw will enrage.",
 	enrage_message = "Enrage in %s seconds",
 	enrage_bar = "Enrage",
+
+	engage_message = "%t has been engaged!",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -114,7 +116,7 @@ function mod:Fear()
 	if self.db.profile.fear then
 		self:IfMessage(L["fear_message"], "Attention", 33547)
 		self:Bar(L["fear_bar"], 25, 33547)
-		self:DelayedMessage(25, L["stomp_warning"], "Attention")
+		self:DelayedMessage(25, L["fear_warning"], "Attention")
 	end
 end
 
@@ -125,7 +127,7 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 			self:UnregisterEvent("PLAYER_REGEN_DISABLED")
 		end
 		if self.db.profile.fear then
-			self:IfMessage(L["engage_message"], "Attention")
+			self:IfMessage(L["engage_message"]:format(boss), "Attention")
 			self:Bar(L["fear_bar"], 15, 33547)
 		end
 		if self.db.profile.enrage and GetInstanceDifficulty() == 2 then

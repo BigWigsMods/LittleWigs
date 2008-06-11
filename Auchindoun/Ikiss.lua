@@ -5,6 +5,8 @@
 local boss = BB["Talon King Ikiss"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local pName = UnitName("player")
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -15,6 +17,10 @@ L:RegisterTranslations("enUS", function() return {
 	ae = "Arcane Explosion",
 	ae_desc = "Warn for Arcane Explosion",
 	ae_message = "Casting Arcane Explosion!",
+
+	poly = "Polymorph",
+	poly_desc = "Warn who gets Polymorphed.",
+	poly_message = "%s is polymorphed",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -62,7 +68,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Sethekk Halls"]
 mod.enabletrigger = boss 
-mod.toggleoptions = {"ae", "bosskill"}
+mod.toggleoptions = {"ae", "poly", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -71,6 +77,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "AE", 38194)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Poly", 38245, 43309)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 end
 
@@ -83,3 +90,12 @@ function mod:AE()
 		self:Message(L["ae_message"], "Attention")
 	end
 end
+
+function mod:Poly(player)
+	if self.db.profile.poly then
+		self:IfMessage(L["poly_message"]:format(player), "Attention", 38245)
+		self:Bar(L["poly_message"]:format(player), 6, 38245)
+		self:Icon(player, "icon")
+	end
+end
+
