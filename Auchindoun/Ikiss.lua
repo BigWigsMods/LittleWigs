@@ -27,6 +27,10 @@ L:RegisterTranslations("koKR", function() return {
 	ae = "신비한 폭발",
 	ae_desc = "신비한 폭발에 대한 경고입니다.",
 	ae_message = "신비한 폭발 시전!",
+	
+	poly = "변이",
+	poly_desc = "변이에 걸린 플레이어를 알립니다.",
+	poly_message = "%s 변이",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

@@ -23,6 +23,12 @@ L:RegisterTranslations("zhCN", function() return {
 	focus_message = "集中活力>%s< 躲开",
 } end )
 
+L:RegisterTranslations("koKR", function() return {
+	focus = "집중의 불꽃",
+	focus_desc = "집중의 불꽃 대상자를 알립니다.",
+	focus_message = "%s 집중의 불꽃",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
