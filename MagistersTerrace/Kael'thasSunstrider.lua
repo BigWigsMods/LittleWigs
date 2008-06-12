@@ -33,6 +33,11 @@ L:RegisterTranslations("enUS", function() return {
 	barrier_message = "Shock Barrier Up!",
 	barrier_next_bar = "~ Next Shock Barrier",
 	barrier_soon_message = "Shock Barrier Soon!",
+	
+	pyro = "Pyroblast (Heroic)",
+	pyro_desc = "Warn when Kael'thas casts Pyroblast.",
+	pyro_message = "Kael'thas casts Pyroblast",
+	pyro_cast_bar = "Casting Pyroblast!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -140,6 +145,7 @@ function mod:OnEnable()
 
 	self:RegisterEvent("UNIT_HEALTH")
 	self:AddCombatListener("SPELL_CAST_START", "Lapse", 44224)
+	self:AddCombatListener("SPELL_CAST_START", "Pyro", 36819)
 	self:AddCombatListener("SPELL_SUMMON", "Phoenix", 44194)
 	self:AddCombatListener("SPELL_SUMMON", "FlameStrike", 44192, 46162)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Barrier", 46165)
@@ -192,6 +198,13 @@ end
 function mod:Barrier()
 	if self.db.profile.barrier then
 		self:IfMessage(L["barrier_message"], "Important", 46165)
+	end
+end
+
+function mod:Pyro(player)
+	if self.db.profile then
+		self:Bar(L["pyro_cast_bar"]:format(player), 4, 36819)
+		self:Icon(player, "icon")
 	end
 end
 
