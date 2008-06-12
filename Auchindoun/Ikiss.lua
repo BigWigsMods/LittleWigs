@@ -61,6 +61,10 @@ L:RegisterTranslations("zhCN", function() return {
 	ae = "魔爆术",
 	ae_desc = "当施放魔爆术时发出警报。",
 	ae_message = "施放魔爆术！快躲！",
+
+	poly = "变羊术",
+	poly_desc = "当队友被变羊后发出警报.",
+	poly_message = "变羊 >%s<",
 } end )
 
 ----------------------------------
