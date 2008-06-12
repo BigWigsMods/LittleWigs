@@ -27,7 +27,7 @@ L:RegisterTranslations("zhCN", function() return {
 	
 	chaos = "煽动混乱计时条",
 	chaos_desc = "显示煽动混乱计时条。",
-	chaos_message = "约60秒后，煽动混乱！",
+	chaos_message = "约70秒后，煽动混乱！",
 	chaos_warning = "即将 煽动混乱！",
 	chaos_nextbar = "<可能 煽动混乱>",
 } end )
@@ -37,7 +37,7 @@ L:RegisterTranslations("zhTW", function() return {
 	
 	chaos = "煽動混亂計時條",
 	chaos_desc = "顯示煽動混亂計時條",
-	chaos_message = "約 60 秒後，煽動混亂!",
+	chaos_message = "約 70 秒後，煽動混亂!",
 	chaos_warning = "即將 煽動混亂!",
 	chaos_nextbar = "<可能 煽動混亂>",
 } end )

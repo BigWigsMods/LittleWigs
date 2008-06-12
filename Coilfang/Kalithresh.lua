@@ -92,7 +92,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	rage = "督军之怒",
 	rage_desc = "当督军之怒时发出警报。",
-	rage_message = "督军之怒 即将发动！ DPS！",
+	rage_message = "即将 督军之怒！DPS！",
 	rage_soon = "即将 传送！",
 	rage_soonbar = "<可能传送>",
 } end )

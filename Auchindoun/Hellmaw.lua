@@ -40,7 +40,7 @@ L:RegisterTranslations("zhCN", function() return {
 	enrage_message = "%s秒后，激怒！",
 	enrage_bar = "<激怒>",
 
-	engage_message = "%t 激怒!",
+	engage_message = "%t 激怒！",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
