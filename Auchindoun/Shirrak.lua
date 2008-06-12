@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -15,6 +15,12 @@ L:RegisterTranslations("enUS", function() return {
 	focus = "Focus Fire",
 	focus_desc = "Warn which play is being Focus Fired.",
 	focus_message = "%s has Focus Fire",
+} end )
+
+L:RegisterTranslations("zhCN", function() return {
+	focus = "集中火力",
+	focus_desc = "当受到集中火力,警告躲开人群",
+	focus_message = "集中活力>%s< 躲开",
 } end )
 
 ----------------------------------
