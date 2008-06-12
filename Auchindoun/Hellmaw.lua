@@ -80,6 +80,8 @@ L:RegisterTranslations("frFR", function() return {
 	enrage_desc = "Affiche une barre et des avertissements indiquant quand l'Ambassadeur Gueule-d'enfer deviendra enragé.",
 	enrage_message = "Enrager dans %s sec.",
 	enrage_bar = "Enrager",
+
+	engage_message = "%t engagé - Peur dans ~15 sec. !",
 } end )
 
 ----------------------------------

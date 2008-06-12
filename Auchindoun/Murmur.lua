@@ -92,14 +92,14 @@ L:RegisterTranslations("frFR", function() return {
 	touch_message_you = "Vous avez le Toucher de Marmon !",
 	touch_message_other = "%s a le Toucher de Marmon !",
 
-	touchtimer = "Délais avant fin du Toucher",
+	touchtimer = "Fin du Toucher",
 	touchtimer_desc = "Affiche une barre de 13 secondes indiquant quand le Toucher de Marmon se termine sur la cible.",
 	touchtimer_bar = "%s : Toucher de Marmon",
 
-	youtouch = "Toucher de Marmon sur vous",
+	youtouch = "Toucher sur vous",
 	youtouch_desc = "Prévient quand vous subissez les effets du Toucher de Marmon.",
 
-	othertouch = "Toucher de Marmon sur les autres",
+	othertouch = "Toucher sur les autres",
 	othertouch_desc = "Prévient quand un autre joueur subit les effets du Toucher de Marmon.",
 
 	icon = "Icône",

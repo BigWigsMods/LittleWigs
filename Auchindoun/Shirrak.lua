@@ -29,6 +29,12 @@ L:RegisterTranslations("koKR", function() return {
 	focus_message = "%s 집중의 불꽃",
 } end )
 
+L:RegisterTranslations("frFR", function() return {
+	focus = "Focalisation du feu",
+	focus_desc = "Prévient sur quel joueur la Focalisation du feu est incantée.",
+	focus_message = "Focalisation du feu sur %s !",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

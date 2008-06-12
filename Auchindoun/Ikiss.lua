@@ -43,6 +43,10 @@ L:RegisterTranslations("frFR", function() return {
 	ae = "Explosion des arcanes",
 	ae_desc = "Prévient quand Ikiss lance son Explosion des arcanes.",
 	ae_message = "Explosion des arcanes en incantation !",
+
+	poly = "Métamorphose",
+	poly_desc = "Prévient quand un joueur subit les effets de la Métamorphose.",
+	poly_message = "Métamorphose sur %s !",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
