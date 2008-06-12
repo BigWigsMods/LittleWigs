@@ -37,6 +37,10 @@ L:RegisterTranslations("zhTW", function() return {
 	ae = "魔爆術",
 	ae_desc = "魔爆術警報",
 	ae_message = "即將施放魔爆術! 快找掩蔽!",
+
+	poly = "變形術",
+	poly_desc = "當隊友受到變形術時發出警報",
+	poly_message = "變形術: >%s<",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

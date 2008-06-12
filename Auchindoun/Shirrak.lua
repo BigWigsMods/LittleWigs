@@ -23,6 +23,12 @@ L:RegisterTranslations("zhCN", function() return {
 	focus_message = "集中活力>%s< 躲开",
 } end )
 
+L:RegisterTranslations("zhTW", function() return {
+	focus = "專注之火",
+	focus_desc = "當玩家受到專注之火時發出警報",
+	focus_message = "專注之火: >%s<",
+} end )
+
 L:RegisterTranslations("koKR", function() return {
 	focus = "집중의 불꽃",
 	focus_desc = "집중의 불꽃 대상자를 알립니다.",
