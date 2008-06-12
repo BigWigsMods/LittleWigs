@@ -16,7 +16,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	chaos = "Incite Chaos",
 	chaos_desc = "Display a bar for the duration of the Incite Chaos",
-	chaos_message = "Incite Chaos! Next in ~60sec",
+	chaos_message = "Incite Chaos! Next in ~70sec",
 	chaos_warning = "Incite Chaos Soon!",
 	chaos_nextbar = "~Possible Incite Chaos",
 	
@@ -97,8 +97,8 @@ function mod:Chaos(_, spellId, _, _, spellName)
 		self:TriggerEvent("BigWigs_StopBar", self, L["chaos_nextbar"])
 		self:IfMessage(L["chaos_message"], "Important", spellID)
 		self:Bar(L["chaos"], 15, spellId)
-		self:ScheduleEvent("chaos", "BigWigs_Message", 57, L["chaos_warning"], "Urgent", nil, "Alarm")
-		self:Bar(L["chaos_nextbar"], 60, spellID)
+		self:ScheduleEvent("chaos", "BigWigs_Message", 65, L["chaos_warning"], "Urgent", nil, "Alarm")
+		self:Bar(L["chaos_nextbar"], 70, spellID)
 	end
 end
 

@@ -28,5 +28,6 @@ Ikiss.lua
 Pandemonius.lua
 Maladaar.lua
 Murmur.lua
+Shirrak.lua
 Syth.lua
 Vorpil.lua

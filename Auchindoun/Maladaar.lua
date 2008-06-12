@@ -92,8 +92,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED","Soul", 32346)
-	self:AddCombatListener("SPELL_CAST_START","Avatar", 32424)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Soul", 32346)
+	self:AddCombatListener("SPELL_CAST_START", "Avatar", 32424)
 	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
 end
 
