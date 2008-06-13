@@ -106,6 +106,11 @@ L:RegisterTranslations("zhCN", function() return {
 	barrier_message = "震击屏障！",
 	barrier_next_bar = "<下一震击屏障>",
 	barrier_soon_message = "即将 震击屏障！",
+
+	pyro = "炎爆术（英雄）",
+	pyro_desc = "当施放炎爆术时发出警报。",
+	pyro_message = "正在施放 炎爆术！",
+	pyro_cast_bar = "炎爆术：>%s<！",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
