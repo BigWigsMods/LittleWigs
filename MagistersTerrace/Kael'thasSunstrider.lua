@@ -216,10 +216,10 @@ function mod:Barrier()
 	end
 end
 
-function mod:Pyro(player)
+function mod:Pyro(player, spellId)
 	if self.db.profile then
-		self:IfMessage(L["pyro_message"], "Important", 36819)
-		self:Bar(L["pyro_cast_bar"]:format(player), 4, 36819)
+		self:Bar(L["pyro_cast_bar"]:format(player), 4, spellId)
+		self:IfMessage(L["pyro_message"], "Important", spellId)
 		self:Icon(player, "icon")
 	end
 end
