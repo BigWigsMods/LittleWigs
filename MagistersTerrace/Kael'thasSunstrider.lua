@@ -128,10 +128,15 @@ L:RegisterTranslations("zhTW", function() return {
 	flamestrike_message = "烈焰風暴!",
 
 	barrier = "震擊屏障（英雄）", -- need check
-	barrier_desc = "當凱爾薩斯獲得震擊屏障發出警告", -- need check
+	barrier_desc = "當凱爾薩斯獲得震擊屏障時發出警告", -- need check
 	barrier_message = "震擊屏障 開啟!", -- need check
 	barrier_next_bar = "<下一次震擊屏障>", -- need check
 	barrier_soon_message = "即將施放震擊屏障!", -- need check
+
+	pyro = "炎爆術（英雄）",
+	pyro_desc = "當凱爾薩斯施放炎爆術時發出警告",
+	pyro_message = "凱爾薩斯正在施放炎爆術!",
+	pyro_cast_bar = "<炎爆術>",
 } end )
 
 ----------------------------------
