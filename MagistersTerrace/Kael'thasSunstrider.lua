@@ -37,7 +37,7 @@ L:RegisterTranslations("enUS", function() return {
 	pyro = "Pyroblast (Heroic)",
 	pyro_desc = "Warn when Kael'thas casts Pyroblast.",
 	pyro_message = "Kael'thas casts Pyroblast",
-	pyro_cast_bar = "Casting Pyroblast!",
+	pyro_cast_bar = "Casting Pyroblast on %s!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -59,6 +59,11 @@ L:RegisterTranslations("koKR", function() return {
 	barrier_message = "충격 방벽!",
 	barrier_next_bar = "~ 다음 방어 방벽",
 	barrier_soon_message = "잠시 후 방어 방벽!",
+	
+	pyro = "불덩이 작렬 (영웅)",
+	pyro_desc = "캘타스의 불덩이 작렬 시전을 알립니다.",
+	pyro_message = "캘타스 불덩이 작렬 시전",
+	pyro_cast_bar = "%s에게 불작 시전중!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -203,6 +208,7 @@ end
 
 function mod:Pyro(player)
 	if self.db.profile then
+		self:IfMessage(L["pyro_message"], "Important", 36819)
 		self:Bar(L["pyro_cast_bar"]:format(player), 4, 36819)
 		self:Icon(player, "icon")
 	end
