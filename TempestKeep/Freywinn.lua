@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -62,6 +62,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Botanica"]
 mod.enabletrigger = boss 
+mod.guid = 17975
 mod.toggleoptions = {"tranq", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -71,7 +72,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:RegisterEvent("SPELL_CAST_SUCCESS", "Tranq", 34557)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------

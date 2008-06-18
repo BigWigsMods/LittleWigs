@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -64,6 +64,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Sethekk Halls"]
 mod.enabletrigger = boss 
+mod.guid = 18472
 mod.toggleoptions = {"summon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -73,7 +74,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_SUMMON", "Summon", 33538)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	db = self.db.profile
 end

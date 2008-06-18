@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -56,6 +56,7 @@ mod.partyContent = true
 mod.otherMenu = "Hellfire Citadel"
 mod.zonename = BZ["The Blood Furnace"]
 mod.enabletrigger = boss 
+mod.guid = 17380
 mod.toggleoptions = {"poison", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -65,7 +66,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_DAMAGE", "Cloud", 30916)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------

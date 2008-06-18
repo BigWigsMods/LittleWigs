@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -129,6 +129,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss 
+mod.guid = 19710
 mod.toggleoptions = {"hammer", "shadow", "shadowaura", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -141,7 +142,7 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Shadow", 39193)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "ShadowApplied", 39193)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "ShadowRemoved", 39193)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------

@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -84,6 +84,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Sethekk Halls"]
 mod.enabletrigger = boss 
+mod.guid = 18473
 mod.toggleoptions = {"ae", "poly", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -94,7 +95,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "AE", 38194)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Poly", 38245, 43309)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------

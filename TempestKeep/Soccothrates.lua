@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -56,6 +56,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Arcatraz"]
 mod.enabletrigger = boss 
+mod.guid = 20886
 mod.toggleoptions = {"knock", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -65,7 +66,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Knock", 36512)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------

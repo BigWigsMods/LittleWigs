@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -107,6 +107,7 @@ mod.partyContent = true
 mod.otherMenu = "Hellfire Citadel"
 mod.zonename = BZ["The Shattered Halls"]
 mod.enabletrigger = boss
+mod.guid = 16808
 mod.toggleoptions = {"bdwarn", "bdbar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -116,7 +117,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	db = self.db.profile
 end

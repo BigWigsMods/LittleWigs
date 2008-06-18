@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -73,6 +73,7 @@ mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod.zonename = BZ["The Underbog"]
 mod.enabletrigger = boss
+mod.guid = 17770
 mod.toggleoptions = {"shroom", "spores", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -83,7 +84,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:RegisterEvent("UNIT_HEALTH")
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Shroom", 31693)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	sporesannounced = nil
 	db = self.db.profile

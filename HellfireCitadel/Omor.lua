@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -89,6 +89,7 @@ mod.partyContent = true
 mod.otherMenu = "Hellfire Citadel"
 mod.zonename = BZ["Hellfire Ramparts"]
 mod.enabletrigger = boss
+mod.guid = 17308
 mod.toggleoptions = {"aura", "icon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -99,7 +100,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Curse", 30695, 37566, 37567, 39298) -- verify 37566(Bane of Treachery) on heroic 
 	self:AddCombatListener("SPELL_AURA_REMOVED", "CurseRemove", 30695, 37566, 37567, 39298) -- verify 37566(Bane of Treachery) on heroic
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------

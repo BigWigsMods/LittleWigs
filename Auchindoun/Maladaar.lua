@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -84,6 +84,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Auchenai Crypts"]
 mod.enabletrigger = boss 
+mod.guid = 18373
 mod.toggleoptions = {"soul", "avatar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -94,7 +95,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Soul", 32346)
 	self:AddCombatListener("SPELL_CAST_START", "Avatar", 32424)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------

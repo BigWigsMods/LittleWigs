@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -184,6 +184,7 @@ local mod = BigWigs:NewModule(boss)
 mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
+mod.guid = 24560
 mod.toggleoptions = {"pri_flashheal", "pri_renew", "pri_shield", -1, "apoko_lhw", "apoko_wf", -1, "yazzai_bliz", "yazzai_poly", -1, "ellrys_soc", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -192,7 +193,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "PriShield", 46193, 44175, 44291)
 	self:AddCombatListener("SPELL_CAST_START", "PriHeal", 17843)
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "PriRenew", 44174, 46192)

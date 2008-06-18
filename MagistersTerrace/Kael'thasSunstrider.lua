@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -147,6 +147,7 @@ local mod = BigWigs:NewModule(boss.."(MT)")
 mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
+mod.guid = 24664
 mod.toggleoptions = {"glapse", "phoenix", "flamestrike", -1, "barrier", "pyro", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -164,7 +165,7 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_SUMMON", "Phoenix", 44194)
 	self:AddCombatListener("SPELL_SUMMON", "FlameStrike", 44192, 46162)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Barrier", 46165)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 

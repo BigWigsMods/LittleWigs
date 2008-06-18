@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -58,6 +58,7 @@ mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Mana-Tombs"]
 mod.enabletrigger = boss 
+mod.guid = 18341
 mod.toggleoptions = {"shell", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -67,7 +68,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Shell", 32358, 38759) -- Normal/Heroic
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	db = self.db.profile
 end

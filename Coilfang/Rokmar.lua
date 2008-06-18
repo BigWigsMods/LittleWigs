@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -78,6 +78,7 @@ mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod.zonename = BZ["The Slave Pens"]
 mod.enabletrigger = boss
+mod.guid = 17991
 mod.toggleoptions = {"throw", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -89,7 +90,7 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Wound", 31956, 38801)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Enrage", 34970)
 	self:RegisterEvent("UNIT_HEALTH")
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	enrageannounced = nil
 	db = self.db.profile

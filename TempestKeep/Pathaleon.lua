@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -129,6 +129,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss
+mod.guid = 19220
 mod.toggleoptions = {"summon", "despawn", -1, "mc", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -144,7 +145,7 @@ function mod:OnEnable()
 	-- need to check for one to be cast, the four Ids are 35285, 35286, 35287, 35288
 	self:AddCombatListener("SPELL_CAST_START", "Summon", 35285)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 35280)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("UNIT_HEALTH")

@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -185,6 +185,7 @@ mod.partyContent = true
 mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss 
+mod.guid = 19219
 mod.toggleoptions = {"shields", "shieldbar", -1, "polarity", "enrage", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
@@ -200,7 +201,7 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_REMOVED", "ShieldRemoved", 35159)
 	self:AddCombatListener("SPELL_CAST_START", "Polarity", 39096)
 	--self:AddCombatListener("SPELL_CAST_SUCCESS", "PolarityScan", 39096) --success isn't getting logged right now
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	aura = nil
 	positive = nil
