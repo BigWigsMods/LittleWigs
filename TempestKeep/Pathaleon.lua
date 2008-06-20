@@ -143,7 +143,7 @@ function mod:OnEnable()
 	-- There are four spellId's for this summon, and seeing as how I put a time check in
 	-- original code I suspect that he casts each of the four spells once, so we only
 	-- need to check for one to be cast, the four Ids are 35285, 35286, 35287, 35288
-	self:AddCombatListener("SPELL_CAST_START", "Summon", 35285)
+	self:AddCombatListener("SPELL_SUMMON", "Summon", 35285)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 35280)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 

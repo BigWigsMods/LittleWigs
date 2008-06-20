@@ -5,8 +5,6 @@
 local boss = BB["Pandemonius"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-local db = nil
-
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -67,10 +65,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Shell", 32358, 38759) -- Normal/Heroic
+	self:AddCombatListener("SPELL_CAST_START", "Shell", 32358, 38759)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -78,8 +74,8 @@ end
 ------------------------------
 
 function mod:Shell(spellId)
-	if db.shell then
-		self:Message(L["shell_message"], "Attention")
+	if self.db.profile.shell then
+		self:IfMessage(L["shell_message"], "Attention", spellId)
 		self:Bar(L["shell_message"], 6, spellId)
 	end
 end

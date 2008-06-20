@@ -21,6 +21,9 @@ L:RegisterTranslations("enUS", function() return {
 	poly = "Polymorph",
 	poly_desc = "Warn who gets Polymorphed.",
 	poly_message = "%s is polymorphed",
+
+	icon = "Raid Icon",
+	icon_desc = "Place a Raid Icon on the polymorphed player(requires leader).",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -85,7 +88,7 @@ mod.otherMenu = "Auchindoun"
 mod.zonename = BZ["Sethekk Halls"]
 mod.enabletrigger = boss 
 mod.guid = 18473
-mod.toggleoptions = {"ae", "poly", "bosskill"}
+mod.toggleoptions = {"ae", "poly", "icon", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -112,7 +115,7 @@ function mod:Poly(player)
 	if self.db.profile.poly then
 		self:IfMessage(L["poly_message"]:format(player), "Attention", 38245)
 		self:Bar(L["poly_message"]:format(player), 6, 38245)
-		self:Icon(player, "icon")
 	end
+	self:Icon(player, "icon")
 end
 

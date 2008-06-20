@@ -25,6 +25,7 @@
 <Script file="Auchindoun\Pandemonius.lua"/>
 <Script file="Auchindoun\Shirrak.lua"/>
 <Script file="Auchindoun\Syth.lua"/>
+<Script file="Auchindoun\Tavarok.lua"/>
 <Script file="Auchindoun\Vorpil.lua"/>
 
 <Script file="TempestKeep\Capacitus.lua"/>

@@ -30,4 +30,5 @@ Maladaar.lua
 Murmur.lua
 Shirrak.lua
 Syth.lua
+Tavarok.lua
 Vorpil.lua
