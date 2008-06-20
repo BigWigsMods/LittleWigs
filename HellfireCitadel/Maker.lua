@@ -34,7 +34,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	mc = "心灵控制",
-	mc_desc = "当玩家受到心灵控制时发出警报。",
+	mc_desc = "当队友受到心灵控制时发出警报。",
 	mc_message = "心灵控制：>%s<！",
 	mc_bar = "<心灵控制：%s>",
 } end )
