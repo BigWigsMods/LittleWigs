@@ -28,6 +28,16 @@ L:RegisterTranslations("zhCN", function() return {
 	icon = "团队标记",
 	icon_desc = "为中了水晶监牢的队友打上团队标记。（需要权限）",
 } end )
+
+L:RegisterTranslations("koKR", function() return {
+	prison = "荐沥 皑苛",
+	prison_desc = "荐沥 皑苛俊 吧赴 敲饭捞绢甫 舅赋聪促.",
+	prison_message = "Crystal Prison: %s",
+
+	icon = "傍拜措 酒捞能",
+	icon_desc = "荐沥 皑苛俊 吧赴 敲饭捞绢俊霸 傈贱 钎矫甫 瘤沥钦聪促. (铰鞭磊 捞惑 鼻茄 夸备)",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

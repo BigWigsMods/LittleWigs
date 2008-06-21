@@ -42,7 +42,7 @@ L:RegisterTranslations("koKR", function() return {
 	despawn_desc = "황천의 망령 사라짐에 대해 알립니다.",
 	despawn_message = "잠시 후 황천의 망령 사라짐!",
 	despawn_trigger = "진짜 싸움을 시작해 볼까...", 
-	despawn_trigger2 = "I prefer to be hands",	--need to translation.
+	--despawn_trigger2 = "I prefer to be hands",
 	despawn_done = "황천의 망령 사라짐!",
 
 	mc = "정신 지배",

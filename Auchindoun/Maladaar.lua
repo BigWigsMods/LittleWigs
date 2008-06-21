@@ -32,6 +32,7 @@ L:RegisterTranslations("koKR", function() return {
 	avatar = "순교자의 화신",
 	avatar_desc = "순교자의 화신 소환 경고",
 	avatar_message = "순교자의 화신 소환!",
+	avatar_soon = "잠시 후 순교자의 화신 소환",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

@@ -34,6 +34,9 @@ L:RegisterTranslations("koKR", function() return {
 	poly = "변이",
 	poly_desc = "변이에 걸린 플레이어를 알립니다.",
 	poly_message = "%s 변이",
+	
+	icon = "공격대 아이콘",
+	icon_desc = "변이에 걸린 플레이어에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

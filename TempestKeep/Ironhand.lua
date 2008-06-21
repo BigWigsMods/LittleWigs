@@ -36,6 +36,9 @@ L:RegisterTranslations("koKR", function() return {
 	shadow = "어둠의 힘 시전",
 	shadow_desc = "무쇠주먹의 어둠의 힘 시전에 대해 알립니다.",
 	shadow_message = "2초 이내 어둠의 힘!",
+	
+	shadowbar = "어둠의 힘 바",
+	shadowbar_desc = "어둠의 힘을 바로 표시합니다.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
