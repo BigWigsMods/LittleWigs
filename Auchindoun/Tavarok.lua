@@ -20,6 +20,14 @@ L:RegisterTranslations("enUS", function() return {
 	icon_desc = "Place a Raid Icon on the player in a Crystal Prison(requires leader).",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	prison = "水晶监牢",
+	prison_desc = "当队友中了水晶监牢时发出警报。",
+	prison_message = "水晶监牢：>%s<！",
+
+	icon = "团队标记",
+	icon_desc = "为中了水晶监牢的队友打上团队标记。（需要权限）",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

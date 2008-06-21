@@ -76,6 +76,9 @@ L:RegisterTranslations("zhCN", function() return {
 	poly = "变形术",
 	poly_desc = "当队友受到变形术时发出警报。",
 	poly_message = "变形术：>%s<！",
+
+	icon = "团队标记",
+	icon_desc = "为中了变形术的队友打上团队标记。（需要权限）",
 } end )
 
 ----------------------------------

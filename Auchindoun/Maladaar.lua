@@ -57,10 +57,11 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	soul = "灵魂偷取",
 	soul_desc = "施放灵魂偷取时发出警报。",
+	soul_message = "灵魂偷取：>%s<！",
 
 	avatar = "殉难者的化身",
 	avatar_desc = "当召唤殉难者的化身时发出警报。",
-	avatar_message = "殉难者的化身出现！MT 顶啊~~~",
+	avatar_message = "殉难者的化身出现！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

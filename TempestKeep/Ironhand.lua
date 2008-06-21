@@ -84,6 +84,9 @@ L:RegisterTranslations("zhCN", function() return {
 	shadow = "施放暗影能量",
 	shadow_desc = "当埃隆汉施放暗影能量时发出警报。",
 	shadow_message = "2秒后，暗影能量！",
+
+	shadowbar = "暗影能量计时条",
+	shadowbar_desc = "当盖罗基尔获得暗影能量时显示计时条。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

@@ -49,14 +49,14 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	aura = "背叛光环",
-	aura_heroic = "背叛者之祸",
+	aura_heroic = "背叛者之祸（英雄）",
 	aura_desc = "当队友中了背叛光环时发出警报。",
 	aura_message = ">%s< 中了 %s！",
 	aura_message_you = "你中了>%s<！",
 	aura_bar = "<%s：%s>",
 
 	icon = "团队标记",
-	icon_desc = "在中了背叛光环的队友头上标记。（需要团长或助理权限）",
+	icon_desc = "在中了背叛光环的队友打上团队标记。（需要权限）",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
