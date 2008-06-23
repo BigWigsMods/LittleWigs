@@ -85,6 +85,11 @@ L:RegisterTranslations("frFR", function() return {
 	barrier_message = "Barrière de choc !",
 	barrier_next_bar = "~Prochaine Barrière",
 	barrier_soon_message = "Barrière de choc imminente !",
+
+	pyro = "Explosion pyrotechnique (Héroïque)",
+	pyro_desc = "Prévient quand Kael'thas incante une Explosion pyrotechnique.",
+	pyro_message = "Kael'thas incante une Explosion pyrotechnique",
+	pyro_cast_bar = "Explosion pyro. sur %s !",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

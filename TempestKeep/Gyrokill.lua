@@ -39,6 +39,9 @@ L:RegisterTranslations("frFR", function() return {
 	shadow = "Puissance de l'ombre incanté",
 	shadow_desc = "Prévient quand Gyro-Meurtre incante la Puissance de l'ombre.",
 	shadow_message = "Puissance de l'ombre dans 2 sec. !",
+
+	shadowbar = "Barre Puissance de l'ombre",
+	shadowbar_desc = "Affiche une barre pour la Puissance de l'ombre de Gyro-Meurtre.",
 } end )
 
 L:RegisterTranslations("esES", function() return {

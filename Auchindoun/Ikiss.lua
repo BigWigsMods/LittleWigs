@@ -57,6 +57,9 @@ L:RegisterTranslations("frFR", function() return {
 	poly = "Métamorphose",
 	poly_desc = "Prévient quand un joueur subit les effets de la Métamorphose.",
 	poly_message = "Métamorphose sur %s !",
+
+	icon = "Icône",
+	icon_desc = "Place une icône de raid sur le dernier joueur affecté par la Métamorphose (nécessite d'être promu ou mieux).",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

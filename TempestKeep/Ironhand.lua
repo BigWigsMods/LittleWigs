@@ -19,11 +19,11 @@ L:RegisterTranslations("enUS", function() return {
 	hammer_bar = "Jackhammer",
 
 	shadow = "Shadow Power Cast",
-	shadow_desc = "Warn when Gyro-Kill casts Shadow Power",
+	shadow_desc = "Warn when Iron-Hand casts Shadow Power",
 	shadow_message = "Shadow Power in 2 seconds!",
 
 	shadowbar = "Shadow Power Bar",
-	shadowbar_desc = "Display a bar for Shadow Power on Gyro-Kill",
+	shadowbar_desc = "Display a bar for Shadow Power on Iron-Hand",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -61,8 +61,11 @@ L:RegisterTranslations("frFR", function() return {
 	hammer_bar = "Marteau-piqueur",
 
 	shadow = "Puissance de l'ombre incanté",
-	shadow_desc = "Prévient quand Gyro-Meurtre incante la Puissance de l'ombre.",
+	shadow_desc = "Prévient quand Main-en-fer incante la Puissance de l'ombre.",
 	shadow_message = "Puissance de l'ombre dans 2 sec. !",
+
+	shadowbar = "Barre Puissance de l'ombre",
+	shadowbar_desc = "Affiche une barre pour la Puissance de l'ombre de Main-en-fer.",
 } end )
 
 L:RegisterTranslations("esES", function() return {

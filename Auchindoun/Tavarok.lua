@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -36,6 +36,15 @@ L:RegisterTranslations("koKR", function() return {
 
 	icon = "공격대 아이콘",
 	icon_desc = "수정 감옥에 걸린 플레이어에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
+} end )
+
+L:RegisterTranslations("frFR", function() return {
+	prison = "Prison de cristal",
+	prison_desc = "Prévient quand un joueur subit les effets de la Prison de cristal.",
+	prison_message = "Prison de cristal : %s",
+
+	icon = "Icône",
+	icon_desc = "Place une icône de raid sur le dernier joueur affecté par la Prison de cristal (nécessite d'être promu ou mieux).",
 } end )
 
 ----------------------------------

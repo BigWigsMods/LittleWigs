@@ -53,6 +53,7 @@ L:RegisterTranslations("frFR", function() return {
 	avatar = "Avatar du martyr",
 	avatar_desc = "Prévient quand l'Avatar du martyr est invoqué.",
 	avatar_message = "Avatar du martyr invoqué !",
+	avatar_soon = "Avatar du martyr imminent",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
