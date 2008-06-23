@@ -30,12 +30,12 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	--prison = "Crystal Prison",
-	--prison_desc = "Warn when someone is put in a Crystal Prison",
-	--prison_message = "Crystal Prison: %s",
+	prison = "수정 감옥",
+	prison_desc = "수정 감옥에 걸린 플레이어를 알립니다.",
+	prison_message = "수정 감옥: %s",
 
-	--icon = "Raid Icon",
-	--icon_desc = "Place a Raid Icon on the player in a Crystal Prison(requires leader).",
+	icon = "공격대 아이콘",
+	icon_desc = "수정 감옥에 걸린 플레이어에게 전술 표시를 지정합니다. (승급자 이상 권한 요구)",
 } end )
 
 ----------------------------------
