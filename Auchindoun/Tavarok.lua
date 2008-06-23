@@ -1,4 +1,4 @@
-------------------------------
+ï»¿------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -21,21 +21,21 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	prison = "Ë®¾§¼àÀÎ",
-	prison_desc = "µ±¶ÓÓÑÖÐÁËË®¾§¼àÀÎÊ±·¢³ö¾¯±¨¡£",
-	prison_message = "Ë®¾§¼àÀÎ£º>%s<£¡",
+	prison = "æ°´æ™¶ç›‘ç‰¢",
+	prison_desc = "å½“é˜Ÿå‹ä¸­äº†æ°´æ™¶ç›‘ç‰¢æ—¶å‘å‡ºè­¦æŠ¥ã€‚",
+	prison_message = "æ°´æ™¶ç›‘ç‰¢ï¼š>%s<ï¼",
 
-	icon = "ÍÅ¶Ó±ê¼Ç",
-	icon_desc = "ÎªÖÐÁËË®¾§¼àÀÎµÄ¶ÓÓÑ´òÉÏÍÅ¶Ó±ê¼Ç¡££¨ÐèÒªÈ¨ÏÞ£©",
+	icon = "å›¢é˜Ÿæ ‡è®°",
+	icon_desc = "ä¸ºä¸­äº†æ°´æ™¶ç›‘ç‰¢çš„é˜Ÿå‹æ‰“ä¸Šå›¢é˜Ÿæ ‡è®°ã€‚ï¼ˆéœ€è¦æƒé™ï¼‰",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	prison = "¼öÁ¤ °¨¿Á",
-	prison_desc = "¼öÁ¤ °¨¿Á¿¡ °É¸° ÇÃ·¹ÀÌ¾î¸¦ ¾Ë¸³´Ï´Ù.",
-	prison_message = "Crystal Prison: %s",
+	--prison = "Crystal Prison",
+	--prison_desc = "Warn when someone is put in a Crystal Prison",
+	--prison_message = "Crystal Prison: %s",
 
-	icon = "°ø°Ý´ë ¾ÆÀÌÄÜ",
-	icon_desc = "¼öÁ¤ °¨¿Á¿¡ °É¸° ÇÃ·¹ÀÌ¾î¿¡°Ô Àü¼ú Ç¥½Ã¸¦ ÁöÁ¤ÇÕ´Ï´Ù. (½Â±ÞÀÚ ÀÌ»ó ±ÇÇÑ ¿ä±¸)",
+	--icon = "Raid Icon",
+	--icon_desc = "Place a Raid Icon on the player in a Crystal Prison(requires leader).",
 } end )
 
 ----------------------------------
