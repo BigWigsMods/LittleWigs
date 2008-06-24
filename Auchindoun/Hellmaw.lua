@@ -25,7 +25,7 @@ L:RegisterTranslations("enUS", function() return {
 	enrage_message = "Enrage in %s seconds",
 	enrage_bar = "Enrage",
 
-	engage_message = "%t has been engaged!",
+	engage_message = "%s has been engaged!",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -40,7 +40,7 @@ L:RegisterTranslations("zhCN", function() return {
 	enrage_message = "%s秒后，激怒！",
 	enrage_bar = "<激怒>",
 
-	engage_message = "%t 激怒！",
+	engage_message = "%s 激怒！",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -81,7 +81,7 @@ L:RegisterTranslations("frFR", function() return {
 	enrage_message = "Enrager dans %s sec.",
 	enrage_bar = "Enrager",
 
-	engage_message = "%t engagé - Peur dans ~15 sec. !",
+	engage_message = "%s engagé - Peur dans ~15 sec. !",
 } end )
 
 ----------------------------------

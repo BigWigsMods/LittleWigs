@@ -153,7 +153,7 @@ mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
 mod.guid = 24664
-mod.toggleoptions = {"glapse", "phoenix", "flamestrike", -1, "barrier", "pyro", "bosskill"}
+mod.toggleoptions = {"glapse", "phoenix", "flamestrike", -1, "barrier", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -166,7 +166,7 @@ function mod:OnEnable()
 
 	self:RegisterEvent("UNIT_HEALTH")
 	self:AddCombatListener("SPELL_CAST_START", "Lapse", 44224)
-	self:AddCombatListener("SPELL_CAST_START", "Pyro", 36819)
+	--self:AddCombatListener("SPELL_CAST_START", "Pyro", 36819)
 	self:AddCombatListener("SPELL_SUMMON", "Phoenix", 44194)
 	self:AddCombatListener("SPELL_SUMMON", "FlameStrike", 44192, 46162)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Barrier", 46165)
