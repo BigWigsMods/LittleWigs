@@ -13,7 +13,7 @@ local standing = nil
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Ahune",
-	
+
 	stand = "Emerge",
 	stand_desc = "Announce and show a bar when Ahune emerges",
 	stand_message = "Ahune Emerged",
@@ -26,11 +26,10 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	
-	emerge = "浮現",
-	emerge_desc = "當艾胡恩浮現時顯示計時條並通報",
-	emerge_message = "艾胡恩 已浮現!",
-	emerge_soon = "即將浮現!",
+	stand = "浮現",
+	stand_desc = "當艾胡恩浮現時顯示計時條並通報",
+	stand_message = "艾胡恩 已浮現!",
+	stand_soon = "即將浮現!",
 
 	submerge = "隱沒",
 	submerge_desc = "當艾胡恩隱沒時顯示計時條並通報",
@@ -48,6 +47,18 @@ L:RegisterTranslations("koKR", function() return {
 	submerge_desc = " ȭ  ٿ ˸Դϴ.",
 	submerge_message = " ȭ -  ",
 	sumberge_soon = "  ȭ!",
+} end )
+
+L:RegisterTranslations("frFR", function() return {
+	stand = "Emergence",
+	stand_desc = "Prévient et affiche une barre quand Ahune émerge.",
+	stand_message = "Ahune émergé",
+	stand_soon = "Emergence imminente",
+
+	submerge = "Immersion",
+	submerge_desc = "Prévient et affiche une barre quand Ahune est immergé.",
+	submerge_message = "Ahune immergé",
+	sumberge_soon = "Immersion imminente",
 } end )
 
 ----------------------------------
@@ -69,7 +80,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	standing = false
-	
+
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Submerge", 37751)
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Stand", 37752)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
