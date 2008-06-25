@@ -25,16 +25,29 @@ L:RegisterTranslations("enUS", function() return {
 	sumberge_soon = "Submerge Soon",
 } end )
 
-L:RegisterTranslations("koKR", function() return {
-	stand = "µîÀå",
-	stand_desc = "°­È­µÈ ¾ÆÈÆ¿¡ ´ëÇÑ ¹Ù¿Í ¾Ë¸²ÀÔ´Ï´Ù.",
-	stand_message = "¾ÆÈÆ µîÀå",
-	stand_soon = "Àá½Ã ÈÄ ¾ÆÈÆ µîÀå",
+L:RegisterTranslations("zhTW", function() return {
+	
+	emerge = "æµ®ç¾",
+	emerge_desc = "ç•¶è‰¾èƒ¡æ©æµ®ç¾æ™‚é¡¯ç¤ºè¨ˆæ™‚æ¢ä¸¦é€šå ±",
+	emerge_message = "è‰¾èƒ¡æ© å·²æµ®ç¾!",
+	emerge_soon = "å³å°‡æµ®ç¾!",
 
-	submerge = "¾àÈ­",
-	submerge_desc = "¾ÆÈÆÀÇ ¾àÈ­¿¡ ´ëÇÑ ¹Ù¿Í ¾Ë¸²ÀÔ´Ï´Ù.",
-	submerge_message = "¾ÆÈÆ ¾àÈ­ - ¾ó¾îºÙÀº ÇÙ",
-	sumberge_soon = "Àá½Ã ÈÄ ¾àÈ­!",
+	submerge = "éš±æ²’",
+	submerge_desc = "ç•¶è‰¾èƒ¡æ©éš±æ²’æ™‚é¡¯ç¤ºè¨ˆæ™‚æ¢ä¸¦é€šå ±",
+	submerge_message = "è‰¾èƒ¡æ© å·²éš±æ²’!",
+	sumberge_soon = "å³å°‡éš±æ²’!",
+} end )
+
+L:RegisterTranslations("koKR", function() return {
+	stand = "",
+	stand_desc = "È­ Æ¿  Ù¿ Ë¸Ô´Ï´.",
+	stand_message = " ",
+	stand_soon = "   ",
+
+	submerge = "È­",
+	submerge_desc = " È­  Ù¿ Ë¸Ô´Ï´.",
+	submerge_message = " È­ -  ",
+	sumberge_soon = "  È­!",
 } end )
 
 ----------------------------------
