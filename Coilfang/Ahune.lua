@@ -22,7 +22,7 @@ L:RegisterTranslations("enUS", function() return {
 	submerge = "Submerge",
 	submerge_desc = "Announce and show a bar when Ahune submerges",
 	submerge_message = "Ahune Submerged",
-	sumberge_soon = "Submerge Soon",
+	submerge_soon = "Submerge Soon",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -34,7 +34,7 @@ L:RegisterTranslations("zhTW", function() return {
 	submerge = "隱沒",
 	submerge_desc = "當艾胡恩隱沒時顯示計時條並通報",
 	submerge_message = "艾胡恩 已隱沒!",
-	sumberge_soon = "即將隱沒!",
+	submerge_soon = "即將隱沒!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -46,7 +46,7 @@ L:RegisterTranslations("koKR", function() return {
 	submerge = "약화",
 	submerge_desc = "아훈의 약화에 대한 바와 알림입니다.",
 	submerge_message = "아훈 약화 - 얼어붙은 핵",
-	sumberge_soon = "잠시 후 약화!",
+	submerge_soon = "잠시 후 약화!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -58,7 +58,7 @@ L:RegisterTranslations("frFR", function() return {
 	submerge = "Immersion",
 	submerge_desc = "Prévient et affiche une barre quand Ahune est immergé.",
 	submerge_message = "Ahune immergé",
-	sumberge_soon = "Immersion imminente",
+	submerge_soon = "Immersion imminente",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -70,7 +70,7 @@ L:RegisterTranslations("zhCN", function() return {
 	submerge = "潜水",
 	submerge_desc = "当潜水时显示计时条及发出警报。",
 	submerge_message = "埃霍恩 已潜水！",
-	sumberge_soon = "即将 潜水！",
+	submerge_soon = "即将 潜水！",
 } end )
 ----------------------------------
 --      Module Declaration      --
@@ -105,7 +105,7 @@ function mod:Submerge()
 	if self.db.profile.submerge then
 		self:IfMessage(L["submerge_message"], "Attention")
 		self:Bar(L["submerge_message"], 39)
-		self:DelayedMessage(31, L["emerge_soon"], "Attention")
+		self:DelayedMessage(31, L["stand_soon"], "Attention")
 		standing = false
 	end
 end
