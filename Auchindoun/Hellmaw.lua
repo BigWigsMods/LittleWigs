@@ -67,6 +67,8 @@ L:RegisterTranslations("koKR", function() return {
 	enrage_desc = "사자 지옥아귀의 격노에 대한 바와 경고입니다.",
 	enrage_message = "%s초 후 격노",
 	enrage_bar = "격노",
+	
+	engage_message = "%s 전투 시작!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
