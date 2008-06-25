@@ -61,6 +61,17 @@ L:RegisterTranslations("frFR", function() return {
 	sumberge_soon = "Immersion imminente",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	stand = "站立",
+	stand_desc = "当出现时显示计时条及发出警报。",
+	stand_message = "埃霍恩 已站立！",
+	stand_soon = "即将 站立！",
+
+	submerge = "潜水",
+	submerge_desc = "当潜水时显示计时条及发出警报。",
+	submerge_message = "埃霍恩 已潜水！",
+	sumberge_soon = "即将 潜水！",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
