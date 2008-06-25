@@ -24,6 +24,7 @@
 
 ## Dependencies: BigWigs
 
+Ahune.lua
 Ghaz'an.lua
 Hungarfen.lua
 Kalithresh.lua

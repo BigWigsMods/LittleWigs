@@ -7,6 +7,7 @@
 <Script file="HellfireCitadel\Omor.lua"/>
 <Script file="HellfireCitadel\Warchief.lua"/>
 
+<Script file="Coilfang\Ahune.lua"/>
 <Script file="Coilfang\Ghaz'an.lua"/>
 <Script file="Coilfang\Hungarfen.lua"/>
 <Script file="Coilfang\Kalithresh.lua"/>
