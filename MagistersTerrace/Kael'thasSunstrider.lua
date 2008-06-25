@@ -111,6 +111,9 @@ L:RegisterTranslations("zhCN", function() return {
 
 	pyro = "炎爆术（英雄）",
 	pyro_desc = "当施放炎爆术时发出警报。",
+	pyro_message = "正在施放 炎爆术！",
+
+	tk_warning = "请确认 BigWigs 中的风暴要塞-凯尔萨斯模块没有被开启。",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
