@@ -38,15 +38,15 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	stand = "",
-	stand_desc = "ȭ ƿ  ٿ ˸Դϴ.",
-	stand_message = " ",
-	stand_soon = "   ",
+	stand = "등장",
+	stand_desc = "강화된 아훈에 대한 바와 알림입니다.",
+	stand_message = "아훈 등장",
+	stand_soon = "잠시 후 아훈 등장",
 
-	submerge = "ȭ",
-	submerge_desc = " ȭ  ٿ ˸Դϴ.",
-	submerge_message = " ȭ -  ",
-	sumberge_soon = "  ȭ!",
+	submerge = "약화",
+	submerge_desc = "아훈의 약화에 대한 바와 알림입니다.",
+	submerge_message = "아훈 약화 - 얼어붙은 핵",
+	sumberge_soon = "잠시 후 약화!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
