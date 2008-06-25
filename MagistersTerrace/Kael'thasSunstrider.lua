@@ -36,8 +36,9 @@ L:RegisterTranslations("enUS", function() return {
 	
 	pyro = "Pyroblast (Heroic)",
 	pyro_desc = "Warn when Kael'thas casts Pyroblast.",
-	pyro_message = "Kael'thas casts Pyroblast",
-	pyro_cast_bar = "Casting Pyroblast on %s!",
+	pyro_message = "Kael'thas casting Pyroblast!",
+
+	tk_warning = "Please verify that the The Eye Kael'thas module has not also been enabled.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -62,8 +63,6 @@ L:RegisterTranslations("koKR", function() return {
 	
 	pyro = "불덩이 작렬 (영웅)",
 	pyro_desc = "캘타스의 불덩이 작렬 시전을 알립니다.",
-	pyro_message = "캘타스 불덩이 작렬 시전",
-	pyro_cast_bar = "%s에게 불작 시전중!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -88,8 +87,6 @@ L:RegisterTranslations("frFR", function() return {
 
 	pyro = "Explosion pyrotechnique (Héroïque)",
 	pyro_desc = "Prévient quand Kael'thas incante une Explosion pyrotechnique.",
-	pyro_message = "Kael'thas incante une Explosion pyrotechnique",
-	pyro_cast_bar = "Explosion pyro. sur %s !",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -114,8 +111,6 @@ L:RegisterTranslations("zhCN", function() return {
 
 	pyro = "炎爆术（英雄）",
 	pyro_desc = "当施放炎爆术时发出警报。",
-	pyro_message = "正在施放 炎爆术！",
-	pyro_cast_bar = "炎爆术：>%s<！",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -140,8 +135,6 @@ L:RegisterTranslations("zhTW", function() return {
 
 	pyro = "炎爆術（英雄）",
 	pyro_desc = "當凱爾薩斯施放炎爆術時發出警告",
-	pyro_message = "凱爾薩斯正在施放炎爆術!",
-	pyro_cast_bar = "<炎爆術>",
 } end )
 
 ----------------------------------
@@ -153,7 +146,7 @@ mod.partyContent = true
 mod.zonename = BZ["Magisters' Terrace"]
 mod.enabletrigger = boss 
 mod.guid = 24664
-mod.toggleoptions = {"glapse", "phoenix", "flamestrike", -1, "barrier", "bosskill"}
+mod.toggleoptions = {"glapse", "phoenix", "flamestrike", -1, "barrier", "pyro", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -166,7 +159,7 @@ function mod:OnEnable()
 
 	self:RegisterEvent("UNIT_HEALTH")
 	self:AddCombatListener("SPELL_CAST_START", "Lapse", 44224)
-	--self:AddCombatListener("SPELL_CAST_START", "Pyro", 36819)
+	self:AddCombatListener("SPELL_CAST_START", "Pyro", 36819)
 	self:AddCombatListener("SPELL_SUMMON", "Phoenix", 44194)
 	self:AddCombatListener("SPELL_SUMMON", "FlameStrike", 44192, 46162)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Barrier", 46165)
@@ -175,6 +168,8 @@ function mod:OnEnable()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:RegisterEvent("BigWigs_RecvSync")
+
+	self:Print(L["tk_warning"])
 end
 
 ------------------------------
@@ -222,11 +217,10 @@ function mod:Barrier()
 	end
 end
 
-function mod:Pyro(player, spellId)
+function mod:Pyro(_, spellId, _, _, spellName)
 	if self.db.profile.pyro then
-		self:Bar(L["pyro_cast_bar"]:format(player), 4, spellId)
+		self:Bar(spellName, 4, spellId)
 		self:IfMessage(L["pyro_message"], "Important", spellId)
-		self:Icon(player, "icon")
 	end
 end
 
