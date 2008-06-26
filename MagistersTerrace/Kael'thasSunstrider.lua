@@ -138,6 +138,10 @@ L:RegisterTranslations("zhTW", function() return {
 
 	pyro = "炎爆術（英雄）",
 	pyro_desc = "當凱爾薩斯施放炎爆術時發出警告",
+	pyro_message = "凱爾薩斯正在施放炎爆術!",
+
+	tk_warning = "請確認風暴要塞 - 凱爾薩斯模組沒有被開啟",
+
 } end )
 
 ----------------------------------
