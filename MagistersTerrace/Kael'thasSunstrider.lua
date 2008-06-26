@@ -63,6 +63,9 @@ L:RegisterTranslations("koKR", function() return {
 	
 	pyro = "불덩이 작렬 (영웅)",
 	pyro_desc = "캘타스의 불덩이 작렬 시전을 알립니다.",
+	pyro_message = "캘타스 불덩이 작렬 시전!",
+
+	tk_warning = "BigWigs의 폭풍우 요새의 캘타스 모듈이 활성화 되는지 확인해 주시기 바랍니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
