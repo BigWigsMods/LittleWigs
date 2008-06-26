@@ -181,7 +181,7 @@ function mod:OnEnable()
 
 	self:RegisterEvent("BigWigs_RecvSync")
 
-	self:Print(L["tk_warning"])
+	BigWigs:Print(L["tk_warning"])
 end
 
 ------------------------------
