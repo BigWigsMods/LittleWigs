@@ -33,7 +33,7 @@ L:RegisterTranslations("enUS", function() return {
 	barrier_message = "Shock Barrier Up!",
 	barrier_next_bar = "~ Next Shock Barrier",
 	barrier_soon_message = "Shock Barrier Soon!",
-	
+
 	pyro = "Pyroblast (Heroic)",
 	pyro_desc = "Warn when Kael'thas casts Pyroblast.",
 	pyro_message = "Kael'thas casting Pyroblast!",
@@ -60,7 +60,7 @@ L:RegisterTranslations("koKR", function() return {
 	barrier_message = "충격 방벽!",
 	barrier_next_bar = "~ 다음 방어 방벽",
 	barrier_soon_message = "잠시 후 방어 방벽!",
-	
+
 	pyro = "불덩이 작렬 (영웅)",
 	pyro_desc = "캘타스의 불덩이 작렬 시전을 알립니다.",
 	pyro_message = "캘타스 불덩이 작렬 시전!",
@@ -90,6 +90,9 @@ L:RegisterTranslations("frFR", function() return {
 
 	pyro = "Explosion pyrotechnique (Héroïque)",
 	pyro_desc = "Prévient quand Kael'thas incante une Explosion pyrotechnique.",
+	pyro_message = "Kael'thas incante une Explosion pyrotechnique !",
+
+	tk_warning = "Veuillez vérifier que le module Kael'thas de L'Œil n'a pas également été activé (risque de conflit).",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -144,7 +147,6 @@ L:RegisterTranslations("zhTW", function() return {
 	pyro_message = "凱爾薩斯正在施放炎爆術!",
 
 	tk_warning = "請確認風暴要塞 - 凱爾薩斯模組沒有被開啟",
-
 } end )
 
 ----------------------------------
