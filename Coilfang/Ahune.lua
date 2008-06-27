@@ -104,7 +104,7 @@ end
 function mod:Submerge()
 	if self.db.profile.submerge then
 		self:IfMessage(L["submerge_message"], "Attention")
-		self:Bar(L["submerge_message"], 35)
+		self:Bar(L["submerge_message"], 36)
 		self:DelayedMessage(28, L["stand_soon"], "Attention")
 		standing = false
 	end
