@@ -23,6 +23,11 @@ L:RegisterTranslations("enUS", function() return {
 	submerge_desc = "Announce and show a bar when Ahune submerges",
 	submerge_message = "Ahune Submerged",
 	submerge_soon = "Submerge Soon",
+	
+	attack = "Attack",
+	submerge_desc = "Announce and show a bar when Ahune is attackable",
+	submerge_message = "Ahune is Attackable",
+	submerge_soon = "Submerge Soon",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -82,7 +87,7 @@ mod.otherMenu = "Coilfang Reservoir"
 mod.zonename = BZ["The Slave Pens"]
 mod.enabletrigger = boss
 mod.guid = 25740
-mod.toggleoptions = {"stand", "submerge", "bosskill"}
+mod.toggleoptions = {"attack", "stand", "submerge", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -93,6 +98,7 @@ function mod:OnEnable()
 	standing = false
 
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Submerge", 37751)
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "Attack", 37751)
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Stand", 37752)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
@@ -104,8 +110,8 @@ end
 function mod:Submerge()
 	if self.db.profile.submerge then
 		self:IfMessage(L["submerge_message"], "Attention")
-		self:Bar(L["submerge_message"], 36)
-		self:DelayedMessage(28, L["stand_soon"], "Attention")
+		self:Bar(L["submerge_message"], 39)
+		self:DelayedMessage(29, L["stand_soon"], "Attention")
 		standing = false
 	end
 end
@@ -116,5 +122,13 @@ function mod:Stand()
 		self:Bar(L["stand_message"], 94) 
 		self:DelayedMessage(86, L["submerge_soon"], "Attention")
 		standing = true
+	end
+end
+
+function mod:Attack()
+	if self.db.profile.attack then
+		self:IfMessage(L["attack_message"], "Attention")
+		self:Bar(L["attack_message"], 36)
+		standing = false
 	end
 end
