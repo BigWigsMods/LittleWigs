@@ -85,7 +85,6 @@ L:RegisterTranslations("zhCN", function() return {
 	attack = "攻击",
 	attack_desc = "当可被攻击时显示计时条及发出警报。",
 	attack_message = "埃霍恩 可被攻击！",
-	attack_soon = "即将 潜水！",
 } end )
 ----------------------------------
 --      Module Declaration      --
