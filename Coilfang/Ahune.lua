@@ -40,6 +40,11 @@ L:RegisterTranslations("zhTW", function() return {
 	submerge_desc = "當艾胡恩隱沒時顯示計時條並通報",
 	submerge_message = "艾胡恩 已隱沒!",
 	submerge_soon = "即將隱沒!",
+
+	attack = "攻擊",
+	attack_desc = "當艾胡恩可以被攻擊時顯示計時條並通報",
+	attack_message = "艾胡恩可以被攻擊!",
+
 } end )
 
 L:RegisterTranslations("koKR", function() return {
