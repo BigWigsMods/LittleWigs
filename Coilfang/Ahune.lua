@@ -27,7 +27,7 @@ L:RegisterTranslations("enUS", function() return {
 	attack = "Attack",
 	attack_desc = "Announce and show a bar when Ahune is attackable",
 	attack_message = "Ahune is Attackable",
-	attack_soon = "Submerge Soon",
+
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
