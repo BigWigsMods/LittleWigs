@@ -25,9 +25,9 @@ L:RegisterTranslations("enUS", function() return {
 	submerge_soon = "Submerge Soon",
 	
 	attack = "Attack",
-	submerge_desc = "Announce and show a bar when Ahune is attackable",
-	submerge_message = "Ahune is Attackable",
-	submerge_soon = "Submerge Soon",
+	attack_desc = "Announce and show a bar when Ahune is attackable",
+	attack_message = "Ahune is Attackable",
+	attack_soon = "Submerge Soon",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -76,6 +76,11 @@ L:RegisterTranslations("zhCN", function() return {
 	submerge_desc = "当潜水时显示计时条及发出警报。",
 	submerge_message = "埃霍恩 已潜水！",
 	submerge_soon = "即将 潜水！",
+	
+	attack = "攻击",
+	attack_desc = "当可被攻击时显示计时条及发出警报。",
+	attack_message = "埃霍恩 可被攻击！",
+	attack_soon = "即将 潜水！",
 } end )
 ----------------------------------
 --      Module Declaration      --
