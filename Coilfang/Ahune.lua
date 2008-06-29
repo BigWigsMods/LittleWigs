@@ -57,6 +57,10 @@ L:RegisterTranslations("koKR", function() return {
 	submerge_desc = "아훈의 약화에 대한 바와 알림입니다.",
 	submerge_message = "아훈 약화 - 얼어붙은 핵",
 	submerge_soon = "잠시 후 약화!",
+	
+	attack = "공격 가능",
+	attack_desc = "아훈 약화시 공격이 가능에 대한 바와 알림입니다.",
+	attack_message = "아훈 극딜!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
