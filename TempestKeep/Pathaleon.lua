@@ -66,6 +66,7 @@ L:RegisterTranslations("zhTW", function() return {
 	mc = "支配",
 	mc_desc = "隊友受到支配時發出警報",
 	mc_message = "支配: [%s]",
+	mc_bar = "支配: [%s]",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
