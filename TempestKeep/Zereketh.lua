@@ -1,4 +1,4 @@
-------------------------------
+﻿------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -130,7 +130,7 @@ mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Arcatraz"]
 mod.enabletrigger = boss 
 mod.guid = 20870
-mod.toggleoptions = {"nova", "void", "seed", "icon", "bosskill"}
+mod.toggleoptions = {"nova", "void", "seed", "icon", "proximity", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -164,6 +164,7 @@ function mod:SoC(player, spellId)
 	if self.db.profile.seed then
 		self:IfMessage(L["seed_message"]:format(player), "Urgent", spellId)
 		self:Bar(L["seed_bar"]:format(player), 18, spellId)
+		self:TriggerEvent("BigWigs_ShowProximity", self)
 	end
 	if self.db.profile.icon then
 		self:Icon(player)
