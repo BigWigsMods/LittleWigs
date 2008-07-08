@@ -38,8 +38,8 @@ L:RegisterTranslations("koKR", function() return {
 	
 	banish = "추방 (영웅)",
 	banish_desc = "추방을 알립니다.",
-	banish_message = "%s 허파 파열!",
-	banish_bar = "%s - 허파 파열",
+	banish_message = "%s 추방!",
+	banish_bar = "%s - 추방",
 	
 	engage_trigger1 = "네 피를 제물로 바칠 것이다.",
 	engage_trigger2 = "너는 다른 자들에게 좋은 표본이 될 것이다.",
