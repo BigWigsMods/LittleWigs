@@ -130,7 +130,7 @@ function mod:OnEnable()
 	started = nil
 
 	self:AddCombatListener("SPELL_AURA_SUCCESS", "Teleport", 33563)
-	--self:AddCombatListener("SPELL_AURA_APPLIED", "Banish", 38791)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Banish", 38791)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
@@ -150,7 +150,7 @@ function mod:Teleport()
 	end
 end
 
-function mod:Banish()
+function mod:Banish(player, spellId)
 	if self.db.profile.banish then
 		self:IfMessage(L["banish_message"]:format(player), "Important", spellId)
 		self:Bar(L["banish_bar"]:format(player), 8, spellId) 
