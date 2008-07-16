@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -246,7 +246,7 @@ end
 function mod:Hasten(_, spellId, spellName)
 	if self.db.profile.hasten then
 		self:IfMessage(L["hasten_message"], "Important", spellId)
-		self:Bar(spellName 10, spellId)
+		self:Bar(spellName, 10, spellId)
 	end
 end
 
