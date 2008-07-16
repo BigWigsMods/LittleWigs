@@ -153,7 +153,7 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Heal", 39013)
 	self:AddCombatListener("SPELL_CAST_START", "WW", 36142)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Gift", 39009)
-	self:AddCombatListener("UNIT_DIED", "GenericBossDeath")
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "BossDeath")
 end
