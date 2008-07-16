@@ -11,9 +11,6 @@ local boss1 = BB["Chrono Lord Deja"]
 local boss2 = BB["Temporus"]
 local boss3 = BB["Aeonus"]
 
-local db = nil
-local fmt = string.format
-
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Blackmorass",
 
@@ -34,7 +31,6 @@ L:RegisterTranslations("enUS", function() return {
 	disable_trigger = "We will triumph. It is only a matter... of time.",
 	disable_message = "%s has been saved!",
 
-	death_trigger = "(.+) dies%.",
 	reset_trigger = "No! Damn this feeble, mortal coil!",
 	
 	-- Bosses
@@ -95,7 +91,6 @@ L:RegisterTranslations("koKR", function() return {
 	disable_trigger = "우리는 승리한다. 단지 시간문제일 뿐...",
 	disable_message = "%s를 지켰습니다!",
 
-	death_trigger = "(.+)|1이;가; 죽었습니다%.",
 	reset_trigger = "안 돼! 이런 나약한 무리에게 당하다니!",
 
 	-- Bosses
@@ -127,7 +122,6 @@ L:RegisterTranslations("frFR", function() return {
 	disable_trigger = "Nous triompherons. Ce n'est qu'une question... de temps.",
 	disable_message = "%s a été sauvé !",
 
-	death_trigger = "(.+) meurt%.",
 	reset_trigger = "Non ! Maudite soit cette enveloppe mortelle !",
 
 	-- Bosses
@@ -158,7 +152,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	disable_trigger = "我们会胜利的。这只是个……时间问题。",
 	disable_message = "%s 获救了！",
-	death_trigger = "(.+)死亡了。",
+
 	--reset_trigger = "No! Damn this feeble, mortal coil!",
 
 	-- Bosses
@@ -220,13 +214,10 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Hasten", 31458)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Frenzy", 37605)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "BuffRemoved", 37605, 31458)
 	self:RegisterEvent("UPDATE_WORLD_STATES")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
-
-	db = self.db.profile
 end
 
 ------------------------------
@@ -238,22 +229,30 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		self:TriggerEvent("BigWigs_RebootModule", self)
 		wave = 0
 	elseif msg == L["disable_trigger"] then
-		if db.bosskill then
+		if self.db.profile.bosskill then
 			self:Message(fmt(L["disable_message"], boss), "Bosskill", nil, "Victory")
 		end
 		BigWigs:ToggleModuleActive(self, false)
 	end
 end
 
-function mod:CHAT_MSG_MONSTER_EMOTE(msg)
-	if db.frenzy and msg == L["frenzy_trigger"] then
-		self:Message(L["frenzy_message"], "Important", nil, "Alert")
+function mod:Frenzy(_, spellId, spellName)
+	if self.db.profile.frenzy then
+		self:IfMessage(L["frenzy_message"], "Important", spellId)
+		self:Bar(spellName, 8, spellId)
 	end
 end
 
-function mod:Hasten()
-	if db.hasten then
-		self:Message(L["hasten_message"], "Important", nil, "Alert")
+function mod:Hasten(_, spellId, spellName)
+	if self.db.profile.hasten then
+		self:IfMessage(L["hasten_message"], "Important", spellId)
+		self:Bar(spellName 10, spellId)
+	end
+end
+
+function mod:BuffRemoved(_, _, spellName)
+	if self.db.profile.hasten or self.db.profile.frenzy then
+		self:TriggerEvent("BigWigs_StopBar", self, spellName)
 	end
 end
 
@@ -265,10 +264,10 @@ function mod:BossDeath(source)
 	else
 		return
 	end
-	if db.portal then
+	if self.db.profile.portal then
 		self:Message(fmt(L["portal_message140s"], L["next_portal"]), "Attention")
 	end
-	if db.portalbar then
+	if self.db.profile.portalbar then
 		self:Bar(fmt(L["portal_bar"], L["next_portal"],wave+1), 125, "INV_Misc_ShadowEgg")
 	end
 end
@@ -280,7 +279,7 @@ function mod:UPDATE_WORLD_STATES()
 	local num = tonumber((text or ""):match("(%d+)") or nil)
 	if num and num > wave then
 		wave = wave + 1
-		if db.portal then
+		if self.db.profile.portal then
 			if wave == 6 then
 				self:Message(fmt(L["portal_message15s"], boss1), "Attention")
 			elseif wave == 12 then
@@ -291,7 +290,7 @@ function mod:UPDATE_WORLD_STATES()
 				self:Message(fmt(L["portal_message15s"], L["next_portal"]), "Attention")
 			end
 		end
-		if db.portalbar then
+		if self.db.profile.portalbar then
 			self:TriggerEvent("BigWigs_StopBar", self, L["multiportal_bar"])
 			self:Bar(L["multiportal_bar"], 127, "INV_Misc_ShadowEgg")
 			if wave == 6 then
