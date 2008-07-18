@@ -230,7 +230,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		wave = 0
 	elseif msg == L["disable_trigger"] then
 		if self.db.profile.bosskill then
-			self:Message(fmt(L["disable_message"], boss), "Bosskill", nil, "Victory")
+			self:Message(L["disable_message"]:format(boss), "Bosskill", nil, "Victory")
 		end
 		BigWigs:ToggleModuleActive(self, false)
 	end
@@ -265,10 +265,10 @@ function mod:BossDeath(source)
 		return
 	end
 	if self.db.profile.portal then
-		self:Message(fmt(L["portal_message140s"], L["next_portal"]), "Attention")
+		self:Message(L["portal_message140s"]:format(L["next_portal"]), "Attention")
 	end
 	if self.db.profile.portalbar then
-		self:Bar(fmt(L["portal_bar"], L["next_portal"],wave+1), 125, "INV_Misc_ShadowEgg")
+		self:Bar(L["portal_bar"]:format(L["next_portal"],wave+1), 125, "INV_Misc_ShadowEgg")
 	end
 end
 
@@ -281,26 +281,26 @@ function mod:UPDATE_WORLD_STATES()
 		wave = wave + 1
 		if self.db.profile.portal then
 			if wave == 6 then
-				self:Message(fmt(L["portal_message15s"], boss1), "Attention")
+				self:Message(L["portal_message15s"]:format(boss1), "Attention")
 			elseif wave == 12 then
-				self:Message(fmt(L["portal_message15s"], boss2), "Attention")
+				self:Message(L["portal_message15s"]:format(boss2), "Attention")
 			elseif wave == 18 then
-				self:Message(fmt(L["portal_message15s"], boss3), "Attention")
+				self:Message(L["portal_message15s"]:format(boss3), "Attention")
 			else
-				self:Message(fmt(L["portal_message15s"], L["next_portal"]), "Attention")
+				self:Message(L["portal_message15s"]:format(L["next_portal"]), "Attention")
 			end
 		end
 		if self.db.profile.portalbar then
 			self:TriggerEvent("BigWigs_StopBar", self, L["multiportal_bar"])
 			self:Bar(L["multiportal_bar"], 127, "INV_Misc_ShadowEgg")
 			if wave == 6 then
-				self:Bar(fmt(L["portal_bar"], boss1, wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(L["portal_bar"]:format(boss1, wave), 15, "INV_Misc_ShadowEgg")
 			elseif wave == 12 then
-				self:Bar(fmt(L["portal_bar"], boss2, wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(L["portal_bar"]:format(boss2, wave), 15, "INV_Misc_ShadowEgg")
 			elseif wave == 18 then
-				self:Bar(fmt(L["portal_bar"], boss3, wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(L["portal_bar"]:format(boss3, wave), 15, "INV_Misc_ShadowEgg")
 			else
-				self:Bar(fmt(L["portal_bar"], L["next_portal"], wave), 15, "INV_Misc_ShadowEgg")
+				self:Bar(L["portal_bar"]:format(L["next_portal"], wave), 15, "INV_Misc_ShadowEgg")
 			end
 		end
 	end
