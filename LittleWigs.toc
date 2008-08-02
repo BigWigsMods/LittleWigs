@@ -2,6 +2,7 @@
 
 ## Title: Little Wigs |cff7fff7f -Ace2-|r
 ## Notes: Boss warnings for 5-man instances.
+## Notes-ruRU: Оповещения о действиях боссов в подземельях на 5-чел.
 ## Title-zhCN: |cff7fff7f-Ace2-|r Little Wigs
 ## Notes-zhTW: 五人副本首領警報。需先安裝 Big Wigs
 ## Notes-zhCN: 用于 TBC 的5人副本，Boss 警告器。需配合 BigWigs 方可使用。

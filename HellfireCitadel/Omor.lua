@@ -81,6 +81,18 @@ L:RegisterTranslations("deDE", function() return {
 	icon_desc = "Setzt ein Raidsymbol auf die betroffene Person der Aura (Ben\195\182tigt h\195\182heren Status)",
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	aura = "Аура вероломства", -- необходимо точно обращаться к игре.
+	aura_heroic = "Проклятье предательства",
+	aura_desc = "Предупреждать о Аура вероломства.",
+	aura_message = "%s на %s!",
+	aura_message_you = "На вас %s!",
+	aura_bar = "%s: %s",
+
+	icon = "Рейдовая иконка",
+	icon_desc = "Помечать рейдовой иконкой человека находящегося под Аурой вероломства. (Необходимо быть лидером группы)",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

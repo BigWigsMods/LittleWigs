@@ -47,6 +47,12 @@ L:RegisterTranslations("deDE", function() return {
 	poison_message = "Giftwolke!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	poison = "Ядовитое облако",
+	poison_desc = "Предупреждать о ядовитом облаке",
+	poison_message = "ЯДОВИТОЕ ОБЛАКО!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

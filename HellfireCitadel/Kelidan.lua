@@ -47,6 +47,12 @@ L:RegisterTranslations("deDE", function() return {
 	nova_message = "Feuernova!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	nova = "Горящее кольцо",
+	nova_desc = "Предупреждать о Горящем кольце ",
+	nova_message = "Надвигается Горящее кольцо!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

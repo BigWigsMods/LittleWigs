@@ -97,6 +97,19 @@ L:RegisterTranslations("deDE", function() return {
 	bdbar_display = "~Klingentanz",
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	engage_trigger1 = "^Я обращаюсь к вам!",
+	engage_trigger2 = "^Я порублю вас!",
+	engage_trigger3 = "^Мы! Будим! Есть!",
+
+	bdwarn = "Танец клинков",
+	bdwarn_desc = "Показывать таймер до танцующих клинков",
+	bdwarn_alert = "5 СЕКУНД ДО ТАНЦУЮЩИХ КЛИНКОВ!",
+
+	bdbar = "Панель для танцующих клинков",
+	bdbar_desc = "Показывать время до танца клинков",
+	bdbar_display = "~Танец клинков",
+} end)
 
 ----------------------------------
 --      Module Declaration      --
