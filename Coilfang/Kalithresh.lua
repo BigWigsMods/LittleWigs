@@ -111,6 +111,20 @@ L:RegisterTranslations("esES", function() return {
 	--rage_soonbar = "~Possible channeling",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	engage_message = "Поглощет - высасывание за ~15sec!",
+
+	spell = "Отражение заклинания",
+	spell_desc = "Предупреждать о Отражении заклинаний",
+	spell_message = "Отражение заклинания!",
+
+	rage = "Ярость вождя",
+	rage_desc = "Предупреждать о передаче ярости",
+	rage_message = "Полководец высасывает ярость!",
+	rage_soon = "Скоро высасывание ярости!",
+	rage_soonbar = "~Возможное высасывание",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

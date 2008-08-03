@@ -64,6 +64,15 @@ L:RegisterTranslations("zhTW", function() return {
 	spores_message = "邪惡孢子! 躲避!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	shroom = "Гриб Нижетопи",
+	shroom_desc = "Предупреждать о появлении грибов Нижетопи",
+	shroom_message = "Появились грибы Нижетопи!",
+
+	spores = "Гнилые споры",
+	spores_desc = "Предупреждать когда Голоднец окутывает себя в корни и произносить заклинание Гнилых спор",
+	spores_message = "Скоро Гнилые споры!",
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

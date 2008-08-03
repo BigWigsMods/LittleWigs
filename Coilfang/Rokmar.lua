@@ -69,6 +69,17 @@ L:RegisterTranslations("zhTW", function() return {
 	enrage_message = "狂怒!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	throw = "Горестная рана",
+	throw_desc = "Предупреждать о том каму нанесена горестная рана.",
+	throw_message = "Горестная рана нанесена %s'у",
+
+	enrage = "Исступление (Герок)",
+	enrage_desc = "Предупреждать о Рокмара Исступлении",
+	enrage_warning = "Скоро Исступление!",
+	enrage_message = "Исступление!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

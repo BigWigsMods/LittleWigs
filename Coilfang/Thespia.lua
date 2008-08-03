@@ -88,6 +88,17 @@ L:RegisterTranslations("esES", function() return {
 	--burst_bar = "%s - Lung Burst",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	storm = "Грозовая туча",
+	storm_desc = "Предупреждать о появлении грозовой тучи",
+	storm_message = "Грозовая туча!",
+	
+	burst = "Взрыв легких",
+	burst_desc = "Предупреждать о взрыве легких",
+	burst_message = "Взрыв легких у %s'а!",
+	burst_bar = "%s - Взрыв легких",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

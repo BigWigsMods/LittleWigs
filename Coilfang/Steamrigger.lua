@@ -62,6 +62,13 @@ L:RegisterTranslations("esES", function() return {
 	mech_message = "Llegan los Mec\195\161nicos Vaporinos",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	mech = "Механики паровой оснастки",
+	mech_desc = "Предупреждать о наступлении механиков",
+	mech_trigger = "Tune 'em up good, boys!",
+	mech_message = "Скоро придут механики паровой оснастки!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
