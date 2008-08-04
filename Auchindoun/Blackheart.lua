@@ -62,6 +62,16 @@ L:RegisterTranslations("frFR", function() return {
 	chaos_nextbar = "~Provoquer le chaos probable",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	engage_message = "Надвигается - Провокация Хаоса за ~15сек!",
+
+	chaos = "Провокация Хаоса",
+	chaos_desc = "Отображение панели срока действия Провокации Хаоса",
+	chaos_message = "Провокация Хаоса! В следующие ~70сек",
+	chaos_warning = "Скоро Провокация Хаоса!",
+	chaos_nextbar = "~Возможная Провокация Хаоса",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

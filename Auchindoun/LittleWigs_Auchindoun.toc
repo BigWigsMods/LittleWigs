@@ -1,8 +1,10 @@
 ﻿## Interface: 20400
 
 ## Title: Little Wigs [|cffeda55fAuchindoun|r]
+## Title-ruRU: Little Wigs [|cffeda55fАучиндон|r]
 ## Title-zhCN: Little Wigs [|cffeda55f奥金顿|r]
 ## Title-zhTW: Little Wigs [|cffeda55f奧齊頓|r]
+## Notes-ruRU: Модуль Little Wigs Аучиндона
 ## Notes: Little Wigs Auchindoun Modules
 ## Notes-frFR: Modules Little Wigs concernant Auchindoun.
 ## Notes-zhTW: Little Wigs 奧齊頓模組

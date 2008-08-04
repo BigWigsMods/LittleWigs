@@ -45,7 +45,7 @@ L:RegisterTranslations("frFR", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	totem = "Оскверненный тотем Звезды",
-	totem_desc = "Предупреждать коада ставится оскверненный тотем звезды.",
+	totem_desc = "Предупреждать когда ставится оскверненный тотем звезды.",
 	totem_message = "Оскверненный тотем Звезды!",
 } end )
 

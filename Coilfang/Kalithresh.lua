@@ -112,7 +112,7 @@ L:RegisterTranslations("esES", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	engage_message = "Поглощет - высасывание за ~15sec!",
+	engage_message = "Поглощает - высасывание за ~15sec!",
 
 	spell = "Отражение заклинания",
 	spell_desc = "Предупреждать о Отражении заклинаний",

@@ -93,18 +93,18 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	stand = "Появление",
-	stand_desc = "Cообщить и показать панель до появления Ахуна",
+	stand_desc = "Предупреждать и показать панель до появления Ахуна",
 	stand_message = "Появление Ахуна",
 	stand_soon = "Скоро Появление",
 
 	submerge = "Погружение",
-	submerge_desc = "Cообщить и показать панель до погружения Ахуна",
-	submerge_message = "Ahune Submerged",
-	submerge_soon = "Submerge Soon",
+	submerge_desc = "Предупреждать и показать панель до погружения Ахуна",
+	submerge_message = "Ахуна погрузился",
+	submerge_soon = "Скоро погружение",
 	
 	attack = "Аттака",
-	attack_desc = "Cообщить и показать панель когда Ахун поступен для нападения",
-	attack_message = "Ахун поступен для нападения",
+	attack_desc = "Предупреждать и показать панель когда Ахун доступен для нападения",
+	attack_message = "Ахун доступен для нападения",
 
 } end )
 ----------------------------------
