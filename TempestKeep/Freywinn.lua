@@ -53,6 +53,13 @@ L:RegisterTranslations("zhCN", function() return {
 	tranqfade_message = "5秒后，宁静消失！",
 } end )
 
+L:RegisterTranslations("enUS", function() return {
+	tranq = "Спокойствие",
+	tranq_desc = "Предупреждать о Спокойствии",
+	tranq_message = "Произноситься Спокойствие!",
+	tranqfade_message = "Спокойствие закончится за ~5с!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

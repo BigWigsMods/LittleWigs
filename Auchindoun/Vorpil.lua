@@ -109,6 +109,22 @@ L:RegisterTranslations("zhCN", function() return {
 	engage_trigger2 = "很好，一个完美的祭品！",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	teleport = "Телепорт",
+	teleport_desc = "Предупреждение о Телепорте",
+	teleport_message = "Телепорт!",
+	teleport_warning = "Телепорт в течении ~5сек!",
+	teleport_bar = "Телепорт",
+	
+	banish = "Изгнание (Героик)",
+	banish_desc = "Предупреждение о Изгнании.",
+	banish_message = "%s Изгнан!",
+	banish_bar = "%s - Изгнан",
+	
+	engage_trigger1 = "I'll make an offering of your blood",
+	engage_trigger2 = "Good, a worthy sacrifice!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -114,6 +114,23 @@ L:RegisterTranslations("deDE", function() return {
 	mr_message = "Gedankenwunde: %s",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	mc = "Контроль над разумом",
+	mc_desc = "Предупреждать о Контроле над разумом",
+	mc_message = "%s законтролирован разум!",
+	mc_bar = "%s - Контроль над разумом",
+
+	split = "Разделение",
+	split_desc = "Предупреждать когда Вестник Скайрис Разделяется",
+	split_trigger = "^We span the universe, as countless as the stars!$",
+	split_message = "%s Разделенен.",
+	split_soon_message = "Надвигается Разделение!",
+	
+	mr = "Разрыв разума",
+	mr_desc = "Предупреждать о Разрыве разума",
+	mr_message = "Разрыв разума: %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

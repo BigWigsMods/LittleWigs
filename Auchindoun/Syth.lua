@@ -55,6 +55,12 @@ L:RegisterTranslations("deDE", function() return {
 	summon_message = "Elementare beschworen!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	summon = "Предупреждение о Элементалях",
+	summon_desc = "Предупреждать о призыве Элементалей",
+	summon_message = "Призваны Элементали!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

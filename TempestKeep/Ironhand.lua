@@ -107,6 +107,21 @@ L:RegisterTranslations("deDE", function() return {
 	shadow_message = "Schattenmacht in 2 Sekunden!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	hammer = "Молотковый перфоратор",
+	hammer_desc = "Предупреждать когда будет выполнении Эффекта Молоткового перфоратора",
+	hammer_trigger = "raises his hammer menacingly",
+	hammer_message = "Молотковый перфоратор за 3 секунды!",
+	hammer_bar = "Молотковый перфоратор",
+
+	shadow = "Мощь Тьмы",
+	shadow_desc = "Предупреждать когда Железнорук выполняет Мощь Тьмы",
+	shadow_message = "Мощь Тьмы за 2 секунды!",
+
+	shadowbar = "Панель Мощи Тьмы",
+	shadowbar_desc = "Отоброжать панель для Мощи Тьмы Железнорука",
+} end )
+
 
 ----------------------------------
 --      Module Declaration      --

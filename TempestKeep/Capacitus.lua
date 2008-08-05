@@ -176,6 +176,32 @@ L:RegisterTranslations("deDE", function() return {
 	enrage_bar = "<Enrage>",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	warn1 = "Отражение магии активно!",
+	warn2 = "Отражение урона активно!",
+	warn3 = "Отражение магии спало!",
+	warn4 = "Отражение урона спало!",
+
+	shields = "Отражающие щити",
+	shields_desc = "Предупреждения о щитах отражающих заклинания и простой урон",
+	shields_message = "%s активно!",
+	shieldsremoved_message = "%s спало!",
+
+	shieldbar = "Панель щита",
+	shieldbar_desc = "Отображать панель продолжительности Шита Магии и Damage Shields",
+
+	polarity = "Сдвиг полярности(Героик)",
+	polarity_desc = "Предупреждать о Сдвиге полярности",
+	polarity_message = "Сдвиг полярности за 3 секунды!",
+	polarity_bar = "Сдвиг полярности",
+
+	enrage = "Исступление(Heroic)",
+	enrage_desc = "Предупреждать за 15 и 45 секунд до Исступления",
+	enrage_trigger = "^You should split while you can.$",
+	enrage_message = "%ss до Исступление!",
+	enrage_bar = "<Исступление>",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

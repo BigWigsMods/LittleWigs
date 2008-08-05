@@ -47,6 +47,12 @@ L:RegisterTranslations("deDE", function() return {
 	shell_message = "Dunkle H\195\188lle!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	shell = "Темный панцирь",
+	shell_desc = "Предупреждать о чтении заклинания Темного панциря",
+	shell_message = "Темный панцирь!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

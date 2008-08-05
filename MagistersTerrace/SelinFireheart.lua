@@ -48,6 +48,13 @@ L:RegisterTranslations("zhTW", function() return {
 	channel_trigger = "從附近的惡魔水晶進行導引……",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	channel = "Высасывание маны",
+	channel_desc = "Предупреждать когда Селин Огненное Сердце начинает высасывать ману из Призмы Скверны",
+	channel_message = "Высасывание маны!",
+	channel_trigger = "channel from the nearby Fel Crystal",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

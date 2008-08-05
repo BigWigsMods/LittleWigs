@@ -65,6 +65,15 @@ L:RegisterTranslations("deDE", function() return {
 	shadow_message = "Schattenmacht in 2 Sekunden!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	shadow = "Мощь Тьмы",
+	shadow_desc = "Предупреждать когда Смертекрут выполняет Мощь Тьмы",
+	shadow_message = "Мощь Тьмы за 2 секунды!",
+
+	shadowbar = "Панель Мощи Тьмы",
+	shadowbar_desc = "Отоброжать панель для Мощи Тьмы Смертекрута",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

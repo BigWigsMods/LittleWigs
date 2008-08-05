@@ -47,6 +47,12 @@ L:RegisterTranslations("deDE", function() return {
 	allergic_message = "%s ist allergisch!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	allergic = "Аллергическая реакция",
+	allergic_desc = "Предупреждать о Аллергической реакции.",
+	allergic_message = "%s Аллергичен!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

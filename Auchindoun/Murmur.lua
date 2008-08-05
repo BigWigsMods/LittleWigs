@@ -184,6 +184,31 @@ L:RegisterTranslations("esES", function() return {
 	sonicboom_bar = "Lanzando Bum s\195\179nico!",
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	touch_message = "%s получил %s!",
+	touch_message_you = "На вас Прикосновение Бормотуна!",
+	touch_message_other = "У %s Прикосновение Бормотуна!",
+
+	touchtimer = "Панель когда спадает Прикосновение Бормотуна",
+	touchtimer_desc = "Отображать 13-ти секундную панель до спадения Прикосновение Бормотуна с цели.",
+	touchtimer_bar = "%s: Прикосновение Бормотуна",
+
+	youtouch = "Прикосновение на вас",
+	youtouch_desc = "Предупреждать когда на вас Прикосновение Бормотуна",
+
+	othertouch = "Прикосновение на других",
+	othertouch_desc = "Предупреждать когда на других игроках Прикосновение Бормотуна",
+
+	icon = "Рейдовая иконка на бомбе",
+	icon_desc = "Помечать рейдовой иконкой человека который получил Прикосновение Бормотуна.(Необходимо быть лидером группы)",
+
+	sonicboom = "Звуковая волна",
+	sonicboom_desc = "Предупреждать когда Бормотун начинает произносить заклинание Звуковой волны",
+	sonicboom_trigger = "draws energy from the air...",
+	sonicboom_alert = "До Звуковой волны 5 секунд!",
+	sonicboom_bar = "Чтение Звуковой волны!",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

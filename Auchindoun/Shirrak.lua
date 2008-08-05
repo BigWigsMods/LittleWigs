@@ -41,6 +41,12 @@ L:RegisterTranslations("frFR", function() return {
 	focus_message = "Focalisation du feu sur %s !",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	focus = "Фокусировка огня",
+	focus_desc = "Предупреждает на каком игроке Фокусировка огня.",
+	focus_message = "На %s Фокусировка огня",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

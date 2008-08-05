@@ -132,6 +132,26 @@ L:RegisterTranslations("zhCN", function() return {
 	heal_message = "正在治疗！",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	ww = "Вихрь",
+	ww_desc = "Предупреждать о вихре Далии",
+	ww_trigger1 = "I'll cut you to pieces!", --Yell 1
+	ww_trigger2 = "Reap the whirlwind!", --Yell 2
+	ww_trigger3 = "Dalliah the Doomsayer gains Whirlwind.", --she doesn't yell everytime so watch this too
+	ww_message = "Далия начинает выполнять Вихрь!",
+
+	gift = "Дар Вестника рока",
+	gift_desc = "Предупреждать о отрицательном эффекте Далии - Дара Вестника рока",
+	gift_trigger = "^([^%s]+) ([^%s]+) afflicted by Gift of the Doomsayer.",
+	gift_message = "%s паражон Даром Вестника рока!",
+	gift_bar = "Одарован: %s",
+
+	heal = "Исцеление",
+	heal_desc = "Предупреждать когда Далия начинает читать заклинание исцеления",
+	heal_trigger = "Dalliah the Doomsayer begins to cast Heal.",
+	heal_message = "Чтения заклинания Исциления!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

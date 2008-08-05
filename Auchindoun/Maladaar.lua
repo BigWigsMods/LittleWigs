@@ -75,6 +75,17 @@ L:RegisterTranslations("deDE", function() return {
 	avatar_message = "Avatar beschworen!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	soul = "Украденная душа",
+	soul_desc = "Предупреждать о Украдении души",
+	soul_message = "У %s'а украденна душа!",
+
+	avatar = "Avatar of the Martyred",
+	avatar_desc = "Предупреждать о призывании Avatar of the Martyred",
+	avatar_message = "Появился Avatar of the Martyred!",
+	avatar_soon = "Скоро появится Avatar of the Martyred",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

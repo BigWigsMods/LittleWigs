@@ -74,6 +74,15 @@ L:RegisterTranslations("esES", function() return {
 	sacrifice_soonbar = "~Posible Sacrificio",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	sacrifice = "Жертвоприношение",
+	sacrifice_desc = "Предупреждать о Жертвоприношение игроков.",
+	sacrifice_message = "%s цель Жертвоприношения!",
+	sacrifice_bar = "Цель Жертвоприношения: %s",
+	sacrifice_soon = "Надвигается Жертвоприношение!",
+	sacrifice_soonbar = "~Возможное Жертвоприношение",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

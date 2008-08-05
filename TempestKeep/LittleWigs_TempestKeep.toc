@@ -1,10 +1,12 @@
 ﻿## Interface: 20400
 
 ## Title: Little Wigs [|cffeda55fTempest Keep|r]
+## Title-ruRU: Little Wigs [|cffeda55fКрепость Бурь|r]
 ## Title-frFR: Little Wigs [|cffeda55fDonjon de la Tempête|r]
 ## Title-zhCN: Little Wigs [|cffeda55f风暴要塞|r]
 ## Title-zhTW: Little Wigs [|cffeda55f風暴要塞|r]
 ## Notes: Little Wigs Tempest Keep Modules
+## Notes-ruRU: Модуль Little Wigs Крепости Бурь
 ## Notes-frFR: Modules Little Wigs concernant le Donjon de la Tempête.
 ## Notes-zhCN: Little Wigs 风暴要塞模块
 ## Notes-zhTW: Little Wigs 風暴要塞模組

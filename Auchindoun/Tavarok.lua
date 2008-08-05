@@ -47,6 +47,15 @@ L:RegisterTranslations("frFR", function() return {
 	icon_desc = "Place une icône de raid sur le dernier joueur affecté par la Prison de cristal (nécessite d'être promu ou mieux).",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	prison = "Хрустальная тюрьма",
+	prison_desc = "Предупреждать если кто-нибудь попадет в Хрустальную тюрьму",
+	prison_message = "В Хрустальной тюрьме: %s",
+
+	icon = "Рейдовая иконка",
+	icon_desc = "Помечать рейдовой иконкой человека который попадает в Хрустальную тюрьму (Необходимо быть лидером группы).",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

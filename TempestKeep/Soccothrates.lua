@@ -47,6 +47,12 @@ L:RegisterTranslations("deDE", function() return {
 	knock_message = "Knockback!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	knock = "Отталкивание",
+	knock_desc = "Предупреждать о Отталкивании",
+	knock_message = "Отталкивание!",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
