@@ -36,9 +36,9 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	knock = "지옥 대포 정렬",
-	knock_desc = "지옥 대포 정렬에 대해 알립니다.",
-	knock_message = "지옥 대포 정렬!",
+	knock = "날려버리기",
+	knock_desc = "날려버리기에 대해 알립니다.",
+	knock_message = "날려버리기!",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -71,7 +71,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Knock", 36512)
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "Knock", 36512)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
