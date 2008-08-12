@@ -98,7 +98,7 @@ L:RegisterTranslations("ruRU", function() return {
 	enrage_message = "Исступление через %s секунд",
 	enrage_bar = "Исступление",
 
-	engage_message = "%s has been engaged!",
+	engage_message = "Контакт с %s!",
 } end )
 
 ----------------------------------

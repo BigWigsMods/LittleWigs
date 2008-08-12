@@ -63,7 +63,7 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	engage_message = "Надвигается - Провокация Хаоса за ~15сек!",
+	engage_message = "Контакт - Провокация Хаоса за ~15сек!",
 
 	chaos = "Провокация Хаоса",
 	chaos_desc = "Отображение панели срока действия Провокации Хаоса",

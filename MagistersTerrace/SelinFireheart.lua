@@ -49,10 +49,10 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	channel = "Высасывание маны",
-	channel_desc = "Предупреждать когда Селин Огненное Сердце начинает высасывать ману из Призмы Скверны",
-	channel_message = "Высасывание маны!",
-	channel_trigger = "channel from the nearby Fel Crystal",
+	channel = "Вытягивание маны",
+	channel_desc = "Предупреждать когда Селин Огненное Сердце начинает высасывать ману из кристалла Скверны",
+	channel_message = "Вытягивание маны!",
+	channel_trigger = "вытягивать энергию из ближайшего кристалла Скверны...",
 } end )
 
 ----------------------------------

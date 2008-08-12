@@ -49,7 +49,7 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	nova = "Горящее кольцо",
-	nova_desc = "Предупреждать о Горящем кольце ",
+	nova_desc = "Предупреждать о Горящем кольце",
 	nova_message = "Надвигается Горящее кольцо!",
 } end )
 

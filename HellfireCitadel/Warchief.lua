@@ -98,15 +98,15 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-	engage_trigger1 = "^Я обращаюсь к вам!",
-	engage_trigger2 = "^Я порублю вас!",
-	engage_trigger3 = "^Мы! Будим! Есть!",
+	engage_trigger1 = "^I am called",
+	engage_trigger2 = "^I'll carve",
+	engage_trigger3 = "^Наша",
 
 	bdwarn = "Танец клинков",
 	bdwarn_desc = "Показывать таймер до танцующих клинков",
-	bdwarn_alert = "5 СЕКУНД ДО ТАНЦУЮЩИХ КЛИНКОВ!",
+	bdwarn_alert = "5 сек до Танца клинков!",
 
-	bdbar = "Панель для танцующих клинков",
+	bdbar = "Полоса Танца клинков",
 	bdbar_desc = "Показывать время до танца клинков",
 	bdbar_display = "~Танец клинков",
 } end)

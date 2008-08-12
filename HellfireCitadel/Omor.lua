@@ -84,7 +84,7 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	aura = "Аура вероломства", -- необходимо точно обращаться к игре.
 	aura_heroic = "Проклятье предательства",
-	aura_desc = "Предупреждать о Аура вероломства.",
+	aura_desc = "Предупреждать о Ауре вероломства.",
 	aura_message = "%s на %s!",
 	aura_message_you = "На вас %s!",
 	aura_bar = "%s: %s",
