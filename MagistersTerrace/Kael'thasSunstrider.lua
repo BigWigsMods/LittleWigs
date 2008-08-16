@@ -65,7 +65,7 @@ L:RegisterTranslations("koKR", function() return {
 	pyro_desc = "캘타스의 불덩이 작렬 시전을 알립니다.",
 	pyro_message = "캘타스 불덩이 작렬 시전!",
 
-	tk_warning = "BigWigs의 폭풍우 요새의 캘타스 모듈이 활성화 되는지 확인해 주시기 바랍니다.",
+	tk_warning = "BigWigs의 폭풍우 요새 - 캘타스 모듈에서 사용시 불덩이 작렬이 제대로 작동되지 않습니다. LittleWigs을 끄고 사용하시기 바랍니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
