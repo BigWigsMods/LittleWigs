@@ -78,7 +78,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:RegisterEvent("SPELL_CAST_SUCCESS", "Tranq", 34557)
+	self:RegisterEvent("SPELL_CAST_SUCCESS", "Tranq", 34550)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 

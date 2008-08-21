@@ -36,3 +36,5 @@ Skyriss.lua
 Soccothrates.lua
 Thorngrin.lua
 Zereketh.lua
+Sarannis.lua
+Splinter.lua

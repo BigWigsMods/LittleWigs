@@ -39,6 +39,8 @@
 <Script file="TempestKeep\Soccothrates.lua"/>
 <Script file="TempestKeep\Thorngrin.lua"/>
 <Script file="TempestKeep\Zereketh.lua"/>
+<Script file="TempestKeep\Sarannis.lua"/>
+<Script file="TempestKeep\Splinter.lua"/>
 
 <Script file="CoT\BlackMorass.lua"/>
 
