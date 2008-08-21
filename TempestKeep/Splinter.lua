@@ -25,11 +25,11 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	engage_message = "전투 시작 - 약 15초이내 나무 정령 소환!",
 	
-	chaos = "나무 정령",
-	chaos_desc = "나무 정령 소환을 알립니다.",
-	chaos_message = "나무 정령 소환! 다음은 약 45초 후",
-	chaos_warning = "잠시 후 나무 정령 소환!",
-	chaos_nextbar = "~나무 정령 소환 가능",
+	treants = "나무 정령",
+	treants_desc = "나무 정령 소환을 알립니다.",
+	treants_message = "나무 정령 소환! 다음은 약 45초 후",
+	treants_warning = "잠시 후 나무 정령 소환!",
+	treants_nextbar = "~나무 정령 소환 가능",
 } end )
 
 ----------------------------------
