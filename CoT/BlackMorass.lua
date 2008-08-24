@@ -324,7 +324,6 @@ function mod:UPDATE_WORLD_STATES()
 		end
 		if self.db.profile.portalbar then
 			self:TriggerEvent("BigWigs_StopBar", self, L["multiportal_bar"])
-			self:Bar(L["multiportal_bar"], 127, "INV_Misc_ShadowEgg")
 			if wave == 6 then
 				self:Bar(L["portal_bar"]:format(boss1, wave), 15, "INV_Misc_ShadowEgg")
 			elseif wave == 12 then
@@ -332,6 +331,7 @@ function mod:UPDATE_WORLD_STATES()
 			elseif wave == 18 then
 				self:Bar(L["portal_bar"]:format(boss3, wave), 15, "INV_Misc_ShadowEgg")
 			else
+				self:Bar(L["multiportal_bar"], 127, "INV_Misc_ShadowEgg")
 				self:Bar(L["portal_bar"]:format(L["next_portal"], wave), 15, "INV_Misc_ShadowEgg")
 			end
 		end
