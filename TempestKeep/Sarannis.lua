@@ -37,6 +37,32 @@ L:RegisterTranslations("koKR", function() return {
 	resonance_message = "%s 비전 공명!",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	engage_message = "激活 - 约60秒后，召唤4个助手！",
+	
+	summon = "召唤助手",
+	summon_desc = "当召唤助手时发出警报。",
+	summon_warning = "即将 召唤助手！",
+	summon_nextbar = "<可能 召唤助手>",
+	
+	resonance = "奥术回响",
+	resonance_desc = "当玩家受到奥术回响效果时发出警报。",
+	resonance_message = ">%s< 奥术回响！",
+} end )
+
+L:RegisterTranslations("zhTW", function() return {
+	engage_message = "激活 - 約60秒后，召喚4個助手！",
+	
+	summon = "召喚助手",
+	summon_desc = "當召喚助手時發出警報。",
+	summon_warning = "即將召喚助手！",
+	summon_nextbar = "~可能召喚助手",
+	
+	resonance = "秘法共鳴",
+	resonance_desc = "當玩家受到秘法共鳴效果時發出警報。",
+	resonance_message = "秘法共鳴：[%s]！",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

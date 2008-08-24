@@ -32,6 +32,27 @@ L:RegisterTranslations("koKR", function() return {
 	treants_nextbar = "~나무 정령 소환 가능",
 } end )
 
+L:RegisterTranslations("zhCN", function() return {
+	engage_message = "激活 - 约15秒后，召唤树苗！",
+	
+	treants = "召唤树苗",
+	treants_desc = "当召唤树苗时发出警报。",
+	treants_message = "约45秒后，召唤树苗！",
+	treants_warning = "即将 召唤树苗！",
+	treants_nextbar = "<可能 召唤树苗>",
+
+} end )
+
+L:RegisterTranslations("zhTW", function() return {
+	engage_message = "激活 - 約15秒后，召喚樹苗！",
+	
+	treants = "召喚樹苗",
+	treants_desc = "當召喚樹苗時發出警報。",
+	treants_message = "約45秒后，召喚樹苗！",
+	treants_warning = "即將召喚樹苗！",
+	treants_nextbar = "~可能召喚樹苗",
+
+} end )
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
