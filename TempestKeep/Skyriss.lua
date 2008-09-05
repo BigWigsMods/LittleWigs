@@ -153,8 +153,8 @@ function mod:OnEnable()
 	secondSplitAnnounced = nil
 
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 37162)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "MindRend", 36929)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 37162, 39019)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "MindRend", 36924, 36929, 39017, 39021)
 	
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")	
 	self:RegisterEvent("UNIT_HEALTH")	
