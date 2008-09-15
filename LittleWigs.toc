@@ -14,6 +14,7 @@
 ## X-Website: http://www.wowace.com/index.php/LittleWigs
 ## X-AceForum: 5751
 ## X-RelSite-Curse: 7476
+## X-Email: ulic75 at gmail dot com
 ## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: Hellfire Ramparts, The Blood Furnace, Mana-Tombs, The Mechanar, Sethekk Halls, Shadow Labyrinth, The Botanica, The Shattered Halls, The Steamvault, Auchenai Crypts, The Arcatraz, Magisters' Terrace
 
