@@ -1,1 +1,9 @@
 package-as: LittleWigs
+
+move-folders:
+    LittleWigs/Auchindoun: LittleWigs_Auchindoun
+    LittleWigs/Coilfang: LittleWigs_Coilfang
+    LittleWigs/CoT: LittleWigs_CoT
+    LittleWigs/HellfireCitadel: LittleWigs_HellfireCitadel
+    LittleWigs/MagistersTerrace: LittleWigs_MagistersTerrace
+    LittleWigs/TempestKeep: LittleWigs_TempestKeep
