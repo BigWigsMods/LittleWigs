@@ -1,4 +1,4 @@
-﻿## Interface: 20400
+﻿## Interface: 30000
 
 ## Title: Little Wigs [|cffeda55fHellfire Citadel|r]
 ## Title-ruRU: Little Wigs [|cffeda55fЦитадель Адского Пламени|r]

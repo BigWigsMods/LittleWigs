@@ -1,4 +1,4 @@
-﻿## Interface: 20400
+﻿## Interface: 30000
 
 ## Title: Little Wigs [|cffeda55fMagisters' Terrace|r]
 ## Title-ruRU: Little Wigs [|cffeda55fТерраса Магистров|r]
