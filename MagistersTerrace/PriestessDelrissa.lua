@@ -5,6 +5,10 @@
 local boss = BB["Priestess Delrissa"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+-- the guids of Delrissa and her possible adds
+local guids = {24553,24554,24555,24556,24557,24558,24559,24560,24561}
+local deaths = 0
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -193,7 +197,6 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "PriShield", 46193, 44175, 44291)
 	self:AddCombatListener("SPELL_CAST_START", "PriHeal", 17843)
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "PriRenew", 44174, 46192)
@@ -202,6 +205,9 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "EllrysSoC", 44141)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "YazzaiPoly", 13323)
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "YazzaiBliz", 44178, 46195)
+	self:AddCombatListener("UNIT_DIED", "Deaths")
+
+	deaths = 0
 
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
@@ -255,5 +261,18 @@ end
 function mod:YazzaiBliz(spellId)
 	if self.db.profile.yazzai_bliz then
 		self:IfMessage(L["yazzai_bliz_message"], "Attention", spellId)
+	end
+end
+
+function mod:Deaths(_, guid)
+	if not self.db.profile.bosskill then return end
+	guid = tonumber((guid):sub(-12,-7),16)
+	for _,v in ipairs(guids) do
+		if v == guid then
+			deaths = deaths + 1
+		end
+	end
+	if deaths == 5 then
+		self:BossDeath(nil, self.guid, true)
 	end
 end
