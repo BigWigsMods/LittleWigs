@@ -275,15 +275,16 @@ function mod:Frenzy(_, spellId, spellName)
 	end
 end
 
-function mod:Hasten(_, spellId, spellName)
+function mod:Hasten(source, spellId, spellName)
+	if source ~= boss2 then return end
 	if self.db.profile.hasten then
 		self:IfMessage(L["hasten_message"], "Important", spellId)
 		self:Bar(spellName, 10, spellId)
 	end
 end
 
-function mod:BuffRemoved(_, _, spellName)
-	if self.db.profile.hasten or self.db.profile.frenzy then
+function mod:BuffRemoved(source, _, spellName)
+	if (source == boss2 or source == boss3) and (self.db.profile.hasten or self.db.profile.frenzy) then
 		self:TriggerEvent("BigWigs_StopBar", self, spellName)
 	end
 end
