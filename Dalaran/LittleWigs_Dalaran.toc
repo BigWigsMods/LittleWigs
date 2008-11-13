@@ -1,7 +1,7 @@
 ﻿## Interface: 30000
 
-## Title: Little Wigs [|cffeda55fZul'Drak|r]
-## Notes: Little Wigs Zul'Drak Modules
+## Title: Little Wigs [|cffeda55fDalaran|r]
+## Notes: Little Wigs Dalaran Modules
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

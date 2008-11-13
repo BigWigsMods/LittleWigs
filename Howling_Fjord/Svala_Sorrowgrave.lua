@@ -11,7 +11,7 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Svala",
-
+	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -47,19 +47,11 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Sword", 48276)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+	BigWigs:Print(L["log"])
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
-function mod:Sword()
-	if Transcriptor then
-		local health = UnitHealth(boss)
-		Transcriptor:InsNote(boss.." is at "..health.."% health.")
-	end
-	if self.db.profile.sword then
-	end
-end

@@ -1,4 +1,5 @@
 ﻿## Interface: 30000
+## X-Curse-Packaged-Version: 3.0.0-beta1
 
 ## Title: Little Wigs [|cffeda55fUlduar|r]
 ## Notes: Little Wigs Ulduar Modules

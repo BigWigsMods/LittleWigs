@@ -1,4 +1,5 @@
 ﻿## Interface: 30000
+## X-Curse-Packaged-Version: 3.0.0-beta1
 
 ## Title: Little Wigs [|cffeda55fDragonblight|r]
 ## Title-frFR: Little Wigs [|cffeda55fDésolation des dragons|r]
@@ -12,6 +13,7 @@
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
 ## X-Category: Party
 
+## X-BigWigs-Menu: Dragonblight
 ## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: Azjol-Nerub, Ahn'kahet: The Old Kingdom
 

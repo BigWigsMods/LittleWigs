@@ -11,6 +11,7 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Hadronox",
+	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -50,6 +51,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+	BigWigs:Print(L["log"])
 end
 
 ------------------------------
