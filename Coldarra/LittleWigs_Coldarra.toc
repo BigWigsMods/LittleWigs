@@ -1,0 +1,28 @@
+﻿## Interface: 30000
+
+## Title: Little Wigs [|cffeda55fColdarra|r]
+## Title-frFR: Little Wigs [|cffeda55fFrimarra|r]
+## Notes: Little Wigs Coldarra Modules
+## Notes-frFR: Modules Little Wigs concernant Frimarra.
+## Author: Ulic
+## X-Credits: Yoshimo
+## Version: 3.0.0
+## LoadOnDemand: 1
+
+## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
+## X-Category: Party
+
+## X-BigWigs-LoadInParty: 1
+## X-BigWigs-LoadInZone: The Nexus, The Oculus
+
+## Dependencies: BigWigs
+
+Anomalus.lua
+Keristrasza.lua
+Ormorok_the_Tree-Shaper.lua
+Grand_Magus_Telestra.lua
+
+Drakos_the_Interrogator.lua
+Mage-Lord_Urom.lua
+Varos_Cloudstrider.lua
+Ley-Guardian_Eregos.lua

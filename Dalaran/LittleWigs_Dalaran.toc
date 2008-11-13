@@ -1,0 +1,25 @@
+﻿## Interface: 30000
+
+## Title: Little Wigs [|cffeda55fZul'Drak|r]
+## Notes: Little Wigs Zul'Drak Modules
+## Author: Ulic
+## X-Credits: Yoshimo
+## Version: 3.0.0
+## LoadOnDemand: 1
+
+## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
+## X-Category: Party
+
+## X-BigWigs-Menu: Dalaran
+## X-BigWigs-LoadInParty: 1
+## X-BigWigs-LoadInZone: The Violet Hold
+
+## Dependencies: BigWigs
+
+Erekem.lua
+Ichoron.lua
+Lavanthor.lua
+Moragg.lua
+Xevozz.lua
+Zuramat_the_Obliterator.lua
+Cyanigosa.lua

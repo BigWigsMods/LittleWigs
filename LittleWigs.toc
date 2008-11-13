@@ -1,0 +1,22 @@
+﻿## Interface: 30000 
+
+## Title: Little Wigs
+## Notes: Boss warnings for Lich King 5-man dungeons.
+## Title-zhCN: Little Wigs
+## Notes-zhTW: 五人副本首領警報。需先安裝 Big Wigs
+## Notes-zhCN: 用于 TBC 的5人副本，Boss 警告器。需配合 BigWigs 方可使用。
+## Notes-frFR: Avertissements pour les boss des instances à 5 joueurs.
+## Notes-koKR: 5인 던전용 보스 경고 애드온
+## Author: Ulic
+## X-Credits: Yoshimo (for many many log files)
+## Version: 3.0.0
+## X-Build: $Rev$
+## X-Category: Party
+## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
+## X-BigWigs-LoadInParty: 1
+## X-BigWigs-LoadInZone: Utgarde Keep, Utgarde Pinnacle, The Nexus, The Oculus, Azjol-Nerub, Ahn'kahet: The Old Kingdom, Drak'Tharon Keep, Gundrak, The Violet Hold, Halls of Stone, Halls of Lightning
+
+## Dependencies: BigWigs
+## OptionalDeps: Ace2
+
+modules.xml
