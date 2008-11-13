@@ -59,6 +59,18 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	split = "Разделение",
+	split_desc = "Предупреждает о разделении Grand Magus Telestra.",
+	split_message = "Grand Magus Telestra Разделилась",
+	split_soon_message = "Скоро Разделение",
+	split_trigger1 = "There's plenty of me to go around.",
+	split_trigger2 = "I'll give you more than you can handle.",
+
+	merge_trigger = "Now to finish the job!",
+	merge_message = "Слилась",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

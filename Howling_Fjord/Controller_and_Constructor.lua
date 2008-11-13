@@ -43,6 +43,12 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	enfeeble = "Ослабление",
+	enfeeble_desc = "Предупреждать если на ком Ослабление.",
+	enfeeble_message = "Ослаблен: %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -44,6 +44,15 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("esES", function() return {
 } end)
 
+L:RegisterTranslations("enUS", function() return {
+	engage_trigger = "Crush....",
+
+	shatter = "Раскалывание",
+	shatter_desc = "Предупреждения о Удар Земли и Раскалывании.",
+	shatter_warn = "Удар Земли - Раскалывание через ~8 сек!",
+	shatter_message = "Раскалывание!",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

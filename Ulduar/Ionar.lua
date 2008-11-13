@@ -54,6 +54,19 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("esES", function() return {
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	overload = "Статический заряд",
+	overload_desc = "Предупреждает если кто Статически заряжен.",
+	overload_message = "%s: Статически заряжен",
+
+	overloadWhisper = "Шопот о Статическом заряде",
+	overloadWhisper_desc = "Отсылает сообщение в  шепот участнику который Статически заряжен.",
+	overloadWhisper_message = "Вы Статически заряжены!",
+
+	overloadBar = "Полоса Статического заряда",
+	overloadBar_desc = "Отображать полосу для зараженных Статическим зарядом.",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

@@ -51,6 +51,20 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	whirlwind = "Вихрь",
+	whirlwind_desc = "Предупреждать когда Skadi the Ruthless Вихрь.",
+
+	whirlwindcooldown = "Перезарядка Вихря",
+	whirlwindcooldown_desc = "Предупреждать о заканчивании перезарядки Вихря",
+	whirlwindcooldown_message = "Перезарядка вихря завершена",
+
+	whirlwindbars = "Полоса Вихрь",
+	whirlwindbars_desc = "Отображать полосу продолжительности вихря и его перезарядки.",
+
+	whirlwind_cooldown_bar = "Перезарядка Вихря",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

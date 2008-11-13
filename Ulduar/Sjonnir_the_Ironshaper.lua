@@ -50,6 +50,18 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("esES", function() return {
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",
+
+	charge = "Статический заряд",
+	charge_desc = "Предупреждать если кто Статический заряжен.",
+	charge_message = "%s: Статический заряжен",
+
+	ring = "Кольцо молний",
+	ring_desc = "Предупреждать о Кольце молний.",
+	ring_message = "Кольцо молний!",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

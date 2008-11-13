@@ -41,6 +41,15 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	bane = "Погибель",
+	bane_desc = "Предепреждать о применении Погибели.",
+	bane_message = "Применение Погибели",
+
+	banebar = "Полоса Погибели",
+	banebar_desc = "Отображать полосу продолжительности баффа Погибели.",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

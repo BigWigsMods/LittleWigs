@@ -60,6 +60,19 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	chains = "Кристальные цепи",
+	chains_desc = "Сообщает если ктото попал в Кристальные цепи.",
+	chains_message = "%s: %s",
+
+	chainsbar = "Полоса Кристальных цепей",
+	chainsbar_desc = "Отображает полосу когда участник попадает в Кристальные цепи.",
+
+	enrage = "Исступление",
+	enrage_desc = "Предупреждать о стадии исступления Keristrasza.",
+	enrage_message = "Keristrasza вступает в Исступление",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

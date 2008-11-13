@@ -52,6 +52,16 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	smash = "Мощный удар",
+	smash_desc = "Предупреждать о применении мощных ударов.",
+	smash_message = "Применяется %s",
+	
+	roar = "Roar",
+	roar_desc = "Предупреждать когда Staggering применяет Рев или Оглушающий рев.",
+	roar_message = "Применяется %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

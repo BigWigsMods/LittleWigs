@@ -58,6 +58,17 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("esES", function() return {
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	curse = "Проклятие усталости",
+	curse_desc = "Предупреждает если на ком наложенное Проклятие усталости.",
+	curse_message = "Проклятие усталости - %s",
+
+	frenzy = "Бешенство",
+	frenzy_desc = "Предупреждает о бешенстве Krik'thi.",
+	frenzy_message = "Krik'thir взбесился",
+	frenzysoon_message = "Скоро Бешенство",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

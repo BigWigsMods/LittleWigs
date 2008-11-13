@@ -38,6 +38,12 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("esES", function() return {
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	stomp = "Раскатистый топот",
+	stomp_desc = "Предупреждать когда Volkhan собирается в разбить все его големы.",
+	stomp_message = "Применяется Раскатистый топот",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

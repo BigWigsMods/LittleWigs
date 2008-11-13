@@ -63,6 +63,25 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	timeBomb = "Бомба",
+	timeBomb_desc = "Предупреждает о том кто Бомба.",
+	timeBomb_message = "%s: Бомба",
+
+	timeBombWhisper = "Шепот о бомбе",
+	timeBombWhisper_desc = "Отсылает сообщение в шопот, участнику у которого бомба.",
+	timeBombWhisper_message = "Вы бомба!",
+
+	timeBombBar = "Полоса Бомбы",
+	timeBombBar_desc = "Отображает полосу с остатком времени до взрыва.",
+
+	arcaneExplosion = "Мощный чародейский взрыв",
+	arcaneExplosion_desc = "Предупреждает о начале применения Mage-Lord Urom Мощного чародейского взрыва.",
+
+	arcaneExplosionBar = "Полоса Мощного чародейского взрыва",
+	arcaneExplosionBar_desc = "Отображает полосу применения Мощного чародейского взрыва.",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

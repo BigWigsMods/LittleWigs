@@ -38,6 +38,12 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	tomb = "Ледяная могила",
+	tomb_desc = "Предупреждать если кто поподает в Ледяную могилу.",
+	tomb_message = "%s: %s",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

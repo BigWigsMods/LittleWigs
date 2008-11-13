@@ -36,6 +36,12 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	magicpull = "Магическое притяжение",
+	magicpull_desc = "оповещать о Магическом притяжении",
+	magicpull_message = "Применяется Магическое притяжение",
+} end )
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------

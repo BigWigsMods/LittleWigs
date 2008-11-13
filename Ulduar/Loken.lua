@@ -44,6 +44,15 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("esES", function() return {
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	nova = "Вспышка молнии",
+	nova_desc = "Предупреждать о применении Вспышки молнии.",
+	nova_message = "Применяется Вспышка молнии",
+
+	novaBar = "Полоса Вспышки молнии",
+	novaBar_desc = "Отображать полосу применения Вспышки молнии.",
+} end)
+
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
