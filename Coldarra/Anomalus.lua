@@ -41,7 +41,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	rift = "Раздомы",
-	rift_desc = "Предупреждать когда Anomalus разрывает пространство, создавая хаотический разлом.",
+	rift_desc = "Предупреждать, когда Anomalus разрывает пространство, создавая хаотический разлом.",
 	rift_message = "Разлом создан",
 } end )
 

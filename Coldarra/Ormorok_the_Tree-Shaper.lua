@@ -74,15 +74,15 @@ L:RegisterTranslations("zhCN", function() return {
 -- Translated by StingerSoft
 L:RegisterTranslations("ruRU", function() return {
 	spikes = "Кристальные шипы",
-	spikes_desc = "Предупреждает о применении Кристальных шипов.",
+	spikes_desc = "Предупреждать о применении кристальных шипов.",
 	spikes_message = "Кристальные шипы",
 
 	reflection = "Отражение заклинания",
-	reflection_desc = "Предупреждает о отражении заклинаний",
+	reflection_desc = "Предупреждать об отражении заклинаний",
 	reflection_message = "Отражение заклинаний",
 
-	reflectionbar = "Полоса Отражения заклинания",
-	reflectionbar_desc = "Отображение полосы длительности Отражения заклинания.",
+	reflectionbar = "Полоса отражения заклинания",
+	reflectionbar_desc = "Отображать полосу длительности отражения заклинания.",
 
 	frenzy = "Бешенство",
 	frenzy_desc = "Предупреждает о бешенстве Ormorok.",

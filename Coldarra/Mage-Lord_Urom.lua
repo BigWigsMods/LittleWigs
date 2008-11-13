@@ -65,21 +65,21 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	timeBomb = "Бомба",
-	timeBomb_desc = "Предупреждает о том кто Бомба.",
+	timeBomb_desc = "Сообщать о том, что кто-то стал бомбой.",
 	timeBomb_message = "%s: Бомба",
 
-	timeBombWhisper = "Шепот о бомбе",
-	timeBombWhisper_desc = "Отсылает сообщение в шопот, участнику у которого бомба.",
+	timeBombWhisper = "Шёпот о бомбе",
+	timeBombWhisper_desc = "Отсылать сообщение в шёпот, участнику, у которого бомба.",
 	timeBombWhisper_message = "Вы бомба!",
 
-	timeBombBar = "Полоса Бомбы",
-	timeBombBar_desc = "Отображает полосу с остатком времени до взрыва.",
+	timeBombBar = "Полоса бомбы",
+	timeBombBar_desc = "Отображать полосу с остатком времени до взрыва.",
 
 	arcaneExplosion = "Мощный чародейский взрыв",
-	arcaneExplosion_desc = "Предупреждает о начале применения Mage-Lord Urom Мощного чародейского взрыва.",
+	arcaneExplosion_desc = "Предупреждать о начале применения Mage-Lord Urom мощного чародейского взрыва.",
 
-	arcaneExplosionBar = "Полоса Мощного чародейского взрыва",
-	arcaneExplosionBar_desc = "Отображает полосу применения Мощного чародейского взрыва.",
+	arcaneExplosionBar = "Полоса мощного чародейского взрыва",
+	arcaneExplosionBar_desc = "Отображать полосу применения мощного чародейского взрыва.",
 } end )
 
 ----------------------------------

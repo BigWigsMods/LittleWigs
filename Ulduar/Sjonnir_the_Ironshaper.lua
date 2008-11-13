@@ -51,14 +51,17 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",
+
+	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
+
+	--engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",
 
 	charge = "Статический заряд",
-	charge_desc = "Предупреждать если кто Статический заряжен.",
-	charge_message = "%s: Статический заряжен",
+	charge_desc = "Предупреждать, когда кто-нибудь статически заряжен.",
+	charge_message = "%s: Статически заряжен",
 
 	ring = "Кольцо молний",
-	ring_desc = "Предупреждать о Кольце молний.",
+	ring_desc = "Предупреждать о кольце молний.",
 	ring_message = "Кольцо молний!",
 } end)
 

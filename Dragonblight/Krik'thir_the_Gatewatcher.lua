@@ -60,13 +60,13 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	curse = "Проклятие усталости",
-	curse_desc = "Предупреждает если на ком наложенное Проклятие усталости.",
+	curse_desc = "Предупреждать, когда на кого-нибудь накладывается проклятие усталости.",
 	curse_message = "Проклятие усталости - %s",
 
 	frenzy = "Бешенство",
-	frenzy_desc = "Предупреждает о бешенстве Krik'thi.",
+	frenzy_desc = "Предупреждать о бешенстве Krik'thi.",
 	frenzy_message = "Krik'thir взбесился",
-	frenzysoon_message = "Скоро Бешенство",
+	frenzysoon_message = "Скоро бешенство",
 } end)
 
 ----------------------------------

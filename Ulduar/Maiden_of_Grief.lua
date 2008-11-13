@@ -46,8 +46,8 @@ L:RegisterTranslations("ruRU", function() return {
 	engage_trigger = "You shouldn't have come...now you will die!",
 
 	shock = "Шок от горя",
-	shock_desc = "Предупреждать о применении Шока от горя.",
-	shock_message = "Применяется Шок от горя",
+	shock_desc = "Предупреждать о применении шока от горя.",
+	shock_message = "Применяется шок от горя",
 } end)
 
 ----------------------------------

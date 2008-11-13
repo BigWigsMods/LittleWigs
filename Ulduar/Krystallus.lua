@@ -48,7 +48,7 @@ L:RegisterTranslations("enUS", function() return {
 	engage_trigger = "Crush....",
 
 	shatter = "Раскалывание",
-	shatter_desc = "Предупреждения о Удар Земли и Раскалывании.",
+	shatter_desc = "Предупреждать об ударе земли и раскалывании.",
 	shatter_warn = "Удар Земли - Раскалывание через ~8 сек!",
 	shatter_message = "Раскалывание!",
 } end)

@@ -57,8 +57,8 @@ L:RegisterTranslations("ruRU", function() return {
 	smash_desc = "Предупреждать о применении мощных ударов.",
 	smash_message = "Применяется %s",
 	
-	roar = "Roar",
-	roar_desc = "Предупреждать когда Staggering применяет Рев или Оглушающий рев.",
+	roar = "Рёв",
+	roar_desc = "Предупреждать, когда Staggering применяет рёв или оглушающий рёв.",
 	roar_message = "Применяется %s",
 } end )
 

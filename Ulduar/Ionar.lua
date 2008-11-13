@@ -56,15 +56,15 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	overload = "Статический заряд",
-	overload_desc = "Предупреждает если кто Статически заряжен.",
+	overload_desc = "Предупреждать, когда кто-нибудь статически заряжен.",
 	overload_message = "%s: Статически заряжен",
 
-	overloadWhisper = "Шопот о Статическом заряде",
-	overloadWhisper_desc = "Отсылает сообщение в  шепот участнику который Статически заряжен.",
-	overloadWhisper_message = "Вы Статически заряжены!",
+	overloadWhisper = "Шёпот о статическом заряде",
+	overloadWhisper_desc = "Шептать, статически заряженному, участнику.",
+	overloadWhisper_message = "Вы статически заряжены!",
 
-	overloadBar = "Полоса Статического заряда",
-	overloadBar_desc = "Отображать полосу для зараженных Статическим зарядом.",
+	overloadBar = "Полоса статического заряда",
+	overloadBar_desc = "Отображать полосу, для статически заряженных.",
 } end)
 
 ----------------------------------

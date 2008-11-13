@@ -53,16 +53,16 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	whirlwind = "Вихрь",
-	whirlwind_desc = "Предупреждать когда Skadi the Ruthless Вихрь.",
+	whirlwind_desc = "Предупреждать, когда Skadi the Ruthless использует вихрь.",
 
-	whirlwindcooldown = "Перезарядка Вихря",
-	whirlwindcooldown_desc = "Предупреждать о заканчивании перезарядки Вихря",
+	whirlwindcooldown = "Перезарядка вихря",
+	whirlwindcooldown_desc = "Предупреждать об окончании перезарядки вихря",
 	whirlwindcooldown_message = "Перезарядка вихря завершена",
 
-	whirlwindbars = "Полоса Вихрь",
+	whirlwindbars = "Полоса вихря",
 	whirlwindbars_desc = "Отображать полосу продолжительности вихря и его перезарядки.",
 
-	whirlwind_cooldown_bar = "Перезарядка Вихря",
+	whirlwind_cooldown_bar = "Перезарядка вихря",
 } end )
 
 ----------------------------------

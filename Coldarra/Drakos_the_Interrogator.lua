@@ -38,8 +38,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	magicpull = "Магическое притяжение",
-	magicpull_desc = "оповещать о Магическом притяжении",
-	magicpull_message = "Применяется Магическое притяжение",
+	magicpull_desc = "Оповещать о магическом притяжении",
+	magicpull_message = "Применяется магическое притяжение",
 } end )
 
 ----------------------------------
