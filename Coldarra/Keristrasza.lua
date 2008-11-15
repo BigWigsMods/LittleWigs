@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -55,6 +55,16 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	chains = "Kristallketten",
+	chains_desc = "Warnt, wenn jemand in den Kristallketten ist.",
+	chains_message = "%s: %s",
+
+	chainsbar = "Kristallketten Bar",
+	chainsbar_desc = "Display a bar when a party member is in Cystal Chains.",
+
+	enrage = "Wutanfall",
+	enrage_desc = "Warnt wenn Keristrasza Wutanfall bekommt.",
+	enrage_message = "Keristrasza ist wütend",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

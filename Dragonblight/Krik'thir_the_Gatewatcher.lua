@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -36,6 +36,14 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	curse = "Fluch der Ermüdung",
+	curse_desc = "Warnt wenn jemand den Fluch der Ermüdung hat.",
+	curse_message = "Fluch der Ermüdung - %s",
+
+	frenzy = "Raserei",
+	frenzy_desc = "Warnt wenn Krik'thir Raserei bekommt.",
+	frenzy_message = "Krik'thir bekommt Raserei",
+	frenzysoon_message = "Raserei Bald",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

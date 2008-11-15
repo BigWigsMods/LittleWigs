@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -38,6 +38,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	enfeeble = "Entkräften",
+	enfeeble_desc = "Warnt, wer Entkräften hat.",
+	enfeeble_message = "Entkräften: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

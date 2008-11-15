@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -33,6 +33,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	tomb = "Frostgrab",
+	tomb_desc = "Warnt, wer im Frostgrab ist.",
+	tomb_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

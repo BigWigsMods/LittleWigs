@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -54,6 +54,15 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	split = "Teilung",
+	split_desc = "Warnt wenn Großmagistrix Telestra sich teilen wird.",
+	split_message = "Großmagistrix Telestra hat sich geteilt",
+	split_soon_message = "Teilung Bald",
+	split_trigger1 = "Ihr wisst ja, was nach Hochmut kommt...",
+	split_trigger2 = "Ich teile mehr aus, als ihr verkraften könnt!",
+
+	merge_trigger = "Nun bringen wir's zu Ende",
+	merge_message = "Merged",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

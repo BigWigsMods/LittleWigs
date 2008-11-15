@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -47,6 +47,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	smash = "Zerkrachen",
+	smash_desc = "Warnt vor Zerkrachen oder Dunkelem Zerkrachen.",
+	smash_message = "Wirkt %s",
+	
+	roar = "Brüllen",
+	roar_desc = "Warnt vor Wankendem Brüllen oder Grässliches Gebrüll.",
+	roar_message = "Wirkt %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

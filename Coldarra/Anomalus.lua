@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -34,6 +34,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	rift = "Riss",
+	rift_desc = "Warnt, wenn Anomalus einen Riss beschwört.",
+	rift_message = "Riss beschworen",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

@@ -1,4 +1,4 @@
-﻿------------------------------
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -67,6 +67,20 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	spikes = "Kristallstacheln",
+	spikes_desc = "Warnt bevor Kristallstacheln gewirkt werden.",
+	spikes_message = "Kristallstacheln",
+
+	reflection = "Zauberreflexion",
+	reflection_desc = "Warnt vor Zauberreflexion.",
+	reflection_message = "Zauberreflexion",
+
+	reflectionbar = "Zauberreflexion Bar",
+	reflectionbar_desc = "Zeige eine Bar für die Dauer der Zauberreflexion.",
+
+	frenzy = "Raserei",
+	frenzy_desc = "Warnt wenn Ormorok Raserei bekommt.",
+	frenzy_message = "Ormorok gerät in Raserei",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
