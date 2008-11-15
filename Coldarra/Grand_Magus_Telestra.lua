@@ -60,16 +60,15 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на него в комментариях на curse.com).",
-	--[[split = "Разделение",
-	split_desc = "Предупреждать о разделении Grand Magus Telestra.",
-	split_message = "Grand Magus Telestra разделилась",
+	split = "Разделение",
+	split_desc = "Предупреждать о разделении Великой ведуньи Телестры.",
+	split_message = "Великая ведунья Телестра разделилась",
 	split_soon_message = "Скоро разделение",
-	split_trigger1 = "There's plenty of me to go around.",  --need correct
-	split_trigger2 = "I'll give you more than you can handle.",  --need correct
+	split_trigger1 = "Меня на вас хватит!",  --need check
+	split_trigger2 = "Вы получите больше, чем заслуживаете!",  --need check
 
-	merge_trigger = "Now to finish the job!",  --need correct
-	merge_message = "Слилась", --]]
+	merge_trigger = "Ну а теперь, покончи с этим!",  --need check
+	merge_message = "Слилась",
 } end )
 
 ----------------------------------

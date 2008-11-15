@@ -61,7 +61,7 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	chains = "Кристальные цепи",
+	chains = "Цепи",
 	chains_desc = "Сообщает, когда кто-нибудь попадает в кристальные цепи.",
 	chains_message = "%s: %s",
 
@@ -69,8 +69,8 @@ L:RegisterTranslations("ruRU", function() return {
 	chainsbar_desc = "Отображать полосу, когда участник попадает в Кристальные цепи.",
 
 	enrage = "Исступление",
-	enrage_desc = "Предупреждать о стадии исступления Keristrasza.",
-	enrage_message = "Keristrasza в исступлении",
+	enrage_desc = "Предупреждать о стадии исступления Керистраза.",
+	enrage_message = "Керистраза в исступлении",
 } end )
 
 ----------------------------------

@@ -85,8 +85,8 @@ L:RegisterTranslations("ruRU", function() return {
 	reflectionbar_desc = "Отображать полосу длительности отражения заклинания.",
 
 	frenzy = "Бешенство",
-	frenzy_desc = "Предупреждает о бешенстве Ormorok.",
-	frenzy_message = "Ormorok взбесился",
+	frenzy_desc = "Предупреждает о бешенстве Орморока.",
+	frenzy_message = "Орморок взбесился",
 } end )
 
 ----------------------------------
