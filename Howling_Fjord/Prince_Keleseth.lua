@@ -30,6 +30,9 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	tomb = "冰霜之墓",
+	tomb_desc = "當玩家中了冰霜之墓時發出警報。",
+	tomb_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -39,6 +42,9 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	tomb = "冰霜之墓",
+	tomb_desc = "当玩家中了冰霜之墓时发出警报。",
+	tomb_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

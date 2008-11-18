@@ -31,6 +31,9 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	rift = "製造裂縫",
+	rift_desc = "當艾諾瑪路斯召喚裂縫時發出警報。",
+	rift_message = "召喚裂縫！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -40,6 +43,9 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	rift = "制造裂隙",
+	rift_desc = "当阿诺玛鲁斯召唤裂隙时发出警报。",
+	rift_message = "召唤裂隙！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

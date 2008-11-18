@@ -3,8 +3,12 @@
 
 ## Title: Little Wigs [|cffeda55fDragonblight|r]
 ## Title-frFR: Little Wigs [|cffeda55fDésolation des dragons|r]
+## Title-zhCN: Little Wigs [|cffeda55f龙骨荒野r]
+## Title-zhTW: Little Wigs [|cffeda55f龍骨荒野|r]
 ## Notes: Little Wigs Dragonblight Modules
 ## Notes-frFR: Modules Little Wigs concernant la Désolation des dragons.
+## Notes-zhCN: Little Wigs 龙骨荒野模块
+## Notes-zhTW: Little Wigs 龍骨荒野模組
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

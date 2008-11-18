@@ -44,6 +44,13 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	smash = "打擊",
+	smash_desc = "当施放黑暗破擊或潰擊时发出警报。",
+	smash_message = "正在施放 %s！",
+	
+	roar = "咆哮",
+	roar_desc = "当施放驚恐咆哮或驚懼咆哮时发出警报。",
+	roar_message = "正在施放 %s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -57,6 +64,13 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	smash = "打击",
+	smash_desc = "当施放黑暗打击或冲撞时发出警报。",
+	smash_message = "正在施放 %s！",
+	
+	roar = "咆哮",
+	roar_desc = "当施放惊愕怒吼或恐怖咆哮时发出警报。",
+	roar_message = "正在施放 %s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

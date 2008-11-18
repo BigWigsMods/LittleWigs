@@ -42,9 +42,27 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!", -- not yet
+
+	charge = "静电充能",
+	charge_desc = "当玩家中了静电充能时发出警报。",
+	charge_message = ">%s<：静电充能！",
+
+	ring = "闪电之环",
+	ring_desc = "当施放闪电之环时发出警报。",
+	ring_message = "闪电之环！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!", -- not yet
+
+	charge = "靜電能量",
+	charge_desc = "當玩家中了靜電能量時發出警報。",
+	charge_message = ">%s<：靜電能量！",
+
+	ring = "閃電環",
+	ring_desc = "當施放閃電環時發出警報。",
+	ring_message = "閃電環！",
 } end)
 
 L:RegisterTranslations("esES", function() return {

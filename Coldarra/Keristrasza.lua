@@ -52,6 +52,16 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	chains = "水晶之鍊",
+	chains_desc = "當玩家中了水晶之鍊時發出警報。",
+	chains_message = "%s：%s！",
+
+	chainsbar = "水晶之鍊計時條",
+	chainsbar_desc = "當玩家中了水晶之鍊時顯示計時條。",
+
+	enrage = "狂怒",
+	enrage_desc = "當凱瑞史卓莎狂怒時發出警報。",
+	enrage_message = "凱瑞史卓莎 - 狂怒！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -68,6 +78,16 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	chains = "水晶锁链",
+	chains_desc = "当玩家中了水晶锁链时发出警报。",
+	chains_message = "%s：%s！",
+
+	chainsbar = "水晶锁链计时条",
+	chainsbar_desc = "当玩家中了水晶锁链时显示计时条。",
+
+	enrage = "激怒",
+	enrage_desc = "当克莉斯塔萨激怒时发出警报。",
+	enrage_message = "克莉斯塔萨 - 激怒！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

@@ -2,7 +2,11 @@
 ## X-Curse-Packaged-Version: 3.0.0-beta1
 
 ## Title: Little Wigs [|cffeda55fZul'Drak|r]
+## Title-zhCN: Little Wigs [|cffeda55f祖达克r]
+## Title-zhTW: Little Wigs [|cffeda55f祖爾德拉克|r]
 ## Notes: Little Wigs Zul'Drak Modules
+## Notes-zhCN: Little Wigs 祖达克模块
+## Notes-zhTW: Little Wigs 祖爾德拉克模組
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

@@ -33,12 +33,24 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	bane = "災禍",
+	bane_desc = "當施放災禍時發出警報。",
+	bane_message = "正在施放 災禍！",
+
+	banebar = "災禍計時條",
+	banebar_desc = "當災禍持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	bane = "灾祸",
+	bane_desc = "当施放灾祸时发出警报。",
+	bane_message = "正在施放 灾祸！",
+
+	banebar = "灾祸计时条",
+	banebar_desc = "当灾祸持续是显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

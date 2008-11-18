@@ -46,9 +46,29 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	overload = "静电过载",
+	overload_desc = "当玩家中了静电过载时发出警报。",
+	overload_message = ">%s<：静电过载！",
+
+	overloadWhisper = "静电过载密语",
+	overloadWhisper_desc = "当玩家中了静电过载时发送密语。",
+	overloadWhisper_message = ">你< 静电过载！",
+
+	overloadBar = "静电过载计时条",
+	overloadBar_desc = "当玩家中了静电过载时显示计时条。",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	overload = "靜電超載",
+	overload_desc = "當玩家中了靜電超載時發出警報。",
+	overload_message = ">%s<：靜電超載！",
+
+	overloadWhisper = "靜電超載密語",
+	overloadWhisper_desc = "當玩家中了靜電超載時發送密語。",
+	overloadWhisper_message = ">你< 靜電超載！",
+
+	overloadBar = "靜電超載計時條",
+	overloadBar_desc = "當玩家中了靜電超載時顯示計時條。",
 } end)
 
 L:RegisterTranslations("esES", function() return {

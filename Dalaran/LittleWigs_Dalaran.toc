@@ -1,7 +1,11 @@
 ﻿## Interface: 30000
 
 ## Title: Little Wigs [|cffeda55fDalaran|r]
+## Title-zhCN: Little Wigs [|cffeda55f达拉然r]
+## Title-zhTW: Little Wigs [|cffeda55f達拉然|r]
 ## Notes: Little Wigs Dalaran Modules
+## Notes-zhCN: Little Wigs 达拉然模块
+## Notes-zhTW: Little Wigs 達拉然模組
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

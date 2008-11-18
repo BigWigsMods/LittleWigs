@@ -30,9 +30,15 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	stomp = "粉碎践踏",
+	stomp_desc = "当沃尔坎粉碎践踏他的脆弱的傀儡时发出警报。",
+	stomp_message = "正在施放 粉碎践踏！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	stomp = "破碎踐踏",
+	stomp_desc = "當渥克瀚破碎踐踏他的脆弱的傀儡時發出警報。",
+	stomp_message = "正在施放 破碎踐踏！",
 } end)
 
 L:RegisterTranslations("esES", function() return {

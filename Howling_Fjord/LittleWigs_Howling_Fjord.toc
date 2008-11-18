@@ -3,8 +3,12 @@
 
 ## Title: Little Wigs [|cffeda55fHowling Fjord|r]
 ## Title-frFR: Little Wigs [|cffeda55fFjord Hurlant|r]
+## Title-zhCN: Little Wigs [|cffeda55f嚎风峡湾r]
+## Title-zhTW: Little Wigs [|cffeda55f凜風峽灣|r]
 ## Notes: Little Wigs Howling Fjord Modules
 ## Notes-frFR: Modules Little Wigs concernant le Fjord Hurlant.
+## Notes-zhCN: Little Wigs 嚎风峡湾模块
+## Notes-zhTW: Little Wigs 凜風峽灣模組
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

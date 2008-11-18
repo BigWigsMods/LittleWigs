@@ -36,9 +36,21 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	nova = "闪电新星",
+	nova_desc = "当施放闪电新星时发出警报。",
+	nova_message = "正在施放 闪电新星！",
+
+	novaBar = "闪电新星计时条",
+	novaBar_desc = "当施放闪电新星时显示计时条。",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	nova = "閃電新星",
+	nova_desc = "當施放閃電新星時發出警報。",
+	nova_message = "正在施放 閃電新星！",
+
+	novaBar = "閃電新星計時條",
+	novaBar_desc = "當施放閃電新星時顯示計時條。",
 } end)
 
 L:RegisterTranslations("esES", function() return {

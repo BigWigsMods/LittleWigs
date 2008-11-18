@@ -28,12 +28,18 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	magicpull = "魔法拖曳",
+	magicpull_desc = "當『審問者』德拉高斯施放魔法拖曳時發出警報。",
+	magicpull_message = "正在施放：魔法拖曳！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	magicpull = "魔法牵引",
+	magicpull_desc = "当审讯者达库斯施放魔法牵引时发出警报。",
+	magicpull_message = "正在施放 魔法牵引！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

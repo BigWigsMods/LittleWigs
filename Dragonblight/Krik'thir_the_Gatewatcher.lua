@@ -58,9 +58,25 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	curse = "疲倦诅咒",
+	curse_desc = "当玩家中了疲倦诅咒时发出警报。",
+	curse_message = "疲倦诅咒：>%s<！",
+
+	frenzy = "狂乱",
+	frenzy_desc = "当看门者克里克希尔狂乱时发出警报。",
+	frenzy_message = "看门者克里克希尔 - 狂乱！",
+	frenzysoon_message = "即将 狂乱！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	curse = "疲倦詛咒",
+	curse_desc = "當玩家中了疲倦詛咒時發出警報。",
+	curse_message = "疲倦詛咒：>%s<！",
+
+	frenzy = "狂亂",
+	frenzy_desc = "當『守門者』齊力克西爾狂亂時發出警報。",
+	frenzy_message = "『守門者』齊力克西爾 - 狂亂！",
+	frenzysoon_message = "即將 狂亂！",
 } end)
 
 L:RegisterTranslations("esES", function() return {

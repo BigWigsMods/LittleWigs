@@ -36,9 +36,21 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	engage_trigger = "Crush....", -- not yet
+
+	shatter = "碎裂",
+	shatter_desc = "当施放砸击地面和碎裂时发出警报。",
+	shatter_warn = "砸击地面 - 约8秒后，碎裂！",
+	shatter_message = "碎裂！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	engage_trigger = "Crush....", -- not yet
+
+	shatter = "粉碎",
+	shatter_desc = "當施放大地猛擊和粉碎時發出警報。",
+	shatter_warn = "大地猛擊 - 約8秒后，粉碎！",
+	shatter_message = "粉碎！",
 } end)
 
 L:RegisterTranslations("esES", function() return {

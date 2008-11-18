@@ -51,6 +51,15 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	split = "分裂",
+	split_desc = "當大魔導師特雷斯翠施放分裂時發出警報。",
+	split_message = "大魔導師特雷斯翠 - 分裂！",
+	split_soon_message = "即將 分裂！",
+	split_trigger1 = "There's plenty of me to go around.", -- not yet
+	split_trigger2 = "I'll give you more than you can handle.", -- not yet
+
+	merge_trigger = "Now to finish the job!", -- not yet
+	merge_message = "合體！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -66,6 +75,15 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	split = "分裂",
+	split_desc = "当大魔导师泰蕾丝塔施放分裂时发出警报。",
+	split_message = "大魔导师泰蕾丝塔 - 分裂！",
+	split_soon_message = "即将 分裂！",
+	split_trigger1 = "There's plenty of me to go around.", -- not yet
+	split_trigger2 = "I'll give you more than you can handle.", -- not yet
+
+	merge_trigger = "Now to finish the job!", -- not yet
+	merge_message = "合体！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

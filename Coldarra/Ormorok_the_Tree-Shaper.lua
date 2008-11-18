@@ -64,6 +64,20 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	spikes = "水晶尖刺",
+	spikes_desc = "當施放水晶尖刺前發出警報。",
+	spikes_message = "水晶尖刺！",
+
+	reflection = "法術反射",
+	reflection_desc = "當法術反射時發出警報。",
+	reflection_message = "法術反射！",
+
+	reflectionbar = "法術反射計時條",
+	reflectionbar_desc = "當法術反射持續時顯示計時條。",
+
+	frenzy = "狂亂",
+	frenzy_desc = "當『樹木造形者』歐爾莫洛克狂亂時發出警報。",
+	frenzy_message = "『樹木造形者』歐爾莫洛克 - 狂亂！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -84,7 +98,22 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	spikes = "水晶之刺",
+	spikes_desc = "当施放水晶之刺前发出警报。",
+	spikes_message = "水晶之刺！",
+
+	reflection = "法术反射",
+	reflection_desc = "当施放法术反射时发出警报。",
+	reflection_message = "法术反射！",
+
+	reflectionbar = "法术反射计时条",
+	reflectionbar_desc = "当法术反射持续时显示计时条。",
+
+	frenzy = "狂乱",
+	frenzy_desc = "当塑树者奥莫洛克狂乱时发出警报。",
+	frenzy_message = "塑树者奥莫洛克 - 狂乱！",
 } end )
+
 -- Translated by StingerSoft
 L:RegisterTranslations("ruRU", function() return {
 	spikes = "Кристальные шипы",

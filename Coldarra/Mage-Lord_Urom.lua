@@ -55,12 +55,44 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	timeBomb = "時間爆彈",
+	timeBomb_desc = "當玩家中了時間爆彈時發出警報。",
+	timeBomb_message = ">%s<：時間爆彈！",
+
+	timeBombWhisper = "時間爆彈密語",
+	timeBombWhisper_desc = "當玩家中了時間爆彈時發送密語。",
+	timeBombWhisper_message = ">你< 時間爆彈！",
+
+	timeBombBar = "時間爆彈計時條",
+	timeBombBar_desc = "顯示時間爆彈爆炸計時條。",
+
+	arcaneExplosion = "強力魔爆術",
+	arcaneExplosion_desc = "當法師領主厄隆開始施放強力魔爆術時發出警報。",
+
+	arcaneExplosionBar = "強力魔爆術計時條",
+	arcaneExplosionBar_desc = "顯示強力魔爆術計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	timeBomb = "时间炸弹",
+	timeBomb_desc = "当我玩家中了时间炸弹时发出警报。",
+	timeBomb_message = ">%s<：时间炸弹！",
+
+	timeBombWhisper = "时间炸弹密语",
+	timeBombWhisper_desc = "当玩家中了时间炸弹时发送密语。",
+	timeBombWhisper_message = ">你< 时间炸弹！",
+
+	timeBombBar = "时间炸弹计时条",
+	timeBombBar_desc = "显示时间炸弹爆炸计时条。",
+
+	arcaneExplosion = "魔爆术增效",
+	arcaneExplosion_desc = "当法师领主伊洛姆开始施放魔爆术增效时发出警报。",
+
+	arcaneExplosionBar = "魔爆术增效计时条",
+	arcaneExplosionBar_desc = "显示魔爆术增效计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

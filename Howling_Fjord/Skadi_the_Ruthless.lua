@@ -43,12 +43,34 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	whirlwind = "旋風斬",
+	whirlwind_desc = "當無情的斯卡迪開始旋風斬時發出警報。",
+
+	whirlwindcooldown = "旋風斬冷卻",
+	whirlwindcooldown_desc = "當旋風斬冷卻結束時擦除警報。",
+	whirlwindcooldown_message = "旋風斬 冷卻結束！",
+
+	whirlwindbars = "旋風斬計時條",
+	whirlwindbars_desc = "當旋風斬持續和冷卻時顯示計時條。",
+
+	whirlwind_cooldown_bar = "<旋風斬 冷卻>",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	whirlwind = "旋风斩",
+	whirlwind_desc = "当残忍的斯卡迪旋风斩时发出警报。",
+
+	whirlwindcooldown = "旋风斩冷却",
+	whirlwindcooldown_desc = "当旋风斩冷却结束时发出警报。",
+	whirlwindcooldown_message = "旋风斩 冷却结束！",
+
+	whirlwindbars = "旋风斩计时条",
+	whirlwindbars_desc = "当旋风斩持续和冷却时显示计时条。",
+
+	whirlwind_cooldown_bar = "<旋风斩 冷却>",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
