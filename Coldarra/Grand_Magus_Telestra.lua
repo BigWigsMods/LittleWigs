@@ -32,7 +32,7 @@ L:RegisterTranslations("koKR", function() return {
 	split_message = "대마법사 텔레스트라가 분리합니다!",
 	split_soon_message = "잠시 후 분리",
 	split_trigger1 = "돌아다닐 내가 참 많지.",
-	--split_trigger2 = "I'll give you more than you can handle.",	--need check
+	split_trigger2 = "과연 나를 감당할 수 있겠느냐!",
 
 	merge_trigger = "이제 슬슬 끝내 주마!",
 	merge_message = "본체 등장!",
