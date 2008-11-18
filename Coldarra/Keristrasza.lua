@@ -26,16 +26,16 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	chains = "¼öÁ¤ °á°è",
-	chains_desc = "¼öÁ¤ °á°è°¡ °É¸° ÇÃ·¹ÀÌ¾î¸¦ ¾Ë¸³´Ï´Ù.",
+	chains = "수정 결계",
+	chains_desc = "수정 결계가 걸린 플레이어를 알립니다.",
 	chains_message = "%s: %s",
 
-	chainsbar = "¼öÁ¤ °á°è ¹Ù",
-	chainsbar_desc = "ÆÄÆ¼¿øÀÇ ¼öÁ¤ °á°è ¹Ù¸¦ Ç¥½ÃÇÕ´Ï´Ù.",
+	chainsbar = "수정 결계 바",
+	chainsbar_desc = "파티원의 수정 결계 바를 표시합니다.",
 
-	enrage = "ºÐ³ë",
-	enrage_desc = "ÄÉ¸®½ºÆ®¶óÀÚÀÇ ºÐ³ë¸¦ ¾Ë¸³´Ï´Ù.",
-	enrage_message = "ÄÉ¸®½ºÆ®¶óÀÚ ºÐ³ë",
+	enrage = "분노",
+	enrage_desc = "케리스트라자의 분노를 알립니다.",
+	enrage_message = "케리스트라자 분노",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

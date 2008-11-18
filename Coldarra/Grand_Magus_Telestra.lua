@@ -27,15 +27,15 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	split = "ºÐ¸®",
-	split_desc = "´ë¸¶¹ý»ç ÅÚ·¹½ºÆ®¶óÀÇ ºÐ¸®¸¦ ¾Ë¸³´Ï´Ù.",
-	split_message = "´ë¸¶¹ý»ç ÅÚ·¹½ºÆ®¶ó ºÐ¸®",
-	split_soon_message = "Àá½Ã ÈÄ ºÐ¸®!",
-	split_trigger1 = "µ¹¾Æ´Ù´Ò ³»°¡ Âü ¸¹Áö.",
+	split = "분리",
+	split_desc = "대마법사 텔레스트라의 분리를 알립니다.",
+	split_message = "대마법사 텔레스트라가 분리합니다!",
+	split_soon_message = "잠시 후 분리",
+	split_trigger1 = "돌아다닐 내가 참 많지.",
 	--split_trigger2 = "I'll give you more than you can handle.",	--need check
 
-	merge_trigger = "ÀÌÁ¦ ½½½½ ³¡³» ÁÖ¸¶!",
-	merge_message = "º»Ã¼ µîÀå!",
+	merge_trigger = "이제 슬슬 끝내 주마!",
+	merge_message = "본체 등장!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

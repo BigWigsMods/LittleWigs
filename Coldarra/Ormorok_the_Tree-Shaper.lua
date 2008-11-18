@@ -30,20 +30,20 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	spikes = "¼öÁ¤ °¡½Ã",
-	spikes_desc = "¼öÁ¤ °¡½Ã ½ÃÀüÀ» ¾Ë¸³´Ï´Ù.",
-	spikes_message = "Àá½Ã ÈÄ ¼öÁ¤ °¡½Ã",
+	spikes = "수정 가시",
+	spikes_desc = "수정 가시 시전을 알립니다.",
+	spikes_message = "잠시 후 수정 가시",
 
-	reflection = "ÁÖ¹® ¹Ý»ç",
-	reflection_desc = "ÁÖ¹® ¹Ý»ç¸¦ ¾Ë¸³´Ï´Ù.",
-	reflection_message = "ÁÖ¹® ¹Ý»ç!",
+	reflection = "주문 반사",
+	reflection_desc = "주문 반사를 알립니다.",
+	reflection_message = "주문 반사!",
 
-	reflectionbar = "ÁÖ¹® ¹Ý»ç ¹Ù",
-	reflectionbar_desc = "ÁÖ¹® ¹Ý»çÀÇ Áö¼Ó ¹Ù¸¦ º¸¿©ÁÝ´Ï´Ù.",
+	reflectionbar = "주문 반사 대기시간",
+	reflectionbar_desc = "주문 반사 대기시간에 대한 바입니다.",
 
-	frenzy = "±¤±â",
-	frenzy_desc = "¿À¸£¸ð·ÎÅ©ÀÇ ±¤±â¸¦ ¾Ë¸³´Ï´Ù.",
-	frenzy_message = "¿À¸£¸ð·ÎÅ© ±¤±â",
+	frenzy = "광기",
+	frenzy_desc = "오르모로크의 광기를 알립니다.",
+	frenzy_message = "오르모로크 광기",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

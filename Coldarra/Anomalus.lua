@@ -19,9 +19,9 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	rift = "±Õ¿­",
-	rift_desc = "¾Æ³ë¸»·ç½ºÀÇ ±Õ¿­ ¼ÒÈ¯À» ¾Ë¸³´Ï´Ù.",
-	rift_message = "±Õ¿­ ¼ÒÈ¯!",
+	rift = "균열",
+	rift_desc = "아노말루스의 균열 소환을 알립니다.",
+	rift_message = "균열 소환!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
