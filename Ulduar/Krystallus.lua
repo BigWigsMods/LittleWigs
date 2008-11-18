@@ -44,7 +44,7 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("esES", function() return {
 } end)
 
-L:RegisterTranslations("enUS", function() return {
+L:RegisterTranslations("ruRU", function() return {
 	engage_trigger = "Crush....",
 
 	shatter = "Раскалывание",
