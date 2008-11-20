@@ -24,6 +24,15 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	guardian = "Wächter der Ahn'kahar",
+	guardian_desc = "Warnt vor dem Schlüpfen eines Wächter der Ahn'kahar.",
+
+	broodplague = "Brutseuche",
+	broodplague_desc = "Warnt wer den Brutseuche Debuff hat",
+	broodplague_message = "Brutseuche: %s",
+
+	broodplaguebar = "Brutseuche Bar",
+	broodplaguebar_desc = "Zeigt eine Bar für die Dauer des Brutseuche Debuffs.",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

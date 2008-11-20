@@ -20,6 +20,11 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	leechpoison = "Egelgift",
+	leechpoison_desc = "Warnt wenn Hadronox Egelgift Zaubert.",
+
+	acidcloud = "Säurewolke",
+	acidcloud_desc = "Warnt wenn Hadronox Säurewolke Zaubert.",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
