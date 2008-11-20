@@ -11,7 +11,16 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "ElderNadox",
-	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
+
+	guardian = "Ahn'kahar Guardian",
+	guardian_desc = "Warn for the hatching of an Ahn'kahar Guardian.",
+
+	broodplague = "Brood Plague",
+	broodplague_desc = "Warn for who has the Brood Plague debuff",
+	broodplague_message = "Brood Plague: %s",
+
+	broodplaguebar = "Brood Plague Bar",
+	broodplaguebar_desc = "Show a bar for the duration of the Brood Plague debuff.",
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -24,18 +33,15 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏数据，请考虑开启战斗记录（/combatlog）或 Transcriptor 记录并提交战斗记录，谢谢！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
 } end)
 
 L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
 } end )
 
 ----------------------------------
@@ -48,7 +54,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
 mod.enabletrigger = boss
 mod.guid = 29309
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"guardian",-1,"broodplague","broodplaguebar","bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -56,10 +62,33 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:AddCombatListener("SPELL_AURA_APPLIED", "BroodPlague", 56130, 59467)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "BroodPlagueRemoved", 56130, 59467)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	BigWigs:Print(L["log"])
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
+
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
+	if self.db.profile.guardian then
+		self:IfMessage(msg, "Important")
+	end
+end
+
+function mod:BroodPlague(player, spellId, _, _, spellName)
+	if self.db.profile.broodplague then
+		self:IfMessage(L["broodplague_message"]:format(player), "Important")
+	end
+	if self.db.profile.broodplaguebar then
+		self:Bar(L["broodplague_message"]:format(player), 30, spellID)
+	end
+end
+
+function mod:BroodPlagueRemoved(player)
+	if self.db.profile.broodplaguebar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["broodplague_message"]:format(player))
+	end
+end

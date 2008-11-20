@@ -11,7 +11,13 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Anub'arak",
-	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
+
+	pound = "Pound",
+	pound_desc = "Warn when Anub'arak begins casting pound.",
+	pound_message = "Casting Pound",
+	
+	poundbar = "Pound Bar",
+	poundbar_desc = "Show a cast bar while Anub'arak is casting pound.",
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -24,18 +30,15 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏数据，请考虑开启战斗记录（/combatlog）或 Transcriptor 记录并提交战斗记录，谢谢！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
 } end)
 
 L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
 } end )
 
 ----------------------------------
@@ -48,7 +51,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Azjol-Nerub"]
 mod.enabletrigger = boss
 mod.guid = 29120
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"pound","poundbar","bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -56,10 +59,19 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_CAST_START", "Pound", 53472, 59433)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	BigWigs:Print(L["log"])
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
+
+function mod:Pound(_, spellId)
+	if self.db.profile.poundbar then
+		self:Bar(L["pound_message"], 3.2, spellID)
+	end
+	if self.db.profile.pound then
+		self:IfMessage(L["pound_message"], "Attention", spellId)
+	end
+end
