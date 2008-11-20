@@ -51,6 +51,15 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	guardian = "Ан'кахарский страж",
+	guardian_desc = "Предупреждать о насечке Ан'кахарских стражей.",
+
+	broodplague = "Чумное поветрие",
+	broodplague_desc = "Предупреждать на ком наложен дебафф - Чумное поветрие",
+	broodplague_message = "Чумное поветрие: %s",
+
+	broodplaguebar = "Полоса Чумного поветрия",
+	broodplaguebar_desc = "Отображать полосу длительности дебаффа - Чумное поветрие.",
 } end )
 
 ----------------------------------

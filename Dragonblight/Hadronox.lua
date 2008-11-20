@@ -43,6 +43,11 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	leechpoison = "Яд пиявки",
+	leechpoison_desc = "Предупреждать о применении Хадроноксом Яда пиявки.",
+
+	acidcloud = "Едкое облако",
+	acidcloud_desc = "Предупреждать о применении Хадроноксом Едкого облака.",
 } end )
 
 ----------------------------------

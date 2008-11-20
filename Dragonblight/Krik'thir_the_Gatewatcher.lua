@@ -88,8 +88,8 @@ L:RegisterTranslations("ruRU", function() return {
 	curse_message = "Проклятие усталости - %s",
 
 	frenzy = "Бешенство",
-	frenzy_desc = "Предупреждать о бешенстве Krik'thi.",
-	frenzy_message = "Krik'thir взбесился",
+	frenzy_desc = "Предупреждать о бешенстве Крик'тира.",
+	frenzy_message = "Крик'тир взбесился",
 	frenzysoon_message = "Скоро бешенство",
 } end)
 

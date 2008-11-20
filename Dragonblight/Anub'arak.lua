@@ -45,6 +45,12 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	pound = "Удар",
+	pound_desc = "Предупреждать о применении Ануб'араком Удара.",
+	pound_message = "Применение Удара",
+	
+	poundbar = "Полоса Удара",
+	poundbar_desc = "Отображать полосу применения, когда Ануб'арак применяет удар.",
 } end )
 
 ----------------------------------
