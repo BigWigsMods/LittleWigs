@@ -11,7 +11,21 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Taldaram",
-	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
+
+	embracegain = "Embrace of the Vampyr Gained",
+	embracegain_desc = "Announce when Prince Taldaram gains Embrace of the Vampyr.",
+	embracegain_message = "Embrace of the Vampyr Gained",
+
+	embracefade = "Embrace of the Vampyr Fades",
+	embracefade_desc = "Announce when Embrace of the Vampyr fades from Prince Taldaram.",
+	embracefade_message = "Embrace of the Vampyr Fades",
+
+	embracebar = "Embrace of the Vampyr Bar",
+	embracebar_desc = "Display a bar for the duration of Embrace of the Vampyr.",
+
+	sphere = "Conjure Flame Sphere",
+	sphere_desc = "Warn when Prince Taldaram begins conjuring a Flame Sphere.",
+	sphere_message = "Conjuring Flame Sphere",
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -24,18 +38,15 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏数据，请考虑开启战斗记录（/combatlog）或 Transcriptor 记录并提交战斗记录，谢谢！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
 } end)
 
 L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
 } end )
 
 ----------------------------------
@@ -48,7 +59,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
 mod.enabletrigger = boss
 mod.guid = 29308
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"embracegain","embracefade","embracebar",-1,"sphere","bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -56,10 +67,36 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Embrace", 55959, 59513)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "EmbraceRemoved", 55959, 59513)
+	self:AddCombatListener("SPELL_CAST_START", "Sphere", 55931)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	BigWigs:Print(L["log"])
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
+
+function mod:Embrace(_, spellId, _, _, spellName)
+	if self.db.profile.embracegain then
+		self:IfMessage(L["embracegainmessage"], "Important", spellId)
+	end
+	if self.db.profile.embracebar then
+		self:Bar(spellName, 20, spellId)
+	end
+end
+
+function mod:EmbraceRemoved(_, spellId, _, _, spellName)
+	if self.db.profile.embracefade then
+		self:IfMessage(L["embracefade_message"], "Important", spellId)
+	end
+	if self.db.profile.embracebar then
+		self:TriggerEvent("BigWigs_StopBar", self, spellName)
+	end
+end
+
+function mod:Sphere(_, spellId)
+	if self.db.profile.sphere then
+		self:IfMessage(L["sphere_message"], "Important", spellId)
+	end
+end

@@ -98,10 +98,10 @@ end
 
 function mod:BroodPlague(player, spellId, _, _, spellName)
 	if self.db.profile.broodplague then
-		self:IfMessage(L["broodplague_message"]:format(player), "Important")
+		self:IfMessage(L["broodplague_message"]:format(player), "Important", spellId)
 	end
 	if self.db.profile.broodplaguebar then
-		self:Bar(L["broodplague_message"]:format(player), 30, spellID)
+		self:Bar(L["broodplague_message"]:format(player), 30, spellId)
 	end
 end
 

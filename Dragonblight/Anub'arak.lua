@@ -81,7 +81,7 @@ end
 
 function mod:Pound(_, spellId)
 	if self.db.profile.poundbar then
-		self:Bar(L["pound_message"], 3.2, spellID)
+		self:Bar(L["pound_message"], 3.2, spellId)
 	end
 	if self.db.profile.pound then
 		self:IfMessage(L["pound_message"], "Attention", spellId)
