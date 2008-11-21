@@ -15,7 +15,7 @@ L:RegisterTranslations("enUS", function() return {
 	bane = "Bane",
 	bane_desc = "Warn for the casting of Bane.",
 	bane_message = "Casting Bane",
-	bane_ended = "Bane ended",
+	bane_ended = "Bane Fades",
 
 	banebar = "Bane Bar",
 	banebar_desc = "Display a bar for the duration of the Bane buff.",
@@ -104,8 +104,10 @@ function mod:BaneAura(_, spellId, _, _, spellName)
 end
 
 function mod:BaneAuraRemoved(_, spellId, _, _, spellName)
-	if self.db.profile.banebar then
+	if self.db.profiel.bane then
 		self:IfMessage(L["bane_ended"], "Positive", spellId)
+	end
+	if self.db.profile.banebar then
 		self:TriggerEvent("BigWigs_StopBar", self, spellName)
 	end
 end
