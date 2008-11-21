@@ -15,6 +15,7 @@ L:RegisterTranslations("enUS", function() return {
 	bane = "Bane",
 	bane_desc = "Warn for the casting of Bane.",
 	bane_message = "Casting Bane",
+	bane_ended = "Bane ended",
 
 	banebar = "Bane Bar",
 	banebar_desc = "Display a bar for the duration of the Bane buff.",
@@ -80,9 +81,9 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Bane", 48294)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "BaneAura", 48294)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "BaneAuraRemoved", 48294)
+	self:AddCombatListener("SPELL_CAST_START", "Bane", 48294, 59301)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "BaneAura", 48294, 59301)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "BaneAuraRemoved", 48294, 59301)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
@@ -102,8 +103,9 @@ function mod:BaneAura(_, spellId, _, _, spellName)
 	end
 end
 
-function mod:BaneAuraRemoved(_, _, _, _, spellName)
+function mod:BaneAuraRemoved(_, spellId, _, _, spellName)
 	if self.db.profile.banebar then
+		self:IfMessage(L["bane_ended"], "Positive", spellId)
 		self:TriggerEvent("BigWigs_StopBar", self, spellName)
 	end
 end
