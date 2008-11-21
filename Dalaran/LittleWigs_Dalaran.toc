@@ -20,6 +20,8 @@
 
 ## Dependencies: BigWigs
 
+The_Violet_Hold.lua
+
 Erekem.lua
 Ichoron.lua
 Lavanthor.lua
