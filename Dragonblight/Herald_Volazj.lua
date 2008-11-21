@@ -18,6 +18,9 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	insanity = "Wahnsinn",
+	insanity_desc = "Warnt wenn Herald Volazj Wahnsinn Zaubert.",
+	insanity_message = "Zaubert Wahnsinn",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

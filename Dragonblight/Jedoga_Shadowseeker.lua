@@ -20,6 +20,11 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	thundershock = "Donnerschock",
+	thundershock_desc = "Warnt wenn Jedoga Schattensucher Donnerschock zaubert.",
+
+	thundershockbar = "Donnerschock Bar",
+	thundershockbar_desc = "Zeigt eine Bar für die Dauer von Jedoga Schattensuchers Donnerschock.",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
@@ -58,7 +63,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Thunershock", 55931)
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "Thundershock", 56926)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
@@ -66,7 +71,7 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:Thunershock(_, spellId, _, _, spellName)
+function mod:Thundershock(_, spellId, _, _, spellName)
 	if self.db.profile.thundershock then
 		self:IfMessage(spellName, "Important", spellId)
 	end

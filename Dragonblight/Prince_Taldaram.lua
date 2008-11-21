@@ -29,6 +29,20 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	embracegain = "Umarmung des Vampyrs Bekommen",
+	embracegain_desc = "Meldet wenn Prinz Taldaram Umarmung des Vampyrs bekommt.",
+	embracegain_message = "Umarmung des Vampyrs bekommen",
+
+	embracefade = "Umarmung des Vampyrs Abgelaufen",
+	embracefade_desc = "Meldet wenn Umarmung des Vampyrs von Prinz Taldaram schwindet.",
+	embracefade_message = "Umarmung des Vampyrs Schwindet",
+
+	embracebar = "Umarmung des Vampyrs Bar",
+	embracebar_desc = "Zeigt eine Bar für die Dauer von Umarmung des Vampyrs.",
+
+	sphere = "Flammensphäre beschwören",
+	sphere_desc = "Warnt wenn Prinz Taldaram eine Flammensphäre beschwört.",
+	sphere_message = "Beschwört Flammensphäre",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
