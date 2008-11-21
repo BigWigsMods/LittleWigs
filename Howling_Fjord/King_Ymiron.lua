@@ -19,6 +19,13 @@ L:RegisterTranslations("enUS", function() return {
 
 	banebar = "Bane Bar",
 	banebar_desc = "Display a bar for the duration of the Bane buff.",
+
+	rot = "Fetid Rot",
+	rot_desc = "Warn when some recieves the Fetid Rot debuff.",
+	rot_message = "%s: %s",
+
+	rotbar = "Fetid Rot Bar",
+	rotbar_desc = "Show a bar for the duration of Fetid Rot.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -73,7 +80,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Pinnacle"]
 mod.enabletrigger = boss 
 mod.guid = 26861
-mod.toggleoptions = {"bane", "banebar", "bosskill"}
+mod.toggleoptions = {"bane", "banebar", -1, "rot", "rotbat", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -84,6 +91,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Bane", 48294, 59301)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "BaneAura", 48294, 59301)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "BaneAuraRemoved", 48294, 59301)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Rot", 48291, 59300)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "RotRemoved", 48291, 59300)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
@@ -97,17 +106,34 @@ function mod:Bane(_, spellId, _, _, spellName)
 	end
 end
 
-function mod:BaneAura(_, spellId, _, _, spellName)
+function mod:BaneAura(player, spellId, _, _, spellName)
+	if player ~= boss then return end
 	if self.db.profile.banebar then
 		self:Bar(spellName, 5, spellId)
 	end
 end
 
-function mod:BaneAuraRemoved(_, spellId, _, _, spellName)
-	if self.db.profiel.bane then
+function mod:BaneAuraRemoved(player, spellId, _, _, spellName)
+	if player ~= boss then return end
+	if self.db.profile.bane then
 		self:IfMessage(L["bane_ended"], "Positive", spellId)
 	end
 	if self.db.profile.banebar then
 		self:TriggerEvent("BigWigs_StopBar", self, spellName)
+	end
+end
+
+function mod:Rot(player, spellId, _, _, spellName)
+	if self.db.profile.rot then
+		self:IfMessage(L["rot_message"]:format(spellName, player), "Urgent", spellId)
+	end
+	if self.db.profile.rotbar then
+		self:Bar(L["rot_message"]:format(spellName, player), 9, spellId)
+	end
+end
+
+function mod:RotRemoved(player, _, _, _, spellName)
+	if self.db.profile.rotbar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["rot_message"]:format(spellName, player))
 	end
 end
