@@ -93,7 +93,7 @@ end
 
 function mod:Embrace(_, spellId, _, _, spellName)
 	if self.db.profile.embracegain then
-		self:IfMessage(L["embracegainmessage"], "Important", spellId)
+		self:IfMessage(L["embracegain_message"], "Important", spellId)
 	end
 	if self.db.profile.embracebar then
 		self:Bar(spellName, 20, spellId)
