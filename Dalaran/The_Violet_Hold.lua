@@ -41,7 +41,7 @@ L:RegisterTranslations("deDE", function() return {
 	next_portal = "N\195\164chstes Portal",
 
 	portal_message15s = "%s in ~15 Sekunden!",
-	portal_message140s = "%s in ~95 Sekunden!",
+	portal_message95s = "%s in ~95 Sekunden!",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
