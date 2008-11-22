@@ -15,12 +15,20 @@ L:RegisterTranslations("enUS", function() return {
 	
 	planarshift = "Planar Shift",
 	planarshift_desc = "Warns for Planar Shift",
-	planarshift_message = "Planar Shift!",
-	planarshift_expire_warning = "Planar Shift ends in 5 sec!",
+
+	planarshiftbar = "Planar Shift Bar",
+	planarshiftbar_desc = "Display a bar for the duration of Planar Shift.",
+
+	planarshift_message = "Planar Shift",
+	planarshift_expire_message = "Planar Shift ends in 5 sec",
 	
 	enragedassault = "Enraged Assault",
 	enragedassault_desc = "Warns for Enraged Assault",
-	enragedassault_message = "Enraged Assault!",
+
+	enragedassultbar = "Enraged Assult Bar",
+	enragedassultbar_desc = "Display a bar for the duraction of Enraged Assult.",
+
+	enragedassault_message = "Enraged Assault",
 	
 	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
 } end )
@@ -54,7 +62,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Oculus"]
 mod.enabletrigger = {boss} 
 mod.guid = 27656
-mod.toggleoptions = {"planarshift", "enragedassault", "bosskill"}
+mod.toggleoptions = {"planarshift", "planarshiftbar", -1, "enragedassault", "enragedassult", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -73,12 +81,20 @@ end
 ------------------------------
 
 function mod:PlanarShift(_, spellId, _, _, spellName)
-	self:IfMessage(L["planarshift_message"], "Important", spellId)
-	self:Bar(spellName, 18, spellId)
-	self:DelayedMessage(13, L["planarshift_expire_warning"], "Urgent")
+	if self.db.profile.planarshift then
+		self:IfMessage(L["planarshift_message"], "Important", spellId)
+		self:DelayedMessage(13, L["planarshift_expire_message"], "Attention")
+	end
+	if self.db.profile.planarshiftbar then
+		self:Bar(spellName, 18, spellId)
+	end
 end
 
 function mod:EnragedAssault(player, spellId, _, _, spellName)
-	self:IfMessage(L["enragedassault_message"], "Important", spellId)
-	self:Bar(spellName, 12, spellId)
+	if self.db.profile.enragedassult then
+		self:IfMessage(L["enragedassault_message"], "Important", spellId)
+	end
+	if self.db.profile.enragedassultbar then
+		self:Bar(spellName, 12, spellId)
+	end
 end
