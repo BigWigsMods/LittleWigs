@@ -130,10 +130,10 @@ function mod:Whirlwind(_, spellId, _, _, spellName)
 		self:IfMessage(spellName, "Urgent", spellId)
 	end
 	if self.db.profile.whirlwindcooldown then
-		self:DelayedMessage(10, L["whirlwind_cooldown_text"], "Attention")
+		self:DelayedMessage(23, L["whirlwind_cooldown_text"], "Attention")
 	end
 	if self.db.profile.whirlwindbars then
 		self:Bar(spellName, 10, spellId)
-		self:Bar(L["whirlwind_cooldown_bar"], 13, spellId)
+		self:Bar(L["whirlwind_cooldown_bar"], 23, spellId)
 	end
 end
