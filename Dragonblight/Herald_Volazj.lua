@@ -56,6 +56,16 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	insanity = "Безумие",
+	insanity_desc = "Предупреждать когда Herald Volazj начинает применять Безумие.",
+	insanity_message = "Применяется Безумие",
+	
+	shiver = "Трепет",
+	shiver_desc = "Предупреждать на кого наложен дебафф Трепет",
+	shiver_message = "Трепет на: %s",
+	
+	shiverbar = "Полоса Трепета",
+	shiverbar_desc = "Отображать полосу продолжительности дебаффа Трепета.",
 } end )
 
 ----------------------------------

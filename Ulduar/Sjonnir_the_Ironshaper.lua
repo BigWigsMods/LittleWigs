@@ -79,9 +79,7 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
-
-	--engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",
+	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",
 
 	charge = "Статический заряд",
 	charge_desc = "Предупреждать, когда кто-нибудь статически заряжен.",

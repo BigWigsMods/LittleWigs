@@ -56,6 +56,14 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	sinclari = "Лейтенант Синклари",
+
+	next_portal = "Следующий портал",
+
+	portal_bar = "~%s: %s", --shouldn't require translation
+
+	portal_message15s = "%s через ~15 сек!",
+	portal_message95s = "%s через ~95 сек!",
 } end )
 
 ----------------------------------

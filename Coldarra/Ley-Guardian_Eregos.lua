@@ -67,6 +67,23 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	planarshift = "Сдвиг плоскости",
+	planarshift_desc = "Предупреждать о Сдвиге плоскости",
+
+	planarshiftbar = "Полоса Сдвига плоскости",
+	planarshiftbar_desc = "Отображать полосу продолжительности Сдвига плоскости.",
+
+	planarshift_message = "Сдвиг плоскости",
+	planarshift_expire_message = "Конец Сдвига плоскости через 5 сек",
+	
+	enragedassault = "Яростный натиск",
+	enragedassault_desc = "Предупреждать о Яростном натиске",
+
+	enragedassultbar = "Полоса Яростного натиска",
+	enragedassultbar_desc = "Отображать полосу продолжительности Яростного натиска.",
+
+	enragedassault_message = "Яростный натиск",
+	
 	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
 } end )
 

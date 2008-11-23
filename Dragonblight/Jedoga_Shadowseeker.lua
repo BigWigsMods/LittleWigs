@@ -48,6 +48,11 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	thundershock = "Громовой удар",
+	thundershock_desc = "Предупреждать когда Джедога Искательница Теней начинает применение Громового удара.",
+
+	thundershockbar = "Полоса Громового удара",
+	thundershockbar_desc = "Отображать полосу продолжительности Громовых ударов Джедога.",
 } end )
 
 ----------------------------------

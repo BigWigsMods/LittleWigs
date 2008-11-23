@@ -75,6 +75,20 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	embracegain = "Получение Объятия вампира",
+	embracegain_desc = "Сообщать когда Принц Талдарам получает Объятие вампира.",
+	embracegain_message = "Получено Объятие вампира",
+
+	embracefade = "Рассеивание Объятия вампира",
+	embracefade_desc = "Сообщать когда Объятие вампира спадает с Принца Талдарам.",
+	embracefade_message = "Объятие вампира рассеелось",
+
+	embracebar = "Полоса Объятия вампира",
+	embracebar_desc = "Отображать полосу продолжительности Объятия вампира.",
+
+	sphere = "Создание сферы огня",
+	sphere_desc = "Предупреждать когда Принц Талдарам начинает Создание сферы огня.",
+	sphere_message = "Создание сферы огня",
 } end )
 
 ----------------------------------
