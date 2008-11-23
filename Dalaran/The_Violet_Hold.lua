@@ -62,7 +62,7 @@ L:RegisterTranslations("ruRU", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local mod = BigWigs:NewModule(name)
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
