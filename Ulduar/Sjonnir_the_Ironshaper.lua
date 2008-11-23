@@ -2,7 +2,7 @@
 --      Are you local?      --
 ------------------------------
 
-local boss = BB["Sjonnir the Ironshaper"]
+local boss = BB["Sjonnir The Ironshaper"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 ----------------------------
@@ -111,9 +111,9 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Charge", 50834)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "ChargeRemoved", 50834)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Ring", 50840, 59849)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Charge", 50834, 59846)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "ChargeRemoved", 50834, 59846)
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "Ring", 50840, 59849, 59861, 51849)
 end
 
 ------------------------------
