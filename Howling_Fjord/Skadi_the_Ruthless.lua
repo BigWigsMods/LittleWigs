@@ -23,6 +23,7 @@ L:RegisterTranslations("enUS", function() return {
 	whirlwindbars_desc = "Show bars for the duration of the Whirlwind and it's cooldown.",
 
 	whirlwind_cooldown_bar = "Whirlwind cooldown",
+	whirlwind_cooldown_text = "Whirlwind cooldown over!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -129,7 +130,7 @@ function mod:Whirlwind(_, spellId, _, _, spellName)
 		self:IfMessage(spellName, "Urgent", spellId)
 	end
 	if self.db.profile.whirlwindcooldown then
-		self:DelayedMessage(13, L["infernal_message"], "Attention")
+		self:DelayedMessage(10, L["whirlwind_cooldown_text"], "Attention")
 	end
 	if self.db.profile.whirlwindbars then
 		self:Bar(spellName, 10, spellId)
