@@ -33,6 +33,12 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	engage_trigger = "부셔져라...",
+
+	shatter = "산산조각",
+	shatter_desc = "발 구르기와 산산조각을 알립니다.",
+	shatter_warn = "발 구르기 - 약 8초 후 산산조각!",
+	shatter_message = "산산조각!",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

@@ -26,6 +26,17 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	whirlwind = "소용돌이",
+	whirlwind_desc = "학살자 스카디의 소용돌이 시작을 알립니다.",
+
+	whirlwindcooldown = "소용돌이 대기시간",
+	whirlwindcooldown_desc = "소용돌이 대기시간을 알립니다.",
+	whirlwindcooldown_message = "소용돌이 대기시간 종료",
+
+	whirlwindbars = "소용돌이 바",
+	whirlwindbars_desc = "소용돌이의 지속시간과 대기시간을 바로 표시합니다.",
+
+	whirlwind_cooldown_bar = "소용돌이 대기시간",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

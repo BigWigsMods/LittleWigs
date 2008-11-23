@@ -27,6 +27,9 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	stomp = "분쇄의 발구르기",
+	stomp_desc = "볼칸 빛바랜 골렘 폭파 & 분쇄의 발구르기를 알립니다.",
+	stomp_message = "분쇄의 발구르기 시전",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

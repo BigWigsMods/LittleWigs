@@ -31,6 +31,11 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	thundershock = "천둥 충격",
+	thundershock_desc = "어둠 추적자 제도가의 천둥 충격 시전을 알립니다.",
+
+	thundershockbar = "천둥 충격 바",
+	thundershockbar_desc = "어둠 추적자 제도가의 천둥 충격 지속 바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

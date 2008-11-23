@@ -33,6 +33,12 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	nova = "번개 회오리",
+	nova_desc = "번개 회오리 시전을 알립니다.",
+	nova_message = "번개 회오리 시전",
+
+	novaBar = "번개 회오리 바",
+	novaBar_desc = "번개 회오리 시전 시간바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

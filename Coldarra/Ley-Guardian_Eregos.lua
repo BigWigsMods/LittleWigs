@@ -34,6 +34,24 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	planarshift = "차원 이동",
+	planarshift_desc = "차원 이동을 알립니다.",
+
+	planarshiftbar = "차원 이동 바",
+	planarshiftbar_desc = "차원 이동의 지속 시간을 바로 표시합니다.",
+
+	planarshift_message = "차원 이동",
+	planarshift_expire_message = "5초 후 차원 이동 종료",
+	
+	enragedassault = "맹렬한 격노",
+	enragedassault_desc = "맹렬한 격노를 알립니다.",
+
+	enragedassultbar = "맹렬한 격노 바",
+	enragedassultbar_desc = "맹렬한 격노의 지속시간을 바로 표시합니다.",
+
+	enragedassault_message = "맹렬한 격노",
+	
+	log = "|cffff0000"..boss.."|r: 해당 보스의 데이터가 필요합니다. 채팅창에 /전투기록 , /대화기록 을 입력하여 기록된 데이터를 보내주시기 바랍니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

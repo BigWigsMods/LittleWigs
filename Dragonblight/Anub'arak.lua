@@ -33,6 +33,12 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	pound = "강타",
+	pound_desc = "아눕아락의 강타 시전을 알립니다.",
+	pound_message = "강타 시전",
+	
+	poundbar = "강타 바",
+	poundbar_desc = "아눕아락의 강타 시전바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

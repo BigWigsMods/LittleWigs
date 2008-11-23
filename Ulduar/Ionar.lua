@@ -43,6 +43,16 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	overload = "전하 과부하",
+	overload_desc = "전하 과부하가 걸린 플레이어를 알립니다.",
+	overload_message = "전하 과부하: %s",
+
+	overloadWhisper = "전하 과부하 귓속말",
+	overloadWhisper_desc = "전하 과부하에 걸린 플레이어에게 귓속말을 보냅니다.",
+	overloadWhisper_message = "당신은 전하 과부하!",
+
+	overloadBar = "전하 과부하 바",
+	overloadBar_desc = "전하 과부하에 걸린 플레이어의 지속 시간바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

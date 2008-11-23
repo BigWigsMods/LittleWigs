@@ -49,6 +49,20 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	embracegain = "흡혈의 은총 획득",
+	embracegain_desc = "공작 탈다람의 흡혈의 은총 획득을 알립니다.",
+	embracegain_message = "흡혈의 은총 획득!",
+
+	embracefade = "흡혈의 은총 사라짐",
+	embracefade_desc = "공작 탈다람에게서 흡혈의 은총이 사라짐을 알립니다.",
+	embracefade_message = "흡혈의 은총 사라짐",
+
+	embracebar = "흡혈의 은총 바",
+	embracebar_desc = "흡혈의 은총의 지속 시간바를 표시합니다.",
+
+	sphere = "화염 구슬 소환",
+	sphere_desc = "공작 탈다람의 화염 구슬 소환 시전을 알립니다.",
+	sphere_message = "화염 구슬 소환!",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

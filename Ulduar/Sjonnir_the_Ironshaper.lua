@@ -39,6 +39,15 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",	--check
+
+	charge = "전하 충전",
+	charge_desc = "전하 충전에 걸린 플레이어를 알립니다.",
+	charge_message = "전하 충전: %s",
+
+	ring = "번개 고리",
+	ring_desc = "번개 고리를 알립니다.",
+	ring_message = "번개 고리!",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

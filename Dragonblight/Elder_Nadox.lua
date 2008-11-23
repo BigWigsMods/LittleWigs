@@ -39,6 +39,15 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	guardian = "안카하르 수호자",
+	guardian_desc = "안카하르 수호자가 깨어나는 것을 알립니다.",
+
+	broodplague = "혈족 역병",
+	broodplague_desc = "혈족 역병 디버프에 걸린 플레이어를 알립니다.",
+	broodplague_message = "혈족 역병: %s",
+
+	broodplaguebar = "혈족 역병 바",
+	broodplaguebar_desc = "혈족 역병 디버프의 지속 바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

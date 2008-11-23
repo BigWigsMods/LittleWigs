@@ -31,6 +31,11 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	leechpoison = "착취의 독",
+	leechpoison_desc = "하드로녹스의 착취의 독 시전을 알립니다.",
+
+	acidcloud = "독 구름",
+	acidcloud_desc = "하드로녹스의 독 구름 시전을 알립니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

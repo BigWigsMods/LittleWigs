@@ -19,6 +19,9 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	magicpull = "마법 인력",
+	magicpull_desc = "마법 인력을 알립니다.",
+	magicpull_message = "마법 인력 시전",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
