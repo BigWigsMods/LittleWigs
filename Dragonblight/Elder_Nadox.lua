@@ -36,6 +36,15 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
+	guardian = "Gardien ahn'kahar",
+	guardian_desc = "Prévient lors de l'éclosion d'un gardien ahn'kahar.",
+
+	broodplague = "Peste d'espèce",
+	broodplague_desc = "Prévient quand un joueur subit les effets de la Peste d'espèce.",
+	broodplague_message = "Peste d'espèce : %s",
+
+	broodplaguebar = "Peste d'espèce - Barre",
+	broodplaguebar_desc = "Affiche une barre indiquant la durée de l'affaiblissement Peste d'espèce.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

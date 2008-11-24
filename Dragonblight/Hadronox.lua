@@ -28,6 +28,11 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
+	leechpoison = "Poison de sangsue",
+	leechpoison_desc = "Prévient quand Hadronox incante un Poison de sangsue.",
+
+	acidcloud = "Nuage d'acide",
+	acidcloud_desc = "Prévient quand Hadronox incante un Nuage d'acide.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

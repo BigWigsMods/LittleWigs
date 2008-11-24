@@ -55,6 +55,22 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	planarshift = "Transfert planaire",
+	planarshift_desc = "Prévient de l'arrivée des Transferts planaires.",
+
+	planarshiftbar = "Transfert planaire - Barre",
+	planarshiftbar_desc = "Affiche une barre indiquant la durée du Transfert planaire.",
+
+	planarshift_message = "Transfert planaire",
+	planarshift_expire_message = "Fin du Transfert planaire dans 5 sec.",
+
+	enragedassault = "Assaut enragé",
+	enragedassault_desc = "Prévient de l'arrivée des Assauts enragés.",
+
+	enragedassultbar = "Assaut enragé - Barre",
+	enragedassultbar_desc = "Affiche une barre indiquant la durée de l'Assaut enragé.",
+
+	enragedassault_message = "Assaut enragé",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

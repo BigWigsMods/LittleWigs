@@ -25,9 +25,9 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("frFR", function() return {
 	engage_trigger = "Vous n'auriez jamais du venir ici… Maintenant, vous allez mourir !",
 
-	shock = "Shock of Sorrow",
-	shock_desc = "Prévient quand Shock of Sorrow est incanté.",
-	shock_message = "Shock of Sorrow en incantation",
+	shock = "Horion de chagrin",
+	shock_desc = "Prévient quand Horion de chagrin est incanté.",
+	shock_message = "Horion de chagrin en incantation",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

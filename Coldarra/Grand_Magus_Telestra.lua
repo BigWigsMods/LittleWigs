@@ -46,7 +46,7 @@ L:RegisterTranslations("frFR", function() return {
 	split_trigger1 = "Il y en aura assez pour tout le monde.", -- check
 	split_trigger2 = "Vous allez être trop bien servis.", -- check
 
-	merge_trigger = "Et maintenant, finissons le travail !", -- check
+	merge_trigger = "Et maintenant finissons le travail !", -- check
 	merge_message = "Fusion",
 } end )
 

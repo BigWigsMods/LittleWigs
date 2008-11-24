@@ -15,7 +15,7 @@ local bossdeaths = 0
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "VioletHold",
-	
+
 	sinclari = "Lieutenant Sinclari",
 
 	portal = "Portal Warnings",
@@ -29,7 +29,7 @@ L:RegisterTranslations("enUS", function() return {
 	portal_bar = "~%s: %s", --shouldn't require translation
 
 	portal_message15s = "%s in ~15 seconds!",
-	portal_message95s = "%s in ~95 seconds!",	
+	portal_message95s = "%s in ~95 seconds!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -50,6 +50,20 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	sinclari = "Lieutenant Sinclari",
+
+	portal = "Avertissements des portails",
+	portal_desc = "Prévient quand le prochain portail arrive (approximatif).",
+
+	portalbar = "Barres des vagues",
+	portalbar_desc = "Affiche des délais approximatifs avant le prochain portail.",
+
+	next_portal = "Prochain portail",
+
+	portal_bar = "~%s : %s", -- undividable space FTW!
+
+	portal_message15s = "%s dans ~15 sec. !",
+	portal_message95s = "%s dans ~95 sec. !",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

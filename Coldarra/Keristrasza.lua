@@ -46,7 +46,7 @@ L:RegisterTranslations("frFR", function() return {
 	chainsbar = "Chaînes de cristal - Barre",
 	chainsbar_desc = "Affiche une barre quand un membre du groupe est prisonnier des Chaînes de cristal.",
 
-	enrage = "Enrage",
+	enrage = "Enrager",
 	enrage_desc = "Prévient quand Keristrasza devient enragée.",
 	enrage_message = "Keristrasza est enragée",
 } end )

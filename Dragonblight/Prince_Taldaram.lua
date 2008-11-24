@@ -46,6 +46,20 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
+	embracegain = "Etreinte du vampire - Gain",
+	embracegain_desc = "Prévient quand le Prince Taldaram gagne l'Etreinte du vampire.",
+	embracegain_message = "Etreinte du vampire lancée",
+
+	embracefade = "Etreinte du vampire - Fin",
+	embracefade_desc = "Prévient quand Etreinte du vamprie disparait du Prince Taldaram.",
+	embracefade_message = "Etreinte du vampire terminée",
+
+	embracebar = "Etreinte du vampire - Barre",
+	embracebar_desc = "Affiche une barre indiquant la durée de l'Etreinte du vampire.",
+
+	sphere = "Invocation d'une sphère de flammes",
+	sphere_desc = "Prévient quand le Prince Taldaram commence à invoquer une sphère de flammes.",
+	sphere_message = "Invocation d'une sphère de flammes en cours",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

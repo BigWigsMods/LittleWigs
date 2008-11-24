@@ -4,6 +4,7 @@
 ## Title-zhCN: Little Wigs [|cffeda55f达拉然r]
 ## Title-zhTW: Little Wigs [|cffeda55f達拉然|r]
 ## Notes: Little Wigs Dalaran Modules
+## Notes-frFR: Modules Little Wigs concernant Dalaran.
 ## Notes-zhCN: Little Wigs 达拉然模块
 ## Notes-zhTW: Little Wigs 達拉然模組
 ## Author: Ulic

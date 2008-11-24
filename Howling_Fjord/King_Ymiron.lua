@@ -52,6 +52,13 @@ L:RegisterTranslations("frFR", function() return {
 
 	banebar = "Fléau - Barre",
 	banebar_desc = "Affiche une barre indiquant la durée du buff Fléau.",
+
+	rot = "Pourriture fétide",
+	rot_desc = "Prévient quand un joueur subit les effets de la Pourriture fétide.",
+	rot_message = "%s : %s",
+
+	rotbar = "Pourriture fétide - Barre",
+	rotbar_desc = "Affiche une barre indiquant la durée de la Pourriture fétide.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

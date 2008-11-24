@@ -30,6 +30,12 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
+	pound = "Marteler",
+	pound_desc = "Prévient quand Anub'arak commence à incanter Marteler.",
+	pound_message = "Marteler en incantation",
+
+	poundbar = "Marteler - Barre",
+	poundbar_desc = "Affiche une barre d'incantation pour le Marteler de Anub'arak.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

@@ -31,6 +31,16 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
+	insanity = "Insanité",
+	insanity_desc = "Prévient quand le Hérault Volazj commence à incanter Insanité.",
+	insanity_message = "Insanité en incantation",
+
+	shiver = "Frisson",
+	shiver_desc = "Prévient quand un joueur subit les effets du Frisson",
+	shiver_message = "Frisson : %s",
+
+	shiverbar = "Frisson - Barre",
+	shiverbar_desc = "Affiche une barre indiquant la durée de l'affaiblissement Frisson.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

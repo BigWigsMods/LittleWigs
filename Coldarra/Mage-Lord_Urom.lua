@@ -53,7 +53,7 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	timeBomb = "Bombe à retardement",
-	timeBomb_desc = "révient quand un joueur subit les effets de la Bombe à retardement.",
+	timeBomb_desc = "Prévient quand un joueur subit les effets de la Bombe à retardement.",
 	timeBomb_message = "%s : Bombe à retardement",
 
 	timeBombWhisper = "Bombe à retardement - Chuchotement",
