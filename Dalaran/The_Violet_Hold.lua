@@ -18,6 +18,12 @@ L:RegisterTranslations("enUS", function() return {
 	
 	sinclari = "Lieutenant Sinclari",
 
+	portal = "Portal Warnings",
+	portal_desc = "Announce approximate warning messages for the next portal.",
+
+	portalbar = "Wave Bars",
+	portalbar_desc = "Display approximate timer bars for the next portal.",
+	
 	next_portal = "Next Portal",
 
 	portal_bar = "~%s: %s", --shouldn't require translation
@@ -76,7 +82,7 @@ mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = L["sinclari"]
 mod.guid = 31134
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"portal", "portalbar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
