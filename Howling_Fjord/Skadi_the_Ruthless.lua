@@ -38,6 +38,7 @@ L:RegisterTranslations("koKR", function() return {
 	whirlwindbars_desc = "소용돌이의 지속시간과 대기시간을 바로 표시합니다.",
 
 	whirlwind_cooldown_bar = "소용돌이 대기시간",
+	whirlwind_cooldown_text = "소용돌이 대기시간 종료!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

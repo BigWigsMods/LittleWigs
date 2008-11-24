@@ -34,6 +34,12 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	sinclari = "부관 신클래리",
+	
+	portal = "차원문 경고",
+	portal_desc = "다음 차원문에 대하여 알립니다.",
+
+	portalbar = "웨이브 바",
+	portalbar_desc = "다음 포탈에 대한 웨이브 바를 표시합니다.",
 
 	next_portal = "다음 차원문",
 
