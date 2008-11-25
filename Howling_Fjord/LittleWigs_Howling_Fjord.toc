@@ -2,14 +2,14 @@
 ## X-Curse-Packaged-Version: 3.0.0-beta1
 
 ## Title: Little Wigs [|cffeda55fHowling Fjord|r]
-## Title-frFR: Little Wigs [|cffeda55fFjord Hurlant|r]
-## Title-zhCN: Little Wigs [|cffeda55f嚎风峡湾r]
-## Title-zhTW: Little Wigs [|cffeda55f凜風峽灣|r]
-## Title-koKR: Little Wigs [|cffeda55f울부짖는 협만|r]
 ## Notes: Little Wigs Howling Fjord Modules
+## Title-frFR: Little Wigs [|cffeda55fFjord Hurlant|r]
 ## Notes-frFR: Modules Little Wigs concernant le Fjord Hurlant.
+## Title-zhCN: Little Wigs [|cffeda55f嚎风峡湾r]
 ## Notes-zhCN: Little Wigs 嚎风峡湾模块
+## Title-zhTW: Little Wigs [|cffeda55f凜風峽灣|r]
 ## Notes-zhTW: Little Wigs 凜風峽灣模組
+## Title-koKR: Little Wigs [|cffeda55f울부짖는 협만|r]
 ## Notes-koKR: Little Wigs 울부짖는 협만 경고
 ## Author: Ulic
 ## X-Credits: Yoshimo

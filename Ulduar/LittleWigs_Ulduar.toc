@@ -2,14 +2,14 @@
 ## X-Curse-Packaged-Version: 3.0.0-beta1
 
 ## Title: Little Wigs [|cffeda55fUlduar|r]
-## Title-zhCN: Little Wigs [|cffeda55f奥杜尔r]
-## Title-zhTW: Little Wigs [|cffeda55f奧杜亞|r]
-## Title-koKR: Little Wigs [|cffeda55f울두아르|r]
 ## Notes: Little Wigs Ulduar Modules
-## Notes-frFR: Modules Little Wigs concernant Ulduar.
+## Title-zhCN: Little Wigs [|cffeda55f奥杜尔r]
 ## Notes-zhCN: Little Wigs 奥杜尔模块
+## Title-zhTW: Little Wigs [|cffeda55f奧杜亞|r]
 ## Notes-zhTW: Little Wigs 奧杜亞模組
+## Title-koKR: Little Wigs [|cffeda55f울두아르|r]
 ## Notes-koKR: Little Wigs 울두아르 경고
+## Notes-frFR: Modules Little Wigs concernant Ulduar.
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0
