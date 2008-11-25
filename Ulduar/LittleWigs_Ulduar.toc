@@ -4,10 +4,12 @@
 ## Title: Little Wigs [|cffeda55fUlduar|r]
 ## Title-zhCN: Little Wigs [|cffeda55f奥杜尔r]
 ## Title-zhTW: Little Wigs [|cffeda55f奧杜亞|r]
+## Title-koKR: Little Wigs [|cffeda55f울두아르|r]
 ## Notes: Little Wigs Ulduar Modules
 ## Notes-frFR: Modules Little Wigs concernant Ulduar.
 ## Notes-zhCN: Little Wigs 奥杜尔模块
 ## Notes-zhTW: Little Wigs 奧杜亞模組
+## Notes-koKR: Little Wigs 울두아르 경고
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

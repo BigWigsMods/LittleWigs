@@ -4,10 +4,12 @@
 ## Title-frFR: Little Wigs [|cffeda55fFrimarra|r]
 ## Title-zhCN: Little Wigs [|cffeda55f考达拉r]
 ## Title-zhTW: Little Wigs [|cffeda55f凜懼島|r]
+## Title-koKR: Little Wigs [|cffeda55f콜다라|r]
 ## Notes: Little Wigs Coldarra Modules
 ## Notes-frFR: Modules Little Wigs concernant Frimarra.
 ## Notes-zhCN: Little Wigs 考达拉模块
 ## Notes-zhTW: Little Wigs 凜懼島模組
+## Notes-koKR: Little Wigs 콜다라 경고
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0
