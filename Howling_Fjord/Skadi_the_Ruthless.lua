@@ -16,14 +16,13 @@ L:RegisterTranslations("enUS", function() return {
 	whirlwind_desc = "Warn when Skadi the Ruthless begins to Whirlwind.",
 
 	whirlwindcooldown = "Whirlwind Cooldown",
-	whirlwindcooldown_desc = "Warn when cooldown for Whirlwind has passed",
+	whirlwindcooldown_desc = "Warn when cooldown for Whirlwind has passed.",
 	whirlwindcooldown_message = "Whirlwind cooldown passed",
 
 	whirlwindbars = "Whirlwind Bars",
 	whirlwindbars_desc = "Show bars for the duration of the Whirlwind and it's cooldown.",
 
 	whirlwind_cooldown_bar = "Whirlwind cooldown",
-	whirlwind_cooldown_text = "Whirlwind cooldown over!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -38,7 +37,6 @@ L:RegisterTranslations("koKR", function() return {
 	whirlwindbars_desc = "소용돌이의 지속시간과 대기시간을 바로 표시합니다.",
 
 	whirlwind_cooldown_bar = "소용돌이 대기시간",
-	whirlwind_cooldown_text = "소용돌이 대기시간 종료!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -118,7 +116,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Whirlwind", 59322)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Whirlwind", 59322, 50228)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
@@ -131,7 +129,7 @@ function mod:Whirlwind(_, spellId, _, _, spellName)
 		self:IfMessage(spellName, "Urgent", spellId)
 	end
 	if self.db.profile.whirlwindcooldown then
-		self:DelayedMessage(23, L["whirlwind_cooldown_text"], "Attention")
+		self:DelayedMessage(23, L["whirlwindcooldown_message"], "Attention")
 	end
 	if self.db.profile.whirlwindbars then
 		self:Bar(spellName, 10, spellId)
