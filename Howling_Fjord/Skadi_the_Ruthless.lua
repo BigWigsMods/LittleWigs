@@ -68,6 +68,17 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	whirlwind = "Wirbelwind",
+	whirlwind_desc = "Warnt wenn Skadi der Skrupellose Wirbelwind wirkt.",
+
+	whirlwindcooldown = "Wirbelwind Cooldown",
+	whirlwindcooldown_desc = "Warnt wenn der Cooldown für Wirbelwind frei ist.",
+	whirlwindcooldown_message = "Wirbelwind Cooldown Vorbei",
+
+	whirlwindbars = "Wirbelwind Bars",
+	whirlwindbars_desc = "Zeige Bars für die Dauer von Wirbelwind und dessen Cooldown.",
+
+	whirlwind_cooldown_bar = "Whirlwind Cooldown",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

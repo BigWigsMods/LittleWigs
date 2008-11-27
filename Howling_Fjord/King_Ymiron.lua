@@ -71,6 +71,20 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	bane = "Dunkle Macht",
+	bane_desc = "Warnt beim Zaubern von Dunkle Macht.",
+	bane_message = "Zaubert Dunkle Macht",
+	bane_ended = "Dunkle Macht Vorbei",
+
+	banebar = "Dunkle Macht Bar",
+	banebar_desc = "Zeigt eine Bar für die Dauer des Dunkle Macht Buffs.",
+
+	rot = "Eitriges Verrotten",
+	rot_desc = "Warnt wenn jemand den Eitriges Verrotten Debuff hat.",
+	rot_message = "%s: %s",
+
+	rotbar = "Eitriges Verrotten Bar",
+	rotbar_desc = "Zeigt eine Bar für die Dauer von Eitriges Verrotten.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
