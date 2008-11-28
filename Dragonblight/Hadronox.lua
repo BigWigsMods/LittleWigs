@@ -44,9 +44,19 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	leechpoison = "吸血毒药",
+	leechpoison_desc = "当哈多诺克斯施放吸血毒药时发出警报。",
+
+	acidcloud = "酸性之云",
+	acidcloud_desc = "当哈多诺克斯施放酸性之云时发出警报。",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	leechpoison = "吸血毒液",
+	leechpoison_desc = "當哈卓諾克斯施放吸血毒液時發出警報。",
+
+	acidcloud = "酸性之雲",
+	acidcloud_desc = "當哈卓諾克斯施放酸性之雲時發出警報。",
 } end)
 
 L:RegisterTranslations("esES", function() return {

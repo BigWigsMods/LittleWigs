@@ -3,7 +3,7 @@
 
 ## Title: Little Wigs [|cffeda55fZul'Drak|r]
 ## Notes: Little Wigs Zul'Drak Modules
-## Title-zhCN: Little Wigs [|cffeda55f祖达克r]
+## Title-zhCN: Little Wigs [|cffeda55f祖达克|r]
 ## Notes-zhCN: Little Wigs 祖达克模块
 ## Title-zhTW: Little Wigs [|cffeda55f祖爾德拉克|r]
 ## Notes-zhTW: Little Wigs 祖爾德拉克模組

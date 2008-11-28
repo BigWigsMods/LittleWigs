@@ -4,7 +4,7 @@
 ## Notes: Little Wigs Coldarra Modules
 ## Title-frFR: Little Wigs [|cffeda55fFrimarra|r]
 ## Notes-frFR: Modules Little Wigs concernant Frimarra.
-## Title-zhCN: Little Wigs [|cffeda55f考达拉r]
+## Title-zhCN: Little Wigs [|cffeda55f考达拉|r]
 ## Notes-zhCN: Little Wigs 考达拉模块
 ## Title-zhTW: Little Wigs [|cffeda55f凜懼島|r]
 ## Notes-zhTW: Little Wigs 凜懼島模組

@@ -67,6 +67,14 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	sinclari = "부관 신클래리",
+
+	next_portal = "다음 차원문",
+
+	portal_bar = "~%s: %s", --shouldn't require translation
+
+	portal_message15s = "약 15초 후 %s !",
+	portal_message95s = "약 95초 후 %s !",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -79,6 +87,14 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	sinclari = "부관 신클래리",
+
+	next_portal = "다음 차원문",
+
+	portal_bar = "~%s: %s", --shouldn't require translation
+
+	portal_message15s = "약 15초 후 %s !",
+	portal_message95s = "약 95초 후 %s !",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

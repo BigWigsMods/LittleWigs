@@ -74,12 +74,48 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	planarshift = "界域轉換",
+	planarshift_desc = "當施放界域轉換時發出警報。",
+
+	planarshiftbar = "界域轉換計時條",
+	planarshiftbar_desc = "當界域轉換持續時顯示計時條。",
+
+	planarshift_message = "界域轉換！",
+	planarshift_expire_message = "界域轉換 5秒后結束！",
+	
+	enragedassault = "狂怒襲擊",
+	enragedassault_desc = "當施放狂怒襲擊時發出警報。",
+
+	enragedassultbar = "狂怒襲擊計時條",
+	enragedassultbar_desc = "當狂怒襲擊持續時顯示計時條。",
+
+	enragedassault_message = "狂怒襲擊！",
+	
+	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	planarshift = "位面转移",
+	planarshift_desc = "当施放位面转移时发出警报。",
+
+	planarshiftbar = "位面转移计时条",
+	planarshiftbar_desc = "当位面转移持续时显示计时条。",
+
+	planarshift_message = "位面转移！",
+	planarshift_expire_message = "位面转移 5秒后结束！",
+	
+	enragedassault = "暴怒攻击",
+	enragedassault_desc = "当施放暴怒攻击时发出警报。",
+
+	enragedassultbar = "暴怒攻击计时条",
+	enragedassultbar_desc = "当暴怒攻击持续时显示计时条。",
+
+	enragedassault_message = "暴怒攻击！",
+	
+	log = "|cffff0000"..boss.."|r：缺乏数据，请考虑开启战斗记录（/combatlog）或 Transcriptor 记录并提交战斗记录，谢谢！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

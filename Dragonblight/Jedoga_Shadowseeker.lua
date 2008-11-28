@@ -44,9 +44,19 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	thundershock = "雷霆震击",
+	thundershock_desc = "当耶戈达·觅影者施放雷霆震击时发出警报。",
+
+	thundershockbar = "雷霆震击计时条",
+	thundershockbar_desc = "当耶戈达·觅影者的雷霆震击持续时显示计时条。",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	thundershock = "雷霆震擊",
+	thundershock_desc = "當潔杜佳·尋影者施放雷霆震擊時發出警報。",
+
+	thundershockbar = "雷霆震擊計時條",
+	thundershockbar_desc = "當潔杜佳·尋影者的雷霆震擊持續時顯示計時條。",
 } end)
 
 L:RegisterTranslations("esES", function() return {

@@ -48,9 +48,21 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	pound = "重击",
+	pound_desc = "当阿努巴拉克开始施放重击时发出警报。",
+	pound_message = "正在施放 重击！",
+	
+	poundbar = "重击计时条",
+	poundbar_desc = "当阿努巴拉克施放重击时显示计时条。",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	pound = "猛擊",
+	pound_desc = "當阿努巴拉克開始施放猛擊時發出警報。",
+	pound_message = "正在施放 猛擊！",
+	
+	poundbar = "猛擊計時條",
+	poundbar_desc = "當阿努巴拉克施放猛擊時顯示計時條。",
 } end)
 
 L:RegisterTranslations("esES", function() return {

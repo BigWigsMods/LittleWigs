@@ -80,9 +80,37 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	embracegain = "获得吸血鬼的拥抱",
+	embracegain_desc = "当塔达拉姆王子获得吸血鬼的拥抱时发出警报。",
+	embracegain_message = "已获得 吸血鬼的拥抱！",
+
+	embracefade = "吸血鬼的拥抱消失",
+	embracefade_desc = "当吸血鬼的拥抱从塔达拉姆王子消失时发出警报。",
+	embracefade_message = "已消失 吸血鬼的拥抱！",
+
+	embracebar = "吸血鬼的拥抱计时条",
+	embracebar_desc = "当吸血鬼的拥抱持续时显示计时条。",
+
+	sphere = "制造烈焰之球",
+	sphere_desc = "当塔达拉姆王子开始制造烈焰之球时发出警报。",
+	sphere_message = "制造烈焰之球！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	embracegain = "吸血鬼之擁",
+	embracegain_desc = "當泰爾達朗王子獲得吸血鬼之擁時發出警報。",
+	embracegain_message = "已獲得 吸血鬼之擁！",
+
+	embracefade = "吸血鬼之擁消失",
+	embracefade_desc = "當吸血鬼之擁從泰爾達朗王子消失時發出警報。",
+	embracefade_message = "已消失 吸血鬼之擁！",
+
+	embracebar = "吸血鬼之擁計時條",
+	embracebar_desc = "當吸血鬼之擁持續時顯示計時條。",
+
+	sphere = "製造裂焰之球",
+	sphere_desc = "當泰爾達朗王子開始製造裂焰之球時發出警報。",
+	sphere_message = "製造裂焰之球！",
 } end)
 
 L:RegisterTranslations("esES", function() return {
