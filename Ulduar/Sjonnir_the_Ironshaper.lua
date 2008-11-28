@@ -12,14 +12,20 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Sjonnir",
 
-	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",
-
 	charge = "Static Charge",
 	charge_desc = "Warn for who has the Static Charge.",
-	charge_message = "%s: Static Charge",
+
+	chargeBar = "Static Charge Bar",
+	chargeBar_desc = "Display a bar for the duraction of the Static Charge debuff.",
+
+	charge_message = "Static Charge: %s",
 
 	ring = "Lightning Ring",
 	ring_desc = "Warn for Lightning Ring.",
+
+	ringBar = "Lightning Ring Cast Bar",
+	ringBar_desc = "Display a channel casting bar for Lightning Ring.",
+
 	ring_message = "Lightning Ring!",
 } end)
 
@@ -27,8 +33,6 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	engage_trigger = "Des enveloppes frêles et vulnérables. Des vies fragiles et brèves. Vous n'échapperez pas à la malédiction de la chair !",
-
 	charge = "Charge statique",
 	charge_desc = "Prévient quand un joueur subit les effets de la Charge statique.",
 	charge_message = "%s : Charge statique",
@@ -39,8 +43,6 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",	--check
-
 	charge = "전하 충전",
 	charge_desc = "전하 충전에 걸린 플레이어를 알립니다.",
 	charge_message = "전하 충전: %s",
@@ -51,8 +53,6 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!", -- not yet
-
 	charge = "静电充能",
 	charge_desc = "当玩家中了静电充能时发出警报。",
 	charge_message = ">%s<：静电充能！",
@@ -63,8 +63,6 @@ L:RegisterTranslations("zhCN", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!", -- not yet
-
 	charge = "靜電能量",
 	charge_desc = "當玩家中了靜電能量時發出警報。",
 	charge_message = ">%s<：靜電能量！",
@@ -78,9 +76,6 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-
-	engage_trigger = "Soft, vulnerable shells. Brief, fragile lifes. You can not escape the curse of flesh!",
-
 	charge = "Статический заряд",
 	charge_desc = "Предупреждать, когда кто-нибудь статически заряжен.",
 	charge_message = "%s: Статически заряжен",
@@ -108,10 +103,9 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Charge", 50834, 59846)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "ChargeRemoved", 50834, 59846)
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Ring", 50840, 59849, 59861, 51849)
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "Ring", 50840, 59848, 59861, 51849)
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
 ------------------------------
@@ -121,19 +115,17 @@ end
 function mod:Charge(player, spellId)
 	if self.db.profile.charge then
 		self:IfMessage(L["charge_message"]:format(player), "Urgent", spellId)
-		self:Bar(L["charge_message"]:format(player), 10, spellId)
 	end
-end
-
-function mod:ChargeRemoved(player)
-	if self.db.profile.charge then
-		self:TriggerEvent("BigWigs_StopBar", self, L["charge_message"]:format(player))
+	if self.db.profile.chargeBar then
+		self:Bar(L["charge_message"]:format(player), 10, spellId)
 	end
 end
 
 function mod:Ring(_, spellId)
 	if self.db.profile.ring then
 		self:IfMessage(L["ring_message"], "Urgent", spellId)
+	end
+	if self.db.profile.ringBar then
 		self:Bar(L["ring_message"], 10, spellId)
 	end
 end

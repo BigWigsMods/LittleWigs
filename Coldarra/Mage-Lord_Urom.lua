@@ -148,8 +148,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "TimeBomb", 51121)
-	self:AddCombatListener("SPELL_CAST_START", "ArcaneExposion", 51110)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "TimeBomb", 51121, 59376)
+	self:AddCombatListener("SPELL_CAST_START", "ArcaneExposion", 51110, 59377)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 

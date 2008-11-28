@@ -12,16 +12,16 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Taldaram",
 
-	embracegain = "Embrace of the Vampyr Gained",
-	embracegain_desc = "Announce when Prince Taldaram gains Embrace of the Vampyr.",
-	embracegain_message = "Embrace of the Vampyr Gained",
+	embraceGain = "Embrace of the Vampyr Gained",
+	embraceGain_desc = "Announce when Prince Taldaram gains Embrace of the Vampyr.",
+	embraceGain_message = "Embrace of the Vampyr Gained",
 
-	embracefade = "Embrace of the Vampyr Fades",
-	embracefade_desc = "Announce when Embrace of the Vampyr fades from Prince Taldaram.",
-	embracefade_message = "Embrace of the Vampyr Fades",
+	embraceFade = "Embrace of the Vampyr Fades",
+	embraceFade_desc = "Announce when Embrace of the Vampyr fades from Prince Taldaram.",
+	embraceFade_message = "Embrace of the Vampyr Fades",
 
-	embracebar = "Embrace of the Vampyr Bar",
-	embracebar_desc = "Display a bar for the duration of Embrace of the Vampyr.",
+	embraceBar = "Embrace of the Vampyr Bar",
+	embraceBar_desc = "Display a bar for the duration of Embrace of the Vampyr.",
 
 	sphere = "Conjure Flame Sphere",
 	sphere_desc = "Warn when Prince Taldaram begins conjuring a Flame Sphere.",
@@ -29,16 +29,16 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
-	embracegain = "Umarmung des Vampyrs Bekommen",
-	embracegain_desc = "Meldet wenn Prinz Taldaram Umarmung des Vampyrs bekommt.",
-	embracegain_message = "Umarmung des Vampyrs bekommen",
+	embraceGain = "Umarmung des Vampyrs Bekommen",
+	embraceGain_desc = "Meldet wenn Prinz Taldaram Umarmung des Vampyrs bekommt.",
+	embraceGain_message = "Umarmung des Vampyrs bekommen",
 
-	embracefade = "Umarmung des Vampyrs Abgelaufen",
-	embracefade_desc = "Meldet wenn Umarmung des Vampyrs von Prinz Taldaram schwindet.",
-	embracefade_message = "Umarmung des Vampyrs Schwindet",
+	embraceFade = "Umarmung des Vampyrs Abgelaufen",
+	embraceFade_desc = "Meldet wenn Umarmung des Vampyrs von Prinz Taldaram schwindet.",
+	embraceFade_message = "Umarmung des Vampyrs Schwindet",
 
-	embracebar = "Umarmung des Vampyrs Bar",
-	embracebar_desc = "Zeigt eine Bar für die Dauer von Umarmung des Vampyrs.",
+	embraceBar = "Umarmung des Vampyrs Bar",
+	embraceBar_desc = "Zeigt eine Bar für die Dauer von Umarmung des Vampyrs.",
 
 	sphere = "Flammensphäre beschwören",
 	sphere_desc = "Warnt wenn Prinz Taldaram eine Flammensphäre beschwört.",
@@ -46,16 +46,16 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	embracegain = "Etreinte du vampire - Gain",
-	embracegain_desc = "Prévient quand le Prince Taldaram gagne l'Etreinte du vampire.",
-	embracegain_message = "Etreinte du vampire lancée",
+	embraceGain = "Etreinte du vampire - Gain",
+	embraceGain_desc = "Prévient quand le Prince Taldaram gagne l'Etreinte du vampire.",
+	embraceGain_message = "Etreinte du vampire lancée",
 
-	embracefade = "Etreinte du vampire - Fin",
-	embracefade_desc = "Prévient quand Etreinte du vamprie disparait du Prince Taldaram.",
-	embracefade_message = "Etreinte du vampire terminée",
+	embraceFade = "Etreinte du vampire - Fin",
+	embraceFade_desc = "Prévient quand Etreinte du vamprie disparait du Prince Taldaram.",
+	embraceFade_message = "Etreinte du vampire terminée",
 
-	embracebar = "Etreinte du vampire - Barre",
-	embracebar_desc = "Affiche une barre indiquant la durée de l'Etreinte du vampire.",
+	embraceBar = "Etreinte du vampire - Barre",
+	embraceBar_desc = "Affiche une barre indiquant la durée de l'Etreinte du vampire.",
 
 	sphere = "Invocation d'une sphère de flammes",
 	sphere_desc = "Prévient quand le Prince Taldaram commence à invoquer une sphère de flammes.",
@@ -63,16 +63,16 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	embracegain = "흡혈의 은총 획득",
-	embracegain_desc = "공작 탈다람의 흡혈의 은총 획득을 알립니다.",
-	embracegain_message = "흡혈의 은총 획득!",
+	embraceGain = "흡혈의 은총 획득",
+	embraceGain_desc = "공작 탈다람의 흡혈의 은총 획득을 알립니다.",
+	embraceGain_message = "흡혈의 은총 획득!",
 
-	embracefade = "흡혈의 은총 사라짐",
-	embracefade_desc = "공작 탈다람에게서 흡혈의 은총이 사라짐을 알립니다.",
-	embracefade_message = "흡혈의 은총 사라짐",
+	embraceFade = "흡혈의 은총 사라짐",
+	embraceFade_desc = "공작 탈다람에게서 흡혈의 은총이 사라짐을 알립니다.",
+	embraceFade_message = "흡혈의 은총 사라짐",
 
-	embracebar = "흡혈의 은총 바",
-	embracebar_desc = "흡혈의 은총의 지속 시간바를 표시합니다.",
+	embraceBar = "흡혈의 은총 바",
+	embraceBar_desc = "흡혈의 은총의 지속 시간바를 표시합니다.",
 
 	sphere = "화염 구슬 소환",
 	sphere_desc = "공작 탈다람의 화염 구슬 소환 시전을 알립니다.",
@@ -80,16 +80,16 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	embracegain = "获得吸血鬼的拥抱",
-	embracegain_desc = "当塔达拉姆王子获得吸血鬼的拥抱时发出警报。",
-	embracegain_message = "已获得 吸血鬼的拥抱！",
+	embraceGain = "获得吸血鬼的拥抱",
+	embraceGain_desc = "当塔达拉姆王子获得吸血鬼的拥抱时发出警报。",
+	embraceGain_message = "已获得 吸血鬼的拥抱！",
 
-	embracefade = "吸血鬼的拥抱消失",
-	embracefade_desc = "当吸血鬼的拥抱从塔达拉姆王子消失时发出警报。",
-	embracefade_message = "已消失 吸血鬼的拥抱！",
+	embraceFade = "吸血鬼的拥抱消失",
+	embraceFade_desc = "当吸血鬼的拥抱从塔达拉姆王子消失时发出警报。",
+	embraceFade_message = "已消失 吸血鬼的拥抱！",
 
-	embracebar = "吸血鬼的拥抱计时条",
-	embracebar_desc = "当吸血鬼的拥抱持续时显示计时条。",
+	embraceBar = "吸血鬼的拥抱计时条",
+	embraceBar_desc = "当吸血鬼的拥抱持续时显示计时条。",
 
 	sphere = "制造烈焰之球",
 	sphere_desc = "当塔达拉姆王子开始制造烈焰之球时发出警报。",
@@ -97,16 +97,16 @@ L:RegisterTranslations("zhCN", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	embracegain = "吸血鬼之擁",
-	embracegain_desc = "當泰爾達朗王子獲得吸血鬼之擁時發出警報。",
-	embracegain_message = "已獲得 吸血鬼之擁！",
+	embraceGain = "吸血鬼之擁",
+	embraceGain_desc = "當泰爾達朗王子獲得吸血鬼之擁時發出警報。",
+	embraceGain_message = "已獲得 吸血鬼之擁！",
 
-	embracefade = "吸血鬼之擁消失",
-	embracefade_desc = "當吸血鬼之擁從泰爾達朗王子消失時發出警報。",
-	embracefade_message = "已消失 吸血鬼之擁！",
+	embraceFade = "吸血鬼之擁消失",
+	embraceFade_desc = "當吸血鬼之擁從泰爾達朗王子消失時發出警報。",
+	embraceFade_message = "已消失 吸血鬼之擁！",
 
-	embracebar = "吸血鬼之擁計時條",
-	embracebar_desc = "當吸血鬼之擁持續時顯示計時條。",
+	embraceBar = "吸血鬼之擁計時條",
+	embraceBar_desc = "當吸血鬼之擁持續時顯示計時條。",
 
 	sphere = "製造裂焰之球",
 	sphere_desc = "當泰爾達朗王子開始製造裂焰之球時發出警報。",
@@ -117,16 +117,16 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-	embracegain = "Получение Объятия вампира",
-	embracegain_desc = "Сообщать когда Принц Талдарам получает Объятие вампира.",
-	embracegain_message = "Получено Объятие вампира",
+	embraceGain = "Получение Объятия вампира",
+	embraceGain_desc = "Сообщать когда Принц Талдарам получает Объятие вампира.",
+	embraceGain_message = "Получено Объятие вампира",
 
 	embracefade = "Рассеивание Объятия вампира",
-	embracefade_desc = "Сообщать когда Объятие вампира спадает с Принца Талдарам.",
-	embracefade_message = "Объятие вампира рассеелось",
+	embraceFade_desc = "Сообщать когда Объятие вампира спадает с Принца Талдарам.",
+	embraceFade_message = "Объятие вампира рассеелось",
 
-	embracebar = "Полоса Объятия вампира",
-	embracebar_desc = "Отображать полосу продолжительности Объятия вампира.",
+	embraceBar = "Полоса Объятия вампира",
+	embraceBar_desc = "Отображать полосу продолжительности Объятия вампира.",
 
 	sphere = "Создание сферы огня",
 	sphere_desc = "Предупреждать когда Принц Талдарам начинает Создание сферы огня.",
@@ -143,7 +143,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
 mod.enabletrigger = boss
 mod.guid = 29308
-mod.toggleoptions = {"embracegain","embracefade","embracebar",-1,"sphere","bosskill"}
+mod.toggleoptions = {"embraceGain","embraceFade","embraceBar",-1,"sphere","bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -162,19 +162,19 @@ end
 ------------------------------
 
 function mod:Embrace(_, spellId, _, _, spellName)
-	if self.db.profile.embracegain then
-		self:IfMessage(L["embracegain_message"], "Important", spellId)
+	if self.db.profile.embraceGain then
+		self:IfMessage(L["embraceGain_message"], "Important", spellId)
 	end
-	if self.db.profile.embracebar then
+	if self.db.profile.embraceBar then
 		self:Bar(spellName, 20, spellId)
 	end
 end
 
 function mod:EmbraceRemoved(_, spellId, _, _, spellName)
-	if self.db.profile.embracefade then
-		self:IfMessage(L["embracefade_message"], "Important", spellId)
+	if self.db.profile.embraceFade then
+		self:IfMessage(L["embraceFade_message"], "Positive", spellId)
 	end
-	if self.db.profile.embracebar then
+	if self.db.profile.embraceBar then
 		self:TriggerEvent("BigWigs_StopBar", self, spellName)
 	end
 end

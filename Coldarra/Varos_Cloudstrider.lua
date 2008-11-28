@@ -12,11 +12,17 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Varos",
-	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
+
+	amplifyMagic = "Amplify Magic",
+	amplifyMagic_desc = "Warn who has the Amplify Magic debuff.",
+
+	amplifyMagicBar = "Amplify Magic Bar",
+	amplifyMagicBar_desc = "Display a bar for the duration of Amplify Magic.",
+
+	amplifyMagic_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	log = "|cffff0000"..boss.."|r: 해당 보스의 데이터가 필요합니다. 채팅창에 /전투기록 , /대화기록 을 입력하여 기록된 데이터를 보내주시기 바랍니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -34,7 +40,6 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
 } end )
 
 ----------------------------------
@@ -47,7 +52,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Oculus"]
 mod.enabletrigger = {boss} 
 mod.guid = 27447
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"amplifyMagic", "amplifyMagicBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -55,11 +60,26 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "AmplifyMagic", 51054, 59371)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "AmplifyMagicRemoved", 51054, 59371)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	BigWigs:Print(L["log"])
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
+function mod:AmplifyMagic(player, spellId, _, _, spellName)
+	if self.db.profile.amplifyMagic then
+		self:IfMessage(L["amplifyMagic_message"]:format(spellName, player), "Important", spellId)
+	end
+	if self.db.profile.amplifyMagicBar then
+		self:Bar(L["amplifyMagic_message"]:format(spellName, player), 30, spellId)
+	end
+end
+
+function mod:AmplifyMagicRemoved(player, _, _, _, spellName)
+	if self.db.profile.amplifyMagicBar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["amplifyMagic_message"]:format(spellName, player))
+	end
+end

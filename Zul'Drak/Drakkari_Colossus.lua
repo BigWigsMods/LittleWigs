@@ -11,29 +11,32 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Drakkari",
-	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
+
+	emerge = "Emerge",
+	emerge_desc = "Warn when the Elemental is emerging from the Colossus.",
+	emerge_message = "Elemental Emerging",
+
+	merge = "Merge",
+	merge_desc = "Warn when the Elemental is merging back into the Colossus.",
+	merge_message = "Merging with Colossus",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	log = "|cffff0000"..boss.."|r: 해당 보스의 데이터가 필요합니다. 채팅창에 /전투기록 , /대화기록 을 입력하여 기록된 데이터를 보내주시기 바랍니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏数据，请考虑开启战斗记录（/combatlog）或 Transcriptor 记录并提交战斗记录，谢谢！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
 } end )
 
 ----------------------------------
@@ -54,11 +57,23 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_CAST_START", "Emerge", 54850) -- To Elemental
+	self:AddCombatListener("SPELL_CAST_START", "Merge", 54878) -- To Colossus
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	BigWigs:Print(L["log"])
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
+function mod:Emerge(_, spellId)
+	if self.db.profile.emerge then
+		self:IfMessage(L["emerge_message"], "Urgent", spellId)
+	end
+end
+
+function mod:Merge(_, spellId)
+	if self.db.profile.merge then
+		self:IfMessage(L["merge_message"], "Urgent", spellId)
+	end
+end

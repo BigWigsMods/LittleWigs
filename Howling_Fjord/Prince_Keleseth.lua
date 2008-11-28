@@ -14,43 +14,41 @@ L:RegisterTranslations("enUS", function() return {
 
 	tomb = "Frost Tomb",
 	tomb_desc = "Warn for who is in the Frost Tomb.",
-	tomb_message = "%s: %s",
+
+	tombBar = "Frost Tomb Bar",
+	tombBar_desc = "Display a bar for the duration of the Frost Tomb.",
+
+	tomb_message = "Frost Tomb: %s",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
 	tomb = "서리 무덤",
 	tomb_desc = "서리 무덤의 대상자를 알립니다.",
-	tomb_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 	tomb = "Tombeau de givre",
 	tomb_desc = "Prévient quand un joueur subit les effets du Tombeau de givre.",
-	tomb_message = "%s : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
 	tomb = "冰霜之墓",
 	tomb_desc = "當玩家中了冰霜之墓時發出警報。",
-	tomb_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 	tomb = "Frostgrab",
 	tomb_desc = "Warnt, wer im Frostgrab ist.",
-	tomb_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
 	tomb = "冰霜之墓",
 	tomb_desc = "当玩家中了冰霜之墓时发出警报。",
-	tomb_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
 	tomb = "Ледяная могила",
 	tomb_desc = "Предупреждать, когда кто-нибудь попадает в ледяную могилу.",
-	tomb_message = "%s: %s",
 } end )
 
 ----------------------------------
@@ -63,7 +61,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = boss 
 mod.guid = 23953
-mod.toggleoptions = {"tomb", "bosskill"}
+mod.toggleoptions = {"tomb", "tombBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -71,7 +69,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Tomb", 48400) --just logic speculation on the spellID
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Tomb", 48400)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "TombRemoved", 48400)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
@@ -80,15 +78,17 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:Tomb(player, spellID, _, _, spellName)
+function mod:Tomb(player, spellId)
 	if self.db.profile.tomb then
-		self:IfMessage(L["tomb_message"]:format(player, spellName), "Urgent", spellID)
-		self:Bar(L["tomb_message"]:format(player, spellName), 20, spellID)
+		self:IfMessage(L["tomb_message"]:format(player), "Urgent", spellId)
+	end
+	if self.db.profile.tombBar then
+		self:Bar(L["tomb_message"]:format(player), 20, spellId)
 	end
 end
 
-function mod:TombRemoved(player, _, _, _, spellName)
-	if self.db.profile.tomb then
-		self:TriggerEvent("BigWigs_StopBar", self, L["tomb_message"]:format(player, spellName))
+function mod:TombRemoved(player)
+	if self.db.profile.tombBar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["tomb_message"]:format(player))
 	end
 end

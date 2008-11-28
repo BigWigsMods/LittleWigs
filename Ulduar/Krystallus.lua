@@ -12,8 +12,6 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Krystallus",
 
-	engage_trigger = "Crush....",
-
 	shatter = "Shatter",
 	shatter_desc = "Warn for Ground Slam and Shatter.",
 	shatter_warn = "Ground Slam - Shatter in ~8 sec!",
@@ -24,8 +22,6 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	engage_trigger = "Écraser…",
-
 	shatter = "Fracasser",
 	shatter_desc = "Prévient de l'arrivée du Heurt terreste et du Fracasser qui s'en suit.",
 	shatter_warn = "Heurt terrestre - Fracasser dans ~8 sec !",
@@ -33,8 +29,6 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	engage_trigger = "부셔져라...",
-
 	shatter = "산산조각",
 	shatter_desc = "발 구르기와 산산조각을 알립니다.",
 	shatter_warn = "발 구르기 - 약 8초 후 산산조각!",
@@ -42,8 +36,6 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	engage_trigger = "Crush....", -- not yet
-
 	shatter = "碎裂",
 	shatter_desc = "当施放砸击地面和碎裂时发出警报。",
 	shatter_warn = "砸击地面 - 约8秒后，碎裂！",
@@ -51,8 +43,6 @@ L:RegisterTranslations("zhCN", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	engage_trigger = "Crush....", -- not yet
-
 	shatter = "粉碎",
 	shatter_desc = "當施放大地猛擊和粉碎時發出警報。",
 	shatter_warn = "大地猛擊 - 約8秒后，粉碎！",
@@ -63,8 +53,6 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
-	engage_trigger = "Crush....",
-
 	shatter = "Раскалывание",
 	shatter_desc = "Предупреждать об ударе земли и раскалывании.",
 	shatter_warn = "Удар Земли - Раскалывание через ~8 сек!",

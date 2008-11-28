@@ -14,6 +14,10 @@ L:RegisterTranslations("enUS", function() return {
 
 	stomp = "Shattering Stomp",
 	stomp_desc = "Warn when Volkhan is going to shatter all his Brittle Golems.",
+
+	stompBar = "Shattering Stomp Bar",
+	stompBar_desc = "Display a casting bar for Shattering Stomp.",
+
 	stomp_message = "Casting Shattering Stomp",
 } end)
 
@@ -63,7 +67,7 @@ mod.otherMenu = "Ulduar"
 mod.zonename = BZ["Halls of Lightning"]
 mod.enabletrigger = boss
 mod.guid = 28587
-mod.toggleoptions = {"stomp","bosskill"}
+mod.toggleoptions = {"stomp", "stompBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -82,6 +86,8 @@ end
 function mod:Stomp(_, spellId, _, _, spellName)
 	if self.db.profile.stomp then
 		self:IfMessage(L["stomp_message"], "Urgent", spellId)
+	end
+	if self.db.profile.stompBar then
 		self:Bar(spellName, 3, spellId)
 	end
 end

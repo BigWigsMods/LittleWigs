@@ -17,15 +17,15 @@ L:RegisterTranslations("enUS", function() return {
 	bane_message = "Casting Bane",
 	bane_ended = "Bane Fades",
 
-	banebar = "Bane Bar",
-	banebar_desc = "Display a bar for the duration of the Bane buff.",
+	baneBar = "Bane Bar",
+	baneBar_desc = "Display a bar for the duration of the Bane buff.",
 
 	rot = "Fetid Rot",
 	rot_desc = "Warn when some recieves the Fetid Rot debuff.",
 	rot_message = "%s: %s",
 
-	rotbar = "Fetid Rot Bar",
-	rotbar_desc = "Show a bar for the duration of Fetid Rot.",
+	rotBar = "Fetid Rot Bar",
+	rotBar_desc = "Show a bar for the duration of Fetid Rot.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -34,15 +34,15 @@ L:RegisterTranslations("koKR", function() return {
 	bane_message = "파멸 시전",
 	bane_ended = "파멸 사라짐",
 
-	banebar = "파멸 바",
-	banebar_desc = "파멸 버프의 지속 시간바를 표시합니다.",
+	baneBar = "파멸 바",
+	baneBar_desc = "파멸 버프의 지속 시간바를 표시합니다.",
 
 	rot = "악취나는 부패",
 	rot_desc = "악취나는 부패 디버프에 걸린 플레이어를 알립니다.",
 	rot_message = "%s: %s",
 
-	rotbar = "악취나는 부패 바",
-	rotbar_desc = "악취나는 부패의 지속 시간바를 표시합니다.",
+	rotBar = "악취나는 부패 바",
+	rotBar_desc = "악취나는 부패의 지속 시간바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -50,15 +50,15 @@ L:RegisterTranslations("frFR", function() return {
 	bane_desc = "Prévient quand Ymiron incante Fléau.",
 	bane_message = "Fléau en incantation",
 
-	banebar = "Fléau - Barre",
-	banebar_desc = "Affiche une barre indiquant la durée du buff Fléau.",
+	baneBar = "Fléau - Barre",
+	baneBar_desc = "Affiche une barre indiquant la durée du buff Fléau.",
 
 	rot = "Pourriture fétide",
 	rot_desc = "Prévient quand un joueur subit les effets de la Pourriture fétide.",
 	rot_message = "%s : %s",
 
-	rotbar = "Pourriture fétide - Barre",
-	rotbar_desc = "Affiche une barre indiquant la durée de la Pourriture fétide.",
+	rotBar = "Pourriture fétide - Barre",
+	rotBar_desc = "Affiche une barre indiquant la durée de la Pourriture fétide.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -67,15 +67,15 @@ L:RegisterTranslations("zhTW", function() return {
 	bane_message = "正在施放 災禍！",
 	bane_ended = "災禍 消失！",
 
-	banebar = "災禍計時條",
-	banebar_desc = "當災禍持續時顯示計時條。",
+	baneBar = "災禍計時條",
+	baneBar_desc = "當災禍持續時顯示計時條。",
 
 	rot = "惡臭腐氣",
 	rot_desc = "當玩家中了惡臭腐氣減益時發出警報。",
 	rot_message = "%s：%s！",
 
-	rotbar = "惡臭腐氣計時條",
-	rotbar_desc = "當惡臭腐氣持續時顯示計時條。",
+	rotBar = "惡臭腐氣計時條",
+	rotBar_desc = "當惡臭腐氣持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -84,15 +84,15 @@ L:RegisterTranslations("deDE", function() return {
 	bane_message = "Zaubert Dunkle Macht",
 	bane_ended = "Dunkle Macht Vorbei",
 
-	banebar = "Dunkle Macht Bar",
-	banebar_desc = "Zeigt eine Bar für die Dauer des Dunkle Macht Buffs.",
+	baneBar = "Dunkle Macht Bar",
+	baneBar_desc = "Zeigt eine Bar für die Dauer des Dunkle Macht Buffs.",
 
 	rot = "Eitriges Verrotten",
 	rot_desc = "Warnt wenn jemand den Eitriges Verrotten Debuff hat.",
 	rot_message = "%s: %s",
 
-	rotbar = "Eitriges Verrotten Bar",
-	rotbar_desc = "Zeigt eine Bar für die Dauer von Eitriges Verrotten.",
+	rotBar = "Eitriges Verrotten Bar",
+	rotBar_desc = "Zeigt eine Bar für die Dauer von Eitriges Verrotten.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
@@ -101,15 +101,15 @@ L:RegisterTranslations("zhCN", function() return {
 	bane_message = "正在施放 灾祸！",
 	bane_ended = "灾祸 消失！",
 
-	banebar = "灾祸计时条",
-	banebar_desc = "当灾祸持续时显示计时条。",
+	baneBar = "灾祸计时条",
+	baneBar_desc = "当灾祸持续时显示计时条。",
 
 	rot = "恶臭溃烂",
 	rot_desc = "当玩家中了恶臭溃烂减益时发出警报。",
 	rot_message = "%s：%s！",
 
-	rotbar = "恶臭溃烂计时条",
-	rotbar_desc = "当恶臭溃烂持续时显示计时条。",
+	rotBar = "恶臭溃烂计时条",
+	rotBar_desc = "当恶臭溃烂持续时显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
@@ -117,15 +117,15 @@ L:RegisterTranslations("ruRU", function() return {
 	bane_desc = "Предепреждать о применении погибели.",
 	bane_message = "Применение погибели",
 
-	banebar = "Полоса погибели",
-	banebar_desc = "Отображать полосу продолжительности баффа погибели.",
+	baneBar = "Полоса погибели",
+	baneBar_desc = "Отображать полосу продолжительности баффа погибели.",
 	
 	rot = "Смрадная гниль",
 	rot_desc = "Прендупреждать если кто получит дебафф Смрадной гнили.",
 	rot_message = "%s: %s",
 
-	rotbar = "Полоса Смрадной гнили",
-	rotbar_desc = "Отображать полосу продолжительности Смрадной гнили.",
+	rotBar = "Полоса Смрадной гнили",
+	rotBar_desc = "Отображать полосу продолжительности Смрадной гнили.",
 } end )
 
 ----------------------------------
@@ -138,7 +138,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Pinnacle"]
 mod.enabletrigger = boss 
 mod.guid = 26861
-mod.toggleoptions = {"bane", "banebar", -1, "rot", "rotbat", "bosskill"}
+mod.toggleoptions = {"bane", "baneBar", -1, "rot", "rotBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -166,7 +166,7 @@ end
 
 function mod:BaneAura(player, spellId, _, _, spellName)
 	if player ~= boss then return end
-	if self.db.profile.banebar then
+	if self.db.profile.baneBar then
 		self:Bar(spellName, 5, spellId)
 	end
 end
@@ -176,7 +176,7 @@ function mod:BaneAuraRemoved(player, spellId, _, _, spellName)
 	if self.db.profile.bane then
 		self:IfMessage(L["bane_ended"], "Positive", spellId)
 	end
-	if self.db.profile.banebar then
+	if self.db.profile.baneBar then
 		self:TriggerEvent("BigWigs_StopBar", self, spellName)
 	end
 end
@@ -185,13 +185,13 @@ function mod:Rot(player, spellId, _, _, spellName)
 	if self.db.profile.rot then
 		self:IfMessage(L["rot_message"]:format(spellName, player), "Urgent", spellId)
 	end
-	if self.db.profile.rotbar then
+	if self.db.profile.rotBar then
 		self:Bar(L["rot_message"]:format(spellName, player), 9, spellId)
 	end
 end
 
 function mod:RotRemoved(player, _, _, _, spellName)
-	if self.db.profile.rotbar then
+	if self.db.profile.rotBar then
 		self:TriggerEvent("BigWigs_StopBar", self, L["rot_message"]:format(spellName, player))
 	end
 end

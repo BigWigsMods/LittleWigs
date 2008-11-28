@@ -16,7 +16,11 @@ L:RegisterTranslations("enUS", function() return {
 
 	curse = "Curse of Fatigue",
 	curse_desc = "Warn when someone has Curse of Fatigue.",
-	curse_message = "Curse of Fatigue - %s",
+
+	curseBar = "Curse of Fatigue Bar",
+	curseBar_desc = "Display a bar for the duration of Curse of Fatigue.",
+	
+	curse_message = "Curse of Fatigue: %s",
 
 	frenzy = "Frenzy",
 	frenzy_desc = "Warnings when Krik'thir goes into a frenzy.",
@@ -103,7 +107,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Azjol-Nerub"]
 mod.enabletrigger = boss
 mod.guid = 28684
-mod.toggleoptions = {"curse", "frenzy", "bosskill"}
+mod.toggleoptions = {"curse", "curseBar", -1, "frenzy", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -112,7 +116,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:RegisterEvent("UNIT_HEALTH")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Curse", 52592)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Curse", 52592, 59368)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "CurseRemoved", 52592, 59368)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Frenzy", 28747)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
@@ -126,6 +131,15 @@ end
 function mod:Curse(player, spellId)
 	if self.db.profile.curse then
 		self:IfMessage(L["curse_message"]:format(player), "Attention", spellId)
+	end
+	if self.db.profile.curseBar then
+		self:Bar(L["curse_message"]:format(player), 10, spellId)
+	end
+end
+
+function mod:CurseRemoved(player)
+	if self.db.profile.curseBar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["curse_message"]:format(player))
 	end
 end
 
