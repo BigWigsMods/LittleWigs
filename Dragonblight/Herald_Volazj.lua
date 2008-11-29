@@ -40,7 +40,7 @@ L:RegisterTranslations("frFR", function() return {
 	shiver_message = "Frisson : %s",
 
 	shiverBar = "Frisson - Barre",
-	shiverBar_desc = "Affiche une barre indiquant la durée de l'affaiblissement Frisson.",
+	shiverBar_desc = "Affiche une barre indiquant la durée du Frisson.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

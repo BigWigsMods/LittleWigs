@@ -35,10 +35,18 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("frFR", function() return {
 	charge = "Charge statique",
 	charge_desc = "Prévient quand un joueur subit les effets de la Charge statique.",
-	charge_message = "%s : Charge statique",
+
+	chargeBar = "Charge statique - Barre",
+	chargeBar_desc = "Affiche une barre indiquant la durée de la Charge statique.",
+
+	charge_message = "Charge statique : %s",
 
 	ring = "Anneau de foudre",
 	ring_desc = "Prévient de l'arrivée de l'Anneau de foudre.",
+
+	ringBar = "Anneau de foudre - Barre",
+	ringBar_desc = "Affiche une barre indiquant la durée de canalisation de l'Anneau de foudre.",
+
 	ring_message = "Anneau de foudre !",
 } end)
 

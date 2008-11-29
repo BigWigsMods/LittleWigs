@@ -27,7 +27,11 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("frFR", function() return {
 	stomp = "Piétinement fracassant",
 	stomp_desc = "Prévient quand Volkhan est sur le point de briser tous ses Golems vermoulus.",
-	stomp_message = "Se prépare à briser tous les Golems vermoulus !",
+
+	stompBar = "Piétinement fracassant - Barre",
+	stompBar_desc = "Affiche une barre indiquant le temps d'incantation du Piétinement fracassant.",
+
+	stomp_message = "Piétinement fracassant en incantation",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

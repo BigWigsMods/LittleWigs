@@ -35,7 +35,7 @@ L:RegisterTranslations("frFR", function() return {
 	pound_message = "Marteler en incantation",
 
 	poundbar = "Marteler - Barre",
-	poundbar_desc = "Affiche une barre d'incantation pour le Marteler de Anub'arak.",
+	poundbar_desc = "Affiche une barre d'incantation pour le Marteler d'Anub'arak.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

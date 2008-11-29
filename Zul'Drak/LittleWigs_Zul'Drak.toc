@@ -9,6 +9,7 @@
 ## Notes-zhTW: Little Wigs 祖爾德拉克模組
 ## Title-koKR: Little Wigs [|cffeda55f줄드락|r]
 ## Notes-koKR: Little Wigs 줄드락 경고
+## Notes-frFR: Modules Little Wigs concernant Zul'Drak.
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

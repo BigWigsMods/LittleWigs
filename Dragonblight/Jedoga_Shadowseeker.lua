@@ -29,10 +29,10 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	thundershock = "Coup de tonnerre",
-	thundershock_desc = "Prévient quand Jedoga incante son Coup de tonnerre.",
+	thundershock_desc = "Prévient quand Jedoga Cherchelombre incante son Coup de tonnerre.",
 
 	thundershockBar = "Coup de tonnerre - Barre",
-	thundershockBar_desc = "Affiche une barre indiquant la durée du Coup de tonnerre de Jedoga.",
+	thundershockBar_desc = "Affiche une barre indiquant la durée du Coup de tonnerre de Jedoga Cherchelombre.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

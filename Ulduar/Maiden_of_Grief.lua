@@ -27,6 +27,10 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("frFR", function() return {
 	shock = "Horion de chagrin",
 	shock_desc = "Prévient quand Horion de chagrin est incanté.",
+
+	shockBar = "Horion de chagrin - Barre",
+	shockBar_desc = "Affiche une barre indiquant le temps d'incantation de l'Horion de chagrin.",
+
 	shock_message = "Horion de chagrin en incantation",
 } end)
 

@@ -26,6 +26,13 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	amplifyMagic = "Amplification de la magie",
+	amplifyMagic_desc = "Prévient quand un joueur subit les effets de l'Amplification de la magie.",
+
+	amplifyMagicBar = "Amplification de la magie - Barre",
+	amplifyMagicBar_desc = "Affiche une barre indiquant la durée de l'Amplification de la magie.",
+
+	amplifyMagic_message = "%s : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

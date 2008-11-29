@@ -43,10 +43,10 @@ L:RegisterTranslations("frFR", function() return {
 	split_desc = "Prévient quand la Grand magus Telestra est sur le point de se diviser.",
 	split_message = "Grand magus Telestra s'est divisée",
 	split_soon_message = "Division imminente",
-	split_trigger1 = "Il y en aura assez pour tout le monde.", -- check
-	split_trigger2 = "Vous allez être trop bien servis.", -- check
+	split_trigger1 = "Il y en aura assez pour tout le monde.",
+	split_trigger2 = "Vous allez être trop bien servis !",
 
-	merge_trigger = "Et maintenant finissons le travail !", -- check
+	merge_trigger = "Et maintenant finissons le travail !",
 	merge_message = "Fusion",
 } end )
 

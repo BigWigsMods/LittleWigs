@@ -53,6 +53,10 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("frFR", function() return {
 	curse = "Malédiction de fatigue",
 	curse_desc = "Prévient quand un joueur subit les effets de la Malédiction de fatigue.",
+
+	curseBar = "Malédiction de fatigue - Barre",
+	curseBar_desc = "Affiche une barre indiquant la durée de la Malédiction de fatigue.",
+
 	curse_message = "Malédiction de fatigue - %s",
 
 	frenzy = "Frénésie",

@@ -46,12 +46,12 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	bane = "Fléau",
-	bane_desc = "Prévient quand Ymiron incante Fléau.",
-	bane_message = "Fléau en incantation",
+	bane = "Plaie",
+	bane_desc = "Prévient quand Ymiron incante Plaie.",
+	bane_message = "Plaie en incantation",
 
-	baneBar = "Fléau - Barre",
-	baneBar_desc = "Affiche une barre indiquant la durée du buff Fléau.",
+	baneBar = "Plaie - Barre",
+	baneBar_desc = "Affiche une barre indiquant la durée de la Plaie.",
 
 	rot = "Pourriture fétide",
 	rot_desc = "Prévient quand un joueur subit les effets de la Pourriture fétide.",

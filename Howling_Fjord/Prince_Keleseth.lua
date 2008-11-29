@@ -29,6 +29,11 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("frFR", function() return {
 	tomb = "Tombeau de givre",
 	tomb_desc = "Prévient quand un joueur subit les effets du Tombeau de givre.",
+
+	tombBar = "Tombeau de givre - Barre",
+	tombBar_desc = "Affiche une barre indiquant la durée du Tombeau de givre.",
+
+	tomb_message = "Tombeau de givre : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

@@ -25,6 +25,13 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	emerge = "Émergence",
+	emerge_desc = "Prévient quand l'élémentaire émerge du colosse.",
+	emerge_message = "Elémentaire émergé",
+
+	merge = "Fusion",
+	merge_desc = "Prévient quand l'élémentaire refusionne avec le colosse.",
+	merge_message = "Fusion avec le colosse",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

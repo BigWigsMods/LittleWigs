@@ -25,6 +25,13 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	transformation = "Transformation",
+	transformation_desc = "Prévient quand Moorabi commence à incanter sa Transformation.",
+
+	transformationBar = "Transformation - Barre",
+	transformationBar_desc = "Affiche une barre indiquant le temps d'incantation de la Transformation.",
+
+	transformation_message = "Transformation en incantation",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

@@ -44,7 +44,7 @@ L:RegisterTranslations("frFR", function() return {
 	broodplague_message = "Peste d'espèce : %s",
 
 	broodplaguebar = "Peste d'espèce - Barre",
-	broodplaguebar_desc = "Affiche une barre indiquant la durée de l'affaiblissement Peste d'espèce.",
+	broodplaguebar_desc = "Affiche une barre indiquant la durée de la Peste d'espèce.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
