@@ -34,6 +34,11 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	tomb = "冰霜之墓",
 	tomb_desc = "當玩家中了冰霜之墓時發出警報。",
+
+	tombBar = "冰霜之墓計時條",
+	tombBar_desc = "當冰霜之墓持續時顯示計時條。",
+
+	tomb_message = ">%s<：冰霜之墓！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -44,6 +49,11 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	tomb = "冰霜之墓",
 	tomb_desc = "当玩家中了冰霜之墓时发出警报。",
+
+	tombBar = "冰霜之墓计时条",
+	tombBar_desc = "当冰霜之墓持续时显示计时条。",
+
+	tomb_message = ">%s<：冰霜之墓！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

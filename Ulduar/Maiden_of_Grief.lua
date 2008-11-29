@@ -41,12 +41,20 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	shock = "悲伤震荡",
 	shock_desc = "当施放悲伤震荡时发出警报。",
+
+	shockBar = "悲伤震荡计时条",
+	shockBar_desc = "当正在施放悲伤震荡时显示计时条。",
+
 	shock_message = "正在施放 悲伤震荡！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
 	shock = "哀傷震擊",
 	shock_desc = "當施放哀傷震擊時發出警報。",
+
+	shockBar = "哀傷震擊計時條",
+	shockBar_desc = "當正在施放哀傷震擊時顯示計時條。",
+
 	shock_message = "正在施放 哀傷震擊！",
 } end)
 

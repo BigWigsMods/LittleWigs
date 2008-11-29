@@ -55,20 +55,36 @@ L:RegisterTranslations("koKR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	charge = "静电充能",
 	charge_desc = "当玩家中了静电充能时发出警报。",
+
+	chargeBar = "静电充能计时条",
+	chargeBar_desc = "当静电充能减益持续时显示计时条。",
+
 	charge_message = ">%s<：静电充能！",
 
 	ring = "闪电之环",
 	ring_desc = "当施放闪电之环时发出警报。",
+
+	ringBar = "施放闪电之环计时条",
+	ringBar_desc = "当正在施放闪电之环时显示计时条。",
+
 	ring_message = "闪电之环！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
 	charge = "靜電能量",
 	charge_desc = "當玩家中了靜電能量時發出警報。",
+
+	ringBar = "靜電能量計時條",
+	ringBar_desc = "當靜電能量減益持續時顯示計時條。",
+
 	charge_message = ">%s<：靜電能量！",
 
 	ring = "閃電環",
 	ring_desc = "當施放閃電環時發出警報。",
+
+	ringBar = "施放閃電環計時條",
+	ringBar_desc = "當正在施放閃電環時顯示計時條。",
+
 	ring_message = "閃電環！",
 } end)
 

@@ -28,12 +28,26 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	emerge = "浮現",
+	emerge_desc = "當德拉克瑞元素從石縫中浮現時發出警報。",
+	emerge_message = "元素浮現！",
+
+	merge = "融合",
+	merge_desc = "當德拉克瑞元素融回到巨像時發出警報。",
+	merge_message = "融合巨像！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	emerge = "突现",
+	emerge_desc = "当达卡莱元素从石缝中突现时发出警报。",
+	emerge_message = "元素突现！",
+
+	merge = "融合",
+	merge_desc = "当达卡莱元素融回到巨像时发出警报。",
+	merge_message = "融合巨像！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

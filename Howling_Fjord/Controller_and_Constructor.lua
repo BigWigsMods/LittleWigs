@@ -37,7 +37,7 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	enfeeble = "衰弱",
 	enfeeble_desc = "當玩家中了衰弱時發出警報。",
-	enfeeble_message = "衰弱：>%s<！",
+	enfeeble_message = ">%s<：衰弱！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -49,7 +49,7 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	enfeeble = "衰弱",
 	enfeeble_desc = "当玩家中了衰弱时发出警报。",
-	enfeeble_message = "衰弱：>%s<！",
+	enfeeble_message = ">%s<：衰弱！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

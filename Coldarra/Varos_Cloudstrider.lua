@@ -29,14 +29,26 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
+	amplifyMagic = "魔法增效",
+	amplifyMagic_desc = "當玩家中了魔法增效減益時發出警報。",
+
+	amplifyMagicBar = "魔法增效計時條",
+	amplifyMagicBar_desc = "當魔法增效持續時顯示計時條。",
+
+	amplifyMagic_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏数据，请考虑开启战斗记录（/combatlog）或 Transcriptor 记录并提交战斗记录，谢谢！",
+	amplifyMagic = "魔法增效",
+	amplifyMagic_desc = "当玩家中了魔法增效减益时发出警报。",
+
+	amplifyMagicBar = "魔法增效计时条",
+	amplifyMagicBar_desc = "当魔法增效持续时显示计时条。",
+
+	amplifyMagic_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

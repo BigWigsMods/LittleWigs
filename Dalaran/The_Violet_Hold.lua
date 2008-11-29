@@ -67,14 +67,20 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	sinclari = "부관 신클래리",
+	sinclari = "辛克拉麗中尉",
 
-	next_portal = "다음 차원문",
+	portal = "傳送門警報",
+	portal_desc = "當下一個傳送門即將開啟時發出警報。",
 
-	portal_bar = "~%s: %s", --shouldn't require translation
+	portalbar = "傳送門計時條",
+	portalbar_desc = "當下一個傳送門即將開啟時顯示計時條。",
+	
+	next_portal = "下一個傳送門",
 
-	portal_message15s = "약 15초 후 %s !",
-	portal_message95s = "약 95초 후 %s !",
+	portal_bar = "<%s：波 %s>", --shouldn't require translation
+
+	portal_message15s = "約15秒后，%s！",
+	portal_message95s = "約95秒后，%s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -87,14 +93,20 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	sinclari = "부관 신클래리",
+	sinclari = "Lieutenant Sinclari", -- require
 
-	next_portal = "다음 차원문",
+	portal = "传送门警报",
+	portal_desc = "当下一个传送门即将开启时发出警报。",
 
-	portal_bar = "~%s: %s", --shouldn't require translation
+	portalbar = "传送门计时条",
+	portalbar_desc = "当下一个传送门即将开启时显示计时条。",
+	
+	next_portal = "下一个传送门",
 
-	portal_message15s = "약 15초 후 %s !",
-	portal_message95s = "약 95초 후 %s !",
+	portal_bar = "<%s：波 %s>", --shouldn't require translation
+
+	portal_message15s = "约15秒后，%s！",
+	portal_message95s = "约95秒后，%s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

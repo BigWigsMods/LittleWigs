@@ -28,12 +28,26 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	transformation = "變形",
+	transformation_desc = "當慕拉比開始施放變形時發出警報。",
+
+	transformationBar = "施放變形計時條",
+	transformationBar_desc = "當正在施放變形時顯示計時條。",
+
+	transformation_message = "正在施放 變形！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	transformation = "变形",
+	transformation_desc = "当莫拉比正在施放变形时发出警报。",
+
+	transformationBar = "施放变形计时条",
+	transformationBar_desc = "当正在施放变形时显示计时条。",
+
+	transformation_message = "正在施放 变形！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
