@@ -31,6 +31,10 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	curse = "피로의 저주",
 	curse_desc = "피로의 저주에 걸린 플레이어를 알립니다.",
+	
+	curseBar = "피로의 저주 바",
+	curseBar_desc = "피로의 저주가 지속되는 바를 표시합니다.",
+	
 	curse_message = "피로의 저주 - %s",
 
 	frenzy = "광기",

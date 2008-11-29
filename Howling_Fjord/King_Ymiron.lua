@@ -35,14 +35,14 @@ L:RegisterTranslations("koKR", function() return {
 	bane_ended = "파멸 사라짐",
 
 	baneBar = "파멸 바",
-	baneBar_desc = "파멸 버프의 지속 시간바를 표시합니다.",
+	baneBar_desc = "파멸 버프가 지속되는 바를 표시합니다.",
 
 	rot = "악취나는 부패",
 	rot_desc = "악취나는 부패 디버프에 걸린 플레이어를 알립니다.",
 	rot_message = "%s: %s",
 
 	rotBar = "악취나는 부패 바",
-	rotBar_desc = "악취나는 부패의 지속 시간바를 표시합니다.",
+	rotBar_desc = "악취나는 부패가 지속되는 바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

@@ -22,6 +22,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	emerge = "정령 등장",
+	emerge_desc = "드라카리 거대골렘에서 드라카리 정령의 등장 알립니다.",
+	emerge_message = "정령 등장!",
+
+	merge = "정령 합류",
+	merge_desc = "드라카리 정령이 드라카리 거대골렘과 합류하는 것을 알립니다.",
+	merge_message = "골렘으로 돌아옴!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

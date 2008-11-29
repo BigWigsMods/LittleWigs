@@ -40,7 +40,7 @@ L:RegisterTranslations("koKR", function() return {
 	thundershock_desc = "어둠 추적자 제도가의 천둥 충격 시전을 알립니다.",
 
 	thundershockBar = "천둥 충격 바",
-	thundershockBar_desc = "어둠 추적자 제도가의 천둥 충격 지속 바를 표시합니다.",
+	thundershockBar_desc = "어둠 추적자 제도가의 천둥 충격이 지속되는 바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

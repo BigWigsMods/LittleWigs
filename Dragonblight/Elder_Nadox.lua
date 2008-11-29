@@ -56,7 +56,7 @@ L:RegisterTranslations("koKR", function() return {
 	broodplague_message = "혈족 역병: %s",
 
 	broodplaguebar = "혈족 역병 바",
-	broodplaguebar_desc = "혈족 역병 디버프의 지속 바를 표시합니다.",
+	broodplaguebar_desc = "혈족 역병 디버프가 지속되는 바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

@@ -23,6 +23,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	amplifyMagic = "마법 증폭",
+	amplifyMagic_desc = "마법 증폭에 걸린 플레이어를 알립니다.",
+
+	amplifyMagicBar = "마법 증폭 바",
+	amplifyMagicBar_desc = "마법 증폭이 지속되는 바를 표시합니다.",
+
+	amplifyMagic_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

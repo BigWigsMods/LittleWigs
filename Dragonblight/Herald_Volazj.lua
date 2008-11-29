@@ -45,8 +45,8 @@ L:RegisterTranslations("frFR", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	insanity = "정신 이상",
-	insanity_desc = "Warn when Herald Volazj begins to cast Insanity.",
-	insanity_message = "Casting Insanity",
+	insanity_desc = "사자 볼라즈의 정신 이상 시전을 알립니다.",
+	insanity_message = "정신 이상 시전!",
 	
 	shiver = "오한",
 	shiver_desc = "오한 디버프에 걸린 플레이어를 알립니다.",

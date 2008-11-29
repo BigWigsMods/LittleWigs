@@ -53,10 +53,18 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("koKR", function() return {
 	charge = "전하 충전",
 	charge_desc = "전하 충전에 걸린 플레이어를 알립니다.",
+
+	chargeBar = "전하 충전 바",
+	chargeBar_desc = "전하 충전 디버프가 지속 되는 바를 표시합니다.",
+
 	charge_message = "전하 충전: %s",
 
 	ring = "번개 고리",
 	ring_desc = "번개 고리를 알립니다.",
+
+	ringBar = "번개 고리 시전 바",
+	ringBar_desc = "번개 고리 시전 바를 표시합니다.",
+
 	ring_message = "번개 고리!",
 } end)
 

@@ -35,11 +35,13 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
-	engage_trigger = "여기에 오지 말았어야 했다...이제 죽음을 맞이할 테니!",
-
 	shock = "슬픔의 충격",
 	shock_desc = "슬픔의 충격 시전을 알립니다.",
-	shock_message = "슬픔의 충격 시전",
+
+	shockBar = "슬픔의 충격 바",
+	shockBar_desc = "슬픔의 충격 시전 바를 표시합니다.",
+
+	shock_message = "슬픔의 충격 시전!",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

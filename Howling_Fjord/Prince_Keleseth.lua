@@ -24,6 +24,11 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	tomb = "서리 무덤",
 	tomb_desc = "서리 무덤의 대상자를 알립니다.",
+	
+	tombBar = "서리 무덤 바",
+	tombBar_desc = "서리 무덤이 지속되는 바를 표시합니다.",
+
+	tomb_message = "서리 무덤: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

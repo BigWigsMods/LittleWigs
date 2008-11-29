@@ -72,7 +72,7 @@ L:RegisterTranslations("koKR", function() return {
 	embraceFade_message = "흡혈의 은총 사라짐",
 
 	embraceBar = "흡혈의 은총 바",
-	embraceBar_desc = "흡혈의 은총의 지속 시간바를 표시합니다.",
+	embraceBar_desc = "흡혈의 은총이 지속되는 바를 표시합니다.",
 
 	sphere = "화염 구슬 소환",
 	sphere_desc = "공작 탈다람의 화염 구슬 소환 시전을 알립니다.",

@@ -36,7 +36,7 @@ L:RegisterTranslations("koKR", function() return {
 	planarshift_desc = "차원 이동을 알립니다.",
 
 	planarshiftbar = "차원 이동 바",
-	planarshiftbar_desc = "차원 이동의 지속 시간을 바로 표시합니다.",
+	planarshiftbar_desc = "차원 이동이 지속되는 바를 표시합니다.",
 
 	planarshift_message = "차원 이동",
 	planarshift_expire_message = "5초 후 차원 이동 종료",
@@ -45,7 +45,7 @@ L:RegisterTranslations("koKR", function() return {
 	enragedassault_desc = "맹렬한 격노를 알립니다.",
 
 	enragedassaultbar = "맹렬한 격노 바",
-	enragedassaultbar_desc = "맹렬한 격노의 지속시간을 바로 표시합니다.",
+	enragedassaultbar_desc = "맹렬한 격노가 지속되는 바를 표시합니다.",
 
 	enragedassault_message = "맹렬한 격노",
 } end )

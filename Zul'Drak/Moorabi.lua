@@ -22,6 +22,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	transformation = "변신",
+	transformation_desc = "무라비의 변신을 알립니다.",
+
+	transformationBar = "변신 시전 바",
+	transformationBar_desc = "변신 시전 바를 표시합니다.",
+
+	transformation_message = "변신 시전!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

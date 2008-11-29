@@ -42,13 +42,13 @@ L:RegisterTranslations("koKR", function() return {
 	timeBombWhisper_message = "당신은 냉기 폭탄!",
 
 	timeBombBar = "냉기 폭탄 바",
-	timeBombBar_desc = "냉기 폭탄의 지속 바를 표시합니다.",
+	timeBombBar_desc = "냉기 폭탄이 지속되는 바를 표시합니다.",
 
 	arcaneExplosion = "신비한 폭발 강화",
 	arcaneExplosion_desc = "마법사 군주 우롬의 신비한 폭발 강화 시전을 알립니다.",
 
 	arcaneExplosionBar = "신비한 폭발 강화 바",
-	arcaneExplosionBar_desc = "신비한 폭발 강화 시전바를 표시합니다.",
+	arcaneExplosionBar_desc = "신비한 폭발 강화 시전 바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

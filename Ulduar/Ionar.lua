@@ -52,7 +52,7 @@ L:RegisterTranslations("koKR", function() return {
 	overloadWhisper_message = "당신은 전하 과부하!",
 
 	overloadBar = "전하 과부하 바",
-	overloadBar_desc = "전하 과부하에 걸린 플레이어의 지속 시간바를 표시합니다.",
+	overloadBar_desc = "전하 과부하에 걸린 플레이어에게 지속되는 바를 표시합니다.",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
