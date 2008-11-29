@@ -121,7 +121,7 @@ L:RegisterTranslations("ruRU", function() return {
 	embraceGain_desc = "Сообщать когда Принц Талдарам получает Объятие вампира.",
 	embraceGain_message = "Получено Объятие вампира",
 
-	embracefade = "Рассеивание Объятия вампира",
+	embraceFade = "Рассеивание Объятия вампира",
 	embraceFade_desc = "Сообщать когда Объятие вампира спадает с Принца Талдарам.",
 	embraceFade_message = "Объятие вампира рассеелось",
 
