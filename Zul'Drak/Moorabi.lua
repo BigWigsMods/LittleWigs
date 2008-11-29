@@ -37,6 +37,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	transformation = "Преображение",
+	transformation_desc = "Предупреждать когда Мураби начинает применять Преображение.",
+
+	transformationBar = "Полоса Преображения",
+	transformationBar_desc = "Отображать полосу применения Преображения.",
+
+	transformation_message = "Применияется Преображение!",
 } end )
 
 ----------------------------------

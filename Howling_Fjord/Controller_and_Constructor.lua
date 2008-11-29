@@ -55,7 +55,7 @@ L:RegisterTranslations("zhCN", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	enfeeble = "Ослабление",
 	enfeeble_desc = "Предупреждать, когда на кого-нибудь накладывается ослабление.",
-	enfeeble_message = "Ослаблен: %s",
+	enfeeble_message = "%s: ослаблен!",
 } end )
 
 ----------------------------------

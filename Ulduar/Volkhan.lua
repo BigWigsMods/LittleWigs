@@ -53,8 +53,12 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	stomp = "Раскатистый топот",
-	stomp_desc = "Предупреждать, когда Volkhan собирается разбить всех его големов.",
-	stomp_message = "Применяется раскатистый топот",
+	stomp_desc = "Предупреждать, когда Волхан собирается раскалоть все хладные големы.",
+
+	stompBar = "Полоса Раскатистого топота",
+	stompBar_desc = "Отображать полосу применения Раскатистого топота.",
+
+	stomp_message = "Применяется раскатистый топот!",
 } end)
 
 ----------------------------------

@@ -49,6 +49,11 @@ L:RegisterTranslations("zhCN", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	tomb = "Ледяная могила",
 	tomb_desc = "Предупреждать, когда кто-нибудь попадает в ледяную могилу.",
+
+	tombBar = "Полоса Ледяной могилы",
+	tombBar_desc = "Отображение полосы продолжительности Ледяной могилы.",
+
+	tomb_message = "В ледяной могиле: %s",
 } end )
 
 ----------------------------------

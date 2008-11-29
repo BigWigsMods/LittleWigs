@@ -40,6 +40,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	amplifyMagic = "Усиление магии",
+	amplifyMagic_desc = "Предупреждать если кто получает дебафф Усиления магии.",
+
+	amplifyMagicBar = "Полоса Усиление магии",
+	amplifyMagicBar_desc = "Отображать полосу продолжительности Усиления магии.",
+
+	amplifyMagic_message = "%s: %s",
 } end )
 
 ----------------------------------

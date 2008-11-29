@@ -89,6 +89,10 @@ L:RegisterTranslations("esES", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	curse = "Проклятие усталости",
 	curse_desc = "Предупреждать, когда на кого-нибудь накладывается проклятие усталости.",
+
+	curseBar = "Полоса Проклятия усталости",
+	curseBar_desc = "Отображать полосу продолжительности Проклятия усталости.",
+
 	curse_message = "Проклятие усталости - %s",
 
 	frenzy = "Бешенство",

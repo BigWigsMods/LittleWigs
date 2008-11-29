@@ -100,6 +100,12 @@ L:RegisterTranslations("zhCN", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	sinclari = "Лейтенант Синклари",
 
+	portal = "Предупреждать о порталах",
+	portal_desc = "Оповещать о порталах.",
+
+	portalbar = "Полосы волн",
+	portalbar_desc = "Отображать таймер до следующего портала.",
+
 	next_portal = "Следующий портал",
 
 	portal_bar = "~%s: %s", --shouldn't require translation

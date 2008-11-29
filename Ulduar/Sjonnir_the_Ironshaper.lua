@@ -78,10 +78,18 @@ L:RegisterTranslations("esES", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	charge = "Статический заряд",
 	charge_desc = "Предупреждать, когда кто-нибудь статически заряжен.",
-	charge_message = "%s: Статически заряжен",
+
+	chargeBar = "Полоса Статического заряда",
+	chargeBar_desc = "Отображение полосы продолжительности дебаффа Статического заряда.",
+
+	charge_message = "%s: статически заряжен",
 
 	ring = "Кольцо молний",
 	ring_desc = "Предупреждать о кольце молний.",
+
+	ringBar = "Полоса Кольца молний",
+	ringBar_desc = "Отображать полосу применения Кольца молний.",
+
 	ring_message = "Кольцо молний!",
 } end)
 

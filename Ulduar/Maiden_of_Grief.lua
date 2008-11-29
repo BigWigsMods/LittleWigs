@@ -56,6 +56,10 @@ L:RegisterTranslations("esES", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	shock = "Шок от горя",
 	shock_desc = "Предупреждать о применении шока от горя.",
+
+	shockBar = "Полоса Шока от горя",
+	shockBar_desc = "DОтображать полосу применения Шока от горя",
+
 	shock_message = "Применяется шок от горя",
 } end)
 

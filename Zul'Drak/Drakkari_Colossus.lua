@@ -37,6 +37,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	emerge = "Появление",
+	emerge_desc = "Предупреждать о выходе элементаля из Колосса.",
+	emerge_message = "Появление Элементаля!",
+
+	merge = "Размытие",
+	merge_desc = "Предупреждать о воссоединении элементаля с Колоссом.",
+	merge_message = "Слияние с Колоссом",
 } end )
 
 ----------------------------------
