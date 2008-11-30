@@ -11,29 +11,47 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Zuramat",
-	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
+	
+	voidShift = "Void Shift",
+	voidShift_desc = "Warn when someone has Void Shift.",
+	voidShift_you = "Void Shift on YOU!",
+	voidShift_other = "Void Shift: %s",
+	
+	voidShiftBar = "Void Shift Bar",
+	voidShiftBar_desc = "Display a bar for the duration of Void Shift.",
+	
+	darkness = "Shroud of Darkness",
+	darkness_desc = "Warns for Shroud of Darkness.",
+	darkness_message = "Shroud of Darkness - stop dps!",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	log = "|cffff0000"..boss.."|r: 해당 보스의 데이터가 필요합니다. 채팅창에 /전투기록 , /대화기록 을 입력하여 기록된 데이터를 보내주시기 바랍니다.",
+	voidShift = "공허의 전환",
+	voidShift_desc = "공허의 전환에 걸린 플레이어를 알립니다.",
+	voidShift_you = "당신은 공허의 전환!!",
+	voidShift_other = "공허의 전환: %s",
+	
+	voidShiftBar = "공허의 전환 바",
+	voidShiftBar_desc = "공허의 전환이 지속되는 바를 표시합니다.",
+	
+	darkness = "어둠의 수의",
+	darkness_desc = "어둠의 수의에 대해 알립니다.",
+	darkness_message = "어둠의 수의 - dps 그만!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏数据，请考虑开启战斗记录（/combatlog）或 Transcriptor 记录并提交战斗记录，谢谢！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	log = "|cffff0000"..boss.."|r: Для этого босса необходимы правильные данные. Пожалуйста, включите запись логов (команда /combatlog) или установите аддон transcriptor, и пришлите получившийся файл (или оставьте ссылку на файл в комментариях на curse.com).",
 } end )
 
 ----------------------------------
@@ -46,7 +64,7 @@ mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29314
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"voidShift", "voidShiftBar", -1, "darkness", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -54,10 +72,38 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_AURA_APPLIED", "VoidShift", 54361, 59743)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Darkness", 54524, 59745)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	BigWigs:Print(L["log"])
+	
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("BigWigs_RecvSync")
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
+
+function mod:VoidShift(player, spellID)
+	if self.db.profile.voidShift then
+		local other = L["voidShift_other"]:format(player)
+		if player == pName then
+			self:Message(L["voidShift_you"], "Personal", true, "Alert", nil, spellID)
+			self:Message(other, "Attention", nil, nil, true)
+		else
+			self:Message(other, "Attention", nil, nil, nil, spellID)
+			self:Whisper(player, L["voidShift_you"])
+		end
+		self:Icon(player, "icon")
+		if self.db.profile.voidShiftBar then
+			self:Bar(other, 15, spellID)
+		end
+	end
+end
+
+function mod:Darkness(_, spellId)
+	if self.db.profile.darkness then
+		self:IfMessage(L["darkness_message"], "Important", spellId)
+	end
+end
