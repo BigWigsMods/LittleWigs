@@ -131,11 +131,13 @@ end
 function mod:UNIT_HEALTH(arg1)
 	if not self.db.profile.split then return end
 	if UnitName(arg1) == boss then
-		local health = UnitHealth(arg1)
-		if health > 51 and health <= 54 and not spliteannounced then
+		local currentHealth = UnitHealth(arg1)
+		local maxHealth = UnitHealthMax(arg1)
+		local percentHealth = (currentHealth/maxHealth)*100
+		if percentHealth > 51 and percentHealth <= 54 and not splitannounced then
 			self:Message(L["split_soon_message"], "Attention")
 			splitannounced = true
-		elseif health > 60 and spliteannounced then
+		elseif percentHealth > 60 and spliteannounced then
 			splitannounced = false
 		end
 	end
