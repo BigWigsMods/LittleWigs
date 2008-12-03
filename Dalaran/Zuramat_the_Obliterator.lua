@@ -63,6 +63,17 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	voidShift = "Вхождение в Бездну",
+	voidShift_desc = "Предупреждать когда ктонибуть Вхождит в Бездну.",
+	voidShift_you = "Вхождение в Бездну на ВАС!",
+	voidShift_other = "Вхождение в Бездну на: %s",
+	
+	voidShiftBar = "Полоса Вхождения в Бездну",
+	voidShiftBar_desc = "Отображать полосу продолжительности Вхождения в Бездну.",
+	
+	darkness = "Покров Тьмы",
+	darkness_desc = "Предупреждать о Покрове Тьмы.",
+	darkness_message = "Покров Тьмы - СТОП УРОН!",
 } end )
 
 ----------------------------------

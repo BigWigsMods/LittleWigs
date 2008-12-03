@@ -10,6 +10,8 @@
 ## Title-koKR: Little Wigs [|cffeda55f울두아르|r]
 ## Notes-koKR: Little Wigs 울두아르 경고
 ## Notes-frFR: Modules Little Wigs concernant Ulduar.
+## Title-ruRU: Little Wigs [|cffeda55fУльдуар|r]
+## Notes-ruRU: Модуль Little Wigs - Ульдуар
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

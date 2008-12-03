@@ -51,6 +51,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	earthshield = "Щит Земли",
+	earthshield_desc = "Предупреждать о Щите Земли.",
+	earthshield_message = "Щит Земли!",
+	
+	chainheal = "Цепное исцеление",
+	chainheal_desc = "Предупреждать о Цепном исцелении.",
+	chainheal_message = "Применяется Цепное исцеление!",
 } end )
 
 ----------------------------------

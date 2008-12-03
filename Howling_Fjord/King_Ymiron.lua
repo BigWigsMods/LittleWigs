@@ -116,6 +116,7 @@ L:RegisterTranslations("ruRU", function() return {
 	bane = "Погибель",
 	bane_desc = "Предепреждать о применении погибели.",
 	bane_message = "Применение погибели",
+	bane_ended = "Погибель рассеялась",
 
 	baneBar = "Полоса погибели",
 	baneBar_desc = "Отображать полосу продолжительности баффа погибели.",

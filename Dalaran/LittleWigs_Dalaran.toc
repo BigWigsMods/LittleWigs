@@ -4,11 +4,13 @@
 ## Title-zhCN: Little Wigs [|cffeda55f达拉然|r]
 ## Title-zhTW: Little Wigs [|cffeda55f達拉然|r]
 ## Title-koKR: Little Wigs [|cffeda55f달라란|r]
+## Title-ruRU: Little Wigs [|cffeda55fДаларан|r]
 ## Notes: Little Wigs Dalaran Modules
 ## Notes-frFR: Modules Little Wigs concernant Dalaran.
 ## Notes-zhCN: Little Wigs 达拉然模块
 ## Notes-zhTW: Little Wigs 達拉然模組
 ## Notes-koKR: Little Wigs 달라란 경고
+## Notes-ruRU: Модуль Little Wigs - Даларан
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

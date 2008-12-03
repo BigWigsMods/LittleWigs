@@ -51,6 +51,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	opticlink = "Оптическая связь",
+	opticlink_desc = "Предупреждать если кто под Оптической связи.",
+	
+	opticlinkBar = "Полоса Оптической связи",
+	opticlinkBar_desc = "Отображать полосу продолжительности Оптической связи.",
+	
+	opticlink_message = "%s: %s",
 } end )
 
 ----------------------------------

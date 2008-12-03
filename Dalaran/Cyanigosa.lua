@@ -90,6 +90,26 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	vacuum = "Чародейский вакуум",
+	vacuum_desc = "Предупреждать о Чародейском вакууме.",
+	vacuum_soon = "Чародейский вакуум через ~5сек!",
+	vacuum_message = "Чародейский вакуум!",
+	
+	vacuumcooldown = "Перезарядка Чародейского вакуума",
+	vacuumcooldown_desc = "Предупреждать о завершении перезарядки Чародейского вакуума.",
+	vacuum_cooldown_bar = "Перезарядка вакуума",
+	
+	blizzard = "Снежная буря",
+	blizzard_desc = "Предупреждать о Снежной бури.",
+	blizzard_message = "Снежная буря!",
+	
+	destruction = "Захват маны",
+	destruction_desc = "Предупреждать если кто либо получил Захват маны.",
+	
+	destructionBar = "Полоса Захвата маны",
+	destructionBar_desc = "Отображать полосу продолжительности Захвата маны.",
+	
+	destruction_message = "%s: %s",
 } end )
 
 ----------------------------------

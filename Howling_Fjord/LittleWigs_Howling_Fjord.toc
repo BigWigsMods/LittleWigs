@@ -11,6 +11,8 @@
 ## Notes-zhTW: Little Wigs 凜風峽灣模組
 ## Title-koKR: Little Wigs [|cffeda55f울부짖는 협만|r]
 ## Notes-koKR: Little Wigs 울부짖는 협만 경고
+## Title-ruRU: Little Wigs [|cffeda55fРевущий фьорд|r]
+## Notes-ruRU: Модуль Little Wigs - Ревущий фьорд
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

@@ -11,6 +11,8 @@
 ## Notes-zhTW: Little Wigs 龍骨荒野模組
 ## Title-koKR: Little Wigs [|cffeda55f용의 안식처|r]
 ## Notes-koKR: Little Wigs 용의 안식처 경고
+## Title-ruRU: Little Wigs [|cffeda55fДраконий погост|r]
+## Notes-ruRU: Модуль Little Wigs - Драконий погост
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

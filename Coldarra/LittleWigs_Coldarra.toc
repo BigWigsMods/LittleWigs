@@ -10,6 +10,8 @@
 ## Notes-zhTW: Little Wigs 凜懼島模組
 ## Title-koKR: Little Wigs [|cffeda55f콜다라|r]
 ## Notes-koKR: Little Wigs 콜다라 경고
+## Title-ruRU: Little Wigs [|cffeda55fХладарра|r]
+## Notes-ruRU: Модуль Little Wigs - Хладарра
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0
