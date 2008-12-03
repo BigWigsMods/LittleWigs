@@ -22,7 +22,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	darkness = "Shroud of Darkness",
 	darkness_desc = "Warns for Shroud of Darkness.",
-	darkness_message = "Shroud of Darkness - stop dps!",
+	darkness_message = "Shroud of Darkness",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -97,28 +97,25 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "VoidShift", 54361, 59743)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Darkness", 54524, 59745)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
-function mod:VoidShift(player, spellID)
+function mod:VoidShift(player, spellId)
 	if self.db.profile.voidShift then
 		local other = L["voidShift_other"]:format(player)
 		if player == pName then
-			self:Message(L["voidShift_you"], "Personal", true, "Alert", nil, spellID)
+			self:Message(L["voidShift_you"], "Personal", true, "Alert", nil, spellId)
 			self:Message(other, "Attention", nil, nil, true)
 		else
-			self:Message(other, "Attention", nil, nil, nil, spellID)
+			self:Message(other, "Attention", nil, nil, nil, spellId)
 			self:Whisper(player, L["voidShift_you"])
 		end
 		self:Icon(player, "icon")
 		if self.db.profile.voidShiftBar then
-			self:Bar(other, 15, spellID)
+			self:Bar(other, 15, spellId)
 		end
 	end
 end
