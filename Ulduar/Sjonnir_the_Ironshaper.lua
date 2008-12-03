@@ -16,7 +16,7 @@ L:RegisterTranslations("enUS", function() return {
 	charge_desc = "Warn for who has the Static Charge.",
 
 	chargeBar = "Static Charge Bar",
-	chargeBar_desc = "Display a bar for the duraction of the Static Charge debuff.",
+	chargeBar_desc = "Display a bar for the duration of the Static Charge debuff.",
 
 	charge_message = "Static Charge: %s",
 
@@ -30,6 +30,21 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	charge = "Statische Aufladung",
+	charge_desc = "Warnt wer die Statische Aufladung hat.",
+
+	chargeBar = "Statische Aufladung Bar",
+	chargeBar_desc = "Zeigt eine Bar für die Dauer des Statische Aufladung Debuffs.",
+
+	charge_message = "Statische Aufladung: %s",
+
+	ring = "Blitzring",
+	ring_desc = "Warnt vor dem Blitzring.",
+
+	ringBar = "Blitzring Zauberleiste",
+	ringBar_desc = "Zeigt eine Kanalisierungs-Zauberleiste für den Blitzring.",
+
+	ring_message = "Blitzring!",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

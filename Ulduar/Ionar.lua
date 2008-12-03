@@ -27,6 +27,16 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	overload = "Statische Überladung",
+	overload_desc = "Warnt wer Statische Überladung hat.",
+	overload_message = "%s: Statische Überladung",
+
+	overloadWhisper = "Statische Überladung Flüstern",
+	overloadWhisper_desc = "Flüstert die Person mit der statischen Überladung an.",
+	overloadWhisper_message = "Du hast die Statische Überladung!",
+
+	overloadBar = "Statische Überladung Bar",
+	overloadBar_desc = "Zeigt eine Bar für den, der die Statische Überladung hat.",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
@@ -133,13 +143,5 @@ function mod:Overload(player, spellId)
 	end	
 	if self.db.profile.overloadBar then
 		self:Bar(L["overload_message"]:format(player), 10, spellId)
-	end
-end
-
--- I don't have any logs for this instance yet. I suspect this is not dispellable, if it is not,
--- then we don't need the remove, please verify
-function mod:OverloadRemoved(player)
-	if self.db.profile.overloadBar then
-		self:TriggerEvent("BigWigs_StopBar", self, L["overload_message"]:format(player))
 	end
 end

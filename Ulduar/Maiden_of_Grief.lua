@@ -22,6 +22,13 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	shock = "Trauerschock",
+	shock_desc = "Warnt vor dem Zaubern Trauerschock.",
+
+	shockBar = "Trauerschock Bar",
+	shockBar_desc = "Zeigt eine Zauberleiste für Trauerschock",
+
+	shock_message = "Zaubert Trauerschock",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

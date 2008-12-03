@@ -21,6 +21,12 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	nova = "Blitznova",
+	nova_desc = "Warnt vor dem Zaubern von Blitznova.",
+	nova_message = "Zaubert Blitznova",
+
+	novaBar = "Blitznova Bar",
+	novaBar_desc = "Zeige eine Bar für die Zauberzeit von Blitznova.",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

@@ -19,6 +19,10 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	shatter = "Zertrümmern",
+	shatter_desc = "Warnt vor Erde erschüttern und Zertrümmern.",
+	shatter_warn = "Erde erschüttern - Zertrümmern in ~8 Sek!",
+	shatter_message = "Zertrümmern!",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

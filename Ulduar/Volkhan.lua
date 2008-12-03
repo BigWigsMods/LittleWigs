@@ -22,6 +22,13 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	stomp = "Zerschmetterndes Stampfen",
+	stomp_desc = "Warnt wenn Volkhan seine Brüchigen Golems zerschmettern wird.",
+
+	stompBar = "Zerschmetterndes Stampfen Bar",
+	stompBar_desc = "Zeige eine Zauberleiste für Zerschmetterndes Stampfen.",
+
+	stomp_message = "Zaubert Zerschmetterndes Stampfen",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
