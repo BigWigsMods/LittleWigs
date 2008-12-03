@@ -11,11 +11,11 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Erekem",
-	
+
 	earthshield = "Earth Shield",
 	earthshield_desc = "Warns for Earth Shield.",
 	earthshield_message = "Earth Shield!",
-	
+
 	chainheal = "Chain Heal",
 	chainheal_desc = "Warn for the casting of Chain Heal.",
 	chainheal_message = "Casting Chain Heal!",
@@ -25,13 +25,20 @@ L:RegisterTranslations("koKR", function() return {
 	earthshield = "대지의 보호막",
 	earthshield_desc = "대지의 보호막에 대해 알립니다.",
 	earthshield_message = "대지의 보호막!",
-	
+
 	chainheal = "연쇄 치유",
 	chainheal_desc = "연쇄 치유에 시전에 대해 알립니다.",
 	chainheal_message = "치유 시전!",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	earthshield = "Bouclier de terre",
+	earthshield_desc = "Prévient quand Erekem est protégé par un Bouclier de terre.",
+	earthshield_message = "Bouclier de terre !",
+
+	chainheal = "Salve de guérison",
+	chainheal_desc = "Prévient quand une Salve de guérison est incantée.",
+	chainheal_message = "Salve de guérison en incantation !",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

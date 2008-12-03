@@ -11,26 +11,26 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Cyanigosa",
-	
+
 	vacuum = "Arcane Vacuum",
 	vacuum_desc = "Warns for Arcane Vacuum.",
 	vacuum_soon = "Arcane Vacuum in ~5sec!",
 	vacuum_message = "Arcane Vacuum!",
-	
+
 	vacuumcooldown = "Arcane Vacuum cooldown",
 	vacuumcooldown_desc = "Warn when cooldown for Arcane Vacuum has passed.",
 	vacuum_cooldown_bar = "Arcane Vacuum cooldown",
-	
+
 	blizzard = "Blizzard",
 	blizzard_desc = "Warns for Blizzard.",
 	blizzard_message = "Blizzard!",
-	
+
 	destruction = "Mana Destruction",
 	destruction_desc = "Warn when someone has Mana Destruction.",
-	
+
 	destructionBar = "Mana Destruction Bar",
 	destructionBar_desc = "Display a bar for the duration of Mana Destruction.",
-	
+
 	destruction_message = "%s: %s",
 } end )
 
@@ -39,25 +39,45 @@ L:RegisterTranslations("koKR", function() return {
 	vacuum_desc = "비전 진공에 대해 알립니다.",
 	vacuum_soon = "약 5초 후 비전 진공!",
 	vacuum_message = "비전 진공!",
-	
+
 	vacuumcooldown = "비전 진공 대기시간",
 	vacuumcooldown_desc = "비전 진공의 대기시간 바를 표시합니다.",
 	vacuum_cooldown_bar = "비전 진공 대기시간",
-	
+
 	blizzard = "눈보라",
 	blizzard_desc = "눈보라에 대해 알립니다.",
 	blizzard_message = "눈보라!",
-	
+
 	destruction = "마나 파괴",
 	destruction_desc = "마나 파괴에 걸린 플레이어를 알립니다.",
-	
+
 	destructionBar = "마나 파괴 바",
 	destructionBar_desc = "마나 파괴가 지속되는 바를 표시합니다.",
-	
+
 	destruction_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	vacuum = "Vide des arcanes",
+	vacuum_desc = "Prévient un Vide des arcanes est incanté.",
+	vacuum_soon = "Vide des arcanes dans ~5sec !",
+	vacuum_message = "Vide des arcanes !",
+
+	vacuumcooldown = "Vide des arcanes - Recharge",
+	vacuumcooldown_desc = "Affiche une barre indiquant le temps de recharge du Vide des arcanes.",
+	vacuum_cooldown_bar = "Recharge Vide des arcanes",
+
+	blizzard = "Blizzard",
+	blizzard_desc = "Prévient quand un Blizzard est incanté.",
+	blizzard_message = "Blizzard !",
+
+	destruction = "Destruction du mana",
+	destruction_desc = "Prévient quand un joueur subit les effets de la Destruction du mana.",
+
+	destructionBar = "Destruction du mana - Barre",
+	destructionBar_desc = "Affiche une barre indiquant la durée de la Destruction du mana.",
+
+	destruction_message = "%s : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
