@@ -126,7 +126,6 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Overload", 52658, 59795)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "OverloadRemoved", 52658, 59795)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
