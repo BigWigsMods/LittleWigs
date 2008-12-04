@@ -81,12 +81,52 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	vacuum = "秘法真空",
+	vacuum_desc = "當施放秘法真空時發出警報。",
+	vacuum_soon = "約5秒後，秘法真空！",
+	vacuum_message = "秘法真空！",
+
+	vacuumcooldown = "秘法真空冷卻",
+	vacuumcooldown_desc = "當秘法真空冷卻結束時發出警報。",
+	vacuum_cooldown_bar = "<秘法真空 冷卻>",
+
+	blizzard = "暴風雪",
+	blizzard_desc = "當施放暴風雪時發出警報。",
+	blizzard_message = "暴風雪！",
+
+	destruction = "法力浩劫",
+	destruction_desc = "當玩家中了法力浩劫時發出警報。",
+
+	destructionBar = "法力浩劫計時條",
+	destructionBar_desc = "當法力浩劫持續時顯示計時條。",
+
+	destruction_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	vacuum = "奥术真空",
+	vacuum_desc = "当施放奥术真空时发出警报。.",
+	vacuum_soon = "约5秒后，奥术真空！",
+	vacuum_message = "奥术真空！",
+
+	vacuumcooldown = "奥术真空冷却",
+	vacuumcooldown_desc = "当奥术真空冷却结束时发出警报。",
+	vacuum_cooldown_bar = "<奥术真空 冷却>",
+
+	blizzard = "暴风雪",
+	blizzard_desc = "当施放暴风雪时发出警报。",
+	blizzard_message = "暴风雪！",
+
+	destruction = "法力毁灭",
+	destruction_desc = "当玩家中了法力毁灭时发出警报。",
+
+	destructionBar = "法力毁灭计时条",
+	destructionBar_desc = "当法力毁灭持续时显示计时条。",
+
+	destruction_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

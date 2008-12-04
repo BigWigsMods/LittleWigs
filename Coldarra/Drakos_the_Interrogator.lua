@@ -33,7 +33,7 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	magicpull = "魔法拖曳",
 	magicpull_desc = "當『審問者』德拉高斯施放魔法拖曳時發出警報。",
-	magicpull_message = "正在施放：魔法拖曳！",
+	magicpull_message = "正在施放 魔法拖曳！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

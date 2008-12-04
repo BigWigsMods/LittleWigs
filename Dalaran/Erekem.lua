@@ -42,12 +42,26 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	earthshield = "大地之盾",
+	earthshield_desc = "當施放大地之盾時發出警報。",
+	earthshield_message = "大地之盾！",
+
+	chainheal = "治療鍊",
+	chainheal_desc = "當正在施放治療鍊時發出警報。",
+	chainheal_message = "正在施放 治療鍊！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	earthshield = "大地之盾",
+	earthshield_desc = "当施放大地之盾时发出警报。",
+	earthshield_message = "大地之盾！",
+
+	chainheal = "治疗链",
+	chainheal_desc = "当正在施放治疗链时发出警报。",
+	chainheal_message = "正在施放 治疗链！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

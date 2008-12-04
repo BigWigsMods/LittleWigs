@@ -54,12 +54,34 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	voidShift = "虛空移形",
+	voidShift_desc = "當玩家中了虛空移形時發出警報。",
+	voidShift_you = ">你< 虛空移形！",
+	voidShift_other = "虛空移形：>%s<！",
+
+	voidShiftBar = "虛空移形計時條",
+	voidShiftBar_desc = "當虛空移形持續時顯示計時條。",
+
+	darkness = "黑暗障蔽",
+	darkness_desc = "當施放黑暗障蔽時發出警報。",
+	darkness_message = "黑暗障蔽！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	voidShift = "虚空转移",
+	voidShift_desc = "当玩家中了虚空转移时发出警报。",
+	voidShift_you = ">你< 虚空转移！",
+	voidShift_other = "虚空转移：>%s<！",
+
+	voidShiftBar = "虚空转移计时条",
+	voidShiftBar_desc = "当虚空转移持续时显示计时条。",
+
+	darkness = "黑暗遮蔽",
+	darkness_desc = "当施放黑暗遮蔽时发出警报。",
+	darkness_message = "黑暗遮蔽！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

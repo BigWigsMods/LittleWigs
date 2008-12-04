@@ -42,12 +42,26 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	opticlink = "光學連結",
+	opticlink_desc = "當玩家中了光學連結時發出警報。",
+
+	opticlinkBar = "光學連結計時條",
+	opticlinkBar_desc = "當光學連結持續時顯示計時條。",
+
+	opticlink_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	opticlink = "旋光链接",
+	opticlink_desc = "当玩家中了旋光链接时发出警报。",
+
+	opticlinkBar = "旋光链接计时条",
+	opticlinkBar_desc = "当旋光链接持续时显示计时条。",
+
+	opticlink_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
