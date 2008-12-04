@@ -14,11 +14,11 @@ L:RegisterTranslations("enUS", function() return {
 
 	earthshield = "Earth Shield",
 	earthshield_desc = "Warns for Earth Shield.",
-	earthshield_message = "Earth Shield!",
+	earthshield_message = "Earth Shield",
 
 	chainheal = "Chain Heal",
 	chainheal_desc = "Warn for the casting of Chain Heal.",
-	chainheal_message = "Casting Chain Heal!",
+	chainheal_message = "Casting Chain Heal",
 } end )
 
 L:RegisterTranslations("koKR", function() return {

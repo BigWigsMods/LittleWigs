@@ -14,8 +14,8 @@ L:RegisterTranslations("enUS", function() return {
 
 	vacuum = "Arcane Vacuum",
 	vacuum_desc = "Warns for Arcane Vacuum.",
-	vacuum_soon = "Arcane Vacuum in ~5sec!",
-	vacuum_message = "Arcane Vacuum!",
+	vacuum_soon = "Arcane Vacuum in ~5sec",
+	vacuum_message = "Arcane Vacuum",
 
 	vacuumcooldown = "Arcane Vacuum cooldown",
 	vacuumcooldown_desc = "Warn when cooldown for Arcane Vacuum has passed.",
@@ -23,7 +23,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	blizzard = "Blizzard",
 	blizzard_desc = "Warns for Blizzard.",
-	blizzard_message = "Blizzard!",
+	blizzard_message = "Blizzard",
 
 	destruction = "Mana Destruction",
 	destruction_desc = "Warn when someone has Mana Destruction.",
