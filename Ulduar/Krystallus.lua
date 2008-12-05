@@ -65,6 +65,10 @@ L:RegisterTranslations("ruRU", function() return {
 	shatter_desc = "Предупреждать об ударе земли и раскалывании.",
 	shatter_warn = "Удар Земли - Раскалывание через ~8 сек!",
 	shatter_message = "Раскалывание!",
+	
+	shatterBar = "Полоса раскалывания",
+	shatterBar_desc = "Отображать полосу с отсчетом времени то Раскалывания.",
+	shatterBar_message "~Раскалывание",
 } end)
 
 ----------------------------------

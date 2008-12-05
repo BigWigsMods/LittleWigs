@@ -37,6 +37,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	bubble = "Защитный пузырь",
+	bubble_desc = "Предупреждать о потере Защитного пузыря",
+	bubble_message = "Наложен Защитный пузырь",
+	bubbleEnded_message = "Защитный пузырь исчерпан",
+
+	frenzy = "Бешенство",
+	frenzy_desc = "Предупреждать когда Гнойрон впадает в Бешенство.",
 } end )
 
 ----------------------------------

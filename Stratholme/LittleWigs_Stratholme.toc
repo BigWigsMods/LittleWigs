@@ -3,6 +3,8 @@
 
 ## Title: Little Wigs [|cffeda55fStratholem|r]
 ## Notes: Little Wigs Stratholem Modules
+## Title-ruRU: Little Wigs [|cffeda55fСтратхольм|r]
+## Notes-ruRU: Модуль Little Wigs - Стратхольм
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

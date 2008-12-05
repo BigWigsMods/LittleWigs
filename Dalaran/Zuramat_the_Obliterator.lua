@@ -95,7 +95,7 @@ L:RegisterTranslations("ruRU", function() return {
 	
 	darkness = "Покров Тьмы",
 	darkness_desc = "Предупреждать о Покрове Тьмы.",
-	darkness_message = "Покров Тьмы - СТОП УРОН!",
+	darkness_message = "Покров Тьмы!",
 } end )
 
 ----------------------------------
