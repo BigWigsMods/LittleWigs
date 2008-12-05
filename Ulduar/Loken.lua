@@ -5,6 +5,8 @@
 local boss = BB["Loken"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local casttime
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -108,6 +110,7 @@ function mod:Nova(_, spellId, _, _, spellName)
 		self:IfMessage(L["nova_message"], "Urgent", spellId)
 	end
 	if self.db.profile.novaBar then
-		self:Bar(spellName, 5, spellId)
+		if GetInstanceDifficulty() == 1 then casttime = 5 else casttime = 4 end
+		self:Bar(spellName, casttime, spellId)
 	end
 end

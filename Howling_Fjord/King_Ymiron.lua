@@ -13,7 +13,7 @@ L:RegisterTranslations("enUS", function() return {
 	cmd = "Ymiron",
 
 	bane = "Bane",
-	bane_desc = "Warn for the casting of Bane.",
+	bane_desc = "Warn for the casting of Bane and when Bane ends.",
 	bane_message = "Casting Bane",
 	bane_ended = "Bane Fades",
 

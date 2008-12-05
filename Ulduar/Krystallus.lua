@@ -14,8 +14,12 @@ L:RegisterTranslations("enUS", function() return {
 
 	shatter = "Shatter",
 	shatter_desc = "Warn for Ground Slam and Shatter.",
-	shatter_warn = "Ground Slam - Shatter in ~8 sec!",
-	shatter_message = "Shatter!",
+	shatter_warn = "Ground Slam - Shatter in ~8 sec",
+	shatter_message = "Shatter",
+
+	shatterBar = "Shatter Bar",
+	shatterBar_desc = "Show a bar for the approximate time until Shatter.",
+	shatterBar_message "~Shatter",
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -73,7 +77,7 @@ mod.otherMenu = "Ulduar"
 mod.zonename = BZ["Halls of Stone"]
 mod.enabletrigger = boss
 mod.guid = 27977
-mod.toggleoptions = {"shatter", "bosskill"}
+mod.toggleoptions = {"shatter", "shatterBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -93,11 +97,16 @@ end
 function mod:Slam(_, spellId, _, _, spellName)
 	if self.db.profile.shatter then
 		self:IfMessage(L["shatter_warn"], "Urgent", spellId)
-		self:Bar(L["shatter_message"], 8, spellId)
+	end
+	if self.db.profile.shatterBar then
+		self:Bar(L["shatterBar_message"], 8, spellId)
 	end
 end
 
 function mod:Shatter(_, spellId)
+	if self.db.profile.shatterBar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["shatterBar_message"])
+	end
 	if self.db.profile.shatter then
 		self:IfMessage(L["shatter_message"], "Urgent", spellId)
 	end
