@@ -37,6 +37,12 @@
 <Script file="Howling_Fjord\Skadi_the_Ruthless.lua"/>
 <Script file="Howling_Fjord\King_Ymiron.lua"/>
 
+<Script file="Stratholme\Chrono-Lord_Epoch.lua"/>
+<Script file="Stratholme\Infinite_Corruptor.lua"/>
+<Script file="Stratholme\Mal'Ganis.lua"/>
+<Script file="Stratholme\Meathook.lua"/>
+<Script file="Stratholme\Salramm_the_Fleshcrafter.lua"/>
+
 <Script file="Ulduar\Maiden_of_Grief.lua"/>
 <Script file="Ulduar\Krystallus.lua"/>
 <Script file="Ulduar\Sjonnir_the_Ironshaper.lua"/>
