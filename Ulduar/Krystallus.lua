@@ -48,6 +48,10 @@ L:RegisterTranslations("zhCN", function() return {
 	shatter_desc = "当施放砸击地面和碎裂时发出警报。",
 	shatter_warn = "砸击地面 - 约8秒后，碎裂！",
 	shatter_message = "碎裂！",
+
+	shatterBar = "碎裂计时条",
+	shatterBar_desc = "当碎裂之前显示大致计时条。",
+	shatterBar_message "<碎裂>",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
@@ -55,6 +59,10 @@ L:RegisterTranslations("zhTW", function() return {
 	shatter_desc = "當施放大地猛擊和粉碎時發出警報。",
 	shatter_warn = "大地猛擊 - 約8秒后，粉碎！",
 	shatter_message = "粉碎！",
+
+	shatterBar = "粉碎計時條",
+	shatterBar_desc = "當粉碎之前顯示大致計時條。",
+	shatterBar_message "<粉碎>",
 } end)
 
 L:RegisterTranslations("esES", function() return {

@@ -28,12 +28,26 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	bubble = "保護泡泡",
+	bubble_desc = "Announce when Icharon loses the 保護泡泡",
+	bubble_message = "Gained 保護泡泡",
+	bubbleEnded_message = "保護泡泡 Faded",
+
+	frenzy = "狂亂",
+	frenzy_desc = "Warn when Ichoron becomes 狂亂",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	bubble = "保护气泡",
+	bubble_desc = "Announce when Icharon loses the 保护气泡",
+	bubble_message = "Gained 保护气泡",
+	bubbleEnded_message = "保护气泡 Faded",
+
+	frenzy = "狂乱",
+	frenzy_desc = "Warn when Ichoron becomes 狂乱.",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

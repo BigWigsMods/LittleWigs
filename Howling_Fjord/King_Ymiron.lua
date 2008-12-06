@@ -63,7 +63,7 @@ L:RegisterTranslations("frFR", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
 	bane = "災禍",
-	bane_desc = "當施放災禍時發出警報。",
+	bane_desc = "當正在施放災禍或災禍消失時發出警報。",
 	bane_message = "正在施放 災禍！",
 	bane_ended = "災禍 消失！",
 
@@ -97,7 +97,7 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	bane = "灾祸",
-	bane_desc = "当施放灾祸时发出警报。",
+	bane_desc = "当正在施放灾祸或灾祸消失时发出警报。",
 	bane_message = "正在施放 灾祸！",
 	bane_ended = "灾祸 消失！",
 
