@@ -50,7 +50,7 @@ L:RegisterTranslations("frFR", function() return {
 
 	darkness = "Voile de ténèbres",
 	darkness_desc = "Prévient quand un Voile de ténèbres est incanté.",
-	darkness_message = "Voile de ténèbres - arrêtez de dps !",
+	darkness_message = "Voile de ténèbres",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

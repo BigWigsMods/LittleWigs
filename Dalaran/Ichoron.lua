@@ -25,6 +25,13 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	bubble = "Bulle protectrice",
+	bubble_desc = "Prévient quand Icharon perd sa Bulle protectrice.",
+	bubble_message = "Bulle protectrice en place",
+	bubbleEnded_message = "Bulle protectrice disparue",
+
+	frenzy = "Frénésie",
+	frenzy_desc = "Prévient quand Ichoron entre en frénésie.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

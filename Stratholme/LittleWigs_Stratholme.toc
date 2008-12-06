@@ -1,13 +1,14 @@
 ﻿## Interface: 30000
 
-## Title: Little Wigs [|cffeda55fStratholem|r]
+## Title: Little Wigs [|cffeda55fStratholme|r]
 ## Title-ruRU: Little Wigs [|cffeda55fСтратхольм|r]
 ## Title-zhCN: Little Wigs [|cffeda55f净化斯坦索姆|r]
 ## Title-zhTW: Little Wigs [|cffeda55f斯坦索姆的抉擇|r]
-## Notes: Little Wigs Stratholem Modules
+## Notes: Little Wigs Stratholme Modules
 ## Notes-ruRU: Модуль Little Wigs - Стратхольм
 ## Notes-zhCN: Little Wigs 净化斯坦索姆模块
 ## Notes-zhTW: Little Wigs 斯坦索姆的抉擇模組
+## Notes-frFR: Modules Little Wigs concernant Stratholme.
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.0.0

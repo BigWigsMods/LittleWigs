@@ -61,7 +61,7 @@ L:RegisterTranslations("frFR", function() return {
 	vacuum = "Vide des arcanes",
 	vacuum_desc = "Prévient un Vide des arcanes est incanté.",
 	vacuum_soon = "Vide des arcanes dans ~5sec !",
-	vacuum_message = "Vide des arcanes !",
+	vacuum_message = "Vide des arcanes",
 
 	vacuumcooldown = "Vide des arcanes - Recharge",
 	vacuumcooldown_desc = "Affiche une barre indiquant le temps de recharge du Vide des arcanes.",
@@ -69,7 +69,7 @@ L:RegisterTranslations("frFR", function() return {
 
 	blizzard = "Blizzard",
 	blizzard_desc = "Prévient quand un Blizzard est incanté.",
-	blizzard_message = "Blizzard !",
+	blizzard_message = "Blizzard",
 
 	destruction = "Destruction du mana",
 	destruction_desc = "Prévient quand un joueur subit les effets de la Destruction du mana.",

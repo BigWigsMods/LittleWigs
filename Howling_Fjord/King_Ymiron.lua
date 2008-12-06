@@ -49,6 +49,7 @@ L:RegisterTranslations("frFR", function() return {
 	bane = "Plaie",
 	bane_desc = "Prévient quand Ymiron incante Plaie.",
 	bane_message = "Plaie en incantation",
+	bane_ended = "Plaie terminée",
 
 	baneBar = "Plaie - Barre",
 	baneBar_desc = "Affiche une barre indiquant la durée de la Plaie.",

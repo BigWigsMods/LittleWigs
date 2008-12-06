@@ -34,6 +34,10 @@ L:RegisterTranslations("frFR", function() return {
 	shatter_desc = "Prévient de l'arrivée du Heurt terreste et du Fracasser qui s'en suit.",
 	shatter_warn = "Heurt terrestre - Fracasser dans ~8 sec !",
 	shatter_message = "Fracasser !",
+
+	shatterBar = "Fracasser - Barre",
+	shatterBar_desc = "Affiche une barre indiquant le délai approximatif avant le prochain Fracasser.",
+	shatterBar_message "~Fracasser",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
