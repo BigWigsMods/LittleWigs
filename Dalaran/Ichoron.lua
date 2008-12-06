@@ -22,6 +22,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	bubble = "거품 보호막",
+	bubble_desc = "이코론의 거품 보호막 유/무를 알립니다.",
+	bubble_message = "거품 보호막 획득",
+	bubbleEnded_message = "거품 보호막 사라짐",
+
+	frenzy = "광기",
+	frenzy_desc = "이코론의 광기에 대하여 알립니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

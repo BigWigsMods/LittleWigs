@@ -45,6 +45,10 @@ L:RegisterTranslations("koKR", function() return {
 	shatter_desc = "발 구르기와 산산조각을 알립니다.",
 	shatter_warn = "발 구르기 - 약 8초 후 산산조각!",
 	shatter_message = "산산조각!",
+	
+	shatterBar = "산산조각 바",
+	shatterBar_desc = "산산조각 사용까지의 남은 시간을 바를 표시합니다.",
+	shatterBar_message "~Shatter",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
