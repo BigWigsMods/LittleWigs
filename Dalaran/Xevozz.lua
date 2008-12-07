@@ -21,6 +21,9 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	sphere = "Invocation d'une sphère éthérée",
+	sphere_desc = "Prévient quand Xevozz commence à invoquer une sphère éthérée.",
+	sphere_message = "Invoque une sphère éthérée",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

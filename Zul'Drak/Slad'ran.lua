@@ -24,6 +24,12 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	poison = "Nova de poison",
+	poison_desc = "Prévient quand un joueur subit les effets de la Nova de poison.",
+	poison_message = "Nova de poison : %s",
+
+	poisonBar = "Nova de poison - Barre",
+	poisonBar_desc = "Affiche une barre indiquant la durée de la Nova de poison.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

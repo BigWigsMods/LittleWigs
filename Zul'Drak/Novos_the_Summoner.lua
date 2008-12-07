@@ -15,7 +15,7 @@ L:RegisterTranslations("enUS", function() return {
 	misery = "Wrath of Misery",
 	misery_desc = "Warn what party memeber has the Wrath of Misery curse.",
 	misery_message = "Wrath of Misery: %s",
-	
+
 	miseryBar = "Wrath of Misery Bar",
 	miseryBar_desc = "Show a bar for the duration of the Wrath of Misery curse.",
 } end )
@@ -24,6 +24,12 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	misery = "Courroux de misère",
+	misery_desc = "Prévient quand un joueur subit les effets du Courroux de misère.",
+	misery_message = "Courroux de misère : %s",
+
+	miseryBar = "Courroux de misère - Barre",
+	miseryBar_desc = "Affiche une barre indiquant la durée du Courroux de misère.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
