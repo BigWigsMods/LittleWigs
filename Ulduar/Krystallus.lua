@@ -19,7 +19,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	shatterBar = "Shatter Bar",
 	shatterBar_desc = "Show a bar for the approximate time until Shatter.",
-	shatterBar_message "~Shatter",
+	shatterBar_message = "~Shatter",
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -37,7 +37,7 @@ L:RegisterTranslations("frFR", function() return {
 
 	shatterBar = "Fracasser - Barre",
 	shatterBar_desc = "Affiche une barre indiquant le délai approximatif avant le prochain Fracasser.",
-	shatterBar_message "~Fracasser",
+	shatterBar_message = "~Fracasser",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
@@ -48,7 +48,7 @@ L:RegisterTranslations("koKR", function() return {
 	
 	shatterBar = "산산조각 바",
 	shatterBar_desc = "산산조각 사용까지의 남은 시간을 바를 표시합니다.",
-	shatterBar_message "~Shatter",
+	shatterBar_message = "~Shatter",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
@@ -59,7 +59,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	shatterBar = "碎裂计时条",
 	shatterBar_desc = "当碎裂之前显示大致计时条。",
-	shatterBar_message "<碎裂>",
+	shatterBar_message = "<碎裂>",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
@@ -70,7 +70,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 	shatterBar = "粉碎計時條",
 	shatterBar_desc = "當粉碎之前顯示大致計時條。",
-	shatterBar_message "<粉碎>",
+	shatterBar_message = "<粉碎>",
 } end)
 
 L:RegisterTranslations("esES", function() return {
@@ -84,7 +84,7 @@ L:RegisterTranslations("ruRU", function() return {
 	
 	shatterBar = "Полоса раскалывания",
 	shatterBar_desc = "Отображать полосу с отсчетом времени то Раскалывания.",
-	shatterBar_message "~Раскалывание",
+	shatterBar_message = "~Раскалывание",
 } end)
 
 ----------------------------------
