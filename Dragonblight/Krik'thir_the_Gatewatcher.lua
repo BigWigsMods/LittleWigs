@@ -16,11 +16,10 @@ L:RegisterTranslations("enUS", function() return {
 
 	curse = "Curse of Fatigue",
 	curse_desc = "Warn when someone has Curse of Fatigue.",
+	curse_message = "Curse of Fatigue: %s",
 
 	curseBar = "Curse of Fatigue Bar",
 	curseBar_desc = "Display a bar for the duration of Curse of Fatigue.",
-	
-	curse_message = "Curse of Fatigue: %s",
 
 	frenzy = "Frenzy",
 	frenzy_desc = "Warnings when Krik'thir goes into a frenzy.",
@@ -31,11 +30,10 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("koKR", function() return {
 	curse = "피로의 저주",
 	curse_desc = "피로의 저주에 걸린 플레이어를 알립니다.",
+	curse_message = "피로의 저주 - %s",
 	
 	curseBar = "피로의 저주 바",
 	curseBar_desc = "피로의 저주가 지속되는 바를 표시합니다.",
-	
-	curse_message = "피로의 저주 - %s",
 
 	frenzy = "광기",
 	frenzy_desc = "크릭시르의 광기에 대해 알립니다.",
@@ -57,11 +55,10 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("frFR", function() return {
 	curse = "Malédiction de fatigue",
 	curse_desc = "Prévient quand un joueur subit les effets de la Malédiction de fatigue.",
+	curse_message = "Malédiction de fatigue - %s",
 
 	curseBar = "Malédiction de fatigue - Barre",
 	curseBar_desc = "Affiche une barre indiquant la durée de la Malédiction de fatigue.",
-
-	curse_message = "Malédiction de fatigue - %s",
 
 	frenzy = "Frénésie",
 	frenzy_desc = "Prévient quand Krik'thir entre en frénésie.",
@@ -72,11 +69,10 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	curse = "疲倦诅咒",
 	curse_desc = "当玩家中了疲倦诅咒时发出警报。",
+	curse_message = ">%s<：疲倦诅咒！",
 
 	curseBar = "疲倦诅咒计时条",
 	curseBar_desc = "当疲倦诅咒持续时显示计时条。",
-	
-	curse_message = ">%s<：疲倦诅咒！",
 
 	frenzy = "狂乱",
 	frenzy_desc = "当看门者克里克希尔狂乱时发出警报。",
@@ -87,11 +83,10 @@ L:RegisterTranslations("zhCN", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	curse = "疲倦詛咒",
 	curse_desc = "當玩家中了疲倦詛咒時發出警報。",
+	curse_message = ">%s<：疲倦詛咒！",
 
 	curseBar = "疲倦詛咒計時條",
 	curseBar_desc = "當疲倦詛咒持續時顯示計時條。",
-	
-	curse_message = ">%s<：疲倦詛咒！",
 
 	frenzy = "狂亂",
 	frenzy_desc = "當『守門者』齊力克西爾狂亂時發出警報。",
@@ -105,11 +100,10 @@ L:RegisterTranslations("esES", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	curse = "Проклятие усталости",
 	curse_desc = "Предупреждать, когда на кого-нибудь накладывается проклятие усталости.",
+	curse_message = "Проклятие усталости - %s",
 
 	curseBar = "Полоса Проклятия усталости",
 	curseBar_desc = "Отображать полосу продолжительности Проклятия усталости.",
-
-	curse_message = "Проклятие усталости - %s",
 
 	frenzy = "Бешенство",
 	frenzy_desc = "Предупреждать о бешенстве Крик'тира.",

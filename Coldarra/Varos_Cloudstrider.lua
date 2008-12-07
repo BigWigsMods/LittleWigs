@@ -15,41 +15,37 @@ L:RegisterTranslations("enUS", function() return {
 
 	amplifyMagic = "Amplify Magic",
 	amplifyMagic_desc = "Warn who has the Amplify Magic debuff.",
+	amplifyMagic_message = "%s: %s",
 
 	amplifyMagicBar = "Amplify Magic Bar",
 	amplifyMagicBar_desc = "Display a bar for the duration of Amplify Magic.",
-
-	amplifyMagic_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
 	amplifyMagic = "마법 증폭",
 	amplifyMagic_desc = "마법 증폭에 걸린 플레이어를 알립니다.",
+	amplifyMagic_message = "%s: %s",
 
 	amplifyMagicBar = "마법 증폭 바",
 	amplifyMagicBar_desc = "마법 증폭이 지속되는 바를 표시합니다.",
-
-	amplifyMagic_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 	amplifyMagic = "Amplification de la magie",
 	amplifyMagic_desc = "Prévient quand un joueur subit les effets de l'Amplification de la magie.",
+	amplifyMagic_message = "%s : %s",
 
 	amplifyMagicBar = "Amplification de la magie - Barre",
 	amplifyMagicBar_desc = "Affiche une barre indiquant la durée de l'Amplification de la magie.",
-
-	amplifyMagic_message = "%s : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
 	amplifyMagic = "魔法增效",
 	amplifyMagic_desc = "當玩家中了魔法增效減益時發出警報。",
+	amplifyMagic_message = "%s：%s！",
 
 	amplifyMagicBar = "魔法增效計時條",
 	amplifyMagicBar_desc = "當魔法增效持續時顯示計時條。",
-
-	amplifyMagic_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -58,21 +54,19 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	amplifyMagic = "魔法增效",
 	amplifyMagic_desc = "当玩家中了魔法增效减益时发出警报。",
+	amplifyMagic_message = "%s：%s！",
 
 	amplifyMagicBar = "魔法增效计时条",
 	amplifyMagicBar_desc = "当魔法增效持续时显示计时条。",
-
-	amplifyMagic_message = "%s：%s！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
 	amplifyMagic = "Усиление магии",
 	amplifyMagic_desc = "Предупреждать если кто получает дебафф Усиления магии.",
+	amplifyMagic_message = "%s: %s",
 
 	amplifyMagicBar = "Полоса Усиление магии",
 	amplifyMagicBar_desc = "Отображать полосу продолжительности Усиления магии.",
-
-	amplifyMagic_message = "%s: %s",
 } end )
 
 ----------------------------------

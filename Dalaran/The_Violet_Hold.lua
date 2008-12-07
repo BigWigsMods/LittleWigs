@@ -156,6 +156,12 @@ end
 function mod:Deaths(_, guid)
 	guid = tonumber((guid):sub(-12,-7),16)
 
+	-- Disable the module if the final boss has just died
+	if guid == self.guid then
+		self:ToggleModuleActive(mod, false)
+		return
+	end
+
 	for _,v in ipairs(guids) do
 		if v == guid then
 			bossdeaths = bossdeaths + 1

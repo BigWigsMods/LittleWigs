@@ -14,41 +14,37 @@ L:RegisterTranslations("enUS", function() return {
 
 	tomb = "Frost Tomb",
 	tomb_desc = "Warn for who is in the Frost Tomb.",
+	tomb_message = "Frost Tomb: %s",
 
 	tombBar = "Frost Tomb Bar",
 	tombBar_desc = "Display a bar for the duration of the Frost Tomb.",
-
-	tomb_message = "Frost Tomb: %s",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
 	tomb = "서리 무덤",
 	tomb_desc = "서리 무덤의 대상자를 알립니다.",
+	tomb_message = "서리 무덤: %s",
 	
 	tombBar = "서리 무덤 바",
 	tombBar_desc = "서리 무덤이 지속되는 바를 표시합니다.",
-
-	tomb_message = "서리 무덤: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 	tomb = "Tombeau de givre",
 	tomb_desc = "Prévient quand un joueur subit les effets du Tombeau de givre.",
+	tomb_message = "Tombeau de givre : %s",
 
 	tombBar = "Tombeau de givre - Barre",
 	tombBar_desc = "Affiche une barre indiquant la durée du Tombeau de givre.",
-
-	tomb_message = "Tombeau de givre : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
 	tomb = "冰霜之墓",
 	tomb_desc = "當玩家中了冰霜之墓時發出警報。",
+	tomb_message = ">%s<：冰霜之墓！",
 
 	tombBar = "冰霜之墓計時條",
 	tombBar_desc = "當冰霜之墓持續時顯示計時條。",
-
-	tomb_message = ">%s<：冰霜之墓！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -59,21 +55,19 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	tomb = "冰霜之墓",
 	tomb_desc = "当玩家中了冰霜之墓时发出警报。",
+	tomb_message = ">%s<：冰霜之墓！",
 
 	tombBar = "冰霜之墓计时条",
 	tombBar_desc = "当冰霜之墓持续时显示计时条。",
-
-	tomb_message = ">%s<：冰霜之墓！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
 	tomb = "Ледяная могила",
 	tomb_desc = "Предупреждать, когда кто-нибудь попадает в ледяную могилу.",
+	tomb_message = "В ледяной могиле: %s",
 
 	tombBar = "Полоса Ледяной могилы",
 	tombBar_desc = "Отображение полосы продолжительности Ледяной могилы.",
-
-	tomb_message = "В ледяной могиле: %s",
 } end )
 
 ----------------------------------

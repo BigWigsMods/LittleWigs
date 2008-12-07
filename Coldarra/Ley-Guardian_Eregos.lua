@@ -24,11 +24,10 @@ L:RegisterTranslations("enUS", function() return {
 	
 	enragedassault = "Enraged Assault",
 	enragedassault_desc = "Warns for Enraged Assault.",
+	enragedassault_message = "Enraged Assault",
 
 	enragedassaultbar = "Enraged Assault Bar",
 	enragedassaultbar_desc = "Display a bar for the duraction of Enraged Assult.",
-
-	enragedassault_message = "Enraged Assault",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -43,11 +42,10 @@ L:RegisterTranslations("koKR", function() return {
 	
 	enragedassault = "맹렬한 격노",
 	enragedassault_desc = "맹렬한 격노를 알립니다.",
+	enragedassault_message = "맹렬한 격노",
 
 	enragedassaultbar = "맹렬한 격노 바",
 	enragedassaultbar_desc = "맹렬한 격노가 지속되는 바를 표시합니다.",
-
-	enragedassault_message = "맹렬한 격노",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
@@ -62,11 +60,10 @@ L:RegisterTranslations("frFR", function() return {
 
 	enragedassault = "Assaut enragé",
 	enragedassault_desc = "Prévient de l'arrivée des Assauts enragés.",
+	enragedassault_message = "Assaut enragé",
 
 	enragedassaultbar = "Assaut enragé - Barre",
 	enragedassaultbar_desc = "Affiche une barre indiquant la durée de l'Assaut enragé.",
-
-	enragedassault_message = "Assaut enragé",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -81,11 +78,10 @@ L:RegisterTranslations("zhTW", function() return {
 	
 	enragedassault = "狂怒襲擊",
 	enragedassault_desc = "當施放狂怒襲擊時發出警報。",
+	enragedassault_message = "狂怒襲擊！",
 
 	enragedassaultbar = "狂怒襲擊計時條",
 	enragedassaultbar_desc = "當狂怒襲擊持續時顯示計時條。",
-
-	enragedassault_message = "狂怒襲擊！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -103,11 +99,10 @@ L:RegisterTranslations("zhCN", function() return {
 	
 	enragedassault = "暴怒攻击",
 	enragedassault_desc = "当施放暴怒攻击时发出警报。",
+	enragedassault_message = "暴怒攻击！",
 
 	enragedassaultbar = "暴怒攻击计时条",
 	enragedassaultbar_desc = "当暴怒攻击持续时显示计时条。",
-
-	enragedassault_message = "暴怒攻击！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
@@ -122,11 +117,10 @@ L:RegisterTranslations("ruRU", function() return {
 	
 	enragedassault = "Яростный натиск",
 	enragedassault_desc = "Предупреждать о Яростном натиске",
+	enragedassault_message = "Яростный натиск",
 
 	enragedassaultbar = "Полоса Яростного натиска",
 	enragedassaultbar_desc = "Отображать полосу продолжительности Яростного натиска.",
-
-	enragedassault_message = "Яростный натиск",
 } end )
 
 ----------------------------------
