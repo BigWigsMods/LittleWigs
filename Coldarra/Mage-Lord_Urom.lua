@@ -171,7 +171,7 @@ end
 
 function mod:ArcaneExplosion(_, spellId, _, _, spellName)
 	if self.db.profile.arcaneExplosion then
-		self:IfMessage(L["arcaneExplosion_message"], "Attention", spellId)
+		self:IfMessage(L["arcaneExplosion"], "Attention", spellId)
 	end
 	if self.db.profile.arcaneExplosionBar then
 		self:Bar(spellName, 8, spellId)
