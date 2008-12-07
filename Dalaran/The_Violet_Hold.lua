@@ -156,32 +156,20 @@ end
 function mod:Deaths(_, guid)
 	guid = tonumber((guid):sub(-12,-7),16)
 
-	-- If the final boss died then announce it and exit
-	if guid == self.guid then
-		self:BossDeath(nil, self.guid, true)
-		return
-	end
-
-	-- If one of the portal 6 or 12 bosses die set count else just exit
 	for _,v in ipairs(guids) do
 		if v == guid then
 			bossdeaths = bossdeaths + 1
-		else
-			return
+			if bossdeaths == 1 then
+				portal = 7
+			elseif bossdeaths == 2 then
+				portal = 13
+			end
+			if self.db.profile.portal then
+				self:IfMessage(L["portal_message95s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
+			end
+			if self.db.profile.portalbar then
+				self:Bar(L["portal_bar"]:format(L["next_portal"],portal), 95, "INV_Misc_ShadowEgg")
+			end
 		end
-	end
-
-	if bossdeaths == 1 then
-		portal = 7
-	elseif bossdeaths == 2 then
-		portal = 13
-	end
-
-	if self.db.profile.portal then
-		self:Message(L["portal_message95s"]:format(L["next_portal"]), "Attention")
-	end
-
-	if self.db.profile.portalbar then
-		self:Bar(L["portal_bar"]:format(L["next_portal"],portal), 95, "INV_Misc_ShadowEgg")
 	end
 end
