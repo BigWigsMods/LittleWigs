@@ -39,12 +39,24 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	misery = "苦難之怒",
+	misery_desc = "當玩家中了苦難之怒詛咒時發出警報。",
+	misery_message = ">%s<：苦難之怒！",
+
+	miseryBar = "苦難之怒計時條",
+	miseryBar_desc = "當苦難之怒持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	misery = "痛苦之怒",
+	misery_desc = "当玩家中了痛苦之怒诅咒时发出警报。",
+	misery_message = ">%s<：痛苦之怒！",
+
+	miseryBar = "痛苦之怒计时条",
+	miseryBar_desc = "当痛苦之怒持续时显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

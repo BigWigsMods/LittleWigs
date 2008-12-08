@@ -39,12 +39,24 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	poison = "劇毒新星",
+	poison_desc = "當玩家中了劇毒新星減益時發出警報。",
+	poison_message = ">%s<：劇毒新星！",
+
+	poisonBar = "劇毒新星計時條",
+	poisonBar_desc = "當劇毒新星減益持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	poison = "毒性新星",
+	poison_desc = "当玩家中了毒性新星减益时发出警报。",
+	poison_message = ">%s<：毒性新星！",
+
+	poisonBar = "毒性新星计时条",
+	poisonBar_desc = "当毒性新星减益持续时显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

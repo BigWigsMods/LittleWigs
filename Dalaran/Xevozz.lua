@@ -30,12 +30,18 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	sphere = "召喚伊斯利之球",
+	sphere_desc = "當基沃滋召喚伊斯利之球時發出警報。",
+	sphere_message = "召喚伊斯利之球！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	sphere = "召唤灵体之球",
+	sphere_desc = "当谢沃兹召唤灵体之球时发出警报。",
+	sphere_message = "召唤灵体之球！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
