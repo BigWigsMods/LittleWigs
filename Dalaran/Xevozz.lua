@@ -45,6 +45,9 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	sphere = "Призыв бесплотной сферы",
+	sphere_desc = "Предупреждает когда Ксевозз начинает призывать бесплотную сферу",
+	sphere_message = "Призывает бесплотную сферу",
 } end )
 
 ----------------------------------

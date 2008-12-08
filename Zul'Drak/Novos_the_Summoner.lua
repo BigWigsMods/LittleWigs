@@ -60,6 +60,12 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	misery = "Гнев страдания",
+	misery_desc = "Предупреждать когда на участника группы накладывается проклятье Гнева страданий.",
+	misery_message = "Гнев страдания: %s",
+
+	miseryBar = "Полоса Гнева страдании",
+	miseryBar_desc = "Отображать полосу продолжительности проклятья Гнева страданий.",
 } end )
 
 ----------------------------------

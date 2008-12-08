@@ -60,6 +60,12 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	poison = "Ядовитая звезда",
+	poison_desc = "Предупреждать когда игрок получает дебафф Ядовитой звезды.",
+	poison_message = "Ядовитая звезда: %s",
+
+	poisonBar = "Полоса Ядовитой звезды",
+	poisonBar_desc = "Отображать полосу продолжительности дебаффа Ядовитой звезды.",
 } end )
 
 ----------------------------------
