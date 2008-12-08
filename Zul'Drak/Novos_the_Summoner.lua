@@ -21,6 +21,12 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	misery = "불행의 분노",
+	misery_desc = "불행의 분노 저주에 걸린 플레이어를 알립니다.",
+	misery_message = "불행의 분노: %s",
+
+	miseryBar = "불행의 분노 바",
+	miseryBar_desc = "불행의 분노 디버프가 지속되는 바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

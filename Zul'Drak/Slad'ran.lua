@@ -21,6 +21,12 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	poison = "독 회오리",
+	poison_desc = "독 회오리 디버프에 걸린 플레이어를 알립니다.",
+	poison_message = "독 회오리: %s",
+
+	poisonBar = "독 회오리 바",
+	poisonBar_desc = "독 회오리 디버프가 지속되는 바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

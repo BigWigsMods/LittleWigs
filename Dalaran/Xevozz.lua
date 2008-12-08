@@ -18,6 +18,9 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	sphere = "마력의 구슬 소환",
+	sphere_desc = "제보즈의 마력의 구슬 소환을 알립니다.",
+	sphere_message = "마력의 구슬 소환",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
