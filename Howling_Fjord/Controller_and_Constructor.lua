@@ -102,6 +102,6 @@ end
 function mod:Enfeeble(player, spellId)
 	if self.db.profile.enfeeble then
 		self:IfMessage(L["enfeeble_message"]:format(player), "Attention", spellId)
-		self:Bar(L["enfeeble_message"]:format(player, spellName), 6, spellID)
+		self:Bar(L["enfeeble_message"]:format(player), spellName, 6, spellID)
 	end
 end
