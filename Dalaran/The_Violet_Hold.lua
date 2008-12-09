@@ -158,7 +158,7 @@ function mod:Deaths(_, guid)
 
 	-- Disable the module if the final boss has just died
 	if guid == self.guid then
-		self:ToggleModuleActive(mod, false)
+		BigWigs:ToggleModuleActive(self, false)
 		return
 	end
 
