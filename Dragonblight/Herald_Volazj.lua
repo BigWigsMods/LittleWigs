@@ -26,8 +26,15 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("deDE", function() return {
 	insanity = "Wahnsinn",
-	insanity_desc = "Warnt wenn Herald Volazj Wahnsinn Zaubert.",
-	insanity_message = "Zaubert Wahnsinn",
+	insanity_desc = "Warnung wenn Herald Volazj mit dem Zaubern von Wahnsinn beginnt.",
+	insanity_message = "Wirkt Wahnsinn!",
+	
+	shiver = "Schaudern",
+	shiver_desc = "Warnung wer von Schaudern betroffen ist.",
+	shiver_message = "Schaudern: %s",
+	
+	shiverBar = "Schaudern-Anzeige",
+	shiverBar_desc = "Eine Leiste f\195\188r die Dauer von Schaudern anzeigen.",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

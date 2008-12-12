@@ -49,6 +49,12 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	amplifyMagic = "Magie verst\195\164rken",
+	amplifyMagic_desc = "Warnen wer den Magie verst\195\164rken-Debuff hat.",
+	amplifyMagic_message = "%s: %s",
+
+	amplifyMagicBar = "Magie verst\195\164rken-Anzeige",
+	amplifyMagicBar_desc = "Eine Leiste \195\188ber die Dauer von Magie verst\195\164rken anzeigen.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

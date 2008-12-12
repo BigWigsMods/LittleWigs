@@ -104,6 +104,26 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	vacuum = "Arkanes Vakuum",
+	vacuum_desc = "Warnung f\195\188r Arkanes Vakuum.",
+	vacuum_soon = "Arkanes Vakuum in ~5sek",
+	vacuum_message = "Arkanes Vakuum",
+
+	vacuumcooldown = "Arkanes Vakuum Cooldown",
+	vacuumcooldown_desc = "Warnung wenn der Cooldown f\195\188r Arkanes Vakuum verstrichen ist.",
+	vacuum_cooldown_bar = "Arkanes Vakuum Cooldown",
+
+	blizzard = "Blizzard",
+	blizzard_desc = "Warnung f\195\188r Blizzard.",
+	blizzard_message = "Blizzard",
+
+	destruction = "Manazerst\195\182rung",
+	destruction_desc = "Warnung wenn jemand von Manazerst\195\182rung betroffen ist.",
+
+	destructionBar = "Manazerst\195\182rung-Anzeige",
+	destructionBar_desc = "Eine Leiste f\195\188r die Dauer von Manazerst\195\182rung anzeigen.",
+
+	destruction_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

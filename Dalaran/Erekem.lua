@@ -52,6 +52,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	earthshield = "Erdschild",
+	earthshield_desc = "Warnung f\195\188r Erdschild.",
+	earthshield_message = "Erdschild",
+
+	chainheal = "Kettenheilung",
+	chainheal_desc = "Warnen wenn der Zauber Kettenheilung gewirkt wird.",
+	chainheal_message = "Wirkt Kettenheilung!",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

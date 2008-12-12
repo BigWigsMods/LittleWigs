@@ -90,6 +90,22 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	timeBomb = "Zeitbombe",
+	timeBomb_desc = "Warnung wer die Zeitbombe hat.",
+	timeBomb_message = "%s: Zeitbombe",
+
+	timeBombWhisper = "Zeitbombe anfl\195\188stern",
+	timeBombWhisper_desc = "Einen Whisper an die Person mit der Zeitbombe senden.",
+	timeBombWhisper_message = "Du hast die Zeitbombe!",
+
+	timeBombBar = "Zeitbombe-Anzeige",
+	timeBombBar_desc = "Eine Leiste anzeigen bis die Zeitbombe explodiert.",
+
+	arcaneExplosion = "M\195\164chtige arkane Explosion",
+	arcaneExplosion_desc = "Warnen wenn Magierlord Urom mit dem Wirken de m\195\164chtigen arkanen Explosion beginnt.",
+
+	arcaneExplosionBar = "M\195\164chtige arkane Explosion-Anzeige",
+	arcaneExplosionBar_desc = "Eine Leiste f\195\188r die Zauberzeit der m\195\164chtigen arkanen Explosion anzeigen.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

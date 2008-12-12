@@ -52,6 +52,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	bubble = "Sch\195\188tzende Blase",
+	bubble_desc = "Ansage wenn Ichoron seine Sch\195\188tzende Blase verliert.",
+	bubble_message = "Sch\195\188tzende Blase erhalten",
+	bubbleEnded_message = "Sch\195\188tzende Blase ausgelaufen",
+
+	frenzy = "Raserei",
+	frenzy_desc = "Warnung wenn Ichoron in Raserei verf\195\164llt.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

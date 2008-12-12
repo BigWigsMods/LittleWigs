@@ -42,14 +42,17 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
-	curse = "Fluch der Ermüdung",
-	curse_desc = "Warnt wenn jemand den Fluch der Ermüdung hat.",
-	curse_message = "Fluch der Ermüdung - %s",
+	curse = "Fluch der Erm\195\188dung",
+	curse_desc = "Warnung wenn jemand von Fluch der Erm\195\188dung betroffen ist.",
+	curse_message = "Fluch der Erm\195\188dung: %s",
+
+	curseBar = "Fluch der Erm\195\188dung-Anzeige",
+	curseBar_desc = "Eine Leiste f\195\188r die Dauer von Fluch der Erm\195\188dung anzeigen.",
 
 	frenzy = "Raserei",
-	frenzy_desc = "Warnt wenn Krik'thir Raserei bekommt.",
-	frenzy_message = "Krik'thir bekommt Raserei",
-	frenzysoon_message = "Raserei Bald",
+	frenzy_desc = "Warnungen wenn Krik'thir in Raserei verf\195\164llt.",
+	frenzy_message = "Krik'thir ist in Raserei verfallen",
+	frenzysoon_message = "Raserei bald",
 } end)
 
 L:RegisterTranslations("frFR", function() return {

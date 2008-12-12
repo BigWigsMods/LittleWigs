@@ -36,6 +36,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	sphere = "Kraftkugel beschw\195\182ren",
+	sphere_desc = "Warnung wenn Xevozz beginnt eine Kraftkugel zu beschw\195\182ren.",
+	sphere_message = "Beschw\195\182rt Kraftkugel",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

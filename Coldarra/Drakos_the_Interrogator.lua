@@ -37,6 +37,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	magicpull = "Magische Anziehung",
+	magicpull_desc = "Magische Anziehung ansagen",
+	magicpull_message = "Wirkt Magische Anziehung",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

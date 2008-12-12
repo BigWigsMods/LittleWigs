@@ -85,6 +85,21 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	planarshift = "Planarverschiebung",
+	planarshift_desc = "Warnung f\195\188r Planarverschiebung.",
+
+	planarshiftbar = "Planarverschiebung-Anzeige",
+	planarshiftbar_desc = "Eine Leiste f\195\188r die Dauer der Planarverschiebung anzeigen.",
+
+	planarshift_message = "Planarverschiebung",
+	planarshift_expire_message = "Planarverschiebung endet in 5 sek",
+	
+	enragedassault = "W\195\188tender Angriff",
+	enragedassault_desc = "Warnung f\195\188r W\195\188tender Angriff.",
+	enragedassault_message = "W\195\188tender Angriff",
+
+	enragedassaultbar = "W\195\188tender Angriff-Anzeige",
+	enragedassaultbar_desc = "Eine Leiste f\195\188r die Dauer des W\195\188tenden Angriffs anzeigen.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

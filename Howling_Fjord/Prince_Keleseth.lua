@@ -49,7 +49,11 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("deDE", function() return {
 	tomb = "Frostgrab",
-	tomb_desc = "Warnt, wer im Frostgrab ist.",
+	tomb_desc = "Warnt wer im Frostgrab gefangen ist.",
+	tomb_message = "Frostgrab: %s",
+
+	tombBar = "Frostgrab-Anzeige",
+	tombBar_desc = "Eine Leiste \195\188ber die Dauer von Frostgrab anzeigen.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

@@ -86,7 +86,15 @@ L:RegisterTranslations("zhTW", function() return {
 L:RegisterTranslations("deDE", function() return {
 	sinclari = "Leutnant Sinclari",
 
+	portal = "Portal-Warnungen",
+	portal_desc = "Ungef\195\164hre Warnungen f\195\188r das n\195\164chste Portal ank\195\188ndigen.",
+
+	portalbar = "Wellen-Anzeige",
+	portalbar_desc = "Ungef\195\164hre Timer-Leisten f\195\188r das n\195\164chste Portal anzeigen.",
+	
 	next_portal = "N\195\164chstes Portal",
+
+	portal_bar = "~%s: %s", --shouldn't require translation
 
 	portal_message15s = "%s in ~15 Sekunden!",
 	portal_message95s = "%s in ~95 Sekunden!",

@@ -68,6 +68,17 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	voidShift = "Leerenverschiebung",
+	voidShift_desc = "Warnung wenn jemand von Leerenverschiebung betroffen ist.",
+	voidShift_you = "Leerenverschiebung auf DIR!",
+	voidShift_other = "Leerenverschiebung: %s",
+
+	voidShiftBar = "Leerenverschiebung-Anzeige",
+	voidShiftBar_desc = "Eine Leiste f\195\188r die Dauer von Leerenverschiebung anzeigen.",
+
+	darkness = "Umh\195\188llung der Dunkelheit",
+	darkness_desc = "Warnung f\195\188r Umh\195\188llung der Dunkelheit.",
+	darkness_message = "Umh\195\188llung der Dunkelheit",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

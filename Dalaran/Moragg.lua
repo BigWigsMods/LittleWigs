@@ -52,6 +52,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	opticlink = "Optische Verbindung",
+	opticlink_desc = "Warnung wenn jemand von Optischer Verbindung betroffen ist.",
+
+	opticlinkBar = "Optische Verbindung-Anzeige",
+	opticlinkBar_desc = "Eine Leiste f\195\188r die Dauer von Optische Verbindung anzeigen.",
+
+	opticlink_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

@@ -21,12 +21,12 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
-	pound = "Hämmern",
-	pound_desc = "Warnt wenn Anub'arak Hämmern zaubert.",
-	pound_message = "Zaubert Hämmern",
+	pound = "H\195\164mmern",
+	pound_desc = "Warnung wenn Anub'arak H\195\164mmern zaubert.",
+	pound_message = "Zaubert H\195\164mmern!",
 	
-	poundbar = "Hämmern Bar",
-	poundbar_desc = "Zeigt eine Bar an während Anub'arak Hämmern Zaubert.",
+	poundbar = "H\195\164mmern-Anzeige",
+	poundbar_desc = "Eine Leiste anzeigen w\195\164hrend Anub'arak H\195\164mmern zaubert.",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
