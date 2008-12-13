@@ -84,7 +84,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Gundrak"]
 mod.enabletrigger = boss 
 mod.guid = 29307
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"emerge", "merge", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
