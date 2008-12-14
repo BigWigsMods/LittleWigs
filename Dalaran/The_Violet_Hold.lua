@@ -101,7 +101,7 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	sinclari = "Lieutenant Sinclari", -- require
+	sinclari = "辛克莱尔中尉",
 
 	portal = "传送门警报",
 	portal_desc = "当下一个传送门即将开启时发出警报。",
