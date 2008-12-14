@@ -115,7 +115,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
 mod.enabletrigger = boss
 mod.guid = 29311
-mod.toggleoptions = {"insantiy",-1,"shiver","shiverBar","bosskill"}
+mod.toggleoptions = {"insanity",-1,"shiver","shiverBar","bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
