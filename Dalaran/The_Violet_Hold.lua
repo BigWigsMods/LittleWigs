@@ -5,7 +5,7 @@
 local name = BZ["The Violet Hold"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..name)
 
-local guids = {29315,29316,29313,29266,29312,29314}
+local guids = {29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237}
 local portal = 0
 local bossdeaths = 0
 
