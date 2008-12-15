@@ -23,10 +23,14 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
-	shatter = "Zertrümmern",
-	shatter_desc = "Warnt vor Erde erschüttern und Zertrümmern.",
-	shatter_warn = "Erde erschüttern - Zertrümmern in ~8 Sek!",
-	shatter_message = "Zertrümmern!",
+	shatter = "Zertr\195\188mmern",
+	shatter_desc = "Warnung f\195\188r Zertr\195\188mmern und Bodenstachel.",
+	shatter_warn = "Bodenstachel - Zertr\195\188mmern in ~8 sek",
+	shatter_message = "Zertr\195\188mmern!",
+
+	shatterBar = "Zertr\195\188mmern-Anzeige",
+	shatterBar_desc = "Eine Leiste anzeigen, wann ungef\195\164hr das n\195\164chste Zertr\195\188mmern kommt.",
+	shatterBar_message = "~Zertr\195\188mmern",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
