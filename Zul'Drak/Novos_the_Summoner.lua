@@ -48,7 +48,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-} end )
+	misery = "Zorn des Elends",
+	misery_desc = "Warnung welches Gruppenmitglied vom Zorn des Elends-Fluch betroffen ist.",
+	misery_message = "Zorn des Elends: %s",
+
+	miseryBar = "Zorn des Elends-Anzeige",
+	miseryBar_desc = "Eine Leiste mit der Dauer des Zorn des Elends-Fluchs anzeigen.",
+} end)
 
 L:RegisterTranslations("zhCN", function() return {
 	misery = "痛苦之怒",

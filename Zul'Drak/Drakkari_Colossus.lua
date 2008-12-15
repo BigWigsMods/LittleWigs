@@ -52,7 +52,14 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-} end )
+	emerge = "Auftauchen",
+	emerge_desc = "Warnung wenn der Elementar aus dem Koloss heraus auftaucht.",
+	emerge_message = "Elementar taucht auf",
+
+	merge = "Verschmelzen",
+	merge_desc = "Warnung wenn der Elementar wieder mit dem Koloss verschmilzt.",
+	merge_message = "Verschmilzt mit dem Koloss",
+} end)
 
 L:RegisterTranslations("zhCN", function() return {
 	emerge = "突现",

@@ -48,7 +48,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-} end )
+	transformation = "Transformation",
+	transformation_desc = "Warnung wenn Moorabi mit dem Wirken der Transformation beginnt.",
+	transformation_message = "Wirkt Transformation!",
+
+	transformationBar = "Transformation-Zauberleiste",
+	transformationBar_desc = "Eine Zauberleiste f\195\188r die Transformation anzeigen.",
+} end)
 
 L:RegisterTranslations("zhCN", function() return {
 	transformation = "变形",

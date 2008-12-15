@@ -48,7 +48,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-} end )
+	poison = "Giftnova",
+	poison_desc = "Warnung wenn ein Spieler von Giftnova betroffen ist.",
+	poison_message = "Giftnova: %s",
+
+	poisonBar = "Giftnova-Anzeige",
+	poisonBar_desc = "Eine Leiste mit der Dauer der Giftnova anzeigen.",
+} end)
 
 L:RegisterTranslations("zhCN", function() return {
 	poison = "毒性新星",
