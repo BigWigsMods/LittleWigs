@@ -94,7 +94,7 @@ L:RegisterTranslations("esES", function() return {
 
 L:RegisterTranslations("ruRU", function() return {
 	insanity = "Безумие",
-	insanity_desc = "Предупреждать когда Herald Volazj начинает применять Безумие.",
+	insanity_desc = "Предупреждать когда Глашатай Волаж начинает применять Безумие.",
 	insanity_message = "Применяется Безумие",
 	
 	shiver = "Трепет",
