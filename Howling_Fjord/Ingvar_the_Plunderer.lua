@@ -102,7 +102,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Smash", 42723, 42669, 59706)
-	self:AddCombatListener("SPELL_CAST_START", "Roar", 42708, 42729)
+	self:AddCombatListener("SPELL_CAST_START", "Roar", 42708, 42729, 59708, 59734)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	deathcount = 0
