@@ -44,6 +44,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	roar = "Губительный рев",
+	roar_desc = "Отображать таймер губительного рева.",
+	roarcooldown_bar = "Перезарядка рева",
+	
+	impale = "Прокалывание",
+	impale_desc = "Сообщить в кого бросили копье.",
+	impale_message = "%s: %s",
 } end )
 
 ----------------------------------

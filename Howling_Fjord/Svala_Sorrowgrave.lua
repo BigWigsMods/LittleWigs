@@ -54,6 +54,17 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	ritual = "Ритуал меча",
+	ritual_desc = "Предупреждать о применении ритуала меча.",
+
+	ritualbars = "Полоса ритуала",
+	ritualbars_desc = "Отображает полосу продолжительности ритуала и его перезарядку.",
+	ritualcooldown_message = "Перезарядка ритуала закончена!",
+	ritualcooldown_bar = "Перезарядка ритуала",
+	
+	preparation = "Подготовка ритуала",
+	preparation_desc = "Сообщать кого подготовливают к ритуалу.",
+	preparation_message = "%s: %s",
 } end )
 
 ----------------------------------
