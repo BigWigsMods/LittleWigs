@@ -17,10 +17,21 @@ L:RegisterTranslations("enUS", function() return {
 	smash = "Smash",
 	smash_desc = "Warn for the casting of Smash or Dark Smash.",
 	smash_message = "Casting %s",
+
+	smashBar = "Smash Bar",
+	smashBar_desc = "Show a bar for the casting of Smash or Dark Smash.",
 	
 	roar = "Roar",
 	roar_desc = "Warn for the casting of Staggering Roar or Dreadful Roar.",
 	roar_message = "Casting %s",
+
+	woe = "Woe Strike",
+	woe_desc = "Warn for who has the Woe Strike debuff.",
+	woe_message = "Woe Strike on %s",
+
+	woeBar = "Woe Strike Bar",
+	woeBar_desc = "Show a bar for the duration of the Woe Strike debuff.",
+	woeBar_message = "Woe Strike: %s",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -93,7 +104,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = boss 
 mod.guid = 23954
-mod.toggleoptions = {"smash", "roar", "bosskill"}
+mod.toggleoptions = {"smash", "smashBar", -1, "woe", "woeBar", -1, "roar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -103,6 +114,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Smash", 42723, 42669, 59706)
 	self:AddCombatListener("SPELL_CAST_START", "Roar", 42708, 42729, 59708, 59734)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Woe", 42730, 59735)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
 	deathcount = 0
@@ -115,6 +127,8 @@ end
 function mod:Smash(_, spellID, _, _, spellName)
 	if self.db.profile.smash then
 		self:IfMessage(L["smash_message"]:format(spellName), "Urgent", spellID)
+	end
+	if self.db.profile.smashBar then
 		self:Bar(L["smash_message"]:format(spellName), 3, spellID)
 	end
 end
@@ -132,5 +146,14 @@ function mod:BossDeath(_, _, source)
 	end
 	if deathcount == 2 then
 		self:GenericBossDeath(boss, true)
+	end
+end
+
+function mod:Woe(player, spellId)
+	if self.db.profile.woe then
+		self:IfMessage(L["woe_message"]:format(player), "Urgent", spellId)
+	end
+	if self.db.profile.woeBar then
+		self:Bar(L["woeBar_message"]:format(player), 10, spellId)
 	end
 end

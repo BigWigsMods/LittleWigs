@@ -27,6 +27,7 @@
 <Script file="Dragonblight\Elder_Nadox.lua"/>
 <Script file="Dragonblight\Jedoga_Shadowseeker.lua"/>
 <Script file="Dragonblight\Herald_Volazj.lua"/>
+<Script file="Dragonblight\Amanitar.lua"/>
 
 <Script file="Howling_Fjord\Controller_and_Constructor.lua"/>
 <Script file="Howling_Fjord\Ingvar_the_Plunderer.lua"/>

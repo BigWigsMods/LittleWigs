@@ -35,3 +35,4 @@ Prince_Taldaram.lua
 Elder_Nadox.lua
 Jedoga_Shadowseeker.lua
 Herald_Volazj.lua
+Amanitar.lua
