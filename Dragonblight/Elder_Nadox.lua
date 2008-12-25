@@ -65,7 +65,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	broodplague = "蜘蛛瘟疫",
 	broodplague_desc = "当玩家中了蜘蛛瘟疫减益时发出警报。",
-	broodplague_message = "蜘蛛瘟疫：%s！",
+	broodplague_message = "蜘蛛瘟疫：>%s<！",
 
 	broodplaguebar = "蜘蛛瘟疫计时条",
 	broodplaguebar_desc = "当蜘蛛瘟疫减益持续时显示计时条。",
@@ -77,7 +77,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 	broodplague = "孵育瘟疫",
 	broodplague_desc = "當玩家中了孵育瘟疫減益時發出警報。",
-	broodplague_message = "孵育瘟疫：%s！",
+	broodplague_message = "孵育瘟疫：>%s<！",
 
 	broodplaguebar = "孵育瘟疫計時條",
 	broodplaguebar_desc = "當孵育瘟疫減益持續時顯示計時條。",

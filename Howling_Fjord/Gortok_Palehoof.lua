@@ -35,12 +35,26 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	roar = "枯萎咆哮",
+	roar_desc = "顯示枯萎咆哮計時條。",
+	roarcooldown_bar = "<枯萎咆哮 冷卻>",
+	
+	impale = "刺穿",
+	impale_desc = "當玩家中了刺穿時發出警報。",
+	impale_message = "%s：>%s<！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	roar = "枯萎咆哮",
+	roar_desc = "显示枯萎咆哮计时条。",
+	roarcooldown_bar = "<枯萎咆哮 冷却>",
+	
+	impale = "穿刺",
+	impale_desc = "当玩家中了穿刺时发出警报。",
+	impale_message = "%s：>%s<！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

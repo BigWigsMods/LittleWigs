@@ -30,9 +30,15 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	mini = "迷你",
+	mini_desc = "当你中了迷你减益时发出警报。",
+	mini_message = ">你< 迷你！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	mini = "迷你化",
+	mini_desc = "當你中了迷你化減益時發出警報。",
+	mini_message = ">你< 迷你化！",
 } end)
 
 L:RegisterTranslations("esES", function() return {

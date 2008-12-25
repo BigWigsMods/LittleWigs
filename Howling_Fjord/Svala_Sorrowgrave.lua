@@ -45,12 +45,34 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	ritual = "劍之儀式",
+	ritual_desc = "當正在施放劍之儀式時發出警報。",
+
+	ritualbars = "劍之儀式計時條",
+	ritualbars_desc = "當劍之儀式持續和冷卻時顯示計時條。",
+	ritualcooldown_message = "劍之儀式 冷卻結束！",
+	ritualcooldown_bar = "<劍之儀式 冷卻>",
+	
+	preparation = "準備儀式",
+	preparation_desc = "當玩家中了準備儀式時發出警報。",
+	preparation_message = "%s：>%s<！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	ritual = "利剑仪祭",
+	ritual_desc = "当正在施放利剑仪祭时发出警报。",
+
+	ritualbars = "利剑仪祭计时条",
+	ritualbars_desc = "当利剑仪祭持续和冷却时显示计时条。",
+	ritualcooldown_message = "利剑仪祭 冷却结束！",
+	ritualcooldown_bar = "<利剑仪祭 冷却>",
+	
+	preparation = "准备仪式",
+	preparation_desc = "当玩家中了准备仪式时发出警报。",
+	preparation_message = "%s：>%s<！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

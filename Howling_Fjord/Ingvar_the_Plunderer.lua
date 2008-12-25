@@ -67,12 +67,23 @@ L:RegisterTranslations("frFR", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
 	smash = "打擊",
-	smash_desc = "当施放黑暗破擊或潰擊时发出警报。",
+	smash_desc = "當施放黑暗破擊或潰擊时發出警報。",
 	smash_message = "正在施放 %s！",
+
+	smashBar = "打擊計時條",
+	smashBar_desc = "當施放黑暗破擊或潰擊時顯示計時條。",
 	
 	roar = "咆哮",
-	roar_desc = "当施放驚恐咆哮或驚懼咆哮时发出警报。",
+	roar_desc = "當施放驚恐咆哮或驚懼咆哮時發出警報。",
 	roar_message = "正在施放 %s！",
+
+	woe = "哀痛打擊",
+	woe_desc = "當玩家中了哀痛打擊減益時發出警報。",
+	woe_message = "哀痛打擊：>%s<！",
+
+	woeBar = "哀痛打擊計時條",
+	woeBar_desc = "當哀痛打擊減益持續時顯示計時條。",
+	woeBar_message = "<哀痛打擊：%s>",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -89,10 +100,21 @@ L:RegisterTranslations("zhCN", function() return {
 	smash = "打击",
 	smash_desc = "当施放黑暗打击或冲撞时发出警报。",
 	smash_message = "正在施放 %s！",
+
+	smashBar = "打击计时条",
+	smashBar_desc = "当施放黑暗打击或冲撞时显示计时条。",
 	
 	roar = "咆哮",
 	roar_desc = "当施放惊愕怒吼或恐怖咆哮时发出警报。",
 	roar_message = "正在施放 %s！",
+
+	woe = "悲哀攻击",
+	woe_desc = "当玩家中了悲哀攻击减益时发出警报。",
+	woe_message = "悲哀攻击：>%s<！",
+
+	woeBar = "悲哀攻击计时条",
+	woeBar_desc = "当悲哀攻击减益持续时显示计时条。",
+	woeBar_message = "<悲哀攻击：%s>",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
