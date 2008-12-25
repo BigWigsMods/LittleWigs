@@ -24,6 +24,9 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	mini = "축소",
+	mini_desc = "당신의 축소 디버프를 알립니다.",
+	mini_message = "당신은 축소",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {

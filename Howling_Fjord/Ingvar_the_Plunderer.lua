@@ -39,9 +39,20 @@ L:RegisterTranslations("koKR", function() return {
 	smash_desc = "어둠의 강타와 강타의 시전에 대해 알립니다.",
 	smash_message = "%s 시전",
 	
+	smashBar = "강타 바",
+	smashBar_desc = "어둠의 강타와 강타의 시전 바를 표시합니다.",
+	
 	roar = "포효",
 	roar_desc = "포효의 시전에 대해 알립니다.",
 	roar_message = "%s 시전",
+	
+	woe = "불행의 일격",
+	woe_desc = "불행의 일격 디버프가 걸린 플레이어를 알립니다.",
+	woe_message = "불행의 일격: %s",
+
+	woeBar = "불행의 일격 바",
+	woeBar_desc = "불행의 일격 디버프가 지속되는 바를 표시합니다.",
+	woeBar_message = "불행의 일격: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
