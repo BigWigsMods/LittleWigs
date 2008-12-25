@@ -36,6 +36,9 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	mini = "Мини",
+	mini_desc = "Сообщает если вы получаете дебафф Мини.",
+	mini_message = "На вас Мини",
 } end )
 
 ----------------------------------
