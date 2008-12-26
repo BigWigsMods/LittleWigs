@@ -13,7 +13,7 @@ local started = nil
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Svala",
-	
+
 	ritual = "Ritual of the Sword",
 	ritual_desc = "Warn for the casting of Ritual of the Sword.",
 
@@ -21,7 +21,7 @@ L:RegisterTranslations("enUS", function() return {
 	ritualbars_desc = "Show bars for the duration of the Ritual of the Sword and it's cooldown.",
 	ritualcooldown_message = "Ritual cooldown passed",
 	ritualcooldown_bar = "Ritual cooldown",
-	
+
 	preparation = "Ritual Preparation",
 	preparation_desc = "Warn who has Ritual Preparation.",
 	preparation_message = "%s: %s",
@@ -35,13 +35,24 @@ L:RegisterTranslations("koKR", function() return {
 	ritualbars_desc = "검의 의식의 지속 바와 재사용 대기시간 바를 표시합니다.",
 	ritualcooldown_message = "의식 대기시간 종료",
 	ritualcooldown_bar = "의식 대기시간",
-	
+
 	preparation = "검의 의식 대상자",
 	preparation_desc = "검의 의식에 걸린 플레이어를 알립니다.",
 	preparation_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	ritual = "Rituel de l'Epée",
+	ritual_desc = "Prévient quand un Rituel de l'Epée est incanté.",
+
+	ritualbars = "Rituel de l'Epée - Barres",
+	ritualbars_desc = "Affiche des barres indiquant la durée du Rituel de l'Epée ainsi que son temps de recharge.",
+	ritualcooldown_message = "Temps de recharge du Rituel terminé",
+	ritualcooldown_bar = "Recharge Rituel",
+
+	preparation = "Préparation du rituel",
+	preparation_desc = "Prévient quand un joueur subit les effets de la Préparation du rituel.",
+	preparation_message = "%s : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -83,7 +94,7 @@ L:RegisterTranslations("ruRU", function() return {
 	ritualbars_desc = "Отображает полосу продолжительности ритуала и его перезарядку.",
 	ritualcooldown_message = "Перезарядка ритуала закончена!",
 	ritualcooldown_bar = "Перезарядка ритуала",
-	
+
 	preparation = "Подготовка ритуала",
 	preparation_desc = "Сообщать кого подготовливают к ритуалу.",
 	preparation_message = "%s: %s",

@@ -21,6 +21,9 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
+	mini = "Mini",
+	mini_desc = "Prévient quand vous subissez les effes de Mini.",
+	mini_message = "Vous êtes Mini !",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

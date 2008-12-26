@@ -20,7 +20,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	smashBar = "Smash Bar",
 	smashBar_desc = "Show a bar for the casting of Smash or Dark Smash.",
-	
+
 	roar = "Roar",
 	roar_desc = "Warn for the casting of Staggering Roar or Dreadful Roar.",
 	roar_message = "Casting %s",
@@ -38,14 +38,14 @@ L:RegisterTranslations("koKR", function() return {
 	smash = "강타",
 	smash_desc = "어둠의 강타와 강타의 시전에 대해 알립니다.",
 	smash_message = "%s 시전",
-	
+
 	smashBar = "강타 바",
 	smashBar_desc = "어둠의 강타와 강타의 시전 바를 표시합니다.",
-	
+
 	roar = "포효",
 	roar_desc = "포효의 시전에 대해 알립니다.",
 	roar_message = "%s 시전",
-	
+
 	woe = "불행의 일격",
 	woe_desc = "불행의 일격 디버프가 걸린 플레이어를 알립니다.",
 	woe_message = "불행의 일격: %s",
@@ -60,9 +60,20 @@ L:RegisterTranslations("frFR", function() return {
 	smash_desc = "Prévient quand Ingvar incante son Choc ou son Choc sombre.",
 	smash_message = "%s en incantation",
 
+	smashBar = "Choc - Barre",
+	smashBar_desc = "Affiche une barre indiquant la durée d'incantation du Choc ou du Choc sombre.",
+
 	roar = "Rugissement",
 	roar_desc = "Prévient quand Ingvar incante un de ses Rugissements.",
 	roar_message = "%s en incantation",
+
+	woe = "Frappe du malheur",
+	woe_desc = "Prévient quand un joueur subit les effets de la Frappe du malheur.",
+	woe_message = "Frappe du malheur sur %s",
+
+	woeBar = "Frappe du malheur - Barre",
+	woeBar_desc = "Affiche une barre indiquant la durée de la Frappe du malheur.",
+	woeBar_message = "Frappe du malheur : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -72,7 +83,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 	smashBar = "打擊計時條",
 	smashBar_desc = "當施放黑暗破擊或潰擊時顯示計時條。",
-	
+
 	roar = "咆哮",
 	roar_desc = "當施放驚恐咆哮或驚懼咆哮時發出警報。",
 	roar_message = "正在施放 %s！",
@@ -90,7 +101,7 @@ L:RegisterTranslations("deDE", function() return {
 	smash = "Zerkrachen",
 	smash_desc = "Warnt vor Zerkrachen oder Dunkelem Zerkrachen.",
 	smash_message = "Wirkt %s",
-	
+
 	roar = "Brüllen",
 	roar_desc = "Warnt vor Wankendem Brüllen oder Grässliches Gebrüll.",
 	roar_message = "Wirkt %s",
@@ -103,7 +114,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	smashBar = "打击计时条",
 	smashBar_desc = "当施放黑暗打击或冲撞时显示计时条。",
-	
+
 	roar = "咆哮",
 	roar_desc = "当施放惊愕怒吼或恐怖咆哮时发出警报。",
 	roar_message = "正在施放 %s！",
@@ -124,11 +135,11 @@ L:RegisterTranslations("ruRU", function() return {
 
 	smashBar = "Полоса удара",
 	smashBar_desc = "Отображает полосу применения удара и мощного удара.",
-	
+
 	roar = "Рёв",
 	roar_desc = "Предупреждать, когда Staggering применяет рёв или оглушающий рёв.",
 	roar_message = "Применяется %s",
-	
+
 	woe = "Удар скорби",
 	woe_desc = "Сообщает когда ктото получает дебафф удара скорби.",
 	woe_message = "Удар скорби - %s",

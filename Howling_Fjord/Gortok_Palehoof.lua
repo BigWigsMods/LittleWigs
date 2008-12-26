@@ -11,11 +11,11 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Gortok",
-	
+
 	roar = "Withering Roar",
 	roar_desc = "Show the Withering Roar timer bar.",
 	roarcooldown_bar = "Roar cooldown",
-	
+
 	impale = "Impale",
 	impale_desc = "Warn who has Impale.",
 	impale_message = "%s: %s",
@@ -25,13 +25,20 @@ L:RegisterTranslations("koKR", function() return {
 	roar = "부패의 포효",
 	roar_desc = "부패의 포효 타이머 바를 표시합니다.",
 	roarcooldown_bar = "포효 대기시간",
-	
+
 	impale = "꿰뚫기",
 	impale_desc = "꿰뚫기에 걸린 플레이어를 알립니다.",
 	impale_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	roar = "Rugissement d'affliction",
+	roar_desc = "Affiche une barre indiquant le temps de recharge du Rugissement d'affliction.",
+	roarcooldown_bar = "Recharge Rugissement",
+
+	impale = "Empaler",
+	impale_desc = "Prévient quand un joueur subit les effets d'Empaler.",
+	impale_message = "%s : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
@@ -61,7 +68,7 @@ L:RegisterTranslations("ruRU", function() return {
 	roar = "Губительный рев",
 	roar_desc = "Отображать таймер губительного рева.",
 	roarcooldown_bar = "Перезарядка рева",
-	
+
 	impale = "Прокалывание",
 	impale_desc = "Сообщить в кого бросили копье.",
 	impale_message = "%s: %s",
@@ -77,7 +84,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Pinnacle"]
 mod.enabletrigger = boss 
 mod.guid = 26687
-mod.toggleoptions = {"impale", "bosskill"}
+mod.toggleoptions = {"roar", "impale", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
