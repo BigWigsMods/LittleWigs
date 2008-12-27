@@ -142,6 +142,6 @@ end
 
 function mod:Preparation(player, spellId, _, _, spellName)
 	if self.db.profile.preparation then
-		self:IfMessage(L["Preparation_message"]:format(spellName, player), "Attention", spellId)
+		self:IfMessage(L["preparation_message"]:format(spellName, player), "Attention", spellId)
 	end
 end
