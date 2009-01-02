@@ -70,6 +70,17 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+
+	ritual = "Ritual des Schwertes",
+	ritual_desc = "Warnt m wenn das Ritual der Schwerter gewirkt wird.",
+	ritualbars = "Ritual",
+	ritualbars_desc = "Zeigt Leisten für die Dauer des Rituals der Schwerter und dessen Abklingzeit.",
+	ritualcooldown_message = "Abklingzeit des Rituals beendet.",
+	ritualcooldown_bar = "Ritual-Abklingzeit",
+
+	preparation = "Vorbereitung des Rituals",
+	preparation_desc = "Warnt wer für das Ritual vorbereitet wird.",
+	preparation_message = "%s: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
