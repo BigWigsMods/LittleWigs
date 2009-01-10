@@ -169,11 +169,13 @@ end
 function mod:UNIT_HEALTH(arg1)
 	if not self.db.profile.frenzy then return end
 	if UnitName(arg1) == boss then
-		local health = UnitHealth(arg1)
-		if health > 10 and health <= 15 and not frenzyannounced then
+		local currentHealth = UnitHealth(arg1)
+		local maxHealth = UnitHealthMax(arg1)
+		local percentHealth = (currentHealth/maxHealth)*100		
+		if percentHealth > 10 and percentHealth <= 15 and not frenzyannounced then
 			frenzyannounced = true
 			self:IfMessage(L["frenzysoon_message"], "Important", 28747)
-		elseif health > 15 and frenzyannounced then
+		elseif percentHealth > 15 and frenzyannounced then
 			frenzyannounced = nil
 		end
 	end

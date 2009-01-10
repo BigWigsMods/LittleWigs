@@ -5,7 +5,7 @@
 local boss = BB["Ingvar the Plunderer"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-local deathcount = 0
+local deaths = 0
 
 ----------------------------
 --      Localization      --
@@ -170,9 +170,9 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Smash", 42723, 42669, 59706)
 	self:AddCombatListener("SPELL_CAST_START", "Roar", 42708, 42729, 59708, 59734)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Woe", 42730, 59735)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+	self:AddCombatListener("UNIT_DIED", "Deaths")
 
-	deathcount = 0
+	deaths = 0
 end
 
 ------------------------------
@@ -194,13 +194,14 @@ function mod:Roar(_, spellID, _, _, spellName)
 	end
 end
 
-function mod:BossDeath(_, _, source)
+function mod:Deaths(_, guid)
 	if not self.db.profile.bosskill then return end
-	if source == boss then
-		deathcount = deathcount + 1	
+	guid = tonumber((guid):sub(-12,-7),16)
+	if guid == self.guid then
+		deaths = deaths + 1
 	end
-	if deathcount == 2 then
-		self:GenericBossDeath(boss, true)
+	if deaths == 2 then
+		self:BossDeath(_, guid)
 	end
 end
 

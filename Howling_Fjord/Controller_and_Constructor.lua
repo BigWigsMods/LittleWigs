@@ -7,8 +7,7 @@ local boss = BB["Constructor & Controller"]
 local constructor = BB["Skarvald the Constructor"]
 local controller = BB["Dalronn the Controller"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-local controllerDead = nil
-local constructorDead = nil
+local deaths = 0
 
 ----------------------------
 --      Localization      --
@@ -17,45 +16,48 @@ local constructorDead = nil
 L:RegisterTranslations("enUS", function() return {
 	cmd = "ConstructorController",
 
-	enfeeble = "Enfeeble",
-	enfeeble_desc = "Warn for who is in the Enfeeble.",
-	enfeeble_message = "Enfeeble: %s",
+	debilitate = "Debilitate",
+	debilitate_desc = "Warn for who is Debilitated.",
+	debilitate_message = "Debilitate: %s",
+
+	debilitateBar = "Debilitate Bar",
+	debilitateBar_desc = "Show a bar for the duration of the Debilitate.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-	enfeeble = "쇠약",
-	enfeeble_desc = "쇠약의 대상자를 알립니다.",
-	enfeeble_message = "쇠약: %s",
+	debilitate = "쇠약",
+	debilitate_desc = "쇠약의 대상자를 알립니다.",
+	debilitate_message = "쇠약: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	enfeeble = "Débiliter",
-	enfeeble_desc = "Prévient quand un joueur subit les effets de Débiliter.",
-	enfeeble_message = "Débiliter : %s",
+	debilitate = "Débiliter",
+	debilitate_desc = "Prévient quand un joueur subit les effets de Débiliter.",
+	debilitate_message = "Débiliter : %s",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	enfeeble = "衰弱",
-	enfeeble_desc = "當玩家中了衰弱時發出警報。",
-	enfeeble_message = ">%s<：衰弱！",
+	debilitate = "衰弱",
+	debilitate_desc = "當玩家中了衰弱時發出警報。",
+	debilitate_message = ">%s<：衰弱！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-	enfeeble = "Entkräften",
-	enfeeble_desc = "Warnt, wer Entkräften hat.",
-	enfeeble_message = "Entkräften: %s",
+	debilitate = "Entkräften",
+	debilitate_desc = "Warnt, wer Entkräften hat.",
+	debilitate_message = "Entkräften: %s",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	enfeeble = "衰弱",
-	enfeeble_desc = "当玩家中了衰弱时发出警报。",
-	enfeeble_message = ">%s<：衰弱！",
+	debilitate = "衰弱",
+	debilitate_desc = "当玩家中了衰弱时发出警报。",
+	debilitate_message = ">%s<：衰弱！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
-	enfeeble = "Ослабление",
-	enfeeble_desc = "Предупреждать, когда на кого-нибудь накладывается ослабление.",
-	enfeeble_message = "%s: ослаблен!",
+	debilitate = "Ослабление",
+	debilitate_desc = "Предупреждать, когда на кого-нибудь накладывается ослабление.",
+	debilitate_message = "%s: ослаблен!",
 } end )
 
 ----------------------------------
@@ -67,7 +69,8 @@ mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = {constructor, controller} 
-mod.toggleoptions = {"enfeeble", "bosskill"}
+mod.guid = 24200
+mod.toggleoptions = {"debilitate", "debilitateBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -75,33 +78,32 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+	self:AddCombatListener("UNIT_DIED", "Deaths")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Enfeeble", 43650)
 
-	controller = nil
-	constructor = nil
+	deaths = 0	
 end
 
 ------------------------------
 --      Event Handlers      --
 ------------------------------
 
-function mod:BossDeath(source)
+function mod:Deaths(_, guid)
 	if not self.db.profile.bosskill then return end
-	if source == constructor then
-		constructorDead = true
+	guid = tonumber((guid):sub(-12,-7),16)
+	if guid == self.guid or guid == 24201 then
+		deaths = deaths + 1
 	end
-	if source == controller then
-		controllerDead = true
-	end
-	if controllerDead and constructorDead then
+	if deaths == 2 then
 		self:GenericBossDeath(boss, true)
 	end
 end
 
 function mod:Enfeeble(player, spellId)
-	if self.db.profile.enfeeble then
-		self:IfMessage(L["enfeeble_message"]:format(player), "Attention", spellId)
-		self:Bar(L["enfeeble_message"]:format(player), spellName, 6, spellID)
+	if self.db.profile.debilitate then
+		self:IfMessage(L["debilitate_message"]:format(player), "Attention", spellId)
+	end
+	if self.db.profile.debilitateBar then
+		self:Bar(L["debilitate_message"]:format(player), 8, spellId)
 	end
 end

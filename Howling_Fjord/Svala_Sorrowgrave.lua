@@ -15,7 +15,7 @@ L:RegisterTranslations("enUS", function() return {
 	cmd = "Svala",
 
 	ritual = "Ritual of the Sword",
-	ritual_desc = "Warn for the casting of Ritual of the Sword.",
+	ritual_desc = "Warn for the casting of Ritual of the Sword and it's cooldown.",
 
 	ritualbars = "Ritual Bars",
 	ritualbars_desc = "Show bars for the duration of the Ritual of the Sword and it's cooldown.",
@@ -143,11 +143,11 @@ end
 function mod:Ritual(_, spellId, _, _, spellName)
 	if self.db.profile.ritual then
 		self:IfMessage(L["ritual"], "Urgent", spellId)
+		self:DelayedMessage(36, L["ritualcooldown_message"], "Attention")
 	end
 	if self.db.profile.ritualbars then
 		self:Bar(spellName, 26, spellId)
 		self:Bar(L["ritualcooldown_bar"], 36, spellId)
-		self:DelayedMessage(36, L["ritualcooldown_message"], "Attention")
 	end
 end
 

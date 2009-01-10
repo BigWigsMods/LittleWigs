@@ -11,6 +11,10 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "KingDred",
+
+	raptor = "Raptor Call",
+	raptor_desc = "Warn when King Dred calls a Raptor.",
+	raptor_message = "Raptor Called",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -41,7 +45,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Drak'Tharon Keep"]
 mod.enabletrigger = boss 
 mod.guid = 27483
-mod.toggleoptions = {"bosskill"}
+mod.toggleoptions = {"raptor", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------
@@ -49,6 +53,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_CAST_START", "RaptorCall", 59416)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
@@ -56,3 +61,8 @@ end
 --      Event Handlers      --
 ------------------------------
 
+function mod:RaptorCall(_, spellId)
+	if self.db.profile.raptor then
+		self:IfMessage(L["raptor_message"], "Attention", spellId)
+	end
+end

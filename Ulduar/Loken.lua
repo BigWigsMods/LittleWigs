@@ -6,6 +6,7 @@ local boss = BB["Loken"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 local casttime
+local difficulty
 
 ----------------------------
 --      Localization      --
@@ -99,6 +100,8 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Nova", 52960, 59835)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+
+	difficulty = GetInstanceDifficulty()
 end
 
 ------------------------------
@@ -110,7 +113,7 @@ function mod:Nova(_, spellId, _, _, spellName)
 		self:IfMessage(L["nova_message"], "Urgent", spellId)
 	end
 	if self.db.profile.novaBar then
-		if GetInstanceDifficulty() == 1 then casttime = 5 else casttime = 4 end
+		if difficulty == 1 then casttime = 5 else casttime = 4 end
 		self:Bar(spellName, casttime, spellId)
 	end
 end
