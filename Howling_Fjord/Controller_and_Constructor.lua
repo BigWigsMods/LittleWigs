@@ -34,6 +34,9 @@ L:RegisterTranslations("frFR", function() return {
 	debilitate = "Débiliter",
 	debilitate_desc = "Prévient quand un joueur subit les effets de Débiliter.",
 	debilitate_message = "Débiliter : %s",
+
+	debilitateBar = "Débiliter - Barre",
+	debilitateBar_desc = "Affiche une barre indiquant la durée du Débiliter.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

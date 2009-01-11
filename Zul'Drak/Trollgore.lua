@@ -24,6 +24,12 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	wound = "Blessure infectée",
+	wound_desc = "Prévient quand un joueur subit les effets de la Blessure infectée.",
+	wound_message = "Blessure infectée : %s",
+
+	woundBar = "Blessure infectée - Barre",
+	woundBar_desc = "Affiche une barre indiquant la durée de la Blessure infectée.",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

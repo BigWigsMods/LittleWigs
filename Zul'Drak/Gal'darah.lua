@@ -24,6 +24,10 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	forms = "Formes",
+	forms_desc = "Prévient avant que Gal'darah ne change de forme.",
+	form_troll = "Forme de troll imminente",
+	form_rhino = "Forme de rhinocéros imminente",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

@@ -29,6 +29,17 @@ L:RegisterTranslations("deDE", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
+	mortalStrike = "Frappe mortelle",
+	mortalStrike_desc = "Prévient quand un joueur subit les effets de la Frappe mortelle.",
+	mortalStrike_message = "Frappe mortelle : %s",
+
+	mortalStrikeBar = "Frappe mortelle - Barre",
+	mortalStrikeBar_desc = "Affiche une barre indiquant la durée de la Frappe mortelle.",
+
+	berserker = "Aura de berserker",
+	berserker_desc = "Prévient quand le Général Bjarngrim gagne et perd son Aura de berserker.",
+	berserker_applied = "Aura de berserker gagnée",
+	berserker_removed = "Aura de berserker disparue",
 } end)
 
 L:RegisterTranslations("koKR", function() return {

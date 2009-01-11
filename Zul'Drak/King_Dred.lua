@@ -21,6 +21,9 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
+	raptor = "Appel du raptor",
+	raptor_desc = "Prévient quand le Roi Dred appelle un raptor.",
+	raptor_message = "Raptor appelé",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {

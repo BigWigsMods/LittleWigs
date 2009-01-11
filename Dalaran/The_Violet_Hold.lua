@@ -23,7 +23,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	portalbar = "Wave Bars",
 	portalbar_desc = "Display approximate timer bars for the next portal.",
-	
+
 	next_portal = "Next Portal",
 
 	portal_bar = "~%s: %s", --shouldn't require translation
@@ -74,7 +74,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 	portalbar = "傳送門計時條",
 	portalbar_desc = "當下一個傳送門即將開啟時顯示計時條。",
-	
+
 	next_portal = "下一個傳送門",
 
 	portal_bar = "<%s：波 %s>", --shouldn't require translation
@@ -108,7 +108,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	portalbar = "传送门计时条",
 	portalbar_desc = "当下一个传送门即将开启时显示计时条。",
-	
+
 	next_portal = "下一个传送门",
 
 	portal_bar = "<%s：波 %s>", --shouldn't require translation

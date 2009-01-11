@@ -22,7 +22,7 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	mini = "Mini",
-	mini_desc = "Prévient quand vous subissez les effes de Mini.",
+	mini_desc = "Prévient quand vous subissez les effets de Mini.",
 	mini_message = "Vous êtes Mini !",
 } end)
 

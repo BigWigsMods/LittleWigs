@@ -12,7 +12,7 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Eregos",
-	
+
 	planarshift = "Planar Shift",
 	planarshift_desc = "Warns for Planar Shift.",
 
@@ -21,7 +21,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	planarshift_message = "Planar Shift",
 	planarshift_expire_message = "Planar Shift ends in 5 sec",
-	
+
 	enragedassault = "Enraged Assault",
 	enragedassault_desc = "Warns for Enraged Assault.",
 	enragedassault_message = "Enraged Assault",
@@ -39,7 +39,7 @@ L:RegisterTranslations("koKR", function() return {
 
 	planarshift_message = "차원 이동",
 	planarshift_expire_message = "5초 후 차원 이동 종료",
-	
+
 	enragedassault = "맹렬한 격노",
 	enragedassault_desc = "맹렬한 격노를 알립니다.",
 	enragedassault_message = "맹렬한 격노",
@@ -75,7 +75,7 @@ L:RegisterTranslations("zhTW", function() return {
 
 	planarshift_message = "界域轉換！",
 	planarshift_expire_message = "界域轉換 5秒后結束！",
-	
+
 	enragedassault = "狂怒襲擊",
 	enragedassault_desc = "當施放狂怒襲擊時發出警報。",
 	enragedassault_message = "狂怒襲擊！",
@@ -93,7 +93,7 @@ L:RegisterTranslations("deDE", function() return {
 
 	planarshift_message = "Planarverschiebung",
 	planarshift_expire_message = "Planarverschiebung endet in 5 sek",
-	
+
 	enragedassault = "W\195\188tender Angriff",
 	enragedassault_desc = "Warnung f\195\188r W\195\188tender Angriff.",
 	enragedassault_message = "W\195\188tender Angriff",
@@ -111,7 +111,7 @@ L:RegisterTranslations("zhCN", function() return {
 
 	planarshift_message = "位面转移！",
 	planarshift_expire_message = "位面转移 5秒后结束！",
-	
+
 	enragedassault = "暴怒攻击",
 	enragedassault_desc = "当施放暴怒攻击时发出警报。",
 	enragedassault_message = "暴怒攻击！",
@@ -129,7 +129,7 @@ L:RegisterTranslations("ruRU", function() return {
 
 	planarshift_message = "Сдвиг плоскости",
 	planarshift_expire_message = "Конец Сдвига плоскости через 5 сек",
-	
+
 	enragedassault = "Яростный натиск",
 	enragedassault_desc = "Предупреждать о Яростном натиске",
 	enragedassault_message = "Яростный натиск",
