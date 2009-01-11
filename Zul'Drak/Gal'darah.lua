@@ -48,6 +48,10 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	forms = "Формы",
+	forms_desc = "Предупреждать, перед сменой форм Гал'дара.",
+	form_troll = "Скоро форма троля",
+	form_rhino = "Скоро форма люторога",
 } end )
 
 ----------------------------------

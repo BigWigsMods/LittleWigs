@@ -42,6 +42,9 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	raptor = "Призыв ящера",
+	raptor_desc = "Предупреждать, когда Король Дред призывает ящера.",
+	raptor_message = "Призван ящер",
 } end )
 
 ----------------------------------

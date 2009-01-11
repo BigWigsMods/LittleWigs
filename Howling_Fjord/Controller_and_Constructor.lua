@@ -67,6 +67,9 @@ L:RegisterTranslations("ruRU", function() return {
 	debilitate = "Ослабление",
 	debilitate_desc = "Предупреждать, когда на кого-нибудь накладывается ослабление.",
 	debilitate_message = "%s: ослаблен!",
+	
+	debilitateBar = "Полоса ослабления",
+	debilitateBar_desc = "Отображение полосы продолжительности ослабления.",
 } end )
 
 ----------------------------------

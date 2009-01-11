@@ -77,6 +77,17 @@ L:RegisterTranslations("esES", function() return {
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
+	mortalStrike = "Смертельный удар",
+	mortalStrike_desc = "Предупреждать, когда кто-нибудь получает дебафф от смертельного удара.",
+	mortalStrike_message = "Смертельный удар: %s",
+
+	mortalStrikeBar = "Полоса смертельного удара",
+	mortalStrikeBar_desc = "Отображение полосы продолжительности дебаффа от смертельного удара.",
+
+	berserker = "Аура берсерка",
+	berserker_desc = "Предупреждать, когда Генерал Бьярнгрин получает или снемает Аура берсерка.",
+	berserker_applied = "Применена Аура берсерка",
+	berserker_removed = "Аура берсерка рассеялась",
 } end )
 
 ----------------------------------

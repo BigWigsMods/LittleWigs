@@ -54,6 +54,12 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	wound = "Зараженные раны",
+	wound_desc = "Предупреждать, когда кто-нибудь поражен зараженной раной.",
+	wound_message = "Рана: %s",
+
+	woundBar = "Полоса зараженной раны",
+	woundBar_desc = "Отображать полосу продолжительности зараженной раны.",
 } end )
 
 ----------------------------------
