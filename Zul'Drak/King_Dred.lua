@@ -27,12 +27,18 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	raptor = "呼喚迅猛龍",
+	raptor_desc = "當崔德王呼喚迅猛龍時發出警報。",
+	raptor_message = "呼喚 迅猛龍！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	raptor = "召唤迅猛龙",
+	raptor_desc = "当 King Dred 召唤迅猛龙时发出警报。", -- miss boss name
+	raptor_message = "召唤 迅猛龙！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

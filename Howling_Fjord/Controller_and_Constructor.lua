@@ -42,7 +42,10 @@ L:RegisterTranslations("frFR", function() return {
 L:RegisterTranslations("zhTW", function() return {
 	debilitate = "衰弱",
 	debilitate_desc = "當玩家中了衰弱時發出警報。",
-	debilitate_message = ">%s<：衰弱！",
+	debilitate_message = "衰弱：>%s<！",
+
+	debilitateBar = "衰弱計時條",
+	debilitateBar_desc = "當衰弱持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -54,7 +57,10 @@ L:RegisterTranslations("deDE", function() return {
 L:RegisterTranslations("zhCN", function() return {
 	debilitate = "衰弱",
 	debilitate_desc = "当玩家中了衰弱时发出警报。",
-	debilitate_message = ">%s<：衰弱！",
+	debilitate_message = "衰弱：>%s<！",
+
+	debilitateBar = "衰弱计时条",
+	debilitateBar_desc = "当衰弱持续时显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

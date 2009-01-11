@@ -33,12 +33,24 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	wound = "感染之傷",
+	wound_desc = "當玩家中了感染之傷時發出警報。",
+	wound_message = "感染之傷：>%s<！",
+
+	woundBar = "感染之傷計時條",
+	woundBar_desc = "當感染之傷持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	wound = "感染之伤",
+	wound_desc = "当玩家中了感染之伤时发出警报。",
+	wound_message = "感染之伤：>%s<！",
+
+	woundBar = "感染之伤计时条",
+	woundBar_desc = "当感染之伤持续时显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

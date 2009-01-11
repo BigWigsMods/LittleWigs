@@ -46,9 +46,31 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
+	mortalStrike = "致死打击",
+	mortalStrike_desc = "当玩家中了致死打击减益时发出警报。",
+	mortalStrike_message = "致死打击：>%s<！",
+
+	mortalStrikeBar = "致死打击计时条",
+	mortalStrikeBar_desc = "当致死打击减益持续时显示计时条。",
+
+	berserker = "狂暴光环",
+	berserker_desc = "当比亚格里将军获得狂暴光环或消退时发出警报。",
+	berserker_applied = "获得 狂暴光环！",
+	berserker_removed = "狂暴光环 消退！",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
+	mortalStrike = "致死打擊",
+	mortalStrike_desc = "當玩家中了致死打擊減益時發出警報。",
+	mortalStrike_message = "致死打擊：>%s<！",
+
+	mortalStrikeBar = "致死打擊計時條",
+	mortalStrikeBar_desc = "當致死打擊減益持續時顯示計時條。",
+
+	berserker = "狂暴者光環",
+	berserker_desc = "當畢亞格林將軍獲得狂暴者光環或消退時發出警報。",
+	berserker_applied = "獲得 狂暴者光環！",
+	berserker_removed = "狂暴者光環 消退！",
 } end)
 
 L:RegisterTranslations("esES", function() return {

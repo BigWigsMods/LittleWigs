@@ -57,7 +57,7 @@ L:RegisterTranslations("frFR", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
 	ritual = "劍之儀式",
-	ritual_desc = "當正在施放劍之儀式時發出警報。",
+	ritual_desc = "當正在施放劍之儀式或冷卻時發出警報。",
 
 	ritualbars = "劍之儀式計時條",
 	ritualbars_desc = "當劍之儀式持續和冷卻時顯示計時條。",
@@ -85,7 +85,7 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	ritual = "利剑仪祭",
-	ritual_desc = "当正在施放利剑仪祭时发出警报。",
+	ritual_desc = "当正在施放利剑仪祭或冷却时发出警报。",
 
 	ritualbars = "利剑仪祭计时条",
 	ritualbars_desc = "当利剑仪祭持续和冷却时显示计时条。",

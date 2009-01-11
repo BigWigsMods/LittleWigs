@@ -31,12 +31,20 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	forms = "形態",
+	forms_desc = "當蓋爾達拉改變形態之前發出警報。",
+	form_troll = "即將 食人妖形態！",
+	form_rhino = "即將 犀牛形態！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	forms = "形态",
+	forms_desc = "当迦尔达拉改变形态之前发出警报。",
+	form_troll = "即将 巨魔形态！",
+	form_rhino = "即将 犀牛形态！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
