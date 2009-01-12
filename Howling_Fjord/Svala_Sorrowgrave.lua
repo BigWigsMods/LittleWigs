@@ -15,10 +15,10 @@ L:RegisterTranslations("enUS", function() return {
 	cmd = "Svala",
 
 	ritual = "Ritual of the Sword",
-	ritual_desc = "Warn for the casting of Ritual of the Sword and it's cooldown.",
+	ritual_desc = "Warn for the casting of Ritual of the Sword and its cooldown.",
 
 	ritualbars = "Ritual Bars",
-	ritualbars_desc = "Show bars for the duration of the Ritual of the Sword and it's cooldown.",
+	ritualbars_desc = "Show bars for the duration of the Ritual of the Sword and its cooldown.",
 	ritualcooldown_message = "Ritual cooldown passed",
 	ritualcooldown_bar = "Ritual cooldown",
 

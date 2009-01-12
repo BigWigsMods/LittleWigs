@@ -89,18 +89,18 @@ function mod:UNIT_HEALTH(arg1)
 	local currentHealth = UnitHealth(arg1)
 	local maxHealth = UnitHealthMax(arg1)
 	local percentHealth = (currentHealth/maxHealth)*100
-	if not formannounced and (between(percentHealth, 75, 78) or between(percentHealth, 25, 28)) then
+	if not formannounced and (mod:between(percentHealth, 75, 78) or mod:between(percentHealth, 25, 28)) then
 		self:IfMessage(L["form_rhino"], "Attention")
 		formannounced = true
 	elseif not formannounced and between(percentHealth, 50, 53) then
 		self:IfMessage(L["form_troll"], "Attention")
 		formannounced = true
-	elseif formannounced and (between(percentHealth, 54, 74) or between(percentHealth, 29, 49)) then
+	elseif formannounced and (mod:between(percentHealth, 54, 74) or mod:between(percentHealth, 29, 49)) then
 		formannounced = false
 	end
 end
 
-local function between(value, low, high)
+function mod:between(value, low, high)
 	if (value >= low) and (value <= high) then
 		return true
 	end
