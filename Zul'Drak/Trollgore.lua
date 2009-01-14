@@ -100,7 +100,7 @@ function mod:Wound(player, spellId)
 		self:IfMessage(L["wound_message"]:format(player), "Urgent", spellId)
 	end
 	if self.db.profile.woundBar then
-		self:Bar(L["wound_message"], 10, spellId)
+		self:Bar(L["wound_message"]:format(player), 10, spellId)
 	end
 end
 
