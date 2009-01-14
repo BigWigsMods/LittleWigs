@@ -54,6 +54,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 ------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_CAST_SUCCESS", "Flesh", 49356)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 	BigWigs:Print(L["log"])
 end
@@ -62,3 +63,11 @@ end
 --      Event Handlers      --
 ------------------------------
 
+function mod:Flesh()
+	if Transcriptor then
+		local currentHealth = UnitHealth(boss)
+		local maxHealth = UnitHealthMax(boss)
+		local percentHealth = (currentHealth/maxHealth)*100
+		Transcriptor:InsNote(boss.." Health: "..percentHealth.."%")
+	end
+end
