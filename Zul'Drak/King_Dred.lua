@@ -40,7 +40,7 @@ L:RegisterTranslations("deDE", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	raptor = "召唤迅猛龙",
-	raptor_desc = "当 King Dred 召唤迅猛龙时发出警报。", -- miss boss name
+	raptor_desc = "当暴龙之王爵德召唤迅猛龙时发出警报。",
 	raptor_message = "召唤 迅猛龙！",
 } end )
 

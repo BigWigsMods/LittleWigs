@@ -51,12 +51,40 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	sleep = "催眠術",
+	sleep_desc = "當玩家中了催眠術時發出警報。",
+
+	sleepBar = "催眠術計時條",
+	sleepBar_desc = "當催眠術持續時顯示計時條。",
+
+	sleep_message = "催眠術：>%s<！",
+
+	vampTouch = "吸血之觸",
+	vampTouch_desc = "當瑪爾加尼斯獲得吸血之觸時發出警報。",
+	vampTouch_message = "瑪爾加尼斯獲得：>吸血之觸<！",
+	
+	vampTouchBar = "吸血之觸計時條",
+	vampTouchBar_desc = "當瑪爾加尼斯的吸血之觸持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	sleep = "沉睡",
+	sleep_desc = "当玩家中了沉睡时发出警报。",
+
+	sleepBar = "沉睡计时条",
+	sleepBar_desc = "当沉睡持续时显示计时条。",
+
+	sleep_message = "沉睡：>%s<！",
+
+	vampTouch = "吸血鬼之触",
+	vampTouch_desc = "当玛尔加尼斯获得吸血鬼之触时发出警报。",
+	vampTouch_message = "玛尔加尼斯获得：>吸血鬼之触<！",
+	
+	vampTouchBar = "吸血鬼之触计时条",
+	vampTouchBar_desc = "当玛尔加尼斯的吸血鬼之触持续时显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

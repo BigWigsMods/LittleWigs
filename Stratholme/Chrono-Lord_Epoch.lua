@@ -41,12 +41,32 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	curse = "費力詛咒",
+	curse_desc = "當正在施放費力詛咒時發出警報。",
+
+	curseBar = "費力詛咒計時條",
+	curseBar_desc = "當費力詛咒持續時顯示計時條。",
+
+	curse_message = "費力詛咒：>%s<！",
+
+	warpBar = "時間扭曲計時條",
+	warpBar_desc = "當時間扭曲持續時顯示計時條。",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	curse = "耗能诅咒",
+	curse_desc = "当正在施放耗能诅咒时发出警报。",
+
+	curseBar = "耗能诅咒计时条",
+	curseBar_desc = "当耗能诅咒持续时显示计时条。",
+
+	curse_message = "耗能诅咒：>%s<！",
+
+	warpBar = "时间扭曲计时条",
+	warpBar_desc = "当时间扭曲持续时显示计时条。",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
