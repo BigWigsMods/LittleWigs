@@ -21,6 +21,10 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	forms = "형태",
+	forms_desc = "갈다라의 형태를 알립니다.",
+	form_troll = "곧 트롤 형태",
+	form_rhino = "곧 코뿔소 형태",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

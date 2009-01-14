@@ -18,6 +18,9 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	raptor = "랩터 부르기",
+	raptor_desc = "랩터왕 서슬발톱의 랩터 부르기를 알립니다.",
+	raptor_message = "랩터 부르기",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

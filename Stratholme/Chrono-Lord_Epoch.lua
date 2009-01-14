@@ -25,6 +25,16 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	curse = "노력의 저주",
+	curse_desc = "노력의 저주 시전을 알립니다.",
+
+	curseBar = "노력의 저주 바",
+	curseBar_desc = "노력의 저주가 지속되는 바를 표시합니다.",
+
+	curse_message = "노력의 저주: %s",
+
+	warpBar = "시간 왜곡 바",
+	warpBar_desc = "시간 왜곡이 지속되는 바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

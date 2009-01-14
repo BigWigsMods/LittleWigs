@@ -21,6 +21,12 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	wound = "상처 감염",
+	wound_desc = "상처 감염에 걸린 플레이어를 알립니다.",
+	wound_message = "상처 감염: %s",
+
+	woundBar = "상처 감염 바",
+	woundBar_desc = "상처 감염이 지속되는 바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

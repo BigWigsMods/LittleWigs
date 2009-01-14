@@ -31,6 +31,20 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	sleep = "수면",
+	sleep_desc = "수면에 걸린 플레이어를 알립니다.",
+
+	sleepBar = "수면 바",
+	sleepBar_desc = "수면이 지속되는 바를 표시합니다.",
+
+	sleep_message = "수면: %s",
+
+	vampTouch = "흡혈의 손길",
+	vampTouch_desc = "말가니스의 흡혈의 손길 획득을 알립니다.",
+	vampTouch_message = "말가니스 흡혈의 손길 획득",
+	
+	vampTouchBar = "흡혈의 손길 바",
+	vampTouchBar_desc = "말가니스의 흡혈의 손길이 지속되는 바를 표시합니다.",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

@@ -28,6 +28,9 @@ L:RegisterTranslations("koKR", function() return {
 	debilitate = "쇠약",
 	debilitate_desc = "쇠약의 대상자를 알립니다.",
 	debilitate_message = "쇠약: %s",
+	
+	debilitateBar = "쇠약 바",
+	debilitateBar_desc = "쇠약이 지속되는 바를 표시합니다..",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

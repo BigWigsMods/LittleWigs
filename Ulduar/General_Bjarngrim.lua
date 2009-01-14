@@ -43,6 +43,17 @@ L:RegisterTranslations("frFR", function() return {
 } end)
 
 L:RegisterTranslations("koKR", function() return {
+	mortalStrike = "죽음의 일격",
+	mortalStrike_desc = "죽음의 일격 디버프가 걸린 플레이어를 알립니다.",
+	mortalStrike_message = "죽음의 일격: %s",
+
+	mortalStrikeBar = "죽음의 일격 바",
+	mortalStrikeBar_desc = "죽음의 일격 디버프가 지속되는 바를 표시합니다.",
+
+	berserker = "광폭 오라",
+	berserker_desc = "장군 뱌른그림의 광폭 오라 획득과 사라짐을 알립니다.",
+	berserker_applied = "광폭 오라 획득",
+	berserker_removed = "광폭 오라 사라짐",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
