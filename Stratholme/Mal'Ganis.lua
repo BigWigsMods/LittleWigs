@@ -88,6 +88,20 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	sleep = "Сон",
+	sleep_desc = "Сообщать о том кто усыплен.",
+
+	sleepBar = "Полоса сна",
+	sleepBar_desc = "Отображать полосу продолжительности сна.",
+
+	sleep_message = "Усыплен: %s",
+
+	vampTouch = "Прикосновение вампира",
+	vampTouch_desc = "Сообщать когда Мал'Ганис получает Прикосновение вампира.",
+	vampTouch_message = "Мал'Ганис получил Прикосновение вампира!",
+	
+	vampTouchBar = "Полоса прикосновения вампира",
+	vampTouchBar_desc = "Отображать полосу продолжительности прикосновения вампира Мал'Ганиса.",
 } end )
 
 ----------------------------------

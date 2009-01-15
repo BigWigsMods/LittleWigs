@@ -36,6 +36,13 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	chains = "Удушающие оковы",
+	chains_desc = "Сообщать кто затачен в оковы.",
+
+	chainsBar = "Полоса удушающих оков",
+	chainsBar_desc = "Отображать полосу продолжительности удушающих оков если в них кто либо затачен.",
+
+	chains_message = "Оковы: %s",
 } end )
 
 ----------------------------------

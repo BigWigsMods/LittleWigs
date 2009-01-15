@@ -70,6 +70,16 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	curse = "Проклятье усталости",
+	curse_desc = "Сообщать о применении проклятья усталости",
+
+	curseBar = "Полоса проклятья усталости",
+	curseBar_desc = "Отображать полосу продолжительности проклятья усталости",
+
+	curse_message = "Усталость: %s",
+
+	warpBar = "Полоса искажения времени",
+	warpBar_desc = "Отображать полосу продолжительности искажения времени.",
 } end )
 
 ----------------------------------
