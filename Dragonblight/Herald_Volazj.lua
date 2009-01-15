@@ -137,6 +137,12 @@ function mod:Insanity(_, spellId)
 	if self.db.profile.insanity then
 		self:IfMessage(L["insanity_message"], "Important", spellId)
 	end
+	if Transcriptor then
+		local currentHealth = UnitHealth(boss)
+		local maxHealth = UnitHealthMax(boss)
+		local percentHealth = (currentHealth/maxHealth)*100
+		Transcriptor:InsNote(boss.." Health: "..percentHealth.."%")
+	end	
 end
 
 function mod:Shiver(player, spellId, _, _, spellName)
