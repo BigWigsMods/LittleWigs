@@ -26,6 +26,17 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	flesh = "비틀린 살덩이",
+	flesh_desc = "비틀린 살덩이의 저주에 걸린 플레이어를 알립니다.",
+
+	fleshBar = "비틀린 살덩이 바",
+	fleshBar_desc = "비틀린 살덩이의 저주가 지속되는 바를 표시합니다.",
+
+	flesh_message = "비틀린 살덩이: %s",
+
+	ghouls = "구울 소환",
+	ghouls_desc = "살덩이창조자 살람의 구울 소환을 알립니다.",
+	ghouls_message = "구울 소환",
 } end )
 
 L:RegisterTranslations("frFR", function() return {

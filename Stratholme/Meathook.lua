@@ -21,6 +21,13 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	chains = "사슬 조이기",
+	chains_desc = "사슬 조이기에 걸린 플레이어를 알립니다.",
+
+	chainsBar = "사슬 조이기 바",
+	chainsBar_desc = "사슬 조이기가 지속되는 바를 표시합니다.",
+
+	chains_message = "사슬 조이기: %s",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
