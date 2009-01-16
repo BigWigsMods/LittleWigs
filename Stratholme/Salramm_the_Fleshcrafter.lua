@@ -46,6 +46,17 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	flesh = "Verdorbenes Fleisch",
+	flesh_desc = "Warnung wenn jemand vom Fluch des verdorbenen Fleisches betroffen ist.",
+
+	fleshBar = "Verdorbenes Fleisch-Anzeige",
+	fleshBar_desc = "Eine Leiste f\195\188r die Dauer des Fluchs des verdorbenen Fleisches anzeigen.",
+
+	flesh_message = "Verdorbenes Fleisch: %s",
+
+	ghouls = "Ghule beschw\195\182ren",
+	ghouls_desc = "Warnung wenn Salramm der Fleischformer Ghule beschw\195\182rt.",
+	ghouls_message = "Beschw\195\182rt Ghule!",	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

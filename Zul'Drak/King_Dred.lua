@@ -36,6 +36,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	raptor = "Raptorruf",
+	raptor_desc = "Warnung wenn K\195\182nig Dred einen Raptor ruft.",
+	raptor_message = "Raptor herbeigerufen!",	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

@@ -68,6 +68,20 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	sleep = "Schlaf",
+	sleep_desc = "Warnung wer von Schlaf betroffen ist.",
+	
+	sleepBar = "Schlaf-Anzeie",
+	sleepBar_desc = "Eine Leiste f\195\188r die Dauer von Schlaf anzeigen.",
+
+	sleep_message = "Schlaf: %s",
+
+	vampTouch = "Vampirber\195\188hrung",
+	vampTouch_desc = "Warnung wenn Mal'Ganis die Vampirber\195\188hrung erh\195\164lt.",
+	vampTouch_message = "Mal'Ganis erh\195\164lt Vampirber\195\188hrung!",
+ 
+	vampTouchBar = "Vampirber\195\188hrung-Anzeige",
+	vampTouchBar_desc = "Eine Leiste f\195\188r die Dauer von Vampirber\195\188hrung anzeigen.",	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

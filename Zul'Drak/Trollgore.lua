@@ -48,6 +48,12 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	wound = "Infizierte Wunde",
+	wound_desc = "Warnung wenn jemand von Infizierte Wunde betroffen ist.",
+	wound_message = "Infizierte Wunde: %s",
+	
+	woundBar = "Infizierte Wunde-Anzeige",
+	woundBar_desc = "Eine Leiste f\195\188r die Dauer von Infizierte Wunde anzeigen.",	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

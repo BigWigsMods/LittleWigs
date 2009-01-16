@@ -42,6 +42,10 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	forms = "Haltungen",
+	forms_desc = "Warnen bevor Gal'darah seine Haltungen \195\164ndert.",
+	form_troll = "Troll-Haltung bald!",
+	form_rhino = "Rhinozeros-Haltung bald!",	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

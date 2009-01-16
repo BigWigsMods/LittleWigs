@@ -26,6 +26,17 @@ L:RegisterTranslations("enUS", function() return {
 } end)
 
 L:RegisterTranslations("deDE", function() return {
+	mortalStrike = "T\195\182dlicher Sto\195\159",
+	mortalStrike_desc = "Warnungn wenn jemand von T\195\182dlicher Sto\195\159 betroffen ist.",
+	mortalStrike_message = "T\195\182dlicher Sto\195\159: %s",
+
+	mortalStrikeBar = "T\195\182dlicher Sto\195\159-Anzeige",
+	mortalStrikeBar_desc = "Eine Leiste mit der verbleibenden Debuff-Dauer von T\195\182dlicher Sto\195\159 anzeigen.",
+	
+	berserker = "Berserkeraura",
+	berserker_desc = "Warnung wenn General Bjarngrim die Berserkeraura erh\195\164lt bzw. verliert.",
+	berserker_applied = "Berserkeraura ist aktiv!",
+	berserker_removed = "Berserkeraura ist ausgelaufen!",	
 } end)
 
 L:RegisterTranslations("frFR", function() return {

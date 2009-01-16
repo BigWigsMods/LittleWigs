@@ -52,9 +52,12 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
-	debilitate = "Entkräften",
-	debilitate_desc = "Warnt, wer Entkräften hat.",
-	debilitate_message = "Entkräften: %s",
+	debilitate = "Entkr\195\164ften",
+	debilitate_desc = "Warnung wer von Entkr\195\164ften betroffen ist.",
+	debilitate_message = "Entkr\195\164ften: %s",
+
+	debilitateBar = "Entkr\195\164ften-Anzeige",
+	debilitateBar_desc = "Eine Leiste f\195\188r die Dauer von Entkr\195\164ften anzeigen.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

@@ -54,6 +54,16 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	curse = "Fluch der Strapazen",
+	curse_desc = "Das Zaubern von Fluch der Strapazen ank\195\188ndigen.",
+
+	curseBar = "Fluch der Strapazen-Anzeige",
+	curseBar_desc = "Eine Leiste f\195\188r die Dauer von Fluch der Strapazen anzeigen.",
+
+	curse_message = "Fluch der Strapazen: %s",
+
+	warpBar = "Zeitkr\195\188mmung-Anzeige",
+	warpBar_desc = "Eine Leiste f\195\188r die Dauer von Zeitkr\195\188mmung anzeigen.",	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {

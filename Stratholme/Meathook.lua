@@ -37,6 +37,13 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("deDE", function() return {
+	chains = "Fesselnde Ketten",
+	chains_desc = "Warnung wer sich in den Fesselnden Ketten befindet.",
+
+	chainsBar = "Fesselnde Ketten-Anzeige",
+	chainsBar_desc = "Eine Leiste f\195\188r die Dauer der Fesselnden Ketten anzeigen.",
+
+	chains_message = "Ketten: %s",	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
