@@ -147,19 +147,19 @@ end
 --      Event Handlers      --
 ------------------------------
 
-function mod:Curse(player, spellId)
-	if self.db.profile.curse then
-		self:IfMessage(L["curse_message"]:format(player), "Important", spellId)
+function mod:Sleep(player, spellId)
+	if self.db.profile.sleep then
+		self:IfMessage(L["sleep_message"]:format(player), "Important", spellId)
 	end
-	if self.db.profile.curseBar then
+	if self.db.profile.sleepBar then
 		if spellId == 58849 then sleepDuration = 8 else sleepDuration = 10 end
-		self:Bar(L["curse_message"]:format(player), sleepDuration, spellId)
+		self:Bar(L["sleep_message"]:format(player), sleepDuration, spellId)
 	end
 end
 
-function mod:CurseRemove(player)
-	if self.db.profile.curseBar then
-		self:TriggerEvent("BigWigs_StopBar", self, L["curse_message"]:format(player))
+function mod:SleepRemove(player)
+	if self.db.profile.sleepBar then
+		self:TriggerEvent("BigWigs_StopBar", self, L["sleep_message"]:format(player))
 	end
 end
 
