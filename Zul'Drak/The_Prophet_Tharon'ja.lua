@@ -11,10 +11,15 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Tharon'ja",
+	
+	[" Health: "] = true,
+	
 	log = "|cffff0000"..boss.."|r: This boss needs data, please consider turning on your /combatlog or transcriptor and submit the logs.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	[" Health: "] = " 체력: ",
+
 	log = "|cffff0000"..boss.."|r: 해당 보스의 데이터가 필요합니다. 채팅창에 /전투기록 , /대화기록 을 입력하여 기록된 데이터를 보내주시기 바랍니다.",
 } end )
 
@@ -68,6 +73,6 @@ function mod:Flesh()
 		local currentHealth = UnitHealth(boss)
 		local maxHealth = UnitHealthMax(boss)
 		local percentHealth = (currentHealth/maxHealth)*100
-		Transcriptor:InsNote(boss.." Health: "..percentHealth.."%")
+		Transcriptor:InsNote(boss..L[" Health: "]..percentHealth.."%")
 	end
 end

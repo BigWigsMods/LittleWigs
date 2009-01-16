@@ -22,6 +22,8 @@ L:RegisterTranslations("enUS", function() return {
 
 	shiverBar = "Shiver Bar",
 	shiverBar_desc = "Show a bar for the duration of the Shiver debuff.",
+	
+	[" Health: "] = true,
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -61,6 +63,8 @@ L:RegisterTranslations("koKR", function() return {
 
 	shiverBar = "오한 바",
 	shiverBar_desc = "오한 디버프의 지속 바를 표시합니다.",
+	
+	[" Health: "] = " 체력: ",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
@@ -141,7 +145,7 @@ function mod:Insanity(_, spellId)
 		local currentHealth = UnitHealth(boss)
 		local maxHealth = UnitHealthMax(boss)
 		local percentHealth = (currentHealth/maxHealth)*100
-		Transcriptor:InsNote(boss.." Health: "..percentHealth.."%")
+		Transcriptor:InsNote(boss..L[" Health: "]..percentHealth.."%")
 	end	
 end
 
