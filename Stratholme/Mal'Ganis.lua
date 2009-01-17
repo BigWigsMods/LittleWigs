@@ -11,11 +11,41 @@ local sleepDuration
 --      Localization      --
 ----------------------------
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
+L:RegisterTranslations("enUS", function() return {
+	cmd = "Mal'Ganis",
 
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
+	sleep = "Sleep",
+	sleep_desc = "Warn for who is put to sleep.",
+
+	sleepBar = "Sleep Bar",
+	sleepBar_desc = "Show a bar for the duration of the sleep.",
+
+	sleep_message = "Sleep: %s",
+
+	vampTouch = "Vampiric Touch",
+	vampTouch_desc = "Warn when Mal'Ganis gains Vampiric Touch.",
+	vampTouch_message = "Mal'Ganis gains Vampiric Touch",
+	
+	vampTouchBar = "Vampiric Touch Bar",
+	vampTouchBar_desc = "Display a bar for the duration of Mal'Ganis Vampiric Touch.",
+} end )
+
+L:RegisterTranslations("koKR", function() return {
+	sleep = "수면",
+	sleep_desc = "수면에 걸린 플레이어를 알립니다.",
+
+	sleepBar = "수면 바",
+	sleepBar_desc = "수면이 지속되는 바를 표시합니다.",
+
+	sleep_message = "수면: %s",
+
+	vampTouch = "흡혈의 손길",
+	vampTouch_desc = "말가니스의 흡혈의 손길 획득을 알립니다.",
+	vampTouch_message = "말가니스 흡혈의 손길 획득",
+	
+	vampTouchBar = "흡혈의 손길 바",
+	vampTouchBar_desc = "말가니스의 흡혈의 손길이 지속되는 바를 표시합니다.",
+} end )
 
 L:RegisterTranslations("frFR", function() return {
 } end )
