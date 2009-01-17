@@ -43,6 +43,17 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	flesh = "扭曲血肉詛咒",
+	flesh_desc = "當玩家中了扭曲血肉詛咒時發出警報。",
+
+	fleshBar = "扭曲血肉詛咒計時條",
+	fleshBar_desc = "當扭曲血肉詛咒持續時顯示計時條。",
+
+	flesh_message = "扭曲血肉詛咒：>%s<！",
+
+	ghouls = "召喚食屍鬼",
+	ghouls_desc = "當『血肉工匠』塞歐朗姆召喚食屍鬼時發出警報。",
+	ghouls_message = "召喚 食屍鬼！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -60,6 +71,17 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	flesh = "扭曲血肉诅咒",
+	flesh_desc = "当玩家中了扭曲血肉诅咒时发出警报。",
+
+	fleshBar = "扭曲血肉诅咒计时条",
+	fleshBar_desc = "当扭曲血肉诅咒持续时显示计时条。",
+
+	flesh_message = "扭曲血肉诅咒：>%s<！",
+
+	ghouls = "召唤食尸鬼",
+	ghouls_desc = "当塑血者沙尔拉姆召唤食尸鬼时发出警报。",
+	ghouls_message = "召唤 食尸鬼！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

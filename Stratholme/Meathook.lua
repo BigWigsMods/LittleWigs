@@ -34,6 +34,13 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	chains = "壓迫之鍊",
+	chains_desc = "當玩家中了壓迫之鍊時發出警報。",
+
+	chainsBar = "壓迫之鍊計時條",
+	chainsBar_desc = "當玩家所中的壓迫之鍊持續時顯示計時條。",
+
+	chains_message = "壓迫之鍊：>%s<！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -47,6 +54,13 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	chains = "束缚之链",
+	chains_desc = "当玩家中了束缚之链时发出警报。",
+
+	chainsBar = "束缚之链计时条",
+	chainsBar_desc = "当玩家所中的束缚之链持续时显示计时条。",
+
+	chains_message = "束缚之链：>%s<！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {

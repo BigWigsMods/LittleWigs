@@ -78,6 +78,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 	shiverBar = "碎裂计时条",
 	shiverBar_desc = "当碎裂减益持续时显示计时条。",
+	
+	[" Health: "] = "生命：",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
@@ -91,6 +93,8 @@ L:RegisterTranslations("zhTW", function() return {
 
 	shiverBar = "碎顫計時條",
 	shiverBar_desc = "當碎顫減益持續時顯示計時條。",
+	
+	[" Health: "] = "生命：",
 } end)
 
 L:RegisterTranslations("esES", function() return {
