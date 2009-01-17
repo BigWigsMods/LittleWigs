@@ -11,13 +11,11 @@ local sleepDuration
 --      Localization      --
 ----------------------------
 
-L:RegisterTranslations("enUS", function() return 
-	--@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("koKR", function() return 
-	--@localization(locale="koKR", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
- end )
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
 
 L:RegisterTranslations("frFR", function() return {
 } end )
