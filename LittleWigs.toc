@@ -20,4 +20,6 @@
 ## Dependencies: BigWigs
 ## OptionalDeps: Ace2
 
+#@debug@
 modules.xml
+#@end-debug@
