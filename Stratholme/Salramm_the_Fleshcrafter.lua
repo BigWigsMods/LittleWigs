@@ -141,7 +141,7 @@ function mod:Flesh(player, spellId)
 	end
 end
 
-function mod:FleshRemove(player)
+function mod:FleshRemoved(player)
 	if self.db.profile.fleshBar then
 		self:TriggerEvent("BigWigs_StopBar", self, L["flesh_message"]:format(player))
 	end
