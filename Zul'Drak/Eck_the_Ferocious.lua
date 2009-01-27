@@ -20,6 +20,9 @@ L:RegisterTranslations("enUS", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
+	residue = "엑크 잔류물 (업적)",
+	residue_desc = "엑크 잔류뮬 디버프 획득에 대해 알립니다.",
+	residue_message = "당신은 엑크 잔류물",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
