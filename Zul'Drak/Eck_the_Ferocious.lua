@@ -29,12 +29,18 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
+	residue = "埃克殘渣（成就）",
+	residue_desc = "當你中了埃克殘渣減益時發出警報。",
+	residue_message = ">你< 埃克殘渣！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
+	residue = "野性残渣（成就）",
+	residue_desc = "当你中了野性残渣减益时发出警报。",
+	residue_message = ">你< 野性残渣！",
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
