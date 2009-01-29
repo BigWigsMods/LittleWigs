@@ -44,6 +44,9 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("ruRU", function() return {
+	residue = "Какой Эк? (Achievement)",
+	residue_desc = "Оповестить когда вы получите дебафф, Остаток Эка.",
+	residue_message = "Остаток Эка на вас",
 } end )
 
 ----------------------------------
