@@ -113,7 +113,7 @@ function mod:Deaths(_, guid)
 		deaths = deaths + 1
 	end
 	if deaths == 2 then
-		self:GenericBossDeath(boss, true)
+		self:BossDeath(nil, self.guid, true)
 	end
 end
 
