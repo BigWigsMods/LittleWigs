@@ -5,6 +5,8 @@
 local boss = BB["Moorabi"]
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+local transSpellName = GetSpellInfo(55098)
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -93,6 +95,7 @@ mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Transform", 55098)
+	self:AddCombatListener("SPELL_INTERRUPT", "Interrupt", 32747) -- spellId of Interrupt
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
@@ -105,6 +108,12 @@ function mod:Transform(_, spellId, _, _, spellName)
 		self:IfMessage(L["transformation_message"], "Urgent", spellId)
 	end
 	if self.db.profile.transformationBar then
-		self:Bar(spellName, 4, spellId)
+		self:Bar(transSpellName, 4, spellId)
+	end
+end
+
+function mod:Interrupt(_, _, source)
+	if self.db.profile.transformationBar and source == boss then
+		self:TriggerEvent("BigWigs_StopBar", self, transSpellName)
 	end
 end
