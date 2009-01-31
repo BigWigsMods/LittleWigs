@@ -34,7 +34,7 @@ L:RegisterTranslations("enUS", function() return {
 
 L:RegisterTranslations("koKR", function() return {
 	timeBomb = "냉기 폭탄",
-	timeBomb_desc = "냉기 폭탄에 걸린 플레이어를 알립니다..",
+	timeBomb_desc = "냉기 폭탄에 걸린 플레이어를 알립니다.",
 	timeBomb_message = "냉기 폭탄: %s",
 
 	timeBombWhisper = "냉기 폭탄 귓속말",

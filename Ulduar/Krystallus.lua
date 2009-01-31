@@ -52,7 +52,7 @@ L:RegisterTranslations("koKR", function() return {
 	
 	shatterBar = "산산조각 바",
 	shatterBar_desc = "산산조각 사용까지의 남은 시간을 바를 표시합니다.",
-	shatterBar_message = "~Shatter",
+	shatterBar_message = "~산산조각",
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
