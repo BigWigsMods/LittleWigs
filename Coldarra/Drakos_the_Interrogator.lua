@@ -10,49 +10,32 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 --      Localization      --
 ----------------------------
 
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Drakos",
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	magicpull = "Magic Pull",
-	magicpull_desc = "Announce Magic Pull",
-	magicpull_message = "Casting Magic Pull",
-} end )
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("koKR", function() return {
-	magicpull = "마법 인력",
-	magicpull_desc = "마법 인력을 알립니다.",
-	magicpull_message = "마법 인력 시전",
-} end )
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("frFR", function() return {
-	magicpull = "Traction magique",
-	magicpull_desc = "Prévient quand la Traction magique est incantée.",
-	magicpull_message = "Traction magique en incantation",
-} end )
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("zhTW", function() return {
-	magicpull = "魔法拖曳",
-	magicpull_desc = "當『審問者』德拉高斯施放魔法拖曳時發出警報。",
-	magicpull_message = "正在施放 魔法拖曳！",
-} end )
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("deDE", function() return {
-	magicpull = "Magische Anziehung",
-	magicpull_desc = "Magische Anziehung ansagen",
-	magicpull_message = "Wirkt Magische Anziehung",
-} end )
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("zhCN", function() return {
-	magicpull = "魔法牵引",
-	magicpull_desc = "当审讯者达库斯施放魔法牵引时发出警报。",
-	magicpull_message = "正在施放 魔法牵引！",
-} end )
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("ruRU", function() return {
-	magicpull = "Магическое притяжение",
-	magicpull_desc = "Оповещать о магическом притяжении",
-	magicpull_message = "Применяется магическое притяжение",
-} end )
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Drakos_the_Interrogator", format="lua_table", handle-unlocalized="ignore")@
+end )
 
 ----------------------------------
 --      Module Declaration      --

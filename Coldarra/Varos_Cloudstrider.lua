@@ -10,70 +10,32 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 --      Localization      --
 ----------------------------
 
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Varos",
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	amplifyMagic = "Amplify Magic",
-	amplifyMagic_desc = "Warn who has the Amplify Magic debuff.",
-	amplifyMagic_message = "%s: %s",
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	amplifyMagicBar = "Amplify Magic Bar",
-	amplifyMagicBar_desc = "Display a bar for the duration of Amplify Magic.",
-} end )
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("koKR", function() return {
-	amplifyMagic = "마법 증폭",
-	amplifyMagic_desc = "마법 증폭에 걸린 플레이어를 알립니다.",
-	amplifyMagic_message = "%s: %s",
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	amplifyMagicBar = "마법 증폭 바",
-	amplifyMagicBar_desc = "마법 증폭이 지속되는 바를 표시합니다.",
-} end )
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("frFR", function() return {
-	amplifyMagic = "Amplification de la magie",
-	amplifyMagic_desc = "Prévient quand un joueur subit les effets de l'Amplification de la magie.",
-	amplifyMagic_message = "%s : %s",
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	amplifyMagicBar = "Amplification de la magie - Barre",
-	amplifyMagicBar_desc = "Affiche une barre indiquant la durée de l'Amplification de la magie.",
-} end )
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("zhTW", function() return {
-	amplifyMagic = "魔法增效",
-	amplifyMagic_desc = "當玩家中了魔法增效減益時發出警報。",
-	amplifyMagic_message = "%s：%s！",
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	amplifyMagicBar = "魔法增效計時條",
-	amplifyMagicBar_desc = "當魔法增效持續時顯示計時條。",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	amplifyMagic = "Magie verst\195\164rken",
-	amplifyMagic_desc = "Warnen wer den Magie verst\195\164rken-Debuff hat.",
-	amplifyMagic_message = "%s: %s",
-
-	amplifyMagicBar = "Magie verst\195\164rken-Anzeige",
-	amplifyMagicBar_desc = "Eine Leiste \195\188ber die Dauer von Magie verst\195\164rken anzeigen.",
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	amplifyMagic = "魔法增效",
-	amplifyMagic_desc = "当玩家中了魔法增效减益时发出警报。",
-	amplifyMagic_message = "%s：%s！",
-
-	amplifyMagicBar = "魔法增效计时条",
-	amplifyMagicBar_desc = "当魔法增效持续时显示计时条。",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	amplifyMagic = "Усиление магии",
-	amplifyMagic_desc = "Предупреждать если кто получает дебафф Усиления магии.",
-	amplifyMagic_message = "%s: %s",
-
-	amplifyMagicBar = "Полоса Усиление магии",
-	amplifyMagicBar_desc = "Отображать полосу продолжительности Усиления магии.",
-} end )
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Varos_Cloudstrider", format="lua_table", handle-unlocalized="ignore")@
+end )
 
 ----------------------------------
 --      Module Declaration      --

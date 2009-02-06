@@ -10,49 +10,32 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 --      Localization      --
 ----------------------------
 
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Anomalus",
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	rift = "Rift",
-	rift_desc = "Warn when Anomalus summons a rift.",
-	rift_message = "Rift Summoned",
-} end )
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("koKR", function() return {
-	rift = "균열",
-	rift_desc = "아노말루스의 균열 소환을 알립니다.",
-	rift_message = "균열 소환!",
-} end )
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("frFR", function() return {
-	rift = "Faille",
-	rift_desc = "Prévient quand Anomalus invoque une faille.",
-	rift_message = "Faille invoquée",
-} end )
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("zhTW", function() return {
-	rift = "製造裂縫",
-	rift_desc = "當艾諾瑪路斯召喚裂縫時發出警報。",
-	rift_message = "召喚裂縫！",
-} end )
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("deDE", function() return {
-	rift = "Riss",
-	rift_desc = "Warnt, wenn Anomalus einen Riss beschwört.",
-	rift_message = "Riss beschworen",
-} end )
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("zhCN", function() return {
-	rift = "制造裂隙",
-	rift_desc = "当阿诺玛鲁斯召唤裂隙时发出警报。",
-	rift_message = "召唤裂隙！",
-} end )
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("ruRU", function() return {
-	rift = "Разломы",
-	rift_desc = "Предупреждать, когда Аномалус разрывает пространство, создавая хаотический разлом.",
-	rift_message = "Разлом открыт!",
-} end )
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
+end )
 
 ----------------------------------
 --      Module Declaration      --

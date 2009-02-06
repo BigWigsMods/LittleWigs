@@ -10,133 +10,32 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 --      Localization      --
 ----------------------------
 
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Eregos",
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	planarshift = "Planar Shift",
-	planarshift_desc = "Warns for Planar Shift.",
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	planarshiftbar = "Planar Shift Bar",
-	planarshiftbar_desc = "Display a bar for the duration of Planar Shift.",
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	planarshift_message = "Planar Shift",
-	planarshift_expire_message = "Planar Shift ends in 5 sec",
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	enragedassault = "Enraged Assault",
-	enragedassault_desc = "Warns for Enraged Assault.",
-	enragedassault_message = "Enraged Assault",
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	enragedassaultbar = "Enraged Assault Bar",
-	enragedassaultbar_desc = "Display a bar for the duraction of Enraged Assult.",
-} end )
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("koKR", function() return {
-	planarshift = "차원 이동",
-	planarshift_desc = "차원 이동을 알립니다.",
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	planarshiftbar = "차원 이동 바",
-	planarshiftbar_desc = "차원 이동이 지속되는 바를 표시합니다.",
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	planarshift_message = "차원 이동",
-	planarshift_expire_message = "5초 후 차원 이동 종료",
-
-	enragedassault = "맹렬한 격노",
-	enragedassault_desc = "맹렬한 격노를 알립니다.",
-	enragedassault_message = "맹렬한 격노",
-
-	enragedassaultbar = "맹렬한 격노 바",
-	enragedassaultbar_desc = "맹렬한 격노가 지속되는 바를 표시합니다.",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	planarshift = "Transfert planaire",
-	planarshift_desc = "Prévient de l'arrivée des Transferts planaires.",
-
-	planarshiftbar = "Transfert planaire - Barre",
-	planarshiftbar_desc = "Affiche une barre indiquant la durée du Transfert planaire.",
-
-	planarshift_message = "Transfert planaire",
-	planarshift_expire_message = "Fin du Transfert planaire dans 5 sec.",
-
-	enragedassault = "Assaut enragé",
-	enragedassault_desc = "Prévient de l'arrivée des Assauts enragés.",
-	enragedassault_message = "Assaut enragé",
-
-	enragedassaultbar = "Assaut enragé - Barre",
-	enragedassaultbar_desc = "Affiche une barre indiquant la durée de l'Assaut enragé.",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	planarshift = "界域轉換",
-	planarshift_desc = "當施放界域轉換時發出警報。",
-
-	planarshiftbar = "界域轉換計時條",
-	planarshiftbar_desc = "當界域轉換持續時顯示計時條。",
-
-	planarshift_message = "界域轉換！",
-	planarshift_expire_message = "界域轉換 5秒后結束！",
-
-	enragedassault = "狂怒襲擊",
-	enragedassault_desc = "當施放狂怒襲擊時發出警報。",
-	enragedassault_message = "狂怒襲擊！",
-
-	enragedassaultbar = "狂怒襲擊計時條",
-	enragedassaultbar_desc = "當狂怒襲擊持續時顯示計時條。",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	planarshift = "Planarverschiebung",
-	planarshift_desc = "Warnung f\195\188r Planarverschiebung.",
-
-	planarshiftbar = "Planarverschiebung-Anzeige",
-	planarshiftbar_desc = "Eine Leiste f\195\188r die Dauer der Planarverschiebung anzeigen.",
-
-	planarshift_message = "Planarverschiebung",
-	planarshift_expire_message = "Planarverschiebung endet in 5 sek",
-
-	enragedassault = "W\195\188tender Angriff",
-	enragedassault_desc = "Warnung f\195\188r W\195\188tender Angriff.",
-	enragedassault_message = "W\195\188tender Angriff",
-
-	enragedassaultbar = "W\195\188tender Angriff-Anzeige",
-	enragedassaultbar_desc = "Eine Leiste f\195\188r die Dauer des W\195\188tenden Angriffs anzeigen.",
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	planarshift = "位面转移",
-	planarshift_desc = "当施放位面转移时发出警报。",
-
-	planarshiftbar = "位面转移计时条",
-	planarshiftbar_desc = "当位面转移持续时显示计时条。",
-
-	planarshift_message = "位面转移！",
-	planarshift_expire_message = "位面转移 5秒后结束！",
-
-	enragedassault = "暴怒攻击",
-	enragedassault_desc = "当施放暴怒攻击时发出警报。",
-	enragedassault_message = "暴怒攻击！",
-
-	enragedassaultbar = "暴怒攻击计时条",
-	enragedassaultbar_desc = "当暴怒攻击持续时显示计时条。",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	planarshift = "Сдвиг плоскости",
-	planarshift_desc = "Предупреждать о Сдвиге плоскости",
-
-	planarshiftbar = "Полоса Сдвига плоскости",
-	planarshiftbar_desc = "Отображать полосу продолжительности Сдвига плоскости.",
-
-	planarshift_message = "Сдвиг плоскости",
-	planarshift_expire_message = "Конец Сдвига плоскости через 5 сек",
-
-	enragedassault = "Яростный натиск",
-	enragedassault_desc = "Предупреждать о Яростном натиске",
-	enragedassault_message = "Яростный натиск",
-
-	enragedassaultbar = "Полоса Яростного натиска",
-	enragedassaultbar_desc = "Отображать полосу продолжительности Яростного натиска.",
-} end )
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
+end )
 
 ----------------------------------
 --      Module Declaration      --
