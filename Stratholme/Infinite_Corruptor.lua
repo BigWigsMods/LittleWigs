@@ -1,13 +1,22 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
+----------------------------------
+--      Module Declaration      --
+----------------------------------
 
 local boss = BB["Infinite Corruptor"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
+mod.partyContent = true
+mod.otherMenu = "Caverns of Time"
+mod.zonename = BZ["The Culling of Stratholme"]
+mod.enabletrigger = boss 
+mod.guid = 32273
+mod.toggleoptions = {"bosskill"}
 
-----------------------------
---      Localization      --
-----------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Corruptor",
@@ -37,28 +46,15 @@ L:RegisterTranslations("ruRU", function() return {
 } end )
 
 ----------------------------------
---      Module Declaration      --
+--        Initialization        --
 ----------------------------------
-
-local mod = BigWigs:NewModule(boss)
-mod.partyContent = true
-mod.otherMenu = "Caverns of Time"
-mod.zonename = BZ["The Culling of Stratholme"]
-mod.enabletrigger = boss 
-mod.guid = 32273
-mod.toggleoptions = {"bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
-
-------------------------------
---      Initialization      --
-------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 	BigWigs:Print(L["log"])
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 

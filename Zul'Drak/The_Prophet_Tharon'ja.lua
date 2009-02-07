@@ -1,13 +1,22 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
+----------------------------------
+--      Module Declaration      --
+----------------------------------
 
 local boss = BB["The Prophet Tharon'ja"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
+mod.partyContent = true
+mod.otherMenu = "Zul'Drak"
+mod.zonename = BZ["Drak'Tharon Keep"]
+mod.enabletrigger = boss 
+mod.guid = 26632
+mod.toggleoptions = {"bosskill"}
 
-----------------------------
---      Localization      --
-----------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Tharon'ja",
@@ -46,21 +55,8 @@ L:RegisterTranslations("ruRU", function() return {
 } end )
 
 ----------------------------------
---      Module Declaration      --
+--        Initialization        --
 ----------------------------------
-
-local mod = BigWigs:NewModule(boss)
-mod.partyContent = true
-mod.otherMenu = "Zul'Drak"
-mod.zonename = BZ["Drak'Tharon Keep"]
-mod.enabletrigger = boss 
-mod.guid = 26632
-mod.toggleoptions = {"bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
-
-------------------------------
---      Initialization      --
-------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Flesh", 49356)
@@ -68,9 +64,9 @@ function mod:OnEnable()
 	BigWigs:Print(L["log"])
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Flesh()
 	if Transcriptor then

@@ -1,102 +1,53 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Erekem"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Erekem",
-
-	earthshield = "Earth Shield",
-	earthshield_desc = "Warns for Earth Shield.",
-	earthshield_message = "Earth Shield",
-
-	chainheal = "Chain Heal",
-	chainheal_desc = "Warn for the casting of Chain Heal.",
-	chainheal_message = "Casting Chain Heal",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	earthshield = "대지의 보호막",
-	earthshield_desc = "대지의 보호막에 대해 알립니다.",
-	earthshield_message = "대지의 보호막!",
-
-	chainheal = "연쇄 치유",
-	chainheal_desc = "연쇄 치유에 시전에 대해 알립니다.",
-	chainheal_message = "치유 시전!",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	earthshield = "Bouclier de terre",
-	earthshield_desc = "Prévient quand Erekem est protégé par un Bouclier de terre.",
-	earthshield_message = "Bouclier de terre !",
-
-	chainheal = "Salve de guérison",
-	chainheal_desc = "Prévient quand une Salve de guérison est incantée.",
-	chainheal_message = "Salve de guérison en incantation !",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	earthshield = "大地之盾",
-	earthshield_desc = "當施放大地之盾時發出警報。",
-	earthshield_message = "大地之盾！",
-
-	chainheal = "治療鍊",
-	chainheal_desc = "當正在施放治療鍊時發出警報。",
-	chainheal_message = "正在施放 治療鍊！",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	earthshield = "Erdschild",
-	earthshield_desc = "Warnung f\195\188r Erdschild.",
-	earthshield_message = "Erdschild",
-
-	chainheal = "Kettenheilung",
-	chainheal_desc = "Warnen wenn der Zauber Kettenheilung gewirkt wird.",
-	chainheal_message = "Wirkt Kettenheilung!",
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	earthshield = "大地之盾",
-	earthshield_desc = "当施放大地之盾时发出警报。",
-	earthshield_message = "大地之盾！",
-
-	chainheal = "治疗链",
-	chainheal_desc = "当正在施放治疗链时发出警报。",
-	chainheal_message = "正在施放 治疗链！",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	earthshield = "Щит Земли",
-	earthshield_desc = "Предупреждать о Щите Земли.",
-	earthshield_message = "Щит Земли!",
-	
-	chainheal = "Цепное исцеление",
-	chainheal_desc = "Предупреждать о Цепном исцелении.",
-	chainheal_message = "Применяется Цепное исцеление!",
-} end )
-
-----------------------------------
+﻿----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Erekem"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29315
 mod.toggleoptions = {"earthshield", "chainheal", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dalaran/Erekem", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "EarthShield", 54479, 59471)
@@ -104,9 +55,9 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:EarthShield(_, spellId)
 	if self.db.profile.earthshield then

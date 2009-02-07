@@ -1,57 +1,58 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Lavanthor"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Lavanthor",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-} end )
-
-----------------------------------
+﻿----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Lavanthor"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29312
 mod.toggleoptions = {"bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dalaran/Lavanthor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------

@@ -1,95 +1,53 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Gortok Palehoof"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Gortok",
-
-	roar = "Withering Roar",
-	roar_desc = "Show the Withering Roar timer bar.",
-	roarcooldown_bar = "Roar cooldown",
-
-	impale = "Impale",
-	impale_desc = "Warn who has Impale.",
-	impale_message = "%s: %s",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	roar = "부패의 포효",
-	roar_desc = "부패의 포효 타이머 바를 표시합니다.",
-	roarcooldown_bar = "포효 대기시간",
-
-	impale = "꿰뚫기",
-	impale_desc = "꿰뚫기에 걸린 플레이어를 알립니다.",
-	impale_message = "%s: %s",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	roar = "Rugissement d'affliction",
-	roar_desc = "Affiche une barre indiquant le temps de recharge du Rugissement d'affliction.",
-	roarcooldown_bar = "Recharge Rugissement",
-
-	impale = "Empaler",
-	impale_desc = "Prévient quand un joueur subit les effets d'Empaler.",
-	impale_message = "%s : %s",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	roar = "枯萎咆哮",
-	roar_desc = "顯示枯萎咆哮計時條。",
-	roarcooldown_bar = "<枯萎咆哮 冷卻>",
-
-	impale = "刺穿",
-	impale_desc = "當玩家中了刺穿時發出警報。",
-	impale_message = "%s：>%s<！",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	roar = "枯萎咆哮",
-	roar_desc = "显示枯萎咆哮计时条。",
-	roarcooldown_bar = "<枯萎咆哮 冷却>",
-
-	impale = "穿刺",
-	impale_desc = "当玩家中了穿刺时发出警报。",
-	impale_message = "%s：>%s<！",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	roar = "Губительный рев",
-	roar_desc = "Отображать таймер губительного рева.",
-	roarcooldown_bar = "Перезарядка рева",
-
-	impale = "Прокалывание",
-	impale_desc = "Сообщить в кого бросили копье.",
-	impale_message = "%s: %s",
-} end )
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Gortok Palehoof"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Pinnacle"]
 mod.enabletrigger = boss 
 mod.guid = 26687
 mod.toggleoptions = {"roar", "impale", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Roar", 48256, 59267)
@@ -97,9 +55,9 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Roar(_, spellId, _, _, spellName)
 	if self.db.profile.roar then

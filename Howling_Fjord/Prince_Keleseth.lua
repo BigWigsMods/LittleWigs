@@ -1,95 +1,53 @@
-------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Prince Keleseth"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Keleseth",
-
-	tomb = "Frost Tomb",
-	tomb_desc = "Warn for who is in the Frost Tomb.",
-	tomb_message = "Frost Tomb: %s",
-
-	tombBar = "Frost Tomb Bar",
-	tombBar_desc = "Display a bar for the duration of the Frost Tomb.",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	tomb = "서리 무덤",
-	tomb_desc = "서리 무덤의 대상자를 알립니다.",
-	tomb_message = "서리 무덤: %s",
-	
-	tombBar = "서리 무덤 바",
-	tombBar_desc = "서리 무덤이 지속되는 바를 표시합니다.",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	tomb = "Tombeau de givre",
-	tomb_desc = "Prévient quand un joueur subit les effets du Tombeau de givre.",
-	tomb_message = "Tombeau de givre : %s",
-
-	tombBar = "Tombeau de givre - Barre",
-	tombBar_desc = "Affiche une barre indiquant la durée du Tombeau de givre.",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	tomb = "冰霜之墓",
-	tomb_desc = "當玩家中了冰霜之墓時發出警報。",
-	tomb_message = ">%s<：冰霜之墓！",
-
-	tombBar = "冰霜之墓計時條",
-	tombBar_desc = "當冰霜之墓持續時顯示計時條。",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	tomb = "Frostgrab",
-	tomb_desc = "Warnt wer im Frostgrab gefangen ist.",
-	tomb_message = "Frostgrab: %s",
-
-	tombBar = "Frostgrab-Anzeige",
-	tombBar_desc = "Eine Leiste \195\188ber die Dauer von Frostgrab anzeigen.",
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	tomb = "冰霜之墓",
-	tomb_desc = "当玩家中了冰霜之墓时发出警报。",
-	tomb_message = ">%s<：冰霜之墓！",
-
-	tombBar = "冰霜之墓计时条",
-	tombBar_desc = "当冰霜之墓持续时显示计时条。",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	tomb = "Ледяная могила",
-	tomb_desc = "Предупреждать, когда кто-нибудь попадает в ледяную могилу.",
-	tomb_message = "В ледяной могиле: %s",
-
-	tombBar = "Полоса Ледяной могилы",
-	tombBar_desc = "Отображение полосы продолжительности Ледяной могилы.",
-} end )
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Prince Keleseth"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = boss 
 mod.guid = 23953
 mod.toggleoptions = {"tomb", "tombBar", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+--------------------------------
+--        Localization        --
+--------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Howling_Fjord/Prince_Keleseth", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Tomb", 48400)
@@ -97,9 +55,9 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Tomb(player, spellId)
 	if self.db.profile.tomb then

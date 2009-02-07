@@ -1,14 +1,22 @@
-------------------------------
---      Are you local?      --
-------------------------------
+----------------------------------
+--      Module Declaration      --
+----------------------------------
 
 local boss = BB["Anomalus"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
+mod.partyContent = true
+mod.otherMenu = "Coldarra"
+mod.zonename = BZ["The Nexus"]
+mod.enabletrigger = {boss} 
+mod.guid = 26763
+mod.toggleoptions = {"rift", "bosskill"}
+
+--------------------------------
+--        Localization        --
+--------------------------------
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
 
 L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Anomalus", format="lua_table", handle-unlocalized="ignore")@
 end )
@@ -38,30 +46,17 @@ L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", 
 end )
 
 ----------------------------------
---      Module Declaration      --
+--        Initialization        --
 ----------------------------------
-
-local mod = BigWigs:NewModule(boss)
-mod.partyContent = true
-mod.otherMenu = "Coldarra"
-mod.zonename = BZ["The Nexus"]
-mod.enabletrigger = {boss} 
-mod.guid = 26763
-mod.toggleoptions = {"rift", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
-
-------------------------------
---      Initialization      --
-------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Rift", 47743)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Rift(_, spellId)
 	if self.db.profile.rift then

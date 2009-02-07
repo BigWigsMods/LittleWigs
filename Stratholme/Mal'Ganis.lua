@@ -1,53 +1,59 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Mal'Ganis"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-local sleepDuration
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
+﻿----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Mal'Ganis"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Caverns of Time"
 mod.zonename = BZ["The Culling of Stratholme"]
 mod.enabletrigger = boss 
 mod.guid = 26533
 mod.toggleoptions = {"sleep", "sleepBar", -1, "vampTouch", "vampTouchBar", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+----------------------------------
+--        Are you local?        --
+----------------------------------
+
+local sleepDuration
+
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Stratholme/Mal_Ganis", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Sleep", 52721, 58849)
@@ -57,9 +63,9 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Sleep(player, spellId)
 	if self.db.profile.sleep then

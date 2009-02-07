@@ -1,102 +1,53 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Ichoron"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Ichoron",
-
-	bubble = "Protective Bubble",
-	bubble_desc = "Announce when Icharon loses the Protective Bubble",
-	bubble_message = "Gained Protective Bubble",
-	bubbleEnded_message = "Protective Bubble Faded",
-
-	frenzy = "Frenzy",
-	frenzy_desc = "Warn when Ichoron becomes Frenzied.",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	bubble = "거품 보호막",
-	bubble_desc = "이코론의 거품 보호막 유/무를 알립니다.",
-	bubble_message = "거품 보호막 획득",
-	bubbleEnded_message = "거품 보호막 사라짐",
-
-	frenzy = "광기",
-	frenzy_desc = "이코론의 광기에 대하여 알립니다.",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	bubble = "Bulle protectrice",
-	bubble_desc = "Prévient quand Icharon perd sa Bulle protectrice.",
-	bubble_message = "Bulle protectrice en place",
-	bubbleEnded_message = "Bulle protectrice disparue",
-
-	frenzy = "Frénésie",
-	frenzy_desc = "Prévient quand Ichoron entre en frénésie.",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	bubble = "保護泡泡",
-	bubble_desc = "當伊仇隆失去保護泡泡時發出警報。",
-	bubble_message = "獲得 保護泡泡！",
-	bubbleEnded_message = "保護泡泡 消失！",
-
-	frenzy = "狂亂",
-	frenzy_desc = "當伊仇隆狂亂時發出警報。",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	bubble = "Sch\195\188tzende Blase",
-	bubble_desc = "Ansage wenn Ichoron seine Sch\195\188tzende Blase verliert.",
-	bubble_message = "Sch\195\188tzende Blase erhalten",
-	bubbleEnded_message = "Sch\195\188tzende Blase ausgelaufen",
-
-	frenzy = "Raserei",
-	frenzy_desc = "Warnung wenn Ichoron in Raserei verf\195\164llt.",
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	bubble = "保护气泡",
-	bubble_desc = "当艾库隆失去保护气泡时发出警报。",
-	bubble_message = "获得 保护气泡！",
-	bubbleEnded_message = "保护气泡 消失！",
-
-	frenzy = "狂乱",
-	frenzy_desc = "当艾库隆狂乱时发出警报。",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	bubble = "Защитный пузырь",
-	bubble_desc = "Предупреждать о потере Защитного пузыря",
-	bubble_message = "Наложен Защитный пузырь",
-	bubbleEnded_message = "Защитный пузырь исчерпан",
-
-	frenzy = "Бешенство",
-	frenzy_desc = "Предупреждать когда Гнойрон впадает в Бешенство.",
-} end )
-
-----------------------------------
+﻿----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Ichoron"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29313
 mod.toggleoptions = {"bubble", "frenzy", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Bubble", 54306)
@@ -105,9 +56,9 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Bubble(_, spellId)
 	if self.db.profile.bubble then

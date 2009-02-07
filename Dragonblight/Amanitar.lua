@@ -1,83 +1,62 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Amanitar"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Amanitar",
-
-	mini = "Mini",
-	mini_desc = "Warn when you have the Mini debuff.",
-	mini_message = "You are Mini",
-} end)
-
-L:RegisterTranslations("deDE", function() return {
-} end)
-
-L:RegisterTranslations("frFR", function() return {
-	mini = "Mini",
-	mini_desc = "Prévient quand vous subissez les effets de Mini.",
-	mini_message = "Vous êtes Mini !",
-} end)
-
-L:RegisterTranslations("koKR", function() return {
-	mini = "축소",
-	mini_desc = "당신의 축소 디버프를 알립니다.",
-	mini_message = "당신은 축소",
-} end)
-
-L:RegisterTranslations("zhCN", function() return {
-	mini = "迷你",
-	mini_desc = "当你中了迷你减益时发出警报。",
-	mini_message = ">你< 迷你！",
-} end)
-
-L:RegisterTranslations("zhTW", function() return {
-	mini = "迷你化",
-	mini_desc = "當你中了迷你化減益時發出警報。",
-	mini_message = ">你< 迷你化！",
-} end)
-
-L:RegisterTranslations("esES", function() return {
-} end)
-
-L:RegisterTranslations("ruRU", function() return {
-	mini = "Мини",
-	mini_desc = "Сообщает если вы получаете дебафф Мини.",
-	mini_message = "На вас Мини",
-} end )
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Amanitar"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
 mod.enabletrigger = boss
 mod.guid = 30258
 mod.toggleoptions = {"mini", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dragonblight/Amanitar", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Mini", 57055)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Mini(_, spellId)
 	if self.db.profile.mini then

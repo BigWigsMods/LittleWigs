@@ -1,99 +1,61 @@
-------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Constructor & Controller"]
-
-local constructor = BB["Skarvald the Constructor"]
-local controller = BB["Dalronn the Controller"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-local deaths = 0
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "ConstructorController",
-
-	debilitate = "Debilitate",
-	debilitate_desc = "Warn for who is Debilitated.",
-	debilitate_message = "Debilitate: %s",
-
-	debilitateBar = "Debilitate Bar",
-	debilitateBar_desc = "Show a bar for the duration of the Debilitate.",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	debilitate = "쇠약",
-	debilitate_desc = "쇠약의 대상자를 알립니다.",
-	debilitate_message = "쇠약: %s",
-	
-	debilitateBar = "쇠약 바",
-	debilitateBar_desc = "쇠약이 지속되는 바를 표시합니다..",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	debilitate = "Débiliter",
-	debilitate_desc = "Prévient quand un joueur subit les effets de Débiliter.",
-	debilitate_message = "Débiliter : %s",
-
-	debilitateBar = "Débiliter - Barre",
-	debilitateBar_desc = "Affiche une barre indiquant la durée du Débiliter.",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	debilitate = "衰弱",
-	debilitate_desc = "當玩家中了衰弱時發出警報。",
-	debilitate_message = "衰弱：>%s<！",
-
-	debilitateBar = "衰弱計時條",
-	debilitateBar_desc = "當衰弱持續時顯示計時條。",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	debilitate = "Entkr\195\164ften",
-	debilitate_desc = "Warnung wer von Entkr\195\164ften betroffen ist.",
-	debilitate_message = "Entkr\195\164ften: %s",
-
-	debilitateBar = "Entkr\195\164ften-Anzeige",
-	debilitateBar_desc = "Eine Leiste f\195\188r die Dauer von Entkr\195\164ften anzeigen.",
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	debilitate = "衰弱",
-	debilitate_desc = "当玩家中了衰弱时发出警报。",
-	debilitate_message = "衰弱：>%s<！",
-
-	debilitateBar = "衰弱计时条",
-	debilitateBar_desc = "当衰弱持续时显示计时条。",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	debilitate = "Ослабление",
-	debilitate_desc = "Предупреждать, когда на кого-нибудь накладывается ослабление.",
-	debilitate_message = "%s: ослаблен!",
-	
-	debilitateBar = "Полоса ослабления",
-	debilitateBar_desc = "Отображение полосы продолжительности ослабления.",
-} end )
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Constructor & Controller"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = {constructor, controller} 
 mod.guid = 24200
 mod.toggleoptions = {"debilitate", "debilitateBar", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+--------------------------------
+--       Are you local?       --
+--------------------------------
+
+local constructor = BB["Skarvald the Constructor"]
+local controller = BB["Dalronn the Controller"]
+local deaths = 0
+
+--------------------------------
+--        Localization        --
+--------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "Deaths")
@@ -102,9 +64,9 @@ function mod:OnEnable()
 	deaths = 0	
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Deaths(_, guid)
 	if not self.db.profile.bosskill then return end

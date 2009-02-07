@@ -1,95 +1,53 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
-
-local boss = BB["Slad'ran"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Slad'ran",
-
-	poison = "Poison Nova",
-	poison_desc = "Warn when a player has the Poison Nova debuff.",
-	poison_message = "Poison Nova: %s",
-
-	poisonBar = "Poison Nova Bar",
-	poisonBar_desc = "Display a bar for the duration of Poison Nova debuff.",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	poison = "독 회오리",
-	poison_desc = "독 회오리 디버프에 걸린 플레이어를 알립니다.",
-	poison_message = "독 회오리: %s",
-
-	poisonBar = "독 회오리 바",
-	poisonBar_desc = "독 회오리 디버프가 지속되는 바를 표시합니다.",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	poison = "Nova de poison",
-	poison_desc = "Prévient quand un joueur subit les effets de la Nova de poison.",
-	poison_message = "Nova de poison : %s",
-
-	poisonBar = "Nova de poison - Barre",
-	poisonBar_desc = "Affiche une barre indiquant la durée de la Nova de poison.",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	poison = "劇毒新星",
-	poison_desc = "當玩家中了劇毒新星減益時發出警報。",
-	poison_message = ">%s<：劇毒新星！",
-
-	poisonBar = "劇毒新星計時條",
-	poisonBar_desc = "當劇毒新星減益持續時顯示計時條。",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	poison = "Giftnova",
-	poison_desc = "Warnung wenn ein Spieler von Giftnova betroffen ist.",
-	poison_message = "Giftnova: %s",
-
-	poisonBar = "Giftnova-Anzeige",
-	poisonBar_desc = "Eine Leiste mit der Dauer der Giftnova anzeigen.",
-} end)
-
-L:RegisterTranslations("zhCN", function() return {
-	poison = "毒性新星",
-	poison_desc = "当玩家中了毒性新星减益时发出警报。",
-	poison_message = ">%s<：毒性新星！",
-
-	poisonBar = "毒性新星计时条",
-	poisonBar_desc = "当毒性新星减益持续时显示计时条。",
-} end )
-
-L:RegisterTranslations("ruRU", function() return {
-	poison = "Ядовитая звезда",
-	poison_desc = "Предупреждать когда игрок получает дебафф Ядовитой звезды.",
-	poison_message = "Ядовитая звезда: %s",
-
-	poisonBar = "Полоса Ядовитой звезды",
-	poisonBar_desc = "Отображать полосу продолжительности дебаффа Ядовитой звезды.",
-} end )
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-local mod = BigWigs:NewModule(boss)
+local boss = BB["Slad'ran"]
+local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Gundrak"]
 mod.enabletrigger = boss 
 mod.guid = 29304
 mod.toggleoptions = {"poison", "poisonBar", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
-------------------------------
---      Initialization      --
-------------------------------
+----------------------------------
+--         Localization         --
+----------------------------------
+
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+----------------------------------
+--        Initialization        --
+----------------------------------
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Poison", 55081, 59842)
@@ -97,9 +55,9 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+----------------------------------
+--        Event Handlers        --
+----------------------------------
 
 function mod:Poison(player, spellId, _, _, spellName)
 	if self.db.profile.poison then
