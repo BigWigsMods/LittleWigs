@@ -24,31 +24,31 @@ local pName = UnitName("player")
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Zul_Drak/Eck_the_Ferocius", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Zul_Drak/Eck_the_Ferocious", format="lua_table", handle-unlocalized="ignore")@
 end )
 
 ----------------------------------
