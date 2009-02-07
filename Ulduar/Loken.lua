@@ -25,31 +25,31 @@ local difficulty
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Ulduar\Loken", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Ulduar/Loken", format="lua_table", handle-unlocalized="ignore")@
 end )
 
 ----------------------------------

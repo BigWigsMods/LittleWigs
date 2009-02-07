@@ -18,31 +18,31 @@ mod.toggleoptions = {"stomp", "stompBar", "bosskill"}
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Ulduar\Volkhan", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Ulduar/Volkhan", format="lua_table", handle-unlocalized="ignore")@
 end )
 
 ----------------------------------

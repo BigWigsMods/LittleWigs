@@ -24,31 +24,32 @@ local frenzyannounced = nil
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dragonblight/Kirk_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_table", handle-unlocalized="ignore")@
 end )
 
 ----------------------------------
