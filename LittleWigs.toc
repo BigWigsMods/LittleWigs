@@ -1,6 +1,6 @@
 ﻿## Interface: 30000 
 
-## Title: Little Wigs
+## Title: LittleWigs
 ## Notes: Boss warnings for Lich King 5-man dungeons.
 ## Notes-ruRU: Оповещения о действиях боссов в подземельях ВоЛКа на 5-чел.
 ## Title-zhCN: Little Wigs
