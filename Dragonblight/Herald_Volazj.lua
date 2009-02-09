@@ -65,10 +65,10 @@ function mod:Insanity(_, spellId)
 		self:IfMessage(L["insanity_message"], "Important", spellId)
 	end
 	if Transcriptor then
-		local currentHealth = UnitHealth(boss)
-		local maxHealth = UnitHealthMax(boss)
-		local percentHealth = (currentHealth/maxHealth)*100
-		Transcriptor:InsNote(boss..L[" Health: "]..percentHealth.."%")
+		local health = UnitHealth(boss)
+		-- no need to translate this stuff, it's only in here temporarly for doing some testing and gathering data
+		Transcriptor:InsNote(string.format("Difficulty: %d", GetInstanceDifficulty()))
+		Transcriptor:InsNote(string.format("%s Health: %d", boss, health))
 	end	
 end
 

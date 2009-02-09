@@ -3,6 +3,8 @@
 ----------------------------------
 
 local boss = BB["Constructor & Controller"]
+local constructor = BB["Skarvald the Constructor"]
+local controller = BB["Dalronn the Controller"]
 local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
 if not mod then return end
 mod.partyContent = true
@@ -16,8 +18,6 @@ mod.toggleoptions = {"debilitate", "debilitateBar", "bosskill"}
 --       Are you local?       --
 --------------------------------
 
-local constructor = BB["Skarvald the Constructor"]
-local controller = BB["Dalronn the Controller"]
 local deaths = 0
 
 --------------------------------
