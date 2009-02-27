@@ -59,7 +59,7 @@ end )
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "Deaths")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Enfeeble", 43650)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Debilitate", 43650)
 
 	deaths = 0	
 end
@@ -79,7 +79,7 @@ function mod:Deaths(_, guid)
 	end
 end
 
-function mod:Enfeeble(player, spellId)
+function mod:Debilitate(player, spellId)
 	if self.db.profile.debilitate then
 		self:IfMessage(L["debilitate_message"]:format(player), "Attention", spellId)
 	end
