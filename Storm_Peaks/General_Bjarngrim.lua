@@ -6,7 +6,7 @@ local boss = BB["General Bjarngrim"]
 local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
 if not mod then return end
 mod.partycontent = true
-mod.otherMenu = "Ulduar"
+mod.otherMenu = "Storm Peaks"
 mod.zonename = BZ["Halls of Lightning"]
 mod.enabletrigger = boss
 mod.guid = 28586

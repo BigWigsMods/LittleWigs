@@ -1,7 +1,7 @@
 ﻿## Interface: 30000
 ## X-Curse-Packaged-Version: 3.0.0-beta1
 
-## Title: Little Wigs [|cffeda55fUlduar|r]
+## Title: Little Wigs [|cffeda55fStorm Peaks|r]
 ## Notes: Little Wigs Ulduar Modules
 ## Title-zhCN: Little Wigs [|cffeda55f奥杜尔|r]
 ## Notes-zhCN: Little Wigs 奥杜尔模块
@@ -20,7 +20,7 @@
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
 ## X-Category: Party
 
-## X-BigWigs-Menu: Ulduar
+## X-BigWigs-Menu: Storm Peaks
 ## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: Halls of Stone, Halls of Lightning
 

@@ -6,7 +6,7 @@ local boss = BB["Sjonnir The Ironshaper"]
 local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
 if not mod then return end
 mod.partycontent = true
-mod.otherMenu = "Ulduar"
+mod.otherMenu = "Storm Peaks"
 mod.zonename = BZ["Halls of Stone"]
 mod.enabletrigger = boss
 mod.guid = 27978

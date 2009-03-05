@@ -38,20 +38,20 @@
 <Script file="Howling_Fjord\Skadi_the_Ruthless.lua"/>
 <Script file="Howling_Fjord\King_Ymiron.lua"/>
 
+<Script file="Storm_Peaks\Maiden_of_Grief.lua"/>
+<Script file="Storm_Peaks\Krystallus.lua"/>
+<Script file="Storm_Peaks\Sjonnir_the_Ironshaper.lua"/>
+
+<Script file="Storm_Peaks\General_Bjarngrim.lua"/>
+<Script file="Storm_Peaks\Volkhan.lua"/>
+<Script file="Storm_Peaks\Ionar.lua"/>
+<Script file="Storm_Peaks\Loken.lua"/>
+
 <Script file="Stratholme\Chrono-Lord_Epoch.lua"/>
 <Script file="Stratholme\Infinite_Corruptor.lua"/>
 <Script file="Stratholme\Mal'Ganis.lua"/>
 <Script file="Stratholme\Meathook.lua"/>
 <Script file="Stratholme\Salramm_the_Fleshcrafter.lua"/>
-
-<Script file="Ulduar\Maiden_of_Grief.lua"/>
-<Script file="Ulduar\Krystallus.lua"/>
-<Script file="Ulduar\Sjonnir_the_Ironshaper.lua"/>
-
-<Script file="Ulduar\General_Bjarngrim.lua"/>
-<Script file="Ulduar\Volkhan.lua"/>
-<Script file="Ulduar\Ionar.lua"/>
-<Script file="Ulduar\Loken.lua"/>
 
 <Script file="Zul'Drak\Trollgore.lua"/>
 <Script file="Zul'Drak\Novos_the_Summoner.lua"/>
