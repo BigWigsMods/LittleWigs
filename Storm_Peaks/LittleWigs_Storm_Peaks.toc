@@ -7,8 +7,8 @@
 ## Notes-zhCN: Little Wigs 奥杜尔模块
 ## Title-zhTW: Little Wigs [|cffeda55f奧杜亞|r]
 ## Notes-zhTW: Little Wigs 奧杜亞模組
-## Title-koKR: Little Wigs [|cffeda55f울두아르|r]
-## Notes-koKR: Little Wigs 울두아르 경고
+## Title-koKR: Little Wigs [|cffeda55f폭풍우 봉우리|r]
+## Notes-koKR: Little Wigs 돌의 전당, 번개의 전당 경고
 ## Notes-frFR: Modules Little Wigs concernant Ulduar.
 ## Title-ruRU: Little Wigs [|cffeda55fУльдуар|r]
 ## Notes-ruRU: Модуль Little Wigs - Ульдуар
