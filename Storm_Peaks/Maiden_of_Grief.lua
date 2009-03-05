@@ -6,7 +6,7 @@ local boss = BB["Maiden of Grief"]
 local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
 if not mod then return end
 mod.partycontent = true
-mod.otherMenu = "Storm Peaks"
+mod.otherMenu = "The Storm Peaks"
 mod.zonename = BZ["Halls of Stone"]
 mod.enabletrigger = boss
 mod.guid = 27975
