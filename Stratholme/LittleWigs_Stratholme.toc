@@ -1,4 +1,4 @@
-﻿## Interface: 30000
+﻿## Interface: 30100
 
 ## Title: Little Wigs [|cffeda55fStratholme|r]
 ## Title-ruRU: Little Wigs [|cffeda55fСтратхольм|r]

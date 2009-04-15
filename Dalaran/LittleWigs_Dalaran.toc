@@ -1,4 +1,4 @@
-﻿## Interface: 30000
+﻿## Interface: 30100
 
 ## Title: Little Wigs [|cffeda55fDalaran|r]
 ## Title-zhCN: Little Wigs [|cffeda55f达拉然|r]

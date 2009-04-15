@@ -6,7 +6,9 @@ local boss = BB["Grand Magus Telestra"]
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-local splitannounced = nil
+local split1announced = nil
+local split2announced = nil
+local difficulty
 
 ----------------------------
 --      Localization      --
@@ -62,7 +64,10 @@ function mod:OnEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("UNIT_HEALTH")
 
-	splitannounced = nil
+	split1announced = nil
+	split2announced = nil
+
+	difficulty = GetInstanceDifficulty()
 end
 
 ------------------------------
@@ -75,11 +80,15 @@ function mod:UNIT_HEALTH(arg1)
 		local currentHealth = UnitHealth(arg1)
 		local maxHealth = UnitHealthMax(arg1)
 		local percentHealth = (currentHealth/maxHealth)*100
-		if percentHealth > 51 and percentHealth <= 54 and not splitannounced then
+		if percentHealth > 51 and percentHealth <= 54 and not split1announced then
 			self:Message(L["split_soon_message"], "Attention")
-			splitannounced = true
-		elseif percentHealth > 60 and spliteannounced then
-			splitannounced = false
+			split1announced = true
+		elseif difficulty == 2 and not split2announced and perecentHealth > 11 and precentHealth <= 14 then
+			self:Message(L["split_soon_message"], "Attention")
+			split2announced = true
+		elseif percentHealth > 60 and (split1announced or split2announced) then
+			split1announced = false
+			split2announced = false
 		end
 	end
 end

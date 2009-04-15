@@ -1,4 +1,4 @@
-﻿## Interface: 30000
+﻿## Interface: 30100
 
 ## Title: Little Wigs [|cffeda55fColdarra|r]
 ## Notes: Little Wigs Coldarra Modules
