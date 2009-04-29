@@ -10,7 +10,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Gundrak"]
 mod.enabletrigger = boss 
 mod.guid = 29304
-mod.toggleoptions = {"poison", "poisonBar", "bosskill"}
+mod.toggleoptions = {"poison", "poisonBar", "poisonCast", "bosskill"}
 
 ----------------------------------
 --         Localization         --
@@ -50,6 +50,7 @@ end )
 ----------------------------------
 
 function mod:OnEnable()
+	self:AddCombatListener("SPELL_CAST_START", "PoisonCast", 55081, 59842)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Poison", 55081, 59842)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "PoisonRemoved", 55081, 59842)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
@@ -58,6 +59,12 @@ end
 ----------------------------------
 --        Event Handlers        --
 ----------------------------------
+
+function mod:PoisonCast()
+	if self.db.profile.poisonCast then
+		self:IfMessage(L["poisonCast_message"], "Attention", spellId)
+	end
+end
 
 function mod:Poison(player, spellId, _, _, spellName)
 	if self.db.profile.poison then
