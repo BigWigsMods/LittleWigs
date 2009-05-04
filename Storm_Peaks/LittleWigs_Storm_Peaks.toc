@@ -3,10 +3,10 @@
 
 ## Title: Little Wigs [|cffeda55fThe Storm Peaks|r]
 ## Notes: Little Wigs Ulduar Modules
-## Title-zhCN: Little Wigs [|cffeda55f奥杜尔|r]
-## Notes-zhCN: Little Wigs 奥杜尔模块
-## Title-zhTW: Little Wigs [|cffeda55f奧杜亞|r]
-## Notes-zhTW: Little Wigs 奧杜亞模組
+## Title-zhCN: Little Wigs [|cffeda55f风暴峭壁|r]
+## Notes-zhCN: Little Wigs 风暴峭壁模块
+## Title-zhTW: Little Wigs [|cffeda55f風暴群山|r]
+## Notes-zhTW: Little Wigs 風暴群山模組
 ## Title-koKR: Little Wigs [|cffeda55f폭풍우 봉우리|r]
 ## Notes-koKR: Little Wigs 돌의 전당, 번개의 전당 경고
 ## Title-frFR: Little Wigs [|cffeda55fLes pics Foudroyés|r]
