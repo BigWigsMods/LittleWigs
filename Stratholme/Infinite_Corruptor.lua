@@ -31,7 +31,7 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰斗記錄（/combatlog）或 Transcriptor 記錄并提交戰斗記錄，謝謝！",
+	log = "|cffff0000"..boss.."|r：缺乏數據，請考慮開啟戰鬥記錄（/combatlog）或 Transcriptor 記錄並提交戰鬥記錄，謝謝！",
 } end )
 
 L:RegisterTranslations("deDE", function() return {

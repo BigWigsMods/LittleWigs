@@ -130,8 +130,8 @@ L:RegisterTranslations("zhTW", function() return {
 	portal_bar = "<%s：波 %s>",
 	portalbar_desc = "當下一個傳送門即將開啟時顯示計時條。",
 	portal_desc = "當下一個傳送門即將開啟時發出警報。",
-	portal_message15s = "約15秒后，%s！",
-	portal_message95s = "約95秒后，%s！",
+	portal_message15s = "約15秒後，%s！",
+	portal_message95s = "約95秒後，%s！",
 	sinclari = "辛克拉麗中尉",
 }
 
