@@ -1,0 +1,27 @@
+﻿## Interface: 30200
+## X-Curse-Packaged-Version: 3.0.0-beta1
+## X-Curse-Packaged-Version: v3.2
+## X-Curse-Project-Name: LittleWigs
+## X-Curse-Project-ID: little-wigs
+## X-Curse-Repository-ID: wow/little-wigs/mainline
+
+## Title: Little Wigs [|cffeda55fIcecrown|r]
+## Title-zhCN: Little Wigs [|cffeda55f冰冠冰川|r]
+## Title-zhTW: Little Wigs [|cffeda55f寒冰皇冠|r]
+## Notes: Little Wigs Icecrown Modules
+## Notes-zhCN: Little Wigs 冰冠冰川模块
+## Notes-zhTW: Little Wigs 寒冰皇冠模組
+
+## Author: Yoshimo
+## Version: 3.2.0
+## LoadOnDemand: 1
+
+## X-BigWigs-Menu: Icecrown
+## X-BigWigs-LoadInParty: 1
+## X-BigWigs-LoadInZone: Trial of the Champion
+
+## Dependencies: BigWigs
+
+Black_Knight.lua
+Eadric_the_Pure.lua
+Argent_Confessor_Paletress.lua
