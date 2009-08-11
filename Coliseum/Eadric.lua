@@ -27,7 +27,7 @@ L:RegisterTranslations("enUS", function() return {
 	radiance_message = "Casting radiance!",
 	hammer_message_you = "You have the hammer!",
 	hammer_message_other = "%s has the hammer!",
-	--trigger_surrender = "",
+	trigger_surrender = "I give up",-- just a placeholder
 }
 
 end )
