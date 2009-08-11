@@ -1,4 +1,4 @@
-package-as: LittleWigs
+﻿package-as: LittleWigs
 
 move-folders:
     LittleWigs/Coldarra: LittleWigs_Coldarra
@@ -8,3 +8,4 @@ move-folders:
     LittleWigs/Stratholme: LittleWigs_Stratholme
     LittleWigs/Storm_Peaks: LittleWigs_Storm_Peaks
     LittleWigs/Zul'Drak: LittleWigs_Zul'Drak
+    LittleWigs/Coliseum: LittleWigs_Coliseum

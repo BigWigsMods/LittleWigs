@@ -1,4 +1,4 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
 <Script file="Coldarra\Anomalus.lua"/>
@@ -63,5 +63,8 @@
 <Script file="Zul'Drak\Moorabi.lua"/>
 <Script file="Zul'Drak\Drakkari_Colossus.lua"/>
 <Script file="Zul'Drak\Gal'darah.lua"/>
+
+<Script file="Coliseum\Eadric.lua"/>
+<Script file="Coliseum\Knight.lua"/>
 
 </Ui>
