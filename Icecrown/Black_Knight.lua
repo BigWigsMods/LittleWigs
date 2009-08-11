@@ -18,6 +18,9 @@ mod.toggleoptions = {"explode", "explodeBar", "bosskill"}
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+-- Translators: please update the translations on wowace web based
+-- translations, these local ones will go away
+
 L:RegisterTranslations("enUS", function() return {
 	cmd = "The Black Knight",
 	explode = "Ghoul Explode",

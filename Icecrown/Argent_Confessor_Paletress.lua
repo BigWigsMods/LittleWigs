@@ -18,10 +18,14 @@ mod.toggleoptions = {"shield", "healing", "bosskill"}
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
+-- Translators: please update the translations on wowace web based
+-- translations, these local ones will go away
+
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Argent Confessor Paletress",
-	shield = "Magic Reflection!",
-	shield_desc = "Warn for Magic Reflection",
+	shield = "Reflective Shield",
+	shield_desc = "Warn when Paletress gains and loses Reflective Shield.",
+	shield_gain = "Reflective Shield up!",
 	shield_lost = "Shield faded",
 	heal_msg = "Paletress is healing!",
 	trigger_surrender = "Exzellente Arbeit!", --to be translated
@@ -52,8 +56,8 @@ end )
 
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "ShieldGain", 66515)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "ShieldLoss", 66515)
-	self:AddCombatListener("SPELL_CAST_START", "Renewal", 66537, 67675)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "ShieldLost", 66515)
+	self:AddCombatListener("SPELL_CAST_START", "Renew", 66537, 67675)
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	--self:AddCombatListener("UNIT_DIED", "BossDeath")
 end
@@ -64,17 +68,17 @@ end
 
 function mod:ShieldGain(_, spellId, _, _, spellName)
 	if self.db.profile.shield then
-		self:IfMessage(L["shield"], "Urgent", spellId)
+		self:IfMessage(L["shield_gain"], "Urgent", spellId)
 	end
 end
 
-function mod:ShieldLoss(_, spellId, _, _, spellName)
+function mod:ShieldLost(_, spellId, _, _, spellName)
 	if self.db.profile.shield then
 		self:IfMessage(L["shield_lost"], "Urgent", spellId)
 	end
 end
 
-function mod:Renewal(_, spellId, _, _, spellName)
+function mod:Renew(_, spellId, _, _, spellName)
 	if self.db.profile.healing then
 		self:IfMessage(L["heal_msg"], "Urgent", spellId)
 	end
