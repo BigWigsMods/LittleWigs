@@ -29,7 +29,6 @@ L:RegisterTranslations("enUS", function() return {
 	hammer_message_other = "%s has the hammer!",
 	trigger_surrender = "I give up",-- just a placeholder
 }
-
 end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -44,6 +43,29 @@ L:RegisterTranslations("deDE", function() return {
 }
 end )
 
+L:RegisterTranslations("zhCN", function() return {
+	radiance = "radiance",
+	radianceBar = "radiance计时条",
+	radianceBar_desc = "当Eadrics正在施放radiance时显示计时条。",
+	radiance_desc = "当Eadric正在施放radiance时发出警报。",
+	radiance_message = "正在施放 radiance！",
+	hammer_message_you = ">你< 制裁之锤！",
+	hammer_message_other = "制裁之锤：>%s<！",
+	trigger_surrender = "I give up",-- just a placeholder
+}
+end )
+
+L:RegisterTranslations("zhTW", function() return {
+	radiance = "烈光",
+	radianceBar = "烈光計時條",
+	radianceBar_desc = "當埃卓克正在施放烈光時顯示計時條。",
+	radiance_desc = "當埃卓克正在施放烈光時發出警報。",
+	radiance_message = "正在施放 烈光！",
+	hammer_message_you = ">你< 制裁之錘！",
+	hammer_message_other = "制裁之錘：>%s<！",
+	trigger_surrender = "I give up",-- just a placeholder
+}
+end )
 ----------------------------------
 --        Initialization        --
 ----------------------------------

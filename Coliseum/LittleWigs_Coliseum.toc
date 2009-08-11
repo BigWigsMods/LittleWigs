@@ -6,7 +6,11 @@
 ## X-Curse-Repository-ID: wow/little-wigs/mainline
 
 ## Title: Little Wigs [|cffeda55fIcecrown|r]
+## Title-zhCN: Little Wigs [|cffeda55f冰冠冰川|r]
+## Title-zhTW: Little Wigs [|cffeda55f寒冰皇冠|r]
 ## Notes: Little Wigs Icecrown.Modules
+## Notes-zhCN: Little Wigs 冰冠冰川模块
+## Notes-zhTW: Little Wigs 寒冰皇冠模組
 
 ## Author: Yoshimo
 ## Version: 3.2.0
