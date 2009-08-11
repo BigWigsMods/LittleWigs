@@ -3,7 +3,7 @@
 ----------------------------------
 
 local boss = BB["Anub'arak"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:New(boss.."(AN)", tonumber(("$Revision$"):sub(12, -3)))
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Dragonblight"
@@ -16,7 +16,7 @@ mod.toggleoptions = {"pound","poundBar","bosskill"}
 --         Localization         --
 ----------------------------------
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss.."(AN)")
 
 L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dragonblight/Anub_arak", format="lua_table", handle-unlocalized="ignore")@
 end )
