@@ -1,4 +1,4 @@
-----------------------------------
+﻿----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
@@ -34,6 +34,15 @@ L:RegisterTranslations("deDE", function() return {
 	shield_lost = "Magiereflexion beendet",
 	heal_msg ="Blondlocke heilt-> Unterbrechen!",
 	trigger_surrender = "^Exzellente Arbeit!", --to be checked
+}
+end )
+
+L:RegisterTranslations("ruRU", function() return {
+	shield = "Отражающий щит!",
+	shield_desc = "Предупреждать об Отражение магии",
+	shield_lost = "Щит рассеялся",
+	heal_msg = "Пейлтресс исцеляется!",
+	--trigger_surrender = "Exzellente Arbeit!", --to be translated
 }
 end )
 

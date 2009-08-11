@@ -58,6 +58,17 @@ L:RegisterTranslations("zhTW", function() return {
 	death_trigger = "Nein! Ich darf nicht... wieder... versagen...";-- needs the english version 
 }
 end )
+
+L:RegisterTranslations("ruRU", function() return {
+	explode = "Взрыв вурдалака",
+	explodeBar = "Полоса Взрыва вурдалака",
+	explodeBar_desc = "Отображать полосу применения Взрыва вурдалака.",
+	explode_desc = "Предупреждать когда Черный рыцарь взрывает приспешника-вурдалака.",
+	explode_message = "Применение Взрыва вурдалака!",
+	--death_trigger = "Nein! Ich darf nicht... wieder... versagen...";
+}
+end )
+
 ----------------------------------
 --        Initialization        --
 ----------------------------------

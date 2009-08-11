@@ -66,6 +66,18 @@ L:RegisterTranslations("zhTW", function() return {
 	trigger_surrender = "I give up",-- just a placeholder
 }
 end )
+
+L:RegisterTranslations("ruRU", function() return {
+	radiance = "Сияние",
+	radianceBar = "Полоса Сияния",
+	radianceBar_desc = "Отображать полосу применения заклинания Сияния.",
+	radiance_desc = "Предупреждать о применении Эдриком, Сияния.",
+	radiance_message = "Применяется Сияние!",
+	hammer_message_you = "На вас Молот правосудия!",
+	hammer_message_other = "%s получает Молот!",
+	--trigger_surrender = "I give up",-- just a placeholder
+}
+end )
 ----------------------------------
 --        Initialization        --
 ----------------------------------
