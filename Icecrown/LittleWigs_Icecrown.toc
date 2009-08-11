@@ -24,3 +24,4 @@
 
 Black_Knight.lua
 Eadric_the_Pure.lua
+Argent_Confessor_Paletress.lua
