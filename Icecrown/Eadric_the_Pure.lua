@@ -6,7 +6,7 @@ local boss = BB["Eadric the Pure"]
 local mod = BigWigs:New(boss, tonumber(("$Revision: 550 $"):sub(12, -3)))
 if not mod then return end
 mod.partycontent = true
-mod.otherMenu = "The Argent Coliseum"
+mod.otherMenu = "Icecrown"
 mod.zonename = BZ["Trial of the Champion"]
 mod.enabletrigger = boss
 mod.guid = 35119

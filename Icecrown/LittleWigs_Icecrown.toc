@@ -8,7 +8,7 @@
 ## Title: Little Wigs [|cffeda55fIcecrown|r]
 ## Title-zhCN: Little Wigs [|cffeda55f冰冠冰川|r]
 ## Title-zhTW: Little Wigs [|cffeda55f寒冰皇冠|r]
-## Notes: Little Wigs Icecrown.Modules
+## Notes: Little Wigs Icecrown Modules
 ## Notes-zhCN: Little Wigs 冰冠冰川模块
 ## Notes-zhTW: Little Wigs 寒冰皇冠模組
 
@@ -16,11 +16,11 @@
 ## Version: 3.2.0
 ## LoadOnDemand: 1
 
-## X-BigWigs-Menu: The Argent Coliseum
+## X-BigWigs-Menu: Icecrown
 ## X-BigWigs-LoadInParty: 1
 ## X-BigWigs-LoadInZone: Trial of the Champion
 
 ## Dependencies: BigWigs
 
-Knight.lua
-Eadric.lua
+Black_Knight.lua
+Eadric_the_Pure.lua
