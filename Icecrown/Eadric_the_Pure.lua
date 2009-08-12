@@ -23,8 +23,8 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Eadric the Pure",
-	radiance = "radiance",
-	radianceBar = "radiance Bar",
+	radiance = "Radiance",
+	radianceBar = "Radiance Bar",
 	radianceBar_desc = "Display a casting bar for Eadrics radiance.",
 	radiance_desc = "Warn when Eadric is casting radiance.",
 	radiance_message = "Casting radiance!",
