@@ -17,6 +17,7 @@ mod.toggleoptions = {"explode", "explodeBar", "desecration", "bosskill"}
 --------------------------------
 
 local deaths = 0
+local pName = UnitName("player")
 
 --------------------------------
 --        Localization        --
@@ -88,8 +89,8 @@ end )
 ----------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "explode", 67886, 51874, 47496, 67729, 67751)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "desecration", 67781, 67876)
+	self:AddCombatListener("SPELL_CAST_START", "Explode", 67886, 51874, 47496, 67729, 67751)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "Desecration", 67781, 67876)
 	--self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:AddCombatListener("UNIT_DIED", "Deaths")
 
@@ -100,7 +101,7 @@ end
 --        Event Handlers        --
 ----------------------------------
 
-function mod:explode(_, spellId, _, _, spellName)
+function mod:Explode(_, spellId, _, _, spellName)
 	if self.db.profile.explode then
 		self:IfMessage(L["explode_message"], "Urgent", spellId)
 	end
@@ -126,7 +127,7 @@ function mod:Deaths(_, guid)
 	end
 end
 
-function mod:desecration(player)
+function mod:Desecration(player)
 	if player == pName and self.db.profile.desecration then
 		self:LocalMessage(L["desecration"], "Personal", 67781, "Alarm")
 	end
