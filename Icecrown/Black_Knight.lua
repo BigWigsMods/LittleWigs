@@ -13,10 +13,19 @@ mod.guid = 35451
 mod.toggleoptions = {"explode", "explodeBar", "desecration", "bosskill"}
 
 --------------------------------
+--       Are you local?       --
+--------------------------------
+
+local deaths = 0
+
+--------------------------------
 --        Localization        --
 --------------------------------
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+-- Translators: please update the translations on wowace web based
+-- translations, these local ones will go away
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "The Black Knight",
