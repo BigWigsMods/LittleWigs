@@ -69,7 +69,9 @@ L:RegisterTranslations("zhTW", function() return {
 	explodeBar_desc = "當正在施放食屍鬼爆炸時顯示計時條。",
 	explode_desc = "當黑騎士準備粉碎他的食屍鬼時發出警報。",
 	explode_message = "正在施放 食屍鬼爆炸！",
-	death_trigger = "Nein! Ich darf nicht... wieder... versagen...";-- needs the english version 
+	death_trigger = "不!我不能再次…失敗……";
+	--desecration = "Desecration",
+	--desecration_desc = "Warns when you're standing in the desecration",
 }
 end )
 

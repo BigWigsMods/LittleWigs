@@ -50,6 +50,26 @@ L:RegisterTranslations("ruRU", function() return {
 }
 end )
 
+L:RegisterTranslations("zhTW", function() return {
+	shield = "反射護盾",
+	shield_desc = "當銀白告解者帕爾璀絲獲得/失去反射護盾時發出警報。",
+	shield_gain = "即將 反射護盾!",
+	shield_lost = "反射護盾 消失",
+	heal_msg = "銀白告解者施放治療!",
+	trigger_surrender = "你們做得很好!", --to be translated
+}
+end )
+
+L:RegisterTranslations("zhCN", function() return {
+	shield = "反射护盾",
+	shield_desc = "当银色神官帕尔崔丝获得/失去反射护盾时发出警报。",
+	shield_gain = "即将 反射护盾!",
+	shield_lost = "反射护盾 消失",
+	heal_msg = "银色神官施放治疗!",
+	trigger_surrender = "你们做得很好!", --to be translated
+}
+end )
+
 ----------------------------------
 --        Initialization        --
 ----------------------------------

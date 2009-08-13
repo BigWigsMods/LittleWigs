@@ -66,7 +66,7 @@ L:RegisterTranslations("zhTW", function() return {
 	radiance_message = "正在施放 烈光！",
 	hammer_message_you = ">你< 制裁之錘！",
 	hammer_message_other = "制裁之錘：>%s<！",
-	trigger_surrender = "I give up",-- just a placeholder
+	trigger_surrender = "我認輸了!我投降。幹得好。我現在可以離場了嗎?",-- just a placeholder
 }
 end )
 
