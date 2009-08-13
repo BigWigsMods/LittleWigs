@@ -30,7 +30,7 @@ L:RegisterTranslations("enUS", function() return {
 	radiance_message = "Casting radiance!",
 	hammer_message_you = "You have the hammer!",
 	hammer_message_other = "%s has the hammer!",
-	trigger_surrender = "I give up",-- just a placeholder
+	trigger_surrender = "I yield! I submit! Excellent work!... May I run away now?", -- just a placeholder
 }
 end )
 

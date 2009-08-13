@@ -85,7 +85,7 @@ function mod:Renew(_, spellId, _, _, spellName)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L["triger_surrender"] then
+	if msg == L["trigger_surrender"] then
 		self:BossDeath(nil, self.guid)
 	end
 end
