@@ -89,7 +89,7 @@ end )
 ----------------------------------
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Explode", 67886, 51874, 47496, 67729, 67751)
+	self:AddCombatListener("SPELL_CAST_START", "Explode", 67751)-- other possible ids :  67886, 51874, 47496, 67729,
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Desecration", 67781, 67876)
 	--self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:AddCombatListener("UNIT_DIED", "Deaths")
