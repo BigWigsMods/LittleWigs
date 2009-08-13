@@ -28,7 +28,7 @@ L:RegisterTranslations("enUS", function() return {
 	shield_gain = "Reflective Shield up!",
 	shield_lost = "Shield faded",
 	heal_msg = "Paletress is healing!",
-	trigger_surrender = "Exzellente Arbeit!", --to be translated
+	trigger_surrender = "Excellent work!", --to be translated
 }
 end )
 
