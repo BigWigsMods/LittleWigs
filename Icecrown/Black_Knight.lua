@@ -35,7 +35,7 @@ L:RegisterTranslations("enUS", function() return {
 	explodeBar_desc = "Display a casting bar for Ghoul Explode.",
 	explode_desc = "Warn when The Black Knight is going to shatter his ghouls.",
 	explode_message = "Casting Ghoul Explode!",
-	death_trigger = "Nein! Ich darf nicht... wieder... versagen...";-- needs the english version 
+	death_trigger = "Nein! Ich darf nicht... wieder... versagen...",-- needs the english version 
 	desecration = "Desecration",
 	desecration_desc = "Warns when you're standing in the desecration",
 }
@@ -59,7 +59,7 @@ L:RegisterTranslations("zhCN", function() return {
 	explodeBar_desc = "当正在施放食尸鬼爆炸时显示计时条。",
 	explode_desc = "当黑骑士粉碎他的食尸鬼时发出警报。",
 	explode_message = "正在施放 食尸鬼爆炸！",
-	death_trigger = "Nein! Ich darf nicht... wieder... versagen...";-- needs the english version 
+	death_trigger = "Nein! Ich darf nicht... wieder... versagen...",-- needs the english version 
 }
 end )
 
@@ -81,10 +81,21 @@ L:RegisterTranslations("ruRU", function() return {
 	explodeBar_desc = "Отображать полосу применения Взрыва вурдалака.",
 	explode_desc = "Предупреждать когда Черный рыцарь взрывает приспешника-вурдалака.",
 	explode_message = "Применение Взрыва вурдалака!",
-	--death_trigger = "Nein! Ich darf nicht... wieder... versagen...";
+	--death_trigger = "Nein! Ich darf nicht... wieder... versagen...",
 }
 end )
 
+L:RegisterTranslations("koKR", function() return {
+	explode = "구울 폭발",
+	explodeBar = "구울 폭발 바",
+	explodeBar_desc = "구울 폭발의 시전 바를 표시합니다.",
+	explode_desc = "흑기사의 구울 폭발 사용을 알립니다.",
+	explode_message = "구울 폭발 시전!",
+	death_trigger = "안 돼! 또 무릎 꿇을 수는... 없는데...",
+	desecration = "모독",
+	desecration_desc = "모독에 대해 알립니다.",
+}
+end )
 
 ----------------------------------
 --        Initialization        --

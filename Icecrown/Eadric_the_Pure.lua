@@ -81,6 +81,19 @@ L:RegisterTranslations("ruRU", function() return {
 	--trigger_surrender = "I give up",-- just a placeholder
 }
 end )
+
+L:RegisterTranslations("koKR", function() return {
+	radiance = "광휘",
+	radianceBar = "광휘 바",
+	radianceBar_desc = "에드릭의 광휘의 시전바를 표시합니다.",
+	radiance_desc = "에드릭의 광휘 시전을 알립니다.",
+	radiance_message = "광휘 시전!",
+	hammer_message_you = "당신은 망치!",
+	hammer_message_other = "망치: %s!",
+	trigger_surrender = "항복! 제가 졌습니다. 훌륭한 솜씨군요. 이제 집에 가도 되겠습니까?",
+}
+end )
+
 ----------------------------------
 --        Initialization        --
 ----------------------------------
