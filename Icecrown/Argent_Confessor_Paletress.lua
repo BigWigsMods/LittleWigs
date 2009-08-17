@@ -13,6 +13,12 @@ mod.guid = 34928
 mod.toggleoptions = {"shield", "healing", "bosskill"}
 
 --------------------------------
+--           Locals           --
+--------------------------------
+
+local shielded = false
+
+--------------------------------
 --        Localization        --
 --------------------------------
 
@@ -90,6 +96,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Renew", 66537, 67675)
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	--self:AddCombatListener("UNIT_DIED", "BossDeath")
+	
+	shielded = false
 end
 
 ----------------------------------
@@ -100,16 +108,19 @@ function mod:ShieldGain(_, spellId, _, _, spellName)
 	if self.db.profile.shield then
 		self:IfMessage(L["shield_gain"], "Urgent", spellId)
 	end
+	shielded = true
 end
 
 function mod:ShieldLost(_, spellId, _, _, spellName)
 	if self.db.profile.shield then
 		self:IfMessage(L["shield_lost"], "Urgent", spellId)
 	end
+	shielded = false
 end
 
 function mod:Renew(_, spellId, _, _, spellName)
-	if self.db.profile.healing then
+	-- don't bother announcing while she is shielded
+	if not shielded and self.db.profile.healing then
 		self:IfMessage(L["heal_msg"], "Urgent", spellId)
 	end
 end
