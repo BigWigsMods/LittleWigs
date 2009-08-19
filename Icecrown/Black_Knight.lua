@@ -82,6 +82,8 @@ L:RegisterTranslations("ruRU", function() return {
 	explode_desc = "Предупреждать когда Черный рыцарь взрывает приспешника-вурдалака.",
 	explode_message = "Применение Взрыва вурдалака!",
 	--death_trigger = "Nein! Ich darf nicht... wieder... versagen...",
+	desecration = "Осквернение",
+	desecration_desc = "Предупреждать когда вы попадаете в Осквернение",
 }
 end )
 

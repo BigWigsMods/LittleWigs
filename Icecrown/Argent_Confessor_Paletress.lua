@@ -50,6 +50,7 @@ end )
 L:RegisterTranslations("ruRU", function() return {
 	shield = "Отражающий щит!",
 	shield_desc = "Предупреждать об Отражение магии",
+	shield_gain = "Применён щит!",
 	shield_lost = "Щит рассеялся",
 	heal_msg = "Пейлтресс исцеляется!",
 	--trigger_surrender = "Exzellente Arbeit!", --to be translated
