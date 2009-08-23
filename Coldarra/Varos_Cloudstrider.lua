@@ -47,7 +47,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Oculus"]
 mod.enabletrigger = {boss} 
 mod.guid = 27447
-mod.toggleoptions = {"amplifyMagic", "amplifyMagicBar", "bosskill"}
+mod.toggleOptions = {"amplifyMagic", "amplifyMagicBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

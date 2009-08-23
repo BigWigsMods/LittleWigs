@@ -10,7 +10,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = boss 
 mod.guid = 23953
-mod.toggleoptions = {"tomb", "tombBar", "bosskill"}
+mod.toggleOptions = {"tomb", "tombBar", "bosskill"}
 
 --------------------------------
 --        Localization        --

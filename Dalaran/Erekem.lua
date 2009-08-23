@@ -10,7 +10,7 @@ mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29315
-mod.toggleoptions = {"earthshield", "chainheal", "bosskill"}
+mod.toggleOptions = {"earthshield", "chainheal", "bosskill"}
 
 ----------------------------------
 --         Localization         --

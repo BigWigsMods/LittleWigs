@@ -51,7 +51,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Nexus"]
 mod.enabletrigger = {boss} 
 mod.guid = 26731
-mod.toggleoptions = {"split", "bosskill"}
+mod.toggleOptions = {"split", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

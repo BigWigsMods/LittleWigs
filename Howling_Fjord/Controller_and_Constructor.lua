@@ -12,7 +12,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = {constructor, controller} 
 mod.guid = 24200
-mod.toggleoptions = {"debilitate", "debilitateBar", "bosskill"}
+mod.toggleOptions = {"debilitate", "debilitateBar", "bosskill"}
 
 --------------------------------
 --       Are you local?       --

@@ -10,7 +10,7 @@ mod.otherMenu = "Icecrown"
 mod.zonename = BZ["Trial of the Champion"]
 mod.enabletrigger = boss
 mod.guid = 35451
-mod.toggleoptions = {"explode", "explodeBar", "desecration", "bosskill"}
+mod.toggleOptions = {"explode", "explodeBar", "desecration", "bosskill"}
 
 --------------------------------
 --       Are you local?       --

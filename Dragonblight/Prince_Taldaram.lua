@@ -10,7 +10,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
 mod.enabletrigger = boss
 mod.guid = 29308
-mod.toggleoptions = {"embraceGain","embraceFade","embraceBar",-1,"sphere","bosskill"}
+mod.toggleOptions = {"embraceGain","embraceFade","embraceBar",-1,"sphere","bosskill"}
 
 ----------------------------------
 --         Localization         --

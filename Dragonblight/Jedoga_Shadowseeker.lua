@@ -10,7 +10,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
 mod.enabletrigger = boss
 mod.guid = 29310
-mod.toggleoptions = {"thundershock","thundershockBar","bosskill"}
+mod.toggleOptions = {"thundershock","thundershockBar","bosskill"}
 
 ----------------------------------
 --         Localization         --

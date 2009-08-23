@@ -10,7 +10,7 @@ mod.otherMenu = "The Storm Peaks"
 mod.zonename = BZ["Halls of Stone"]
 mod.enabletrigger = boss
 mod.guid = 27978
-mod.toggleoptions = {"charge","ring","bosskill"}
+mod.toggleOptions = {"charge","ring","bosskill"}
 
 --------------------------------
 --        Localization        --

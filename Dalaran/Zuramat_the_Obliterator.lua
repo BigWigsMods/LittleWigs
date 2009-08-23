@@ -10,7 +10,7 @@ mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29314
-mod.toggleoptions = {"voidShift", "voidShiftBar", -1, "darkness", "bosskill"}
+mod.toggleOptions = {"voidShift", "voidShiftBar", -1, "darkness", "bosskill"}
 
 ----------------------------------
 --         Localization         --

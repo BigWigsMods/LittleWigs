@@ -10,7 +10,7 @@ mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29316
-mod.toggleoptions = {"opticlink", "opticlinkBar", "bosskill"}
+mod.toggleOptions = {"opticlink", "opticlinkBar", "bosskill"}
 
 ----------------------------------
 --         Localization         --

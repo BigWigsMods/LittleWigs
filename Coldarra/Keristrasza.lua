@@ -47,7 +47,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Nexus"]
 mod.enabletrigger = {boss} 
 mod.guid = 26723
-mod.toggleoptions = {"chains", "chainsbar", "enrage", "bosskill"}
+mod.toggleOptions = {"chains", "chainsbar", "enrage", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

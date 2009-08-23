@@ -10,7 +10,7 @@ mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss
 mod.guid = 31134
-mod.toggleoptions = {"blizzard", -1, "vacuum", "vacuumcooldown", -1, "destruction", "destructionBar", "bosskill"}
+mod.toggleOptions = {"blizzard", -1, "vacuum", "vacuumcooldown", -1, "destruction", "destructionBar", "bosskill"}
 
 ----------------------------------
 --         Localization         --

@@ -10,7 +10,7 @@ mod.otherMenu = "Icecrown"
 mod.zonename = BZ["Trial of the Champion"]
 mod.enabletrigger = boss
 mod.guid = 34928
-mod.toggleoptions = {"shield", "healing", "bosskill"}
+mod.toggleOptions = {"shield", "healing", "bosskill"}
 
 --------------------------------
 --           Locals           --

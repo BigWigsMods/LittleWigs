@@ -10,7 +10,7 @@ mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.enabletrigger = boss 
 mod.guid = 29312
-mod.toggleoptions = {"bosskill"}
+mod.toggleOptions = {"bosskill"}
 
 ----------------------------------
 --         Localization         --

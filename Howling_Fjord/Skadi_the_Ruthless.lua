@@ -10,7 +10,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Pinnacle"]
 mod.enabletrigger = boss 
 mod.guid = 26693
-mod.toggleoptions = {"whirlwind", "whirlwindcooldown", "whirlwindbars", "bosskill"}
+mod.toggleOptions = {"whirlwind", "whirlwindcooldown", "whirlwindbars", "bosskill"}
 
 --------------------------------
 --        Localization        --

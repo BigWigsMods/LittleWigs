@@ -10,7 +10,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Azjol-Nerub"]
 mod.enabletrigger = boss
 mod.guid = 28921
-mod.toggleoptions = {"leechpoison", "acidcloud", "bosskill"}
+mod.toggleOptions = {"leechpoison", "acidcloud", "bosskill"}
 
 ----------------------------------
 --         Localization         --

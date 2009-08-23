@@ -10,7 +10,7 @@ mod.otherMenu = "Icecrown"
 mod.zonename = BZ["Trial of the Champion"]
 mod.enabletrigger = boss
 mod.guid = 35119
-mod.toggleoptions = {"radiance", "radianceBar", "bosskill"}
+mod.toggleOptions = {"radiance", "radianceBar", "bosskill"}
 
 --------------------------------
 --        Localization        --

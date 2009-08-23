@@ -10,7 +10,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Azjol-Nerub"]
 mod.enabletrigger = boss
 mod.guid = 29120
-mod.toggleoptions = {"pound","poundBar","bosskill"}
+mod.toggleOptions = {"pound","poundBar","bosskill"}
 
 ----------------------------------
 --         Localization         --

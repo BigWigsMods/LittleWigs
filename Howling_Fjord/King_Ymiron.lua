@@ -10,7 +10,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Pinnacle"]
 mod.enabletrigger = boss 
 mod.guid = 26861
-mod.toggleoptions = {"bane", "baneBar", -1, "rot", "rotBar", "bosskill"}
+mod.toggleOptions = {"bane", "baneBar", -1, "rot", "rotBar", "bosskill"}
 
 
 --------------------------------

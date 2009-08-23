@@ -10,7 +10,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Drak'Tharon Keep"]
 mod.enabletrigger = boss 
 mod.guid = 26631
-mod.toggleoptions = {"misery", "miseryBar", "bosskill"}
+mod.toggleOptions = {"misery", "miseryBar", "bosskill"}
 
 ----------------------------------
 --         Localization         --

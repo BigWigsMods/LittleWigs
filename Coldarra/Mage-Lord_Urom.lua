@@ -48,7 +48,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Oculus"]
 mod.enabletrigger = {boss} 
 mod.guid = 27655
-mod.toggleoptions = {"timeBomb","timeBombWhisper","timeBombBar",-1,"arcaneExplosion","arcaneExplosionBar","bosskill"}
+mod.toggleOptions = {"timeBomb","timeBombWhisper","timeBombBar",-1,"arcaneExplosion","arcaneExplosionBar","bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

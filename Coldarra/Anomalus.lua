@@ -10,7 +10,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Nexus"]
 mod.enabletrigger = {boss} 
 mod.guid = 26763
-mod.toggleoptions = {"rift", "bosskill"}
+mod.toggleOptions = {"rift", "bosskill"}
 
 --------------------------------
 --        Localization        --

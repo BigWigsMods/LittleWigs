@@ -10,7 +10,7 @@ mod.otherMenu = "Dragonblight"
 mod.zonename = BZ["Azjol-Nerub"]
 mod.enabletrigger = boss
 mod.guid = 28684
-mod.toggleoptions = {"curse", "curseBar", -1, "frenzy", "bosskill"}
+mod.toggleOptions = {"curse", "curseBar", -1, "frenzy", "bosskill"}
 
 ----------------------------------
 --        Are you local?        --

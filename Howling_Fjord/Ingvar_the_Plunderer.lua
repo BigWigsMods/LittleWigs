@@ -10,7 +10,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Keep"]
 mod.enabletrigger = boss 
 mod.guid = 23954
-mod.toggleoptions = {"smash", "smashBar", -1, "woe", "woeBar", -1, "roar", "bosskill"}
+mod.toggleOptions = {"smash", "smashBar", -1, "woe", "woeBar", -1, "roar", "bosskill"}
 
 --------------------------------
 --       Are you local?       --

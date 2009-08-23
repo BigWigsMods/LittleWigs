@@ -10,7 +10,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Drak'Tharon Keep"]
 mod.enabletrigger = boss 
 mod.guid = 26630
-mod.toggleoptions = {"wound", "woundBar", "bosskill"}
+mod.toggleOptions = {"wound", "woundBar", "bosskill"}
 
 ----------------------------------
 --         Localization         --

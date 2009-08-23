@@ -10,7 +10,7 @@ mod.otherMenu = "The Storm Peaks"
 mod.zonename = BZ["Halls of Lightning"]
 mod.enabletrigger = boss
 mod.guid = 28587
-mod.toggleoptions = {"stomp", "stompBar", "bosskill"}
+mod.toggleOptions = {"stomp", "stompBar", "bosskill"}
 
 --------------------------------
 --        Localization        --

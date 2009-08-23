@@ -10,7 +10,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Gundrak"]
 mod.enabletrigger = boss 
 mod.guid = 29305
-mod.toggleoptions = {"transformation", "transformationBar", "bosskill"}
+mod.toggleOptions = {"transformation", "transformationBar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ----------------------------------

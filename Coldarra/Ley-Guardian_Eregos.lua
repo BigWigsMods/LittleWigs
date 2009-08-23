@@ -47,7 +47,7 @@ mod.otherMenu = "Coldarra"
 mod.zonename = BZ["The Oculus"]
 mod.enabletrigger = {boss} 
 mod.guid = 27656
-mod.toggleoptions = {"planarshift", "planarshiftbar", -1, "enragedassault", "enragedassaultbar", "bosskill"}
+mod.toggleOptions = {"planarshift", "planarshiftbar", -1, "enragedassault", "enragedassaultbar", "bosskill"}
 mod.revision = tonumber(("$Revision$"):sub(12, -3))
 
 ------------------------------

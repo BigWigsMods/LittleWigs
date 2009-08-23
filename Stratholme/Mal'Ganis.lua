@@ -10,7 +10,7 @@ mod.otherMenu = "Caverns of Time"
 mod.zonename = BZ["The Culling of Stratholme"]
 mod.enabletrigger = boss 
 mod.guid = 26533
-mod.toggleoptions = {"sleep", "sleepBar", -1, "vampTouch", "vampTouchBar", "bosskill"}
+mod.toggleOptions = {"sleep", "sleepBar", -1, "vampTouch", "vampTouchBar", "bosskill"}
 
 ----------------------------------
 --        Are you local?        --

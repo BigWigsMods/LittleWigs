@@ -10,7 +10,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Gundrak"]
 mod.enabletrigger = boss 
 mod.guid = 29304
-mod.toggleoptions = {"poison", "poisonBar", "poisonCast", "bosskill"}
+mod.toggleOptions = {"poison", "poisonBar", "poisonCast", "bosskill"}
 
 ----------------------------------
 --         Localization         --

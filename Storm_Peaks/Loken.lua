@@ -10,7 +10,7 @@ mod.otherMenu = "The Storm Peaks"
 mod.zonename = BZ["Halls of Lightning"]
 mod.enabletrigger = boss
 mod.guid = 28586
-mod.toggleoptions = {"nova","novaBar","bosskill"}
+mod.toggleOptions = {"nova","novaBar","bosskill"}
 
 ----------------------------------
 --        Are you local?        --

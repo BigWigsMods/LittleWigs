@@ -10,7 +10,7 @@ mod.otherMenu = "Howling Fjord"
 mod.zonename = BZ["Utgarde Pinnacle"]
 mod.enabletrigger = boss 
 mod.guid = 26668
-mod.toggleoptions = {"ritual", "ritualbars", "preparation", "bosskill"}
+mod.toggleOptions = {"ritual", "ritualbars", "preparation", "bosskill"}
 
 --------------------------------
 --       Are you local?       --

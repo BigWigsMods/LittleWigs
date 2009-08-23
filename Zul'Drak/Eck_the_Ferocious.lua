@@ -10,7 +10,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Gundrak"]
 mod.enabletrigger = boss 
 mod.guid = 29932
-mod.toggleoptions = {"residue", "bosskill"}
+mod.toggleOptions = {"residue", "bosskill"}
 
 ----------------------------------
 --        Are you local?        --

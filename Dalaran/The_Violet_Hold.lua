@@ -9,7 +9,7 @@ mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod.zonename = BZ["The Violet Hold"]
 mod.guid = 31134
-mod.toggleoptions = {"portal", "portalbar", "bosskill"}
+mod.toggleOptions = {"portal", "portalbar", "bosskill"}
 
 ----------------------------------
 --        Are you local?        --

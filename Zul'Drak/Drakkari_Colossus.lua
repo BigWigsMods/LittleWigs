@@ -10,7 +10,7 @@ mod.otherMenu = "Zul'Drak"
 mod.zonename = BZ["Gundrak"]
 mod.enabletrigger = boss 
 mod.guid = 29307
-mod.toggleoptions = {"emerge", "merge", "bosskill"}
+mod.toggleOptions = {"emerge", "merge", "bosskill"}
 
 --------------------------------
 --        Localization        --

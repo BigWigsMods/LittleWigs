@@ -10,7 +10,7 @@ mod.otherMenu = "The Storm Peaks"
 mod.zonename = BZ["Halls of Lightning"]
 mod.enabletrigger = boss
 mod.guid = 28546
-mod.toggleoptions = {"overload","overloadWhisper","overloadBar","bosskill"}
+mod.toggleOptions = {"overload","overloadWhisper","overloadBar","bosskill"}
 
 --------------------------------
 --       Are you local?       --

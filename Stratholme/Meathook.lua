@@ -10,7 +10,7 @@ mod.otherMenu = "Caverns of Time"
 mod.zonename = BZ["The Culling of Stratholme"]
 mod.enabletrigger = boss 
 mod.guid = 26529
-mod.toggleoptions = {"chains", "chainsBar", "bosskill"}
+mod.toggleOptions = {"chains", "chainsBar", "bosskill"}
 
 ----------------------------------
 --         Localization         --
