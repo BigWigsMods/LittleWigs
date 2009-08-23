@@ -70,8 +70,8 @@ L:RegisterTranslations("zhTW", function() return {
 	explode_desc = "當黑騎士準備粉碎他的食屍鬼時發出警報。",
 	explode_message = "正在施放 食屍鬼爆炸！",
 	death_trigger = "不!我不能再次…失敗……";
-	--desecration = "Desecration",
-	--desecration_desc = "Warns when you're standing in the desecration",
+	desecration = "褻瀆",
+	desecration_desc = "當你站在褻瀆之地上時發出警報。",
 }
 end )
 
