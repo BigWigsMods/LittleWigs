@@ -54,6 +54,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_REMOVED", "FleshRemoved", 58845)
 	self:AddCombatListener("SPELL_CAST_START", "Ghouls", 52451)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ----------------------------------

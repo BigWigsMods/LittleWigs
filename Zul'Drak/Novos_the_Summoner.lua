@@ -53,6 +53,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Misery", 50089, 59856)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "MiseryRemoved", 50089, 59856)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ----------------------------------

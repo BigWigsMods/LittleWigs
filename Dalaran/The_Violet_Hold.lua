@@ -147,6 +147,8 @@ mod.enabletrigger = L["sinclari"]
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "Deaths")
 
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	bossdeaths = 0
 end
 

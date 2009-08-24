@@ -61,6 +61,8 @@ function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "Deaths")
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Debilitate", 43650)
 
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	deaths = 0	
 end
 

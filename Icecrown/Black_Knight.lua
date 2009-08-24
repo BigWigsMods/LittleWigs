@@ -106,8 +106,9 @@ end )
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Explode", 67751)-- other possible ids :  67886, 51874, 47496, 67729,
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Desecration", 67781, 67876)
-	--self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:AddCombatListener("UNIT_DIED", "Deaths")
+
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	deaths = 0
 end
@@ -124,12 +125,6 @@ function mod:Explode(_, spellId, _, _, spellName)
 		self:Bar(spellName, 4, spellId)
 	end
 end
-
---[[function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L["death_trigger"] then
-		self:BossDeath(nil, self.guid)
-	end
-end]]--
 
 function mod:Deaths(_, guid)
 	if not self.db.profile.bosskill then return end

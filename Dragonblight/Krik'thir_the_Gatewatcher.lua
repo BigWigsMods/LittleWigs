@@ -63,6 +63,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Frenzy", 28747)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	frenzyannounced = nil
 end
 

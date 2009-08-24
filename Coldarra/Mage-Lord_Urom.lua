@@ -59,6 +59,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "TimeBomb", 51121, 59376)
 	self:AddCombatListener("SPELL_CAST_START", "ArcaneExplosion", 51110, 59377)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ------------------------------

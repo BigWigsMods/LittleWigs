@@ -52,6 +52,8 @@ end )
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Thundershock", 56926, 60029)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ----------------------------------

@@ -54,6 +54,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "BroodPlague", 56130, 59467)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "BroodPlagueRemoved", 56130, 59467)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ----------------------------------
