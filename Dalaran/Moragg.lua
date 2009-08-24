@@ -52,8 +52,6 @@ end )
 function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "OpticLink", 54396)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 ----------------------------------
 --        Event Handlers        --

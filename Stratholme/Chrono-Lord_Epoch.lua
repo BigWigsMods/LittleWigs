@@ -54,8 +54,6 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_REMOVED", "CurseRemove", 52772)
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Warp", 52766)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ----------------------------------

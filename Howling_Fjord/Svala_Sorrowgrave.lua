@@ -59,8 +59,6 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_START", "Ritual", 48276)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "Preparation", 48267)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	started = nil
 end

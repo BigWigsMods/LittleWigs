@@ -60,8 +60,6 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Spikes", 47958, 57082, 57083)
 	self:AddCombatListener("SPELL_CAST_SUCCESS", "Frenzy", 48017, 57086)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 ------------------------------

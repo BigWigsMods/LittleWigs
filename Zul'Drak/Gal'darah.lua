@@ -109,6 +109,8 @@ function mod:OnEnable()
 	self:RegisterEvent("UNIT_HEALTH")
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
 
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	formannounce = false
 end
 
