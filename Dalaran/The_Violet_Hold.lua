@@ -175,6 +175,7 @@ function mod:Deaths(_, guid)
 			end
 			if self.db.profile.portal then
 				self:IfMessage(L["portal_message95s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
+				self:DelayedMessage(80, L["portal_message15s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
 			end
 			if self.db.profile.portalbar then
 				self:Bar(L["portal_bar"]:format(L["next_portal"],portal), 95, "INV_Misc_ShadowEgg")
