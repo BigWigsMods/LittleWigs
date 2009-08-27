@@ -83,7 +83,7 @@ L:RegisterTranslations("koKR", function() return {
 	shield_gain = "반사의 보호막!",
 	shield_lost = "보호막 사라짐",
 	heal_msg = "페일트리스 치유!",
-	trigger_surrender = "Excellent work!",	--check
+	trigger_surrender = "훌륭히 해내셨군요!",	--check
 }
 end )
 
