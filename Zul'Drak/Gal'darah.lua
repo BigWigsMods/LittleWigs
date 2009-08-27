@@ -24,81 +24,31 @@ local formannounce = false
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Gal'darah",
-	form_rhino = "Rhino Form Soon",
-	forms = "Forms",
-	forms_desc = "Warn before Gal'darah changes forms.",
-	form_troll = "Troll Form Soon",
-}
-
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("deDE", function() return {
-	cmd = "Gal'darah",
-	form_rhino = "Rhinozeros-Haltung bald!",
-	forms = "Haltungen",
-	forms_desc = "Warnen bevor Gal'darah seine Haltungen ändert.",
-	form_troll = "Troll-Haltung bald!",
-}
-
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esES", function() return {
-}
-
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("esMX", function() return {
-}
-
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("frFR", function() return {
-	cmd = "Gal'darah",
-	form_rhino = "Forme de rhinocéros imminente",
-	forms = "Formes",
-	forms_desc = "Prévient avant que Gal'darah ne change de forme.",
-	form_troll = "Forme de troll imminente",
-}
-
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("koKR", function() return {
-	cmd = "갈다라",
-	form_rhino = "곧 코뿔소 형태",
-	forms = "형태",
-	forms_desc = "갈다라의 형태를 알립니다.",
-	form_troll = "곧 트롤 형태",
-}
-
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("ruRU", function() return {
-	form_rhino = "Скоро форма люторога",
-	forms = "Формы",
-	forms_desc = "Предупреждать, перед сменой форм Гал'дара.",
-	form_troll = "Скоро форма троля",
-}
-
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhCN", function() return {
-	form_rhino = "即将 犀牛形态！",
-	forms = "形态",
-	forms_desc = "当迦尔达拉改变形态之前发出警报。",
-	form_troll = "即将 巨魔形态！",
-}
-
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhTW", function() return {
-	form_rhino = "即將 犀牛形態！",
-	forms = "形態",
-	forms_desc = "當蓋爾達拉改變形態之前發出警報。",
-	form_troll = "即將 食人妖形態！",
-}
-
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Zul_Drak/Gal_darah", format="lua_table", handle-unlocalized="ignore")@
 end )
 
 ----------------------------------

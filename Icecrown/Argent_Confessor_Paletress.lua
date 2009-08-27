@@ -24,67 +24,31 @@ local shielded = false
 
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
--- Translators: please update the translations on wowace web based
--- translations, these local ones will go away
-
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Argent Confessor Paletress",
-	shield = "Reflective Shield",
-	shield_desc = "Warn when Paletress gains and loses Reflective Shield.",
-	shield_gain = "Reflective Shield up!",
-	shield_lost = "Shield faded",
-	heal_msg = "Paletress is healing!",
-	trigger_surrender = "Excellent work!", --to be translated
-}
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("deDE", function() return {
-	shield = "Magiereflexion",
-	shield_desc = "Warnung, wenn Magiereflexion aktiv.",
-	shield_lost = "Magiereflexion beendet",
-	heal_msg ="Blondlocke heilt-> Unterbrechen!",
-	trigger_surrender = "^Exzellente Arbeit!", --to be checked
-}
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("ruRU", function() return {
-	shield = "Отражающий щит!",
-	shield_desc = "Предупреждать об Отражение магии",
-	shield_gain = "Применён щит!",
-	shield_lost = "Щит рассеялся",
-	heal_msg = "Пейлтресс исцеляется!",
-	--trigger_surrender = "Exzellente Arbeit!", --to be translated
-}
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhTW", function() return {
-	shield = "反射護盾",
-	shield_desc = "當銀白告解者帕爾璀絲獲得/失去反射護盾時發出警報。",
-	shield_gain = "即將 反射護盾!",
-	shield_lost = "反射護盾 消失",
-	heal_msg = "銀白告解者施放治療!",
-	trigger_surrender = "你們做得很好!", --to be translated
-}
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("zhCN", function() return {
-	shield = "反射护盾",
-	shield_desc = "当银色神官帕尔崔丝获得/失去反射护盾时发出警报。",
-	shield_gain = "即将 反射护盾!",
-	shield_lost = "反射护盾 消失",
-	heal_msg = "银色神官施放治疗!",
-	trigger_surrender = "你们做得很好!", --to be translated
-}
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
 end )
 
-L:RegisterTranslations("koKR", function() return {
-	shield = "반사의 보호막",
-	shield_desc = "반사의 보호막의 획득과 사라짐을 알립니다.",
-	shield_gain = "반사의 보호막!",
-	shield_lost = "보호막 사라짐",
-	heal_msg = "페일트리스 치유!",
-	trigger_surrender = "훌륭히 해내셨군요!",	--check
-}
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
+end )
+
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_table", handle-unlocalized="ignore")@
 end )
 
 ----------------------------------
