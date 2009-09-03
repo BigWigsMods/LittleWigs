@@ -16,8 +16,6 @@ mod.toggleOptions = {"portal", "portalbar", "bosskill"}
 ----------------------------------
 
 local guids = {29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237}
-local portal = 0
-local bossdeaths = 0
 
 ----------------------------------
 --         Localization         --
@@ -61,10 +59,6 @@ mod.enabletrigger = L["sinclari"]
 
 function mod:OnEnable()
 	self:AddCombatListener("UNIT_DIED", "Deaths")
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	bossdeaths = 0
 end
 
 ----------------------------------
@@ -82,18 +76,12 @@ function mod:Deaths(_, guid)
 
 	for _,v in ipairs(guids) do
 		if v == guid then
-			bossdeaths = bossdeaths + 1
-			if bossdeaths == 1 then
-				portal = 7
-			elseif bossdeaths == 2 then
-				portal = 13
-			end
 			if self.db.profile.portal then
 				self:IfMessage(L["portal_message95s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
 				self:DelayedMessage(80, L["portal_message15s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
 			end
 			if self.db.profile.portalbar then
-				self:Bar(L["portal_bar"]:format(L["next_portal"],portal), 95, "INV_Misc_ShadowEgg")
+				self:Bar(L["next_portal"], 95, "INV_Misc_ShadowEgg")
 			end
 		end
 	end
