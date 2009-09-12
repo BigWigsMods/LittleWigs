@@ -29,7 +29,7 @@
 
 ## Dependencies: BigWigs
 
-Faction_Champions.lua
+Grand_Champions.lua
 Eadric_the_Pure.lua
 Argent_Confessor_Paletress.lua
 Black_Knight.lua

@@ -38,7 +38,7 @@
 <Script file="Howling_Fjord\Skadi_the_Ruthless.lua"/>
 <Script file="Howling_Fjord\King_Ymiron.lua"/>
 
-<Script file="Icecrown\Faction_Champions.lua"/>
+<Script file="Icecrown\Grand_Champions.lua"/>
 <Script file="Icecrown\Argent_Confessor_Paletress.lua"/>
 <Script file="Icecrown\Eadric_the_Pure.lua"/>
 <Script file="Icecrown\Black_Knight.lua"/>
