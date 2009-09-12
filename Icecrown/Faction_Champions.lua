@@ -8,7 +8,6 @@ if not mod then return end
 mod.partyContent = true
 mod.zonename = BZ["Trial of the Champion"]
 mod.otherMenu = "Icecrown"
-mod.enabletrigger = {L["jaeren"], L["arelas"]}
 mod.toggleOptions = {"shaman_hex", "shaman_healingwave", -1, "mage_poly", -1, "rogue_poison" , "bosskill"}
 
 ------------------------------
@@ -99,6 +98,9 @@ L:RegisterTranslations("zhTW", function() return {
 	jaeren = "傑倫·日誓",
 	arelas = "亞芮拉斯·亮星",
 } end )
+
+mod.enabletrigger = {L["jaeren"], L["arelas"]}
+
 ------------------------------
 --      Initialization      --
 ------------------------------
