@@ -61,6 +61,8 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "VampTouch", 52723)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "VampTouchRemove", 52723)
 	self:AddCombatListener("UNIT_DIED", "BossDeath")
+
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
 
 ----------------------------------
@@ -97,5 +99,11 @@ function mod:VampTouchRemove(target, _, _, _, spellName)
 	if target ~= boss then return end
 	if self.db.profile.vampTouchBar then
 		self:TriggerEvent("BigWigs_StopBar", self, spellName)
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(msg)
+	if msg:find(L["defeat_trigger"]) then
+		self:Sync("MultiDeath " .. self:ToString())
 	end
 end

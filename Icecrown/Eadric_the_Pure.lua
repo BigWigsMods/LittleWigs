@@ -83,7 +83,7 @@ end
 end]]--
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L["trigger_surrender"] then
+	if msg == L["defeat_trigger"] then
 		self:BossDeath(nil, self.guid)
 	end
 end
