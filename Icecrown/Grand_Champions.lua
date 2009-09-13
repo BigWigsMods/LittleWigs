@@ -114,7 +114,6 @@ function mod:OnEnable()
 	self:AddCombatListener("SPELL_AURA_APPLIED", "MagePolyApplied", 66043, 68311)
 	self:AddCombatListener("SPELL_AURA_REMOVED", "MagePolyRemoved", 66043, 68311)
 	self:AddCombatListener("SPELL_AURA_APPLIED", "RoguePoisonApplied", 67701, 67594, 68316)
-        self:AddCombatListener("UNIT_DIED", "Deaths")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
