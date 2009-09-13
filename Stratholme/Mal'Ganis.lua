@@ -104,6 +104,6 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg:find(L["defeat_trigger"]) then
-		self:Sync("MultiDeath " .. self:ToString())
+		self:BossDeath(nil, self.guid)
 	end
 end

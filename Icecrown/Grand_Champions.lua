@@ -8,6 +8,7 @@ if not mod then return end
 mod.partyContent = true
 mod.zonename = BZ["Trial of the Champion"]
 mod.otherMenu = "Icecrown"
+mod.guid = 34657
 mod.toggleOptions = {"shaman_hex", "shaman_healingwave", -1, "mage_poly", -1, "rogue_poison" , "bosskill"}
 
 ------------------------------
@@ -162,6 +163,6 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if self.db.profile.bosskill and msg:find(L["defeat_trigger"]) then
-		self:Sync("Multideath " .. self:ToString())
+		self:BossDeath(nil, self.guid, true)
 	end
 end
