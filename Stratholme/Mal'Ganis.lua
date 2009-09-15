@@ -103,7 +103,7 @@ function mod:VampTouchRemove(target, _, _, _, spellName)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg:find(L["defeat_trigger"]) then
+	if msg:find(L["death_trigger"]) then
 		self:BossDeath(nil, self.guid)
 	end
 end
