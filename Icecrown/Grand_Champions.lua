@@ -25,82 +25,32 @@ local pName = UnitName("player")
 ----------------------------
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
 
-L:RegisterTranslations("enUS", function() return {
-	defeat_trigger = "Well Fought!",
+L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	shaman_hex = "Shaman - Hex of Mending",
-	shaman_hex_desc = "Announces who has the Hex of Mending curse.",
-	shaman_hex_message = "Hex of Mending on: %s!",
-	shaman_healingwave = "Shaman - Healing Wave",
-	shaman_healingwave_desc = "Announces when the shaman is casting Healing Wave.",
+L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	mage_poly = "Mage - Polymorph",
-	mage_poly_desc = "Announces who is Polymorphed.",
-	mage_poly_message = "%s Polymorphed!",
+L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	rogue_poison = "Rogue - Poison",
-	rogue_poison_desc = "Warns when you are standing in poison.",
-	rogue_poison_message = "Poison On You!",
+L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	jaeren = "Jaeren Sunsworn",
-	arelas = "Arelas Brightstar",
-} end )
+L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-L:RegisterTranslations("deDE", function() return {
-	shaman_hex = "Schamane - Verhexung der Heilung",
-	shaman_hex_desc = "Verkündet Verhexung der Heilung",
-	shaman_hex_message = "Verhexung der Heilung: %s!",
-	shaman_healingwave = "Schamane - Welle der Heilung",
-	shaman_healingwave_desc = "Verkündet Welle der Heilunge",
+L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	mage_poly = "Magier - Verwandlung",
-	mage_poly_desc = "Verkündet Verwandlung",
-	mage_poly_message = "Wirkt Verwandlung auf: %s!",
+L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	rogue_poison = "Gift!",
-	rogue_poison_desc = "Warnt, wenn du im Gift stehst",
+L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
-	jaeren = "Jaeren Sonnenschwur",
-	arelas = "Arelas Hellstern",
-} end )
-
-L:RegisterTranslations("zhCN", function() return {
-	shaman_hex = "萨满祭司 - Hex of Mending",
-	shaman_hex_desc = "当玩家中了Hex of Mending诅咒时发出警报。",
-	shaman_hex_message = "Hex of Mending：>%s<！",
-	shaman_healingwave = "萨满祭司 - 治疗波",
-	shaman_healingwave_desc = "当萨满祭司正在施放治疗波时发出警报。",
-
-	mage_poly = "法师 - 变形术",
-	mage_poly_desc = "当玩家中了变形术时发出警报。",
-	mage_poly_message = "变形术：>%s<！",
-
-	rogue_poison = "潜行者 - 毒药",
-	rogue_poison_desc = "当玩家站在毒药里时发出警报。",
-	rogue_poison_message = ">你< 毒药！",
-
-	jaeren = "Jaeren Sunsworn",
-	arelas = "Arelas Brightstar",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	shaman_hex = "薩滿 - 癒合妖術",
-	shaman_hex_desc = "當玩家中了癒合妖術詛咒時發出警報。",
-	shaman_hex_message = "癒合妖術：>%s<！",
-	shaman_healingwave = "薩滿 - 治療波",
-	shaman_healingwave_desc = "當薩滿正在施放治療波時發出警報。",
-
-	mage_poly = "法師 - 變形術",
-	mage_poly_desc = "當玩家中了變形術時發出警報。",
-	mage_poly_message = "變形術：>%s<！",
-
-	rogue_poison = "盜賊 - 毒藥",
-	rogue_poison_desc = "當玩家站在毒藥里時發出警報。",
-	rogue_poison_message = ">你< 毒藥！",
-
-	jaeren = "傑倫·日誓",
-	arelas = "亞芮拉斯·亮星",
-} end )
+L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Icecrown/Grand_Champions", format="lua_table", handle-unlocalized="ignore")@
+end )
 
 mod.enabletrigger = {L["jaeren"], L["arelas"]}
 
