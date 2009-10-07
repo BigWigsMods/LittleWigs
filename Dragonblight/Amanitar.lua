@@ -17,19 +17,6 @@ mod.toggleOptions = {
 local pName = UnitName("player")
 
 -------------------------------------------------------------------------------
---  Localization
-
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Amanitar", "enUS", true)
-if L then
-	--@do-not-package@
-	L["mini_message"] = "You are Mini"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Dragonblight/Amanitar", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Amanitar")
-mod.locale = L
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -40,8 +27,8 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Mini(player, spellId)
+function mod:Mini(player, spellId, _, _, spellName)
 	if player ~= pName then return end
-	self:LocalMessage(57055, L["mini_message"], "Personal", spellId)
+	self:TargetMessage(57055, spellName, player, "Personal", spellId, "Alarm")
 	self:FlashShake(57055)
 end

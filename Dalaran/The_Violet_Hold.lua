@@ -45,7 +45,7 @@ end
 --  Event Handlers
 
 function mod:Deaths(_, guid)
-	self:Message("portals", L["portal_message95s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
-	self:DelayedMessage("portals", 80, L["portal_message15s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
+	self:Message("portals", L["portal_message95s"], "Attention", "INV_Misc_ShadowEgg")
+	self:DelayedMessage("portals", 80, L["portal_message15s"], "Attention", "INV_Misc_ShadowEgg")
 	self:Bar("portals", L["next_portal"], 95, "INV_Misc_ShadowEgg")
 end

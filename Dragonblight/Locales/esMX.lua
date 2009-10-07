@@ -1,8 +1,3 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Amanitar", "esMX")
-if L then
-	--@localization(locale="esMX", namespace="Dragonblight/Amanitar", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Elder Nadox", "esMX")
 if L then
 	--@localization(locale="esMX", namespace="Dragonblight/Elder_Nadox", format="lua_additive_table", handle-unlocalized="ignore")@

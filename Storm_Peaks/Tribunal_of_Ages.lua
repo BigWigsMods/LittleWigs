@@ -19,9 +19,9 @@ local started = nil
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Tribunal of Ages", "enUS", true)
 if L then
 --@do-not-package@
+L["defeat_trigger"] = "Ha! The old magic fingers finally won through! Now let's get down to-"
 L["enable_trigger"] = "Place Holder"
 L["engage_trigger"] = "Take a moment and relish this with me! Soon all will be revealed! Okay then, lets do this!"
-L["defeat_trigger"] = "Ha! The old magic fingers finally won through! Now let's get down to-"
 
 L["timers"] = "Timers"
 L["timers_desc"] = "Timers for various events that take place."
