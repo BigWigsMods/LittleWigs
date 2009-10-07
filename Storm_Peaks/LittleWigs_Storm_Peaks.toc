@@ -15,7 +15,7 @@
 ## Notes-ruRU: Модуль Little Wigs - Ульдуар
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.0.0
+## Version: 3.2
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
@@ -23,15 +23,9 @@
 
 ## X-BigWigs-Menu: The Storm Peaks
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Halls of Stone, Halls of Lightning
+## X-BigWigs-LoadOn-Zone: Halls of Stone, Halls of Lightning
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, LittleWigs
 
-Maiden_of_Grief.lua
-Krystallus.lua
-Sjonnir_the_Ironshaper.lua
-
-General_Bjarngrim.lua
-Volkhan.lua
-Ionar.lua
-Loken.lua
+locales.xml
+modules.xml

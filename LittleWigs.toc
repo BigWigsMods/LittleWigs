@@ -10,17 +10,16 @@
 ## Notes-koKR: 5인 던전용 보스 경고 애드온
 ## Author: Ulic
 ## X-Credits: Yoshimo (for many many log files)
-## Version: 3.0.0
+## Version: 3.2
 ## X-Build: $Rev$
 ## X-Category: Party
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Utgarde Keep, Utgarde Pinnacle, The Nexus, The Oculus, Azjol-Nerub, Ahn'kahet: The Old Kingdom, Drak'Tharon Keep, Gundrak, The Violet Hold, Halls of Stone, Halls of Lightning, Trial of the Champion
+## LoadOnDemand: 1
 
 ## Dependencies: BigWigs
-## OptionalDeps: Ace2
 
+common.lua
 #@debug@
 modules.xml
 #@end-debug@
-

@@ -1,0 +1,14 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Drakkari_Colossus.lua"/>
+<Script file="Eck_the_Ferocious.lua"/>
+<Script file="Gal'darah.lua"/>
+<Script file="King_Dred.lua"/>
+<Script file="Moorabi.lua"/>
+<Script file="Novos_the_Summoner.lua"/>
+<Script file="Slad'ran.lua"/>
+<Script file="The_Prophet_Tharon'ja.lua"/>
+<Script file="Trollgore.lua"/>
+
+</Ui>

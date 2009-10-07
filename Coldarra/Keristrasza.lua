@@ -1,88 +1,55 @@
-------------------------------
---      Are you local?      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Keristrasza"]
-
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Keristrasza", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---      Module Declaration      --
-----------------------------------
-
-local mod = BigWigs:NewModule(boss)
+local mod = BigWigs:NewBoss("Keristrasza", "The Nexus")
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
-mod.zonename = BZ["The Nexus"]
-mod.enabletrigger = {boss} 
-mod.guid = 26723
-mod.toggleOptions = {"chains", "chainsbar", "enrage", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
+mod:RegisterEnableMob(26723)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	8599, -- Enrage
+	{50997, "BAR"}, -- Chains
+	"bosskill",
+}
 
-------------------------------
---      Initialization      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Enrage", 8599)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Chains", 50997)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "ChainsRemoved", 50997)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Keristrasza", "enUS", true)
+if L then
+	--@do-not-package@
+	L["enrage_message"] = "Keristrasza is Enraged!"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Coldarra/Keristrasza", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Keristrasza")
+mod.locale = L
+
+-------------------------------------------------------------------------------
+--  Initialization
+
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "Enrage", 8599)
+	self:Log("SPELL_AURA_APPLIED", "Chains", 50997)
+	self:Log("SPELL_AURA_REMOVED", "ChainsRemoved", 50997)
+	self:Death("Win", 26723)
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
+
 
 function mod:Chains(player, spellId, _, _, spellName)
-	if self.db.profile.chains then
-		self:IfMessage(L["chains_message"]:format(spellName, player), "Important", spellId)
-	end
-	if self.db.profile.chainsbar then
-		self:Bar(L["chains_message"]:format(spellName, player), 10, spellId)
-	end
+	self:Message(50997, spellName..": "..player, "Attention", spellId)
+	self:Bar(50997, player..": "..spellName, 10, spellId)
 end
 
 function mod:ChainsRemoved(player, _, _, _, spellName)
-	if self.db.profile.chainsbar then
-		self:TriggerEvent("BigWigs_StopBar", self, L["chains_message"]:format(spellName, player))
-	end
+	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
 
 function mod:Enrage(_, spellId)
-	if self.db.profile.enrage then
-		self:IfMessage(L["enrage_message"], "Important", spellId)
-	end
+	self:Message(8599, L["enrage_message"], "Important", spellId)
 end
 

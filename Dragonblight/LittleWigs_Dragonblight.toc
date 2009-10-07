@@ -15,7 +15,7 @@
 ## Notes-ruRU: Модуль Little Wigs - Драконий погост
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.0.0
+## Version: 3.2
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
@@ -23,16 +23,9 @@
 
 ## X-BigWigs-Menu: Dragonblight
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Azjol-Nerub, Ahn'kahet: The Old Kingdom
+## X-BigWigs-LoadOn-Zone: Azjol-Nerub, Ahn'kahet: The Old Kingdom
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, LittleWigs
 
-Krik'thir_the_Gatewatcher.lua
-Hadronox.lua
-Anub'arak.lua
-
-Prince_Taldaram.lua
-Elder_Nadox.lua
-Jedoga_Shadowseeker.lua
-Herald_Volazj.lua
-Amanitar.lua
+locales.xml
+modules.xml

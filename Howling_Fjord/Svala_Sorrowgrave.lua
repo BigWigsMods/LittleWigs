@@ -1,85 +1,51 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Svala Sorrowgrave"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Svala Sorrowgrave", "Utgarde Pinnacle")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
-mod.zonename = BZ["Utgarde Pinnacle"]
-mod.enabletrigger = boss 
-mod.guid = 26668
-mod.toggleOptions = {"ritual", "ritualbars", "preparation", "bosskill"}
+mod:RegisterEnableMob(26668)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	{48276, "BAR"}, -- Ritual
+	48267, -- Preperation
+	"bosskill",
+}
 
---------------------------------
---       Are you local?       --
---------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local started = nil
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Svala Sorrowgrave", "enUS", true)
+if L then
+	--@do-not-package@
+	L["ritualcooldown_bar"] = "Ritual cooldown"
+	L["ritualcooldown_message"] = "Ritual cooldown passed"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Svala Sorrowgrave")
+mod.locale = L
 
---------------------------------
---        Localization        --
---------------------------------
+-------------------------------------------------------------------------------
+--  Initialization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Ritual", 48276)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Preparation", 48267)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
-	started = nil
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Ritual", 48276)
+	self:Log("SPELL_AURA_APPLIED", "Preparation", 48267)
+	self:Death("Win", 26668)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Ritual(_, spellId, _, _, spellName)
-	if self.db.profile.ritual then
-		self:IfMessage(L["ritual"], "Urgent", spellId)
-		self:DelayedMessage(36, L["ritualcooldown_message"], "Attention")
-	end
-	if self.db.profile.ritualbars then
-		self:Bar(spellName, 26, spellId)
-		self:Bar(L["ritualcooldown_bar"], 36, spellId)
-	end
+	self:Message(48276, L["ritual"], "Urgent", spellId)
+	self:DelayedMessage(48276, 36, L["ritualcooldown_message"], "Attention")
+	self:Bar(48276, spellName, 26, spellId)
+	self:Bar(48276, L["ritualcooldown_bar"], 36, spellId)
 end
 
 function mod:Preparation(player, spellId, _, _, spellName)
-	if self.db.profile.preparation then
-		self:IfMessage(L["preparation_message"]:format(spellName, player), "Attention", spellId)
-	end
+	self:Message(48267, spellName..": "..player, "Attention", spellId)
 end

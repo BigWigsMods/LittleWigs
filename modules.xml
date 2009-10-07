@@ -1,73 +1,21 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Script file="Coldarra\Anomalus.lua"/>
-<Script file="Coldarra\Keristrasza.lua"/>
-<Script file="Coldarra\Ormorok_the_Tree-Shaper.lua"/>
-<Script file="Coldarra\Grand_Magus_Telestra.lua"/>
-
-<Script file="Coldarra\Drakos_the_Interrogator.lua"/>
-<Script file="Coldarra\Mage-Lord_Urom.lua"/>
-<Script file="Coldarra\Varos_Cloudstrider.lua"/>
-<Script file="Coldarra\Ley-Guardian_Eregos.lua"/>
-
-<Script file="Dalaran\Erekem.lua"/>
-<Script file="Dalaran\Ichoron.lua"/>
-<Script file="Dalaran\Lavanthor.lua"/>
-<Script file="Dalaran\Moragg.lua"/>
-<Script file="Dalaran\Xevozz.lua"/>
-<Script file="Dalaran\Zuramat_the_Obliterator.lua"/>
-<Script file="Dalaran\Cyanigosa.lua"/>
-
-<Script file="Dragonblight\Krik'thir_the_Gatewatcher.lua"/>
-<Script file="Dragonblight\Hadronox.lua"/>
-<Script file="Dragonblight\Anub'arak.lua"/>
-
-<Script file="Dragonblight\Prince_Taldaram.lua"/>
-<Script file="Dragonblight\Elder_Nadox.lua"/>
-<Script file="Dragonblight\Jedoga_Shadowseeker.lua"/>
-<Script file="Dragonblight\Herald_Volazj.lua"/>
-<Script file="Dragonblight\Amanitar.lua"/>
-
-<Script file="Howling_Fjord\Controller_and_Constructor.lua"/>
-<Script file="Howling_Fjord\Ingvar_the_Plunderer.lua"/>
-<Script file="Howling_Fjord\Prince_Keleseth.lua"/>
-
-<Script file="Howling_Fjord\Svala_Sorrowgrave.lua"/>
-<Script file="Howling_Fjord\Gortok_Palehoof.lua"/>
-<Script file="Howling_Fjord\Skadi_the_Ruthless.lua"/>
-<Script file="Howling_Fjord\King_Ymiron.lua"/>
-
-<Script file="Icecrown\Grand_Champions.lua"/>
-<Script file="Icecrown\Argent_Confessor_Paletress.lua"/>
-<Script file="Icecrown\Eadric_the_Pure.lua"/>
-<Script file="Icecrown\Black_Knight.lua"/>
-
-<Script file="Storm_Peaks\Maiden_of_Grief.lua"/>
-<Script file="Storm_Peaks\Krystallus.lua"/>
-<Script file="Storm_Peaks\Sjonnir_the_Ironshaper.lua"/>
-
-<Script file="Storm_Peaks\General_Bjarngrim.lua"/>
-<Script file="Storm_Peaks\Volkhan.lua"/>
-<Script file="Storm_Peaks\Ionar.lua"/>
-<Script file="Storm_Peaks\Loken.lua"/>
-
-<Script file="Stratholme\Chrono-Lord_Epoch.lua"/>
-<Script file="Stratholme\Infinite_Corruptor.lua"/>
-<Script file="Stratholme\Mal'Ganis.lua"/>
-<Script file="Stratholme\Meathook.lua"/>
-<Script file="Stratholme\Salramm_the_Fleshcrafter.lua"/>
-
-<Script file="Zul'Drak\Trollgore.lua"/>
-<Script file="Zul'Drak\Novos_the_Summoner.lua"/>
-<Script file="Zul'Drak\King_Dred.lua"/>
-<Script file="Zul'Drak\The_Prophet_Tharon'ja.lua"/>
-
-<Script file="Zul'Drak\Eck_the_Ferocious.lua"/>
-<Script file="Zul'Drak\Slad'ran.lua"/>
-<Script file="Zul'Drak\Moorabi.lua"/>
-<Script file="Zul'Drak\Drakkari_Colossus.lua"/>
-<Script file="Zul'Drak\Gal'darah.lua"/>
-
+<Include file="Coldarra\locales.xml"/>
+<Include file="Coldarra\modules.xml"/>
+<Include file="Dalaran\locales.xml"/>
+<Include file="Dalaran\modules.xml"/>
+<Include file="Dragonblight\locales.xml"/>
+<Include file="Dragonblight\modules.xml"/>
+<Include file="Howling_Fjord\locales.xml"/>
+<Include file="Howling_Fjord\modules.xml"/>
+<Include file="Icecrown\locales.xml"/>
+<Include file="Icecrown\modules.xml"/>
+<Include file="Storm_Peaks\locales.xml"/>
+<Include file="Storm_Peaks\modules.xml"/>
+<Include file="Stratholme\locales.xml"/>
+<Include file="Stratholme\modules.xml"/>
+<Include file="Zul'Drak\locales.xml"/>
+<Include file="Zul'Drak\modules.xml"/>
 
 </Ui>

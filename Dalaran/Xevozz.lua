@@ -1,65 +1,41 @@
-﻿----------------------------------
---      Module Declaration      --
-----------------------------------
+﻿-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Xevozz"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Xevozz", "The Violet Hold")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
-mod.zonename = BZ["The Violet Hold"]
-mod.enabletrigger = boss 
-mod.guid = 29266
-mod.toggleOptions = {"sphere", "bosskill"}
+mod:RegisterEnableMob(29266, 32231)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	54102, -- Summon Sphere
+	"bosskill",
+}
 
-----------------------------------
---         Localization         --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Xevozz", "enUS", true)
+if L then
+	--@do-not-package@
+	L["sphere_message"] = "Summoning Ethereal Sphere"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Dalaran/Xevozz", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Xevozz")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dalaran/Xevozz", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Sphere", 54102, 54137, 54138, 61337, 61338)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Sphere", 54102, 54137, 54138, 61337, 61338)
+	self:Death("Win", 29266, 32231)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Sphere(_, spellId)
-	if self.db.profile.sphere then
-		self:IfMessage(L["sphere_message"], "Important", spellId)
-	end
+	self:Message(54102, L["sphere_message"], "Important", spellId)
 end

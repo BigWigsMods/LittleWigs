@@ -1,84 +1,51 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
+﻿-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Ley-Guardian Eregos"]
-
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---      Module Declaration      --
-----------------------------------
-
-local mod = BigWigs:NewModule(boss)
+local mod = BigWigs:NewBoss("Ley-Guardian Eregos", "The Oculus")
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
-mod.zonename = BZ["The Oculus"]
-mod.enabletrigger = {boss} 
-mod.guid = 27656
-mod.toggleOptions = {"planarshift", "planarshiftbar", -1, "enragedassault", "enragedassaultbar", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
+mod:RegisterEnableMob(27656)
+mod.toggleOptions = {
+	51162, -- Planar Shift
+	51170, -- Enraged Assult
+	"bosskill",
+}
 
-------------------------------
---      Initialization      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "PlanarShift", 51162)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "EnragedAssault", 51170)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ley-Guardian Eregos", "enUS", true)
+if L then
+	--@do-not-package@
+	L["enragedassault_message"] = "Enraged Assault"
+	L["planarshift_expire_message"] = "Planar Shift ends in 5 sec"
+	L["planarshift_message"] = "Planar Shift"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Ley-Guardian Eregos")
+mod.locale = L
+
+-------------------------------------------------------------------------------
+--  Initialization
+
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "PlanarShift", 51162)
+	self:Log("SPELL_AURA_APPLIED", "EnragedAssault", 51170)
+	self:Death("Win", 27656)
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:PlanarShift(_, spellId, _, _, spellName)
-	if self.db.profile.planarshift then
-		self:IfMessage(L["planarshift_message"], "Important", spellId)
-		self:DelayedMessage(13, L["planarshift_expire_message"], "Attention")
-	end
-	if self.db.profile.planarshiftbar then
-		self:Bar(spellName, 18, spellId)
-	end
+	self:Message(51162, L["planarshift_message"], "Important", spellId)
+	self:DelayedMessage(51162, 13, L["planarshift_expire_message"], "Attention")
+	self:Bar(51162, spellName, 18, spellId)
 end
 
 function mod:EnragedAssault(player, spellId, _, _, spellName)
-	if self.db.profile.enragedassault then
-		self:IfMessage(L["enragedassault_message"], "Important", spellId)
-	end
-	if self.db.profile.enragedassaultbar then
-		self:Bar(spellName, 12, spellId)
-	end
+	self:Message(51170, L["enragedassault_message"], "Important", spellId)
+	self:Bar(51170, spellName, 12, spellId)
 end

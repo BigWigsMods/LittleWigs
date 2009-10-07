@@ -1,88 +1,50 @@
-﻿----------------------------------
---      Module Declaration      --
-----------------------------------
+﻿-------------------------------------------------------------------------------
+--  Module Declaration 
 
-local name = BZ["The Violet Hold"]
-local mod = BigWigs:New(name, tonumber(("$Revision$"):sub(12, -3)))
-if not mod then return end
+-- "Portals" isn't going to work, gonna have to rethink that
+local mod = BigWigs:NewBoss("Portals", "The Violet Hold")
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
-mod.zonename = BZ["The Violet Hold"]
-mod.guid = 31134
-mod.toggleOptions = {"portal", "portalbar", "bosskill"}
+mod:RegisterEnableMob(30658)
+mod.toggleOptions = {"portals", "bosskill"}
 
-----------------------------------
---        Are you local?        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Locals
 
 local guids = {29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237}
+local deaths = 0
 
-----------------------------------
---         Localization         --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..name)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: The Violet Hold", "enUS", true)
+if L then
+	--@do-not-package@
+	L["portals"] = "Portal Warnings"
+	L["portals_desc"] = "Information about portals after a boss dies."
+	L["portal_message15s"] = "%s in ~15 seconds!"
+	L["portal_message95s"] = "%s in ~95 seconds!"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: The Violet Hold")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
+function mod:OnBossEnable()
+	self:Death("Deaths", 29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
+	self:Death("OnDisable", 31134)
 
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dalaran/The_Violet_Hold", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
--- Since this is a unique module we have to sneak this down after it's been translated
-mod.enabletrigger = L["sinclari"]
-
-function mod:OnEnable()
-	self:AddCombatListener("UNIT_DIED", "Deaths")
+	deaths = 0
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Deaths(_, guid)
-	guid = tonumber((guid):sub(-12,-7),16)
-
-	-- Disable the module if the final boss has just died
-	if guid == self.guid then
-		BigWigs:ToggleModuleActive(self, false)
-		return
-	end
-
-	for _,v in ipairs(guids) do
-		if v == guid then
-			if self.db.profile.portal then
-				self:IfMessage(L["portal_message95s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
-				self:DelayedMessage(80, L["portal_message15s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
-			end
-			if self.db.profile.portalbar then
-				self:Bar(L["next_portal"], 95, "INV_Misc_ShadowEgg")
-			end
-		end
-	end
+	self:Message("portals", L["portal_message95s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
+	self:DelayedMessage("portals", 80, L["portal_message15s"]:format(L["next_portal"]), "Attention", "INV_Misc_ShadowEgg")
+	self:Bar("portals", L["next_portal"], 95, "INV_Misc_ShadowEgg")
 end

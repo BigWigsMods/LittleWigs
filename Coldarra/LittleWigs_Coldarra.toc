@@ -14,7 +14,7 @@
 ## Notes-ruRU: Модуль Little Wigs - Хладарра
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.0.0
+## Version: 3.2
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
@@ -22,16 +22,9 @@
 
 ## X-BigWigs-Menu: Coldarra
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: The Nexus, The Oculus
+## X-BigWigs-LoadOn-Zone: The Nexus, The Oculus
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, LittleWigs
 
-Anomalus.lua
-Keristrasza.lua
-Ormorok_the_Tree-Shaper.lua
-Grand_Magus_Telestra.lua
-
-Drakos_the_Interrogator.lua
-Mage-Lord_Urom.lua
-Varos_Cloudstrider.lua
-Ley-Guardian_Eregos.lua
+locales.xml
+modules.xml

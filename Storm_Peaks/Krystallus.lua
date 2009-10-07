@@ -1,78 +1,49 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Krystallus"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Krystallus", "Halls of Stone")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "The Storm Peaks"
-mod.zonename = BZ["Halls of Stone"]
-mod.enabletrigger = boss
-mod.guid = 27977
-mod.toggleOptions = {"shatter", "shatterBar", "bosskill"}
+mod:RegisterEnableMob(27977)
+mod.toggleOptions = {
+	50810, -- Shatter
+	"bosskill",
+}
 
---------------------------------
---        Localization        --
---------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: ", "enUS", true)
+if L then
+	--@do-not-package@
+	L["shatterBar_message"] = "~Shatter"
+	L["shatter_warn"] = "Ground Slam - Shatter in ~8 sec"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Storm_Peaks/Krystallus", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: ")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Ulduar/Krystallus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Slam", 50833)
-	self:AddCombatListener("SPELL_CAST_START", "Shatter", 50810, 61546)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "Slam", 50833)
+	self:Log("SPELL_CAST_START", "Shatter", 50810, 61546)
+	self:Death("Win", 27977)
 end
 
 ----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Slam(_, spellId, _, _, spellName)
-	if self.db.profile.shatter then
-		self:IfMessage(L["shatter_warn"], "Urgent", spellId)
-	end
-	if self.db.profile.shatterBar then
-		self:Bar(L["shatterBar_message"], 8, spellId)
-	end
+	self:Message(50810, L["shatter_warn"], "Urgent", spellId)
+	self:Bar(50810, L["shatterBar_message"], 8, spellId)
 end
 
-function mod:Shatter(_, spellId)
-	if self.db.profile.shatterBar then
-		self:TriggerEvent("BigWigs_StopBar", self, L["shatterBar_message"])
-	end
-	if self.db.profile.shatter then
-		self:IfMessage(L["shatter_message"], "Urgent", spellId)
-	end
+function mod:Shatter(_, spellId, _, _, spellName)
+	self:SendMessage("BigWigs_StopBar", self, L["shatterBar_message"])
+	self:Message(50810, spellName, "Urgent", spellId)
 end

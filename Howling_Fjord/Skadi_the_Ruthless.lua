@@ -1,72 +1,44 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Skadi the Ruthless"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Skadi the Ruthless", "Utgarde Pinnacle")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
-mod.zonename = BZ["Utgarde Pinnacle"]
-mod.enabletrigger = boss 
-mod.guid = 26693
-mod.toggleOptions = {"whirlwind", "whirlwindcooldown", "whirlwindbars", "bosskill"}
+mod:RegisterEnableMob(26693)
+mod.toggleOptions = {
+	59322, -- Whirlwind
+	"bosskill",
+}
 
---------------------------------
---        Localization        --
---------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Skadi the Ruthless", "enUS", true)
+if L then
+	--@do-not-package@
+	L["whirlwind_cooldown_bar"] = "Whirlwind cooldown"
+	L["whirlwindcooldown_message"] = "Whirlwind cooldown passed"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Skadi the Ruthless")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Howling_Fjord/Skadi_the_Ruthless", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Whirlwind", 59322, 50228)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 59322, 50228)
+	self:Death("Win", "BossDeath")
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Whirlwind(_, spellId, _, _, spellName)
-	if self.db.profile.whirlwind then
-		self:IfMessage(spellName, "Urgent", spellId)
-	end
-	if self.db.profile.whirlwindcooldown then
-		self:DelayedMessage(23, L["whirlwindcooldown_message"], "Attention")
-	end
-	if self.db.profile.whirlwindbars then
-		self:Bar(spellName, 10, spellId)
-		self:Bar(L["whirlwind_cooldown_bar"], 23, spellId)
-	end
+	self:Message(59322, spellName, "Urgent", spellId)
+	self:DelayedMessage(59322, 23, L["whirlwindcooldown_message"], "Attention")
+	self:Bar(59322, spellName, 10, spellId)
+	self:Bar(59322, L["whirlwind_cooldown_bar"], 23, spellId)
 end

@@ -1,91 +1,59 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Constructor & Controller"]
-local constructor = BB["Skarvald the Constructor"]
-local controller = BB["Dalronn the Controller"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Constructor & Controller", "Utgarde Keep")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
-mod.zonename = BZ["Utgarde Keep"]
-mod.enabletrigger = {constructor, controller} 
-mod.guid = 24200
-mod.toggleOptions = {"debilitate", "debilitateBar", "bosskill"}
+mod:RegisterEnableMob(24200, 24201)
+mod.toggleOptions = {
+	43650, -- Debilitate
+	"bosskill",
+}
 
---------------------------------
---       Are you local?       --
---------------------------------
+-------------------------------------------------------------------------------
+--  Locals
 
 local deaths = 0
 
---------------------------------
---        Localization        --
---------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Controller & Constructor", "enUS", true)
+if L then
+	--@do-not-package@
+	L["dies"] = "#%d Killed"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Controller & Constructor")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("UNIT_DIED", "Deaths")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Debilitate", 43650)
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	deaths = 0	
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "Debilitate", 43650)
+	self:Death("Deaths", 24200, 24201)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+function mod:OnEngage()
+	deaths = 0
+end
 
-function mod:Deaths(_, guid)
-	if not self.db.profile.bosskill then return end
-	guid = tonumber((guid):sub(-12,-7),16)
-	if guid == self.guid or guid == 24201 then
-		deaths = deaths + 1
-	end
-	if deaths == 2 then
-		self:BossDeath(nil, self.guid, true)
+-------------------------------------------------------------------------------
+--  Event Handlers
+
+function mod:Deaths()
+	deaths = deaths + 1
+	if deaths < 2 then
+		self:Message("bosskill", L["dies"]:format(deaths), "Positive")
+	else
+		self:Win()
 	end
 end
 
-function mod:Debilitate(player, spellId)
-	if self.db.profile.debilitate then
-		self:IfMessage(L["debilitate_message"]:format(player), "Attention", spellId)
-	end
-	if self.db.profile.debilitateBar then
-		self:Bar(L["debilitate_message"]:format(player), 8, spellId)
-	end
+function mod:Debilitate(player, spellId, _, _, spellname)
+	self:Message(43650, spellName..": "..player, "Attention", spellId)
+	self:Bar(43650, player..": "..spellName, 8, spellId)
 end

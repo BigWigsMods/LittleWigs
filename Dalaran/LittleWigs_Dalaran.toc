@@ -13,7 +13,7 @@
 ## Notes-ruRU: Модуль Little Wigs - Даларан
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.0.0
+## Version: 3.2
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
@@ -21,16 +21,9 @@
 
 ## X-BigWigs-Menu: Dalaran
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: The Violet Hold
+## X-BigWigs-LoadOn-Zone: The Violet Hold
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, LittleWigs
 
-The_Violet_Hold.lua
-
-Erekem.lua
-Ichoron.lua
-Lavanthor.lua
-Moragg.lua
-Xevozz.lua
-Zuramat_the_Obliterator.lua
-Cyanigosa.lua
+locales.xml
+modules.xml

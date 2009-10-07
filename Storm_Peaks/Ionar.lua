@@ -1,77 +1,29 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Ionar"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Ionar", "Halls of Lightning")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "The Storm Peaks"
-mod.zonename = BZ["Halls of Lightning"]
-mod.enabletrigger = boss
-mod.guid = 28546
-mod.toggleOptions = {"overload","overloadWhisper","overloadBar","bosskill"}
+mod:RegisterEnableMob(28546)
+mod.toggleOptions = {
+	{52658, "WHISPER", "FLASHSHAKE"}, -- Overload
+	"bosskill",
+}
 
---------------------------------
---       Are you local?       --
---------------------------------
-
-local pName = UnitName("player")
-
---------------------------------
---        Localization        --
---------------------------------
-
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Ulduar/Ionar", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Initialization
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Overload", 52658, 59795)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+	self:Log("SPELL_AURA_APPLIED", "Overload", 52658, 59795)
+	self:Death("Win", 28546)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
-function mod:Overload(player, spellId)
-	if self.db.profile.overload then
-		self:IfMessage(L["overload_message"]:format(player), "Urgent", spellId)
-	end
-	if self.db.profile.overloadWhisper and (pName ~= player) then
-		self:Whisper(player, L["overloadWhisper_message"])
-	end	
-	if self.db.profile.overloadBar then
-		self:Bar(L["overload_message"]:format(player), 10, spellId)
-	end
+function mod:Overload(player, spellId, _, _, spellName)
+	self:TargetMessage(52658, spellname, player, "Personal", spellId, "Alarm")
+	self:Whisper(52658, player, spellName)
+	self:Bar(52658, player..": "..spellName, 10, spellId)
 end

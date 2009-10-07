@@ -1,79 +1,53 @@
-﻿----------------------------------
---      Module Declaration      --
-----------------------------------
+﻿-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Ichoron"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Ichoron", "The Violet Hold")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
-mod.zonename = BZ["The Violet Hold"]
-mod.enabletrigger = boss 
-mod.guid = 29313
-mod.toggleOptions = {"bubble", "frenzy", "bosskill"}
+mod:RegisterEnableMob(29313, 32234)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	54306, -- Bubble
+	54312, -- Frenzy
+	"bosskill",
+}
 
-----------------------------------
---         Localization         --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ichoron", "enUS", true)
+if L then
+	--@do-not-package@
+	L["bubbleEnded_message"] = "Protective Bubble Faded"
+	L["bubble_message"] = "Gained Protective Bubble"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Dalaran/Ichoron", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Ichoron")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dalaran/Ichoron", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Bubble", 54306)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "BubbleRemoved", 54306)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Frenzy", 54312, 59522)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "Bubble", 54306)
+	self:Log("SPELL_AURA_REMOVED", "BubbleRemoved", 54306)
+	self:Log("SPELL_AURA_APPLIED", "Frenzy", 54312, 59522)
+	self:Death("Win", 29313, 32234)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Bubble(_, spellId)
-	if self.db.profile.bubble then
-		self:IfMessage(L["bubble_message"], "Important", spellId)
-	end
+	self:Message(54306, L["bubble_message"], "Important", spellId)
 end
 
 function mod:BubbleRemoved(_, spellId)
-	if self.db.profile.bubble then
-		self:IfMessage(L["bubbleEnded_message"], "Positive", spellId)
-	end
+	self:Message(54306, L["bubbleEnded_message"], "Positive", spellId)
 end
 
 function mod:Frenzy(_, spellId, _, _, spellName)
-	if self.db.profile.frenzy then
-		self:IfMessage(spellName, "Important", spellId)
-	end
+	self:Message(54312, spellName, "Important", spellId)
 end

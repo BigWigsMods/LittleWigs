@@ -15,7 +15,7 @@
 ## Notes-ruRU: Модуль Little Wigs - Ревущий фьорд
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.0.0
+## Version: 3.2
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
@@ -23,15 +23,9 @@
 
 ## X-BigWigs-Menu: Howling Fjord
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Utgarde Keep, Utgarde Pinnacle
+## X-BigWigs-LoadOn-Zone: Utgarde Keep, Utgarde Pinnacle
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, LittleWigs
 
-Controller_and_Constructor.lua
-Ingvar_the_Plunderer.lua
-Prince_Keleseth.lua
-
-Svala_Sorrowgrave.lua
-Gortok_Palehoof.lua
-Skadi_the_Ruthless.lua
-King_Ymiron.lua
+locales.xml
+modules.xml

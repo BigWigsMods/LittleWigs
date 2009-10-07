@@ -1,68 +1,28 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Meathook"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Meathook", "The Culling of Stratholme")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Caverns of Time"
-mod.zonename = BZ["The Culling of Stratholme"]
-mod.enabletrigger = boss 
-mod.guid = 26529
-mod.toggleOptions = {"chains", "chainsBar", "bosskill"}
+mod:RegisterEnableMob(26529)
+mod.toggleOptions = {
+	52696, -- Chains
+	"bosskill",
+}
 
-----------------------------------
---         Localization         --
-----------------------------------
-
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Stratholme/Meathook", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Initialization
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Chains", 52696, 58823)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+	self:Log("SPELL_AURA_APPLIED", "Chains", 52696, 58823)
+	self:Death("Win", 26529)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 --
-function mod:Chains(player, spellId)
-	if self.db.profile.chains then
-		self:IfMessage(L["chains_message"]:format(player), "Important", spellId)
-	end
-	if self.db.profile.chainsBar then
-		self:Bar(L["chains_message"]:format(player), 5, spellId)
-	end
+function mod:Chains(player, spellId, _, _, spellName)
+	self:Message(52696, spellName..": "..player, "Important", spellId)
+	self:Bar(52696, player..": "..spellName, 5, spellId)
 end

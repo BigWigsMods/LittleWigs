@@ -1,87 +1,54 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
+﻿-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Mage-Lord Urom"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local mod = BigWigs:NewBoss("Mage-Lord Urom", "The Oculus")
+if not mod then return end
+mod.partyContent = true
+mod.otherMenu = "Coldarra"
+mod:RegisterEnableMob(27655)
+mod.toggleOptions = {
+	{51121, "WHISPER"}, -- Time Bomb
+	51110, -- Arcane Explosion
+	"bosskill",
+}
+
+-------------------------------------------------------------------------------
+--  Locals
 
 local pName = UnitName("player")
 
-----------------------------
---      Localization      --
-----------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Mage-Lord Urom", "enUS", true)
+if L then
+	--@do-not-package@
+	L["timeBombWhisper_message"] = "You have the Time Bomb!"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Coldarra/Mage_Lord_Urom", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Mage-Lord Urom")
+mod.locale = L
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Mage_Lord_Urom", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---      Module Declaration      --
-----------------------------------
-
-local mod = BigWigs:NewModule(boss)
-mod.partyContent = true
-mod.otherMenu = "Coldarra"
-mod.zonename = BZ["The Oculus"]
-mod.enabletrigger = {boss} 
-mod.guid = 27655
-mod.toggleOptions = {"timeBomb","timeBombWhisper","timeBombBar",-1,"arcaneExplosion","arcaneExplosionBar","bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
-
-------------------------------
---      Initialization      --
-------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "TimeBomb", 51121, 59376)
-	self:AddCombatListener("SPELL_CAST_START", "ArcaneExplosion", 51110, 59377)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "TimeBomb", 51121, 59376)
+	self:Log("SPELL_CAST_START", "ArcaneExplosion", 51110, 59377)
+	self:Death("Win", 27655)
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:TimeBomb(player, spellId, _, _, spellName)
-	if self.db.profile.timeBomb then
-		self:IfMessage(L["timeBomb_message"]:format(player), "Attention", spellId)
-	end
-	if self.db.profile.timeBombWhisper and (pName ~= player) then
-		self:Whisper(player, L["timeBombWhisper_message"])
-	end
-	if self.db.profile.timeBombBar then
-		self:Bar(L["timeBomb_message"]:format(player), 6, spellId)
-	end
+	self:Message(51121, spellName..": "..player, "Attention", spellId)
+	self:Whisper(51121, player, L["timeBombWhisper_message"])
+	self:Bar(51121, player..": "..spellName, 6, spellId)
 end
 
 function mod:ArcaneExplosion(_, spellId, _, _, spellName)
-	if self.db.profile.arcaneExplosion then
-		self:IfMessage(L["arcaneExplosion"], "Attention", spellId)
-	end
-	if self.db.profile.arcaneExplosionBar then
-		self:Bar(spellName, 8, spellId)
-	end
+	self:Message(51110, L["arcaneExplosion"], "Attention", spellId)
+	self:Bar(51110, spellName, 8, spellId)
 end

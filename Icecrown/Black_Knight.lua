@@ -1,97 +1,59 @@
-﻿----------------------------------
---      Module Declaration      --
-----------------------------------
+﻿-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["The Black Knight"]
-local mod = BigWigs:New(boss, tonumber(("$Revision: 550 $"):sub(12, -3)))
+local mod = BigWigs:NewBoss("The Black Knight", "Trial of the Champion")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Icecrown"
-mod.zonename = BZ["Trial of the Champion"]
-mod.enabletrigger = boss
-mod.guid = 35451
-mod.toggleOptions = {"explode", "explodeBar", "desecration", "bosskill"}
+mod:RegisterEnableMob(35451)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	{67751, "BAR"}, -- Explode Ghouls
+	67781, -- Desecration
+	"bosskill",
+}
 
---------------------------------
---       Are you local?       --
---------------------------------
+-------------------------------------------------------------------------------
+--  Locals
 
 local deaths = 0
 local pName = UnitName("player")
 
---------------------------------
---        Localization        --
---------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Explode", 67751)-- other possible ids :  67886, 51874, 47496, 67729,
+	self:Log("SPELL_AURA_APPLIED", "Desecration", 67781, 67876)
+	self:Death("Deaths", 35451)
+end
 
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Icecrown/Black_Knight", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Explode", 67751)-- other possible ids :  67886, 51874, 47496, 67729,
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Desecration", 67781, 67876)
-	self:AddCombatListener("UNIT_DIED", "Deaths")
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
+function mod:OnEngage()
 	deaths = 0
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Explode(_, spellId, _, _, spellName)
-	if self.db.profile.explode then
-		self:IfMessage(L["explode_message"], "Urgent", spellId)
-	end
-	if self.db.profile.explodeBar then
-		self:Bar(spellName, 4, spellId)
+	self:Message(67751, LCL["casting"]:format(spellName), "Urgent", spellId)
+	self:Bar(67751, spellName, 4, spellId)
+end
+
+function mod:Deaths()
+	deaths = deaths + 1
+	if deaths == 3 and bit.band(self.db.profile.bosskill, BigWigs.C.MESSAGE) == BigWigs.C.MESSAGE then
+		self:Win()
 	end
 end
 
-function mod:Deaths(_, guid)
-	if not self.db.profile.bosskill then return end
-	guid = tonumber((guid):sub(-12,-7),16)
-	if guid == self.guid then
-		deaths = deaths + 1
-	end
-	if deaths == 3 then
-		self:BossDeath(_, guid)
-	end
-end
-
-function mod:Desecration(player)
-	if player == pName and self.db.profile.desecration then
-		self:LocalMessage(L["desecration"], "Personal", 67781, "Alarm")
-	end
+function mod:Desecration(player, spellId, _, _, spellName)
+	if player ~= pName then return end
+	self:LocalMessage(67781, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
 end	

@@ -1,78 +1,40 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Sjonnir The Ironshaper"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Sjonnir The Ironshaper", "Halls of Stone")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "The Storm Peaks"
-mod.zonename = BZ["Halls of Stone"]
-mod.enabletrigger = boss
-mod.guid = 27978
-mod.toggleOptions = {"charge","ring","bosskill"}
+mod:RegisterEnableMob(27978)
+mod.toggleOptions = {
+	50834, -- Charge
+	50840, -- Ring
+	"bosskill",
+}
 
---------------------------------
---        Localization        --
---------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Ulduar/Sjonnir_the_Ironshaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Charge", 50834, 59846)
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Ring", 50840, 59848, 59861, 51849)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "Charge", 50834, 59846)
+	self:Log("SPELL_CAST_SUCCESS", "Ring", 50840, 59848, 59861, 51849)
+	self:Death("Win", 27978)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
-function mod:Charge(player, spellId)
-	if self.db.profile.charge then
-		self:IfMessage(L["charge_message"]:format(player), "Urgent", spellId)
-	end
-	if self.db.profile.chargeBar then
-		self:Bar(L["charge_message"]:format(player), 10, spellId)
-	end
+function mod:Charge(player, spellId, _, _, spellName)
+	self:TargetMessage(50834, spellname, player, "Personal", spellId, "Alarm")
+	self:Bar(50834, L["charge_message"]:format(player), 10, spellId)
 end
 
-function mod:Ring(_, spellId)
-	if self.db.profile.ring then
-		self:IfMessage(L["ring_message"], "Urgent", spellId)
-	end
-	if self.db.profile.ringBar then
-		self:Bar(L["ring_message"], 10, spellId)
-	end
+function mod:Ring(_, spellId, _, _, spellName)
+	self:Message(50840, LCL["casting"]:format(spellName), "Urgent", spellId)
+	self:Bar(50840, spellName, 10, spellId)
 end

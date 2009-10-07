@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="General_Bjarngrim.lua"/>
+<Script file="Ionar.lua"/>
+<Script file="Krystallus.lua"/>
+<Script file="Loken.lua"/>
+<Script file="Maiden_of_Grief.lua"/>
+<Script file="Sjonnir_the_Ironshaper.lua"/>
+<Script file="Tribunal_of_Ages.lua"/>
+<Script file="Volkhan.lua"/>
+
+</Ui>

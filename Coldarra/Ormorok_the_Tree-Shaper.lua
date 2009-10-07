@@ -1,95 +1,53 @@
-------------------------------
---      Are you local?      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Ormorok the Tree-Shaper"]
-
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-----------------------------
---      Localization      --
-----------------------------
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---      Module Declaration      --
-----------------------------------
-
-local mod = BigWigs:NewModule(boss)
+local mod = BigWigs:NewBoss("Ormorok the Tree-Shaper", "The Nexus")
+if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
-mod.zonename = BZ["The Nexus"]
-mod.enabletrigger = {boss} 
-mod.guid = 26794
-mod.toggleOptions = {"spikes", "reflection", "reflectionBar", "frenzy", "bosskill"}
-mod.revision = tonumber(("$Revision$"):sub(12, -3))
+mod:RegisterEnableMob(26794)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	{47981, "BAR"}, -- Spell Reflect
+	48017, -- Frenzy
+	"bosskill",
+}
 
-------------------------------
---      Initialization      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Reflection", 47981)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "ReflectionRemoved", 47981)
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Spikes", 47958, 57082, 57083)
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Frenzy", 48017, 57086)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ormorok the Tree-Shaper", "enUS", true)
+if L then
+	--@do-not-package@
+	L["frenzy_message"] = "Ormorok goes into a Frenzy!"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Ormorok the Tree-Shaper")
+mod.locale = L
+
+-------------------------------------------------------------------------------
+--  Initialization
+
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "Reflection", 47981)
+	self:Log("SPELL_AURA_REMOVED", "ReflectionRemoved", 47981)
+	self:Log("SPELL_CAST_SUCCESS", "Frenzy", 48017, 57086)
+	self:Death("Win", 26794)
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
-
-function mod:Spikes(_, spellId, _, _, spellName)
-	if self.db.profile.spikes then
-		self:IfMessage(spellName, "Attention", spellId)
-	end
-end
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Reflection(_, spellId, _, _, spellName)
-	if self.db.profile.reflection then
-		self:IfMessage(spellName, "Attention", spellId)
-	end
-	if self.db.profile.reflectionBar then
-		self:Bar(spellName, 15, spellId)
-	end
+	self:Message(47981, spellName, "Attention", spellId)
+	self:Bar(47981, spellName, 15, spellId)
 end
 
 function mod:ReflectionRemoved(_, _, _, _, spellName)
-	if self.db.profile.reflectionBar then
-		self:TriggerEvent("BigWigs_StopBar", self, spellName)
-	end
+	self:SendMessage("BigWigs_StopBar", self, spellName)
 end
 
 function mod:Frenzy(_, spellId)
-	if self.db.profile.frenzy then
-		self:IfMessage(L["frenzy_message"], "Important", spellId)
-	end
+	self:Message(48017, L["frenzy_message"], "Important", spellId)
 end
-

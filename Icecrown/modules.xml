@@ -1,0 +1,9 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Argent_Confessor_Paletress.lua"/>
+<Script file="Black_Knight.lua"/>
+<Script file="Eadric_the_Pure.lua"/>
+<Script file="Grand_Champions.lua"/>
+
+</Ui>

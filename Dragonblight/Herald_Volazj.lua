@@ -1,83 +1,45 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Herald Volazj"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Herald Volazj", "Ahn'kahet: The Old Kingdom")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Dragonblight"
-mod.zonename = BZ["Ahn'kahet: The Old Kingdom"]
-mod.enabletrigger = boss
-mod.guid = 29311
-mod.toggleOptions = {"insanity",-1,"shiver","shiverBar","bosskill"}
+mod:RegisterEnableMob(29311)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	57496, -- Insanity
+	57949, -- Shiver
+	"bosskill",
+}
 
-----------------------------------
---         Localization         --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Dragonblight/Herald_Volazj", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Insanity", 57496)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Shiver", 57949, 59978)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "ShiverRemoved", 57949, 59978)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Insanity", 57496)
+	self:Log("SPELL_AURA_APPLIED", "Shiver", 57949, 59978)
+	self:Log("SPELL_AURA_REMOVED", "ShiverRemoved", 57949, 59978)
+	self:Death("Win", 29311)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
-function mod:Insanity(_, spellId)
-	if self.db.profile.insanity then
-		self:IfMessage(L["insanity_message"], "Important", spellId)
-	end
+function mod:Insanity(_, spellId, _, _, spellName)
+	self:Message(57496, LCL["casting"]:format(spellName), "Important", spellId)
 end
 
 function mod:Shiver(player, spellId, _, _, spellName)
-	if self.db.profile.shiver then
-		self:IfMessage(L["shiver_message"]:format(player), "Important", spellId)
-	end
-	if self.db.profile.shiverBar then
-		self:Bar(L["shiver_message"]:format(player), 15, spellId)
-	end
+	self:Message(57949, spellName..": "..player, "Important", spellId)
+	self:Bar(57949, player..": "..spellName, 15, spellId)
 end
 
-function mod:ShiverRemoved(player)
-	if self.db.profile.shiverBar then
-		self:TriggerEvent("BigWigs_StopBar", self, L["shiver_message"]:format(player))
-	end
+function mod:ShiverRemoved(player, _, _, _, spellName)
+	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
-

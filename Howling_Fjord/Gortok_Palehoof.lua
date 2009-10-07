@@ -1,73 +1,48 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Gortok Palehoof"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Gortok Palehoof", "Utgarde Pinnacle")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
-mod.zonename = BZ["Utgarde Pinnacle"]
-mod.enabletrigger = boss 
-mod.guid = 26687
-mod.toggleOptions = {"roar", "impale", "bosskill"}
+mod:RegisterEnableMob(26687)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	{48256, "BAR"}, -- Roar
+	48261, -- Impale
+	"bosskill",
+}
 
-----------------------------------
---         Localization         --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Gortok Palehoof", "enUS", true)
+if L then
+	--@do-not-package@
+	L["roarcooldown_bar"] = "Roar cooldown"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Coldarra/Anomalus", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Gortok Palehoof")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Initialization
 
 function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_SUCCESS", "Roar", 48256, 59267)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Impale", 48261, 59268)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+	self:Log("SPELL_CAST_SUCCESS", "Roar", 48256, 59267)
+	self:Log("SPELL_AURA_APPLIED", "Impale", 48261, 59268)
+	self:Death("Win", 2668)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Roar(_, spellId, _, _, spellName)
-	if self.db.profile.roar then
-		self:IfMessage(spellName, "Urgent", spellId)
-		self:Bar(L["roarcooldown_bar"], 10, spellId)
-	end
+	self:Message(48256, spellName, "Urgent", spellId)
+	self:Bar(48256, L["roarcooldown_bar"], 10, spellId)
 end
 
 function mod:Impale(player, spellId, _, _, spellName)
-	if self.db.profile.impale then
-		self:IfMessage(L["impale_message"]:format(spellName, player), "Attention", spellId)
-	end
+	self:Message(48261, spellName..": "..player, "Attention", spellId)
 end

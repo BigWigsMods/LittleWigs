@@ -1,72 +1,48 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Drakkari Colossus"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Drakkari Colossus", "Gundrak")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Zul'Drak"
-mod.zonename = BZ["Gundrak"]
-mod.enabletrigger = boss 
-mod.guid = 29307
-mod.toggleOptions = {"emerge", "merge", "bosskill"}
+mod:RegisterEnableMob(29307)
+mod.defaultToggles = {"MESSAGE"}
+mod.toggleOptions = {
+	54850, -- Emerge
+	54878, -- Merge
+	"bosskill",
+}
 
---------------------------------
---        Localization        --
---------------------------------
+-------------------------------------------------------------------------------
+--  Localization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Drakkari Colossus", "enUS", true)
+if L then
+	--@do-not-package@
+	L["emerge_message"] = "Elemental Emerging"
+	L["merge_message"] = "Merging with Colossus"
+	--@end-do-not-package@
+	--@localization(locale="enUS", namespace="Zul_Drak/Drakkari_Colossus", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Drakkari Colossus")
+mod.locale = L
 
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
+-------------------------------------------------------------------------------
+--  Initialization
 
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Zul_Drak/Drakkari_Colossus", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "Emerge", 54850) -- To Elemental
-	self:AddCombatListener("SPELL_CAST_START", "Merge", 54878) -- To Colossus
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Emerge", 54850) -- To Elemental
+	self:Logr("SPELL_CAST_START", "Merge", 54878) -- To Colossus
+	self:Death("Win", 29307)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
 function mod:Emerge(_, spellId)
-	if self.db.profile.emerge then
-		self:IfMessage(L["emerge_message"], "Urgent", spellId)
-	end
+	self:Message(54850, L["emerge_message"], "Urgent", spellId)
 end
 
 function mod:Merge(_, spellId)
-	if self.db.profile.merge then
-		self:IfMessage(L["merge_message"], "Urgent", spellId)
-	end
+	self:Message(54878, L["merge_message"], "Urgent", spellId)
 end

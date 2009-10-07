@@ -1,5 +1,4 @@
 ﻿## Interface: 30200
-## X-Curse-Packaged-Version: 3.0.0-beta1
 
 ## Title: Little Wigs [|cffeda55fZul'Drak|r]
 ## Notes: Little Wigs Zul'Drak Modules
@@ -14,7 +13,7 @@
 ## Notes-ruRU: Модуль Little Wigs - Зул'Драк
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.0.0
+## Version: 3.2
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
@@ -22,17 +21,9 @@
 
 ## X-BigWigs-Menu: Zul'Drak
 ## X-BigWigs-LoadInParty: 1
-## X-BigWigs-LoadInZone: Drak'Tharon Keep, Gundrak
+## X-BigWigs-LoadOn-Zone: Drak'Tharon Keep, Gundrak
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, LittleWigs
 
-Trollgore.lua
-Novos_the_Summoner.lua
-King_Dred.lua
-The_Prophet_Tharon'ja.lua
-
-Eck_the_Ferocious.lua
-Slad'ran.lua
-Moorabi.lua
-Drakkari_Colossus.lua
-Gal'darah.lua
+locales.xml
+modules.xml

@@ -1,82 +1,39 @@
-----------------------------------
---      Module Declaration      --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Slad'ran"]
-local mod = BigWigs:New(boss, tonumber(("$Revision$"):sub(12, -3)))
+local mod = BigWigs:NewBoss("Slad'ran", "Gundrak")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Zul'Drak"
-mod.zonename = BZ["Gundrak"]
-mod.enabletrigger = boss 
-mod.guid = 29304
-mod.toggleOptions = {"poison", "poisonBar", "poisonCast", "bosskill"}
+mod:RegisterEnableMob(29304)
+mod.toggleOptions = {
+	55081, -- Poison Nova
+	"bosskill",
+}
 
-----------------------------------
---         Localization         --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Initialization
 
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-
-L:RegisterTranslations("enUS", function() return --@localization(locale="enUS", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("deDE", function() return --@localization(locale="deDE", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esES", function() return --@localization(locale="esES", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("esMX", function() return --@localization(locale="esMX", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("frFR", function() return --@localization(locale="frFR", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("koKR", function() return --@localization(locale="koKR", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("ruRU", function() return --@localization(locale="ruRU", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhCN", function() return --@localization(locale="zhCN", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-L:RegisterTranslations("zhTW", function() return --@localization(locale="zhTW", namespace="Zul_Drak/Slad_ran", format="lua_table", handle-unlocalized="ignore")@
-end )
-
-----------------------------------
---        Initialization        --
-----------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "PoisonCast", 55081, 59842)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "Poison", 55081, 59842)
-	self:AddCombatListener("SPELL_AURA_REMOVED", "PoisonRemoved", 55081, 59842)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "PoisonCast", 55081, 59842)
+	self:Log("SPELL_AURA_APPLIED", "Poison", 55081, 59842)
+	self:Log("SPELL_AURA_REMOVED", "PoisonRemoved", 55081, 59842)
+	self:Death("Win", 29304)
 end
 
-----------------------------------
---        Event Handlers        --
-----------------------------------
+-------------------------------------------------------------------------------
+--  Event Handlers
 
-function mod:PoisonCast()
-	if self.db.profile.poisonCast then
-		self:IfMessage(L["poisonCast_message"], "Attention", spellId)
-	end
+function mod:PoisonCast(_, _, _, _, spellName)
+	self:Message(LCL["casting"]:format(spellName), "Attention", spellId)
+	self:Bar(spellName, 3.5, spellId)
 end
 
 function mod:Poison(player, spellId, _, _, spellName)
-	if self.db.profile.poison then
-		self:IfMessage(L["poison_message"]:format(player), "Urgent", spellId)
-	end
-	if self.db.profile.poisonBar then
-		self:Bar(L["poison_message"]:format(player), 6, spellId)
-	end
+	self:Message(spellName..": "..player, "Urgent", spellId)
+	self:Bar(player..": "..spellName, 6, spellId)
 end
 
-function mod:PoisonRemoved(player)
-	if self.db.profile.poisonBar then
-		self:TriggerEvent("BigWigs_StopBar", self, L["poison_message"]:format(player))
-	end
+function mod:PoisonRemoved(player, _, _, _, spellName)
+	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
