@@ -19,16 +19,17 @@ local deaths = 0
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: The Violet Hold", "enUS", true)
 if L then
-	--@do-not-package@
-	L["portals"] = "Portal Warnings"
-	L["portals_desc"] = "Information about portals after a boss dies."
-	L["portal_message15s"] = "%s in ~15 seconds!"
-	L["portal_message95s"] = "%s in ~95 seconds!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["portals"] = "Portals"
+L["portals_desc"] = "Information about portals after a boss dies."
+L["portal_message15s"] = "%s in ~15 seconds!"
+L["portal_message95s"] = "%s in ~95 seconds!"
+--@end-do-not-package@
+--@localization(locale="enUS", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: The Violet Hold")
 mod.locale = L
+mod.displayName = L["portals"]
 
 -------------------------------------------------------------------------------
 --  Initialization
