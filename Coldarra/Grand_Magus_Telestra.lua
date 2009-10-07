@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(26731)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {"split", "bosskill"}
 
 -------------------------------------------------------------------------------

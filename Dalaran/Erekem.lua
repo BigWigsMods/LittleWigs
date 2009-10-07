@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29315, 32226)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	54481, -- Chain Heal
 	"bosskill",

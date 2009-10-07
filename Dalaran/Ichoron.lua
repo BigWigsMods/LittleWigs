@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29313, 32234)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	54306, -- Bubble
 	54312, -- Frenzy

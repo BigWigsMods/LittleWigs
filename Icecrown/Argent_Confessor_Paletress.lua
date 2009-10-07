@@ -6,7 +6,6 @@ if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Icecrown"
 mod:RegisterEnableMob(34928)
-mod.defaultToggles ={"MESSAGE"}
 mod.toggleOptions = {
 	66515, -- Shield
 	66537, -- Renew

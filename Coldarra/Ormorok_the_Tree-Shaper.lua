@@ -6,9 +6,8 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(26794)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
-	{47981, "BAR"}, -- Spell Reflect
+	47981, -- Spell Reflect
 	48017, -- Frenzy
 	"bosskill",
 }

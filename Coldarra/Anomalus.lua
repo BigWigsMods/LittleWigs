@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(26763)
-mod.defaultOptions = {"MESSAGE"}
 mod.toggleOptions = {
 	47743, -- Summon Rift
 	"bosskill",

@@ -6,9 +6,8 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Howling Fjord"
 mod:RegisterEnableMob(26687)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
-	{48256, "BAR"}, -- Roar
+	48256, -- Roar
 	48261, -- Impale
 	"bosskill",
 }

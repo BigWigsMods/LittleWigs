@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(29307)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	54850, -- Emerge
 	54878, -- Merge

@@ -6,9 +6,8 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29314, 32230)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
-	54361, -- Void Shift
+	{54361, "FLASHSHAKE"}, -- Void Shift
 	"bosskill",
 }
 
@@ -36,4 +35,5 @@ end
 function mod:VoidShift(player, spellId, _, _, spellName)
 	if player ~= pName then return end
 	self:LocalMessage(54361, BLC["you"]:format(spellName), "Personal", true, "Alert", nil, spellId)
+	self:FlashShake(54361)
 end

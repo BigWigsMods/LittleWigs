@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(29306)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {"forms", "bosskill"}
 
 -------------------------------------------------------------------------------

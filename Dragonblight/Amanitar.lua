@@ -6,9 +6,8 @@ if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(30258)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
-	57055, -- Mini
+	{57055, "FLASHSHAKE"}, -- Mini
 	"bosskill",
 }
 
@@ -42,7 +41,7 @@ end
 --  Event Handlers
 
 function mod:Mini(player, spellId)
-	if player == pName then
-		self:LocalMessage(57055, L["mini_message"], "Personal", spellId)
-	end
+	if player ~= pName then return end
+	self:LocalMessage(57055, L["mini_message"], "Personal", spellId)
+	self:FlashShake(57055)
 end

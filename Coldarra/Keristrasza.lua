@@ -6,10 +6,9 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(26723)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	8599, -- Enrage
-	{50997, "BAR"}, -- Chains
+	50997, -- Chains
 	"bosskill",
 }
 

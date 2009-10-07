@@ -6,7 +6,6 @@ if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Icecrown"
 mod:RegisterEnableMob(35451)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	{67751, "BAR"}, -- Explode Ghouls
 	67781, -- Desecration
@@ -48,7 +47,7 @@ end
 
 function mod:Deaths()
 	deaths = deaths + 1
-	if deaths == 3 and bit.band(self.db.profile.bosskill, BigWigs.C.MESSAGE) == BigWigs.C.MESSAGE then
+	if deaths == 3 then 
 		self:Win()
 	end
 end

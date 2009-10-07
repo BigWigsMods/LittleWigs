@@ -6,9 +6,8 @@ if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(28586)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
-	{16856, "BAR"}, --Mortal Strike
+	16856, --Mortal Strike
 	41107, -- Berserker
 	"bosskill",
 }

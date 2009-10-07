@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(29932)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	55817, --Residue
 	"bosskill",

@@ -6,10 +6,9 @@ if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(29309)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	"guardian",
-	{56130, "BAR"}, -- Brood Plague
+	56130, -- Brood Plague
 	"bosskill",
 }
 

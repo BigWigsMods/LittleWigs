@@ -18,15 +18,15 @@ local started = nil
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Tribunal of Ages", "enUS", true)
 if L then
-	--@do-not-package@
-	L["enable_trigger"] = "Place Holder"
-	L["engage_trigger"] = "Take a moment and relish this with me! Soon all will be revealed! Okay then, lets do this!"
-	L["defeat_trigger"] = "Ha! The old magic fingers finally won through! Now let's get down to-"
+--@do-not-package@
+L["enable_trigger"] = "Place Holder"
+L["engage_trigger"] = "Take a moment and relish this with me! Soon all will be revealed! Okay then, lets do this!"
+L["defeat_trigger"] = "Ha! The old magic fingers finally won through! Now let's get down to-"
 
-	L["timers"] = "Timers"
-	L["timers_desc"] = "Timers for various events that take place."
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Storm_Peaks/Tribunal_of_Ages", format="lua_additive_table", handle-unlocalized="ignore")@
+L["timers"] = "Timers"
+L["timers_desc"] = "Timers for various events that take place."
+--@end-do-not-package@
+--@localization(locale="enUS", namespace="Storm_Peaks/Tribunal_of_Ages", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Tribunal of Ages")
 mod.locale = L
@@ -39,10 +39,6 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Charge", 50834, 59846)
-	self:Log("SPELL_CAST_SUCCESS", "Ring", 50840, 59848, 59861, 51849)
-	self:Death("Win", 27978)
-
 	stated = nil
 	self:Yell("Engage", L["engage_trigger"])
 	self:Yell("Win", L["defeat_trigger"])

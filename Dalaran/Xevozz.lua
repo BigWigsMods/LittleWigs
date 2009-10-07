@@ -6,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29266, 32231)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	54102, -- Summon Sphere
 	"bosskill",

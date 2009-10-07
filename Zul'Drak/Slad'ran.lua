@@ -25,13 +25,13 @@ end
 --  Event Handlers
 
 function mod:PoisonCast(_, _, _, _, spellName)
-	self:Message(LCL["casting"]:format(spellName), "Attention", spellId)
-	self:Bar(spellName, 3.5, spellId)
+	self:Message(55081, LCL["casting"]:format(spellName), "Attention", spellId)
+	self:Bar(55081, spellName, 3.5, spellId)
 end
 
 function mod:Poison(player, spellId, _, _, spellName)
-	self:Message(spellName..": "..player, "Urgent", spellId)
-	self:Bar(player..": "..spellName, 6, spellId)
+	self:Message(55081, spellName..": "..player, "Urgent", spellId)
+	self:Bar(55081, player..": "..spellName, 6, spellId)
 end
 
 function mod:PoisonRemoved(player, _, _, _, spellName)

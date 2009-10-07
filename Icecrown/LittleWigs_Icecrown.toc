@@ -24,7 +24,7 @@
 ## LoadOnDemand: 1
 
 ## X-BigWigs-Menu: Icecrown
-## X-BigWigs-LoadInParty: 1
+## X-BigWigs-PartyContent: true
 ## X-BigWigs-LoadOn-Zone: Trial of the Champion
 
 ## Dependencies: BigWigs, LittleWigs

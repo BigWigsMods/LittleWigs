@@ -21,7 +21,7 @@
 ## X-Category: Party
 
 ## X-BigWigs-Menu: Coldarra
-## X-BigWigs-LoadInParty: 1
+## X-BigWigs-PartyContent: true
 ## X-BigWigs-LoadOn-Zone: The Nexus, The Oculus
 
 ## Dependencies: BigWigs, LittleWigs

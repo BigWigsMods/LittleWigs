@@ -6,11 +6,10 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Icecrown"
 mod:RegisterEnableMob(35004, 35005)
-mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	{"rogue_poison", "FLASHSHAKE"},
-	{67534, "BAR"}, -- Shaman Hex
-	{68318, "BAR"}, -- Shaman Heal
+	67534, -- Shaman Hex
+	68318, -- Shaman Heal
 	66043, -- Mage Poly
 	"bosskill",
 }

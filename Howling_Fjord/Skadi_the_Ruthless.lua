@@ -30,7 +30,7 @@ mod.locale = L
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 59322, 50228)
-	self:Death("Win", "BossDeath")
+	self:Death("Win", 26693)
 end
 
 -------------------------------------------------------------------------------
