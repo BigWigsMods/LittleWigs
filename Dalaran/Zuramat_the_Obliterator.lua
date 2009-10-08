@@ -19,7 +19,7 @@ local pName = UnitName("player")
 -------------------------------------------------------------------------------
 --  Localization
 
-L = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -34,6 +34,6 @@ end
 
 function mod:VoidShift(player, spellId, _, _, spellName)
 	if player ~= pName then return end
-	self:LocalMessage(54361, BLC["you"]:format(spellName), "Personal", true, "Alert", nil, spellId)
+	self:LocalMessage(54361, BCL["you"]:format(spellName), "Personal", true, "Alert", nil, spellId)
 	self:FlashShake(54361)
 end
