@@ -44,12 +44,12 @@ function mod:MortalStrike(player, spellId, _, _, spellName)
 	self:Bar(16856, player..": "..spellName, 5, spellId)
 end
 
-function mod:Berserker(_, spellId, _, _, _, _, _, dGuid)
+function mod:Berserker(_, spellId, _, _, _, _, _, _, dGuid)
 	if tonumber(dGuid:sub(-12, -7), 16) ~= 28586 then return end
 	self:Message(41107, L["berserker_applied"]:format(player), "Urgent", spellId)
 end
 
-function mod:BerserkerRemoved(_, spellId, _, _, _, _, _, dGuid)
+function mod:BerserkerRemoved(_, spellId, _, _, _, _, _, _, dGuid)
 	if tonumber(dGuid:sub(-12, -7), 16) ~= 28586 then return end
 	self:Message(41107, L["berserker_removed"], "Attention", spellId)
 end

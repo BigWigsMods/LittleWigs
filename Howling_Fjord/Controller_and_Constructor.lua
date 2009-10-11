@@ -53,7 +53,7 @@ function mod:Deaths()
 	end
 end
 
-function mod:Debilitate(player, spellId, _, _, spellname)
+function mod:Debilitate(player, spellId, _, _, spellName)
 	self:Message(43650, spellName..": "..player, "Attention", spellId)
 	self:Bar(43650, player..": "..spellName, 8, spellId)
 end

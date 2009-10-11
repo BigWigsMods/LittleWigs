@@ -28,7 +28,7 @@ end
 --  Event Handlers
 
 function mod:Overload(player, spellId, _, _, spellName)
-	self:TargetMessage(52658, spellname, player, "Personal", spellId, "Alarm")
+	self:TargetMessage(52658, spellName, player, "Personal", spellId, "Alarm")
 	self:Whisper(52658, player, spellName)
 	self:Bar(52658, player..": "..spellName, 10, spellId)
 	if player == pName then self:FlashShake(52658) end

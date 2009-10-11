@@ -30,7 +30,7 @@ end
 --  Event Handlers
 
 function mod:Charge(player, spellId, _, _, spellName)
-	self:TargetMessage(50834, spellname, player, "Personal", spellId, "Alarm")
+	self:TargetMessage(50834, spellName, player, "Personal", spellId, "Alarm")
 	self:Bar(50834, L["charge_message"]:format(player), 10, spellId)
 end
 
