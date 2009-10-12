@@ -39,7 +39,7 @@ end
 --  Event Handlers
 
 function mod:Ritual(_, spellId, _, _, spellName)
-	self:Message(48276, L["ritual"], "Urgent", spellId)
+	self:Message(48276, spellName, "Urgent", spellId)
 	self:DelayedMessage(48276, 36, L["ritualcooldown_message"], "Attention")
 	self:Bar(48276, spellName, 26, spellId)
 	self:Bar(48276, L["ritualcooldown_bar"], 36, spellId)
