@@ -36,7 +36,9 @@ mod.locale = L
 function mod:OnBossEnable()
 	self:Death("Win", 26731)
 	
-	self:RegisterEvent("UNIT_HEALTH")
+	if bit.band(self.db.profile.split, BigWigs.C.MESSAGE) == BigWigs.C.MESSAGE then
+		self:RegisterEvent("UNIT_HEALTH")
+	end
 
 	split1announced = nil
 	split2announced = nil
@@ -48,7 +50,7 @@ end
 --  Event Handlers
 
 function mod:UNIT_HEALTH(event, msg)
-	if tonumber(dGuid:sub(-12, -7), 16) ~= 26731 then return end
+	if UnitName(msg) ~= mod.displayName then return end
 	local currentHealth = UnitHealth(msg)
 	local maxHealth = UnitHealthMax(msg)
 	local health = (currentHealth/maxHealth)*100

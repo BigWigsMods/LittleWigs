@@ -20,7 +20,7 @@ if L then
 	--@do-not-package@
 	L["roarcooldown_bar"] = "Roar cooldown"
 	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coldarra/Anomalus", format="lua_additive_table", handle-unlocalized="ignore")@
+	--@localization(locale="enUS", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Gortok Palehoof")
 mod.locale = L

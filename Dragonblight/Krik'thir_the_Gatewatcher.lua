@@ -36,7 +36,7 @@ mod.locale = L
 --  Initialization
 
 function mod:OnBossEnable()
-	if bit.band(self.db.profile[(GetSpellInfo(28747))], BigWigs.C.MESSAGE) ~= BigWigs.C.MESSAGE then
+	if bit.band(self.db.profile[(GetSpellInfo(28747))], BigWigs.C.MESSAGE) == BigWigs.C.MESSAGE then
 		self:RegisterEvent("UNIT_HEALTH")
 	end
 	self:Log("SPELL_AURA_APPLIED", "Curse", 52592, 59368)
@@ -66,8 +66,9 @@ function mod:Frenzy(_, spellId)
 	self:Message(28747, L["frenzy_message"], "Important", spellId)
 end
 
-function mod:UNIT_HEALTH(arg1)
-	local health = UnitHealth(arg1)
+function mod:UNIT_HEALTH(event, msg)
+	if UnitName(msg) ~= mod.displayName then return end
+	local health = UnitHealth(msg)
 	if health > 10 and health <= 15 and not frenzyAnnounced then
 		frenzyAnnounced = true
 		self:Message(28747, L["frenzysoon_message"], "Important", 28747)

@@ -33,7 +33,9 @@ mod.locale = L
 --  Initialization
 
 function mod:OnBossEnable()
-	self:RegisterEvent("UNIT_HEALTH")
+	if bit.band(self.db.profile.forms, BigWigs.C.MESSAGE) == BigWigs.C.MESSAGE then
+		self:RegisterEvent("UNIT_HEALTH")
+	end
 	self:Death("Win", 29306)
 end
 
@@ -44,11 +46,10 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:UNIT_HEALTH(arg1)
-	if tonumber(dGuid:sub(-12, -7), 16) ~= 29306 then return end
-	
-	local currentHealth = UnitHealth(arg1)
-	local maxHealth = UnitHealthMax(arg1)
+function mod:UNIT_HEALTH(event, msg)
+	if UnitName(msg) ~= mod.displayName then return end
+	local currentHealth = UnitHealth(msg)
+	local maxHealth = UnitHealthMax(msg)
 	local percentHealth = (currentHealth/maxHealth)*100
 	if not formannounce and (between(percentHealth, 75, 78) or between(percentHealth, 25, 28)) then
 		self:Message(L["form_rhino"], "Attention")
