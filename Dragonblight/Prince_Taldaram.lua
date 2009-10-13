@@ -41,16 +41,16 @@ end
 --  Event Handlers
 
 function mod:Embrace(_, spellId, _, _, spellName)
-	self:Message(55959, L["embraceGain_message"], "Important", spellId)
+	self:Message(55959, L["embraceGain"], "Important", spellId)
 	self:Bar(55959, spellName, 20, spellId)
 end
 
 function mod:EmbraceRemoved(_, spellId, _, _, spellName)
-	self:Message(55959, L["embraceFade_message"], "Positive", spellId)
+	self:Message(55959, L["embraceFade"], "Positive", spellId)
 	self:SendMessage("BigWigs_StopBar", self, spellName)
 end
 
-function mod:Sphere(_, spellId)
+function mod:Sphere(_, spellId, _, _, spellName)
 	self:Message(55931, L["sphere_message"], "Important", spellId)
 	self:Bar(55931, "~"..spellName, 10, spellId)
 end

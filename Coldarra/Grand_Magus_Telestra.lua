@@ -40,10 +40,12 @@ function mod:OnBossEnable()
 		self:RegisterEvent("UNIT_HEALTH")
 	end
 
+	difficulty = GetInstanceDifficulty()
+end
+
+function mod:OnEngage()
 	split1announced = nil
 	split2announced = nil
-
-	difficulty = GetInstanceDifficulty()
 end
 
 -------------------------------------------------------------------------------
