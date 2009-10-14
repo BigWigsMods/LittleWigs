@@ -46,6 +46,12 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
+local function between(value, low, high)
+	if (value >= low) and (value <= high) then
+		return true
+	end
+end
+
 function mod:UNIT_HEALTH(event, msg)
 	if UnitName(msg) ~= mod.displayName then return end
 	local currentHealth = UnitHealth(msg)
@@ -59,11 +65,5 @@ function mod:UNIT_HEALTH(event, msg)
 		formannounce = true
 	elseif formannounce and (between(percentHealth, 54, 74) or between(percentHealth, 29, 49)) then
 		formannounce = false
-	end
-end
-
-local function between(value, low, high)
-	if (value >= low) and (value <= high) then
-		return true
 	end
 end
