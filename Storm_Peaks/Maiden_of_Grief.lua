@@ -21,6 +21,7 @@ LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 function mod:OnEnable()
 	self:Log("SPELL_CAST_START", "Shock", 50760, 59726)
+	self:Log("SPELL_AURA_APPLIED", "Stun", 50760, 59726)
 	self:Death("Win", 27975)
 end
 
@@ -28,6 +29,11 @@ end
 --  Event Handlers
 
 function mod:Shock(_, spellId, _, _, spellName)
-	self:Message(50760, L["shock_message"], "Urgent", spellId)
+	self:Message(50760, LCL["casting"]:format(spellName), "Urgent", spellId)
 	self:Bar(50760, LCL["casting"]:format(spellName), 4, spellId)
+end
+
+function mod:Stun(player, spellId, _, _, spellName)
+	self:Message(50768, spellName..": "..player)
+	self:Bar(50768, player..": "..spellName, 6, spellId)
 end
