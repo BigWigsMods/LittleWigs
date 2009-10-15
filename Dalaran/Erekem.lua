@@ -20,7 +20,6 @@ LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "EarthShield", 54479, 59471)
 	self:Log("SPELL_CAST_START", "ChainHeal", 54481, 59473)
 	self:Death("Win", 29315, 32226)
 end
