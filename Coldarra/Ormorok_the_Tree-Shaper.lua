@@ -15,15 +15,7 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ormorok the Tree-Shaper", "enUS", true)
-if L then
-	--@do-not-package@
-	L["frenzy_message"] = "Ormorok goes into a Frenzy!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coldarra/Ormorok_the_Tree_Shaper", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Ormorok the Tree-Shaper")
-mod.locale = L
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -47,6 +39,6 @@ function mod:ReflectionRemoved(_, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, spellName)
 end
 
-function mod:Frenzy(_, spellId)
-	self:Message(48017, L["frenzy_message"], "Important", spellId)
+function mod:Frenzy(boss, spellId)
+	self:Message(48017, LCL["frenzied"]:format(boss), "Important", spellId)
 end

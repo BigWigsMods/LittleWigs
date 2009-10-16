@@ -21,10 +21,11 @@ local frenzyannounced = nil
 -------------------------------------------------------------------------------
 --  Localization
 
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
+
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Krik'thir the Gatewatcher", "enUS", true)
 if L then
 	--@do-not-package@
-	L["frenzy_message"] = "Krik'thir is frenzied"
 	L["frenzysoon_message"] = "Frenzy Soon"
 	--@end-do-not-package@
 	--@localization(locale="enUS", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_additive_table", handle-unlocalized="ignore")@
@@ -62,8 +63,8 @@ function mod:CurseRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
 
-function mod:Frenzy(_, spellId)
-	self:Message(28747, L["frenzy_message"], "Important", spellId)
+function mod:Frenzy(boss, spellId)
+	self:Message(28747, LCL["frenzied"]:format(boss), "Important", spellId)
 end
 
 function mod:UNIT_HEALTH(event, msg)
