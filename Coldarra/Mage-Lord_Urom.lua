@@ -20,15 +20,8 @@ local pName = UnitName("player")
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Mage-Lord Urom", "enUS", true)
-if L then
-	--@do-not-package@
-	L["timeBombWhisper_message"] = "You have the Time Bomb!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coldarra/Mage_Lord_Urom", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Mage-Lord Urom")
-mod.locale = L
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -43,12 +36,12 @@ end
 --  Event Handlers
 
 function mod:TimeBomb(player, spellId, _, _, spellName)
-	self:Message(51121, spellName..": "..player, "Attention", spellId)
-	self:Whisper(51121, player, L["timeBombWhisper_message"])
+	self:TargetMessage(51121, spellName, player, "Personal", spellId, "Alert")
+	self:Whisper(51121, player, BCL["you"]:format(spellName))
 	self:Bar(51121, player..": "..spellName, 6, spellId)
 end
 
 function mod:ArcaneExplosion(_, spellId, _, _, spellName)
-	self:Message(51110, L["arcaneExplosion"], "Attention", spellId)
+	self:Message(51110, LCL["casting"]:format(spellName), "Attention", spellId)
 	self:Bar(51110, spellName, 8, spellId)
 end
