@@ -17,11 +17,6 @@ mod.toggleOptions = {
 local pName = UnitName("player")
 
 -------------------------------------------------------------------------------
---  Localization
-
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -33,7 +28,6 @@ end
 --  Event Handlers
 
 function mod:VoidShift(player, spellId, _, _, spellName)
-	if player ~= pName then return end
-	self:LocalMessage(54361, BCL["you"]:format(spellName), "Personal", true, "Alert", nil, spellId)
-	self:FlashShake(54361)
+	self:TargetMessage(54361, spellName, player, "Personal", spellId, "Alert")
+	if player == pName then self:FlashShake(54361) end
 end

@@ -16,6 +16,12 @@ mod.toggleOptions = {
 
 local pName = UnitName("player")
 
+
+-------------------------------------------------------------------------------
+--  Localizations
+
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+
 -------------------------------------------------------------------------------
 --  Initialization
 
@@ -29,7 +35,7 @@ end
 
 function mod:Overload(player, spellId, _, _, spellName)
 	self:TargetMessage(52658, spellName, player, "Personal", spellId, "Alarm")
-	self:Whisper(52658, player, spellName)
+	self:Whisper(52658, player, BCL["you"]:format(spellName))
 	self:Bar(52658, player..": "..spellName, 10, spellId)
 	if player == pName then self:FlashShake(52658) end
 end

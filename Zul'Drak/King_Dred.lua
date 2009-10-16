@@ -10,6 +10,10 @@ mod.toggleOptions = {
 	59416, -- Summon Raptor
 	"bosskill",
 }
+mod.optionHeaders = {
+	[59416] = "heroic",
+	bosskill = "general",
+}
 
 -------------------------------------------------------------------------------
 --  Initialization
