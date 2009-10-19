@@ -31,7 +31,7 @@ mod.locale = L
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Emerge", 54850) -- To Elemental
-	self:Logr("SPELL_CAST_START", "Merge", 54878) -- To Colossus
+	self:Log("SPELL_CAST_START", "Merge", 54878) -- To Colossus
 	self:Death("Win", 29307)
 end
 

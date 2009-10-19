@@ -17,6 +17,11 @@ mod.toggleOptions = {
 local pName = UnitName("player")
 
 -------------------------------------------------------------------------------
+--  Localization
+
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+
+-------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
