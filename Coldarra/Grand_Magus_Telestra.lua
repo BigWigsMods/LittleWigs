@@ -62,7 +62,7 @@ function mod:UNIT_HEALTH(event, msg)
 	elseif difficulty == 2 and not split2announced and health > 11 and health <= 15 then
 		self:Message("split", L["split_soon_message"], "Attention")
 		split2announced = true
-	elseif (split1announced or split2announced) and percentHealth > 60 then
+	elseif (split1announced or split2announced) and health > 60 then
 		split1announced = false
 		split2announced = false
 	end
