@@ -58,10 +58,10 @@ function mod:UNIT_HEALTH(event, msg)
 	local maxHealth = UnitHealthMax(msg)
 	local percentHealth = (currentHealth/maxHealth)*100
 	if not formannounce and (between(percentHealth, 75, 78) or between(percentHealth, 25, 28)) then
-		self:Message(L["form_rhino"], "Attention")
+		self:Message("forms", L["form_rhino"], "Attention")
 		formannounce = true
 	elseif not formannounce and between(percentHealth, 50, 53) then
-		self:Message(L["form_troll"], "Attention")
+		self:Message("forms", L["form_troll"], "Attention")
 		formannounce = true
 	elseif formannounce and (between(percentHealth, 54, 74) or between(percentHealth, 29, 49)) then
 		formannounce = false
