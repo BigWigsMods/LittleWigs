@@ -2,7 +2,7 @@ local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Common", "enUS", true
 if L then
 	--@do-not-package@
 	L["casting"] = "Casting %s"
-	L["frenzed"] = "%s Frenzied"
+	L["frenzied"] = "%s Frenzied"
 	--@end-do-not-package@
 	--@localization(locale="enUS", format="lua_additive_table", handle-unlocalized="ignore")@
 end

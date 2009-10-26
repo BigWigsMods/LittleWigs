@@ -39,6 +39,6 @@ function mod:ReflectionRemoved(_, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, spellName)
 end
 
-function mod:Frenzy(boss, spellId)
+function mod:Frenzy(_, spellId, boss)
 	self:Message(48017, LCL["frenzied"]:format(boss), "Important", spellId)
 end
