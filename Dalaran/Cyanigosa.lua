@@ -13,10 +13,20 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
+--  Localization
+
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+
+-------------------------------------------------------------------------------
+--  Locals
+
+local pName = UnitName("player")
+
+-------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Blizzard", 58693, 59369)
+	self:Log("SPELL_AURA_APPLIED", "Blizzard", 58693, 59369)
 	self:Log("SPELL_AURA_APPLIED", "Destruction", 59374)
 	self:Log("SPELL_AURA_REMOVED", "DestructionRemoved", 59374)
 	self:Death("Win", 31134)
@@ -25,8 +35,11 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Blizzard(_, spellId, _, _, spellName)
-	self:Message(58693, spellName, "Attention", spellId)
+function mod:Blizzard(player, spellId, _, _, spellName)
+	if player == pName then
+		self:LocalMessage(58693, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
+		self:FlashShake(58693)
+	end
 end
 
 function mod:Destruction(player, spellId, _, _, spellName)
