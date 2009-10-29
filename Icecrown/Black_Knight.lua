@@ -4,7 +4,6 @@
 local mod = BigWigs:NewBoss("The Black Knight", "Trial of the Champion")
 if not mod then return end
 mod.partycontent = true
-mod.otherMenu = "Icecrown"
 mod:RegisterEnableMob(35451)
 mod.toggleOptions = {
 	{67751, "BAR"}, -- Explode Ghouls

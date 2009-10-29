@@ -4,7 +4,6 @@
 local mod = BigWigs:NewBoss("Eadric the Pure", "Trial of the Champion")
 if not mod then return end
 mod.partycontent = true
-mod.otherMenu = "Icecrown"
 mod:RegisterEnableMob(35119)
 mod.toggleOptions = {
 	66935, -- Radiance

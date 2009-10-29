@@ -25,7 +25,6 @@
 ## Version: 3.2.0
 ## LoadOnDemand: 1
 
-## X-BigWigs-Menu: Icecrown
 ## X-BigWigs-PartyContent: true
 ## X-BigWigs-LoadOn-Zone: Trial of the Champion
 

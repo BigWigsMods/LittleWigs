@@ -4,7 +4,6 @@
 local mod = BigWigs:NewBoss("Grand Champions", "Trail of the Champion")
 if not mod then return end
 mod.partyContent = true
-mod.otherMenu = "Icecrown"
 mod:RegisterEnableMob(35004, 35005)
 mod.toggleOptions = {
 	{"rogue_poison", "FLASHSHAKE"},

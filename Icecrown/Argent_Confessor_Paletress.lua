@@ -4,7 +4,6 @@
 local mod = BigWigs:NewBoss("Argent Confessor Paletress", "Trial of the Champion")
 if not mod then return end
 mod.partycontent = true
-mod.otherMenu = "Icecrown"
 mod:RegisterEnableMob(34928)
 mod.toggleOptions = {
 	66515, -- Shield
