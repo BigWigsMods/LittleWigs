@@ -1,0 +1,20 @@
+﻿## Interface: 30200
+
+## Title: Little Wigs [|cffeda55fThe Frozen Halls|r]
+## Notes: Little Wigs The Frozen Halls Modules
+## Author: Ulic
+## X-Credits: Yoshimo
+## Version: 3.2
+## LoadOnDemand: 1
+
+## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
+## X-Category: Party
+
+## X-BigWigs-Menu: The Frozen Halls
+## X-BigWigs-PartyContent: true
+## X-BigWigs-LoadOn-Zone: The Forge of Souls, Pit of Saron, Halls of Reflection
+
+## Dependencies: BigWigs, LittleWigs
+
+locales.xml
+modules.xml
