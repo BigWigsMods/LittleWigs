@@ -12,6 +12,10 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
+--  Locals
+local stun = mod:NewTargetList()
+
+-------------------------------------------------------------------------------
 --  Localization
 
 LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
@@ -33,7 +37,20 @@ function mod:Shock(_, spellId, _, _, spellName)
 	self:Bar(50760, LCL["casting"]:format(spellName), 4, spellId)
 end
 
-function mod:Stun(player, spellId, _, _, spellName)
-	self:Message(50768, spellName..": "..player)
-	self:Bar(50768, player..": "..spellName, 6, spellId)
+do
+	local handle = nil
+	local id, name = nil, nil
+	local time = 6
+	local function StunWarn()
+		if id==59726 then time=10 end 
+		mod:TargetMessage(50760, name, stun, "Urgent", id)
+		mod:Bar(50760, spellName, time, spellId)
+		handle = nil
+	end
+	function mod:Stun(player, spellId, _, _, spellName)
+		stun[#stun + 1] = player
+		if handle then self:CancelTimer(handle) end
+		id, name = spellId, spellName
+		handle = self:ScheduleTimer(StunWarn, 0.2)
+	end
 end
