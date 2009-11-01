@@ -36,7 +36,7 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(event, msg)
 	self:Message("guardian", msg, "Important")
 end
 
@@ -48,3 +48,4 @@ end
 function mod:BroodPlagueRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
+
