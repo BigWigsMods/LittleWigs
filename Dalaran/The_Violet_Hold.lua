@@ -9,12 +9,6 @@ mod:RegisterEnableMob(30658)
 mod.toggleOptions = {"portals", "bosskill"}
 
 -------------------------------------------------------------------------------
---  Locals
-
-local guids = {29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237}
-local deaths = 0
-
--------------------------------------------------------------------------------
 --  Localization
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: The Violet Hold", "enUS", true)
@@ -37,14 +31,12 @@ mod.displayName = L["portals"]
 function mod:OnBossEnable()
 	self:Death("Deaths", 29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
 	self:Death("OnDisable", 31134)
-
-	deaths = 0
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Deaths(_, guid)
+function mod:Deaths()
 	self:Message("portals", L["portal_message95s"], "Attention", "INV_Misc_ShadowEgg")
 	self:DelayedMessage("portals", 80, L["portal_message15s"], "Attention", "INV_Misc_ShadowEgg")
 	self:Bar("portals", L["next_portal"], 95, "INV_Misc_ShadowEgg")
