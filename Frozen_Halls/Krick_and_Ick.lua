@@ -17,8 +17,7 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Locals
 
-local barrage = false
-local deaths = 0
+local barrage = nil
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -45,11 +44,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Toxic", 70274)
 	self:Log("SPELL_CAST_START", "Nova", 68989, 70434)
 	self:Death("Win", 36476)
+
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 end
 
 function mod:OnEngage()
-	barrage = false
-	deaths = 0
+	barrage = nil
 end
 
 -------------------------------------------------------------------------------

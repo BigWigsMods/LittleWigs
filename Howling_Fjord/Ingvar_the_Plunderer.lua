@@ -31,6 +31,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Roar", 42708, 42729, 59708, 59734)
 	self:Log("SPELL_AURA_APPLIED", "Woe", 42730, 59735)
 	self:Death("Deaths", 23954)
+
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 end
 
 function mod:OnEngage()

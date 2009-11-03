@@ -35,6 +35,8 @@ mod.locale = L
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Debilitate", 43650)
 	self:Death("Deaths", 24200, 24201)
+
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 end
 
 function mod:OnEngage()

@@ -30,6 +30,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Explode", 67751)-- other possible ids :  67886, 51874, 47496, 67729,
 	self:Log("SPELL_AURA_APPLIED", "Desecration", 67781, 67876)
 	self:Death("Deaths", 35451)
+
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 end
 
 function mod:OnEngage()

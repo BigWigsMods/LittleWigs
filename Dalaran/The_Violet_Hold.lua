@@ -30,7 +30,7 @@ mod.displayName = L["portals"]
 
 function mod:OnBossEnable()
 	self:Death("Deaths", 29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
-	self:Death("OnDisable", 31134)
+	self:Death("Disable", 31134)
 end
 
 -------------------------------------------------------------------------------

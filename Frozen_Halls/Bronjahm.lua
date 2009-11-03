@@ -43,10 +43,6 @@ function mod:OnBossEnable()
 	self:Death("Win", 36497)
 end
 
-function mod:OnEngage()
-	stormannounced = nil
-end
-
 -------------------------------------------------------------------------------
 --  Event Handlers
 
