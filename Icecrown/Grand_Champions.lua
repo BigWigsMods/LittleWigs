@@ -4,7 +4,14 @@
 local mod = BigWigs:NewBoss("Grand Champions", "Trail of the Champion")
 if not mod then return end
 mod.partyContent = true
-mod:RegisterEnableMob(35004, 35005)
+mod:RegisterEnableMob(
+	-- Horde NPCs
+	34657, 34701, 34702, 34703, 34705,
+	-- Announcers
+	35004, 35005,
+	-- Alliance NPCs
+	35569, 35570, 35571, 35572, 35617
+)
 mod.toggleOptions = {
 	{"rogue_poison", "FLASHSHAKE"},
 	67534, -- Shaman Hex
@@ -16,7 +23,6 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Local
 
-local guids = {34657, 34701, 34702, 34703, 34705, 35569, 35570, 35571, 35572, 35617} -- the guids of all possible grand champions.
 local pName = UnitName("player")
 
 -------------------------------------------------------------------------------
