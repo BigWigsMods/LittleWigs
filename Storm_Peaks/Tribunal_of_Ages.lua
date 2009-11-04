@@ -14,6 +14,8 @@ mod.toggleOptions = {"timers", "bosskill"}
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Tribunal of Ages", "enUS", true)
 if L then
 --@do-not-package@
+	L["moduleName"] = "Tribunal of Ages"
+
 	L["enable_trigger"] = "Time to get some answers"
 	L["engage_trigger"] = "Take a moment and relish this with me"
 	L["defeat_trigger"] = "The old magic fingers"
@@ -29,6 +31,8 @@ if L then
 end
 L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Tribunal of Ages")
 mod.locale = L
+
+mod.displayName = L["moduleName"]
 
 -------------------------------------------------------------------------------
 --  Initialization
