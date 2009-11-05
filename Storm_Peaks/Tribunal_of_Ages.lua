@@ -17,7 +17,7 @@ if L then
 	L["moduleName"] = "Tribunal of Ages"
 
 	L["enable_trigger"] = "Time to get some answers"
-	L["engage_trigger"] = "Take a moment and relish this with me"
+	L["engage_trigger"] = "Now keep an eye out"
 	L["defeat_trigger"] = "The old magic fingers"
 
 	L["timers"] = "Timers"
@@ -44,12 +44,9 @@ end
 function mod:OnBossEnable()
 	self:Yell("Engage", L["engage_trigger"])
 	self:Yell("Win", L["defeat_trigger"])
-
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 function mod:OnEngage()
-	self:Bar("timers", L["combat"], 45, "Ability_DualWield")
 	self:Bar("timers", L["wave"], 50, "Ability_DualWield")
 	self:Bar("timers", L["victory"], 315, "INV_Misc_PocketWatch_01")
 end
