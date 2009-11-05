@@ -5,7 +5,7 @@ local mod = BigWigs:NewBoss("Tribunal of Ages", "Halls of Stone")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "The Storm Peaks"
-mod:RegisterEnableMob(27978)
+mod:RegisterEnableMob(28070)
 mod.toggleOptions = {"timers", "bosskill"}
 
 -------------------------------------------------------------------------------
@@ -19,11 +19,11 @@ if L then
 	L["enable_trigger"] = "Time to get some answers"
 	L["engage_trigger"] = "Now keep an eye out"
 	L["defeat_trigger"] = "The old magic fingers"
+	L["fail_trigger"] = "Not yet, not"
 
 	L["timers"] = "Timers"
 	L["timers_desc"] = "Timers for various events that take place."
 
-	L["combat"] = "Enter Combat"
 	L["wave"] = "First wave!"
 	L["victory"] = "Victory!"
 --@end-do-not-package@
@@ -43,6 +43,7 @@ end
 
 function mod:OnBossEnable()
 	self:Yell("Engage", L["engage_trigger"])
+	self:Yell("Reboot", L["fail_trigger"])
 	self:Yell("Win", L["defeat_trigger"])
 end
 
