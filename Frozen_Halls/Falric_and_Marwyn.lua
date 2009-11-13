@@ -8,11 +8,11 @@ mod.partyContent = true
 mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(38112, 38113)
 mod.toggleOptions = {
-	72426, -- Impending Despair
-	72422, -- Quivering Strike
+	{72426, "ICON"}, -- Impending Despair
+	{72422, "ICON"}, -- Quivering Strike
 	72363, -- Corrupted Flesh
-	72368, -- Shared Suffering
-	72383, -- Corrupted Touch
+	{72368, "ICON"},-- Shared Suffering
+	{72383, "ICON"}, -- Corrupted Touch
 	"bosskill",
 }
 
