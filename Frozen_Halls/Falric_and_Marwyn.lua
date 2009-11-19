@@ -20,6 +20,8 @@ mod.toggleOptions = {
 --  Locals
 
 local deaths = 0
+local flesh = mod:NewTargetList()
+local pName = UnitName("player")
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -46,18 +48,14 @@ function mod:OnBossEnable()
 
 	-- Marwyn
 	self:Log("SPELL_AURA_APPLIED", "Suffering", 72368) --12s
-	self:Log("SPELL_AURA_APPLIED", "Flesh", 72363) --10s no dispell
 	self:Log("SPELL_AURA_APPLIED", "Touch", 72383) --10s]]--
+	self:Log("SPELL_AURA_APPLIED", "Flesh", 72363) --10s no dispell
 
-	self:Log("SPELL_AURA_REMOVED", "Debuff", 72363, 72368, 72383, 72422, 72426)
-	self:Log("SPELL_AURA_REMOVED", "Removed", 72368, 72383, 72422, 72426) -- Handles removing both Despair and Strike
+	self:Log("SPELL_AURA_REMOVED", "Debuff", 72368, 72383, 72422, 72426)
+	self:Log("SPELL_AURA_REMOVED", "Removed", 72368, 72383, 72422, 72426)
 	self:Death("Deaths", 38112, 38113)
 
 	self:Yell("OnEngage", L["engage_trigger"])
-end
-
-function mod:OnEngage()
-	deaths = 0
 end
 
 -------------------------------------------------------------------------------
@@ -100,17 +98,34 @@ function mod:Suffering(player, spellId, _, _, spellName)
 	self:SecondaryIcon(72368, player)
 end
 
-function mod:Flesh(player, spellId, _, _, spellName)
-	self:Message(72363, spellName..": "..player, "Important", spellId)
-	self:Bar(72363, player..": "..spellName, 5, spellId)
-	self:PrimaryIcon(72363, player)
-end
-
 function mod:Touch(player, spellId, _, _, spellName)
 	self:TargetMessage(72383, player, spellName, "Urgent", spellId)
 	self:Bar(72383, player..": "..spellName, 5, spellId)
 	self:PrimaryIcon(72383, player)
 end]]--
+	
+do
+	local handle = nil
+	local id, name = nil, nil
+	local function fleshWarn()
+		if not warned then
+			mod:TargetMessage(72383, name, flesh, "Urgent", id)
+		else
+			warned = nil
+			wipe(flesh)
+		end
+		handle = nil
+	end
+	function mod:Flesh(player, spellId, _, _, spellName)
+		flesh[#flesh + 1] = player
+		if handle then self:CancelTimer(handle) end
+		id, name = spellId, spellName
+		handle = self:ScheduleTimer(fleshWarn, 0.1) -- has been 0.2 before
+		if player == pName then
+			self:LocalMessage(72383, spellName, player, "Personal", spellId, "Info")
+		end
+	end
+end
 
 function mod:Removed(player, spellId, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
