@@ -1,7 +1,9 @@
 ﻿## Interface: 30200
 
 ## Title: Little Wigs [|cffeda55fThe Frozen Halls|r]
+## Title-frFR: Little Wigs [|cffeda55fLes salles Gelées|r]
 ## Notes: Little Wigs The Frozen Halls Modules
+## Notes-frFR: Modules Little Wigs concernant les salles Gelées.
 ## Author: Ulic
 ## X-Credits: Yoshimo
 ## Version: 3.2
