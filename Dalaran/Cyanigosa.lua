@@ -7,7 +7,7 @@ mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(31134)
 mod.toggleOptions = {
-	58693, -- Blizzard
+	{58693, "FLASHSHAKE"}, -- Blizzard
 	59374, -- Destruction
 	"bosskill",
 }
