@@ -21,14 +21,14 @@ local shielded = false
 
 local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Argent Confessor Paletress", "enUS", true)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Argent Confessor Paletress", "enUS", true)
 if L then
 	--@do-not-package@
 	L["defeat_trigger"] = "Excellent work!"
 	--@end-do-not-package@
 	--@localization(locale="enUS", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Argent Confessor Paletress")
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Argent Confessor Paletress")
 mod.locale = L
 
 -------------------------------------------------------------------------------

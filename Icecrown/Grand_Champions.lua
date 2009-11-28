@@ -28,9 +28,9 @@ local pName = UnitName("player")
 -------------------------------------------------------------------------------
 --  Localization
 
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Grand Champions", "enUS", true)
+local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Grand Champions", "enUS", true)
 if L then
 	--@do-not-package@
 	L["defeat_trigger"] = "Well Fought!"
@@ -40,7 +40,7 @@ if L then
 	--@end-do-not-package@
 	--@localization(locale="enUS", namespace="Icecrown/Grand_Champions", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Grand Champions")
+L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Grand Champions")
 mod.locale = L
 
 -------------------------------------------------------------------------------
