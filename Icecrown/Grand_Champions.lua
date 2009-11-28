@@ -28,8 +28,6 @@ local pName = UnitName("player")
 -------------------------------------------------------------------------------
 --  Localization
 
-local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Grand Champions", "enUS", true)
 if L then
 	--@do-not-package@
