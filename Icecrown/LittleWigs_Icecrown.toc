@@ -1,13 +1,4 @@
 ﻿## Interface: 30300
-## X-Curse-Packaged-Version: 3.0.0-beta1
-## X-Curse-Packaged-Version: v3.2
-## X-Curse-Project-Name: LittleWigs
-## X-Curse-Project-ID: little-wigs
-## X-Curse-Repository-ID: wow/little-wigs/mainline
-## X-Curse-Packaged-Version: r584
-## X-Curse-Project-Name: LittleWigs
-## X-Curse-Project-ID: little-wigs
-## X-Curse-Repository-ID: wow/little-wigs/mainline
 
 ## Title: Little Wigs [|cffeda55fIcecrown|r]
 ## Title-frFR: Little Wigs [|cffeda55fLa Couronne de glace|r]
@@ -22,7 +13,7 @@
 ## Notes-koKR: Little Wigs [|cffeda55f십자군 원형경기장|r]
 
 ## Author: Yoshimo
-## Version: 3.2.0
+## Version: 3.3
 ## LoadOnDemand: 1
 
 ## X-BigWigs-PartyContent: true

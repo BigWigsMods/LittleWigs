@@ -10,7 +10,7 @@
 ## Notes-koKR: 5인 던전용 보스 경고 애드온
 ## Author: Ulic
 ## X-Credits: Yoshimo (for many many log files)
-## Version: 3.2
+## Version: 3.3
 ## X-Build: $Rev$
 ## X-Category: Party
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx

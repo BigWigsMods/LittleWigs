@@ -1,5 +1,4 @@
 ﻿## Interface: 30300
-## X-Curse-Packaged-Version: 3.0.0-beta1
 
 ## Title: Little Wigs [|cffeda55fDragonblight|r]
 ## Notes: Little Wigs Dragonblight Modules
@@ -15,7 +14,7 @@
 ## Notes-ruRU: Модуль Little Wigs - Драконий погост
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.2
+## Version: 3.3
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx

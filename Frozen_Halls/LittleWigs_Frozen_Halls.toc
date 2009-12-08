@@ -6,7 +6,7 @@
 ## Notes-frFR: Modules Little Wigs concernant les salles Gelées.
 ## Author: Ulic
 ## X-Credits: Yoshimo
-## Version: 3.2
+## Version: 3.3
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
