@@ -1,4 +1,4 @@
-﻿## Interface: 30200 
+﻿## Interface: 30300 
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for Lich King 5-man dungeons.

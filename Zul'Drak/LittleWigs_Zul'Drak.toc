@@ -1,4 +1,4 @@
-﻿## Interface: 30200
+﻿## Interface: 30300
 
 ## Title: Little Wigs [|cffeda55fZul'Drak|r]
 ## Notes: Little Wigs Zul'Drak Modules
