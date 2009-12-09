@@ -36,13 +36,13 @@ end
 --  Event Handlers
 
 function mod:Mirror(unit, spellId, _, _, spellName)
-	if UnitName(unit) == mod.displayName then return end
+	if unit == mod.displayName then return end
 	self:TargetMessage(69051, spellName, unit, "Personal", spellId, "Alert")
 	self:Bar(69051, unit..": "..spellName, 8, spellId)
 	self:PrimaryIcon(69051, unit)
 end
 
 function mod:MirrorRemoved(unit, spellId, _, _, spellName)
-	if UnitName(unit) == mod.displayName then return end
+	if unit == mod.displayName then return end
 	self:PrimaryIcon(69051, false)
 end
