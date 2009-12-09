@@ -23,19 +23,6 @@ local flesh = mod:NewTargetList()
 local pName = UnitName("player")
 
 -------------------------------------------------------------------------------
---  Localization
-
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Falric and Marwyn", "enUS", true)
-if L then
-	--@do-not-package@
-	L["engage_trigger"] = "Place holder"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Frozen_Halls/Falric_and_Marwyn", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Falric and Marwyn")
-mod.locale = L
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -52,9 +39,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_AURA_REMOVED", "Debuff", 72368, 72383, 72422, 72426)
 	self:Log("SPELL_AURA_REMOVED", "Removed", 72368, 72383, 72422, 72426)
-	self:Death("Deaths", 38112, 38113)
-
-	self:Yell("OnEngage", L["engage_trigger"])
+	self:Death("Win", 38113)
 end
 
 -------------------------------------------------------------------------------
@@ -130,9 +115,4 @@ function mod:Removed(player, spellId, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 	self:PrimaryIcon(spellId, false)
 	self:SecondaryIcon(spellId, false)
-end
-
-function mod:Deaths()
-	deaths = deaths + 1
-	if deaths == 2 then self:Win() end
 end
