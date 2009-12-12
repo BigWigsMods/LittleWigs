@@ -91,9 +91,11 @@ end]]--
 do
 	local handle = nil
 	local id, name = nil, nil
+	local warned = nil
 	local function fleshWarn()
 		if not warned then
-			mod:TargetMessage(72383, name, flesh, "Urgent", id)
+			mod:Message(72363, name, "Urgent", id)
+			warned = true
 		else
 			warned = nil
 			wipe(flesh)
@@ -105,9 +107,6 @@ do
 		if handle then self:CancelTimer(handle) end
 		id, name = spellId, spellName
 		handle = self:ScheduleTimer(fleshWarn, 0.1) -- has been 0.2 before
-		if player == pName then
-			self:LocalMessage(72383, spellName, player, "Personal", spellId, "Info")
-		end
 	end
 end
 
