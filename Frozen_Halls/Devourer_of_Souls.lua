@@ -8,6 +8,7 @@ mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(36502)
 mod.toggleOptions = {
 	69051, -- Mirrored Soul
+	68912, -- Wailing Soul
 	"bosskill",
 }
 
@@ -29,6 +30,7 @@ mod.locale = L
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Mirror", 69051)
 	self:Log("SPELL_AURA_REMOVED", "MirrorRemoved", 69051)
+	self:Log("SPELL_AURA_APPLIED", "Wailing", 68912)
 	self:Death("Win", 36502)
 end
 
@@ -45,4 +47,8 @@ end
 function mod:MirrorRemoved(unit, spellId, _, _, spellName)
 	if unit == mod.displayName then return end
 	self:PrimaryIcon(69051, false)
+end
+
+function mod:Wailing(player, spellId, _, _, spellName)
+	self:Message(68912, spellName, "Important", spellId)
 end
