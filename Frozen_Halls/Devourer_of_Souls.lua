@@ -51,4 +51,5 @@ end
 
 function mod:Wailing(player, spellId, _, _, spellName)
 	self:Message(68912, spellName, "Important", spellId)
+	self:Bar(68912, spellName, 15, spellId)
 end

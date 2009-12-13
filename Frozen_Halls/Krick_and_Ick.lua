@@ -10,6 +10,7 @@ mod.toggleOptions = {
 	70274, -- Toxic Waste
 	68989, -- Poison Nova
 	69263, -- Explosive Barrage
+	68987, -- Pursuit
 	"bosskill",
 }
 
@@ -42,6 +43,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "BarrageEnd", 69263)
 	self:Log("SPELL_AURA_APPLIED", "Toxic", 70274)
 	self:Log("SPELL_CAST_START", "Nova", 68989, 70434)
+	self:Log("SPELL_CAST_START", "Pursuit", 68987)
 	self:Death("Win", 36476)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
@@ -75,4 +77,9 @@ end
 function mod:Nova(_, spellId, _, _, spellName)
 	self:Message(68989, LCL["casting"]:format(spellName), "Urgent", spellId)
 	self:Bar(68989, spellName, 5, spellId)
+end
+
+function mod:Pursuit(_, spellId, _, _, spellName)
+	self:Message(68987, spellName, "Information", spellId)
+	self:Bar(68987, spellName, 12, spellId)
 end
