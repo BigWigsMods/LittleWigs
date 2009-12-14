@@ -40,7 +40,7 @@ end
 --  Event Handlers
 
 function mod:Brand(player, spellId, _, _, spellName)
-	self:LocalMessage(69172, spellName, player, "Personal", spellId, "Alert")
+	self:LocalMessage(69172, spellName, "Personal", spellId, "Alert")
 	self:Bar(69172, player..": "..spellName, 8, spellId)
 	self:FlashShake(69172)
 end
