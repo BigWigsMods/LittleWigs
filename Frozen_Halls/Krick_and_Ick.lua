@@ -18,6 +18,8 @@ mod.toggleOptions = {
 --  Locals
 
 local barrage = nil
+local pursuit = GetSpellInfo(68987)
+local pursuitWarned = {}
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -43,10 +45,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "BarrageEnd", 69263)
 	self:Log("SPELL_AURA_APPLIED", "Toxic", 70274)
 	self:Log("SPELL_CAST_START", "Nova", 68989, 70434)
-	self:Log("SPELL_CAST_START", "Pursuit", 68987)
 	self:Death("Win", 36476)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("UNIT_AURA")
 end
 
 function mod:OnEngage()
@@ -79,7 +81,13 @@ function mod:Nova(_, spellId, _, _, spellName)
 	self:Bar(68989, spellName, 5, spellId)
 end
 
-function mod:Pursuit(_, spellId, _, _, spellName)
-	self:Message(68987, spellName, "Information", spellId)
-	self:Bar(68987, spellName, 12, spellId)
+function mod:UNIT_AURA(event, unit)
+	local name, _, icon = UnitDebuff(unit, pursuit)
+	local n = UnitName(unit)
+	if pursuitWarned[n] and not name then
+		pursuitWarned[n] = nil
+	elseif name and not pursuitWarned[n] then
+		self:TargetMessage(68987, pursuit, n, "Attention", icon)
+		pursuitWarned[n] = true
+	end
 end
