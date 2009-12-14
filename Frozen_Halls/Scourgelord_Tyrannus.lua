@@ -14,6 +14,11 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
+--  Locals
+
+local pName = UnitName("player")
+
+-------------------------------------------------------------------------------
 --  Localization
 
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Scourgelord Tyrannus", "enUS", true)
@@ -40,6 +45,7 @@ end
 --  Event Handlers
 
 function mod:Brand(player, spellId, _, _, spellName)
+	if player ~= pName then return end
 	self:LocalMessage(69172, spellName, "Personal", spellId, "Alert")
 	self:Bar(69172, player..": "..spellName, 8, spellId)
 	self:FlashShake(69172)
