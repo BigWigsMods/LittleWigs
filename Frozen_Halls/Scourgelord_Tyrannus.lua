@@ -7,8 +7,8 @@ mod.partyContent = true
 mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(36658, 36661)
 mod.toggleOptions = {
-	{69172, "FLASHSHAKE"}, -- Overlords Brand
-	{69275, "ICON"}, -- Mark of Rimefang
+	69172, -- Overlords Brand
+	{69275, "ICON", "FLASHSHAKE"}, -- Mark of Rimefang
 	69629, -- Unholy Power
 	"bosskill",
 }
@@ -45,15 +45,14 @@ end
 --  Event Handlers
 
 function mod:Brand(player, spellId, _, _, spellName)
-	if player ~= pName then return end
-	self:LocalMessage(69172, spellName, "Personal", spellId, "Alert")
+	self:TargetMessage(69172, spellName, player, "Personal", spellId, "Alert")
 	self:Bar(69172, player..": "..spellName, 8, spellId)
-	self:FlashShake(69172)
 end
 
 function mod:Mark(player, spellId, _, _, spellName)
 	self:TargetMessage(69275, spellName, player, "Personal", spellId, "Alert")
 	self:Bar(69275, player..": "..spellName, 7, spellId)
+	if player == pName then self:FlashShake(69275) end
 	self:PrimaryIcon(69275, player)
 end
 
