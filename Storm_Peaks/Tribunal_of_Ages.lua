@@ -11,26 +11,24 @@ mod.toggleOptions = {"timers", "bosskill"}
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Tribunal of Ages", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
-	L["moduleName"] = "Tribunal of Ages"
+L["moduleName"] = "Tribunal of Ages"
 
-	L["enable_trigger"] = "Time to get some answers"
-	L["engage_trigger"] = "Now keep an eye out"
-	L["defeat_trigger"] = "The old magic fingers"
-	L["fail_trigger"] = "Not yet, not"
+L["enable_trigger"] = "Time to get some answers"
+L["engage_trigger"] = "Now keep an eye out"
+L["defeat_trigger"] = "The old magic fingers"
+L["fail_trigger"] = "Not yet, not"
 
-	L["timers"] = "Timers"
-	L["timers_desc"] = "Timers for various events that take place."
+L["timers"] = "Timers"
+L["timers_desc"] = "Timers for various events that take place."
 
-	L["wave"] = "First wave!"
-	L["victory"] = "Victory!"
---@end-do-not-package@
+L["wave"] = "First wave!"
+L["victory"] = "Victory!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="Storm_Peaks/Tribunal_of_Ages", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Tribunal of Ages")
-mod.locale = L
+L = mod:GetLocale()
 
 mod.displayName = L["moduleName"]
 

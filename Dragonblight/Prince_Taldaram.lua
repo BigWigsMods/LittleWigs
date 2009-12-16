@@ -15,17 +15,15 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Prince Taldaram", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["embraceFade"] = "Embrace of the Vampyr Fades"
-	L["embraceGain"] = "Embrace of the Vampyr Gained"
-	L["sphere_message"] = "Conjuring Flame Sphere"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Dragonblight/Prince_Taldaram", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["embraceFade"] = "Embrace of the Vampyr Fades"
+L["embraceGain"] = "Embrace of the Vampyr Gained"
+L["sphere_message"] = "Conjuring Flame Sphere"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Dragonblight/Prince_Taldaram", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Prince Taldaram")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

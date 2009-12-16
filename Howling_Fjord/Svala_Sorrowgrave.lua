@@ -15,16 +15,14 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Svala Sorrowgrave", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["ritualcooldown_bar"] = "Ritual cooldown"
-	L["ritualcooldown_message"] = "Ritual cooldown passed"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["ritualcooldown_bar"] = "Ritual cooldown"
+L["ritualcooldown_message"] = "Ritual cooldown passed"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Howling_Fjord/Svala_Sorrowgrave", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Svala Sorrowgrave")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

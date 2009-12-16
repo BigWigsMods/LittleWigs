@@ -15,13 +15,14 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Elder Nadox", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	L["guardian"] = "Summon Guardians"
-	L["guardian_desc"] = "Warn when Elder Nadox summons Guardians."
+--@do-not-package@
+L["guardian"] = "Summon Guardians"
+L["guardian_desc"] = "Warn when Elder Nadox summons Guardians."--@end-do-not-package@
+--@localization(locale="enUS", namespace="Dragonblight/Elder_Nadox", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Elder Nadox")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

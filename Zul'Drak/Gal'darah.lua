@@ -16,18 +16,16 @@ local formannounce = false
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Gal'darah", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["form_rhino"] = "Rhino Form Soon"
-	L["forms"] = "Forms"
-	L["forms_desc"] = "Warn before Gal'darah changes forms."
-	L["form_troll"] = "Troll Form Soon"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Zul_Drak/Gal_darah", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["form_rhino"] = "Rhino Form Soon"
+L["forms"] = "Forms"
+L["forms_desc"] = "Warn before Gal'darah changes forms."
+L["form_troll"] = "Troll Form Soon"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Zul_Drak/Gal_darah", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Gal'darah")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -14,15 +14,13 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Xevozz", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["sphere_message"] = "Summoning Ethereal Sphere"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Dalaran/Xevozz", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["sphere_message"] = "Summoning Ethereal Sphere"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Dalaran/Xevozz", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Xevozz")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

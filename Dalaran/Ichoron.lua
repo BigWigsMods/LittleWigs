@@ -15,16 +15,14 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ichoron", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["bubbleEnded_message"] = "Protective Bubble Faded"
-	L["bubble_message"] = "Gained Protective Bubble"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Dalaran/Ichoron", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["bubbleEnded_message"] = "Protective Bubble Faded"
+L["bubble_message"] = "Gained Protective Bubble"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Dalaran/Ichoron", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Ichoron")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

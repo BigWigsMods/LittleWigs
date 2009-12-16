@@ -23,15 +23,13 @@ local frenzyannounced = nil
 
 local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Krik'thir the Gatewatcher", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["frenzysoon_message"] = "Frenzy Soon"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["frenzysoon_message"] = "Frenzy Soon"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Krik'thir the Gatewatcher")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

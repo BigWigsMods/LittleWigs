@@ -15,15 +15,13 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Gortok Palehoof", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["roarcooldown_bar"] = "Roar cooldown"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["roarcooldown_bar"] = "Roar cooldown"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Howling_Fjord/Gortok_Palehoof", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Gortok Palehoof")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

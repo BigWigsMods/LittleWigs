@@ -20,16 +20,14 @@ local sleepDuration = 8
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Mal'Ganis", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["defeat_trigger"] = "Your journey has just begun"
-	L["vampTouch_message"] = "Mal'Ganis gains Vampiric Touch"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["defeat_trigger"] = "Your journey has just begun"
+L["vampTouch_message"] = "Mal'Ganis gains Vampiric Touch"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Mal'Ganis")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -28,18 +28,16 @@ local pName = UnitName("player")
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Grand Champions", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["defeat_trigger"] = "Well Fought!"
-	L["mage_poly_message"] = "%s Polymorphed!"
-	L["rogue_poison"] = "Poison Bottle"
-	L["rogue_poison_desc"] = "Throws a poison bottle to a random player, leaving a 5 yard radius poison cloud dealing 1,000 (Heroic: 1,750) Nature damage every second to everyone standing in it. Last 20 seconds."
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Icecrown/Grand_Champions", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["defeat_trigger"] = "Well Fought!"
+L["mage_poly_message"] = "%s Polymorphed!"
+L["rogue_poison"] = "Poison Bottle"
+L["rogue_poison_desc"] = "Throws a poison bottle to a random player, leaving a 5 yard radius poison cloud dealing 1,000 (Heroic: 1,750) Nature damage every second to everyone standing in it. Last 20 seconds."--@end-do-not-package@
+--@localization(locale="enUS", namespace="Icecrown/Grand_Champions", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Grand Champions")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

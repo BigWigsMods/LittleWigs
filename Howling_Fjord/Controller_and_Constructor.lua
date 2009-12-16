@@ -19,15 +19,13 @@ local deaths = 0
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Controller & Constructor", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["dies"] = "#%d Killed"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["dies"] = "#%d Killed"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Controller & Constructor")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

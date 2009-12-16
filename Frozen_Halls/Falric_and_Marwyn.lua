@@ -27,14 +27,6 @@ local pName = UnitName("player")
 
 function mod:OnBossEnable()
 	deaths = 0
-	--[[ XXX Just leaving this here for the moment in case my condensed code doesn't work
-	-- Falric
-	self:Log("SPELL_AURA_APPLIED", "Despair", 72426) --6s
-	self:Log("SPELL_AURA_APPLIED", "Strike", 72422) --5s
-
-	-- Marwyn
-	self:Log("SPELL_AURA_APPLIED", "Suffering", 72368) --12s
-	self:Log("SPELL_AURA_APPLIED", "Touch", 72383) --10s]]--
 	self:Log("SPELL_AURA_APPLIED", "Flesh", 72363) --10s no dispell
 
 	self:Log("SPELL_AURA_REMOVED", "Debuff", 72368, 72383, 72422, 72426)
@@ -63,31 +55,6 @@ function mod:Debuff(player, spellId, _, _, spellName)
 	self:Bar(spellId, player..": "..spellName, time, spellId)
 end
 
--- XXX Just leaving this here for the moment in case my condensed code doesn't work
---[[function mod:Despair(player, spellId, _, _, spellName)
-	self:Message(72426, spellName..": "..player, "Important", spellId)
-	self:Bar(72426, player..": "..spellName, 6, spellId)
-	self:SecondaryIcon(72426, player)
-end
-
-function mod:Strike(player, spellId, _, _, spellName)
-	self:Message(72422, spellName..": "..player, "Important", spellId)
-	self:Bar(72422, player..": "..spellName, 5, spellId)
-	self:PrimaryIcon(72422, player)
-end
-
-function mod:Suffering(player, spellId, _, _, spellName)
-	self:Message(72368, spellName..": "..player, "Important", spellId)
-	self:Bar(72368, player..": "..spellName, 5, spellId)
-	self:SecondaryIcon(72368, player)
-end
-
-function mod:Touch(player, spellId, _, _, spellName)
-	self:TargetMessage(72383, player, spellName, "Urgent", spellId)
-	self:Bar(72383, player..": "..spellName, 5, spellId)
-	self:PrimaryIcon(72383, player)
-end]]--
-	
 do
 	local handle = nil
 	local id, name = nil, nil

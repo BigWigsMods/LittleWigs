@@ -13,18 +13,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
-
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Devourer of Souls", "enUS", true)
-if L then
-	--@do-not-package@
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Frozen_Halls/Devourer_of_Souls", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Devourer of Souls")
-mod.locale = L
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()

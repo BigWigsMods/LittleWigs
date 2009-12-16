@@ -17,15 +17,13 @@ mod.toggleOptions = {
 
 LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: King Ymiron", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["bane_ended"] = "Bane Fades"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Howling_Fjord/King_Ymiron", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["bane_ended"] = "Bane Fades"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Howling_Fjord/King_Ymiron", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: King Ymiron")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

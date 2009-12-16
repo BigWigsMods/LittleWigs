@@ -27,15 +27,13 @@ local pursuitWarned = {}
 local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Krick and Ick", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["barrage_message"] = "Summoning explosive mines"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Frozen_Halls/Krick_and_Ick", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["barrage_message"] = "Summoning explosive mines"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Frozen_Halls/Krick_and_Ick", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Krick and Ick")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

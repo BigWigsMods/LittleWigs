@@ -21,20 +21,18 @@ local shielded = false
 
 local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Argent Confessor Paletress", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["defeat_trigger"] = "Excellent work!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["defeat_trigger"] = "Excellent work!"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Argent Confessor Paletress")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnEnable()
+function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ShieldGain", 66515)
 	self:Log("SPELL_AURA_REMOVED", "ShieldLost", 66515)
 	self:Log("SPELL_CAST_START", "Renew", 66537, 67675)

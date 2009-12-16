@@ -14,15 +14,13 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Anomalus", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["rift_message"] = "Rift Summoned"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coldarra/Anomalus", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["rift_message"] = "Rift Summoned"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Coldarra/Anomalus", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Anomalus")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

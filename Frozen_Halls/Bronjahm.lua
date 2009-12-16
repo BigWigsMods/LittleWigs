@@ -20,15 +20,13 @@ local stormannounced = nil
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Bronjahm, the Godfather of Souls", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["storm_soon"] = "Soulstorm Soon!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Frozen_Halls/Bronjahm", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["storm_soon"] = "Soulstorm Soon!"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Frozen_Halls/Bronjahm", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Bronjahm, the Godfather of Souls")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

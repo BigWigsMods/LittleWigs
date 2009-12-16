@@ -15,17 +15,15 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ley-Guardian Eregos", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["enragedassault_message"] = "Enraged Assault"
-	L["planarshift_expire_message"] = "Planar Shift ends in 5 sec"
-	L["planarshift_message"] = "Planar Shift"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["enragedassault_message"] = "Enraged Assault"
+L["planarshift_expire_message"] = "Planar Shift ends in 5 sec"
+L["planarshift_message"] = "Planar Shift"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Ley-Guardian Eregos")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

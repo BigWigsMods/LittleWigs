@@ -1,14 +1,15 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ichoron", "ruRU")
+local L = BigWigs:NewBossLocale("Ichoron", "ruRU")
 if L then
-	--@localization(locale="ruRU", namespace="Dalaran/Ichoron", format="lua_additive_table", handle-unlocalized="ignore")@
+--@localization(locale="ruRU", namespace="Dalaran/Ichoron", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: The Violet Hold", "ruRU")
+local L = BigWigs:NewBossLocale("Portals", "ruRU")
 if L then
-	--@localization(locale="ruRU", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
+--@localization(locale="ruRU", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Xevozz", "ruRU")
+local L = BigWigs:NewBossLocale("Xevozz", "ruRU")
 if L then
-	--@localization(locale="ruRU", namespace="Dalaran/Xevozz", format="lua_additive_table", handle-unlocalized="ignore")@
+--@localization(locale="ruRU", namespace="Dalaran/Xevozz", format="lua_additive_table", handle-unlocalized="ignore")@
 end
+

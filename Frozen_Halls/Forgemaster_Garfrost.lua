@@ -15,15 +15,13 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Forgemaster Garfrost", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["throw_message"] = "Saronite Boulder Incoming!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Frozen_Halls/Forgemaster_Garfrost", format="lua_additive_table", handle-unlocalized="ignore")@
+--@do-not-package@
+L["throw_message"] = "Saronite Boulder Incoming!"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Frozen_Halls/Forgemaster_Garfrost", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Forgemaster Garfrost")
-mod.locale = L
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
