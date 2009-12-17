@@ -1,7 +1,7 @@
 ﻿-------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Grand Champions", "Trail of the Champion")
+local mod = BigWigs:NewBoss("Grand Champions", "Trial of the Champion")
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(
