@@ -5,7 +5,7 @@ local mod = BigWigs:NewBoss("Loken", "Halls of Lightning")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "The Storm Peaks"
-mod:RegisterEnableMob(28586)
+mod:RegisterEnableMob(28923)
 mod.toggleOptions = {
 	52960, -- Nova
 	"bosskill",
@@ -21,7 +21,7 @@ local casttime = 4
 
 function mod:OnEnable()
 	self:Log("SPELL_CAST_START", "Nova", 52960, 59835)
-	self:Death("Win", 28586)
+	self:Death("Win", 28923)
 
 	if GetInstanceDifficulty() == 1 then
 		casttime = 5
