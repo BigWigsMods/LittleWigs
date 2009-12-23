@@ -29,7 +29,7 @@ L = mod:GetLocale()
 function mod:OnEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Roar", 48256, 59267)
 	self:Log("SPELL_AURA_APPLIED", "Impale", 48261, 59268)
-	self:Death("Win", 2668)
+	self:Death("Win", 26687)
 end
 
 -------------------------------------------------------------------------------
