@@ -50,7 +50,8 @@ end
 --  Event Handlers
 
 function mod:UNIT_HEALTH(event, msg)
-	if UnitName(msg) ~= mod.displayName then return end
+	local guid = tonumber(UnitGUID(msg):sub(-12, -7), 16)
+	if guid ~= 26731 then return end
 	local currentHealth = UnitHealth(msg)
 	local maxHealth = UnitHealthMax(msg)
 	local health = (currentHealth/maxHealth)*100
