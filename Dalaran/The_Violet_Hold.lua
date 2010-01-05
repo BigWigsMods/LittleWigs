@@ -5,7 +5,7 @@
 local mod = BigWigs:NewBoss("Portals", "The Violet Hold")
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
-mod:RegisterEnableMob(30658)
+mod:RegisterEnableMob(30658,29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
 mod.toggleOptions = {"portals", "bosskill"}
 
 -------------------------------------------------------------------------------
@@ -44,7 +44,6 @@ function mod:Deaths()
 	self:DelayedMessage("portals", 80, L["portal_message15s"]:format(lastportal+1), "Attention", "INV_Misc_ShadowEgg")
 	self:Bar("portals", L["next_portal"]:format(lastportal+1), 95, "INV_Misc_ShadowEgg")
 end
-
 
 function mod:UPDATE_WORLD_STATES()
 	local text = select(3, GetWorldStateUIInfo(2))
