@@ -53,7 +53,7 @@ function mod:UPDATE_WORLD_STATES()
 		lastportal = 0
 	elseif portal > lastportal then
 		self:SendMessage("BigWigs_StopBar", self, L["next_portal"]:format(lastportal+1))
-		self:CancelDelayedMessage(L["portals_message15s"]:format(lastportal+1))
+		self:CancelDelayedMessage(L["portal_message15s"]:format(lastportal+1))
 		if portal ~= 6 and portal ~= 12 and portal ~= 18 then
 			self:Message("portals", L["portal_opened"]:format(portal), "Important", "INV_Misc_ShadowEgg")
 			self:Bar("portals", L["next_portal"]:format(portal+1), 120, "INV_Misc_ShadowEgg")
