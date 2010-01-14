@@ -44,12 +44,12 @@ function mod:Bane(_, spellId, _, _, spellName)
 	self:Message(48294, LCL["casting"]:format(spellName), "Urgent", spellId)
 end
 
-function mod:BaneAura(player, spellId, _, _, spellName, _, _, _, dGuid)
+function mod:BaneAura(player, spellId, _, _, spellName, _, _, _, _, dGuid)
 	if tonumber(dGuid:sub(-12, -7), 16) ~= 26861 then return end
 	self:Bar(48294, spellName, 5, spellId)
 end
 
-function mod:BaneAuraRemoved(player, spellId, _, _, spellName, _, _, _, dGuid)
+function mod:BaneAuraRemoved(player, spellId, _, _, spellName, _, _, _, _, dGuid)
 	if tonumber(dGuid:sub(-12, -7), 16) ~= 26861 then return end
 	self:Message(48294, L["bane_ended"], "Positive", spellId)
 	self:SendMessage("BigWigs_StopBar", self, spellName)

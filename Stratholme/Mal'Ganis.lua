@@ -54,13 +54,13 @@ function mod:SleepRemove(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
 
-function mod:VampTouch(target, spellId, _, _, spellName, _, _, _, dGuid)
+function mod:VampTouch(target, spellId, _, _, spellName, _, _, _, _, dGuid)
 	if tonumber(dGuid:sub(-12, -7), 16) ~= 26533 then return end
 	self:Message(52723, L["vampTouch_message"], "Important", spellId)
 	self:Bar(52723, spellName, 30, spellId)
 end
 
-function mod:VampTouchRemove(_, _, _, _, spellName, _, _, _, dGuid)
+function mod:VampTouchRemove(_, _, _, _, spellName, _, _, _, _, dGuid)
 	if tonumber(dGuid:sub(-12, -7), 16) ~= 26533 then return end
 	self:SendMessage("BigWigs_StopBar", self, spellName)
 end
