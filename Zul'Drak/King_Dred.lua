@@ -26,6 +26,6 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:RaptorCall(_, spellId, _, _, spellname)
+function mod:RaptorCall(_, spellId, _, _, spellName)
 	self:Message(59416, spellName, "Attention", spellId)
 end
