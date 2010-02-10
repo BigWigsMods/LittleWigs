@@ -24,7 +24,7 @@ L["fail_trigger"] = "Not yet, not"
 L["timers"] = "Timers"
 L["timers_desc"] = "Timers for various events that take place."
 
-L["wave"] = "First wave!"
+L["wave"] = "First wave!"--leaving this just incase I revert the warmup
 L["victory"] = "Victory!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="Storm_Peaks/Tribunal_of_Ages", format="lua_additive_table", handle-unlocalized="ignore")@
 end
@@ -46,6 +46,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("timers", L["wave"], 50, "Ability_DualWield")
+	self:Bar("timers", self.displayName, 45, "Achievement_Character_Dwarf_Male")
 	self:Bar("timers", L["victory"], 315, "INV_Misc_PocketWatch_01")
 end
