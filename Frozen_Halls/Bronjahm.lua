@@ -1,7 +1,7 @@
--------------------------------------------------------------------------------
+﻿-------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Bronjahm, the Godfather of Souls", "The Forge of Souls")
+local mod = BigWigs:NewBoss("Bronjahm", "The Forge of Souls")
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "The Frozen Halls"
