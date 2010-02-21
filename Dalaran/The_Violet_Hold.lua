@@ -17,7 +17,8 @@ if L then
 L["portals"] = "Portals"
 L["next_portal"] = "Portal %d"
 L["portal_opened"] = "Portal %d opened"
-L["portals_desc"] = "Information about portals after a boss dies."
+L["portals_desc"] = "Information about portals."
+l["engage_trigger"] = "I'm locking the door."
 L["portal_message15s"] = "Portal %d in ~15 seconds!"
 L["portal_message120s"] = "Portal %d in ~120 seconds!"
 L["portal_message95s"] = "Portal %d in ~95 seconds!"--@end-do-not-package@
@@ -34,6 +35,13 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UPDATE_WORLD_STATES")
 	self:Death("Deaths", 29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
 	self:Death("Disable", 31134)
+
+	self:Yell("Warmup", L["engage_trigger"])
+end
+
+function mod:Warmup()
+        self:Bar("berserk", self.zoneName, 25, "achievement_dungeon_theviolethold_normal")
+	self:DelayedMessage("portals", 10, L["portal_message15s"]:format(1), "Attention", "INV_Misc_ShadowEgg")
 end
 
 -------------------------------------------------------------------------------
@@ -41,8 +49,8 @@ end
 
 function mod:Deaths()
 	self:Message("portals", L["portal_message95s"]:format(lastportal+1), "Attention", "INV_Misc_ShadowEgg")
-	self:DelayedMessage("portals", 80, L["portal_message15s"]:format(lastportal+1), "Attention", "INV_Misc_ShadowEgg")
-	self:Bar("portals", L["next_portal"]:format(lastportal+1), 95, "INV_Misc_ShadowEgg")
+	self:DelayedMessage("portals", 20, L["portal_message15s"]:format(lastportal+1), "Attention", "INV_Misc_ShadowEgg")
+	self:Bar("portals", L["next_portal"]:format(lastportal+1), 35, "INV_Misc_ShadowEgg")
 end
 
 function mod:UPDATE_WORLD_STATES()
