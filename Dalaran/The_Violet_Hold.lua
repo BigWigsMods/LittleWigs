@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 end
 
 function mod:Warmup()
-        self:Bar("berserk", self.zoneName, 25, "achievement_dungeon_theviolethold_normal")
+	self:Bar("portals", self.zoneName, 25, "achievement_dungeon_theviolethold_normal")
 	self:DelayedMessage("portals", 10, L["portal_message15s"]:format(1), "Attention", "INV_Misc_ShadowEgg")
 end
 
