@@ -19,9 +19,7 @@ L["next_portal"] = "Portal %d"
 L["portal_opened"] = "Portal %d opened"
 L["portals_desc"] = "Information about portals."
 l["engage_trigger"] = "I'm locking the door."
-L["portal_message15s"] = "Portal %d in ~15 seconds!"
-L["portal_message120s"] = "Portal %d in ~120 seconds!"
-L["portal_message95s"] = "Portal %d in ~95 seconds!"--@end-do-not-package@
+L["portal_message15s"] = "Portal %d in ~15 seconds!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
@@ -48,7 +46,6 @@ end
 --  Event Handlers
 
 function mod:Deaths()
-	self:Message("portals", L["portal_message95s"]:format(lastportal+1), "Attention", "INV_Misc_ShadowEgg")
 	self:DelayedMessage("portals", 20, L["portal_message15s"]:format(lastportal+1), "Attention", "INV_Misc_ShadowEgg")
 	self:Bar("portals", L["next_portal"]:format(lastportal+1), 35, "INV_Misc_ShadowEgg")
 end
