@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Bronjahm, the Godfather of Souls", "ruRU")
+﻿local L = BigWigs:NewBossLocale("Bronjahm", "ruRU")
 if L then
 --@localization(locale="ruRU", namespace="Frozen_Halls/Bronjahm", format="lua_additive_table", handle-unlocalized="ignore")@
 end
