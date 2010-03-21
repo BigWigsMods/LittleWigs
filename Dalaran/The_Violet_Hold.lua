@@ -18,7 +18,7 @@ L["portals"] = "Portals"
 L["next_portal"] = "Portal %d"
 L["portal_opened"] = "Portal %d opened"
 L["portals_desc"] = "Information about portals."
-l["engage_trigger"] = "I'm locking the door."
+L["engage_trigger"] = "I'm locking the door."
 L["portal_message15s"] = "Portal %d in ~15 seconds!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
 end
