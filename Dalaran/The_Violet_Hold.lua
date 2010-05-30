@@ -39,14 +39,14 @@ end
 
 function mod:Warmup()
 	self:Bar("portals", self.zoneName, 25, "achievement_dungeon_theviolethold_normal")
-	self:DelayedMessage("portals", 10, L["portal_message15s"]:format(1), "Attention", "INV_Misc_ShadowEgg")
+	self:DelayedMessage("portals", 10, L["portal_message15s"]:format(1), "Attention")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 function mod:Deaths()
-	self:DelayedMessage("portals", 20, L["portal_message15s"]:format(lastportal+1), "Attention", "INV_Misc_ShadowEgg")
+	self:DelayedMessage("portals", 20, L["portal_message15s"]:format(lastportal+1), "Attention")
 	self:Bar("portals", L["next_portal"]:format(lastportal+1), 35, "INV_Misc_ShadowEgg")
 end
 
@@ -62,7 +62,7 @@ function mod:UPDATE_WORLD_STATES()
 		if portal ~= 6 and portal ~= 12 and portal ~= 18 then
 			self:Message("portals", L["portal_opened"]:format(portal), "Important", "INV_Misc_ShadowEgg")
 			self:Bar("portals", L["next_portal"]:format(portal+1), 120, "INV_Misc_ShadowEgg")
-			self:DelayedMessage("portals", 105, L["portal_message15s"]:format(portal+1), "Attention", "INV_Misc_ShadowEgg")
+			self:DelayedMessage("portals", 105, L["portal_message15s"]:format(portal+1), "Attention")
 		end
 		lastportal = portal
 	end
