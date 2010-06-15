@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Amanitar.lua"/>
+<Script file="Anub'arak.lua"/>
 <Script file="Elder_Nadox.lua"/>
 <Script file="Hadronox.lua"/>
 <Script file="Herald_Volazj.lua"/>
