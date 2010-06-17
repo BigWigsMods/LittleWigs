@@ -1,3 +1,8 @@
+local L = BigWigs:NewBossLocale("Anub'Arak-AN", "esMX")
+if L then
+--@localization(locale="esMX", namespace="Dragonblight/Anub_arak", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+
 local L = BigWigs:NewBossLocale("Elder Nadox", "esMX")
 if L then
 --@localization(locale="esMX", namespace="Dragonblight/Elder_Nadox", format="lua_additive_table", handle-unlocalized="ignore")@

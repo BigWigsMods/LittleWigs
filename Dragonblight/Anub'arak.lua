@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Anub'arak", "Azjol-Nerub")
+local mod = BigWigs:NewBoss("Anub'arak-AN", "Azjol-Nerub")
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Dragonblight"
@@ -15,6 +15,15 @@ mod.toggleOptions = {
 --  Localization
 
 LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
+local L = mod:NewLocale("enUS", true)
+if L then
+--@do-not-package@
+L["cmd"] = "Anub'arak"
+--@localization(locale="enUS", namespace="Dragonblight/Anub_arak", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = mod:GetLocale()
+
+mod.displayName = L["cmd"]
 
 -------------------------------------------------------------------------------
 --  Initialization
