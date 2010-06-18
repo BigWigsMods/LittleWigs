@@ -18,7 +18,7 @@ LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
-L["cmd"] = "Anub'arak"
+L["cmd"] = "Anub'arak"--@end-do-not-package@
 --@localization(locale="enUS", namespace="Dragonblight/Anub_arak", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
