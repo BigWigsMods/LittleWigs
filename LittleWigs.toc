@@ -4,8 +4,8 @@
 ## Notes: Boss warnings for Lich King 5-man dungeons.
 ## Notes-ruRU: Оповещения о действиях боссов в подземельях ВоЛКа на 5-чел.
 ## Title-zhCN: Little Wigs
-## Notes-zhTW: 用於巫妖王之怒5人副本首領警報。需先安裝 Big Wigs 方可使用。
-## Notes-zhCN: 用于巫妖王之怒5人副本 Boss 警报。需先安装 BigWigs 方可使用。
+## Notes-zhTW: 用於巫妖王之怒5人副本首領警報。
+## Notes-zhCN: 用于巫妖王之怒5人副本首领警报。
 ## Notes-frFR: Avertissements pour les boss des instances à 5 joueurs.
 ## Notes-koKR: 5인 던전용 보스 경고 애드온
 ## Author: Ulic
