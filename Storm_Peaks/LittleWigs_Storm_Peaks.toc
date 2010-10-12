@@ -1,4 +1,4 @@
-﻿## Interface: 30300
+﻿## Interface: 40000
 
 ## Title: Little Wigs [|cffeda55fThe Storm Peaks|r]
 ## Notes: Little Wigs Ulduar Modules

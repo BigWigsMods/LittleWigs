@@ -1,4 +1,4 @@
-﻿## Interface: 30300
+﻿## Interface: 40000
 
 ## Title: Little Wigs [|cffeda55fHowling Fjord|r]
 ## Notes: Little Wigs Howling Fjord Modules

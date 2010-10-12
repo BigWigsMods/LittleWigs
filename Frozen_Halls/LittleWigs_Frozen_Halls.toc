@@ -1,4 +1,4 @@
-﻿## Interface: 30300
+﻿## Interface: 40000
 
 ## Title: Little Wigs [|cffeda55fThe Frozen Halls|r]
 ## Title-frFR: Little Wigs [|cffeda55fLes salles Gelées|r]
