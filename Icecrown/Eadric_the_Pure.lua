@@ -18,7 +18,9 @@ local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
-L["defeat_trigger"] = "I yield! I submit. Excellent work. May I run away now?"--@end-do-not-package@
+L["defeat_trigger"] = "I yield! I submit. Excellent work. May I run away now?"
+L["hammer_message_other"] = "%s has the hammer!"
+L["hammer_message_you"] = "You have the hammer!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="Icecrown/Eadric_the_Pure", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()

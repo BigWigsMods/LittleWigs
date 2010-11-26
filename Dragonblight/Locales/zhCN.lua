@@ -8,7 +8,7 @@ if L then
 --@localization(locale="zhCN", namespace="Dragonblight/Elder_Nadox", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 
-local L = BigWigs:NewBossLocale("Krik'thirthe Gatewatcher", "zhCN")
+local L = BigWigs:NewBossLocale("Krik'thir the Gatewatcher", "zhCN")
 if L then
 --@localization(locale="zhCN", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_additive_table", handle-unlocalized="ignore")@
 end
