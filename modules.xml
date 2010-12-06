@@ -1,23 +1,23 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="Coldarra\locales.xml"/>
-<Include file="Coldarra\modules.xml"/>
-<Include file="Dalaran\locales.xml"/>
-<Include file="Dalaran\modules.xml"/>
-<Include file="Dragonblight\locales.xml"/>
-<Include file="Dragonblight\modules.xml"/>
-<Include file="Frozen_Halls\locales.xml"/>
-<Include file="Frozen_Halls\modules.xml"/>
-<Include file="Howling_Fjord\locales.xml"/>
-<Include file="Howling_Fjord\modules.xml"/>
-<Include file="Icecrown\locales.xml"/>
-<Include file="Icecrown\modules.xml"/>
-<Include file="Storm_Peaks\locales.xml"/>
-<Include file="Storm_Peaks\modules.xml"/>
-<Include file="Stratholme\locales.xml"/>
-<Include file="Stratholme\modules.xml"/>
-<Include file="Zul'Drak\locales.xml"/>
-<Include file="Zul'Drak\modules.xml"/>
+<Include file="BRC\locales.xml"/>
+<Include file="BRC\modules.xml"/>
+<Include file="Deadmines\locales.xml"/>
+<Include file="Deadmines\modules.xml"/>
+<Include file="GrimBatol\locales.xml"/>
+<Include file="GrimBatol\modules.xml"/>
+<Include file="Origination\locales.xml"/>
+<Include file="Origination\modules.xml"/>
+<Include file="VortexPinnacle\locales.xml"/>
+<Include file="VortexPinnacle\modules.xml"/>
+<Include file="Shadowfang\locales.xml"/>
+<Include file="Shadowfang\modules.xml"/>
+<Include file="Stonecore\locales.xml"/>
+<Include file="Stonecore\modules.xml"/>
+<Include file="ThroneTides\locales.xml"/>
+<Include file="ThroneTides\modules.xml"/>
+<Include file="LostCity\locales.xml"/>
+<Include file="LostCity\modules.xml"/>
 
 </Ui>

@@ -3,7 +3,7 @@ LittleWigs
 
 Description-
 
-To put it simply, these are BigWigs modules that add some warnings to the bosses found in 5-man dungeons in the Wrath of the Lich King expansion.
+To put it simply, these are BigWigs modules that add some warnings to the bosses found in 5-man dungeons in the Cataclysm expansion.
 
 
 Usage-
@@ -20,6 +20,4 @@ If you would like to contribute you can do it in a few ways.
 3) Report any problems, inaccuracies, or suggestions you have to the wowace forum(http://forums.wowace.com/showthread.php?t=5564).
 
 Credits-
-Big Wigs Core: Ammo, Rabbit, Funkydude
-Transcriptor Logs: Yoshimo, OrionShock, Arrowmaster, Elp, Piett, Eraslin, SuperZorro
-Translations: fenlis, Erfeal, verotas, scorpio0920, Farook, Zauberfee, bailon, Domestica, AgentRocket, wolftankk@cwdg
+Big Wigs Core: Ammo, Rabbit, Funkydude, and countless others
