@@ -1,0 +1,18 @@
+﻿## Interface: 40000
+
+## Title: Little Wigs [|cffeda55fGrim Batol|r]
+## Notes: Little Wigs Grim Batol Modules
+## Author: Ulic
+## Version: 4.0
+## LoadOnDemand: 1
+
+## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
+## X-Category: Party
+
+## X-BigWigs-PartyContent: true
+## X-BigWigs-LoadOn-Zone: Grim Batol
+
+## Dependencies: BigWigs, LittleWigs
+
+locales.xml
+modules.xml
