@@ -1,0 +1,4 @@
+local L = BigWigs:NewBossLocale("Erudax", "frFR")
+if L then
+--@localization(locale="frFR", namespace="GrimBatol/Erudax", format="lua_additive_table", handle-unlocalized="ignore")@
+end
