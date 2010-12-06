@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Foe Reaper 5000", "Deadmines")
+local mod = BigWigs:NewBoss("Foe Reaper 5000", "The Deadmines")
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(43778)
