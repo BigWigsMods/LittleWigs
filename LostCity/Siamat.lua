@@ -36,7 +36,7 @@ L["phase_warning"] = "Phase 2 soon!"
 L["servant"] = "Summon Servant"
 L["servant_desc"] = "Warn when a Servant of Siamat is summoned."
 L["servant_message"] = "Servant of Siamat Summoned!"--@end-do-not-package@
---@localization(locale="enUS", namespace="Tol_vir/Siamat", format="lua_additive_table", handle-unlocalized="ignore")@
+--@localization(locale="enUS", namespace="LostCity/Siamat", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
 BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
