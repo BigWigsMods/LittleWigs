@@ -13,7 +13,7 @@ mod.partyContent = true
 mod:RegisterEnableMob(44819)
 mod.toggleOptions = {
 	{90011, "FLASHSHAKE"}, -- Gathered Storms
-	"servant",
+	90013,
 	"phase",
 	"bosskill",
 }
