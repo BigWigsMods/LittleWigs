@@ -29,6 +29,6 @@ end
 --  Event Handlers
 
 function mod:Skullcracker(_, spellId, _, _, spellName)
-	self:Bar(75543, spellName, 15, spellId)
+	self:Bar(75543, spellName, 12, spellId)
 	self:Message(75543, LCL["casting"]:format(spellName), "Attention", spellId)
 end
