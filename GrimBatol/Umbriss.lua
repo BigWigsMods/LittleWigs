@@ -8,7 +8,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39625)
 mod.toggleOptions = {
-	47670,
+	{74670, "ICON"}
 	47853,
 	91937,
 	"bosskill",
@@ -43,7 +43,9 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg == L["frenzy_trigger"] then
 		self:Message(47853, msg:format(self.displayName), "Attention", 47853)
 	else
-		self:TargetMessage(47670, GetSpellInfo(47670), player, "Urgent", 47670, "Alert")
+		self:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
+		self:PrimaryIcon(74670, player)
+		self:ScheduleTimer(clearIcon, 3.5)
 	end
 end
 
@@ -54,4 +56,8 @@ end
 
 function mod:WoundRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+end
+
+function mod:clearIcon(player)
+	self:PrimaryIcon(74670)
 end
