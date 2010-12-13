@@ -13,7 +13,7 @@ mod.partyContent = true
 mod:RegisterEnableMob(44819)
 mod.toggleOptions = {
 	{90011, "FLASHSHAKE"}, -- Gathered Storms
-	90013,
+	"servant",
 	"phase",
 	"bosskill",
 }
@@ -79,5 +79,5 @@ function mod:Servant(_, spellId)
 		self:Message("phase", L["phase_warning"], "Positive")
 		adds = 0
 	end
-	self:Message(90013, L["servant_message"], "Important", spellId, "Alert")
+	self:Message("servant", L["servant_message"], "Important", spellId, "Alert")
 end
