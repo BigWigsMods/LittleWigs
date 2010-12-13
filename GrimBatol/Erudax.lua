@@ -8,7 +8,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(40484)
 mod.toggleOptions = {
-	75664, -- Shadow Gale
+	91086, -- Shadow Gale
 	"summon",
 	"bosskill",
 }
@@ -32,7 +32,7 @@ LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Gale", 75664)
+	self:Log("SPELL_CAST_START", "Gale", 75664, 91086)
 
 	self:Death("Win", 40484)
 	
@@ -43,8 +43,8 @@ end
 --  Event Handlers
 
 function mod:Gale(_, _, _, _, spellName)
-	self:Bar(75664, spellName, 5, 75664)
-	self:Message(75664, LCL["casting"]:format(spellName), "Urgent", 75664, "Alert")
+	self:Bar(91086, spellName, 5, 91086)
+	self:Message(91086, LCL["casting"]:format(spellName), "Urgent", 91086, "Alert")
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)

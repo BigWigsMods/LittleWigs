@@ -8,8 +8,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(40177)
 mod.toggleOptions = {
-	75000,
-	74908, -- Personal Phalanx
+	76481, -- Personal Phalanx
 	75007, -- Encumbered
 	74981, -- Dual Blades
 	"bosskill",

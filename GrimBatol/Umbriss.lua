@@ -24,14 +24,17 @@ L["frenzy_trigger"] = "%s goes into a frenzy!"--@localization(locale="enUS", nam
 end
 L = mod:GetLocale()
 
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
+
 -------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:RegisterEvent("UNIT_HEALTH")
 
-	self:Log("SPELL_AURA_APPIED", "Wound", 74846)
-	self:Log("SPELL_AURA_REMOVED", "WoundRemoved", 74846)
+	self:Log("SPELL_AURA_APPIED", "Wound", 74846, 91937)
+	self:Log("SPELL_AURA_REMOVED", "WoundRemoved", 74846, 91937)
 	
 	self:Death("Win", 39625)
 end
@@ -46,6 +49,16 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 		self:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
 		self:PrimaryIcon(74670, player)
 		self:ScheduleTimer(clearIcon, 3.5)
+	end
+end
+
+function mod:UNIT_HEALTH(event, unit)
+	if GetUnitName(unit) == self.displayName then
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp < 36 then
+			self:Message(47853, LCL["soon"]:format(GetSpellInfo(47853)), "Attention", 47853, "Info")
+			self:UnregisterEvent("UNIT_HEALTH")
+		end
 	end
 end
 

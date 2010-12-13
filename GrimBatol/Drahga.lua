@@ -9,13 +9,20 @@ mod.partyContent = true
 mod:RegisterEnableMob(40319)
 mod.toggleOptions = {
 	{75321, "FLASHSHAKE"}, -- Valiona's Flame
+	{90950, "FLASHSHAKE"}, -- Devouring Flames
 	"bosskill",
+}
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+mod.optionHeaders = {
+	[75321] = "normal",
+	[90950] = "heroic",
+	bosskill = "general",
 }
 
 -------------------------------------------------------------------------------
 --  Localization
 
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+
 
 -------------------------------------------------------------------------------
 --  Initialization
