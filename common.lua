@@ -4,6 +4,7 @@ if L then
 L["casting"] = "Casting %s"
 L["ends"] = "%s ends in %d sec"
 L["frenzied"] = "%s Frenzied"
+L["next"] = "Next %s"
 L["seconds"] = "%s in %d sec"
 L["soon"] = "%s soon"--@end-do-not-package@
 --@localization(locale="enUS", format="lua_additive_table", handle-unlocalized="ignore")@

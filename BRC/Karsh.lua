@@ -18,7 +18,7 @@ mod.toggleOptions = {
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Armor", 75842)
-	self:Log("SPELL_AURA_APPLIED", "HeatedArmor", 93567)
+	self:Log("SPELL_AURA_APPLIED", "HeatedArmor", 75846, 93567)
 
 	self:Death("Win", 39698)
 end
