@@ -10,7 +10,7 @@ mod:RegisterEnableMob(39587)
 mod.toggleOptions = {
 	74373, -- Veil of Sky
 	74137, -- Supernova
-	"Split",
+	"split",
 	"bosskill",
 }
 
@@ -18,7 +18,7 @@ mod.toggleOptions = {
 -- Locals
 --
 
-local Split1, Split2 = nil, nil
+local split1, split2 = nil, nil
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -26,9 +26,9 @@ local Split1, Split2 = nil, nil
 local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
-L["Split"] = "Isiset Split"
-L["Split_desc"] = "Warn when Isiset Split."
-L["Split_message"] = "Isiset Split soon!"
+L["split"] = "Isiset Split"
+L["split_desc"] = "Warn when Isiset Split."
+L["split_message"] = "Isiset Split soon!"
 --@localization(locale="enUS", namespace="Origination/Isiset", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	Split1, Split2 = nil, nil
+	split1, split2 = nil, nil
 end
 
 -------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ function mod:Supernova(_, spellId, _, _, spellName)
 end
 
 function mod:UNIT_HEALTH(_, unit)
-	if Split1 and Split2 then
+	if split1 and split2 then
 		self:UnregisterEvent("UNIT_HEALTH")
 		return
 	end
@@ -77,12 +77,12 @@ function mod:UNIT_HEALTH(_, unit)
 	guid = tonumber((guid):sub(-12, -9), 16)
 	if guid == 39587 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp <= 65 and not Split1 then
-			self:Message("Split", L["Split_message"], "Attention")
-			Split1 = true
-		elseif hp <= 35 and not Split2 then
-			self:Message("Split", L["Split_message"], "Attention")
-			Split2 = true
+		if hp <= 65 and not split1 then
+			self:Message("split", L["split_message"], "Attention")
+			split1 = true
+		elseif hp <= 35 and not split2 then
+			self:Message("split", L["split_message"], "Attention")
+			split2 = true
 		end
 	end
 end
