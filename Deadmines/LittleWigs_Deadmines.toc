@@ -2,6 +2,10 @@
 
 ## Title: Little Wigs [|cffeda55fThe Deadmines|r]
 ## Notes: Little Wigs Deadmines Modules
+## Title-zhTW: Little Wigs [|cffeda55f死亡礦坑|r]
+## Notes-zhTW: Little Wigs 死亡礦坑模組
+## Title-zhCN: Little Wigs [|cffeda55f死亡矿井|r]
+## Notes-zhCN: Little Wigs 死亡矿井模块
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1

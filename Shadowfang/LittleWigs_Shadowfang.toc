@@ -2,6 +2,10 @@
 
 ## Title: Little Wigs [|cffeda55fShadowfang Keep|r]
 ## Notes: Little Wigs Shadowfang KeepModules
+## Title-zhTW: Little Wigs [|cffeda55f影牙城堡|r]
+## Notes-zhTW: Little Wigs 影牙城堡模組
+## Title-zhCN: Little Wigs [|cffeda55f影牙城堡|r]
+## Notes-zhCN: Little Wigs 影牙城堡模块
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1
