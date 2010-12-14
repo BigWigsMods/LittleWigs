@@ -42,7 +42,7 @@ end
 
 function mod:Asphyxiate(_, spellId, _, _, spellName)
 	self:Message(93710, spellName, "Important", spellId)
-	self:Bar(93710, LCL["next"]:format(spellName, 40), spellId)
+	self:Bar(93710, LCL["next"]:format(spellName), 40, spellId)
 end
 
 function mod:Flesh(_, spellId, _, _, spellName)
