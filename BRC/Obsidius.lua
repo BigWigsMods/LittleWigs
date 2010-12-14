@@ -9,7 +9,7 @@ mod.partyContent = true
 mod:RegisterEnableMob(39705)
 mod.toggleOptions = {
 	93613, -- Twilight Corruption
-	76200, -- Transformation
+	{76200, "ICON"}, -- Transformation
 	76189, -- Veil
 	"bosskill",
 }
@@ -40,9 +40,12 @@ end
 
 function mod:Change(_, spellId, _, _, spellName)
 	self:Message(76200, spellName, "Info", spellId)
+	self:PrimaryIcon(76200, mod.displayName)
 end
 
 function mod:Veil(player, spellId, _, _, spellName)
-	self:Message(76189, spellName..": "..player, "Urgent", spellId)
-	self:Bar(76189, player..": "..spellName, 4, spellId)
+	if UnitGroupRolesAssigned(player) == "TANK" then
+		self:Message(76189, spellName..": "..player, "Urgent", spellId)
+		self:Bar(76189, player..": "..spellName, 4, spellId)
+	end
 end

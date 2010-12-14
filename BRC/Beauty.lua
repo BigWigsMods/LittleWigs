@@ -8,7 +8,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39700)
 mod.toggleOptions = {
-	76031, --Magma Spit
+	{76031, "ICON"}, --Magma Spit
 	76028, --Terrifying Roar
 	"bosskill",
 }
@@ -34,10 +34,12 @@ end
 function mod:MagmaSpit(player, spellId, _, _, spellName)
 	self:Message(76031, spellName..": "..player, "Urgent", spellId)
 	self:Bar(76031, spellName..": "..player, 9, spellId)
+	self:PrimaryIcon(76031, player)
 end
 
 function mod:MagmaSpitRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+	self:PrimaryIcon(76031)
 end
 
 function mod:Roar(_, spellId, _, _, spellName)
