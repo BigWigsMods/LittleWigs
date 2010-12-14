@@ -6,7 +6,7 @@
 local mod = BigWigs:NewBoss("Lord Godfrey", "Shadowfang Keep")
 if not mod then return end
 mod.partyContent = true
-mod:RegisterEnableMob(1)
+mod:RegisterEnableMob(46964)
 mod.toggleOptions = {
 	93675, -- Mortal Wound
 	93629, -- Cursed Bullets
@@ -14,6 +14,11 @@ mod.toggleOptions = {
 	93520, -- Pistol Barrage
 	"bosskill",
 }
+
+-------------------------------------------------------------------------------
+--  Localization
+
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -26,7 +31,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Summon", 93707)
 	self:Log("SPELL_CAST_START", "Barrage", 93520)
 	
-	self:Death("Win", 1)
+	self:Death("Win", 46964)
 end
 
 -------------------------------------------------------------------------------
@@ -52,5 +57,5 @@ end
 
 function mod:Barrage(_, spellId, _, _, spellName)
 	self:Message(93520, spellName, "Info", spellId)
-	self:Bar(93520, LCL["next"]:format(spellName, 30), spellId)
+	self:Bar(93520, LCL["next"]:format(spellName), 30, spellId)
 end
