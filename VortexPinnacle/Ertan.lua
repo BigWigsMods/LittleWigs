@@ -1,5 +1,5 @@
 -- XXX Ulic: Only thing useful I could think of is a timer for when the tornados
--- XXX Ulic: collapse, assuming is consistant, need more logs to find out
+-- XXX Ulic: collapse, assuming it is consistant, need more logs to find out
 
 -------------------------------------------------------------------------------
 --  Module Declaration
@@ -12,6 +12,11 @@ mod.toggleOptions = {
 	86340, --Summon Tempest
 	"bosskill",
 }
+
+-------------------------------------------------------------------------------
+--  Localization
+
+LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization

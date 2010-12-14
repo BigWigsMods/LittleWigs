@@ -16,7 +16,13 @@ mod.toggleOptions = {
 
 -------------------------------------------------------------------------------
 --  Locals
+
 local pName = GetUnitName("player")
+
+-------------------------------------------------------------------------------
+--  Localization
+
+LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -34,7 +40,7 @@ end
 
 function mod:Upwind(unit, spellId, _, _, spellName)
 	if pName == GetUnitName(unit) then
-		self:Message(88286, spellName, "Positive", "Info", spellId)
+		self:Message(88282, spellName, "Positive", "Info", spellId)
 	end
 end
 
