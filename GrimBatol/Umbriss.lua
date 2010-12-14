@@ -48,7 +48,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	else
 		self:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
 		self:PrimaryIcon(74670, player)
-		self:ScheduleTimer(clearIcon, 3.5)
+		self:ScheduleTimer("clearIcon", 3.5)
 	end
 end
 
