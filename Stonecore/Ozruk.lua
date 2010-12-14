@@ -53,8 +53,11 @@ end
 --  Event Handlers
 
 function mod:Bulwark(_, _, _, _, spellName)
-	self:Message(78939, spellName, "Important", 78939)
-	self:Bar(78939, spellName, 10, 78939)
+	local bossId = self:GetUnitIdByGUID(42188)
+	if bossId then
+		self:Message(78939, spellName, "Important", 78939)
+		self:Bar(78939, spellName, 10, 78939)
+	end
 end
 
 function mod:BulwarkRemoved(_, _, _, _, spellName)

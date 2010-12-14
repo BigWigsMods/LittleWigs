@@ -10,12 +10,28 @@ mod:RegisterEnableMob(39587)
 mod.toggleOptions = {
 	74373, -- Veil of Sky
 	74137, -- Supernova
+	"Split",
 	"bosskill",
 }
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local Split1, Split2 = nil, nil
 
 -------------------------------------------------------------------------------
 --  Localization
 
+local L = mod:NewLocale("enUS", true)
+if L then
+--@do-not-package@
+L["Split"] = "Isiset Split"
+L["Split_desc"] = "Warn when Isiset Split."
+L["Split_message"] = "Isiset Split soon!"
+--@localization(locale="enUS", namespace="Origination/Isiset", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = mod:GetLocale()
 LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
@@ -25,8 +41,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Veil", 74372, 74133, 74373)
 	self:Log("SPELL_AURA_REMOVED", "VeilRemoved", 74372, 74133, 74373)
 	self:Log("SPELL_CAST_START", "Supernova", 74136, 74137, 76670, 90758)
+	self:RegisterEvent("UNIT_HEALTH")
 
 	self:Death("Win", 39587)
+end
+
+function mod:OnEngage()
+	Split1, Split2 = nil, nil
 end
 
 -------------------------------------------------------------------------------
@@ -43,5 +64,25 @@ end
 
 function mod:Supernova(_, spellId, _, _, spellName)
 	self:Message(74137, LCL["casting"]:format(spellName), "Urgent", spellId, "Alert")
-	self:Bar(74137, spellName, 5, spellId)
+	self:Bar(74137, spellName, 3, spellId)
+end
+
+function mod:UNIT_HEALTH(_, unit)
+	if Split1 and Split2 then
+		self:UnregisterEvent("UNIT_HEALTH")
+		return
+	end
+	local guid = UnitGUID(unit)
+	if not guid then return end
+	guid = tonumber((guid):sub(-12, -9), 16)
+	if guid == 39587 then
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp <= 65 and not Split1 then
+			self:Message("Split", L["Split_message"], "Attention")
+			Split1 = true
+		elseif hp <= 35 and not Split2 then
+			self:Message("Split", L["Split_message"], "Attention")
+			Split2 = true
+		end
+	end
 end
