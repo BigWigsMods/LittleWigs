@@ -20,7 +20,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Frost", 93702)
 	self:Log("SPELL_CAST_START", "Poisonous", 93704)
 
-	self:Death("Win", 4278)
+	self:Death("Win", 46963)
 end
 
 -------------------------------------------------------------------------------
