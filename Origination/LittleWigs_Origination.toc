@@ -6,6 +6,8 @@
 ## Notes-zhTW: Little Wigs 起源大廳模組
 ## Title-zhCN: Little Wigs [|cffeda55fHalls of Origination|r]
 ## Notes-zhCN: Little Wigs Halls of Origination模块
+## Title-koKR: Little Wigs [|cffeda55f시초의 전당|r]
+## Notes-koKR: Little Wigs 시초의 전당 모듈
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1

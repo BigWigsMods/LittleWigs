@@ -6,6 +6,8 @@
 ## Notes-zhTW: Little Wigs 影牙城堡模組
 ## Title-zhCN: Little Wigs [|cffeda55f影牙城堡|r]
 ## Notes-zhCN: Little Wigs 影牙城堡模块
+## Title-koKR: Little Wigs [|cffeda55f그림자 송곳니 성채|r]
+## Notes-koKR: Little Wigs 그림자 송곳니 성채 모듈
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1

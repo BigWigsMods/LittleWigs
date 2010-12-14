@@ -6,6 +6,8 @@
 ## Notes-zhTW: Little Wigs 漩渦尖塔模組
 ## Title-zhCN: Little Wigs [|cffeda55fVortex Pinnacle|r]
 ## Notes-zhCN: Little Wigs Vortex Pinnacle模块
+## Title-koKR: Little Wigs [|cffeda55f소용돌이 누각|r]
+## Notes-koKR: Little Wigs 소용돌이 누각 모듈
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1

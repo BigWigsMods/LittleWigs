@@ -6,6 +6,8 @@
 ## Notes-zhTW: Little Wigs 死亡礦坑模組
 ## Title-zhCN: Little Wigs [|cffeda55f死亡矿井|r]
 ## Notes-zhCN: Little Wigs 死亡矿井模块
+## Title-koKR: Little Wigs [|cffeda55f죽음의 폐광|r]
+## Notes-koKR: Little Wigs 죽음의 폐광 모듈
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1
