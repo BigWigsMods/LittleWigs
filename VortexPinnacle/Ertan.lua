@@ -9,6 +9,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(43878)
 mod.toggleOptions = {
+	86340, --Summon Tempest
 	"bosskill",
 }
 
@@ -16,9 +17,15 @@ mod.toggleOptions = {
 --  Initialization
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Summon", 86340)
+
 	self:Death("Win", 43878)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
+function mod:Summon(unit, spellId, _, _, spellName)
+	self:Bar(86340, LCL["next"]:format(spellName, 19), spellId)
+	self:Message(86340, spellName, "Alert", spellId)
+end
