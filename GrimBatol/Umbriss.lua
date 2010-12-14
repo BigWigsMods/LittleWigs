@@ -8,9 +8,9 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39625)
 mod.toggleOptions = {
-	{74670, "ICON"},
-	47853,
-	91937,
+	{74670, "ICON"}, -- Blitz
+	74853, -- Frenzy
+	91937, -- Wound
 	"bosskill",
 }
 
@@ -44,7 +44,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg == L["frenzy_trigger"] then
-		self:Message(47853, msg:format(self.displayName), "Attention", 47853)
+		self:Message(74853, msg:format(self.displayName), "Attention", 47853)
 	else
 		self:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
 		self:PrimaryIcon(74670, player)
@@ -56,7 +56,7 @@ function mod:UNIT_HEALTH(event, unit)
 	if GetUnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 36 then
-			self:Message(47853, LCL["soon"]:format(GetSpellInfo(47853)), "Attention", 47853, "Info")
+			self:Message(74853, LCL["soon"]:format(GetSpellInfo(47853)), "Attention", 74853, "Info")
 			self:UnregisterEvent("UNIT_HEALTH")
 		end
 	end
@@ -71,6 +71,6 @@ function mod:WoundRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
 
-function mod:clearIcon(player)
+function mod:clearIcon()
 	self:PrimaryIcon(74670)
 end
