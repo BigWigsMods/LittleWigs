@@ -8,7 +8,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39625)
 mod.toggleOptions = {
-	{74670, "ICON"}
+	{74670, "ICON"},
 	47853,
 	91937,
 	"bosskill",
