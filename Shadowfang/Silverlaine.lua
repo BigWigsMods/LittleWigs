@@ -29,5 +29,5 @@ end
 --  Event Handlers
 
 function mod:Summon(_, spellId, _, _, spellName)
-	self:Message(72039, spellName, "Important", spellId)
+	self:Message(93857, spellName, "Important", spellId)
 end

@@ -9,6 +9,9 @@ mod.partyContent = true
 mod:RegisterEnableMob(46962)
 mod.toggleOptions = {
 	93712, -- Pain and Suffering
+	93710, -- Asphyxiate
+	93713, -- Mend Rotten Flesh
+	93757, -- Dark Archangel Form
 	"bosskill",
 }
 
@@ -18,6 +21,9 @@ mod.toggleOptions = {
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PnS", 93712)
 	self:Log("SPELL_AURA_REMOVED", "PnSRemoved", 93712)
+	self:Log("SPELL_CAST_SUCCESS", "Asphyxiate", 93710)
+	self:Log("SPELL_CAST_START", "Flesh", 93713)
+	self:Log("SPELL_CAST_START", "Archangel", 93757)
 
 	self:Death("Win", 46962)
 end
@@ -32,4 +38,17 @@ end
 
 function mod:PnSRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+end
+
+function mod:Asphyxiate(_, spellId, _, _, spellName)
+	self:Message(93710, spellName, "Important", spellId)
+	self:Bar(93710, LCL["next"]:format(spellName, 40), spellId)
+end
+
+function mod:Flesh(_, spellId, _, _, spellName)
+	self:Message(93713, spellName, "Info", spellId)
+end
+
+function mod:Archangel(_, spellId, _, _, spellName)
+	self:Message(93757, spellName, "Alert", spellId)
 end
