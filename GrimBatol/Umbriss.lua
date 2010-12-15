@@ -39,6 +39,10 @@ function mod:OnBossEnable()
 	self:Death("Win", 39625)
 end
 
+function mod:VerifyEnable()
+	if UnitInVehicle("player") then return true end
+end
+
 -------------------------------------------------------------------------------
 --  Event Handlers
 
