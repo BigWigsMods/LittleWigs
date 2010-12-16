@@ -38,7 +38,7 @@ function mod:Skullcracker(_, spellId, _, _, spellName)
 		time = 10
 	end
 	self:Bar(75543, spellName, time, spellId)
-	self:Message(75543, LCL["seconds"]:format(spellName), "Attention", spellId)
+	self:Message(75543, LCL["seconds"]:format(spellName, time), "Attention", spellId)
 end
 
 function mod:Quake(_, spellId, _, _, spellName)
