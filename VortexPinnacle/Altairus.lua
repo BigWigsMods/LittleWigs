@@ -40,13 +40,13 @@ end
 
 function mod:Upwind(unit, spellId, _, _, spellName)
 	if pName == GetUnitName(unit) then
-		self:Message(88282, spellName, "Positive", "Info", spellId)
+		self:LocalMessage(88282, spellName, "Positive", "Info", spellId)
 	end
 end
 
 function mod:Downwind(unit, spellId, _, _, spellName)
 	if pName == GetUnitName(unit) then
-		self:Message(88286, spellName, "Attention", "Alert", spellId)
+		self:LocalMessage(88286, spellName, "Attention", "Alert", spellId)
 	end
 end
 
