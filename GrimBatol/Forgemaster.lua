@@ -24,8 +24,8 @@ LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Phalanx", 74908)
-	self:Log("SPELL_AURA_APPLIED", "Encumbered", 75007)
-	self:Log("SPELL_AURA_APPLIED", "Blades", 74981)
+	self:Log("SPELL_AURA_APPLIED", "Encumbered", 75007, 90729)
+	self:Log("SPELL_AURA_APPLIED", "Blades", 74981, 90738)
 
 	self:Death("Win", 40177)
 end
