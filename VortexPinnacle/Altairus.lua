@@ -41,7 +41,7 @@ function mod:Downwind(unit, spellId, _, _, spellName)
 end
 
 function mod:Breath(_, spellId, _, _, spellName)
-	self:Bar(88308, LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")["next"]:format(spellName), 12, spellId)
-	self:Message(88308, LCL["casting"]:format(spellName), "Urgent", spellId)
+	self:Bar(88308, LW_CL["next"]:format(spellName), 12, spellId)
+	self:Message(88308, LW_CL["casting"]:format(spellName), "Urgent", spellId)
 end
 
