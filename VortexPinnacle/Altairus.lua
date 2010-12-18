@@ -15,16 +15,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Locals
-
-local pName = GetUnitName("player")
-
--------------------------------------------------------------------------------
---  Localization
-
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -39,18 +29,19 @@ end
 --  Event Handlers
 
 function mod:Upwind(unit, spellId, _, _, spellName)
-	if pName == GetUnitName(unit) then
+	if UnitIsUnit("player", unit) then
 		self:LocalMessage(88282, spellName, "Positive", "Info", spellId)
 	end
 end
 
 function mod:Downwind(unit, spellId, _, _, spellName)
-	if pName == GetUnitName(unit) then
+	if UnitIsUnit("player", unit) then
 		self:LocalMessage(88286, spellName, "Attention", "Alert", spellId)
 	end
 end
 
-function mod:Breath(unit, spellId, _, _, spellName)
-	self:Bar(88308, LCL["next"]:format(spellName, 12), spellId)
+function mod:Breath(_, spellId, _, _, spellName)
+	self:Bar(88308, LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")["next"]:format(spellName), 12, spellId)
 	self:Message(88308, LCL["casting"]:format(spellName), "Urgent", spellId)
 end
+
