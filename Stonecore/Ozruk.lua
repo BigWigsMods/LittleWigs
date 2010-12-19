@@ -24,6 +24,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Shatter", 78807, 92662)
 
 	self:RegisterEvent("UNIT_HEALTH")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 
 	self:Death("Win", 42188)
 end
@@ -53,6 +54,13 @@ function mod:UNIT_HEALTH(_, unit)
 	end
 end
 
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	if UnitName("boss1") == self.displayName then
+		self:Bar(92662, LW_CL["next"]:format(GetSpellInfo(92662)), 20, 92662)
+		self:RegisterEvent("UNIT_HEALTH")
+	end
+end
+
 function mod:Enraged(_, spellId, _, _, spellName)
 	self:Message(80467, spellName, "Positive", spellId, "Long")
 end
@@ -63,5 +71,6 @@ end
 
 function mod:Shatter(_, spellId, _, _, spellName)
 	self:Bar(92662, spellName, 2.5, spellId)
+	self:Bar(92662, LW_CL["next"]:format(spellName), 20, spellId)
 end
 
