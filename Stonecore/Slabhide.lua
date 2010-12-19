@@ -15,6 +15,7 @@ mod.toggleOptions = {
 --  Initialization
 
 function mod:OnBossEnable()
+	--Storm is Heroic only
 	self:Log("SPELL_CAST_START", "Storm", 92265)
 	self:Log("SPELL_AURA_APPLIED", "StormBegun", 92265)
 
