@@ -1,5 +1,4 @@
 
--- XXX need english engage trigger!
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -15,13 +14,6 @@ mod.optionHeaders = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
-if L then
---@do-not-package@
-L["engage_trigger"] = " "--@end-do-not-package@
---@localization(locale="enUS", namespace="Origination/Anraphet", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = mod:GetLocale()
 BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
@@ -32,8 +24,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "AlphaDebuff", 76956, 91177)
 	self:Log("SPELL_CAST_START", "Omega", 75622, 91208)
 	self:Log("SPELL_AURA_APPLIED", "Nemesis", 75603, 91174)
-	self:Yell("Engage", L["engage_trigger"])
-	
+
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	self:Death("Win", 39788)
 end
 
