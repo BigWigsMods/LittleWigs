@@ -1,4 +1,3 @@
--- XXX Ulic: Other suggestions?
 
 -------------------------------------------------------------------------------
 --  Module Declaration
@@ -14,6 +13,17 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
+--  Localization
+
+local L = mod:NewLocale("enUS", true)
+if L then--@do-not-package@
+L["weakened"] = "Weakened"
+L["strengthened"] = "Strengthened"--@end-do-not-package@
+--@localization(locale="enUS", namespace="BRC/Karsh", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = mod:GetLocale()
+
+-------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -26,10 +36,11 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Armor(_, _, _, _, spellName)
-	self:Message(75842, spellName, "Important", 75842, "Alert")
+function mod:Armor()
+	self:Message(75842, L["strengthened"], "Important", 28059, "Alert") --icon = spell_chargepositive
 end
 
-function mod:HeatedArmor(_, _, _, _, spellName)
-	self:Message(93567, spellName, "Personal", 93567, "Info")
+function mod:HeatedArmor()
+	self:Message(93567, L["weakened"], "Personal", 28084, "Info") --icon = spell_chargenegative
 end
+

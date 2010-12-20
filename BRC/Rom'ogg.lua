@@ -27,7 +27,7 @@ end
 --  Event Handlers
 
 function mod:Skullcracker(_, spellId, _, _, spellName)
-	local time = self:GetInstanceDifficulty() == 1 and 8 or 12
+	local time = self:GetInstanceDifficulty() == 1 and 8 or 12 --8sec on heroic, 12 on normal
 	self:Bar(75543, spellName, time, spellId)
 	self:Message(75543, LW_CL["seconds"]:format(spellName, time), "Attention", spellId)
 end
