@@ -8,6 +8,9 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39788)
 mod.toggleOptions = {{76184, "FLASHSHAKE"}, 75622, 75603, "bosskill"}
+mod.optionHeaders = {
+	[76184] = "general",
+}
 
 -------------------------------------------------------------------------------
 --  Localization

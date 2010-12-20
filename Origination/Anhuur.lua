@@ -6,10 +6,9 @@ local mod = BigWigs:NewBoss("Temple Guardian Anhuur", "Halls of Origination")
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39425)
-mod.toggleOptions = {
-	74938, -- Shield of Light
-	{75592, "ICON", "FLASHSHAKE"}, -- Divine Reckoning
-	"bosskill",
+mod.toggleOptions = {74938, {75592, "ICON", "FLASHSHAKE"}, "bosskill"}
+mod.optionHeaders = {
+	[74938] = "general",
 }
 
 -------------------------------------------------------------------------------
@@ -20,7 +19,6 @@ local pName = GetUnitName("player")
 -------------------------------------------------------------------------------
 --  Localization
 
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization

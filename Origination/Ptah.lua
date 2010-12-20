@@ -7,8 +7,9 @@ local mod = BigWigs:NewBoss("Earthrager Ptah", "Halls of Origination")
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39428)
-mod.toggleOptions = {
-	"bosskill",
+mod.toggleOptions = {"bosskill"}
+mod.optionHeaders = {
+	bosskill = "general",
 }
 
 -------------------------------------------------------------------------------

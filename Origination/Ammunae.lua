@@ -7,6 +7,9 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39731)
 mod.toggleOptions = {76043, 75790, "bosskill"}
+mod.optionHeaders = {
+	[76043] = "general",
+}
 
 -------------------------------------------------------------------------------
 --  Initialization

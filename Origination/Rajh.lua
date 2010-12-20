@@ -7,6 +7,9 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39378)
 mod.toggleOptions = {73874, 80352, {76355, "FLASHSHAKE"}, "bosskill"}
+mod.optionHeaders = {
+	[73874] = "general",
+}
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -51,7 +54,7 @@ function mod:Blessing(player, spellId, _, _, spellName)
 end
 
 function mod:UNIT_POWER(_, unit)
-	if strike = 2 then
+	if strike == 2 then
 		self:UnregisterEvent("UNIT_POWER")
 		return
 	end

@@ -7,11 +7,9 @@ local mod = BigWigs:NewBoss("Isiset", "Halls of Origination")
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39587)
-mod.toggleOptions = {
-	74373, -- Veil of Sky
-	74137, -- Supernova
-	"split",
-	"bosskill",
+mod.toggleOptions = {74373,	74137, "split",	"bosskill"}
+mod.optionHeaders = {
+	[74373] = "general",
 }
 
 --------------------------------------------------------------------------------
