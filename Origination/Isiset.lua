@@ -1,4 +1,4 @@
--- XXX Ulic: Other suggestions?
+-- XXX English engage trigger!
 
 -------------------------------------------------------------------------------
 --  Module Declaration
@@ -26,21 +26,23 @@ local split1, split2 = nil, nil
 local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
+L["engage_trigger"] = ""
 L["split"] = "Isiset Split"
 L["split_desc"] = "Warn when Isiset Split."
 L["split_message"] = "Isiset Split soon!"--@localization(locale="enUS", namespace="Origination/Isiset", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
+BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Veil", 74372, 74133, 74373)
-	self:Log("SPELL_AURA_REMOVED", "VeilRemoved", 74372, 74133, 74373)
+	self:Log("SPELL_AURA_APPLIED", "Veil", 74133, 74372, 74373, 90760, 90761, 90762)
+	self:Log("SPELL_AURA_REMOVED", "VeilRemoved", 74133, 74372, 74373, 90760, 90761, 90762)
 	self:Log("SPELL_CAST_START", "Supernova", 74136, 74137, 76670, 90758)
 	self:RegisterEvent("UNIT_HEALTH")
+	self:Yell("Engage", L["engage_trigger"])
 
 	self:Death("Win", 39587)
 end
@@ -53,6 +55,7 @@ end
 --  Event Handlers
 
 function mod:Veil(_, spellId, _, _, spellName)
+	self:SendMessage("BigWigs_StopBar", self, spellName) -- cancel running bar from split/normal phases
 	self:Message(74373, spellName, "Urgent", spellId)
 	self:Bar(74373, spellName, 60, spellId)
 end
@@ -62,7 +65,7 @@ function mod:VeilRemoved(_, _, _, _, spellName)
 end
 
 function mod:Supernova(_, spellId, _, _, spellName)
-	self:Message(74137, LCL["casting"]:format(spellName), "Urgent", spellId, "Alert")
+	self:Message(74137, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alert")
 	self:Bar(74137, spellName, 3, spellId)
 end
 
@@ -85,3 +88,4 @@ function mod:UNIT_HEALTH(_, unit)
 		end
 	end
 end
+

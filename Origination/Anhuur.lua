@@ -1,4 +1,3 @@
--- XXX Ulic: Other suggestions?
 
 -------------------------------------------------------------------------------
 --  Module Declaration
@@ -14,7 +13,7 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
+--  Locals
 
 local pName = GetUnitName("player")
 
@@ -28,7 +27,7 @@ LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Shield", 74938)
-	self:Log("SPELL_AURA_APPLIED", "Reckoning", 75592)
+	self:Log("SPELL_AURA_APPLIED", "Reckoning", 75592, 94949)
 	self:Death("Win", 39425)
 end
 
@@ -46,3 +45,4 @@ function mod:Reckoning(player, _, _, _, spellName)
 	self:PrimaryIcon(75592, player)
 	if UnitIsUnit(player, "player") then self:FlashShake(75592) end
 end
+
