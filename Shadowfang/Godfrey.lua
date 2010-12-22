@@ -18,7 +18,6 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -32,6 +31,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Barrage", 93520)
 	
 	self:Death("Win", 46964)
+end
+
+function mod:VerifyEnable()
+	if GetInstanceDifficulty() == 2 then return true end
 end
 
 -------------------------------------------------------------------------------
@@ -57,5 +60,5 @@ end
 
 function mod:Barrage(_, spellId, _, _, spellName)
 	self:Message(93520, spellName, "Info", spellId)
-	self:Bar(93520, LCL["next"]:format(spellName), 30, spellId)
+	self:Bar(93520, LW_CL["next"]:format(spellName), 30, spellId)
 end

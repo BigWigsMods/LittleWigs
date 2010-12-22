@@ -18,7 +18,6 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -31,6 +30,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Archangel", 93757)
 
 	self:Death("Win", 46962)
+end
+
+function mod:VerifyEnable()
+	if GetInstanceDifficulty() == 2 then return true end
 end
 
 -------------------------------------------------------------------------------
@@ -47,7 +50,7 @@ end
 
 function mod:Asphyxiate(_, spellId, _, _, spellName)
 	self:Message(93710, spellName, "Important", spellId)
-	self:Bar(93710, LCL["next"]:format(spellName), 40, spellId)
+	self:Bar(93710, LW_CL["next"]:format(spellName), 40, spellId)
 end
 
 function mod:Flesh(_, spellId, _, _, spellName)

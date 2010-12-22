@@ -23,6 +23,10 @@ function mod:OnBossEnable()
 	self:Death("Win", 46963)
 end
 
+function mod:VerifyEnable()
+	if GetInstanceDifficulty() == 2 then return true end
+end
+
 -------------------------------------------------------------------------------
 --  Event Handlers
 
