@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 end
 
 function mod:VerifyEnable()
-	if UnitInVehicle("player") then return true end
+	if not UnitInVehicle("player") then return true end
 end
 
 -------------------------------------------------------------------------------

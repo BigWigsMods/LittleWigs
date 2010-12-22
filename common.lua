@@ -1,6 +1,5 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Common", "enUS", true, true)
-if L then
---@do-not-package@
+if L then--@do-not-package@
 L["casting"] = "Casting %s"
 L["ends"] = "%s ends in %d sec"
 L["frenzied"] = "%s Frenzied"
