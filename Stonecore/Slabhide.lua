@@ -7,9 +7,14 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(43214)
 mod.toggleOptions = {
-	92265, --Crystal Storm
 	{80801, "FLASHSHAKE"}, -- Lava Pool
+	92265, --Crystal Storm
 	"bosskill",
+}
+mod.optionHeaders = {
+	[80801] = "normal"
+	[92265]= "heroic",
+	bosskill = "general",
 }
 
 -------------------------------------------------------------------------------
