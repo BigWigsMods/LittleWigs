@@ -8,7 +8,7 @@ mod.partyContent = true
 mod:RegisterEnableMob(43214)
 mod.toggleOptions = {
 	92265, --Crystal Storm
-	{80801 "FLASHSHAKE"}, -- Lava Pool
+	{80801, "FLASHSHAKE"}, -- Lava Pool
 	"bosskill",
 }
 
