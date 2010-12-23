@@ -12,8 +12,8 @@ mod.toggleOptions = {
 	"bosskill",
 }
 mod.optionHeaders = {
-	[80801] = "normal"
-	[92265]= "heroic",
+	[80801] = "normal",
+	[92265] = "heroic",
 	bosskill = "general",
 }
 
