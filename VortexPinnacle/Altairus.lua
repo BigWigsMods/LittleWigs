@@ -42,6 +42,6 @@ end
 
 function mod:Breath(_, spellId, _, _, spellName)
 	self:Bar(88308, LW_CL["next"]:format(spellName), 12, spellId)
-	self:Message(88308, LW_CL["casting"]:format(spellName), "Urgent", spellId)
+	self:TargetMessage(88308, spellName, UnitTarget("boss1"), "Urgent", spellId)
 end
 
