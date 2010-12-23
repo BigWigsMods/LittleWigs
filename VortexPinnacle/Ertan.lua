@@ -14,11 +14,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
-
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -31,6 +26,7 @@ end
 --  Event Handlers
 
 function mod:Summon(unit, spellId, _, _, spellName)
-	self:Bar(86340, LCL["next"]:format(spellName, 19), spellId)
+	self:Bar(86340, LW_CL["next"]:format(spellName), 19, spellId)
 	self:Message(86340, spellName, "Alert", spellId)
 end
+

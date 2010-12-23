@@ -13,15 +13,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Locals
-local storm = GetSpellInfo(86930)
-
--------------------------------------------------------------------------------
---  Localization
-
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -36,6 +27,8 @@ end
 --  Event Handlers
 
 function mod:Storm()
+	local storm = GetSpellInfo(86930)
 	self:Bar(86930, storm, 10, 86930)
-	self:Message(86930, LCL["seconds"]:format(storm, 10), "Urgent", 86930)
+	self:Message(86930, LW_CL["seconds"]:format(storm, 10), "Urgent", 86930)
 end
+
