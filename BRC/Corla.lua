@@ -26,8 +26,8 @@ L = mod:GetLocale()
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED_DOSE", "Evolution", 75610)
-	self:Log("SPELL_AURA_REMOVED", "EvolutionRemoved", 75610)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "Evolution", 75610, 87378)
+	self:Log("SPELL_AURA_REMOVED", "EvolutionRemoved", 75610, 87378)
 
 	self:Death("Win", 39679)
 end
