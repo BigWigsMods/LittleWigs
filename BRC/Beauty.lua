@@ -39,5 +39,6 @@ end
 
 function mod:Roar(_, spellId, _, _, spellName)
 	self:Bar(76028, spellName, 30, spellId)
-	self:Message(76028, spellName, "Info", spellId)
+	self:Message(76028, spellName, "Attention", spellId)
 end
+
