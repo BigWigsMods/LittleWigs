@@ -15,11 +15,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
-
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -36,17 +31,18 @@ end
 function mod:Phalanx(_, spellId, _, _, spellName)
 	self:Message(74908, spellName, "Important", spellId, "Alert")
 	self:Bar(74908, spellName, 30, spellId)
-	self:DelayedMessage(74908, 25, LCL["ends"]:format(spellName, 5), "Attention")
+	self:DelayedMessage(74908, 25, LW_CL["ends"]:format(spellName, 5), "Attention")
 end
 
 function mod:Encumbered(_, spellId, _, _, spellName)
 	self:Message(75007, spellName, "Important", spellId, "Alert")
 	self:Bar(75007, spellName, 30, spellId)
-	self:DelayedMessage(75007, 25, LCL["ends"]:format(spellName, 5), "Attention")
+	self:DelayedMessage(75007, 25, LW_CL["ends"]:format(spellName, 5), "Attention")
 end
 
 function mod:Blades(_, spellId, _, _, spellName)
 	self:Message(74981, spellName, "Important", spellId, "Alert")
 	self:Bar(74981, spellName, 30, spellId)
-	self:DelayedMessage(74981, 25, LCL["ends"]:format(spellName, 5), "Attention")
+	self:DelayedMessage(74981, 25, LW_CL["ends"]:format(spellName, 5), "Attention")
 end
+
