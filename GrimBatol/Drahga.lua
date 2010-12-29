@@ -17,7 +17,8 @@ mod.toggleOptions = {
 
 local L = mod:NewLocale("enUS", true)
 if L then--@do-not-package@
-L["summon_trigger"] = "%s casts the spell"--@end-do-not-package@ -- need someone with a english client!
+L["summon_trigger"] = "%s casts the spell" -- need someone with a english client!
+L["summon_message"] = "Add Spawn!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 
@@ -43,7 +44,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find(L["summon_trigger"]) then
-		self:Message(75218, spellName, player, "Urgent", spellId, "Alarm")
+		self:Message(75218, L["summon_message"], "Attention", 75218, "Alarm")
 	end
 end
 
