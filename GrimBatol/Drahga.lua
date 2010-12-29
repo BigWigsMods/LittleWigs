@@ -8,10 +8,14 @@ mod.partyContent = true
 mod:RegisterEnableMob(40319)
 mod.toggleOptions = {
 	75218, -- Invocation of Flame
-	90950, -- Valiona's Flame / Devouring Flames
+	90950, -- Devouring Flames
 	"bosskill",
 }
-
+mod.optionHeaders = {
+	[75218] = "normal",
+	[90950] = "heroic",
+	bosskill = "general",
+}
 -------------------------------------------------------------------------------
 --  Localization
 
@@ -21,6 +25,7 @@ L["summon_trigger"] = "%s Summons an"
 L["summon_message"] = "Add Spawn!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
 end
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -28,7 +33,6 @@ end
 function mod:OnBossEnable()
 	-- normal
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-
 	-- heroic
 	self:Log("SPELL_CAST_START", "Flame", 90950)
 
