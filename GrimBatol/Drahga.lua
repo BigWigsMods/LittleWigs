@@ -1,4 +1,3 @@
--- XXX Ulic: Other suggestions?  Perhaps if there is a timer between phases?
 
 -------------------------------------------------------------------------------
 --  Module Declaration
@@ -8,17 +7,29 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(40319)
 mod.toggleOptions = {
-	{75218, "FLASHSHAKE"}, -- Invocation of Flame
-	--{75321, "FLASHSHAKE"}, -- Valiona's Flame / Devouring Flames
+	75218, -- Invocation of Flame
+	90950, -- Valiona's Flame / Devouring Flames
 	"bosskill",
 }
+
+-------------------------------------------------------------------------------
+--  Localization
+
+local L = mod:NewLocale("enUS", true)
+if L then--@do-not-package@
+L["summon_trigger"] = "%s casts the spell"--@end-do-not-package@ -- need someone with a english client!
+--@localization(locale="enUS", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
+end
 
 -------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Fixate", 82850)
-	--self:Log("SPELL_AURA_APPLIED", "Flame", 75321)
+	-- normal
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+
+	-- heroic
+	self:Log("SPELL_CAST_START", "Flame", 90950)
 
 	self:Death("Win", 40319)
 end
@@ -30,21 +41,13 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Fixate(player, _, _, _, spellName)
-	self:TargetMessage(75218, spellName, player, "Personal", spellId, "Alarm")
-	if UnitIsUnit(player, "player") then
-		self:FlashShake(75218)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
+	if msg:find(L["summon_trigger"]) then
+		self:Message(75218, spellName, player, "Urgent", spellId, "Alarm")
 	end
 end
 
---[[
-	This is wrong, her flame attack is a frontal cone
-	We should warn for it but need a log or wait till next time I'm there
-function mod:Flame(player, _, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(75321, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(75321)
-	end
+function mod:Flame(_, spellId, _, _, spellName)
+	self:Message(90950, spellName, "Important", spellId, "Long")
 end
-]]--
 
