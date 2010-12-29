@@ -22,6 +22,7 @@ L["summon_message"] = "Faceless Guardian Summoned"
 L["summon_trigger"] = "%s summons a"--@end-do-not-package@
 --@localization(locale="enUS", namespace="GrimBatol/Erudax", format="lua_additive_table", handle-unlocalized="ignore")@
 end
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
