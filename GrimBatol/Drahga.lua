@@ -12,9 +12,8 @@ mod.toggleOptions = {
 	"bosskill",
 }
 mod.optionHeaders = {
-	[75218] = "normal",
 	[90950] = "heroic",
-	bosskill = "general",
+	[75218] = "general",
 }
 -------------------------------------------------------------------------------
 --  Localization
@@ -22,7 +21,7 @@ mod.optionHeaders = {
 local L = mod:NewLocale("enUS", true)
 if L then--@do-not-package@
 L["summon_trigger"] = "%s Summons an"
-L["summon_message"] = "Add Spawn!"--@end-do-not-package@
+L["summon_message"] = "Add Spawned!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
