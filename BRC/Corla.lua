@@ -36,7 +36,7 @@ end
 --  Event Handlers
 
 function mod:Evolution(player, spellId, _, _, spellName, stack)
-	if UnitIsUnit(player, "player") and stack > 80 and not warned then
+	if UnitIsUnit(player, "player") and stack > 75 and not warned then
 		warned = true
 		self:LocalMessage(75610, L["evolution_stacks"]:format(stack), "Personal", spellId, "Alarm")
 		self:FlashShake(75610)
