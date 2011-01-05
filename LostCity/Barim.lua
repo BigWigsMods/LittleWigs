@@ -35,21 +35,21 @@ local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Plague(unit, spellName, _, _, spellId)
+function mod:Plague(unit, spellId, _, _, spellName)
 	if UnitIsUnit(unit, "player") then
-		self:LocalMessage(82622, BLC["you"]:format(spellName), "Personal", spellId, "Info")
+		self:LocalMessage(82622, BCL["you"]:format(spellName), "Personal", spellId, "Info")
 		self:FlashShake(82622)
 	end
 	self:PrimaryIcon(82622, unit)
 end
 
-function mod:Lashings(_, spellName, _, _, spellId)
+function mod:Lashings(_, spellId, _, _, spellName)
 	self:Message(82506, spellName, "Important", spellId)
 end
 
 function mod:Ground(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(88814, BLC["you"]:format(spellName), "Urgent", spellId, "Alert")
+		self:LocalMessage(88814, BCL["you"]:format(spellName), "Urgent", spellId, "Alert")
 		self:FlashShake(88814)
 	end
 end
