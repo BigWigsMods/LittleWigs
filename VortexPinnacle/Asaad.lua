@@ -9,6 +9,7 @@ mod.partyContent = true
 mod:RegisterEnableMob(43875)
 mod.toggleOptions = {
 	86930, -- Supremacy of the Storm
+	"proximity",
 	"bosskill",
 }
 
@@ -30,5 +31,6 @@ function mod:Storm()
 	local storm = GetSpellInfo(86930)
 	self:Bar(86930, storm, 10, 86930)
 	self:Message(86930, LW_CL["seconds"]:format(storm, 10), "Urgent", 86930)
+	self:OpenProximity(25)
 end
 
