@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -16,11 +15,6 @@ mod.optionHeaders = {
 	[92265] = "heroic",
 	bosskill = "general",
 }
-
--------------------------------------------------------------------------------
---  Localization
-
-BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -49,7 +43,7 @@ end
 
 function mod:LavaPool(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(80801, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
+		self:LocalMessage(80801, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake(80801)
 	end
 end

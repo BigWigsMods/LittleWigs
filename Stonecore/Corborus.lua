@@ -11,11 +11,6 @@ mod:RegisterEnableMob(43438)
 mod.toggleOptions = {92648, "bosskill"}
 
 -------------------------------------------------------------------------------
---  Localization
-
-BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -29,7 +24,7 @@ end
 
 function mod:Barrage(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(92648, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
+		self:LocalMessage(92648, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake(92648)
 	end
 end

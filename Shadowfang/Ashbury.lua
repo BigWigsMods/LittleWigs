@@ -16,10 +16,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
-
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -60,3 +56,4 @@ end
 function mod:Archangel(_, spellId, _, _, spellName)
 	self:Message(93757, spellName, "Alert", spellId)
 end
+

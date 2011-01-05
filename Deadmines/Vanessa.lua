@@ -28,3 +28,4 @@ function mod:Deflection(_, spellId, _, _, spellName)
 	self:Message(92614, spellName, "Urgent", spellId)
 	self:Bar(92614, spellName, 10, spellId)
 end
+

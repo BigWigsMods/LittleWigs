@@ -42,3 +42,4 @@ end
 function mod:Poisonous(_, spellId, _, _, spellName)
 	self:Message(93704, spellName, "Alert", spellId)
 end
+

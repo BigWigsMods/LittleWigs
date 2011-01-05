@@ -19,7 +19,7 @@ mod.toggleOptions = {
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 84784)
-	
+
 	self:Death("Win", 49045)
 end
 
@@ -30,3 +30,4 @@ function mod:Whirlwind(_, spellId, _, _, spellName)
 	self:Message(84784, spellName, "Urgent", spellId)
 	self:Bar(84784, spellName, 20, spellId)
 end
+

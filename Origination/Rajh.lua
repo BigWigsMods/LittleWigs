@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -7,9 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39378)
 mod.toggleOptions = {73874, 80352, {76355, "FLASHSHAKE"}, "bosskill"}
-mod.optionHeaders = {
-	[73874] = "general",
-}
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -27,6 +23,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Blessing", 76355, 89879)
 	self:RegisterEvent("UNIT_POWER")
 
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 39378)
 end
 
@@ -54,14 +51,12 @@ function mod:Blessing(player, spellId, _, _, spellName)
 end
 
 function mod:UNIT_POWER(_, unit)
+	if unit ~= "boss1" then return end
 	if strike == 2 then
 		self:UnregisterEvent("UNIT_POWER")
 		return
 	end
-	local guid = UnitGUID(unit)
-	if not guid then return end
-	guid = tonumber((guid):sub(-12, -9), 16)
-	if guid == 40586 then
+	if UnitName(unit) == self.displayName then
 		local power = UnitPower(unit) / UnitPowerMax(unit) * 100
 		if power <= 20 and strike <= 1 and (GetTime() - blessingTime) > 20 then -- massive throttling as energy fills up again, needs testing
 			self:Message(76355, LW_CL["soon"]:format(GetSpellInfo(76355)), "Attention")

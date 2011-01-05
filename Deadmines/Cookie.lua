@@ -1,5 +1,5 @@
 -- XXX Ulic: Need logs and suggestions
-
+--[[
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -15,7 +15,7 @@ mod.toggleOptions = {
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Death("Win", 47739) 
+	self:Death("Win", 47739)
 end
 
 function mod:VerifyEnable()
@@ -24,4 +24,5 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+]]
 

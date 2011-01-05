@@ -22,7 +22,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CorruptionRemoved", 76188, 93613)
 	self:Log("SPELL_AURA_APPLIED", "Change", 76200)
 	self:Log("SPELL_AURA_APPLIED", "Veil", 76189)
-	
+
 	self:Death("Win", 39705)
 end
 
@@ -49,3 +49,4 @@ function mod:Veil(player, spellId, _, _, spellName)
 		self:Bar(76189, player..": "..spellName, 4, spellId)
 	end
 end
+

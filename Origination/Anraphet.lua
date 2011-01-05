@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -7,14 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39788)
 mod.toggleOptions = {{76184, "FLASHSHAKE"}, 75622, 75603, "bosskill"}
-mod.optionHeaders = {
-	[76184] = "general",
-}
-
--------------------------------------------------------------------------------
---  Localization
-
-BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -25,8 +16,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Omega", 75622, 91208)
 	self:Log("SPELL_AURA_APPLIED", "Nemesis", 75603, 91174)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Death("Win", 39788)
 end
@@ -44,7 +34,7 @@ end
 
 function mod:AlphaDebuff(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(76184, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
+		self:LocalMessage(76184, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake(76184)
 	end
 end

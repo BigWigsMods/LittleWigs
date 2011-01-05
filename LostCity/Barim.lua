@@ -1,5 +1,5 @@
 -- XXX Ulic: Don't recall anything worth reporting on HEROIC
-
+--[[
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -12,11 +12,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
-
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -25,4 +20,5 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+]]
 

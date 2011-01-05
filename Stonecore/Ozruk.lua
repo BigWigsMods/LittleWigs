@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -24,9 +23,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Shatter", 78807, 92662)
 
 	self:RegisterEvent("UNIT_HEALTH")
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Death("Win", 42188)
+end
+
+function mod:OnEngage()
+	self:Bar(92662, LW_CL["next"]:format(GetSpellInfo(92662)), 20, 92662)
 end
 
 -------------------------------------------------------------------------------
@@ -44,20 +47,13 @@ function mod:BulwarkRemoved(_, _, _, _, spellName)
 end
 
 function mod:UNIT_HEALTH(_, unit)
-	if unit ~= "boss1" then return end --if it's not the boss, don't do anything
+	if unit ~= "boss1" then return end
 	if UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 27 and hp > 21 then
 			self:Message(80467, LW_CL["soon"]:format(GetSpellInfo(80467)), "Attention", 80467)
 			self:UnregisterEvent("UNIT_HEALTH")
 		end
-	end
-end
-
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	if UnitName("boss1") == self.displayName then
-		self:Bar(92662, LW_CL["next"]:format(GetSpellInfo(92662)), 20, 92662)
-		self:RegisterEvent("UNIT_HEALTH")
 	end
 end
 

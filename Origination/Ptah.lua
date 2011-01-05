@@ -1,5 +1,5 @@
 -- XXX Ulic: When last I did this on NORMAL it didn't need any warnings
-
+--[[
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -37,3 +37,5 @@ function mod:Deaths()
 		self:Win()
 	end
 end
+]]
+

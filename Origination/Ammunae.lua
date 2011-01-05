@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -7,9 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39731)
 mod.toggleOptions = {76043, 75790, "bosskill"}
-mod.optionHeaders = {
-	[76043] = "general",
-}
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -38,3 +34,4 @@ end
 function mod:Growth(_, spellId, _, _, spellName)
 	self:Message(75790, spellName, "Urgent", spellId, "Alarm")
 end
+

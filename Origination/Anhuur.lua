@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -7,18 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39425)
 mod.toggleOptions = {74938, {75592, "ICON", "FLASHSHAKE"}, "bosskill"}
-mod.optionHeaders = {
-	[74938] = "general",
-}
-
--------------------------------------------------------------------------------
---  Locals
-
-local pName = GetUnitName("player")
-
--------------------------------------------------------------------------------
---  Localization
-
 
 -------------------------------------------------------------------------------
 --  Initialization

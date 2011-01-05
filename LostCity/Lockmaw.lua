@@ -20,7 +20,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Poison", 90004)
 	self:Log("SPELL_AURA_REMOVED", "PoisonRemoved", 90004)
 	self:Log("SPELL_AURA_APPLIED", "Scent", 89998)
-	
+
 	self:Death("Win", 43614)
 end
 
@@ -42,3 +42,4 @@ function mod:Scent(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then self:FlashShake(89998) end
 	self:PrimaryIcon(89998, player)
 end
+

@@ -31,3 +31,4 @@ end
 function mod:Summon(_, spellId, _, _, spellName)
 	self:Message(93857, spellName, "Important", spellId)
 end
+

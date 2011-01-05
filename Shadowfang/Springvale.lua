@@ -35,3 +35,4 @@ end
 function mod:Shield(_, spellId, _, _, spellName)
 	self:Message(93736, spellName, "Alert", spellId)
 end
+

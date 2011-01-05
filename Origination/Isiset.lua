@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -6,16 +5,13 @@ local mod = BigWigs:NewBoss("Isiset", "Halls of Origination")
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39587)
-mod.toggleOptions = {74373,	74137, "split",	"bosskill"}
-mod.optionHeaders = {
-	[74373] = "general",
-}
+mod.toggleOptions = {74373, 74137, "split", "bosskill"}
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local split1, split2 = nil, nil
+local split1 = nil
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -28,7 +24,6 @@ L["split_desc"] = "Warn when Isiset Split."
 L["split_message"] = "Isiset Split soon!"--@localization(locale="enUS", namespace="Origination/Isiset", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
-BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -39,14 +34,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Supernova", 74136, 74137, 76670, 90758)
 
 	self:RegisterEvent("UNIT_HEALTH")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Death("Win", 39587)
 end
 
 function mod:OnEngage()
-	split1, split2 = nil, nil
+	split1 = nil
 end
 
 -------------------------------------------------------------------------------
@@ -68,21 +62,15 @@ function mod:Supernova(_, spellId, _, _, spellName)
 end
 
 function mod:UNIT_HEALTH(_, unit)
-	if split1 and split2 then
-		self:UnregisterEvent("UNIT_HEALTH")
-		return
-	end
-	local guid = UnitGUID(unit)
-	if not guid then return end
-	guid = tonumber((guid):sub(-12, -9), 16)
-	if guid == 39587 then
+	if unit ~= "boss1" then return end
+	if UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp <= 65 and not split1 then
+		if hp < 65 and not split1 then
 			self:Message("split", L["split_message"], "Attention")
 			split1 = true
-		elseif hp <= 35 and not split2 then
+		elseif hp < 35 then
 			self:Message("split", L["split_message"], "Attention")
-			split2 = true
+			self:UnregisterEvent("UNIT_HEALTH")
 		end
 	end
 end

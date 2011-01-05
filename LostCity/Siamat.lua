@@ -39,7 +39,6 @@ L["servant_message"] = "Servant of Siamat Summoned!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="LostCity/Siamat", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
-BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -48,9 +47,9 @@ function mod:OnBossEnable()
 	--self:Death("Adds", 45268, 45269, 45259)
 	self:Log("SPELL_DAMAGE", "Storm", 90011, 94987)
 	self:Log("SPELL_SUMMON", "Servant", 90013, 84553)
-	
+
 	self:Yell("Engage", L["engage_trigger"])
-	
+
 	self:Death("Win", 44819)
 end
 
@@ -67,7 +66,7 @@ function mod:Storm(player, spellId, _, _, spellName)
 	if (time - last) > 2 then
 		last = time
 		if UnitIsUnit(player, "player") then
-			self:LocalMessage(90011, BCL["you"]:format(spellName), "Personal", spellId, "Info")
+			self:LocalMessage(90011, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Info")
 			self:FlashShake(90011)
 		end
 	end
@@ -81,3 +80,4 @@ function mod:Servant(_, spellId)
 	end
 	self:Message("servant", L["servant_message"], "Important", spellId, "Alert")
 end
+
