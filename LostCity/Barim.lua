@@ -30,7 +30,7 @@ L["phase_message"] = "Phase 2 soon!"
 --@localization(locale="enUS", namespace="LostCity/Barim", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
-BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Event Handlers
