@@ -1,9 +1,3 @@
--- XXX Ulic: Other suggestions?  This guy really sucked for my HEROIC group
--- XXX Second time I ran it on heroic (w/Raid Pre-Made) it was a lot easier.
--- XXX I didn't notice any storm clouds like what I thought Gathering Storms
--- XXX was though, right now that warning is seeming pointless, I'm not sure
--- XXX it can be avoided.
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -12,7 +6,6 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(44819)
 mod.toggleOptions = {
-	{90011, "FLASHSHAKE"}, -- Gathered Storms
 	"servant",
 	"phase",
 	"bosskill",
@@ -44,12 +37,11 @@ L = mod:GetLocale()
 --  Initialization
 
 function mod:OnBossEnable()
-	--self:Death("Adds", 45268, 45269, 45259)
-	self:Log("SPELL_DAMAGE", "Storm", 90011, 94987)
 	self:Log("SPELL_SUMMON", "Servant", 90013, 84553)
 
 	self:Yell("Engage", L["engage_trigger"])
 
+	--self:Death("Adds", 45268, 45269, 45259)
 	self:Death("Win", 44819)
 end
 
@@ -59,18 +51,6 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
-
-local last = 0
-function mod:Storm(player, spellId, _, _, spellName)
-	local time = GetTime()
-	if (time - last) > 2 then
-		last = time
-		if UnitIsUnit(player, "player") then
-			self:LocalMessage(90011, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Info")
-			self:FlashShake(90011)
-		end
-	end
-end
 
 function mod:Servant(_, spellId)
 	adds = adds + 1
