@@ -40,6 +40,7 @@ end
 --  Event Handlers
 
 function mod:UNIT_HEALTH(_, unit)
+	if unit ~= "boss1" then return end
 	if UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp <= 53 then

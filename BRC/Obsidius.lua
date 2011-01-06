@@ -12,12 +12,6 @@ mod.toggleOptions = {
 	"bosskill",
 }
 
---------------------------------------------------------------------------------
--- Locals
---
-
-local changeThrottle = 0
-
 -------------------------------------------------------------------------------
 --  Initialization
 
@@ -27,12 +21,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Change", 76200)
 	self:Log("SPELL_AURA_APPLIED", "Veil", 76189)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 39705)
-end
-
-function mod:OnEngage()
-	changeThrottle = 0
 end
 
 -------------------------------------------------------------------------------
@@ -47,12 +36,16 @@ function mod:CorruptionRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
 
-function mod:Change(_, spellId, _, _, spellName)
-	if (GetTime() - changeThrottle) > 2 then
-		self:Message(76200, spellName, "Attention", spellId)
+do
+	local changeThrottle = 0
+	function mod:Change(_, spellId, _, _, spellName)
+		local time = GetTime()
+		if (time - changeThrottle) > 2 then
+			self:Message(76200, spellName, "Attention", spellId)
+		end
+		self:PrimaryIcon(76200, mod.displayName)
+		changeThrottle = time
 	end
-	self:PrimaryIcon(76200, mod.displayName)
-	changeThrottle = GetTime()
 end
 
 function mod:Veil(player, spellId, _, _, spellName)
