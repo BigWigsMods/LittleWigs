@@ -1,5 +1,3 @@
--- XXX Ulic: Other suggestions?  Perhaps a timer between body shifts if it's consistant
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -14,6 +12,12 @@ mod.toggleOptions = {
 	"bosskill",
 }
 
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local changeThrottle = 0
+
 -------------------------------------------------------------------------------
 --  Initialization
 
@@ -23,14 +27,19 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Change", 76200)
 	self:Log("SPELL_AURA_APPLIED", "Veil", 76189)
 
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 39705)
+end
+
+function mod:OnEngage()
+	changeThrottle = 0
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 function mod:Corruption(player, spellId, _, _, spellName)
-	self:Message(93613, spellName..": "..player, "Urgent", spellId)
+	self:LocalMessage(93613, spellName..": "..player, "Important", spellId, "Alarm")
 	self:Bar(93613, player..": "..spellName, 12, spellId)
 end
 
@@ -39,13 +48,16 @@ function mod:CorruptionRemoved(player, _, _, _, spellName)
 end
 
 function mod:Change(_, spellId, _, _, spellName)
-	self:Message(76200, spellName, "Info", spellId)
+	if (GetTime() - changeThrottle) > 2 then
+		self:Message(76200, spellName, "Attention", spellId)
+	end
 	self:PrimaryIcon(76200, mod.displayName)
+	changeThrottle = GetTime()
 end
 
 function mod:Veil(player, spellId, _, _, spellName)
 	if UnitGroupRolesAssigned(player) == "TANK" then
-		self:Message(76189, spellName..": "..player, "Urgent", spellId)
+		self:Message(76189, spellName..": "..player, "Personal", spellId)
 		self:Bar(76189, player..": "..spellName, 4, spellId)
 	end
 end

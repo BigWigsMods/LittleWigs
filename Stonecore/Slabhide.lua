@@ -24,7 +24,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Storm", 92265)
 	self:Log("SPELL_AURA_APPLIED", "StormBegun", 92265)
 	-- Normal
-	self:Log("SPELL_AURA_APPLIED", "LavaPool", 80801, 92658) -- XXX drycoded, needs testing
+	self:Log("SPELL_AURA_APPLIED", "LavaPool", 80801, 92658)
 
 	self:Death("Win", 43214)
 end
