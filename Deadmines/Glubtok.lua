@@ -1,21 +1,14 @@
--- XXX Ulic: Any other suggestions
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
 local mod = BigWigs:NewBoss("Glubtok", "The Deadmines")
 if not mod then return end
 mod.partyContent = true
-mod:RegisterEnableMob(47162) -- XXX Possibly 42755 or 42492
+mod:RegisterEnableMob(47162)
 mod.toggleOptions = {
 	"phase",
 	"bosskill",
 }
-
---------------------------------------------------------------------------------
---  Locals
-
-local p2 = nil
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -36,11 +29,7 @@ L = mod:GetLocale()
 function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_HEALTH")
 
-	self:Death("Win", 47162) -- XXX Possibly 42755 or 42492
-end
-
-function mod:OnEngage()
-	p2 = nil
+	self:Death("Win", 47162)
 end
 
 function mod:VerifyEnable()
@@ -51,15 +40,11 @@ end
 --  Event Handlers
 
 function mod:UNIT_HEALTH(_, unit)
-	if p2 then
-		self:UnregisterEvent("UNIT_HEALTH")
-		return
-	end
 	if UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp <= 53 and not p2 then
+		if hp <= 53 then
 			self:Message("phase", L["phase_warning"], "Positive")
-			p2 = true
+			self:UnregisterEvent("UNIT_HEALTH")
 		end
 	end
 end
