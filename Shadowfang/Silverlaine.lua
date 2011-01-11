@@ -8,7 +8,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(3887)
 mod.toggleOptions = {
-	93857,
+	93857, --Summon Worgen Spirit
 	"bosskill",
 }
 

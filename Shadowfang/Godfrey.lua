@@ -8,8 +8,8 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(46964)
 mod.toggleOptions = {
-	93675, -- Mortal Wound
-	93629, -- Cursed Bullets
+	93771, -- Mortal Wound
+	93761, -- Cursed Bullets
 	93707, -- Summon Bloodthirsty Ghouls
 	93520, -- Pistol Barrage
 	"bosskill",
@@ -23,9 +23,9 @@ mod.toggleOptions = {
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "MortalWound", 93675)
-	self:Log("SPELL_AURA_APPLIED", "CursedBullets", 93629)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "CursedBullets", 93629)
+	self:Log("SPELL_AURA_APPLIED", "MortalWound", 93771)
+	self:Log("SPELL_AURA_APPLIED", "CursedBullets", 93762)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "CursedBullets", 93761)
 	self:Log("SPELL_AURA_REMOVED", "CBRemoved", 93629)
 	self:Log("SPELL_AURA_APPLIED", "Summon", 93707)
 	self:Log("SPELL_CAST_START", "Barrage", 93520)
@@ -41,13 +41,13 @@ end
 --  Event Handlers
 
 function mod:MortalWound(player, spellId, _, _, spellName)
-	self:Message(93675, spellName..": "..player, "Urgent", spellId)
-	self:Bar(93675, player..": "..spellName, 6, spellId)
+	self:Message(93771, spellName..": "..player, "Urgent", spellId)
+	self:Bar(93771, player..": "..spellName, 6, spellId)
 end
 
 function mod:CursedBullets(player, spellId, _, _, spellName)
-	self:Message(93629, spellName..": "..player, "Urgent", spellId)
-	self:Bar(93629, player..": "..spellName, 15, spellId)
+	self:Message(93761, spellName..": "..player, "Urgent", spellId)
+	self:Bar(93761, player..": "..spellName, 15, spellId)
 end
 
 function mod:CBRemoved(player, _, _, _, spellName)
