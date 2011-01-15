@@ -29,7 +29,7 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Gale", 75664, 91086)
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:Emote("Summon", L["summon_trigger"])
 
 	self:Death("Win", 40484)
 end
@@ -42,9 +42,7 @@ function mod:Gale(_, spellId, _, _, spellName)
 	self:Message(91086, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alert")
 end
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find(L["summon_trigger"]) then
-		self:Message("summon", L["summon_message"], "Attention")
-	end
+function mod:Summon()
+	self:Message("summon", L["summon_message"], "Attention")
 end
 

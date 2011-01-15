@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -31,7 +30,7 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	-- normal
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:Emote("Summon", L["summon_trigger"])
 	-- heroic
 	self:Log("SPELL_CAST_START", "Flame", 90950)
 
@@ -45,10 +44,8 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find(L["summon_trigger"]) then
-		self:Message(75218, L["summon_message"], "Attention", 75218, "Alarm")
-	end
+function mod:Summon()
+	self:Message(75218, L["summon_message"], "Attention", 75218, "Alarm")
 end
 
 function mod:Flame(_, spellId, _, _, spellName)
