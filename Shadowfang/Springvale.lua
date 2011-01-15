@@ -29,10 +29,10 @@ end
 --  Event Handlers
 
 function mod:Desecration(_, spellId, _, _, spellName)
-	self:Message(93687, spellName, "Info", spellId)
+	self:Message(93687, spellName, "Important", spellId)
 end
 
 function mod:Shield(_, spellId, _, _, spellName)
-	self:Message(93736, spellName, "Alert", spellId)
+	self:Message(93736, spellName, "Positive", spellId)
 end
 

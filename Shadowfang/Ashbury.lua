@@ -45,15 +45,15 @@ function mod:PnSRemoved(player, _, _, _, spellName)
 end
 
 function mod:Asphyxiate(_, spellId, _, _, spellName)
-	self:Message(93710, spellName, "Important", spellId)
+	self:Message(93710, spellName, "Attention", spellId)
 	self:Bar(93710, LW_CL["next"]:format(spellName), 40, spellId)
 end
 
 function mod:Flesh(_, spellId, _, _, spellName)
-	self:Message(93713, spellName, "Info", spellId)
+	self:Message(93713, spellName, "Important", spellId, "Alert")
 end
 
 function mod:Archangel(_, spellId, _, _, spellName)
-	self:Message(93757, spellName, "Alert", spellId)
+	self:Message(93757, spellName, "Positive", spellId)
 end
 

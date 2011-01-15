@@ -55,11 +55,11 @@ function mod:CBRemoved(player, _, _, _, spellName)
 end
 
 function mod:Summon(_, spellId, _, _, spellName)
-	self:Message(93707, spellName, "Alert", spellId)
+	self:Message(93707, spellName, "Important", spellId)
 end
 
 function mod:Barrage(_, spellId, _, _, spellName)
-	self:Message(93520, spellName, "Info", spellId)
+	self:Message(93520, spellName, "Positive", spellId)
 	self:Bar(93520, LW_CL["next"]:format(spellName), 30, spellId)
 end
 

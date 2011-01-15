@@ -31,15 +31,15 @@ end
 --  Event Handlers
 
 function mod:IceShards(_, spellId, _, _, spellName)
-	self:Message(93527, spellName, "Info", spellId)
+	self:Message(93527, spellName, "Attention", spellId)
 	self:Bar(93527, spellName, 5, spellId)
 end
 
 function mod:Frost(_, spellId, _, _, spellName)
-	self:Message(93702, spellName, "Alert", spellId)
+	self:Message(93702, spellName, "Important", spellId)
 end
 
 function mod:Poisonous(_, spellId, _, _, spellName)
-	self:Message(93704, spellName, "Alert", spellId)
+	self:Message(93704, spellName, "Positive", spellId)
 end
 
