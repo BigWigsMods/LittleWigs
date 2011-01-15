@@ -18,7 +18,7 @@ mod.toggleOptions = {
 
 local L = mod:NewLocale("enUS", true)
 if L then--@do-not-package@
-L["blitz_trigger"] = " "--@localization(locale="enUS", namespace="GrimBatol/Umbriss", format="lua_additive_table", handle-unlocalized="ignore")@
+L["blitz_trigger"] = "ololneedtriggerhere"--@localization(locale="enUS", namespace="GrimBatol/Umbriss", format="lua_additive_table", handle-unlocalized="ignore")@
 end -- XXX trigger ulic + activate locale
 L = mod:GetLocale()
 
@@ -59,8 +59,7 @@ function mod:Siege(_, spellId, _, _, spellName)
 end
 
 function mod:UNIT_HEALTH(_, unit)
-	if unit ~= "boss1" then return end
-	if UnitName(unit) == self.displayName then
+	if unit == "boss1" and UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 36 then
 			self:Message(74853, LW_CL["soon"]:format(GetSpellInfo(74853)), "Attention", 74853)
