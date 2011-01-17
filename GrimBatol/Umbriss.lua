@@ -44,15 +44,19 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Blitz(_, spellId, _, _, spellName)
-	local player = UnitName("boss1target")
-	self:TargetMessage(74670, spellName, player, "Urgent", spellId, "Alert")
-	self:PrimaryIcon(74670, player)
-	self:ScheduleTimer("ClearIcon", 3.5)
-end
-
-function mod:ClearIcon()
-	self:PrimaryIcon(74670)
+do
+	local function checkTarget()
+		local player = UnitName("boss1target")
+		mod:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
+		mod:PrimaryIcon(74670, player)
+	end
+	local function clearIcon()
+		mod:PrimaryIcon(74670)
+	end
+	function mod:Blitz()
+		self:ScheduleTimer(checkTarget, 0.1)
+		self:ScheduleTimer(clearIcon, 3.5)
+	end
 end
 
 function mod:Siege(_, spellId, _, _, spellName)
