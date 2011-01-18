@@ -78,7 +78,7 @@ function mod:Frenzy(_, spellId, _, _, spellName)
 end
 
 function mod:Wound(player, spellId, _, _, spellName)
-	self:TargetMessage(91937, spellName, player, "Urgent", spellId)
+	self:TargetMessage(91937, spellName, player, "Important", spellId)
 	self:Bar(91937, player..": "..spellName, 15, spellId)
 end
 
