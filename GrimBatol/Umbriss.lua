@@ -14,22 +14,14 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
-
-local L = mod:NewLocale("enUS", true)
-if L then--@do-not-package@
-L["blitz_trigger"] = "ololneedtriggerhere"--@localization(locale="enUS", namespace="GrimBatol/Umbriss", format="lua_additive_table", handle-unlocalized="ignore")@
-end -- XXX trigger ulic + activate locale
-L = mod:GetLocale()
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_HEALTH")
 
+	self:Emote("Blitz", GetSpellInfo(74670))
+	
 	self:Log("SPELL_CAST_START", "Siege", 74634, 90249)
-	self:Log("SPELL_CAST_START", "Blitz", 74670, 90250)
 	self:Log("SPELL_AURA_APPIED", "Frenzy", 74853)
 	self:Log("SPELL_AURA_APPIED", "Wound", 74846, 91937)
 	self:Log("SPELL_AURA_REMOVED", "WoundRemoved", 74846, 91937)
@@ -44,19 +36,14 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-do
-	local function checkTarget()
-		local player = UnitName("boss1target")
-		mod:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
-		mod:PrimaryIcon(74670, player)
-	end
-	local function clearIcon()
-		mod:PrimaryIcon(74670)
-	end
-	function mod:Blitz()
-		self:ScheduleTimer(checkTarget, 0.1)
-		self:ScheduleTimer(clearIcon, 3.5)
-	end
+local function clearIcon()
+	self:PrimaryIcon(74670)
+end
+
+function mod:Blitz(_, _, _, _, player)
+	self:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
+	self:PrimaryIcon(74670, player)
+	self:ScheduleTimer("clearIcon", 3.5)
 end
 
 function mod:Siege(_, spellId, _, _, spellName)
@@ -85,4 +72,3 @@ end
 function mod:WoundRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
-
