@@ -13,14 +13,20 @@ mod.toggleOptions = {
 	"bosskill",
 }
 
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local blitz = GetSpellInfo(74670)
+
 -------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_HEALTH")
 
-	self:Emote("Blitz", GetSpellInfo(74670))
-	
+	self:Emote("Blitz", blitz)
+
 	self:Log("SPELL_CAST_START", "Siege", 74634, 90249)
 	self:Log("SPELL_AURA_APPIED", "Frenzy", 74853)
 	self:Log("SPELL_AURA_APPIED", "Wound", 74846, 91937)
@@ -36,14 +42,15 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-local function clearIcon()
-	self:PrimaryIcon(74670)
-end
-
-function mod:Blitz(_, _, _, _, player)
-	self:TargetMessage(74670, GetSpellInfo(74670), player, "Urgent", 74670, "Alert")
-	self:PrimaryIcon(74670, player)
-	self:ScheduleTimer("clearIcon", 3.5)
+do
+	local function clearIcon()
+		self:PrimaryIcon(74670)
+	end
+	function mod:Blitz(_, _, _, _, player)
+		self:TargetMessage(74670, blitz, player, "Urgent", 74670, "Alert")
+		self:PrimaryIcon(74670, player)
+		self:ScheduleTimer(clearIcon, 3.5)
+	end
 end
 
 function mod:Siege(_, spellId, _, _, spellName)
@@ -72,3 +79,4 @@ end
 function mod:WoundRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
 end
+
