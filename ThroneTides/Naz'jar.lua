@@ -1,5 +1,3 @@
--- XXX Ulic: Other suggestions?
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -45,10 +43,10 @@ function mod:UNIT_HEALTH(_, unit)
 	if unit ~= "boss1" then return end
 	if UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 55 and not spout1 then
+		if hp < 69 and not spout1 then
 			self:Message(75683, LW_CL["soon"]:format(GetSpellInfo(75683)), "Attention")
 			spout1 = true
-		elseif hp < 35 then
+		elseif hp < 36 then
 			self:Message(75683, LW_CL["soon"]:format(GetSpellInfo(75683)), "Attention")
 			self:UnregisterEvent("UNIT_HEALTH")
 		end
