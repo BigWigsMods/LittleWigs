@@ -14,8 +14,7 @@ mod.toggleOptions = {
 }
 
 --------------------------------------------------------------------------------
--- Locals
---
+--  Locals
 
 local blitz = GetSpellInfo(74670)
 

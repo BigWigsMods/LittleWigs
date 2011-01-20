@@ -14,12 +14,17 @@ mod.optionHeaders = {
 	[90950] = "heroic",
 	[75218] = "general",
 }
+
+-------------------------------------------------------------------------------
+--  Locals
+
+local invocation = GetSpellInfo(75218)
+
 -------------------------------------------------------------------------------
 --  Localization
 
 local L = mod:NewLocale("enUS", true)
 if L then--@do-not-package@
-L["summon_trigger"] = "%s Summons an"
 L["summon_message"] = "Add Spawned!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
 end
@@ -30,7 +35,7 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	-- normal
-	self:Emote("Summon", L["summon_trigger"])
+	self:Emote("Summon", invocation)
 	-- heroic
 	self:Log("SPELL_CAST_START", "Flame", 90950)
 
