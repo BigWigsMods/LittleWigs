@@ -66,7 +66,7 @@ function mod:Paralyze(_, _, _, _, spellName)
 end
 
 function mod:Shatter(_, spellId, _, _, spellName)
-	self:Bar(92662, spellName, 2.5, spellId)
+	self:Bar(92662, spellName, 2.5, spellId) -- XXX change to 3 sec in 4.0.6
 	self:Bar(92662, LW_CL["next"]:format(spellName), 20, spellId)
 end
 

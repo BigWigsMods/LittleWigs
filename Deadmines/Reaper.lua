@@ -36,9 +36,20 @@ function mod:Overdrive(_, spellId, _, _, spellName)
 	self:Bar(88481, LW_CL["next"]:format(spellName), 53, spellId)
 end
 
-function mod:Harvest(_, spellId, _, _, spellName)
+--[[function mod:Harvest(_, spellId, _, _, spellName)
 	self:TargetMessage(88495, spellName, UnitName("boss1target"), "Urgent", spellId)
 	self:Bar(88495, LW_CL["next"]:format(spellName), 56, spellId)
+end]]
+
+do
+	local function checkTarget()
+		local player = UnitName("boss1target")
+		mod:TargetMessage(88495, GetSpellInfo(88495), player, "Urgent", 88495)
+		mod:Bar(88495, LW_CL["next"]:format(GetSpellInfo(88495)), 56, 88495)
+	end
+	function mod:Harvest()
+		self:ScheduleTimer(checkTarget, 0.1)
+	end
 end
 
 function mod:Safety(_, spellId, _, _, spellName)
