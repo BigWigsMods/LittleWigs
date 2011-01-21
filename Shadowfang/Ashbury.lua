@@ -1,5 +1,3 @@
--- XXX Ulic: Other suggestions?
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -10,7 +8,7 @@ mod:RegisterEnableMob(46962)
 mod.toggleOptions = {
 	93712, -- Pain and Suffering
 	93710, -- Asphyxiate
-	93713, -- Mend Rotten Flesh
+	93713, -- Mend Rotten Flesh, XXX remove with 4.0.6
 	93757, -- Dark Archangel Form
 	"bosskill",
 }
@@ -20,10 +18,11 @@ mod.toggleOptions = {
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PnS", 93712)
-	self:Log("SPELL_AURA_REMOVED", "PnSRemoved", 93712)
 	self:Log("SPELL_CAST_SUCCESS", "Asphyxiate", 93710)
-	self:Log("SPELL_CAST_START", "Flesh", 93713)
+	self:Log("SPELL_CAST_START", "Flesh", 93713) -- XXX remove with 4.0.6
 	self:Log("SPELL_CAST_START", "Archangel", 93757)
+
+	self:RegisterEvent("UNIT_HEALTH")
 
 	self:Death("Win", 46962)
 end
@@ -36,24 +35,29 @@ end
 --  Event Handlers
 
 function mod:PnS(player, spellId, _, _, spellName)
-	self:Message(93712, spellName..": "..player, "Urgent", spellId)
-	self:Bar(93712, player..": "..spellName, 12, spellId)
-end
-
-function mod:PnSRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+	self:TargetMessage(93712, spellName, player, "Important", spellId)
 end
 
 function mod:Asphyxiate(_, spellId, _, _, spellName)
-	self:Message(93710, spellName, "Attention", spellId)
+	self:Message(93710, spellName, "Important", spellId)
 	self:Bar(93710, LW_CL["next"]:format(spellName), 40, spellId)
 end
 
-function mod:Flesh(_, spellId, _, _, spellName)
-	self:Message(93713, spellName, "Important", spellId, "Alert")
+function mod:Flesh(_, spellId, _, _, spellName) -- XXX remove with 4.0.6
+	self:Message(93713, spellName, "Attention", spellId, "Alert")
 end
 
 function mod:Archangel(_, spellId, _, _, spellName)
-	self:Message(93757, spellName, "Positive", spellId)
+	self:Message(93757, spellName, "Info", spellId, "Long")
+end
+
+function mod:UNIT_HEALTH(_, unit)
+	if unit == "boss1" then
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp < 25 then
+			self:Message(93757, LW_CL["soon"]:format(GetSpellInfo(93757)), "Attention")
+			self:UnregisterEvent("UNIT_HEALTH")
+		end
+	end
 end
 
