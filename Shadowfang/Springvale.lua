@@ -47,6 +47,6 @@ function mod:Shield(player, spellId, _, _, spellName)
 end
 
 function mod:Word(player, spellId, _, _, spellName)
-	self:TargetMessage(93852, spellName, player, "Info", spellId)
+	self:TargetMessage(93852, spellName, player, "Long", spellId)
 end
 

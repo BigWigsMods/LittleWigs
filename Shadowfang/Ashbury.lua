@@ -48,7 +48,7 @@ function mod:Flesh(_, spellId, _, _, spellName) -- XXX remove with 4.0.6
 end
 
 function mod:Archangel(_, spellId, _, _, spellName)
-	self:Message(93757, spellName, "Info", spellId, "Long")
+	self:Message(93757, spellName, "Long", spellId, "Info")
 end
 
 function mod:UNIT_HEALTH(_, unit)

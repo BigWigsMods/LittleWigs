@@ -31,7 +31,7 @@ end
 --  Event Handlers
 
 function mod:MortalWound(player, spellId, _, _, spellName)
-	self:TargetMessage(93771, spellName, player, "Info", spellId)
+	self:TargetMessage(93771, spellName, player, "Long", spellId)
 end
 
 function mod:Summon(_, spellId, _, _, spellName)
