@@ -19,7 +19,7 @@ mod.toggleOptions = {
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Desecration", 93687)
 	self:Log("SPELL_CAST_START", "Empowerment", 93844)
-	self:Log("SPELL_AURA_APPLIED", "Shield", 93736)
+	self:Log("SPELL_AURA_APPLIED", "Shield", 93736, 93737) -- XXX What's doing the damage on players?
 	self:Log("SPELL_AURA_APPLIED", "Word", 93852)
 
 	self:Death("Win", 4278)
@@ -37,11 +37,13 @@ function mod:Desecration(_, spellId, _, _, spellName)
 end
 
 function mod:Empowerment(_, spellId, _, _, spellName)
-	self:Message(93844, spellName, "Important", spellId, "Alarm")
+	self:Message(93844, LW_CL["casting"]:format(spellName), "Important", spellId, "Alarm")
 end
 
-function mod:Shield(_, spellId, _, _, spellName)
-	self:Message(93736, spellName, "Urgent", spellId)
+function mod:Shield(player, spellId, _, _, spellName)
+	if UnitIsUnit(player, "player") then
+		self:LocalMessage(93736, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Urgent", spellId)
+	end
 end
 
 function mod:Word(player, spellId, _, _, spellName)
