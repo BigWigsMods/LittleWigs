@@ -29,7 +29,7 @@ end
 --  Event Handlers
 
 function mod:Alpha(_, spellId, _, _, spellName)
-	self:Message(76184, LW_CL["casting"]:format(spellName), "Important", spellId, "Info")
+	self:Message(76184, LW_CL["casting"]:format(spellName), "Attention", spellId)
 end
 
 function mod:AlphaDebuff(player, spellId, _, _, spellName)
@@ -45,6 +45,6 @@ function mod:Omega(_, spellId, _, _, spellName)
 end
 
 function mod:Nemesis(player, spellId, _, _, spellName)
-	self:TargetMessage(75603, spellName, player, "Urgent", spellId, "Alert")
+	self:TargetMessage(75603, spellName, player, "Urgent", spellId)
 end
 

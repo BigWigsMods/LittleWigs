@@ -43,6 +43,6 @@ function mod:Gale(_, spellId, _, _, spellName)
 end
 
 function mod:Summon()
-	self:Message("summon", L["summon_message"], "Attention")
+	self:Message("summon", L["summon_message"], "Important")
 end
 

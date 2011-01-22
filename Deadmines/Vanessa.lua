@@ -23,7 +23,7 @@ end
 --  Event Handlers
 
 function mod:Deflection(_, spellId, _, _, spellName)
-	self:Message(92614, spellName, "Attention", spellId)
+	self:Message(92614, spellName, "Urgent", spellId)
 	self:Bar(92614, spellName, 10, spellId)
 end
 
@@ -36,7 +36,7 @@ function mod:Spark(player, spellId, _, _, spellName)
 end
 
 function mod:Vengeance(_, spellId, _, _, spellName)
-	self:Message(95542, spellName, "Info", spellId, "Long")
+	self:Message(95542, spellName, "Attention", spellId, "Long")
 end
 
 function mod:Blades(player, spellId, _, _, spellName)

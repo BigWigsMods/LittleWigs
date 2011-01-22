@@ -35,7 +35,7 @@ end
 --  Event Handlers
 
 function mod:PnS(player, spellId, _, _, spellName)
-	self:TargetMessage(93712, spellName, player, "Important", spellId)
+	self:TargetMessage(93712, spellName, player, "Urgent", spellId)
 end
 
 function mod:Asphyxiate(_, spellId, _, _, spellName)
@@ -48,7 +48,7 @@ function mod:Flesh(_, spellId, _, _, spellName) -- XXX remove with 4.0.6
 end
 
 function mod:Archangel(_, spellId, _, _, spellName)
-	self:Message(93757, spellName, "Long", spellId, "Info")
+	self:Message(93757, spellName, "Attention", spellId, "Long")
 end
 
 function mod:UNIT_HEALTH(_, unit)

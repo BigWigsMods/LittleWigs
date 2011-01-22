@@ -33,8 +33,8 @@ end
 --  Event Handlers
 
 function mod:Storm(_, spellId, _, _, spellName)
-	self:Message(92265, LW_CL["seconds"]:format(spellName, 2.5), "Attention", spellId)
-	self:Bar(92265, LW_CL["next"]:format(spellName), 2.5, spellId)
+	self:Message(92265, LW_CL["casting"]:format(spellName), "Important", spellId, "Alert")
+	self:Bar(92265, LW_CL["casting"]:format(spellName), 2.5, spellId)
 end
 
 function mod:StormBegun(_, spellId, _, _, spellName)

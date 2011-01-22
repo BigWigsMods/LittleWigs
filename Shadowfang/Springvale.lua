@@ -37,16 +37,16 @@ function mod:Desecration(_, spellId, _, _, spellName)
 end
 
 function mod:Empowerment(_, spellId, _, _, spellName)
-	self:Message(93844, LW_CL["casting"]:format(spellName), "Important", spellId, "Alarm")
+	self:Message(93844, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alarm")
 end
 
 function mod:Shield(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(93736, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Urgent", spellId)
+		self:LocalMessage(93736, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId)
 	end
 end
 
 function mod:Word(player, spellId, _, _, spellName)
-	self:TargetMessage(93852, spellName, player, "Long", spellId)
+	self:TargetMessage(93852, spellName, player, "Important", spellId)
 end
 

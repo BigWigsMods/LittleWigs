@@ -1,5 +1,3 @@
--- XXX Ulic: Possibly a bar for when the first wave of adds will come?
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -27,6 +25,6 @@ function mod:Curse(player, spellId, _, _, spellName)
 end
 
 function mod:Shield(_, spellId, _, _, spellName)
-	self:Message(79050, spellName, "Important", spellId)
+	self:Message(79050, spellName, "Important", spellId, "Alert")
 end
 

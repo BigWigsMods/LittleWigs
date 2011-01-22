@@ -23,6 +23,7 @@ mod.optionHeaders = {
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Plague", 82622, 89997)
+	self:Log("SPELL_AURA_REMOVED", "PlagueRemoved", 82622, 89997)
 	self:Log("SPELL_AURA_APPLIED", "Lashings", 82506)
 	self:Log("SPELL_AURA_APPLIED", "Ground", 88814, 90010)
 
@@ -36,10 +37,14 @@ end
 
 function mod:Plague(unit, spellId, _, _, spellName)
 	if UnitIsUnit(unit, "player") then
-		self:LocalMessage(89997, BCL["you"]:format(spellName), "Personal", spellId, "Info")
+		self:LocalMessage(89997, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake(89997)
 	end
 	self:PrimaryIcon(89997, unit)
+end
+
+function mod:PlagueRemoved()
+	self:PrimaryIcon(89997)
 end
 
 function mod:Lashings(_, spellId, _, _, spellName)
@@ -48,7 +53,7 @@ end
 
 function mod:Ground(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(88814, BCL["you"]:format(spellName), "Urgent", spellId, "Alert")
+		self:LocalMessage(88814, BCL["you"]:format(spellName), "Personal", spellId)
 		self:FlashShake(88814)
 	end
 end

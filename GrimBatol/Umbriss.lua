@@ -46,14 +46,14 @@ do
 		mod:PrimaryIcon(74670)
 	end
 	function mod:Blitz(_, _, _, _, player)
-		self:TargetMessage(74670, blitz, player, "Urgent", 74670, "Alert")
+		self:TargetMessage(74670, blitz, player, "Important", 74670, "Alert")
 		self:PrimaryIcon(74670, player)
 		self:ScheduleTimer(clearIcon, 3.5)
 	end
 end
 
 function mod:Siege(_, spellId, _, _, spellName)
-	self:Message(90249, spellName, "Attention", spellId)
+	self:Message(90249, spellName, "Urgent", spellId)
 end
 
 function mod:UNIT_HEALTH(_, unit)
@@ -67,15 +67,15 @@ function mod:UNIT_HEALTH(_, unit)
 end
 
 function mod:Frenzy(_, spellId, _, _, spellName)
-	self:Message(74853, spellName, "Long", spellId, "Info")
+	self:Message(74853, spellName, "Attention", spellId, "Long")
 end
 
 function mod:Wound(player, spellId, _, _, spellName)
-	self:TargetMessage(91937, spellName, player, "Important", spellId)
-	self:Bar(91937, player..": "..spellName, 15, spellId)
+	self:TargetMessage(91937, spellName, player, "Attention", spellId)
+	self:Bar(91937, spellName..": "..player, 10, spellId)
 end
 
 function mod:WoundRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
 end
 

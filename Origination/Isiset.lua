@@ -48,17 +48,17 @@ end
 
 function mod:Veil(_, spellId, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, spellName) -- cancel running bar from split/normal phases
-	self:Message(74373, spellName, "Urgent", spellId)
-	self:Bar(74373, spellName, 60, spellId)
+	self:Message(74373, spellName, "Attention", spellId)
+	self:Bar(74373, LW_CL["next"]:format(spellName), 60, spellId)
 end
 
 function mod:VeilRemoved(_, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName)
+	self:SendMessage("BigWigs_StopBar", self, LW_CL["next"]:format(spellName))
 end
 
 function mod:Supernova(_, spellId, _, _, spellName)
-	self:Message(74137, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alert")
-	self:Bar(74137, spellName, 3, spellId)
+	self:Message(74137, LW_CL["casting"]:format(spellName), "Important", spellId, "Alert")
+	self:Bar(74137, LW_CL["casting"]:format(spellName), 3, spellId)
 end
 
 function mod:UNIT_HEALTH(_, unit)

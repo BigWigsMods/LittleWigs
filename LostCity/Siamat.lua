@@ -38,10 +38,8 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_SUMMON", "Servant", 90013, 84553)
-
 	self:Yell("Engage", L["engage_trigger"])
 
-	--self:Death("Adds", 45268, 45269, 45259)
 	self:Death("Win", 44819)
 end
 
@@ -55,7 +53,7 @@ end
 function mod:Servant(_, spellId)
 	adds = adds + 1
 	if adds == 3 then
-		self:Message("phase", L["phase_warning"], "Positive")
+		self:Message("phase", L["phase_warning"], "Attention")
 		adds = 0
 	end
 	self:Message("servant", L["servant_message"], "Important", spellId, "Alert")

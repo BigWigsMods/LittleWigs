@@ -32,19 +32,14 @@ end
 --  Event Handlers
 
 function mod:Overdrive(_, spellId, _, _, spellName)
-	self:Message(88481, spellName, "Important", spellId, "Alarm")
+	self:Message(88481, spellName, "Urgent", spellId, "Alarm")
 	self:Bar(88481, LW_CL["next"]:format(spellName), 53, spellId)
 end
-
---[[function mod:Harvest(_, spellId, _, _, spellName)
-	self:TargetMessage(88495, spellName, UnitName("boss1target"), "Urgent", spellId)
-	self:Bar(88495, LW_CL["next"]:format(spellName), 56, spellId)
-end]]
 
 do
 	local function checkTarget()
 		local player = UnitName("boss1target")
-		mod:TargetMessage(88495, GetSpellInfo(88495), player, "Urgent", 88495)
+		mod:TargetMessage(88495, GetSpellInfo(88495), player, "Important", 88495, "Alert")
 		mod:Bar(88495, LW_CL["next"]:format(GetSpellInfo(88495)), 56, 88495)
 	end
 	function mod:Harvest()
@@ -53,6 +48,6 @@ do
 end
 
 function mod:Safety(_, spellId, _, _, spellName)
-	self:Message(91720, GetSpellInfo(5229), "Long", spellId, "Info") --Enrage
+	self:Message(91720, GetSpellInfo(5229), "Attention", spellId, "Long") -- Enrage
 end
 

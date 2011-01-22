@@ -11,7 +11,7 @@ mod.toggleOptions = {{92648, "FLASHSHAKE"}, "bosskill"}
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Barrage", 81634, 81637, 81638, 86881, 92012, 92648) -- XXX need to sort out these IDs
+	self:Log("SPELL_AURA_APPLIED", "Barrage", 81634, 81637, 81638, 86881, 92012, 92648)
 
 	self:Death("Win", 43438)
 end

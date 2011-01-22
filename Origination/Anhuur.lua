@@ -13,21 +13,27 @@ mod.toggleOptions = {74938, {75592, "ICON", "FLASHSHAKE"}, "bosskill"}
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Shield", 74938)
 	self:Log("SPELL_AURA_APPLIED", "Reckoning", 75592, 94949)
+	self:Log("SPELL_AURA_REMOVED", "ReckoningRemoved", 75592, 94949)
 	self:Death("Win", 39425)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Shield(_, _, _, _, spellName)
-	self:Message(74938, spellName, "Urgent", 74938)
-	self:Bar(74938, spellName, 10, 74938)
+function mod:Shield(_, spellId, _, _, spellName)
+	self:Message(74938, spellName, "Important", spellId, "Long")
 end
 
-function mod:Reckoning(player, _, _, _, spellName)
-	self:TargetMessage(75592, spellName, player, "Urgent", 75592, "Alert")
-	self:Bar(75592, player..": "..spellName, 8, 75592)
+function mod:Reckoning(player, spellId, _, _, spellName)
+	self:TargetMessage(75592, spellName, player, "Attention", spellId, "Alert")
+	self:Bar(75592, spellName..": player".., 8, spellId)
 	self:PrimaryIcon(75592, player)
-	if UnitIsUnit(player, "player") then self:FlashShake(75592) end
+	if UnitIsUnit(player, "player") then
+		self:FlashShake(75592)
+	end
+end
+
+function mod:ReckoningRemoved()
+	self:PrimaryIcon(75592)
 end
 

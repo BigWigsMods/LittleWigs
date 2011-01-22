@@ -36,18 +36,17 @@ end
 --  Event Handlers
 
 function mod:SunStrike(_, spellId, _, _, spellName)
-	self:LocalMessage(73874, spellName, "Personal", spellId, "Info")
+	self:LocalMessage(73874, spellName, "Attention", spellId)
 end
 
 function mod:Orb(_, spellId, _, _, spellName)
-	self:Message(80352, spellName, "Important", spellId)
+	self:Message(80352, spellName, "Urgent", spellId)
 end
 
-function mod:Blessing(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:Message(76355, spellName, "Urgent", spellId, "Alert")
-		self:FlashShake(76355)
-	end
+function mod:Blessing(_, spellId, _, _, spellName)
+	self:Message(76355, spellName, "Important", spellId, "Alert")
+	self:FlashShake(76355)
+	strike = strike + 1
 end
 
 function mod:UNIT_POWER(_, unit)
@@ -58,9 +57,8 @@ function mod:UNIT_POWER(_, unit)
 	end
 	if UnitName(unit) == self.displayName then
 		local power = UnitPower(unit) / UnitPowerMax(unit) * 100
-		if power <= 20 and strike <= 1 and (GetTime() - blessingTime) > 20 then -- massive throttling as energy fills up again, needs testing
+		if power < 20 and strike < 2 and (GetTime() - blessingTime) > 20 then -- massive throttling as energy fills up again, needs testing
 			self:Message(76355, LW_CL["soon"]:format(GetSpellInfo(76355)), "Attention")
-			strike = strike + 1
 			blessingTime = GetTime()
 		end
 	end

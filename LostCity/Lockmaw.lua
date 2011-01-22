@@ -1,5 +1,3 @@
--- XXX Ulic: Other suggestions?
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -28,18 +26,20 @@ end
 --  Event Handlers
 
 function mod:Poison(player, spellId, _, _, spellName)
-	self:Message(90004, spellName..": "..player, "Urgent", spellId)
-	self:Bar(90004, player..": "..spellName, 12, spellId)
+	self:TargetMessage(90004, spellName, player, "Attention", spellId)
+	self:Bar(90004, spellName..": "..player, 12, spellId)
 end
 
 function mod:PoisonRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
 end
 
 function mod:Scent(player, spellId, _, _, spellName)
-	self:TargetMessage(89998, spellName, player, "Personal", spellId, "Alert")
-	self:Bar(89998, player..": "..spellName, 30, spellId)
-	if UnitIsUnit(player, "player") then self:FlashShake(89998) end
+	self:TargetMessage(89998, spellName, player, "Important", spellId, "Alert")
+	self:Bar(89998, spellName..": "..player, 30, spellId)
 	self:PrimaryIcon(89998, player)
+	if UnitIsUnit(player, "player") then
+		self:FlashShake(89998)
+	end
 end
 

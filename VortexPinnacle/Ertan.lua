@@ -1,6 +1,3 @@
--- XXX Ulic: Only thing useful I could think of is a timer for when the tornados
--- XXX Ulic: collapse, assuming it is consistant, need more logs to find out
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -25,8 +22,8 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Summon(unit, spellId, _, _, spellName)
+function mod:Summon(_, spellId, _, _, spellName)
 	self:Bar(86340, LW_CL["next"]:format(spellName), 19, spellId)
-	self:Message(86340, spellName, "Alert", spellId)
+	self:Message(86340, spellName, "Attention", spellId)
 end
 

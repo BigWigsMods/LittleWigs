@@ -39,7 +39,7 @@ function mod:UNIT_HEALTH(_, unit)
 end
 
 function mod:Enslave(player, spellId, _, _, spellName)
-	self:TargetMessage(91413, spellName, player, "Attention", spellId)
+	self:TargetMessage(91413, spellName, player, "Important", spellId, "Alert")
 	self:PrimaryIcon(91413, player)
 end
 

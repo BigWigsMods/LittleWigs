@@ -49,12 +49,12 @@ function mod:Blades(_, spellId, _, _, spellName)
 end
 
 function mod:Impale(player, spellId, _, _, spellName)
-	self:TargetMessage(90756, spellName, player, "Important", spellId)
+	self:TargetMessage(90756, spellName, player, "Attention", spellId)
 end
 
 function mod:CaveIn(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(74987, LW_CL["you"]:format(spellName), "Urgent", spellId, "Alarm")
+		self:LocalMessage(74987, LW_CL["you"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake(74987)
 	end
 end

@@ -28,11 +28,11 @@ end
 
 
 function mod:Fissure(_, spellId, _, _, spellName)
-	self:Message(76047, LW_CL["casting"]:format(spellName), "Urgent", spellId)
+	self:Message(76047, LW_CL["casting"]:format(spellName), "Important", spellId)
 end
 
 function mod:Squeeze(player, spellId, _, _, spellName)
-	self:TargetMessage(91484, spellName, player, "Attention", spellId)
+	self:TargetMessage(91484, spellName, player, "Urgent", spellId)
 	self:PrimaryIcon(91484, player)
 end
 
@@ -41,6 +41,6 @@ function mod:SqueezeRemoved()
 end
 
 function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message(76100, spellName, "Info", spellId)
+	self:Message(76100, spellName, "Attention", spellId)
 end
 

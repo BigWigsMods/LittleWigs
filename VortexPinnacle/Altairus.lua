@@ -1,5 +1,3 @@
--- XXX Ulic: Other suggestions?
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -8,8 +6,8 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(43873)
 mod.toggleOptions = {
-	88286, -- Downwind of Altairus
 	88282, -- Upwind of Altairus
+	88286, -- Downwind of Altairus
 	88308, -- Breath
 	"bosskill",
 }
@@ -30,13 +28,13 @@ end
 
 function mod:Upwind(unit, spellId, _, _, spellName)
 	if UnitIsUnit("player", unit) then
-		self:LocalMessage(88282, spellName, "Positive", "Info", spellId)
+		self:LocalMessage(88282, spellName, "Positive", spellId, "Info")
 	end
 end
 
 function mod:Downwind(unit, spellId, _, _, spellName)
 	if UnitIsUnit("player", unit) then
-		self:LocalMessage(88286, spellName, "Attention", "Alert", spellId)
+		self:LocalMessage(88286, spellName, "Important", spellId, "Alarm")
 	end
 end
 

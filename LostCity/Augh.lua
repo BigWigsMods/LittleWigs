@@ -27,7 +27,7 @@ end
 --  Event Handlers
 
 function mod:Whirlwind(_, spellId, _, _, spellName)
-	self:Message(84784, spellName, "Urgent", spellId)
+	self:Message(84784, spellName, "Important", spellId)
 	self:Bar(84784, spellName, 20, spellId)
 end
 
