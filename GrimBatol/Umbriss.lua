@@ -43,7 +43,7 @@ end
 
 do
 	local function clearIcon()
-		self:PrimaryIcon(74670)
+		mod:PrimaryIcon(74670)
 	end
 	function mod:Blitz(_, _, _, _, player)
 		self:TargetMessage(74670, blitz, player, "Urgent", 74670, "Alert")
