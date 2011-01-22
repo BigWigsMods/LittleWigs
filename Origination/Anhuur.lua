@@ -26,7 +26,7 @@ end
 
 function mod:Reckoning(player, spellId, _, _, spellName)
 	self:TargetMessage(75592, spellName, player, "Attention", spellId, "Alert")
-	self:Bar(75592, spellName..": player".., 8, spellId)
+	self:Bar(75592, spellName..": "..player, 8, spellId)
 	self:PrimaryIcon(75592, player)
 	if UnitIsUnit(player, "player") then
 		self:FlashShake(75592)

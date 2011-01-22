@@ -65,10 +65,10 @@ function mod:UNIT_HEALTH(_, unit)
 	if unit ~= "boss1" then return end
 	if UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 65 and not split1 then
+		if hp < 69 and not split1 then
 			self:Message("split", L["split_message"], "Attention")
 			split1 = true
-		elseif hp < 35 then
+		elseif hp < 36 then
 			self:Message("split", L["split_message"], "Attention")
 			self:UnregisterEvent("UNIT_HEALTH")
 		end
