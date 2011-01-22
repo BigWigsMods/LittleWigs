@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -29,15 +28,15 @@ end
 function mod:Skullcracker(_, spellId, _, _, spellName)
 	local time = self:GetInstanceDifficulty() == 2 and 8 or 12 --8sec on heroic, 12 on normal
 	self:Bar(75543, spellName, time, spellId)
-	self:Message(75543, LW_CL["seconds"]:format(spellName, time), "Attention", spellId)
+	self:Message(75543, LW_CL["seconds"]:format(spellName, time), "Urgent", spellId)
 end
 
 function mod:Quake(_, spellId, _, _, spellName)
 	--self:Bar(75272, LW_CL["next"]:format(spellName), 19, spellId) --innacurate?
-	self:Message(75272, LW_CL["casting"]:format(spellName), "Alert", spellId)
+	self:Message(75272, LW_CL["casting"]:format(spellName), "Attention", spellId)
 end
 
 function mod:Chains(_, spellId, _, _, spellName)
-	self:Message(75539, LW_CL["casting"]:format(spellName), "Info", spellId)
+	self:Message(75539, LW_CL["casting"]:format(spellName), "Important", spellId, "Alert")
 end
 

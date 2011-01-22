@@ -1,4 +1,3 @@
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 
@@ -37,10 +36,10 @@ end
 --  Event Handlers
 
 function mod:Armor()
-	self:Message(75842, L["strengthened"], "Important", 28059, "Alert") --icon = spell_chargepositive
+	self:Message(75842, L["strengthened"], "Attention", 28059, "Alert") --icon = spell_chargepositive
 end
 
 function mod:HeatedArmor()
-	self:Message(93567, L["weakened"], "Personal", 28084, "Info") --icon = spell_chargenegative
+	self:Message(93567, L["weakened"], "Important", 28084, "Info") --icon = spell_chargenegative
 end
 

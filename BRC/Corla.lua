@@ -1,5 +1,3 @@
--- XXX Ulic: Need logs and suggestions
-
 -------------------------------------------------------------------------------
 --  Module Declaration
 

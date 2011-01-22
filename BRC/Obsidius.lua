@@ -28,12 +28,12 @@ end
 --  Event Handlers
 
 function mod:Corruption(player, spellId, _, _, spellName)
-	self:LocalMessage(93613, spellName..": "..player, "Important", spellId, "Alarm")
-	self:Bar(93613, player..": "..spellName, 12, spellId)
+	self:TargetMessage(93613, spellName, player, "Important", spellId, "Alarm")
+	self:Bar(93613, spellName..": "..player, 12, spellId)
 end
 
 function mod:CorruptionRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
 end
 
 do
@@ -41,7 +41,7 @@ do
 	function mod:Change(_, spellId, _, _, spellName)
 		local time = GetTime()
 		if (time - changeThrottle) > 2 then
-			self:Message(76200, spellName, "Attention", spellId)
+			self:Message(76200, spellName, "Urgent", spellId)
 		end
 		self:PrimaryIcon(76200, mod.displayName)
 		changeThrottle = time
@@ -50,8 +50,8 @@ end
 
 function mod:Veil(player, spellId, _, _, spellName)
 	if UnitGroupRolesAssigned(player) == "TANK" then
-		self:Message(76189, spellName..": "..player, "Personal", spellId)
-		self:Bar(76189, player..": "..spellName, 4, spellId)
+		self:TargetMessage(76189, spellName, player, "Attention", spellId)
+		self:Bar(76189, spellName..": "..player, 4, spellId)
 	end
 end
 
