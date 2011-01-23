@@ -43,7 +43,7 @@ function mod:Orb(_, spellId, _, _, spellName)
 	self:Message(80352, spellName, "Urgent", spellId)
 end
 
-function mod:Blessing(_, spellId, _, _, spellName)
+function mod:Blessing(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:Message(76355, spellName, "Important", spellId, "Alert")
 		self:FlashShake(76355)
