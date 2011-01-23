@@ -55,8 +55,7 @@ function mod:BulwarkRemoved(_, _, _, _, spellName)
 end
 
 function mod:UNIT_HEALTH(_, unit)
-	if unit ~= "boss1" then return end
-	if UnitName(unit) == self.displayName then
+	if unit == "boss1" then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 27 then
 			self:Message(80467, LW_CL["soon"]:format(GetSpellInfo(80467)), "Attention", 80467)

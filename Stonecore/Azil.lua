@@ -14,6 +14,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Curse", 79345, 92663)
 	self:Log("SPELL_CAST_START", "Shield", 79050, 82858, 92667)
 
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 42333)
 end
 

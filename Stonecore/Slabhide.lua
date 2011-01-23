@@ -26,6 +26,7 @@ function mod:OnBossEnable()
 	-- Normal
 	self:Log("SPELL_AURA_APPLIED", "LavaPool", 80801, 92658)
 
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 43214)
 end
 
