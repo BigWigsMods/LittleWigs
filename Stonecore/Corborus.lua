@@ -5,7 +5,14 @@ local mod = BigWigs:NewBoss("Corborus", "The Stonecore")
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(43438)
-mod.toggleOptions = {{92648, "FLASHSHAKE"}, "bosskill"}
+mod.toggleOptions = {"burrow", {92648, "FLASHSHAKE"}, "bosskill"}
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.burrow = "Burrow/emerge"
+	L.burrow_desc = "Warn when Corborus burrows or emerges."
+end
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -18,7 +25,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(92662, "Goes Under", 30, "ABILITY_HUNTER_PET_WORM")
+	self:Bar("burrow", "Goes Under", 30, "ABILITY_HUNTER_PET_WORM")
 	self:ScheduleTimer("Emerge", 30)
 end
 
@@ -26,7 +33,7 @@ end
 --  Event Handlers
 
 function mod:Emerge()
-	self:Bar(92662, "Emerges", 60, "ABILITY_HUNTER_PET_WORM")
+	self:Bar("burrow", "Emerges", 60, "ABILITY_HUNTER_PET_WORM")
 end
 
 function mod:Barrage(player, spellId, _, _, spellName)
