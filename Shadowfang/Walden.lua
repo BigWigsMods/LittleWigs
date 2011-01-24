@@ -21,8 +21,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "IceShards", 93527)
 	self:Log("SPELL_CAST_START", "Frost", 93702)
 	self:Log("SPELL_CAST_START", "Poisonous", 93704)
-	self:Log("SPELL_AURA_APPLIED", "Coagulant", 93617, 93572) -- XXX drycoded, probably merge Coagulant and Catalyst
-	self:Log("SPELL_AURA_APPLIED", "Catalyst", 93573, 93689) -- XXX drycoded
+	self:Log("SPELL_AURA_APPLIED", "Coagulant", 93572, 93617)
+	self:Log("SPELL_AURA_APPLIED", "Catalyst", 93573, 93689)
 
 	self:Death("Win", 46963)
 end
@@ -46,11 +46,15 @@ function mod:Poisonous(_, spellId, _, _, spellName)
 	self:Message(93704, LW_CL["casting"]:format(spellName), "Important", spellId)
 end
 
-function mod:Coagulant(_, spellId, _, _, spellName)
-	self:Message(93617, spellName, "Urgent", spellId, "Alert")
+function mod:Coagulant(player, spellId, _, _, spellName)
+	if UnitIsUnit(player, "player") then
+		self:Message(93617, spellName, "Urgent", spellId, "Alert")
+	end
 end
 
-function mod:Catalyst(_, spellId, _, _, spellName)
-	self:Message(93689, spellName, "Urgent", spellId, "Alert")
+function mod:Catalyst(player, spellId, _, _, spellName)
+	if UnitIsUnit(player, "player") then
+		self:Message(93689, spellName, "Urgent", spellId, "Alert")
+	end
 end
 
