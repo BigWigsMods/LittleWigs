@@ -33,7 +33,8 @@ function mod:Reckoning(player, spellId, _, _, spellName)
 	end
 end
 
-function mod:ReckoningRemoved()
+function mod:ReckoningRemoved(player, _, _, _, spellName)
 	self:PrimaryIcon(75592)
+	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
 end
 
