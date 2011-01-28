@@ -10,7 +10,7 @@ mod.toggleOptions = {
 	75007, -- Encumbered
 	74981, -- Dual Blades
 	90756, -- Impaling Slam
-	{74987, FLASHSHAKE}, -- Cave In
+	{74987, "FLASHSHAKE"}, -- Cave In
 	"bosskill",
 }
 
