@@ -38,7 +38,7 @@ end
 --  Event Handlers
 
 function mod:Burrow()
-	self:Message("burrow", L["burrow_message"]), "Important", "Interface\\Icons\\ABILITY_HUNTER_PET_WORM", "Info")
+	self:Message("burrow", L["burrow_message"], "Important", "Interface\\Icons\\ABILITY_HUNTER_PET_WORM", "Info")
 	self:Bar("burrow", L["emerge_message"], 30, "ABILITY_HUNTER_PET_WORM")
 	self:DelayedMessage("burrow", 25, L["emerge_warning"], "Attention")
 	self:ScheduleTimer("Emerge", 30)
