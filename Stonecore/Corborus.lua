@@ -11,8 +11,10 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.burrow = "Burrow/emerge"
 	L.burrow_desc = "Warn when Corborus burrows or emerges."
-	L.burrow_bar = "%s burrows"
-	L.emerge_bar = "%s emerges"
+	L.burrow_message = "Corborus burrows"
+	L.burrow_warning = "Burrow in 5 sec!"
+	L.emerge_message = "Corborus emerges!"
+	L.emerge_warning = "Emerge in 5 sec!"
 end
 L = mod:GetLocale()
 
@@ -27,29 +29,35 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("burrow", L["burrow_bar"]:format(self.displayName), 30, "ABILITY_HUNTER_PET_WORM")
-	self:ScheduleTimer("Emerge", 30)
+	self:Bar("burrow", L["burrow_message"], 30, "ABILITY_HUNTER_PET_WORM")
+	self:DelayedMessage("burrow", 25, L["burrow_warning"], "Attention")
+	self:ScheduleTimer("Burrow", 30)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Emerge()
-	self:LocalMessage("burrow", L["emerge_bar"]:format(self.displayName), "Important", "ABILITY_HUNTER_PET_WORM", "Alert") -- debug
-	self:Bar("burrow", L["emerge_bar"]:format(self.displayName), 30, "ABILITY_HUNTER_PET_WORM")
-	self:ScheduleTimer("Burrow", 30)
-end
-
 function mod:Burrow()
-	self:LocalMessage("burrow", L["burrow_bar"]:format(self.displayName), "Important", "ABILITY_HUNTER_PET_WORM", "Alert") -- debug
-	self:Bar("burrow", L["burrow_bar"]:format(self.displayName), 30, "ABILITY_HUNTER_PET_WORM")
+	self:Message("burrow", L["burrow_message"]), "Important", "Interface\\Icons\\ABILITY_HUNTER_PET_WORM", "Info")
+	self:Bar("burrow", L["emerge_message"], 30, "ABILITY_HUNTER_PET_WORM")
+	self:DelayedMessage("burrow", 25, L["emerge_warning"], "Attention")
 	self:ScheduleTimer("Emerge", 30)
 end
 
-function mod:Barrage(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(92648, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(92648)
+function mod:Emerge()
+	self:Message("burrow", L["emerge_message"], "Important", "Interface\\Icons\\ABILITY_HUNTER_PET_WORM", "Info")
+	self:Bar("burrow", L["burrow_message"], 90, "ABILITY_HUNTER_PET_WORM")
+	self:DelayedMessage("burrow", 85, L["burrow_warning"], "Attention")
+	self:ScheduleTimer("Borrow", 90) --guesstimate
+end
+
+do
+	local bw_you = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(GetSpellInfo(92648))
+	function mod:Barrage(player, spellId)
+		if UnitIsUnit(player, "player") then
+			self:LocalMessage(92648, bw_you, "Personal", spellId, "Alarm")
+			self:FlashShake(92648)
+		end
 	end
 end
 
