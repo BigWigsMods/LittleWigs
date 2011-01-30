@@ -15,6 +15,11 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
+--  Locals
+
+local coagulantTime = 0
+
+-------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
@@ -24,11 +29,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Coagulant", 93572, 93617)
 	self:Log("SPELL_AURA_APPLIED", "Catalyst", 93573, 93689)
 
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
 	self:Death("Win", 46963)
 end
 
 function mod:VerifyEnable()
 	if GetInstanceDifficulty() == 2 then return true end
+end
+
+function mod:OnEngage()
+	coagulantTime = 0
 end
 
 -------------------------------------------------------------------------------
@@ -47,8 +58,9 @@ function mod:Poisonous(_, spellId, _, _, spellName)
 end
 
 function mod:Coagulant(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
+	if UnitIsUnit(player, "player") and (GetTime() - coagulantTime > 5) then
 		self:Message(93617, spellName, "Urgent", spellId, "Alert")
+		coagulantTime = GetTime()
 	end
 end
 
