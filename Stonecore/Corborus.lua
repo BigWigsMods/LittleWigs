@@ -48,7 +48,7 @@ function mod:Emerge()
 	self:Message("burrow", L["emerge_message"], "Important", "Interface\\Icons\\ABILITY_HUNTER_PET_WORM", "Info")
 	self:Bar("burrow", L["burrow_message"], 90, "ABILITY_HUNTER_PET_WORM")
 	self:DelayedMessage("burrow", 85, L["burrow_warning"], "Attention")
-	self:ScheduleTimer("Borrow", 90) --guesstimate
+	self:ScheduleTimer("Burrow", 90) --guesstimate
 end
 
 do
