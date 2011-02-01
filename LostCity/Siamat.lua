@@ -37,7 +37,7 @@ L = mod:GetLocale()
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_SUMMON", "Servant", 90013, 84553)
+	self:Log("SPELL_SUMMON", "Servant", 90014, 90013, 84553)
 	self:Yell("Engage", L["engage_trigger"])
 
 	self:Death("Win", 44819)
