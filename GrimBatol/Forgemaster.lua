@@ -9,10 +9,20 @@ mod.toggleOptions = {
 	74908, -- Personal Phalanx
 	75007, -- Encumbered
 	74981, -- Dual Blades
+	{90737, "FLASHSHAKE"}, -- Disorienting Roar
 	90756, -- Impaling Slam
 	{74987, "FLASHSHAKE"}, -- Cave In
 	"bosskill",
 }
+
+-------------------------------------------------------------------------------
+-- Locale
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.roar_message = "%dx Roar on YOU!"
+end
+L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -23,12 +33,25 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Blades", 74981, 90738)
 	self:Log("SPELL_CAST_SUCCESS", "Impale", 75056, 90756)
 	self:Log("SPELL_AURA_APPLIED", "CaveIn", 74987)
+	self:Log("SPELL_AURA_APPLIED", "Roar", 90737)
+	self:Log("SPELL_AURA_REMOVED_DOSE", "MinusRoar", 90737)
 
 	self:Death("Win", 40177)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+
+function mod:Roar(player, spellId, _, _, spellName)
+	if not UnitIsUnit(player, "player") then return end
+	self:FlashShake(90737)
+	self:LocalMessage(90737, L["roar_message"]:format(3), "Personal", spellId, "Long")
+end
+
+function mod:MinusRoar(player, spellId, _, _, spellName, remaining)
+	if not UnitIsUnit(player, "player") then return end
+	self:LocalMessage(90737, L["roar_message"]:format(remaining), "Attention", spellId)
+end
 
 function mod:Phalanx(_, spellId, _, _, spellName)
 	self:Message(74908, spellName, "Important", spellId, "Alert")
@@ -49,7 +72,7 @@ function mod:Blades(_, spellId, _, _, spellName)
 end
 
 function mod:Impale(player, spellId, _, _, spellName)
-	self:TargetMessage(90756, spellName, player, "Attention", spellId)
+	self:TargetMessage(90756, spellName, player, "Urgent", spellId)
 end
 
 function mod:CaveIn(player, spellId, _, _, spellName)
