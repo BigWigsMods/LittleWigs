@@ -8,7 +8,7 @@ mod:RegisterEnableMob(43873)
 mod.toggleOptions = {
 	88282, -- Upwind of Altairus
 	88286, -- Downwind of Altairus
-	88308, -- Breath
+	{88308, "ICON"}, -- Breath
 	"bosskill",
 }
 
@@ -38,8 +38,16 @@ function mod:Downwind(unit, spellId, _, _, spellName)
 	end
 end
 
-function mod:Breath(_, spellId, _, _, spellName)
-	self:Bar(88308, LW_CL["next"]:format(spellName), 12, spellId)
-	self:TargetMessage(88308, spellName, UnitName("boss1target"), "Urgent", spellId)
+do
+	local function clearIcon()
+		mod:PrimaryIcon(88308)
+	end
+	
+	function mod:Breath(_, spellId, _, _, spellName)
+		mod:Bar(88308, LW_CL["next"]:format(spellName), 12, spellId)
+		mod:TargetMessage(88308, spellName, UnitName("boss1target"), "Urgent", spellId)
+		mod:PrimaryIcon(88308, UnitName("boss1target"))
+		self:ScheduleTimer(clearIcon, 4)
+	end
 end
 
