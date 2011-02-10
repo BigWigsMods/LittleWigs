@@ -18,6 +18,7 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 -- Locale
 
+local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.roar_message = "%dx Roar on YOU!"
@@ -77,7 +78,7 @@ end
 
 function mod:CaveIn(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(74987, LW_CL["you"]:format(spellName), "Personal", spellId, "Alarm")
+		self:LocalMessage(74987, CL["you"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake(74987)
 	end
 end
