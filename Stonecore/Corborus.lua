@@ -8,13 +8,14 @@ mod:RegisterEnableMob(43438)
 mod.toggleOptions = {"burrow", {92648, "FLASHSHAKE"}, "bosskill"}
 
 local L = mod:NewLocale("enUS", true)
-if L then
+if L then--@do-not-package@
 	L.burrow = "Burrow/emerge"
 	L.burrow_desc = "Warn when Corborus burrows or emerges."
 	L.burrow_message = "Corborus burrows"
 	L.burrow_warning = "Burrow in 5 sec!"
 	L.emerge_message = "Corborus emerges!"
-	L.emerge_warning = "Emerge in 5 sec!"
+	L.emerge_warning = "Emerge in 5 sec!"--@end-do-not-package@
+--@localization(locale="enUS", namespace="GrimBatol/Corborus", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
 

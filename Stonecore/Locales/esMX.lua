@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Ozruk", "esMX")
+local L = BigWigs:NewBossLocale("Corborus", "esMX")
 if L then
---@localization(locale="esMX", namespace="Stonecore/Ozruk", format="lua_additive_table", handle-unlocalized="ignore")@
+--@localization(locale="esMX", namespace="Stonecore/Corborus", format="lua_additive_table", handle-unlocalized="ignore")@
 end

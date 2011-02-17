@@ -18,10 +18,11 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 -- Locale
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
-if L then
-	L.roar_message = "%dx Roar on YOU!"
+if L then--@do-not-package@
+	L.roar_message = "%dx Roar"--@end-do-not-package@
+--@localization(locale="enUS", namespace="GrimBatol/Forgemaster", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
 
@@ -43,15 +44,15 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Roar(player, spellId, _, _, spellName)
+function mod:Roar(player, spellId)
 	if not UnitIsUnit(player, "player") then return end
 	self:FlashShake(90737)
-	self:LocalMessage(90737, L["roar_message"]:format(3), "Personal", spellId, "Long")
+	self:LocalMessage(90737, BCL["you"]:format(L["roar_message"]:format(3)), "Personal", spellId, "Long")
 end
 
 function mod:MinusRoar(player, spellId, _, _, spellName, remaining)
 	if not UnitIsUnit(player, "player") then return end
-	self:LocalMessage(90737, L["roar_message"]:format(remaining), "Attention", spellId)
+	self:LocalMessage(90737, BCL["you"]:format(L["roar_message"]:format(remaining)), "Attention", spellId)
 end
 
 function mod:Phalanx(_, spellId, _, _, spellName)
@@ -78,7 +79,7 @@ end
 
 function mod:CaveIn(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(74987, CL["you"]:format(spellName), "Personal", spellId, "Alarm")
+		self:LocalMessage(74987, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake(74987)
 	end
 end

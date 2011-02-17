@@ -7,3 +7,8 @@ L = BigWigs:NewBossLocale("Drahga Shadowburner", "koKR")
 if L then
 --@localization(locale="koKR", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
 end
+
+L = BigWigs:NewBossLocale("Forgemaster Throngus", "koKR")
+if L then
+--@localization(locale="koKR", namespace="GrimBatol/Forgemaster", format="lua_additive_table", handle-unlocalized="ignore")@
+end
