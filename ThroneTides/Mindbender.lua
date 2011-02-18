@@ -1,16 +1,21 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Erunak Stonespeaker", "Throne of the Tides")
+local mod = BigWigs:NewBoss("Mindbender Ghur'sha", "Throne of the Tides")
 if not mod then return end
 mod.partyContent = true
-mod:RegisterEnableMob(40825)
+mod:RegisterEnableMob(40788, 40825)
 mod.toggleOptions = {
 	{91413, "ICON"}, -- Enslave
 	91492, -- Absorb Magic
 	76234, -- Mind Fog
 	"bosskill",
 }
+
+-------------------------------------------------------------------------------
+--  Locals
+
+local erunak = BigWigs:Translate("Erunak Stonespeaker")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -22,14 +27,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MindFog", 76230)
 	self:RegisterEvent("UNIT_HEALTH")
 
-	self:Death("Win", 40825)
+	self:Death("Win", 40788)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 function mod:UNIT_HEALTH(_, unit)
-	if unit == "boss1" and UnitName(unit) == self.displayName then
+	if unit == "boss1" and UnitName(unit) == erunak then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 55 then
 			self:Message(91413, LW_CL["phase_soon"]:format(2), "Attention")
