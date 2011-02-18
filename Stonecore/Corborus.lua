@@ -15,7 +15,7 @@ if L then--@do-not-package@
 	L.burrow_warning = "Burrow in 5 sec!"
 	L.emerge_message = "Corborus emerges!"
 	L.emerge_warning = "Emerge in 5 sec!"--@end-do-not-package@
---@localization(locale="enUS", namespace="GrimBatol/Corborus", format="lua_additive_table", handle-unlocalized="ignore")@
+--@localization(locale="enUS", namespace="Stonecore/Corborus", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
 
