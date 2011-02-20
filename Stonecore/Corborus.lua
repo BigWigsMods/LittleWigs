@@ -11,7 +11,7 @@ local L = mod:NewLocale("enUS", true)
 if L then--@do-not-package@
 	L.burrow = "Burrow/emerge"
 	L.burrow_desc = "Warn when Corborus burrows or emerges."
-	L.burrow_message = "Corborus burrows"
+	L.burrow_message = "Corborus burrows!"
 	L.burrow_warning = "Burrow in 5 sec!"
 	L.emerge_message = "Corborus emerges!"
 	L.emerge_warning = "Emerge in 5 sec!"--@end-do-not-package@
@@ -40,9 +40,9 @@ end
 
 function mod:Burrow()
 	self:Message("burrow", L["burrow_message"], "Important", "Interface\\Icons\\ABILITY_HUNTER_PET_WORM", "Info")
-	self:Bar("burrow", L["emerge_message"], 30, "ABILITY_HUNTER_PET_WORM")
-	self:DelayedMessage("burrow", 25, L["emerge_warning"], "Attention")
-	self:ScheduleTimer("Emerge", 30)
+	self:Bar("burrow", L["emerge_message"], 25, "ABILITY_HUNTER_PET_WORM")
+	self:DelayedMessage("burrow", 20, L["emerge_warning"], "Attention")
+	self:ScheduleTimer("Emerge", 25)
 end
 
 function mod:Emerge()
