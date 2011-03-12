@@ -1,0 +1,20 @@
+﻿## Interface: 40000
+
+## Title: Little Wigs [|cffeda55fZulAman|r]
+## Notes: Little Wigs ZulAman Modules
+## Title-koKR: Little Wigs [|cffeda55f줄아만|r]
+## Notes-koKR: Little Wigs 줄아만 모듈
+## Author: 7destiny
+## Version: 4.0
+## LoadOnDemand: 1
+
+## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
+## X-Category: Party
+
+## X-BigWigs-PartyContent: true
+## X-BigWigs-LoadOn-Zone: Zul'Aman
+
+## Dependencies: BigWigs, LittleWigs
+
+#locales.xml
+#modules.xml

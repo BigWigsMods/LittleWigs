@@ -1,265 +1,91 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
+-------------------------------------------------------------------------------
+--  Module Declaration
 
-local boss = BB["Jan'alai"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+local mod = BigWigs:NewBoss("Jan'alai", "Zul'Aman")
+if not mod then return end
+mod.partyContent = true
+mod:RegisterEnableMob(23578)
+mod.toggleOptions = {
+	{43140, "ICON"},
+	"adds",
+	"bomb",
+	"bosskill",
+}
 
-local fmt = string.format
-local UnitName = UnitName
-local db = nil
+--------------------------------------------------------------------------------
+--  Locals
 
-----------------------------
---      Localization      --
-----------------------------
+local flameBreath = GetSpellInfo(43140)
 
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Jan'alai",
+-------------------------------------------------------------------------------
+--  Localization
 
-	engage_trigger = "Spirits of da wind be your doom!",
+local L = mod:NewLocale("enUS", true)
+if L then
+--@do-not-package@
+L["adds"] = "Adds"
+L["adds_desc"] = "Warn for Incoming Adds."
+L["adds_trigger"] = "Where ma hatcha? Get to work on dem eggs!"
+L["adds_message"] = "Incoming Adds!"
+L["adds_all"] = "All egg Hatching soon!"
+L["bomb"] = "Fire Bomb"
+L["bomb_desc"] = "Show timers for Fire Bomb."
+L["bomb_trigger"] = "I burn ya now!"
+L["bomb_message"] = "Incoming Fire Bombs!"
+--@localization(locale="enUS", namespace="ZulAman/Jan'alai", format="lua_additive_table", handle-unlocalized="ignore")@
+end
+L = mod:GetLocale()
 
-	flame = "Flame Breath",
-	flame_desc = "Warn who Jan'alai casts Flame Strike on.",
-	flame_message = "Flame Breath on %s!",
+-------------------------------------------------------------------------------
+--  Initialization
 
-	icon = "Raid Icon",
-	icon_desc = "Place a Raid Target Icon on the player targetted by Flame Breath. (requires promoted or higher)",
-
-	bomb = "Fire Bomb",
-	bomb_desc = "Show timers for Fire Bomb.",
-	bomb_trigger = "I burn ya now!",
-	bomb_message = "Incoming Fire Bombs!",
-
-	adds = "Adds",
-	adds_desc = "Warn for Incoming Adds.",
-	adds_trigger = "Where ma hatcha? Get to work on dem eggs!",
-	adds_message = "Incoming Adds!",
-} end )
-
-L:RegisterTranslations("frFR", function() return {
-	engage_trigger = "Les esprits du vent, ils vont être votre fin !",
-
-	flame = "Souffle de flammes",
-	flame_desc = "Prévient sur qui Jan'alai incante son Souffle de flammes.",
-	flame_message = "Souffle de flammes sur %s !",
-
-	icon = "Icône",
-	icon_desc = "Place une icône de raid sur le dernier joueur affecté par le Souffle de flammes (nécessite d'être promu ou mieux).",
-
-	bomb = "Bombes incendiaires",
-	bomb_desc = "Affiche les délais concernant les bombes incendiaires.",
-	bomb_trigger = "J'vais vous cramer !",
-	bomb_message = "Arrivée des bombes incendiaires !",
-
-	adds = "Perce-coques",
-	adds_desc = "Prévient de l'arrivée des perce-coques.",
-	adds_trigger = "Sont où mes perce-coque ? Au boulot ! Faut qu'ça éclose !",
-	adds_message = "Arrivée des perce-coques !",
-} end )
-
-L:RegisterTranslations("koKR", function() return {
-	engage_trigger = "바람의 혼이 너희를 쓸어내리라!",
-
-	flame = "화염 숨결",
-	flame_desc = "잔알라이가 대상자방향으로 화염 숨결을 시전하는지 알립니다.",
-	flame_message = "%s에게 화염 숨결!",
-
-	icon = "전술 표시",
-	icon_desc = "화염 숨결 대상이된 플레이어에게 전술 표시를 지정합니다. (승급자 이상 권한 필요)",
-
-	bomb = "불폭탄",
-	bomb_desc = "불폭탄에 대한 타이머를 표시합니다.",
-	bomb_trigger = "태워버리겠다!",
-	bomb_message = "잠시후 불폭탄!",
-
-	adds = "부화사 등장",
-	adds_desc = "부화사 등장에 대해 경고합니다.",
-	adds_trigger = "다 어디 갔지? 당장 알을 부화시켜!",
-	adds_message = "잠시후 부화사 등장!",
-} end )
-
-L:RegisterTranslations("deDE", function() return {
-	engage_trigger = "Die Geister der Winde besiegeln Euer Schicksal!",
-
-	flame = "Flammenatem",
-	flame_desc = "Warnt auf wen Flammenatem gewirkt wird.",
-	flame_message = "Flammenatem auf %s!",
-
-	icon = "Schlachtzug Symbol",
-	icon_desc = "Plaziert ein Schlachtgruppen Symbol auf Spielern auf die Flammenatem gewirkt wird (benötigt Assistent oder höher).",
-
-	bomb = "Feuerbombe",
-	bomb_desc = "Zeigt Timer für Feuerbomben an.",
-	bomb_trigger = "Jetzt sollt Ihr brennen!",
-	bomb_message = "Feuerbomben!",
-
-	adds = "Brutwächter",
-	adds_desc = "Warnt wenn Brutwächter gerufen werden.",
-	adds_trigger = "Wo is' meine Brut? Was ist mit den Eiern?",
-	adds_message = "Brutwächter!",
-} end )
-
-
-L:RegisterTranslations("zhCN", function() return {
-	engage_trigger = "风之圣魂将是你的梦魇！",
-
-	flame = "烈焰吐息",
-	flame_desc = "当施放烈焰吐息时发出警报。",
-	flame_message = "烈焰吐息：>%s<！",
-
-	icon = "团队标记",
-	icon_desc = "给中了烈焰吐息的玩家打上团队标记。（需要权限）",
-
-	bomb = "火焰炸弹",
-	bomb_desc = "显示火焰炸弹记时条。",
-	bomb_trigger = "烧死你们！",
-	bomb_message = "即将 火焰炸弹！",
-
-	adds = "援兵",
-	adds_desc = "当援兵即将到来时发出警报。",
-	adds_trigger = "雌鹰哪里去了？快去孵蛋！",
-	adds_message = "即将 出现救援！",
-} end )
-
-L:RegisterTranslations("zhTW", function() return {
-	engage_trigger = "風之聖魂將是你的夢魘!",
-
-	flame = "火息術",
-	flame_desc = "警告賈納雷施放火息術",
-	flame_message = "火息術: [%s] - 散開",
-
-	icon = "標記圖示",
-	icon_desc = "為被火息術的玩家設置團隊標記（需要權限）",
-
-	bomb = "燃燒彈",
-	bomb_desc = "燃燒彈警報",
-	bomb_trigger = "燒死你們!",
-	bomb_message = "火焰炸彈即將出現!",
-
-	adds = "救援",
-	adds_desc = "警告救援即將出現",
-	adds_trigger = "雌鷹哪裡去啦?快去孵蛋!",
-	adds_message = "救援即將出現!",
-} end )
-
-L:RegisterTranslations("esES", function() return {
-	engage_trigger = "¡Los espíritus del viento serán vuestra maldición!",
-
-	flame = "Aliento de llamas (Flame Breath)",
-	flame_desc = "Avisar quién recibe Aliento de llamas.",
-	flame_message = "¡Aliento de llamas en %s!",
-
-	icon = "Icono de banda",
-	icon_desc = "Poner un icono de banda sobre jugadores afectados por Aliento de llamas. (Requiere derechos de banda)",
-
-	bomb = "Bomba de Fuego (Fire Bomb)",
-	bomb_desc = "Mostrar barra de tiempo para Bomba de Fuego.",
-	bomb_trigger = "¡Ahora os quemaré!",
-	bomb_message = "¡Bombas de Fuego!",
-
-	adds = "Añadidos",
-	adds_desc = "Avisar cuando entran añadidos.",
-	adds_trigger = "¿Dónde está mi criador? ¡A por los huevos!",
-	adds_message = "¡Vienen añadidos!",
-} end )
--- Translated by wow.playhard.ru translators
-L:RegisterTranslations("ruRU", function() return {
-	engage_trigger = "Да покарают вас духи ветра!",
-
-	flame = "Пламенное дыхание",
-	flame_desc = "Предупреждать когда Джан'алай применяет Поражение пламенем.",
-	flame_message = "Пламенное дыхание в %s!",
-
-	icon = "Иконка Рейда",
-	icon_desc = "Помечает иконкой рейда персонажа попавшего под цель Пламенного дыхания. (требуются права в рейде)",
-
-	bomb = "Огненная бомба",
-	bomb_desc = "Таймеры Огненной бомбы.",
-	bomb_trigger = "Сгиньте в огне!",
-	bomb_message = "Надвигается Огненная бомба!",
-
-	adds = "Прибавление",
-	adds_desc = "Предупреждать о надвигающемся прибавлении.",
-	adds_trigger = "Где мои Наседки? Пора за яйца приниматься!",
-	adds_message = "Надвигается прибавление!",
-} end )
-
-----------------------------------
---      Module Declaration      --
-----------------------------------
-
-local mod = BigWigs:NewModule(boss)
-mod.zonename = BZ["Zul'Aman"]
-mod.enabletrigger = boss
-mod.guid = 23578
-mod.toggleOptions = {"bomb", "adds", -1, "flame", "icon", "enrage", "berserk", "bosskill"}
-mod.revision = tonumber(("$Revision: 5 $"):sub(12, -3))
-
-------------------------------
---      Initialization      --
-------------------------------
-
-function mod:OnEnable()
-	self:AddCombatListener("SPELL_CAST_START", "FlameBreath", 43140)
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
-
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	db = self.db.profile
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "FlameBreath", 43140)
+	
+	self:Yell("Adds", L["adds_trigger"])
+	self:Yell("Bomb", L["bomb_trigger"])
+	
+	self:RegisterEvent("UNIT_HEALTH")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	
+	self:Death("Win", 23578)
 end
 
-------------------------------
---      Event Handlers      --
-------------------------------
+function mod:OnEngage()
+	self:Berserk(600)
+	self:Bar("Adds", LW_CL["next"]:format(adds), 12, 89259)
+end
 
-local function ScanTarget()
-	local target
-	if UnitName("target") == boss then
-		target = UnitName("targettarget")
-	elseif UnitName("focus") == boss then
-		target = UnitName("focustarget")
-	else
-		local num = GetNumRaidMembers()
-		for i = 1, num do
-			if UnitName(fmt("%s%d%s", "raid", i, "target")) == boss then
-				target = UnitName(fmt("%s%d%s", "raid", i, "targettarget"))
-				break
-			end
-		end
+-------------------------------------------------------------------------------
+--  Event Handlers
+
+do
+	local function checkTarget()
+		local player = UnitName("boss1target")
+		mod:TargetMessage(43140, flameBreath, player, "Important", 43140, "Alert")
+		mod:PrimaryIcon(43140, player)
 	end
-	if target then
-		mod:IfMessage(fmt(L["flame_message"], target), "Important", 23461)
-		if mod.db.profile.icon then
-			mod:Icon(target)
-		end
+	function mod:FlameBreath()
+		self:ScheduleTimer(checkTarget, 0.2)
 	end
 end
 
-function mod:FlameBreath()
-	if db.flame then
-		self:ScheduleEvent("BWFlameToTScan", ScanTarget, 0.2)
-		self:ScheduleEvent("BWRemoveJanIcon", "BigWigs_RemoveRaidIcon", 4, self)
-	end
+function mod:Adds()
+	self:Message("adds", L["adds_message"], "Attention", 89259, "Alarm")
+	self:Bar("adds", LW_CL["next"]:format(adds), 92, 89259)
 end
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if db.bomb and msg == L["bomb_trigger"] then
-		self:Message(L["bomb_message"], "Urgent")
-		self:Bar(L["bomb"], 12, "Spell_Fire_Fire")
-	elseif db.adds and msg == L["adds_trigger"] then
-		self:Message(L["adds_message"], "Positive")
-		self:Bar(L["adds"], 92, "INV_Misc_Head_Troll_01")
-	elseif msg == L["engage_trigger"] then
-		if db.enrage then
-			self:Enrage(300, nil, true)
-		end
-		if db.berserk then
-			self:Enrage(600, true)
-		end
-		if db.adds then
-			self:Bar(L["adds"], 12, "INV_Misc_Head_Troll_01")
+function mod:Bomb()
+	self:Message("bomb", L["bomb_message"], "Attention", 42630, "Long")
+	self:Bar("bomb", L["bomb"], 12, 42630)
+end
+
+function mod:UNIT_HEALTH(_, unit)
+	if unit == "boss1" and UnitName(unit) == self.displayName then
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp < 37 then
+			self:Message("adds", L["adds_all"], "Attention", 89259, "Info")
+			self:UnregisterEvent("UNIT_HEALTH")
 		end
 	end
 end
-
