@@ -44,9 +44,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Blood", 96776)
 	self:Log("SPELL_AURA_APPLIED", "Frenzy", 96800)
 	self:Log("SPELL_HEAL", "OhganRebirth", 96724)
-	
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Deaths", 52151, 52156)
 end
 
@@ -93,3 +93,4 @@ function mod:Deaths(mobId)
 		self:Win()
 	end
 end
+

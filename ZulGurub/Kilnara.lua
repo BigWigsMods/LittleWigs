@@ -19,7 +19,7 @@ mod.toggleOptions = {
 --  Locals
 
 local lastphase = 0
-local Wave = GetSpellInfo(96457)
+local wave = GetSpellInfo(96457)
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -45,14 +45,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Ravage", 96592)
 	self:Log("SPELL_AURA_APPLIED", "Camouflage", 96594)
 	self:Log("SPELL_CAST_SUCCESS", "WaveAgony", 96457)
-	
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Win", 52059)
 end
 
 function mod:OnEngage()
-	phase2 = false
 	lastphase = 0
 end
 
@@ -86,7 +85,7 @@ end
 
 function mod:WaveAgony(_, spellId, _, _, spellName)
 	self:Message(96457, spellName, "Important", spellId)
-	self:Bar(96457, LW_CL["next"]:format(Wave), 32, spellId)
+	self:Bar(96457, LW_CL["next"]:format(wave), 32, spellId)
 end
 
 function mod:Phase2(_, spellId, _, _, spellName)
@@ -95,3 +94,4 @@ function mod:Phase2(_, spellId, _, _, spellName)
 	end
 	lastphase = GetTime()
 end
+

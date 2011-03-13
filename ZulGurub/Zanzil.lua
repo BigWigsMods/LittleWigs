@@ -23,9 +23,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Fire", 96914)
 	self:Log("SPELL_CAST_START", "Gas", 96338)
 	self:Log("SPELL_CAST_START", "Gaze", 96342)
-	
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Win", 52053)
 end
 
@@ -58,3 +58,4 @@ do
 		self:ScheduleTimer(checkTarget, 0.2, spellName)
 	end
 end
+

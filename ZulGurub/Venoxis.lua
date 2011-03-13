@@ -27,9 +27,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Whisper", 96466)
 	self:Log("SPELL_AURA_REMOVED", "WhisperRemoved", 96466)
 	self:Log("SPELL_CAST_START", "Bloodvenom", 96842)
-	
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Win", 52155)
 end
 
@@ -73,3 +73,4 @@ end
 function mod:Bloodvenom(_, spellId, _, _, spellName)
 	self:Message(96842, spellName, "Important", spellId, "Alert")
 end
+
