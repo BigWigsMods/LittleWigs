@@ -37,12 +37,12 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Silence", 42398)
-	
+
 	self:Yell("Bear", L["bear_trigger"])
 	self:Yell("Normal", L["normal_trigger"])
-	
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Win", 23576)
 end
 
@@ -71,3 +71,4 @@ function mod:Normal()
 	self:Message("phase", L["normal_message"], "Attention", 89259, "Alert")
 	self:Bar("phase", L["bear_message"], 45, spellId)
 end
+

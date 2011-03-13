@@ -17,9 +17,7 @@ mod.toggleOptions = {
 --------------------------------------------------------------------------------
 --  Locals
 
-local one = nil
-local two = nil
-local three = nil
+local one, two, three = nil, nil, nil
 local count = 1
 
 -------------------------------------------------------------------------------
@@ -59,10 +57,8 @@ end
 
 function mod:OnEngage()
 	self:Berserk(600)
+	one, two, three = nil, nil, nil
 	count = 1
-	one = nil
-	two = nil
-	three = nil
 	self:RegisterEvent("UNIT_HEALTH")
 end
 
@@ -126,3 +122,4 @@ function mod:UNIT_HEALTH()
 		end
 	end
 end
+

@@ -41,13 +41,13 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlameBreath", 43140)
-	
+
 	self:Yell("Adds", L["adds_trigger"])
 	self:Yell("Bomb", L["bomb_trigger"])
-	
+
 	self:RegisterEvent("UNIT_HEALTH")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Win", 23578)
 end
 
@@ -89,3 +89,4 @@ function mod:UNIT_HEALTH(_, unit)
 		end
 	end
 end
+

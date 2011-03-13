@@ -6,18 +6,13 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(23863)
 mod.toggleOptions = {
-	"form"
+	"form",
 	{97639, "ICON"},
 	17207,
 	43095,
 	{43150, "ICON"},
 	"bosskill",
 }
-
---------------------------------------------------------------------------------
---  Locals
-
-local paralyze = GetSpellInfo(43095)
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -49,14 +44,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Paralyze", 43095)
 	self:Log("SPELL_AURA_APPLIED", "ClawRage", 43150)
 	self:Log("SPELL_AURA_REMOVED", "ClawRemoved", 43150)
-	
+
 	self:Yell("Form1", L["bear_trigger"])
 	self:Yell("Form2", L["eagle_trigger"])
 	self:Yell("Form3", L["lynx_trigger"])
 	self:Yell("Form4", L["dragonhawk_trigger"])
-	
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Win", 23863)
 end
 
@@ -69,7 +64,6 @@ do
 		self:Bar(97639, spellName..": "..player, 15, spellId)
 		self:PrimaryIcon(97639, player)
 	end
-	
 	function mod:ThrowRemoved(player, _, _, _, spellName)
 	 self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
 	end
@@ -82,7 +76,7 @@ end
 function mod:Paralyze(_, spellId, _, _, spellName)
 	self:Message(43095, LW_CL["casting"]:format(spellName), "Important", spellId)
 	self:Bar(43095, spellName, 5, spellId)
-	self:Bar(43095, LW_CL["next"]:format(paralyze), 27, spellId)
+	self:Bar(43095, LW_CL["next"]:format(spellName), 27, spellId)
 end
 
 do
@@ -90,12 +84,12 @@ do
 		self:TargetMessage(43150, spellName, player, "Attention", spellId, "Alert")
 		self:PrimaryIcon(43150, player)
 	end
-	
 	function mod:ClawRemoved(player, _, _, _, spellName)
 	 self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
 	end
 end
 
+-- XXX use one function for the yells
 function mod:Form1()
 	self:Message("form", L["bear_message"], "Important", 89259)
 end
@@ -111,3 +105,4 @@ end
 function mod:Form4()
 	self:Message("form", L["dragonhawk_message"], "Important", 89259)
 end
+
