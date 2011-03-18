@@ -17,7 +17,7 @@ mod.toggleOptions = {
 --------------------------------------------------------------------------------
 --  Locals
 
-local one, two, three = nil, nil, nil
+local spirit = 100
 local count = 1
 
 -------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ if L then
 L["phase"] = "Phases"
 L["phase_desc"] = "Warn for phase changes."
 L["spirit_soon"] = "Spirit Phase soon!"
-L["spirit_message"] = "%d% HP! - Spirit Phase!"
+L["spirit_message"] = "%d% - Spirit Phase!"
 L["normal_message"] = "Normal Phase!"
 L["spirit_trigger"] = "I fight wit' untamed spirit...."
 L["normal_trigger"] = "Spirit, come back to me!"
@@ -42,22 +42,22 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Shock", 97490)
-	self:Log("SPELL_AURA_REMOVED", "ShockRemoved", 90004)
+	self:Log("SPELL_AURA_REMOVED", "ShockRemoved", 97490)
 	self:Log("SPELL_AURA_APPLIED", "Frenzy", 43139)
 	self:Log("SPELL_CAST_START", "LightingTotem", 97492)
 	self:Log("SPELL_CAST_START", "WaterTotem", 97500)
-	
+
 	self:Yell("Spirit", L["spirit_trigger"])
 	self:Yell("Normal", L["normal_trigger"])
-	
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	
+
 	self:Death("Win", 23577)
 end
 
 function mod:OnEngage()
-	self:Berserk(600)
-	one, two, three = nil, nil, nil
+	self:Berserk(600) -- XXX verify
+	spirit = 100
 	count = 1
 	self:RegisterEvent("UNIT_HEALTH")
 end
@@ -67,26 +67,24 @@ end
 
 do
 	function mod:Shock(player, spellId, _, _, spellName)
-		self:TargetMessage(97490, spellName, player, "Attention", spellId, "Alert")
+		self:TargetMessage(97490, spellName, player, "Attention", spellId, "Alarm")
 		self:Bar(97490, spellName..": "..player, 12, spellId)
 	end
-
 	function mod:ShockRemoved(player, _, _, _, spellName)
 		self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
 	end
 end
 
 function mod:Frenzy(_, spellId, _, _, spellName)
-	self:Message(43139, spellName, "Important", spellId, "Long")
-	self:Bar(43139, spellName, 6, spellId)
+	self:Message(43139, spellName, "Important", spellId)
 end
 
 function mod:LightingTotem(_, spellId, _, _, spellName)
-	self:Message(97492, spellName, "Attention", spellId)
+	self:Message(97492, spellName, "Urgent", spellId, "Alert")
 end
 
 function mod:WaterTotem(_, spellId, _, _, spellName)
-	self:Message(97500, spellName, "Attention", spellId)
+	self:Message(97500, spellName, "Urgent", spellId, "Alert")
 end
 
 function mod:Spirit()
@@ -103,21 +101,21 @@ function mod:Spirit()
 end
 
 function mod:Normal()
-	self:Message("phase", L["normal_message"], "Important", 89259)
+	self:Message("phase", L["normal_message"], "Positive", 89259)
 end
 
 function mod:UNIT_HEALTH()
 	if unit == "boss1" and UnitName(unit) == self.displayName then
 		local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
-		if hp > 77 and hp <= 80 and not one then
-			one = true
+		if hp > 77 and hp <= 80 and spirit > 80 then
 			self:Message("phase", L["spirit_soon"], "Attention")
-		elseif hp > 52 and hp <= 55 and not two then
-			two = true
+			spirit = 75
+		elseif hp > 52 and hp <= 55 and spirit > 55 then
 			self:Message("phase", L["spirit_soon"], "Attention")
-		elseif hp > 27 and hp <= 30 and not three then
-			three = true
+			spirit = 50
+		elseif hp > 27 and hp <= 30 and spirit > 30 then
 			self:Message("phase", L["spirit_soon"], "Attention")
+			spirit = 25
 			self:UnregisterEvent("UNIT_HEALTH")
 		end
 	end

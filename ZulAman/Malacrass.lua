@@ -12,11 +12,6 @@ mod.toggleOptions = {
 	"bosskill",
 }
 
---------------------------------------------------------------------------------
---  Locals
-
-local bolts = GetSpellInfo(43383)
-
 -------------------------------------------------------------------------------
 --  Initialization
 
@@ -31,23 +26,23 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(43383, LW_CL["next"]:format(bolts), 30, 43383)
+	self:Bar(43383, LW_CL["next"]:format(GetSpellInfo(43383)), 30, 43383)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 function mod:SpiritBolts(_, spellId, _, _, spellName)
-	self:Message(43383, spellName, "Important", spellId, "Long")
-	self:Bar(43383, spellName, 10, spellId)
-	self:Bar(43383, LW_CL["next"]:format(bolts), 30, spellId)
+	self:Message(43383, spellName, "Important", spellId)
+	self:Bar(43383, LW_CL["next"]:format(spellName), 30, spellId)
 end
 
 function mod:SoulSiphon(player, spellId, _, _, spellName)
-	self:TargetMessage(43501, spellName, player, "Urgent", spellId)
+	self:TargetMessage(43501, spellName, player, "Attention", spellId)
+	self:Bar(43501, LW_CL["next"]:format(spellName), 60, spellId)
 end
 
 function mod:Heal(_, spellId, _, _, spellName)
-	self:Message(43548, LW_CL["casting"]:format(spellName), "Attention", spellId, "Info")
+	self:Message(43548, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alarm")
 end
 

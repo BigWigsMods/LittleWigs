@@ -47,9 +47,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:Berserk(600) -- XXX verify
+	self:Bar("phase", L["bear_message"], 45, 89259)
 	lastSilence = 0
-	self:Berserk(600)
-	self:Bar("phase", L["bear_message"], 45, spellId)
 end
 
 -------------------------------------------------------------------------------
@@ -63,12 +63,12 @@ function mod:Silence(_, spellId, _, _, spellName)
 end
 
 function mod:Bear()
-	self:Message("phase", L["bear_message"], "Attention", 89259, "Alert")
-	self:Bar("phase", L["normal_message"], 30, spellId)
+	self:Message("phase", L["bear_message"], "Important", 89259)
+	self:Bar("phase", L["normal_message"], 30, 89259)
 end
 
 function mod:Normal()
-	self:Message("phase", L["normal_message"], "Attention", 89259, "Alert")
-	self:Bar("phase", L["bear_message"], 45, spellId)
+	self:Message("phase", L["normal_message"], "Important", 89259)
+	self:Bar("phase", L["bear_message"], 45, 89259)
 end
 

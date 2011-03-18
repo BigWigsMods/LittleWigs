@@ -10,7 +10,7 @@ mod.toggleOptions = {
 	{97639, "ICON"},
 	17207,
 	43095,
-	{43150, "ICON"},
+	43150,
 	"bosskill",
 }
 
@@ -43,7 +43,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ThrowRemoved", 97639)
 	self:Log("SPELL_CAST_SUCCESS", "Paralyze", 43095)
 	self:Log("SPELL_AURA_APPLIED", "ClawRage", 43150)
-	self:Log("SPELL_AURA_REMOVED", "ClawRemoved", 43150)
 
 	self:Yell("Form1", L["bear_trigger"])
 	self:Yell("Form2", L["eagle_trigger"])
@@ -60,33 +59,28 @@ end
 
 do
 	function mod:Throw(player, spellId, _, _, spellName)
-		self:TargetMessage(97639, spellName, player, "Attention", spellId, "Alert")
+		self:TargetMessage(97639, spellName, player, "Attention", spellId, "Alarm")
 		self:Bar(97639, spellName..": "..player, 15, spellId)
 		self:PrimaryIcon(97639, player)
 	end
 	function mod:ThrowRemoved(player, _, _, _, spellName)
-	 self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+		self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+		self:PrimaryIcon(97639)
 	end
 end
 
 function mod:Whirlwind(_, spellId, _, _, spellName)
-	self:Message(17207, spellName, "Important", spellId)
+	self:Message(17207, spellName, "Urgent", spellId)
 end
 
 function mod:Paralyze(_, spellId, _, _, spellName)
-	self:Message(43095, LW_CL["casting"]:format(spellName), "Important", spellId)
-	self:Bar(43095, spellName, 5, spellId)
+	self:Message(43095, LW_CL["casting"]:format(spellName), "Attention", spellId)
+	self:Bar(43095, spellName, 6, spellId)
 	self:Bar(43095, LW_CL["next"]:format(spellName), 27, spellId)
 end
 
-do
-	function mod:ClawRage(player, spellId, _, _, spellName)
-		self:TargetMessage(43150, spellName, player, "Attention", spellId, "Alert")
-		self:PrimaryIcon(43150, player)
-	end
-	function mod:ClawRemoved(player, _, _, _, spellName)
-	 self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
-	end
+function mod:ClawRage(player, spellId, _, _, spellName)
+	self:TargetMessage(43150, spellName, player, "Important", spellId, "Alert")
 end
 
 -- XXX use one function for the yells
