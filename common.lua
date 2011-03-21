@@ -6,6 +6,8 @@ L["frenzied"] = "%s Frenzied"
 L["next"] = "Next %s"
 L["seconds"] = "%s in %d sec"
 L["soon"] = "%s soon"
+L["phase"] = "Phase"
+L["phase_desc"] = "Warning for phase changes."
 L["phase_soon"] = "Phase %d soon"--@end-do-not-package@
 --@localization(locale="enUS", format="lua_additive_table", handle-unlocalized="ignore")@
 end
