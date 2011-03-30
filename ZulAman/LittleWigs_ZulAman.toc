@@ -4,6 +4,10 @@
 ## Notes: Little Wigs ZulAman Modules
 ## Title-koKR: Little Wigs [|cffeda55f줄아만|r]
 ## Notes-koKR: Little Wigs 줄아만 모듈
+## Title-zhTW: Little Wigs [|cffeda55f祖阿曼|r]
+## Notes-zhTW: Little Wigs 祖阿曼模組
+## Title-zhCN: Little Wigs [|cffeda55f祖阿曼|r]
+## Notes-zhCN: Little Wigs 祖阿曼模块
 ## Author: 7destiny
 ## Version: 4.0
 ## LoadOnDemand: 1

@@ -4,6 +4,10 @@
 ## Notes: Little Wigs Zul'Gurub Modules
 ## Title-koKR: Little Wigs [|cffeda55f줄구룹|r]
 ## Notes-koKR: Little Wigs 줄구룹 모듈
+## Title-zhTW: Little Wigs [|cffeda55f祖爾格拉布|r]
+## Notes-zhTW: Little Wigs 祖爾格拉布模組
+## Title-zhCN: Little Wigs [|cffeda55f祖尔格拉布|r]
+## Notes-zhCN: Little Wigs 祖尔格拉布模块
 ## Author: 7destiny
 ## Version: 4.0
 ## LoadOnDemand: 1
