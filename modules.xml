@@ -19,5 +19,9 @@
 <Include file="ThroneTides\modules.xml"/>
 <Include file="LostCity\locales.xml"/>
 <Include file="LostCity\modules.xml"/>
+<Include file="ZulAman\locales.xml"/>
+<Include file="ZulAman\modules.xml"/>
+<Include file="ZulGurub\locales.xml"/>
+<Include file="ZulGurub\modules.xml"/>
 
 </Ui>

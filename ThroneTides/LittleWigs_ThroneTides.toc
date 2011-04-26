@@ -1,4 +1,4 @@
-﻿## Interface: 40000
+﻿## Interface: 40100
 
 ## Title: Little Wigs [|cffeda55fThrone of the Tides|r]
 ## Notes: Little Wigs Throne of the Tides Modules

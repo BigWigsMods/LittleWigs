@@ -1,4 +1,4 @@
-﻿## Interface: 40000
+﻿## Interface: 40100
 
 ## Title: Little Wigs [|cffeda55fLost City of the Tol'vir|r]
 ## Notes: Little Wigs Lost City of the Tol'vir Modules
