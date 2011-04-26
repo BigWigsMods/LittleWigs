@@ -6,9 +6,9 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(24239)
 mod.toggleOptions = {
-	43383,
-	43501,
-	43548,
+	43383, -- Spirit Bolts
+	43501, -- Siphon Soul
+	43548, -- Healing abilities
 	"bosskill",
 }
 

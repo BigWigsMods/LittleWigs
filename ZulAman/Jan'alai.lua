@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(23578)
 mod.toggleOptions = {
-	{43140, "ICON"},
+	{97497, "ICON"}, -- Flame Breath
 	"adds",
 	"bomb",
 	"bosskill",
@@ -18,17 +18,17 @@ mod.toggleOptions = {
 local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
-L["adds"] = "Adds"
-L["adds_desc"] = "Warn for incoming adds."
-L["adds_trigger"] = "Where ma hatcha? Get to work on dem eggs!"
-L["adds_message"] = "Adds incoming!"
-L["adds_all"] = "Remaining adds soon!"
+L["adds"] = "Amani'shi Hatchers"
+L["adds_desc"] = "Warn for incoming Amani'shi Hatchers."
+--L["adds_trigger"] = "Where ma hatcha? Get to work on dem eggs!"
+L["adds_message"] = "Amani'shi Hatchers incoming!"
+L["adds_all"] = "All remaining Amani'shi Hatchers soon!"
 
 L["bomb"] = "Fire Bombs"
 L["bomb_desc"] = "Show timers for Fire Bombs."
 L["bomb_trigger"] = "I burn ya now!"
 L["bomb_message"] = "Fire Bombs incoming!"
---@localization(locale="enUS", namespace="ZulAman/Jan'alai", format="lua_additive_table", handle-unlocalized="ignore")@
+--@localization(locale="enUS", namespace="ZulAman/Janalai", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
 
@@ -36,9 +36,10 @@ L = mod:GetLocale()
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "FlameBreath", 43140)
+	self:Log("SPELL_CAST_START", "FlameBreath", 43140, 97855) -- 43140 is the old version?
+	self:Log("UNIT_SPELLCAST_SUCCEEDED", "Adds", 43962)
 
-	self:Yell("Adds", L["adds_trigger"])
+	--self:Yell("Adds", L["adds_trigger"])
 	self:Yell("Bomb", L["bomb_trigger"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")

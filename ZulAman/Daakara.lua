@@ -7,10 +7,10 @@ mod.partyContent = true
 mod:RegisterEnableMob(23863)
 mod.toggleOptions = {
 	"form",
-	{97639, "ICON"},
-	17207,
-	43095,
-	43150,
+	{97639, "ICON"}, -- Grievous Throw
+	17207, -- Whirlwind
+	43095, -- Creeping Paralysis
+	43150, -- Claw Rage
 	"bosskill",
 }
 

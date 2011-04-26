@@ -7,10 +7,10 @@ mod.partyContent = true
 mod:RegisterEnableMob(23577)
 mod.toggleOptions = {
 	"phase",
-	97490,
-	43139,
-	97492,
-	97500,
+	97490, -- Flameshock
+	43139, -- Enrage
+	97492, -- Lightning Totem
+	97500, -- Water Totem
 	"bosskill",
 }
 

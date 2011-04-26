@@ -6,8 +6,8 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(23576)
 mod.toggleOptions = {
-	"phase",
-	42398,
+	"forms",
+	42398, -- Deafening
 	"bosskill",
 }
 
@@ -15,6 +15,7 @@ mod.toggleOptions = {
 --  Locals
 
 local lastSilence = 0
+local bear = GetSpellInfo(7090)
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -22,12 +23,11 @@ local lastSilence = 0
 local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
-L["phase"] = "Phases"
-L["phase_desc"] = "Warn for phase changes."
-L["bear_message"] = "Bear Phase!"
-L["normal_message"] = "Normal Phase!"
-L["bear_trigger"] = "You call on da beast, you gonna get more dan you bargain for!"
-L["normal_trigger"] = "Make way for Nalorakk!"
+L["forms"] = "Forms"
+L["forms_desc"] = "Warn for form changes."
+L["troll_message"] = "Troll Form"
+--L["bear_trigger"] = "You call on da beast, you gonna get more dan you bargain for!"
+L["troll_trigger"] = "Make way for Nalorakk!"
 --@localization(locale="enUS", namespace="ZulAman/Nalorakk", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
@@ -37,9 +37,10 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Silence", 42398)
+	self:Log("UNIT_SPELL_CAST_SUCCEEDED", "Bear", 42377)
 
-	self:Yell("Bear", L["bear_trigger"])
-	self:Yell("Normal", L["normal_trigger"])
+	--self:Yell("Bear", L["bear_trigger"])
+	self:Yell("Troll", L["troll_trigger"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -48,7 +49,7 @@ end
 
 function mod:OnEngage()
 	self:Berserk(600) -- XXX verify
-	self:Bar("phase", L["bear_message"], 45, 89259)
+	self:Bar("forms", bear, 45, 42594)
 	lastSilence = 0
 end
 
@@ -63,12 +64,12 @@ function mod:Silence(_, spellId, _, _, spellName)
 end
 
 function mod:Bear()
-	self:Message("phase", L["bear_message"], "Important", 89259)
-	self:Bar("phase", L["normal_message"], 30, 89259)
+	self:Message("forms", bear, "Important", 42594)
+	self:Bar("forms", L["troll_message"], 30, 89259)
 end
 
-function mod:Normal()
-	self:Message("phase", L["normal_message"], "Important", 89259)
-	self:Bar("phase", L["bear_message"], 45, 89259)
+function mod:Troll()
+	self:Message("forms", L["troll_message"], "Important", 89259)
+	self:Bar("forms", bear, 45, 42594)
 end
 

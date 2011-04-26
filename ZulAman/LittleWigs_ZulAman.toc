@@ -9,7 +9,7 @@
 ## Title-zhCN: Little Wigs [|cffeda55f祖阿曼|r]
 ## Notes-zhCN: Little Wigs 祖阿曼模块
 ## Author: 7destiny
-## Version: 4.0
+## Version: 4.1
 ## LoadOnDemand: 1
 
 ## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
@@ -20,5 +20,5 @@
 
 ## Dependencies: BigWigs, LittleWigs
 
-#locales.xml
-#modules.xml
+locales.xml
+modules.xml
