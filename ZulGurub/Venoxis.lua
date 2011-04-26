@@ -6,10 +6,10 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(52155)
 mod.toggleOptions = {
-	{96477, "FLASHSHAKE"},
-	96509,
-	96466,
-	96842,
+	{96477, "FLASHSHAKE"}, -- Toxic Link
+	96509, -- Breath of Hethiss
+	96466, -- Whispers of Hethiss
+	96842, -- Bloodvenom
 	"bosskill",
 }
 

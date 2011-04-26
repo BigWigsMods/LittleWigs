@@ -7,11 +7,11 @@ mod.partyContent = true
 mod:RegisterEnableMob(52151, 52157)
 mod.toggleOptions = {
 	"rebirth",
-	96740,
-	96684,
-	96776,
-	96800,
-	96724,
+	96740, -- Devastating Slam
+	96684, -- Decapitate
+	96776, -- Bloodletting
+	96800, -- Frenzy
+	96724, -- Reanimate Ohgan
 	"bosskill",
 }
 

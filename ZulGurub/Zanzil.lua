@@ -6,12 +6,10 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(52053)
 mod.toggleOptions = {
-	"phase",
-	96435,
-	96958,
-	96592,
-	96594,
-	96457,
+	96914, -- Zanzili Fire
+	96316, -- Zanzil's Resurrection Elixir
+	96338, -- Zanzil's Graveyard Gas
+	96342, -- Pursuit
 	"bosskill",
 }
 

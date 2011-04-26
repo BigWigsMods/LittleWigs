@@ -7,10 +7,10 @@ mod.partyContent = true
 mod:RegisterEnableMob(52148)
 mod.toggleOptions = {
 	"phase",
-	97172,
-	97417,
-	97198,
-	97170,
+	97172, -- Shadows of Hakkar
+	97417, -- Brittle Barrier
+	97198, -- Body Slam
+	97170, -- Deadzone
 	"bosskill",
 }
 
@@ -30,7 +30,6 @@ if L then
 --@do-not-package@
 L["phase"] = "Phase"
 L["phase_desc"] = "Warn for phase changes."
-L["phase_message"] = "Phase 2!"
 L["barrier_down_message"] = "Barrier %d%!"
 --@localization(locale="enUS", namespace="ZulGurub/Jindo", format="lua_additive_table", handle-unlocalized="ignore")@
 end
@@ -77,7 +76,7 @@ end
 
 function mod:Phase2(_, spellId, _, _, spellName)
 	phase2 = true
-	self:Message("phase", L["phase_message"], "Important", spellId, "Long")
+	self:Message("phase", LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["phase"]:format(2), "Important", spellId, "Long")
 end
 
 do

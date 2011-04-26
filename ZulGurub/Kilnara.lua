@@ -7,11 +7,11 @@ mod.partyContent = true
 mod:RegisterEnableMob(52059)
 mod.toggleOptions = {
 	"phase",
-	96435,
-	96958,
-	96592,
-	96594,
-	96457,
+	96435, -- Tears of Blood
+	96958, -- Lash of Anguish
+	96592, -- Ravage
+	96594, -- Vengeful Smash
+	96457, -- Wave of Agony
 	"bosskill",
 }
 
@@ -29,7 +29,6 @@ if L then
 --@do-not-package@
 L["phase"] = "Phase"
 L["phase_desc"] = "Warn for phase changes."
-L["phase_message"] = "Phase 2!"
 --@localization(locale="enUS", namespace="ZulGurub/Kilnara", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
@@ -90,7 +89,7 @@ end
 
 function mod:Phase2(_, spellId, _, _, spellName)
 	if (GetTime() - lastphase) >= 5 then
-		self:Message("phase", L["phase_message"], "Attention", spellId, "Info")
+		self:Message("phase", LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["phase"]:format(2), "Attention", spellId, "Info")
 	end
 	lastphase = GetTime()
 end
