@@ -57,7 +57,7 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Rebirth(_, spellId, _, _, spellName)
+function mod:Rebirth(_, spellId)
 	rebirthcount = rebirthcount - 1
 	self:Message("rebirth", L["rebirth_message"]:format(rebirthcount), "Attention", spellId, "Alarm")
 end
@@ -66,12 +66,12 @@ function mod:Slam(_, spellId, _, _, spellName)
 	self:Message(96740, spellName, "Important", spellId, "Info")
 end
 
-function mod:Decapitate(_, spellId, _, _, spellName)
+function mod:Decapitate(player, spellId, _, _, spellName)
 	self:TargetMessage(96684, spellName, player, "Attention", spellId, "Alert")
 	self:Bar(96684, LW_CL["next"]:format(GetSpellInfo(96684)), 30, spellId)
 end
 
-function mod:Blood(_, spellId, _, _, spellName)
+function mod:Blood(player, spellId, _, _, spellName)
 	self:Message(96776, spellName, "Attention", spellId, "Alert")
 	self:Bar(96776, spellName..": "..player, 10, spellId)
 	self:Bar(96776, LW_CL["next"]:format(GetSpellInfo(96776)), 25, spellId)
@@ -81,7 +81,7 @@ function mod:Frenzy(_, spellId, _, _, spellName)
 	self:Message(96800, spellName, "Important", spellId, "Long")
 end
 
-function mod:OhganRebirth(_, spellId, _, _, spellName)
+function mod:OhganRebirth(_, spellId)
 	self:Message(96724, L["Ohgan_message"], "Attention", spellId, "Info")
 end
 
