@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(23578)
 mod.toggleOptions = {
-	{97497, "ICON"}, -- Flame Breath
+	{97497, "ICON"}, -- Flame Breath (this is the aura debuff spellid)
 	"adds",
 	"bomb",
 	"bosskill",
@@ -36,8 +36,7 @@ L = mod:GetLocale()
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "FlameBreath", 43140, 97855) -- 43140 is the old version?
-	self:Log("UNIT_SPELLCAST_SUCCEEDED", "Adds", 43962)
+	self:Log("SPELL_CAST_START", "FlameBreath", 97855) -- This is the actual cast spellid
 
 	--self:Yell("Adds", L["adds_trigger"])
 	self:Yell("Bomb", L["bomb_trigger"])
@@ -51,6 +50,7 @@ function mod:OnEngage()
 	self:Berserk(600) -- XXX verify
 	self:Bar("adds", LW_CL["next"]:format(L["adds"]), 12, 89259)
 	self:RegisterEvent("UNIT_HEALTH")
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "Adds")
 end
 
 -------------------------------------------------------------------------------
@@ -58,16 +58,18 @@ end
 
 do
 	local function checkTarget(spellName)
+		if not UnitIsPlayer("boss1target") then return end
 		local player = UnitName("boss1target")
-		mod:TargetMessage(43140, spellName, player, "Important", 43140, "Alert")
-		mod:PrimaryIcon(43140, player)
+		mod:TargetMessage(97497, spellName, player, "Important", 97497, "Alert")
+		mod:PrimaryIcon(97497, player)
 	end
 	function mod:FlameBreath(_, _, _, _, spellName)
 		self:ScheduleTimer(checkTarget, 0.2, spellName)
 	end
 end
 
-function mod:Adds()
+function mod:Adds(_, _, _, _, _, spellId)
+	if spellId ~= 43962 then return end
 	self:Message("adds", L["adds_message"], "Attention", 89259, "Long")
 	self:Bar("adds", LW_CL["next"]:format(L["adds"]), 92, 89259)
 end
