@@ -77,13 +77,11 @@ function mod:Bomb()
 	self:Bar("bomb", L["bomb"], 12, 42630)
 end
 
-function mod:UNIT_HEALTH(_, unit)
-	if unit == "boss1" and UnitName(unit) == self.displayName then
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 37 then
-			self:Message("adds", L["adds_all"], "Attention")
-			self:UnregisterEvent("UNIT_HEALTH")
-		end
+function mod:UNIT_HEALTH()
+	local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
+	if hp < 37 then
+		self:Message("adds", L["adds_all"], "Attention")
+		self:UnregisterEvent("UNIT_HEALTH")
 	end
 end
 

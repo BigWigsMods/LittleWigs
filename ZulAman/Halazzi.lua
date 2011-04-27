@@ -105,19 +105,17 @@ function mod:Normal()
 end
 
 function mod:UNIT_HEALTH()
-	if unit == "boss1" and UnitName(unit) == self.displayName then
-		local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
-		if hp > 77 and hp <= 80 and spirit > 80 then
-			self:Message("phase", L["spirit_soon"], "Attention")
-			spirit = 75
-		elseif hp > 52 and hp <= 55 and spirit > 55 then
-			self:Message("phase", L["spirit_soon"], "Attention")
-			spirit = 50
-		elseif hp > 27 and hp <= 30 and spirit > 30 then
-			self:Message("phase", L["spirit_soon"], "Attention")
-			spirit = 25
-			self:UnregisterEvent("UNIT_HEALTH")
-		end
+	local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
+	if hp > 77 and hp <= 80 and spirit > 80 then
+		self:Message("phase", L["spirit_soon"], "Attention")
+		spirit = 75
+	elseif hp > 52 and hp <= 55 and spirit > 55 then
+		self:Message("phase", L["spirit_soon"], "Attention")
+		spirit = 50
+	elseif hp > 27 and hp <= 30 and spirit > 30 then
+		self:Message("phase", L["spirit_soon"], "Attention")
+		spirit = 25
+		self:UnregisterEvent("UNIT_HEALTH")
 	end
 end
 
