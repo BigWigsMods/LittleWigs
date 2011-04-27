@@ -7,6 +7,7 @@ mod.partyContent = true
 mod:RegisterEnableMob(23574)
 mod.toggleOptions = {
 	{43648, "FLASHSHAKE", "ICON"}, -- Electrical Storm
+	{97318, "ICON"}, -- Plucked
 	"proximity",
 	"bosskill",
 }
@@ -17,6 +18,8 @@ mod.toggleOptions = {
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Storm", 43648)
 	self:Log("SPELL_AURA_REMOVED", "StormRemoved", 43648)
+	self:Log("SPELL_AURA_APPLIED", "Plucked", 97318)
+	self:Log("SPELL_AURA_REMOVED", "PluckedRemoved", 97318)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -45,3 +48,11 @@ function mod:StormRemoved(_, spellId, _, _, spellName)
 	self:Bar(43648, LW_CL["next"]:format(spellName), 40, spellId)
 end
 
+function mod:Plucked(player, spellId, _, _, spellName)
+	self:TargetMessage(97318, spellName, player, "Important", spellId, "Alert")
+	self:SecondaryIcon(97318, player)
+end
+
+function mod:PluckedRemoved(_, spellId)
+	self:SecondaryIcon(97318)
+end
