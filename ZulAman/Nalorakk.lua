@@ -37,7 +37,7 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Silence", 42398)
-	self:Log("UNIT_SPELL_CAST_SUCCEEDED", "Bear", 42377)
+	self:Log("UNIT_SPELLCAST_SUCCEEDED", "Bear", 42377)
 
 	--self:Yell("Bear", L["bear_trigger"])
 	self:Yell("Troll", L["troll_trigger"])

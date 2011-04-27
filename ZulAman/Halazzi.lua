@@ -80,11 +80,11 @@ function mod:Frenzy(_, spellId, _, _, spellName)
 end
 
 function mod:LightingTotem(_, spellId, _, _, spellName)
-	self:Message(97492, spellName, "Urgent", spellId, "Alert")
+	self:Message(97492, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alert")
 end
 
 function mod:WaterTotem(_, spellId, _, _, spellName)
-	self:Message(97500, spellName, "Urgent", spellId, "Alert")
+	self:Message(97500, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alert")
 end
 
 function mod:Spirit()
