@@ -75,8 +75,10 @@ function mod:ShadowCast(_, spellId, _, _, spellName)
 end
 
 function mod:Phase2(_, spellId, _, _, spellName)
-	phase2 = true
-	self:Message("phase", LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["phase"]:format(2), "Important", spellId, "Long")
+	if not phase2 then
+		phase2 = true
+		self:Message("phase", LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["phase"]:format(2), "Important", spellId, "Long")
+	end
 end
 
 do
