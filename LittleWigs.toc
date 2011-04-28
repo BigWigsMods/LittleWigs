@@ -13,7 +13,7 @@
 ## LoadOnDemand: 1
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-Zone: Blackrock Caverns, The Deadmines, Grim Batol, Halls of Origination, Shadowfang Keep, The Vortex Pinnacle, The Stonecore, Throne of the Tides, Lost City of the Tol'vir
+## X-BigWigs-LoadOn-Zone: Blackrock Caverns, The Deadmines, Grim Batol, Halls of Origination, Shadowfang Keep, The Vortex Pinnacle, The Stonecore, Throne of the Tides, Lost City of the Tol'vir, Zul'Aman, Zul'Gurub
 ## Dependencies: BigWigs
 
 common.lua
