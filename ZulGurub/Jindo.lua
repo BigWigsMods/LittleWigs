@@ -83,7 +83,7 @@ end
 
 do
 	local function checkTarget()
-		local player = UnitName("boss1target")
+		local player = UnitName("boss1target") -- XXX
 		mod:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
 	end
 	function mod:BodySlam()

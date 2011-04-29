@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Berserk(600) -- XXX verify
+	--self:Berserk(600) -- XXX verify
 	self:Bar("adds", LW_CL["next"]:format(L["adds"]), 12, 89259)
 	self:RegisterEvent("UNIT_HEALTH")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "Adds")

@@ -56,7 +56,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Berserk(600) -- XXX verify
+	--self:Berserk(600) -- XXX verify
 	spirit = 100
 	count = 1
 	self:RegisterEvent("UNIT_HEALTH")

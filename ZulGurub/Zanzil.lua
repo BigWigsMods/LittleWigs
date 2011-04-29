@@ -45,7 +45,7 @@ end
 
 do
 	local function checkTarget()
-		local player = UnitName("boss1target")
+		local player = UnitName("boss1target") -- XXX
 		if UnitIsUnit("player", player) then
 			mod:FlashShake(96342)
 		end
