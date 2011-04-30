@@ -9,7 +9,7 @@ mod.toggleOptions = {
 	"phase",
 	97172, -- Shadows of Hakkar
 	97417, -- Brittle Barrier
-	97198, -- Body Slam
+	--97198, -- Body Slam
 	97170, -- Deadzone
 	"bosskill",
 }
@@ -82,12 +82,16 @@ function mod:Phase2(_, spellId, _, _, spellName)
 end
 
 do
-	local function checkTarget()
-		local player = UnitName("boss1target") -- XXX
-		mod:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
+	local function checkTarget(sGUID)
+		local mobId = mod:GetUnitIdByGUID(sGUID)
+		if mobId then
+			local player = UnitName(mobId.."target")
+			mod:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
+		end
 	end
-	function mod:BodySlam()
-		self:ScheduleTimer(checkTarget, 0.2)
+	function mod:BodySlam(...)
+		local sGUID = select(11, ...)
+		self:ScheduleTimer(checkTarget, 0.2, sGUID)
 	end
 end
 

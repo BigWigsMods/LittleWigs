@@ -13,6 +13,11 @@ mod.toggleOptions = {
 	"bosskill",
 }
 
+--------------------------------------------------------------------------------
+--  Locals
+
+local gaze = GetSpellInfo(96342)
+
 -------------------------------------------------------------------------------
 --  Initialization
 
@@ -44,16 +49,20 @@ function mod:Fire(_, spellId, _, _, spellName)
 end
 
 do
-	local function checkTarget()
-		local player = UnitName("boss1target") -- XXX
-		if UnitIsUnit("player", player) then
-			mod:FlashShake(96342)
+	local function checkTarget(sGUID)
+		local mobId = mod:GetUnitIdByGUID(sGUID)
+		if mobId then
+			local player = UnitName(mobId.."target")
+			if UnitIsUnit("player", player) then
+				mod:FlashShake(96342)
+			end
+			mod:TargetMessage(96342, gaze, player, "Important", 96342, "Alert")
+			mod:PrimaryIcon(96342, player)
 		end
-		mod:TargetMessage(96342, spellName, player, "Important", 96342, "Alert")
-		mod:PrimaryIcon(96342, player)
 	end
-	function mod:Gaze(_, spellId, _, _, spellName)
-		self:ScheduleTimer(checkTarget, 0.2, spellName)
+	function mod:Gaze(...)
+		local sGUID = select(11, ...)
+		self:ScheduleTimer(checkTarget, 0.2, sGUID)
 	end
 end
 
