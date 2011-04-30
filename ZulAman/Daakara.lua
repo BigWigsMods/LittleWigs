@@ -22,13 +22,13 @@ if L then
 --@do-not-package@
 L["form"] = "Phases"
 L["form_desc"] = "Warn when Daakara changes form."
-L["bear_trigger"] = "Got me some new tricks... like me brudda bear...."
+-- L["bear_trigger"] = "Got me some new tricks... like me brudda bear...."
 L["bear_message"] = "Bear Form!"
-L["eagle_trigger"] = "Dere be no hidin' from da eagle!"
+-- L["eagle_trigger"] = "Dere be no hidin' from da eagle!"
 L["eagle_message"] = "Eagle Form!"
-L["lynx_trigger"] = "Let me introduce you to me new bruddas: fang and claw!"
+-- L["lynx_trigger"] = "Let me introduce you to me new bruddas: fang and claw!"
 L["lynx_message"] = "Lynx Form!"
-L["dragonhawk_trigger"] = "Ya don' have to look to da sky to see da dragonhawk!"
+-- L["dragonhawk_trigger"] = "Ya don' have to look to da sky to see da dragonhawk!"
 L["dragonhawk_message"] = "Dragonhawk Form!"
 --@localization(locale="enUS", namespace="ZulAman/Daakara", format="lua_additive_table", handle-unlocalized="ignore")@
 end
@@ -43,11 +43,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ThrowRemoved", 97639)
 	self:Log("SPELL_CAST_SUCCESS", "Paralyze", 43095)
 	self:Log("SPELL_AURA_APPLIED", "ClawRage", 43150)
+	self:Log("SPELL_CAST_START", "Forms", 42594, 42606, 42607, 42608) -- Bear, Eagle, Lynx, Dragonhawk
 
-	self:Yell("Form1", L["bear_trigger"])
-	self:Yell("Form2", L["eagle_trigger"])
-	self:Yell("Form3", L["lynx_trigger"])
-	self:Yell("Form4", L["dragonhawk_trigger"])
+	-- self:Yell("Form1", L["bear_trigger"])
+	-- self:Yell("Form2", L["eagle_trigger"])
+	-- self:Yell("Form3", L["lynx_trigger"])
+	-- self:Yell("Form4", L["dragonhawk_trigger"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -83,20 +84,15 @@ function mod:ClawRage(player, spellId, _, _, spellName)
 	self:TargetMessage(43150, spellName, player, "Important", spellId, "Alert")
 end
 
--- XXX use one function for the yells
-function mod:Form1()
-	self:Message("form", L["bear_message"], "Important", 89259)
-end
-
-function mod:Form2()
-	self:Message("form", L["eagle_message"], "Important", 89259)
-end
-
-function mod:Form3()
-	self:Message("form", L["lynx_message"], "Important", 89259)
-end
-
-function mod:Form4()
-	self:Message("form", L["dragonhawk_message"], "Important", 89259)
+function mod:Forms(_, spellId)
+	if spellId == 42594 then
+		self:Message("form", L["bear_message"], "Important", spellId)
+	elseif spellId == 42606 then
+		self:Message("form", L["eagle_message"], "Important", spellId)
+	elseif spellId == 42607 then
+		self:Message("form", L["lynx_message"], "Important", spellId)
+	elseif spellId == 42608 then
+		self:Message("form", L["dragonhawk_message"], "Important", spellId)
+	end
 end
 
