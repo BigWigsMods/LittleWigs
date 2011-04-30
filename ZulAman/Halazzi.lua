@@ -17,8 +17,8 @@ mod.toggleOptions = {
 --------------------------------------------------------------------------------
 --  Locals
 
-local spirit = 100
-local count = 1
+local spirit = false
+local count = true
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -56,9 +56,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	--self:Berserk(600) -- XXX verify
-	spirit = 100
-	count = 1
+	spirit = false
+	count = true
 	self:RegisterEvent("UNIT_HEALTH")
 end
 
@@ -88,16 +87,12 @@ function mod:WaterTotem(_, spellId, _, _, spellName)
 end
 
 function mod:Spirit()
-	if count == 1 then
-		self:Message("phase", L["spirit_message"]:format(75), "Positive", 24183)
-		count = count + 1
-	elseif count == 2 then
-		self:Message("phase", L["spirit_message"]:format(50), "Positive", 24183)
-		count = count + 1
-	elseif count == 3 then
-		self:Message("phase", L["spirit_message"]:format(25), "Positive", 24183)
+	if count then
+		self:Message("phase", L["spirit_message"]:format(66), "Positive", 24183)
+		count = false
+	else
+		self:Message("phase", L["spirit_message"]:format(33), "Positive", 24183)
 	end
-	self:Bar("phase", L["normal_message"], 50, 24183)
 end
 
 function mod:Normal()
@@ -106,15 +101,11 @@ end
 
 function mod:UNIT_HEALTH()
 	local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
-	if hp > 77 and hp <= 80 and spirit > 80 then
+	if hp > 69 and hp <= 71 and not spirit then
 		self:Message("phase", L["spirit_soon"], "Attention")
-		spirit = 75
-	elseif hp > 52 and hp <= 55 and spirit > 55 then
+		spirit = true
+	elseif hp > 36 and hp <= 38 and spirit then
 		self:Message("phase", L["spirit_soon"], "Attention")
-		spirit = 50
-	elseif hp > 27 and hp <= 30 and spirit > 30 then
-		self:Message("phase", L["spirit_soon"], "Attention")
-		spirit = 25
 		self:UnregisterEvent("UNIT_HEALTH")
 	end
 end

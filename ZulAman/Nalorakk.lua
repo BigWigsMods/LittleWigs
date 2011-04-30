@@ -48,7 +48,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	--self:Berserk(600) -- XXX verify
 	self:Bar("forms", bear, 45, 42594)
 	lastSilence = 0
 end
