@@ -9,7 +9,7 @@ mod.toggleOptions = {
 	"phase",
 	97172, -- Shadows of Hakkar
 	97417, -- Brittle Barrier
-	--97198, -- Body Slam
+	97198, -- Body Slam
 	97170, -- Deadzone
 	"bosskill",
 }
@@ -19,7 +19,6 @@ mod.toggleOptions = {
 
 local phase2 = false
 local barrier = 3
-local shadows = GetSpellInfo(97172)
 local slam = GetSpellInfo(43140)
 
 -------------------------------------------------------------------------------
@@ -62,7 +61,7 @@ end
 function mod:Shadow(_, spellId, _, _, spellName)
 	self:Message(97172, spellName, "Important", spellId, "Long")
 	self:Bar(97172, spellName, 10, spellId)
-	self:Bar(97172, LW_CL["next"]:format(shadows), 21, spellId)
+	self:Bar(97172, LW_CL["next"]:format(spellName), 21, spellId)
 end
 
 function mod:BarrierRemoved(_, spellId)
@@ -74,7 +73,7 @@ function mod:ShadowCast(_, spellId, _, _, spellName)
 	self:Message(97172, LW_CL["casting"]:format(spellName), "Attention", spellId, "Info")
 end
 
-function mod:Phase2(_, spellId, _, _, spellName)
+function mod:Phase2(_, spellId)
 	if not phase2 then
 		phase2 = true
 		self:Message("phase", LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["phase"]:format(2), "Important", spellId, "Long")
