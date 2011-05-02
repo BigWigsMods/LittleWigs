@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(52155)
 mod.toggleOptions = {
-	{96477, "FLASHSHAKE"}, -- Toxic Link
+	{96477, "ICON", "FLASHSHAKE"}, -- Toxic Link
 	96509, -- Breath of Hethiss
 	96466, -- Whispers of Hethiss
 	96842, -- Bloodvenom
@@ -23,6 +23,7 @@ local linkTargets = mod:NewTargetList()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Link", 96477)
+	self:Log("SPELL_AURA_REMOVED", "LinkRemoved", 96477)
 	self:Log("SPELL_AURA_APPLIED", "Breath", 96509)
 	self:Log("SPELL_AURA_APPLIED", "Whisper", 96466)
 	self:Log("SPELL_AURA_REMOVED", "WhisperRemoved", 96466)
@@ -50,8 +51,16 @@ do
 		if not scheduled then
 			scheduled = true
 			self:ScheduleTimer(linkWarn, 0.2, spellName)
+			PrimaryIcon(96477, player)
+		else
+			SecondaryIcon(96477, player)
 		end
 	end
+end
+
+function mod:LinkRemoved()
+	PrimaryIcon(96477)
+	SecondaryIcon(96477)
 end
 
 function mod:Breath(_, spellId, _, _, spellName)
