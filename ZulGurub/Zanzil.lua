@@ -53,6 +53,7 @@ do
 		local mobId = mod:GetUnitIdByGUID(sGUID)
 		if mobId then
 			local player = UnitName(mobId.."target")
+			if not player then return end
 			if UnitIsUnit("player", player) then
 				mod:FlashShake(96342)
 			end
