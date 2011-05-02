@@ -9,7 +9,7 @@ mod.toggleOptions = {
 	"phase",
 	97172, -- Shadows of Hakkar
 	97417, -- Brittle Barrier
-	{97198, "ICON"}, -- Body Slam
+	{97597, "ICON", "FLASHSHAKE"}, -- Spirit Warrior's Gaze
 	97170, -- Deadzone
 	"bosskill",
 }
@@ -40,9 +40,10 @@ L = mod:GetLocale()
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Shadow", 97172)
 	self:Log("SPELL_AURA_REMOVED", "BarrierRemoved", 97417)
-	self:Log("SPELL_AURA_APPLIED", "BodySlam", 97597)
 	self:Log("SPELL_CAST_START", "ShadowCast", 97172)
 	self:Log("SPELL_CAST_START", "Phase2", 97158)
+	self:Log("SPELL_AURA_APPLIED", "Gaze", 97597)
+	self:Log("SPELL_AURA_REMOVED", "GazeRemoved", 97597)
 	self:Log("SPELL_CAST_START", "DeadZone", 97170)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
@@ -53,6 +54,7 @@ end
 function mod:OnEngage()
 	phase2 = false
 	barrier = 3
+	self:Bar(97172, LW_CL["next"]:format(GetSpellInfo(97172)), 19, 97172)
 end
 
 -------------------------------------------------------------------------------
@@ -60,8 +62,7 @@ end
 
 function mod:Shadow(_, spellId, _, _, spellName)
 	self:Message(97172, spellName, "Important", spellId, "Long")
-	self:Bar(97172, spellName, 10, spellId)
-	self:Bar(97172, LW_CL["next"]:format(spellName), 21, spellId)
+	self:Bar(97172, spellName, 8, spellId)
 end
 
 function mod:BarrierRemoved(_, spellId)
@@ -71,6 +72,7 @@ end
 
 function mod:ShadowCast(_, spellId, _, _, spellName)
 	self:Message(97172, LW_CL["casting"]:format(spellName), "Attention", spellId, "Info")
+	self:Bar(97172, LW_CL["next"]:format(spellName), 19, spellId) 
 end
 
 function mod:Phase2(_, spellId)
@@ -80,15 +82,16 @@ function mod:Phase2(_, spellId)
 	end
 end
 
-do
-	local function clearIcon()
-		mod:PrimaryIcon(97198)
+function mod:Gaze(player, spellId, _, _, spellName)
+	self:TargetMessage(97597, spellName, player, "Important", spellId, "Alert")
+	self:SecondaryIcon(97597, player)
+	if UnitIsUnit("player", player) then
+		self:FlashShake(97597)
 	end
-	function mod:BodySlam(player)
-		self:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
-		self:PrimaryIcon(97198, player)
-		self:ScheduleTimer(clearIcon, 3)
-	end
+end
+
+function mod:GazeRemoved(_, spellId)
+	self:SecondaryIcon(97597)
 end
 
 function mod:DeadZone(_, spellId, _, _, spellName)
