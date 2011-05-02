@@ -49,10 +49,12 @@ function mod:StormRemoved(_, spellId, _, _, spellName)
 end
 
 function mod:Plucked(player, spellId, _, _, spellName)
-	self:TargetMessage(97318, spellName, player, "Important", spellId, "Alert")
-	self:SecondaryIcon(97318, player)
+	if UnitIsPlayer(player) then
+		self:TargetMessage(97318, spellName, player, "Important", spellId, "Alert")
+		self:SecondaryIcon(97318, player)
+	end
 end
 
-function mod:PluckedRemoved(_, spellId)
+function mod:PluckedRemoved()
 	self:SecondaryIcon(97318)
 end
