@@ -85,6 +85,7 @@ do
 		local mobId = mod:GetUnitIdByGUID(sGUID)
 		if mobId then
 			local player = UnitName(mobId.."target")
+			if not player then return end -- XXX Idealy we'll have a target, maybe it's just a timing issue
 			mod:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
 		end
 	end
