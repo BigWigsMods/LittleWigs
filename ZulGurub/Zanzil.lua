@@ -23,6 +23,8 @@ local gaze = GetSpellInfo(96342)
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Elixir", 96316)
+	self:Log("SPELL_AURA_APPLIED", "Pursuit", 96506)
+	self:Log("SPELL_AURA_REMOVED", "PursuitRemoved", 96506)
 	self:Log("SPELL_CAST_START", "Fire", 96914)
 	self:Log("SPELL_CAST_START", "Gas", 96338)
 	self:Log("SPELL_CAST_START", "Gaze", 96342)
@@ -70,3 +72,11 @@ do
 	end
 end
 
+function mod:Pursuit(player, spellId, _, _, player)
+	self:TargetMessage(96342, gaze, player, "Important", 96342, "Alert")
+	self:PrimaryIcon(96342, player)
+end
+
+function mode:PursuitRemove()
+	self:PrimaryIcon(96342)
+end

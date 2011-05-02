@@ -84,7 +84,7 @@ do
 	local function clearIcon()
 		mod:PrimaryIcon(97198)
 	end
-	function mod:BodySlam(_, _, _, _, player)
+	function mod:BodySlam(player)
 		self:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
 		self:PrimaryIcon(97198, player)
 		self:ScheduleTimer(clearIcon, 3)
