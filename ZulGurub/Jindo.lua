@@ -9,7 +9,7 @@ mod.toggleOptions = {
 	"phase",
 	97172, -- Shadows of Hakkar
 	97417, -- Brittle Barrier
-	97198, -- Body Slam
+	{97198, "ICON"}, -- Body Slam
 	97170, -- Deadzone
 	"bosskill",
 }
@@ -40,9 +40,9 @@ L = mod:GetLocale()
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Shadow", 97172)
 	self:Log("SPELL_AURA_REMOVED", "BarrierRemoved", 97417)
+	self:Log("SPELL_AURA_APPLIED", "BodySlam", 97597)
 	self:Log("SPELL_CAST_START", "ShadowCast", 97172)
 	self:Log("SPELL_CAST_START", "Phase2", 97158)
-	self:Log("SPELL_CAST_START", "BodySlam", 97198)
 	self:Log("SPELL_CAST_START", "DeadZone", 97170)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
@@ -81,17 +81,13 @@ function mod:Phase2(_, spellId)
 end
 
 do
-	local function checkTarget(sGUID)
-		local mobId = mod:GetUnitIdByGUID(sGUID)
-		if mobId then
-			local player = UnitName(mobId.."target")
-			if not player then return end -- XXX Idealy we'll have a target, maybe it's just a timing issue
-			mod:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
-		end
+	local function clearIcon()
+		mod:PrimaryIcon(97198)
 	end
-	function mod:BodySlam(...)
-		local sGUID = select(11, ...)
-		self:ScheduleTimer(checkTarget, 0.2, sGUID)
+	function mod:BodySlam(_, _, _, _, player)
+		self:TargetMessage(97198, slam, player, "Important", 97198, "Alert")
+		self:PrimaryIcon(97198, player)
+		self:ScheduleTimer(clearIcon, 3)
 	end
 end
 
