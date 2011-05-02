@@ -53,7 +53,10 @@ do
 		local mobId = mod:GetUnitIdByGUID(sGUID)
 		if mobId then
 			local player = UnitName(mobId.."target")
-			if not player then return end
+			if not player then -- debug
+				print("Zanzili Berserker: No target found! Please report this to the Little Wigs authors.")
+				return
+			end
 			if UnitIsUnit("player", player) then
 				mod:FlashShake(96342)
 			end
@@ -63,7 +66,7 @@ do
 	end
 	function mod:Gaze(...)
 		local sGUID = select(11, ...)
-		self:ScheduleTimer(checkTarget, 0.2, sGUID)
+		self:ScheduleTimer(checkTarget, 0.3, sGUID)
 	end
 end
 
