@@ -28,7 +28,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(43648, LW_CL["next"]:format(GetSpellInfo(43648)), 50, 43648)
-	self:OpenProximity(12)
+	self:OpenProximity(5)
 end
 
 -------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ function mod:Storm(player, spellId, _, _, spellName)
 end
 
 function mod:StormRemoved(_, spellId, _, _, spellName)
-	self:OpenProximity(12)
+	self:OpenProximity(5)
 	self:PrimaryIcon(43648)
 	self:Bar(43648, LW_CL["next"]:format(spellName), 40, spellId)
 end
