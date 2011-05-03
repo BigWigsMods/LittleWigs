@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Forgemaster Throngus", "Grim Batol")
+local mod = BigWigs:NewBoss("Forgemaster Throngus", 757)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(40177)

@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Mindbender Ghur'sha", "Throne of the Tides")
+local mod = BigWigs:NewBoss("Mindbender Ghur'sha", 767)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(40788, 40825)

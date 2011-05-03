@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Vanessa VanCleef", "The Deadmines")
+local mod = BigWigs:NewBoss("Vanessa VanCleef", 756)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(49541)

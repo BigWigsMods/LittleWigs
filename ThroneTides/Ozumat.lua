@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Ozumat", "Throne of the Tides")
+local mod = BigWigs:NewBoss("Ozumat", 767)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(42172)

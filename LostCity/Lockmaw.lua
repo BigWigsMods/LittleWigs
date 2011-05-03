@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Lockmaw", "Lost City of the Tol'vir")
+local mod = BigWigs:NewBoss("Lockmaw", 747)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(43614)

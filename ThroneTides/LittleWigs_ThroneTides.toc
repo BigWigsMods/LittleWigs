@@ -16,7 +16,7 @@
 ## X-Category: Party
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-Zone: Throne of the Tides
+## X-BigWigs-LoadOn-ZoneId: 767
 
 ## Dependencies: BigWigs, LittleWigs
 

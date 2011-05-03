@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("General Umbriss", "Grim Batol")
+local mod = BigWigs:NewBoss("General Umbriss", 757)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39625)

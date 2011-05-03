@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("High Priestess Azil", "The Stonecore")
+local mod = BigWigs:NewBoss("High Priestess Azil", 768)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(42333)

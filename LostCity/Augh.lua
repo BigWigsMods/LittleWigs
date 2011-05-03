@@ -5,7 +5,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Augh", "Lost City of the Tol'vir")
+local mod = BigWigs:NewBoss("Augh", 747)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(49045)

@@ -16,7 +16,7 @@
 ## X-Category: Party
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-Zone: Shadowfang Keep
+## X-BigWigs-LoadOn-ZoneId: 764
 
 ## Dependencies: BigWigs, LittleWigs
 

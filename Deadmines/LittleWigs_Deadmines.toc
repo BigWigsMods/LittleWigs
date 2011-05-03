@@ -16,7 +16,7 @@
 ## X-Category: Party
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-Zone: The Deadmines
+## X-BigWigs-LoadOn-ZoneId: 756
 
 ## Dependencies: BigWigs, LittleWigs
 

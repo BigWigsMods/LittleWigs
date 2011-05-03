@@ -16,7 +16,7 @@
 ## X-Category: Party
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-Zone: Halls of Origination
+## X-BigWigs-LoadOn-ZoneId: 759
 
 ## Dependencies: BigWigs, LittleWigs
 

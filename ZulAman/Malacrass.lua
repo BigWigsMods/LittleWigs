@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Hex Lord Malacrass", "Zul'Aman")
+local mod = BigWigs:NewBoss("Hex Lord Malacrass", 781)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(24239)

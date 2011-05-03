@@ -16,7 +16,7 @@
 ## X-Category: Party
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-Zone: Grim Batol
+## X-BigWigs-LoadOn-ZoneId: 757
 
 ## Dependencies: BigWigs, LittleWigs
 

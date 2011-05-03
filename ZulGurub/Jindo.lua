@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Jin'do the Godbreaker", "Zul'Gurub")
+local mod = BigWigs:NewBoss("Jin'do the Godbreaker", 697)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(52148)

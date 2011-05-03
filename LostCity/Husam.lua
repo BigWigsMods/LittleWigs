@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("General Husam", "Lost City of the Tol'vir")
+local mod = BigWigs:NewBoss("General Husam", 747)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(44577)

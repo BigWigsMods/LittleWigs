@@ -16,7 +16,7 @@
 ## X-Category: Party
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-Zone: Lost City of the Tol'vir
+## X-BigWigs-LoadOn-ZoneId: 747
 
 ## Dependencies: BigWigs, LittleWigs
 

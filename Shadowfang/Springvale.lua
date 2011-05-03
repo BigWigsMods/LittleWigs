@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Commander Springvale", "Shadowfang Keep")
+local mod = BigWigs:NewBoss("Commander Springvale", 764)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(4278)

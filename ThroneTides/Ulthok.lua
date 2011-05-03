@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Commander Ulthok", "Throne of the Tides")
+local mod = BigWigs:NewBoss("Commander Ulthok", 767)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(40765)

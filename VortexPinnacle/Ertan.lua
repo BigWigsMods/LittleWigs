@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Grand Vizier Ertan", "The Vortex Pinnacle")
+local mod = BigWigs:NewBoss("Grand Vizier Ertan", 769)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(43878)
