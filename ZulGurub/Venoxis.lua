@@ -51,31 +51,35 @@ do
 		if not scheduled then
 			scheduled = true
 			self:ScheduleTimer(linkWarn, 0.2, spellName)
-			PrimaryIcon(96477, player)
+			self:PrimaryIcon(96477, player)
 		else
-			SecondaryIcon(96477, player)
+			self:SecondaryIcon(96477, player)
 		end
 	end
 end
 
 function mod:LinkRemoved()
-	PrimaryIcon(96477)
-	SecondaryIcon(96477)
+	self:PrimaryIcon(96477)
+	self:SecondaryIcon(96477)
 end
 
 function mod:Breath(_, spellId, _, _, spellName)
 	self:Message(96509, spellName, "Important", spellId)
-	self:Bar(96509, spellName, 12, spellId)
+	self:Bar(96509, LW_CL["next"]:format(spellName), 12, spellId)
 end
 
 do
 	function mod:Whisper(player, spellId, _, _, spellName)
-		self:TargetMessage(96466, spellName, player, "Attention", spellId, "Alert")
-		self:Bar(96466, spellName..": "..player, 8, spellId)
+		if UnitInParty(player) then
+			self:TargetMessage(96466, spellName, player, "Attention", spellId, "Alert")
+			self:Bar(96466, spellName..": "..player, 8, spellId)
+		end
 	end
 
 	function mod:WhisperRemoved(player, _, _, _, spellName)
-		self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+		if UnitInParty(player) then
+			self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+		end
 	end
 end
 
