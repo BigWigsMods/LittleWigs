@@ -77,6 +77,7 @@ function mod:Pursuit(player, spellId, _, _, player)
 	self:PrimaryIcon(96342, player)
 end
 
-function mode:PursuitRemove()
+function mod:PursuitRemove()
 	self:PrimaryIcon(96342)
 end
+

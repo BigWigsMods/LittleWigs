@@ -58,3 +58,4 @@ end
 function mod:PluckedRemoved()
 	self:SecondaryIcon(97318)
 end
+

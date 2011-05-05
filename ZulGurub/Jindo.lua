@@ -90,7 +90,7 @@ function mod:Gaze(player, spellId, _, _, spellName)
 	end
 end
 
-function mod:GazeRemoved(_, spellId)
+function mod:GazeRemoved()
 	self:SecondaryIcon(97597)
 end
 

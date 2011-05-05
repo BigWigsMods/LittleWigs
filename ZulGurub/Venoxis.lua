@@ -75,7 +75,6 @@ do
 			self:Bar(96466, spellName..": "..player, 8, spellId)
 		end
 	end
-
 	function mod:WhisperRemoved(player, _, _, _, spellName)
 		if UnitInParty(player) then
 			self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
