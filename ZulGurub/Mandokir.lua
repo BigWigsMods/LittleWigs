@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Bloodlord Mandokir", 697)
+local mod = BigWigs:NewBoss("Bloodlord Mandokir", 793)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(52151, 52157)
