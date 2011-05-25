@@ -32,7 +32,7 @@ L["spirit_soon"] = "Spirit Phase soon!"
 L["spirit_message"] = "%d%% - Spirit Phase!"
 L["normal_message"] = "Normal Phase!"
 L["spirit_trigger"] = "I fight wit' untamed spirit...."
-L["normal_trigger"] = "Spirit, come back to me!"
+L["normal_trigger"] = "Spirit, come back to me!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="ZulAman/Halazzi", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()

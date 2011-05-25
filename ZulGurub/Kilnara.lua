@@ -28,7 +28,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 --@do-not-package@
 L["phase"] = "Phase"
-L["phase_desc"] = "Warn for phase changes."
+L["phase_desc"] = "Warn for phase changes."--@end-do-not-package@
 --@localization(locale="enUS", namespace="ZulGurub/Kilnara", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()

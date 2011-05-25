@@ -22,14 +22,10 @@ if L then
 --@do-not-package@
 L["form"] = "Phases"
 L["form_desc"] = "Warn when Daakara changes form."
--- L["bear_trigger"] = "Got me some new tricks... like me brudda bear...."
 L["bear_message"] = "Bear Form!"
--- L["eagle_trigger"] = "Dere be no hidin' from da eagle!"
 L["eagle_message"] = "Eagle Form!"
--- L["lynx_trigger"] = "Let me introduce you to me new bruddas: fang and claw!"
 L["lynx_message"] = "Lynx Form!"
--- L["dragonhawk_trigger"] = "Ya don' have to look to da sky to see da dragonhawk!"
-L["dragonhawk_message"] = "Dragonhawk Form!"
+L["dragonhawk_message"] = "Dragonhawk Form!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="ZulAman/Daakara", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()

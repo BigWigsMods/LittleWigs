@@ -26,8 +26,7 @@ if L then
 L["forms"] = "Forms"
 L["forms_desc"] = "Warn for form changes."
 L["troll_message"] = "Troll Form"
---L["bear_trigger"] = "You call on da beast, you gonna get more dan you bargain for!"
-L["troll_trigger"] = "Make way for Nalorakk!"
+L["troll_trigger"] = "Make way for Nalorakk!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="ZulAman/Nalorakk", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()

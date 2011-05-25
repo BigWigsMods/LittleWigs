@@ -29,7 +29,7 @@ if L then
 L["rebirth"] = "Ghost rebirth"
 L["rebirth_desc"] = "Warn for Ghost rebirth remaining."
 L["rebirth_message"] = "Ghost rebirth - %d left"
-L["Ohgan_message"] = "Ohgan rebirth!"
+L["Ohgan_message"] = "Ohgan rebirth!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="ZulGurub/Mandokir", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
