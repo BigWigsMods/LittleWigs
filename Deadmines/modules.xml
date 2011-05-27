@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Glubtok.lua"/>
+<Script file="Helix.lua"/>
 <Script file="Reaper.lua"/>
 <Script file="Vanessa.lua"/>
 

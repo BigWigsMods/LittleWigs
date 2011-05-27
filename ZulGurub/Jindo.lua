@@ -28,7 +28,7 @@ if L then
 --@do-not-package@
 L["phase"] = "Phase"
 L["phase_desc"] = "Warn for phase changes."
-L["barrier_down_message"] = "Barrier %d%%!"--@end-do-not-package@
+L["barrier_down_message"] = "Barrier %d down!"--@end-do-not-package@
 --@localization(locale="enUS", namespace="ZulGurub/Jindo", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
