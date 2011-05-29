@@ -28,7 +28,7 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Bomb(_, spellId, _, _, spellName)
+function mod:Bomb(player, spellId, _, _, spellName)
 	self:TargetMessage(88352, spellName, player, "Important", spellId, "Alert")
 	self:PrimaryIcon(88352, player)
 	self:Bar(88352, player..": "..spellName, 10, spellId) 
