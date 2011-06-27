@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("forms", bear, 45, 42594)
+	self:Bar("forms", bear, 30, 42594)
 	lastSilence = 0
 end
 
@@ -68,6 +68,6 @@ end
 
 function mod:Troll()
 	self:Message("forms", L["troll_message"], "Important", 89259)
-	self:Bar("forms", bear, 45, 42594)
+	self:Bar("forms", bear, 30, 42594)
 end
 
