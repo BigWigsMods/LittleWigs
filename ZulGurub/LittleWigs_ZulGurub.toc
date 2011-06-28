@@ -1,4 +1,4 @@
-﻿## Interface: 40100
+﻿## Interface: 40200
 
 ## Title: Little Wigs [|cffeda55fZul'Gurub|r]
 ## Notes: Little Wigs Zul'Gurub Modules

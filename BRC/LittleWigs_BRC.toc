@@ -1,4 +1,4 @@
-﻿## Interface: 40100
+﻿## Interface: 40200
 
 ## Title: Little Wigs [|cffeda55fBlackrock Caverns|r]
 ## Notes: Little Wigs Blackrock Caverns Modules
