@@ -1,4 +1,4 @@
-﻿## Interface: 40200
+## Interface: 40200
 
 ## Title: Little Wigs [|cffeda55fShadowfang Keep|r]
 ## Notes: Little Wigs Shadowfang KeepModules

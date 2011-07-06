@@ -1,4 +1,4 @@
-﻿## Interface: 40200
+## Interface: 40200
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for Cataclysm 5-man dungeons.

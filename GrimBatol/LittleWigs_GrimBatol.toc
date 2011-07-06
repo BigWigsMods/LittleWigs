@@ -1,4 +1,4 @@
-﻿## Interface: 40200
+## Interface: 40200
 
 ## Title: Little Wigs [|cffeda55fGrim Batol|r]
 ## Notes: Little Wigs Grim Batol Modules
