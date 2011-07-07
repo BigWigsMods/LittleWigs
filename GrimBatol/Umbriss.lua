@@ -45,7 +45,7 @@ do
 	local function clearIcon()
 		mod:PrimaryIcon(74670)
 	end
-	function mod:Blitz(player)
+	function mod:Blitz(_, _, _, _, player)
 		self:TargetMessage(74670, blitz, player, "Important", 74670, "Alert")
 		self:PrimaryIcon(74670, player)
 		self:ScheduleTimer(clearIcon, 3.5)
