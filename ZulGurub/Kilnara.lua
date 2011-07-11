@@ -38,6 +38,7 @@ L = mod:GetLocale()
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Tears", 96435)
+	self:Log("SPELL_AURA_REMOVED", "TearsRemoved", 96435)
 	self:Log("SPELL_AURA_APPLIED", "Phase2", 97380)
 	self:Log("SPELL_AURA_APPLIED", "Lash", 96958)
 	self:Log("SPELL_AURA_REMOVED", "LashRemoved", 96958)
@@ -56,10 +57,15 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+do
+	function mod:Tears(_, spellId, _, _, spellName)
+		self:Message(96435, spellName, "Important", spellId, "Alert")
+		self:Bar(96435, spellName, 6, spellId)
+	end
 
-function mod:Tears(_, spellId, _, _, spellName)
-	self:Message(96435, spellName, "Important", spellId, "Alert")
-	self:Bar(96435, spellName, 6, spellId)
+	function mod:TearsRemoved(_, _, _, _, spellName)
+		self:SendMessage("BigWigs_StopBar", self, spellName)
+	end
 end
 
 do
