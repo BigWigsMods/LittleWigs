@@ -46,7 +46,8 @@ function mod:Elixir(_, spellId, _, _, spellName)
 	self:Message(96316, spellName, "Attention", spellId, "Alert")
 end
 
-function mod:Fire(_, spellId, _, _, spellName)
+function mod:Fire(source, spellId, _, _, spellName)
+	if UnitIsPlayer(source) then return end
 	self:Message(96914, spellName, "Attention", spellId, "Info")
 end
 
