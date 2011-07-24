@@ -4,8 +4,8 @@
 ## Notes: Little Wigs Stonecore Modules
 ## Title-zhTW: Little Wigs [|cffeda55f石岩之心|r]
 ## Notes-zhTW: Little Wigs 石岩之心模組
-## Title-zhCN: Little Wigs [|cffeda55fStonecore|r]
-## Notes-zhCN: Little Wigs Stonecore模块
+## Title-zhCN: Little Wigs [|cffeda55f巨石之核|r]
+## Notes-zhCN: Little Wigs 巨石之核模块
 ## Title-koKR: Little Wigs [|cffeda55f바위심장부|r]
 ## Notes-koKR: Little Wigs 바위심장부 모듈
 ## Author: Ulic

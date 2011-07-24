@@ -4,8 +4,8 @@
 ## Notes: Little Wigs Grim Batol Modules
 ## Title-zhTW: Little Wigs [|cffeda55f格瑞姆巴托|r]
 ## Notes-zhTW: Little Wigs 格瑞姆巴托模組
-## Title-zhCN: Little Wigs [|cffeda55fGrim Batol|r]
-## Notes-zhCN: Little Wigs Grim Batol模块
+## Title-zhCN: Little Wigs [|cffeda55f格瑞姆巴托|r]
+## Notes-zhCN: Little Wigs 格瑞姆巴托模块
 ## Title-koKR: Little Wigs [|cffeda55f그림바톨|r]
 ## Notes-koKR: Little Wigs 그림바톨 모듈
 ## Author: Ulic

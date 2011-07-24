@@ -4,8 +4,8 @@
 ## Notes: Little Wigs Lost City of the Tol'vir Modules
 ## Title-zhTW: Little Wigs [|cffeda55f托維爾的失落之城|r]
 ## Notes-zhTW: Little Wigs 托維爾的失落之城模組
-## Title-zhCN: Little Wigs [|cffeda55fLost City of the Tol'vir|r]
-## Notes-zhCN: Little Wigs Lost City of the Tol'vir模块
+## Title-zhCN: Little Wigs [|cffeda55f托维尔失落之城|r]
+## Notes-zhCN: Little Wigs 托维尔失落之城模块
 ## Title-koKR: Little Wigs [|cffeda55f톨비르의 잃어버린 도시|r]
 ## Notes-koKR: Little Wigs 톨비르의 잃어버린 도시 모듈
 ## Author: Ulic

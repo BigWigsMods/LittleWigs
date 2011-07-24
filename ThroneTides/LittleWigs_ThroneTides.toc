@@ -4,8 +4,8 @@
 ## Notes: Little Wigs Throne of the Tides Modules
 ## Title-zhTW: Little Wigs [|cffeda55f海潮王座|r]
 ## Notes-zhTW: Little Wigs 海潮王座模組
-## Title-zhCN: Little Wigs [|cffeda55fThrone of the Tides|r]
-## Notes-zhCN: Little Wigs Throne of the Tides模块
+## Title-zhCN: Little Wigs [|cffeda55f潮汐王座|r]
+## Notes-zhCN: Little Wigs 潮汐王座模块
 ## Title-koKR: Little Wigs [|cffeda55f파도의 왕좌|r]
 ## Notes-koKR: Little Wigs 파도의 왕좌 모듈
 ## Author: Ulic

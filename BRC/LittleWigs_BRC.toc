@@ -4,8 +4,8 @@
 ## Notes: Little Wigs Blackrock Caverns Modules
 ## Title-zhTW: Little Wigs [|cffeda55f黑石洞穴|r]
 ## Notes-zhTW: Little Wigs 黑石洞穴模組
-## Title-zhCN: Little Wigs [|cffeda55fBlackrock Caverns|r]
-## Notes-zhCN: Little Wigs Blackrock Caverns模块
+## Title-zhCN: Little Wigs [|cffeda55f黑石岩窟|r]
+## Notes-zhCN: Little Wigs 黑石岩窟模块
 ## Title-koKR: Little Wigs [|cffeda55f검은바위 동굴|r]
 ## Notes-koKR: Little Wigs 검은바위 동굴 모듈
 ## Author: Ulic
