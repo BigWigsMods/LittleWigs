@@ -26,7 +26,8 @@ if L then
 L["forms"] = "Forms"
 L["forms_desc"] = "Warn for form changes."
 L["troll_message"] = "Troll Form"
-L["troll_trigger"] = "Make way for Nalorakk!"--@end-do-not-package@
+L["troll_trigger"] = "Make way for da Nalorakk!"
+L["bear_trigger"] = "You call on da beast"--@end-do-not-package@
 --@localization(locale="enUS", namespace="ZulAman/Nalorakk", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
@@ -38,7 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Silence", 42398)
 	self:Log("UNIT_SPELLCAST_SUCCEEDED", "Bear", 42377)
 
-	--self:Yell("Bear", L["bear_trigger"])
+	self:Yell("Bear", L["bear_trigger"])
 	self:Yell("Troll", L["troll_trigger"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
