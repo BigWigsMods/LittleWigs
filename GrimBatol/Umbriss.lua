@@ -23,8 +23,7 @@ local blitz = GetSpellInfo(74670)
 
 function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_HEALTH")
-
-	self:Emote("Blitz", blitz)
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Blitz")
 
 	self:Log("SPELL_CAST_START", "Siege", 74634, 90249)
 	self:Log("SPELL_AURA_APPIED", "Frenzy", 74853)
@@ -45,13 +44,15 @@ do
 	local function clearIcon()
 		mod:PrimaryIcon(74670)
 	end
-	function mod:Blitz(_, _, _, _, player)
-		if player then
-			self:TargetMessage(74670, blitz, player, "Important", 74670, "Alert")
-			self:PrimaryIcon(74670, player)
-			self:ScheduleTimer(clearIcon, 3.5)
-		else
-			self:Message(74670, blitz, "Important", 74670, "Alert")
+	function mod:Blitz(msg, _, _, _, player)
+		if msg:find(blitz) then
+			if player then
+				self:TargetMessage(74670, blitz, player, "Important", 74670, "Alert")
+				self:PrimaryIcon(74670, player)
+				self:ScheduleTimer(clearIcon, 3.5)
+			else
+				self:Message(74670, blitz, "Important", 74670, "Alert")
+			end
 		end
 	end
 end
