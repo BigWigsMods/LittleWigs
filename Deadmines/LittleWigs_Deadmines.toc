@@ -8,6 +8,8 @@
 ## Notes-zhCN: Little Wigs 死亡矿井模块
 ## Title-koKR: Little Wigs [|cffeda55f죽음의 폐광|r]
 ## Notes-koKR: Little Wigs 죽음의 폐광 모듈
+## Title-frFR: Little Wigs [|cffeda55fLes Mortemines|r]
+## Notes-frFR: Modules Little Wigs concernant les Mortemines.
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1

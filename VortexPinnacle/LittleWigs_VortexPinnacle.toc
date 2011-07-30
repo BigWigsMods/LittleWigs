@@ -8,6 +8,8 @@
 ## Notes-zhCN: Little Wigs 旋云之巅模块
 ## Title-koKR: Little Wigs [|cffeda55f소용돌이 누각|r]
 ## Notes-koKR: Little Wigs 소용돌이 누각 모듈
+## Title-frFR: Little Wigs [|cffeda55fLa cime du Vortex|r]
+## Notes-frFR: Modules Little Wigs concernant la cime du Vortex.
 ## Author: Ulic
 ## Version: 4.0
 ## LoadOnDemand: 1

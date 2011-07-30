@@ -8,6 +8,8 @@
 ## Notes-zhTW: Little Wigs 祖爾格拉布模組
 ## Title-zhCN: Little Wigs [|cffeda55f祖尔格拉布|r]
 ## Notes-zhCN: Little Wigs 祖尔格拉布模块
+## Title-frFR: Little Wigs [|cffeda55fZul'Gurub|r]
+## Notes-frFR: Modules Little Wigs concernant Zul'Gurub.
 ## Author: 7destiny
 ## Version: 4.1
 ## LoadOnDemand: 1

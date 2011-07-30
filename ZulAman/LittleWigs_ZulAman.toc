@@ -8,6 +8,8 @@
 ## Notes-zhTW: Little Wigs 祖阿曼模組
 ## Title-zhCN: Little Wigs [|cffeda55f祖阿曼|r]
 ## Notes-zhCN: Little Wigs 祖阿曼模块
+## Title-frFR: Little Wigs [|cffeda55fZul'Aman|r]
+## Notes-frFR: Modules Little Wigs concernant Zul'Aman.
 ## Author: 7destiny
 ## Version: 4.1
 ## LoadOnDemand: 1
