@@ -44,7 +44,7 @@ do
 	local function clearIcon()
 		mod:PrimaryIcon(74670)
 	end
-	function mod:Blitz(msg, _, _, _, player)
+	function mod:Blitz(_, msg, _, _, _, player)
 		if msg:find(blitz) then
 			if player then
 				self:TargetMessage(74670, blitz, player, "Important", 74670, "Alert")
