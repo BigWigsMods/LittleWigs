@@ -12,15 +12,9 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
+--  Locals
 
-local L = mod:NewLocale("enUS", true)
-if L then--@do-not-package@
-L["weakened"] = "Weakened"
-L["strengthened"] = "Strengthened"--@end-do-not-package@
---@localization(locale="enUS", namespace="BRC/Karsh", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = mod:GetLocale()
+local superheated = GetSpellInfo(101305)
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -35,11 +29,14 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Armor()
-	self:Message(75842, L["strengthened"], "Attention", 28059, "Alert") --icon = spell_chargepositive
+function mod:Armor(_, _, _, _, spellName)
+	self:Message(75842, spellName, "Attention", 75842, "Alert")
 end
 
-function mod:HeatedArmor()
-	self:Message(93567, L["weakened"], "Important", 28084, "Info") --icon = spell_chargenegative
+function mod:HeatedArmor(_, spellId, _, _, spellName, buffStack)
+	self:Message(93567, spellName, "Important", spellId, "Info")
+	if not buffStack then buffStack = 1 end
+	self:SendMessage("BigWigs_StopBar", self, ("%dx %s"):format(buffStack - 1, superheated))
+	self:Bar(93567, ("%dx %s"):format(buffStack, superheated), 17, spellId)
 end
 
