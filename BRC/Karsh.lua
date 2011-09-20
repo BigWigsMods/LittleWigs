@@ -35,7 +35,7 @@ function mod:Armor(_, _, _, _, spellName)
 end
 
 do
-	local function HeatedArmorar(spellId, buffStack)
+	local function HeatedArmorBar(spellId, buffStack)
 		if not buffStack then buffStack = 1 end
 		self:SendMessage("BigWigs_StopBar", self, ("%dx %s"):format(buffStack - 1, superheated))
 		self:Bar(93567, ("%dx %s"):format(buffStack, superheated), 17, spellId)
