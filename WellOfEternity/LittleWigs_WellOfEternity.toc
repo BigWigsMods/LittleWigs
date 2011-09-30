@@ -1,0 +1,17 @@
+## Interface: 40300
+
+## Title: Little Wigs [|cffeda55fWell of Eternity|r]
+## Notes: Little Wigs Well of Eternity Modules
+## Version: 4.3
+## LoadOnDemand: 1
+
+## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
+## X-Category: Party
+
+## X-BigWigs-PartyContent: true
+## X-BigWigs-LoadOn-ZoneId: 757
+
+## Dependencies: BigWigs, LittleWigs
+
+locales.xml
+modules.xml
