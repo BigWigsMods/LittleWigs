@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Benedictus", 756) -- XXX Not correct
+local mod = BigWigs:NewBoss("Benedictus", 819)
 if not mod then return end
 mod.partyContent = true
-mod:RegisterEnableMob(54431) -- XXX Not correct
+mod:RegisterEnableMob(54938)
 mod.toggleOptions = {
 	"bosskill",
 }
@@ -24,7 +24,7 @@ L = mod:GetLocale()
 --  Initialization
 
 function mod:OnBossEnable()
-	self:Death("Win", 54431)  -- XXX Not correct
+	self:Death("Win", 54938)
 end
 
 -------------------------------------------------------------------------------
