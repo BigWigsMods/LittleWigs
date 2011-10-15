@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Peroth'arn", 756) -- XXX Not correct
+local mod = BigWigs:NewBoss("Peroth'arn", 816)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(54431) -- XXX Not correct
