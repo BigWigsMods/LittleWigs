@@ -1,4 +1,4 @@
-## Interface: 40200
+## Interface: 40300
 
 ## Title: Little Wigs [|cffeda55fHalls of Origination|r]
 ## Notes: Little Wigs Halls of Origination Modules

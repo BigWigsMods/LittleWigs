@@ -1,4 +1,4 @@
-## Interface: 40200
+## Interface: 40300
 
 ## Title: Little Wigs [|cffeda55fThe Deadmines|r]
 ## Notes: Little Wigs Deadmines Modules
