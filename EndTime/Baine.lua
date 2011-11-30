@@ -11,6 +11,8 @@ mod.toggleOptions = {
 	"bosskill",
 }
 
+local pulverize = GetSpellInfo(101626)
+
 -------------------------------------------------------------------------------
 --  Localization
 
@@ -27,21 +29,20 @@ L = mod:GetLocale()
 --  Initialization
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Pulvarize")
-	self:RegisterEvent("SPELL_SUMMON", "TotemDown")
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Blitz")
+	self:Log("SPELL_SUMMON", "TotemDown", 101614)
 	self:Log("SPELL_AURA_REMOVED", "TotemUp", 101614)
 	self:Death("Win", 54431)
 end
 
 function mod:OnEngage()
-	self:Bar(101626, LW_CL["next"]:format(GetSpellInfo(101626)), 25, 101626)
+	self:Bar(101626, pulverize, 25, 101626)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 do
-	local pulverize = GetSpellInfo(101626)
 	local function clearIcon()
 		mod:PrimaryIcon("ej:4140")
 	end
@@ -67,3 +68,4 @@ function mod:TotemUp(player)
 	mod:Message("ej:4141", L["totemThrow"]:format(player), "Positive", 101614, "Info")
 	self:SendMessage("BigWigs_StopBar", self, L["totemDrop"])
 end
+
