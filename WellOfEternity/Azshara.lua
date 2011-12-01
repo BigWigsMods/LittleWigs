@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Queen Azshara", 816, 291)
+local mod = BigWigs:NewBoss("Queen Azshara", 816, 291)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(54853, 54884, 54882, 54883) --Queen Azshara, Enchanted Magi

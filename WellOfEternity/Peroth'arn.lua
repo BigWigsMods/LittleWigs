@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Peroth'arn", 816, 290)
+local mod, CL = BigWigs:NewBoss("Peroth'arn", 816, 290)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(55085)
