@@ -43,7 +43,7 @@ function mod:Decay(player, spellId, _, _, spellName)
 	self:Bar(spellId, CL["other"]:format(spellName, player), 10, spellId)
 end
 
-function mod:EasyPray(player, spellId)
+function mod:EasyPrey(player, spellId)
 	local discovered = GetSpellInfo(42203) -- "Discovered", hopefully it translates as such
 	self:TargetMessage(spellId, discovered, player, "Attention", spellId, "Long")
 end
