@@ -2,6 +2,10 @@
 
 ## Title: Little Wigs [|cffeda55fEnd Time|r]
 ## Notes: Little Wigs End Time Modules
+## Title-zhTW: Little Wigs [|cffeda55f終焉之刻|r]
+## Notes-zhTW: Little Wigs 終焉之刻模組
+## Title-zhCN: Little Wigs [|cffeda55f时光之末|r]
+## Notes-zhCN: Little Wigs 时光之末模块
 ## Author: Ulic
 ## Version: 4.3
 ## LoadOnDemand: 1

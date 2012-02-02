@@ -2,6 +2,10 @@
 
 ## Title: Little Wigs [|cffeda55fHour of Twilight|r]
 ## Notes: Little Wigs Hour of Twilight Modules
+## Title-zhTW: Little Wigs [|cffeda55f暮光之時|r]
+## Notes-zhTW: Little Wigs 暮光之時模組
+## Title-zhCN: Little Wigs [|cffeda55f暮光审判|r]
+## Notes-zhCN: Little Wigs 暮光审判模块
 ## Author: Ulic
 ## Version: 4.3
 ## LoadOnDemand: 1

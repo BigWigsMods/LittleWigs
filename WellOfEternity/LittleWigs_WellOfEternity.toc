@@ -2,6 +2,10 @@
 
 ## Title: Little Wigs [|cffeda55fWell of Eternity|r]
 ## Notes: Little Wigs Well of Eternity Modules
+## Title-zhTW: Little Wigs [|cffeda55f永恆之井|r]
+## Notes-zhTW: Little Wigs 永恆之井模組
+## Title-zhCN: Little Wigs [|cffeda55f永恒之井|r]
+## Notes-zhCN: Little Wigs 永恒之井模块
 ## Version: 4.3
 ## LoadOnDemand: 1
 
