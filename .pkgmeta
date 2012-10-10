@@ -4,3 +4,6 @@ ignore:
     - LittleWigs.toc
     - modules.xml
 
+move-folders:
+    LittleWigs/ShadoPanMonastery: LittleWigs_ShadoPanMonastery
+

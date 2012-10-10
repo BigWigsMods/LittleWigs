@@ -1,0 +1,14 @@
+## Interface: 50001
+
+## Title: Little Wigs [|cffeda55fShado-Pan Monastery|r]
+## Notes: Little Wigs Modules for the Shado-Pan Monastery.
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Raid
+## X-BigWigs-LoadOn-ZoneId: 877
+
+locales.xml
+modules.xml
+
