@@ -1,17 +1,2 @@
-﻿package-as: LittleWigs
+package-as: LittleWigs
 
-move-folders:
-    LittleWigs/BRC: LittleWigs_BRC
-    LittleWigs/Deadmines: LittleWigs_Deadmines
-    LittleWigs/GrimBatol: LittleWigs_GrimBatol
-    LittleWigs/LostCity: LittleWigs_LostCity
-    LittleWigs/Origination: LittleWigs_Origination
-    LittleWigs/Shadowfang: LittleWigs_Shadowfang
-    LittleWigs/Stonecore: LittleWigs_Stonecore
-    LittleWigs/ThroneTides: LittleWigs_ThroneTides
-    LittleWigs/VortexPinnacle: LittleWigs_VortexPinnacle
-	LittleWigs/ZulAman: LittleWigs_ZulAman
-	LittleWigs/ZulGurub: LittleWigs_ZulGurub
-	LittleWigs/EndTime: LittleWigs_EndTime
-	LittleWigs/HourOfTwilight: LittleWigs_HourOfTwilight
-	LittleWigs/WellOfEternity: LittleWigs_WellOfEternity
