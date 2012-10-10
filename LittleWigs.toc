@@ -10,8 +10,5 @@
 ## X-BigWigs-LoadOn-ZoneId: 753
 ## Dependencies: BigWigs
 
-common.lua
-#@debug@
 modules.xml
-#@end-debug@
 

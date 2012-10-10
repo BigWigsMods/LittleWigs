@@ -1,2 +1,6 @@
 package-as: LittleWigs
 
+ignore:
+    - LittleWigs.toc
+    - modules.xml
+
