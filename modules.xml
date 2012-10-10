@@ -1,33 +1,6 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="BRC\locales.xml"/>
-<Include file="BRC\modules.xml"/>
-<Include file="Deadmines\locales.xml"/>
-<Include file="Deadmines\modules.xml"/>
-<Include file="EndTime\locales.xml"/>
-<Include file="EndTime\modules.xml"/>
-<Include file="GrimBatol\locales.xml"/>
-<Include file="GrimBatol\modules.xml"/>
-<Include file="HourOfTwilight\locales.xml"/>
-<Include file="HourOfTwilight\modules.xml"/>
-<Include file="Origination\locales.xml"/>
-<Include file="Origination\modules.xml"/>
-<Include file="VortexPinnacle\locales.xml"/>
-<Include file="VortexPinnacle\modules.xml"/>
-<Include file="Shadowfang\locales.xml"/>
-<Include file="Shadowfang\modules.xml"/>
-<Include file="Stonecore\locales.xml"/>
-<Include file="Stonecore\modules.xml"/>
-<Include file="ThroneTides\locales.xml"/>
-<Include file="ThroneTides\modules.xml"/>
-<Include file="LostCity\locales.xml"/>
-<Include file="LostCity\modules.xml"/>
-<Include file="WellofEternity\locales.xml"/>
-<Include file="WellofEternity\modules.xml"/>
-<Include file="ZulAman\locales.xml"/>
-<Include file="ZulAman\modules.xml"/>
-<Include file="ZulGurub\locales.xml"/>
-<Include file="ZulGurub\modules.xml"/>
 
 </Ui>
+

@@ -3,7 +3,7 @@ LittleWigs
 
 Description-
 
-To put it simply, these are BigWigs modules that add some warnings to the bosses found in 5-man dungeons in the Cataclysm expansion.
+To put it simply, these are BigWigs modules that add some warnings to the bosses found in 5-man dungeons.
 
 
 Usage-

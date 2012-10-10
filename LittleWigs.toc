@@ -1,22 +1,17 @@
-## Interface: 40300
+## Interface: 50001
 
 ## Title: LittleWigs
-## Notes: Boss warnings for Cataclysm 5-man dungeons.
-## Notes-zhTW: 用於浩劫與重生5人副本首領警報。
-## Notes-zhCN: 用于大灾变5人副本首领警报。
-## Author: Ulic
-## Version: 4.0
-## X-Build: $Rev$
+## Notes: Boss warnings for 5-man dungeons.
+## Author: Funkydude, Ulic
 ## X-Category: Party
-## X-Website: http://wow.curse.com/downloads/wow-addons/details/little-wigs.aspx
-## X-BigWigs-LoadInParty: 1
 ## LoadOnDemand: 1
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-ZoneId: 753, 756, 757, 759, 764, 769, 768, 767, 747, 781, 793, 816, 819, 820
+## X-BigWigs-LoadOn-ZoneId: 753
 ## Dependencies: BigWigs
 
 common.lua
 #@debug@
 modules.xml
 #@end-debug@
+
