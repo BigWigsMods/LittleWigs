@@ -30,14 +30,20 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RisingHateStart", 107356)
 	self:Log("SPELL_AURA_REMOVED", "RisingHateStop", 107356)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 
-	self:Death("Win", 56884)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, _, _, _, spellId)
+	if spellId == 125920 and unitId == "boss1" then -- Kneel
+		self:Win()
+	end
+end
 
 function mod:GrippingHatred(_, spellId, _, _, spellName)
 	self:Message(115002, spellName, "Urgent", spellId, "Alert")
