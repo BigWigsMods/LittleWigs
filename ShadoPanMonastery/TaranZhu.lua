@@ -21,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {115002, {107087, "FLASHSHAKE"}, 107356}
+	return {115002, {107087, "FLASHSHAKE"}, 107356, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -45,8 +45,15 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, _, _, _, spellId)
 	end
 end
 
-function mod:GrippingHatred(_, spellId, _, _, spellName)
-	self:Message(115002, spellName, "Urgent", spellId, "Alert")
+do
+	local prev = 0
+	function mod:GrippingHatred(_, spellId, _, _, spellName)
+		local t = GetTime()
+		if t-prev > 5 then
+			prev = t
+			self:Message(115002, spellName, "Urgent", spellId, "Alert")
+		end
+	end
 end
 
 function mod:HazeOfHate(player, spellId, _, _, spellName)
