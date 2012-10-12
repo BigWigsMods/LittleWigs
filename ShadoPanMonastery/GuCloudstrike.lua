@@ -14,14 +14,14 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_say = "Let me show you my power."
 
-	breath, breath_desc = EJ_GetSectionInfo(5632)
-	breath_icon = 102573
+	L.breath, L.breath_desc = EJ_GetSectionInfo(5632)
+	L.breath_icon = 102573
 
-	shroud, shroud_desc = EJ_GetSectionInfo(5633)
-	shroud_icon = 107140
+	L.shroud, L.shroud_desc = EJ_GetSectionInfo(5633)
+	L.shroud_icon = 107140
 
-	field, field_desc = EJ_GetSectionInfo(5630)
-	field_icon = 106923
+	L.field, L.field_desc = EJ_GetSectionInfo(5630)
+	L.field_icon = 106923
 end
 L = mod:GetLocale()
 

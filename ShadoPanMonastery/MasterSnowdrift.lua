@@ -24,7 +24,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {106434, {106434, "FLASHSHAKE", "SAY"}, "bosskill"}
+	return {106434, {118961, "FLASHSHAKE", "SAY"}, "bosskill"}
 end
 
 function mod:VerifyEnable()
@@ -33,8 +33,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TornadoKick", 106434)
-	self:Log("SPELL_AURA_APPLIED", "ChaseDown", 106434)
-	self:Log("SPELL_AURA_REMOVED", "ChaseDownRemoved", 106434)
+	self:Log("SPELL_AURA_APPLIED", "ChaseDown", 118961)
+	self:Log("SPELL_AURA_REMOVED", "ChaseDownRemoved", 118961)
 
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 
@@ -45,7 +45,7 @@ function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
 	local tornado = GetSpellInfo(106434)
 	self:Bar(106434, "~"..tornado, 15, 106434)
-	self:Message(106434, CL["custom_start"]:format(self.displayName, tornado, 15), "Attention")
+	self:Message(106434, CL["custom_start_s"]:format(self.displayName, tornado, 15), "Attention")
 	phase = 1
 end
 
@@ -87,7 +87,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, _, _, _, spellId)
 			end
 		elseif spellId == 106743 then -- Shado-pan Teleport
 			self:Message("bosskill", CL["phase"]:format(3), "Positive", nil, "Info")
-		elseif spellId == 50630 then -- Eject All Passengers
+		elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
 			self:Win()
 		end
 	end

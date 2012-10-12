@@ -17,6 +17,7 @@ if L then
 	L.engage_yell = "I will not be caged again. These Shado-Pan could not stop me. Neither shall you!"
 
 	L.enrage, L.enrage_desc = EJ_GetSectionInfo(5813)
+	L.enrage_icon = 38166
 end
 L = mod:GetLocale()
 
@@ -41,7 +42,7 @@ end
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
 	self:Bar(106872, "~"..smash, 17, 106872) -- 17-19
-	self:Message(106872, CL["custom_start"]:format(self.displayName, smash, 17), "Attention")
+	self:Message(106872, CL["custom_start_s"]:format(self.displayName, smash, 17), "Attention")
 end
 
 --------------------------------------------------------------------------------
