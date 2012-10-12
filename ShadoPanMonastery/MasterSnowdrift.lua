@@ -24,7 +24,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {106434, {118961, "FLASHSHAKE", "SAY"}, "bosskill"}
+	return {106434, {118961, "FLASHSHAKE", "SAY"}, 106747, "bosskill"}
 end
 
 function mod:VerifyEnable()
@@ -75,20 +75,24 @@ function mod:ChaseDownRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, _, _, _, spellId)
-	if unitId == "boss1" then
-		if spellId == 110324 then -- Shado-pan Vanish
-			if phase == 1 then
-				phase = 2
-				self:Message("bosskill", (CL["phase"]:format(2))..": "..GetSpellInfo(109126), "Positive", nil, "Info")
-				self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-			else -- 109126 == Mirror Images
-				self:Message("bosskill", (GetSpellInfo(109126)), "Positive")
+do
+	local mirror = GetSpellInfo(106747) -- Shado-pan Mirror Image
+	local teleport = GetSpellInfo(106743) -- Shado-pan Teleport
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
+		if unitId == "boss1" then
+			if spellId == 110324 then -- Shado-pan Vanish
+				if phase == 1 then
+					phase = 2
+					self:Message(106747, (CL["phase"]:format(2))..": "..mirror, "Positive", 106747, "Info")
+					self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+				else
+					self:Message(106747, mirror, "Positive", 106747)
+				end
+			elseif spellName == teleport then
+				self:Message("bosskill", CL["phase"]:format(3), "Positive", nil, "Info")
+			elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
+				self:Win()
 			end
-		elseif spellId == 106743 then -- Shado-pan Teleport
-			self:Message("bosskill", CL["phase"]:format(3), "Positive", nil, "Info")
-		elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
-			self:Win()
 		end
 	end
 end
