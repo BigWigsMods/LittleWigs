@@ -41,6 +41,7 @@ end
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
 	self:Bar(106872, "~"..smash, 17, 106872) -- 17-19
+	self:Message(106872, CL["custom_start"]:format(self.displayName, smash, 17), "Attention")
 end
 
 --------------------------------------------------------------------------------

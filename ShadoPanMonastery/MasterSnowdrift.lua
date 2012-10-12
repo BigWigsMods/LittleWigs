@@ -39,13 +39,13 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 56719)
 end
 
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-	self:Bar(106434, "~"..GetSpellInfo(106434), 15, 106434)
+	local tornado = GetSpellInfo(106434)
+	self:Bar(106434, "~"..tornado, 15, 106434)
+	self:Message(106434, CL["custom_start"]:format(self.displayName, tornado, 15), "Attention")
 	phase = 1
 end
 
