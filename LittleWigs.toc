@@ -7,7 +7,7 @@
 ## LoadOnDemand: 1
 
 ## X-BigWigs-PartyContent: true
-## X-BigWigs-LoadOn-ZoneId: 753
+## X-BigWigs-LoadOn-ZoneId: 877
 ## Dependencies: BigWigs
 
 modules.xml

@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Taran Zhu", 877, 686)
 mod:RegisterEnableMob(56884)
 
+local canEnable = true
+
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -24,6 +26,10 @@ function mod:GetOptions()
 	return {115002, {107087, "FLASHSHAKE"}, 107356, "bosskill"}
 end
 
+function mod:VerifyEnable()
+	return canEnable
+end
+
 function mod:OnBossEnable()
 	self:Log("SPELL_SUMMON", "GrippingHatred", 115002)
 	self:Log("SPELL_AURA_APPLIED", "HazeOfHate", 107087)
@@ -33,6 +39,10 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+end
+
+function mod:OnWin()
+	canEnable = false
 end
 
 --------------------------------------------------------------------------------
