@@ -13,6 +13,15 @@ mod:RegisterEnableMob(56747, 56754) -- Gu, Serpent
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_say = "Let me show you my power."
+
+	breath, breath_desc = EJ_GetSectionInfo(5632)
+	breath_icon = 102573
+
+	shroud, shroud_desc = EJ_GetSectionInfo(5633)
+	shroud_icon = 107140
+
+	field, field_desc = EJ_GetSectionInfo(5630)
+	field_icon = 106923
 end
 L = mod:GetLocale()
 
@@ -21,15 +30,15 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"bosskill"}
+	return {"breath", "shroud", {"field", "FLASHSHAKE"}, "bosskill"}
 end
 
 function mod:OnBossEnable()
-	--self:Log("SPELL_CAST_START", "TornadoKick", 106434)
-	--self:Log("SPELL_AURA_APPLIED", "ChaseDown", 106434)
-	--self:Log("SPELL_AURA_REMOVED", "ChaseDownRemoved", 106434)
-
-	--self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:Log("SPELL_CAST_START", "LightningBreath", 102573)
+	self:Log("SPELL_CAST_START", "MagneticShroud", 107140)
+	self:Log("SPELL_AURA_APPLIED", "Phase2", 110945)
+	self:Log("SPELL_AURA_REMOVED", "Phase3", 110945)
+	self:Log("SPELL_DAMAGE", "StaticField", 106932, 128889)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -37,60 +46,43 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	--self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-	--self:Bar(106434, "~"..GetSpellInfo(106434), 15, 106434)
+	self:Message("bosskill", CL["phase"]:format(1)..": "..self.self.displayName, "Positive", nil, "Info")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
---[[
-function mod:TornadoKick(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alert")
-	self:Bar(spellId, CL["cast"]:format(spellName), 5, spellId)
+
+function mod:LightningBreath(_, spellId, _, _, spellName)
+	self:Message("breath", spellName, "Urgent", spellId, "Alert")
+	self:Bar("breath", "~"..spellName, 9.5, spellId) -- 9.6 - 9.7
 end
 
-function mod:ChaseDown(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alarm")
-	self:Bar(spellId, CL["other"]:format(spellName, player), 11, spellId)
-	if UnitIsUnit("player", player) then
-		self:FlashShake(spellId)
-		self:Say(spellId, CL["say"]:format(spellName))
+function mod:MagneticShroud(_, spellId, _, _, spellName)
+	self:Message("shroud", spellName, "Attention", spellId)
+	self:Bar("shroud", "~"..spellName, 13, spellId) -- 13.2 - 15.7
+end
+
+do
+	local breath = GetSpellInfo(102573)
+	local shroud = GetSpellInfo(107140)
+	local _, serpent = EJ_GetCreatureInfo(2, 673)
+	function mod:Phase2()
+		self:Message("bosskill", CL["phase"]:format(2)..": "..serpent, "Positive", nil, "Info")
+		self:Bar("breath", "~"..breath, 7, 102573)
+		self:Bar("shroud", "~"..shroud, 20, 107140)
+	end
+	function mod:Phase3()
+		self:Message("bosskill", CL["phase"]:format(3)..": "..self.self.displayName.. " ("..GetSpellInfo(65294)..")", "Positive", nil, "Info") -- (Empowered)
+		self:SendMessage("BigWigs_StopBar", self, "~"..breath)
+		self:SendMessage("BigWigs_StopBar", self, "~"..shroud)
 	end
 end
 
-function mod:ChaseDownRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
-end
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, _, _, _, spellId)
-	if unitId == "boss1" then
-		if spellId == 110324 then -- Shado-pan Vanish
-			if phase == 1 then
-				phase = 2
-				self:Message("bosskill", (CL["phase"]:format(2))..": "..GetSpellInfo(109126), "Positive", nil, "Info")
-				self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-			else -- 109126 == Mirror Images
-				self:Message("bosskill", (GetSpellInfo(109126)), "Positive")
-			end
-		elseif spellId == 106743 then -- Shado-pan Teleport
-			self:Message("bosskill", CL["phase"]:format(3), "Positive", nil, "Info")
-		elseif spellId == 50630 then -- Eject All Passengers
-			self:Win()
-		end
+function mod:StaticField(player, spellId, _, _, spellName)
+	if UnitIsUnit(player, "player") then
+		self:LocalMessage("field", CL["underyou"]:format(spellName), "Personal", spellId, "Alert")
+		self:FlashShake("field")
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unitId)
-	if unitId == "boss1" then
-		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-		if hp < 65 and phase == 1 then
-			self:Message("bosskill", CL["soon"]:format(CL["phase"]:format(2)), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		elseif hp < 35 and phase == 2 then
-			self:Message("bosskill", CL["soon"]:format(CL["phase"]:format(3)), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		end
-	end
-end
-]]
