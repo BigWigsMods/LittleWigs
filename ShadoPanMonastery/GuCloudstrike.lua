@@ -46,7 +46,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("bosskill", CL["phase"]:format(1)..": "..self.self.displayName, "Positive", nil, "Info")
+	self:Message("bosskill", CL["phase"]:format(1)..": "..self.displayName, "Positive", nil, "Info")
 end
 
 --------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ do
 		self:Bar("shroud", "~"..shroud, 20, 107140)
 	end
 	function mod:Phase3()
-		self:Message("bosskill", CL["phase"]:format(3)..": "..self.self.displayName.. " ("..GetSpellInfo(65294)..")", "Positive", nil, "Info") -- (Empowered)
+		self:Message("bosskill", CL["phase"]:format(3)..": "..self.displayName.. " ("..GetSpellInfo(65294)..")", "Positive", nil, "Info") -- (Empowered)
 		self:SendMessage("BigWigs_StopBar", self, "~"..breath)
 		self:SendMessage("BigWigs_StopBar", self, "~"..shroud)
 	end
