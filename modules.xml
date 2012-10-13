@@ -4,5 +4,9 @@
 <Include file="ShadoPanMonastery\locales.xml"/>
 <Include file="ShadoPanMonastery\modules.xml"/>
 
+<Include file="ScarletHalls\locales.xml"/>
+<Include file="ScarletHalls\modules.xml"/>
+
+
 </Ui>
 

@@ -63,7 +63,7 @@ end
 
 function mod:TornadoKick(_, spellId, _, _, spellName)
 	self:Message(spellId, spellName, "Urgent", spellId, "Alert")
-	self:Bar(spellId, CL["cast"]:format(spellName), 5, spellId)
+	self:Bar(spellId, CL["cast"]:format(spellName), 6.5, spellId) -- 5s channel + 1.5s cast
 end
 
 function mod:ChaseDown(player, spellId, _, _, spellName)
