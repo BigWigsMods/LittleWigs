@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Armsmaster Harlan", 871, 654)
 mod:RegisterEnableMob(58632)
 
 local cleave = GetSpellInfo(845)
+local helpCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -39,7 +40,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Cleave", 111217)
 	self:Log("SPELL_CAST_START", "BladesCastStart", 111216)
-	self:Log("SPELL_AURA_APPLIED", "BladesBegin", 111216)
+	self:Log("SPELL_AURA_APPLIED", "BladesChannel", 111216)
 	self:Log("SPELL_AURA_REMOVED", "BladesEnd", 111216)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
@@ -51,9 +52,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("blades", "~"..GetSpellInfo(111216), 41, 111216)
+	self:Bar("blades", GetSpellInfo(111216), 41, 111216)
 	self:Bar("cleave", cleave, 7.1, 111217)
 	self:Bar("help", L["help"], 20, 6673)
+	helpCount = 1
 end
 
 --------------------------------------------------------------------------------
@@ -72,20 +74,22 @@ function mod:BladesCastStart(player, spellId, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, cleave)
 end
 
-function mod:BladesBegin(player, spellId, _, _, spellName)
-	self:Message("blades",  CL["duration"]:format(spellName, 22), "Urgent", spellId, "Alarm")
+function mod:BladesChannel(player, spellId, _, _, spellName)
+	self:Message("blades",  CL["duration"]:format(spellName, "22"), "Urgent", spellId, "Alarm")
 	self:Bar("blades", spellName, 22, spellId)
 end
 
 function mod:BladesEnd(player, spellId, _, _, spellName)
 	self:Message("blades", CL["over"]:format(spellName), "Attention", spellId)
-	self:Bar("blades", "~"..spellName, 33, spellId)
-	--self:Bar("help", L["help"], 5, 6673)
+	self:Bar("blades", spellName, 33, spellId)
 end
 
-
-function mod:Adds()
-	self:Message("help", L["help"], "Urgent", 6673, "Info")
-	
+do
+	local timers = {30, 25, 22}
+	function mod:Adds()
+		self:Message("help", L["help"], "Urgent", 6673, "Info")
+		self:Bar("help", L["help"], timers[helpCount] or 20, 6673) -- Only have data on first 3
+		helpCount = helpCount + 1
+	end
 end
 
