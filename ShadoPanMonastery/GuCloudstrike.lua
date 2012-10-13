@@ -79,9 +79,9 @@ do
 	end
 end
 
-function mod:StaticField(player, spellId, _, _, spellName)
+function mod:StaticField(player, _, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage("field", CL["underyou"]:format(spellName), "Personal", spellId, "Alert")
+		self:LocalMessage("field", CL["underyou"]:format(spellName), "Personal", 106941, "Alert")
 		self:FlashShake("field")
 	end
 end

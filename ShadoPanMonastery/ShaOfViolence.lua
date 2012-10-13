@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Win", 56719)
+	self:Log("PARTY_KILL", "BossDeath", "*") -- No UNIT_DIED event...
 end
 
 function mod:OnEngage()
@@ -62,6 +62,13 @@ end
 
 function mod:EnrageRemoved(_, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, spellName)
+end
+
+function mod:BossDeath(...)
+	local dGUID = select(10, ...)
+	if self:GetCID(dGUID) == 56719 then
+		self:Win()
+	end
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unitId)

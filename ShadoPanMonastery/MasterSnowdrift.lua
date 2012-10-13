@@ -16,6 +16,9 @@ local canEnable = true
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Very well then, outsiders. Let us see your true strength."
+
+	--When I was but a cub I could scarcely throw a punch, but after years of training I can do so much more!
+	L.phase3_yell = "was a cub"
 end
 L = mod:GetLocale()
 
@@ -37,6 +40,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ChaseDownRemoved", 118961)
 
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:Yell("Phase3", L["phase3_yell"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
@@ -75,9 +79,12 @@ function mod:ChaseDownRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
 end
 
+function mod:Phase3()
+	self:Message("bosskill", CL["phase"]:format(3), "Positive", nil, "Info")
+end
+
 do
 	local mirror = GetSpellInfo(106747) -- Shado-pan Mirror Image
-	local teleport = GetSpellInfo(106743) -- Shado-pan Teleport
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
 		if unitId == "boss1" then
 			if spellId == 110324 then -- Shado-pan Vanish
@@ -88,8 +95,6 @@ do
 				else
 					self:Message(106747, mirror, "Positive", 106747)
 				end
-			elseif spellName == teleport then
-				self:Message("bosskill", CL["phase"]:format(3), "Positive", nil, "Info")
 			elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
 				self:Win()
 			end
