@@ -6,13 +6,15 @@
 local mod, CL = BigWigs:NewBoss("Houndmaster Braun", 871, 660)
 mod:RegisterEnableMob(59303)
 
+local percent = 90
+
 --------------------------------------------------------------------------------
 -- Localization
 --
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.engage_yell = "yell"
+	L.engage_say = "Hmm, did you hear something lads?"
 
 	L.rage, L.rage_desc = EJ_GetSectionInfo(5611)
 	L.rage_icon = 116140
@@ -38,6 +40,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	percent = 90
 end
 
 --------------------------------------------------------------------------------
@@ -45,7 +48,8 @@ end
 --
 
 function mod:CallDog(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alert")
+	self:Message(spellId, ("%d%% - %s"):format(percent, spellName), "Urgent", spellId, "Alert")
+	percent = percent - 10
 end
 
 function mod:BloodyRage(player, spellId, _, _, spellName)
