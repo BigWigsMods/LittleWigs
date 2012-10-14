@@ -1,0 +1,15 @@
+## Interface: 50001
+
+## Title: Little Wigs [|cffeda55fScarlet Monastery|r]
+## Notes: Little Wigs Modules for the Scarlet Monastery.
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-PartyContent: true
+## X-BigWigs-LoadOn-ZoneId: 874
+
+locales.xml
+modules.xml
+
