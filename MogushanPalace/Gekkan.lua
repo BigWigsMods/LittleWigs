@@ -4,7 +4,9 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Gekkan", 885, 690)
-mod:RegisterEnableMob(61243)
+mod:RegisterEnableMob(61243, 61337, 61338, 61339, 61340) -- Gekkan, Ironhide, Skulker, Oracle, Hexxer
+
+local deaths = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -36,11 +38,11 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	--self:Death("Win", 61243)
+	self:Death("Deaths", 61243, 61337, 61338, 61339, 61340)
 end
 
 function mod:OnEngage()
-
+	deaths = 0
 end
 
 --------------------------------------------------------------------------------
@@ -75,3 +77,11 @@ function mod:EvictSoulRemoved(player, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
 end
 ]]
+
+function mod:Deaths()
+	deaths = deaths + 1
+	if deaths == 5 then
+		self:Win()
+	end
+end
+

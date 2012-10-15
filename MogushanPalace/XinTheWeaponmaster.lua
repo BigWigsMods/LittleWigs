@@ -12,9 +12,10 @@ mod:RegisterEnableMob(61398)
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.engage_yell = "yell"
+	L.engage_yell = "You are not the first to challenge me, peons. You will not be the last."
 
-
+	L.slam, L.slam_desc = EJ_GetSectionInfo(5970)
+	L.slam_icon = 119684
 end
 L = mod:GetLocale()
 
@@ -23,11 +24,11 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"bosskill"}
+	return {"slam", "bosskill"}
 end
 
 function mod:OnBossEnable()
-	--self:Log("SPELL_CAST_START", "MassRes", 113134)
+	self:Log("SPELL_CAST_START", "GroundSlam", 119684)
 	--self:Log("SPELL_INTERRUPT", "MassResStopped", "*")
 
 	--self:Log("SPELL_CAST_SUCCESS", "Sleep", 9256)
@@ -46,12 +47,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
---[[
-function mod:MassRes(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alarm")
-	self:Bar(spellId, spellName, 10, spellId)
-end
 
+function mod:GroundSlam(_, spellId, _, _, spellName)
+	self:Message("slam", CL["cast"]:format(spellName), "Urgent", spellId, "Alarm")
+	self:Bar("slam", CL["cast"]:format(spellName), 3, spellId)
+end
+--[[
 function mod:MassResStopped(_, _, _, secSpellId, _, secSpellName)
 	if secSpellId == 113134 then
 		self:SendMessage("BigWigs_StopBar", self, secSpellName)

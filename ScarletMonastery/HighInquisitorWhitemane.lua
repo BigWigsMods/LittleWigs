@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("High Inquisitor Whitemane", 874, 674)
 mod:RegisterEnableMob(3977, 60040) -- Whitemane, Durand
 
-local count = 0
+local deaths = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -43,7 +43,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	count = 0
+	deaths = 0
 	self:Message("stages", CL["phase"]:format(1).. ": "..EJ_GetSectionInfo(5635), "Positive")
 	self:Bar("steel", L["steel"], 10.8, 115629)
 end
@@ -76,11 +76,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, _, spellId)
 end
 
 function mod:Deaths()
-	count = count + 1
-	if count == 1 then
+	deaths = deaths + 1
+	if deaths == 1 then
 		self:Message("stages", CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638), "Positive")
 		self:SendMessage("BigWigs_StopBar", self, "~"..L["steel"])
-	elseif count == 3 then
+	elseif deaths == 3 then
 		self:Win()
 	end
 end
