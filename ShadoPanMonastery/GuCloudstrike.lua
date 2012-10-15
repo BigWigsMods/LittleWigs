@@ -38,7 +38,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MagneticShroud", 107140)
 	self:Log("SPELL_AURA_APPLIED", "Phase2", 110945)
 	self:Log("SPELL_AURA_REMOVED", "Phase3", 110945)
+
 	self:Log("SPELL_DAMAGE", "StaticField", 106932, 128889)
+	self:Log("SPELL_MISSED", "StaticField", 106932, 128889)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 

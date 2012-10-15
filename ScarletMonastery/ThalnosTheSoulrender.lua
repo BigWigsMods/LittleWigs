@@ -24,13 +24,16 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {{"spirit", "FLASHSHAKE"}, "bosskill"}
+	return {{"spirit", "FLASHSHAKE"}, 115297, "bosskill"}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SpiritGaleCast", 115289)
 	self:Log("SPELL_AURA_APPLIED", "SpiritGaleYou", 115291)
 	self:Log("SPELL_INTERRUPT", "SpiritGaleStopped", "*")
+
+	self:Log("SPELL_AURA_APPLIED", "EvictSoul", 115297)
+	self:Log("SPELL_AURA_REMOVED", "EvictSoulRemoved", 115297)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -57,5 +60,14 @@ function mod:SpiritGaleStopped(_, _, _, secSpellId, _, secSpellName)
 	if secSpellId == 115289 then
 		self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(secSpellName))
 	end
+end
+
+function mod:EvictSoul(player, spellId, _, _, spellName)
+	self:TargetMessage(spellId, spellName, player, "Urgent", spellId, "Info")
+	self:Bar(spellId, CL["other"]:format(spellName, player), 6, spellId)
+end
+
+function mod:EvictSoulRemoved(player, _, _, _, spellName)
+	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
 end
 
