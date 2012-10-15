@@ -27,7 +27,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {106434, {118961, "FLASHSHAKE", "SAY"}, 106747, "bosskill"}
+	return {106434, {118961, "FLASHSHAKE", "SAY"}, 106747, "stages", "bosskill"}
 end
 
 function mod:VerifyEnable()
@@ -80,7 +80,7 @@ function mod:ChaseDownRemoved(player, _, _, _, spellName)
 end
 
 function mod:Phase3()
-	self:Message("bosskill", CL["phase"]:format(3), "Positive", nil, "Info")
+	self:Message("stages", CL["phase"]:format(3), "Positive", nil, "Info")
 end
 
 do
@@ -106,10 +106,10 @@ function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 	if unitId == "boss1" then
 		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 		if hp < 65 and phase == 1 then
-			self:Message("bosskill", CL["soon"]:format(CL["phase"]:format(2)), "Positive")
+			self:Message("stages", CL["soon"]:format(CL["phase"]:format(2)), "Positive")
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		elseif hp < 35 and phase == 2 then
-			self:Message("bosskill", CL["soon"]:format(CL["phase"]:format(3)), "Positive")
+			self:Message("stages", CL["soon"]:format(CL["phase"]:format(3)), "Positive")
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		end
 	end

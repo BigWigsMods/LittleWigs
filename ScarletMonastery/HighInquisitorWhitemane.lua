@@ -26,7 +26,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {113134, "steel", "bosskill"}
+	return {113134, "steel", "stages", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -44,8 +44,8 @@ end
 
 function mod:OnEngage()
 	count = 0
-	self:Message("bosskill", CL["phase"]:format(1).. ": "..EJ_GetSectionInfo(5635), "Positive")
-	self:Bar("steel", "~"..L["steel"], 10.8, 115629)
+	self:Message("stages", CL["phase"]:format(1).. ": "..EJ_GetSectionInfo(5635), "Positive")
+	self:Bar("steel", L["steel"], 10.8, 115629)
 end
 
 --------------------------------------------------------------------------------
@@ -64,21 +64,22 @@ function mod:MassResStopped(_, _, _, secSpellId, _, secSpellName)
 end
 
 function mod:Sleep(_, spellId, _, _, spellName)
-	self:Message("bosskill", CL["phase"]:format(3), "Positive")
-	self:Bar("bosskill", spellName, 10, spellId)
+	self:Message("stages", CL["phase"]:format(3), "Positive")
+	self:Bar("stages", spellName, 10, spellId)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, _, spellId)
 	if spellId == 115627 and unit:match("boss") then
 		self:Message("steel", spellName, "Attention", 115629)
-		self:Bar("steel", "~"..spellName, 27, 115629)
+		self:Bar("steel", "~"..spellName, 26, 115629) -- 26.x - 27.x
 	end
 end
 
 function mod:Deaths()
 	count = count + 1
 	if count == 1 then
-		self:Message("bosskill", CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638), "Positive")
+		self:Message("stages", CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638), "Positive")
+		self:SendMessage("BigWigs_StopBar", self, "~"..L["steel"])
 	elseif count == 3 then
 		self:Win()
 	end

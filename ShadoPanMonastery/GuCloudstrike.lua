@@ -30,7 +30,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"breath", "shroud", {"field", "FLASHSHAKE"}, "bosskill"}
+	return {"breath", "shroud", {"field", "FLASHSHAKE"}, "stages", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -48,7 +48,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("bosskill", CL["phase"]:format(1)..": "..self.displayName, "Positive", nil, "Info")
+	self:Message("stages", CL["phase"]:format(1)..": "..self.displayName, "Positive", nil, "Info")
 end
 
 --------------------------------------------------------------------------------
@@ -70,12 +70,12 @@ do
 	local shroud = GetSpellInfo(107140)
 	local _, serpent = EJ_GetCreatureInfo(2, 673)
 	function mod:Phase2()
-		self:Message("bosskill", CL["phase"]:format(2)..": "..serpent, "Positive", nil, "Info")
+		self:Message("stages", CL["phase"]:format(2)..": "..serpent, "Positive", nil, "Info")
 		self:Bar("breath", "~"..breath, 7, 102573)
 		self:Bar("shroud", "~"..shroud, 20, 107140)
 	end
 	function mod:Phase3()
-		self:Message("bosskill", CL["phase"]:format(3)..": "..self.displayName.. " ("..GetSpellInfo(65294)..")", "Positive", nil, "Info") -- (Empowered)
+		self:Message("stages", CL["phase"]:format(3)..": "..self.displayName.. " ("..GetSpellInfo(65294)..")", "Positive", nil, "Info") -- (Empowered)
 		self:SendMessage("BigWigs_StopBar", self, "~"..breath)
 		self:SendMessage("BigWigs_StopBar", self, "~"..shroud)
 	end

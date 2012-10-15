@@ -40,6 +40,10 @@ function mod:OnBossEnable()
 	self:Death("Win", 59789)
 end
 
+function mod:OnEngage()
+	self:Bar(115297, "~"..GetSpellInfo(115297), 25, 115297) -- 25.x - 26.x
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -65,6 +69,7 @@ end
 function mod:EvictSoul(player, spellId, _, _, spellName)
 	self:TargetMessage(spellId, spellName, player, "Urgent", spellId, "Info")
 	self:Bar(spellId, CL["other"]:format(spellName, player), 6, spellId)
+	self:Bar(spellId, "~"..spellName, 41, spellId)
 end
 
 function mod:EvictSoulRemoved(player, _, _, _, spellName)

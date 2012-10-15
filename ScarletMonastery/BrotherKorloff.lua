@@ -43,8 +43,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("firestorm", "~"..GetSpellInfo(113764), 11, 113764)
-	self:Bar("fists", "~"..GetSpellInfo(114807), 20, spellId)
+	self:Bar("firestorm", GetSpellInfo(113764), 11, 113764)
+	self:Bar("fists", GetSpellInfo(114807), 20, 114807)
 end
 
 --------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ end
 function mod:BlazingFists(_, spellId, _, _, spellName)
 	self:Message("fists", spellName, "Urgent", spellId, "Alarm")
 	self:Bar("fists", CL["cast"]:format(spellName), 6, spellId)
-	self:Bar("fists", "~"..spellName, 30, spellId)
+	self:Bar("fists", spellName, 30, spellId)
 end
 
 function mod:ScorchedEarthYou(player, _, _, _, spellName)
@@ -67,6 +67,6 @@ end
 function mod:FirestormKick(player, spellId, _, _, spellName)
 	self:Message("firestorm", spellName, "Attention", spellId, "Info")
 	self:Bar("firestorm", CL["cast"]:format(spellName), 6, spellId)
-	self:Bar("firestorm", "~"..spellName, 25.2, spellId)
+	self:Bar("firestorm", spellName, 25.2, spellId)
 end
 
