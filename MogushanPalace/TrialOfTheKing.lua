@@ -17,6 +17,10 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	--A Saurok runs down a hidden set of stairs with some of the treasure!
 	L.win_emote = "treasure"
+
+	L.blow = EJ_GetSectionInfo(6026) .. " " .. INLINE_HEALER_ICON
+	L.blow_desc = CL["healer"].. select(2, EJ_GetSectionInfo(6026))
+	L.blow_icon = 123655
 end
 L = mod:GetLocale()
 
@@ -27,7 +31,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 	119922, {"ej:6017", "ICON"},
-	{"ej:6024", "ICON"}, {"ej:6025", "ICON", "SAY", "FLASHSHAKE"}, "ej:6026",
+	{"ej:6024", "ICON"}, {"ej:6025", "ICON", "SAY", "FLASHSHAKE"}, "blow",
 	"bosskill",
 	}, {
 	[119922] = "ej:6015", --Kuai
@@ -68,8 +72,8 @@ end
 
 function mod:TraumaticBlow(player, spellId, _, _, spellName)
 	if self:Healer() then
-		self:TargetMessage("ej:6026", spellName, player, "Positive", spellId)
-		self:Bar("ej:6026", CL["other"]:format(spellName, player), 5, spellId)
+		self:TargetMessage("blow", spellName, player, "Positive", spellId)
+		self:Bar("blow", CL["other"]:format(spellName, player), 5, spellId)
 	end
 end
 
