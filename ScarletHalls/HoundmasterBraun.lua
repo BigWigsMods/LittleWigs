@@ -15,9 +15,6 @@ local percent = 90
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_say = "Hmm, did you hear something lads?"
-
-	L.rage, L.rage_desc = EJ_GetSectionInfo(5611)
-	L.rage_icon = 116140
 end
 L = mod:GetLocale()
 
@@ -26,7 +23,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"rage", 114259, "bosskill"}
+	return {"ej:5611", 114259, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -53,14 +50,14 @@ function mod:CallDog(_, spellId, _, _, spellName)
 end
 
 function mod:BloodyRage(player, spellId, _, _, spellName)
-	self:Message("rage", "50% - "..spellName, "Attention", spellId)
+	self:Message("ej:5611", "50% - "..spellName, "Attention", spellId)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 	if unitId == "boss1" then
 		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 		if hp < 55 then
-			self:Message("rage", CL["soon"]:format((GetSpellInfo(116140))), "Positive", nil, "Info")
+			self:Message("ej:5611", CL["soon"]:format((GetSpellInfo(116140))), "Positive", nil, "Info")
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		end
 	end

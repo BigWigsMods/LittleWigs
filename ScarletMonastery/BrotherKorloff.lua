@@ -43,8 +43,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("firestorm", GetSpellInfo(113764), 11, 113764)
-	self:Bar("fists", GetSpellInfo(114807), 20, 114807)
+	self:Bar("firestorm", L["firestorm"], 11, 113764)
+	self:Bar("fists", L["fists"], 20, 114807)
 end
 
 --------------------------------------------------------------------------------

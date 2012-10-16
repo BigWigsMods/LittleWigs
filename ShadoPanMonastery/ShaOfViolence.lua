@@ -15,9 +15,6 @@ local smash = GetSpellInfo(34618)
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "I will not be caged again. These Shado-Pan could not stop me. Neither shall you!"
-
-	L.enrage, L.enrage_desc = EJ_GetSectionInfo(5813)
-	L.enrage_icon = 38166
 end
 L = mod:GetLocale()
 
@@ -26,7 +23,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"enrage", 106872, "bosskill"}
+	return {"ej:5813", 106872, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -56,8 +53,8 @@ function mod:Smash(player, spellId)
 end
 
 function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message("enrage", spellName, "Important", spellId, "Alert")
-	self:Bar("enrage", spellName, 30, spellId)
+	self:Message("ej:5813", spellName, "Important", spellId, "Alert")
+	self:Bar("ej:5813", spellName, 30, spellId)
 end
 
 function mod:EnrageRemoved(_, _, _, _, spellName)
@@ -75,7 +72,7 @@ function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 	if unitId == "boss1" then
 		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 		if hp < 25 then
-			self:Message("enrage", CL["soon"]:format((GetSpellInfo(38166))), "Positive", 38166, "Info")
+			self:Message("ej:5813", CL["soon"]:format((GetSpellInfo(38166))), "Positive", 38166, "Info")
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		end
 	end

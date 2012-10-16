@@ -13,15 +13,6 @@ mod:RegisterEnableMob(56747, 56754) -- Gu, Serpent
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_say = "Let me show you my power."
-
-	L.breath, L.breath_desc = EJ_GetSectionInfo(5632)
-	L.breath_icon = 102573
-
-	L.shroud, L.shroud_desc = EJ_GetSectionInfo(5633)
-	L.shroud_icon = 107140
-
-	L.field, L.field_desc = EJ_GetSectionInfo(5630)
-	L.field_icon = 106923
 end
 L = mod:GetLocale()
 
@@ -30,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"breath", "shroud", {"field", "FLASHSHAKE"}, "stages", "bosskill"}
+	return {"ej:5632", "ej:5633", {"ej:5630", "FLASHSHAKE"}, "stages", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -56,13 +47,13 @@ end
 --
 
 function mod:LightningBreath(_, spellId, _, _, spellName)
-	self:Message("breath", spellName, "Urgent", spellId, "Alert")
-	self:Bar("breath", "~"..spellName, 9.5, spellId) -- 9.6 - 9.7
+	self:Message("ej:5632", spellName, "Urgent", spellId, "Alert")
+	self:Bar("ej:5632", "~"..spellName, 9.5, spellId) -- 9.6 - 9.7
 end
 
 function mod:MagneticShroud(_, spellId, _, _, spellName)
-	self:Message("shroud", spellName, "Attention", spellId)
-	self:Bar("shroud", "~"..spellName, 13, spellId) -- 13.2 - 15.7
+	self:Message("ej:5633", spellName, "Attention", spellId)
+	self:Bar("ej:5633", "~"..spellName, 13, spellId) -- 13.2 - 15.7
 end
 
 do
@@ -71,8 +62,8 @@ do
 	local _, serpent = EJ_GetCreatureInfo(2, 673)
 	function mod:Phase2()
 		self:Message("stages", CL["phase"]:format(2)..": "..serpent, "Positive", nil, "Info")
-		self:Bar("breath", "~"..breath, 7, 102573)
-		self:Bar("shroud", "~"..shroud, 20, 107140)
+		self:Bar("ej:5632", "~"..breath, 7, 102573)
+		self:Bar("ej:5633", "~"..shroud, 20, 107140)
 	end
 	function mod:Phase3()
 		self:Message("stages", CL["phase"]:format(3)..": "..self.displayName.. " ("..GetSpellInfo(65294)..")", "Positive", nil, "Info") -- (Empowered)
@@ -83,8 +74,8 @@ end
 
 function mod:StaticField(player, _, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage("field", CL["underyou"]:format(spellName), "Personal", 106941, "Alert")
-		self:FlashShake("field")
+		self:LocalMessage("ej:5630", CL["underyou"]:format(spellName), "Personal", 106941, "Alert")
+		self:FlashShake("ej:5630")
 	end
 end
 

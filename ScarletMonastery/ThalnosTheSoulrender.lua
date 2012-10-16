@@ -13,9 +13,6 @@ mod:RegisterEnableMob(59789)
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "My endless agony shall be yours, as well!"
-
-	L.spirit, L.spirit_desc = EJ_GetSectionInfo(5865)
-	L.spirit_icon = 115289
 end
 L = mod:GetLocale()
 
@@ -24,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {{"spirit", "FLASHSHAKE"}, 115297, "bosskill"}
+	return {{"ej:5865", "FLASHSHAKE"}, 115297, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -49,14 +46,14 @@ end
 --
 
 function mod:SpiritGaleCast(_, spellId, _, _, spellName)
-	self:Message("spirit", CL["cast"]:format(spellName), "Attention", spellId, "Alarm")
-	self:Bar("spirit", CL["cast"]:format(spellName), 2, spellId)
+	self:Message("ej:5865", CL["cast"]:format(spellName), "Attention", spellId, "Alarm")
+	self:Bar("ej:5865", CL["cast"]:format(spellName), 2, spellId)
 end
 
 function mod:SpiritGaleYou(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage("spirit", CL["underyou"]:format(spellName), "Personal", spellId, "Alert")
-		self:FlashShake("spirit")
+		self:LocalMessage("ej:5865", CL["underyou"]:format(spellName), "Personal", spellId, "Alert")
+		self:FlashShake("ej:5865")
 	end
 end
 

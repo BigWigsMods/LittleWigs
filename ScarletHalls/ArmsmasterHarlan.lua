@@ -52,7 +52,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("blades", GetSpellInfo(111216), 41, 111216)
+	self:Bar("blades", L["blades"], 41, 111216)
 	self:Bar("cleave", cleave, 7.1, 111217)
 	self:Bar("help", L["help"], 20, 6673)
 	helpCount = 1
