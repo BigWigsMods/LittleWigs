@@ -27,12 +27,13 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 	119922, {"ej:6017", "ICON"},
-	{"ej:6024", "ICON"}, {"ej:6025", "ICON", "SAY", "FLASHSHAKE"}, 123655,
+	{"ej:6024", "ICON"}, {"ej:6025", "ICON", "SAY", "FLASHSHAKE"}, "ej:6026",
 	"bosskill",
 	}, {
 	[119922] = "ej:6015", --Kuai
 	["ej:6024"] = "ej:6023", --Haiyan
 	bosskill = "general",
+	}
 end
 
 function mod:VerifyEnable()
@@ -67,8 +68,8 @@ end
 
 function mod:TraumaticBlow(player, spellId, _, _, spellName)
 	if self:Healer() then
-		self:TargetMessage(spellId, spellName, player, "Positive", spellId)
-		self:Bar(spellId, CL["other"]:format(spellName, player), 5, spellId)
+		self:TargetMessage("ej:6026", spellName, player, "Positive", spellId)
+		self:Bar("ej:6026", CL["other"]:format(spellName, player), 5, spellId)
 	end
 end
 
