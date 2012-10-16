@@ -107,9 +107,9 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 		if UnitIsUnit(player, "player") then
 			self:FlashShake("ej:6025")
 			self:Say("ej:6025", CL["say"]:format(meteor))
-			self:Bar("ej:6025", CL["you"]:format(spellName), 5, 120195)
+			self:Bar("ej:6025", CL["you"]:format(meteor), 5, 120195)
 		else
-			self:Bar("ej:6025", CL["other"]:format(spellName, player), 5, 120195)
+			self:Bar("ej:6025", CL["other"]:format(meteor, player), 5, 120195)
 		end
 	end
 end
