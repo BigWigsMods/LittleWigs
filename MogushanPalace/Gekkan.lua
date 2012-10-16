@@ -34,6 +34,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+end
+
+function mod:OnEngage()
+	-- Trash trigger these, so register after engage
 	self:Log("SPELL_AURA_APPLIED", "Shank", 118963)
 	self:Log("SPELL_AURA_APPLIED", "Hex", 118903)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Hex", 118903)
@@ -41,11 +46,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Heal", 118940)
 	self:Log("SPELL_INTERRUPT", "HealStop", "*")
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-end
-
-function mod:OnEngage()
-	-- Trash *might* trigger these, so register after engage
 	self:Death("Deaths", 61243, 61337, 61338, 61339, 61340)
 
 	deaths = 0
@@ -71,8 +71,8 @@ do
 	end
 end
 
-function mod:Heal(player, spellId)
-	self:Message("heal", CL["other"]:format(player, heal), "Urgent", spellId)
+function mod:Heal(_, spellId, source)
+	self:Message("heal", CL["other"]:format(source, heal), "Urgent", spellId)
 	self:Bar("heal", CL["cast"]:format(heal), 3.2, spellId)
 end
 
