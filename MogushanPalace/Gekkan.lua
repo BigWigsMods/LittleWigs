@@ -72,7 +72,7 @@ do
 end
 
 function mod:Heal(_, spellId, source)
-	self:Message("heal", CL["other"]:format(source, heal), "Urgent", spellId)
+	self:Message("heal", CL["other"]:format(source, heal), "Urgent", spellId, "Alert")
 	self:Bar("heal", CL["cast"]:format(heal), 3.2, spellId)
 end
 
@@ -87,7 +87,7 @@ function mod:Deaths(_, _, unit)
 	if deaths == 5 then
 		self:Win()
 	else
-		self:Message("bosskill", L["unit_killed"]:format(unit, deaths), "Positive")
+		self:Message("bosskill", L["unit_killed"]:format(unit, deaths), "Positive", nil, "Info")
 	end
 end
 

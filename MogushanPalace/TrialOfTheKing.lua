@@ -98,7 +98,7 @@ function mod:ConflagOver()
 end
 
 function mod:Shockwave(_, spellId, _, _, spellName)
-	self:Message(spellId, CL["cast"]:format(spellName), "Urgent", spellId, "Alarm")
+	self:Message(spellId, CL["cast"]:format(spellName), "Urgent", spellId, "Alert")
 	self:Bar(spellId, CL["cast"]:format(spellName), 2, spellId)
 end
 
@@ -106,7 +106,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg:find("meteorstorm") then
 		local meteor = GetSpellInfo(120195)
-		self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alert")
+		self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alarm")
 		self:PrimaryIcon("ej:6025", player)
 		if UnitIsUnit(player, "player") then
 			self:FlashShake("ej:6025")

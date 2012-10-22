@@ -50,7 +50,7 @@ function mod:CallDog(_, spellId, _, _, spellName)
 end
 
 function mod:BloodyRage(player, spellId, _, _, spellName)
-	self:Message("ej:5611", "50% - "..spellName, "Attention", spellId)
+	self:Message("ej:5611", "50% - "..spellName, "Attention", spellId, "Alert")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unitId)

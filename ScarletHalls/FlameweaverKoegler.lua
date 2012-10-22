@@ -46,7 +46,7 @@ end
 --
 
 function mod:QuickenedMind(player, spellId, _, _, spellName)
-	self:Message(spellId, CL["other"]:format(spellName, player), "Urgent", spellId, "Alert")
+	self:Message(spellId, CL["other"]:format(player, spellName), "Urgent", spellId, "Alert")
 end
 
 function mod:BreathCast(_, spellId)

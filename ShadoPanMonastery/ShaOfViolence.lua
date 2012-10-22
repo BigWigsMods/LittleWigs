@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Log("PARTY_KILL", "BossDeath", "*") -- No UNIT_DIED event...
+	self:Death("Win", 56719)
 end
 
 function mod:OnEngage()
@@ -52,19 +52,12 @@ function mod:Smash(player, spellId)
 end
 
 function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message("ej:5813", spellName, "Important", spellId, "Alert")
+	self:Message("ej:5813", spellName, "Important", spellId, "Long")
 	self:Bar("ej:5813", spellName, 30, spellId)
 end
 
 function mod:EnrageRemoved(_, _, _, _, spellName)
 	self:SendMessage("BigWigs_StopBar", self, spellName)
-end
-
-function mod:BossDeath(...)
-	local dGUID = select(10, ...)
-	if self:GetCID(dGUID) == 56719 then
-		self:Win()
-	end
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unitId)

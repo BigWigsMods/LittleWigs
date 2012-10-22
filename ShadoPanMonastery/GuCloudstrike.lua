@@ -74,7 +74,7 @@ end
 
 function mod:StaticField(player, _, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage("ej:5630", CL["underyou"]:format(spellName), "Personal", 106941, "Alert")
+		self:LocalMessage("ej:5630", CL["underyou"]:format(spellName), "Personal", 106941, "Alarm")
 		self:FlashShake("ej:5630")
 	end
 end

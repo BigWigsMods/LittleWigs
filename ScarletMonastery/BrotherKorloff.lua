@@ -52,20 +52,20 @@ end
 --
 
 function mod:BlazingFists(_, spellId, _, _, spellName)
-	self:Message("fists", spellName, "Urgent", spellId, "Alarm")
+	self:Message("fists", spellName, "Urgent", spellId, "Alert")
 	self:Bar("fists", CL["cast"]:format(spellName), 6, spellId)
 	self:Bar("fists", spellName, 30, spellId)
 end
 
 function mod:ScorchedEarthYou(player, _, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(114460, CL["underyou"]:format(spellName), "Personal", 114460, "Alert")
+		self:LocalMessage(114460, CL["underyou"]:format(spellName), "Personal", 114460, "Alarm")
 		self:FlashShake(114460)
 	end
 end
 
 function mod:FirestormKick(player, spellId, _, _, spellName)
-	self:Message("firestorm", spellName, "Attention", spellId, "Info")
+	self:Message("firestorm", spellName, "Attention", spellId)
 	self:Bar("firestorm", CL["cast"]:format(spellName), 6, spellId)
 	self:Bar("firestorm", spellName, 25.2, spellId)
 end

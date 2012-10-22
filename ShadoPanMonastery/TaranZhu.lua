@@ -61,14 +61,14 @@ do
 		local t = GetTime()
 		if t-prev > 5 then
 			prev = t
-			self:Message(115002, spellName, "Urgent", spellId, "Alert")
+			self:Message(115002, spellName, "Urgent", spellId, "Info")
 		end
 	end
 end
 
 function mod:HazeOfHate(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(107087, CL["you"]:format(spellName), "Personal", spellId, "Info")
+		self:LocalMessage(107087, CL["you"]:format(spellName), "Personal", spellId, "Long")
 		self:FlashShake(107087)
 	end
 end

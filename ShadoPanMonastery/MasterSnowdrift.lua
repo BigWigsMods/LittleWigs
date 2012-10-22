@@ -27,7 +27,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {106434, {118961, "FLASHSHAKE", "SAY"}, 106747, "stages", "bosskill"}
+	return {106434, {118961, "FLASHSHAKE"}, 106747, "stages", "bosskill"}
 end
 
 function mod:VerifyEnable()
@@ -71,7 +71,6 @@ function mod:ChaseDown(player, spellId, _, _, spellName)
 	self:Bar(spellId, CL["other"]:format(spellName, player), 11, spellId)
 	if UnitIsUnit("player", player) then
 		self:FlashShake(spellId)
-		self:Say(spellId, CL["say"]:format(spellName))
 	end
 end
 

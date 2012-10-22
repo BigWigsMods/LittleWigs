@@ -46,13 +46,13 @@ end
 --
 
 function mod:SpiritGaleCast(_, spellId, _, _, spellName)
-	self:Message("ej:5865", CL["cast"]:format(spellName), "Attention", spellId, "Alarm")
+	self:Message("ej:5865", CL["cast"]:format(spellName), "Attention", spellId, "Alert")
 	self:Bar("ej:5865", CL["cast"]:format(spellName), 2, spellId)
 end
 
 function mod:SpiritGaleYou(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage("ej:5865", CL["underyou"]:format(spellName), "Personal", spellId, "Alert")
+		self:LocalMessage("ej:5865", CL["underyou"]:format(spellName), "Personal", spellId, "Alarm")
 		self:FlashShake("ej:5865")
 	end
 end

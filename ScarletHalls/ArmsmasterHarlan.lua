@@ -75,7 +75,7 @@ function mod:BladesCastStart(player, spellId, _, _, spellName)
 end
 
 function mod:BladesChannel(player, spellId, _, _, spellName)
-	self:Message("blades",  CL["duration"]:format(spellName, "22"), "Urgent", spellId, "Alarm")
+	self:Message("blades",  CL["duration"]:format(spellName, "22"), "Urgent", spellId)
 	self:Bar("blades", spellName, 22, spellId)
 end
 
