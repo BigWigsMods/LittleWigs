@@ -105,7 +105,7 @@ end
 --|TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg:find("meteorstorm") then
-		local meteor = GetSpellInfo(120195)
+		local meteor = self:SpellName(120195)
 		self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alarm")
 		self:PrimaryIcon("ej:6025", player)
 		if UnitIsUnit(player, "player") then

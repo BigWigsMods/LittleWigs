@@ -47,7 +47,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-	local tornado = GetSpellInfo(106434)
+	local tornado = self:SpellName(106434)
 	self:Bar(106434, "~"..tornado, 15, 106434)
 	self:Message(106434, CL["custom_start_s"]:format(self.displayName, tornado, 15), "Attention")
 	phase = 1
@@ -83,7 +83,7 @@ function mod:Phase3()
 end
 
 do
-	local mirror = GetSpellInfo(106747) -- Shado-pan Mirror Image
+	local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
 		if unitId == "boss1" then
 			if spellId == 110324 then -- Shado-pan Vanish

@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Gekkan", 885, 690)
 mod:RegisterEnableMob(61243)
 
 local deaths = 0
-local heal = GetSpellInfo(33144)
+local heal = mod:SpellName(33144)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -61,7 +61,7 @@ function mod:Shank(player, spellId, _, _, spellName)
 end
 
 do
-	local hex = GetSpellInfo(66054)
+	local hex = mod:SpellName(66054)
 	function mod:Hex(player, spellId)
 		self:TargetMessage("ej:5925", hex, player, "Important", spellId)
 		self:Bar("ej:5925", CL["other"]:format(hex, player), 20, spellId)

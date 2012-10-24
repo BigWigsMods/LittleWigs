@@ -57,8 +57,8 @@ function mod:MagneticShroud(_, spellId, _, _, spellName)
 end
 
 do
-	local breath = GetSpellInfo(102573)
-	local shroud = GetSpellInfo(107140)
+	local breath = mod:SpellName(102573)
+	local shroud = mod:SpellName(107140)
 	local _, serpent = EJ_GetCreatureInfo(2, 673)
 	function mod:Phase2()
 		self:Message("stages", CL["phase"]:format(2)..": "..serpent, "Positive", nil, "Info")
@@ -66,7 +66,7 @@ do
 		self:Bar("ej:5633", "~"..shroud, 20, 107140)
 	end
 	function mod:Phase3()
-		self:Message("stages", CL["phase"]:format(3)..": "..self.displayName.. " ("..GetSpellInfo(65294)..")", "Positive", nil, "Info") -- (Empowered)
+		self:Message("stages", CL["phase"]:format(3)..": "..self.displayName.. " ("..self:SpellName(65294)..")", "Positive", nil, "Info") -- (Empowered)
 		self:SendMessage("BigWigs_StopBar", self, "~"..breath)
 		self:SendMessage("BigWigs_StopBar", self, "~"..shroud)
 	end

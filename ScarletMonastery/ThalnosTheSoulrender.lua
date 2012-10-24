@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(115297, "~"..GetSpellInfo(115297), 25, 115297) -- 25.x - 26.x
+	self:Bar(115297, "~"..self:SpellName(115297), 25, 115297) -- 25.x - 26.x
 end
 
 --------------------------------------------------------------------------------

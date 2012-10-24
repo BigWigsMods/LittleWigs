@@ -57,7 +57,7 @@ function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 	if unitId == "boss1" then
 		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 		if hp < 55 then
-			self:Message("ej:5611", CL["soon"]:format((GetSpellInfo(116140))), "Positive", nil, "Info")
+			self:Message("ej:5611", CL["soon"]:format(self:SpellName(116140)), "Positive", nil, "Info") -- Bloody Rage
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		end
 	end

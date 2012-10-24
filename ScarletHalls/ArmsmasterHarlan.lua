@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Armsmaster Harlan", 871, 654)
 mod:RegisterEnableMob(58632)
 
-local cleave = GetSpellInfo(845)
+local cleave = mod:SpellName(845)
 local helpCount = 1
 
 --------------------------------------------------------------------------------

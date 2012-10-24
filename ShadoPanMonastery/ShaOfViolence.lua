@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Sha of Violence", 877, 685)
 mod:RegisterEnableMob(56719)
 
-local smash = GetSpellInfo(34618)
+local smash = mod:SpellName(34618)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -64,7 +64,7 @@ function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 	if unitId == "boss1" then
 		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 		if hp < 25 then
-			self:Message("ej:5813", CL["soon"]:format((GetSpellInfo(38166))), "Positive", 38166, "Info")
+			self:Message("ej:5813", CL["soon"]:format(self:SpellName(38166)), "Positive", 38166, "Info") -- Enrage
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		end
 	end
