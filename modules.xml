@@ -10,5 +10,8 @@
 <Include file="MogushanPalace\locales.xml"/>
 <Include file="MogushanPalace\modules.xml"/>
 
+<Include file="TempleOfTheJadeSerpent\locales.xml"/>
+<Include file="TempleOfTheJadeSerpent\modules.xml"/>
+
 </Ui>
 
