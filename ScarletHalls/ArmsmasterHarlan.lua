@@ -85,10 +85,10 @@ function mod:BladesEnd(player, spellId, _, _, spellName)
 end
 
 do
-	local timers = {30, 25, 22}
+	local timers = {30, 25, 22, 20, 18, 16, 14}
 	function mod:Adds()
 		self:Message("help", L["help"], "Urgent", 6673, "Info")
-		self:Bar("help", L["help"], timers[helpCount] or 20, 6673) -- Only have data on first 3
+		self:Bar("help", L["help"], timers[helpCount] or 13, 6673)
 		helpCount = helpCount + 1
 	end
 end

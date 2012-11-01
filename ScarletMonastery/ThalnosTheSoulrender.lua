@@ -46,7 +46,7 @@ end
 --
 
 function mod:SpiritGaleCast(_, spellId, _, _, spellName)
-	self:Message("ej:5865", CL["cast"]:format(spellName), "Attention", spellId, "Alert")
+	self:Message("ej:5865", CL["cast"]:format(spellName), "Attention", spellId)
 	self:Bar("ej:5865", CL["cast"]:format(spellName), 2, spellId)
 end
 
