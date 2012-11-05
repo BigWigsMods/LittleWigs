@@ -73,13 +73,13 @@ end
 function mod:TraumaticBlow(player, spellId, _, _, spellName)
 	if self:Healer() then
 		self:TargetMessage("blow", spellName, player, "Positive", spellId)
-		self:Bar("blow", CL["other"]:format(spellName, player), 5, spellId)
+		self:TargetBar("blow", spellName, player, 5, spellId)
 	end
 end
 
 function mod:Ravage(player, spellId, _, _, spellName)
 	self:TargetMessage("ej:6017", spellName, player, "Attention", spellId)
-	self:Bar("ej:6017", CL["other"]:format(spellName, player), 11, spellId)
+	self:TargetBar("ej:6017", spellName, player, 11, spellId)
 	self:PrimaryIcon("ej:6017", player)
 end
 
@@ -89,7 +89,7 @@ end
 
 function mod:Conflag(player, spellId, _, _, spellName)
 	self:TargetMessage("ej:6024", spellName, player, "Attention", spellId)
-	self:Bar("ej:6024", CL["other"]:format(spellName, player), 5, spellId)
+	self:TargetBar("ej:6024", spellName, player, 5, spellId)
 	self:SecondaryIcon("ej:6024", player)
 end
 
@@ -107,13 +107,11 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg:find("meteorstorm") then
 		local meteor = self:SpellName(120195)
 		self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alarm")
+		self:TargetBar("ej:6025", meteor, player, 5, 120195)
 		self:PrimaryIcon("ej:6025", player)
 		if UnitIsUnit(player, "player") then
 			self:FlashShake("ej:6025")
 			self:Say("ej:6025", CL["say"]:format(meteor))
-			self:Bar("ej:6025", CL["you"]:format(meteor), 5, 120195)
-		else
-			self:Bar("ej:6025", CL["other"]:format(meteor, player), 5, 120195)
 		end
 	end
 end

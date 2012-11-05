@@ -80,6 +80,6 @@ function mod:RisingHateStart(_, spellId, _, _, spellName)
 end
 
 function mod:RisingHateStop(_, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(spellName))
+	self:StopBar(CL["cast"]:format(spellName))
 end
 

@@ -67,8 +67,8 @@ do
 	end
 	function mod:Phase3()
 		self:Message("stages", CL["phase"]:format(3)..": "..self.displayName.. " ("..self:SpellName(65294)..")", "Positive", nil, "Info") -- (Empowered)
-		self:SendMessage("BigWigs_StopBar", self, "~"..breath)
-		self:SendMessage("BigWigs_StopBar", self, "~"..shroud)
+		self:StopBar("~"..breath)
+		self:StopBar("~"..shroud)
 	end
 end
 

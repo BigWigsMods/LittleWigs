@@ -27,7 +27,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {106434, {118961, "FLASHSHAKE"}, 106747, "stages", "bosskill"}
+	return {106434, 118961, 106747, "stages", "bosskill"}
 end
 
 function mod:VerifyEnable()
@@ -68,14 +68,11 @@ end
 
 function mod:ChaseDown(player, spellId, _, _, spellName)
 	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alarm")
-	self:Bar(spellId, CL["other"]:format(spellName, player), 11, spellId)
-	if UnitIsUnit("player", player) then
-		self:FlashShake(spellId)
-	end
+	self:TargetBar(spellId, spellName, player, 11, spellId)
 end
 
 function mod:ChaseDownRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
+	self:StopBar(spellName, player)
 end
 
 function mod:Phase3()

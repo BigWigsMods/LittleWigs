@@ -60,17 +60,17 @@ end
 
 function mod:Shank(player, spellId, _, _, spellName)
 	self:TargetMessage("ej:5921", spellName, player, "Attention", spellId)
-	self:Bar("ej:5921", CL["other"]:format(spellName, player), 5, spellId)
+	self:TargetBar("ej:5921", spellName, player, 5, spellId)
 end
 
 do
 	local hex = mod:SpellName(66054)
 	function mod:Hex(player, spellId)
 		self:TargetMessage("ej:5925", hex, player, "Important", spellId)
-		self:Bar("ej:5925", CL["other"]:format(hex, player), 20, spellId)
+		self:TargetBar("ej:5925", hex, player, 20, spellId)
 	end
 	function mod:HexRemoved(player)
-		self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(hex, player))
+		self:StopBar(hex, player)
 	end
 end
 
@@ -81,7 +81,7 @@ end
 
 function mod:HealStop(_, _, _, secSpellId)
 	if secSpellId == 118940 then
-		self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(heal))
+		self:StopBar(CL["cast"]:format(heal))
 	end
 end
 

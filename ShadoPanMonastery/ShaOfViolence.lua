@@ -47,7 +47,7 @@ end
 
 function mod:Smash(player, spellId)
 	self:TargetMessage(spellId, smash, player, "Urgent", spellId, "Alarm")
-	self:Bar(spellId, CL["other"]:format(smash, player), 4, spellId)
+	self:TargetBar(spellId, smash, player, 4, spellId)
 	self:Bar(spellId, "~"..smash, 17, spellId) -- 17-19
 end
 
@@ -57,7 +57,7 @@ function mod:Enrage(_, spellId, _, _, spellName)
 end
 
 function mod:EnrageRemoved(_, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName)
+	self:StopBar(spellName)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unitId)

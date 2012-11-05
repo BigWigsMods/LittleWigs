@@ -71,7 +71,7 @@ function mod:BladesCastStart(player, spellId, _, _, spellName)
 	self:Message("blades", CL["cast"]:format(spellName), "Urgent", spellId, "Alert")
 	self:Bar("blades", CL["cast"]:format(spellName), 6, spellId)
 	self:FlashShake("blades")
-	self:SendMessage("BigWigs_StopBar", self, cleave)
+	self:StopBar(cleave)
 end
 
 function mod:BladesChannel(player, spellId, _, _, spellName)

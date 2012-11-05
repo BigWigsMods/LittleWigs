@@ -59,7 +59,7 @@ end
 
 function mod:MassResStopped(_, _, _, secSpellId, _, secSpellName)
 	if secSpellId == 113134 then
-		self:SendMessage("BigWigs_StopBar", self, secSpellName)
+		self:StopBar(secSpellName)
 	end
 end
 
@@ -79,7 +79,7 @@ function mod:Deaths()
 	deaths = deaths + 1
 	if deaths == 1 then
 		self:Message("stages", CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638), "Positive")
-		self:SendMessage("BigWigs_StopBar", self, "~"..L["steel"])
+		self:StopBar("~"..L["steel"])
 	elseif deaths == 3 then
 		self:Win()
 	end

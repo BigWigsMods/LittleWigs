@@ -59,17 +59,17 @@ end
 
 function mod:SpiritGaleStopped(_, _, _, secSpellId, _, secSpellName)
 	if secSpellId == 115289 then
-		self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(secSpellName))
+		self:StopBar(CL["cast"]:format(secSpellName))
 	end
 end
 
 function mod:EvictSoul(player, spellId, _, _, spellName)
 	self:TargetMessage(spellId, spellName, player, "Urgent", spellId, "Info")
-	self:Bar(spellId, CL["other"]:format(spellName, player), 6, spellId)
+	self:TargetBar(spellId, spellName, player, 6, spellId)
 	self:Bar(spellId, "~"..spellName, 41, spellId)
 end
 
 function mod:EvictSoulRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
+	self:StopBar(spellName, player)
 end
 
