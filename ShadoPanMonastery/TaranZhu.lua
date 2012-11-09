@@ -6,8 +6,6 @@
 local mod, CL = BigWigs:NewBoss("Taran Zhu", 877, 686)
 mod:RegisterEnableMob(56884)
 
-local canEnable = true
-
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -26,8 +24,13 @@ function mod:GetOptions()
 	return {115002, {107087, "FLASHSHAKE"}, 107356, "bosskill"}
 end
 
-function mod:VerifyEnable()
-	return canEnable
+function mod:VerifyEnable(unit)
+	if unit then
+		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+		if hp < 16 then
+			return false
+		end
+	end
 end
 
 function mod:OnBossEnable()
@@ -39,10 +42,6 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-end
-
-function mod:OnWin()
-	canEnable = false
 end
 
 --------------------------------------------------------------------------------

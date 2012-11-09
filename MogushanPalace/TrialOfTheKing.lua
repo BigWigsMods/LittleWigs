@@ -7,8 +7,6 @@ local mod, CL = BigWigs:NewBoss("Trial of the King", 885, 708)
 -- Xin the Weaponmaster, Haiyan the Unstoppable, Ming the Cunning, Kuai the Brute, Mu'Shiba
 mod:RegisterEnableMob(61884, 61445, 61444, 61442, 61453)
 
-local canEnable = true
-
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -40,8 +38,13 @@ function mod:GetOptions()
 	}
 end
 
-function mod:VerifyEnable()
-	return canEnable
+function mod:VerifyEnable(unit)
+	if unit then
+		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+		if hp < 16 then
+			return false
+		end
+	end
 end
 
 function mod:OnBossEnable()
@@ -60,10 +63,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "MeteorHit", 120196)
 
 	self:Emote("Win", L["win_emote"])
-end
-
-function mod:OnWin()
-	canEnable = false
 end
 
 --------------------------------------------------------------------------------

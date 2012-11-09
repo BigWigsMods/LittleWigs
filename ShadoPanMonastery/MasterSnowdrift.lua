@@ -7,7 +7,6 @@ local mod, CL = BigWigs:NewBoss("Master Snowdrift", 877, 657)
 mod:RegisterEnableMob(56541)
 
 local phase = 1
-local canEnable = true
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -30,8 +29,13 @@ function mod:GetOptions()
 	return {106434, 118961, 106747, "stages", "bosskill"}
 end
 
-function mod:VerifyEnable()
-	return canEnable
+function mod:VerifyEnable(unit)
+	if unit then
+		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+		if hp < 16 then
+			return false
+		end
+	end
 end
 
 function mod:OnBossEnable()
@@ -51,10 +55,6 @@ function mod:OnEngage()
 	self:Bar(106434, "~"..tornado, 15, 106434)
 	self:Message(106434, CL["custom_start_s"]:format(self.displayName, tornado, 15), "Attention")
 	phase = 1
-end
-
-function mod:OnWin()
-	canEnable = false
 end
 
 --------------------------------------------------------------------------------
