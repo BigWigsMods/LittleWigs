@@ -40,7 +40,7 @@ end
 
 function mod:VerifyEnable(unit)
 	if unit then
-		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 16 then
 			return false
 		end
