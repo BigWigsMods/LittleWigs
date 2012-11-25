@@ -7,7 +7,6 @@ local mod, CL = BigWigs:NewBoss("Lorewalker Stonestep", 867, 664)
 mod:RegisterEnableMob(56541)
 
 local phase = 1
-local canEnable = true
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -31,7 +30,10 @@ function mod:GetOptions()
 end
 
 function mod:VerifyEnable()
-	return canEnable
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp > 15 then
+		return true
+	end
 end
 
 function mod:OnBossEnable()
@@ -51,10 +53,6 @@ function mod:OnEngage()
 	self:Bar(106434, "~"..tornado, 15, 106434)
 	self:Message(106434, CL["custom_start_s"]:format(self.displayName, tornado, 15), "Attention")
 	phase = 1
-end
-
-function mod:OnWin()
-	canEnable = false
 end
 
 --------------------------------------------------------------------------------
