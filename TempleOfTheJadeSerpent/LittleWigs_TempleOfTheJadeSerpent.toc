@@ -1,4 +1,4 @@
-## Interface: 50001
+## Interface: 50100
 
 ## Title: Little Wigs [|cffeda55fTemple of the Jade Serpent|r]
 ## Notes: Little Wigs Modules for the Temple of the Jade Serpent.
