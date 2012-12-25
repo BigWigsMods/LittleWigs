@@ -43,7 +43,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
 	phase = 1
 end
 
@@ -64,16 +64,14 @@ function mod:Crossbows()
 	self:Message("crossbows", "33% - "..L["crossbows"], "Attention", 120142, "Info")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unitId)
-	if unitId == "boss1" then
-		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-		if hp < 70 and phase == 1 then
-			self:Message("blades", CL["soon"]:format(L["blades"]), "Positive")
-			phase = 2
-		elseif hp < 39 and phase == 2 then
-			self:Message("crossbows", CL["soon"]:format(L["crossbows"]), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		end
+function mod:PhaseWarn(unitId)
+	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+	if hp < 70 and phase == 1 then
+		self:Message("blades", CL["soon"]:format(L["blades"]), "Positive")
+		phase = 2
+	elseif hp < 39 and phase == 2 then
+		self:Message("crossbows", CL["soon"]:format(L["crossbows"]), "Positive")
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end
 

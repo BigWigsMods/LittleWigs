@@ -66,6 +66,6 @@ end
 
 function mod:BookBurner(_, spellId, _, _, spellName)
 	self:Bar(spellId, CL["cast"]:format(spellName), 3, spellId)
-	self:Message(spellId, CL["cast"]:format(spellName), "Info")
+	self:Message(spellId, CL["cast"]:format(spellName), "Important", spellId, "Info")
 end
 

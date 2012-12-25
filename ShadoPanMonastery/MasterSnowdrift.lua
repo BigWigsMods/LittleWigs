@@ -41,14 +41,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ChaseDown", 118961)
 	self:Log("SPELL_AURA_REMOVED", "ChaseDownRemoved", 118961)
 
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Yell("Phase3", L["phase3_yell"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
 	local tornado = self:SpellName(106434)
 	self:Bar(106434, "~"..tornado, 15, 106434)
 	self:Message(106434, CL["custom_start_s"]:format(self.displayName, tornado, 15), "Attention")
@@ -80,32 +80,28 @@ end
 do
 	local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
-		if unitId == "boss1" then
-			if spellId == 110324 then -- Shado-pan Vanish
-				if phase == 1 then
-					phase = 2
-					self:Message(106747, (CL["phase"]:format(2))..": "..mirror, "Positive", 106747, "Info")
-					self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-				else
-					self:Message(106747, mirror, "Positive", 106747)
-				end
-			elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
-				self:Win()
+		if spellId == 110324 then -- Shado-pan Vanish
+			if phase == 1 then
+				phase = 2
+				self:Message(106747, (CL["phase"]:format(2))..": "..mirror, "Positive", 106747, "Info")
+				self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
+			else
+				self:Message(106747, mirror, "Positive", 106747)
 			end
+		elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
+			self:Win()
 		end
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unitId)
-	if unitId == "boss1" then
-		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-		if hp < 65 and phase == 1 then
-			self:Message("stages", CL["soon"]:format(CL["phase"]:format(2)), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		elseif hp < 35 and phase == 2 then
-			self:Message("stages", CL["soon"]:format(CL["phase"]:format(3)), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		end
+function mod:PhaseWarn(unitId)
+	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+	if hp < 65 and phase == 1 then
+		self:Message("stages", CL["soon"]:format(CL["phase"]:format(2)), "Positive")
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
+	elseif hp < 35 and phase == 2 then
+		self:Message("stages", CL["soon"]:format(CL["phase"]:format(3)), "Positive")
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end
 

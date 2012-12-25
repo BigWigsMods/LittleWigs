@@ -108,7 +108,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 		self:PrimaryIcon("ej:6025", player)
 		if UnitIsUnit(player, "player") then
 			self:FlashShake("ej:6025")
-			self:Say("ej:6025", CL["say"]:format(meteor))
+			self:SaySelf("ej:6025", meteor)
 		end
 	end
 end

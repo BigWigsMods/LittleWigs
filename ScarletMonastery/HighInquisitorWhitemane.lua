@@ -35,7 +35,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_SUCCESS", "Sleep", 9256)
 
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Steel", "boss1", "boss2")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -68,8 +68,8 @@ function mod:Sleep(_, spellId, _, _, spellName)
 	self:Bar("stages", spellName, 10, spellId)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, _, spellId)
-	if spellId == 115627 and unit:match("boss") then
+function mod:Steel(_, spellName, _, _, spellId)
+	if spellId == 115627 then
 		self:Message("steel", spellName, "Attention", 115629)
 		self:Bar("steel", "~"..spellName, 26, 115629) -- 26.x - 27.x
 	end
