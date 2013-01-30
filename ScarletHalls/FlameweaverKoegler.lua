@@ -46,26 +46,26 @@ end
 -- Event Handlers
 --
 
-function mod:QuickenedMind(player, spellId, _, _, spellName)
-	self:Message(spellId, CL["onboss"]:format(spellName), "Urgent", spellId, "Alert")
+function mod:QuickenedMind(args)
+	self:Message(args.spellId, CL["onboss"]:format(args.spellName), "Urgent", args.spellId, "Alert")
 end
 
-function mod:BreathCast(_, spellId)
-	self:Message(spellId, CL["cast"]:format(breath), "Attention", spellId, "Long")
-	self:Bar(spellId, CL["cast"]:format(breath), 2, spellId)
+function mod:BreathCast(args)
+	self:Message(args.spellId, CL["cast"]:format(breath), "Attention", args.spellId, "Long")
+	self:Bar(args.spellId, CL["cast"]:format(breath), 2, args.spellId)
 end
 
-function mod:BreathChannel(_, spellId)
-	self:Bar(spellId, CL["over"]:format(breath), 10, spellId)
+function mod:BreathChannel(args)
+	self:Bar(args.spellId, CL["over"]:format(breath), 10, args.spellId)
 end
 
-function mod:BreathEnd(_, spellId)
-	self:Bar(spellId, "~"..breath, 33, spellId)
-	self:Message(spellId, CL["over"]:format(breath), "Positive")
+function mod:BreathEnd(args)
+	self:Bar(args.spellId, "~"..breath, 33, args.spellId)
+	self:Message(args.spellId, CL["over"]:format(breath), "Positive")
 end
 
-function mod:BookBurner(_, spellId, _, _, spellName)
-	self:Bar(spellId, CL["cast"]:format(spellName), 3, spellId)
-	self:Message(spellId, CL["cast"]:format(spellName), "Important", spellId, "Info")
+function mod:BookBurner(args)
+	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 3, args.spellId)
+	self:Message(args.spellId, CL["cast"]:format(args.spellName), "Important", args.spellId, "Info")
 end
 

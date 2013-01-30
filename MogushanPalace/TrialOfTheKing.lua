@@ -56,7 +56,8 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "Shockwave", 119922)
 
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	--|TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
+	self:Emote("Meteor", "meteorstorm")
 	self:Log("SPELL_DAMAGE", "MeteorHit", 120196)
 	self:Log("SPELL_MISSED", "MeteorHit", 120196)
 
@@ -67,49 +68,46 @@ end
 -- Event Handlers
 --
 
-function mod:TraumaticBlow(player, spellId, _, _, spellName)
+function mod:TraumaticBlow(args)
 	if self:Healer() then
-		self:TargetMessage("blow", spellName, player, "Positive", spellId)
-		self:TargetBar("blow", spellName, player, 5, spellId)
+		self:TargetMessage("blow", args.spellName, args.destName, "Positive", args.spellId)
+		self:TargetBar("blow", args.spellName, args.destName, 5, args.spellId)
 	end
 end
 
-function mod:Ravage(player, spellId, _, _, spellName)
-	self:TargetMessage("ej:6017", spellName, player, "Attention", spellId)
-	self:TargetBar("ej:6017", spellName, player, 11, spellId)
-	self:PrimaryIcon("ej:6017", player)
+function mod:Ravage(args)
+	self:TargetMessage("ej:6017", args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetBar("ej:6017", args.spellName, args.destName, 11, args.spellId)
+	self:PrimaryIcon("ej:6017", args.destName)
 end
 
 function mod:RavageOver()
 	self:PrimaryIcon("ej:6017")
 end
 
-function mod:Conflag(player, spellId, _, _, spellName)
-	self:TargetMessage("ej:6024", spellName, player, "Attention", spellId)
-	self:TargetBar("ej:6024", spellName, player, 5, spellId)
-	self:SecondaryIcon("ej:6024", player)
+function mod:Conflag(args)
+	self:TargetMessage("ej:6024", args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetBar("ej:6024", args.spellName, args.destName, 5, args.spellId)
+	self:SecondaryIcon("ej:6024", args.destName)
 end
 
 function mod:ConflagOver()
 	self:SecondaryIcon("ej:6024")
 end
 
-function mod:Shockwave(_, spellId, _, _, spellName)
-	self:Message(spellId, CL["cast"]:format(spellName), "Urgent", spellId, "Alert")
-	self:Bar(spellId, CL["cast"]:format(spellName), 2, spellId)
+function mod:Shockwave(args)
+	self:Message(args.spellId, CL["cast"]:format(args.spellName), "Urgent", args.spellId, "Alert")
+	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 2, args.spellId)
 end
 
---|TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
-	if msg:find("meteorstorm") then
-		local meteor = self:SpellName(120195)
-		self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alarm")
-		self:TargetBar("ej:6025", meteor, player, 5, 120195)
-		self:PrimaryIcon("ej:6025", player)
-		if UnitIsUnit(player, "player") then
-			self:FlashShake("ej:6025")
-			self:SaySelf("ej:6025", meteor)
-		end
+function mod:Meteor(_, msg, _, _, _, player)
+	local meteor = self:SpellName(120195)
+	self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alarm")
+	self:TargetBar("ej:6025", meteor, player, 5, 120195)
+	self:PrimaryIcon("ej:6025", player)
+	if UnitIsUnit(player, "player") then
+		self:FlashShake("ej:6025")
+		self:Say("ej:6025", meteor)
 	end
 end
 

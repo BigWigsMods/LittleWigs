@@ -44,13 +44,13 @@ end
 -- Event Handlers
 --
 
-function mod:CallDog(_, spellId, _, _, spellName)
-	self:Message(spellId, ("%d%% - %s"):format(percent, spellName), "Urgent", spellId, "Alert")
+function mod:CallDog(args)
+	self:Message(args.spellId, ("%d%% - %s"):format(percent, args.spellName), "Urgent", args.spellId, "Alert")
 	percent = percent - 10
 end
 
-function mod:BloodyRage(player, spellId, _, _, spellName)
-	self:Message("ej:5611", "50% - "..spellName, "Attention", spellId, "Alert")
+function mod:BloodyRage(args)
+	self:Message("ej:5611", "50% - "..args.spellName, "Attention", args.spellId, "Alert")
 end
 
 function mod:RageWarn(unitId)

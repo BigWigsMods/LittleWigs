@@ -58,39 +58,39 @@ end
 -- Event Handlers
 --
 
-function mod:Shank(player, spellId, _, _, spellName)
-	self:TargetMessage("ej:5921", spellName, player, "Attention", spellId)
-	self:TargetBar("ej:5921", spellName, player, 5, spellId)
+function mod:Shank(args)
+	self:TargetMessage("ej:5921", args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetBar("ej:5921", args.spellName, args.destName, 5, args.spellId)
 end
 
 do
 	local hex = mod:SpellName(66054)
-	function mod:Hex(player, spellId)
-		self:TargetMessage("ej:5925", hex, player, "Important", spellId)
-		self:TargetBar("ej:5925", hex, player, 20, spellId)
+	function mod:Hex(args)
+		self:TargetMessage("ej:5925", hex, args.destName, "Important", args.spellId)
+		self:TargetBar("ej:5925", hex, args.destName, 20, args.spellId)
 	end
-	function mod:HexRemoved(player)
-		self:StopBar(hex, player)
+	function mod:HexRemoved(args)
+		self:StopBar(hex, args.destName)
 	end
 end
 
-function mod:Heal(_, spellId, source)
-	self:Message("heal", CL["other"]:format(source, heal), "Urgent", spellId, "Alert")
-	self:Bar("heal", CL["cast"]:format(heal), 3.2, spellId)
+function mod:Heal(args)
+	self:Message("heal", CL["other"]:format(args.sourceName, heal), "Urgent", args.spellId, "Alert")
+	self:Bar("heal", CL["cast"]:format(heal), 3.2, args.spellId)
 end
 
-function mod:HealStop(_, _, _, secSpellId)
-	if secSpellId == 118940 then
+function mod:HealStop(args)
+	if args.extraSpellID == 118940 then
 		self:StopBar(CL["cast"]:format(heal))
 	end
 end
 
-function mod:Deaths(_, _, unit)
+function mod:Deaths(args)
 	deaths = deaths + 1
 	if deaths == 5 then
 		self:Win()
 	else
-		self:Message("bosskill", L["unit_killed"]:format(unit, deaths), "Positive", nil, "Info")
+		self:Message("bosskill", L["unit_killed"]:format(args.destName, deaths), "Positive", nil, "Info")
 	end
 end
 

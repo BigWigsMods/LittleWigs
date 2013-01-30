@@ -15,8 +15,6 @@ local deaths = 0
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_say = "You dare to disturb these waters? You will drown!"
-
-	L.add_killed = "Add killed! (%d/4)"
 end
 L = mod:GetLocale()
 
@@ -41,30 +39,27 @@ function mod:OnEngage()
 	self:Message("stages", CL["phase"]:format(1), "Positive", nil, "Info")
 	deaths = 0
 end
---[[9.3
-33.7
-37.4
-42.2]]
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:CallWater(_, spellId, _, _, spellName)
-	self:DelayedMessage("ej:6327", 5, CL["add_spawned"], "Important", spellId, "Alert")
-	self:Bar("ej:6327", CL["next_add"], 5, spellId)
+function mod:CallWater(args)
+	self:DelayedMessage("ej:6327", 5, CL["add_spawned"], "Important", args.spellId, "Alert")
+	self:Bar("ej:6327", CL["next_add"], 5, args.spellId)
 end
 
-function mod:BubbleBurst(_, spellId, _, _, spellName)
+function mod:BubbleBurst(args)
 	self:DelayedMessage("stages", 4, CL["phase"]:format(2), "Positive", nil, "Info")
-	self:Bar("stages", spellName, 4, spellId)
+	self:Bar("stages", args.spellName, 4, args.spellId)
 end
 
-function mod:Deaths(mobId)
-	if mobId == 56448 then
+function mod:Deaths(args)
+	if args.mobId == 56448 then
 		self:Win()
 	else
 		deaths = deaths + 1
-		self:Message("ej:6327", L["add_killed"]:format(deaths), "Attention", 106526)
+		self:Message("ej:6327", CL["add_killed"]:format(deaths, 4), "Attention", 106526)
 	end
 end
 

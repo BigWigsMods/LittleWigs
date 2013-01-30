@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "EnrageSoon", "boss1")
 	self:Bar(106872, "~"..smash, 17, 106872) -- 17-19
 end
 
@@ -45,28 +45,26 @@ end
 -- Event Handlers
 --
 
-function mod:Smash(player, spellId)
-	self:TargetMessage(spellId, smash, player, "Urgent", spellId, "Alarm")
-	self:TargetBar(spellId, smash, player, 4, spellId)
-	self:Bar(spellId, "~"..smash, 17, spellId) -- 17-19
+function mod:Smash(args)
+	self:TargetMessage(args.spellId, smash, args.destName, "Urgent", args.spellId, "Alarm")
+	self:TargetBar(args.spellId, smash, args.destName, 4, args.spellId)
+	self:Bar(args.spellId, "~"..smash, 17, args.spellId) -- 17-19
 end
 
-function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message("ej:5813", spellName, "Important", spellId, "Long")
-	self:Bar("ej:5813", spellName, 30, spellId)
+function mod:Enrage(args)
+	self:Message("ej:5813", args.spellName, "Important", args.spellId, "Long")
+	self:Bar("ej:5813", args.spellName, 30, args.spellId)
 end
 
-function mod:EnrageRemoved(_, _, _, _, spellName)
-	self:StopBar(spellName)
+function mod:EnrageRemoved(args)
+	self:StopBar(args.spellName)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unitId)
-	if unitId == "boss1" then
-		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-		if hp < 25 then
-			self:Message("ej:5813", CL["soon"]:format(self:SpellName(38166)), "Positive", 38166, "Info") -- Enrage
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		end
+function mod:UNIT_HEALTH_FREQUENT(unitId)
+	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+	if hp < 25 then
+		self:Message("ej:5813", CL["soon"]:format(self:SpellName(38166)), "Positive", 38166, "Info") -- Enrage
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end
 

@@ -59,18 +59,18 @@ end
 -- Event Handlers
 --
 
-function mod:TornadoKick(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alert")
-	self:Bar(spellId, CL["cast"]:format(spellName), 6.5, spellId) -- 5s channel + 1.5s cast
+function mod:TornadoKick(args)
+	self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Alert")
+	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 6.5, args.spellId) -- 5s channel + 1.5s cast
 end
 
-function mod:ChaseDown(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alarm")
-	self:TargetBar(spellId, spellName, player, 11, spellId)
+function mod:ChaseDown(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Alarm")
+	self:TargetBar(args.spellId, args.spellName, args.destName, 11, args.spellId)
 end
 
-function mod:ChaseDownRemoved(player, _, _, _, spellName)
-	self:StopBar(spellName, player)
+function mod:ChaseDownRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:Phase3()
@@ -79,7 +79,7 @@ end
 
 do
 	local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(unitId, spellName, _, _, spellId)
 		if spellId == 110324 then -- Shado-pan Vanish
 			if phase == 1 then
 				phase = 2

@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RisingHateStart", 107356)
 	self:Log("SPELL_AURA_REMOVED", "RisingHateStop", 107356)
 
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Kneel", "boss1")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
@@ -46,37 +46,37 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, _, _, _, spellId)
-	if spellId == 125920 and unitId == "boss1" then -- Kneel
+function mod:Kneel(_, _, _, _, spellId)
+	if spellId == 125920 then -- Kneel
 		self:Win()
 	end
 end
 
 do
 	local prev = 0
-	function mod:GrippingHatred(_, spellId, _, _, spellName)
+	function mod:GrippingHatred(args)
 		local t = GetTime()
 		if t-prev > 5 then
 			prev = t
-			self:Message(115002, spellName, "Urgent", spellId, "Info")
+			self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Info")
 		end
 	end
 end
 
-function mod:HazeOfHate(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(107087, CL["you"]:format(spellName), "Personal", spellId, "Long")
-		self:FlashShake(107087)
+function mod:HazeOfHate(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Long")
+		self:FlashShake(args.spellId)
 	end
 end
 
-function mod:RisingHateStart(_, spellId, _, _, spellName)
-	self:Message(107356, CL["cast"]:format(spellName), "Important", spellId, "Alert")
-	self:Bar(107356, CL["cast"]:format(spellName), 5, spellId)
-	self:Bar(107356, "~"..spellName, 16.5, spellId) -- 16-19
+function mod:RisingHateStart(args)
+	self:Message(args.spellId, CL["cast"]:format(args.spellName), "Important", args.spellId, "Alert")
+	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 5, args.spellId)
+	self:Bar(args.spellId, "~"..args.spellName, 16.5, args.spellId) -- 16-19
 end
 
-function mod:RisingHateStop(_, spellId, _, _, spellName)
-	self:StopBar(CL["cast"]:format(spellName))
+function mod:RisingHateStop(args)
+	self:StopBar(CL["cast"]:format(args.spellName))
 end
 

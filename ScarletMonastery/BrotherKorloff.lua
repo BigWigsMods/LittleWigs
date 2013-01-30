@@ -51,22 +51,22 @@ end
 -- Event Handlers
 --
 
-function mod:BlazingFists(_, spellId, _, _, spellName)
-	self:Message("fists", spellName, "Urgent", spellId, "Alert")
-	self:Bar("fists", CL["cast"]:format(spellName), 6, spellId)
-	self:Bar("fists", spellName, 30, spellId)
+function mod:BlazingFists(args)
+	self:Message("fists", args.spellName, "Urgent", args.spellId, "Alert")
+	self:Bar("fists", CL["cast"]:format(args.spellName), 6, args.spellId)
+	self:Bar("fists", args.spellName, 30, args.spellId)
 end
 
-function mod:ScorchedEarthYou(player, _, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(114460, CL["underyou"]:format(spellName), "Personal", 114460, "Alarm")
+function mod:ScorchedEarthYou(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(114460, CL["underyou"]:format(args.spellName), "Personal", 114460, "Alarm")
 		self:FlashShake(114460)
 	end
 end
 
-function mod:FirestormKick(player, spellId, _, _, spellName)
-	self:Message("firestorm", spellName, "Attention", spellId)
-	self:Bar("firestorm", CL["cast"]:format(spellName), 6, spellId)
-	self:Bar("firestorm", spellName, 25.2, spellId)
+function mod:FirestormKick(args)
+	self:Message("firestorm", args.spellName, "Attention", args.spellId)
+	self:Bar("firestorm", CL["cast"]:format(args.spellName), 6, args.spellId)
+	self:Bar("firestorm", args.spellName, 25.2, args.spellId)
 end
 

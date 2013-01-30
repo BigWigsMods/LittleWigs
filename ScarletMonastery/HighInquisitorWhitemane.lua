@@ -52,20 +52,20 @@ end
 -- Event Handlers
 --
 
-function mod:MassRes(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alarm")
-	self:Bar(spellId, spellName, 10, spellId)
+function mod:MassRes(args)
+	self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Alarm")
+	self:Bar(args.spellId, args.spellName, 10, args.spellId)
 end
 
-function mod:MassResStopped(_, _, _, secSpellId, _, secSpellName)
-	if secSpellId == 113134 then
-		self:StopBar(secSpellName)
+function mod:MassResStopped(args)
+	if args.extraSpellID == 113134 then
+		self:StopBar(args.extraSpellName)
 	end
 end
 
-function mod:Sleep(_, spellId, _, _, spellName)
+function mod:Sleep(args)
 	self:Message("stages", CL["phase"]:format(3), "Positive")
-	self:Bar("stages", spellName, 10, spellId)
+	self:Bar("stages", args.spellName, 10, args.spellId)
 end
 
 function mod:Steel(_, spellName, _, _, spellId)

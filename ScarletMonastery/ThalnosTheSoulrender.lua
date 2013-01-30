@@ -45,31 +45,31 @@ end
 -- Event Handlers
 --
 
-function mod:SpiritGaleCast(_, spellId, _, _, spellName)
-	self:Message("ej:5865", CL["cast"]:format(spellName), "Attention", spellId)
-	self:Bar("ej:5865", CL["cast"]:format(spellName), 2, spellId)
+function mod:SpiritGaleCast(args)
+	self:Message("ej:5865", CL["cast"]:format(args.spellName), "Attention", args.spellId)
+	self:Bar("ej:5865", CL["cast"]:format(args.spellName), 2, args.spellId)
 end
 
-function mod:SpiritGaleYou(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage("ej:5865", CL["underyou"]:format(spellName), "Personal", spellId, "Alarm")
+function mod:SpiritGaleYou(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage("ej:5865", CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
 		self:FlashShake("ej:5865")
 	end
 end
 
-function mod:SpiritGaleStopped(_, _, _, secSpellId, _, secSpellName)
-	if secSpellId == 115289 then
-		self:StopBar(CL["cast"]:format(secSpellName))
+function mod:SpiritGaleStopped(args)
+	if args.extraSpellID == 115289 then
+		self:StopBar(CL["cast"]:format(args.extraSpellName))
 	end
 end
 
-function mod:EvictSoul(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Urgent", spellId, "Info")
-	self:TargetBar(spellId, spellName, player, 6, spellId)
-	self:Bar(spellId, "~"..spellName, 41, spellId)
+function mod:EvictSoul(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Urgent", args.spellId, "Info")
+	self:TargetBar(args.spellId, args.spellName, args.destName, 6, args.spellId)
+	self:Bar(args.spellId, "~"..args.spellName, 41, args.spellId)
 end
 
-function mod:EvictSoulRemoved(player, _, _, _, spellName)
-	self:StopBar(spellName, player)
+function mod:EvictSoulRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 

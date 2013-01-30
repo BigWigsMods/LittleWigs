@@ -46,14 +46,14 @@ end
 -- Event Handlers
 --
 
-function mod:LightningBreath(_, spellId, _, _, spellName)
-	self:Message("ej:5632", spellName, "Urgent", spellId, "Alert")
-	self:Bar("ej:5632", "~"..spellName, 9.5, spellId) -- 9.6 - 9.7
+function mod:LightningBreath(args)
+	self:Message("ej:5632", args.spellName, "Urgent", args.spellId, "Alert")
+	self:Bar("ej:5632", "~"..args.spellName, 9.5, args.spellId) -- 9.6 - 9.7
 end
 
-function mod:MagneticShroud(_, spellId, _, _, spellName)
-	self:Message("ej:5633", spellName, "Attention", spellId)
-	self:Bar("ej:5633", "~"..spellName, 13, spellId) -- 13.2 - 15.7
+function mod:MagneticShroud(args)
+	self:Message("ej:5633", args.spellName, "Attention", args.spellId)
+	self:Bar("ej:5633", "~"..args.spellName, 13, args.spellId) -- 13.2 - 15.7
 end
 
 do
@@ -72,9 +72,9 @@ do
 	end
 end
 
-function mod:StaticField(player, _, _, _, spellName)
+function mod:StaticField(args)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage("ej:5630", CL["underyou"]:format(spellName), "Personal", 106941, "Alarm")
+		self:LocalMessage("ej:5630", CL["underyou"]:format(args.spellName), "Personal", 106941, "Alarm")
 		self:FlashShake("ej:5630")
 	end
 end

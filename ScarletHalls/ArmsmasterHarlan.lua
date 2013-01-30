@@ -62,26 +62,26 @@ end
 -- Event Handlers
 --
 
-function mod:Cleave(_, spellId)
-	self:Message("cleave", cleave, "Attention", spellId)
-	self:Bar("cleave", cleave, 7.1, spellId) -- 7.2 - 7.3
+function mod:Cleave(args)
+	self:Message("cleave", cleave, "Attention", args.spellId)
+	self:Bar("cleave", cleave, 7.1, args.spellId) -- 7.2 - 7.3
 end
 
-function mod:BladesCastStart(player, spellId, _, _, spellName)
-	self:Message("blades", CL["cast"]:format(spellName), "Urgent", spellId, "Alert")
-	self:Bar("blades", CL["cast"]:format(spellName), 6, spellId)
+function mod:BladesCastStart(args)
+	self:Message("blades", CL["cast"]:format(args.spellName), "Urgent", args.spellId, "Alert")
+	self:Bar("blades", CL["cast"]:format(args.spellName), 6, args.spellId)
 	self:FlashShake("blades")
 	self:StopBar(cleave)
 end
 
-function mod:BladesChannel(player, spellId, _, _, spellName)
-	self:Message("blades",  CL["duration"]:format(spellName, "22"), "Urgent", spellId)
-	self:Bar("blades", spellName, 22, spellId)
+function mod:BladesChannel(args)
+	self:Message("blades",  CL["duration"]:format(args.spellName, "22"), "Urgent", args.spellId)
+	self:Bar("blades", args.spellName, 22, args.spellId)
 end
 
-function mod:BladesEnd(player, spellId, _, _, spellName)
-	self:Message("blades", CL["over"]:format(spellName), "Attention", spellId)
-	self:Bar("blades", spellName, 33, spellId)
+function mod:BladesEnd(args)
+	self:Message("blades", CL["over"]:format(args.spellName), "Attention", args.spellId)
+	self:Bar("blades", args.spellName, 33, args.spellId)
 end
 
 do

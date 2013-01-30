@@ -51,9 +51,9 @@ end
 -- Event Handlers
 --
 
-function mod:GroundSlam(_, spellId, _, _, spellName)
-	self:Message("ej:5970", CL["cast"]:format(spellName), "Urgent", spellId, "Alert")
-	self:Bar("ej:5970", CL["cast"]:format(spellName), 3, spellId)
+function mod:GroundSlam(args)
+	self:Message("ej:5970", CL["cast"]:format(args.spellName), "Urgent", args.spellId, "Alert")
+	self:Bar("ej:5970", CL["cast"]:format(args.spellName), 3, args.spellId)
 end
 
 function mod:Blades()
