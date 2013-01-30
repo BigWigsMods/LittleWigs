@@ -1,2 +1,0 @@
-The "LittleWigs" folder is intended to be empty, it serves as a packaging 
-mechanism for the LittleWigs_ folders. Do NOT delete this folder.
