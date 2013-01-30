@@ -7,6 +7,9 @@
 <Include file="ScarletHalls\locales.xml"/>
 <Include file="ScarletHalls\modules.xml"/>
 
+<Include file="ScarletMonastery\locales.xml"/>
+<Include file="ScarletMonastery\modules.xml"/>
+
 <Include file="MogushanPalace\locales.xml"/>
 <Include file="MogushanPalace\modules.xml"/>
 
