@@ -58,7 +58,7 @@ function mod:SpiritGaleYou(args)
 end
 
 function mod:SpiritGaleStopped(args)
-	if args.extraSpellID == 115289 then
+	if args.extraSpellId == 115289 then
 		self:StopBar(CL["cast"]:format(args.extraSpellName))
 	end
 end

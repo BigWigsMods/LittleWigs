@@ -80,7 +80,7 @@ function mod:Heal(args)
 end
 
 function mod:HealStop(args)
-	if args.extraSpellID == 118940 then
+	if args.extraSpellId == 118940 then
 		self:StopBar(CL["cast"]:format(heal))
 	end
 end

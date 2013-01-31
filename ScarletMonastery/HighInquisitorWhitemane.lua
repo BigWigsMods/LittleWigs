@@ -58,7 +58,7 @@ function mod:MassRes(args)
 end
 
 function mod:MassResStopped(args)
-	if args.extraSpellID == 113134 then
+	if args.extraSpellId == 113134 then
 		self:StopBar(args.extraSpellName)
 	end
 end
