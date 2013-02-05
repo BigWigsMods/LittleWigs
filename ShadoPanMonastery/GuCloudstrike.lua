@@ -21,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"ej:5632", "ej:5633", {"ej:5630", "FLASHSHAKE"}, "stages", "bosskill"}
+	return {"ej:5632", "ej:5633", {"ej:5630", "FLASH"}, "stages", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -75,7 +75,7 @@ end
 function mod:StaticField(args)
 	if UnitIsUnit(player, "player") then
 		self:LocalMessage("ej:5630", CL["underyou"]:format(args.spellName), "Personal", 106941, "Alarm")
-		self:FlashShake("ej:5630")
+		self:Flash("ej:5630")
 	end
 end
 

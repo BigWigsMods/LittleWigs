@@ -21,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {{"ej:5865", "FLASHSHAKE"}, 115297, "bosskill"}
+	return {{"ej:5865", "FLASH"}, 115297, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -53,7 +53,7 @@ end
 function mod:SpiritGaleYou(args)
 	if UnitIsUnit(args.destName, "player") then
 		self:LocalMessage("ej:5865", CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
-		self:FlashShake("ej:5865")
+		self:Flash("ej:5865")
 	end
 end
 

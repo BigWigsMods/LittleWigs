@@ -34,7 +34,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"cleave", {"blades", "FLASHSHAKE"}, "help", "bosskill"}
+	return {"cleave", {"blades", "FLASH"}, "help", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -70,7 +70,7 @@ end
 function mod:BladesCastStart(args)
 	self:Message("blades", CL["cast"]:format(args.spellName), "Urgent", args.spellId, "Alert")
 	self:Bar("blades", CL["cast"]:format(args.spellName), 6, args.spellId)
-	self:FlashShake("blades")
+	self:Flash("blades")
 	self:StopBar(cleave)
 end
 

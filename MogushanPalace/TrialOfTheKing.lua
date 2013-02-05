@@ -15,10 +15,6 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	--A Saurok runs down a hidden set of stairs with some of the treasure!
 	L.win_emote = "treasure"
-
-	L.blow = EJ_GetSectionInfo(6026) .. " " .. INLINE_HEALER_ICON
-	L.blow_desc = CL["healer"].. select(2, EJ_GetSectionInfo(6026))
-	L.blow_icon = 123655
 end
 L = mod:GetLocale()
 
@@ -29,7 +25,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 	119922, {"ej:6017", "ICON"},
-	{"ej:6024", "ICON"}, {"ej:6025", "ICON", "SAY", "FLASHSHAKE"}, "blow",
+	{"ej:6024", "ICON"}, {"ej:6025", "ICON", "SAY", "FLASH"}, {123655, "HEALER"},
 	"bosskill",
 	}, {
 	[119922] = "ej:6015", --Kuai
@@ -69,10 +65,8 @@ end
 --
 
 function mod:TraumaticBlow(args)
-	if self:Healer() then
-		self:TargetMessage("blow", args.spellName, args.destName, "Positive", args.spellId)
-		self:TargetBar("blow", args.spellName, args.destName, 5, args.spellId)
-	end
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Positive", args.spellId)
+	self:TargetBar(args.spellId, args.spellName, args.destName, 5, args.spellId)
 end
 
 function mod:Ravage(args)
@@ -106,7 +100,7 @@ function mod:Meteor(_, msg, _, _, _, player)
 	self:TargetBar("ej:6025", meteor, player, 5, 120195)
 	self:PrimaryIcon("ej:6025", player)
 	if UnitIsUnit(player, "player") then
-		self:FlashShake("ej:6025")
+		self:Flash("ej:6025")
 		self:Say("ej:6025", meteor)
 	end
 end

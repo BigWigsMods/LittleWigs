@@ -23,7 +23,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {115002, {107087, "FLASHSHAKE"}, 107356, "bosskill"}
+	return {115002, {107087, "FLASH"}, 107356, "bosskill"}
 end
 
 function mod:VerifyEnable()
@@ -69,7 +69,7 @@ end
 function mod:HazeOfHate(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:LocalMessage(107087, CL["you"]:format(spellName), "Personal", spellId, "Long")
-		self:FlashShake(107087)
+		self:Flash(107087)
 	end
 end
 

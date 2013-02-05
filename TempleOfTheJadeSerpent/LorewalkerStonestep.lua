@@ -26,7 +26,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {106434, {118961, "FLASHSHAKE"}, 106747, "stages", "bosskill"}
+	return {106434, {118961, "FLASH"}, 106747, "stages", "bosskill"}
 end
 
 function mod:VerifyEnable()
@@ -68,7 +68,7 @@ function mod:ChaseDown(player, spellId, _, _, spellName)
 	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alarm")
 	self:Bar(spellId, CL["other"]:format(spellName, player), 11, spellId)
 	if UnitIsUnit("player", player) then
-		self:FlashShake(spellId)
+		self:Flash(spellId)
 	end
 end
 
