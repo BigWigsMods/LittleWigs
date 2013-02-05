@@ -73,7 +73,7 @@ do
 end
 
 function mod:StaticField(args)
-	if UnitIsUnit(player, "player") then
+	if UnitIsUnit(args.destName, "player") then
 		self:LocalMessage("ej:5630", CL["underyou"]:format(args.spellName), "Personal", 106941, "Alarm")
 		self:Flash("ej:5630")
 	end
