@@ -94,7 +94,7 @@ function mod:Shockwave(args)
 	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 2, args.spellId)
 end
 
-function mod:Meteor(_, msg, _, _, _, player)
+function mod:Meteor(msg, _, _, _, player)
 	local meteor = self:SpellName(120195)
 	self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alarm")
 	self:TargetBar("ej:6025", meteor, player, 5, 120195)
