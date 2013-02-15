@@ -6,8 +6,6 @@
 local mod, CL = BigWigs:NewBoss("Sha of Violence", 877, 685)
 mod:RegisterEnableMob(56719)
 
-local smash = mod:SpellName(34618)
-
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -38,7 +36,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "EnrageSoon", "boss1")
-	self:Bar(106872, "~"..smash, 17, 106872) -- 17-19
+	self:CDBar(106872, 17, 34618) -- Smash, 17-19
 end
 
 --------------------------------------------------------------------------------
@@ -46,14 +44,14 @@ end
 --
 
 function mod:Smash(args)
-	self:TargetMessage(args.spellId, smash, args.destName, "Urgent", args.spellId, "Alarm")
-	self:TargetBar(args.spellId, smash, args.destName, 4, args.spellId)
-	self:Bar(args.spellId, "~"..smash, 17, args.spellId) -- 17-19
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", 34618)
+	self:TargetBar(args.spellId, 4, args.destName, 34618)
+	self:CDBar(args.spellId, 17, 34618) -- 17-19
 end
 
 function mod:Enrage(args)
-	self:Message("ej:5813", args.spellName, "Important", args.spellId, "Long")
-	self:Bar("ej:5813", args.spellName, 30, args.spellId)
+	self:Message("ej:5813", "Important", "Long", args.spellId)
+	self:Bar("ej:5813", 30, args.spellId)
 end
 
 function mod:EnrageRemoved(args)
@@ -63,7 +61,7 @@ end
 function mod:EnrageSoon(unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 25 then
-		self:Message("ej:5813", CL["soon"]:format(self:SpellName(38166)), "Positive", 38166, "Info") -- Enrage
+		self:Message("ej:5813", "Positive", "Info", CL["soon"]:format(self:SpellName(38166)), false) -- Enrage
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end

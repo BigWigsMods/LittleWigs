@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Flameweaver Koegler", 871, 656)
 mod:RegisterEnableMob(59150)
 
-local breath = mod:SpellName(17086)
+local breath = 
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -39,7 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(113641, "~"..breath, 30, 113641)
+	self:Bar(113641, 30, 31661) -- Dragon's Breath
 end
 
 --------------------------------------------------------------------------------
@@ -47,25 +47,26 @@ end
 --
 
 function mod:QuickenedMind(args)
-	self:Message(args.spellId, CL["onboss"]:format(args.spellName), "Urgent", args.spellId, "Alert")
+	self:Message(args.spellId, "Urgent", "Alert", CL["onboss"]:format(args.spellName))
 end
 
 function mod:BreathCast(args)
-	self:Message(args.spellId, CL["cast"]:format(breath), "Attention", args.spellId, "Long")
-	self:Bar(args.spellId, CL["cast"]:format(breath), 2, args.spellId)
+	local breath = self:SpellName(31661)
+	self:Message(args.spellId, "Attention", "Long", CL["cast"]:format(breath))
+	self:Bar(args.spellId, 2, CL["cast"]:format(breath), args.spellId)
 end
 
 function mod:BreathChannel(args)
-	self:Bar(args.spellId, CL["over"]:format(breath), 10, args.spellId)
+	self:Bar(args.spellId, 10, CL["over"]:format(self:SpellName(31661)))
 end
 
 function mod:BreathEnd(args)
-	self:Bar(args.spellId, "~"..breath, 33, args.spellId)
-	self:Message(args.spellId, CL["over"]:format(breath), "Positive")
+	self:CDBar(args.spellId, 33, 31661) -- Dragon's Breath
+	self:Message(args.spellId, "Positive", nil, CL["over"]:format(self:SpellName(31661)))
 end
 
 function mod:BookBurner(args)
-	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 3, args.spellId)
-	self:Message(args.spellId, CL["cast"]:format(args.spellName), "Important", args.spellId, "Info")
+	self:Bar(args.spellId, 3, CL["cast"]:format(args.spellName))
+	self:Message(args.spellId, "Important", "Info", CL["cast"]:format(args.spellName))
 end
 

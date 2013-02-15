@@ -45,18 +45,18 @@ end
 --
 
 function mod:CallDog(args)
-	self:Message(args.spellId, ("%d%% - %s"):format(percent, args.spellName), "Urgent", args.spellId, "Alert")
+	self:Message(args.spellId, "Urgent", "Alert", ("%d%% - %s"):format(percent, args.spellName))
 	percent = percent - 10
 end
 
 function mod:BloodyRage(args)
-	self:Message("ej:5611", "50% - "..args.spellName, "Attention", args.spellId, "Alert")
+	self:Message("ej:5611", "Attention", "Alert", "50% - "..args.spellName, args.spellId)
 end
 
 function mod:RageWarn(unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 55 then
-		self:Message("ej:5611", CL["soon"]:format(self:SpellName(116140)), "Positive", nil, "Info") -- Bloody Rage
+		self:Message("ej:5611", "Positive", "Info", CL["soon"]:format(self:SpellName(116140)), false) -- Bloody Rage
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end

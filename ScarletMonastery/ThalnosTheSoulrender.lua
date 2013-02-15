@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(115297, "~"..self:SpellName(115297), 25, 115297) -- 25.x - 26.x
+	self:CDBar(115297, 25) -- Evict Soul, 25.x - 26.x
 end
 
 --------------------------------------------------------------------------------
@@ -46,13 +46,13 @@ end
 --
 
 function mod:SpiritGaleCast(args)
-	self:Message("ej:5865", CL["cast"]:format(args.spellName), "Attention", args.spellId)
-	self:Bar("ej:5865", CL["cast"]:format(args.spellName), 2, args.spellId)
+	self:Message("ej:5865", "Attention", nil, CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar("ej:5865", 2, CL["cast"]:format(args.spellName), args.spellId)
 end
 
 function mod:SpiritGaleYou(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage("ej:5865", CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:LocalMessage("ej:5865", "Personal", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
 		self:Flash("ej:5865")
 	end
 end
@@ -64,9 +64,9 @@ function mod:SpiritGaleStopped(args)
 end
 
 function mod:EvictSoul(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Urgent", args.spellId, "Info")
-	self:TargetBar(args.spellId, args.spellName, args.destName, 6, args.spellId)
-	self:Bar(args.spellId, "~"..args.spellName, 41, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Info")
+	self:TargetBar(args.spellId, 6, args.destName)
+	self:CDBar(args.spellId, 41)
 end
 
 function mod:EvictSoulRemoved(args)

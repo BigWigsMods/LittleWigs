@@ -39,7 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", CL["phase"]:format(1)..": "..self.displayName, "Positive", nil, "Info")
+	self:Message("stages", "Positive", "Info", CL["phase"]:format(1)..": "..self.displayName, false)
 end
 
 --------------------------------------------------------------------------------
@@ -47,34 +47,31 @@ end
 --
 
 function mod:LightningBreath(args)
-	self:Message("ej:5632", args.spellName, "Urgent", args.spellId, "Alert")
-	self:Bar("ej:5632", "~"..args.spellName, 9.5, args.spellId) -- 9.6 - 9.7
+	self:Message("ej:5632", "Urgent", "Alert", args.spellId)
+	self:CDBar("ej:5632", 9.5, args.spellId) -- 9.6 - 9.7
 end
 
 function mod:MagneticShroud(args)
-	self:Message("ej:5633", args.spellName, "Attention", args.spellId)
-	self:Bar("ej:5633", "~"..args.spellName, 13, args.spellId) -- 13.2 - 15.7
+	self:Message("ej:5633", "Attention", nil, args.spellId)
+	self:CDBar("ej:5633", 13, args.spellId) -- 13.2 - 15.7
 end
 
-do
-	local breath = mod:SpellName(102573)
-	local shroud = mod:SpellName(107140)
+function mod:Phase2()
 	local _, serpent = EJ_GetCreatureInfo(2, 673)
-	function mod:Phase2()
-		self:Message("stages", CL["phase"]:format(2)..": "..serpent, "Positive", nil, "Info")
-		self:Bar("ej:5632", "~"..breath, 7, 102573)
-		self:Bar("ej:5633", "~"..shroud, 20, 107140)
-	end
-	function mod:Phase3()
-		self:Message("stages", CL["phase"]:format(3)..": "..self.displayName.. " ("..self:SpellName(65294)..")", "Positive", nil, "Info") -- (Empowered)
-		self:StopBar("~"..breath)
-		self:StopBar("~"..shroud)
-	end
+	self:Message("stages", "Positive", "Info", CL["phase"]:format(2)..": "..serpent, false)
+	self:CDBar("ej:5632", 7, 102573) -- Breath
+	self:Bar("ej:5633", 20, 107140) -- Shroud
+end
+
+function mod:Phase3()
+	self:Message("stages", "Positive", "Info", CL["phase"]:format(3)..": "..self.displayName.. " ("..self:SpellName(65294)..")", false) -- (Empowered)
+	self:StopBar(102573) -- Breath
+	self:StopBar(107140) -- Shroud
 end
 
 function mod:StaticField(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage("ej:5630", CL["underyou"]:format(args.spellName), "Personal", 106941, "Alarm")
+		self:LocalMessage("ej:5630", "Personal", "Alarm", CL["underyou"]:format(args.spellName), 106941)
 		self:Flash("ej:5630")
 	end
 end

@@ -32,11 +32,12 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Deaths", 56448, 56511)
+	self:Death("Win", 56448)
+	self:Death("AddDeath", 56511)
 end
 
 function mod:OnEngage()
-	self:Message("stages", CL["phase"]:format(1), "Positive", nil, "Info")
+	self:Message("stages", "Positive", "Info", CL["phase"]:format(1), false)
 	deaths = 0
 end
 
@@ -45,21 +46,17 @@ end
 --
 
 function mod:CallWater(args)
-	self:DelayedMessage("ej:6327", 5, CL["add_spawned"], "Important", args.spellId, "Alert")
-	self:Bar("ej:6327", CL["next_add"], 5, args.spellId)
+	self:DelayedMessage("ej:6327", 5, "Important", "Alert", CL["add_spawned"], args.spellId)
+	self:Bar("ej:6327", 5, CL["next_add"], args.spellId)
 end
 
 function mod:BubbleBurst(args)
-	self:DelayedMessage("stages", 4, CL["phase"]:format(2), "Positive", nil, "Info")
-	self:Bar("stages", args.spellName, 4, args.spellId)
+	self:DelayedMessage("stages", 4, "Positive", "Info", CL["phase"]:format(2), false)
+	self:Bar("stages", 4, args.spellName, args.spellId)
 end
 
-function mod:Deaths(args)
-	if args.mobId == 56448 then
-		self:Win()
-	else
-		deaths = deaths + 1
-		self:Message("ej:6327", CL["add_killed"]:format(deaths, 4), "Attention", 106526)
-	end
+function mod:AddDeath()
+	deaths = deaths + 1
+	self:Message("ej:6327", "Attention", nil, CL["add_killed"]:format(deaths, 4), 106526)
 end
 

@@ -65,13 +65,13 @@ end
 --
 
 function mod:TraumaticBlow(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Positive", args.spellId)
-	self:TargetBar(args.spellId, args.spellName, args.destName, 5, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Positive")
+	self:TargetBar(args.spellId, 5, args.destName)
 end
 
 function mod:Ravage(args)
-	self:TargetMessage("ej:6017", args.spellName, args.destName, "Attention", args.spellId)
-	self:TargetBar("ej:6017", args.spellName, args.destName, 11, args.spellId)
+	self:TargetMessage("ej:6017", args.destName, "Attention", nil, args.spellId)
+	self:TargetBar("ej:6017", 11, args.destName, args.spellId)
 	self:PrimaryIcon("ej:6017", args.destName)
 end
 
@@ -80,8 +80,8 @@ function mod:RavageOver()
 end
 
 function mod:Conflag(args)
-	self:TargetMessage("ej:6024", args.spellName, args.destName, "Attention", args.spellId)
-	self:TargetBar("ej:6024", args.spellName, args.destName, 5, args.spellId)
+	self:TargetMessage("ej:6024", args.destName, "Attention", nil, args.spellId)
+	self:TargetBar("ej:6024", 5, args.destName, args.spellId)
 	self:SecondaryIcon("ej:6024", args.destName)
 end
 
@@ -90,18 +90,17 @@ function mod:ConflagOver()
 end
 
 function mod:Shockwave(args)
-	self:Message(args.spellId, CL["cast"]:format(args.spellName), "Urgent", args.spellId, "Alert")
-	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 2, args.spellId)
+	self:Message(args.spellId, "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar(args.spellId, 2, CL["cast"]:format(args.spellName), args.spellId)
 end
 
 function mod:Meteor(msg, _, _, _, player)
-	local meteor = self:SpellName(120195)
-	self:TargetMessage("ej:6025", meteor, player, "Important", 120195, "Alarm")
-	self:TargetBar("ej:6025", meteor, player, 5, 120195)
+	self:TargetMessage("ej:6025", player, "Important", "Alarm", 120195)
+	self:TargetBar("ej:6025", 5, player, 120195)
 	self:PrimaryIcon("ej:6025", player)
 	if UnitIsUnit(player, "player") then
 		self:Flash("ej:6025")
-		self:Say("ej:6025", meteor)
+		self:Say("ej:6025", 120195)
 	end
 end
 

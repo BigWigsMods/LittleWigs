@@ -44,8 +44,8 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:Message("stages", CL["phase"]:format(1).. ": "..EJ_GetSectionInfo(5635), "Positive")
-	self:Bar("steel", L["steel"], 10.8, 115629)
+	self:Message("stages", "Positive", nil, CL["phase"]:format(1).. ": "..EJ_GetSectionInfo(5635), false)
+	self:Bar("steel", 10.8, 115629)
 end
 
 --------------------------------------------------------------------------------
@@ -53,8 +53,8 @@ end
 --
 
 function mod:MassRes(args)
-	self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Alarm")
-	self:Bar(args.spellId, args.spellName, 10, args.spellId)
+	self:Message(args.spellId, "Urgent", "Alarm")
+	self:Bar(args.spellId, 10)
 end
 
 function mod:MassResStopped(args)
@@ -64,22 +64,22 @@ function mod:MassResStopped(args)
 end
 
 function mod:Sleep(args)
-	self:Message("stages", CL["phase"]:format(3), "Positive")
-	self:Bar("stages", args.spellName, 10, args.spellId)
+	self:Message("stages", "Positive", nil, CL["phase"]:format(3), args.spellId)
+	self:Bar("stages", 10, args.spellId)
 end
 
 function mod:Steel(_, spellName, _, _, spellId)
 	if spellId == 115627 then
-		self:Message("steel", spellName, "Attention", 115629)
-		self:Bar("steel", "~"..spellName, 26, 115629) -- 26.x - 27.x
+		self:Message("steel", "Attention", nil, 115629)
+		self:CDBar("steel", 26, 115629) -- 26.x - 27.x
 	end
 end
 
 function mod:Deaths()
 	deaths = deaths + 1
 	if deaths == 1 then
-		self:Message("stages", CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638), "Positive")
-		self:StopBar("~"..L["steel"])
+		self:Message("stages", "Positive", nil, CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638))
+		self:StopBar(115629)
 	elseif deaths == 3 then
 		self:Win()
 	end

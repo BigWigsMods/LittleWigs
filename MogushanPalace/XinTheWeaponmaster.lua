@@ -52,25 +52,25 @@ end
 --
 
 function mod:GroundSlam(args)
-	self:Message("ej:5970", CL["cast"]:format(args.spellName), "Urgent", args.spellId, "Alert")
-	self:Bar("ej:5970", CL["cast"]:format(args.spellName), 3, args.spellId)
+	self:Message("ej:5970", "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar("ej:5970", 3, CL["cast"]:format(args.spellName), args.spellId)
 end
 
 function mod:Blades()
-	self:Message("blades", "66% - "..L["blades"], "Attention", 119311, "Info")
+	self:Message("blades", "Attention", "Info", "66% - "..L["blades"], 119311)
 end
 
 function mod:Crossbows()
-	self:Message("crossbows", "33% - "..L["crossbows"], "Attention", 120142, "Info")
+	self:Message("crossbows", "Attention", "Info", "33% - "..L["crossbows"], 120142)
 end
 
 function mod:PhaseWarn(unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 70 and phase == 1 then
-		self:Message("blades", CL["soon"]:format(L["blades"]), "Positive")
+		self:Message("blades", "Positive", nil, CL["soon"]:format(L["blades"]), false)
 		phase = 2
 	elseif hp < 39 and phase == 2 then
-		self:Message("crossbows", CL["soon"]:format(L["crossbows"]), "Positive")
+		self:Message("crossbows", "Positive", nil, CL["soon"]:format(L["crossbows"]), false)
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end

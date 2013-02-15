@@ -58,22 +58,22 @@ do
 		local t = GetTime()
 		if t-prev > 5 then
 			prev = t
-			self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Info")
+			self:Message(args.spellId, "Urgent", "Info")
 		end
 	end
 end
 
 function mod:HazeOfHate(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Long")
+		self:LocalMessage(args.spellId, "Personal", "Long", CL["you"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:RisingHateStart(args)
-	self:Message(args.spellId, CL["cast"]:format(args.spellName), "Important", args.spellId, "Alert")
-	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 5, args.spellId)
-	self:Bar(args.spellId, "~"..args.spellName, 16.5, args.spellId) -- 16-19
+	self:Message(args.spellId, "Important", "Alert", CL["cast"]:format(args.spellName))
+	self:Bar(args.spellId, 5, CL["cast"]:format(args.spellName))
+	self:CDBar(args.spellId, 16.5) -- 16-19
 end
 
 function mod:RisingHateStop(args)

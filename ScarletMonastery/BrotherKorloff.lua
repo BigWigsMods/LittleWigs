@@ -43,8 +43,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("firestorm", L["firestorm"], 11, 113764)
-	self:Bar("fists", L["fists"], 20, 114807)
+	self:Bar("firestorm", 11, L["firestorm"], 113764)
+	self:Bar("fists", 20, L["fists"], 114807)
 end
 
 --------------------------------------------------------------------------------
@@ -52,21 +52,21 @@ end
 --
 
 function mod:BlazingFists(args)
-	self:Message("fists", args.spellName, "Urgent", args.spellId, "Alert")
-	self:Bar("fists", CL["cast"]:format(args.spellName), 6, args.spellId)
-	self:Bar("fists", args.spellName, 30, args.spellId)
+	self:Message("fists", "Urgent", "Alert", args.spellId)
+	self:Bar("fists", 6, CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar("fists", 30, args.spellId)
 end
 
 function mod:ScorchedEarthYou(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(114460, CL["underyou"]:format(args.spellName), "Personal", 114460, "Alarm")
+		self:LocalMessage(114460, "Personal", "Alarm", CL["underyou"]:format(args.spellName))
 		self:Flash(114460)
 	end
 end
 
 function mod:FirestormKick(args)
-	self:Message("firestorm", args.spellName, "Attention", args.spellId)
-	self:Bar("firestorm", CL["cast"]:format(args.spellName), 6, args.spellId)
-	self:Bar("firestorm", args.spellName, 25.2, args.spellId)
+	self:Message("firestorm", "Attention", nil, args.spellId)
+	self:Bar("firestorm", 6, CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar("firestorm", 25.2, args.spellId)
 end
 

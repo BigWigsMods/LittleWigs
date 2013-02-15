@@ -6,7 +6,6 @@
 local mod, CL = BigWigs:NewBoss("Armsmaster Harlan", 871, 654)
 mod:RegisterEnableMob(58632)
 
-local cleave = mod:SpellName(845)
 local helpCount = 1
 
 --------------------------------------------------------------------------------
@@ -52,9 +51,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("blades", L["blades"], 41, 111216)
-	self:Bar("cleave", cleave, 7.1, 111217)
-	self:Bar("help", L["help"], 20, 6673)
+	self:Bar("blades", 41, L["blades"], 111216)
+	self:Bar("cleave", 7.1, 845) -- Cleave
+	self:Bar("help", 20, L["help"], 6673)
 	helpCount = 1
 end
 
@@ -63,32 +62,32 @@ end
 --
 
 function mod:Cleave(args)
-	self:Message("cleave", cleave, "Attention", args.spellId)
-	self:Bar("cleave", cleave, 7.1, args.spellId) -- 7.2 - 7.3
+	self:Message("cleave", "Attention", nil, 845)
+	self:Bar("cleave", 7.1, 845) -- 7.2 - 7.3
 end
 
 function mod:BladesCastStart(args)
-	self:Message("blades", CL["cast"]:format(args.spellName), "Urgent", args.spellId, "Alert")
-	self:Bar("blades", CL["cast"]:format(args.spellName), 6, args.spellId)
+	self:Message("blades", "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar("blades", 6, CL["cast"]:format(args.spellName), args.spellId)
 	self:Flash("blades")
 	self:StopBar(cleave)
 end
 
 function mod:BladesChannel(args)
-	self:Message("blades",  CL["duration"]:format(args.spellName, "22"), "Urgent", args.spellId)
-	self:Bar("blades", args.spellName, 22, args.spellId)
+	self:Message("blades", "Urgent", nil, CL["duration"]:format(args.spellName, "22"), args.spellId)
+	self:Bar("blades", 22, args.spellId)
 end
 
 function mod:BladesEnd(args)
-	self:Message("blades", CL["over"]:format(args.spellName), "Attention", args.spellId)
-	self:Bar("blades", args.spellName, 33, args.spellId)
+	self:Message("blades", "Attention", nil, CL["over"]:format(args.spellName), args.spellId)
+	self:Bar("blades", 33, args.spellId)
 end
 
 do
 	local timers = {30, 25, 22, 20, 18, 16, 14}
 	function mod:Adds()
-		self:Message("help", L["help"], "Urgent", 6673, "Info")
-		self:Bar("help", L["help"], timers[helpCount] or 13, 6673)
+		self:Message("help", "Urgent", "Info", L["help"], 6673)
+		self:Bar("help", timers[helpCount] or 13, L["help"], 6673)
 		helpCount = helpCount + 1
 	end
 end

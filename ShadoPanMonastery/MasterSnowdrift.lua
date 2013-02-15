@@ -50,8 +50,8 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
 	local tornado = self:SpellName(106434)
-	self:Bar(106434, "~"..tornado, 15, 106434)
-	self:Message(106434, CL["custom_start_s"]:format(self.displayName, tornado, 15), "Attention")
+	self:CDBar(106434, 15)
+	self:Message(106434, "Attention", nil, CL["custom_start_s"]:format(self.displayName, tornado, 15), false)
 	phase = 1
 end
 
@@ -60,13 +60,13 @@ end
 --
 
 function mod:TornadoKick(args)
-	self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Alert")
-	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 6.5, args.spellId) -- 5s channel + 1.5s cast
+	self:Message(args.spellId, "Urgent", "Alert")
+	self:Bar(args.spellId, 6.5, CL["cast"]:format(args.spellName)) -- 5s channel + 1.5s cast
 end
 
 function mod:ChaseDown(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Alarm")
-	self:TargetBar(args.spellId, args.spellName, args.destName, 11, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	self:TargetBar(args.spellId, 11, args.destName)
 end
 
 function mod:ChaseDownRemoved(args)
@@ -74,33 +74,31 @@ function mod:ChaseDownRemoved(args)
 end
 
 function mod:Phase3()
-	self:Message("stages", CL["phase"]:format(3), "Positive", nil, "Info")
+	self:Message("stages", "Positive", "Info", CL["phase"]:format(3), false)
 end
 
-do
-	local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
-	function mod:UNIT_SPELLCAST_SUCCEEDED(unitId, spellName, _, _, spellId)
-		if spellId == 110324 then -- Shado-pan Vanish
-			if phase == 1 then
-				phase = 2
-				self:Message(106747, (CL["phase"]:format(2))..": "..mirror, "Positive", 106747, "Info")
-				self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
-			else
-				self:Message(106747, mirror, "Positive", 106747)
-			end
-		elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
-			self:Win()
+function mod:UNIT_SPELLCAST_SUCCEEDED(unitId, spellName, _, _, spellId)
+	if spellId == 110324 then -- Shado-pan Vanish
+		if phase == 1 then
+			phase = 2
+			local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
+			self:Message(106747, "Positive", "Info", (CL["phase"]:format(2))..": "..mirror)
+			self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
+		else
+			self:Message(106747, "Positive")
 		end
+	elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
+		self:Win()
 	end
 end
 
 function mod:PhaseWarn(unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 65 and phase == 1 then
-		self:Message("stages", CL["soon"]:format(CL["phase"]:format(2)), "Positive")
+		self:Message("stages", "Positive", nil, CL["soon"]:format(CL["phase"]:format(2)))
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	elseif hp < 35 and phase == 2 then
-		self:Message("stages", CL["soon"]:format(CL["phase"]:format(3)), "Positive")
+		self:Message("stages", "Positive", nil, CL["soon"]:format(CL["phase"]:format(3)))
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end
