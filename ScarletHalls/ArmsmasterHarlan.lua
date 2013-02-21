@@ -16,7 +16,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Ah-hah! Another chance to test my might."
 
-	L.cleave = EJ_GetSectionInfo(5377) .. " (".. cleave ..")"
+	L.cleave = EJ_GetSectionInfo(5377) .. " (".. mod:SpellName(845) ..")"
 	L.cleave_desc = select(2, EJ_GetSectionInfo(5377))
 	L.cleave_icon = 111217
 
@@ -70,7 +70,7 @@ function mod:BladesCastStart(args)
 	self:Message("blades", "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
 	self:Bar("blades", 6, CL["cast"]:format(args.spellName), args.spellId)
 	self:Flash("blades")
-	self:StopBar(cleave)
+	self:StopBar(845)
 end
 
 function mod:BladesChannel(args)
