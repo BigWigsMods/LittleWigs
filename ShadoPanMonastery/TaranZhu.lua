@@ -65,7 +65,7 @@ end
 
 function mod:HazeOfHate(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, "Personal", "Long", CL["you"]:format(args.spellName))
+		self:Message(args.spellId, "Personal", "Long", CL["you"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end

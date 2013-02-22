@@ -59,7 +59,7 @@ end
 
 function mod:ScorchedEarthYou(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(114460, "Personal", "Alarm", CL["underyou"]:format(args.spellName))
+		self:Message(114460, "Personal", "Alarm", CL["underyou"]:format(args.spellName))
 		self:Flash(114460)
 	end
 end

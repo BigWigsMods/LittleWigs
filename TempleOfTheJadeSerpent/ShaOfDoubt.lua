@@ -68,7 +68,7 @@ end
 
 function mod:HazeOfHate(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
-		self:LocalMessage(107087, CL["you"]:format(spellName), "Personal", spellId, "Long")
+		self:Message(107087, CL["you"]:format(spellName), "Personal", spellId, "Long")
 		self:Flash(107087)
 	end
 end

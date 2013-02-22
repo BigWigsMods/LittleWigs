@@ -52,7 +52,7 @@ end
 
 function mod:SpiritGaleYou(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage("ej:5865", "Personal", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
+		self:Message("ej:5865", "Personal", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
 		self:Flash("ej:5865")
 	end
 end
