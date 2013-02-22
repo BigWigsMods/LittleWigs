@@ -30,7 +30,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"ej:5921", "heal", "ej:5925", "bosskill"}
+	return {-5921, "heal", -5925, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -59,13 +59,13 @@ end
 --
 
 function mod:Shank(args)
-	self:TargetMessage("ej:5921", args.destName, "Attention", nil, args.spellId)
-	self:TargetBar("ej:5921", 5, args.destName, args.spellId)
+	self:TargetMessage(-5921, args.destName, "Attention", nil, args.spellId)
+	self:TargetBar(-5921, 5, args.destName, args.spellId)
 end
 
 function mod:Hex(args)
-	self:TargetMessage("ej:5925", args.destName, "Important", nil, 66054, args.spellId) -- Hex
-	self:TargetBar("ej:5925", 20, args.destName, 66054, args.spellId) -- Hex
+	self:TargetMessage(-5925, args.destName, "Important", nil, 66054, args.spellId) -- Hex
+	self:TargetBar(-5925, 20, args.destName, 66054, args.spellId) -- Hex
 end
 
 function mod:HexRemoved(args)

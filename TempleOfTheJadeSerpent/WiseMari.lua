@@ -23,7 +23,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"ej:6327", "stages", "bosskill"}
+	return {-6327, "stages", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -46,8 +46,8 @@ end
 --
 
 function mod:CallWater(args)
-	self:DelayedMessage("ej:6327", 5, "Important", "Alert", CL["add_spawned"], args.spellId)
-	self:Bar("ej:6327", 5, CL["next_add"], args.spellId)
+	self:DelayedMessage(-6327, 5, "Important", "Alert", CL["add_spawned"], args.spellId)
+	self:Bar(-6327, 5, CL["next_add"], args.spellId)
 end
 
 function mod:BubbleBurst(args)
@@ -57,6 +57,6 @@ end
 
 function mod:AddDeath()
 	deaths = deaths + 1
-	self:Message("ej:6327", "Attention", nil, CL["add_killed"]:format(deaths, 4), 106526)
+	self:Message(-6327, "Attention", nil, CL["add_killed"]:format(deaths, 4), 106526)
 end
 

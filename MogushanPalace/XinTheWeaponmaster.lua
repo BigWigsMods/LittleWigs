@@ -29,7 +29,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"ej:5970", "blades", "crossbows", "bosskill"}
+	return {-5970, "blades", "crossbows", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -52,8 +52,8 @@ end
 --
 
 function mod:GroundSlam(args)
-	self:Message("ej:5970", "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
-	self:Bar("ej:5970", 3, CL["cast"]:format(args.spellName), args.spellId)
+	self:Message(-5970, "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar(-5970, 3, CL["cast"]:format(args.spellName), args.spellId)
 end
 
 function mod:Blades()

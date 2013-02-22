@@ -23,7 +23,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"ej:5611", 114259, "bosskill"}
+	return {-5611, 114259, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -50,13 +50,13 @@ function mod:CallDog(args)
 end
 
 function mod:BloodyRage(args)
-	self:Message("ej:5611", "Attention", "Alert", "50% - "..args.spellName, args.spellId)
+	self:Message(-5611, "Attention", "Alert", "50% - "..args.spellName, args.spellId)
 end
 
 function mod:RageWarn(unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 55 then
-		self:Message("ej:5611", "Positive", "Info", CL["soon"]:format(self:SpellName(116140)), false) -- Bloody Rage
+		self:Message(-5611, "Positive", "Info", CL["soon"]:format(self:SpellName(116140)), false) -- Bloody Rage
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end

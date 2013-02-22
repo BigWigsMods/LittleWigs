@@ -21,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {{"ej:5865", "FLASH"}, 115297, "bosskill"}
+	return {{-5865, "FLASH"}, 115297, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -46,14 +46,14 @@ end
 --
 
 function mod:SpiritGaleCast(args)
-	self:Message("ej:5865", "Attention", nil, CL["cast"]:format(args.spellName), args.spellId)
-	self:Bar("ej:5865", 2, CL["cast"]:format(args.spellName), args.spellId)
+	self:Message(-5865, "Attention", nil, CL["cast"]:format(args.spellName), args.spellId)
+	self:Bar(-5865, 2, CL["cast"]:format(args.spellName), args.spellId)
 end
 
 function mod:SpiritGaleYou(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:Message("ej:5865", "Personal", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
-		self:Flash("ej:5865")
+		self:Message(-5865, "Personal", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
+		self:Flash(-5865)
 	end
 end
 

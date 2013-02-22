@@ -21,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"ej:5813", 106872, "bosskill"}
+	return {-5813, 106872, "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -50,8 +50,8 @@ function mod:Smash(args)
 end
 
 function mod:Enrage(args)
-	self:Message("ej:5813", "Important", "Long", args.spellId)
-	self:Bar("ej:5813", 30, args.spellId)
+	self:Message(-5813, "Important", "Long", args.spellId)
+	self:Bar(-5813, 30, args.spellId)
 end
 
 function mod:EnrageRemoved(args)
@@ -61,7 +61,7 @@ end
 function mod:EnrageSoon(unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 25 then
-		self:Message("ej:5813", "Positive", "Info", CL["soon"]:format(self:SpellName(38166)), false) -- Enrage
+		self:Message(-5813, "Positive", "Info", CL["soon"]:format(self:SpellName(38166)), false) -- Enrage
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end

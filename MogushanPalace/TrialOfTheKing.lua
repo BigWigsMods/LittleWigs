@@ -24,12 +24,12 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-	119922, {"ej:6017", "ICON"},
-	{"ej:6024", "ICON"}, {"ej:6025", "ICON", "SAY", "FLASH"}, {123655, "HEALER"},
+	119922, {-6017, "ICON"},
+	{-6024, "ICON"}, {-6025, "ICON", "SAY", "FLASH"}, {123655, "HEALER"},
 	"bosskill",
 	}, {
-	[119922] = "ej:6015", --Kuai
-	["ej:6024"] = "ej:6023", --Haiyan
+	[119922] = -6015, --Kuai
+	[-6024] = -6023, --Haiyan
 	bosskill = "general",
 	}
 end
@@ -70,23 +70,23 @@ function mod:TraumaticBlow(args)
 end
 
 function mod:Ravage(args)
-	self:TargetMessage("ej:6017", args.destName, "Attention", nil, args.spellId)
-	self:TargetBar("ej:6017", 11, args.destName, args.spellId)
-	self:PrimaryIcon("ej:6017", args.destName)
+	self:TargetMessage(-6017, args.destName, "Attention", nil, args.spellId)
+	self:TargetBar(-6017, 11, args.destName, args.spellId)
+	self:PrimaryIcon(-6017, args.destName)
 end
 
 function mod:RavageOver()
-	self:PrimaryIcon("ej:6017")
+	self:PrimaryIcon(-6017)
 end
 
 function mod:Conflag(args)
-	self:TargetMessage("ej:6024", args.destName, "Attention", nil, args.spellId)
-	self:TargetBar("ej:6024", 5, args.destName, args.spellId)
-	self:SecondaryIcon("ej:6024", args.destName)
+	self:TargetMessage(-6024, args.destName, "Attention", nil, args.spellId)
+	self:TargetBar(-6024, 5, args.destName, args.spellId)
+	self:SecondaryIcon(-6024, args.destName)
 end
 
 function mod:ConflagOver()
-	self:SecondaryIcon("ej:6024")
+	self:SecondaryIcon(-6024)
 end
 
 function mod:Shockwave(args)
@@ -95,16 +95,16 @@ function mod:Shockwave(args)
 end
 
 function mod:Meteor(msg, _, _, _, player)
-	self:TargetMessage("ej:6025", player, "Important", "Alarm", 120195)
-	self:TargetBar("ej:6025", 5, player, 120195)
-	self:PrimaryIcon("ej:6025", player)
+	self:TargetMessage(-6025, player, "Important", "Alarm", 120195)
+	self:TargetBar(-6025, 5, player, 120195)
+	self:PrimaryIcon(-6025, player)
 	if UnitIsUnit(player, "player") then
-		self:Flash("ej:6025")
-		self:Say("ej:6025", 120195)
+		self:Flash(-6025)
+		self:Say(-6025, 120195)
 	end
 end
 
 function mod:MeteorHit()
-	self:PrimaryIcon("ej:6025")
+	self:PrimaryIcon(-6025)
 end
 

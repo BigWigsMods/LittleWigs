@@ -21,7 +21,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"ej:5632", "ej:5633", {"ej:5630", "FLASH"}, "stages", "bosskill"}
+	return {-5632, -5633, {-5630, "FLASH"}, "stages", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -47,20 +47,20 @@ end
 --
 
 function mod:LightningBreath(args)
-	self:Message("ej:5632", "Urgent", "Alert", args.spellId)
-	self:CDBar("ej:5632", 9.5, args.spellId) -- 9.6 - 9.7
+	self:Message(-5632, "Urgent", "Alert", args.spellId)
+	self:CDBar(-5632, 9.5, args.spellId) -- 9.6 - 9.7
 end
 
 function mod:MagneticShroud(args)
-	self:Message("ej:5633", "Attention", nil, args.spellId)
-	self:CDBar("ej:5633", 13, args.spellId) -- 13.2 - 15.7
+	self:Message(-5633, "Attention", nil, args.spellId)
+	self:CDBar(-5633, 13, args.spellId) -- 13.2 - 15.7
 end
 
 function mod:Phase2()
 	local _, serpent = EJ_GetCreatureInfo(2, 673)
 	self:Message("stages", "Positive", "Info", CL["phase"]:format(2)..": "..serpent, false)
-	self:CDBar("ej:5632", 7, 102573) -- Breath
-	self:Bar("ej:5633", 20, 107140) -- Shroud
+	self:CDBar(-5632, 7, 102573) -- Breath
+	self:Bar(-5633, 20, 107140) -- Shroud
 end
 
 function mod:Phase3()
@@ -71,8 +71,8 @@ end
 
 function mod:StaticField(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:Message("ej:5630", "Personal", "Alarm", CL["underyou"]:format(args.spellName), 106941)
-		self:Flash("ej:5630")
+		self:Message(-5630, "Personal", "Alarm", CL["underyou"]:format(args.spellName), 106941)
+		self:Flash(-5630)
 	end
 end
 
