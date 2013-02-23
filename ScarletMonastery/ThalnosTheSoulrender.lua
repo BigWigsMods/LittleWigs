@@ -51,7 +51,7 @@ function mod:SpiritGaleCast(args)
 end
 
 function mod:SpiritGaleYou(args)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:Message(-5865, "Personal", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
 		self:Flash(-5865)
 	end

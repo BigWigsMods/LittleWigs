@@ -58,7 +58,7 @@ function mod:BlazingFists(args)
 end
 
 function mod:ScorchedEarthYou(args)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:Message(114460, "Personal", "Alarm", CL["underyou"]:format(args.spellName))
 		self:Flash(114460)
 	end

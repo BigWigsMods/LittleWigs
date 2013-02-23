@@ -70,7 +70,7 @@ function mod:Phase3()
 end
 
 function mod:StaticField(args)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:Message(-5630, "Personal", "Alarm", CL["underyou"]:format(args.spellName), 106941)
 		self:Flash(-5630)
 	end

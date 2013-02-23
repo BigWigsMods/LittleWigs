@@ -64,7 +64,7 @@ do
 end
 
 function mod:HazeOfHate(args)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Personal", "Long", CL["you"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
