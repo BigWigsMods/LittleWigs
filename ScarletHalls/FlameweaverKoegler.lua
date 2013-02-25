@@ -6,8 +6,6 @@
 local mod, CL = BigWigs:NewBoss("Flameweaver Koegler", 871, 656)
 mod:RegisterEnableMob(59150)
 
-local breath = 
-
 --------------------------------------------------------------------------------
 -- Localization
 --
