@@ -46,12 +46,12 @@ end
 --
 
 function mod:CallWater(args)
-	self:DelayedMessage(-6327, 5, "Important", "Alert", CL["add_spawned"], args.spellId)
+	self:DelayedMessage(-6327, 5, "Important", CL["add_spawned"], args.spellId, "Alert")
 	self:Bar(-6327, 5, CL["next_add"], args.spellId)
 end
 
 function mod:BubbleBurst(args)
-	self:DelayedMessage("stages", 4, "Positive", "Info", CL["phase"]:format(2), false)
+	self:DelayedMessage("stages", 4, "Positive", CL["phase"]:format(2), false, "Info")
 	self:Bar("stages", 4, args.spellName, args.spellId)
 end
 
