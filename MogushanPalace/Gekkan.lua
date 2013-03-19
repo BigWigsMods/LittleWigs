@@ -7,7 +7,6 @@ local mod, CL = BigWigs:NewBoss("Gekkan", 885, 690)
 mod:RegisterEnableMob(61243)
 
 local deaths = 0
-local heal = mod:SpellName(33144)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -17,7 +16,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Stop them!"
 
-	L.heal = EJ_GetSectionInfo(5923) .. " ("..heal..")"
+	L.heal = EJ_GetSectionInfo(5923) .." (".. mod:SpellName(33144) ..")"
 	L.heal_desc = select(2, EJ_GetSectionInfo(5923))
 	L.heal_icon = 118940
 
@@ -75,7 +74,7 @@ end
 function mod:Heal(args)
 	local heal = self:SpellName(33144)
 	self:Message("heal", "Urgent", "Alert", CL["other"]:format(args.sourceName, heal), args.spellId)
-	self:Bar("heal", 3.2, CL["cast"]:format(heal), args.spellId)
+	self:Bar("heal", 4, CL["cast"]:format(heal), args.spellId)
 end
 
 function mod:HealStop(args)
