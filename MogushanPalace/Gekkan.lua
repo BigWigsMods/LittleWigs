@@ -19,8 +19,6 @@ if L then
 	L.heal = EJ_GetSectionInfo(5923) .." (".. mod:SpellName(33144) ..")"
 	L.heal_desc = select(2, EJ_GetSectionInfo(5923))
 	L.heal_icon = 118940
-
-	L.unit_killed = "%s killed! (%d/5)"
 end
 L = mod:GetLocale()
 
@@ -89,7 +87,7 @@ function mod:Deaths(args)
 	if deaths == 5 then
 		self:Win()
 	else
-		self:Message("bosskill", "Positive", "Info", L["unit_killed"]:format(args.destName, deaths), false)
+		self:Message("bosskill", "Positive", "Info", CL["mob_killed"]:format(args.destName, deaths, 5), false)
 	end
 end
 
