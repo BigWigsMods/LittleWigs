@@ -40,7 +40,7 @@ function mod:Hellfire(args)
 	self:Bar(args.spellId, 6)
 end
 
-function mod:Spellflame()
+function mod:Spellflame(args)
 	self:Message(args.spellId, "Attention", "Alert", CL["cast"]:format(args.spellName))
 	self:CDBar(args.spellId, 10)
 end
