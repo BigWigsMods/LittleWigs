@@ -35,6 +35,13 @@ function mod:GetOptions()
 	}
 end
 
+function mod:VerifyEnable(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp > 8 and UnitCanAttack("player", unit) then
+		return true
+	end
+end
+
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Curse", 138558)
 
@@ -68,7 +75,7 @@ function mod:PitLord(args)
 	self:Message(args.spellId, "Attention")
 	self:Bar(args.spellId, 10)
 	self:Bar(138685, 66) -- Imps
-	self:CDBar(138685, 30) -- Imps
+	self:CDBar(138559, 30) -- Chaos Bolt
 end
 
 function mod:Imps(args)
