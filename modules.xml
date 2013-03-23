@@ -16,5 +16,7 @@
 <Include file="TempleOfTheJadeSerpent\locales.xml"/>
 <Include file="TempleOfTheJadeSerpent\modules.xml"/>
 
+<Include file="BlackTempleSolo\modules.xml"/>
+
 </Ui>
 

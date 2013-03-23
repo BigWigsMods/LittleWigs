@@ -1,12 +1,13 @@
 ## Interface: 50200
 
 ## Title: LittleWigs
-## Notes: Boss warnings for 5-man dungeons.
-## Author: Funkydude, Ulic
+## Notes: Boss warnings for 5-man dungeons & scenarios.
+## Author: Funkydude
 ## X-Category: Party
+## X-Credits: Ulic
 ## LoadOnDemand: 1
 
-## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867
+## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919
 ## Dependencies: BigWigs
 
 modules.xml
