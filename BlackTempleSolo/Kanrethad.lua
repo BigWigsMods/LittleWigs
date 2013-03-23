@@ -12,7 +12,9 @@ mod:RegisterEnableMob(69964)
 
 local L = mod:NewLocale("enUS", true)
 if L then
-
+	L.summons = "Summons"
+	L.debuffs = "Debuffs"
+	L.win_say = "Jubeka" -- Jubeka?! What are you...?!
 end
 L = mod:GetLocale()
 
@@ -23,13 +25,18 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		138789, 138685, 138751, 138755,
-		138559, {138561, "FLASH"}, {138560, "FLASH"}, 138564, {139060, "FLASH"},
-		"berserk", "bosskill"
+		{138561, "FLASH"}, {138560, "FLASH"}, 138558,
+		138559, 138564, {139060, "FLASH"}, "bosskill",
+	},
+	{
+		[138789] = L.summons,
+		[138561] = L.debuffs,
+		[138559] = "general",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Engage", 138558)
+	self:Log("SPELL_AURA_APPLIED", "Curse", 138558)
 
 	self:Log("SPELL_CAST_SUCCESS", "PitLord", 138789)
 	self:Log("SPELL_CAST_SUCCESS", "Imps", 138685)
@@ -46,17 +53,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFire", 138561)
 
 	self:Emote("ChaosBolt", "138559")
-
-	self:Death("Win", 69964)
-end
-
-function mod:OnEngage()
-	self:Berserk(720)
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "WinCheck")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Curse(args)
+	self:Berserk(720, true, nil, args.spellId)
+end
 
 function mod:PitLord(args)
 	self:Message(args.spellId, "Attention")
@@ -124,6 +130,12 @@ function mod:Interrupt(args)
 	if args.extraSpellId == 138559 or args.extraSpellId == 138564 then -- Chaos Bolt/Cataclysm
 		self:StopBar(CL["cast"]:format(args.extraSpellName))
 		self:Message(args.extraSpellId, "Positive", nil, CL["interrupted"]:format(args.extraSpellName))
+	end
+end
+
+function mod:WinCheck(_, msg)
+	if msg:find(L["win_say"], nil, true) then
+		self:Win()
 	end
 end
 
