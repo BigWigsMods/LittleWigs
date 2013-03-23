@@ -90,7 +90,7 @@ function mod:Felhunters(args)
 	self:Bar(138755, 60) -- Doom Lord
 end
 
-function mod:Doomlord(args)
+function mod:DoomLord(args)
 	self:Message(args.spellId, "Attention")
 	self:Bar(args.spellId, 10)
 	self:Bar(138685, 60) -- Imps
