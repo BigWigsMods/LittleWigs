@@ -61,7 +61,7 @@ end
 --
 
 function mod:Curse(args)
-	self:Berserk(720, true, nil, args.spellId)
+	self:Berserk(720, true, nil, args.spellId, args.spellName)
 end
 
 function mod:PitLord(args)
