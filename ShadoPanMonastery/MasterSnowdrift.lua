@@ -74,7 +74,7 @@ function mod:ChaseDownRemoved(args)
 end
 
 function mod:Phase3()
-	self:Message("stages", "Positive", "Info", CL["phase"]:format(3), false)
+	self:Message("stages", "Positive", "Info", CL["phase"]:format(3), 118961)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unitId, spellName, _, _, spellId)
@@ -95,10 +95,10 @@ end
 function mod:PhaseWarn(unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 65 and phase == 1 then
-		self:Message("stages", "Positive", nil, CL["soon"]:format(CL["phase"]:format(2)))
+		self:Message("stages", "Positive", nil, CL["soon"]:format(CL["phase"]:format(2)), false)
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	elseif hp < 35 and phase == 2 then
-		self:Message("stages", "Positive", nil, CL["soon"]:format(CL["phase"]:format(3)))
+		self:Message("stages", "Positive", nil, CL["soon"]:format(CL["phase"]:format(3)), false)
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end

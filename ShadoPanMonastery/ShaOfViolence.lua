@@ -36,7 +36,6 @@ end
 
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "EnrageSoon", "boss1")
-	self:CDBar(106872, 17, 34618) -- Smash, 17-19
 end
 
 --------------------------------------------------------------------------------
