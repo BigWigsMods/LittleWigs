@@ -51,15 +51,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DoomLord", 138755)
 	self:Log("SPELL_CAST_SUCCESS", "DevourEnslavement", 139060)
 
-	self:Log("SPELL_CAST_SUCCESS", "Cataclysm", 138564)
+	self:Log("SPELL_AURA_APPLIED", "Cataclysm", 138564)
+	self:Log("SPELL_AURA_REMOVED", "CataclysmInterrupted", 138564)
+
+	self:Log("SPELL_CAST_START", "ChaosBolt", 138559)
+
 	self:Log("SPELL_AURA_APPLIED", "Agony", 138560)
 	self:Log("SPELL_AURA_REMOVED", "AgonyRemoved", 138560)
-	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
 
 	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 138561)
 	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFire", 138561)
 
-	self:Emote("ChaosBolt", "138559")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "WinCheck")
 end
 
@@ -74,26 +76,26 @@ end
 function mod:PitLord(args)
 	self:Message(args.spellId, "Attention")
 	self:Bar(args.spellId, 10)
-	self:Bar(138685, 66) -- Imps
+	self:CDBar(138685, 66) -- Imps
 	self:CDBar(138559, 30) -- Chaos Bolt
 end
 
 function mod:Imps(args)
 	self:Message(args.spellId, "Attention")
 	self:Bar(args.spellId, 10)
-	self:Bar(138751, 60) -- Felhunters
+	self:CDBar(138751, 57) -- Felhunters
 end
 
 function mod:Felhunters(args)
 	self:Message(args.spellId, "Attention")
 	self:Bar(args.spellId, 9)
-	self:Bar(138755, 60) -- Doom Lord
+	self:CDBar(138755, 59) -- Doom Lord
 end
 
 function mod:DoomLord(args)
 	self:Message(args.spellId, "Attention")
 	self:Bar(args.spellId, 10)
-	self:Bar(138685, 60) -- Imps
+	self:CDBar(138685, 60) -- Imps
 end
 
 function mod:DevourEnslavement(args)
@@ -101,10 +103,20 @@ function mod:DevourEnslavement(args)
 	self:Flash(args.spellId)
 end
 
-function mod:Cataclysm(args)
-	self:Message(args.spellId, "Important", "Warning", CL["cast"]:format(args.spellName))
-	self:Bar(args.spellId, 6, CL["cast"]:format(args.spellName))
-	self:Bar(args.spellId, 60)
+do
+	local t = 0
+	function mod:Cataclysm(args)
+		self:Message(args.spellId, "Important", "Warning", CL["cast"]:format(args.spellName))
+		self:Bar(args.spellId, 6, CL["cast"]:format(args.spellName))
+		self:CDBar(args.spellId, 60)
+		t = GetTime()
+	end
+	function mod:CataclysmInterrupted(args)
+		if (GetTime() - t) < 5.5 then
+			self:StopBar(CL["cast"]:format(args.spellName))
+			self:Message(args.spellId, "Positive", nil, CL["interrupted"]:format(args.spellName))
+		end
+	end
 end
 
 function mod:Agony(args)
@@ -127,17 +139,10 @@ function mod:RainOfFire(args)
 	end
 end
 
-function mod:ChaosBolt()
-	self:Message(138559, "Urgent", "Long", CL["cast"]:format(self:SpellName(138559)))
-	self:Bar(138559, 6, CL["cast"]:format(self:SpellName(138559)))
-	self:Bar(138559, 60)
-end
-
-function mod:Interrupt(args)
-	if args.extraSpellId == 138559 or args.extraSpellId == 138564 then -- Chaos Bolt/Cataclysm
-		self:StopBar(CL["cast"]:format(args.extraSpellName))
-		self:Message(args.extraSpellId, "Positive", nil, CL["interrupted"]:format(args.extraSpellName))
-	end
+function mod:ChaosBolt(args)
+	self:Message(args.spellId, "Urgent", "Long", CL["cast"]:format(args.spellName))
+	self:Bar(args.spellId, 6, CL["cast"]:format(args.spellName))
+	self:Bar(args.spellId, 60)
 end
 
 function mod:WinCheck(_, msg)
