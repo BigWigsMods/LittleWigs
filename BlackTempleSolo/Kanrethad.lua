@@ -63,6 +63,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFire", 138561)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "WinCheck")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "WipeTimer")
 end
 
 --------------------------------------------------------------------------------
@@ -148,6 +149,17 @@ end
 function mod:WinCheck(_, msg)
 	if msg:find(L["win_say"], nil, true) then
 		self:Win()
+	end
+end
+
+do
+	local function wipeCheck()
+		if not InCombatLockdown() and not UnitAffectingCombat("player") then
+			mod:Reboot()
+		end
+	end
+	function mod:WipeTimer()
+		self:ScheduleTimer(wipeCheck, 4)
 	end
 end
 
