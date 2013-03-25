@@ -16,8 +16,8 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Very well then, outsiders. Let us see your true strength."
 
-	--When I was but a cub I could scarcely throw a punch, but after years of training I can do so much more!
-	L.phase3_yell = "was a cub"
+	-- When I was but a cub I could scarcely throw a punch, but after years of training I can do so much more!
+	L.phase3_yell = "was but a cub"
 end
 L = mod:GetLocale()
 
