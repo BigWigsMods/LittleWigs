@@ -25,7 +25,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		138789, 138685, 138751, 138755,
-		{138561, "FLASH"}, {138560, "FLASH"}, 138558,
+		138561, 138560, 138558,
 		138559, 138564, {139060, "FLASH"}, "bosskill",
 	},
 	{
