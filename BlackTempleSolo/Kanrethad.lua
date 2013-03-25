@@ -123,7 +123,6 @@ end
 function mod:Agony(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Personal", "Alarm", CL["you"]:format(args.spellName))
-		self:Flash(args.spellId)
 	end
 end
 
@@ -136,7 +135,6 @@ end
 function mod:RainOfFire(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Personal", "Alert", CL["you"]:format(args.spellName))
-		self:Flash(args.spellId)
 	end
 end
 
