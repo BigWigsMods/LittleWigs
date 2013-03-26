@@ -27,7 +27,7 @@ function mod:GetOptions()
 	return {
 		138789, 138685, 138751, 138755,
 		138561, 138560, 138558,
-		138559, 138564, {139060, "FLASH"}, "bosskill",
+		138559, 138564, {139060, "FLASH"}, 1098, "bosskill",
 	},
 	{
 		[138789] = L.summons,
@@ -56,6 +56,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Felhunters", 138751)
 	self:Log("SPELL_CAST_SUCCESS", "DoomLord", 138755)
 	self:Log("SPELL_CAST_SUCCESS", "DevourEnslavement", 139060)
+
+	self:Log("SPELL_AURA_APPLIED", "EnslaveDemon", 1098)
 
 	self:Log("SPELL_AURA_APPLIED", "Cataclysm", 138564)
 	self:Log("SPELL_AURA_REMOVED", "CataclysmInterrupted", 138564)
@@ -108,6 +110,21 @@ end
 function mod:DevourEnslavement(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL["removed"]:format(self:SpellName(1098))) -- Enslave Demon
 	self:Flash(args.spellId)
+	self:StopBar(1098)
+	self:CancelDelayedMessage(CL["custom_sec"]:format(CL["over"]:format(args.spellName), 60))
+	self:CancelDelayedMessage(CL["custom_sec"]:format(CL["over"]:format(args.spellName), 30))
+	self:CancelDelayedMessage(CL["custom_sec"]:format(CL["over"]:format(args.spellName), 10))
+	self:CancelDelayedMessage(CL["custom_sec"]:format(CL["over"]:format(args.spellName), 5))
+end
+
+function mod:EnslaveDemon(args)
+	if self:Me(args.sourceGUID) and self:MobId(args.destGUID) == 70075 then
+		self:Bar(args.spellId, 300)
+		self:DelayedMessage(args.spellId, 240, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 60))
+		self:DelayedMessage(args.spellId, 270, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 30))
+		self:DelayedMessage(args.spellId, 290, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 10))
+		self:DelayedMessage(args.spellId, 295, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 5))
+	end
 end
 
 do
