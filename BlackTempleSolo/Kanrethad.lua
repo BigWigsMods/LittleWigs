@@ -84,26 +84,29 @@ end
 
 function mod:PitLord(args)
 	self:Message(args.spellId, "Attention")
-	self:Bar(args.spellId, 10)
+	self:Bar(args.spellId, 10, "<"..args.spellName..">")
 	self:CDBar(138685, 66) -- Imps
 	self:CDBar(138559, 30) -- Chaos Bolt
 end
 
 function mod:Imps(args)
 	self:Message(args.spellId, "Attention")
-	self:Bar(args.spellId, 10)
+	self:StopBar(args.spellId)
+	self:Bar(args.spellId, 10, "<"..args.spellName..">")
 	self:CDBar(138751, 57) -- Felhunters
 end
 
 function mod:Felhunters(args)
 	self:Message(args.spellId, "Attention")
-	self:Bar(args.spellId, 9)
+	self:StopBar(args.spellId)
+	self:Bar(args.spellId, 9, "<"..args.spellName..">")
 	self:CDBar(138755, 59) -- Doom Lord
 end
 
 function mod:DoomLord(args)
 	self:Message(args.spellId, "Attention")
-	self:Bar(args.spellId, 10)
+	self:StopBar(args.spellId)
+	self:Bar(args.spellId, 10, "<"..args.spellName..">")
 	self:CDBar(138685, 60) -- Imps
 end
 
@@ -130,14 +133,14 @@ end
 do
 	local t = 0
 	function mod:Cataclysm(args)
-		self:Message(args.spellId, "Important", "Warning", CL["cast"]:format(args.spellName))
-		self:Bar(args.spellId, 6, CL["cast"]:format(args.spellName))
+		self:Message(args.spellId, "Important", "Warning")
+		self:Bar(args.spellId, 6, "<"..args.spellName..">")
 		self:CDBar(args.spellId, 60)
 		t = GetTime()
 	end
 	function mod:CataclysmInterrupted(args)
 		if (GetTime() - t) < 5.5 then
-			self:StopBar(CL["cast"]:format(args.spellName))
+			self:StopBar("<"..args.spellName..">")
 			self:Message(args.spellId, "Positive", nil, CL["interrupted"]:format(args.spellName))
 		end
 	end
@@ -162,8 +165,8 @@ function mod:RainOfFire(args)
 end
 
 function mod:ChaosBolt(args)
-	self:Message(args.spellId, "Urgent", "Long", CL["cast"]:format(args.spellName))
-	self:Bar(args.spellId, 6, CL["cast"]:format(args.spellName))
+	self:Message(args.spellId, "Urgent", "Long")
+	self:Bar(args.spellId, 6, "<"..args.spellName..">")
 	self:Bar(args.spellId, 60)
 end
 
