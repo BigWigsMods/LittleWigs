@@ -4,7 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Kanrethad Ebonlocke", 919)
-mod:RegisterEnableMob(69964)
+mod:RegisterEnableMob(69964, 70052) -- Kanrethad Ebonlocke, Demonic Soulwell
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -14,6 +14,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.summons = "Summons"
 	L.debuffs = "Debuffs"
+	L.start_say = "BEHOLD", -- BEHOLD! I have truly mastered the fel energies of this world! The demonic power I now command... It is indescribable, unlimited, OMNIPOTENT!
 	L.win_say = "Jubeka" -- Jubeka?! What are you...?!
 end
 L = mod:GetLocale()
@@ -35,10 +36,15 @@ function mod:GetOptions()
 	}
 end
 
-function mod:VerifyEnable(unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp > 8 and UnitCanAttack("player", unit) then
+function mod:VerifyEnable(unit, mobId)
+	-- XXX backwards compat with old BW, remove eventually
+	if (mobId or self:MobId(UnitGUID(unit))) == 70052 then -- Always enable on Soulwell
 		return true
+	else
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp > 8 and UnitCanAttack("player", unit) then
+			return true
+		end
 	end
 end
 
@@ -147,6 +153,9 @@ end
 function mod:WinCheck(_, msg)
 	if msg:find(L["win_say"], nil, true) then
 		self:Win()
+	elseif msg:find(L["start_say"], nil, true) then
+		self:Bar("bosskill", 15, COMBAT) -- Global "Combat" string
+		self:CDBar(138789, 29) -- Pit Lord
 	end
 end
 
