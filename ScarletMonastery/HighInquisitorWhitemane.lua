@@ -78,7 +78,7 @@ end
 function mod:Deaths()
 	deaths = deaths + 1
 	if deaths == 1 then
-		self:Message("stages", "Positive", nil, CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638))
+		self:Message("stages", "Positive", nil, CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638), false)
 		self:StopBar(115629)
 	elseif deaths == 3 then
 		self:Win()
