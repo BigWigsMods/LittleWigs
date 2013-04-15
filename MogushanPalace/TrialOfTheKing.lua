@@ -90,7 +90,7 @@ function mod:ConflagOver()
 end
 
 function mod:Shockwave(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
+	self:Message(args.spellId, "Urgent", "Alert", CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar(args.spellId, 2, CL["cast"]:format(args.spellName), args.spellId)
 end
 

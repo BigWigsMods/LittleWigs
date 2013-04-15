@@ -50,7 +50,7 @@ end
 
 function mod:BreathCast(args)
 	local breath = self:SpellName(31661)
-	self:Message(args.spellId, "Attention", "Long", CL["cast"]:format(breath))
+	self:Message(args.spellId, "Attention", "Long", CL["casting"]:format(breath))
 	self:Bar(args.spellId, 2, CL["cast"]:format(breath), args.spellId)
 end
 
@@ -65,6 +65,6 @@ end
 
 function mod:BookBurner(args)
 	self:Bar(args.spellId, 3, CL["cast"]:format(args.spellName))
-	self:Message(args.spellId, "Important", "Info", CL["cast"]:format(args.spellName))
+	self:Message(args.spellId, "Important", "Info", CL["casting"]:format(args.spellName))
 end
 

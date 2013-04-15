@@ -74,12 +74,12 @@ function mod:HazeOfHate(player, spellId, _, _, spellName)
 end
 
 function mod:RisingHateStart(_, spellId, _, _, spellName)
-	self:Message(107356, CL["cast"]:format(spellName), "Important", spellId, "Alert")
+	self:Message(107356, CL["casting"]:format(spellName), "Important", spellId, "Alert")
 	self:Bar(107356, CL["cast"]:format(spellName), 5, spellId)
 	self:Bar(107356, "~"..spellName, 16.5, spellId) -- 16-19
 end
 
 function mod:RisingHateStop(_, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(spellName))
+	self:StopBar(CL["cast"]:format(spellName))
 end
 

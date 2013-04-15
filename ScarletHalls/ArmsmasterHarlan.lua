@@ -67,7 +67,7 @@ function mod:Cleave(args)
 end
 
 function mod:BladesCastStart(args)
-	self:Message("blades", "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
+	self:Message("blades", "Urgent", "Alert", CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar("blades", 6, CL["cast"]:format(args.spellName), args.spellId)
 	self:Flash("blades")
 	self:StopBar(845)

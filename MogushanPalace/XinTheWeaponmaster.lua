@@ -52,7 +52,7 @@ end
 --
 
 function mod:GroundSlam(args)
-	self:Message(-5970, "Urgent", "Alert", CL["cast"]:format(args.spellName), args.spellId)
+	self:Message(-5970, "Urgent", "Alert", CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar(-5970, 3, CL["cast"]:format(args.spellName), args.spellId)
 end
 

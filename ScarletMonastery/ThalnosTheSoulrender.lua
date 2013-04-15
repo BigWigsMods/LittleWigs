@@ -46,7 +46,7 @@ end
 --
 
 function mod:SpiritGaleCast(args)
-	self:Message(-5865, "Attention", nil, CL["cast"]:format(args.spellName), args.spellId)
+	self:Message(-5865, "Attention", nil, CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar(-5865, 2, CL["cast"]:format(args.spellName), args.spellId)
 end
 
