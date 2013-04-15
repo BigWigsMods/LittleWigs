@@ -37,8 +37,7 @@ function mod:GetOptions()
 end
 
 function mod:VerifyEnable(unit, mobId)
-	-- XXX backwards compat with old BW, remove eventually
-	if (mobId or self:MobId(UnitGUID(unit))) == 70052 then -- Always enable on Soulwell
+	if mobId == 70052 then -- Always enable on Soulwell
 		return true
 	else
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
