@@ -19,5 +19,7 @@
 <Include file="BlackTempleSolo\locales.xml"/>
 <Include file="BlackTempleSolo\modules.xml"/>
 
+<Include file="Auchindoun\modules.xml"/>
+
 </Ui>
 
