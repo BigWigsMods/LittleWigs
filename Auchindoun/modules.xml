@@ -2,6 +2,9 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Protector.lua"/>
+<Script file="Nyami.lua"/>
+<Script file="Azzakel.lua"/>
+<Script file="Terongor.lua"/>
 
 </Ui>
 
