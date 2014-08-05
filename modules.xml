@@ -21,5 +21,7 @@
 
 <Include file="Auchindoun\modules.xml"/>
 
+<Include file="BloodmaulSlagMines\modules.xml"/>
+
 </Ui>
 
