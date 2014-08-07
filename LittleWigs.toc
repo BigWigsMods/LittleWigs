@@ -7,7 +7,7 @@
 ## X-Credits: Ulic
 ## LoadOnDemand: 1
 
-## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919, 984
+## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919, 964, 984, 993
 ## Dependencies: BigWigs
 
 modules.xml

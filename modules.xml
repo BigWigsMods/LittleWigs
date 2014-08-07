@@ -23,5 +23,7 @@
 
 <Include file="BloodmaulSlagMines\modules.xml"/>
 
+<Include file="GrimrailDepot\modules.xml"/>
+
 </Ui>
 

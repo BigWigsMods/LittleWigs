@@ -13,7 +13,7 @@ mod:RegisterEnableMob(80005)
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	
+	L.rakun = "Rakun"
 end
 L = mod:GetLocale()
 
@@ -23,13 +23,17 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"bosskill",
+		161801, 162058, 161588, "bosskill",
 	}
 end
 
 function mod:OnBossEnable()
-	--self:Log("SPELL_CAST_START", "HolyShield", 153002)
-	--self:Log("SPELL_CAST_START", "ConsecratedLight", 153006)
+	self:Log("SPELL_CAST_START", "SpinningSpear", 162058) -- XXX relevant?
+
+	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
+
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Thunder")
 
 	self:Death("Win", 80005)
 end
@@ -37,15 +41,21 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
---[[
-function mod:HolyShield(args)
-	self:Message(args.spellId, "Urgent", "Warning")
-	self:CDBar(args.spellId, 47)
-	self:Bar(153006, 7)
+
+function mod:Thunder(_, _, _, _, _, target)
+	if target == L.rakun then
+		self:Message(161801, "Important", "Alert", CL.incoming:format(self:SpellName(161801)))
+		self:Bar(161801, 17.3)
+	end
 end
 
-function mod:ConsecratedLight(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:Bar(args.spellId, 9, CL.cast:format(args.spellName))
-end]]
+function mod:SpinningSpear(args)
+	self:Message(args.spellId, "Attention")
+end
+
+function mod:DiffusedEnergy(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+	end
+end
 
