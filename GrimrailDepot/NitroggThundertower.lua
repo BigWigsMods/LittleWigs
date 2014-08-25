@@ -31,12 +31,18 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "SuppressiveFire", 160681)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
 	self:Log("SPELL_AURA_REMOVED", "SuppressiveFireRemoved", 160681)
 
+	self:Log("SPELL_AURA_APPLIED", "PickedUpMortarShells", 160702)
+	self:Death("EngineerDies", 79720) -- Blackrock Artillery Engineer
+
+	self:Log("SPELL_AURA_APPLIED", "PickedUpGrenades", 160703)
+	self:Death("GrenadierDies", 79739) -- Blackrock Grenadier
+
 	self:Death("Win", 79545)
-	self:Death("Grenadier", 79739) -- Blackrock Grenadier
-	self:Death("Engineer", 79720) -- Blackrock Artillery Engineer
 end
 
 --------------------------------------------------------------------------------
@@ -56,11 +62,23 @@ function mod:SuppressiveFireRemoved(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:Grenadier(args)
-	self:Message(161073, "Attention", nil, L.dropped:format(self:SpellName(161073)))
+do
+	function mod:EngineerDies(args)
+		self:Message(160965, "Urgent", "Alert", L.dropped:format(self:SpellName(160965)))
+	end
+
+	function mod:PickedUpMortarShells(args)
+		self:TargetMessage(160965, args.destName, "Positive")
+	end
 end
 
-function mod:Engineer(args)
-	self:Message(160965, "Urgent", "Alert", L.dropped:format(self:SpellName(160965)))
+do
+	function mod:GrenadierDies(args)
+		self:Message(161073, "Attention", nil, L.dropped:format(self:SpellName(161073)))
+	end
+
+	function mod:PickedUpGrenades(args)
+		self:TargetMessage(161073, args.destName, "Positive")
+	end
 end
 

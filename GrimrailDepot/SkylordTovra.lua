@@ -23,12 +23,15 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		161801, 162058, 161588, "bosskill",
+		161801, 162058, 161588, {162066, "SAY", "FLASH"}, "bosskill",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "SpinningSpear", 162058) -- XXX relevant?
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
+	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
 
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
@@ -51,11 +54,26 @@ end
 
 function mod:SpinningSpear(args)
 	self:Message(args.spellId, "Attention")
+	self:CDBar(args.spellId, 16.5) -- 16.4-16.9
 end
 
 function mod:DiffusedEnergy(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+	end
+end
+
+do
+	local function printTarget(self, player, guid)
+		if self:Me(guid) then
+			self:Say(162066)
+			self:Flash(162066)
+		end
+		self:TargetMessage(162066, player, "Urgent", "Info")
+	end
+	function mod:FreezingSnare(args)
+		self:CDBar(args.spellId, 16.5) -- 16.5-17
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 
