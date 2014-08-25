@@ -28,11 +28,19 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
 	self:Log("SPELL_CAST_START", "ClawsOfArgus", 153764)
 	self:Log("SPELL_AURA_APPLIED", "CurtainOfFlame", 153392)
 	self:Log("SPELL_AURA_REMOVED", "CurtainOfFlameRemoved", 153392)
 
 	self:Death("Win", 75927)
+end
+
+function mod:OnEngage()
+	-- XXX First claws is now ~27s or ~60%
+	self:CDBar(153764, 27) -- Claws of Argus
+	self:CDBar(153392, 15) -- Curtain of Flame
 end
 
 --------------------------------------------------------------------------------
@@ -41,7 +49,7 @@ end
 
 function mod:ClawsOfArgus(args)
 	self:Message(args.spellId, "Attention")
-	self:CDBar(args.spellId, 60)
+	self:Bar(args.spellId, 60)
 	self:Bar(args.spellId, 17, CL.cast:format(args.spellName))
 end
 

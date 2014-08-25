@@ -26,7 +26,7 @@ mod.displayName = L.displayname
 
 function mod:GetOptions()
 	return {
-		{157168, "FLASH", "SAY"}
+		{157168, "FLASH", "SAY", "ICON"}
 	}, {
 		[157168] = L.abyssal,
 	}
@@ -45,6 +45,7 @@ end
 function mod:Fixate(args)
 	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
 	self:TargetBar(args.spellId, 12, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 		self:Say(args.spellId)

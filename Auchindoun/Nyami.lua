@@ -28,11 +28,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
 	self:Log("SPELL_CAST_START", "SoulVessel", 155327)
 	self:Log("SPELL_CAST_START", "TornSpirits", 153994)
 	self:Log("SPELL_AURA_APPLIED", "ShadowWordPain", 154477)
 
 	self:Death("Win", 76177)
+end
+
+function mod:OnEngage()
+	self:CDBar(155327, 6) -- Soul Vessel
 end
 
 --------------------------------------------------------------------------------
