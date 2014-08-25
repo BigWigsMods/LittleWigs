@@ -23,13 +23,14 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		155327, 153994, "bosskill",
+		155327, 153994, {154477, "DISPEL"}, "bosskill",
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SoulVessel", 155327)
 	self:Log("SPELL_CAST_START", "TornSpirits", 153994)
+	self:Log("SPELL_AURA_APPLIED", "ShadowWordPain", 154477)
 
 	self:Death("Win", 76177)
 end
@@ -48,5 +49,11 @@ function mod:TornSpirits(args)
 	self:Message(args.spellId, "Attention", "Alert", CL.incoming:format(CL.adds))
 	self:CDBar(args.spellId, 27.7)
 	self:Bar(args.spellId, 3, CL.adds)
+end
+
+function mod:ShadowWordPain(args)
+	if self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, true)
+	end
 end
 

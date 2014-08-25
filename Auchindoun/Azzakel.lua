@@ -23,7 +23,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		153764, {153392, "FLASH", "ICON"}, "bosskill",
+		153764, {153392, "FLASH", "ICON", "PROXIMITY"}, "bosskill",
 	}
 end
 
@@ -54,6 +54,9 @@ do
 		self:PrimaryIcon(args.spellId, lastPlayer)
 		if self:Me(args.destGUID) then
 			self:Flash(args.spellId)
+			self:OpenProximity(args.spellId, 5)
+		else
+			self:OpenProximity(args.spellId, 5, lastPlayer)
 		end
 	end
 
@@ -61,6 +64,7 @@ do
 		-- It can spread, so only remove after it has wore off from the last person it affected.
 		if args.destName == lastPlayer then
 			self:PrimaryIcon(args.spellId)
+			self:CloseProximity(args.spellId)
 			lastPlayer = nil
 		end
 	end

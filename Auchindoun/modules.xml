@@ -5,6 +5,7 @@
 <Script file="Nyami.lua"/>
 <Script file="Azzakel.lua"/>
 <Script file="Terongor.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 
