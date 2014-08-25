@@ -16,7 +16,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Ah-hah! Another chance to test my might."
 
-	L.cleave = EJ_GetSectionInfo(5377) .. " (".. mod:SpellName(845) ..")"
+	L.cleave = EJ_GetSectionInfo(5377) .. " (".. mod:SpellName(15284) ..")" -- 15284 = "Cleave"
 	L.cleave_desc = select(2, EJ_GetSectionInfo(5377))
 	L.cleave_icon = 111217
 
