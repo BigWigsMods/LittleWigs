@@ -23,29 +23,45 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"bosskill",
+		150776, 150755, 150677, 150678, "bosskill",
 	}
 end
 
 function mod:OnBossEnable()
-	--self:Log("SPELL_CAST_START", "HolyShield", 153002)
-	--self:Log("SPELL_CAST_START", "ConsecratedLight", 153006)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_CAST_START", "MagmaEruption", 150776)
+	self:Log("SPELL_CAST_START", "UnstableSlag", 150755)
+	self:Log("SPELL_CAST_START", "MoltenBlast", 150677)
+	self:Log("SPELL_AURA_APPLIED", "MoltenCore", 150678)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "MoltenCore", 150678)
 
 	self:Death("Win", 74790)
+end
+
+function mod:OnEngage()
+	self:CDBar(150755, 20) -- Summon Unstable Slag
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
---[[
-function mod:HolyShield(args)
-	self:Message(args.spellId, "Urgent", "Warning")
-	self:CDBar(args.spellId, 47)
-	self:Bar(153006, 7)
+
+function mod:MagmaEruption(args)
+	self:Message(args.spellId, "Urgent", "Info")
+	self:CDBar(args.spellId, 20) -- 20-21
 end
 
-function mod:ConsecratedLight(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:Bar(args.spellId, 9, CL.cast:format(args.spellName))
-end]]
+function mod:UnstableSlag(args)
+	self:Message(args.spellId, "Important", "Warning")
+	self:CDBar(args.spellId, 21)
+end
+
+function mod:MoltenBlast(args)
+	self:Message(args.spellId, "Attention", "Long")
+end
+
+function mod:MoltenCore(args)
+	self:StackMessage(args.spellId, args.destName, args.amount, "Attention")
+end
 

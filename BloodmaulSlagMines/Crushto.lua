@@ -23,13 +23,17 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"bosskill",
+		150753, 150759, {150751, "FLASH", "ICON"}, "bosskill",
 	}
 end
 
 function mod:OnBossEnable()
-	--self:Log("SPELL_CAST_START", "HolyShield", 153002)
-	--self:Log("SPELL_CAST_START", "ConsecratedLight", 153006)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_CAST_START", "FerociousYell", 150759)
+	self:Log("SPELL_CAST_START", "WildSlam", 150753)
+	self:Log("SPELL_AURA_APPLIED", "CrushingLeap", 150751)
+	self:Log("SPELL_AURA_REMOVED", "CrushingLeapOver", 150751)
 
 	self:Death("Win", 74787)
 end
@@ -37,15 +41,25 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
---[[
-function mod:HolyShield(args)
+
+function mod:FerociousYell(args)
 	self:Message(args.spellId, "Urgent", "Warning")
-	self:CDBar(args.spellId, 47)
-	self:Bar(153006, 7)
 end
 
-function mod:ConsecratedLight(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:Bar(args.spellId, 9, CL.cast:format(args.spellName))
-end]]
+function mod:WildSlam(args)
+	self:Message(args.spellId, "Attention", "Long")
+end
+
+function mod:CrushingLeap(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetBar(args.spellId, 8, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Flash(args.spellId)
+	end
+end
+
+function mod:CrushingLeapOver(args)
+	self:PrimaryIcon(args.spellId)
+end
 

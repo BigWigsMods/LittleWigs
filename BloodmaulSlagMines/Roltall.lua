@@ -23,13 +23,16 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"bosskill",
+		153247, 152940, "bosskill",
 	}
 end
 
 function mod:OnBossEnable()
-	--self:Log("SPELL_CAST_START", "HolyShield", 153002)
-	--self:Log("SPELL_CAST_START", "ConsecratedLight", 153006)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_CAST_START", "FieryBoulder", 153247)
+	self:Log("SPELL_CAST_START", "HeatWaveInc", 152940)
+	self:Log("SPELL_CAST_SUCCESS", "HeatWaveBegin", 152940)
 
 	self:Death("Win", 75786)
 end
@@ -37,15 +40,17 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
---[[
-function mod:HolyShield(args)
+
+function mod:FieryBoulder(args)
 	self:Message(args.spellId, "Urgent", "Warning")
-	self:CDBar(args.spellId, 47)
-	self:Bar(153006, 7)
 end
 
-function mod:ConsecratedLight(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:Bar(args.spellId, 9, CL.cast:format(args.spellName))
-end]]
+function mod:HeatWaveInc(args)
+	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
+end
+
+function mod:HeatWaveBegin(args)
+	self:Message(args.spellId, "Important")
+	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
+end
 
