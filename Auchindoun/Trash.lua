@@ -5,6 +5,8 @@
 
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Auchindoun Trash", 984)
+if not mod then return end
+mod.displayName = CL.trash
 mod:RegisterEnableMob(79508)
 
 --------------------------------------------------------------------------------
@@ -13,12 +15,9 @@ mod:RegisterEnableMob(79508)
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.displayname = "Trash"
-
 	L.abyssal = "Felborne Abyssal"
 end
 L = mod:GetLocale()
-mod.displayName = L.displayname
 
 --------------------------------------------------------------------------------
 -- Initialization

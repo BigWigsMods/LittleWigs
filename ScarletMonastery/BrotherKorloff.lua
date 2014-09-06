@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Brother Korloff", 874, 671)
+if not mod then return end
 mod:RegisterEnableMob(59223)
 
 --------------------------------------------------------------------------------

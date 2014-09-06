@@ -5,6 +5,7 @@
 
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Teron'gor", 984, 1225)
+if not mod then return end
 mod:RegisterEnableMob(77734)
 
 --------------------------------------------------------------------------------

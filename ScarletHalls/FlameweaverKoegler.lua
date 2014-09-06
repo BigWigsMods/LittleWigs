@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Flameweaver Koegler", 871, 656)
+if not mod then return end
 mod:RegisterEnableMob(59150)
 
 --------------------------------------------------------------------------------

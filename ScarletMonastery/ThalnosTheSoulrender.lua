@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Thalnos the Soulrender", 874, 688)
+if not mod then return end
 mod:RegisterEnableMob(59789)
 
 --------------------------------------------------------------------------------

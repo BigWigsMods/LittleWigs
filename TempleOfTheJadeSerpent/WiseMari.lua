@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Wise Mari", 867, 672)
+if not mod then return end
 mod:RegisterEnableMob(56448)
 
 local deaths = 0

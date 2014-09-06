@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Liu Flameheart", 867, 658)
+if not mod then return end
 mod:RegisterEnableMob(56732)
 
 local smash = mod:SpellName(34618)

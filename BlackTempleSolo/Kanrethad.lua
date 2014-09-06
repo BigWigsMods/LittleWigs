@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Kanrethad Ebonlocke", 919)
+if not mod then return end
 mod:RegisterEnableMob(69964, 70052) -- Kanrethad Ebonlocke, Demonic Soulwell
 
 --------------------------------------------------------------------------------

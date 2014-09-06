@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Sha of Doubt", 867, 335)
+if not mod then return end
 mod:RegisterEnableMob(56439)
 
 local canEnable = true

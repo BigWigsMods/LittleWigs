@@ -5,6 +5,7 @@
 
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Bonemaw", 969, 1140)
+if not mod then return end
 mod:RegisterEnableMob(75452)
 
 --------------------------------------------------------------------------------

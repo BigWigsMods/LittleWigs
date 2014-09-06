@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Sha of Violence", 877, 685)
+if not mod then return end
 mod:RegisterEnableMob(56719)
 
 --------------------------------------------------------------------------------

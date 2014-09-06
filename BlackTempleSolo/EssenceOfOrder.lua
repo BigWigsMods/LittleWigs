@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Essence of Order", 919)
+if not mod then return end
 mod:RegisterEnableMob(68151)
 
 --------------------------------------------------------------------------------

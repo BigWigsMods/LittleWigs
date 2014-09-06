@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Gekkan", 885, 690)
+if not mod then return end
 mod:RegisterEnableMob(61243)
 
 local deaths = 0

@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Xin the Weaponmaster", 885, 698)
+if not mod then return end
 mod:RegisterEnableMob(61398)
 
 local phase = 1

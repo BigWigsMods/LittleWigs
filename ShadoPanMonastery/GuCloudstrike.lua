@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Gu Cloudstrike", 877, 673)
+if not mod then return end
 mod:RegisterEnableMob(56747, 56754) -- Gu, Serpent
 
 --------------------------------------------------------------------------------

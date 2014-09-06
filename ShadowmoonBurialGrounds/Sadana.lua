@@ -5,6 +5,7 @@
 
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Sadana Bloodfury", 969, 1139)
+if not mod then return end
 mod:RegisterEnableMob(86234)
 
 --------------------------------------------------------------------------------

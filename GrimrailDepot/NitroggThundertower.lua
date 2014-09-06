@@ -5,6 +5,7 @@
 
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Nitrogg Thundertower", 993, 1163)
+if not mod then return end
 mod:RegisterEnableMob(79545)
 
 --------------------------------------------------------------------------------

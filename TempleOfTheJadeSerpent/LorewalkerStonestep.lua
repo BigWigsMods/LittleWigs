@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Lorewalker Stonestep", 867, 664)
+if not mod then return end
 mod:RegisterEnableMob(56541)
 
 local phase = 1

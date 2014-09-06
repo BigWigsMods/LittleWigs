@@ -4,6 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Taran Zhu", 877, 686)
+if not mod then return end
 mod:RegisterEnableMob(56884)
 
 --------------------------------------------------------------------------------
