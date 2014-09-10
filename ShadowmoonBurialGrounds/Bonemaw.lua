@@ -24,12 +24,16 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		{153804, "FLASH"}, -- Inhale
 		"bosskill",
 	}
 end
 
 function mod:OnBossEnable()
-	--self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "InhaleInc", "boss1")
+	self:Log("SPELL_CAST_SUCCESS", "Inhale", 153804)
 
 	self:Death("Win", 75452)
 end
@@ -37,4 +41,16 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:InhaleInc(unit, spellName, _, _, spellId)
+	if spellId == 154868 or spellId == 154214 then -- Inhale, Teleport Logic
+		self:Message(153804, "Urgent", "Warning", CL.incoming:format(spellName))
+		self:Flash(153804)
+	end
+end
+
+function mod:Inhale(args)
+	self:Bar(args.spellId, 9, CL.cast:format(args.spellName))
+	self:Message(args.spellId, "Urgent", "Warning")
+end
 
