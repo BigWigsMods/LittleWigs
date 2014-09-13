@@ -6,7 +6,7 @@
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Grimrail Enforcers", 987, 1236)
 if not mod then return end
-mod:RegisterEnableMob(-1)
+mod:RegisterEnableMob(1)
 
 --------------------------------------------------------------------------------
 -- Localization
