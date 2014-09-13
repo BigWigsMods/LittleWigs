@@ -9,6 +9,12 @@ if not mod then return end
 mod:RegisterEnableMob(76407)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local omenCounter = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -43,6 +49,8 @@ end
 
 function mod:OnEngage()
 	self:CDBar(-9680, 20.6) -- Ritual of Bones
+	self:CDBar(154350, 11) -- Omen of Death
+	omenCounter = 1
 end
 
 --------------------------------------------------------------------------------
@@ -51,18 +59,23 @@ end
 
 function mod:Malevolence(args)
 	self:Message(args.spellId, "Attention", self:Tank() and "Alarm")
-	self:CDBar(args.spellId, 9.6) -- 9.6-10.8
+	self:CDBar(args.spellId, 9) -- 8.4-10.8, remove?
 end
 
-function mod:OmenOfDeath(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:CDBar(args.spellId, 10.5) -- 10.5-10.9
+do
+	-- 36.8, 13.7, 35.8, 17.2, 37, 14.8, 35.8
+	-- XXX This is still being patched so I'm not going to spend too much time fixing it until later.
+	function mod:OmenOfDeath(args)
+		self:Message(args.spellId, "Important", "Alert")
+		self:CDBar(args.spellId, omenCounter % 2 == 0 and 14 or 35.8)
+		omenCounter = omenCounter + 1
+	end
 end
 
 function mod:RitualOfBones(unit, spellName, _, _, spellId)
 	if spellId == 154671 then -- Ritual of Bones
 		self:Message(-9680, "Urgent", "Warning")
-		--self:Bar(-9680, 0)
+		self:CDBar(-9680, 50.5) -- 50.5-53.0
 	end
 end
 
