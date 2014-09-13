@@ -25,6 +25,8 @@
 
 <Include file="GrimrailDepot\modules.xml"/>
 
+<Include file="IronDocks\modules.xml"/>
+
 <Include file="ShadowmoonBurialGrounds\modules.xml"/>
 
 </Ui>
