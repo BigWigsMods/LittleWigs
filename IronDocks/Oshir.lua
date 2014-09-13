@@ -6,7 +6,7 @@
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Oshir", 987, 1237)
 if not mod then return end
-mod:RegisterEnableMob(1)
+mod:RegisterEnableMob(79852)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -31,7 +31,7 @@ end
 function mod:OnBossEnable()
 	--self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Win", -1)
+	self:Death("Win", 79852)
 end
 
 function mod:OnEngage()

@@ -6,7 +6,7 @@
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Skulloc", 987, 1238)
 if not mod then return end
-mod:RegisterEnableMob(1)
+mod:RegisterEnableMob(83612, 83613, 83616) -- Skulloc, Koramar, Zoggosh
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -31,7 +31,7 @@ end
 function mod:OnBossEnable()
 	--self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Win", -1)
+	self:Death("Win", 83612)
 end
 
 function mod:OnEngage()
