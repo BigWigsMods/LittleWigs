@@ -24,12 +24,15 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		{168929, "FLASH"}, -- Cannon Barrage
 		"bosskill",
 	}
 end
 
 function mod:OnBossEnable()
-	--self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_CAST_START", "CannonBarrage", 168929)
 
 	self:Death("Win", 83612)
 end
@@ -41,4 +44,9 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:CannonBarrage(args)
+	self:Message(args.spellId, "Urgent", "Warning")
+	self:Flash(args.spellId)
+end
 
