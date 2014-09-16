@@ -3,8 +3,8 @@
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
+## Author: Funkydude
 ## X-Category: Party
-## X-Credits: Ulic
 ## LoadOnDemand: 1
 
 ## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919, 964, 969, 984, 987, 993
