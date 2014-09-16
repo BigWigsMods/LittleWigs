@@ -39,8 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	-- XXX First claws is now ~27s or ~60%
-	self:CDBar(153764, 27) -- Claws of Argus
+	self:CDBar(153764, 28) -- Claws of Argus
 	self:CDBar(153392, 15) -- Curtain of Flame
 end
 

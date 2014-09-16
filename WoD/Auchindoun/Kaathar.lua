@@ -24,7 +24,9 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		153002, 153006, "bosskill",
+		153002, -- Holy Shield
+		{153006, "FLASH"}, -- Consecrated Light
+		"bosskill",
 	}
 end
 
@@ -38,22 +40,27 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(153002, 30) -- Holy Shield
+	self:CDBar(153002, 30.5) -- Holy Shield
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:HolyShield(args)
-	-- XXX warn for target?
-	self:Message(args.spellId, "Urgent", "Warning")
-	self:CDBar(args.spellId, 47)
-	self:Bar(153006, 7)
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(153002, player, "Urgent", "Alert", nil, nil, true)
+	end
+	function mod:HolyShield(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(args.spellId, 47)
+		self:Bar(153006, 7) -- Consecrated Light
+	end
 end
 
 function mod:ConsecratedLight(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:Bar(args.spellId, 9, CL.cast:format(args.spellName))
+	self:Message(args.spellId, "Important", "Warning")
+	self:Bar(args.spellId, 12, CL.cast:format(args.spellName))
+	self:Flash(args.spellId)
 end
 
