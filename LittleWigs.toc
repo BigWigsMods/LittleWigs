@@ -5,10 +5,11 @@
 ## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
 ## Author: Funkydude
 ## X-Category: Party
-## LoadOnDemand: 1
+## X-Credits: Ulic
 
-## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919, 964, 969, 984, 987, 993
+## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919, 964, 969, 984, 987, 989, 993
 ## Dependencies: BigWigs
+## LoadOnDemand: 1
 
 modules.xml
 

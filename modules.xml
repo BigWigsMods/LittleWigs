@@ -29,5 +29,7 @@
 
 <Include file="WoD\ShadowmoonBurialGrounds\modules.xml"/>
 
+<Include file="WoD\Skyreach\modules.xml"/>
+
 </Ui>
 
