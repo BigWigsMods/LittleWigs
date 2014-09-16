@@ -6,7 +6,7 @@
 if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Sadana Bloodfury", 969, 1139)
 if not mod then return end
-mod:RegisterEnableMob(86234)
+mod:RegisterEnableMob(75509)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DarkCommunion", 153153)
 	self:Log("SPELL_AURA_APPLIED", "Deathspike", 162696)
 
-	self:Death("Win", 86234)
+	self:Death("Win", 75509)
 end
 
 function mod:OnEngage()
@@ -66,7 +66,7 @@ end
 
 do
 	local function printTarget(self) -- XXX no boss unit available to use... yet
-		local bossId = self:GetUnitIdByGUID(86234)
+		local bossId = self:GetUnitIdByGUID(75509)
 		if not bossId then return end
 		local bossTarget = bossId.."target"
 		if UnitExists(bossTarget) then
