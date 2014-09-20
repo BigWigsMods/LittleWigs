@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<!--------------------MoP-------------------->
+<!-- Mists of Pandaria -->
 
 <Include file="MoP\ShadoPanMonastery\locales.xml"/>
 <Include file="MoP\ShadoPanMonastery\modules.xml"/>
@@ -21,7 +21,7 @@
 <Include file="MoP\BlackTempleSolo\locales.xml"/>
 <Include file="MoP\BlackTempleSolo\modules.xml"/>
 
-<!--------------------WoD-------------------->
+<!-- Warlords of Draenor -->
 
 <Include file="WoD\Auchindoun\modules.xml"/>
 
