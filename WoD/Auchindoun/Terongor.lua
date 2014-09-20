@@ -35,7 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ChaosWave", 157001)
 	self:Log("SPELL_CAST_START", "DemonicLeap", 157039)
 
-	self:Death("Win", 77734)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Success", "boss1")
 end
 
 --------------------------------------------------------------------------------
@@ -71,6 +71,12 @@ do
 	function mod:DemonicLeap(args)
 		self:CDBar(args.spellId, 20) -- 20-23
 		self:GetBossTarget(printTarget, 1, args.sourceGUID)
+	end
+end
+
+function mod:Success(unit, spellName, _, _, spellId)
+	if spellId == 114268 then -- Shadow Nova
+		self:Win()
 	end
 end
 
