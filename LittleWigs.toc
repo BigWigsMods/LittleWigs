@@ -7,7 +7,7 @@
 ## X-Category: Party
 ## X-Credits: Ulic
 
-## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919, 964, 969, 984, 987, 989, 993
+## X-BigWigs-LoadOn-ZoneId: 877, 871, 874, 885, 867, 919, 964, 969, 984, 987, 989, 993, 995
 ## Dependencies: BigWigs
 ## LoadOnDemand: 1
 

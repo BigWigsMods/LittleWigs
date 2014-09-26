@@ -35,5 +35,7 @@
 
 <Include file="WoD\Skyreach\modules.xml"/>
 
+<Include file="WoD\UpperBlackrockSpire\modules.xml"/>
+
 </Ui>
 
