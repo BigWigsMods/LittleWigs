@@ -7,8 +7,6 @@ local mod, CL = BigWigs:NewBoss("Liu Flameheart", 867, 658)
 if not mod then return end
 mod:RegisterEnableMob(56732)
 
-local smash = mod:SpellName(34618)
-
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -34,7 +32,7 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Win", 56719)
+	self:Death("Win", 56732)
 end
 
 function mod:OnEngage()

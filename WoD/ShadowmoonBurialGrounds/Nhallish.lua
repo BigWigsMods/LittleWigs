@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Log("SPELL_CAST_START", "PlanarShift", 153623)
-	self:Log("SPELL_CAST_START", "VoidVortex", 153623)
+	self:Log("SPELL_CAST_START", "VoidVortex", 152801)
 	self:Log("SPELL_CAST_SUCCESS", "SoulShred", 152979)
 	self:Log("SPELL_CAST_START", "VoidDevastation", 153067)
 

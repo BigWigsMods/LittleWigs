@@ -5,7 +5,8 @@
 
 local mod, CL = BigWigs:NewBoss("Gekkan", 885, 690)
 if not mod then return end
-mod:RegisterEnableMob(61243)
+-- Gekkan, Glintrok Scout, Glintrok Scout, Glintrok Ironhide
+mod:RegisterEnableMob(61243, 61399, 64243, 61242)
 
 local deaths = 0
 

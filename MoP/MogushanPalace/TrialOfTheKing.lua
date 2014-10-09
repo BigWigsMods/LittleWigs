@@ -5,8 +5,8 @@
 
 local mod, CL = BigWigs:NewBoss("Trial of the King", 885, 708)
 if not mod then return end
--- Xin the Weaponmaster, Haiyan the Unstoppable, Ming the Cunning, Kuai the Brute, Mu'Shiba
-mod:RegisterEnableMob(61884, 61445, 61444, 61442, 61453)
+-- Xin the Weaponmaster, Haiyan the Unstoppable, Ming the Cunning, Kuai the Brute
+mod:RegisterEnableMob(61884, 61445, 61444, 61442)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -14,8 +14,7 @@ mod:RegisterEnableMob(61884, 61445, 61444, 61442, 61453)
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	--A Saurok runs down a hidden set of stairs with some of the treasure!
-	L.win_emote = "treasure"
+	L.scout = "Glintrok Scout"
 end
 L = mod:GetLocale()
 
@@ -43,6 +42,8 @@ function mod:VerifyEnable(unit)
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+
 	self:Log("SPELL_AURA_APPLIED", "TraumaticBlow", 123655)
 
 	self:Log("SPELL_AURA_APPLIED", "Ravage", 119946)
@@ -58,12 +59,24 @@ function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "MeteorHit", 120196)
 	self:Log("SPELL_MISSED", "MeteorHit", 120196)
 
-	self:Emote("Win", L["win_emote"])
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	local mobId = self:MobId(UnitGUID("boss1"))
+	if mobId == 61445 then -- Haiyan the Unstoppable
+		
+	elseif mobId == 61444 then -- Ming the Cunning
+		
+	elseif mobId == 61442 then -- Kuai the Brute
+		self:CDBar(-6025, 40, 120195)
+	end
+	self:CheckBossStatus()
+end
 
 function mod:TraumaticBlow(args)
 	self:TargetMessage(args.spellId, args.destName, "Positive")
@@ -91,8 +104,8 @@ function mod:ConflagOver()
 end
 
 function mod:Shockwave(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL["casting"]:format(args.spellName), args.spellId)
-	self:Bar(args.spellId, 2, CL["cast"]:format(args.spellName), args.spellId)
+	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:Bar(args.spellId, 2, CL.cast:format(args.spellName), args.spellId)
 end
 
 function mod:Meteor(msg, _, _, _, player)
@@ -107,5 +120,11 @@ end
 
 function mod:MeteorHit()
 	self:PrimaryIcon(-6025)
+end
+
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, unit)
+	if unit == L.scout then
+		self:Win()
+	end
 end
 
