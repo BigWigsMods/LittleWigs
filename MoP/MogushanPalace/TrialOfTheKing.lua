@@ -54,10 +54,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "Shockwave", 119922)
 
-	--|TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
-	self:Emote("Meteor", "meteorstorm")
-	self:Log("SPELL_DAMAGE", "MeteorHit", 120196)
-	self:Log("SPELL_MISSED", "MeteorHit", 120196)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "MeteorFinished", "boss1")
 
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 end
@@ -69,11 +66,11 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	local mobId = self:MobId(UnitGUID("boss1"))
 	if mobId == 61445 then -- Haiyan the Unstoppable
-		
+		self:CDBar(-6025, 40, 120195)
 	elseif mobId == 61444 then -- Ming the Cunning
 		
 	elseif mobId == 61442 then -- Kuai the Brute
-		self:CDBar(-6025, 40, 120195)
+		
 	end
 	self:CheckBossStatus()
 end
@@ -108,23 +105,23 @@ function mod:Shockwave(args)
 	self:Bar(args.spellId, 2, CL.cast:format(args.spellName), args.spellId)
 end
 
-function mod:Meteor(msg, _, _, _, player)
-	self:TargetMessage(-6025, player, "Important", "Alarm", 120195)
-	self:TargetBar(-6025, 5, player, 120195)
-	self:PrimaryIcon(-6025, player)
-	if UnitIsUnit(player, "player") then
-		self:Flash(-6025)
-		self:Say(-6025, 120195)
+function mod:MeteorFinished(_, _, _, _, spellId)
+	if spellId == 120195 then
+		self:PrimaryIcon(-6025)
 	end
 end
 
-function mod:MeteorHit()
-	self:PrimaryIcon(-6025)
-end
-
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, unit)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, unit, _, _, player)
 	if unit == L.scout then
 		self:Win()
+	elseif msg:find("meteorstorm", nil, true) then -- |TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
+		self:TargetMessage(-6025, player, "Important", "Alarm", 120195)
+		self:TargetBar(-6025, 5, player, 120195)
+		self:PrimaryIcon(-6025, player)
+		if UnitIsUnit(player, "player") then
+			self:Flash(-6025)
+			self:Say(-6025, 120195)
+		end
 	end
 end
 

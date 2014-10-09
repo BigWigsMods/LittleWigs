@@ -72,7 +72,7 @@ function mod:HazeOfHate(args)
 end
 
 function mod:RisingHateStart(args)
-	self:Message(args.spellId, "Important", "Alert", CL["casting"]:format(args.spellName))
+	self:Message(args.spellId, "Important", "Warning", CL["casting"]:format(args.spellName))
 	self:Bar(args.spellId, 5, CL["cast"]:format(args.spellName))
 	self:CDBar(args.spellId, 16.5) -- 16-19
 end
