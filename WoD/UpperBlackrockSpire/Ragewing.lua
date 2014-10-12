@@ -75,7 +75,7 @@ function mod:EngulfingFire(args)
 end
 
 function mod:SwirlingWinds(args)
-	self:Message(-10740, "Important", "Long", ("%d%% - %d"):format(percent, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
+	self:Message(-10740, "Important", "Long", ("%d%% - %s"):format(percent, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
 	self:StopBar(155025) -- Engulfing Fire
 	percent = 40
 end

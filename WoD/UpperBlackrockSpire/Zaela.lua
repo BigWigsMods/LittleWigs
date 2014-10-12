@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(155721, 16.4) -- Black Iron Cyclone
+	self:CDBar(155721, 12.5) -- Black Iron Cyclone
 end
 
 --------------------------------------------------------------------------------
@@ -64,11 +64,10 @@ function mod:BlackIronCycloneOver(args)
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	BigWigs:Print(tostring(UnitCanAttack("player", unit)))
-	if UnitExists(unit) then
+	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Important", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else
-		self:Message("stages", "Important", "Info", ("60% - %s"):format(CL.intermission), false)
+		self:Message("stages", "Important", "Info", ("60%% - %s"):format(CL.intermission), false)
 		self:DelayedMessage("stages", 1, "Important", self:SpellName(-10741), "achievement_character_orc_male") -- Black Iron Wyrm Riders
 		self:Bar("stages", 28, CL.intermission, "achievement_character_orc_female")
 		self:StopBar(155721) -- Black Iron Cyclone

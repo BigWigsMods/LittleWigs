@@ -24,7 +24,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		161199, 161203, 161288, "bosskill",
+		161199, -- Debilitating Fixation
+		161203, -- Rejuvenating Serum
+		161288, -- Vileblood Serum
+		"bosskill",
 	}
 end
 

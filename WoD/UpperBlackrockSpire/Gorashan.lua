@@ -30,7 +30,8 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		166168, "bosskill",
+		166168, -- Power Conduit
+		"bosskill",
 	}
 end
 
