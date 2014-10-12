@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MadDash", 161090)
 	self:Log("SPELL_CAST_START", "Slam", 161087)
 
-	self:Death("Deaths", 74787, 7803) -- Borka, Rocketspark
+	self:Death("Deaths", 77816, 77803) -- Borka, Rocketspark
 end
 
 function mod:OnEngage()
@@ -56,13 +56,13 @@ end
 
 
 function mod:MadDash(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "Important", "Warning")
 	self:CDBar(args.spellId, 43)
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 end
 
 function mod:Slam(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "Urgent", self:Tank() and "Alert", CL.incoming:format(args.spellName))
 end
 
 function mod:Deaths(args)
