@@ -3,7 +3,6 @@
 -- Module Declaration
 --
 
-if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Warlord Zaela", 995, 1234)
 if not mod then return end
 mod:RegisterEnableMob(77120)
