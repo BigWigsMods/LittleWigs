@@ -1,0 +1,73 @@
+
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Archmage Sol", 1008, 1208)
+if not mod then return end
+mod:RegisterEnableMob(82682)
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		168885, -- Parasitic Growth
+		{166492, "FLASH"}, -- Firebloom
+		166726, -- Frozen Rain
+		"stages",
+		"bosskill",
+	}
+end
+
+function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_CAST_START", "ParasiticGrowth", 168885)
+	self:Log("SPELL_AURA_APPLIED", "MagicSchools", 166475, 166476, 166477) -- Fire, Frost, Arcane
+	self:Log("SPELL_AURA_APPLIED", "FrozenRain", 166726)
+	self:Log("SPELL_CAST_SUCCESS", "Firebloom", 166492)
+
+	self:Death("Win", 82682)
+end
+
+function mod:OnEngage()
+	self:Message("stages", "Neutral", nil, 166475) -- Fire
+	self:CDBar(168885, 33) -- Parasitic Growth
+end
+
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
+
+function mod:ParasiticGrowth(args)
+	self:Message(args.spellId, "Urgent", "Warning")
+	self:Bar(args.spellId, 34)
+end
+
+function mod:MagicSchools(args)
+	self:Message("stages", "Neutral", nil, args.spellId)
+end
+
+function mod:Firebloom(args)
+	self:Message(args.spellId, "Important", "Alert")
+	self:Flash(args.spellId)
+end
+
+function mod:FrozenRain(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+	end
+end
+

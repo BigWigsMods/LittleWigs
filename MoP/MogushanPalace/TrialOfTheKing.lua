@@ -28,8 +28,8 @@ function mod:GetOptions()
 	{-6024, "ICON"}, {-6025, "ICON", "SAY", "FLASH"}, {123655, "HEALER"},
 	"bosskill",
 	}, {
-	[119922] = -6015, --Kuai
-	[-6024] = -6023, --Haiyan
+	[119922] = -6015, -- Kuai
+	[-6024] = -6023, -- Haiyan
 	bosskill = "general",
 	}
 end
