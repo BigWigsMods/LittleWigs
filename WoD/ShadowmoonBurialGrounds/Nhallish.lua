@@ -35,10 +35,6 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	-- XXX Currently doesn't fire IEEU, rely on the old fashioned engage
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
 	self:Log("SPELL_CAST_START", "PlanarShift", 153623)
 	self:Log("SPELL_CAST_START", "VoidVortex", 152801)
 	self:Log("SPELL_CAST_SUCCESS", "SoulShred", 152979)

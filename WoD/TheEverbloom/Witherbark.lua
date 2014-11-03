@@ -46,7 +46,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Energize", 164438)
 	self:Log("SPELL_CAST_START", "ParchedGasp", 164357)
 
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "UncheckedGrowthSpawned"
+	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "UncheckedGrowthSpawned")
 
 	self:Death("Win", 81522)
 end

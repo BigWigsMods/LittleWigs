@@ -28,7 +28,6 @@ function mod:GetOptions()
 	return {
 		164974, -- Dark Eclipse
 		153240, -- Daggerfall
-		{162696, "TANK"}, -- Deathspike
 		153153, -- Dark Communion
 		"custom_on_markadd", -- Add marker option
 		"bosskill",
@@ -45,7 +44,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DarkEclipse", 164974)
 	self:Log("SPELL_CAST_SUCCESS", "Daggerfall", 153240)
 	self:Log("SPELL_CAST_SUCCESS", "DarkCommunion", 153153)
-	self:Log("SPELL_AURA_APPLIED", "Deathspike", 162696)
 
 	self:Death("Win", 75509)
 end
@@ -106,11 +104,5 @@ do
 			ref = self:ScheduleRepeatingTimer(findAdd, 0.5, self)
 		end
 	end
-end
-
-function mod:Deathspike(args)
-	local text = CL.onboss:format(args.spellName)
-	self:Bar(args.spellId, 6, text)
-	self:Message(args.spellId, "Important", "Long", text)
 end
 
