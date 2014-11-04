@@ -3,7 +3,6 @@
 -- Module Declaration
 --
 
-if not BigWigs.isWOD then return end -- XXX compat
 local mod, CL = BigWigs:NewBoss("Auchindoun Trash", 984)
 if not mod then return end
 mod.displayName = CL.trash
