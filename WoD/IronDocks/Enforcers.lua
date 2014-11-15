@@ -43,7 +43,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
 
-	self:Death("Win", 80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
+	self:Death("Deaths", 80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
 end
 
 function mod:OnEngage()
