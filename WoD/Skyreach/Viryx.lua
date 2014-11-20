@@ -34,7 +34,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
 
 	self:Death("Win", 76266)
 end
@@ -49,30 +49,28 @@ end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	self:CheckBossStatus()
-	for i = 1, 5 do
-		local unit = ("boss%d"):format(i)
-		local guid = UnitGUID(unit)
-		if self:MobId(guid) == 76267 then -- Solar Zealot
-			local unitName = self:UnitName(unit.."target")
-			if unitName then -- XXX Maybe?
-				self:TargetMessage(153954, unitName, "Attention", "Warning", nil, nil, true)
-			end
-			if self.db.profile.custom_on_markadd then
+	if self.db.profile.custom_on_markadd then
+		for i = 1, 5 do
+			local unit = ("boss%d"):format(i)
+			local guid = UnitGUID(unit)
+			if self:MobId(guid) == 76267 then -- Solar Zealot
 				SetRaidTarget(unit, 8)
+				break
 			end
-			break
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
-	if spellId == 153954 then -- Cast Down
-		self:Message(spellId, "Attention", "Alert", CL.incoming:format(spellName))
-		self:CDBar(spellId, 37) -- 37-40
-	elseif spellId == 136522 then -- Force Demon Creator to Ride Me
-		local unitName = self:UnitName(unit.."target")
-		if unitName then -- XXX Maybe?
-			self:TargetMessage(153954, unitName, "Attention", "Warning", nil, nil, true)
+do
+	local function bossTarget(self, name)
+		self:TargetMessage(153954, name, "Attention", "Warning", nil, nil, true)
+	end
+	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+		if spellId == 153954 then -- Cast Down
+			self:Message(spellId, "Attention", "Alert", CL.incoming:format(spellName))
+			self:CDBar(spellId, 37) -- 37-40
+		elseif spellId == 136522 then -- Force Demon Creator to Ride Me
+			self:GetBossTarget(bossTarget, 0.3, UnitGUID(unit))
 		end
 	end
 end
