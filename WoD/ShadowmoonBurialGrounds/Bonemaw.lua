@@ -32,7 +32,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "InhaleInc", "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "InhaleIncUnitEvent", "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "Inhale", 153804)
 	self:Log("SPELL_CAST_START", "BodySlam", 154175)
 
@@ -43,11 +43,17 @@ end
 -- Event Handlers
 --
 
-function mod:InhaleInc(unit, spellName, _, _, spellId)
-	if spellId == 154868 or spellId == 154214 then -- Inhale, Teleport Logic
-		self:Message(153804, "Urgent", "Warning", CL.incoming:format(self:SpellName(153804)))
-		self:Flash(153804)
+function mod:InhaleIncUnitEvent(unit, spellName, _, _, spellId)
+	if spellId == 154868 then
+		-- Unit event is 1s faster than emote, but only works for first Inhale, so register Emote after that.
+		self:InhaleInc()
+		self:ScheduleTimer("Emote", 5, "InhaleInc", "153804")
 	end
+end
+
+function mod:InhaleInc()
+	self:Message(153804, "Urgent", "Warning", CL.incoming:format(self:SpellName(153804)))
+	self:Flash(153804)
 end
 
 function mod:Inhale(args)
