@@ -50,11 +50,11 @@ function mod:DebilitatingFixation(args)
 end
 
 function mod:RejuvenatingSerumIncoming(args)
-	self:Message(args.spellId, "Urgent", nil, CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "Urgent", "Long", CL.incoming:format(args.spellName))
 end
 
 function mod:RejuvenatingSerum(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning", nil, nil, true)
 end
 
 function mod:VilebloodSerum(args)
