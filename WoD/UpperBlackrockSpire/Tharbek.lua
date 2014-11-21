@@ -49,6 +49,6 @@ function mod:NoxiousSpit(args)
 end
 
 function mod:ImbuedIronAxe(args)
-	self:Message(args.spellId, "Attention", "Info")
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
 end
 
