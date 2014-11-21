@@ -56,9 +56,16 @@ end
 -- Event Handlers
 --
 
-function mod:Energize(args)
-	self:Message(args.spellId, "Attention", "Long")
-	self:Bar(args.spellId, 23)
+do
+	local prev = 0
+	function mod:Energize(args)
+		local t = GetTime()
+		if t-prev > 5 then -- More than 1 in Challenge Mode
+			prev = t
+			self:Message(args.spellId, "Attention", "Long", CL.incoming:format(args.spellName))
+			self:Bar(args.spellId, 23)
+		end
+	end
 end
 
 function mod:Smash(args)
