@@ -16,6 +16,10 @@ if L then
 	L.custom_on_markadd = "Mark the Solar Zealot"
 	L.custom_on_markadd_desc = "Mark the Solar Zealot with a skull, requires promoted or leader."
 	L.custom_on_markadd_icon = 8
+
+	L.add = "Add Spawning"
+	L.add_desc = "Warning for when the Skyreach Shield Construct is spawning."
+	L.add_icon = "icon_petfamily_mechanical"
 end
 L = mod:GetLocale()
 
@@ -27,6 +31,8 @@ function mod:GetOptions()
 	return {
 		153954, -- Cast Down
 		"custom_on_markadd",
+		"add",
+		154055, -- Shielding
 		"bosskill",
 	}
 end
@@ -36,11 +42,14 @@ function mod:OnBossEnable()
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
 
+	self:Log("SPELL_CAST_START", "Shielding", 154055)
+
 	self:Death("Win", 76266)
 end
 
 function mod:OnEngage()
 	self:CDBar(153954, 15) -- Cast Down
+	self:Bar("add", 32, CL.add, L.add_icon)
 end
 
 --------------------------------------------------------------------------------
@@ -67,11 +76,16 @@ do
 	end
 	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		if spellId == 153954 then -- Cast Down
-			self:Message(spellId, "Attention", "Alert", CL.incoming:format(spellName))
-			self:CDBar(spellId, 37) -- 37-40
-		elseif spellId == 136522 then -- Force Demon Creator to Ride Me
 			self:GetBossTarget(bossTarget, 0.3, UnitGUID(unit))
+			self:CDBar(spellId, 37) -- 37-40
+		elseif spellId == 154049 then -- Call Adds
+			self:Message("add", "Important", "Info", CL.add_spawned, L.add_icon) -- Cog icon
+			self:CDBar("add", 58, CL.add, L.add_icon) -- 57-60
 		end
 	end
+end
+
+function mod:Shielding(args)
+	self:Message(args.spellId, "Urgent", "Long")
 end
 
