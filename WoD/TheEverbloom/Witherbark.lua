@@ -80,9 +80,11 @@ function mod:BrittleBarkOver(args)
 end
 
 function mod:Energize(args)
-	energy = energy + 25
-	if energy < 101 then
-		self:Message(164275, "Neutral", nil, L.energyStatus:format(energy), "spell_lightning_lightningbolt01")
+	if self.isEngaged then
+		energy = energy + 25
+		if energy < 101 then
+			self:Message(164275, "Neutral", nil, L.energyStatus:format(energy), "spell_lightning_lightningbolt01")
+		end
 	end
 end
 
