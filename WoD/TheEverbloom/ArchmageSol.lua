@@ -60,9 +60,16 @@ function mod:MagicSchools(args)
 	self:Message("stages", "Neutral", nil, args.spellId)
 end
 
-function mod:Firebloom(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:Flash(args.spellId)
+do
+	local prev = 0
+	function mod:Firebloom(args)
+		local t = GetTime()
+		if t-prev > 7 then
+			prev = t
+			self:Message(args.spellId, "Important", "Alert")
+			self:Flash(args.spellId)
+		end
+	end
 end
 
 function mod:FrozenRain(args)
