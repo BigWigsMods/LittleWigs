@@ -33,6 +33,8 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
+	self:Emote("Fixated", "Fixated")
+
 	self:Log("SPELL_CAST_START", "PierceArmor", 153794)
 	self:Log("SPELL_CAST_START", "SummonSolarFlare", 153810)
 	self:Log("SPELL_CAST_START", "Quills", 159382)
@@ -48,6 +50,12 @@ end
 -- Event Handlers
 --
 
+function mod:Fixated()
+	-- fixme
+	self:Message(159382, "Personal", "Alarm", CL.you:format("Fixated"), false)
+	--self:Flash()
+end
+
 function mod:PierceArmor(args)
 	self:Message(args.spellId, "Attention", "Warning")
 	self:Bar(args.spellId, 10.9)
@@ -58,6 +66,6 @@ function mod:SummonSolarFlare(args)
 end
 
 function mod:Quills(args)
-	self:Message(args.spellId, "Attention", "Warning")
+	self:Message(args.spellId, "Urgent", "Long")
 end
 
