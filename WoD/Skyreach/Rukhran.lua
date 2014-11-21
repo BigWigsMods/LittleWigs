@@ -25,6 +25,7 @@ function mod:GetOptions()
 	return {
 		{153794, "TANK"}, -- Pierce Armor
 		153810, -- Summon Solar Flare
+		159382, -- Quills
 		"bosskill",
 	}
 end
@@ -34,6 +35,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "PierceArmor", 153794)
 	self:Log("SPELL_CAST_START", "SummonSolarFlare", 153810)
+	self:Log("SPELL_CAST_START", "Quills", 159382)
 
 	self:Death("Win", 76143)
 end
@@ -53,5 +55,9 @@ end
 
 function mod:SummonSolarFlare(args)
 	self:Message(args.spellId, "Important", "Info")
+end
+
+function mod:Quills(args)
+	self:Message(args.spellId, "Attention", "Warning")
 end
 
