@@ -62,8 +62,7 @@ function mod:Malevolence(args)
 end
 
 do
-	-- 36.8, 13.7, 35.8, 17.2, 37, 14.8, 35.8
-	-- XXX This is still being patched so I'm not going to spend too much time fixing it until later.
+	-- BETA: 36.8, 13.7, 35.8, 17.2, 37, 14.8, 35.8
 	function mod:OmenOfDeath(args)
 		self:Message(args.spellId, "Important", "Alert")
 		self:CDBar(args.spellId, omenCounter % 2 == 0 and 14 or 35.8)

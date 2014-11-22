@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(153764, 28) -- Claws of Argus
+	self:CDBar(153764, 32) -- Claws of Argus
 	self:CDBar(153392, 15) -- Curtain of Flame
 end
 
@@ -48,7 +48,7 @@ end
 
 function mod:ClawsOfArgus(args)
 	self:Message(args.spellId, "Attention")
-	self:Bar(args.spellId, 60)
+	--self:Bar(args.spellId, 60) -- > 80 sec atm
 	self:Bar(args.spellId, 17, CL.cast:format(args.spellName))
 end
 
