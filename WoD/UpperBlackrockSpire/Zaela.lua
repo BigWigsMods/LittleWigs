@@ -32,6 +32,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
+	self:Log("SPELL_CAST_START", "BlackIronCycloneCast", 155721)
 	self:Log("SPELL_AURA_APPLIED", "BlackIronCyclone", 155721)
 	self:Log("SPELL_AURA_REMOVED", "BlackIronCycloneOver", 155721)
 
@@ -48,14 +49,22 @@ end
 -- Event Handlers
 --
 
-function mod:BlackIronCyclone(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
-	self:TargetBar(args.spellId, 4.5, args.destName)
-	self:CDBar(args.spellId, 19) -- 18-21
-	self:PrimaryIcon(args.spellId, args.destName)
-	if self:Me(args.destGUID) then
-		self:Flash(args.spellId)
+do
+	local function bossTarget(self, name, guid)
+		self:TargetMessage(155721, name, "Attention", "Alert")
+		self:PrimaryIcon(155721, name)
+		if self:Me(guid) then
+			self:Flash(155721)
+		end
 	end
+	function mod:BlackIronCycloneCast(args)
+		self:GetBossTarget(bossTarget, 0.3, args.sourceGUID)
+		self:CDBar(args.spellId, 19) -- 18-21
+	end
+end
+
+function mod:BlackIronCyclone(args)
+	self:TargetBar(args.spellId, 4.5, args.destName, 33786, args.spellId) -- 33786 = "Cyclone"
 end
 
 function mod:BlackIronCycloneOver(args)
