@@ -31,7 +31,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		161090, 161087, "enrage", "bosskill",
+		161090, 162617, "enrage", "bosskill",
 	}
 end
 
@@ -39,7 +39,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_CAST_START", "MadDash", 161090)
-	self:Log("SPELL_CAST_START", "Slam", 161087)
+	self:Log("SPELL_CAST_START", "Slam", 161087, 162617)
 
 	self:Death("Deaths", 77816, 77803) -- Borka, Rocketspark
 end
@@ -61,7 +61,7 @@ function mod:MadDash(args)
 end
 
 function mod:Slam(args)
-	self:Message(args.spellId, "Urgent", self:Tank() and "Alert", CL.incoming:format(args.spellName))
+	self:Message(162617, "Urgent", self:Heroic() and "Alert", CL.incoming:format(args.spellName))
 end
 
 function mod:Deaths(args)
