@@ -23,7 +23,12 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		161801, 162058, 161588, {162066, "SAY", "FLASH"}, "bosskill",
+		161801, -- Thunderous Breath
+		162058, -- Spinning Spear
+		161588, -- Diffused Energy
+		{162066, "SAY", "FLASH"}, -- Freezing Snare
+		163447, -- Hunter's Mark
+		"bosskill",
 	}
 end
 
@@ -32,6 +37,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
 	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
+	self:Log("SPELL_CAST_START", "HuntersMark", 163447)
 
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
@@ -47,7 +53,7 @@ end
 
 function mod:Thunder(_, _, _, _, _, target)
 	if target == L.rakun then
-		self:Message(161801, "Important", "Alert", CL.incoming:format(self:SpellName(161801)))
+		self:Message(161801, "Important", "Long", CL.incoming:format(self:SpellName(161801)))
 		self:Bar(161801, 17.3)
 	end
 end
@@ -73,6 +79,15 @@ do
 	end
 	function mod:FreezingSnare(args)
 		self:CDBar(args.spellId, 16.5) -- 16.5-17
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+	end
+end
+
+do
+	local function printTarget(self, player)
+		self:TargetMessage(163447, player, "Urgent", "Info")
+	end
+	function mod:HuntersMark(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
