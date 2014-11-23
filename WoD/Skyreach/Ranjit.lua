@@ -54,9 +54,9 @@ function mod:FourWinds(args)
 end
 
 function mod:Windwall(args)
-	self:Message(args.spellId, "Attention", "Warning")
+	self:Message(args.spellId, "Important")
 end
 
 function mod:PiercingRush(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
 end
