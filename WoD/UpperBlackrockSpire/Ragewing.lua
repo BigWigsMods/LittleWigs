@@ -30,7 +30,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		{155620, "FLASH"}, -- Burning Rage
-		155051, -- Magma Spit
+		155057, -- Magma Pool
 		{154996, "FLASH"}, -- Engulfing Fire
 		-10740, -- Ragewing Whelp
 		"bosskill",
@@ -47,8 +47,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_SUCCESS", "SwirlingWinds", 167203)
 
-	self:Log("SPELL_DAMAGE", "MagmaSpit", 155051)
-	self:Log("SPELL_MISSED", "MagmaSpit", 155051)
+	self:Log("SPELL_AURA_APPLIED", "MagmaPool", 155057)
 
 	self:Death("Win", 76585)
 end
@@ -83,7 +82,7 @@ function mod:SwirlingWinds(args)
 	percent = 40
 end
 
-function mod:MagmaSpit(args)
+function mod:MagmaPool(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
 	end
