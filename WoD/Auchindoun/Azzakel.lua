@@ -8,6 +8,13 @@ if not mod then return end
 mod:RegisterEnableMob(75927)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local curtainPlayers = {}
+local curtainOnMe = nil
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -40,6 +47,8 @@ end
 function mod:OnEngage()
 	self:CDBar(153764, 32) -- Claws of Argus
 	self:CDBar(153392, 15) -- Curtain of Flame
+	curtainOnMe = nil
+	wipe(curtainPlayers)
 end
 
 --------------------------------------------------------------------------------
@@ -48,31 +57,39 @@ end
 
 function mod:ClawsOfArgus(args)
 	self:Message(args.spellId, "Attention")
-	--self:Bar(args.spellId, 60) -- > 80 sec atm
-	self:Bar(args.spellId, 17, CL.cast:format(args.spellName))
+	self:Bar(args.spellId, 91)
+	self:Bar(args.spellId, 20, CL.cast:format(args.spellName))
 end
 
 do
 	local lastPlayer = nil
 	function mod:CurtainOfFlame(args)
-		lastPlayer = args.destName
+		curtainPlayers[args.destName] = true
 		self:TargetMessage(args.spellId, lastPlayer, "Important", "Warning")
 		self:TargetBar(args.spellId, 9, lastPlayer)
 		self:PrimaryIcon(args.spellId, lastPlayer)
 		if self:Me(args.destGUID) then
 			self:Flash(args.spellId)
 			self:OpenProximity(args.spellId, 5)
-		else
-			self:OpenProximity(args.spellId, 5, lastPlayer)
+			curtainOnMe = true
+		elseif not curtainOnMe then
+			self:OpenProximity(args.spellId, 5, curtainPlayers)
 		end
 	end
 
 	function mod:CurtainOfFlameRemoved(args)
+		curtainPlayers[args.destName] = nil
+		if self:Me(args.destGUID) then
+			curtainOnMe = nil
+			if next(curtainPlayers) then
+				self:OpenProximity(args.spellId, 5, curtainPlayers)
+				return
+			end
+		end
 		-- It can spread, so only remove after it has wore off from the last person it affected.
-		if args.destName == lastPlayer then
+		if not next(curtainPlayers) then
 			self:PrimaryIcon(args.spellId)
 			self:CloseProximity(args.spellId)
-			lastPlayer = nil
 		end
 	end
 end
