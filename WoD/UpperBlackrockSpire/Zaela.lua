@@ -29,6 +29,13 @@ function mod:GetOptions()
 	}
 end
 
+function mod:VerifyEnable()
+	local _, x = UnitPosition("player")
+	if x > -240 then
+		return true
+	end
+end
+
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
