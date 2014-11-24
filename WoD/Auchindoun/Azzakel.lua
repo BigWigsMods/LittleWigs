@@ -67,7 +67,7 @@ end
 function mod:CurtainOfFlame(args)
 	curtainPlayers[args.destName] = true
 	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
-	self:TargetBar(args.spellId, 9, args.destName)
+	self:TargetBar(args.spellId, self:Difficulty() == 1 and 9 or 12, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
