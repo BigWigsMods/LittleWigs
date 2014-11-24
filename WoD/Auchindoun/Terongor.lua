@@ -23,16 +23,25 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{156921, "FLASH"}, 157001, {157039, "SAY", "FLASH"}, "bosskill",
+		{156921, "FLASH", "PROXIMITY"}, -- Seed of Malevolence
+		157001, -- Chaos Wave
+		{157039, "SAY", "FLASH"}, -- Demonic Leap
+		156854, -- Drain Life
+		{157168, "ICON"}, -- Fixate
+		156856, -- Rain of Fire
+		"bosskill",
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Log("SPELL_AURA_APPLIED", "SeedOfCorruption", 156921)
+	self:Log("SPELL_AURA_APPLIED", "SeedOfMalevolence", 156921)
+	self:Log("SPELL_AURA_APPLIED", "Fixate", 157168)
+	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 156856)
 	self:Log("SPELL_CAST_START", "ChaosWave", 157001)
 	self:Log("SPELL_CAST_START", "DemonicLeap", 157039)
+	self:Log("SPELL_CAST_SUCCESS", "DrainLife", 156854)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Success", "boss1")
 end
@@ -41,11 +50,24 @@ end
 -- Event Handlers
 --
 
-function mod:SeedOfCorruption(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
-	self:TargetBar(args.spellId, 18, args.destName)
+function mod:SeedOfMalevolence(args)
 	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+		self:TargetBar(args.spellId, 18, args.destName)
 		self:Flash(args.spellId)
+		self:OpenProximity(args.spellId, 10)
+	end
+end
+
+function mod:Fixate(args)
+	self:TargetMessage(args.spellId, args.destName, "Positive", "Warning")
+	self:TargetBar(args.spellId, 12, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
+end
+
+function mod:RainOfFire(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
 	end
 end
 
@@ -54,8 +76,10 @@ do
 		self:TargetMessage(157001, player, "Important", "Alert")
 	end
 	function mod:ChaosWave(args)
-		self:CDBar(args.spellId, 13.2) -- 13.2-15.7
-		self:GetBossTarget(printTarget, 1, args.sourceGUID)
+		if self:MobId(args.sourceGUID) == 77734 then -- Also cast by prior trash add
+			self:CDBar(args.spellId, 13.2) -- 13.2-15.7
+			self:GetBossTarget(printTarget, 1, args.sourceGUID)
+		end
 	end
 end
 
@@ -71,6 +95,10 @@ do
 		self:CDBar(args.spellId, 20) -- 20-23
 		self:GetBossTarget(printTarget, 1, args.sourceGUID)
 	end
+end
+
+function mod:DrainLife(args)
+	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
 end
 
 function mod:Success(unit, spellName, _, _, spellId)
