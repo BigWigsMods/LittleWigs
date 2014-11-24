@@ -37,6 +37,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_AURA_APPLIED", "SeedOfMalevolence", 156921)
+	self:Log("SPELL_AURA_REMOVED", "SeedOfMalevolenceRemoved", 156921)
 	self:Log("SPELL_AURA_APPLIED", "Fixate", 157168)
 	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 156856)
 	self:Log("SPELL_CAST_START", "ChaosWave", 157001)
@@ -59,6 +60,12 @@ function mod:SeedOfMalevolence(args)
 	end
 end
 
+function mod:SeedOfMalevolenceRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CloseProximity(args.spellId)
+	end
+end
+
 function mod:Fixate(args)
 	self:TargetMessage(args.spellId, args.destName, "Positive", "Warning")
 	self:TargetBar(args.spellId, 12, args.destName)
@@ -72,13 +79,24 @@ function mod:RainOfFire(args)
 end
 
 do
-	local function printTarget(self, player, guid)
+	local function printTarget(self, player)
 		self:TargetMessage(157001, player, "Important", "Alert")
 	end
+	local function grabTrashTarget(self, guid)
+		local unit = self:GetUnitIdByGUID(guid)
+		if unit then
+			local name = self:UnitName(unit.."target")
+			if name then
+				printTarget(self, player)
+			end
+		end
+	end
 	function mod:ChaosWave(args)
-		if self:MobId(args.sourceGUID) == 77734 then -- Also cast by prior trash add
+		if self:MobId(args.sourceGUID) == 77734 then -- Boss
 			self:CDBar(args.spellId, 13.2) -- 13.2-15.7
 			self:GetBossTarget(printTarget, 1, args.sourceGUID)
+		else -- Trash
+			self:ScheduleTimer(grabTrashTarget, 0.1, self, args.sourceGUID)
 		end
 	end
 end

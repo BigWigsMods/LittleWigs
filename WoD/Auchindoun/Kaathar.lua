@@ -52,7 +52,7 @@ end
 function mod:OnEngage()
 	strikeCount = 0
 	self:CDBar(153002, 30.5) -- Holy Shield
-	self:CDBar(152954, 7.3) -- Sanctified Strike
+	self:CDBar(152954, 7.3) -- Sanctified Strike -- 6s?
 end
 
 --------------------------------------------------------------------------------
@@ -77,7 +77,8 @@ function mod:ConsecratedLight(args)
 end
 
 function mod:ConsecratedLightOver()
-	self:CDBar(152954, 10.2) -- Sanctified Strike
+	self:CDBar(152954, self:Difficulty() == 1 and 6.2 or 10.2) -- Sanctified Strike
+	strikeCount = 0
 end
 
 function mod:SanctifiedStrike(args)
