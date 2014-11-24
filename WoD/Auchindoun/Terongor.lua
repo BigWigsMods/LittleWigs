@@ -24,7 +24,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		{156921, "FLASH", "PROXIMITY"}, -- Seed of Malevolence
-		157001, -- Chaos Wave
+		{157001, "SAY"}, -- Chaos Wave
 		{157039, "SAY", "FLASH"}, -- Demonic Leap
 		156854, -- Drain Life
 		{157168, "ICON"}, -- Fixate
@@ -79,15 +79,20 @@ function mod:RainOfFire(args)
 end
 
 do
-	local function printTarget(self, player)
+	local function printTarget(self, player, guid)
+		if self:Me(guid) then
+			self:Say(157001)
+		end
 		self:TargetMessage(157001, player, "Important", "Alert")
 	end
-	local function grabTrashTarget(self, guid)
-		local unit = self:GetUnitIdByGUID(guid)
+	local function grabTrashTarget(self, mobGUID)
+		local unit = self:GetUnitIdByGUID(mobGUID)
 		if unit then
-			local name = self:UnitName(unit.."target")
-			if name then
-				printTarget(self, player)
+			local unitTarget = unit.."target"
+			local name = self:UnitName(unitTarget)
+			local guid = UnitGUID(unitTarget)
+			if name and guid then
+				printTarget(self, name, guid)
 			end
 		end
 	end
