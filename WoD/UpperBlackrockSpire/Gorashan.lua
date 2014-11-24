@@ -12,6 +12,7 @@ mod:RegisterEnableMob(76413)
 --
 
 local stacks = 0
+local hpPercent = 100
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -46,15 +47,28 @@ end
 
 function mod:OnEngage()
 	stacks = 0
+	hpPercent = 100
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:PhaseWarn(unitId)
+	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+	if (hp < 81 and hpPercent == 100) or (hp < 56 and hpPercent == 75) or (hp < 31 and hpPercent == 50) then
+		hpPercent = hpPercent - 25
+		self:Message(166168, "Positive", nil, CL.soon:format(self:SpellName(166168)), false)
+		if hpPercent == 25 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
+		end
+	end
+end
+
 function mod:PowerConduit(args)
-	stacks = stacks + 1
-	self:Message(args.spellId, "Important", "Long", CL.count:format(args.spellName, stacks))
+	stacks = stacks + (self:Difficulty() == 1 and 1 or 2)
+	self:Message(args.spellId, "Important", "Long", hpPercent.." - ".. CL.count:format(args.spellName, stacks))
 end
 
 function mod:PowerConduitRemoved(args)

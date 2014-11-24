@@ -82,7 +82,7 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Important", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else
-		self:Message("stages", "Important", "Info", ("60%% - %s"):format(CL.intermission), false)
+		self:Message("stages", "Important", "Info", ("60%% - %s"):format(CL.intermission), "achievement_character_orc_female")
 		self:DelayedMessage("stages", 1, "Important", self:SpellName(-10741), "achievement_character_orc_male") -- Black Iron Wyrm Riders
 		self:Bar("stages", 28, CL.intermission, "achievement_character_orc_female")
 		self:StopBar(155721) -- Black Iron Cyclone
