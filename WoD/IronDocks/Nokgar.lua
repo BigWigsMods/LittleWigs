@@ -59,7 +59,10 @@ end
 --
 
 function mod:BloodlettingHowl(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", self:Dispeller("enrage", true) and "Long")
+	local id = self:MobId(args.destGUID)
+	if id == 81297 or id == 81305 then -- Trash also gain it
+		self:TargetMessage(args.spellId, args.destName, "Attention", self:Dispeller("enrage", true) and "Long")
+	end
 end
 
 function mod:SavageMauling(args)
