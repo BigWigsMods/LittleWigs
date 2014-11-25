@@ -13,7 +13,9 @@ mod:RegisterEnableMob(79912, 80098) -- Commander Tharbek, Ironbarb Skyreaver
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	
+	L.iron_reaver = mod:SpellName(161989) .. " (" .. mod:SpellName(100) .. ")"
+	L.iron_reaver_desc = GetSpellDescription(161989)
+	L.iron_reaver_icon = 161989
 end
 L = mod:GetLocale()
 
@@ -25,6 +27,8 @@ function mod:GetOptions()
 	return {
 		161833, -- Noxious Spit
 		162090, -- Imbued Iron Axe
+		"iron_reaver",
+		161882, -- Incinerating Breath
 		"bosskill",
 	}
 end
@@ -35,7 +39,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "NoxiousSpit", 161833)
 	self:Log("SPELL_CAST_SUCCESS", "ImbuedIronAxe", 162090)
 
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "IronReaver", "boss1", "boss2")
+
 	self:Death("Win", 79912)
+	self:Death("DragonDies", 80098)
 end
 
 --------------------------------------------------------------------------------
@@ -50,5 +57,19 @@ end
 
 function mod:ImbuedIronAxe(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+end
+
+function mod:IronReaver(_, spellName, _, _, spellId)
+	if spellId == 161989 then -- Iron Reaver
+		self:Message(spellId, "Important", nil, mod:SpellName(100)) -- 100 = "Charge"
+		self:CDBar(spellId, 20, mod:SpellName(100)) -- 19.4-22.7s
+	elseif spellId == 161882 then -- Incinerating Breath
+		self:Message(spellId, "Urgent", "Long", CL.incoming:format(spellName))
+		self:CDBar(spellId, 17)
+	end
+end
+
+function mod:DragonDies()
+	self:StopBar(161882) -- Incinerating Breath
 end
 
