@@ -31,6 +31,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		166168, -- Power Conduit
+		154448, -- Shrapnel Nova
 		"bosskill",
 	}
 end
@@ -42,6 +43,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "PowerConduitRemoved", 166168)
 	self:Log("SPELL_AURA_REMOVED_DOSE", "PowerConduitReduced", 166168)
 
+	self:Log("SPELL_CAST_START", "ShrapnelNova", 154448)
+
 	self:Death("Win", 76413)
 end
 
@@ -49,6 +52,7 @@ function mod:OnEngage()
 	stacks = 0
 	hpPercent = 100
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
+	self:CDBar(154448, 14.4) -- Shrapnel Nova
 end
 
 --------------------------------------------------------------------------------
@@ -77,5 +81,11 @@ end
 
 function mod:PowerConduitReduced(args)
 	self:Message(args.spellId, "Attention", nil, L.counduitLeft:format(args.amount))
+end
+
+function mod:ShrapnelNova(args)
+	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
+	self:Bar(args.spellId, 2.5, CL.cast:format(args.spellName))
+	self:CDBar(args.spellId, 30) -- 29-33
 end
 
