@@ -32,6 +32,7 @@ function mod:GetOptions()
 		{164426, "FLASH"}, -- Reckless Provocation
 		{164837, "ICON"}, -- Savage Mauling
 		164835, -- Bloodletting Howl
+		164632, -- Burning Arrows
 		"bosskill",
 	}
 end
@@ -40,6 +41,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_AURA_APPLIED", "BloodlettingHowl", 164835)
+	self:Log("SPELL_AURA_APPLIED", "BurningArrows", 164632)
 
 	self:Log("SPELL_AURA_APPLIED", "SavageMauling", 164837)
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingOver", 164837)
@@ -65,8 +67,14 @@ function mod:BloodlettingHowl(args)
 	end
 end
 
+function mod:BurningArrows(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+	end
+end
+
 function mod:SavageMauling(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
