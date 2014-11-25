@@ -68,11 +68,11 @@ end
 
 function mod:PowerConduit(args)
 	stacks = stacks + (self:Difficulty() == 1 and 1 or 2)
-	self:Message(args.spellId, "Important", "Long", hpPercent.." - ".. CL.count:format(args.spellName, stacks))
+	self:Message(args.spellId, "Important", "Warning", ("%d%% - %s"):format(hpPercent, CL.count:format(args.spellName, stacks)))
 end
 
 function mod:PowerConduitRemoved(args)
-	self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+	self:Message(args.spellId, "Positive", "Long", CL.removed:format(args.spellName))
 end
 
 function mod:PowerConduitReduced(args)
