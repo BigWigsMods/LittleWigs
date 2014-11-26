@@ -61,8 +61,8 @@ end
 
 function mod:IronReaver(_, spellName, _, _, spellId)
 	if spellId == 161989 then -- Iron Reaver
-		self:Message(spellId, "Important", nil, mod:SpellName(100)) -- 100 = "Charge"
-		self:CDBar(spellId, 20, mod:SpellName(100)) -- 19.4-22.7s
+		self:Message("iron_reaver", "Important", nil, mod:SpellName(100), spellId) -- 100 = "Charge"
+		self:CDBar("iron_reaver", 20, mod:SpellName(100), spellId) -- 19.4-22.7s
 	elseif spellId == 161882 then -- Incinerating Breath
 		self:Message(spellId, "Urgent", "Long", CL.incoming:format(spellName))
 		self:CDBar(spellId, 17)

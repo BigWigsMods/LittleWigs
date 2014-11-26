@@ -49,7 +49,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(155721, 12.5) -- Black Iron Cyclone
+	self:CDBar(155721, 12.5) -- Black Iron Cyclone // 16.1 // 17.1 XXX
 end
 
 --------------------------------------------------------------------------------
