@@ -33,6 +33,13 @@ function mod:GetOptions()
 	}
 end
 
+function mod:VerifyEnable(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp > 15 then
+		return true
+	end
+end
+
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
