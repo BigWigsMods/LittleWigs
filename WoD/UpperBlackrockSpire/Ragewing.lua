@@ -81,11 +81,13 @@ function mod:SwirlingWinds(args)
 	self:Message(-10740, "Important", "Long", ("%d%% - %s"):format(percent, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
 	self:Bar(-10740, 20, CL.intermission, 93679) -- Whelp icon
 	self:StopBar(155025) -- Engulfing Fire
-	percent = 40
 end
 
 function mod:SwirlingWindsOver(args)
-	self:CDBar(154996, self:Difficulty() == 1 and 9.3 or 18.5) -- Engulfing Fire
+	if percent == 70 then
+		self:CDBar(154996, self:Difficulty() == 1 and 9.3 or 12.8) -- Engulfing Fire
+		percent = 40
+	end
 end
 
 function mod:MagmaPool(args)

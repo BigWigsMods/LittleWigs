@@ -45,7 +45,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:Message("stages", "Positive", nil, CL["phase"]:format(1).. ": "..EJ_GetSectionInfo(5635), false)
+	self:Message("stages", "Positive", nil, CL.other:format(CL.phase:format(1), self:SpellName(-5635)), false) -- Phase 1: Commander Duran
 	self:Bar("steel", 10.8, 115629)
 end
 
@@ -79,7 +79,7 @@ end
 function mod:Deaths()
 	deaths = deaths + 1
 	if deaths == 1 then
-		self:Message("stages", "Positive", nil, CL["phase"]:format(2).. ": "..EJ_GetSectionInfo(5638), false)
+		self:Message("stages", "Positive", nil, CL.other:format(CL.phase:format(2), self:SpellName(-5638)), false) -- Phase 2: High Inquisitor Whitemane
 		self:StopBar(115629)
 	elseif deaths == 3 then
 		self:Win()
