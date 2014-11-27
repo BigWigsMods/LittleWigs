@@ -13,8 +13,8 @@ mod:RegisterEnableMob(79912, 80098) -- Commander Tharbek, Ironbarb Skyreaver
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.iron_reaver = mod:SpellName(161989) .. " (" .. mod:SpellName(100) .. ")"
-	L.iron_reaver_desc = GetSpellDescription(161989)
+	L.iron_reaver = "{161989} ({100})" -- Iron Reaver (Charge)
+	L.iron_reaver_desc = 161989
 	L.iron_reaver_icon = 161989
 end
 L = mod:GetLocale()

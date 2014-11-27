@@ -19,8 +19,8 @@ local deaths = 0
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.sphere = mod:SpellName(-10450) .." ("..mod:SpellName(119924)..")"
-	L.sphere_desc = select(2, EJ_GetSectionInfo(10450))
+	L.sphere = "{-10450} ({119924})" -- Sanguine Sphere (Bubble)
+	L.sphere_desc = -10450
 	L.sphere_icon = 163689
 	L.sphere_fail_message = "Bubble was removed - They're all healing :("
 end

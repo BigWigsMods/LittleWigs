@@ -18,8 +18,8 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Stop them!"
 
-	L.heal = EJ_GetSectionInfo(5923) .." (".. mod:SpellName(33144) ..")"
-	L.heal_desc = select(2, EJ_GetSectionInfo(5923))
+	L.heal = "{-5923} ({33144})" -- Cleansing Flame (Heal)
+	L.heal_desc = -5923
 	L.heal_icon = 118940
 end
 L = mod:GetLocale()

@@ -15,10 +15,10 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "I will break you."
 
-	L.fists, L.fists_desc = EJ_GetSectionInfo(5601)
+	L.fists = -5601 -- Blazing Fists
 	L.fists_icon = 114807
 
-	L.firestorm, L.firestorm_desc = EJ_GetSectionInfo(5602)
+	L.firestorm = -5602 -- Firestorm Kick
 	L.firestorm_icon = 113764
 end
 L = mod:GetLocale()

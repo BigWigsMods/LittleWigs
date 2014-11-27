@@ -17,10 +17,10 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "You are not the first to challenge me, peons. You will not be the last."
 
-	L.blades, L.blades_desc = EJ_GetSectionInfo(5972)
+	L.blades = -5972 -- Blade Trap
 	L.blades_icon = 119311
 
-	L.crossbows, L.crossbows_desc = EJ_GetSectionInfo(5974)
+	L.crossbows = -5974 -- Death From Above!
 	L.crossbows_icon = 120142
 end
 L = mod:GetLocale()

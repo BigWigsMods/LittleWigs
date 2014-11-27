@@ -17,14 +17,14 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Ah-hah! Another chance to test my might."
 
-	L.cleave = EJ_GetSectionInfo(5377) .. " (".. mod:SpellName(15284) ..")" -- 15284 = "Cleave"
-	L.cleave_desc = select(2, EJ_GetSectionInfo(5377))
+	L.cleave = "{-5377} ({15284})" -- Dragon's Reach (Cleave)
+	L.cleave_desc = -5377
 	L.cleave_icon = 111217
 
-	L.blades, L.blades_desc = EJ_GetSectionInfo(5376)
+	L.blades = -5376 -- Blades of Light
 	L.blades_icon = 111216
 
-	L.help, L.help_desc = EJ_GetSectionInfo(5378)
+	L.help = -5378 -- Call for Help
 	L.help_icon = 6673
 end
 L = mod:GetLocale()

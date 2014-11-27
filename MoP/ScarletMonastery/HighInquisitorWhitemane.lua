@@ -17,7 +17,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "My legend begins NOW!"
 
-	L.steel, L.steel_desc = EJ_GetSectionInfo(5636)
+	L.steel = -5636 -- Flash of Steel
 	L.steel_icon = 115629
 end
 L = mod:GetLocale()
