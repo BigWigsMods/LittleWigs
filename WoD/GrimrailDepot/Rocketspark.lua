@@ -69,7 +69,7 @@ function mod:Deaths(args)
 	if deathCount > 1 then
 		self:Win()
 	else
-		if args.mobId == 74787 then -- Borka
+		if args.mobId == 77816 then -- Borka
 			self:StopBar(161090) -- Mad Dash
 			self:Message("enrage", "Attention", "Info", CL.other:format(self:SpellName(26662), self:SpellName(-9430)), 26662) -- Enrage: Railmaster Rocketspark
 		else -- Rocketspark

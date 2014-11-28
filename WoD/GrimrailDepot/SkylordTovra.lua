@@ -27,7 +27,7 @@ function mod:GetOptions()
 		162058, -- Spinning Spear
 		161588, -- Diffused Energy
 		{162066, "SAY", "FLASH"}, -- Freezing Snare
-		163447, -- Hunter's Mark
+		{163447, "PROXIMITY"}, -- Hunter's Mark
 		"bosskill",
 	}
 end
@@ -38,6 +38,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
 	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
 	self:Log("SPELL_CAST_START", "HuntersMark", 163447)
+	self:Log("SPELL_AURA_APPLIED", "HuntersMarkApplied", 163447)
+	self:Log("SPELL_AURA_REMOVED", "HuntersMarkRemoved", 163447)
 
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
@@ -89,6 +91,18 @@ do
 	end
 	function mod:HuntersMark(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(args.spellId, 20)
+	end
+	function mod:HuntersMarkApplied(args)
+		if self:Me(args.destGUID) then
+			self:OpenProximity(args.spellId, 8)
+			self:TargetBar(args.spellId, 6, args.destName)
+		else
+			self:OpenProximity(args.spellId, 8, args.destName)
+		end
+	end
+	function mod:HuntersMarkRemoved(args)
+		self:CloseProximity(args.spellId)
 	end
 end
 
