@@ -8,6 +8,12 @@ if not mod then return end
 mod:RegisterEnableMob(74787)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local yellCount = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -23,7 +29,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		150753, 150759, {150751, "FLASH", "ICON"}, "bosskill",
+		150753, -- Wild Slam
+		150759, -- Ferocious Yell
+		{150751, "FLASH", "ICON"}, -- Crushing Leap
+		"bosskill",
 	}
 end
 
@@ -38,12 +47,18 @@ function mod:OnBossEnable()
 	self:Death("Win", 74787)
 end
 
+function mod:OnEngage()
+	yellCount = 0
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
 function mod:FerociousYell(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	yellCount = yellCount + 1
+	self:Message(args.spellId, "Urgent", "Warning", CL.count:format(args.spellName, yellCount))
+	self:CDBar(args.spellId, 13.3) -- Something will randomly delay this up to 19s
 end
 
 function mod:WildSlam(args)

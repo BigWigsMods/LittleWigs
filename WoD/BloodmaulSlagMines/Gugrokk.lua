@@ -8,6 +8,12 @@ if not mod then return end
 mod:RegisterEnableMob(74790)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local blastCount = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -23,7 +29,11 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		150776, 150755, 150677, 150678, "bosskill",
+		150776, -- Magma Eruption
+		150755, -- Unstable Slag
+		150677, -- Molten Blast
+		150678, -- Molten Core
+		"bosskill",
 	}
 end
 
@@ -40,6 +50,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	blastCount = 0
 	self:CDBar(150755, 20) -- Summon Unstable Slag
 end
 
@@ -58,7 +69,8 @@ function mod:UnstableSlag(args)
 end
 
 function mod:MoltenBlast(args)
-	self:Message(args.spellId, "Attention", "Long")
+	blastCount = blastCount + 1
+	self:Message(args.spellId, "Attention", "Long", CL.count:format(args.spellName, blastCount))
 end
 
 function mod:MoltenCore(args)
