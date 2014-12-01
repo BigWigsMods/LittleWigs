@@ -76,7 +76,7 @@ do
 	end
 	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		if spellId == 153954 then -- Cast Down
-			self:GetBossTarget(bossTarget, 0.3, UnitGUID(unit))
+			self:GetBossTarget(bossTarget, 0.7, UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
 		elseif spellId == 154049 then -- Call Adds
 			self:Message("add", "Important", "Info", CL.add_spawned, L.add_icon) -- Cog icon

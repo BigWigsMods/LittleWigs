@@ -26,6 +26,7 @@ function mod:GetOptions()
 		{153794, "TANK"}, -- Pierce Armor
 		153810, -- Summon Solar Flare
 		159382, -- Quills
+		{176544, "FLASH"}, -- Fixate
 		"bosskill",
 	}
 end
@@ -33,7 +34,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Emote("Fixated", "Fixated")
+	self:RegisterEvent("RAID_BOSS_WHISPER")
 
 	self:Log("SPELL_CAST_START", "PierceArmor", 153794)
 	self:Log("SPELL_CAST_START", "SummonSolarFlare", 153810)
@@ -50,10 +51,10 @@ end
 -- Event Handlers
 --
 
-function mod:Fixated()
-	-- fixme
-	self:Message(159382, "Personal", "Alarm", CL.you:format("Fixated"), false)
-	--self:Flash()
+function mod:RAID_BOSS_WHISPER()
+	-- RAID_BOSS_WHISPER#|TInterface\\Icons\\ability_fixated_state_red:20|tA Solar Flare has |cFFFF0000|Hspell:176544|h[Fixated]|h|r on you! If it reaches you it will |cFFFF0000|Hspell:153828|h[Explode]|h|r!#Solar Flare#1#true
+	self:Message(176544, "Personal", "Alarm", CL.you:format(self:SpellName(176544)))
+	self:Flash(176544)
 end
 
 function mod:PierceArmor(args)

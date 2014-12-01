@@ -106,7 +106,7 @@ do
 	function mod:ChaosWave(args)
 		if self:MobId(args.sourceGUID) == 77734 then -- Boss
 			self:CDBar(args.spellId, 13.2) -- 13.2-15.7
-			self:GetBossTarget(printTarget, 1, args.sourceGUID)
+			self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 		else -- Trash
 			self:ScheduleTimer(grabTrashTarget, 0.1, self, args.sourceGUID)
 		end
@@ -123,7 +123,7 @@ do
 	end
 	function mod:DemonicLeap(args)
 		self:CDBar(args.spellId, 20) -- 20-23
-		self:GetBossTarget(printTarget, 1, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 

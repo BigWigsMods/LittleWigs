@@ -76,7 +76,7 @@ end
 
 function mod:Burst(args)
 	burstCount = burstCount + 1
-	self:Message(args.spellId, "Important", nil, CL.count:format(args.spellName, burstCount))
+	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, burstCount))
 	self:CDBar(args.spellId, 23)
 end
 
