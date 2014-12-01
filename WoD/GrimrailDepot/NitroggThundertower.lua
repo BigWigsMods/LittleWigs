@@ -8,6 +8,12 @@ if not mod then return end
 mod:RegisterEnableMob(79545)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local phase = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -26,15 +32,18 @@ function mod:GetOptions()
 		161073,
 		160965,
 		{160681, "ICON", "FLASH"},
+		"phases",
 		"bosskill",
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("UNIT_TARGETABLE_CHANGED")
 
 	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
 	self:Log("SPELL_AURA_REMOVED", "SuppressiveFireRemoved", 160681)
+	self:Log("SPELL_CAST_START", "Reloading", 160680)
 
 	self:Log("SPELL_AURA_APPLIED", "PickedUpMortarShells", 160702)
 	self:Death("EngineerDies", 79720) -- Blackrock Artillery Engineer
@@ -45,26 +54,51 @@ function mod:OnBossEnable()
 	self:Death("Win", 79545)
 end
 
+function mod:OnEngage()
+	phase = 1
+	self:Message("phases", "Neutral", nil, CL.phase:format(1), false)
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:UNIT_TARGETABLE_CHANGED()
+	if phase == 1 then
+		phase = 2
+		self:Message("phases", "Neutral", "Long", "60% - ".. CL.phase:format(2), false)
+	elseif phase == 2 then
+		phase = 3
+		self:Message("phases", "Neutral", "Long", CL.phase:format(3), false)
+	end
+end
+
 function mod:SuppressiveFire(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
-	if self:Me(args.destGUID) then
-		self:Flash(args.spellId)
-	end
 end
 
 function mod:SuppressiveFireRemoved(args)
 	self:PrimaryIcon(args.spellId)
+	self:StopBar(args.spellId, args.destName)
+end
+
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(160681, player, "Important", "Alert")
+		self:PrimaryIcon(160681, player)
+		if self:Me(guid) then
+			self:Flash(160681)
+		end
+	end
+	function mod:Reloading(args)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+	end
 end
 
 do
 	function mod:EngineerDies(args)
-		self:Message(160965, "Urgent", "Alert", L.dropped:format(self:SpellName(160965)))
+		self:Message(160965, "Urgent", "Info", L.dropped:format(self:SpellName(160965)))
 	end
 
 	function mod:PickedUpMortarShells(args)
