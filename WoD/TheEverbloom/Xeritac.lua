@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Consume", 169248)
 	self:Log("SPELL_CAST_START", "Inhale", 169233)
 
-	self:RegisterEvent("UNIT_TARGETABLE_CHANGED")
+	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 
 	self:Death("Win", 84550)
 end

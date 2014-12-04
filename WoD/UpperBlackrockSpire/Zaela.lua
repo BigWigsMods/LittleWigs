@@ -43,7 +43,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BlackIronCyclone", 155721)
 	self:Log("SPELL_AURA_REMOVED", "BlackIronCycloneOver", 155721)
 
-	self:RegisterEvent("UNIT_TARGETABLE_CHANGED")
+	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 
 	self:Death("Win", 77120)
 end
@@ -78,7 +78,7 @@ function mod:BlackIronCycloneOver(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:UNIT_TARGETABLE_CHANGED(_, unit)
+function mod:UNIT_TARGETABLE_CHANGED(unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Important", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else

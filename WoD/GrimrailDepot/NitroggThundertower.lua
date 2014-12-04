@@ -29,9 +29,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		161073,
-		160965,
-		{160681, "ICON", "FLASH"},
+		161073, -- Blackrock Grenade
+		160965, -- Blackrock Mortar Shells
+		{160681, "ICON", "FLASH"}, -- Suppressive Fire
+		166570, -- Slag Blast
 		"phases",
 		"bosskill",
 	}
@@ -39,7 +40,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterEvent("UNIT_TARGETABLE_CHANGED")
+	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 
 	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
 	self:Log("SPELL_AURA_REMOVED", "SuppressiveFireRemoved", 160681)
@@ -50,6 +51,9 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_AURA_APPLIED", "PickedUpGrenades", 160703)
 	self:Death("GrenadierDies", 79739) -- Blackrock Grenadier
+
+	self:Log("SPELL_AURA_APPLIED", "SlagBlast", 166570)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlast", 166570)
 
 	self:Death("Win", 79545)
 end
@@ -113,6 +117,12 @@ do
 
 	function mod:PickedUpGrenades(args)
 		self:TargetMessage(161073, args.destName, "Positive")
+	end
+end
+
+function mod:SlagBlast(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
 	end
 end
 
