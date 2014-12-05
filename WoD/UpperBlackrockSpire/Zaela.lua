@@ -8,16 +8,6 @@ if not mod then return end
 mod:RegisterEnableMob(77120)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:NewLocale("enUS", true)
-if L then
-	
-end
-L = mod:GetLocale()
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 

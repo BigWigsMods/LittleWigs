@@ -24,6 +24,7 @@
 <!-- Warlords of Draenor -->
 
 <Include file="WoD\Auchindoun\modules.xml"/>
+<Include file="WoD\Auchindoun\locales.xml"/>
 
 <Include file="WoD\BloodmaulSlagMines\modules.xml"/>
 
@@ -38,6 +39,7 @@
 <Include file="WoD\TheEverbloom\modules.xml"/>
 
 <Include file="WoD\UpperBlackrockSpire\modules.xml"/>
+<Include file="WoD\UpperBlackrockSpire\locales.xml"/>
 
 </Ui>
 
