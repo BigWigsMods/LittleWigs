@@ -14,16 +14,6 @@ mod:RegisterEnableMob(75839)
 local strikeCount = 0
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:NewLocale("enUS", true)
-if L then
-	
-end
-L = mod:GetLocale()
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 

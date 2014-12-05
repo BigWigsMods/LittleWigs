@@ -15,16 +15,6 @@ local curtainPlayers = {}
 local curtainOnMe = nil
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:NewLocale("enUS", true)
-if L then
-	
-end
-L = mod:GetLocale()
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 

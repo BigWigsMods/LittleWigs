@@ -3,23 +3,23 @@
 
 <!-- Mists of Pandaria -->
 
-<Include file="MoP\ShadoPanMonastery\locales.xml"/>
 <Include file="MoP\ShadoPanMonastery\modules.xml"/>
+<Include file="MoP\ShadoPanMonastery\locales.xml"/>
 
-<Include file="MoP\ScarletHalls\locales.xml"/>
 <Include file="MoP\ScarletHalls\modules.xml"/>
+<Include file="MoP\ScarletHalls\locales.xml"/>
 
-<Include file="MoP\ScarletMonastery\locales.xml"/>
 <Include file="MoP\ScarletMonastery\modules.xml"/>
+<Include file="MoP\ScarletMonastery\locales.xml"/>
 
-<Include file="MoP\MogushanPalace\locales.xml"/>
 <Include file="MoP\MogushanPalace\modules.xml"/>
+<Include file="MoP\MogushanPalace\locales.xml"/>
 
-<Include file="MoP\TempleOfTheJadeSerpent\locales.xml"/>
 <Include file="MoP\TempleOfTheJadeSerpent\modules.xml"/>
+<Include file="MoP\TempleOfTheJadeSerpent\locales.xml"/>
 
-<Include file="MoP\BlackTempleSolo\locales.xml"/>
 <Include file="MoP\BlackTempleSolo\modules.xml"/>
+<Include file="MoP\BlackTempleSolo\locales.xml"/>
 
 <!-- Warlords of Draenor -->
 
