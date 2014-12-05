@@ -72,12 +72,12 @@ end
 
 function mod:ConsecratedLight(args)
 	self:Message(args.spellId, "Important", "Warning")
-	self:Bar(args.spellId, self:Difficulty() == 1 and 12 or 8, CL.cast:format(args.spellName))
+	self:Bar(args.spellId, self:Normal() and 12 or 8, CL.cast:format(args.spellName))
 	self:Flash(args.spellId)
 end
 
 function mod:ConsecratedLightOver()
-	self:CDBar(152954, self:Difficulty() == 1 and 6.2 or 10.2) -- Sanctified Strike
+	self:CDBar(152954, self:Normal() and 6.2 or 10.2) -- Sanctified Strike
 	strikeCount = 0
 end
 

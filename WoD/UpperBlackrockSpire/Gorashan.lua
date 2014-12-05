@@ -71,7 +71,7 @@ function mod:PhaseWarn(unitId)
 end
 
 function mod:PowerConduit(args)
-	stacks = stacks + (self:Difficulty() == 1 and 1 or 2)
+	stacks = stacks + (self:Normal() and 1 or 2)
 	self:Message(args.spellId, "Important", "Warning", ("%d%% - %s"):format(hpPercent, CL.count:format(args.spellName, stacks)))
 end
 

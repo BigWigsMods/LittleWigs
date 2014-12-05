@@ -85,7 +85,7 @@ end
 
 function mod:SwirlingWindsOver(args)
 	if percent == 70 then
-		self:CDBar(154996, self:Difficulty() == 1 and 9.3 or 12.8) -- Engulfing Fire
+		self:CDBar(154996, self:Normal() and 9.3 or 12.8) -- Engulfing Fire
 		percent = 40
 	end
 end
