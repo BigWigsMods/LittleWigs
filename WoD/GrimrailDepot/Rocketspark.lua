@@ -47,6 +47,7 @@ end
 function mod:OnEngage()
 	deathCount = 0
 	self:CDBar(161090, 29.5) -- Mad Dash
+	self:CDBar(162617, 6.5) -- Slam
 end
 
 --------------------------------------------------------------------------------
@@ -61,7 +62,10 @@ function mod:MadDash(args)
 end
 
 function mod:Slam(args)
-	self:Message(162617, "Urgent", self:Heroic() and "Alert", CL.incoming:format(args.spellName))
+	self:Message(162617, "Urgent", not self:Normal() and "Alert", CL.incoming:format(args.spellName))
+	if not self:Normal() then
+		self:CDBar(162617, 16) -- 16-19, will delay to ~24 if just about to expire after Mad Dash
+	end
 end
 
 function mod:Deaths(args)
@@ -71,6 +75,7 @@ function mod:Deaths(args)
 	else
 		if args.mobId == 77816 then -- Borka
 			self:StopBar(161090) -- Mad Dash
+			self:StopBar(162617) -- Slam
 			self:Message("enrage", "Attention", "Info", CL.other:format(self:SpellName(26662), self:SpellName(-9430)), 26662) -- Enrage: Railmaster Rocketspark
 		else -- Rocketspark
 			self:Message("enrage", "Attention", "Info", CL.other:format(self:SpellName(26662), self:SpellName(-9433)), 26662) -- Enrage: Borka the Brute
