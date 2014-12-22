@@ -74,7 +74,7 @@ function mod:ChaseDown(player, spellId, _, _, spellName)
 end
 
 function mod:ChaseDownRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
+	self:StopBar(spellName, player)
 end
 
 function mod:Phase3()

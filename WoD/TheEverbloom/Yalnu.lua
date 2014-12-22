@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(169613, 27) -- Genesis
+	self:CDBar(169613, 26) -- Genesis
 end
 
 --------------------------------------------------------------------------------
