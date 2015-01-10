@@ -81,7 +81,7 @@ function mod:BrittleBarkOver(args)
 end
 
 function mod:Energize(args)
-	if self.isEngaged then
+	if self.isEngaged then -- This happens when killing the trash, we only want it during the encounter.
 		energy = energy + 25
 		if energy < 101 then
 			self:Message(164275, "Neutral", nil, L.energyStatus:format(energy), "spell_lightning_lightningbolt01")
@@ -101,7 +101,7 @@ function mod:UncheckedGrowthSpawned(_, msg)
 end
 
 -- XXX for patch 6.1
---function mod:UncheckedGrowthSpawned(args)
+--function mod:UncheckedGrowthSpawned()
 --	self:Message(164294, "Urgent", nil, CL.add_spawned)
 --end
 
