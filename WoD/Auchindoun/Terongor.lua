@@ -82,24 +82,9 @@ do
 		end
 		self:TargetMessage(157001, player, "Important", "Alert")
 	end
-	local function grabTrashTarget(self, mobGUID)
-		local unit = self:GetUnitIdByGUID(mobGUID)
-		if unit then
-			local unitTarget = unit.."target"
-			local name = self:UnitName(unitTarget)
-			local guid = UnitGUID(unitTarget)
-			if name and guid then
-				printTarget(self, name, guid)
-			end
-		end
-	end
 	function mod:ChaosWave(args)
-		if self:MobId(args.sourceGUID) == 77734 then -- Boss
-			self:CDBar(args.spellId, 13.2) -- 13.2-15.7
-			self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-		else -- Trash
-			self:ScheduleTimer(grabTrashTarget, 0.1, self, args.sourceGUID)
-		end
+		self:CDBar(args.spellId, 13.2) -- 13.2-15.7
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID) -- GetUnitTarget so it works for the trash add also
 	end
 end
 

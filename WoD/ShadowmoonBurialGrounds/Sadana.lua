@@ -63,20 +63,15 @@ function mod:DarkEclipse(args)
 end
 
 do
-	local function printTarget(self) -- XXX no boss unit available to use... until 6.1
-		local bossId = self:GetUnitIdByGUID(75509)
-		if not bossId then return end
-		local bossTarget = bossId.."target"
-		if UnitExists(bossTarget) then
-			if UnitIsUnit(bossTarget, "player") then
-				self:Flash(153240)
-				self:Say(153240)
-			end
-			self:TargetMessage(153240, self:UnitName(bossTarget), "Attention", "Alert")
+	local function printTarget(self, player, guid) -- XXX no boss unit available to use... until 6.1, then swap to GetBossTarget
+		if self:Me(guid) then
+			self:Flash(153240)
+			self:Say(153240)
 		end
+		self:TargetMessage(153240, player, "Attention", "Alert")
 	end
 	function mod:Daggerfall(args)
-		self:ScheduleTimer(printTarget, 0.1, self)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 
