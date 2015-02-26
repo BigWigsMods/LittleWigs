@@ -36,11 +36,6 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	-- XXX Currently doesn't fire IEEU, rely on the old fashioned engage
-	-- XXX This is now fixed in 6.1
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
 	self:Log("SPELL_CAST_SUCCESS", "DarkEclipse", 164974)
 	self:Log("SPELL_CAST_SUCCESS", "Daggerfall", 153240)
 	self:Log("SPELL_CAST_SUCCESS", "DarkCommunion", 153153)
@@ -63,7 +58,7 @@ function mod:DarkEclipse(args)
 end
 
 do
-	local function printTarget(self, player, guid) -- XXX no boss unit available to use... until 6.1, then swap to GetBossTarget
+	local function printTarget(self, player, guid)
 		if self:Me(guid) then
 			self:Flash(153240)
 			self:Say(153240)
@@ -71,14 +66,14 @@ do
 		self:TargetMessage(153240, player, "Attention", "Alert")
 	end
 	function mod:Daggerfall(args)
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 
 do
 	local counter, ref = 0, nil
 	local function findAdd(self)
-		-- Designer of this encounter just doesn't want this add on the boss frames unfortunately :(
+		-- Designer of this encounter just doesn't want this add to be on the boss frames unfortunately :(
 		-- Doomed to polling the group instead of the boss units.
 		local addId = self:GetUnitIdByGUID(75966) -- Defiled Spirit
 		if addId then

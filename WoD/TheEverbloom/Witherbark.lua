@@ -37,7 +37,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- XXX Target scan agitated water?
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_AURA_APPLIED", "UncheckedGrowth", 164294)
@@ -46,8 +45,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Energize", 164438)
 	self:Log("SPELL_CAST_START", "ParchedGasp", 164357)
 
-	--self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSpawned", 181113) -- XXX 6.1
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "UncheckedGrowthSpawned")
+	self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSpawned", 181113) -- Encounter Spawn
 
 	self:Death("Win", 81522)
 end
@@ -94,14 +92,7 @@ function mod:ParchedGasp(args)
 	self:CDBar(args.spellId, 11) -- 10-13s
 end
 
-function mod:UncheckedGrowthSpawned(_, msg)
-	if msg:find(self:SpellName(164294), nil, true) then -- Unchecked Growth
-		self:Message(164294, "Urgent", nil, CL.add_spawned)
-	end
+function mod:UncheckedGrowthSpawned()
+	self:Message(164294, "Urgent", nil, CL.add_spawned)
 end
-
--- XXX for patch 6.1
---function mod:UncheckedGrowthSpawned()
---	self:Message(164294, "Urgent", nil, CL.add_spawned)
---end
 
