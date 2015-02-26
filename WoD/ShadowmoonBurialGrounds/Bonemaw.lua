@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Bonemaw", 969, 1140)
 if not mod then return end
 mod:RegisterEnableMob(75452)
+--BOSS_KILL#1679#Bonemaw
 
 --------------------------------------------------------------------------------
 -- Localization
