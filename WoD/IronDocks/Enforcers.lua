@@ -33,7 +33,6 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		"sphere", -- Sanguine Sphere
-		"bosskill",
 	}
 end
 

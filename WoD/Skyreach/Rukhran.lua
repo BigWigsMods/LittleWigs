@@ -27,7 +27,6 @@ function mod:GetOptions()
 		153810, -- Summon Solar Flare
 		159382, -- Quills
 		{167757, "FLASH"}, -- Fixate
-		"bosskill",
 	}
 end
 

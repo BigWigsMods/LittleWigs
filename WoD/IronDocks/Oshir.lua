@@ -24,7 +24,6 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		{162415, "ICON"}, -- Time to Feed
-		"bosskill",
 	}
 end
 

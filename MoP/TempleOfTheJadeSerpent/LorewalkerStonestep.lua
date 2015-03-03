@@ -27,7 +27,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {106434, {118961, "FLASH"}, 106747, "stages", "bosskill"}
+	return {106434, {118961, "FLASH"}, 106747, "stages"}
 end
 
 function mod:VerifyEnable()

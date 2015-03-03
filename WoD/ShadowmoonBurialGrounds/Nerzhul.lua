@@ -33,7 +33,6 @@ function mod:GetOptions()
 		154442, -- Malevolence
 		154350, -- Omen of Death
 		-9680, -- Ritual of Bones
-		"bosskill",
 	}
 end
 

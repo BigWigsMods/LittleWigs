@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Orebender Gor'ashan", 995, 1226)
 if not mod then return end
 mod:RegisterEnableMob(76413)
+--BOSS_KILL#1761#Orebender Gor'ashan
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -32,7 +33,6 @@ function mod:GetOptions()
 	return {
 		166168, -- Power Conduit
 		154448, -- Shrapnel Nova
-		"bosskill",
 	}
 end
 

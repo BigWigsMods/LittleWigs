@@ -34,7 +34,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"cleave", {"blades", "FLASH"}, "help", "bosskill"}
+	return {"cleave", {"blades", "FLASH"}, "help"}
 end
 
 function mod:OnBossEnable()

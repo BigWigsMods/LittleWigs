@@ -23,7 +23,6 @@ function mod:GetOptions()
 		155057, -- Magma Pool
 		{154996, "FLASH"}, -- Engulfing Fire
 		-10740, -- Ragewing Whelp
-		"bosskill",
 	}
 end
 

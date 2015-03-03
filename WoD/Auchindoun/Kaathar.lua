@@ -23,7 +23,6 @@ function mod:GetOptions()
 		{153006, "FLASH"}, -- Consecrated Light
 		152954, -- Sanctified Strike
 		153430, -- Sanctified Ground
-		"bosskill",
 	}
 end
 

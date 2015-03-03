@@ -30,7 +30,6 @@ function mod:GetOptions()
 		153240, -- Daggerfall
 		153153, -- Dark Communion
 		"custom_on_markadd", -- Add marker option
-		"bosskill",
 	}
 end
 

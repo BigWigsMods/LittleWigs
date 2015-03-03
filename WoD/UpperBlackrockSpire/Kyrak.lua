@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Kyrak", 995, 1227)
 if not mod then return end
 mod:RegisterEnableMob(76021)
+--BOSS_KILL#1758#Kyrak
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -17,7 +18,6 @@ function mod:GetOptions()
 		161203, -- Rejuvenating Serum
 		161288, -- Vileblood Serum
 		{155037, "TANK"}, -- Eruption
-		"bosskill",
 	}
 end
 

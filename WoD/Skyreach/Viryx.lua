@@ -33,7 +33,6 @@ function mod:GetOptions()
 		"custom_on_markadd",
 		"add",
 		154055, -- Shielding
-		"bosskill",
 	}
 end
 

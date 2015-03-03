@@ -26,7 +26,6 @@ function mod:GetOptions()
 		156793, -- Four Winds
 		153315, -- Windwall
 		165731, -- Piercing Rush
-		"bosskill",
 	}
 end
 

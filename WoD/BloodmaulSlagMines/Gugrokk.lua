@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Gug'rokk", 964, 889)
 if not mod then return end
 mod:RegisterEnableMob(74790)
+--BOSS_KILL#1654#Gug'rokk
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -33,7 +34,6 @@ function mod:GetOptions()
 		150755, -- Unstable Slag
 		150677, -- Molten Blast
 		150678, -- Molten Core
-		"bosskill",
 	}
 end
 

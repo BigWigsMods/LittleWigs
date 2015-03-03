@@ -13,7 +13,9 @@ mod:RegisterEnableMob(76177)
 
 function mod:GetOptions()
 	return {
-		155327, 153994, {154477, "DISPEL"}, "bosskill",
+		155327, -- Soul Vessel
+		153994, -- Torn Spirits
+		{154477, "DISPEL"}, -- Shadow Word: Pain
 	}
 end
 

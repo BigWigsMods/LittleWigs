@@ -32,7 +32,6 @@ function mod:GetOptions()
 		154159, -- Energize
 		{154110, "TANK"}, -- Smash
 		154135, -- Burst
-		"bosskill",
 	}
 end
 

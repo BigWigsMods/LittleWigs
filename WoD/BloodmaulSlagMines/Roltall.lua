@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Roltall", 964, 887)
 if not mod then return end
 mod:RegisterEnableMob(75786)
+--BOSS_KILL#1652#Roltall
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -23,7 +24,8 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		153247, 152940, "bosskill",
+		153247, -- Fiery Boulder
+		152940, -- Heat Wave
 	}
 end
 

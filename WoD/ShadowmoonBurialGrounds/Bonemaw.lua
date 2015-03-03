@@ -26,7 +26,6 @@ function mod:GetOptions()
 	return {
 		{153804, "FLASH"}, -- Inhale
 		154175, -- Body Slam
-		"bosskill",
 	}
 end
 

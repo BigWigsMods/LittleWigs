@@ -34,7 +34,6 @@ function mod:GetOptions()
 		{160681, "ICON", "FLASH"}, -- Suppressive Fire
 		166570, -- Slag Blast
 		"phases",
-		"bosskill",
 	}
 end
 

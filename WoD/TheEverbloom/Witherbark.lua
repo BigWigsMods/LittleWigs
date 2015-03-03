@@ -32,7 +32,6 @@ function mod:GetOptions()
 		164294, -- Unchecked Growth
 		164275, -- Brittle Bark
 		{164357, "TANK"}, -- Parched Gasp
-		"bosskill",
 	}
 end
 

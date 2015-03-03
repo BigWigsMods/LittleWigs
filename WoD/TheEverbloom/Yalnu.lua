@@ -26,7 +26,6 @@ function mod:GetOptions()
 		169613, -- Genesis
 		169179, -- Colossal Blow
 		169251, -- Entanglement
-		"bosskill",
 	}
 end
 

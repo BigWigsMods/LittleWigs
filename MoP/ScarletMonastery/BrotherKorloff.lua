@@ -28,7 +28,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"fists", 114460, "firestorm", "bosskill"}
+	return {"fists", 114460, "firestorm"}
 end
 
 function mod:OnBossEnable()

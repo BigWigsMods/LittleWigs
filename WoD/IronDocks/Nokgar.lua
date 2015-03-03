@@ -33,7 +33,6 @@ function mod:GetOptions()
 		{164837, "ICON"}, -- Savage Mauling
 		164835, -- Bloodletting Howl
 		164632, -- Burning Arrows
-		"bosskill",
 	}
 end
 

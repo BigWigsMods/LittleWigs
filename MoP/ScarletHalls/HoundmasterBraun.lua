@@ -24,7 +24,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {-5611, 114259, "bosskill"}
+	return {-5611, 114259}
 end
 
 function mod:OnBossEnable()

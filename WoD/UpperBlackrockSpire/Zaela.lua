@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Warlord Zaela", 995, 1234)
 if not mod then return end
 mod:RegisterEnableMob(77120)
+--BOSS_KILL#1762#Warlord Zaela
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,7 +16,6 @@ function mod:GetOptions()
 	return {
 		{155721, "ICON", "FLASH"}, -- Black Iron Cyclone
 		"stages",
-		"bosskill",
 	}
 end
 

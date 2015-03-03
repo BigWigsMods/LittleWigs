@@ -30,7 +30,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {-5970, "blades", "crossbows", "bosskill"}
+	return {-5970, "blades", "crossbows"}
 end
 
 function mod:OnBossEnable()

@@ -42,7 +42,6 @@ function mod:GetOptions()
 		168383, -- Slash
 		168520, -- Shaper's Fortitude
 		"custom_on_automark",
-		"bosskill",
 	}
 end
 

@@ -27,7 +27,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {113134, "steel", "stages", "bosskill"}
+	return {113134, "steel", "stages"}
 end
 
 function mod:OnBossEnable()

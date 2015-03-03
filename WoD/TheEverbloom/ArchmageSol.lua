@@ -27,7 +27,6 @@ function mod:GetOptions()
 		{166492, "FLASH"}, -- Firebloom
 		166726, -- Frozen Rain
 		"stages",
-		"bosskill",
 	}
 end
 

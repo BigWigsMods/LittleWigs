@@ -29,7 +29,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {-5921, "heal", -5925, "bosskill"}
+	return {-5921, "heal", -5925}
 end
 
 function mod:OnBossEnable()

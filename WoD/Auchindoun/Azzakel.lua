@@ -22,7 +22,6 @@ function mod:GetOptions()
 	return {
 		153764, -- Claws of Argus
 		{153392, "FLASH", "ICON", "PROXIMITY"}, -- Curtain of Flame
-		"bosskill",
 	}
 end
 

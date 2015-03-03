@@ -26,7 +26,6 @@ function mod:GetOptions()
 		169248, -- Consume
 		169233, -- Inhale
 		"stages",
-		"bosskill",
 	}
 end
 

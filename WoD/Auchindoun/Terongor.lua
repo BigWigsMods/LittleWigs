@@ -19,7 +19,6 @@ function mod:GetOptions()
 		156854, -- Drain Life
 		{157168, "ICON"}, -- Fixate
 		156856, -- Rain of Fire
-		"bosskill",
 	}
 end
 

@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Slave Watcher Crushto", 964, 888)
 if not mod then return end
 mod:RegisterEnableMob(74787)
+--BOSS_KILL#1653#Slave Watcher Crushto
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -32,7 +33,6 @@ function mod:GetOptions()
 		150753, -- Wild Slam
 		150759, -- Ferocious Yell
 		{150751, "FLASH", "ICON"}, -- Crushing Leap
-		"bosskill",
 	}
 end
 

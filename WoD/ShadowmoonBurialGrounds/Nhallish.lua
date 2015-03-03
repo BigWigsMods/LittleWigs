@@ -28,7 +28,6 @@ function mod:GetOptions()
 		152801, -- Void Vortex
 		152979, -- Soul Shred
 		153067, -- Void Devastation
-		"bosskill",
 	}
 end
 

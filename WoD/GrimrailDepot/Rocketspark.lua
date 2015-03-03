@@ -31,7 +31,9 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		161090, 162617, "enrage", "bosskill",
+		161090, -- Mad Dash
+		162617, -- Slam
+		"enrage",
 	}
 end
 

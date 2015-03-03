@@ -25,7 +25,6 @@ function mod:GetOptions()
 	return {
 		168227, -- Gronn Smash
 		{168929, "FLASH"}, -- Cannon Barrage
-		"bosskill",
 	}
 end
 

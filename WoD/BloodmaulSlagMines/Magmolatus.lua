@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Magmolatus", 964, 893)
 if not mod then return end
 mod:RegisterEnableMob(74475, 74366, 74570, 74571) -- Magmolatus, Forgemaster Gog'duh, Ruination, Calamity
+--BOSS_KILL#1655#Magmolatus
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -23,7 +24,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		150076, 150078, 150038, "stages", "bosskill",
+		150076, -- Throw Earth
+		150078, -- Throw Fire
+		150038, -- Molten Impact
+		"stages",
 	}
 end
 
