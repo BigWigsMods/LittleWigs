@@ -74,6 +74,8 @@ function mod:MoltenBlast(args)
 end
 
 function mod:MoltenCore(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "Attention")
+	if self:MobId(args.destGUID) == 74790 then -- Filter spell steal
+		self:StackMessage(args.spellId, args.destName, args.amount, "Attention")
+	end
 end
 
