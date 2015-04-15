@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Controller_and_Constructor.lua"/>
+<Script file="Gortok_Palehoof.lua"/>
+<Script file="Ingvar_the_Plunderer.lua"/>
+<Script file="King_Ymiron.lua"/>
+<Script file="Prince_Keleseth.lua"/>
+<Script file="Skadi_the_Ruthless.lua"/>
+<Script file="Svala_Sorrowgrave.lua"/>
+
+</Ui>

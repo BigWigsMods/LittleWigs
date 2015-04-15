@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Bronjahm.lua"/>
+<Script file="Devourer_of_Souls.lua"/>
+<Script file="Falric_and_Marwyn.lua"/>
+<Script file="Forgemaster_Garfrost.lua"/>
+<Script file="Krick_and_Ick.lua"/>
+<Script file="Lich_King.lua"/>
+<Script file="Scourgelord_Tyrannus.lua"/>
+
+</Ui>
+

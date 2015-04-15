@@ -1,0 +1,14 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Anomalus.lua"/>
+<Script file="Drakos_the_Interrogator.lua"/>
+<Script file="Grand_Magus_Telestra.lua"/>
+<Script file="Keristrasza.lua"/>
+<Script file="Ley-Guardian_Eregos.lua"/>
+<Script file="Mage-Lord_Urom.lua"/>
+<Script file="Ormorok_the_Tree-Shaper.lua"/>
+<Script file="Varos_Cloudstrider.lua"/>
+
+</Ui>
+

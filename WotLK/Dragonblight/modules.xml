@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Amanitar.lua"/>
+<Script file="Anub'arak.lua"/>
+<Script file="Elder_Nadox.lua"/>
+<Script file="Hadronox.lua"/>
+<Script file="Herald_Volazj.lua"/>
+<Script file="Jedoga_Shadowseeker.lua"/>
+<Script file="Krik'thir_the_Gatewatcher.lua"/>
+<Script file="Prince_Taldaram.lua"/>
+
+</Ui>
