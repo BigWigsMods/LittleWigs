@@ -1,6 +1,4 @@
 
-
-
 --------------------------------------------------------------------------------
 -- Module declaration
 --
@@ -17,7 +15,7 @@ local splitPhase = 1
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.split_trigger = "We span the universe, as countless as the stars!",
+	L.split_trigger = "We span the universe, as countless as the stars!"
 end
 L = mod:GetLocale()
 
