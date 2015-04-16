@@ -1,44 +1,49 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Aeonus", 733)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Aeonus", 733, 554)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(17881)
-mod.toggleOptions = {37605, "bosskill"}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
+--
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Black Morass Reset", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
-	L["reset_trigger"] = "No! Damn this feeble, mortal coil!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Black_Morass/Reset", format="lua_additive_table", handle-unlocalized="ignore")@
+	L.reset_trigger = "No! Damn this feeble, mortal coil!" -- XXX implement?
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Black Morass Reset")
-mod.locale = L
+L = mod:GetLocale()
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		37605, -- Enrage
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 37605)
 	self:Log("SPELL_AURA_REMOVED", "EnrageRemoved", 37605)
+
 	self:Death("Win", 17881)
-	self:Yell("OnDiable", L["reset_trigger"])
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message(37605, L["frenzy_message"], "Important", spellId)
-	self:Bar(37605, spellName, 8, spellId)
+function mod:Enrage(args)
+	self:Message(args.spellId, "Urgent")
+	self:Bar(args.spellId, 8)
 end
 
-function mod:EnrageRemoved(_, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName)
+function mod:EnrageRemoved(args)
+	self:StopBar(args.spellName)
 end
+
