@@ -1,28 +1,41 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Tavarok", 732, 535)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Tavarok", 732, 535)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18343)
-mod.toggleOptions = {
-	{32361, "ICON"},
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		{32361, "ICON"}, -- Crystal Prison
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Prison", 32361)
+	self:Log("SPELL_AURA_APPLIED", "CrystalPrison", 32361)
+	self:Log("SPELL_AURA_REMOVED", "CrystalPrisonRemoved", 32361)
+
 	self:Death("Win", 18343)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Prison(player, spellId, _, _, spellName)
-	self:Message(32361, spellName..": "..player, "Important", spellId)
-	self:PrimaryIcon(32361, player, "icon")
+function mod:CrystalPrison(args)
+	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetBar(args.spellId, 5)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
+
+function mod:CrystalPrisonRemoved(args)
+	self:PrimaryIcon(args.spellId)
+	self:StopBar(args.spellName, args.destName)
+end
+

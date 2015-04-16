@@ -1,16 +1,29 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Blood Guard Porung", 710, 728)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Blood Guard Porung", 710, 728)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(20923)
-mod.toggleOptions = {"bosskill"}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		15496, -- Cleave
+	}
+end
 
 function mod:OnBossEnable()
+	-- XXX revise this module
+
 	self:Death("Win", 20923)
 end
+
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
+

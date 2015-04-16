@@ -1,16 +1,29 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Grand Warlock Nethekurse", 710, 566)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Grand Warlock Nethekurse", 710, 566)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(16807)
-mod.toggleOptions = {"bosskill"}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		30496, -- Lesser Shadow Fissure
+	}
+end
 
 function mod:OnBossEnable()
+	-- XXX revise this module
+
 	self:Death("Win", 16807)
 end
+
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
+
