@@ -1,4 +1,66 @@
-﻿------------------------------
+------------------------------
+--      Are you local?      --
+------------------------------
+
+local boss = BB["Gatewatcher Gyro-Kill"]
+local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
+
+----------------------------
+--      Localization      --
+----------------------------
+
+
+
+----------------------------------
+--      Module Declaration      --
+----------------------------------
+
+local mod = BigWigs:NewModule(boss)
+mod.partyContent = true
+mod.otherMenu = "Tempest Keep"
+mod.zonename = BZ["The Mechanar"]
+mod.enabletrigger = boss 
+mod.guid = 19218
+mod.toggleOptions = {"shadow", "shadowbar", "bosskill"}
+mod.revision = tonumber(("$Revision: 34 $"):sub(12, -3))
+
+------------------------------
+--      Initialization      --
+------------------------------
+
+function mod:OnEnable()
+	self:AddCombatListener("SPELL_CAST_START", "Shadow", 39193, 35322)
+	self:AddCombatListener("SPELL_AURA_APPLIED", "ShadowApplied", 39193, 35322)
+	self:AddCombatListener("SPELL_AURA_REMOVED", "ShadowRemoved", 39193, 35322)
+	self:AddCombatListener("UNIT_DIED", "BossDeath")
+end
+
+------------------------------
+--      Event Handlers      --
+------------------------------
+
+function mod:Shadow(_, spellId)
+	if self.db.profile.shadow then
+		self:Message(L["shadow_message"], "Important")
+	end
+end
+
+function mod:ShadowApplied(_, spellId, _, _, spellName)
+	if self.db.profile.shadowbar then
+		self:Bar(spellName, 15, spellId)
+	end
+end
+
+function mod:ShadowRemoved(_, spellId, _, _, spellName)
+	if self.db.profile.shadowbar then
+		self:TriggerEvent("BigWigs_StopBar", self, spellName)
+	end
+end
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------
 --      Are you local?      --
 ------------------------------
 
@@ -177,4 +239,3 @@ function mod:ShadowRemoved(_, spellId, _, _, spellName)
 	end
 end
 
-// and another one
