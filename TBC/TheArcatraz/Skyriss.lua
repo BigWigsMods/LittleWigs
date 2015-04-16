@@ -1,18 +1,88 @@
-﻿------------------------------
---      Are you local?      --
-------------------------------
 
-local boss = BB["Harbinger Skyriss"]
-local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..boss)
-local L2 = AceLibrary("AceLocale-2.2"):new("BigWigsCommonWords")
 
-local firstSplitAnnounced = nil
-local secondSplitAnnounced = nil
 
-----------------------------
---      Localization      --
-----------------------------
+--------------------------------------------------------------------------------
+-- Module declaration
+--
 
+local mod, CL = BigWigs:NewBoss("Harbinger Skyriss", 731, 551)
+if not mod then return end
+mod:RegisterEnableMob(20912, 20904) -- Harbinger Skyriss, Warden Mellichar
+
+local splitPhase = 1
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.split_trigger = "We span the universe, as countless as the stars!",
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		37162, -- Domination
+		36924, -- Mind Rend
+		143024, -- Slit, XXX FAKE ID
+	}
+end
+
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "Domination", 37162, 39019)
+	self:Log("SPELL_AURA_APPLIED", "MindRend", 36924, 36929, 39017, 39021)
+
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+
+	self:Death("Win", 20912)
+end
+
+function mod:OnEngage()
+	splitPhase = 1
+	self:StartWipeCheck()
+end
+
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
+
+function mod:Domination(args)
+	self:TargetMessage(37162, args.destName, "Urgent")
+	self:TargetBar(37162, 6, args.destName)
+end
+
+function mod:MindRend(args)
+	self:TargetMessage(36924, args.destName, "Important")
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.split_trigger then
+		self:Message(143024, "Attention")
+	end
+end
+
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:MobId(UnitGUID(unit)) == 20912 then
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if (hp < 71 and splitPhase == 1) or (hp < 36 and splitPhase == 2) then
+			splitPhase = splitPhase + 1
+			self:Message(143024, "Positive", nil, CL.soon:format(self:SpellName(143024)), false)
+			if splitPhase > 2 then
+				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			end
+		end
+	end
+end
+
+
+--[[
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Skyriss",
 
@@ -130,71 +200,5 @@ L:RegisterTranslations("ruRU", function() return {
 	mr_desc = "Предупреждать о Разрыве разума",
 	mr_message = "Разрыв разума: %s",
 } end )
+]]
 
-----------------------------------
---      Module Declaration      --
-----------------------------------
-
-local mod = BigWigs:NewModule(boss)
-mod.partyContent = true
-mod.otherMenu = "Tempest Keep"
-mod.zonename = BZ["The Arcatraz"]
-mod.enabletrigger = {boss, BB["Warden Mellichar"]}
-mod.guid = 20912
-mod.toggleOptions = {"mc", "mr", "split", "bosskill"}
-mod.revision = tonumber(("$Revision: 34 $"):sub(12, -3))
-
-------------------------------
---      Initialization      --
-------------------------------
-
-function mod:OnEnable()
-	firstSplitAnnounced = nil
-	secondSplitAnnounced = nil
-
-	self:AddCombatListener("UNIT_DIED", "BossDeath")
-	self:AddCombatListener("SPELL_AURA_APPLIED", "MC", 37162, 39019)
-	self:AddCombatListener("SPELL_AURA_APPLIED", "MindRend", 36924, 36929, 39017, 39021)
-	
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")	
-	self:RegisterEvent("UNIT_HEALTH")	
-end
-
-------------------------------
---      Event Handlers      --
-------------------------------
-
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self.db.profile.split and msg == L["split_trigger"] then
-		self:Message(L["split_message"]:format(boss), "Urgent")
-	end
-end
-
-function mod:UNIT_HEALTH(msg)
-	if not self.db.profile.split then return end
-	if UnitName(msg) == boss then
-		local hp = UnitHealth(msg)
-		if hp > 66 and hp < 70 and not firstSplitAnnounced then
-			self:Message(L["split_soon_message"], "Attention")
-			firstSplitAnnounced = true
-		elseif hp > 33 and hp < 37 and not secondSplitAnnounced then
-			self:Message(L["split_soon_message"], "Attention")
-			secondSplitAnnounced = true
-		end
-	end
-end
-
-function mod:MC(player, spellId)
-	if self.db.profile.mc then
-		self:IfMessage(L["mc_message"]:format(player), "Important", spellId)
-		self:Bar(L["mc_bar"]:format(player), 6, spellId)
-	end
-end
-
-function mod:MindRend(player)
-	if self.db.profile.mr then
-		self:IfMessage(L["mr_message"]:format(player), "Important", 39017)
-	end
-end
-
-// same
