@@ -25,12 +25,14 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		30739, -- Blade Dance, XXX fake id
+		30739, -- Blade Dance
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	-- XXX sync this?
+	--[UNIT_SPELLCAST_SUCCEEDED] Warchief Kargath Bladefist [[target:Blade Dance Targeting::0:30738]]
 
 	self:Death("Win", 16808)
 end
@@ -52,7 +54,7 @@ end
 
 function mod:DanceRepeater()
 	self:ScheduleTimer("DanceRepeater", 35)
-	self:DelayedMessage(30739, 25, "Urgent")
+	self:DelayedMessage(30739, 30, "Urgent")
 	self:CDBar(30739, 30)
 end
 
