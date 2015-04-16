@@ -7,6 +7,8 @@ local mod, CL = BigWigs:NewBoss("Rukhran", 989, 967)
 if not mod then return end
 mod:RegisterEnableMob(76143)
 
+local quillsWarn = 100
+
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -44,6 +46,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	quillsWarn = 100
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "QuillsWarn", "boss1")
 	self:Bar(153794, 10.5) -- Pierce Armor
 end
 
@@ -53,8 +57,10 @@ end
 
 --[[ XXX wowNext/6.2
 function mod:Fixate(args)
-	self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
-	self:Flash(args.spellId)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+		self:Flash(args.spellId)
+	end
 end
 ]]
 
@@ -74,6 +80,17 @@ function mod:SummonSolarFlare(args)
 end
 
 function mod:Quills(args)
-	self:Message(args.spellId, "Urgent", "Long")
+	self:Message(args.spellId, "Urgent", "Long", ("%d%% - %s"):format(quillsWarn, args.spellName))
+end
+
+function mod:QuillsWarn(unitId)
+	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
+	if (hp < 67 and quillsWarn == 100) or (hp < 27 and quillsWarn == 60) then
+		quillsWarn = quillsWarn - 40
+		self:Message(159382, "Positive", nil, CL.soon:format(self:SpellName(159382)), false)
+		if quillsWarn == 20 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
+		end
+	end
 end
 
