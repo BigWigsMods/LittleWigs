@@ -12,6 +12,7 @@
 <!-- Wrath of the Lich King -->
 
 <Include file="WotLK\Ahnkahet\modules.xml"/>
+<Include file="WotLK\Gundrak\modules.xml"/>
 
 <!-- Mists of Pandaria -->
 

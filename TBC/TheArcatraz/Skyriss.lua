@@ -44,7 +44,7 @@ end
 
 function mod:OnEngage()
 	splitPhase = 1
-	self:StartWipeCheck()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 --------------------------------------------------------------------------------

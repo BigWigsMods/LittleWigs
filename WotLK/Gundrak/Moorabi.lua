@@ -1,43 +1,42 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Moorabi", 530)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Moorabi", 530, 594)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(29305)
-mod.toggleOptions = {
-	55098, -- Transform
-	"bosskill"
-}
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local spellName = GetSpellInfo(55098)
-
--------------------------------------------------------------------------------
---  Localization
-
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
---  Initialization
+function mod:GetOptions()
+	return {
+		55098, -- Transformation
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Transform", 55098)
-	self:Log("SPELL_INTERRUPT", "Interrupt", 32747) -- spellId of Interrupt
+	self:Log("SPELL_CAST_START", "Transformation", 55098)
+	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
+
 	self:Death("Win", 29305)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Transform(_, spellId)
-	self:Message(55098, LCL["casting"]:format(spellName), "Urgent", spellId)
-	self:Bar(55098, spellName, 4, spellId)
+function mod:Transformation(args)
+	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:Bar(args.spellId, 4)
 end
 
-function mod:Interrupt(_, _, source)
-	self:SendMessage("BigWigs_StopBar", self, LCL["casting"]:format(spellName))
+function mod:Interrupt(args)
+	if args.extraSpellId == 55098 then -- Transformation
+		self:Message(args.extraSpellId, "Positive", nil, ("%s (%s)"):format(self:SpellName(134340), self:ColorName(args.sourceName))) -- 134340 = "Interrupted"
+		self:StopBar(args.amount) -- Name of interrupted spell
+	end
 end
+

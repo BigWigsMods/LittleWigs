@@ -1,45 +1,39 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Drakkari Colossus", 530)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Drakkari Colossus", 530, 593)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(29307)
-mod.toggleOptions = {
-	54850, -- Emerge
-	54878, -- Merge
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local L = mod:NewLocale("enUS", true)
-if L then
---@do-not-package@
-L["emerge_message"] = "Elemental Emerging"
-L["merge_message"] = "Merging with Colossus"--@end-do-not-package@
---@localization(locale="enUS", namespace="Zul_Drak/Drakkari_Colossus", format="lua_additive_table", handle-unlocalized="ignore")@
+function mod:GetOptions()
+	return {
+		54850, -- Emerge
+		54878, -- Merge
+	}
 end
-L = mod:GetLocale()
-
--------------------------------------------------------------------------------
---  Initialization
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Emerge", 54850) -- To Elemental
 	self:Log("SPELL_CAST_START", "Merge", 54878) -- To Colossus
+
 	self:Death("Win", 29307)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Emerge(_, spellId)
-	self:Message(54850, L["emerge_message"], "Urgent", spellId)
+function mod:Emerge(args)
+	self:Message(args.spellId, "Attention", nil, -6421) -- Phase 2: The Elemental
 end
 
-function mod:Merge(_, spellId)
-	self:Message(54878, L["merge_message"], "Urgent", spellId)
+function mod:Merge(args)
+	self:Message(args.spellId, "Important", nil, -6418) -- Phase 1: The Colossus
 end
+

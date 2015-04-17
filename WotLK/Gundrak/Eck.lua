@@ -1,38 +1,35 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Eck the Ferocious", 530)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Eck the Ferocious", 530, 595)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(29932)
-mod.toggleOptions = {
-	55817, --Residue
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local pName = UnitName("player")
-
--------------------------------------------------------------------------------
---  Localization
-
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-
--------------------------------------------------------------------------------
---  Initialization
+function mod:GetOptions()
+	return {
+		55817, -- Eck Residue
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Residue", 55817)
+	self:Log("SPELL_AURA_APPLIED", "EckResidue", 55817)
+
 	self:Death("Win", 29932)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Residue(player, spellId, _, _, spellName)
-	if player ~= pName then return end
-	self:LocalMessage(55817, BCL["you"]:format(spellName), "Positive", spellId, "Info")
+function mod:EckResidue(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
+	end
 end
+

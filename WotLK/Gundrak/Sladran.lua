@@ -1,39 +1,45 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Slad'ran", 530)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Slad'ran", 530, 592)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(29304)
-mod.toggleOptions = {
-	55081, -- Poison Nova
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		59842, -- Poison Nova
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "PoisonCast", 55081, 59842)
-	self:Log("SPELL_AURA_APPLIED", "Poison", 55081, 59842)
-	self:Log("SPELL_AURA_REMOVED", "PoisonRemoved", 55081, 59842)
+	self:Log("SPELL_CAST_START", "PoisonNova", 55081, 59842)
+	self:Log("SPELL_AURA_APPLIED", "PoisonNovaApplied", 55081, 59842)
+	self:Log("SPELL_AURA_REMOVED", "PoisonNovaRemoved", 55081, 59842)
+
 	self:Death("Win", 29304)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:PoisonCast(_, _, _, _, spellName)
-	self:Message(55081, LCL["casting"]:format(spellName), "Attention", spellId)
-	self:Bar(55081, spellName, 3.5, spellId)
+function mod:PoisonNova(args)
+	self:Message(59842, "Attention", nil, CL.casting:format(args.spellName))
+	self:Bar(59842, 3.5)
 end
 
-function mod:Poison(player, spellId, _, _, spellName)
-	self:Message(55081, spellName..": "..player, "Urgent", spellId)
-	self:Bar(55081, player..": "..spellName, 6, spellId)
+function mod:PoisonNovaApplied(args)
+	self:TargetMessage(59842, argss.destName, "Urgent")
+	self:TargetBar(59842, args.spellId == 59842 and 10 or 16, args.destName)
 end
 
-function mod:PoisonRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:PoisonNovaRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
+
