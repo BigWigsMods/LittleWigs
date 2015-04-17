@@ -1,54 +1,47 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Prince Taldaram", 522)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Prince Taldaram", 522, 581)
 if not mod then return end
-mod.partycontent = true
-mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(29308)
-mod.toggleOptions = {
-	55959, -- Embrace of the Vampyr
-	55931, -- Summon Sphere
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local L = mod:NewLocale("enUS", true)
-if L then
---@do-not-package@
-L["embraceFade"] = "Embrace of the Vampyr Fades"
-L["embraceGain"] = "Embrace of the Vampyr Gained"
-L["sphere_message"] = "Conjuring Flame Sphere"--@end-do-not-package@
---@localization(locale="enUS", namespace="Dragonblight/Prince_Taldaram", format="lua_additive_table", handle-unlocalized="ignore")@
+function mod:GetOptions()
+	return {
+		59513, -- Embrace of the Vampyr
+		55931, -- Conjure Flame Sphere
+	}
 end
-L = mod:GetLocale()
 
--------------------------------------------------------------------------------
---  Initialization
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "EmbraceOfTheVampyr", 55959, 59513)
+	self:Log("SPELL_AURA_REMOVED", "EmbraceOfTheVampyrRemoved", 55959, 59513)
+	self:Log("SPELL_CAST_START", "ConjureFlameSphere", 55931)
 
-function mod:OnEnable()
-	self:Log("SPELL_AURA_APPLIED", "Embrace", 55959, 59513)
-	self:Log("SPELL_AURA_REMOVED", "EmbraceRemoved", 55959, 59513)
-	self:Log("SPELL_CAST_START", "Sphere", 55931)
 	self:Death("Win", 29308)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Embrace(_, spellId, _, _, spellName)
-	self:Message(55959, L["embraceGain"], "Important", spellId)
-	self:Bar(55959, spellName, 20, spellId)
+function mod:EmbraceOfTheVampyr(args)
+	self:Message(59513, "Important")
+	self:Bar(59513, 20)
 end
 
-function mod:EmbraceRemoved(_, spellId, _, _, spellName)
-	self:Message(55959, L["embraceFade"], "Positive", spellId)
-	self:SendMessage("BigWigs_StopBar", self, spellName)
+function mod:EmbraceOfTheVampyrRemoved(args)
+	self:Message(59513, "Positive", nil, CL.over:format(args.spellName))
+	self:StopBar(args.spellName)
 end
 
-function mod:Sphere(_, spellId, _, _, spellName)
-	self:Message(55931, L["sphere_message"], "Important", spellId)
-	self:Bar(55931, "~"..spellName, 10, spellId)
+function mod:ConjureFlameSphere(args)
+	self:Message(args.spellId, "Important")
+	self:Bar(args.spellId, 10)
 end
+

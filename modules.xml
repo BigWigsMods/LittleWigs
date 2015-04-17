@@ -9,6 +9,10 @@
 <Include file="TBC\TheShatteredHalls\modules.xml"/>
 <Include file="TBC\TheSlavePens\modules.xml"/>
 
+<!-- Wrath of the Lich King -->
+
+<Include file="WotLK\Ahnkahet\modules.xml"/>
+
 <!-- Mists of Pandaria -->
 
 <Include file="MoP\ShadoPanMonastery\modules.xml"/>

@@ -1,28 +1,34 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Jedoga Shadowseeker", 522)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Jedoga Shadowseeker", 522, 582)
 if not mod then return end
-mod.partycontent = true
-mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(29310)
-mod.toggleOptions = {
-	56926, -- Thunder Shock
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		60029, -- Thunder Shock
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Thundershock", 56926, 60029)
+
 	self:Death("Win", 29310)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Thundershock(_, spellId, _, _, spellName)
-	self:Message(56926, spellName, "Important", spellId)
-	self:Bar(56926, spellName, 10, spellId)
+function mod:Thundershock(args)
+	self:Message(60029, "Important")
+	self:Bar(60029, 10)
 end
+

@@ -1,45 +1,45 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Herald Volazj", 522)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Herald Volazj", 522, 584)
 if not mod then return end
-mod.partycontent = true
-mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(29311)
-mod.defaultToggles = {"MESSAGE"}
-mod.toggleOptions = {
-	57496, -- Insanity
-	57949, -- Shiver
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
---  Initialization
+function mod:GetOptions()
+	return {
+		57496, -- Insanity
+		59978, -- Shiver
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Insanity", 57496)
 	self:Log("SPELL_AURA_APPLIED", "Shiver", 57949, 59978)
 	self:Log("SPELL_AURA_REMOVED", "ShiverRemoved", 57949, 59978)
+
 	self:Death("Win", 29311)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Insanity(_, spellId, _, _, spellName)
-	self:Message(57496, LCL["casting"]:format(spellName), "Important", spellId)
+function mod:Insanity(args)
+	self:Message(args.spellId, "Important", nil, CL.casting:format(args.spellName))
 end
 
-function mod:Shiver(player, spellId, _, _, spellName)
-	self:Message(57949, spellName..": "..player, "Important", spellId)
-	self:Bar(57949, player..": "..spellName, 15, spellId)
+function mod:Shiver(args)
+	self:TargetMessage(59978, args.destName, "Attention")
+	self:TargetBar(59978, 15, args.destName)
 end
 
-function mod:ShiverRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:ShiverRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
+
