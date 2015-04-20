@@ -1,41 +1,47 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Ionar", 525)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Ionar", 525, 599)
 if not mod then return end
-mod.partycontent = true
-mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(28546)
-mod.toggleOptions = {
-	{52658, "WHISPER", "FLASHSHAKE"}, -- Overload
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local pName = UnitName("player")
+function mod:GetOptions()
+	return {
+		{59795, "SAY", "FLASH", "PROXIMITY"}, -- Static Overload
+	}
+end
 
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "StaticOverload", 52658, 59795)
+	self:Log("SPELL_AURA_REMOVED", "StaticOverloadRemoved", 52658, 59795)
 
--------------------------------------------------------------------------------
---  Localizations
-
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-
--------------------------------------------------------------------------------
---  Initialization
-
-function mod:OnEnable()
-	self:Log("SPELL_AURA_APPLIED", "Overload", 52658, 59795)
 	self:Death("Win", 28546)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Overload(player, spellId, _, _, spellName)
-	self:TargetMessage(52658, spellName, player, "Personal", spellId, "Alarm")
-	self:Whisper(52658, player, BCL["you"]:format(spellName))
-	self:Bar(52658, player..": "..spellName, 10, spellId)
-	if player == pName then self:FlashShake(52658) end
+function mod:StaticOverload(args)
+	self:TargetMessage(59795, args.destName, "Attention", "Alarm")
+	self:TargetBar(59795, 10, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(59795)
+		self:OpenProximity(59795, 10)
+		self:Flash(59795)
+	end
 end
+
+function mod:StaticOverloadRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+	if self:Me(args.destGUID) then
+		self:CloseProximity(59795)
+	end
+end
+
