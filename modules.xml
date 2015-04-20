@@ -14,6 +14,8 @@
 <Include file="WotLK\Ahnkahet\modules.xml"/>
 <Include file="WotLK\Gundrak\modules.xml"/>
 <Include file="WotLK\HallsOfLightning\modules.xml"/>
+<Include file="WotLK\TheNexus\modules.xml"/>
+<Include file="WotLK\UtgardePinnacle\modules.xml"/>
 
 <!-- Mists of Pandaria -->
 

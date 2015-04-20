@@ -1,44 +1,45 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Ormorok the Tree-Shaper", 520)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Ormorok the Tree-Shaper", 520, 620)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(26794)
-mod.toggleOptions = {
-	47981, -- Spell Reflect
-	48017, -- Frenzy
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
--------------------------------------------------------------------------------
---  Initialization
+function mod:GetOptions()
+	return {
+		47981, -- Spell Reflection
+		48017, -- Frenzy
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Reflection", 47981)
-	self:Log("SPELL_AURA_REMOVED", "ReflectionRemoved", 47981)
+	self:Log("SPELL_AURA_APPLIED", "SpellReflection", 47981)
+	self:Log("SPELL_AURA_REMOVED", "SpellReflectionRemoved", 47981)
 	self:Log("SPELL_CAST_SUCCESS", "Frenzy", 48017, 57086)
+
 	self:Death("Win", 26794)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Reflection(_, spellId, _, _, spellName)
-	self:Message(47981, spellName, "Attention", spellId)
-	self:Bar(47981, spellName, 15, spellId)
+function mod:SpellReflection(args)
+	self:Message(args.spellId, "Attention")
+	self:Bar(args.spellId, 15)
 end
 
-function mod:ReflectionRemoved(_, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName)
+function mod:SpellReflection(args)
+	self:StopBar(args.spellName)
 end
 
-function mod:Frenzy(_, spellId)
-	self:Message(48017, LCL["frenzied"]:format(mod.displayName), "Important", spellId)
+function mod:Frenzy(args)
+	self:Message(48017, "Important")
 end
+
