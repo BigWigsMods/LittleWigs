@@ -35,7 +35,7 @@ function mod:SpellReflection(args)
 	self:Bar(args.spellId, 15)
 end
 
-function mod:SpellReflection(args)
+function mod:SpellReflectionRemoved(args)
 	self:StopBar(args.spellName)
 end
 
