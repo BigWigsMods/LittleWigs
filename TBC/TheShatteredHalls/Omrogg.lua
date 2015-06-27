@@ -13,12 +13,13 @@ mod:RegisterEnableMob(16809)
 
 function mod:GetOptions()
 	return {
-		30584, -- Fear
+		-5894, -- Beatdown
 	}
 end
 
 function mod:OnBossEnable()
-	-- XXX revise this module
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "target", "focus")
+	self:AddSyncListener("Beatdown")
 
 	self:Death("Win", 16809)
 end
@@ -26,4 +27,16 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 30618 then -- Beatdown
+		self:Sync("Beatdown")
+	end
+end
+
+function mod:OnSync(sync)
+	if sync == "Beatdown" then
+		self:Message(-5894, "Attention", "Warning")
+	end
+end
 
