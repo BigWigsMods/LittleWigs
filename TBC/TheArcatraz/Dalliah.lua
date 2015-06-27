@@ -32,7 +32,7 @@ end
 --
 
 function mod:Heal(args)
-	self:Message(39013, "Urgent", nil, CL.casting:format(args.destName))
+	self:Message(39013, "Urgent", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Whirlwind()
