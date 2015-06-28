@@ -32,7 +32,7 @@ end
 --
 
 function mod:Frenzy(args)
-	self:Message(args.spellName, "Important", nil, "20% - ".. args.destName)
+	self:Message(args.spellId, "Important", nil, "20% - ".. args.spellName)
 end
 
 function mod:GrievousWound(args)
