@@ -55,7 +55,7 @@ do
 end
 
 function mod:DarkSpin(args)
-	self:Message(args.spellId, args.destName, "Important", "Info", "25% - ".. args.spellName)
+	self:Message(args.spellId, "Important", "Info", "25% - ".. args.spellName)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
