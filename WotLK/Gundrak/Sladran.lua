@@ -35,7 +35,7 @@ function mod:PoisonNova(args)
 end
 
 function mod:PoisonNovaApplied(args)
-	self:TargetMessage(59842, argss.destName, "Urgent")
+	self:TargetMessage(59842, args.destName, "Urgent")
 	self:TargetBar(59842, args.spellId == 59842 and 10 or 16, args.destName)
 end
 

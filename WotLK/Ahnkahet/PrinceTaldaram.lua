@@ -31,7 +31,7 @@ end
 --
 
 function mod:EmbraceOfTheVampyr(args)
-	self:Message(59513, "Important")
+	self:TargetMessage(59513, args.destName, "Important", "Warning", nil, nil, true)
 	self:Bar(59513, 20)
 end
 

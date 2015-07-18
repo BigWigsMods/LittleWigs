@@ -18,7 +18,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Mini", 57055)
+	self:Log("SPELL_CAST_START", "Mini", 57055)
 
 	self:Death("Win", 30258)
 end
@@ -28,6 +28,6 @@ end
 --
 
 function mod:Mini(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:Message(args.spellId, "Attention", "Info", CL.casting:format(args.spellName))
 end
 
