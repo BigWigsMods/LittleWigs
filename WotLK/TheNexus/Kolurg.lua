@@ -3,9 +3,9 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Commander Kolurg", 520, 833)
+local mod, CL = BigWigs:NewBoss("Commander Kolurg/Stoutbeard", 520, UnitFactionGroup("player") == "Horde" and 617 or 833)
 if not mod then return end
-mod:RegisterEnableMob(26798)
+mod:RegisterEnableMob(26798, 26796) -- Commander Kolurg, Commander Stoutbeard
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,17 +13,22 @@ mod:RegisterEnableMob(26798)
 
 function mod:GetOptions()
 	return {
-		29544, -- Frightening Shout
+		38618, -- Whirlwind
 	}
 end
 
 function mod:OnBossEnable()
-	-- XXX revise this module
+	self:Log("SPELL_CAST_START", "Whirlwind", 38618)
 
-	self:Death("Win", 26798)
+	self:Death("Win", 26798, 26796)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Whirlwind(args)
+	self:Message(args.spellId, "Urgent", "Info")
+	self:CDBar(args.spellId, 14.5)
+end
 

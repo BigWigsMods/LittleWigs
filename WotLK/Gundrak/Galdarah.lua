@@ -30,12 +30,14 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		"forms",
+		59827, -- Impaling Charge
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:Log("SPELL_CAST_SUCCESS", "ImpalingCharge", 59827, 54956) -- Heroic, Normal
 
 	self:Death("Win", 29306)
 end
@@ -61,5 +63,9 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 			self:Message("forms", "Positive", nil, L.form_troll, false)
 		end
 	end
+end
+
+function mod:ImpalingCharge(args)
+	self:TargetMessage(59827, args.destName, "Attention", "Info", nil, nil, true)
 end
 

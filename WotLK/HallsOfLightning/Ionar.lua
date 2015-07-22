@@ -14,12 +14,14 @@ mod:RegisterEnableMob(28546)
 function mod:GetOptions()
 	return {
 		{59795, "SAY", "FLASH", "PROXIMITY"}, -- Static Overload
+		52770, -- Disperse
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "StaticOverload", 52658, 59795)
 	self:Log("SPELL_AURA_REMOVED", "StaticOverloadRemoved", 52658, 59795)
+	self:Log("SPELL_CAST_START", "Disperse", 52770)
 
 	self:Death("Win", 28546)
 end
@@ -43,5 +45,9 @@ function mod:StaticOverloadRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CloseProximity(59795)
 	end
+end
+
+function mod:Disperse(args)
+	self:Message(args.spellId, "Urgent", "Info")
 end
 
