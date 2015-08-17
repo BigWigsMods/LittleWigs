@@ -25,12 +25,6 @@ if L then
 	L.wave = "Wave Warnings"
 	L.wave_desc = "Announce approximate warning messages for the waves."
 
-	L.wave_bar = "Wave %s"
-	L.multiwave_bar = "Multiple waves"
-
-	L.wave_message15s = "%s in 15 seconds!"
-	L.wave_message140s = "%s in ~140 seconds!"
-
 	--L.disable_trigger = "We will triumph. It is only a matter... of time."
 	--L.reset_trigger = "No! Damn this feeble, mortal coil!"
 end
@@ -50,6 +44,11 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UPDATE_WORLD_STATES")
 
 	self:Death("BossDeath", 17879, 17880) -- Chrono Lord Deja, Temporus
+	self:Death("Disable", 17881) -- Aeonus
+end
+
+function mod:OnDisable()
+	prevWave = 0
 end
 
 --------------------------------------------------------------------------------
@@ -65,19 +64,20 @@ function mod:UPDATE_WORLD_STATES()
 				local currentWave = tonumber(wave)
 				if currentWave and currentWave ~= prevWave then
 					prevWave = currentWave
-					self:CDBar("wave", 15, L.wave_bar:format(currentWave), "INV_Misc_ShadowEgg")
+					local rift = self:SpellName(147840) -- Time Rift
+					self:Bar("wave", 15, CL.count:format(rift, currentWave), "INV_Misc_ShadowEgg")
 					if currentWave == 6 then
 						local chronoLordDeja = EJ_GetEncounterInfo(552)
-						self:Message("wave", "Attention", nil, L.wave_message15s:format(chronoLordDeja), false)
+						self:Message("wave", "Attention", "Info", CL.custom_sec:format(chronoLordDeja, 15), false)
 					elseif currentWave == 12 then
 						local temporus = EJ_GetEncounterInfo(553)
-						self:Message("wave", "Attention", nil, L.wave_message15s:format(temporus), false)
+						self:Message("wave", "Attention", "Info", CL.custom_sec:format(temporus, 15), false)
 					elseif currentWave == 18 then
 						local aeonus = EJ_GetEncounterInfo(554)
-						self:Message("wave", "Attention", nil, L.wave_message15s:format(aeonus), false)
+						self:Message("wave", "Attention", "Info", CL.custom_sec:format(aeonus, 15), false)
 					else
-						self:Message("wave", "Attention", nil, L.wave_message15s:format(L.wave_bar:format(currentWave)), false)
-						self:CDBar("wave", 135, L.wave_bar:format(currentWave+1), "INV_Misc_ShadowEgg") -- 120s + 15s
+						self:Message("wave", "Attention", "Info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
+						self:Bar("wave", 135, CL.count:format(rift, currentWave+1), "INV_Misc_ShadowEgg") -- 120s + 15s
 					end
 				end
 			end
@@ -86,12 +86,6 @@ function mod:UPDATE_WORLD_STATES()
 end
 
 function mod:BossDeath(args)
-	-- XXX both these timers might be based on something else
-	if args.mobId == 17879 then -- Chrono Lord Deja
-		self:CDBar("wave", 135, L.wave_bar:format(7), "INV_Misc_ShadowEgg") -- 120s + 15s
-	elseif args.mobId == 17880 then -- Temporus
-		self:CDBar("wave", 108, L.wave_bar:format(13), "INV_Misc_ShadowEgg") -- 93s + 15s
-	end
-	--self:Message("wave", "Attention", nil, L.wave_message140s:format(L.wave_bar:format(waveCount)), false)
+	self:Bar("wave", 45, CL.count:format(self:SpellName(147840), args.mobId == 17879 and 7 or 13), "INV_Misc_ShadowEgg") -- 30s + 15s
 end
 
