@@ -77,7 +77,7 @@ function mod:BrittleBarkOver(args)
 	self:CDBar(164357, 4) -- Parched Gasp
 end
 
-function mod:Energize(args)
+function mod:Energize()
 	if self.isEngaged then -- This happens when killing the trash, we only want it during the encounter.
 		energy = energy + 25
 		if energy < 101 then

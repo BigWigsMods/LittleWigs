@@ -49,7 +49,7 @@ end
 --
 
 do
-	local function printTarget(self, player, guid)
+	local function printTarget(self, player)
 		self:TargetMessage(153002, player, "Urgent", "Alert", nil, nil, true)
 	end
 	function mod:HolyShield(args)

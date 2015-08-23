@@ -39,7 +39,7 @@ function mod:SpellReflectionRemoved(args)
 	self:StopBar(args.spellName)
 end
 
-function mod:Frenzy(args)
+function mod:Frenzy()
 	self:Message(48017, "Important")
 end
 

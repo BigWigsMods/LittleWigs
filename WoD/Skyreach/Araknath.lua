@@ -67,7 +67,7 @@ do
 	end
 end
 
-function mod:Smash(args)
+function mod:Smash()
 	self:Message(154110, "Urgent", "Warning")
 	smashCount = smashCount + 1
 	self:CDBar(154110, smashCount % 2 == 0 and 14.6 or 8.5)

@@ -78,7 +78,7 @@ function mod:Phase3()
 	self:Message("stages", "Positive", "Info", CL["phase"]:format(3), 118961)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unitId, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 110324 then -- Shado-pan Vanish
 		if phase == 1 then
 			phase = 2

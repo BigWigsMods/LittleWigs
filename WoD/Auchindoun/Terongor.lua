@@ -105,7 +105,7 @@ function mod:DrainLife(args)
 	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
 end
 
-function mod:Success(unit, spellName, _, _, spellId)
+function mod:Success(_, _, _, _, spellId)
 	if spellId == 114268 then -- Shadow Nova
 		self:Win()
 	end

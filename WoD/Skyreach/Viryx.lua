@@ -73,7 +73,7 @@ do
 	local function bossTarget(self, name)
 		self:TargetMessage(153954, name, "Attention", "Warning", nil, nil, true)
 	end
-	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
 		if spellId == 153954 then -- Cast Down
 			self:GetBossTarget(bossTarget, 0.7, UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40

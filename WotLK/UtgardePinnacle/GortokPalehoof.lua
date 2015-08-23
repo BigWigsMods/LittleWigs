@@ -29,7 +29,7 @@ end
 -- Event Handlers
 --
 
-function mod:WitheringRoar(args)
+function mod:WitheringRoar()
 	self:Message(59267, "Urgent")
 	self:CDBar(59267, 10)
 end

@@ -27,7 +27,7 @@ end
 -- Event Handlers
 --
 
-function mod:Thundershock(args)
+function mod:Thundershock()
 	self:Message(60029, "Important")
 	self:Bar(60029, 10)
 end

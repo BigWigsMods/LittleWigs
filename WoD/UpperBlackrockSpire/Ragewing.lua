@@ -58,7 +58,7 @@ function mod:BurningRage(args)
 	end
 end
 
-function mod:EngulfingFire(unit, _, _, _, spellId)
+function mod:EngulfingFire(_, _, _, _, spellId)
 	if spellId == 154996 then -- Engulfing Fire
 		self:Message(spellId, "Attention", "Warning")
 		self:Flash(spellId)
@@ -66,13 +66,13 @@ function mod:EngulfingFire(unit, _, _, _, spellId)
 	end
 end
 
-function mod:SwirlingWinds(args)
+function mod:SwirlingWinds()
 	self:Message(-10740, "Important", "Long", ("%d%% - %s"):format(percent, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
 	self:Bar(-10740, 20, CL.intermission, 93679) -- Whelp icon
 	self:StopBar(155025) -- Engulfing Fire
 end
 
-function mod:SwirlingWindsOver(args)
+function mod:SwirlingWindsOver()
 	if percent == 70 then
 		self:CDBar(154996, self:Normal() and 9.3 or 12.8) -- Engulfing Fire
 		percent = 40

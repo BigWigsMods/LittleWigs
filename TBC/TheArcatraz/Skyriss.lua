@@ -60,7 +60,7 @@ function mod:MindRend(args)
 	self:TargetMessage(36924, args.destName, "Important")
 end
 
-function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.split_trigger then
 		self:Message(143024, "Attention")
 	end

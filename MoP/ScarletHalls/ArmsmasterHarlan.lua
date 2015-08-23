@@ -62,7 +62,7 @@ end
 -- Event Handlers
 --
 
-function mod:Cleave(args)
+function mod:Cleave()
 	self:Message("cleave", "Attention", nil, 845)
 	self:Bar("cleave", 7.1, 845) -- 7.2 - 7.3
 end

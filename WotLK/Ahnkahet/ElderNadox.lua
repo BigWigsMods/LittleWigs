@@ -30,7 +30,7 @@ end
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(event, msg)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	self:Message(-6042, "Important", nil, msg, false)
 end
 

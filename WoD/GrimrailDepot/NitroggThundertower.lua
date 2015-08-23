@@ -100,7 +100,7 @@ do
 end
 
 do
-	function mod:EngineerDies(args)
+	function mod:EngineerDies()
 		self:Message(160965, "Urgent", "Info", L.dropped:format(self:SpellName(160965)))
 	end
 
@@ -110,7 +110,7 @@ do
 end
 
 do
-	function mod:GrenadierDies(args)
+	function mod:GrenadierDies()
 		self:Message(161073, "Attention", nil, L.dropped:format(self:SpellName(161073)))
 	end
 
