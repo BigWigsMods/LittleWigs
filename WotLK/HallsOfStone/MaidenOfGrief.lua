@@ -19,7 +19,7 @@ local stun = mod:NewTargetList()
 -------------------------------------------------------------------------------
 --  Localization
 
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization

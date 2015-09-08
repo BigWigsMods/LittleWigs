@@ -16,7 +16,7 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Locals
 
-local frenzyannounced = nil
+local frenzyAnnounced = nil
 
 -------------------------------------------------------------------------------
 --  Localization

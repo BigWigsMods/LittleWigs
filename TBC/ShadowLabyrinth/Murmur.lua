@@ -15,8 +15,8 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
+local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
