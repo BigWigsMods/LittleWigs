@@ -1,70 +1,68 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("High Prophet Barim", 747)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("High Prophet Barim", 747, 119)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(43612)
-mod.toggleOptions = {
-	{89997, "FLASHSHAKE", "ICON"}, -- Plague of Ages
-	82506, -- Fifty Lashings
-	{88814, "FLASHSHAKE"}, -- Hallowed Ground
-	"bosskill",
-}
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-mod.optionHeaders = {
-	[89997] = BCL.phase:format(1),
-	[88814] = BCL.phase:format(2),
-	bosskill = "general",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		{82622, "FLASH", "ICON"}, -- Plague of Ages
+		82506, -- Fifty Lashings
+		{88814, "FLASH"}, -- Hallowed Ground
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Plague", 82622, 89997)
-	self:Log("SPELL_AURA_REMOVED", "PlagueRemoved", 82622, 89997)
-	self:Log("SPELL_AURA_APPLIED", "Lashings", 82506)
-	self:Log("SPELL_AURA_APPLIED", "Ground", 88814, 90010)
+	self:Log("SPELL_CAST_SUCCESS", "Plague", 82622)
+	self:Log("SPELL_AURA_REMOVED", "PlagueRemoved", 82622)
+	self:Log("SPELL_AURA_APPLIED", "FiftyLashings", 82506)
+	self:Log("SPELL_AURA_APPLIED", "HallowedGround", 88814)
 
-	self:RegisterEvent("UNIT_HEALTH")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 
 	self:Death("Win", 43612)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Plague(unit, spellId, _, _, spellName)
-	if UnitIsUnit(unit, "player") then
-		self:LocalMessage(89997, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(89997)
+function mod:Plague(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+		self:Flash(args.spellId)
 	end
-	self:PrimaryIcon(89997, unit)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:PlagueRemoved()
-	self:PrimaryIcon(89997)
+function mod:PlagueRemoved(args)
+	self:PrimaryIcon(args.spellId)
 end
 
-function mod:Lashings(_, spellId, _, _, spellName)
-	self:Message(82506, spellName, "Important", spellId)
+function mod:FiftyLashings(args)
+	self:Message(args.spellId, "Important")
 end
 
-function mod:Ground(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(88814, BCL["you"]:format(spellName), "Personal", spellId)
-		self:FlashShake(88814)
+function mod:HallowedGround(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Personal")
+		self:Flash(args.spellId)
 	end
 end
 
-function mod:UNIT_HEALTH(_, unit)
-	if unit ~= "boss1" then return end
-	if UnitName(unit) == self.displayName then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:MobId(UnitGUID(unit)) == 43612 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 55 then
-			self:Message(88814, LW_CL["phase_soon"]:format(2), "Attention")
-			self:UnregisterEvent("UNIT_HEALTH")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:Message(88814, "Attention", nil, CL.soon:format(CL.phase:format(2)))
 		end
 	end
 end

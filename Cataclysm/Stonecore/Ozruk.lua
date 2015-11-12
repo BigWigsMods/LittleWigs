@@ -1,84 +1,83 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Ozruk", 768)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Ozruk", 768, 112)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(42188)
-mod.toggleOptions = {
-	78939, -- Elementium Bulwark
-	92410, -- Ground Slam
-	92662, -- Shatter
-	80467, -- Enrage
-	92426, -- Paralyze
-	"bosskill",
-}
-mod.optionHeaders = {
-	[78939] = "normal",
-	[92426] = "heroic",
-	bosskill = "general",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		78939, -- Elementium Bulwark
+		78903, -- Ground Slam
+		78807, -- Shatter
+		80467, -- Enrage
+		92426, -- Paralyze
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Bulwark", 78939, 92659)
-	self:Log("SPELL_AURA_REMOVED", "BulwarkRemoved", 78939, 92659)
+	self:Log("SPELL_AURA_APPLIED", "ElementiumBulwark", 78939)
+	self:Log("SPELL_AURA_REMOVED", "ElementiumBulwarkRemoved", 78939)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 80467)
 	self:Log("SPELL_CAST_START", "Paralyze", 92426)
-	self:Log("SPELL_CAST_START", "Shatter", 78807, 92662)
-	self:Log("SPELL_CAST_START", "GroundSlam", 78903, 92410)
+	self:Log("SPELL_CAST_START", "Shatter", 78807)
+	self:Log("SPELL_CAST_START", "GroundSlam", 78903)
 
-	self:RegisterEvent("UNIT_HEALTH")
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 
 	self:Death("Win", 42188)
 end
 
 function mod:OnEngage()
-	self:Bar(92662, LW_CL["next"]:format(GetSpellInfo(92662)), 20, 92662)
+	self:Bar(78807, 20) -- Shatter
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Bulwark(player, spellId, _, _, spellName)
-	if player == self.displayName then -- we only warn if the boss gains it, not a mage spell stealing
-		self:Message(78939, spellName, "Important", spellId, "Alarm")
-		self:Bar(78939, spellName, 10, spellId)
+function mod:ElementiumBulwark(args)
+	if self:MobId(args.destGUID) == 42188 then -- we only warn if the boss gains it, not a mage spell stealing
+		self:Message(args.spellId, "Important", "Alarm")
+		self:Bar(args.spellId, 10)
 	end
 end
 
-function mod:BulwarkRemoved(_, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName) -- stop the bar early if dispelled
+function mod:ElementiumBulwarkRemoved(args)
+	self:StopBar(args.spellName)
 end
 
-function mod:UNIT_HEALTH(_, unit)
-	if unit == "boss1" then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:MobId(UnitGUID(unit)) == 40586 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 27 then
-			self:Message(80467, LW_CL["soon"]:format(GetSpellInfo(80467)), "Attention", 80467)
-			self:UnregisterEvent("UNIT_HEALTH")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:Message(80467, "Attention", nil, CL.soon:format(self:SpellName(80467)), false)
 		end
 	end
 end
 
-function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message(80467, spellName, "Attention", spellId)
+function mod:Enrage(args)
+	self:Message(args.spellId, "Attention")
 end
 
-function mod:Paralyze(_, spellId, _, _, spellName)
-	self:Message(92426, spellName.." - "..LW_CL["soon"]:format(GetSpellInfo(92662)), "Important", spellId, "Alert")
+function mod:Paralyze(args)
+	self:Message(args.spellId, "Important", "Alert", CL.other:format(args.spellName, CL.soon:format(self:SpellName(78807))))
 end
 
-function mod:Shatter(_, spellId, _, _, spellName)
-	self:Bar(92662, LW_CL["casting"]:format(spellName), 3, spellId)
-	self:Bar(92662, LW_CL["next"]:format(spellName), 20, spellId)
+function mod:Shatter(args)
+	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
+	self:Bar(args.spellId, 20)
 end
 
-function mod:GroundSlam(_, spellId, _, _, spellName)
-	self:Message(92410, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alarm")
-	self:Bar(92410, LW_CL["casting"]:format(spellName), 3, spellId)
+function mod:GroundSlam(args)
+	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 end
 

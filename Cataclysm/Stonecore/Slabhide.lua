@@ -1,51 +1,50 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Slabhide", 768)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Slabhide", 768, 111)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(43214)
-mod.toggleOptions = {
-	{80801, "FLASHSHAKE"}, -- Lava Pool
-	92265, --Crystal Storm
-	"bosskill",
-}
-mod.optionHeaders = {
-	[80801] = "normal",
-	[92265] = "heroic",
-	bosskill = "general",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		{80801, "FLASH"}, -- Lava Pool
+		92265, -- Crystal Storm
+	}
+end
 
 function mod:OnBossEnable()
 	-- Heroic
-	self:Log("SPELL_CAST_START", "Storm", 92265)
-	self:Log("SPELL_AURA_APPLIED", "StormBegun", 92265)
+	self:Log("SPELL_CAST_START", "CrystalStorm", 92265)
+	self:Log("SPELL_AURA_APPLIED", "CrystalStormBegun", 92265)
 	-- Normal
-	self:Log("SPELL_AURA_APPLIED", "LavaPool", 80801, 92658)
+	self:Log("SPELL_AURA_APPLIED", "LavaPool", 80801)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 43214)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Storm(_, spellId, _, _, spellName)
-	self:Message(92265, LW_CL["casting"]:format(spellName), "Important", spellId, "Alert")
-	self:Bar(92265, LW_CL["casting"]:format(spellName), 2.5, spellId)
+function mod:CrystalStorm(args)
+	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
+	self:Bar(args.spellId, 2.5, CL.cast:format(args.spellName))
 end
 
-function mod:StormBegun(_, spellId, _, _, spellName)
-	self:Bar(92265, spellName, 6, spellId)
+function mod:CrystalStormBegun(args)
+	self:Bar(args.spellId, 6)
 end
 
-function mod:LavaPool(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(80801, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(80801)
+function mod:LavaPool(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+		self:Flash(args.spellId)
 	end
 end
 

@@ -1,31 +1,41 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Murozond", 820)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Murozond", 820, 289)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(54432)
-mod.toggleOptions = {
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
+--
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
---@end-do-not-package@
---@localization(locale="enUS", namespace="EndTime/Murozond", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = mod:GetLocale()
 
--------------------------------------------------------------------------------
---  Initialization
+end
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+-- XXX revise this module
+function mod:GetOptions()
+	return {
+		-3676, -- Distortion Bomb
+	}
+end
 
 function mod:OnBossEnable()
+
 	self:Death("Win", 54432)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+function mod:OnEngage()
+
+end
+
+--------------------------------------------------------------------------------
+-- Event Handlers
+--

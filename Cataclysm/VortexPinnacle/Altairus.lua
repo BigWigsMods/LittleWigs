@@ -1,53 +1,45 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Altairus", 769)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Altairus", 769, 115)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(43873)
-mod.toggleOptions = {
-	88282, -- Upwind of Altairus
-	88286, -- Downwind of Altairus
-	{88308, "ICON"}, -- Breath
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		88282, -- Upwind of Altairus
+		88286, -- Downwind of Altairus
+		{88308, "ICON"}, -- Chilling Breath
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Upwind", 88282)
-	self:Log("SPELL_AURA_APPLIED", "Downwind", 88286)
-	self:Log("SPELL_CAST_START", "Breath", 88308, 93989)
+	self:Log("SPELL_AURA_APPLIED", "Wind", 88282, 88286) -- Upwind of Altairus, Downwind of Altairus
+	self:Log("SPELL_CAST_START", "ChillingBreath", 88308)
 
 	self:Death("Win", 43873)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Upwind(unit, spellId, _, _, spellName)
-	if UnitIsUnit("player", unit) then
-		self:LocalMessage(88282, spellName, "Positive", spellId, "Info")
+function mod:Wind(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
 	end
 end
 
-function mod:Downwind(unit, spellId, _, _, spellName)
-	if UnitIsUnit("player", unit) then
-		self:LocalMessage(88286, spellName, "Important", spellId, "Alarm")
-	end
-end
-
-do
-	local function clearIcon()
-		mod:PrimaryIcon(88308)
-	end
-	
-	function mod:Breath(_, spellId, _, _, spellName)
-		mod:Bar(88308, LW_CL["next"]:format(spellName), 12, spellId)
-		mod:TargetMessage(88308, spellName, UnitName("boss1target"), "Urgent", spellId)
-		mod:PrimaryIcon(88308, UnitName("boss1target"))
-		self:ScheduleTimer(clearIcon, 4)
-	end
+function mod:ChillingBreath(args)
+	self:Bar(args.spellId, 12)
+	self:TargetMessage(args.spellId, self:UnitName("boss1target"), "Urgent")
+	self:PrimaryIcon(args.spellId, self:UnitName("boss1target"))
+	self:ScheduleTimer("PrimaryIcon", 4, args.spellId)
 end
 

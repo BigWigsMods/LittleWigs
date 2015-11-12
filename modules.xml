@@ -21,7 +21,7 @@
 <Include file="WotLK\TheNexus\modules.xml"/>
 <Include file="WotLK\UtgardePinnacle\modules.xml"/>
 
-<!-- Cataclysm 
+<!-- Cataclysm -->
 
 <Include file="Cataclysm\EndTime\modules.xml"/>
 <Include file="Cataclysm\GrimBatol\modules.xml"/>
@@ -29,7 +29,7 @@
 <Include file="Cataclysm\Stonecore\modules.xml"/>
 <Include file="Cataclysm\ThroneTides\modules.xml"/>
 <Include file="Cataclysm\VortexPinnacle\modules.xml"/>
--->
+
 
 <!-- Mists of Pandaria -->
 

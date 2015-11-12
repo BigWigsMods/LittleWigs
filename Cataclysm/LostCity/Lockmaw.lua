@@ -1,45 +1,50 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Lockmaw", 747)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Lockmaw", 747, 118)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(43614)
-mod.toggleOptions = {
-	90004,
-	{89998, "ICON", "FLASHSHAKE"},
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		81630, -- Viscous Poison
+		{81690, "ICON", "FLASH"}, -- Scent of Blood
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Poison", 90004)
-	self:Log("SPELL_AURA_REMOVED", "PoisonRemoved", 90004)
-	self:Log("SPELL_AURA_APPLIED", "Scent", 89998)
+	self:Log("SPELL_AURA_APPLIED", "ViscousPoison", 81630)
+	self:Log("SPELL_AURA_REMOVED", "ViscousPoisonRemoved", 81630)
+	self:Log("SPELL_AURA_APPLIED", "ScentOfBlood", 81690)
 
 	self:Death("Win", 43614)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Poison(player, spellId, _, _, spellName)
-	self:TargetMessage(90004, spellName, player, "Attention", spellId)
-	self:Bar(90004, spellName..": "..player, 12, spellId)
+function mod:ViscousPoison(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:Bar(args.spellId, 12, args.destName)
 end
 
-function mod:PoisonRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+function mod:ViscousPoisonRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:Scent(player, spellId, _, _, spellName)
-	self:TargetMessage(89998, spellName, player, "Important", spellId, "Alert")
-	self:Bar(89998, spellName..": "..player, 30, spellId)
-	self:PrimaryIcon(89998, player)
-	if UnitIsUnit(player, "player") then
-		self:FlashShake(89998)
+function mod:ScentOfBlood(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:Bar(args.spellId, 30, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Flash(args.spellId)
 	end
 end
 

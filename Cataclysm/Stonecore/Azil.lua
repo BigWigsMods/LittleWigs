@@ -1,31 +1,39 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("High Priestess Azil", 768)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("High Priestess Azil", 768, 113)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(42333)
-mod.toggleOptions = {79345, 79050, "bosskill"}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		79345, -- Curse of Blood
+		79050, -- Energy Shield
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Curse", 79345, 92663)
-	self:Log("SPELL_CAST_START", "Shield", 79050, 82858, 92667)
+	self:Log("SPELL_AURA_APPLIED", "CurseOfBlood", 79345)
+	self:Log("SPELL_CAST_START", "EnergyShield", 79050, 82858)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 42333)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Curse(player, spellId, _, _, spellName)
-	self:TargetMessage(79345, spellName, player, "Attention", spellId)
+function mod:CurseOfBlood(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
 end
 
-function mod:Shield(_, spellId, _, _, spellName)
-	self:Message(79050, spellName, "Important", spellId, "Alert")
+function mod:EnergyShield(args)
+	self:Message(79050, "Important", "Alert")
 end
 

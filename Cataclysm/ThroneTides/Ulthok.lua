@@ -1,46 +1,50 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Commander Ulthok", 767)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Commander Ulthok", 767, 102)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(40765)
-mod.toggleOptions = {
-	76047, -- Dark Fissure
-	{91484, "ICON"}, -- Squeeze
-	76100, -- Enrage
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		76047, -- Dark Fissure
+		{76026, "ICON"}, -- Squeeze
+		76100, -- Enrage
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Fissure", 76047)
-	self:Log("SPELL_AURA_APPLIED", "Squeeze", 76026, 91484)
-	self:Log("SPELL_AURA_REMOVED", "SqueezeRemoved", 76026, 91484)
+	self:Log("SPELL_AURA_APPLIED", "Squeeze", 76026)
+	self:Log("SPELL_AURA_REMOVED", "SqueezeRemoved", 76026)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 76100)
 	self:Death("Win", 40765)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-
-function mod:Fissure(_, spellId, _, _, spellName)
-	self:Message(76047, LW_CL["casting"]:format(spellName), "Important", spellId)
+function mod:Fissure(args)
+	self:Message(args.spellId, "Important", nil, CL.casting:format(args.spellName))
 end
 
-function mod:Squeeze(player, spellId, _, _, spellName)
-	self:TargetMessage(91484, spellName, player, "Urgent", spellId)
-	self:PrimaryIcon(91484, player)
+function mod:Squeeze(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:SqueezeRemoved()
-	self:PrimaryIcon(91484)
+function mod:SqueezeRemoved(args)
+	self:PrimaryIcon(args.spellId)
 end
 
-function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message(76100, spellName, "Attention", spellId)
+function mod:Enrage(args)
+	self:Message(args.spellId, "Attention")
 end
 

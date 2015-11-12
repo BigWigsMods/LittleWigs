@@ -1,21 +1,22 @@
--- XXX Ulic: The one time I tried it, people thought he was bugged, so aftet
--- XXX one attempt we gave up, would be nice to know who he's chasing if during
--- XXX the WW if it's possible to detect
 
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module declaration
+--
 
-local mod = BigWigs:NewBoss("Augh", 747)
+local mod, CL = BigWigs:NewBoss("Augh", 747)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(49045)
-mod.toggleOptions = {
-	84784,
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+-- XXX merge with Lockmaw
+function mod:GetOptions()
+	return {
+		84784, -- Whirlwind
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 84784)
@@ -23,11 +24,12 @@ function mod:OnBossEnable()
 	self:Death("Win", 49045)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Whirlwind(_, spellId, _, _, spellName)
-	self:Message(84784, spellName, "Important", spellId)
-	self:Bar(84784, spellName, 20, spellId)
+function mod:Whirlwind(args)
+	self:Message(args.spellId, "Important")
+	self:Bar(args.spellId, 20)
 end
 

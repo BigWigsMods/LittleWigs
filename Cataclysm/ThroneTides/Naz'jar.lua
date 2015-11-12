@@ -1,26 +1,26 @@
--------------------------------------------------------------------------------
---  Module Declaration
-
-local mod = BigWigs:NewBoss("Lady Naz'jar", 767)
-if not mod then return end
-mod.partyContent = true
-mod:RegisterEnableMob(40586)
-mod.toggleOptions = {
-	75683, -- Waterspout
-	"bosskill",
-}
 
 --------------------------------------------------------------------------------
--- Locals
+-- Module declaration
 --
+
+local mod, CL = BigWigs:NewBoss("Lady Naz'jar", 767, 101)
+if not mod then return end
+mod:RegisterEnableMob(40586)
 
 local spout1 = nil
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		75683, -- Waterspout
+	}
+end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("UNIT_HEALTH")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "Waterspout", 75683)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
@@ -31,24 +31,24 @@ function mod:OnEngage()
 	spout1 = nil
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Waterspout(_, spellId, _, _, spellName)
-	self:Bar(75683, spellName, 60, spellId)
-	self:DelayedMessage(75683, 50, LW_CL["ends"]:format(spellName, 10), "Attention")
+function mod:Waterspout(args)
+	self:Bar(args.spellId, 60)
+	self:DelayedMessage(args.spellId, 50, CL.custom_sec:format(CL.over:format(args.spellName), 10), "Attention") -- XXX fix "!" in string
 end
 
-function mod:UNIT_HEALTH(_, unit)
-	if unit ~= "boss1" then return end
-	if UnitName(unit) == self.displayName then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:MobId(UnitGUID(unit)) == 40586 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 69 and not spout1 then
-			self:Message(75683, LW_CL["soon"]:format(GetSpellInfo(75683)), "Attention")
 			spout1 = true
+			self:Message(75683, "Attention", nil, CL.soon:format(self:SpellName(75683)), false)
 		elseif hp < 36 then
-			self:Message(75683, LW_CL["soon"]:format(GetSpellInfo(75683)), "Attention")
-			self:UnregisterEvent("UNIT_HEALTH")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:Message(75683, "Attention", nil, CL.soon:format(self:SpellName(75683)), false)
 		end
 	end
 end
