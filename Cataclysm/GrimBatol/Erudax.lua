@@ -41,7 +41,7 @@ end
 -- Event Handlers
 --
 
-function mod:ShadowGale()
+function mod:ShadowGale(args)
 	self:Bar(args.spellId, 5)
 	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
 end

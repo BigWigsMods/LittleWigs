@@ -50,7 +50,7 @@ function mod:Enslave(args)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:EnslaveRemoved()
+function mod:EnslaveRemoved(args)
 	self:PrimaryIcon(args.spellId)
 end
 
