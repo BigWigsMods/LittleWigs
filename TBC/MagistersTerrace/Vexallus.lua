@@ -1,35 +1,34 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Vexallus", 798, 531)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Vexallus", 798, 531)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(24744)
-mod.toggleOptions = {
-	"adds",
-	44335,
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
+--
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Vexallus", "enUS", true)
+local L = mod:NewLocale("enUS", true)
 if L then
-	--@do-not-package@
 	L["adds"] = "Pure Energy"
 	L["adds_desc"] = "Warn when Pure Energy is discharged."
 	L["adds_message"] = "Pure Energy discharged!"
 	L["adds_trigger"] = "discharges pure energy!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="MagistersTerrace/Vexallus", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Vexallus")
-mod.locale = L
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
--------------------------------------------------------------------------------
---  Initialization
+function mod:GetOptions()
+	return {
+		"adds",
+		44335, -- Energy Feedback
+	}
+end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "AddSpawned")
@@ -40,24 +39,26 @@ function mod:OnBossEnable()
 	self:Death("Win", 24744)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:AddSpawned(msg)
-	if msg:find(L["adds_trigger"]) then
-		self:Message("adds", L["adds_message"], "Important")
+function mod:AddSpawned(_, msg)
+	if msg:find(L.adds_trigger) then
+		self:Message("adds", "Important", nil, L.adds_message, false)
 	end
 end
 
-function mod:Feedback(player, spellId, _, _, spellname)
-	self:TargetMessage(44335, player, spellname, "Urgent", spellId)
-	self:Bar(44335, player..": "..spellName, 30, spellId)
+function mod:Feedback(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetBar(args.spellId, 30, args.destName)
 end
 
-function mod:FeedbackDose(player, spellId, _, _, spellName)
-	self:Bar(44335, player..": "..spellName, 30, spellId)
+function mod:FeedbackDose(args)
+	self:TargetBar(args.spellId, 30, args.destName)
 end
 
-function mod:FeedbackRemove(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:FeedbackRemove(args)
+	self:StopBar(args.spellName, args.destName)
 end
+

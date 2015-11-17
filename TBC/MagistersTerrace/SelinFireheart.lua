@@ -1,17 +1,21 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Selin Fireheart", 798, 530)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Selin Fireheart", 798, 530)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(24723)
-mod.toggleOptions = {
-	44320, -- Mana Rage
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		44320, -- Mana Rage
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Channel", 44320)
@@ -19,14 +23,16 @@ function mod:OnBossEnable()
 	self:Death("Win", 24723)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Channel(_, spellId, _, _, spellname)
-	self:Message(44320, spellName "Important", spellId)
-	self:Bar(44320, spellName, 10, spellId)
+function mod:Channel(args)
+	self:Message(args.spellId, "Important", "Info")
+	self:Bar(args.spellId, 10)
 end
 
-function mod:ChannelEnd(_, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName)
+function mod:ChannelEnd(args)
+	self:StopBar(args.spellName)
 end
+

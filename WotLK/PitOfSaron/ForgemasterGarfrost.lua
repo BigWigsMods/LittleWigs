@@ -1,52 +1,46 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Forgemaster Garfrost", 602)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Forgemaster Garfrost", 602, 608)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(36494)
-mod.toggleOptions = {
-	70381, -- Deep Freeze
-	{68789, "FLASHSHAKE"}, -- Boulder Throw
-	"bosskill",
-}
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local L = mod:NewLocale("enUS", true)
-if L then
---@do-not-package@
-L["throw_message"] = "Saronite Boulder Incoming!"--@end-do-not-package@
---@localization(locale="enUS", namespace="Frozen_Halls/Forgemaster_Garfrost", format="lua_additive_table", handle-unlocalized="ignore")@
+function mod:GetOptions()
+	return {
+		70381, -- Deep Freeze
+		{68789, "FLASH"}, -- Throw Saronite
+	}
 end
-L = mod:GetLocale()
-
--------------------------------------------------------------------------------
---  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Freeze", 70381)
-	self:Log("SPELL_AURA_REMOVED", "FreezeRemoved", 70381)
+	self:Log("SPELL_AURA_APPLIED", "DeepFreeze", 70381)
+	self:Log("SPELL_AURA_REMOVED", "DeepFreezeRemoved", 70381)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
 	self:Death("Win", 36494)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Freeze(player, spellId, _, _, spellName)
-	self:TargetMessage(70381, spellName, player, "Personal", spellId, "Alert")
-	self:Bar(70381, player..": "..spellName, 14, spellId)
-	self:PrimaryIcon(70381, player)
+function mod:DeepFreeze(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetBar(args.spellId, 14, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:FreezeRemoved()
-	self:PrimaryIcon(70381, false)
+function mod:DeepFreezeRemoved(args)
+	self:PrimaryIcon(args.spellId)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
-	self:LocalMessage(68789, L["throw_message"], "Personal", 68789)
-	self:FlashShake(68789)
+	self:Message(68789, "Personal", "Alarm", CL.incoming:format(self:SpellName(68789)))
+	self:Flash(68789)
 end
+

@@ -1,27 +1,28 @@
--------------------------------------------------------------------------------
---  Module Declaration
 
-local mod = BigWigs:NewBoss("Priestess Delrissa", 798, 532)
+--------------------------------------------------------------------------------
+-- Module declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Priestess Delrissa", 798, 532)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(24553,24554,24555,24556,24557,24558,24559,24560,24561)
-mod.toggleOptions = {
-	46192, -- Renew
-	46193, -- Power Word: Shield
-	27621, -- Apoko: Windfury Totem
-	44178, -- Yazzai: Blizzard
-	13323, -- Yazzai: Polymorph
-	44141, -- Ellrys: Seed of Corruption
-	"bosskill",
-}
-
--------------------------------------------------------------------------------
---  Locals
 
 local deaths = 0
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		46192, -- Renew
+		46193, -- Power Word: Shield
+		27621, -- Apoko: Windfury Totem
+		44178, -- Yazzai: Blizzard
+		13323, -- Yazzai: Polymorph
+		{44141, "ICON"}, -- Ellrys: Seed of Corruption
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PriShield", 46193, 44175, 44291)
@@ -40,40 +41,43 @@ function mod:OnEngage()
 	deaths = 0
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:PriShield(player, spellId, _, _, spellName)
-	self:Message(46193, spellName.." - "..player, "Attention", spellId)
+function mod:PriShield(args)
+	self:TargetMessage(46193, args.destName, "Attention")
 end
 
-function mod:PriRenew(player, spellId, _, _, spellName)
-	self:Message(46192, spellName..": "..player, "Attention", spellId)
-	self:Bar(46192, player..": "..spellName, 15, spellId)
+function mod:PriRenew(args)
+	self:TargetMessage(46192, args.destName, "Attention")
+	self:TargetBar(46192, 15, args.destName)
 end
 
-function mod:ApokoWF(_, spellId, _, _, spellName)
-	self:Message(27621, spellName, "Attention", spellId)
+function mod:ApokoWF(args)
+	self:Message(args.spellId, "Attention")
 end
 
-function mod:EllrysSoC(player, spellId, _, _, spellName)
-	self:Message(44141, spellName..": "..player, "Attention", spellId)
-	self:Bar(44141, player..": "..spellName, 18, spellId)
-	self:PrimaryIcon(44141, player)
+function mod:EllrysSoC(args)
+	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetBar(args.spellId, 18, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:YazzaiPoly(player, spellId, _, _, spellName)
-	self:Message(13323, spellName..": "..player, "Attention", spellId)
-	self:Bar(13323, player..": "..spellName, 8, spellId)
+function mod:YazzaiPoly(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetBar(args.spellId, 8, args.destName)
 end
 
-function mod:YazzaiBliz(spellId, _, _, _, spellName)
-	self:Message(44178, LCL["casting"]:format(spellName), "Attention", spellId)
+function mod:YazzaiBliz(args)
+	self:Message(44178, "Important", nil, CL.casting:format(args.spellName))
 end
 
-function mod:Remove(player, spellId, _, _, spellName)
-	if spellId == 44141 then self:PrimaryIcon(44141, false) end
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:Removed(args)
+	if args.spellId == 44141 then -- Seed of Corruption
+		self:PrimaryIcon(args.spellId)
+	end
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:Deaths()
@@ -82,3 +86,4 @@ function mod:Deaths()
 		self:Win()
 	end
 end
+
