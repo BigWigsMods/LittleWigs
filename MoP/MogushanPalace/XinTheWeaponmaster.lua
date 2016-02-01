@@ -58,11 +58,11 @@ function mod:GroundSlam(args)
 end
 
 function mod:Blades()
-	self:Message("blades", "Attention", "Info", "66% - "..L["blades"], 119311)
+	self:Message("blades", "Attention", "Info", "66% - "..self:SpellName(L.blades), 119311)
 end
 
 function mod:Crossbows()
-	self:Message("crossbows", "Attention", "Info", "33% - "..L["crossbows"], 120142)
+	self:Message("crossbows", "Attention", "Info", "33% - "..self:SpellName(L.crossbows), 120142)
 end
 
 function mod:PhaseWarn(unitId)
