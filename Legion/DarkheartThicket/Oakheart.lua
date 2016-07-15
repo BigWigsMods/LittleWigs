@@ -3,9 +3,9 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Shivermaw", 984, 1216)
+local mod, CL = BigWigs:NewBoss("Oakheart", 1067, 1837)
 if not mod then return end
-mod:RegisterEnableMob(75927)
+mod:RegisterEnableMob(103344)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -26,7 +26,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Win", 75927)
+	self:Death("Win", 103344)
 end
 
 function mod:OnEngage()

@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="TirathonSaltheril.lua"/>
-<Script file="InquisitorTormentorum.lua"/>
+<Script file="Tormentorum.lua"/>
 <Script file="Ashgolm.lua"/>
 <Script file="Glazer.lua"/>
 <Script file="CordanaFelsong.lua"/>
