@@ -6,7 +6,7 @@ local mod = BigWigs:NewBoss("Portals", 536)
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(30658,29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
-mod.toggleOptions = {"portals", "bosskill"}
+mod.toggleOptions = {"portals"}
 
 -------------------------------------------------------------------------------
 --  Localization

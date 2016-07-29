@@ -212,7 +212,7 @@ mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss 
 mod.guid = 19219
-mod.toggleOptions = {"shields", "shieldbar", -1, "polarity", "enrage", "bosskill"}
+mod.toggleOptions = {"shields", "shieldbar", -1, "polarity", "enrage"}
 mod.revision = tonumber(("$Revision: 34 $"):sub(12, -3))
 
 ------------------------------

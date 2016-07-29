@@ -9,7 +9,6 @@ mod:RegisterEnableMob(18708)
 mod.toggleOptions = {
 	33923, -- Sonic Boom
 	{33711, "ICON", "WHISPER"}, -- Murmur's Touch
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

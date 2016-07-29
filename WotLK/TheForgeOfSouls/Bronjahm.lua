@@ -9,7 +9,6 @@ mod:RegisterEnableMob(36497)
 mod.toggleOptions = {
 	68872, -- Soulstorm
 	68839, -- Corrupt Soul
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

@@ -28,7 +28,7 @@ function mod:GetOptions()
 	return {
 		138789, 138685, 138751, 138755,
 		138561, 138560, 138558,
-		138559, 138564, {139060, "FLASH"}, 1098,
+		138559, 138564, {139060, "FLASH"}, 1098, "stages"
 	},
 	{
 		[138789] = L.summons,
@@ -174,7 +174,7 @@ function mod:WinCheck(_, msg)
 	if msg:find(L["win_say"], nil, true) then
 		self:Win()
 	elseif msg:find(L["start_say"], nil, true) then
-		self:Bar("bosskill", 15, COMBAT) -- Global "Combat" string
+		self:Bar("stages", 15, COMBAT) -- Global "Combat" string
 		self:CDBar(138789, 29) -- Pit Lord
 	end
 end

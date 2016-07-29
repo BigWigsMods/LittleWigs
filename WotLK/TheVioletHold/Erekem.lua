@@ -8,7 +8,6 @@ mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29315, 32226)
 mod.toggleOptions = {
 	54481, -- Chain Heal
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

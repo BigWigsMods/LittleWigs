@@ -6,7 +6,7 @@ if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(28070)
-mod.toggleOptions = {"timers", "bosskill"}
+mod.toggleOptions = {"timers"}
 
 -------------------------------------------------------------------------------
 --  Localization

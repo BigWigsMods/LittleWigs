@@ -9,7 +9,6 @@ mod:RegisterEnableMob(18731)
 mod.toggleOptions = {
 	"berserk",
 	33547, -- Fear
-	"bosskill",
 }
 mod.optionHeaders = {
 	berserk = "heroic",

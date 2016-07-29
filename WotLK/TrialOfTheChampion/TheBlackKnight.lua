@@ -8,7 +8,6 @@ mod:RegisterEnableMob(35451)
 mod.toggleOptions = {
 	{67751, "BAR"}, -- Explode Ghouls
 	67781, -- Desecration
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

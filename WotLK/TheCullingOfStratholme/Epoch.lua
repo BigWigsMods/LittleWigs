@@ -8,7 +8,6 @@ mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26532)
 mod.toggleOptions = {
 	52772, -- Curse
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

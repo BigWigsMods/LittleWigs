@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(17308)
-mod.toggleOptions = {{30695, "ICON", "WHISPER"}, "bosskill"}
+mod.toggleOptions = {{30695, "ICON", "WHISPER"}}
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -9,7 +9,6 @@ mod:RegisterEnableMob(29313, 32234)
 mod.toggleOptions = {
 	54306, -- Bubble
 	54312, -- Frenzy
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

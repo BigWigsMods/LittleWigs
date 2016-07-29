@@ -8,7 +8,6 @@ mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(26630)
 mod.toggleOptions = {
 	49637, -- Wound
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

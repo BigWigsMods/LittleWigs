@@ -9,7 +9,6 @@ mod:RegisterEnableMob(17798)
 mod.toggleOptions = {
 	38592, -- Use a different ID that has a better tooltip
 	31543, -- Warlord's Rage
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

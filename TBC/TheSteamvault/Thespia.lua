@@ -9,7 +9,6 @@ mod:RegisterEnableMob(17797)
 mod.toggleOptions = {
 	25033, -- Lightning Cloud
 	31481, -- Lung Burst
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

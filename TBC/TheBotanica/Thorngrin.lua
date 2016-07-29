@@ -7,7 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(17978)
 mod.toggleOptions = {
 	34661, -- Sacrifice
-	"bosskill",
 }
 
 --------------------------------------------------------------------------------
@@ -136,7 +135,7 @@ mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Botanica"]
 mod.enabletrigger = boss 
 mod.guid = 17978
-mod.toggleOptions = {"sacrifice", "bosskill"}
+mod.toggleOptions = {"sacrifice"}
 mod.revision = tonumber(("$Revision: 46 $"):sub(12, -3))
 
 ------------------------------

@@ -8,7 +8,6 @@ mod.otherMenu = "Howling Fjord"
 mod:RegisterEnableMob(23953)
 mod.toggleOptions = {
 	48400, -- Ice Tomb
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

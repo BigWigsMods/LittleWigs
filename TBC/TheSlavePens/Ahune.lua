@@ -9,7 +9,6 @@ mod.otherMenu = "Coilfang Reservoir"
 mod.RegisterEnableMob(25740, 25697)
 mod.toggleOptions = {
 	"state",
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

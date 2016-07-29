@@ -9,7 +9,6 @@ mod:RegisterEnableMob(26533)
 mod.toggleOptions = {
 	52721, -- Sleep
 	52723, -- Vampiric Touch
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

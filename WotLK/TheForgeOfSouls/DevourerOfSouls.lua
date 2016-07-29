@@ -9,7 +9,6 @@ mod:RegisterEnableMob(36502)
 mod.toggleOptions = {
 	69051, -- Mirrored Soul
 	68912, -- Wailing Soul
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

@@ -8,7 +8,6 @@ mod:RegisterEnableMob(18732)
 mod.toggleOptions = {
 	{38791, "ICON"},
 	"teleport",
-	"bosskill",
 }
 mod.optionHeaders = {
 	[38791] = "heroic",

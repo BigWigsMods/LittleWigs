@@ -10,7 +10,6 @@ mod.toggleOptions = {
 	72363, -- Corrupted Flesh
 	{72368, "ICON"},-- Shared Suffering
 	{72383, "ICON"}, -- Corrupted Touch
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

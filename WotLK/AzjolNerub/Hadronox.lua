@@ -10,7 +10,6 @@ mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	53400, -- Acid Cloud
 	53030, -- Poison Leech
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

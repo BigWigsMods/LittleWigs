@@ -8,7 +8,6 @@ mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18371)
 mod.toggleOptions = {
 	"focus", -- Focus Fire
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

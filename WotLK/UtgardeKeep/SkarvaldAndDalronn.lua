@@ -8,7 +8,7 @@ mod.otherMenu = "Howling Fjord"
 mod:RegisterEnableMob(24200, 24201)
 mod.toggleOptions = {
 	43650, -- Debilitate
-	"bosskill",
+	"stages",
 }
 
 -------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ end
 function mod:Deaths()
 	deaths = deaths + 1
 	if deaths < 2 then
-		self:Message("bosskill", L["dies"]:format(deaths), "Positive")
+		self:Message("stages", L["dies"]:format(deaths), "Positive")
 	else
 		self:Win()
 	end

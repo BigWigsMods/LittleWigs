@@ -8,7 +8,6 @@ mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(26631)
 mod.toggleOptions = {
 	50089, -- Misery
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

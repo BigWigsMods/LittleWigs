@@ -9,7 +9,6 @@ mod:RegisterEnableMob(31134)
 mod.toggleOptions = {
 	{58693, "FLASHSHAKE"}, -- Blizzard
 	59374, -- Destruction
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

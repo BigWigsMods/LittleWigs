@@ -9,7 +9,6 @@ mod:RegisterEnableMob(18473)
 mod.toggleOptions = {
 	38197, -- Arcane Explosion
 	{38245, "ICON"}, -- Polymorph
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

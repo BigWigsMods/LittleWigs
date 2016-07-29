@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(27654)
-mod.toggleOptions = {"bosskill"}
+mod.toggleOptions = {"stages"}
 
 -------------------------------------------------------------------------------
 --  Initialization

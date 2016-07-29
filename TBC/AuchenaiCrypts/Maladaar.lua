@@ -9,7 +9,6 @@ mod:RegisterEnableMob(18373)
 mod.toggleOptions = {
 	32346, -- Stolen Soul
 	32424, -- Avatar of the Martyred
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

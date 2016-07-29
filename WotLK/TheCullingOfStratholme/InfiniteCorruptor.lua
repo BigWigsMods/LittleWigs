@@ -8,7 +8,6 @@ mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(32273)
 mod.toggleOptions = {
 	60588, -- Blight
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

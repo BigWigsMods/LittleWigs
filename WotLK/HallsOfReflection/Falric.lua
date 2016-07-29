@@ -9,7 +9,6 @@ mod:RegisterEnableMob(38112)
 mod.toggleOptions = {
 	{72426, "ICON"}, -- Impending Despair
 	{72422, "ICON"}, -- Quivering Strike
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

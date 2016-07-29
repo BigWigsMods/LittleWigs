@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17770)
-mod.toggleOptions = {"spores", "bosskill"}
+mod.toggleOptions = {"spores"}
 
 -------------------------------------------------------------------------------
 --  Locals

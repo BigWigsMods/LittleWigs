@@ -21,7 +21,7 @@ mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss 
 mod.guid = 19218
-mod.toggleOptions = {"shadow", "shadowbar", "bosskill"}
+mod.toggleOptions = {"shadow", "shadowbar"}
 mod.revision = tonumber(("$Revision: 34 $"):sub(12, -3))
 
 ------------------------------
@@ -195,7 +195,7 @@ mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss 
 mod.guid = 19710
-mod.toggleOptions = {"hammer", -1, "shadow", "shadowbar", "bosskill"}
+mod.toggleOptions = {"hammer", -1, "shadow", "shadowbar"}
 mod.revision = tonumber(("$Revision: 34 $"):sub(12, -3))
 
 ------------------------------

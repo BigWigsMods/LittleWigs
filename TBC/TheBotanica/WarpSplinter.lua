@@ -63,7 +63,7 @@ mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Botanica"]
 mod.enabletrigger = boss 
 mod.guid = 17977
-mod.toggleOptions = {"treants", "bosskill"}
+mod.toggleOptions = {"treants"}
 mod.revision = tonumber(("$Revision: 34 $"):sub(12, -3))
 
 ------------------------------

@@ -8,7 +8,6 @@ mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(27447)
 mod.toggleOptions = {
 	51054, -- Amplify Magic
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

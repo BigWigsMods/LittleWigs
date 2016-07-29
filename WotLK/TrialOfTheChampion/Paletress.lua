@@ -8,7 +8,6 @@ mod:RegisterEnableMob(34928)
 mod.toggleOptions = {
 	66515, -- Shield
 	66537, -- Renew
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18472)
-mod.toggleOptions = {"summon", "bosskill"}
+mod.toggleOptions = {"summon"}
 
 -------------------------------------------------------------------------------
 --  Localization

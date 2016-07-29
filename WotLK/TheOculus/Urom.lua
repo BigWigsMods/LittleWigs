@@ -9,7 +9,6 @@ mod:RegisterEnableMob(27655)
 mod.toggleOptions = {
 	{51121, "WHISPER"}, -- Time Bomb
 	51110, -- Arcane Explosion
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

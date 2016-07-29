@@ -8,7 +8,6 @@ mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(29120)
 mod.toggleOptions = {
 	53472, -- Pound
-	"bosskill"
 }
 
 -------------------------------------------------------------------------------

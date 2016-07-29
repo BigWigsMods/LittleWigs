@@ -8,7 +8,6 @@ mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(27977)
 mod.toggleOptions = {
 	50810, -- Shatter
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

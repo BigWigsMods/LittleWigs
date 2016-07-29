@@ -9,7 +9,6 @@ mod:RegisterEnableMob(27656)
 mod.toggleOptions = {
 	51162, -- Planar Shift
 	51170, -- Enraged Assult
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

@@ -8,7 +8,6 @@ mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29316, 32235)
 mod.toggleOptions = {
 	54396, -- Optic Link
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

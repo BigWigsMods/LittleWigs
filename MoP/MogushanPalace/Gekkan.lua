@@ -29,7 +29,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {-5921, "heal", -5925}
+	return {-5921, "heal", -5925, "stages"}
 end
 
 function mod:OnBossEnable()
@@ -89,7 +89,7 @@ function mod:Deaths(args)
 	if deaths == 5 then
 		self:Win()
 	else
-		self:Message("bosskill", "Positive", "Info", CL["mob_killed"]:format(args.destName, deaths, 5), false)
+		self:Message("stages", "Positive", "Info", CL["mob_killed"]:format(args.destName, deaths, 5), false)
 	end
 end
 

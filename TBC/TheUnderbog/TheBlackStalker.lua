@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17882)
-mod.toggleOptions = {"bosskill"}
+mod.toggleOptions = {"stages"}
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -6,7 +6,7 @@ if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29312, 32237)
-mod.toggleOptions = {"bosskill"}
+mod.toggleOptions = {"stages"}
 
 -------------------------------------------------------------------------------
 --  Initialization

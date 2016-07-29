@@ -8,7 +8,6 @@ mod.otherMenu = "Dalaran"
 mod:RegisterEnableMob(29314, 32230)
 mod.toggleOptions = {
 	{54361, "FLASHSHAKE"}, -- Void Shift
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

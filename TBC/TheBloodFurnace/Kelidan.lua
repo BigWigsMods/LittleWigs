@@ -8,7 +8,6 @@ mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(17377)
 mod.toggleOptions = {
 	30940,
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

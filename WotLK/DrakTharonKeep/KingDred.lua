@@ -8,11 +8,6 @@ mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(27483)
 mod.toggleOptions = {
 	59416, -- Summon Raptor
-	"bosskill",
-}
-mod.optionHeaders = {
-	[59416] = "heroic",
-	bosskill = "general",
 }
 
 -------------------------------------------------------------------------------

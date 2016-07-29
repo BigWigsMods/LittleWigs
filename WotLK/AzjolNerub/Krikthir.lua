@@ -10,7 +10,6 @@ mod.defaultToggles = {"MESSAGE"}
 mod.toggleOptions = {
 	{52592, "BAR"}, -- Curse
 	28747, -- Frenzy
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

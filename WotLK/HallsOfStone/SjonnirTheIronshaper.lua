@@ -9,7 +9,6 @@ mod:RegisterEnableMob(27978)
 mod.toggleOptions = {
 	50834, -- Charge
 	50840, -- Ring
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

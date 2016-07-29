@@ -7,7 +7,6 @@ mod.partycontent = true
 mod:RegisterEnableMob(35119)
 mod.toggleOptions = {
 	66935, -- Radiance
-	"bosskill",
 }
 
 -------------------------------------------------------------------------------

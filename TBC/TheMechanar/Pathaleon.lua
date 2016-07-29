@@ -149,7 +149,7 @@ mod.otherMenu = "Tempest Keep"
 mod.zonename = BZ["The Mechanar"]
 mod.enabletrigger = boss
 mod.guid = 19220
-mod.toggleOptions = {"summon", "despawn", -1, "mc", "bosskill"}
+mod.toggleOptions = {"summon", "despawn", -1, "mc"}
 mod.revision = tonumber(("$Revision: 34 $"):sub(12, -3))
 
 ------------------------------
