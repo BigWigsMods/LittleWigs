@@ -25,7 +25,7 @@ if L then
 	L.blades_icon = 111216
 
 	L.help = -5378 -- Call for Help
-	L.help_icon = 6673
+	L.help_icon = 27578 -- ability_warrior_battleshout / Battle Shout / icon 132333
 end
 L = mod:GetLocale()
 
@@ -54,7 +54,7 @@ end
 function mod:OnEngage()
 	self:Bar("blades", 41, L["blades"], 111216)
 	self:Bar("cleave", 7.1, 845) -- Cleave
-	self:Bar("help", 20, L["help"], 6673)
+	self:Bar("help", 20, L["help"], L.help_icon)
 	helpCount = 1
 end
 
@@ -87,8 +87,8 @@ end
 do
 	local timers = {30, 25, 22, 20, 18, 16, 14}
 	function mod:Adds()
-		self:Message("help", "Urgent", "Info", L["help"], 6673)
-		self:Bar("help", timers[helpCount] or 13, L["help"], 6673)
+		self:Message("help", "Urgent", "Info", L["help"], L.help_icon)
+		self:Bar("help", timers[helpCount] or 13, L["help"], L.help_icon)
 		helpCount = helpCount + 1
 	end
 end
