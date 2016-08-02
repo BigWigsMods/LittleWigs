@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Kael'thas Sunstrider", 798, 533)
+local mod, CL = BigWigs:NewBoss("Kael'thas Sunstrider ", 798, 533) -- Space is intentional to prevent conflict with Kael'thas from Tempest Keep/The Eye
 if not mod then return end
 mod:RegisterEnableMob(24664)
 
