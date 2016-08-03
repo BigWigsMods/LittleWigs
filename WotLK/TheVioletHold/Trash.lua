@@ -1,69 +1,99 @@
-﻿-------------------------------------------------------------------------------
---  Module Declaration 
+﻿
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
--- "Portals" isn't going to work, gonna have to rethink that
-local mod = BigWigs:NewBoss("Portals", 536)
-mod.partyContent = true
-mod.otherMenu = "Dalaran"
-mod:RegisterEnableMob(30658,29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
-mod.toggleOptions = {"portals"}
+local mod, CL = BigWigs:NewBoss("The Violet Hold Trash", 536)
+if not mod then return end
+mod.displayName = CL.trash
+mod:RegisterEnableMob(
+	30658, -- Lieutenant Sinclari
+	-- Bosses
+	29315, -- Erekem
+	29316, -- Moragg
+	29313, -- Ichoron
+	29266, -- Xevozz
+	29312, -- Lavanthor
+	29314, -- Zuramat the Obliterator
+	-- Replacements mobs for above bosses.
+	-- They spawn if you kill the above bosses but fail the encounter afterwards.
+	-- You don't get to kill the same bosses again.
+	32226, -- Arakkoa Windwalker (Erekem)
+	32235, -- Chaos Watcher (Moragg)
+	32234, -- Swirling Water Revenant (Ichoron)
+	32231, -- Ethereal Wind Trader (Xevozz)
+	32237, -- Lava Hound (Lavanthor)
+	32230 -- Void Lord (Zuramat the Obliterator)
+)
 
--------------------------------------------------------------------------------
---  Localization
+local prevWave = 0
+
+--------------------------------------------------------------------------------
+-- Localization
+--
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["portals"] = "Portals"
-L["next_portal"] = "Portal %d"
-L["portal_opened"] = "Portal %d opened"
-L["portals_desc"] = "Information about portals."
-L["engage_trigger"] = "I'm locking the door."
-L["portal_message15s"] = "Portal %d in ~15 seconds!"--@end-do-not-package@
---@localization(locale="enUS", namespace="Dalaran/The_Violet_Hold", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["portals"] = "Portals"
+	L["portals_desc"] = "Information about portals."
 end
 L = mod:GetLocale()
-mod.displayName = L["portals"]
 
--------------------------------------------------------------------------------
---  Initialization
-local lastportal = 0
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		"portals",
+	}
+end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("UPDATE_WORLD_STATES")
-	self:Death("Deaths", 29315,29316,29313,29266,29312,29314,32226,32230,32231,32234,32235,32237)
+	self:Death("BossDeaths", 29315, 29316, 29313, 29266, 29312, 29314, 32226, 32230, 32231, 32234, 32235, 32237)
 	self:Death("Disable", 31134)
-
-	self:Yell("Warmup", L["engage_trigger"])
 end
 
-function mod:Warmup()
-	self:Bar("portals", self.zoneName, 25, "achievement_dungeon_theviolethold_normal")
-	self:DelayedMessage("portals", 10, L["portal_message15s"]:format(1), "Attention")
+function mod:OnDisable()
+	prevWave = 0
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
-
-function mod:Deaths()
-	self:DelayedMessage("portals", 20, L["portal_message15s"]:format(lastportal+1), "Attention")
-	self:Bar("portals", L["next_portal"]:format(lastportal+1), 35, "INV_Misc_ShadowEgg")
-end
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:UPDATE_WORLD_STATES()
-	local text = select(3, GetWorldStateUIInfo(2))
-	if not text then return end
-	local portal = tonumber(text:match("([0-9]+)/18")) or 0
-	if portal < lastportal then -- wiped probably
-		lastportal = 0
-	elseif portal > lastportal then
-		self:SendMessage("BigWigs_StopBar", self, L["next_portal"]:format(lastportal+1))
-		self:CancelDelayedMessage(L["portal_message15s"]:format(lastportal+1))
-		if portal ~= 6 and portal ~= 12 and portal ~= 18 then
-			self:Message("portals", L["portal_opened"]:format(portal), "Important", "INV_Misc_ShadowEgg")
-			self:Bar("portals", L["next_portal"]:format(portal+1), 120, "INV_Misc_ShadowEgg")
-			self:DelayedMessage("portals", 105, L["portal_message15s"]:format(portal+1), "Attention")
+	for i = 1, GetNumWorldStateUI() do
+		local _, state, _, num = GetWorldStateUIInfo(i)
+		if state > 0 and num then -- Check if state is visible and if text exists.
+			local wave = num:match("(%d+).+18")
+			if wave then
+				local currentWave = tonumber(wave)
+				if currentWave and currentWave ~= prevWave then
+					prevWave = currentWave
+					local portal = self:SpellName(216299) -- Portal
+					if currentWave == 6 or currentWave == 12 then
+						self:Message("portals", "Attention", "Info", CL.incoming:format(_G.BOSS), false)
+						self:StopBar(CL.count:format(portal, currentWave))
+					elseif currentWave == 18 then
+						local cyanigosa = EJ_GetEncounterInfo(632)
+						self:Message("portals", "Attention", "Info", CL.custom_sec:format(cyanigosa, 17), false)
+						self:Bar("portals", 17, CL.count:format(portal, currentWave), "spell_arcane_portaldalaran")
+					else
+						-- The single mobs (Guardian/Keeper) are 15s, the groups are about 12s. The spawn in random so stick to 15s.
+						self:Bar("portals", 15, CL.count:format(portal, currentWave), "spell_arcane_portaldalaran")
+						self:Message("portals", "Attention", "Info", CL.custom_sec:format(CL.count:format(portal, currentWave), 15), false)
+						self:Bar("portals", 134, CL.count:format(portal, currentWave+1), "spell_arcane_portaldalaran") -- 119s + 15s depending on spawn, sometimes it's 101s + 15s if the spawn is a group. Stick with 134s.
+					end
+				end
+			end
 		end
-		lastportal = portal
 	end
 end
+
+function mod:BossDeaths()
+	local count = prevWave+1
+	self:Bar("portals", count == 7 and 35 or 30, CL.count:format(self:SpellName(216299), count), "spell_arcane_portaldalaran") -- (20s or 15s) + 15s
+end
+
