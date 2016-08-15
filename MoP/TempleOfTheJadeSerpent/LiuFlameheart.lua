@@ -8,6 +8,12 @@ if not mod then return end
 mod:RegisterEnableMob(56732)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local smash = mod:SpellName(34618)
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -68,4 +74,3 @@ function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 		end
 	end
 end
-

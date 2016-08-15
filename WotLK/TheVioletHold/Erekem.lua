@@ -1,7 +1,7 @@
 ﻿-------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Erekem", 536)
+local mod, CL = BigWigs:NewBoss("Erekem", 536)
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Dalaran"
@@ -9,11 +9,6 @@ mod:RegisterEnableMob(29315, 32226)
 mod.toggleOptions = {
 	54481, -- Chain Heal
 }
-
--------------------------------------------------------------------------------
---  Localization
-
-LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -27,5 +22,5 @@ end
 --  Event Handlers
 
 function mod:ChainHeal(_, spellId, _, _, spellName)
-	self:Message(54481, LCL["casting"]:format(spellName), "Urgent", spellId)
+	self:Message(54481, CL["casting"]:format(spellName), "Urgent", spellId)
 end

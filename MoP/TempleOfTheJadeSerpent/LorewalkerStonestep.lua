@@ -30,7 +30,7 @@ function mod:GetOptions()
 	return {106434, {118961, "FLASH"}, 106747, "stages"}
 end
 
-function mod:VerifyEnable()
+function mod:VerifyEnable(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp > 15 then
 		return true
@@ -112,4 +112,3 @@ function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 		end
 	end
 end
-

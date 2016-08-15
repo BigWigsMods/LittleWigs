@@ -48,15 +48,16 @@ end
 --
 
 function mod:SeedOfMalevolence(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetBar(args.spellId, 18, args.destName)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
-		self:TargetBar(args.spellId, 18, args.destName)
 		self:Flash(args.spellId)
 		self:OpenProximity(args.spellId, 10)
 	end
 end
 
 function mod:SeedOfMalevolenceRemoved(args)
+	self:StopBar(args.spellId, args.destName) -- on death
 	if self:Me(args.destGUID) then
 		self:CloseProximity(args.spellId)
 	end

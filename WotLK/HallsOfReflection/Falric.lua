@@ -12,12 +12,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Locals
-
-local flesh = mod:NewTargetList()
-local pName = UnitName("player")
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()

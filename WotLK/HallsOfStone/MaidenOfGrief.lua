@@ -44,7 +44,7 @@ do
 	local function StunWarn()
 		if id==59726 then time=10 end 
 		mod:TargetMessage(50760, name, stun, "Urgent", id)
-		mod:Bar(50760, spellName, time, spellId)
+		mod:Bar(50760, name, time, id)
 		handle = nil
 	end
 	function mod:Stun(player, spellId, _, _, spellName)

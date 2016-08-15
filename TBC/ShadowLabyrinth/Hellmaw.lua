@@ -39,7 +39,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(33547, L["fear_bar"], 15, 33547)
-	if GetInstanceDifficulty() == 2 then self:Berserk(180) end
+	if self:Difficulty() == 2 then self:Berserk(180) end
 end
 
 -------------------------------------------------------------------------------

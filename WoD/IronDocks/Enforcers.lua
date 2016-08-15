@@ -40,6 +40,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
+	self:Log("SPELL_AURA_REMOVED", "SanguineSphereRemoved", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
 
 	self:Death("Deaths", 80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
@@ -60,13 +61,19 @@ function mod:SanguineSphere(args)
 end
 
 do
+	local scheduled = nil
+	function mod:SanguineSphereRemoved(args)
+		scheduled = self:ScheduleTimer("Message", 0.3, "sphere", "Positive", "Info", CL.over:format(self:SpellName(119924)), args.spellId)
+	end
+
 	local prev = 0
 	function mod:AbruptRestoration(args)
+		self:CancelTimer(scheduled)
 		self:StopBar(119924, args.destName) -- Bubble target bar
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:Message("sphere", "Attention", "Info", L.sphere_fail_message, args.spellId)
+			self:Message("sphere", "Attention", nil, L.sphere_fail_message, args.spellId)
 		end
 	end
 end

@@ -30,11 +30,13 @@ function mod:GetOptions()
 		162090, -- Imbued Iron Axe
 		"iron_reaver",
 		161882, -- Incinerating Breath
+		"stages",
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("UNIT_TARGETABLE_CHANGED")
 
 	self:Log("SPELL_AURA_APPLIED", "NoxiousSpit", 161833)
 	self:Log("SPELL_CAST_SUCCESS", "ImbuedIronAxe", 162090)
@@ -49,6 +51,13 @@ end
 -- Event Handlers
 --
 
+function mod:UNIT_TARGETABLE_CHANGED(unit)
+	if self:MobId(UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
+		local boss = UnitName(unit)
+		self:Message("stages", "Neutral", "Info", boss)
+	end
+end
+
 function mod:NoxiousSpit(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
@@ -62,7 +71,7 @@ end
 function mod:IronReaver(_, spellName, _, _, spellId)
 	if spellId == 161989 then -- Iron Reaver
 		self:Message("iron_reaver", "Important", nil, mod:SpellName(100), spellId) -- 100 = "Charge"
-		self:CDBar("iron_reaver", 20, mod:SpellName(100), spellId) -- 19.4-22.7s
+		self:CDBar("iron_reaver", 19, mod:SpellName(100), spellId) -- 19.4-22.7s
 	elseif spellId == 161882 then -- Incinerating Breath
 		self:Message(spellId, "Urgent", "Long", CL.incoming:format(spellName))
 		self:CDBar(spellId, 20)

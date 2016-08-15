@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Talon King Ikiss", 723, 543)
+local mod, CL = BigWigs:NewBoss("Talon King Ikiss", 723, 543)
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Auchindoun"
@@ -30,7 +30,7 @@ end
 --  Event Handlers
 
 function mod:AE()
-	self:Message(38197, LCL["casting"]:format(aeName), "Urgent", 38197)
+	self:Message(38197, CL["casting"]:format(aeName), "Urgent", 38197)
 end
 
 function mod:Poly(player, spellId, _, _, spellName)
