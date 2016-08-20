@@ -39,8 +39,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 156856)
 	self:Log("SPELL_CAST_START", "ChaosWave", 157001)
 	self:Log("SPELL_CAST_START", "DemonicLeap", 157039)
-	self:Log("SPELL_CAST_SUCCESS", "DrainLifeOrChaosBolt", 156854) -- Drain Life
-	self:Log("SPELL_CAST_START", "DrainLifeOrChaosBolt", 156975) -- Chaos Bolt
+	self:Log("SPELL_CAST_SUCCESS", "DrainLife", 156854)
+	self:Log("SPELL_CAST_START", "ChaosBolt", 156975)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Success", "boss1")
 end
@@ -104,8 +104,13 @@ do
 	end
 end
 
-function mod:DrainLifeOrChaosBolt(args)
+function mod:DrainLife(args)
 	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
+end
+
+function mod:ChaosBolt(args)
+	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
+	self:Bar(args.spellId, 24)
 end
 
 function mod:Success(_, _, _, _, spellId)
