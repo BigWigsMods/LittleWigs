@@ -19,6 +19,7 @@ function mod:GetOptions()
 		156854, -- Drain Life
 		{157168, "ICON"}, -- Fixate
 		156856, -- Rain of Fire
+		156975, -- Chaos Bolt
 	}
 end
 
@@ -38,7 +39,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 156856)
 	self:Log("SPELL_CAST_START", "ChaosWave", 157001)
 	self:Log("SPELL_CAST_START", "DemonicLeap", 157039)
-	self:Log("SPELL_CAST_SUCCESS", "DrainLife", 156854)
+	self:Log("SPELL_CAST_SUCCESS", "DrainLifeOrChaosBolt", 156854) -- Drain Life
+	self:Log("SPELL_CAST_START", "DrainLifeOrChaosBolt", 156975) -- Chaos Bolt
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Success", "boss1")
 end
@@ -102,7 +104,7 @@ do
 	end
 end
 
-function mod:DrainLife(args)
+function mod:DrainLifeOrChaosBolt(args)
 	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
 end
 
