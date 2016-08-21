@@ -2,16 +2,27 @@
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
-## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
 ## Notes-zhTW: 5人副本首領戰訊息提示插件。
 ## Notes-zhCN: 5人副本首领战讯息提示插件。
+## Notes-deDE: Boss warnings for 5-man dungeons & scenarios.
+## Notes-frFR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
+## Notes-koKR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-ruRU: Boss warnings for 5-man dungeons & scenarios.
+## Notes-ptBR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-esES: Boss warnings for 5-man dungeons & scenarios.
+## Notes-esMX: Boss warnings for 5-man dungeons & scenarios.
 ## Author: Funkydude
 ## X-Category: Party
 ## X-Credits: Ulic
+## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
+## X-Curse-Project-ID: little-wigs
+## X-WoWI-ID: 9577
 
 ## X-BigWigs-LoadOn-ZoneId: 756, 520, 522, 524, 525, 530, 536, 710, 728, 731, 732, 733, 877, 871, 874, 885, 867, 919, 964, 969, 984, 987, 989, 993, 995, 1008, 747, 757, 767, 768, 769, 820, 798, 602, 1041, 1042, 1045, 1046, 1065, 1066, 1067, 1079, 1081, 1087 
 ## Dependencies: BigWigs
 ## LoadOnDemand: 1
+## Version: @project-revision@
 
 modules.xml
 
