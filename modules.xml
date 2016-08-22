@@ -4,6 +4,7 @@
 <!-- Classic -->
 
 <Include file="Classic\Deadmines\modules.xml"/>
+<!--<Include file="Classic\ShadowfangKeep\modules.xml"/>-->
 
 <!-- The Burning Crusade -->
 
@@ -26,12 +27,18 @@
 
 <!-- Cataclysm -->
 
+<!--<Include file="Cataclysm\BlackrockCaverns\modules.xml"/>-->
 <Include file="Cataclysm\EndTime\modules.xml"/>
 <Include file="Cataclysm\GrimBatol\modules.xml"/>
+<!--<Include file="Cataclysm\HallsOfOrigination\modules.xml"/>-->
+<!--<Include file="Cataclysm\HourOfTwilight\modules.xml"/>-->
 <Include file="Cataclysm\LostCity\modules.xml"/>
 <Include file="Cataclysm\Stonecore\modules.xml"/>
 <Include file="Cataclysm\ThroneTides\modules.xml"/>
 <Include file="Cataclysm\VortexPinnacle\modules.xml"/>
+<!--<Include file="Cataclysm\WellOfEternity\modules.xml"/>-->
+<!--<Include file="Cataclysm\ZulAman\modules.xml"/>-->
+<!--<Include file="Cataclysm\ZulGurub\modules.xml"/>-->
 
 
 <!-- Mists of Pandaria -->
