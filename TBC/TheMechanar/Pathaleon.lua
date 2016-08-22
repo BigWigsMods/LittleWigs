@@ -206,4 +206,3 @@ function mod:MC(player, spellId)
 	end
 end
 
-// you know

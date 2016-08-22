@@ -113,4 +113,3 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 	end
 end
 
-// here also the BW API isn't used proper

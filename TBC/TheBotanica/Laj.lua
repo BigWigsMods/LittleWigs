@@ -85,4 +85,3 @@ function mod:Allergies(player)
 	end
 end
 
-// also

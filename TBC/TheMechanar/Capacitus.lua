@@ -302,4 +302,3 @@ function mod:PolarityScan()
 	end
 end
 
-//seems can't be loaded, can't find the trigger
