@@ -3,9 +3,10 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Naraxas", 1065, 1792)
+local mod, CL = BigWigs:NewBoss("Naraxas", 1065, 1673)
 if not mod then return end
 mod:RegisterEnableMob(91005)
+--mod.engageId = 1792
 
 --------------------------------------------------------------------------------
 -- Locals

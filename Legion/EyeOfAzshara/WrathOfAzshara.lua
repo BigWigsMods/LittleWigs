@@ -3,9 +3,10 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Wrath of Azshara", 1046, 1814)
+local mod, CL = BigWigs:NewBoss("Wrath of Azshara", 1046, 1492)
 if not mod then return end
 mod:RegisterEnableMob(96028)
+--mod.engageId = 1814
 
 --------------------------------------------------------------------------------
 -- Locals

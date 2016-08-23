@@ -3,9 +3,10 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ularogg Cragshaper", 1065, 1791)
+local mod, CL = BigWigs:NewBoss("Ularogg Cragshaper", 1065, 1665)
 if not mod then return end
 mod:RegisterEnableMob(91004)
+--mod.engageId = 1791
 
 --------------------------------------------------------------------------------
 -- Locals
