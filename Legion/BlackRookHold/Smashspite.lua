@@ -10,7 +10,7 @@ mod:RegisterEnableMob(98949)
 local FelVomitCD = 35
 --------------------------------------------------------------------------------
 -- Initialization
---
+-
 function mod:GetOptions()
   return {
     198073, --Earthshaking stomp-25.4
