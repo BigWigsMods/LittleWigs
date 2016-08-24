@@ -12,12 +12,12 @@ local FelVomitCD = 35
 -- Initialization
 --
 function mod:GetOptions()
-	return {
-		198073, --Earthshaking stomp-25.4
-		{198245, "TANK"}, --Brutal Haymaker nvm the cd probably wont proc twice
-    	198079, --Hateful Gaze 25.4
-    	198446, --Fel Vomit 33.8 after pull 33.8 22.8 15.4 10.3
-	}
+  return {
+    198073, --Earthshaking stomp-25.4
+    {198245, "TANK"}, --Brutal Haymaker nvm the cd probably wont proc twice
+    198079, --Hateful Gaze 25.4
+    198446, --Fel Vomit 33.8 after pull 33.8 22.8 15.4 10.3
+  }
 end
 
 function mod:OnBossEnable()
@@ -31,10 +31,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	FelVomitCD = 35
+  FelVomitCD = 35
   self:Bar(198079, 5.8)
   self:Bar(198073, 13.1)
-	self:Bar(198446, FelVomitCD)
+  self:Bar(198446, FelVomitCD)
 end
 --------------------------------------------------------------------------------
 -- Event Handlers
