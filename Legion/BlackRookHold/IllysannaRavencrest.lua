@@ -33,7 +33,7 @@ end
 function mod:OnEngage()
 	self:Bar(197546, 5.5)
 	self:Bar(197418, 8.3)
-	self:CDBar(197478, 14.8) -- itchy no say on dark rush
+	self:CDBar(197478, 14.8) 
 end
 --------------------------------------------------------------------------------
 -- Event Handlers
@@ -42,7 +42,7 @@ function mod:BrutalGlaive(args)
 	self:StopBar(197696)
 end
 
-function mod:DarkRushApplied(args)
+function mod:DarkRushApplied(args) -- fix dark rush say
 	if self:Me(args.destGUID) then
 		self:Say(args.spellName)
 	end
