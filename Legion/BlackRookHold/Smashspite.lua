@@ -15,8 +15,8 @@ function mod:GetOptions()
 	return {
 		198073, --Earthshaking stomp-25.4
 		{198245, "TANK"}, --Brutal Haymaker nvm the cd probably wont proc twice
-    198079, --Hateful Gaze 25.4
-    198446, --Fel Vomit 33.8 after pull 33.8 22.8 15.4 10.3
+    	198079, --Hateful Gaze 25.4
+    	198446, --Fel Vomit 33.8 after pull 33.8 22.8 15.4 10.3
 	}
 end
 
