@@ -12,7 +12,7 @@ local ShadowBoltCount = 0;
 -- Initialization
 --
 function mod:GetOptions()
-	return {
+  return {
     {198635, "TANK"}, --Unerring Sheer
     198820, --Dark Blast
     198641, --Whirling Blade
@@ -20,11 +20,11 @@ function mod:GetOptions()
     202019, --Shadow Bolt Valley Care first one!!
     {201733, "SAY"}, --Stinging Swarm
     199143  --Cloud of Hypnosis
-	}
+  }
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+  self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
   self:Log("SPELL_CAST_START", "DarkBlast", 198820)
   self:Log("SPELL_CAST_START", "WhirlingBlade", 198641)
   self:Log("SPELL_CAST_START", "ShadowBoltValley", 202019)
@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	local ShadowBoltCount = 0;
+  ShadowBoltCount = 0;
   self:CDBar(198635,5.5)
   self:CDBar(198641,12)
 end
@@ -45,7 +45,7 @@ end
 -- Event Handlers
 --
 function mod:DarkBlast(args)
-    self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
+  self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
 end
 
 function mod:WhirlingBlade(args)
@@ -64,15 +64,15 @@ end
 
 function mod:DreadlordsGuise(args)
   self:StopBar(201733)
-	self:StopBar(198641)
-	self:StopBar(202019)
+  self:StopBar(198641)
+  self:StopBar(202019)
   self:StopBar(199143)
-	if mod:Mythic() then
-		self:Bar(args.spellId, 22) -- 27 on normal
-		self:ScheduleTimer("CDBar", 22, 201733, 5,5)
-	else
-		self:Bar(args.spellId, 27) -- longer than 23 on Norm/hc
-	end
+  if mod:Mythic() then
+    self:Bar(args.spellId, 22) -- 27 on normal
+    self:ScheduleTimer("CDBar", 22, 201733, 5,5)
+  else
+    self:Bar(args.spellId, 27) -- longer than 23 on Norm/hc
+  end
 end
 
 function mod:CloudOfHypnosis(args)
