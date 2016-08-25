@@ -1,6 +1,9 @@
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
+--TO do List
+--Brutal Haymaker should be tested tank POV
+--Fel vomit cd reduces on every cast 0.64~ multiplier still could be tested a few more tries
 local mod, CL = BigWigs:NewBoss("Smashspite", 1081, 1664)
 if not mod then return end
 mod:RegisterEnableMob(98949)
@@ -10,18 +13,18 @@ mod:RegisterEnableMob(98949)
 local FelVomitCD = 35
 --------------------------------------------------------------------------------
 -- Initialization
--
+--
 function mod:GetOptions()
   return {
-    198073, --Earthshaking stomp-25.4
-    {198245, "TANK"}, --Brutal Haymaker nvm the cd probably wont proc twice
-    198079, --Hateful Gaze 25.4
-    198446, --Fel Vomit 33.8 after pull 33.8 22.8 15.4 10.3
+    198073, --Earthshaking stomp
+    {198245, "TANK"}, --Brutal Haymaker
+    198079, --Hateful Gaze
+    198446, --Fel Vomit
   }
 end
 
 function mod:OnBossEnable()
-  self:Log("SPELL_CAST_START", "FelVomit", 198446)
+  self:Log("SPELL_CAST_SUCCESS", "FelVomit", 198446)
   self:Log("SPELL_CAST_SUCCESS", "EarthshakingStomp", 198073)
   self:Log("SPELL_CAST_SUCCESS", "HatefulGaze", 198079)
   self:Log("SPELL_CAST_START", "BrutalHaymaker", 198245)
@@ -55,6 +58,6 @@ end
 
 function mod:FelVomit(args)
   self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
-  FelVomitCD = FelVomitCD * 0.67
+  FelVomitCD = FelVomitCD * 0.64
   self:CDBar(args.spellId, FelVomitCD)
 end
