@@ -1,13 +1,15 @@
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
+--TO DO List
+--Timers work fine couldnt test Say mechanic stinging swarm due to rng targetting.
 local mod, CL = BigWigs:NewBoss("Kurtalos Ravencrest", 1081, 1672)
 if not mod then return end
 mod:RegisterEnableMob(98965, 98970)
 --------------------------------------------------------------------------------
 -- Locals
 --
-local ShadowBoltCount = 0;
+local ShadowBoltCount = 1;
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -16,7 +18,7 @@ function mod:GetOptions()
     {198635, "TANK"}, --Unerring Sheer
     198820, --Dark Blast
     198641, --Whirling Blade
-    199193, -- Dreadlords Guise cd 57 sec
+    199193, -- Dreadlords Guise
     202019, --Shadow Bolt Valley Care first one!!
     {201733, "SAY"}, --Stinging Swarm
     199143  --Cloud of Hypnosis
@@ -24,7 +26,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-  self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
   self:Log("SPELL_CAST_START", "DarkBlast", 198820)
   self:Log("SPELL_CAST_START", "WhirlingBlade", 198641)
   self:Log("SPELL_CAST_START", "ShadowBoltValley", 202019)
@@ -32,15 +33,17 @@ function mod:OnBossEnable()
   self:Log("SPELL_CAST_SUCCESS", "CloudOfHypnosis", 199143)
   self:Log("SPELL_CAST_START", "DreadlordsGuise", 199193)
   self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
   self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
   self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 function mod:OnEngage()
-  ShadowBoltCount = 0;
+  ShadowBoltCount = 1;
   self:CDBar(198635,5.5)
+  self:CDBar(198641,11)
   self:CDBar(198641,12)
-end
+end--sbolt 0
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
