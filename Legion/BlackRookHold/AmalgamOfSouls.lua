@@ -1,6 +1,10 @@
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
+--TO DO List
+--Tested everything except post phase 2 timers and soulgorge stacks warnings
+--All timers were correct on hc and normal runs
+--Test if Soul Echoes say works
 local mod, CL = BigWigs:NewBoss("Amalgam of Souls", 1081, 1518)
 if not mod then return end
 mod:RegisterEnableMob(98542)
@@ -23,7 +27,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_CAST_START", "CallSouls", 196078)
 	self:Log("SPELL_CAST_SUCCESS", "SoulEchoes", 194966) --27.5
 	self:Log("SPELL_CAST_START", "SoulBurstStart", 196587)
@@ -32,6 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SwirlingScythe", 195254) -- 20 SEC CD
 	self:Log("SPELL_AURA_APPLIED", "SoulEchoesApplied", 194966)
 	self:Log("SPELL_AURA_APPLIED", "Soulgorge", 196930)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
@@ -65,7 +69,7 @@ function mod:SoulBurstSuccess(args)
 end
 
 function mod:CallSouls(args)
-	self:CDBar(196587, 29)
+	self:CDBar(196587, 27.5)
 	self:StopBar(195254)
 	self:StopBar(194966)
 	self:StopBar(194956)
@@ -82,7 +86,7 @@ function mod:SwirlingScythe(args)
 	self:Message(args.spellId, "Attention")
 	self:Bar(args.spellId, 21.2)
 end
---soul echoes timer might be wrong
+
 function mod:SoulEchoes(args)
 	self:Bar(args.spellId, 26.7)
 end
