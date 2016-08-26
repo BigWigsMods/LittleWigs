@@ -36,8 +36,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SoulEchoesApplied", 194966)
 	self:Log("SPELL_AURA_APPLIED", "Soulgorge", 196930)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 --------------------------------------------------------------------------------
 -- Event Handlers
