@@ -29,8 +29,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DarkRushApplied",197478)
 	self:Log("SPELL_AURA_APPLIED", "EyeBeams", 197687)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 function mod:OnEngage()
