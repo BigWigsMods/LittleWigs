@@ -5,11 +5,11 @@
 --Timers work fine couldnt test Say mechanic stinging swarm due to rng targetting.
 local mod, CL = BigWigs:NewBoss("Kurtalos Ravencrest", 1081, 1672)
 if not mod then return end
-mod:RegisterEnableMob(98965, 98970)
+mod:RegisterEnableMob(98965 ,98970)
 --------------------------------------------------------------------------------
 -- Locals
 --
-local ShadowBoltCount = 1;
+local ShadowBoltCount = 1
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -34,14 +34,14 @@ function mod:OnBossEnable()
   self:Log("SPELL_CAST_START", "DreadlordsGuise", 199193)
   self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
   self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-  self:Death("Deaths", 98965, 98970)
+  self:Death("Win", 98970)
 end
 
 function mod:OnEngage()
-  ShadowBoltCount = 1;
-  self:CDBar(198635,5.5)
-  self:CDBar(198641,11)
-  self:CDBar(198641,12)
+  ShadowBoltCount = 1
+  self:CDBar(198635, 5.5)
+  self:CDBar(198641, 11)
+  self:CDBar(198641, 12)
 end
 --------------------------------------------------------------------------------
 -- Event Handlers
