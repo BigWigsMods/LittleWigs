@@ -33,9 +33,7 @@ function mod:OnBossEnable()
   self:Log("SPELL_CAST_SUCCESS", "CloudOfHypnosis", 199143)
   self:Log("SPELL_CAST_START", "DreadlordsGuise", 199193)
   self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-  self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-  self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+  self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
 
 function mod:OnEngage()
@@ -43,7 +41,7 @@ function mod:OnEngage()
   self:CDBar(198635,5.5)
   self:CDBar(198641,11)
   self:CDBar(198641,12)
-end--sbolt 0
+end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
