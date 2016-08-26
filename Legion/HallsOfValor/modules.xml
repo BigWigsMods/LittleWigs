@@ -6,6 +6,7 @@
 <Script file="Fenryr.lua"/>
 <Script file="God-KingSkovald.lua"/>
 <Script file="Odyn.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 
