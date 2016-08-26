@@ -29,8 +29,6 @@ function mod:OnBossEnable()
   self:Log("SPELL_CAST_SUCCESS", "HatefulGaze", 198079)
   self:Log("SPELL_CAST_START", "BrutalHaymaker", 198245)
   self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-  self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-  self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 function mod:OnEngage()
