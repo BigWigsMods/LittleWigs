@@ -1,23 +1,26 @@
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
+
 --TO do List Eye beam is completely missing in transcriptor logs in any means ??
 --Dark Rush and Eye beam Say's should be Tested
 --Arcane blitz warning message could be changed into "Interrupt (sourceGuid)"
 local mod, CL = BigWigs:NewBoss("Illysanna Ravencrest", 1081, 1653)
 if not mod then return end
 mod:RegisterEnableMob(98696)
+
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
 function mod:GetOptions()
 	return {
-	{197418, "TANK"}, --Vengeful Shear
-	{197478, "SAY"}, --Dark Rush --
-	197546, --Brutal Glaive
-	197797, --Arcane Blitz
-	197974, --Bonecrushing Strike
-	{197696, "SAY"}, --Eye Beam
+		{197418, "TANK"}, -- Vengeful Shear
+		{197478, "SAY"}, -- Dark Rush 
+		197546, -- Brutal Glaive
+		197797, -- Arcane Blitz
+		197974, -- Bonecrushing Strike
+		{197696, "SAY"}, -- Eye Beam
 	}
 end
 
@@ -33,13 +36,15 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(197546, 5.5)
-	self:Bar(197418, 8.3)
-	self:CDBar(197478, 14.8)
+	self:Bar(197546, 5.5) -- Brutal Glaive
+	self:Bar(197418, 8.3) -- Vengeful Shear
+	self:CDBar(197478, 14.8) -- Dark Rush 
 end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
 function mod:BrutalGlaive(args) -- add timer
 	self:CDBar(args.spellId, 14.5)
 	self:StopBar(197696)
@@ -56,18 +61,21 @@ function mod:VengefulShear(args)
 end
 
 function mod:EyeBeams(args) -- eye beam missing timer xxx fix this
-	self:StopBar(197546)
-	self:StopBar(197418)
-	self:Bar(197696, 15)
+	self:StopBar(197546) -- Brutal Glaive
+	self:StopBar(197418) -- Vengeful Shear
+	self:Bar(197696, 15) -- Eye Beam
 	if self:Me(args.destGUID) then
 		self:Say(args.spellName)
 	end
 end
 
 function mod:ArcaneBlitz(args)
-	self:Message(args.spellId, "Alarm", self:Interrupter(args.sourceGUID))
+	if self:Interrupter(args.sourceGUID) then
+		self:TargetMessage(args.spellId, args.sourceName, "Attention", "Alarm")
+	end
 end
 
 function mod:BonecrushingStrike(args)
 	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
 end
+
