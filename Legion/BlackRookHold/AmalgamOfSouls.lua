@@ -64,7 +64,7 @@ function mod:SoulBurstSuccess(args)
 	self:CDBar(195254, 8.5)
 	self:CDBar(194966, 15.6)
 	self:CDBar(194956, 20.4)
-	gorgeCount = 0;
+	gorgeCount = 0
 end
 
 function mod:CallSouls(args)

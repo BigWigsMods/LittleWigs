@@ -29,7 +29,7 @@ function mod:OnBossEnable()
   self:Log("SPELL_CAST_SUCCESS", "HatefulGaze", 198079)
   self:Log("SPELL_CAST_START", "BrutalHaymaker", 198245)
   self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-  self:Death("Deaths", 98949)
+  self:Death("Win", 98949)
 end
 
 function mod:OnEngage()

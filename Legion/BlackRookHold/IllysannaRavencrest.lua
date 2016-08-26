@@ -29,7 +29,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DarkRushApplied",197478)
 	self:Log("SPELL_AURA_APPLIED", "EyeBeams", 197687)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Deaths", 98696)
+	self:Death("Win", 98696)
 end
 
 function mod:OnEngage()
