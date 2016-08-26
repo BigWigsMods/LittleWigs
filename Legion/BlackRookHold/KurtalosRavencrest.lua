@@ -34,6 +34,7 @@ function mod:OnBossEnable()
   self:Log("SPELL_CAST_START", "DreadlordsGuise", 199193)
   self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
   self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+  self:Death("Deaths", 98965, 98970)
 end
 
 function mod:OnEngage()
