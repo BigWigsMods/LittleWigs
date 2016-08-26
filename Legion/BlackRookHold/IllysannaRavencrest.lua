@@ -65,7 +65,9 @@ function mod:EyeBeams(args) -- eye beam missing timer xxx fix this
 end
 
 function mod:ArcaneBlitz(args)
-	self:Message(args.spellId, "Alarm", self:Interrupter(args.sourceGUID))
+	if self:Interrupter(args.sourceGUID) then
+		self:TargetMessage(args.spellId, args.sourceName, "Attention", "Alarm")
+	end
 end
 
 function mod:BonecrushingStrike(args)

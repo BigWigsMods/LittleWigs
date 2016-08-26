@@ -41,7 +41,7 @@ function mod:OnEngage()
   ShadowBoltCount = 1
   self:CDBar(198635, 5.5)
   self:CDBar(198641, 11)
-  self:CDBar(198641, 12)
+  self:CDBar(198820, 12)
 end
 --------------------------------------------------------------------------------
 -- Event Handlers
