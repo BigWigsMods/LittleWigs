@@ -62,7 +62,7 @@ function mod:EnvelopingWinds(args)
 end
 
 function mod:PiercingGale(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "Urgent", "Alarm")
 	--self:CDBar(args.spellId, ??)
 end
 

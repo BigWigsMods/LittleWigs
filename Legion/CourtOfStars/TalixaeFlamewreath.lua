@@ -49,7 +49,7 @@ end
 --
 
 function mod:InfernalEruption(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "Urgent", "Long")
 	--self:CDBar(args.spellId, ??)
 end
 
@@ -60,6 +60,6 @@ function mod:BurningIntensity(args)
 end
 
 function mod:WitheringSoul(args)
-	self:Message(args.spellId, "Attention", "Warning")
+	self:Message(args.spellId, "Attention", "Alert")
 	--self:CDBar(args.spellId, ??)
 end

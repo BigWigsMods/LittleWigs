@@ -45,7 +45,7 @@ end
 --
 
 function mod:ResonantSlash(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "Urgent", "Alarm")
 	--self:CDBar(args.spellId, ??)
 end
 
@@ -55,15 +55,15 @@ function mod:Streetsweeper(args)
 end
 
 function mod:ArcaneLockdown(args)
-	self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "Attention", "Long", CL.incoming:format(args.spellName))
 	--self:CDBar(args.spellId, ??)
 end
 
 function mod:SignalBeacon(args)
-	self:Message(args.spellId, "Attention", "Warning")
+	self:Message(args.spellId, "Attention", "Alert")
 	--self:CDBar(args.spellId, ??)
 end
 
 function mod:FlaskoftheSolemnNight(args)
-	self:Message(args.spellId, "Attention", "Warning")
+	self:Message(args.spellId, "Attention", "Info")
 end
