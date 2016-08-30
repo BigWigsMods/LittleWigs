@@ -33,9 +33,9 @@ end
 
 function mod:OnEngage()
 	self:Bar(194216, 3.6) -- Cosmic scythe
-   self:CDBar(194231, 8) -- Shackled
-   self:CDBar(194668, 12.5) -- nether rip
-   self:CDBar(194325, 18) -- fragment
+	self:CDBar(194231, 8) -- Shackled
+	self:CDBar(194668, 12.5) -- nether rip
+	self:CDBar(194325, 18) -- fragment
 end
 
 --------------------------------------------------------------------------------

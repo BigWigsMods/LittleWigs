@@ -23,9 +23,9 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_CAST_START", "Winds", 193977)
-   self:Log("SPELL_CAST_START", "DarkSlash", 193211)
-   self:Log("SPELL_CAST_START", "Screams", 193364)
-   self:Log("SPELL_CAST_START", "Bane", 193460)
+	self:Log("SPELL_CAST_START", "DarkSlash", 193211)
+	self:Log("SPELL_CAST_START", "Screams", 193364)
+	self:Log("SPELL_CAST_START", "Bane", 193460)
 	self:Log("SPELL_CAST_START", "Arise", 193566)
 	self:Death("Win", 96756)
 end
