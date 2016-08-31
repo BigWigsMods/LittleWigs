@@ -1,17 +1,17 @@
-local L = BigWigs:NewBossLocale("Brother Korloff", "zhCN")
+﻿local L = BigWigs:NewBossLocale("Brother Korloff", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "I will break you."
+	L.engage_yell = "我要粉碎你。"
 end
 
 local L = BigWigs:NewBossLocale("High Inquisitor Whitemane", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "My legend begins NOW!"
+	L.engage_yell = "我就是传说！"
 end
 
 local L = BigWigs:NewBossLocale("Thalnos the Soulrender", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "My endless agony shall be yours, as well!"
+	L.engage_yell = "让你们也尝尝我无尽的痛苦！"
 end

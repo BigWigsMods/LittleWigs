@@ -1,17 +1,17 @@
 local L = BigWigs:NewBossLocale("Armsmaster Harlan", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "Ah-hah! Another chance to test my might."
+	L.engage_yell = "啊——哈！检验我力量的机会又到了。"
 end
 
 local L = BigWigs:NewBossLocale("Flameweaver Koegler", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "You, too, shall be charred to ash!"
+	L.engage_yell = "你，也将化为灰烬！"
 end
 
 local L = BigWigs:NewBossLocale("Houndmaster Braun", "zhCN")
 if not L then return end
 if L then
-	L.engage_say = "Hmm, did you hear something lads?"
+	L.engage_say = "嗯，听到动静了吗，伙计们？"
 end

@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Gekkan", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "Stop them!"
+	L.engage_yell = "阻止他们！"
 end
 
 local L = BigWigs:NewBossLocale("Trial of the King", "zhCN")
@@ -13,5 +13,5 @@ end
 local L = BigWigs:NewBossLocale("Xin the Weaponmaster", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "You are not the first to challenge me, peons. You will not be the last."
+	L.engage_yell = "你们不是第一批来挑战我的人，苦力们，也不会是最后一批。"
 end
