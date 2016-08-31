@@ -1,10 +1,7 @@
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/BigWigsMods/master
 --TO DO List
 --Tested everything except post phase 2 timers and soulgorge stacks warnings
 --All timers were correct on hc and normal runs
@@ -12,36 +9,25 @@
 local mod, CL = BigWigs:NewBoss("Amalgam of Souls", 1081, 1518)
 if not mod then return end
 mod:RegisterEnableMob(98542)
+
 --------------------------------------------------------------------------------
 -- Locals
 --
-<<<<<<< HEAD
-local gorgeCount = 0
-=======
 
 local gorgeCount = 0
 
->>>>>>> refs/remotes/BigWigsMods/master
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
 function mod:GetOptions()
 	return {
-<<<<<<< HEAD
-		196078, --Call Souls
-		194956, --Reap Soul
-		196587, --Soul Burst
-		{194966, "SAY"}, --Soul Echoes
-		195254, --Swirling scythe
-		196930, --Soulgorge
-=======
 		196078, -- Call Souls
 		194956, -- Reap Soul
 		196587, -- Soul Burst
 		{194966, "SAY"}, -- Soul Echoes
 		195254, -- Swirling scythe
 		196930, -- Soulgorge
->>>>>>> refs/remotes/BigWigsMods/master
 	}
 end
 
@@ -57,48 +43,18 @@ function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 98542)
 end
---------------------------------------------------------------------------------
--- Event Handlers
---
+
 function mod:OnEngage()
 	gorgeCount = 0
-<<<<<<< HEAD
-	self:Bar(195254, 8.5)
-	self:Bar(194966, 15.7)
-	self:Bar(194956, 20.4)
-end
-
-function mod:Soulgorge(args)
-	gorgeCount = gorgeCount + 1
-=======
 	self:Bar(195254, 8.5) -- Swirling scythe
 	self:Bar(194966, 15.7) -- Soul Echoes
 	self:Bar(194956, 20.4) -- Reap Soul
->>>>>>> refs/remotes/BigWigsMods/master
 end
 
-function mod:SoulBurstStart(args)
-	if gorgeCount == 2 then
-		self:Message(args.spellId, "Attention", "Alert", CL.incoming:format(args.spellName))
-	elseif gorgeCount >= 3 then
-		self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
-	end
-end
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:SoulBurstSuccess(args)
-	self:CDBar(195254, 8.5)
-	self:CDBar(194966, 15.6)
-	self:CDBar(194956, 20.4)
-	gorgeCount = 0
-end
-
-<<<<<<< HEAD
-function mod:CallSouls(args)
-	self:CDBar(196587, 27.5)
-	self:StopBar(195254)
-	self:StopBar(194966)
-	self:StopBar(194956)
-=======
 function mod:Soulgorge(args)
 	gorgeCount = gorgeCount + 1
 end
@@ -123,7 +79,6 @@ function mod:CallSouls(args)
 	self:StopBar(195254) -- Swirling scythe
 	self:StopBar(194966) -- Soul Echoes
 	self:StopBar(194956) -- Reap Soul
->>>>>>> refs/remotes/BigWigsMods/master
 end
 
 function mod:ReapSoul(args)
@@ -147,7 +102,3 @@ function mod:SoulEchoesApplied(args)
 		self:Say(args.spellId)
 	end
 end
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/BigWigsMods/master
