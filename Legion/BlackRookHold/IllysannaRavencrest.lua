@@ -16,7 +16,7 @@ mod:RegisterEnableMob(98696)
 function mod:GetOptions()
 	return {
 		{197418, "TANK"}, -- Vengeful Shear
-		{197478, "SAY"}, -- Dark Rush
+		{197478, "SAY"}, -- Dark Rush 
 		197546, -- Brutal Glaive
 		197797, -- Arcane Blitz
 		197974, -- Bonecrushing Strike
