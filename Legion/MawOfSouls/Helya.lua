@@ -42,7 +42,7 @@ end
 function mod:OnEngage()
 	afterCorrupted = 0
 	firstTorrent = 0
- 	self:CDBar(202088, 40.5) -- Barrage
+ 	self:CDBar(202088, 40.5) -- Brackwater Barrage
 end
 
 --------------------------------------------------------------------------------
