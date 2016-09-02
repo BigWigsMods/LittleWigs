@@ -45,7 +45,6 @@ end
 
 function mod:OnEngage()
 	self:Bar(197961, 44) -- Runic Brand
-	self:Bar(198263, 24) -- Radiant Tempest
 	self:Bar(198077, 40) -- Shatter Spears
 end
 
