@@ -28,7 +28,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(193826, 11) -- Ragnarok
+	self:CDBar(193826, 11) -- Ragnarok
+	self:CDBar(193668, 24) -- Savage Blade
+	self:CDBar(193659, 8.5) -- Felblaze Rush
 end
 
 --------------------------------------------------------------------------------
@@ -37,12 +39,12 @@ end
 
 function mod:SavageBlade(args)
 	self:Message(args.spellId, "Attention", self:Tank() and "Warning")
-	self:Bar(args.spellId, 23) -- pull:43.8, 23.0
+	self:CDBar(args.spellId, 18) -- pull:24.3, 24.3, 17.8, 20.9
 end
 
 function mod:Ragnarok(args)
 	self:Message(args.spellId, "Urgent", "Long")
-	self:Bar(args.spellId, 23) -- pull:43.8, 23.0
+	self:CDBar(args.spellId, 63) -- pull:11.4, 63.5
 end
 
 do
@@ -55,7 +57,7 @@ do
 	end
 	function mod:FelblazeRush(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		--self:CDBar(args.spellId, 10) -- pull:8.7, 14.6, 26.7, 12.1
+		--self:CDBar(args.spellId, 10) -- pull:8.7, 14.6, 26.7, 12.1 -- pull:8.5, 35.2, 13.3, 15.9
 	end
 	function mod:FelblazeRushEnd(args)
 		self:PrimaryIcon(args.spellId)
