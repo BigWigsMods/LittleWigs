@@ -9,6 +9,12 @@ mod:RegisterEnableMob(94960)
 mod.engageId = 1805
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local bladeCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -32,7 +38,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	bladeCount = 1
+	self:CDBar(193235, 3.3) -- Dancing Blade
+	self:CDBar(191284, 8) -- Horn of Valor
+	self:CDBar(193092, 16) -- Bloodletting Sweep
 end
 
 --------------------------------------------------------------------------------
@@ -49,7 +58,8 @@ do
 	end
 	function mod:DancingBlade(args)
 		self:GetBossTarget(printTarget, 1, args.sourceGUID)
-		--self:CDBar(args.spellId, 10) -- pull:6.2, 31.5, 10.5
+		self:CDBar(args.spellId, bladeCount % 2 == 0 and 10 or 31)
+		bladeCount = bladeCount + 1
 	end
 	function mod:DancingBladeEnd(args)
 		self:PrimaryIcon(args.spellId)
@@ -57,8 +67,8 @@ do
 end
 
 function mod:HornOfValor(args)
-	self:Message(193235, "Important", "Long", CL.casting:format(args.spellName))
-	--self:CDBar(args.spellId, 42) -- pull:11.0, 42.0
+	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 42) -- 42.0-43.7
 end
 
 do
@@ -75,7 +85,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 193092 then -- Bloodletting Sweep
 		self:Message(spellId, "Attention", self:Tank() and "Info")
-		self:CDBar(spellId, 17.7) -- 17.7 - 18.1
+		self:CDBar(spellId, 18) -- 18.2 - 23
 	end
 end
 
