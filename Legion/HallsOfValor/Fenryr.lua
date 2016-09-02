@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Fenryr", 1041, 1487)
 if not mod then return end
-mod:RegisterEnableMob(95674, 99868) -- Phase 2 Fenryr, Phase 2 Fenryr
+mod:RegisterEnableMob(95674, 99868) -- Phase 1 Fenryr, Phase 2 Fenryr
 --mod.engageId = 1807
 
 --------------------------------------------------------------------------------
@@ -23,6 +23,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
 	self:Log("SPELL_AURA_APPLIED", "Stealth", 196567)
 	self:Log("SPELL_CAST_START", "UnnervingHowl", 196543)
 	self:Log("SPELL_AURA_APPLIED", "RavenousLeap", 197556)
@@ -40,6 +42,7 @@ end
 
 function mod:Stealth(args)
 	self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
+	self:Reboot()
 end
 
 function mod:UnnervingHowl(args)
