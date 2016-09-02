@@ -94,7 +94,7 @@
 
 <Include file="Legion\HallsOfValor\modules.xml"/>
 
-<!-- <Include file="Legion\MawOfSouls\modules.xml"/> -->
+<Include file="Legion\MawOfSouls\modules.xml"/>
 
 <!-- <Include file="Legion\NeltharionsLair\modules.xml"/> -->
 
