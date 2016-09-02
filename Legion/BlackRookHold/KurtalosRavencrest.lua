@@ -97,3 +97,4 @@ function mod:StingingSwarmApplied(args)
 		self:Say(args.spellName)
 	end
 end
+

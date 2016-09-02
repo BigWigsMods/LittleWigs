@@ -102,3 +102,4 @@ function mod:SoulEchoesApplied(args)
 		self:Say(args.spellId)
 	end
 end
+

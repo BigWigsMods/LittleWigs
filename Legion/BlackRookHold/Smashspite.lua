@@ -67,3 +67,4 @@ function mod:FelVomit(args)
 	felVomitCD = felVomitCD * 0.64
 	self:CDBar(args.spellId, felVomitCD)
 end
+
