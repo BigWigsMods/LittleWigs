@@ -11,29 +11,30 @@ mod:RegisterEnableMob(96759)
 --------------------------------------------------------------------------------
 -- Locals
 --
+
 local firstTorrent = 0
-local afterCorrupted = 1
+local afterCorrupted = 0
+
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		197517, -- Taint of the sea
-		{197262, "SAY"}, -- TaintApplied
+		{197262, "SAY"}, -- Taint of the Sea
 		198495, -- Torrent
 		227233, -- Corrupted Below
 		196947, -- Submerged
-		202088, -- BrackwaterBarrage
+		202088, -- Brackwater Barrage
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Log("SPELL_AURA_APPLIED", "TaintApplied", 197262) -- aura apply id
+	self:Log("SPELL_AURA_APPLIED", "TaintOfTheSea", 197262)
 	self:Log("SPELL_CAST_START", "CorruptedBelow", 227233)
 	self:Log("SPELL_CAST_START", "Submerged", 196947)
-	self:Log("SPELL_CAST_START", "BrackwaterBarrage", 202088)
+	--self:Log("SPELL_CAST_START", "BrackwaterBarrage", 202088)
 	self:Log("SPELL_CAST_START", "Torrent", 198495)
 	self:Death("Win", 96759)
 end
@@ -47,7 +48,8 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:TaintApplied(args)
+
+function mod:TaintOfTheSea(args)
 	self:TargetMessage(args.spellId, args.destGUID, "Attention", "Alert", nil, nil, self:Dispeller())
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
@@ -55,19 +57,15 @@ function mod:TaintApplied(args)
 end
 
 function mod:Submerged(args)
-	self:StopBar(198495)
+	self:StopBar(198495) -- Torrent
 	firstTorrent = 0
 end
 
 function mod:Torrent(args)
-	if afterCorrupted == 0 then
-		self:CDBar(198495, 11)
-	else
-		self:CDBar(198495, 13.5)
-	end
+	self:CDBar(args.spellId, afterCorrupted == 0 and 11 or 13.5)
 
 	if firstTorrent == 0 then
-		self:CDBar(20585, 59) -- Wisp Icon for intermission phase
+		self:CDBar(196947, 59, 196947, 20585) -- Wisp Icon for intermission phase / spell_nature_wispsplode / icon 136116
 	end
 
 	firstTorrent = 1
@@ -75,6 +73,6 @@ function mod:Torrent(args)
 	self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
 end
 
-function mod:CorruptedBelow(args)
+function mod:CorruptedBelow()
 	afterCorrupted = 1
 end

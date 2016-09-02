@@ -14,35 +14,35 @@ mod:RegisterEnableMob(96754)
 
 function mod:GetOptions()
 	return {
-		 194216, -- Cosmic Scythe
-		 194231, -- Summon Shackled Servitor
-		 194668, -- Nether Rip
-		 194325, -- Fragment
-		 {198551, "SAY"}, -- FragmentApplied
+		194216, -- Cosmic Scythe
+		194231, -- Summon Shackled Servitor
+		194668, -- Nether Rip
+		{198551, "SAY"}, -- Fragment
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Log("SPELL_CAST_START", "ShackledServitor", 194231) --cd varies between 23-26
+	self:Log("SPELL_CAST_START", "SummonShackledServitor", 194231)
 	self:Log("SPELL_CAST_START", "NetherRip", 194668)
 	self:Log("SPELL_CAST_START", "Fragment", 194325)
-	self:Log("SPELL_AURA_APPLIED", "FragmentApplied", 198551) -- aura apply id
+	self:Log("SPELL_AURA_APPLIED", "FragmentApplied", 198551)
 	self:Death("Win", 96754)
 end
 
 function mod:OnEngage()
-	self:Bar(194216, 3.6) -- Cosmic scythe
-	self:CDBar(194231, 8) -- Shackled
-	self:CDBar(194668, 12.5) -- nether rip
-	self:CDBar(194325, 18) -- fragment
+	self:Bar(194216, 3.6) -- Cosmic Scythe
+	self:CDBar(194231, 8) -- Summon Shackled Servitor
+	self:CDBar(194668, 12.5) -- Nether Rip
+	self:CDBar(194325, 18) -- Fragment
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
 function mod:Fragment(args)
-	self:Bar(args.spellId, 34)
+	self:Bar(198551, 34) -- Fragment
 end
 
 function mod:FragmentApplied(args)
@@ -53,10 +53,10 @@ function mod:FragmentApplied(args)
 end
 
 function mod:NetherRip(args)
-	self:CDBar(194668, 13.5)
+	self:CDBar(args.spellId, 13.5)
 end
 
-function mod:ShackledServitor(args)
-	self:CDBar(194231, 25)
+function mod:SummonShackledServitor(args)
+	self:CDBar(args.spellId, 25) -- cd varies between 23-26
 	self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
 end
