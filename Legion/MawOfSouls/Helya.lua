@@ -67,7 +67,7 @@ function mod:Torrent(args)
 	end
 
 	if firstTorrent == 0 then
-		self:CDBar(INTERMISSION, 59) -- Needs a intermission phase icon
+		self:CDBar(20585, 59) -- Wisp Icon for intermission phase
 	end
 
 	firstTorrent = 1

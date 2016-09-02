@@ -42,7 +42,7 @@ end
 -- Event Handlers
 --
 function mod:Fragment(args)
-	self:Bar(args.spellId, 30)
+	self:Bar(args.spellId, 34)
 end
 
 function mod:FragmentApplied(args)
@@ -57,6 +57,6 @@ function mod:NetherRip(args)
 end
 
 function mod:ShackledServitor(args)
-	self:CDBar(194231, 24)
+	self:CDBar(194231, 25)
 	self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
 end

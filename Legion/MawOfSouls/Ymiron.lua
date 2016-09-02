@@ -37,7 +37,6 @@ function mod:OnEngage()
 	self:CDBar(193460, 22.1) -- Bane
 	self:CDBar(193566, 41.2) -- Arise
 end
-
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
