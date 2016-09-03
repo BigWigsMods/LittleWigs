@@ -64,6 +64,7 @@ end
 
 function mod:RadiantTempest(args)
 	self:Message(args.spellId, "Important", "Long")
+	--self:CDBar(args.spellId, 40) -- 40-48
 end
 
 function mod:ShatterSpears(args)

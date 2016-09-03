@@ -40,6 +40,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
+
 	--[CLEU] SPELL_CAST_START#Creature-0-2084-1477-6795-99891-00003FDF54#Storm Drake##nil#198892#Crackling Storm#nil#nil
 	self:Log("SPELL_CAST_START", "Casts", 192563, 199726) -- Cleansing Flames, Unruly Yell
 
