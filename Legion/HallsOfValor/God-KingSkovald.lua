@@ -17,6 +17,7 @@ function mod:GetOptions()
 		193668, -- Savage Blade
 		193826, -- Ragnarok
 		{193659, "SAY", "ICON"}, -- Felblaze Rush
+		193702, -- Infernal Flames
 	}
 end
 
@@ -25,6 +26,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Ragnarok", 193826)
 	self:Log("SPELL_CAST_START", "FelblazeRush", 193659)
 	self:Log("SPELL_CAST_SUCCESS", "FelblazeRushEnd", 193659)
+
+	self:Log("SPELL_AURA_APPLIED", "InfernalFlamesDamage", 193702)
+	self:Log("SPELL_PERIODIC_DAMAGE", "InfernalFlamesDamage", 193702)
+	self:Log("SPELL_PERIODIC_MISSED", "InfernalFlamesDamage", 193702)
 end
 
 function mod:OnEngage()
@@ -64,3 +69,13 @@ do
 	end
 end
 
+do
+	local prev = 0
+	function mod:InfernalFlamesDamage(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 2 then
+			prev = t
+			self:Message(193702, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		end
+	end
+end
