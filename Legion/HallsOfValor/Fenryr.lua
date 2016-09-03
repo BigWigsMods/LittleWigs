@@ -23,7 +23,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	--self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_AURA_APPLIED", "Stealth", 196567)
 	self:Log("SPELL_CAST_START", "UnnervingHowl", 196543)
@@ -36,17 +36,24 @@ function mod:OnBossEnable()
 	self:Death("Win", 99868) -- Phase 2 Fenryr
 end
 
+function mod:OnEngage()
+	--self:CDBar(196543, 4.5) -- Unnerving Howl
+	--self:CDBar(197556, 9.5) -- Ravenous Leap
+	--self:CDBar(196838, 20) -- Scent of Blood
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
 function mod:Stealth(args)
 	self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
-	self:Reboot()
+	--self:Reboot()
 end
 
 function mod:UnnervingHowl(args)
-	self:Message(args.spellId, "Urgent", "Alert") -- "pull:4.8, 36.4" p2
+	self:Message(args.spellId, "Urgent", "Alert")
+	--self:CDBar(args.spellId, 50)
 end
 
 do
@@ -56,6 +63,7 @@ do
 		list[#list+1] = args.destName
 		if #list == 1 then
 			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "Attention", "Info", nil, nil, true)
+			--self:CDBar(args.spellId, 31)
 		end
 		if self:Me(args.destGUID) then
 			self:OpenProximity(args.spellId, 10)
@@ -83,7 +91,8 @@ do
 		self:TargetMessage(196838, player, "Urgent", "Warning")
 	end
 	function mod:ScentOfBlood(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID) -- pull:23.0 p2
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		--self:CDBar(args.spellId, 41)
 	end
 	function mod:ScentOfBloodRemoved(args)
 		self:PrimaryIcon(args.spellId)
