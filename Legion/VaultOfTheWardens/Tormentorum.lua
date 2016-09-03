@@ -54,11 +54,9 @@ end
 
 function mod:Teleport(args)
 	self:Message(args.spellId, "Attention", "Info", CL.casting:format(args.spellName))
-	self:Bar(args.spellId, 69)
 end
 
 function mod:VoidShieldApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Neutral", "Info", nil, nil, true)
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
 
