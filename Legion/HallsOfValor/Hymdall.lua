@@ -20,7 +20,7 @@ local bladeCount = 1
 
 function mod:GetOptions()
 	return {
-		{193235, "ICON", "SAY"}, -- Dancing Blade
+		193235, -- Dancing Blade
 		191284, -- Horn of Valor
 		193092, -- Bloodletting Sweep
 	}
@@ -28,7 +28,6 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DancingBlade", 193235)
-	self:Log("SPELL_CAST_SUCCESS", "DancingBladeEnd", 193235)
 	self:Log("SPELL_CAST_START", "HornOfValor", 191284)
 
 	self:Log("SPELL_PERIODIC_DAMAGE", "DancingBladeDamage", 193234)
@@ -48,22 +47,10 @@ end
 -- Event Handlers
 --
 
-do
-	local function printTarget(self, player, guid)
-		if self:Me(guid) then
-			self:Say(193235)
-		end
-		self:PrimaryIcon(193235, player)
-		self:TargetMessage(193235, player, "Urgent", "Alert", nil, nil, true)
-	end
-	function mod:DancingBlade(args)
-		self:GetBossTarget(printTarget, 1, args.sourceGUID)
-		self:CDBar(args.spellId, bladeCount % 2 == 0 and 10 or 31)
-		bladeCount = bladeCount + 1
-	end
-	function mod:DancingBladeEnd(args)
-		self:PrimaryIcon(args.spellId)
-	end
+function mod:DancingBlade(args)
+	self:Message(args.spellId, "Urgent", "Alert", CL.incoming:format(args.spellName))
+	self:CDBar(args.spellId, bladeCount % 2 == 0 and 10 or 31)
+	bladeCount = bladeCount + 1
 end
 
 function mod:HornOfValor(args)
