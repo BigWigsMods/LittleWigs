@@ -83,7 +83,7 @@ end
 --[[ Grimhorn the Enslaver ]]--
 function mod:Torment(args)
 	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
-	self:TargetBar(args.spellId, args.destName, 6)
+	self:TargetBar(args.spellId, 6, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
