@@ -34,7 +34,7 @@ end
 function mod:OnEngage()
 	self:CDBar(200732, 18) -- Molten Crash
 	self:CDBar(200700, 15) -- Landslide
-	self:CDBar(200404, 61) -- Magma Wave
+	self:CDBar(200404, 60) -- Magma Wave
 	self:CDBar(200551, 21) -- Crystal Spikes
 end
 
@@ -43,28 +43,28 @@ end
 --
 
 function mod:MoltenCrash(args)
-	self:Message(args.spellId, "red", "Warning")
-	self:CDBar(args.spellId, 17)
+	self:Message(args.spellId, "Important", "Warning")
+	self:CDBar(args.spellId, 17) -- pull:19.1, 17.0, 17.0, 23.1, 19.4
 end
 
 function mod:Landslide(args)
-	self:Message(args.spellId, "orange", "Alert")
-	self:CDBar(args.spellId, 17)
+	self:Message(args.spellId, "Urgent", "Alert")
+	self:CDBar(args.spellId, 17) -- pull:15.9, 17.0, 17.0, 23.1, 19.4, 17.0
 end
 
 function mod:BurningHatred(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
 end
 
 function mod:CrystalSpikes(args)
-	self:Message(args.spellId, "green", "Alarm")
-	self:CDBar(args.spellId, 21)
+	self:Message(args.spellId, "Positive", "Alarm")
+	self:CDBar(args.spellId, 21) -- pull:21.9, 21.8, 24.3, 21.8, 21.8
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	-- Faster that combat log event for Magma Wave (200404)
-	if spellId == 201661 then -- Dargrul Ability Callout 02
-		self:Message(200404, "green", "Long")
+	if spellId == 201661 or spellId == 201663 then -- Dargrul Ability Callout 02, Dargrul Ability Callout 03
+		self:Message(200404, "Positive", "Long")
 		--self:CDBar(args.spellId, 21)
 		self:Bar(200404, 7, CL.cast:format(self:SpellName(200404)))
 	end
