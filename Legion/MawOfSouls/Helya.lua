@@ -50,7 +50,7 @@ end
 --
 
 function mod:TaintOfTheSea(args)
-	self:TargetMessage(args.spellId, args.destGUID, "Attention", "Alert", nil, nil, self:Dispeller())
+	self:TargetMessage(args.spellId, args.destGUID, "Attention", "Alert", nil, nil, self:Dispeller("magic"))
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
