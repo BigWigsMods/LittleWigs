@@ -49,7 +49,8 @@ end
 --
 
 function mod:StanceOfTheMountain(args)
-	self:Message(args.spellId, "cyan", "Long")
+	self:Message(args.spellId, "Attention", "Long")
+	self:CDBar(args.spellId, 97) -- pull:36.6, 97.7
 end
 
 do
@@ -58,11 +59,11 @@ do
 			self:Say(216290)
 		end
 		self:PrimaryIcon(216290, player)
-		self:TargetMessage(216290, player, "red", "Alarm")
+		self:TargetMessage(216290, player, "Important", "Alarm")
 	end
 	function mod:StrikeOfTheMountain(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:Bar(args.spellId, 15)
+		self:Bar(args.spellId, 15) -- pull:15.8, 15.8, 47.3, 26.7, 17.0
 	end
 	function mod:StrikeOfTheMountainOver(args)
 		self:PrimaryIcon(args.spellId)
@@ -70,6 +71,7 @@ do
 end
 
 function mod:BellowOfTheDeeps(args)
-	self:Message("bellow", "yellow", "Info", CL.incoming:format(L.totems), args.spellId)
+	self:Message("bellow", "Urgent", "Info", CL.incoming:format(L.totems), args.spellId)
+	--self:CDBar(args.spellId, 29) -- pull:20.6, 44.9, 31.5, 31.5
 end
 
