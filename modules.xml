@@ -82,7 +82,7 @@
 <Include file="WoD\UpperBlackrockSpire\locales.xml"/>
 
 <!-- Legion -->
-<!-- <Include file="Legion\AssaultOnVioletHold\modules.xml"/> -->
+<Include file="Legion\AssaultOnVioletHold\modules.xml"/>
 
 <Include file="Legion\BlackRookHold\modules.xml"/>
 
