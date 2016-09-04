@@ -28,7 +28,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SpikedTongueApplied", 199178)
 	self:Log("SPELL_AURA_REMOVED", "SpikedTongueRemoved", 199178)
 	self:Log("SPELL_CAST_START", "RancidMaw", 205549)
-	self:Log("SPELL_CAST_SUCCESS", "RancidMawEnd", 205549)
 	self:Log("SPELL_CAST_SUCCESS", "ToxicRetch", 210150)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
