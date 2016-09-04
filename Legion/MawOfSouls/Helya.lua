@@ -76,6 +76,6 @@ function mod:CorruptedBelow()
 end
 
 function mod:BrackwaterBarrage(args)
-	self:TargetMessage(args.spellId, "Urgent", "Info")
+	self:Message(args.spellId, "Urgent", "Info")
 end
 
