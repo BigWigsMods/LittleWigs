@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Helya", 1042, 1663)
 if not mod then return end
 mod:RegisterEnableMob(96759)
---mod.engageId = 1824
+mod.engageId = 1824
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -30,13 +30,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_AURA_APPLIED", "TaintOfTheSea", 197262)
-	self:Log("SPELL_CAST_START", "CorruptedBelow", 227233)
 	self:Log("SPELL_CAST_START", "Submerged", 196947)
-	--self:Log("SPELL_CAST_START", "BrackwaterBarrage", 202088)
 	self:Log("SPELL_CAST_START", "Torrent", 198495)
-	self:Death("Win", 96759)
+	self:Log("SPELL_CAST_START", "CorruptedBelow", 227233)
+	self:Log("SPELL_CAST_START", "BrackwaterBarrage", 202088)
 end
 
 function mod:OnEngage()
@@ -50,7 +48,7 @@ end
 --
 
 function mod:TaintOfTheSea(args)
-	self:TargetMessage(args.spellId, args.destGUID, "Attention", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert", nil, nil, self:Dispeller("magic"))
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
@@ -76,3 +74,8 @@ end
 function mod:CorruptedBelow()
 	afterCorrupted = 1
 end
+
+function mod:BrackwaterBarrage(args)
+	self:TargetMessage(args.spellId, "Urgent", "Info")
+end
+
