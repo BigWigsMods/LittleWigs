@@ -1,5 +1,10 @@
 
 --------------------------------------------------------------------------------
+-- TODO List:
+-- - Seeds are interrupted for Smash / Execution Combo, timer started in Smash
+--   might be wrong
+
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -51,6 +56,7 @@ function mod:MightySmash(args)
 	self:Message(args.spellId, "Urgent", "Long", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 	--CDBar is being covered by Execution
+	self:CDBar(210879, 21) -- Seed of Destruction, very vague timer
 end
 
 function mod:Execution(args)
