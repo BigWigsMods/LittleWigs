@@ -86,7 +86,7 @@ end
 function mod:CreepingDoom(args)
 	self:Message(197422, "Important", "Info", CL.incoming:format(args.spellName))
 	self:Flash(197422)
-	self:Bar(args.spellId, 35, CL.cast:format(args.spellName))
+	self:Bar(197422, 35, CL.cast:format(args.spellName))
 	if args.spellId == 197422 then
 		self:StopBar(L.kick_combo)
 	end
