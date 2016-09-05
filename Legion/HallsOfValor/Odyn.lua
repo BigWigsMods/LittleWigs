@@ -45,7 +45,6 @@ end
 
 function mod:OnEngage()
 	self:Bar(197961, 44) -- Runic Brand
-	self:Bar(198263, 24) -- Radiant Tempest
 	self:Bar(198077, 40) -- Shatter Spears
 end
 
@@ -65,6 +64,7 @@ end
 
 function mod:RadiantTempest(args)
 	self:Message(args.spellId, "Important", "Long")
+	--self:CDBar(args.spellId, 40) -- 40-48
 end
 
 function mod:ShatterSpears(args)

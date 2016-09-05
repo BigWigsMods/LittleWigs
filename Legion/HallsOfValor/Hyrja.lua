@@ -15,7 +15,7 @@ mod:RegisterEnableMob(95833)
 function mod:GetOptions()
 	return {
 		200901, -- Eye of the Storm
-		192158, -- Sanctify
+		192307, -- Sanctify
 		{192048, "ICON", "FLASH", "PROXIMITY"}, -- Expel Light
 		192018, -- Shield of Light
 	}
@@ -24,7 +24,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Log("SPELL_CAST_START", "EyeOfTheStormOrSanctify", 200901, 192158) -- Eye of the Storm, Sanctify
+	self:Log("SPELL_CAST_START", "EyeOfTheStormOrSanctify", 200901, 192307) -- Eye of the Storm, Sanctify
 	self:Log("SPELL_CAST_START", "ShieldOfLight", 192018)
 
 	self:Log("SPELL_AURA_APPLIED", "ExpelLight", 192048)
@@ -47,7 +47,7 @@ end
 
 function mod:ShieldOfLight(args)
 	self:Message(args.spellId, "Important", "Alert")
-	self:Bar(args.spellId, 30)
+	--self:Bar(args.spellId, 30) -- pull:10.3, 21.8, 30.4 / pull:26.7, 30.4, 30.3
 end
 
 function mod:ExpelLight(args)

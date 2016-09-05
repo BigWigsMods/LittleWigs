@@ -82,7 +82,7 @@
 <Include file="WoD\UpperBlackrockSpire\locales.xml"/>
 
 <!-- Legion -->
-<!-- <Include file="Legion\AssaultOnVioletHold\modules.xml"/> -->
+<Include file="Legion\AssaultOnVioletHold\modules.xml"/>
 
 <Include file="Legion\BlackRookHold\modules.xml"/>
 
@@ -94,11 +94,11 @@
 
 <Include file="Legion\HallsOfValor\modules.xml"/>
 
-<!-- <Include file="Legion\MawOfSouls\modules.xml"/> -->
+<Include file="Legion\MawOfSouls\modules.xml"/>
 
-<!-- <Include file="Legion\NeltharionsLair\modules.xml"/> -->
+<Include file="Legion\NeltharionsLair\modules.xml"/>
 
 <!-- <Include file="Legion\TheArcway\modules.xml"/> -->
 
-<!-- <Include file="Legion\VaultOfTheWardens\modules.xml"/> -->
+<Include file="Legion\VaultOfTheWardens\modules.xml"/>
 </Ui>

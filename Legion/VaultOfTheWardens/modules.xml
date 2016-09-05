@@ -6,6 +6,6 @@
 <Script file="Ashgolm.lua"/>
 <Script file="Glazer.lua"/>
 <Script file="CordanaFelsong.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
-
