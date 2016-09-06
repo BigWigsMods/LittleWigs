@@ -56,6 +56,7 @@ function mod:GetOptions()
 	}, {
 		[193069] = L.infester,
 		[191527] = L.illianna,
+		[191735] = L.myrmidon,
 		[196249] = L.mendacius,
 		[196799] = L.fury,
 		[202615] = L.grimhorn,
