@@ -35,7 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FelSlash", 203641)
 	self:Log("SPELL_CAST_START", "MightySmash", 202328)
 	self:Log("SPELL_AURA_APPLIED", "Execution", 205233)
-	self:Log("SPELL_AURA_REMOVED", "Impact", 205265) -- Execution root
+	self:Log("SPELL_AURA_REMOVED", "ImpactRemoved", 205265) -- Execution root
 	self:Log("SPELL_AURA_APPLIED", "SeedOfDestruction", 210879)
 end
 
@@ -68,9 +68,9 @@ function mod:Execution(args)
 	end
 end
 
-function mod:Impact(args) -- Execution root got removed
+function mod:ImpactRemoved(args) -- Execution root got removed
 	self:StopBar(205233, args.destName) -- Stop Execution bar
-	self:TargetMessage(205233, args.destName, "Positive", "Info", CL.removed(self:SpellName(75215)), 205233, true) -- Root removed with Execution icon
+	self:TargetMessage(205233, args.destName, "Positive", "Info", CL.removed:format(self:SpellName(75215)), 205233, true) -- Root removed with Execution icon
 	if self:Me(args.destGUID) then
 		self:Flash(205233)
 	end
