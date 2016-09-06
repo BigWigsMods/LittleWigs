@@ -37,6 +37,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		197333, -- Fel Glaive
 		{206567, "FLASH"}, -- Stolen Light
 		{197422, "FLASH"}, -- Creeping Doom
 		197796, -- Avatar of Vengeance
@@ -46,6 +47,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_SUCCESS", "FelGlaive", 197333)
 	self:Log("SPELL_AURA_APPLIED", "StolenLight", 206567)
 	self:Log("SPELL_AURA_APPLIED", "StolenLightRemoved", 206567)
 	self:Log("SPELL_CAST_START", "CreepingDoom", 197422, 213685)
@@ -68,6 +70,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, castGUID, spellId)
 		self:Message(spellId, "Urgent", "Long")
 		self:Bar(spellId, 45)
 	end
+end
+
+function mod:FelGlaive(args)
+	self:Message(args.spellId, "Important", "Long")
 end
 
 function mod:StolenLight(args)
