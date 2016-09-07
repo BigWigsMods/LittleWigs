@@ -77,7 +77,7 @@ end
 
 function mod:SapSoul(args)
 	self:Message(200904, "Attention", "Info", CL.casting:format(args.spellName))
-	self:CDBar(200904, 15.8, self:SpellName(args.spellName))
+	self:CDBar(200904, 15.8, args.spellName)
 end
 
 do
