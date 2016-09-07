@@ -6,12 +6,13 @@
 local mod, CL = BigWigs:NewBoss("Serpentrix", 1046, 1479)
 if not mod then return end
 mod:RegisterEnableMob(91808)
---mod.engageId = 1813
+mod.engageId = 1813
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
+local submergeHp = 66
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -19,22 +20,43 @@ mod:RegisterEnableMob(91808)
 
 function mod:GetOptions()
 	return {
-		153764, -- Claws of Argus
-		{153392, "FLASH", "ICON", "PROXIMITY"}, -- Curtain of Flame
+		191873, -- Submerge
+		191855, -- Toxic Wound
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
-	self:Death("Win", 91808)
+	self:Log("SPELL_AURA_APPLIED", "ToxicWound", 191855)
+	self:Log("SPELL_AURA_REMOVED", "ToxicWoundOver", 191855)
 end
 
 function mod:OnEngage()
-
+	submergeHp = 66
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
+	if msg:find("191873", nil, true) then
+		self:Message(191873, "Attention", "Long", submergeHp .."% - ".. self:SpellName(191873))
+		submergeHp = submergeHp - 33
+	end
+end
+
+function mod:ToxicWound(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	--self:CDBar(args.spellId, 25) -- pull:27.8, 25.5, 29.2 -- pull:5.9, 25.1, 41.0
+	self:PrimaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
+end
+
+function mod:ToxicWoundOver(args)
+	self:PrimaryIcon(args.spellId)
+end
 

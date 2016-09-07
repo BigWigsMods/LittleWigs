@@ -6,12 +6,13 @@
 local mod, CL = BigWigs:NewBoss("Warlord Parjesh", 1046, 1480)
 if not mod then return end
 mod:RegisterEnableMob(91784)
---mod.engageId = 1810
+mod.engageId = 1810
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
+local addCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -19,22 +20,56 @@ mod:RegisterEnableMob(91784)
 
 function mod:GetOptions()
 	return {
-		153764, -- Claws of Argus
-		{153392, "FLASH", "ICON", "PROXIMITY"}, -- Curtain of Flame
+		{192094, "ICON", "SAY", "FLASH"}, -- Impaling Spear
+		192073, -- Call Reinforcements
+		197064, -- Enrage
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 91784)
+	self:Log("SPELL_AURA_APPLIED", "ImpalingSpear", 192094)
+	self:Log("SPELL_AURA_REMOVED", "ImpalingSpearOver", 192094)
+	self:Log("SPELL_CAST_SUCCESS", "CallReinforcements", 192072, 192073)
+	self:Log("SPELL_AURA_APPLIED", "Enrage", 197064)
 end
 
 function mod:OnEngage()
-
+	addCount = 1
+	self:CDBar(192094, 35) -- Impaling Spear
+	self:CDBar(192073, 5) -- Call Reinforcements
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:ImpalingSpear(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	self:CDBar(args.spellId, 31) -- pull:35.0, 31.6
+	self:PrimaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+		self:Flash(args.spellId)
+	end
+end
+
+function mod:ImpalingSpearOver(args)
+	self:PrimaryIcon(args.spellId)
+end
+
+do
+	local timers = {21, 26}
+	function mod:CallReinforcements(args)
+		--["192073-Call Reinforcements"] = "pull:26.0",
+		--["192072-Call Reinforcements"] = "pull:5.4, 52.3",
+		--XXX separate?
+		self:Message(192073, "Attention", "Info", args.spellName, args.spellId)
+		self:CDBar(192073, timers[addCount] or 21, args.spellName, args.spellId)
+		addCount = addCount + 1
+	end
+end
+
+function mod:Enrage(args)
+	self:Message(args.spellId, "Urgent", "Alert", "30% - ".. args.spellName)
+end
 

@@ -90,7 +90,7 @@
 
 <Include file="Legion\DarkheartThicket\modules.xml"/>
 
-<!-- <Include file="Legion\EyeOfAzshara\modules.xml"/> -->
+<Include file="Legion\EyeOfAzshara\modules.xml"/>
 
 <Include file="Legion\HallsOfValor\modules.xml"/>
 
