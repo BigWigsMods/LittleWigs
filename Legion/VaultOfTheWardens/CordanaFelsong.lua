@@ -26,7 +26,7 @@ local warnedForCreepingDoom = nil
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.kick_combo = "Kick Combo"
-	L.kick_combo_desc = GetSpellDescription(197251).."\n"..GetSpellDescription(197250)
+	L.kick_combo_desc = "{197251}\n{197250}" -- Knockdown Kick & Turn Kick
 	L.kick_combo_icon = 197251
 end
 L = mod:GetLocale()
