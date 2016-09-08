@@ -127,7 +127,7 @@ end
 
 --[[ Grimhorn the Enslaver ]]--
 function mod:Torment(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
