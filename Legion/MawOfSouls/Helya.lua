@@ -1,5 +1,9 @@
 
 --------------------------------------------------------------------------------
+-- TODO List:
+-- - We shouldn't start timers which would end in Submerged Phase
+
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -31,16 +35,17 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TaintOfTheSea", 197262)
-	self:Log("SPELL_CAST_START", "Submerged", 196947)
+	self:Log("SPELL_AURA_APPLIED", "Submerged", 196947)
+	self:Log("SPELL_AURA_REMOVED", "SubmergedRemoved", 196947)
 	self:Log("SPELL_CAST_START", "Torrent", 198495)
-	self:Log("SPELL_CAST_START", "CorruptedBelow", 227233)
+	self:Log("SPELL_CAST_START", "CorruptedBellow", 227233)
 	self:Log("SPELL_CAST_START", "BrackwaterBarrage", 202088)
 end
 
 function mod:OnEngage()
 	afterCorrupted = 0
 	firstTorrent = 0
- 	self:CDBar(202088, 40.5) -- Brackwater Barrage
+	self:CDBar(202088, 40.5) -- Brackwater Barrage
 end
 
 --------------------------------------------------------------------------------
@@ -55,8 +60,15 @@ function mod:TaintOfTheSea(args)
 end
 
 function mod:Submerged(args)
+	self:Message(args.spellId, "Neutral", "Info")
+	self:Bar(args.spellId, 15)
 	self:StopBar(198495) -- Torrent
+	self:StopBar(227233) -- Corrupted Bellow
 	firstTorrent = 0
+end
+
+function mod:SubmergedRemoved(args)
+	self:Message(args.spellId, "Neutral", "Info", CL.removed:format(args.spellName))
 end
 
 function mod:Torrent(args)
@@ -71,11 +83,12 @@ function mod:Torrent(args)
 	self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
 end
 
-function mod:CorruptedBelow()
+function mod:CorruptedBellow(args)
+	self:Message(args.spellId, "Urgent", "Alarm")
+	self:Bar(args.spellId, 22)
 	afterCorrupted = 1
 end
 
 function mod:BrackwaterBarrage(args)
 	self:Message(args.spellId, "Urgent", "Info")
 end
-
