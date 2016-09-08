@@ -69,6 +69,7 @@ end
 
 function mod:SubmergedRemoved(args)
 	self:Message(args.spellId, "Neutral", "Info", CL.removed:format(args.spellName))
+	self:CDBar(198495, 10) -- Torrent
 end
 
 function mod:Torrent(args)
@@ -80,7 +81,7 @@ function mod:Torrent(args)
 
 	firstTorrent = 1
 	afterCorrupted = 0
-	self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:CorruptedBellow(args)
