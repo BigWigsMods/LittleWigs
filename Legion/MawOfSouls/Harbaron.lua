@@ -27,6 +27,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NetherRip", 194668)
 	self:Log("SPELL_CAST_START", "Fragment", 194325)
 	self:Log("SPELL_AURA_APPLIED", "FragmentApplied", 198551)
+	self:Log("SPELL_AURA_APPLIED", "NetherRipDamage", 194235)
+	self:Log("SPELL_PERIODIC_DAMAGE", "NetherRipDamage", 194235)
+	self:Log("SPELL_PERIODIC_MISSED", "NetherRipDamage", 194235)
 	self:Death("Win", 96754)
 end
 
@@ -59,4 +62,15 @@ end
 function mod:SummonShackledServitor(args)
 	self:CDBar(args.spellId, 25) -- cd varies between 23-26
 	self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
+end
+
+do
+	local prev = 0
+	function mod:NetherRipDamage(args)
+		local t = GetTime()
+		if t-prev > 2 and self:Me(args.destGUID) then
+			prev = t
+			self:Message(194668, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		end
+	end
 end
