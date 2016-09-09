@@ -57,16 +57,13 @@ function mod:ImpalingSpearOver(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-do
-	local timers = {21, 26}
-	function mod:CallReinforcements(args)
-		--["192073-Call Reinforcements"] = "pull:26.0",
-		--["192072-Call Reinforcements"] = "pull:5.4, 52.3",
-		--XXX separate?
-		self:Message(192073, "Attention", "Info", args.spellName, args.spellId)
-		self:CDBar(192073, timers[addCount] or 21, args.spellName, args.spellId)
-		addCount = addCount + 1
-	end
+function mod:CallReinforcements(args)
+	--["192073-Call Reinforcements"] = "pull:26.0, 52.3",
+	--["192072-Call Reinforcements"] = "pull:5.4, 52.3",
+	--XXX separate?
+	self:Message(192073, "Attention", "Info", args.spellName, args.spellId)
+	self:CDBar(192073, addCount % 2 == 0 and 31 or 20, args.spellName, args.spellId)
+	addCount = addCount + 1
 end
 
 function mod:Enrage(args)
