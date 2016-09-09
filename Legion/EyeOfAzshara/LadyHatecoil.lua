@@ -43,7 +43,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(193597, 10) -- Static Nova
-	self:CDBar(193597, 25) -- Focused Lightning
+	self:CDBar(193611, 25) -- Focused Lightning
 	self:CDBar("blob", 21, -12139, L.blob_icon) -- Saltsea Globule
 end
 
@@ -77,7 +77,7 @@ function mod:CurseOfTheWitchRemoved(args)
 end
 
 function mod:BeckonStorm(args)
-	self:Message("blob", "Positive", "Info", CL.spawning:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
+	self:Message("blob", "Positive", "Info", CL.spawned:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
 	self:CDBar("blob", 47, -12139, L.blob_icon) -- Saltsea Globule -- pull:21.3, 47.4
 end
 
