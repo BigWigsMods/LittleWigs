@@ -21,7 +21,7 @@ local submergeHp = 66
 function mod:GetOptions()
 	return {
 		191873, -- Submerge
-		191855, -- Toxic Wound
+		{191855, "SAY", "ICON"}, -- Toxic Wound
 	}
 end
 
