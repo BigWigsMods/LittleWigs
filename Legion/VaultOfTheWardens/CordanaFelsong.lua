@@ -68,8 +68,8 @@ end
 -- Event Handlers
 --
 do
-	local prev = 0
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, _, spellId)
+	local prev, prevGUID = 0, nil
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, castGUID, spellId)
 		if unit == "boss1" then
 			if spellId == 197796 then -- Avatar of Vengeance
 				self:Message(spellId, "Urgent", "Long")
@@ -81,7 +81,7 @@ do
 					self:Message(213583, "Attention", "Alarm")
 				end
 			end
-		elseif spellId == 228210 then -- Elune's Light picked up
+		elseif spellId == 228210 and castGUID ~= prevGUID then -- Elune's Light picked up
 			self:Message(204481, "Positive", "Long", L.light_picked:format(self:ColorName(UnitName(unit))))
 		end
 	end
