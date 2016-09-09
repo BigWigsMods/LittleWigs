@@ -54,8 +54,8 @@ function mod:SquirrelBomb(args)
 end
 
 function mod:RocketChicken(args)
-	self:Message(args.spellId, "Important", "Alarm")
-	self:CDBar(args.spellId, args.spellId == 201438 and 9.7 or 18)
+	self:Message(201392, "Important", "Alarm")
+	self:CDBar(201392, args.spellId == 201438 and 9.7 or 18)
 end
 
 function mod:MillificentsRage(args)
