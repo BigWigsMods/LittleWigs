@@ -61,7 +61,7 @@ end
 function mod:GaseousBubblesRemoved(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
-		self:StopBar(args.spellName)
+		self:StopBar(args.spellName, args.destName)
 	end
 end
 
