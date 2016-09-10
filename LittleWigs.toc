@@ -2,8 +2,8 @@
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
-## Notes-zhTW: 5人副本首領戰訊息提示插件。
-## Notes-zhCN: 5人副本首领战讯息提示插件。
+## Notes-zhTW: 5人地城和情境地圖首領警報。
+## Notes-zhCN: 5人地下城和场景战役首领警报。
 ## Notes-deDE: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-frFR: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-itIT: Avvisi per i boss delle spedizioni & scenari

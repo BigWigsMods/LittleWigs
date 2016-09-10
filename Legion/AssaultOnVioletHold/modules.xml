@@ -9,6 +9,6 @@
 <Script file="Anubesset.lua"/>
 <Script file="Saelorn.lua"/>
 <Script file="Betrug.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
-

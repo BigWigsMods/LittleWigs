@@ -4,6 +4,6 @@
 <Script file="Ymiron.lua"/>
 <Script file="Harbaron.lua"/>
 <Script file="Helya.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
-

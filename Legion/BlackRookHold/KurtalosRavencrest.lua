@@ -94,7 +94,7 @@ end
 
 function mod:StingingSwarmApplied(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellName)
+		self:Say(args.spellId)
 	end
 end
 
