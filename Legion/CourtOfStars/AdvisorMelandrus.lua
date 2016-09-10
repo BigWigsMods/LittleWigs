@@ -1,6 +1,3 @@
---TO DO
---Fix timers
---Confirm Enveloping Winds spellId
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -43,7 +40,10 @@ end
 
 function mod:OnEngage()
 	local bladeSurgeCount = 0
-	--self:CDBar(??, ??)
+	self:CDBar(209628, 7) -- Piercing Gale
+	self:CDBar(224333, 10) -- Enveloping Winds
+	self:CDBar(209602, 15) -- Blade Surge
+	self:CDBar(209676, 10) -- Slicing Maelstrom
 end
 
 --------------------------------------------------------------------------------
@@ -53,20 +53,20 @@ end
 function mod:BladeSurge(args)
 	bladeSurgeCount = bladeSurgeCount + 1
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, bladeSurgeCount))
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 19)
 end
 
 function mod:EnvelopingWinds(args)
 	self:Message(args.spellId, "Important", "Info")
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 11)
 end
 
 function mod:PiercingGale(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 18)
 end
 
 function mod:SlicingMaelstrom(args)
 	self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 18)
 end

@@ -1,5 +1,4 @@
 --TO DO
---Fix timers
 --maybe some sort of dispel warning when people reach x stacks of Withering Soul?
 
 --------------------------------------------------------------------------------
@@ -41,7 +40,9 @@ end
 
 function mod:OnEngage()
 	burningIntensityCount = 0
-	--self:CDBar(??, ??)
+	self:CDBar(207906, 6) -- Burning Intensity
+	self:CDBar(208165, 13) -- Withering Soul
+	self:CDBar(207881, 19) -- Infernal Eruption
 end
 
 --------------------------------------------------------------------------------
@@ -50,16 +51,16 @@ end
 
 function mod:InfernalEruption(args)
 	self:Message(args.spellId, "Urgent", "Long")
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 18)
 end
 
 function mod:BurningIntensity(args)
 	burningIntensityCount = burningIntensityCount + 1
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, burningIntensityCount))
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 22)
 end
 
 function mod:WitheringSoul(args)
 	self:Message(args.spellId, "Attention", "Alert")
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 14)
 end
