@@ -67,7 +67,7 @@ end
 
 function mod:EssenceRemoved(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(202779, args.destName, "Personal", "Alert", CL.removed:format(CL.essence))
+		self:TargetMessage(202779, args.destName, "Personal", "Alert", CL.removed:format(L.essence))
 		self:Flash(202779)
 	end
 end
