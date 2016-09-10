@@ -28,14 +28,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "BladeSurge", 209602)
 	self:Log("SPELL_CAST_SUCCESS", "EnvelopingWinds", 224333)
 	self:Log("SPELL_CAST_START", "PiercingGale", 209628)
 	self:Log("SPELL_CAST_START", "SlicingMaelstrom", 209676)
-
-	self:Death("Win", 104218)
 end
 
 function mod:OnEngage()

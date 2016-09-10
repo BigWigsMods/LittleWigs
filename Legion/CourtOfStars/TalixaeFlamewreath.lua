@@ -29,13 +29,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "InfernalEruption", 207881)
 	self:Log("SPELL_CAST_START", "BurningIntensity", 207906)
-	self:Log("SPELL_CAST_START", "WitheringSoul", 208165)
-
-	self:Death("Win", 104217)
+	self:Log("SPELL_CAST_START", "WitheringSoul", 208165)	
 end
 
 function mod:OnEngage()

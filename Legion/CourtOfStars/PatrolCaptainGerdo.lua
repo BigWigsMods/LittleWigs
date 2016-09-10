@@ -25,15 +25,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "ResonantSlash", 207261)
 	self:Log("SPELL_CAST_SUCCESS", "Streetsweeper", 219488)
 	self:Log("SPELL_CAST_START", "ArcaneLockdown", 207278)
 	self:Log("SPELL_CAST_START", "SignalBeacon", 207806)
 	self:Log("SPELL_CAST_START", "FlaskoftheSolemnNight", 207815)
-
-	self:Death("Win", 104215)
 end
 
 function mod:OnEngage()
