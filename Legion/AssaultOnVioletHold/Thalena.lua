@@ -40,8 +40,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Essence", 202779)
-	self:Log("SPELL_AURA_REMOVED", "EssenceRemoved", 202779)
+	self:Log("SPELL_AURA_APPLIED", "Essence", 202779, 202810) -- initial debuff, debuff after successful bite
+	self:Log("SPELL_AURA_REMOVED", "EssenceRemoved", 202779, 202810)
 	self:Log("SPELL_CAST_START", "BloodCall", 203381)
 	self:Log("SPELL_AURA_APPLIED", "BloodSwarmDamage", 202947)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BloodSwarmDamage", 202947)
@@ -58,17 +58,17 @@ end
 --
 
 function mod:Essence(args)
-	self:TargetMessage(args.spellId, args.destName, "Positive", "Info")
-	self:TargetBar(args.spellId, 30, args.destName, L.essence) -- Are 4 bars (at max) too much?
+	self:TargetMessage(202779, args.destName, "Positive", "Info")
+	self:TargetBar(202779, 30, args.destName, L.essence) -- Are 4 bars (at max) too much?
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(202779, L.essence)
 	end
 end
 
 function mod:EssenceRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Important", "Alert", CL.removed:format(args.spellName))
-		self:Flash(args.spellId)
+		self:TargetMessage(202779, args.destName, "Personal", "Alert", CL.removed:format(CL.essence))
+		self:Flash(202779)
 	end
 end
 
