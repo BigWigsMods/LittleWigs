@@ -8,7 +8,7 @@
 local mod, CL = BigWigs:NewBoss("Talixae Flamewreath", 1087, 1719)
 if not mod then return end
 mod:RegisterEnableMob(104217)
---mod.engageId = 1869
+mod.engageId = 1869
 
 --------------------------------------------------------------------------------
 -- Locals
