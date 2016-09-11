@@ -30,6 +30,9 @@ function mod:GetOptions()
 		193611, -- Focused Lightning
 		193698, -- Curse of the Witch
 		"blob",
+		196610, -- Monsoon
+	}, {
+		[196610] = "heroic"
 	}
 end
 
@@ -39,6 +42,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CurseOfTheWitch", 193698)
 	self:Log("SPELL_AURA_REMOVED", "CurseOfTheWitchRemoved", 193698)
 	self:Log("SPELL_CAST_SUCCESS", "BeckonStorm", 193682)
+
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 function mod:OnEngage()
@@ -71,13 +76,18 @@ end
 
 function mod:CurseOfTheWitchRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+		self:Message(args.spellId, "Personal", nil, CL.removed:format(args.spellName))
 		self:StopBar(args.spellName)
 	end
 end
 
 function mod:BeckonStorm(args)
-	self:Message("blob", "Positive", "Info", CL.spawned:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
+	self:Message("blob", "Important", "Info", CL.spawned:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
 	self:CDBar("blob", 47, -12139, L.blob_icon) -- Saltsea Globule -- pull:21.3, 47.4
 end
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 196634 then -- Monsoon
+		self:Message(196610, "Positive")
+	end
+end
