@@ -15,7 +15,7 @@ mod.engageId = 1812
 function mod:GetOptions()
 	return {
 		193051, -- Call the Seas
-		193018, -- Gaseous Bubbles
+		{193018, "FLASH"}, -- Gaseous Bubbles
 		193093, -- Ground Slam
 		{193152, "PROXIMITY"}, -- Quake
 	}
@@ -31,10 +31,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(193051, 20) -- Call the Seas
+	self:Bar(193051, 20) -- Call the Seas
 	self:CDBar(193018, 12) -- Gaseous Bubbles
 	self:CDBar(193093, 6) -- Ground Slam
-	self:CDBar(193152, 15) -- Quake
+	self:Bar(193152, 15) -- Quake
 	self:OpenProximity(193152, 5) -- Quake
 end
 
@@ -44,34 +44,35 @@ end
 
 function mod:CallTheSeas(args)
 	self:Message(args.spellId, "Attention", "Long")
-	self:CDBar(args.spellId, 30) -- pull:20.5, 30.4, 30.3
+	self:Bar(args.spellId, 30) -- pull:20.5, 30.4, 30.3
 end
 
 function mod:GaseousBubbles(args)
-	self:CDBar(args.spellId, 32) -- pull:12.8, 32.8, 32.8
+	self:CDBar(args.spellId, 32) -- pull:12.8, 35.3, 32.8
 end
 
 function mod:GaseousBubblesApplied(args)
 	if self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, args.destName, "Personal", "Warning")
 		self:TargetBar(args.spellId, 20, args.destName)
+		self:Flash(args.spellId)
 	end
 end
 
 function mod:GaseousBubblesRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+		self:Message(args.spellId, "Personal", "Warning", CL.removed:format(args.spellName))
 		self:StopBar(args.spellName, args.destName)
 	end
 end
 
 function mod:GroundSlam(args)
 	self:Message(args.spellId, "Urgent", "Info", CL.incoming:format(args.spellName))
-	self:CDBar(args.spellId, 19) -- pull:5.9, 19.4, 20.6, 19.4
+	self:CDBar(args.spellId, 18) -- pull:5.9, 18.2, 20.6, 19.4
 end
 
 function mod:Quake(args)
 	self:Message(args.spellId, "Important", "Alert")
-	self:CDBar(args.spellId, 21) -- pull:15.6, 21.9, 21.8, 21.8
+	self:Bar(args.spellId, 21) -- pull:15.6, 21.9, 21.8, 21.8
 end
 
