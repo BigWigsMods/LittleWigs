@@ -1,9 +1,5 @@
 
 --------------------------------------------------------------------------------
--- TODO List:
--- - Find spellId/events for standing in damage
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -24,7 +20,7 @@ mod.engageId = 1852
 function mod:GetOptions()
 	return {
 		202217, -- Mandible Strikes
-		{202341, "SAY", "FLASH"}, -- Impale
+		{202341, "SAY", "FLASH", "ICON"}, -- Impale
 		201863, -- Call of the Swarm
 		202480, -- Fixated
 		202485, -- Blistering Ooze
@@ -35,11 +31,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MandibleStrikesCast", 202217)
 	self:Log("SPELL_AURA_APPLIED", "MandibleStrikesApplied", 202217)
 	self:Log("SPELL_CAST_START", "Impale", 202341)
+	self:Log("SPELL_CAST_SUCCESS", "ImpaleEnd", 202341)
 	self:Log("SPELL_CAST_START", "CallOfTheSwarm", 201863)
 	self:Log("SPELL_AURA_APPLIED", "Fixated", 202480)
-	--self:Log("SPELL_AURA_APPLIED", "BlisteringOozeDamage", 202485)
-	--self:Log("SPELL_PERIODIC_DAMAGE", "BlisteringOozeDamage", 202485)
-	--self:Log("SPELL_PERIODIC_MISSED", "BlisteringOozeDamage", 202485)
+	self:Log("SPELL_AURA_APPLIED", "BlisteringOozeDamage", 202485)
+	self:Log("SPELL_AURA_REFRESH", "BlisteringOozeDamage", 202485)
 end
 
 function mod:OnEngage()
@@ -66,12 +62,16 @@ do
 			self:Say(202341)
 			self:Flash(202341)
 		end
-		self:TargetMessage(202341, player, "Important", "Long", CL.casting:format(args.spellName))
+		self:TargetMessage(202341, player, "Important", "Long")
+		self:PrimaryIcon(202341, player)
 	end
 
 	function mod:Impale(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 22)
+	end
+	function mod:ImpaleEnd(args)
+		self:PrimaryIcon(args.spellId)
 	end
 end
 
@@ -85,7 +85,6 @@ function mod:Fixated(args)
 	end
 end
 
---[[
 do
 	local prev = 0
 	function mod:BlisteringOozeDamage(args)
@@ -95,4 +94,4 @@ do
 			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
 		end
 	end
-end]]
+end
