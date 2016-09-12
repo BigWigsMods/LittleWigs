@@ -98,7 +98,7 @@
 
 <Include file="Legion\NeltharionsLair\modules.xml"/>
 
-<!-- <Include file="Legion\TheArcway\modules.xml"/> -->
+<Include file="Legion\TheArcway\modules.xml"/>
 
 <Include file="Legion\VaultOfTheWardens\modules.xml"/>
 </Ui>
