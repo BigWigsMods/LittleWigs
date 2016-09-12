@@ -57,9 +57,16 @@ function mod:EnvelopingWinds(args)
 	self:CDBar(args.spellId, 11)
 end
 
-function mod:PiercingGale(args)
-	self:Message(args.spellId, "Urgent", "Alarm")
-	self:CDBar(args.spellId, 18)
+do
+	local prev = 0
+	function mod:PiercingGale(args)
+		local t = GetTime()
+		if t-prev > 2 then
+			prev = t
+			self:Message(args.spellId, "Urgent", "Alarm")
+			self:CDBar(args.spellId, 18)
+		end
+	end
 end
 
 function mod:SlicingMaelstrom(args)
