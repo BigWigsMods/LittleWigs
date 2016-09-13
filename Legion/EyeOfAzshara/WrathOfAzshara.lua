@@ -56,7 +56,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, unit) -- Arcane Bomb
 	if msg:find("192708", nil, true) then -- Fires with _START, target scanning doesn't work.
 		self:TargetMessage(192706, unit, "Important", "Alarm")
-		self:CDBar(192706, 30) -- XXX pull:23.1, 30.4, 23.1 / hc pull:26.7, 31.6
+		self:CDBar(192706, p2 and 23 or 30) -- pull:23.1, 30.4, 23.1 / hc pull:26.7, 31.2, 23.1
 	end
 end
 
@@ -75,7 +75,7 @@ do
 		if self:Me(guid) then
 			self:Say(197365)
 		end
-		self:PrimaryIcon(197365, player)
+		self:SecondaryIcon(197365, player)
 		self:TargetMessage(197365, player, "Important", "Alarm", nil, nil, true)
 	end
 	function mod:CrushingDepths(args) -- Heroic+
@@ -83,7 +83,7 @@ do
 		self:CDBar(args.spellId, 41) -- pull:20.8, 41.3
 	end
 	function mod:CrushingDepthsEnd(args)
-		self:PrimaryIcon(args.spellId)
+		self:SecondaryIcon(args.spellId)
 	end
 end
 

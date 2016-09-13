@@ -48,7 +48,7 @@ end
 
 function mod:DownDraft(args)
 	self:Message(args.spellId, "Important", "Warning")
-	self:Bar(args.spellId, 30) -- hc pull:21.7, 30.3, 30.4
+	self:CDBar(args.spellId, 30) -- pull:20.8, 34.7 / hc pull:21.7, 30.3, 30.4
 end
 
 do

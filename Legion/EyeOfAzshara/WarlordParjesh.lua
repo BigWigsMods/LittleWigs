@@ -58,7 +58,7 @@ end
 
 function mod:ImpalingSpear(args)
 	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
-	self:CDBar(args.spellId, 31) -- pull:35.0, 31.6 / hc pull:28.8, 28.0, 27.9 XXX
+	self:CDBar(args.spellId, 31) -- pull:35.0, 31.6 / hc pull:29.2, 29.2, 26.8 XXX
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)

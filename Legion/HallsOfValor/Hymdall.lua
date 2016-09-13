@@ -49,13 +49,13 @@ end
 
 function mod:DancingBlade(args)
 	self:Message(args.spellId, "Urgent", "Alert", CL.incoming:format(args.spellName))
-	self:CDBar(args.spellId, bladeCount % 2 == 0 and 10 or 31)
+	self:CDBar(args.spellId, bladeCount % 2 == 0 and 10 or 31) -- pull:5.2, 31.5, 10.9, 31.6, 10.9, 32.4, 10.1
 	bladeCount = bladeCount + 1
 end
 
 function mod:HornOfValor(args)
 	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 42) -- 42.0-43.7
+	self:CDBar(args.spellId, 42) -- pull:10.1, 42.4, 43.3
 end
 
 do
