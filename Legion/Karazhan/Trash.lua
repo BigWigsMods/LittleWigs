@@ -26,8 +26,8 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		
-	},
+		"berserk"
+	}
 end
 
 function mod:OnBossEnable()
