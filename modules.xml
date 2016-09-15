@@ -95,6 +95,8 @@
 <Include file="Legion\HallsOfValor\modules.xml"/>
 <Include file="Legion\HallsOfValor\locales.xml"/>
 
+<Include file="Legion\Karazhan\modules.xml"/>
+
 <Include file="Legion\MawOfSouls\modules.xml"/>
 
 <Include file="Legion\NeltharionsLair\modules.xml"/>
