@@ -34,7 +34,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(193826, 11) -- Ragnarok
-	self:CDBar(193668, 24) -- Savage Blade
+	self:CDBar(193668, self:Normal() and 24 or 47) -- Savage Blade
 	self:CDBar(193659, 8.5) -- Felblaze Rush
 end
 
@@ -44,7 +44,7 @@ end
 
 function mod:SavageBlade(args)
 	self:Message(args.spellId, "Attention", self:Tank() and "Warning")
-	self:CDBar(args.spellId, 18) -- pull:24.3, 24.3, 17.8, 20.9
+	self:CDBar(args.spellId, 18) -- pull:24.3, 24.3, 17.8, 20.9 / hc pull:48.6, 19.5 / m pull:47.3, 24.3, 37.6
 end
 
 function mod:Ragnarok(args)
@@ -75,7 +75,7 @@ do
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 2 then
 			prev = t
-			self:Message(193702, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
 		end
 	end
 end

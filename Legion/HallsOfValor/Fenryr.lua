@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Fenryr", 1041, 1487)
 if not mod then return end
 mod:RegisterEnableMob(95674, 99868) -- Phase 1 Fenryr, Phase 2 Fenryr
---mod.engageId = 1807
+--mod.engageId = 1807 -- there's some dodgy shit going on here causing a client crash
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -52,8 +52,8 @@ function mod:Stealth(args)
 end
 
 function mod:UnnervingHowl(args)
-	self:Message(args.spellId, "Urgent", "Alert")
-	--self:CDBar(args.spellId, 50)
+	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 30)
 end
 
 do
@@ -63,7 +63,7 @@ do
 		list[#list+1] = args.destName
 		if #list == 1 then
 			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "Attention", "Info", nil, nil, true)
-			--self:CDBar(args.spellId, 31)
+			self:CDBar(args.spellId, 31)
 		end
 		if self:Me(args.destGUID) then
 			self:OpenProximity(args.spellId, 10)
@@ -92,10 +92,9 @@ do
 	end
 	function mod:ScentOfBlood(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		--self:CDBar(args.spellId, 41)
+		self:CDBar(args.spellId, 34)
 	end
 	function mod:ScentOfBloodRemoved(args)
 		self:PrimaryIcon(args.spellId)
 	end
 end
-

@@ -1,5 +1,5 @@
 --TO DO
---Fix timers
+--Timers for ArcaneLockdown and SignalBeacon
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -8,7 +8,7 @@
 local mod, CL = BigWigs:NewBoss("Patrol Captain Gerdo", 1087, 1718)
 if not mod then return end
 mod:RegisterEnableMob(104215)
---mod.engageId = 1868
+mod.engageId = 1868
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,19 +25,19 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "ResonantSlash", 207261)
 	self:Log("SPELL_CAST_SUCCESS", "Streetsweeper", 219488)
 	self:Log("SPELL_CAST_START", "ArcaneLockdown", 207278)
 	self:Log("SPELL_CAST_START", "SignalBeacon", 207806)
 	self:Log("SPELL_CAST_START", "FlaskoftheSolemnNight", 207815)
-
-	self:Death("Win", 104215)
 end
 
 function mod:OnEngage()
-	--self:CDBar(??, ??)
+	self:CDBar(219488, 12) -- Streetsweeper
+	self:CDBar(207261, 6) -- Resonant Slash
+	self:CDBar(207278, 27) -- Arcane Lockdown
+	self:CDBar(207806, 14) -- Signal Beacon
+
 end
 
 --------------------------------------------------------------------------------
@@ -46,12 +46,12 @@ end
 
 function mod:ResonantSlash(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 12)
 end
 
 function mod:Streetsweeper(args)
 	self:Message(args.spellId, "Important", "Info")
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 8)
 end
 
 function mod:ArcaneLockdown(args)

@@ -3,8 +3,8 @@
 
 <Script file="WarlordParjesh.lua"/>
 <Script file="LadyHatecoil.lua"/>
-<Script file="KingDeepbeard.lua"/>
 <Script file="Serpentrix.lua"/>
+<Script file="KingDeepbeard.lua"/>
 <Script file="WrathOfAzshara.lua"/>
 
 </Ui>

@@ -1,9 +1,5 @@
 
 --------------------------------------------------------------------------------
--- TODO List:
--- - Would be nice to find a way to track the Light, but there is none :(
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -26,8 +22,11 @@ local warnedForCreepingDoom = nil
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.kick_combo = "Kick Combo"
-	L.kick_combo_desc = GetSpellDescription(197251).."\n"..GetSpellDescription(197250)
+	L.kick_combo_desc = "{197251}\n{197250}" -- Knockdown Kick & Turn Kick
 	L.kick_combo_icon = 197251
+
+	L.light_dropped = "%s dropped the Light."
+	L.light_picked = "%s picked up the Light."
 end
 L = mod:GetLocale()
 
@@ -37,17 +36,22 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		197333, -- Fel Glaive
 		{206567, "FLASH"}, -- Stolen Light
 		{197422, "FLASH"}, -- Creeping Doom
 		197796, -- Avatar of Vengeance
 		"kick_combo",
+		204481, -- Elune's Light
+		213583, -- Deepening Shadows
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:Log("SPELL_CAST_SUCCESS", "ElunesLight", 204481)
+	self:Log("SPELL_CAST_SUCCESS", "FelGlaive", 197333)
 	self:Log("SPELL_AURA_APPLIED", "StolenLight", 206567)
-	self:Log("SPELL_AURA_APPLIED", "StolenLightRemoved", 206567)
+	self:Log("SPELL_AURA_REMOVED", "StolenLightRemoved", 206567)
 	self:Log("SPELL_CAST_START", "CreepingDoom", 197422, 213685)
 	self:Log("SPELL_AURA_REMOVED", "CreepingDoomRemoved", 197422)
 	self:Log("SPELL_CAST_START", "KnockdownKick", 197251) -- used for kick_combo
@@ -63,11 +67,33 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, castGUID, spellId)
-	if spellId == 197796 then -- Avatar of Vengeance
-		self:Message(spellId, "Urgent", "Long")
-		self:Bar(spellId, 45)
+do
+	local prev, prevGUID = 0, nil
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, castGUID, spellId)
+		if unit == "boss1" then
+			if spellId == 197796 then -- Avatar of Vengeance
+				self:Message(spellId, "Urgent", "Long")
+				self:Bar(spellId, 45)
+			elseif spellId == 213583 or spellId == 197578 or spellId == 226312 or spellId == 213576 then -- Deepening Shadows
+				local t = GetTime()
+				if t-prev > 2 then
+					prev = t
+					self:Message(213583, "Attention", "Alarm")
+				end
+			end
+		elseif spellId == 228210 and castGUID ~= prevGUID then -- Elune's Light picked up
+			prevGUID = castGUID
+			self:Message(204481, "Positive", "Long", L.light_picked:format(self:ColorName(UnitName(unit))))
+		end
 	end
+end
+
+function mod:ElunesLight(args)
+	self:Message(args.spellId, "Neutral", "Long", L.light_dropped:format(self:ColorName(args.sourceName)))
+end
+
+function mod:FelGlaive(args)
+	self:Message(args.spellId, "Important", "Alert")
 end
 
 function mod:StolenLight(args)
@@ -79,16 +105,16 @@ function mod:StolenLight(args)
 end
 
 function mod:StolenLightRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "Neutral", "Info", CL.removed:format(args.spellName))
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
 function mod:CreepingDoom(args)
 	self:Message(197422, "Important", "Info", CL.incoming:format(args.spellName))
 	self:Flash(197422)
-	self:Bar(197422, 35, CL.cast:format(args.spellName))
 	if args.spellId == 197422 then
 		self:StopBar(L.kick_combo)
+		self:Bar(197422, 35, CL.cast:format(args.spellName))
 	end
 end
 

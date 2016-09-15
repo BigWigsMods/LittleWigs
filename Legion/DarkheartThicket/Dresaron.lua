@@ -38,8 +38,8 @@ end
 
 function mod:OnEngage()
 	first = true
-	self:Bar(199345, 32) -- Down Draft
-	self:Bar(191325, 15) -- Breath of Corruption
+	self:CDBar(199345, 21) -- Down Draft
+	self:CDBar(191325, 14.5) -- Breath of Corruption
 end
 
 --------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ end
 
 function mod:DownDraft(args)
 	self:Message(args.spellId, "Important", "Warning")
-	self:Bar(args.spellId, 29)
+	self:CDBar(args.spellId, 30) -- pull:20.8, 34.7 / hc pull:21.7, 30.3, 30.4
 end
 
 do
@@ -65,7 +65,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 199332 then -- Breath of Corruption
 		self:Message(191325, "Attention", "Info")
-		self:Bar(191325, first and 20 or 30)
+		self:CDBar(191325, first and 20 or 30) -- XXX 13-15 on hc
 		first = false
 	end
 end

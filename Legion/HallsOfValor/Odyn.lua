@@ -44,8 +44,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(197961, 44) -- Runic Brand
+	self:Bar(198263, self:Mythic() and 8 or 24) -- Radiant Tempest
 	self:Bar(198077, 40) -- Shatter Spears
+	self:Bar(197961, 44) -- Runic Brand
 end
 
 --------------------------------------------------------------------------------
@@ -54,6 +55,7 @@ end
 
 function mod:RunicBrand(args)
 	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
+	self:Bar(args.spellId, 56) -- m pull:44.0, 56.0
 end
 
 function mod:RunicBrandYou(args)
@@ -64,11 +66,12 @@ end
 
 function mod:RadiantTempest(args)
 	self:Message(args.spellId, "Important", "Long")
-	--self:CDBar(args.spellId, 40) -- 40-48
+	self:CDBar(args.spellId, self:Mythic() and 80 or 56) -- hc pull:24.0 / m pull:8.0, 80.0
 end
 
 function mod:ShatterSpears(args)
 	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
+	self:Bar(args.spellId, 56) -- m pull:40.0, 56.0
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
@@ -76,4 +79,3 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 		self:Message(200988, "Urgent", "Alert")
 	end
 end
-

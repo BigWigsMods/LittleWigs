@@ -16,7 +16,7 @@ mod:RegisterEnableMob(98696)
 function mod:GetOptions()
 	return {
 		{197418, "TANK"}, -- Vengeful Shear
-		{197478, "SAY"}, -- Dark Rush 
+		{197478, "SAY"}, -- Dark Rush
 		197546, -- Brutal Glaive
 		197797, -- Arcane Blitz
 		197974, -- Bonecrushing Strike
@@ -38,7 +38,7 @@ end
 function mod:OnEngage()
 	self:Bar(197546, 5.5) -- Brutal Glaive
 	self:Bar(197418, 8.3) -- Vengeful Shear
-	self:CDBar(197478, 14.8) -- Dark Rush 
+	self:CDBar(197478, 14.8) -- Dark Rush
 end
 
 --------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ end
 
 function mod:DarkRushApplied(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellName)
+		self:Say(args.spellId)
 	end
 end
 
@@ -65,7 +65,7 @@ function mod:EyeBeams(args) -- eye beam missing timer xxx fix this
 	self:StopBar(197418) -- Vengeful Shear
 	self:Bar(197696, 15) -- Eye Beam
 	if self:Me(args.destGUID) then
-		self:Say(args.spellName)
+		self:Say(args.spellId)
 	end
 end
 
@@ -78,4 +78,3 @@ end
 function mod:BonecrushingStrike(args)
 	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
 end
-
