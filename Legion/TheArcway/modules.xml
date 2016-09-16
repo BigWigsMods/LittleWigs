@@ -6,6 +6,6 @@
 <Script file="GeneralXakal.lua"/>
 <Script file="Naltira.lua"/>
 <Script file="AdvisorVandros.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
-

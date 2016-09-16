@@ -9,6 +9,17 @@ mod:RegisterEnableMob(98206)
 mod.engageId = 1828
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.dread_felbat = -12489
+	L.dread_felbat_icon = "inv_felbatmount"
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -17,7 +28,7 @@ function mod:GetOptions()
 		197776, -- Fel Fissure
 		197810, -- Wicked Slam
 		212030, -- Shadow Slash
-		-- Dread Felbat / Bombardment?
+		"dread_felbat", -- Dread Felbat / Bombardment
 	}
 end
 
@@ -28,14 +39,22 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(197776, 6) -- Fel Fissure
-	self:Bar(212030, 14) -- Shadow Slash
-	self:Bar(197810, 36) -- Wicked Slam
+	self:CDBar(197776, 6) -- Fel Fissure
+	self:CDBar(212030, 13) -- Shadow Slash
+	self:CDBar("dread_felbat", 20) -- Dread Felbat
+	self:ScheduleTimer("DreadFelbats", 20) -- starts at 20, bat comes down after ~5s, next set +32s
+	self:CDBar(197810, 36) -- Wicked Slam
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:DreadFelbats(args)
+	self:Message("dread_felbat", "Neutral", "Info", CL.soon:format(L.dread_felbat), false)
+	self:CDBar("dread_felbat", 31.5, L.dread_felbat, L.dread_felbat_icon)
+	self:ScheduleTimer("DreadFelbats", 31.5)
+end
 
 function mod:FelFissure(args)
 	self:Message(args.spellId, "Attention")
