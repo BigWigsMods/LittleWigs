@@ -56,13 +56,13 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, unit) -- Arcane Bomb
 	if msg:find("192708", nil, true) then -- Fires with _START, target scanning doesn't work.
 		self:TargetMessage(192706, unit, "Important", "Alarm")
-		self:CDBar(192706, p2 and 23 or 30) -- pull:23.1, 30.4, 23.1 / hc pull:26.7, 31.2, 23.1
+		self:CDBar(192706, p2 and 23 or 30) -- pull:23.1, 30.4, 23.1 / hc pull:26.7, 31.2, 23.1 / pull:26.4, 30.4, 30.4, 36.5 XXX
 	end
 end
 
 function mod:MassiveDeluge(args)
 	self:Message(args.spellId, "Attention", self:Tank() and "Warning")
-	self:CDBar(args.spellId, self:Normal() and 51 or 56) -- pull:12.1, 51.0 / hc pull:12.1, 55.9
+	self:CDBar(args.spellId, self:Normal() and 51 or 56) -- pull:12.1, 51.0 / hc pull:12.1, 55.9 / m pull:12.2, 59.1, 35.3 XXX
 end
 
 function mod:CryOfWrath(args)
@@ -80,7 +80,7 @@ do
 	end
 	function mod:CrushingDepths(args) -- Heroic+
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 41) -- pull:20.8, 41.3
+		self:CDBar(args.spellId, 41) -- pull:20.8, 41.3 / m pull:20.3, 59.5, 36.5 XXX
 	end
 	function mod:CrushingDepthsEnd(args)
 		self:SecondaryIcon(args.spellId)
@@ -90,7 +90,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 192680 then -- Mystic Tornado
 		self:RangeMessage(192675, "Urgent", "Alert")
-		self:CDBar(192675, p2 and 15 or 25)
+		self:CDBar(192675, p2 and 15 or 25) -- XXX m pull:8.6, 25.1, 34.0, 18.2, 15.8, 20.7, 15.8
 	end
 end
 

@@ -58,12 +58,12 @@ end
 
 function mod:StaticNova(args)
 	self:Message(args.spellId, "Urgent", "Warning")
-	self:CDBar(args.spellId, 34) -- pull:10.8, 35.2, 34.0
+	self:CDBar(args.spellId, 34) -- pull:10.8, 35.2, 34.0 / m pull:10.8, 35.2, 36.4, 37.6, 34.0
 end
 
 function mod:FocusedLightning(args)
 	self:Message(args.spellId, "Attention", "Alert")
-	self:CDBar(args.spellId, 35) -- pull:25.4, 36.4, 35.2
+	self:CDBar(args.spellId, 35) -- pull:25.4, 36.4, 35.2 / m pull:25.3, 36.4, 36.4, 37.6
 end
 
 function mod:CurseOfTheWitch(args)
@@ -83,11 +83,12 @@ end
 
 function mod:BeckonStorm(args)
 	self:Message("blob", "Important", "Info", CL.spawned:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
-	self:CDBar("blob", 47, -12139, L.blob_icon) -- Saltsea Globule -- pull:21.3, 47.4
+	self:CDBar("blob", 47, -12139, L.blob_icon) -- Saltsea Globule -- pull:21.3, 47.4 / m pull:21.3, 49.8, 47.4
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 196634 then -- Monsoon
 		self:Message(196610, "Positive")
+		--self:CDBar(196610, 47) -- XXX
 	end
 end

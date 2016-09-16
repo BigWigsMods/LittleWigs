@@ -41,7 +41,7 @@ end
 
 function mod:PrimalRampage(args)
 	self:Message(args.spellId, "Important", "Warning")
-	self:CDBar(args.spellId, 30) -- pull:12.7, 30.3
+	self:CDBar(args.spellId, 30) -- pull:12.7, 30.3 / m pull:12.6, 31.6, 29.9, 27.9
 end
 
 do
@@ -60,6 +60,6 @@ function mod:GrievousTearApplied(args)
 		self:Flash(args.spellId)
 	end
 	self:TargetMessage(args.spellId, args.destName, "Attention")
-	self:CDBar(args.spellId, 13) -- pull:5.7, 14.5, 13.3
+	self:CDBar(args.spellId, 13) -- pull:5.7, 14.5, 13.3 / m pull:6.8, 15.5, 16.1, 15.3, 12.5, 14.3
 end
 

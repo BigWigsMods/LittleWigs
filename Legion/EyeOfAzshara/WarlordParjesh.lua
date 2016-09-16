@@ -48,7 +48,7 @@ end
 
 function mod:OnEngage()
 	addCount = 1
-	self:CDBar(192094, 35) -- Impaling Spear
+	self:CDBar(192094, self:Normal() and 35 or 29) -- Impaling Spear
 	self:CDBar(self:Normal() and 192072 or 196563, 5) -- Call Reinforcements
 end
 
@@ -58,7 +58,7 @@ end
 
 function mod:ImpalingSpear(args)
 	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
-	self:CDBar(args.spellId, 31) -- pull:35.0, 31.6 / hc pull:29.2, 29.2, 26.8 XXX
+	self:CDBar(args.spellId, 27) -- pull:35.0, 31.6 / hc pull:29.2, 29.2, 26.8 / m pull:29.1, 28.0, 28.3, 27.5
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
@@ -81,7 +81,7 @@ do
 	end
 	function mod:CallReinforcements(args) -- Heroic +
 		self:Message(args.spellId, "Attention", "Info")
-		self:CDBar(args.spellId, 28) -- pull:5.4, 31.6, 31.6, 27.9, 29.2
+		self:CDBar(args.spellId, 28) -- hc pull:5.4, 31.6, 31.6, 27.9, 29.2 / m pull:5.7, 31.5, 28.0, 27.9, 27.9
 	end
 end
 

@@ -48,7 +48,7 @@ function mod:CallTheSeas(args)
 end
 
 function mod:GaseousBubbles(args)
-	self:CDBar(args.spellId, 32) -- pull:12.8, 35.3, 32.8
+	self:CDBar(args.spellId, 32) -- pull:12.8, 35.3, 32.8 / m pull:12.9, 35.3, 32.8, 32.8
 end
 
 function mod:GaseousBubblesApplied(args)
