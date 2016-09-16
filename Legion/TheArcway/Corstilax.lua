@@ -45,7 +45,7 @@ end
 
 function mod:CleansingForce(args)
 	self:Message(args.spellId, "Urgent", "Alert")
-	self:Bar(args.spellId, 10, ("<%s>")):format(args.spellName)
+	self:Bar(args.spellId, 10, CL.cast:format(args.spellName))
 end
 
 function mod:DestabilizedOrb(args)
