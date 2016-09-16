@@ -29,7 +29,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AcceleratingBlast", 203176)
-	self:Log("SPELL_CAST_START", "AcceleratingBlastApplied", 203176)
+	self:Log("SPELL_AURA_APPLIED", "AcceleratingBlastApplied", 203176)
 	self:Log("SPELL_CAST_START", "ForceBomb", 202974)
 	self:Log("SPELL_AURA_APPLIED", "UnstableMana", 220871)
 	self:Log("SPELL_CAST_START", "BanishInTime", 203882)
@@ -55,7 +55,7 @@ end
 
 function mod:AcceleratingBlastApplied(args)
 	local count = args.amount or 1
-	if self:Dispeller("magic", true) and count > 5 then
+	if self:Dispeller("magic", true) and count > 5 and count % 3 == 0 then
 		self:StackMessage(args.spellId, args.destName, count, "Urgent", "Alert")
 	end
 end
