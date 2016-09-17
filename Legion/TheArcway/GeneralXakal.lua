@@ -41,7 +41,7 @@ end
 function mod:OnEngage()
 	self:CDBar(197776, 6) -- Fel Fissure
 	self:CDBar(212030, 13) -- Shadow Slash
-	self:CDBar("dread_felbat", 20) -- Dread Felbat
+	self:CDBar("dread_felbat", 20, L.dread_felbat, L.dread_felbat_icon) -- Dread Felbat
 	self:ScheduleTimer("DreadFelbats", 20) -- starts at 20, bat comes down after ~5s, next set +32s
 	self:CDBar(197810, 36) -- Wicked Slam
 end
