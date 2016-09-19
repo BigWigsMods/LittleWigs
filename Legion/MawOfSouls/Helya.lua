@@ -68,7 +68,9 @@ function mod:OnEngage()
 	tentacleDeaths = 0
 
 	self:CDBar("destructor_tentacle", 26, L.destructor_tentacle, L.destructor_tentacle_icon)
-	self:CDBar(202088, 40.5) -- Brackwater Barrage
+	if not self:Normal() then
+		self:CDBar(202088, 40.5) -- Brackwater Barrage
+	end
 
 	-- check on IEEU for changes since IEEU fires before tentacle death events, so they don't have a boss token anymore :\
 	wipe(seen)

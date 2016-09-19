@@ -37,7 +37,9 @@ function mod:OnEngage()
 	self:CDBar(193364, 5.9) -- Screams of the Dead
 	self:CDBar(193977, 15.1) -- Winds of Northrend
 	self:CDBar(193460, 22.1) -- Bane
-	self:CDBar(193566, 41.2) -- Arise, Fallen
+	if not self:Normal() then
+		self:CDBar(193566, 41.2) -- Arise, Fallen
+	end
 end
 
 --------------------------------------------------------------------------------

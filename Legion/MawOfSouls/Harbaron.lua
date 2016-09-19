@@ -36,7 +36,9 @@ end
 function mod:OnEngage()
 	self:Bar(194216, 3.6) -- Cosmic Scythe
 	self:CDBar(194231, 8) -- Summon Shackled Servitor
-	self:CDBar(194668, 12.5) -- Nether Rip
+	if not self:Normal() then
+		self:CDBar(194668, 12.5) -- Nether Rip
+	end
 	self:CDBar(198551, 18) -- Fragment
 end
 
