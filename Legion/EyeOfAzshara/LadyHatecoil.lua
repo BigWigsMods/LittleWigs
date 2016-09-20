@@ -50,6 +50,9 @@ function mod:OnEngage()
 	self:CDBar(193597, 10) -- Static Nova
 	self:CDBar(193611, 25) -- Focused Lightning
 	self:CDBar("blob", 21, -12139, L.blob_icon) -- Saltsea Globule
+	if not self:Normal() then
+		self:CDBar(196610, 31) -- Monsoon
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -87,8 +90,9 @@ function mod:BeckonStorm(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
-	if spellId == 196634 then -- Monsoon
+	-- Starts by using 196629 then randomly swaps to using 196634 (mythic)
+	if spellId == 196634 or spellId == 196629 then -- Monsoon
 		self:Message(196610, "Positive")
-		--self:CDBar(196610, 47) -- XXX
+		self:CDBar(196610, 20)
 	end
 end
