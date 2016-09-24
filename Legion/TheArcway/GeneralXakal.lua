@@ -51,7 +51,7 @@ end
 --
 
 function mod:DreadFelbats(args)
-	self:Message("dread_felbat", "Neutral", "Info", CL.soon:format(L.dread_felbat), false)
+	self:Message("dread_felbat", "Neutral", "Info", CL.soon:format(self:SpellName(L.dread_felbat)), false)
 	self:CDBar("dread_felbat", 31.5, L.dread_felbat, L.dread_felbat_icon)
 	self:ScheduleTimer("DreadFelbats", 31.5)
 end
