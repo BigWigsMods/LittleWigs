@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Harbaron", 1042, 1512)
 if not mod then return end
 mod:RegisterEnableMob(96754)
---mod.engageId = 1823
+mod.engageId = 1823
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -17,20 +17,18 @@ function mod:GetOptions()
 		194216, -- Cosmic Scythe
 		194231, -- Summon Shackled Servitor
 		194668, -- Nether Rip
-		{198551, "SAY"}, -- Fragment
+		{194325, "SAY"}, -- Fragment
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_CAST_START", "SummonShackledServitor", 194231)
 	self:Log("SPELL_CAST_START", "NetherRip", 194668)
 	self:Log("SPELL_CAST_START", "Fragment", 194325)
-	self:Log("SPELL_AURA_APPLIED", "FragmentApplied", 198551)
-	self:Log("SPELL_AURA_APPLIED", "NetherRipDamage", 194235)
+	self:Log("SPELL_CAST_START", "CosmicScythe", 194216)
+
 	self:Log("SPELL_PERIODIC_DAMAGE", "NetherRipDamage", 194235)
 	self:Log("SPELL_PERIODIC_MISSED", "NetherRipDamage", 194235)
-	self:Death("Win", 96754)
 end
 
 function mod:OnEngage()
@@ -39,21 +37,23 @@ function mod:OnEngage()
 	if not self:Normal() then
 		self:CDBar(194668, 12.5) -- Nether Rip
 	end
-	self:CDBar(198551, 18) -- Fragment
+	self:CDBar(194325, 18) -- Fragment
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Fragment(args)
-	self:Bar(198551, 34) -- Fragment
-end
-
-function mod:FragmentApplied(args)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
+do
+	local function printTarget(self, player, guid)
+		if self:Me(guid) then
+			self:Say(194325)
+		end
+		self:TargetMessage(194325, player, "Important", "Warning")
+	end
+	function mod:Fragment(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(args.spellId, 30)
 	end
 end
 
@@ -64,6 +64,10 @@ end
 function mod:SummonShackledServitor(args)
 	self:CDBar(args.spellId, 25) -- cd varies between 23-26
 	self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
+end
+
+function mod:CosmicScythe(args)
+	self:Message(args.spellId, "Urgent", "Alert")
 end
 
 do
