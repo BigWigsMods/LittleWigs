@@ -89,7 +89,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 192680 then -- Mystic Tornado
-		self:RangeMessage(192675, "Urgent", "Alert")
+		self:Message(192675, "Urgent", "Alert", CL.near:format(self:SpellName(192675))
 		self:CDBar(192675, p2 and 15 or 25) -- hc pull:8.5, 26.3, 15.8 / m pull:8.6, 25.1, 34.0, 18.2, 15.8, 20.7, 15.8
 	end
 end
