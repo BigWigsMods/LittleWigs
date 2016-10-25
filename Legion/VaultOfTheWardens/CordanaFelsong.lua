@@ -83,7 +83,7 @@ do
 			end
 		elseif spellId == 228210 and castGUID ~= prevGUID then -- Elune's Light picked up
 			prevGUID = castGUID
-			self:Message(204481, "Positive", "Long", L.light_picked:format(self:ColorName(UnitName(unit))))
+			self:Message(204481, "Positive", "Long", L.light_picked:format(self:ColorName(self:UnitName(unit))))
 		end
 	end
 end
