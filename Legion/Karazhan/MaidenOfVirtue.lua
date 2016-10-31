@@ -21,7 +21,7 @@ function mod:GetOptions()
 		227800, -- Holy Shock
 		227809, -- Holy Bolt
 		227509, -- Mass Repentance
-		{227789, "SAY", "FLASH"} -- Sacred Ground
+		{227789, "SAY", "FLASH"}, -- Sacred Ground
 	}
 end
 

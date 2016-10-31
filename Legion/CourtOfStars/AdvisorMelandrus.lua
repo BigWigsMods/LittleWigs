@@ -20,9 +20,9 @@ local bladeSurgeCount = 0
 
 function mod:GetOptions()
 	return {
-		209602, -- Blade Surge
 		224333, -- Enveloping Winds
-		{209628, "SAY", "FLASH"} -- Piercing Gale
+		{209602, "SAY", "FLASH"}, -- Blade Surge
+		209628,  -- Piercing Gale
 		209676, -- Slicing Maelstrom
 	}
 end
