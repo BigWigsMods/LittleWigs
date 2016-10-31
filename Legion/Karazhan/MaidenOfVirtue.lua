@@ -8,7 +8,7 @@
 local mod, CL = BigWigs:NewBoss("Maiden of Virtue", 1115, 1825)
 if not mod then return end
 mod:RegisterEnableMob(113971)
-
+mod.engageId = 1954
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,18 +26,16 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_CAST_START", "HolyShock", 227800)
 	self:Log("SPELL_CAST_START", "HolyWrath", 227823)
 	self:Log("SPELL_CAST_START", "HolyBolt", 227809)
 	self:Log("SPELL_CAST_START", "MassRepentance", 227509)
 	self:Log("SPELL_CAST_START", "Sacred Ground", 227789)
-	self:Death("Win", 113971)
 end
 
 function mod:OnEngage()
 	self:Bar(227809, 8) -- Holy Bolt
-	self:Bar(227789, 10.1	) -- Sacred Ground
+	self:Bar(227789, 10.1) -- Sacred Ground
 	self:Bar(227800, 15) -- Holy Shock
 	self:Bar(227509, 47.5) -- Mass Rep
 end
