@@ -22,7 +22,7 @@ function mod:GetOptions()
 	return {
 		209602, -- Blade Surge
 		224333, -- Enveloping Winds
-		{209628, "SAY"} -- Piercing Gale
+		{209628, "SAY", "FLASH"} -- Piercing Gale
 		209676, -- Slicing Maelstrom
 	}
 end
