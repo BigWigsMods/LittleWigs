@@ -20,9 +20,9 @@ local bladeSurgeCount = 0
 
 function mod:GetOptions()
 	return {
+		209602, -- Blade Surge
 		224333, -- Enveloping Winds
-		{209602, "SAY", "FLASH"}, -- Blade Surge
-		209628,  -- Piercing Gale
+		209628, -- Piercing Gale
 		209676, -- Slicing Maelstrom
 	}
 end
@@ -50,10 +50,6 @@ function mod:BladeSurge(args)
 	bladeSurgeCount = bladeSurgeCount + 1
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, bladeSurgeCount))
 	self:CDBar(args.spellId, 19)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:Flash(args.spellId)
-	end
 end
 
 function mod:EnvelopingWinds(args)
