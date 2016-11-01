@@ -61,6 +61,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "AbsorbVitality", 228835)
 	self:Log("SPELL_AURA_REMOVED", "AbsorbVitalityRemoved", 228835)
 	self:Log("SPELL_CAST_START", "BellowingRoar", 228837)
+
+	self:Log("SPELL_AURA_APPLIED", "CharredEarthDamage", 228808)
+	self:Log("SPELL_PERIODIC_DAMAGE", "CharredEarthDamage", 228808)
+	self:Log("SPELL_PERIODIC_MISSED", "CharredEarthDamage", 228808)
 end
 
 function mod:OnEngage()
@@ -192,4 +196,15 @@ function mod:BellowingRoar(args)
 	self:Message(args.spellId, "Attention", "Warning")
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 45)
+end
+
+do
+	local prev = 0
+	function mod:CharredEarthDamage(args)
+		local t = GetTime()
+		if t-prev > 2 and self:Me(args.destGUID) then
+			prev = t
+			self:Message(args.spellId, "Personal", not igniteSoulOnMe and "Alarm", CL.underyou:format(args.spellName))
+		end
+	end
 end
