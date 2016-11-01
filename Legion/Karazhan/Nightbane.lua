@@ -144,7 +144,7 @@ end
 
 function mod:IgniteSoul(args)
 	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
-	self:TargetBar(args.spellId, args.destName, 9)
+	self:TargetBar(args.spellId, 9, args.destName)
 	if self:Me(args.destGUID) then
 		igniteSoulOnMe = true
 		self:Say(args.spellId)
@@ -180,7 +180,7 @@ end
 
 function mod:AbsorbVitality(args)
 	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Healer())
-	self:TargetBar(args.spellId, args.destName, 18)
+	self:TargetBar(args.spellId, 18, args.destName)
 	self:Bar(args.spellId, 20)
 end
 
