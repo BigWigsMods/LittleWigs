@@ -8,6 +8,7 @@
 local mod, CL = BigWigs:NewBoss("Smashspite", 1081, 1664)
 if not mod then return end
 mod:RegisterEnableMob(98949)
+mod.engageId = 1834
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -23,25 +24,23 @@ function mod:GetOptions()
 	return {
 		198073, -- Earthshaking Stomp
 		{198245, "TANK"}, -- Brutal Haymaker
-		198079, -- Hateful Gaze
+		{198079, "SAY"}, -- Hateful Gaze
 		198446, -- Fel Vomit
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "FelVomit", 198446)
-	self:Log("SPELL_CAST_SUCCESS", "EarthshakingStomp", 198073)
+	self:Log("SPELL_CAST_START", "EarthshakingStomp", 198073)
 	self:Log("SPELL_CAST_SUCCESS", "HatefulGaze", 198079)
 	self:Log("SPELL_CAST_START", "BrutalHaymaker", 198245)
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 98949)
 end
 
 function mod:OnEngage()
 	felVomitCD = 35
-	self:Bar(198079, 5.8) -- Hateful Gaze
-	self:Bar(198073, 13.1) -- Earthshaking Stomp
-	self:Bar(198446, felVomitCD) -- Fel Vomit
+	self:CDBar(198079, 5.8) -- Hateful Gaze
+	self:CDBar(198073, 12) -- Earthshaking Stomp
+	self:CDBar(198446, 31) -- Fel Vomit
 end
 
 --------------------------------------------------------------------------------
@@ -49,21 +48,24 @@ end
 --
 
 function mod:BrutalHaymaker(args)
-	if self:Tank() then
-		self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
-	end
+	self:Message(args.spellId, "Positive", "Alarm", CL.incoming:format(args.spellName))
 end
 
 function mod:EarthshakingStomp(args)
+	self:Message(args.spellId, "Urgent", "Info")
 	self:Bar(args.spellId, 24.3)
 end
 
 function mod:HatefulGaze(args)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
 	self:Bar(args.spellId, 25.4)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Warning", nil, nil, true)
 end
 
 function mod:FelVomit(args)
-	self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
 	felVomitCD = felVomitCD * 0.64
 	self:CDBar(args.spellId, felVomitCD)
 end
