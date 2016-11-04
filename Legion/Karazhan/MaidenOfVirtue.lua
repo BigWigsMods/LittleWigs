@@ -29,7 +29,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:log("SPELL_AURA_REMOVED", "HolyBulwarkRemoved" 227817)
+	self:log("SPELL_AURA_REMOVED", "HolyBulwarkRemoved", 227817)
 	self:Log("SPELL_CAST_START", "HolyShock", 227800)
 	self:Log("SPELL_CAST_START", "HolyWrath", 227823)
 	self:Log("SPELL_CAST_START", "HolyBolt", 227809)
