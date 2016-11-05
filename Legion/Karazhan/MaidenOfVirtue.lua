@@ -75,7 +75,7 @@ function mod:MassRepentance(args)
 end
 
 function mod:HolyBulwarkRemoved(args)
-	self:Message(self:SpellName(227823), "Urgent", self:Interrupter(args.sourceGUID) and "Alert", CL.casting:format(self:SpellName(227823)))
+	self:Message(227823, "Urgent", self:Interrupter(args.sourceGUID) and "Alert", CL.casting:format(self:SpellName(227823)))
 end
 
 function mod:HolyBolt(args)
