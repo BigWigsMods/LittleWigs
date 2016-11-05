@@ -49,8 +49,8 @@ end
 -- Event Handlers
 --
 function mod:SacredGround(args)
-	self:CDBar(217887, sacredCount % 2 == 1 and 24 or 32)
-	self:Message(args.spellId, args.destName, "Important", "Alarm")
+	self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:Flash(args.spellId)
@@ -66,17 +66,16 @@ end
 
 function mod:HolyWrath(args)
 	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
-	self:CDBar(227789, 51)
 end
 
 function mod:MassRepentance(args)
 	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
-	self:StopBar(227508)
+	self:Bar(args.spellId, 51)
 end
 
 function mod:HolyBulwarkRemoved(args)
-	self:Message(227823, "Urgent", self:Interrupter(args.sourceGUID) and "Alert", CL.casting:format(227823))
+	self:Message(self:SpellName(227823), "Urgent", self:Interrupter(args.sourceGUID) and "Alert", CL.casting:format(self:SpellName(227823)))
 end
 
 function mod:HolyBolt(args)
