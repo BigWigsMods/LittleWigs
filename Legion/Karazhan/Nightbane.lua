@@ -118,7 +118,7 @@ function mod:Stage2(args)
 	self:StopBar(CL.onboss:format(self:SpellName(228790))) -- Concentrated Power
 
 	self:Bar("stages", 3, CL.add, args.spellId)
-	self:Bar(228834, 12, CL.count:format(228834, shardCount)) -- Jagged Shards
+	self:Bar(228834, 12, CL.count:format(self:SpellName(228834), shardCount)) -- Jagged Shards
 end
 
 function mod:CinderBreath(args)
