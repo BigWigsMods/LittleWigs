@@ -51,13 +51,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(227789, player, "Important", "Alarm")
+		if self:Me(guid) then
+			self:Say(227789)
+			self:Flash(227789)
+		end
+	end
 
-function mod:SacredGround(args)
-	self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:Flash(args.spellId)
+	function mod:SacredGround(args)
+		self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 
