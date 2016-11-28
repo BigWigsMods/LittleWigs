@@ -14,6 +14,7 @@ mod.engageId = 1954
 --------------------------------------------------------------------------------
 -- Locals
 --
+
 local sacredCount = 1
 
 --------------------------------------------------------------------------------
@@ -45,12 +46,13 @@ function mod:OnEngage()
 	self:Bar(227809, 8) -- Holy Bolt
 	self:Bar(227789, 10.1) -- Sacred Ground
 	self:Bar(227800, 15) -- Holy Shock
-	self:Bar(227508, 47.5) -- Mass Rep
+	self:Bar(227508, 47.5) -- Mass Repentance
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
 do
 	local function printTarget(self, player, guid)
 		self:TargetMessage(227789, player, "Important", "Alarm")
@@ -62,7 +64,7 @@ do
 
 	function mod:SacredGround(args)
 		self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
-		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 
