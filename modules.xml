@@ -100,6 +100,7 @@
 <Include file="Legion\MawOfSouls\modules.xml"/>
 
 <Include file="Legion\NeltharionsLair\modules.xml"/>
+<Include file="Legion\NeltharionsLair\locales.xml"/>
 
 <Include file="Legion\TheArcway\modules.xml"/>
 
