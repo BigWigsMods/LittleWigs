@@ -45,5 +45,4 @@ end
 
 function mod:Avalanche(args)
 	self:Message(args.spellId, "Attention", "Long")
-	--self:Bar(args.spellId, 2, CL.cast:format(args.spellName))
 end
