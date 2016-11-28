@@ -5,6 +5,7 @@
 <Script file="UlaroggCragshaper.lua"/>
 <Script file="Naraxas.lua"/>
 <Script file="Dargrul.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 
