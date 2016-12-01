@@ -29,10 +29,14 @@ function mod:GetOptions()
 end
 
 function mod:VerifyEnable()
-	local _, _, completed = C_Scenario.GetCriteriaInfo(4) -- Defeated prior boss (Ragewing)
 	local zone = GetSubZoneText()
-	if zone == L.subZone or completed then -- Zone is more reliable, but not locale friendly, use both.
+	if zone == L.subZone then
 		return true
+	else -- Zone is more reliable, but not locale friendly, use both.
+		local _, _, completed = C_Scenario.GetCriteriaInfo(4) -- Defeated prior boss (Ragewing)
+		if completed then
+			return true
+		end
 	end
 end
 
