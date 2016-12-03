@@ -39,6 +39,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HolyBolt", 227809)
 	self:Log("SPELL_CAST_START", "MassRepentance", 227508)
 	self:Log("SPELL_CAST_START", "SacredGround", 227789)
+	-- No boss unit, because Blizzard and consistency...
+	self:CheckForEngage()
 end
 
 function mod:OnEngage()
@@ -64,7 +66,7 @@ do
 
 	function mod:SacredGround(args)
 		self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID) -- No boss unit
 	end
 end
 
