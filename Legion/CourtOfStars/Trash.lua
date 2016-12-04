@@ -28,6 +28,33 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.Guard = "Duskwatch Guard"
+	L.Sentry = "Duskwatch Sentry"
+	L.Construct = "Guardian Construct"
+	L.Enforcer = "Felbound Enforcer"
+	L.Hound = "Legion Hound"
+	L.Gerenth = "Gerenth the Vile"
+	L.Jazshariu = "Jazshariu"
+	L.Imacutya = "Imacutya"
+	L.Baalgar = "Baalgar the Watchful"
+	L.Inquisitor = "Watchful Inquisitor"
+	L.BlazingImp = "Blazing Imp"
+	L.Energy = "Bound Energy"
+	L.Mistress = "Shadow Mistress"
+	L.Manifestation = "Arcane Manifestation"
+	L.Wyrm = "Mana Wyrm"
+	L.Arcanist = "Duskwatch Arcanist"
+	L.Saber = "Mana Saber"
+	L.InfernalImp = "Infernal Imp"
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -60,7 +87,35 @@ function mod:GetOptions()
 		209404, -- Seal Magic (Duskwatch Arcanist)
 		{209516, "SAY", "FLASH"}, -- Mana Fang (Mana Saber)
 		224377, -- Drifting Embers (Infernal Imp)
-	}
+	}, {
+		[209027] = L.Guard,
+		[209033] = L.Guard,
+		[209036] = L.Sentry,
+		[225100] = L.Construct,
+		[209495] = L.Construct,
+		[209512] = L.Construct,
+		[209413] = L.Construct,
+		[211464] = L.Enforcer,
+		[211391] = L.Hound,
+		[214692] = L.Gerenth,
+		[214688] = L.Gerenth,
+		[214690] = L.Gerenth,
+		[207979] = L.Jazshariu,
+		[209378] = L.Imacutya,
+		[207980] = L.Baalgar,
+		[211299] = L.Inquisitor,
+		[212784] = L.Inquisitor,
+		[211401] = L.BlazingImp,
+		[212031] = L.Energy,
+		[211470] = L.Mistress,
+		[211473] = L.Mistress,
+		[209485] = L.Manifestation,
+		[209477] = L.Wyrm,
+		[209410] = L.Arcanist,
+		[209404] = L.Arcanist,
+		[209516] = L.Saber,
+		[224377] = L.InfernalImp,
+}
 end
 
 function mod:OnBossEnable()
@@ -76,7 +131,7 @@ function mod:OnBossEnable()
 	-- Shadow Slash, Bewitch, Suppress, Mana Fang, Fortification, Cripple, Throw Torch
 	self:Log("SPELL_AURA_APPLIED", "DispellableDebuffs", 211473, 211470, 209413, 209516, 209033, 214690, 209036)
 	-- Disintegration Beam
-	self:Log("SPELL_AURA_APPLIED", "DisintegrationBeam", 207981)
+	self:Log("SPELL_AURA_APPLIED", "DisintegrationBeam", 207980)
 	-- Eye Storm
 	self:Log("SPELL_CAST_SUCCESS", "EyeStorm", 212784)
 end
@@ -127,3 +182,4 @@ function mod:EyeStorm(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
 end
+
