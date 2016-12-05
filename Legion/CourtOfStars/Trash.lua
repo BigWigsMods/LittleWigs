@@ -89,30 +89,21 @@ function mod:GetOptions()
 		224377, -- Drifting Embers (Infernal Imp)
 	}, {
 		[209027] = L.Guard,
-		[209033] = L.Guard,
 		[209036] = L.Sentry,
 		[225100] = L.Construct,
-		[209495] = L.Construct,
-		[209512] = L.Construct,
-		[209413] = L.Construct,
 		[211464] = L.Enforcer,
 		[211391] = L.Hound,
 		[214692] = L.Gerenth,
-		[214688] = L.Gerenth,
-		[214690] = L.Gerenth,
 		[207979] = L.Jazshariu,
 		[209378] = L.Imacutya,
 		[207980] = L.Baalgar,
 		[211299] = L.Inquisitor,
-		[212784] = L.Inquisitor,
 		[211401] = L.BlazingImp,
 		[212031] = L.Energy,
 		[211470] = L.Mistress,
-		[211473] = L.Mistress,
 		[209485] = L.Manifestation,
 		[209477] = L.Wyrm,
 		[209410] = L.Arcanist,
-		[209404] = L.Arcanist,
 		[209516] = L.Saber,
 		[224377] = L.InfernalImp,
 }
@@ -182,4 +173,3 @@ function mod:EyeStorm(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
 end
-
