@@ -24,7 +24,9 @@ mod:RegisterEnableMob(
 	105703, -- Mana Wyrm
 	104247, -- Duskwatch Arcanist
 	105699, -- Mana Saber
-	112668 -- Infernal Imp
+	112668, -- Infernal Imp
+	108796, -- Arcanist Malrodi (Court of Stars: The Deceitful Student World Quest)
+	108740  -- Velimar (Court of Stars: Bring Me the Eyes World Quest)
 )
 
 --------------------------------------------------------------------------------
@@ -51,6 +53,8 @@ if L then
 	L.Arcanist = "Duskwatch Arcanist"
 	L.Saber = "Mana Saber"
 	L.InfernalImp = "Infernal Imp"
+	L.Malrodi = "Arcanist Malrodi"
+	L.Velimar = "Velimar"
 end
 L = mod:GetLocale()
 
@@ -87,6 +91,10 @@ function mod:GetOptions()
 		209404, -- Seal Magic (Duskwatch Arcanist)
 		{209516, "SAY", "FLASH"}, -- Mana Fang (Mana Saber)
 		224377, -- Drifting Embers (Infernal Imp)
+		216110, -- Uncontrolled Blast (Arcanist Malrodi)
+		216096, -- Wild Magic (Arcanist Malrodi)
+		216000, -- Mighty Stomp (Velimar)
+		216006, -- Shadowflame Breath (Velimar)
 	}, {
 		[209027] = L.Guard,
 		[209036] = L.Sentry,
@@ -106,21 +114,23 @@ function mod:GetOptions()
 		[209410] = L.Arcanist,
 		[209516] = L.Saber,
 		[224377] = L.InfernalImp,
+		[216110] = L.Malrodi,
+		[216000] = L.Velimar,
 }
 end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Shockwave, Whirling Blades, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic
-	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 207979, 209378, 209485, 209477, 209410, 209404)
+	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Shockwave, Whirling Blades, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath
+	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 207979, 209378, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006)
 	-- Quelling Strike, Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers
 	self:Log("SPELL_CAST_START", "AlarmCasts", 209027, 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377)
 	-- Felblaze Puddle, Disrupting Energy
 	self:Log("SPELL_AURA_APPLIED", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_MISSED", "PeriodicDamage", 211391, 209512)
-	-- Shadow Slash, Bewitch, Suppress, Mana Fang, Fortification, Cripple, Throw Torch
-	self:Log("SPELL_AURA_APPLIED", "DispellableDebuffs", 211473, 211470, 209413, 209516, 209033, 214690, 209036)
+	-- Shadow Slash, Bewitch, Suppress, Mana Fang, Cripple, Throw Torch, Shadowflame Breath, Carrion Swarm
+	self:Log("SPELL_AURA_APPLIED", "DispellableDebuffs", 211473, 211470, 209413, 209516, 214690, 209036, 216006, 214688)
 	-- Disintegration Beam
 	self:Log("SPELL_AURA_APPLIED", "DisintegrationBeam", 207980)
 	-- Eye Storm
@@ -152,7 +162,6 @@ end
 
 function mod:DispellableDebuffs(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert", nil, nil, self:Dispeller("magic"))
-	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 		self:Say(args.spellId)
@@ -162,7 +171,6 @@ end
 function mod:DisintegrationBeam(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:Bar(args.spellId, 5, CL.cast:format(args.spellName, args.destName))
-	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 		self:Say(args.spellId)
