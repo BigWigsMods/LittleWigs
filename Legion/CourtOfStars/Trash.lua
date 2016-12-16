@@ -146,7 +146,7 @@ function mod:AlertCasts(args)
 end
 
 function mod:AlarmCasts(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.cast:format(args.spellName))
+	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
 end
 
 do
