@@ -38,14 +38,14 @@ function mod:GetOptions()
 		195046, -- Rejuvenating Waters
 
 		--[[ Mak'rana Siltwalker ]]--
-		196129, -- Spray Sand
+		196127, -- Spray Sand
 
 		--[[ Restless Tides ]]--
 		195284 -- Undertow
 	}, {
 		[196870] = L.stormweaver,
 		[195046] = L.oracle,
-		[196129] = L.siltwalker,
+		[196127] = L.siltwalker,
 		[195284] = L.tides
 	}
 end
