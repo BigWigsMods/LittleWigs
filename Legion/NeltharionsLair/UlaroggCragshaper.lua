@@ -110,7 +110,6 @@ function mod:TotemMark(event, unit)
 	if bossGUID then
 		local guid = UnitGUID(unit)
 		if guid == bossGUID then
-			bossGUID = nil
 			SetRaidTarget(unit, 8)
 		end
 	end
