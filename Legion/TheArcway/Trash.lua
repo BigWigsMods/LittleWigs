@@ -8,8 +8,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	98756, -- Arcane Anomaly
-	106059, -- Warp Shade
-	113699 -- Forgotten Spirit
+	106059 -- Warp Shade
 )
 
 --------------------------------------------------------------------------------
@@ -20,7 +19,6 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.anomaly = "Arcane Anomaly"
 	L.shade = "Warp Shade"
-	L.spirit = "Forgotten Spirit"
 end
 L = mod:GetLocale()
 
@@ -37,15 +35,11 @@ function mod:GetOptions()
 		--[[ Warp Shade ]]--
 		226206, -- Arcane Reconstitution
 		211115, -- Phase Breach
-
-		--[[ Forgotten Spirit ]]--
-		226269, -- Torment
 	}, {
 		[211217] = L.anomaly,
 		[226206] = L.anomaly,
 		[226206] = L.shade,
-		[211115] = L.shade,
-		[226269] = L.spirit
+		[211115] = L.shade
 	}
 end
 
@@ -60,9 +54,6 @@ function mod:OnBossEnable()
 
 	--[[ Warp Shade ]]--
 	self:Log("SPELL_CAST_START", "PhaseBreach", 211115)
-
-	--[[ Forgotten Spirit ]]--
-	self:Log("SPELL_CAST_START", "Torment", 226269)
 end
 
 --------------------------------------------------------------------------------
@@ -81,10 +72,5 @@ end
 
 -- Warp Shade
 function mod:PhaseBreach(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
-end
-
--- Forgotten Spirit
-function mod:Torment(args)
 	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
