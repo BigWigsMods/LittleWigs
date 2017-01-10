@@ -34,9 +34,9 @@ function mod:GetOptions()
 
 		--[[ Warp Shade ]]--
 		211115, -- Phase Breach
+		226206, -- Arcane Reconstitution
 	}, {
 		[211217] = L.anomaly,
-		[226206] = L.anomaly,
 		[211115] = L.shade
 	}
 end
