@@ -141,11 +141,24 @@ end
 -- Event Handlers
 --
 
+local prevTable = {}
+local function throttleMessages(key)
+	local t = GetTime()
+	if t-(prevTable[key] or 0) > 1.5 then
+		prevTable[key] = t
+		return false
+	else
+		return true
+	end
+end
+
 function mod:AlertCasts(args)
+	if throttleMessages(args.spellId) then return end
 	self:Message(args.spellId, "Attention", "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:AlarmCasts(args)
+	if throttleMessages(args.spellId) then return end
 	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
 end
 
@@ -161,7 +174,7 @@ do
 end
 
 function mod:DispellableDebuffs(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "Attention", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 		self:Say(args.spellId)
