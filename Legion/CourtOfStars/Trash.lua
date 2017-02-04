@@ -60,6 +60,7 @@ end
 -- Event Handlers
 --
 
+local prevTable = {}
 local function throttleMessages(key)
 	local t = GetTime()
 	if t-(prevTable[key] or 0) > 1.5 then
