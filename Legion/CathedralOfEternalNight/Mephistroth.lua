@@ -59,7 +59,7 @@ end
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 234283 then -- Expel Shadows
-		self:Message(234283, "Attention", "Warning")
+		self:Message(233206, "Attention", "Warning", 234283)
 		local timeLeft = self:BarTimeLeft(233206)
 		local newTime = timeLeft + 7.5
 		self:Bar(233206, newTime <= 30 and newTime or 30)
