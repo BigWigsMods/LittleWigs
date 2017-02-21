@@ -97,7 +97,7 @@ end
 function mod:Fixate(args)
 	if self:Me(args.destGUID)then
 		self:TargetMessage(236527, args.destName, "Personal", "Warning", args.spellName)
-		self:Flash(236527
+		self:Flash(236527)
 		self:Say(236527, args.spellId)
 		self:OpenProximity(236527, 5)
 	end
