@@ -62,7 +62,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		self:Message(234283, "Attention", "Warning")
 		local timeLeft = self:BarTimeLeft(233206)
 		local newTime = timeLeft + 7.5
-		self:Bar(args.spellId, newTime <= 30 and newTime or 30)
+		self:Bar(233206, newTime <= 30 and newTime or 30)
 	end
 end
 
