@@ -46,6 +46,7 @@ function mod:OnEngage()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	cleaveCounter = 1
 	felPortalGuardiansCounter = 1
+	wipe(felPortalGuardianCollector)
 
 	self:CDBar(236543, 8.4)
 	self:CDBar(234107, 31.4)
@@ -66,7 +67,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 					-- New Fel Portal Guardian
 					felPortalGuardianCollector[guid] = felPortalGuardiansCounter
 					if self:Mythic() then
-						self:CDBar(241622, 60, CL.count:format(self:SpellName(241622), felPortalGuardianCollector[guid]))
+						self:CDBar(241622, 60, CL.count:format(self:SpellName(241622), felPortalGuardiansCounter))
 					end
 					self:Message(-15076, "Attention", "Alert", CL.count:format(CL.spawned:format(self:SpellName(-15076)), felPortalGuardiansCounter))
 					felPortalGuardiansCounter = felPortalGuardiansCounter + 1
@@ -76,11 +77,13 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		end
 	end
 
-	for guid,_ in pairs(felPortalGuardianCollector) do
-		if not felPortalGuardians[guid] then
-			-- Fel Portal Guardian Died
-			self:StopBar(CL.count:format(self:SpellName(241622), felPortalGuardianCollector[guid]))
-			felPortalGuardianCollector[guid] = nil
+	if self:Mythic() then
+		for guid,_ in pairs(felPortalGuardianCollector) do
+			if not felPortalGuardians[guid] then
+				-- Fel Portal Guardian Died
+				self:StopBar(CL.count:format(self:SpellName(241622), felPortalGuardianCollector[guid]))
+				felPortalGuardianCollector[guid] = nil
+			end
 		end
 	end
 end
