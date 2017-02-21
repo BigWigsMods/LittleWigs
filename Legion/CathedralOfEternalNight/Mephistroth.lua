@@ -27,13 +27,11 @@ local phase = 1
 
 function mod:GetOptions()
 	return {
-		"stages",
 		233155, -- Carrion Swarm
 		--233196, -- Demonic Upheaval
 		{234830, "PROXIMITY"}, -- Dark Solitude
 		233206, -- Shadow Fade
 	},{
-		["stages"] = "general",
 		[233155] = -14949,
 		[233206] = -14950,
 	}
