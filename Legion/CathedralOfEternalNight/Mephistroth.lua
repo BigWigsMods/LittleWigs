@@ -38,6 +38,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4", "boss5")
 	self:Log("SPELL_CAST_START", "CarrionSwarm", 233155)
 	self:Log("SPELL_CAST_START", "DarkSolitude", 234830)
 	self:Log("SPELL_AURA_APPLIED", "ShadowFade", 233206)
@@ -53,12 +54,17 @@ function mod:OnEngage()
 	self:Bar(233206, 39.9) -- Shadow Fade
 end
 
-function mod:OnBossDisable()
-	self:CloseProximity(234830)
-end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+	if spellId == 234283 then -- Expel Shadows
+		self:Message(234283, "Attention", "Warning")
+		local timeLeft = self:BarTimeLeft(233206)
+		local newTime = timeLeft + 7.5
+		self:Bar(args.spellId, newTime <= 30 and newTime or 30)
+	end
+end
 
 function mod:CarrionSwarm(args)
 	self:Message(args.spellId, "Attention", "Alarm")
@@ -77,7 +83,7 @@ end
 function mod:ShadowFade(args)
 	phase = 2
 	self:Message(args.spellId, "Positive", "Long")
-	self:Bar(args.spellId, 30) -- XXX Only if no balls hit Illidan, update time if they do somehow?
+	self:Bar(args.spellId, 30) -- Update time with Expel Shadows
 end
 
 function mod:ShadowFadeRemoved(args)
