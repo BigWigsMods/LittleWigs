@@ -53,6 +53,9 @@ function mod:OnEngage()
 	self:Bar(233206, 39.9) -- Shadow Fade
 end
 
+function mod:OnBossDisable()
+	self:CloseProximity(234830)
+end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
