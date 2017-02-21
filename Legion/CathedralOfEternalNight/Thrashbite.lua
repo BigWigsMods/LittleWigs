@@ -24,6 +24,7 @@ function mod:GetOptions()
 	return {
 		237276, -- Pulverizing Cudgel
 		{237726, "FLASH"}, -- Scornful Gaze
+		240928, -- Destructive Rampage
 	}
 end
 
