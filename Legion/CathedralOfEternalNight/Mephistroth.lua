@@ -47,7 +47,7 @@ end
 
 function mod:OnEngage()
 	phase = 1
-	self:OpenProximity(234830, 8)
+	self:OpenProximity(234830, 8) -- Dark Solitude + Demoic Upheavel spread
 
 	self:Bar(234830, 8.2) -- Dark Solitude
 	self:Bar(233155, 15.6) -- Carrion Swarm
@@ -59,10 +59,10 @@ end
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 234283 then -- Expel Shadows
-		self:Message(233206, "Attention", "Warning", 234283)
-		local timeLeft = self:BarTimeLeft(233206)
-		local newTime = timeLeft + 7.5
-		self:Bar(233206, newTime <= 30 and newTime or 30)
+		self:Message(233206, "Attention", "Warning", 234283) -- Warn for Expel Shadows
+		local timeLeft = self:BarTimeLeft(233206) -- Save time left to interupt Shadow Fade
+		local newTime = timeLeft + 7.5 -- Lose 75 Energy on hit/cast
+		self:Bar(233206, newTime <= 30 and newTime or 30) -- Takes 30s to go from 0-300 UNIT_POWER, max 30s bar.
 	end
 end
 
@@ -83,7 +83,7 @@ end
 function mod:ShadowFade(args)
 	phase = 2
 	self:Message(args.spellId, "Positive", "Long")
-	self:Bar(args.spellId, 30) -- Update time with Expel Shadows
+	self:Bar(args.spellId, 34) -- Takes 4s before Illidan gains energy
 end
 
 function mod:ShadowFadeRemoved(args)
