@@ -75,12 +75,12 @@ end
 function mod:PoisonousSpores(args)
 	self:Message(args.spellId, "Attention", "Info", CL.count:format(args.spellName, sporeCounter))
 	sporeCounter = sporeCounter + 1
-	self:Bar(args.spellID, 21.8, CL.count:format(args.spellName, sporeCounter))
+	self:Bar(args.spellId, 21.8, CL.count:format(args.spellName, sporeCounter))
 end
 
 function mod:PoisonousSpores(args)
 	self:Message(args.spellId, "Important", "Alert", args.spellName)
-	self:Bar(args.spellID, 21.8)
+	self:Bar(args.spellId, 21.8)
 end
 
 function mod:ChokingVines(args)
@@ -91,7 +91,7 @@ end
 
 function mod:FulminatingLashers(args)
 	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
-	self:Bar(args.spellID, 40.1)
+	self:Bar(args.spellId, 40.1)
 end
 
 function mod:Fixate(args)
@@ -111,7 +111,7 @@ end
 
 function mod:SucculentLashers(args)
 	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
-	self:Bar(args.spellID, 40.1)
+	self:Bar(args.spellId, 40.1)
 end
 
 do
