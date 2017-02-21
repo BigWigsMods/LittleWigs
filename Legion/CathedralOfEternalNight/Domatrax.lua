@@ -68,7 +68,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 					if self:Mythic() then
 						self:CDBar(241622, 60, CL.count:format(self:SpellName(241622), felPortalGuardianCollector[guid]))
 					end
-					self:Message(-15076, "Attention", "Alert", CL.count:format(CL.spawned:format:(self:SpellName(-15076)), felPortalGuardiansCounter))
+					self:Message(-15076, "Attention", "Alert", CL.count:format(CL.spawned:format(self:SpellName(-15076)), felPortalGuardiansCounter))
 					felPortalGuardiansCounter = felPortalGuardiansCounter + 1
 				end
 				felPortalGuardians[guid] = true
