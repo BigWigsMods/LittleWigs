@@ -68,14 +68,14 @@ end
 
 function mod:CarrionSwarm(args)
 	self:Message(args.spellId, "Attention", "Alarm")
-	if self:BarTimeLeft(233206) > 18.2 then
+	if self:BarTimeLeft(233206) > 18.2 then -- Shadow Fade
 		self:Bar(args.spellId, 18.2)
 	end
 end
 
 function mod:DarkSolitude(args)
 	self:Message(args.spellId, "Attention", "Alarm")
-	if self:BarTimeLeft(233206) > 9 then
+	if self:BarTimeLeft(233206) > 9 then -- Shadow Fade
 		self:CDBar(args.spellId, 9)
 	end
 end
