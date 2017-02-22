@@ -21,6 +21,18 @@ local timeLost = 0
 local upheavalWarned = {}
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.custom_on_time_lost = "Time lost during Shadow Fade"
+	L.custom_on_time_lost_desc = "Shows the time lost during Shadow Fade, because an orb hit Illidan and delayed his cast"
+	L.custom_on_time_lost_icon = "ability_racial_timeismoney"
+	L.time_lost = "%s |cffff0000(+%ds)|r"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -30,6 +42,7 @@ function mod:GetOptions()
 		233196, -- Demonic Upheaval
 		{234817, "PROXIMITY"}, -- Dark Solitude
 		233206, -- Shadow Fade
+		"custom_on_time_lost",
 	},{
 		[233155] = -14949,
 		[233206] = -14950,
@@ -37,7 +50,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4", "boss5")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 	self:Log("SPELL_CAST_START", "CarrionSwarm", 233155)
 	self:Log("SPELL_CAST_START", "DemonicUpheaval", 233196)
 	self:RegisterEvent("UNIT_AURA") -- Demonic Upheaval debuff tracking
@@ -69,7 +82,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 			stopBar(233206) -- Shadow Fade
 			local newTime = timeLeft + 7.5
 			timeLost = timeLost + 7.5
-			self:Bar(233206, newTime <= 30 and newTime or 30, ""..self:SpellName(233206).."(+"..timeLost..")") -- Takes 30s to go from 0-300 UNIT_POWER, max 30s bar.
+			if self:GetOption("custom_on_time_lost") then 
+				self:Bar(233206, newTime <= 30 and newTime or 30, L.time_lost:format(self:SpellName(233206), timeLost)) -- Takes 30s to go from 0-300 UNIT_POWER, max 30s bar.
+			else
+				self:Bar(233206, newTime <= 30 and newTime or 30, self:SpellName(233206))
+			end
 		end
 	end
 end
