@@ -21,15 +21,6 @@ local timeLost = 0
 local upheavalWarned = {}
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.time_lost = "%s |cffff0000(+%ds)|r"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -78,7 +69,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 			stopBar(233206) -- Shadow Fade
 			local newTime = timeLeft + 7.5
 			timeLost = timeLost + 7.5
-			self:Bar(233206, newTime <= 30 and newTime or 30, L.time_lost:format(self:SpellName(233206), timeLost)) -- Takes 30s to go from 0-300 UNIT_POWER, max 30s bar.
+			self:Bar(233206, newTime <= 30 and newTime or 30, ""..self:SpellName(233206).."(+"..timeLost..")") -- Takes 30s to go from 0-300 UNIT_POWER, max 30s bar.
 		end
 	end
 end
@@ -111,7 +102,7 @@ do
 				self:ScheduleTimer("TargetMessage", 0.1, 233196, list, "Important", "Warning", 233963, nil, true)
 			end
 			if self:Me(guid) then
-				self:Say(233196, 233963)
+				self:Say(233196)
 				self:Flash(233196)
 			end
 			upheavalWarned[n] = true
