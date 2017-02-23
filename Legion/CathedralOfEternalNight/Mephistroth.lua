@@ -27,7 +27,7 @@ local upheavalWarned = {}
 local L = mod:GetLocale()
 if L then
 	L.custom_on_time_lost = "Time lost during Shadow Fade"
-	L.custom_on_time_lost_desc = "Shows the time lost during Shadow Fade, because an orb hit Illidan and delayed his cast."
+	L.custom_on_time_lost_desc = "Show the time lost during Shadow Fade on the bar in |cffff0000red|r."
 	L.custom_on_time_lost_icon = "ability_racial_timeismoney"
 	L.time_lost = "%s |cffff0000(+%ds)|r"
 end
