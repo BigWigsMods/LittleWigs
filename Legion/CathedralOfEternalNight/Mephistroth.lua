@@ -79,7 +79,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		if phase == 2 then
 			self:Message(233206, "Attention", "Warning", 234283)
 			local timeLeft = self:BarTimeLeft(233206) -- Shadow Fade
-			stopBar(233206) -- Shadow Fade
+			self:stopBar(233206) -- Shadow Fade
 			local newTime = timeLeft + 7.5
 			timeLost = timeLost + 7.5
 			if self:GetOption("custom_on_time_lost") then 
