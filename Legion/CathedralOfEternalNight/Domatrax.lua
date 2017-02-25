@@ -54,7 +54,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 end
 
 function mod:FelsoulCleave(args)
-	cleaveCounter = cleaveCounter + 1
 	self:Message(args.spellId, "Attention", "Alert")
 	self:CDBar(args.spellId, 17)
 end
