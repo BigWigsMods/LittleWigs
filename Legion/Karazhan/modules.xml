@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="MaidenOfVirtue.lua"/>
-<!--<Script file="OperaWikket.lua"/>-->
+<Script file="OperaWikket.lua"/>
 <!--<Script file="OperaWestfall.lua"/>-->
 <!--<Script file="OperaBeast.lua"/>-->
 <Script file="Attumen.lua"/>
