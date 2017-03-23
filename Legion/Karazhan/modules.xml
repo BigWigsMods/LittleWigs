@@ -4,7 +4,7 @@
 <Script file="MaidenOfVirtue.lua"/>
 <Script file="OperaWikket.lua"/>
 <Script file="OperaWestfall.lua"/>
-<!--<Script file="OperaBeast.lua"/>-->
+<Script file="OperaBeast.lua"/>
 <Script file="Attumen.lua"/>
 <Script file="Moroes.lua"/>
 <!--<Script file="Curator.lua"/>-->
