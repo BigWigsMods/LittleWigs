@@ -1,6 +1,7 @@
--- TO DO List
+
+--------------------------------------------------------------------------------
+-- TODO List:
 -- Timers kinda screw up after Mass Repentance Phase
--- Add warning to soak yellow before Mass rep cast success
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -38,7 +39,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HolyWrath", 227823)
 	self:Log("SPELL_CAST_START", "HolyBolt", 227809)
 	self:Log("SPELL_CAST_START", "MassRepentance", 227508)
+	self:Log("SPELL_CAST_SUCCESS", "MassRepentanceSuccess", 227508)
 	self:Log("SPELL_CAST_START", "SacredGround", 227789)
+	self:Log("SPELL_AURA_APPLIED", "SacredGroundApplied", 227848)
 	-- No boss unit, because Blizzard and consistency...
 	self:CheckForEngage()
 end
@@ -81,10 +84,37 @@ function mod:HolyWrath(args)
 	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
 end
 
-function mod:MassRepentance(args)
-	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
-	self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
-	self:Bar(args.spellId, 51)
+do
+	local sacredGroundCheck, name = nil, mod:SpellName(227848)
+
+	local function sacredGroundCheck()
+		if not UnitDebuff("player", name) then
+			mod:Message(227789, "Personal", "Warning", CL.no:format(name))
+			sacredGroundCheck = mod:ScheduleTimer(sacredGroundCheck, 1.5)
+		else
+			mod:Message(227789, "Positive", nil, CL.you:format(name))
+		end
+	end
+
+	function mod:MassRepentance(args)
+		self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
+		self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
+		self:Bar(args.spellId, 51)
+		sacredGroundCheck()
+	end
+
+	function mod:SacredGroundApplied(args)
+		if sacredGroundCheck then
+			self:CancelTimer(sacredGroundCheck)
+			sacredGroundCheck() -- immediately check and give the positive message
+		end
+	end
+
+	function mod:MassRepentanceSuccess(args)
+		if sacredGroundCheck then
+			self:CancelTimer(sacredGroundCheck)
+		end
+	end
 end
 
 function mod:HolyBulwarkRemoved(args)
