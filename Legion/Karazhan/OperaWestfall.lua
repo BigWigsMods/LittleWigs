@@ -22,7 +22,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		227568, -- Burning Leg Sweep
-		227777, -- Thunder Ritual
+		{227777, "PROXIMITY"}, -- Thunder Ritual
 		227783, -- Wash Away
 	}
 end
