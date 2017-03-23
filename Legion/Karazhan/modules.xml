@@ -9,7 +9,7 @@
 <!--<Script file="Moroes.lua"/>-->
 <!--<Script file="Curator.lua"/>-->
 <!--<Script file="ShadeOfMedivh.lua"/>-->
-<!--<Script file="ManaDevourer.lua"/>-->
+<Script file="ManaDevourer.lua"/>
 <!--<Script file="Vizaduum.lua"/>-->
 <Script file="Nightbane.lua"/>
 <!--<Script file="Trash.lua"/>-->
