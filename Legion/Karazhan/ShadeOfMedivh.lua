@@ -31,6 +31,7 @@ end
 
 function mod:GetOptions()
 	return {
+		"stages",
 		{227592, "SAY"}, -- Frostbite
 		{227615, "SAY"}, -- Inferno Bolt
 		227628, -- Piercing Missiles
@@ -67,7 +68,7 @@ end
 --
 
 function mod:UNIT_POWER()
-	local nextSpecial = (100-(UnitPower("boss1")/(UnitPowerMax("boss1"))))/3.3
+	local nextSpecial = (100-(UnitPower("boss1")/(UnitPowerMax("boss1"))*100))/3.3
 	if nextSpecial > 0 then
 		local spellName = self:SpellName(L.focused_power)
 		if math.abs(nextSpecial - self:BarTimeLeft(spellName)) > 1 then
@@ -134,7 +135,7 @@ do
 	function mod:FlameWreathApplied(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.2, args.spellId, list, "Important", "Warning", nil, nil, true)
+			self:ScheduleTimer("TargetMessage", 0.2, 228269, list, "Important", "Warning", nil, nil, true)
 		end
 		if self:Me(args.destGUID) then
 			self:Say(228269)
@@ -150,7 +151,7 @@ function mod:CeaselessWinterApplied(args)
 	if self:Me(args.destGUID) then
 		local amount = args.amount or 1
 		if amount % 2 == 1 then
-			self:StackMessage(args.spellId, args.destName, amount, "Personal", "Warning")
+			self:StackMessage(227779, args.destName, amount, "Personal", "Warning")
 		end
 	end
 end
