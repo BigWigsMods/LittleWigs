@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		229151, -- Disintegrate
 		{229248, "SAY"}, -- Fel Beam
-		229159, -- Chaotic Shadows
+		{229159, "SAY"}, -- Chaotic Shadows
 		229610, -- Demonic Portal
 		230084, -- Stabilize Rift
 	}
