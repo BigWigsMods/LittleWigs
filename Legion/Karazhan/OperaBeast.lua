@@ -11,7 +11,7 @@ mod:RegisterEnableMob(
 	114522, -- Mrs. Cauldrons
 	114330  -- Babblet
 )
-mod.engageId = 1957
+--mod.engageId = 1957 -- Same for every opera event. So it's basically useless.
 
 --------------------------------------------------------------------------------
 -- Locals

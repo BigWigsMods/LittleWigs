@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Opera Hall: Wikket", 1115, 1820)
 if not mod then return end
 mod:RegisterEnableMob(114251, 114284) -- Galindre, Elfyra
-mod.engageId = 1957
+--mod.engageId = 1957 -- Same for every opera event. So it's basically useless.
 
 --------------------------------------------------------------------------------
 -- Initialization
