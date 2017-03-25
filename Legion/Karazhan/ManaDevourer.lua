@@ -53,8 +53,10 @@ function mod:EnergyVoid(args)
 end
 
 function mod:UnstableMana(args)
-	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "Positive")
+	if self:Me(args.destGUID) then
+		local amount = args.amount or 1
+		self:StackMessage(args.spellId, args.destName, amount, "Positive")
+	end
 end
 
 function mod:CoalescePower(args)
