@@ -147,7 +147,7 @@ function mod:InfernalPowerRemoved(args)
 end
 
 function mod:IgniteSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
 	self:TargetBar(args.spellId, 9, args.destName)
 	if self:Me(args.destGUID) then
 		igniteSoulOnMe = true
