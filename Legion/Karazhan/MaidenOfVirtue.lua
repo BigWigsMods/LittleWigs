@@ -87,10 +87,10 @@ end
 do
 	local sacredGroundCheck, name = nil, mod:SpellName(227848)
 
-	local function sacredGroundCheck()
+	local function checkForSacredGround()
 		if not UnitDebuff("player", name) then
 			mod:Message(227789, "Personal", "Warning", CL.no:format(name))
-			sacredGroundCheck = mod:ScheduleTimer(sacredGroundCheck, 1.5)
+			sacredGroundCheck = mod:ScheduleTimer(checkForSacredGround, 1.5)
 		else
 			mod:Message(227789, "Positive", nil, CL.you:format(name))
 		end
@@ -100,13 +100,13 @@ do
 		self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
 		self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
 		self:Bar(args.spellId, 51)
-		sacredGroundCheck()
+		checkForSacredGround()
 	end
 
 	function mod:SacredGroundApplied(args)
 		if sacredGroundCheck then
 			self:CancelTimer(sacredGroundCheck)
-			sacredGroundCheck() -- immediately check and give the positive message
+			checkForSacredGround() -- immediately check and give the positive message
 		end
 	end
 
