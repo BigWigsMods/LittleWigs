@@ -25,7 +25,7 @@ local upheavalWarned = {}
 -- Localization
 --
 
-local L = mod:GetLocale()
+local L = mod:GetLocale("enUS", true)
 if L then
 	L.custom_on_time_lost = "Time lost during Shadow Fade"
 	L.custom_on_time_lost_desc = "Show the time lost during Shadow Fade on the bar in |cffff0000red|r."
