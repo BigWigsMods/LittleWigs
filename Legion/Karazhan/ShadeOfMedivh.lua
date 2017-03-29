@@ -150,7 +150,7 @@ end
 function mod:CeaselessWinterApplied(args)
 	if self:Me(args.destGUID) then
 		local amount = args.amount or 1
-		if amount % 2 == 1 then
+		if amount > 1 and amount % 2 == 0 then
 			self:StackMessage(227779, args.destName, amount, "Personal", "Warning")
 		end
 	end
