@@ -27,6 +27,8 @@ if L then
 
 	L.light_dropped = "%s dropped the Light."
 	L.light_picked = "%s picked up the Light."
+
+	L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
 end
 L = mod:GetLocale()
 
@@ -36,6 +38,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		197333, -- Fel Glaive
 		{206567, "FLASH"}, -- Stolen Light
 		{197422, "FLASH"}, -- Creeping Doom
@@ -47,6 +50,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 	self:Log("SPELL_CAST_SUCCESS", "ElunesLight", 204481)
 	self:Log("SPELL_CAST_SUCCESS", "FelGlaive", 197333)
@@ -67,6 +71,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(_, msg)
+	if msg == L.warmup_trigger then
+		self:Bar("warmup", 17, CL.warmup, "achievement_dungeon_vaultofthewardens")
+	end
+end
+
 do
 	local prev, prevGUID = 0, nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, castGUID, spellId)
