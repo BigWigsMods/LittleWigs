@@ -105,6 +105,7 @@
 <Include file="Legion\TheArcway\modules.xml"/>
 
 <Include file="Legion\VaultOfTheWardens\modules.xml"/>
+<Include file="Legion\VaultOfTheWardens\locales.xml"/>
 
 <Include file="Legion\CathedralOfEternalNight\modules.xml"/>
 </Ui>
