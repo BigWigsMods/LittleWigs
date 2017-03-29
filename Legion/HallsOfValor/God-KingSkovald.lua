@@ -9,11 +9,22 @@ mod:RegisterEnableMob(95675)
 mod.engageId = 1808
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		193668, -- Savage Blade
 		193826, -- Ragnarok
 		{193659, "SAY", "ICON"}, -- Felblaze Rush
@@ -22,6 +33,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:Log("SPELL_CAST_START", "SavageBlade", 193668)
 	self:Log("SPELL_CAST_START", "Ragnarok", 193826)
 	self:Log("SPELL_CAST_START", "FelblazeRush", 193659)
@@ -41,6 +53,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(_, msg)
+	if msg == L.warmup_trigger then
+		self:Bar("warmup", 20, CL.warmup, "achievement_dungeon_hallsofvalor")
+	end
+end
 
 function mod:SavageBlade(args)
 	self:Message(args.spellId, "Attention", self:Tank() and "Warning")
