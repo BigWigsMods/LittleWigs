@@ -54,7 +54,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlameWreathStart", 228269)
 	self:Log("SPELL_AURA_APPLIED", "FlameWreathApplied", 228261)
 	self:Log("SPELL_CAST_START", "CeaselessWinter", 227779)
-	self:Log("SPELL_AURA_APPLIED", "CeaselessWinterApplied", 227806)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "CeaselessWinterApplied", 227806)
 	self:Death("ImageDeath", 114675)
 end
@@ -150,7 +149,7 @@ end
 function mod:CeaselessWinterApplied(args)
 	if self:Me(args.destGUID) then
 		local amount = args.amount or 1
-		if amount > 1 and amount % 2 == 0 then
+		if amount % 2 == 0 then
 			self:StackMessage(227779, args.destName, amount, "Personal", "Warning")
 		end
 	end
