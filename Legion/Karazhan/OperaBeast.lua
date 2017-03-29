@@ -81,7 +81,7 @@ function mod:SevereDusting(args)
 end
 
 function mod:SpectralService(args)
-	self:Message("stages", "Positive", "Long", CL.removed:format(args.spellName))
+	self:Message("stages", "Positive", "Long", CL.removed:format(args.spellName), args.spellId)
 	self:Bar(227987, 8.5) -- Dinner Bell
 	self:Bar(227985, 15.8) -- Dent Armor
 end
