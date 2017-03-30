@@ -24,20 +24,20 @@ function mod:GetOptions()
 	return {
 		237276, -- Pulverizing Cudgel
 		{237726, "SAY", "FLASH"}, -- Scornful Gaze
-		240928, -- Destructive Rampage
+		243124, -- Heave Cudgel
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PulverizingCudgel", 237276)
 	self:Log("SPELL_AURA_APPLIED", "ScornfulGaze", 237726)
-	self:Log("SPELL_CAST_SUCCESS", "DestructiveRampage", 240928)
+	self:Log("SPELL_CAST_SUCCESS", "HeaveCudgel", 243124)
 end
 
 function mod:OnEngage()
 	self:Bar(237276, 6.1)
-	self:Bar(237726, 9.7)
-	self:Bar(240928, 20.6)
+	self:Bar(243124, 15.8)
+	self:Bar(237726, 25.5)
 end
 
 --------------------------------------------------------------------------------
@@ -46,20 +46,20 @@ end
 
 function mod:PulverizingCudgel(args)
 	self:Message(args.spellId, "Urgent", "Alert")
-	self:CDBar(args.spellId, 30)
+	self:CDBar(args.spellId, 37)
 end
 
 function mod:ScornfulGaze(args)
 	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning", args.spellName)
 	self:TargetBar(args.spellId, 7, args.destName)
-	self:CDBar(args.spellId, 30)
+	self:CDBar(args.spellId, 37)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:Flash(args.spellId)
 	end
 end
 
-function mod:DestructiveRampage(args)
+function mod:HeaveCudgel(args)
 	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
-	self:CDBar(args.spellId, 30)
+	self:CDBar(args.spellId, 37)
 end
