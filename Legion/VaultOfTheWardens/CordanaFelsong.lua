@@ -28,6 +28,7 @@ if L then
 	L.light_dropped = "%s dropped the Light."
 	L.light_picked = "%s picked up the Light."
 
+	L.warmup_text = "Cordana Felsong Active"
 	L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
 end
 L = mod:GetLocale()
@@ -74,7 +75,7 @@ end
 
 function mod:Warmup(_, msg)
 	if msg == L.warmup_trigger then
-		self:Bar("warmup", 17, CL.warmup, "achievement_dungeon_vaultofthewardens")
+		self:Bar("warmup", 17, L.warmup_text, "achievement_dungeon_vaultofthewardens")
 	end
 end
 
