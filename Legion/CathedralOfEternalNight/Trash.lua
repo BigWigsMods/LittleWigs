@@ -12,7 +12,8 @@ mod:RegisterEnableMob(
 	118703, -- Felborne Botanist
 	118714, -- Hellblaze Temptress
 	118713, -- Felstrider Orbcaster
-	120713 -- Wa'glur
+	120713, -- Wa'glur
+	118723 -- Gazerax
 )
 
 --------------------------------------------------------------------------------
@@ -27,6 +28,7 @@ if L then
 	L.hulk = "Vileshard Hulk"
 	L.orbcaster = "Felstrider Orbcaster"
 	L.waglur = "Wa'glur"
+	L.gazerax = "Gazerax"
 end
 L = mod:GetLocale()
 
@@ -48,6 +50,8 @@ function mod:GetOptions()
 		239320, -- Felblaze Orb
 		-- Wa'glur
 		241772, -- Unearthy Howl
+		-- Gazerax
+		239232, -- Blinding Glare
 	}, {
 		[241598] = L.felguard,
 		[238543] = L.soulmender,
@@ -55,6 +59,7 @@ function mod:GetOptions()
 		[237391] = L.hulk,
 		[239320] = L.orbcaster,
 		[241772] = L.waglur,
+		[239232] = L.gazerax,
 	}
 end
 
@@ -66,6 +71,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AlluringAroma", 237391) -- Alluring Aroma
 	self:Log("SPELL_CAST_START", "FelblazeOrb", 239320) -- Felblaze Orb
 	self:Log("SPELL_CAST_START", "UnearthyHowl", 241772) -- Unearthy Howl
+	self:Log("SPELL_CAST_START", "BlindingGlare", 239232) -- Blinding Glare
 end
 
 --------------------------------------------------------------------------------
@@ -99,5 +105,10 @@ end
 
 -- Wa'glur
 function mod:UnearthyHowl(args)
+	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+-- Gazerax
+function mod:BlindingGlare(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 end

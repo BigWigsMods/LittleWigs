@@ -13,5 +13,6 @@ if L then
 	--L.hulk = "Vileshard Hulk"
 	--L.orbcaster = "Felstrider Orbcaster"
 	--L.waglur = "Wa'glur"
+	--L.gazerax = "Gazerax"
 end
 
