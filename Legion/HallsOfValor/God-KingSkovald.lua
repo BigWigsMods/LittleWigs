@@ -14,6 +14,7 @@ mod.engageId = 1808
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.warmup_text = "God-King Skovald Active"
 	L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
 end
 L = mod:GetLocale()
@@ -56,7 +57,7 @@ end
 
 function mod:Warmup(_, msg)
 	if msg == L.warmup_trigger then
-		self:Bar("warmup", 20, CL.warmup, "achievement_dungeon_hallsofvalor")
+		self:Bar("warmup", 20, L.warmup_text, "achievement_dungeon_hallsofvalor")
 	end
 end
 
