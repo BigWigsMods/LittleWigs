@@ -1,9 +1,5 @@
 
 --------------------------------------------------------------------------------
--- TODO List:
--- - Mythic Abilities
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -65,10 +61,10 @@ function mod:OnEngage()
 	wipe(upheavalWarned)
 	self:OpenProximity(234817, 8) -- Dark Solitude
 
-	self:Bar(234817, 8.2) -- Dark Solitude
-	self:Bar(233155, 15.6) -- Carrion Swarm
-	self:Bar(233196, 29.9) -- Demonic Upheaval
-	self:Bar(233206, 39.9) -- Shadow Fade
+	self:Bar(233196, 3.5) -- Demonic Upheaval
+	self:Bar(234817, 7.1) -- Dark Solitude
+	self:Bar(233155, 18.1) -- Carrion Swarm
+	self:Bar(233206, 44.2) -- Shadow Fade
 end
 
 --------------------------------------------------------------------------------
@@ -98,7 +94,7 @@ end
 function mod:CarrionSwarm(args)
 	self:Message(args.spellId, "Attention", "Alarm")
 	if self:BarTimeLeft(233206) > 18.2 then -- Shadow Fade
-		self:Bar(args.spellId, 18.2)
+		self:Bar(args.spellId, 19.8)
 	end
 end
 
@@ -133,8 +129,8 @@ end
 
 function mod:DarkSolitude(args)
 	self:Message(args.spellId, "Attention", "Alarm")
-	if self:BarTimeLeft(233206) > 9 then -- Shadow Fade
-		self:CDBar(args.spellId, 9)
+	if self:BarTimeLeft(233206) > 8.5 then -- Shadow Fade
+		self:CDBar(args.spellId, 8.5)
 	end
 end
 
@@ -151,7 +147,7 @@ function mod:ShadowFadeRemoved(args)
 	self:OpenProximity(234817, 8) -- Dark Solitude
 	self:Message(args.spellId, "Positive", "Long", CL.removed:format(args.spellName))
 	self:Bar(args.spellId, 79.3)
-	self:Bar(234817, 7.8) -- Dark Solitude
-	self:Bar(233155, 15) -- Carrion Swarm
-	self:Bar(233196, 31) -- Demonic Upheaval
+	self:Bar(233196, 3.5) -- Demonic Upheaval
+	self:Bar(234817, 7.1) -- Dark Solitude
+	self:Bar(233155, 18.1) -- Carrion Swarm
 end
