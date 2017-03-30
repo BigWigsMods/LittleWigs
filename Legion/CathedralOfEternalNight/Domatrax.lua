@@ -17,6 +17,9 @@ mod.engageId = 2053
 -- Locals
 --
 
+local felPortalGuardianCollector = {}
+local felPortalGuardiansCounter = 1
+
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -26,10 +29,10 @@ function mod:GetOptions()
 		236543, -- Felsoul Cleave
 		234107, -- Chaotic Energy
 		-15076, -- Fel Portal Guardian
-		--241622, -- Approaching Doom
+		241622, -- Approaching Doom
 	},{
 		[236543] = -15011,
-		--[241622] = "mythic",
+		[241622] = "mythic",
 	}
 end
 
@@ -40,8 +43,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(236543, 8.4) -- Felsoul Cleave
-	self:CDBar(234107, 31.4) -- Chaotic Energy
+	self:CDBar(236543, 8.3) -- Felsoul Cleave
+	self:CDBar(234107, 32.5) -- Chaotic Energy
+	if self:Mythic() then
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+		felPortalGuardiansCounter = 1
+		wipe(felPortalGuardianCollector)
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -55,10 +63,38 @@ end
 
 function mod:FelsoulCleave(args)
 	self:Message(args.spellId, "Attention", "Alert")
-	self:CDBar(args.spellId, 17)
+	self:CDBar(args.spellId, 18.5)
 end
 
 function mod:ChaoticEnergy(args)
 	self:Message(args.spellId, "Urgent", "Warning")
-	self:CDBar(args.spellId, 35.2)
+	self:CDBar(args.spellId, 37.6)
+end
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	local felPortalGuardians = {}
+
+	for i = 1, 5 do
+		local guid = UnitGUID(("boss%d"):format(i))
+		if guid then
+			local mobId = self:MobId(guid)
+			if mobId == 118834 then -- Fel Portal Guardian
+				if not felPortalGuardianCollector[guid] then
+					-- New Fel Portal Guardian
+					felPortalGuardianCollector[guid] = felPortalGuardiansCounter
+					self:CDBar(241622, 20, CL.cast:format(CL.count:format(self:SpellName(241622), felPortalGuardiansCounter)))
+					felPortalGuardiansCounter = felPortalGuardiansCounter + 1
+				end
+				felPortalGuardians[guid] = true
+			end
+		end
+	end
+
+	for guid,_ in pairs(felPortalGuardianCollector) do
+		if not felPortalGuardians[guid] then
+			-- Fel Portal Guardian Died
+			self:StopBar(CL.cast:format(CL.count:format(self:SpellName(241622), felPortalGuardianCollector[guid])))
+			felPortalGuardianCollector[guid] = nil
+		end
+	end
 end
