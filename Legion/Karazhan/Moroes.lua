@@ -174,7 +174,7 @@ do
 end
 
 function mod:EmpoweredArms(args)
-	self:Message(args.spellId, "Important", self:Tank() and "Info", CL.on(args.spellName, args.destName))
+	self:Message(args.spellId, "Important", self:Tank() and "Info", CL.on:format(args.spellName, args.destName))
 end
 
 do
