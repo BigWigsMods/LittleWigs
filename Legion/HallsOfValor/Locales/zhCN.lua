@@ -10,13 +10,13 @@ end
 
 L = BigWigs:NewBossLocale("God-King Skovald", "zhCN")
 if L then
-	--L.warmup_text = "God-King Skovald Active"
-	--L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
+	L.warmup_text = "神王斯科瓦尔德激活"
+	L.warmup_trigger = "按照传统，它已经属于胜利者了。斯科瓦尔德，你的抗议来得太迟了。"
 end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "zhCN")
 if L then
-	--L.fourkings = "The Four Kings"
+	L.fourkings = "四王"
 	--L.olmyr = "Olmyr the Enlightened"
 	--L.purifier = "Valarjar Purifier"
 	--L.thundercaller = "Valarjar Thundercaller"
