@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="TugarBloodtotem.lua"/>
+<Script file="Kruul.lua"/>
 
 </Ui>
 
