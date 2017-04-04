@@ -5,7 +5,8 @@
 
 local mod, CL = BigWigs:NewBoss("Kruul", nil, nil, 1698)
 if not mod then return end
-mod:RegisterEnableMob(117933, 117198)
+mod:RegisterEnableMob(117933, 117198) -- Inquisitor Variss, Highlord Kruul
+mod.otherMenu = 1021 -- Broken Shore
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -13,7 +14,18 @@ mod:RegisterEnableMob(117933, 117198)
 
 local L = mod:GetLocale()
 if L then
-	L.name = "Kruul"
+	L.engage_message = "Highlord Kruul's Challenge Engaged!"
+	L.name = "Highlord Kruul"
+	L.inquisitor = "Inquisitor Variss"
+	L.velen = "Prophet Velen"
+
+	L.nether_aberration = 235110
+	L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
+	L.nether_aberration_icon = "ability_socererking_summonaberration"
+
+	L.smoldering_infernal = "Smoldering Infernal"
+	L.smoldering_infernal_desc = "Summons a Smoldering Infernal."
+	L.smoldering_infernal_icon = "inv_infernalmountgreen"
 end
 mod.displayName = L.name
 
@@ -23,24 +35,34 @@ mod.displayName = L.name
 
 function mod:GetOptions()
 	return {
-	234423, -- Drain Life
-	234422, -- Aura of Decay
-	233473, -- Holy Ward
-	234428, -- Summon Tormenting Eye
-	235110, -- Nether Aberration
-	235112, -- Smoldering Infernal Summon
+		"stages",
+		"nether_aberration", -- Nether Aberration
+		233473, -- Holy Ward
+		234423, -- Drain Life
+		234422, -- Aura of Decay
+		234428, -- Summon Tormenting Eye
+		"smoldering_infernal", -- Smoldering Infernal Summon
+	},{
+		["stages"] = "general",
+		[233473] = L.velen,
+		[234423] = L.inquisitor,
+		--[123456] = L.name,
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "DrainLife", 234423)
 	self:Log("SPELL_CAST_START", "HolyWard", 233473)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AuraOfDecay", 234422)
+
+	self:Death("KruulIncoming", 117933) -- Inquisitor
+	self:Death("Win", 117198) -- Kruul, Uncomfirmed
 end
 
 function mod:OnEngage()
-	self:Message(234423, "Neutral", nil, "Kruul Engaged")
+	self:Message("stages", "Neutral", nil, L.engage_message, "inv_icon_heirloomtoken_weapon01")
 end
 
 --------------------------------------------------------------------------------
@@ -51,11 +73,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		self:Message(spellId, "Attention", "Info")
 		self:CDBar(spellId, 18)
 	elseif spellId == 235110 then -- Nether Aberration
-		self:Message(spellId, "Attention", "Info", CL.incoming:format(spellName))
-		self:CDBar(spellId, 35)
+		self:Message("nether_aberration", "Attention", "Info", CL.incoming:format(spellName), L.nether_aberration_icon)
+		self:CDBar("nether_aberration", 35, spellName, L.nether_aberration_icon)
 	elseif spellId == 235112 then -- Smoldering Infernal Summon
-		self:Message(spellId, "Attention", "Info", CL.incoming:format(spellName))
-		self:CDBar(spellId, 50)
+		self:Message("smoldering_infernal", "Attention", "Info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
+		self:CDBar("smoldering_infernal", 50, L.smoldering_infernal, L.smoldering_infernal_icon)
 	end
 end
 
@@ -73,4 +95,11 @@ end
 function mod:AuraOfDecay(args)
 	local amount = args.amount or 1
 	self:StackMessage(args.spellId, args.destName, amount, "Personal", "Alarm")
+end
+
+function mod:KruulIncoming(args)
+	self:Message("stages", "Positive", "Long", CL.incoming:format(L.name), "warlock_summon_doomguard")
+	self:StopBar(L.smoldering_infernal) -- Smoldering Infernal
+	self:StopBar(234423) -- Drain Life
+	self:StopBar(234428) -- Summon Tormenting Eye
 end
