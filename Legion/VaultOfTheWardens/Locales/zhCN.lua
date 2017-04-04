@@ -1,13 +1,13 @@
 local L = BigWigs:NewBossLocale("Cordana Felsong", "zhCN")
 if not L then return end
 if L then
-	--L.kick_combo = "Kick Combo"
+	L.kick_combo = "连环踢"
 
-	--L.light_dropped = "%s dropped the Light."
-	--L.light_picked = "%s picked up the Light."
+	L.light_dropped = "%s 丢掉了艾露恩之光。"
+	L.light_picked = "%s 拾取了艾露恩之光。"
 
-	--L.warmup_text = "Cordana Felsong Active"
-	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
+	L.warmup_text = "科达娜·邪歌激活"
+	L.warmup_trigger = "我拿到想要的东西了。但我要留下来了结你们……永除后患！"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "zhCN")
