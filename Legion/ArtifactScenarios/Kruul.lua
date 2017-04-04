@@ -14,10 +14,16 @@ mod.otherMenu = 1021 -- Broken Shore
 
 local L = mod:GetLocale()
 if L then
-	L.engage_message = "Highlord Kruul's Challenge Engaged!"
+	-- NPC Names
 	L.name = "Highlord Kruul"
 	L.inquisitor = "Inquisitor Variss"
 	L.velen = "Prophet Velen"
+
+	-- Triggers
+	L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
+
+	-- Engage / Options
+	L.engage_message = "Highlord Kruul's Challenge Engaged!"
 
 	L.nether_aberration = 235110
 	L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
@@ -35,6 +41,7 @@ mod.displayName = L.name
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		"stages",
 		"nether_aberration", -- Nether Aberration
 		233473, -- Holy Ward
@@ -43,7 +50,7 @@ function mod:GetOptions()
 		234428, -- Summon Tormenting Eye
 		"smoldering_infernal", -- Smoldering Infernal Summon
 	},{
-		["stages"] = "general",
+		["warmup"] = "general",
 		[233473] = L.velen,
 		[234423] = L.inquisitor,
 		--[123456] = L.name,
@@ -51,23 +58,32 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "DrainLife", 234423)
 	self:Log("SPELL_CAST_START", "HolyWard", 233473)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AuraOfDecay", 234422)
 
-	self:Death("KruulIncoming", 117933) -- Inquisitor
-	self:Death("Win", 117198) -- Kruul, Uncomfirmed
+	self:Death("KruulIncoming", 117933) -- Inquisitor Variss
+	self:Death("Win", 117198) -- Highlord Kruul, Uncomfirmed
 end
 
 function mod:OnEngage()
 	self:Message("stages", "Neutral", nil, L.engage_message, "inv_icon_heirloomtoken_weapon01")
+	self:CDBar("smoldering_infernal", 35, L.smoldering_infernal, L.smoldering_infernal_icon)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(_, msg)
+	if msg == L.warmup_trigger then
+		self:Bar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
+	end
+end
+
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 234428 then -- Summon Tormenting Eye
 		self:Message(spellId, "Attention", "Info")
