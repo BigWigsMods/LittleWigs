@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Fenryr", 1041, 1487)
 if not mod then return end
 mod:RegisterEnableMob(95674, 99868) -- Phase 1 Fenryr, Phase 2 Fenryr
---mod.engageId = 1807 -- there's some dodgy shit going on here causing a client crash
+mod.engageId = 1807
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,8 +23,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	--self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "Stealth", 196567)
 	self:Log("SPELL_CAST_START", "UnnervingHowl", 196543)
 	self:Log("SPELL_AURA_APPLIED", "RavenousLeap", 197556)
@@ -32,8 +30,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ClawFrenzy", 196512)
 	self:Log("SPELL_CAST_START", "ScentOfBlood", 196838)
 	self:Log("SPELL_AURA_REMOVED", "ScentOfBloodRemoved", 196838)
-
-	self:Death("Win", 99868) -- Phase 2 Fenryr
 end
 
 function mod:OnEngage()
@@ -48,7 +44,8 @@ end
 
 function mod:Stealth(args)
 	self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
-	--self:Reboot()
+	-- Prevent the module wiping when moving to phase 2 and ENCOUNTER_END fires.
+	self:ScheduleTimer("Reboot", 0.5) -- Delay a little
 end
 
 function mod:UnnervingHowl(args)

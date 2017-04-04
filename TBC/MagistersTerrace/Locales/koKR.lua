@@ -1,10 +1,7 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Kael'thas Sunstrider", "koKR")
+local L = BigWigs:NewBossLocale("Vexallus", "koKR")
 if L then
-	--@localization(locale="koKR", namespace="MagistersTerrace/Kael_thas", format="lua_additive_table", handle-unlocalized="ignore")@
+  L["adds"] = "순수한 에너지"
+  L["adds_desc"] = "순수한 에너지가 소환되면 경보합니다."
+  L["adds_message"] = "순수한 에너지 소환됨!"
+  L["adds_trigger"] = "순수한 힘을 방출합니다!"
 end
-
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Vexallus", "koKR")
-if L then
-	--@localization(locale="koKR", namespace="MagistersTerrace/Vexallus", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-

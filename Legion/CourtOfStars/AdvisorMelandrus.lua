@@ -35,7 +35,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	local bladeSurgeCount = 0
+	bladeSurgeCount = 0
 	self:CDBar(209628, 7) -- Piercing Gale
 	self:CDBar(224333, 10) -- Enveloping Winds
 	self:CDBar(209602, 15) -- Blade Surge

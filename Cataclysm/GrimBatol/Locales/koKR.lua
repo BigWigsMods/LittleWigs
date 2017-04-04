@@ -1,14 +1,7 @@
 local L = BigWigs:NewBossLocale("Erudax", "koKR")
 if L then
---@localization(locale="koKR", namespace="GrimBatol/Erudax", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-
-L = BigWigs:NewBossLocale("Drahga Shadowburner", "koKR")
-if L then
---@localization(locale="koKR", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-
-L = BigWigs:NewBossLocale("Forgemaster Throngus", "koKR")
-if L then
---@localization(locale="koKR", namespace="GrimBatol/Forgemaster", format="lua_additive_table", handle-unlocalized="ignore")@
+	L.summon = "얼굴 없는 타락자 소환"
+	L.summon_desc = "에루닥스가 얼굴 없는 타락자를 소환하면 경보"
+	L.summon_message = "얼굴 없는 타락자 소환됨"
+	L.summon_trigger = "%s가 얼굴 없는 수호자를 소환합니다!"
 end

@@ -56,12 +56,12 @@ function mod:Blitz(_, msg, _, _, _, player)
 end
 
 function mod:TotemDown()
-	self:Message(-4141, L.totemDrop, "Important", "Alarm")
+	self:Message(-4141, "Important", "Alarm", L.totemDrop)
 	self:Bar(-4141, 20, L.totemDrop)
 end
 
 function mod:TotemUp(args)
-	self:Message(-4141, L.totemThrow:format(args.destName), "Positive", "Info")
+	self:Message(-4141, "Positive", "Info", L.totemThrow:format(args.destName))
 	self:StopBar(L.totemDrop)
 end
 

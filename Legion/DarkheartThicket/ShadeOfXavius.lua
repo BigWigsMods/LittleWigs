@@ -29,7 +29,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(200289, 25.5) -- Growing Paranoia
-	self:CDBar(200185, 8) -- Nightmare Bolt
+	self:CDBar(200185, 7) -- Nightmare Bolt
 end
 
 --------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ end
 
 function mod:GrowingParanoia(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
-	self:CDBar(args.spellId, 26) -- pull:25.5, 26.8, 28.0, 19.5 / hc pull:27.1, 32.8, 26.7, 27.9
+	--self:CDBar(args.spellId, 26) -- pull:25.5, 26.8, 28.0, 19.5 / hc pull:27.1, 32.8, 26.7, 27.9 / m pull:25.5, 37.6, 47.3
 end
 
 function mod:GrowingParanoiaApplied(args)
@@ -65,7 +65,7 @@ do
 	end
 	function mod:NightmareBolt(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		--self:CDBar(200185, 23) -- pull:9.6, 19.5, 30.4, 24.3, 19.4 / hc pull:9.1, 23.1, 37.6, 21.8
+		--self:CDBar(200185, 23) -- pull:9.6, 19.5, 30.4, 24.3, 19.4 / hc pull:9.1, 23.1, 37.6, 21.8 / m pull:7.2, 21.9, 26.7, 21.9, 17.0
 	end
 	function mod:WakingNightmareOver()
 		self:SecondaryIcon(200185)

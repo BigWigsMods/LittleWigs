@@ -47,7 +47,7 @@ do
 	end
 	function mod:CrushingGrip(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 28) -- hc pull:28.0, 27.9, 34.0
+		self:CDBar(args.spellId, 28) -- hc pull:28.0, 27.9, 34.0 / m pull:30.1, 32.8, 34.0
 	end
 	function mod:CrushingGripEnd(args)
 		self:PrimaryIcon(args.spellId)
@@ -56,11 +56,11 @@ end
 
 function mod:StranglingRoots(args)
 	self:Message(args.spellId, "Attention")
-	self:CDBar(args.spellId, 23) -- hc pull:12.5, 24.3, 26.7, 23.1
+	self:CDBar(args.spellId, 23) -- hc pull:12.5, 24.3, 26.7, 23.1 / m pull:14.6, 24.3, 32.8, 33.6
 end
 
 function mod:NightmareBreath(args)
 	self:Message(args.spellId, "Important", "Info")
-	self:CDBar(args.spellId, 26) -- hc pull:18.6, 26.7, 32.8
+	self:CDBar(args.spellId, 26) -- hc pull:18.6, 26.7, 32.8 / m pull:19.5, 32.8, 26.7, 33.5
 end
 

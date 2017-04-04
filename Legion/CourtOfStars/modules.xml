@@ -4,6 +4,7 @@
 <Script file="PatrolCaptainGerdo.lua"/>
 <Script file="TalixaeFlamewreath.lua"/>
 <Script file="AdvisorMelandrus.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 

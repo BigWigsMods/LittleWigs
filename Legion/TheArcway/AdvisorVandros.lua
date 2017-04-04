@@ -9,11 +9,18 @@ mod:RegisterEnableMob(98208)
 mod.engageId = 1829
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local blastCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		203176, -- Accelerating Blast
 		202974, -- Force Bomb
 		220871, -- Unstable Mana
 		203882, -- Banish In Time
@@ -21,21 +28,41 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "AcceleratingBlast", 203176)
+	self:Log("SPELL_AURA_APPLIED", "AcceleratingBlastApplied", 203176)
 	self:Log("SPELL_CAST_START", "ForceBomb", 202974)
 	self:Log("SPELL_AURA_APPLIED", "UnstableMana", 220871)
 	self:Log("SPELL_CAST_START", "BanishInTime", 203882)
 end
 
 function mod:OnEngage()
-	-- TODO Timers
+	blastCount = 1
+
+	self:CDBar(202974, 29) -- Force Bomb
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:AcceleratingBlast(args)
+	if self:Interrupter() then
+		self:Message(args.spellId, "Attention", nil, CL.count:format(args.spellName, blastCount))
+	end
+	blastCount = blastCount + 1
+	if blastCount > 3 then blastCount = 1 end
+end
+
+function mod:AcceleratingBlastApplied(args)
+	local count = args.amount or 1
+	if self:Dispeller("magic", true) and count > 5 and count % 3 == 0 then
+		self:StackMessage(args.spellId, args.destName, count, "Urgent", "Alert")
+	end
+end
+
 function mod:ForceBomb(args)
 	self:Message(args.spellId, "Attention", "Info")
+	-- self:CDBar(args.spellId, 30) -- never in p1 long enough to get a second cast :\
 end
 
 function mod:UnstableMana(args)
@@ -44,6 +71,8 @@ function mod:UnstableMana(args)
 end
 
 function mod:BanishInTime(args)
+	self:StopBar(202974) -- Force Bomb
+	blastCount = 1
+
 	self:Message(args.spellId, "Important", "Long")
-	-- self:Bar(args.spellId, 120, CL.cast:format(args.spellName))
 end

@@ -18,9 +18,11 @@ function mod:GetOptions()
 		{197418, "TANK"}, -- Vengeful Shear
 		{197478, "SAY"}, -- Dark Rush
 		197546, -- Brutal Glaive
+		{197696, "SAY"}, -- Eye Beam
 		197797, -- Arcane Blitz
 		197974, -- Bonecrushing Strike
-		{197696, "SAY"}, -- Eye Beam
+	}, {
+		[197797] = CL.adds,
 	}
 end
 
