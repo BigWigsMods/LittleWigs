@@ -13,6 +13,7 @@ mod.otherMenu = 1021 -- Broken Shore
 --
 
 local phase = 1
+local handGUID = ""
 
 ----------------------------------------------------------------------------------
 -- Localization
@@ -21,6 +22,11 @@ local phase = 1
 local L = mod:GetLocale()
 if L then
 	L.name = "Raest Magespear"
+
+	L.handFromBeyond = "Hand from Beyond"
+	L.handFromBeyond_icon = 229022 -- Grasping Hand
+
+	L.killed = "%s killed"
 
 	L.warmup_text = "Karam Magespear Active"
 	L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
@@ -37,6 +43,7 @@ function mod:GetOptions()
 		"warmup",
 		202081, -- Fixate
 		235308, -- Purgatory
+		"handFromBeyond",
 		{235578, "FLASH"}, -- Grasp from Beyond
 	}
 end
@@ -57,6 +64,7 @@ end
 
 function mod:OnEngage()
 	phase = 1
+	handGUID = ""
 end
 
 --------------------------------------------------------------------------------
@@ -75,7 +83,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 202081 then -- Fixate
 		self:Message(spellId, "Important", "Long", spellName .. " - " .. CL.stage:format(phase))
 		if phase == 2 then
-			self:Bar(235578, 9) -- Grasp from Beyond
+			self:Bar("handFromBeyond", 9, L.handFromBeyond, L.handFromBeyond_icon) -- Grasp from Beyond
 		end
 	end
 end
@@ -93,19 +101,24 @@ end
 
 function mod:GraspFromBeyond(args)
 	self:Message(args.spellId, "Urgent", "Alert")
-	self:Bar(args.spellId, 15)
 	self:CastBar(args.spellId, 10)
+	self:Bar(args.spellId, 15)
+	if handGUID ~= args.sourceGUID then
+		handGUID = args.sourceGUID
+		self:Bar("handFromBeyond", 28, L.handFromBeyond, L.handFromBeyond_icon)
+	end
 	self:Flash(args.spellId)
 end
 
 function mod:Interrupts(args)
 	if args.extraSpellId == 235578 then -- Grasp from Beyond
-		self:Message(args.extraSpellId, "Personal", nil, CL.interrupted:format(args.spellName))
+		self:Message(args.extraSpellId, "Personal", nil, CL.interrupted:format(args.extraSpellName))
 		self:StopBar(CL.cast:format(args.extraSpellName))
 	end
 end
 
 function mod:HandFromBeyondDeath(args)
+	self:Message("handFromBeyond", "Neutral", nil, L.killed:format(L.handFromBeyond), false)
 	self:StopBar(CL.cast:format(self:SpellName(235578)))  -- Grasp from Beyond
 	self:StopBar(235578)  -- Grasp from Beyond
 end
