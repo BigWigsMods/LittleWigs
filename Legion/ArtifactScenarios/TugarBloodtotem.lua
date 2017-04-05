@@ -22,7 +22,9 @@ local burstCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.name = "Tugar Bloodtotem"
+	L.tugar = "Tugar Bloodtotem"
+	L.jormog = "Jormog the Behemoth"
+
 	L.remaining = "Scales Remaining"
 
 	L.submerge = "Submerge"
@@ -39,7 +41,7 @@ if L then
 
 	L.totem_warning = "The totem hit you!"
 end
-mod.displayName = L.name
+mod.displayName = L.tugar
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -48,12 +50,16 @@ mod.displayName = L.name
 function mod:GetOptions()
 	return {
 		242733, -- Fel Burst
-		241687, -- Sonic Scream
 		243224, -- Fel Surge Totem
-		{238471, "INFOBOX"}, -- Fel Hardened Scales
 		"rupture", -- Fel Rupture
+
+		241687, -- Sonic Scream
+		{238471, "INFOBOX"}, -- Fel Hardened Scales
 		"submerge",
 		"charge",
+	}, {
+		[242733] = L.tugar,
+		[241687] = L.jormog,
 	}
 end
 
