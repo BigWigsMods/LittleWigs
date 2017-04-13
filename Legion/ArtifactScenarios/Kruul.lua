@@ -44,6 +44,7 @@ function mod:GetOptions()
 		"warmup",
 		"stages",
 		"nether_aberration", -- Nether Aberration
+		240790, -- Nether Storm
 		233473, -- Holy Ward
 		234423, -- Drain Life
 		234422, -- Aura of Decay
@@ -61,6 +62,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_START", "NetherStorm", 240790)
 	self:Log("SPELL_CAST_START", "DrainLife", 234423)
 	self:Log("SPELL_CAST_START", "HolyWard", 233473)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AuraOfDecay", 234422)
@@ -94,6 +96,17 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	elseif spellId == 235112 then -- Smoldering Infernal Summon
 		self:Message("smoldering_infernal", "Attention", "Info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
 		self:CDBar("smoldering_infernal", 50, L.smoldering_infernal, L.smoldering_infernal_icon)
+	end
+end
+
+do
+	local prev = 0
+	function mod:NetherStorm(args)
+		local t = GetTime()
+		if t-prev > 1 then
+			prev = t
+			self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
+		end
 	end
 end
 
