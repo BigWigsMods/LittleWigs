@@ -79,7 +79,7 @@ function mod:BurningLegSweep(args)
 end
 
 function mod:ThunderRitual(args)
-	self:Message(args.spellName, "Important", "Warning")
+	self:Message(args.spellId, "Important", "Warning")
 	self:Bar(args.spellId, 17)
 end
 
