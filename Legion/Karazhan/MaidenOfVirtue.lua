@@ -93,6 +93,7 @@ do
 			sacredGroundCheck = mod:ScheduleTimer(checkForSacredGround, 1.5)
 		else
 			mod:Message(227789, "Positive", nil, CL.you:format(name))
+			sacredGroundCheck = nil
 		end
 	end
 
@@ -104,7 +105,7 @@ do
 	end
 
 	function mod:SacredGroundApplied(args)
-		if sacredGroundCheck then
+		if sacredGroundCheck and self:Me(args.destGUID) then
 			self:CancelTimer(sacredGroundCheck)
 			checkForSacredGround() -- immediately check and give the positive message
 		end
@@ -113,6 +114,7 @@ do
 	function mod:MassRepentanceSuccess(args)
 		if sacredGroundCheck then
 			self:CancelTimer(sacredGroundCheck)
+			sacredGroundCheck = nil
 		end
 	end
 end
