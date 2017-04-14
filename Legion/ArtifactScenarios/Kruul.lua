@@ -9,6 +9,13 @@ mod:RegisterEnableMob(117933, 117198) -- Inquisitor Variss, Highlord Kruul
 mod.otherMenu = 1021 -- Broken Shore
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local aberrationCounter = 1
+local annihilateCounter = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -50,11 +57,16 @@ function mod:GetOptions()
 		234422, -- Aura of Decay
 		234428, -- Summon Tormenting Eye
 		"smoldering_infernal", -- Smoldering Infernal Summon
+		234631, -- Smash
+		236572, -- Annihilate
+		234920, -- Shadow Sweep
+		234673, -- Nether Stomp
+		234676, -- Twisted Reflections
 	},{
 		["warmup"] = "general",
 		[233473] = L.velen,
 		[234423] = L.inquisitor,
-		--[123456] = L.name,
+		[236572] = L.name,
 	}
 end
 
@@ -66,14 +78,22 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DrainLife", 234423)
 	self:Log("SPELL_CAST_START", "HolyWard", 233473)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AuraOfDecay", 234422)
+	self:Log("SPELL_CAST_START", "Smash", 234631)
+	self:Log("SPELL_CAST_START", "Annihilate", 236572)
+	self:Log("SPELL_CAST_SUCCESS", "AnnihilateSuccess", 236572)
+	self:Log("SPELL_CAST_START", "TwistedReflections", 234676)
 
 	self:Death("KruulIncoming", 117933) -- Inquisitor Variss
 	self:Death("Win", 117198) -- Highlord Kruul, Uncomfirmed
 end
 
 function mod:OnEngage()
+	aberrationCounter = 1
+	annihilateCounter = 1
 	self:Message("stages", "Neutral", nil, L.engage_message, "inv_icon_heirloomtoken_weapon01")
-	self:CDBar("smoldering_infernal", 35, L.smoldering_infernal, L.smoldering_infernal_icon)
+	self:CDBar(234428, 3) -- Summon Tormenting Eye
+	self:CDBar("nether_aberration", 10, CL.count:format(L.nether_aberration, aberrationCounter), L.nether_aberration_icon) -- Nether Aberration
+	self:CDBar("smoldering_infernal", 35, L.smoldering_infernal, L.smoldering_infernal_icon) -- Smoldering Infernal Summon
 end
 
 --------------------------------------------------------------------------------
@@ -82,20 +102,27 @@ end
 
 function mod:Warmup(_, msg)
 	if msg == L.warmup_trigger then
-		self:Bar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
+		self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 234428 then -- Summon Tormenting Eye
 		self:Message(spellId, "Attention", "Info")
-		self:CDBar(spellId, 18)
+		self:CDBar(spellId, 17)
 	elseif spellId == 235110 then -- Nether Aberration
-		self:Message("nether_aberration", "Attention", "Info", CL.incoming:format(spellName), L.nether_aberration_icon)
-		self:CDBar("nether_aberration", 35, spellName, L.nether_aberration_icon)
+		aberrationCounter = aberrationCounter + 1
+		self:Message("nether_aberration", "Attention", "Info", CL.incoming:format(CL.count:format(spellName, aberrationCounter-1)), L.nether_aberration_icon)
+		self:CDBar("nether_aberration", 35, CL.count:format(spellName, aberrationCounter), L.nether_aberration_icon)
 	elseif spellId == 235112 then -- Smoldering Infernal Summon
 		self:Message("smoldering_infernal", "Attention", "Info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
-		self:CDBar("smoldering_infernal", 50, L.smoldering_infernal, L.smoldering_infernal_icon)
+		self:CDBar("smoldering_infernal", 51, L.smoldering_infernal, L.smoldering_infernal_icon)
+	elseif spellId == 234920 then -- Shadow Sweep
+		self:Message(spellId, "Attention", "Info", CL.incoming:format(spellName))
+		self:Bar(spellId, 20.7)
+	elseif spellId == 234673 then -- Netherstomp
+		self:Message(spellId, "Urgent", "Alert")
+		self:Bar(spellId, 15.8)
 	end
 end
 
@@ -123,7 +150,11 @@ end
 
 function mod:AuraOfDecay(args)
 	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "Personal", "Alarm")
+	self:StackMessage(args.spellId, args.destName, amount, "Personal", amount > 3 and "Warning")
+end
+
+function mod:Smash(args)
+	self:Message(args.spellId, "Important", "Alarm", args.spellName)
 end
 
 function mod:KruulIncoming(args)
@@ -131,4 +162,17 @@ function mod:KruulIncoming(args)
 	self:StopBar(L.smoldering_infernal) -- Smoldering Infernal
 	self:StopBar(234423) -- Drain Life
 	self:StopBar(234428) -- Summon Tormenting Eye
+end
+
+function mod:Annihilate(args)
+	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(CL.count:format(args.spellName, annihilateCounter)))
+end
+
+function mod:AnnihilateSuccess(args)
+	annihilateCounter = annihilateCounter + 1
+	self:CDBar(args.spellId, 31, CL.count:format(args.spellName, annihilateCounter))
+end
+
+function mod:TwistedReflections(args)
+	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 end
