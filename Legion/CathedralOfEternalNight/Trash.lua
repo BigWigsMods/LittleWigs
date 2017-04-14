@@ -24,8 +24,8 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.felguard = "Felguard Destroyer"
 	L.soulmender = "Helblaze Soulmender"
+	L.botanist = "Felborne Botanist"
 	L.temptress = "Hellblaze Temptress"
-	L.hulk = "Vileshard Hulk"
 	L.orbcaster = "Felstrider Orbcaster"
 	L.waglur = "Wa'glur"
 	L.gazerax = "Gazerax"
@@ -55,8 +55,8 @@ function mod:GetOptions()
 	}, {
 		[241598] = L.felguard,
 		[238543] = L.soulmender,
-		[237565] = L.temptress,
-		[237391] = L.hulk,
+		[237565] = L.botanist,
+		[237391] = L.temptress,
 		[239320] = L.orbcaster,
 		[241772] = L.waglur,
 		[239232] = L.gazerax,

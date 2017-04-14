@@ -10,7 +10,7 @@ if L then
 	--L.felguard = "Felguard Destroyer"
 	--L.soulmender = "Helblaze Soulmender"
 	--L.temptress = "Hellblaze Temptress"
-	--L.hulk = "Vileshard Hulk"
+	--L.botanist = "Felborne Botanist"
 	--L.orbcaster = "Felstrider Orbcaster"
 	--L.waglur = "Wa'glur"
 	--L.gazerax = "Gazerax"
