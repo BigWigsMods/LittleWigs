@@ -10,7 +10,7 @@ if L then
 	L.felguard = "恶魔卫士毁灭者"
 	L.soulmender = "鬼火慰魂者"
 	L.temptress = "鬼焰女妖"
-	--L.hulk = "Vileshard Hulk"
+	L.botanist = "邪脉植物学家"
 	L.orbcaster = "邪足晶球法师"
 	L.waglur = "瓦格鲁尔"
 	L.gazerax = "加泽拉克斯"
