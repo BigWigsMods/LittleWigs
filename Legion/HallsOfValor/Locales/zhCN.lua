@@ -17,9 +17,9 @@ end
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "zhCN")
 if L then
 	L.fourkings = "四王"
-	--L.olmyr = "Olmyr the Enlightened"
-	--L.purifier = "Valarjar Purifier"
-	--L.thundercaller = "Valarjar Thundercaller"
-	--L.mystic = "Valarjar Mystic"
-	--L.aspirant = "Valarjar Aspirant"
+	L.olmyr = "启迪者奥米尔"
+	L.purifier = "瓦拉加尔净化者"
+	L.thundercaller = "瓦拉加尔唤雷者"
+	L.mystic = "瓦拉加尔秘法师"
+	L.aspirant = "瓦拉加尔候选者"
 end
