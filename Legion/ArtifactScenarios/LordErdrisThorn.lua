@@ -1,4 +1,5 @@
 --TO DO
+--add stages and descriptions
 --had only 1 go on last phase to get ID's and timers so could do a rerun to see if last phase works correctly
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -79,10 +80,10 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg, npcname)
 end
 
 function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, spellName, _, castGUID, spellId)
-		if spellId == 235984 then -- Mana Sting
-			self:CDBar(235984, 14.6)
-			self:Message(spellId, "Important", "Alert", CL.casting:format(spellName))
-		end
+	if spellId == 235984 then -- Mana Sting
+		self:CDBar(235984, 14.6)
+		self:Message(spellId, "Important", "Alert", CL.casting:format(spellName))
+	end
 end
 
 function mod:ArcaneBlitz(args)
