@@ -15,6 +15,7 @@ mod.otherMenu = 1021 -- Broken Shore
 local screamTimers = {8.4, 46.1, 19.4, 37.7, 15.8} -- This is not correct
 local screamCount = 1
 local burstCount = 1
+local deathCount = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -75,12 +76,13 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 
-	--self:Death("Win", 117230)
+	self:Death("Deaths", 117230, 117484)
 end
 
 function mod:OnEngage()
 	screamCount = 1
 	burstCount = 1
+	deathCount = 0
 
 	self:OpenInfo(238471, L.remaining)
 	self:SetInfo(238471, 1, 9)
@@ -136,3 +138,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		self:CDBar("rupture", 11, "X", L.rupture_icon)
 	end
 end
+
+function mod:Deaths()
+	deathCount = deathCount + 1
+	if deathCount > 1 then
+		self:Win()
+	end
+end
+
