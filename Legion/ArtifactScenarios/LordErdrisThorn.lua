@@ -109,7 +109,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellName, _, castGUID, spellId)
 	if castCollector[castGUID] then return end
 	if spellId == 237191 then -- Fel Stomp
 		castCollector[castGUID] = true
-		self:Message(args.spellId, "Urgent", "Alarm", CL.cast:format(237191))
+		self:Message(spellId, "Urgent", "Alarm", CL.cast:format(spellName))
 		self:CDBar(237191, 11)
 	end
 end
