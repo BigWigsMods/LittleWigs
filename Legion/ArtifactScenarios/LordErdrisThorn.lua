@@ -1,6 +1,7 @@
 --TO DO
 --add stages and descriptions
 --had only 1 go on last phase to get ID's and timers so could do a rerun to see if last phase works correctly
+--could add stage descriptions
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -14,6 +15,11 @@ mod:RegisterEnableMob(118529, -- Lord Erdris Thorn
 	118489 -- Corrupted Risen Soldier
 )
 mod.otherMenu = 1021 -- Broken Shore
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+local castCollector = {}
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -69,8 +75,9 @@ end
 --
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg, npcname)
-	if msg:find(L.warmup_trigger, nil, true) then
+	if msg:find(L.warmup_trigger, nil, true) then -- starting sequence
 		self:Bar("warmup", 29, CL.active, "spell_mage_focusingcrystal")
+		wipe(castCollector)
 	end
 
 	if msg:find(L.warmup_trigger2, nil, true) then
@@ -80,7 +87,9 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg, npcname)
 end
 
 function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, spellName, _, castGUID, spellId)
+	if castCollector[castGUID] then return end
 	if spellId == 235984 then -- Mana Sting
+		castCollector[castGUID] = true
 		self:CDBar(235984, 14.6)
 		self:Message(spellId, "Important", "Alert", CL.casting:format(spellName))
 	end
@@ -95,21 +104,24 @@ function mod:ArcaneBlitz(args)
 		end
 	end
 end
+
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellName, _, castGUID, spellId)
+	if castCollector[castGUID] then return end
 	if spellId == 237191 then -- Fel Stomp
-		self:Message(args.spellId, "Urgent", "Alarm", CL.cast:format(237191, amount))
+		castCollector[castGUID] = true
+		self:Message(args.spellId, "Urgent", "Alarm", CL.cast:format(237191)
 		self:CDBar(237191, 11)
 	end
 end
 
 function mod:IgniteSoul(args)
 	self:CDBar(args.spellId, 18)
-	self:Message(args.spellId, "Important", "Alarm", CL.cast:format(args.spellName))
+	self:Message(args.spellId, "Important", "Warning", CL.cast:format(args.spellName))
 end
 
 function mod:KnifeDance(args)
 	self:CDBar(args.spellId, 23)
-	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
 end
 
 function mod:FrenziedAssault(args)
