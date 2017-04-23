@@ -28,6 +28,7 @@ if L then
 
 	-- Triggers
 	L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
+	L.win_trigger = "So be it. You will not stand in our way any longer."
 
 	-- Engage / Options
 	L.engage_message = "Highlord Kruul's Challenge Engaged!"
@@ -71,7 +72,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "SayTriggers")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "NetherStorm", 240790)
@@ -84,7 +85,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TwistedReflections", 234676)
 
 	self:Death("KruulIncoming", 117933) -- Inquisitor Variss
-	self:Death("Win", 117198) -- Highlord Kruul, Uncomfirmed
+	self:Death("Win", 117198) -- Highlord Kruul, fallback win condition
 end
 
 function mod:OnEngage()
@@ -100,9 +101,11 @@ end
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
+function mod:SayTriggers(_, msg)
 	if msg == L.warmup_trigger then
 		self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
+	or msg == L.win_trigger then -- Fallback is Kruul Death
+		self:Win()
 	end
 end
 
@@ -116,7 +119,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		self:CDBar("nether_aberration", 35, CL.count:format(spellName, aberrationCounter), L.nether_aberration_icon)
 	elseif spellId == 235112 then -- Smoldering Infernal Summon
 		self:Message("smoldering_infernal", "Attention", "Info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
-		self:CDBar("smoldering_infernal", 51, L.smoldering_infernal, L.smoldering_infernal_icon)
+		self:CDBar("smoldering_infernal", 65, L.smoldering_infernal, L.smoldering_infernal_icon)
 	elseif spellId == 234920 then -- Shadow Sweep
 		self:Message(spellId, "Attention", "Info", CL.incoming:format(spellName))
 		self:Bar(spellId, 20.7)
@@ -170,7 +173,7 @@ end
 
 function mod:AnnihilateSuccess(args)
 	annihilateCounter = annihilateCounter + 1
-	self:CDBar(args.spellId, 31, CL.count:format(args.spellName, annihilateCounter))
+	self:CDBar(args.spellId, 27, CL.count:format(args.spellName, annihilateCounter))
 end
 
 function mod:TwistedReflections(args)
