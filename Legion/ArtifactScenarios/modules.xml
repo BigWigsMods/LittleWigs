@@ -5,5 +5,6 @@
 <Script file="Kruul.lua"/>
 <Script file="Raest.lua"/>
 <Script file="Xylem.lua"/>
+<Script file="LordErdrisThorn.lua"/>
 
 </Ui>
