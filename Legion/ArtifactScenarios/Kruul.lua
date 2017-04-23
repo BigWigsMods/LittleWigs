@@ -104,7 +104,7 @@ end
 function mod:SayTriggers(_, msg)
 	if msg == L.warmup_trigger then
 		self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
-	or msg == L.win_trigger then -- Fallback is Kruul Death
+	elseif msg == L.win_trigger then -- Fallback is Kruul Death
 		self:Win()
 	end
 end
