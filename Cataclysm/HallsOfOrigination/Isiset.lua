@@ -21,7 +21,8 @@ if L then
 --@do-not-package@
 L["split"] = "Isiset Split"
 L["split_desc"] = "Warn when Isiset Split."
-L["split_message"] = "Isiset Split soon!"--@localization(locale="enUS", namespace="Origination/Isiset", format="lua_additive_table", handle-unlocalized="ignore")@
+L["split_message"] = "Isiset Split soon!"--@end-do-not-package@
+--@localization(locale="enUS", namespace="Origination/Isiset", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
 

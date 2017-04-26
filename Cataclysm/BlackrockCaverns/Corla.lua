@@ -14,7 +14,8 @@ mod.toggleOptions = {
 --  Localization
 
 local L = mod:NewLocale("enUS", true)
-if L then--@do-not-package@
+if L then
+--@do-not-package@
 L["evolution_stacks"] = "YOU have %s stacks of Evolution"--@end-do-not-package@
 --@localization(locale="enUS", namespace="BRC/Corla", format="lua_additive_table", handle-unlocalized="ignore")@
 end
