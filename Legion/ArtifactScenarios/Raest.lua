@@ -26,6 +26,14 @@ if L then
 	L.handFromBeyond = "Hand from Beyond"
 	L.handFromBeyond_icon = 229022 -- Grasping Hand
 
+	L.rune = 236468
+	L.rune_desc = "Places a Rune of Summoning on the ground. If left unsoaked a Thing of Nightmare will spawn."
+	L.rune_icon = 236468
+
+	L.thing = 236470
+	L.thing_desc = "{236461}"
+	L.thing_icon = 236470
+
 	L.killed = "%s killed"
 
 	L.warmup_text = "Karam Magespear Active"
@@ -45,13 +53,19 @@ function mod:GetOptions()
 		235308, -- Purgatory
 		"handFromBeyond",
 		{235578, "FLASH"}, -- Grasp from Beyond
+		{"rune", "FLASH"},
+		"thing",
+	}, {
+		["warmup"] = "general",
+		["handFromBeyond"] = CL.stage:format(2),
+		["rune"] = CL.stage:format(3),
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4", "boss5")
 
 	self:Log("SPELL_CAST_START", "Purgatory", 235308)
 	self:Log("SPELL_AURA_REMOVED", "PurgatoryRemoved", 235308)
@@ -85,6 +99,13 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		if phase == 2 then
 			self:Bar("handFromBeyond", 9, L.handFromBeyond, L.handFromBeyond_icon) -- Grasp from Beyond
 		end
+	elseif spellId == 236468 then -- Rune of Summoning
+		self:Message("rune", "Attention", "Warning", spellName, spellId)
+		self:Flash("rune")
+		self:CDBar("rune", 37, spellName, spellId)
+		self:Bar("thing", 11, self:SpellName(L.thing), L.thing_icon)
+	elseif spellId == 236470 then -- Thing of Nightmares
+		self:Message("thing", "Important", "Alarm", spellName, spellId)
 	end
 end
 
@@ -92,6 +113,9 @@ function mod:Purgatory(args)
 	self:Message(args.spellId, "Positive", "Info")
 	phase = phase + 1
 	self:CastBar(args.spellId, 38.3)
+	if phase == 3 then
+		self:Bar("rune", 24, self:SpellName(L.rune), L.rune_icon)
+	end
 end
 
 function mod:PurgatoryRemoved(args)
