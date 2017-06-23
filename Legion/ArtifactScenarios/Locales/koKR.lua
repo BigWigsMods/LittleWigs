@@ -22,7 +22,7 @@ if L then
 	L.name = "라이스트 메이지스피어"
 
 	L.handFromBeyond = "저 너머의 손"
-	
+
 	L.rune_desc = "지면에 소환의 룬이 생성됩니다. 사라질 때까지 악몽의 피조물이 생성됩니다."
 
 	L.killed = "%s 처치"

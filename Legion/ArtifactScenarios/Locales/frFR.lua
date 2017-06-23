@@ -23,6 +23,8 @@ if L then
 
 	--L.handFromBeyond = "Hand from Beyond"
 
+	--L.rune_desc = "Places a Rune of Summoning on the ground. If left unsoaked a Thing of Nightmare will spawn."
+
 	--L.killed = "%s killed"
 
 	--L.warmup_text = "Karam Magespear Active"
