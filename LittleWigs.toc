@@ -7,7 +7,7 @@
 ## Notes-deDE: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-frFR: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
-## Notes-koKR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-koKR: 5인 던전 & 시나리오의 우두머리 경보입니다.
 ## Notes-ruRU: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-ptBR: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-esES: Boss warnings for 5-man dungeons & scenarios.
