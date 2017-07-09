@@ -47,6 +47,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DinnerBell", 227987)
 	self:Log("SPELL_CAST_START", "KaraKazham", 232153)
 
+	self:RegisterEvent("BOSS_KILL")
+
 	self:Death("AddsKilled",
 		114329, -- Luminore
 		114522, -- Mrs. Cauldrons
@@ -109,11 +111,16 @@ function mod:AddsKilled(args)
 	addsKilled = addsKilled + 1
 	self:Message("stages", "Neutral", "Long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
 
-	local mobId = self:MobId(args.destGUID)
-	if mobId == 114329 then -- Luminore
+	if args.mobId == 114329 then -- Luminore
 		self:StopBar(228025) -- Heat Wave
-	elseif mobId == 114522 then -- Mrs. Cauldrons
+	elseif args.mobId == 114522 then -- Mrs. Cauldrons
 		self:StopBar(228019) -- Leftovers
-	--elseif mobId == 114330 then  -- Babblet
+	--elseif args.mobId == 114330 then  -- Babblet
+	end
+end
+
+function mod:BOSS_KILL(_, id)
+	if id == 1957 then
+		self:Win()
 	end
 end

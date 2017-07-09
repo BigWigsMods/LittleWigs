@@ -34,6 +34,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ThunderRitualApplied", 227777)
 	self:Log("SPELL_AURA_REMOVED", "ThunderRitualRemoved", 227777)
 	self:Log("SPELL_CAST_START", "WashAway", 227783)
+
+	self:RegisterEvent("BOSS_KILL")
 end
 
 function mod:OnEngage()
@@ -99,4 +101,10 @@ end
 function mod:WashAway(args)
 	self:Message(args.spellId, "Urgent", "Info")
 	self:Bar(args.spellId, 23)
+end
+
+function mod:BOSS_KILL(_, id)
+	if id == 1957 then
+		self:Win()
+	end
 end

@@ -27,6 +27,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "WondrousRadiance", 227410)
 	self:Log("SPELL_CAST_START", "MagicMagnificent", 227776)
 	self:Log("SPELL_CAST_SUCCESS", "SummonAssistants", 227477)
+
+	self:RegisterEvent("BOSS_KILL")
 end
 
 function mod:OnEngage()
@@ -58,4 +60,10 @@ end
 function mod:SummonAssistants(args)
 	self:Message(args.spellId, "Urgent", "Alert")
 	self:CDBar(args.spellId, 32.5)
+end
+
+function mod:BOSS_KILL(_, id)
+	if id == 1957 then
+		self:Win()
+	end
 end
