@@ -6,12 +6,12 @@ local mod, CL = BigWigs:NewBoss("Darkheart Thicket Trash", 1067)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	95771,  -- [[Dreadsoul Ruiner]]
-	95766,  -- [[Crazed Razorbeak]]
-	95779,  -- [[Festerhide Grizzly]]
-	100531, -- [[Bloodtainted Fury]]
-	113398, -- [[Bloodtainted Fury]]
-	100527  -- [[Dreadfire Imp]]
+	95771,  -- Dreadsoul Ruiner
+	95766,  -- Crazed Razorbeak
+	95779,  -- Festerhide Grizzly
+	100531, -- Bloodtainted Fury
+	113398, -- Bloodtainted Fury
+	100527  -- Dreadfire Imp
 )
 
 --------------------------------------------------------------------------------
@@ -34,21 +34,21 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		-- [[Dreadsoul Ruiner]]
+		--[[ Dreadsoul Ruiner ]]--
 		200658, -- Star Shower
 
-		-- [[Crazed Razorbeak]]
+		--[[ Crazed Razorbeak ]]--
 		200768, -- Propelling Charge
 
-		-- [[Festerhide Grizzly]]
+		--[[ Festerhide Grizzly ]]--
 		200580, -- Maddening Roar
 		218759, -- Corruption Pool
 
-		-- [[Bloodtainted Fury]]
+		--[[ Bloodtainted Fury ]]--
 		201226, -- Blood Assault
 		201272, -- Blood Bomb
 
-		-- [[Dreadfire Imp]]
+		--[[ Dreadfire Imp ]]--
 		201399, -- Dread Inferno
 	}, {
 		[200658] = L.ruiner,
@@ -62,16 +62,16 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	-- [[Dreadsoul Ruiner, Dreadfire Imp]]
+	--[[ Dreadsoul Ruiner, Dreadfire Imp ]]--
 	self:Log("SPELL_CAST_START", "Interrupts", 200658, 201399)
 
-	-- [[Crazed Razorbeak, Festerhide Grizzly]]
+	--[[ Crazed Razorbeak, Festerhide Grizzly ]]--
 	self:Log("SPELL_CAST_START", "Casts", 200768, 200580)
 
-	-- [[Bloodtainted Fury]]
+	--[[ Bloodtainted Fury ]]--
 	self:Log("SPELL_CAST_START", "BloodBombAssault", 201226, 201272)
 
-	-- [[Festerhide Grizzly]]
+	--[[ Festerhide Grizzly ]]--
 	self:Log("SPELL_AURA_APPLIED", "CorruptionPool", 218759)
 	self:Log("SPELL_PERIODIC_DAMAGE", "CorruptionPool", 218759)
 	self:Log("SPELL_PERIODIC_MISSED", "CorruptionPool", 218759)
@@ -81,17 +81,17 @@ end
 -- Event Handlers
 --
 
--- [[Dreadsoul Ruiner, Dreadfire Imp]]
+-- Dreadsoul Ruiner, Dreadfire Imp
 function mod:Interrupts(args)
 	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
--- [[Crazed Razorbeak, Festerhide Grizzly, Bloodtainted Fury]]
+-- Crazed Razorbeak, Festerhide Grizzly, Bloodtainted Fury
 function mod:Casts(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 end
 
--- [[Festerhide Grizzly]]
+-- Festerhide Grizzly
 do
 	local prev = 0
 	function mod:CorruptionPool(args)
@@ -103,7 +103,7 @@ do
 	end
 end
 
--- [[Bloodtainted Fury]]
+-- Bloodtainted Fury
 function mod:BloodBombAssault(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 end
