@@ -92,6 +92,11 @@ function mod:PropellingCharge(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 end
 
+-- Festerhide Grizzly
+function mod:MaddeningRoar(args)
+	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
 -- Bloodtainted Fury
 function mod:BloodAssault(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
