@@ -114,4 +114,12 @@ if L then
 	--L["The spy enjoys darker colored vests... like the night."] = 12
 	--L["Rumor has it the spy is avoiding light colored clothing to try and blend in more."] = 12
 	--L["The spy definitely prefers darker clothing."] = 12
+
+	-- No Potions
+	--L["I heared the spy is not carrying any potions around."] = 13
+	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+
+	-- Book
+	--L["I heard the spy always has a book of written secrets at the belt."] = 14
+	--L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
 end

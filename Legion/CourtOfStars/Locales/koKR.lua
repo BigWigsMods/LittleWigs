@@ -114,4 +114,12 @@ if L then
 	L["그 첩자는 어두운 색 조끼를 즐겨 입어요... 밤과 같은 색이죠."] = 12
 	L["소문에 그 첩자는 눈에 띄지 않으려고 밝은색 옷은 피한다더군요."] = 12
 	L["그 첩자는 분명 어두운 옷을 선호합니다."] = 12
+
+	-- No Potions
+	--L["I heared the spy is not carrying any potions around."] = 13
+	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+
+	-- Book
+	--L["I heard the spy always has a book of written secrets at the belt."] = 14
+	--L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
 end
