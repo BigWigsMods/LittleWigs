@@ -44,6 +44,8 @@ if L then
 	L.hints[10] = "여자"
 	L.hints[11] = "밝은색 조끼"
 	L.hints[12] = "어두운색 조끼"
+	--L.hints[13] = "No Potions"
+	--L.hints[14] = "Book"
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--

@@ -44,6 +44,8 @@ if L then
 	--L.hints[10] = "Female"
 	--L.hints[11] = "Light Vest"
 	--L.hints[12] = "Dark Vest"
+	--L.hints[13] = "No Potions"
+	--L.hints[14] = "Book"
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
