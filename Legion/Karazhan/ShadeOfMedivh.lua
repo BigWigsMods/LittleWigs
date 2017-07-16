@@ -66,8 +66,8 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_POWER()
-	local nextSpecial = (100-(UnitPower("boss1")/(UnitPowerMax("boss1"))*100))/3.3
+function mod:UNIT_POWER(unit)
+	local nextSpecial = (100-(UnitPower(unit)/(UnitPowerMax(unit))*100))/3.3
 	if nextSpecial > 0 then
 		local spellName = self:SpellName(L.focused_power)
 		if math.abs(nextSpecial - self:BarTimeLeft(spellName)) > 1 then
