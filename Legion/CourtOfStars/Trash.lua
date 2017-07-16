@@ -427,11 +427,24 @@ function mod:EyeStorm(args)
 	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
 end
 
-function mod:PickingUp(args)
-	self:TargetMessage(args.spellId, args.sourceName, "Neutral", "Info")
+do
+	local prev = 0
+	function mod:PickingUp(args)
+		local t = GetTime()
+		if t-prev > 10 then
+			prev = t
+			self:TargetMessage(args.spellId, args.sourceName, "Neutral", "Info")
+		end
+	end
 end
 
-function mod:PickingUpSuccess(args)
-	self:StopBar(args.spellId, args.sourceName)
-	self:TargetMessage(args.spellId, args.sourceName, "Positive", "Long", args.destName)
+do
+	local prev = 0
+	function mod:PickingUpSuccess(args)
+		local t = GetTime()
+		if t-prev > 10 then
+			prev = t
+			self:TargetMessage(args.spellId, args.sourceName, "Positive", "Long", args.destName)
+		end
+	end
 end
