@@ -29,7 +29,8 @@ if L then
 
 	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	--L.spyFound = "Spy found by %s!"
-	--L.spyFoundPattern = "Now now, let's not be hasty (.+). Why don't you follow me so we can talk about this in a more private setting..." -- This translation has to match the ingame message the spy says when found
+	--L.spyFoundChat = "I found the spy!"
+	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	--L.hints = {}
 	--L.hints[1] = "Cape"

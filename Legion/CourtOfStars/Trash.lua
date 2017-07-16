@@ -78,7 +78,8 @@ if L then
 
 	L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	L.spyFound = "Spy found by %s!"
-	L.spyFoundPattern = "Now now, let's not be hasty (.+). Why don't you follow me so we can talk about this in a more private setting..."
+	L.spyFoundChat = "I found the spy!"
+	L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	L.hints = {}
 	L.hints[1] = "Cape"
@@ -302,8 +303,10 @@ do
 		clueCount = 0
 	end
 
-	local function sendChatMessage(self, msg)
-		SendChatMessage(msg, IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
+	local function sendChatMessage(msg)
+		if IsInGroup() then
+			SendChatMessage(("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
+		end
 	end
 
 	local function addClue(self, clue)
@@ -350,21 +353,24 @@ do
 					if L[clue] then
 						addClue(self, L[clue])
 						mod:Sync(L[clue])
-						sendChatMessage(self, ("[LittleWigs] %s"):format(L.hints[L[clue]]))
+						sendChatMessage(L.hints[L[clue]])
 					else
-						sendChatMessage(self, ("[LittleWigs] %s"):format(clue))
-						BigWigs:Print(format("New clue discovered '%s' with locale '%s', tell the authors.", clue, GetLocale()))
+						sendChatMessage(clue)
+						local gl = GetLocale()
+						BigWigs:Print(("New clue discovered '%s' with locale '%s', tell the authors."):format(clue, gl))
 					end
 				end
 			end
 		end
 	end
 
-	function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-		local player = msg:match(L.spyFoundPattern)
-		if player then
-			self:Message("spy_event_helper", "Positive", "Info", L.spyFound:format(self:ColorName(player)), false)
+	function mod:CHAT_MSG_MONSTER_SAY(_, msg, _, _, _, target)
+		if msg:find(L.spyFoundPattern) then
+			self:Message("spy_event_helper", "Positive", "Info", L.spyFound:format(self:ColorName(target)), false)
 			self:CloseInfo("spy_event_helper")
+			if target == self:UnitName("player") then
+				sendChatMessage(L.spyFoundChat)
+			end
 		end
 	end
 end
