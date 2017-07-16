@@ -29,7 +29,7 @@ if L then
 
 	L.clueFound = "단서 발견 (%d/5): |cffffffff%s|r"
 	L.spyFound = "%s|1이;가; 첩자 발견!"
-	--L.spyFoundChat = "I found the spy!"
+	L.spyFoundChat = "첩자 찾았어요!"
 	L.spyFoundPattern = "자, 너무 그렇게 다그치지 마십시오" -- 자, 너무 그렇게 다그치지 마십시오, [player] 님. 어디 조용한 곳으로 가서 다시 얘기해 보는 게 어떻겠습니까? 따라오시죠...
 
 	L.hints = {}
