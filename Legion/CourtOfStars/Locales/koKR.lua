@@ -1,117 +1,117 @@
 local L = BigWigs:NewBossLocale("Court of Stars Trash", "koKR")
 if not L then return end
 if L then
-	--L.Guard = "Duskwatch Guard"
-	--L.Construct = "Guardian Construct"
-	--L.Enforcer = "Felbound Enforcer"
-	--L.Hound = "Legion Hound"
-	--L.Gerenth = "Gerenth the Vile"
-	--L.Jazshariu = "Jazshariu"
-	--L.Imacutya = "Imacutya"
-	--L.Baalgar = "Baalgar the Watchful"
-	--L.Inquisitor = "Watchful Inquisitor"
-	--L.BlazingImp = "Blazing Imp"
-	--L.Energy = "Bound Energy"
-	--L.Manifestation = "Arcane Manifestation"
-	--L.Wyrm = "Mana Wyrm"
-	--L.Arcanist = "Duskwatch Arcanist"
-	--L.InfernalImp = "Infernal Imp"
-	--L.Malrodi = "Arcanist Malrodi"
-	--L.Velimar = "Velimar"
-	--L.ArcaneKeys = "Arcane Keys"
-	--L.clues = "Clues"
+	L.Guard = "황혼감시대 경비병"
+	L.Construct = "수호의 피조물"
+	L.Enforcer = "지옥결속 집행자"
+	L.Hound = "군단 지옥사냥개"
+	L.Gerenth = "흉측한 게렌스"
+	L.Jazshariu = "자즈샤리우"
+	L.Imacutya = "이마쿠티아"
+	L.Baalgar = "경계자 바알가르"
+	L.Inquisitor = "감시하는 심문관"
+	L.BlazingImp = "이글거리는 임프"
+	L.Energy = "속박된 마력"
+	L.Manifestation = "비전 현신"
+	L.Wyrm = "마나 지룡"
+	L.Arcanist = "황혼감시대 비전술사"
+	L.InfernalImp = "지옥불 임프"
+	L.Malrodi = "비전술사 말로디"
+	L.Velimar = "벨리마르"
+	L.ArcaneKeys = "비전 열쇠"
+	L.clues = "단서"
 
-	--L.use_buff_items = "Instantly use buff items"
-	--L.use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.use_buff_items = "강화 효과 아이템 즉시 사용"
+	L.use_buff_items_desc = "이 옵션을 사용하면 던전 내 곳곳에 있는 강화 효과 아이템을 즉시 사용합니다. 두번째 우두머리 전의 수호병을 유인하는 아이템은 사용하지 않습니다."
 
-	--L.spy_event_helper = "Spy Event Helper"
-	--L.spy_event_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	L.spy_event_helper = "첩자 이벤트 도우미"
+	L.spy_event_helper_desc = "당신의 파티가 수집한 첩자에 대한 모든 단서를 표시하는 정보 상자를 표시합니다. 단서들은 파티원들에게 대화로도 전송됩니다."
 
-	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
-	--L.spyFound = "Spy found by %s!"
-	--L.spyFoundPattern = "Now now, let's not be hasty (.+). Why don't you follow me so we can talk about this in a more private setting..." -- This translation has to match the ingame message the spy says when found
+	L.clueFound = "단서 발견 (%d/5): |cffffffff%s|r"
+	L.spyFound = "%s|1이;가; 첩자 발견!"
+	L.spyFoundPattern = "자, 너무 그렇게 다그치지 마십시오, (.+) 님. 어디 조용한 곳으로 가서 다시 얘기해 보는 게 어떻겠습니까? 따라오시죠..." -- This translation has to match the ingame message the spy says when found
 
-	--L.hints = {}
-	--L.hints[1] = "Cape"
-	--L.hints[2] = "No Cape"
-	--L.hints[3] = "Pouch"
-	--L.hints[4] = "Potions"
-	--L.hints[5] = "Long Sleeves"
-	--L.hints[6] = "Short Sleeves"
-	--L.hints[7] = "Gloves"
-	--L.hints[8] = "No Gloves"
-	--L.hints[9] = "Male"
-	--L.hints[10] = "Female"
-	--L.hints[11] = "Light Vest"
-	--L.hints[12] = "Dark Vest"
+	L.hints = {}
+	L.hints[1] = "망토"
+	L.hints[2] = "망토 없음"
+	L.hints[3] = "주머니"
+	L.hints[4] = "물약"
+	L.hints[5] = "긴 소매"
+	L.hints[6] = "짧은 소매"
+	L.hints[7] = "장갑"
+	L.hints[8] = "장갑 없음"
+	L.hints[9] = "남자"
+	L.hints[10] = "여자"
+	L.hints[11] = "밝은색 조끼"
+	L.hints[12] = "어두운색 조끼"
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
 
 	-- Cape
-	--L["I heard the spy enjoys wearing capes."] = 1
-	--L["Someone mentioned the spy came in earlier wearing a cape."] = 1
+	L["그 첩자는 망토를 즐겨 입는다고 들었습니다."] = 1
+	L["그 첩자가 망토를 걸친 모습을 봤다는 사람이 있었습니다."] = 1
 
 	-- No Cape
-	--L["I heard that the spy left their cape in the palace before coming here."] = 2
-	--L["I heard the spy dislikes capes and refuses to wear one."] = 2
+	L["제가 듣기로는 그 첩자가 궁전에 망토를 벗어두고 여기 왔다고 합니다."] = 2
+	L["그 첩자는 망토를 싫어해서 절대로 입지 않는다고 합니다."] = 2
 
 	-- Pouch
-	--L["A friend said the spy loves gold and a belt pouch filled with it."] = 3
-	--L["I heard the spy's belt pouch is filled with gold to show off extravagance."] = 3
-	--L["I heard the spy carries a magical pouch around at all times."] = 3
-	--L["I heard the spy's belt pouch is lined with fancy threading."] = 3
+	L["제 친구가 말하길, 그 첩자는 금을 너무 좋아해서 허리띠 주머니에도 금이 가득 들어 있다고 합니다."] = 3
+	L["그 첩자는 어찌나 사치스러운지 허리띠에 달린 주머니에 금화를 잔뜩 넣어서 다닌다고 합니다."] = 3
+	L["그 첩자는 마법의 주머니를 항상 가지고 다닌다고 들었습니다."] = 3
+	L["그 첩자는 허리띠 주머니도 휘황찬란한 자수로 꾸며져 있다고 합니다."] = 3
 
 	-- Potions
-	--L["I heard the spy brought along some potions... just in case."] = 4
-	--L["I'm pretty sure the spy has potions at the belt."] = 4
-	--L["I heard the spy brought along potions, I wonder why?"] = 4
-	--L["I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."] = 4
+	L["그 첩자는 만약을 대비해... 물약 몇 개를 가져왔다고 합니다."] = 4
+	L["그 첩자는 허리띠에 물약을 매달고 있을 게 분명합니다."] = 4
+	L["그 첩자는 물약을 가지고 다닌데요. 이유가 뭘까요?"] = 4
+	L["이 얘기를 깜빡할 뻔했네요... 그 첩자는 연금술사로 가장해 허리띠에 물약을 달고 다닌다고 합니다."] = 4
 
 	-- Long Sleeves
-	--L["I just barely caught a glimpse of the spy's long sleeves earlier in the evening."] = 5
-	--L["I heard the spy's outfit has long sleeves tonight."] = 5
-	--L["Someone said the spy is covering up their arms with long sleeves tonight."] = 5
-	--L["A friend of mine mentioned the spy has long sleeves on."] = 5
+	L["초저녁에 첩자를 언뜻 보았는데... 긴 소매 옷을 입었던 것 같습니다."] = 5
+	L["오늘 밤 그 첩자는 소매가 긴 옷을 입었다고 들었어요."] = 5
+	L["오늘 밤 첩자는 긴 소매 옷을 입었다고 하더군요."] = 5
+	L["제 친구 말로는, 첩자가 긴 소매 옷을 입었다고 합니다."] = 5
 
 	-- Short Sleeves
-	--L["I heard the spy enjoys the cool air and is not wearing long sleeves tonight."] = 6
-	--L["A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."] = 6
-	--L["Someone told me the spy hates wearing long sleeves."] = 6
-	--L["I heard the spy wears short sleeves to keep their arms unencumbered."] = 6
+	L["그 첩자는 시원한 걸 좋아해서 오늘 밤 짧은 소매를 입고 왔다고 들었습니다."] = 6
+	L["제 친구가 그 첩자가 입은 옷을 봤는데, 긴 소매는 아니었다는군요!"] = 6
+	L["그 첩자는 소매가 긴 옷을 입는 걸 정말 싫어한다고 합니다."] = 6
+	L["그 첩자는 팔을 빠르게 움직이려고 짧은 소매 옷만 고집한다고 합니다."] = 6
 
 	-- Gloves
-	--L["I heard the spy always dons gloves."] = 7
-	--L["There's a rumor that the spy always wears gloves."] = 7
-	--L["Someone said the spy wears gloves to cover obvious scars."] = 7
-	--L["I heard the spy carefully hides their hands."] = 7
+	L["그 첩자는 항상 장갑을 낀다고 하더군요."] = 7
+	L["그 첩자는 항상 장갑을 낀다고 들었습니다."] = 7
+	L["그 첩자는 손에 있는 선명한 흉터를 가리려고 장갑을 낀다고 합니다."] = 7
+	L["제가 듣기로는, 그 첩자는 항상 신경 써서 손을 가린다고 합니다."] = 7
 
 	-- No Gloves
-	--L["There's a rumor that the spy never has gloves on."] = 8
-	--L["I heard the spy dislikes wearing gloves."] = 8
-	--L["I heard the spy avoids having gloves on, in case some quick actions are needed."] = 8
-	--L["You know... I found an extra pair of gloves in the back room. The spy is likely to be bare handed somewhere around here."] = 8
+	L["그 첩자는 장갑을 끼는 일이 없다고 하더군요."] = 8
+	L["그 첩자는 장갑을 끼는 걸 싫어한다고 들었습니다."] = 8
+	L["그 첩자는 장갑을 끼지 않는답니다. 위급한 순간에 걸리적거려서 그렇겠지요."] = 8
+	L["안쪽 방에서 장갑 한 켤레를 발견했습니다. 첩자는 분명히 이 주변에 장갑을 끼지 않은 사람중 하나일 거에요."] = 8
 
 	-- Male
-	--L["A guest said she saw him entering the manor alongside the Grand Magistrix."] = 9
-	--L["I heard somewhere that the spy isn't female."] = 9
-	--L["I heard the spy is here and he's very good looking."] = 9
-	--L["One of the musicians said he would not stop asking questions about the district."] = 9
+	L["한 남자가 대마법학자와 나란히 저택에 들어오는 걸 봤다는 얘기가 있더군요."] = 9
+	L["첩자가 여성이 아니라는 얘기를 들었습니다."] = 9
+	L["첩자가 나타났다고 합니다. 그 남자는 대단히 호감형이라고도 하더군요."] = 9
+	L["한 연주자가 말하길, 그 남자가 끊임없이 그 지구에 관한 질문을 늘어놨다고 합니다."] = 9
 
 	-- Female
-	--L["A guest saw both her and Elisande arrive together earlier."] = 10
-	--L["I hear some woman has been constantly asking about the district..."] = 10
-	--L["Someone's been saying that our new guest isn't male."] = 10
-	--L["They say that the spy is here and she's quite the sight to behold."] = 10
+	L["아까 한 방문객이 그녀와 엘리산드가 함께 도착하는 걸 보았답니다."] = 10
+	L["어떤 여자가 귀족 지구에 관해 계속 묻고 다닌다고 하던데..."] = 10
+	L["그 불청객은 남자가 아니라는 말을 들었습니다."] = 10
+	L["첩자가 나타났다고 합니다. 그 여자는 아주 미인이라고도 하더군요."] = 10
 
 	-- Light Vest
-	--L["The spy definitely prefers the style of light colored vests."] = 11
-	--L["I heard that the spy is wearing a lighter vest to tonight's party."] = 11
-	--L["People are saying the spy is not wearing a darker vest tonight."] = 11
+	L["그자는 첩자인데도 밝은색 조끼를 즐겨 입는다고 합니다."] = 11
+	L["오늘 밤 파티에 그 첩자는 밝은색 조끼를 입고 올 거라는 말을 들었습니다."] = 11
+	L["사람들이 그러는데, 오늘 밤 그 첩자는 어두운 색 조끼를 입지 않았다고 합니다."] = 11
 
 	-- Dark Vest
-	--L["I heard the spy's vest is a dark, rich shade this very night."] = 12
-	--L["The spy enjoys darker colored vests... like the night."] = 12
-	--L["Rumor has it the spy is avoiding light colored clothing to try and blend in more."] = 12
-	--L["The spy definitely prefers darker clothing."] = 12
+	L["오늘 밤 그 첩자는 어둡고 짙은 색의 조끼를 입었다고 합니다."] = 12
+	L["그 첩자는 어두운 색 조끼를 즐겨 입어요... 밤과 같은 색이죠."] = 12
+	L["소문에 그 첩자는 눈에 띄지 않으려고 밝은색 옷은 피한다더군요."] = 12
+	L["그 첩자는 분명 어두운 옷을 선호합니다."] = 12
 end
