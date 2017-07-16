@@ -44,8 +44,8 @@ if L then
 	L.hints[10] = "여자"
 	L.hints[11] = "밝은색 조끼"
 	L.hints[12] = "어두운색 조끼"
-	--L.hints[13] = "No Potions"
-	--L.hints[14] = "Book"
+	L.hints[13] = "물약 없음"
+	L.hints[14] = "책"
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
@@ -118,10 +118,10 @@ if L then
 	L["그 첩자는 분명 어두운 옷을 선호합니다."] = 12
 
 	-- No Potions
-	--L["I heared the spy is not carrying any potions around."] = 13
-	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+	L["그 첩자는 물약을 가지고 다니지 않는다고 합니다."] = 13
+	L["한 연주자가 그 첩자가 마지막 물약을 버리는 걸 봤다고 합니다. 그러니 더는 물약이 없겠죠."] = 13
 
 	-- Book
-	--L["I heard the spy always has a book of written secrets at the belt."] = 14
-	--L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
+	L["그 첩자의 허리띠 주머니에는 비밀이 잔뜩 적힌 책이 담겨 있다고 합니다."] = 14
+	L["소문을 들어 보니, 그 첩자는 독서를 좋아해서 항상 책을 가지고 다닌다고 합니다."] = 14
 end
