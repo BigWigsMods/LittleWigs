@@ -93,6 +93,8 @@ if L then
 	L.hints[10] = "Female"
 	L.hints[11] = "Light Vest"
 	L.hints[12] = "Dark Vest"
+	L.hints[13] = "No Potions"
+	L.hints[14] = "Book"
 
 	-- Cape
 	L["I heard the spy enjoys wearing capes."] = 1
@@ -160,6 +162,14 @@ if L then
 	L["The spy enjoys darker colored vests... like the night."] = 12
 	L["Rumor has it the spy is avoiding light colored clothing to try and blend in more."] = 12
 	L["The spy definitely prefers darker clothing."] = 12
+
+	-- No Potions
+	L["I heared the spy is not carrying any potions around."] = 13
+	L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+
+	-- Book
+	L["I heard the spy always has a book of written secrets at the belt."] = 14
+	L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
 end
 L = mod:GetLocale()
 
@@ -243,6 +253,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterMessage("BigWigs_BossComm")
+	self:RegisterMessage("DBM_AddonMessage") -- Catch DBM clues
 end
 
 --------------------------------------------------------------------------------
@@ -261,6 +272,23 @@ do
 		[106108] = true, -- Starlight Rose Brew: +HP & Mana reg
 		[105340] = true, -- Umbral Bloom: +10% Haste
 		[106110] = true, -- Waterlogged Scroll: +30% Movement speed
+	}
+
+	local dbmClues = {
+		["cape"] = 1,
+		["no cape"] = 2,
+		["pouch"] = 3,
+		["potions"] = 4,
+		["long sleeves"] = 5,
+		["short sleeves"] = 6,
+		["gloves"] = 7,
+		["no gloves"] = 8,
+		["male"] = 9,
+		["female"] = 10,
+		["light vest"] = 11,
+		["dark vest"] = 12,
+		["no potion"] = 13,
+		["book"] = 14,
 	}
 
 	local timer, knownClues, clueCount = nil, {}, 0
@@ -287,6 +315,12 @@ do
 			clueCount = clueCount + 1
 			self:SetInfo("spy_event_helper", (clueCount*2)-1, L.hints[clue])
 			self:Message("spy_event_helper", "Neutral", "Info", L.clueFound:format(clueCount, L.hints[clue]), false)
+		end
+	end
+
+	function mod:DBM_AddonMessage(_, _, prefix, _, _, event, clue)
+		if prefix == "M" and event == "CoS" and dbmClues[clue] then
+			self:BigWigs_BossComm(nil, dbmClues[clue])
 		end
 	end
 
@@ -319,7 +353,7 @@ do
 						sendChatMessage(self, ("[LittleWigs] %s"):format(L.hints[L[clue]]))
 					else
 						sendChatMessage(self, ("[LittleWigs] %s"):format(clue))
-						BigWigs:Print(format("New clue discovered '%s', tell the authors.", clue))
+						BigWigs:Print(format("New clue discovered '%s' with locale '%s', tell the authors.", clue, GetLocale()))
 					end
 				end
 			end
