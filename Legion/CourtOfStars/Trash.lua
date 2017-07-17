@@ -1,5 +1,5 @@
 
--- GLOBALS: BigWigs
+-- GLOBALS: BigWigs, table
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -67,6 +67,24 @@ if L then
 	L.Velimar = "Velimar"
 	L.ArcaneKeys = "Arcane Keys"
 	L.clues = "Clues"
+
+	L.InfernalTome = "Infernal Tome"
+	L.MagicalLantern = "Magical Lantern"
+	L.NightshadeRefreshments = "Nightshade Refreshments"
+	L.StarlightRoseBrew = "Starlight Rose Brew"
+	L.UmbralBloom = "Umbral Bloom"
+	L.WaterloggedScroll = "Waterlogged Scroll"
+	L.BazaarGoods = "Bazaar Goods"
+	L.LifesizedNightborneStatue = "Lifesized Nightborne Statue"
+	L.DiscardedJunk = "Discarded Junk"
+	L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
+
+	L.announce_buff_items = "Announce buff items"
+	L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	L.announce_buff_items_icon = 211080
+
+	L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
+	L.usableBy = "usable by"  -- Context: item is usable by someone
 
 	L.use_buff_items = "Instantly use buff items"
 	L.use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
@@ -180,6 +198,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		"announce_buff_items",
 		"use_buff_items",
 		{"spy_event_helper", "INFOBOX"},
 		209027, -- Quelling Strike (Duskwatch Guard)
@@ -210,6 +229,7 @@ function mod:GetOptions()
 		216006, -- Shadowflame Breath (Velimar)
 		214697, -- Picking Up (Arcane Keys)
 	}, {
+		["announce_buff_items"] = "general",
 		[209027] = L.Guard,
 		[225100] = L.Construct,
 		[211464] = L.Enforcer,
@@ -228,7 +248,7 @@ function mod:GetOptions()
 		[216110] = L.Malrodi,
 		[216000] = L.Velimar,
 		[214697] = L.ArcaneKeys,
-}
+	}
 end
 
 function mod:OnBossEnable()
@@ -253,6 +273,7 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
 	self:RegisterMessage("BigWigs_BossComm")
 	self:RegisterMessage("DBM_AddonMessage") -- Catch DBM clues
 end
@@ -262,18 +283,160 @@ end
 --
 
 do
-	local buffItems = {
+	local autoTalk = {
+		[107486] = true, -- Chatty Rumormonger
+		[106468] = true, -- Ly'leth Lunastre
 		[105729] = true, -- Signal Lantern: Boat at the start
-		[105157] = true, -- Arcane Power Conduit: Disables Constructs
-		[105117] = true, -- Flask of the Solemn Night: Poisons first boss
-		[105160] = true, -- Fel Orb: 10% Crit
-		[105831] = true, -- Infernal Tome: -10% Dmg taken
-		[106024] = true, -- Magical Lantern: +10% Dmg dealt
-		[105249] = true, -- Nightshade Refreshments: +25% HP
-		[106108] = true, -- Starlight Rose Brew: +HP & Mana reg
-		[105340] = true, -- Umbral Bloom: +10% Haste
-		[106110] = true, -- Waterlogged Scroll: +30% Movement speed
 	}
+
+	local buffItems = {
+		[105157] = { -- Arcane Power Conduit: Disables Constructs
+			["name"] = 210466,
+			["professions"] = {
+				[136243] = 100, -- Engineering
+			},
+			["races"] = {
+				["Gnome"] = true,
+				["Goblin"] = true,
+			},
+		},
+		[105117] = { -- Flask of the Solemn Night: Poisons first boss
+			["name"] = 207815,
+			["professions"] = {
+				[136240] = 100, -- Alchemy
+			},
+			["classes"] = {
+				["ROGUE"] = true,
+			},
+		},
+		[105160] = { -- Fel Orb: 10% Crit
+			["name"] = 208275,
+			["classes"] = {
+				["DEMONHUNTER"] = true,
+				["WARLOCK"] = true,
+				["PRIEST"] = true,
+				["PALADIN"] = true,
+			},
+		},
+		[105831] = { -- Infernal Tome: -10% Dmg taken
+			["name"] = L.InfernalTome,
+			["classes"] = {
+				["DEMONHUNTER"] = true,
+				["PRIEST"] = true,
+				["PALADIN"] = true,
+			},
+		},
+		[106024] = { -- Magical Lantern: +10% Dmg dealt
+			["name"] = L.MagicalLantern,
+			["classes"] = {
+				["MAGE"] = true,
+			},
+			["professions"] = {
+				[136244] = 100, -- Enchanting
+			},
+			["races"] = {
+				["BloodElf"] = true,
+				["NightElf"] = true,
+			},
+		},
+		[105249] = { -- Nightshade Refreshments: +25% HP
+			["name"] = L.NightshadeRefreshments,
+			["professions"] = {
+				[133971] = 800, -- Cooking
+				[136246] = 100, -- Herbalism
+			},
+			["races"] = {
+				["Pandaren"] = true,
+			},
+		},
+		[106108] = { -- Starlight Rose Brew: +HP & Mana reg
+			["name"] = L.StarlightRoseBrew,
+			["classes"] = {
+				["DEATHKNIGHT"] = true,
+				["MONK"] = true,
+			},
+		},
+		[105340] = { -- Umbral Bloom: +10% Haste
+			["name"] = L.UmbralBloom,
+			["classes"] = {
+				["DRUID"] = true,
+			},
+			["professions"] = {
+				[136246] = 100, -- Herbalism
+			}
+		},
+		[106110] = { -- Waterlogged Scroll: +30% Movement speed
+			["name"] = L.WaterloggedScroll,
+			["classes"] = {
+				["SHAMAN"] = true,
+			},
+			["professions"] = {
+				[134366] = 100, -- Skinning
+				[237171] = 100, -- Inscription
+			}
+		},
+	}
+
+	local guardItems = {
+		[106018] = { -- Bazaar Goods
+			["name"] = L.BazaarGoods,
+			["classes"] = {
+				["ROGUE"] = true,
+				["WARRIOR"] = true,
+			},
+			["professions"] = {
+				[136247] = 100, -- Leatherworking
+			},
+		},
+		[106113] = { -- Lifesized Nightborne Statue
+			["name"] = L.LifesizedNightborneStatue,
+			["professions"] = {
+				[134708] = 100, -- Mining
+				[134071] = 100, -- Jewelcrafting
+			},
+		},
+		[105215] = { -- Discarded Junk
+			["name"] = L.DiscardedJunk,
+			["classes"] = {
+				["HUNTER"] = true,
+			},
+			["professions"] = {
+				[136241] = 100, -- Blacksmithing
+			},
+		},
+		[106112] = { -- Wounded Nightborne Civilian
+			["name"] = L.WoundedNightborneCivilian,
+			["roles"] = {
+				["Healer"] = true,
+			},
+			["professions"] = {
+				[135966] = 100, -- First Aid
+				[136249] = 100, -- Tailoring
+			},
+		},
+	}
+
+	local professionCache = {}
+
+	local raceIcons = {
+		["Pandaren"] = "|T626190:0|t",
+		["NightElf"] = "|T236449:0|t",
+		["BloodElf"] = "|T236439:0|t",
+		["Gnome"] = "|T236445:0|t",
+		["Goblin"] = "|T632354:0|t",
+	}
+
+	local roleIcons = {
+		["Healer"] = "|T337497:0:0:0:0:64:64:20:39:1:20|t",
+	}
+
+	local function getClassIcon(class)
+		return ("|TInterface/Icons/classicon_%s:0|t"):format(strlower(class))
+	end
+
+	local function getIconById(id)
+		return ("|T%d:0|t"):format(id)
+	end
 
 	local dbmClues = {
 		["cape"] = 1,
@@ -327,16 +490,9 @@ do
 		end
 	end
 
-	function mod:BigWigs_BossComm(_, msg)
-		if self:GetOption("spy_event_helper") and tonumber(msg) and msg > 0 and msg <= #L.hints then
-			addClue(self, msg)
-		end
-	end
-
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(UnitGUID("npc"))
-		if (self:GetOption("spy_event_helper") and (mobId == 107486 or mobId == 106468)) or -- Chatty Rumormonger, Ly'leth Lunastre
-		   (self:GetOption("use_buff_items") and buffItems[mobId]) then
+		if self:GetOption("use_buff_items") and (autoTalk[mobId] or buffItems[mobId]) then
 			if GetGossipOptions() then
 				if not timer then
 					timer = self:ScheduleRepeatingTimer(function()
@@ -351,11 +507,15 @@ do
 				if mobId == 107486 then -- Chatty Rumormonger
 					local clue = GetGossipText()
 					if L[clue] then
-						addClue(self, L[clue])
+						if self:GetOption("spy_event_helper") then
+							addClue(self, L[clue])
+							sendChatMessage(L.hints[L[clue]])
+						end
 						mod:Sync(L[clue])
-						sendChatMessage(L.hints[L[clue]])
 					else
-						sendChatMessage(clue)
+						if self:GetOption("spy_event_helper") then
+							sendChatMessage(clue)
+						end
 						local gl = GetLocale()
 						BigWigs:Print(("New clue discovered '%s' with locale '%s', tell the authors."):format(clue, gl))
 					end
@@ -370,6 +530,136 @@ do
 			self:CloseInfo("spy_event_helper")
 			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat)
+			end
+		end
+	end
+
+	local function announceUsable(self, id, item)
+		self:Sync("itemAvailable", id)
+		local players = {} -- who can use the item
+		local icons = {}
+		if item.professions then
+			for profIcon, requiredSkill in pairs(item.professions) do
+				if professionCache[profIcon] then
+					for _,v in pairs(professionCache[profIcon]) do
+						if v.skill >= requiredSkill then
+							players[v.name] = true
+						end
+					end
+				end
+				icons[#icons+1] = getIconById(profIcon)
+			end
+		end
+		if item.races then
+			for race, _ in pairs(item.races) do
+				for unit in self:IterateGroup() do
+					local _, unitRace = UnitRace(unit)
+					if unitRace == race then
+						players[self:UnitName(unit)] = true
+					end
+				end
+				icons[#icons+1] = raceIcons[race]
+			end
+		end
+		if item.classes then
+			for class, _ in pairs(item.classes) do
+				for unit in self:IterateGroup() do
+					local _, unitClass = UnitClass(unit)
+					if unitClass == class then
+						players[self:UnitName(unit)] = true
+					end
+				end
+				icons[#icons+1] = getClassIcon(class)
+			end
+		end
+		if item.roles then
+			for role, _ in pairs(item.roles) do
+				for unit in self:IterateGroup() do
+					if self[role](unit) then
+						players[self:UnitName(unit)] = true
+					end
+				end
+				icons[#icons+1] = roleIcons(role)
+			end
+		end
+
+		local name = type(item.name) == "number" and self:SpellName(item.name) or item.name
+		local message = (L.available):format(table.concat(icons, ""), name)
+
+		if next(players) then
+			local list = ""
+			for player in pairs(players) do
+				if UnitInParty(player) then -- don't announce players from previous groups
+					list = list .. self:ColorName(player) .. ", "
+				end
+			end
+			if list:len() > 0 then
+				message = message .. " - ".. L.usableBy .. " " .. list:sub(0, list:len()-2)
+			end
+		end
+
+		self:Message("announce_buff_items", "Neutral", "Info", message, false)
+	end
+
+	local prevTable, usableTimer, lastProfessionUpdate = {}, nil, 0
+	local function usableFound(self, id, item)
+		local t = GetTime()
+		if t-(prevTable[id] or 0) > 300 then
+			prevTable[id] = t
+
+			local delayAnnouncement = false
+			if item.professions then
+				if t-lastProfessionUpdate > 300 then
+					lastProfessionUpdate = t
+					self:Sync("getProfessions")
+					delayAnnouncement = true
+				end
+			end
+			if delayAnnouncement then
+				usableTimer = self:ScheduleTimer(announceUsable, 0.3, self, id, item)
+			else
+				announceUsable(self, id, item)
+			end
+		end
+	end
+
+	function mod:UPDATE_MOUSEOVER_UNIT()
+		local id = self:MobId(UnitGUID("mouseover"))
+		local item = buffItems[id] or guardItems[id]
+		if item then
+			usableFound(self, id, item)
+		end
+	end
+
+	function mod:BigWigs_BossComm(_, msg, data, sender)
+		if self:GetOption("spy_event_helper") and tonumber(msg) and msg > 0 and msg <= #L.hints then
+			addClue(self, msg)
+		elseif msg == "getProfessions" then
+			local professions = {}
+			for _,id in pairs({GetProfessions()}) do
+				local _, icon, skill = GetProfessionInfo(id) -- name is localized, so use icon instead
+				professions[icon] = skill
+			end
+			local profString = ""
+			for k,v in pairs(professions) do
+				profString = profString .. k .. ":" .. v .. "#"
+			end
+			self:Sync("professions", profString)
+		elseif msg == "professions" then
+			lastProfessionUpdate = GetTime()
+			for icon, skill in data:gmatch("(%d+):(%d+)#") do
+				icon = tonumber(icon)
+				skill = tonumber(skill)
+				if not professionCache[icon] then
+					professionCache[icon] = {}
+				end
+				professionCache[icon][#professionCache[icon]+1] = {name=sender, skill=skill}
+			end
+		elseif msg == "itemAvailable" then
+			local id = tonumber(data:match("(%d+)"))
+			local item = buffItems[id] or guardItems[id]
+			if item then
+				usableFound(self, id, item)
 			end
 		end
 	end
