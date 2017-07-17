@@ -21,23 +21,22 @@ if L then
 	L.ArcaneKeys = "비전 열쇠"
 	L.clues = "단서"
 
-	--L.InfernalTome = "Infernal Tome"
-	--L.MagicalLantern = "Magical Lantern"
-	--L.NightshadeRefreshments = "Nightshade Refreshments"
-	--L.StarlightRoseBrew = "Starlight Rose Brew"
-	--L.UmbralBloom = "Umbral Bloom"
-	--L.WaterloggedScroll = "Waterlogged Scroll"
-	--L.BazaarGoods = "Bazaar Goods"
-	--L.LifesizedNightborneStatue = "Lifesized Nightborne Statue"
-	--L.DiscardedJunk = "Discarded Junk"
-	--L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
+	L.InfernalTome = "지옥불 고서"
+	L.MagicalLantern = "마법 초롱"
+	L.NightshadeRefreshments = "어둠그늘 간식"
+	L.StarlightRoseBrew = "별빛장미 차"
+	L.UmbralBloom = "그림자 꽃"
+	L.WaterloggedScroll = "물에 젖은 두루마리"
+	L.BazaarGoods = "장터 물품"
+	L.LifesizedNightborneStatue = "실물 크기의 나이트본 석상"
+	L.DiscardedJunk = "버려진 쓰레기"
+	L.WoundedNightborneCivilian = "부상당한 나이트본 시민"
 
-	--L.announce_buff_items = "Announce buff items"
-	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
-	--L.announce_buff_items_icon = 211080
+	L.announce_buff_items = "강화 효과 아이템 알리기"
+	L.announce_buff_items_desc = "던전 내의 모든 강화 효과 아이템과 아이템을 누가 사용할 수 있는 지 알립니다."
 
-	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	--L.usableBy = "usable by"  -- Context: item is usable by someone
+	L.available = "%s|cffffffff%s|r 사용 가능" -- Context: item is available to use
+	L.usableBy = "사용 가능: "  -- Context: item is usable by someone
 
 	L.use_buff_items = "강화 효과 아이템 즉시 사용"
 	L.use_buff_items_desc = "이 옵션을 사용하면 던전 내 곳곳에 있는 강화 효과 아이템을 즉시 사용합니다. 두번째 우두머리 전의 수호병을 유인하는 아이템은 사용하지 않습니다."
