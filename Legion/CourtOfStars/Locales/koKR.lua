@@ -21,6 +21,24 @@ if L then
 	L.ArcaneKeys = "비전 열쇠"
 	L.clues = "단서"
 
+	--L.InfernalTome = "Infernal Tome"
+	--L.MagicalLantern = "Magical Lantern"
+	--L.NightshadeRefreshments = "Nightshade Refreshments"
+	--L.StarlightRoseBrew = "Starlight Rose Brew"
+	--L.UmbralBloom = "Umbral Bloom"
+	--L.WaterloggedScroll = "Waterlogged Scroll"
+	--L.BazaarGoods = "Bazaar Goods"
+	--L.LifesizedNightborneStatue = "Lifesized Nightborne Statue"
+	--L.DiscardedJunk = "Discarded Junk"
+	--L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
+
+	--L.announce_buff_items = "Announce buff items"
+	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	--L.announce_buff_items_icon = 211080
+
+	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
+	--L.usableBy = "usable by"  -- Context: item is usable by someone
+
 	L.use_buff_items = "강화 효과 아이템 즉시 사용"
 	L.use_buff_items_desc = "이 옵션을 사용하면 던전 내 곳곳에 있는 강화 효과 아이템을 즉시 사용합니다. 두번째 우두머리 전의 수호병을 유인하는 아이템은 사용하지 않습니다."
 
