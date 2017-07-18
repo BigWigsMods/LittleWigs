@@ -1,9 +1,5 @@
 
 --------------------------------------------------------------------------------
--- TODO List:
--- - Confirm 198931 (Healing Light), 198934 (Rune of Healing) spell ids
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -19,7 +15,12 @@ mod:RegisterEnableMob(
 	95834, -- Valarjar Mystic
 	95842, -- Valarjar Thundercaller
 	97197, -- Valarjar Purifier
-	101637 -- Valarjar Aspirant
+	101637, -- Valarjar Aspirant
+	97068,  -- Storm Drake
+	99891,  -- Storm Drake
+	96640,  -- Valarjar Marksman
+	96934,  -- Valarjar Trapper
+	96574   -- Stormforged Sentinel
 )
 
 --------------------------------------------------------------------------------
@@ -34,6 +35,10 @@ if L then
 	L.thundercaller = "Valarjar Thundercaller"
 	L.mystic = "Valarjar Mystic"
 	L.aspirant = "Valarjar Aspirant"
+	L.drake = "Storm Drake"
+	L.marksman = "Valarjar Marksman"
+	L.trapper = "Valarjar Trapper"
+	L.sentinel = "Stormforged Sentinel"
 end
 L = mod:GetLocale()
 
@@ -48,8 +53,13 @@ function mod:GetOptions()
 		192158, -- Sanctify
 		191508, -- Blast of Light
 		{215430, "SAY", "FLASH", "PROXIMITY"}, -- Thunderstrike
-		198931, -- Healing Light
+		198931, -- Healing Light (replaced by Holy Radiance in mythic difficulty)
 		198934, -- Rune of Healing
+		215433, -- Holy Radiance
+		198888, -- Lightning Breath
+		199210, -- Penetrating Shot
+		199341, -- Bear Trap
+		210875, -- Charged Pulse
 	}, {
 		[192563] = L.purifier,
 		[199726] = L.fourkings,
@@ -57,6 +67,10 @@ function mod:GetOptions()
 		[191508] = L.aspirant,
 		[215430] = L.thundercaller,
 		[198931] = L.mystic,
+		[198888] = L.drake,
+		[199210] = L.marksman,
+		[199341] = L.trapper,
+		[210875] = L.sentinel,
 	}
 end
 
@@ -65,8 +79,8 @@ function mod:OnBossEnable()
 
 	--[CLEU] SPELL_CAST_START#Creature-0-2084-1477-6795-99891-00003FDF54#Storm Drake##nil#198892#Crackling Storm#nil#nil
 
-	-- Cleansing Flames, Unruly Yell, Sanctify, Blast of Light, Healing Light, Rune of Healing
-	self:Log("SPELL_CAST_START", "Casts", 192563, 199726, 192158, 191508, 198931, 198934)
+	-- Cleansing Flames, Unruly Yell, Sanctify, Blast of Light, Healing Light, Rune of Healing, Holy Radiance, Lightning Breath, Penetrating Shot, Bear Trap, Charged Pulse
+	self:Log("SPELL_CAST_START", "Casts", 192563, 199726, 192158, 191508, 198931, 198934, 215433, 198888, 199210, 199341, 210875)
 
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
 	self:Log("SPELL_AURA_REMOVED", "ThunderstrikeRemoved", 215430)
