@@ -492,8 +492,8 @@ do
 
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(UnitGUID("npc"))
-		local useBuffItems = self:GetOption("use_buff_items")
-		local spyEventHelper = self:GetOption("spy_event_helper")
+		local useBuffItems = self:GetOption("use_buff_items") > 0
+		local spyEventHelper = self:GetOption("spy_event_helper") > 0
 		if autoTalk[mobId] or buffItems[mobId] then
 			if GetGossipOptions() then
 				if not timer and ((spyEventHelper and autoTalk[mobId]) or (useBuffItems and buffItems[mobId])) then
@@ -530,7 +530,7 @@ do
 		if msg:find(L.spyFoundPattern) then
 			self:Message("spy_event_helper", "Positive", "Info", L.spyFound:format(self:ColorName(target)), false)
 			self:CloseInfo("spy_event_helper")
-			if target == self:UnitName("player") and self:GetOption("spy_event_helper") then
+			if target == self:UnitName("player") and self:GetOption("spy_event_helper") > 0 then
 				sendChatMessage(L.spyFoundChat)
 			end
 		end
@@ -634,7 +634,7 @@ do
 	end
 
 	function mod:BigWigs_BossComm(_, msg, data, sender)
-		if self:GetOption("spy_event_helper") and tonumber(msg) and msg > 0 and msg <= #L.hints then
+		if self:GetOption("spy_event_helper") > 0 and tonumber(msg) and msg > 0 and msg <= #L.hints then
 			addClue(self, msg)
 		elseif msg == "getProfessions" then
 			local professions = {}
