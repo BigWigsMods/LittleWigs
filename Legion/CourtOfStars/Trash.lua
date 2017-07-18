@@ -515,9 +515,9 @@ do
 					else
 						if self:GetOption("spy_event_helper") then
 							sendChatMessage(clue)
+							local gl = GetLocale()
+							BigWigs:Print(("New clue discovered '%s' with locale '%s', tell the authors."):format(clue, gl))
 						end
-						local gl = GetLocale()
-						BigWigs:Print(("New clue discovered '%s' with locale '%s', tell the authors."):format(clue, gl))
 					end
 				end
 			end
