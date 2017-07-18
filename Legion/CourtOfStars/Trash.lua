@@ -638,7 +638,7 @@ do
 	function mod:BigWigs_BossComm(_, msg, data, sender)
 		if self:GetOption("spy_event_helper") > 0 and tonumber(msg) and msg > 0 and msg <= #L.hints then
 			addClue(self, msg)
-		elseif msg == "getProfessions" then
+		elseif type(msg) == "string" and msg == "getProfessions" then
 			local professions = {}
 			for _,id in pairs({GetProfessions()}) do
 				local _, icon, skill = GetProfessionInfo(id) -- name is localized, so use icon instead
@@ -649,7 +649,7 @@ do
 				profString = profString .. k .. ":" .. v .. "#"
 			end
 			self:Sync("professions", profString)
-		elseif msg == "professions" then
+		elseif type(msg) == "string" and msg == "professions" then
 			lastProfessionUpdate = GetTime()
 			for icon, skill in data:gmatch("(%d+):(%d+)#") do
 				icon = tonumber(icon)
@@ -659,7 +659,7 @@ do
 				end
 				professionCache[icon][#professionCache[icon]+1] = {name=sender, skill=skill}
 			end
-		elseif msg == "itemAvailable" then
+		elseif type(msg) == "string" and msg == "itemAvailable" then
 			local id = data
 			local item = buffItems[id] or guardItems[id]
 			if item then
