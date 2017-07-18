@@ -515,13 +515,13 @@ do
 						end
 						mod:Sync(L[clue])
 					else
-						if spyEventHelper then
+						--if spyEventHelper then -- XXX temp until we are more clued up
 							sendChatMessage(clue)
 							local gl = GetLocale()
 							RaidNotice_AddMessage(RaidWarningFrame, "LittleWigs: Unknown clue detected, see chat for info.", {r=1,g=1,b=1})
 							BigWigs:Print("LittleWigs is sending the entire clue to chat as it detected an unknown clue, please report it on Discord/GitHub/Curse so we can add it and shorten the message.")
 							BigWigs:Error(("|cffffff00TELL THE AUTHORS:|r New clue '%s' with '%s'"):format(clue, gl))
-						end
+						--end
 					end
 				end
 			end
@@ -529,10 +529,10 @@ do
 	end
 
 	function mod:CHAT_MSG_MONSTER_SAY(_, msg, _, _, _, target)
-		if msg:find(L.spyFoundPattern) then
+		if msg:find(L.spyFoundPattern) and self:GetOption("spy_event_helper") > 0 then
 			self:Message("spy_event_helper", "Positive", "Info", L.spyFound:format(self:ColorName(target)), false)
 			self:CloseInfo("spy_event_helper")
-			if target == self:UnitName("player") and self:GetOption("spy_event_helper") > 0 then
+			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat)
 			end
 		end
