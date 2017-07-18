@@ -528,7 +528,7 @@ do
 		if msg:find(L.spyFoundPattern) then
 			self:Message("spy_event_helper", "Positive", "Info", L.spyFound:format(self:ColorName(target)), false)
 			self:CloseInfo("spy_event_helper")
-			if target == self:UnitName("player") then
+			if target == self:UnitName("player") and self:GetOption("spy_event_helper") then
 				sendChatMessage(L.spyFoundChat)
 			end
 		end
