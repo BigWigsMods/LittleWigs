@@ -492,9 +492,11 @@ do
 
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(UnitGUID("npc"))
-		if self:GetOption("use_buff_items") and (autoTalk[mobId] or buffItems[mobId]) then
+		local useBuffItems = self:GetOption("use_buff_items")
+		local spyEventHelper = self:GetOption("spy_event_helper")
+		if (spyEventHelper or useBuffItems) and (autoTalk[mobId] or buffItems[mobId]) then
 			if GetGossipOptions() then
-				if not timer then
+				if not timer and ((spyEventHelper and autoTalk[mobId]) or (useBuffItems and buffItems[mobId])) then
 					timer = self:ScheduleRepeatingTimer(function()
 						SelectGossipOption(1)
 					end, 0.01)
@@ -507,13 +509,13 @@ do
 				if mobId == 107486 then -- Chatty Rumormonger
 					local clue = GetGossipText()
 					if L[clue] then
-						if self:GetOption("spy_event_helper") then
+						if spyEventHelper then
 							addClue(self, L[clue])
 							sendChatMessage(L.hints[L[clue]])
 						end
 						mod:Sync(L[clue])
 					else
-						if self:GetOption("spy_event_helper") then
+						if spyEventHelper then
 							sendChatMessage(clue)
 							local gl = GetLocale()
 							BigWigs:Print(("New clue discovered '%s' with locale '%s', tell the authors."):format(clue, gl))
