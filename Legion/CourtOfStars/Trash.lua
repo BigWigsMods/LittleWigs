@@ -455,13 +455,9 @@ do
 		["book"] = 14,
 	}
 
-	local timer, knownClues, clueCount = nil, {}, 0
+	local knownClues, clueCount = {}, 0
 
 	function mod:OnBossDisable()
-		if timer then
-			self:CancelTimer(timer)
-			timer = nil
-		end
 		wipe(knownClues)
 		clueCount = 0
 	end
@@ -486,7 +482,7 @@ do
 
 	function mod:DBM_AddonMessage(_, _, prefix, _, _, event, clue)
 		if prefix == "M" and event == "CoS" and dbmClues[clue] then
-			self:BigWigs_BossComm(nil, dbmClues[clue])
+			self:BigWigs_BossComm(nil, "clue", dbmClues[clue])
 		end
 	end
 
@@ -496,24 +492,17 @@ do
 		local spyEventHelper = self:GetOption("spy_event_helper") > 0
 		if autoTalk[mobId] or buffItems[mobId] then
 			if GetGossipOptions() then
-				if not timer and ((spyEventHelper and autoTalk[mobId]) or (useBuffItems and buffItems[mobId])) then
-					timer = self:ScheduleRepeatingTimer(function()
-						SelectGossipOption(1)
-					end, 0.01)
+				if (spyEventHelper and autoTalk[mobId]) or (useBuffItems and buffItems[mobId]) then
+					SelectGossipOption(1)
 				end
 			else
-				if timer then
-					self:CancelTimer(timer)
-					timer = nil
-				end
 				if mobId == 107486 then -- Chatty Rumormonger
 					local clue = GetGossipText()
 					if L[clue] then
-						if spyEventHelper then
-							addClue(self, L[clue])
+						if not knownClues[clue] then
 							sendChatMessage(L.hints[L[clue]])
 						end
-						mod:Sync(L[clue])
+						mod:Sync("clue", L[clue])
 					else
 						--if spyEventHelper then -- XXX temp until we are more clued up
 							sendChatMessage(clue)
@@ -534,6 +523,11 @@ do
 			self:CloseInfo("spy_event_helper")
 			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat)
+			end
+			for unit in self:IterateGroup() do
+				if UnitName(unit) == target then
+					SetRaidTarget(unit.."target", 8)
+				end
 			end
 		end
 	end
@@ -583,7 +577,7 @@ do
 						players[self:UnitName(unit)] = true
 					end
 				end
-				icons[#icons+1] = roleIcons(role)
+				icons[#icons+1] = roleIcons[role]
 			end
 		end
 
@@ -636,9 +630,12 @@ do
 	end
 
 	function mod:BigWigs_BossComm(_, msg, data, sender)
-		if self:GetOption("spy_event_helper") > 0 and tonumber(msg) and msg > 0 and msg <= #L.hints then
-			addClue(self, msg)
-		elseif type(msg) == "string" and msg == "getProfessions" then
+		if self:GetOption("spy_event_helper") > 0 and msg == "clue" then
+			local clue = tonumber(data)
+			if clue and clue > 0 and clue <= #L.hints then
+				addClue(self, clue)
+			end
+		elseif msg == "getProfessions" then
 			local professions = {}
 			for _,id in pairs({GetProfessions()}) do
 				local _, icon, skill = GetProfessionInfo(id) -- name is localized, so use icon instead
@@ -649,7 +646,7 @@ do
 				profString = profString .. k .. ":" .. v .. "#"
 			end
 			self:Sync("professions", profString)
-		elseif type(msg) == "string" and msg == "professions" then
+		elseif msg == "professions" then
 			lastProfessionUpdate = GetTime()
 			for icon, skill in data:gmatch("(%d+):(%d+)#") do
 				icon = tonumber(icon)
@@ -659,8 +656,8 @@ do
 				end
 				professionCache[icon][#professionCache[icon]+1] = {name=sender, skill=skill}
 			end
-		elseif type(msg) == "string" and msg == "itemAvailable" then
-			local id = data
+		elseif msg == "itemAvailable" then
+			local id = tonumber(data)
 			local item = buffItems[id] or guardItems[id]
 			if item then
 				usableFound(self, id, item)
