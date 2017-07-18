@@ -494,7 +494,7 @@ do
 		local mobId = self:MobId(UnitGUID("npc"))
 		local useBuffItems = self:GetOption("use_buff_items")
 		local spyEventHelper = self:GetOption("spy_event_helper")
-		if (spyEventHelper or useBuffItems) and (autoTalk[mobId] or buffItems[mobId]) then
+		if autoTalk[mobId] or buffItems[mobId] then
 			if GetGossipOptions() then
 				if not timer and ((spyEventHelper and autoTalk[mobId]) or (useBuffItems and buffItems[mobId])) then
 					timer = self:ScheduleRepeatingTimer(function()
