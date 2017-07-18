@@ -658,7 +658,7 @@ do
 				professionCache[icon][#professionCache[icon]+1] = {name=sender, skill=skill}
 			end
 		elseif msg == "itemAvailable" then
-			local id = tonumber(data:match("(%d+)"))
+			local id = data
 			local item = buffItems[id] or guardItems[id]
 			if item then
 				usableFound(self, id, item)
