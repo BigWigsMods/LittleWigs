@@ -90,9 +90,9 @@ if L then
 	L.use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
 	L.use_buff_items_icon = 211110
 
-	L.spy_event_helper = "Spy Event Helper"
-	L.spy_event_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
-	L.spy_event_helper_icon = 213213
+	L.spy_helper = "Spy Event Helper"
+	L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	L.spy_helper_icon = 213213
 
 	L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	L.spyFound = "Spy found by %s!"
@@ -201,7 +201,7 @@ function mod:GetOptions()
 	return {
 		"announce_buff_items",
 		"use_buff_items",
-		{"spy_event_helper", "INFOBOX"},
+		{"spy_helper", "INFOBOX"},
 		209027, -- Quelling Strike (Duskwatch Guard)
 		209033, -- Fortification (Duskwatch Guard)
 		225100, -- Charging Station (Guardian Construct)
@@ -481,13 +481,13 @@ do
 
 	local function addClue(self, clue)
 		if clueCount == 0 then
-			self:OpenInfo("spy_event_helper", L.clues)
+			self:OpenInfo("spy_helper", L.clues)
 		end
 		if not knownClues[clue] then
 			knownClues[clue] = true
 			clueCount = clueCount + 1
-			self:SetInfo("spy_event_helper", (clueCount*2)-1, L.hints[clue])
-			self:Message("spy_event_helper", "Neutral", "Info", L.clueFound:format(clueCount, L.hints[clue]), false)
+			self:SetInfo("spy_helper", (clueCount*2)-1, L.hints[clue])
+			self:Message("spy_helper", "Neutral", "Info", L.clueFound:format(clueCount, L.hints[clue]), false)
 		end
 	end
 
@@ -508,7 +508,7 @@ do
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(UnitGUID("npc"))
 		local useBuffItems = self:GetOption("use_buff_items") > 0
-		local spyEventHelper = self:GetOption("spy_event_helper") > 0
+		local spyEventHelper = self:GetOption("spy_helper") > 0
 		if autoTalk[mobId] or buffItems[mobId] then
 			if GetGossipOptions() then
 				if (spyEventHelper and autoTalk[mobId]) or (useBuffItems and buffItems[mobId]) then
@@ -538,16 +538,18 @@ do
 	end
 
 	function mod:CHAT_MSG_MONSTER_SAY(_, msg, _, _, _, target)
-		if msg:find(L.spyFoundPattern) and self:GetOption("spy_event_helper") > 0 then
-			self:Message("spy_event_helper", "Positive", "Info", L.spyFound:format(self:ColorName(target)), false)
-			self:CloseInfo("spy_event_helper")
+		if msg:find(L.spyFoundPattern) and self:GetOption("spy_helper") > 0 then
+			self:Message("spy_helper", "Positive", "Info", L.spyFound:format(self:ColorName(target)), false)
+			self:CloseInfo("spy_helper")
 			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat)
-			end
-			for unit in self:IterateGroup() do
-				if self:UnitName(unit) == target then
-					SetRaidTarget(unit.."target", 8)
-					break
+				SetRaidTarget("target", 8)
+			else
+				for unit in self:IterateGroup() do
+					if UnitName(unit) == target then -- Normal UnitName since CHAT_MSG_MONSTER_SAY doesn't append servers to names
+						SetRaidTarget(unit.."target", 8)
+						break
+					end
 				end
 			end
 		end
@@ -651,7 +653,7 @@ do
 	end
 
 	function mod:BigWigs_BossComm(_, msg, data, sender)
-		if self:GetOption("spy_event_helper") > 0 and msg == "clue" then
+		if self:GetOption("spy_helper") > 0 and msg == "clue" then
 			local clue = tonumber(data)
 			if clue and clue > 0 and clue <= #L.hints then
 				addClue(self, clue)

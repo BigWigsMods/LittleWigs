@@ -41,8 +41,8 @@ if L then
 	L.use_buff_items = "강화 효과 아이템 즉시 사용"
 	L.use_buff_items_desc = "이 옵션을 사용하면 던전 내 곳곳에 있는 강화 효과 아이템을 즉시 사용합니다. 두번째 우두머리 전의 수호병을 유인하는 아이템은 사용하지 않습니다."
 
-	L.spy_event_helper = "첩자 이벤트 도우미"
-	L.spy_event_helper_desc = "당신의 파티가 수집한 첩자에 대한 모든 단서를 표시하는 정보 상자를 표시합니다. 단서들은 파티원들에게 대화로도 전송됩니다."
+	L.spy_helper = "첩자 이벤트 도우미"
+	L.spy_helper_desc = "당신의 파티가 수집한 첩자에 대한 모든 단서를 표시하는 정보 상자를 표시합니다. 단서들은 파티원들에게 대화로도 전송됩니다."
 
 	L.clueFound = "단서 발견 (%d/5): |cffffffff%s|r"
 	L.spyFound = "%s|1이;가; 첩자 발견!"

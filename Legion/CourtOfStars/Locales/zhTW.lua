@@ -42,8 +42,8 @@ if L then
 	--L.use_buff_items = "Instantly use buff items"
 	--L.use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
 
-	--L.spy_event_helper = "Spy Event Helper"
-	--L.spy_event_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	--L.spy_helper = "Spy Event Helper"
+	--L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
 
 	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	--L.spyFound = "Spy found by %s!"
