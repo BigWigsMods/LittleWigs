@@ -50,21 +50,22 @@ if L then
 	--L.spyFoundChat = "I found the spy!"
 	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	--L.hints = {}
-	--L.hints[1] = "Cape"
-	--L.hints[2] = "No Cape"
-	--L.hints[3] = "Pouch"
-	--L.hints[4] = "Potions"
-	--L.hints[5] = "Long Sleeves"
-	--L.hints[6] = "Short Sleeves"
-	--L.hints[7] = "Gloves"
-	--L.hints[8] = "No Gloves"
-	--L.hints[9] = "Male"
-	--L.hints[10] = "Female"
-	--L.hints[11] = "Light Vest"
-	--L.hints[12] = "Dark Vest"
-	--L.hints[13] = "No Potions"
-	--L.hints[14] = "Book"
+	--L.hints = {
+	--	"Cape",
+	--	"No Cape",
+	--	"Pouch",
+	--	"Potions",
+	--	"Long Sleeves",
+	--	"Short Sleeves",
+	--	"Gloves",
+	--	"No Gloves",
+	--	"Male",
+	--	"Female",
+	--	"Light Vest",
+	--	"Dark Vest",
+	--	"No Potions",
+	--	"Book",
+	--}
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
