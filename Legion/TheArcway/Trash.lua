@@ -7,10 +7,10 @@ local mod, CL = BigWigs:NewBoss("The Arcway Trash", 1079)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	98756,  -- Arcane Anomaly
+	98756, -- Arcane Anomaly
 	106059, -- Warp Shade
 	105952, -- Withered Manawraith
-	98770   -- Wrathguard Felblade
+	98770 -- Wrathguard Felblade
 )
 
 --------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PhaseBreach", 211115)
 
 	-- Withered Manawraith, Wrathguard Felblade
-	self:Log("SPELL_AURA_APPLIED", "PeriodicDamage", 210750, 211745)
+	self:Log("SPELL_AURA_APPLIED", "PeriodicDamage", 210750, 211745) -- Collapsing Rift, Fel Strike
 	self:Log("SPELL_PERIODIC_DAMAGE", "PeriodicDamage", 210750, 211745)
 	self:Log("SPELL_PERIODIC_MISSED", "PeriodicDamage", 210750, 211745)
 end
