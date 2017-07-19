@@ -22,8 +22,8 @@ if L then
 	L.thundercaller = "발라리아르 천둥술사"
 	L.mystic = "발라리아르 비술사"
 	L.aspirant = "발라리아르 지원자"
-	--L.drake = "Storm Drake"
-	--L.marksman = "Valarjar Marksman"
-	--L.trapper = "Valarjar Trapper"
-	--L.sentinel = "Stormforged Sentinel"
+	L.drake = "폭풍 비룡"
+	L.marksman = "발라리아르 명사수"
+	L.trapper = "발라리아르 덫사냥꾼"
+	L.sentinel = "폭풍벼림 파수병"
 end
