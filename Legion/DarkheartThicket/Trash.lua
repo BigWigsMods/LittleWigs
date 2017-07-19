@@ -6,12 +6,12 @@ local mod, CL = BigWigs:NewBoss("Darkheart Thicket Trash", 1067)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	95771,  -- Dreadsoul Ruiner
-	95766,  -- Crazed Razorbeak
-	95779,  -- Festerhide Grizzly
+	95771, -- Dreadsoul Ruiner
+	95766, -- Crazed Razorbeak
+	95779, -- Festerhide Grizzly
 	100531, -- Bloodtainted Fury
 	113398, -- Bloodtainted Fury
-	100527  -- Dreadfire Imp
+	100527 -- Dreadfire Imp
 )
 
 --------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Casts", 200768, 200580)
 
 	--[[ Bloodtainted Fury ]]--
-	self:Log("SPELL_CAST_START", "BloodBombAssault", 201226, 201272)
+	self:Log("SPELL_CAST_START", "BloodBombAssault", 201226, 201272) -- Blood Assault, Blood Bomb
 
 	--[[ Festerhide Grizzly ]]--
 	self:Log("SPELL_AURA_APPLIED", "CorruptionPool", 218759)

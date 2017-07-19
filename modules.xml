@@ -93,6 +93,7 @@
 <Include file="Legion\CourtOfStars\locales.xml"/>
 
 <Include file="Legion\DarkheartThicket\modules.xml"/>
+<Include file="Legion\DarkheartThicket\locales.xml"/>
 
 <Include file="Legion\EyeOfAzshara\modules.xml"/>
 
