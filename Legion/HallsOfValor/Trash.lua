@@ -29,6 +29,8 @@ mod:RegisterEnableMob(
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.autotalk = "Autotalk"
+	L.autotalk_desc = "Instantly selects various gossip options around the dungeon."
 	L.fourkings = "The Four Kings"
 	L.olmyr = "Olmyr the Enlightened"
 	L.purifier = "Valarjar Purifier"
@@ -48,6 +50,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		"autotalk",
 		192563, -- Cleansing Flames
 		199726, -- Unruly Yell
 		192158, -- Sanctify
@@ -60,7 +63,10 @@ function mod:GetOptions()
 		199210, -- Penetrating Shot
 		199341, -- Bear Trap
 		210875, -- Charged Pulse
+		{199805, "SAY"}, -- Crackle
+		{198745, "DISPEL"}, -- Protective Light
 	}, {
+		["autotalk"] = "general",
 		[192563] = L.purifier,
 		[199726] = L.fourkings,
 		[192158] = L.olmyr,
@@ -80,8 +86,17 @@ function mod:OnBossEnable()
 	-- Cleansing Flames, Unruly Yell, Sanctify, Blast of Light, Healing Light, Rune of Healing, Holy Radiance, Lightning Breath, Penetrating Shot, Bear Trap, Charged Pulse
 	self:Log("SPELL_CAST_START", "Casts", 192563, 199726, 192158, 191508, 198931, 198934, 215433, 198888, 199210, 199341, 210875)
 
+	--[[ Stormforged Sentinel ]]--
+	self:Log("SPELL_CAST_START", "CrackleCast", 199805)
+	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 199818) -- Crackle
+	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 199818)
+	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 199818)
+	self:Log("SPELL_AURA_APPLIED", "ProtectiveShield", 198745)
+
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
 	self:Log("SPELL_AURA_REMOVED", "ThunderstrikeRemoved", 215430)
+
+	self:RegisterEvent("GOSSIP_SHOW")
 end
 
 --------------------------------------------------------------------------------
@@ -89,11 +104,28 @@ end
 --
 
 function mod:Casts(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "Important", "Alarm")
+end
+
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) then
+			self:Message(199805, "Urgent", "Warning", CL.you:format(self:SpellName(199805)))
+			self:Say(199805)
+		end
+	end
+
+	function mod:CrackleCast(args)
+		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+	end
+end
+
+function mod:ProtectiveShield(args)
+	self:Message(args.spellId, "Attention", self:Dispeller("magic", true, args.spellId) and "Info", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
 end
 
 function mod:Thunderstrike(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
@@ -105,5 +137,34 @@ end
 function mod:ThunderstrikeRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CloseProximity(args.spellId)
+	end
+end
+
+do
+	local prev = 0
+	function mod:GroundEffectDamage(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:Message(199805, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
+	end
+end
+
+do
+	local autoTalk = {
+		[97081] = true, -- King Bjorn
+		[95843] = true, -- King Haldor
+		[97083] = true, -- King Ranulf
+		[97084] = true, -- King Tor
+	}
+
+	function mod:GOSSIP_SHOW()
+		local mobId = self:MobId(UnitGUID("npc"))
+		if self:GetOption("autotalk") > 0 and autoTalk[mobId] then
+			if GetGossipOptions() then
+				SelectGossipOption(1)
+			end
+		end
 	end
 end
