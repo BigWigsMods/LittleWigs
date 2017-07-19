@@ -530,8 +530,9 @@ do
 						mod:Sync("clue", L[clue])
 					else
 						--if spyEventHelper then -- XXX temp until we are more clued up
+						if not knownClues[clue] then
 							timer = self:ScheduleTimer(printNew, 1, GetLocale(), clue)
-						--end
+						end
 					end
 				end
 			end
