@@ -36,7 +36,7 @@ if L then
 	L.announce_buff_items_desc = "던전 내의 모든 강화 효과 아이템과 아이템을 누가 사용할 수 있는 지 알립니다."
 
 	L.available = "%s|cffffffff%s|r 사용 가능" -- Context: item is available to use
-	L.usableBy = "사용 가능: "  -- Context: item is usable by someone
+	L.usableBy = "사용 가능: " -- Context: item is usable by someone
 
 	L.use_buff_items = "강화 효과 아이템 즉시 사용"
 	L.use_buff_items_desc = "이 옵션을 사용하면 던전 내 곳곳에 있는 강화 효과 아이템을 즉시 사용합니다. 두번째 우두머리 전의 수호병을 유인하는 아이템은 사용하지 않습니다."

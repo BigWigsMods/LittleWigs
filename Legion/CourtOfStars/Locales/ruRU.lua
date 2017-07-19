@@ -34,10 +34,9 @@ if L then
 
 	--L.announce_buff_items = "Announce buff items"
 	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
-	--L.announce_buff_items_icon = 211080
 
 	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	--L.usableBy = "usable by"  -- Context: item is usable by someone
+	--L.usableBy = "usable by" -- Context: item is usable by someone
 
 	--L.use_buff_items = "Instantly use buff items"
 	--L.use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
