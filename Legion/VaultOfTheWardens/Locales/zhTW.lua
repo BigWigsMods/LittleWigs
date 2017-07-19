@@ -3,8 +3,8 @@ if not L then return end
 if L then
 	L.kick_combo = "連環踢"
 
-	L.light_dropped = "%s 丟掉了光。"
-	L.light_picked = "%s 撿起了光。"
+	L.light_dropped = "%s丟掉了光。"
+	L.light_picked = "%s撿起了光。"
 
 	L.warmup_text = "寇達娜．魔歌啟動"
 	L.warmup_trigger = "我已經拿到我要找的東西了。但為了你們，我最好還是留下來…斬草除根！"
