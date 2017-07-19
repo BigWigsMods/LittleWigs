@@ -271,11 +271,20 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PickingUp", 214697)
 	self:Log("SPELL_CAST_SUCCESS", "PickingUpSuccess", 214697)
 
-	self:RegisterEvent("GOSSIP_SHOW")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
 	self:RegisterMessage("BigWigs_BossComm")
 	self:RegisterMessage("DBM_AddonMessage") -- Catch DBM clues
+
+	-- Purely because DBM, and maybe others, call CloseGossip. That is just sooooo useful.
+	local frames = {GetFramesRegisteredForEvent("GOSSIP_SHOW")}
+	for i = 1, #frames do
+		frames[i]:UnregisterEvent("GOSSIP_SHOW")
+	end
+	self:RegisterEvent("GOSSIP_SHOW")
+	for i = 1, #frames do
+		frames[i]:RegisterEvent("GOSSIP_SHOW")
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -455,11 +464,12 @@ do
 		["book"] = 14,
 	}
 
-	local knownClues, clueCount = {}, 0
+	local knownClues, clueCount, timer = {}, 0, nil
 
 	function mod:OnBossDisable()
-		wipe(knownClues)
 		clueCount = 0
+		timer = nil
+		wipe(knownClues)
 	end
 
 	local function sendChatMessage(msg)
@@ -486,6 +496,14 @@ do
 		end
 	end
 
+	local function printNew(locale, clue)
+		timer = nil
+		sendChatMessage(clue)
+		RaidNotice_AddMessage(RaidWarningFrame, "LittleWigs: Unknown clue detected, see chat for info.", {r=1,g=1,b=1})
+		BigWigs:Print("LittleWigs is sending the entire clue to chat as it detected an unknown clue, please report it on Discord/GitHub/Curse so we can add it and shorten the message.")
+		BigWigs:Error(("|cffffff00TELL THE AUTHORS:|r New clue '%s' with '%s'"):format(clue, locale))
+	end
+
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(UnitGUID("npc"))
 		local useBuffItems = self:GetOption("use_buff_items") > 0
@@ -497,19 +515,20 @@ do
 				end
 			else
 				if mobId == 107486 then -- Chatty Rumormonger
+					if timer then
+						self:CancelTimer(timer)
+						timer = nil
+					end
+
 					local clue = GetGossipText()
 					if L[clue] then
-						if not knownClues[clue] then
+						if not knownClues[L[clue]] then
 							sendChatMessage(L.hints[L[clue]])
 						end
 						mod:Sync("clue", L[clue])
 					else
 						--if spyEventHelper then -- XXX temp until we are more clued up
-							sendChatMessage(clue)
-							local gl = GetLocale()
-							RaidNotice_AddMessage(RaidWarningFrame, "LittleWigs: Unknown clue detected, see chat for info.", {r=1,g=1,b=1})
-							BigWigs:Print("LittleWigs is sending the entire clue to chat as it detected an unknown clue, please report it on Discord/GitHub/Curse so we can add it and shorten the message.")
-							BigWigs:Error(("|cffffff00TELL THE AUTHORS:|r New clue '%s' with '%s'"):format(clue, gl))
+							timer = self:ScheduleTimer(printNew, 1, GetLocale(), clue)
 						--end
 					end
 				end
@@ -525,8 +544,9 @@ do
 				sendChatMessage(L.spyFoundChat)
 			end
 			for unit in self:IterateGroup() do
-				if UnitName(unit) == target then
+				if self:UnitName(unit) == target then
 					SetRaidTarget(unit.."target", 8)
+					break
 				end
 			end
 		end
