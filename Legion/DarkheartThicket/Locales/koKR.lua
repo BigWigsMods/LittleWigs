@@ -1,9 +1,9 @@
 local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "koKR")
 if not L then return end
 if L then
-	--L.ruiner = "Dreadsoul Ruiner"
-	--L.razorbeak = "Crazed Razorbeak"
-	--L.grizzly = "Festerhide Grizzly"
-	--L.fury = "Bloodtainted Fury"
-	--L.imp = "Dreadfire Imp"
+	L.ruiner = "공포영혼 파멸자"
+	L.razorbeak = "광기 어린 뾰족부리"
+	L.grizzly = "고름가죽 불곰"
+	L.fury = "피로 물든 격노"
+	L.imp = "공포화염 임프"
 end
