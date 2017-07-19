@@ -16,11 +16,11 @@ mod:RegisterEnableMob(
 	95842, -- Valarjar Thundercaller
 	97197, -- Valarjar Purifier
 	101637, -- Valarjar Aspirant
-	97068,  -- Storm Drake
-	99891,  -- Storm Drake
-	96640,  -- Valarjar Marksman
-	96934,  -- Valarjar Trapper
-	96574   -- Stormforged Sentinel
+	97068, -- Storm Drake
+	99891, -- Storm Drake
+	96640, -- Valarjar Marksman
+	96934, -- Valarjar Trapper
+	96574 -- Stormforged Sentinel
 )
 
 --------------------------------------------------------------------------------
@@ -77,15 +77,11 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	--[CLEU] SPELL_CAST_START#Creature-0-2084-1477-6795-99891-00003FDF54#Storm Drake##nil#198892#Crackling Storm#nil#nil
-
 	-- Cleansing Flames, Unruly Yell, Sanctify, Blast of Light, Healing Light, Rune of Healing, Holy Radiance, Lightning Breath, Penetrating Shot, Bear Trap, Charged Pulse
 	self:Log("SPELL_CAST_START", "Casts", 192563, 199726, 192158, 191508, 198931, 198934, 215433, 198888, 199210, 199341, 210875)
 
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
 	self:Log("SPELL_AURA_REMOVED", "ThunderstrikeRemoved", 215430)
-
-	--self:Death("Disable", 97197) -- Valarjar Purifier
 end
 
 --------------------------------------------------------------------------------

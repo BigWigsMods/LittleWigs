@@ -22,4 +22,8 @@ if L then
 	L.thundercaller = "瓦拉加尔唤雷者"
 	L.mystic = "瓦拉加尔秘法师"
 	L.aspirant = "瓦拉加尔候选者"
+	--L.drake = "Storm Drake"
+	--L.marksman = "Valarjar Marksman"
+	--L.trapper = "Valarjar Trapper"
+	--L.sentinel = "Stormforged Sentinel"
 end

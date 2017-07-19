@@ -22,4 +22,8 @@ if L then
 	--L.thundercaller = "Valarjar Thundercaller"
 	--L.mystic = "Valarjar Mystic"
 	--L.aspirant = "Valarjar Aspirant"
+	--L.drake = "Storm Drake"
+	--L.marksman = "Valarjar Marksman"
+	--L.trapper = "Valarjar Trapper"
+	--L.sentinel = "Stormforged Sentinel"
 end

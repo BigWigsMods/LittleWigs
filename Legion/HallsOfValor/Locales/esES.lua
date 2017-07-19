@@ -17,9 +17,13 @@ end
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "esES") or BigWigs:NewBossLocale("Halls of Valor Trash", "esMX")
 if L then
 	--L.fourkings = "The Four Kings"
-	--L.olmyr = "Olmyr the Enlightened"
-	--L.purifier = "Valarjar Purifier"
-	--L.thundercaller = "Valarjar Thundercaller"
-	--L.mystic = "Valarjar Mystic"
-	--L.aspirant = "Valarjar Aspirant"
+	L.olmyr = "Olmyr el Iluminado"
+	L.purifier = "Purificador Valarjar"
+	L.thundercaller = "Clamatruenos Valarjar"
+	L.mystic = "Místico Valarjar"
+	L.aspirant = "Aspirante Valarjar"
+	L.drake = "Draco de tormenta"
+	L.marksman = "Tiradora Valarjar"
+	L.trapper = "Trampero Valarjar"
+	L.sentinel = "Centinela Tronaforjado"
 end

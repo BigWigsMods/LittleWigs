@@ -17,9 +17,13 @@ end
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "ruRU")
 if L then
 	--L.fourkings = "The Four Kings"
-	--L.olmyr = "Olmyr the Enlightened"
-	--L.purifier = "Valarjar Purifier"
-	--L.thundercaller = "Valarjar Thundercaller"
-	--L.mystic = "Valarjar Mystic"
-	--L.aspirant = "Valarjar Aspirant"
+	L.olmyr = "Олмир Просвещенный"
+	L.purifier = "Валарьяр-очиститель"
+	L.thundercaller = "Валарьяр - призыватель молний"
+	L.mystic = "Валарьяр-мистик"
+	L.aspirant = "Валарьяр-претендентка"
+	L.drake = "Штормовой дракон"
+	L.marksman = "Валарьяр-лучница"
+	L.trapper = "Валарьяр-зверолов"
+	L.sentinel = "Закаленный бурей страж"
 end
