@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Mephistroth", "zhTW")
 if not L then return end
 if L then
-	L.custom_on_time_lost = "黑暗漸隱期間計時"
-	L.custom_on_time_lost_desc = "將黑暗漸隱持續時間的計時條顯示為|cffff0000紅色|r。"
+	L.custom_on_time_lost = "黑暗漸隱期間計時器"
+	L.custom_on_time_lost_desc = "將黑暗漸隱持續時間的計時器顯示為|cffff0000紅色|r。"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "zhTW")
