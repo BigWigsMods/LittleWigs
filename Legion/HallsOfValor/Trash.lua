@@ -31,6 +31,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.autotalk = "Autotalk"
 	L.autotalk_desc = "Instantly selects various gossip options around the dungeon."
+
 	L.fourkings = "The Four Kings"
 	L.olmyr = "Olmyr the Enlightened"
 	L.purifier = "Valarjar Purifier"
