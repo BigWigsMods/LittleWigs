@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Odyn", "koKR")
+local L = BigWigs:NewBossLocale("The Arcway Trash", "koKR")
 if not L then return end
 if L then
 	L.anomaly = "비전 변형물"

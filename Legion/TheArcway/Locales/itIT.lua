@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Odyn", "itIT")
+local L = BigWigs:NewBossLocale("The Arcway Trash", "itIT")
 if not L then return end
 if L then
 	L.anomaly = "Anomalia Arcana"
