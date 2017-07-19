@@ -184,7 +184,7 @@ if L then
 	L["The spy definitely prefers darker clothing."] = 12
 
 	-- No Potions
-	L["I heared the spy is not carrying any potions around."] = 13
+	L["I heard the spy is not carrying any potions around."] = 13
 	L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
 
 	-- Book
