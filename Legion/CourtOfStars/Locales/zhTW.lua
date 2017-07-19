@@ -35,7 +35,7 @@ if L then
 	L.announce_buff_items = "通告增益物品"
 	L.announce_buff_items_desc = "通告此地城所有可用的增益物品，並通告誰可以使用。"
 
-	L.available = "|cffffffff%s|r可用" -- Context: item is available to use
+	L.available = "%s|cffffffff%s|r可用" -- Context: item is available to use
 	L.usableBy = "可由%s使用" -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "立即使用增益物品"
