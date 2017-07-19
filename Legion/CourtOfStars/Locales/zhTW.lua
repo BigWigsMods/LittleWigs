@@ -1,31 +1,31 @@
 local L = BigWigs:NewBossLocale("Court of Stars Trash", "zhTW")
 if not L then return end
 if L then
-	--L.Guard = "Duskwatch Guard"
-	--L.Construct = "Guardian Construct"
-	--L.Enforcer = "Felbound Enforcer"
-	--L.Hound = "Legion Hound"
+	L.Guard = "暮衛守衛"
+	L.Construct = "守護者傀儡"
+	L.Enforcer = "魔縛執行者"
+	L.Hound = "燃燒軍團獵犬"
 	--L.Gerenth = "Gerenth the Vile"
-	--L.Jazshariu = "Jazshariu"
-	--L.Imacutya = "Imacutya"
-	--L.Baalgar = "Baalgar the Watchful"
-	--L.Inquisitor = "Watchful Inquisitor"
-	--L.BlazingImp = "Blazing Imp"
-	--L.Energy = "Bound Energy"
+	L.Jazshariu = "賈茲夏魯"
+	L.Imacutya = "伊瑪庫緹雅"
+	L.Baalgar = "『警戒者』包爾加"
+	L.Inquisitor = "警戒的審判官"
+	L.BlazingImp = "熾炎小鬼"
+	L.Energy = "束縛能量"
 	--L.Manifestation = "Arcane Manifestation"
-	--L.Wyrm = "Mana Wyrm"
-	--L.Arcanist = "Duskwatch Arcanist"
-	--L.InfernalImp = "Infernal Imp"
-	--L.Malrodi = "Arcanist Malrodi"
+	L.Wyrm = "法力龍鰻"
+	L.Arcanist = "暮衛祕法師"
+	L.InfernalImp = "熾炎小鬼"
+	L.Malrodi = "祕法化身"
 	--L.Velimar = "Velimar"
-	--L.ArcaneKeys = "Arcane Keys"
-	--L.clues = "Clues"
+	L.ArcaneKeys = "祕法鑰匙"
+	L.clues = "線索"
 
-	L.InfernalTome = "魔化火球"
+	L.InfernalTome = "煉獄秘典"
 	L.MagicalLantern = "魔法燈籠"
 	L.NightshadeRefreshments = "夜影餐點"
 	L.StarlightRoseBrew = "星輝玫瑰酒"
-	--L.UmbralBloom = "Umbral Bloom"
+	L.UmbralBloom = "暗影之花"
 	L.WaterloggedScroll = "浸水的卷軸"
 	L.BazaarGoods = "市集商品"
 	L.LifesizedNightborneStatue = "等身大小的夜裔雕像"
@@ -41,13 +41,13 @@ if L then
 	L.use_buff_items = "立即使用增益物品"
 	L.use_buff_items_desc = "啟用此選項已立即使用此地城的增益物品。這不包含二王前使用會引來守衛的物品。"
 
-	L.spy_event_helper = "間諜事件幫手"
-	L.spy_event_helper_desc = "顯示一個訊息視窗內含隊伍所有得到間諜的線索。 此線索也會發送給隊伍成員。"
+	L.spy_helper = "間諜事件幫手"
+	L.spy_helper_desc = "顯示一個訊息視窗內含隊伍所有得到間諜的線索。 此線索也會發送給隊伍成員。"
 
 	L.clueFound = "線索找到 (%d/5): |cffffffff%s|r"
 	L.spyFound = "間諜被 %s 找到了！"
-	L.spyFoundChat = "我找到間諜了，呀呼！"
-	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundChat = "我找到間諜了，快來！"
+	L.spyFoundPattern = "別太快下定論。"  -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	L.hints = {
 		"斗篷",
