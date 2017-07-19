@@ -112,4 +112,6 @@
 <Include file="Legion\VaultOfTheWardens\locales.xml"/>
 
 <Include file="Legion\CathedralOfEternalNight\modules.xml"/>
+
+<Include file="Legion\SeatOfTheTriumvirate\modules.xml"/>
 </Ui>
