@@ -39,6 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DreadlordsGuise", 199193)
 	self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:Death("KelornDeath", 111361)
 	self:Death("Win", 98970)
 end
 
@@ -98,3 +99,6 @@ function mod:StingingSwarmApplied(args)
 	end
 end
 
+function mod:KelornDeath()
+	self:CDBar(202019, 17.5) -- Shadow Bolt Volley
+end
