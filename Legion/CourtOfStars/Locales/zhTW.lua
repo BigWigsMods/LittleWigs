@@ -33,19 +33,19 @@ if L then
 	L.WoundedNightborneCivilian = "受傷的夜裔平民"
 
 	L.announce_buff_items = "通告增益物品"
-	L.announce_buff_items_desc = "通告此地城所有可用的增益物品與誰可以使用。"
+	L.announce_buff_items_desc = "通告此地城所有可用的增益物品，並通告誰可以使用。"
 
-	L.available = "%s|cffffffff%s|r 可用" -- Context: item is available to use
-	L.usableBy = "可使用經由" -- Context: item is usable by someone
+	L.available = "%s|cffffffff%s|r可用" -- Context: item is available to use
+	L.usableBy = "使用者：" -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "立即使用增益物品"
-	L.custom_on_use_buff_items_desc = "啟用此選項已立即使用此地城的增益物品。這不包含二王前使用會引來守衛的物品。"
+	L.custom_on_use_buff_items_desc = "啟用此選項後，自動確認使用物品前的對話選項並使用物品，這不包含二王前使用會引來守衛的物品。"
 
 	L.spy_helper = "間諜事件幫手"
-	L.spy_helper_desc = "顯示一個訊息視窗內含隊伍所有得到間諜的線索。 此線索也會發送給隊伍成員。"
+	L.spy_helper_desc = "在一個訊息視窗內顯示隊伍得到間諜的線索，並通告線索給其他隊員。"
 
-	L.clueFound = "線索找到 (%d/5): |cffffffff%s|r"
-	L.spyFound = "間諜被 %s 找到了！"
+	L.clueFound = "找到第%d/5條線索：|cffffffff%s|r"
+	L.spyFound = "間諜被%s找到了！"
 	L.spyFoundChat = "我找到間諜了，快來！"
 	L.spyFoundPattern = "別太快下定論。"  -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
