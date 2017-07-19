@@ -15,8 +15,8 @@ mod.respawnTime = 30
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.autotalk = "Autotalk"
-	L.autotalk_desc = "Instantly selects the gossip option to start the fight."
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
 
 	L[197963] = "|cFF800080Top Right|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Boss_OdunRunes_Purple
 	L[197964] = "|cFFFFA500Bottom Right|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Boss_OdunRunes_Orange
@@ -31,7 +31,7 @@ end
 
 function mod:GetOptions()
 	return {
-		"autotalk",
+		"custom_on_autotalk",
 		"warmup",
 		197961, -- Runic Brand
 		198263, -- Radiant Tempest
@@ -89,7 +89,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("autotalk") > 0 and self:MobId(UnitGUID("npc")) == 95676 then
+	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 95676 then
 		if GetGossipOptions() then
 			SelectGossipOption(1, "", true) -- auto confirm it
 			mod:Sync("odyn")

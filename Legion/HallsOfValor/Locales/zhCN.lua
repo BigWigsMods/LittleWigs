@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Odyn", "zhCN")
 if not L then return end
 if L then
-	--L.autotalk = "Autotalk"
-	--L.autotalk_desc = "Instantly selects the gossip option to start the fight."
+	--L.custom_on_autotalk = "Autotalk"
+	--L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
 
 	L[197963] = "|cFF800080右上|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
 	L[197964] = "|cFFFFA500右下|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
@@ -19,8 +19,8 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "zhCN")
 if L then
-	--L.autotalk = "Autotalk"
-	--L.autotalk_desc = "Instantly selects various gossip options around the dungeon."
+	--L.custom_on_autotalk = "Autotalk"
+	--L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."
 
 	L.fourkings = "四王"
 	L.olmyr = "启迪者奥米尔"

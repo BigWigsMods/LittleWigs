@@ -86,9 +86,9 @@ if L then
 	L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
 	L.usableBy = "usable by"  -- Context: item is usable by someone
 
-	L.use_buff_items = "Instantly use buff items"
-	L.use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
-	L.use_buff_items_icon = 211110
+	L.custom_on_use_buff_items = "Instantly use buff items"
+	L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.custom_on_use_buff_items_icon = 211110
 
 	L.spy_helper = "Spy Event Helper"
 	L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
@@ -200,7 +200,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		"announce_buff_items",
-		"use_buff_items",
+		"custom_on_use_buff_items",
 		{"spy_helper", "INFOBOX"},
 		209027, -- Quelling Strike (Duskwatch Guard)
 		209033, -- Fortification (Duskwatch Guard)
@@ -508,11 +508,10 @@ do
 
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(UnitGUID("npc"))
-		local useBuffItems = self:GetOption("use_buff_items") > 0
 		local spyEventHelper = self:GetOption("spy_helper") > 0
 		if autoTalk[mobId] or buffItems[mobId] then
 			if GetGossipOptions() then
-				if (spyEventHelper and autoTalk[mobId]) or (useBuffItems and buffItems[mobId]) then
+				if (spyEventHelper and autoTalk[mobId]) or (self:GetOption("custom_on_use_buff_items") and buffItems[mobId]) then
 					SelectGossipOption(1)
 				end
 			else

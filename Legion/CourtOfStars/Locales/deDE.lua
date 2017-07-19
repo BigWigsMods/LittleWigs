@@ -38,8 +38,8 @@ if L then
 	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
 	--L.usableBy = "usable by" -- Context: item is usable by someone
 
-	--L.use_buff_items = "Instantly use buff items"
-	--L.use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	--L.custom_on_use_buff_items = "Instantly use buff items"
+	--L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
 
 	--L.spy_helper = "Spy Event Helper"
 	--L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."

@@ -38,8 +38,8 @@ if L then
 	L.available = "%s|cffffffff%s|r 可用" -- Context: item is available to use
 	L.usableBy = "可使用經由" -- Context: item is usable by someone
 
-	L.use_buff_items = "立即使用增益物品"
-	L.use_buff_items_desc = "啟用此選項已立即使用此地城的增益物品。這不包含二王前使用會引來守衛的物品。"
+	L.custom_on_use_buff_items = "立即使用增益物品"
+	L.custom_on_use_buff_items_desc = "啟用此選項已立即使用此地城的增益物品。這不包含二王前使用會引來守衛的物品。"
 
 	L.spy_helper = "間諜事件幫手"
 	L.spy_helper_desc = "顯示一個訊息視窗內含隊伍所有得到間諜的線索。 此線索也會發送給隊伍成員。"

@@ -29,8 +29,8 @@ mod:RegisterEnableMob(
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.autotalk = "Autotalk"
-	L.autotalk_desc = "Instantly selects various gossip options around the dungeon."
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."
 
 	L.fourkings = "The Four Kings"
 	L.olmyr = "Olmyr the Enlightened"
@@ -51,7 +51,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"autotalk",
+		"custom_on_autotalk",
 		192563, -- Cleansing Flames
 		199726, -- Unruly Yell
 		192158, -- Sanctify
@@ -67,7 +67,7 @@ function mod:GetOptions()
 		{199805, "SAY"}, -- Crackle
 		{198745, "DISPEL"}, -- Protective Light
 	}, {
-		["autotalk"] = "general",
+		["custom_on_autotalk"] = "general",
 		[192563] = L.purifier,
 		[199726] = L.fourkings,
 		[192158] = L.olmyr,
@@ -162,7 +162,7 @@ do
 
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(UnitGUID("npc"))
-		if self:GetOption("autotalk") > 0 and autoTalk[mobId] then
+		if self:GetOption("custom_on_autotalk") and autoTalk[mobId] then
 			if GetGossipOptions() then
 				SelectGossipOption(1)
 			end
