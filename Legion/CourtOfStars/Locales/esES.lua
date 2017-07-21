@@ -74,8 +74,8 @@ if L then
 	--L["Someone mentioned the spy came in earlier wearing a cape."] = 1
 
 	-- No Cape
-	--L["I heard that the spy left their cape in the palace before coming here."] = 2
-	--L["I heard the spy dislikes capes and refuses to wear one."] = 2
+	L["He oído que el espía se dejó la capa en palacio antes de venir aquí."] = 2
+	L["He oído que al espía no le gustan las capas y se niega a llevar una."] = 2
 
 	-- Pouch
 	--L["A friend said the spy loves gold and a belt pouch filled with it."] = 3
@@ -96,10 +96,10 @@ if L then
 	--L["A friend of mine mentioned the spy has long sleeves on."] = 5
 
 	-- Short Sleeves
-	--L["I heard the spy enjoys the cool air and is not wearing long sleeves tonight."] = 6
-	--L["A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."] = 6
-	--L["Someone told me the spy hates wearing long sleeves."] = 6
-	--L["I heard the spy wears short sleeves to keep their arms unencumbered."] = 6
+	L["He oído que al espía le gusta el aire fresco y que esta noche no lleva manga larga."] = 6
+	L["Me ha dicho una amiga que ha visto cómo va vestido el espía. No llevaba manga larga."] = 6
+	L["Me han dicho que el espía odia llevar manga larga."] = 6
+	L["He oído que el espía lleva manga corta para que sus brazos queden libres."] = 6
 
 	-- Gloves
 	--L["I heard the spy always dons gloves."] = 7
@@ -108,16 +108,16 @@ if L then
 	--L["I heard the spy carefully hides their hands."] = 7
 
 	-- No Gloves
-	--L["There's a rumor that the spy never has gloves on."] = 8
-	--L["I heard the spy dislikes wearing gloves."] = 8
-	--L["I heard the spy avoids having gloves on, in case some quick actions are needed."] = 8
-	--L["You know... I found an extra pair of gloves in the back room. The spy is likely to be bare handed somewhere around here."] = 8
+	L["Dicen los rumores que el espía nunca lleva guantes."] = 8
+	L["He oído que al espía no le gusta llevar guantes."] = 8
+	L["He oído que el espía evita llevar guantes, por si necesita actuar rápido."] = 8
+	L["Me encontré un par de guantes de más en la habitación trasera. Probablemente el espía se pasee por aquí con las manos desnudas."] = 8
 
 	-- Male
-	--L["A guest said she saw him entering the manor alongside the Grand Magistrix."] = 9
-	--L["I heard somewhere that the spy isn't female."] = 9
-	--L["I heard the spy is here and he's very good looking."] = 9
-	--L["One of the musicians said he would not stop asking questions about the district."] = 9
+	L["Una invitada dice que lo vio entrar en la mansión junto a la Gran Magistrix."] = 9
+	L["He oído por ahí que el espía no es una mujer."] = 9
+	L["He oído que el espía está aquí y que es bastante guapo."] = 9
+	L["Uno de los músicos dice que ese tipo no paraba de hacer preguntas sobre el distrito."] = 9
 
 	-- Female
 	--L["A guest saw both her and Elisande arrive together earlier."] = 10
@@ -126,9 +126,9 @@ if L then
 	--L["They say that the spy is here and she's quite the sight to behold."] = 10
 
 	-- Light Vest
-	--L["The spy definitely prefers the style of light colored vests."] = 11
-	--L["I heard that the spy is wearing a lighter vest to tonight's party."] = 11
-	--L["People are saying the spy is not wearing a darker vest tonight."] = 11
+	L["Definitivamente, el espía prefiere los ropajes de colores claros."] = 11
+	L["He oído que el espía lleva un jubón más ligero en la fiesta de esta noche."] = 11
+	L["La gente dice que el espía no lleva un jubón oscuro esta noche."] = 11
 
 	-- Dark Vest
 	--L["I heard the spy's vest is a dark, rich shade this very night."] = 12
