@@ -78,7 +78,7 @@ if L then
 	--L["I heard the spy dislikes capes and refuses to wear one."] = 2
 
 	-- Pouch
-	--L["A friend said the spy loves gold and a belt pouch filled with it."] = 3
+	L["D’après l’un de mes amis, la taupe aime l’or et les sacoches qui en sont pleines."] = 3
 	--L["I heard the spy's belt pouch is filled with gold to show off extravagance."] = 3
 	--L["I heard the spy carries a magical pouch around at all times."] = 3
 	--L["I heard the spy's belt pouch is lined with fancy threading."] = 3
@@ -123,7 +123,7 @@ if L then
 	--L["A guest saw both her and Elisande arrive together earlier."] = 10
 	--L["I hear some woman has been constantly asking about the district..."] = 10
 	--L["Someone's been saying that our new guest isn't male."] = 10
-	--L["They say that the spy is here and she's quite the sight to behold."] = 10
+	L["On dit que la taupe est ici et que c’est une vraie beauté."] = 10
 
 	-- Light Vest
 	--L["The spy definitely prefers the style of light colored vests."] = 11
