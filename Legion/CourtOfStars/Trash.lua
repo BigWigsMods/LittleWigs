@@ -80,18 +80,18 @@ if L then
 	L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
 
 	L.announce_buff_items = "Announce buff items"
-	L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	L.announce_buff_items_desc = "Announces all available buff items around the dungeon and who is able to use them."
 	L.announce_buff_items_icon = 211080
 
 	L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
 	L.usableBy = "usable by"  -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "Instantly use buff items"
-	L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.custom_on_use_buff_items_desc = "Enable this option to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
 	L.custom_on_use_buff_items_icon = 211110
 
 	L.spy_helper = "Spy Event Helper"
-	L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be sent to your party members in chat."
 	L.spy_helper_icon = 213213
 
 	L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
