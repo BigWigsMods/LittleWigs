@@ -47,7 +47,7 @@ if L then
 	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	--L.spyFound = "Spy found by %s!"
 	--L.spyFoundChat = "I found the spy!"
-	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundPattern = "Ora, ora, não sejamos apressados" -- Ora, ora, não sejamos apressados, [playername]. Que tal me seguir e conversar em um local mais reservado...
 
 	--L.hints = {
 	--	"Cape",
@@ -70,8 +70,8 @@ if L then
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
 
 	-- Cape
-	--L["I heard the spy enjoys wearing capes."] = 1
-	--L["Someone mentioned the spy came in earlier wearing a cape."] = 1
+	L["Ouvi dizer que o espião gosta de usar capas."] = 1
+	L["Alguém falou que o espião chegou mais cedo usando uma capa."] = 1
 
 	-- No Cape
 	L["Ouvi dizer que o espião deixou a capa no palácio antes de vir pra cá."] = 2
@@ -84,16 +84,16 @@ if L then
 	--L["I heard the spy's belt pouch is lined with fancy threading."] = 3
 
 	-- Potions
-	--L["I heard the spy brought along some potions... just in case."] = 4
-	--L["I'm pretty sure the spy has potions at the belt."] = 4
-	--L["I heard the spy brought along potions, I wonder why?"] = 4
-	--L["I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."] = 4
+	L["Disseram que o espião trouxe algumas poções... só por garantia."] = 4
+	L["Tenho certeza de que o espião tem poções no cinto."] = 4
+	L["Disseram que o espião trouxe poções, por que será?"] = 4
+	L["Eu não lhe disse nada... mas o espião está disfarçado de alquimista, carregando poções no cinto."] = 4
 
 	-- Long Sleeves
-	--L["I just barely caught a glimpse of the spy's long sleeves earlier in the evening."] = 5
-	--L["I heard the spy's outfit has long sleeves tonight."] = 5
-	--L["Someone said the spy is covering up their arms with long sleeves tonight."] = 5
-	--L["A friend of mine mentioned the spy has long sleeves on."] = 5
+	L["Eu mal consegui espiar as mangas compridas do espião."] = 5
+	L["Ouvi dizer que a roupa do espião é de manga comprida."] = 5
+	L["Alguém me disse que o espião está cobrindo os braços com mangas compridas."] = 5
+	L["Um amigo meu disse que o espião está de mangas compridas."] = 5
 
 	-- Short Sleeves
 	L["Ouvi dizer que o espião gosta de ar fresco e não está usando mangas compridas."] = 6
@@ -102,10 +102,10 @@ if L then
 	L["Dizem que o espião usa mangas curtas para manter os braços livres."] = 6
 
 	-- Gloves
-	--L["I heard the spy always dons gloves."] = 7
-	--L["There's a rumor that the spy always wears gloves."] = 7
-	--L["Someone said the spy wears gloves to cover obvious scars."] = 7
-	--L["I heard the spy carefully hides their hands."] = 7
+	L["Ouvi dizer que o espião sempre usa luvas."] = 7
+	L["Corre um boato de que o espião sempre usa luvas."] = 7
+	L["Alguém disse que o espião usa luvas para esconder cicatrizes."] = 7
+	L["Dizem que o espião fica escondendo as mãos."] = 7
 
 	-- No Gloves
 	L["Estão dizendo que o espião nunca usa luvas."] = 8
@@ -120,10 +120,10 @@ if L then
 	L["Um dos músicos disse que ele não parava de perguntar sobre o distrito."] = 9
 
 	-- Female
-	--L["A guest saw both her and Elisande arrive together earlier."] = 10
-	--L["I hear some woman has been constantly asking about the district..."] = 10
-	--L["Someone's been saying that our new guest isn't male."] = 10
-	--L["They say that the spy is here and she's quite the sight to behold."] = 10
+	L["Um convidado viu ela e Elisande chegarem juntas."] = 10
+	L["Ouvi falar que uma mulher está fazendo várias perguntas sobre o distrito..."] = 10
+	L["Tem gente dizendo que é uma nova convidada, e não convidado."] = 10
+	L["Dizem que a espiã está aqui e que ela é um colírio para os olhos."] = 10
 
 	-- Light Vest
 	L["O espião definitivamente prefere coletes de cor clara."] = 11
@@ -131,16 +131,16 @@ if L then
 	L["Estão dizendo que o espião não está usando colete escuro hoje."] = 11
 
 	-- Dark Vest
-	--L["I heard the spy's vest is a dark, rich shade this very night."] = 12
-	--L["The spy enjoys darker colored vests... like the night."] = 12
-	--L["Rumor has it the spy is avoiding light colored clothing to try and blend in more."] = 12
-	--L["The spy definitely prefers darker clothing."] = 12
+	L["Ouvi dizer que as vestes do espião têm um tom escuro e rico esta noite."] = 12
+	L["O espião gosta de coletes escuros... como a noite."] = 12
+	L["Corre um boato que o espião evitou roupas de cores claras para não chamar a atenção."] = 12
+	L["O espião definitivamente prefere roupas escuras."] = 12
 
 	-- No Potions
 	--L["I heard the spy is not carrying any potions around."] = 13
 	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
 
 	-- Book
-	--L["I heard the spy always has a book of written secrets at the belt."] = 14
-	--L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
+	L["Soube que o espião sempre carrega um caderno de segredos no cinto."] = 14
+	L["Corre um boato de que o espião adora ler e sempre carrega pelo menos um livro."] = 14
 end
