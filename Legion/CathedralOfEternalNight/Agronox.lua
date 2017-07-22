@@ -28,7 +28,7 @@ function mod:GetOptions()
 		235751, -- Timber Smash
 		236650, -- Choking Vines
 		236527, -- Fulminating Lashers
-		{238674, "SAY", "FLASH"}, -- Fixate
+		{238674, "FLASH"}, -- Fixate
 		236639, -- Succulent Lashers
 		236640, -- Toxic Sap
 	},{
@@ -73,7 +73,6 @@ function mod:RAID_BOSS_WHISPER(_, msg, sender)
 	if msg:find("238674", nil, true) then -- Fixates
 		self:Message(238674, "Personal", "Alarm", CL.you:format(self:SpellName(238674)))
 		self:Flash(238674)
-		self:Say(238674)
 	end
 end
 
