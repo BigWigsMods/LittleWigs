@@ -13,12 +13,12 @@ end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "deDE")
 if L then
-	--L.dulzak = "Dul'zak"
-	--L.felguard = "Felguard Destroyer"
-	--L.soulmender = "Helblaze Soulmender"
-	--L.temptress = "Hellblaze Temptress"
-	--L.botanist = "Felborne Botanist"
-	--L.orbcaster = "Felstrider Orbcaster"
-	--L.waglur = "Wa'glur"
-	--L.gazerax = "Gazerax"
+	L.dulzak = "Dul'zak"
+	L.felguard = "Zerstörer der Teufelswache"
+	L.soulmender = "Höllenglutseelenheiler"
+	L.temptress = "Höllenglutverführerin"
+	L.botanist = "Teufelsgeborene Botanikerin"
+	L.orbcaster = "Sphärenwirker der Teufelsschreiter"
+	L.waglur = "Wa'glur"
+	L.gazerax = "Gazerax"
 end
