@@ -47,7 +47,7 @@ if L then
 	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	--L.spyFound = "Spy found by %s!"
 	--L.spyFoundChat = "I found the spy!"
-	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundPattern = "allez pas trop vite en besogne" -- Allons, [playername]. N’allez pas trop vite en besogne. Et si vous me suiviez, que nous puissions en parler en privé ?
 
 	--L.hints = {
 	--	"Cape",
@@ -70,12 +70,12 @@ if L then
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
 
 	-- Cape
-	--L["I heard the spy enjoys wearing capes."] = 1
-	--L["Someone mentioned the spy came in earlier wearing a cape."] = 1
+	L["On dit que la taupe aime porter des capes."] = 1
+	L["Quelqu’un affirme que la taupe portait une cape lors de son passage ici."] = 1
 
 	-- No Cape
-	--L["I heard that the spy left their cape in the palace before coming here."] = 2
-	--L["I heard the spy dislikes capes and refuses to wear one."] = 2
+	L["J’ai entendu dire que la taupe avait laissé sa cape au palais avant de venir ici."] = 2
+	L["Il paraît que la taupe n’aime pas les capes et refuse d’en porter."] = 2
 
 	-- Pouch
 	L["D’après l’un de mes amis, la taupe aime l’or et les sacoches qui en sont pleines."] = 3
@@ -90,45 +90,45 @@ if L then
 	--L["I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."] = 4
 
 	-- Long Sleeves
-	--L["I just barely caught a glimpse of the spy's long sleeves earlier in the evening."] = 5
-	--L["I heard the spy's outfit has long sleeves tonight."] = 5
-	--L["Someone said the spy is covering up their arms with long sleeves tonight."] = 5
-	--L["A friend of mine mentioned the spy has long sleeves on."] = 5
+	L["J’ai brièvement entraperçu la taupe dans sa tenue à manches longues tout à l’heure."] = 5
+	L["Il paraît que la taupe porte une tenue à manches longues ce soir."] = 5
+	L["Quelqu’un m’a dit que les bras de la taupe étaient dissimulés par un habit à manches longues, ce soir."] = 5
+	L["D’après l’un de mes amis, la taupe porterait un habit à manches longues."] = 5
 
 	-- Short Sleeves
-	--L["I heard the spy enjoys the cool air and is not wearing long sleeves tonight."] = 6
-	--L["A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."] = 6
-	--L["Someone told me the spy hates wearing long sleeves."] = 6
-	--L["I heard the spy wears short sleeves to keep their arms unencumbered."] = 6
+	L["Il paraît que la taupe aime sentir la caresse du vent sur sa peau et ne porte pas de manches longues ce soir."] = 6
+	L["Une de mes amies prétend avoir vu la tenue que porte notre taupe. À l’en croire, ce ne serait pas un habit à manches longues."] = 6
+	L["Quelqu’un m’a dit que la taupe détestait porter des manches longues."] = 6
+	L["Il paraît que la taupe porte des manches courtes pour rester plus libre de ses mouvements."] = 6
 
 	-- Gloves
 	--L["I heard the spy always dons gloves."] = 7
-	--L["There's a rumor that the spy always wears gloves."] = 7
+	L["Le bruit court que la taupe porte toujours des gants."] = 7
 	--L["Someone said the spy wears gloves to cover obvious scars."] = 7
 	--L["I heard the spy carefully hides their hands."] = 7
 
 	-- No Gloves
-	--L["There's a rumor that the spy never has gloves on."] = 8
-	--L["I heard the spy dislikes wearing gloves."] = 8
-	--L["I heard the spy avoids having gloves on, in case some quick actions are needed."] = 8
-	--L["You know... I found an extra pair of gloves in the back room. The spy is likely to be bare handed somewhere around here."] = 8
+	L["Le bruit court que la taupe ne porte jamais de gants."] = 8
+	L["On dit que la taupe déteste porter des gants."] = 8
+	L["J’ai entendu dire que la taupe évite de porter des gants, de crainte que cela ne nuise à sa dextérité."] = 8
+	L["Vous savez… J’ai trouvé une paire de gants abandonnée dans l’arrière-salle. Il faut croire que la taupe n’en porte pas."] = 8
 
 	-- Male
-	--L["A guest said she saw him entering the manor alongside the Grand Magistrix."] = 9
-	--L["I heard somewhere that the spy isn't female."] = 9
-	--L["I heard the spy is here and he's very good looking."] = 9
-	--L["One of the musicians said he would not stop asking questions about the district."] = 9
+	L["Une invitée l’aurait vu entrer dans le manoir au côté de la grande magistrice."] = 9
+	L["À en croire la rumeur, la taupe ne serait pas une espionne."] = 9
+	L["Il paraît que l’espion est ici et qu’il est fort séduisant, de surcroît."] = 9
+	L["À en croire l’un des musiciens, il n’arrêtait pas de poser des questions sur le quartier."] = 9
 
 	-- Female
-	--L["A guest saw both her and Elisande arrive together earlier."] = 10
-	--L["I hear some woman has been constantly asking about the district..."] = 10
-	--L["Someone's been saying that our new guest isn't male."] = 10
+	L["Quelqu’un l’a vue arriver en compagnie d’Élisande."] = 10
+	L["On me dit qu’une femme ne cesse de poser des questions à propos du quartier…"] = 10
+	L["Le bruit court que notre hôte ne serait pas un homme."] = 10
 	L["On dit que la taupe est ici et que c’est une vraie beauté."] = 10
 
 	-- Light Vest
-	--L["The spy definitely prefers the style of light colored vests."] = 11
-	--L["I heard that the spy is wearing a lighter vest to tonight's party."] = 11
-	--L["People are saying the spy is not wearing a darker vest tonight."] = 11
+	L["La taupe préfère les gilets de couleur claire."] = 11
+	L["Il paraît que la taupe porte un gilet clair ce soir."] = 11
+	L["On raconte que la taupe ne porte pas de gilet sombre ce soir."] = 11
 
 	-- Dark Vest
 	--L["I heard the spy's vest is a dark, rich shade this very night."] = 12
@@ -141,6 +141,6 @@ if L then
 	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
 
 	-- Book
-	--L["I heard the spy always has a book of written secrets at the belt."] = 14
-	--L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
+	L["Il paraît que la taupe porte toujours un livre des secrets à sa ceinture."] = 14
+	L["Le bruit court que la taupe adore lire et transporte toujours au moins un livre."] = 14
 end

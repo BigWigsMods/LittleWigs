@@ -47,7 +47,7 @@ if L then
 	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	--L.spyFound = "Spy found by %s!"
 	--L.spyFoundChat = "I found the spy!"
-	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundPattern = "Calma, no nos apuremos" -- Calma, no nos apuremos, [playername]. Mejor sígueme y hablemos de esto en un lugar algo más privado…
 
 	--L.hints = {
 	--	"Cape",
@@ -70,8 +70,8 @@ if L then
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
 
 	-- Cape
-	--L["I heard the spy enjoys wearing capes."] = 1
-	--L["Someone mentioned the spy came in earlier wearing a cape."] = 1
+	L["Escuché que al espía le gusta usar capas."] = 1
+	L["Alguien mencionó que el espía pasó por aquí usando una capa."] = 1
 
 	-- No Cape
 	L["Oí que el espía dejó la capa en el palacio antes de venir aquí."] = 2
@@ -96,10 +96,10 @@ if L then
 	L["Un amigo mío mencionó que el espía lleva puestas mangas largas."] = 5
 
 	-- Short Sleeves
-	--L["I heard the spy enjoys the cool air and is not wearing long sleeves tonight."] = 6
-	--L["A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."] = 6
-	--L["Someone told me the spy hates wearing long sleeves."] = 6
-	--L["I heard the spy wears short sleeves to keep their arms unencumbered."] = 6
+	L["Escuché que el espía disfruta del aire fresco y no usará mangas largas esta noche."] = 6
+	L["Una amiga me contó que vio el atuendo que llevaba puesto el espía. No usaba mangas largas."] = 6
+	L["Alguien me dijo que el espía odia usar mangas largas."] = 6
+	L["Tengo entendido que el espía usa mangas cortas para dejar sus brazos al descubierto."] = 6
 
 	-- Gloves
 	--L["I heard the spy always dons gloves."] = 7
@@ -114,10 +114,10 @@ if L then
 	L["Sabes... encontré otro par de guantes en la sala trasera. Seguro que el espía ande por aquí con las manos descubiertas."] = 8
 
 	-- Male
-	--L["A guest said she saw him entering the manor alongside the Grand Magistrix."] = 9
-	--L["I heard somewhere that the spy isn't female."] = 9
-	--L["I heard the spy is here and he's very good looking."] = 9
-	--L["One of the musicians said he would not stop asking questions about the district."] = 9
+	L["Un invitado dijo que lo vio entrar a la mansión junto con la gran magistrix."] = 9
+	L["Oí por ahí que el espía no es mujer."] = 9
+	L["Oí que el espía está aquí y que es muy apuesto."] = 9
+	L["Uno de los músicos dijo que no dejaba de preguntar sobre el distrito."] = 9
 
 	-- Female
 	L["Un invitado la vio a ella y a Elisande llegar juntas hace rato."] = 10
@@ -126,9 +126,9 @@ if L then
 	L["Dicen que la espía está aquí y que es impresionante."] = 10
 
 	-- Light Vest
-	--L["The spy definitely prefers the style of light colored vests."] = 11
-	--L["I heard that the spy is wearing a lighter vest to tonight's party."] = 11
-	--L["People are saying the spy is not wearing a darker vest tonight."] = 11
+	L["El espía definitivamente prefiere los jubones de colores claros."] = 11
+	L["Oí que el espía vestirá un jubón de color claro para la fiesta de esta noche."] = 11
+	L["La gente dice que el espía no viste un jubón oscuro esta noche."] = 11
 
 	-- Dark Vest
 	--L["I heard the spy's vest is a dark, rich shade this very night."] = 12
@@ -141,6 +141,6 @@ if L then
 	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
 
 	-- Book
-	--L["I heard the spy always has a book of written secrets at the belt."] = 14
-	--L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
+	L["Oí que el espía siempre lleva un libro de secretos en el cinturón."] = 14
+	L["Dicen que al espía le encanta leer y siempre lleva al menos un libro."] = 14
 end
