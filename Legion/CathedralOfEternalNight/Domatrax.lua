@@ -10,12 +10,22 @@
 
 local mod, CL = BigWigs:NewBoss("Domatrax", 1146, 1904)
 if not mod then return end
-mod:RegisterEnableMob(118804)
+mod:RegisterEnableMob(
+	118884, -- Aegis of Aggramar
+	118804  -- Domatrax
+)
 mod.engageId = 2053
 
 --------------------------------------------------------------------------------
 -- Locals
 --
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
+end
+L = mod:GetLocale()
 
 local felPortalGuardianCollector = {}
 local felPortalGuardiansCounter = 1
@@ -26,11 +36,13 @@ local felPortalGuardiansCounter = 1
 
 function mod:GetOptions()
 	return {
+		"custom_on_autotalk", -- Aegis of Aggramar
 		236543, -- Felsoul Cleave
 		234107, -- Chaotic Energy
 		-15076, -- Fel Portal Guardian
 		241622, -- Approaching Doom
 	},{
+		["custom_on_autotalk"] = "general",
 		[236543] = -15011,
 		[241622] = "mythic",
 	}
@@ -40,6 +52,8 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "FelsoulCleave", 236543)
 	self:Log("SPELL_CAST_START", "ChaoticEnergy", 234107)
+
+	self:RegisterEvent("GOSSIP_SHOW")
 end
 
 function mod:OnEngage()
@@ -95,6 +109,15 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 			-- Fel Portal Guardian Died
 			self:StopBar(CL.cast:format(CL.count:format(self:SpellName(241622), felPortalGuardianCollector[guid])))
 			felPortalGuardianCollector[guid] = nil
+		end
+	end
+end
+
+-- Aegis of Aggramar
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 118884 then
+		if GetGossipOptions() then
+			SelectGossipOption(1, "", true) -- auto confirm it
 		end
 	end
 end
