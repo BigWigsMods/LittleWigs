@@ -329,7 +329,7 @@ do
 			},
 		},
 		[105831] = { -- Infernal Tome: -10% Dmg taken
-			["name"] = L.InfernalTome,
+			["name"] = "InfernalTome",
 			["classes"] = {
 				["DEMONHUNTER"] = true,
 				["PRIEST"] = true,
@@ -337,7 +337,7 @@ do
 			},
 		},
 		[106024] = { -- Magical Lantern: +10% Dmg dealt
-			["name"] = L.MagicalLantern,
+			["name"] = "MagicalLantern",
 			["classes"] = {
 				["MAGE"] = true,
 			},
@@ -350,7 +350,7 @@ do
 			},
 		},
 		[105249] = { -- Nightshade Refreshments: +25% HP
-			["name"] = L.NightshadeRefreshments,
+			["name"] = "NightshadeRefreshments",
 			["professions"] = {
 				[133971] = 800, -- Cooking
 				[136246] = 100, -- Herbalism
@@ -360,14 +360,14 @@ do
 			},
 		},
 		[106108] = { -- Starlight Rose Brew: +HP & Mana reg
-			["name"] = L.StarlightRoseBrew,
+			["name"] = "StarlightRoseBrew",
 			["classes"] = {
 				["DEATHKNIGHT"] = true,
 				["MONK"] = true,
 			},
 		},
 		[105340] = { -- Umbral Bloom: +10% Haste
-			["name"] = L.UmbralBloom,
+			["name"] = "UmbralBloom",
 			["classes"] = {
 				["DRUID"] = true,
 			},
@@ -376,7 +376,7 @@ do
 			}
 		},
 		[106110] = { -- Waterlogged Scroll: +30% Movement speed
-			["name"] = L.WaterloggedScroll,
+			["name"] = "WaterloggedScroll",
 			["classes"] = {
 				["SHAMAN"] = true,
 			},
@@ -389,7 +389,7 @@ do
 
 	local guardItems = {
 		[106018] = { -- Bazaar Goods
-			["name"] = L.BazaarGoods,
+			["name"] = "BazaarGoods",
 			["classes"] = {
 				["ROGUE"] = true,
 				["WARRIOR"] = true,
@@ -399,14 +399,14 @@ do
 			},
 		},
 		[106113] = { -- Lifesized Nightborne Statue
-			["name"] = L.LifesizedNightborneStatue,
+			["name"] = "LifesizedNightborneStatue",
 			["professions"] = {
 				[134708] = 100, -- Mining
 				[134071] = 100, -- Jewelcrafting
 			},
 		},
 		[105215] = { -- Discarded Junk
-			["name"] = L.DiscardedJunk,
+			["name"] = "DiscardedJunk",
 			["classes"] = {
 				["HUNTER"] = true,
 			},
@@ -415,7 +415,7 @@ do
 			},
 		},
 		[106112] = { -- Wounded Nightborne Civilian
-			["name"] = L.WoundedNightborneCivilian,
+			["name"] = "WoundedNightborneCivilian",
 			["roles"] = {
 				["Healer"] = true,
 			},
@@ -605,7 +605,7 @@ do
 			end
 		end
 
-		local name = type(item.name) == "number" and self:SpellName(item.name) or item.name
+		local name = type(item.name) == "number" and self:SpellName(item.name) or L[item.name]
 		local message = (L.available):format(table.concat(icons, ""), name)
 
 		if next(players) then
