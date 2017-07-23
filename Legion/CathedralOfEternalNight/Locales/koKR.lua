@@ -7,13 +7,13 @@ end
 
 L = BigWigs:NewBossLocale("Domatrax", "koKR")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
+	L.custom_on_autotalk = "자동 대화"
+	L.custom_on_autotalk_desc = "도마트락스 전투를 시작하는 아그라마르의 아이기스 대화 선택지를 즉시 선택합니다."
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "koKR")
 if L then
-	--L.dulzak = "Dul'zak"
+	L.dulzak = "둘자크"
 	L.felguard = "지옥수호병 파괴자"
 	L.soulmender = "지옥불길 영혼치유사"
 	L.temptress = "지옥불길 요녀"
