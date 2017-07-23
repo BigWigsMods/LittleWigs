@@ -78,10 +78,10 @@ if L then
 	L["Ouvi dizer que o espião não gosta de capas e se recusa a usar uma."] = 2
 
 	-- Pouch
-	--L["A friend said the spy loves gold and a belt pouch filled with it."] = 3
-	--L["I heard the spy's belt pouch is filled with gold to show off extravagance."] = 3
-	--L["I heard the spy carries a magical pouch around at all times."] = 3
-	--L["I heard the spy's belt pouch is lined with fancy threading."] = 3
+	L["Um amigo disse que o espião ama ouro e uma pochete bem cheia disso."] = 3
+	L["Ouvi dizer que a pochete do espião está cheia de ouro para mostrar extravagância."] = 3
+	L["Ouvi dizer que o espião sempre anda com uma bolsa mágica."] = 3
+	L["Ouvi dizer que a pochete do espião é forrada com fios finos."] = 3
 
 	-- Potions
 	L["Disseram que o espião trouxe algumas poções... só por garantia."] = 4
@@ -137,8 +137,8 @@ if L then
 	L["O espião definitivamente prefere roupas escuras."] = 12
 
 	-- No Potions
-	--L["I heard the spy is not carrying any potions around."] = 13
-	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+	L["Disseram que o espião não está carregando poções."] = 13
+	L["Uma musicista me contou que viu o espião jogar fora a última poção que tinha. Agora ele não tem mais nenhuma."] = 13
 
 	-- Book
 	L["Soube que o espião sempre carrega um caderno de segredos no cinto."] = 14

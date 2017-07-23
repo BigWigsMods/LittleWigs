@@ -78,10 +78,10 @@ if L then
 	L["Ho sentito che la spia odia i mantelli e si rifiuta di indossarne uno."] = 2
 
 	-- Pouch
-	--L["A friend said the spy loves gold and a belt pouch filled with it."] = 3
-	--L["I heard the spy's belt pouch is filled with gold to show off extravagance."] = 3
-	--L["I heard the spy carries a magical pouch around at all times."] = 3
-	--L["I heard the spy's belt pouch is lined with fancy threading."] = 3
+	L["Un amico mi ha detto che la spia ama l'oro e ne ha una borsa piena."] = 3
+	L["Ho sentito che la borsa da cintura della spia è piena di oro per sembrare stravagante."] = 3
+	L["Ho sentito che la spia si porta sempre dietro una borsa magica."] = 3
+	L["Ho sentito che la borsa da cintura della spia è ricamata con un filo stravagante."] = 3
 
 	-- Potions
 	L["Ho sentito che la spia ha portato con sé alcune pozioni... se può servire."] = 4
@@ -138,8 +138,8 @@ if L then
 	L["La spia ama gli abiti scuri, questo è certo."] = 12
 
 	-- No Potions
-	--L["I heard the spy is not carrying any potions around."] = 13
-	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+	L["Ho sentito che la spia non ha pozioni con sé."] = 13
+	L["Un musicante mi ha detto di aver visto la spia buttare via la sua ultima pozione. Probabilmente non ne ha altre."] = 13
 
 	-- Book
 	L["Ho sentito che la spia ha sempre un libro pieno di segreti legato alla cintura."] = 14
