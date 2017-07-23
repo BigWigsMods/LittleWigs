@@ -5,8 +5,15 @@ if L then
 	L.custom_on_time_lost_desc = "그림자 소실 단계 동안 잃어버린 시간을 바에 |cffff0000붉은색|r으로 표시합니다."
 end
 
+L = BigWigs:NewBossLocale("Domatrax", "koKR")
+if L then
+	--L.custom_on_autotalk = "Autotalk"
+	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
+end
+
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "koKR")
 if L then
+	--L.dulzak = "Dul'zak"
 	L.felguard = "지옥수호병 파괴자"
 	L.soulmender = "지옥불길 영혼치유사"
 	L.temptress = "지옥불길 요녀"

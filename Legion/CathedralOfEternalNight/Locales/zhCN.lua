@@ -5,8 +5,15 @@ if L then
 	L.custom_on_time_lost_desc = "显示暗影消退为|cffff0000红|r色计时条。"
 end
 
+L = BigWigs:NewBossLocale("Domatrax", "zhCN")
+if L then
+	--L.custom_on_autotalk = "Autotalk"
+	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
+end
+
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "zhCN")
 if L then
+	L.dulzak = "둘자크"
 	L.felguard = "恶魔卫士毁灭者"
 	L.soulmender = "鬼火慰魂者"
 	L.temptress = "鬼焰女妖"
