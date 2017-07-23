@@ -87,10 +87,10 @@ if L then
 	L["Ich bin mir ziemlich sicher, dass der Spion Tränke am Gürtel trägt."] = 4
 	L["Ich hörte, dass der Spion Tränke mitgebracht hat... Ich frage mich wieso?"] = 4
 	L["Wie ich hörte, hat der Spion einige Tränke mitgebracht... für alle Fälle."] = 4
-	L["Von mir habt Ihr das nicht... aber der Spion verkleidet sich als Alchemist und trägt Tränke an seinem GürteL"] = 4
+	L["Von mir habt Ihr das nicht... aber der Spion verkleidet sich als Alchemist und trägt Tränke an seinem Gürtel."] = 4
 
 	-- Lange Ärmel
-	L["Wie ich höre, trägt der Spion heute Abend Kleidung mit langen Ärmeln."] = 5
+	L["Wie ich hörte, trägt der Spion heute Abend Kleidung mit langen Ärmeln."] = 5
 	L["Einer meiner Freunde erwähnte, dass der Spion lange Ärmel trägt."] = 5
 	L["Jemand sagte, dass der Spion heute Abend seine Arme mit langen Ärmeln bedeckt."] = 5
 	L["Ich habe am frühen Abend einen kurzen Blick auf die langen Ärmel des Spions erhascht."] = 5
@@ -99,7 +99,7 @@ if L then
 	L["Jemand sagte mir, dass der Spion lange Ärmel hasst."] = 6
 	L["Mir ist zu Ohren gekommen, dass der Spion kurze Ärmel trägt, damit er seine Arme ungehindert bewegen kann."] = 6
 	L["Man hat mir zugetragen, dass der Spion die kühle Luft mag und deshalb heute Abend keine langen Ärmel trägt."] = 6
-	L["Eine meiner Freundinnen sagte, dass sie die Kleidung des Spions gesehen hat. Er trägt keine langen ÄrmeL"] = 6
+	L["Eine meiner Freundinnen sagte, dass sie die Kleidung des Spions gesehen hat. Er trägt keine langen Ärmel."] = 6
 
 	-- Handschuhe
 	L["Einem Gerücht zufolge trägt der Spion immer Handschuhe."] = 7
@@ -141,6 +141,6 @@ if L then
 	L["Wie ich hörte, hat der Spion keine Tränke bei sich."] = 13
 
 	-- Buch
-	L["Gerüchte zufolge liest der Spion gerne und trägt immer mindestens ein Buch bei sich."] = 14
+	L["Gerüchten zufolge liest der Spion gerne und trägt immer mindestens ein Buch bei sich."] = 14
 	L["Ich hörte, dass der Spion immer ein Buch mit niedergeschriebenen Geheimnissen am Gürtel trägt."] = 14
 end
