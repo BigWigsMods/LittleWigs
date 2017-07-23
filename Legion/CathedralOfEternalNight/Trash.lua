@@ -7,6 +7,8 @@ local mod, CL = BigWigs:NewBoss("Cathedral of Eternal Night Trash", 1146)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	118884, -- Aegis of Aggramar
+	118704, -- Dul'zak
 	119952, -- Felguard Destroyer
 	119923, -- Helblaze Soulmender
 	118703, -- Felborne Botanist
@@ -22,6 +24,10 @@ mod:RegisterEnableMob(
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
+
+	L.dulzak = "Dul'zak"
 	L.felguard = "Felguard Destroyer"
 	L.soulmender = "Helblaze Soulmender"
 	L.botanist = "Felborne Botanist"
@@ -38,6 +44,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		-- Aegis of Aggramar
+		"custom_on_autotalk",
+		-- Dul'zak
+		238653, -- Shadow Wave
 		-- Felguard Destroyer
 		241598, -- Shadow Wall
 		-- Helblaze Soulmender
@@ -53,6 +63,8 @@ function mod:GetOptions()
 		-- Gazerax
 		239232, -- Blinding Glare
 	}, {
+		["custom_on_autotalk"] = "general",
+		[238653] = L.dulzak,
 		[241598] = L.felguard,
 		[238543] = L.soulmender,
 		[237565] = L.botanist,
@@ -65,6 +77,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
+	self:Log("SPELL_CAST_START", "ShadowWave", 238653) -- Shadow Wave
 	self:Log("SPELL_CAST_START", "ShadowWall", 241598) -- Shadow Wall
 	self:Log("SPELL_CAST_START", "DemonicMending", 238543) -- Demonic Mending
 	self:Log("SPELL_CAST_START", "BlisteringRain", 237565) -- Blistering Rain
@@ -72,11 +85,18 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FelblazeOrb", 239320) -- Felblaze Orb
 	self:Log("SPELL_CAST_START", "UnearthyHowl", 241772) -- Unearthy Howl
 	self:Log("SPELL_CAST_START", "BlindingGlare", 239232) -- Blinding Glare
+
+	self:RegisterEvent("GOSSIP_SHOW")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Dul'zak
+function mod:ShadowWave(args)
+	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
+end
 
 -- Felguard Destroyer
 function mod:ShadowWall(args)
@@ -111,4 +131,13 @@ end
 -- Gazerax
 function mod:BlindingGlare(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+-- Aegis of Aggramar
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 118884 then
+		if GetGossipOptions() then
+			SelectGossipOption(1, "", true) -- auto confirm it
+		end
+	end
 end
