@@ -40,6 +40,8 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
+		-- Dul'zak
+		238653, -- Shadow Wave
 		-- Felguard Destroyer
 		241598, -- Shadow Wall
 		-- Helblaze Soulmender
