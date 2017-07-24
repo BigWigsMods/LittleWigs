@@ -5,8 +5,23 @@
 
 local mod, CL = BigWigs:NewBoss("Opera Hall: Wikket", 1115, 1820)
 if not mod then return end
-mod:RegisterEnableMob(114251, 114284) -- Galindre, Elfyra
+mod:RegisterEnableMob(
+	114339, -- Barnes
+	114251, -- Galindre
+	114284  -- Elfyra
+)
 --mod.engageId = 1957 -- Same for every opera event. So it's basically useless.
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
+end
+L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -14,6 +29,7 @@ mod:RegisterEnableMob(114251, 114284) -- Galindre, Elfyra
 
 function mod:GetOptions()
 	return {
+		"custom_on_autotalk", -- Barnes
 		227447, -- Defy Gravity
 		227410, -- Wondrous Radiance
 		227776, -- Magic Magnificent
@@ -27,6 +43,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "WondrousRadiance", 227410)
 	self:Log("SPELL_CAST_START", "MagicMagnificent", 227776)
 	self:Log("SPELL_CAST_SUCCESS", "SummonAssistants", 227477)
+
+	self:RegisterEvent("GOSSIP_SHOW")
 
 	self:RegisterEvent("BOSS_KILL")
 end
@@ -65,5 +83,14 @@ end
 function mod:BOSS_KILL(_, id)
 	if id == 1957 then
 		self:Win()
+	end
+end
+
+-- Barnes
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 114339 then
+		if GetGossipOptions() then
+			SelectGossipOption(1, "", true) -- auto confirm it
+		end
 	end
 end

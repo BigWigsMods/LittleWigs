@@ -5,12 +5,23 @@
 
 local mod, CL = BigWigs:NewBoss("Opera Hall: Westfall Story", 1115, 1826)
 if not mod then return end
-mod:RegisterEnableMob(114261, 114260) -- Toe Knee, Mrrgria
+mod:RegisterEnableMob(
+	114339, -- Barnes
+	114261, -- Toe Knee
+	114260  -- Mrrgria
+)
 --mod.engageId = 1957 -- Same for every opera event. So it's basically useless.
 
 --------------------------------------------------------------------------------
 -- Locals
 --
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
+end
+L = mod:GetLocale()
 
 local phase = 1
 
@@ -21,6 +32,7 @@ local phase = 1
 function mod:GetOptions()
 	return {
 		"stages",
+		"custom_on_autotalk", -- Barnes
 		227568, -- Burning Leg Sweep
 		{227777, "PROXIMITY"}, -- Thunder Ritual
 		227783, -- Wash Away
@@ -34,6 +46,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ThunderRitualApplied", 227777)
 	self:Log("SPELL_AURA_REMOVED", "ThunderRitualRemoved", 227777)
 	self:Log("SPELL_CAST_START", "WashAway", 227783)
+
+	self:RegisterEvent("GOSSIP_SHOW")
 
 	self:RegisterEvent("BOSS_KILL")
 end
@@ -106,5 +120,14 @@ end
 function mod:BOSS_KILL(_, id)
 	if id == 1957 then
 		self:Win()
+	end
+end
+
+-- Barnes
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 114339 then
+		if GetGossipOptions() then
+			SelectGossipOption(1, "", true) -- auto confirm it
+		end
 	end
 end
