@@ -37,10 +37,13 @@ function mod:GetOptions()
 		-15926, -- Umbral Tentacles
 		244751, -- Howling Dark
 		246324, -- Entropic Force
+		244906, -- Collapsing Void
 		-16424, -- Summon Ethereal Guards (249336)
 		248804, -- Dark Bulwark
 		248736, -- Eternal Twilight
-		244906, -- Collapsing Void
+	}, {
+		["infobox"] = "general",
+		[-16424] = "mythic",
 	}
 end
 
@@ -68,7 +71,9 @@ function mod:OnEngage()
 	self:Bar(-15926, 12, L.tentacles) -- Tentacles
 	self:Bar(244751, 16) -- Howling Dark
 	self:Bar(246324, 32) -- Entropic Force
-	self:Bar(-16424, 53.5, L.guards, 248804) -- Guards
+	if self:Mythic() then
+		self:Bar(-16424, 53.5, L.guards, 248804) -- Guards
+	end
 end
 
 --------------------------------------------------------------------------------
