@@ -1,4 +1,10 @@
 if not IsTestBuild() then return end -- XXX dont load on live
+
+--------------------------------------------------------------------------------
+-- TODO:
+-- -- Ravaging Darkness Target?
+-- -- Dread Screech warnings for interupters only?
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +12,7 @@ if not IsTestBuild() then return end -- XXX dont load on live
 local mod, CL = BigWigs:NewBoss("Saprish", 1178, 1980)
 if not mod then return end
 mod:RegisterEnableMob(122316, 122319, 125340) -- Saprish, Darkfang, Duskwing
---mod.engageId = 0000
+mod.engageId = 2066
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -14,17 +20,84 @@ mod:RegisterEnableMob(122316, 122319, 125340) -- Saprish, Darkfang, Duskwing
 
 function mod:GetOptions()
 	return {
-		"berserk"
+		--[[ Saprish ]]--
+		245873, -- Void Trap
+		247206, -- Overload Trap
+		{247245, "SAY"}, -- Umbral Flanking
+
+		--[[ Darkfang ]]--
+		245802, -- Ravaging Darkness
+
+		--[[ Duskwing (Mythic) ]]--
+		248831, -- Dread Screech
+	},{
+		[248831] = "mythic",
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")	
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
+
+	--[[ Saprish ]]--
+	self:Log("SPELL_CAST_SUCCESS", "VoidTrap", 247175)
+	self:Log("SPELL_CAST_SUCCESS", "UmbralFlanking", 247245)
+	self:Log("SPELL_AURA_APPLIED", "UmbralFlankingApplied", 247245)
+
+	--[[ Darkfang ]]--
+	self:Log("SPELL_CAST_START", "RavagingDarkness", 245802)
+
+	--[[ Duskwing (Mythic) ]]--
+	self:Log("SPELL_CAST_START", "DreadScreech", 248831)
 end
 
 function mod:OnEngage()
+	self:Bar(245802, 3) -- Ravaging Darkness
+	if self:Mythic() then
+		self:Bar(248831, 5.5) -- Dread Screech
+	end
+	self:Bar(245873, 8) -- Void Trap
+	self:Bar(247206, 12) -- Overload Trap
+	self:Bar(247245, 20.5) -- Umbral Flanking
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 247206 then -- Overload Trap
+		self:Message(spellId, "Attention", "Alarm")
+		self:Bar(spellId, 20.7)
+	end
+end
+
+function mod:VoidTrap(args)
+	self:Message(245873, "Neutral", "Info")
+	self:Bar(245873, 15.8)
+end
+
+function mod:UmbralFlanking(args)
+	self:Bar(args.spellId, 35.2)
+end
+
+do
+	local list = mod:NewTargetList()
+	function mod:UmbralFlankingApplied(args)
+		list[#list+1] = args.destName
+		if #list == 1 then
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "Urgent", "Alert")
+		end
+		if self:Me(args.destGUID)then
+			self:Say(args.spellId)
+		end
+	end
+end
+
+function mod:RavagingDarkness(args)
+	self:Message(args.spellId, "Attention", "Alert")
+	self:Bar(args.spellId, 9.7)
+end
+
+function mod:DreadScreech(args)
+	self:Message(args.spellId, "Important", "Warning")
+	self:CDBar(args.spellId, 15)
+end
