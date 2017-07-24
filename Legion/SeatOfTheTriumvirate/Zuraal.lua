@@ -1,5 +1,7 @@
 if not IsTestBuild() then return end -- XXX dont load on live
 
+-- GLOBALS: BigWigs
+
 --------------------------------------------------------------------------------
 -- TODO List:
 -- -- Optimize timers (especially after a Void Tear Stun)
@@ -44,6 +46,13 @@ function mod:OnEngage()
 	self:CDBar(244579, 18) -- Decimate _start
 	self:CDBar(244602, 20) -- Coalesced Void _success
 	self:CDBar(244433, 41) -- Umbra Shift _success
+end
+
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Seat of the Triumvirate Trash")
+	if trashMod then
+		trashMod:Enable() -- Making sure to pickup the Alleria yell to start the RP bar
+	end
 end
 
 --------------------------------------------------------------------------------
