@@ -31,22 +31,22 @@ if L then
 	--L.LifesizedNightborneStatue = "Lifesized Nightborne Statue"
 	--L.DiscardedJunk = "Discarded Junk"
 	--L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
+	
+	L.announce_buff_items = "通报增益物品"
+	L.announce_buff_items_desc = "通报此地城所有可用的增益物品，并通报谁可以使用。"
 
-	--L.announce_buff_items = "Announce buff items"
-	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	L.available = "%s|cffffffff%s|r可用" -- Context: item is available to use
+	L.usableBy = "使用者：" -- Context: item is usable by someone
 
-	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	--L.usableBy = "usable by" -- Context: item is usable by someone
+	L.custom_on_use_buff_items = "立即使用增益物品"
+	L.custom_on_use_buff_items_desc = "启用此选项后，自动确认使用物品前的对话选项并使用物品，这不包含二王前使用会引来守卫的物品。"
 
-	--L.custom_on_use_buff_items = "Instantly use buff items"
-	--L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.spy_helper = "间谍事件助手"
+	L.spy_helper_desc = "在一个讯息视窗内显示队伍得到间谍的线索，并通报线索给其他队员。"
 
-	--L.spy_helper = "Spy Event Helper"
-	--L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
-
-	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
-	--L.spyFound = "Spy found by %s!"
-	--L.spyFoundChat = "I found the spy!"
+	L.clueFound = "找到第%d/5条线索：|cffffffff%s|r"
+	L.spyFound = "间谍被%s找到了！"
+	L.spyFoundChat = "间谍已找到，快来！"
 	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	--L.hints = {
