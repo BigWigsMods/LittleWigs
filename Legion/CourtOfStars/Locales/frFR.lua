@@ -79,15 +79,15 @@ if L then
 
 	-- Pouch
 	L["D’après l’un de mes amis, la taupe aime l’or et les sacoches qui en sont pleines."] = 3
-	--L["I heard the spy's belt pouch is filled with gold to show off extravagance."] = 3
-	--L["I heard the spy carries a magical pouch around at all times."] = 3
-	--L["I heard the spy's belt pouch is lined with fancy threading."] = 3
+	L["On raconte que la sacoche de la taupe est pleine d’or. Si ça, ce n’est pas un signe extérieur de richesse…"] = 3
+	L["On raconte que la taupe ne se sépare jamais de sa sacoche magique."] = 3
+	L["On raconte que la sacoche de la taupe est bordée d’une élégante broderie."] = 3
 
 	-- Potions
-	--L["I heard the spy brought along some potions... just in case."] = 4
-	--L["I'm pretty sure the spy has potions at the belt."] = 4
-	--L["I heard the spy brought along potions, I wonder why?"] = 4
-	--L["I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."] = 4
+	L["J’ai entendu dire que la taupe a apporté quelques potions… au cas où."] = 4
+	L["La taupe porte des potions à la ceinture. J’en mettrais ma main au feu !"] = 4
+	L["J’ai entendu dire que la taupe a apporté quelques potions. Je me demande bien pourquoi."] = 4
+	L["Ça reste entre nous… La taupe se fait passer pour un alchimiste et porte des potions à sa ceinture."] = 4
 
 	-- Long Sleeves
 	L["J’ai brièvement entraperçu la taupe dans sa tenue à manches longues tout à l’heure."] = 5
@@ -102,10 +102,10 @@ if L then
 	L["Il paraît que la taupe porte des manches courtes pour rester plus libre de ses mouvements."] = 6
 
 	-- Gloves
-	--L["I heard the spy always dons gloves."] = 7
+	L["On dit que la taupe porte toujours des gants."] = 7
 	L["Le bruit court que la taupe porte toujours des gants."] = 7
-	--L["Someone said the spy wears gloves to cover obvious scars."] = 7
-	--L["I heard the spy carefully hides their hands."] = 7
+	L["On m’a raconté que la taupe portait des gants pour masquer d’affreuses cicatrices."] = 7
+	L["Il paraît que la taupe prend toujours soin de cacher ses mains."] = 7
 
 	-- No Gloves
 	L["Le bruit court que la taupe ne porte jamais de gants."] = 8
@@ -131,14 +131,14 @@ if L then
 	L["On raconte que la taupe ne porte pas de gilet sombre ce soir."] = 11
 
 	-- Dark Vest
-	--L["I heard the spy's vest is a dark, rich shade this very night."] = 12
-	--L["The spy enjoys darker colored vests... like the night."] = 12
-	--L["Rumor has it the spy is avoiding light colored clothing to try and blend in more."] = 12
-	--L["The spy definitely prefers darker clothing."] = 12
+	L["J’ai entendu dire que la taupe porte un gilet de couleur sombre ce soir."] = 12
+	L["La taupe préfère les gilets sombres… comme la nuit."] = 12
+	L["D’après les rumeurs, la taupe évite les tenues de couleur claire pour mieux se fondre dans la masse."] = 12
+	L["Une chose est sûre, la taupe préfère les vêtements sombres."] = 12
 
 	-- No Potions
-	--L["I heard the spy is not carrying any potions around."] = 13
-	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+	L["Il paraît que la taupe ne transporte aucune potion."] = 13
+	L["Une musicienne m’a dit avoir vu la taupe jeter sa dernière potion. Il semblerait donc qu’il ne lui en reste plus."] = 13
 
 	-- Book
 	L["Il paraît que la taupe porte toujours un livre des secrets à sa ceinture."] = 14
