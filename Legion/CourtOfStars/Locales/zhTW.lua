@@ -41,7 +41,7 @@ if L then
 	L.custom_on_use_buff_items = "立即使用增益物品"
 	L.custom_on_use_buff_items_desc = "啟用此選項後，自動確認使用物品前的對話選項並使用物品，這不包含二王前使用會引來守衛的物品。"
 
-	L.spy_helper = "間諜事件幫手"
+	L.spy_helper = "間諜事件助手"
 	L.spy_helper_desc = "在一個訊息視窗內顯示隊伍得到間諜的線索，並通告線索給其他隊員。"
 
 	L.clueFound = "找到第%d/5條線索：|cffffffff%s|r"
