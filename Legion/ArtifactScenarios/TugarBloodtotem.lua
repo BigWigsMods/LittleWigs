@@ -3,10 +3,10 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Tugar Bloodtotem", 1129)
+local mod, CL = BigWigs:NewBoss("Tugar Bloodtotem", nil, nil, 1702)
 if not mod then return end
 mod:RegisterEnableMob(117230, 117484) -- Tugar Bloodtotem, Jormog the Behemoth
-mod.otherMenu = 1021 -- Broken Shore
+mod.otherMenu = -1021 -- Broken Shore
 
 --------------------------------------------------------------------------------
 -- Locals

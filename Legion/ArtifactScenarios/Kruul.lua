@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Kruul", nil, nil, 1698)
 if not mod then return end
 mod:RegisterEnableMob(117933, 117198) -- Inquisitor Variss, Highlord Kruul
-mod.otherMenu = 1021 -- Broken Shore
+mod.otherMenu = -1021 -- Broken Shore
 
 --------------------------------------------------------------------------------
 -- Locals
