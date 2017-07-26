@@ -41,30 +41,30 @@ if L then
 	L.custom_on_use_buff_items = "立即使用增益物品"
 	L.custom_on_use_buff_items_desc = "启用此选项后，自动确认使用物品前的对话选项并使用物品，这不包含二王前使用会引来守卫的物品。"
 
-	L.spy_helper = "间谍事件助手"
-	L.spy_helper_desc = "在一个讯息视窗内显示队伍得到间谍的线索，并通报线索给其他队员。"
+	L.spy_helper = "密探事件助手"
+	L.spy_helper_desc = "在一个信息窗口显示队伍得到密探线索，并通报线索给其他队员。"
 
 	L.clueFound = "找到第%d/5条线索：|cffffffff%s|r"
 	L.spyFound = "间谍被%s找到了！"
 	L.spyFoundChat = "间谍已找到，快来！"
-	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundPattern = "喂喂，别急着下结论" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	--L.hints = {
-	--	"Cape",
-	--	"No Cape",
-	--	"Pouch",
-	--	"Potions",
-	--	"Long Sleeves",
-	--	"Short Sleeves",
-	--	"Gloves",
-	--	"No Gloves",
-	--	"Male",
-	--	"Female",
-	--	"Light Vest",
-	--	"Dark Vest",
-	--	"No Potions",
-	--	"Book",
-	--}
+	L.hints = {
+		"斗篷",
+		"没斗篷",
+		"腰包",
+		"药水",
+		"长袖",
+		"短袖",
+		"手套",
+		"没手套",
+		"男性",
+		"女性",
+		"浅色上衣",
+		"深色上衣",
+		"没药水",
+		"带书",
+	}
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
