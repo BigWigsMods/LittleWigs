@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "zhCN")
 if not L then return end
 if L then
-	--L.tugar = "Tugar Bloodtotem"
-	--L.jormog = "Jormog the Behemoth"
+	L.tugar = "图加·鲜血图腾"
+	L.jormog = "“巨兽”乔莫格"
 
 	--L.remaining = "Scales Remaining"
 
@@ -35,9 +35,9 @@ end
 L = BigWigs:NewBossLocale("Kruul", "zhCN")
 if L then
 	-- NPC Names
-	--L.name = "Highlord Kruul"
-	--L.inquisitor = "Inquisitor Variss"
-	--L.velen = "Prophet Velen"
+	L.name = "魔王库鲁尔"
+	L.inquisitor = "审判官瓦里斯"
+	L.velen = "先知维伦"
 
 	-- Triggers
 	--L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"

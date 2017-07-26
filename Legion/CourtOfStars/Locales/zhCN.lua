@@ -41,106 +41,106 @@ if L then
 	L.custom_on_use_buff_items = "立即使用增益物品"
 	L.custom_on_use_buff_items_desc = "启用此选项后，自动确认使用物品前的对话选项并使用物品，这不包含二王前使用会引来守卫的物品。"
 
-	L.spy_helper = "间谍事件助手"
-	L.spy_helper_desc = "在一个讯息视窗内显示队伍得到间谍的线索，并通报线索给其他队员。"
+	L.spy_helper = "密探事件助手"
+	L.spy_helper_desc = "在一个信息窗口显示队伍得到密探线索，并通报线索给其他队员。"
 
 	L.clueFound = "找到第%d/5条线索：|cffffffff%s|r"
 	L.spyFound = "间谍被%s找到了！"
 	L.spyFoundChat = "间谍已找到，快来！"
-	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundPattern = "喂喂，别急着下结论" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	--L.hints = {
-	--	"Cape",
-	--	"No Cape",
-	--	"Pouch",
-	--	"Potions",
-	--	"Long Sleeves",
-	--	"Short Sleeves",
-	--	"Gloves",
-	--	"No Gloves",
-	--	"Male",
-	--	"Female",
-	--	"Light Vest",
-	--	"Dark Vest",
-	--	"No Potions",
-	--	"Book",
-	--}
+	L.hints = {
+		"斗篷",
+		"没斗篷",
+		"腰包",
+		"药水",
+		"长袖",
+		"短袖",
+		"手套",
+		"没手套",
+		"男性",
+		"女性",
+		"浅色上衣",
+		"深色上衣",
+		"没药水",
+		"带书",
+	}
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
 
 	-- Cape
-	--L["I heard the spy enjoys wearing capes."] = 1
-	--L["Someone mentioned the spy came in earlier wearing a cape."] = 1
+	L["我听说那个密探喜欢穿斗篷。"] = 1
+	L["有人提到那个密探之前是穿着斗篷来的。"] = 1
 
 	-- No Cape
-	--L["I heard that the spy left their cape in the palace before coming here."] = 2
-	--L["I heard the spy dislikes capes and refuses to wear one."] = 2
+	L["我听说那个密探在来这里之前，把斗篷忘在王宫里了。"] = 2
+	L["我听说那个密探讨厌斗篷，所以没有穿。"] = 2
 
 	-- Pouch
-	--L["A friend said the spy loves gold and a belt pouch filled with it."] = 3
-	--L["I heard the spy's belt pouch is filled with gold to show off extravagance."] = 3
-	--L["I heard the spy carries a magical pouch around at all times."] = 3
-	--L["I heard the spy's belt pouch is lined with fancy threading."] = 3
+	L["一个朋友说，那个密探喜欢黄金，所以在腰包里装满了金币。"] = 3
+	L["我听说那个密探的腰包里装满了摆阔用的金币。"] = 3
+	L["我听说那个密探总是带着一个魔法袋。"] = 3
+	L["我听说那个密探的腰包上绣着精美的丝线。"] = 3
 
 	-- Potions
-	--L["I heard the spy brought along some potions... just in case."] = 4
-	--L["I'm pretty sure the spy has potions at the belt."] = 4
-	--L["I heard the spy brought along potions, I wonder why?"] = 4
-	--L["I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."] = 4
+	L["我听说那个密探买了一些药水……以防万一。"] = 4
+	L["我敢肯定，那个密探的腰带上挂着药水。"] = 4
+	L["我听说那个密探随身带着药水，这是为什么呢？"] = 4
+	L["可别说是我告诉你的……那个密探伪装成了炼金师，腰带上挂着药水。"] = 4
 
 	-- Long Sleeves
-	--L["I just barely caught a glimpse of the spy's long sleeves earlier in the evening."] = 5
-	--L["I heard the spy's outfit has long sleeves tonight."] = 5
-	--L["Someone said the spy is covering up their arms with long sleeves tonight."] = 5
-	--L["A friend of mine mentioned the spy has long sleeves on."] = 5
+	L["上半夜的时候，我正巧瞥见那个密探穿着长袖衣服。"] = 5
+	L["我听说那个密探今天穿着长袖外套。"] = 5
+	L["有人说，那个密探今晚穿了一件长袖的衣服。"] = 5
+	L["我的一个朋友说那个密探穿着长袖衣服。"] = 5
 
 	-- Short Sleeves
-	--L["I heard the spy enjoys the cool air and is not wearing long sleeves tonight."] = 6
-	--L["A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."] = 6
-	--L["Someone told me the spy hates wearing long sleeves."] = 6
-	--L["I heard the spy wears short sleeves to keep their arms unencumbered."] = 6
+	L["我听说那个密探喜欢清凉的空气，所以今晚没有穿长袖衣服。"] = 6
+	L["我的一个朋友说，她看到了密探穿的衣服，是一件短袖上衣。"] = 6
+	L["有人告诉我那个密探讨厌长袖的衣服。"] = 6
+	L["我听说密探喜欢穿短袖服装，以免妨碍双臂的活动。"] = 6
 
 	-- Gloves
-	--L["I heard the spy always dons gloves."] = 7
-	--L["There's a rumor that the spy always wears gloves."] = 7
-	--L["Someone said the spy wears gloves to cover obvious scars."] = 7
-	--L["I heard the spy carefully hides their hands."] = 7
+	L["我听说那个密探总是带着手套。"] = 7
+	L["有传言说那个密探总是带着手套。"] = 7
+	L["有人说那个密探带着手套，以掩盖手上明显的疤痕。"] = 7
+	L["我听说密探都会小心隐藏自己的双手。"] = 7
 
 	-- No Gloves
-	--L["There's a rumor that the spy never has gloves on."] = 8
-	--L["I heard the spy dislikes wearing gloves."] = 8
-	--L["I heard the spy avoids having gloves on, in case some quick actions are needed."] = 8
-	--L["You know... I found an extra pair of gloves in the back room. The spy is likely to be bare handed somewhere around here."] = 8
+	L["有传言说那个密探从来不戴手套。"] = 8
+	L["我听说那个密探不喜欢戴手套。"] = 8
+	L["我听说那个密探会尽量不戴手套，以防在快速行动时受到阻碍。"] = 8
+	L["你知道吗……我在后头的房间里发现了一双多余的手套。那个密探现在可能就赤着双手在这附近转悠呢。"] = 8
 
 	-- Male
-	--L["A guest said she saw him entering the manor alongside the Grand Magistrix."] = 9
-	--L["I heard somewhere that the spy isn't female."] = 9
-	--L["I heard the spy is here and he's very good looking."] = 9
-	--L["One of the musicians said he would not stop asking questions about the district."] = 9
+	L["有个客人说她看见他和大魔导师一起走进了庄园。"] = 9
+	L["我在别处听说那个密探不是女性。"] = 9
+	L["我听说那个密探已经来了，而且他很英俊。"] = 9
+	L["有个乐师说，他一直在打听这一带的消息。"] = 9
 
 	-- Female
 	--L["A guest saw both her and Elisande arrive together earlier."] = 10
-	--L["I hear some woman has been constantly asking about the district..."] = 10
-	--L["Someone's been saying that our new guest isn't male."] = 10
-	--L["They say that the spy is here and she's quite the sight to behold."] = 10
+	L["我听说有个女人一直打听贵族区的情况……"] = 10
+	L["有人说我们的新客人不是男性。"] = 10
+	L["他们说那个密探已经来了，而且她是个大美人。"] = 10
 
 	-- Light Vest
-	--L["The spy definitely prefers the style of light colored vests."] = 11
-	--L["I heard that the spy is wearing a lighter vest to tonight's party."] = 11
-	--L["People are saying the spy is not wearing a darker vest tonight."] = 11
+	L["那个间谍肯定更喜欢浅色的上衣。"] = 11
+	L["我听说那个密探穿着一件浅色上衣来参加今晚的聚会。"] = 11
+	L["大家都在说那个密探今晚没有穿深色的上衣。"] = 11
 
 	-- Dark Vest
-	--L["I heard the spy's vest is a dark, rich shade this very night."] = 12
-	--L["The spy enjoys darker colored vests... like the night."] = 12
-	--L["Rumor has it the spy is avoiding light colored clothing to try and blend in more."] = 12
-	--L["The spy definitely prefers darker clothing."] = 12
+	L["我听说那个密探今晚所穿的外衣是浓密的暗深色。"] = 12
+	L["那个密探喜欢深色的上衣……就像夜空一样深沉。"] = 12
+	L["传说那个密探会避免穿浅色的服装，以便更好地混入人群。"] = 12
+	L["那个间谍肯定更喜欢深色的服装。"] = 12
 
 	-- No Potions
-	--L["I heard the spy is not carrying any potions around."] = 13
-	--L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+	L["我听说那个密探根本没带任何药水。"] = 13
+	L["有个乐师告诉我，她看到那个密探扔掉了身上的最后一瓶药水，已经没有药水了。"] = 13
 
 	-- Book
-	--L["I heard the spy always has a book of written secrets at the belt."] = 14
-	--L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
+	L["我听说那个密探的腰带上，总是挂着一本写满机密的书。"] = 14
+	L["据说那个密探喜欢读书，而且总是随身携带至少一本书。"] = 14
 end
