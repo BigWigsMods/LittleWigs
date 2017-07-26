@@ -43,6 +43,28 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local englishSpyFound = "I found the spy!"
+local englishClueNames = {
+	"Cape",
+	"No Cape",
+	"Pouch",
+	"Potions",
+	"Long Sleeves",
+	"Short Sleeves",
+	"Gloves",
+	"No Gloves",
+	"Male",
+	"Female",
+	"Light Vest",
+	"Dark Vest",
+	"No Potions",
+	"Book",
+}
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -96,25 +118,10 @@ if L then
 
 	L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	L.spyFound = "Spy found by %s!"
-	L.spyFoundChat = "I found the spy!"
+	L.spyFoundChat = englishSpyFound
 	L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	L.hints = {
-		"Cape",
-		"No Cape",
-		"Pouch",
-		"Potions",
-		"Long Sleeves",
-		"Short Sleeves",
-		"Gloves",
-		"No Gloves",
-		"Male",
-		"Female",
-		"Light Vest",
-		"Dark Vest",
-		"No Potions",
-		"Book",
-	}
+	L.hints = englishClueNames
 
 	-- Cape
 	L["I heard the spy enjoys wearing capes."] = 1
@@ -420,7 +427,7 @@ do
 				["Healer"] = true,
 			},
 			["professions"] = {
-				[135966] = 100, -- First Aid
+				[135966] = 760, -- First Aid -- XXX Guess
 				[136249] = 100, -- Tailoring
 			},
 		},
@@ -473,9 +480,9 @@ do
 		wipe(knownClues)
 	end
 
-	local function sendChatMessage(msg)
+	local function sendChatMessage(msg, english)
 		if IsInGroup() then
-			SendChatMessage(("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
+			SendChatMessage(english and ("[LittleWigs] %s / %s"):format(msg, english) or ("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
 		end
 	end
 
@@ -522,11 +529,13 @@ do
 					end
 
 					local clue = GetGossipText()
-					if L[clue] then
-						if not knownClues[L[clue]] then
-							sendChatMessage(L.hints[L[clue]])
+					local num = L[clue]
+					if num then
+						if not knownClues[num] then
+							local text = L.hints[num]
+							sendChatMessage(text, englishClueNames[num] ~= text and englishClueNames[num])
 						end
-						mod:Sync("clue", L[clue])
+						mod:Sync("clue", num)
 					else
 						--if spyEventHelper then -- XXX temp until we are more clued up
 						if not knownClues[clue] then
@@ -543,7 +552,7 @@ do
 			self:Message("spy_helper", "Positive", "Info", L.spyFound:format(self:ColorName(target)), false)
 			self:CloseInfo("spy_helper")
 			if target == self:UnitName("player") then
-				sendChatMessage(L.spyFoundChat)
+				sendChatMessage(L.spyFoundChat, englishSpyFound ~= L.spyFoundChat and englishSpyFound)
 				SetRaidTarget("target", 8)
 			else
 				for unit in self:IterateGroup() do
