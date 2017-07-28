@@ -50,20 +50,20 @@ if L then
 	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	--L.hints = {
-	--	"Cape",
-	--	"No Cape",
-	--	"Pouch",
-	--	"Potions",
-	--	"Long Sleeves",
-	--	"Short Sleeves",
-	--	"Gloves",
-	--	"No Gloves",
-	--	"Male",
-	--	"Female",
-	--	"Light Vest",
-	--	"Dark Vest",
-	--	"No Potions",
-	--	"Book",
+	--	"С накидкой",
+	--	"Без накидки",
+	--	"Кошель",
+	--	"Зелья",
+	--	"Длинные рукава",
+	--	"Короткие рукава",
+	--	"В перчатках",
+	--	"Без перчаток",
+	--	"Мужчина",
+	--	"Женщина",
+	--	"Светлый жилет",
+	--	"Темный жилет",
+	--	"Без зелий",
+	--	"Книга",
 	--}
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
