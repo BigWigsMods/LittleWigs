@@ -47,7 +47,7 @@ if L then
 	L.clueFound = "Подсказка найдена (%d/5): |cffffffff%s|r"
 	L.spyFound = "Шпион найден игроком %s!"
 	L.spyFoundChat = "Шпион найден!"
-	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundPattern = "Ну-ну" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	L.hints = {
 		"С накидкой",
