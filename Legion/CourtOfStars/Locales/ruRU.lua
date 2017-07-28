@@ -32,21 +32,21 @@ if L then
 	L.DiscardedJunk = "Выброшенный хлам"
 	L.WoundedNightborneCivilian = "Раненый ночнорожденный"
 
-	--L.announce_buff_items = "Announce buff items"
-	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	L.announce_buff_items = "Объявление о диверсионных механизмах"
+	L.announce_buff_items_desc = "Объявляет все доступные в подземелье механизмы для совершения диверсии и кто может их использовать."
 
-	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	--L.usableBy = "usable by" -- Context: item is usable by someone
+	L.available = "Доступен предмет %s|cffffffff%s|r" -- Context: item is available to use
+	L.usableBy = "могут использовать" -- Context: item is usable by someone
 
-	--L.custom_on_use_buff_items = "Instantly use buff items"
-	--L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.custom_on_use_buff_items = "Автоматически использовать диверсионный механизм"
+	L.custom_on_use_buff_items_desc = "Включите эту опцию, чтобы автоматически использовать диверсионные механизмы в подземелье. Эта опция не будет автоматически использовать механизмы, призывающие охранников второго босса."
 
-	--L.spy_helper = "Spy Event Helper"
-	--L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	L.spy_helper = "Помощник в поиске шпиона"
+	L.spy_helper_desc = "Показывает InfoBox Показывает InfoBox со всеми подсказками, которые нашла ваша группа. Подсказки также будут отправлены в групповой чат."
 
 	L.clueFound = "Подсказка найдена (%d/5): |cffffffff%s|r"
-	L.spyFound = "Шпион найден %s!"
-	L.spyFoundChat = "Я нашёл шпиона!"
+	L.spyFound = "Шпион найден игроком %s!"
+	L.spyFoundChat = "Шпион найден!"
 	--L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	L.hints = {
