@@ -82,7 +82,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(198405, "Attention", "Info", CL.incoming:format(self:SpellName(5782), args.spellName))
+			self:Message(198405, "Attention", "Info", CL.incoming:format(self:SpellName(5782), args.spellName)) -- 5782 = "Fear"
 			self:CDBar(198405, 6)
 		end
 	end
