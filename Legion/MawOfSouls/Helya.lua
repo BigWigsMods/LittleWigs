@@ -119,7 +119,7 @@ end
 
 function mod:RapidRupture(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Warning", L.you:format(args.spellName))
+		self:Message(args.spellId, "Personal", "Warning", CL.you:format(args.spellName))
 	end
 end
 
