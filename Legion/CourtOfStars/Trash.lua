@@ -605,7 +605,7 @@ do
 		if item.roles then
 			for role, _ in pairs(item.roles) do
 				for unit in self:IterateGroup() do
-					if self[role](unit) then
+					if self[role](self, unit) then
 						players[self:UnitName(unit)] = true
 					end
 				end
