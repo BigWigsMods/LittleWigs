@@ -531,14 +531,13 @@ do
 					local clue = GetGossipText()
 					local num = L[clue]
 					if num then
-						if not knownClues[num] then
+						if spyEventHelper and not knownClues[num] then
 							local text = L.hints[num]
 							sendChatMessage(text, englishClueNames[num] ~= text and englishClueNames[num])
 						end
 						mod:Sync("clue", num)
 					else
-						--if spyEventHelper then -- XXX temp until we are more clued up
-						if not knownClues[clue] then
+						if spyEventHelper and not knownClues[clue] then
 							timer = self:ScheduleTimer(printNew, 1, GetLocale(), clue)
 						end
 					end
