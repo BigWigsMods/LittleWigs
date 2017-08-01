@@ -35,6 +35,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		198405, -- Bone Chilling Scream
+		194663, -- Ghostly Rage
 		192019, -- Lantern of Darkness
 		199514, -- Torrent of Souls
 		199589, -- Whirlpool of Souls
@@ -52,8 +53,9 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	self:Log("SPELL_CAST_START", "Casts", 198405, 199514, 199589, 216197, 195293)
+	self:Log("SPELL_CAST_START", "Casts", 199514, 199589, 216197, 195293)
 	self:Log("SPELL_CAST_START", "BoneChillingScream", 198405)
+	self:Log("SPELL_AURA_APPLIED", "GhostlyRage", 194663)
 	self:Log("SPELL_CAST_START", "LanternOfDarkness", 192019)
 end
 
@@ -72,4 +74,9 @@ end
 function mod:LanternOfDarkness(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:Bar(args.spellId, 7, CL.cast:format(args.spellName))
+end
+
+function mod:GhostlyRage(args)
+	self:Message(198405, "Attention", "Info", CL.incoming:format(self:SpellName(198405), args.spellName))
+	self:CDBar(198405, 6)
 end
