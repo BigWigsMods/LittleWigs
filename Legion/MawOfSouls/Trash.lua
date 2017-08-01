@@ -52,8 +52,9 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	self:Log("SPELL_CAST_START", "Casts", 198405, 199514, 199589, 216197, 195293)
+	self:Log("SPELL_CAST_START", "Casts", 199514, 199589, 216197, 195293) -- Torrent of Souls, Whirlpool of Souls, Surging Waters, Debilitating Shout
 	self:Log("SPELL_CAST_START", "BoneChillingScream", 198405)
+	self:Log("SPELL_AURA_APPLIED", "GhostlyRage", 194663)
 	self:Log("SPELL_CAST_START", "LanternOfDarkness", 192019)
 end
 
@@ -72,4 +73,16 @@ end
 function mod:LanternOfDarkness(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:Bar(args.spellId, 7, CL.cast:format(args.spellName))
+end
+
+do
+	local prev = 0
+	function mod:GhostlyRage()
+		local t = GetTime()
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(198405, "Attention", "Info", CL.soon:format(self:SpellName(5782))) -- 5782 = "Fear"
+			self:CDBar(198405, 6)
+		end
+	end
 end
