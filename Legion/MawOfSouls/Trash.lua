@@ -53,7 +53,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	self:Log("SPELL_CAST_START", "Casts", 199514, 199589, 216197, 195293)
+	self:Log("SPELL_CAST_START", "Casts", 199514, 199589, 216197, 195293) -- Torrent of Souls, Whirlpool of Souls, Surging Waters, Debilitating Shout
 	self:Log("SPELL_CAST_START", "BoneChillingScream", 198405)
 	self:Log("SPELL_AURA_APPLIED", "GhostlyRage", 194663)
 	self:Log("SPELL_CAST_START", "LanternOfDarkness", 192019)
