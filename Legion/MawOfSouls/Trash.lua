@@ -35,7 +35,6 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		198405, -- Bone Chilling Scream
-		194663, -- Ghostly Rage
 		192019, -- Lantern of Darkness
 		199514, -- Torrent of Souls
 		199589, -- Whirlpool of Souls
@@ -78,11 +77,11 @@ end
 
 do
 	local prev = 0
-	function mod:GhostlyRage(args)
+	function mod:GhostlyRage()
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(198405, "Attention", "Info", CL.incoming:format(self:SpellName(5782), args.spellName)) -- 5782 = "Fear"
+			self:Message(198405, "Attention", "Info", CL.incoming:format(self:SpellName(5782))) -- 5782 = "Fear"
 			self:CDBar(198405, 6)
 		end
 	end
