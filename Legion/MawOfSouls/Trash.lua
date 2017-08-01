@@ -76,7 +76,14 @@ function mod:LanternOfDarkness(args)
 	self:Bar(args.spellId, 7, CL.cast:format(args.spellName))
 end
 
-function mod:GhostlyRage(args)
-	self:Message(198405, "Attention", "Info", CL.incoming:format(self:SpellName(198405), args.spellName))
-	self:CDBar(198405, 6)
+do
+	local prev = 0
+	function mod:GhostlyRage(args)
+		local t = GetTime()
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(198405, "Attention", "Info", CL.incoming:format(self:SpellName(5782), args.spellName))
+			self:CDBar(198405, 6)
+		end
+	end
 end
