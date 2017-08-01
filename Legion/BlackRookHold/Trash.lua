@@ -41,7 +41,8 @@ function mod:GetOptions()
 		214003, -- Coup de Grace (Risen Swordsman)
 		200343, -- Arrow Barrage (Risen Archer)
 		200291, -- Knife Dance (Risen Scout)
-		225573 -- Dark Mending (Ghostly Councilor)
+		225573, -- Dark Mending (Ghostly Councilor)
+		193633 -- Shoot (Risen Archer)
 	}, {
 		[200248] = L.arcanist,
 		[200261] = L.champion,
@@ -59,6 +60,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BonebreakingStrike", 200261)
 	self:Log("SPELL_CAST_START", "CoupdeGrace", 214003)
 	self:Log("SPELL_CAST_START", "ArrowBarrage", 200343)
+	self:Log("SPELL_CAST_START", "Shoot", 193633)
 	self:Log("SPELL_AURA_APPLIED", "KnifeDance", 200291)
 	self:Log("SPELL_PERIODIC_DAMAGE", "KnifeDance", 200291)
 	self:Log("SPELL_CAST_START", "DarkMending", 225573)
@@ -93,6 +95,27 @@ end
 -- Risen Archer
 function mod:ArrowBarrage(args)
 	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
+end
+
+function mod:Shoot(args)
+	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
+end
+
+function mod:Casts(args)
+	self:Message(args.spellId, "Important", "Alarm")
+end
+
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) then
+			self:Message(193633, "Urgent", "Warning", CL.you:format(self:SpellName(193633)))
+			self:Say(193633)
+		end
+	end
+
+	function mod:Shoot(args)
+		self:GetUnitTarget(printTarget, 2, args.sourceGUID)
+	end
 end
 
 -- Risen Scout
