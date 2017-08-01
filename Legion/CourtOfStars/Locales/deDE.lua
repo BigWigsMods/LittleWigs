@@ -36,7 +36,7 @@ if L then
 	L.announce_buff_items_desc = "Gibt bekannt, welche verfügbaren Buff-Items in der Instanz vorhanden sind und wer sie benutzen kann."
 
 	L.available = "%s|cffffffff%s|r vorhanden" -- Context: item is available to use
-	L.usableBy = "kann benutzt werden von" -- Context: item is usable by someone
+	L.usableBy = "benutzbar von %s" -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "Buff-Items sofort benutzen"
 	L.custom_on_use_buff_items_desc = "Durch die Aktivierung dieser Option werden die Buff-Items beim anklicken sofort benutzt, ausgenommen derjenigen, die eine der drei Botschafter des zweiten Bosses rufen."

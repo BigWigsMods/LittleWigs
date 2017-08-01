@@ -106,7 +106,7 @@ if L then
 	L.announce_buff_items_icon = 211080
 
 	L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	L.usableBy = "usable by"  -- Context: item is usable by someone
+	L.usableBy = "usable by %s"  -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "Instantly use buff items"
 	L.custom_on_use_buff_items_desc = "Enable this option to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
@@ -624,7 +624,7 @@ do
 				end
 			end
 			if list:len() > 0 then
-				message = message .. " - ".. L.usableBy .. " " .. list:sub(0, list:len()-2)
+				message = message .. " - ".. L.usableBy:format(list:sub(0, list:len()-2))
 			end
 		end
 

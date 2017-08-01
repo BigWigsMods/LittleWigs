@@ -31,12 +31,12 @@ if L then
 	--L.LifesizedNightborneStatue = "Lifesized Nightborne Statue"
 	--L.DiscardedJunk = "Discarded Junk"
 	--L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
-	
+
 	L.announce_buff_items = "通报增益物品"
 	L.announce_buff_items_desc = "通报此地城所有可用的增益物品，并通报谁可以使用。"
 
 	L.available = "%s|cffffffff%s|r可用" -- Context: item is available to use
-	L.usableBy = "使用者：" -- Context: item is usable by someone
+	L.usableBy = "使用者：%s" -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "立即使用增益物品"
 	L.custom_on_use_buff_items_desc = "启用此选项后，自动确认使用物品前的对话选项并使用物品，这不包含二王前使用会引来守卫的物品。"

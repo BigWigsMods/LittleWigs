@@ -36,7 +36,7 @@ if L then
 	L.announce_buff_items_desc = "通告此地城所有可用的增益物品，並通告誰可以使用。"
 
 	L.available = "%s|cffffffff%s|r可用" -- Context: item is available to use
-	L.usableBy = "使用者：" -- Context: item is usable by someone
+	L.usableBy = "使用者：%s" -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "立即使用增益物品"
 	L.custom_on_use_buff_items_desc = "啟用此選項後，自動確認使用物品前的對話選項並使用物品，這不包含二王前使用會引來守衛的物品。"

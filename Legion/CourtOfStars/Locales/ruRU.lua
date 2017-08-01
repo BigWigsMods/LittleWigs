@@ -36,7 +36,7 @@ if L then
 	L.announce_buff_items_desc = "Объявляет все доступные в подземелье механизмы для совершения диверсии и кто может их использовать."
 
 	L.available = "Доступен предмет %s|cffffffff%s|r" -- Context: item is available to use
-	L.usableBy = "могут использовать" -- Context: item is usable by someone
+	L.usableBy = "могут использовать %s" -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "Автоматически использовать диверсионный механизм"
 	L.custom_on_use_buff_items_desc = "Включите эту опцию, чтобы автоматически использовать диверсионные механизмы в подземелье. Эта опция не будет автоматически использовать механизмы, призывающие охранников второго босса."
