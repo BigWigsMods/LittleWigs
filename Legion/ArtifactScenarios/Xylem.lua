@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Archmage Xylem", nil, nil, 1673)
 if not mod then return end
 mod:RegisterEnableMob(115244) -- Archmage Xylem
-mod.otherMenu = -1021 -- Broken Shore
+mod.otherMenu = 1716 -- Broken Shore Mage Tower
 
 --------------------------------------------------------------------------------
 -- Locals

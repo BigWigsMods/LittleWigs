@@ -14,7 +14,7 @@ mod:RegisterEnableMob(118529, -- Lord Erdris Thorn
 	118491, -- Corrupted Risen Mage
 	118489 -- Corrupted Risen Soldier
 )
-mod.otherMenu = -1021 -- Broken Shore
+mod.otherMenu = 1716 -- Broken Shore Mage Tower
 
 --------------------------------------------------------------------------------
 -- Locals
