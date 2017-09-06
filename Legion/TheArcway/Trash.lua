@@ -82,7 +82,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DemonicAscension", 226285)
 	self:Log("SPELL_CAST_START", "PortalArgus", 211757)
 	self:Log("SPELL_AURA_APPLIED", "DemonicAscensionApplied", 226285)
-	self:Log("SPELL_AURA_REMOVED", "DemonicAscensionRemoved", 226285)
+	self:Log("SPELL_DISPEL", "DemonicAscensionDispelled", "*")
 	self:Log("SPELL_AURA_APPLIED", "BrandoftheLegionApplied", 211632)
 end
 
@@ -138,8 +138,10 @@ function mod:DemonicAscensionApplied(args)
 	end
 end
 
-function mod:DemonicAscensionRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.removed_by:format(args.spellName))
+function mod:DemonicAscensionDispelled(args)
+	if args.extraSpellId == 226285 then
+		self:Message(args.extraSpellId, "Positive", "Info", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+	end
 end
 
 function mod:PortalArgus(args)
