@@ -133,11 +133,13 @@ function mod:DemonicAscension(args)
 end
 
 function mod:DemonicAscensionApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+	if not UnitIsPlayer(args.destName) then
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+	end
 end
 
 function mod:DemonicAscensionRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "Positive", "Info", CL.removed_by:format(args.spellName))
 end
 
 function mod:PortalArgus(args)
