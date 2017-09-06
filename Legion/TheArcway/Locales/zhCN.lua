@@ -5,4 +5,5 @@ if L then
 	--L.shade = "Warp Shade"
 	--L.wraith = "Withered Manawraith"
 	--L.blade = "Wrathguard Felblade"
+	--L.chaosbringer = "Eredar Chaosbringer"
 end
