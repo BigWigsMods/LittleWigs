@@ -81,6 +81,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BrandoftheLegion", 211632)
 	self:Log("SPELL_CAST_START", "DemonicAscension", 226285)
 	self:Log("SPELL_CAST_START", "PortalArgus", 211757)
+	self:Log("SPELL_AURA_APPLIED", "DemonicAscensionApplied", 226285)
+	self:Log("SPELL_AURA_APPLIED", "BrandoftheLegionApplied", 211632) 
 end
 
 --------------------------------------------------------------------------------
@@ -125,4 +127,16 @@ end
 
 function mod:PortalArgus(args)
 	self:Message(args.spellId, "Urgent", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+end
+
+function mod:DemonicAscensionApplied(args)
+	if self:Dispeller("magic", true) then
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
+	end
+end
+
+function mod:BrandoftheLegionApplied(args)
+	if self:Dispeller("magic", true) then
+		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+	end
 end
