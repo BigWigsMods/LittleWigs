@@ -5,4 +5,5 @@ if L then
 	L.shade = "Ombre dimensionnelle"
 	L.wraith = "Ame en peine de mana flétrie"
 	L.blade = "Gangrelame garde-courroux"
+	L.chaosbringer = "Porte-chaos érédar"
 end

@@ -5,4 +5,5 @@ if L then
 	L.shade = "Vulto Dimensional"
 	L.wraith = "Espectro de Mana Fenecido"
 	L.blade = "Guardião Colérico Lâmina Vil"
+	L.chaosbringer = "Eredar Caótico"
 end

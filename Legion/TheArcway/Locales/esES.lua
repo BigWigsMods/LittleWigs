@@ -5,4 +5,5 @@ if L then
 	L.shade = "Sombra de distorsión"
 	L.wraith = "Espectro de maná Marchito"
 	L.blade = "Guardia de cólera hoja mácula"
+	L.chaosbringer = "Portador de caos eredar"
 end

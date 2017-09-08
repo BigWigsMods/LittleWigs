@@ -5,4 +5,5 @@ if L then
 	L.shade = "Warpschemen"
 	L.wraith = "Verdorrtes Managespenst"
 	L.blade = "Teufelsklinge der Zornwächter"
+	L.chaosbringer = "Chaosbringer der Eredar"
 end
