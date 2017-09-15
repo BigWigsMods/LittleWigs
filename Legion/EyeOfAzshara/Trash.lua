@@ -79,7 +79,7 @@ function mod:Storm(args)
 end
 
 function mod:ArcLightning(args)
-	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Oracle
@@ -100,5 +100,5 @@ end
 -- Hatecoil Arcanist
 
 function mod:AquaSpout(args)
-	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
 end
