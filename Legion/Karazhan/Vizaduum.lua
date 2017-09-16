@@ -79,6 +79,6 @@ end
 
 function mod:BurningBlastApplied(args)
 	if self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "Important", "Info")
 	end
 end
