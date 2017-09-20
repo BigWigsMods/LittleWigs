@@ -19,6 +19,7 @@ function mod:GetOptions()
 		{229159, "SAY"}, -- Chaotic Shadows
 		229610, -- Demonic Portal
 		230084, -- Stabilize Rift
+		229083, -- Burning Blast
 	}
 end
 
@@ -28,6 +29,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ChaoticShadows", 229159)
 	self:Log("SPELL_CAST_SUCCESS", "DemonicPortal", 229610)
 	self:Log("SPELL_AURA_APPLIED", "StabilizeRift", 230084)
+	self:Log("SPELL_CAST_START", "BurningBlast", 229083)
+	self:Log("SPELL_AURA_APPLIED", "BurningBlastApplied", 229083)
 end
 
 function mod:OnEngage()
@@ -68,4 +71,14 @@ end
 
 function mod:StabilizeRift(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
+end
+
+function mod:BurningBlast(args)
+	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+end
+
+function mod:BurningBlastApplied(args)
+	if self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Info")
+	end
 end
