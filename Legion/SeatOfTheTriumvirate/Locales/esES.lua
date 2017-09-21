@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "esES") or BigWigs:NewBossLocale("Darkheart Thicket Trash", "esMX")
+local L = BigWigs:NewBossLocale("Seat Of The Triumvirate Trash", "esES") or BigWigs:NewBossLocale("Seat Of The Triumvirate Trash", "esMX")
 if not L then return end
 if L then
 	--L.custom_on_autotalk = "Autotalk"
