@@ -117,4 +117,5 @@
 <Include file="Legion\CathedralOfEternalNight\modules.xml"/>
 
 <Include file="Legion\SeatOfTheTriumvirate\modules.xml"/>
+<Include file="Legion\SeatOfTheTriumvirate\locales.xml"/>
 </Ui>
