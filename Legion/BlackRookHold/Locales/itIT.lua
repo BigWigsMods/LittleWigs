@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "itIT")
+local L = BigWigs:NewBossLocale("Black Rook Hold Trash", "itIT")
 if not L then return end
 if L then
 	--L.arcanist = "Risen Arcanist"
