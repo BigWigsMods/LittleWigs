@@ -74,7 +74,7 @@ function mod:PersonalAurasWithSay(args)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 123743 then
+	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 125836 then
 		if GetGossipOptions() then
 			SelectGossipOption(1)
 		end
