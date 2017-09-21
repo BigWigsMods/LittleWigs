@@ -25,7 +25,6 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.arcanist = "Risen Arcanist"
 	L.champion = "Soul-torn Champion"
-	L.vanguard = "Soul-torn Vanguard"
 	L.swordsman = "Risen Swordsman"
 	L.archer = "Risen Archer"
 	L.scout = "Risen Scout"
@@ -52,7 +51,6 @@ function mod:GetOptions()
 	}, {
 		[200248] = L.arcanist,
 		[200261] = L.champion,
-		[197974] = L.vanguard,
 		[214003] = L.swordsman,
 		[200343] = L.archer,
 		[200291] = L.scout,
