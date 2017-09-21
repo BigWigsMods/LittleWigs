@@ -65,8 +65,7 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
 	self:Log("SPELL_CAST_START", "ArcaneBlitz", 200248)
-	self:Log("SPELL_CAST_START", "BonebreakingStrike", 200261)
-	self:Log("SPELL_CAST_START", "BonecrushingStrike", 197974)
+	self:Log("SPELL_CAST_START", "BonebreakingStrike", 200261, 197974) -- 197974 = Bonecrushing Strike
 	self:Log("SPELL_CAST_START", "CoupdeGrace", 214003)
 	self:Log("SPELL_CAST_START", "ArrowBarrage", 200343)
 	self:Log("SPELL_CAST_START", "KnifeDance", 200291)
@@ -91,13 +90,8 @@ function mod:ArcaneBlitz(args)
 	end
 end
 
--- Soul-torn Champion
+-- Soul-torn Champion, Soul-torn Vanguard
 function mod:BonebreakingStrike(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
-end
-
--- Soul-torn Vanguard
-function mod:BonecrushingStrike(args)
 	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
 end
 
@@ -126,6 +120,13 @@ function mod:Felfrenzy(args)
 	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
-function mod:SicBats(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+do
+	local prev = 0
+	function mod:SicBats(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+		end
+	end
 end
