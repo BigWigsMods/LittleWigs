@@ -88,6 +88,7 @@
 <Include file="Legion\AssaultOnVioletHold\modules.xml"/>
 
 <Include file="Legion\BlackRookHold\modules.xml"/>
+<Include file="Legion\BlackRookHold\locales.xml"/>
 
 <Include file="Legion\CourtOfStars\modules.xml"/>
 <Include file="Legion\CourtOfStars\locales.xml"/>
