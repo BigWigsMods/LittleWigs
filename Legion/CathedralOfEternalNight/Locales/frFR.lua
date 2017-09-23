@@ -21,4 +21,5 @@ if L then
 	L.orbcaster = "Lance-orbe gangrerôdeur"
 	L.waglur = "Wa'glur"
 	L.gazerax = "Scrutax"
+	L.vilebark = "Marcheur vilécorce"
 end
