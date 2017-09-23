@@ -21,4 +21,5 @@ if L then
 	L.orbcaster = "Сквернолап - метательница сфер"
 	L.waglur = "Ва'глур"
 	L.gazerax = "Созерцатель"
+	L.vilebark = "Ходячий гиблодрев"
 end

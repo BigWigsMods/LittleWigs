@@ -21,5 +21,6 @@ if L then
 	L.orbcaster = "Lanzaorbes Zancavil"
 	L.waglur = "Wa'glur"
 	L.gazerax = "Avizorax"
+	L.vilebark = "Caminante Cortezavil"
 end
 

@@ -14,7 +14,8 @@ mod:RegisterEnableMob(
 	118714, -- Hellblaze Temptress
 	118713, -- Felstrider Orbcaster
 	120713, -- Wa'glur
-	118723 -- Gazerax
+	118723, -- Gazerax
+	121569  -- Vilebark Walker
 )
 
 --------------------------------------------------------------------------------
@@ -31,6 +32,7 @@ if L then
 	L.orbcaster = "Felstrider Orbcaster"
 	L.waglur = "Wa'glur"
 	L.gazerax = "Gazerax"
+	L.vilebark = "Vilebark Walker"
 end
 L = mod:GetLocale()
 
@@ -56,6 +58,8 @@ function mod:GetOptions()
 		241772, -- Unearthy Howl
 		-- Gazerax
 		239232, -- Blinding Glare
+		-- Vilebark Walker
+		242760, -- Lumbering Crash
 	}, {
 		[238653] = L.dulzak,
 		[241598] = L.felguard,
@@ -65,6 +69,7 @@ function mod:GetOptions()
 		[239320] = L.orbcaster,
 		[241772] = L.waglur,
 		[239232] = L.gazerax,
+		[242760] = L.vilebark
 	}
 end
 
@@ -78,6 +83,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FelblazeOrb", 239320) -- Felblaze Orb
 	self:Log("SPELL_CAST_START", "UnearthyHowl", 241772) -- Unearthy Howl
 	self:Log("SPELL_CAST_START", "BlindingGlare", 239232) -- Blinding Glare
+	self:Log("SPELL_CAST_START", "LumberingCrash", 121569) -- Lumbering Crash
 end
 
 --------------------------------------------------------------------------------
@@ -122,4 +128,9 @@ end
 -- Gazerax
 function mod:BlindingGlare(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+-- Vilebark Walker
+function mod:LumberingCrash(args)
+	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
 end
