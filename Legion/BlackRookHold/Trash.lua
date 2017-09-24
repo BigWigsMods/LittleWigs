@@ -90,7 +90,7 @@ end
 
 -- Soul-torn Champion, Soul-torn Vanguard
 function mod:BonebreakingStrike(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "Urgent", "Alarm", CL.incoming:format(args.spellName))
 end
 
 -- Risen Swordsman
@@ -100,7 +100,7 @@ end
 
 -- Risen Archer
 function mod:ArrowBarrage(args)
-	self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
 end
 
 -- Risen Scout
