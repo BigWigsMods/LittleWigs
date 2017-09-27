@@ -105,7 +105,7 @@ end
 
 -- Risen Scout
 function mod:KnifeDance(args)
-	self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
 end
 
 -- Ghostly Councilor
