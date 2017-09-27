@@ -77,10 +77,10 @@ end
 
 -- Rockback Gnasher
 function mod:StoneGaze(args)
-	self:Message(args.spellId, "Important", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Rockbound Trapper
 function mod:Bound(args)
-	self:Message(args.spellId, "Important", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
 end
