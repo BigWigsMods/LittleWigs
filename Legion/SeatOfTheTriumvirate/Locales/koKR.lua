@@ -6,7 +6,7 @@ if L then
 	L.interrupted = "%s|1이;가; %s|1을;를; 시전 방해했습니다 (%.1f초 남음)!"
 end
 
-L = BigWigs:NewBossLocale("Seat Of The Triumvirate Trash", "koKR")
+L = BigWigs:NewBossLocale("Seat of The Triumvirate Trash", "koKR")
 if L then
 	L.custom_on_autotalk = "자동 대화"
 	L.custom_on_autotalk_desc = "알레리아 윈드러너의 대화 선택지를 즉시 고릅니다."

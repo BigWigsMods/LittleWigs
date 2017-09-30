@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Seat Of The Triumvirate Trash", "deDE")
+local L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")
 if not L then return end
 if L then
 	--L.custom_on_autotalk = "Autotalk"
