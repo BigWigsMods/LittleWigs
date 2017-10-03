@@ -26,6 +26,7 @@ function mod:GetOptions()
 		191941, -- Darkstrikes
 		191853, -- Furious Flames
 		192504, -- Metamorphosis
+		191823, -- Furious Blast
 	}
 end
 
@@ -34,6 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DarkstrikesApplied", 191941)
 	self:Log("SPELL_AURA_APPLIED", "Metamorphosis", 192504, 202740)
 	self:Log("SPELL_AURA_APPLIED", "FuriousFlamesApplied", 191853)
+	self:Log("SPELL_CAST_START", "FuriousBlast", 191823)
 end
 
 function mod:OnEngage()
@@ -63,4 +65,8 @@ function mod:FuriousFlamesApplied(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
 	end
+end
+
+function mod:FuriousBlast(args)
+	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
 end
