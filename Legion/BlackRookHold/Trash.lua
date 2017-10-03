@@ -43,7 +43,7 @@ function mod:GetOptions()
 		200261, -- Bonebreaking Strike (Soul-torn Champion)
 		197974, -- Bonecrushing Strike (Soul-torn Vanguard)
 		214003, -- Coup de Grace (Risen Swordsman)
-		200345, -- Arrow Barrage (Risen Archer)
+		200343, -- Arrow Barrage (Risen Archer)
 		200291, -- Knife Dance (Risen Scout)
 		225573, -- Dark Mending (Ghostly Councilor)
 		203163, -- Sic Bats! (Felspite Dominator)
@@ -52,7 +52,7 @@ function mod:GetOptions()
 		[200248] = L.arcanist,
 		[200261] = L.champion,
 		[214003] = L.swordsman,
-		[200345] = L.archer,
+		[200343] = L.archer,
 		[200291] = L.scout,
 		[225573] = L.councilor,
 		[203163] = L.dominator
@@ -65,7 +65,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ArcaneBlitz", 200248)
 	self:Log("SPELL_CAST_START", "BonebreakingStrike", 200261, 197974) -- 197974 = Bonecrushing Strike
 	self:Log("SPELL_CAST_START", "CoupdeGrace", 214003)
-	self:Log("SPELL_CAST_START", "ArrowBarrage", 200345)
+	self:Log("SPELL_CAST_START", "ArrowBarrage", 200343)
 	self:Log("SPELL_CAST_START", "KnifeDance", 200291)
 	self:Log("SPELL_CAST_START", "DarkMending", 225573)
 	self:Log("SPELL_AURA_APPLIED", "SicBats", 203163)
