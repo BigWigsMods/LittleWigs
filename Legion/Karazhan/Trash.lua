@@ -22,6 +22,8 @@ if L then
 	L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
 	L.opera_hall_westfall_story_text = "Opera Hall: Westfall Story"
 	L.opera_hall_westfall_story_trigger = "we meet two lovers" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
+	L.opera_hall_beautiful_beast_story_text = "Opera Hall: Beautiful Beast"
+	L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beauty is more than skin deep.
 	L.barnes = "Barnes"
 end
 L = mod:GetLocale()
@@ -54,6 +56,7 @@ end
 --
 
 -- Skeletal Usher
+
 do
 	local prev = 0
 	function mod:Flashlight(args)
@@ -67,6 +70,7 @@ do
 end
 
 -- Barnes
+
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 114339 then
 		if GetGossipOptions() then
@@ -75,8 +79,18 @@ function mod:GOSSIP_SHOW()
 	end
 end
 
+-- Opera Hall: Westfall Story warmup timer
+
 function mod:Warmup(_, msg)
 	if msg:find(L.opera_hall_westfall_story_trigger, nil, true) then 
 		self:Bar("warmup", 42, L.opera_hall_westfall_story_text, "achievement_raid_karazhan")
+	end
+end
+
+-- Opera Hall: Beautiful Beast warmup timer
+
+function mod:Warmup(_, msg)
+	if msg:find(L.opera_hall_beautiful_beast_story_trigger, nil, true) then 
+		self:Bar("warmup", 47, L.opera_hall_beautiful_beast_story_text, "achievement_raid_karazhan")
 	end
 end
