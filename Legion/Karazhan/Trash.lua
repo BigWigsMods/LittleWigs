@@ -103,7 +103,6 @@ function mod:Warmup(_, msg)
 	end
 end
 
-
 -- Spectral Attendant
 function mod:ShadowRejuvenation(args)
 	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
