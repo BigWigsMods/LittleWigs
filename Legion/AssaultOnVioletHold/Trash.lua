@@ -76,7 +76,7 @@ end
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 102278 then
 		if GetGossipOptions() then
-			SelectGossipOption(1, "", true) -- auto confirm it
+			SelectGossipOption(1) -- Only skip gossip, don't skip confirmation box
 		end
 	end
 end
