@@ -11,4 +11,6 @@ if L then
 	--L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beauty is more than skin deep.
 	--L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
 	--L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
+	--L.attendant = "Spectral Attendant"
+	--L.hostess = "Wholesome Hostess"
 end

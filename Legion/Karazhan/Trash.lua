@@ -27,6 +27,8 @@ if L then
 	L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
 	L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
 	L.barnes = "Barnes"
+	L.attendant = "Spectral Attendant"
+	L.hostess = "Wholesome Hostess"
 end
 L = mod:GetLocale()
 
@@ -39,15 +41,21 @@ function mod:GetOptions()
 		227966, -- Flashlight
 		"custom_on_autotalk", -- Barnes
 		"warmup", -- Opera Hall event timer
+		228279, -- Shadow Rejuvenation
+		228575, -- Alluring Aura
 	}, {
 		[227966] = L.skeletalUsher,
 		["custom_on_autotalk"] = L.barnes,
+		[228279] = L.attendant,
+		[228575] = L.hostess,
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 	self:Log("SPELL_CAST_START", "Flashlight", 227966)
+	self:Log("SPELL_CAST_START", "ShadowRejuvenation", 228279)
+	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterEvent("GOSSIP_SHOW")
@@ -68,6 +76,16 @@ do
 		end
 		self:Bar(args.spellId, 3)
 	end
+end
+
+-- Spectral Attendant
+function mod:ShadowRejuvenation(args)
+	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
+end
+
+-- Wholesome Hostess
+function mod:AlluringAura(args)
+	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
 end
 
 -- Barnes
