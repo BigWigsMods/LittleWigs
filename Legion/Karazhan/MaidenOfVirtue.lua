@@ -80,9 +80,9 @@ function mod:HolyShock(args)
 	if shockCount == 4 then
 		self:CDBar(args.spellId, 28.8)
 		shockCount = 0
-	else if shockCount == 2 then
+	elseif shockCount == 2 then
 		self:CDBar(args.spellId, 28.8)
-	else then
+	else
 		self:CDBar(args.spellId, 13.4)
 	end
 	shockCount = shockCount + 1
