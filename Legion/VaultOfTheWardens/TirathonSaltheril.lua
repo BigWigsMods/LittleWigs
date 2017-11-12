@@ -25,21 +25,25 @@ function mod:GetOptions()
 	return {
 		191941, -- Darkstrikes
 		191853, -- Furious Flames
-		192504, -- Metamorphosis
 		191823, -- Furious Blast
+		192504, -- Havoc Metamorphosis
+		202740, -- Vengeance Metamorphosis
+		190830, -- Hatred 
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "DarkstrikesCast", 191941, 204151)
 	self:Log("SPELL_AURA_APPLIED", "DarkstrikesApplied", 191941)
-	self:Log("SPELL_AURA_APPLIED", "Metamorphosis", 192504, 202740)
+	self:Log("SPELL_AURA_APPLIED", "Vengeance", 202740)
+	self:Log("SPELL_AURA_APPLIED", "Havoc", 192504)
 	self:Log("SPELL_AURA_APPLIED", "FuriousFlamesApplied", 191853)
 	self:Log("SPELL_CAST_START", "FuriousBlast", 191823)
 end
 
 function mod:OnEngage()
-	self:CDBar(191941, 22)
+	self:CDBar(191941, 5.2)
 end
 
 --------------------------------------------------------------------------------
@@ -48,8 +52,7 @@ end
 
 function mod:DarkstrikesCast(args)
 	self:Message(191941, "Important", self:Tank() and "Alarm", CL.casting:format(args.spellName))
-	self:Bar(191941, 7, CL.cast:format(args.spellName))
-	self:CDBar(191941, 29)
+	self:CDBar(191941, 31)
 end
 
 function mod:DarkstrikesApplied(args)
@@ -57,8 +60,24 @@ function mod:DarkstrikesApplied(args)
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
 
-function mod:Metamorphosis(args)
-	self:Message(192504, "Neutral", "Info")
+function mod:Havoc(args)
+	self:Message(args.spellId, "Neutral", "Info")
+	self:StopBar(191941) --Vengeance Darkstrikes
+	self:CDBar(191941, 24) -- Darkstrikes
+	self:CDBar(190830, 14.5) -- Hatred
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+	if spellId == 190830 then -- Hatred
+		self:Message(190830, "Attention", "Warning", spellName)
+		self:Bar(190830, 10, CL.cast:format(spellName))
+		self:CDBar(190830, 30) 
+	end
+end
+
+function mod:Vengeance(args)
+	self:Message(args.spellId, "Neutral", "Info")
+	self:StopBar(191941) --Vengeance Darkstrikes
 end
 
 function mod:FuriousFlamesApplied(args)
