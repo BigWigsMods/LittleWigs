@@ -24,6 +24,13 @@ if L then
 	L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
 	L.attendant = "Spectral Attendant"
 	L.hostess = "Wholesome Hostess"
+	L.opera_hall_westfall_story_text = "Opera Hall: Westfall Story"
+	L.opera_hall_westfall_story_trigger = "we meet two lovers" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
+	L.opera_hall_beautiful_beast_story_text = "Opera Hall: Beautiful Beast"
+	L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
+	L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
+	L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
+	L.barnes = "Barnes"
 end
 L = mod:GetLocale()
 
@@ -35,6 +42,7 @@ function mod:GetOptions()
 	return {
 		227966, -- Flashlight
 		"custom_on_autotalk", -- Barnes
+		"warmup", -- Opera Hall event timer
 		228279, -- Shadow Rejuvenation
 		228575, -- Alluring Aura
 	}, {
@@ -51,6 +59,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowRejuvenation", 228279)
 	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
 
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterEvent("GOSSIP_SHOW")
 end
 
@@ -77,6 +86,20 @@ function mod:GOSSIP_SHOW()
 		if GetGossipOptions() then
 			SelectGossipOption(1)
 		end
+	end
+end
+
+function mod:Warmup(_, msg)
+	if msg:find(L.opera_hall_westfall_story_trigger, nil, true) then 
+		self:Bar("warmup", 42, L.opera_hall_westfall_story_text, "achievement_raid_karazhan")
+	end
+
+	if msg:find(L.opera_hall_beautiful_beast_story_trigger, nil, true) then 
+		self:Bar("warmup", 47, L.opera_hall_beautiful_beast_story_text, "achievement_raid_karazhan")
+	end
+
+	if msg:find(L.opera_hall_wikket_story_trigger, nil, true) then 
+		self:Bar("warmup", 70, L.opera_hall_wikket_story_text, "achievement_raid_karazhan")
 	end
 end
 
