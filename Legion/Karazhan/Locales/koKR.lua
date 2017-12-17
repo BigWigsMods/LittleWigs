@@ -6,8 +6,6 @@ if L then
 	L.custom_on_autotalk_desc = "오페라 극장 우두머리 전투를 시작하는 반즈의 대화 선택지를 즉시 고릅니다."
 	L.attendant = "수행원 유령"
 	L.hostess = "건전한 시녀"
-	--L.attendant = "Spectral Attendant"
-	--L.hostess = "Wholesome Hostess"
 	--L.opera_hall_westfall_story_text = "Opera Hall: Westfall Story"
 	--L.opera_hall_westfall_story_trigger = "we meet two lovers" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
 	--L.opera_hall_beautiful_beast_story_text = "Opera Hall: Beautiful Beast"
