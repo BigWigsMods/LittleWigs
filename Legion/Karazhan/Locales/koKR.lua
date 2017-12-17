@@ -4,6 +4,8 @@ if L then
 	L.skeletalUsher = "해골 안내인"
 	L.custom_on_autotalk = "자동 대화"
 	L.custom_on_autotalk_desc = "오페라 극장 우두머리 전투를 시작하는 반즈의 대화 선택지를 즉시 고릅니다."
+  L.attendant = "수행원 유령"
+	L.hostess = "건전한 시녀"
 	--L.attendant = "Spectral Attendant"
 	--L.hostess = "Wholesome Hostess"
 	--L.opera_hall_westfall_story_text = "Opera Hall: Westfall Story"
