@@ -53,7 +53,7 @@ end
 function mod:StanceOfTheMountain(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:CDBar(args.spellId, 97) -- pull:36.6, 97.7
-	self:StopBar(198496)
+	self:StopBar(198496) -- Sunder
 end
 
 do
