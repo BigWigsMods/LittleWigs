@@ -135,5 +135,6 @@ function mod:HolyBulwarkRemoved(args)
 end
 
 function mod:HolyBolt(args)
+	self:CDBar(args.spellId, 12)
 	self:Message(args.spellId, "Important")
 end
