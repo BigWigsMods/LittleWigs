@@ -24,6 +24,7 @@ mod.engageId = 1815
 function mod:GetOptions()
 	return {
 		191941, -- Darkstrikes
+		204151, -- Metamorphosis Darkstrikes
 		191853, -- Furious Flames
 		191823, -- Furious Blast
 		192504, -- Havoc Metamorphosis
@@ -43,7 +44,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(191941, 5.2)
+	self:CDBar(191941, 5.2) -- Darkstrikes
 end
 
 --------------------------------------------------------------------------------
@@ -51,8 +52,8 @@ end
 --
 
 function mod:DarkstrikesCast(args)
-	self:Message(191941, "Important", self:Tank() and "Alarm", CL.casting:format(args.spellName))
-	self:CDBar(191941, 31)
+	self:Message(args.spellId, "Important", self:Tank() and "Alarm", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 31)
 end
 
 function mod:DarkstrikesApplied(args)
@@ -61,23 +62,22 @@ function mod:DarkstrikesApplied(args)
 end
 
 function mod:Havoc(args)
-	self:Message(args.spellId, "Neutral", "Info")
-	self:StopBar(191941) --Vengeance Darkstrikes
+	self:Message(args.spellId, "Neutral", "Info") 
 	self:CDBar(191941, 24) -- Darkstrikes
 	self:CDBar(190830, 14.5) -- Hatred
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 190830 then -- Hatred
-		self:Message(190830, "Attention", "Warning", spellName)
-		self:Bar(190830, 10, CL.cast:format(spellName))
-		self:CDBar(190830, 30) 
+		self:Message(spellId, "Attention", "Warning", spellName)
+		self:Bar(spellId, 10, CL.cast:format(spellName))
+		self:CDBar(spellId, 30) 
 	end
 end
 
 function mod:Vengeance(args)
 	self:Message(args.spellId, "Neutral", "Info")
-	self:StopBar(191941) --Vengeance Darkstrikes
+	self:StopBar(191941) -- Darkstrikes
 end
 
 function mod:FuriousFlamesApplied(args)
