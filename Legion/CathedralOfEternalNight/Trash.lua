@@ -75,7 +75,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-	self:Log("SPELL_CAST_START", "ShadowWave", 238653) -- Shadow Wave
+	self:RegisterEvent("UNIT_SPELLCAST_START", "ShadowWave") -- Shadow Wave
 	self:Log("SPELL_CAST_START", "ShadowWall", 241598) -- Shadow Wall
 	self:Log("SPELL_CAST_START", "DemonicMending", 238543) -- Demonic Mending
 	self:Log("SPELL_CAST_START", "BlisteringRain", 237565) -- Blistering Rain
@@ -91,8 +91,15 @@ end
 --
 
 -- Dul'zak
-function mod:ShadowWave(args)
-	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
+do
+	local prev = nil
+	function mod:ShadowWave(_, _, spellName, _, castGUID, spellId)
+		if spellId == 238653 and castGUID ~= prev then -- Shadow Wave
+			prev = castGUID
+			self:Message(spellId, "Urgent", "Alarm", CL.incoming:format(spellName))
+			self:Bar(spellId, 23.2)
+		end
+	end
 end
 
 -- Felguard Destroyer

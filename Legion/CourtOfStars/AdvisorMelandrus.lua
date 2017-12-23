@@ -1,3 +1,6 @@
+--------------------------------------------------------------------------------
+-- To Do 
+-- Enveloping Winds timers are not 100% accurate
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -28,18 +31,18 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "BladeSurge", 209602)
-	self:Log("SPELL_CAST_SUCCESS", "EnvelopingWinds", 224333)
 	self:Log("SPELL_CAST_START", "PiercingGale", 209628)
 	self:Log("SPELL_CAST_START", "SlicingMaelstrom", 209676)
 end
 
 function mod:OnEngage()
 	bladeSurgeCount = 0
-	self:CDBar(209628, 7) -- Piercing Gale
-	self:CDBar(224333, 10) -- Enveloping Winds
-	self:CDBar(209602, 15) -- Blade Surge
-	self:CDBar(209676, 10) -- Slicing Maelstrom
+	self:CDBar(209628, 11) -- Piercing Gale
+	self:CDBar(224333, 8.4) -- Enveloping Winds 
+	self:CDBar(209602, 5.2) -- Blade Surge
+	self:CDBar(209676, 23) -- Slicing Maelstrom
 end
 
 --------------------------------------------------------------------------------
@@ -49,12 +52,14 @@ end
 function mod:BladeSurge(args)
 	bladeSurgeCount = bladeSurgeCount + 1
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, bladeSurgeCount))
-	self:CDBar(args.spellId, 19)
+	self:CDBar(args.spellId, 12)
 end
 
-function mod:EnvelopingWinds(args)
-	self:Message(args.spellId, "Important", "Info")
-	self:CDBar(args.spellId, 11)
+function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+	if spellId == 224327 then -- Enveloping Winds
+		self:Message(224333, "Attention", "Info", spellName)
+		self:CDBar(224333, 9.4) -- actual spellid has no icon/tooltip
+	end
 end
 
 do
@@ -64,12 +69,12 @@ do
 		if t-prev > 2 then
 			prev = t
 			self:Message(args.spellId, "Urgent", "Alarm")
-			self:CDBar(args.spellId, 18)
+			self:CDBar(args.spellId, 24)
 		end
 	end
 end
 
 function mod:SlicingMaelstrom(args)
 	self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
-	self:CDBar(args.spellId, 18)
+	self:CDBar(args.spellId, 24)
 end

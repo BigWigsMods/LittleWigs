@@ -13,6 +13,7 @@ mod.engageId = 1868
 --------------------------------------------------------------------------------
 -- Initialization
 --
+local slashCount = 0
 
 function mod:GetOptions()
 	return {
@@ -33,11 +34,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(219488, 12) -- Streetsweeper
-	self:CDBar(207261, 6) -- Resonant Slash
-	self:CDBar(207278, 27) -- Arcane Lockdown
-	self:CDBar(207806, 14) -- Signal Beacon
-
+	slashCount = 0
+	self:CDBar(219488, 11) -- Streetsweeper
+	self:CDBar(207261, 7) -- Resonant Slash
+	self:CDBar(207278, 15.5) -- Arcane Lockdown
 end
 
 --------------------------------------------------------------------------------
@@ -46,22 +46,22 @@ end
 
 function mod:ResonantSlash(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
-	self:CDBar(args.spellId, 12)
+	self:Bar(args.spellId, slashCount % 2 == 0 and 16 or 12)
+	slashCount = slashCount + 1
 end
 
 function mod:Streetsweeper(args)
 	self:Message(args.spellId, "Important", "Info")
-	self:CDBar(args.spellId, 8)
+	self:CDBar(args.spellId, 7)
 end
 
 function mod:ArcaneLockdown(args)
 	self:Message(args.spellId, "Attention", "Long", CL.incoming:format(args.spellName))
-	--self:CDBar(args.spellId, ??)
+	self:CDBar(args.spellId, 28)
 end
 
 function mod:SignalBeacon(args)
 	self:Message(args.spellId, "Attention", "Alert")
-	--self:CDBar(args.spellId, ??)
 end
 
 function mod:FlaskoftheSolemnNight(args)
