@@ -1,7 +1,6 @@
 
 --------------------------------------------------------------------------------
 -- TODO List:
--- - Might be missing some spells, dunno
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -24,7 +23,6 @@ mod.engageId = 1815
 function mod:GetOptions()
 	return {
 		191941, -- Darkstrikes
-		204151, -- Metamorphosis Darkstrikes
 		191853, -- Furious Flames
 		191823, -- Furious Blast
 		192504, -- Havoc Metamorphosis
