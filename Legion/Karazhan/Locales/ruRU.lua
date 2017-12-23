@@ -13,4 +13,7 @@ if L then
 	--L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
 	--L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
 	--L.barnes = "Barnes"
+	--L.maiden = "Reformed Maiden"
+	--L.philanthropist = "Ghostly Philanthropist"
+	--L.guardsman = "Phantom Guardsman"
 end
