@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -135,16 +134,30 @@ function mod:BansheeWail(args)
 end
 
 -- Ghostly Philanthropist
-function mod:PenniesFromHeaven(args)
-	self:Message(args.spellId, "Info", "Alert", CL.casting:format(args.spellName))
+do
+	local prev = 0
+	function mod:PenniesFromHeaven(args)
+		local t = GetTime()
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "Attention", "Alert", CL.casting:format(args.spellName))
+		end
+	end
 end
 
 -- Reformed Maiden
 function mod:Heartbreaker(args)
-	self:Message(args.spellId, "Info", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
 end
 
 -- Phantom Guardsman
-function mod:ShieldSmash(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+do
+	local prev = 0
+	function mod:ShieldSmash(args)
+		local t = GetTime()
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+		end
+	end
 end
