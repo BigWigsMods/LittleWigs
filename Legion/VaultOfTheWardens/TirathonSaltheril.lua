@@ -50,8 +50,8 @@ end
 --
 
 function mod:DarkstrikesCast(args)
-	self:Message(args.spellId, "Important", self:Tank() and "Alarm", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 31)
+	self:Message(191941, "Important", self:Tank() and "Alarm", CL.casting:format(args.spellName))
+	self:CDBar(191941, 31)
 end
 
 function mod:DarkstrikesApplied(args)
