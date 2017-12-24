@@ -1,7 +1,3 @@
-
---------------------------------------------------------------------------------
--- TODO List:
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -67,7 +63,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 190830 then -- Hatred
-		self:Message(spellId, "Attention", "Warning", spellName)
+		self:Message(spellId, "Attention", "Warning")
 		self:Bar(spellId, 10, CL.cast:format(spellName))
 		self:CDBar(spellId, 30) 
 	end
