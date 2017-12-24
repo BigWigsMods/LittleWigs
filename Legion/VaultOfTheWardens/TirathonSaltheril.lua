@@ -21,9 +21,11 @@ function mod:GetOptions()
 		191941, -- Darkstrikes
 		191853, -- Furious Flames
 		191823, -- Furious Blast
-		192504, -- Havoc Metamorphosis
-		202740, -- Vengeance Metamorphosis
-		190830, -- Hatred 
+		190830, -- Hatred
+		192504, -- Metamorphosis (Havoc)
+		202740, -- Metamorphosis (Vengeance) 
+	}, {
+		[192504] = "Metamorphosis"
 	}
 end
 
