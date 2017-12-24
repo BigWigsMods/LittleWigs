@@ -25,7 +25,7 @@ function mod:GetOptions()
 		192504, -- Metamorphosis (Havoc)
 		202740, -- Metamorphosis (Vengeance) 
 	}, {
-		[192504] = "Metamorphosis"
+		[192504] = 192504
 	}
 end
 
