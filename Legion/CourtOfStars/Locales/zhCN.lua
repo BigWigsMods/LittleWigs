@@ -23,13 +23,13 @@ if L then
 
 	L.InfernalTome = "地狱火之书"
 	L.MagicalLantern = "魔法灯笼"
-	--L.NightshadeRefreshments = "Nightshade Refreshments"
-	L.StarlightRoseBrew = "玫瑰星光酒"
+	L.NightshadeRefreshments = "夜影小食"
+	L.StarlightRoseBrew = "星光玫瑰茶"
 	--L.UmbralBloom = "Umbral Bloom"
 	--L.WaterloggedScroll = "Waterlogged Scroll"
 	L.BazaarGoods = "集市商品"
-	L.LifesizedNightborneStatue = "夜之子雕像"
-	L.DiscardedJunk = "废弃的垃圾"
+	L.LifesizedNightborneStatue = "夜之子等身雕像"
+	L.DiscardedJunk = "丢弃的垃圾"
 	L.WoundedNightborneCivilian = "受伤的夜之子平民"
 
 	L.announce_buff_items = "通报增益物品"
