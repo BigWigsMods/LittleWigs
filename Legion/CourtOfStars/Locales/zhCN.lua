@@ -15,7 +15,7 @@ if L then
 	--L.Manifestation = "Arcane Manifestation"
 	--L.Wyrm = "Mana Wyrm"
 	--L.Arcanist = "Duskwatch Arcanist"
-	--L.InfernalImp = "Infernal Imp"
+	L.InfernalImp = "地狱火小鬼"
 	L.Malrodi = "奥术师玛洛迪"
 	L.Velimar = "威利玛"
 	L.ArcaneKeys = "奥术钥匙"
