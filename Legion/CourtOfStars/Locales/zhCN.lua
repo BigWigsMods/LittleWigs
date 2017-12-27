@@ -25,7 +25,7 @@ if L then
 	L.MagicalLantern = "魔法灯笼"
 	L.NightshadeRefreshments = "夜影小食"
 	L.StarlightRoseBrew = "星光玫瑰茶"
-	--L.UmbralBloom = "Umbral Bloom"
+	L.UmbralBloom = "深黯之花"
 	L.WaterloggedScroll = "浸水的卷轴"
 	L.BazaarGoods = "集市货物"
 	L.LifesizedNightborneStatue = "夜之子等身雕像"
@@ -120,7 +120,7 @@ if L then
 	L["有个乐师说，他一直在打听这一带的消息。"] = 9
 
 	-- Female
-	--L["A guest saw both her and Elisande arrive together earlier."] = 10
+	L["有个客人先前看到她是和艾利桑德一起到达的。"] = 10
 	L["我听说有个女人一直打听贵族区的情况……"] = 10
 	L["有人说我们的新客人不是男性。"] = 10
 	L["他们说那个密探已经来了，而且她是个大美人。"] = 10
