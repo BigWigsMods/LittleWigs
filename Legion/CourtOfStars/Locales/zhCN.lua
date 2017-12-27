@@ -16,8 +16,8 @@ if L then
 	--L.Wyrm = "Mana Wyrm"
 	--L.Arcanist = "Duskwatch Arcanist"
 	--L.InfernalImp = "Infernal Imp"
-	--L.Malrodi = "Arcanist Malrodi"
-	--L.Velimar = "Velimar"
+	L.Malrodi = "奥术师玛洛迪"
+	L.Velimar = "威利玛"
 	--L.ArcaneKeys = "Arcane Keys"
 	--L.clues = "Clues"
 
