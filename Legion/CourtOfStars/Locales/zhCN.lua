@@ -19,7 +19,7 @@ if L then
 	L.Malrodi = "奥术师玛洛迪"
 	L.Velimar = "威利玛"
 	--L.ArcaneKeys = "Arcane Keys"
-	--L.clues = "Clues"
+	L.clues = "线索"
 
 	L.InfernalTome = "地狱火之书"
 	L.MagicalLantern = "魔法灯笼"
