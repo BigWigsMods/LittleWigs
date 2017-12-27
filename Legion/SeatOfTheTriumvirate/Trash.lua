@@ -1,4 +1,4 @@
-if not IsTestBuild() then return end -- XXX dont load on live
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Seat of the Triumvirate Trash", 1178)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	123743, -- Alleria Windrunner
+	125836, -- Alleria Windrunner
 	124171, -- Shadowguard Subjugator
 	122404 -- Shadowguard Voidbender
 )
@@ -74,7 +74,7 @@ function mod:PersonalAurasWithSay(args)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 123743 then
+	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 125836 then
 		if GetGossipOptions() then
 			SelectGossipOption(1)
 		end

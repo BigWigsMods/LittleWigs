@@ -17,6 +17,7 @@ mod.engageId = 1954
 --
 
 local sacredCount = 1
+local shockCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -48,9 +49,10 @@ end
 
 function mod:OnEngage()
 	sacredCount = 1
-	self:Bar(227809, 8) -- Holy Bolt
-	self:Bar(227789, 10.1) -- Sacred Ground
-	self:Bar(227800, 15) -- Holy Shock
+	shockCount = 0
+	self:Bar(227809, 9) -- Holy Bolt
+	self:Bar(227789, 11.1) -- Sacred Ground
+	self:Bar(227800, 16) -- Holy Shock
 	self:Bar(227508, 47.5) -- Mass Repentance
 end
 
@@ -74,7 +76,16 @@ do
 end
 
 function mod:HolyShock(args)
-	self:CDBar(args.spellId, 12)
+	
+	if shockCount == 4 then
+		self:CDBar(args.spellId, 28.8)
+		shockCount = 0
+	elseif shockCount == 2 then
+		self:CDBar(args.spellId, 28.8)
+	else
+		self:CDBar(args.spellId, 13.4)
+	end
+	shockCount = shockCount + 1
 	if self:Interrupter(args.sourceGUID) then
 		self:Message(args.spellId, "Attention", "Alarm", CL.incoming:format(args.spellName))
 	end

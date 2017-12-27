@@ -21,4 +21,5 @@ if L then
 	L.orbcaster = "獄炎補魂者"
 	--L.waglur = "Wa'glur"
 	L.gazerax = "賈澤拉克斯"
+	--L.vilebark = "Vilebark Walker"
 end

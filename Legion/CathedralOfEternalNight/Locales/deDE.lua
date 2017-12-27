@@ -21,4 +21,5 @@ if L then
 	L.orbcaster = "Sphärenwirker der Teufelsschreiter"
 	L.waglur = "Wa'glur"
 	L.gazerax = "Gazerax"
+	L.vilebark = "Übelrindenläufer"
 end

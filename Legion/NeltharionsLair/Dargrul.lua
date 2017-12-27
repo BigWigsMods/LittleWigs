@@ -32,10 +32,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(200732, 18) -- Molten Crash
 	self:CDBar(200700, 15) -- Landslide
-	self:CDBar(200404, 60) -- Magma Wave
+	self:CDBar(200732, 18) -- Molten Crash
 	self:CDBar(200551, 21) -- Crystal Spikes
+	self:CDBar(200404, self:Normal() and 60 or 64) -- Magma Wave
 end
 
 --------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	-- Faster that combat log event for Magma Wave (200404)
 	if spellId == 201661 or spellId == 201663 then -- Dargrul Ability Callout 02, Dargrul Ability Callout 03
 		self:Message(200404, "Positive", "Long")
-		self:CDBar(200404, 59.7)
+		self:CDBar(200404, self:Normal() and 59.7 or 60.8)
 		self:Bar(200404, 7, CL.cast:format(self:SpellName(200404)))
 	end
 end

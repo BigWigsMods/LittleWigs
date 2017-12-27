@@ -1,70 +1,70 @@
 local L = BigWigs:NewBossLocale("Court of Stars Trash", "frFR")
 if not L then return end
 if L then
-	--L.Guard = "Duskwatch Guard"
-	--L.Construct = "Guardian Construct"
-	--L.Enforcer = "Felbound Enforcer"
-	--L.Hound = "Legion Hound"
-	--L.Gerenth = "Gerenth the Vile"
-	--L.Jazshariu = "Jazshariu"
-	--L.Imacutya = "Imacutya"
-	--L.Baalgar = "Baalgar the Watchful"
-	--L.Inquisitor = "Watchful Inquisitor"
-	--L.BlazingImp = "Blazing Imp"
-	--L.Energy = "Bound Energy"
-	--L.Manifestation = "Arcane Manifestation"
-	--L.Wyrm = "Mana Wyrm"
-	--L.Arcanist = "Duskwatch Arcanist"
-	--L.InfernalImp = "Infernal Imp"
-	--L.Malrodi = "Arcanist Malrodi"
-	--L.Velimar = "Velimar"
-	--L.ArcaneKeys = "Arcane Keys"
-	--L.clues = "Clues"
+	L.Guard = "Vigile de la Garde crépusculaire"
+	L.Construct = "Assemblage gardien"
+	L.Enforcer = "Massacreur gangre-lié"
+	L.Hound = "Molosse de la Légion"
+	L.Gerenth = "Gerenth le Vil"
+	L.Jazshariu = "Jazshariu"
+	L.Imacutya = "Savatr’anshé"
+	L.Baalgar = "Baalgar le Vigilant"
+	L.Inquisitor = "Inquisiteur vigilant"
+	L.BlazingImp = "Diablotin flamboyant"
+	L.Energy = "Energie liée"
+	L.Manifestation = "Manifestation arcanique"
+	L.Wyrm = "Wyrm de mana"
+	L.Arcanist = "Arcaniste de la Garde crépusculaire"
+	L.InfernalImp = "Diablotin infernal"
+	L.Malrodi = "Arcaniste Malrodi"
+	L.Velimar = "Velimar"
+	L.ArcaneKeys = "Clés arcaniques"
+	L.clues = "Indices"
 
-	--L.InfernalTome = "Infernal Tome"
-	--L.MagicalLantern = "Magical Lantern"
-	--L.NightshadeRefreshments = "Nightshade Refreshments"
-	--L.StarlightRoseBrew = "Starlight Rose Brew"
-	--L.UmbralBloom = "Umbral Bloom"
-	--L.WaterloggedScroll = "Waterlogged Scroll"
-	--L.BazaarGoods = "Bazaar Goods"
-	--L.LifesizedNightborneStatue = "Lifesized Nightborne Statue"
-	--L.DiscardedJunk = "Discarded Junk"
-	--L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
+	L.InfernalTome = "Tome infernal"
+	L.MagicalLantern = "Lanterne magique"
+	L.NightshadeRefreshments = "Rafraîchissements de belladone"
+	L.StarlightRoseBrew = "Infusion de rose lumétoile"
+	L.UmbralBloom = "Floraison ombreuse"
+	L.WaterloggedScroll = "Parchemin détrempé"
+	L.BazaarGoods = "Marchandises de bazar"
+	L.LifesizedNightborneStatue = "Statue de sacrenuit à échelle réelle"
+	L.DiscardedJunk = "Camelote abandonnée"
+	L.WoundedNightborneCivilian = "Civil sacrenuit blessé"
 
-	--L.announce_buff_items = "Announce buff items"
-	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	L.announce_buff_items = "Annoncer les objets de buff"
+	L.announce_buff_items_desc = "Annonce tous les objets de buff disponibles du donjon et qui peut les utiliser."
 
-	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	--L.usableBy = "usable by" -- Context: item is usable by someone
+	L.available = "%s|cffffffff%s|r disponible" -- Context: item is available to use
+	L.usableBy = "utilisable par %s" -- Context: item is usable by someone
 
-	--L.custom_on_use_buff_items = "Instantly use buff items"
-	--L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.custom_on_use_buff_items = "Utiliser instantanément les objets de buff"
+	L.custom_on_use_buff_items_desc = "Activer cette option pour utiliser instantanément les objets de buff du donjon. Ceci n'utilisera pas les objets qui attirent les gardes avant le 2ème boss."
 
-	--L.spy_helper = "Spy Event Helper"
-	--L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	L.spy_helper = "Aide évènement espion"
+	L.spy_helper_desc = "Affiche une boîte d'info avec tous les indices que votre groupe a récolté concernant l'espion. Les indices seront également envoyés aux membres de votre groupe dans la discussion."
 
-	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
-	--L.spyFound = "Spy found by %s!"
-	--L.spyFoundChat = "I found the spy!"
+	L.clueFound = "Indice trouvé (%d/5) : |cffffffff%s|r"
+	L.spyFound = "Espion trouvé par %s !"
+	L.spyFoundChat = "J'ai trouvé l'espion !"
 	L.spyFoundPattern = "allez pas trop vite en besogne" -- Allons, [playername]. N’allez pas trop vite en besogne. Et si vous me suiviez, que nous puissions en parler en privé ?
 
-	--L.hints = {
-	--	"Cape",
-	--	"No Cape",
-	--	"Pouch",
-	--	"Potions",
-	--	"Long Sleeves",
-	--	"Short Sleeves",
-	--	"Gloves",
-	--	"No Gloves",
-	--	"Male",
-	--	"Female",
-	--	"Light Vest",
-	--	"Dark Vest",
-	--	"No Potions",
-	--	"Book",
-	--}
+	L.hints = {
+		"Cape",
+		"Pas de cape",
+		"Sacoche",
+		"Potions",
+		"Manches longues",
+		"Manches courtes",
+		"Gants",
+		"Pas de gants",
+		"Homme",
+		"Femmme",
+		"Gilet clair",
+		"Gilet sombre",
+		"Pas de potions",
+		"Livre",
+	}
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--

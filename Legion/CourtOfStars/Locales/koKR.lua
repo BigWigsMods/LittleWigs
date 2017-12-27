@@ -24,7 +24,7 @@ if L then
 	L.InfernalTome = "지옥불 고서"
 	L.MagicalLantern = "마법 초롱"
 	L.NightshadeRefreshments = "어둠그늘 간식"
-	L.StarlightRoseBrew = "별빛장미 차"
+	L.StarlightRoseBrew = "별빛 장미 차"
 	L.UmbralBloom = "그림자 꽃"
 	L.WaterloggedScroll = "물에 젖은 두루마리"
 	L.BazaarGoods = "장터 물품"
@@ -36,7 +36,7 @@ if L then
 	L.announce_buff_items_desc = "던전 내의 모든 강화 효과 아이템과 아이템을 누가 사용할 수 있는 지 알립니다."
 
 	L.available = "%s|cffffffff%s|r 사용 가능" -- Context: item is available to use
-	L.usableBy = "사용 가능: " -- Context: item is usable by someone
+	L.usableBy = "사용 가능: %s" -- Context: item is usable by someone
 
 	L.custom_on_use_buff_items = "강화 효과 아이템 즉시 사용"
 	L.custom_on_use_buff_items_desc = "이 옵션을 사용하면 던전 내 곳곳에 있는 강화 효과 아이템을 즉시 사용합니다. 두번째 우두머리 전의 수호병을 유인하는 아이템은 사용하지 않습니다."
@@ -111,19 +111,19 @@ if L then
 	L["그 첩자는 장갑을 끼는 일이 없다고 하더군요."] = 8
 	L["그 첩자는 장갑을 끼는 걸 싫어한다고 들었습니다."] = 8
 	L["그 첩자는 장갑을 끼지 않는답니다. 위급한 순간에 걸리적거려서 그렇겠지요."] = 8
-	L["안쪽 방에서 장갑 한 켤레를 발견했습니다. 첩자는 분명히 이 주변에 장갑을 끼지 않은 사람중 하나일 거에요."] = 8
+	L["안쪽 방에서 장갑 한 켤레를 발견했습니다. 첩자는 분명히 이 주변에 장갑을 끼지 않은 사람중 하나일 거예요."] = 8
 
 	-- Male
 	L["한 남자가 대마법학자와 나란히 저택에 들어오는 걸 봤다는 얘기가 있더군요."] = 9
 	L["첩자가 여성이 아니라는 얘기를 들었습니다."] = 9
-	L["첩자가 나타났다고 합니다. 그 남자는 대단히 호감형이라고도 하더군요."] = 9
+	L["첩자가 나타났다고 합니다. 그 남자는 대단히 호감형이라고 하더군요."] = 9
 	L["한 연주자가 말하길, 그 남자가 끊임없이 그 지구에 관한 질문을 늘어놨다고 합니다."] = 9
 
 	-- Female
 	L["아까 한 방문객이 그녀와 엘리산드가 함께 도착하는 걸 보았답니다."] = 10
 	L["어떤 여자가 귀족 지구에 관해 계속 묻고 다닌다고 하던데..."] = 10
 	L["그 불청객은 남자가 아니라는 말을 들었습니다."] = 10
-	L["첩자가 나타났다고 합니다. 그 여자는 아주 미인이라고도 하더군요."] = 10
+	L["첩자가 나타났다고 합니다. 그 여자는 아주 미인이라고 하더군요."] = 10
 
 	-- Light Vest
 	L["그자는 첩자인데도 밝은색 조끼를 즐겨 입는다고 합니다."] = 11

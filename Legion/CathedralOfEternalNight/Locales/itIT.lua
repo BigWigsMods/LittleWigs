@@ -21,4 +21,5 @@ if L then
 	L.orbcaster = "Scagliaglobi Vilcamminatrice"
 	L.waglur = "Wa'glur"
 	L.gazerax = "Gazerax"
+	L.vilebark = "Camminatore Scorzavile"
 end

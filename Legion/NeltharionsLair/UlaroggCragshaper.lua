@@ -28,6 +28,7 @@ L = mod:GetLocale()
 function mod:GetOptions()
 	return {
 		198564, -- Stance of the Mountain
+		198496, -- Sunder
 		{216290, "ICON"}, -- Strike of the Mountain
 		"bellow",
 	}
@@ -35,6 +36,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StanceOfTheMountain", 198564)
+	self:Log("SPELL_CAST_START", "Sunder", 198496)
 	self:Log("SPELL_CAST_START", "StrikeOfTheMountain", 216290)
 	self:Log("SPELL_CAST_SUCCESS", "StrikeOfTheMountainOver", 216290)
 	self:Log("SPELL_CAST_START", "BellowOfTheDeeps", 193375)
@@ -51,6 +53,7 @@ end
 function mod:StanceOfTheMountain(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:CDBar(args.spellId, 97) -- pull:36.6, 97.7
+	self:StopBar(198496) -- Sunder
 end
 
 do
@@ -75,3 +78,7 @@ function mod:BellowOfTheDeeps(args)
 	--self:CDBar(args.spellId, 29) -- pull:20.6, 44.9, 31.5, 31.5
 end
 
+function mod:Sunder(args)
+	self:Message(args.spellId, "Info", "Alert", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 9.3)
+end

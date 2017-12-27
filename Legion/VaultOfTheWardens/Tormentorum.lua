@@ -29,6 +29,8 @@ function mod:GetOptions()
 		202455, -- Void Shield
 		212564, -- Inquisitive Stare
 		{200904, "FLASH"}, -- Sapped Soul
+		196208, -- Seed of Corruption
+		201488, -- Frightening Shout
 	}
 end
 
@@ -42,6 +44,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SappedSoul", 200904)
 	self:Log("SPELL_AURA_REFRESH", "SappedSoul", 200904)
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:Log("SPELL_CAST_START", "SeedofCorruption", 196208)
+	self:Log("SPELL_CAST_START", "FrighteningShout", 201488)
 end
 
 function mod:OnEngage()
@@ -102,4 +106,12 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		self:Message(200898, "Important", nil, CL.soon:format(self:SpellName(200898))) -- Teleport soon
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 	end
+end
+
+function mod:SeedofCorruption(args)
+	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+function mod:FrighteningShout(args)
+	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 end

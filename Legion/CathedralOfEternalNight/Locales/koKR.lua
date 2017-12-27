@@ -21,4 +21,5 @@ if L then
 	L.orbcaster = "지옥길잡이 보주술사"
 	L.waglur = "와글루르"
 	L.gazerax = "가제락스"
+	L.vilebark = "썩은나무껍질 방랑자"
 end

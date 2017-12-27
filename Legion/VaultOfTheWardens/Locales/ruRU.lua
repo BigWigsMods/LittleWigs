@@ -1,21 +1,21 @@
 local L = BigWigs:NewBossLocale("Cordana Felsong", "ruRU")
 if not L then return end
 if L then
-	--L.kick_combo = "Kick Combo"
+	L.kick_combo = "Комбо удар"
 
-	--L.light_dropped = "%s dropped the Light."
-	--L.light_picked = "%s picked up the Light."
+	L.light_dropped = "%s выронил Свет."
+	L.light_picked = "%s поднял Свет."
 
-	--L.warmup_text = "Cordana Felsong Active"
-	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
+	L.warmup_text = "Кордана Оскверненная Песнь активна"
+	L.warmup_trigger = "Я уже получила то, за чем пришла. Но осталась, чтобы покончить с вами… раз и навсегда!"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "ruRU")
 if L then
-	--L.infester = "Felsworn Infester"
-	--L.illianna = "Blade Dancer Illianna"
-	--L.myrmidon = "Felsworn Myrmidon"
-	--L.mendacius = "Dreadlord Mendacius"
-	--L.fury = "Fel-Infused Fury"
-	--L.grimhorn = "Grimhorn the Enslaver"
+	L.infester = "Скверноподданный заразитель"
+	L.illianna = "Иллиана Танцующая с Клинками"
+	L.myrmidon = "Скверноподданный мирмидон"
+	L.mendacius = "Повелитель ужаса Мендаций"
+	L.fury = "Зараженный Скверной яростный боец"
+	L.grimhorn = "Злобнорог Поработитель"
 end

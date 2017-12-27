@@ -42,6 +42,7 @@ function mod:GetOptions()
 		{197262, "SAY"}, -- Taint of the Sea
 		202088, -- Brackwater Barrage
 		"destructor_tentacle", -- Destructor Tentacle
+		185539, -- Rapid Rupture
 		"stages",
 		196947, -- Submerged
 		198495, -- Torrent
@@ -54,6 +55,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TaintOfTheSea", 197262)
+	self:Log("SPELL_AURA_APPLIED", "RapidRupture", 185539)
 	self:Log("SPELL_AURA_APPLIED", "Submerged", 196947)
 	self:Log("SPELL_AURA_REMOVED", "SubmergedRemoved", 196947)
 	self:Log("SPELL_CAST_START", "Torrent", 198495)
@@ -112,6 +114,12 @@ function mod:TaintOfTheSea(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert", nil, nil, self:Dispeller("magic"))
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
+	end
+end
+
+function mod:RapidRupture(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Warning", CL.you:format(args.spellName))
 	end
 end
 

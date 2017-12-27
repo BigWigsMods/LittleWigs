@@ -5,4 +5,5 @@ if L then
 	L.shade = "Ombra Distorcente"
 	L.wraith = "Avvizzito del Mana Spettrale"
 	L.blade = "Guardia dell'Ira Vilspada"
+	L.chaosbringer = "Portatore del Caos Eredar"
 end

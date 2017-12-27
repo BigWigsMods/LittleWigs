@@ -21,4 +21,5 @@ if L then
 	L.orbcaster = "邪足晶球法师"
 	L.waglur = "瓦格鲁尔"
 	L.gazerax = "加泽拉克斯"
+	--L.vilebark = "Vilebark Walker"
 end

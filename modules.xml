@@ -86,8 +86,10 @@
 <Include file="Legion\ArtifactScenarios\locales.xml"/>
 
 <Include file="Legion\AssaultOnVioletHold\modules.xml"/>
+<Include file="Legion\AssaultOnVioletHold\locales.xml"/>
 
 <Include file="Legion\BlackRookHold\modules.xml"/>
+<Include file="Legion\BlackRookHold\locales.xml"/>
 
 <Include file="Legion\CourtOfStars\modules.xml"/>
 <Include file="Legion\CourtOfStars\locales.xml"/>
@@ -96,11 +98,13 @@
 <Include file="Legion\DarkheartThicket\locales.xml"/>
 
 <Include file="Legion\EyeOfAzshara\modules.xml"/>
+<Include file="Legion\EyeOfAzshara\locales.xml"/>
 
 <Include file="Legion\HallsOfValor\modules.xml"/>
 <Include file="Legion\HallsOfValor\locales.xml"/>
 
 <Include file="Legion\Karazhan\modules.xml"/>
+<Include file="Legion\Karazhan\locales.xml"/>
 
 <Include file="Legion\MawOfSouls\modules.xml"/>
 
@@ -116,4 +120,5 @@
 <Include file="Legion\CathedralOfEternalNight\modules.xml"/>
 
 <Include file="Legion\SeatOfTheTriumvirate\modules.xml"/>
+<Include file="Legion\SeatOfTheTriumvirate\locales.xml"/>
 </Ui>
