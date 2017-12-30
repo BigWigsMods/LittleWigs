@@ -8,6 +8,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	118704, -- Dul'zak
+	118690, -- Wrathguard Invader
 	119952, -- Felguard Destroyer
 	119923, -- Helblaze Soulmender
 	118703, -- Felborne Botanist
@@ -25,6 +26,7 @@ mod:RegisterEnableMob(
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.dulzak = "Dul'zak"
+	L.wrathguard = "Wrathguard Invader"
 	L.felguard = "Felguard Destroyer"
 	L.soulmender = "Helblaze Soulmender"
 	L.botanist = "Felborne Botanist"
@@ -44,6 +46,8 @@ function mod:GetOptions()
 	return {
 		-- Dul'zak
 		238653, -- Shadow Wave
+		-- Wrathguard Invader
+		{236737, "SAY"}, -- Fel Strike
 		-- Felguard Destroyer
 		241598, -- Shadow Wall
 		-- Helblaze Soulmender
@@ -62,6 +66,7 @@ function mod:GetOptions()
 		242760, -- Lumbering Crash
 	}, {
 		[238653] = L.dulzak,
+		[236737] = L.wrathguard,
 		[241598] = L.felguard,
 		[238543] = L.soulmender,
 		[237565] = L.botanist,
@@ -76,6 +81,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 	self:RegisterEvent("UNIT_SPELLCAST_START", "ShadowWave") -- Shadow Wave
+	self:Log("SPELL_CAST_START", "FelStrike", 236737) -- Fel Strike
 	self:Log("SPELL_CAST_START", "ShadowWall", 241598) -- Shadow Wall
 	self:Log("SPELL_CAST_START", "DemonicMending", 238543) -- Demonic Mending
 	self:Log("SPELL_CAST_START", "BlisteringRain", 237565) -- Blistering Rain
@@ -99,6 +105,25 @@ do
 			self:Message(spellId, "Urgent", "Alarm", CL.incoming:format(spellName))
 			self:Bar(spellId, 23.2)
 		end
+	end
+end
+
+-- Wrathguard Invader
+do
+	local prev = 0
+	local function printTarget(self, name, guid)
+		local t = GetTime()
+		if self:Me(guid) then
+			prev = t
+			self:TargetMessage(236737, name, "Personal", "Alert")
+			self:Say(236737)
+		elseif t-prev > 1.5 then
+			prev = t
+			self:Message(236737, "Attention", "Alert")
+		end
+	end
+	function mod:FelStrike(args)
+		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
 	end
 end
 
