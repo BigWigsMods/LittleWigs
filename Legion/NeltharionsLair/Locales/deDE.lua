@@ -1,5 +1,6 @@
 local L = BigWigs:NewBossLocale("Ularogg Cragshaper", "deDE")
-if not L then return endif L then
+if not L then return end
+if L then
 	--L.totems = "Totems"
 	--L.bellow = "{193375} (Totems)" -- Bellow of the Deeps (Totems)
 end
