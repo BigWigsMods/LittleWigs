@@ -1,14 +1,7 @@
 local L = BigWigs:NewBossLocale("Erudax", "zhCN")
 if L then
---@localization(locale="zhCN", namespace="GrimBatol/Erudax", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-
-L = BigWigs:NewBossLocale("Drahga Shadowburner", "zhCN")
-if L then
---@localization(locale="zhCN", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-
-L = BigWigs:NewBossLocale("Forgemaster Throngus", "zhCN")
-if L then
---@localization(locale="zhCN", namespace="GrimBatol/Forgemaster", format="lua_additive_table", handle-unlocalized="ignore")@
+	L.summon = "召唤无面腐蚀者"
+	L.summon_desc = "当埃鲁达克召唤无面腐蚀者时发出警报。"
+	L.summon_message = "无面腐蚀者"
+  L.summon_trigger = "%s召唤了一个"
 end
