@@ -1,4 +1,5 @@
 local L = BigWigs:NewBossLocale("Corborus", "koKR")
+if not L then return end
 if L then
 	L.burrow = "잠복/출현"
 	L.burrow_desc = "코보루스가 잠복하거나 지상으로 나타나면 경보합니다."
