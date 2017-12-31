@@ -5,7 +5,12 @@ if L then
 	--L.enrage_desc = "When Rocketspark or Borka is killed, the other will enrage."
 end
 
-L = BigWigs:NewBossLocale("Skylord Tovra", "esES") or BigWigs:NewBossLocale("Skylord Tovra", "esMX")
+L = BigWigs:NewBossLocale("Nitrogg Thundertower", "esMX")
+if L then
+	--L.dropped = "%s dropped!"
+end
+
+L = BigWigs:NewBossLocale("Skylord Tovra", "esMX")
 if L then
 	--L.rakun = "Rakun"
 end
