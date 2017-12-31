@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Kanrethad Ebonlocke", "deDE")
+local L = BigWigs:NewBossLocale("Kanrethad Ebonlocke", "esMX")
 if not L then return end
 if L then
 	L.summons = "Summons"
