@@ -21,6 +21,7 @@
 
 <Include file="WotLK\Ahnkahet\modules.xml"/>
 <Include file="WotLK\Gundrak\modules.xml"/>
+<Include file="WotLK\Gundrak\locales.xml"/>
 <Include file="WotLK\HallsOfLightning\modules.xml"/>
 <Include file="WotLK\PitOfSaron\modules.xml"/>
 <Include file="WotLK\TheNexus\modules.xml"/>
