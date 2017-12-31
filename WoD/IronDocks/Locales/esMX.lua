@@ -4,7 +4,7 @@ if L then
 	--L.sphere_fail_message = "Bubble was removed - They're all healing :("
 end
 
-L = BigWigs:NewBossLocale("Oshir", "esES") or BigWigs:NewBossLocale("Oshir", "esMX")
+L = BigWigs:NewBossLocale("Oshir", "esMX")
 if L then
 	--L.freed = "Freed after %.1f sec!"
 end

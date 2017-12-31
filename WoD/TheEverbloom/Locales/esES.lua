@@ -8,7 +8,7 @@ if L then
 	--L.custom_on_automark_desc = "Automatically mark Gola with a {rt8} and Telu with a {rt7}, requires promoted or leader."
 end
 
-L = BigWigs:NewBossLocale("Witherbark", "esES") or BigWigs:NewBossLocale("Witherbark", "esMX")
+L = BigWigs:NewBossLocale("Witherbark", "esES")
 if L then
 	--L.energyStatus = "A Globule reached Witherbark: %d%% energy"
 end

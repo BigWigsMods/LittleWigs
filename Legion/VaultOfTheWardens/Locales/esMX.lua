@@ -10,7 +10,7 @@ if L then
 	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
 end
 
-L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "esES") or BigWigs:NewBossLocale("Vault of the Wardens Trash", "esMX")
+L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "esMX")
 if L then
 	--L.infester = "Felsworn Infester"
 	--L.illianna = "Blade Dancer Illianna"
