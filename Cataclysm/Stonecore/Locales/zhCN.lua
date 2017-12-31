@@ -5,5 +5,5 @@ if L then
 	L.burrow_message = "克伯鲁斯潜地！"
 	L.burrow_warning = "5秒后潜地！"
 	L.emerge_message = "克伯鲁斯钻出！"
-  L.emerge_warning = "5秒后钻出！"
+	L.emerge_warning = "5秒后钻出！"
 end
