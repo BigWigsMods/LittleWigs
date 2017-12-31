@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Gu Cloudstrike", "zhCN")
+local L = BigWigs:NewBossLocale("Gu Cloudstrike", "zhCN")
 if not L then return end
 if L then
 	L.engage_say = "让你看看我的力量。"
