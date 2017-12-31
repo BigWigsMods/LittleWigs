@@ -1,6 +1,7 @@
 local L = BigWigs:NewBossLocale("Armsmaster Harlan", "koKR")
+if not L then return end
 if L then
-  L.engage_yell = "하하! 또 내 용맹을 시험할 기회인가."
+L.engage_yell = "하하! 또 내 용맹을 시험할 기회인가."
 end
 
 L = BigWigs:NewBossLocale("Flameweaver Koegler", "koKR")
