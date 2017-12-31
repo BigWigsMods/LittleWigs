@@ -1,4 +1,5 @@
 local L = BigWigs:NewBossLocale("Gekkan", "koKR")
+if not L then return end
 if L then
 	L.engage_yell = "잡아라!"
 end
