@@ -35,11 +35,14 @@ if L then
 	L.arbalest = "Corrupted Risen Arbalest"
 
 end
-mod.displayName = L.erdris
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.erdris
+end
 
 function mod:GetOptions()
 	return {

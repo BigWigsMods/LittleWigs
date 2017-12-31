@@ -28,6 +28,10 @@ mod.displayName = L.name
 -- Initialization
 --
 
+function mod:OnRegister()
+	self.displayName = L.name
+end
+
 function mod:GetOptions()
 	return {
 		"warmup",
