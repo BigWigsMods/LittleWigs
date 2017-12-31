@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Gal'darah", "esES")
+local L = BigWigs:NewBossLocale("Gal'darah", "esMX")
 if not L then return end
 if L then
 	--L.forms = "Forms"
