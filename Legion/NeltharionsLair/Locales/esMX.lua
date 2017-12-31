@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Ularogg Cragshaper", "esES")
+local L = BigWigs:NewBossLocale("Ularogg Cragshaper", "esMX")
 if not L then return end
 if L then
 	--L.totems = "Totems"
