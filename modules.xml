@@ -75,14 +75,19 @@
 <Include file="WoD\BloodmaulSlagMines\modules.xml"/>
 
 <Include file="WoD\GrimrailDepot\modules.xml"/>
+<Include file="WoD\GrimrailDepot\locales.xml"/>
 
 <Include file="WoD\IronDocks\modules.xml"/>
+<Include file="WoD\IronDocks\locales.xml"/>
 
 <Include file="WoD\ShadowmoonBurialGrounds\modules.xml"/>
+<Include file="WoD\ShadowmoonBurialGrounds\locales.xml"/>
 
 <Include file="WoD\Skyreach\modules.xml"/>
+<Include file="WoD\Skyreach\locales.xml"/>
 
 <Include file="WoD\TheEverbloom\modules.xml"/>
+<Include file="WoD\TheEverbloom\locales.xml"/>
 
 <Include file="WoD\UpperBlackrockSpire\modules.xml"/>
 <Include file="WoD\UpperBlackrockSpire\locales.xml"/>
