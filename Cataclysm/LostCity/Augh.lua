@@ -8,8 +8,23 @@ if not mod then return end
 mod:RegisterEnableMob(49045)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.bossName = "Augh"
+end
+
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.bossName
+end
 
 -- XXX merge with Lockmaw
 function mod:GetOptions()

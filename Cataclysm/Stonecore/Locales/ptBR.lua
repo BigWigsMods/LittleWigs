@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Corborus", "frFR")
+local L = BigWigs:NewBossLocale("Corborus", "ptBR")
 if not L then return end
 if L then
 	--L.burrow = "Burrow/emerge"

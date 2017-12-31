@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Augh", "esMX")
+local L = BigWigs:NewBossLocale("Augh", "esES")
 if not L then return end
 if L then
 	--L.bossName = "Augh"
