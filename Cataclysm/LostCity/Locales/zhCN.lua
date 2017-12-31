@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Augh", "zhCN")
 if not L then return end
 if L then
-	L.bossName = "奥弗"
+	L.augh = "奥弗"
 end
 
 L = BigWigs:NewBossLocale("Siamat", "zhCN")
