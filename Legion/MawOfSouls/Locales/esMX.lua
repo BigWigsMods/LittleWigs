@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Maw of Souls Trash", "esES")
+local L = BigWigs:NewBossLocale("Maw of Souls Trash", "esMX")
 if not L then return end
 if L then
 	--L.champion = "Helarjar Champion"
