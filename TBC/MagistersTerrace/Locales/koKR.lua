@@ -1,4 +1,5 @@
 local L = BigWigs:NewBossLocale("Vexallus", "koKR")
+if not L then return end
 if L then
 	L["adds"] = "순수한 에너지"
 	L["adds_desc"] = "순수한 에너지가 소환되면 경보합니다."
