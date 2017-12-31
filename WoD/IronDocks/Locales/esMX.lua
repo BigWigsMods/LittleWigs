@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Grimrail Enforcers", "esES")
+local L = BigWigs:NewBossLocale("Grimrail Enforcers", "esMX")
 if not L then return end
 if L then
 	--L.sphere_fail_message = "Bubble was removed - They're all healing :("

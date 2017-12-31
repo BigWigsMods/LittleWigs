@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Rocketspark and Borka", "esES")
+local L = BigWigs:NewBossLocale("Rocketspark and Borka", "esMX")
 if not L then return end
 if L then
 	--L.enrage = "Enrage"

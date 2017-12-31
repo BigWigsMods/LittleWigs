@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Sadana Bloodfury", "esES")
+local L = BigWigs:NewBossLocale("Sadana Bloodfury", "esMX")
 if not L then return end
 if L then
 	--L.custom_on_markadd = "Mark the Dark Communion Add"
