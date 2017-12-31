@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Ancient Protectors", "esES")
+local L = BigWigs:NewBossLocale("Rocketspark and Borka", "esMX")
 if not L then return end
 if L then
 	--L[83892] = "|cFF00CCFFGola|r"
