@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Nightbane", "esES")
 if not L then return end
 if L then
-	--L.bossName = "Nightbane"
+	--L.nightbane = "Nightbane"
 end
 
 L = BigWigs:NewBossLocale("Karazhan Trash", "esES")

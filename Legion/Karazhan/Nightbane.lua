@@ -22,7 +22,7 @@ local shardCount = 1
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.bossName = "Nightbane"
+	L.nightbane = "Nightbane"
 end
 
 L = mod:GetLocale()
@@ -51,7 +51,7 @@ function mod:GetOptions()
 end
 
 function mod:OnRegister()
-	self.displayName = L.bossName
+	self.displayName = L.nightbane
 end
 
 function mod:OnBossEnable()
