@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("The Black Morass Trash", "esES")
+local L = BigWigs:NewBossLocale("The Black Morass Trash", "esMX")
 if not L then return end
 if L then
 	--L.wave = "Wave Warnings"
