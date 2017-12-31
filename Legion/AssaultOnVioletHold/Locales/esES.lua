@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "esES") or BigWigs:NewBossLocale("Assault on Violet Hold Trash", "esMX")
+local L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "esES")
 if not L then return end
 if L then
 	--L.custom_on_autotalk = "Autotalk"
@@ -8,7 +8,7 @@ if L then
 	--L.infernal = "Blazing Infernal"
 end
 
-L = BigWigs:NewBossLocale("Thalena", "esES") or BigWigs:NewBossLocale("Thalena", "esMX")
+L = BigWigs:NewBossLocale("Thalena", "esES")
 if L then
 	--L.essence = "Essence"
 end

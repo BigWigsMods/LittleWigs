@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "esES")
+local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "esMX")
 if not L then return end
 if L then
 	--L.tugar = "Tugar Bloodtotem"
@@ -17,7 +17,7 @@ if L then
 	--L.totem_warning = "The totem hit you!"
 end
 
-L = BigWigs:NewBossLocale("Raest", "esES")
+L = BigWigs:NewBossLocale("Raest", "esMX")
 if L then
 	--L.name = "Raest Magespear"
 
@@ -32,7 +32,7 @@ if L then
 	--L.warmup_trigger2 = "Kill this interloper, brother!"
 end
 
-L = BigWigs:NewBossLocale("Kruul", "esES")
+L = BigWigs:NewBossLocale("Kruul", "esMX")
 if L then
 	-- NPC Names
 	--L.name = "Highlord Kruul"
