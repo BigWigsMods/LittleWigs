@@ -5,5 +5,5 @@ if L then
 	L.burrow_message = "코보루스 잠복!"
 	L.burrow_warning = "5초 후 잠복!"
 	L.emerge_message = "코보루스 출현!"
-  L.emerge_warning = "5초 후 출현!"
+	L.emerge_warning = "5초 후 출현!"
 end
