@@ -13,7 +13,7 @@ mod:RegisterEnableMob(49045)
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.bossName = "Augh"
+	L.augh = "Augh"
 end
 
 L = mod:GetLocale()
@@ -23,7 +23,7 @@ L = mod:GetLocale()
 --
 
 function mod:OnRegister()
-	self.displayName = L.bossName
+	self.displayName = L.augh
 end
 
 -- XXX merge with Lockmaw
