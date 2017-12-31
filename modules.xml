@@ -26,6 +26,7 @@
 <Include file="WotLK\PitOfSaron\modules.xml"/>
 <Include file="WotLK\TheNexus\modules.xml"/>
 <Include file="WotLK\TheVioletHold\modules.xml"/>
+<Include file="WotLK\TheVioletHold\locales.xml"/>
 <Include file="WotLK\UtgardePinnacle\modules.xml"/>
 
 <!-- Cataclysm -->
