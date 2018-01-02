@@ -43,8 +43,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MassRepentanceSuccess", 227508)
 	self:Log("SPELL_CAST_START", "SacredGround", 227789)
 	self:Log("SPELL_AURA_APPLIED", "SacredGroundApplied", 227848)
-	-- No boss unit, because Blizzard and consistency...
-	self:CheckForEngage()
 end
 
 function mod:OnEngage()
