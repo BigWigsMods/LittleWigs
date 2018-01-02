@@ -34,8 +34,8 @@ local prevWave = 0
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L["portals"] = "Portals"
-	L["portals_desc"] = "Information about portals."
+	L.portals = "Portals"
+	L.portals_desc = "Information about portals."
 end
 L = mod:GetLocale()
 

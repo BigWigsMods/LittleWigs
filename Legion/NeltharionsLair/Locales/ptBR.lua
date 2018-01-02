@@ -6,3 +6,9 @@ if L then
 	--L.gnasher = "Rockback Gnasher"
 	--L.trapper = "Rockbound Trapper"
 end
+
+L = BigWigs:NewBossLocale("Ularogg Cragshaper", "ptBR")
+if L then
+	--L.totems = "Totems"
+	--L.bellow = "{193375} (Totems)" -- Bellow of the Deeps (Totems)
+end

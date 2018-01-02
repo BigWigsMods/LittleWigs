@@ -34,21 +34,29 @@ end
 
 L = BigWigs:NewBossLocale("Kruul", "esES") or BigWigs:NewBossLocale("Kruul", "esMX")
 if L then
-	-- NPC Names
 	--L.name = "Highlord Kruul"
 	--L.inquisitor = "Inquisitor Variss"
 	--L.velen = "Prophet Velen"
 
-	-- Triggers
 	--L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
+	--L.win_trigger = "So be it. You will not stand in our way any longer."
 
-	-- Engage / Options
 	--L.engage_message = "Highlord Kruul's Challenge Engaged!"
 
 	--L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
-	--L.nether_aberration_icon = "ability_socererking_summonaberration"
 
 	--L.smoldering_infernal = "Smoldering Infernal"
 	--L.smoldering_infernal_desc = "Summons a Smoldering Infernal."
-	--L.smoldering_infernal_icon = "inv_infernalmountgreen"
+end
+
+L = BigWigs:NewBossLocale("Lord Erdris Thorn", "esES") or BigWigs:NewBossLocale("Lord Erdris Thorn", "esMX")
+if L then
+	--L.erdris = "Lord Erdris Thorn"
+
+	--L.warmup_trigger = "Your arrival is well-timed."
+	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
+
+	--L.mage = "Corrupted Risen Mage"
+	--L.soldier = "Corrupted Risen Soldier"
+	--L.arbalest = "Corrupted Risen Arbalest"
 end
