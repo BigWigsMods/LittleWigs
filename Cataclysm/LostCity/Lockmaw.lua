@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Lockmaw", 747, 118)
 if not mod then return end
-mod:RegisterEnableMob(43614)
+mod:RegisterEnableMob(43614, 49045) -- Lockmaw, Augh
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,8 +13,15 @@ mod:RegisterEnableMob(43614)
 
 function mod:GetOptions()
 	return {
+		-- Lockmaw
 		81630, -- Viscous Poison
 		{81690, "ICON", "FLASH"}, -- Scent of Blood
+		-- Augh
+		"stages",
+		84784, -- Whirlwind
+	},{
+		[81630] = -2442,
+		["stages"] = -2449,
 	}
 end
 
@@ -22,13 +29,26 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ViscousPoison", 81630)
 	self:Log("SPELL_AURA_REMOVED", "ViscousPoisonRemoved", 81630)
 	self:Log("SPELL_AURA_APPLIED", "ScentOfBlood", 81690)
+	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 84784, 91408)
 
-	self:Death("Win", 43614)
+	self:Death("Deaths", 43614, 49045) -- Lockmaw, Augh
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Deaths(args)
+	if self:Heroic() then
+		if args.mobId == 49045 then -- Augh
+			self:Win()
+		else
+			self:Bar("stages", 17, -2442, "spell_nature_sleep")
+		end
+	elseif args.mobId == 43614 then -- Lockmaw
+		self:Win()
+	end
+end
 
 function mod:ViscousPoison(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention")
@@ -48,3 +68,9 @@ function mod:ScentOfBlood(args)
 	end
 end
 
+function mod:Whirlwind(args)
+	self:Message(84784, "Urgent")
+	if args.spellId == 91408 then
+		self:CDBar(84784, 26)
+	end
+end
