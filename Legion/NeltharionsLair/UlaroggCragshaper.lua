@@ -79,6 +79,6 @@ function mod:BellowOfTheDeeps(args)
 end
 
 function mod:Sunder(args)
-	self:Message(args.spellId, "Info", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Attention", "Alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 9.3)
 end
