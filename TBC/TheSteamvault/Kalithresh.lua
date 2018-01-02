@@ -14,19 +14,13 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Warlord Kalithresh", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["engage_message"] = "Engaged - channeling in ~15sec!"
 	L["rage_message"] = "Warlord is channeling!"
 	L["rage_soon"] = "Channeling Soon"
 	L["rage_soonbar"] = "~Possible channeling"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coilfang/Kalithresh", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Warlord Kalithresh")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization

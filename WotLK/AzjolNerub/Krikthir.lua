@@ -24,9 +24,7 @@ local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["frenzysoon_message"] = "Frenzy Soon"--@end-do-not-package@
---@localization(locale="enUS", namespace="Dragonblight/Krik_thir_the_Gatewatcher", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["frenzysoon_message"] = "Frenzy Soon"
 end
 L = mod:GetLocale()
 

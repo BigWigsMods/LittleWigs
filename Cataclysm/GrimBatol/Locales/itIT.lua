@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Erudax", "esES") or BigWigs:NewBossLocale("Erudax", "esMX")
+local L = BigWigs:NewBossLocale("Erudax", "itIT")
 if not L then return end
 if L then
 	--L.summon = "Summon Faceless Guardian"

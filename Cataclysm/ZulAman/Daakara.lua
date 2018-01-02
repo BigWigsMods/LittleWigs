@@ -19,14 +19,12 @@ mod.toggleOptions = {
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["form"] = "Phases"
-L["form_desc"] = "Warn when Daakara changes form."
-L["bear_message"] = "Bear Form!"
-L["eagle_message"] = "Eagle Form!"
-L["lynx_message"] = "Lynx Form!"
-L["dragonhawk_message"] = "Dragonhawk Form!"--@end-do-not-package@
---@localization(locale="enUS", namespace="ZulAman/Daakara", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["form"] = "Phases"
+	L["form_desc"] = "Warn when Daakara changes form."
+	L["bear_message"] = "Bear Form!"
+	L["eagle_message"] = "Eagle Form!"
+	L["lynx_message"] = "Lynx Form!"
+	L["dragonhawk_message"] = "Dragonhawk Form!"
 end
 L = mod:GetLocale()
 

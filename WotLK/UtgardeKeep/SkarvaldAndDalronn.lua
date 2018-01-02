@@ -21,9 +21,7 @@ local deaths = 0
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["dies"] = "#%d Killed"--@end-do-not-package@
---@localization(locale="enUS", namespace="Howling_Fjord/Controller_and_Constructor", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["dies"] = "#%d Killed"
 end
 L = mod:GetLocale()
 

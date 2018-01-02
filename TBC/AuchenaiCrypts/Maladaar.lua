@@ -19,24 +19,18 @@ local warned = nil
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Exarch Maladaar", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["avatar_message"] = "Avatar of the Martyred spawning!"
 	L["avatar_soon"] = "Avatar of the Martyred Spawning Soon"
 	L["soul_message"] = "%s's soul stolen!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Auchindoun/Blackheart", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Exarch Maladaar")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
-	if bit.band(self.db.profile[GetSpellInfo(32424)], BigWigs.C.MESSAGE) == BigWigs.C.MESSAGE then
+	if self:CheckOption(32424, "MESSAGE") then
 		self:RegisterEvent("UNIT_HEALTH")
 	end
 

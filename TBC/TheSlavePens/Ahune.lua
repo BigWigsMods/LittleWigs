@@ -19,9 +19,8 @@ local standing = nil
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Lord Ahune", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["state"] = "State"
 	L["state_desc"] = "Display information about the state of Ahune (Submerged/Emerged)"
 	L["attack_message"] = "Ahune is Attackable"
@@ -29,11 +28,7 @@ if L then
 	L["stand_soon"] = "Emerge Soon"
 	L["submerge_message"] = "Ahune Submerged"
 	L["submerge_soon"] = "Submerge Soon"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coilfang/Ahune", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Lord Ahune")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization

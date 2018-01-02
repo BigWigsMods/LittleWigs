@@ -2,10 +2,9 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Husam.lua"/>
-<Script file="Augh.lua"/>
 <Script file="Lockmaw.lua"/>
+<Script file="Augh.lua"/>
 <Script file="Barim.lua"/>
 <Script file="Siamat.lua"/>
 
 </Ui>
-

@@ -18,11 +18,9 @@ local split1 = nil
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["split"] = "Isiset Split"
-L["split_desc"] = "Warn when Isiset Split."
-L["split_message"] = "Isiset Split soon!"--@end-do-not-package@
---@localization(locale="enUS", namespace="Origination/Isiset", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["split"] = "Isiset Split"
+	L["split_desc"] = "Warn when Isiset Split."
+	L["split_message"] = "Isiset Split soon!"
 end
 L = mod:GetLocale()
 

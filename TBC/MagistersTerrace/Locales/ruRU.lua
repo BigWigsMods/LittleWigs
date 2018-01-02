@@ -1,10 +1,8 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Kael'thas Sunstrider", "ruRU")
+local L = BigWigs:NewBossLocale("Vexallus", "ruRU")
+if not L then return end
 if L then
-	--@localization(locale="ruRU", namespace="MagistersTerrace/Kael_thas", format="lua_additive_table", handle-unlocalized="ignore")@
+	--L.adds. = "Pure Energy"
+	--L.adds_desc = "Warn when Pure Energy is discharged."
+	--L.adds_message = "Pure Energy discharged!"
+	--L.adds_trigger = "discharges pure energy!"
 end
-
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Vexallus", "ruRU")
-if L then
-	--@localization(locale="ruRU", namespace="MagistersTerrace/Vexallus", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-

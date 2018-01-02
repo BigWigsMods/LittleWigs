@@ -5,6 +5,7 @@ local mod = BigWigs:NewBoss("Anub'arakAN", 533) -- AN (AnzolNerub) is intentiona
 if not mod then return end
 mod.partycontent = true
 mod.otherMenu = "Dragonblight"
+mod.displayName = "Anub'arak"
 mod:RegisterEnableMob(29120)
 mod.toggleOptions = {
 	53472, -- Pound
@@ -14,15 +15,6 @@ mod.toggleOptions = {
 --  Localization
 
 local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-local L = mod:NewLocale("enUS", true)
-if L then
---@do-not-package@
-L["cmd"] = "Anub'arak"--@end-do-not-package@
---@localization(locale="enUS", namespace="Dragonblight/Anub_arak", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = mod:GetLocale()
-
-mod.displayName = L["cmd"]
 
 -------------------------------------------------------------------------------
 --  Initialization

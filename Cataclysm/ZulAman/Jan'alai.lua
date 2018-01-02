@@ -17,17 +17,15 @@ mod.toggleOptions = {
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["adds"] = "Amani'shi Hatchers"
-L["adds_desc"] = "Warn for incoming Amani'shi Hatchers."
-L["adds_message"] = "Amani'shi Hatchers incoming!"
-L["adds_all"] = "All remaining Amani'shi Hatchers soon!"
+	L["adds"] = "Amani'shi Hatchers"
+	L["adds_desc"] = "Warn for incoming Amani'shi Hatchers."
+	L["adds_message"] = "Amani'shi Hatchers incoming!"
+	L["adds_all"] = "All remaining Amani'shi Hatchers soon!"
 
-L["bomb"] = "Fire Bombs"
-L["bomb_desc"] = "Show timers for Fire Bombs."
-L["bomb_trigger"] = "I burn ya now!"
-L["bomb_message"] = "Fire Bombs incoming!"--@end-do-not-package@
---@localization(locale="enUS", namespace="ZulAman/Janalai", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["bomb"] = "Fire Bombs"
+	L["bomb_desc"] = "Show timers for Fire Bombs."
+	L["bomb_trigger"] = "I burn ya now!"
+	L["bomb_message"] = "Fire Bombs incoming!"
 end
 L = mod:GetLocale()
 

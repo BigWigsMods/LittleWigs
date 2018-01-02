@@ -16,24 +16,18 @@ local sporesannounced = nil
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Hungarfen", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["spores"] = "Foul Spores"
 	L["spores_desc"] = "Warn when Hungarfen is about to root himself and casts Foul Spores"
 	L["spores_message"] = "Foul Spores Soon!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coilfang/Hungarfen", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Hungarfen")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()
-	if bit.band(self.db.profile.spores, BigWigs.C.MESSAGE) == BigWigs.C.MESSAGE then
+	if self:CheckOption("spores", "MESSAGE") then
 		self:RegisterEvent("UNIT_HEALTH")
 	end
 	self:Death("Win", 17770)

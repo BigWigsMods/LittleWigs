@@ -14,9 +14,7 @@ mod.toggleOptions = {
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
---@end-do-not-package@
---@localization(locale="enUS", namespace="HourOfTwilight/Arcurion", format="lua_additive_table", handle-unlocalized="ignore")@
+
 end
 L = mod:GetLocale()
 

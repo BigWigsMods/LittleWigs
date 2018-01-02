@@ -1,4 +1,10 @@
 local L = BigWigs:NewBossLocale("Corborus", "deDE")
+if not L then return end
 if L then
---@localization(locale="deDE", namespace="Stonecore/Corborus", format="lua_additive_table", handle-unlocalized="ignore")@
+	L.burrow = "Auf-/Abtauchen"
+	L.burrow_desc = "Warnt, wenn Corborus auf- oder abtaucht."
+	L.burrow_message = "Corborus taucht ab!"
+	L.burrow_warning = "Abtauchen in 5 sek!"
+	L.emerge_message = "Corborus taucht auf!"
+	L.emerge_warning = "Auftauchen in 5 sek!"
 end

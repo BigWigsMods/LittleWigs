@@ -22,9 +22,7 @@ local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["defeat_trigger"] = "Excellent work!"--@end-do-not-package@
---@localization(locale="enUS", namespace="Icecrown/Argent_Confessor_Paletress", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["defeat_trigger"] = "Excellent work!"
 end
 L = mod:GetLocale()
 

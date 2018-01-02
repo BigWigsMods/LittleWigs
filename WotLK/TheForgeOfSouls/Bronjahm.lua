@@ -21,9 +21,7 @@ local stormannounced = nil
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["storm_soon"] = "Soulstorm Soon!"--@end-do-not-package@
---@localization(locale="enUS", namespace="Frozen_Halls/Bronjahm", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["storm_soon"] = "Soulstorm Soon!"
 end
 L = mod:GetLocale()
 

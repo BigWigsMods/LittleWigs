@@ -21,10 +21,8 @@ local sleepDuration = 8
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["defeat_trigger"] = "Your journey has just begun"
-L["vampTouch_message"] = "Mal'Ganis gains Vampiric Touch"--@end-do-not-package@
---@localization(locale="enUS", namespace="Stratholme/Mal_Ganis", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["defeat_trigger"] = "Your journey has just begun"
+	L["vampTouch_message"] = "Mal'Ganis gains Vampiric Touch"
 end
 L = mod:GetLocale()
 

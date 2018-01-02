@@ -22,13 +22,11 @@ local bear = GetSpellInfo(7090)
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["forms"] = "Forms"
-L["forms_desc"] = "Warn for form changes."
-L["troll_message"] = "Troll Form"
-L["troll_trigger"] = "Make way for da Nalorakk!"
-L["bear_trigger"] = "You call on da beast"--@end-do-not-package@
---@localization(locale="enUS", namespace="ZulAman/Nalorakk", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["forms"] = "Forms"
+	L["forms_desc"] = "Warn for form changes."
+	L["troll_message"] = "Troll Form"
+	L["troll_trigger"] = "Make way for da Nalorakk!"
+	L["bear_trigger"] = "You call on da beast"
 end
 L = mod:GetLocale()
 

@@ -16,10 +16,7 @@ local canEnable = true
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
 	L.win_trigger = "Enough! As much as I adore playing hostess, I have more pressing matters to attend to."
---@end-do-not-package@
---@localization(locale="enUS", namespace="WellOfEternity/QueenAzshara", format="lua_additive_table", handle-unlocalized="ignore")@
 end
 L = mod:GetLocale()
 

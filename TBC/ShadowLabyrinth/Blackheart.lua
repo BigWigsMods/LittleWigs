@@ -16,19 +16,13 @@ local handle_NextChaos = nil
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Blackheart the Inciter", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["chaos_message"] = "Incite Chaos! Next in ~70sec"
 	L["chaos_warning"] = "Incite Chaos Soon!"
 	L["chaos_nextbar"] = "~Possible Incite Chaos"
 	L["engage_message"] = "Engaged - Incite Chaos in ~15sec!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Auchindoun/Blackheart", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Blackheart the Inciter")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization

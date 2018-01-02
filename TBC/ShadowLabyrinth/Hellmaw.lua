@@ -18,16 +18,10 @@ mod.optionHeaders = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Ambassador Hellmaw", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["fear_bar"] = "~Fear Cooldown"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Auchindoun/Blackheart", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Ambassador Hellmaw")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization

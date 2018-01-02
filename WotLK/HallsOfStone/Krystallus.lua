@@ -15,10 +15,8 @@ mod.toggleOptions = {
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["shatterBar_message"] = "~Shatter"
-L["shatter_warn"] = "Ground Slam - Shatter in ~8 sec"--@end-do-not-package@
---@localization(locale="enUS", namespace="Storm_Peaks/Krystallus", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["shatterBar_message"] = "~Shatter"
+	L["shatter_warn"] = "Ground Slam - Shatter in ~8 sec"
 end
 L = mod:GetLocale()
 

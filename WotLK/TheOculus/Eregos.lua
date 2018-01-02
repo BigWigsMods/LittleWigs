@@ -16,11 +16,9 @@ mod.toggleOptions = {
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["enragedassault_message"] = "Enraged Assault"
-L["planarshift_expire_message"] = "Planar Shift ends in 5 sec"
-L["planarshift_message"] = "Planar Shift"--@end-do-not-package@
---@localization(locale="enUS", namespace="Coldarra/Ley_Guardian_Eregos", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["enragedassault_message"] = "Enraged Assault"
+	L["planarshift_expire_message"] = "Planar Shift ends in 5 sec"
+	L["planarshift_message"] = "Planar Shift"
 end
 L = mod:GetLocale()
 

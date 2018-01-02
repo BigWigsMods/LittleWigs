@@ -13,18 +13,13 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Mekgineer Steamrigger", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["mech"] = "Steamrigger Mechanics"
 	L["mech_desc"] = "Warn for incoming mechanics."
 	L["mech_trigger"] = "Tune 'em up good, boys!"
 	L["mech_message"] = "Steamrigger Mechanics coming soon!"
-	--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Coilfang/Steamrigger", format="lua_additive_table", handle-unlocalized="ignore")@
 end
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Mekgineer Steamrigger")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization

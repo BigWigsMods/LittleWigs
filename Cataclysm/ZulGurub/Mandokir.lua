@@ -25,12 +25,10 @@ local rebirthcount = 8
 
 local L = mod:NewLocale("enUS", true)
 if L then
---@do-not-package@
-L["rebirth"] = "Ghost rebirth"
-L["rebirth_desc"] = "Warn for Ghost rebirth remaining."
-L["rebirth_message"] = "Ghost rebirth - %d left"
-L["Ohgan_message"] = "Ohgan rebirth!"--@end-do-not-package@
---@localization(locale="enUS", namespace="ZulGurub/Mandokir", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["rebirth"] = "Ghost rebirth"
+	L["rebirth_desc"] = "Warn for Ghost rebirth remaining."
+	L["rebirth_message"] = "Ghost rebirth - %d left"
+	L["Ohgan_message"] = "Ohgan rebirth!"
 end
 L = mod:GetLocale()
 

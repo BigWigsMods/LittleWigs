@@ -13,17 +13,12 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Little Wigs: Shirrak the Dead Watcher", "enUS", true)
+local L = mod:GetLocale()
 if L then
-	--@do-not-package@
 	L["focus"] = "Focus Fire"
 	L["focus_desc"] = "Warn which player is being Focus Fired."
-	L["focus_message"] = "%s has Focus Fire"--@end-do-not-package@
-	--@localization(locale="enUS", namespace="Auchindoun/Shirrak", format="lua_additive_table", handle-unlocalized="ignore")@
+	L["focus_message"] = "%s has Focus Fire"
 end
-
-L = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Shirrak the Dead Watcher")
-mod.locale = L
 
 -------------------------------------------------------------------------------
 --  Initialization

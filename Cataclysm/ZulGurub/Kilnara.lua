@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("High Priestess Kilnara", 793)
+local mod, CL = BigWigs:NewBoss("High Priestess Kilnara", 793)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(52059)
 mod.toggleOptions = {
-	"phase",
+	"stages",
 	96435, -- Tears of Blood
 	96958, -- Lash of Anguish
 	96592, -- Ravage
@@ -20,18 +20,6 @@ mod.toggleOptions = {
 
 local lastphase = 0
 local wave = GetSpellInfo(96457)
-
--------------------------------------------------------------------------------
---  Localization
-
-local L = mod:NewLocale("enUS", true)
-if L then
---@do-not-package@
-L["phase"] = "Phase"
-L["phase_desc"] = "Warn for phase changes."--@end-do-not-package@
---@localization(locale="enUS", namespace="ZulGurub/Kilnara", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -95,7 +83,7 @@ end
 
 function mod:Phase2(_, spellId, _, _, spellName)
 	if (GetTime() - lastphase) >= 5 then
-		self:Message("phase", LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["phase"]:format(2), "Attention", spellId, "Info")
+		self:Message("stages", CL.phase:format(2), "Attention", spellId, "Info")
 	end
 	lastphase = GetTime()
 end
