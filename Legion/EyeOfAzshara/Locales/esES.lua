@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Eye of Azshara Trash", "esES") or BigWigs:NewBossLocale("Eye of Azshara Trash", "esMX")
+local L = BigWigs:NewBossLocale("Eye of Azshara Trash", "esES")
 if not L then return end
 if L then
 	--L.stormweaver = "Hatecoil Stormweaver"

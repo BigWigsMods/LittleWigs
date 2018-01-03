@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Odyn", "esES") or BigWigs:NewBossLocale("Odyn", "esMX")
+local L = BigWigs:NewBossLocale("Odyn", "esES")
 if not L then return end
 if L then
 	--L.custom_on_autotalk = "Autotalk"
@@ -11,13 +11,13 @@ if L then
 	--L[197967] = "|cFF008000Top|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top"
 end
 
-L = BigWigs:NewBossLocale("God-King Skovald", "esES") or BigWigs:NewBossLocale("God-King Skovald", "esMX")
+L = BigWigs:NewBossLocale("God-King Skovald", "esES")
 if L then
 	--L.warmup_text = "God-King Skovald Active"
 	--L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
 end
 
-L = BigWigs:NewBossLocale("Halls of Valor Trash", "esES") or BigWigs:NewBossLocale("Halls of Valor Trash", "esMX")
+L = BigWigs:NewBossLocale("Halls of Valor Trash", "esES")
 if L then
 	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."

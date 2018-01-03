@@ -3,4 +3,3 @@ if not L then return end
 if L then
 	L.abyssal = "邪脉深渊魔"
 end
-

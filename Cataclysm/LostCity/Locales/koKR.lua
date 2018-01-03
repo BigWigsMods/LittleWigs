@@ -1,4 +1,10 @@
-local L = BigWigs:NewBossLocale("Siamat", "koKR")
+local L = BigWigs:NewBossLocale("Augh", "koKR")
+if not L then return end
+if L then
+	--L.augh = "Augh"
+end
+
+L = BigWigs:NewBossLocale("Siamat", "koKR")
 if L then
 	L.engage_trigger = "남국의 바람이여, 불어라! 와서 네 주인을 도와라!"
 	L.servant = "하수인 소환"

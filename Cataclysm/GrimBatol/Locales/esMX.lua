@@ -1,14 +1,8 @@
 local L = BigWigs:NewBossLocale("Erudax", "esMX")
+if not L then return end
 if L then
---@localization(locale="esMX", namespace="GrimBatol/Erudax", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-
-L = BigWigs:NewBossLocale("Drahga Shadowburner", "esMX")
-if L then
---@localization(locale="esMX", namespace="GrimBatol/Drahga", format="lua_additive_table", handle-unlocalized="ignore")@
-end
-
-L = BigWigs:NewBossLocale("Forgemaster Throngus", "esMX")
-if L then
---@localization(locale="esMX", namespace="GrimBatol/Forgemaster", format="lua_additive_table", handle-unlocalized="ignore")@
+	--L.summon = "Summon Faceless Guardian"
+	--L.summon_desc = "Warn when Erudax summons a Faceless Guardian"
+	--L.summon_message = "Faceless Guardian Summoned"
+	--L.summon_trigger = "%s summons a"
 end

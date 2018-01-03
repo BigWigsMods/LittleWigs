@@ -41,11 +41,14 @@ if L then
 	L.smoldering_infernal_desc = "Summons a Smoldering Infernal."
 	L.smoldering_infernal_icon = "inv_infernalmountgreen"
 end
-mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.name
+end
 
 function mod:GetOptions()
 	return {

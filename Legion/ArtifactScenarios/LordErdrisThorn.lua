@@ -26,20 +26,21 @@ local castCollector = {}
 
 local L = mod:GetLocale()
 if L then
-
 	L.warmup_trigger = "Your arrival is well-timed."
 	L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
 	L.erdris = "Lord Erdris Thorn"
 	L.mage = "Corrupted Risen Mage"
 	L.soldier = "Corrupted Risen Soldier"
 	L.arbalest = "Corrupted Risen Arbalest"
-
 end
-mod.displayName = L.erdris
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.erdris
+end
 
 function mod:GetOptions()
 	return {

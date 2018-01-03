@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "esES") or BigWigs:NewBossLocale("Darkheart Thicket Trash", "esMX")
+local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "esES")
 if not L then return end
 if L then
 	L.ruiner = "Arruinador Almaespanto"

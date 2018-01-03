@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "esES") or BigWigs:NewBossLocale("Tugar Bloodtotem", "esMX")
+local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "esES")
 if not L then return end
 if L then
 	--L.tugar = "Tugar Bloodtotem"
@@ -17,7 +17,24 @@ if L then
 	--L.totem_warning = "The totem hit you!"
 end
 
-L = BigWigs:NewBossLocale("Raest", "esES") or BigWigs:NewBossLocale("Raest", "esMX")
+L = BigWigs:NewBossLocale("Kruul", "esES")
+if L then
+	--L.name = "Highlord Kruul"
+	--L.inquisitor = "Inquisitor Variss"
+	--L.velen = "Prophet Velen"
+
+	--L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
+	--L.win_trigger = "So be it. You will not stand in our way any longer."
+
+	--L.engage_message = "Highlord Kruul's Challenge Engaged!"
+
+	--L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
+
+	--L.smoldering_infernal = "Smoldering Infernal"
+	--L.smoldering_infernal_desc = "Summons a Smoldering Infernal."
+end
+
+L = BigWigs:NewBossLocale("Raest", "esES")
 if L then
 	--L.name = "Raest Magespear"
 
@@ -32,23 +49,17 @@ if L then
 	--L.warmup_trigger2 = "Kill this interloper, brother!"
 end
 
-L = BigWigs:NewBossLocale("Kruul", "esES") or BigWigs:NewBossLocale("Kruul", "esMX")
+L = BigWigs:NewBossLocale("Archmage Xylem", "esES")
 if L then
-	-- NPC Names
-	--L.name = "Highlord Kruul"
-	--L.inquisitor = "Inquisitor Variss"
-	--L.velen = "Prophet Velen"
+	--L.name = "Archmage Xylem"
+end
 
-	-- Triggers
-	--L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
-
-	-- Engage / Options
-	--L.engage_message = "Highlord Kruul's Challenge Engaged!"
-
-	--L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
-	--L.nether_aberration_icon = "ability_socererking_summonaberration"
-
-	--L.smoldering_infernal = "Smoldering Infernal"
-	--L.smoldering_infernal_desc = "Summons a Smoldering Infernal."
-	--L.smoldering_infernal_icon = "inv_infernalmountgreen"
+L = BigWigs:NewBossLocale("Lord Erdris Thorn", "esES")
+if L then
+	--L.warmup_trigger = "Your arrival is well-timed."
+	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
+	--L.erdris = "Lord Erdris Thorn"
+	--L.mage = "Corrupted Risen Mage"
+	--L.soldier = "Corrupted Risen Soldier"
+	--L.arbalest = "Corrupted Risen Arbalest"
 end

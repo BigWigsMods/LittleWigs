@@ -1,4 +1,12 @@
-local L = BigWigs:NewBossLocale("Siamat", "ruRU")
+local L = BigWigs:NewBossLocale("Augh", "ruRU")
+if not L then return end
 if L then
---@localization(locale="ruRU", namespace="LostCity/Siamat", format="lua_additive_table", handle-unlocalized="ignore")@
+	--L.augh = "Augh"
+end
+
+L = BigWigs:NewBossLocale("Siamat", "ruRU")
+if L then
+	--L.engage_trigger = "Winds of the south, rise and come to your master's aid!"
+	--L.servant = "Summon Servant"
+	--L.servant_desc = "Warn when a Servant of Siamat is summoned."
 end

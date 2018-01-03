@@ -1,5 +1,10 @@
-local L = BigWigs:NewBossLocale("Karazhan Trash", "ptBR")
+local L = BigWigs:NewBossLocale("Nightbane", "ptBR")
 if not L then return end
+if L then
+	--L.nightbane = "Nightbane"
+end
+
+L = BigWigs:NewBossLocale("Karazhan Trash", "ptBR")
 if L then
 	--L.skeletalUsher = "Skeletal Usher"
 	--L.custom_on_autotalk = "Autotalk"

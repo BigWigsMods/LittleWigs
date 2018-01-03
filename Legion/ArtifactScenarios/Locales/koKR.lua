@@ -17,6 +17,23 @@ if L then
 	L.totem_warning = "토템이 당신을 공격합니다!"
 end
 
+L = BigWigs:NewBossLocale("Kruul", "koKR")
+if L then
+	L.name = "대군주 크룰"
+	L.inquisitor = "심문관 바리스"
+	L.velen = "예언자 벨렌"
+
+	L.warmup_trigger = "오만하고 멍청한 것들! 나에게는 수천 개의 세계에서 얻은 영혼의 힘이 흘러넘친다!"
+	--L.win_trigger = "So be it. You will not stand in our way any longer."
+
+	L.engage_message = "대군주 크룰의 도전 전투 시작!"
+
+	L.nether_aberration_desc = "방 안에 황천 흉물을 생성하는 차원문을 소환합니다."
+
+	L.smoldering_infernal = "이글거리는 지옥불정령"
+	L.smoldering_infernal_desc = "이글거리는 지옥불정령을 소환합니다."
+end
+
 L = BigWigs:NewBossLocale("Raest", "koKR")
 if L then
 	L.name = "라이스트 메이지스피어"
@@ -32,21 +49,17 @@ if L then
 	L.warmup_trigger2 = "침입자를 처단하라, 형제여!"
 end
 
-L = BigWigs:NewBossLocale("Kruul", "koKR")
+L = BigWigs:NewBossLocale("Archmage Xylem", "koKR")
 if L then
-	-- NPC Names
-	L.name = "대군주 크룰"
-	L.inquisitor = "심문관 바리스"
-	L.velen = "예언자 벨렌"
+	--L.name = "Archmage Xylem"
+end
 
-	-- Triggers
-	L.warmup_trigger = "오만하고 멍청한 것들! 나에게는 수천 개의 세계에서 얻은 영혼의 힘이 흘러넘친다!"
-
-	-- Engage / Options
-	L.engage_message = "대군주 크룰의 도전 전투 시작!"
-
-	L.nether_aberration_desc = "방 안에 황천 흉물을 생성하는 차원문을 소환합니다."
-
-	L.smoldering_infernal = "이글거리는 지옥불정령"
-	L.smoldering_infernal_desc = "이글거리는 지옥불정령을 소환합니다."
+L = BigWigs:NewBossLocale("Lord Erdris Thorn", "koKR")
+if L then
+	--L.warmup_trigger = "Your arrival is well-timed."
+	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
+	--L.erdris = "Lord Erdris Thorn"
+	--L.mage = "Corrupted Risen Mage"
+	--L.soldier = "Corrupted Risen Soldier"
+	--L.arbalest = "Corrupted Risen Arbalest"
 end

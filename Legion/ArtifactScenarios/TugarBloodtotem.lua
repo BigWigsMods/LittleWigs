@@ -42,11 +42,14 @@ if L then
 
 	L.totem_warning = "The totem hit you!"
 end
-mod.displayName = L.tugar
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.tugar
+end
 
 function mod:GetOptions()
 	return {
