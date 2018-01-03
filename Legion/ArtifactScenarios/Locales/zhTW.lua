@@ -60,3 +60,8 @@ if L then
 	--L.soldier = "Corrupted Risen Soldier"
 	--L.arbalest = "Corrupted Risen Arbalest"
 end
+
+L = BigWigs:NewBossLocale("Archmage Xylem", "zhTW")
+if L then
+	-- L.name = "Archmage Xylem"
+end

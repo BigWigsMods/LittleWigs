@@ -12,5 +12,5 @@ end
 
 L = BigWigs:NewBossLocale("Skylord Tovra", "ruRU")
 if L then
-	--L.rakun = "Rakun"
+	L.rakun = "Ракун"
 end

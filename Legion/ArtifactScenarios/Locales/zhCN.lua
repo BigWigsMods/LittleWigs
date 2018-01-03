@@ -19,7 +19,7 @@ end
 
 L = BigWigs:NewBossLocale("Raest", "zhCN")
 if L then
-	--L.name = "Raest Magespear"
+	L.name = "莱斯特·法师之矛"
 
 	--L.handFromBeyond = "Hand from Beyond"
 
@@ -51,7 +51,7 @@ end
 
 L = BigWigs:NewBossLocale("Lord Erdris Thorn", "zhCN")
 if L then
-	--L.erdris = "Lord Erdris Thorn"
+	L.erdris = "艾德里斯·索恩领主"
 
 	--L.warmup_trigger = "Your arrival is well-timed."
 	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
@@ -59,4 +59,9 @@ if L then
 	--L.mage = "Corrupted Risen Mage"
 	--L.soldier = "Corrupted Risen Soldier"
 	--L.arbalest = "Corrupted Risen Arbalest"
+end
+
+L = BigWigs:NewBossLocale("Archmage Xylem", "zhCN")
+if L then
+	L.name = "大法师克希雷姆"
 end

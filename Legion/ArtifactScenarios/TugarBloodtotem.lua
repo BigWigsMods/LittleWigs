@@ -42,7 +42,6 @@ if L then
 
 	L.totem_warning = "The totem hit you!"
 end
-mod.displayName = L.tugar
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -50,10 +49,11 @@ mod.displayName = L.tugar
 
 function mod:GetOptions()
 	return {
+		-- Tugar
 		242733, -- Fel Burst
 		243224, -- Fel Surge Totem
 		"rupture", -- Fel Rupture
-
+		-- Jormog
 		241687, -- Sonic Scream
 		{238471, "INFOBOX"}, -- Fel Hardened Scales
 		"submerge",
@@ -62,6 +62,10 @@ function mod:GetOptions()
 		[242733] = L.tugar,
 		[241687] = L.jormog,
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.tugar
 end
 
 function mod:OnBossEnable()

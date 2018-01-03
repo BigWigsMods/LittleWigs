@@ -17,3 +17,8 @@ if L then
 	--L.philanthropist = "Ghostly Philanthropist"
 	--L.guardsman = "Phantom Guardsman"
 end
+
+L = BigWigs:NewBossLocale("Nightbane", "esES") or BigWigs:NewBossLocale("Nightbane", "esMX")
+if L then
+	L.name = "Nocturno"
+end

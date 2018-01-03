@@ -9,12 +9,6 @@ mod:RegisterEnableMob(115244) -- Archmage Xylem
 mod.otherMenu = 1716 -- Broken Shore Mage Tower
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-
-
---------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -22,7 +16,6 @@ local L = mod:GetLocale()
 if L then
 	L.name = "Archmage Xylem"
 end
-mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -32,6 +25,10 @@ function mod:GetOptions()
 	return {
 		"warmup",
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

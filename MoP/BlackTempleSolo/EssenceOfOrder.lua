@@ -13,7 +13,7 @@ mod:RegisterEnableMob(68151)
 
 local L = mod:NewLocale("enUS", true)
 if L then
-
+	L.name = "Essence of Order"
 end
 L = mod:GetLocale()
 
@@ -23,6 +23,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {134225, 134234}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

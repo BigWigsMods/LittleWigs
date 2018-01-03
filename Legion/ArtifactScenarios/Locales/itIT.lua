@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "itIT")
 if not L then return end
 if L then
-	--L.tugar = "Tugar Bloodtotem"
-	--L.jormog = "Jormog the Behemoth"
+	L.tugar = "Tugar Totem Sanguinario"
+	L.jormog = "Jormog il Behemoth"
 
 	--L.remaining = "Scales Remaining"
 
@@ -19,7 +19,7 @@ end
 
 L = BigWigs:NewBossLocale("Raest", "itIT")
 if L then
-	--L.name = "Raest Magespear"
+	L.name = "Raest Lanciamagica"
 
 	--L.handFromBeyond = "Hand from Beyond"
 
@@ -34,9 +34,9 @@ end
 
 L = BigWigs:NewBossLocale("Kruul", "itIT")
 if L then
-	--L.name = "Highlord Kruul"
-	--L.inquisitor = "Inquisitor Variss"
-	--L.velen = "Prophet Velen"
+	L.name = "Gran Signore Kruul"
+	L.inquisitor = "Inquisitore Variss"
+	L.velen = "Profeta Velen"
 
 	--L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
 	--L.win_trigger = "So be it. You will not stand in our way any longer."
@@ -51,12 +51,17 @@ end
 
 L = BigWigs:NewBossLocale("Lord Erdris Thorn", "itIT")
 if L then
-	--L.erdris = "Lord Erdris Thorn"
+	L.erdris = "Ser Erdris Rovospina"
 
 	--L.warmup_trigger = "Your arrival is well-timed."
 	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
 
-	--L.mage = "Corrupted Risen Mage"
-	--L.soldier = "Corrupted Risen Soldier"
-	--L.arbalest = "Corrupted Risen Arbalest"
+	L.mage = "Mago Rianimato Corrotto"
+	L.soldier = "Soldato Rianimato Corrotto"
+	L.arbalest = "Balestriera Rianimata Corrotta"
+end
+
+L = BigWigs:NewBossLocale("Archmage Xylem", "itIT")
+if L then
+	L.name = "Arcimago Xylem"
 end

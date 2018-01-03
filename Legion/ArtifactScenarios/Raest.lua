@@ -40,7 +40,6 @@ if L then
 	L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
 	L.warmup_trigger2 = "Kill this interloper, brother!"
 end
-mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -60,6 +59,10 @@ function mod:GetOptions()
 		["handFromBeyond"] = CL.stage:format(2),
 		["rune"] = CL.stage:format(3),
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

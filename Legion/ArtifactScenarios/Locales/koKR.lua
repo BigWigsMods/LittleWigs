@@ -51,12 +51,17 @@ end
 
 L = BigWigs:NewBossLocale("Lord Erdris Thorn", "koKR")
 if L then
-	--L.erdris = "Lord Erdris Thorn"
+	L.erdris = "군주 에르드리스 쏜"
 
 	--L.warmup_trigger = "Your arrival is well-timed."
 	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
 
-	--L.mage = "Corrupted Risen Mage"
-	--L.soldier = "Corrupted Risen Soldier"
-	--L.arbalest = "Corrupted Risen Arbalest"
+	L.mage = "타락한 되살아난 마법사"
+	L.soldier = "타락한 되살아난 병사"
+	L.arbalest = "타락한 되살아난 석궁병"
+end
+
+L = BigWigs:NewBossLocale("Archmage Xylem", "koKR")
+if L then
+	L.name = "대마법사 실렘"
 end
