@@ -115,7 +115,7 @@ function mod:AddsKilled(args)
 		self:StopBar(228025) -- Heat Wave
 	elseif args.mobId == 114522 then -- Mrs. Cauldrons
 		self:StopBar(228019) -- Leftovers
-	--elseif args.mobId == 114330 then  -- Babblet
+	--elseif args.mobId == 114330 then -- Babblet
 	end
 end
 

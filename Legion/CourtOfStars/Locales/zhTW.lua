@@ -47,7 +47,7 @@ if L then
 	L.clueFound = "找到第%d/5條線索：|cffffffff%s|r"
 	L.spyFound = "間諜被%s找到了！"
 	L.spyFoundChat = "我找到間諜了，快來！"
-	L.spyFoundPattern = "別太快下定論。"  -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	L.spyFoundPattern = "別太快下定論。" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	L.hints = {
 		"斗篷",

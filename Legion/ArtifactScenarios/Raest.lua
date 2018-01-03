@@ -146,6 +146,6 @@ end
 
 function mod:HandFromBeyondDeath(args)
 	self:Message("handFromBeyond", "Neutral", nil, L.killed:format(L.handFromBeyond), false)
-	self:StopBar(CL.cast:format(self:SpellName(235578)))  -- Grasp from Beyond
-	self:StopBar(235578)  -- Grasp from Beyond
+	self:StopBar(CL.cast:format(self:SpellName(235578))) -- Grasp from Beyond
+	self:StopBar(235578) -- Grasp from Beyond
 end

@@ -68,13 +68,13 @@ function mod:DestabilizedOrb(args)
 end
 
 do
-  local prev = 0
-  function mod:DestabilizedOrbDamage(args)
+	local prev = 0
+	function mod:DestabilizedOrbDamage(args)
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 2 then
 			prev = t
 			self:Flash(220481)
 			self:Message(220481, "Personal", "Alarm", CL.underyou:format(args.spellName))
 		end
-  end
+	end
 end
