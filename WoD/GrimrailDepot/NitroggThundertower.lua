@@ -33,7 +33,7 @@ function mod:GetOptions()
 		160965, -- Blackrock Mortar Shells
 		{160681, "ICON", "FLASH"}, -- Suppressive Fire
 		166570, -- Slag Blast
-		"phases",
+		"stages",
 	}
 end
 
@@ -59,7 +59,7 @@ end
 
 function mod:OnEngage()
 	phase = 1
-	self:Message("phases", "Neutral", nil, CL.phase:format(1), false)
+	self:Message("stages", "Neutral", nil, CL.phase:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -69,10 +69,10 @@ end
 function mod:UNIT_TARGETABLE_CHANGED()
 	if phase == 1 then
 		phase = 2
-		self:Message("phases", "Neutral", "Long", "60% - ".. CL.phase:format(2), false)
+		self:Message("stages", "Neutral", "Long", "60% - ".. CL.phase:format(2), false)
 	elseif phase == 2 then
 		phase = 3
-		self:Message("phases", "Neutral", "Long", CL.phase:format(3), false)
+		self:Message("stages", "Neutral", "Long", CL.phase:format(3), false)
 	end
 end
 
