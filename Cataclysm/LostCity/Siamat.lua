@@ -13,7 +13,7 @@ local adds = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_trigger = "Winds of the south, rise and come to your master's aid!"
 	L.servant = "Summon Servant"

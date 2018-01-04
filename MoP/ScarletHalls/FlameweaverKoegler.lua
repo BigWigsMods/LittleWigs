@@ -11,11 +11,10 @@ mod:RegisterEnableMob(59150)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "You, too, shall be charred to ash!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

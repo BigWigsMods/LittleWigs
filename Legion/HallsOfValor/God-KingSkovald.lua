@@ -12,12 +12,11 @@ mod.engageId = 1808
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.warmup_text = "God-King Skovald Active"
 	L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

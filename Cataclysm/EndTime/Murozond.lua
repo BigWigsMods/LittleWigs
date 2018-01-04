@@ -11,7 +11,7 @@ mod:RegisterEnableMob(54432)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 
 end

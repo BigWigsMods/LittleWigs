@@ -14,12 +14,11 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["bubbleEnded_message"] = "Protective Bubble Faded"
 	L["bubble_message"] = "Gained Protective Bubble"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -12,12 +12,11 @@ mod.engageId = 1828
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.dread_felbat = -12489
 	L.dread_felbat_icon = "inv_felbatmount"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

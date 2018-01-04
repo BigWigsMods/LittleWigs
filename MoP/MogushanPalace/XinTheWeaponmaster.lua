@@ -13,7 +13,7 @@ local phase = 1
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "You are not the first to challenge me, peons. You will not be the last."
 
@@ -23,7 +23,6 @@ if L then
 	L.crossbows = -5974 -- Death From Above!
 	L.crossbows_icon = 120142
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

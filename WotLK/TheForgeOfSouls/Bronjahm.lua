@@ -19,11 +19,10 @@ local stormannounced = nil
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["storm_soon"] = "Soulstorm Soon!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

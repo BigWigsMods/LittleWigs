@@ -13,12 +13,11 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["shatterBar_message"] = "~Shatter"
 	L["shatter_warn"] = "Ground Slam - Shatter in ~8 sec"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

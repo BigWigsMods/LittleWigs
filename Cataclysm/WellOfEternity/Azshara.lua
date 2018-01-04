@@ -14,11 +14,10 @@ local canEnable = true
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.win_trigger = "Enough! As much as I adore playing hostess, I have more pressing matters to attend to."
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

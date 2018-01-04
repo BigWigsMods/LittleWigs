@@ -11,11 +11,10 @@ mod:RegisterEnableMob(79852)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.freed = "Freed after %.1f sec!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

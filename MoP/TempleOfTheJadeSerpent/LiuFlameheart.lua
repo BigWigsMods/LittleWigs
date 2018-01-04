@@ -17,11 +17,10 @@ local smash = mod:SpellName(34618)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "I will not be caged again. These Shado-Pan could not stop me. Neither shall you!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -17,11 +17,10 @@ local deaths = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.spider_adds = 155139 -- Spiders
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

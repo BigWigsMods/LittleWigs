@@ -13,11 +13,10 @@ local percent = 90
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_say = "Hmm, did you hear something lads?"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

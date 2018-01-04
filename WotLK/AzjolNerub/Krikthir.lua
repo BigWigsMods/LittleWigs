@@ -22,11 +22,10 @@ local frenzyAnnounced = nil
 
 local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["frenzysoon_message"] = "Frenzy Soon"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

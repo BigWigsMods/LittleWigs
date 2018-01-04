@@ -19,7 +19,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.infester = "Felsworn Infester"
 	L.illianna = "Blade Dancer Illianna"
@@ -28,7 +28,6 @@ if L then
 	L.fury = "Fel-Infused Fury"
 	L.grimhorn = "Grimhorn the Enslaver"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -12,13 +12,12 @@ mod.engageId = 1811
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.blob = "{193682} ({-12139})" -- Beckon Storm (Saltsea Globule)
 	L.blob_desc = 193682
 	L.blob_icon = 193682
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

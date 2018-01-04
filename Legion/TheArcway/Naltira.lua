@@ -19,13 +19,12 @@ local blinkCount = 1
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.vicious_manafang = -13765
 	L.vicious_manafang_desc = -13766 -- Devour
 	L.vicious_manafang_icon = "inv_misc_monsterspidercarapace_01"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

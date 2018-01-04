@@ -20,7 +20,7 @@ local bear = GetSpellInfo(7090)
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["forms"] = "Forms"
 	L["forms_desc"] = "Warn for form changes."
@@ -28,7 +28,6 @@ if L then
 	L["troll_trigger"] = "Make way for da Nalorakk!"
 	L["bear_trigger"] = "You call on da beast"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

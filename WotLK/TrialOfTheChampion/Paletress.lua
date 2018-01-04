@@ -20,11 +20,10 @@ local shielded = false
 
 local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["defeat_trigger"] = "Excellent work!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

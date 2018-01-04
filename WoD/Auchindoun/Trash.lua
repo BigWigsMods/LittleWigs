@@ -12,11 +12,10 @@ mod:RegisterEnableMob(79508)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.abyssal = "Felborne Abyssal"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

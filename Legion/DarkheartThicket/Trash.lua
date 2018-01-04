@@ -18,7 +18,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.ruiner = "Dreadsoul Ruiner"
 	L.razorbeak = "Crazed Razorbeak"
@@ -26,7 +26,6 @@ if L then
 	L.fury = "Bloodtainted Fury"
 	L.imp = "Dreadfire Imp"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -12,11 +12,10 @@ mod:RegisterEnableMob(61884, 61445, 61444, 61442)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.scout = "Glintrok Scout"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

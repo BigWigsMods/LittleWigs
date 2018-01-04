@@ -19,11 +19,10 @@ local hpPercent = 100
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.counduitLeft = "%d |4Conduit:Conduits; left"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

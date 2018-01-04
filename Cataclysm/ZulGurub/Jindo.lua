@@ -23,11 +23,10 @@ local barrier = 3
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["barrier_down_message"] = "Barrier %d down!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

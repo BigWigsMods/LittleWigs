@@ -20,12 +20,11 @@ mod.engageId = 2053
 -- Locals
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
 end
-L = mod:GetLocale()
 
 local felPortalGuardianCollector = {}
 local felPortalGuardiansCounter = 1

@@ -21,7 +21,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.arcanist = "Risen Arcanist"
 	L.champion = "Soul-torn Champion"
@@ -31,7 +31,6 @@ if L then
 	L.councilor = "Ghostly Councilor"
 	L.dominator = "Felspite Dominator"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

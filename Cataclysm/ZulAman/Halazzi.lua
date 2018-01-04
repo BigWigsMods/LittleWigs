@@ -23,7 +23,7 @@ local count = true
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["phase"] = "Phases"
 	L["phase_desc"] = "Warn for phase changes."
@@ -33,7 +33,6 @@ if L then
 	L["spirit_trigger"] = "I fight wit' untamed spirit...."
 	L["normal_trigger"] = "Spirit, come back to me!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

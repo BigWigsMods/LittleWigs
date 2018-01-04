@@ -11,11 +11,10 @@ mod:RegisterEnableMob(56747, 56754) -- Gu, Serpent
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_say = "Let me show you my power."
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

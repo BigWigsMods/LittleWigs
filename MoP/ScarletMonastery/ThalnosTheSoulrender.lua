@@ -11,11 +11,10 @@ mod:RegisterEnableMob(59789)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "My endless agony shall be yours, as well!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -14,13 +14,12 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["enragedassault_message"] = "Enraged Assault"
 	L["planarshift_expire_message"] = "Planar Shift ends in 5 sec"
 	L["planarshift_message"] = "Planar Shift"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

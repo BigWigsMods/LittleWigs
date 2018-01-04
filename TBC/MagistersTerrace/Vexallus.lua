@@ -11,7 +11,7 @@ mod:RegisterEnableMob(24744)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["adds"] = "Pure Energy"
 	L["adds_desc"] = "Warn when Pure Energy is discharged."

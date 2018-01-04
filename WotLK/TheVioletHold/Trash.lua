@@ -32,12 +32,11 @@ local prevWave = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.portals = "Portals"
 	L.portals_desc = "Information about portals."
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -68,7 +68,7 @@ local englishClueNames = {
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.Guard = "Duskwatch Guard"
 	L.Construct = "Guardian Construct"
@@ -198,7 +198,6 @@ if L then
 	L["I heard the spy always has a book of written secrets at the belt."] = 14
 	L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

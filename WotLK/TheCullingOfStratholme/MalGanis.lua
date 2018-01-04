@@ -19,12 +19,11 @@ local sleepDuration = 8
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["defeat_trigger"] = "Your journey has just begun"
 	L["vampTouch_message"] = "Mal'Ganis gains Vampiric Touch"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

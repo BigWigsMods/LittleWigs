@@ -17,7 +17,7 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["form"] = "Phases"
 	L["form_desc"] = "Warn when Daakara changes form."
@@ -26,7 +26,6 @@ if L then
 	L["lynx_message"] = "Lynx Form!"
 	L["dragonhawk_message"] = "Dragonhawk Form!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

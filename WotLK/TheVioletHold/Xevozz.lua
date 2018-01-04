@@ -13,11 +13,10 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["sphere_message"] = "Summoning Ethereal Sphere"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization
