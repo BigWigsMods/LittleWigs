@@ -15,7 +15,7 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["adds"] = "Amani'shi Hatchers"
 	L["adds_desc"] = "Warn for incoming Amani'shi Hatchers."
@@ -27,7 +27,6 @@ if L then
 	L["bomb_trigger"] = "I burn ya now!"
 	L["bomb_message"] = "Fire Bombs incoming!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -27,7 +27,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."
@@ -43,7 +43,6 @@ if L then
 	L.trapper = "Valarjar Trapper"
 	L.sentinel = "Stormforged Sentinel"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

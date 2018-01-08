@@ -18,7 +18,7 @@ local golaHasDied = false
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L[83892] = "|cFF00CCFFGola|r"
 	L[83893] = "|cFF00CC00Telu|r"
@@ -27,7 +27,6 @@ if L then
 	L.custom_on_automark_desc = "Automatically mark Gola with a {rt8} and Telu with a {rt7}, requires promoted or leader."
 	L.custom_on_automark_icon = 8
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

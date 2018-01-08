@@ -12,12 +12,11 @@ mod.toggleOptions = {105544, "eyes", 105442, 105493, "bosskill"}
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.eyes, L.eyes_desc = EJ_GetSectionInfo(4092)
 	L.eyes_icon = "inv_misc_eye_04"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Corborus", 768, 110)
 if not mod then return end
 mod:RegisterEnableMob(43438)
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.burrow = "Burrow/emerge"
 	L.burrow_desc = "Warn when Corborus burrows or emerges."

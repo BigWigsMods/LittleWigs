@@ -17,13 +17,12 @@ local deathCount = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.enrage = "Enrage"
 	L.enrage_desc = "When Rocketspark or Borka is killed, the other will enrage."
 	L.enrage_icon = 26662
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

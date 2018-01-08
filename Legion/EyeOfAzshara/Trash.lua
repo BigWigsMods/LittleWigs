@@ -19,7 +19,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.stormweaver = "Hatecoil Stormweaver"
 	L.oracle = "Hatecoil Oracle"
@@ -27,7 +27,6 @@ if L then
 	L.tides = "Restless Tides"
 	L.arcanist = "Hatecoil Arcanist"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

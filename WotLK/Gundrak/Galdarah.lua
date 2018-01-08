@@ -13,7 +13,7 @@ local formPhase = 1
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.forms = "Forms"
 	L.forms_desc = "Warn before Gal'darah changes forms."
@@ -21,7 +21,6 @@ if L then
 	L.form_rhino = "Rhino Form Soon"
 	L.form_troll = "Troll Form Soon"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

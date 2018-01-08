@@ -12,13 +12,12 @@ mod:RegisterEnableMob(75509)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.custom_on_markadd = "Mark the Dark Communion Add"
 	L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with a skull, requires promoted or leader."
 	L.custom_on_markadd_icon = 8
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

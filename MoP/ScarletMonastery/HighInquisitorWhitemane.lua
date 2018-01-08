@@ -13,14 +13,13 @@ local deaths = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "My legend begins NOW!"
 
 	L.steel = -5636 -- Flash of Steel
 	L.steel_icon = 115629
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -16,13 +16,12 @@ local split1 = nil
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["split"] = "Isiset Split"
 	L["split_desc"] = "Warn when Isiset Split."
 	L["split_message"] = "Isiset Split soon!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

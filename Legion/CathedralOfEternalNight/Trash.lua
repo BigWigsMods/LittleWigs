@@ -23,7 +23,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.dulzak = "Dul'zak"
 	L.wrathguard = "Wrathguard Invader"
@@ -36,7 +36,6 @@ if L then
 	L.gazerax = "Gazerax"
 	L.vilebark = "Vilebark Walker"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

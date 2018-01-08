@@ -20,7 +20,7 @@ local prevWave = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.wave = "Wave Warnings"
 	L.wave_desc = "Announce approximate warning messages for the waves."
@@ -28,7 +28,6 @@ if L then
 	--L.disable_trigger = "We will triumph. It is only a matter... of time."
 	--L.reset_trigger = "No! Damn this feeble, mortal coil!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

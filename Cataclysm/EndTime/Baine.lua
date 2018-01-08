@@ -11,7 +11,7 @@ mod:RegisterEnableMob(54431)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.totemDrop = "Totem dropped"
 	L.totemThrow = "Totem thrown by %s"

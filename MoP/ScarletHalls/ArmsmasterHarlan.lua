@@ -13,7 +13,7 @@ local helpCount = 1
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "Ah-hah! Another chance to test my might."
 
@@ -27,7 +27,6 @@ if L then
 	L.help = -5378 -- Call for Help
 	L.help_icon = 27578 -- ability_warrior_battleshout / Battle Shout / icon 132333
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

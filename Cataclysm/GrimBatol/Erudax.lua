@@ -11,7 +11,7 @@ mod:RegisterEnableMob(40484)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.summon = "Summon Faceless Guardian"
 	L.summon_desc = "Warn when Erudax summons a Faceless Guardian"

@@ -19,7 +19,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.skeletalUsher = "Skeletal Usher"
 	L.custom_on_autotalk = "Autotalk"
@@ -37,7 +37,6 @@ if L then
 	L.philanthropist = "Ghostly Philanthropist"
 	L.guardsman = "Phantom Guardsman"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

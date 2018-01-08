@@ -22,14 +22,13 @@ mod.toggleOptions = {
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["defeat_trigger"] = "Well Fought!"
 	L["mage_poly_message"] = "%s Polymorphed!"
 	L["rogue_poison"] = "Poison Bottle"
 	L["rogue_poison_desc"] = "Throws a poison bottle to a random player, leaving a 5 yard radius poison cloud dealing 1,000 (Heroic: 1,750) Nature damage every second to everyone standing in it. Last 20 seconds."
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

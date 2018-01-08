@@ -11,7 +11,7 @@ mod:RegisterEnableMob(59223)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "I will break you."
 
@@ -21,7 +21,6 @@ if L then
 	L.firestorm = -5602 -- Firestorm Kick
 	L.firestorm_icon = 113764
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

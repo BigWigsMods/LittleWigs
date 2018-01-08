@@ -17,11 +17,10 @@ local energy = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.energyStatus = "A Globule reached Witherbark: %d%% energy"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

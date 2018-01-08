@@ -14,7 +14,7 @@ local deaths = 0
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.engage_yell = "Stop them!"
 
@@ -22,7 +22,6 @@ if L then
 	L.heal_desc = -5923
 	L.heal_icon = 118940
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -12,7 +12,7 @@ mod.engageId = 1762
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.subZone = "The Molten Span"
 end

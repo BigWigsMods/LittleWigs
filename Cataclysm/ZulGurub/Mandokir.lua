@@ -23,14 +23,13 @@ local rebirthcount = 8
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["rebirth"] = "Ghost rebirth"
 	L["rebirth_desc"] = "Warn for Ghost rebirth remaining."
 	L["rebirth_message"] = "Ghost rebirth - %d left"
 	L["Ohgan_message"] = "Ohgan rebirth!"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

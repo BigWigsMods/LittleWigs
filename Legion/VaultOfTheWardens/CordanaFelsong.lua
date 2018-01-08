@@ -19,7 +19,7 @@ local warnedForCreepingDoom = nil
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.kick_combo = "Kick Combo"
 	L.kick_combo_desc = "{197251}\n{197250}" -- Knockdown Kick & Turn Kick
@@ -31,7 +31,6 @@ if L then
 	L.warmup_text = "Cordana Felsong Active"
 	L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

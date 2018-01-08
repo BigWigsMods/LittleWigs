@@ -19,7 +19,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects Lieutenant Sinclaris gossip option to start the Assault on Violet Hold."
@@ -27,7 +27,6 @@ if L then
 	L.guardian = "Portal Guardian"
 	L.infernal = "Blazing Infernal"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

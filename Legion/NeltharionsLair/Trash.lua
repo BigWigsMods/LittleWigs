@@ -19,14 +19,13 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.breaker = "Mightstone Breaker"
 	L.hulk = "Vileshard Hulk"
 	L.gnasher = "Rockback Gnasher"
 	L.trapper = "Rockbound Trapper"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

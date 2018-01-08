@@ -11,7 +11,7 @@ mod:RegisterEnableMob(76266)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.custom_on_markadd = "Mark the Solar Zealot"
 	L.custom_on_markadd_desc = "Mark the Solar Zealot with a skull, requires promoted or leader."
@@ -21,7 +21,6 @@ if L then
 	L.add_desc = "Warning for when the Skyreach Shield Construct is spawning."
 	L.add_icon = "icon_petfamily_mechanical"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

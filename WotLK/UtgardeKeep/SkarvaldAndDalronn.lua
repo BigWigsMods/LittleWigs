@@ -19,11 +19,10 @@ local deaths = 0
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L["dies"] = "#%d Killed"
 end
-L = mod:GetLocale()
 
 -------------------------------------------------------------------------------
 --  Initialization

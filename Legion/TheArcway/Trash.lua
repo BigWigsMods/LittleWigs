@@ -18,7 +18,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.anomaly = "Arcane Anomaly"
 	L.shade = "Warp Shade"
@@ -26,7 +26,6 @@ if L then
 	L.blade = "Wrathguard Felblade"
 	L.chaosbringer = "Eredar Chaosbringer"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -11,11 +11,10 @@ mod:RegisterEnableMob(80005)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.rakun = "Rakun"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization

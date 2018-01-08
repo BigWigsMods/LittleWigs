@@ -18,7 +18,7 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.champion = "Helarjar Champion"
 	L.mariner = "Night Watch Mariner"
@@ -26,7 +26,6 @@ if L then
 	L.mistcaller = "Helarjar Mistcaller"
 	L.skjal = "Skjal"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
