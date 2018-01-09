@@ -393,6 +393,16 @@ do
 		},
 	}
 
+	local buffs = {
+		[105160] = 211081, -- Fel Orb
+		[105831] = 211080, -- Infernal Tome
+		[106024] = 211093, -- Magical Lantern
+		[105249] = 211102, -- Nightshade Refreshments
+		[106108] = 211071, -- Starlight Rose Brew
+		[105340] = 211110, -- Umbral Bloom
+		[106110] = 211084, -- Waterlogged Scroll
+	}
+
 	local guardItems = {
 		[106018] = { -- Bazaar Goods
 			["name"] = "BazaarGoods",
@@ -631,6 +641,10 @@ do
 
 	local prevTable, usableTimer, lastProfessionUpdate = {}, nil, 0
 	local function usableFound(self, id, item)
+		if buffs[id] and UnitBuff("player", self:SpellName(buffs[id])) then -- there's no point in showing a message if we already have the buff
+			return
+		end
+		
 		local t = GetTime()
 		if t-(prevTable[id] or 0) > 300 then
 			prevTable[id] = t
