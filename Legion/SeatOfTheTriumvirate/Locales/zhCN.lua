@@ -1,5 +1,12 @@
-local L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "zhCN")
+local L = BigWigs:NewBossLocale("Viceroy Nezhar", "zhCN")
 if not L then return end
+if L then
+	L.tentacles = "触须"
+	L.guards = "影卫"
+	L.interrupted = "%s已打断%s（%.1f秒剩余）！"
+end
+
+L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "zhCN")
 if L then
 	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择奥蕾莉亚·风行者对话选项。"

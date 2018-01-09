@@ -1,5 +1,12 @@
-local L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")
+local L = BigWigs:NewBossLocale("Viceroy Nezhar", "deDE")
 if not L then return end
+if L then
+	--L.tentacles = "Tentacles"
+	--L.guards = "Guards"
+	--L.interrupted = "%s interrupted %s (%.1fs left)!"
+end
+
+L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")
 if L then
 	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunners gossip option."
