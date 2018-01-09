@@ -56,7 +56,7 @@ end
 
 function mod:FeedOnTheWeakApplied(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, self:Healer() and "Important" or "Personal", "Warning", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
 	end
 end
 
