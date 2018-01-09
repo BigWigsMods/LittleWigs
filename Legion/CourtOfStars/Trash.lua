@@ -573,10 +573,6 @@ do
 	end
 
 	local function announceUsable(self, id, item)
-		if buffs[id] and UnitBuff("player", self:SpellName(buffs[id])) then -- there's no point in showing a message if we already have the buff
-			return
-		end
-
 		self:Sync("itemAvailable", id)
 		local players = {} -- who can use the item
 		local icons = {}
@@ -645,6 +641,10 @@ do
 
 	local prevTable, usableTimer, lastProfessionUpdate = {}, nil, 0
 	local function usableFound(self, id, item)
+		if buffs[id] and UnitBuff("player", self:SpellName(buffs[id])) then -- there's no point in showing a message if we already have the buff
+			return
+		end
+		
 		local t = GetTime()
 		if t-(prevTable[id] or 0) > 300 then
 			prevTable[id] = t
