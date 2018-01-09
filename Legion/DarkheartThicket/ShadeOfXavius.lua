@@ -17,6 +17,7 @@ function mod:GetOptions()
 		200050, -- Apocalyptic Nightmare
 		{200289, "ICON", "SAY"}, -- Growing Paranoia
 		{200185, "ICON", "SAY"}, -- Nightmare Bolt
+		200238, -- Feed on the Weak
 	}
 end
 
@@ -26,6 +27,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "GrowingParanoiaRemoved", 200289)
 	self:Log("SPELL_CAST_START", "NightmareBolt", 212834, 200185) -- Normal, Heroic+
 	self:Log("SPELL_AURA_REMOVED", "WakingNightmareOver", 200243)
+	self:Log("SPELL_AURA_APPLIED", "FeedOnTheWeakApplied", 200238)
 end
 
 function mod:OnEngage()
@@ -60,6 +62,12 @@ end
 
 function mod:GrowingParanoiaRemoved(args)
 	self:PrimaryIcon(args.spellId)
+end
+
+function mod:FeedOnTheWeakApplied(args)
+	if self:Me(args.destGUID) or self:Healer() then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+	end
 end
 
 do
