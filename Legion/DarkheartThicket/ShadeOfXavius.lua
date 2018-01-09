@@ -59,9 +59,9 @@ do
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		--self:CDBar(args.spellId, 26) -- pull:25.5, 26.8, 28.0, 19.5 / hc pull:27.1, 32.8, 26.7, 27.9 / m pull:25.5, 37.6, 47.3
 	end
-  function mod:GrowingParanoiaRemoved(args)
-    self:PrimaryIcon(args.spellId)
-  end
+	function mod:GrowingParanoiaRemoved(args)
+		self:PrimaryIcon(args.spellId)
+	end
 end
 
 function mod:FeedOnTheWeakApplied(args)
