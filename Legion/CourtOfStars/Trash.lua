@@ -393,6 +393,16 @@ do
 		},
 	}
 
+	local buffs = {
+		[105160] = 211081, -- Fel Orb
+		[105831] = 211080, -- Infernal Tome
+		[106024] = 211093, -- Magical Lantern
+		[105249] = 211102, -- Nightshade Refreshments
+		[106108] = 211071, -- Starlight Rose Brew
+		[105340] = 211110, -- Umbral Bloom
+		[106110] = 211084, -- Waterlogged Scroll
+	}
+
 	local guardItems = {
 		[106018] = { -- Bazaar Goods
 			["name"] = "BazaarGoods",
@@ -563,6 +573,10 @@ do
 	end
 
 	local function announceUsable(self, id, item)
+		if buffs[id] and UnitBuff("player", self:SpellName(buffs[id])) then -- there's no point in showing a message if we already have the buff
+			return
+		end
+
 		self:Sync("itemAvailable", id)
 		local players = {} -- who can use the item
 		local icons = {}
