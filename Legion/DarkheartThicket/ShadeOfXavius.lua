@@ -14,6 +14,7 @@ mod.engageId = 1839
 
 function mod:GetOptions()
 	return {
+		200050, -- Apocalyptic Nightmare
 		{200289, "ICON", "SAY"}, -- Growing Paranoia
 		{200185, "ICON", "SAY"}, -- Nightmare Bolt
 	}
@@ -30,11 +31,20 @@ end
 function mod:OnEngage()
 	self:CDBar(200289, 25.5) -- Growing Paranoia
 	self:CDBar(200185, 7) -- Nightmare Bolt
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 52 then
+		self:Message(200050, "Attention", "Info", CL.soon:format(self:SpellName(200050)))
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+	end
+end
 
 function mod:GrowingParanoia(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
