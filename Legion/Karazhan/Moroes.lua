@@ -31,7 +31,7 @@ function mod:GetOptions()
 		--[[ Moroes ]]--
 		227736, -- Vanish
 		227742, -- Garrote
-		{227851, "TANK"}, -- Coat Check
+		{227851, "TANK_HEALER"}, -- Coat Check
 		227872, -- Ghastly Purge
 
 		--[[ Baroness Dorothea Millstripe ]]--
