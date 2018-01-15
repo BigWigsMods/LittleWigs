@@ -19,7 +19,7 @@ mod.engageId = 2065
 
 function mod:GetOptions()
 	return {
-		246134, -- Null Palm
+		{246134, "SAY"}, -- Null Palm
 		244579, -- Decimate
 		244602, -- Coalesced Void
 		244433, -- Umbra Shift
@@ -56,9 +56,18 @@ end
 -- Event Handlers
 --
 
-function mod:NullPalm(args)
-	self:Message(args.spellId, "Important", "Alarm")
-	self:CDBar(args.spellId, 55)
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(246134, player, "Important", "Alarm", nil, nil, true)
+
+		if self:Me(guid) then
+			self:Say(246134)
+		end
+	end
+	function mod:NullPalm(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(args.spellId, 55)
+	end
 end
 
 function mod:Decimate(args)
