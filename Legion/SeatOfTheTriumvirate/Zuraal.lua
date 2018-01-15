@@ -56,9 +56,18 @@ end
 -- Event Handlers
 --
 
-function mod:NullPalm(args)
-	self:Message(args.spellId, "Important", "Alarm")
-	self:CDBar(args.spellId, 55)
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(246134, player, "Important", "Alarm", nil, nil, true)
+
+		if self:Me(guid) then
+			self:Say(246134)
+		end
+	end
+	function mod:NullPalm(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(args.spellId, 55)
+	end
 end
 
 function mod:Decimate(args)
