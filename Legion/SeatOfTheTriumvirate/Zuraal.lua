@@ -19,7 +19,7 @@ mod.engageId = 2065
 
 function mod:GetOptions()
 	return {
-		(246134, "SAY"), -- Null Palm
+		{246134, "SAY"}, -- Null Palm
 		244579, -- Decimate
 		244602, -- Coalesced Void
 		244433, -- Umbra Shift
