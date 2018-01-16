@@ -39,7 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(-12727, 7.5, nil, "ability_monk_counteractmagic") -- Countermeasures
+	self:CDBar(-12727, 6.8, nil, "ability_monk_counteractmagic") -- Countermeasures
 	self:CDBar(192520, 10) -- Volcano inc
 end
 
