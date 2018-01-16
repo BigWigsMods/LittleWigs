@@ -31,6 +31,7 @@ function mod:GetOptions()
 		{200904, "FLASH"}, -- Sapped Soul
 		196208, -- Seed of Corruption
 		201488, -- Frightening Shout
+		199918, -- Shadow Crash
 	}
 end
 
@@ -46,6 +47,9 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_CAST_START", "SeedofCorruption", 196208)
 	self:Log("SPELL_CAST_START", "FrighteningShout", 201488)
+	self:Log("SPELL_AURA_APPLIED", "ShadowCrashDamage", 199918) -- Shadow Crash
+	self:Log("SPELL_PERIODIC_DAMAGE", "ShadowCrashDamage", 199918)
+	self:Log("SPELL_PERIODIC_MISSED", "ShadowCrashDamage", 199918)
 end
 
 function mod:OnEngage()
@@ -114,4 +118,15 @@ end
 
 function mod:FrighteningShout(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+do
+	local prev = 0
+	function mod:ShadowCrashDamage(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
+	end
 end
