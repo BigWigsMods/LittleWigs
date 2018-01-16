@@ -70,7 +70,7 @@ function mod:Brittle(args)
 		self:Bar(192520, remainingVolcano+20) -- estimated
 	end
 	if self:ChallengeMode() then
-		self:CDBar(-12727, 66, nil, "ability_monk_counteractmagic")
+		self:CDBar(-12727, 66, nil, "ability_monk_counteractmagic") -- Countermeasures
 	end
 end
 
