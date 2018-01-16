@@ -1,9 +1,5 @@
 
 --------------------------------------------------------------------------------
--- TODO List:
--- - UNIT_HEALTH_FREQUENT warnings are coded badly, was in a hurry, fix pls
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -16,8 +12,7 @@ mod.engageId = 1850
 -- Locals
 --
 
-local warnedForTeleport1 = nil
-local warnedForTeleport2 = nil
+local nextTeleportSoonWarning = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -55,7 +50,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	nextTeleportSoonWarning = 75 -- Teleport at 70%
 end
 
 --------------------------------------------------------------------------------
@@ -104,13 +99,12 @@ end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 75 and not warnedForTeleport1 then -- Teleport at 70%
-		warnedForTeleport1 = true
-		self:Message(200898, "Attention", nil, CL.soon:format(self:SpellName(200898))) -- Teleport soon
-	elseif hp < 45 and not warnedForTeleport2 then -- Teleport at 40%
-		warnedForTeleport2 = true
-		self:Message(200898, "Important", nil, CL.soon:format(self:SpellName(200898))) -- Teleport soon
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+	if hp < nextTeleportSoonWarning then
+		self:Message(200898, "Attention", nil, CL.soon:format(self:SpellName(200898)))
+		nextTeleportSoonWarning = nextTeleportSoonWarning - 30 -- Teleport at 40%
+		if nextTeleportSoonWarning < 40 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		end
 	end
 end
 
