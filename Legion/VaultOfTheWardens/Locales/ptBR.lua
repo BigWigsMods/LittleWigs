@@ -15,6 +15,7 @@ if L then
 	--L.infester = "Felsworn Infester"
 	--L.myrmidon = "Felsworn Myrmidon"
 	--L.fury = "Fel-Infused Fury"
+	--L.mother = "Foul Mother"
 	--L.illianna = "Blade Dancer Illianna"
 	--L.mendacius = "Dreadlord Mendacius"
 	--L.grimhorn = "Grimhorn the Enslaver"

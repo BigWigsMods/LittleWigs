@@ -15,6 +15,7 @@ if L then
 	L.infester = "魔誓感染者"
 	L.myrmidon = "魔誓部屬"
 	L.fury = "魔能怒衛"
+	--L.mother = "Foul Mother"
 	L.illianna = "刃舞者伊利安娜"
 	L.mendacius = "驚懼領主曼達希斯"
 	L.grimhorn = "『奴役者』恐角"

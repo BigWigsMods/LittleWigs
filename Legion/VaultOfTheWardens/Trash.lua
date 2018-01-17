@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	96587, -- Felsworn Infester
 	98954, -- Felsworn Myrmidon
 	99956, -- Fel-Infused Fury
+	98533, -- Foul Mother
 	96657, -- Blade Dancer Illianna
 	99649, -- Dreadlord Mendacius
 	102566 -- Grimhorn the Enslaver
@@ -24,6 +25,7 @@ if L then
 	L.infester = "Felsworn Infester"
 	L.myrmidon = "Felsworn Myrmidon"
 	L.fury = "Fel-Infused Fury"
+	L.mother = "Foul Mother"
 	L.illianna = "Blade Dancer Illianna"
 	L.mendacius = "Dreadlord Mendacius"
 	L.grimhorn = "Grimhorn the Enslaver"
@@ -44,6 +46,9 @@ function mod:GetOptions()
 		--[[ Fel-Infused Fury ]]--
 		{196799, "FLASH"}, -- Unleash Fury
 
+		--[[ Foul Mother ]]--
+		210202, -- Foul Stench
+
 		--[[ Blade Dancer Illianna ]]--
 		191527, -- Deafening Shout
 
@@ -56,6 +61,7 @@ function mod:GetOptions()
 		[193069] = L.infester,
 		[191735] = L.myrmidon,
 		[196799] = L.fury,
+		[210202] = L.mother,
 		[191527] = L.illianna,
 		[196249] = L.mendacius,
 		[202615] = L.grimhorn,
@@ -74,6 +80,11 @@ function mod:OnBossEnable()
 
 	--[[ Fel-Infused Fury ]]--
 	self:Log("SPELL_CAST_START", "UnleashFury", 196799)
+
+	--[[ Foul Mother ]]--
+	self:Log("SPELL_AURA_APPLIED", "FoulStench", 210202) -- Foul Stench
+ 	self:Log("SPELL_PERIODIC_DAMAGE", "FoulStench", 210202)
+ 	self:Log("SPELL_PERIODIC_MISSED", "FoulStench", 210202)
 
 	--[[ Blade Dancer Illianna ]]--
 	self:Log("SPELL_CAST_START", "DeafeningShout", 191527)
@@ -111,6 +122,18 @@ function mod:UnleashFury(args)
 	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
 	if self:Interrupter(args.sourceGUID) then
 		self:Flash(args.spellId)
+	end
+end
+
+--[[ Foul Mother ]]--
+do
+	local prev = 0
+	function mod:FoulStench(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
 	end
 end
 
