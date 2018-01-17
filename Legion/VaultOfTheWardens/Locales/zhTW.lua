@@ -8,6 +8,7 @@ if L then
 
 	L.warmup_text = "寇達娜．魔歌啟動"
 	L.warmup_trigger = "我已經拿到我要找的東西了。但為了你們，我最好還是留下來…斬草除根！"
+	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "zhTW")
