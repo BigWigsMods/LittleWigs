@@ -69,7 +69,7 @@ function mod:Brittle(args)
 	if remainingVolcano > 0 then
 		self:Bar(192520, remainingVolcano+20) -- estimated
 	end
-	if self:ChallengeMode() then
+	if self:MythicPlus() then
 		self:CDBar(-12727, 66, nil, "ability_monk_counteractmagic") -- Countermeasures
 	end
 end
