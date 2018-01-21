@@ -23,6 +23,7 @@ function mod:GetOptions()
 		{192094, "ICON", "SAY", "FLASH"}, -- Impaling Spear
 		197064, -- Enrage
 		197502, -- Restoration
+		191900, -- Crashing Wave
 		192053, -- Quicksand
 		192072, -- Call Reinforcements
 		196563, -- Call Reinforcements
@@ -40,6 +41,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "CallReinforcements", 196563)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 197064)
 	self:Log("SPELL_CAST_START", "Restoration", 197502)
+	self:Log("SPELL_CAST_START", "CrashingWave", 191900)
 
 	self:Log("SPELL_AURA_APPLIED", "QuicksandDamage", 192053)
 	self:Log("SPELL_PERIODIC_DAMAGE", "QuicksandDamage", 192053)
@@ -90,6 +92,10 @@ end
 
 function mod:Restoration(args)
 	self:Message(args.spellId, "Positive", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
+end
+
+function mod:CrashingWave(args)
+	self:Message(args.spellId, "Attention", "Alert", CL.casting:format(args.spellName))
 end
 
 do
