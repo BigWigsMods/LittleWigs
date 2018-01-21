@@ -128,7 +128,7 @@ do
 end
 
 do
-	local scheduled, spellName = nil, mod:SpellName(203685)
+	local scheduled = nil
 
 	local function sortTable(x, y)
 		if x.stacks == y.stacks then
@@ -138,35 +138,58 @@ do
 		end
 	end
 
-	local function printStacks(self, spellId)
+	local function printStacks(self, spellId, spellName)
 		local meOnly = self:CheckOption(spellId, "ME_ONLY")
 		if meOnly then
-			local stacks = select(4, UnitDebuff("player", spellName)) or 0
-			if stacks > 6 then
-				self:StackMessage(spellId, self:UnitName("player"), stacks, "Urgent", stacks < 9 and "Alarm" or "Warning")
+			local _, _, _, stacks = UnitDebuff("player", spellName)
+			if stacks and stacks > 6 then
+				self:StackMessage(spellId, self:UnitName("player"), stacks, "Urgent")
+				if stacks < 9 then
+					self:PlaySound(spellId, "Alarm")
+				else
+					self:PlaySound(spellId, "Warning")
+				end
 			end
 		else
 			local stacksOnMe = 0
 			local affectedPlayers = {}
 			for unit in self:IterateGroup() do
-				local stacks = select(4, UnitDebuff(unit, spellName)) or 0
-				if stacks > 6 then
-					affectedPlayers[#affectedPlayers + 1] = { name = self:UnitName(unit), stacks = stacks }
+				local _, _, _, stacks = UnitDebuff(unit, spellName)
+				if stacks and stacks > 6 then
 					if UnitIsUnit("player", unit) then
 						stacksOnMe = stacks
+						affectedPlayers[#affectedPlayers + 1] = { name = self:UnitName(unit), stacks = stacks, isOnMe = true }
+					else
+						affectedPlayers[#affectedPlayers + 1] = { name = self:UnitName(unit), stacks = stacks }
 					end
 				end
 			end
 			if #affectedPlayers == 1 then
-				self:StackMessage(spellId, affectedPlayers[1].name, affectedPlayers[1].stacks, "Urgent", (self:UnitName("player") == affectedPlayers[1].name or self:Dispeller("magic")) and (affectedPlayers[1].stacks < 9 and "Alarm" or "Warning"))
+				self:StackMessage(spellId, affectedPlayers[1].name, affectedPlayers[1].stacks, "Urgent")
+				if affectedPlayers[1].isOnMe or self:Dispeller("magic") then
+					if affectedPlayers[1].stacks < 9 then
+						self:PlaySound(spellId, "Alarm")
+					else
+						self:PlaySound(spellId, "Warning")
+					end
+				end
 			elseif #affectedPlayers > 1 then
 				table.sort(affectedPlayers, sortTable)
-				for i, v in ipairs(affectedPlayers) do
-					affectedPlayers[i] = CL.count:format(self:ColorName(v.name), v.stacks)
+
+				local topStacks = affectedPlayers[1].stacks
+				local msg = CL.count:format(self:ColorName(affectedPlayers[1].name), topStacks) -- 1st entry
+				for i = 2, #affectedPlayers do -- 2nd entry +
+					local tbl = affectedPlayers[i]
+					msg = msg .. ", " .. CL.count:format(self:ColorName(tbl.name), tbl.stacks)
 				end
-				local list = table.concat(affectedPlayers, ", ")
-				local stacksOfInterest = self:Dispeller("magic") and affectedPlayers[1].stacks or stacksOnMe
-				self:Message(spellId, "Urgent", stacksOfInterest > 8 and "Warning" or stacksOfInterest > 6 and "Alarm", CL.other:format(spellName, list))
+				self:Message(spellId, "Urgent", nil, CL.other:format(spellName, msg))
+
+				local stacksOfInterest = self:Dispeller("magic") and topStacks or stacksOnMe
+				if stacksOfInterest > 8 then
+					self:PlaySound(spellId, "Warning")
+				elseif stacksOfInterest > 6 then
+					self:PlaySound(spellId, "Alarm")
+				end
 			end
 		end
 		scheduled = nil
@@ -174,7 +197,7 @@ do
 
 	function mod:FleshToStoneApplied(args)
 		if not scheduled then
-			scheduled = self:ScheduleTimer(printStacks, 0.3, self, args.spellId)
+			scheduled = self:ScheduleTimer(printStacks, 0.3, self, args.spellId, args.spellName)
 		end
 	end
 end
