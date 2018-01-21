@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(216290, 15) -- Strike of the Mountain
+	self:Bar(198428, 15) -- Strike of the Mountain
 end
 
 --------------------------------------------------------------------------------
