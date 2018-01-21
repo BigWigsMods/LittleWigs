@@ -9,6 +9,12 @@ mod:RegisterEnableMob(91004)
 mod.engageId = 1791
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local totemsDead = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -34,24 +40,31 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "StanceOfTheMountain", 198564)
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:Log("SPELL_CAST_START", "Sunder", 198496)
 	self:Log("SPELL_CAST_START", "StrikeOfTheMountain", 198428)
 	self:Log("SPELL_CAST_START", "BellowOfTheDeeps", 193375)
+	self:Death("IntermissionTotemsDeath", 100818)
 end
 
 function mod:OnEngage()
 	self:Bar(198428, 15) -- Strike of the Mountain
+	self:CDBar(198496, 7.4) -- Sunder
+	self:CDBar(198564, (self:Normal() or self:Heroic()) and 36.4 or 26.8) -- Stance of the Mountain
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:StanceOfTheMountain(args)
-	self:Message(args.spellId, "Attention", "Long")
-	self:CDBar(args.spellId, 97) -- pull:36.6, 97.7
-	self:StopBar(198496) -- Sunder
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg) -- Stance of the Mountain
+	if msg:find("198510", nil, true) then
+		totemsDead = 0
+		self:StopBar(198496) -- Sunder
+		self:StopBar(198428) -- Strike of the Mountain
+		self:StopBar(198564) -- Stance of the Mountain
+		self:Message(198564, "Attention", "Long")
+	end
 end
 
 function mod:StrikeOfTheMountain(args)
@@ -67,4 +80,11 @@ end
 function mod:Sunder(args)
 	self:Message(args.spellId, "Attention", "Alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 9.3)
+end
+
+function mod:IntermissionTotemsDeath()
+	totemsDead = totemsDead + 1
+	if self:Normal() and totemsDead == 3 or totemsDead == 5 then -- all of them fire UNIT_DIED
+		self:CDBar(198564, (self:Normal() or self:Heroic()) and 70.7 or 50.6) -- Stance of the Mountain
+	end
 end
