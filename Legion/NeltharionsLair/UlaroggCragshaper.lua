@@ -28,7 +28,7 @@ function mod:GetOptions()
 	return {
 		198564, -- Stance of the Mountain
 		198496, -- Sunder
-		{216290, "ICON"}, -- Strike of the Mountain
+		198428, -- Strike of the Mountain
 		"bellow",
 	}
 end
@@ -36,8 +36,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StanceOfTheMountain", 198564)
 	self:Log("SPELL_CAST_START", "Sunder", 198496)
-	self:Log("SPELL_CAST_START", "StrikeOfTheMountain", 216290)
-	self:Log("SPELL_CAST_SUCCESS", "StrikeOfTheMountainOver", 216290)
+	self:Log("SPELL_CAST_START", "StrikeOfTheMountain", 198428)
 	self:Log("SPELL_CAST_START", "BellowOfTheDeeps", 193375)
 end
 
@@ -55,21 +54,9 @@ function mod:StanceOfTheMountain(args)
 	self:StopBar(198496) -- Sunder
 end
 
-do
-	local function printTarget(self, player, guid)
-		if self:Me(guid) then
-			self:Say(216290)
-		end
-		self:PrimaryIcon(216290, player)
-		self:TargetMessage(216290, player, "Important", "Alarm")
-	end
-	function mod:StrikeOfTheMountain(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:Bar(args.spellId, 15) -- pull:15.8, 15.8, 47.3, 26.7, 17.0
-	end
-	function mod:StrikeOfTheMountainOver(args)
-		self:PrimaryIcon(args.spellId)
-	end
+function mod:StrikeOfTheMountain(args)
+	self:Message(args.spellId, "Important", "Alarm")
+	self:Bar(args.spellId, 15.5)
 end
 
 function mod:BellowOfTheDeeps(args)
