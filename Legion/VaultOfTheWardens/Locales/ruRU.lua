@@ -14,9 +14,10 @@ end
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "ruRU")
 if L then
 	L.infester = "Скверноподданный заразитель"
-	L.illianna = "Иллиана Танцующая с Клинками"
 	L.myrmidon = "Скверноподданный мирмидон"
-	L.mendacius = "Повелитель ужаса Мендаций"
 	L.fury = "Зараженный Скверной яростный боец"
+	--L.mother = "Foul Mother"
+	L.illianna = "Иллиана Танцующая с Клинками"
+	L.mendacius = "Повелитель ужаса Мендаций"
 	L.grimhorn = "Злобнорог Поработитель"
 end

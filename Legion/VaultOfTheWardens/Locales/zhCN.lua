@@ -14,9 +14,10 @@ end
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "zhCN")
 if L then
 	L.infester = "魔誓寄生者"
-	L.illianna = "刃舞者伊莲娜"
 	L.myrmidon = "魔誓侍从"
-	L.mendacius = "恐惧魔王孟达休斯"
 	L.fury = "灌魔之怒"
+	--L.mother = "Foul Mother"
+	L.illianna = "刃舞者伊莲娜"
+	L.mendacius = "恐惧魔王孟达休斯"
 	L.grimhorn = "奴役者格里霍恩"
 end

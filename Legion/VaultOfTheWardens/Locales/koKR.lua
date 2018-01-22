@@ -14,9 +14,10 @@ end
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "koKR")
 if L then
 	L.infester = "지옥서약 감염자"
-	L.illianna = "칼춤꾼 일리아나"
 	L.myrmidon = "지옥서약 미르미돈"
-	L.mendacius = "공포군주 멘다시우스"
 	L.fury = "지옥 마력 격노병"
+	--L.mother = "Foul Mother"
+	L.illianna = "칼춤꾼 일리아나"
+	L.mendacius = "공포군주 멘다시우스"
 	L.grimhorn = "험악뿔 구속자"
 end
