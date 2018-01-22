@@ -129,7 +129,9 @@ function mod:AlluringAura(args)
 end
 
 function mod:BansheeWail(args)
-	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
+	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by DKs
+		self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
+	end
 end
 
 -- Ghostly Philanthropist
