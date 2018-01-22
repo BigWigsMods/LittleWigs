@@ -28,6 +28,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "GaseousBubblesRemoved", 193018)
 	self:Log("SPELL_CAST_START", "GroundSlam", 193093)
 	self:Log("SPELL_CAST_START", "Quake", 193152)
+ 	self:Log("SPELL_PERIODIC_DAMAGE", "Aftershock", 193171)
+ 	self:Log("SPELL_PERIODIC_MISSED", "Aftershock", 193171)
 end
 
 function mod:OnEngage()
@@ -76,3 +78,13 @@ function mod:Quake(args)
 	self:Bar(args.spellId, 21) -- pull:15.6, 21.9, 21.8, 21.8
 end
 
+do
+	local prev = 0
+	function mod:Aftershock(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and (UnitDebuff("player", self:SpellName(193018)) and t-prev > 6 or t-prev > 1.5) then -- players with Gaseous Bubbles may (and should) be taking damage intentionally
+			prev = t
+			self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
+	end
+end
