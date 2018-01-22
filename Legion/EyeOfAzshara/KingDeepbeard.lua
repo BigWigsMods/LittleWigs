@@ -79,10 +79,10 @@ function mod:Quake(args)
 end
 
 do
-	local prev, absorbDebuff = 0, mod:SpellName(193018)
+	local prev = 0
 	function mod:Aftershock(args)
 		local t = GetTime()
-		if self:Me(args.destGUID) and (UnitDebuff("player", absorbDebuff) and t-prev > 6 or t-prev > 1.5) then -- players with Gaseous Bubbles may (and should) be taking damage intentionally
+		if self:Me(args.destGUID) and (UnitDebuff("player", self:SpellName(193018)) and t-prev > 6 or t-prev > 1.5) then -- players with Gaseous Bubbles may (and should) be taking damage intentionally
 			prev = t
 			self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
 		end
