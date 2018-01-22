@@ -162,10 +162,10 @@ function mod:Torment(args)
 end
 
 do
-	local prev, tormentDebuff = 0, mod:SpellName(202615)
+	local prev = 0
 	function mod:AnguishedSouls(args)
 		local t = GetTime()
-		if self:Me(args.destGUID) and (UnitDebuff("player", tormentDebuff) and t-prev > 6 or t-prev > 1.5) then -- don't be spammy if the player can't move
+		if self:Me(args.destGUID) and (UnitDebuff("player",  self:SpellName(202615)) and t-prev > 6 or t-prev > 1.5) then -- don't be spammy if the player can't move (due to Torment)
 			prev = t
 			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
 		end
