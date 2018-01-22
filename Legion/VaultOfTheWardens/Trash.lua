@@ -48,6 +48,7 @@ function mod:GetOptions()
 
 		--[[ Foul Mother ]]--
 		210202, -- Foul Stench
+		194071, -- A Mother's Love
 
 		--[[ Blade Dancer Illianna ]]--
 		191527, -- Deafening Shout
@@ -57,6 +58,7 @@ function mod:GetOptions()
 
 		--[[ Grimhorn the Enslaver ]]--
 		{202615, "SAY"}, -- Torment
+		202607, -- Anguished Souls
 	}, {
 		[193069] = L.infester,
 		[191735] = L.myrmidon,
@@ -82,9 +84,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "UnleashFury", 196799)
 
 	--[[ Foul Mother ]]--
-	self:Log("SPELL_AURA_APPLIED", "FoulStench", 210202) -- Foul Stench
- 	self:Log("SPELL_PERIODIC_DAMAGE", "FoulStench", 210202)
- 	self:Log("SPELL_PERIODIC_MISSED", "FoulStench", 210202)
+	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 210202, 194071) -- Foul Stench, A Mother's Love
+ 	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 210202, 194071)
+ 	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 210202, 194071)
 
 	--[[ Blade Dancer Illianna ]]--
 	self:Log("SPELL_CAST_START", "DeafeningShout", 191527)
@@ -94,6 +96,9 @@ function mod:OnBossEnable()
 
 	--[[ Grimhorn the Enslaver ]]--
 	self:Log("SPELL_AURA_APPLIED", "Torment", 202615)
+	self:Log("SPELL_AURA_APPLIED", "AnguishedSouls", 202607) -- Anguished Souls
+ 	self:Log("SPELL_PERIODIC_DAMAGE", "AnguishedSouls", 202607)
+ 	self:Log("SPELL_PERIODIC_MISSED", "AnguishedSouls", 202607)
 end
 
 --------------------------------------------------------------------------------
@@ -128,7 +133,7 @@ end
 --[[ Foul Mother ]]--
 do
 	local prev = 0
-	function mod:FoulStench(args)
+	function mod:GroundEffectDamage(args)
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 1.5 then
 			prev = t
@@ -153,5 +158,16 @@ function mod:Torment(args)
 	self:TargetBar(args.spellId, 6, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
+	end
+end
+
+do
+	local prev = 0
+	function mod:AnguishedSouls(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and (UnitDebuff("player",  self:SpellName(202615)) and t-prev > 6 or t-prev > 1.5) then -- don't be spammy if the player can't move (due to Torment)
+			prev = t
+			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
 	end
 end
