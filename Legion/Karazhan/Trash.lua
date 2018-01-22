@@ -105,15 +105,15 @@ function mod:GOSSIP_SHOW()
 end
 
 function mod:Warmup(_, msg)
-	if msg:find(L.opera_hall_westfall_story_trigger, nil, true) then 
+	if msg:find(L.opera_hall_westfall_story_trigger, nil, true) then
 		self:Bar("warmup", 42, L.opera_hall_westfall_story_text, "achievement_raid_karazhan")
 	end
 
-	if msg:find(L.opera_hall_beautiful_beast_story_trigger, nil, true) then 
+	if msg:find(L.opera_hall_beautiful_beast_story_trigger, nil, true) then
 		self:Bar("warmup", 47, L.opera_hall_beautiful_beast_story_text, "achievement_raid_karazhan")
 	end
 
-	if msg:find(L.opera_hall_wikket_story_trigger, nil, true) then 
+	if msg:find(L.opera_hall_wikket_story_trigger, nil, true) then
 		self:Bar("warmup", 70, L.opera_hall_wikket_story_text, "achievement_raid_karazhan")
 	end
 end
@@ -153,6 +153,9 @@ end
 do
 	local prev = 0
 	function mod:ShieldSmash(args)
+		if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) ~= 0 then
+			return
+		end
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
