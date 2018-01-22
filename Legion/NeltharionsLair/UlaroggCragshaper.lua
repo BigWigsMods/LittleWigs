@@ -40,7 +40,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Sunder", 198496)
 	self:Log("SPELL_CAST_START", "StrikeOfTheMountain", 198428)
 	self:Log("SPELL_CAST_START", "BellowOfTheDeeps", 193375)
@@ -57,8 +57,8 @@ end
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg) -- Stance of the Mountain
-	if msg:find("198510", nil, true) then
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 198509 then -- Stance of the Mountain
 		totemsDead = 0
 		self:StopBar(198496) -- Sunder
 		self:StopBar(198428) -- Strike of the Mountain
