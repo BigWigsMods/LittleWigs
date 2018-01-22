@@ -153,7 +153,7 @@ end
 do
 	local prev = 0
 	function mod:ShieldSmash(args)
-		if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) ~= 0 then
+		if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) ~= 0 then -- these NPCs can be mind-controlled by DKs
 			return
 		end
 		local t = GetTime()
