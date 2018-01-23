@@ -41,8 +41,16 @@ end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 52 then
-		self:Message(200050, "Attention", "Info", CL.soon:format(self:SpellName(200050)))
+	if hp <= 50 then
+		local _, _, _, _, _, endOfCast = UnitCastingInfo(unit)
+		if endOfCast then
+			local timeLeft = endOfCast / 1000 - GetTime()
+			self:ScheduleTimer("Message", timeLeft, 200050, "Attention", "Info", CL.casting:format(self:SpellName(200050)))
+			self:ScheduleTimer("CastBar", timeLeft, 200050, 5)
+		else
+			self:Message(200050, "Attention", "Info", CL.casting:format(self:SpellName(200050)))
+			self:CastBar(200050, 5)
+		end
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 	end
 end
