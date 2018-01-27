@@ -16,4 +16,6 @@ if L then
 	--L.alleria = "Alleria Windrunner"
 	--L.subjugator = "Shadowguard Subjugator"
 	--L.voidbender = "Shadowguard Voidbender"
+	--L.conjurer = "Shadowguard Conjurer"
+	--L.weaver = "Grand Shadow-Weaver"
 end

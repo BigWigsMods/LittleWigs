@@ -16,4 +16,6 @@ if L then
 	L.alleria = "알레리아 윈드러너"
 	L.subjugator = "어둠수호병 정복자"
 	L.voidbender = "어둠수호병 공허술사"
+	--L.conjurer = "Shadowguard Conjurer"
+	--L.weaver = "Grand Shadow-Weaver"
 end

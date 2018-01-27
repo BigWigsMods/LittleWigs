@@ -16,4 +16,6 @@ if L then
 	L.alleria = "奥蕾莉亚·风行者"
 	L.subjugator = "影卫征服者"
 	L.voidbender = "影卫缚灵师"
+	--L.conjurer = "Shadowguard Conjurer"
+	--L.weaver = "Grand Shadow-Weaver"
 end
