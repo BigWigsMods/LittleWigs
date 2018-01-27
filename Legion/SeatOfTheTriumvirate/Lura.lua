@@ -65,7 +65,7 @@ end
 function mod:Warmup(_, msg)
 	if msg == L.warmup_trigger then
 		self:Bar("warmup", 30.2, L.warmup_text, "spell_priest_divinestar_shadow")
-	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft("warmup") == 0 then
+	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft(L.warmup_text) == 0 then
 		self:Bar("warmup", 8.47, L.warmup_text, "spell_priest_divinestar_shadow")
 	end
 end

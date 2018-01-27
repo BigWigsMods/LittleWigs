@@ -54,7 +54,7 @@ end
 function mod:Warmup(_, msg)
 	if msg == L.warmup_trigger then
 		self:Bar("warmup", 18.9, L.warmup_text, "achievement_dungeon_neltharionslair")
-	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft("warmup") == 0 then
+	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft(L.warmup_text) == 0 then
 		self:Bar("warmup", 4.95, L.warmup_text, "achievement_dungeon_neltharionslair")
 	end
 end
