@@ -99,7 +99,9 @@ end
 
 function mod:MarkMatter(event, unit, guid)
 	if self:MobId(guid) == 124964 then -- Unstable Dark Matter
-		SetRaidTarget(unit, 8)
+		if GetRaidTargetIndex(unit) ~= 8 then -- in non-raid groups everyone has a permission to mark, making sure people don't cancel out each other's marks
+			SetRaidTarget(unit, 8)
+		end
 		self:UnregisterTargetEvents()
 	end
 end
