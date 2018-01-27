@@ -6,6 +6,13 @@ if L then
 	L.interrupted = "%s|1이;가; %s|1을;를; 시전 방해했습니다 (%.1f초 남음)!"
 end
 
+L = BigWigs:NewBossLocale("L'ura", "koKR")
+if L then
+	--L.warmup_text = "L'ura Active"
+	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
+	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+end
+
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "koKR")
 if L then
 	L.custom_on_autotalk = "자동 대화"
