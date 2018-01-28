@@ -159,6 +159,7 @@ end
 -- Gazerax
 function mod:BlindingGlare(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:CastBar(args.spellId, 2.5)
 end
 
 -- Vilebark Walker

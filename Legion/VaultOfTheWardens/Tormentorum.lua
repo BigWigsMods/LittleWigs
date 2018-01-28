@@ -1,9 +1,5 @@
 
 --------------------------------------------------------------------------------
--- TODO List:
--- - UNIT_HEALTH_FREQUENT warnings are coded badly, was in a hurry, fix pls
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -16,8 +12,7 @@ mod.engageId = 1850
 -- Locals
 --
 
-local warnedForTeleport1 = nil
-local warnedForTeleport2 = nil
+local nextTeleportSoonWarning = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -31,6 +26,8 @@ function mod:GetOptions()
 		{200904, "FLASH"}, -- Sapped Soul
 		196208, -- Seed of Corruption
 		201488, -- Frightening Shout
+		199918, -- Shadow Crash
+		203685, -- Flesh to Stone
 	}
 end
 
@@ -46,10 +43,14 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_CAST_START", "SeedofCorruption", 196208)
 	self:Log("SPELL_CAST_START", "FrighteningShout", 201488)
+	self:Log("SPELL_AURA_APPLIED", "ShadowCrashDamage", 199918) -- Shadow Crash
+	self:Log("SPELL_PERIODIC_DAMAGE", "ShadowCrashDamage", 199918)
+	self:Log("SPELL_PERIODIC_MISSED", "ShadowCrashDamage", 199918)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "FleshToStoneApplied", 203685)
 end
 
 function mod:OnEngage()
-
+	nextTeleportSoonWarning = 75 -- Teleport at 70%
 end
 
 --------------------------------------------------------------------------------
@@ -98,13 +99,12 @@ end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 75 and not warnedForTeleport1 then -- Teleport at 70%
-		warnedForTeleport1 = true
-		self:Message(200898, "Attention", nil, CL.soon:format(self:SpellName(200898))) -- Teleport soon
-	elseif hp < 45 and not warnedForTeleport2 then -- Teleport at 40%
-		warnedForTeleport2 = true
-		self:Message(200898, "Important", nil, CL.soon:format(self:SpellName(200898))) -- Teleport soon
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+	if hp < nextTeleportSoonWarning then
+		self:Message(200898, "Attention", nil, CL.soon:format(self:SpellName(200898)))
+		nextTeleportSoonWarning = nextTeleportSoonWarning - 30 -- Teleport at 40%
+		if nextTeleportSoonWarning < 40 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		end
 	end
 end
 
@@ -114,4 +114,90 @@ end
 
 function mod:FrighteningShout(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+do
+	local prev = 0
+	function mod:ShadowCrashDamage(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
+	end
+end
+
+do
+	local scheduled = nil
+
+	local function sortTable(x, y)
+		if x.stacks == y.stacks then
+			return x.name > y.name
+		else
+			return x.stacks > y.stacks
+		end
+	end
+
+	local function printStacks(self, spellId, spellName)
+		local meOnly = self:CheckOption(spellId, "ME_ONLY")
+		if meOnly then
+			local _, _, _, stacks = UnitDebuff("player", spellName)
+			if stacks and stacks > 6 then
+				self:StackMessage(spellId, self:UnitName("player"), stacks, "Urgent")
+				if stacks < 9 then
+					self:PlaySound(spellId, "Alarm")
+				else
+					self:PlaySound(spellId, "Warning")
+				end
+			end
+		else
+			local stacksOnMe = 0
+			local affectedPlayers = {}
+			for unit in self:IterateGroup() do
+				local _, _, _, stacks = UnitDebuff(unit, spellName)
+				if stacks and stacks > 6 then
+					if UnitIsUnit("player", unit) then
+						stacksOnMe = stacks
+						affectedPlayers[#affectedPlayers + 1] = { name = self:UnitName(unit), stacks = stacks, isOnMe = true }
+					else
+						affectedPlayers[#affectedPlayers + 1] = { name = self:UnitName(unit), stacks = stacks }
+					end
+				end
+			end
+			if #affectedPlayers == 1 then
+				self:StackMessage(spellId, affectedPlayers[1].name, affectedPlayers[1].stacks, "Urgent")
+				if affectedPlayers[1].isOnMe or self:Dispeller("magic") then
+					if affectedPlayers[1].stacks < 9 then
+						self:PlaySound(spellId, "Alarm")
+					else
+						self:PlaySound(spellId, "Warning")
+					end
+				end
+			elseif #affectedPlayers > 1 then
+				table.sort(affectedPlayers, sortTable)
+
+				local topStacks = affectedPlayers[1].stacks
+				local msg = CL.count:format(self:ColorName(affectedPlayers[1].name), topStacks) -- 1st entry
+				for i = 2, #affectedPlayers do -- 2nd entry +
+					local tbl = affectedPlayers[i]
+					msg = msg .. ", " .. CL.count:format(self:ColorName(tbl.name), tbl.stacks)
+				end
+				self:Message(spellId, "Urgent", nil, CL.other:format(spellName, msg))
+
+				local stacksOfInterest = self:Dispeller("magic") and topStacks or stacksOnMe
+				if stacksOfInterest > 8 then
+					self:PlaySound(spellId, "Warning")
+				elseif stacksOfInterest > 6 then
+					self:PlaySound(spellId, "Alarm")
+				end
+			end
+		end
+		scheduled = nil
+	end
+
+	function mod:FleshToStoneApplied(args)
+		if not scheduled then
+			scheduled = self:ScheduleTimer(printStacks, 0.3, self, args.spellId, args.spellName)
+		end
+	end
 end

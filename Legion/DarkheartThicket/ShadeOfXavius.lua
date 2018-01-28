@@ -14,42 +14,60 @@ mod.engageId = 1839
 
 function mod:GetOptions()
 	return {
+		200050, -- Apocalyptic Nightmare
 		{200289, "ICON", "SAY"}, -- Growing Paranoia
 		{200185, "ICON", "SAY"}, -- Nightmare Bolt
+		200238, -- Feed on the Weak
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "GrowingParanoia", 200289)
-	self:Log("SPELL_AURA_APPLIED", "GrowingParanoiaApplied", 200289)
+	self:Log("SPELL_CAST_START", "GrowingParanoia", 200289)
 	self:Log("SPELL_AURA_REMOVED", "GrowingParanoiaRemoved", 200289)
 	self:Log("SPELL_CAST_START", "NightmareBolt", 212834, 200185) -- Normal, Heroic+
 	self:Log("SPELL_AURA_REMOVED", "WakingNightmareOver", 200243)
+	self:Log("SPELL_AURA_APPLIED", "FeedOnTheWeakApplied", 200238)
 end
 
 function mod:OnEngage()
 	self:CDBar(200289, 25.5) -- Growing Paranoia
 	self:CDBar(200185, 7) -- Nightmare Bolt
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:GrowingParanoia(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
-	--self:CDBar(args.spellId, 26) -- pull:25.5, 26.8, 28.0, 19.5 / hc pull:27.1, 32.8, 26.7, 27.9 / m pull:25.5, 37.6, 47.3
-end
-
-function mod:GrowingParanoiaApplied(args)
-	self:PrimaryIcon(args.spellId, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 52 then
+		self:Message(200050, "Attention", "Info", CL.soon:format(self:SpellName(200050)))
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 	end
 end
 
-function mod:GrowingParanoiaRemoved(args)
-	self:PrimaryIcon(args.spellId)
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(200289, player, "Attention", "Alarm", nil, nil, true)
+		self:PrimaryIcon(200289, player)
+		if self:Me(guid) then
+			self:Say(200289)
+		end
+	end
+	function mod:GrowingParanoia(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		--self:CDBar(args.spellId, 26) -- pull:25.5, 26.8, 28.0, 19.5 / hc pull:27.1, 32.8, 26.7, 27.9 / m pull:25.5, 37.6, 47.3
+	end
+	function mod:GrowingParanoiaRemoved(args)
+		self:PrimaryIcon(args.spellId)
+	end
+end
+
+function mod:FeedOnTheWeakApplied(args)
+	if self:Me(args.destGUID) or self:Healer() then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+	end
 end
 
 do

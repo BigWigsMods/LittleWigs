@@ -8,10 +8,11 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	96587, -- Felsworn Infester
-	96657, -- Blade Dancer Illianna
 	98954, -- Felsworn Myrmidon
-	99649, -- Dreadlord Mendacius
 	99956, -- Fel-Infused Fury
+	98533, -- Foul Mother
+	96657, -- Blade Dancer Illianna
+	99649, -- Dreadlord Mendacius
 	102566 -- Grimhorn the Enslaver
 )
 
@@ -22,10 +23,11 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.infester = "Felsworn Infester"
-	L.illianna = "Blade Dancer Illianna"
 	L.myrmidon = "Felsworn Myrmidon"
-	L.mendacius = "Dreadlord Mendacius"
 	L.fury = "Fel-Infused Fury"
+	L.mother = "Foul Mother"
+	L.illianna = "Blade Dancer Illianna"
+	L.mendacius = "Dreadlord Mendacius"
 	L.grimhorn = "Grimhorn the Enslaver"
 end
 
@@ -38,26 +40,32 @@ function mod:GetOptions()
 		--[[ Felsworn Infester ]]--
 		{193069, "SAY"}, -- Nightmares
 
-		--[[ Blade Dancer Illianna ]]--
-		191527, -- Deafening Shout
-
 		--[[ Felsworn Myrmidon ]]--
 		191735, -- Deafening Screech
-
-		--[[ Dreadlord Mendacius ]]--
-		{196249, "FLASH"}, -- Meteor
 
 		--[[ Fel-Infused Fury ]]--
 		{196799, "FLASH"}, -- Unleash Fury
 
+		--[[ Foul Mother ]]--
+		210202, -- Foul Stench
+		194071, -- A Mother's Love
+
+		--[[ Blade Dancer Illianna ]]--
+		191527, -- Deafening Shout
+
+		--[[ Dreadlord Mendacius ]]--
+		{196249, "FLASH"}, -- Meteor
+
 		--[[ Grimhorn the Enslaver ]]--
 		{202615, "SAY"}, -- Torment
+		202607, -- Anguished Souls
 	}, {
 		[193069] = L.infester,
-		[191527] = L.illianna,
 		[191735] = L.myrmidon,
-		[196249] = L.mendacius,
 		[196799] = L.fury,
+		[210202] = L.mother,
+		[191527] = L.illianna,
+		[196249] = L.mendacius,
 		[202615] = L.grimhorn,
 	}
 end
@@ -69,20 +77,28 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NightmaresCast", 193069)
 	self:Log("SPELL_AURA_APPLIED", "NightmaresApplied", 193069)
 
-	--[[ Blade Dancer Illianna ]]--
-	self:Log("SPELL_CAST_START", "DeafeningShout", 191527)
-
 	--[[ Felsworn Myrmidon ]]--
 	self:Log("SPELL_CAST_START", "DeafeningScreech", 191735)
-
-	--[[ Dreadlord Mendacius ]]--
-	self:Log("SPELL_CAST_START", "Meteor", 196249)
 
 	--[[ Fel-Infused Fury ]]--
 	self:Log("SPELL_CAST_START", "UnleashFury", 196799)
 
+	--[[ Foul Mother ]]--
+	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 210202, 194071) -- Foul Stench, A Mother's Love
+ 	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 210202, 194071)
+ 	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 210202, 194071)
+
+	--[[ Blade Dancer Illianna ]]--
+	self:Log("SPELL_CAST_START", "DeafeningShout", 191527)
+
+	--[[ Dreadlord Mendacius ]]--
+	self:Log("SPELL_CAST_START", "Meteor", 196249)
+
 	--[[ Grimhorn the Enslaver ]]--
 	self:Log("SPELL_AURA_APPLIED", "Torment", 202615)
+	self:Log("SPELL_AURA_APPLIED", "AnguishedSouls", 202607) -- Anguished Souls
+ 	self:Log("SPELL_PERIODIC_DAMAGE", "AnguishedSouls", 202607)
+ 	self:Log("SPELL_PERIODIC_MISSED", "AnguishedSouls", 202607)
 end
 
 --------------------------------------------------------------------------------
@@ -101,19 +117,9 @@ function mod:NightmaresApplied(args)
 	end
 end
 
---[[ Blade Dancer Illianna ]]--
-function mod:DeafeningShout(args)
-	self:Message(args.spellId, "Important", self:Ranged() and "Alert", CL.casting:format(args.spellName))
-end
-
 --[[ Felsworn Myrmidon ]]--
 function mod:DeafeningScreech(args)
 	self:Message(args.spellId, "Important", self:Ranged() and "Alert", CL.casting:format(args.spellName))
-end
-
---[[ Dreadlord Mendacius ]]--
-function mod:Meteor(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.incoming:format(args.spellName))
 end
 
 --[[ Fel-Infused Fury ]]--
@@ -124,11 +130,44 @@ function mod:UnleashFury(args)
 	end
 end
 
+--[[ Foul Mother ]]--
+do
+	local prev = 0
+	function mod:GroundEffectDamage(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
+	end
+end
+
+--[[ Blade Dancer Illianna ]]--
+function mod:DeafeningShout(args)
+	self:Message(args.spellId, "Important", self:Ranged() and "Alert", CL.casting:format(args.spellName))
+end
+
+--[[ Dreadlord Mendacius ]]--
+function mod:Meteor(args)
+	self:Message(args.spellId, "Urgent", "Alarm", CL.incoming:format(args.spellName))
+end
+
 --[[ Grimhorn the Enslaver ]]--
 function mod:Torment(args)
 	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
+	end
+end
+
+do
+	local prev = 0
+	function mod:AnguishedSouls(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and (UnitDebuff("player",  self:SpellName(202615)) and t-prev > 6 or t-prev > 1.5) then -- don't be spammy if the player can't move (due to Torment)
+			prev = t
+			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
 	end
 end

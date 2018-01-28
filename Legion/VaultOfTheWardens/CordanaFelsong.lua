@@ -30,6 +30,7 @@ if L then
 
 	L.warmup_text = "Cordana Felsong Active"
 	L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
+	L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
 end
 
 --------------------------------------------------------------------------------
@@ -75,6 +76,8 @@ end
 function mod:Warmup(_, msg)
 	if msg == L.warmup_trigger then
 		self:Bar("warmup", 17, L.warmup_text, "achievement_dungeon_vaultofthewardens")
+	elseif msg == L.warmup_trigger_2 then
+		self:Bar("warmup", 4.7, L.warmup_text, "achievement_dungeon_vaultofthewardens")
 	end
 end
 
