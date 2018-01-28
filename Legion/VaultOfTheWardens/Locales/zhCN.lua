@@ -8,7 +8,7 @@ if L then
 
 	L.warmup_text = "科达娜·邪歌激活"
 	L.warmup_trigger = "我拿到想要的东西了。但我要留下来了结你们……永除后患！"
-	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
+	L.warmup_trigger_2 = "你们掉进了我的陷阱。让我看看你们在黑暗中的本事吧。"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "zhCN")
@@ -16,7 +16,7 @@ if L then
 	L.infester = "魔誓寄生者"
 	L.myrmidon = "魔誓侍从"
 	L.fury = "灌魔之怒"
-	--L.mother = "Foul Mother"
+	L.mother = "邪母"
 	L.illianna = "刃舞者伊莲娜"
 	L.mendacius = "恐惧魔王孟达休斯"
 	L.grimhorn = "奴役者格里霍恩"
