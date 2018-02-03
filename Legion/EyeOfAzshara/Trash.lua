@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Eye of Azshara Trash", 1046)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	100216, -- Hatecoil Wrangler
 	91783, -- Hatecoil Stormweaver
 	98173, -- Mystic Ssa'veh
 	95861, -- Hatecoil Oracle
@@ -21,6 +22,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.wrangler = "Hatecoil Wrangler"
 	L.stormweaver = "Hatecoil Stormweaver"
 	L.oracle = "Hatecoil Oracle"
 	L.siltwalker = "Mak'rana Siltwalker"
@@ -34,6 +36,9 @@ end
 
 function mod:GetOptions()
 	return {
+		--[[ Hatecoil Wrangler ]]--
+		225089, -- Lightning Prod
+
 		--[[ Hatecoil Stormweaver & Mystic Ssa'veh ]]--
 		196870, -- Storm
 		195109, -- Arc Lightning
@@ -48,8 +53,10 @@ function mod:GetOptions()
 		195284, -- Undertow
 
 		--[[ Hatecoil Arcanist & Ritualist Lesha ]]--
-		196027 -- Aqua Spout
+		196027, -- Aqua Spout
+		197105, -- Polymorph: Fish
 	}, {
+		[225089] = L.wrangler,
 		[196870] = L.stormweaver,
 		[195046] = L.oracle,
 		[196127] = L.siltwalker,
@@ -60,17 +67,24 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
+	self:Log("SPELL_CAST_START", "LightningProd", 225089)
 	self:Log("SPELL_CAST_START", "Storm", 196870)
 	self:Log("SPELL_CAST_START", "ArcLightning", 195109)
 	self:Log("SPELL_CAST_START", "RejuvenatingWaters", 195046)
 	self:Log("SPELL_CAST_START", "SpraySand", 196127)
 	self:Log("SPELL_CAST_START", "Undertow", 195284)
 	self:Log("SPELL_CAST_START", "AquaSpout", 196027)
+	self:Log("SPELL_AURA_APPLIED", "PolymorphFish", 197105)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Hatecoil Wrangler
+function mod:LightningProd(args)
+	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
 
 -- Hatecoil Stormweaver
 function mod:Storm(args)
@@ -100,4 +114,10 @@ end
 
 function mod:AquaSpout(args)
 	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
+end
+
+function mod:PolymorphFish(args)
+	if self:Dispeller("magic") or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Attention", "Info", nil, nil, true)
+	end
 end
