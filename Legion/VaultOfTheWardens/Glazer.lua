@@ -13,9 +13,13 @@ mod:RegisterEnableMob(95887)
 mod.engageId = 1817
 
 --------------------------------------------------------------------------------
--- Locals
+-- Localization
 --
 
+local L = mod:GetLocale()
+if L then
+	L.radiation_level = "%s - %d%%" -- Radiation Level - 10%
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -33,6 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "LingeringGazeCast", 194942)
 	self:Log("SPELL_AURA_APPLIED", "LingeringGazeApplied", 194945)
 	self:Log("SPELL_AURA_APPLIED", "Focusing", 194323)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "RadiationLevel", 195034)
 	self:Log("SPELL_AURA_APPLIED", "Beamed", 194333)
 end
 
@@ -56,6 +61,12 @@ end
 
 function mod:Focusing(args)
 	self:Message(args.spellId, "Urgent", "Info")
+end
+
+function mod:RadiationLevel(args)
+	if args.amount >= 10 and args.amount % 5 == 0 then -- 10, 15, 20
+		self:Message(194323, "Urgent", "Info", L.radiation_level:format(args.spellName, args.amount), args.spellId)
+	end
 end
 
 function mod:Beamed(args)
