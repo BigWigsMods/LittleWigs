@@ -1,9 +1,3 @@
-
---------------------------------------------------------------------------------
--- TODO List:
--- - Does the Focusing Phase have a CD?
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -42,7 +36,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(194323, 32)
+	self:Bar(194323, 32) -- Focusing
 end
 
 --------------------------------------------------------------------------------
@@ -72,4 +66,5 @@ end
 function mod:Beamed(args)
 	self:Message(args.spellId, "Positive", "Info")
 	self:Bar(args.spellId, 15)
+	self:Bar(194323, 60) -- Focusing
 end
