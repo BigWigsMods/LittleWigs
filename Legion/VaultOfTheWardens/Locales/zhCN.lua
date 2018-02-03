@@ -11,6 +11,11 @@ if L then
 	L.warmup_trigger_2 = "你们掉进了我的陷阱。让我看看你们在黑暗中的本事吧。"
 end
 
+L = BigWigs:NewBossLocale("Glazer", "zhCN")
+if L then
+	--L.radiation_level = "%s: %d%%"
+end
+
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "zhCN")
 if L then
 	L.infester = "魔誓寄生者"
