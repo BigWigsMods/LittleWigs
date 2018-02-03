@@ -48,7 +48,8 @@ function mod:GetOptions()
 		195284, -- Undertow
 
 		--[[ Hatecoil Arcanist & Ritualist Lesha ]]--
-		196027 -- Aqua Spout
+		196027, -- Aqua Spout
+		{197105, "HEALER"} -- Polymorph: Fish
 	}, {
 		[196870] = L.stormweaver,
 		[195046] = L.oracle,
@@ -66,6 +67,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SpraySand", 196127)
 	self:Log("SPELL_CAST_START", "Undertow", 195284)
 	self:Log("SPELL_CAST_START", "AquaSpout", 196027)
+	self:Log("SPELL_AURA_APPLIED", "PolymorphFish", 197105)
 end
 
 --------------------------------------------------------------------------------
@@ -100,4 +102,8 @@ end
 
 function mod:AquaSpout(args)
 	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
+end
+
+function mod:PolymorphFish(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Info")
 end
