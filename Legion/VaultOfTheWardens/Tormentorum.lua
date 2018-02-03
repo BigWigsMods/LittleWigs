@@ -52,7 +52,7 @@ end
 
 function mod:OnEngage()
 	nextTeleportSoonWarning = 75 -- Teleport at 70%
-	self:CDBar(200904, 11.6, self:SpellName(206303))
+	self:CDBar(200904, 11.6, self:SpellName(206303)) -- Sap Soul
 end
 
 --------------------------------------------------------------------------------
