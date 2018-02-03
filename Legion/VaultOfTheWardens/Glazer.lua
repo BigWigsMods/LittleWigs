@@ -37,6 +37,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(194323, 32) -- Focusing
+	self:CDBar(194945, 15.4) -- Lingering Gaze
 end
 
 --------------------------------------------------------------------------------
@@ -45,6 +46,9 @@ end
 
 function mod:LingeringGazeCast(args)
 	self:Message(194945, "Important", "Alarm", CL.casting:format(args.spellName))
+	if self:BarTimeLeft(self:SpellName(194323)) > 18 then -- Focusing (values lower than 18 sometimes failed)
+		self:CDBar(194945, 15.7)
+	end
 end
 
 function mod:LingeringGazeApplied(args)
@@ -67,4 +71,5 @@ function mod:Beamed(args)
 	self:Message(args.spellId, "Positive", "Info")
 	self:Bar(args.spellId, 15)
 	self:Bar(194323, 60) -- Focusing
+	self:CDBar(194945, 5.9) -- Lingering Gaze
 end
