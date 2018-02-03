@@ -23,6 +23,7 @@ function mod:GetOptions()
 	return {
 		194945, -- Lingering Gaze
 		194323, -- Focusing
+		202046, -- Beam
 		194333, -- Beamed
 	}
 end
@@ -32,6 +33,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LingeringGazeApplied", 194945)
 	self:Log("SPELL_AURA_APPLIED", "Focusing", 194323)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "RadiationLevel", 195034)
+	self:Log("SPELL_AURA_APPLIED", "BeamDamage", 202046)
+	self:Log("SPELL_PERIODIC_DAMAGE", "BeamDamage", 202046)
+	self:Log("SPELL_PERIODIC_MISSED", "BeamDamage", 202046)
 	self:Log("SPELL_AURA_APPLIED", "Beamed", 194333)
 end
 
@@ -64,6 +68,17 @@ end
 function mod:RadiationLevel(args)
 	if args.amount >= 10 and args.amount % 5 == 0 then -- 10, 15, 20
 		self:Message(194323, "Urgent", "Info", L.radiation_level:format(args.spellName, args.amount), args.spellId)
+	end
+end
+
+do
+	local prev = 0
+	function mod:BeamDamage(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+		end
 	end
 end
 
