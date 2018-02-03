@@ -12,7 +12,7 @@ mod.engageId = 1817
 
 local L = mod:GetLocale()
 if L then
-	L.radiation_level = "%s - %d%%" -- Radiation Level - 10%
+	L.radiation_level = "%s (%d%%)" -- Radiation Level (10%)
 end
 
 --------------------------------------------------------------------------------
