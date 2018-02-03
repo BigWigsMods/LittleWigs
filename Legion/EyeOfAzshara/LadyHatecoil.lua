@@ -26,7 +26,7 @@ end
 function mod:GetOptions()
 	return {
 		193597, -- Static Nova
-		193611, -- Focused Lightning
+		{193611, "PROXIMITY"}, -- Focused Lightning
 		193698, -- Curse of the Witch
 		"blob",
 		196610, -- Monsoon
@@ -38,6 +38,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StaticNova", 193597)
 	self:Log("SPELL_CAST_START", "FocusedLightning", 193611)
+	self:Log("SPELL_CAST_SUCCESS", "FocusedLightningSuccess", 193611)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfTheWitch", 193698)
 	self:Log("SPELL_AURA_REMOVED", "CurseOfTheWitchRemoved", 193698)
 	self:Log("SPELL_CAST_SUCCESS", "BeckonStorm", 193682)
@@ -66,6 +67,11 @@ end
 function mod:FocusedLightning(args)
 	self:Message(args.spellId, "Attention", "Alert")
 	self:CDBar(args.spellId, 35) -- pull:25.4, 36.4, 35.2 / m pull:25.3, 36.4, 36.4, 37.6
+	self:OpenProximity(args.spellId, 5) -- Excess Lightning (193624)
+end
+
+function mod:FocusedLightningSuccess(args)
+	self:CloseProximity(args.spellId)
 end
 
 function mod:CurseOfTheWitch(args)
