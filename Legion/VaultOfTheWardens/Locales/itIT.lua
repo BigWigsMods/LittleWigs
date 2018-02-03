@@ -13,7 +13,7 @@ end
 
 L = BigWigs:NewBossLocale("Glazer", "itIT")
 if L then
-	--L.radiation_level = "%s (%d%%)"
+	--L.radiation_level = "%s: %d%%"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "itIT")
