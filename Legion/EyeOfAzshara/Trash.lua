@@ -54,7 +54,7 @@ function mod:GetOptions()
 
 		--[[ Hatecoil Arcanist & Ritualist Lesha ]]--
 		196027, -- Aqua Spout
-		{197105, "HEALER"} -- Polymorph: Fish
+		197105, -- Polymorph: Fish
 	}, {
 		[225089] = L.wrangler,
 		[196870] = L.stormweaver,
@@ -117,5 +117,7 @@ function mod:AquaSpout(args)
 end
 
 function mod:PolymorphFish(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Info")
+	if self:Dispeller("magic") or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Attention", "Info", nil, nil, true)
+	end
 end
