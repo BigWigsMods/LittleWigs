@@ -6,6 +6,13 @@ if L then
 	L.interrupted = "%s已打断%s（%.1f秒剩余）！"
 end
 
+L = BigWigs:NewBossLocale("L'ura", "zhCN")
+if L then
+	--L.warmup_text = "L'ura Active"
+	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
+	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+end
+
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "zhCN")
 if L then
 	L.custom_on_autotalk = "自动对话"
@@ -16,4 +23,6 @@ if L then
 	L.alleria = "奥蕾莉亚·风行者"
 	L.subjugator = "影卫征服者"
 	L.voidbender = "影卫缚灵师"
+	--L.conjurer = "Shadowguard Conjurer"
+	--L.weaver = "Grand Shadow-Weaver"
 end

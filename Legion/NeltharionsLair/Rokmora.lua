@@ -9,11 +9,23 @@ mod:RegisterEnableMob(91003)
 mod.engageId = 1790
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_text = "Rokmora Active"
+	L.warmup_trigger = "Navarrogg?! Betrayer! You would lead these intruders against us?!"
+	L.warmup_trigger_2 = "Either way, I will enjoy every moment of it. Rokmora, crush them!"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		188169, -- Razor Shards
 		188114, -- Shatter
 		192800, -- Choking Dust
@@ -21,6 +33,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:Log("SPELL_CAST_START", "RazorShards", 188169)
 	self:Log("SPELL_CAST_START", "Shatter", 188114)
 
@@ -37,6 +50,14 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(_, msg)
+	if msg == L.warmup_trigger then
+		self:Bar("warmup", 18.9, L.warmup_text, "achievement_dungeon_neltharionslair")
+	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft(L.warmup_text) == 0 then
+		self:Bar("warmup", 4.95, L.warmup_text, "achievement_dungeon_neltharionslair")
+	end
+end
 
 function mod:RazorShards(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.incoming:format(args.spellName))

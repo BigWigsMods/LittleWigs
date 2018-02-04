@@ -21,6 +21,7 @@ local addCount = 1
 function mod:GetOptions()
 	return {
 		{192094, "ICON", "SAY", "FLASH"}, -- Impaling Spear
+		192131, -- Throw Spear
 		197064, -- Enrage
 		197502, -- Restoration
 		191900, -- Crashing Wave
@@ -37,6 +38,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ImpalingSpear", 192094)
 	self:Log("SPELL_AURA_REMOVED", "ImpalingSpearOver", 192094)
+	self:Log("SPELL_AURA_APPLIED", "ThrowSpear", 192131)
 	self:Log("SPELL_CAST_SUCCESS", "CallReinforcementsNormal", 192072, 192073)
 	self:Log("SPELL_CAST_SUCCESS", "CallReinforcements", 196563)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 197064)
@@ -59,7 +61,7 @@ end
 --
 
 function mod:ImpalingSpear(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
 	self:CDBar(args.spellId, 27) -- pull:35.0, 31.6 / hc pull:29.2, 29.2, 26.8 / m pull:29.1, 28.0, 28.3, 27.5
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
@@ -70,6 +72,12 @@ end
 
 function mod:ImpalingSpearOver(args)
 	self:PrimaryIcon(args.spellId)
+end
+
+function mod:ThrowSpear(args)
+	if self:Me(args.destGUID) or self:Healer() then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, true)
+	end
 end
 
 do

@@ -37,7 +37,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "VoidShieldRemoved", 202455)
 	self:Log("SPELL_AURA_APPLIED", "InquisitiveStare", 212564)
 	self:Log("SPELL_AURA_REFRESH", "InquisitiveStare", 212564)
-	self:Log("SPELL_CAST_SUCCESS", "SapSoul", 206303)
+	self:Log("SPELL_CAST_SUCCESS", "SapSoul", 206303) -- Mythic, Mythic+
+	self:Log("SPELL_CAST_SUCCESS", "SapSoulInterruptible", 200905) -- Normal, Heroic
 	self:Log("SPELL_AURA_APPLIED", "SappedSoul", 200904)
 	self:Log("SPELL_AURA_REFRESH", "SappedSoul", 200904)
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
@@ -51,6 +52,7 @@ end
 
 function mod:OnEngage()
 	nextTeleportSoonWarning = 75 -- Teleport at 70%
+	self:CDBar(200904, 11.6, self:SpellName(206303)) -- Sap Soul
 end
 
 --------------------------------------------------------------------------------
@@ -83,6 +85,11 @@ end
 function mod:SapSoul(args)
 	self:Message(200904, "Attention", "Info", CL.casting:format(args.spellName))
 	self:CDBar(200904, 15.8, args.spellName)
+end
+
+function mod:SapSoulInterruptible(args)
+	self:Message(200904, "Attention", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
+	self:CDBar(200904, 20, args.spellName)
 end
 
 do
