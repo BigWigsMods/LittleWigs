@@ -108,7 +108,9 @@ do
 		if t-prev > 3 then
 			prev = t
 			self:Message(-15926, "Attention", "Info", CL.spawned:format(L.tentacles))
-			self:CDBar(-15926, 30.5, L.tentacles)
+			if self:BarTimeLeft(L.guards) > 30.5 then
+				self:CDBar(-15926, 30.5, L.tentacles)
+			end
 		end
 		self:UpdateInfoBox()
 	end
@@ -121,7 +123,9 @@ end
 
 function mod:HowlingDark(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
-	self:CDBar(args.spellId, 33)
+	if self:BarTimeLeft(L.guards) > 31.6 then
+		self:CDBar(args.spellId, 31.6)
+	end
 end
 
 function mod:EntropicForce(args)
@@ -160,6 +164,8 @@ function mod:Interrupt(args)
 	if args.extraSpellId == 248736 then -- Eternal Twilight
 		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:Message(args.extraSpellId, "Positive", "Long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
+		self:CDBar(-15926, 11, L.tentacles) -- Tentacles
+		self:CDBar(244751, 16) -- Howling Dark
 	end
 end
 
