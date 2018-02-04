@@ -14,11 +14,23 @@ mod:RegisterEnableMob(124729) -- L'ura
 mod.engageId = 2068
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_text = "L'ura Active"
+	L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
+	L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		247795, -- Call to the Void
 		248535, -- Naaru's Lament
 		247930, -- Umbral Cadence
@@ -31,6 +43,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:Log("SPELL_CAST_START", "CalltotheVoid", 247795)
 	self:Log("SPELL_AURA_APPLIED", "NaarusLament", 248535)
 	self:Log("SPELL_CAST_SUCCESS", "UmbralCadence", 247930)
@@ -48,6 +61,14 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(_, msg)
+	if msg == L.warmup_trigger then
+		self:Bar("warmup", 30.2, L.warmup_text, "spell_priest_divinestar_shadow")
+	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft(L.warmup_text) == 0 then
+		self:Bar("warmup", 8.47, L.warmup_text, "spell_priest_divinestar_shadow")
+	end
+end
 
 function mod:CalltotheVoid(args)
 	self:Message(args.spellId, "Important", "Warning")

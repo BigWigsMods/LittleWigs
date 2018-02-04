@@ -17,6 +17,7 @@ function mod:GetOptions()
 		{204646, "SAY", "ICON"}, -- Crushing Grip
 		204574, -- Strangling Roots
 		204667, -- Nightmare Breath
+		204666, -- Shattered Earth
 	}
 end
 
@@ -25,12 +26,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "CrushingGripEnd", 204646)
 	self:Log("SPELL_CAST_START", "StranglingRoots", 204574)
 	self:Log("SPELL_CAST_START", "NightmareBreath", 204667)
+	self:Log("SPELL_CAST_START", "ShatteredEarth", 204666)
 end
 
 function mod:OnEngage()
 	self:CDBar(204646, 28) -- Crushing Grip
 	self:CDBar(204574, 12) -- Strangling Roots
 	self:CDBar(204667, 18) -- Nightmare Breath
+	self:CDBar(204666, 7.3) -- Shattered Earth
 end
 
 --------------------------------------------------------------------------------
@@ -64,3 +67,7 @@ function mod:NightmareBreath(args)
 	self:CDBar(args.spellId, 26) -- hc pull:18.6, 26.7, 32.8 / m pull:19.5, 32.8, 26.7, 33.5
 end
 
+function mod:ShatteredEarth(args)
+	self:Message(args.spellId, "Important", "Alarm")
+	self:CDBar(args.spellId, 51) -- m pull: 7.3, 50.9, 51.1
+end

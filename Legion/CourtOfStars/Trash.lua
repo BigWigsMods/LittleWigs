@@ -517,9 +517,8 @@ do
 		timer = nil
 		knownClues[clue] = true -- Throttle to only show once per new message
 		if clue == GetGossipText() then -- Extra safety
-			sendChatMessage(clue)
 			RaidNotice_AddMessage(RaidWarningFrame, "LittleWigs: Unknown clue detected, see chat for info.", {r=1,g=1,b=1})
-			BigWigs:Print("LittleWigs is sending the entire clue to chat as it detected an unknown clue, please report it on Discord/GitHub/Curse so we can add it and shorten the message.")
+			BigWigs:Print("LittleWigs has found an unknown clue, please report it on Discord or GitHub so we can add it and shorten the message.")
 			BigWigs:Error(("|cffffff00TELL THE AUTHORS:|r New clue '%s' with '%s'"):format(clue, locale))
 		end
 	end
