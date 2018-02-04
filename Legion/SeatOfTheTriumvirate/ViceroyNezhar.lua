@@ -92,8 +92,8 @@ function mod:UpdateInfoBox()
 			self:SetInfo("infobox", 2, tentaclesUp)
 		end
 		if guardsUp > 0 then
-			self:SetInfo("infobox", 3, L.guards)
-			self:SetInfo("infobox", 4, guardsUp)
+			self:SetInfo("infobox", tectaclesUp > 0 and 3 or 1, L.guards)
+			self:SetInfo("infobox", tectaclesUp > 0 and 4 or 2, guardsUp)
 		end
 	else
 		self:CloseInfo("infobox")
