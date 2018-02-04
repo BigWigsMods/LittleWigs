@@ -158,6 +158,7 @@ function mod:EternalTwilight(args)
 	self:Message(args.spellId, "Neutral", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 10)
 	eternalTwilightExplo = GetTime() + 10
+	self:CDBar(248804, 57, L.guards) -- Guards
 end
 
 function mod:Interrupt(args)
