@@ -48,12 +48,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "TentacleSpawn", 249082)
 	self:Death("TentacleDeath", 122827)
 	self:Log("SPELL_CAST_START", "HowlingDark", 244751)
 	self:Log("SPELL_CAST_START", "EntropicForce", 246324)
 	self:Log("SPELL_AURA_REMOVED", "EntropicForceRemoved", 246324)
-	self:Log("SPELL_CAST_SUCCESS", "SummonEtherealGuards", 249336)
 	self:Log("SPELL_AURA_APPLIED", "DarkBulwark", 248804)
 	self:Log("SPELL_AURA_REMOVED", "DarkBulwarkRemoved", 248804)
 	self:Log("SPELL_CAST_START", "EternalTwilight", 248736)
@@ -79,6 +79,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 249336 then -- Summon Ethereal Guards
+		self:Message(-16424, "Attention", "Info", CL.spawned:format(L.guards))
+	end
+end
 
 function mod:UpdateInfoBox()
 	if tentaclesUp > 0 or guardsUp > 0 then
@@ -129,11 +134,6 @@ end
 function mod:EntropicForceRemoved(args)
 	self:StopBar(CL.cast:format(args.spellId))
 	self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
-end
-
-function mod:SummonEtherealGuards(args)
-	self:Message(-15926, "Attention", "Info", CL.spawned:format(L.guards))
-	--self:Bar(-16424, ???, L.guards, 248804)
 end
 
 function mod:DarkBulwark(args)
