@@ -38,12 +38,11 @@ function mod:GetOptions()
 		244751, -- Howling Dark
 		246324, -- Entropic Force
 		244906, -- Collapsing Void
-		-16424, -- Summon Ethereal Guards (249336)
 		248804, -- Dark Bulwark
 		248736, -- Eternal Twilight
 	}, {
 		["infobox"] = "general",
-		[-16424] = "mythic",
+		[248804] = "mythic",
 	}
 end
 
@@ -72,7 +71,7 @@ function mod:OnEngage()
 	self:Bar(244751, 16) -- Howling Dark
 	self:Bar(246324, 32) -- Entropic Force
 	if self:Mythic() then
-		self:Bar(-16424, 53.5, L.guards, 248804) -- Guards
+		self:Bar(248804, 53.5, L.guards) -- Guards
 	end
 end
 
@@ -81,7 +80,7 @@ end
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 249336 then -- Summon Ethereal Guards
-		self:Message(-16424, "Attention", "Info", CL.spawned:format(L.guards))
+		self:Message(248804, "Attention", "Info", CL.spawned:format(L.guards))
 	end
 end
 
