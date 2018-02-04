@@ -74,8 +74,6 @@ function mod:OnEngage()
 	if self:Mythic() or self:MythicPlus() then
 		self:Bar(248804, 53.5, L.guards) -- Guards
 		nextDarkBulwark = GetTime() + 53.5
-	else
-		nextDarkBulwark = 0
 	end
 end
 
@@ -112,7 +110,7 @@ do
 		if t-prev > 3 then
 			prev = t
 			self:Message(-15926, "Attention", "Info", CL.spawned:format(L.tentacles))
-			if nextDarkBulwark == 0 or nextDarkBulwark - GetTime() > 30.5 then
+			if self:Normal() or self:Heroic() or nextDarkBulwark - GetTime() > 30.5 then
 				self:CDBar(-15926, 30.5, L.tentacles)
 			end
 		end
@@ -127,7 +125,7 @@ end
 
 function mod:HowlingDark(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
-	if nextDarkBulwark == 0 or nextDarkBulwark - GetTime() > 31.6 then
+	if self:Normal() or self:Heroic() or nextDarkBulwark - GetTime() > 31.6 then
 		self:CDBar(args.spellId, 31.6)
 	end
 end
