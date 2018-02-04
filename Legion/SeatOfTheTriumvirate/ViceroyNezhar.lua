@@ -71,7 +71,7 @@ function mod:OnEngage()
 	self:Bar(-15926, 12, L.tentacles) -- Tentacles
 	self:Bar(244751, 16) -- Howling Dark
 	self:Bar(246324, 32) -- Entropic Force
-	if self:Mythic() or self:MythicPlus() then
+	if self:Mythic() then
 		self:Bar(248804, 53.5, L.guards) -- Guards
 		nextDarkBulwark = GetTime() + 53.5
 	end
