@@ -38,22 +38,21 @@ function mod:GetOptions()
 		244751, -- Howling Dark
 		246324, -- Entropic Force
 		244906, -- Collapsing Void
-		-16424, -- Summon Ethereal Guards (249336)
 		248804, -- Dark Bulwark
 		248736, -- Eternal Twilight
 	}, {
 		["infobox"] = "general",
-		[-16424] = "mythic",
+		[248804] = "mythic",
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "TentacleSpawn", 249082)
 	self:Death("TentacleDeath", 122827)
 	self:Log("SPELL_CAST_START", "HowlingDark", 244751)
 	self:Log("SPELL_CAST_START", "EntropicForce", 246324)
 	self:Log("SPELL_AURA_REMOVED", "EntropicForceRemoved", 246324)
-	self:Log("SPELL_CAST_SUCCESS", "SummonEtherealGuards", 249336)
 	self:Log("SPELL_AURA_APPLIED", "DarkBulwark", 248804)
 	self:Log("SPELL_AURA_REMOVED", "DarkBulwarkRemoved", 248804)
 	self:Log("SPELL_CAST_START", "EternalTwilight", 248736)
@@ -72,13 +71,18 @@ function mod:OnEngage()
 	self:Bar(244751, 16) -- Howling Dark
 	self:Bar(246324, 32) -- Entropic Force
 	if self:Mythic() then
-		self:Bar(-16424, 53.5, L.guards, 248804) -- Guards
+		self:Bar(248804, 53.5, L.guards) -- Guards
 	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 249336 then -- Summon Ethereal Guards
+		self:Message(248804, "Attention", "Info", CL.spawned:format(L.guards))
+	end
+end
 
 function mod:UpdateInfoBox()
 	if tentaclesUp > 0 or guardsUp > 0 then
@@ -88,8 +92,8 @@ function mod:UpdateInfoBox()
 			self:SetInfo("infobox", 2, tentaclesUp)
 		end
 		if guardsUp > 0 then
-			self:SetInfo("infobox", 3, L.guards)
-			self:SetInfo("infobox", 4, guardsUp)
+			self:SetInfo("infobox", tectaclesUp > 0 and 3 or 1, L.guards)
+			self:SetInfo("infobox", tectaclesUp > 0 and 4 or 2, guardsUp)
 		end
 	else
 		self:CloseInfo("infobox")
@@ -104,7 +108,9 @@ do
 		if t-prev > 3 then
 			prev = t
 			self:Message(-15926, "Attention", "Info", CL.spawned:format(L.tentacles))
-			self:CDBar(-15926, 30.5, L.tentacles)
+			if self:BarTimeLeft(L.guards) > 30.5 then
+				self:CDBar(-15926, 30.5, L.tentacles)
+			end
 		end
 		self:UpdateInfoBox()
 	end
@@ -117,7 +123,9 @@ end
 
 function mod:HowlingDark(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
-	self:CDBar(args.spellId, 33)
+	if self:BarTimeLeft(L.guards) > 31.6 then
+		self:CDBar(args.spellId, 31.6)
+	end
 end
 
 function mod:EntropicForce(args)
@@ -129,11 +137,6 @@ end
 function mod:EntropicForceRemoved(args)
 	self:StopBar(CL.cast:format(args.spellId))
 	self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
-end
-
-function mod:SummonEtherealGuards(args)
-	self:Message(-15926, "Attention", "Info", CL.spawned:format(L.guards))
-	--self:Bar(-16424, ???, L.guards, 248804)
 end
 
 function mod:DarkBulwark(args)
@@ -155,12 +158,15 @@ function mod:EternalTwilight(args)
 	self:Message(args.spellId, "Neutral", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 10)
 	eternalTwilightExplo = GetTime() + 10
+	self:CDBar(248804, 57, L.guards) -- Guards
 end
 
 function mod:Interrupt(args)
 	if args.extraSpellId == 248736 then -- Eternal Twilight
 		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:Message(args.extraSpellId, "Positive", "Long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
+		self:CDBar(-15926, 11, L.tentacles) -- Tentacles
+		self:CDBar(244751, 16) -- Howling Dark
 	end
 end
 
