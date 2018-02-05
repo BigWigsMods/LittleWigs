@@ -8,3 +8,9 @@ if L then
 	--L.tides = "Restless Tides"
 	--L.arcanist = "Hatecoil Arcanist"
 end
+
+L = BigWigs:NewBossLocale("Lady Hatecoil", "ruRU")
+if L then
+	--L.water_unsafe = "%s (water unsafe)"
+	--L.land_unsafe = "%s (land unsafe)"
+end

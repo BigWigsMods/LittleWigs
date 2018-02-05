@@ -8,3 +8,9 @@ if L then
 	L.tides = "焦躁的海潮元素"
 	L.arcanist = "积怨奥术师"
 end
+
+L = BigWigs:NewBossLocale("Lady Hatecoil", "zhCN")
+if L then
+	--L.water_unsafe = "%s (water unsafe)"
+	--L.land_unsafe = "%s (land unsafe)"
+end
