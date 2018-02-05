@@ -44,6 +44,8 @@ function mod:OnBossEnable()
 
 	--[[ Darkfang ]]--
 	self:Log("SPELL_CAST_START", "RavagingDarkness", 245802)
+ 	self:Log("SPELL_DAMAGE", "RavagingDarknessDamage", 245803)
+ 	self:Log("SPELL_MISSED", "RavagingDarknessDamage", 245803)
 
 	--[[ Duskwing (Mythic) ]]--
 	self:Log("SPELL_CAST_START", "DreadScreech", 248831)
@@ -92,8 +94,19 @@ do
 end
 
 function mod:RavagingDarkness(args)
-	self:Message(args.spellId, "Attention", "Alert")
+	self:Message(args.spellId, "Attention", "Long")
 	self:Bar(args.spellId, 9.7)
+end
+
+do
+	local prev = 0
+	function mod:RavagingDarknessDamage(args)
+		local t = GetTime()
+		if self:Me(args.destGUID) and t-prev > 1.5 then
+			prev = t
+			self:Message(245802, "Personal", "Alert", CL.underyou:format(args.spellName))
+		end
+	end
 end
 
 function mod:DreadScreech(args)
