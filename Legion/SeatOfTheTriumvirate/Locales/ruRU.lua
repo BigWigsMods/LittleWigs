@@ -8,9 +8,9 @@ end
 
 L = BigWigs:NewBossLocale("L'ura", "ruRU")
 if L then
-	--L.warmup_text = "L'ura Active"
-	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+	L.warmup_text = "Л'ура активна"
+	L.warmup_trigger = "Такой хаос... такая боль. Я еще не чувствовала ничего подобного."
+	L.warmup_trigger_2 = "Впрочем, неважно. Она должна умереть."
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "ruRU")
