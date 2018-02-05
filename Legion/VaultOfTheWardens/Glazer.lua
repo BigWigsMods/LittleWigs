@@ -7,6 +7,12 @@ mod:RegisterEnableMob(95887)
 mod.engageId = 1817
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local nextFocusing = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -40,6 +46,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	nextFocusing = GetTime() + 32
 	self:Bar(194323, 32) -- Focusing
 	self:CDBar(194945, 15.4) -- Lingering Gaze
 end
@@ -50,7 +57,7 @@ end
 
 function mod:LingeringGazeCast(args)
 	self:Message(194945, "Important", "Alarm", CL.casting:format(args.spellName))
-	if self:BarTimeLeft(self:SpellName(194323)) > 18 then -- Focusing (values lower than 18 sometimes failed)
+	if nextFocusing - GetTime() > 18 then -- values lower than 18 sometimes failed
 		self:CDBar(194945, 15.7)
 	end
 end
@@ -86,5 +93,6 @@ function mod:Beamed(args)
 	self:Message(args.spellId, "Positive", "Info")
 	self:Bar(args.spellId, 15)
 	self:Bar(194323, 60) -- Focusing
+	nextFocusing = GetTime() + 60
 	self:CDBar(194945, 5.9) -- Lingering Gaze
 end

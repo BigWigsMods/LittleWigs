@@ -15,6 +15,7 @@ mod.engageId = 2067
 local tentaclesUp = 0
 local guardsUp = 0
 local eternalTwilightExplo = 0
+local nextDarkBulwark = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -72,6 +73,7 @@ function mod:OnEngage()
 	self:Bar(246324, 32) -- Entropic Force
 	if self:Mythic() then
 		self:Bar(248804, 53.5, L.guards) -- Guards
+		nextDarkBulwark = GetTime() + 53.5
 	end
 end
 
@@ -108,7 +110,7 @@ do
 		if t-prev > 3 then
 			prev = t
 			self:Message(-15926, "Attention", "Info", CL.spawned:format(L.tentacles))
-			if self:BarTimeLeft(L.guards) > 30.5 then
+			if not self:Mythic() or nextDarkBulwark - GetTime() > 30.5 then
 				self:CDBar(-15926, 30.5, L.tentacles)
 			end
 		end
@@ -123,7 +125,7 @@ end
 
 function mod:HowlingDark(args)
 	self:Message(args.spellId, "Urgent", "Alarm")
-	if self:BarTimeLeft(L.guards) > 31.6 then
+	if not self:Mythic() or nextDarkBulwark - GetTime() > 31.6 then
 		self:CDBar(args.spellId, 31.6)
 	end
 end
@@ -159,6 +161,7 @@ function mod:EternalTwilight(args)
 	self:CastBar(args.spellId, 10)
 	eternalTwilightExplo = GetTime() + 10
 	self:CDBar(248804, 57, L.guards) -- Guards
+	nextDarkBulwark = GetTime() + 57
 end
 
 function mod:Interrupt(args)
