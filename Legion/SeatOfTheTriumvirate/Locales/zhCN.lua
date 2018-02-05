@@ -8,9 +8,9 @@ end
 
 L = BigWigs:NewBossLocale("L'ura", "zhCN")
 if L then
-	--L.warmup_text = "L'ura Active"
-	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+	L.warmup_text = "鲁拉激活"
+	L.warmup_trigger = "如此混乱……如此痛苦。我从未体验过这种感受。"
+	L.warmup_trigger_2 = "这些可以稍后再想。但它必须死。"
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "zhCN")
@@ -23,6 +23,6 @@ if L then
 	L.alleria = "奥蕾莉亚·风行者"
 	L.subjugator = "影卫征服者"
 	L.voidbender = "影卫缚灵师"
-	--L.conjurer = "Shadowguard Conjurer"
-	--L.weaver = "Grand Shadow-Weaver"
+	L.conjurer = "影卫召唤师"
+	L.weaver = "大织影者"
 end
