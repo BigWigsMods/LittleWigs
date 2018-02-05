@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CalltotheVoid", 247795)
 	self:Log("SPELL_AURA_APPLIED", "NaarusLament", 248535)
 	self:Log("SPELL_CAST_SUCCESS", "UmbralCadence", 247930)
-	self:Log("SPELL_CAST_START", "FragmentofDespair", 245164)
+	self:Log("SPELL_CAST_SUCCESS", "FragmentofDespair", 245164)
 	self:Log("SPELL_AURA_APPLIED", "Backlash", 247816)
 
 	--[[ Mythic ]]--
@@ -72,7 +72,7 @@ end
 
 function mod:CalltotheVoid(args)
 	self:Message(args.spellId, "Important", "Warning")
-	self:CDBar(245164, 8) -- Fragment of Despair
+	self:CDBar(245164, 11) -- Fragment of Despair
 end
 
 function mod:NaarusLament(args)
@@ -81,11 +81,11 @@ end
 
 function mod:UmbralCadence(args)
 	self:Message(args.spellId, "Attention", "Alert")
-	self:CDBar(args.spellId, 13.5)
+	self:CDBar(args.spellId, 10.5)
 end
 
 function mod:FragmentofDespair(args)
-	self:Message(args.spellId, "Important", "Warning")
+	self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
 end
 
 function mod:Backlash(args)
