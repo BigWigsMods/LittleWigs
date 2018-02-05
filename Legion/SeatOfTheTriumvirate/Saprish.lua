@@ -94,7 +94,7 @@ do
 end
 
 function mod:RavagingDarkness(args)
-	self:Message(args.spellId, "Attention", "Alert")
+	self:Message(args.spellId, "Attention", "Long")
 	self:Bar(args.spellId, 9.7)
 end
 
