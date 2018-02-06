@@ -21,6 +21,9 @@ if L then
 	L.botanist = "Присягнувшая Скверне - ботаник"
 	L.orbcaster = "Сквернолап - метательница сфер"
 	L.waglur = "Ва'глур"
+	L.scavenger = "Змееуст-барахольщик"
 	L.gazerax = "Созерцатель"
 	L.vilebark = "Ходячий гиблодрев"
+
+	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end

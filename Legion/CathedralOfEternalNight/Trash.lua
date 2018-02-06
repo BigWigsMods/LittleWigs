@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	118714, -- Hellblaze Temptress
 	118713, -- Felstrider Orbcaster
 	120713, -- Wa'glur
+	118719, -- Wyrmtongue Scavenger
 	118723, -- Gazerax
 	121569  -- Vilebark Walker
 )
@@ -33,8 +34,11 @@ if L then
 	L.temptress = "Hellblaze Temptress"
 	L.orbcaster = "Felstrider Orbcaster"
 	L.waglur = "Wa'glur"
+	L.scavenger = "Wyrmtongue Scavenger"
 	L.gazerax = "Gazerax"
 	L.vilebark = "Vilebark Walker"
+
+	L.throw_tome = "Throw Tome"
 end
 
 --------------------------------------------------------------------------------
@@ -59,6 +63,10 @@ function mod:GetOptions()
 		239320, -- Felblaze Orb
 		-- Wa'glur
 		241772, -- Unearthy Howl
+		-- Wyrmtongue Scavenger
+		242839, -- Throw Frost Tome
+		242841, -- Throw Silence Tome
+		239101, -- Throw Arcane Tome
 		-- Gazerax
 		239232, -- Blinding Glare
 		-- Vilebark Walker
@@ -72,6 +80,7 @@ function mod:GetOptions()
 		[237391] = L.temptress,
 		[239320] = L.orbcaster,
 		[241772] = L.waglur,
+		[242839] = L.scavenger,
 		[239232] = L.gazerax,
 		[242760] = L.vilebark
 	}
@@ -88,6 +97,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FelblazeOrb", 239320) -- Felblaze Orb
 	self:Log("SPELL_CAST_START", "UnearthyHowl", 241772) -- Unearthy Howl
 	self:Log("SPELL_CAST_START", "BlindingGlare", 239232) -- Blinding Glare
+	self:Log("SPELL_CAST_START", "ThrowTome", 242839, 242841, 242837) -- Throw Frost Tome, Throw Silence Tome, Throw Arcane Tome
 	self:Log("SPELL_CAST_START", "LumberingCrash", 121569) -- Lumbering Crash
 end
 
@@ -160,6 +170,17 @@ end
 function mod:BlindingGlare(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 2.5)
+end
+
+do
+	local prev = 0
+	function mod:ThrowTome(args)
+		local t = GetTime()
+		if t-prev > 1 then
+			prev = t
+			self:Message(args.spellId == 242837 and 239101 or args.spellId, "Urgent", "Warning", CL.casting:format(L.throw_tome)) -- using a different ID for Arcane Tome's options because 242837 has no description
+		end
+	end
 end
 
 -- Vilebark Walker

@@ -21,6 +21,9 @@ if L then
 	L.botanist = "Teufelsgeborene Botanikerin"
 	L.orbcaster = "Sphärenwirker der Teufelsschreiter"
 	L.waglur = "Wa'glur"
+	L.scavenger = "Wyrmzungenplünderer"
 	L.gazerax = "Gazerax"
 	L.vilebark = "Übelrindenläufer"
+
+	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end
