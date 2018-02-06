@@ -25,5 +25,5 @@ if L then
 	L.gazerax = "賈澤拉克斯"
 	--L.vilebark = "Vilebark Walker"
 
-	--L.throw_tome = "Throw Tome"
+	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end

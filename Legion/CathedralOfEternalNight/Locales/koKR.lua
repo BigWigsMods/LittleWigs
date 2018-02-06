@@ -25,5 +25,5 @@ if L then
 	L.gazerax = "가제락스"
 	L.vilebark = "썩은나무껍질 방랑자"
 
-	--L.throw_tome = "Throw Tome"
+	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end
