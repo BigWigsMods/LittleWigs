@@ -21,6 +21,9 @@ if L then
 	L.botanist = "Botaniste gangrenuit"
 	L.orbcaster = "Lance-orbe gangrerôdeur"
 	L.waglur = "Wa'glur"
+	L.scavenger = "Pillard langue-de-wyrm"
 	L.gazerax = "Scrutax"
 	L.vilebark = "Marcheur vilécorce"
+
+	--L.throw_tome = "Throw Tome"
 end

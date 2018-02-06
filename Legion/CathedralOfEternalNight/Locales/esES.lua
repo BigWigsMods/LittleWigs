@@ -21,7 +21,10 @@ if L then
 	L.botanist = "Botanista vilificada"
 	L.orbcaster = "Lanzaorbes Zancavil"
 	L.waglur = "Wa'glur"
+	L.scavenger = "Carroñero Lenguavermis"
 	L.gazerax = "Avizorax"
 	L.vilebark = "Caminante Cortezavil"
+
+	--L.throw_tome = "Throw Tome"
 end
 

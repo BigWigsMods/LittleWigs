@@ -21,6 +21,9 @@ if L then
 	L.botanist = "Botânica Vilanesca"
 	L.orbcaster = "Lança-orbe Passovil"
 	L.waglur = "Wa'glur"
+	L.scavenger = "Catador Língua de Serpe"
 	L.gazerax = "Gazerax"
 	L.vilebark = "Andarilho Cascavil"
+
+	--L.throw_tome = "Throw Tome"
 end

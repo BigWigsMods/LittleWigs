@@ -21,6 +21,9 @@ if L then
 	L.botanist = "Присягнувшая Скверне - ботаник"
 	L.orbcaster = "Сквернолап - метательница сфер"
 	L.waglur = "Ва'глур"
+	L.scavenger = "Змееуст-барахольщик"
 	L.gazerax = "Созерцатель"
 	L.vilebark = "Ходячий гиблодрев"
+
+	--L.throw_tome = "Throw Tome"
 end
