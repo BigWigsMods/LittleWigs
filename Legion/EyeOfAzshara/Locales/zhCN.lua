@@ -11,9 +11,9 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "zhCN")
 if L then
-	--L.custom_on_show_helper_messages = "Helper messages for Static Nova and Focused Lightning"
-	--L.custom_on_show_helper_messages_desc = "Enable this option to add a helper message telling you whether water or land is safe when the boss starts casting |cff71d5ffStatic Nova|r or |cff71d5ffFocused Lightning|r."
+	L.custom_on_show_helper_messages = "静电新星和凝聚闪电帮助信息"
+	L.custom_on_show_helper_messages_desc = "启用此选项当首领开始施放|cff71d5ff静电新星|r或|cff71d5ff凝聚闪电|r时添加告知自身水中或沙丘安全的信息。"
 
-	--L.water_safe = "%s (water is safe)"
-	--L.land_safe = "%s (land is safe)"
+	L.water_safe = "%s（水中安全）"
+	L.land_safe = "%s（沙丘安全）"
 end
