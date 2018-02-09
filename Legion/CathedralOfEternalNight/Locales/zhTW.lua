@@ -21,6 +21,9 @@ if L then
 	L.botanist = "魔裔植物學家"
 	L.orbcaster = "獄炎補魂者"
 	--L.waglur = "Wa'glur"
+	--L.scavenger = "Wyrmtongue Scavenger"
 	L.gazerax = "賈澤拉克斯"
 	--L.vilebark = "Vilebark Walker"
+
+	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end
