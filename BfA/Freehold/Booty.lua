@@ -36,16 +36,16 @@ end
 --
 
 function mod:Sharknado(args)
-	self:Message(args.spellId, red, "Warning")
+	self:Message(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 40)
 end
 
 function mod:SharkToss(args)
-	self:Message(args.spellId, yellow, "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 	self:CDBar(args.spellId, 29) -- 17, 29, 29, 37, 40 XXX
 end
 
 function mod:Rearm(args)
-	self:Message(args.spellId, cyan, "Info")
+	self:Message(args.spellId, "cyan", "Info")
 	self:CDBar(args.spellId, 40)
 end

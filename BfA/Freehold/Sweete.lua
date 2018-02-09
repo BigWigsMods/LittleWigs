@@ -39,12 +39,12 @@ end
 --
 
 function mod:LoadedDiceAllHands(args)
-	self:Message("stages", cyan, "Info", args.spellName, args.spellId)
+	self:Message("stages", "cyan", "Info", args.spellName, args.spellId)
 	self:CDBar(257316, 29) -- Avast, ye!
 end
 
 function mod:SwiftwindSaber(args)
-	self:Message(args.spellId, yellow, "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 	self:CDBar(args.spellId, 15)
 end
 
@@ -52,9 +52,9 @@ do
 	local onMe, scheduled = nil, nil
 	local function warn(self)
 		if onMe then
-			self:Message(257305, blue, "Warning", CL.you:format(self:SpellName(257305)), 257305) -- Cannon Barrage
+			self:Message(257305, "blue", "Warning", CL.you:format(self:SpellName(257305)), 257305) -- Cannon Barrage
 		else
-			self:Message(257305, orange, "Alarm") -- Cannon Barrage
+			self:Message(257305, "orange", "Alarm") -- Cannon Barrage
 		end
 		onMe = nil
 		scheduled = nil
@@ -72,13 +72,13 @@ do
 end
 
 function mod:Avastye(args)
-	self:Message(args.spellId, red, "Long")
+	self:Message(args.spellId, "red", "Long")
 	self:CDBar(args.spellId, 20)
 end
 
 function mod:BlackPowderBomb(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal", "Warning", self:SpellName(244657), args.spellId) -- Fixate
+		self:TargetMessage(args.spellId, args.destName, "blue", "Warning", self:SpellName(244657), args.spellId) -- Fixate
 		self:Say(args.spellId, self:SpellName(244657)) -- Fixate
 		self:Flash(args.spellId)
 	end

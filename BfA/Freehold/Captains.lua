@@ -36,16 +36,16 @@ end
 --
 
 function mod:BlackoutBarrel(args)
-	self:Message(args.spellId, yellow, "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 	self:CDBar(args.spellId, 51)
 end
 
 function mod:BarrelSmash(args)
-	self:Message(args.spellId, orange, "Alarm")
+	self:Message(args.spellId, "orange", "Alarm")
 	self:CDBar(args.spellId, 23)
 end
 
 function mod:GrapeShot(args)
-	self:Message(args.spellId, red, "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 30.4)
 end

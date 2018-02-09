@@ -43,7 +43,7 @@ end
 
 
 function mod:Charrrrrge(args)
-	self:Message(args.spellId, yellow, "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 	self:CDBar(args.spellId, 8.5)
 end
 
@@ -55,24 +55,21 @@ function mod:SpawnParrot(args)
 end
 
 function mod:AzeritePowderShot(args)
-	self:Message(args.spellId, yellow, "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 	self:CDBar(args.spellId, 12.5)
 end
 
 function mod:RevitalizingBrew(args)
-	self:Message(args.spellId, red, "Warning")
+	self:Message(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 28.5)
 end
 
 do
 	local prev = 0
 	function mod:VileCoatingDamage(args)
-		if self:Me(args.destGUID) then
-			local t = GetTime()
-			if t-prev > 2 then
-				prev = t
-				self:Message(194668, blue, "Alarm", CL.underyou:format(args.spellName))
-			end
+		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
+			prev = GetTime()
+			self:Message(194668, "blue", "Alarm", CL.underyou:format(args.spellName))
 		end
 	end
 end
