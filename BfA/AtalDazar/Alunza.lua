@@ -15,7 +15,7 @@ function mod:GetOptions()
 	return {
 		255558, -- Tainted Blood
 		255577, -- Transfusion
-		{255579, "TANK"} -- Gilded Claws
+		{255579, "TANK"}, -- Gilded Claws
 		255582, -- Molten Gold
 		258709, -- Corrupted Gold
 	}
