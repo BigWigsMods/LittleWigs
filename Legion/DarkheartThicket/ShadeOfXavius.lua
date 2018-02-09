@@ -42,7 +42,10 @@ end
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp <= 50 then
-		local _, _, _, _, _, endOfCast = UnitCastingInfo(unit)
+		local _, _, _, _, _, endOfCast = UnitCastingInfo(unit) -- Nightmare Bolt, Growing Paranoia
+		if not endOfCast then
+			_, _, _, _, _, endOfCast = UnitChannelInfo(unit) -- Feed on the Weak
+		end
 		if endOfCast then
 			local timeLeft = endOfCast / 1000 - GetTime()
 			self:ScheduleTimer("Message", timeLeft, 200050, "Attention", "Info", CL.casting:format(self:SpellName(200050)))
