@@ -8,6 +8,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	100216, -- Hatecoil Wrangler
 	91783, -- Hatecoil Stormweaver
+	91782, -- Hatecoil Crusher
 	98173, -- Mystic Ssa'veh
 	95861, -- Hatecoil Oracle
 	91790, -- Mak'rana Siltwalker
@@ -24,6 +25,7 @@ local L = mod:GetLocale()
 if L then
 	L.wrangler = "Hatecoil Wrangler"
 	L.stormweaver = "Hatecoil Stormweaver"
+	L.crusher = "Hatecoil Crusher"
 	L.oracle = "Hatecoil Oracle"
 	L.siltwalker = "Mak'rana Siltwalker"
 	L.tides = "Restless Tides"
@@ -43,6 +45,9 @@ function mod:GetOptions()
 		196870, -- Storm
 		195109, -- Arc Lightning
 
+		--[[ Hatecoil Crusher ]]--
+		195129, -- Thundering Stomp
+
 		--[[ Hatecoil Oracle ]]--
 		195046, -- Rejuvenating Waters
 
@@ -58,6 +63,7 @@ function mod:GetOptions()
 	}, {
 		[225089] = L.wrangler,
 		[196870] = L.stormweaver,
+		[195129] = L.crusher,
 		[195046] = L.oracle,
 		[196127] = L.siltwalker,
 		[195284] = L.tides,
@@ -70,6 +76,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "LightningProd", 225089)
 	self:Log("SPELL_CAST_START", "Storm", 196870)
 	self:Log("SPELL_CAST_START", "ArcLightning", 195109)
+	self:Log("SPELL_CAST_START", "ThunderingStomp", 195129)
 	self:Log("SPELL_CAST_START", "RejuvenatingWaters", 195046)
 	self:Log("SPELL_CAST_START", "SpraySand", 196127)
 	self:Log("SPELL_CAST_START", "Undertow", 195284)
@@ -95,6 +102,11 @@ function mod:ArcLightning(args)
 	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
 end
 
+-- Hatecoil Crusher
+function mod:ThunderingStomp(args)
+	self:Message(args.spellId, "Important", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
+end
+
 -- Hatecoil Oracle
 function mod:RejuvenatingWaters(args)
 	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
@@ -118,6 +130,6 @@ end
 
 function mod:PolymorphFish(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Info", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "Attention", "Info", self:SpellName(118), nil, true) -- 118 is Polymorph, which is shorter than "Polymorph: Fish"
 	end
 end

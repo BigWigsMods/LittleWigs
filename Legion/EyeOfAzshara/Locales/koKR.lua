@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	--L.wrangler = "Hatecoil Wrangler"
 	L.stormweaver = "증오갈퀴 폭풍술사"
+	--L.crusher = "Hatecoil Crusher"
 	L.oracle = "증오갈퀴 점쟁이"
 	L.siltwalker = "마크라나 진흙방랑자"
 	L.tides = "안식 없는 조류"
