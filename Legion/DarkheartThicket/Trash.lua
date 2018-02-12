@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	95771, -- Dreadsoul Ruiner
+	101679, -- Dreadsoul Poisoner
 	95766, -- Crazed Razorbeak
 	95779, -- Festerhide Grizzly
 	100531, -- Bloodtainted Fury
@@ -21,6 +22,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.ruiner = "Dreadsoul Ruiner"
+	L.poisoner = "Dreadsoul Poisoner"
 	L.razorbeak = "Crazed Razorbeak"
 	L.grizzly = "Festerhide Grizzly"
 	L.fury = "Bloodtainted Fury"
@@ -35,6 +37,9 @@ function mod:GetOptions()
 	return {
 		--[[ Dreadsoul Ruiner ]]--
 		200658, -- Star Shower
+
+		--[[ Dreadsoul Poisoner ]]--
+		{200684, "SAY"}, -- Nightmare Toxin
 
 		--[[ Crazed Razorbeak ]]--
 		200768, -- Propelling Charge
@@ -52,6 +57,7 @@ function mod:GetOptions()
 		201399, -- Dread Inferno
 	}, {
 		[200658] = L.ruiner,
+		[200684] = L.poisoner,
 		[200768] = L.razorbeak,
 		[200580] = L.grizzly,
 		[201226] = L.fury,
@@ -64,6 +70,10 @@ function mod:OnBossEnable()
 
 	--[[ Dreadsoul Ruiner, Dreadfire Imp ]]--
 	self:Log("SPELL_CAST_START", "Interrupts", 200658, 201399)
+
+	--[[ Dreadsoul Poisoner ]]--
+	self:Log("SPELL_AURA_APPLIED", "NightmareToxinApplied", 200684)
+	self:Log("SPELL_AURA_REMOVED", "NightmareToxinRemoved", 200684)
 
 	--[[ Crazed Razorbeak, Festerhide Grizzly ]]--
 	self:Log("SPELL_CAST_START", "Casts", 200768, 200580)
@@ -89,6 +99,22 @@ end
 -- Crazed Razorbeak, Festerhide Grizzly, Bloodtainted Fury
 function mod:Casts(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+function mod:NightmareToxinApplied(args)
+	if self:Me(args.destGUID) and self:MythicPlus() then
+		self:Say(args.spellId)
+		self:SayCountdown(args.spellId, 3, nil, 2)
+	end
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert", nil, nil, self:Dispeller("poison"))
+	self:TargetBar(args.spellId, 3, args.destName)
+end
+
+function mod:NightmareToxinRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
+	end
+	self:StopBar(args.spellId, args.destName)
 end
 
 -- Festerhide Grizzly
