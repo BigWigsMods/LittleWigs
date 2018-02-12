@@ -124,12 +124,8 @@ function mod:BrandoftheLegion(args)
 end
 
 function mod:BrandoftheLegionApplied(args)
-	if not UnitIsPlayer(args.destName) then
-		if self:Dispeller("magic", true) then
-			self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
-		end
-	else
-		self:TargetMessage(args.spellId, args.destName, "Positive", "Info")
+	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then
+		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
 	end
 end
 
