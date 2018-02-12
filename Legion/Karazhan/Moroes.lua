@@ -35,7 +35,7 @@ function mod:GetOptions()
 		227872, -- Ghastly Purge
 
 		--[[ Baroness Dorothea Millstripe ]]--
-		{227545, "SAY"}, -- Mana Drain
+		227545, -- Mana Drain
 
 		--[[ Lady Catriona Von'Indi ]]--
 		-- Healing Stream? wasn't in any of my logs
