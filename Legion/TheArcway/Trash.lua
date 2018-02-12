@@ -118,12 +118,18 @@ end
 
 -- Eredar Chaosbringer
 function mod:BrandoftheLegion(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
+		self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	end
 end
 
 function mod:BrandoftheLegionApplied(args)
-	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+	if not UnitIsPlayer(args.destName) then
+		if self:Dispeller("magic", true) then
+			self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		end
+	else
+		self:TargetMessage(args.spellId, args.destName, "Positive", "Info")
 	end
 end
 
@@ -133,7 +139,7 @@ end
 
 function mod:DemonicAscensionApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning", nil, nil, true)
 	end
 end
 
