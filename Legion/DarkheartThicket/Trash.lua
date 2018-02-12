@@ -69,14 +69,14 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
 	--[[ Dreadsoul Ruiner, Dreadfire Imp ]]--
-	self:Log("SPELL_CAST_START", "Interrupts", 200658, 201399)
+	self:Log("SPELL_CAST_START", "Interrupts", 200658, 201399) -- Star Shower, Dread Inferno
 
 	--[[ Dreadsoul Poisoner ]]--
 	self:Log("SPELL_AURA_APPLIED", "NightmareToxinApplied", 200684)
 	self:Log("SPELL_AURA_REMOVED", "NightmareToxinRemoved", 200684)
 
 	--[[ Crazed Razorbeak, Festerhide Grizzly ]]--
-	self:Log("SPELL_CAST_START", "Casts", 200768, 200580)
+	self:Log("SPELL_CAST_START", "Casts", 200768, 200580) -- Propelling Charge, Maddening Roar
 
 	--[[ Bloodtainted Fury ]]--
 	self:Log("SPELL_CAST_START", "Blood", 201226, 225562) -- Blood Assault, Blood Metamorphosis
