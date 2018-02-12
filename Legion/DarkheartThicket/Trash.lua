@@ -76,10 +76,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "NightmareToxinRemoved", 200684)
 
 	--[[ Crazed Razorbeak, Festerhide Grizzly ]]--
-	self:Log("SPELL_CAST_START", "Casts", 200768, 200580, 201226) -- Propelling Charge, Maddening Roar, Blood Assault
+	self:Log("SPELL_CAST_START", "Casts", 200768, 200580, 201226, 225562) -- Propelling Charge, Maddening Roar, Blood Assault, Blood Metamorphosis
 
 	--[[ Bloodtainted Fury ]]--
-	self:Log("SPELL_CAST_START", "BloodMetamorphosis", 225562)
 	self:Log("SPELL_CAST_SUCCESS", "BloodBomb", 201272)
 
 	--[[ Festerhide Grizzly ]]--
@@ -103,7 +102,7 @@ function mod:Casts(args)
 end
 
 function mod:NightmareToxinApplied(args)
-	if self:Me(args.destGUID) and self:MythicPlus() then
+	if self:Me(args.destGUID) and self:MythicPlus() then -- avoid spamming in trivial difficulties
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 3, nil, 2)
 	end
@@ -131,10 +130,6 @@ do
 end
 
 -- Bloodtainted Fury
-function mod:BloodMetamorphosis(args)
-	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
-end
-
 function mod:BloodBomb(args)
 	self:Message(args.spellId, "Urgent", "Alert")
 end
