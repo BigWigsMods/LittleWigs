@@ -72,7 +72,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GhastlyPurge", 227872)
 
 	--[[ Baroness Dorothea Millstripe ]]--
-	self:Log("SPELL_AURA_APPLIED", "ManaDrain", 227545)
+	self:Log("SPELL_CAST_START", "ManaDrain", 227545)
 
 	--[[ Lady Catriona Von'Indi ]]--
 
@@ -153,7 +153,7 @@ function mod:GhastlyPurge(args)
 end
 
 function mod:ManaDrain(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning", nil, nil, self:Dispeller("magic"))
+	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
 end
 
