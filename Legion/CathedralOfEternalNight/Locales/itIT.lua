@@ -8,7 +8,10 @@ end
 L = BigWigs:NewBossLocale("Domatrax", "itIT")
 if L then
 	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
+	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter."
+
+	--L.aegis_healing = "Aegis: Reduced Healing Done" -- Aegis is a short name for Aegis of Aggramar
+	--L.aegis_damage = "Aegis: Reduced Damage Done"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "itIT")
