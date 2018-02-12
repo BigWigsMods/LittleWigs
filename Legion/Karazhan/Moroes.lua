@@ -73,7 +73,6 @@ function mod:OnBossEnable()
 
 	--[[ Baroness Dorothea Millstripe ]]--
 	self:Log("SPELL_CAST_START", "ManaDrain", 227545)
-	self:Log("SPELL_AURA_APPLIED", "ManaDrainApplied", 227545)
 
 	--[[ Lady Catriona Von'Indi ]]--
 
@@ -156,12 +155,6 @@ end
 function mod:ManaDrain(args)
 	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
-end
-
-function mod:ManaDrainApplied(args)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-	end
 end
 
 function mod:IronWhirlwind(args)
