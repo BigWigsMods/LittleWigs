@@ -91,14 +91,25 @@ end
 -- Event Handlers
 --
 
--- Dreadsoul Ruiner, Dreadfire Imp
-function mod:Interrupts(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
-end
+do
+	local prevTable = {}
+	-- Dreadsoul Ruiner, Dreadfire Imp
+	function mod:Interrupts(args)
+		local t = GetTime()
+		if t - (prevTable[args.spellId] or 0) > 1 then
+			prevTable[args.spellId] = t
+			self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+		end
+	end
 
--- Crazed Razorbeak, Festerhide Grizzly, Bloodtainted Fury
-function mod:Casts(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	-- Crazed Razorbeak, Festerhide Grizzly, Bloodtainted Fury
+	function mod:Casts(args)
+		local t = GetTime()
+		if t - (prevTable[args.spellId] or 0) > 1 then
+			prevTable[args.spellId] = t
+			self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+		end
+	end
 end
 
 function mod:NightmareToxinApplied(args)
