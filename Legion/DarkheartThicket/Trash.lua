@@ -79,7 +79,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Casts", 200768, 200580)
 
 	--[[ Bloodtainted Fury ]]--
-	self:Log("SPELL_CAST_START", "Blood", 201226, 201272, 225562) -- Blood Assault, Blood Bomb, Blood Metamorphosis
+	self:Log("SPELL_CAST_START", "Blood", 201226, 225562) -- Blood Assault, Blood Metamorphosis
+	self:Log("SPELL_CAST_SUCCESS", "BloodBomb", 201272)
 
 	--[[ Festerhide Grizzly ]]--
 	self:Log("SPELL_AURA_APPLIED", "CorruptionPool", 218759)
@@ -132,4 +133,8 @@ end
 -- Bloodtainted Fury
 function mod:Blood(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+end
+
+function mod:BloodBomb(args)
+	self:Message(args.spellId, "Urgent", "Alert")
 end
