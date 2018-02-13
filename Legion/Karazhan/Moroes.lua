@@ -68,7 +68,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Vanish", 227736)
 	self:Log("SPELL_AURA_APPLIED", "Garrote", 227742)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Garrote", 227742)
-	self:Log("SPELL_AURA_APPLIED", "CoatCheck", 227851)
+	self:Log("SPELL_AURA_APPLIED", "CoatCheck", 227851) -- the debuff Moroes applies at the start of his cast
+	self:Log("SPELL_AURA_APPLIED", "CoatCheckDispellable", 227832) -- the debuff that replaces the previous one 1.5s after, can be dispelled
 	self:Log("SPELL_CAST_START", "GhastlyPurge", 227872)
 
 	--[[ Baroness Dorothea Millstripe ]]--
@@ -146,8 +147,16 @@ function mod:Garrote(args)
 end
 
 function mod:CoatCheck(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	if self:Tank() then
+		self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	end
 	self:Bar(args.spellId, 34)
+end
+
+function mod:CoatCheckDispellable(args)
+	if not self:Tank() then
+		self:TargetMessage(227851, args.destName, "Urgent", "Alarm", nil, nil, true)
+	end
 end
 
 function mod:GhastlyPurge(args)
