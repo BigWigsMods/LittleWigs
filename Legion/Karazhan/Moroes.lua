@@ -38,7 +38,7 @@ function mod:GetOptions()
 		227545, -- Mana Drain
 
 		--[[ Lady Catriona Von'Indi ]]--
-		-- Healing Stream? wasn't in any of my logs
+		227578, -- Healing Stream
 
 		--[[ Baron Rafe Dreuger ]]--
 		227646, -- Iron Whirlwind
@@ -54,7 +54,7 @@ function mod:GetOptions()
 	},{
 		[227736] = -14360, -- Moroes
 		[227545] = -14366, -- Baroness Dorothea Millstripe
-		--[] = -14369, -- Lady Catriona Von'Indi
+		[227578] = -14369, -- Lady Catriona Von'Indi
 		[227646] = -14372, -- Baron Rafe Dreuger
 		[227616] = -14374, -- Lady Keira Berrybuck
 		[227463] = -14376, -- Lord Robin Daris
@@ -75,6 +75,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ManaDrain", 227545)
 
 	--[[ Lady Catriona Von'Indi ]]--
+	self:Log("SPELL_CAST_START", "HealingStream", 227578)
 
 	--[[ Baron Rafe Dreuger ]]--
 	self:Log("SPELL_CAST_START", "IronWhirlwind", 227646)
@@ -120,6 +121,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 			if mobId == 114316 then -- Baroness Dorothea Millstripe
 				self:CDBar(227545, 9) -- Mana Drain applied
 			--elseif mobId == 114317 then -- Lady Catriona Von'Indi
+				-- She casts Healing Stream whenever Moroes drops below 50%
 			elseif mobId == 114318 then -- Baron Rafe Dreuger
 				self:CDBar(227646, 4.5) -- Iron Whirlwind
 			elseif mobId == 114319 then -- Lady Keira Berrybuck
@@ -155,6 +157,10 @@ end
 function mod:ManaDrain(args)
 	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
+end
+
+function mod:HealingStream(args)
+	self:Message(args.spellId, "Important", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:IronWhirlwind(args)
