@@ -12,6 +12,16 @@ mod:RegisterEnableMob(104218)
 mod.engageId = 1870
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_text = "Advisor Melandrus Active"
+	L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -23,6 +33,7 @@ local bladeSurgeCount = 0
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		209602, -- Blade Surge
 		224333, -- Enveloping Winds
 		209628, -- Piercing Gale
@@ -31,6 +42,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "BladeSurge", 209602)
 	self:Log("SPELL_CAST_START", "PiercingGale", 209628)
@@ -48,6 +60,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:Bar("warmup", 11, L.warmup_text, "inv_helm_mask_fittedalpha_b_01_nightborne_01")
+		self:UnregisterEvent(event)
+	end
+end
 
 function mod:BladeSurge(args)
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, bladeSurgeCount))

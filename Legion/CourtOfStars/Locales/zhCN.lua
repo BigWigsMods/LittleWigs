@@ -144,3 +144,9 @@ if L then
 	L["我听说那个密探的腰带上，总是挂着一本写满机密的书。"] = 14
 	L["据说那个密探喜欢读书，而且总是随身携带至少一本书。"] = 14
 end
+
+L = BigWigs:NewBossLocale("Rokmora", "deDE")
+if L then
+	--L.warmup_text = "Advisor Melandrus Active"
+	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+end
