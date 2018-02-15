@@ -17,7 +17,6 @@ mod.engageId = 1870
 
 local L = mod:GetLocale()
 if L then
-	L.warmup_text = "Advisor Melandrus Active"
 	L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
 end
 
@@ -63,8 +62,8 @@ end
 
 function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
-		self:Bar("warmup", 11, L.warmup_text, "inv_helm_mask_fittedalpha_b_01_nightborne_01")
 		self:UnregisterEvent(event)
+		self:Bar("warmup", 11, CL.active, "inv_helm_mask_fittedalpha_b_01_nightborne_01")
 	end
 end
 

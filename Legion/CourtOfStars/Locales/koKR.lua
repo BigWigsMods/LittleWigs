@@ -147,6 +147,5 @@ end
 
 L = BigWigs:NewBossLocale("Rokmora", "deDE")
 if L then
-	--L.warmup_text = "Advisor Melandrus Active"
 	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
 end
