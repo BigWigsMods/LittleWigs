@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- To Do 
+-- To Do
 -- Enveloping Winds timers are not 100% accurate
 
 --------------------------------------------------------------------------------
@@ -38,10 +38,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	bladeSurgeCount = 0
+	bladeSurgeCount = 1
 	self:CDBar(209628, 11) -- Piercing Gale
-	self:CDBar(224333, 8.4) -- Enveloping Winds 
-	self:CDBar(209602, 5.2) -- Blade Surge
+	self:CDBar(224333, 8.4) -- Enveloping Winds
+	self:CDBar(209602, 5.2, CL.count:format(args.spellName, bladeSurgeCount)) -- Blade Surge
 	self:CDBar(209676, 23) -- Slicing Maelstrom
 end
 
@@ -50,9 +50,9 @@ end
 --
 
 function mod:BladeSurge(args)
-	bladeSurgeCount = bladeSurgeCount + 1
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, bladeSurgeCount))
-	self:CDBar(args.spellId, 12)
+	bladeSurgeCount = bladeSurgeCount + 1
+	self:CDBar(args.spellId, 12, CL.count:format(args.spellName, bladeSurgeCount))
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
