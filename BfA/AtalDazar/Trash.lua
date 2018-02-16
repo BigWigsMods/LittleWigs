@@ -13,7 +13,7 @@ mod:RegisterEnableMob(
 	122969, -- Zanchuli Witch-Doctor
 	129553, -- Dinomancer Kish'o
 	132126, -- Gilded Priestess
-	122970, -- Shadowblade Stalker
+	122970 -- Shadowblade Stalker
 )
 
 --------------------------------------------------------------------------------
