@@ -19,8 +19,8 @@ if L then
 	L.forms = "Forms"
 	L.forms_desc = "Warn before Gal'darah changes forms."
 
-	L.form_rhino = "Rhino Form Soon"
-	L.form_troll = "Troll Form Soon"
+	L.form_rhino = "Rhino Form"
+	L.form_troll = "Troll Form"
 end
 
 --------------------------------------------------------------------------------
@@ -36,21 +36,34 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "ImpalingCharge", 59827, 54956) -- Heroic, Normal
-	self:Log("SPELL_AURA_APPLIED", "WhirlingSlash", 59825)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "WhirlingSlash", 59825)
+	self:Log("SPELL_AURA_APPLIED", "WhirlingSlash", 59825, 55249) -- Heroic, Normal
+	self:Log("SPELL_AURA_APPLIED_DOSE", "WhirlingSlash", 59825, 55249) -- Heroic, Normal
 end
 
 function mod:OnEngage()
 	formPhase = 1
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	-- self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:CDBar("forms", 32.5, L.form_rhino, "ability_hunter_pet_rhino")
+	self:DelayedMessage("forms", 27.5, "Attention", nil, CL.soon:format(L.form_rhino))
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 55297 then -- Rhino Form
+		self:CDBar("forms", 34.1, L.form_troll, "achievement_character_troll_male")
+		self:DelayedMessage("forms", 29, "Attention", CL.soon:format(L.form_troll))
+	elseif spellId == 55299 then -- Troll Form
+		self:CDBar("forms", 33.6, L.form_rhino, "ability_hunter_pet_rhino")
+		self:DelayedMessage("forms", 28.5, "Attention", CL.soon:format(L.form_rhino))
+	end
+end
+
+--[[function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 81 and formPhase == 1 then
 		formPhase = formPhase + 1
@@ -60,7 +73,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
 		self:Message("forms", "Positive", nil, L.form_troll, false)
 	end
-end
+end]]
 
 function mod:ImpalingCharge(args)
 	self:TargetMessage(59827, args.destName, "Attention", "Info", nil, nil, true)
@@ -73,7 +86,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+				self:Message(59825, "Personal", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end
