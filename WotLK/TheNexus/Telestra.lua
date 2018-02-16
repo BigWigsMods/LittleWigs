@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Grand Magus Telestra", 520, 618)
 if not mod then return end
 mod:RegisterEnableMob(26731)
+mod.engageId = 2010
 
 local splitPhase = 0
 
@@ -16,19 +17,17 @@ local splitPhase = 0
 function mod:GetOptions()
 	return {
 		-7395, -- Mirror Images
+		47731, -- Critter
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
-
-	self:Death("Win", 26731)
+	self:Log("SPELL_AURA_APPLIED", "Critter", 47731)
 end
 
 function mod:OnEngage()
 	splitPhase = 0
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
@@ -36,17 +35,23 @@ end
 --
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:MobId(UnitGUID(unit)) == 26731 then
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if (hp < 56 and splitPhase == 0) or (hp < 16 and splitPhase == 1) then
-			splitPhase = splitPhase + 1
-			if splitPhase > 1 then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
-			end
-			if splitPhase == 1 or (splitPhase == 2 and not self:Normal()) then -- No 2nd split on Normal mode
-				self:Message(-7395, "Positive", nil, CL.soon:format(self:SpellName(-7395)), false)
-			end
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if (hp < 56 and splitPhase == 0) or (hp < 16 and splitPhase == 1) then
+		splitPhase = splitPhase + 1
+		if splitPhase > 1 or self:Normal() then -- No 2nd split on Normal mode
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
 		end
+		self:Message(-7395, "Positive", nil, CL.soon:format(self:SpellName(-7395)), false)
 	end
 end
 
+do
+	local playerList = mod:NewTargetList()
+
+	function mod:Critter(args)
+		playerList[#playerList+1] = args.destName
+		if #playerList == 1 then
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Alert", nil, nil, self:Dispeller("magic"))
+		end
+	end
+end
