@@ -145,7 +145,7 @@ if L then
 	L["Dicen los rumores que al espía le encanta leer y que siempre lleva al menos un libro encima."] = 14
 end
 
-L = BigWigs:NewBossLocale("Rokmora", "esES") or BigWigs:NewBossLocale("Rokmora", "esMX")
+L = BigWigs:NewBossLocale("Advisor Melandrus", "esES")
 if L then
 	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
 end
