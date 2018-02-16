@@ -1,12 +1,13 @@
 local L = BigWigs:NewBossLocale("Eye of Azshara Trash", "deDE")
 if not L then return end
 if L then
-	--L.wrangler = "Hatecoil Wrangler"
-	--L.stormweaver = "Hatecoil Stormweaver"
-	--L.oracle = "Hatecoil Oracle"
-	--L.siltwalker = "Mak'rana Siltwalker"
-	--L.tides = "Restless Tides"
-	--L.arcanist = "Hatecoil Arcanist"
+	L.wrangler = "Zänker der Hassnattern"
+	L.stormweaver = "Sturmwirkerin der Hassnattern"
+	L.crusher = "Zermalmer der Hassnattern"
+	L.oracle = "Orakel der Hassnattern"
+	L.siltwalker = "Treibsandläufer der Mak'rana"
+	L.tides = "Aufgewühlte Fluten"
+	L.arcanist = "Arkanistin der Hassnattern"
 end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "deDE")
