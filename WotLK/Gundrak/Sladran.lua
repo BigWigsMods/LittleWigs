@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Slad'ran", 530, 592)
 if not mod then return end
 mod:RegisterEnableMob(29304)
+mod.engageId = 1978
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -21,8 +22,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PoisonNova", 55081, 59842)
 	self:Log("SPELL_AURA_APPLIED", "PoisonNovaApplied", 55081, 59842)
 	self:Log("SPELL_AURA_REMOVED", "PoisonNovaRemoved", 55081, 59842)
-
-	self:Death("Win", 29304)
 end
 
 --------------------------------------------------------------------------------
@@ -36,7 +35,7 @@ end
 
 function mod:PoisonNovaApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(59842, args.destName, "Personal", "Alarm")
+		self:Message(59842, "Personal", "Alarm", CL.you:format(args.spellName))
 		self:TargetBar(59842, args.spellId == 59842 and 10 or 16, args.destName)
 	end
 end
@@ -44,4 +43,3 @@ end
 function mod:PoisonNovaRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
-

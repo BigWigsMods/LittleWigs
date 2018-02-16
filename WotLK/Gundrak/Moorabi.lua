@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Moorabi", 530, 594)
 if not mod then return end
 mod:RegisterEnableMob(29305)
+mod.engageId = 1980
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,8 +21,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Transformation", 55098)
 	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
-
-	self:Death("Win", 29305)
 end
 
 --------------------------------------------------------------------------------
@@ -30,7 +29,9 @@ end
 
 function mod:Transformation(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
-	self:Bar(args.spellId, 4)
+	local _, _, _, _, _, endOfCast = UnitCastingInfo("boss1") -- cast time is different on each cast, at least on heroic/tw
+	local remaining = endOfCast / 1000 - GetTime()
+	self:Bar(args.spellId, remaining)
 end
 
 function mod:Interrupt(args)
@@ -39,4 +40,3 @@ function mod:Interrupt(args)
 		self:StopBar(args.amount) -- Name of interrupted spell
 	end
 end
-
