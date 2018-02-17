@@ -1,45 +1,48 @@
+
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Lord Godfrey", 764)
+local mod, CL = BigWigs:NewBoss("Lord Godfrey", 764, 100)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(46964)
-mod.toggleOptions = {
-	93771, -- Mortal Wound
-	93707, -- Summon Bloodthirsty Ghouls
-	93520, -- Pistol Barrage
-	"bosskill",
-}
+mod.engageId = 1072
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		93675, -- Mortal Wound
+		93707, -- Summon Bloodthirsty Ghouls
+		93520, -- Pistol Barrage
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "MortalWound", 93771)
-	self:Log("SPELL_AURA_APPLIED", "Summon", 93707)
-	self:Log("SPELL_CAST_START", "Barrage", 93520)
-
-	self:Death("Win", 46964)
+	self:Log("SPELL_AURA_APPLIED", "MortalWound", 93675)
+	self:Log("SPELL_AURA_APPLIED", "BloodthirstyGhouls", 93707)
+	self:Log("SPELL_CAST_START", "PistolBarrage", 93520)
 end
 
-function mod:VerifyEnable()
+--[[function mod:VerifyEnable()
 	if GetInstanceDifficulty() == 2 then return true end
-end
+end]]
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:MortalWound(player, spellId, _, _, spellName)
-	self:TargetMessage(93771, spellName, player, "Attention", spellId)
+function mod:MortalWound(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
 end
 
-function mod:Summon(_, spellId, _, _, spellName)
-	self:Message(93707, spellName, "Attention", spellId, "Info")
+function mod:BloodthirstyGhouls(args)
+	self:Message(args.spellId, "Attention", "Info")
 end
 
-function mod:Barrage(_, spellId, _, _, spellName)
-	self:Message(93520, spellName, "Important", spellId, "Alert")
-	self:Bar(93520, LW_CL["next"]:format(spellName), 30, spellId)
+function mod:PistolBarrage(args)
+	self:Message(args.spellId, "Important", "Alert")
+	self:Bar(args.spellId, 30)
 end
-

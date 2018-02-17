@@ -1,32 +1,35 @@
+
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Baron Silverlaine", 764)
+local mod, CL = BigWigs:NewBoss("Baron Silverlaine", 764, 97)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(3887)
-mod.toggleOptions = {
-	93857, --Summon Worgen Spirit
-	"bosskill",
-}
+mod.engageId = 1070
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		93857, --Summon Worgen Spirit
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Summon", 93857)
-
-	self:Death("Win", 3887)
+	self:Log("SPELL_CAST_START", "WorgenSpirit", 93857)
 end
 
-function mod:VerifyEnable()
+--[[function mod:VerifyEnable()
 	if GetInstanceDifficulty() == 2 then return true end
-end
+end]]
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:Summon(_, spellId, _, _, spellName)
-	self:Message(93857, spellName, "Important", spellId)
+function mod:WorgenSpirit(args)
+	self:Message(args.spellId, "Important")
 end
-
