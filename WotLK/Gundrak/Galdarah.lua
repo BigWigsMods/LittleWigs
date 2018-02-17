@@ -42,7 +42,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	formPhase = 1
 	self:CDBar("forms", 32.5, L.form_rhino, "ability_hunter_pet_rhino")
 	self:DelayedMessage("forms", 27.5, "Attention", CL.soon:format(L.form_rhino))
 end
