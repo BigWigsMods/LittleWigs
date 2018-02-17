@@ -7,8 +7,7 @@ local mod, CL = BigWigs:NewBoss("Gal'darah", 530, 596)
 if not mod then return end
 mod:RegisterEnableMob(29306)
 mod.engageId = 1981
-
-local formPhase = 1
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
