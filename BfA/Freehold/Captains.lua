@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Council o' Captains", 0, 0) -- XXX
+local mod, CL = BigWigs:NewBoss("Council o' Captains", 1205, 2093)
 if not mod then return end
 mod:RegisterEnableMob(126847, 126848, 126845) -- Captain Raoul, Captain Eudora, Captain Jolly
 mod.engageId = 2094

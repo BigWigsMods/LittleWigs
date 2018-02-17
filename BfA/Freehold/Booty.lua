@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ring of Booty", 0, 0) -- XXX
+local mod, CL = BigWigs:NewBoss("Ring of Booty", 1205, 2094)
 if not mod then return end
 mod:RegisterEnableMob(126969) -- Trothak
 mod.engageId = 2095
