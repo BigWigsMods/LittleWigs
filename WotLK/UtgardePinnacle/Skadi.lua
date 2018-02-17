@@ -6,7 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Skadi the Ruthless", 524, 643)
 if not mod then return end
 mod:RegisterEnableMob(26693)
-mob.engageId = 2029
+mod.engageId = 2029
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,8 +21,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 59322, 50228)
-	self:Log("SPELL_DAMAGE", "WhirlwindDamage", 59322, 50228)
-	self:Log("SPELL_MISSED", "WhirlwindDamage", 59322, 50228)
+	self:Log("SPELL_DAMAGE", "WhirlwindDamage", 59323, 50229)
+	self:Log("SPELL_MISSED", "WhirlwindDamage", 59323, 50229)
 end
 
 --------------------------------------------------------------------------------
