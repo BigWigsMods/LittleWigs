@@ -28,6 +28,6 @@ end
 
 function mod:EckResidue(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Info", CL.you:format(args.spellName))
+		self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
 	end
 end
