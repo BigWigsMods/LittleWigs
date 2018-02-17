@@ -46,10 +46,12 @@ end
 do
 	local prev = 0
 	function mod:WhirlwindDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(59322, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(59322, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end
