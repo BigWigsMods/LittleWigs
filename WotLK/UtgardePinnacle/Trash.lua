@@ -47,7 +47,7 @@ do
 	function mod:Terrify(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer(announce, 0.3, self, args.spellId, playerList, "Urgent", "Alert", nil, nil, self:Dispeller("magic"))
+			self:ScheduleTimer("TargetMessage", 0.3, self, args.spellId, playerList, "Urgent", "Alert", nil, nil, self:Dispeller("magic"))
 		end
 	end
 end
