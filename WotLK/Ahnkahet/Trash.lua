@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
 	self:Log("SPELL_CAST_START", "ShadowBlast", 59102) -- does inadequate amount of damage since The Great Squish
-	self:Log("SPELL_AURA_APPLIED", "EyesInTheDark", 56728)
+	self:Log("SPELL_AURA_APPLIED", "EyesInTheDark", 56728) -- 10s long debuff that can interrupt you randomly
 	self:Log("SPELL_AURA_APPLIED", "CurseOfTongues", 13338)
 end
 
