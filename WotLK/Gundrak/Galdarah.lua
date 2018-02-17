@@ -44,7 +44,6 @@ end
 
 function mod:OnEngage()
 	formPhase = 1
-	-- self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:CDBar("forms", 32.5, L.form_rhino, "ability_hunter_pet_rhino")
 	self:DelayedMessage("forms", 27.5, "Attention", CL.soon:format(L.form_rhino))
 end
@@ -62,18 +61,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 		self:DelayedMessage("forms", 28.5, "Attention", CL.soon:format(L.form_rhino))
 	end
 end
-
---[[function mod:UNIT_HEALTH_FREQUENT(unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 81 and formPhase == 1 then
-		formPhase = formPhase + 1
-		self:Message("forms", "Positive", nil, L.form_rhino, false)
-	elseif hp < 56 and formPhase == 2 then
-		formPhase = formPhase + 1
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
-		self:Message("forms", "Positive", nil, L.form_troll, false)
-	end
-end]]
 
 function mod:ImpalingCharge(args)
 	self:TargetMessage(59827, args.destName, "Attention", "Info", nil, nil, true)
