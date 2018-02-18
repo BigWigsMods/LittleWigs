@@ -1,17 +1,21 @@
 ﻿-------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Varos Cloudstrider", 528)
+local mod, CL = BigWigs:NewBoss("Varos Cloudstrider", 528, 623)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coldarra"
+--mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(27447)
-mod.toggleOptions = {
-	51054, -- Amplify Magic
-}
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		51054, -- Amplify Magic
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "AmplifyMagic", 51054, 59371)
@@ -21,12 +25,13 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:AmplifyMagic(player, spellId, _, _, spellName)
-	self:Message(51054, spellName..": "..player, "Important", spellId)
-	self:Bar(51054, player..": "..spellName, 30, spellId)
+function mod:AmplifyMagic(args)
+	self:TargetMessage(51054, args.destName, "Important")
+	self:TargetBar(51054, 30, args.destName)
 end
 
-function mod:AmplifyMagicRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:AmplifyMagicRemoved(args)
+	self:StopBar(51054, args.destName)
 end

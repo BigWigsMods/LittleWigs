@@ -1,28 +1,22 @@
 ﻿-------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Ley-Guardian Eregos", 528)
+local mod, CL = BigWigs:NewBoss("Ley-Guardian Eregos", 528, 625)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coldarra"
+--mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(27656)
-mod.toggleOptions = {
-	51162, -- Planar Shift
-	51170, -- Enraged Assult
-}
-
--------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-	L["enragedassault_message"] = "Enraged Assault"
-	L["planarshift_expire_message"] = "Planar Shift ends in 5 sec"
-	L["planarshift_message"] = "Planar Shift"
-end
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		51162, -- Planar Shift
+		51170, -- Enraged Assault
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PlanarShift", 51162)
@@ -32,14 +26,14 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:PlanarShift(_, spellId, _, _, spellName)
-	self:Message(51162, L["planarshift_message"], "Important", spellId)
-	self:DelayedMessage(51162, 13, L["planarshift_expire_message"], "Attention")
-	self:Bar(51162, spellName, 18, spellId)
+function mod:PlanarShift(args)
+	self:Message(args.spellId, "Important")
+	self:Bar(args.spellId, 18)
 end
 
-function mod:EnragedAssault(player, spellId, _, _, spellName)
-	self:Message(51170, L["enragedassault_message"], "Important", spellId)
-	self:Bar(51170, spellName, 12, spellId)
+function mod:EnragedAssault(args)
+	self:Message(args.spellId, "Important")
+	self:Bar(args.spellId, 12)
 end
