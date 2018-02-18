@@ -1,33 +1,35 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Hydromancer Thespia", 727, 573)
+local mod, CL = BigWigs:NewBoss("Hydromancer Thespia", 727, 573)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coilfang Reservoir"
+--mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17797)
-mod.toggleOptions = {
-	25033, -- Lightning Cloud
-	31481, -- Lung Burst
-}
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		25033, -- Lightning Cloud
+		31481, -- Lung Burst
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Storm", 25033)
-	self:Log("SPELL_AURA_APPLIED", "Burst", 31481)
+	self:Log("SPELL_CAST_SUCCESS", "LightningCloud", 25033)
+	self:Log("SPELL_AURA_APPLIED", "LungBurst", 31481)
 	self:Death("Win", 17797)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Storm(_, spellId, _, _, spellName)
-	self:Message(25033, spellName, "Attention", spellId)
+function mod:LightningCloud(args)
+	self:Message(args.spellId, "Attention")
 end
 
-function mod:Burst(player, spellId, _, _, spellName)
-	self:Message(31481, spellName..": "..player, "Important", spellId)
-	self:Bar(31481, player..": "..spellName, 10, spellId) 
+function mod:LungBurst(args)
+	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetBar(args.spellId, 10, args.spellName)
 end

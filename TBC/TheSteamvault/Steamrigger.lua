@@ -1,37 +1,39 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Mekgineer Steamrigger", 727, 574)
+local mod, CL = BigWigs:NewBoss("Mekgineer Steamrigger", 727, 574)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coilfang Reservoir"
+--mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17796)
-mod.toggleOptions = {
-	"mech",
-}
 
 -------------------------------------------------------------------------------
 --  Localization
 
 local L = mod:GetLocale()
 if L then
-	L["mech"] = "Steamrigger Mechanics"
-	L["mech_desc"] = "Warn for incoming mechanics."
-	L["mech_trigger"] = "Tune 'em up good, boys!"
-	L["mech_message"] = "Steamrigger Mechanics coming soon!"
+	L.mech_trigger = "Tune 'em up good, boys!"
+	L.mech_message = "%s coming soon!"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		-5999, -- Steamrigger Mechanics
+	}
+end
+
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Mech")
 	self:Death("Win", 17796)
-	self:Yell("Mech", L["mech_trigger"])
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Mech()
-	self:Message("mech", L["mech_message"], "Attention")
+function mod:Mech(_, msg)
+	if msg == L.mech_trigger or msg:find(L.mech_trigger, nil, true) then
+		self:Message(-5999, "Attention", nil, L.mech_message:format(self:SpellName(-5999)))
+	end
 end
