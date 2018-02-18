@@ -1,84 +1,81 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Jan'alai", 781)
+local mod, CL = BigWigs:NewBoss("Jan'alai", 781, 188)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(23578)
-mod.toggleOptions = {
-	{97497, "ICON"}, -- Flame Breath (this is the aura debuff spellid)
-	"adds",
-	"bomb",
-	"bosskill",
-}
 
 -------------------------------------------------------------------------------
 --  Localization
 
 local L = mod:GetLocale()
 if L then
-	L["adds"] = "Amani'shi Hatchers"
-	L["adds_desc"] = "Warn for incoming Amani'shi Hatchers."
-	L["adds_message"] = "Amani'shi Hatchers incoming!"
-	L["adds_all"] = "All remaining Amani'shi Hatchers soon!"
+	L.adds = "Amani'shi Hatchers"
+	L.adds_desc = "Warn for incoming Amani'shi Hatchers."
+	L.adds_all = "All remaining Amani'shi Hatchers soon!"
 
-	L["bomb"] = "Fire Bombs"
-	L["bomb_desc"] = "Show timers for Fire Bombs."
-	L["bomb_trigger"] = "I burn ya now!"
-	L["bomb_message"] = "Fire Bombs incoming!"
+	L.bomb = "Fire Bombs"
+	L.bomb_desc = "Show timers for Fire Bombs."
+	L.bomb_trigger = "I burn ya now!"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "FlameBreath", 97855) -- This is the actual cast spellid
+function mod:GetOptions()
+	return {
+		{97497, "ICON"}, -- Flame Breath (this is the aura debuff spellid)
+		"adds",
+		"bomb",
+	}
+end
 
-	--self:Yell("Adds", L["adds_trigger"])
-	self:Yell("Bomb", L["bomb_trigger"])
+function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Bomb")
+
+	self:Log("SPELL_CAST_START", "FlameBreath", 43140) -- This is the actual cast spellid
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Death("Win", 23578)
 end
 
 function mod:OnEngage()
-	self:Bar("adds", LW_CL["next"]:format(L["adds"]), 12, 89259)
-	self:RegisterEvent("UNIT_HEALTH")
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "Adds")
+	self:CDBar("adds", 12, L.adds, 89259)
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 do
-	local function checkTarget(spellName)
-		if not UnitIsPlayer("boss1target") then return end
-		local player = UnitName("boss1target")
-		mod:TargetMessage(97497, spellName, player, "Important", 97497, "Alert")
-		mod:PrimaryIcon(97497, player)
+	local function printTarget(self, player)
+		self:TargetMessage(97497, player, "Important", "Alert")
+		self:PrimaryIcon(97497, player)
 	end
-	function mod:FlameBreath(_, _, _, _, spellName)
-		self:ScheduleTimer(checkTarget, 0.2, spellName)
+	function mod:FlameBreath(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 
-function mod:Adds(_, _, _, _, _, spellId)
-	if spellId ~= 43962 then return end
-	self:Message("adds", L["adds_message"], "Attention", 89259, "Long")
-	self:Bar("adds", LW_CL["next"]:format(L["adds"]), 92, 89259)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 43962 then
+		self:Message("adds", "Attention", "Long", CL.incoming:format(L.adds), 89259)
+		self:CDBar("adds", 92, L.adds, 89259)
+	end
 end
 
-function mod:Bomb()
-	self:Message("bomb", L["bomb_message"], "Urgent", 42630, "Info")
-	self:Bar("bomb", L["bomb"], 12, 42630)
+function mod:Bomb(_, msg)
+	if msg == L.bomb_trigger then
+		self:Message("bomb", "Urgent", "Info", CL.incoming:format(L.bomb), 42630)
+		self:Bar("bomb", 12, L.bomb, 42630)
+	end
 end
 
-function mod:UNIT_HEALTH()
-	local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 37 then
-		self:Message("adds", L["adds_all"], "Attention")
-		self:UnregisterEvent("UNIT_HEALTH")
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("adds", "Attention", nil, L.adds_all)
 	end
 end
-
