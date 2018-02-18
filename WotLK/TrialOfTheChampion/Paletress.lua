@@ -1,14 +1,10 @@
-﻿-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Argent Confessor Paletress", 542)
+local mod, CL = BigWigs:NewBoss("Argent Confessor Paletress", 542, 636)
 if not mod then return end
-mod.partycontent = true
 mod:RegisterEnableMob(34928)
-mod.toggleOptions = {
-	66515, -- Shield
-	66537, -- Renew
-}
+--mod.engageId = 2023 -- she shares it with Eadric
 
 -------------------------------------------------------------------------------
 --  Locals
@@ -16,24 +12,23 @@ mod.toggleOptions = {
 local shielded = false
 
 -------------------------------------------------------------------------------
---  Localization
-
-local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
-
-local L = mod:GetLocale()
-if L then
-	L["defeat_trigger"] = "Excellent work!"
-end
-
--------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "ShieldGain", 66515)
-	self:Log("SPELL_AURA_REMOVED", "ShieldLost", 66515)
-	self:Log("SPELL_CAST_START", "Renew", 66537, 67675)
+function mod:GetOptions()
+	return {
+		66515, -- Reflective Shield
+		66537, -- Renew
+	}
+end
 
-	self:Yell("Win", L["defeat_trigger"])
+function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_AURA_APPLIED", "ReflectiveShield", 66515)
+	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 66515)
+	self:Log("SPELL_CAST_START", "Renew", 66537)
+
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 function mod:OnEngage()
@@ -43,15 +38,21 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:ShieldGain()
+function mod:ReflectiveShield()
 	shielded = true
 end
 
-function mod:ShieldLost()
+function mod:ReflectiveShieldRemoved()
 	shielded = false
 end
 
-function mod:Renew(_, spellId, _, _, spellName)
+function mod:Renew(args)
 	if shielded then return end -- don't bother announcing while she is shielded
-	self:Message(66537, LCL["casting"]:format(spellName), "Urgent", spellId)
+	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 43979 then -- Full Heal
+		self:Win()
+	end
 end
