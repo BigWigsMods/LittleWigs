@@ -22,7 +22,7 @@
 <Include file="WotLK\Ahnkahet\modules.xml"/>
 <Include file="WotLK\Ahnkahet\locales.xml"/>
 <!--<Include file="WotLK\AzjolNerub\modules.xml"/>-->
-<!--<Include file="WotLK\DrakTharonKeep\modules.xml"/>-->
+<Include file="WotLK\DrakTharonKeep\modules.xml"/>
 <Include file="WotLK\Gundrak\modules.xml"/>
 <Include file="WotLK\Gundrak\locales.xml"/>
 <Include file="WotLK\HallsOfLightning\modules.xml"/>

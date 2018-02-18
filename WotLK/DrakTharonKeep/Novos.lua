@@ -1,32 +1,34 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Novos the Summoner", 534)
+local mod, CL = BigWigs:NewBoss("Novos the Summoner", 534, 589)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Zul'Drak"
+--mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(26631)
-mod.toggleOptions = {
-	50089, -- Misery
-}
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		50089, -- Wrath of Misery
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Misery", 50089, 59856)
-	self:Log("SPELL_AURA_REMOVED", "MiseryRemoved", 50089, 59856)
+	self:Log("SPELL_AURA_APPLIED", "WrathOfMisery", 50089, 59856)
+	self:Log("SPELL_AURA_REMOVED", "WrathOfMiseryRemoved", 50089, 59856)
 	self:Death("Win", 26631)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Misery(player, spellId, _, _, spellName)
-	self:Message(50089, spellName..": "..player, "Urgent", spellId)
-	self:Bar(50089, player..": "..spellName, 6, spellId)
+function mod:WrathOfMisery(args)
+	self:TargetMessage(50089, args.destName, "Urgent")
+	self:TargetBar(50089, 6, args.destName)
 end
 
-function mod:MiseryRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:WrathOfMiseryRemoved(args)
+	self:StopBar(50089, args.destName)
 end
