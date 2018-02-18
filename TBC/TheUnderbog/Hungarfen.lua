@@ -1,54 +1,40 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Hungarfen", 726, 576)
+local mod, CL = BigWigs:NewBoss("Hungarfen", 726, 576)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coilfang Reservoir"
+--mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17770)
-mod.toggleOptions = {"spores"}
-
--------------------------------------------------------------------------------
---  Locals
-
-local sporesannounced = nil
-
--------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-	L["spores"] = "Foul Spores"
-	L["spores_desc"] = "Warn when Hungarfen is about to root himself and casts Foul Spores"
-	L["spores_message"] = "Foul Spores Soon!"
-end
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	if self:CheckOption("spores", "MESSAGE") then
-		self:RegisterEvent("UNIT_HEALTH")
-	end
-	self:Death("Win", 17770)
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+function mod:GetOptions()
+	return {
+		31673, -- Foul Spores
+	}
 end
 
-function mod:OnEnable()
-	sporesannounced = nil
+function mod:OnBossEnable()
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForEngage")
+	self:Death("Win", 17770)
+end
+
+function mod:OnEngage()
+	if self:CheckOption(31673, "MESSAGE") then
+		self:RegisterEvent("UNIT_HEALTH")
+	end
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:UNIT_HEALTH(event, msg)
-	if UnitName(msg) ~= mod.displayName then return end
-	local health = UnitHealth(msg)
-	if health > 18 and health <= 24 and not sporesannounced then
-		sporesannounced = true
-		self:Message(L["spores_message"], "Urgent", nil, nil, nil, 31673)
-	elseif health > 28 and sporesannounced then
-		sporesannounced = nil
+function mod:UNIT_HEALTH(event, unit)
+	if UnitName(unit) ~= mod.displayName then return end
+	local health = UnitHealth(unit) / UnitHealth(unit) * 100
+	if health > 18 and health <= 24 then
+		self:UnregisterEvent("UNIT_HEALTH")
+		self:Message(31673, "Urgent", nil, CL.soon:format(self:SpellName(31673)))
 	end
 end
