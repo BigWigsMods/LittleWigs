@@ -1,72 +1,70 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Marwyn", 603)
+local mod, CL = BigWigs:NewBoss("Marwyn", 603, 602)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "The Frozen Halls"
+--mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(38113)
-mod.toggleOptions = {
-	72363, -- Corrupted Flesh
-	{72368, "ICON"},-- Shared Suffering
-	{72383, "ICON"}, -- Corrupted Touch
-}
-
--------------------------------------------------------------------------------
---  Locals
-
-local flesh = mod:NewTargetList()
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Flesh", 72363) --10s no dispell
+function mod:GetOptions()
+	return {
+		72363, -- Corrupted Flesh
+		{72368, "ICON"}, -- Shared Suffering
+		{72383, "ICON"}, -- Corrupted Touch
+	}
+end
 
-	self:Log("SPELL_AURA_REMOVED", "Debuff", 72368, 72383)
-	self:Log("SPELL_AURA_REMOVED", "Removed", 72368, 72383)
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "CorruptedFlesh", 72363) -- 10s no dispell
+
+	self:Log("SPELL_AURA_APPLIED", "DebuffApplied", 72368, 72383) -- Shared Suffering, Corrupted Touch
+	self:Log("SPELL_AURA_REMOVED", "DebuffRemoved", 72368, 72383)
+
 	self:Death("Win", 38113)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Debuff(player, spellId, _, _, spellName)
-	local time = 10
-	if spellId == 72368 then -- Marwyn Shared Suffering
-		time=12
-		self:SecondaryIcon(72368, player)
-	elseif spellId == 72363 then -- Marwyn Corrupted Flesh
-		self:PrimaryIcon(72363, player)
-	end
-	self:TargetMessage(spellId, player, spellName, "Urgent", spellId)
-	self:Bar(spellId, player..": "..spellName, time, spellId)
-end
-
 do
-	local handle = nil
-	local id, name = nil, nil
-	local warned = nil
-	local function fleshWarn()
+	-- local flesh = mod:NewTargetList() -- XXX what is this list used for? Was TargetMessage() intended to be used here?
+	local timer, warned = nil, nil
+
+	local function fleshWarn(self, spellId)
 		if not warned then
-			mod:Message(72363, name, "Urgent", id)
+			self:Message(spellId, "Urgent")
 			warned = true
 		else
 			warned = nil
-			wipe(flesh)
+			--wipe(flesh)
 		end
-		handle = nil
+		timer = nil
 	end
-	function mod:Flesh(player, spellId, _, _, spellName)
-		flesh[#flesh + 1] = player
-		if handle then self:CancelTimer(handle) end
-		id, name = spellId, spellName
-		handle = self:ScheduleTimer(fleshWarn, 0.1) -- has been 0.2 before
+
+	function mod:CorruptedFlesh(args)
+		--flesh[#flesh + 1] = args.destName
+		if timer then self:CancelTimer(timer) end
+		timer = self:ScheduleTimer(fleshWarn, 0.1, self, args.spellId) -- has been 0.2 before
 	end
 end
 
-function mod:Removed(player, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
-	self:PrimaryIcon(spellId, false)
-	self:SecondaryIcon(spellId, false)
+function mod:DebuffApplied(args)
+	local time = 10
+	if args.spellId == 72363 then -- Corrupted Flesh
+		self:PrimaryIcon(args.spellId, args.destName)
+	elseif args.spellId == 72368 then -- Shared Suffering
+		time = 12
+		self:SecondaryIcon(args.spellId, args.destName)
+	end
+	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetBar(args.spellId, time, args.destName)
+end
+
+function mod:DebuffRemoved(args)
+	self:StopBar(args.spellId, args.destName)
+	self:PrimaryIcon(args.spellId, false)
+	self:SecondaryIcon(args.spellId, false)
 end
