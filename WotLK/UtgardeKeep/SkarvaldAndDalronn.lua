@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Skarvald & Dalronn", 523, 639)
+local mod, CL = BigWigs:NewBoss("Skarvald & Dalronn", nil, 639, 574)
 if not mod then return end
 --mod.otherMenu = "Howling Fjord"
 mod:RegisterEnableMob(24200, 24201) -- Skarvald the Constructor, Dalronn the Controller

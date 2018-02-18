@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ingvar the Plunderer", 523, 640)
+local mod, CL = BigWigs:NewBoss("Ingvar the Plunderer", nil, 640, 574)
 if not mod then return end
 --mod.otherMenu = "Howling Fjord"
 mod:RegisterEnableMob(23954)
