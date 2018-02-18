@@ -1,25 +1,29 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Darkweaver Syth", 723, 541)
+local mod, CL = BigWigs:NewBoss("Darkweaver Syth", 723, 541)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Auchindoun"
+--mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18472)
-mod.toggleOptions = {"summon"}
 
 -------------------------------------------------------------------------------
 --  Localization
 
 local L = mod:GetLocale()
 if L then
-	L["summon"] = "Summon Elementals"
-	L["summon_desc"] = "Warn for Summoned Elementals"
-	L["summon_message"] = "Elementals Summoned!"
+	L.summon = "Summon Elementals"
+	L.summon_desc = "Warn for Summoned Elementals"
+	L.summon_message = "Elementals Summoned!"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
+
+function mod:GetOptions()
+	return {
+		"summon", -- Focus Fire
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_SUMMON", "Summon", 33538)
@@ -30,5 +34,5 @@ end
 --  Event Handlers
 
 function mod:Summon()
-	self:Message("summon", L["summon_message"], "Attention")
+	self:Message("summon", "Attention", nil, L.summon_message)
 end
