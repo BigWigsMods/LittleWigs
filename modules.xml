@@ -49,7 +49,7 @@
 <Include file="Cataclysm\EndTime\locales.xml"/>
 <Include file="Cataclysm\GrimBatol\modules.xml"/>
 <Include file="Cataclysm\GrimBatol\locales.xml"/>
-<!--<Include file="Cataclysm\HallsOfOrigination\modules.xml"/>-->
+<Include file="Cataclysm\HallsOfOrigination\modules.xml"/>
 <!--<Include file="Cataclysm\HourOfTwilight\modules.xml"/>-->
 <Include file="Cataclysm\LostCity\modules.xml"/>
 <Include file="Cataclysm\LostCity\locales.xml"/>

@@ -1,11 +1,9 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Rajh", 759)
+local mod, CL = BigWigs:NewBoss("Rajh", 759, 130)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39378)
-mod.toggleOptions = {73874, 80352, {76355, "FLASHSHAKE"}, "bosskill"}
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -17,11 +15,18 @@ local blessingTime = 0
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		73874, -- Sun Strike
+		80352, -- Summon Sun Orb
+		{76355, "FLASH"}, -- Blessing of the Sun
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "SunStrike", 73872, 89887)
-	self:Log("SPELL_AURA_APPLIED", "Orb", 80352)
-	self:Log("SPELL_AURA_APPLIED", "Blessing", 76355, 89879)
-	self:RegisterEvent("UNIT_POWER")
+	self:Log("SPELL_CAST_SUCCESS", "SunStrike", 73872)
+	self:Log("SPELL_AURA_APPLIED", "SummonSunOrb", 80352)
+	self:Log("SPELL_AURA_APPLIED", "BlessingOfTheSun", 76355)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 39378)
@@ -30,39 +35,41 @@ end
 function mod:OnEngage()
 	strike = 0
 	blessingTime = 0
+	self:RegisterUnitEvent("UNIT_POWER", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:SunStrike(_, spellId, _, _, spellName)
-	self:LocalMessage(73874, spellName, "Attention", spellId)
+function mod:SunStrike(args)
+	self:Message(args.spellId, "Attention")
 end
 
-function mod:Orb(_, spellId, _, _, spellName)
-	self:Message(80352, spellName, "Urgent", spellId)
+function mod:SummonSunOrb(args)
+	self:Message(args.spellId, "Urgent")
 end
 
-function mod:Blessing(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:Message(76355, spellName, "Important", spellId, "Alert")
-		self:FlashShake(76355)
+function mod:BlessingOfTheSun(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Important", "Alert")
+		self:Flash(args.spellId)
 		strike = strike + 1
 	end
 end
 
-function mod:UNIT_POWER(_, unit)
-	if unit ~= "boss1" then return end
+function mod:UNIT_POWER(unit)
 	if strike == 2 then
 		self:UnregisterEvent("UNIT_POWER")
 		return
 	end
 	if UnitName(unit) == self.displayName then
 		local power = UnitPower(unit) / UnitPowerMax(unit) * 100
-		if power < 20 and strike < 2 and (GetTime() - blessingTime) > 20 then -- massive throttling as energy fills up again, needs testing
-			self:Message(76355, LW_CL["soon"]:format(GetSpellInfo(76355)), "Attention")
-			blessingTime = GetTime()
+		if power < 20 and strike < 2 then
+			local t = GetTime()
+			if t - blessingTime > 20 then -- massive throttling as energy fills up again, needs testing
+				self:Message(76355, "Attention", nil, CL.soon:format(self:SpellName(76355)))
+				blessingTime = t
+			end
 		end
 	end
 end
-

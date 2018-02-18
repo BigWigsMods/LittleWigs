@@ -1,40 +1,44 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Temple Guardian Anhuur", 759)
+local mod, CL = BigWigs:NewBoss("Temple Guardian Anhuur", 759, 124)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39425)
-mod.toggleOptions = {74938, {75592, "ICON", "FLASHSHAKE"}, "bosskill"}
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		74938, -- Shield of Light
+		{75592, "ICON", "FLASH"}, -- Divine Reckoning
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Shield", 74938)
-	self:Log("SPELL_AURA_APPLIED", "Reckoning", 75592, 94949)
-	self:Log("SPELL_AURA_REMOVED", "ReckoningRemoved", 75592, 94949)
+	self:Log("SPELL_AURA_APPLIED", "ShieldOfLight", 74938)
+	self:Log("SPELL_AURA_APPLIED", "DivineReckoning", 75592)
+	self:Log("SPELL_AURA_REMOVED", "DivineReckoningRemoved", 75592)
 	self:Death("Win", 39425)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Shield(_, spellId, _, _, spellName)
-	self:Message(74938, spellName, "Important", spellId, "Long")
+function mod:ShieldOfLight(args)
+	self:Message(args.spellId, "Important", "Long")
 end
 
-function mod:Reckoning(player, spellId, _, _, spellName)
-	self:TargetMessage(75592, spellName, player, "Attention", spellId, "Alert")
-	self:Bar(75592, spellName..": "..player, 8, spellId)
-	self:PrimaryIcon(75592, player)
-	if UnitIsUnit(player, "player") then
-		self:FlashShake(75592)
+function mod:DivineReckoning(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetBar(args.spellId, 8, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Flash(args.spellId)
 	end
 end
 
-function mod:ReckoningRemoved(player, _, _, _, spellName)
-	self:PrimaryIcon(75592)
-	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+function mod:DivineReckoningRemoved(args)
+	self:PrimaryIcon(args.spellId)
+	self:StopBar(args.spellId, args.destName)
 end
-

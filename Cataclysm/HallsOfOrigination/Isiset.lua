@@ -1,11 +1,9 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Isiset", 759)
+local mod, CL = BigWigs:NewBoss("Isiset", 759, 127)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39587)
-mod.toggleOptions = {74373, 74137, "split", "bosskill"}
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -14,24 +12,21 @@ mod.toggleOptions = {74373, 74137, "split", "bosskill"}
 local split1 = nil
 
 -------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-	L["split"] = "Isiset Split"
-	L["split_desc"] = "Warn when Isiset Split."
-	L["split_message"] = "Isiset Split soon!"
-end
-
--------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Veil", 74133, 74372, 74373, 90760, 90761, 90762)
-	self:Log("SPELL_AURA_REMOVED", "VeilRemoved", 74133, 74372, 74373, 90760, 90761, 90762)
-	self:Log("SPELL_CAST_START", "Supernova", 74136, 74137, 76670, 90758)
+function mod:GetOptions()
+	return {
+		74373, -- Veil of Sky
+		74137, -- Supernova
+		-2556, -- Mirror Images
+	}
+end
 
-	self:RegisterEvent("UNIT_HEALTH")
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "VeilOfSky", 74133, 74372, 74373)
+	self:Log("SPELL_AURA_REMOVED", "VeilOfSkyRemoved", 74133, 74372, 74373)
+	self:Log("SPELL_CAST_START", "Supernova", 74136, 74137, 76670)
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Death("Win", 39587)
@@ -39,36 +34,35 @@ end
 
 function mod:OnEngage()
 	split1 = nil
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Veil(_, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName) -- cancel running bar from split/normal phases
-	self:Message(74373, spellName, "Attention", spellId)
-	self:Bar(74373, LW_CL["next"]:format(spellName), 60, spellId)
+function mod:VeilOfSky(args)
+	self:Message(74373, "Attention")
+	self:CDBar(74373, 60)
 end
 
-function mod:VeilRemoved(_, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, LW_CL["next"]:format(spellName))
+function mod:VeilOfSkyRemoved(args)
+	self:StopBar(74373)
 end
 
-function mod:Supernova(_, spellId, _, _, spellName)
-	self:Message(74137, LW_CL["casting"]:format(spellName), "Important", spellId, "Alert")
-	self:Bar(74137, LW_CL["casting"]:format(spellName), 3, spellId)
+function mod:Supernova(args)
+	self:Message(74137, "Important", "Alert", CL.casting:format(args.spellName))
+	self:CastBar(74137, 3)
 end
 
-function mod:UNIT_HEALTH(_, unit)
-	if unit == "boss1" and UnitName(unit) == self.displayName then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if UnitName(unit) == self.displayName then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 72 and not split1 then
-			self:Message("split", L["split_message"], "Attention")
+			self:Message(-2556, "Attention", nil, CL.soon:format(self:SpellName(-2556)))
 			split1 = true
 		elseif hp < 39 then
-			self:Message("split", L["split_message"], "Attention")
-			self:UnregisterEvent("UNIT_HEALTH")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:Message(-2556, "Attention", nil, CL.soon:format(self:SpellName(-2556)))
 		end
 	end
 end
-
