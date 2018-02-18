@@ -1,23 +1,14 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Jin'do the Godbreaker", 793)
+local mod, CL = BigWigs:NewBoss("Jin'do the Godbreaker", 793, 185)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(52148)
-mod.toggleOptions = {
-	"stages",
-	97172, -- Shadows of Hakkar
-	97417, -- Brittle Barrier
-	{97597, "ICON", "FLASHSHAKE"}, -- Spirit Warrior's Gaze
-	97170, -- Deadzone
-	"bosskill",
-}
 
 --------------------------------------------------------------------------------
 --  Locals
 
-local phase2 = false
+local stage2 = false
 local barrier = 3
 
 -------------------------------------------------------------------------------
@@ -25,71 +16,79 @@ local barrier = 3
 
 local L = mod:GetLocale()
 if L then
-	L["barrier_down_message"] = "Barrier %d down!"
+	L.barrier_down_message = "Barrier %d down!"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		"stages",
+		97172, -- Shadows of Hakkar
+		97417, -- Brittle Barrier
+		{97597, "ICON", "FLASH"}, -- Spirit Warrior's Gaze
+		97170, -- Deadzone
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Shadow", 97172)
+	self:Log("SPELL_CAST_START", "ShadowsOfHakkar", 97172)
+	self:Log("SPELL_AURA_APPLIED", "ShadowsOfHakkarApplied", 97172)
 	self:Log("SPELL_AURA_REMOVED", "BarrierRemoved", 97417)
-	self:Log("SPELL_CAST_START", "ShadowCast", 97172)
-	self:Log("SPELL_CAST_START", "Phase2", 97158)
-	self:Log("SPELL_AURA_APPLIED", "Gaze", 97597)
-	self:Log("SPELL_AURA_REMOVED", "GazeRemoved", 97597)
-	self:Log("SPELL_CAST_START", "DeadZone", 97170)
+	self:Log("SPELL_CAST_START", "Phase2", 97158) -- Shadow Spike
+	self:Log("SPELL_AURA_APPLIED", "WarriorsGaze", 97597)
+	self:Log("SPELL_AURA_REMOVED", "WarriorsGazeRemoved", 97597)
+	self:Log("SPELL_CAST_START", "Deadzone", 97170)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Death("Win", 52148)
 end
 
 function mod:OnEngage()
-	phase2 = false
+	stage2 = false
 	barrier = 3
-	self:Bar(97172, LW_CL["next"]:format(GetSpellInfo(97172)), 19, 97172)
+	self:CDBar(97172, 19) -- Shadows of Hakkar
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Shadow(_, spellId, _, _, spellName)
-	self:Message(97172, spellName, "Important", spellId, "Long")
-	self:Bar(97172, spellName, 8, spellId)
+function mod:ShadowsOfHakkar(args)
+	self:Message(args.spellId, "Attention", "Info", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 19)
 end
 
-function mod:BarrierRemoved(_, spellId)
+function mod:ShadowsOfHakkarApplied(args)
+	self:Message(args.spellId, "Important", "Long")
+	self:TargetBar(args.spellId, 8, args.destName)
+end
+
+function mod:BarrierRemoved(args)
 	barrier = barrier - 1
-	self:Message(97417, L["barrier_down_message"]:format(barrier), "Important", spellId, "Alert")
+	self:Message(args.spellId, "Important", "Alert", L.barrier_down_message:format(barrier))
 end
 
-function mod:ShadowCast(_, spellId, _, _, spellName)
-	self:Message(97172, LW_CL["casting"]:format(spellName), "Attention", spellId, "Info")
-	self:Bar(97172, LW_CL["next"]:format(spellName), 19, spellId) 
-end
-
-function mod:Phase2(_, spellId)
-	if not phase2 then
-		phase2 = true
-		self:Message("stages", CL.phase:format(2), "Important", spellId, "Long")
+function mod:Phase2(args)
+	if not stage then
+		stage2 = true
+		self:Message("stages", "Important", "Long", CL.stage:format(2))
 	end
 end
 
-function mod:Gaze(player, spellId, _, _, spellName)
-	self:TargetMessage(97597, spellName, player, "Important", spellId, "Alert")
-	self:SecondaryIcon(97597, player)
-	if UnitIsUnit("player", player) then
-		self:FlashShake(97597)
+function mod:WarriorsGaze(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:SecondaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Flash(args.spellId)
 	end
 end
 
-function mod:GazeRemoved()
-	self:SecondaryIcon(97597)
+function mod:WarriorsGazeRemoved(args)
+	self:SecondaryIcon(args.spellId)
 end
 
-function mod:DeadZone(_, spellId, _, _, spellName)
-	self:Message(97170, spellName, "Important", spellId, "Long")
-	self:Bar(97170, spellName, 21, spellId)
+function mod:Deadzone(args)
+	self:Message(args.spellId, "Important", "Long")
+	self:Bar(args.spellId, 21)
 end
-
