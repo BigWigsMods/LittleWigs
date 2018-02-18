@@ -46,7 +46,7 @@ end
 -- Event Handlers
 --
 
--- Timer for the "Glad your could make it, Uther" roleplay
+-- Timer for the "Glad you could make it, Uther" roleplay
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
 	if msg == L.gossip_timer_trigger then
 		self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
