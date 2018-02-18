@@ -31,7 +31,7 @@
 <!--<Include file="WotLK\HallsOfStone\modules.xml"/>-->
 <Include file="WotLK\PitOfSaron\modules.xml"/>
 <!--<Include file="WotLK\TheCullingOfStratholme\modules.xml"/>-->
-<!--<Include file="WotLK\TheForgeOfSouls\modules.xml"/>-->
+<Include file="WotLK\TheForgeOfSouls\modules.xml"/>
 <Include file="WotLK\TheNexus\modules.xml"/>
 <Include file="WotLK\TheNexus\locales.xml"/>
 <!--<Include file="WotLK\TheOculus\modules.xml"/>-->
