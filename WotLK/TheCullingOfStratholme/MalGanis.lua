@@ -1,7 +1,7 @@
 ﻿-------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Mal'Ganis", 521, 614)
+local mod, CL = BigWigs:NewBoss("Mal'Ganis", nil, 614, 595)
 if not mod then return end
 --mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26533)

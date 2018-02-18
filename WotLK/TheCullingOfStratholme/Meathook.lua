@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Meathook", 521, 611)
+local mod, CL = BigWigs:NewBoss("Meathook", nil, 611, 595)
 if not mod then return end
 --mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26529)

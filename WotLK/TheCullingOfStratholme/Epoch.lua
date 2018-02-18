@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", 521, 613)
+local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", nil, 613, 595)
 if not mod then return end
 --mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26532)
