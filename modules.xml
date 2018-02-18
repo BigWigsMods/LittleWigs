@@ -8,6 +8,7 @@
 
 <!-- The Burning Crusade -->
 
+<Include file="TBC\HellfireRamparts\modules.xml"/>
 <Include file="TBC\MagistersTerrace\modules.xml"/>
 <Include file="TBC\MagistersTerrace\locales.xml"/>
 <Include file="TBC\ManaTombs\modules.xml"/>
