@@ -2,24 +2,31 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Mannoroth and Varo'then", 816, 292)
+local mod, CL = BigWigs:NewBoss("Mannoroth and Varo'then", 816, 292)
 if not mod then return end
-mod.partyContent = true
-mod:RegisterEnableMob(54969, 55419) --Mannoroth, Varo'then
-mod.toggleOptions = {"bosskill"}
+mod:RegisterEnableMob(54969, 55419) -- Mannoroth, Varo'then
+mod.engageId = 1274
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
+function mod:GetOptions()
+	return {
+		104820, -- Embedded Blade
+	}
+end
+
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 54969)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-
---There is some fire on the ground, warn if you step on it? Can't find it in my log.
+function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+	if spellId == 104820 then -- Embedded Blade
+		self:Message(spellId, "Positive", "info")
+	end
+end
