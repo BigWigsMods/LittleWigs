@@ -2,12 +2,10 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Tribunal of Ages", 526)
+local mod, CL = BigWigs:NewBoss("Tribunal of Ages", 526, 606)
 if not mod then return end
-mod.partycontent = true
-mod.otherMenu = "The Storm Peaks"
+--mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(28070)
-mod.toggleOptions = {"timers"}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -15,21 +13,27 @@ mod.toggleOptions = {"timers"}
 
 local L = mod:GetLocale()
 if L then
-	L["enable_trigger"] = "Time to get some answers"
-	L["engage_trigger"] = "Now keep an eye out"
-	L["defeat_trigger"] = "The old magic fingers"
-	L["fail_trigger"] = "Not yet, not"
+	L.enable_trigger = "Time to get some answers"
+	L.engage_trigger = "Now keep an eye out"
+	L.defeat_trigger = "The old magic fingers"
+	L.fail_trigger = "Not yet, not"
 
-	L["timers"] = "Timers"
-	L["timers_desc"] = "Timers for various events that take place."
+	L.timers = "Timers"
+	L.timers_desc = "Timers for various events that take place."
 
-	L["wave"] = "First wave!"--leaving this just incase I revert the warmup
-	L["victory"] = "Victory!"
+	L.wave = "First wave!" -- leaving this just incase I revert the warmup
+	L.victory = "Victory!"
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:GetOptions()
+	return {
+		"timers", --Shock of Sorrow
+	}
+end
 
 function mod:OnRegister()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
@@ -41,8 +45,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("timers", self.displayName, 45, "Achievement_Character_Dwarf_Male")
-	self:Bar("timers", L["victory"], 315, "INV_Misc_PocketWatch_01")
+	self:Bar("timers", 45, self.displayName, "Achievement_Character_Dwarf_Male")
+	self:Bar("timers", 315, L.victory, "INV_Misc_PocketWatch_01")
 end
 
 --------------------------------------------------------------------------------
