@@ -1,28 +1,24 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Karsh Steelbender", 753)
+local mod, CL = BigWigs:NewBoss("Karsh Steelbender", 753, 107)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39698)
-mod.toggleOptions = {
-	75842, -- Quicksilver Armor
-	93567, -- Superheated Quicksilver Armor
-	"bosskill",
-}
-
--------------------------------------------------------------------------------
---  Locals
-
-local superheated = GetSpellInfo(101305)
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		75842, -- Quicksilver Armor
+		75846, -- Superheated Quicksilver Armor
+	}
+end
+
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Armor", 75842)
-	self:Log("SPELL_AURA_APPLIED", "HeatedArmor", 75846, 93567)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "HeatedArmorDose", 75846, 93567)
+	self:Log("SPELL_AURA_APPLIED", "SuperheatedArmor", 75846)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SuperheatedArmorDose", 75846)
 
 	self:Death("Win", 39698)
 end
@@ -30,24 +26,23 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Armor(_, _, _, _, spellName)
-	self:Message(75842, spellName, "Attention", 75842, "Alert")
+function mod:Armor(args)
+	self:Message(args.spellId, "Attention", "Alert")
 end
 
 do
-	local function HeatedArmorBar(spellId, buffStack)
-		if not buffStack then buffStack = 1 end
-		mod:SendMessage("BigWigs_StopBar", mod, ("%dx %s"):format(buffStack - 1, superheated))
-		mod:Bar(93567, ("%dx %s"):format(buffStack, superheated), 17, spellId)
+	local function HeatedArmorBar(self, spellId, spellName, stacks)
+		self:StopBar(("%dx %s"):format(stacks - 1, spellName))
+		self:Bar(spellId, 17, ("%dx %s"):format(stacks, spellName))
 	end
 
-	function mod:HeatedArmor(_, spellId, _, _, spellName, buffStack)
-		mod:Message(93567, spellName, "Important", spellId, "Info")
-		HeatedArmorBar(spellId, buffStack)
+	function mod:SuperheatedArmor(args)
+		mod:Message(args.spellId, "Important", "Info")
+		HeatedArmorBar(self, args.spellId, args.spellName, 1)
 	end
 
-	function mod:HeatedArmorDose(_, spellId, _, _, spellName, buffStack)
-		HeatedArmorBar(spellId, buffStack)
+	function mod:SuperheatedArmorDose(args)
+		HeatedArmorBar(self, args.spellId, args.spellName, args.amount)
 	end
 end
 

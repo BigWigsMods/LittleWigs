@@ -1,42 +1,43 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Beauty", 753)
+local mod, CL = BigWigs:NewBoss("Beauty", 753, 108)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39700)
-mod.toggleOptions = {
-	{76031, "ICON"}, --Magma Spit
-	76028, --Terrifying Roar
-	"bosskill",
-}
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		{76031, "ICON"}, -- Magma Spit
+		76028, -- Terrifying Roar
+	}
+end
+
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MagmaSpit", 76031)
 	self:Log("SPELL_AURA_REMOVED", "MagmaSpitRemoved", 76031)
-	self:Log("SPELL_CAST_SUCCESS", "Roar", 76028, 93586)
+	self:Log("SPELL_CAST_SUCCESS", "TerrifyingRoar", 76028, 93586)
 	self:Death("Win", 39700)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:MagmaSpit(player, spellId, _, _, spellName)
-	self:Message(76031, spellName..": "..player, "Urgent", spellId)
-	self:Bar(76031, spellName..": "..player, 9, spellId)
-	self:PrimaryIcon(76031, player)
+function mod:MagmaSpit(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetBar(args.spellId, 9, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:MagmaSpitRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+function mod:MagmaSpitRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 	self:PrimaryIcon(76031)
 end
 
-function mod:Roar(_, spellId, _, _, spellName)
-	self:Bar(76028, spellName, 30, spellId)
-	self:Message(76028, spellName, "Attention", spellId)
+function mod:TerrifyingRoar(args)
+	self:CDBar(76028, 30)
+	self:Message(76028, "Attention")
 end
 

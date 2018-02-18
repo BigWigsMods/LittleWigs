@@ -1,25 +1,26 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Ascendant Lord Obsidius", 753)
+local mod, CL = BigWigs:NewBoss("Ascendant Lord Obsidius", 753, 109)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39705)
-mod.toggleOptions = {
-	93613, -- Twilight Corruption
-	{76200, "ICON"}, -- Transformation
-	76189, -- Veil
-	"bosskill",
-}
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		76188, -- Twilight Corruption
+		{76200, "ICON"}, -- Transformation
+		76189, -- Crepuscular Veil
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Corruption", 76188, 93613)
-	self:Log("SPELL_AURA_REMOVED", "CorruptionRemoved", 76188, 93613)
+	self:Log("SPELL_AURA_APPLIED", "TwilightCorruption", 76188)
+	self:Log("SPELL_AURA_REMOVED", "TwilightCorruptionRemoved", 76188)
 	self:Log("SPELL_AURA_APPLIED", "Change", 76200)
-	self:Log("SPELL_AURA_APPLIED", "Veil", 76189)
+	self:Log("SPELL_AURA_APPLIED", "CrepuscularVeil", 76189)
 
 	self:Death("Win", 39705)
 end
@@ -27,31 +28,31 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Corruption(player, spellId, _, _, spellName)
-	self:TargetMessage(93613, spellName, player, "Important", spellId, "Alarm")
-	self:Bar(93613, spellName..": "..player, 12, spellId)
+function mod:TwilightCorruption(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	self:TargetBar(args.spellId, 12, args.destName)
 end
 
-function mod:CorruptionRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, spellName..": "..player)
+function mod:TwilightCorruptionRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 end
 
 do
-	local changeThrottle = 0
-	function mod:Change(_, spellId, _, _, spellName)
-		local time = GetTime()
-		if (time - changeThrottle) > 2 then
-			self:Message(76200, spellName, "Urgent", spellId)
+	local prev = 0
+	function mod:Change(args)
+		local t = GetTime()
+		if (t - prev) > 2 then
+			self:Message(args.spellId, "Urgent")
 		end
-		self:PrimaryIcon(76200, mod.displayName)
-		changeThrottle = time
+		self:PrimaryIcon(args.spellId, mod.displayName)
+		prev = t
 	end
 end
 
-function mod:Veil(player, spellId, _, _, spellName)
-	if UnitGroupRolesAssigned(player) == "TANK" then
-		self:TargetMessage(76189, spellName, player, "Attention", spellId)
-		self:Bar(76189, spellName..": "..player, 4, spellId)
+function mod:CrepuscularVeil(args)
+	if self:Tank(args.destName) then
+		self:TargetMessage(args.spellId, args.destName, "Attention")
+		self:TargetBar(args.spellId, 4, args.destName)
 	end
 end
 
