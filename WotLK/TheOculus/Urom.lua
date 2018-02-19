@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mage-Lord Urom", nil, 624, 578)
+local mod, CL = BigWigs:NewBoss("Mage-Lord Urom", 578, 624)
 if not mod then return end
 --mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(27655)
