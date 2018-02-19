@@ -83,7 +83,7 @@ function mod:OhganRebirth(args)
 end
 
 function mod:Deaths(args)
-	local mobId = self:ModId(args.destGUID)
+	local mobId = self:MobId(args.destGUID)
 	if mobId == 52156 then -- Chained Spirit
 		rebirthcount = rebirthcount - 1
 		self:Message("rebirth", "Attention", "Alarm", L.rebirth_message:format(rebirthcount))
