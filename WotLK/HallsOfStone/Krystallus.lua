@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Krystallus", 526, 604)
+local mod, CL = BigWigs:NewBoss("Krystallus", 599, 604)
 if not mod then return end
 --mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(27977)
