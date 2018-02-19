@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("High Priestess Kilnara", 793, 181)
+local mod, CL = BigWigs:NewBoss("High Priestess Kilnara", 859, 181)
 if not mod then return end
 mod:RegisterEnableMob(52059)
 
