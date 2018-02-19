@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Falric", 603, 601)
+local mod, CL = BigWigs:NewBoss("Falric", 668, 601)
 if not mod then return end
 --mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(38112)
