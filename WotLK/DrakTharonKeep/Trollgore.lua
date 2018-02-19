@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Trollgore", 534, 588)
+local mod, CL = BigWigs:NewBoss("Trollgore", 600, 588)
 if not mod then return end
 --mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(26630)
