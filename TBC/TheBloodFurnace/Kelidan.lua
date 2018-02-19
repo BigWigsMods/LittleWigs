@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Keli'dan the Breaker", 725, 557)
+local mod, CL = BigWigs:NewBoss("Keli'dan the Breaker", 542, 557)
 if not mod then return end
 --mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(17377)
