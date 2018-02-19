@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Blackheart the Inciter", 724, 545)
+local mod, CL = BigWigs:NewBoss("Blackheart the Inciter", 555, 545)
 if not mod then return end
 --mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18667)
