@@ -2,9 +2,9 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Overseer Korgus", nil, 2096, 1771)
+local mod, CL = BigWigs:NewBoss("Tik'ali", nil, 2114, 0) -- Missing InstanceID
 if not mod then return end
-mod:RegisterEnableMob(16866) -- XXX
+mod:RegisterEnableMob(17091) -- XXX
 --mod.engageId = 0 -- XXX
 
 --------------------------------------------------------------------------------
