@@ -25,7 +25,8 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter."
 
-	L.aegis_healing = "Aegis: Reduced Healing Done" -- Aegis is a short name for Aegis of Aggramar
+	L.missing_aegis = "You're not standing in Aegis" -- Aegis is a short name for Aegis of Aggramar
+	L.aegis_healing = "Aegis: Reduced Healing Done"
 	L.aegis_damage = "Aegis: Reduced Damage Done"
 end
 
@@ -104,7 +105,7 @@ do
 
 	local function checkForLackOfAegis(self)
 		if not isOnMe and self:MobId(UnitGUID("boss2")) == 118884 then -- make sure the Aegis is not depleted
-			self:Message(238410, "Urgent", "Warning", CL.you:format(CL.no:format(name)))
+			self:Message(238410, "Urgent", "Warning", L.missing_aegis)
 		end
 	end
 
