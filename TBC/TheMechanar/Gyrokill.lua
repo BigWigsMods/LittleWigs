@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gatewatcher Gyro-Kill", 730)
+local mod, CL = BigWigs:NewBoss("Gatewatcher Gyro-Kill", 554)
 if not mod then return end
 --mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(19218)
