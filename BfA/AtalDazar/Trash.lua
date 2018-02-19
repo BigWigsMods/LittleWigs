@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Atal'Dazar Trash", 0) -- XXX
+local mod, CL = BigWigs:NewBoss("Atal'Dazar Trash", nil, nil, 1763)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
