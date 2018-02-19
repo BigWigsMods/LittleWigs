@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Anub'arakAN", 533, 587) -- AN (AnzolNerub) is intentional to prevent conflict with Anub'arak from The Coliseum
+local mod, CL = BigWigs:NewBoss("Anub'arakAN", 601, 587) -- AN (AnzolNerub) is intentional to prevent conflict with Anub'arak from The Coliseum
 if not mod then return end
 mod.displayName = "Anub'arak"
 --mod.otherMenu = "Dragonblight"

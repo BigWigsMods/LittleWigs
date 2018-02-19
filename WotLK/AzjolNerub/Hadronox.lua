@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Hadronox", 533, 586)
+local mod, CL = BigWigs:NewBoss("Hadronox", 601, 586)
 if not mod then return end
 --mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(28921)
