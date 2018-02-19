@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Trial of the Champion Trash", 542)
+local mod, CL = BigWigs:NewBoss("Trial of the Champion Trash", 650)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
