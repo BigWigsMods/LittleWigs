@@ -21,7 +21,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "IceTomb", 48400)
 	self:Log("SPELL_AURA_REMOVED", "IceTombRemoved", 48400)
-	self:Death("Win", 23953)
 end
 
 -------------------------------------------------------------------------------
