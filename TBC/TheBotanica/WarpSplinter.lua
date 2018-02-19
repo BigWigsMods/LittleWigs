@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Warp Splinter", 729, 562)
+local mod, CL = BigWigs:NewBoss("Warp Splinter", 553, 562)
 if not mod then return end
 --mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(17977)
