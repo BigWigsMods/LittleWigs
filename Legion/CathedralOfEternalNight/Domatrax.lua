@@ -93,12 +93,18 @@ function mod:FelsoulCleave(args)
 end
 
 do
-	local aegisCheck, name = nil, mod:SpellName(238410)
+	local aegisCheck, isOnMe = nil, false
 
-	local function checkForAegisOfAggramar(self)
-		if UnitDebuff("player", name) then
+	local function periodicCheckForAegisOfAggramar(self)
+		if isOnMe then
 			self:Message(238410, "Personal", "Alert", self:Healer() and L.aegis_healing or L.aegis_damage)
-			aegisCheck = self:ScheduleTimer(checkForAegisOfAggramar, 1.5, self)
+			aegisCheck = self:ScheduleTimer(periodicCheckForAegisOfAggramar, 1.5, self)
+		end
+	end
+
+	local function checkForLackOfAegis(self)
+		if not isOnMe and self:MobId(UnitGUID("boss2")) == 118884 then -- make sure the Aegis is not depleted
+			self:Message(238410, "Urgent", "Warning", CL.you:format(CL.no:format(name)))
 		end
 	end
 
@@ -113,27 +119,30 @@ do
 		self:CastBar(args.spellId, 5)
 
 		-- give a warning if the player is not in the Aegis during the last 2 seconds of the cast:
-		self:ScheduleTimer(function()
-			if not UnitDebuff("player", name) and self:MobId(UnitGUID("boss2")) == 118884 then -- make sure the Aegis is not depleted
-				self:Message(238410, "Urgent", "Warning", CL.you:format(CL.no:format(name)))
-			end end, 3)
+		self:ScheduleTimer(checkForLackOfAegis, 3)
 	end
 
 	function mod:ChaoticEnergySuccess(args)
 		isCastingChaoticEnergy = false
-		aegisCheck = self:ScheduleTimer(checkForAegisOfAggramar, 1, self)
+		aegisCheck = self:ScheduleTimer(periodicCheckForAegisOfAggramar, 1, self)
 	end
 
 	function mod:AegisApplied(args)
-		if not isCastingChaoticEnergy and self:Me(args.destGUID) then
-			checkForAegisOfAggramar(self)
+		if self:Me(args.destGUID) then
+			isOnMe = true
+			if not isCastingChaoticEnergy then
+				periodicCheckForAegisOfAggramar(self)
+			end
 		end
 	end
 
 	function mod:AegisRemoved(args)
-		if self:Me(args.destGUID) and aegisCheck then
-			self:CancelTimer(aegisCheck)
-			aegisCheck = nil
+		if self:Me(args.destGUID) then
+			isOnMe = false
+			if aegisCheck then
+				self:CancelTimer(aegisCheck)
+				aegisCheck = nil
+			end
 		end
 	end
 end
