@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Rom'ogg Bonecrusher", 753, 105)
+local mod, CL = BigWigs:NewBoss("Rom'ogg Bonecrusher", 645, 105)
 if not mod then return end
 mod:RegisterEnableMob(39665)
 
