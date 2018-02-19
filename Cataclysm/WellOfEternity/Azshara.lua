@@ -24,8 +24,6 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "MassObedience", 103241)
 	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
 
 function mod:OnWin()
