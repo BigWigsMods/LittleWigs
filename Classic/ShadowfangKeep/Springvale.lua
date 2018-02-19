@@ -53,7 +53,7 @@ end
 
 function mod:ShieldOfThePerfidious(args)
 	if self.Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", CL.you:format(args.spellName))
+		self:TargetMessage(args.spellId, args.destName, "Personal")
 	end
 end
 
