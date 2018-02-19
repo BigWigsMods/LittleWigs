@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Shirrak the Dead Watcher", 722, 523)
+local mod, CL = BigWigs:NewBoss("Shirrak the Dead Watcher", 558, 523)
 if not mod then return end
 --mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18371)
