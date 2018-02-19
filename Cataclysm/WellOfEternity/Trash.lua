@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Well Of Eternity Trash", nil, nil, 939)
+local mod, CL = BigWigs:NewBoss("Well Of Eternity Trash", 939)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
