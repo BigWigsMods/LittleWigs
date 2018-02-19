@@ -20,14 +20,27 @@
 <!-- Wrath of the Lich King -->
 
 <Include file="WotLK\Ahnkahet\modules.xml"/>
+<Include file="WotLK\Ahnkahet\locales.xml"/>
+<!--<Include file="WotLK\AzjolNerub\modules.xml"/>-->
+<!--<Include file="WotLK\DrakTharonKeep\modules.xml"/>-->
 <Include file="WotLK\Gundrak\modules.xml"/>
 <Include file="WotLK\Gundrak\locales.xml"/>
 <Include file="WotLK\HallsOfLightning\modules.xml"/>
+<Include file="WotLK\HallsOfLightning\locales.xml"/>
+<!--<Include file="WotLK\HallsOfReflection\modules.xml"/>-->
+<!--<Include file="WotLK\HallsOfStone\modules.xml"/>-->
 <Include file="WotLK\PitOfSaron\modules.xml"/>
+<!--<Include file="WotLK\TheCullingOfStratholme\modules.xml"/>-->
+<!--<Include file="WotLK\TheForgeOfSouls\modules.xml"/>-->
 <Include file="WotLK\TheNexus\modules.xml"/>
+<Include file="WotLK\TheNexus\locales.xml"/>
+<!--<Include file="WotLK\TheOculus\modules.xml"/>-->
 <Include file="WotLK\TheVioletHold\modules.xml"/>
 <Include file="WotLK\TheVioletHold\locales.xml"/>
+<!--<Include file="WotLK\TrialOfTheChampion\modules.xml"/>-->
+<!--<Include file="WotLK\UtgardeKeep\modules.xml"/>-->
 <Include file="WotLK\UtgardePinnacle\modules.xml"/>
+<Include file="WotLK\UtgardePinnacle\locales.xml"/>
 
 <!-- Cataclysm -->
 
