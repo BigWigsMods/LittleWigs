@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Salramm the Fleshcrafter", nil, 612, 595)
+local mod, CL = BigWigs:NewBoss("Salramm the Fleshcrafter", 595, 612)
 if not mod then return end
 --mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26530)

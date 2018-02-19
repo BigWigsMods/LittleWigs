@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Infinite Corruptor", nil, nil, 595)
+local mod, CL = BigWigs:NewBoss("Infinite Corruptor", 595)
 if not mod then return end
 --mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(32273)
