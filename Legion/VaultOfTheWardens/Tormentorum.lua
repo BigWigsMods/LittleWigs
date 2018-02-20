@@ -35,7 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Teleport", 200898)
 	self:Log("SPELL_AURA_APPLIED", "VoidShieldApplied", 202455)
 	self:Log("SPELL_AURA_REMOVED", "VoidShieldRemoved", 202455)
-	self:Log("SPELL_AURA_APPLIED", "InquisitiveStare", 212564)
+	self:Log("SPELL_AURA_APPLIED", "InquisitiveStare", 212564) -- using AURA events instead of SPELL_CAST_START because a player won't get targetted if they had an immunity
 	self:Log("SPELL_AURA_REFRESH", "InquisitiveStare", 212564)
 	self:Log("SPELL_CAST_SUCCESS", "SapSoul", 206303) -- Mythic, Mythic+
 	self:Log("SPELL_CAST_SUCCESS", "SapSoulInterruptible", 200905) -- Normal, Heroic
