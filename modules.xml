@@ -12,6 +12,7 @@
 <Include file="TBC\MagistersTerrace\locales.xml"/>
 <Include file="TBC\ManaTombs\modules.xml"/>
 <Include file="TBC\TheArcatraz\modules.xml"/>
+<Include file="TBC\TheArcatraz\locales.xml"/>
 <Include file="TBC\TheBlackMorass\modules.xml"/>
 <Include file="TBC\TheBlackMorass\locales.xml"/>
 <Include file="TBC\TheShatteredHalls\modules.xml"/>
