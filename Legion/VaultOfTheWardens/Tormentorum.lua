@@ -74,10 +74,12 @@ end
 do
 	local prev = 0
 	function mod:InquisitiveStare(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 0.5 then
-			prev = t
-			self:Message(args.spellId, "Urgent", "Alarm")
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 0.5 then
+				prev = t
+				self:Message(args.spellId, "Urgent", "Alarm")
+			end
 		end
 	end
 end
@@ -95,11 +97,13 @@ end
 do
 	local prev = 0
 	function mod:SappedSoul(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 0.5 then
-			prev = t
-			self:TargetMessage(args.spellId, args.destName, "Important", "Long")
-			self:Flash(args.spellId)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 0.5 then
+				prev = t
+				self:TargetMessage(args.spellId, args.destName, "Important", "Long")
+				self:Flash(args.spellId)
+			end
 		end
 	end
 end
@@ -126,10 +130,12 @@ end
 do
 	local prev = 0
 	function mod:ShadowCrashDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end
