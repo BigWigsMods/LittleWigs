@@ -18,18 +18,11 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CurseOfFatigue", 52592, 59368)
-	self:Log("SPELL_AURA_APPLIED", "CurseOfFatigueRemoved", 52592, 59368)
+	self:Log("SPELL_AURA_REMOVED", "CurseOfFatigueRemoved", 52592, 59368)
 	self:Log("SPELL_AURA_APPLIED", "Frenzy", 28747)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Death("Win", 28684)
-end
-
-function mod:OnEngage()
-	if self:CheckOption(28747, "MESSAGE") then -- Frenzy is %-based
-		self:RegisterEvent("UNIT_HEALTH")
-	end
 end
 
 -------------------------------------------------------------------------------
@@ -48,11 +41,10 @@ function mod:Frenzy(args)
 	self:Message(args.spellId, "Important", nil, CL.onboss:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH(event, unit)
-	if UnitName(unit) ~= self.displayName then return end
+function mod:UNIT_HEALTH_FREQUENT(unit)
 	local health = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if health > 10 and health <= 15 then
-		self:UnregisterEvent("UNIT_HEALTH")
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		self:Message(28747, "Important", nil, CL.soon(self:SpellName(28747))) -- Frenzy
 	end
 end
