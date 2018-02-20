@@ -67,7 +67,7 @@ end
 do
 	local prev = 0
 	function mod:EnergyVoidDamage(args)
-		if self:Me(args.destGUID) and not UnitDebuff("player", self:SpellName(227502)) then
+		if self:Me(args.destGUID) and not UnitDebuff("player", self:SpellName(227502)) then -- 227502 is "Unstable Mana"
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t

@@ -35,8 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Teleport", 200898)
 	self:Log("SPELL_AURA_APPLIED", "VoidShieldApplied", 202455)
 	self:Log("SPELL_AURA_REMOVED", "VoidShieldRemoved", 202455)
-	self:Log("SPELL_AURA_APPLIED", "InquisitiveStare", 212564)
-	self:Log("SPELL_AURA_REFRESH", "InquisitiveStare", 212564)
+	self:Log("SPELL_CAST_SUCCESS", "InquisitiveStare", 212564)
 	self:Log("SPELL_CAST_SUCCESS", "SapSoul", 206303) -- Mythic, Mythic+
 	self:Log("SPELL_CAST_SUCCESS", "SapSoulInterruptible", 200905) -- Normal, Heroic
 	self:Log("SPELL_AURA_APPLIED", "SappedSoul", 200904)
@@ -74,13 +73,12 @@ end
 do
 	local prev = 0
 	function mod:InquisitiveStare(args)
-		if self:Me(args.destGUID) then
-			local t = GetTime()
-			if t-prev > 0.5 then
-				prev = t
-				self:Message(args.spellId, "Urgent", "Alarm")
-			end
+		local t = GetTime()
+		if t-prev > 0.5 then
+			prev = t
+			self:Message(args.spellId, "Urgent", "Alarm")
 		end
+		self:CastBar(args.spellId, 3)
 	end
 end
 
