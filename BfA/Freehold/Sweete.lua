@@ -22,6 +22,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "LoadedDice", 257402, 257458) -- All Hands!, Man-O-War
 	self:Log("SPELL_CAST_SUCCESS", "SwiftwindSaber", 257278)
 	self:Log("SPELL_AURA_APPLIED", "CannonBarrage", 257305)
@@ -31,6 +32,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(257278, 11) -- Swiftwind Saber
+	self:CDBar(257305, 20) -- Cannon Barrage
 	self:CDBar(257316, 32) -- Avast, ye!
 end
 
@@ -38,7 +40,14 @@ end
 -- Event Handlers
 --
 
-function mod:LoadedDiceAllHands(args)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 257454 then -- Swiftwind Saber with Loaded Dice: All Hands!
+		self:Message(257278, "yellow", "Alert")
+		self:CDBar(257278, 15)
+	end
+end
+
+function mod:LoadedDice(args)
 	self:Message("stages", "cyan", "Info", args.spellName, args.spellId)
 	self:CDBar(257316, 29) -- Avast, ye!
 end
@@ -50,7 +59,7 @@ end
 
 do
 	local onMe, scheduled = nil, nil
-	local function warn(self)
+	local function warn(self) -- It's either on 1 person or on everyone in the later stage, targetlist warnings are not not needed
 		if onMe then
 			self:Message(257305, "blue", "Warning", CL.you:format(self:SpellName(257305)), 257305) -- Cannon Barrage
 		else
@@ -67,18 +76,19 @@ do
 		end
 		if not scheduled then
 			scheduled = self:ScheduleTimer(warn, 0.1, self)
+			self:CDBar(args.spellId, 18.2)
 		end
 	end
 end
 
 function mod:Avastye(args)
 	self:Message(args.spellId, "red", "Long")
-	self:CDBar(args.spellId, 20)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:BlackPowderBomb(args)
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Warning", self:SpellName(244657), args.spellId) -- Fixate
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "blue", "Warning", self:SpellName(244657), args.spellId) -- Fixate
 		self:Say(args.spellId, self:SpellName(244657)) -- Fixate
 		self:Flash(args.spellId)
 	end

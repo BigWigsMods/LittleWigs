@@ -13,6 +13,7 @@ mod.engageId = 2093
 
 function mod:GetOptions()
 	return {
+		"stages",
 		255952, -- Charrrrrge
 		256106, -- Azerite Powder Shot
 		256060, -- Revitalizing Brew
@@ -34,7 +35,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(255952, 6.8) -- Charrrrrge
+	self:CDBar(255952, 4.8) -- Charrrrrge
 end
 
 --------------------------------------------------------------------------------
@@ -49,6 +50,7 @@ end
 
 function mod:SpawnParrot(args)
 	self:StopBar(255952) -- Charrrrrge
+	self:Message("stages", "cyan", "Info", CL.stage:format(2), false)
 
 	self:CDBar(256106, 6) -- Azerite Powder Shot
 	self:CDBar(256060, 27.5) -- Revitalizing Brew
@@ -69,7 +71,7 @@ do
 	function mod:VileCoatingDamage(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(194668, "blue", "Alarm", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 		end
 	end
 end

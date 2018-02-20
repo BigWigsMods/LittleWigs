@@ -1,4 +1,8 @@
 --------------------------------------------------------------------------------
+-- TODO:
+-- -- Lucky Sevens positive buff message?
+
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -37,11 +41,12 @@ end
 
 function mod:BlackoutBarrel(args)
 	self:Message(args.spellId, "yellow", "Alert")
-	self:CDBar(args.spellId, 51)
+	self:CDBar(args.spellId, 47)
 end
 
 function mod:BarrelSmash(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:Message(args.spellId, "orange", "Long", CL.casting:format(args.spellName))
+	self:CastBar(args.spellId, 7) -- 3s Cast, 4s Channel
 	self:CDBar(args.spellId, 23)
 end
 
