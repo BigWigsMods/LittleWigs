@@ -6,7 +6,6 @@ if L then
 
 	--L.gossip_available = "Gossip available"
 	--L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
-	--L.gossip_trigger_2 = "There is one final trial that awaits: me. Should you triumph, I will carve your names in these sacred halls myself and grant you a reward worthy of your valor."
 
 	L[197963] = "|cFF800080Право Верх|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
 	L[197964] = "|cFFFFA500Право Низ|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"

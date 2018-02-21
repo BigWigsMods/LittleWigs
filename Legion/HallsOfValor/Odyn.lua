@@ -20,7 +20,6 @@ if L then
 
 	L.gossip_available = "Gossip available"
 	L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
-	L.gossip_trigger_2 = "There is one final trial that awaits: me. Should you triumph, I will carve your names in these sacred halls myself and grant you a reward worthy of your valor."
 
 	L[197963] = "|cFF800080Top Right|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Boss_OdunRunes_Purple
 	L[197964] = "|cFFFFA500Bottom Right|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Boss_OdunRunes_Orange
@@ -69,10 +68,7 @@ end
 function mod:Warmup(_, msg)
 	if msg == L.gossip_trigger then
 		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
-		self:Bar("warmup", 29.4, L.gossip_available, "achievement_dungeon_hallsofvalor")
-	elseif msg == L.gossip_trigger_2 then
-		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
-		self:Bar("warmup", 16.1, L.gossip_available, "achievement_dungeon_hallsofvalor")
+		self:Bar("warmup", 29.4, L.gossip_available, "achievement_boss_odyn")
 	end
 end
 
