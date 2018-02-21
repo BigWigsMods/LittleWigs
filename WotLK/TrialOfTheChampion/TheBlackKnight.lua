@@ -29,8 +29,8 @@ do
 	function mod:Explode(args)
 		local t = GetTime()
 		if t - prev > 1 then
-			self:Message(-7598, "Urgent", nil, CL.casting:format(self:SpellName(67729)))
-			self:CastBar(-7598, self:Normal() and 5 or 4, 67729)
+			self:Message(-7598, "Urgent", nil, CL.casting:format(self:SpellName(args.spellId)))
+			self:CastBar(-7598, self:Normal() and 5 or 4, args.spellId)
 		end
 	end
 end
