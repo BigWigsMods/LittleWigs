@@ -12,7 +12,7 @@ mod:RegisterEnableMob(95833)
 -- Locals
 --
 
-local nextArcingBolt, nextExpelLight, nextUltimate = 0, 0, 0
+local nextArcingBolt, nextExpelLight = 0, 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -50,7 +50,7 @@ end
 
 function mod:OnEngage()
 	local t = GetTime()
-	nextArcingBolt, nextExpelLight, nextUltimate = t + 4.8, t + 4.5, t + 11.4
+	nextArcingBolt, nextExpelLight = t + 4.8, t + 4.5
 end
 
 --------------------------------------------------------------------------------
@@ -66,20 +66,20 @@ function mod:EyeOfTheStormOrSanctify(args)
 	self:CDBar(192018, 15.8) -- 192018 = Shield of Light. Yes, I checked both EotS and Sanctify.
 
 	-- adjust Arcing Bolt's and Expel Light's CD bars
+	local t = GetTime()
 	local castTime = args.spellId == 200901 and 13 or 11.5
-	if nextArcingBolt - nextUltimate < castTime then
-		nextArcingBolt = nextUltimate + (castTime + 0.3)
+	if nextArcingBolt - t < castTime then
+		nextArcingBolt = t + (castTime + 0.3)
 		if self:BarTimeLeft(191976) > 0 then -- make sure there's a bar in the first place (EmpowermentThunderRemoved calls StopBar)
 			self:CDBar(191976, castTime + 0.3)
 		end
 	end
-	if nextExpelLight - nextUltimate < castTime then
-		nextExpelLight = nextUltimate + (castTime + 3.8) -- doesn't cast it instantly after Sanctify / EotS
+	if nextExpelLight - t < castTime then
+		nextExpelLight = t + (castTime + 3.8) -- doesn't cast it instantly after Sanctify / EotS
 		if self:BarTimeLeft(192048) > 0 then -- make sure there's a bar in the first place (EmpowermentHolyRemoved calls StopBar)
 			self:CDBar(192048, castTime + 3.8)
 		end
 	end
-	nextUltimate = GetTime() + 30.4
 end
 
 do
