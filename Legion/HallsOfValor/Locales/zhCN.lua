@@ -5,7 +5,7 @@ if L then
 	L.custom_on_autotalk_desc = "立即选择对话选项开始战斗。"
 
 	L.gossip_available = "可对话"
-	--L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
+	L.gossip_trigger = "真了不起！没想到还有人能对抗瓦拉加尔的力量……而他们就站在我面前。"
 
 	L[197963] = "|cFF800080右上|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
 	L[197964] = "|cFFFFA500右下|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
@@ -18,7 +18,7 @@ L = BigWigs:NewBossLocale("God-King Skovald", "zhCN")
 if L then
 	L.warmup_text = "神王斯科瓦尔德激活"
 	L.warmup_trigger = "按照传统，它已经属于胜利者了。斯科瓦尔德，你的抗议来得太迟了。"
-	--L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
+	L.warmup_trigger_2 = "如果这些所谓的“勇士”不肯放弃圣盾……那就让他们去死吧！"
 end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "zhCN")
