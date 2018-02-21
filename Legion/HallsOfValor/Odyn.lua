@@ -18,6 +18,9 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
 
+	L.gossip_available = "Gossip available"
+	L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
+
 	L[197963] = "|cFF800080Top Right|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Boss_OdunRunes_Purple
 	L[197964] = "|cFFFFA500Bottom Right|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Boss_OdunRunes_Orange
 	L[197965] = "|cFFFFFF00Bottom Left|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Boss_OdunRunes_Yellow
@@ -41,6 +44,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:Log("SPELL_CAST_START", "RunicBrand", 197961)
 	self:Log("SPELL_AURA_APPLIED", "RunicBrandYou", 197963, 197964, 197965, 197966, 197967)
 	self:Log("SPELL_CAST_START", "RadiantTempest", 198263)
@@ -60,6 +64,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(_, msg)
+	if msg == L.gossip_trigger then
+		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		self:Bar("warmup", 29.4, L.gossip_available, "achievement_boss_odyn")
+	end
+end
 
 function mod:RunicBrand(args)
 	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
