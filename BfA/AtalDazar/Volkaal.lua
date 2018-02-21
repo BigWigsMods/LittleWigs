@@ -22,8 +22,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ToxicLeap", 250258)
-	self:Log("SPELL_CAST_SUCCESS", "NoxiousStench", 259572, 250368) -- stage 1, stage 2 XXX Can you interupt the stage 2 version?
-	self:Log("SPELL_CAST_SUCCESS", "RapidDecay", 250241) -- Stage 2
+	self:Log("SPELL_CAST_SUCCESS", "NoxiousStench", 259572, 250368) -- Stage 1, Stage 2
+	self:Log("SPELL_CAST_SUCCESS", "RapidDecay", 250241) -- Stage 2 start
 	self:Log("SPELL_AURA_APPLIED", "ToxicPool", 250585)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ToxicPool", 250585)
 	self:Log("SPELL_PERIODIC_MISSED", "ToxicPool", 250585)
@@ -44,8 +44,8 @@ function mod:ToxicLeap(args)
 end
 
 function mod:NoxiousStench(args)
-	self:Message(args.spellId, "red", self:Interrupter() and "Warning")
-	self:Bar(args.spellId, 19.5)
+	self:Message(259572, "red", args.spellId == 250368 and "Alert" or self:Interrupter() and "Warning") -- Cannot interrupt in stage 2
+	self:Bar(259572, args.spellId == 250368 and 18.2 or 24.3)
 end
 
 function mod:RapidDecay(args)

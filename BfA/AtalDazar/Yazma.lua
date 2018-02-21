@@ -13,7 +13,7 @@ mod.engageId = 2087
 
 function mod:GetOptions()
 	return {
-		249923, -- Soulrend
+		{249923, "SAY"}, -- Soulrend
 		250096, -- Wracking Pain
 		250050, -- Echoes of Shadra
 		250036, -- Shadowy Remains
@@ -22,7 +22,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Soulrend", 249923)
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Soulrend
+	--self:Log("SPELL_CAST_START", "Soulrend", 249923)
 	self:Log("SPELL_CAST_START", "WrackingPain", 250096)
 	self:Log("SPELL_CAST_START", "EchoesofShadra", 250050)
 	self:Log("SPELL_AURA_APPLIED", "ShadowyRemains", 250036)
@@ -42,10 +43,24 @@ end
 -- Event Handlers
 --
 
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
+	if msg:find("249924") then -- Soulrend
+		self:TargetMessage(249923, destName, "red", "Warning")
+		local guid = UnitGUID(destName)
+		if self:Me(guid) then
+			self:Say(249923)
+			self:SayCountdown(249923, 5)
+		end
+		self:Bar(249923, 26.5)
+	end
+end
+
+--[[ XXX Remove if not needed
 function mod:Soulrend(args)
 	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
 	self:Bar(args.spellId, 26.5)
 end
+]]--
 
 function mod:WrackingPain(args)
 	self:Message(args.spellId, "orange", self:Interrupter() and "Alert")
@@ -59,7 +74,7 @@ end
 
 do
 	local prev = 0
-	function mod:ToxicPool(args)
+	function mod:ShadowyRemains(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
 			self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
