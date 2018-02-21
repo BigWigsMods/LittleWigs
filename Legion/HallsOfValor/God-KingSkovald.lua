@@ -16,7 +16,7 @@ local L = mod:GetLocale()
 if L then
 	L.warmup_text = "God-King Skovald Active"
 	L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
-	L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!" -- for engages after a wipe
+	L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
 end
 
 --------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ function mod:Warmup(_, msg)
 	if msg == L.warmup_trigger then
 		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 		self:Bar("warmup", 20, L.warmup_text, "achievement_dungeon_hallsofvalor")
-	elseif msg == L.warmup_trigger_2 then
+	elseif msg == L.warmup_trigger_2 then -- for engages after a wipe
 		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 		self:Bar("warmup", 10, L.warmup_text, "achievement_dungeon_hallsofvalor")
 	end
