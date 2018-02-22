@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Ozruk", 768, 112)
 if not mod then return end
 mod:RegisterEnableMob(42188)
+mod.engageId = 1058
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -30,9 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GroundSlam", 78903)
 
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 42188)
 end
 
 function mod:OnEngage()
