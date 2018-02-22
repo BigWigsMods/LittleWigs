@@ -6,8 +6,10 @@
 local mod, CL = BigWigs:NewBoss("Siamat", 747, 122)
 if not mod then return end
 mod:RegisterEnableMob(44819)
+mod.engageId = 1055
+mod.respawnTime = 30
 
-local adds = 0
+local addsLeft = 3
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -32,14 +34,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_SUMMON", "Servant", 84553)
-	self:Yell("Engage", L["engage_trigger"])
-
-	self:Death("Win", 44819)
+	self:Log("SPELL_SUMMON", "Servant", 84547, 84553, 84554) -- 1st add, 2nd, 3rd. WTF?
+	self:Death("ServantDied", 45259, 45268, 45269) -- 1st add, 2nd, 3rd
 end
 
 function mod:OnEngage()
-	adds = 0
+	addsLeft = 3
 end
 
 --------------------------------------------------------------------------------
@@ -47,11 +47,20 @@ end
 --
 
 function mod:Servant(args)
-	adds = adds + 1
-	if adds == 3 then
-		self:Message("stages", "Neutral", nil, CL.soon:format(CL.phase:format(2)), false)
-		adds = 0
+	self:Message("servant", "Important", "Alert", CL.spawned:format(self:SpellName(-2477)), args.spellId)
+	if args.spellId ~= 84554 then
+		self:CDBar("servant", 45, CL.next_add, args.spellId)
+	else
+		self:StopBar(CL.next_add)
 	end
-	self:Message("servant", "Important", "Alert", CL.add_spawned, args.spellId)
+end
+
+function mod:ServantDied(args)
+	addsLeft = addsLeft - 1
+	if addsLeft > 0 then
+		self:Message("stages", "Neutral", nil, CL.add_remaining:format(addsLeft), false)
+	else
+		self:Message("stages", "Positive", "Info", CL.stage:format(2), false)
+	end
 end
 
