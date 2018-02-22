@@ -36,9 +36,6 @@ end
 --
 
 function mod:Waterspout(args)
-	local overMsg = CL.over:format(args.spellName)
-	overMsg = overMsg:sub(0, overMsg:len() - 1) -- remove the "!"
-	self:DelayedMessage(args.spellId, 50, "Attention", CL.custom_sec:format(overMsg, 10))
 	self:CastBar(args.spellId, 60)
 end
 
