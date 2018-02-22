@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Echo of Tyrande", 820, 283)
 if not mod then return end
 mod:RegisterEnableMob(54544)
+mod.engageId = 1884
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -29,7 +31,6 @@ end
 
 function mod:OnBossEnable()
 
-	self:Death("Win", 54544)
 end
 
 function mod:OnEngage()

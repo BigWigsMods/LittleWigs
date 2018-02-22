@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Murozond", 820, 289)
 if not mod then return end
 mod:RegisterEnableMob(54432)
+mod.engageId = 1271
+mod.respawnTime = 120 -- yes, for real
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -29,7 +31,6 @@ end
 
 function mod:OnBossEnable()
 
-	self:Death("Win", 54432)
 end
 
 function mod:OnEngage()
