@@ -6,17 +6,10 @@
 local mod, CL = BigWigs:NewBoss("Sha of Doubt", 867, 335)
 if not mod then return end
 mod:RegisterEnableMob(56439)
+mod.engageId = 1439
+mod.respawnTime = 30
 
 local canEnable = true
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "Hatred will consume and conquer all!"
-end
 
 --------------------------------------------------------------------------------
 -- Initialization

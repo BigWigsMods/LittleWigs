@@ -77,7 +77,6 @@
 <Include file="MoP\MogushanPalace\modules.xml"/>
 
 <Include file="MoP\TempleOfTheJadeSerpent\modules.xml"/>
-<Include file="MoP\TempleOfTheJadeSerpent\locales.xml"/>
 
 <Include file="MoP\BlackTempleSolo\modules.xml"/>
 <Include file="MoP\BlackTempleSolo\locales.xml"/>

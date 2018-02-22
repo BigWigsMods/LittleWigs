@@ -6,21 +6,14 @@
 local mod, CL = BigWigs:NewBoss("Liu Flameheart", 867, 658)
 if not mod then return end
 mod:RegisterEnableMob(56732)
+mod.engageId = 1416
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local smash = mod:SpellName(34618)
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "I will not be caged again. These Shado-Pan could not stop me. Neither shall you!"
-end
 
 --------------------------------------------------------------------------------
 -- Initialization

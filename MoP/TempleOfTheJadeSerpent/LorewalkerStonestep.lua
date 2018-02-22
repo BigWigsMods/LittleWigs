@@ -6,20 +6,10 @@
 local mod, CL = BigWigs:NewBoss("Lorewalker Stonestep", 867, 664)
 if not mod then return end
 mod:RegisterEnableMob(56541)
+mod.engageId = 1417
+mod.respawnTime = 30
 
 local phase = 1
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "Very well then, outsiders. Let us see your true strength."
-
-	--When I was but a cub I could scarcely throw a punch, but after years of training I can do so much more!
-	L.phase3_yell = "was a cub"
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
