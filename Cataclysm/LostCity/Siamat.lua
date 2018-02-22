@@ -17,7 +17,6 @@ local addsLeft = 3
 
 local L = mod:GetLocale()
 if L then
-	L.engage_trigger = "Winds of the south, rise and come to your master's aid!"
 	L.servant = "Summon Servant"
 	L.servant_desc = "Warn when a Servant of Siamat is summoned."
 end
@@ -48,9 +47,9 @@ end
 
 function mod:Servant(args)
 	self:Message("servant", "Important", "Alert", CL.spawned:format(self:SpellName(-2477)), args.spellId)
-	if args.spellId ~= 84554 then
+	if args.spellId ~= 84554 then -- 1st & 2nd adds
 		self:CDBar("servant", 45, CL.next_add, args.spellId)
-	else
+	else -- last add
 		self:StopBar(CL.next_add)
 	end
 end
