@@ -7,15 +7,8 @@ local mod, CL = BigWigs:NewBoss("Trial of the King", 885, 708)
 if not mod then return end
 -- Xin the Weaponmaster, Haiyan the Unstoppable, Ming the Cunning, Kuai the Brute
 mod:RegisterEnableMob(61884, 61445, 61444, 61442)
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.scout = "Glintrok Scout"
-end
+mod.engageId = 1442
+mod.respawnTime = 15
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,11 +16,14 @@ end
 
 function mod:GetOptions()
 	return {
-	119922, {-6017, "ICON"},
-	{-6024, "ICON"}, {-6025, "ICON", "SAY", "FLASH"}, {123655, "HEALER"},
+		119922, -- Shockwave
+		{-6017, "ICON"}, -- Ravage
+		{-6024, "ICON"}, -- Conflagrate
+		{-6025, "ICON", "SAY", "FLASH"}, -- Meteor
+		{123655, "HEALER"}, -- Traumatic Blow
 	}, {
-	[119922] = -6015, -- Kuai
-	[-6024] = -6023, -- Haiyan
+		[119922] = -6015, -- Kuai
+		[-6024] = -6023, -- Haiyan
 	}
 end
 
@@ -46,8 +42,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Ravage", 119946)
 	self:Log("SPELL_AURA_REMOVED", "RavageOver", 119946)
 
-	self:Log("SPELL_AURA_APPLIED", "Conflag", 120160)
-	self:Log("SPELL_AURA_REMOVED", "ConflagOver", 120160)
+	self:Log("SPELL_AURA_APPLIED", "Conflagrate", 120160)
+	self:Log("SPELL_AURA_REMOVED", "ConflagrateOver", 120160)
 
 	self:Log("SPELL_CAST_START", "Shockwave", 119922)
 
@@ -63,13 +59,12 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	local mobId = self:MobId(UnitGUID("boss1"))
 	if mobId == 61445 then -- Haiyan the Unstoppable
-		self:CDBar(-6025, 40, 120195)
+		self:CDBar(-6025, 40, 120195) -- Meteor
 	elseif mobId == 61444 then -- Ming the Cunning
-		
+		self:StopBar(120195)
 	elseif mobId == 61442 then -- Kuai the Brute
-		
+		self:StopBar(120195)
 	end
-	self:CheckBossStatus()
 end
 
 function mod:TraumaticBlow(args)
@@ -87,13 +82,13 @@ function mod:RavageOver()
 	self:PrimaryIcon(-6017)
 end
 
-function mod:Conflag(args)
+function mod:Conflagrate(args)
 	self:TargetMessage(-6024, args.destName, "Attention", nil, args.spellId)
 	self:TargetBar(-6024, 5, args.destName, args.spellId)
 	self:SecondaryIcon(-6024, args.destName)
 end
 
-function mod:ConflagOver()
+function mod:ConflagrateOver()
 	self:SecondaryIcon(-6024)
 end
 
@@ -108,10 +103,8 @@ function mod:MeteorFinished(_, _, _, _, spellId)
 	end
 end
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, unit, _, _, player)
-	if unit == L.scout then
-		self:Win()
-	elseif msg:find("meteorstorm", nil, true) then -- |TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
+	if msg:find("meteorstorm", nil, true) then -- |TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
 		self:TargetMessage(-6025, player, "Important", "Alarm", 120195)
 		self:TargetBar(-6025, 5, player, 120195)
 		self:PrimaryIcon(-6025, player)
