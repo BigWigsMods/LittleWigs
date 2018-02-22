@@ -36,11 +36,11 @@ end
 --
 
 function mod:Waterspout(args)
-	self:CastBar(args.spellId, 60)
+	self:Bar(args.spellId, 60)
 end
 
 function mod:WaterspoutRemoved(args) -- if all 3 adds die, she stops casting
-	self:StopBar(CL.cast(args.spellName))
+	self:StopBar(args.spellId)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
