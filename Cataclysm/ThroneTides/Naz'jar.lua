@@ -40,7 +40,6 @@ function mod:Waterspout(args)
 end
 
 function mod:WaterspoutRemoved(args) -- if all 3 adds die, she stops casting
-	self:CancelDelayedMessage(args.spellId)
 	self:StopBar(CL.cast(args.spellName))
 end
 
