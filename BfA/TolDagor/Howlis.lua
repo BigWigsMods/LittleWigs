@@ -51,7 +51,7 @@ function mod:CripplingShiv(args)
 	self:Bar(args.spellId, 17)
 end
 
-function mod:FlashingDaggers(args)
+function mod:HowlingFear(args)
 	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 15)
 end
