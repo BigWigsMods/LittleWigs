@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Sha of Violence", 877, 685)
 if not mod then return end
 mod:RegisterEnableMob(56719)
+mod.engageId = 1305
+mod.respawnTime = 29
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -21,17 +23,16 @@ end
 --
 
 function mod:GetOptions()
-	return {-5813, 106872}
+	return {
+		-5813, -- Enrage
+		106872, -- Disorienting Smash
+	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 38166)
 	self:Log("SPELL_AURA_REMOVED", "EnrageRemoved", 38166)
 	self:Log("SPELL_AURA_APPLIED", "Smash", 106872)
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 56719)
 end
 
 function mod:OnEngage()
@@ -64,4 +65,3 @@ function mod:EnrageSoon(unitId)
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
 	end
 end
-
