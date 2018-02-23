@@ -144,3 +144,8 @@ if L then
 	L["그 첩자의 허리띠 주머니에는 비밀이 잔뜩 적힌 책이 담겨 있다고 합니다."] = 14
 	L["소문을 들어 보니, 그 첩자는 독서를 좋아해서 항상 책을 가지고 다닌다고 합니다."] = 14
 end
+
+L = BigWigs:NewBossLocale("Advisor Melandrus", "koKR")
+if L then
+	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+end

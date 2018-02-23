@@ -5,6 +5,7 @@
 <Script file="Volkhan.lua"/>
 <Script file="Ionar.lua"/>
 <Script file="Loken.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 

@@ -6,6 +6,7 @@
 <Script file="JedogaShadowseeker.lua"/>
 <Script file="Amanitar.lua"/>
 <Script file="HeraldVolazj.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 

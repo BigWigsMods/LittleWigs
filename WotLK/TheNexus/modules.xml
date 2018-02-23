@@ -6,6 +6,7 @@
 <Script file="Anomalus.lua"/>
 <Script file="Ormorok.lua"/>
 <Script file="Keristrasza.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 

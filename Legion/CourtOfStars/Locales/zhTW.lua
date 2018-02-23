@@ -144,3 +144,8 @@ if L then
 	L["我聽說那個間諜在腰帶上掛著一本書，裡頭寫滿了各種秘密。"] = 14
 	L["聽說那個間諜是喜歡讀書的人，不管到哪裡都會帶著一本書。"] = 14
 end
+
+L = BigWigs:NewBossLocale("Advisor Melandrus", "zhTW")
+if L then
+	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+end

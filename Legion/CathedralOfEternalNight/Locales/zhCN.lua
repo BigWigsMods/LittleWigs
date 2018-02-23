@@ -9,6 +9,10 @@ L = BigWigs:NewBossLocale("Domatrax", "zhCN")
 if L then
 	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择阿格拉玛之盾对话开始与多玛塔克斯战斗。"
+
+	L.missing_aegis = "你没站在盾内" -- Aegis is a short name for Aegis of Aggramar
+	L.aegis_healing = "盾：降低治疗"
+	L.aegis_damage = "盾：降低伤害"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "zhCN")
@@ -21,9 +25,9 @@ if L then
 	L.botanist = "邪脉植物学家"
 	L.orbcaster = "邪足晶球法师"
 	L.waglur = "瓦格鲁尔"
-	--L.scavenger = "Wyrmtongue Scavenger"
+	L.scavenger = "虫语清道夫"
 	L.gazerax = "加泽拉克斯"
 	L.vilebark = "邪皮行者"
 
-	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
+	L.throw_tome = "投掷宝典" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end

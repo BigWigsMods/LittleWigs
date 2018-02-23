@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.wrangler = "积怨牧鱼者"
 	L.stormweaver = "积怨织雷者"
+	L.crusher = "积怨碾压者"
 	L.oracle = "积怨神谕者"
 	L.siltwalker = "玛拉纳沙地行者"
 	L.tides = "焦躁的海潮元素"

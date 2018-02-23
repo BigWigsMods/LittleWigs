@@ -149,10 +149,12 @@ end
 do
 	local prev = 0
 	function mod:GroundEffectDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end
@@ -185,10 +187,12 @@ end
 do
 	local prev = 0
 	function mod:AnguishedSouls(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and (UnitDebuff("player",  self:SpellName(202615)) and t-prev > 6 or t-prev > 1.5) then -- don't be spammy if the player can't move (due to Torment)
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if (not UnitDebuff("player",  self:SpellName(202615)) and t-prev > 1.5) or t-prev > 6 then -- don't be spammy if the player can't move (due to Torment)
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

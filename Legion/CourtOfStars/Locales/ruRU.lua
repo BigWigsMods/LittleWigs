@@ -160,3 +160,8 @@ if L then
 	L["Я слышала, что у шпиона на поясе болтается книжица, в которой записаны шпионские наблюдения."] = 14
 	L["Ходят слухи, что шпион очень любит читать и носит с собой по меньшей мере одну книгу."] = 14
 end
+
+L = BigWigs:NewBossLocale("Advisor Melandrus", "ruRU")
+if L then
+	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+end

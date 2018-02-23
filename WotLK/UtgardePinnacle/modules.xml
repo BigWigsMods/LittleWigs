@@ -5,6 +5,7 @@
 <Script file="GortokPalehoof.lua"/>
 <Script file="Skadi.lua"/>
 <Script file="KingYmiron.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 
