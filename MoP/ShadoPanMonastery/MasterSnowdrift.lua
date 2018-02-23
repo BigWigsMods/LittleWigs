@@ -77,7 +77,7 @@ end
 
 
 function mod:Stage3(_, msg)
-	if msg:find(L.warmup_trigger, nil, true) then
+	if msg:find(L.stage3_yell, nil, true) then
 		self:Message("stages", "Positive", "Info", CL.stage:format(3), 118961) -- 118961 = Chase Down
 	end
 end
