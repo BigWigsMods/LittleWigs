@@ -41,13 +41,13 @@ end
 
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-	if msg:find("255371") then -- Soulrend
-		self:TargetMessage(255371, destName, "orange", "Alarm")
+	if msg:find("255421") then -- Devour
+		self:TargetMessage(257407, destName, "orange", "Alarm")
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
-			self:Say(255371)
+			self:Say(257407)
 		end
-		self:Bar(255371, 35.2)
+		self:Bar(257407, 35.2)
 	end
 end
 

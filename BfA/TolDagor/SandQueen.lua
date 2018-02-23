@@ -23,6 +23,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SandTrap", 257092)
 	self:Log("SPELL_CAST_START", "Sandstorm", 257495)
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Upheaval Target
 	self:Log("SPELL_CAST_SUCCESS", "Upheaval", 257608)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 257609)
 end
