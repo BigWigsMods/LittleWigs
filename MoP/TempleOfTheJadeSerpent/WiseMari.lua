@@ -19,7 +19,7 @@ function mod:GetOptions()
 	return {
 		-6327, -- Call Water
 		"stages",
-}
+	}
 end
 
 function mod:OnBossEnable()
