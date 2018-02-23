@@ -64,11 +64,11 @@ end
 
 function mod:HexOfLethargy(args)
 	self:TargetMessage(-5925, args.destName, "Important")
-	self:TargetBar(-5925, 20, args.destName)
+	self:TargetBar(-5925, 20, args.destName, 66054, args.spellId) -- Hex
 end
 
 function mod:HexOfLethargyRemoved(args)
-	self:StopBar(-5925, args.destName)
+	self:StopBar(66054, args.destName) -- Hex
 end
 
 function mod:Heal(args)
