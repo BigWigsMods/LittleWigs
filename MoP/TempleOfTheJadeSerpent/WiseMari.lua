@@ -25,10 +25,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CallWater", 106526)
 	self:Log("SPELL_CAST_START", "BubbleBurst", 106612)
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 56448)
 	self:Death("AddDeath", 56511)
 end
 

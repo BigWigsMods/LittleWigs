@@ -35,8 +35,6 @@ function mod:VerifyEnable(unit)
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-
 	self:Log("SPELL_AURA_APPLIED", "TraumaticBlow", 123655)
 
 	self:Log("SPELL_AURA_APPLIED", "Ravage", 119946)
@@ -50,6 +48,10 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "MeteorFinished", "boss1")
 
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+end
+
+function mod:OnEngage()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
 --------------------------------------------------------------------------------

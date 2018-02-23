@@ -49,10 +49,8 @@ function mod:OnEngage()
 	self:Log("SPELL_CAST_START", "Heal", 118940)
 	self:Log("SPELL_INTERRUPT", "HealStop", "*")
 
-	self:Death("Deaths", 61243, 61337, 61338, 61339, 61340)
-
-	-- Reset fires after Gekkan dies, even if the encounter hasn't ended
 	deaths = 0
+	self:Death("Deaths", 61243, 61337, 61338, 61339, 61340)
 end
 
 --------------------------------------------------------------------------------
