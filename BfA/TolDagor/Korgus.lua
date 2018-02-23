@@ -27,6 +27,7 @@ function mod:GetOptions()
 		256083, -- Cross Ignition
 		256101, -- Explosive Burst
 		256038, -- Deadeye
+		263345, -- Massive Blast
 	}
 end
 
@@ -36,6 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrossIgnition", 256083)
 	self:Log("SPELL_CAST_SUCCESS", "ExplosiveBurst", 256101)
 	self:Log("SPELL_CAST_SUCCESS", "Deadeye", 256038)
+	self:Log("SPELL_CAST_START", "MassiveBlast", 263345)
 end
 
 function mod:OnEngage()
@@ -79,4 +81,10 @@ function mod:Deadeye(args)
 	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 	self:Bar(args.spellId, 27.5)
 	self:CastBar(args.spellId, 5)
+end
+
+function mod:MassiveBlast(args)
+	self:Message(args.spellId, "yellow", "Alert")
+	self:Bar(args.spellId, 27.5)
+	self:CastBar(args.spellId, 4)
 end

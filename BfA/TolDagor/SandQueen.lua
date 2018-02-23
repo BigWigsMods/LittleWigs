@@ -32,7 +32,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(257092, 8.5) -- Sand Trap
-	self:Bar(257608, 22.5) -- Upheaval
+	self:Bar(257608, 14.5) -- Upheaval
 	self:Bar(257495, 30) -- Sandstorm
 end
 
@@ -56,7 +56,7 @@ function mod:Upheaval(args)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-	if msg:find("257608") then -- Upheaval
+	if msg:find("257617") then -- Upheaval
 		self:TargetMessage(257608, destName, "red", "Alarm")
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then

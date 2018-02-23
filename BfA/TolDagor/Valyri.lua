@@ -50,7 +50,7 @@ function mod:Cinderflame(args)
 end
 
 function mod:Fuselighter(args)
-	self:Bar(args.spellId, 35)
+	self:Bar(args.spellId, 33)
 end
 
 function mod:FuselighterApplied(args)

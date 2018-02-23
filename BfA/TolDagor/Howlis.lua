@@ -30,6 +30,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SmokePowder", 257793)
 	self:Log("SPELL_CAST_SUCCESS", "MotivatingCry", 257827)
 	self:Log("SPELL_INTERRUPT", "MotivatingCryInterupted", "*")
+
+	self:Death("Win", 127484) -- XXX Remove when this encounter has ENCOUNTER_END
 end
 
 function mod:OnEngage()
