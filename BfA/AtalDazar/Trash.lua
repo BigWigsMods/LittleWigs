@@ -1,3 +1,4 @@
+if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 
 --------------------------------------------------------------------------------
 -- Module Declaration
