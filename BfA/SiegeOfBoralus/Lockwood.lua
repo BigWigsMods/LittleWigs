@@ -1,10 +1,12 @@
+if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Faceless", nil, 2156, 0) -- Missing InstanceID, Temp Name?
+local mod, CL = BigWigs:NewBoss("Dread Captain Lockwood", nil, 2173, 0) -- Missing InstanceID
 if not mod then return end
-mod:RegisterEnableMob(17905) -- XXX
+mod:RegisterEnableMob(17812) -- XXX
 --mod.engageId = 0 -- XXX
 
 --------------------------------------------------------------------------------

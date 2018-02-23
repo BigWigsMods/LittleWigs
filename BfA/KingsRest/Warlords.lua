@@ -4,9 +4,9 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sporecaller Zancha", nil, 2130, 0) -- Missing InstanceID
+local mod, CL = BigWigs:NewBoss("The Warring Warlords", nil, 2170, 0) -- XXX Missing InstanceID
 if not mod then return end
-mod:RegisterEnableMob(17475) -- XXX
+mod:RegisterEnableMob(0) -- XXX
 --mod.engageId = 0 -- XXX
 
 --------------------------------------------------------------------------------

@@ -1,10 +1,12 @@
+if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Lady Ashvane", nil, 2140, 0) -- Missing InstanceID
+local mod, CL = BigWigs:NewBoss("Mummification Construct", nil, 2171, 0) -- XXX Missing InstanceID
 if not mod then return end
-mod:RegisterEnableMob(17812) -- XXX
+mod:RegisterEnableMob(18136) -- XXX
 --mod.engageId = 0 -- XXX
 
 --------------------------------------------------------------------------------
