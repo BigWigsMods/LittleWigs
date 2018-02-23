@@ -4,8 +4,8 @@
 
 local mod, CL = BigWigs:NewBoss("The Sand Queen", nil, 2097, 1771)
 if not mod then return end
-mod:RegisterEnableMob(16871) -- XXX
---mod.engageId = 0 -- XXX
+mod:RegisterEnableMob(127479) -- The Sand Queen
+mod.engageId = 2101
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,16 +13,55 @@ mod:RegisterEnableMob(16871) -- XXX
 
 function mod:GetOptions()
 	return {
-		"berserk",
+		257092, -- Sand Trap
+		257495, -- Sandstorm
+		257608, -- Upheaval
+		257609, -- Enrage
 	}
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "SandTrap", 257092)
+	self:Log("SPELL_CAST_START", "Sandstorm", 257495)
+	self:Log("SPELL_CAST_SUCCESS", "Upheaval", 257608)
+	self:Log("SPELL_AURA_APPLIED", "Enrage", 257609)
 end
 
 function mod:OnEngage()
+	self:Bar(257092, 8.5) -- Sand Trap
+	self:Bar(257608, 22.5) -- Upheaval
+	self:Bar(257495, 30) -- Sandstorm
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:SandTrap(args)
+	self:Message(args.spellId, "yellow", "Alert")
+	self:Bar(args.spellId, 14.5)
+end
+
+function mod:Sandstorm(args)
+	self:Message(args.spellId, "orange", "Long")
+	self:Bar(args.spellId, 35)
+end
+
+function mod:Upheaval(args)
+	self:Bar(args.spellId, 42)
+	self:CastBar(args.spellId, 5)
+end
+
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
+	if msg:find("257608") then -- Upheaval
+		self:TargetMessage(257608, destName, "red", "Alarm")
+		local guid = UnitGUID(destName)
+		if self:Me(guid) then
+			self:Say(257608)
+		end
+	end
+end
+
+function mod:Enrage(args)
+	self:Message(args.spellId, "yellow", "Info")
+end
