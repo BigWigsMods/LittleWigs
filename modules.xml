@@ -68,6 +68,8 @@
 <Include file="MoP\ShadoPanMonastery\modules.xml"/>
 <Include file="MoP\ShadoPanMonastery\locales.xml"/>
 
+<Include file="MoP\SiegeOfNiuzaoTemple\modules.xml"/>
+
 <Include file="MoP\ScarletHalls\modules.xml"/>
 <Include file="MoP\ScarletHalls\locales.xml"/>
 
