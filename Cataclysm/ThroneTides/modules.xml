@@ -4,6 +4,7 @@
 <Script file="Naz'jar.lua"/>
 <Script file="Ulthok.lua"/>
 <Script file="Mindbender.lua"/>
+<Script file="Ozumat.lua"/>
 
 </Ui>
 

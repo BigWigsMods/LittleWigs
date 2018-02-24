@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Corborus", 768, 110)
 if not mod then return end
 mod:RegisterEnableMob(43438)
+mod.engageId = 1056
+mod.respawnTime = 30
 
 local L = mod:GetLocale()
 if L then
@@ -29,11 +31,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "Barrage", 81634, 81637, 81638, 86881, 92012) -- XXX do we need all this?
-
-	self:Death("Win", 43438)
 end
 
 function mod:OnEngage()

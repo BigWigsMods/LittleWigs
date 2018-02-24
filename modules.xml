@@ -57,6 +57,7 @@
 <Include file="Cataclysm\Stonecore\modules.xml"/>
 <Include file="Cataclysm\Stonecore\locales.xml"/>
 <Include file="Cataclysm\ThroneTides\modules.xml"/>
+<Include file="Cataclysm\ThroneTides\locales.xml"/>
 <Include file="Cataclysm\VortexPinnacle\modules.xml"/>
 <!--<Include file="Cataclysm\WellOfEternity\modules.xml"/>-->
 <!--<Include file="Cataclysm\ZulAman\modules.xml"/>-->
