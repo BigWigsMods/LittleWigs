@@ -62,9 +62,13 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(120789, player, "Attention", "Alarm")
-		if self:Me(guid) then
-			self:Say(120789)
+		if not UnitDetailedThreatSituation(player, "boss1") then
+			self:TargetMessage(120789, player, "Attention", "Alarm")
+			if self:Me(guid) then
+				self:Say(120789)
+			end
+		else -- either incorrect (cast time depends on distance between the boss and the target) or only one player is alive
+			self:Message(120789, "Attention")
 		end
 	end
 	function mod:DashingStrike(args)
