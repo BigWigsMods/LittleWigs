@@ -15,8 +15,8 @@ mod.respawnTime = 15
 
 function mod:GetOptions()
 	return {
-		-5632, -- Lightning Breath
-		-5633, -- Magnetic Shroud
+		102573, -- Lightning Breath
+		107140, -- Magnetic Shroud
 		{-5630, "FLASH"}, -- Static Field
 		"stages",
 	}
@@ -41,20 +41,20 @@ end
 --
 
 function mod:LightningBreath(args)
-	self:Message(-5632, "Urgent", "Alert", args.spellId)
-	self:CDBar(-5632, 9.5, args.spellId) -- 9.6 - 9.7
+	self:Message(args.spellId, "Urgent", "Alert")
+	self:CDBar(args.spellId, 9.5) -- 9.6 - 9.7
 end
 
 function mod:MagneticShroud(args)
-	self:Message(-5633, "Attention", nil, args.spellId)
-	self:CDBar(-5633, 13, args.spellId) -- 13.2 - 15.7
+	self:Message(args.spellId, "Attention", nil)
+	self:CDBar(args.spellId, 13) -- 13.2 - 15.7
 end
 
 function mod:Stage2()
 	local _, serpent = EJ_GetCreatureInfo(2, 673)
 	self:Message("stages", "Positive", "Info", CL.stage:format(2)..": "..serpent, false)
-	self:CDBar(-5632, 7, 102573) -- Breath
-	self:Bar(-5633, 20, 107140) -- Shroud
+	self:CDBar(102573, 7) -- Breath
+	self:Bar(107140, 20) -- Shroud
 end
 
 function mod:Stage3()

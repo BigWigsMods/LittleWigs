@@ -19,7 +19,7 @@ function mod:GetOptions()
 		119922, -- Shockwave
 		{-6017, "ICON"}, -- Ravage
 		{-6024, "ICON"}, -- Conflagrate
-		{-6025, "ICON", "SAY", "FLASH"}, -- Meteor
+		{120195, "ICON", "SAY", "FLASH"}, -- Meteor
 		{123655, "HEALER"}, -- Traumatic Blow
 	}, {
 		[119922] = -6015, -- Kuai
@@ -99,18 +99,18 @@ end
 
 function mod:MeteorFinished(_, _, _, _, spellId)
 	if spellId == 120195 then
-		self:PrimaryIcon(-6025)
+		self:PrimaryIcon(spellId)
 	end
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg:find("meteorstorm", nil, true) then -- |TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
-		self:TargetMessage(-6025, player, "Important", "Alarm", 120195)
-		self:TargetBar(-6025, 5, player, 120195)
-		self:PrimaryIcon(-6025, player)
+		self:TargetMessage(120195, player, "Important", "Alarm")
+		self:TargetBar(120195, 5, player)
+		self:PrimaryIcon(120195, player)
 		if UnitIsUnit(player, "player") then
-			self:Flash(-6025)
-			self:Say(-6025, 120195)
+			self:Flash(120195)
+			self:Say(120195)
 		end
 	end
 end

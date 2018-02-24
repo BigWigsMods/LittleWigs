@@ -30,7 +30,7 @@ end
 
 function mod:GetOptions()
 	return {
-		-5970, -- Ground Slam
+		119684, -- Ground Slam
 		"blades",
 		"crossbows",
 	}
@@ -51,8 +51,8 @@ end
 --
 
 function mod:GroundSlam(args)
-	self:Message(-5970, "Urgent", "Alert", CL.casting:format(args.spellName), args.spellId)
-	self:CastBar(-5970, 3, args.spellId)
+	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:CastBar(args.spellId, 3)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)

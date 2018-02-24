@@ -29,7 +29,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Positive", "Info", CL.phase:format(1), false)
+	self:Message("stages", "Positive", "Info", CL.stage:format(1), false)
 	deaths = 0
 end
 
@@ -43,7 +43,7 @@ function mod:CallWater(args)
 end
 
 function mod:BubbleBurst(args)
-	local text = CL.phase:format(2)
+	local text = CL.stage:format(2)
 	self:DelayedMessage("stages", 4, "Positive", text, false, "Info")
 	self:Bar("stages", 4, text, args.spellId)
 end
