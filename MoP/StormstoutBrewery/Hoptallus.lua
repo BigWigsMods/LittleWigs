@@ -24,6 +24,9 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Furlwind", 112992)
 	self:Log("SPELL_AURA_APPLIED", "FurlwindChanneling", 112992)
+	self:Log("SPELL_DAMAGE", "FurlwindDamage", 112993)
+	self:Log("SPELL_MISSED", "FurlwindDamage", 112993)
+
 	self:Log("SPELL_CAST_START", "CarrotBreath", 112944)
 	self:Log("SPELL_CAST_START", "ExplosiveBrew", 114291)
 end
@@ -53,6 +56,19 @@ do
 		self:Message(args.spellId, "Attention", nil, CL.incoming:format(args.spellName))
 		self:CastBar(args.spellId, 12.5) -- 2.5s cast + 10s channeling
 		self:CDBar(args.spellId, 43.8)
+	end
+end
+
+do
+	local prev = 0
+	function mod:FurlwindDamage(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if (not self:Melee() and t-prev > 1.5) or t-prev > 6 then
+				prev = t
+				self:Message(112992, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
+		end
 	end
 end
 
