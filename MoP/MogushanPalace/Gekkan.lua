@@ -5,8 +5,8 @@
 
 local mod, CL = BigWigs:NewBoss("Gekkan", 885, 690)
 if not mod then return end
--- Gekkan, Glintrok Scout, Glintrok Scout, Glintrok Ironhide
-mod:RegisterEnableMob(61243, 61399, 64243, 61242)
+-- Gekkan, Glintrok Ironhide, Glintrok Skulker, Glintrok Oracle, Glintrok Hexxer
+mod:RegisterEnableMob(61243, 61337, 61338, 61339, 61340)
 mod.engageId = 2129
 mod.respawnTime = 30
 
@@ -29,19 +29,14 @@ end
 
 function mod:GetOptions()
 	return {
-		-5921, -- Shank
+		118963, -- Shank
 		"heal",
-		-5925, -- Hex of Lethargy
+		118903, -- Hex of Lethargy
 		"stages"
 	}
 end
 
 function mod:OnBossEnable()
-
-end
-
-function mod:OnEngage()
-	-- Trash trigger these, so register after engage
 	self:Log("SPELL_AURA_APPLIED", "Shank", 118963)
 	self:Log("SPELL_AURA_APPLIED", "HexOfLethargy", 118903)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "HexOfLethargy", 118903)
@@ -49,8 +44,11 @@ function mod:OnEngage()
 	self:Log("SPELL_CAST_START", "Heal", 118940)
 	self:Log("SPELL_INTERRUPT", "HealStop", "*")
 
-	deaths = 0
 	self:Death("Deaths", 61243, 61337, 61338, 61339, 61340)
+end
+
+function mod:OnEngage()
+	deaths = 0
 end
 
 --------------------------------------------------------------------------------
@@ -58,13 +56,13 @@ end
 --
 
 function mod:Shank(args)
-	self:TargetMessage(-5921, args.destName, "Attention", nil, args.spellId)
-	self:TargetBar(-5921, 5, args.destName, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 5, args.destName)
 end
 
 function mod:HexOfLethargy(args)
-	self:TargetMessage(-5925, args.destName, "Important")
-	self:TargetBar(-5925, 20, args.destName, 66054, args.spellId) -- Hex
+	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetBar(args.spellId, 20, args.destName, 66054, args.spellId) -- Hex
 end
 
 function mod:HexOfLethargyRemoved(args)
@@ -86,9 +84,7 @@ end
 
 function mod:Deaths(args)
 	deaths = deaths + 1
-	if deaths == 5 then
-		self:Win()
-	else
+	if deaths < 5 then
 		self:Message("stages", "Positive", "Info", CL.mob_killed:format(args.destName, deaths, 5), false)
 	end
 end
