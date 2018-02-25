@@ -72,7 +72,7 @@ function mod:OnEngage()
 	addsSpawned = 0
 	wipe(mobCollector)
 
-	self:ScheduleTimer("startTimers", 0.2, mod) -- boss1 sometimes is yet to be assigned
+	self:ScheduleTimer("StartTimers", 0.2, mod) -- safety in case OnEngage() was called before IEEU fired
 end
 
 function mod:OnBossDisable()
@@ -83,32 +83,34 @@ end
 -- Event Handlers
 --
 
-local function warnForWallOfSuds(self, spellId, spellName)
-	self:Message(spellId, "Important", "Long", CL.incoming:format(spellName))
-	self:ScheduleTimer(warnForWallOfSuds, 30, self, spellId, spellName)
-	self:CDBar(spellId, 30)
-end
-
-function mod:startTimers()
-	-- There are 3 pairs of abilities
-	-- Yan-Zhu can have only one from each pair
-	if UnitBuff("boss1", self:SpellName(114929)) then -- Bloating Brew
-		self:CDBar(106546, 7.0) -- Bloat
-	elseif UnitBuff("boss1", self:SpellName(114930)) then -- Blackout Brew
-		self:CDBar(106851, 6.6) -- Blackout Brew
+do
+	local function warnForWallOfSuds(self, spellId, spellName)
+		self:Message(spellId, "Important", "Long", CL.incoming:format(spellName))
+		self:ScheduleTimer(warnForWallOfSuds, 30, self, spellId, spellName)
+		self:CDBar(spellId, 30)
 	end
 
-	if UnitBuff("boss1", self:SpellName(114931)) then -- Bubbling Brew
-		self:CDBar(106563, 22.1) -- Bubble Shield
-	elseif UnitBuff("boss1", self:SpellName(114932)) then -- Yeasty Brew (Can summon Yeasty Brew Alementals)
-		self:CDBar("summon", 21.8, CL.next_add, 116155)
-	end
+	function mod:StartTimers()
+		-- There are 3 pairs of abilities
+		-- Yan-Zhu can have only one from each pair
+		if UnitBuff("boss1", self:SpellName(114929)) then -- Bloating Brew
+			self:CDBar(106546, 7.0) -- Bloat
+		elseif UnitBuff("boss1", self:SpellName(114930)) then -- Blackout Brew
+			self:CDBar(106851, 6.6) -- Blackout Brew
+		end
 
-	if UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew
-		self:ScheduleTimer(warnForWallOfSuds, 29.8, self, -5658, self:SpellName(-5658))
-		self:CDBar(-5658, 29.8)
-	elseif UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew
-		self:CDBar(115003, 45.8) -- Carbonation
+		if UnitBuff("boss1", self:SpellName(114931)) then -- Bubbling Brew
+			self:CDBar(106563, 22.1) -- Bubble Shield
+		elseif UnitBuff("boss1", self:SpellName(114932)) then -- Yeasty Brew (Can summon Yeasty Brew Alementals)
+			self:CDBar("summon", 21.8, CL.next_add, 116155)
+		end
+
+		if UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew
+			self:ScheduleTimer(warnForWallOfSuds, 29.8, self, -5658, self:SpellName(-5658))
+			self:CDBar(-5658, 29.8)
+		elseif UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew
+			self:CDBar(115003, 45.8) -- Carbonation
+		end
 	end
 end
 
