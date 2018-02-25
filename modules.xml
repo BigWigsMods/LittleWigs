@@ -75,6 +75,7 @@
 <Include file="MoP\GateOfTheSettingSun\modules.xml"/>
 
 <Include file="MoP\StormstoutBrewery\modules.xml"/>
+<Include file="MoP\StormstoutBrewery\locales.xml"/>
 
 <Include file="MoP\ScarletHalls\modules.xml"/>
 <Include file="MoP\ScarletHalls\locales.xml"/>
