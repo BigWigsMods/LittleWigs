@@ -69,7 +69,7 @@ function mod:Fixate(args)
 end
 
 function mod:FixateRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:Stomp(args)

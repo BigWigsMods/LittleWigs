@@ -53,7 +53,7 @@ function mod:Sabotage(args)
 end
 
 function mod:SabotageRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
 	end

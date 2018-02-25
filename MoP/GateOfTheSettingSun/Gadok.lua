@@ -55,7 +55,7 @@ function mod:PreyTime(args)
 end
 
 function mod:PreyTimeRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:ImpalingStrike(args) -- has no cast time, short of providing a CDBar there's nothing we can help with
