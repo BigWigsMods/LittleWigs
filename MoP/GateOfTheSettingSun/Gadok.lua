@@ -34,12 +34,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ImpalingStrike", 107047)
 	self:Log("SPELL_DAMAGE", "GroundEffectDamage", 116297, 115458) -- Strafing Run, Acid Bomb
 	self:Log("SPELL_MISSED", "GroundEffectDamage", 116297, 115458)
+
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 function mod:OnEngage()
 	self:CDBar(106933, 15.9) -- Prey Time
 	self:CDBar(107047, 9.4) -- Impaling Strike
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	nextStrafingWarning = 75 -- casts it at 70% and 30%
 end
 

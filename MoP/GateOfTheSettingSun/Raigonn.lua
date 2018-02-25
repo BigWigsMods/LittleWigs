@@ -38,11 +38,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Fixate", 111723)
 	self:Log("SPELL_AURA_REMOVED", "FixateRemoved", 111723)
 	self:Log("SPELL_CAST_START", "Stomp", 111728)
+
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss2")
 end
 
 function mod:OnEngage()
 	self:Message("stages", "Neutral", nil, CL.stage:format(1) .. ": ".. self:SpellName(107118), false)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss2")
 end
 
 --------------------------------------------------------------------------------

@@ -29,11 +29,12 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Sabotage", 107268)
 	self:Log("SPELL_AURA_REMOVED", "SabotageRemoved", 107268)
+
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 function mod:OnEngage()
 	self:CDBar(107268, 15.7) -- Sabotage
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	nextExplosionWarning = 75 -- casts it at 70% and 30%
 end
 
