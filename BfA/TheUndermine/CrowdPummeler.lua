@@ -4,10 +4,10 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Coin-operated Crowd Pummeler", nil, 2109, 0) -- Missing InstanceID
+local mod, CL = BigWigs:NewBoss("Coin-operated Crowd Pummeler", nil, 2109, 1594)
 if not mod then return end
 mod:RegisterEnableMob(17007) -- XXX
---mod.engageId = 0 -- XXX
+mod.engageId = 2105
 
 --------------------------------------------------------------------------------
 -- Initialization

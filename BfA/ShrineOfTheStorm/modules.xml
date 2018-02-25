@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Aqusirr.lua"/>
-<Script file="Coucil.lua"/>
+<Script file="Council.lua"/>
 <Script file="Priest.lua"/>
 <Script file="Volzith.lua"/>
 
