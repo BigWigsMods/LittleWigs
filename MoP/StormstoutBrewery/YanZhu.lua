@@ -91,7 +91,7 @@ function mod:BloatApplied(args)
 end
 
 function mod:BloatRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:BlackoutBrew(args)
