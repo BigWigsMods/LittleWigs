@@ -43,7 +43,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Neutral", nil, CL.stage:format(1) .. ": ".. self:SpellName(107118), false)
+	self:Message("stages", "Neutral", nil, CL.other:format(CL.stage:format(1), self:SpellName(107118)), false)
 end
 
 --------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ end
 
 function mod:BrokenCarapace(args)
 	stompCount = 0
-	self:Message("stages", "Positive", "Info", CL.stage:format(2) .. ": ".. args.spellName, false)
+	self:Message("stages", "Positive", "Info", CL.other:format(CL.stage:format(2), args.spellName), false)
 	self:CDBar(111723, 3) -- Fixate
 
 	self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss2") -- in case Weak Spot died too fast
@@ -80,7 +80,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 15 then
-		self:Message("stages", "Positive", nil, CL.soon:format(CL.stage:format(2)), false)
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("stages", "Positive", nil, CL.soon:format(CL.stage:format(2)), false)
 	end
 end
