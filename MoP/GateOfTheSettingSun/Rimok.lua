@@ -10,12 +10,6 @@ mod.engageId = 1406
 mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local checkingTimer = nil
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -35,28 +29,20 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	checkingTimer = nil
 	self:CDBar(107120, 5.7) -- Frenzied Assault
+	if self:Tank() then
+		self:RegisterUnitEvent("UNIT_AURA", nil, "boss1")
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-local function checkViscousFluidOnBoss(self) -- no SPELL_AURA_ events for the boss's buffs
-	local _, _, _, stacks = UnitBuff("boss1", self:SpellName(107122))
-	if not stacks then return end
-	self:StackMessage(-5666, self.displayName, stacks, "Urgent", "Info")
-end
-
 function mod:FrenziedAssault(args)
 	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 7) -- 1s cast + 6s channel
 	self:CDBar(args.spellId, 17)
-
-	if self:Tank() and not checkingTimer then
-		checkingTimer = self:ScheduleRepeatingTimer(checkViscousFluidOnBoss, 3, self)
-	end
 end
 
 do
@@ -79,13 +65,14 @@ function mod:ViscousFluid(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < nextReinforcementsWarning then
-		self:Message(-5946, "Attention", nil, CL.soon:format(self:SpellName(-5946)))
-		nextReinforcementsWarning = nextReinforcementsWarning - 30
-		if nextReinforcementsWarning < 40 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+do
+	local laststacks = 0
+	function mod:UNIT_AURA(unit) -- no SPELL_AURA_ events for the boss's buffs
+		local _, _, _, stacks = UnitBuff(unit, self:SpellName(107122)) -- Viscous Fluid
+		if not stacks then return end
+		if stacks % 2 == 1 and stacks ~= laststacks then
+			laststacks = stacks
+			self:StackMessage(-5666, self.displayName, stacks, "Urgent", "Info")
 		end
 	end
 end
