@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Archmage Sol", 1008, 1208)
 if not mod then return end
 mod:RegisterEnableMob(82682)
+mod.engageId = 1751
+mod.respawnTime = 15
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -13,7 +15,7 @@ mod:RegisterEnableMob(82682)
 
 local L = mod:GetLocale()
 if L then
-	
+
 end
 
 --------------------------------------------------------------------------------
@@ -30,14 +32,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "ParasiticGrowth", 168885)
 	self:Log("SPELL_AURA_APPLIED", "MagicSchools", 166475, 166476, 166477) -- Fire, Frost, Arcane
 	self:Log("SPELL_AURA_APPLIED", "FrozenRain", 166726)
 	self:Log("SPELL_CAST_SUCCESS", "Firebloom", 166492)
-
-	self:Death("Win", 82682)
 end
 
 function mod:OnEngage()
