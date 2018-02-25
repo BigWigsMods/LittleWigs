@@ -35,14 +35,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	checkingTimer = nil
 	self:CDBar(107120, 5.7) -- Frenzied Assault
-end
-
-function mod:OnBossDisable()
-	if checkingTimer then
-		self:CancelTimer(checkingTimer)
-		checkingTimer = nil
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -70,7 +64,7 @@ do
 	function mod:FrenziedAssaultDamage(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
-			if (not self:Tank() and t-prev > 1.5) or t-prev > 6 then -- the tank might want to bring adds in front of him
+			if (not self:Tank() and t-prev > 1.5) or t-prev > 6 then -- the tank might want to bring adds in front of Ri'mok
 				prev = t
 				self:Message(107120, "Personal", "Alert", CL.you:format(args.spellName))
 			end
