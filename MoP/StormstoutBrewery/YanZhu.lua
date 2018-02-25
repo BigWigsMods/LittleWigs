@@ -72,7 +72,7 @@ function mod:OnEngage()
 	addsSpawned = 0
 	wipe(mobCollector)
 
-	self:ScheduleTimer("StartTimers", 0.2, mod) -- safety in case OnEngage() was called before IEEU fired
+	self:ScheduleTimer("StartTimers", 0.2) -- safety in case OnEngage() was called before IEEU fired
 end
 
 function mod:OnBossDisable()
