@@ -23,7 +23,7 @@ local mobCollector = {}
 
 local L = mod:GetLocale()
 if L then
-	L.summon = mod:SpellName(-5654)
+	L.summon = -5654
 	L.summon_desc = "Warn when Yan-Zhu summons a Yeasty Brew Alemental. They can cast |cff71d5ffFerment|r to heal the boss."
 	L.summon_icon = 116155 -- Brew Bolt that they spam
 end
@@ -150,7 +150,7 @@ function mod:BrewBoltAdds(args)
 	if not mobCollector[args.sourceGUID] then
 		mobCollector[args.sourceGUID] = true
 		addsSpawned = addsSpawned + 1
-		self:Message("summon", "Neutral", nil, CL.spawned:format(L.summon), 116155)
+		self:Message("summon", "Neutral", nil, CL.spawned:format(self:SpellName(L.summon)), 116155)
 		if addsSpawned < 5 then
 			self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
 		end
@@ -163,7 +163,7 @@ do
 		if not mobCollector[args.sourceGUID] then
 			mobCollector[args.sourceGUID] = true
 			addsSpawned = addsSpawned + 1
-			self:Message("summon", "Neutral", nil, CL.spawned:format(L.summon), 116155)
+			self:Message("summon", "Neutral", nil, CL.spawned:format(self:SpellName(L.summon)), 116155)
 			if addsSpawned < 5 then
 				self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
 			end
