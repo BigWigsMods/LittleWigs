@@ -14,6 +14,19 @@ mod.respawnTime = 30
 --
 
 local nextBubbleShield = 0
+local addsSpawned = 0
+local mobCollector = {}
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.summon = mod:SpellName(-5654)
+	L.summon_desc = "Warn when Yan-Zhu summons a Yeasty Brew Alemental. They can cast |cff71d5ffFerment|r to heal the boss."
+	L.summon_icon = 116155 -- Brew Bolt that they spam
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,8 +38,15 @@ function mod:GetOptions()
 		{106546, "SAY"}, -- Bloat
 		106851, -- Blackout Brew
 		106563, -- Bubble Shield
+		"summon",
 		114451, -- Ferment
 		115003, -- Carbonation
+		-5658, -- Wall of Suds
+	}, {
+		[114548] = "general",
+		[106546] = -5650, -- Brewmastery: Wheat
+		[106563] = -5596, -- Brewmastery: Ale
+		[115003] = -5598, -- Brewmastery: Stout
 	}
 end
 
@@ -39,37 +59,58 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BlackoutBrew", 106851) -- the debuff has travel time, so this is more reliable for CDBars
 	self:Log("SPELL_AURA_APPLIED", "BlackoutBrewApplied", 106851)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BlackoutBrewApplied", 106851)
+	self:Log("SPELL_CAST_START", "BrewBoltAdds", 116155)
 	self:Log("SPELL_HEAL", "Ferment", 114451)
 	self:Log("SPELL_AURA_APPLIED", "BubbleShield", 106563)
 	self:Log("SPELL_AURA_REMOVED", "BubbleShieldRemoved", 106563)
 	self:Log("SPELL_CAST_START", "Carbonation", 115003)
+
+	self:Death("AddDeath", 59494)
 end
 
 function mod:OnEngage()
-	-- There are 3 pairs of abilities
-	-- Yan-Zhu can have only one from each pair
-	if UnitBuff("boss1", self:SpellName(114929)) then -- Bloating Brew (Can use Bloat)
-		self:CDBar(106546, 7.2)
-	elseif UnitBuff("boss1", self:SpellName(114930)) then -- Blackout Brew (Can use Blackout Brew)
-		self:CDBar(106851, 6.8)
-	end
+	addsSpawned = 0
+	wipe(mobCollector)
 
-	if UnitBuff("boss1", self:SpellName(114931)) then -- Bubbling Brew (Can use Bubble Shield)
-		self:CDBar(106563, 22.3)
-	--[[elseif UnitDebuff("boss1", self:SpellName(114932)) then -- Yeasty Brew (Can summon Yeasty Brew Alementals)
-		self:CDBar(0, 0)]] -- no SPELL_SUMMON events
-	end
+	self:ScheduleTimer("startTimers", 0.2, mod) -- boss1 sometimes is yet to be assigned
+end
 
-	if UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew (Can use Carbonation)
-		self:CDBar(115003, 46)
-	--[[elseif UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew (Can use Walls of Suds)
-		self:CDBar(114466, 0)]] -- no SPELL_CAST_ and USCS events
-	end
+function mod:OnBossDisable()
+	wipe(mobCollector)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+local function warnForWallOfSuds(self, spellId, spellName)
+	self:Message(spellId, "Important", "Long", CL.incoming:format(spellName))
+	self:ScheduleTimer(warnForWallOfSuds, 30, self, spellId, spellName)
+	self:CDBar(spellId, 30)
+end
+
+function mod:startTimers()
+	-- There are 3 pairs of abilities
+	-- Yan-Zhu can have only one from each pair
+	if UnitBuff("boss1", self:SpellName(114929)) then -- Bloating Brew
+		self:CDBar(106546, 7.0) -- Bloat
+	elseif UnitBuff("boss1", self:SpellName(114930)) then -- Blackout Brew
+		self:CDBar(106851, 6.6) -- Blackout Brew
+	end
+
+	if UnitBuff("boss1", self:SpellName(114931)) then -- Bubbling Brew
+		self:CDBar(106563, 22.1) -- Bubble Shield
+	elseif UnitBuff("boss1", self:SpellName(114932)) then -- Yeasty Brew (Can summon Yeasty Brew Alementals)
+		self:CDBar("summon", 21.8, CL.next_add, 116155)
+	end
+
+	if UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew
+		self:ScheduleTimer(warnForWallOfSuds, 29.8, self, -5658, self:SpellName(-5658))
+		self:CDBar(-5658, 29.8)
+	elseif UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew
+		self:CDBar(115003, 45.8) -- Carbonation
+	end
+end
 
 function mod:BrewBolt(args)
 	local amount = args.amount or 1
@@ -105,9 +146,28 @@ function mod:BlackoutBrewApplied(args)
 	end
 end
 
+function mod:BrewBoltAdds(args)
+	if not mobCollector[args.sourceGUID] then
+		mobCollector[args.sourceGUID] = true
+		addsSpawned = addsSpawned + 1
+		self:Message("summon", "Neutral", nil, CL.spawned:format(L.summon), 116155)
+		if addsSpawned < 5 then
+			self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
+		end
+	end
+end
+
 do
 	local prev = 0
 	function mod:Ferment(args)
+		if not mobCollector[args.sourceGUID] then
+			mobCollector[args.sourceGUID] = true
+			addsSpawned = addsSpawned + 1
+			self:Message("summon", "Neutral", nil, CL.spawned:format(L.summon), 116155)
+			if addsSpawned < 5 then
+				self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
+			end
+		end
 		if self:MobId(args.destGUID) == 59479 then -- players can be healed by this if they intercept the beams
 			local t = GetTime()
 			if t-prev > 2 then
@@ -133,4 +193,15 @@ function mod:Carbonation(args)
 	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 	self:CDBar(args.spellId, 63.3)
+end
+
+function mod:AddDeath(args)
+	-- if adds die before they get to cast anything
+	if not mobCollector[args.destGUID] then
+		mobCollector[args.destGUID] = true
+		addsSpawned = addsSpawned + 1
+		if addsSpawned < 6 then
+			self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
+		end
+	end
 end

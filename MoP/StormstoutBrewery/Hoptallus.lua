@@ -79,7 +79,7 @@ end
 
 do
 	local prev = 0
-	function mod:ExplosiveBrew(args)
+	function mod:ExplosiveBrew(args) -- adds cast this, there can be many adds
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
