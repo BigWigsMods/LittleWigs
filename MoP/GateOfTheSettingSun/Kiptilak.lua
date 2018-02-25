@@ -34,8 +34,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(107268, 15.7) -- Sabotage
 	nextExplosionWarning = 75 -- casts it at 70% and 30%
+	self:CDBar(107268, 15.7) -- Sabotage
 end
 
 --------------------------------------------------------------------------------

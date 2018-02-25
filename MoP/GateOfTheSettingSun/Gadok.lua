@@ -39,9 +39,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	nextStrafingWarning = 75 -- casts it at 70% and 30%
 	self:CDBar(106933, 15.9) -- Prey Time
 	self:CDBar(107047, 9.4) -- Impaling Strike
-	nextStrafingWarning = 75 -- casts it at 70% and 30%
 end
 
 --------------------------------------------------------------------------------

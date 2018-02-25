@@ -56,9 +56,10 @@ function mod:BatteringHeadbutt(args)
 end
 
 function mod:BrokenCarapace(args)
-	self:Message("stages", "Positive", "Info", CL.stage:format(2) .. ": ".. args.spellName, false)
 	stompCount = 0
+	self:Message("stages", "Positive", "Info", CL.stage:format(2) .. ": ".. args.spellName, false)
 	self:CDBar(111723, 3) -- Fixate
+
 	self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss2") -- in case Weak Spot died too fast
 end
 
