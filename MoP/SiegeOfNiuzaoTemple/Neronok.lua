@@ -38,10 +38,11 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_AURA_APPLIED", "GustingWinds", 121282, 121284)
 	self:Log("SPELL_INTERRUPT", "GustingWindsInterrupted", "*")
+
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	nextWindsWarning = 75 -- casts it at 70% and 40%
 end
 

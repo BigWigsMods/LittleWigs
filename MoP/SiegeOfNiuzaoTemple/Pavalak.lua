@@ -31,10 +31,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BladeRush", 124283)
 	self:Log("SPELL_AURA_APPLIED", "Tempest", 119875)
 	self:Log("SPELL_AURA_APPLIED", "ReinforcementsPhase", 119476) -- 119476 = Bulwark
+
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	nextReinforcementsWarning = 75 -- phases at 70% and 40%
 end
 
