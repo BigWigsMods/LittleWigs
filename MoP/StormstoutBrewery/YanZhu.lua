@@ -23,7 +23,7 @@ local mobCollector = {}
 
 local L = mod:GetLocale()
 if L then
-	L.summon = -5654
+	L.summon = -5654 -- Yeasty Brew Alemental
 	L.summon_desc = "Warn when Yan-Zhu summons a Yeasty Brew Alemental. They can cast |cff71d5ffFerment|r to heal the boss."
 	L.summon_icon = 116155 -- Brew Bolt that they spam
 end
