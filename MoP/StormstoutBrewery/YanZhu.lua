@@ -72,7 +72,7 @@ function mod:OnEngage()
 	addsSpawned = 0
 	wipe(mobCollector)
 
-	self:ScheduleTimer("StartTimers", 0.2) -- safety in case OnEngage() was called before IEEU fired
+	self:ScheduleTimer("StartTimers", 0.2) -- safety in case OnEngage() was called by ENCOUNTER_START before IEEU fired
 end
 
 function mod:OnBossDisable()
@@ -84,6 +84,8 @@ end
 --
 
 do
+	-- there are no SPELL_CAST_* and UNIT_SPELLCAST_* events for this mechanic
+	-- fortunately, it consistently happens every 30 seconds
 	local function warnForWallOfSuds(self, spellId, spellName)
 		self:Message(spellId, "Important", "Long", CL.incoming:format(spellName))
 		self:ScheduleTimer(warnForWallOfSuds, 30, self, spellId, spellName)
@@ -107,7 +109,7 @@ do
 
 		if UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew
 			self:ScheduleTimer(warnForWallOfSuds, 29.8, self, -5658, self:SpellName(-5658))
-			self:CDBar(-5658, 29.8)
+			self:CDBar(-5658, 29.8) -- Wall of Suds
 		elseif UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew
 			self:CDBar(115003, 45.8) -- Carbonation
 		end
