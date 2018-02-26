@@ -204,7 +204,7 @@ function mod:AddDeath(args)
 	if not mobCollector[args.destGUID] then
 		mobCollector[args.destGUID] = true
 		addsSpawned = addsSpawned + 1
-		if addsSpawned < 6 then
+		if addsSpawned < 5 then
 			self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
 		end
 	end
