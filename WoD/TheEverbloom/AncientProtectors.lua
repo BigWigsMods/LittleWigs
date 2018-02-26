@@ -60,8 +60,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	golaHasDied = false
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
 --------------------------------------------------------------------------------
