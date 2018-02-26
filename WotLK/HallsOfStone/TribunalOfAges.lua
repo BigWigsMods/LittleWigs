@@ -20,8 +20,8 @@ local respawnPlugin = BigWigs:GetPlugin("Respawn", true)
 
 local L = mod:GetLocale()
 if L then
-	L.engage_trigger = "Now keep an eye out"
-	L.defeat_trigger = "The old magic fingers"
+	L.engage_trigger = "Now keep an eye out" -- Now keep an eye out! I'll have this licked in two shakes of a--
+	L.defeat_trigger = "The old magic fingers" --  Ha! The old magic fingers finally won through! Now let's get down to--
 	L.fail_trigger = "Not yet... not ye--"
 
 	L.timers = "Timers"
@@ -38,16 +38,22 @@ end
 function mod:GetOptions()
 	return {
 		"timers",
+		59868, -- Dark Matter
+		59866, -- Searing Gaze
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:Log("SPELL_AURA_APPLIED", "DarkMatter", 59868)
+	self:Log("SPELL_DAMAGE", "SearingGaze", 59866)
+	self:Log("SPELL_MISSED", "SearingGaze", 59866)
 end
 
 function mod:OnEngage()
+	self:Bar("timers", 298, L.victory, "INV_Misc_PocketWatch_01")
 	self:Bar("timers", 43, self.displayName, "Achievement_Character_Dwarf_Male") -- first wave
-	self:Bar("timers", 315, L.victory, "INV_Misc_PocketWatch_01")
+	self:DelayedMessage("timers", 43, "Attention", CL.incoming:format(CL.adds), false, "Info")
 end
 
 --------------------------------------------------------------------------------
@@ -64,5 +70,24 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		self:Engage()
 	elseif msg == L.defeat_trigger or msg:find(L.defeat_trigger, nil, true) then
 		self:Win()
+	end
+end
+
+function mod:DarkMatter(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+	end
+end
+
+do
+	local prev = 0
+	function mod:SearingGaze(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
+		end
 	end
 end
