@@ -68,24 +68,18 @@ end
 -- Event Handlers
 --
 
-do
-	local timer = nil
-	local function markBosses(self)
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	if self:GetOption("custom_on_automark") then
 		for i = 1, 3 do
 			local unit = ("boss%d"):format(i)
 			local id = self:MobId(UnitGUID(unit))
 			if id == 83892 and not golaHasDied then
+				if not IsInGroup() then SetRaidTarget(unit, 0) end -- setting the same icon twice while not in a group removes it
 				SetRaidTarget(unit, 8)
 			elseif id == 83893 then
+				if not IsInGroup() then SetRaidTarget(unit, 0) end
 				SetRaidTarget(unit, golaHasDied and 8 or 7)
 			end
-		end
-		timer = nil
-	end
-
-	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-		if self:GetOption("custom_on_automark") and not timer then
-			timer = self:ScheduleTimer(markBosses, 0.2, self)
 		end
 	end
 end
@@ -129,5 +123,5 @@ end
 
 function mod:GolasDeath(args)
 	golaHasDied = true
-	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT() -- no IEEU events on deaths
 end
