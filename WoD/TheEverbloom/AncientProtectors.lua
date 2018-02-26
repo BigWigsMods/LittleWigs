@@ -84,7 +84,7 @@ do
 	end
 
 	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-		if self:GetOption("custom_on_automark") and not timer and UnitExists("boss1") then -- don't schedule a timer on IEEU that fires at the end of the encounter
+		if self:GetOption("custom_on_automark") and not timer then
 			timer = self:ScheduleTimer(markBosses, 0.2, self)
 		end
 	end
