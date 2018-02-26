@@ -10,15 +10,6 @@ mod.engageId = 1756
 --mod.respawnTime = 0 -- wiping teleports you out, then you can retry immediately
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 

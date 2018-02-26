@@ -16,15 +16,6 @@ mod.respawnTime = 20
 local deaths = 0
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.spider_adds = 155139 -- Spiders
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -54,7 +45,7 @@ function mod:OnEngage()
 	deaths = 0
 	self:Bar(-10502, 20, CL.next_add, "spell_festergutgas")
 	self:ScheduleTimer("AddSpawn", 20)
-	self:Bar(-10492, 30, L.spider_adds, "spell_yorsahj_bloodboil_green")
+	self:Bar(-10492, 30, 155139, "spell_yorsahj_bloodboil_green") -- 155139 = Spiders
 	self:ScheduleTimer("SpidersSpawn", 30)
 end
 
@@ -70,8 +61,8 @@ function mod:SpiderlingDeath(args)
 end
 
 function mod:SpidersSpawn()
-	--self:Message(-10492, "Attention", nil, L.spider_adds, false)
-	self:Bar(-10492, 30, L.spider_adds, "spell_yorsahj_bloodboil_green")
+	--self:Message(-10492, "Attention", nil, 155139, false) -- 155139 = Spiders
+	self:Bar(-10492, 30, 155139, "spell_yorsahj_bloodboil_green") -- 155139 = Spiders
 	self:ScheduleTimer("SpidersSpawn", 30)
 end
 
