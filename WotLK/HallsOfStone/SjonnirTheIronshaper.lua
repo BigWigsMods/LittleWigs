@@ -6,6 +6,8 @@ local mod, CL = BigWigs:NewBoss("Sjonnir The Ironshaper", 599, 607)
 if not mod then return end
 --mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(27978)
+mod.engageId = 1998
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -21,7 +23,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "StaticCharge", 50834, 59846)
 	self:Log("SPELL_CAST_SUCCESS", "LightningRing", 50840, 59848, 59861, 51849)
-	self:Death("Win", 27978)
 end
 
 -------------------------------------------------------------------------------
