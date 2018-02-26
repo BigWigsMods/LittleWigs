@@ -84,7 +84,7 @@ do
 
 	function mod:GustingWindsInterrupted(args)
 		if args.extraSpellId == 121282 or args.extraSpellId == 121284 then -- Gusting Winds
-			self:Message(121284, "Positive", nil, ("%s (%s)"):format(self:SpellName(134340), self:ColorName(args.sourceName))) -- 134340 = "Interrupted"
+			self:Message(121284, "Positive", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 			self:StopBar(CL.cast:format(args.extraSpellName))
 			if scheduledCooldownTimer then
 				self:CancelTimer(scheduledCooldownTimer)
