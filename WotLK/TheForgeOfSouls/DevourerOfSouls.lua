@@ -3,8 +3,9 @@
 
 local mod, CL = BigWigs:NewBoss("Devourer of Souls", 632, 616)
 if not mod then return end
---mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(36502)
+mod.engageId = 2007
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -20,23 +21,24 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MirroredSoul", 69051)
 	self:Log("SPELL_AURA_REMOVED", "MirroredSoulRemoved", 69051)
 	self:Log("SPELL_AURA_APPLIED", "WailingSoul", 68912)
-	self:Death("Win", 36502)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 function mod:MirroredSoul(args)
-	if self:MobId(args.destGUID) == 36502 then return end
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alert")
-	self:TargetBar(args.spellId, 8, args.destName)
-	self:PrimaryIcon(args.spellId, args.destName)
+	if self:MobId(args.destGUID) ~= 36502 then -- both the boss and its target get this debuff
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alert")
+		self:TargetBar(args.spellId, 8, args.destName)
+		self:PrimaryIcon(args.spellId, args.destName)
+	end
 end
 
 function mod:MirroredSoulRemoved(args)
-	if self:MobId(args.destGUID) == 36502 then return end
-	self:PrimaryIcon(args.spellId)
-	self:StopBar(args.spellId, args.destName)
+	if self:MobId(args.destGUID) ~= 36502 then
+		self:PrimaryIcon(args.spellId)
+		self:StopBar(args.spellId, args.destName)
+	end
 end
 
 function mod:WailingSoul(args)

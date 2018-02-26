@@ -3,8 +3,9 @@
 
 local mod, CL = BigWigs:NewBoss("Bronjahm", 632, 615)
 if not mod then return end
---mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(36497)
+mod.engageId = 2006
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -19,26 +20,16 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CorruptSoul", 68839)
 	self:Log("SPELL_AURA_REMOVED", "CorruptSoulRemoved", 68839)
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:Death("Win", 36497)
-end
-
-function mod:OnEngage()
-	if self:CheckOption(68872, "MESSAGE") then -- Soulstorm is %-based
-		self:RegisterEvent("UNIT_HEALTH")
-	end
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:UNIT_HEALTH(_, unit)
-	if UnitName(unit) ~= self.displayName then return end
-	local health = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if health > 30 and health <= 35 then
-		self:UnregisterEvent("UNIT_HEALTH")
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 35 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		self:Message(68872, "Important", nil, CL.soon(self:SpellName(68872))) -- Soulstorm
 	end
 end
