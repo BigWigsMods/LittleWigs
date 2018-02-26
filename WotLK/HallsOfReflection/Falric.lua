@@ -28,7 +28,7 @@ function mod:OnWin()
 	local marwynMod = BigWigs:GetBossModule("Marwyn", true)
 	if marwynMod then
 		marwynMod:Enable()
-		marwynMod:Bar("warmup", 60, CL.adds, "achievement_dungeon_icecrown_hallsofreflection")
+		marwynMod:Bar("warmup", 59, CL.adds, "achievement_dungeon_icecrown_hallsofreflection")
 	end
 end
 
