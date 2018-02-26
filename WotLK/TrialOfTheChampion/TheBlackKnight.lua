@@ -5,6 +5,7 @@ local mod, CL = BigWigs:NewBoss("The Black Knight", 650, 637)
 if not mod then return end
 mod:RegisterEnableMob(35451)
 mod.engageId = 2021
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization

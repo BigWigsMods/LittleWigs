@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Grand Champions", 650, 634)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(
 	-- Horde NPCs
 	34657, 34701, 34702, 34703, 34705,
@@ -48,7 +47,7 @@ function mod:HexOfMendingApplied(args)
 end
 
 function mod:HexOfMendingRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:HealingWave(args)
@@ -62,7 +61,7 @@ function mod:PolymorphApplied(args)
 end
 
 function mod:PolymorphRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 do

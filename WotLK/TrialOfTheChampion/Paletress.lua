@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 66515)
 	self:Log("SPELL_CAST_START", "Renew", 66537)
 	self:Log("SPELL_AURA_APPLIED", "Confess", 66680)
-	self:Log("SPELL_AURA_APPLIED", "ShadowsOfThePast", 66680)
+	self:Log("SPELL_AURA_APPLIED", "ShadowsOfThePast", 66619)
 
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
@@ -46,12 +46,16 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:ReflectiveShield()
+function mod:ReflectiveShield(args)
 	shielded = true
+	if self:GetOption(-7577) == 0 then -- happens at the same time as Confess, display a message for it only if notifications for Confess are turned off
+		self:Message(args.spellId, "Important", nil, CL.onboss:format(args.spellName))
+	end
 end
 
-function mod:ReflectiveShieldRemoved()
+function mod:ReflectiveShieldRemoved(args)
 	shielded = false
+	self:Message(args.spellId, "Positive", "Info", CL.removed:format(args.spellName))
 end
 
 function mod:Renew(args)
@@ -71,10 +75,10 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		if self:GetOption(-7577) == 0 then -- both happen at the same time, just display one message depending on the user's settings
-			self:Message(66515, "Attention", "Info", CL.soon:format(self:SpellName(66515)))
+		if self:GetOption(-7577) then -- both happen at the same time, just display one message depending on the user's settings
+			self:Message(-7577, "Attention", nil, CL.soon:format(self:SpellName(66680)), 66680)
 		else
-			self:Message(-7577, "Attention", "Info", CL.soon:format(self:SpellName(66680)), 66680)
+			self:Message(66515, "Attention", nil, CL.soon:format(self:SpellName(66515)))
 		end
 	end
 end
