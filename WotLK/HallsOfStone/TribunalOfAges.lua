@@ -4,8 +4,15 @@
 
 local mod, CL = BigWigs:NewBoss("Tribunal of Ages", 599, 606)
 if not mod then return end
---mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(28070)
+-- mod.engageId = 0 -- not a real encounter, apparently
+mod.respawnTime = 30
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local respawnPlugin = BigWigs:GetPlugin("Respawn", true)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -13,16 +20,15 @@ mod:RegisterEnableMob(28070)
 
 local L = mod:GetLocale()
 if L then
-	L.enable_trigger = "Time to get some answers"
 	L.engage_trigger = "Now keep an eye out"
 	L.defeat_trigger = "The old magic fingers"
-	L.fail_trigger = "Not yet, not"
+	L.fail_trigger = "Not yet... not ye--"
 
 	L.timers = "Timers"
 	L.timers_desc = "Timers for various events that take place."
+	L.timers_icon = "INV_Misc_PocketWatch_01"
 
-	L.wave = "First wave!" -- leaving this just incase I revert the warmup
-	L.victory = "Victory!"
+	L.victory = "Victory"
 end
 
 --------------------------------------------------------------------------------
@@ -31,21 +37,16 @@ end
 
 function mod:GetOptions()
 	return {
-		"timers", --Shock of Sorrow
+		"timers",
 	}
 end
-
-function mod:OnRegister()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-end
-mod.OnBossDisable = mod.OnRegister
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
 
 function mod:OnEngage()
-	self:Bar("timers", 45, self.displayName, "Achievement_Character_Dwarf_Male")
+	self:Bar("timers", 43, self.displayName, "Achievement_Character_Dwarf_Male") -- first wave
 	self:Bar("timers", 315, L.victory, "INV_Misc_PocketWatch_01")
 end
 
@@ -54,10 +55,11 @@ end
 --
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.enable_trigger or msg:find(L.enable_trigger, nil, true) then
-		self:Enable()
-	elseif msg == L.fail_trigger or msg:find(L.fail_trigger, nil, true) then
-		self:Reboot()
+	if msg == L.fail_trigger or msg:find(L.fail_trigger, nil, true) then
+		if respawnPlugin then
+			respawnPlugin:BigWigs_EncounterEnd(nil, self, nil, nil, nil, nil, 0) -- force a respawn timer
+		end
+		self:Wipe()
 	elseif msg == L.engage_trigger or msg:find(L.engage_trigger, nil, true) then
 		self:Engage()
 	elseif msg == L.defeat_trigger or msg:find(L.defeat_trigger, nil, true) then
