@@ -65,9 +65,9 @@ end
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
+function mod:Warmup(event, msg)
 	if msg == L.gossip_trigger then
-		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 29.4, L.gossip_available, "achievement_boss_odyn")
 	end
 end

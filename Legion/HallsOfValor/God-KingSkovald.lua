@@ -62,12 +62,12 @@ end
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
+function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
-		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 20, L.warmup_text, "achievement_dungeon_hallsofvalor")
 	elseif msg == L.warmup_trigger_2 then -- for engages after a wipe
-		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 10, L.warmup_text, "achievement_dungeon_hallsofvalor")
 	end
 end
