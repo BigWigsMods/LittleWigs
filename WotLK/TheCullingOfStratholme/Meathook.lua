@@ -4,9 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("Meathook", 595, 611)
 if not mod then return end
---mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26529)
 mod.engageId = 2002
+--mod.respawnTime = 0 -- resets instead of respawning
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -20,7 +20,6 @@ end
 
 function mod:OnEnable()
 	self:Log("SPELL_AURA_APPLIED", "ConstrictingChains", 52696, 58823)
-	self:Death("Win", 26529)
 end
 
 -------------------------------------------------------------------------------

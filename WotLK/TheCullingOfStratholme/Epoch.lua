@@ -3,9 +3,9 @@
 
 local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", 595, 613)
 if not mod then return end
---mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26532)
 mod.engageId = 2003
+--mod.respawnTime = 0 -- couldn't wipe, Arthas refuses to die
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -36,8 +36,8 @@ end
 
 function mod:Warmup(event, msg)
 	if msg:find(L.warmup_trigger, nil, true) then
-		self:Bar("warmup", 19.2, CL.active, "inv_sword_01")
 		self:UnregisterEvent(event)
+		self:Bar("warmup", 19.2, CL.active, "inv_sword_01")
 	end
 end
 
@@ -47,5 +47,5 @@ function mod:CurseOfExertion(args)
 end
 
 function mod:CurseOfExertionRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end

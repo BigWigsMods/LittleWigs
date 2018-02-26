@@ -3,9 +3,9 @@
 
 local mod, CL = BigWigs:NewBoss("Mal'Ganis", 595, 614)
 if not mod then return end
---mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26533)
 mod.engageId = 2005
+--mod.respawnTime = 0 -- couldn't wipe, Arthas refuses to die
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -32,8 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SleepRemoved", 52721, 58849)
 	self:Log("SPELL_AURA_APPLIED", "VampiricTouch", 52723)
 	self:Log("SPELL_AURA_REMOVED", "VampiricTouchRemoved", 52723)
-
-	--self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
 
 -------------------------------------------------------------------------------
@@ -41,8 +39,8 @@ end
 
 function mod:Warmup(event, msg)
 	if msg:find(L.warmup_trigger, nil, true) then
-		self:Bar("warmup", 3.9, CL.active, "inv_sword_01")
 		self:UnregisterEvent(event)
+		self:Bar("warmup", 3.9, CL.active, "inv_sword_01")
 	end
 end
 
@@ -52,7 +50,7 @@ function mod:Sleep(args)
 end
 
 function mod:SleepRemoved(args)
-	self:StopBar(52721, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:VampiricTouch(args)
@@ -63,11 +61,5 @@ end
 
 function mod:VampiricTouchRemoved(args)
 	if self:MobId(args.destGUID) ~= 26533 then return end
-	self:StopBar(args.spellId)
+	self:StopBar(args.spellName)
 end
-
---[[function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg:find(L.defeat_trigger, nil, true) then -- FIXME: there must be a better way
-		self:Win()
-	end
-end]]

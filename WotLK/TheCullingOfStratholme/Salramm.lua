@@ -3,9 +3,9 @@
 
 local mod, CL = BigWigs:NewBoss("Salramm the Fleshcrafter", 595, 612)
 if not mod then return end
---mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26530)
 mod.engageId = 2004
+--mod.respawnTime = 0 -- resets instead of respawning
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -19,7 +19,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TwistedFlesh", 58845)
 	self:Log("SPELL_AURA_REMOVED", "TwistedFleshRemoved", 58845)
-	self:Death("Win", 26530)
 end
 
 -------------------------------------------------------------------------------
@@ -31,5 +30,5 @@ function mod:TwistedFlesh(args)
 end
 
 function mod:TwistedFleshRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end

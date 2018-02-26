@@ -3,8 +3,16 @@
 
 local mod, CL = BigWigs:NewBoss("Infinite Corruptor", 595)
 if not mod then return end
---mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(32273)
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.name = "Infinite Corruptor"
+end
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -13,6 +21,10 @@ function mod:GetOptions()
 	return {
 		60588, -- Corrupting Blight
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()
@@ -30,5 +42,5 @@ function mod:CorruptingBlight(args)
 end
 
 function mod:CorruptingBlightRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end

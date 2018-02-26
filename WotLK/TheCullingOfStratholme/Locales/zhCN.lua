@@ -17,3 +17,8 @@ L = BigWigs:NewBossLocale("Chrono-Lord Epoch", "zhCN")
 if L then
 	--L.warmup_trigger = "Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul."
 end
+
+L = BigWigs:NewBossLocale("Infinite Corruptor", "zhCN")
+if L then
+	L.name = "永恒腐蚀者"
+end
