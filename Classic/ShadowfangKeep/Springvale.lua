@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Commander Springvale", 33, 98)
 if not mod then return end
 mod:RegisterEnableMob(4278)
 mod.engageId = 1071
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -16,7 +17,7 @@ function mod:GetOptions()
 	return {
 		93687, -- Desecration
 		93844, -- Empowerment
-		--93736, -- Shield of the Perfidious, this ID throws errors, I couldn't get him to cast it to find the correct one
+		-2138, -- Shield of the Perfidious
 		93852, -- Word of Shame
 	}
 end
@@ -24,13 +25,9 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Desecration", 93687)
 	self:Log("SPELL_CAST_START", "UnholyEmpowerment", 93844)
-	--self:Log("SPELL_AURA_APPLIED", "ShieldOfThePerfidious", 93736, 93737) -- XXX What's doing the damage on players?
+	--self:Log("SPELL_AURA_APPLIED", "ShieldOfThePerfidious", 93736, 93737) -- FIXME: no spells have these IDs as of 7.3.5, couldn't get him to cast it, wowhead is of no help
 	self:Log("SPELL_AURA_APPLIED", "WordOfShame", 93852)
 end
-
---[[function mod:VerifyEnable()
-	if GetInstanceDifficulty() == 2 then return true end
-end]]
 
 -------------------------------------------------------------------------------
 --  Event Handlers

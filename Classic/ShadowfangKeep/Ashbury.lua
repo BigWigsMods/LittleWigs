@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Baron Ashbury", 33, 96)
 if not mod then return end
 mod:RegisterEnableMob(46962)
 mod.engageId = 1069
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -26,12 +27,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Archangel", 93757)
 end
 
---[[function mod:VerifyEnable()
-	if GetInstanceDifficulty() == 2 then return true end
-end]]
-
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	if self:Heroic() then
+		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	end
 end
 
 -------------------------------------------------------------------------------
@@ -44,7 +43,7 @@ end
 
 function mod:Asphyxiate(args)
 	self:Message(args.spellId, "Important")
-	self:Bar(args.spellId, 40)
+	self:CDBar(args.spellId, 40)
 end
 
 function mod:Archangel(args)

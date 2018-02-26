@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Lord Walden", 33, 99)
 if not mod then return end
 mod:RegisterEnableMob(46963)
 mod.engageId = 1073
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -29,10 +30,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ToxicCoagulant", 93572, 93617)
 	self:Log("SPELL_AURA_APPLIED", "ToxicCatalyst", 93573, 93689)
 end
-
---[[function mod:VerifyEnable()
-	if GetInstanceDifficulty() == 2 then return true end
-end]]
 
 -------------------------------------------------------------------------------
 --  Event Handlers
