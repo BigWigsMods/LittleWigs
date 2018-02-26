@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Maiden of Grief", 599, 605)
 if not mod then return end
---mod.otherMenu = "The Storm Peaks"
 mod:RegisterEnableMob(27975)
 mod.engageId = 1996
 --mod.respawnTime = 0 -- resets, doesn't respawn
