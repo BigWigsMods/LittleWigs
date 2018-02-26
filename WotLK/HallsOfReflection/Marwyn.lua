@@ -3,14 +3,18 @@
 
 local mod, CL = BigWigs:NewBoss("Marwyn", 668, 602)
 if not mod then return end
---mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(38113)
+-- Sometimes he resets and then respawns few seconds after instead of
+-- respawning immediately, when that happens he doesn't fire ENCOUNTER_END
+-- mod.engageId = 1993
+-- mod.respawnTime = 30 -- you have to actually walk towards the altar, nothing will respawn on its own
 
 -------------------------------------------------------------------------------
 --  Initialization
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		72363, -- Corrupted Flesh
 		{72368, "ICON"}, -- Shared Suffering
 		{72383, "ICON"}, -- Corrupted Touch
@@ -18,37 +22,19 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "CorruptedFlesh", 72363) -- 10s no dispell
-
+	self:Log("SPELL_CAST_SUCCESS", "CorruptedFlesh", 72363)
 	self:Log("SPELL_AURA_APPLIED", "DebuffApplied", 72368, 72383) -- Shared Suffering, Corrupted Touch
 	self:Log("SPELL_AURA_REMOVED", "DebuffRemoved", 72368, 72383)
 
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 38113)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-do
-	-- local flesh = mod:NewTargetList() -- XXX what is this list used for? Was TargetMessage() intended to be used here?
-	local timer, warned = nil, nil
-
-	local function fleshWarn(self, spellId)
-		if not warned then
-			self:Message(spellId, "Urgent")
-			warned = true
-		else
-			warned = nil
-			--wipe(flesh)
-		end
-		timer = nil
-	end
-
-	function mod:CorruptedFlesh(args)
-		--flesh[#flesh + 1] = args.destName
-		if timer then self:CancelTimer(timer) end
-		timer = self:ScheduleTimer(fleshWarn, 0.1, self, args.spellId) -- has been 0.2 before
-	end
+function mod:CorruptedFlesh(args)
+	self:Message(args.spellId, "Urgent")
 end
 
 function mod:DebuffApplied(args)
