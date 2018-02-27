@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Queen Azshara", 816, 291)
 if not mod then return end
 mod:RegisterEnableMob(54853, 54884, 54882, 54883) -- Queen Azshara, Enchanted Magi
 mod.engageId = 1273
+mod.respawnTime = 30
 
 local canEnable = true
 
