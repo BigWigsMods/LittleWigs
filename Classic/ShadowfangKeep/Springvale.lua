@@ -30,6 +30,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "DesecrationCast", 93687)
+	self:Log("SPELL_AURA_APPLIED", "Desecration", 93691)
 	self:Log("SPELL_DAMAGE", "Desecration", 93691)
 	self:Log("SPELL_MISSED", "Desecration", 93691)
 	--self:Log("SPELL_AURA_APPLIED", "ShieldOfThePerfidious", 0)
@@ -37,9 +39,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "WordOfShame", 93852)
 end
 
+function mod:OnEngage()
+	self:CDBar(93687, 9.6) -- Desecration
+end
+
 -------------------------------------------------------------------------------
 --  Event Handlers
 --
+
+function mod:DesecrationCast(args)
+	self:CDBar(args.spellId, 17.8) -- 17.8s - 19.8s
+end
 
 do
 	local prev = 0
