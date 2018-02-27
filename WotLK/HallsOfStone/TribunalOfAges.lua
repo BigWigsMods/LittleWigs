@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Tribunal of Ages", 599, 606)
+local mod, CL = BigWigs:NewBoss("Tribunal of Ages", 526, 606)
 if not mod then return end
 mod:RegisterEnableMob(28070)
 -- mod.engageId = 0 -- not a real encounter, apparently
