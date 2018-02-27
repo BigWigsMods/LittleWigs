@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mannoroth and Varo'then", 939, 292)
+local mod, CL = BigWigs:NewBoss("Mannoroth and Varo'then", nil, 292, 939)
 if not mod then return end
 mod:RegisterEnableMob(54969, 55419) -- Mannoroth, Varo'then
 mod.engageId = 1274
