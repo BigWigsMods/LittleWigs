@@ -27,11 +27,12 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PainAndSuffering", 93581)
 	self:Log("SPELL_CAST_SUCCESS", "Asphyxiate", 93423)
-	self:Log("SPELL_CAST_START", "DarkArchangel", 93757)
+	self:Log("SPELL_CAST_START", "DarkArchangelForm", 93757)
 end
 
 function mod:OnEngage()
-	if self:Heroic() then -- Dark Archangel is heroic-only
+	self:CDBar(93423, 20.6) -- Asphyxiate
+	if self:Heroic() then -- Dark Archangel Form is heroic-only
 		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	end
 end
@@ -47,9 +48,10 @@ end
 function mod:Asphyxiate(args)
 	self:Message(args.spellId, "Important")
 	self:CDBar(args.spellId, 40)
+	self:CastBar(args.spellId, 6)
 end
 
-function mod:DarkArchangel(args)
+function mod:DarkArchangelForm(args)
 	self:Message(args.spellId, "Attention", "Long")
 end
 

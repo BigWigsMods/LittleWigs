@@ -13,6 +13,12 @@ mod.engageId = 1073
 --  Initialization
 --
 
+local coagulantCastEnds = 0
+
+-------------------------------------------------------------------------------
+--  Initialization
+--
+
 function mod:GetOptions()
 	return {
 		93527, -- Ice Shards
@@ -20,6 +26,9 @@ function mod:GetOptions()
 		93697, -- Conjure Poisonous Mixture
 		93617, -- Toxic Coagulant
 		93689, -- Toxic Catalyst
+	}, {
+		[93527] = "general",
+		[93617] = "heroic",
 	}
 end
 
@@ -27,8 +36,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "IceShards", 93527)
 	self:Log("SPELL_CAST_START", "FrostMixture", 93505)
 	self:Log("SPELL_CAST_START", "PoisonousMixture", 93697)
-	self:Log("SPELL_AURA_APPLIED", "ToxicCoagulant", 93572, 93617)
-	self:Log("SPELL_AURA_APPLIED", "ToxicCatalyst", 93573, 93689)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ToxicCoagulant", 93617)
+end
+
+function mod:OnEngage()
+	coagulantCastEnds = 0
+	if self:Heroic() then -- Conjure Mystery Toxin is heroic-only
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- USCS events let us distinguish between the two
+	end
 end
 
 -------------------------------------------------------------------------------
@@ -36,32 +51,42 @@ end
 --
 
 function mod:IceShards(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "Attention", nil, CL.casting(args.spellName))
+	self:CastBar(args.spellId, 5)
 end
 
 function mod:FrostMixture(args)
-	self:Message(args.spellId, "Important", nil, CL.casting:format(spellName))
+	self:Message(args.spellId, "Important", nil, CL.casting:format(args.spellName))
 end
 
 function mod:PoisonousMixture(args)
-	self:Message(args.spellId, "Important", nil, CL.casting:format(spellName))
+	self:Message(args.spellId, "Important", nil, CL.casting:format(args.spellName))
 end
 
-do
-	local prev = 0
-	function mod:ToxicCoagulant(args)
-		if self:Me(args.destGUID) then
-			local t = GetTime()
-			if t - prev > 5 then
-				prev = t
-				self:Message(93617, "Urgent", "Alert")
-			end
+function mod:ToxicCoagulant(args)
+	-- His channel applies a stack every 3 seconds, 3 stacks stun the target for 5 seconds
+	-- let's be smart and warn the player only if they do have to move to avoid that happening
+	if self:Me(args.destGUID) and args.amount == 2 then
+		local remaining = coagulantCastEnds - GetTime()
+		if remaining >= 3 then
+			self:StackMessage(args.spellId, args.destName, args.amount, "Urgent", "Warning")
 		end
 	end
 end
 
-function mod:ToxicCatalyst(args)
-	if self:Me(args.destGUID) then
-		self:Message(93689, "Urgent", "Alert")
+do
+	local pattern = CL.count:gsub("%%d", "%%s") -- Chinese locales seem to use slightly different brackets, so I'll just repurpose an existing pattern
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId) -- Conjure Mystery Toxin
+		-- spellIds ruin the mystery :(
+		if spellId == 93695 then -- Toxic Coagulant
+			local message = pattern.format(self:SpellName(-2159), self:SpellName(93617)) -- Conjure Mystery Toxin (Toxic Coagulant)
+			coagulantCastEnds = GetTime() + 11
+			self:CastBar(93617, 11)
+			self:Message(93617, "Neutral", "Info", message)
+		elseif spellId == 93563 then -- Toxic Catalyst
+			local message = pattern.format(self:SpellName(-2159), self:SpellName(93689)) -- Conjure Mystery Toxin (Toxic Catalyst)
+			self:CastBar(93689, 11)
+			self:Message(93689, "Neutral", "Info", message)
+		end
 	end
 end

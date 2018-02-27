@@ -1,4 +1,8 @@
 
+--------------------------------------------------------------------------------
+-- TODO List:
+-- - The boss is bugged as of 7.3.5 and doesn't cast Shield of the Perdifious. When/if it is fixed, make the module warn about it.
+
 -------------------------------------------------------------------------------
 --  Module Declaration
 --
@@ -15,17 +19,21 @@ mod.engageId = 1071
 
 function mod:GetOptions()
 	return {
-		93687, -- Desecration
-		93844, -- Empowerment
-		-2138, -- Shield of the Perfidious
+		93687, -- Desecration (has better description than the ID doing damage)
+		-- -2138, -- Shield of the Perfidious
+		93844, -- Unholy Empowerment
 		93852, -- Word of Shame
+	}, {
+		[93687] = "general",
+		[93844] = "heroic",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Desecration", 93687)
+	self:Log("SPELL_DAMAGE", "Desecration", 93691)
+	self:Log("SPELL_MISSED", "Desecration", 93691)
+	--self:Log("SPELL_AURA_APPLIED", "ShieldOfThePerfidious", 0)
 	self:Log("SPELL_CAST_START", "UnholyEmpowerment", 93844)
-	--self:Log("SPELL_AURA_APPLIED", "ShieldOfThePerfidious", 93736, 93737) -- FIXME: no spells have these IDs as of 7.3.5, couldn't get him to cast it, wowhead is of no help
 	self:Log("SPELL_AURA_APPLIED", "WordOfShame", 93852)
 end
 
@@ -33,27 +41,36 @@ end
 --  Event Handlers
 --
 
-function mod:Desecration(args)
-	self:Message(args.spellId, "Attention")
+do
+	local prev = 0
+	function mod:Desecration(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 2 then
+				prev = t
+				self:Message(93687, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
+		end
+	end
 end
 
 do
 	local prev = 0
 	function mod:UnholyEmpowerment(args)
 		local t = GetTime()
-		if t - prev > 2 then
+		if t - prev > 2 then -- adds cast this, he spawns 2 at a time
 			prev = t
 			self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
 		end
 	end
 end
 
-function mod:ShieldOfThePerfidious(args)
-	if self.Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal")
-	end
-end
-
 function mod:WordOfShame(args)
 	self:TargetMessage(args.spellId, args.destName, "Important")
 end
+
+--[[function mod:ShieldOfThePerfidious(args)
+	if self.Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Personal")
+	end
+end]]
