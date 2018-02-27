@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Salramm the Fleshcrafter", nil, 612, 595)
+local mod, CL = BigWigs:NewBoss("Salramm the Fleshcrafter", 521, 612)
 if not mod then return end
 mod:RegisterEnableMob(26530)
 mod.engageId = 2004

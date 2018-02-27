@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", nil, 613, 595)
+local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", 521, 613)
 if not mod then return end
 mod:RegisterEnableMob(26532)
 mod.engageId = 2003

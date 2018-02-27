@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Infinite Corruptor", nil, nil, 595)
+local mod, CL = BigWigs:NewBoss("Infinite Corruptor", 521)
 if not mod then return end
 mod:RegisterEnableMob(32273)
 
