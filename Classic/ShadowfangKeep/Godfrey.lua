@@ -10,7 +10,7 @@ mod.engageId = 1072
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Initialization
+--  Locals
 --
 
 local cursedBulletsCount = 0
@@ -62,7 +62,7 @@ end
 function mod:CursedBulletsApplied(args)
 	local canDispel = self:Dispeller("curse")
 	if canDispel or self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", canDispel and "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "Urgent", canDispel and "Alarm", nil, nil, canDispel)
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 end

@@ -10,10 +10,19 @@ mod.engageId = 1073
 --mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+--  Locals
 --
 
 local coagulantCastEnds = 0
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.conjure = "Conjure %s"
+end
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -37,13 +46,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FrostMixture", 93505)
 	self:Log("SPELL_CAST_START", "PoisonousMixture", 93697)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ToxicCoagulant", 93617)
+
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- USCS events let us distinguish between two different "Conjure Mystery Toxin" casts
 end
 
 function mod:OnEngage()
 	coagulantCastEnds = 0
-	if self:Heroic() then -- Conjure Mystery Toxin is heroic-only
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- USCS events let us distinguish between the two
-	end
 end
 
 -------------------------------------------------------------------------------
@@ -74,19 +82,14 @@ function mod:ToxicCoagulant(args)
 	end
 end
 
-do
-	local pattern = CL.count:gsub("%%d", "%%s") -- Chinese locales seem to use slightly different brackets, so I'll just repurpose an existing pattern
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId) -- Conjure Mystery Toxin
-		-- spellIds ruin the mystery :(
-		if spellId == 93695 then -- Toxic Coagulant
-			local message = pattern.format(self:SpellName(-2159), self:SpellName(93617)) -- Conjure Mystery Toxin (Toxic Coagulant)
-			coagulantCastEnds = GetTime() + 11
-			self:CastBar(93617, 11)
-			self:Message(93617, "Neutral", "Info", message)
-		elseif spellId == 93563 then -- Toxic Catalyst
-			local message = pattern.format(self:SpellName(-2159), self:SpellName(93689)) -- Conjure Mystery Toxin (Toxic Catalyst)
-			self:CastBar(93689, 11)
-			self:Message(93689, "Neutral", "Info", message)
-		end
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId) -- Conjure Mystery Toxin
+	-- spellIds ruin the mystery :(
+	if spellId == 93695 then -- Toxic Coagulant
+		coagulantCastEnds = GetTime() + 11
+		self:CastBar(93617, 11)
+		self:Message(93617, "Neutral", "Info", L.conjure:format(self:SpellName(93617))) -- Conjure Toxic Coagulant
+	elseif spellId == 93563 then -- Toxic Catalyst
+		self:CastBar(93689, 11)
+		self:Message(93689, "Neutral", "Info", L.conjure:format(self:SpellName(93689))) -- Conjure Toxic Catalyst
 	end
 end
