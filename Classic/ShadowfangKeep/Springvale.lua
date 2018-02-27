@@ -1,7 +1,7 @@
 
 --------------------------------------------------------------------------------
 -- TODO List:
--- - The boss is bugged as of 7.3.5 and doesn't cast Shield of the Perdifious. When/if it is fixed, make the module warn about it.
+-- - The boss is bugged as of 7.3.5 and doesn't cast Shield of the Perfidious. When/if it is fixed, make the module warn about it.
 
 -------------------------------------------------------------------------------
 --  Module Declaration
