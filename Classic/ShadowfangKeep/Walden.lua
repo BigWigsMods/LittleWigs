@@ -51,7 +51,7 @@ end
 --
 
 function mod:IceShards(args)
-	self:Message(args.spellId, "Attention", nil, CL.casting(args.spellName))
+	self:Message(args.spellId, "Attention", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 5)
 end
 

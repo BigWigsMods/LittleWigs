@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(93423, 20.6) -- Asphyxiate
+	self:CDBar(93423, self:Heroic() and 20.6 or 15.5) -- Asphyxiate
 	if self:Heroic() then -- Dark Archangel Form is heroic-only
 		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	end
@@ -47,7 +47,7 @@ end
 
 function mod:Asphyxiate(args)
 	self:Message(args.spellId, "Important")
-	self:CDBar(args.spellId, 40)
+	self:CDBar(args.spellId, self:Heroic() and 40 or 35.7)
 	self:CastBar(args.spellId, 6)
 end
 

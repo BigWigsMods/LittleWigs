@@ -25,9 +25,6 @@ function mod:GetOptions()
 		{93675, "TANK_HEALER"}, -- Mortal Wound
 		93707, -- Summon Bloodthirsty Ghouls
 		93520, -- Pistol Barrage
-	}, {
-		[93629] = "general",
-		[93520] = "heroic",
 	}
 end
 
@@ -47,9 +44,7 @@ function mod:OnEngage()
 	cursedBulletsCount = 0
 	self:CDBar(93629, 19.1) -- Cursed Bullets
 	self:CDBar(93707, 5.7) -- Summon Bloodthirsty Ghouls
-	if self:Heroic() then
-		self:CDBar(93520, 12.6) -- Pistol Barrage
-	end
+	self:CDBar(93520, 11.2) -- Pistol Barrage
 end
 
 -------------------------------------------------------------------------------
