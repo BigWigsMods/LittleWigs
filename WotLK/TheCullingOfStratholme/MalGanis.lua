@@ -54,12 +54,12 @@ function mod:SleepRemoved(args)
 end
 
 function mod:VampiricTouch(args)
-	if self:MobId(args.destGUID) ~= 26533 then return end
+	if self:MobId(args.destGUID) ~= 26533 then return end -- mages can spellsteal it
 	self:Message(args.spellId, "Important", nil, CL.onboss:format(args.spellName))
 	self:Bar(args.spellId, 30)
 end
 
 function mod:VampiricTouchRemoved(args)
-	if self:MobId(args.destGUID) ~= 26533 then return end
+	if self:MobId(args.destGUID) ~= 26533 then return end -- mages can spellsteal it
 	self:StopBar(args.spellName)
 end
