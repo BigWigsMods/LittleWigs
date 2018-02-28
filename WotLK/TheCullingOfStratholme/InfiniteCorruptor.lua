@@ -4,6 +4,7 @@
 local mod, CL = BigWigs:NewBoss("Infinite Corruptor", 521)
 if not mod then return end
 mod:RegisterEnableMob(32273)
+-- mod.engageId = 0 -- doesn't fire ENCOUNTER_* events, IEEU, doesn't even exist in the dungeon journal
 
 --------------------------------------------------------------------------------
 -- Localization

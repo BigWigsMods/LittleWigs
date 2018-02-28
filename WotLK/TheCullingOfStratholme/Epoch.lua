@@ -12,7 +12,7 @@ mod.engageId = 2003
 
 local L = mod:GetLocale()
 if L then
-	L.warmup_trigger = "Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul."
+	L.warmup_trigger = "on this day"
 end
 
 -------------------------------------------------------------------------------
