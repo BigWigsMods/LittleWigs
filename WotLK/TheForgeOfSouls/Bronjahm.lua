@@ -42,5 +42,5 @@ end
 
 function mod:CorruptSoulRemoved(args)
 	self:PrimaryIcon(args.spellId)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end

@@ -13,14 +13,14 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		{69051, "ICON"}, -- Mirrored Soul
-		68912, -- Wailing Soul
+		68912, -- Wailing Souls
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MirroredSoul", 69051)
 	self:Log("SPELL_AURA_REMOVED", "MirroredSoulRemoved", 69051)
-	self:Log("SPELL_AURA_APPLIED", "WailingSoul", 68912)
+	self:Log("SPELL_AURA_APPLIED", "WailingSouls", 68912)
 end
 
 -------------------------------------------------------------------------------
@@ -37,11 +37,11 @@ end
 function mod:MirroredSoulRemoved(args)
 	if self:MobId(args.destGUID) ~= 36502 then
 		self:PrimaryIcon(args.spellId)
-		self:StopBar(args.spellId, args.destName)
+		self:StopBar(args.spellName, args.destName)
 	end
 end
 
-function mod:WailingSoul(args)
+function mod:WailingSouls(args)
 	self:Message(args.spellId, "Important")
 	self:Bar(args.spellId, 15)
 end
