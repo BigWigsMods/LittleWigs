@@ -120,7 +120,7 @@ do
 		self:CastBar(args.spellId, 5)
 
 		-- give a warning if the player is not in the Aegis during the last 2 seconds of the cast:
-		self:ScheduleTimer(checkForLackOfAegis, 3)
+		self:ScheduleTimer(checkForLackOfAegis, 3, self)
 	end
 
 	function mod:ChaoticEnergySuccess(args)
