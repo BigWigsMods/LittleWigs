@@ -4,11 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("Queen Azshara", 816, 291)
 if not mod then return end
-mod:RegisterEnableMob(54853, 54884, 54882, 54883) -- Queen Azshara, Enchanted Magi
+mod:RegisterEnableMob(54853, 54884, 54882, 54883) -- Queen Azshara, 3x Enchanted Magi
 mod.engageId = 1273
 mod.respawnTime = 30
-
-local canEnable = true
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -27,12 +25,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
 end
 
-function mod:OnWin()
-	canEnable = nil
-end
-
-function mod:VerifyEnable()
-	if canEnable then return true end
+function mod:VerifyEnable(unit, mobId)
+	if mobId ~= 54853 then return true end -- if Magi are alive, then the encounter can be started
+	return UnitCanAttack("player", unit)
 end
 
 --------------------------------------------------------------------------------
@@ -41,12 +36,12 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 102334 then -- Servant of the Queen
-		self:Message(-3968, "Attention", "Alert", spellId)
+		self:Message(-3968, "Attention", "Alert")
 	end
 end
 
 function mod:TotalObedience(args)
-	self:Message(-3969, "Urgent", "Long", args.spellId)
+	self:Message(-3969, "Urgent", "Long")
 	self:CastBar(-3969, 10)
 end
 
