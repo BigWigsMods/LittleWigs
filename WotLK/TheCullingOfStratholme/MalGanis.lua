@@ -28,7 +28,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
-	self:Log("SPELL_AURA_APPLIED", "Sleep", 52721, 58849)
+	self:Log("SPELL_AURA_APPLIED", "Sleep", 52721, 58849) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "SleepRemoved", 52721, 58849)
 	self:Log("SPELL_AURA_APPLIED", "VampiricTouch", 52723)
 	self:Log("SPELL_AURA_REMOVED", "VampiricTouchRemoved", 52723)

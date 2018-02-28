@@ -19,7 +19,7 @@ function mod:GetOptions()
 end
 
 function mod:OnEnable()
-	self:Log("SPELL_AURA_APPLIED", "ConstrictingChains", 52696, 58823)
+	self:Log("SPELL_AURA_APPLIED", "ConstrictingChains", 52696, 58823) -- normal, heroic
 end
 
 -------------------------------------------------------------------------------
