@@ -12,7 +12,7 @@ mod.engageId = 2005
 
 local L = mod:GetLocale()
 if L then
-	L.warmup_trigger = "We're going to finish this right now, Mal'Ganis."
+	L.warmup_trigger = "We're going to finish this right now, Mal'Ganis. Just you... and me."
 end
 
 -------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ end
 --  Event Handlers
 
 function mod:Warmup(event, msg)
-	if msg:find(L.warmup_trigger, nil, true) then
+	if msg == L.warmup_trigger then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 3.9, CL.active, "inv_sword_01")
 	end

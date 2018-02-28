@@ -10,11 +10,12 @@ end
 
 L = BigWigs:NewBossLocale("Mal'Ganis", "zhTW")
 if L then
-	--L.warmup_trigger = "We're going to finish this right now, Mal'Ganis."
+	--L.warmup_trigger = "We're going to finish this right now, Mal'Ganis. Just you... and me."
 end
 
 L = BigWigs:NewBossLocale("Chrono-Lord Epoch", "zhTW")
 if L then
+	-- Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul. The death you are destined to visit upon others will this day be your own.
 	--L.warmup_trigger = "Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul."
 end
 
