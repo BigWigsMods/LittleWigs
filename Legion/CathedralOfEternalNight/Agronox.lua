@@ -113,10 +113,12 @@ end
 do
 	local prev = 0
 	function mod:ToxicSap(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(236640, "Personal", "Alert", CL.underyou:format(self:SpellName(236640)))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(236640, "Personal", "Alert", CL.underyou:format(self:SpellName(236640)))
+			end
 		end
 	end
 end

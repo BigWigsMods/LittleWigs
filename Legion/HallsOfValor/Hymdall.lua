@@ -61,10 +61,12 @@ end
 do
 	local prev = 0
 	function mod:DancingBladeDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 2 then
-			prev = t
-			self:Message(193235, "Personal", "Alarm", CL.you:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(193235, "Personal", "Alarm", CL.you:format(args.spellName))
+			end
 		end
 	end
 end
