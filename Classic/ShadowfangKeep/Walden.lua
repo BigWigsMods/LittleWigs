@@ -21,7 +21,9 @@ local coagulantCastEnds = 0
 
 local L = mod:GetLocale()
 if L then
-	L.conjure = "Conjure %s"
+	L.coagulant = "Toxic Coagulant: Move to dispel"
+	L.catalyst = "Toxic Catalyst: Crit Buff"
+	L.toxin_healer_message = "%: DoT on everyone"
 end
 
 -------------------------------------------------------------------------------
@@ -87,9 +89,9 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId) -- Conjure Mystery To
 	if spellId == 93695 then -- Toxic Coagulant
 		coagulantCastEnds = GetTime() + 11
 		self:CastBar(93617, 11)
-		self:Message(93617, "Neutral", "Info", L.conjure:format(self:SpellName(93617))) -- Conjure Toxic Coagulant
+		self:Message(93617, "Neutral", "Info", self:Healer() and L.toxin_healer_message or L.coagulant)
 	elseif spellId == 93563 then -- Toxic Catalyst
 		self:CastBar(93689, 11)
-		self:Message(93689, "Neutral", "Info", L.conjure:format(self:SpellName(93689))) -- Conjure Toxic Catalyst
+		self:Message(93689, "Neutral", "Info", self:Healer() and L.toxin_healer_message or L.catalyst)
 	end
 end
