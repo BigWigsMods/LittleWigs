@@ -4,7 +4,8 @@
 <!-- Classic -->
 
 <Include file="Classic\Deadmines\modules.xml"/>
-<!--<Include file="Classic\ShadowfangKeep\modules.xml"/>-->
+<Include file="Classic\ShadowfangKeep\modules.xml"/>
+<Include file="Classic\ShadowfangKeep\locales.xml"/>
 
 <!-- The Burning Crusade -->
 
