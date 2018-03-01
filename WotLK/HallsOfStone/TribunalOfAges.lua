@@ -91,11 +91,10 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 end
 
 do
-	local playerList, isOnMe = {}, false
+	local isOnMe, playerList, debuffedList = false, {}, mod:NewTargetList()
 
 	local function announce(self, spellId, spellName)
 		-- making sure we aren't warning DKs that could've used AMS to negate the debuff
-		local debuffedList = self:NewTargetList()
 		for i = 1, #playerList do
 			if UnitDebuff(playerList[i], spellName) then
 				debuffedList[#debuffedList + 1] = playerList[i]
