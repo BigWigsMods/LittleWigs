@@ -26,10 +26,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "ShockOfSorrow", 50760, 59726)
+	self:Log("SPELL_CAST_START", "ShockOfSorrow", 50760, 59726) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "ShockOfSorrowDebuff", 50760, 59726)
 	self:Log("SPELL_AURA_REMOVED", "ShockOfSorrowDebuffRemoved", 50760, 59726)
-	self:Log("SPELL_PERIODIC_DAMAGE", "StormOfGrief", 50752, 59772)
+	self:Log("SPELL_PERIODIC_DAMAGE", "StormOfGrief", 50752, 59772) -- normal, heroic
 	self:Log("SPELL_PERIODIC_MISSED", "StormOfGrief", 50752, 59772)
 end
 
@@ -50,16 +50,12 @@ end
 do
 	local playerList = mod:NewTargetList()
 
-	local function printTargets(self, duration)
-		playersIncapacitated = #playerList
-		self:TargetMessage(59726, playerList, "Urgent")
-		self:Bar(59726, duration)
-	end
-
 	function mod:ShockOfSorrowDebuff(args)
 		playerList[#playerList + 1] = args.destName
+		playersIncapacitated = playersIncapacitated + 1
 		if #playerList == 1 then
-			self:ScheduleTimer(printTargets, 0.2, self, args.spellId == 59726 and 10 or 6)
+			self:ScheduleTimer("TargetMessage", 0.2, 59726, playerList, "Urgent")
+			self:Bar(59726, args.spellId == 59726 and 10 or 6)
 		end
 	end
 

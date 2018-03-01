@@ -20,7 +20,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "GroundSlam", 50833)
-	self:Log("SPELL_CAST_START", "Shatter", 50810, 61546)
+	self:Log("SPELL_CAST_START", "Shatter", 50810, 61546) -- normal, heroic
 end
 
 -------------------------------------------------------------------------------

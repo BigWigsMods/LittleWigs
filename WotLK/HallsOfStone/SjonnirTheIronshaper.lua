@@ -20,8 +20,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "StaticCharge", 50834, 59846)
-	self:Log("SPELL_CAST_SUCCESS", "LightningRing", 50840, 59848, 59861, 51849)
+	self:Log("SPELL_AURA_APPLIED", "StaticCharge", 50834, 59846) -- normal, heroic
+	self:Log("SPELL_CAST_SUCCESS", "LightningRing", 50840, 59848) -- normal, heroic
 end
 
 -------------------------------------------------------------------------------

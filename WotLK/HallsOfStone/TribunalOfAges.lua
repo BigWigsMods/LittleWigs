@@ -1,18 +1,17 @@
 --------------------------------------------------------------------------------
+-- TODO List:
+-- - There's a dispellable debuff called "Dark Matter" but it doesn't fire SPELL_AURA_* events, 51001 (normal) fires a SPELL_CAST_SUCCESS event
+-- that might be worth tracking to temporary enable listening to UNIT_AURA events, though this entire thing has a pretty slow travel time.
+
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Tribunal of Ages", 526, 606)
 if not mod then return end
-mod:RegisterEnableMob(28070)
+mod:RegisterEnableMob(28070) -- Brann Bronzebeard
 -- mod.engageId = 0 -- not a real encounter, apparently
 mod.respawnTime = 30
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local respawnPlugin = BigWigs:GetPlugin("Respawn", true)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -38,16 +37,14 @@ end
 function mod:GetOptions()
 	return {
 		"timers",
-		59868, -- Dark Matter
 		59866, -- Searing Gaze
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	self:Log("SPELL_AURA_APPLIED", "DarkMatter", 59868)
-	self:Log("SPELL_DAMAGE", "SearingGaze", 59866)
-	self:Log("SPELL_MISSED", "SearingGaze", 59866)
+	self:Log("SPELL_DAMAGE", "SearingGaze", 51125, 59866) -- normal, heroic
+	self:Log("SPELL_MISSED", "SearingGaze", 51125, 59866)
 end
 
 function mod:OnEngage()
@@ -56,26 +53,28 @@ function mod:OnEngage()
 	self:DelayedMessage("timers", 43, "Attention", CL.incoming:format(CL.adds), false, "Info")
 end
 
+function mod:VerifyEnable()
+	-- Brann is present during the final encounter, prevent the module from loading for a while, but don't overdo it for
+	-- higher level characters that might be binge-farming this dungeon for whatever reason.
+
+	-- GetSubZoneText() approach was considered but the subzone he's initially in covers a huge chunk of the dungeon
+	-- (including the exact place where you need to talk to him to open the door to the last boss) and only checking
+	-- against the subzone the encounter is taking action in poses a risk of the module not being loaded.
+	return not self.lastKill or (GetTime() - self.lastKill > (UnitLevel("player") > 80 and 150 or 300))
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.fail_trigger or msg:find(L.fail_trigger, nil, true) then
-		if respawnPlugin then
-			respawnPlugin:BigWigs_EncounterEnd(nil, self, nil, nil, nil, nil, 0) -- force a respawn timer
-		end
+		self:SendMessage("BigWigs_EncounterEnd", self, nil, self.displayName, self:Difficulty(), 5, 0) -- XXX hack to force a respawn timer
 		self:Wipe()
 	elseif msg == L.engage_trigger or msg:find(L.engage_trigger, nil, true) then
 		self:Engage()
 	elseif msg == L.defeat_trigger or msg:find(L.defeat_trigger, nil, true) then
 		self:Win()
-	end
-end
-
-function mod:DarkMatter(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
 	end
 end
 
@@ -86,7 +85,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(59866, "Personal", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
