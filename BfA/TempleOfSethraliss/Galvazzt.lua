@@ -6,7 +6,7 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 
 local mod, CL = BigWigs:NewBoss("Galvazzt", nil, 2144, 1877)
 if not mod then return end
-mod:RegisterEnableMob(17849) -- XXX
+mod:RegisterEnableMob(133389) -- Galvazzt
 mod.engageId = 2126
 
 --------------------------------------------------------------------------------
@@ -15,11 +15,14 @@ mod.engageId = 2126
 
 function mod:GetOptions()
 	return {
-		"berserk",
+		{266923, "ME_ONLY"}, -- Electroshock
+		266512, -- Consume Charge
 	}
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "Electroshock", 266923)
+	self:Log("SPELL_CAST_START", "ConsumeCharge", 266512)
 end
 
 function mod:OnEngage()
@@ -28,3 +31,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Hadotoxin(args)
+	self:TargetMessage(args.spellId, destName, "cyan", "Info", nil, nil, true)
+end
+
+function mod:ConsumeCharge(args)
+	self:Message(args.spellId, "red", "Warning")
+end
