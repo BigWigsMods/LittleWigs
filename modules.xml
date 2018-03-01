@@ -4,7 +4,8 @@
 <!-- Classic -->
 
 <Include file="Classic\Deadmines\modules.xml"/>
-<!--<Include file="Classic\ShadowfangKeep\modules.xml"/>-->
+<Include file="Classic\ShadowfangKeep\modules.xml"/>
+<Include file="Classic\ShadowfangKeep\locales.xml"/>
 
 <!-- The Burning Crusade -->
 
@@ -31,8 +32,9 @@
 <!--<Include file="WotLK\HallsOfReflection\modules.xml"/>-->
 <!--<Include file="WotLK\HallsOfStone\modules.xml"/>-->
 <Include file="WotLK\PitOfSaron\modules.xml"/>
-<!--<Include file="WotLK\TheCullingOfStratholme\modules.xml"/>-->
-<!--<Include file="WotLK\TheForgeOfSouls\modules.xml"/>-->
+<Include file="WotLK\TheCullingOfStratholme\modules.xml"/>
+<Include file="WotLK\TheCullingOfStratholme\locales.xml"/>
+<Include file="WotLK\TheForgeOfSouls\modules.xml"/>
 <Include file="WotLK\TheNexus\modules.xml"/>
 <Include file="WotLK\TheNexus\locales.xml"/>
 <!--<Include file="WotLK\TheOculus\modules.xml"/>-->
@@ -59,7 +61,8 @@
 <Include file="Cataclysm\ThroneTides\modules.xml"/>
 <Include file="Cataclysm\ThroneTides\locales.xml"/>
 <Include file="Cataclysm\VortexPinnacle\modules.xml"/>
-<!--<Include file="Cataclysm\WellOfEternity\modules.xml"/>-->
+<Include file="Cataclysm\WellOfEternity\modules.xml"/>
+<Include file="Cataclysm\WellOfEternity\locales.xml"/>
 <!--<Include file="Cataclysm\ZulAman\modules.xml"/>-->
 <!--<Include file="Cataclysm\ZulGurub\modules.xml"/>-->
 
@@ -68,6 +71,14 @@
 
 <Include file="MoP\ShadoPanMonastery\modules.xml"/>
 <Include file="MoP\ShadoPanMonastery\locales.xml"/>
+
+<Include file="MoP\SiegeOfNiuzaoTemple\modules.xml"/>
+<Include file="MoP\SiegeOfNiuzaoTemple\locales.xml"/>
+
+<Include file="MoP\GateOfTheSettingSun\modules.xml"/>
+
+<Include file="MoP\StormstoutBrewery\modules.xml"/>
+<Include file="MoP\StormstoutBrewery\locales.xml"/>
 
 <Include file="MoP\ScarletHalls\modules.xml"/>
 <Include file="MoP\ScarletHalls\locales.xml"/>

@@ -52,7 +52,7 @@ function mod:OnEngage()
 end
 
 function mod:OnWin()
-	local odynMod = BigWigs:GetBossModule("Odyn")
+	local odynMod = BigWigs:GetBossModule("Odyn", true)
 	if odynMod then
 		odynMod:Enable() -- Making sure to pickup the Odyn's yell to start the RP bar
 	end
