@@ -1,17 +1,5 @@
-local L = BigWigs:NewBossLocale("Houndmaster Braun", "esES") or BigWigs:NewBossLocale("Houndmaster Braun", "esMX")
-if not L then return end
-if L then
-	--L.engage_say = "Hmm, did you hear something lads?"
-end
-
 local L = BigWigs:NewBossLocale("Armsmaster Harlan", "esES") or BigWigs:NewBossLocale("Armsmaster Harlan", "esMX")
 if not L then return end
 if L then
-	--L.engage_yell = "Ah-hah! Another chance to test my might."
-end
-
-local L = BigWigs:NewBossLocale("Flameweaver Koegler", "esES") or BigWigs:NewBossLocale("Flameweaver Koegler", "esMX")
-if not L then return end
-if L then
-	--L.engage_yell = "You, too, shall be charred to ash!"
+	L.cleave = "{-5377} ({15284})" -- Dragon's Reach (Cleave)
 end

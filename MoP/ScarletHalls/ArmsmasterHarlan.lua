@@ -15,8 +15,6 @@ local helpCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.engage_yell = "Ah-hah! Another chance to test my might."
-
 	L.cleave = "{-5377} ({15284})" -- Dragon's Reach (Cleave)
 	L.cleave_desc = -5377
 	L.cleave_icon = 111217
