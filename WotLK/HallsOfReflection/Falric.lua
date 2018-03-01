@@ -49,6 +49,9 @@ end
 
 function mod:DebuffRemoved(args)
 	self:StopBar(args.spellId, args.destName)
-	self:PrimaryIcon(args.spellId)
-	self:SecondaryIcon(args.spellId)
+	if args.spellId == 72422 then -- Quivering Strike
+		self:PrimaryIcon(args.spellId)
+	elseif args.spellId == 72426 then -- Impending Despair
+		self:SecondaryIcon(args.spellId)
+	end
 end

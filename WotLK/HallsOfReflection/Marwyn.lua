@@ -51,6 +51,9 @@ end
 
 function mod:DebuffRemoved(args)
 	self:StopBar(args.spellId, args.destName)
-	self:PrimaryIcon(args.spellId, false)
-	self:SecondaryIcon(args.spellId, false)
+	if args.spellId == 72363 then -- Corrupted Flesh
+		self:PrimaryIcon(args.spellId)
+	elseif args.spellId == 72368 then -- Shared Suffering
+		self:SecondaryIcon(args.spellId)
+	end
 end
