@@ -119,7 +119,7 @@ do
 
 		playerList[#playerList + 1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer(announce, 0.3, self, args.spellId, args.spellName)
+			self:ScheduleTimer(announce, 0.3, self, 59868, args.spellName)
 		end
 	end
 end
