@@ -14,6 +14,12 @@ mod:RegisterEnableMob(28070) -- Brann Bronzebeard
 mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local lastKill = nil
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -53,6 +59,10 @@ function mod:OnEngage()
 	self:DelayedMessage("timers", 43, "Attention", CL.incoming:format(CL.adds), false, "Info")
 end
 
+function mod:OnWin()
+	lastKill = GetTime()
+end
+
 function mod:VerifyEnable()
 	-- Brann is present during the final encounter, prevent the module from loading for a while, but don't overdo it for
 	-- higher level characters that might be binge-farming this dungeon for whatever reason.
@@ -60,7 +70,7 @@ function mod:VerifyEnable()
 	-- GetSubZoneText() approach was considered but the subzone he's initially in covers a huge chunk of the dungeon
 	-- (including the exact place where you need to talk to him to open the door to the last boss) and only checking
 	-- against the subzone the encounter is taking action in poses a risk of the module not being loaded.
-	return not self.lastKill or (GetTime() - self.lastKill > (UnitLevel("player") > 80 and 150 or 300))
+	return not lastKill or (GetTime() - lastKill > (UnitLevel("player") > 80 and 150 or 300))
 end
 
 --------------------------------------------------------------------------------
