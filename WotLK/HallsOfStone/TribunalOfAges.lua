@@ -43,12 +43,14 @@ end
 function mod:GetOptions()
 	return {
 		"timers",
+		59868, -- Dark Matter
 		59866, -- Searing Gaze
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:Log("SPELL_DAMAGE", "DarkMatter", 51012, 59868) -- normal, heroic; no SPELL_AURA_APPLIED events
 	self:Log("SPELL_DAMAGE", "SearingGaze", 51125, 59866) -- normal, heroic
 	self:Log("SPELL_MISSED", "SearingGaze", 51125, 59866)
 end
@@ -85,6 +87,40 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		self:Engage()
 	elseif msg == L.defeat_trigger or msg:find(L.defeat_trigger, nil, true) then
 		self:Win()
+	end
+end
+
+do
+	local playerList, isOnMe = {}, false
+
+	local function announce(self, spellId, spellName)
+		-- making sure we aren't warning DKs that could've used AMS to negate the debuff
+		local debuffedList = self:NewTargetList()
+		for i = 1, #playerList do
+			if UnitDebuff(playerList[i], spellName) then
+				debuffedList[#debuffedList + 1] = playerList[i]
+			end
+		end
+
+		if isOnMe or self:Dispeller("magic") then
+			self:TargetMessage(spellId, debuffedList, "Urgent", "Alarm", nil, nil, true)
+		else
+			wipe(debuffedList) -- :TargetMessage calls wipe() on its 2nd argument
+		end
+
+		wipe(playerList)
+		isOnMe = false
+	end
+
+	function mod:DarkMatter(args)
+		if self:Me(args.destGUID) then
+			isOnMe = true
+		end
+
+		playerList[#playerList + 1] = args.destName
+		if #playerList == 1 then
+			self:ScheduleTimer(announce, 0.3, self, args.spellId, args.spellName)
+		end
 	end
 end
 
