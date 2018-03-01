@@ -1,9 +1,4 @@
 --------------------------------------------------------------------------------
--- TODO List:
--- - There's a dispellable debuff called "Dark Matter" but it doesn't fire SPELL_AURA_* events, 51001 (normal) fires a SPELL_CAST_SUCCESS event
--- that might be worth tracking to temporary enable listening to UNIT_AURA events, though this entire thing has a pretty slow travel time.
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -51,6 +46,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:Log("SPELL_DAMAGE", "DarkMatter", 51012, 59868) -- normal, heroic; no SPELL_AURA_APPLIED events
+	self:Log("SPELL_MISSED", "DarkMatter", 51012, 59868)
 	self:Log("SPELL_DAMAGE", "SearingGaze", 51125, 59866) -- normal, heroic
 	self:Log("SPELL_MISSED", "SearingGaze", 51125, 59866)
 end
@@ -91,23 +87,15 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 end
 
 do
-	local isOnMe, playerList, debuffedList = false, {}, mod:NewTargetList()
+	local isOnMe, playerList = false, mod:NewTargetList()
 
-	local function announce(self, spellId, spellName)
-		-- making sure we aren't warning DKs that could've used AMS to negate the debuff
-		for i = 1, #playerList do
-			if UnitDebuff(playerList[i], spellName) then
-				debuffedList[#debuffedList + 1] = playerList[i]
-			end
-		end
-
+	local function announce(self, spellId)
 		if isOnMe or self:Dispeller("magic") then
-			self:TargetMessage(spellId, debuffedList, "Urgent", "Alarm", nil, nil, true)
+			self:TargetMessage(spellId, playerList, "Urgent", "Alarm", nil, nil, true)
 		else
-			wipe(debuffedList) -- :TargetMessage calls wipe() on its 2nd argument
+			wipe(playerList) -- :TargetMessage calls wipe() on its 2nd argument
 		end
 
-		wipe(playerList)
 		isOnMe = false
 	end
 
@@ -116,9 +104,12 @@ do
 			isOnMe = true
 		end
 
-		playerList[#playerList + 1] = args.destName
-		if #playerList == 1 then
-			self:ScheduleTimer(announce, 0.3, self, 59868, args.spellName)
+		-- making sure we aren't including DKs that could've used AMS to negate the debuff
+		if UnitDebuff(args.destName, args.spellName) then
+			playerList[#playerList + 1] = args.destName
+			if #playerList == 1 then
+				self:ScheduleTimer(announce, 0.3, self, 59868)
+			end
 		end
 	end
 end
