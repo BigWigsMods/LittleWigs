@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Erudax", "deDE")
 if not L then return end
 if L then
-	--L.summon = "Summon Faceless Guardian"
-	--L.summon_desc = "Warn when Erudax summons a Faceless Guardian"
-	--L.summon_message = "Faceless Guardian Summoned"
-	--L.summon_trigger = "%s summons a"
+	--L.summon = "Summon Faceless Corruptor"
+	--L.summon_desc = "Warn when Erudax summons a Faceless Corruptor"
+	--L.summon_message = "Faceless Corruptor Summoned"
+	--L.summon_trigger = "summons a"
 end

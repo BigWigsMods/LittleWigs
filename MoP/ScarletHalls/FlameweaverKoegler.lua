@@ -8,15 +8,6 @@ if not mod then return end
 mod:RegisterEnableMob(59150)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "You, too, shall be charred to ash!"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
