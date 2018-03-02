@@ -29,7 +29,7 @@
 <Include file="WotLK\Gundrak\locales.xml"/>
 <Include file="WotLK\HallsOfLightning\modules.xml"/>
 <Include file="WotLK\HallsOfLightning\locales.xml"/>
-<!--<Include file="WotLK\HallsOfReflection\modules.xml"/>-->
+<Include file="WotLK\HallsOfReflection\modules.xml"/>
 <Include file="WotLK\HallsOfStone\modules.xml"/>
 <Include file="WotLK\HallsOfStone\locales.xml"/>
 <Include file="WotLK\PitOfSaron\modules.xml"/>
