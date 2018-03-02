@@ -10,15 +10,6 @@ mod:RegisterEnableMob(59303)
 local percent = 90
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_say = "Hmm, did you hear something lads?"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
