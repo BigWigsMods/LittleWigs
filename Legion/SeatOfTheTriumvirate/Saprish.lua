@@ -101,10 +101,12 @@ end
 do
 	local prev = 0
 	function mod:RavagingDarknessDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(245802, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(245802, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

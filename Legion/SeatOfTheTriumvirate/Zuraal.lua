@@ -46,7 +46,7 @@ function mod:OnEngage()
 end
 
 function mod:OnWin()
-	local trashMod = BigWigs:GetBossModule("Seat of the Triumvirate Trash")
+	local trashMod = BigWigs:GetBossModule("Seat of the Triumvirate Trash", true)
 	if trashMod then
 		trashMod:Enable() -- Making sure to pickup the Alleria yell to start the RP bar
 	end
