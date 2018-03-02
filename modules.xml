@@ -43,7 +43,7 @@
 <Include file="WotLK\TheVioletHold\locales.xml"/>
 <Include file="WotLK\TrialOfTheChampion\modules.xml"/>
 <Include file="WotLK\TrialOfTheChampion\locales.xml"/>
-<!--<Include file="WotLK\UtgardeKeep\modules.xml"/>-->
+<Include file="WotLK\UtgardeKeep\modules.xml"/>
 <Include file="WotLK\UtgardePinnacle\modules.xml"/>
 <Include file="WotLK\UtgardePinnacle\locales.xml"/>
 
