@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ingvar the Plunderer", nil, 640, 574)
+local mod, CL = BigWigs:NewBoss("Ingvar the Plunderer", 523, 640)
 if not mod then return end
 mod:RegisterEnableMob(23954)
 --mod.engageId = 2025 -- no ENCOUNTER_END on a successful kill
