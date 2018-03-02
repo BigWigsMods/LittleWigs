@@ -29,7 +29,7 @@ do
 	local prev = 0
 	function mod:Explode(args)
 		local t = GetTime()
-		if t - prev > 1 then
+		if t - prev > 1 then -- all remaining ghouls start casting Explode simultaneously when the boss transitions to stage 3
 			prev = t
 			self:Message(-7598, "Urgent", nil, CL.casting:format(self:SpellName(args.spellId)))
 			self:CastBar(-7598, self:Normal() and 5 or 4, args.spellId)
