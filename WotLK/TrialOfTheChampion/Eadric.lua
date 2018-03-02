@@ -7,12 +7,6 @@ mod:RegisterEnableMob(35119)
 -- mod.engageId = 2023 -- doesn't fire ENCOUNTER_END on a wipe, also shares it with Paletress
 
 -------------------------------------------------------------------------------
---  Locals
---
-
-local lastKill = nil
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:GetOptions()
@@ -28,12 +22,8 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
-function mod:OnWin()
-	lastKill = GetTime()
-end
-
-function mod:VerifyEnable() -- becomes friendly after being defeated
-	return not lastKill or (GetTime() - lastKill > 60)
+function mod:VerifyEnable(unit) -- becomes friendly after being defeated
+	return UnitCanAttack("player", unit)
 end
 
 -------------------------------------------------------------------------------

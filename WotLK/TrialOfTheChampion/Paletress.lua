@@ -12,7 +12,6 @@ mod:RegisterEnableMob(34928)
 --
 
 local shielded = false
-local lastKill = nil
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -58,12 +57,8 @@ function mod:OnEngage()
 	shielded = false
 end
 
-function mod:OnWin()
-	lastKill = GetTime()
-end
-
-function mod:VerifyEnable() -- becomes friendly after being defeated
-	return not lastKill or (GetTime() - lastKill > 60)
+function mod:VerifyEnable(unit) -- becomes friendly after being defeated
+	return UnitCanAttack("player", unit)
 end
 
 -------------------------------------------------------------------------------
