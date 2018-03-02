@@ -12,13 +12,13 @@ mod:RegisterEnableMob(28921)
 function mod:GetOptions()
 	return {
 		53400, -- Acid Cloud
-		53030, -- Poison Leech
+		53030, -- Leech Poison
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AcidCloud", 53400, 59419) -- normal, heroic
-	self:Log("SPELL_CAST_SUCCESS", "PoisonLeech", 53030, 59417) -- normal, heroic
+	self:Log("SPELL_CAST_SUCCESS", "LeechPoison", 53030, 59417) -- normal, heroic
 	self:Death("Win", 28921)
 end
 
@@ -29,6 +29,6 @@ function mod:AcidCloud()
 	self:Message(53400, "Attention")
 end
 
-function mod:PoisonLeech()
+function mod:LeechPoison()
 	self:Message(53030, "Urgent")
 end
