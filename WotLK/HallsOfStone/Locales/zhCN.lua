@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Tribunal of Ages", "zhCN")
+local L = BigWigs:NewBossLocale("Tribunal of Ages", "zhCN")
 if not L then return end
 if L then
 	L.engage_trigger = "你们帮我看着点外面" -- 嗯，你们帮我看着点外面。我这样的强者只要锤两下就能搞定这破烂……

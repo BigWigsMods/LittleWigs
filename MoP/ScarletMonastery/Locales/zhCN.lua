@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Brother Korloff", "zhCN")
+local L = BigWigs:NewBossLocale("Brother Korloff", "zhCN")
 if not L then return end
 if L then
 	L.engage_yell = "我要粉碎你。"
