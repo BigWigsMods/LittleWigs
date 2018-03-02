@@ -18,7 +18,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AcidCloud", 53400, 59419) -- normal, heroic
-	self:Log("SPELL_CAST_SUCCESS", "PoisonLeech", 53030, 59417)
+	self:Log("SPELL_CAST_SUCCESS", "PoisonLeech", 53030, 59417) -- normal, heroic
 	self:Death("Win", 28921)
 end
 
@@ -30,5 +30,5 @@ function mod:AcidCloud()
 end
 
 function mod:PoisonLeech()
-	self:Message(53030, "Attention")
+	self:Message(53030, "Urgent")
 end
