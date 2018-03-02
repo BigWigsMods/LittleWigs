@@ -17,7 +17,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "AcidCloud", 53400, 59419)
+	self:Log("SPELL_CAST_SUCCESS", "AcidCloud", 53400, 59419) -- normal, heroic
 	self:Log("SPELL_CAST_SUCCESS", "PoisonLeech", 53030, 59417)
 	self:Death("Win", 28921)
 end

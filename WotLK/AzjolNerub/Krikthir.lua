@@ -18,7 +18,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "CurseOfFatigue", 52592, 59368)
+	self:Log("SPELL_AURA_APPLIED", "CurseOfFatigue", 52592, 59368) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "CurseOfFatigueRemoved", 52592, 59368)
 	self:Log("SPELL_AURA_APPLIED", "Frenzy", 28747)
 
