@@ -17,14 +17,16 @@ function mod:GetOptions()
 		"warmup",
 		72363, -- Corrupted Flesh
 		{72368, "ICON"}, -- Shared Suffering
-		{72383, "ICON"}, -- Corrupted Touch
+		72383, -- Corrupted Touch
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "CorruptedFlesh", 72363)
-	self:Log("SPELL_AURA_APPLIED", "DebuffApplied", 72368, 72383) -- Shared Suffering, Corrupted Touch
-	self:Log("SPELL_AURA_REMOVED", "DebuffRemoved", 72368, 72383)
+	self:Log("SPELL_AURA_APPLIED", "SharedSuffering", 72368)
+	self:Log("SPELL_AURA_REMOVED", "SharedSufferingRemoved", 72368)
+	self:Log("SPELL_AURA_APPLIED", "CorruptedTouch", 72383)
+	self:Log("SPELL_AURA_REMOVED", "CorruptedTouchRemoved", 72383)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 38113)
@@ -34,26 +36,27 @@ end
 --  Event Handlers
 
 function mod:CorruptedFlesh(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "Important")
 end
 
-function mod:DebuffApplied(args)
-	local time = 10
-	if args.spellId == 72363 then -- Corrupted Flesh
-		self:PrimaryIcon(args.spellId, args.destName)
-	elseif args.spellId == 72368 then -- Shared Suffering
-		time = 12
-		self:SecondaryIcon(args.spellId, args.destName)
-	end
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
-	self:TargetBar(args.spellId, time, args.destName)
+function mod:SharedSuffering(args)
+	self:PrimaryIcon(args.spellId, args.destName)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 12, args.destName)
 end
 
-function mod:DebuffRemoved(args)
-	self:StopBar(args.spellId, args.destName)
-	if args.spellId == 72363 then -- Corrupted Flesh
-		self:PrimaryIcon(args.spellId)
-	elseif args.spellId == 72368 then -- Shared Suffering
-		self:SecondaryIcon(args.spellId)
+function mod:SharedSufferingRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+	self:PrimaryIcon(args.spellId)
+end
+
+function mod:CorruptedTouch(args)
+	if self:Me(args.destGUID) or self:Dispeller("curse") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetBar(args.spellId, 20, args.destName)
 	end
+end
+
+function mod:CorruptedTouchRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
