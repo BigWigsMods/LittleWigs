@@ -3,8 +3,9 @@
 
 local mod, CL = BigWigs:NewBoss("Krik'thir the Gatewatcher", 533, 585)
 if not mod then return end
---mod.otherMenu = "Dragonblight"
 mod:RegisterEnableMob(28684)
+mod.engageId = 1971
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -22,7 +23,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Frenzy", 28747)
 
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
-	self:Death("Win", 28684)
 end
 
 -------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ function mod:CurseOfFatigue(args)
 end
 
 function mod:CurseOfFatigueRemoved(args)
-	self:StopBar(52592, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:Frenzy(args)
