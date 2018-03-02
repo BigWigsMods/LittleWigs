@@ -70,9 +70,9 @@ do
 		if self:Me(args.destGUID) then
 			local t = GetTime()
 			if t - prev > 4 then
+				prev = t
 				self:TargetMessage(-7534, args.destName, "Personal", "Alarm")
 				self:Flash(-7534)
-				prev = t
 			end
 		end
 	end

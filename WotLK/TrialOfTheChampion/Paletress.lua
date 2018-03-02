@@ -1,5 +1,6 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Argent Confessor Paletress", 542, 636)
 if not mod then return end
@@ -8,17 +9,30 @@ mod:RegisterEnableMob(34928)
 
 -------------------------------------------------------------------------------
 --  Locals
+--
 
 local shielded = false
 
 -------------------------------------------------------------------------------
+--  Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.confess = 66680 -- the real cast
+	L.confess_desc = -7577 -- EJ entry with a better description
+	L.confess_icon = 66680
+end
+
+-------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
 		66537, -- Renew
 		66515, -- Reflective Shield
-		-7577, -- Summon Memory, the actual cast is called "Confess" but the EJ entry has a better description
+		"confess",
 		66619, -- Shadows of the Past
 	}, {
 		[66537] = "general",
@@ -45,10 +59,11 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:ReflectiveShield(args)
 	shielded = true
-	if self:GetOption(-7577) == 0 then -- happens at the same time as Confess, display a message for it only if notifications for Confess are turned off
+	if self:GetOption("confess") == 0 then -- happens at the same time as Confess, display a message for it only if notifications for Confess are turned off
 		self:Message(args.spellId, "Important", nil, CL.onboss:format(args.spellName))
 	end
 end
@@ -64,7 +79,7 @@ function mod:Renew(args)
 end
 
 function mod:Confess(args)
-	self:Message(-7577, "Important", nil, CL.casting:format(args.spellName), args.spellId)
+	self:Message("confess", "Important", nil, CL.casting:format(args.spellName), args.spellId)
 end
 
 function mod:ShadowsOfThePast(args)
@@ -75,8 +90,8 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		if self:GetOption(-7577) ~= 0 then -- both happen at the same time, just display one message depending on the user's settings
-			self:Message(-7577, "Attention", nil, CL.soon:format(self:SpellName(66680)), 66680)
+		if self:GetOption("confess") ~= 0 then -- both happen at the same time, just display one message depending on the user's settings
+			self:Message("confess", "Attention", nil, CL.soon:format(self:SpellName(66680)), 66680)
 		else
 			self:Message(66515, "Attention", nil, CL.soon:format(self:SpellName(66515)))
 		end
