@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Pathaleon the Calculator", 730, 565)
 if not mod then return end
---mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(19220)
 
 --------------------------------------------------------------------------------

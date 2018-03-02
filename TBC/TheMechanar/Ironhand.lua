@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Gatewatcher Iron-Hand", 730)
 if not mod then return end
---mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(19710)
 
 --------------------------------------------------------------------------------
