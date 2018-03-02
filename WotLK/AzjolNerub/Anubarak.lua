@@ -46,6 +46,7 @@ function mod:Pound(args)
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(unit)
+	-- Submerge
 	if UnitCanAttack("player", unit) then
 		self:Message(-6359, "Neutral", nil, CL.over:format(self:SpellName(-6359)))
 	else
@@ -57,7 +58,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSubmergeWarning then
-		self:Message(-6359, "Neutral", nil, CL.soon:format(self:SpellName(-6359)))
+		self:Message(-6359, "Neutral", nil, CL.soon:format(self:SpellName(-6359))) -- Submerge
 		nextSubmergeWarning = nextSubmergeWarning - 25
 
 		while nextSubmergeWarning >= 25 and hp < nextSubmergeWarning do
