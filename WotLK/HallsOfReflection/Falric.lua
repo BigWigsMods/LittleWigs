@@ -12,46 +12,47 @@ mod.respawnTime = 30 -- you have to actually walk towards the altar, nothing wil
 
 function mod:GetOptions()
 	return {
-		{72426, "ICON"}, -- Impending Despair
-		{72422, "ICON"}, -- Quivering Strike
+		72426, -- Impending Despair
+		72422, -- Quivering Strike
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "DebuffApplied", 72422, 72426) -- Quivering Strike, Impending Despair
-	self:Log("SPELL_AURA_REMOVED", "DebuffRemoved", 72422, 72426)
+	self:Log("SPELL_AURA_APPLIED", "QuiveringStrike", 72422)
+	self:Log("SPELL_AURA_REMOVED", "QuiveringStrikeRemoved", 72422)
+	self:Log("SPELL_AURA_APPLIED", "ImpendingDespair", 72426)
+	self:Log("SPELL_AURA_REMOVED", "ImpendingDespairRemoved", 72426)
 end
 
 function mod:OnWin()
-	-- There's a 60s break before the 6th wave spawns
-	-- Let's show a timer for it if the user didn't disable "warmup" in Marwyn's settings
 	local marwynMod = BigWigs:GetBossModule("Marwyn", true)
 	if marwynMod then
 		marwynMod:Enable()
-		marwynMod:Bar("warmup", 59, CL.adds, "achievement_dungeon_icecrown_hallsofreflection")
+		marwynMod:Warmup()
 	end
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:DebuffApplied(args)
-	local time = 5
-	if args.spellId == 72422 then -- Quivering Strike
-		self:PrimaryIcon(args.spellId, args.destName)
-	elseif args.spellId == 72426 then -- Impending Despair
-		time = 6
-		self:SecondaryIcon(args.spellId, args.destName)
+function mod:QuiveringStrike(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetBar(args.spellId, 5, args.destName)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
-	self:TargetBar(args.spellId, time, args.destName)
 end
 
-function mod:DebuffRemoved(args)
-	self:StopBar(args.spellId, args.destName)
-	if args.spellId == 72422 then -- Quivering Strike
-		self:PrimaryIcon(args.spellId)
-	elseif args.spellId == 72426 then -- Impending Despair
-		self:SecondaryIcon(args.spellId)
+function mod:QuiveringStrikeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:ImpendingDespair(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+		self:TargetBar(args.spellId, 6, args.destName)
 	end
+end
+
+function mod:ImpendingDespairRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end

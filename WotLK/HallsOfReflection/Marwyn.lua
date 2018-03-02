@@ -35,6 +35,12 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
+function mod:Warmup()
+	-- There's a 60s break before the 6th wave spawns,
+	-- this function is supposed to be called from Falric's OnWin().
+	self:Bar("warmup", 59, CL.adds, "achievement_dungeon_icecrown_hallsofreflection")
+end
+
 function mod:CorruptedFlesh(args)
 	self:Message(args.spellId, "Important")
 end
