@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Commander Sarannis", 553, 558)
+local mod, CL = BigWigs:NewBoss("Commander Sarannis", 729, 558)
 if not mod then return end
 --mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(17976)

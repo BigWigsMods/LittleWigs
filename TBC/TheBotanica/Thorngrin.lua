@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Thorngrin the Tender", 553, 560)
+local mod, CL = BigWigs:NewBoss("Thorngrin the Tender", 729, 560)
 if not mod then return end
 --mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(17978)
