@@ -15,17 +15,6 @@ mod:RegisterEnableMob(23954)
 local deaths = 0
 
 -------------------------------------------------------------------------------
---  Locals
---
-
-local L = mod:GetLocale()
-if L then
-	-- EJ calls them "Phases" but he's not switching between the 2 continiously.
-	L.stage_one = mod:SpellName(-7619):gsub(CL.phase:format(1), CL.stage:format(1))
-	L.stage_two = mod:SpellName(-7624):gsub(CL.phase:format(2), CL.stage:format(2))
-end
-
--------------------------------------------------------------------------------
 --  Initialization
 --
 
@@ -37,7 +26,7 @@ function mod:GetOptions()
 		42730, -- Woe Strike
 	}, {
 		[42669] = "general",
-		[42730] = L.stage_two,
+		[42730] = CL.stage:format(2),
 	}
 end
 
@@ -54,7 +43,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:Message("stages", "Neutral", nil, L.stage_one, false)
+	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
 end
 
 -------------------------------------------------------------------------------
@@ -90,6 +79,6 @@ function mod:Deaths()
 		self:StopBar(42669) -- Smash
 		self:StopBar(42708) -- Staggering Roar
 		self:Bar("stages", 25.4, CL.stage:format(2), "spell_shadow_raisedead")
-		self:DelayedMessage("stages", 25.4, "Neutral", L.stage_two)
+		self:DelayedMessage("stages", 25.4, "Neutral", CL.stage:format(2))
 	end
 end
