@@ -13,7 +13,7 @@ mod.respawnTime = 10
 -- Locals
 --
 
-local lastWin = nil
+local lastWin = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -61,7 +61,7 @@ end
 
 function mod:VerifyEnable(_, mobId)
 	if mobId ~= 61620 then return true end -- Yang Ironclaw is a friendly NPC that starts the encounter and then opens the gate downstairs
-	return not lastWin or (GetTime() - lastWin > 150)
+	return GetTime() - lastWin > 150
 end
 
 --------------------------------------------------------------------------------
