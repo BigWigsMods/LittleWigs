@@ -15,20 +15,34 @@ mod:RegisterEnableMob(23954)
 local deaths = 0
 
 -------------------------------------------------------------------------------
+--  Locals
+--
+
+local L = mod:GetLocale()
+if L then
+	-- EJ calls them "Phases" but he's not switching between the 2 continiously.
+	L.stage_one = mod:SpellName(-7619):gsub(CL.phase:format(1), CL.stage:format(1))
+	L.stage_two = mod:SpellName(-7624):gsub(CL.phase:format(2), CL.stage:format(2))
+end
+
+-------------------------------------------------------------------------------
 --  Initialization
 --
 
 function mod:GetOptions()
 	return {
-		42723, -- Smash
+		"stages",
+		42669, -- Smash
 		42708, -- Staggering Roar
 		42730, -- Woe Strike
+	}, {
+		[42669] = "general",
+		[42730] = L.stage_two,
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_CAST_START", "Smash", 42723, 42669, 59706) -- Dark Smash; normal / heroic Smash
 	self:Log("SPELL_CAST_START", "Roar", 42708, 42729, 59708, 59734) -- Staggering Roar, Dreadful Roar on normal / heroic
@@ -40,6 +54,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
+	self:Message("stages", "Neutral", nil, L.stage_one, false)
 end
 
 -------------------------------------------------------------------------------
@@ -47,8 +62,8 @@ end
 --
 
 function mod:Smash(args)
-	self:Message(42723, "Attention", nil, CL.casting:format(args.spellName))
-	self:CastBar(42723, 3, args.spellId)
+	self:Message(42669, "Attention", nil, CL.casting:format(args.spellName))
+	self:CastBar(42669, 3, args.spellId)
 end
 
 function mod:Roar(args)
@@ -63,7 +78,7 @@ function mod:WoeStrike(args)
 	end
 end
 
-function mod:WoeStrike(args)
+function mod:WoeStrikeRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
@@ -71,5 +86,10 @@ function mod:Deaths()
 	deaths = deaths + 1
 	if deaths == 2 then
 		self:Win()
+	else
+		self:StopBar(42669) -- Smash
+		self:StopBar(42708) -- Staggering Roar
+		self:Bar("stages", 25.4, CL.stage:format(2), "spell_shadow_raisedead")
+		self:DelayedMessage("stages", 25.4, "Neutral", L.stage_two)
 	end
 end
