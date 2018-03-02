@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Anub'arakAN", 533, 587) -- AN (Azjol-Nerub) is intentional to prevent conflict with Anub'arak from Trial of the Crusader
 if not mod then return end
-mod.displayName = "Anub'arak"
 mod:RegisterEnableMob(29120)
 mod.engageId = 1973
 mod.respawnTime = 30
@@ -27,11 +26,14 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	local nextSubmergeWarning = 80 -- 75%, 50% and 25%
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "Pound", 53472, 59433) -- normal, heroic
+end
+
+function mod:OnEngage()
+	nextSubmergeWarning = 80 -- 75%, 50% and 25%
 end
 
 -------------------------------------------------------------------------------
