@@ -21,7 +21,7 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
-		{-7534, "FLASH"}, -- Poison Bottle
+		-7534,  -- Poison Bottle
 		67534, -- Hex of Mending
 		67528, -- Healing Wave
 		66043, -- Polymorph
@@ -34,7 +34,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HealingWave", 67528)
 	self:Log("SPELL_AURA_APPLIED", "PolymorphApplied", 66043)
 	self:Log("SPELL_AURA_REMOVED", "PolymorphRemoved", 66043)
-	self:Log("SPELL_AURA_APPLIED", "PoisonBottle", 67701, 67594)
+	self:Log("SPELL_AURA_APPLIED", "PoisonBottle", 67594)
+	self:Log("SPELL_PERIODIC_DAMAGE", "PoisonBottle", 67594)
+	self:Log("SPELL_PERIODIC_MISSED", "PoisonBottle", 67594)
 end
 
 -------------------------------------------------------------------------------
@@ -69,10 +71,9 @@ do
 	function mod:PoisonBottle(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
-			if t - prev > 4 then
+			if t - prev > 2 then
 				prev = t
-				self:TargetMessage(-7534, args.destName, "Personal", "Alarm")
-				self:Flash(-7534)
+				self:Message(-7534, "Personal", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end
