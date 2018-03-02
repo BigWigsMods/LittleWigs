@@ -3,7 +3,6 @@
 
 local mod, CL = BigWigs:NewBoss("Skarvald & Dalronn", 574, 639)
 if not mod then return end
---mod.otherMenu = "Howling Fjord"
 mod:RegisterEnableMob(24200, 24201) -- Skarvald the Constructor, Dalronn the Controller
 mod.engageId = 2024
 mod.respawnTime = 10
@@ -25,6 +24,8 @@ end
 --  Event Handlers
 
 function mod:Debilitate(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
-	self:TargetBar(args.spellId, 8, args.destName)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Attention")
+		self:TargetBar(args.spellId, 8, args.destName)
+	end
 end

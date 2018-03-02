@@ -4,9 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("Prince Keleseth", 574, 638)
 if not mod then return end
---mod.otherMenu = "Howling Fjord"
 mod:RegisterEnableMob(23953)
 mod.engageId = 2026
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -27,11 +27,11 @@ end
 --  Event Handlers
 --
 
-function mod:IceTomb(player, spellId, _, _, spellName)
-	self:Message(48400, spellName..": "..player, "Urgent", spellId)
-	self:Bar(48400, player..": "..spellName, 20, spellId)
+function mod:IceTomb(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+	self:TargetBar(args.spellId, 20, args.destName)
 end
 
-function mod:IceTombRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:IceTombRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
