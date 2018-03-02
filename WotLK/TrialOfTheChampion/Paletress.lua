@@ -12,6 +12,7 @@ mod:RegisterEnableMob(34928)
 --
 
 local shielded = false
+local lastKill = nil
 
 -------------------------------------------------------------------------------
 --  Localization
@@ -57,13 +58,21 @@ function mod:OnEngage()
 	shielded = false
 end
 
+function mod:OnWin()
+	lastKill = GetTime()
+end
+
+function mod:VerifyEnable() -- becomes friendly after being defeated
+	return not lastKill or (GetTime() - lastKill > 60)
+end
+
 -------------------------------------------------------------------------------
 --  Event Handlers
 --
 
 function mod:ReflectiveShield(args)
 	shielded = true
-	if self:GetOption("confess") == 0 then -- happens at the same time as Confess, display a message for it only if notifications for Confess are turned off
+	if not self:CheckOption("confess", "MESSAGE") then -- happens at the same time as Confess, display a message for it only if notifications for Confess are turned off
 		self:Message(args.spellId, "Important", nil, CL.onboss:format(args.spellName))
 	end
 end
@@ -90,7 +99,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		if self:GetOption("confess") ~= 0 then -- both happen at the same time, just display one message depending on the user's settings
+		if self:CheckOption("confess", "MESSAGE") then -- both happen at the same time, just display one message depending on the user's settings
 			self:Message("confess", "Attention", nil, CL.soon:format(self:SpellName(66680)), 66680)
 		else
 			self:Message(66515, "Attention", nil, CL.soon:format(self:SpellName(66515)))
