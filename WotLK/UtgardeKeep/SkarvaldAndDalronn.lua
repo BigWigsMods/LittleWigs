@@ -35,10 +35,8 @@ end
 --  Event Handlers
 
 function mod:Debilitate(args)
-	if self:Me(args.destGUID) or self:Healer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "Attention")
-		self:TargetBar(args.spellId, 8, args.destName)
-	end
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 function mod:Deaths(args)
