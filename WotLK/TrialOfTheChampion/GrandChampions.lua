@@ -7,8 +7,8 @@ if not mod then return end
 mod:RegisterEnableMob(
 	-- Horde NPCs
 	34657, 34701, 34702, 34703, 34705,
-	-- Announcers
-	35004, 35005,
+	-- Mounts
+	36557, 36559,
 	-- Alliance NPCs
 	35569, 35570, 35571, 35572, 35617
 )

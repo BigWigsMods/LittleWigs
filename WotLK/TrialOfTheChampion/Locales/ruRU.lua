@@ -2,5 +2,5 @@ local L = BigWigs:NewBossLocale("Trial of the Champion Trash", "ruRU")
 if not L then return end
 if L then
 	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly select Arelas's gossip option to start encounters."
+	--L.custom_on_autotalk_desc = "Instantly select gossip option to start encounters."
 end
