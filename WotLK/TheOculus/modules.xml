@@ -2,9 +2,9 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Drakos.lua"/>
-<Script file="Eregos.lua"/>
-<Script file="Urom.lua"/>
 <Script file="VarosCloudstrider.lua"/>
+<Script file="Urom.lua"/>
+<Script file="Eregos.lua"/>
 
 </Ui>
 
