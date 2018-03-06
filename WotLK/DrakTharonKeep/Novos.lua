@@ -91,7 +91,7 @@ end
 
 -- Stage 1
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source) -- Crystal Handler spawned
-	if source == self.displayName then -- -6378 is Crystal Handler, CHAT_MSG_RAID_BOSS_EMOTE is targetted at them when they spawn.
+	if source == self.displayName then -- cross-module safety, this is the only BOSS_EMOTE present in this encounter.
 		crystalHandlersSpawned = crystalHandlersSpawned + 1
 		self:Message("adds", "Attention", "Alarm", CL.spawned:format(target), false)
 		if crystalHandlersSpawned <= 4 then
