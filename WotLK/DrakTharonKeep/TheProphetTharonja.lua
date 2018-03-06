@@ -1,20 +1,64 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("The Prophet Tharon'ja", 534, 591)
 if not mod then return end
---mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(26632)
+mod.engageId = 1975
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
 		"stages",
+		59971, -- Rain of Fire
 	}
 end
 
 function mod:OnBossEnable()
-	self:Death("Win", 26632)
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 49518, 59971)
+	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFire", 49518, 59971)
+	self:Log("SPELL_PERIODIC_MISSED", "RainOfFire", 49518, 59971)
+	self:Log("SPELL_CAST_SUCCESS", "DecayFlesh", 49356)
+	self:Log("SPELL_CAST_SUCCESS", "ReturnFlesh", 53463)
 end
+
+-------------------------------------------------------------------------------
+--  Event Handlers
+--
+
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 60 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("stages", "Neutral", nil, CL.soon:format(CL.phase:format(2)), false)
+	end
+end
+
+function mod:DecayFlesh(args)
+	self:DelayedMessage("stages", 3, "Neutral", CL.phase:format(2)) -- the 3s stun that's being applied before the 2nd phase starts
+	self:CDBar("stages", 23.64, CL.phase:format(1), 53463)
+end
+
+function mod:ReturnFlesh(args)
+	self:DelayedMessage("stages", 3, "Neutral", CL.phase:format(1)) -- the 3s stun that's being applied before transitioning back to the 1st phase
+end
+
+do
+	local prev = 0
+	function mod:RainOfFire(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 1.5 then
+				prev = t
+				self:Message(59971, "Personal", "Alert", CL.you:format(args.spellName))
+			end
+		end
+	end
+end
+

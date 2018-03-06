@@ -1,5 +1,6 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("King Dred", 534, 590)
 if not mod then return end
@@ -9,6 +10,7 @@ mod.engageId = 1977
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -29,6 +31,7 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:PiercingSlash(args)
 	if self:Me(args.destGUID) or self:Healer() then

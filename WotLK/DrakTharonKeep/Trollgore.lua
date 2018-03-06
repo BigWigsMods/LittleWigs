@@ -1,5 +1,6 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Trollgore", 534, 588)
 if not mod then return end
@@ -9,6 +10,7 @@ mod:RegisterEnableMob(26630)
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -35,6 +37,7 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:InfectedWound(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("disease") then
