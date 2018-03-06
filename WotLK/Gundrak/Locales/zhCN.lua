@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Gal'darah", "zhCN")
+local L = BigWigs:NewBossLocale("Gal'darah", "zhCN")
 if not L then return end
 if L then
 	L.forms = "形态"

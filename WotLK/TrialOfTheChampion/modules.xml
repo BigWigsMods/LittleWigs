@@ -5,6 +5,6 @@
 <Script file="GrandChampions.lua"/>
 <Script file="Paletress.lua"/>
 <Script file="TheBlackKnight.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
-

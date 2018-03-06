@@ -15,7 +15,7 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
-		59322, -- Whirlwind
+		{59322, "SAY"}, -- Whirlwind
 	}
 end
 

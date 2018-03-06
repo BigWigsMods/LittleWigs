@@ -19,7 +19,7 @@ local smashCount, burstCount = 0, 0
 
 local L = mod:GetLocale()
 if L then
-	
+
 end
 
 --------------------------------------------------------------------------------

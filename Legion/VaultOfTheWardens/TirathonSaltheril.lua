@@ -23,7 +23,7 @@ function mod:GetOptions()
 		191823, -- Furious Blast
 		190830, -- Hatred
 		192504, -- Metamorphosis (Havoc)
-		202740, -- Metamorphosis (Vengeance) 
+		202740, -- Metamorphosis (Vengeance)
 	}, {
 		[192504] = 192504 -- Metamorphosis
 	}
@@ -58,7 +58,7 @@ function mod:DarkstrikesApplied(args)
 end
 
 function mod:Havoc(args)
-	self:Message(args.spellId, "Neutral", "Info") 
+	self:Message(args.spellId, "Neutral", "Info")
 	self:CDBar(191941, 24) -- Darkstrikes
 	self:CDBar(190830, 14.5) -- Hatred
 end
@@ -67,7 +67,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
 	if spellId == 190830 then -- Hatred
 		self:Message(spellId, "Attention", "Warning")
 		self:Bar(spellId, 10, CL.cast:format(spellName))
-		self:CDBar(spellId, 30) 
+		self:CDBar(spellId, 30)
 	end
 end
 

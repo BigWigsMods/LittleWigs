@@ -6,6 +6,7 @@
 <Script file="MalGanis.lua"/>
 <Script file="Meathook.lua"/>
 <Script file="Salramm.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 
