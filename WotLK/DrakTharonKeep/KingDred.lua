@@ -22,7 +22,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PiercingSlash", 48878)
 	self:Log("SPELL_AURA_REMOVED", "PiercingSlashRemoved", 48878)
-	self:Log("SPELL_CAST_SUCCESS", "PiercingSlashCastSucces", 48878)
+	self:Log("SPELL_CAST_SUCCESS", "PiercingSlashCastSuccess", 48878)
 	self:Log("SPELL_CAST_START", "RaptorCall", 59416)
 end
 
@@ -46,7 +46,7 @@ function mod:PiercingSlashRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:PiercingSlashCastSucces(args)
+function mod:PiercingSlashCastSuccess(args)
 	self:CDBar(args.spellId, 18.3) -- 18.3 - 27.9s
 end
 
