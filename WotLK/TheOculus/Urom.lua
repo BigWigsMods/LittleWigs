@@ -40,7 +40,7 @@ function mod:OnEngage()
 	-- - SPELL_CAST_START fires *before* ENCOUNTER_START.
 
 	local spell = UnitCastingInfo("boss1")
-	if spell and spell == self:SpellName(50476) then -- first 3 pulls
+	if spell == self:SpellName(50476) then -- Summon Menagerie, first 3 pulls
 		self:ScheduleTimer("Reboot", 0.5) -- prevent the module from reporting a wipe
 	else -- normal pull
 		self:CDBar(51110, 31.5) -- Empowered Arcane Explosion
