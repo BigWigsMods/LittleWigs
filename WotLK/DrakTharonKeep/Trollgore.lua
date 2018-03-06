@@ -15,7 +15,7 @@ mod:RegisterEnableMob(26630)
 function mod:GetOptions()
 	return {
 		49637, -- Infected Wound
-		49639, -- Crush
+		{49639, "TANK"}, -- Crush
 		59803, -- Consume
 	}
 end
@@ -24,7 +24,9 @@ function mod:OnBossEnable()
 	self:Log("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_AURA_APPLIED", "InfectedWound", 49637)
 	self:Log("SPELL_AURA_REMOVED", "InfectedWoundRemoved", 49637)
+	self:Log("SPELL_CAST_SUCCESS", "InfectedWoundCastSuccess", 49637)
 
+	self:Log("SPELL_CAST_SUCCESS", "Crush", 49639)
 	self:Log("SPELL_CAST_SUCCESS", "Consume", 49380, 59803) -- normal, heroic
 	self:Death("Win", 26630)
 end
@@ -50,8 +52,12 @@ function mod:InfectedWoundRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
+function mod:InfectedWoundCastSuccess(args)
+	self:CDBar(args.spellId, 15.8) -- 15.8 - 20.7s
+end
+
 function mod:Crush(args)
-	self:CDBar(args.spellId, 8) -- 8-15.2s
+	self:CDBar(args.spellId, 8) -- 8 - 15.2s
 end
 
 function mod:Consume(args)
