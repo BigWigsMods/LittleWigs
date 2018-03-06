@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Novos the Summoner", 534, 589)
 if not mod then return end
-mod:RegisterEnableMob(26631, 26627, 27597, 27598, 27600) -- Novos, Crystal Handler, Hulking Corpse, Fetid Troll Corpse, Risen Shadowcaster
+mod:RegisterEnableMob(26631)
 mod.engageId = 1976
 mod.respawnTime = 30
 
