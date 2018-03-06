@@ -38,7 +38,7 @@
 <Include file="WotLK\TheForgeOfSouls\modules.xml"/>
 <Include file="WotLK\TheNexus\modules.xml"/>
 <Include file="WotLK\TheNexus\locales.xml"/>
-<!--<Include file="WotLK\TheOculus\modules.xml"/>-->
+<Include file="WotLK\TheOculus\modules.xml"/>
 <Include file="WotLK\TheVioletHold\modules.xml"/>
 <Include file="WotLK\TheVioletHold\locales.xml"/>
 <Include file="WotLK\TrialOfTheChampion\modules.xml"/>
