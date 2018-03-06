@@ -14,7 +14,7 @@ mod.engageId = 1977
 
 function mod:GetOptions()
 	return {
-		48878, -- Piercing Slash
+		{48878, "TANK_HEALER"}, -- Piercing Slash
 		59416, -- Raptor Call
 	}
 end

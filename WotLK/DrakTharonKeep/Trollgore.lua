@@ -14,8 +14,8 @@ mod:RegisterEnableMob(26630)
 
 function mod:GetOptions()
 	return {
-		49637, -- Infected Wound
 		{49639, "TANK"}, -- Crush
+		49637, -- Infected Wound
 		59803, -- Consume
 	}
 end

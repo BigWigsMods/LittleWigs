@@ -9,11 +9,21 @@ mod.engageId = 1976
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Initialization
+--  Locals
 --
 
 local crystalHandlersSpawned = 1 -- to decide whether CDBar needs to be displayed
 local crystalHandlersLeft = 4 -- to display CL.mob_remaining messages
+
+-------------------------------------------------------------------------------
+--  Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.adds = -6378 -- Crystal Handler
+	L.adds_desc = -6375 -- The description of the first stage that mentions that 4 of those need to be killed.
+end
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -22,15 +32,15 @@ local crystalHandlersLeft = 4 -- to display CL.mob_remaining messages
 function mod:GetOptions()
 	return {
 		"stages",
+		"adds", -- Crystal Handler
 		47346, -- Arcane Field
-		-6378, -- Crystal Handler
 		49034, -- Blizzard
 		50089, -- Wrath of Misery
 		59910, -- Summon Minions
 	}, {
 		["stages"] = "general",
-		[47346] = CL.stage:format(1),
-		[50089] = CL.stage:format(2),
+		["adds"] = CL.stage:format(1),
+		[49034] = CL.stage:format(2),
 	}
 end
 
@@ -58,7 +68,7 @@ function mod:OnEngage()
 	crystalHandlersSpawned = 1
 	crystalHandlersLeft = 4
 	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
-	self:CDBar(-6378, 15.5, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
+	self:CDBar("adds", 15.5, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
 end
 
 -------------------------------------------------------------------------------
@@ -83,9 +93,9 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, _, _, _, target) -- Crystal Handler spawned
 	if target == self:SpellName(-6378) then -- -6378 is Crystal Handler, CHAT_MSG_RAID_BOSS_EMOTE is targetted at them when they spawn.
 		crystalHandlersSpawned = crystalHandlersSpawned + 1
-		self:Message(-6378, "Attention", "Alarm", CL.spawned:format(target), false)
+		self:Message("adds", "Attention", "Alarm", CL.spawned:format(target), false)
 		if crystalHandlersSpawned <= 4 then
-			self:CDBar(-6378, 15.8, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
+			self:CDBar("adds", 15.8, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
 		end
 	end
 end
@@ -94,7 +104,7 @@ function mod:AddDied(args)
 	crystalHandlersLeft = crystalHandlersLeft - 1
 	self:Message("stages", "Neutral", nil, CL.mob_remaining:format(args.destName, crystalHandlersLeft), false)
 	if crystalHandlersLeft == 0 then
-		self:Bar("stages", 3.5, CL.stage:format(2), "inv_trinket_naxxramas06") -- icon that's used in the "Defeat Kel'thuzad" achievement
+		self:Bar("stages", 6.5, CL.stage:format(2), "inv_trinket_naxxramas06") -- icon that's used in the "Defeat Kel'thuzad" achievement
 	end
 end
 
