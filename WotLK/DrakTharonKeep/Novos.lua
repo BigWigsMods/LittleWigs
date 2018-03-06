@@ -113,7 +113,7 @@ function mod:UNIT_TARGETABLE_CHANGED(unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
 		self:CDBar(50089, 6) -- Wrath of Misery
-		if self:Heroic() then
+		if not self:Normal() then
 			self:CDBar(59910, 1.5) -- Summon Minions
 		end
 	end
