@@ -58,7 +58,7 @@ function mod:OnEngage()
 	crystalHandlersSpawned = 1
 	crystalHandlersLeft = 4
 	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
-	self:CDBar(-6378, 16.4, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
+	self:CDBar(-6378, 15.5, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
 end
 
 -------------------------------------------------------------------------------
@@ -102,8 +102,10 @@ end
 function mod:UNIT_TARGETABLE_CHANGED(unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
-		self:CDBar(59910, 1.5) -- Summon Minions
 		self:CDBar(50089, 6) -- Wrath of Misery
+		if self:Heroic() then
+			self:CDBar(59910, 1.5) -- Summon Minions
+		end
 	end
 end
 
@@ -119,7 +121,7 @@ function mod:WrathOfMiseryRemoved(args)
 end
 
 function mod:WrathOfMiseryCastSuccess(args)
-	self:CDBar(50089, 7.5) -- time until the next SPELL_CAST_START, 7.5 - 14.8s
+	self:CDBar(50089, 8.5) -- 8.5 - 15.8s
 end
 
 function mod:SummonMinions(args)
