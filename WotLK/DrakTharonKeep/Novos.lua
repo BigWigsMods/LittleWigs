@@ -4,15 +4,16 @@
 
 local mod, CL = BigWigs:NewBoss("Novos the Summoner", 534, 589)
 if not mod then return end
-mod:RegisterEnableMob(26631)
+mod:RegisterEnableMob(26631, 26627, 27597, 27598, 27600) -- Novos, Crystal Handler, Hulking Corpse, Fetid Troll Corpse, Risen Shadowcaster
 mod.engageId = 1976
-mod.respawnTime = 0
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
 --
 
-local crystalHandlersLeft = 4
+local crystalHandlersSpawned = 1 -- to decide whether CDBar needs to be displayed
+local crystalHandlersLeft = 4 -- to display CL.mob_remaining messages
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -23,6 +24,7 @@ function mod:GetOptions()
 		"stages",
 		47346, -- Arcane Field
 		-6378, -- Crystal Handler
+		49034, -- Blizzard
 		50089, -- Wrath of Misery
 		59910, -- Summon Minions
 	}, {
@@ -33,11 +35,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- Stage 1
-	self:Log("SPELL_AURA_APPLIED", "ArcaneField", 47346)
-	self:Log("SPELL_PERIODIC_DAMAGE", "ArcaneField", 47346)
-	self:Log("SPELL_PERIODIC_MISSED", "ArcaneField", 47346)
+	-- Arcane Field, normal/heroic Blizzard
+	self:Log("SPELL_AURA_APPLIED", "GroundDamage", 47346, 49034, 59854)
+	self:Log("SPELL_PERIODIC_DAMAGE", "GroundDamage", 47346)
+	self:Log("SPELL_PERIODIC_MISSED", "GroundDamage", 47346)
 
+	-- Stage 1
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:Death("AddDied", 26627)
 
@@ -46,44 +49,50 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_AURA_APPLIED", "WrathOfMisery", 50089, 59856) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "WrathOfMiseryRemoved", 50089, 59856)
+	self:Log("SPELL_CAST_SUCCESS", "WrathOfMiseryCastSuccess", 50089, 59856)
 
 	self:Log("SPELL_CAST_SUCCESS", "SummonMinions", 59910)
 end
 
 function mod:OnEngage()
+	crystalHandlersSpawned = 1
 	crystalHandlersLeft = 4
 	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
-	self:CDBar(-6378, 16.4)
+	self:CDBar(-6378, 16.4, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 --
 
--- Stage 1
+-- Arcane Field, normal/heroic Blizzard
 do
 	local prev = 0
-	function mod:ArcaneField(args)
+	function mod:GroundDamage(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(args.spellId == 59854 and 49034 or args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, _, target, _, _) -- Crystal Handler spawned
-	if target == self:SpellName(-6378) then -- This message is targetted at them.
-		self:Message(-6378, "Important", "Alarm", CL.spawned:format(target), false)
-		self:CDBar(-6378, 15.8)
+-- Stage 1
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, _, _, _, target) -- Crystal Handler spawned
+	if target == self:SpellName(-6378) then -- -6378 is Crystal Handler, CHAT_MSG_RAID_BOSS_EMOTE is targetted at them when they spawn.
+		crystalHandlersSpawned = crystalHandlersSpawned + 1
+		self:Message(-6378, "Attention", "Alarm", CL.spawned:format(target), false)
+		if crystalHandlersSpawned <= 4 then
+			self:CDBar(-6378, 15.8, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
+		end
 	end
 end
 
 function mod:AddDied(args)
 	crystalHandlersLeft = crystalHandlersLeft - 1
-	self:Message("stages", "Neutral", nil, CL.mob_remaining(args.destName, addsLeft), false)
+	self:Message("stages", "Neutral", nil, CL.mob_remaining:format(args.destName, crystalHandlersLeft), false)
 	if crystalHandlersLeft == 0 then
 		self:Bar("stages", 3.5, CL.stage:format(2), "inv_trinket_naxxramas06") -- icon that's used in the "Defeat Kel'thuzad" achievement
 	end
@@ -91,10 +100,10 @@ end
 
 -- Stage 2
 function mod:UNIT_TARGETABLE_CHANGED(unit)
-	-- Submerge
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
 		self:CDBar(59910, 1.5) -- Summon Minions
+		self:CDBar(50089, 6) -- Wrath of Misery
 	end
 end
 
@@ -107,6 +116,10 @@ end
 
 function mod:WrathOfMiseryRemoved(args)
 	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:WrathOfMiseryCastSuccess(args)
+	self:CDBar(50089, 7.5) -- time until the next SPELL_CAST_START, 7.5 - 14.8s
 end
 
 function mod:SummonMinions(args)
