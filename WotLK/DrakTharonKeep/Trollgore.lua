@@ -3,8 +3,9 @@
 
 local mod, CL = BigWigs:NewBoss("Trollgore", 534, 588)
 if not mod then return end
---mod.otherMenu = "Zul'Drak"
 mod:RegisterEnableMob(26630)
+-- mod.engageId = 1974 - starts randomly when other trash mobs attack him
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -12,23 +13,44 @@ mod:RegisterEnableMob(26630)
 function mod:GetOptions()
 	return {
 		49637, -- Infected Wound
+		49639, -- Crush
+		59803, -- Consume
 	}
 end
 
 function mod:OnBossEnable()
+	self:Log("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_AURA_APPLIED", "InfectedWound", 49637)
 	self:Log("SPELL_AURA_REMOVED", "InfectedWoundRemoved", 49637)
+
+	self:Log("SPELL_CAST_SUCCESS", "Consume", 49380, 59803) -- normal, heroic
 	self:Death("Win", 26630)
+end
+
+function mod:OnEngage()
+	self:CDBar(49639, 8.5) -- Crush
+	self:CDBar(59803, 15.6) -- Consume
+	self:CDBar(49637, 19.2) -- Infected Wound
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
 function mod:InfectedWound(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
-	self:TargetBar(args.spellId, 10, args.destName)
+	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("disease") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetBar(args.spellId, 10, args.destName)
+	end
 end
 
 function mod:InfectedWoundRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:Crush(args)
+	self:CDBar(args.spellId, 8) -- 8-15.2s
+end
+
+function mod:Consume(args)
+	self:CDBar(59803, 15.8)
 end

@@ -16,7 +16,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "WrathOfMisery", 50089, 59856)
+	self:Log("SPELL_AURA_APPLIED", "WrathOfMisery", 50089, 59856) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "WrathOfMiseryRemoved", 50089, 59856)
 	self:Death("Win", 26631)
 end
@@ -26,7 +26,7 @@ end
 
 function mod:WrathOfMisery(args)
 	self:TargetMessage(50089, args.destName, "Urgent")
-	self:TargetBar(50089, 6, args.destName)
+	self:TargetBar(50089, 8, args.destName)
 end
 
 function mod:WrathOfMiseryRemoved(args)
