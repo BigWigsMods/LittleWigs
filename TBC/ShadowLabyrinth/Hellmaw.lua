@@ -1,13 +1,16 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Ambassador Hellmaw", 724, 544)
 if not mod then return end
---mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18731)
+-- mod.engageId = 1908 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -29,13 +32,13 @@ end
 
 function mod:OnEngage()
 	self:CDBar(33547, 15)
-	if self:Heroic() then self:Berserk(180) end
+	if not self:Normal() then self:Berserk(180) end
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:Fear(args)
-	self:CDBar(args.spellId, 30)
-	self:DelayedMessage(args.spellId, 25, "Attention", CL.soon:format(args.spellName))
+	self:CDBar(args.spellId, 25.5) -- 25.5 - 30s
 end

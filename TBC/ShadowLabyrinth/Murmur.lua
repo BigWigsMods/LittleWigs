@@ -1,37 +1,55 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Murmur", 724, 547)
 if not mod then return end
---mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18708)
+-- mod.engageId = 1910 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
-		{33711, "ICON"}, -- Murmur's Touch
+		{38794, "ICON", "SAY"}, -- Murmur's Touch
 		33923, -- Sonic Boom
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "MurmursTouch", 33711, 38794)
-	self:Log("SPELL_CAST_START", "SonicBoom", 33923, 38796)
+	self:Log("SPELL_AURA_APPLIED", "MurmursTouch", 33711, 38794) -- normal, heroic
+	self:Log("SPELL_AURA_REMOVED", "MurmursTouchRemoved", 33711, 38794)
+	self:Log("SPELL_CAST_START", "SonicBoom", 33923, 38796) -- normal, heroic
 	self:Death("Win", 18708)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:MurmursTouch(args)
-	self:TargetMessage(33711, args.destName, "Personal", "Alarm")
-	self:Bar(33711, 13, args.destName)
-	self:PrimaryIcon(33711, args.destName)
+	local duration = self:Normal() and 14 or 7
+	if self:Me(args.destGUID) then
+		self:Say(38794)
+		self:SayCountdown(38794, duration)
+	end
+	self:TargetMessage(38794, args.destName, "Attention", "Alarm")
+	self:TargetBar(38794, duration, args.destName)
+	self:PrimaryIcon(38794, args.destName)
+end
+
+function mod:MurmursTouchRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(38794)
+	end
+	self:StopBar(args.spellName, args.destName)
+	self:PrimaryIcon(38794)
 end
 
 function mod:SonicBoom(args)
 	self:Message(33923, "Important", nil, CL.casting:format(args.spellName))
-	self:Bar(33923, 5)
+	self:CastBar(33923, 5)
 end

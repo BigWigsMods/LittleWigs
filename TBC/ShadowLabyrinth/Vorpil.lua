@@ -1,38 +1,31 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Grandmaster Vorpil", 724, 546)
 if not mod then return end
---mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18732)
-
--------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-	L.teleport = "Teleport"
-	L.teleport_desc = "Warning for when Grandmaster Vorpil will Teleport."
-	L.teleport_message = "Teleport!"
-	L.teleport_warning = "Teleport in ~5sec!"
-end
+-- mod.engageId = 1911 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
-		"teleport",
+		-5267, -- Draw Shadows
 		38791, -- Banish
 	},{
-		["teleport"] = "general",
+		[-5267] = "general",
 		[38791] = "heroic",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Teleport", 33563)
+	self:Log("SPELL_CAST_SUCCESS", "DrawShadows", 33563)
 	self:Log("SPELL_AURA_APPLIED", "Banish", 38791)
+	self:Log("SPELL_AURA_REMOVED", "BanishRemoved", 38791)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
@@ -40,20 +33,23 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar("teleport", 40, L.teleport, args.spellId)
-	self:DelayedMessage("teleport", 35, "Attention", L.teleport_warning, args.spellId)
+	self:CDBar(-5267, 44)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:Teleport(args)
-	self:Message("teleport", "Urgent", nil, L.teleport_message, args.spellId)
-	self:CDBar("teleport", 37, L.teleport, args.spellId)
-	self:DelayedMessage("teleport", 32, "Attention", L.teleport_warning, args.spellId)
+function mod:DrawShadows(args)
+	self:Message(-5267, "Urgent")
+	self:CDBar(-5267, 41)
 end
 
 function mod:Banish(args)
 	self:TargetMessage(args.spellId, args.destName, "Important")
 	self:TargetBar(args.spellId, 8, args.destName)
+end
+
+function mod:BanishRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end

@@ -1,13 +1,16 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Blackheart the Inciter", 724, 545)
 if not mod then return end
---mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18667)
+-- mod.engageId = 1909 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -29,7 +32,7 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
-
+--
 
 function mod:Chaos(args)
 	self:Message(args.spellId, "Important")
