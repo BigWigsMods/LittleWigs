@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Selin Fireheart", 798, 530)
 if not mod then return end
 mod:RegisterEnableMob(24723)
+mod.engageId = 1897
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,7 +22,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Channel", 44320)
 	self:Log("SPELL_AURA_REMOVED", "ChannelEnd", 44320)
-	self:Death("Win", 24723)
 end
 
 --------------------------------------------------------------------------------
@@ -35,4 +36,3 @@ end
 function mod:ChannelEnd(args)
 	self:StopBar(args.spellName)
 end
-

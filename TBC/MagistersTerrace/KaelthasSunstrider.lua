@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Kael'thas Sunstrider ", 798, 533) -- Space is intentional to prevent conflict with Kael'thas from Tempest Keep/The Eye
 if not mod then return end
 mod:RegisterEnableMob(24664)
+-- mod.engageId = 1894 - doesn't fire ENCOUNTER_END on a wipe
+-- mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,8 +27,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Log("SPELL_CAST_START", "GravityLapse", 44224)
 	self:Log("SPELL_CAST_START", "Pyroblast", 36819)
@@ -46,13 +48,11 @@ end
 --
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:MobId(UnitGUID(unit)) == 24664 then -- Kael'thas Sunstrider
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 52 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
-			self:CancelDelayedMessage(CL.soon:format(self:SpellName(46165)))
-			self:Message(44224, "Positive", nil, CL.soon:format(self:SpellName(44224)), false)
-		end
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 52 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:CancelDelayedMessage(CL.soon:format(self:SpellName(46165))) -- Shock Barrier
+		self:Message(44224, "Positive", nil, CL.soon:format(self:SpellName(44224)), false)
 	end
 end
 
@@ -76,4 +76,3 @@ function mod:Pyroblast(args)
 	self:Bar(args.spellId, 4)
 	self:Message(args.spellId, "Important", "Info", CL.casting:format(args.spellName))
 end
-

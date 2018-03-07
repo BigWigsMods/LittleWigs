@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Vexallus", 798, 531)
 if not mod then return end
 mod:RegisterEnableMob(24744)
+mod.engageId = 1898
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -36,7 +38,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Feedback", 44335)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "FeedbackDose", 44335)
 	self:Log("SPELL_AURA_REMOVED", "FeedbackRemove", 44335)
-	self:Death("Win", 24744)
 end
 
 --------------------------------------------------------------------------------
@@ -61,4 +62,3 @@ end
 function mod:FeedbackRemove(args)
 	self:StopBar(args.spellName, args.destName)
 end
-
