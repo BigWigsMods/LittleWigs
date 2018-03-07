@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Grandmaster Vorpil", 555, 546)
+local mod, CL = BigWigs:NewBoss("Grandmaster Vorpil", 724, 546)
 if not mod then return end
 --mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18732)

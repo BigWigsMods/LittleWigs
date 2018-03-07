@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Murmur", 555, 547)
+local mod, CL = BigWigs:NewBoss("Murmur", 724, 547)
 if not mod then return end
 --mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18708)
