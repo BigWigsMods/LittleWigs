@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Pandemonius", 732, 534)
 if not mod then return end
 mod:RegisterEnableMob(18341)
+-- mod.engageId = 1900 -- no boss frames, no ENCOUNTER_END on a wipe
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
