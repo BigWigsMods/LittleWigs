@@ -63,7 +63,7 @@ do
 end
 
 function mod:FrostShock(args)
-	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("magic") then
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
 		self:TargetMessage(12548, args.destName, "Urgent")
 		self:TargetBar(12548, 8, args.destName)
 	end
