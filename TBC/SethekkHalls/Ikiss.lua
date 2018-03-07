@@ -47,7 +47,7 @@ end
 --  Event Handlers
 --
 
-function mod:ArcaneExplosion()
+function mod:ArcaneExplosion(args)
 	self:Message(38197, "Urgent", "Warning", CL.casting:format(args.spellName))
 	self:CastBar(38197, 5)
 end
@@ -112,7 +112,7 @@ do
 			end
 
 			if explosionWarnings > #warnAt then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
+				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 			end
 	 	end
 	end

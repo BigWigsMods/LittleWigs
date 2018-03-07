@@ -57,7 +57,7 @@ do
 		self:CastBar(15659, 3)
 	end
 
-	function mod:ChainLightningSuccess(args)
+	function mod:ChainLightningSuccess()
 		self:PrimaryIcon(15659)
 	end
 end
@@ -91,7 +91,7 @@ do
 			end
 
 			if elementalsWarnings > #warnAt then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
+				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 			end
 	 	end
 	end

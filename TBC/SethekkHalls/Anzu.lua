@@ -66,10 +66,8 @@ end
 function mod:AddDied()
 	addsAlive = addsAlive - 1
 	self:Message(-5253, "Positive", nil, CL.add_remaining:format(addsAlive))
-	if addsAlive == 0 then
-		if not UnitCastingInfo("boss1") then -- he doesn't unbanish himself if you kill the last add when he's casting Paralyzing Screech
-			self:StopBar(CL.onboss:format(self:SpellName(42354))) -- Banish Self
-		end
+	if addsAlive == 0 and not UnitCastingInfo("boss1") then -- he doesn't unbanish himself if you kill the last add when he's casting Paralyzing Screech
+		self:StopBar(CL.onboss:format(self:SpellName(42354))) -- Banish Self
 	end
 end
 
@@ -88,7 +86,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		nextBroodWarning = nextBroodWarning - 40
 
 		if nextBroodWarning < 15 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT",  "boss1")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		end
  	end
 end
