@@ -9,7 +9,6 @@
 <!-- The Burning Crusade -->
 
 <Include file="TBC\AuchenaiCrypts\modules.xml"/>
-<Include file="TBC\AuchenaiCrypts\locales.xml"/>
 <Include file="TBC\MagistersTerrace\modules.xml"/>
 <Include file="TBC\MagistersTerrace\locales.xml"/>
 <Include file="TBC\ManaTombs\modules.xml"/>
