@@ -3,8 +3,7 @@
 
 <Script file="Krystallus.lua"/>
 <Script file="MaidenOfGrief.lua"/>
-<Script file="SjonnirTheIronshaper.lua"/>
 <Script file="TribunalOfAges.lua"/>
+<Script file="SjonnirTheIronshaper.lua"/>
 
 </Ui>
-
