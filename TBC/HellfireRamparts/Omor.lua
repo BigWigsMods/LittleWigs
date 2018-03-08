@@ -33,12 +33,12 @@ function mod:TreacherousAura(args)
 	if self:Me(args.destGUID) then
 		self:Say(30695)
 	end
-	self:TargetMessage(30695, args.destName, "Urgent", nil, args.spellId)
-	self:TargetBar(30695, 15, args.destName, args.spellId)
+	self:TargetMessage(30695, args.destName, "Urgent", nil, args.spellName)
+	self:TargetBar(30695, 15, args.destName, args.spellName)
 	self:PrimaryIcon(30695, args.destName)
 end
 
 function mod:TreacherousAuraRemoved(args)
 	self:PrimaryIcon(30695)
-	self:StopBar(30695, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end

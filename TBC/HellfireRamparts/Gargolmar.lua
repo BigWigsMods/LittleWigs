@@ -42,10 +42,7 @@ end
 --
 
 function mod:MortalWound(args)
-	local amount = args.amount or 1
-	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, amount, "Neutral")
-	end
+	self:StackMessage(args.spellId, args.destName, args.amount, "Neutral")
 end
 
 -- There are 2 Hellfire Watchers on pull, so throttling everything
@@ -78,8 +75,11 @@ do
 
 		local t = GetTime()
 		if (t - prev > 1) or (prevGUID ~= args.destGUID) then
-			self:TargetMessage(args.spellId, args.destName, "Attention", (t - prev > 1) and "Alarm", nil, nil, true) -- don't play 2 sounds if 2 different targets get Renew at the same time
+			if t - prev > 1 then
+				self:PlaySound(args.spellId, "Alarm") -- don't play 2 sounds if 2 different targets get Renew at the same time
+			end
 			prev = t
+			self:TargetMessage(args.spellId, args.destName, "Attention")
 		end
 		prevGUID = args.destGUID
 	end
@@ -93,5 +93,5 @@ function mod:ShadowWordPain(args)
 end
 
 function mod:ShadowWordPainRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
