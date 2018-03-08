@@ -20,19 +20,19 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Channel", 44320)
-	self:Log("SPELL_AURA_REMOVED", "ChannelEnd", 44320)
+	self:Log("SPELL_AURA_APPLIED", "ManaRage", 44320)
+	self:Log("SPELL_AURA_REMOVED", "ManaRageEnd", 44320)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Channel(args)
-	self:Message(args.spellId, "Important", "Info")
-	self:Bar(args.spellId, 10)
+function mod:ManaRage(args)
+	self:Message(args.spellId, "Important", "Info", CL.casting:format(args.spellName))
+	self:CastBar(args.spellId, 10)
 end
 
-function mod:ChannelEnd(args)
-	self:StopBar(args.spellName)
+function mod:ManaRageEnd(args)
+	self:StopBar(CL.cast:format(args.spellName))
 end
