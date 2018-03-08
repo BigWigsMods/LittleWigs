@@ -5,8 +5,8 @@ if L then
 	--L.first_cell_trigger = "I have not been myself"
 	-- Behold, yet another terrifying creature of incomprehensible power!
 	--L.second_and_third_cells_trigger = "of incomprehensible power"
-	-- Prepare to defend yourself, cretin!
-	--L.fourth_cell_trigger = "defend yourself"
+	-- Anarchy! Bedlam! Oh, you are so wise! Yes, I see it now, of course!
+	--L.fourth_cell_trigger = "Anarchy! Bedlam!"
 	-- It is a small matter to control the mind of the weak... for I bear allegiance to powers untouched by time, unmoved by fate. No force on this world or beyond harbors the strength to bend our knee... not even the mighty Legion!
 	--L.warmup_trigger = "the mighty Legion"
 
