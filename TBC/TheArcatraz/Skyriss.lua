@@ -20,8 +20,16 @@ local nextSplitWarning = 71
 
 local L = mod:GetLocale()
 if L then
+	-- I knew the prince would be angry, but I... I have not been myself. I had to let them out! The great one speaks to me, you see. Wait--outsiders. Kael'thas did not send you! Good... I'll just tell the prince you released the prisoners!
+	L.first_cell_trigger = "I have not been myself"
+	-- Behold, yet another terrifying creature of incomprehensible power!
+	L.second_and_third_cells_trigger = "of incomprehensible power"
+	-- Prepare to defend yourself, cretin!
+	L.fourth_cell_trigger = "defend yourself"
 	-- It is a small matter to control the mind of the weak... for I bear allegiance to powers untouched by time, unmoved by fate. No force on this world or beyond harbors the strength to bend our knee... not even the mighty Legion!
 	L.warmup_trigger = "the mighty Legion"
+
+	L.prison_cell = "Prison Cell"
 end
 
 --------------------------------------------------------------------------------
@@ -58,7 +66,14 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg:find(L.warmup_trigger, nil, true) then
+	if msg:find(L.first_cell_trigger, nil, true) then
+		self:Bar("warmup", 38.2, CL.count:format(L.prison_cell, 1), "achievement_boss_harbinger_skyriss")
+	elseif msg:find(L.second_and_third_cells_trigger, nil, true) then
+		self:Bar("warmup", 9.4, CL.count:format(L.prison_cell, 2), "achievement_boss_harbinger_skyriss") -- Millhouse Manastorm
+		self:Bar("warmup", 25.8, CL.count:format(L.prison_cell, 3), "achievement_boss_harbinger_skyriss")
+	elseif msg:find(L.fourth_cell_trigger, nil, true) then
+		self:Bar("warmup", 7.1, CL.count:format(L.prison_cell, 4), "achievement_boss_harbinger_skyriss")
+	elseif msg:find(L.warmup_trigger, nil, true) then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 30.2, CL.active, "achievement_boss_harbinger_skyriss")
 	end
