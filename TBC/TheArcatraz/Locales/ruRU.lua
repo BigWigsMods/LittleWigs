@@ -6,5 +6,9 @@ end
 
 L = BigWigs:NewBossLocale("The Arcatraz Trash", "ruRU")
 if L then
+	L.entropic_eye = "Энтропический глаз"
+	L.sightless_eye = "Незрячий глаз"
+	L.soul_eater = "Эредераский пожиратель душ"
+	L.temptress = "Сердитая искусительница"
 	L.abyssal = "Чудовищный магматический инфернал"
 end

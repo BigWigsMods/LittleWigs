@@ -6,5 +6,9 @@ end
 
 L = BigWigs:NewBossLocale("The Arcatraz Trash", "koKR")
 if L then
+	L.entropic_eye = "혼돈의 눈"
+	L.sightless_eye = "보이지 않는 눈"
+	L.soul_eater = "에레다르 영혼사냥꾼"
+	L.temptress = "원한의 요녀"
 	L.abyssal = "거대한 심연"
 end
