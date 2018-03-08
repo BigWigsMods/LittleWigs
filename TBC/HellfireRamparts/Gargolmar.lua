@@ -74,12 +74,13 @@ do
 		if not self:Dispeller("magic", true) then return end
 
 		local t = GetTime()
-		if (t - prev > 1) or (prevGUID ~= args.destGUID) then
-			if t - prev > 1 then
-				self:PlaySound(args.spellId, "Alarm") -- don't play 2 sounds if 2 different targets get Renew at the same time
-			end
+		local isANewPairOfCasts = t - prev > 1
+		if isANewPairOfCasts or (prevGUID ~= args.destGUID) then
 			prev = t
 			self:TargetMessage(args.spellId, args.destName, "Attention")
+			if isANewPairOfCasts then
+				self:PlaySound(args.spellId, "Alarm") -- don't play 2 sounds if 2 different targets get Renew at the same time
+			end
 		end
 		prevGUID = args.destGUID
 	end
