@@ -73,7 +73,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 52 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:CancelDelayedMessage(CL.soon:format(self:SpellName(46165))) -- Shock Barrier
+		self:CancelDelayedMessage(CL.soon:format(self:SpellName(-5180))) -- Shock Barrier
 		self:Message(44224, "Positive", nil, CL.soon:format(self:SpellName(44224)), false) -- Gravity Lapse
 	end
 end

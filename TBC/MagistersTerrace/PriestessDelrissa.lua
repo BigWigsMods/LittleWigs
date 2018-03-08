@@ -46,21 +46,21 @@ end
 
 function mod:OnBossEnable()
 	-- Priestess Delrissa
-	self:Log("SPELL_AURA_APPLIED", "Renew", 44174, 46192)
-	self:Log("SPELL_AURA_APPLIED", "PowerWordShield", 46193, 44175, 44291)
+	self:Log("SPELL_AURA_APPLIED", "Renew", 44174, 46192) -- normal, heroic
+	self:Log("SPELL_AURA_APPLIED", "PowerWordShield", 44291, 46193) -- normal, heroic
 
 	-- Apoko
 	self:Log("SPELL_CAST_SUCCESS", "WindfuryTotem", 27621)
 
 	-- Yazzai
-	self:Log("SPELL_CAST_SUCCESS", "Blizzard", 44178, 46195)
+	self:Log("SPELL_CAST_SUCCESS", "Blizzard", 44178, 46195) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "Polymorph", 13323)
 
 	-- Ellrys Duskhallow
 	self:Log("SPELL_AURA_APPLIED", "SeedOfCorruption", 44141)
 
 	-- General _AURA_REMOVED events:
-	self:Log("SPELL_AURA_REMOVED", "Removed", 13323, 44141, 44174, 46192)
+	self:Log("SPELL_AURA_REMOVED", "Removed", 13323, 44141, 44174, 46192) -- Polymorh, Seed of Corruption, normal/heroic Renew
 end
 
 --------------------------------------------------------------------------------

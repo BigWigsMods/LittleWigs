@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Vexallus", "esES") or BigWigs:NewBossLocale("Vexallus", "esMX")
 if not L then return end
 if L then
-	--L.energy_discharged = "%s discharged!" -- %s = Pure Energy (npc ID = 24745)
+	--L.energy_discharged = "%s discharged" -- %s = Pure Energy (npc ID = 24745)
 end
 
 L = BigWigs:NewBossLocale("Kael'thas Sunstrider ", "esES") or BigWigs:NewBossLocale("Kael'thas Sunstrider ", "esMX")

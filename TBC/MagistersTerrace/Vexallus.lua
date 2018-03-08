@@ -15,7 +15,7 @@ mod.engageId = 1898
 
 local L = mod:GetLocale()
 if L then
-	L.energy_discharged = "%s discharged!" -- %s = Pure Energy (npc ID = 24745)
+	L.energy_discharged = "%s discharged" -- %s = Pure Energy (npc ID = 24745)
 end
 
 --------------------------------------------------------------------------------
