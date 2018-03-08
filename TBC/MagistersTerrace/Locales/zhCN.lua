@@ -6,3 +6,10 @@ if L then
 	L.adds_message = "放射出纯净能量！"
 	L.adds_trigger = "放射出纯净的能量！"
 end
+
+L = BigWigs:NewBossLocale("Magisters' Terrace Trash", "zhCN")
+if L then
+	L.mage_guard = "炎刃魔法卫兵"
+	L.magister = "炎刃魔导师"
+	L.keeper = "炎刃守护者"
+end

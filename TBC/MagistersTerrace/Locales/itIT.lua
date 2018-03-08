@@ -6,3 +6,10 @@ if L then
 	--L.adds_message = "Pure Energy discharged!"
 	--L.adds_trigger = "discharges pure energy!"
 end
+
+L = BigWigs:NewBossLocale("Magisters' Terrace Trash", "itIT")
+if L then
+	L.mage_guard = "Guardia Magica Lamasole"
+	L.magister = "Magistro Lamasole"
+	L.keeper = "Guardiano Lamasole"
+end
