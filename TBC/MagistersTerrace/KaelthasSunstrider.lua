@@ -54,7 +54,6 @@ function mod:OnEngage()
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL") -- if you engage him before killing the trash pack in front of him, he skips roleplaying
 	if not self:Normal() then
 		self:CDBar(-5180, 60) -- Shock Barrier
-		self:DelayedMessage(-5180, 50, "Attention", CL.soon:format(self:SpellName(-5180)))
 	end
 end
 
@@ -73,7 +72,6 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:CancelDelayedMessage(CL.soon:format(self:SpellName(-5180))) -- Shock Barrier
 		self:Message(44224, "Positive", nil, CL.soon:format(self:SpellName(44224)), false) -- Gravity Lapse
 	end
 end
