@@ -24,15 +24,15 @@ end
 
 function mod:GetOptions()
 	return {
-		-5085,
+		-5085, -- Pure Energy
 		44335, -- Energy Feedback
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Feedback", 44335)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "FeedbackDose", 44335)
-	self:Log("SPELL_AURA_REMOVED", "FeedbackRemove", 44335)
+	self:Log("SPELL_AURA_APPLIED", "EnergyFeedback", 44335)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "EnergyFeedback", 44335)
+	self:Log("SPELL_AURA_REMOVED", "EnergyFeedbackRemoved", 44335)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
@@ -41,16 +41,12 @@ end
 -- Event Handlers
 --
 
-function mod:Feedback(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+function mod:EnergyFeedback(args)
+	self:StackMessage(args.spellId, args.destName, args.amount, "Urgent")
 	self:TargetBar(args.spellId, 30, args.destName)
 end
 
-function mod:FeedbackDose(args)
-	self:TargetBar(args.spellId, 30, args.destName)
-end
-
-function mod:FeedbackRemove(args)
+function mod:EnergyFeedbackRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
