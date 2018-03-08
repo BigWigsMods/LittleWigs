@@ -1,5 +1,6 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Watchkeeper Gargolmar", 797, 527)
 if not mod then return end
@@ -9,6 +10,7 @@ mod:RegisterEnableMob(17306)
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {

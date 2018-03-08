@@ -1,5 +1,6 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Omor the Unscarred", 797, 528)
 if not mod then return end
@@ -9,6 +10,7 @@ mod:RegisterEnableMob(17308)
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 
 function mod:GetOptions()
@@ -25,6 +27,7 @@ end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:TreacherousAura(args)
 	if self:Me(args.destGUID) then

@@ -1,5 +1,6 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Vazruden", 797, 529)
 if not mod then return end
@@ -13,6 +14,7 @@ mod:RegisterEnableMob(17537, 17536) -- Vazruden, Nazan <Vazruden's Mount>
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
