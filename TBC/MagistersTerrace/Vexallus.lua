@@ -15,10 +15,7 @@ mod.engageId = 1898
 
 local L = mod:GetLocale()
 if L then
-	L["adds"] = "Pure Energy"
-	L["adds_desc"] = "Warn when Pure Energy is discharged."
-	L["adds_message"] = "Pure Energy discharged!"
-	L["adds_trigger"] = "discharges pure energy!"
+	L.energy_discharged = "%s discharged!" -- %s = Pure Energy (npc ID = 24745)
 end
 
 --------------------------------------------------------------------------------
@@ -27,28 +24,22 @@ end
 
 function mod:GetOptions()
 	return {
-		"adds",
+		-5085,
 		44335, -- Energy Feedback
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "AddSpawned")
-
 	self:Log("SPELL_AURA_APPLIED", "Feedback", 44335)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "FeedbackDose", 44335)
 	self:Log("SPELL_AURA_REMOVED", "FeedbackRemove", 44335)
+
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:AddSpawned(_, msg)
-	if msg:find(L.adds_trigger) then
-		self:Message("adds", "Important", nil, L.adds_message, false)
-	end
-end
 
 function mod:Feedback(args)
 	self:TargetMessage(args.spellId, args.destName, "Urgent")
@@ -61,4 +52,10 @@ end
 
 function mod:FeedbackRemove(args)
 	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 44322 or spellId == 46154 then -- Summon Pure Energy (normal / heroic)
+		self:Message(-5085, "Important", nil, L.energy_discharged:format(self:SpellName(-5085)), false)
+ 	end
 end

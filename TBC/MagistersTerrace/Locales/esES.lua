@@ -1,10 +1,7 @@
 local L = BigWigs:NewBossLocale("Vexallus", "esES") or BigWigs:NewBossLocale("Vexallus", "esMX")
 if not L then return end
 if L then
-	--L.adds. = "Pure Energy"
-	--L.adds_desc = "Warn when Pure Energy is discharged."
-	--L.adds_message = "Pure Energy discharged!"
-	--L.adds_trigger = "discharges pure energy!"
+	--L.energy_discharged = "%s discharged!" -- %s = Pure Energy (npc ID = 24745)
 end
 
 L = BigWigs:NewBossLocale("Kael'thas Sunstrider ", "esES") or BigWigs:NewBossLocale("Kael'thas Sunstrider ", "esMX")
