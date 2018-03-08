@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Omor the Unscarred", 543, 528)
+local mod, CL = BigWigs:NewBoss("Omor the Unscarred", 797, 528)
 if not mod then return end
 --mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(17308)
