@@ -7,15 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(19219)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.enrage_trigger = "You should split while you can."
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -25,13 +16,15 @@ function mod:GetOptions()
 		35159, -- Reflective Damage Shield
 		39096, -- Polarity Shift
 		"berserk",
+	}, {
+		[35158] = "general",
+		["berserk"] = "heroic",
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-	self:Log("SPELL_AURA_APPLIED", "ReflectiveShield", 35158, 35159)
-	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 35158, 35159)
+	self:Log("SPELL_AURA_APPLIED", "ReflectiveShield", 35158, 35159) -- Magic, Damage
+	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 35158, 35159) -- Magic, Damage
 	self:Log("SPELL_CAST_START", "PolarityShift", 39096)
 	--self:Log("SPELL_CAST_SUCCESS", "PolarityScan", 39096) --success isn't getting logged right now
 
@@ -44,20 +37,13 @@ end
 
 function mod:OnEngage()
 	if self:Heroic() then
-		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+		self:Berserk(180, true, nil, 224604) -- 224604 = Enrage
 	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.enrage_trigger then
-		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
-		self:Berserk(180, true, nil, 224604) -- 224604 = Enrage
-	end
-end
 
 function mod:ReflectiveShield(args)
 	self:Message(args.spellId, "Urgent")
