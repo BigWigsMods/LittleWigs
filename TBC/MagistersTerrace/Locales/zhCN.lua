@@ -6,6 +6,6 @@ end
 
 L = BigWigs:NewBossLocale("Kael'thas Sunstrider ", "zhCN")
 if L then
-	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
-	-- L.warmup_trigger = "Don't look so smug!"
+	-- 别拿那种眼神看着我！我知道你们在想些什么，但风暴要塞的失败早就过去了。你们真以为我会把命运交给一个又瞎又粗野又下贱的暗夜精灵杂种？
+	L.warmup_trigger = "别拿那种眼神看着我！"
 end
