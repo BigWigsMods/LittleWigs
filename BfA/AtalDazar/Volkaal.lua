@@ -41,17 +41,20 @@ end
 --
 
 function mod:ToxicLeap(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "Alert", "watchout")
 	self:Bar(args.spellId, 6)
 end
 
 function mod:NoxiousStench(args)
-	self:Message(259572, "red", args.spellId == 250368 and "Alert" or self:Interrupter() and "Warning") -- Cannot interrupt in stage 2
+	self:Message(259572, "red")
+	self:PlaySound(args.spellId, args.spellId == 250368 and "Alert" or self:Interrupter() and "Warning", args.spellId ~= 250368 and "interrupt") -- Cannot interrupt in stage 2
 	self:Bar(259572, args.spellId == 250368 and 18.2 or 24.3)
 end
 
 function mod:RapidDecay(args)
-	self:Message(args.spellId, "green", "Info")
+	self:Message(args.spellId, "green", )
+	self:PlaySound(args.spellId, "Info", "stage2")
 	self:Bar(259572, 4.5) -- Noxious Stench
 end
 
@@ -60,7 +63,8 @@ do
 	function mod:ToxicPool(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+			self:PlaySound(args.spellId, "Alarm", "moveout")
 		end
 	end
 end
