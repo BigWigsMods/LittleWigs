@@ -20,7 +20,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "PsychicScream", 32365)
+	self:Log("SPELL_AURA_APPLIED", "FrostNova", 32365)
 	self:Death("Win", 18344)
 end
 
