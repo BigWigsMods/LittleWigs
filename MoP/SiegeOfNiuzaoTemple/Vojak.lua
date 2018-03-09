@@ -10,6 +10,12 @@ mod.engageId = 1502 -- ENCOUNTER_START fires when you actually pull the boss him
 mod.respawnTime = 10
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local lastWin = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -47,6 +53,15 @@ end
 
 function mod:OnEngage()
 	self:CDBar(120789, 8.6) -- Dashing Strike
+end
+
+function mod:OnWin()
+	lastWin = GetTime()
+end
+
+function mod:VerifyEnable(_, mobId)
+	if mobId ~= 61620 then return true end -- Yang Ironclaw is a friendly NPC that starts the encounter and then opens the gate downstairs
+	return GetTime() - lastWin > 150
 end
 
 --------------------------------------------------------------------------------
