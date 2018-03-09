@@ -20,6 +20,7 @@
 <Include file="TBC\TheBlackMorass\modules.xml"/>
 <Include file="TBC\TheBlackMorass\locales.xml"/>
 <Include file="TBC\TheShatteredHalls\modules.xml"/>
+<Include file="TBC\TheShatteredHalls\locales.xml"/>
 <Include file="TBC\TheSlavePens\modules.xml"/>
 <Include file="TBC\TheSlavePens\locales.xml"/>
 
