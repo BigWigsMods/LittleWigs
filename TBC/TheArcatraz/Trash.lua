@@ -142,9 +142,9 @@ do
 		self:Bar(args.spellId, 2)
 	end
 
-	function mod:Meteor(args)
+	function mod:MeteorSuccess(args)
 		meteorsGoingOff = meteorsGoingOff - 1
-		if meteorsGoingOff == 1 then
+		if meteorsGoingOff == 0 then
 			self:CloseProximity(args.spellId)
 		end
 	end
