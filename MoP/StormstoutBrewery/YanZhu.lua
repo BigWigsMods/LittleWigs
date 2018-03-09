@@ -109,7 +109,7 @@ do
 
 		if UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew
 			self:CDBar(-5658, 29.8) -- Wall of Suds
-			self:ScheduleTimer(warnForWallOfSuds, 29.8)
+			self:ScheduleTimer(warnForWallOfSuds, 29.8, self)
 		elseif UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew
 			self:CDBar(115003, 45.8) -- Carbonation
 		end
