@@ -22,7 +22,10 @@ local mobsFound = 0
 function mod:GetOptions()
 	return {
 		35250, -- Dragon's Breath
+		35314, -- Arcane Blast
 		{41951, "SAY"}, -- Fixate
+		-5488, -- Inferno
+		35312, -- Raging Flames (the trail of fire the adds leave behind them)
 	}, {
 		[35250] = "general",
 		[41951] = -5487, -- Raging Flames
@@ -34,15 +37,21 @@ function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("ENCOUNTER_END")
 
+	self:Log("SPELL_AURA_APPLIED", "DragonsBreath", 35250)
 
+	self:Log("SPELL_CAST_SUCCESS", "ArcaneBlast", 35314)
 
+	self:Log("SPELL_DAMAGE", "PeriodicDamage", 35312, 35283) -- Raging Flames, Inferno
+	self:Log("SPELL_MISSED", "PeriodicDamage", 35312, 35283) -- Raging Flames, Inferno
+
+	self:Log("SPELL_AURA_APPLIED", "Inferno", 35268, 39346) -- normal, heroic
 
 	-- Fixate
 	self:RegisterTargetEvents("RagingFlamesFinder")
-	self:Log("SWING_DAMAGE", "RagingFlamesSwing", "*")
+	self:Log("SWING_DAMAGE", "RagingFlamesSwing", "*") -- just in case the player somehow bodypulls the boss without activating the module (thus missing "NAME_PLATE_UNIT_ADDED" events)
 	self:Log("SWING_MISSED", "RagingFlamesSwing", "*")
 	self:Log("PARTY_KILL", "RagingFlamesDeath", "*") -- UNIT_DIED (which is what self:Death() is using) doesn't provide a sourceGUID, and both adds fire that event (triggering unregisterGUIDFindingEvents) if you wipe with them alive
-	self:Log("SPELL_AURA_REMOVED", "InfernoEnded", 35268)
+	self:Log("SPELL_AURA_REMOVED", "InfernoEnded", 35268, 39346) -- normal, heroic
 end
 
 function mod:OnEngage()
@@ -76,9 +85,42 @@ function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 end
 
 do
-	local fixatedTargets = mod:NewTargetList()
+	local playerList = mod:NewTargetList()
+	function mod:DragonsBreath(args)
+		playerList[#playerList + 1] = args.destName
+		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Alarm", nil, nil, self:Dispeller("magic"))
+	end
+end
+
+function mod:ArcaneBlast(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+end
+
+do
+	local prev = 0
+	function mod:PeriodicDamage(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 1.5 then
+				prev = t
+				self:Message(args.spellId == 35283 and -5488 or args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
+		end
+	end
+end
+
+-- Fixate
+do
+	local fixatedTargets, isOnMe = mod:NewTargetList(), nil
+
+	local function showFixateMessage(self)
+		self:TargetMessage(41951, fixatedTargets, "Attention", "Long")
+		isOnMe = nil
+	end
+
 	local function fixateAnnounce(self, target, guid)
-		if self:Me(guid) then
+		if self:Me(guid) and not isOnMe then
+			isOnMe = true
 			self:Say(41951)
 		end
 
@@ -86,7 +128,7 @@ do
 		fixatedTargets[#fixatedTargets + 1] = target
 
 		if #fixatedTargets == 1 then
-			self:ScheduleTimer("TargetMessage", 0.4, 41951, fixatedTargets, "Attention", "Alarm")
+			self:ScheduleTimer(showFixateMessage, 0.4, self) -- need to reset isOnMe so not calling TargetMessage directly, either this or the possibility of 2 :Say() calls
 		end
 	end
 
@@ -128,7 +170,22 @@ do
 	end
 
 	-- Refixate after Inferno
+	local prev, infernoCasts = 0, 0 -- they can de-sync so I need to track previous cast-time too
 	function mod:InfernoEnded(args)
+		infernoCasts = infernoCasts - 1
+		if infernoCasts == 0 then
+			self:StopBar(CL.cast:format(args.spellName))
+		end
 		self:GetUnitTarget(fixateAnnounce, 0.3, args.destGUID)
+	end
+
+	function mod:Inferno(args)
+		infernoCasts = infernoCasts + 1
+		local t = GetTime()
+		if t - prev > 1 then
+			prev = t
+			self:Message(-5488, "Neutral", "Info", CL.casting:format(args.spellName))
+		end
+		self:CastBar(-5488, 8)
 	end
 end
