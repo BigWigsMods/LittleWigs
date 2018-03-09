@@ -21,7 +21,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "AcidSpray", 38153)
-	self:Log("SPELL_AURA_REMOVED", "AcidSpray", 38153)
+	self:Log("SPELL_AURA_REMOVED", "AcidSprayEnded", 38153)
 
 	self:Death("Win", 17942)
 end
