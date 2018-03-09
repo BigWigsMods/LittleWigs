@@ -9,3 +9,10 @@ if L then
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
 	-- L.warmup_trigger = "Don't look so smug!"
 end
+
+L = BigWigs:NewBossLocale("Magisters' Terrace Trash", "ptBR")
+if L then
+	L.mage_guard = "Guarda Mago Gumélion"
+	L.magister = "Magíster Gumélion"
+	L.keeper = "Guardião Gumélion"
+end
