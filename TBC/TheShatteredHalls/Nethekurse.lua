@@ -46,10 +46,12 @@ end
 do
 	local prev = 0
 	function mod:ConsumptionDamage(args) -- Lesser Shadow Fissure spellcast
-		local t = GetTime()
-		if t-prev > 1.5 and self:Me(args.destGUID) then
-			prev = t
-			self:Message(30496, "Personal", "Alarm", CL.underyou:format(self:SpellName(30496)))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(30496, "Personal", "Alarm", CL.underyou:format(self:SpellName(30496)))
+			end
 		end
 	end
 end
