@@ -12,3 +12,12 @@ if L then
 
 	--L.prison_cell = "Prison Cell"
 end
+
+L = BigWigs:NewBossLocale("The Arcatraz Trash", "frFR")
+if L then
+	L.entropic_eye = "Oeil d'entropie"
+	L.sightless_eye = "Oeil sans-vue"
+	L.soul_eater = "Mangeur d'âme érédar"
+	L.temptress = "Tentatrice malveillante"
+	L.abyssal = "Abyssal gargantuesque"
+end
