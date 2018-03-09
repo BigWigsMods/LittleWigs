@@ -40,7 +40,7 @@ function mod:GetOptions()
 		--[[ Shadowmoon Acolyte ]]--
 		35943, -- Prayer of Healing
 		--[[ Shadowmoon Darkcaster ]]--
-		12542, -- Fear
+		{12542, "SAY"}, -- Fear
 		--[[ Shattered Hand Assassin ]]--
 		30980, -- Sap
 	}, {
