@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Liu Flameheart", "zhCN")
+local L = BigWigs:NewBossLocale("Liu Flameheart", "zhCN")
 if not L then return end
 if L then
 	L.engage_yell = "你们休想再封印我。影踪派阻止不了我。你们也不行！"
