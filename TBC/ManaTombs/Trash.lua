@@ -51,7 +51,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	self:Log("SPELL_AURA_APPLIED", "ShieldBash", 33871)
+	self:Log("SPELL_INTERRUPT", "ShieldBash", 33871)
 
 	self:Log("SPELL_CAST_START", "Heal", 34945, 22883) -- normal, heroic
 
