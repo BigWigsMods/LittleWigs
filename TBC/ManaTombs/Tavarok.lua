@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Tavarok", 732, 535)
 if not mod then return end
 mod:RegisterEnableMob(18343)
+-- mod.engageId = 1901 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -38,4 +40,3 @@ function mod:CrystalPrisonRemoved(args)
 	self:PrimaryIcon(args.spellId)
 	self:StopBar(args.spellName, args.destName)
 end
-
