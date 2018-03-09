@@ -2,8 +2,9 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Capacitus.lua"/>
-<Script file="Pathaleon.lua"/>
-<Script file="Gyrokill.lua"/>
 <Script file="Ironhand.lua"/>
+<Script file="Gyrokill.lua"/>
+<Script file="Sepethrea.lua"/>
+<Script file="Pathaleon.lua"/>
 
 </Ui>
