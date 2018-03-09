@@ -15,7 +15,7 @@ mod:RegisterEnableMob(18343)
 
 function mod:GetOptions()
 	return {
-		32361, -- Crystal Prison
+		{32361, "ICON"}, -- Crystal Prison
 	}
 end
 
@@ -33,8 +33,10 @@ end
 function mod:CrystalPrison(args)
 	self:TargetMessage(args.spellId, args.destName, "Important")
 	self:TargetBar(args.spellId, 5)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:CrystalPrisonRemoved(args)
+	self:PrimaryIcon(args.spellId)
 	self:StopBar(args.spellName, args.destName)
 end

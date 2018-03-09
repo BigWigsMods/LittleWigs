@@ -20,7 +20,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "DarkShell", 32358, 38759)
+	self:Log("SPELL_CAST_START", "DarkShell", 32358, 38759) -- normal, heroic
 
 	self:Death("Win", 18341)
 end
