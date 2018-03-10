@@ -35,7 +35,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-	self:Log("SPELL_CAST_START", "ShadowPower", 39193, 35322)
+	self:Log("SPELL_CAST_START", "ShadowPower", 39193, 35322) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "ShadowPowerApplied", 39193, 35322)
 	self:Log("SPELL_AURA_REMOVED", "ShadowPowerRemoved", 39193, 35322)
 
