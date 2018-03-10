@@ -4,6 +4,7 @@
 <Script file="Mennu.lua"/>
 <Script file="Rokmar.lua"/>
 <Script file="Quagmirran.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 

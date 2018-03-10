@@ -13,7 +13,7 @@ mod:RegisterEnableMob(83612, 83613, 83616) -- Skulloc, Koramar, Zoggosh
 
 local L = mod:GetLocale()
 if L then
-	
+
 end
 
 --------------------------------------------------------------------------------
