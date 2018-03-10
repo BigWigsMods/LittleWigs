@@ -24,7 +24,7 @@ end
 function mod:GetOptions()
 	return {
 		"form",
-		{97639, "ICON"}, -- Grievous Throw
+		{43093, "ICON"}, -- Grievous Throw
 		17207, -- Whirlwind
 		43095, -- Creeping Paralysis
 		43150, -- Claw Rage
@@ -32,8 +32,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "GrievousThrow", 97639)
-	self:Log("SPELL_AURA_REMOVED", "GrievousThrowRemoved", 97639)
+	self:Log("SPELL_AURA_APPLIED", "GrievousThrow", 43093)
+	self:Log("SPELL_AURA_REMOVED", "GrievousThrowRemoved", 43093)
 	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 17207)
 	self:Log("SPELL_CAST_SUCCESS", "CreepingParalysis", 43095)
 	self:Log("SPELL_AURA_APPLIED", "ClawRage", 43150)
