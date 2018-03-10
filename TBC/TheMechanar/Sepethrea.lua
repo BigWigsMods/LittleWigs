@@ -28,7 +28,7 @@ function mod:GetOptions()
 		35312, -- Raging Flames (the trail of fire the adds leave behind them)
 	}, {
 		[35250] = "general",
-		[41951] = -5487, -- Raging Flames
+		[41951] = 35312, -- Raging Flames
 	}
 end
 
