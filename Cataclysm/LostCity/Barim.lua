@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("High Prophet Barim", 747, 119)
 if not mod then return end
 mod:RegisterEnableMob(43612)
+mod.engageId = 1053
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,8 +28,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "HallowedGround", 88814)
 
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
-
-	self:Death("Win", 43612)
 end
 
 --------------------------------------------------------------------------------

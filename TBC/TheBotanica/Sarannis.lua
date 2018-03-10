@@ -5,6 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Commander Sarannis", 729, 558)
 if not mod then return end
 mod:RegisterEnableMob(17976)
+mod.engageId = 1925
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -19,9 +21,6 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ArcaneResonance", 34794)
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:Death("Win", 17976)
 end
 
 function mod:OnEngage()

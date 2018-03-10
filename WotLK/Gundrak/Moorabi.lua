@@ -37,7 +37,7 @@ end
 
 function mod:Interrupt(args)
 	if args.extraSpellId == 55098 then -- Transformation
-		self:Message(args.extraSpellId, "Positive", nil, ("%s (%s)"):format(self:SpellName(134340), self:ColorName(args.sourceName))) -- 134340 = "Interrupted"
-		self:StopBar(args.amount) -- Name of interrupted spell
+		self:Message(args.extraSpellId, "Positive", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:StopBar(args.extraSpellName) -- Name of interrupted spell
 	end
 end
