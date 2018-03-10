@@ -81,10 +81,12 @@ end
 do
 	local prev = 0
 	function mod:Aftershock(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and (UnitDebuff("player", self:SpellName(193018)) and t-prev > 6 or t-prev > 1.5) then -- players with Gaseous Bubbles may (and should) be taking damage intentionally
-			prev = t
-			self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if (not UnitDebuff("player", self:SpellName(193018)) and t-prev > 1.5) or t-prev > 6 then -- players with Gaseous Bubbles may (and should) be taking damage intentionally
+				prev = t
+				self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

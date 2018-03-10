@@ -6,8 +6,10 @@
 local mod, CL = BigWigs:NewBoss("Lady Naz'jar", 767, 101)
 if not mod then return end
 mod:RegisterEnableMob(40586)
+mod.engageId = 1045
+mod.respawnTime = 30
 
-local spout1 = nil
+local nextSpoutWarning = 66
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -22,13 +24,11 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "Waterspout", 75683)
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 40586)
+	self:Log("SPELL_AURA_REMOVED", "WaterspoutRemoved", 75683)
 end
 
 function mod:OnEngage()
-	spout1 = nil
+	nextSpoutWarning = 66
 end
 
 --------------------------------------------------------------------------------
@@ -37,18 +37,19 @@ end
 
 function mod:Waterspout(args)
 	self:Bar(args.spellId, 60)
-	self:DelayedMessage(args.spellId, 50, CL.custom_sec:format(CL.over:format(args.spellName), 10), "Attention") -- XXX fix "!" in string
+end
+
+function mod:WaterspoutRemoved(args) -- if all 3 adds die, she stops casting
+	self:StopBar(args.spellId)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:MobId(UnitGUID(unit)) == 40586 then
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 69 and not spout1 then
-			spout1 = true
-			self:Message(75683, "Attention", nil, CL.soon:format(self:SpellName(75683)), false)
-		elseif hp < 36 then
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < nextSpoutWarning then
+		self:Message(75683, "Attention", nil, CL.soon:format(self:SpellName(75683)), false)
+		nextSpoutWarning = nextSpoutWarning - 30
+		if nextSpoutWarning < 36 then
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-			self:Message(75683, "Attention", nil, CL.soon:format(self:SpellName(75683)), false)
 		end
 	end
 end
