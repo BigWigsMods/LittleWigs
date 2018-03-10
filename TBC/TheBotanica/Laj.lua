@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Laj", 729, 561)
 if not mod then return end
---mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(17980)
 
 --------------------------------------------------------------------------------

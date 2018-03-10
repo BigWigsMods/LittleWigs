@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Warp Splinter", 729, 562)
 if not mod then return end
---mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(17977)
 
 --------------------------------------------------------------------------------

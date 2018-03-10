@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("High Botanist Freywinn", 729, 559)
 if not mod then return end
---mod.otherMenu = "Tempest Keep"
 mod:RegisterEnableMob(17975)
 
 --------------------------------------------------------------------------------
