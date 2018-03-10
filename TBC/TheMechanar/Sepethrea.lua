@@ -124,11 +124,11 @@ do
 			self:Say(41951)
 		end
 
-		if #fixatedTargets == 1 and fixatedTargets[#fixatedTargets] == self:ColorName(target) then return end -- don't announce the same player twice
+		if #fixatedTargets > 0 and fixatedTargets[#fixatedTargets] == self:ColorName(target) then return end -- don't announce the same player twice
 		fixatedTargets[#fixatedTargets + 1] = target
 
 		if #fixatedTargets == 1 then
-			self:ScheduleTimer(showFixateMessage, 0.4, self) -- need to reset isOnMe so not calling TargetMessage directly, either this or the possibility of 2 :Say() calls
+			self:ScheduleTimer(showFixateMessage, 0.4, self) -- need to reset isOnMe so not calling TargetMessage directly, either this or the possibility of 2-3 :Say() calls
 		end
 	end
 
@@ -144,7 +144,7 @@ do
 		if self:MobId(guid) == 20481 and not mobCollector[guid] then
 			mobsFound = mobsFound + 1
 			mobCollector[guid] = true
-			if mobsFound == 2 then
+			if mobsFound == (self:Normal() and 2 or 3) then
 				unregisterGUIDFindingEvents(self)
 			end
 			return true
