@@ -89,7 +89,6 @@ do
 		end
 
 		if UnitDebuff(unit, self:SpellName(39088)) then -- Positive Charge
-			local guid = UnitGUID(unit)
 			fillTheTableAndOpenProximity(unit, positiveList, negativeList, 39088, "Neutral") -- cyan
 		elseif UnitDebuff(unit, self:SpellName(39091)) then -- Negative Charge
 			fillTheTableAndOpenProximity(unit, negativeList, positiveList, 39091, "Important") -- red
