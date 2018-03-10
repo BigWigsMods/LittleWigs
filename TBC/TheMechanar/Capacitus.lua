@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 	--self:Log("SPELL_CAST_SUCCESS", "PolarityScan", 39096) --success isn't getting logged right now
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:Death("Win", 19219)
 end
 
@@ -45,10 +45,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:PLAYER_REGEN_ENABLED()
-	self:ScheduleTimer("CheckForWipe", 1)
-end
 
 function mod:ReflectiveShield(args)
 	self:Message(args.spellId, "Urgent")
