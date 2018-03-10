@@ -41,11 +41,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "PolarityShiftSuccess", 39096)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:Death("Win", 19219)
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	if not self:Normal() then
 		self:Berserk(180, false, nil, 224604) -- 224604 = Enrage
 	end
