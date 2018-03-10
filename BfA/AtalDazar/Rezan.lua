@@ -55,12 +55,11 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	end
 end
 
---[[ XXX Remove if not needed
-function mod:Pursuit(args)
-	self:Message(args.spellId, "orange", "Alarm")
-	self:Bar(args.spellId, 35.2)
-end
-]]--
+-- XXX Remove if not needed
+-- function mod:Pursuit(args)
+--	 self:Message(args.spellId, "orange", "Alarm")
+--	 self:Bar(args.spellId, 35.2)
+-- end
 
 function mod:SerratedTeeth(args)
 	self:Message(args.spellId, "yellow")

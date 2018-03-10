@@ -46,13 +46,13 @@ end
 do
 	local taintedBloodCheck, name = nil, mod:SpellName(255558)
 
-	local function checkForTaintedBlood()
+	local function checkForTaintedBlood(self)
 		if not UnitDebuff("player", name) then
-			mod:Message(255558, "blue", nil, CL.no:format(name))
+			self:Message(255558, "blue", nil, CL.no:format(name))
 			self:PlaySound(255558, "warning", "runin")
-			taintedBloodCheck = mod:ScheduleTimer(checkForTaintedBlood, 1.5)
+			taintedBloodCheck = self:ScheduleTimer(checkForTaintedBlood, 1.5)
 		else
-			mod:Message(255558, "green", nil, CL.you:format(name))
+			self:Message(255558, "green", nil, CL.you:format(name))
 			taintedBloodCheck = nil
 		end
 	end
@@ -62,7 +62,7 @@ do
 		self:PlaySound(args.spellId, "warning") -- voice warning is in the Taunted Blood check if needed
 		self:Bar(args.spellId, 34)
 		self:Bar(args.spellId, 4, CL.cast:format(args.spellName))
-		checkForTaintedBlood()
+		checkForTaintedBlood(self)
 	end
 
 	function mod:TaintedBloodApplied(args)
@@ -99,7 +99,7 @@ do
 	function mod:CorruptedGold(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(args.spellId, "blue", NIL, CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
 			self:PlaySound(args.spellId, "alarm", "gtfo")
 		end
 	end

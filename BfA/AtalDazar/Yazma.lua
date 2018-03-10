@@ -50,7 +50,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 		self:TargetMessage(249923, destName, "red")
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
-			self:PlaySound(args.spellId, "warning", "runaway")
+			self:PlaySound(249923, "warning", "runaway")
 			self:Say(249923)
 			self:SayCountdown(249923, 5)
 		end
@@ -58,12 +58,11 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	end
 end
 
---[[ XXX Remove if not needed
-function mod:Soulrend(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
-	self:Bar(args.spellId, 26.5)
-end
-]]--
+-- XXX Remove if not needed
+-- function mod:Soulrend(args)
+--	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
+--	self:Bar(args.spellId, 26.5)
+-- end
 
 function mod:WrackingPain(args)
 	self:Message(args.spellId, "orange")
