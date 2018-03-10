@@ -70,28 +70,28 @@ function mod:PolarityShift(args)
 end
 
 do
-	-- no SPELL_AURA_APPLIED events
-	function mod:UNIT_AURA(_, unit)
-		local function fillTheTableAndOpenProximity(unit, sameChargeList, oppositeChargeList, spellId, color)
-			local name = self:UnitName(unit)
-			local guid = UnitGUID(unit)
-			if not playerCollector[guid] then
-				playerCollector[guid] = true
-				if not tContains(sameChargeList, name) then
-					positiveList[#sameChargeList+1] = name
-				end
-				tDeleteItem(oppositeChargeList, name)
-				if UnitIsUnit(unit, "player") then
-					self:OpenProximity(39096, 10, sameChargeList, true)
-					self:Message(39096, color, "Info", CL.you:format(self:SpellName(spellId)), spellId)
-				end
+	local function fillTheTableAndOpenProximity(self, unit, sameChargeList, oppositeChargeList, spellId, color)
+		local name = self:UnitName(unit)
+		local guid = UnitGUID(unit)
+		if not playerCollector[guid] then
+			playerCollector[guid] = true
+			if not tContains(sameChargeList, name) then
+				sameChargeList[#sameChargeList+1] = name
+			end
+			tDeleteItem(oppositeChargeList, name)
+			if UnitIsUnit(unit, "player") then
+				self:OpenProximity(39096, 10, sameChargeList, true)
+				self:Message(39096, color, "Info", CL.you:format(self:SpellName(spellId)), spellId)
 			end
 		end
+	end
 
+	-- no SPELL_AURA_APPLIED events
+	function mod:UNIT_AURA(_, unit)
 		if UnitDebuff(unit, self:SpellName(39088)) then -- Positive Charge
-			fillTheTableAndOpenProximity(unit, positiveList, negativeList, 39088, "Neutral") -- cyan
+			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088, "Neutral") -- cyan
 		elseif UnitDebuff(unit, self:SpellName(39091)) then -- Negative Charge
-			fillTheTableAndOpenProximity(unit, negativeList, positiveList, 39091, "Important") -- red
+			fillTheTableAndOpenProximity(self, unit, negativeList, positiveList, 39091, "Important") -- red
 		end
 	end
 
