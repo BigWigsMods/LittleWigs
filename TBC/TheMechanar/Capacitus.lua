@@ -1,3 +1,6 @@
+
+-- GLOBALS: tContains, tDeleteItem
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -9,6 +12,13 @@ mod:RegisterEnableMob(19219)
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local playerCollector = {}
+local negativeList, positiveList = {}, {}
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -16,11 +26,11 @@ function mod:GetOptions()
 	return {
 		35158, -- Reflective Magic Shield
 		35159, -- Reflective Damage Shield
-		39096, -- Polarity Shift
+		{39096, "PROXIMITY"}, -- Polarity Shift
 		224604, -- Enrage
 	}, {
-		[35158] = "general",
-		[224604] = "heroic",
+		[35158] = "normal",
+		[39096] = "heroic",
 	}
 end
 
@@ -28,7 +38,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ReflectiveShield", 35158, 35159) -- Magic, Damage
 	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 35158, 35159) -- Magic, Damage
 	self:Log("SPELL_CAST_START", "PolarityShift", 39096)
-	--self:Log("SPELL_CAST_SUCCESS", "PolarityScan", 39096) --success isn't getting logged right now
+	self:Log("SPELL_CAST_SUCCESS", "PolarityShiftSuccess", 39096)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
@@ -36,7 +46,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	positive = nil
 	if not self:Normal() then
 		self:Berserk(180, false, nil, 224604) -- 224604 = Enrage
 	end
@@ -56,36 +65,40 @@ function mod:ReflectiveShieldRemoved(args)
 end
 
 function mod:PolarityShift(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting(args.spellName))
+	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
-	self:ScheduleTimer("PolarityScan", 4)
 end
 
-local function hasBuff(player, buff)
-	local i = 1
-	local name = UnitBuff(player, i)
-	while name do
-		if name == buff then return true end
-		i = i + 1
-		name = UnitBuff(player, i)
-	end
-	return false
-end
+do
+	-- no SPELL_AURA_APPLIED events
+	function mod:UNIT_AURA(_, unit)
+		local function fillTheTableAndOpenProximity(unit, sameChargeList, oppositeChargeList, spellId, color)
+			local name = self:UnitName(unit)
+			local guid = UnitGUID(unit)
+			if not playerCollector[guid] then
+				playerCollector[guid] = true
+				if not tContains(sameChargeList, name) then
+					positiveList[#sameChargeList+1] = name
+				end
+				tDeleteItem(oppositeChargeList, name)
+				if UnitIsUnit(unit, "player") then
+					self:OpenProximity(39096, 5, sameChargeList, true)
+					self:Message(39096, color, "Info", CL.you:format(self:SpellName(spellId)), spellId)
+				end
+			end
+		end
 
-function mod:PolarityScan()
-	if positive then
-		for k,v in positive do
-			self:StopBar(v)
+		if UnitDebuff(unit, self:SpellName(39088)) then -- Positive Charge
+			local guid = UnitGUID(unit)
+			fillTheTableAndOpenProximity(unit, positiveList, negativeList, 39088, "Neutral") -- cyan
+		elseif UnitDebuff(unit, self:SpellName(39091)) then -- Negative Charge
+			fillTheTableAndOpenProximity(unit, negativeList, positiveList, 39091, "Important") -- red
 		end
-		positive = nil
 	end
-	if hasBuff("player", charge) then table.insert(positive, UnitName("player")) end
-	for i=1, 4 do
-		if hasBuff("party"..i, charge) then table.insert(positive, UnitName("party"..i)) end
-	end
-	if positive then
-		for k,v in pairs(positive) do
-			self:Bar(v, 60, 39090) -- 39090 = Positive Charge
-		end
+
+	function mod:PolarityShiftSuccess()
+		wipe(playerCollector)
+		self:RegisterEvent("UNIT_AURA")
+		self:ScheduleTimer("UnregisterEvent", 3, "UNIT_AURA")
 	end
 end
