@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Warchief Kargath Bladefist", 710, 569)
 if not mod then return end
 mod:RegisterEnableMob(16808)
+mod.engageId = 1938
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -19,7 +21,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:Death("Win", 16808)
 end
 
 --------------------------------------------------------------------------------

@@ -60,7 +60,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Torrent", 198495)
 	self:Log("SPELL_CAST_START", "CorruptedBellow", 227233)
 	self:Log("SPELL_CAST_START", "BrackwaterBarrage", 202088)
-	self:Emote("DestructorTentacle", "inv_misc_monsterhorn_03") -- |TInterface\\Icons\\inv_misc_monsterhorn_03.blp:20|t A %s emerges!#Destructor Tentacle###Destructor Tentacle
+
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 end
 
 function mod:OnEngage()
@@ -104,9 +105,11 @@ do
 	end
 end
 
-function mod:DestructorTentacle()
-	self:Message("destructor_tentacle", "Attention", self:Tank() and "Warning", CL.spawned:format(self:SpellName(L.destructor_tentacle)), L.destructor_tentacle_icon)
-	self:CDBar("destructor_tentacle", 26, L.destructor_tentacle, L.destructor_tentacle_icon) -- 25-27, but can be delayed upto 10s by Piercing Tentacle (I think)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg) -- Destructor Tentacle
+	if msg:find("inv_misc_monsterhorn_03", nil, true) then -- |TInterface\\Icons\\inv_misc_monsterhorn_03.blp:20|t A %s emerges!#Destructor Tentacle###Destructor Tentacle
+		self:Message("destructor_tentacle", "Attention", self:Tank() and "Warning", CL.spawned:format(self:SpellName(L.destructor_tentacle)), L.destructor_tentacle_icon)
+		self:CDBar("destructor_tentacle", 26, L.destructor_tentacle, L.destructor_tentacle_icon) -- 25-27, but can be delayed upto 10s by Piercing Tentacle (I think)
+	end
 end
 
 function mod:TaintOfTheSea(args)

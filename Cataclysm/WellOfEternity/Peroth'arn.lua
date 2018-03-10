@@ -4,9 +4,8 @@
 
 local mod, CL = BigWigs:NewBoss("Peroth'arn", 816, 290)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(55085)
-mod.toggleOptions = {105544, "eyes", 105442, 105493, "bosskill"}
+-- mod.engageId = 1272 -- doesn't fire ENCOUNTER_END on a wipe
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -22,12 +21,21 @@ end
 -- Initialization
 --
 
+function mod:GetOptions()
+	return {
+		105544, -- Fel Decay
+		"eyes",
+		105442, -- Enfeebled
+		105493, -- Easy Prey
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Decay", 105544)
+	self:Log("SPELL_AURA_APPLIED", "FelDecay", 105544)
 	self:Log("SPELL_AURA_APPLIED", "EasyPrey", 105493)
 	self:Log("SPELL_AURA_APPLIED", "Enfeebled", 105442)
 
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "Eyes")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 55085)
@@ -37,26 +45,24 @@ end
 -- Event Handlers
 --
 
-function mod:Decay(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alert")
-	self:Bar(spellId, CL["other"]:format(spellName, player), 10, spellId)
+function mod:FelDecay(args)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetBar(args.spellId, 10, args.destName)
 end
 
-function mod:EasyPrey(player, spellId)
-	local discovered = GetSpellInfo(42203) -- "Discovered", hopefully it translates as such
-	self:TargetMessage(spellId, discovered, player, "Attention", spellId, "Long")
+function mod:EasyPrey(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Long", self:SpellName(42203)) -- 42203 = "Discovered", hopefully it translates as such
 end
 
-function mod:Enfeebled(unit, spellId, _, _, spellName)
-	self:Message(spellId, CL["other"]:format(spellName, unit), "Attention", spellId, "Long")
-	self:Bar(spellId, spellName, 15, spellId)
+function mod:Enfeebled(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Long")
+	self:Bar(args.spellId, 15)
 end
 
-function mod:Eyes(_, unit, _, _, _, spellId)
-	if unit == "boss1" and spellId == 105341 then
-		self:DelayedMessage("eyes", 8, L["eyes"], "Positive", L["eyes_icon"], "Info")
-		self:Bar("eyes", L["eyes"], 8, L["eyes_icon"])
-		self:Bar(105442, GetSpellInfo(105442), 48, 105442)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 105341 then -- Camouflage
+		self:DelayedMessage("eyes", 8, "Positive", L.eyes, L.eyes_icon, "Info")
+		self:Bar("eyes", 8, L.eyes, L.eyes_icon)
+		self:CDBar(105442, 48) -- Enfeebled
 	end
 end
-
