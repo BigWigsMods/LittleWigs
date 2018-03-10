@@ -27,7 +27,7 @@ function mod:GetOptions()
 		35158, -- Reflective Magic Shield
 		35159, -- Reflective Damage Shield
 		{39096, "PROXIMITY"}, -- Polarity Shift
-		224604, -- Enrage
+		"berserk",
 	}, {
 		[35158] = "normal",
 		[39096] = "heroic",
@@ -47,7 +47,7 @@ end
 function mod:OnEngage()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	if not self:Normal() then
-		self:Berserk(180, false, nil, 224604) -- 224604 = Enrage
+		self:Berserk(180)
 	end
 end
 
