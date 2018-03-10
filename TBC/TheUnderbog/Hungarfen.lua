@@ -21,8 +21,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "SporeCloud", 31689)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SporeCloud", 31689)
 	self:Log("SPELL_AURA_REMOVED", "SporeCloudRemoved", 31689)
@@ -32,6 +30,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "FoulSporesDamage", 31697)
 	self:Log("SPELL_MISSED", "FoulSporesDamage", 31697)
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:Death("Win", 17770)
 end
 
 -------------------------------------------------------------------------------
