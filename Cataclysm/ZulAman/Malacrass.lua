@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Hex Lord Malacrass", 568, 190)
+local mod, CL = BigWigs:NewBoss("Hex Lord Malacrass", 781, 190)
 if not mod then return end
 mod:RegisterEnableMob(24239)
 
