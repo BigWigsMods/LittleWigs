@@ -1,43 +1,67 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Warlord Kalithresh", 727, 575)
 if not mod then return end
 mod:RegisterEnableMob(17798)
+mod.engageId = 1944
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
-		38592, -- Use a different ID that has a better tooltip, Spell Reflection
-		31543, -- Warlord's Rage
+		16172, -- Head Crack
+		-6003, -- Spell Reflection
+		36453, -- Warlord's Rage
 	}
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "HeadCrack", 16172)
+	self:Log("SPELL_AURA_REMOVED", "HeadCrackRemoved", 16172)
 	self:Log("SPELL_AURA_APPLIED", "SpellReflection", 31534)
-	self:Log("SPELL_CAST_SUCCESS", "WarlordsRage", 31543)
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:Death("Win", 17798)
+	self:Log("SPELL_AURA_APPLIED", "WarlordsRage", 36453)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "WarlordsRage", 36453)
+	self:Log("SPELL_AURA_APPLIED", "WarlordsRageCast", 37076)
+	self:Log("SPELL_AURA_REMOVED", "WarlordsRageCastInterrupted", 37076) -- interrupted by killing a naga distiller
 end
 
 function mod:OnEngage()
-	self:CDBar(31543, 15)
+	self:CDBar(36453, 15)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:SpellReflection(args)
-	self:Message(38592, "Attention", nil, args.spellId)
-	self:Bar(38592, 8)
+function mod:HeadCrack(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, self:Healer())
+	self:TargetBar(args.spellId, 15, args.destName)
+end
+
+function mod:HeadCrackRemoved(args)
+	self:StopBar(args.spellId, args.destName)
+end
+
+function mod:SpellReflection()
+	self:Message(-6003, "Important", "Warning")
+	self:Bar(-6003, 8)
 end
 
 function mod:WarlordsRage(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 40)
-	self:DelayedMessage(args.spellId, 35, "Urgent", CL.soon:format(args.spellName))
+	self:StackMessage(args.spellId, args.destName, args.amount, "Urgent")
+end
+
+function mod:WarlordsRageCast(args)
+	self:Message(36453, "Urgent", "Long", CL.casting:format(args.spellName))
+	self:CastBar(36453, 7)
+	self:CDBar(36453, 40)
+end
+
+function mod:WarlordsRageCastInterrupted(args)
+	self:StopBar(args.spellName)
 end
