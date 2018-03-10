@@ -87,7 +87,7 @@ do
 	end
 
 	-- no SPELL_AURA_APPLIED events
-	function mod:UNIT_AURA(_, unit)
+	function mod:UNIT_AURA(unit)
 		if UnitDebuff(unit, self:SpellName(39088)) then -- Positive Charge
 			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088, "Neutral") -- cyan
 		elseif UnitDebuff(unit, self:SpellName(39091)) then -- Negative Charge
@@ -97,7 +97,7 @@ do
 
 	function mod:PolarityShiftSuccess()
 		wipe(playerCollector)
-		self:RegisterEvent("UNIT_AURA")
-		self:ScheduleTimer("UnregisterEvent", 3, "UNIT_AURA")
+		self:RegisterUnitEvent("UNIT_AURA", nil, "player", "party1", "party2", "party3", "party4")
+		self:ScheduleTimer("UnregisterUnitEvent", 3, "UNIT_AURA", "player", "party1", "party2", "party3", "party4")
 	end
 end
