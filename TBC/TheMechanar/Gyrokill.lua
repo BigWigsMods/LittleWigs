@@ -24,6 +24,7 @@ end
 function mod:GetOptions()
 	return {
 		39193, -- Shadow Power
+		35311, -- Stream of Machine Fluid
 	}
 end
 
@@ -35,6 +36,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowPower", 39193, 35322) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "ShadowPowerApplied", 39193, 35322)
 	self:Log("SPELL_AURA_REMOVED", "ShadowPowerRemoved", 39193, 35322)
+
+	self:Log("SPELL_AURA_APPLIED", "StreamOfMachineFluid", 35311)
+	self:Log("SPELL_AURA_REMOVED", "StreamOfMachineFluidRemoved", 35311)
+
 	self:Death("Win", 19218)
 end
 
@@ -46,10 +51,30 @@ function mod:ShadowPower(args)
 	self:Message(39193, "Important", nil, CL.casting:format(args.spellName))
 end
 
-function mod:ShadowPowerApplied(args)
+function mod:ShadowPowerApplied()
 	self:Bar(39193, 15)
 end
 
-function mod:ShadowPowerRemoved(args)
+function mod:ShadowPowerRemoved()
 	self:StopBar(39193)
+end
+
+do
+	local playerList, playersAffected = mod:NewTargetList(), 0
+
+	function mod:StreamOfMachineFluid(args)
+		playersAffected = playersAffected + 1
+		playerList[#playerList + 1] = args.destName
+		if #playerList == 1 then
+			self:Bar(args.spellId, 10)
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Alarm", nil, nil, self:Dispeller("poison"))
+		end
+	end
+
+	function mod:StreamOfMachineFluidRemoved(args)
+		playersAffected = playersAffected - 1
+		if playersAffected == 0 then
+			self:StopBar(args.spellName)
+		end
+	end
 end
