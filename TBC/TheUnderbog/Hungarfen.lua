@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Hungarfen", 546, 576)
+local mod, CL = BigWigs:NewBoss("Hungarfen", 726, 576)
 if not mod then return end
 --mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17770)
