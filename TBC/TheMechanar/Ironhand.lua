@@ -34,10 +34,7 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	-- no boss frames, so doing this manually
-	self:RegisterEvent("ENCOUNTER_START")
-	self:RegisterEvent("ENCOUNTER_END")
-
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:Log("SPELL_CAST_START", "ShadowPower", 39193, 35322)
 	self:Log("SPELL_AURA_APPLIED", "ShadowPowerApplied", 39193, 35322)
 	self:Log("SPELL_AURA_REMOVED", "ShadowPowerRemoved", 39193, 35322)
@@ -49,29 +46,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "JackhammersDamage", 39195)
 end
 
-function mod:OnEngage()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-end
-
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:ENCOUNTER_START(_, engageId)
-	if engageId == 1934 then
-		self:Engage()
-	end
-end
-
-function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
-	if engageId == 1934 then
-		if status == 0 then
-			self:Wipe()
-		else
-			self:Win()
-		end
-	end
-end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source)
 	if source == self.displayName then
