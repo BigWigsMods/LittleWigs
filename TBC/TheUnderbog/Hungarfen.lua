@@ -12,27 +12,66 @@ mod:RegisterEnableMob(17770)
 
 function mod:GetOptions()
 	return {
-		-6006, -- Underbog Mushroom (if summon's trackable)
-		-- if not, then one of these:
-		31689, -- Spore Cloud (seems to be a debuff)
-		34168, -- Spore Cloud (looks like an id for the ground effect)
-
-		31673, -- Foul Spores
+		-6008, -- Foul Spores
+		{31689, "ME_ONLY"}, -- Spore Cloud
+	}, {
+		[-6008] = "general",
+		[31689] = -6006, -- Underbog Mushroom
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Log("SPELL_AURA_APPLIED", "SporeCloud", 31689)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SporeCloud", 31689)
+	self:Log("SPELL_AURA_REMOVED", "SporeCloudRemoved", 31689)
+
+	self:Log("SPELL_AURA_APPLIED", "FoulSpores", 31673) -- channel that can be offensively dispelled
+	self:Log("SPELL_AURA_REMOVED", "FoulSporesRemoved", 31673)
+	self:Log("SPELL_DAMAGE", "FoulSporesDamage", 31697)
+	self:Log("SPELL_MISSED", "FoulSporesDamage", 31697)
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
+function mod:SporeCloud(args)
+	self:StackMessage(args.spellId, args.destName, args.amount, "Urgent", self:Me(args.destGUID) and "Warning" or "Info")
+	self:TargetBar(args.spellId, 20, args.destName)
+end
+
+function mod:SporeCloudRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:FoulSpores(args)
+	self:Message(-6008, "Attention", "Alarm", CL.casting:format(args.spellName))
+	self:CastBar(-6008, 11)
+end
+
+function mod:FoulSporesRemoved(args)
+	self:StopBar(CL.cast:format(args.spellName))
+end
+
+do
+	local prev = 0
+	function mod:FoulSporesDamage(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > (self:Melee() and 4 or 1.5) then -- melees/tank can't hit the boss while he's casting that but they are still healing the boss taking this damage and he's immobile, so not throttling for the entire cast
+				prev = t
+				self:Message(-6008, "Personal", "Alert", CL.you:format(args.spellName))
+			end
+		end
+	end
+end
+
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealth(unit) * 100
 	if hp < 25 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message(31673, "Urgent", nil, CL.soon:format(self:SpellName(31673)))
+		self:Message(-6008, "Urgent", nil, CL.soon:format(self:SpellName(-6008))) -- Foul Spores
 	end
 end
