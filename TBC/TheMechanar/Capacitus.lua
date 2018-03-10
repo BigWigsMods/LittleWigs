@@ -17,7 +17,7 @@ function mod:GetOptions()
 		35158, -- Reflective Magic Shield
 		35159, -- Reflective Damage Shield
 		39096, -- Polarity Shift
-		224604,
+		224604, -- Enrage
 	}, {
 		[35158] = "general",
 		[224604] = "heroic",
@@ -37,7 +37,7 @@ end
 
 function mod:OnEngage()
 	positive = nil
-	if self:Heroic() then
+	if not self:Normal() then
 		self:Berserk(180, false, nil, 224604) -- 224604 = Enrage
 	end
 end
