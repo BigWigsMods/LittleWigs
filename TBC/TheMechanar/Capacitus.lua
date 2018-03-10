@@ -79,7 +79,7 @@ do
 				sameChargeList[#sameChargeList+1] = name
 			end
 			tDeleteItem(oppositeChargeList, name)
-			if UnitIsUnit(unit, "player") then
+			if self:Me(guid) then
 				self:OpenProximity(39096, 10, sameChargeList, true)
 				self:Message(39096, color, "Info", CL.you:format(self:SpellName(spellId)), spellId)
 			end
