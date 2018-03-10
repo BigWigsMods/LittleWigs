@@ -28,11 +28,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "BanishRemoved", 38791)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:Death("Win", 18732)
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:CDBar(-5267, 44)
 end
 
