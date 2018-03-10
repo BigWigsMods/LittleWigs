@@ -1,10 +1,7 @@
 local L = BigWigs:NewBossLocale("Pathaleon the Calculator", "deDE")
 if not L then return end
 if L then
-	L.despawn_message = "Nethergespenster verschwinden bald!"
-	L.despawn_trigger = "Ich mag es lieber praktisch..."
-	--L.despawn_trigger2 = "I prefer to be hands"
-	L.despawn_done = "Nethergespenster verschwinden!"
+	L.despawn_message = "Nethergespenster verschwinden bald"
 end
 
 L = BigWigs:NewBossLocale("Mechano-Lord Capacitus", "deDE")

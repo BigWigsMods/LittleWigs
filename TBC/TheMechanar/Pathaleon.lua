@@ -14,10 +14,7 @@ mod:RegisterEnableMob(19220)
 
 local L = mod:GetLocale()
 if L then
-	L.despawn_message = "Nether Wraiths Despawning Soon!"
-	L.despawn_trigger = "I prefer the direct"
-	L.despawn_trigger2 = "I prefer to be hands"
-	L.despawn_done = "Nether Wraiths despawning!"
+	L.despawn_message = "Nether Wraiths Despawning Soon"
 end
 
 --------------------------------------------------------------------------------
@@ -44,7 +41,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 end
 
@@ -65,12 +61,6 @@ function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 		else
 			self:Win()
 		end
-	end
-end
-
-function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg:find(L.despawn_trigger, nil, true) or msg:find(L.despawn_trigger2, nil, true) then
-		self:Message(35285, "Important", nil, L.despawn_done)
 	end
 end
 
