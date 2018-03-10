@@ -3,7 +3,6 @@
 
 local mod, CL = BigWigs:NewBoss("Swamplord Musel'ek", 726, 578)
 if not mod then return end
---mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17826, 17827)
 
 -------------------------------------------------------------------------------

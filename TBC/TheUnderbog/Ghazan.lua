@@ -3,7 +3,6 @@
 
 local mod, CL = BigWigs:NewBoss("Ghaz'an", 726, 577)
 if not mod then return end
---mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(18105)
 
 -------------------------------------------------------------------------------
