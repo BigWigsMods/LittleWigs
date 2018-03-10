@@ -61,5 +61,5 @@ function mod:LungBurst(args)
 end
 
 function mod:AuraRemoved(args)
-	self:StopBar(args.spellName, args.spellName)
+	self:StopBar(args.spellName, args.destName)
 end
