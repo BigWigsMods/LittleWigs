@@ -48,12 +48,12 @@ end
 
 function mod:Tranquility()
 	self:Message(34550, "Important", "Long", CL.casting:format(self:SpellName(34550)))
-	self:Bar(34550, 45)
+	self:CastBar(34550, 45)
 end
 
 function mod:TranquilityOver()
 	self:Message(34550, "Positive", nil, CL.over:format(self:SpellName(34550)))
-	self:StopBar(34550)
+	self:StopBar(CL.cast:format(self:SpellName(34550)))
 end
 
 function mod:SummonFrayerProtectors()
