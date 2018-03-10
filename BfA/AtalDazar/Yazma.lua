@@ -47,9 +47,10 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("249924") then -- Soulrend
-		self:TargetMessage(249923, destName, "red", "Warning")
+		self:TargetMessage(249923, destName, "red")
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
+			self:PlaySound(args.spellId, "warning", "runaway")
 			self:Say(249923)
 			self:SayCountdown(249923, 5)
 		end
@@ -65,12 +66,16 @@ end
 ]]--
 
 function mod:WrackingPain(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Alert")
+	self:Message(args.spellId, "orange")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alert", "interrupt")
+	end
 	self:Bar(args.spellId, 11)
 end
 
 function mod:EchoesofShadra(args)
-	self:Message(args.spellId, "yellow", "Info")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info", "watchstep")
 	self:Bar(args.spellId, 26.5)
 end
 
@@ -79,12 +84,14 @@ do
 	function mod:ShadowyRemains(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm", "gtfo")
 		end
 	end
 end
 
 function mod:Skewer(args)
 	self:Message(args.spellId, "yellow", "Alert")
+	self:PlaySound(args.spellId, "alert", "defensive")
 	self:Bar(args.spellId, 25.5)
 end

@@ -65,7 +65,7 @@ function mod:Earthquake(args)
 	self:Message(args.spellId, "orange", "Alarm")
 end
 
-function mod:Hadotoxin(args)
+function mod:FlameShock(args)
 	self:TargetMessage(args.spellId, destName, "red", "Alert", nil, nil, self:Dispeller("magic"))
 end
 

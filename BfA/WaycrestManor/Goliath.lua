@@ -23,7 +23,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SoulHarvest", 260512)
-	self:Log("SPELL_AURA_APPLIED", " SoulThorns", 267907)
+	self:Log("SPELL_AURA_APPLIED", "SoulThorns", 267907)
 	self:Log("SPELL_CAST_START", "Crush", 260508)
 end
 

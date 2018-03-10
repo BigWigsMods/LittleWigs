@@ -48,7 +48,8 @@ do
 
 	local function checkForTaintedBlood()
 		if not UnitDebuff("player", name) then
-			mod:Message(255558, "blue", "Warning", CL.no:format(name))
+			mod:Message(255558, "blue", nil, CL.no:format(name))
+			self:PlaySound(255558, "warning", "runin")
 			taintedBloodCheck = mod:ScheduleTimer(checkForTaintedBlood, 1.5)
 		else
 			mod:Message(255558, "green", nil, CL.you:format(name))
@@ -57,7 +58,8 @@ do
 	end
 
 	function mod:Transfusion(args)
-		self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning") -- voice warning is in the Taunted Blood check if needed
 		self:Bar(args.spellId, 34)
 		self:Bar(args.spellId, 4, CL.cast:format(args.spellName))
 		checkForTaintedBlood()
@@ -79,13 +81,15 @@ do
 end
 
 function mod:GildedClaws(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert", "defensive")
 	self:Bar(args.spellId, 34)
 end
 
 function mod:MoltenGold(args)
+	self:TargetMessage(args.spellId, args.destName, "orange")
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Info")
+		self:PlaySound(args.spellId, "info", self:Dispeller("magic") and "dispelnow")
 	end
 	self:Bar(args.spellId, 34)
 end
@@ -95,7 +99,8 @@ do
 	function mod:CorruptedGold(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", NIL, CL.underyou:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm", "gtfo")
 		end
 	end
 end

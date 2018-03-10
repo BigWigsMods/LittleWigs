@@ -36,7 +36,8 @@ end
 --
 
 function mod:TerrifyingVisage(args)
-	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning", "lineofsight")
 	self:CastBar(args.spellId, 5)
 	self:Bar(args.spellId, 35.2)
 end
@@ -44,9 +45,10 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("255421") then -- Devour
-		self:TargetMessage(257407, destName, "orange", "Alarm")
+		self:TargetMessage(257407, destName, "orange")
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
+			self:PlaySound(257407, "alarm", "runaway")
 			self:Say(257407)
 		end
 		self:Bar(257407, 35.2)
@@ -61,6 +63,7 @@ end
 ]]--
 
 function mod:SerratedTeeth(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert", "defensive")
 	self:CDBar(args.spellId, 35.2)
 end

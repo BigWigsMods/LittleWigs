@@ -82,17 +82,20 @@ end
 
 -- Feasting Skyscreamer
 function mod:TerrifyingScreech(args)
-	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 -- T'lonja
 function mod:FrenziedCharge(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert", "watchstep")
 end
 
 -- Shieldbearer of Zul
 function mod:BulwarkofJuju(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long", "mobout")
 end
 
 -- Zanchuli Witch-Doctor
@@ -101,7 +104,8 @@ do
 	function mod:UnstableHex(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then -- Can be cast by 2 Witch-Doctors on the same player
 			prev = GetTime()
-			self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
+			self:TargetMessage(args.spellId, args.destName, "blue")
+			self:PlaySound(args.spellId, "alarm", "moveout")
 			self:Say(args.spellId)
 			self:SayCountdown(args.spellId, 5)
 		end
@@ -116,12 +120,14 @@ end
 
 -- Dinomancer Kish'o
 function mod:DinoMight(args)
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
 -- Gilded Priestess
 function mod:Transfusion(args)
-	self:Message(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
 -- Shadowblade Stalker
@@ -129,7 +135,8 @@ function mod:VenomfangStrike(args)
 	if self:Me(args.destGUID) then
 		local amount = args.amount or 1
 		if amount % 2 == 0 then -- Only warn every 2 stacks
-			self:StackMessage(args.spellId, args.destName, amount, "orange", "Alarm")
+			self:StackMessage(args.spellId, args.destName, amount, "orange")
+			self:PlaySound(args.spellId, "alarm", "gtfo")
 		end
 	end
 end

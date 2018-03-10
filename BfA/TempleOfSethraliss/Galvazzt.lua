@@ -32,7 +32,7 @@ end
 -- Event Handlers
 --
 
-function mod:Hadotoxin(args)
+function mod:Electroshock(args)
 	self:TargetMessage(args.spellId, destName, "cyan", "Info", nil, nil, true)
 end
 
