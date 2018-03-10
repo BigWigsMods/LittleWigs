@@ -12,6 +12,11 @@ mod:RegisterEnableMob(17770)
 
 function mod:GetOptions()
 	return {
+		-6006, -- Underbog Mushroom (if summon's trackable)
+		-- if not, then one of these:
+		31689, -- Spore Cloud (seems to be a debuff)
+		34168, -- Spore Cloud (looks like an id for the ground effect)
+
 		31673, -- Foul Spores
 	}
 end

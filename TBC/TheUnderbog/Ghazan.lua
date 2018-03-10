@@ -14,7 +14,9 @@ mod:RegisterEnableMob(18105)
 
 function mod:GetOptions()
 	return {
-		"stages",
+		34268, -- Acid Breath
+		34267, -- Tail Sweep (heroic is 38737)
+		15716, -- Enrage (at 20%)
 	}
 end
 
