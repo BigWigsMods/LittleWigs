@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Warlord Kalithresh", 545, 575)
+local mod, CL = BigWigs:NewBoss("Warlord Kalithresh", 727, 575)
 if not mod then return end
 --mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17798)
