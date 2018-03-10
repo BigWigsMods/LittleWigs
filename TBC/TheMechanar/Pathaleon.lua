@@ -38,6 +38,7 @@ function mod:OnBossEnable()
 	-- need to check for one to be cast, the four Ids are 35285, 35286, 35287, 35288
 	self:Log("SPELL_SUMMON", "NetherWraith", 35285)
 	self:Log("SPELL_AURA_APPLIED", "Domination", 35280)
+	self:Log("SPELL_AURA_REMOVED", "DominationRemoved", 35280)
 end
 
 function mod:OnEngage()
@@ -79,5 +80,9 @@ end
 
 function mod:Domination(args)
 	self:TargetMessage(args.spellId, args.destName, "Important")
-	self:TargetBar(args.spellId, 10, args.destName) -- Double check time once we know exact spellId
+	self:TargetBar(args.spellId, 10, args.destName)
+end
+
+function mod:DominationRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
