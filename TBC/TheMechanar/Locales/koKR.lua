@@ -14,5 +14,10 @@ end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "koKR")
 if L then
-	L.hammer_trigger = "자신의 망치를 위협적으로 치켜듭니다..." -- check
+	L.name = "문지기 무쇠주먹"
+end
+
+L = BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "koKR")
+if L then
+	L.name = "문지기 회전톱날"
 end

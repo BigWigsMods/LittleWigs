@@ -5,6 +5,17 @@
 local mod, CL = BigWigs:NewBoss("Gatewatcher Gyro-Kill", 730)
 if not mod then return end
 mod:RegisterEnableMob(19218)
+-- mod.engageId = 1933 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.name = "Gatewatcher Gyro-Kill"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -16,8 +27,12 @@ function mod:GetOptions()
 	}
 end
 
+function mod:OnRegister()
+	self.displayName = L.name -- no journal entry
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "ShadowPower", 39193, 35322)
+	self:Log("SPELL_CAST_START", "ShadowPower", 39193, 35322) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "ShadowPowerApplied", 39193, 35322)
 	self:Log("SPELL_AURA_REMOVED", "ShadowPowerRemoved", 39193, 35322)
 	self:Death("Win", 19218)

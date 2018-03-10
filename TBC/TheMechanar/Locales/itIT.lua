@@ -14,5 +14,10 @@ end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "itIT")
 if L then
-	--L.hammer_trigger = "raises his hammer menacingly"
+	L.name = "Guardiano del Portale Mandiferro"
+end
+
+L = BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "itIT")
+if L then
+	L.name = "Guardiano del Portale Giro-Morte"
 end

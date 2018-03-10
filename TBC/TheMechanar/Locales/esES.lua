@@ -14,5 +14,10 @@ end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "esES") or BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "esMX")
 if L then
-	L.hammer_trigger = "alza su martillo amenazadoramente"
+	L.name = "Vigía de las puertas Manoyerro"
+end
+
+L = BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "esES") or BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "esMX")
+if L then
+	L.name = "Vigía de las puertas Giromata"
 end
