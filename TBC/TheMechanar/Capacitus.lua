@@ -82,7 +82,7 @@ do
 				end
 				tDeleteItem(oppositeChargeList, name)
 				if UnitIsUnit(unit, "player") then
-					self:OpenProximity(39096, 5, sameChargeList, true)
+					self:OpenProximity(39096, 10, sameChargeList, true)
 					self:Message(39096, color, "Info", CL.you:format(self:SpellName(spellId)), spellId)
 				end
 			end
