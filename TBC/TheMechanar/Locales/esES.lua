@@ -4,11 +4,6 @@ if L then
 	--L.despawn_message = "Nether Wraiths Despawning Soon"
 end
 
-L = BigWigs:NewBossLocale("Mechano-Lord Capacitus", "esES") or BigWigs:NewBossLocale("Mechano-Lord Capacitus", "esMX")
-if L then
-	--L.enrage_trigger = "You should split while you can."
-end
-
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "esES") or BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "esMX")
 if L then
 	L.name = "Vigía de las puertas Manoyerro"

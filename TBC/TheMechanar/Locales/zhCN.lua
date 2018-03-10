@@ -4,11 +4,6 @@ if L then
 	L.despawn_message = "虛空怨靈將被召回"
 end
 
-L = BigWigs:NewBossLocale("Mechano-Lord Capacitus", "zhCN")
-if L then
-	--L.enrage_trigger = "You should split while you can."
-end
-
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "zhCN")
 if L then
 	L.name = "看守者埃隆汉"
