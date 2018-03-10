@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("The Nexus Trash", "zhCN")
+local L = BigWigs:NewBossLocale("The Nexus Trash", "zhCN")
 if not L then return end
 if L then
 	L.slayer = "法师杀手"

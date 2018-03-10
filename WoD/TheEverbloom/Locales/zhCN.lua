@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Ancient Protectors", "zhCN")
+local L = BigWigs:NewBossLocale("Ancient Protectors", "zhCN")
 if not L then return end
 if L then
 	L[83892] = "|cFF00CCFF高拉|r"

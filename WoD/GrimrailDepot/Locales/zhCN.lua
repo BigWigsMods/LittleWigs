@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Rocketspark and Borka", "zhCN")
+local L = BigWigs:NewBossLocale("Rocketspark and Borka", "zhCN")
 if not L then return end
 if L then
 	L.enrage = "狂暴"

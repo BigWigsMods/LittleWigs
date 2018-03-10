@@ -4,5 +4,6 @@
 <Script file="Peroth'arn.lua"/>
 <Script file="Azshara.lua"/>
 <Script file="MannorothAndVaro'then.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
