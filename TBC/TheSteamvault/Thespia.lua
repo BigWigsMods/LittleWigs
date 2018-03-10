@@ -3,7 +3,6 @@
 
 local mod, CL = BigWigs:NewBoss("Hydromancer Thespia", 727, 573)
 if not mod then return end
---mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17797)
 
 -------------------------------------------------------------------------------

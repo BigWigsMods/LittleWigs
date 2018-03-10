@@ -3,7 +3,6 @@
 
 local mod, CL = BigWigs:NewBoss("Mekgineer Steamrigger", 727, 574)
 if not mod then return end
---mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17796)
 
 -------------------------------------------------------------------------------
