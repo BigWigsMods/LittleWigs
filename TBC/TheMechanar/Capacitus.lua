@@ -5,6 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Mechano-Lord Capacitus", 730, 563)
 if not mod then return end
 mod:RegisterEnableMob(19219)
+-- mod.engageId = 1932 -- no boss frames, only fires ENCOUNTER_* events once per instance reset (if you wipe - tough luck)
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,10 +17,10 @@ function mod:GetOptions()
 		35158, -- Reflective Magic Shield
 		35159, -- Reflective Damage Shield
 		39096, -- Polarity Shift
-		"berserk",
+		224604,
 	}, {
 		[35158] = "general",
-		["berserk"] = "heroic",
+		[224604] = "heroic",
 	}
 end
 
@@ -29,21 +31,24 @@ function mod:OnBossEnable()
 	--self:Log("SPELL_CAST_SUCCESS", "PolarityScan", 39096) --success isn't getting logged right now
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED")
 	self:Death("Win", 19219)
-
-	positive = nil
 end
 
 function mod:OnEngage()
+	positive = nil
 	if self:Heroic() then
-		self:Berserk(180, true, nil, 224604) -- 224604 = Enrage
+		self:Berserk(180, false, nil, 224604) -- 224604 = Enrage
 	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:PLAYER_REGEN_ENABLED()
+	self:ScheduleTimer("CheckForWipe", 1)
+end
 
 function mod:ReflectiveShield(args)
 	self:Message(args.spellId, "Urgent")
