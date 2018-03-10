@@ -5,6 +5,14 @@
 local mod, CL = BigWigs:NewBoss("High Botanist Freywinn", 729, 559)
 if not mod then return end
 mod:RegisterEnableMob(17975)
+mod.engageId = 1926
+-- mod.respawnTime = 0 -- resets, doesn't respawn
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local addsAlive = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,19 +21,55 @@ mod:RegisterEnableMob(17975)
 function mod:GetOptions()
 	return {
 		34550, -- Tranquility
+		34752, -- Freezing Touch
+	}, {
+		[34550] = "general",
+		[34752] = -5453, -- White Seedling
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Tranquility", 34550)
-	self:Death("Win", 17975)
+	self:Log("SPELL_AURA_APPLIED", "Tranquility", 34551) -- 34551 = "Tree Form", the buff he applies to himself while channeling Tranquility. He applies 34550 to every unit being healed.
+	self:Log("SPELL_AURA_REMOVED", "TranquilityOver", 34551)
+	self:Log("SPELL_CAST_SUCCESS", "SummonFrayerProtectors", 34557)
+	self:Death("AddDeath", 19953)
+
+	self:Log("SPELL_AURA_APPLIED", "FreezingTouch", 34752)
+	self:Log("SPELL_AURA_REMOVED", "FreezingTouchRemoved", 34752)
+end
+
+function mod:OnEngage()
+	addsAlive = 0
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Tranquility(args)
-	self:Message(args.spellId, "Important", nil, CL.casting(args.spellName))
-	self:Bar(args.spellId, 15)
+function mod:Tranquility()
+	self:Message(34550, "Important", "Long", CL.casting:format(self:SpellName(34550)))
+	self:Bar(34550, 45)
+end
+
+function mod:TranquilityOver()
+	self:Message(34550, "Positive", nil, CL.over:format(self:SpellName(34550)))
+	self:StopBar(34550)
+end
+
+function mod:SummonFrayerProtectors()
+	addsAlive = addsAlive + 3
+end
+
+function mod:AddDeath()
+	addsAlive = addsAlive - 1
+	self:Message(34550, "Positive", "Info", CL.add_remaining:format(addsAlive))
+end
+
+function mod:FreezingTouch(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetBar(args.spellId, 3, args.destName)
+end
+
+function mod:FreezingTouchRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
