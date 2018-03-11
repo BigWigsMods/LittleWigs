@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Corla, Herald of Twilight", 645, 106)
+local mod, CL = BigWigs:NewBoss("Corla, Herald of Twilight", 753, 106)
 if not mod then return end
 mod:RegisterEnableMob(39679)
 

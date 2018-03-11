@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Karsh Steelbender", 645, 107)
+local mod, CL = BigWigs:NewBoss("Karsh Steelbender", 753, 107)
 if not mod then return end
 mod:RegisterEnableMob(39698)
 

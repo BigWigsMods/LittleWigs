@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Ascendant Lord Obsidius", 645, 109)
+local mod, CL = BigWigs:NewBoss("Ascendant Lord Obsidius", 753, 109)
 if not mod then return end
 mod:RegisterEnableMob(39705)
 
