@@ -50,26 +50,16 @@ function mod:Frenzy(args)
 end
 
 do
-	local playerList, isOnMe = mod:NewTargetList(), nil
-	local function announce(self, spellId)
-		if self:Healer() then
-			self:TargetMessage(spellId, playerList, "Important", "Warning", nil, nil, true)
-		else
-			wipe(playerList)
-			if isOnMe then
-				self:TargetMessage(spellId, isOnMe, "Personal", "Warning")
-			end
-		end
-		isOnMe = nil
-	end
+	local playerList = mod:NewTargetList()
 
 	function mod:EchoingRoar(args)
-		if self:Me(args.destGUID) then
-			isOnMe = args.destName
-		end
-		playerList[#playerList+1] = args.destName
-		if #playerList == 1 then
-			self:ScheduleTimer(announce, 0.3, self, args.spellId)
+		if self:Me(args.destGUID) and not self:Healer() then
+			self:TargetMessage(spellId, args.destName, "Personal", "Warning")
+		elseif self:Healer() then
+			playerList[#playerList+1] = args.destName
+			if #playerList == 1 then
+				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Important", "Warning", nil, nil, true)
+			end
 		end
 	end
 end
