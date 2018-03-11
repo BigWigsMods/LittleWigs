@@ -51,22 +51,19 @@ do
 	end
 end
 
-do
-	local barText = CL.onboss:format(mod:SpellName(32130)) -- "Heal on BOSS", the boss gets healed if these don't die within 25 seconds
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
-		if spellId == 34741 then -- Summon Saplings
-			addsAlive = 6 -- when they despawn to heal him, they don't fire any event; fortunately, no 2 waves can be alive at the same time
-			self:Message(-5478, "Important", "Alarm")
-			self:Bar(-5478, 25, barText, 38658) -- 38658 = "Healing Touch", because it fits the theme
-			self:CDBar(-5478, 45)
-		end
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 34741 then -- Summon Saplings
+		addsAlive = 6 -- when they despawn to heal him, they don't fire any events; fortunately, no 2 waves can be alive at the same time
+		self:Message(-5478, "Important", "Alarm")
+		self:Bar(-5478, 25, CL.onboss:format(self:SpellName(32130)), 38658) -- text is "Heal on BOSS", icon is that of druids' Healing Touch
+		self:CDBar(-5478, 45)
 	end
+end
 
-	function mod:AddDeath()
-		addsAlive = addsAlive - 1
-		self:Message(-5478, "Positive", "Info", CL.add_remaining:format(addsAlive))
-		if addsAlive == 0 then
-			self:StopBar(barText)
-		end
+function mod:AddDeath()
+	addsAlive = addsAlive - 1
+	self:Message(-5478, "Positive", "Info", CL.add_remaining:format(addsAlive))
+	if addsAlive == 0 then
+		self:StopBar(CL.onboss:format(self:SpellName(32130))) -- "Heal on BOSS"
 	end
 end
