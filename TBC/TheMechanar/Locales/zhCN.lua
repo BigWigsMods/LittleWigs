@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Pathaleon the Calculator", "zhCN")
 if not L then return end
 if L then
-	L.despawn_message = "虛空怨靈將被召回"
+	L.despawn_message = "虚空怨灵即将召回"
 end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "zhCN")
