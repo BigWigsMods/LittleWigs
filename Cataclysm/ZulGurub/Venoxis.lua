@@ -1,17 +1,22 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("High Priest Venoxis", 793, 175)
 if not mod then return end
 mod:RegisterEnableMob(52155)
+mod.engageId = 1178
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 --  Locals
+--
 
-local breath = 2
+local breathsLeft = 2
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -19,7 +24,7 @@ function mod:GetOptions()
 		96509, -- Breath of Hethiss
 		96466, -- Whispers of Hethiss
 		96842, -- Bloodvenom
-		96653, -- Venom Withdrawal (triggered by 97354)
+		96653, -- Venom Withdrawal (triggered by 96512)
 	}
 end
 
@@ -27,18 +32,20 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ToxicLink", 96477)
 	self:Log("SPELL_AURA_REMOVED", "ToxicLinkRemoved", 96477)
 	self:Log("SPELL_AURA_APPLIED", "BreathOfHethiss", 96509)
-	self:Log("SPELL_AURA_APPLIED", "Whisper", 96466)
-	self:Log("SPELL_AURA_REMOVED", "WhisperRemoved", 96466)
+	self:Log("SPELL_AURA_APPLIED", "WhispersOfHethiss", 96466)
+	self:Log("SPELL_AURA_REMOVED", "WhispersOfHethissRemoved", 96466)
 	self:Log("SPELL_CAST_START", "Bloodvenom", 96842)
-	self:Log("SPELL_AURA_APPLIED", "Blessing", 97354)
-	self:Log("SPELL_AURA_REMOVED", "BlessingRemoved", 97354)
+	self:Log("SPELL_AURA_APPLIED", "BlessingOfTheSnakeGod", 96512)
+	self:Log("SPELL_AURA_REMOVED", "BlessingOfTheSnakeGodRemoved", 96512)
+end
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 52155)
+function mod:OnEngage()
+	breathsLeft = 2
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 do
 	local linkTargets = mod:NewTargetList()
@@ -63,24 +70,22 @@ do
 end
 
 function mod:BreathOfHethiss(args)
-	breath = breath - 1
+	breathsLeft = breathsLeft - 1
 	self:Message(args.spellId, "Important")
-	if (breath > 0) then
+	if (breathsLeft > 0) then
 		self:CDBar(args.spellId, 12)
 	end
 end
 
-function mod:Whisper(args)
-	if UnitInParty(args.destName) then
-		self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
-		self:TargetBar(args.spellId, 8, args.destName)
-	end
+function mod:WhispersOfHethiss(args)
+	if self:MobId(args.destGUID) == 52155 then return end -- applies this to himself as well
+	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
+	self:TargetBar(args.spellId, 8, args.destName)
 end
 
-function mod:WhisperRemoved(args)
-	if UnitInParty(args.destName) then
-		self:StopBar(args.spellId, args.destName)
-	end
+function mod:WhispersOfHethissRemoved(args)
+	if self:MobId(args.destGUID) == 52155 then return end -- applies this to himself as well
+	self:StopBar(args.spellId, args.destName)
 end
 
 function mod:Bloodvenom(args)
@@ -88,12 +93,13 @@ function mod:Bloodvenom(args)
 	self:ScheduleTimer("Bar", 3, args.spellId, 14)
 end
 
-function mod:Blessing(args)
-	breath = 2
+function mod:BlessingOfTheSnakeGod()
+	breathsLeft = 2
 	self:CDBar(96842, 38) -- Bloodvenom
 	self:CDBar(96509, 5.5) -- Breath of Hethiss
 end
 
-function mod:BlessingRemoved(args)
-	self:Bar(96653, 10) -- Venom Withdrawal
+function mod:BlessingOfTheSnakeGodRemoved()
+	self:Message(96653, "Positive", "Info", self:SpellName(96653)) -- Venom Withdrawal
+	self:Bar(96653, 10)
 end
