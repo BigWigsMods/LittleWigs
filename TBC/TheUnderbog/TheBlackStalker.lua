@@ -22,8 +22,9 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Levitate", 31704)
+	self:Log("SPELL_AURA_REMOVED", "LevitateRemoved", 31704)
 	self:Log("SPELL_AURA_APPLIED", "StaticCharge", 31715)
-	self:Log("SPELL_AURA_REMOVED", "AuraRemoved", 31704, 31715) -- Levitate, Static Charge
+	self:Log("SPELL_AURA_REMOVED", "StaticChargeRemoved", 31715)
 
 	self:Log("SPELL_CAST_START", "ChainLightning", 31717) -- normal, heroic
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 31717)
@@ -38,6 +39,10 @@ function mod:Levitate(args)
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
+function mod:LevitateRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
 function mod:StaticCharge(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
@@ -50,14 +55,12 @@ function mod:StaticCharge(args)
 	self:SecondaryIcon(args.spellId, args.destName)
 end
 
-function mod:AuraRemoved(args)
-	if args.spellId == 31715 then
-		self:CloseProximity(args.spellId)
-		self:SecondaryIcon(args.spellId)
-		if self:Me(args.destGUID) then
-			self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
-		end
+function mod:StaticChargeRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
 	end
+	self:CloseProximity(args.spellId)
+	self:SecondaryIcon(args.spellId)
 	self:StopBar(args.spellName, args.destName)
 end
 
