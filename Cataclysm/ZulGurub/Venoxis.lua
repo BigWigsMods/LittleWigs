@@ -85,7 +85,7 @@ end
 
 function mod:WhispersOfHethissRemoved(args)
 	if self:MobId(args.destGUID) == 52155 then return end -- applies this to himself as well
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:Bloodvenom(args)
