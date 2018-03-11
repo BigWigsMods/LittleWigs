@@ -1,66 +1,86 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Nalorakk", 781, 187)
 if not mod then return end
 mod:RegisterEnableMob(23576)
+mod.engageId = 1190
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Localization
+--
 
 local L = mod:GetLocale()
 if L then
-	L.forms = "Forms"
-	L.forms_desc = "Warn for form changes."
 	L.troll_message = "Troll Form"
 	L.troll_trigger = "Make way for da Nalorakk!"
-	L.bear_trigger = "You call on da beast"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
-		"forms",
+		"stages",
+		42402, -- Surge
 		42398, -- Deafening Roar
+	}, {
+		[42402] = L.troll_message,
+		[42398] = 7090, -- Bear Form
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Forms")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
+	self:Log("SPELL_AURA_APPLIED", "Surge", 42402)
+	self:Log("SPELL_AURA_REFRESH", "Surge", 42402)
+	self:Log("SPELL_AURA_REMOVED", "SurgeRemoved", 42402)
 	self:Log("SPELL_AURA_APPLIED", "DeafeningRoar", 42398)
-	-- self:Log("UNIT_SPELLCAST_SUCCEEDED", "Bear", 42377) -- FIXME: there's already a check using Yells, wouldn't this create duplicate messages? Maybe there's a USCS event for the troll form as well?
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 23576)
 end
 
 function mod:OnEngage()
-	self:Bar("forms", 30, self:SpellName(7090), 42594) -- 7090 = Bear Form; 42594 = Shape of the Bear
+	self:Bar("stages", 30, self:SpellName(7090), 42594) -- 7090 = Bear Form; 42594 = Shape of the Bear
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Forms(_, msg)
-	if msg == L.bear_trigger then
-		self:Message("forms", "Important", nil, self:SpellName(7090), 42594)  -- 7090 = Bear Form; 42594 = Shape of the Bear
-		self:Bar("forms", 30, L.troll_message, 89259)
-	elseif msg == L.troll_trigger then
-		self:Message("forms", "Important", nil, L.troll_message, 89259)
-		self:Bar("forms", 30, self:SpellName(7090), 42594) -- 7090 = Bear Form; 42594 = Shape of the Bear
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.troll_trigger then
+		self:Message("stages", "Important", nil, L.troll_message, 89259)
+		self:Bar("stages", 30, self:SpellName(7090), 42594) -- 7090 = Bear Form; 42594 = Shape of the Bear
 	end
 end
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 42377 then -- Shape of the Bear
+		self:StopBar(42402) -- Surge's CD
+		self:Message("stages", "Important", nil, self:SpellName(7090), 42594)  -- 7090 = Bear Form; 42594 = Shape of the Bear (42377 has a weird icon)
+		self:Bar("stages", 30, L.troll_message, 89259)
+	end
+end
+
+function mod:Surge(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+	self:TargetBar(args.spellId, 20, args.destName)
+	self:CDBar(args.spellId, 8) -- not optimal, but there are no SPELL_CAST events; and checking out boss emotes is locale-dependent
+end
+
+function mod:SurgeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
 do
-	local prev = 0
+	local playerList = mod:NewTargetList()
 	function mod:DeafeningRoar(args)
-		local t = GetTime()
-		if t - prev > 4 then
-			self:Message(args.spellId, "Attention", "Info")
+		playerList[#playerList+1] = args.destName
+		if #playerList == 1 then
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Attention", "Info", nil, nil, true)
 		end
-		prev = t
 	end
 end
