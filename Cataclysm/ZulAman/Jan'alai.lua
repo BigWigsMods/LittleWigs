@@ -24,8 +24,8 @@ end
 
 function mod:GetOptions()
 	return {
-		{97497, "ICON"}, -- Flame Breath (this is the aura debuff spellid)
 		-2625, -- Amani'shi Hatcher
+		{97497, "ICON"}, -- Flame Breath (this is the aura debuff spellid)
 		-2622, -- Fire Bomb
 	}
 end
