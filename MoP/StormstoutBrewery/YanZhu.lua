@@ -86,10 +86,10 @@ end
 do
 	-- there are no SPELL_CAST_* and UNIT_SPELLCAST_* events for this mechanic
 	-- fortunately, it consistently happens every 30 seconds
-	local function warnForWallOfSuds(self, spellId, spellName)
-		self:Message(spellId, "Important", "Long", CL.incoming:format(spellName))
-		self:ScheduleTimer(warnForWallOfSuds, 30, self, spellId, spellName)
-		self:CDBar(spellId, 30)
+	local function warnForWallOfSuds(self)
+		self:Message(-5658, "Important", "Long", CL.incoming:format(self:SpellName(-5658)))
+		self:CDBar(-5658, 30)
+		self:ScheduleTimer(warnForWallOfSuds, 30, self)
 	end
 
 	function mod:StartTimers()
@@ -108,8 +108,8 @@ do
 		end
 
 		if UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew
-			self:ScheduleTimer(warnForWallOfSuds, 29.8, self, -5658, self:SpellName(-5658))
 			self:CDBar(-5658, 29.8) -- Wall of Suds
+			self:ScheduleTimer(warnForWallOfSuds, 29.8, self)
 		elseif UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew
 			self:CDBar(115003, 45.8) -- Carbonation
 		end
