@@ -1,13 +1,5 @@
 local L = BigWigs:NewBossLocale("Jin'do the Godbreaker", "frFR")
 if not L then return end
 if L then
-	--L.barrier_down_message = "Barrier %d down!"
-end
-
-L = BigWigs:NewBossLocale("Bloodlord Mandokir", "frFR")
-if L then
-	--L.rebirth = "Ghost rebirth"
-	--L.rebirth_desc = "Warn for Ghost rebirth remaining."
-	--L.rebirth_message = "Ghost rebirth - %d left"
-	--L.ohgan_message = "Ohgan rebirth!"
+	--L.barrier_down_message = "Barrier down, %d remaining" -- short name for "Brittle Barrier" (97417)
 end
