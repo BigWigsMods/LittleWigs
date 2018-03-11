@@ -21,8 +21,7 @@ local nextPhaseWarning = 65
 
 local L = mod:GetLocale()
 if L then
-	L.spirit_soon = "Spirit Phase soon"
-	L.spirit_message = "%d%% - Spirit Phase"
+	L.spirit_message = "Spirit Phase"
 	L.normal_message = "Normal Phase"
 end
 
@@ -80,7 +79,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	-- All spells used are called "Halazzi Transform"
 	if spellId == 43143 then -- Spirit Phase
 		spiritPhases = spiritPhases + 1
-		self:Message("stages", "Positive", nil, L.spirit_message:format(30 * (3 - spiritPhases)), 24183) -- 24183 provides "ability_hunter_pet_cat" icon
+		self:Message("stages", "Positive", nil, CL.percent:format(30 * (3 - spiritPhases), L.spirit_message), 24183) -- 24183 provides "ability_hunter_pet_cat" icon
 	elseif spellId == 43145 or spellId == 43271 then -- Normal Phase
 		self:Message("stages", "Positive", nil, L.normal_message, 89259) -- 89259 provides "achievement_character_troll_male" icon
 	end
@@ -90,7 +89,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextPhaseWarning then
 		nextPhaseWarning = nextPhaseWarning - 30
-		self:Message("stages", "Attention", nil, L.spirit_soon, false)
+		self:Message("stages", "Attention", nil, CL.soon:format(L.spirit_message), false)
 
 		if nextPhaseWarning < 35 then
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)

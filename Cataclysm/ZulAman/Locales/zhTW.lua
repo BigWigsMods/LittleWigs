@@ -9,8 +9,7 @@ end
 
 L = BigWigs:NewBossLocale("Halazzi", "zhTW")
 if L then
-	--L.spirit_soon = "Spirit Phase soon"
-	--L.spirit_message = "%d%% - Spirit Phase"
+	--L.spirit_message = "Spirit Phase"
 	--L.normal_message = "Normal Phase"
 end
 
