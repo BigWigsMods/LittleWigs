@@ -1,36 +1,38 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Halazzi", 781, 189)
 if not mod then return end
 mod:RegisterEnableMob(23577)
+mod.engageId = 1192
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 --  Locals
+--
 
-local spirit = false
-local count = true
+local spiritPhases = 0
+local nextPhaseWarning = 65
 
 -------------------------------------------------------------------------------
 --  Localization
+--
 
 local L = mod:GetLocale()
 if L then
-	L.phase = "Phases"
-	L.phase_desc = "Warn for phase changes."
-	L.spirit_soon = "Spirit Phase soon!"
-	L.spirit_message = "%d%% - Spirit Phase!"
-	L.normal_message = "Normal Phase!"
-	L.spirit_trigger = "I fight wit' untamed spirit...."
-	L.normal_trigger = "Spirit, come back to me!"
+	L.spirit_soon = "Spirit Phase soon"
+	L.spirit_message = "%d%% - Spirit Phase"
+	L.normal_message = "Normal Phase"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
-		"phase",
+		"stages",
 		43303, -- Flame Shock
 		43139, -- Enrage
 		43302, -- Lightning Totem
@@ -39,38 +41,23 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Phases")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 
 	self:Log("SPELL_AURA_APPLIED", "FlameShock", 43303)
 	self:Log("SPELL_AURA_REMOVED", "FlameShockRemoved", 43303)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 43139)
 	self:Log("SPELL_CAST_START", "Totems", 43302, 97499) -- Lightning Totem, Water Totem
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 23577)
 end
 
 function mod:OnEngage()
-	spirit = false
-	count = true
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	spiritPhases = 0
+	nextPhaseWarning = 65 -- 60% and 30%
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
-
-function mod:Phases(_, msg)
-	if msg == L.spirit_trigger then
-		if count then
-			self:Message("phase", "Positive", nil, L.spirit_message:format(66), 24183)
-			count = false
-		else
-			self:Message("phase", "Positive", nil, L.spirit_message:format(33), 24183)
-		end
-	elseif msg == L.normal_trigger then
-		self:Message("phase", "Positive", nil, L.normal_message, 89259)
-	end
-end
+--
 
 function mod:FlameShock(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
@@ -78,7 +65,7 @@ function mod:FlameShock(args)
 end
 
 function mod:FlameShockRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:Enrage(args)
@@ -89,13 +76,24 @@ function mod:Totems(args)
 	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
 end
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	-- All spells used are called "Halazzi Transform"
+	if spellId == 43143 then -- Spirit Phase
+		spiritPhases = spiritPhases + 1
+		self:Message("stages", "Positive", nil, L.spirit_message:format(30 * (3 - spiritPhases)), 24183) -- 24183 provides "ability_hunter_pet_cat" icon
+	elseif spellId == 43145 or spellId == 43271 then -- Normal Phase
+		self:Message("stages", "Positive", nil, L.normal_message, 89259) -- 89259 provides "achievement_character_troll_male" icon
+	end
+end
+
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp > 69 and hp <= 71 and not spirit then
-		self:Message("phase", "Attention", nil, L.spirit_soon)
-		spirit = true
-	elseif hp > 36 and hp <= 38 and spirit then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message("phase", "Attention", nil, L.spirit_soon)
+	if hp < nextPhaseWarning then
+		nextPhaseWarning = nextPhaseWarning - 30
+		self:Message("stages", "Attention", nil, L.spirit_soon, false)
+
+		if nextPhaseWarning < 35 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		end
 	end
 end
