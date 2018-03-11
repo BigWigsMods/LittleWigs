@@ -35,7 +35,7 @@ function mod:GetOptions()
 		{-2910, "ICON", "SAY", "FLASH"}, -- Brittle Barrier
 	}, {
 		[97172] = CL.stage:format(1),
-		[97170] = CL.stage:format(2),
+		[-2910] = CL.stage:format(2),
 	}
 end
 
