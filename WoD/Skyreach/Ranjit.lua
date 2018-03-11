@@ -13,7 +13,7 @@ mod:RegisterEnableMob(75964)
 
 local L = mod:GetLocale()
 if L then
-	
+
 end
 
 --------------------------------------------------------------------------------

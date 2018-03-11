@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("High Sage Viryx", "zhCN")
+local L = BigWigs:NewBossLocale("High Sage Viryx", "zhCN")
 if not L then return end
 if L then
 	L.custom_on_markadd = "标记拜日狂信徒"

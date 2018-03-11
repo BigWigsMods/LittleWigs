@@ -1,66 +1,56 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Exarch Maladaar", 722, 524)
+local mod, CL = BigWigs:NewBoss("Exarch Maladaar", 722, 524)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18373)
-mod.toggleOptions = {
-	32346, -- Stolen Soul
-	32424, -- Avatar of the Martyred
-}
-
--------------------------------------------------------------------------------
---  Locals
-
-local warned = nil
+-- mod.engageId = 1889 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Localization
 
 local L = mod:GetLocale()
 if L then
-	L["avatar_message"] = "Avatar of the Martyred spawning!"
-	L["avatar_soon"] = "Avatar of the Martyred Spawning Soon"
-	L["soul_message"] = "%s's soul stolen!"
+	L.avatar = -5046 -- Avatar of the Martyred
+	L.avatar_desc = -5045 -- EJ entry of the summoning spell, has better description than that of the actual spell
+	L.avatar_icon = -5045
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	if self:CheckOption(32424, "MESSAGE") then
-		self:RegisterEvent("UNIT_HEALTH")
-	end
-
-	self:Log("SPELL_AURA_APPLIED", "Soul", 32346)
-	self:Log("SPELL_CAST_START", "Avatar", 32424)
-	self:Death("Win", 18373)
+function mod:GetOptions()
+	return {
+		32346, -- Stolen Soul
+		"avatar",
+	}
 end
 
-function mod:OnEnable()
-	warned = nil
+function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:Log("SPELL_AURA_APPLIED", "StolenSoul", 32346)
+	self:Log("SPELL_CAST_SUCCESS", "AvatarOfTheMartyred", 32424)
+
+	self:Death("Win", 18373)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Soul(player)
-	self:Message(32346, L["soul_message"]:format(player), "Attention", 32346)
+function mod:StolenSoul(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent")
 end
 
-function mod:Avatar()
-	self:Message(32424, L["avatar_message"], "Attention")
+function mod:AvatarOfTheMartyred(args)
+	self:Message("avatar", "Important", nil, CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
 end
 
-function mod:UNIT_HEALTH(event, msg)
-	if UnitName(msg) ~= mod.displayName then return end
-	local health = UnitHealth(msg)
-	if health > 28 and health <= 33 and not warned then
-		warned = true
-		self:Message(32424, L["avatar_soon"], "Important", 32424)
-	elseif health > 33 and warned then
-		warned = nil
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:MobId(UnitGUID(unit)) ~= 18373 then return end
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 30 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+		self:Message("avatar", "Attention", nil, CL.soon:format(CL.spawning:format(self:SpellName(L.avatar))), 32424)
 	end
 end
