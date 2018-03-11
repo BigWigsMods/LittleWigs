@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(36453, 15)
+	self:CDBar(36453, 15) -- Warlord's Rage
 end
 
 -------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ function mod:HeadCrack(args)
 end
 
 function mod:HeadCrackRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:SpellReflection()
