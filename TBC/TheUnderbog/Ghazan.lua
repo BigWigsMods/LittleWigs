@@ -40,27 +40,17 @@ end
 --
 
 do
-	local playerList, isOnMe = mod:NewTargetList(), nil
-	local function announce(self, spellId)
-		if self:Healer() then
-			self:TargetMessage(spellId, playerList, "Important")
-		else
-			wipe(playerList)
-			if isOnMe then
-				self:TargetMessage(spellId, isOnMe, "Personal", not self:Tank() and "Warning")
-			end
-		end
-		isOnMe = nil
-	end
+	local playerList = mod:NewTargetList()
 
 	function mod:AcidBreath(args)
-		if self:Me(args.destGUID) then
-			isOnMe = args.destName
+		if self:Me(args.destGUID) and not self:Healer() then
+			self:TargetMessage(spellId, args.destName, "Personal", not self:Tank() and "Warning")
 			self:TargetBar(args.spellId, 20, args.destName) -- this will have 100% uptime on the tank, can't be dispelled, no reason to show this to anyone not affected
-		end
-		playerList[#playerList+1] = args.destName
-		if #playerList == 1 then
-			self:ScheduleTimer(announce, 0.3, self, args.spellId)
+		elseif self:Healer() then
+			playerList[#playerList+1] = args.destName
+			if #playerList == 1 then
+				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Important")
+			end
 		end
 	end
 
