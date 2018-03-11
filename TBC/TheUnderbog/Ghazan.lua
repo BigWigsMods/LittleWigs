@@ -73,7 +73,7 @@ do
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Urgent", "Long")
+	self:Message(args.spellId, "Urgent", "Long", CL.percent:format(20, args.spellName))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
