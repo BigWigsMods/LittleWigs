@@ -22,6 +22,7 @@
 <Include file="TBC\TheBlackMorass\modules.xml"/>
 <Include file="TBC\TheBlackMorass\locales.xml"/>
 <Include file="TBC\TheBloodFurnace\modules.xml"/>
+<Include file="TBC\TheBotanica\modules.xml"/>
 <Include file="TBC\TheMechanar\modules.xml"/>
 <Include file="TBC\TheMechanar\locales.xml"/>
 <Include file="TBC\TheShatteredHalls\modules.xml"/>
