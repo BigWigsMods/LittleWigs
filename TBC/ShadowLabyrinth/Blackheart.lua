@@ -27,7 +27,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:CDBar(33676, 15)
+	self:CDBar(33676, 15) -- Incite Chaos
 end
 
 -------------------------------------------------------------------------------

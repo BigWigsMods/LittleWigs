@@ -31,8 +31,10 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:CDBar(33547, 15)
-	if not self:Normal() then self:Berserk(180) end
+	self:CDBar(33547, 15) -- Fear
+	if not self:Normal() then
+		self:Berserk(180)
+	end
 end
 
 -------------------------------------------------------------------------------

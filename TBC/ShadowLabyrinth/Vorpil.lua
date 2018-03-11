@@ -33,14 +33,14 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:CDBar(-5267, 44)
+	self:CDBar(-5267, 44) -- Draw Shadows
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 --
 
-function mod:DrawShadows(args)
+function mod:DrawShadows()
 	self:Message(-5267, "Urgent")
 	self:CDBar(-5267, 41)
 end
