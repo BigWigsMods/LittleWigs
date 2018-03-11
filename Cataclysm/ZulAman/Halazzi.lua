@@ -79,9 +79,9 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	-- All spells used are called "Halazzi Transform"
 	if spellId == 43143 then -- Spirit Phase
 		spiritPhases = spiritPhases + 1
-		self:Message("stages", "Positive", nil, CL.percent:format(30 * (3 - spiritPhases), L.spirit_message), 24183) -- 24183 provides "ability_hunter_pet_cat" icon
+		self:Message("stages", "Positive", nil, CL.percent:format(30 * (3 - spiritPhases), L.spirit_message), "ability_hunter_pet_cat")
 	elseif spellId == 43145 or spellId == 43271 then -- Normal Phase
-		self:Message("stages", "Positive", nil, L.normal_message, 89259) -- 89259 provides "achievement_character_troll_male" icon
+		self:Message("stages", "Positive", nil, L.normal_message, "achievement_character_troll_male")
 	end
 end
 
