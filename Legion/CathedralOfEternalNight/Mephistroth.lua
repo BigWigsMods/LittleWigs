@@ -83,7 +83,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		self:StopBar(L.time_lost:format(self:SpellName(233206), timeLost)) -- Shadow Fade (-xs)
 		local newTime = timeLeft + 7.5
 		timeLost = timeLost + 7.5
-		if self:GetOption("custom_on_time_lost") then 
+		if self:GetOption("custom_on_time_lost") then
 			self:Bar(233206, newTime <= 30 and newTime or 30, L.time_lost:format(self:SpellName(233206), timeLost)) -- Takes 30s to go from 0-300 UNIT_POWER, max 30s bar.
 		else
 			self:Bar(233206, newTime <= 30 and newTime or 30, self:SpellName(233206))

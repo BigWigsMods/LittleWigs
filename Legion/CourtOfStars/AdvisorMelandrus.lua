@@ -52,7 +52,7 @@ function mod:OnEngage()
 	bladeSurgeCount = 1
 	self:CDBar(209628, 11) -- Piercing Gale
 	self:CDBar(224333, 8.4) -- Enveloping Winds
-	self:CDBar(209602, 5.2, CL.count:format(args.spellName, bladeSurgeCount)) -- Blade Surge
+	self:CDBar(209602, 5.2, CL.count:format(self:SpellName(209602), bladeSurgeCount)) -- Blade Surge
 	self:CDBar(209676, 23) -- Slicing Maelstrom
 end
 
