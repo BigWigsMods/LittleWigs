@@ -18,11 +18,11 @@ function mod:GetOptions()
 		96435, -- Tears of Blood
 		96423, -- Lash of Anguish
 		96457, -- Wave of Agony
+		-2702, -- Camouflage
 		96592, -- Ravage
-		96594, -- Camouflage
 	}, {
 		[96435] = CL.stage:format(1),
-		[96592] = CL.stage:format(2),
+		[-2702] = CL.stage:format(2),
 	}
 end
 
@@ -76,8 +76,8 @@ function mod:Ravage(args)
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
-function mod:Camouflage(args)
-	self:Message(args.spellId, "Important", "Alert")
+function mod:Camouflage()
+	self:Message(-2702, "Important", "Alert")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
