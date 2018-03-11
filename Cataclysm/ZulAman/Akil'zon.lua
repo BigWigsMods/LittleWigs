@@ -1,16 +1,21 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Akil'zon", 781, 186)
 if not mod then return end
 mod:RegisterEnableMob(23574)
+mod.engageId = 1189
+mod.respawnTime = 60
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
-		{43648, "FLASH", "PROXIMITY"}, -- Electrical Storm
+		{43622, "PROXIMITY"}, -- Static Disruption
+		{43648, "PROXIMITY"}, -- Electrical Storm
 		{97318, "ICON"}, -- Plucked
 	}
 end
@@ -20,30 +25,30 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ElectricalStormRemoved", 43648)
 	self:Log("SPELL_AURA_APPLIED", "Plucked", 97318)
 	self:Log("SPELL_AURA_REMOVED", "PluckedRemoved", 97318)
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 23574)
 end
 
 function mod:OnEngage()
-	self:CDBar(43648, 50)
-	self:OpenProximity(43648, 5)
+	self:CDBar(43648, 50) -- Electrical Storm
+	self:OpenProximity(43622, 5) -- Static Disruption
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:ElectricalStorm(args)
-	if self:Me(args.destGUID) then self:Flash(args.spellId) end
+	self:CloseProximity(43622) -- Static Disruption
+	if not self:Me(args.destGUID) then
+		self:OpenProximity(args.spellId, 20, args.destName, true)
+	end
 	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
 	self:Bar(args.spellId, 8)
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:CloseProximity(args.spellId)
 end
 
 function mod:ElectricalStormRemoved(args)
-	self:OpenProximity(args.spellId, 5)
+	self:CloseProximity(args.spellId)
+	self:OpenProximity(43622, 5) -- Static Disruption
 	self:PrimaryIcon(args.spellId)
 	self:CDBar(args.spellId, 40)
 end
