@@ -28,6 +28,8 @@
 <Include file="TBC\TheShatteredHalls\locales.xml"/>
 <Include file="TBC\TheSlavePens\modules.xml"/>
 <Include file="TBC\TheSlavePens\locales.xml"/>
+<Include file="TBC\TheSteamvault\modules.xml"/>
+<Include file="TBC\TheSteamvault\locales.xml"/>
 <Include file="TBC\TheUnderbog\modules.xml"/>
 
 <!-- Wrath of the Lich King -->
