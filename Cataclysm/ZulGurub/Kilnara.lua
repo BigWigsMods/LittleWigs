@@ -92,5 +92,5 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
 	if spellId == 97380 then -- Cave In
 		self:UnregisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", unit)
 		self:Message("stages", "Attention", "Info", CL.stage:format(2), false)
- 	end
+	end
 end
