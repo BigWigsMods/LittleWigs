@@ -44,7 +44,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("stages", 30, self:SpellName(7090), 42594) -- 7090 = Bear Form; 42594 = Shape of the Bear
+	self:Bar("stages", 30, self:SpellName(7090), "ability_hunter_pet_bear") -- 7090 = Bear Form
 end
 
 -------------------------------------------------------------------------------
@@ -52,16 +52,16 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.troll_trigger then
-		self:Message("stages", "Important", nil, L.troll_message, 89259)
-		self:Bar("stages", 30, self:SpellName(7090), 42594) -- 7090 = Bear Form; 42594 = Shape of the Bear
+		self:Message("stages", "Important", nil, L.troll_message, "achievement_character_troll_male")
+		self:Bar("stages", 30, self:SpellName(7090), "ability_hunter_pet_bear") -- 7090 = Bear Form
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 42377 then -- Shape of the Bear
 		self:StopBar(42402) -- Surge's CD
-		self:Message("stages", "Important", nil, self:SpellName(7090), 42594)  -- 7090 = Bear Form; 42594 = Shape of the Bear (42377 has a weird icon)
-		self:Bar("stages", 30, L.troll_message, 89259)
+		self:Message("stages", "Important", nil, self:SpellName(7090), "ability_hunter_pet_bear") -- 7090 = Bear Form
+		self:Bar("stages", 30, L.troll_message, "achievement_character_troll_male")
 	end
 end
 
