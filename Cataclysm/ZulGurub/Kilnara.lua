@@ -1,65 +1,60 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("High Priestess Kilnara", 793, 181)
 if not mod then return end
 mod:RegisterEnableMob(52059)
-
---------------------------------------------------------------------------------
---  Locals
-
-local lastphase = 0
+mod.engageId = 1180
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
 		"stages",
 		96435, -- Tears of Blood
-		96958, -- Lash of Anguish
+		96423, -- Lash of Anguish
+		96457, -- Wave of Agony
 		96592, -- Ravage
 		96594, -- Camouflage
-		96457, -- Wave of Agony
+	}, {
+		[96435] = CL.stage:format(1),
+		[96592] = CL.stage:format(2),
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TearsOfBlood", 96435)
 	self:Log("SPELL_AURA_REMOVED", "TearsOfBloodRemoved", 96435)
-	self:Log("SPELL_AURA_APPLIED", "Phase2", 97380) -- Cave In
-	self:Log("SPELL_AURA_APPLIED", "LashOfAnguish", 96958)
-	self:Log("SPELL_AURA_REMOVED", "LashOfAnguishRemoved", 96958)
-	self:Log("SPELL_AURA_APPLIED", "Ravage", 96592)
-	self:Log("SPELL_AURA_APPLIED", "Camouflage", 96594)
+	self:Log("SPELL_AURA_APPLIED", "LashOfAnguish", 96423)
+	self:Log("SPELL_AURA_REMOVED", "LashOfAnguishRemoved", 96423)
 	self:Log("SPELL_CAST_SUCCESS", "WaveOfAgony", 96457)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 52059)
+	self:Log("SPELL_AURA_APPLIED", "Ravage", 96592)
+	self:Log("SPELL_AURA_APPLIED", "Camouflage", 96594)
+
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 function mod:OnEngage()
-	lastphase = 0
+	self:Message("stages", "Attention", "Info", CL.stage:format(1), false)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 function mod:TearsOfBlood(args)
-	self:Message(args.spellId, spellName, "Important", spellId, "Alert")
-	self:Bar(args.spellId, 6)
+	self:Message(args.spellId, "Important", "Alert")
+	self:CastBar(args.spellId, 6)
 end
 
 function mod:TearsOfBloodRemoved(args)
-	self:StopBar(args.spellId)
-end
-
-function mod:Phase2()
-	local t = GetTime()
-	if t - lastphase >= 5 then
-		self:Message("stages", "Attention", "Info", CL.stage:format(2))
-	end
-	lastphase = t
+	self:StopBar(CL.cast:format(args.spellName))
 end
 
 function mod:LashOfAnguish(args)
@@ -68,7 +63,12 @@ function mod:LashOfAnguish(args)
 end
 
 function mod:LashOfAnguishRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:WaveOfAgony(args)
+	self:Message(args.spellId, "Important")
+	self:CDBar(args.spellId, 32)
 end
 
 function mod:Ravage(args)
@@ -80,7 +80,17 @@ function mod:Camouflage(args)
 	self:Message(args.spellId, "Important", "Alert")
 end
 
-function mod:WaveOfAgony(args)
-	self:Message(args.spellId, "Important")
-	self:CDBar(args.spellId, 32)
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 55 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("stages", "Attention", nil, CL.soon:format(CL.stage:format(2)), false)
+	end
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+	if spellId == 97380 then -- Cave In
+		self:UnregisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", unit)
+		self:Message("stages", "Attention", "Info", CL.stage:format(2), false)
+ 	end
 end
