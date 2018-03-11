@@ -34,7 +34,7 @@ end
 
 function mod:OnEngage()
 	addsAlive = 0
-	self:CDBar(-5478, 15)
+	self:CDBar(-5478, 15) -- Summon Saplings
 end
 
 --------------------------------------------------------------------------------
