@@ -1,52 +1,50 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Jan'alai", 781, 188)
 if not mod then return end
 mod:RegisterEnableMob(23578)
+mod.engageId = 1191
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Localization
+--
 
 local L = mod:GetLocale()
 if L then
 	L.adds = "Amani'shi Hatchers"
-	L.adds_desc = "Warn for incoming Amani'shi Hatchers."
-	L.adds_all = "All remaining Amani'shi Hatchers soon!"
-
-	L.bomb = "Fire Bombs"
-	L.bomb_desc = "Show timers for Fire Bombs."
-	L.bomb_trigger = "I burn ya now!"
+	L.bombs = "Fire Bombs"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
 		{97497, "ICON"}, -- Flame Breath (this is the aura debuff spellid)
-		"adds",
-		"bomb",
+		-2625, -- Amani'shi Hatcher
+		-2622, -- Fire Bomb
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Bomb")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "FlameBreath", 43140) -- This is the actual cast spellid
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 23578)
+	self:Log("SPELL_CAST_SUCCESS", "FlameBreathSuccess", 43140)
 end
 
 function mod:OnEngage()
-	self:CDBar("adds", 12, L.adds, 89259)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:CDBar(-2625, 12, L.adds, 89259)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
 do
 	local function printTarget(self, player)
@@ -56,26 +54,25 @@ do
 	function mod:FlameBreath(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 	end
-end
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
-	if spellId == 43962 then
-		self:Message("adds", "Attention", "Long", CL.incoming:format(L.adds), 89259)
-		self:CDBar("adds", 92, L.adds, 89259)
+	function mod:FlameBreathSuccess()
+		self:PrimaryIcon(97497)
 	end
 end
 
-function mod:Bomb(_, msg)
-	if msg == L.bomb_trigger then
-		self:Message("bomb", "Urgent", "Info", CL.incoming:format(L.bomb), 42630)
-		self:Bar("bomb", 12, L.bomb, 42630)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 43962 then -- Summon Amani'shi Hatcher
+		self:Message(-2625, "Attention", "Long", CL.incoming:format(L.adds), 89259) -- 89259 provides "achievement_character_troll_male" icon
+		self:CDBar(-2625, 92, L.adds, 89259)
+	elseif spellId == 43098 then -- Teleport to Center (to cast Fire Bombs)
+		self:Message(-2622, "Urgent", "Info", CL.incoming:format(L.bombs), 42630)
+		self:Bar(-2622, 12, L.bombs)
 	end
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 37 then
+	if hp < 40 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message("adds", "Attention", nil, L.adds_all)
+		self:Message(-2625, "Attention", nil, CL.soon:format(self:SpellName(-2628))) -- Hatch All Eggs Soon
 	end
 end
