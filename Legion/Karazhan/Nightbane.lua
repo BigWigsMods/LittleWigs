@@ -209,10 +209,12 @@ end
 do
 	local prev = 0
 	function mod:CharredEarthDamage(args)
-		local t = GetTime()
-		if t-prev > 2 and self:Me(args.destGUID) then
-			prev = t
-			self:Message(args.spellId, "Personal", not igniteSoulOnMe and "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "Personal", not igniteSoulOnMe and "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

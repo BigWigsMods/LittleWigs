@@ -28,7 +28,7 @@ function mod:GetOptions()
 		227817, -- Holy Bulwark
 		227823, -- Holy Wrath
 		227800, -- Holy Shock
-		227809, -- Holy Bolt
+		{227809, "PROXIMITY"}, -- Holy Bolt
 		227508, -- Mass Repentance
 		{227789, "SAY", "FLASH"}, -- Sacred Ground
 	}
@@ -39,6 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HolyShock", 227800)
 	self:Log("SPELL_CAST_START", "HolyWrath", 227823)
 	self:Log("SPELL_CAST_START", "HolyBolt", 227809)
+	self:Log("SPELL_CAST_SUCCESS", "HolyBoltSuccess", 227809)
 	self:Log("SPELL_CAST_START", "MassRepentance", 227508)
 	self:Log("SPELL_CAST_SUCCESS", "MassRepentanceSuccess", 227508)
 	self:Log("SPELL_CAST_START", "SacredGround", 227789)
@@ -49,6 +50,7 @@ function mod:OnEngage()
 	sacredCount = 1
 	shockCount = 0
 	self:Bar(227809, 9) -- Holy Bolt
+	self:OpenProximity(227809, 6) -- Holy Bolt
 	self:Bar(227789, 11.1) -- Sacred Ground
 	self:Bar(227800, 16) -- Holy Shock
 	self:Bar(227508, 47.5) -- Mass Repentance
@@ -69,12 +71,12 @@ do
 
 	function mod:SacredGround(args)
 		self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
-		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID) -- No boss unit
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:OpenProximity(227809, 6) -- Holy Bolt
 	end
 end
 
 function mod:HolyShock(args)
-	
 	if shockCount == 4 then
 		self:CDBar(args.spellId, 28.8)
 		shockCount = 0
@@ -132,7 +134,17 @@ function mod:HolyBulwarkRemoved(args)
 	self:Message(227823, "Urgent", self:Interrupter(args.sourceGUID) and "Alert", CL.casting:format(self:SpellName(227823)))
 end
 
-function mod:HolyBolt(args)
-	self:CDBar(args.spellId, 12)
-	self:Message(args.spellId, "Important")
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(227809, player, "Important")
+	end
+
+	function mod:HolyBolt(args)
+		self:CDBar(args.spellId, 12)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+	end
+
+	function mod:HolyBoltSuccess(args)
+		self:CloseProximity(args.spellId) -- we will later reopen it after a Sacred Ground cast, she never casts more than 1 Holy Bolt in between 2 Sacred Ground casts.
+	end
 end

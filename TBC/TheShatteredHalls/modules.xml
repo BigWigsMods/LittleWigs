@@ -5,6 +5,6 @@
 <Script file="Porung.lua"/>
 <Script file="Omrogg.lua"/>
 <Script file="KargathBladefist.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
-

@@ -1,4 +1,4 @@
-﻿local L = BigWigs:NewBossLocale("Grimrail Enforcers", "zhCN")
+local L = BigWigs:NewBossLocale("Grimrail Enforcers", "zhCN")
 if not L then return end
 if L then
 	L.sphere_fail_message = "血球被移除 - 他们恢复血量 :("

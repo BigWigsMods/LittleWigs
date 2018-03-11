@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Echo of Jaina", 820, 285)
 if not mod then return end
 mod:RegisterEnableMob(54445)
+mod.engageId = 1883
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -29,7 +31,6 @@ end
 
 function mod:OnBossEnable()
 
-	self:Death("Win", 54445)
 end
 
 function mod:OnEngage()

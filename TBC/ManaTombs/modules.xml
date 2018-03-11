@@ -5,6 +5,7 @@
 <Script file="Tavarok.lua"/>
 <Script file="Yor.lua"/>
 <Script file="Shaffar.lua"/>
+<Script file="Trash.lua"/>
 
 </Ui>
 

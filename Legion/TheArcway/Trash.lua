@@ -108,10 +108,12 @@ end
 do
 	local prev = 0
 	function mod:PeriodicDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Warning", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Warning", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

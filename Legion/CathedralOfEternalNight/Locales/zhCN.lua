@@ -9,6 +9,10 @@ L = BigWigs:NewBossLocale("Domatrax", "zhCN")
 if L then
 	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择阿格拉玛之盾对话开始与多玛塔克斯战斗。"
+
+	L.missing_aegis = "你没站在盾内" -- Aegis is a short name for Aegis of Aggramar
+	L.aegis_healing = "盾：降低治疗"
+	L.aegis_damage = "盾：降低伤害"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "zhCN")
