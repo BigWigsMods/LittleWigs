@@ -2,11 +2,10 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Akil'zon.lua"/>
-<Script file="Daakara.lua"/>
-<Script file="Halazzi.lua"/>
-<Script file="Jan'alai.lua"/>
-<Script file="Malacrass.lua"/>
 <Script file="Nalorakk.lua"/>
+<Script file="Jan'alai.lua"/>
+<Script file="Halazzi.lua"/>
+<Script file="Malacrass.lua"/>
+<Script file="Daakara.lua"/>
 
 </Ui>
-
