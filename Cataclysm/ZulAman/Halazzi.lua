@@ -12,7 +12,7 @@ mod.engageId = 1192
 --  Locals
 --
 
-local spiritPhases = 0
+local spiritPhasesLeft = 2
 local nextPhaseWarning = 65
 
 -------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	spiritPhases = 0
+	spiritPhasesLeft = 2
 	nextPhaseWarning = 65 -- 60% and 30%
 end
 
@@ -78,8 +78,8 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	-- All spells used are called "Halazzi Transform"
 	if spellId == 43143 then -- Spirit Phase
-		spiritPhases = spiritPhases + 1
-		self:Message("stages", "Positive", nil, CL.percent:format(30 * (3 - spiritPhases), L.spirit_message), "ability_hunter_pet_cat")
+		self:Message("stages", "Positive", nil, CL.percent:format(30 * spiritPhasesLeft, L.spirit_message), "ability_hunter_pet_cat")
+		spiritPhasesLeft = spiritPhasesLeft - 1
 	elseif spellId == 43145 or spellId == 43271 then -- Normal Phase
 		self:Message("stages", "Positive", nil, L.normal_message, "achievement_character_troll_male")
 	end
