@@ -132,7 +132,9 @@ function mod:BrandoftheLegionApplied(args)
 end
 
 function mod:DemonicAscension(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
+		self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	end
 end
 
 function mod:DemonicAscensionApplied(args)
