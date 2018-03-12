@@ -16,14 +16,20 @@ function mod:GetOptions()
 	return {
 		43383, -- Spirit Bolts
 		43501, -- Siphon Soul
-		43548, -- Healing Wave (used for all healing spells)
+		43421, -- Lifebloom
+		43548, -- Healing Wave
+		43451, -- Holy Light
+		43431, -- Flash Heal
+	}, {
+		[43383] = "general",
+		[43421] = 43501, -- Siphon Soul
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SpiritBolts", 43383)
 	self:Log("SPELL_AURA_APPLIED", "SoulSiphon", 43501)
-	self:Log("SPELL_CAST_START", "Heal", 43548, 43451, 43431) -- Healing Wave, Holy Light, Flash Light
+	self:Log("SPELL_CAST_START", "HealingCasts", 43548, 43451, 43431) -- Healing Wave, Holy Light, Flash Heal
 	self:Log("SPELL_AURA_APPLIED", "Lifebloom", 43421)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
@@ -48,10 +54,10 @@ function mod:SoulSiphon(args)
 	self:CDBar(args.spellId, 60)
 end
 
-function mod:Heal(args)
-	self:Message(43548, "Urgent", "Alarm", CL.casting:format(args.spellName), args.spellId)
+function mod:HealingCasts(args)
+	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
 end
 
 function mod:Lifebloom(args)
-	self:TargetMessage(43548, args.destName, "Urgent", "Alarm", args.spellId, nil, self:Dispeller("magic", true))
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Dispeller("magic", true))
 end
