@@ -40,6 +40,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Surge", 42402)
 	self:Log("SPELL_AURA_REFRESH", "Surge", 42402)
 	self:Log("SPELL_AURA_REMOVED", "SurgeRemoved", 42402)
+	self:Log("SPELL_DAMAGE", "SurgeDamage", 42402) -- for self:CDBar(). There are no SPELL_CAST_* / USCS events, SPELL_AURA_* ones can be immuned
+	self:Log("SPELL_MISSED", "SurgeDamage", 42402)
 	self:Log("SPELL_AURA_APPLIED", "DeafeningRoar", 42398)
 end
 
@@ -68,11 +70,14 @@ end
 function mod:Surge(args)
 	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 20, args.destName)
-	self:CDBar(args.spellId, 8) -- not optimal, but there are no SPELL_CAST events; and checking out boss emotes is locale-dependent
 end
 
 function mod:SurgeRemoved(args)
 	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:SurgeDamage(args)
+	self:CDBar(args.spellId, 8)
 end
 
 do
