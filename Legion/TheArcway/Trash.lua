@@ -143,7 +143,7 @@ end
 
 function mod:DemonicAscensionDispelled(args)
 	if args.extraSpellId == 226285 then
-		self:Message(args.extraSpellId, "Positive", "Info", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:Message(226285, "Positive", "Info", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 	end
 end
 
