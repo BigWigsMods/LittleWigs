@@ -54,7 +54,7 @@ do
 
 	function mod:EchoingRoar(args)
 		if self:Me(args.destGUID) and not self:Healer() then
-			self:TargetMessage(spellId, args.destName, "Personal", "Warning")
+			self:TargetMessage(args.spellId, args.destName, "Personal", "Warning")
 		elseif self:Healer() then
 			playerList[#playerList+1] = args.destName
 			if #playerList == 1 then
