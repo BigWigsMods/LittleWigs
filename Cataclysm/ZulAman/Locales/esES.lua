@@ -13,12 +13,6 @@ if L then
 	--L.normal_message = "Normal Phase"
 end
 
-L = BigWigs:NewBossLocale("Jan'alai", "esES") or BigWigs:NewBossLocale("Jan'alai", "esMX")
-if L then
-	--L.adds = "Amani'shi Hatchers"
-	--L.bombs = "Fire Bombs"
-end
-
 L = BigWigs:NewBossLocale("Nalorakk", "esES") or BigWigs:NewBossLocale("Nalorakk", "esMX")
 if L then
 	--L.troll_message = "Troll Form"

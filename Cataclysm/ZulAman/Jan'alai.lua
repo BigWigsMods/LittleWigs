@@ -9,16 +9,6 @@ mod.engageId = 1191
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.adds = "Amani'shi Hatchers"
-	L.bombs = "Fire Bombs"
-end
-
--------------------------------------------------------------------------------
 --  Initialization
 --
 
@@ -39,7 +29,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(-2625, 12, L.adds, "achievement_character_troll_male") -- Amani'shi Hatchers
+	self:CDBar(-2625, 12, nil, "achievement_character_troll_male") -- Amani'shi Hatchers
 end
 
 -------------------------------------------------------------------------------
@@ -61,11 +51,11 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 43962 then -- Summon Amani'shi Hatcher
-		self:Message(-2625, "Attention", "Long", CL.incoming:format(L.adds), "achievement_character_troll_male")
-		self:CDBar(-2625, 92, L.adds, "achievement_character_troll_male")
+		self:Message(-2625, "Attention", "Long", CL.incoming:format(self:SpellName(-2625)), "achievement_character_troll_male")
+		self:CDBar(-2625, 92, nil, "achievement_character_troll_male")
 	elseif spellId == 43098 then -- Teleport to Center (to cast Fire Bombs)
-		self:Message(-2622, "Urgent", "Info", CL.incoming:format(L.bombs))
-		self:Bar(-2622, 12, L.bombs)
+		self:Message(-2622, "Urgent", "Info", CL.incoming:format(self:SpellName(-2622)))
+		self:Bar(-2622, 12)
 	end
 end
 
