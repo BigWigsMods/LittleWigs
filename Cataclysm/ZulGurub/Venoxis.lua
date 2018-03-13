@@ -100,6 +100,6 @@ function mod:BlessingOfTheSnakeGod()
 end
 
 function mod:BlessingOfTheSnakeGodRemoved()
-	self:Message(96653, "Positive", "Info", self:SpellName(96653)) -- Venom Withdrawal
+	self:Message(96653, "Positive", "Info") -- Venom Withdrawal
 	self:Bar(96653, 10)
 end
