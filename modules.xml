@@ -79,7 +79,8 @@
 <Include file="Cataclysm\VortexPinnacle\modules.xml"/>
 <Include file="Cataclysm\WellOfEternity\modules.xml"/>
 <Include file="Cataclysm\WellOfEternity\locales.xml"/>
-<!--<Include file="Cataclysm\ZulAman\modules.xml"/>-->
+<Include file="Cataclysm\ZulAman\modules.xml"/>
+<Include file="Cataclysm\ZulAman\locales.xml"/>
 <!--<Include file="Cataclysm\ZulGurub\modules.xml"/>-->
 
 

@@ -54,14 +54,13 @@ end
 -- Event Handlers
 --
 
---[[ XXX wowNext/6.2
-function mod:Fixate(args)
-	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
-		self:Flash(args.spellId)
-	end
-end
-]]
+-- XXX wowNext/6.2
+--function mod:Fixate(args)
+--	if self:Me(args.destGUID) then
+--		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+--		self:Flash(args.spellId)
+--	end
+--end
 
 function mod:RAID_BOSS_WHISPER()
 	-- RAID_BOSS_WHISPER#|TInterface\\Icons\\ability_fixated_state_red:20|tA Solar Flare has |cFFFF0000|Hspell:176544|h[Fixated]|h|r on you! If it reaches you it will |cFFFF0000|Hspell:153828|h[Explode]|h|r!#Solar Flare#1#true
