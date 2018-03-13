@@ -79,8 +79,8 @@ function mod:WordOfShame(args)
 	self:TargetMessage(args.spellId, args.destName, "Important")
 end
 
---[[function mod:ShieldOfThePerfidious(args)
-	if self.Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal")
-	end
-end]]
+--function mod:ShieldOfThePerfidious(args)
+--	if self.Me(args.destGUID) then
+--		self:TargetMessage(args.spellId, args.destName, "Personal")
+--	end
+--end
