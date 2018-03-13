@@ -45,8 +45,7 @@ end
 --
 
 function mod:ZanziliFire(args)
-	-- if self:MobId(args.sourceGUID) ~= 52053 then return end -- DKs could steal this ability
-	self:Message(args.spellId, "Attention", "Info")
+	self:Message(args.spellId, "Attention", "Info", CL.casting:format(args.spellName))
 end
 
 function mod:BlueResurrectionElixir(args)
