@@ -1,20 +1,20 @@
 local L = BigWigs:NewBossLocale("Daakara", "zhCN")
 if not L then return end
 if L then
-	--L[42594] = "Bear Form" -- short form for "Essence of the Bear"
-	--L[42607] = "Lynx Form"
-	--L[42606] = "Eagle Form"
-	--L[42608] = "Dragonhawk Form"
+	L[42594] = "野熊之形" -- short form for "Essence of the Bear"
+	L[42607] = "山猫之形"
+	L[42606] = "雄鹰之形"
+	L[42608] = "龙鹰之形"
 end
 
 L = BigWigs:NewBossLocale("Halazzi", "zhCN")
 if L then
-	--L.spirit_message = "Spirit Phase"
-	--L.normal_message = "Normal Phase"
+	L.spirit_message = "灵魂阶段"
+	L.normal_message = "一般阶段"
 end
 
 L = BigWigs:NewBossLocale("Nalorakk", "zhCN")
 if L then
-	--L.troll_message = "Troll Form"
-	--L.troll_trigger = "Make way for da Nalorakk!"
+	L.troll_message = "巨魔之形"
+	L.troll_trigger = "纳洛拉克，变形，出发！"
 end
