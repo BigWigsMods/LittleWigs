@@ -16,5 +16,5 @@ end
 L = BigWigs:NewBossLocale("Nalorakk", "zhCN")
 if L then
 	L.troll_message = "巨魔之形"
-	L.troll_trigger = "纳洛拉克"
+	L.troll_trigger = "纳洛拉克，变形，出发！"
 end
