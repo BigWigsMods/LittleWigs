@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Raest", nil, nil, 1684)
+local mod, CL = BigWigs:NewBoss("Raest", 1684)
 if not mod then return end
 mod:RegisterEnableMob(116409, 116410) -- Raest Magespear, Karam Magespear
 mod.otherMenu = 1716 -- Broken Shore Mage Tower
