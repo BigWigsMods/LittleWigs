@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Keli'dan the Breaker", 725, 557)
+local mod, CL = BigWigs:NewBoss("Keli'dan the Breaker", 542, 557)
 if not mod then return end
 mod:RegisterEnableMob(17377)
 -- mod.engageId = 1923 -- no boss frames, no ENCOUNTER_END on a wipe

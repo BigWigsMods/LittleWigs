@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ormorok the Tree-Shaper", 520, 620)
+local mod, CL = BigWigs:NewBoss("Ormorok the Tree-Shaper", 576, 620)
 if not mod then return end
 mod:RegisterEnableMob(26794)
 

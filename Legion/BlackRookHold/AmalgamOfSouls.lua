@@ -6,7 +6,7 @@
 --Tested everything except post phase 2 timers and soulgorge stacks warnings
 --All timers were correct on hc and normal runs
 --Test if Soul Echoes say works
-local mod, CL = BigWigs:NewBoss("Amalgam of Souls", 1081, 1518)
+local mod, CL = BigWigs:NewBoss("Amalgam of Souls", 1501, 1518)
 if not mod then return end
 mod:RegisterEnableMob(98542)
 

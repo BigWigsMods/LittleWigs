@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nethermancer Sepethrea", 730, 564)
+local mod, CL = BigWigs:NewBoss("Nethermancer Sepethrea", 554, 564)
 if not mod then return end
 mod:RegisterEnableMob(19221)
 -- mod.engageId = 1930 -- no boss frames

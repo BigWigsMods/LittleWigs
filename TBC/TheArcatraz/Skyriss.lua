@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Harbinger Skyriss", 731, 551)
+local mod, CL = BigWigs:NewBoss("Harbinger Skyriss", 552, 551)
 if not mod then return end
 mod:RegisterEnableMob(20912, 20904) -- Harbinger Skyriss, Warden Mellichar
 mod.engageId = 1913

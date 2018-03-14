@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Zanzil", 793, 184)
+local mod, CL = BigWigs:NewBoss("Zanzil", 859, 184)
 if not mod then return end
 mod:RegisterEnableMob(52053)
 --mod.engageId = 1181 -- no boss frames, also he consistently fires ENCOUNTER_END when his Graveyard Gas ends, without despawning

@@ -8,7 +8,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("L'ura", 1178, 1982)
+local mod, CL = BigWigs:NewBoss("L'ura", 1753, 1982)
 if not mod then return end
 mod:RegisterEnableMob(124729) -- L'ura
 mod.engageId = 2068

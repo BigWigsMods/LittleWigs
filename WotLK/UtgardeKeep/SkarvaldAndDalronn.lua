@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Skarvald & Dalronn", 523, 639)
+local mod, CL = BigWigs:NewBoss("Skarvald & Dalronn", 574, 639)
 if not mod then return end
 mod:RegisterEnableMob(24200, 24201) -- Skarvald the Constructor, Dalronn the Controller
 mod.engageId = 2024

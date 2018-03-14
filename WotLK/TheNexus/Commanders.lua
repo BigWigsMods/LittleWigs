@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Commander Kolurg/Stoutbeard", 520, UnitFactionGroup("player") == "Horde" and 617 or 833)
+local mod, CL = BigWigs:NewBoss("Commander Kolurg/Stoutbeard", 576, UnitFactionGroup("player") == "Horde" and 617 or 833)
 if not mod then return end
 mod:RegisterEnableMob(26798, 26796) -- Commander Kolurg, Commander Stoutbeard
 

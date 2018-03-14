@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Grand Champions", 542, 634)
+local mod, CL = BigWigs:NewBoss("Grand Champions", 650, 634)
 if not mod then return end
 mod:RegisterEnableMob(
 	-- Horde NPCs

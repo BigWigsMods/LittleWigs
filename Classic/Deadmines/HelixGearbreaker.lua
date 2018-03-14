@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Helix Gearbreaker", 756, 90)
+local mod, CL = BigWigs:NewBoss("Helix Gearbreaker", 36, 90)
 if not mod then return end
 mod:RegisterEnableMob(47296, 47297) -- Helix Gearbreaker, Lumbering Oaf
 

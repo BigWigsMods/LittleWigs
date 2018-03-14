@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Darkweaver Syth", 723, 541)
+local mod, CL = BigWigs:NewBoss("Darkweaver Syth", 556, 541)
 if not mod then return end
 mod:RegisterEnableMob(18472)
 mod.engageId = 1903

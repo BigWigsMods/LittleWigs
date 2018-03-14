@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sjonnir The Ironshaper", 526, 607)
+local mod, CL = BigWigs:NewBoss("Sjonnir The Ironshaper", 599, 607)
 if not mod then return end
 mod:RegisterEnableMob(27978)
 mod.engageId = 1998

@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sadana Bloodfury", 969, 1139)
+local mod, CL = BigWigs:NewBoss("Sadana Bloodfury", 1176, 1139)
 if not mod then return end
 mod:RegisterEnableMob(75509)
 --BOSS_KILL#1677#Sadana Bloodfury

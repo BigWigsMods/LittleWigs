@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Bloodlord Mandokir", 793, 176)
+local mod, CL = BigWigs:NewBoss("Bloodlord Mandokir", 859, 176)
 if not mod then return end
 mod:RegisterEnableMob(52151, 52157) -- Bloodlord Mandokir, Ohgan
 mod.engageId = 1179

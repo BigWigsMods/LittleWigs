@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Opera Hall: Beautiful Beast", 1115, 1827)
+local mod, CL = BigWigs:NewBoss("Opera Hall: Beautiful Beast", 1651, 1827)
 if not mod then return end
 mod:RegisterEnableMob(
 	114328, -- Coogleston

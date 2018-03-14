@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ner'zhul", 969, 1160)
+local mod, CL = BigWigs:NewBoss("Ner'zhul", 1176, 1160)
 if not mod then return end
 mod:RegisterEnableMob(76407)
 --BOSS_KILL#1682#Ner'zhul

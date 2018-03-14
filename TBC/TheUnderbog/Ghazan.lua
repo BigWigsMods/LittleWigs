@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ghaz'an", 726, 577)
+local mod, CL = BigWigs:NewBoss("Ghaz'an", 546, 577)
 if not mod then return end
 mod:RegisterEnableMob(18105)
 -- mod.engageId = 1945 -- sometimes doesn't fire ENCOUNTER_END on a wipe

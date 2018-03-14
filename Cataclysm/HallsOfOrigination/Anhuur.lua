@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Temple Guardian Anhuur", 759)
+local mod = BigWigs:NewBoss("Temple Guardian Anhuur", 644)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39425)

@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ambassador Hellmaw", 724, 544)
+local mod, CL = BigWigs:NewBoss("Ambassador Hellmaw", 555, 544)
 if not mod then return end
 mod:RegisterEnableMob(18731)
 -- mod.engageId = 1908 -- no boss frames

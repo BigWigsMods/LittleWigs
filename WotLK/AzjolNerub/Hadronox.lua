@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Hadronox", 533, 586)
+local mod, CL = BigWigs:NewBoss("Hadronox", 601, 586)
 if not mod then return end
 mod:RegisterEnableMob(28921)
 -- mod.engageId = 1972 -- ENCOUNTER_START fires when you enter the area, not when you actually pull the boss. Also it doesn't get assigned a boss1 unit.

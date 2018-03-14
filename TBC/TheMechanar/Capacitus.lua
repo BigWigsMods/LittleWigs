@@ -5,7 +5,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mechano-Lord Capacitus", 730, 563)
+local mod, CL = BigWigs:NewBoss("Mechano-Lord Capacitus", 554, 563)
 if not mod then return end
 mod:RegisterEnableMob(19219)
 -- mod.engageId = 1932 -- no boss frames, only fires ENCOUNTER_* events once per instance reset (if you wipe - tough luck)

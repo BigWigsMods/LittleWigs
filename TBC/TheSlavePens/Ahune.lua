@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Lord Ahune", 728)
+local mod = BigWigs:NewBoss("Lord Ahune", 547)
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"

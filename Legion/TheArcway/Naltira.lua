@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Naltira", 1079, 1500)
+local mod, CL = BigWigs:NewBoss("Naltira", 1516, 1500)
 if not mod then return end
 mod:RegisterEnableMob(98207, 98759) -- Naltira, Vicious Manafang
 mod.engageId = 1826

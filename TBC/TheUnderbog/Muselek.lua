@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Swamplord Musel'ek", 726, 578)
+local mod, CL = BigWigs:NewBoss("Swamplord Musel'ek", 546, 578)
 if not mod then return end
 mod:RegisterEnableMob(17826, 17827) -- Swamplord Musel'ek, Claw <Swamplord Musel'ek's Pet>
 mod.engageId = 1947

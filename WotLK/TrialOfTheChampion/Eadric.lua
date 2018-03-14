@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Eadric the Pure", 542, 635)
+local mod, CL = BigWigs:NewBoss("Eadric the Pure", 650, 635)
 if not mod then return end
 mod:RegisterEnableMob(35119)
 -- mod.engageId = 2023 -- doesn't fire ENCOUNTER_END on a wipe, also shares it with Paletress

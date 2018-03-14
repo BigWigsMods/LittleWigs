@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Karsh Steelbender", 753)
+local mod = BigWigs:NewBoss("Karsh Steelbender", 645)
 if not mod then return end
 mod.partyContent = true
 mod:RegisterEnableMob(39698)

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("The Shattered Halls Trash", 710)
+local mod, CL = BigWigs:NewBoss("The Shattered Halls Trash", 540)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(

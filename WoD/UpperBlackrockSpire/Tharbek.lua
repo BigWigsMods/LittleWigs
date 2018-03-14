@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Commander Tharbek", 995, 1228)
+local mod, CL = BigWigs:NewBoss("Commander Tharbek", 1358, 1228)
 if not mod then return end
 mod:RegisterEnableMob(79912, 80098) -- Commander Tharbek, Ironbarb Skyreaver
 --BOSS_KILL#1759#Commander Tharbek
