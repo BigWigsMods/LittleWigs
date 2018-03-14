@@ -15,6 +15,7 @@
 <Include file="TBC\MagistersTerrace\locales.xml"/>
 <Include file="TBC\ManaTombs\modules.xml"/>
 <Include file="TBC\ManaTombs\locales.xml"/>
+<!--<Include file="TBC\OldHillsbradFoothills\modules.xml"/>-->
 <Include file="TBC\SethekkHalls\modules.xml"/>
 <Include file="TBC\ShadowLabyrinth\modules.xml"/>
 <Include file="TBC\TheArcatraz\modules.xml"/>
