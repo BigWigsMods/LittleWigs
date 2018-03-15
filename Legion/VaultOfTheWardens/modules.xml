@@ -8,4 +8,6 @@
 <Script file="CordanaFelsong.lua"/>
 <Script file="Trash.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

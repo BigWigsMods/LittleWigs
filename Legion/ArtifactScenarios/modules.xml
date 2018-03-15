@@ -7,4 +7,6 @@
 <Script file="Xylem.lua"/>
 <Script file="LordErdrisThorn.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
