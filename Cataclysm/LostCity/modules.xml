@@ -6,4 +6,6 @@
 <Script file="Barim.lua"/>
 <Script file="Siamat.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
