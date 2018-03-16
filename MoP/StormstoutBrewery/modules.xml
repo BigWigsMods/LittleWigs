@@ -5,5 +5,7 @@
 <Script file="Hoptallus.lua"/>
 <Script file="YanZhu.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

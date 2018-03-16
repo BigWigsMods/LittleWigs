@@ -3,5 +3,7 @@
 
 <Script file="WiseMari.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

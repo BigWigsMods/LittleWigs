@@ -6,5 +6,7 @@
 <Script file="ShaOfViolence.lua"/>
 <Script file="TaranZhu.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 
