@@ -7,5 +7,7 @@
 <Script file="ArchmageSol.lua"/>
 <Script file="Yalnu.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 
