@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Anhuur.lua"/>
+<!--<Script file="Ptah.lua"/>-->
 <Script file="Anraphet.lua"/>
 <Script file="Isiset.lua"/>
 <Script file="Ammunae.lua"/>
