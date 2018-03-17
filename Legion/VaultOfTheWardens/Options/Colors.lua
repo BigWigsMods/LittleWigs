@@ -3,7 +3,7 @@ BigWigs:AddColors("Tirathon Saltheril", {
 	[190830] = "Attention",
 	[191823] = "Urgent",
 	[191853] = "Personal",
-	[191941] = {"Important","Urgent","Personal"},
+	[191941] = {"Important","Personal","Urgent"},
 	[192504] = "Neutral",
 	[202740] = "Neutral",
 })
@@ -15,7 +15,7 @@ BigWigs:AddColors("Inquisitor Tormentorum", {
 	[200904] = {"Attention","Important","Personal"},
 	[201488] = "Urgent",
 	[202455] = "Positive",
-	[203685] = {"Urgent","Personal"},
+	[203685] = {"Personal","Urgent"},
 	[212564] = "Urgent",
 })
 
@@ -37,9 +37,9 @@ BigWigs:AddColors("Glazer", {
 BigWigs:AddColors("Cordana Felsong", {
 	[197333] = "Important",
 	[197422] = {"Important","Neutral"},
-	[197796] = {"Urgent","Positive"},
-	[204481] = {"Positive","Neutral"},
-	[206567] = {"Urgent","Personal","Neutral","Attention"},
+	[197796] = {"Positive","Urgent"},
+	[204481] = {"Neutral","Positive"},
+	[206567] = {"Attention","Neutral","Personal","Urgent"},
 	[213583] = "Attention",
 	["kick_combo"] = "Attention",
 })
@@ -47,13 +47,13 @@ BigWigs:AddColors("Cordana Felsong", {
 BigWigs:AddColors("Vault of the Wardens Trash", {
 	[191527] = "Important",
 	[191735] = "Important",
-	[193069] = {"Attention","Urgent","Personal"},
-	[193164] = {"Urgent","Personal"},
+	[193069] = {"Attention","Personal","Urgent"},
+	[193164] = {"Personal","Urgent"},
 	[194071] = "Personal",
 	[196249] = "Urgent",
 	[196796] = "Urgent",
 	[196799] = "Attention",
 	[202607] = "Personal",
-	[202615] = {"Urgent","Personal"},
+	[202615] = {"Personal","Urgent"},
 	[210202] = "Personal",
 })

@@ -5,7 +5,7 @@ BigWigs:AddColors("Houndmaster Braun", {
 })
 
 BigWigs:AddColors("Armsmaster Harlan", {
-	["blades"] = {"Urgent","Attention"},
+	["blades"] = {"Attention","Urgent"},
 	["cleave"] = "Attention",
 	["help"] = "Urgent",
 })

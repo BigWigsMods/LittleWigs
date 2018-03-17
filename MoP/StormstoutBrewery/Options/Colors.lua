@@ -14,7 +14,7 @@ BigWigs:AddColors("Hoptallus", {
 BigWigs:AddColors("Yan-Zhu the Uncasked", {
 	[-5658] = "Important",
 	[106546] = {"Attention","Personal"},
-	[106563] = {"Urgent","Positive"},
+	[106563] = {"Positive","Urgent"},
 	[106851] = {"Attention","Personal"},
 	[114451] = "Urgent",
 	[114548] = {"Important","Personal"},

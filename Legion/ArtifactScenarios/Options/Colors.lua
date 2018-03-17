@@ -27,7 +27,7 @@ BigWigs:AddColors("Kruul", {
 BigWigs:AddColors("Raest", {
 	[202081] = "Important",
 	[235308] = "Positive",
-	[235578] = {"Urgent","Personal"},
+	[235578] = {"Personal","Urgent"},
 	["handFromBeyond"] = "Neutral",
 	["rune"] = "Attention",
 	["thing"] = "Important",

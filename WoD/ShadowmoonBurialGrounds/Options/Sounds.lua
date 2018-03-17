@@ -11,7 +11,7 @@ BigWigs:AddSounds("Nhallish", {
 })
 
 BigWigs:AddSounds("Bonemaw", {
-	[153804] = {"Warning","Alarm"},
+	[153804] = {"Alarm","Warning"},
 	[154175] = "Alert",
 })
 

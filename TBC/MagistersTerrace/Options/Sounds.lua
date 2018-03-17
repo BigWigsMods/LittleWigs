@@ -10,6 +10,6 @@ BigWigs:AddSounds("Kael'thas Sunstrider ", {
 
 BigWigs:AddSounds("Magisters' Terrace Trash", {
 	[44475] = "Alert",
-	[44644] = {"Warning","Alert"},
+	[44644] = {"Alert","Warning"},
 	[44765] = "Alarm",
 })

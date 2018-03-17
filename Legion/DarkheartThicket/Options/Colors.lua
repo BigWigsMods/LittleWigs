@@ -7,7 +7,7 @@ BigWigs:AddColors("Archdruid Glaidalis", {
 
 BigWigs:AddColors("Oakheart", {
 	[204574] = "Attention",
-	[204646] = {"Urgent","Personal"},
+	[204646] = {"Personal","Urgent"},
 	[204666] = "Important",
 	[204667] = "Important",
 })
@@ -20,7 +20,7 @@ BigWigs:AddColors("Dresaron", {
 
 BigWigs:AddColors("Shade of Xavius", {
 	[200050] = "Attention",
-	[200185] = {"Urgent","Personal"},
+	[200185] = {"Personal","Urgent"},
 	[200238] = {"Important","Personal"},
 	[200289] = {"Attention","Personal"},
 })

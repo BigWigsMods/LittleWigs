@@ -20,7 +20,7 @@ BigWigs:AddColors("Smashspite", {
 BigWigs:AddColors("Kurtalos Ravencrest", {
 	[198641] = "Attention",
 	[198820] = "Attention",
-	[202019] = {"Important","Attention"},
+	[202019] = {"Attention","Important"},
 })
 
 BigWigs:AddColors("Black Rook Hold Trash", {
@@ -29,7 +29,7 @@ BigWigs:AddColors("Black Rook Hold Trash", {
 	[200261] = "Urgent",
 	[200291] = "Important",
 	[200343] = "Attention",
-	[203163] = {"Urgent","Personal"},
+	[203163] = {"Personal","Urgent"},
 	[214003] = "Important",
 	[225573] = "Attention",
 	[227913] = "Attention",

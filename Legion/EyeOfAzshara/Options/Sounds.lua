@@ -7,7 +7,7 @@ BigWigs:AddSounds("Warlord Parjesh", {
 	[192131] = "Alarm",
 	[196563] = "Info",
 	[197064] = "Alert",
-	[197502] = {"Warning","Long"},
+	[197502] = {"Long","Warning"},
 })
 
 BigWigs:AddSounds("Lady Hatecoil", {
@@ -40,7 +40,7 @@ BigWigs:AddSounds("Wrath of Azshara", {
 BigWigs:AddSounds("Eye of Azshara Trash", {
 	[195046] = "Alarm",
 	[195109] = "Alarm",
-	[195129] = {"Warning","Info"},
+	[195129] = {"Info","Warning"},
 	[195284] = "Long",
 	[196027] = "Alarm",
 	[196127] = "Long",

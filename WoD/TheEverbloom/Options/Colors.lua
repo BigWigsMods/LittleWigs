@@ -19,7 +19,7 @@ BigWigs:AddColors("Xeri'tac", {
 	[169233] = "Important",
 	[169248] = "Urgent",
 	[173080] = "Personal",
-	["stages"] = {"Neutral","Important"},
+	["stages"] = {"Important","Neutral"},
 })
 
 BigWigs:AddColors("Archmage Sol", {

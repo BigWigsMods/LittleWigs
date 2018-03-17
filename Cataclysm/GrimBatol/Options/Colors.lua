@@ -12,7 +12,7 @@ BigWigs:AddColors("Forgemaster Throngus", {
 	[74981] = "Important",
 	[74987] = "Personal",
 	[75007] = "Important",
-	[75056] = {"Urgent","Personal"},
+	[75056] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Drahga Shadowburner", {

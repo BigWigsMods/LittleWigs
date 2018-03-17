@@ -22,13 +22,13 @@ BigWigs:AddColors("Opera Hall: Westfall Story", {
 })
 
 BigWigs:AddColors("Opera Hall: Beautiful Beast", {
-	[227985] = {"Urgent","Personal"},
+	[227985] = {"Personal","Urgent"},
 	[227987] = "Attention",
 	[228019] = "Important",
 	[228025] = "Important",
-	[228221] = {"Urgent","Personal"},
+	[228221] = {"Personal","Urgent"},
 	[232153] = "Urgent",
-	["stages"] = {"Positive","Neutral"},
+	["stages"] = {"Neutral","Positive"},
 })
 
 BigWigs:AddColors("Attumen the Huntsman", {
@@ -41,27 +41,27 @@ BigWigs:AddColors("Attumen the Huntsman", {
 })
 
 BigWigs:AddColors("Moroes", {
-	[227463] = {"Urgent","Personal"},
+	[227463] = {"Personal","Urgent"},
 	[227545] = "Urgent",
 	[227578] = "Important",
 	[227616] = "Important",
 	[227646] = {"Attention","Personal"},
 	[227672] = "Important",
 	[227736] = "Attention",
-	[227742] = {"Urgent","Personal"},
-	[227851] = {"Urgent","Personal"},
+	[227742] = {"Personal","Urgent"},
+	[227851] = {"Personal","Urgent"},
 	[227872] = "Neutral",
 })
 
 BigWigs:AddColors("The Curator", {
 	[227254] = "Positive",
 	[227267] = "Attention",
-	[227279] = {"Urgent","Personal"},
+	[227279] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Shade of Medivh", {
-	[227592] = {"Urgent","Personal"},
-	[227615] = {"Urgent","Important"},
+	[227592] = {"Personal","Urgent"},
+	[227615] = {"Important","Urgent"},
 	[227628] = "Attention",
 	[227779] = {"Attention","Personal"},
 	[228269] = {"Attention","Important","Personal"},
@@ -71,7 +71,7 @@ BigWigs:AddColors("Shade of Medivh", {
 
 BigWigs:AddColors("Mana Devourer", {
 	[227297] = "Urgent",
-	[227502] = {"Positive","Personal"},
+	[227502] = {"Personal","Positive"},
 	[227523] = {"Attention","Personal"},
 	[227618] = "Important",
 })
@@ -80,7 +80,7 @@ BigWigs:AddColors("Viz'aduum the Watcher", {
 	[229083] = {"Attention","Important","Personal"},
 	[229151] = "Attention",
 	[229159] = {"Important","Personal"},
-	[229248] = {"Urgent","Personal"},
+	[229248] = {"Personal","Urgent"},
 	[229610] = "Neutral",
 	[230084] = "Urgent",
 })
@@ -90,10 +90,10 @@ BigWigs:AddColors("Nightbane", {
 	[228790] = {"Important","Positive"},
 	[228792] = {"Important","Positive"},
 	[228796] = {"Important","Personal"},
-	[228808] = {"Urgent","Personal"},
-	[228829] = {"Urgent","Personal"},
+	[228808] = {"Personal","Urgent"},
+	[228829] = {"Personal","Urgent"},
 	[228834] = "Important",
-	[228835] = {"Urgent","Personal"},
+	[228835] = {"Personal","Urgent"},
 	[228837] = "Attention",
 	[229307] = "Attention",
 	["stages"] = "Neutral",

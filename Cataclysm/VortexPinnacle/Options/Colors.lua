@@ -6,7 +6,7 @@ BigWigs:AddColors("Grand Vizier Ertan", {
 BigWigs:AddColors("Altairus", {
 	[88282] = "Personal",
 	[88286] = "Personal",
-	[88308] = {"Urgent","Personal"},
+	[88308] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Asaad", {

@@ -5,11 +5,11 @@ BigWigs:AddColors("Selin Fireheart", {
 
 BigWigs:AddColors("Vexallus", {
 	[-5085] = "Important",
-	[44335] = {"Urgent","Personal"},
+	[44335] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Priestess Delrissa", {
-	[13323] = {"Urgent","Personal"},
+	[13323] = {"Personal","Urgent"},
 	[27621] = "Attention",
 	[44141] = {"Important","Personal"},
 	[44178] = "Important",
@@ -26,7 +26,7 @@ BigWigs:AddColors("Kael'thas Sunstrider ", {
 })
 
 BigWigs:AddColors("Magisters' Terrace Trash", {
-	[44475] = {"Urgent","Personal"},
+	[44475] = {"Personal","Urgent"},
 	[44644] = "Urgent",
 	[44765] = {"Attention","Personal"},
 })

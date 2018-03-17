@@ -12,7 +12,7 @@ BigWigs:AddSounds("Inquisitor Tormentorum", {
 	[196208] = "Warning",
 	[199918] = "Alert",
 	[200898] = "Info",
-	[200904] = {"Info","Warning","Long"},
+	[200904] = {"Info","Long","Warning"},
 	[201488] = "Warning",
 	[202455] = "Info",
 	[203685] = {"Alarm","Warning"},
@@ -47,7 +47,7 @@ BigWigs:AddSounds("Cordana Felsong", {
 BigWigs:AddSounds("Vault of the Wardens Trash", {
 	[191527] = "Alert",
 	[191735] = "Alert",
-	[193069] = {"Info","Alarm"},
+	[193069] = {"Alarm","Info"},
 	[193164] = "Alarm",
 	[194071] = "Alert",
 	[196249] = "Alarm",

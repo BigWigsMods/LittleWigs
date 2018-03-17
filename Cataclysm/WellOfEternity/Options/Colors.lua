@@ -7,7 +7,7 @@ BigWigs:AddColors("Peroth'arn", {
 })
 
 BigWigs:AddColors("Queen Azshara", {
-	[-3969] = {"Urgent","Positive"},
+	[-3969] = {"Positive","Urgent"},
 	[-3968] = "Attention",
 })
 

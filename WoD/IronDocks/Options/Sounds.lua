@@ -7,7 +7,7 @@ BigWigs:AddSounds("Fleshrender Nok'gar", {
 })
 
 BigWigs:AddSounds("Grimrail Enforcers", {
-	["sphere"] = {"Warning","Info"},
+	["sphere"] = {"Info","Warning"},
 })
 
 BigWigs:AddSounds("Oshir", {

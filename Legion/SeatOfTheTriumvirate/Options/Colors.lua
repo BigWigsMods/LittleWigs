@@ -3,7 +3,7 @@ BigWigs:AddColors("Zuraal", {
 	[244433] = "Personal",
 	[244579] = "Urgent",
 	[244602] = "Attention",
-	[244621] = {"Positive","Neutral"},
+	[244621] = {"Neutral","Positive"},
 	[244653] = "Personal",
 	[246134] = "Important",
 })
@@ -12,7 +12,7 @@ BigWigs:AddColors("Saprish", {
 	[245802] = {"Attention","Personal"},
 	[245873] = "Neutral",
 	[247206] = "Attention",
-	[247245] = {"Urgent","Personal"},
+	[247245] = {"Personal","Urgent"},
 	[248831] = "Important",
 })
 

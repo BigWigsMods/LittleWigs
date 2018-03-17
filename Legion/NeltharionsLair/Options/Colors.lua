@@ -14,7 +14,7 @@ BigWigs:AddColors("Ularogg Cragshaper", {
 
 BigWigs:AddColors("Naraxas", {
 	[-12527] = "Attention",
-	[199178] = {"Urgent","Positive","Personal"},
+	[199178] = {"Personal","Positive","Urgent"},
 	[199775] = "Attention",
 	[205549] = "Important",
 })

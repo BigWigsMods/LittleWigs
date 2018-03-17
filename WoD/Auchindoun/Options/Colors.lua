@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Vigilant Kaathar", {
 	[152954] = "Important",
-	[153002] = {"Urgent","Personal"},
+	[153002] = {"Personal","Urgent"},
 	[153006] = "Important",
 	[153430] = "Personal",
 })
@@ -23,8 +23,8 @@ BigWigs:AddColors("Teron'gor", {
 	[156921] = {"Attention","Personal"},
 	[156975] = "Attention",
 	[157001] = {"Important","Personal"},
-	[157039] = {"Urgent","Personal"},
-	[157168] = {"Positive","Personal"},
+	[157039] = {"Personal","Urgent"},
+	[157168] = {"Personal","Positive"},
 })
 
 BigWigs:AddColors("Auchindoun Trash", {

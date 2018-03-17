@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Darkweaver Syth", {
 	[-5235] = "Important",
-	[12548] = {"Urgent","Personal"},
+	[12548] = {"Personal","Urgent"},
 	[15659] = {"Attention","Personal"},
 })
 

@@ -27,7 +27,7 @@ BigWigs:AddSounds("Helya", {
 BigWigs:AddSounds("Maw of Souls Trash", {
 	[192019] = "Long",
 	[195293] = "Alert",
-	[198405] = {"Warning","Info"},
+	[198405] = {"Info","Warning"},
 	[199514] = "Alert",
 	[199589] = "Alert",
 	[216197] = "Alert",

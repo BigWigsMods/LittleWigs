@@ -6,7 +6,7 @@ BigWigs:AddSounds("Vizier Jin'bak", {
 })
 
 BigWigs:AddSounds("Commander Vo'jak", {
-	[-6287] = {"Long","Alert"},
+	[-6287] = {"Alert","Long"},
 	[120778] = "Warning",
 	[120789] = "Alarm",
 })
@@ -19,6 +19,6 @@ BigWigs:AddSounds("General Pa'valak", {
 
 BigWigs:AddSounds("Wing Leader Ner'onok", {
 	[-6205] = {"Alarm","Info"},
-	[121284] = {"Warning","Long"},
+	[121284] = {"Long","Warning"},
 	[121443] = "Alert",
 })

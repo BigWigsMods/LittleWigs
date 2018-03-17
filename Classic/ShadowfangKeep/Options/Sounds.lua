@@ -9,12 +9,12 @@ BigWigs:AddSounds("Commander Springvale", {
 })
 
 BigWigs:AddSounds("Lord Walden", {
-	[93617] = {"Warning","Info"},
+	[93617] = {"Info","Warning"},
 	[93689] = "Info",
 })
 
 BigWigs:AddSounds("Lord Godfrey", {
-	[93520] = {"Long","Alert"},
+	[93520] = {"Alert","Long"},
 	[93629] = "Alarm",
 	[93707] = "Info",
 })

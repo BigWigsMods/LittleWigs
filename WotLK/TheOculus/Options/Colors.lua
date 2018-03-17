@@ -12,7 +12,7 @@ BigWigs:AddColors("Varos Cloudstrider", {
 BigWigs:AddColors("Mage-Lord Urom", {
 	[51103] = "Personal",
 	[51110] = "Attention",
-	[51121] = {"Urgent","Personal"},
+	[51121] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Ley-Guardian Eregos", {

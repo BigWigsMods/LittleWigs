@@ -4,7 +4,7 @@ BigWigs:AddColors("Trial of the King", {
 	[-6024] = {"Attention","Personal"},
 	[-6017] = {"Attention","Personal"},
 	[119922] = "Urgent",
-	[123655] = {"Positive","Personal"},
+	[123655] = {"Personal","Positive"},
 })
 
 BigWigs:AddColors("Gekkan", {

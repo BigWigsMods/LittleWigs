@@ -10,7 +10,7 @@ BigWigs:AddSounds("Striker Ga'dok", {
 
 BigWigs:AddSounds("Commander Ri'mok", {
 	[-5666] = {"Alarm","Info"},
-	[107120] = {"Long","Alert"},
+	[107120] = {"Alert","Long"},
 })
 
 BigWigs:AddSounds("Raigonn", {

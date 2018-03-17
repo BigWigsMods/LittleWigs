@@ -14,7 +14,7 @@ BigWigs:AddColors("Araknath", {
 BigWigs:AddColors("Rukhran", {
 	[153794] = "Attention",
 	[153810] = "Important",
-	[159382] = {"Urgent","Positive"},
+	[159382] = {"Positive","Urgent"},
 	[167757] = "Personal",
 })
 

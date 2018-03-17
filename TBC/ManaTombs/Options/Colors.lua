@@ -21,6 +21,6 @@ BigWigs:AddColors("Mana-Tombs Trash", {
 	[22883] = "Urgent",
 	[33871] = {"Attention","Personal"},
 	[34322] = {"Important","Personal"},
-	[34922] = {"Urgent","Personal"},
+	[34922] = {"Personal","Urgent"},
 	[34925] = {"Attention","Personal"},
 })

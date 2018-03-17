@@ -1,13 +1,13 @@
 
 BigWigs:AddColors("Orebender Gor'ashan", {
 	[154448] = "Urgent",
-	[166168] = {"Positive","Important","Attention"},
+	[166168] = {"Attention","Important","Positive"},
 })
 
 BigWigs:AddColors("Kyrak", {
 	[155037] = "Important",
 	[161199] = "Attention",
-	[161203] = {"Urgent","Personal"},
+	[161203] = {"Personal","Urgent"},
 	[161288] = "Personal",
 })
 

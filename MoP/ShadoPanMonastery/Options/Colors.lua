@@ -15,7 +15,7 @@ BigWigs:AddColors("Master Snowdrift", {
 
 BigWigs:AddColors("Sha of Violence", {
 	[-5813] = {"Important","Positive"},
-	[106872] = {"Urgent","Personal"},
+	[106872] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Taran Zhu", {

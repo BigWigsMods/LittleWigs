@@ -14,7 +14,7 @@ BigWigs:AddSounds("Ularogg Cragshaper", {
 
 BigWigs:AddSounds("Naraxas", {
 	[-12527] = "Info",
-	[199178] = {"Warning","Alarm"},
+	[199178] = {"Alarm","Warning"},
 	[199775] = "Long",
 	[205549] = "Alert",
 })

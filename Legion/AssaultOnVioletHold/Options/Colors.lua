@@ -9,7 +9,7 @@ BigWigs:AddColors("Shivermaw", {
 })
 
 BigWigs:AddColors("Thalena", {
-	[202779] = {"Positive","Personal"},
+	[202779] = {"Personal","Positive"},
 	[202947] = "Personal",
 	[203381] = "Attention",
 })
@@ -20,14 +20,14 @@ BigWigs:AddColors("Festerface", {
 })
 
 BigWigs:AddColors("Millificent Manastorm", {
-	[201159] = {"Urgent","Personal"},
+	[201159] = {"Personal","Urgent"},
 	[201240] = "Attention",
 	[201392] = "Important",
 	[201572] = "Neutral",
 })
 
 BigWigs:AddColors("Kaahrj", {
-	[201146] = {"Urgent","Personal"},
+	[201146] = {"Personal","Urgent"},
 	[201148] = "Attention",
 	[201153] = "Important",
 })
@@ -41,7 +41,7 @@ BigWigs:AddColors("Anub'esset", {
 })
 
 BigWigs:AddColors("Saelorn", {
-	[202306] = {"Urgent","Personal"},
+	[202306] = {"Personal","Urgent"},
 	[202414] = {"Attention","Personal"},
 	[202473] = "Important",
 })
@@ -55,6 +55,6 @@ BigWigs:AddColors("Fel Lord Betrug", {
 
 BigWigs:AddColors("Assault on Violet Hold Trash", {
 	[204140] = "Important",
-	[204608] = {"Urgent","Personal"},
+	[204608] = {"Personal","Urgent"},
 	[205088] = "Important",
 })

@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Orebender Gor'ashan", {
 	[154448] = "Alert",
-	[166168] = {"Warning","Long"},
+	[166168] = {"Long","Warning"},
 })
 
 BigWigs:AddSounds("Kyrak", {

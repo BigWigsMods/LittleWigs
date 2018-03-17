@@ -5,7 +5,7 @@ BigWigs:AddSounds("Mechano-Lord Capacitus", {
 
 BigWigs:AddSounds("Gatewatcher Iron-Hand", {
 	[35311] = "Alarm",
-	[39194] = {"Long","Alert"},
+	[39194] = {"Alert","Long"},
 })
 
 BigWigs:AddSounds("Gatewatcher Gyro-Kill", {

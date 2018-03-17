@@ -1,6 +1,6 @@
 
 BigWigs:AddColors("Blackheart the Inciter", {
-	[33676] = {"Important","Attention"},
+	[33676] = {"Attention","Important"},
 })
 
 BigWigs:AddColors("Grandmaster Vorpil", {

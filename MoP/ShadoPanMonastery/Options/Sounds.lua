@@ -13,7 +13,7 @@ BigWigs:AddSounds("Master Snowdrift", {
 })
 
 BigWigs:AddSounds("Sha of Violence", {
-	[-5813] = {"Long","Info"},
+	[-5813] = {"Info","Long"},
 	[106872] = "Alarm",
 })
 

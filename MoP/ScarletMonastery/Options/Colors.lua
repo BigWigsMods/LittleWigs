@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Thalnos the Soulrender", {
 	[-5865] = {"Attention","Personal"},
-	[115297] = {"Urgent","Personal"},
+	[115297] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Brother Korloff", {

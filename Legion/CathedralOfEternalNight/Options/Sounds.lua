@@ -25,7 +25,7 @@ BigWigs:AddSounds("Domatrax", {
 BigWigs:AddSounds("Mephistroth", {
 	[233155] = "Alarm",
 	[233196] = {"Alert","Warning"},
-	[233206] = {"Warning","Long"},
+	[233206] = {"Long","Warning"},
 	[234817] = "Alarm",
 })
 

@@ -10,5 +10,5 @@ BigWigs:AddSounds("Loken", {
 
 BigWigs:AddSounds("Halls of Lightning Trash", {
 	[53045] = "Alarm",
-	[61581] = {"Warning","Long"},
+	[61581] = {"Long","Warning"},
 })

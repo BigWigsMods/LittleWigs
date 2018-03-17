@@ -2,7 +2,7 @@
 BigWigs:AddColors("Hymdall", {
 	[191284] = "Important",
 	[193092] = "Attention",
-	[193235] = {"Urgent","Personal"},
+	[193235] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Hyrja", {
@@ -16,7 +16,7 @@ BigWigs:AddColors("Hyrja", {
 BigWigs:AddColors("Fenryr", {
 	[196512] = "Important",
 	[196543] = "Urgent",
-	[196838] = {"Urgent","Personal"},
+	[196838] = {"Personal","Urgent"},
 	[197556] = {"Attention","Personal"},
 	["stages"] = "Neutral",
 })
@@ -47,8 +47,8 @@ BigWigs:AddColors("Halls of Valor Trash", {
 	[199210] = "Important",
 	[199341] = "Important",
 	[199726] = "Important",
-	[199805] = {"Urgent","Personal"},
+	[199805] = {"Personal","Urgent"},
 	[210875] = "Important",
-	[215430] = {"Urgent","Personal"},
+	[215430] = {"Personal","Urgent"},
 	[215433] = "Important",
 })

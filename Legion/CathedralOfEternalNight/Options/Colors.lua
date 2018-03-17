@@ -11,7 +11,7 @@ BigWigs:AddColors("Agronox", {
 
 BigWigs:AddColors("Thrashbite the Scornful", {
 	[237276] = "Urgent",
-	[237726] = {"Urgent","Personal"},
+	[237726] = {"Personal","Urgent"},
 	[243124] = "Important",
 })
 
@@ -31,7 +31,7 @@ BigWigs:AddColors("Mephistroth", {
 
 BigWigs:AddColors("Cathedral of Eternal Night Trash", {
 	[121569] = "Important",
-	[236737] = {"Personal","Attention"},
+	[236737] = {"Attention","Personal"},
 	[237391] = "Urgent",
 	[237565] = "Attention",
 	[238543] = "Urgent",

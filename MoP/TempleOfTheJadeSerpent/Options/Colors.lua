@@ -1,5 +1,5 @@
 
 BigWigs:AddColors("Wise Mari", {
-	[-6327] = {"Important","Attention"},
+	[-6327] = {"Attention","Important"},
 	["stages"] = "Positive",
 })

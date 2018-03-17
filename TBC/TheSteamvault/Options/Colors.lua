@@ -7,11 +7,11 @@ BigWigs:AddColors("Hydromancer Thespia", {
 
 BigWigs:AddColors("Mekgineer Steamrigger", {
 	[-5999] = {"Attention","Important"},
-	[31485] = {"Urgent","Personal"},
+	[31485] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Warlord Kalithresh", {
 	[-6003] = "Important",
 	[16172] = {"Attention","Personal"},
-	[36453] = {"Urgent","Personal"},
+	[36453] = {"Personal","Urgent"},
 })

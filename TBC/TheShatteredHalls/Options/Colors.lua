@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Grand Warlock Nethekurse", {
 	[30496] = "Personal",
-	[30500] = {"Urgent","Personal"},
+	[30500] = {"Personal","Urgent"},
 	[30502] = {"Important","Positive"},
 })
 

@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("General Bjarngrim", {
 	[16856] = {"Important","Personal"},
-	[41107] = {"Urgent","Positive"},
+	[41107] = {"Positive","Urgent"},
 })
 
 BigWigs:AddColors("Volkhan", {

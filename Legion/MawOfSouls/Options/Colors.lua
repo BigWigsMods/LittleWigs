@@ -27,7 +27,7 @@ BigWigs:AddColors("Helya", {
 BigWigs:AddColors("Maw of Souls Trash", {
 	[192019] = "Attention",
 	[195293] = "Urgent",
-	[198405] = {"Important","Attention"},
+	[198405] = {"Attention","Important"},
 	[199514] = "Urgent",
 	[199589] = "Urgent",
 	[216197] = "Urgent",

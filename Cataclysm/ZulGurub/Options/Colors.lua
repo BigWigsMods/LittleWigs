@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("High Priest Venoxis", {
 	[96466] = "Urgent",
-	[96477] = {"Urgent","Personal"},
+	[96477] = {"Personal","Urgent"},
 	[96509] = "Important",
 	[96653] = "Positive",
 	[96842] = "Important",

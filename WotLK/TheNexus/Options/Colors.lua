@@ -5,7 +5,7 @@ BigWigs:AddColors("Commander Kolurg/Stoutbeard", {
 
 BigWigs:AddColors("Grand Magus Telestra", {
 	[-7395] = "Positive",
-	[47731] = {"Urgent","Personal"},
+	[47731] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Anomalus", {
@@ -26,5 +26,5 @@ BigWigs:AddColors("Keristrasza", {
 
 BigWigs:AddColors("The Nexus Trash", {
 	[30849] = {"Attention","Personal"},
-	[47779] = {"Urgent","Personal"},
+	[47779] = {"Personal","Urgent"},
 })

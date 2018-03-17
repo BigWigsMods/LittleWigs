@@ -11,10 +11,10 @@ BigWigs:AddColors("Eadric the Pure", {
 })
 
 BigWigs:AddColors("Argent Confessor Paletress", {
-	[66515] = {"Important","Positive","Attention"},
+	[66515] = {"Attention","Important","Positive"},
 	[66537] = "Urgent",
 	[66619] = {"Attention","Personal"},
-	["confess"] = {"Important","Attention"},
+	["confess"] = {"Attention","Important"},
 })
 
 BigWigs:AddColors("The Black Knight", {

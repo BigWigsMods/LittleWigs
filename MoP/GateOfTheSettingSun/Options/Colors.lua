@@ -5,7 +5,7 @@ BigWigs:AddColors("Saboteur Kip'tilak", {
 })
 
 BigWigs:AddColors("Striker Ga'dok", {
-	[-5660] = {"Personal","Attention"},
+	[-5660] = {"Attention","Personal"},
 	[106933] = {"Important","Personal"},
 })
 

@@ -11,6 +11,6 @@ BigWigs:AddColors("Skarvald & Dalronn", {
 BigWigs:AddColors("Ingvar the Plunderer", {
 	[42669] = "Attention",
 	[42708] = "Important",
-	[42730] = {"Urgent","Personal"},
+	[42730] = {"Personal","Urgent"},
 	["stages"] = "Neutral",
 })

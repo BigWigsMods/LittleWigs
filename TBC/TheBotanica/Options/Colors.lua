@@ -7,13 +7,13 @@ BigWigs:AddColors("Commander Sarannis", {
 
 BigWigs:AddColors("High Botanist Freywinn", {
 	[34550] = {"Important","Positive"},
-	[34752] = {"Urgent","Personal"},
+	[34752] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Thorngrin the Tender", {
 	[34659] = {"Important","Personal"},
 	[34661] = {"Attention","Personal"},
-	[34670] = {"Urgent","Personal"},
+	[34670] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("Laj", {
@@ -22,5 +22,5 @@ BigWigs:AddColors("Laj", {
 
 BigWigs:AddColors("Warp Splinter", {
 	[-5478] = {"Important","Positive"},
-	[34716] = {"Urgent","Personal"},
+	[34716] = {"Personal","Urgent"},
 })

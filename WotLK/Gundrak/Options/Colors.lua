@@ -9,7 +9,7 @@ BigWigs:AddColors("Drakkari Colossus", {
 })
 
 BigWigs:AddColors("Moorabi", {
-	[55098] = {"Urgent","Positive"},
+	[55098] = {"Positive","Urgent"},
 })
 
 BigWigs:AddColors("Eck the Ferocious", {

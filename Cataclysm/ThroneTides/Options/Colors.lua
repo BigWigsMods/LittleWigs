@@ -4,7 +4,7 @@ BigWigs:AddColors("Lady Naz'jar", {
 })
 
 BigWigs:AddColors("Commander Ulthok", {
-	[76026] = {"Urgent","Personal"},
+	[76026] = {"Personal","Urgent"},
 	[76047] = "Important",
 	[76094] = {"Attention","Personal"},
 	[76100] = "Attention",

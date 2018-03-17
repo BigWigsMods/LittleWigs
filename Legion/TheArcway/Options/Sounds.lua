@@ -40,5 +40,5 @@ BigWigs:AddSounds("The Arcway Trash", {
 	[211745] = "Warning",
 	[211757] = "Alarm",
 	[226206] = "Alarm",
-	[226285] = {"Alarm","Warning","Info"},
+	[226285] = {"Alarm","Info","Warning"},
 })

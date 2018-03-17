@@ -1,6 +1,6 @@
 
 BigWigs:AddSounds("Slad'ran", {
-	[59842] = {"Info","Alarm"},
+	[59842] = {"Alarm","Info"},
 })
 
 BigWigs:AddSounds("Drakkari Colossus", {

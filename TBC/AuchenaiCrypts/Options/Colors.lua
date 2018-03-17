@@ -4,6 +4,6 @@ BigWigs:AddColors("Shirrak the Dead Watcher", {
 })
 
 BigWigs:AddColors("Exarch Maladaar", {
-	[32346] = {"Urgent","Personal"},
-	["avatar"] = {"Important","Attention"},
+	[32346] = {"Personal","Urgent"},
+	["avatar"] = {"Attention","Important"},
 })

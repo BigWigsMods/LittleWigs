@@ -6,7 +6,7 @@ BigWigs:AddColors("Akil'zon", {
 
 BigWigs:AddColors("Nalorakk", {
 	[42398] = {"Attention","Personal"},
-	[42402] = {"Urgent","Personal"},
+	[42402] = {"Personal","Urgent"},
 	["stages"] = "Important",
 })
 
@@ -21,12 +21,12 @@ BigWigs:AddColors("Halazzi", {
 	[43302] = "Urgent",
 	[43303] = {"Attention","Personal"},
 	[97499] = "Urgent",
-	["stages"] = {"Positive","Attention"},
+	["stages"] = {"Attention","Positive"},
 })
 
 BigWigs:AddColors("Hex Lord Malacrass", {
 	[43383] = "Important",
-	[43421] = {"Urgent","Personal"},
+	[43421] = {"Personal","Urgent"},
 	[43431] = "Urgent",
 	[43451] = "Urgent",
 	[43501] = {"Attention","Personal"},

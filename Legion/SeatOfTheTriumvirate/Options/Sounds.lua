@@ -3,13 +3,13 @@ BigWigs:AddSounds("Zuraal", {
 	[244433] = "Warning",
 	[244579] = "Warning",
 	[244602] = "Alert",
-	[244621] = {"Long","Info"},
+	[244621] = {"Info","Long"},
 	[244653] = "Warning",
 	[246134] = "Alarm",
 })
 
 BigWigs:AddSounds("Saprish", {
-	[245802] = {"Long","Alert"},
+	[245802] = {"Alert","Long"},
 	[245873] = "Info",
 	[247206] = "Alarm",
 	[247245] = "Alert",

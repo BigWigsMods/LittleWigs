@@ -14,7 +14,7 @@ BigWigs:AddColors("Lockmaw", {
 BigWigs:AddColors("High Prophet Barim", {
 	[82506] = "Important",
 	[82622] = "Personal",
-	[88814] = {"Personal","Attention"},
+	[88814] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("Siamat", {

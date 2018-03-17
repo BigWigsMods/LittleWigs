@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Svala Sorrowgrave", {
 	[48267] = {"Important","Personal"},
-	[48276] = {"Urgent","Attention"},
+	[48276] = {"Attention","Urgent"},
 })
 
 BigWigs:AddColors("Gortok Palehoof", {
@@ -10,14 +10,14 @@ BigWigs:AddColors("Gortok Palehoof", {
 })
 
 BigWigs:AddColors("Skadi the Ruthless", {
-	[59322] = {"Urgent","Personal"},
+	[59322] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("King Ymiron", {
-	[59300] = {"Urgent","Personal"},
-	[59301] = {"Urgent","Positive"},
+	[59300] = {"Personal","Urgent"},
+	[59301] = {"Positive","Urgent"},
 })
 
 BigWigs:AddColors("Utgarde Pinnacle Trash", {
-	[49106] = {"Urgent","Personal"},
+	[49106] = {"Personal","Urgent"},
 })

@@ -44,7 +44,7 @@ BigWigs:AddSounds("Moroes", {
 	[227545] = "Warning",
 	[227578] = "Warning",
 	[227616] = "Info",
-	[227646] = {"Long","Alarm"},
+	[227646] = {"Alarm","Long"},
 	[227672] = "Long",
 	[227742] = "Info",
 	[227851] = "Alarm",
@@ -53,7 +53,7 @@ BigWigs:AddSounds("Moroes", {
 BigWigs:AddSounds("The Curator", {
 	[227254] = "Long",
 	[227267] = "Info",
-	[227279] = {"Alert","Alarm"},
+	[227279] = {"Alarm","Alert"},
 })
 
 BigWigs:AddSounds("Shade of Medivh", {
@@ -67,7 +67,7 @@ BigWigs:AddSounds("Shade of Medivh", {
 
 BigWigs:AddSounds("Mana Devourer", {
 	[227297] = "Long",
-	[227523] = {"Info","Alarm"},
+	[227523] = {"Alarm","Info"},
 	[227618] = "Warning",
 })
 
@@ -85,7 +85,7 @@ BigWigs:AddSounds("Nightbane", {
 	[228790] = "Info",
 	[228792] = "Info",
 	[228796] = "Warning",
-	[228808] = {"Alert","Alarm"},
+	[228808] = {"Alarm","Alert"},
 	[228829] = "Info",
 	[228835] = "Alarm",
 	[228837] = "Warning",

@@ -9,7 +9,7 @@ BigWigs:AddSounds("Shivermaw", {
 })
 
 BigWigs:AddSounds("Thalena", {
-	[202779] = {"Info","Alert"},
+	[202779] = {"Alert","Info"},
 	[202947] = "Alarm",
 	[203381] = "Long",
 })
