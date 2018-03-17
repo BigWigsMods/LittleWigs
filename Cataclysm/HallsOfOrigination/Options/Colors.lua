@@ -12,7 +12,7 @@ BigWigs:AddColors("Anraphet", {
 })
 
 BigWigs:AddColors("Isiset, Construct of Magic", {
-	[-2556] = {"Attention","Neutral"},
+	[-2556] = {"Neutral","Positive"},
 	[74045] = "Personal",
 	[74135] = "Personal",
 	[74137] = "Important",

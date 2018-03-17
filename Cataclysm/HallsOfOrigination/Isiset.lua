@@ -91,7 +91,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSplitWarning then
-		self:Message(-2556, "Attention", nil, CL.soon:format(self:SpellName(-2556))) -- Mirror Image
+		self:Message(-2556, "Positive", nil, CL.soon:format(self:SpellName(-2556))) -- Mirror Image
 		nextSplitWarning = nextSplitWarning - 33
 
 		if nextSplitWarning < 33 then
@@ -100,7 +100,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 69941 then -- Mirror Image
 		self:Message(-2556, "Neutral", "Info")
 	end
