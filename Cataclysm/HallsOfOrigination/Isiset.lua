@@ -94,7 +94,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		self:Message(-2556, "Attention", nil, CL.soon:format(self:SpellName(-2556))) -- Mirror Image
 		nextSplitWarning = nextSplitWarning - 33
 
-		if hp < 33 then
+		if nextSplitWarning < 33 then
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		end
 	end
