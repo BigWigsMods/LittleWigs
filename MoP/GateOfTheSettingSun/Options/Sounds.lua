@@ -16,6 +16,6 @@ BigWigs:AddSounds("Commander Ri'mok", {
 BigWigs:AddSounds("Raigonn", {
 	[111668] = "Alarm",
 	[111723] = "Long",
-	[111728] = "Alert",
 	["stages"] = "Info",
+	[111728] = "Alert",
 })

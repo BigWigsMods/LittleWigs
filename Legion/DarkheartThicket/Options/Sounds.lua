@@ -5,32 +5,32 @@ BigWigs:AddSounds("Archdruid Glaidalis", {
 })
 
 BigWigs:AddSounds("Oakheart", {
-	[204667] = "Info",
 	[204666] = "Alarm",
+	[204667] = "Info",
 	[204646] = "Alert",
 })
 
 BigWigs:AddSounds("Dresaron", {
-	[199345] = "Warning",
 	[191325] = "Info",
 	[199460] = "Alarm",
+	[199345] = "Warning",
 })
 
 BigWigs:AddSounds("Shade of Xavius", {
-	[200050] = "Info",
 	[200289] = "Alarm",
 	[200185] = "Alert",
+	[200050] = "Info",
 	[200238] = "Warning",
 })
 
 BigWigs:AddSounds("Darkheart Thicket Trash", {
-	[225562] = "Warning",
-	[201399] = "Alarm",
-	[200580] = "Warning",
-	[201272] = "Alert",
 	[200768] = "Warning",
 	[200684] = "Alert",
 	[201226] = "Warning",
 	[200658] = "Alarm",
+	[225562] = "Warning",
+	[201399] = "Alarm",
+	[200580] = "Warning",
+	[201272] = "Alert",
 	[218759] = "Warning",
 })

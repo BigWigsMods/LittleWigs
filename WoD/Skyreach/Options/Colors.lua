@@ -19,7 +19,7 @@ BigWigs:AddColors("Rukhran", {
 })
 
 BigWigs:AddColors("High Sage Viryx", {
-	["add"] = "Important",
-	[154055] = "Urgent",
 	[153954] = {"Attention","Personal"},
+	[154055] = "Urgent",
+	["add"] = "Important",
 })

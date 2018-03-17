@@ -17,6 +17,6 @@ BigWigs:AddColors("Commander Ri'mok", {
 BigWigs:AddColors("Raigonn", {
 	[111668] = "Urgent",
 	[111723] = {"Important","Personal"},
-	[111728] = "Attention",
 	["stages"] = {"Neutral","Positive"},
+	[111728] = "Attention",
 })

@@ -1,43 +1,43 @@
 
 BigWigs:AddColors("Tugar Bloodtotem", {
+	[242733] = "Urgent",
 	[243224] = {"Important","Personal"},
 	["charge"] = "Personal",
-	["submerge"] = "Urgent",
 	[241687] = "Important",
-	[242733] = "Urgent",
+	["submerge"] = "Urgent",
 	["rupture"] = "Attention",
 })
 
 BigWigs:AddColors("Kruul", {
-	[236572] = "Important",
-	[234673] = "Urgent",
-	[234422] = "Personal",
-	[234676] = "Urgent",
-	["nether_aberration"] = "Attention",
 	[234428] = "Attention",
 	[240790] = "Important",
-	["stages"] = {"Neutral","Positive"},
-	[233473] = "Positive",
 	[234631] = "Important",
 	["smoldering_infernal"] = "Attention",
 	[234920] = "Attention",
+	[236572] = "Important",
+	["nether_aberration"] = "Attention",
+	[234676] = "Urgent",
+	[234673] = "Urgent",
+	[233473] = "Positive",
+	[234422] = "Personal",
 	[234423] = "Urgent",
+	["stages"] = {"Neutral","Positive"},
 })
 
 BigWigs:AddColors("Raest", {
-	[235308] = "Positive",
-	["thing"] = "Important",
 	["rune"] = "Attention",
-	[235578] = {"Urgent","Personal"},
+	["thing"] = "Important",
 	["handFromBeyond"] = "Neutral",
 	[202081] = "Important",
+	[235578] = {"Urgent","Personal"},
+	[235308] = "Positive",
 })
 
 BigWigs:AddColors("Lord Erdris Thorn", {
-	[237191] = "Urgent",
-	[235984] = "Important",
-	[235823] = "Urgent",
-	[237188] = "Important",
 	[236720] = "Important",
+	[237191] = "Urgent",
+	[235823] = "Urgent",
 	[235833] = "Attention",
+	[237188] = "Important",
+	[235984] = "Important",
 })

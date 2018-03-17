@@ -1,15 +1,15 @@
 
 BigWigs:AddSounds("Gu Cloudstrike", {
 	[-5632] = "Alert",
-	[-5630] = "Alarm",
 	["stages"] = "Info",
+	[-5630] = "Alarm",
 })
 
 BigWigs:AddSounds("Master Snowdrift", {
 	[118961] = "Alarm",
 	[106434] = "Alert",
-	[106747] = "Info",
 	["stages"] = "Info",
+	[106747] = "Info",
 })
 
 BigWigs:AddSounds("Sha of Violence", {

@@ -17,16 +17,16 @@ BigWigs:AddColors("Ancient Protectors", {
 BigWigs:AddColors("Xeri'tac", {
 	[169233] = "Important",
 	[169248] = "Urgent",
+	["stages"] = {"Neutral","Important"},
 	[173080] = "Personal",
 	[-10502] = "Attention",
-	["stages"] = {"Neutral","Important"},
 })
 
 BigWigs:AddColors("Archmage Sol", {
 	[168885] = "Urgent",
 	[166726] = "Personal",
-	[166492] = "Important",
 	["stages"] = "Neutral",
+	[166492] = "Important",
 })
 
 BigWigs:AddColors("Yalnu", {

@@ -20,6 +20,6 @@ BigWigs:AddColors("General Pa'valak", {
 BigWigs:AddColors("Wing Leader Ner'onok", {
 	[-6205] = {"Personal","Positive"},
 	[121443] = "Personal",
-	[121284] = {"Urgent","Positive"},
 	["stages"] = "Attention",
+	[121284] = {"Urgent","Positive"},
 })

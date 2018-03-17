@@ -13,9 +13,9 @@ BigWigs:AddSounds("Ancient Protectors", {
 BigWigs:AddSounds("Xeri'tac", {
 	[169233] = "Info",
 	[169248] = "Warning",
+	["stages"] = "Info",
 	[173080] = "Alarm",
 	[-10502] = "Info",
-	["stages"] = "Info",
 })
 
 BigWigs:AddSounds("Archmage Sol", {

@@ -5,8 +5,8 @@ BigWigs:AddSounds("Thalnos the Soulrender", {
 })
 
 BigWigs:AddSounds("Brother Korloff", {
-	["fists"] = "Alert",
 	[114460] = "Alarm",
+	["fists"] = "Alert",
 })
 
 BigWigs:AddSounds("High Inquisitor Whitemane", {

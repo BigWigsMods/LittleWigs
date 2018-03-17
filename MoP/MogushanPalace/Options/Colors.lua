@@ -8,14 +8,14 @@ BigWigs:AddColors("Trial of the King", {
 })
 
 BigWigs:AddColors("Gekkan", {
-	["heal"] = "Urgent",
+	["stages"] = "Positive",
 	[-5925] = {"Important","Personal"},
 	[-5921] = {"Attention","Personal"},
-	["stages"] = "Positive",
+	["heal"] = "Urgent",
 })
 
 BigWigs:AddColors("Xin the Weaponmaster", {
-	["blades"] = {"Attention","Positive"},
-	[-5970] = "Urgent",
 	["crossbows"] = {"Attention","Positive"},
+	[-5970] = "Urgent",
+	["blades"] = {"Attention","Positive"},
 })

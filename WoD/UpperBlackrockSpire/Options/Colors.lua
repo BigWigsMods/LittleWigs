@@ -12,11 +12,11 @@ BigWigs:AddColors("Kyrak", {
 })
 
 BigWigs:AddColors("Commander Tharbek", {
-	[161882] = "Urgent",
+	["stages"] = "Neutral",
 	[162090] = {"Attention","Personal"},
 	["iron_reaver"] = "Important",
 	[161833] = "Personal",
-	["stages"] = "Neutral",
+	[161882] = "Urgent",
 })
 
 BigWigs:AddColors("Ragewing the Untamed", {
