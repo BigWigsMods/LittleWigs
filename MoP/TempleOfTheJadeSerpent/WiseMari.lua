@@ -6,20 +6,24 @@
 local mod, CL = BigWigs:NewBoss("Wise Mari", 867, 672)
 if not mod then return end
 mod:RegisterEnableMob(56448)
-mod.engageId = 1418
-mod.respawnTime = 20
 
 local deaths = 0
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.engage_say = "You dare to disturb these waters? You will drown!"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {
-		-6327, -- Call Water
-		"stages",
-	}
+	return {-6327, "stages"}
 end
 
 function mod:OnBossEnable()
