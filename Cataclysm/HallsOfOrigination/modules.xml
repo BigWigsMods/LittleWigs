@@ -6,6 +6,7 @@
 <Script file="Anraphet.lua"/>
 <Script file="Isiset.lua"/>
 <Script file="Ammunae.lua"/>
+<!--<Script file="Setesh.lua"/>-->
 <Script file="Rajh.lua"/>
 
 <Include file="Options\options.xml"/>
