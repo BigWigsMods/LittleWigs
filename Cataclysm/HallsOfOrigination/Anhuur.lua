@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Temple Guardian Anhuur", 759, 124)
+local mod, CL = BigWigs:NewBoss("Temple Guardian Anhuur", 644, 124)
 if not mod then return end
 mod:RegisterEnableMob(39425)
 
