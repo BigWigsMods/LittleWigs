@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Araknath", 989, 966)
+local mod, CL = BigWigs:NewBoss("Araknath", 1209, 966)
 if not mod then return end
 mod:RegisterEnableMob(76141)
 
@@ -19,7 +19,7 @@ local smashCount, burstCount = 0, 0
 
 local L = mod:GetLocale()
 if L then
-	
+
 end
 
 --------------------------------------------------------------------------------

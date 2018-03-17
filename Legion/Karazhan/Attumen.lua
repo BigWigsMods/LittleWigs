@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Attumen the Huntsman", 1115, 1835)
+local mod, CL = BigWigs:NewBoss("Attumen the Huntsman", 1651, 1835)
 if not mod then return end
 mod:RegisterEnableMob(114262, 114264) -- Attumen, Midnight
 mod.engageId = 1960

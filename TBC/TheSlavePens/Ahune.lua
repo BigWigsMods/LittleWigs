@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Lord Ahune", 728)
+local mod = BigWigs:NewBoss("Lord Ahune", 547)
 if not mod then return end
 mod.partyContent = true
 mod.otherMenu = "Coilfang Reservoir"
@@ -56,7 +56,7 @@ end
 
 function mod:Stand()
 	self:Message("state", L["stand_message"], "Attention")
-	self:Bar("state", L["stand_message"], 94) 
+	self:Bar("state", L["stand_message"], 94)
 	self:DelayedMessage("state", 86, L["submerge_soon"], "Attention")
 	standing = true
 end

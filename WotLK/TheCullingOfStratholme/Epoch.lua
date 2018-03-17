@@ -1,32 +1,52 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Chrono-Lord Epoch", 521)
+local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", 595, 613)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26532)
-mod.toggleOptions = {
-	52772, -- Curse
-}
+mod.engageId = 2003
+--mod.respawnTime = 0 -- couldn't wipe, Arthas refuses to die
+
+-------------------------------------------------------------------------------
+--  Localization
+
+local L = mod:GetLocale()
+if L then
+	-- Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul. The death you are destined to visit upon others will this day be your own.
+	L.warmup_trigger = "on this day"
+end
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		"warmup",
+		52772, -- Curse of Exertion
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Curse", 52772)
-	self:Log("SPELL_AURA_REMOVED", "CurseRemove", 52772)
-	self:Death("Win", 26532)
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+	self:Log("SPELL_AURA_APPLIED", "CurseOfExertion", 52772)
+	self:Log("SPELL_AURA_REMOVED", "CurseOfExertionRemoved", 52772)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Curse(player, spellId, _, _, spellName)
-	self:Message(52772, spellName..": "..player, "Important", spellId)
-	self:Bar(52772, player..": "..spellName, 10, spellId)
+function mod:Warmup(event, msg)
+	if msg:find(L.warmup_trigger, nil, true) then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 19.2, CL.active, "inv_sword_01")
+	end
 end
 
-function mod:CurseRemove(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
+function mod:CurseOfExertion(args)
+	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:Bar(args.spellId, 10, args.destName)
+end
+
+function mod:CurseOfExertionRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end

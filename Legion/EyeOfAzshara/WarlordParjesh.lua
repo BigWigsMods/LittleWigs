@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Warlord Parjesh", 1046, 1480)
+local mod, CL = BigWigs:NewBoss("Warlord Parjesh", 1456, 1480)
 if not mod then return end
 mod:RegisterEnableMob(91784)
 mod.engageId = 1810
@@ -109,10 +109,12 @@ end
 do
 	local prev = 0
 	function mod:QuicksandDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 2 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

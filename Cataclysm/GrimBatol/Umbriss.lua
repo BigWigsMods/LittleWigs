@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("General Umbriss", 757, 131)
+local mod, CL = BigWigs:NewBoss("General Umbriss", 670, 131)
 if not mod then return end
 mod:RegisterEnableMob(39625)
+mod.engageId = 1051
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -28,8 +30,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPIED", "Frenzy", 74853)
 	self:Log("SPELL_AURA_APPIED", "Wound", 74846)
 	self:Log("SPELL_AURA_REMOVED", "WoundRemoved", 74846)
-
-	self:Death("Win", 39625)
 end
 
 function mod:VerifyEnable()

@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Slabhide", 768, 111)
+local mod, CL = BigWigs:NewBoss("Slabhide", 725, 111)
 if not mod then return end
 mod:RegisterEnableMob(43214)
+mod.engageId = 1059
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -24,8 +26,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CrystalStormBegun", 92265)
 	-- Normal
 	self:Log("SPELL_AURA_APPLIED", "LavaPool", 80801)
-
-	self:Death("Win", 43214)
 end
 
 --------------------------------------------------------------------------------

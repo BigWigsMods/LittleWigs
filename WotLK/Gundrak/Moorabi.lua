@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Moorabi", 530, 594)
+local mod, CL = BigWigs:NewBoss("Moorabi", 604, 594)
 if not mod then return end
 mod:RegisterEnableMob(29305)
 mod.engageId = 1980
@@ -37,7 +37,7 @@ end
 
 function mod:Interrupt(args)
 	if args.extraSpellId == 55098 then -- Transformation
-		self:Message(args.extraSpellId, "Positive", nil, ("%s (%s)"):format(self:SpellName(134340), self:ColorName(args.sourceName))) -- 134340 = "Interrupted"
-		self:StopBar(args.amount) -- Name of interrupted spell
+		self:Message(55098, "Positive", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:StopBar(args.extraSpellName) -- Name of interrupted spell
 	end
 end

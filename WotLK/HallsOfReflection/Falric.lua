@@ -1,43 +1,58 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Falric", 603)
+local mod, CL = BigWigs:NewBoss("Falric", 668, 601)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(38112)
-mod.toggleOptions = {
-	{72426, "ICON"}, -- Impending Despair
-	{72422, "ICON"}, -- Quivering Strike
-}
+mod.engageId = 1992
+mod.respawnTime = 30 -- you have to actually walk towards the altar, nothing will respawn on its own
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		72426, -- Impending Despair
+		72422, -- Quivering Strike
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_REMOVED", "Debuff", 72422, 72426)
-	self:Log("SPELL_AURA_REMOVED", "Removed", 72422, 72426)
-	self:Death("Win", 38112)
+	self:Log("SPELL_AURA_APPLIED", "QuiveringStrike", 72422)
+	self:Log("SPELL_AURA_REMOVED", "QuiveringStrikeRemoved", 72422)
+	self:Log("SPELL_AURA_APPLIED", "ImpendingDespair", 72426)
+	self:Log("SPELL_AURA_REMOVED", "ImpendingDespairRemoved", 72426)
+end
+
+function mod:OnWin()
+	local marwynMod = BigWigs:GetBossModule("Marwyn", true)
+	if marwynMod then
+		marwynMod:Enable()
+		marwynMod:Warmup()
+	end
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Debuff(player, spellId, _, _, spellName)
-	local time = 10
-	if spellId == 72426 then --Farlic Impending Despair
-		time = 6
-		self:SecondaryIcon(72426, player)
-	elseif spellId == 72422 then -- Farlic Quivering Strike
-		time = 5
-		self:PrimaryIcon(72422, player)
+function mod:QuiveringStrike(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetBar(args.spellId, 5, args.destName)
 	end
-	self:TargetMessage(spellId, player, spellName, "Urgent", spellId)
-	self:Bar(spellId, player..": "..spellName, time, spellId)
 end
 
-function mod:Removed(player, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
-	self:PrimaryIcon(spellId, false)
-	self:SecondaryIcon(spellId, false)
+function mod:QuiveringStrikeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:ImpendingDespair(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+		self:TargetBar(args.spellId, 6, args.destName)
+	end
+end
+
+function mod:ImpendingDespairRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end

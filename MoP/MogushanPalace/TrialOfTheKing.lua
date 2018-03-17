@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Trial of the King", 885, 708)
+local mod, CL = BigWigs:NewBoss("Trial of the King", 994, 708)
 if not mod then return end
 -- Xin the Weaponmaster, Haiyan the Unstoppable, Ming the Cunning, Kuai the Brute
 mod:RegisterEnableMob(61884, 61445, 61444, 61442)

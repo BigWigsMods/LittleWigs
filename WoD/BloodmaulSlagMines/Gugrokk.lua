@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gug'rokk", 964, 889)
+local mod, CL = BigWigs:NewBoss("Gug'rokk", 1175, 889)
 if not mod then return end
 mod:RegisterEnableMob(74790)
 --BOSS_KILL#1654#Gug'rokk
@@ -20,7 +20,7 @@ local blastCount = 0
 
 local L = mod:GetLocale()
 if L then
-	
+
 end
 
 --------------------------------------------------------------------------------

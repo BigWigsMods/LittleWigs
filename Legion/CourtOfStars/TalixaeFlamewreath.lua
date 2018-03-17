@@ -5,7 +5,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Talixae Flamewreath", 1087, 1719)
+local mod, CL = BigWigs:NewBoss("Talixae Flamewreath", 1571, 1719)
 if not mod then return end
 mod:RegisterEnableMob(104217)
 mod.engageId = 1869
@@ -31,7 +31,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InfernalEruption", 207881)
 	self:Log("SPELL_CAST_START", "BurningIntensity", 207906)
-	self:Log("SPELL_CAST_START", "WitheringSoul", 208165)	
+	self:Log("SPELL_CAST_START", "WitheringSoul", 208165)
 end
 
 function mod:OnEngage()

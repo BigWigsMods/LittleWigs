@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rokmora", 1065, 1662)
+local mod, CL = BigWigs:NewBoss("Rokmora", 1458, 1662)
 if not mod then return end
 mod:RegisterEnableMob(91003)
 mod.engageId = 1790
@@ -72,10 +72,12 @@ end
 do
 	local prev = 0
 	function mod:ChokingDustDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 2 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

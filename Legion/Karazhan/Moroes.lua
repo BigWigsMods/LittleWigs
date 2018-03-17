@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Moroes", 1115, 1837)
+local mod, CL = BigWigs:NewBoss("Moroes", 1651, 1837)
 if not mod then return end
 mod:RegisterEnableMob(
 	114312, -- Moroes
@@ -180,10 +180,12 @@ end
 do
 	local prev = 0
 	function mod:IronWhirlwindDamage(args)
-		local t = GetTime()
-		if t-prev > 2 and self:Me(args.destGUID) then
-			prev = t
-			self:Message(227646, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(227646, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

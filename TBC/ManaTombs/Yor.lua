@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Yor", 732, 536)
+local mod, CL = BigWigs:NewBoss("Yor", 557, 536)
 if not mod then return end
-mod:RegisterEnableMob(22930)
+mod:RegisterEnableMob(22927)
+-- mod.engageId = 250 --no boss frames
+-- mod.respawnTime = 0 -- no idea
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,17 +15,26 @@ mod:RegisterEnableMob(22930)
 
 function mod:GetOptions()
 	return {
-		34716, -- Stomp
+		36405, -- Stomp
+		38361, -- Double Breath
 	}
 end
 
 function mod:OnBossEnable()
-	-- XXX revise this module
+	self:Log("SPELL_CAST_SUCCESS", "Stomp", 36405)
+	self:Log("SPELL_CAST_START", "DoubleBreath", 38361)
 
-	self:Death("Win", 22930)
+	self:Death("Win", 22927)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:Stomp(args)
+	self:Message(args.spellId, "Important", "Info")
+end
+
+function mod:DoubleBreath(args)
+	self:Message(args.spellId, "Attention", "Long")
+end

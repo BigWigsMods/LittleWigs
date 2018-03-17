@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Archdruid Glaidalis", 1067, 1654)
+local mod, CL = BigWigs:NewBoss("Archdruid Glaidalis", 1466, 1654)
 if not mod then return end
 mod:RegisterEnableMob(96512)
 mod.engageId = 1836
@@ -47,10 +47,12 @@ end
 do
 	local prev = 0
 	function mod:NightfallDamage(args)
-		local t = GetTime()
-		if t-prev > 2 and self:Me(args.destGUID) then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

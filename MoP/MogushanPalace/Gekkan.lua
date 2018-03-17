@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gekkan", 885, 690)
+local mod, CL = BigWigs:NewBoss("Gekkan", 994, 690)
 if not mod then return end
 -- Gekkan, Glintrok Ironhide, Glintrok Skulker, Glintrok Oracle, Glintrok Hexxer
 mod:RegisterEnableMob(61243, 61337, 61338, 61339, 61340)

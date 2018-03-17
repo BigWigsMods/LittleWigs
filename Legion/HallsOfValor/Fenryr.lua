@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Fenryr", 1041, 1487)
+local mod, CL = BigWigs:NewBoss("Fenryr", 1477, 1487)
 if not mod then return end
 mod:RegisterEnableMob(95674, 99868) -- Phase 1 Fenryr, Phase 2 Fenryr
 mod.engageId = 1807

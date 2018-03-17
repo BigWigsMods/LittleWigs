@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mana Devourer", 1115, 1818)
+local mod, CL = BigWigs:NewBoss("Mana Devourer", 1651, 1818)
 if not mod then return end
 mod:RegisterEnableMob(114252)
 mod.engageId = 1959
@@ -67,10 +67,12 @@ end
 do
 	local prev = 0
 	function mod:EnergyVoidDamage(args)
-		local t = GetTime()
-		if t-prev > 2 and self:Me(args.destGUID) and not UnitDebuff("player", self:SpellName(227502)) then
-			prev = t
-			self:Message(227523, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) and not UnitDebuff("player", self:SpellName(227502)) then -- 227502 is "Unstable Mana"
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(227523, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

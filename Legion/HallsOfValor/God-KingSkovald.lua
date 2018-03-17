@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("God-King Skovald", 1041, 1488)
+local mod, CL = BigWigs:NewBoss("God-King Skovald", 1477, 1488)
 if not mod then return end
 mod:RegisterEnableMob(95675)
 mod.engageId = 1808
@@ -16,6 +16,7 @@ local L = mod:GetLocale()
 if L then
 	L.warmup_text = "God-King Skovald Active"
 	L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
+	L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
 end
 
 --------------------------------------------------------------------------------
@@ -50,13 +51,24 @@ function mod:OnEngage()
 	self:CDBar(193659, 8.5) -- Felblaze Rush
 end
 
+function mod:OnWin()
+	local odynMod = BigWigs:GetBossModule("Odyn", true)
+	if odynMod then
+		odynMod:Enable() -- Making sure to pickup the Odyn's yell to start the RP bar
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
+function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 20, L.warmup_text, "achievement_dungeon_hallsofvalor")
+	elseif msg == L.warmup_trigger_2 then -- for engages after a wipe
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 10, L.warmup_text, "achievement_dungeon_hallsofvalor")
 	end
 end
 
@@ -90,10 +102,12 @@ end
 do
 	local prev = 0
 	function mod:InfernalFlamesDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 2 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

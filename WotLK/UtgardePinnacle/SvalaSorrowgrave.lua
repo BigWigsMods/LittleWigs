@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Svala Sorrowgrave", 524, 641)
+local mod, CL = BigWigs:NewBoss("Svala Sorrowgrave", 575, 641)
 if not mod then return end
 mod:RegisterEnableMob(26668)
 

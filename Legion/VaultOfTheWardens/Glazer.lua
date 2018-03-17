@@ -1,7 +1,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Glazer", 1045, 1469)
+local mod, CL = BigWigs:NewBoss("Glazer", 1493, 1469)
 if not mod then return end
 mod:RegisterEnableMob(95887)
 mod.engageId = 1817
@@ -81,10 +81,12 @@ end
 do
 	local prev = 0
 	function mod:BeamDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+			end
 		end
 	end
 end

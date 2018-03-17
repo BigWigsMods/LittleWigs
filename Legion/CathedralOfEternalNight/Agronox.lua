@@ -7,7 +7,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Agronox", 1146, 1905)
+local mod, CL = BigWigs:NewBoss("Agronox", 1677, 1905)
 if not mod then return end
 mod:RegisterEnableMob(117193)
 mod.engageId = 2055
@@ -113,10 +113,12 @@ end
 do
 	local prev = 0
 	function mod:ToxicSap(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(236640, "Personal", "Alert", CL.underyou:format(self:SpellName(236640)))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(236640, "Personal", "Alert", CL.underyou:format(self:SpellName(236640)))
+			end
 		end
 	end
 end

@@ -1,27 +1,30 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Keli'dan the Breaker", 725, 557)
+local mod, CL = BigWigs:NewBoss("Keli'dan the Breaker", 542, 557)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(17377)
-mod.toggleOptions = {
-	30940,
-}
+-- mod.engageId = 1923 -- no boss frames, no ENCOUNTER_END on a wipe
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		-5388, -- Burning Nova
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Nova", 30940)
+	self:Log("SPELL_CAST_SUCCESS", "BurningNova", 30940) -- the buff that he applies to himself before casting the spell (37371) that does the damage
 	self:Death("Win", 17377)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Nova(_, spellId, _, _, spellName)
-	self:Message(30940, spellName, "Important", spellId)
-	self:Bar(30940, spellName, 5, spellId)
+function mod:BurningNova(args)
+	self:Message(-5388, "Important", nil, CL.casting:format(args.spellName))
+	self:CastBar(-5388, 6)
 end
