@@ -1,13 +1,13 @@
 
 BigWigs:AddColors("Gu Cloudstrike", {
-	[-5633] = "Attention",
-	[-5632] = "Urgent",
 	[-5630] = "Personal",
+	[102573] = "Urgent",
+	[107140] = "Attention",
 	["stages"] = "Positive",
 })
 
 BigWigs:AddColors("Master Snowdrift", {
-	[106434] = {"Attention","Urgent"},
+	[106434] = "Urgent",
 	[106747] = "Positive",
 	[118961] = {"Important","Personal"},
 	["stages"] = "Positive",
