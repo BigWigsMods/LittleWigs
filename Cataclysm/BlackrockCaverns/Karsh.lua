@@ -1,12 +1,16 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Karsh Steelbender", 645, 107)
 if not mod then return end
 mod:RegisterEnableMob(39698)
+mod.engageId = 1039
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -16,33 +20,27 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Armor", 75842)
-	self:Log("SPELL_AURA_APPLIED", "SuperheatedArmor", 75846)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "SuperheatedArmorDose", 75846)
-
-	self:Death("Win", 39698)
+	self:Log("SPELL_AURA_APPLIED", "QuicksilverArmor", 75842)
+	self:Log("SPELL_AURA_APPLIED", "SuperheatedQuicksilverArmor", 75846)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SuperheatedQuicksilverArmorDose", 75846)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:Armor(args)
+function mod:QuicksilverArmor(args)
 	self:Message(args.spellId, "Attention", "Alert")
 end
 
-do
-	local function HeatedArmorBar(self, spellId, spellName, stacks)
-		self:StopBar(("%dx %s"):format(stacks - 1, spellName))
-		self:Bar(spellId, 17, ("%dx %s"):format(stacks, spellName))
-	end
-
-	function mod:SuperheatedArmor(args)
-		mod:Message(args.spellId, "Important", "Info")
-		HeatedArmorBar(self, args.spellId, args.spellName, 1)
-	end
-
-	function mod:SuperheatedArmorDose(args)
-		HeatedArmorBar(self, args.spellId, args.spellName, args.amount)
-	end
+function mod:SuperheatedQuicksilverArmor(args)
+	self:Message(args.spellId, "Important", "Info")
+	self:Bar(args.spellId, 17)
 end
 
+function mod:SuperheatedQuicksilverArmorDose(args)
+	self:Bar(args.spellId, 17)
+	if args.amount % 2 == 1 or args.amount > 5 then
+		self:StackMessage(args.spellId, args.destName, args.amount, "Important", self:Tank() and "Warning")
+	end
+end
