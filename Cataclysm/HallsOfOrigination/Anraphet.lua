@@ -55,13 +55,13 @@ do
 		local t = GetTime()
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(76184, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			self:Message(76184, "Personal", "Alert", CL.underyou:format(args.spellName))
 		end
 	end
 end
 
 function mod:OmegaStance(args)
-	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 41)
 end
 
