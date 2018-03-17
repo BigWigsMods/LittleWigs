@@ -50,7 +50,7 @@ function mod:TwilightCorruption(args)
 end
 
 function mod:TwilightCorruptionRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:CrepuscularVeil(args)
