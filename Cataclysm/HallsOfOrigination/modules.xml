@@ -7,4 +7,6 @@
 <Script file="Ammunae.lua"/>
 <Script file="Rajh.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
