@@ -5,13 +5,13 @@ BigWigs:AddColors("Thalnos the Soulrender", {
 })
 
 BigWigs:AddColors("Brother Korloff", {
-	["firestorm"] = "Attention",
 	[114460] = "Personal",
+	["firestorm"] = "Attention",
 	["fists"] = "Urgent",
 })
 
 BigWigs:AddColors("High Inquisitor Whitemane", {
-	["steel"] = "Attention",
 	[113134] = "Urgent",
 	["stages"] = "Positive",
+	["steel"] = "Attention",
 })

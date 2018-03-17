@@ -8,8 +8,8 @@ BigWigs:AddSounds("Grand Magus Telestra", {
 })
 
 BigWigs:AddSounds("Keristrasza", {
-	[48095] = "Alarm",
 	[8599] = "Info",
+	[48095] = "Alarm",
 })
 
 BigWigs:AddSounds("The Nexus Trash", {

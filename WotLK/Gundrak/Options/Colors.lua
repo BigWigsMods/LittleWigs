@@ -4,8 +4,8 @@ BigWigs:AddColors("Slad'ran", {
 })
 
 BigWigs:AddColors("Drakkari Colossus", {
-	["stages"] = {"Attention","Important"},
 	[59451] = "Personal",
+	["stages"] = {"Attention","Important"},
 })
 
 BigWigs:AddColors("Moorabi", {
@@ -17,7 +17,7 @@ BigWigs:AddColors("Eck the Ferocious", {
 })
 
 BigWigs:AddColors("Gal'darah", {
-	[59827] = {"Attention","Personal"},
 	[59825] = "Personal",
+	[59827] = {"Attention","Personal"},
 	["forms"] = "Attention",
 })

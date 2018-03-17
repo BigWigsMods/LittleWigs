@@ -1,9 +1,9 @@
 
 BigWigs:AddColors("Watchkeeper Gargolmar", {
-	[36814] = {"Neutral","Personal"},
 	[8362] = {"Attention","Personal"},
 	[12039] = "Important",
 	[14032] = {"Urgent","Personal"},
+	[36814] = {"Neutral","Personal"},
 })
 
 BigWigs:AddColors("Omor the Unscarred", {

@@ -5,11 +5,11 @@ BigWigs:AddSounds("General Umbriss", {
 })
 
 BigWigs:AddSounds("Forgemaster Throngus", {
-	[75007] = "Alert",
-	[74976] = "Long",
-	[74987] = "Alarm",
-	[74981] = "Alert",
 	[74908] = "Alert",
+	[74976] = "Long",
+	[74981] = "Alert",
+	[74987] = "Alarm",
+	[75007] = "Alert",
 })
 
 BigWigs:AddSounds("Drahga Shadowburner", {
@@ -18,7 +18,7 @@ BigWigs:AddSounds("Drahga Shadowburner", {
 })
 
 BigWigs:AddSounds("Erudax", {
+	[75664] = "Alert",
 	[75755] = "Alarm",
 	[75763] = "Warning",
-	[75664] = "Alert",
 })

@@ -1,14 +1,14 @@
 
 BigWigs:AddColors("Peroth'arn", {
 	[105442] = {"Attention","Personal"},
-	["eyes"] = "Positive",
 	[105493] = {"Attention","Personal"},
 	[105544] = {"Important","Personal"},
+	["eyes"] = "Positive",
 })
 
 BigWigs:AddColors("Queen Azshara", {
-	[-3968] = "Attention",
 	[-3969] = {"Urgent","Positive"},
+	[-3968] = "Attention",
 })
 
 BigWigs:AddColors("Mannoroth and Varo'then", {

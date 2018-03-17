@@ -9,6 +9,6 @@ BigWigs:AddColors("Grandmaster Vorpil", {
 })
 
 BigWigs:AddColors("Murmur", {
-	[38794] = {"Attention","Personal"},
 	[33923] = "Important",
+	[38794] = {"Attention","Personal"},
 })

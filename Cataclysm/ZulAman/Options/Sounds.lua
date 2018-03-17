@@ -5,27 +5,27 @@ BigWigs:AddSounds("Akil'zon", {
 })
 
 BigWigs:AddSounds("Nalorakk", {
-	[42402] = "Alarm",
 	[42398] = "Info",
+	[42402] = "Alarm",
 })
 
 BigWigs:AddSounds("Jan'alai", {
 	[-2625] = "Long",
-	[97497] = "Alert",
 	[-2622] = "Info",
+	[97497] = "Alert",
 })
 
 BigWigs:AddSounds("Halazzi", {
-	[43303] = "Alarm",
 	[43302] = "Alert",
+	[43303] = "Alarm",
 	[97499] = "Alert",
 })
 
 BigWigs:AddSounds("Hex Lord Malacrass", {
 	[43421] = "Alarm",
-	[43548] = "Alarm",
-	[43451] = "Alarm",
 	[43431] = "Alarm",
+	[43451] = "Alarm",
+	[43548] = "Alarm",
 })
 
 BigWigs:AddSounds("Daakara", {

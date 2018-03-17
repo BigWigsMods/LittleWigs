@@ -19,9 +19,9 @@ BigWigs:AddColors("Ormorok the Tree-Shaper", {
 
 BigWigs:AddColors("Keristrasza", {
 	[8599] = "Important",
-	[50997] = {"Attention","Personal"},
-	[48179] = "Urgent",
 	[48095] = "Personal",
+	[48179] = "Urgent",
+	[50997] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("The Nexus Trash", {

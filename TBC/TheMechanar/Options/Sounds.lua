@@ -4,8 +4,8 @@ BigWigs:AddSounds("Mechano-Lord Capacitus", {
 })
 
 BigWigs:AddSounds("Gatewatcher Iron-Hand", {
-	[39194] = {"Long","Alert"},
 	[35311] = "Alarm",
+	[39194] = {"Long","Alert"},
 })
 
 BigWigs:AddSounds("Gatewatcher Gyro-Kill", {
@@ -13,8 +13,8 @@ BigWigs:AddSounds("Gatewatcher Gyro-Kill", {
 })
 
 BigWigs:AddSounds("Nethermancer Sepethrea", {
-	[35314] = "Warning",
-	[35250] = "Alarm",
-	[41951] = "Long",
 	[-5488] = {"Alert","Info"},
+	[35250] = "Alarm",
+	[35314] = "Warning",
+	[41951] = "Long",
 })

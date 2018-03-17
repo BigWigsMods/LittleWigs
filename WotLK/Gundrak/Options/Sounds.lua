@@ -16,6 +16,6 @@ BigWigs:AddSounds("Eck the Ferocious", {
 })
 
 BigWigs:AddSounds("Gal'darah", {
-	[59827] = "Info",
 	[59825] = "Alarm",
+	[59827] = "Info",
 })

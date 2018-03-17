@@ -18,10 +18,10 @@ BigWigs:AddColors("Warchief Kargath Bladefist", {
 })
 
 BigWigs:AddColors("The Shattered Halls Trash", {
-	[36020] = {"Important","Personal"},
-	[15615] = {"Attention","Personal"},
-	[36033] = {"Attention","Personal"},
 	[12542] = {"Important","Personal"},
+	[15615] = {"Attention","Personal"},
 	[30980] = {"Attention","Personal"},
+	[36020] = {"Important","Personal"},
+	[36033] = {"Attention","Personal"},
 	[38815] = "Urgent",
 })

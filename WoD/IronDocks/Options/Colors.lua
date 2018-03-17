@@ -1,9 +1,9 @@
 
 BigWigs:AddColors("Fleshrender Nok'gar", {
+	[164426] = "Urgent",
+	[164632] = "Personal",
 	[164835] = {"Attention","Personal"},
 	[164837] = {"Important","Personal"},
-	[164632] = "Personal",
-	[164426] = "Urgent",
 })
 
 BigWigs:AddColors("Grimrail Enforcers", {

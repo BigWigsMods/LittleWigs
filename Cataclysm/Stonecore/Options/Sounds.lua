@@ -1,18 +1,18 @@
 
 BigWigs:AddSounds("Corborus", {
-	["burrow"] = "Info",
 	[86881] = "Alarm",
+	["burrow"] = "Info",
 })
 
 BigWigs:AddSounds("Slabhide", {
-	[92265] = "Alert",
 	[80801] = "Alarm",
+	[92265] = "Alert",
 })
 
 BigWigs:AddSounds("Ozruk", {
-	[92426] = "Alert",
-	[78939] = "Alarm",
 	[78903] = "Alarm",
+	[78939] = "Alarm",
+	[92426] = "Alert",
 })
 
 BigWigs:AddSounds("High Priestess Azil", {

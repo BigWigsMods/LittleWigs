@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Commander Sarannis", {
-	[35096] = {"Warning","Alarm"},
 	[-5411] = "Info",
+	[35096] = {"Warning","Alarm"},
 })
 
 BigWigs:AddSounds("High Botanist Freywinn", {
@@ -10,11 +10,11 @@ BigWigs:AddSounds("High Botanist Freywinn", {
 })
 
 BigWigs:AddSounds("Thorngrin the Tender", {
-	[34670] = "Warning",
 	[34659] = {"Long","Alert"},
+	[34670] = "Warning",
 })
 
 BigWigs:AddSounds("Warp Splinter", {
-	[34716] = "Alert",
 	[-5478] = {"Alarm","Info"},
+	[34716] = "Alert",
 })

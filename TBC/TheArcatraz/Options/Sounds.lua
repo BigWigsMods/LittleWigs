@@ -9,8 +9,8 @@ BigWigs:AddSounds("Dalliah the Doomsayer", {
 
 BigWigs:AddSounds("The Arcatraz Trash", {
 	[36778] = "Alarm",
-	[38903] = {"Alert","Warning"},
-	[38815] = "Alarm",
-	[36886] = "Long",
 	[36866] = "Warning",
+	[36886] = "Long",
+	[38815] = "Alarm",
+	[38903] = {"Alert","Warning"},
 })

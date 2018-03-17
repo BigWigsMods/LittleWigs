@@ -18,8 +18,8 @@ BigWigs:AddSounds("Warchief Kargath Bladefist", {
 
 BigWigs:AddSounds("The Shattered Halls Trash", {
 	[12542] = "Alert",
+	[15615] = "Alarm",
+	[30980] = "Alarm",
 	[36033] = "Alarm",
 	[38815] = "Long",
-	[30980] = "Alarm",
-	[15615] = "Alarm",
 })

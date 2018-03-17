@@ -5,10 +5,10 @@ BigWigs:AddSounds("Maiden of Grief", {
 })
 
 BigWigs:AddSounds("Tribunal of Ages", {
-	[59866] = "Alert",
-	["timers"] = "Info",
-	[59868] = "Alarm",
 	[51012] = "Alarm",
+	[59866] = "Alert",
+	[59868] = "Alarm",
+	["timers"] = "Info",
 })
 
 BigWigs:AddSounds("Sjonnir The Ironshaper", {

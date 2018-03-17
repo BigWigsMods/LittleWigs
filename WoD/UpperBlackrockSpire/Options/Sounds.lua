@@ -1,27 +1,27 @@
 
 BigWigs:AddSounds("Orebender Gor'ashan", {
-	[166168] = {"Warning","Long"},
 	[154448] = "Alert",
+	[166168] = {"Warning","Long"},
 })
 
 BigWigs:AddSounds("Kyrak", {
-	[161199] = "Alert",
-	[161288] = "Alarm",
-	[161203] = {"Long","Warning"},
 	[155037] = "Info",
+	[161199] = "Alert",
+	[161203] = {"Long","Warning"},
+	[161288] = "Alarm",
 })
 
 BigWigs:AddSounds("Commander Tharbek", {
-	[162090] = "Alert",
-	[161882] = "Long",
 	[161833] = "Alarm",
+	[161882] = "Long",
+	[162090] = "Alert",
 	["stages"] = "Info",
 })
 
 BigWigs:AddSounds("Ragewing the Untamed", {
-	[155057] = "Alarm",
 	[-10740] = "Long",
 	[154996] = "Warning",
+	[155057] = "Alarm",
 	[155620] = "Info",
 })
 

@@ -9,10 +9,10 @@ BigWigs:AddColors("Maiden of Grief", {
 })
 
 BigWigs:AddColors("Tribunal of Ages", {
-	[59866] = "Personal",
-	["timers"] = "Attention",
-	[59868] = {"Urgent","Personal"},
 	[51012] = {"Urgent","Personal"},
+	[59866] = "Personal",
+	[59868] = {"Urgent","Personal"},
+	["timers"] = "Attention",
 })
 
 BigWigs:AddColors("Sjonnir The Ironshaper", {

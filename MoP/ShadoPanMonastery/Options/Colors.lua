@@ -1,25 +1,25 @@
 
 BigWigs:AddColors("Gu Cloudstrike", {
+	[-5633] = "Attention",
 	[-5632] = "Urgent",
 	[-5630] = "Personal",
 	["stages"] = "Positive",
-	[-5633] = "Attention",
 })
 
 BigWigs:AddColors("Master Snowdrift", {
-	[118961] = {"Important","Personal"},
 	[106434] = {"Attention","Urgent"},
-	["stages"] = "Positive",
 	[106747] = "Positive",
+	[118961] = {"Important","Personal"},
+	["stages"] = "Positive",
 })
 
 BigWigs:AddColors("Sha of Violence", {
-	[106872] = {"Urgent","Personal"},
 	[-5813] = {"Important","Positive"},
+	[106872] = {"Urgent","Personal"},
 })
 
 BigWigs:AddColors("Taran Zhu", {
 	[107087] = "Personal",
-	[115002] = "Urgent",
 	[107356] = "Important",
+	[115002] = "Urgent",
 })

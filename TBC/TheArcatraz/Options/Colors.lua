@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Zereketh the Unbound", {
-	[36123] = {"Urgent","Personal"},
 	[36119] = "Personal",
+	[36123] = {"Urgent","Personal"},
 	[39005] = "Important",
 })
 
@@ -17,16 +17,16 @@ BigWigs:AddColors("Wrath-Scryer Soccothrates", {
 })
 
 BigWigs:AddColors("Harbinger Skyriss", {
-	[37162] = {"Urgent","Personal"},
-	[36924] = {"Important","Personal"},
 	[-5335] = {"Positive","Neutral"},
+	[36924] = {"Important","Personal"},
+	[37162] = {"Urgent","Personal"},
 	[39415] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("The Arcatraz Trash", {
 	[36778] = {"Attention","Personal"},
-	[38903] = {"Urgent","Personal","Important"},
-	[38815] = "Attention",
-	[36886] = {"Urgent","Personal"},
 	[36866] = {"Important","Personal"},
+	[36886] = {"Urgent","Personal"},
+	[38815] = "Attention",
+	[38903] = {"Urgent","Personal","Important"},
 })

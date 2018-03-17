@@ -6,15 +6,15 @@ BigWigs:AddSounds("Ranjit", {
 
 BigWigs:AddSounds("Araknath", {
 	[154110] = "Warning",
-	[154159] = "Long",
 	[154135] = "Info",
+	[154159] = "Long",
 })
 
 BigWigs:AddSounds("Rukhran", {
-	[167757] = "Alarm",
 	[153794] = "Warning",
-	[159382] = "Long",
 	[153810] = "Info",
+	[159382] = "Long",
+	[167757] = "Alarm",
 })
 
 BigWigs:AddSounds("High Sage Viryx", {

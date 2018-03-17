@@ -1,21 +1,21 @@
 
 BigWigs:AddColors("Ranjit", {
 	[153315] = "Important",
-	[165731] = {"Attention","Personal"},
 	[156793] = "Urgent",
+	[165731] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("Araknath", {
 	[154110] = "Urgent",
-	[154159] = "Attention",
 	[154135] = "Important",
+	[154159] = "Attention",
 })
 
 BigWigs:AddColors("Rukhran", {
-	[167757] = "Personal",
 	[153794] = "Attention",
-	[159382] = {"Urgent","Positive"},
 	[153810] = "Important",
+	[159382] = {"Urgent","Positive"},
+	[167757] = "Personal",
 })
 
 BigWigs:AddColors("High Sage Viryx", {

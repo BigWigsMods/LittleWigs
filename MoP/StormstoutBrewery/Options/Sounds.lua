@@ -7,16 +7,16 @@ BigWigs:AddSounds("Ook-Ook", {
 
 BigWigs:AddSounds("Hoptallus", {
 	[112944] = "Alarm",
-	[114291] = "Alert",
 	[112992] = {"Long","Alert"},
+	[114291] = "Alert",
 })
 
 BigWigs:AddSounds("Yan-Zhu the Uncasked", {
-	[106563] = {"Alert","Info"},
-	[106546] = "Alarm",
-	[106851] = {"Warning","Alarm"},
-	[114548] = "Alert",
-	[114451] = "Warning",
 	[-5658] = "Long",
+	[106546] = "Alarm",
+	[106563] = {"Alert","Info"},
+	[106851] = {"Warning","Alarm"},
+	[114451] = "Warning",
+	[114548] = "Alert",
 	[115003] = "Long",
 })

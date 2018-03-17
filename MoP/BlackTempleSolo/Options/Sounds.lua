@@ -8,6 +8,6 @@ BigWigs:AddSounds("Kanrethad Ebonlocke", {
 	[138559] = "Long",
 	[138560] = "Alarm",
 	[138561] = "Alert",
-	[139060] = "Warning",
 	[138564] = "Warning",
+	[139060] = "Warning",
 })

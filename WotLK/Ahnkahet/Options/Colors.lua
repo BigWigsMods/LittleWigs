@@ -5,8 +5,8 @@ BigWigs:AddColors("Elder Nadox", {
 })
 
 BigWigs:AddColors("Prince Taldaram", {
-	[59513] = {"Important","Personal","Positive"},
 	[55931] = "Important",
+	[59513] = {"Important","Personal","Positive"},
 })
 
 BigWigs:AddColors("Jedoga Shadowseeker", {
@@ -23,7 +23,7 @@ BigWigs:AddColors("Herald Volazj", {
 })
 
 BigWigs:AddColors("Ahn'kahet Trash", {
+	[13338] = {"Attention","Personal"},
 	[56728] = {"Important","Personal"},
 	[59102] = "Important",
-	[13338] = {"Attention","Personal"},
 })

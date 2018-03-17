@@ -4,12 +4,12 @@ BigWigs:AddSounds("Selin Fireheart", {
 })
 
 BigWigs:AddSounds("Kael'thas Sunstrider ", {
-	[44194] = "Info",
 	[36819] = "Long",
+	[44194] = "Info",
 })
 
 BigWigs:AddSounds("Magisters' Terrace Trash", {
-	[44644] = {"Warning","Alert"},
 	[44475] = "Alert",
+	[44644] = {"Warning","Alert"},
 	[44765] = "Alarm",
 })

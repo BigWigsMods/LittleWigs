@@ -4,11 +4,11 @@ BigWigs:AddColors("Trollgore", {
 })
 
 BigWigs:AddColors("Novos the Summoner", {
-	["stages"] = "Neutral",
-	[50089] = {"Urgent","Personal"},
 	[49034] = "Personal",
+	[50089] = {"Urgent","Personal"},
 	[59910] = "Attention",
 	["adds"] = "Attention",
+	["stages"] = "Neutral",
 })
 
 BigWigs:AddColors("King Dred", {
@@ -17,7 +17,7 @@ BigWigs:AddColors("King Dred", {
 })
 
 BigWigs:AddColors("The Prophet Tharon'ja", {
-	[59971] = "Personal",
 	[49527] = {"Urgent","Personal"},
+	[59971] = "Personal",
 	["stages"] = "Neutral",
 })

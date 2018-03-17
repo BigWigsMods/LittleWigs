@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Mennu the Betrayer", {
-	[34980] = "Urgent",
 	[31991] = "Attention",
+	[34980] = "Urgent",
 })
 
 BigWigs:AddColors("Rokmar the Crackler", {
@@ -15,10 +15,10 @@ BigWigs:AddColors("Quagmirran", {
 })
 
 BigWigs:AddColors("The Slave Pens Trash", {
-	[33787] = {"Attention","Personal"},
-	[32173] = {"Urgent","Personal"},
 	[15655] = {"Important","Personal"},
+	[31554] = {"Attention","Personal"},
+	[32173] = {"Urgent","Personal"},
+	[33787] = {"Attention","Personal"},
 	[34984] = {"Important","Personal"},
 	[39378] = "Urgent",
-	[31554] = {"Attention","Personal"},
 })

@@ -7,17 +7,17 @@ BigWigs:AddColors("Ook-Ook", {
 
 BigWigs:AddColors("Hoptallus", {
 	[112944] = "Important",
-	[114291] = "Urgent",
 	[112992] = {"Attention","Personal"},
+	[114291] = "Urgent",
 })
 
 BigWigs:AddColors("Yan-Zhu the Uncasked", {
-	[106563] = {"Urgent","Positive"},
-	[106546] = {"Attention","Personal"},
-	[106851] = {"Attention","Personal"},
-	[114548] = {"Important","Personal"},
-	["summon"] = "Neutral",
-	[114451] = "Urgent",
 	[-5658] = "Important",
+	[106546] = {"Attention","Personal"},
+	[106563] = {"Urgent","Positive"},
+	[106851] = {"Attention","Personal"},
+	[114451] = "Urgent",
+	[114548] = {"Important","Personal"},
 	[115003] = "Important",
+	["summon"] = "Neutral",
 })

@@ -8,7 +8,7 @@ BigWigs:AddSounds("Amanitar", {
 })
 
 BigWigs:AddSounds("Ahn'kahet Trash", {
+	[13338] = "Alarm",
 	[56728] = "Alert",
 	[59102] = {"Warning","Long"},
-	[13338] = "Alarm",
 })

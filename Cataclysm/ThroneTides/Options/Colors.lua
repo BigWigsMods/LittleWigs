@@ -4,16 +4,16 @@ BigWigs:AddColors("Lady Naz'jar", {
 })
 
 BigWigs:AddColors("Commander Ulthok", {
-	[76094] = {"Attention","Personal"},
 	[76026] = {"Urgent","Personal"},
-	[76100] = "Attention",
 	[76047] = "Important",
+	[76094] = {"Attention","Personal"},
+	[76100] = "Attention",
 })
 
 BigWigs:AddColors("Mindbender Ghur'sha", {
-	[76307] = "Urgent",
-	[76230] = "Personal",
 	[76207] = {"Important","Personal"},
+	[76230] = "Personal",
+	[76307] = "Urgent",
 	["stages"] = "Positive",
 })
 

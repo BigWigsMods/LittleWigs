@@ -1,22 +1,22 @@
 
 BigWigs:AddColors("Saboteur Kip'tilak", {
-	[107268] = {"Important","Personal"},
 	[-5394] = "Attention",
+	[107268] = {"Important","Personal"},
 })
 
 BigWigs:AddColors("Striker Ga'dok", {
-	[106933] = {"Important","Personal"},
 	[-5660] = {"Personal","Attention"},
+	[106933] = {"Important","Personal"},
 })
 
 BigWigs:AddColors("Commander Ri'mok", {
-	[107120] = {"Attention","Personal"},
 	[-5666] = {"Important","Personal","Urgent"},
+	[107120] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("Raigonn", {
 	[111668] = "Urgent",
 	[111723] = {"Important","Personal"},
-	["stages"] = {"Neutral","Positive"},
 	[111728] = "Attention",
+	["stages"] = {"Neutral","Positive"},
 })

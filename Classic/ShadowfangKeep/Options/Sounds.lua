@@ -14,7 +14,7 @@ BigWigs:AddSounds("Lord Walden", {
 })
 
 BigWigs:AddSounds("Lord Godfrey", {
-	[93707] = "Info",
 	[93520] = {"Long","Alert"},
 	[93629] = "Alarm",
+	[93707] = "Info",
 })

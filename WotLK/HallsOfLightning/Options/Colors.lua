@@ -9,8 +9,8 @@ BigWigs:AddColors("Volkhan", {
 })
 
 BigWigs:AddColors("Ionar", {
-	[59795] = {"Attention","Personal"},
 	[52770] = "Urgent",
+	[59795] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("Loken", {
@@ -18,6 +18,6 @@ BigWigs:AddColors("Loken", {
 })
 
 BigWigs:AddColors("Halls of Lightning Trash", {
-	[61581] = "Important",
 	[53045] = {"Attention","Personal"},
+	[61581] = "Important",
 })

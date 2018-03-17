@@ -17,10 +17,10 @@ BigWigs:AddColors("Nexus-Prince Shaffar", {
 })
 
 BigWigs:AddColors("Mana-Tombs Trash", {
-	[33871] = {"Attention","Personal"},
-	[22883] = "Urgent",
-	[34925] = {"Attention","Personal"},
-	[34922] = {"Urgent","Personal"},
-	[34322] = {"Important","Personal"},
 	[13323] = {"Attention","Personal"},
+	[22883] = "Urgent",
+	[33871] = {"Attention","Personal"},
+	[34322] = {"Important","Personal"},
+	[34922] = {"Urgent","Personal"},
+	[34925] = {"Attention","Personal"},
 })
