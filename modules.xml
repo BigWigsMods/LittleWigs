@@ -105,7 +105,6 @@
 <Include file="MoP\ScarletMonastery\locales.xml"/>
 
 <Include file="MoP\MogushanPalace\modules.xml"/>
-<Include file="MoP\MogushanPalace\locales.xml"/>
 
 <Include file="MoP\TempleOfTheJadeSerpent\modules.xml"/>
 <Include file="MoP\TempleOfTheJadeSerpent\locales.xml"/>
