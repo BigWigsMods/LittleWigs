@@ -2,9 +2,9 @@
 BigWigs:AddSounds("Shivermaw", {
 	[201672] = "Long",
 	[201379] = "Warning",
-	[201960] = "Info",
 	[201354] = "Alarm",
 	[201355] = "Alert",
+	[201960] = "Info",
 	[202062] = "Warning",
 })
 
@@ -26,22 +26,22 @@ BigWigs:AddSounds("Millificent Manastorm", {
 })
 
 BigWigs:AddSounds("Kaahrj", {
+	[201148] = "Info",
 	[201153] = "Long",
 	[201146] = "Alarm",
-	[201148] = "Info",
 })
 
 BigWigs:AddSounds("Anub'esset", {
-	[202217] = "Alarm",
 	[202485] = "Alarm",
 	[201863] = "Info",
 	[202480] = "Warning",
 	[202341] = "Long",
+	[202217] = "Alarm",
 })
 
 BigWigs:AddSounds("Saelorn", {
-	[202473] = "Long",
 	[202306] = "Alarm",
+	[202473] = "Long",
 	[202414] = "Alert",
 })
 
@@ -52,7 +52,7 @@ BigWigs:AddSounds("Fel Lord Betrug", {
 })
 
 BigWigs:AddSounds("Assault on Violet Hold Trash", {
-	[204140] = "Alert",
 	[204608] = "Alarm",
+	[204140] = "Alert",
 	[205088] = "Alert",
 })
