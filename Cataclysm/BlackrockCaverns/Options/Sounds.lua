@@ -7,7 +7,7 @@ BigWigs:AddSounds("Rom'ogg Bonecrusher", {
 
 BigWigs:AddSounds("Corla, Herald of Twilight", {
 	[75697] = "Warning",
-	[75823] = {"Alert","Alarm"},
+	[75823] = {"Alarm","Alert"},
 })
 
 BigWigs:AddSounds("Karsh Steelbender", {

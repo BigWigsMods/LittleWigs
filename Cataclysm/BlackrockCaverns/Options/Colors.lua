@@ -7,7 +7,7 @@ BigWigs:AddColors("Rom'ogg Bonecrusher", {
 
 BigWigs:AddColors("Corla, Herald of Twilight", {
 	[75697] = {"Personal","Positive"},
-	[75823] = {"Urgent","Important","Personal"},
+	[75823] = {"Important","Personal","Urgent"},
 })
 
 BigWigs:AddColors("Karsh Steelbender", {
@@ -17,7 +17,7 @@ BigWigs:AddColors("Karsh Steelbender", {
 
 BigWigs:AddColors("Beauty", {
 	[76028] = {"Attention","Personal"},
-	[76031] = {"Urgent","Personal"},
+	[76031] = {"Personal","Urgent"},
 	[76628] = "Personal",
 })
 
