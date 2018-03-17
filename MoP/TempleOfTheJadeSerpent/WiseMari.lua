@@ -29,11 +29,15 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CallWater", 106526)
 	self:Log("SPELL_CAST_START", "BubbleBurst", 106612)
+
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	self:Death("Win", 56448)
 	self:Death("AddDeath", 56511)
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Positive", "Info", CL.stage:format(1), false)
+	self:Message("stages", "Positive", "Info", CL.phase:format(1), false)
 	deaths = 0
 end
 
@@ -47,7 +51,7 @@ function mod:CallWater(args)
 end
 
 function mod:BubbleBurst(args)
-	local text = CL.stage:format(2)
+	local text = CL.phase:format(2)
 	self:DelayedMessage("stages", 4, "Positive", text, false, "Info")
 	self:Bar("stages", 4, text, args.spellId)
 end
