@@ -52,6 +52,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 --------------------------------------------------------------------------------

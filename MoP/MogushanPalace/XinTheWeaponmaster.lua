@@ -57,9 +57,9 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("119311", nil, true) then -- Stream of Blades (Blade Trap)
-		self:Message("blades", "Attention", "Info", "66% - "..self:SpellName(L.blades), 119311)
+		self:Message("blades", "Attention", "Info", CL.percent:format(66, self:SpellName(L.blades)), 119311)
 	elseif msg:find("120142", nil, true) then -- Crossbow (Death From Above!)
-		self:Message("crossbows", "Attention", "Info", "33% - "..self:SpellName(L.crossbows), 120142)
+		self:Message("crossbows", "Attention", "Info", CL.percent:format(33, self:SpellName(L.crossbows)), 120142)
 	end
 end
 
