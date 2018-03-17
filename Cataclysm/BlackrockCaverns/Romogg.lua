@@ -86,5 +86,5 @@ end
 function mod:TheSkullcracker(args)
 	local time = self:Normal() and 12 or 8 -- 12 sec on normal, 8 on heroic
 	self:CastBar(args.spellId, time)
-	self:Message(args.spellId, "Urgent", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
 end
