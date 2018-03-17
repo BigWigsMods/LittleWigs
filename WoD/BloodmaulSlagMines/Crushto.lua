@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Slave Watcher Crushto", 964, 888)
+local mod, CL = BigWigs:NewBoss("Slave Watcher Crushto", 1175, 888)
 if not mod then return end
 mod:RegisterEnableMob(74787)
 --BOSS_KILL#1653#Slave Watcher Crushto

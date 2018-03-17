@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Krik'thir the Gatewatcher", 533, 585)
+local mod, CL = BigWigs:NewBoss("Krik'thir the Gatewatcher", 601, 585)
 if not mod then return end
 mod:RegisterEnableMob(28684)
 mod.engageId = 1971

@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ancient Protectors", 1008, 1207)
+local mod, CL = BigWigs:NewBoss("Ancient Protectors", 1279, 1207)
 if not mod then return end
 mod:RegisterEnableMob(83894, 83892, 83893) -- Dulhu, Life Warden Gola, Earthshaper Telu
 mod.engageId = 1757

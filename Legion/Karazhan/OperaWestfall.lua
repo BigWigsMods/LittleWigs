@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Opera Hall: Westfall Story", 1115, 1826)
+local mod, CL = BigWigs:NewBoss("Opera Hall: Westfall Story", 1651, 1826)
 if not mod then return end
 mod:RegisterEnableMob(114261, 114260) -- Toe Knee, Mrrgria
 --mod.engageId = 1957 -- Same for every opera event. So it's basically useless.

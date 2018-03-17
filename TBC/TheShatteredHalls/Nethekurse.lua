@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Grand Warlock Nethekurse", 710, 566)
+local mod, CL = BigWigs:NewBoss("Grand Warlock Nethekurse", 540, 566)
 if not mod then return end
 mod:RegisterEnableMob(16807)
 mod.engageId = 1936

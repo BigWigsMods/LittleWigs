@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Maiden of Grief", 526, 605)
+local mod, CL = BigWigs:NewBoss("Maiden of Grief", 599, 605)
 if not mod then return end
 mod:RegisterEnableMob(27975)
 mod.engageId = 1996

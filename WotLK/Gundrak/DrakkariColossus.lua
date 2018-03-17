@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Drakkari Colossus", 530, 593)
+local mod, CL = BigWigs:NewBoss("Drakkari Colossus", 604, 593)
 if not mod then return end
 mod:RegisterEnableMob(29307)
 mod.engageId = 1983

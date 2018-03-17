@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Commander Ri'mok", 875, 676)
+local mod, CL = BigWigs:NewBoss("Commander Ri'mok", 962, 676)
 if not mod then return end
 mod:RegisterEnableMob(56636)
 mod.engageId = 1406

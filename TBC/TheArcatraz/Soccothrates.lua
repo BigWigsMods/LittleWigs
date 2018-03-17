@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Wrath-Scryer Soccothrates", 731, 550)
+local mod, CL = BigWigs:NewBoss("Wrath-Scryer Soccothrates", 552, 550)
 if not mod then return end
 mod:RegisterEnableMob(20886)
 mod.engageId = 1915

@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Master Snowdrift", 877, 657)
+local mod, CL = BigWigs:NewBoss("Master Snowdrift", 959, 657)
 if not mod then return end
 mod:RegisterEnableMob(56541)
 

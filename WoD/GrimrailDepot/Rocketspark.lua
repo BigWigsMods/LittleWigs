@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rocketspark and Borka", 993, 1138)
+local mod, CL = BigWigs:NewBoss("Rocketspark and Borka", 1208, 1138)
 if not mod then return end
 mod:RegisterEnableMob(77816, 77803) -- Borka, Rocketspark
 

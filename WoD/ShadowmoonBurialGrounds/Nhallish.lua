@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nhallish", 969, 1168)
+local mod, CL = BigWigs:NewBoss("Nhallish", 1176, 1168)
 if not mod then return end
 mod:RegisterEnableMob(75829)
 --BOSS_KILL#1688#Nhallish

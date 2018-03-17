@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Kael'thas Sunstrider ", 798, 533) -- Space is intentional to prevent conflict with Kael'thas from Tempest Keep/The Eye
+local mod, CL = BigWigs:NewBoss("Kael'thas Sunstrider ", 585, 533) -- Space is intentional to prevent conflict with Kael'thas from Tempest Keep/The Eye
 if not mod then return end
 mod:RegisterEnableMob(24664)
 -- mod.engageId = 1894 - doesn't fire ENCOUNTER_END on a wipe

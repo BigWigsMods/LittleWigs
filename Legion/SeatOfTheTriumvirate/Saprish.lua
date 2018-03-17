@@ -8,7 +8,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Saprish", 1178, 1980)
+local mod, CL = BigWigs:NewBoss("Saprish", 1753, 1980)
 if not mod then return end
 mod:RegisterEnableMob(122316, 122319, 125340) -- Saprish, Darkfang, Duskwing
 mod.engageId = 2066

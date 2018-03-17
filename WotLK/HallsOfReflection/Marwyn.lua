@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Marwyn", 603, 602)
+local mod, CL = BigWigs:NewBoss("Marwyn", 668, 602)
 if not mod then return end
 mod:RegisterEnableMob(38113)
 -- Sometimes he resets and then respawns few seconds after instead of

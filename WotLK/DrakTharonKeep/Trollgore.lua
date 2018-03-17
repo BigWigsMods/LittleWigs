@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Trollgore", 534, 588)
+local mod, CL = BigWigs:NewBoss("Trollgore", 600, 588)
 if not mod then return end
 mod:RegisterEnableMob(26630)
 -- mod.engageId = 1974 - starts randomly when other trash mobs attack him
