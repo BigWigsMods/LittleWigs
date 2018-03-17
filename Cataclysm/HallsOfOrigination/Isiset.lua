@@ -41,12 +41,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "EnergyFlux", 74045)
 	self:Log("SPELL_MISSED", "EnergyFlux", 74045)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 function mod:OnEngage()
 	nextSplitWarning = 71 -- 66% and 33%
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
