@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sha of Violence", 877, 685)
+local mod, CL = BigWigs:NewBoss("Sha of Violence", 959, 685)
 if not mod then return end
 mod:RegisterEnableMob(56719)
 

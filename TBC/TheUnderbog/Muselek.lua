@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Swamplord Musel'ek", 726, 578)
+local mod, CL = BigWigs:NewBoss("Swamplord Musel'ek", 546, 578)
 if not mod then return end
 mod:RegisterEnableMob(17826, 17827) -- Swamplord Musel'ek, Claw <Swamplord Musel'ek's Pet>
 mod.engageId = 1947
@@ -54,7 +54,7 @@ do
 
 	function mod:EchoingRoar(args)
 		if self:Me(args.destGUID) and not self:Healer() then
-			self:TargetMessage(spellId, args.destName, "Personal", "Warning")
+			self:TargetMessage(args.spellId, args.destName, "Personal", "Warning")
 		elseif self:Healer() then
 			playerList[#playerList+1] = args.destName
 			if #playerList == 1 then

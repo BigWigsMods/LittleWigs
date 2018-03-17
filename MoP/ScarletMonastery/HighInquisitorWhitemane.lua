@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("High Inquisitor Whitemane", 874, 674)
+local mod, CL = BigWigs:NewBoss("High Inquisitor Whitemane", 1004, 674)
 if not mod then return end
 mod:RegisterEnableMob(3977, 60040) -- Whitemane, Durand
 

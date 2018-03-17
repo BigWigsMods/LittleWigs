@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ghaz'an", 726, 577)
+local mod, CL = BigWigs:NewBoss("Ghaz'an", 546, 577)
 if not mod then return end
 mod:RegisterEnableMob(18105)
 -- mod.engageId = 1945 -- sometimes doesn't fire ENCOUNTER_END on a wipe
@@ -44,7 +44,7 @@ do
 
 	function mod:AcidBreath(args)
 		if self:Me(args.destGUID) and not self:Healer() then
-			self:TargetMessage(spellId, args.destName, "Personal", not self:Tank() and "Warning")
+			self:TargetMessage(args.spellId, args.destName, "Personal", not self:Tank() and "Warning")
 			self:TargetBar(args.spellId, 20, args.destName) -- this will have 100% uptime on the tank, can't be dispelled, no reason to show this to anyone not affected
 		elseif self:Healer() then
 			playerList[#playerList+1] = args.destName

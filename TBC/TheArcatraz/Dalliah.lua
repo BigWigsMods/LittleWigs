@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Dalliah the Doomsayer", 731, 549)
+local mod, CL = BigWigs:NewBoss("Dalliah the Doomsayer", 552, 549)
 if not mod then return end
 mod:RegisterEnableMob(20885)
 mod.engageId = 1913

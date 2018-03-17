@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Magmolatus", 964, 893)
+local mod, CL = BigWigs:NewBoss("Magmolatus", 1175, 893)
 if not mod then return end
 mod:RegisterEnableMob(74475, 74366, 74570, 74571) -- Magmolatus, Forgemaster Gog'duh, Ruination, Calamity
 --BOSS_KILL#1655#Magmolatus

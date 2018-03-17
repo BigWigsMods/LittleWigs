@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Warlord Kalithresh", 727, 575)
+local mod, CL = BigWigs:NewBoss("Warlord Kalithresh", 545, 575)
 if not mod then return end
 mod:RegisterEnableMob(17798)
 mod.engageId = 1944

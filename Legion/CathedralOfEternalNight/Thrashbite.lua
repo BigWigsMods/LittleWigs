@@ -7,7 +7,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Thrashbite the Scornful", 1146, 1906)
+local mod, CL = BigWigs:NewBoss("Thrashbite the Scornful", 1677, 1906)
 if not mod then return end
 mod:RegisterEnableMob(117194)
 mod.engageId = 2057

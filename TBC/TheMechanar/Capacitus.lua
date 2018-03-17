@@ -5,7 +5,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mechano-Lord Capacitus", 730, 563)
+local mod, CL = BigWigs:NewBoss("Mechano-Lord Capacitus", 554, 563)
 if not mod then return end
 mod:RegisterEnableMob(19219)
 -- mod.engageId = 1932 -- no boss frames, only fires ENCOUNTER_* events once per instance reset (if you wipe - tough luck)
@@ -81,7 +81,7 @@ do
 			tDeleteItem(oppositeChargeList, name)
 			if self:Me(guid) then
 				self:OpenProximity(39096, 10, sameChargeList, true)
-				self:Message(39096, color, "Info", CL.you:format(self:SpellName(spellId)), spellId)
+				self:Message(39096, spellId == 39088 and "Neutral" or "Important", "Info", CL.you:format(self:SpellName(spellId)), spellId)
 			end
 		end
 	end
@@ -89,9 +89,9 @@ do
 	-- no SPELL_AURA_APPLIED events
 	function mod:UNIT_AURA(unit)
 		if UnitDebuff(unit, self:SpellName(39088)) then -- Positive Charge
-			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088, "Neutral") -- cyan
+			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088) -- cyan
 		elseif UnitDebuff(unit, self:SpellName(39091)) then -- Negative Charge
-			fillTheTableAndOpenProximity(self, unit, negativeList, positiveList, 39091, "Important") -- red
+			fillTheTableAndOpenProximity(self, unit, negativeList, positiveList, 39091) -- red
 		end
 	end
 

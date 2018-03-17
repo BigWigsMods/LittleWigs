@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("High Prophet Barim", 747, 119)
+local mod, CL = BigWigs:NewBoss("High Prophet Barim", 755, 119)
 if not mod then return end
 mod:RegisterEnableMob(43612)
 mod.engageId = 1053

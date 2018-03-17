@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Forgemaster Garfrost", 602, 608)
+local mod, CL = BigWigs:NewBoss("Forgemaster Garfrost", 658, 608)
 if not mod then return end
 mod:RegisterEnableMob(36494)
 

@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rokmar the Crackler", 728, 571)
+local mod, CL = BigWigs:NewBoss("Rokmar the Crackler", 547, 571)
 if not mod then return end
 mod:RegisterEnableMob(17991)
 -- mod.engageId = 1941 -- no boss frames

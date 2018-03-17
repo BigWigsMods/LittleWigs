@@ -8,7 +8,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Fel Lord Betrug", 1066, 1711)
+local mod, CL = BigWigs:NewBoss("Fel Lord Betrug", 1544, 1711)
 if not mod then return end
 mod:RegisterEnableMob(102446)
 mod.engageId = 1856

@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Argent Confessor Paletress", 542, 636)
+local mod, CL = BigWigs:NewBoss("Argent Confessor Paletress", 650, 636)
 if not mod then return end
 mod:RegisterEnableMob(34928)
 --mod.engageId = 2023 -- she shares it with Eadric

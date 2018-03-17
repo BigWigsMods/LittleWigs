@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Kyrak", 995, 1227)
+local mod, CL = BigWigs:NewBoss("Kyrak", 1358, 1227)
 if not mod then return end
 mod:RegisterEnableMob(76021)
 --BOSS_KILL#1758#Kyrak

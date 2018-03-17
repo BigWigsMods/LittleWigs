@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Roltall", 964, 887)
+local mod, CL = BigWigs:NewBoss("Roltall", 1175, 887)
 if not mod then return end
 mod:RegisterEnableMob(75786)
 --BOSS_KILL#1652#Roltall

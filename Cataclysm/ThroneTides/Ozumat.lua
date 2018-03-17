@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ozumat", 767, 104)
+local mod, CL = BigWigs:NewBoss("Ozumat", 643, 104)
 if not mod then return end
 mod:RegisterEnableMob(40792, 44566) -- Neptulon, Ozumat
 mod.engageId = 1047

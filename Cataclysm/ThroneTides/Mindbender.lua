@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mindbender Ghur'sha", 767, 103)
+local mod, CL = BigWigs:NewBoss("Mindbender Ghur'sha", 643, 103)
 if not mod then return end
 mod:RegisterEnableMob(40788, 40825)
 mod.engageId = 1046

@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Grandmaster Vorpil", 724, 546)
+local mod, CL = BigWigs:NewBoss("Grandmaster Vorpil", 555, 546)
 if not mod then return end
 mod:RegisterEnableMob(18732)
 -- mod.engageId = 1911 -- no boss frames

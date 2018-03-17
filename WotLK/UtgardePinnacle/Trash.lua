@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Utgarde Pinnacle Trash", 524)
+local mod, CL = BigWigs:NewBoss("Utgarde Pinnacle Trash", 575)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(

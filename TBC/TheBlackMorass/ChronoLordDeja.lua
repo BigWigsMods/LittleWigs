@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Chrono Lord Deja", 733, 552)
+local mod, CL = BigWigs:NewBoss("Chrono Lord Deja", 269, 552)
 if not mod then return end
 mod:RegisterEnableMob(17879)
 

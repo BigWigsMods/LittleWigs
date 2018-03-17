@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Oshir", 987, 1237)
+local mod, CL = BigWigs:NewBoss("Oshir", 1195, 1237)
 if not mod then return end
 mod:RegisterEnableMob(79852)
 

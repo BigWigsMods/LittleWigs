@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Omor the Unscarred", 797, 528)
+local mod, CL = BigWigs:NewBoss("Omor the Unscarred", 543, 528)
 if not mod then return end
 mod:RegisterEnableMob(17308)
 -- mod.engageId = 1891 -- no boss frames

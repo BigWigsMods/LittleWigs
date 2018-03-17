@@ -7,7 +7,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Commander Springvale", 764, 98)
+local mod, CL = BigWigs:NewBoss("Commander Springvale", 33, 98)
 if not mod then return end
 mod:RegisterEnableMob(4278)
 mod.engageId = 1071
@@ -79,8 +79,8 @@ function mod:WordOfShame(args)
 	self:TargetMessage(args.spellId, args.destName, "Important")
 end
 
---[[function mod:ShieldOfThePerfidious(args)
-	if self.Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal")
-	end
-end]]
+--function mod:ShieldOfThePerfidious(args)
+--	if self.Me(args.destGUID) then
+--		self:TargetMessage(args.spellId, args.destName, "Personal")
+--	end
+--end

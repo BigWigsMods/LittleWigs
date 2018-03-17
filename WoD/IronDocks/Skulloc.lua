@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Skulloc", 987, 1238)
+local mod, CL = BigWigs:NewBoss("Skulloc", 1195, 1238)
 if not mod then return end
 mod:RegisterEnableMob(83612, 83613, 83616) -- Skulloc, Koramar, Zoggosh
 

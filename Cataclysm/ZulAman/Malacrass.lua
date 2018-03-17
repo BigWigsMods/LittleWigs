@@ -1,48 +1,63 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Hex Lord Malacrass", 781)
+local mod, CL = BigWigs:NewBoss("Hex Lord Malacrass", 568, 190)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(24239)
-mod.toggleOptions = {
-	43383, -- Spirit Bolts
-	43501, -- Siphon Soul
-	43548, -- Healing abilities
-	"bosskill",
-}
+-- mod.engageId = 1193 -- it works, but... it returns status 0 on a kill triggering the respawn timer
+-- mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		43383, -- Spirit Bolts
+		43501, -- Siphon Soul
+		43421, -- Lifebloom
+		43548, -- Healing Wave
+		43451, -- Holy Light
+		43431, -- Flash Heal
+	}, {
+		[43383] = "general",
+		[43421] = 43501, -- Siphon Soul
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SpiritBolts", 43383)
 	self:Log("SPELL_AURA_APPLIED", "SoulSiphon", 43501)
-	self:Log("SPELL_CAST_START", "Heal", 43548, 43451, 43431)
+	self:Log("SPELL_CAST_START", "HealingCasts", 43548, 43451, 43431) -- Healing Wave, Holy Light, Flash Heal
+	self:Log("SPELL_AURA_APPLIED", "Lifebloom", 43421)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Death("Win", 24239)
 end
 
 function mod:OnEngage()
-	self:Bar(43383, LW_CL["next"]:format(GetSpellInfo(43383)), 30, 43383)
+	self:CDBar(43383, 30) -- Spirit Bolts
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:SpiritBolts(_, spellId, _, _, spellName)
-	self:Message(43383, spellName, "Important", spellId)
-	self:Bar(43383, LW_CL["next"]:format(spellName), 30, spellId)
+function mod:SpiritBolts(args)
+	self:Message(args.spellId, "Important")
+	self:CDBar(args.spellId, 30)
 end
 
-function mod:SoulSiphon(player, spellId, _, _, spellName)
-	self:TargetMessage(43501, spellName, player, "Attention", spellId)
-	self:Bar(43501, LW_CL["next"]:format(spellName), 60, spellId)
+function mod:SoulSiphon(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:CDBar(args.spellId, 60)
 end
 
-function mod:Heal(_, spellId, _, _, spellName)
-	self:Message(43548, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alarm")
+function mod:HealingCasts(args)
+	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
 end
 
+function mod:Lifebloom(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Dispeller("magic", true))
+end

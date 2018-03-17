@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("The Black Stalker", 726, 579)
+local mod, CL = BigWigs:NewBoss("The Black Stalker", 546, 579)
 if not mod then return end
 mod:RegisterEnableMob(17882)
 mod.engageId = 1948
@@ -50,7 +50,7 @@ function mod:StaticCharge(args)
 	else
 		self:OpenProximity(args.spellId, 8, args.destName)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Warning")
+	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
 	self:TargetBar(args.spellId, 12, args.destName)
 	self:SecondaryIcon(args.spellId, args.destName)
 end
