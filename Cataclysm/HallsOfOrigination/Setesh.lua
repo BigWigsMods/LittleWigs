@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Setesh, Construct of Destruction", 644, 129)
+local mod, CL = BigWigs:NewBoss("Setesh", 644, 129)
 if not mod then return end
 mod:RegisterEnableMob(39732)
 mod.engageId = 1079

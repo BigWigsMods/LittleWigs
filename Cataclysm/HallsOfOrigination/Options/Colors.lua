@@ -11,7 +11,7 @@ BigWigs:AddColors("Anraphet", {
 	[76184] = {"Attention","Personal"},
 })
 
-BigWigs:AddColors("Isiset, Construct of Magic", {
+BigWigs:AddColors("Isiset", {
 	[-2556] = {"Neutral","Positive"},
 	[74045] = "Personal",
 	[74135] = "Personal",
@@ -19,13 +19,13 @@ BigWigs:AddColors("Isiset, Construct of Magic", {
 	[74373] = "Attention",
 })
 
-BigWigs:AddColors("Ammunae, Construct of Life", {
+BigWigs:AddColors("Ammunae", {
 	[75790] = "Attention",
 	[76043] = {"Important","Personal","Urgent"},
 	[80968] = {"Attention","Personal"},
 })
 
-BigWigs:AddColors("Rajh, Construct of Sun", {
+BigWigs:AddColors("Rajh", {
 	[-2863] = "Personal",
 	[-2862] = "Urgent",
 	[-2861] = "Attention",

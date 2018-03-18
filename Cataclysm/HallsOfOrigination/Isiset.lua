@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Isiset, Construct of Magic", 644, 127)
+local mod, CL = BigWigs:NewBoss("Isiset", 644, 127)
 if not mod then return end
 mod:RegisterEnableMob(39587)
 mod.engageId = 1077
