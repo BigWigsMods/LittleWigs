@@ -70,20 +70,22 @@ end
 do
 	local prev = 0
 	function mod:AstralRain(args)
-		if not self:Me(args.destGUID) then return end
-		local t = GetTime()
-		if t - prev > 1.5 then
-			prev = t
-			self:Message(74135, "Personal", "Alert", CL.you:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 1.5 then
+				prev = t
+				self:Message(74135, "Personal", "Alert", CL.you:format(args.spellName))
+			end
 		end
 	end
 
 	function mod:EnergyFlux(args)
-		if not self:Me(args.destGUID) then return end
-		local t = GetTime()
-		if t - prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end
