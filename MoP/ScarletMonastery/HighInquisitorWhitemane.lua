@@ -26,7 +26,11 @@ end
 --
 
 function mod:GetOptions()
-	return {113134, "steel", "stages"}
+	return {
+		113134, -- Mass Ressurection
+		"steel",
+		"stages",
+	}
 end
 
 function mod:OnBossEnable()

@@ -27,7 +27,11 @@ end
 --
 
 function mod:GetOptions()
-	return {"fists", 114460, "firestorm"}
+	return {
+		"fists",
+		114460, -- Scorched Earth
+		"firestorm",
+	}
 end
 
 function mod:OnBossEnable()
