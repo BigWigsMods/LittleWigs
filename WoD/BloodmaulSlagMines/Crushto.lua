@@ -76,4 +76,3 @@ end
 function mod:CrushingLeapOver(args)
 	self:PrimaryIcon(args.spellId)
 end
-

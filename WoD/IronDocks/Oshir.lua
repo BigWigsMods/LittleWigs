@@ -58,4 +58,3 @@ do
 		self:StopBar(args.spellId, args.destName)
 	end
 end
-

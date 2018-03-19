@@ -71,4 +71,3 @@ function mod:VoidDevastation(args)
 	self:CDBar(args.spellId, 77)
 	self:Message(args.spellId, "Urgent", "Warning")
 end
-

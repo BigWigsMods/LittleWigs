@@ -48,4 +48,3 @@ end
 function mod:Entanglement(args)
 	self:Message(args.spellId, "Positive", "Info")
 end
-

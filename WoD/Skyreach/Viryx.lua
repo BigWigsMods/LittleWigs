@@ -86,4 +86,3 @@ end
 function mod:Shielding(args)
 	self:Message(args.spellId, "Urgent", "Long")
 end
-

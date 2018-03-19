@@ -97,4 +97,3 @@ function mod:Deaths()
 		self:Win()
 	end
 end
-

@@ -12,7 +12,6 @@ mod.engageId = 1927
 -- Initialization
 --
 
-
 function mod:GetOptions()
 	return {
 		34697, -- Allergic Reaction

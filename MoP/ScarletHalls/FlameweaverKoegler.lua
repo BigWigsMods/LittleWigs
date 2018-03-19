@@ -12,7 +12,11 @@ mod:RegisterEnableMob(59150)
 --
 
 function mod:GetOptions()
-	return {113682, 113641, 113364}
+	return {
+		113682, -- Quickened Mind
+		113641, -- Greater Dragon's Breath
+		113364, -- Book Burner
+	}
 end
 
 function mod:OnBossEnable()

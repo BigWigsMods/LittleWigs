@@ -7,6 +7,10 @@ local mod, CL = BigWigs:NewBoss("Ick & Krick", 658, 609)
 if not mod then return end
 mod:RegisterEnableMob(36476, 36477)
 
+--------------------------------------------------------------------------------
+-- Locals
+--
+
 local barrage = nil
 local pursuitWarned = {}
 

@@ -189,7 +189,8 @@ do
 	function mod:AnguishedSouls(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
-			if (not UnitDebuff("player",  self:SpellName(202615)) and t-prev > 1.5) or t-prev > 6 then -- don't be spammy if the player can't move (due to Torment)
+			-- Increased throttle if the player can't move due to having Torment
+			if t-prev > (UnitDebuff("player",  self:SpellName(202615)) and 6 or 1.5) then
 				prev = t
 				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
 			end

@@ -88,4 +88,3 @@ function mod:UNIT_TARGETABLE_CHANGED(unit)
 		self:StopBar(155721) -- Black Iron Cyclone
 	end
 end
-

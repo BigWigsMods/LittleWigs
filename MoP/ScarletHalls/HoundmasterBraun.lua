@@ -7,6 +7,10 @@ local mod, CL = BigWigs:NewBoss("Houndmaster Braun", 1001, 660)
 if not mod then return end
 mod:RegisterEnableMob(59303)
 
+--------------------------------------------------------------------------------
+-- Locals
+--
+
 local percent = 90
 
 --------------------------------------------------------------------------------
@@ -14,7 +18,10 @@ local percent = 90
 --
 
 function mod:GetOptions()
-	return {-5611, 114259}
+	return {
+		-5611, -- Bloody Rage
+		114259, -- Call Dog
+	}
 end
 
 function mod:OnBossEnable()

@@ -19,7 +19,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "PoisonNova", 55081, 59842)
+	self:Log("SPELL_CAST_START", "PoisonNova", 55081, 59842) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "PoisonNovaApplied", 55081, 59842)
 	self:Log("SPELL_AURA_REMOVED", "PoisonNovaRemoved", 55081, 59842)
 end

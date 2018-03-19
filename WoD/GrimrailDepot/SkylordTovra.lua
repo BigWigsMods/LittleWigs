@@ -103,4 +103,3 @@ do
 		self:CloseProximity(args.spellId)
 	end
 end
-
