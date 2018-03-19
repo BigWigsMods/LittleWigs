@@ -1,84 +1,79 @@
-﻿-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Grand Champions", 542)
+local mod, CL = BigWigs:NewBoss("Grand Champions", 650, 634)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(
 	-- Horde NPCs
 	34657, 34701, 34702, 34703, 34705,
-	-- Announcers
-	35004, 35005,
+	-- Mounts
+	36557, 36559,
 	-- Alliance NPCs
 	35569, 35570, 35571, 35572, 35617
 )
-mod.toggleOptions = {
-	{"rogue_poison", "FLASHSHAKE"},
-	67534, -- Shaman Hex
-	68318, -- Shaman Heal
-	66043, -- Mage Poly
-}
-
--------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-	L["defeat_trigger"] = "Well Fought!"
-	L["mage_poly_message"] = "%s Polymorphed!"
-	L["rogue_poison"] = "Poison Bottle"
-	L["rogue_poison_desc"] = "Throws a poison bottle to a random player, leaving a 5 yard radius poison cloud dealing 1,000 (Heroic: 1,750) Nature damage every second to everyone standing in it. Last 20 seconds."
-end
+mod.engageId = 2022
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		-7534,  -- Poison Bottle
+		67534, -- Hex of Mending
+		67528, -- Healing Wave
+		66043, -- Polymorph
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "ShamanHexApplied", 67534)
-	self:Log("SPELL_AURA_REMOVED", "ShamanHexRemoved", 67534)
-	self:Log("SPELL_CAST_START", "ShamanHeal", 68318, 67528)
-	self:Log("SPELL_AURA_APPLIED", "MagePolyApplied", 66043, 68311)
-	self:Log("SPELL_AURA_REMOVED", "MagePolyRemoved", 66043, 68311)
-	self:Log("SPELL_AURA_APPLIED", "RoguePoisonOnYou", 67701, 67594, 68316)
-
-	self:Yell("Win", L["defeat_trigger"])
+	self:Log("SPELL_AURA_APPLIED", "HexOfMendingApplied", 67534)
+	self:Log("SPELL_AURA_REMOVED", "HexOfMendingRemoved", 67534)
+	self:Log("SPELL_CAST_START", "HealingWave", 67528)
+	self:Log("SPELL_AURA_APPLIED", "PolymorphApplied", 66043)
+	self:Log("SPELL_AURA_REMOVED", "PolymorphRemoved", 66043)
+	self:Log("SPELL_AURA_APPLIED", "PoisonBottle", 67594)
+	self:Log("SPELL_PERIODIC_DAMAGE", "PoisonBottle", 67594)
+	self:Log("SPELL_PERIODIC_MISSED", "PoisonBottle", 67594)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:ShamanHexApplied(player, spellId, _, _, spellName)
-	self:Message(67534, spellName..": "..player, "Attention", spellId)
-	self:Bar(67534, player..": "..spellName, 10, 67534)
+function mod:HexOfMendingApplied(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 10, args.destName)
 end
 
-function mod:ShamanHexRemoved(player, _, _, _, spellName)
-	self:SendMessage(67534, "BigWigs_StopBar", self, player..": "..spellName)
+function mod:HexOfMendingRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:ShamanHeal(boss, spellId, _, _, spellName)
-	self:Message(68318, spellName, "Urgent", spellId)
-	self:Bar(68318, spellName, 3, 67528)
+function mod:HealingWave(args)
+	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:CastBar(args.spellId, 3)
 end
 
-function mod:MagePolyApplied(player, spellId)
-	self:Message(66043, L["mage_poly_message"]:format(player), "Attention", spellId)
+function mod:PolymorphApplied(args)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 4, args.destName)
 end
 
-function mod:MagePolyRemoved(player, spellId)
-	self:SendMessage(66043, "BigWigs_StopBar", self, L["mage_poly_message"]:format(player))
+function mod:PolymorphRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 do
-	local last = nil
-	local pName = UnitName("player")
-	function mod:RoguePoisonOnYou(player, spellId, _, _, spellName)
-		if player == pName then
+	local prev = 0
+	function mod:PoisonBottle(args)
+		if self:Me(args.destGUID) then
 			local t = GetTime()
-			if not last or (t > last + 4) then
-				self:TargetMessage("rogue_poison", spellName, player, "Personal", spellId, last and nil or "Alarm")
-				self:FlashShake("rogue_poison")
-				last = t
+			if t - prev > 2 then
+				prev = t
+				self:Message(-7534, "Personal", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

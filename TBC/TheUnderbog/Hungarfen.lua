@@ -1,54 +1,78 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Hungarfen", 726, 576)
+local mod, CL = BigWigs:NewBoss("Hungarfen", 546, 576)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coilfang Reservoir"
 mod:RegisterEnableMob(17770)
-mod.toggleOptions = {"spores"}
-
--------------------------------------------------------------------------------
---  Locals
-
-local sporesannounced = nil
-
--------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-	L["spores"] = "Foul Spores"
-	L["spores_desc"] = "Warn when Hungarfen is about to root himself and casts Foul Spores"
-	L["spores_message"] = "Foul Spores Soon!"
-end
+-- mod.engageId = 1946 -- doesn't fire ENCOUNTER_END on a wipe
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	if self:CheckOption("spores", "MESSAGE") then
-		self:RegisterEvent("UNIT_HEALTH")
-	end
-	self:Death("Win", 17770)
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+function mod:GetOptions()
+	return {
+		-6008, -- Foul Spores
+		{31689, "ME_ONLY"}, -- Spore Cloud
+	}, {
+		[-6008] = "general",
+		[31689] = -6006, -- Underbog Mushroom
+	}
 end
 
-function mod:OnEnable()
-	sporesannounced = nil
+function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "SporeCloud", 31689)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SporeCloud", 31689)
+	self:Log("SPELL_AURA_REMOVED", "SporeCloudRemoved", 31689)
+
+	self:Log("SPELL_AURA_APPLIED", "FoulSpores", 31673) -- channel that can be offensively dispelled
+	self:Log("SPELL_AURA_REMOVED", "FoulSporesRemoved", 31673)
+	self:Log("SPELL_DAMAGE", "FoulSporesDamage", 31697)
+	self:Log("SPELL_MISSED", "FoulSporesDamage", 31697)
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:Death("Win", 17770)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:UNIT_HEALTH(event, msg)
-	if UnitName(msg) ~= mod.displayName then return end
-	local health = UnitHealth(msg)
-	if health > 18 and health <= 24 and not sporesannounced then
-		sporesannounced = true
-		self:Message(L["spores_message"], "Urgent", nil, nil, nil, 31673)
-	elseif health > 28 and sporesannounced then
-		sporesannounced = nil
+function mod:SporeCloud(args)
+	self:StackMessage(args.spellId, args.destName, args.amount, "Urgent", self:Me(args.destGUID) and "Warning" or "Info")
+	self:TargetBar(args.spellId, 20, args.destName)
+end
+
+function mod:SporeCloudRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:FoulSpores(args)
+	self:Message(-6008, "Attention", "Alarm", CL.casting:format(args.spellName))
+	self:CastBar(-6008, 11)
+end
+
+function mod:FoulSporesRemoved(args)
+	self:StopBar(CL.cast:format(args.spellName))
+end
+
+do
+	local prev = 0
+	function mod:FoulSporesDamage(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > (self:Melee() and 4 or 1.5) then -- melees/tank can't hit the boss while he's casting that but they are still healing the boss taking this damage and he's immobile, so not throttling for the entire cast
+				prev = t
+				self:Message(-6008, "Personal", "Alert", CL.you:format(args.spellName))
+			end
+		end
+	end
+end
+
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealth(unit) * 100
+	if hp < 25 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message(-6008, "Urgent", nil, CL.soon:format(self:SpellName(-6008))) -- Foul Spores
 	end
 end

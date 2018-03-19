@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Black Rook Hold Trash", 1081)
+local mod, CL = BigWigs:NewBoss("Black Rook Hold Trash", 1501)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(

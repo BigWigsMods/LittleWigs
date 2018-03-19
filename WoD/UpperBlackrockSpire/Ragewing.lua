@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ragewing the Untamed", 995, 1229)
+local mod, CL = BigWigs:NewBoss("Ragewing the Untamed", 1358, 1229)
 if not mod then return end
 mod:RegisterEnableMob(76585)
 

@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Jedoga Shadowseeker", 522, 582)
+local mod, CL = BigWigs:NewBoss("Jedoga Shadowseeker", 619, 582)
 if not mod then return end
 mod:RegisterEnableMob(29310)
 

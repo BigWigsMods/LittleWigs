@@ -5,7 +5,7 @@
 --TO do List Eye beam is completely missing in transcriptor logs in any means ??
 --Dark Rush and Eye beam Say's should be Tested
 --Arcane blitz warning message could be changed into "Interrupt (sourceGuid)"
-local mod, CL = BigWigs:NewBoss("Illysanna Ravencrest", 1081, 1653)
+local mod, CL = BigWigs:NewBoss("Illysanna Ravencrest", 1501, 1653)
 if not mod then return end
 mod:RegisterEnableMob(98696)
 

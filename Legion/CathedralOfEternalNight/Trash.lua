@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Cathedral of Eternal Night Trash", 1146)
+local mod, CL = BigWigs:NewBoss("Cathedral of Eternal Night Trash", 1677)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(

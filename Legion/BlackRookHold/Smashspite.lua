@@ -5,7 +5,7 @@
 --TO do List
 --Brutal Haymaker should be tested tank POV
 --Fel vomit cd reduces on every cast 0.64~ multiplier still could be tested a few more tries
-local mod, CL = BigWigs:NewBoss("Smashspite", 1081, 1664)
+local mod, CL = BigWigs:NewBoss("Smashspite", 1501, 1664)
 if not mod then return end
 mod:RegisterEnableMob(98949)
 mod.engageId = 1834

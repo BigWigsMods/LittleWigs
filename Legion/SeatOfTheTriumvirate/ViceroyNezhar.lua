@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Viceroy Nezhar", 1178, 1981)
+local mod, CL = BigWigs:NewBoss("Viceroy Nezhar", 1753, 1981)
 if not mod then return end
 mod:RegisterEnableMob(122056) -- Viceroy Nezhar
 mod.engageId = 2067
@@ -167,7 +167,7 @@ end
 function mod:Interrupt(args)
 	if args.extraSpellId == 248736 then -- Eternal Twilight
 		self:StopBar(CL.cast:format(args.extraSpellName))
-		self:Message(args.extraSpellId, "Positive", "Long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
+		self:Message(248736, "Positive", "Long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
 		self:CDBar(-15926, 11, L.tentacles) -- Tentacles
 		self:CDBar(244751, 16) -- Howling Dark
 	end

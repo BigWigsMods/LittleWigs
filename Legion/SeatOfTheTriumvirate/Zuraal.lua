@@ -8,7 +8,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Zuraal", 1178, 1979)
+local mod, CL = BigWigs:NewBoss("Zuraal", 1753, 1979)
 if not mod then return end
 mod:RegisterEnableMob(122313) -- Zuraal the Ascended
 mod.engageId = 2065

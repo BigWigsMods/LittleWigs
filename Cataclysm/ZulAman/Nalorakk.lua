@@ -1,71 +1,91 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Nalorakk", 781)
+local mod, CL = BigWigs:NewBoss("Nalorakk", 568, 187)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(23576)
-mod.toggleOptions = {
-	"forms",
-	42398, -- Deafening
-	"bosskill",
-}
-
---------------------------------------------------------------------------------
---  Locals
-
-local lastSilence = 0
-local bear = GetSpellInfo(7090)
+mod.engageId = 1190
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Localization
+--
 
 local L = mod:GetLocale()
 if L then
-	L["forms"] = "Forms"
-	L["forms_desc"] = "Warn for form changes."
-	L["troll_message"] = "Troll Form"
-	L["troll_trigger"] = "Make way for da Nalorakk!"
-	L["bear_trigger"] = "You call on da beast"
+	L.troll_message = "Troll Form"
+	L.troll_trigger = "Make way for da Nalorakk!"
 end
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		"stages",
+		42402, -- Surge
+		42398, -- Deafening Roar
+	}, {
+		[42402] = L.troll_message,
+		[42398] = 7090, -- Bear Form
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Silence", 42398)
-	self:Log("UNIT_SPELLCAST_SUCCEEDED", "Bear", 42377)
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
-	self:Yell("Bear", L["bear_trigger"])
-	self:Yell("Troll", L["troll_trigger"])
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 23576)
+	self:Log("SPELL_AURA_APPLIED", "Surge", 42402)
+	self:Log("SPELL_AURA_REFRESH", "Surge", 42402)
+	self:Log("SPELL_AURA_REMOVED", "SurgeRemoved", 42402)
+	self:Log("SPELL_DAMAGE", "SurgeDamage", 42402) -- for self:CDBar(). There are no SPELL_CAST_* / USCS events, SPELL_AURA_* ones can be immuned
+	self:Log("SPELL_MISSED", "SurgeDamage", 42402)
+	self:Log("SPELL_AURA_APPLIED", "DeafeningRoar", 42398)
 end
 
 function mod:OnEngage()
-	self:Bar("forms", bear, 30, 42594)
-	lastSilence = 0
+	self:Bar("stages", 30, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Silence(_, spellId, _, _, spellName)
-	if (GetTime() - lastSilence) > 4 then
-		self:Message(42398, spellName, "Attention", spellId, "Info")
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.troll_trigger then
+		self:Message("stages", "Important", nil, L.troll_message, "achievement_character_troll_male")
+		self:Bar("stages", 30, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
 	end
-	lastSilence = GetTime()
 end
 
-function mod:Bear()
-	self:Message("forms", bear, "Important", 42594)
-	self:Bar("forms", L["troll_message"], 30, 89259)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 42377 then -- Shape of the Bear
+		self:StopBar(42402) -- Surge's CD
+		self:Message("stages", "Important", nil, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
+		self:Bar("stages", 30, L.troll_message, "achievement_character_troll_male")
+	end
 end
 
-function mod:Troll()
-	self:Message("forms", L["troll_message"], "Important", 89259)
-	self:Bar("forms", bear, 30, 42594)
+function mod:Surge(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+	self:TargetBar(args.spellId, 20, args.destName)
 end
 
+function mod:SurgeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:SurgeDamage(args)
+	self:CDBar(args.spellId, 8)
+end
+
+do
+	local playerList = mod:NewTargetList()
+	function mod:DeafeningRoar(args)
+		playerList[#playerList+1] = args.destName
+		if #playerList == 1 then
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Attention", "Info", nil, nil, true)
+		end
+	end
+end

@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Maw of Souls Trash", 1042)
+local mod, CL = BigWigs:NewBoss("Maw of Souls Trash", 1492)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(

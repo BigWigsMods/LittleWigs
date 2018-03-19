@@ -1,72 +1,99 @@
+
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Lord Walden", 764)
+local mod, CL = BigWigs:NewBoss("Lord Walden", 33, 99)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(46963)
-mod.toggleOptions = {
-	93527, -- Ice Shards
-	93702, -- Conjure Frost Mixture
-	93704, -- Conjure Poisonous Mixture
-	93617, -- Toxic Coagulant
-	93689, -- Toxic Catalyst
-	"bosskill",
-}
+mod.engageId = 1073
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Locals
+--
 
-local coagulantTime = 0
+local coagulantCastEnds = 0
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.coagulant = "%s: Move to dispel"
+	L.catalyst = "%s: Crit Buff"
+	L.toxin_healer_message = "%: DoT on everyone"
+end
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		93527, -- Ice Shards
+		93505, -- Conjure Frost Mixture
+		93697, -- Conjure Poisonous Mixture
+		93617, -- Toxic Coagulant
+		93689, -- Toxic Catalyst
+	}, {
+		[93527] = "general",
+		[93617] = "heroic",
+	}
+end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "IceShards", 93527)
-	self:Log("SPELL_CAST_START", "Frost", 93702)
-	self:Log("SPELL_CAST_START", "Poisonous", 93704)
-	self:Log("SPELL_AURA_APPLIED", "Coagulant", 93572, 93617)
-	self:Log("SPELL_AURA_APPLIED", "Catalyst", 93573, 93689)
+	self:Log("SPELL_CAST_START", "FrostMixture", 93505)
+	self:Log("SPELL_CAST_START", "PoisonousMixture", 93697)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ToxicCoagulant", 93617)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 46963)
-end
-
-function mod:VerifyEnable()
-	if GetInstanceDifficulty() == 2 then return true end
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- USCS events let us distinguish between two different "Conjure Mystery Toxin" casts
 end
 
 function mod:OnEngage()
-	coagulantTime = 0
+	coagulantCastEnds = 0
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:IceShards(_, spellId, _, _, spellName)
-	self:Message(93527, spellName, "Attention", spellId)
+function mod:IceShards(args)
+	self:Message(args.spellId, "Attention", nil, CL.casting:format(args.spellName))
+	self:CastBar(args.spellId, 5)
 end
 
-function mod:Frost(_, spellId, _, _, spellName)
-	self:Message(93702, LW_CL["casting"]:format(spellName), "Important", spellId)
+function mod:FrostMixture(args)
+	self:Message(args.spellId, "Important", nil, CL.casting:format(args.spellName))
 end
 
-function mod:Poisonous(_, spellId, _, _, spellName)
-	self:Message(93704, LW_CL["casting"]:format(spellName), "Important", spellId)
+function mod:PoisonousMixture(args)
+	self:Message(args.spellId, "Important", nil, CL.casting:format(args.spellName))
 end
 
-function mod:Coagulant(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") and (GetTime() - coagulantTime > 5) then
-		self:Message(93617, spellName, "Urgent", spellId, "Alert")
-		coagulantTime = GetTime()
+function mod:ToxicCoagulant(args)
+	-- His channel applies a stack every 3 seconds, 3 stacks stun the target for 5 seconds
+	-- let's be smart and warn the player only if they do have to move to avoid that happening
+	if self:Me(args.destGUID) and args.amount == 2 then
+		local remaining = coagulantCastEnds - GetTime()
+		if remaining >= 3 then
+			self:StackMessage(args.spellId, args.destName, args.amount, "Urgent", "Warning")
+		end
 	end
 end
 
-function mod:Catalyst(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:Message(93689, spellName, "Urgent", spellId, "Alert")
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId) -- Conjure Mystery Toxin
+	-- spellIds ruin the mystery :(
+	if spellId == 93695 then -- Toxic Coagulant
+		coagulantCastEnds = GetTime() + 11
+		local toxicCoagulant = self:SpellName(93617)
+		self:CastBar(93617, 11)
+		self:Message(93617, "Neutral", "Info", self:Healer() and L.toxin_healer_message:format(toxicCoagulant) or L.coagulant:format(toxicCoagulant))
+	elseif spellId == 93563 then -- Toxic Catalyst
+		local toxicCatalyst = self:SpellName(93689)
+		self:CastBar(93689, 11)
+		self:Message(93689, "Neutral", "Info", self:Healer() and L.toxin_healer_message:format(toxicCatalyst) or L.catalyst:format(toxicCatalyst))
 	end
 end
-

@@ -8,7 +8,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Domatrax", 1146, 1904)
+local mod, CL = BigWigs:NewBoss("Domatrax", 1677, 1904)
 if not mod then return end
 mod:RegisterEnableMob(
 	118884, -- Aegis of Aggramar
@@ -120,7 +120,7 @@ do
 		self:CastBar(args.spellId, 5)
 
 		-- give a warning if the player is not in the Aegis during the last 2 seconds of the cast:
-		self:ScheduleTimer(checkForLackOfAegis, 3)
+		self:ScheduleTimer(checkForLackOfAegis, 3, self)
 	end
 
 	function mod:ChaoticEnergySuccess(args)

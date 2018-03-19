@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sadana Bloodfury", 969, 1139)
+local mod, CL = BigWigs:NewBoss("Sadana Bloodfury", 1176, 1139)
 if not mod then return end
 mod:RegisterEnableMob(75509)
 --BOSS_KILL#1677#Sadana Bloodfury
@@ -52,7 +52,7 @@ end
 
 function mod:DarkEclipse(args)
 	self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
-	--self:CDBar(args.spellId, 0) 48.2, 73.9, 51.9, 
+	--self:CDBar(args.spellId, 0) 48.2, 73.9, 51.9,
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
 end
 
