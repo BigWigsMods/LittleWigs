@@ -14,7 +14,10 @@ local percent = 90
 --
 
 function mod:GetOptions()
-	return {-5611, 114259}
+	return {
+		-5611, -- Bloody Rage
+		114259, -- Call Dog
+	}
 end
 
 function mod:OnBossEnable()

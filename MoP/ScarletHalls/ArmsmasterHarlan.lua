@@ -31,7 +31,11 @@ end
 --
 
 function mod:GetOptions()
-	return {"cleave", {"blades", "FLASH"}, "help"}
+	return {
+		"cleave",
+		{"blades", "FLASH"},
+		"help",
+	}
 end
 
 function mod:OnBossEnable()
