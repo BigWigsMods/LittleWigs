@@ -26,7 +26,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "StaticCharge", 31715)
 	self:Log("SPELL_AURA_REMOVED", "StaticChargeRemoved", 31715)
 
-	self:Log("SPELL_CAST_START", "ChainLightning", 31717) -- normal, heroic
+	self:Log("SPELL_CAST_START", "ChainLightning", 31717)
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 31717)
 end
 
