@@ -18,7 +18,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "ShatteringStomp", 52237, 59529)
+	self:Log("SPELL_CAST_START", "ShatteringStomp", 52237, 59529) -- normal, heroic
 
 	self:Death("Win", 28587)
 end
