@@ -8,7 +8,7 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Council o' Captains", nil, 2093, 1754)
+local mod, CL = BigWigs:NewBoss("Council o' Captains", 1754, 2093)
 if not mod then return end
 mod:RegisterEnableMob(126847, 126848, 126845) -- Captain Raoul, Captain Eudora, Captain Jolly
 mod.engageId = 2094

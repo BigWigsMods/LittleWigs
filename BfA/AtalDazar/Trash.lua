@@ -4,7 +4,7 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Atal'Dazar Trash", nil, nil, 1763)
+local mod, CL = BigWigs:NewBoss("Atal'Dazar Trash", 1763)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(

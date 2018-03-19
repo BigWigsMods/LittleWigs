@@ -4,7 +4,7 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", nil, 2145, 1877)
+local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", 1877, 2145)
 if not mod then return end
 mod:RegisterEnableMob(136250, 133392) -- Hoodoo Hexxer, Avatar of Sethraliss
 mod.engageId = 2127

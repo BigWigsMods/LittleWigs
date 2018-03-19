@@ -4,7 +4,7 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gorak Tul", nil, 2129, 1862)
+local mod, CL = BigWigs:NewBoss("Gorak Tul", 1862, 2129)
 if not mod then return end
 mod:RegisterEnableMob(131864)
 mod.engageId = 2117

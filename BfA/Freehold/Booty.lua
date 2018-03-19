@@ -4,7 +4,7 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ring of Booty", nil, 2094, 1754)
+local mod, CL = BigWigs:NewBoss("Ring of Booty", 1754, 2094)
 if not mod then return end
 mod:RegisterEnableMob(126969) -- Trothak
 mod.engageId = 2095

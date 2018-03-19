@@ -4,7 +4,7 @@ if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Heartsbane Triad", nil, 2125, 1862)
+local mod, CL = BigWigs:NewBoss("Heartsbane Triad", 1862, 2125)
 if not mod then return end
 mod:RegisterEnableMob(135360, 135358, 135359) -- Sister Briar, Sister Malady, Sister Solena
 mod.engageId = 2113
