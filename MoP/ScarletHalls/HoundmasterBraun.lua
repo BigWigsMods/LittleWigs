@@ -7,6 +7,10 @@ local mod, CL = BigWigs:NewBoss("Houndmaster Braun", 1001, 660)
 if not mod then return end
 mod:RegisterEnableMob(59303)
 
+--------------------------------------------------------------------------------
+-- Locals
+--
+
 local percent = 90
 
 --------------------------------------------------------------------------------

@@ -7,6 +7,10 @@ local mod, CL = BigWigs:NewBoss("Armsmaster Harlan", 1001, 654)
 if not mod then return end
 mod:RegisterEnableMob(58632)
 
+--------------------------------------------------------------------------------
+-- Locals
+--
+
 local helpCount = 1
 
 --------------------------------------------------------------------------------
