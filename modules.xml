@@ -64,7 +64,7 @@
 
 <!-- Cataclysm -->
 
-<!--<Include file="Cataclysm\BlackrockCaverns\modules.xml"/>-->
+<Include file="Cataclysm\BlackrockCaverns\modules.xml"/>
 <Include file="Cataclysm\EndTime\modules.xml"/>
 <Include file="Cataclysm\EndTime\locales.xml"/>
 <Include file="Cataclysm\GrimBatol\modules.xml"/>
