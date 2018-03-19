@@ -39,7 +39,7 @@ end
 --
 
 function mod:FatalLink(args) -- No sound
-	self:Message(args.spellId, "positive", nil, CL.killed:format(args.sourceName))
+	self:Message(args.spellId, "green", nil, CL.killed:format(args.sourceName))
 end
 
 function mod:PutridBlood(args)
