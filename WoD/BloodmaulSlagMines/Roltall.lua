@@ -54,4 +54,3 @@ function mod:HeatWaveBegin(args)
 	self:Message(args.spellId, "Important")
 	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
 end
-

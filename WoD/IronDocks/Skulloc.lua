@@ -53,4 +53,3 @@ function mod:CannonBarrage(args)
 	self:Message(args.spellId, "Attention", "Long")
 	self:Flash(args.spellId)
 end
-

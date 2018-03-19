@@ -63,4 +63,3 @@ end
 function mod:BodySlam(args)
 	self:Message(args.spellId, "Attention", "Alert")
 end
-

@@ -91,4 +91,3 @@ end
 function mod:UncheckedGrowthSpawned()
 	self:Message(164294, "Urgent", nil, CL.add_spawned)
 end
-

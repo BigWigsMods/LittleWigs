@@ -55,4 +55,3 @@ function mod:ShadowWordPain(args)
 		self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, true)
 	end
 end
-
