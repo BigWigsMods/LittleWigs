@@ -6,4 +6,6 @@
 <Script file="Vorpil.lua"/>
 <Script file="Murmur.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

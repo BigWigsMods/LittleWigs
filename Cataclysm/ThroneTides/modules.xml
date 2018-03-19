@@ -6,5 +6,6 @@
 <Script file="Mindbender.lua"/>
 <Script file="Ozumat.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

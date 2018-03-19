@@ -4,5 +4,6 @@
 <Script file="Bronjahm.lua"/>
 <Script file="DevourerOfSouls.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

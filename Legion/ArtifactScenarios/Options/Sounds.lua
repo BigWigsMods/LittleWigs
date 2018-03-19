@@ -1,42 +1,42 @@
 
 BigWigs:AddSounds("Tugar Bloodtotem", {
-	[243224] = "Long",
-	["charge"] = "Alarm",
-	["submerge"] = "Alarm",
 	[241687] = "Alert",
 	[242733] = "Warning",
+	[243224] = "Long",
+	["charge"] = "Alarm",
 	["rupture"] = "Alarm",
+	["submerge"] = "Alarm",
 })
 
 BigWigs:AddSounds("Kruul", {
-	[236572] = "Alarm",
-	[234673] = "Alert",
-	[234422] = "Warning",
-	[234676] = "Warning",
 	[233473] = "Long",
-	[234428] = "Info",
-	[240790] = "Warning",
-	["stages"] = "Long",
-	["nether_aberration"] = "Info",
-	[234631] = "Alarm",
-	["smoldering_infernal"] = "Info",
-	[234920] = "Info",
+	[234422] = "Warning",
 	[234423] = "Alert",
+	[234428] = "Info",
+	[234631] = "Alarm",
+	[234673] = "Alert",
+	[234676] = "Warning",
+	[234920] = "Info",
+	[236572] = "Alarm",
+	[240790] = "Warning",
+	["nether_aberration"] = "Info",
+	["smoldering_infernal"] = "Info",
+	["stages"] = "Long",
 })
 
 BigWigs:AddSounds("Raest", {
-	[235308] = "Info",
-	["thing"] = "Alarm",
-	["rune"] = "Warning",
-	[235578] = "Alert",
 	[202081] = "Long",
+	[235308] = "Info",
+	[235578] = "Alert",
+	["rune"] = "Warning",
+	["thing"] = "Alarm",
 })
 
 BigWigs:AddSounds("Lord Erdris Thorn", {
-	[237191] = "Alarm",
-	[235984] = "Alert",
 	[235823] = "Alarm",
-	[237188] = "Warning",
-	[236720] = "Alarm",
 	[235833] = "Alert",
+	[235984] = "Alert",
+	[236720] = "Alarm",
+	[237188] = "Warning",
+	[237191] = "Alarm",
 })

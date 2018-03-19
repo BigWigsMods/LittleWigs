@@ -1,35 +1,35 @@
 
 BigWigs:AddSounds("Rokmora", {
-	[188169] = "Warning",
 	[188114] = "Alert",
+	[188169] = "Warning",
 	[192800] = "Alarm",
 })
 
 BigWigs:AddSounds("Ularogg Cragshaper", {
-	["bellow"] = "Info",
-	[198564] = "Long",
 	[198428] = "Alarm",
 	[198496] = "Alert",
+	[198564] = "Long",
+	["bellow"] = "Info",
 })
 
 BigWigs:AddSounds("Naraxas", {
-	[205549] = "Alert",
 	[-12527] = "Info",
-	[199178] = {"Warning","Alarm"},
+	[199178] = {"Alarm","Warning"},
 	[199775] = "Long",
+	[205549] = "Alert",
 })
 
 BigWigs:AddSounds("Dargrul", {
 	[200154] = "Alarm",
 	[200404] = "Long",
-	[200732] = "Warning",
 	[200551] = "Alarm",
 	[200700] = "Alert",
+	[200732] = "Warning",
 })
 
 BigWigs:AddSounds("Neltharions Lair Trash", {
 	[183088] = "Long",
-	[226296] = "Warning",
-	[202181] = "Alarm",
 	[193585] = "Alarm",
+	[202181] = "Alarm",
+	[226296] = "Warning",
 })
