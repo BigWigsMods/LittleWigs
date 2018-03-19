@@ -42,17 +42,17 @@ end
 -- Event Handlers
 --
 
-function mod:BrambleBolt(args)
-	self:Message(args.spellId, "yellow", "Alert")
-end
+--function mod:BrambleBolt(args)
+--	self:Message(args.spellId, "yellow", "Alert")
+--end
 
 function mod:JaggedNettles(args)
 	self:Message(args.spellId, "orange", "Alarm")
 end
 
-function mod:RuinousBolt(args)
-	self:Message(args.spellId, "yellow", "Alert")
-end
+--function mod:RuinousBolt(args)
+--	self:Message(args.spellId, "yellow", "Alert")
+--end
 
 function mod:UnstableRunicMark(args)
 	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("curse"))
@@ -62,9 +62,9 @@ function mod:UnstableRunicMark(args)
 	end
 end
 
-function mod:SoulBolt(args)
-	self:Message(args.spellId, "yellow", "Alert")
-end
+--function mod:SoulBolt(args)
+--	self:Message(args.spellId, "yellow", "Alert")
+--end
 
 function mod:SoulManipulation(args)
 	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)

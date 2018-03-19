@@ -73,7 +73,7 @@ end
 
 function mod:MotivatingCryInterupted(args)
 	if args.extraSpellId == 257827 then
-		self:Message(args.extraSpellId, "cyan", "Info", CL.interrupted:format(args.spellName))
+		self:Message(257827, "cyan", "Info", CL.interrupted:format(args.spellName))
 		self:Bar(257777, 1.5) -- Crippling Shiv
 		self:Bar(257791, 2) -- Howling Fear
 		self:Bar(257785, 5.5) -- Flashing Daggers
