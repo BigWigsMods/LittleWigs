@@ -5,4 +5,6 @@
 <Script file="Anzu.lua"/>
 <Script file="Ikiss.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

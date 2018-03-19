@@ -7,5 +7,7 @@
 <Script file="Walden.lua"/>
 <Script file="Godfrey.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

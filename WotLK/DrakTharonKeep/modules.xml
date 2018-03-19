@@ -6,4 +6,6 @@
 <Script file="KingDred.lua"/>
 <Script file="TheProphetTharonja.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

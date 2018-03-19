@@ -7,5 +7,6 @@
 <Script file="KingYmiron.lua"/>
 <Script file="Trash.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

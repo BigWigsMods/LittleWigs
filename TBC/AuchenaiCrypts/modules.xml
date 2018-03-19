@@ -4,4 +4,6 @@
 <Script file="Shirrak.lua"/>
 <Script file="Maladaar.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
