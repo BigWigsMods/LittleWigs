@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("King Deepbeard", 1046, 1491)
+local mod, CL = BigWigs:NewBoss("King Deepbeard", 1456, 1491)
 if not mod then return end
 mod:RegisterEnableMob(91797)
 mod.engageId = 1812
@@ -83,7 +83,8 @@ do
 	function mod:Aftershock(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
-			if (not UnitDebuff("player", self:SpellName(193018)) and t-prev > 1.5) or t-prev > 6 then -- players with Gaseous Bubbles may (and should) be taking damage intentionally
+			-- players with Gaseous Bubbles may (and should) be taking damage intentionally
+			if t-prev > (UnitDebuff("player", self:SpellName(193018)) and 6 or 1.5) then
 				prev = t
 				self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
 			end

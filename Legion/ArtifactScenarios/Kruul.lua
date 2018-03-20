@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Kruul", nil, nil, 1698)
+local mod, CL = BigWigs:NewBoss("Kruul", 1698)
 if not mod then return end
 mod:RegisterEnableMob(117933, 117198) -- Inquisitor Variss, Highlord Kruul
 mod.otherMenu = 1716 -- Broken Shore Mage Tower

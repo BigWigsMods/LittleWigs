@@ -8,7 +8,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Domatrax", 1146, 1904)
+local mod, CL = BigWigs:NewBoss("Domatrax", 1677, 1904)
 if not mod then return end
 mod:RegisterEnableMob(
 	118884, -- Aegis of Aggramar

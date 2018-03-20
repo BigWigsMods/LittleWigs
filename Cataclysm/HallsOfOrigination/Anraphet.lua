@@ -1,50 +1,84 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Anraphet", 759)
+local mod, CL = BigWigs:NewBoss("Anraphet", 644, 126)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39788)
-mod.toggleOptions = {{76184, "FLASHSHAKE"}, 75622, 75603, "bosskill"}
+mod.engageId = 1075
+mod.respawnTime = 39 -- respawns after 30s but is unattackable for a while
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		76184, -- Alpha Beams
+		75622, -- Omega Stance
+		75609, -- Crumbling Ruin
+		75603, -- Nemesis Strike
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Alpha", 76184)
-	self:Log("SPELL_AURA_APPLIED", "AlphaDebuff", 76956, 91177)
-	self:Log("SPELL_CAST_START", "Omega", 75622, 91208)
-	self:Log("SPELL_AURA_APPLIED", "Nemesis", 75603, 91174)
+	self:Log("SPELL_CAST_START", "AlphaBeamsCast", 76184)
+	self:Log("SPELL_DAMAGE", "AlphaBeamsDamage", 76956)
+	self:Log("SPELL_MISSED", "AlphaBeamsDamage", 76956)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:Log("SPELL_CAST_START", "OmegaStance", 75622)
 
-	self:Death("Win", 39788)
+	self:Log("SPELL_AURA_APPLIED", "CrumblingRuin", 75609)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "CrumblingRuin", 75609)
+
+	self:Log("SPELL_AURA_APPLIED", "NemesisStrike", 75603)
+	self:Log("SPELL_AURA_REMOVED", "NemesisStrikeRemoved", 75603)
+
 end
 
 function mod:OnEngage()
-	self:Bar(75622, LW_CL["next"]:format(GetSpellInfo(75622)), 45, 75622)
+	self:CDBar(75622, 30) -- Omega Stance
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:Alpha(_, spellId, _, _, spellName)
-	self:Message(76184, LW_CL["casting"]:format(spellName), "Attention", spellId)
+function mod:AlphaBeamsCast(args)
+	self:Message(args.spellId, "Attention", nil, CL.casting:format(args.spellName))
 end
 
-function mod:AlphaDebuff(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(76184, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(76184)
+do
+	local prev = 0
+	function mod:AlphaBeamsDamage(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 1.5 then
+				prev = t
+				self:Message(76184, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
+		end
 	end
 end
 
-function mod:Omega(_, spellId, _, _, spellName)
-	self:Message(75622, LW_CL["casting"]:format(spellName), "Important", spellId, "Alert")
-	self:Bar(75622, LW_CL["next"]:format(spellName), 37, spellId)
+function mod:OmegaStance(args)
+	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 41)
 end
 
-function mod:Nemesis(player, spellId, _, _, spellName)
-	self:TargetMessage(75603, spellName, player, "Urgent", spellId)
+function mod:CrumblingRuin(args)
+	if self:Me(args.destGUID) then
+		self:StackMessage(args.spellId, args.destName, args.amount, "Personal")
+	end
 end
 
+function mod:NemesisStrike(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetBar(args.spellId, 10, args.destName)
+	end
+end
+
+function mod:NemesisStrikeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end

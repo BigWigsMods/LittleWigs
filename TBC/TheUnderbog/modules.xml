@@ -6,4 +6,6 @@
 <Script file="Muselek.lua"/>
 <Script file="TheBlackStalker.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

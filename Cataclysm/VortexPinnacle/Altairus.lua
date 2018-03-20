@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Altairus", 769, 115)
+local mod, CL = BigWigs:NewBoss("Altairus", 657, 115)
 if not mod then return end
 mod:RegisterEnableMob(43873)
 mod.engageId = 1041
@@ -33,7 +33,7 @@ end
 --
 
 do
-	local haveDownwind = false -- for some reason players get spammed by UNIT_AURA_APPLIED events from Upwind when they have Downwind
+	local haveDownwind = false -- for some reason players get spammed by SPELL_AURA_APPLIED events from Upwind when they have Downwind
 
 	function mod:Upwind(args)
 		if self:Me(args.destGUID) and not haveDownwind then

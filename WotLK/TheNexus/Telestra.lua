@@ -3,10 +3,14 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Grand Magus Telestra", 520, 618)
+local mod, CL = BigWigs:NewBoss("Grand Magus Telestra", 576, 618)
 if not mod then return end
 mod:RegisterEnableMob(26731)
 mod.engageId = 2010
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local splitPhase = 0
 

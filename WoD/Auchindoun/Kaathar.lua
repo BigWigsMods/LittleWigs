@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Vigilant Kaathar", 984, 1185)
+local mod, CL = BigWigs:NewBoss("Vigilant Kaathar", 1182, 1185)
 if not mod then return end
 mod:RegisterEnableMob(75839)
 
@@ -83,4 +83,3 @@ function mod:SanctifiedGround(args)
 		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
 	end
 end
-

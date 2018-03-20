@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Slad'ran", 530, 592)
+local mod, CL = BigWigs:NewBoss("Slad'ran", 604, 592)
 if not mod then return end
 mod:RegisterEnableMob(29304)
 mod.engageId = 1978
@@ -19,7 +19,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "PoisonNova", 55081, 59842)
+	self:Log("SPELL_CAST_START", "PoisonNova", 55081, 59842) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "PoisonNovaApplied", 55081, 59842)
 	self:Log("SPELL_AURA_REMOVED", "PoisonNovaRemoved", 55081, 59842)
 end

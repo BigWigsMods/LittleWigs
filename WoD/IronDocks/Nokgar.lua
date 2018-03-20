@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Fleshrender Nok'gar", 987, 1235)
+local mod, CL = BigWigs:NewBoss("Fleshrender Nok'gar", 1195, 1235)
 if not mod then return end
 mod:RegisterEnableMob(81297, 81305) -- Dreadfang, Fleshrender Nok'gar
 
@@ -97,4 +97,3 @@ function mod:Deaths()
 		self:Win()
 	end
 end
-

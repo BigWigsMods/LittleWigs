@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Zereketh the Unbound", 731, 548)
+local mod, CL = BigWigs:NewBoss("Zereketh the Unbound", 552, 548)
 if not mod then return end
 mod:RegisterEnableMob(20870)
 mod.engageId = 1916

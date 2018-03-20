@@ -5,4 +5,6 @@
 <Script file="Omor.lua"/>
 <Script file="Vazruden.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

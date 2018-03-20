@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("The Violet Hold Trash", 536)
+local mod, CL = BigWigs:NewBoss("The Violet Hold Trash", 608)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
@@ -25,6 +25,10 @@ mod:RegisterEnableMob(
 	32237, -- Lava Hound (Lavanthor)
 	32230 -- Void Lord (Zuramat the Obliterator)
 )
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local prevWave = 0
 

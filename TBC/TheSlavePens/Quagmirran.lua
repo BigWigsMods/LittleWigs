@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Quagmirran", 728, 572)
+local mod, CL = BigWigs:NewBoss("Quagmirran", 547, 572)
 if not mod then return end
 mod:RegisterEnableMob(17942)
 -- mod.engageId = 1940 -- no boss frames

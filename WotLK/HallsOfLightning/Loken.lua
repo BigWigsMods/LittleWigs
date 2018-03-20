@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Loken", 525, 600)
+local mod, CL = BigWigs:NewBoss("Loken", 602, 600)
 if not mod then return end
 mod:RegisterEnableMob(28923)
 
@@ -18,7 +18,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "LightningNova", 52960, 59835)
+	self:Log("SPELL_CAST_START", "LightningNova", 52960, 59835) -- normal, heroic
 
 	self:Death("Win", 28923)
 end

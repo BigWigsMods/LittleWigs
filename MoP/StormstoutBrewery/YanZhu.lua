@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Yan-Zhu the Uncasked", 876, 670)
+local mod, CL = BigWigs:NewBoss("Yan-Zhu the Uncasked", 961, 670)
 if not mod then return end
 mod:RegisterEnableMob(59479)
 mod.engageId = 1414

@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Archmage Sol", 1008, 1208)
+local mod, CL = BigWigs:NewBoss("Archmage Sol", 1279, 1208)
 if not mod then return end
 mod:RegisterEnableMob(82682)
 mod.engageId = 1751
@@ -64,4 +64,3 @@ function mod:FrozenRain(args)
 		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
 	end
 end
-

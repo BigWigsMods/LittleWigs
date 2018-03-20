@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Thalnos the Soulrender", 874, 688)
+local mod, CL = BigWigs:NewBoss("Thalnos the Soulrender", 1004, 688)
 if not mod then return end
 mod:RegisterEnableMob(59789)
 
@@ -21,7 +21,10 @@ end
 --
 
 function mod:GetOptions()
-	return {{-5865, "FLASH"}, 115297}
+	return {
+		{-5865, "FLASH"}, -- Spirit Gale
+		115297, -- Evict Soul
+	}
 end
 
 function mod:OnBossEnable()

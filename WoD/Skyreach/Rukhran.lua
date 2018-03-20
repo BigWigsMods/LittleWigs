@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rukhran", 989, 967)
+local mod, CL = BigWigs:NewBoss("Rukhran", 1209, 967)
 if not mod then return end
 mod:RegisterEnableMob(76143)
 
@@ -92,4 +92,3 @@ function mod:QuillsWarn(unitId)
 		end
 	end
 end
-

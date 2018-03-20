@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Hyrja", 1041, 1486)
+local mod, CL = BigWigs:NewBoss("Hyrja", 1477, 1486)
 if not mod then return end
 mod:RegisterEnableMob(95833)
 --mod.engageId = 1806 -- Fires when you attack the 2 mobs prior to the boss...

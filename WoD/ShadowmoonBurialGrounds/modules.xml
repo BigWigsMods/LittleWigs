@@ -6,5 +6,7 @@
 <Script file="Bonemaw.lua"/>
 <Script file="Nerzhul.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

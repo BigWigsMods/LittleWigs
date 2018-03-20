@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Devourer of Souls", 601, 616)
+local mod, CL = BigWigs:NewBoss("Devourer of Souls", 632, 616)
 if not mod then return end
 mod:RegisterEnableMob(36502)
 mod.engageId = 2007

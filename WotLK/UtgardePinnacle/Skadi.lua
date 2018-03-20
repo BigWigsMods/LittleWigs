@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Skadi the Ruthless", 524, 643)
+local mod, CL = BigWigs:NewBoss("Skadi the Ruthless", 575, 643)
 if not mod then return end
 mod:RegisterEnableMob(26693)
 mod.engageId = 2029

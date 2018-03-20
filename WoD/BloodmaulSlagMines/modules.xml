@@ -6,5 +6,7 @@
 <Script file="Roltall.lua"/>
 <Script file="Gugrokk.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

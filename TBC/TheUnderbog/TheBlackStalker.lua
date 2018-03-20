@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("The Black Stalker", 726, 579)
+local mod, CL = BigWigs:NewBoss("The Black Stalker", 546, 579)
 if not mod then return end
 mod:RegisterEnableMob(17882)
 mod.engageId = 1948
@@ -26,7 +26,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "StaticCharge", 31715)
 	self:Log("SPELL_AURA_REMOVED", "StaticChargeRemoved", 31715)
 
-	self:Log("SPELL_CAST_START", "ChainLightning", 31717) -- normal, heroic
+	self:Log("SPELL_CAST_START", "ChainLightning", 31717)
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 31717)
 end
 

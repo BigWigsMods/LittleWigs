@@ -4,7 +4,7 @@
 
 --TO DO List
 --Timers work fine couldnt test Say mechanic stinging swarm due to rng targetting.
-local mod, CL = BigWigs:NewBoss("Kurtalos Ravencrest", 1081, 1672)
+local mod, CL = BigWigs:NewBoss("Kurtalos Ravencrest", 1501, 1672)
 if not mod then return end
 mod:RegisterEnableMob(98965,98970)
 

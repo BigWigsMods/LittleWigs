@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Araknath", 989, 966)
+local mod, CL = BigWigs:NewBoss("Araknath", 1209, 966)
 if not mod then return end
 mod:RegisterEnableMob(76141)
 
@@ -77,4 +77,3 @@ function mod:Burst(args)
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, burstCount))
 	self:CDBar(args.spellId, 23)
 end
-

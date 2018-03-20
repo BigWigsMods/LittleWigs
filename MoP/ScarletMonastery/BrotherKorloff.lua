@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Brother Korloff", 874, 671)
+local mod, CL = BigWigs:NewBoss("Brother Korloff", 1004, 671)
 if not mod then return end
 mod:RegisterEnableMob(59223)
 
@@ -27,7 +27,11 @@ end
 --
 
 function mod:GetOptions()
-	return {"fists", 114460, "firestorm"}
+	return {
+		"fists",
+		114460, -- Scorched Earth
+		"firestorm",
+	}
 end
 
 function mod:OnBossEnable()

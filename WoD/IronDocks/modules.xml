@@ -6,5 +6,7 @@
 <Script file="Oshir.lua"/>
 <Script file="Skulloc.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

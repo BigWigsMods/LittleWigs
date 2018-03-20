@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mekgineer Steamrigger", 727, 574)
+local mod, CL = BigWigs:NewBoss("Mekgineer Steamrigger", 545, 574)
 if not mod then return end
 mod:RegisterEnableMob(17796)
 mod.engageId = 1943

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gatewatcher Iron-Hand", 730)
+local mod, CL = BigWigs:NewBoss("Gatewatcher Iron-Hand", 554)
 if not mod then return end
 mod:RegisterEnableMob(19710)
 -- mod.engageId = 1934 -- no boss frames

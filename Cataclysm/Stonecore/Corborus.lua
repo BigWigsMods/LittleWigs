@@ -3,11 +3,15 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Corborus", 768, 110)
+local mod, CL = BigWigs:NewBoss("Corborus", 725, 110)
 if not mod then return end
 mod:RegisterEnableMob(43438)
 mod.engageId = 1056
 mod.respawnTime = 30
+
+--------------------------------------------------------------------------------
+-- Localization
+--
 
 local L = mod:GetLocale()
 if L then

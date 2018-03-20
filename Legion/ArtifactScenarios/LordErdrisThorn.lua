@@ -6,7 +6,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Lord Erdris Thorn", nil, nil, 1710)
+local mod, CL = BigWigs:NewBoss("Lord Erdris Thorn", 1710)
 if not mod then return end
 mod:RegisterEnableMob(118529, -- Lord Erdris Thorn
 	118447, -- Jarod Shadowsong

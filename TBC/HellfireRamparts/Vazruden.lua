@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Vazruden", 797, 529)
+local mod, CL = BigWigs:NewBoss("Vazruden", 543, 529)
 if not mod then return end
 mod:RegisterEnableMob(17537, 17536) -- Vazruden, Nazan <Vazruden's Mount>
 -- mod.engageId = 1892 -- no boss frames

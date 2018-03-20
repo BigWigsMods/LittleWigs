@@ -4,5 +4,6 @@
 <Script file="Falric.lua"/>
 <Script file="Marwyn.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Drakos the Interrogator", 528, 622)
+local mod, CL = BigWigs:NewBoss("Drakos the Interrogator", 578, 622)
 if not mod then return end
 mod:RegisterEnableMob(27654)
 mod.engageId = 2016

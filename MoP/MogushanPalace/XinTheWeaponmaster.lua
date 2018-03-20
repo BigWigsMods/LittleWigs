@@ -3,11 +3,17 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Xin the Weaponmaster", 885, 698)
+local mod, CL = BigWigs:NewBoss("Xin the Weaponmaster", 994, 698)
 if not mod then return end
 mod:RegisterEnableMob(61398)
+mod.engageId = 1441
+mod.respawnTime = 30
 
-local phase = 1
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local stage = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -15,8 +21,6 @@ local phase = 1
 
 local L = mod:GetLocale()
 if L then
-	L.engage_yell = "You are not the first to challenge me, peons. You will not be the last."
-
 	L.blades = -5972 -- Blade Trap
 	L.blades_icon = 119311
 
@@ -29,22 +33,21 @@ end
 --
 
 function mod:GetOptions()
-	return {-5970, "blades", "crossbows"}
+	return {
+		119684, -- Ground Slam
+		"blades",
+		"crossbows",
+	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GroundSlam", 119684)
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Emote("Blades", "119311") -- %s activates his |cFFFF0404|Hspell:119311|h[Stream of Blades]|h|r trap!
-	self:Emote("Crossbows", "120142") -- %s activates his |cFFFF0404|Hspell:120142|h[Crossbow]|h|r trap!
-	self:Death("Win", 61398)
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
-	phase = 1
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
+	stage = 1
 end
 
 --------------------------------------------------------------------------------
@@ -52,26 +55,26 @@ end
 --
 
 function mod:GroundSlam(args)
-	self:Message(-5970, "Urgent", "Alert", CL["casting"]:format(args.spellName), args.spellId)
-	self:Bar(-5970, 3, CL["cast"]:format(args.spellName), args.spellId)
+	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:CastBar(args.spellId, 3)
 end
 
-function mod:Blades()
-	self:Message("blades", "Attention", "Info", "66% - "..self:SpellName(L.blades), 119311)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
+	if msg:find("119311", nil, true) then -- Stream of Blades (Blade Trap)
+		self:Message("blades", "Attention", "Info", CL.percent:format(66, self:SpellName(L.blades)), 119311)
+	elseif msg:find("120142", nil, true) then -- Crossbow (Death From Above!)
+		self:Message("crossbows", "Attention", "Info", CL.percent:format(33, self:SpellName(L.crossbows)), 120142)
+	end
 end
 
-function mod:Crossbows()
-	self:Message("crossbows", "Attention", "Info", "33% - "..self:SpellName(L.crossbows), 120142)
-end
-
-function mod:PhaseWarn(unitId)
-	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-	if hp < 70 and phase == 1 then
-		self:Message("blades", "Positive", nil, CL["soon"]:format(L["blades"]), false)
-		phase = 2
-	elseif hp < 39 and phase == 2 then
-		self:Message("crossbows", "Positive", nil, CL["soon"]:format(L["crossbows"]), false)
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
+function mod:StageWarn(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 70 and stage == 1 then
+		self:Message("blades", "Positive", nil, CL.soon:format(self:SpellName(L.blades)), false)
+		stage = 2
+	elseif hp < 39 and stage == 2 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("crossbows", "Positive", nil, CL.soon:format(self:SpellName(L.crossbows)), false)
 	end
 end
 

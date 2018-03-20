@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nexus-Prince Shaffar", 732, 537)
+local mod, CL = BigWigs:NewBoss("Nexus-Prince Shaffar", 557, 537)
 if not mod then return end
 mod:RegisterEnableMob(18344)
 -- mod.engageId = 1899 -- no boss frames, sometimes no ENCOUNTER_END on a wipe

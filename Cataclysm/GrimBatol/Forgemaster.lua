@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Forgemaster Throngus", 757, 132)
+local mod, CL = BigWigs:NewBoss("Forgemaster Throngus", 670, 132)
 if not mod then return end
 mod:RegisterEnableMob(40177)
 mod.engageId = 1050

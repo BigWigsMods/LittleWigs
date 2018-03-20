@@ -7,4 +7,6 @@
 <Script file="Tyrande.lua"/>
 <Script file="Murozond.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

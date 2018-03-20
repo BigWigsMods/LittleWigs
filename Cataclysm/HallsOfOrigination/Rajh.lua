@@ -1,68 +1,77 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Rajh", 759)
+local mod, CL = BigWigs:NewBoss("Rajh", 644, 130)
 if not mod then return end
-mod.partyContent = true
 mod:RegisterEnableMob(39378)
-mod.toggleOptions = {73874, 80352, {76355, "FLASHSHAKE"}, "bosskill"}
+mod.engageId = 1078
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local strike = 0
-local blessingTime = 0
+local warnedAboutBlessingIncoming = nil
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		-2861, -- Sun Strike
+		-2862, -- Summon Sun Orb
+		{-2863, "FLASH"}, -- Inferno Leap
+		76355, -- Blessing of the Sun
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "SunStrike", 73872, 89887)
-	self:Log("SPELL_AURA_APPLIED", "Orb", 80352)
-	self:Log("SPELL_AURA_APPLIED", "Blessing", 76355, 89879)
-	self:RegisterEvent("UNIT_POWER")
+	self:Log("SPELL_CAST_SUCCESS", "SunStrike", 73872)
+	self:Log("SPELL_AURA_APPLIED", "SummonSunOrb", 80352)
+	self:Log("SPELL_AURA_APPLIED", "InfernoLeap", 87657) -- 87657 = Burning Adrenaline Rush, the debuff you get when he's targeting your location
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 39378)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 function mod:OnEngage()
-	strike = 0
-	blessingTime = 0
+	self:RegisterUnitEvent("UNIT_POWER", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:SunStrike(_, spellId, _, _, spellName)
-	self:LocalMessage(73874, spellName, "Attention", spellId)
+function mod:SunStrike(args)
+	self:Message(-2861, "Attention")
 end
 
-function mod:Orb(_, spellId, _, _, spellName)
-	self:Message(80352, spellName, "Urgent", spellId)
+function mod:SummonSunOrb(args)
+	self:Message(-2862, "Urgent")
 end
 
-function mod:Blessing(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:Message(76355, spellName, "Important", spellId, "Alert")
-		self:FlashShake(76355)
-		strike = strike + 1
+function mod:InfernoLeap(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(-2863, args.destName, "Personal", "Warning")
+		self:Flash(-2863)
 	end
 end
 
-function mod:UNIT_POWER(_, unit)
-	if unit ~= "boss1" then return end
-	if strike == 2 then
-		self:UnregisterEvent("UNIT_POWER")
-		return
-	end
-	if UnitName(unit) == self.displayName then
+do
+	function mod:UNIT_POWER(unit)
 		local power = UnitPower(unit) / UnitPowerMax(unit) * 100
-		if power < 20 and strike < 2 and (GetTime() - blessingTime) > 20 then -- massive throttling as energy fills up again, needs testing
-			self:Message(76355, LW_CL["soon"]:format(GetSpellInfo(76355)), "Attention")
-			blessingTime = GetTime()
+		if power <= 30 and not warnedAboutBlessingIncoming then
+			warnedAboutBlessingIncoming = true
+			self:Message(76355, "Neutral", nil, CL.soon:format(self:SpellName(76355)))
 		end
 	end
 end
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+	if spellId == 76352 then -- Blessing of the Sun
+		self:Message(76355, "Positive", "Long", CL.casting:format(spellName))
+		self:CastBar(76355, 20) -- EJ says "reenergizes himself with ... for 3 sec" but it took 17s for him to get back 100 energy when I tried, and the last SPELL_PERIODIC_ENERGIZE event fired 20s after the USCS
+		self:ScheduleTimer(function() warnedAboutBlessingIncoming = nil end, 20) -- no events that indicate the end of this "phase"
+	end
+end

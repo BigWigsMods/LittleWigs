@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Priestess Delrissa", 798, 532)
+local mod, CL = BigWigs:NewBoss("Priestess Delrissa", 585, 532)
 if not mod then return end
 mod:RegisterEnableMob(24553, -- Apoko
 	24554, -- Eramas Brightblaze
@@ -17,6 +17,10 @@ mod:RegisterEnableMob(24553, -- Apoko
 )
 mod.engageId = 1895
 -- mod.respawnTime = 0 -- resets, doesn't respawn
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local deaths = 0
 

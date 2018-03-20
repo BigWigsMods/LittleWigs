@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Viz'aduum the Watcher", 1115, 1838)
+local mod, CL = BigWigs:NewBoss("Viz'aduum the Watcher", 1651, 1838)
 if not mod then return end
 mod:RegisterEnableMob(114790)
 mod.engageId = 2017

@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mennu the Betrayer", 728, 570)
+local mod, CL = BigWigs:NewBoss("Mennu the Betrayer", 547, 570)
 if not mod then return end
 mod:RegisterEnableMob(17941)
 -- mod.engageId = 1939 -- no boss frames

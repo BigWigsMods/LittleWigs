@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Exarch Maladaar", 722, 524)
+local mod, CL = BigWigs:NewBoss("Exarch Maladaar", 558, 524)
 if not mod then return end
 mod:RegisterEnableMob(18373)
 -- mod.engageId = 1889 -- no boss frames
