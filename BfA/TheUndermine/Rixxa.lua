@@ -45,23 +45,23 @@ end
 --end
 
 do
-    local playerList = mod:NewTargetList()
-    function mod:ChemicalBurnApplied(args)
-        playerList[#playerList+1] = args.destName
-        if self:Dispeller("magic") then
-            if #playerList == 1 then
-                self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange")
-                self:PlaySound(args.spellId, "alarm", "dispel")
-            end
-        else
-            if #playerList == 1 then
-                self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange")
-            end
-            if self:Me(args.destGUID) then
-                self:PlaySound(args.spellId, "alarm")
-            end
+	local playerList = mod:NewTargetList()
+	function mod:ChemicalBurnApplied(args)
+		playerList[#playerList+1] = args.destName
+		if self:Dispeller("magic") then
+			if #playerList == 1 then
+				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange")
+				self:PlaySound(args.spellId, "alarm", "dispel")
+			end
+		else
+			if #playerList == 1 then
+				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange")
+			end
+			if self:Me(args.destGUID) then
+				self:PlaySound(args.spellId, "alarm")
+			end
 		end
-    end
+	end
 end
 
 function mod:PropellantBlast(args)
