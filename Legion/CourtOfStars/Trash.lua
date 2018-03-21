@@ -544,8 +544,8 @@ do
 					end
 					mod:Sync("clue", num)
 				else
-					local t = GetTime() -- Sometimes it's 1st screen (chat) > 2nd screen (clue) > 1st screen (chat, no gossip selection) and triggers this
-					if spyEventHelper and not knownClues[clue] and (prev-t) > 2 then
+					-- GetTime: Sometimes it's 1st screen (chat) > 2nd screen (clue) > 1st screen (chat, no gossip selection) and would trigger this
+					if spyEventHelper and not knownClues[clue] and (GetTime()-prev) > 2 then
 						timer = self:ScheduleTimer(printNew, 2, GetLocale(), clue)
 					end
 				end
