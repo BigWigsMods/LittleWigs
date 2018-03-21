@@ -491,7 +491,7 @@ do
 
 	local function sendChatMessage(msg, english)
 		if IsInGroup() then
-			SendChatMessage(english and ("[LittleWigs] %s / %s"):format(msg, english) or ("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
+			BigWigsLoader.SendChatMessage(english and ("[LittleWigs] %s / %s"):format(msg, english) or ("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
 		end
 	end
 
@@ -523,6 +523,7 @@ do
 		end
 	end
 
+	local prev = 0
 	function mod:GOSSIP_SHOW()
 		if timer then
 			self:CancelTimer(timer)
@@ -536,13 +537,15 @@ do
 				local clue = GetGossipText()
 				local num = L[clue]
 				if num then
+					prev = GetTime()
 					if spyEventHelper and not knownClues[num] then
 						local text = L.hints[num]
 						sendChatMessage(text, englishClueNames[num] ~= text and englishClueNames[num])
 					end
 					mod:Sync("clue", num)
 				else
-					if spyEventHelper and not knownClues[clue] then
+					local t = GetTime() -- Sometimes it's 1st screen (chat) > 2nd screen (clue) > 1st screen (chat, no gossip selection) and triggers this
+					if spyEventHelper and not knownClues[clue] and (prev-t) > 5 then
 						timer = self:ScheduleTimer(printNew, 2, GetLocale(), clue)
 					end
 				end
@@ -673,7 +676,7 @@ do
 	end
 
 	function mod:BigWigs_BossComm(_, msg, data, sender)
-		if self:GetOption("spy_helper") > 0 and msg == "clue" then
+		if msg == "clue" and self:GetOption("spy_helper") > 0 then
 			local clue = tonumber(data)
 			if clue and clue > 0 and clue <= #L.hints then
 				addClue(self, clue)
