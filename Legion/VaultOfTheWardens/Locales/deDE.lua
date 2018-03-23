@@ -7,8 +7,8 @@ if L then
 	--L.light_picked = "%s picked up the Light."
 
 	--L.warmup_text = "Cordana Felsong Active"
-	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
-	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
+	L.warmup_trigger = "Ich habe, wofür ich gekommen bin. Doch ich wollte Euch noch persönlich ein Ende setzen... ein für alle Mal."
+	L.warmup_trigger_2 = "Und jetzt sitzt Ihr Narren in meiner Falle. Sehen wir mal, wie Ihr im Dunkeln zurechtkommt."
 end
 
 L = BigWigs:NewBossLocale("Glazer", "deDE")
