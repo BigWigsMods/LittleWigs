@@ -15,6 +15,7 @@ BigWigs:AddSounds("Liu Flameheart", {
 	[106823] = "Alarm",
 	[106841] = "Alarm",
 	[107110] = "Alert",
+	[118540] = "Alert",
 	["stages"] = "Info",
 })
 

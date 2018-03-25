@@ -15,6 +15,7 @@ BigWigs:AddColors("Liu Flameheart", {
 	[106823] = {"Personal","Urgent"},
 	[106841] = {"Personal","Urgent"},
 	[107110] = "Personal",
+	[118540] = "Personal",
 	["stages"] = {"Attention","Positive"},
 })
 
