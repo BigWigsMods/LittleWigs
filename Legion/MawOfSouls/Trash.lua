@@ -92,7 +92,7 @@ do
 	function mod:TorrentOfSouls(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
-			if t - (prevTable[args.spellId] or 0) > 1 then
+			if t - (prevTable[args.spellId] or 0) > 1.5 then
 				prevTable[args.spellId] = t
 
 				local spellId = self:CheckOption(199514, "MESSAGE") and 199514 or 199589 -- both these spells do damage with 199519
