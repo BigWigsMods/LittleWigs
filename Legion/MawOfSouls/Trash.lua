@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Maw of Souls Trash", 1492)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	99188, -- Waterlogged Soul Guard
 	97097, -- Helarjar Champion
 	97182, -- Night Watch Mariner
 	98919, -- Seacursed Swiftblade
@@ -21,6 +22,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.soulguard = "Waterlogged Soul Guard"
 	L.champion = "Helarjar Champion"
 	L.mariner = "Night Watch Mariner"
 	L.swiftblade = "Seacursed Swiftblade"
@@ -35,6 +37,7 @@ end
 
 function mod:GetOptions()
 	return {
+		194657, -- Soul Siphon
 		198405, -- Bone Chilling Scream
 		192019, -- Lantern of Darkness
 		194615, -- Sea Legs
@@ -44,6 +47,7 @@ function mod:GetOptions()
 		195293, -- Debilitating Shout
 		{198324, "SAY", "FLASH"}, -- Give No Quarter
 	}, {
+		[194657] = L.soulguard,
 		[198405] = L.champion,
 		[192019] = L.mariner,
 		[194615] = L.swiftblade,
@@ -56,7 +60,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	self:Log("SPELL_CAST_START", "Casts", 199514, 199589, 216197) -- Torrent of Souls, Whirlpool of Souls, Surging Waters
+	self:Log("SPELL_CAST_START", "Casts", 194657, 199514, 199589, 216197) -- Soul Siphon, Torrent of Souls, Whirlpool of Souls, Surging Waters
 	self:Log("SPELL_DAMAGE", "TorrentOfSouls", 199519)
 	self:Log("SPELL_MISSED", "TorrentOfSouls", 199519)
 

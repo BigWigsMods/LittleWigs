@@ -1,6 +1,7 @@
 local L = BigWigs:NewBossLocale("Maw of Souls Trash", "zhCN")
 if not L then return end
 if L then
+	--L.soulguard = "Waterlogged Soul Guard"
 	L.champion = "海拉加尔勇士"
 	L.mariner = "守夜水手"
 	--L.swiftblade = "Seacursed Swiftblade"
