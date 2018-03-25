@@ -7,5 +7,5 @@ if L then
 	L.swiftblade = "Meeresfluchschnellklinge"
 	L.mistmender = "Meeresfluchnebelheilerin"
 	L.mistcaller = "Nebelruferin der Helarjar"
-	L.skjal = "Skjal <Hauptmann der Verdammten>"
+	L.skjal = "Skjal"
 end
