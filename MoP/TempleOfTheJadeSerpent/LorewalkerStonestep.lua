@@ -3,11 +3,31 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Lorewalker Stonestep", 867, 664)
+local mod, CL = BigWigs:NewBoss("Lorewalker Stonestep", 960, 664)
 if not mod then return end
-mod:RegisterEnableMob(56541)
+mod:RegisterEnableMob(
+	57080, -- Corrupted Scroll
 
-local phase = 1
+	-- The Trial of the Yaungol:
+	59051, -- Strife
+	59726, -- Peril
+
+	-- The Champion of the Five Suns:
+	58826, -- Zao Sunseeker
+	56915 -- Sun
+)
+mod.engageId = 1417
+mod.respawnTime = 30
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+-- [[ The Trial of the Yaungol ]] --
+local scheduled, bossesDead = {}, {}
+
+-- [[ The Champion of the Five Suns ]] --
+local sunsDead, shaDead = 0, 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -15,10 +35,11 @@ local phase = 1
 
 local L = mod:GetLocale()
 if L then
-	L.engage_yell = "Very well then, outsiders. Let us see your true strength."
+	-- Ah, it is not yet over. From what I see, we face the trial of the yaungol. Let me shed some light...
+	L.yaungol_warmup_trigger = "Ah, it is not yet over."
 
-	--When I was but a cub I could scarcely throw a punch, but after years of training I can do so much more!
-	L.phase3_yell = "was a cub"
+	-- Oh, my. If I am not mistaken, it appears that the tale of Zao Sunseeker has come to life before us.
+	L.five_suns_warmup_trigger = "If I am not mistaken"
 end
 
 --------------------------------------------------------------------------------
@@ -26,88 +47,134 @@ end
 --
 
 function mod:GetOptions()
-	return {106434, {118961, "FLASH"}, 106747, "stages"}
-end
-
-function mod:VerifyEnable(unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp > 15 then
-		return true
-	end
+	return {
+		"warmup",
+		-5549, -- Intensity
+		"stages",
+	}, {
+		["warmup"] = "general",
+		[-5549] = -5537, -- The Trial of the Yaungol
+		["stages"] = -5536, -- The Champion of the Five Suns
+	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "TornadoKick", 106434)
-	self:Log("SPELL_AURA_APPLIED", "ChaseDown", 118961)
-	self:Log("SPELL_AURA_REMOVED", "ChaseDownRemoved", 118961)
+	self:RegisterEvent("ENCOUNTER_START")
 
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-	self:Yell("Phase3", L["phase3_yell"])
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	-- [[ The Trial of the Yaungol ]] --
+	--[[
+	self:Log("SPELL_AURA_APPLIED", "Intensity", 113315)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "Intensity", 113315)
+	self:Log("SPELL_AURA_REMOVED", "IntensityRemoved", 113315)
+	self:Log("SPELL_AURA_APPLIED", "UltimatePower", 113309)
+	self:Death("BossDeath", 59051, 59726) -- Strife, Peril
+	]]
+
+	-- [[ The Champion of the Five Suns ]] --
+	self:Log("SPELL_CAST_START", "HellfireArrows", 113017)
+	self:Death("SunDeath", 56915)
+	self:Death("ShaDeath", 58856)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-	local tornado = self:SpellName(106434)
-	self:Bar(106434, "~"..tornado, 15, 106434)
-	self:Message(106434, CL["custom_start_s"]:format(self.displayName, tornado, 15), "Attention")
-	phase = 1
+	sunsDead = 0
+	shaDead = 0
+	--[[
+	wipe(scheduled)
+	wipe(bossesDead)
+
+end
+
+function mod:OnBossDisable()
+	wipe(scheduled)
+	wipe(bossesDead)
+	]]
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:TornadoKick(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alert")
-	self:Bar(spellId, CL["cast"]:format(spellName), 6.5, spellId) -- 5s channel + 1.5s cast
-end
-
-function mod:ChaseDown(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alarm")
-	self:Bar(spellId, CL["other"]:format(spellName, player), 11, spellId)
-	if UnitIsUnit("player", player) then
-		self:Flash(spellId)
+function mod:Warmup(event, msg)
+	if msg:find(L.yaungol_warmup_trigger, nil, true) then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 16.7, CL.active, "achievement_jadeserpent")
+	elseif msg:find(L.five_suns_warmup_trigger, nil, true) then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 31.45, CL.active, "achievement_jadeserpent")
 	end
 end
 
-function mod:ChaseDownRemoved(player, _, _, _, spellName)
-	self:StopBar(spellName, player)
+-- Zao Sunseeker's encounter has no boss frames during the first stage
+-- forcing pre-ba08796 behaviour to counter that.
+function mod:ENCOUNTER_START(_, id)
+	if id == self.engageId then
+		self:Engage()
+	end
 end
 
-function mod:Phase3()
-	self:Message("stages", CL["phase"]:format(3), "Positive", nil, "Info")
-end
-
+-- [[ The Trial of the Yaungol ]] --
+-- FIXME: rewrite this with UNIT_AURA because
+-- consistency regarding combat logs is overrated.
+--[[
 do
-	local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
-		if unitId == "boss1" then
-			if spellId == 110324 then -- Shado-pan Vanish
-				if phase == 1 then
-					phase = 2
-					self:Message(106747, (CL["phase"]:format(2))..": "..mirror, "Positive", 106747, "Info")
-					self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-				else
-					self:Message(106747, mirror, "Positive", 106747)
-				end
-			elseif spellId == 123096 then -- Master Snowdrift Kill - Achievement
-				self:Win()
-			end
+	local function announce(self, destGUID, destName, spellName)
+		if not bossesDead[destGUID] then -- they lose the buff 2s after dying, so CancelTimer() didn't work
+			self:Message(-5549, "Positive", "Info", CL.removed_from:format(spellName, destName))
 		end
+		scheduled[destGUID] = nil
+	end
+
+	function mod:Intensity(args)
+		local amount = args.amount or 1
+		if (amount % 3 == 1 or amount > 7) and amount ~= 10 then -- 1, 4, 7, 8, 9 (10th stack gets instantly replaced by "Ultimate Power")
+			self:StackMessage(-5549, args.destName, amount, "Urgent", amount > 7 and UnitGUID("target") == args.destGUID and "Warning" or "Alert")
+		end
+	end
+
+	function mod:IntensityRemoved(args) -- "Ultimate Power" removes "Intensity", so we are scheduling a bit
+		scheduled[args.destGUID] = self:ScheduleTimer(announce, 0.2, self, args.destGUID, args.destName, args.spellName)
+	end
+
+	function mod:UltimatePower(args)
+		self:TargetMessage(-5549, args.destName, "Important", "Warning", args.spellId)
+		if scheduled[args.destGUID] then
+			self:CancelTimer(scheduled[args.destGUID])
+		end
+	end
+
+	function mod:BossDeath(args)
+		bossesDead[args.destGUID] = true
+	end
+end
+]]
+
+-- [[ The Champion of the Five Suns ]] --
+function mod:SunDeath(args)
+	sunsDead = sunsDead + 1
+	self:Message("stages", "Positive", "Info", CL.mob_killed:format(args.destName, sunsDead, 4), false)
+end
+
+function mod:ShaDeath(args)
+	shaDead = shaDead + 1
+
+	-- High level characters can oneshot suns before ENCOUNTER_START fires
+	if shaDead > sunsDead then
+		sunsDead = shaDead
+	end
+
+	self:Message("stages", "Positive", "Info", CL.mob_killed:format(args.destName, shaDead, 4), false)
+	if shaDead == 4 then
+		self:Bar("stages", 9.5, CL.stage:format(2), "inv_summerfest_firespirit")
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unitId)
-	if unitId == "boss1" then
-		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-		if hp < 65 and phase == 1 then
-			self:Message("stages", CL["soon"]:format(CL["phase"]:format(2)), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		elseif hp < 35 and phase == 2 then
-			self:Message("stages", CL["soon"]:format(CL["phase"]:format(3)), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
-		end
-	end
+-- Using this to detect stage 2, because both
+-- UnitIsEnemy() and UnitCanAttack() return false
+-- when IEEU fires.
+function mod:HellfireArrows(args)
+	self:RemoveLog("SPELL_CAST_START", args.spellId)
+	self:Message("stages", "Positive", "Info", CL.stage:format(2), false)
 end
