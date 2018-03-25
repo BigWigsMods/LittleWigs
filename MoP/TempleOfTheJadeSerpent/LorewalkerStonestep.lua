@@ -24,7 +24,8 @@ mod.respawnTime = 30
 --
 
 -- [[ The Trial of the Yaungol ]] --
-local scheduled, bossesDead = {}, {}
+local isTrialOfTheYaungol = nil
+local stacksOfIntensity = {}
 
 -- [[ The Champion of the Five Suns ]] --
 local sunsDead, shaDead = 0, 0
@@ -64,13 +65,8 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 
 	-- [[ The Trial of the Yaungol ]] --
-	--[[
-	self:Log("SPELL_AURA_APPLIED", "Intensity", 113315)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "Intensity", 113315)
-	self:Log("SPELL_AURA_REMOVED", "IntensityRemoved", 113315)
+	self:RegisterUnitEvent("UNIT_AURA", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "UltimatePower", 113309)
-	self:Death("BossDeath", 59051, 59726) -- Strife, Peril
-	]]
 
 	-- [[ The Champion of the Five Suns ]] --
 	self:Log("SPELL_CAST_START", "HellfireArrows", 113017)
@@ -81,16 +77,12 @@ end
 function mod:OnEngage()
 	sunsDead = 0
 	shaDead = 0
-	--[[
-	wipe(scheduled)
-	wipe(bossesDead)
-
+	isTrialOfTheYaungol = nil
+	wipe(stacksOfIntensity)
 end
 
 function mod:OnBossDisable()
-	wipe(scheduled)
-	wipe(bossesDead)
-	]]
+	wipe(stacksOfIntensity)
 end
 
 --------------------------------------------------------------------------------
@@ -116,40 +108,44 @@ function mod:ENCOUNTER_START(_, id)
 end
 
 -- [[ The Trial of the Yaungol ]] --
--- FIXME: rewrite this with UNIT_AURA because
--- consistency regarding combat logs is overrated.
---[[
-do
-	local function announce(self, destGUID, destName, spellName)
-		if not bossesDead[destGUID] then -- they lose the buff 2s after dying, so CancelTimer() didn't work
-			self:Message(-5549, "Positive", "Info", CL.removed_from:format(spellName, destName))
-		end
-		scheduled[destGUID] = nil
-	end
 
-	function mod:Intensity(args)
-		local amount = args.amount or 1
-		if (amount % 3 == 1 or amount > 7) and amount ~= 10 then -- 1, 4, 7, 8, 9 (10th stack gets instantly replaced by "Ultimate Power")
-			self:StackMessage(-5549, args.destName, amount, "Urgent", amount > 7 and UnitGUID("target") == args.destGUID and "Warning" or "Alert")
+-- SPELL_AURA_* events for Intensity behave inconsistently on this encounter, sometimes one of them fires them
+-- but the other one doesn't, then they might even switch on the next pull. A lot of fun.
+function mod:UNIT_AURA(unit)
+	local guid = UnitGUID(unit)
+	if not isTrialOfTheYaungol then -- check mob ids and unregister the event if it's not needed
+		local mobId = self:MobId(guid)
+		if mobId == 59051 or mobId == 59726 then
+			isTrialOfTheYaungol = true
+		else
+			self:UnregisterUnitEvent("UNIT_AURA", "boss1", "boss2")
 		end
 	end
 
-	function mod:IntensityRemoved(args) -- "Ultimate Power" removes "Intensity", so we are scheduling a bit
-		scheduled[args.destGUID] = self:ScheduleTimer(announce, 0.2, self, args.destGUID, args.destName, args.spellName)
-	end
-
-	function mod:UltimatePower(args)
-		self:TargetMessage(-5549, args.destName, "Important", "Warning", args.spellId)
-		if scheduled[args.destGUID] then
-			self:CancelTimer(scheduled[args.destGUID])
+	-- 10th stack gets replaced by Ultimate Power (113309),
+	-- this is why I'm not showing a warning for it and not showing
+	-- a message that stacks are gone when Ultimate Power is present
+	local destName, spellName = UnitName(unit), self:SpellName(113315)
+	local _, _, _, stacks = UnitBuff(unit, spellName)
+	if not stacks then
+		if stacksOfIntensity[guid] and stacksOfIntensity[guid] > 0 then
+			stacksOfIntensity[guid] = 0
+			if not UnitIsDead(unit) and not UnitBuff(unit, self:SpellName(113309)) then
+				self:Message(-5549, "Positive", "Info", CL.removed_from:format(spellName, destName))
+			end
 		end
-	end
-
-	function mod:BossDeath(args)
-		bossesDead[args.destGUID] = true
+	elseif not stacksOfIntensity[guid] or stacksOfIntensity[guid] < stacks then
+		stacksOfIntensity[guid] = stacks
+		if (stacks % 3 == 1 or stacks > 7) and stacks ~= 10 then
+			self:StackMessage(-5549, destName, stacks, "Urgent", stacks > 7 and UnitGUID("target") == guid and "Warning" or "Alert")
+		end
 	end
 end
-]]
+
+function mod:UltimatePower(args)
+	self:TargetMessage(-5549, args.destName, "Important", "Warning", args.spellId)
+	self:TargetBar(-5549, 15, args.destName, args.spellId)
+end
 
 -- [[ The Champion of the Five Suns ]] --
 function mod:SunDeath(args)
