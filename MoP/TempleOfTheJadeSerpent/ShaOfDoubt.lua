@@ -3,9 +3,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sha of Doubt", 867, 335)
+local mod, CL = BigWigs:NewBoss("Sha of Doubt", 960, 335)
 if not mod then return end
 mod:RegisterEnableMob(56439)
+mod.engageId = 1439
+mod.respawnTime = 30
 
 local canEnable = true
 

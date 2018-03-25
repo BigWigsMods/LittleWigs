@@ -3,9 +3,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Liu Flameheart", 867, 658)
+local mod, CL = BigWigs:NewBoss("Liu Flameheart", 960, 658)
 if not mod then return end
 mod:RegisterEnableMob(56732)
+mod.engageId = 1416
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
