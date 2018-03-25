@@ -119,6 +119,7 @@ function mod:UNIT_AURA(unit)
 			isTrialOfTheYaungol = true
 		else
 			self:UnregisterUnitEvent("UNIT_AURA", "boss1", "boss2")
+			return
 		end
 	end
 
