@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Wise Mari", 960, 672)
 if not mod then return end
 mod:RegisterEnableMob(56448)
+mod.engageId = 1418
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -14,35 +16,25 @@ mod:RegisterEnableMob(56448)
 local deaths = 0
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_say = "You dare to disturb these waters? You will drown!"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {-6327, "stages"}
+	return {
+		"stages",
+		-6327, -- Call Water
+	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CallWater", 106526)
 	self:Log("SPELL_CAST_START", "BubbleBurst", 106612)
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Death("Win", 56448)
 	self:Death("AddDeath", 56511)
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Positive", "Info", CL.phase:format(1), false)
 	deaths = 0
+	self:Message("stages", "Positive", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -55,7 +47,7 @@ function mod:CallWater(args)
 end
 
 function mod:BubbleBurst(args)
-	local text = CL.phase:format(2)
+	local text = CL.stage:format(2)
 	self:DelayedMessage("stages", 4, "Positive", text, false, "Info")
 	self:Bar("stages", 4, text, args.spellId)
 end
@@ -64,4 +56,3 @@ function mod:AddDeath()
 	deaths = deaths + 1
 	self:Message(-6327, "Attention", nil, CL.add_killed:format(deaths, 4), 106526)
 end
-
