@@ -5,6 +5,7 @@ if L then
 	L.Construct = "수호의 피조물"
 	L.Enforcer = "지옥결속 집행자"
 	L.Hound = "군단 지옥사냥개"
+	L.Mistress = "그림자 여주인"
 	L.Gerenth = "흉측한 게렌스"
 	L.Jazshariu = "자즈샤리우"
 	L.Imacutya = "이마쿠티아"

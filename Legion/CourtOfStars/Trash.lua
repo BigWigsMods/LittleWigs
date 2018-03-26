@@ -74,6 +74,7 @@ if L then
 	L.Construct = "Guardian Construct"
 	L.Enforcer = "Felbound Enforcer"
 	L.Hound = "Legion Hound"
+	L.Mistress = "Shadow Mistress"
 	L.Gerenth = "Gerenth the Vile"
 	L.Jazshariu = "Jazshariu"
 	L.Imacutya = "Imacutya"
@@ -213,14 +214,16 @@ function mod:GetOptions()
 		225100, -- Charging Station (Guardian Construct)
 		209495, -- Charged Smash (Guardian Construct)
 		209512, -- Disrupting Energy (Guardian Construct)
-		{209413, "FLASH"}, -- Suppress (Guardian Construct)
+		209413, -- Suppress (Guardian Construct)
 		211464, -- Fel Detonation (Felbound Enforcer)
 		211391, -- Felblaze Puddle (Legion Hound)
+		211470, -- Bewitch (Shadow Mistress)
 		214692, -- Shadow Bolt Volley (Gerenth the Vile)
 		214688, -- Carrion Swarm (Gerenth the Vile)
+		214690, -- Cripple (Gerenth the Vile)
 		207979, -- Shockwave (Jazshariu)
 		209378, -- Whirling Blades (Imacu'tya)
-		{207980, "FLASH"}, -- Disintegration Beam (Baalgar the Watchful)
+		207980, -- Disintegration Beam (Baalgar the Watchful)
 		211299, -- Searing Glare (Watchful Inquisitor)
 		212784, -- Eye Storm (Watchful Inquisitor)
 		211401, -- Drifting Embers (Blazing Imp)
@@ -241,6 +244,7 @@ function mod:GetOptions()
 		[225100] = L.Construct,
 		[211464] = L.Enforcer,
 		[211391] = L.Hound,
+		[211470] = L.Mistress,
 		[214692] = L.Gerenth,
 		[207979] = L.Jazshariu,
 		[209378] = L.Imacutya,
@@ -260,16 +264,20 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Shockwave, Whirling Blades, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath
-	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 207979, 209378, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006)
+	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Shockwave, Whirling Blades, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
+	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 207979, 209378, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006, 211470)
 	-- Quelling Strike, Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers
 	self:Log("SPELL_CAST_START", "AlarmCasts", 209027, 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377)
 	-- Felblaze Puddle, Disrupting Energy
 	self:Log("SPELL_AURA_APPLIED", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_MISSED", "PeriodicDamage", 211391, 209512)
-	-- Suppress
-	self:Log("SPELL_AURA_APPLIED", "Supress", 209413)
+	-- Dispellable stuff
+	self:Log("SPELL_AURA_APPLIED", "Fortification", 209033)
+	self:Log("SPELL_AURA_APPLIED", "SealMagic", 209404)
+	self:Log("SPELL_AURA_APPLIED", "Suppress", 209413)
+	self:Log("SPELL_AURA_APPLIED", "SingleTargetDebuffs", 214690, 211470) -- Cripple, Bewitch
+	self:Log("SPELL_AURA_REMOVED", "SingleTargetDebuffsRemoved", 209413, 214690, 211470) -- Suppress, Cripple, Bewitch
 	-- Disintegration Beam
 	self:Log("SPELL_AURA_APPLIED", "DisintegrationBeam", 207980)
 	-- Eye Storm
@@ -746,24 +754,46 @@ do
 	end
 end
 
-function mod:Supress(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
-	if self:Me(args.destGUID) then
-		self:Flash(args.spellId)
+function mod:Fortification(args)
+	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then -- mages can spellsteal it
+		self:TargetMessage(args.spellId, args.destName, "Urgent", not throttleMessages(args.spellId) and "Alert", nil, nil, true)
+	end
+end
+
+function mod:Suppress(args)
+	self:TargetMessage(args.spellId, args.destName, "Urgent", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetBar(args.spellId, 6, args.destName)
+end
+
+function mod:SingleTargetDebuffs(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
+		self:TargetBar(args.spellId, 8, args.destName)
+	end
+end
+
+function mod:SingleTargetDebuffsRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
+do
+	local playerList = mod:NewTargetList()
+	function mod:SealMagic(args)
+		playerList[#playerList + 1] = args.destName
+		if #playerList == 1 then
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, args.destName, "Urgent", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
+		end
 	end
 end
 
 function mod:DisintegrationBeam(args)
 	self:Message(args.spellId, "Attention", "Long")
-	self:Bar(args.spellId, 5, CL.cast:format(args.spellName, args.destName))
-	if self:Me(args.destGUID) then
-		self:Flash(args.spellId)
-	end
+	self:CastBar(args.spellId, 5)
 end
 
 function mod:EyeStorm(args)
 	self:Message(args.spellId, "Attention", "Long")
-	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
+	self:CastBar(args.spellId, 8)
 end
 
 do
