@@ -1,15 +1,9 @@
-local L = BigWigs:NewBossLocale("Liu Flameheart", "zhCN")
+local L = BigWigs:NewBossLocale("Lorewalker Stonestep", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "你们休想再封印我。影踪派阻止不了我。你们也不行！"
-end
+	-- Ah, it is not yet over. From what I see, we face the trial of the yaungol. Let me shed some light...
+	--L.yaungol_warmup_trigger = "Ah, it is not yet over."
 
-L = BigWigs:NewBossLocale("Sha of Doubt", "zhCN")
-if L then
-	L.engage_yell = "仇恨将吞噬一切，征服一切！"
-end
-
-L = BigWigs:NewBossLocale("Wise Mari", "zhCN")
-if L then
-	L.engage_say = "你们竟敢扰乱这水流？淹死你们！"
+	-- Oh, my. If I am not mistaken, it appears that the tale of Zao Sunseeker has come to life before us.
+	--L.five_suns_warmup_trigger = "If I am not mistaken"
 end
