@@ -138,13 +138,13 @@ function mod:UNIT_AURA(unit)
 	elseif not stacksOfIntensity[guid] or stacksOfIntensity[guid] < stacks then
 		stacksOfIntensity[guid] = stacks
 		if (stacks % 3 == 1 or stacks > 7) and stacks ~= 10 then
-			self:StackMessage(-5549, destName, stacks, "Urgent", stacks > 7 and UnitGUID("target") == guid and "Warning" or "Alert")
+			self:Message(-5549, "Urgent", stacks > 7 and UnitGUID("target") == guid and "Warning" or "Alert", CL.stack:format(stacks, spellName, destName))
 		end
 	end
 end
 
 function mod:UltimatePower(args)
-	self:TargetMessage(-5549, args.destName, "Important", "Warning", args.spellId)
+	self:Message(-5549, "Important", "Warning", args.spellId, CL.other:format(args.spellName, args.destName))
 	self:TargetBar(-5549, 15, args.destName, args.spellId)
 end
 
