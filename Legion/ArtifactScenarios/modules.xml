@@ -6,6 +6,7 @@
 <Script file="Raest.lua"/>
 <Script file="Xylem.lua"/>
 <Script file="LordErdrisThorn.lua"/>
+<Script file="Agatha.lua"/>
 
 <Include file="Options\options.xml"/>
 

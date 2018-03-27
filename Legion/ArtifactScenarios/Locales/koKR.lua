@@ -65,3 +65,13 @@ L = BigWigs:NewBossLocale("Archmage Xylem", "koKR")
 if L then
 	L.name = "대마법사 실렘"
 end
+
+L = BigWigs:NewBossLocale("Agatha", "koKR")
+if L then
+	L.name = "아가타"
+	L.imp_servant = "임프 하수인"
+	L.fuming_imp = "독기 뿜는 임프"
+
+	L.absorb = "흡수"
+	L.stacks = "중첩"
+end
