@@ -5,6 +5,7 @@ if L then
 	L.Construct = "守護者傀儡"
 	L.Enforcer = "魔縛執行者"
 	L.Hound = "燃燒軍團獵犬"
+	--L.Mistress = "Shadow Mistress"
 	L.Gerenth = "『鄙惡者』葛任斯"
 	L.Jazshariu = "賈茲夏魯"
 	L.Imacutya = "伊瑪庫緹雅"

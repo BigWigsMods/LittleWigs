@@ -5,6 +5,7 @@ if L then
 	L.Construct = "Wächterkonstrukt"
 	L.Enforcer = "Dämonenversklavte Vollstreckerin"
 	L.Hound = "Legionshund"
+	L.Mistress = "Schattenmeisterin"
 	L.Gerenth = "Verdächtiger Adliger"
 	L.Jazshariu = "Jazshariu"
 	L.Imacutya = "Imacutya"
