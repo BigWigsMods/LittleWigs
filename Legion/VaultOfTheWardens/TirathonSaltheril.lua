@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Tirathon Saltheril", 1493, 1467)
 if not mod then return end
-mod:RegisterEnableMob(95885)
+mod:RegisterEnableMob(95885, 99013) -- Tirathon, Drelanim
 mod.engageId = 1815
 
 --------------------------------------------------------------------------------
@@ -46,6 +46,14 @@ end
 
 function mod:OnEngage()
 	self:CDBar(191941, 5.2) -- Darkstrikes
+end
+
+function mod:VerifyEnable(_, mobId)
+	if mobId == 99013 then -- Drelanim is a friendly NPC
+		local _, _, completed = C_Scenario.GetCriteriaInfo(1)
+		return not completed
+	end
+	return true
 end
 
 --------------------------------------------------------------------------------
