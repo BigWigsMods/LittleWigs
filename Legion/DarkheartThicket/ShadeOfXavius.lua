@@ -44,6 +44,8 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	if hp <= 50 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 
+		-- Bars might show less time than you
+		-- actually have, but never show more.
 		local _, _, _, _, _, endOfCast = UnitCastingInfo(unit) -- Nightmare Bolt, Growing Paranoia
 		if not endOfCast then
 			_, _, _, _, _, endOfCast = UnitChannelInfo(unit) -- Feed on the Weak
