@@ -50,10 +50,10 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		end
 		if endOfCast then
 			local timeLeft = endOfCast / 1000 - GetTime()
-			self:ScheduleTimer("Message", timeLeft, 200050, "Attention", "Info", CL.casting:format(self:SpellName(200050)))
+			self:ScheduleTimer("Message", timeLeft, 200050, "Attention", "Info", CL.incoming:format(self:SpellName(200050)))
 			self:ScheduleTimer("CDBar", timeLeft, 200050, 5)
 		else
-			self:Message(200050, "Attention", "Info", CL.casting:format(self:SpellName(200050)))
+			self:Message(200050, "Attention", "Info", CL.incoming:format(self:SpellName(200050)))
 			self:CDBar(200050, 5)
 		end
 	end
