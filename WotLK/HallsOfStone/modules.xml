@@ -1,0 +1,11 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Krystallus.lua"/>
+<Script file="MaidenOfGrief.lua"/>
+<Script file="TribunalOfAges.lua"/>
+<Script file="SjonnirTheIronshaper.lua"/>
+
+<Include file="Options\options.xml"/>
+
+</Ui>

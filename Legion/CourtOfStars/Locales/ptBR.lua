@@ -5,6 +5,7 @@ if L then
 	--L.Construct = "Guardian Construct"
 	--L.Enforcer = "Felbound Enforcer"
 	--L.Hound = "Legion Hound"
+	L.Mistress = "Donzela Sombria"
 	--L.Gerenth = "Gerenth the Vile"
 	--L.Jazshariu = "Jazshariu"
 	--L.Imacutya = "Imacutya"
@@ -143,4 +144,9 @@ if L then
 	-- Book
 	L["Soube que o espião sempre carrega um caderno de segredos no cinto."] = 14
 	L["Corre um boato de que o espião adora ler e sempre carrega pelo menos um livro."] = 14
+end
+
+L = BigWigs:NewBossLocale("Advisor Melandrus", "ptBR")
+if L then
+	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
 end

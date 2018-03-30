@@ -3,27 +3,25 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Houndmaster Braun", 871, 660)
+local mod, CL = BigWigs:NewBoss("Houndmaster Braun", 1001, 660)
 if not mod then return end
 mod:RegisterEnableMob(59303)
 
-local percent = 90
-
 --------------------------------------------------------------------------------
--- Localization
+-- Locals
 --
 
-local L = mod:GetLocale()
-if L then
-	L.engage_say = "Hmm, did you hear something lads?"
-end
+local percent = 90
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {-5611, 114259}
+	return {
+		-5611, -- Bloody Rage
+		114259, -- Call Dog
+	}
 end
 
 function mod:OnBossEnable()

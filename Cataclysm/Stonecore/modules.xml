@@ -6,5 +6,7 @@
 <Script file="Ozruk.lua"/>
 <Script file="Azil.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

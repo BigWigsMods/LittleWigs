@@ -1,16 +1,37 @@
-﻿-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Drakos the Interrogator", 528)
+local mod, CL = BigWigs:NewBoss("Drakos the Interrogator", 578, 622)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coldarra"
 mod:RegisterEnableMob(27654)
-mod.toggleOptions = {"stages"}
+mod.engageId = 2016
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		50774, -- Thundering Stomp
+	}
+end
 
 function mod:OnBossEnable()
-	self:Death("Win", 27654)
+	self:Log("SPELL_CAST_START", "ThunderingStomp", 50774, 59370) -- normal, heroic
+end
+
+function mod:OnEngage()
+	self:CDBar(50774, 14.7) -- Thundering Stomp
+end
+
+-------------------------------------------------------------------------------
+--  Event Handlers
+--
+
+function mod:ThunderingStomp(args)
+	self:Message(50774, "Important", nil, CL.casting:format(args.spellName))
+	self:CastBar(50774, 1)
+	self:CDBar(50774, self:Normal() and 14.6 or 12.2) -- can take up to 20s
 end

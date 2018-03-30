@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Inquisitor Tormentorum", 1045, 1695)
+local mod, CL = BigWigs:NewBoss("Inquisitor Tormentorum", 1493, 1695)
 if not mod then return end
 mod:RegisterEnableMob(96015)
 mod.engageId = 1850
@@ -35,9 +35,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Teleport", 200898)
 	self:Log("SPELL_AURA_APPLIED", "VoidShieldApplied", 202455)
 	self:Log("SPELL_AURA_REMOVED", "VoidShieldRemoved", 202455)
-	self:Log("SPELL_AURA_APPLIED", "InquisitiveStare", 212564)
+	self:Log("SPELL_AURA_APPLIED", "InquisitiveStare", 212564) -- using AURA events instead of SPELL_CAST_START because a player won't get targetted if they had an immunity
 	self:Log("SPELL_AURA_REFRESH", "InquisitiveStare", 212564)
-	self:Log("SPELL_CAST_SUCCESS", "SapSoul", 206303)
+	self:Log("SPELL_CAST_SUCCESS", "SapSoul", 206303) -- Mythic, Mythic+
+	self:Log("SPELL_CAST_SUCCESS", "SapSoulInterruptible", 200905) -- Normal, Heroic
 	self:Log("SPELL_AURA_APPLIED", "SappedSoul", 200904)
 	self:Log("SPELL_AURA_REFRESH", "SappedSoul", 200904)
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
@@ -51,6 +52,7 @@ end
 
 function mod:OnEngage()
 	nextTeleportSoonWarning = 75 -- Teleport at 70%
+	self:CDBar(200904, 11.6, self:SpellName(206303)) -- Sap Soul
 end
 
 --------------------------------------------------------------------------------
@@ -72,10 +74,13 @@ end
 do
 	local prev = 0
 	function mod:InquisitiveStare(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 0.5 then
-			prev = t
-			self:Message(args.spellId, "Urgent", "Alarm")
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 0.5 then
+				prev = t
+				self:Message(args.spellId, "Urgent", "Alarm")
+			end
+			self:CastBar(args.spellId, 3)
 		end
 	end
 end
@@ -85,14 +90,21 @@ function mod:SapSoul(args)
 	self:CDBar(200904, 15.8, args.spellName)
 end
 
+function mod:SapSoulInterruptible(args)
+	self:Message(200904, "Attention", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
+	self:CDBar(200904, 20, args.spellName)
+end
+
 do
 	local prev = 0
 	function mod:SappedSoul(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 0.5 then
-			prev = t
-			self:TargetMessage(args.spellId, args.destName, "Important", "Long")
-			self:Flash(args.spellId)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 0.5 then
+				prev = t
+				self:TargetMessage(args.spellId, args.destName, "Important", "Long")
+				self:Flash(args.spellId)
+			end
 		end
 	end
 end
@@ -119,10 +131,12 @@ end
 do
 	local prev = 0
 	function mod:ShadowCrashDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

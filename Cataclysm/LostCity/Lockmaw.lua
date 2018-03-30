@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Lockmaw", 747, 118)
+local mod, CL = BigWigs:NewBoss("Lockmaw", 755, 118)
 if not mod then return end
 mod:RegisterEnableMob(43614, 49045) -- Lockmaw, Augh
+--mod.engageId = 1054 -- ENCOUNTER_END fires after Lockmaw's death, Augh doesn't fire either
+--mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization

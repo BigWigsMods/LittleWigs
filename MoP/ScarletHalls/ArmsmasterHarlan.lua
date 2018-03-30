@@ -3,9 +3,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Armsmaster Harlan", 871, 654)
+local mod, CL = BigWigs:NewBoss("Armsmaster Harlan", 1001, 654)
 if not mod then return end
 mod:RegisterEnableMob(58632)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local helpCount = 1
 
@@ -15,8 +19,6 @@ local helpCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.engage_yell = "Ah-hah! Another chance to test my might."
-
 	L.cleave = "{-5377} ({15284})" -- Dragon's Reach (Cleave)
 	L.cleave_desc = -5377
 	L.cleave_icon = 111217
@@ -33,7 +35,11 @@ end
 --
 
 function mod:GetOptions()
-	return {"cleave", {"blades", "FLASH"}, "help"}
+	return {
+		"cleave",
+		{"blades", "FLASH"},
+		"help",
+	}
 end
 
 function mod:OnBossEnable()

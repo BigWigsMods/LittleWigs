@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Halls of Valor Trash", 1041)
+local mod, CL = BigWigs:NewBoss("Halls of Valor Trash", 1477)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
@@ -143,10 +143,12 @@ end
 do
 	local prev = 0
 	function mod:GroundEffectDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(199805, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(199805, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

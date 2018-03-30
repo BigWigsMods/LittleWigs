@@ -1,27 +1,32 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Meathook", 521)
+local mod, CL = BigWigs:NewBoss("Meathook", 595, 611)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Caverns of Time"
 mod:RegisterEnableMob(26529)
-mod.toggleOptions = {
-	52696, -- Chains
-}
+mod.engageId = 2002
+--mod.respawnTime = 0 -- resets instead of respawning
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
+
+function mod:GetOptions()
+	return {
+		52696, -- Constricting Chains
+	}
+end
 
 function mod:OnEnable()
-	self:Log("SPELL_AURA_APPLIED", "Chains", 52696, 58823)
-	self:Death("Win", 26529)
+	self:Log("SPELL_AURA_APPLIED", "ConstrictingChains", 52696, 58823) -- normal, heroic
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 --
-function mod:Chains(player, spellId, _, _, spellName)
-	self:Message(52696, spellName..": "..player, "Important", spellId)
-	self:Bar(52696, player..": "..spellName, 5, spellId)
+
+function mod:ConstrictingChains(args)
+	self:TargetMessage(52696, args.destName, "Important")
+	self:TargetBar(52696, 5, args.destName)
 end

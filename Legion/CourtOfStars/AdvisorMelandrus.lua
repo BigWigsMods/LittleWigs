@@ -1,15 +1,24 @@
 --------------------------------------------------------------------------------
--- To Do 
+-- To Do
 -- Enveloping Winds timers are not 100% accurate
 
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Advisor Melandrus", 1087, 1720)
+local mod, CL = BigWigs:NewBoss("Advisor Melandrus", 1571, 1720)
 if not mod then return end
 mod:RegisterEnableMob(104218)
 mod.engageId = 1870
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -23,6 +32,7 @@ local bladeSurgeCount = 0
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		209602, -- Blade Surge
 		224333, -- Enveloping Winds
 		209628, -- Piercing Gale
@@ -31,6 +41,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "BladeSurge", 209602)
 	self:Log("SPELL_CAST_START", "PiercingGale", 209628)
@@ -38,10 +49,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	bladeSurgeCount = 0
+	bladeSurgeCount = 1
 	self:CDBar(209628, 11) -- Piercing Gale
-	self:CDBar(224333, 8.4) -- Enveloping Winds 
-	self:CDBar(209602, 5.2) -- Blade Surge
+	self:CDBar(224333, 8.4) -- Enveloping Winds
+	self:CDBar(209602, 5.2, CL.count:format(self:SpellName(209602), bladeSurgeCount)) -- Blade Surge
 	self:CDBar(209676, 23) -- Slicing Maelstrom
 end
 
@@ -49,10 +60,17 @@ end
 -- Event Handlers
 --
 
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 11, CL.active, "inv_helm_mask_fittedalpha_b_01_nightborne_01")
+	end
+end
+
 function mod:BladeSurge(args)
-	bladeSurgeCount = bladeSurgeCount + 1
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, bladeSurgeCount))
-	self:CDBar(args.spellId, 12)
+	bladeSurgeCount = bladeSurgeCount + 1
+	self:CDBar(args.spellId, 12, CL.count:format(args.spellName, bladeSurgeCount))
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)

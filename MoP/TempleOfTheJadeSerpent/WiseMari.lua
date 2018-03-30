@@ -3,9 +3,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Wise Mari", 867, 672)
+local mod, CL = BigWigs:NewBoss("Wise Mari", 960, 672)
 if not mod then return end
 mod:RegisterEnableMob(56448)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local deaths = 0
 

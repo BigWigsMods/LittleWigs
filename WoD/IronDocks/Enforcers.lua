@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Grimrail Enforcers", 987, 1236)
+local mod, CL = BigWigs:NewBoss("Grimrail Enforcers", 1195, 1236)
 if not mod then return end
 mod:RegisterEnableMob(80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
 

@@ -8,7 +8,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Zuraal", 1178, 1979)
+local mod, CL = BigWigs:NewBoss("Zuraal", 1753, 1979)
 if not mod then return end
 mod:RegisterEnableMob(122313) -- Zuraal the Ascended
 mod.engageId = 2065
@@ -46,7 +46,7 @@ function mod:OnEngage()
 end
 
 function mod:OnWin()
-	local trashMod = BigWigs:GetBossModule("Seat of the Triumvirate Trash")
+	local trashMod = BigWigs:GetBossModule("Seat of the Triumvirate Trash", true)
 	if trashMod then
 		trashMod:Enable() -- Making sure to pickup the Alleria yell to start the RP bar
 	end

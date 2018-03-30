@@ -3,11 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gal'darah", 530, 596)
+local mod, CL = BigWigs:NewBoss("Gal'darah", 604, 596)
 if not mod then return end
 mod:RegisterEnableMob(29306)
-
-local formPhase = 1
+mod.engageId = 1981
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -18,8 +18,8 @@ if L then
 	L.forms = "Forms"
 	L.forms_desc = "Warn before Gal'darah changes forms."
 
-	L.form_rhino = "Rhino Form Soon"
-	L.form_troll = "Troll Form Soon"
+	L.form_rhino = "Rhino Form"
+	L.form_troll = "Troll Form"
 end
 
 --------------------------------------------------------------------------------
@@ -30,37 +30,33 @@ function mod:GetOptions()
 	return {
 		"forms",
 		59827, -- Impaling Charge
+		59825, -- Whirling Slash
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "ImpalingCharge", 59827, 54956) -- Heroic, Normal
-
-	self:Death("Win", 29306)
+	self:Log("SPELL_AURA_APPLIED", "WhirlingSlash", 59825, 55249) -- Heroic, Normal
+	self:Log("SPELL_AURA_APPLIED_DOSE", "WhirlingSlash", 59825, 55249) -- Heroic, Normal
 end
 
 function mod:OnEngage()
-	formPhase = 1
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:CDBar("forms", 32.5, L.form_rhino, "ability_hunter_pet_rhino")
+	self:DelayedMessage("forms", 27.5, "Attention", CL.soon:format(L.form_rhino))
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:MobId(UnitGUID(unit)) == 29306 then
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 81 and formPhase == 1 then
-			formPhase = formPhase + 1
-			self:Message("forms", "Positive", nil, L.form_rhino, false)
-		elseif hp < 56 and formPhase == 2 then
-			formPhase = formPhase + 1
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
-			self:Message("forms", "Positive", nil, L.form_troll, false)
-		end
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 55297 then -- Rhino Form
+		self:CDBar("forms", 34.1, L.form_troll, "achievement_character_troll_male")
+		self:DelayedMessage("forms", 29, "Attention", CL.soon:format(L.form_troll))
+	elseif spellId == 55299 then -- Troll Form
+		self:CDBar("forms", 33.6, L.form_rhino, "ability_hunter_pet_rhino")
+		self:DelayedMessage("forms", 28.5, "Attention", CL.soon:format(L.form_rhino))
 	end
 end
 
@@ -68,3 +64,15 @@ function mod:ImpalingCharge(args)
 	self:TargetMessage(59827, args.destName, "Attention", "Info", nil, nil, true)
 end
 
+do
+	local prev = 0
+	function mod:WhirlingSlash(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(59825, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
+		end
+	end
+end

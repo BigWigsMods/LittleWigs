@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Naltira", 1079, 1500)
+local mod, CL = BigWigs:NewBoss("Naltira", 1516, 1500)
 if not mod then return end
 mod:RegisterEnableMob(98207, 98759) -- Naltira, Vicious Manafang
 mod.engageId = 1826
@@ -136,11 +136,13 @@ end
 do
 	local prev = 0
 	function mod:NetherVenomDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 2 then
-			prev = t
-			self:Flash(args.spellId)
-			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Flash(args.spellId)
+				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

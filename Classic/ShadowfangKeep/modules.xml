@@ -2,10 +2,12 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Ashbury.lua"/>
-<Script file="Godfrey.lua"/>
 <Script file="Silverlaine.lua"/>
 <Script file="Springvale.lua"/>
 <Script file="Walden.lua"/>
+<Script file="Godfrey.lua"/>
+
+<Include file="Options\options.xml"/>
 
 </Ui>
 

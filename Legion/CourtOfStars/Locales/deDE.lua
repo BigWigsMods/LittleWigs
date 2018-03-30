@@ -5,6 +5,7 @@ if L then
 	L.Construct = "Wächterkonstrukt"
 	L.Enforcer = "Dämonenversklavte Vollstreckerin"
 	L.Hound = "Legionshund"
+	L.Mistress = "Schattenmeisterin"
 	L.Gerenth = "Verdächtiger Adliger"
 	L.Jazshariu = "Jazshariu"
 	L.Imacutya = "Imacutya"
@@ -143,4 +144,9 @@ if L then
 	-- Buch
 	L["Gerüchten zufolge liest der Spion gerne und trägt immer mindestens ein Buch bei sich."] = 14
 	L["Ich hörte, dass der Spion immer ein Buch mit niedergeschriebenen Geheimnissen am Gürtel trägt."] = 14
+end
+
+L = BigWigs:NewBossLocale("Advisor Melandrus", "deDE")
+if L then
+	L.warmup_trigger = "Eine weitere Fehlleistung, Melandrus. Aber Ihr könnt es wiedergutmachen. Vernichtet die Eindringlinge. Ich muss zurück zur Nachtfestung."
 end

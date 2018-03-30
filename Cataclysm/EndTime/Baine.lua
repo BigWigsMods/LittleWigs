@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Echo of Baine", 820, 340)
+local mod, CL = BigWigs:NewBoss("Echo of Baine", 938, 340)
 if not mod then return end
 mod:RegisterEnableMob(54431)
+mod.engageId = 1881
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -32,7 +34,6 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Blitz")
 	self:Log("SPELL_SUMMON", "TotemDown", 101614)
 	self:Log("SPELL_AURA_REMOVED", "TotemUp", 101614)
-	self:Death("Win", 54431)
 end
 
 function mod:OnEngage()

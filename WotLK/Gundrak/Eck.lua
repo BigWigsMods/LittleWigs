@@ -3,9 +3,10 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Eck the Ferocious", 530, 595)
+local mod, CL = BigWigs:NewBoss("Eck the Ferocious", 604, 595)
 if not mod then return end
 mod:RegisterEnableMob(29932)
+mod.engageId = 1988
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -19,8 +20,6 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EckResidue", 55817)
-
-	self:Death("Win", 29932)
 end
 
 --------------------------------------------------------------------------------
@@ -32,4 +31,3 @@ function mod:EckResidue(args)
 		self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
 	end
 end
-

@@ -1,37 +1,39 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Broggok", 725, 556)
+local mod, CL = BigWigs:NewBoss("Broggok", 542, 556)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Hellfire Citadel"
 mod:RegisterEnableMob(17380)
-mod.toggleOptions = {
-	30916,
-}
-
--------------------------------------------------------------------------------
---  Localization
-
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
+-- mod.engageId = 1924 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialize
 
+function mod:GetOptions()
+	return {
+		30916, -- Poison Cloud
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_DAMAGE", "Cloud", 30916)
-	self:Log("SPELL_MISSED", "Cloud", 30916)
+	self:Log("SPELL_DAMAGE", "PoisonCloud", 30916)
+	self:Log("SPELL_MISSED", "PoisonCloud", 30916)
 	self:Death("Win", 17380)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-local last = 0
-function mod:Cloud(_, spellId, _, _, spellName)
-	local time = GetTime()
-	if (time - last) > 5 then
-		last = time
-		self:LocalMessage(30916, BCL["you"]:format(spellName), "Personal", spellId, "Alert")
+do
+	local prev = 0
+	function mod:PoisonCloud(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
+		end
 	end
 end

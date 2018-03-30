@@ -9,6 +9,10 @@ L = BigWigs:NewBossLocale("Domatrax", "koKR")
 if L then
 	L.custom_on_autotalk = "자동 대화"
 	L.custom_on_autotalk_desc = "도마트락스 전투를 시작하는 아그라마르의 아이기스 대화 선택지를 즉시 선택합니다."
+
+	--L.missing_aegis = "You're not standing in Aegis" -- Aegis is a short name for Aegis of Aggramar
+	--L.aegis_healing = "Aegis: Reduced Healing Done"
+	--L.aegis_damage = "Aegis: Reduced Damage Done"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "koKR")
@@ -21,6 +25,9 @@ if L then
 	L.botanist = "지옥살이 식물학자"
 	L.orbcaster = "지옥길잡이 보주술사"
 	L.waglur = "와글루르"
+	L.scavenger = "고룡혓바닥 청소부"
 	L.gazerax = "가제락스"
 	L.vilebark = "썩은나무껍질 방랑자"
+
+	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end

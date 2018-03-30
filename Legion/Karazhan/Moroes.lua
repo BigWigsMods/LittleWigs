@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Moroes", 1115, 1837)
+local mod, CL = BigWigs:NewBoss("Moroes", 1651, 1837)
 if not mod then return end
 mod:RegisterEnableMob(
 	114312, -- Moroes
@@ -38,7 +38,7 @@ function mod:GetOptions()
 		227545, -- Mana Drain
 
 		--[[ Lady Catriona Von'Indi ]]--
-		-- Healing Stream? wasn't in any of my logs
+		227578, -- Healing Stream
 
 		--[[ Baron Rafe Dreuger ]]--
 		227646, -- Iron Whirlwind
@@ -54,7 +54,7 @@ function mod:GetOptions()
 	},{
 		[227736] = -14360, -- Moroes
 		[227545] = -14366, -- Baroness Dorothea Millstripe
-		--[] = -14369, -- Lady Catriona Von'Indi
+		[227578] = -14369, -- Lady Catriona Von'Indi
 		[227646] = -14372, -- Baron Rafe Dreuger
 		[227616] = -14374, -- Lady Keira Berrybuck
 		[227463] = -14376, -- Lord Robin Daris
@@ -68,13 +68,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Vanish", 227736)
 	self:Log("SPELL_AURA_APPLIED", "Garrote", 227742)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Garrote", 227742)
-	self:Log("SPELL_AURA_APPLIED", "CoatCheck", 227851)
+	self:Log("SPELL_AURA_APPLIED", "CoatCheck", 227851) -- the debuff Moroes applies at the start of his cast
+	self:Log("SPELL_AURA_APPLIED", "CoatCheckDispellable", 227832) -- the debuff that replaces the previous one 1.5s after, can be dispelled
 	self:Log("SPELL_CAST_START", "GhastlyPurge", 227872)
 
 	--[[ Baroness Dorothea Millstripe ]]--
-	self:Log("SPELL_AURA_APPLIED", "ManaDrain", 227545)
+	self:Log("SPELL_CAST_START", "ManaDrain", 227545)
 
 	--[[ Lady Catriona Von'Indi ]]--
+	self:Log("SPELL_CAST_START", "HealingStream", 227578)
 
 	--[[ Baron Rafe Dreuger ]]--
 	self:Log("SPELL_CAST_START", "IronWhirlwind", 227646)
@@ -120,6 +122,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 			if mobId == 114316 then -- Baroness Dorothea Millstripe
 				self:CDBar(227545, 9) -- Mana Drain applied
 			--elseif mobId == 114317 then -- Lady Catriona Von'Indi
+				-- She casts Healing Stream whenever Moroes drops below 50%
 			elseif mobId == 114318 then -- Baron Rafe Dreuger
 				self:CDBar(227646, 4.5) -- Iron Whirlwind
 			elseif mobId == 114319 then -- Lady Keira Berrybuck
@@ -144,8 +147,16 @@ function mod:Garrote(args)
 end
 
 function mod:CoatCheck(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	if self:Tank() then
+		self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	end
 	self:Bar(args.spellId, 34)
+end
+
+function mod:CoatCheckDispellable(args)
+	if not self:Tank() then
+		self:TargetMessage(227851, args.destName, "Urgent", "Alarm", nil, nil, true)
+	end
 end
 
 function mod:GhastlyPurge(args)
@@ -153,8 +164,12 @@ function mod:GhastlyPurge(args)
 end
 
 function mod:ManaDrain(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning", nil, nil, self:Dispeller("magic"))
+	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
+end
+
+function mod:HealingStream(args)
+	self:Message(args.spellId, "Important", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:IronWhirlwind(args)
@@ -165,10 +180,12 @@ end
 do
 	local prev = 0
 	function mod:IronWhirlwindDamage(args)
-		local t = GetTime()
-		if t-prev > 2 and self:Me(args.destGUID) then
-			prev = t
-			self:Message(227646, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(227646, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

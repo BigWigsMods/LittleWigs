@@ -1,72 +1,68 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Marwyn", 603)
+local mod, CL = BigWigs:NewBoss("Marwyn", 668, 602)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(38113)
-mod.toggleOptions = {
-	72363, -- Corrupted Flesh
-	{72368, "ICON"},-- Shared Suffering
-	{72383, "ICON"}, -- Corrupted Touch
-}
-
--------------------------------------------------------------------------------
---  Locals
-
-local flesh = mod:NewTargetList()
+-- Sometimes he resets and then respawns few seconds after instead of
+-- respawning immediately, when that happens he doesn't fire ENCOUNTER_END
+-- mod.engageId = 1993
+-- mod.respawnTime = 30 -- you have to actually walk towards the altar, nothing will respawn on its own
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Flesh", 72363) --10s no dispell
+function mod:GetOptions()
+	return {
+		"warmup",
+		72363, -- Corrupted Flesh
+		{72368, "ICON"}, -- Shared Suffering
+		72383, -- Corrupted Touch
+	}
+end
 
-	self:Log("SPELL_AURA_REMOVED", "Debuff", 72368, 72383)
-	self:Log("SPELL_AURA_REMOVED", "Removed", 72368, 72383)
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "CorruptedFlesh", 72363)
+	self:Log("SPELL_AURA_APPLIED", "SharedSuffering", 72368)
+	self:Log("SPELL_AURA_REMOVED", "SharedSufferingRemoved", 72368)
+	self:Log("SPELL_AURA_APPLIED", "CorruptedTouch", 72383)
+	self:Log("SPELL_AURA_REMOVED", "CorruptedTouchRemoved", 72383)
+
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 38113)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Debuff(player, spellId, _, _, spellName)
-	local time = 10
-	if spellId == 72368 then -- Marwyn Shared Suffering
-		time=12
-		self:SecondaryIcon(72368, player)
-	elseif spellId == 72363 then -- Marwyn Corrupted Flesh
-		self:PrimaryIcon(72363, player)
-	end
-	self:TargetMessage(spellId, player, spellName, "Urgent", spellId)
-	self:Bar(spellId, player..": "..spellName, time, spellId)
+function mod:Warmup()
+	-- There's a 60s break before the 6th wave spawns,
+	-- this function is supposed to be called from Falric's OnWin().
+	self:Bar("warmup", 59, CL.adds, "achievement_dungeon_icecrown_hallsofreflection")
 end
 
-do
-	local handle = nil
-	local id, name = nil, nil
-	local warned = nil
-	local function fleshWarn()
-		if not warned then
-			mod:Message(72363, name, "Urgent", id)
-			warned = true
-		else
-			warned = nil
-			wipe(flesh)
-		end
-		handle = nil
-	end
-	function mod:Flesh(player, spellId, _, _, spellName)
-		flesh[#flesh + 1] = player
-		if handle then self:CancelTimer(handle) end
-		id, name = spellId, spellName
-		handle = self:ScheduleTimer(fleshWarn, 0.1) -- has been 0.2 before
+function mod:CorruptedFlesh(args)
+	self:Message(args.spellId, "Important")
+end
+
+function mod:SharedSuffering(args)
+	self:PrimaryIcon(args.spellId, args.destName)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 12, args.destName)
+end
+
+function mod:SharedSufferingRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+	self:PrimaryIcon(args.spellId)
+end
+
+function mod:CorruptedTouch(args)
+	if self:Me(args.destGUID) or self:Dispeller("curse") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end
 
-function mod:Removed(player, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, player..": "..spellName)
-	self:PrimaryIcon(spellId, false)
-	self:SecondaryIcon(spellId, false)
+function mod:CorruptedTouchRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end

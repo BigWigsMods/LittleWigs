@@ -8,7 +8,12 @@ if L then
 
 	L.warmup_text = "Кордана Оскверненная Песнь активна"
 	L.warmup_trigger = "Я уже получила то, за чем пришла. Но осталась, чтобы покончить с вами… раз и навсегда!"
-	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
+	L.warmup_trigger_2 = "И вы угодили в мою ловушку. Посмотрим, на что вы способны в темноте."
+end
+
+L = BigWigs:NewBossLocale("Glazer", "ruRU")
+if L then
+	--L.radiation_level = "%s: %d%%"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "ruRU")

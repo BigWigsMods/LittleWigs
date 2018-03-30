@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Neltharions Lair Trash", 1065)
+local mod, CL = BigWigs:NewBoss("Neltharions Lair Trash", 1458)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(

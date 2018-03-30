@@ -5,6 +5,9 @@
 <Script file="Dalliah.lua"/>
 <Script file="Soccothrates.lua"/>
 <Script file="Skyriss.lua"/>
+<Script file="Trash.lua"/>
+
+<Include file="Options\options.xml"/>
 
 </Ui>
 

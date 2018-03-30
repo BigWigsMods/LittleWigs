@@ -1,42 +1,47 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Devourer of Souls", 601)
+local mod, CL = BigWigs:NewBoss("Devourer of Souls", 632, 616)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "The Frozen Halls"
 mod:RegisterEnableMob(36502)
-mod.toggleOptions = {
-	69051, -- Mirrored Soul
-	68912, -- Wailing Soul
-}
+mod.engageId = 2007
+mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
 --  Initialization
 
+function mod:GetOptions()
+	return {
+		{69051, "ICON"}, -- Mirrored Soul
+		68912, -- Wailing Souls
+	}
+end
+
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Mirror", 69051)
-	self:Log("SPELL_AURA_REMOVED", "MirrorRemoved", 69051)
-	self:Log("SPELL_AURA_APPLIED", "Wailing", 68912)
-	self:Death("Win", 36502)
+	self:Log("SPELL_AURA_APPLIED", "MirroredSoul", 69051)
+	self:Log("SPELL_AURA_REMOVED", "MirroredSoulRemoved", 69051)
+	self:Log("SPELL_AURA_APPLIED", "WailingSouls", 68912)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Mirror(unit, spellId, _, _, spellName)
-	if unit == mod.displayName then return end
-	self:TargetMessage(69051, spellName, unit, "Personal", spellId, "Alert")
-	self:Bar(69051, unit..": "..spellName, 8, spellId)
-	self:PrimaryIcon(69051, unit)
+function mod:MirroredSoul(args)
+	if self:MobId(args.destGUID) ~= 36502 then -- both the boss and its target get this debuff
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alert")
+		self:TargetBar(args.spellId, 8, args.destName)
+		self:PrimaryIcon(args.spellId, args.destName)
+	end
 end
 
-function mod:MirrorRemoved(unit, spellId, _, _, spellName)
-	if unit == mod.displayName then return end
-	self:PrimaryIcon(69051, false)
+function mod:MirroredSoulRemoved(args)
+	if self:MobId(args.destGUID) ~= 36502 then
+		self:PrimaryIcon(args.spellId)
+		self:StopBar(args.spellName, args.destName)
+	end
 end
 
-function mod:Wailing(player, spellId, _, _, spellName)
-	self:Message(68912, spellName, "Important", spellId)
-	self:Bar(68912, spellName, 15, spellId)
+function mod:WailingSouls(args)
+	self:Message(args.spellId, "Important")
+	self:Bar(args.spellId, 15)
 end

@@ -3,9 +3,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Taran Zhu", 877, 686)
+local mod, CL = BigWigs:NewBoss("Taran Zhu", 959, 686)
 if not mod then return end
 mod:RegisterEnableMob(56884)
+mod.engageId = 1306
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -21,7 +23,11 @@ end
 --
 
 function mod:GetOptions()
-	return {115002, {107087, "FLASH"}, 107356}
+	return {
+		115002, -- Summon Gripping Hatred
+		{107087, "FLASH"}, -- Haze of Hate
+		107356, -- Rising Hate
+	}
 end
 
 function mod:VerifyEnable(unit)
@@ -36,21 +42,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "HazeOfHate", 107087)
 	self:Log("SPELL_AURA_APPLIED", "RisingHateStart", 107356)
 	self:Log("SPELL_AURA_REMOVED", "RisingHateStop", 107356)
-
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Kneel", "boss1")
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:Kneel(_, _, _, _, spellId)
-	if spellId == 125920 then -- Kneel
-		self:Win()
-	end
-end
 
 do
 	local prev = 0
@@ -65,18 +61,17 @@ end
 
 function mod:HazeOfHate(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Long", CL["you"]:format(args.spellName))
+		self:Message(args.spellId, "Personal", "Long", CL.you:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:RisingHateStart(args)
-	self:Message(args.spellId, "Important", "Warning", CL["casting"]:format(args.spellName))
-	self:Bar(args.spellId, 5, CL["cast"]:format(args.spellName))
+	self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
+	self:CastBar(args.spellId, 5)
 	self:CDBar(args.spellId, 16.5) -- 16-19
 end
 
 function mod:RisingHateStop(args)
-	self:StopBar(CL["cast"]:format(args.spellName))
+	self:StopBar(CL.cast:format(args.spellName))
 end
-

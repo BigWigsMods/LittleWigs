@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("The Curator", 1115, 1836)
+local mod, CL = BigWigs:NewBoss("The Curator", 1651, 1836)
 if not mod then return end
 mod:RegisterEnableMob(114247)
 mod.engageId = 1964
@@ -60,10 +60,12 @@ end
 do
 	local prev = 0
 	function mod:PowerDischargeDamage(args)
-		local t = GetTime()
-		if t-prev > 2 and self:Me(args.destGUID) then
-			prev = t
-			self:Message(227279, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(227279, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

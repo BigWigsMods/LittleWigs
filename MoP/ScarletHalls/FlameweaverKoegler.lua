@@ -3,25 +3,20 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Flameweaver Koegler", 871, 656)
+local mod, CL = BigWigs:NewBoss("Flameweaver Koegler", 1001, 656)
 if not mod then return end
 mod:RegisterEnableMob(59150)
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "You, too, shall be charred to ash!"
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {113682, 113641, 113364}
+	return {
+		113682, -- Quickened Mind
+		113641, -- Greater Dragon's Breath
+		113364, -- Book Burner
+	}
 end
 
 function mod:OnBossEnable()

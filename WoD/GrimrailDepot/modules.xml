@@ -5,5 +5,7 @@
 <Script file="NitroggThundertower.lua"/>
 <Script file="SkylordTovra.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 

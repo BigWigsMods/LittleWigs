@@ -11,6 +11,11 @@ if L then
 	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
 end
 
+L = BigWigs:NewBossLocale("Glazer", "ptBR")
+if L then
+	--L.radiation_level = "%s: %d%%"
+end
+
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "ptBR")
 if L then
 	--L.infester = "Felsworn Infester"

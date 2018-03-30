@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Vault of the Wardens Trash", 1045)
+local mod, CL = BigWigs:NewBoss("Vault of the Wardens Trash", 1493)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
@@ -45,6 +45,7 @@ function mod:GetOptions()
 
 		--[[ Fel-Infused Fury ]]--
 		{196799, "FLASH"}, -- Unleash Fury
+		196796, -- Fel Gaze
 
 		--[[ Foul Mother ]]--
 		210202, -- Foul Stench
@@ -52,6 +53,7 @@ function mod:GetOptions()
 
 		--[[ Blade Dancer Illianna ]]--
 		191527, -- Deafening Shout
+		193164, -- Gift of the Doomsayer
 
 		--[[ Dreadlord Mendacius ]]--
 		{196249, "FLASH"}, -- Meteor
@@ -82,6 +84,7 @@ function mod:OnBossEnable()
 
 	--[[ Fel-Infused Fury ]]--
 	self:Log("SPELL_CAST_START", "UnleashFury", 196799)
+	self:Log("SPELL_CAST_START", "FelGaze", 196796)
 
 	--[[ Foul Mother ]]--
 	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 210202, 194071) -- Foul Stench, A Mother's Love
@@ -90,6 +93,7 @@ function mod:OnBossEnable()
 
 	--[[ Blade Dancer Illianna ]]--
 	self:Log("SPELL_CAST_START", "DeafeningShout", 191527)
+	self:Log("SPELL_AURA_APPLIED", "GiftOfTheDoomsayer", 193164)
 
 	--[[ Dreadlord Mendacius ]]--
 	self:Log("SPELL_CAST_START", "Meteor", 196249)
@@ -130,14 +134,27 @@ function mod:UnleashFury(args)
 	end
 end
 
+do
+	local prev = 0
+	function mod:FelGaze(args)
+		local t = GetTime()
+		if t-prev > 0.5 then
+			prev = t
+			self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+		end
+	end
+end
+
 --[[ Foul Mother ]]--
 do
 	local prev = 0
 	function mod:GroundEffectDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end
@@ -145,6 +162,12 @@ end
 --[[ Blade Dancer Illianna ]]--
 function mod:DeafeningShout(args)
 	self:Message(args.spellId, "Important", self:Ranged() and "Alert", CL.casting:format(args.spellName))
+end
+
+function mod:GiftOfTheDoomsayer(args)
+	if self:Dispeller("magic") or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+	end
 end
 
 --[[ Dreadlord Mendacius ]]--
@@ -164,10 +187,13 @@ end
 do
 	local prev = 0
 	function mod:AnguishedSouls(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and (UnitDebuff("player",  self:SpellName(202615)) and t-prev > 6 or t-prev > 1.5) then -- don't be spammy if the player can't move (due to Torment)
-			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			-- Increased throttle if the player can't move due to having Torment
+			if t-prev > (UnitDebuff("player",  self:SpellName(202615)) and 6 or 1.5) then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

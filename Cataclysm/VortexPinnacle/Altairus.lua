@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Altairus", 769, 115)
+local mod, CL = BigWigs:NewBoss("Altairus", 657, 115)
 if not mod then return end
 mod:RegisterEnableMob(43873)
+mod.engageId = 1041
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,19 +22,36 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Wind", 88282, 88286) -- Upwind of Altairus, Downwind of Altairus
+	self:Log("SPELL_AURA_APPLIED", "Upwind", 88282) -- Upwind of Altairus
+	self:Log("SPELL_AURA_APPLIED", "Downwind", 88286) -- Downwind of Altairus
+	self:Log("SPELL_AURA_REMOVED", "DownwindRemoved", 88286) -- Downwind of Altairus
 	self:Log("SPELL_CAST_START", "ChillingBreath", 88308)
-
-	self:Death("Win", 43873)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Wind(args)
-	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
+do
+	local haveDownwind = false -- for some reason players get spammed by SPELL_AURA_APPLIED events from Upwind when they have Downwind
+
+	function mod:Upwind(args)
+		if self:Me(args.destGUID) and not haveDownwind then
+			self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
+		end
+	end
+
+	function mod:Downwind(args)
+		if self:Me(args.destGUID) then
+			self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
+			haveDownwind = true
+		end
+	end
+
+	function mod:DownwindRemoved(args)
+		if self:Me(args.destGUID) then
+			haveDownwind = false
+		end
 	end
 end
 

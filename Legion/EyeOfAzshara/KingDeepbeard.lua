@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("King Deepbeard", 1046, 1491)
+local mod, CL = BigWigs:NewBoss("King Deepbeard", 1456, 1491)
 if not mod then return end
 mod:RegisterEnableMob(91797)
 mod.engageId = 1812
@@ -28,8 +28,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "GaseousBubblesRemoved", 193018)
 	self:Log("SPELL_CAST_START", "GroundSlam", 193093)
 	self:Log("SPELL_CAST_START", "Quake", 193152)
- 	self:Log("SPELL_PERIODIC_DAMAGE", "Aftershock", 193171)
- 	self:Log("SPELL_PERIODIC_MISSED", "Aftershock", 193171)
+ 	self:Log("SPELL_DAMAGE", "Aftershock", 193171)
+ 	self:Log("SPELL_MISSED", "Aftershock", 193171)
 end
 
 function mod:OnEngage()
@@ -81,10 +81,13 @@ end
 do
 	local prev = 0
 	function mod:Aftershock(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and (UnitDebuff("player", self:SpellName(193018)) and t-prev > 6 or t-prev > 1.5) then -- players with Gaseous Bubbles may (and should) be taking damage intentionally
-			prev = t
-			self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			-- players with Gaseous Bubbles may (and should) be taking damage intentionally
+			if t-prev > (UnitDebuff("player", self:SpellName(193018)) and 6 or 1.5) then
+				prev = t
+				self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

@@ -8,7 +8,11 @@ end
 L = BigWigs:NewBossLocale("Domatrax", "zhTW")
 if L then
 	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramars gossip option to start the Domatrax encounter."
+	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter."
+
+	--L.missing_aegis = "You're not standing in Aegis" -- Aegis is a short name for Aegis of Aggramar
+	--L.aegis_healing = "Aegis: Reduced Healing Done"
+	--L.aegis_damage = "Aegis: Reduced Damage Done"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "zhTW")
@@ -21,6 +25,9 @@ if L then
 	L.botanist = "魔裔植物學家"
 	L.orbcaster = "獄炎補魂者"
 	--L.waglur = "Wa'glur"
+	--L.scavenger = "Wyrmtongue Scavenger"
 	L.gazerax = "賈澤拉克斯"
 	--L.vilebark = "Vilebark Walker"
+
+	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end

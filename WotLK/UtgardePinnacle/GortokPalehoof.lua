@@ -3,7 +3,7 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gortok Palehoof", 524, 642)
+local mod, CL = BigWigs:NewBoss("Gortok Palehoof", 575, 642)
 if not mod then return end
 mod:RegisterEnableMob(26687)
 
@@ -19,8 +19,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "WitheringRoar", 48256, 59267)
-	self:Log("SPELL_AURA_APPLIED", "Impale", 48261, 59268)
+	self:Log("SPELL_CAST_SUCCESS", "WitheringRoar", 48256, 59267) -- normal, heroic
+	self:Log("SPELL_AURA_APPLIED", "Impale", 48261, 59268) -- normal, heroic
 
 	self:Death("Win", 26687)
 end

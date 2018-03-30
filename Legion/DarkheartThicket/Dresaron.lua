@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Dresaron", 1067, 1656)
+local mod, CL = BigWigs:NewBoss("Dresaron", 1466, 1656)
 if not mod then return end
 mod:RegisterEnableMob(99200)
 --mod.engageId = 1838 -- START fires prior to engaging the boss
@@ -54,10 +54,12 @@ end
 do
 	local prev = 0
 	function mod:FallingRocksDamage(args)
-		local t = GetTime()
-		if t-prev > 2 and self:Me(args.destGUID) then
-			prev = t
-			self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+			end
 		end
 	end
 end

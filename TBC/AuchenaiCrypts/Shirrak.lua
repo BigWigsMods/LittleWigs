@@ -1,27 +1,20 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("Shirrak the Dead Watcher", 722, 523)
+local mod, CL = BigWigs:NewBoss("Shirrak the Dead Watcher", 558, 523)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Auchindoun"
 mod:RegisterEnableMob(18371)
-mod.toggleOptions = {
-	"focus", -- Focus Fire
-}
-
--------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-	L["focus"] = "Focus Fire"
-	L["focus_desc"] = "Warn which player is being Focus Fired."
-	L["focus_message"] = "%s has Focus Fire"
-end
+-- mod.engageId = 1890 -- no boss frames
+-- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+
+function mod:GetOptions()
+	return {
+		-5041, -- Focus Fire
+	}
+end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
@@ -31,6 +24,8 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, _, _, player)
-	self:Message("focus", L["focus_message"]:format(player), "Attention", 32300)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source, _, _, target) -- Focus Fire
+	if source == self.displayName then -- this is the only BOSS_EMOTE that appears during this encounter
+		self:TargetMessage(-5041, target, "Attention")
+	end
 end

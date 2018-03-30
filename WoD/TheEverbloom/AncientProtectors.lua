@@ -3,15 +3,16 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ancient Protectors", 1008, 1207)
+local mod, CL = BigWigs:NewBoss("Ancient Protectors", 1279, 1207)
 if not mod then return end
 mod:RegisterEnableMob(83894, 83892, 83893) -- Dulhu, Life Warden Gola, Earthshaper Telu
+mod.engageId = 1757
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local deathCount = 0
 local golaHasDied = false
 
 --------------------------------------------------------------------------------
@@ -45,8 +46,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-
 	self:Log("SPELL_CAST_START", "RevitalizingWaters", 168082)
 	self:Log("SPELL_AURA_APPLIED", "RapidTides", 168105)
 
@@ -57,12 +56,12 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_AURA_APPLIED", "ShapersFortitude", 168520)
 
-	self:Death("Deaths", 83894, 83892, 83893) -- Dulhu, Life Warden Gola, Earthshaper Telu
+	self:Death("GolasDeath", 83892) -- Life Warden Gola
 end
 
 function mod:OnEngage()
-	deathCount = 0
 	golaHasDied = false
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
 --------------------------------------------------------------------------------
@@ -70,14 +69,15 @@ end
 --
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	self:CheckBossStatus()
-	if self.db.profile.custom_on_automark then
+	if self:GetOption("custom_on_automark") then
 		for i = 1, 3 do
 			local unit = ("boss%d"):format(i)
 			local id = self:MobId(UnitGUID(unit))
 			if id == 83892 and not golaHasDied then
+				if not IsInGroup() then SetRaidTarget(unit, 0) end -- setting the same icon twice while not in a group removes it
 				SetRaidTarget(unit, 8)
 			elseif id == 83893 then
+				if not IsInGroup() then SetRaidTarget(unit, 0) end
 				SetRaidTarget(unit, golaHasDied and 8 or 7)
 			end
 		end
@@ -121,13 +121,7 @@ function mod:ShapersFortitude(args)
 	self:Bar(args.spellId, 8, CL.other:format(self:SpellName(111923), raidIcon..name)) -- 111923 = "Fortitude"
 end
 
-function mod:Deaths(args)
-	deathCount = deathCount + 1
-	if deathCount > 2 then
-		self:Win()
-	elseif args.mobId == 83892 then
-		golaHasDied = true
-		self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	end
+function mod:GolasDeath(args)
+	golaHasDied = true
+	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT() -- no IEEU events on deaths
 end
-

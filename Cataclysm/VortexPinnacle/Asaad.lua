@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Asaad", 769, 116)
+local mod, CL = BigWigs:NewBoss("Asaad", 657, 116)
 if not mod then return end
 mod:RegisterEnableMob(43875)
+mod.engageId = 1042
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,8 +25,6 @@ function mod:OnBossEnable()
 	-- the grounding field is a good time to warn:
 	self:Log("SPELL_AURA_APPLIED", "Storm", 86911)
 	self:Log("SPELL_CAST_START", "StaticCling", 87618)
-
-	self:Death("Win", 43875)
 end
 
 --------------------------------------------------------------------------------

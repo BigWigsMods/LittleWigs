@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Forgemaster Throngus", 757, 132)
+local mod, CL = BigWigs:NewBoss("Forgemaster Throngus", 670, 132)
 if not mod then return end
 mod:RegisterEnableMob(40177)
+mod.engageId = 1050
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -30,8 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CaveIn", 74987)
 	self:Log("SPELL_AURA_APPLIED", "Roar", 74976)
 	self:Log("SPELL_AURA_REMOVED_DOSE", "RoarRemoved", 74976)
-
-	self:Death("Win", 40177)
 end
 
 --------------------------------------------------------------------------------

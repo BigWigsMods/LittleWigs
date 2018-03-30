@@ -5,5 +5,8 @@
 <Script file="Vexallus.lua"/>
 <Script file="PriestessDelrissa.lua"/>
 <Script file="KaelthasSunstrider.lua"/>
+<Script file="Trash.lua"/>
+
+<Include file="Options\options.xml"/>
 
 </Ui>

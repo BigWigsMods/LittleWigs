@@ -1,58 +1,44 @@
-﻿-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod = BigWigs:NewBoss("The Black Knight", 542)
+local mod, CL = BigWigs:NewBoss("The Black Knight", 650, 637)
 if not mod then return end
-mod.partycontent = true
 mod:RegisterEnableMob(35451)
-mod.toggleOptions = {
-	{67751, "BAR"}, -- Explode Ghouls
-	67781, -- Desecration
-}
-
--------------------------------------------------------------------------------
---  Locals
-
-local deaths = 0
-local pName = UnitName("player")
-
--------------------------------------------------------------------------------
---  Localization
-
-local BCL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-local LCL = LibStub("AceLocale-3.0"):GetLocale("Little Wigs: Common")
+mod.engageId = 2021
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
 
-function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Explode", 67751) -- other possible ids: 67886, 51874, 47496, 67729
-	self:Log("SPELL_AURA_APPLIED", "Desecration", 67781, 67876)
-	self:Death("Deaths", 35451)
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+function mod:GetOptions()
+	return {
+		-7598, -- Ghoul Explode
+		67781, -- Desecration
+	}
 end
 
-function mod:OnEngage()
-	deaths = 0
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Explode", 67729)
+	self:Log("SPELL_AURA_APPLIED", "Desecration", 67781)
 end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:Explode(_, spellId, _, _, spellName)
-	self:Message(67751, LCL["casting"]:format(spellName), "Urgent", spellId)
-	self:Bar(67751, spellName, 4, spellId)
-end
-
-function mod:Deaths()
-	deaths = deaths + 1
-	if deaths == 3 then 
-		self:Win()
+do
+	local prev = 0
+	function mod:Explode(args)
+		local t = GetTime()
+		if t - prev > 1 then -- all remaining ghouls start casting Explode simultaneously when the boss transitions to stage 3
+			prev = t
+			self:Message(-7598, "Urgent", nil, CL.casting:format(self:SpellName(args.spellId)))
+			self:CastBar(-7598, self:Normal() and 5 or 4, args.spellId)
+		end
 	end
 end
 
-function mod:Desecration(player, spellId, _, _, spellName)
-	if player ~= pName then return end
-	self:LocalMessage(67781, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
-end	
+function mod:Desecration(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+	end
+end

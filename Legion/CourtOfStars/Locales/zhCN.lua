@@ -5,6 +5,7 @@ if L then
 	L.Construct = "构造体卫兵"
 	L.Enforcer = "邪缚执行者"
 	L.Hound = "军团猎犬"
+	--L.Mistress = "Shadow Mistress"
 	L.Gerenth = "邪恶的格伦斯"
 	L.Jazshariu = "加兹沙尤"
 	L.Imacutya = "依玛库塔"
@@ -143,4 +144,9 @@ if L then
 	-- Book
 	L["我听说那个密探的腰带上，总是挂着一本写满机密的书。"] = 14
 	L["据说那个密探喜欢读书，而且总是随身携带至少一本书。"] = 14
+end
+
+L = BigWigs:NewBossLocale("Advisor Melandrus", "zhCN")
+if L then
+	L.warmup_trigger = "显然你又失败了，麦兰杜斯。我给你一个机会。干掉这些外来者，我得回暗夜要塞了。"
 end

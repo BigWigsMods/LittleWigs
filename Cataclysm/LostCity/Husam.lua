@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("General Husam", 747, 117)
+local mod, CL = BigWigs:NewBoss("General Husam", 755, 117)
 if not mod then return end
 mod:RegisterEnableMob(44577)
+mod.engageId = 1052
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,12 +22,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "Shockwave", 83445)
 	self:Log("SPELL_CAST_START", "DetonateTraps", 91263)
 	self:Log("SPELL_CAST_SUCCESS", "BadIntentions", 83113)
-	self:Death("Win", 44577)
 end
 
 function mod:OnEngage()

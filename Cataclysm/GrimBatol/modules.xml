@@ -6,4 +6,6 @@
 <Script file="Drahga.lua"/>
 <Script file="Erudax.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

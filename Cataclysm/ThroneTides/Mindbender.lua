@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mindbender Ghur'sha", 767, 103)
+local mod, CL = BigWigs:NewBoss("Mindbender Ghur'sha", 643, 103)
 if not mod then return end
 mod:RegisterEnableMob(40788, 40825)
+mod.engageId = 1046
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,9 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AbsorbMagic", 76307)
 	self:Log("SPELL_AURA_APPLIED", "MindFog", 76230)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
-
-	self:Death("Win", 40788)
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	if self:MobId(UnitGUID(unit)) == 40825 then -- Erunak Stonespeaker
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 55 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 			self:Message("stages", "Positive", nil, CL.soon:format(CL.stage:format(2)), false)
 		end
 	end

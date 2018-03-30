@@ -3,9 +3,11 @@
 -- Module declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Echo of Sylvanas", 820, 323)
+local mod, CL = BigWigs:NewBoss("Echo of Sylvanas", 938, 323)
 if not mod then return end
 mod:RegisterEnableMob(54123)
+mod.engageId = 1882
+mod.respawnTime = 35
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -29,7 +31,6 @@ end
 
 function mod:OnBossEnable()
 
-	self:Death("Win", 54123)
 end
 
 function mod:OnEngage()

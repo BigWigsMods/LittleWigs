@@ -1,65 +1,86 @@
--------------------------------------------------------------------------------
---  Module Declaration
-
-local mod = BigWigs:NewBoss("Commander Springvale", 764)
-if not mod then return end
-mod.partyContent = true
-mod:RegisterEnableMob(4278)
-mod.toggleOptions = {
-	93687, -- Desecration
-	93844, -- Empowerment
-	93736, -- Shield of the Perfidious
-	93852, -- Word of Shame
-	"bosskill",
-}
 
 --------------------------------------------------------------------------------
--- Locals
+-- TODO List:
+-- - The boss is bugged as of 7.3.5 and doesn't cast Shield of the Perfidious. When/if it is fixed, make the module warn about it.
+
+-------------------------------------------------------------------------------
+--  Module Declaration
 --
 
-local empowerTime = 0
+local mod, CL = BigWigs:NewBoss("Commander Springvale", 33, 98)
+if not mod then return end
+mod:RegisterEnableMob(4278)
+mod.engageId = 1071
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
+--
 
-function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Desecration", 93687)
-	self:Log("SPELL_CAST_START", "Empowerment", 93844)
-	self:Log("SPELL_AURA_APPLIED", "Shield", 93736, 93737) -- XXX What's doing the damage on players?
-	self:Log("SPELL_AURA_APPLIED", "Word", 93852)
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 4278)
+function mod:GetOptions()
+	return {
+		93687, -- Desecration (has better description than the ID doing damage)
+		-- -2138, -- Shield of the Perfidious
+		93844, -- Unholy Empowerment
+		93852, -- Word of Shame
+	}, {
+		[93687] = "general",
+		[93844] = "heroic",
+	}
 end
 
-function mod:VerifyEnable()
-	if GetInstanceDifficulty() == 2 then return true end
+function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "DesecrationCast", 93687)
+	self:Log("SPELL_AURA_APPLIED", "Desecration", 93691)
+	self:Log("SPELL_DAMAGE", "Desecration", 93691)
+	self:Log("SPELL_MISSED", "Desecration", 93691)
+	--self:Log("SPELL_AURA_APPLIED", "ShieldOfThePerfidious", 0)
+	self:Log("SPELL_CAST_START", "UnholyEmpowerment", 93844)
+	self:Log("SPELL_AURA_APPLIED", "WordOfShame", 93852)
 end
 
 function mod:OnEngage()
-	empowerTime = 0
+	self:CDBar(93687, 9.6) -- Desecration
 end
+
 -------------------------------------------------------------------------------
 --  Event Handlers
+--
 
-function mod:Desecration(_, spellId, _, _, spellName)
-	self:Message(93687, spellName, "Attention", spellId)
+function mod:DesecrationCast(args)
+	self:CDBar(args.spellId, 17.8) -- 17.8s - 19.8s
 end
 
-function mod:Empowerment(_, spellId, _, _, spellName)
-	if (GetTime() - empowerTime) > 2 then
-		self:Message(93844, LW_CL["casting"]:format(spellName), "Urgent", spellId, "Alarm")
-		empowerTime = GetTime()
+do
+	local prev = 0
+	function mod:Desecration(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 2 then
+				prev = t
+				self:Message(93687, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
+		end
 	end
 end
 
-function mod:Shield(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(93736, LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")["you"]:format(spellName), "Personal", spellId)
+do
+	local prev = 0
+	function mod:UnholyEmpowerment(args)
+		local t = GetTime()
+		if t - prev > 2 then -- adds cast this, he spawns 2 at a time
+			prev = t
+			self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+		end
 	end
 end
 
-function mod:Word(player, spellId, _, _, spellName)
-	self:TargetMessage(93852, spellName, player, "Important", spellId)
+function mod:WordOfShame(args)
+	self:TargetMessage(args.spellId, args.destName, "Important")
 end
 
+--function mod:ShieldOfThePerfidious(args)
+--	if self.Me(args.destGUID) then
+--		self:TargetMessage(args.spellId, args.destName, "Personal")
+--	end
+--end
