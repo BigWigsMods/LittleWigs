@@ -125,7 +125,7 @@ do
 			local t = GetTime()
 			if t - (prevTable[args.spellId] or 0) > 1 then
 				prevTable[args.spellId] = t
-				self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+				self:Message(args.spellId, "Attention", "Alarm", CL.other:format(args.spellName, args.destName))
 			end
 		end
 	end
