@@ -57,18 +57,23 @@ end
 --
 
 function mod:TouchOfNothingness(args)
+	local isOnMe = self:Me(args.destGUID)
+
 	playersWithTouch[#playersWithTouch+1] = args.destName
 	if #playersWithTouch == 1 then
 		self:OpenProximity(args.spellId, 10, playersWithTouch) -- 10 is a guesstimate, there's no info in the EJ
-	elseif self:Me(args.destGUID) then
+	elseif isOnMe then
 		self:OpenProximity(args.spellId, 10)
 		self:Say(args.spellId)
+		self:PlaySound(args.spellId, "Alarm")
 	end
 
-	local canDispel = self:Dispeller("magic")
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, canDispel)
-	if canDispel then
+	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	if self:Dispeller("magic") then
 		self:TargetBar(args.spellId, 30, args.destName)
+		if not isOnMe then
+			self:PlaySound(args.spellId, "Alarm")
+		end
 	end
 end
 
@@ -91,13 +96,15 @@ function mod:TouchOfNothingnessRemoved(args)
 end
 
 function mod:BoundsOfReality(args)
-	self:Message(args.spellId, "Urgent", "Long")
+	self:PlaySound(args.spellId, "Long")
+	self:Message(args.spellId, "orange")
 	self:CastBar(args.spellId, 30)
 	self:CDBar(args.spellId, 60.3)
 end
 
 function mod:BoundsOfRealityOver(args)
-	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+	self:PlaySound(args.spellId, "Info")
+	self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
 	self:StopBar(CL.cast:format(args.spellName))
 end
 
@@ -108,6 +115,7 @@ end
 function mod:AddDeath()
 	addsAlive = addsAlive - 1
 	if addsAlive > 0 then
-		self:Message(117665, "Positive", "Info", CL.add_remaining:format(addsAlive), false)
+		self:PlaySound(117665, "Info")
+		self:Message(117665, "green", nil, CL.add_remaining:format(addsAlive), false)
 	end
 end
