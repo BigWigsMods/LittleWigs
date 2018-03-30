@@ -144,7 +144,7 @@ function mod:UNIT_AURA(unit)
 end
 
 function mod:UltimatePower(args)
-	self:TargetMessage(-5549, args.destName, "Important", "Warning", args.spellId, nil, true)
+	self:TargetMessage(-5549, args.destName, "Important", "Warning", args.spellId)
 	self:TargetBar(-5549, 15, args.destName, args.spellId)
 end
 
