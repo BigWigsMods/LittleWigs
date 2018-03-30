@@ -8,9 +8,13 @@ mod:RegisterEnableMob(95885)
 mod.engageId = 1815
 
 --------------------------------------------------------------------------------
--- Locals
+-- Localization
 --
 
+local L = mod:GetLocale()
+if L then
+	L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -30,6 +34,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "DarkstrikesCast", 191941, 204151)
 	self:Log("SPELL_AURA_APPLIED", "DarkstrikesApplied", 191941)
@@ -46,6 +51,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 8, CL.active, "achievement_dungeon_vaultofthewardens")
+	end
+end
 
 function mod:DarkstrikesCast(args)
 	self:Message(191941, "Important", self:Tank() and "Alarm", CL.casting:format(args.spellName))
