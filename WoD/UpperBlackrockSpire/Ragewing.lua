@@ -11,7 +11,7 @@ mod:RegisterEnableMob(76585)
 -- Locals
 --
 
-local percent = 70
+local nextAddsWarning = 75
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -34,6 +34,7 @@ function mod:OnBossEnable()
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "EngulfingFire", "boss1")
 
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "SwirlingWinds", 167203)
 	self:Log("SPELL_AURA_REMOVED", "SwirlingWindsOver", 167203)
 
@@ -43,13 +44,14 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	percent = 70
+	nextAddsWarning = 75 -- 70% and 40%
 	self:CDBar(154996, 15.7) -- Engulfing Fire
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
 
 function mod:BurningRage(args)
 	self:Message(args.spellId, "Urgent", self:Dispeller("enrage", true) and "Info", CL.onboss:format(args.spellName))
@@ -66,16 +68,26 @@ function mod:EngulfingFire(_, _, _, _, spellId)
 	end
 end
 
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < nextAddsWarning then
+		nextAddsWarning = nextAddsWarning - 30
+		self:Message(-10740, "Positive", nil, CL.soon:format(self:SpellName(93679)), false)
+		if nextAddsWarning < 40 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		end
+	end
+end
+
 function mod:SwirlingWinds()
-	self:Message(-10740, "Important", "Long", ("%d%% - %s"):format(percent, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
+	self:Message(-10740, "Important", "Long", CL.percent:format(nextAddsWarning + 25, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
 	self:Bar(-10740, 20, CL.intermission, 93679) -- Whelp icon
 	self:StopBar(155025) -- Engulfing Fire
 end
 
 function mod:SwirlingWindsOver()
-	if percent == 70 then
+	if nextAddsWarning > 40 then
 		self:CDBar(154996, self:Normal() and 9.3 or 12.8) -- Engulfing Fire
-		percent = 40
 	end
 end
 
