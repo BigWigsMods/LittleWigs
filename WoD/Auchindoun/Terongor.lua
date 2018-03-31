@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Teron'gor", 1182, 1225)
 if not mod then return end
 mod:RegisterEnableMob(77734)
+mod.engageId = 1714
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -41,16 +43,7 @@ function mod:GetOptions()
 	}
 end
 
-function mod:VerifyEnable(unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp > 15 then
-		return true
-	end
-end
-
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "SeedOfMalevolence", 156921)
 	self:Log("SPELL_AURA_REMOVED", "SeedOfMalevolenceRemoved", 156921)
 	self:Log("SPELL_AURA_APPLIED", "Fixate", 157168)
@@ -151,7 +144,5 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 		self:Message("stages", "Positive", "Info", CL.other:format(CL.stage:format(2), L.demonology), "spell_shadow_metamorphosis")
 	elseif spellId == 156866 then -- Destruction Transformation
 		self:Message("stages", "Positive", "Info", CL.other:format(CL.stage:format(2), L.destruction), "spell_shadow_rainoffire")
-	elseif spellId == 114268 then -- Shadow Nova
-		self:Win()
 	end
 end

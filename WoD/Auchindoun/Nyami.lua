@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Soulbinder Nyami", 1182, 1186)
 if not mod then return end
 mod:RegisterEnableMob(76177)
+mod.engageId = 1685
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,13 +22,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "SoulVessel", 155327)
 	self:Log("SPELL_CAST_START", "TornSpirits", 153994)
 	self:Log("SPELL_AURA_APPLIED", "ShadowWordPain", 154477)
-
-	self:Death("Win", 76177)
 end
 
 function mod:OnEngage()
