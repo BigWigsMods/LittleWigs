@@ -25,6 +25,7 @@ function mod:GetOptions()
 	return {
 		153247, -- Fiery Boulder
 		152940, -- Heat Wave
+		{167739, "FLASH"}, -- Scorching Aura
 	}
 end
 
@@ -34,6 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FieryBoulder", 153247)
 	self:Log("SPELL_CAST_START", "HeatWaveInc", 152940)
 	self:Log("SPELL_CAST_SUCCESS", "HeatWaveBegin", 152940)
+	self:Log("SPELL_AURA_APPLIED", "ScorchingAura", 167739)
 
 	self:Death("Win", 75786)
 end
@@ -53,4 +55,18 @@ end
 function mod:HeatWaveBegin(args)
 	self:Message(args.spellId, "Important")
 	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
+end
+
+do
+	local prev = 0 -- throttle if the player is crossing the edge of its radius multiple times (running against Heat Wave or w/e)
+	function mod:ScorchingAura(args)
+		if self:Me(args.destGUID) and self:Ranged() then
+			local t = GetTime()
+			if t - prev > 2 then
+				prev = t
+				self:Flash(args.spellId)
+				self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+			end
+		end
+	end
 end
