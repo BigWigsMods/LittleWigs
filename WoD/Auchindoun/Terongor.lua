@@ -8,18 +8,35 @@ if not mod then return end
 mod:RegisterEnableMob(77734)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	_, L.affliction = GetSpecializationInfoByID(265)
+	_, L.demonology = GetSpecializationInfoByID(266)
+	_, L.destruction = GetSpecializationInfoByID(267)
+end
+
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		156854, -- Drain Life
+		156856, -- Rain of Fire
+		{157168, "ICON"}, -- Fixate
 		{156921, "FLASH", "PROXIMITY"}, -- Seed of Malevolence
 		{157001, "SAY"}, -- Chaos Wave
 		{157039, "SAY", "FLASH"}, -- Demonic Leap
-		156854, -- Drain Life
-		{157168, "ICON"}, -- Fixate
-		156856, -- Rain of Fire
 		156975, -- Chaos Bolt
+	}, {
+		[156854] = "general",
+		[156921] = L.affliction,
+		[157001] = L.demonology,
+		[156975] = L.destruction,
 	}
 end
 
