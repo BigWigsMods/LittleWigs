@@ -6,22 +6,14 @@
 local mod, CL = BigWigs:NewBoss("Gug'rokk", 1175, 889)
 if not mod then return end
 mod:RegisterEnableMob(74790)
---BOSS_KILL#1654#Gug'rokk
+mod.engageId = 1654
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local blastCount = 0
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -37,15 +29,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "MagmaEruption", 150776)
 	self:Log("SPELL_CAST_START", "UnstableSlag", 150755)
 	self:Log("SPELL_CAST_START", "MoltenBlast", 150677)
 	self:Log("SPELL_AURA_APPLIED", "MoltenCore", 150678)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MoltenCore", 150678)
-
-	self:Death("Win", 74790)
 end
 
 function mod:OnEngage()

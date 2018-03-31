@@ -6,16 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Roltall", 1175, 887)
 if not mod then return end
 mod:RegisterEnableMob(75786)
---BOSS_KILL#1652#Roltall
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
+mod.engageId = 1652
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -29,13 +21,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "FieryBoulder", 153247)
 	self:Log("SPELL_CAST_START", "HeatWaveInc", 152940)
 	self:Log("SPELL_CAST_SUCCESS", "HeatWaveBegin", 152940)
-
-	self:Death("Win", 75786)
 end
 
 --------------------------------------------------------------------------------

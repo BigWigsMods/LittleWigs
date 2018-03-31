@@ -6,16 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Magmolatus", 1175, 893)
 if not mod then return end
 mod:RegisterEnableMob(74475, 74366, 74570, 74571) -- Magmolatus, Forgemaster Gog'duh, Ruination, Calamity
---BOSS_KILL#1655#Magmolatus
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
+mod.engageId = 1655
+mod.respawnTime = 34
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,21 +15,17 @@ end
 
 function mod:GetOptions()
 	return {
+		"stages",
 		150076, -- Throw Earth
 		150078, -- Throw Fire
 		150038, -- Molten Impact
-		"stages",
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_SUCCESS", "SpawnAdd", 150076, 150078) -- Throw Earth, Throw Fire
 
 	self:Log("SPELL_CAST_START", "MoltenImpact", 150038)
-
-	self:Death("Win", 74475)
 	self:Death("Stage2", 74366)
 end
 
