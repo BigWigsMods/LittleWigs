@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Ragewing the Untamed", 1358, 1229)
 if not mod then return end
 mod:RegisterEnableMob(76585)
+mod.engageId = 1760
+mod.respawnTime = 11
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -27,8 +29,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "BurningRage", 155620)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BurningRage", 155620)
 
@@ -39,8 +39,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SwirlingWindsOver", 167203)
 
 	self:Log("SPELL_AURA_APPLIED", "MagmaPool", 155057)
-
-	self:Death("Win", 76585)
 end
 
 function mod:OnEngage()

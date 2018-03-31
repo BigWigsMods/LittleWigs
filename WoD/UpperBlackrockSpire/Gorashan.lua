@@ -6,7 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Orebender Gor'ashan", 1358, 1226)
 if not mod then return end
 mod:RegisterEnableMob(76413)
---BOSS_KILL#1761#Orebender Gor'ashan
+mod.engageId = 1761
+mod.respawnTime = 29
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -36,15 +37,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "PowerConduit", 166168)
 	self:Log("SPELL_AURA_REMOVED", "PowerConduitRemoved", 166168)
 	self:Log("SPELL_AURA_REMOVED_DOSE", "PowerConduitReduced", 166168)
 
 	self:Log("SPELL_CAST_START", "ShrapnelNova", 154448)
-
-	self:Death("Win", 76413)
 end
 
 function mod:OnEngage()
@@ -64,7 +61,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		nextPowerConduitWarning = nextPowerConduitWarning - 25
 		self:Message(166168, "Positive", nil, CL.soon:format(self:SpellName(166168)), false)
 		if nextPowerConduitWarning < 25 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		end
 	end
 end

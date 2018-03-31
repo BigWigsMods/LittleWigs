@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Warlord Zaela", 1358, 1234)
 if not mod then return end
 mod:RegisterEnableMob(77120)
 mod.engageId = 1762
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -14,8 +15,8 @@ mod.engageId = 1762
 
 function mod:GetOptions()
 	return {
-		{155721, "ICON", "FLASH"}, -- Black Iron Cyclone
 		"stages",
+		{155721, "ICON", "FLASH"}, -- Black Iron Cyclone
 	}
 end
 
@@ -28,6 +29,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BlackIronCyclone", 155721)
 	self:Log("SPELL_AURA_REMOVED", "BlackIronCycloneOver", 155721)
 
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 end
 
@@ -61,13 +63,21 @@ function mod:BlackIronCycloneOver(args)
 	self:PrimaryIcon(args.spellId)
 end
 
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 65 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("stages", "Positive", nil, CL.soon:format(CL.intermission), false)
+	end
+end
+
 function mod:UNIT_TARGETABLE_CHANGED(unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Important", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else
-		self:Message("stages", "Important", "Info", ("60%% - %s"):format(CL.intermission), "achievement_character_orc_female")
+		self:Message("stages", "Important", "Info", CL.percent:format(60, CL.intermission), "achievement_character_orc_female")
 		self:DelayedMessage("stages", 1, "Important", self:SpellName(-10741), "achievement_character_orc_male") -- Black Iron Wyrm Riders
-		self:Bar("stages", 28, CL.intermission, "achievement_character_orc_female")
+		self:Bar("stages", self:Normal() and 28 or 36.5, CL.intermission, "achievement_character_orc_female")
 		self:StopBar(155721) -- Black Iron Cyclone
 	end
 end
