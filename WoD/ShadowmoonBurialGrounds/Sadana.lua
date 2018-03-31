@@ -6,7 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Sadana Bloodfury", 1176, 1139)
 if not mod then return end
 mod:RegisterEnableMob(75509)
---BOSS_KILL#1677#Sadana Bloodfury
+mod.engageId = 1677
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -33,13 +34,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_SUCCESS", "DarkEclipse", 164974)
 	self:Log("SPELL_CAST_SUCCESS", "Daggerfall", 153240)
 	self:Log("SPELL_CAST_SUCCESS", "DarkCommunion", 153153)
-
-	self:Death("Win", 75509)
 end
 
 function mod:OnEngage()

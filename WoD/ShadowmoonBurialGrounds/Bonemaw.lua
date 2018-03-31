@@ -6,16 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Bonemaw", 1176, 1140)
 if not mod then return end
 mod:RegisterEnableMob(75452)
---BOSS_KILL#1679#Bonemaw
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
+mod.engageId = 1679
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -29,13 +21,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "InhaleIncUnitEvent", "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "Inhale", 153804)
 	self:Log("SPELL_CAST_START", "BodySlam", 154175)
-
-	self:Death("Win", 75452)
 end
 
 --------------------------------------------------------------------------------
@@ -56,7 +44,7 @@ function mod:InhaleInc()
 end
 
 function mod:Inhale(args)
-	self:Bar(args.spellId, 9, CL.cast:format(args.spellName))
+	self:CastBar(args.spellId, 9)
 	self:Message(args.spellId, "Urgent", "Alarm")
 end
 
