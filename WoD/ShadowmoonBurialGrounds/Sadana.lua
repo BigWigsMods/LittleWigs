@@ -69,30 +69,17 @@ do
 	end
 end
 
-do
-	local counter, ref = 0, nil
-	local function findAdd(self)
-		-- Designer of this encounter just doesn't want this add to be on the boss frames unfortunately :(
-		-- Doomed to polling the group instead of the boss units.
-		local addId = self:GetUnitIdByGUID(75966) -- Defiled Spirit
-		if addId then
-			SetRaidTarget(addId, 8)
-			self:CancelTimer(ref)
-			ref = nil
-			return
-		end
-		counter = counter + 1
-		if counter > 20 then
-			self:CancelTimer(ref)
-			ref = nil
-		end
+function mod:findAdd(_, unit, guid)
+	if self:MobId(guid) == 75966 then -- Defiled Spirit
+		SetRaidTarget(unit, 8)
+		self:UnregisterTargetEvents()
 	end
-	function mod:DarkCommunion(args)
-		self:Message(args.spellId, "Positive", "Info", CL.add_spawned)
-		self:Bar(args.spellId, 61, CL.next_add)
-		if self.db.profile.custom_on_markadd then
-			counter = 0
-			ref = self:ScheduleRepeatingTimer(findAdd, 0.5, self)
-		end
+end
+
+function mod:DarkCommunion(args)
+	self:Message(args.spellId, "Positive", "Info", CL.add_spawned)
+	self:Bar(args.spellId, 61, CL.next_add)
+	if self:GetOption("custom_on_markadd") then
+		self:RegisterTargetEvents("findAdd")
 	end
 end
