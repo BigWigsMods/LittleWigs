@@ -6,12 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Grimrail Enforcers", 1195, 1236)
 if not mod then return end
 mod:RegisterEnableMob(80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local deaths = 0
+mod.engageId = 1748
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -41,12 +37,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
 	self:Log("SPELL_AURA_REMOVED", "SanguineSphereRemoved", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
-
-	self:Death("Deaths", 80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
-end
-
-function mod:OnEngage()
-	deaths = 0
 end
 
 --------------------------------------------------------------------------------
@@ -76,11 +66,3 @@ do
 		end
 	end
 end
-
-function mod:Deaths()
-	deaths = deaths + 1
-	if deaths > 2 then
-		self:Win()
-	end
-end
-
