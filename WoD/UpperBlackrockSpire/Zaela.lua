@@ -9,15 +9,6 @@ mod:RegisterEnableMob(77120)
 mod.engageId = 1762
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.subZone = "The Molten Span"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -28,16 +19,8 @@ function mod:GetOptions()
 	}
 end
 
-function mod:VerifyEnable()
-	local zone = GetSubZoneText()
-	if zone == L.subZone then
-		return true
-	else -- Zone is more reliable, but not locale friendly, use both.
-		local _, _, completed = C_Scenario.GetCriteriaInfo(4) -- Defeated prior boss (Ragewing)
-		if completed then
-			return true
-		end
-	end
+function mod:VerifyEnable(unit) -- present during the third encounter
+	return UnitCanAttack("player", unit)
 end
 
 function mod:OnBossEnable()
