@@ -49,6 +49,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingOver", 164837)
 
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
+	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 
 	self:Death("Deaths", 81297, 81305) -- Dreadfang, Fleshrender Nok'gar
@@ -58,7 +59,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:Message("stages", "Positive", nil, CL.stage:format(1), false)
+	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -99,18 +100,22 @@ function mod:RecklessProvocation(args)
 	self:Message(args.spellId, "Urgent", "Warning")
 end
 
+function mod:RecklessProvocationOver(args)
+	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+end
+
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message("stages", "Neutral", nil, CL.soon:format(CL.stage:format(2)), false)
+		self:Message("stages", "Attention", nil, CL.soon:format(CL.stage:format(2)), false)
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 175755 then -- Dismount
-		self:Message("stages", "Positive", "Info", CL.stage:format(2), false)
-		self:CDBar(164426, 17) -- Reckless Provocation
+		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
+		self:CDBar(164426, 16) -- Reckless Provocation
 	end
 end
 
