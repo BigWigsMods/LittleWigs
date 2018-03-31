@@ -5,6 +5,7 @@ if L then
 	--L.Construct = "Guardian Construct"
 	--L.Enforcer = "Felbound Enforcer"
 	--L.Hound = "Legion Hound"
+	L.Mistress = "Señora de las Sombras"
 	--L.Gerenth = "Gerenth the Vile"
 	--L.Jazshariu = "Jazshariu"
 	--L.Imacutya = "Imacutya"

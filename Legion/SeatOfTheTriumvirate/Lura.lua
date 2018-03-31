@@ -62,10 +62,12 @@ end
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
+function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 30.2, L.warmup_text, "spell_priest_divinestar_shadow")
-	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft(L.warmup_text) == 0 then
+	elseif msg == L.warmup_trigger_2 then
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 8.47, L.warmup_text, "spell_priest_divinestar_shadow")
 	end
 end

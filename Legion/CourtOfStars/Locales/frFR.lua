@@ -5,6 +5,7 @@ if L then
 	L.Construct = "Assemblage gardien"
 	L.Enforcer = "Massacreur gangre-lié"
 	L.Hound = "Molosse de la Légion"
+	L.Mistress = "Maîtresse de l’ombre"
 	L.Gerenth = "Gerenth le Vil"
 	L.Jazshariu = "Jazshariu"
 	L.Imacutya = "Savatr’anshé"

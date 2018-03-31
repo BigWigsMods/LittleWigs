@@ -68,7 +68,7 @@ end
 function mod:Warmup(event, msg)
 	if msg == L.gossip_trigger then
 		self:UnregisterEvent(event)
-		self:Bar("warmup", 29.4, L.gossip_available, "achievement_boss_odyn")
+		self:Bar("warmup", 28.2, L.gossip_available, "achievement_boss_odyn")
 	end
 end
 

@@ -17,8 +17,8 @@ end
 L = BigWigs:NewBossLocale("God-King Skovald", "deDE")
 if L then
 	--L.warmup_text = "God-King Skovald Active"
-	--L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
-	--L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
+	L.warmup_trigger = "Die Sieger haben ihren Anspruch geltend gemacht, Skovald, wie es ihr Recht ist. Euer Protest kommt zu spät."
+	L.warmup_trigger_2 = "Wenn sie die Aegis nicht aus freien Stücken übergeben... dann soll ihr Tod mir diesen Dienst erweisen!"
 end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "deDE")
