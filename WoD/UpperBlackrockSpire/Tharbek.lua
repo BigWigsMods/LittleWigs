@@ -35,7 +35,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterEvent("UNIT_TARGETABLE_CHANGED")
+	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2")
 
 	self:Log("SPELL_AURA_APPLIED", "NoxiousSpit", 161833)
 	self:Log("SPELL_CAST_SUCCESS", "ImbuedIronAxe", 162090)
@@ -52,8 +52,7 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(unit)
 	if self:MobId(UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
-		local boss = UnitName(unit)
-		self:Message("stages", "Neutral", "Info", boss)
+		self:Message("stages", "Neutral", "Info", self.displayName, "ability_warrior_endlessrage")
 	end
 end
 
