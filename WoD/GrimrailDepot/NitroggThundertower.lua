@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Nitrogg Thundertower", 1208, 1163)
 if not mod then return end
 mod:RegisterEnableMob(79545)
+mod.engageId = 1732
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -22,16 +24,15 @@ end
 
 function mod:GetOptions()
 	return {
+		"stages",
 		161073, -- Blackrock Grenade
 		160965, -- Blackrock Mortar Shells
 		{160681, "ICON", "FLASH"}, -- Suppressive Fire
 		166570, -- Slag Blast
-		"stages",
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2") -- Nitrogg becomes boss2 after cannon activates, cannon doesn't fire this event
 
 	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
@@ -46,8 +47,6 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_AURA_APPLIED", "SlagBlast", 166570)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlast", 166570)
-
-	self:Death("Win", 79545)
 end
 
 function mod:OnEngage()
