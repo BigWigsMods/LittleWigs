@@ -58,11 +58,11 @@ end
 
 function mod:TouchOfNothingness(args)
 	playersWithTouch[#playersWithTouch+1] = args.destName
-	if #playersWithTouch == 1 then
-		self:OpenProximity(args.spellId, 10, playersWithTouch) -- 10 is a guesstimate, there's no info in the EJ
-	elseif self:Me(args.destGUID) then
-		self:OpenProximity(args.spellId, 10)
+	if self:Me(args.destGUID) then
+		self:OpenProximity(args.spellId, 10) -- 10 is a guesstimate, there's no info in the EJ
 		self:Say(args.spellId)
+	elseif #playersWithTouch == 1 then
+		self:OpenProximity(args.spellId, 10, playersWithTouch)
 	end
 
 	local canDispel = self:Dispeller("magic")
