@@ -61,7 +61,7 @@ function mod:SummonSolarFlare(args)
 end
 
 function mod:Quills(args)
-	self:Message(args.spellId, "Urgent", "Long", ("%d%% - %s"):format(quillsWarn, args.spellName))
+	self:Message(args.spellId, "Urgent", "Long", CL.percent:format(quillsWarn, args.spellName))
 	self:Bar(args.spellId, 17)
 end
 
