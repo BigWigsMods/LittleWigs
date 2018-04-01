@@ -16,7 +16,7 @@ mod.respawnTime = 15
 local L = mod:GetLocale()
 if L then
 	L.custom_on_markadd = "Mark the Solar Zealot"
-	L.custom_on_markadd_desc = "Mark the Solar Zealot with a skull, requires promoted or leader."
+	L.custom_on_markadd_desc = "Mark the Solar Zealot with {rt8}, requires promoted or leader."
 	L.custom_on_markadd_icon = 8
 
 	L.add = "Add Spawning"

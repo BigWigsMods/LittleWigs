@@ -16,7 +16,7 @@ mod.respawnTime = 33
 local L = mod:GetLocale()
 if L then
 	L.custom_on_markadd = "Mark the Dark Communion Add"
-	L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with a skull, requires promoted or leader."
+	L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with {rt8}, requires promoted or leader."
 	L.custom_on_markadd_icon = 8
 end
 
