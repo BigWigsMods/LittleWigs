@@ -37,7 +37,7 @@ end
 --
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "Important", nil, "20% - ".. args.spellName)
+	self:Message(args.spellId, "Important", nil, CL.percent:format(20, args.spellName))
 end
 
 function mod:EnsnaringMoss(args)
