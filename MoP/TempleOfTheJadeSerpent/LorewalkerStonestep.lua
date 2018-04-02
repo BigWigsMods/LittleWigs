@@ -126,7 +126,7 @@ function mod:UNIT_AURA(unit)
 	-- 10th stack gets replaced by Ultimate Power (113309),
 	-- this is why I'm not showing a warning for it and not showing
 	-- a message that stacks are gone when Ultimate Power is present
-	local destName, spellName = UnitName(unit), self:SpellName(113315)
+	local destName, spellName = self:UnitName(unit), self:SpellName(113315)
 	local _, _, _, stacks = UnitBuff(unit, spellName)
 	if not stacks then
 		if stacksOfIntensity[guid] and stacksOfIntensity[guid] > 0 then
@@ -144,7 +144,7 @@ function mod:UNIT_AURA(unit)
 end
 
 function mod:UltimatePower(args)
-	self:Message(-5549, "Important", "Warning", args.spellId, CL.other:format(args.spellName, args.destName))
+	self:Message(-5549, "Important", "Warning", CL.other:format(args.spellName, args.destName), args.spellId)
 	self:TargetBar(-5549, 15, args.destName, args.spellId)
 end
 
