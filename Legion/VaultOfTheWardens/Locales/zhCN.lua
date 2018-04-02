@@ -18,7 +18,7 @@ end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "zhCN")
 if L then
-	--L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
+	L.warmup_trigger = "我为人民而战，为那些被放逐和唾弃的人而战。"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "zhCN")
