@@ -1,85 +1,113 @@
 
+-- GLOBALS: tContains, tDeleteItem
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sha of Doubt", 867, 335)
+local mod, CL = BigWigs:NewBoss("Sha of Doubt", 960, 335)
 if not mod then return end
 mod:RegisterEnableMob(56439)
-
-local canEnable = true
+mod.engageId = 1439
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
--- Localization
+-- Locals
 --
 
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "Hatred will consume and conquer all!"
-end
+local playersWithTouch = {} -- can have multiple players affected if dispellers aren't doing their job
+local addsAlive = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {115002, {107087, "FLASH"}, 107356}
-end
-
-function mod:VerifyEnable()
-	return canEnable
+	return {
+		{106113, "SAY", "PROXIMITY"}, -- Touch of Nothingness
+		117665, -- Bounds of Reality
+	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_SUMMON", "GrippingHatred", 115002)
-	self:Log("SPELL_AURA_APPLIED", "HazeOfHate", 107087)
-	self:Log("SPELL_AURA_APPLIED", "RisingHateStart", 107356)
-	self:Log("SPELL_AURA_REMOVED", "RisingHateStop", 107356)
+	self:Log("SPELL_AURA_APPLIED", "TouchOfNothingness", 106113)
+	self:Log("SPELL_AURA_REFRESH", "TouchOfNothingnessRefresh", 106113)
+	self:Log("SPELL_AURA_REMOVED", "TouchOfNothingnessRemoved", 106113)
 
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:Log("SPELL_AURA_APPLIED", "BoundsOfReality", 117665)
+	self:Log("SPELL_AURA_REMOVED", "BoundsOfRealityOver", 117665)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:Log("SPELL_AURA_APPLIED", "GatheringDoubt", 117570)
+	self:Death("AddDeath", 56792) -- Figment of Doubt
 end
 
-function mod:OnWin()
-	canEnable = false
+function mod:OnEngage()
+	addsAlive = 0
+	wipe(playersWithTouch)
+	self:CDBar(117665, 24.4) -- Bounds of Reality
 end
+
+function mod:OnBossDisable()
+	wipe(playersWithTouch)
+end
+
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, _, _, _, spellId)
-	if spellId == 125920 and unitId == "boss1" then -- Kneel
-		self:Win()
+function mod:TouchOfNothingness(args)
+	playersWithTouch[#playersWithTouch+1] = args.destName
+	if self:Me(args.destGUID) then
+		self:OpenProximity(args.spellId, 10) -- 10 is a guesstimate, there's no info in the EJ
+		self:Say(args.spellId)
+	elseif not tContains(playersWithTouch, self:UnitName("player")) then
+		self:OpenProximity(args.spellId, 10, playersWithTouch)
+	end
+
+	local canDispel = self:Dispeller("magic")
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, canDispel)
+	if canDispel then
+		self:TargetBar(args.spellId, 30, args.destName)
 	end
 end
 
-do
-	local prev = 0
-	function mod:GrippingHatred(_, spellId, _, _, spellName)
-		local t = GetTime()
-		if t-prev > 5 then
-			prev = t
-			self:Message(115002, spellName, "Urgent", spellId, "Info")
-		end
+
+function mod:TouchOfNothingnessRefresh(args)
+	if self:Dispeller("magic") then
+		self:TargetBar(args.spellId, 30, args.destName)
 	end
 end
 
-function mod:HazeOfHate(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:Message(107087, CL["you"]:format(spellName), "Personal", spellId, "Long")
-		self:Flash(107087)
+function mod:TouchOfNothingnessRemoved(args)
+	tDeleteItem(playersWithTouch, args.destName)
+	self:StopBar(args.spellName, args.destName)
+
+	if #playersWithTouch == 0 then
+		self:CloseProximity(args.spellId)
+	elseif not tContains(playersWithTouch, self:UnitName("player")) then
+		self:OpenProximity(args.spellId, 10, playersWithTouch)
 	end
 end
 
-function mod:RisingHateStart(_, spellId, _, _, spellName)
-	self:Message(107356, CL["casting"]:format(spellName), "Important", spellId, "Alert")
-	self:Bar(107356, CL["cast"]:format(spellName), 5, spellId)
-	self:Bar(107356, "~"..spellName, 16.5, spellId) -- 16-19
+function mod:BoundsOfReality(args)
+	self:Message(args.spellId, "Urgent", "Long")
+	self:CastBar(args.spellId, 30)
+	self:CDBar(args.spellId, 60.3)
 end
 
-function mod:RisingHateStop(_, spellId, _, _, spellName)
-	self:StopBar(CL["cast"]:format(spellName))
+function mod:BoundsOfRealityOver(args)
+	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+	self:StopBar(CL.cast:format(args.spellName))
 end
 
+function mod:GatheringDoubt(args)
+	addsAlive = addsAlive + 1
+end
+
+function mod:AddDeath()
+	addsAlive = addsAlive - 1
+	if addsAlive > 0 then
+		self:Message(117665, "Positive", "Info", CL.add_remaining:format(addsAlive), false)
+	end
+end
