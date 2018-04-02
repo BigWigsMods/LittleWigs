@@ -1,5 +1,5 @@
 
--- GLOBALS: tDeleteItem
+-- GLOBALS: tContains, tDeleteItem
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -61,7 +61,7 @@ function mod:TouchOfNothingness(args)
 	if self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 10) -- 10 is a guesstimate, there's no info in the EJ
 		self:Say(args.spellId)
-	elseif #playersWithTouch == 1 then
+	elseif not tContains(playersWithTouch, self:UnitName("player")) then
 		self:OpenProximity(args.spellId, 10, playersWithTouch)
 	end
 
@@ -85,7 +85,7 @@ function mod:TouchOfNothingnessRemoved(args)
 
 	if #playersWithTouch == 0 then
 		self:CloseProximity(args.spellId)
-	elseif self:Me(args.destGUID) then
+	elseif not tContains(playersWithTouch, self:UnitName("player")) then
 		self:OpenProximity(args.spellId, 10, playersWithTouch)
 	end
 end
