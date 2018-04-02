@@ -42,7 +42,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("191873", nil, true) then
-		self:Message(191873, "Attention", "Long", submergeHp .."% - ".. self:SpellName(191873))
+		self:Message(191873, "Attention", "Long", CL.percent:format(submergeHp, self:SpellName(191873)))
 		submergeHp = submergeHp - 33
 	end
 end

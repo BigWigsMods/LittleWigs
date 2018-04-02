@@ -67,7 +67,7 @@ end
 
 function mod:CryOfWrath(args)
 	p2 = true
-	self:Message(args.spellId, "Positive", "Long", "10% - ".. args.spellName)
+	self:Message(args.spellId, "Positive", "Long", CL.percent:format(10, args.spellName))
 end
 
 do
