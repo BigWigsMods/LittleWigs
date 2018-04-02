@@ -31,7 +31,7 @@ if L then
 	L.win_trigger = "So be it. You will not stand in our way any longer."
 
 	-- Engage / Options
-	L.engage_message = "Highlord Kruul's Challenge Engaged!"
+	-- L.engage_message = "Highlord Kruul's Challenge Engaged!"
 
 	L.nether_aberration = 235110
 	L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
@@ -52,12 +52,18 @@ function mod:GetOptions()
 		"stages",
 		"nether_aberration", -- Nether Aberration
 		240790, -- Nether Storm
+
+		--[[ Prophet Velen ]]--
 		233473, -- Holy Ward
+
+		--[[ Inquisitor Variss ]]--
 		234423, -- Drain Life
 		234422, -- Aura of Decay
 		234428, -- Summon Tormenting Eye
 		"smoldering_infernal", -- Smoldering Infernal Summon
 		234631, -- Smash
+
+		--[[ Highlord Kruul ]]--
 		236572, -- Annihilate
 		234920, -- Shadow Sweep
 		234673, -- Nether Stomp
@@ -101,7 +107,6 @@ end
 function mod:OnEngage()
 	aberrationCounter = 1
 	annihilateCounter = 1
-	self:Message("stages", "Neutral", nil, L.engage_message, "inv_icon_heirloomtoken_weapon01")
 	self:CDBar(234428, 3) -- Summon Tormenting Eye
 	self:CDBar("nether_aberration", 10, CL.count:format(self:SpellName(L.nether_aberration), aberrationCounter), L.nether_aberration_icon) -- Nether Aberration
 	self:CDBar("smoldering_infernal", 35, L.smoldering_infernal, L.smoldering_infernal_icon) -- Smoldering Infernal Summon

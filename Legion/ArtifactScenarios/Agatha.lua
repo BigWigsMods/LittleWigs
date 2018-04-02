@@ -9,6 +9,15 @@ mod:RegisterEnableMob(115638) -- Agatha
 mod.otherMenu = 1716 -- Broken Shore Mage Tower
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local imps = {}
+local phase = 1
+local partyCount = 1
+local marker = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -32,32 +41,25 @@ if L then
 end
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local imps = {}
-local phase = 1
-local partyCount = 1
-local marker = 1
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		-- [[ Imps ]]
+		--[[ Imps ]]--
 		"imp_servant",
 		{"fuming_imp", "ICON"},
 		236161, -- Plague Zone
 		243027, -- Shadow Shield
-		-- [[ Agatha ]]
+
+		--[[ Agatha ]]--
 		"warmup",
+		"stages",
 		{243111, "INFOBOX"}, -- Dark Fury
 		242989, -- Translocate
 	}, {
-		imp_servant = CL.adds,
-		warmup = mod.displayName,
+		imp_servant = "adds",
+		warmup = L.name,
 	}
 end
 
@@ -262,7 +264,8 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 242987 then -- Translocate
 		if phase == 1 then
 			phase = 2
-			self:Message(242989, "Neutral", nil, CL.percent:format(50, spellName), false)
+			self:Message(242989, "Neutral")
+			self:Message("stages", "Neutral", nil, CL.percent:format(50, CL.phase:format(2)), false)
 
 			-- Recalc Dark Fury time
 			local remaining = (100 - UnitPower(unit)) * 0.68
@@ -276,7 +279,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
-		self:Message(242989, "Neutral", nil, CL.soon:format(self:SpellName(242987)), false)
+		self:Message("stages", "Neutral", nil, CL.soon:format(CL.phase:format(2)), false)
 		-- Seems like it's based on damage done after the initial 50% cast, cba to track that
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 	end

@@ -50,8 +50,12 @@ function mod:GetOptions()
 		"warmup",
 		202081, -- Fixate
 		235308, -- Purgatory
+
+		--[[ Stage 2 ]]--
 		"handFromBeyond",
 		{235578, "FLASH"}, -- Grasp from Beyond
+
+		--[[ Stage 3 ]]--
 		{"rune", "FLASH"},
 		"thing",
 	}, {
