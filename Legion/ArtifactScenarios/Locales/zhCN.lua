@@ -68,9 +68,9 @@ end
 
 L = BigWigs:NewBossLocale("Agatha", "zhCN")
 if L then
-	-- L.name = "Agatha"
-	-- L.imp_servant = "Imp Servant"
-	-- L.fuming_imp = "Fuming Imp"
+	L.name = "阿加莎"
+	L.imp_servant = "小鬼仆从"
+	L.fuming_imp = "阴燃的小鬼"
 
 	L.absorb = "吸收"
 	L.stacks = "层数"
