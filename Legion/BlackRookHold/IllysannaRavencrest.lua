@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ArcaneBlitz", 197797)
 	self:Log("SPELL_CAST_START", "BonecrushingStrike", 197974)
 	self:Log("SPELL_AURA_APPLIED", "DarkRushApplied",197478)
-	self:Log("SPELL_AURA_APPLIED", "EyeBeams", 197687)
+	self:Log("SPELL_CAST_SUCCESS", "EyeBeams", 197687)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 98696)
 end
