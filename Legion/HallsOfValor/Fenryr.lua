@@ -9,6 +9,12 @@ mod:RegisterEnableMob(95674, 99868) -- Phase 1 Fenryr, Phase 2 Fenryr
 mod.engageId = 1807
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local Hud = Oken.Hud
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -16,9 +22,9 @@ function mod:GetOptions()
 	return {
 		"stages",
 		196543, -- Unnerving Howl
-		{197556, "SAY", "PROXIMITY"}, -- Ravenous Leap
+		{197556, "SAY", "PROXIMITY", "HUD"}, -- Ravenous Leap
 		196512, -- Claw Frenzy
-		{196838, "SAY", "ICON"}, -- Scent of Blood
+		{196838, "SAY", "ICON", "AURA"}, -- Scent of Blood
 	}
 end
 
@@ -54,7 +60,22 @@ function mod:UnnervingHowl(args)
 end
 
 do
+
+	local rangeCheck
+	local rangeObject
+
 	local list = mod:NewTargetList()
+
+	function mod:CheckRavenousLeapRange()
+		for unit in mod:IterateGroup() do
+			if not UnitIsUnit(unit, "player") and not UnitIsDead(unit) and mod:Range(unit) <= 10 then
+				rangeObject:SetColor(1, 0, 0)
+				return
+			end
+		end
+		rangeObject:SetColor(0, 1, 0)
+	end
+
 	function mod:RavenousLeap(args)
 		--"pull:10.1, 36.0" p2
 		list[#list+1] = args.destName
@@ -65,12 +86,20 @@ do
 		if self:Me(args.destGUID) then
 			self:OpenProximity(args.spellId, 10)
 			self:Say(args.spellId)
+			if self:Hud(args.spellId) then
+				rangeObject = Hud:DrawSpinner("player", 70):SetOffset(0, -10)
+				rangeCheck = self:ScheduleRepeatingTimer("CheckRavenousLeapRange", 0.2)
+				self:CheckRavenousLeapRange()
+			end
 		end
 	end
 
 	function mod:RavenousLeapRemoved(args)
 		if self:Me(args.destGUID) then
 			self:CloseProximity(args.spellId)
+			self:CancelTimer(rangeCheck)
+			rangeObject:Remove()
+			rangeObject = nil
 		end
 	end
 end
@@ -83,6 +112,7 @@ do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
 			self:Say(196838)
+			self:ShowAura(196838, 9, "Fixate", true)
 		end
 		self:PrimaryIcon(196838, player)
 		self:TargetMessage(196838, player, "Urgent", "Warning")

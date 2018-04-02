@@ -12,6 +12,7 @@ mod:RegisterEnableMob(95833)
 -- Locals
 --
 
+local Hud = Oken.Hud
 local nextArcingBolt, nextExpelLight = 0, 0
 
 --------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ local nextArcingBolt, nextExpelLight = 0, 0
 function mod:GetOptions()
 	return {
 		200901, -- Eye of the Storm
-		{191976, "ICON", "SAY"}, -- Arcing Bolt
+		{191976, "ICON", "SAY", "HUD"}, -- Arcing Bolt
 		192307, -- Sanctify
 		{192048, "ICON", "FLASH", "PROXIMITY"}, -- Expel Light
 		192018, -- Shield of Light
@@ -83,22 +84,45 @@ function mod:EyeOfTheStormOrSanctify(args)
 end
 
 do
+	local rangeCheck
+	local rangeObject
+
+	function mod:CheckArcingBoltRange()
+		for unit in mod:IterateGroup() do
+			if not UnitIsUnit(unit, "player") and not UnitIsDead(unit) and mod:Range(unit) <= 5 then
+				rangeObject:SetColor(1, 0, 0)
+				return
+			end
+		end
+		rangeObject:SetColor(0, 1, 0)
+	end
+
 	local function printTarget(self, player, guid)
 		self:TargetMessage(191976, player, "Attention", "Alarm", nil, nil, true)
-		self:SecondaryIcon(191976, player)
+		self:SecondaryIcon(191976, player)	
 		if self:Me(guid) then
 			self:Say(191976)
+			if self:Hud(191976) then
+				rangeObject = Hud:DrawSpinner("player", 70):SetOffset(0, -10)
+				rangeCheck = self:ScheduleRepeatingTimer("CheckArcingBoltRange", 0.1)
+				self:CheckArcingBoltRange()
+			end
 		end
 	end
 
 	function mod:ArcingBolt(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
 	end
 
 	function mod:ArcingBoltSuccess(args)
 		self:SecondaryIcon(args.spellId)
 		nextArcingBolt = GetTime() + 12
 		self:CDBar(args.spellId, 12)
+		if self:Me(args.destGUID) then
+			self:CancelTimer(rangeCheck)
+			rangeObject:Remove()
+			rangeObject = nil
+		end
 	end
 end
 

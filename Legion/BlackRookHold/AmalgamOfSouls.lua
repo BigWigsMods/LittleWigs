@@ -15,6 +15,7 @@ mod:RegisterEnableMob(98542)
 --
 
 local gorgeCount = 0
+local Hud = Oken.Hud
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,9 +26,9 @@ function mod:GetOptions()
 		196078, -- Call Souls
 		194956, -- Reap Soul
 		196587, -- Soul Burst
-		{194966, "SAY"}, -- Soul Echoes
+		{194966, "SAY", "HUD", "AURA"}, -- Soul Echoes
 		195254, -- Swirling scythe
-		196930, -- Soulgorge
+		{196930, "HUD"}, -- Soulgorge
 	}
 end
 
@@ -95,6 +96,17 @@ end
 
 function mod:SoulEchoes(args)
 	self:Bar(args.spellId, 26.7)
+	if self:Hud(args.spellId) then
+		local area = Hud:DrawArea("player", 60):SetColor(0.8, 0.5, 1, 0.6):SetOffset(0, 0)
+		local spinner = Hud:DrawSpinner("player", 60, 12):SetColor(0.8, 0.5, 1):SetOffset(0, 0)
+		local text = Hud:DrawText("player", "Soul"):SetOffset(0, 0)
+		self:ShowAura(args.spellId, 12, "Soul")
+		C_Timer.After(12, function()
+			area:Remove()
+			spinner:Remove()
+			text:Remove()
+		end)
+	end
 end
 
 function mod:SoulEchoesApplied(args)
