@@ -64,6 +64,7 @@ end
 L = BigWigs:NewBossLocale("Archmage Xylem", "ptBR")
 if L then
 	L.name = "Arquimago Tauriel"
+	L.corruptingShadows = "Sombras Corruptoras"
 end
 
 L = BigWigs:NewBossLocale("Agatha", "ptBR")

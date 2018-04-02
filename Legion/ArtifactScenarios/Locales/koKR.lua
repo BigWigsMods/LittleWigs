@@ -64,6 +64,7 @@ end
 L = BigWigs:NewBossLocale("Archmage Xylem", "koKR")
 if L then
 	L.name = "대마법사 실렘"
+	L.corruptingShadows = "타락의 그림자"
 end
 
 L = BigWigs:NewBossLocale("Agatha", "koKR")
