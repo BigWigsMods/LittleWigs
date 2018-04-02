@@ -33,14 +33,20 @@ if L then
 end
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local Hud = Oken.Hud
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		200248, -- Arcane Blitz (Risen Arcanist)
-		200261, -- Bonebreaking Strike (Soul-torn Champion)
-		197974, -- Bonecrushing Strike (Soul-torn Vanguard)
+		{200261, "HUD"}, -- Bonebreaking Strike (Soul-torn Champion)
+		{197974, "HUD"}; -- Bonecrushing Strike (Soul-torn Vanguard)
 		214003, -- Coup de Grace (Risen Swordsman)
 		200343, -- Arrow Barrage (Risen Archer)
 		200291, -- Knife Dance (Risen Scout)
@@ -90,6 +96,16 @@ end
 -- Soul-torn Champion, Soul-torn Vanguard
 function mod:BonebreakingStrike(args)
 	self:Message(args.spellId, "Urgent", "Alarm", CL.incoming:format(args.spellName))
+	if self:Hud(args.spellId) then
+		local area = Hud:DrawArea(args.sourceGUID, 48):SetColor(0.75,0.75,0.75):SetOffset(0, -100)
+		local spinner = Hud:DrawSpinner(args.sourceGUID, 48, 3):SetColor(0.75,0.75,0.75):SetOffset(0, -100)
+		local text = Hud:DrawText(args.sourceGUID, "Cleave"):SetOffset(0, -100)
+		C_Timer.After(3, function()
+			area:Remove()
+			spinner:Remove()
+			text:Remove()
+		end)
+	end
 end
 
 -- Risen Swordsman

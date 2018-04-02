@@ -38,8 +38,8 @@ end
 
 function mod:OnEngage()
 	bladeCount = 1
-	self:CDBar(193235, 3.3) -- Dancing Blade
-	self:CDBar(191284, 8) -- Horn of Valor
+	self:CDBar(193235, 5) -- Dancing Blade
+	self:CDBar(191284, 10) -- Horn of Valor
 	self:CDBar(193092, 16) -- Bloodletting Sweep
 end
 
