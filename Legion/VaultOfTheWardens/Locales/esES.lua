@@ -16,6 +16,11 @@ if L then
 	--L.radiation_level = "%s: %d%%"
 end
 
+L = BigWigs:NewBossLocale("Tirathon Saltheril", "esES") or BigWigs:NewBossLocale("Tirathon Saltheril", "esMX")
+if L then
+	--L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
+end
+
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "esES") or BigWigs:NewBossLocale("Vault of the Wardens Trash", "esMX")
 if L then
 	--L.infester = "Felsworn Infester"
