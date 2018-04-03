@@ -85,8 +85,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1 then
 			prevTable[args.spellId] = t
-			self:PlaySound(args.spellId, "Alarm")
-			self:Message(args.spellId, "orange")
+			self:Message(args.spellId, "Urgent", "Alarm")
 		end
 	end
 
@@ -97,8 +96,7 @@ do
 				prevTable[args.spellId] = t
 
 				local spellId = self:CheckOption(199514, "MESSAGE") and 199514 or 199589 -- both these spells do damage with 199519
-				self:PlaySound(spellId, "Alert")
-				self:TargetMessage2(spellId, "blue", args.destName, true)
+				self:Message(spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -107,8 +105,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1.5 then
 			prevTable[args.spellId] = t
-			self:PlaySound(args.spellId, "Info")
-			self:Message(198405, "yellow", nil, CL.soon:format(self:SpellName(5782))) -- Bone Chilling Scream, 5782 = "Fear"
+			self:Message(198405, "Attention", "Info", CL.soon:format(self:SpellName(5782))) -- Bone Chilling Scream, 5782 = "Fear"
 			self:CDBar(198405, 6)
 		end
 	end
@@ -117,8 +114,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1 then
 			prevTable[args.spellId] = t
-			self:PlaySound(args.spellId, "Warning")
-			self:Message(args.spellId, "red")
+			self:Message(args.spellId, "Important", "Warning")
 		end
 	end
 
@@ -129,31 +125,27 @@ do
 			local t = GetTime()
 			if t - (prevTable[args.spellId] or 0) > 1 then
 				prevTable[args.spellId] = t
-				self:PlaySound(args.spellId, "Alarm")
-				self:Message(args.spellId, "yellow", nil, CL.other:format(args.spellName, args.destName))
+				self:Message(args.spellId, "Attention", "Alarm", CL.other:format(args.spellName, args.destName))
 			end
 		end
 	end
 end
 
 function mod:LanternOfDarkness(args)
-	self:PlaySound(args.spellId, "Long")
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "Attention", "Long")
 	self:CastBar(args.spellId, 7)
 end
 
 function mod:DebilitatingShout(args)
-	self:PlaySound(args.spellId, "Long")
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "Urgent", "Long")
 end
 
 function mod:GiveNoQuarter(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:Flash(args.spellId)
-		self:PlaySound(args.spellId, "Warning")
+		self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
 	else
-		self:PlaySound(args.spellId, "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, true)
 	end
-	self:TargetMessage2(args.spellId, "red", args.destName)
 end
