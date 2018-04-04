@@ -31,8 +31,7 @@ function mod:GetOptions()
 		138789, 138685, 138751, 138755,
 		138561, 138560, 138558,
 		138559, 138564, {139060, "FLASH"}, 1098, "stages"
-	},
-	{
+	},{
 		[138789] = L.summons,
 		[138561] = L.debuffs,
 		[138559] = "general",
@@ -195,4 +194,3 @@ do
 		self:ScheduleTimer(wipeCheck, 4)
 	end
 end
-

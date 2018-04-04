@@ -59,8 +59,8 @@ function mod:SpellBomb(args)
 end
 
 function mod:CycloneOfFeathers(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
-	self:TargetBar(args.spellId, 6, args.destName)
+	self:TargetMessage(-5252, args.destName, "Attention", "Alert")
+	self:TargetBar(-5252, 6, args.destName)
 end
 
 function mod:AddDied()
@@ -88,5 +88,5 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		if nextBroodWarning < 15 then
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		end
- 	end
+	end
 end
