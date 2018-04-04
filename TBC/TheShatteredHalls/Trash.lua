@@ -90,7 +90,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:Message(38815, "Urgent", self:Interrupter() and "Long", CL.casting:format(args.spellName))
+			self:Message(35943, "Urgent", self:Interrupter() and "Long", CL.casting:format(args.spellName))
 		end
 	end
 end

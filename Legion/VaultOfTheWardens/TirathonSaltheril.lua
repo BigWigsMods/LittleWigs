@@ -22,6 +22,7 @@ end
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		191941, -- Darkstrikes
 		191853, -- Furious Flames
 		191823, -- Furious Blast

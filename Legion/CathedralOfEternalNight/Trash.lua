@@ -185,5 +185,5 @@ end
 
 -- Vilebark Walker
 function mod:LumberingCrash(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:Message(242760, "Important", "Alarm", CL.casting:format(args.spellName))
 end

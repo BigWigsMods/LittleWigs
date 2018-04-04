@@ -15,6 +15,7 @@ BigWigs:AddColors("Magmolatus", {
 BigWigs:AddColors("Roltall", {
 	[152940] = "Important",
 	[153247] = "Urgent",
+	[167739] = "Personal",
 })
 
 BigWigs:AddColors("Gug'rokk", {

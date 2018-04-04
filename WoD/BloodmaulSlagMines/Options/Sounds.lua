@@ -14,6 +14,7 @@ BigWigs:AddSounds("Magmolatus", {
 BigWigs:AddSounds("Roltall", {
 	[152940] = "Alert",
 	[153247] = "Warning",
+	[167739] = "Alarm",
 })
 
 BigWigs:AddSounds("Gug'rokk", {
