@@ -9,7 +9,6 @@ BigWigs:AddColors("Maiden of Grief", {
 })
 
 BigWigs:AddColors("Tribunal of Ages", {
-	[51012] = {"Personal","Urgent"},
 	[59866] = "Personal",
 	[59868] = {"Personal","Urgent"},
 	["timers"] = "Attention",

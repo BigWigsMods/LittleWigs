@@ -54,5 +54,7 @@ BigWigs:AddSounds("Fel Lord Betrug", {
 BigWigs:AddSounds("Assault on Violet Hold Trash", {
 	[204140] = "Alert",
 	[204608] = "Alarm",
+	[204876] = "Alert",
+	[204901] = "Alert",
 	[205088] = "Alert",
 })

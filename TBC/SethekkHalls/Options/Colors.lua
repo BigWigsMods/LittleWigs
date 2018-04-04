@@ -7,9 +7,9 @@ BigWigs:AddColors("Darkweaver Syth", {
 
 BigWigs:AddColors("Anzu", {
 	[-5253] = {"Positive","Urgent"},
+	[-5252] = {"Attention","Personal"},
 	[40184] = "Important",
 	[40303] = {"Attention","Personal"},
-	[40321] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("Talon King Ikiss", {

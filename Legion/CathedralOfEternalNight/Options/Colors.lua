@@ -30,7 +30,6 @@ BigWigs:AddColors("Mephistroth", {
 })
 
 BigWigs:AddColors("Cathedral of Eternal Night Trash", {
-	[121569] = "Important",
 	[236737] = {"Attention","Personal"},
 	[237391] = "Urgent",
 	[237565] = "Attention",
@@ -41,4 +40,5 @@ BigWigs:AddColors("Cathedral of Eternal Night Trash", {
 	[239320] = "Urgent",
 	[241598] = "Attention",
 	[241772] = "Urgent",
+	[242760] = "Important",
 })

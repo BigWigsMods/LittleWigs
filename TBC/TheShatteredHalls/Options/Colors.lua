@@ -21,7 +21,7 @@ BigWigs:AddColors("The Shattered Halls Trash", {
 	[12542] = {"Important","Personal"},
 	[15615] = {"Attention","Personal"},
 	[30980] = {"Attention","Personal"},
+	[35943] = "Urgent",
 	[36020] = {"Important","Personal"},
 	[36033] = {"Attention","Personal"},
-	[38815] = "Urgent",
 })
