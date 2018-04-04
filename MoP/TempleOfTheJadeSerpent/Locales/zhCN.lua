@@ -1,9 +1,9 @@
 local L = BigWigs:NewBossLocale("Lorewalker Stonestep", "zhCN")
 if not L then return end
 if L then
-	-- Ah, it is not yet over. From what I see, we face the trial of the yaungol. Let me shed some light...
-	--L.yaungol_warmup_trigger = "Ah, it is not yet over."
+	-- 啊，还没完呢。看来，我们正面临野牛人的挑战。让我解释一下……
+	L.yaungol_warmup_trigger = "啊，还没完呢。"
 
-	-- Oh, my. If I am not mistaken, it appears that the tale of Zao Sunseeker has come to life before us.
-	--L.five_suns_warmup_trigger = "If I am not mistaken"
+	-- 噢，天哪。如果我没搞错的话，这似乎是在演绎赵·追日者的故事。
+	L.five_suns_warmup_trigger = "如果我没搞错的话"
 end
