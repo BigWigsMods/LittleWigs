@@ -44,18 +44,21 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 257454 then -- Swiftwind Saber with Loaded Dice: All Hands!
-		self:Message(257278, "yellow", "Alert")
+		self:Message(257278, "yellow")
+		self:PlaySound(257278, "alert", "watchstep")
 		self:CDBar(257278, 15)
 	end
 end
 
 function mod:LoadedDice(args)
 	self:Message("stages", "cyan", "Info", args.spellName, args.spellId)
+	self:PlaySound("stages", "info", "stage")
 	self:CDBar(257316, 29) -- Avast, ye!
 end
 
 function mod:SwiftwindSaber(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 15)
 end
 
@@ -63,9 +66,11 @@ do
 	local onMe, scheduled = nil, nil
 	local function warn(self) -- It's either on 1 person or on everyone in the later stage, targetlist warnings are not not needed
 		if onMe then
-			self:Message(257305, "blue", "Warning", CL.you:format(self:SpellName(257305)), 257305) -- Cannon Barrage
+			self:Message(257305, "blue", nil, CL.you:format(self:SpellName(257305)), 257305) -- Cannon Barrage
+			self:PlaySound(257305, "warning", "moveout")
 		else
-			self:Message(257305, "orange", "Alarm") -- Cannon Barrage
+			self:Message(257305, "orange") -- Cannon Barrage
+			self:PlaySound(257305, "alarm", "watchstep")
 		end
 		onMe = nil
 		scheduled = nil
@@ -84,13 +89,15 @@ do
 end
 
 function mod:Avastye(args)
-	self:Message(args.spellId, "red", "Long")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long", "addincoming")
 	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:BlackPowderBomb(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Warning", self:SpellName(244657), args.spellId) -- Fixate
+	self:TargetMessage(args.spellId, args.destName, "yellow", nil, self:SpellName(244657), args.spellId) -- Fixate
 	if self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "warning", "fixate")
 		self:Say(args.spellId, self:SpellName(244657)) -- Fixate
 		self:Flash(args.spellId)
 	end

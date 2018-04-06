@@ -46,25 +46,29 @@ end
 
 
 function mod:Charrrrrge(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 8.5)
 end
 
 function mod:SpawnParrot(args)
 	self:StopBar(255952) -- Charrrrrge
-	self:Message("stages", "cyan", "Info", CL.stage:format(2), false)
+	self:Message("stages", "cyan", nil, CL.stage:format(2), false)
+	self:PlaySound("stages", "info", "stage2")
 
 	self:CDBar(256106, 6) -- Azerite Powder Shot
 	self:CDBar(256060, 27.5) -- Revitalizing Brew
 end
 
 function mod:AzeritePowderShot(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 12.5)
 end
 
 function mod:RevitalizingBrew(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning", "interrupt")
 	self:CDBar(args.spellId, 28.5)
 end
 
@@ -73,7 +77,8 @@ do
 	function mod:VileCoatingDamage(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm", "gtfo")
 		end
 	end
 end
