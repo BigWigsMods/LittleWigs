@@ -62,7 +62,7 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	local mobId = self:MobId(UnitGUID("boss1"))
 	if mobId == 61445 then -- Haiyan the Unstoppable
-		self:CDBar(-6025, 40, 120195) -- Meteor
+		self:CDBar(120195, 40) -- Meteor
 	elseif mobId == 61444 or mobId == 61442 then -- Ming the Cunning or Kuai the Brute
 		self:StopBar(120195)
 	end
