@@ -96,7 +96,7 @@ function mod:OnEngage()
 	annihilateCounter = 1
 	self:Message("stages", "Neutral", nil, L.engage_message, "inv_icon_heirloomtoken_weapon01")
 	self:CDBar(234428, 3) -- Summon Tormenting Eye
-	self:CDBar("nether_aberration", 10, CL.count:format(L.nether_aberration, aberrationCounter), L.nether_aberration_icon) -- Nether Aberration
+	self:CDBar("nether_aberration", 10, CL.count:format(self:SpellName(L.nether_aberration), aberrationCounter), L.nether_aberration_icon) -- Nether Aberration
 	self:CDBar("smoldering_infernal", 35, L.smoldering_infernal, L.smoldering_infernal_icon) -- Smoldering Infernal Summon
 end
 
