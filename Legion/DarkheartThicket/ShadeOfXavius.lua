@@ -41,9 +41,23 @@ end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 52 then
-		self:Message(200050, "Attention", "Info", CL.soon:format(self:SpellName(200050)))
+	if hp <= 50 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+
+		-- Bars might show less time than you
+		-- actually have, but never show more.
+		local _, _, _, _, _, endOfCast = UnitCastingInfo(unit) -- Nightmare Bolt, Growing Paranoia
+		if not endOfCast then
+			_, _, _, _, _, endOfCast = UnitChannelInfo(unit) -- Feed on the Weak
+		end
+		if endOfCast then
+			local timeLeft = endOfCast / 1000 - GetTime()
+			self:ScheduleTimer("Message", timeLeft, 200050, "Attention", "Info", CL.incoming:format(self:SpellName(200050)))
+			self:ScheduleTimer("CDBar", timeLeft, 200050, 5)
+		else
+			self:Message(200050, "Attention", "Info", CL.incoming:format(self:SpellName(200050)))
+			self:CDBar(200050, 5)
+		end
 	end
 end
 

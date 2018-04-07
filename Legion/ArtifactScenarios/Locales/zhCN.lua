@@ -65,3 +65,13 @@ L = BigWigs:NewBossLocale("Archmage Xylem", "zhCN")
 if L then
 	L.name = "大法师克希雷姆"
 end
+
+L = BigWigs:NewBossLocale("Agatha", "zhCN")
+if L then
+	L.name = "阿加莎"
+	L.imp_servant = "小鬼仆从"
+	L.fuming_imp = "阴燃的小鬼"
+
+	L.absorb = "吸收"
+	L.stacks = "层数"
+end

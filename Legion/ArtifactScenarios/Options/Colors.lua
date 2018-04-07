@@ -41,3 +41,12 @@ BigWigs:AddColors("Lord Erdris Thorn", {
 	[237188] = "Important",
 	[237191] = "Urgent",
 })
+
+BigWigs:AddColors("Agatha", {
+	[236161] = "Personal",
+	[242989] = "Neutral",
+	[243027] = {"Positive","Urgent"},
+	[243111] = {"Important","Positive"},
+	["fuming_imp"] = "Urgent",
+	["imp_servant"] = "Attention",
+})

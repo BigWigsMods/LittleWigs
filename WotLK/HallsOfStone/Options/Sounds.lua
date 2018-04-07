@@ -5,7 +5,6 @@ BigWigs:AddSounds("Maiden of Grief", {
 })
 
 BigWigs:AddSounds("Tribunal of Ages", {
-	[51012] = "Alarm",
 	[59866] = "Alert",
 	[59868] = "Alarm",
 	["timers"] = "Info",

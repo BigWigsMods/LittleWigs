@@ -4,13 +4,17 @@
 
 local mod, CL = BigWigs:NewBoss("Tirathon Saltheril", 1493, 1467)
 if not mod then return end
-mod:RegisterEnableMob(95885)
+mod:RegisterEnableMob(95885, 99013) -- Tirathon, Drelanim
 mod.engageId = 1815
 
 --------------------------------------------------------------------------------
--- Locals
+-- Localization
 --
 
+local L = mod:GetLocale()
+if L then
+	L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -18,6 +22,7 @@ mod.engageId = 1815
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		191941, -- Darkstrikes
 		191853, -- Furious Flames
 		191823, -- Furious Blast
@@ -30,6 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "DarkstrikesCast", 191941, 204151)
 	self:Log("SPELL_AURA_APPLIED", "DarkstrikesApplied", 191941)
@@ -43,9 +49,24 @@ function mod:OnEngage()
 	self:CDBar(191941, 5.2) -- Darkstrikes
 end
 
+function mod:VerifyEnable(_, mobId)
+	if mobId == 99013 then -- Drelanim is a friendly NPC
+		local _, _, completed = C_Scenario.GetCriteriaInfo(1)
+		return not completed
+	end
+	return true
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 8, CL.active, "achievement_dungeon_vaultofthewardens")
+	end
+end
 
 function mod:DarkstrikesCast(args)
 	self:Message(191941, "Important", self:Tank() and "Alarm", CL.casting:format(args.spellName))

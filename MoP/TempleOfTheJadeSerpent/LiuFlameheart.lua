@@ -3,73 +3,108 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Liu Flameheart", 867, 658)
+local mod, CL = BigWigs:NewBoss("Liu Flameheart", 960, 658)
 if not mod then return end
 mod:RegisterEnableMob(56732)
+mod.engageId = 1416
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
--- Locals
+-- Initialization
 --
 
-local smash = mod:SpellName(34618)
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "I will not be caged again. These Shado-Pan could not stop me. Neither shall you!"
-end
+local stage = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {-5813, 106872}
+	return {
+		"stages",
+		106823, -- Serpent Strike
+		106841, -- Jade Serpent Strike
+		118540, -- Jade Serpent Wave
+		107110, -- Jade Fire
+	}, {
+		["stages"] = "general",
+		[106823] = CL.stage:format(1),
+		[106841] = CL.stage:format(2),
+		[107110] = CL.stage:format(3),
+	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Enrage", 38166)
-	self:Log("SPELL_AURA_REMOVED", "EnrageRemoved", 38166)
-	self:Log("SPELL_AURA_APPLIED", "Smash", 106872)
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:Log("SPELL_AURA_APPLIED", "SerpentStrike", 106823)
+	self:Log("SPELL_AURA_APPLIED", "JadeSerpentStrike", 106841)
+	self:Log("SPELL_AURA_REMOVED", "SerpentStrikeRemoved", 106823, 106841)
 
-	self:Death("Win", 56732)
+	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 118540) -- Jade Serpent Wave
+	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 118540)
+	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 118540)
+	self:Log("SPELL_DAMAGE", "GroundEffectDamage", 107110) -- Jade Fire
+	self:Log("SPELL_MISSED", "GroundEffectDamage", 107110)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-	self:Bar(106872, "~"..smash, 17, 106872) -- 17-19
+	stage = 1
+	self:Message("stages", "Attention", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Smash(player, spellId)
-	self:TargetMessage(spellId, smash, player, "Urgent", spellId, "Alarm")
-	self:Bar(spellId, CL["other"]:format(smash, player), 4, spellId)
-	self:Bar(spellId, "~"..smash, 17, spellId) -- 17-19
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 35 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("stages", "Positive", "Info", CL.soon:format(CL.stage:format(3)), false)
+	elseif hp < 75 and stage == 1 then
+		stage = 2
+		self:Message("stages", "Positive", "Info", CL.soon:format(CL.stage:format(2)), false)
+	end
 end
 
-function mod:Enrage(_, spellId, _, _, spellName)
-	self:Message(-5813, spellName, "Important", spellId, "Long")
-	self:Bar(-5813, spellName, 30, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+	if spellId == 106895 then -- Summon Jade Serpent
+		self:UnregisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", unit)
+		self:Message("stages", "Attention", "Info", CL.stage:format(3), false)
+	elseif spellId == 106797 then -- Jade Essence
+		self:Message("stages", "Attention", "Info", CL.stage:format(2), false)
+	end
 end
 
-function mod:EnrageRemoved(_, _, _, _, spellName)
-	self:StopBar(spellName)
+function mod:SerpentStrike(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetBar(args.spellId, 8, args.destName)
+	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unitId)
-	if unitId == "boss1" then
-		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-		if hp < 25 then
-			self:Message(-5813, CL["soon"]:format(self:SpellName(38166)), "Positive", 38166, "Info") -- Enrage
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+function mod:JadeSerpentStrike(args)
+	if self:Me(args.destGUID) or self:Healer() then
+		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetBar(args.spellId, 8, args.destName)
+	end
+end
+
+function mod:SerpentStrikeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
+
+do
+	local prev = 0
+	function mod:GroundEffectDamage(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

@@ -21,7 +21,9 @@ end
 --
 
 function mod:GetOptions()
-	return {134225, 134234}
+	return {
+		134225, 134234
+	}
 end
 
 function mod:OnRegister()
@@ -49,4 +51,3 @@ function mod:Spellflame(args)
 	self:Message(args.spellId, "Attention", "Alert", CL["casting"]:format(args.spellName))
 	self:CDBar(args.spellId, 10)
 end
-

@@ -56,5 +56,7 @@ BigWigs:AddColors("Fel Lord Betrug", {
 BigWigs:AddColors("Assault on Violet Hold Trash", {
 	[204140] = "Important",
 	[204608] = {"Personal","Urgent"},
+	[204876] = "Important",
+	[204901] = "Important",
 	[205088] = "Important",
 })

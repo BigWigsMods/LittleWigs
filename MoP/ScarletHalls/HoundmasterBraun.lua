@@ -11,7 +11,7 @@ mod:RegisterEnableMob(59303)
 -- Locals
 --
 
-local percent = 90
+local nextCallDogs = 90
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,7 +35,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "RageWarn", "boss1")
-	percent = 90
+	nextCallDogs = 90
 end
 
 --------------------------------------------------------------------------------
@@ -43,12 +43,12 @@ end
 --
 
 function mod:CallDog(args)
-	self:Message(args.spellId, "Urgent", "Alert", ("%d%% - %s"):format(percent, args.spellName))
-	percent = percent - 10
+	self:Message(args.spellId, "Urgent", "Alert", CL.percent:format(nextCallDogs, args.spellName))
+	nextCallDogs = nextCallDogs - 10
 end
 
 function mod:BloodyRage(args)
-	self:Message(-5611, "Attention", "Alert", "50% - "..args.spellName, args.spellId)
+	self:Message(-5611, "Attention", "Alert", CL.percent:format(50, args.spellName), args.spellId)
 end
 
 function mod:RageWarn(unitId)

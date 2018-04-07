@@ -98,7 +98,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "UnearthyHowl", 241772) -- Unearthy Howl
 	self:Log("SPELL_CAST_START", "BlindingGlare", 239232) -- Blinding Glare
 	self:Log("SPELL_CAST_START", "ThrowTome", 242839, 242841, 242837) -- Throw Frost Tome, Throw Silence Tome, Throw Arcane Tome
-	self:Log("SPELL_CAST_START", "LumberingCrash", 121569) -- Lumbering Crash
+	self:Log("SPELL_CAST_START", "LumberingCrash", 242760) -- Lumbering Crash
 end
 
 --------------------------------------------------------------------------------

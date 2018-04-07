@@ -95,7 +95,7 @@ do
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Urgent", "Alert", "30% - ".. args.spellName)
+	self:Message(args.spellId, "Urgent", "Alert", CL.percent:format(30, args.spellName))
 end
 
 function mod:Restoration(args)

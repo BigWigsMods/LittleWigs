@@ -38,7 +38,7 @@ function mod:CurseOfFatigueRemoved(args)
 end
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "Important", nil, "10% - " .. args.spellName)
+	self:Message(args.spellId, "Important", nil, CL.percent:format(10, args.spellName))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)

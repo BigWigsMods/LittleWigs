@@ -17,6 +17,7 @@ BigWigs:AddColors("Naraxas", {
 	[199178] = {"Personal","Positive","Urgent"},
 	[199775] = "Attention",
 	[205549] = "Important",
+	[210150] = "Urgent",
 })
 
 BigWigs:AddColors("Dargrul", {

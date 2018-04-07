@@ -21,7 +21,7 @@ local nextExplosionWarning = 75
 
 function mod:GetOptions()
 	return {
-		{107268, "SAY"}, -- Sabotage
+		{107268, "SAY", "ICON"}, -- Sabotage
 		-5394, -- World in Flames
 	}
 end
@@ -46,6 +46,7 @@ function mod:Sabotage(args)
 	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 5, args.destName)
 	self:CDBar(args.spellId, 13.4)
+	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 5)
@@ -54,6 +55,7 @@ end
 
 function mod:SabotageRemoved(args)
 	self:StopBar(args.spellName, args.destName)
+	self:PrimaryIcon(args.spellId)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
 	end

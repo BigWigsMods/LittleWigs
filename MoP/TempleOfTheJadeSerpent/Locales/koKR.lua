@@ -1,15 +1,9 @@
-local L = BigWigs:NewBossLocale("Liu Flameheart", "koKR")
+local L = BigWigs:NewBossLocale("Lorewalker Stonestep", "koKR")
 if not L then return end
 if L then
-	L.engage_yell = "위대한 용의 심장을 너희 손에 넘겨줄 순 없다!"
-end
+	-- Ah, it is not yet over. From what I see, we face the trial of the yaungol. Let me shed some light...
+	--L.yaungol_warmup_trigger = "Ah, it is not yet over."
 
-L = BigWigs:NewBossLocale("Sha of Doubt", "koKR")
-if L then
-	L.engage_yell = "죽거나 항복해라, 너희는 날 이길 수 없어."
-end
-
-L = BigWigs:NewBossLocale("Wise Mari", "koKR")
-if L then
-	L.engage_say = "감히 신성한 물을 휘젓다니! 익사시켜주마!"
+	-- Oh, my. If I am not mistaken, it appears that the tale of Zao Sunseeker has come to life before us.
+	--L.five_suns_warmup_trigger = "If I am not mistaken"
 end

@@ -16,6 +16,11 @@ if L then
 	L.radiation_level = "%s：%d%%"
 end
 
+L = BigWigs:NewBossLocale("Tirathon Saltheril", "zhCN")
+if L then
+	L.warmup_trigger = "我为人民而战，为那些被放逐和唾弃的人而战。"
+end
+
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "zhCN")
 if L then
 	L.infester = "魔誓寄生者"

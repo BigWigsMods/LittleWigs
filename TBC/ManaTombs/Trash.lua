@@ -67,7 +67,10 @@ end
 --
 
 function mod:ShieldBash(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+	if self:Me(args.destGUID) or self:Healer(args.destName) then
+		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetBar(args.spellId, 8, args.destName)
+	end
 end
 
 do

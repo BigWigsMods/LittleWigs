@@ -30,7 +30,6 @@ BigWigs:AddSounds("Mephistroth", {
 })
 
 BigWigs:AddSounds("Cathedral of Eternal Night Trash", {
-	[121569] = "Alarm",
 	[236737] = "Alert",
 	[237391] = "Warning",
 	[237565] = "Long",
@@ -41,4 +40,5 @@ BigWigs:AddSounds("Cathedral of Eternal Night Trash", {
 	[239320] = "Warning",
 	[241598] = "Long",
 	[241772] = "Warning",
+	[242760] = "Alarm",
 })

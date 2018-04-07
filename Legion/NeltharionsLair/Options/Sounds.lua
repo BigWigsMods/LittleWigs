@@ -17,6 +17,7 @@ BigWigs:AddSounds("Naraxas", {
 	[199178] = {"Alarm","Warning"},
 	[199775] = "Long",
 	[205549] = "Alert",
+	[210150] = "Alert",
 })
 
 BigWigs:AddSounds("Dargrul", {

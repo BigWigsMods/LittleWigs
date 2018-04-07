@@ -40,3 +40,11 @@ BigWigs:AddSounds("Lord Erdris Thorn", {
 	[237188] = "Warning",
 	[237191] = "Alarm",
 })
+
+BigWigs:AddSounds("Agatha", {
+	[236161] = "Alarm",
+	[243027] = "Alert",
+	[243111] = "Long",
+	["fuming_imp"] = "Warning",
+	["imp_servant"] = "Info",
+})

@@ -20,6 +20,6 @@ BigWigs:AddSounds("The Shattered Halls Trash", {
 	[12542] = "Alert",
 	[15615] = "Alarm",
 	[30980] = "Alarm",
+	[35943] = "Long",
 	[36033] = "Alarm",
-	[38815] = "Long",
 })

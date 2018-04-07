@@ -1,15 +1,9 @@
-local L = BigWigs:NewBossLocale("Liu Flameheart", "zhCN")
+local L = BigWigs:NewBossLocale("Lorewalker Stonestep", "zhCN")
 if not L then return end
 if L then
-	L.engage_yell = "你们休想再封印我。影踪派阻止不了我。你们也不行！"
-end
+	-- 啊，还没完呢。看来，我们正面临野牛人的挑战。让我解释一下……
+	L.yaungol_warmup_trigger = "啊，还没完呢。"
 
-L = BigWigs:NewBossLocale("Sha of Doubt", "zhCN")
-if L then
-	L.engage_yell = "仇恨将吞噬一切，征服一切！"
-end
-
-L = BigWigs:NewBossLocale("Wise Mari", "zhCN")
-if L then
-	L.engage_say = "你们竟敢扰乱这水流？淹死你们！"
+	-- 噢，天哪。如果我没搞错的话，这似乎是在演绎赵·追日者的故事。
+	L.five_suns_warmup_trigger = "如果我没搞错的话"
 end
