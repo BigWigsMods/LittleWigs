@@ -66,7 +66,7 @@ do
 			local t = GetTime()
 			if (not self:Melee() and t-prev > 1.5) or t-prev > 6 then
 				prev = t
-				self:Message(112992, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(112992, "Personal", "Alert", CL.near:format(args.spellName))
 			end
 		end
 	end
