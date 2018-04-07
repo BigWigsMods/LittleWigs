@@ -48,4 +48,3 @@ function mod:Fixate(args)
 		self:Say(args.spellId)
 	end
 end
-

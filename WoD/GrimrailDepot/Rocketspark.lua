@@ -83,4 +83,3 @@ function mod:Deaths(args)
 		end
 	end
 end
-

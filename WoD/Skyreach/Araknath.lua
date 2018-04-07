@@ -77,4 +77,3 @@ function mod:Burst(args)
 	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, burstCount))
 	self:CDBar(args.spellId, 23)
 end
-

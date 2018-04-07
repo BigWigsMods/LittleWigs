@@ -9,6 +9,10 @@ mod:RegisterEnableMob(43438)
 mod.engageId = 1056
 mod.respawnTime = 30
 
+--------------------------------------------------------------------------------
+-- Localization
+--
+
 local L = mod:GetLocale()
 if L then
 	L.burrow = "Burrow/emerge"

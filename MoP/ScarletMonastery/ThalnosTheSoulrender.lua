@@ -21,7 +21,10 @@ end
 --
 
 function mod:GetOptions()
-	return {{-5865, "FLASH"}, 115297}
+	return {
+		{-5865, "FLASH"}, -- Spirit Gale
+		115297, -- Evict Soul
+	}
 end
 
 function mod:OnBossEnable()

@@ -2,6 +2,10 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="WiseMari.lua"/>
+<Script file="LorewalkerStonestep.lua"/>
+<Script file="LiuFlameheart.lua"/>
+<Script file="ShaOfDoubt.lua"/>
+
+<Include file="Options\options.xml"/>
 
 </Ui>
-

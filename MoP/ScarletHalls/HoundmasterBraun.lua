@@ -7,14 +7,21 @@ local mod, CL = BigWigs:NewBoss("Houndmaster Braun", 1001, 660)
 if not mod then return end
 mod:RegisterEnableMob(59303)
 
-local percent = 90
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local nextCallDogs = 90
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {-5611, 114259}
+	return {
+		-5611, -- Bloody Rage
+		114259, -- Call Dog
+	}
 end
 
 function mod:OnBossEnable()
@@ -28,7 +35,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "RageWarn", "boss1")
-	percent = 90
+	nextCallDogs = 90
 end
 
 --------------------------------------------------------------------------------
@@ -36,12 +43,12 @@ end
 --
 
 function mod:CallDog(args)
-	self:Message(args.spellId, "Urgent", "Alert", ("%d%% - %s"):format(percent, args.spellName))
-	percent = percent - 10
+	self:Message(args.spellId, "Urgent", "Alert", CL.percent:format(nextCallDogs, args.spellName))
+	nextCallDogs = nextCallDogs - 10
 end
 
 function mod:BloodyRage(args)
-	self:Message(-5611, "Attention", "Alert", "50% - "..args.spellName, args.spellId)
+	self:Message(-5611, "Attention", "Alert", CL.percent:format(50, args.spellName), args.spellId)
 end
 
 function mod:RageWarn(unitId)

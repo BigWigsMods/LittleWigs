@@ -73,11 +73,13 @@ end
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
+function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
-		self:Bar("warmup", 17, L.warmup_text, "achievement_dungeon_vaultofthewardens")
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 17.8, L.warmup_text, "achievement_dungeon_vaultofthewardens")
 	elseif msg == L.warmup_trigger_2 then
-		self:Bar("warmup", 4.7, L.warmup_text, "achievement_dungeon_vaultofthewardens")
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 5.5, L.warmup_text, "achievement_dungeon_vaultofthewardens")
 	end
 end
 

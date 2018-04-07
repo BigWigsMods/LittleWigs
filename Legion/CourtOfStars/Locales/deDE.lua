@@ -5,6 +5,7 @@ if L then
 	L.Construct = "Wächterkonstrukt"
 	L.Enforcer = "Dämonenversklavte Vollstreckerin"
 	L.Hound = "Legionshund"
+	L.Mistress = "Schattenmeisterin"
 	L.Gerenth = "Verdächtiger Adliger"
 	L.Jazshariu = "Jazshariu"
 	L.Imacutya = "Imacutya"
@@ -147,5 +148,5 @@ end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "deDE")
 if L then
-	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+	L.warmup_trigger = "Eine weitere Fehlleistung, Melandrus. Aber Ihr könnt es wiedergutmachen. Vernichtet die Eindringlinge. Ich muss zurück zur Nachtfestung."
 end

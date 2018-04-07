@@ -28,6 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SpikedTongueApplied", 199178)
 	self:Log("SPELL_AURA_REMOVED", "SpikedTongueRemoved", 199178)
 	self:Log("SPELL_CAST_START", "RancidMaw", 205549)
+	self:Log("SPELL_CAST_START", "ToxicRetchStart", 210150)
 	self:Log("SPELL_CAST_SUCCESS", "ToxicRetch", 210150)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
@@ -45,7 +46,7 @@ end
 --
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "Attention", "Long", "20% - ".. args.spellName)
+	self:Message(args.spellId, "Attention", "Long", CL.percent:format(20, args.spellName))
 end
 
 function mod:SpikedTongue(args)
@@ -77,8 +78,12 @@ function mod:SpikedTongueRemoved(args)
 end
 
 function mod:RancidMaw(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, 18) -- pull:7.2, 18.2, 20.6, 24.3, 18.2
+end
+
+function mod:ToxicRetchStart(args)
+	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:ToxicRetch(args)

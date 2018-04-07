@@ -7,4 +7,6 @@
 <Script file="Laj.lua"/>
 <Script file="WarpSplinter.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

@@ -6,5 +6,6 @@
 <Script file="Urom.lua"/>
 <Script file="Eregos.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

@@ -1,50 +1,50 @@
 
 BigWigs:AddSounds("Warlord Parjesh", {
-	[192131] = "Alarm",
-	[196563] = "Info",
-	[197502] = {"Warning","Long"},
 	[191900] = "Alert",
+	[192053] = "Alarm",
 	[192072] = "Info",
 	[192094] = "Warning",
-	[192053] = "Alarm",
+	[192131] = "Alarm",
+	[196563] = "Info",
 	[197064] = "Alert",
+	[197502] = {"Long","Warning"},
 })
 
 BigWigs:AddSounds("Lady Hatecoil", {
 	[193597] = "Warning",
 	[193611] = "Alert",
-	["blob"] = "Info",
 	[193698] = "Alarm",
+	["blob"] = "Info",
 })
 
 BigWigs:AddSounds("Serpentrix", {
-	[191873] = "Long",
 	[191855] = "Alarm",
+	[191873] = "Long",
 })
 
 BigWigs:AddSounds("King Deepbeard", {
 	[193018] = "Warning",
-	[193152] = "Alert",
-	[193093] = "Info",
 	[193051] = "Long",
+	[193093] = "Info",
+	[193152] = "Alert",
 })
 
 BigWigs:AddSounds("Wrath of Azshara", {
-	[192985] = "Long",
-	[192706] = "Alarm",
 	[192617] = "Warning",
-	[197365] = "Alarm",
 	[192675] = "Alert",
+	[192706] = "Alarm",
+	[192985] = "Long",
+	[197365] = "Alarm",
 })
 
 BigWigs:AddSounds("Eye of Azshara Trash", {
-	[196027] = "Alarm",
-	[195129] = {"Warning","Info"},
-	[196127] = "Long",
-	[195109] = "Alarm",
-	[196870] = "Long",
-	[225089] = "Warning",
 	[195046] = "Alarm",
-	[197105] = "Info",
+	[195109] = "Alarm",
+	[195129] = {"Info","Warning"},
 	[195284] = "Long",
+	[196027] = "Alarm",
+	[196127] = "Long",
+	[196870] = "Long",
+	[197105] = "Info",
+	[225089] = "Warning",
 })

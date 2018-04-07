@@ -6,6 +6,7 @@ if not mod then return end
 mod:RegisterEnableMob(24200, 24201) -- Skarvald the Constructor, Dalronn the Controller
 mod.engageId = 2024
 mod.respawnTime = 10
+
 -------------------------------------------------------------------------------
 --  Locals
 --

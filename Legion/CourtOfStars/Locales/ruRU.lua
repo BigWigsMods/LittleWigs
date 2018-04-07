@@ -5,6 +5,7 @@ if L then
 	L.Construct = "Голем-страж"
 	L.Enforcer = "Порабощенная Скверной карательница"
 	L.Hound = "Гончая Легиона"
+	L.Mistress = "Владычица теней"
 	L.Gerenth = "Герент Зловещий"
 	L.Jazshariu = "Джазшариу"
 	L.Imacutya = "Имаку'туя"

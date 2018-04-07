@@ -1,15 +1,15 @@
 
 BigWigs:AddColors("Ivanyr", {
 	[196392] = "Important",
-	[196562] = {"Urgent","Personal"},
+	[196562] = {"Personal","Urgent"},
 	[196805] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("Corstilax", {
-	[220481] = {"Attention","Personal"},
-	[196068] = {"Urgent","Personal"},
-	[196115] = "Urgent",
 	[195804] = {"Attention","Personal"},
+	[196068] = {"Personal","Urgent"},
+	[196115] = "Urgent",
+	[220481] = {"Attention","Personal"},
 })
 
 BigWigs:AddColors("General Xakal", {
@@ -20,26 +20,26 @@ BigWigs:AddColors("General Xakal", {
 })
 
 BigWigs:AddColors("Naltira", {
-	[211543] = {"Important","Personal"},
-	[200040] = {"Urgent","Personal"},
-	[-12687] = {"Urgent","Personal"},
+	[-12687] = {"Personal","Urgent"},
+	[200040] = {"Personal","Urgent"},
 	[200284] = {"Attention","Personal","Positive"},
+	[211543] = {"Important","Personal"},
 })
 
 BigWigs:AddColors("Advisor Vandros", {
-	[203176] = {"Attention","Urgent","Personal"},
 	[202974] = "Attention",
-	[220871] = {"Urgent","Personal"},
+	[203176] = {"Attention","Personal","Urgent"},
 	[203882] = "Important",
+	[220871] = {"Personal","Urgent"},
 })
 
 BigWigs:AddColors("The Arcway Trash", {
+	[210750] = "Personal",
 	[211115] = "Attention",
-	[226285] = {"Urgent","Personal","Positive"},
-	[211745] = "Personal",
-	[211632] = {"Attention","Personal"},
 	[211217] = "Urgent",
+	[211632] = {"Attention","Personal"},
+	[211745] = "Personal",
 	[211757] = "Urgent",
 	[226206] = "Urgent",
-	[210750] = "Personal",
+	[226285] = {"Personal","Positive","Urgent"},
 })

@@ -19,10 +19,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "BaneCast", 48294, 59301)
+	self:Log("SPELL_CAST_START", "BaneCast", 48294, 59301) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "BaneApplied", 48294, 59301)
 	self:Log("SPELL_AURA_REMOVED", "BaneRemoved", 48294, 59301)
-	self:Log("SPELL_AURA_APPLIED", "FetidRot", 48291, 59300)
+	self:Log("SPELL_AURA_APPLIED", "FetidRot", 48291, 59300) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "FetidRotRemoved", 48291, 59300)
 
 	self:Death("Win", 26861)

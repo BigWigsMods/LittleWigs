@@ -29,14 +29,14 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BladeRush", 124283)
-	self:Log("SPELL_AURA_APPLIED", "Tempest", 119875)
+	self:Log("SPELL_AURA_START", "Tempest", 119875)
 	self:Log("SPELL_AURA_APPLIED", "ReinforcementsPhase", 119476) -- 119476 = Bulwark
 
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
 function mod:OnEngage()
-	nextReinforcementsWarning = 75 -- phases at 70% and 40%
+	nextReinforcementsWarning = 80 -- phases at 75% and 45%
 end
 
 --------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ function mod:BladeRush(args)
 end
 
 function mod:Tempest(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert", nil, nil, true)
+	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:ReinforcementsPhase(args)
@@ -61,7 +61,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	if hp < nextReinforcementsWarning then
 		self:Message(-5946, "Attention", nil, CL.soon:format(self:SpellName(-5946)))
 		nextReinforcementsWarning = nextReinforcementsWarning - 30
-		if nextReinforcementsWarning < 40 then
+		if nextReinforcementsWarning < 45 then
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		end
 	end

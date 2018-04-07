@@ -118,4 +118,3 @@ function mod:Success(_, _, _, _, spellId)
 		self:Win()
 	end
 end
-

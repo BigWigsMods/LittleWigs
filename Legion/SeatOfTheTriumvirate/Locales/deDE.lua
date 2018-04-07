@@ -9,8 +9,8 @@ end
 L = BigWigs:NewBossLocale("L'ura", "deDE")
 if L then
 	--L.warmup_text = "L'ura Active"
-	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+	L.warmup_trigger = "Dieses Chaos... diese Qualen. Etwas Derartiges habe ich noch nie gespürt."
+	L.warmup_trigger_2 = "Derlei Gedanken können jetzt warten. Dieses Wesen muss sterben."
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")

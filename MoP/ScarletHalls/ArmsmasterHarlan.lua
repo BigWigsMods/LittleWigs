@@ -7,6 +7,10 @@ local mod, CL = BigWigs:NewBoss("Armsmaster Harlan", 1001, 654)
 if not mod then return end
 mod:RegisterEnableMob(58632)
 
+--------------------------------------------------------------------------------
+-- Locals
+--
+
 local helpCount = 1
 
 --------------------------------------------------------------------------------
@@ -31,7 +35,11 @@ end
 --
 
 function mod:GetOptions()
-	return {"cleave", {"blades", "FLASH"}, "help"}
+	return {
+		"cleave",
+		{"blades", "FLASH"},
+		"help",
+	}
 end
 
 function mod:OnBossEnable()

@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Amalgam of Souls", {
-	[196587] = {"Alert","Warning"},
 	[194956] = "Warning",
+	[196587] = {"Alert","Warning"},
 })
 
 BigWigs:AddSounds("Illysanna Ravencrest", {
@@ -11,25 +11,25 @@ BigWigs:AddSounds("Illysanna Ravencrest", {
 
 BigWigs:AddSounds("Smashspite", {
 	[198073] = "Info",
-	[198446] = "Alert",
-	[198245] = "Alarm",
 	[198079] = "Warning",
+	[198245] = "Alarm",
+	[198446] = "Alert",
 })
 
 BigWigs:AddSounds("Kurtalos Ravencrest", {
-	[198820] = "Warning",
 	[198641] = "Info",
-	[202019] = {"Warning","Info"},
+	[198820] = "Warning",
+	[202019] = {"Info","Warning"},
 })
 
 BigWigs:AddSounds("Black Rook Hold Trash", {
-	[200291] = "Alert",
-	[200248] = "Alert",
 	[197974] = "Alarm",
-	[203163] = "Warning",
-	[227913] = "Alarm",
-	[200343] = "Warning",
-	[225573] = "Alarm",
+	[200248] = "Alert",
 	[200261] = "Alarm",
+	[200291] = "Alert",
+	[200343] = "Warning",
+	[203163] = "Warning",
 	[214003] = "Alarm",
+	[225573] = "Alarm",
+	[227913] = "Alarm",
 })

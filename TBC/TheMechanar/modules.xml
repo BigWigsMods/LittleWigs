@@ -7,4 +7,6 @@
 <Script file="Sepethrea.lua"/>
 <Script file="Pathaleon.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

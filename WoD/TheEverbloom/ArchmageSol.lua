@@ -64,4 +64,3 @@ function mod:FrozenRain(args)
 		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
 	end
 end
-

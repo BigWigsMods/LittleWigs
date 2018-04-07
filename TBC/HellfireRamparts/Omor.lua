@@ -12,7 +12,6 @@ mod:RegisterEnableMob(17308)
 --  Initialization
 --
 
-
 function mod:GetOptions()
 	return {
 		{30695, "SAY", "ICON", "PROXIMITY"}, -- Treacherous Aura

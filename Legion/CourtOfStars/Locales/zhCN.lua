@@ -5,6 +5,7 @@ if L then
 	L.Construct = "构造体卫兵"
 	L.Enforcer = "邪缚执行者"
 	L.Hound = "军团猎犬"
+	L.Mistress = "暗影女妖"
 	L.Gerenth = "邪恶的格伦斯"
 	L.Jazshariu = "加兹沙尤"
 	L.Imacutya = "依玛库塔"

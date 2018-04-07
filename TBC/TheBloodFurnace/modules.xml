@@ -5,4 +5,6 @@
 <Script file="Broggok.lua"/>
 <Script file="Kelidan.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

@@ -77,4 +77,3 @@ function mod:MoltenCore(args)
 		self:StackMessage(args.spellId, args.destName, args.amount, "Attention")
 	end
 end
-

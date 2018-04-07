@@ -8,7 +8,6 @@ mod:RegisterEnableMob(17978)
 mod.engageId = 1928
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
-
 --------------------------------------------------------------------------------
 -- Initialization
 --

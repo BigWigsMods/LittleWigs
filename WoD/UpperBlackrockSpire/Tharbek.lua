@@ -80,4 +80,3 @@ end
 function mod:DragonDies()
 	self:StopBar(161882) -- Incinerating Breath
 end
-

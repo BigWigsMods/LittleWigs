@@ -83,4 +83,3 @@ function mod:SanctifiedGround(args)
 		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
 	end
 end
-

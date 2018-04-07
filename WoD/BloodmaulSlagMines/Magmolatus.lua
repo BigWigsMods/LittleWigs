@@ -60,4 +60,3 @@ end
 function mod:Stage2()
 	self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
 end
-

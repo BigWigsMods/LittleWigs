@@ -82,4 +82,3 @@ function mod:CurtainOfFlameRemoved(args)
 		self:CloseProximity(args.spellId)
 	end
 end
-

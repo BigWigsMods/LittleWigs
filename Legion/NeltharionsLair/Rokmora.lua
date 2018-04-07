@@ -51,10 +51,12 @@ end
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
+function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 18.9, L.warmup_text, "achievement_dungeon_neltharionslair")
-	elseif msg == L.warmup_trigger_2 and self:BarTimeLeft(L.warmup_text) == 0 then
+	elseif msg == L.warmup_trigger_2 then
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 4.95, L.warmup_text, "achievement_dungeon_neltharionslair")
 	end
 end
