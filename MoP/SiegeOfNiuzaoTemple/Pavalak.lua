@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	nextReinforcementsWarning = 75 -- phases at 70% and 40%
+	nextReinforcementsWarning = 80 -- phases at 75% and 45%
 end
 
 --------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	if hp < nextReinforcementsWarning then
 		self:Message(-5946, "Attention", nil, CL.soon:format(self:SpellName(-5946)))
 		nextReinforcementsWarning = nextReinforcementsWarning - 30
-		if nextReinforcementsWarning < 40 then
+		if nextReinforcementsWarning < 45 then
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		end
 	end
