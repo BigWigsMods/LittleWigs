@@ -28,7 +28,7 @@ if L then
 
 	-- Triggers
 	-- L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
-	L.win_trigger = "So be it. You will not stand in our way any longer."
+	-- L.win_trigger = "So be it. You will not stand in our way any longer."
 
 	-- Engage / Options
 	-- L.engage_message = "Highlord Kruul's Challenge Engaged!"
@@ -101,7 +101,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TwistedReflections", 234676)
 
 	self:Death("KruulIncoming", 117933) -- Inquisitor Variss
-	self:Death("Win", 117198) -- Highlord Kruul, fallback win condition
 end
 
 function mod:OnEngage()
@@ -131,15 +130,9 @@ function mod:SCENARIO_UPDATE()
 	end
 end
 
-function mod:Warmup()
+function mod:Warmup(event)
+	self:UnregisterEvent(event)
 	self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "SayTriggers")
-end
-
-function mod:SayTriggers(_, msg)
-	if msg == L.win_trigger then -- Fallback is Kruul Death
-		self:Win()
-	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
@@ -159,6 +152,9 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	elseif spellId == 234673 then -- Netherstomp
 		self:Message(spellId, "Urgent", "Alert")
 		self:Bar(spellId, 15.8)
+	elseif spellId == 233458 then -- Gift of Sargeras
+		-- Spoiler: HE EXPLODES!
+		self:Win()
 	end
 end
 
