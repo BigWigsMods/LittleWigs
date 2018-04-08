@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Kruul", 1698)
+local mod, CL = BigWigs:NewBoss("Kruul", 1698) -- The Highlord's Return
 if not mod then return end
 mod:RegisterEnableMob(117933, 117198) -- Inquisitor Variss, Highlord Kruul
 mod.otherMenu = 1716 -- Broken Shore Mage Tower
@@ -27,11 +27,11 @@ if L then
 	L.velen = "Prophet Velen"
 
 	-- Triggers
-	L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
-	L.win_trigger = "So be it. You will not stand in our way any longer."
+	-- L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
+	-- L.win_trigger = "So be it. You will not stand in our way any longer."
 
 	-- Engage / Options
-	L.engage_message = "Highlord Kruul's Challenge Engaged!"
+	-- L.engage_message = "Highlord Kruul's Challenge Engaged!"
 
 	L.nether_aberration = 235110
 	L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
@@ -52,12 +52,18 @@ function mod:GetOptions()
 		"stages",
 		"nether_aberration", -- Nether Aberration
 		240790, -- Nether Storm
+
+		--[[ Prophet Velen ]]--
 		233473, -- Holy Ward
+
+		--[[ Inquisitor Variss ]]--
 		234423, -- Drain Life
 		234422, -- Aura of Decay
 		234428, -- Summon Tormenting Eye
 		"smoldering_infernal", -- Smoldering Infernal Summon
 		234631, -- Smash
+
+		--[[ Highlord Kruul ]]--
 		236572, -- Annihilate
 		234920, -- Shadow Sweep
 		234673, -- Nether Stomp
@@ -72,12 +78,19 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.name
+
+	-- Big evul hack to enable the module when entering the scenario
+	self:RegisterEvent("SCENARIO_UPDATE")
+	if C_Scenario.IsInScenario() then
+		self:SCENARIO_UPDATE()
+	end
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "SayTriggers")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+
 	self:Log("SPELL_CAST_START", "NetherStorm", 240790)
 	self:Log("SPELL_CAST_START", "DrainLife", 234423)
 	self:Log("SPELL_CAST_START", "HolyWard", 233473)
@@ -88,28 +101,38 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TwistedReflections", 234676)
 
 	self:Death("KruulIncoming", 117933) -- Inquisitor Variss
-	self:Death("Win", 117198) -- Highlord Kruul, fallback win condition
 end
 
 function mod:OnEngage()
 	aberrationCounter = 1
 	annihilateCounter = 1
-	self:Message("stages", "Neutral", nil, L.engage_message, "inv_icon_heirloomtoken_weapon01")
 	self:CDBar(234428, 3) -- Summon Tormenting Eye
-	self:CDBar("nether_aberration", 10, CL.count:format(L.nether_aberration, aberrationCounter), L.nether_aberration_icon) -- Nether Aberration
+	self:CDBar("nether_aberration", 10, CL.count:format(self:SpellName(L.nether_aberration), aberrationCounter), L.nether_aberration_icon) -- Nether Aberration
 	self:CDBar("smoldering_infernal", 35, L.smoldering_infernal, L.smoldering_infernal_icon) -- Smoldering Infernal Summon
+end
+
+function mod:OnDisable()
+	self:RegisterEvent("SCENARIO_UPDATE")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:SayTriggers(_, msg)
-	if msg == L.warmup_trigger then
-		self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
-	elseif msg == L.win_trigger then -- Fallback is Kruul Death
-		self:Win()
+function mod:SCENARIO_UPDATE()
+	if self:IsEnabled() then return end
+	local _, _, numCriteria = C_Scenario.GetStepInfo()
+	for i = 1, numCriteria do
+		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
+		if criteriaID == 34961 then -- Destroy Highlord Kruul permanently
+			mod:Enable()
+		end
 	end
+end
+
+function mod:Warmup(event)
+	self:UnregisterEvent(event)
+	self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
@@ -129,6 +152,9 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	elseif spellId == 234673 then -- Netherstomp
 		self:Message(spellId, "Urgent", "Alert")
 		self:Bar(spellId, 15.8)
+	elseif spellId == 233458 then -- Gift of Sargeras
+		-- Spoiler: HE EXPLODES!
+		self:Win()
 	end
 end
 

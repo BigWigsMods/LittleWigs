@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Tugar Bloodtotem", 1702)
+local mod, CL = BigWigs:NewBoss("Tugar Bloodtotem", 1702) -- Feltotem's Fall
 if not mod then return end
 mod:RegisterEnableMob(117230, 117484) -- Tugar Bloodtotem, Jormog the Behemoth
 mod.otherMenu = 1716 -- Broken Shore Mage Tower
@@ -49,11 +49,12 @@ end
 
 function mod:GetOptions()
 	return {
-		-- Tugar
+		--[[ Tugar ]]--
 		242733, -- Fel Burst
 		243224, -- Fel Surge Totem
 		"rupture", -- Fel Rupture
-		-- Jormog
+
+		--[[ Jormog ]]--
 		241687, -- Sonic Scream
 		{238471, "INFOBOX"}, -- Fel Hardened Scales
 		"submerge",
@@ -66,10 +67,18 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.tugar
+
+	-- Big evul hack to enable the module when entering the scenario
+	self:RegisterEvent("SCENARIO_UPDATE")
+	if C_Scenario.IsInScenario() then
+		self:SCENARIO_UPDATE()
+	end
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 
 	self:Log("SPELL_CAST_START", "FelBurst", 242733)
 	self:Log("SPELL_CAST_START", "SonicScream", 241687)
@@ -77,8 +86,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ScaleRemoved", 238471)
 	self:Log("SPELL_CAST_START", "FitSurgeStart", 242496)
 	self:Log("SPELL_AURA_APPLIED", "FitSurgeHitYou", 242496)
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 
 	self:Death("Deaths", 117230, 117484)
 end
@@ -97,9 +104,24 @@ function mod:OnEngage()
 	self:CDBar("rupture", 7, "X", L.rupture_icon)
 end
 
+function mod:OnDisable()
+	self:RegisterEvent("SCENARIO_UPDATE")
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:SCENARIO_UPDATE()
+	if self:IsEnabled() then return end
+	local _, _, numCriteria = C_Scenario.GetStepInfo()
+	for i = 1, numCriteria do
+		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
+		if criteriaID == 35052 then -- Follow Tugar Bloodtotem
+			mod:Enable()
+		end
+	end
+end
 
 function mod:FelBurst(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
@@ -129,7 +151,7 @@ function mod:FitSurgeHitYou(args)
 	end
 end
 
-function mod:CHAT_MSG_MONSTER_EMOTE(event, msg, unit, _, _, target)
+function mod:CHAT_MSG_MONSTER_EMOTE()
 	self:Message("charge", "Personal", "Alarm", CL.incoming:format(self:SpellName(100)), L.charge_icon)
 end
 
@@ -149,4 +171,3 @@ function mod:Deaths()
 		self:Win()
 	end
 end
-
