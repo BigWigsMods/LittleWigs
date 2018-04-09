@@ -160,6 +160,6 @@ function mod:CorruptedBellow(args)
 end
 
 function mod:BrackwaterBarrage(args)
-	self:Message(args.spellId, "Urgent", "Info")
+	self:Message(args.spellId, "Urgent", "Alarm")
 	self:CDBar(args.spellId, 22.2)
 end
