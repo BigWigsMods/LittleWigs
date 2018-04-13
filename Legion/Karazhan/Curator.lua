@@ -34,6 +34,7 @@ end
 function mod:OnEngage()
 	self:Bar(227267, 5) -- Summon Volatile Energy
 	self:CDBar(227279, 12) -- Power Discharge
+	self:CDBar(227254, 68) -- Evocation
 end
 
 --------------------------------------------------------------------------------
@@ -72,7 +73,8 @@ end
 
 function mod:Evocation(args)
 	self:Message(args.spellId, "Positive", "Long")
-	self:Bar(args.spellId, 20, CL.cast:format(args.spellName))
+	self:CastBar(args.spellId, 20)
+	self:CDBar(args.spellId, 90)
 	self:StopBar(227267) -- Summon Volatile Energy
 	self:StopBar(227279) -- Power Discharges
 end
