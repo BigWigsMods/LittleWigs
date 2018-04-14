@@ -22,13 +22,13 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Log("SPELL_CAST_SUCCESS", "SummonVolatileEnergy", 227267)
 	self:Log("SPELL_CAST_SUCCESS", "PowerDischarge", 227279)
 	self:Log("SPELL_AURA_APPLIED", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_PERIODIC_MISSED", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_AURA_APPLIED", "Evocation", 227254)
+	self:Log("SPELL_AURA_REMOVED", "EvocationOver", 227254)
 end
 
 function mod:OnEngage()
@@ -74,7 +74,11 @@ end
 function mod:Evocation(args)
 	self:Message(args.spellId, "Positive", "Long")
 	self:CastBar(args.spellId, 20)
-	self:CDBar(args.spellId, 90)
 	self:StopBar(227267) -- Summon Volatile Energy
 	self:StopBar(227279) -- Power Discharges
+end
+
+function mod:EvocationOver(args)
+	self:Message(args.spellId, "Neutral", "Info", CL.over:format(args.spellName))
+	self:CDBar(args.spellId, 69)
 end
