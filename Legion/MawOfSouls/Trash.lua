@@ -120,6 +120,7 @@ do
 
 
 	function mod:SeaLegs(args)
+		if self:MobId(args.destGUID) ~= 98919 then return end -- mages can spellsteal it
 		-- for casters/hunters it's deflection, for melees it's just dodge chance
 		if self:Ranged() or self:Dispeller("magic", true) then
 			local t = GetTime()
