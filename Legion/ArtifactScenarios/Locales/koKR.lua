@@ -76,3 +76,14 @@ if L then
 	L.absorb = "흡수"
 	L.stacks = "중첩"
 end
+
+L = BigWigs:NewBossLocale("Sigryn", "koKR")
+if L then
+	L.sigryn = "시그린"
+	L.jarl = "야를 벨브란드"
+	L.faljar = "룬의 현자 팔리아르"
+
+	-- L.warmup_trigger = "What's this? The outsider has come to stop me?"
+
+	L.absorb = "흡수"
+end

@@ -76,3 +76,14 @@ if L then
 	L.absorb = "吸收"
 	L.stacks = "层数"
 end
+
+L = BigWigs:NewBossLocale("Sigryn", "zhCN")
+if L then
+	-- L.sigryn = "Sigryn"
+	-- L.jarl = "Jarl Velbrand"
+	-- L.faljar = "Runenseher Faljar"
+
+	-- L.warmup_trigger = "What's this? The outsider has come to stop me?"
+
+	L.absorb = "吸收"
+end
