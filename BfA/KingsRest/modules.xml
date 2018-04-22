@@ -6,4 +6,6 @@
 <Script file="Warlords.lua"/>
 <Script file="Dazar.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

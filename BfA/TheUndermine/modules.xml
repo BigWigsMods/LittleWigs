@@ -6,4 +6,6 @@
 <Script file="Rixxa.lua"/>
 <Script file="Razzdunk.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

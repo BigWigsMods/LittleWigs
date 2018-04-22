@@ -7,4 +7,6 @@
 <Script file="Waycrest.lua"/>
 <Script file="GorakTul.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

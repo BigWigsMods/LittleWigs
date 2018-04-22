@@ -6,4 +6,6 @@
 <Script file="Galvazzt.lua"/>
 <Script file="Avatar.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

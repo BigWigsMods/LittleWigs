@@ -6,4 +6,6 @@
 <Script file="Booty.lua"/>
 <Script file="Sweete.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

@@ -6,4 +6,6 @@
 <Script file="Darkfathom.lua"/>
 <Script file="Behamat.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

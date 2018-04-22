@@ -6,4 +6,6 @@
 <Script file="Zancha.lua"/>
 <Script file="Taloc.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

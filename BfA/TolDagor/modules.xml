@@ -6,4 +6,6 @@
 <Script file="Valyri.lua"/>
 <Script file="Korgus.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>

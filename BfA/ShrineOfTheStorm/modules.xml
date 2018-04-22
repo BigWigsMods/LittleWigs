@@ -6,4 +6,6 @@
 <Script file="Stormsong.lua"/>
 <Script file="Volzith.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
