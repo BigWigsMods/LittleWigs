@@ -22,9 +22,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "PowerDischarge", "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "SummonVolatileEnergy", 227267)
-	self:Log("SPELL_CAST_SUCCESS", "PowerDischarge", 227279)
-	self:Log("SPELL_AURA_APPLIED", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_PERIODIC_MISSED", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_AURA_APPLIED", "Evocation", 227254)
@@ -46,15 +45,10 @@ function mod:SummonVolatileEnergy(args)
 	self:Bar(args.spellId, 9.7)
 end
 
-do
-	local prev = 0
-	function mod:PowerDischarge(args)
-		local t = GetTime()
-		if t-prev > 2 then
-			prev = t
-			self:Message(args.spellId, "Urgent", "Alert")
-			self:CDBar(args.spellId, 12)
-		end
+function mod:PowerDischarge(_, _, _, _, spellId)
+	if spellId == 227278 then
+		self:Message(227279, "Urgent", "Alert")
+		self:CDBar(227279, 12)
 	end
 end
 
