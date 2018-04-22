@@ -42,7 +42,7 @@ end
 
 function mod:Pound(args)
 	self:CastBar(53472, 3.2)
-	self:Message(53472, "Attention", nil, CL.casting:format(args.spellName))
+	self:Message(53472, "Attention", "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(unit)
