@@ -1,9 +1,11 @@
 local L = BigWigs:NewBossLocale("Maw of Souls Trash", "itIT")
 if not L then return end
 if L then
-	--L.champion = "Helarjar Champion"
-	--L.mariner = "Night Watch Mariner"
-	--L.mistmender = "Seacursed Mistmender"
-	--L.mistcaller = "Helarjar Mistcaller"
-	--L.skjal = "Skjal"
+	L.soulguard = "Guardia dell'Anima Fradicia"
+	L.champion = "Campione Helarjar"
+	L.mariner = "Marinaio dei Guardiani della Notte"
+	L.swiftblade = "Lamalesta Maledetto"
+	L.mistmender = "Curatrice delle Nebbie Maledetta"
+	L.mistcaller = "Evocanebbie Helarjar"
+	L.skjal = "Skjal"
 end
