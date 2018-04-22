@@ -25,10 +25,10 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "FatalLink", 269692)
-	self:Log("SPELL_CAST_SUCCESS", "PutridBlood", 259830)
-	self:Log("SPELL_CAST_START", "VileExpulsion", 259830)
-	self:Log("SPELL_CAST_START", "CleansingLight", 259830)
-	self:Log("SPELL_CAST_SUCCESS", "PurgeCorruption", 259830)
+	self:Log("SPELL_CAST_SUCCESS", "PutridBlood", 269301)
+	self:Log("SPELL_CAST_START", "VileExpulsion", 269843)
+	self:Log("SPELL_CAST_START", "CleansingLight", 269310)
+	self:Log("SPELL_CAST_SUCCESS", "PurgeCorruption", 269406)
 end
 
 function mod:OnEngage()

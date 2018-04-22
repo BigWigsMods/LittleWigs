@@ -24,7 +24,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BloodBolt", 260879)
 	self:Log("SPELL_CAST_SUCCESS", "CreepingRot", 260894)
-	self:Log("SPELL_CAST_START", "BloodMirror", 260773)
+	self:Log("SPELL_CAST_START", "BloodMirror", 264603)
 end
 
 function mod:OnEngage()
