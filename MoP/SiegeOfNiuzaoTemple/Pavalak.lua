@@ -29,7 +29,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BladeRush", 124283)
-	self:Log("SPELL_AURA_START", "Tempest", 119875)
+	self:Log("SPELL_CAST_START", "Tempest", 119875)
 	self:Log("SPELL_AURA_APPLIED", "ReinforcementsPhase", 119476) -- 119476 = Bulwark
 
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")

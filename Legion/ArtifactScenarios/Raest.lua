@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Raest", 1684)
+local mod, CL = BigWigs:NewBoss("Raest", 1684) -- Thwarting the Twins
 if not mod then return end
 mod:RegisterEnableMob(116409, 116410) -- Raest Magespear, Karam Magespear
 mod.otherMenu = 1716 -- Broken Shore Mage Tower
@@ -37,8 +37,8 @@ if L then
 	L.killed = "%s killed"
 
 	L.warmup_text = "Karam Magespear Active"
-	L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
-	L.warmup_trigger2 = "Kill this interloper, brother!"
+	-- L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
+	-- L.warmup_trigger2 = "Kill this interloper, brother!"
 end
 
 --------------------------------------------------------------------------------
@@ -50,8 +50,12 @@ function mod:GetOptions()
 		"warmup",
 		202081, -- Fixate
 		235308, -- Purgatory
+
+		--[[ Stage 2 ]]--
 		"handFromBeyond",
 		{235578, "FLASH"}, -- Grasp from Beyond
+
+		--[[ Stage 3 ]]--
 		{"rune", "FLASH"},
 		"thing",
 	}, {
@@ -63,6 +67,12 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.name
+
+	-- Big evul hack to enable the module when entering the scenario
+	self:RegisterEvent("SCENARIO_UPDATE")
+	if C_Scenario.IsInScenario() then
+		self:SCENARIO_UPDATE()
+	end
 end
 
 function mod:OnBossEnable()
@@ -84,16 +94,28 @@ function mod:OnEngage()
 	handGUID = ""
 end
 
+function mod:OnDisable()
+	self:RegisterEvent("SCENARIO_UPDATE")
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Warmup(_, msg)
-	if msg == L.warmup_trigger then
-		self:Bar("warmup", 45.7, L.warmup_text, 202081)
-	elseif msg == L.warmup_trigger2 then
-		self:Bar("warmup", 7.7, L.warmup_text, 202081)
+function mod:SCENARIO_UPDATE()
+	if self:IsEnabled() then return end
+	local _, _, numCriteria = C_Scenario.GetStepInfo()
+	for i = 1, numCriteria do
+		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
+		if criteriaID == 35050 then -- Raest confronted
+			mod:Enable()
+		end
 	end
+end
+
+function mod:Warmup(event)
+	self:UnregisterEvent(event)
+	self:Bar("warmup", 45.7, L.warmup_text, "ability_fixated_state_red")
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)

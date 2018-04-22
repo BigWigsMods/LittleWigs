@@ -30,7 +30,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 35 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message(68872, "Important", nil, CL.soon(self:SpellName(68872))) -- Soulstorm
+		self:Message(68872, "Important", nil, CL.soon:format(self:SpellName(68872))) -- Soulstorm
 	end
 end
 

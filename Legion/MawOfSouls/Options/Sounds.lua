@@ -18,7 +18,7 @@ BigWigs:AddSounds("Helya", {
 	[196947] = "Info",
 	[197262] = "Alert",
 	[198495] = "Warning",
-	[202088] = "Info",
+	[202088] = "Alarm",
 	[227233] = "Alarm",
 	["destructor_tentacle"] = "Warning",
 	["stages"] = "Info",
@@ -26,9 +26,12 @@ BigWigs:AddSounds("Helya", {
 
 BigWigs:AddSounds("Maw of Souls Trash", {
 	[192019] = "Long",
-	[195293] = "Alert",
+	[194615] = "Alarm",
+	[194657] = "Alarm",
+	[195293] = "Long",
+	[198324] = {"Alarm","Warning"},
 	[198405] = {"Info","Warning"},
-	[199514] = "Alert",
-	[199589] = "Alert",
-	[216197] = "Alert",
+	[199514] = {"Alarm","Alert"},
+	[199589] = {"Alarm","Alert"},
+	[216197] = "Alarm",
 })

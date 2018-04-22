@@ -67,7 +67,7 @@ function mod:EyeBeams(args) -- eye beam missing timer xxx fix this
 	self:StopBar(197418) -- Vengeful Shear
 	self:Bar(197696, 15) -- Eye Beam
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(197696)
 	end
 end
 

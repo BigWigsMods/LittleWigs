@@ -15,10 +15,14 @@ mod.respawnTime = 33
 
 function mod:GetOptions()
 	return {
+		"stages",
 		{164426, "FLASH"}, -- Reckless Provocation
+		164632, -- Burning Arrows
 		{164837, "ICON"}, -- Savage Mauling
 		164835, -- Bloodletting Howl
-		164632, -- Burning Arrows
+	}, {
+		["stages"] = "general",
+		[164837] = -10437, -- Dreadfang
 	}
 end
 
@@ -30,7 +34,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingOver", 164837)
 
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
+	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss2")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+end
+
+function mod:OnEngage()
+	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -58,11 +69,31 @@ function mod:SavageMaulingOver(args)
 end
 
 function mod:RecklessProvocationInc(args)
+	self:CDBar(args.spellId, 42.6)
 	self:Message(args.spellId, "Urgent", "Warning", CL.incoming:format(args.spellName))
 	self:Flash(args.spellId)
 end
 
 function mod:RecklessProvocation(args)
-	self:Bar(args.spellId, 5)
+	self:Bar(args.spellId, 5, CL.onboss:format(args.spellName))
 	self:Message(args.spellId, "Urgent", "Warning")
+end
+
+function mod:RecklessProvocationOver(args)
+	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+end
+
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 55 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("stages", "Attention", nil, CL.soon:format(CL.stage:format(2)), false)
+	end
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 175755 then -- Dismount
+		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
+		self:CDBar(164426, 16) -- Reckless Provocation
+	end
 end
