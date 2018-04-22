@@ -51,7 +51,7 @@ BigWigs:AddSounds("Moroes", {
 })
 
 BigWigs:AddSounds("The Curator", {
-	[227254] = "Long",
+	[227254] = {"Info","Long"},
 	[227267] = "Info",
 	[227279] = {"Alarm","Alert"},
 })
@@ -72,12 +72,13 @@ BigWigs:AddSounds("Mana Devourer", {
 })
 
 BigWigs:AddSounds("Viz'aduum the Watcher", {
-	[229083] = {"Alarm","Info"},
-	[229151] = "Alert",
+	[229083] = {"Alert","Info"},
+	[229151] = "Alarm",
 	[229159] = "Warning",
 	[229248] = "Alarm",
-	[229610] = "Long",
+	[229905] = "Alert",
 	[230084] = "Alarm",
+	["stages"] = "Info",
 })
 
 BigWigs:AddSounds("Nightbane", {

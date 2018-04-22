@@ -54,7 +54,7 @@ BigWigs:AddColors("Moroes", {
 })
 
 BigWigs:AddColors("The Curator", {
-	[227254] = "Positive",
+	[227254] = {"Neutral","Positive"},
 	[227267] = "Attention",
 	[227279] = {"Personal","Urgent"},
 })
@@ -81,8 +81,10 @@ BigWigs:AddColors("Viz'aduum the Watcher", {
 	[229151] = "Attention",
 	[229159] = {"Important","Personal"},
 	[229248] = {"Personal","Urgent"},
-	[229610] = "Neutral",
-	[230084] = "Urgent",
+	[229284] = "Urgent",
+	[229905] = "Personal",
+	[230084] = {"Positive","Urgent"},
+	["stages"] = "Positive",
 })
 
 BigWigs:AddColors("Nightbane", {

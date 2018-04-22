@@ -13,7 +13,7 @@ BigWigs:AddColors("Commander Vo'jak", {
 
 BigWigs:AddColors("General Pa'valak", {
 	[-5946] = "Attention",
-	[119875] = {"Important","Personal"},
+	[119875] = "Important",
 	[124283] = "Urgent",
 })
 
