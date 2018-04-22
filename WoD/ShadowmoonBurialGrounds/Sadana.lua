@@ -66,7 +66,7 @@ do
 	end
 end
 
-function mod:findAdd(_, unit, guid)
+function mod:FindAdd(_, unit, guid)
 	if self:MobId(guid) == 75966 then -- Defiled Spirit
 		SetRaidTarget(unit, 8)
 		self:UnregisterTargetEvents()
@@ -77,6 +77,6 @@ function mod:DarkCommunion(args)
 	self:Message(args.spellId, "Positive", "Info", CL.add_spawned)
 	self:Bar(args.spellId, 61, CL.next_add)
 	if self:GetOption("custom_on_markadd") then
-		self:RegisterTargetEvents("findAdd")
+		self:RegisterTargetEvents("FindAdd")
 	end
 end

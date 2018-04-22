@@ -15,6 +15,7 @@ mod.respawnTime = 33
 
 local L = mod:GetLocale()
 if L then
+	local _
 	_, L.affliction = GetSpecializationInfoByID(265)
 	_, L.demonology = GetSpecializationInfoByID(266)
 	_, L.destruction = GetSpecializationInfoByID(267)
