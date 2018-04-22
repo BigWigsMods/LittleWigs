@@ -2,6 +2,7 @@
 BigWigs:AddColors("Elder Leaxa", {
 	[260879] = "orange",
 	[260894] = "yellow",
+	[264603] = "red",
 })
 
 BigWigs:AddColors("Infested Crawg", {
@@ -18,5 +19,9 @@ BigWigs:AddColors("Sporecaller Zancha", {
 })
 
 BigWigs:AddColors("Taloc the Corrupted", {
+	[269301] = "yellow",
+	[269310] = "green",
+	[269406] = "cyan",
 	[269692] = "green",
+	[269843] = "red",
 })
