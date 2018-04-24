@@ -36,7 +36,7 @@ end
 function mod:OnEngage()
 	self:Bar(260811, 5) -- Homing Missile
 	self:Bar(260280, 15) -- Gatling Gun
-	self:Bar(260189, 49) -- Configuration: Drill
+	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
 end
 
 --------------------------------------------------------------------------------
@@ -79,5 +79,5 @@ function mod:ConfigurationCombat(args)
 	-- XXX Update timers below
 	self:Bar(260811, 5) -- Homing Missile
 	self:Bar(260280, 15) -- Gatling Gun
-	self:Bar(260189, 49) -- Configuration: Drill
+	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
 end
