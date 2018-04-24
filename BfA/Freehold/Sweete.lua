@@ -42,7 +42,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
 	if spellId == 257454 then -- Swiftwind Saber with Loaded Dice: All Hands!
 		self:Message(257278, "yellow")
 		self:PlaySound(257278, "alert", "watchstep")
