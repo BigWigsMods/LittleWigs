@@ -15,20 +15,22 @@ mod.engageId = 2107
 
 function mod:GetOptions()
 	return {
-		259022, -- Agent Azerite
+		270042, -- Agent Azerite
 		259853, -- Chemical Burn
 		260669, -- Propellant Blast
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "AgentAzerite", 259022)
-	--self:Log("SPELL_CAST_SUCCESS", "ChemicalBurnSuccess", 259853)
+	self:Log("SPELL_CAST_SUCCESS", "AgentAzerite", 270042)
+	--self:Log("SPELL_CAST_SUCCESS", "ChemicalBurnSuccess", 259853) -- XXX Maybe a UNIT Event? casts 2x in rapid succession right now.
 	self:Log("SPELL_AURA_APPLIED", "ChemicalBurnApplied", 259853)
 	self:Log("SPELL_CAST_START", "PropellantBlast", 260669)
 end
 
 function mod:OnEngage()
+	self:Bar(270042, 8) -- Agent Azerite
+	self:Bar(260669, 46) -- Propellant Blast
 end
 
 --------------------------------------------------------------------------------
@@ -38,6 +40,7 @@ end
 function mod:AgentAzerite(args)
 	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long", "watchstep")
+	self:CDBar(args.spellId, 8)
 end
 
 --function mod:ChemicalBurnSuccess(args)
@@ -48,23 +51,17 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:ChemicalBurnApplied(args)
 		playerList[#playerList+1] = args.destName
-		if self:Dispeller("magic") then
-			if #playerList == 1 then
-				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange")
-				self:PlaySound(args.spellId, "alarm", "dispel")
-			end
-		else
-			if #playerList == 1 then
-				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange")
-			end
-			if self:Me(args.destGUID) then
-				self:PlaySound(args.spellId, "alarm")
-			end
+		if self:Me(args.destGUID) or self:Dispeller("magic") then
+			self:PlaySound(args.spellId, "alarm", self:Dispeller("magic") and "dispel")
 		end
+		self:TargetsMessage(args.spellId, "orange", playerList)
+		self:Bar(args.spellId, 30) -- XXX Move to a singular event if possible
 	end
 end
 
 function mod:PropellantBlast(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
+	self:CastBar(args.spellId, 5.5)
+	--self:Bar(args.spellId, 8) -- XXX 3 chain casts and then a cooldown?
 end
