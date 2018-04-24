@@ -25,6 +25,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TaintedBloodApplied", 255558)
+	self:Log("SPELL_AURA_REMOVED", "TaintedBloodRemoved", 255558)
 	self:Log("SPELL_CAST_START", "Transfusion", 255577)
 	self:Log("SPELL_CAST_SUCCESS", "TransfusionSuccess", 255577)
 	self:Log("SPELL_CAST_START", "GildedClaws", 255579)
@@ -44,13 +45,13 @@ end
 --
 
 do
-	local taintedBloodCheck, name = nil, mod:SpellName(255558)
+	local taintedBloodCheck, name, onMe = nil, mod:SpellName(255558), false
 
 	local function checkForTaintedBlood(self)
-		if not UnitDebuff("player", name) then
+		if not onMe then
 			self:Message(255558, "blue", nil, CL.no:format(name))
 			self:PlaySound(255558, "warning", "runin")
-			taintedBloodCheck = self:ScheduleTimer(checkForTaintedBlood, 1.5)
+			taintedBloodCheck = self:ScheduleTimer(checkForTaintedBlood, 1.5, self)
 		else
 			self:Message(255558, "green", nil, CL.you:format(name))
 			taintedBloodCheck = nil
@@ -66,9 +67,18 @@ do
 	end
 
 	function mod:TaintedBloodApplied(args)
-		if taintedBloodCheck and self:Me(args.destGUID) then
-			self:CancelTimer(taintedBloodCheck)
-			checkForTaintedBlood() -- immediately check and give the positive message
+		if self:Me(args.destGUID) then
+			onMe = true
+			if taintedBloodCheck then -- immediately check and give the positive message
+				self:CancelTimer(taintedBloodCheck)
+				checkForTaintedBlood(self)
+			end
+		end
+	end
+
+	function mod:TaintedBloodRemoved(args)
+		if self:Me(args.destGUID) then
+			onMe = false
 		end
 	end
 
