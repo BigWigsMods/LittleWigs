@@ -29,8 +29,7 @@ if L then
 	L.wave = "Wave Warnings"
 	L.wave_desc = "Announce approximate warning messages for the waves."
 
-	--L.disable_trigger = "We will triumph. It is only a matter... of time."
-	--L.reset_trigger = "No! Damn this feeble, mortal coil!"
+	L.medivh = "Medivh"
 end
 
 --------------------------------------------------------------------------------
@@ -44,10 +43,15 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("UPDATE_WORLD_STATES")
+	if not C_UIWidgetManager then -- XXX 8.0
+		self:RegisterEvent("UPDATE_WORLD_STATES")
+	else
+		self:RegisterWidgetEvent(527, "UpdateWaveTimers")
+	end
 
 	self:Death("BossDeath", 17879, 17880) -- Chrono Lord Deja, Temporus
 	self:Death("Disable", 17881) -- Aeonus
+	self:Death("MedivhDies", 15608)
 end
 
 function mod:OnDisable()
@@ -58,7 +62,7 @@ end
 -- Event Handlers
 --
 
-function mod:UPDATE_WORLD_STATES()
+function mod:UPDATE_WORLD_STATES() -- XXX 8.0
 	for i = 1, GetNumWorldStateUI() do
 		local _, state, _, num = GetWorldStateUIInfo(i)
 		if state > 0 and num then -- Check if state is visible and if text exists.
@@ -88,7 +92,39 @@ function mod:UPDATE_WORLD_STATES()
 	end
 end
 
+function mod:UpdateWaveTimers(id, text)
+	local wave = text:match("(%d+).+18")
+	if wave then
+		local currentWave = tonumber(wave)
+		if currentWave and currentWave ~= prevWave then
+			prevWave = currentWave
+			local rift = self:SpellName(147840) -- Time Rift
+			self:Bar("wave", 15, CL.count:format(rift, currentWave), "INV_Misc_ShadowEgg")
+			if currentWave == 6 then
+				local chronoLordDeja = EJ_GetEncounterInfo(552)
+				self:Message("wave", "Attention", "Info", CL.custom_sec:format(chronoLordDeja, 15), false)
+			elseif currentWave == 12 then
+				local temporus = EJ_GetEncounterInfo(553)
+				self:Message("wave", "Attention", "Info", CL.custom_sec:format(temporus, 15), false)
+			elseif currentWave == 18 then
+				self:UnregisterWidgetEvent(id)
+				local aeonus = EJ_GetEncounterInfo(554)
+				self:Message("wave", "Attention", "Info", CL.custom_sec:format(aeonus, 15), false)
+			else
+				self:Message("wave", "Attention", "Info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
+				self:Bar("wave", 135, CL.count:format(rift, currentWave+1), "INV_Misc_ShadowEgg") -- 120s + 15s
+			end
+		end
+	end
+end
+
 function mod:BossDeath(args)
 	self:Bar("wave", 45, CL.count:format(self:SpellName(147840), args.mobId == 17879 and 7 or 13), "INV_Misc_ShadowEgg") -- 30s + 15s
+end
+
+function mod:MedivhDies()
+	self:SimpleTimer(function() prevWave = 0 end, 15)
+	self:SendMessage("BigWigs_StopBars", self)
+	self:Bar("wave", 300, L.medivh, "achievement_bg_returnxflags_def_wsg")
 end
 
