@@ -9,6 +9,12 @@ mod:RegisterEnableMob(114252)
 mod.engageId = 1959
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local unstableManaOnMe = false
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -27,6 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "EnergyVoid", 227523)
 	self:Log("SPELL_AURA_APPLIED", "UnstableMana", 227502)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "UnstableMana", 227502)
+	self:Log("SPELL_AURA_REMOVED", "UnstableManaRemoved", 227502)
 	self:Log("SPELL_AURA_APPLIED", "CoalescePower", 227297)
 	self:Log("SPELL_PERIODIC_DAMAGE", "EnergyVoidDamage", 227524)
 	self:Log("SPELL_PERIODIC_MISSED", "EnergyVoidDamage", 227524)
@@ -34,6 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	unstableManaOnMe = false
 	self:Bar(227618, 7) -- Arcane Bomb
 	self:Bar(227523, 14.5) -- Energy Void
 end
@@ -54,8 +62,15 @@ end
 
 function mod:UnstableMana(args)
 	if self:Me(args.destGUID) then
+		unstableManaOnMe = true
 		local amount = args.amount or 1
 		self:StackMessage(args.spellId, args.destName, amount, "Positive")
+	end
+end
+
+function mod:UnstableManaRemoved(args)
+	if self:Me(args.destGUID) then
+		unstableManaOnMe = false
 	end
 end
 
@@ -67,7 +82,7 @@ end
 do
 	local prev = 0
 	function mod:EnergyVoidDamage(args)
-		if self:Me(args.destGUID) and not UnitDebuff("player", self:SpellName(227502)) then -- 227502 is "Unstable Mana"
+		if self:Me(args.destGUID) and not unstableManaOnMe then
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t

@@ -17,6 +17,12 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local tormentOnMe = false
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -100,6 +106,7 @@ function mod:OnBossEnable()
 
 	--[[ Grimhorn the Enslaver ]]--
 	self:Log("SPELL_AURA_APPLIED", "Torment", 202615)
+	self:Log("SPELL_AURA_REMOVED", "TormentRemoved", 202615)
 	self:Log("SPELL_AURA_APPLIED", "AnguishedSouls", 202607) -- Anguished Souls
  	self:Log("SPELL_PERIODIC_DAMAGE", "AnguishedSouls", 202607)
  	self:Log("SPELL_PERIODIC_MISSED", "AnguishedSouls", 202607)
@@ -177,10 +184,17 @@ end
 
 --[[ Grimhorn the Enslaver ]]--
 function mod:Torment(args)
+	if self:Me(args.destGUID) then
+		tormentOnMe = true
+		self:Say(args.spellId)
+	end
 	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
+end
+
+function mod:TormentRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		tormentOnMe = false
 	end
 end
 
@@ -190,7 +204,7 @@ do
 		if self:Me(args.destGUID) then
 			local t = GetTime()
 			-- Increased throttle if the player can't move due to having Torment
-			if t-prev > (UnitDebuff("player",  self:SpellName(202615)) and 6 or 1.5) then
+			if t-prev > (tormentOnMe and 6 or 1.5) then
 				prev = t
 				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
 			end
