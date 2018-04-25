@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 	-- self:Log("SPELL_CAST_SUCCESS", "PutridBlood", 269301) -- XXX Every 5 seconds, do we need anything for it?
 	self:Log("SPELL_CAST_START", "VileExpulsion", 269843)
 	self:Log("SPELL_CAST_START", "CleansingLight", 269310)
-	self:Death("VisageDeath", 134701)
+	self:Death("VisageDeath", 137103)
 end
 
 function mod:OnEngage()
