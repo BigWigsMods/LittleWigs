@@ -4,7 +4,7 @@
 <Script file="Leaxa.lua"/>
 <Script file="Crawg.lua"/>
 <Script file="Zancha.lua"/>
-<Script file="Taloc.lua"/>
+<Script file="Abomination.lua"/>
 
 <Include file="Options\options.xml"/>
 
