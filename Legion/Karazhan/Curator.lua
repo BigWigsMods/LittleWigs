@@ -22,18 +22,18 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "PowerDischarge", "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "SummonVolatileEnergy", 227267)
-	self:Log("SPELL_CAST_SUCCESS", "PowerDischarge", 227279)
-	self:Log("SPELL_AURA_APPLIED", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_PERIODIC_MISSED", "PowerDischargeDamage", 227465)
 	self:Log("SPELL_AURA_APPLIED", "Evocation", 227254)
+	self:Log("SPELL_AURA_REMOVED", "EvocationOver", 227254)
 end
 
 function mod:OnEngage()
 	self:Bar(227267, 5) -- Summon Volatile Energy
 	self:CDBar(227279, 12) -- Power Discharge
+	self:CDBar(227254, 68) -- Evocation
 end
 
 --------------------------------------------------------------------------------
@@ -45,15 +45,10 @@ function mod:SummonVolatileEnergy(args)
 	self:Bar(args.spellId, 9.7)
 end
 
-do
-	local prev = 0
-	function mod:PowerDischarge(args)
-		local t = GetTime()
-		if t-prev > 2 then
-			prev = t
-			self:Message(args.spellId, "Urgent", "Alert")
-			self:CDBar(args.spellId, 12)
-		end
+function mod:PowerDischarge(_, _, _, _, spellId)
+	if spellId == 227278 then
+		self:Message(227279, "Urgent", "Alert")
+		self:CDBar(227279, 12)
 	end
 end
 
@@ -72,7 +67,12 @@ end
 
 function mod:Evocation(args)
 	self:Message(args.spellId, "Positive", "Long")
-	self:Bar(args.spellId, 20, CL.cast:format(args.spellName))
+	self:CastBar(args.spellId, 20)
 	self:StopBar(227267) -- Summon Volatile Energy
 	self:StopBar(227279) -- Power Discharges
+end
+
+function mod:EvocationOver(args)
+	self:Message(args.spellId, "Neutral", "Info", CL.over:format(args.spellName))
+	self:CDBar(args.spellId, 69)
 end

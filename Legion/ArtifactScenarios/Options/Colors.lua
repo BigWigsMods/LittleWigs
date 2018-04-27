@@ -21,7 +21,7 @@ BigWigs:AddColors("Kruul", {
 	[240790] = "Important",
 	["nether_aberration"] = "Attention",
 	["smoldering_infernal"] = "Attention",
-	["stages"] = {"Neutral","Positive"},
+	["stages"] = "Positive",
 })
 
 BigWigs:AddColors("Raest", {
@@ -31,6 +31,16 @@ BigWigs:AddColors("Raest", {
 	["handFromBeyond"] = "Neutral",
 	["rune"] = "Attention",
 	["thing"] = "Important",
+})
+
+BigWigs:AddColors("Archmage Xylem", {
+	[231443] = "Urgent",
+	[231522] = "Important",
+	[232672] = "Personal",
+	[233248] = "Important",
+	[234728] = "Neutral",
+	[242015] = "Attention",
+	["stages"] = "Neutral",
 })
 
 BigWigs:AddColors("Lord Erdris Thorn", {
@@ -49,4 +59,5 @@ BigWigs:AddColors("Agatha", {
 	[243111] = {"Important","Positive"},
 	["fuming_imp"] = "Urgent",
 	["imp_servant"] = "Attention",
+	["stages"] = "Neutral",
 })

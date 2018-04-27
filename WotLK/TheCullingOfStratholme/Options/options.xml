@@ -2,5 +2,6 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Colors.lua"/>
+<Script file="Sounds.lua"/>
 
 </Ui>

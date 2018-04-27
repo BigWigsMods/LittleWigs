@@ -16,6 +16,7 @@ mod.engageId = 1954
 -- Locals
 --
 
+local sacredGroundOnMe = false
 local sacredCount = 1
 local shockCount = 0
 
@@ -44,9 +45,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MassRepentanceSuccess", 227508)
 	self:Log("SPELL_CAST_START", "SacredGround", 227789)
 	self:Log("SPELL_AURA_APPLIED", "SacredGroundApplied", 227848)
+	self:Log("SPELL_AURA_REMOVED", "SacredGroundRemoved", 227848)
 end
 
 function mod:OnEngage()
+	sacredGroundOnMe = false
 	sacredCount = 1
 	shockCount = 0
 	self:Bar(227809, 9) -- Holy Bolt
@@ -96,14 +99,14 @@ function mod:HolyWrath(args)
 end
 
 do
-	local sacredGroundCheck, name = nil, mod:SpellName(227848)
+	local sacredGroundCheck = nil
 
 	local function checkForSacredGround()
-		if not UnitDebuff("player", name) then
-			mod:Message(227789, "Personal", "Warning", CL.no:format(name))
+		if not sacredGroundOnMe then
+			mod:Message(227789, "Personal", "Warning", CL.no:format(mod:SpellName(227848)))
 			sacredGroundCheck = mod:ScheduleTimer(checkForSacredGround, 1.5)
 		else
-			mod:Message(227789, "Positive", nil, CL.you:format(name))
+			mod:Message(227789, "Positive", nil, CL.you:format(mod:SpellName(227848)))
 			sacredGroundCheck = nil
 		end
 	end
@@ -116,9 +119,18 @@ do
 	end
 
 	function mod:SacredGroundApplied(args)
-		if sacredGroundCheck and self:Me(args.destGUID) then
-			self:CancelTimer(sacredGroundCheck)
-			checkForSacredGround() -- immediately check and give the positive message
+		if self:Me(args.destGUID) then
+			sacredGroundOnMe = true
+			if sacredGroundCheck then
+				self:CancelTimer(sacredGroundCheck)
+				checkForSacredGround() -- immediately check and give the positive message
+			end
+		end
+	end
+
+	function mod:SacredGroundRemoved(args)
+		if self:Me(args.destGUID) then
+			sacredGroundOnMe = false
 		end
 	end
 

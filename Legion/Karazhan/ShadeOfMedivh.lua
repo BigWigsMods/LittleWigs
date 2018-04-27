@@ -36,21 +36,20 @@ function mod:GetOptions()
 		{227615, "SAY"}, -- Inferno Bolt
 		227628, -- Piercing Missiles
 		"focused_power",
-		228334, -- Guradian's Image
+		228334, -- Guardian's Image
 		{228269, "SAY"}, -- Flame Wreath
 		227779, -- Ceaseless Winter
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterUnitEvent("UNIT_POWER", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Frostbite", 227592)
 	self:Log("SPELL_AURA_APPLIED", "FrostbiteApplied", 227592)
 	self:Log("SPELL_AURA_REMOVED", "FrostbiteRemoved", 227592)
 	self:Log("SPELL_CAST_START", "InfernoBolt", 227615)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingMissiles", 227628)
-	self:Log("SPELL_CAST_START", "GuradiansIamge", 228334)
+	self:Log("SPELL_CAST_START", "GuardiansImage", 228334)
 	self:Log("SPELL_CAST_START", "FlameWreathStart", 228269)
 	self:Log("SPELL_AURA_APPLIED", "FlameWreathApplied", 228261)
 	self:Log("SPELL_CAST_START", "CeaselessWinter", 227779)
@@ -59,7 +58,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	addsKilled = 1 -- this variable is being reset at SPELL_CAST_START of Guardian's Image, comparing against it in UNIT_POWER to avoid introducing a new variable
 end
 
 --------------------------------------------------------------------------------
@@ -67,8 +66,8 @@ end
 --
 
 function mod:UNIT_POWER(unit)
-	local nextSpecial = (100-(UnitPower(unit)/(UnitPowerMax(unit))*100))/3.3
-	if nextSpecial > 0 then
+	local nextSpecial = (100 - (UnitPower(unit) / (UnitPowerMax(unit)) * 100)) / 3.3
+	if nextSpecial > 0 and addsKilled ~= 0 then -- doesn't work like that while Guardian's Image is active
 		local spellName = self:SpellName(L.focused_power)
 		if math.abs(nextSpecial - self:BarTimeLeft(spellName)) > 1 then
 			self:Bar("focused_power", nextSpecial, spellName, L.focused_power_icon)
@@ -115,7 +114,7 @@ function mod:PiercingMissiles(args)
 	self:Message(args.spellId, "Attention")
 end
 
-function mod:GuradiansIamge(args)
+function mod:GuardiansImage(args)
 	self:Message(args.spellId, "Attention", "Long")
 	addsKilled = 0
 end
@@ -135,6 +134,7 @@ do
 		list[#list+1] = args.destName
 		if #list == 1 then
 			self:ScheduleTimer("TargetMessage", 0.2, 228269, list, "Important", "Warning", nil, nil, true)
+			self:Bar(228269, 20)
 		end
 		if self:Me(args.destGUID) then
 			self:Say(228269)
@@ -144,6 +144,7 @@ end
 
 function mod:CeaselessWinter(args)
 	self:Message(args.spellId, "Attention", "Long")
+	self:Bar(args.spellId, 20)
 end
 
 function mod:CeaselessWinterApplied(args)

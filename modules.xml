@@ -179,4 +179,35 @@
 
 <Include file="Legion\SeatOfTheTriumvirate\modules.xml"/>
 <Include file="Legion\SeatOfTheTriumvirate\locales.xml"/>
+
+<!-- Battle for Azeroth -->
+<Include file="BfA\AtalDazar\modules.xml"/>
+<!--<Include file="BfA\AtalDazar\locales.xml"/>-->
+
+<Include file="BfA\Freehold\modules.xml"/>
+<!--<Include file="BfA\Freehold\locales.xml"/>-->
+
+<Include file="BfA\KingsRest\modules.xml"/>
+<!--<Include file="BfA\KingsRest\locales.xml"/>-->
+
+<Include file="BfA\ShrineOfTheStorm\modules.xml"/>
+<!--<Include file="BfA\ShrineOfTheStorm\locales.xml"/>-->
+
+<Include file="BfA\SiegeOfBoralus\modules.xml"/>
+<!--<Include file="BfA\SiegeOfBoralus\locales.xml"/>-->
+
+<Include file="BfA\TempleOfSethraliss\modules.xml"/>
+<!--<Include file="BfA\TempleOfSethraliss\locales.xml"/>-->
+
+<Include file="BfA\TheMotherlode\modules.xml"/>
+<!--<Include file="BfA\TheMotherlode\locales.xml"/>-->
+
+<Include file="BfA\TolDagor\modules.xml"/>
+<!--<Include file="BfA\TolDagor\locales.xml"/>-->
+
+<Include file="BfA\Underrot\modules.xml"/>
+<!--<Include file="BfA\Underrot\locales.xml"/>-->
+
+<Include file="BfA\WaycrestManor\modules.xml"/>
+<!--<Include file="BfA\WaycrestManor\locales.xml"/>-->
 </Ui>

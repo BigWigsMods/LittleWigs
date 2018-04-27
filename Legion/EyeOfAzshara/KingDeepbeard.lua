@@ -9,6 +9,12 @@ mod:RegisterEnableMob(91797)
 mod.engageId = 1812
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local bubblesOnMe = false
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -33,6 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	bubblesOnMe = false
 	self:Bar(193051, 20) -- Call the Seas
 	self:CDBar(193018, 12) -- Gaseous Bubbles
 	self:CDBar(193093, 6) -- Ground Slam
@@ -55,6 +62,7 @@ end
 
 function mod:GaseousBubblesApplied(args)
 	if self:Me(args.destGUID) then
+		bubblesOnMe = true
 		self:TargetMessage(args.spellId, args.destName, "Personal", "Warning")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:Flash(args.spellId)
@@ -63,6 +71,7 @@ end
 
 function mod:GaseousBubblesRemoved(args)
 	if self:Me(args.destGUID) then
+		bubblesOnMe = false
 		self:Message(args.spellId, "Personal", "Warning", CL.removed:format(args.spellName))
 		self:StopBar(args.spellName, args.destName)
 	end
@@ -84,7 +93,7 @@ do
 		if self:Me(args.destGUID) then
 			local t = GetTime()
 			-- players with Gaseous Bubbles may (and should) be taking damage intentionally
-			if t-prev > (UnitDebuff("player", self:SpellName(193018)) and 6 or 1.5) then
+			if t-prev > (bubblesOnMe and 6 or 1.5) then
 				prev = t
 				self:Message(193152, "Personal", "Alert", CL.underyou:format(args.spellName))
 			end

@@ -32,6 +32,13 @@ BigWigs:AddSounds("Raest", {
 	["thing"] = "Alarm",
 })
 
+BigWigs:AddSounds("Archmage Xylem", {
+	[231443] = "Alarm",
+	[231522] = "Alert",
+	[232672] = "Alarm",
+	[233248] = "Long",
+})
+
 BigWigs:AddSounds("Lord Erdris Thorn", {
 	[235823] = "Alarm",
 	[235833] = "Alert",
