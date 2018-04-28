@@ -133,7 +133,7 @@ end
 function mod:ArcaneBlitz(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit then
-		local _, amount = self:UnitBuff(unit, args.spellName)
+		local _, amount = self:UnitBuff(unit, args.spellId)
 		if amount and amount > 3 then
 			self:Message(args.spellId, "Attention", "Alert", CL.count:format(args.spellName, amount))
 		end
