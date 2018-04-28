@@ -651,7 +651,7 @@ do
 
 	local prevTable, usableTimer, lastProfessionUpdate = {}, nil, 0
 	local function usableFound(self, id, item)
-		if buffs[id] and UnitBuff("player", self:SpellName(buffs[id])) then -- there's no point in showing a message if we already have the buff
+		if buffs[id] and self:UnitBuff("player", self:SpellName(buffs[id])) then -- there's no point in showing a message if we already have the buff
 			return
 		end
 

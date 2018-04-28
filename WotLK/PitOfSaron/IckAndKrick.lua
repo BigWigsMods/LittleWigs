@@ -71,7 +71,7 @@ function mod:PoisonNova(args)
 end
 
 function mod:UNIT_AURA(event, unit)
-	local name = UnitDebuff(unit, self:SpellName(68987))
+	local name = self:UnitDebuff(unit, self:SpellName(68987))
 	local n = self:UnitName(unit)
 	if pursuitWarned[n] and not name then
 		pursuitWarned[n] = nil
