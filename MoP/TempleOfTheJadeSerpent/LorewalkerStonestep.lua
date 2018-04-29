@@ -127,7 +127,7 @@ function mod:UNIT_AURA(unit)
 	-- this is why I'm not showing a warning for it and not showing
 	-- a message that stacks are gone when Ultimate Power is present
 	local destName, spellName = self:UnitName(unit), self:SpellName(113315)
-	local _, stacks = self:UnitBuff(unit, 113315)
+	local _, stacks = self:UnitBuff(unit, 113315) -- Intensity
 	if not stacks then
 		if stacksOfIntensity[guid] and stacksOfIntensity[guid] > 0 then
 			stacksOfIntensity[guid] = 0
