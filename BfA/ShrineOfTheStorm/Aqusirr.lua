@@ -25,44 +25,82 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SeaBlast", 265001)
-	self:Log("SPELL_AURA_APPLIED", "ChokingBrine", 264560)
-	self:Log("SPELL_CAST_SUCCESS", "SurgingRush", 264155)
+	self:Log("SPELL_CAST_SUCCESS", "ChokingBrine", 264560)
+	self:Log("SPELL_AURA_APPLIED", "ChokingBrineApplied", 264560, 264773) -- Initial, Ground Pickup
+	self:Log("SPELL_CAST_START", "SurgingRush", 264155)
 	self:Log("SPELL_CAST_SUCCESS", "Undertow", 264166)
 	self:Log("SPELL_CAST_START", "EruptingWaters", 264903)
 end
 
 function mod:OnEngage()
+	self:Bar(264560, 12) -- Choking Brine _success
+	self:Bar(264155, 15.5) -- Surging Rush _start
+	self:Bar(264166, 32) -- Undertow _success
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:SeaBlast(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:ChokingBrine(args)
-	self:Message(args.spellId, "yellow")
-	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:PlaySound(args.spellId, "alarm", self:Dispeller("magic") and "dispel")
+do
+	local prev = 0
+	function mod:SeaBlast(args)
+		local t = GetTime()
+		if t - prev > 2 then
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
-function mod:SurgingRush(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:ChokingBrine(args)
+		local t = GetTime()
+			if t - prev > 2 then
+				self:Message(args.spellId, "yellow")
+				--self:Bar(args.spellId, 32) XXX Need more info
+			end
+		end
 end
 
-function mod:Undertow(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+function mod:ChokingBrineApplied(args)
 	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "warning")
+		self:TargetMessage2(264560, "yellow", args.destName)
+		self:PlaySound(264560, "alarm")
+	end
+end
+
+do
+	local prev = 0
+	function mod:SurgingRush(args)
+		local t = GetTime()
+		if t - prev > 2 then
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+			--self:Bar(args.spellId, 32) XXX Need more info
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:Undertow(args)
+		local t = GetTime()
+		if t - prev > 2 then
+			self:TargetMessage2(args.spellId, "orange", args.destName)
+			if self:Me(args.destGUID) then
+				self:PlaySound(args.spellId, "warning")
+			end
+			--self:Bar(args.spellId, 32) XXX Need more info
+		end
 	end
 end
 
 function mod:EruptingWaters(args)
 	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "long", "stage")
+	self:PlaySound(args.spellId, "long", "intermission")
+	self:Bar(264560, 13.5) -- Choking Brine _success
+	self:Bar(264155, 18.5) -- Surging Rush _start
+	self:Bar(264166, 28.5) -- Undertow _success
 end

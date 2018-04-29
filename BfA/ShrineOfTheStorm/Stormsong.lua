@@ -23,11 +23,14 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VoidBolt", 268347)
-	self:Log("SPELL_AURA_SUCCESS", "WakentheVoid", 269097)
-	self:Log("SPELL_AURA_APPLIED", "AncientMindbender", 269131)
+	self:Log("SPELL_CAST_SUCCESS", "WakentheVoid", 269097)
+	self:Log("SPELL_CAST_SUCCESS", "AncientMindbender", 269131)
+	self:Log("SPELL_AURA_APPLIED", "AncientMindbenderApplied", 269131)
 end
 
 function mod:OnEngage()
+	self:CDBar(269097, 13.5) -- Waken the Void _success
+	self:CDBar(269131, 22) -- Ancient Mindbender _success
 end
 
 --------------------------------------------------------------------------------
@@ -39,14 +42,20 @@ function mod:VoidBolt(args)
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
+	self:CDBar(args.spellId, 8.5)
 end
 
 function mod:WakentheVoid(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "Alarm")
+	self:CDBar(args.spellId, 43.5)
 end
 
 function mod:AncientMindbender(args)
+	self:CDBar(args.spellId, 43.5)
+end
+
+function mod:AncientMindbenderApplied(args)
 	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "Warning")
+	self:PlaySound(args.spellId, "Warning", nil, args.destName)
 end
