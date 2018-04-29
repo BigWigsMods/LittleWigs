@@ -71,7 +71,7 @@ end
 do
 	local laststacks = 0
 	function mod:UNIT_AURA(unit) -- no SPELL_AURA_ events for the boss's buffs
-		local _, stacks = self:UnitBuff(unit, self:SpellName(107122)) -- Viscous Fluid
+		local _, stacks = self:UnitBuff(unit, 107091) -- Viscous Fluid
 		if stacks then
 			if (stacks % 2 == 0 or stacks == 5) and stacks ~= laststacks then
 				self:StackMessage(-5666, self.displayName, stacks, "Urgent", "Info")
