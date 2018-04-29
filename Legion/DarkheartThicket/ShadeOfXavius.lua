@@ -47,9 +47,6 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		-- Bars might show less time than you
 		-- actually have, but never show more.
 		local _, _, _, _, _, endOfCast = UnitCastingInfo(unit) -- Nightmare Bolt, Growing Paranoia
-		if not endOfCast then
-			_, _, _, _, _, endOfCast = UnitChannelInfo(unit) -- Feed on the Weak
-		end
 		if endOfCast then
 			local timeLeft = endOfCast / 1000 - GetTime()
 			self:ScheduleTimer("Message", timeLeft, 200050, "Attention", "Info", CL.incoming:format(self:SpellName(200050)))
