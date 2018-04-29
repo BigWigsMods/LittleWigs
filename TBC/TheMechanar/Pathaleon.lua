@@ -66,7 +66,7 @@ function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:ModId(UnitGUID(unit)) ~= 19220 then return end
+	if self:MobId(UnitGUID(unit)) ~= 19220 then return end
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 28 then
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
