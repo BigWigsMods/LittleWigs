@@ -10,6 +10,12 @@ mod:RegisterEnableMob(131863)
 mod.engageId = 2115
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local rottenExpulsionCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -24,6 +30,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "ConsumeAll", 264734)
 	self:Log("SPELL_CAST_START", "CallServant", 264931)
 	self:Log("SPELL_CAST_START", "ConsumeServants", 265002)
@@ -32,28 +39,46 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	rottenExpulsionCount = 1
+	self:Bar(264694, 5.5) -- Rotten Expulsion
+	self:Bar(264923, 28.5) -- Tenderize
+	self:Bar(264931, 43.5) -- Call Servant
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
+	if spellId == 264921 then -- Tenderize
+		self:Bar(264923, 29) -- Tenderize
+	end
+end
+
 function mod:ConsumeAll(args)
-	self:Message(args.spellId, "orange", "Warning")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:CallServant(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:Bar(args.spellId, 29)
 end
 
 function mod:ConsumeServants(args)
-	self:Message(args.spellId, "orange", "Alert")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Tenderize(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:RottenExpulsion(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	rottenExpulsionCount = rottenExpulsionCount + 1
+	self:Bar(args.spellId, rottenExpulsionCount == 2 and 14 or rottenExpulsionCount == 3 and 25 or 29) -- 5.7, 14.6, 25.5, 29.1
 end
