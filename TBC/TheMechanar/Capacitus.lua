@@ -70,7 +70,7 @@ function mod:PolarityShift(args)
 end
 
 do
-	local function fillTheTableAndOpenProximity(self, unit, sameChargeList, oppositeChargeList, spellId, color)
+	local function fillTheTableAndOpenProximity(self, unit, sameChargeList, oppositeChargeList, spellId)
 		local guid = UnitGUID(unit)
 		if not playerCollector[guid] then
 			playerCollector[guid] = true
