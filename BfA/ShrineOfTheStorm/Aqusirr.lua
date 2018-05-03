@@ -46,7 +46,8 @@ do
 	local prev = 0
 	function mod:SeaBlast(args)
 		local t = GetTime()
-		if t - prev > 2 then
+		if t-prev > 2 then
+			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
@@ -57,11 +58,12 @@ do
 	local prev = 0
 	function mod:ChokingBrine(args)
 		local t = GetTime()
-			if t - prev > 2 then
-				self:Message(args.spellId, "yellow")
-				--self:Bar(args.spellId, 32) XXX Need more info
-			end
+		if t-prev > 2 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			--self:Bar(args.spellId, 32) XXX Need more info
 		end
+	end
 end
 
 function mod:ChokingBrineApplied(args)
@@ -75,7 +77,8 @@ do
 	local prev = 0
 	function mod:SurgingRush(args)
 		local t = GetTime()
-		if t - prev > 2 then
+		if t-prev > 2 then
+			prev = t
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 			--self:Bar(args.spellId, 32) XXX Need more info
@@ -87,7 +90,8 @@ do
 	local prev = 0
 	function mod:Undertow(args)
 		local t = GetTime()
-		if t - prev > 2 then
+		if t-prev > 2 then
+			prev = t
 			self:TargetMessage2(args.spellId, "orange", args.destName)
 			if self:Me(args.destGUID) then
 				self:PlaySound(args.spellId, "warning")

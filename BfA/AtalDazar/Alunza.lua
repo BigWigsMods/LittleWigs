@@ -107,10 +107,13 @@ end
 do
 	local prev = 0
 	function mod:CorruptedGold(args)
-		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
-			prev = GetTime()
-			self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
-			self:PlaySound(args.spellId, "alarm", "gtfo")
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t - prev > 2 then
+				prev = t
+				self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+				self:PlaySound(args.spellId, "alarm", "gtfo")
+			end
 		end
 	end
 end

@@ -102,12 +102,15 @@ end
 do
 	local prev = 0
 	function mod:UnstableHex(args)
-		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then -- Can be cast by 2 Witch-Doctors on the same player
-			prev = GetTime()
-			self:TargetMessage(args.spellId, args.destName, "blue")
-			self:PlaySound(args.spellId, "alarm", "moveout")
-			self:Say(args.spellId)
-			self:SayCountdown(args.spellId, 5)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then -- Can be cast by 2 Witch-Doctors on the same player
+				prev = t
+				self:TargetMessage(args.spellId, args.destName, "blue")
+				self:PlaySound(args.spellId, "alarm", "moveout")
+				self:Say(args.spellId)
+				self:SayCountdown(args.spellId, 5)
+			end
 		end
 	end
 
