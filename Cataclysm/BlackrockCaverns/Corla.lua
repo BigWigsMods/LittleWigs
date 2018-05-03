@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "DarkCommand", 75823)
 	self:Log("SPELL_AURA_APPLIED", "DarkCommandApplied", 75823)
-	self:Log("SPELL_AURA_APPLIED", "DarkCommandRemoved", 75823)
+	self:Log("SPELL_AURA_REMOVED", "DarkCommandRemoved", 75823)
 end
 
 -------------------------------------------------------------------------------
@@ -62,6 +62,6 @@ function mod:DarkCommandApplied(args)
 	self:TargetBar(args.spellId, 4, args.destName)
 end
 
-function mod:DarkCommandApplied(args)
+function mod:DarkCommandRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
