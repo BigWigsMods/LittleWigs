@@ -71,7 +71,7 @@ function mod:GetOptions()
 		272592, -- Abyssal Reach
 		272609, -- Maddening Gaze
 	}, {
-		[255041] = L.spirit,
+		[265568] = L.spirit,
 		[265089] = L.priest,
 		[265540] = L.maggot,
 		[265081] = L.matron,
