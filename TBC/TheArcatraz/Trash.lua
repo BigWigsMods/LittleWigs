@@ -14,6 +14,12 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local meteorsGoingOff, castersCollector = 0, {}
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -69,6 +75,12 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "Meteor", 38903)
 	self:Log("SPELL_CAST_SUCCESS", "MeteorSuccess", 38903)
+	self:Death("AbyssalDeath", 20898)
+end
+
+function mod:OnBossDisable()
+	meteorsGoingOff = 0
+	wipe(castersCollector)
 end
 
 --------------------------------------------------------------------------------
@@ -127,9 +139,10 @@ function mod:DebuffRemoved(args)
 end
 
 do
-	local prev, meteorsGoingOff = 0, 0
+	local prev = 0
 	function mod:Meteor(args)
 		meteorsGoingOff = meteorsGoingOff + 1 -- just in case both Abyssals are pulled
+		castersCollector[args.sourceGUID] = true
 		if meteorsGoingOff == 1 then
 			self:OpenProximity(args.spellId, 10) -- not possible to detect its target, no helpful visual circle either
 		end
@@ -144,8 +157,19 @@ do
 
 	function mod:MeteorSuccess(args)
 		meteorsGoingOff = meteorsGoingOff - 1
+		castersCollector[args.sourceGUID] = nil
 		if meteorsGoingOff == 0 then
 			self:CloseProximity(args.spellId)
+		end
+	end
+
+	function mod:AbyssalDeath(args)
+		if castersCollector[args.destGUID] then
+			meteorsGoingOff = meteorsGoingOff - 1
+			castersCollector[args.destGUID] = nil
+			if meteorsGoingOff == 0 then
+				self:CloseProximity(38903)
+			end
 		end
 	end
 end
