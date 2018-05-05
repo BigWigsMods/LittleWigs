@@ -65,7 +65,7 @@ do
 		if t-prev > 2 then
 			prev = t
 			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info", "watchstep")
+			self:PlaySound(args.spellId, "alarm", "watchstep")
 			if effigyKilled == 3 then -- Don't show bars during Blood Mirror
 				self:Bar(args.spellId, 12) -- XXX Need timers
 			end

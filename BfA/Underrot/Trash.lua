@@ -97,7 +97,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ThirstForBloodApplied", 266107)
 	self:Log("SPELL_CAST_START", "WaveofDecay", 265668)
 	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
-	self:Log("SPELL_CAST_START", "WickedFrenzy", 272183)
+	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
 	self:Log("SPELL_CAST_START", "ShadowBoltVolley", 265487)
 	self:Log("SPELL_CAST_START", "WitheringCurse", 265433)
 	self:Log("SPELL_CAST_START", "SummonSpiritDrainTotem", 265523)
@@ -135,7 +135,7 @@ end
 
 function mod:RottenBile(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Warcry(args)
