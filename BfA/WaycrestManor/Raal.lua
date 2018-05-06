@@ -36,6 +36,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ConsumeServants", 265002)
 	self:Log("SPELL_CAST_START", "Tenderize", 264923)
 	self:Log("SPELL_CAST_START", "RottenExpulsion", 264694)
+	self:Log("SPELL_AURA_APPLIED", "RottenExpulsionDamage", 264712)
+	self:Log("SPELL_PERIODIC_DAMAGE", "RottenExpulsionDamage", 264712)
+	self:Log("SPELL_PERIODIC_MISSED", "RottenExpulsionDamage", 264712)
+
 end
 
 function mod:OnEngage()
@@ -81,4 +85,18 @@ function mod:RottenExpulsion(args)
 	self:PlaySound(args.spellId, "alarm")
 	rottenExpulsionCount = rottenExpulsionCount + 1
 	self:Bar(args.spellId, rottenExpulsionCount == 2 and 14 or rottenExpulsionCount == 3 and 25 or 29) -- 5.7, 14.6, 25.5, 29.1
+end
+
+do
+	local prev = 0
+	function mod:RottenExpulsionDamage(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(264694, "blue", nil, CL.underyou:format(args.spellName))
+				self:PlaySound(264694, "alarm", "gtfo")
+			end
+		end
+	end
 end
