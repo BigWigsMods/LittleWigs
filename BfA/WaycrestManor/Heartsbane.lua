@@ -1,6 +1,11 @@
 if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 
 --------------------------------------------------------------------------------
+-- Todo:
+-- - Mark the boss with Focusing Iris?
+--
+
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -68,18 +73,18 @@ function mod:SoulManipulation(args)
 	self:Bar(args.spellId, 24)
 end
 
-function mod:FocusingIris(args) -- XXX Check timers after iris change
+function mod:FocusingIris(args)
 	self:TargetMessage2(args.spellId, "cyan", args.destName)
 	self:PlaySound(args.spellId, "long", nil, args.destName)
 	self:StopBar(260741) -- Jagged Nettles
 	self:StopBar(260703) -- Unstable Runic Mark
 	self:StopBar(260907) -- Soul Manipulation
 
-	if self:mobId(args.destGUID) == 131825 then -- Sister Briar
+	if self:MobId(args.destGUID) == 131825 then -- Sister Briar
 		self:Bar(260741, 8.5)  -- Jagged Nettles
-	elseif self:mobId(args.destGUID) == 131823 then -- Sister Malady
+	elseif self:MobId(args.destGUID) == 131823 then -- Sister Malady
 		self:Bar(260703, 9) -- Unstable Runic Mark
-	elseif self:mobId(args.destGUID) == 131824 then -- Sister Solena
+	elseif self:MobId(args.destGUID) == 131824 then -- Sister Solena
 		self:Bar(260907, 10) -- Soul Manipulation
 	end
 end
