@@ -30,7 +30,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "VirulentPathogen", 261440)
 	self:Log("SPELL_AURA_APPLIED", "VirulentPathogenApplied", 261440)
 	self:Log("SPELL_AURA_REMOVED", "VirulentPathogenRemoved", 261440)
-	self:Log("SPELL_CAST_SUCCESS", "PutridVitality", 261447)
+	self:Log("SPELL_AURA_APPLIED", "PutridVitality", 261447)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "PutridVitality", 261447)
 end
 
 function mod:OnEngage()
@@ -75,6 +76,6 @@ function mod:VirulentPathogenRemoved(args)
 end
 
 function mod:PutridVitality(args)
-	self:Message(args.spellId, "cyan")
+	self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
 	self:PlaySound(args.spellId, "info")
 end
