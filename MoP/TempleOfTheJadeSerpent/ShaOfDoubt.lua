@@ -18,6 +18,8 @@ mod.respawnTime = 30
 local playersWithTouch = {} -- can have multiple players affected if dispellers aren't doing their job
 local addsAlive = 0
 
+local mobCollector = {} -- adds from "Bonds of Reality" fire UNIT_DIED twice in a row (and the debuff they apply doesn't fire SPELL_AURA_REMOVED)
+
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -44,13 +46,14 @@ end
 function mod:OnEngage()
 	addsAlive = 0
 	wipe(playersWithTouch)
+	wipe(mobCollector)
 	self:CDBar(117665, 24.4) -- Bounds of Reality
 end
 
 function mod:OnBossDisable()
 	wipe(playersWithTouch)
+	wipe(mobCollector)
 end
-
 
 --------------------------------------------------------------------------------
 -- Event Handlers
@@ -103,11 +106,15 @@ end
 
 function mod:GatheringDoubt(args)
 	addsAlive = addsAlive + 1
+	mobCollector[args.sourceGUID] = true
 end
 
-function mod:AddDeath()
-	addsAlive = addsAlive - 1
-	if addsAlive > 0 then
-		self:Message(117665, "Positive", "Info", CL.add_remaining:format(addsAlive), false)
+function mod:AddDeath(args)
+	if mobCollector[args.destGUID] then
+		mobCollector[args.destGUID] = nil
+		addsAlive = addsAlive - 1
+		if addsAlive > 0 then
+			self:Message(117665, "Positive", "Info", CL.add_remaining:format(addsAlive), false)
+		end
 	end
 end
