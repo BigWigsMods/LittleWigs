@@ -17,6 +17,7 @@ function mod:GetOptions()
 	return {
 		-5666, -- Viscous Fluid
 		107120, -- Frenzied Assault
+		106874, -- Fire Bomb
 	}
 end
 
@@ -26,6 +27,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "FrenziedAssaultDamage", 107121)
 	self:Log("SPELL_AURA_APPLIED", "ViscousFluid", 107122)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ViscousFluid", 107122)
+	self:Log("SPELL_DAMAGE", "FireBomb", 106874)
+	self:Log("SPELL_MISSED", "FireBomb", 106874)
 end
 
 function mod:OnEngage()
@@ -68,7 +71,7 @@ end
 do
 	local laststacks = 0
 	function mod:UNIT_AURA(unit) -- no SPELL_AURA_ events for the boss's buffs
-		local _, _, _, stacks = UnitBuff(unit, self:SpellName(107122)) -- Viscous Fluid
+		local _, stacks = self:UnitBuff(unit, 107091) -- Viscous Fluid
 		if stacks then
 			if (stacks % 2 == 0 or stacks == 5) and stacks ~= laststacks then
 				self:StackMessage(-5666, self.displayName, stacks, "Urgent", "Info")
@@ -76,6 +79,19 @@ do
 			laststacks = stacks
 		else
 			laststacks = 0
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:FireBomb(args)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 1.5 then
+				prev = t
+				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			end
 		end
 	end
 end

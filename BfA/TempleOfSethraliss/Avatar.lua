@@ -17,8 +17,6 @@ mod.engageId = 2127
 -- Locals
 --
 
-local activatedCount = 0
-
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -50,7 +48,9 @@ end
 do
 	local prev = 0
 	function mod:Pulse(args)
-		if GetTime()-prev > 1.5 then
+		local t = GetTime()
+		if t - prev > 2 then
+			prev = t
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 			self:Bar(args.spellId, 40)

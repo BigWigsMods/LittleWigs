@@ -108,7 +108,7 @@ end
 do
 	local list, guid = mod:NewTargetList(), nil
 	function mod:UNIT_AURA(event, unit)
-		local name = UnitDebuff(unit, self:SpellName(233963)) -- Demonic Upheaval Debuff Id
+		local name = self:UnitDebuff(unit, 233963) -- Demonic Upheaval Debuff Id
 		local n = self:UnitName(unit)
 		if upheavalWarned[n] and not name then
 			upheavalWarned[n] = nil

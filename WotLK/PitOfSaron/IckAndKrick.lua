@@ -30,7 +30,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Barrage", 69263)
 	self:Log("SPELL_AURA_REMOVED", "BarrageEnd", 69263)
-	self:Log("SPELL_AURA_APPLIED", "ToxicWaste", 70274)
+	self:Log("SPELL_AURA_APPLIED", "ToxicWaste", 69024, 70274)
 	self:Log("SPELL_CAST_START", "PoisonNova", 68989)
 	self:Death("Win", 36476)
 
@@ -60,8 +60,8 @@ end
 
 function mod:ToxicWaste(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
-		self:Flash(args.spellId)
+		self:Message(70274, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		self:Flash(70274)
 	end
 end
 
@@ -71,7 +71,7 @@ function mod:PoisonNova(args)
 end
 
 function mod:UNIT_AURA(event, unit)
-	local name = UnitDebuff(unit, self:SpellName(68987))
+	local name = self:UnitDebuff(unit, 68987) -- Pursuit
 	local n = self:UnitName(unit)
 	if pursuitWarned[n] and not name then
 		pursuitWarned[n] = nil

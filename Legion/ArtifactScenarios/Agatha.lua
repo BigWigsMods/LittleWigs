@@ -189,7 +189,7 @@ do
 		count = count - 1
 		if count < 1 then -- Of course the immunity buff doesn't show on the boss.
 			self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
-			if UnitBuff("boss1", self:SpellName(243111)) then -- Play sound if Dark Fury is on the boss
+			if self:UnitBuff("boss1", self:SpellName(243111)) then -- Play sound if Dark Fury is on the boss
 				self:PlaySound(args.spellId, "Alert")
 			end
 		end
@@ -241,7 +241,7 @@ do
 
 	function mod:DarkFuryShieldRemoved(args)
 		self:Message(243111, "Positive", "Long", CL.removed:format(args.spellName))
-		if not UnitBuff("boss1", args.spellName) then
+		if not self:UnitBuff("boss1", args.spellName) then
 			-- Translocate during Dark Fury does weird things
 			self:DarkFuryRemoved()
 		end

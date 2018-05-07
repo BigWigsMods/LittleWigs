@@ -88,9 +88,9 @@ do
 
 	-- no SPELL_AURA_APPLIED events
 	function mod:UNIT_AURA(unit)
-		if UnitDebuff(unit, self:SpellName(39088)) then -- Positive Charge
+		if self:UnitDebuff(unit, 39088) then -- Positive Charge
 			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088) -- cyan
-		elseif UnitDebuff(unit, self:SpellName(39091)) then -- Negative Charge
+		elseif self:UnitDebuff(unit, 39091) then -- Negative Charge
 			fillTheTableAndOpenProximity(self, unit, negativeList, positiveList, 39091) -- red
 		end
 	end

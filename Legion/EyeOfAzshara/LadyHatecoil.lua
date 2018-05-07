@@ -84,7 +84,7 @@ end
 function mod:CurseOfTheWitch(args)
 	if self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
-		local _, _, _, _, _, duration = UnitDebuff("player", args.spellName) -- Random lengths
+		local _, _, duration = self:UnitDebuff("player", args.spellId) -- Random lengths
 		self:Bar(args.spellId, duration or 6)
 	end
 end

@@ -105,7 +105,7 @@ do
 		end
 
 		-- making sure we aren't including DKs that could've used AMS to negate the debuff
-		if UnitDebuff(args.destName, args.spellName) then
+		if self:UnitDebuff(args.destName, args.spellId) then
 			playerList[#playerList + 1] = args.destName
 			if #playerList == 1 then
 				self:ScheduleTimer(announce, 0.3, self, 59868)

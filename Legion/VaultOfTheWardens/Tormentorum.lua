@@ -155,7 +155,7 @@ do
 	local function printStacks(self, spellId, spellName)
 		local meOnly = self:CheckOption(spellId, "ME_ONLY")
 		if meOnly then
-			local _, _, _, stacks = UnitDebuff("player", spellName)
+			local _, stacks = self:UnitDebuff("player", spellName)
 			if stacks and stacks > 6 then
 				self:StackMessage(spellId, self:UnitName("player"), stacks, "Urgent")
 				if stacks < 9 then
@@ -168,7 +168,7 @@ do
 			local stacksOnMe = 0
 			local affectedPlayers = {}
 			for unit in self:IterateGroup() do
-				local _, _, _, stacks = UnitDebuff(unit, spellName)
+				local _, stacks = self:UnitDebuff(unit, spellName)
 				if stacks and stacks > 6 then
 					if UnitIsUnit("player", unit) then
 						stacksOnMe = stacks

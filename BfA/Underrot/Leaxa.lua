@@ -48,7 +48,8 @@ do
 	local prev = 0
 	function mod:BloodBolt(args)
 		local t = GetTime()
-		if t - prev > 2 then
+		if t-prev > 2 then
+			prev = t
 			self:Message(args.spellId, "orange")
 			if self:Interrupter() then
 				self:PlaySound(args.spellId, "alert", "interrupt")
@@ -61,9 +62,10 @@ do
 	local prev = 0
 	function mod:CreepingRot(args)
 		local t = GetTime()
-		if t - prev > 2 then
+		if t-prev > 2 then
+			prev = t
 			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info", "watchstep")
+			self:PlaySound(args.spellId, "alarm", "watchstep")
 			if effigyKilled == 3 then -- Don't show bars during Blood Mirror
 				self:Bar(args.spellId, 12) -- XXX Need timers
 			end

@@ -95,22 +95,22 @@ do
 	function mod:StartTimers()
 		-- There are 3 pairs of abilities
 		-- Yan-Zhu can have only one from each pair
-		if UnitBuff("boss1", self:SpellName(114929)) then -- Bloating Brew
+		if self:UnitBuff("boss1", 114929) then -- Bloating Brew
 			self:CDBar(106546, 7.0) -- Bloat
-		elseif UnitBuff("boss1", self:SpellName(114930)) then -- Blackout Brew
+		elseif self:UnitBuff("boss1", 114930) then -- Blackout Brew
 			self:CDBar(106851, 6.6) -- Blackout Brew
 		end
 
-		if UnitBuff("boss1", self:SpellName(114931)) then -- Bubbling Brew
+		if self:UnitBuff("boss1", 114931) then -- Bubbling Brew
 			self:CDBar(106563, 22.1) -- Bubble Shield
-		elseif UnitBuff("boss1", self:SpellName(114932)) then -- Yeasty Brew (Can summon Yeasty Brew Alementals)
+		elseif self:UnitBuff("boss1", 114932) then -- Yeasty Brew (Can summon Yeasty Brew Alementals)
 			self:CDBar("summon", 21.8, CL.next_add, 116155)
 		end
 
-		if UnitBuff("boss1", self:SpellName(114933)) then -- Sudsy Brew
+		if self:UnitBuff("boss1", 114933) then -- Sudsy Brew
 			self:CDBar(-5658, 29.8) -- Wall of Suds
 			self:ScheduleTimer(warnForWallOfSuds, 29.8, self)
-		elseif UnitBuff("boss1", self:SpellName(114934)) then -- Fizzy Brew
+		elseif self:UnitBuff("boss1", 114934) then -- Fizzy Brew
 			self:CDBar(115003, 45.8) -- Carbonation
 		end
 	end
@@ -176,7 +176,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "Urgent", not UnitDebuff("player", args.spellName) and "Warning", CL.onboss:format(args.spellName)) -- don't annoy with sounds those who are already intercepting some
+				self:Message(args.spellId, "Urgent", not self:UnitDebuff("player", 114451) and "Warning", CL.onboss:format(args.spellName)) -- don't annoy with sounds those who are already intercepting some
 			end
 		end
 	end

@@ -74,6 +74,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DinoMight", 256849)
 	self:Log("SPELL_CAST_START", "Transfusion", 260666)
 	self:Log("SPELL_AURA_APPLIED", "VenomfangStrike", 252687)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "VenomfangStrike", 252687)
 end
 
 --------------------------------------------------------------------------------
@@ -102,12 +103,15 @@ end
 do
 	local prev = 0
 	function mod:UnstableHex(args)
-		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then -- Can be cast by 2 Witch-Doctors on the same player
-			prev = GetTime()
-			self:TargetMessage(args.spellId, args.destName, "blue")
-			self:PlaySound(args.spellId, "alarm", "moveout")
-			self:Say(args.spellId)
-			self:SayCountdown(args.spellId, 5)
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then -- Can be cast by 2 Witch-Doctors on the same player
+				prev = t
+				self:TargetMessage(args.spellId, args.destName, "blue")
+				self:PlaySound(args.spellId, "alarm", "moveout")
+				self:Say(args.spellId)
+				self:SayCountdown(args.spellId, 5)
+			end
 		end
 	end
 
@@ -133,10 +137,7 @@ end
 -- Shadowblade Stalker
 function mod:VenomfangStrike(args)
 	if self:Me(args.destGUID) then
-		local amount = args.amount or 1
-		if amount % 2 == 0 then -- Only warn every 2 stacks
-			self:StackMessage(args.spellId, args.destName, amount, "orange")
-			self:PlaySound(args.spellId, "alarm", "gtfo")
-		end
+		self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+		self:PlaySound(args.spellId, "alarm")
 	end
 end

@@ -49,10 +49,13 @@ end
 do
 	local prev = 0
 	function mod:ToxicPool(args)
-		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
-			prev = GetTime()
-			self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
-			self:PlaySound(args.spellId, "alarm")
+		if self:Me(args.destGUID) then
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+				self:PlaySound(args.spellId, "alarm")
+			end
 		end
 	end
 end
@@ -64,13 +67,16 @@ end
 do
 	local prev = 0
 	function mod:Hatch(args)
-		if GetTime()-prev > 1.5 then
+		local t = GetTime()
+		if t-prev > 2 then
+			prev = t
 			self:Message(args.spellId, "cyan")
 			self:PlaySound(args.spellId, "info")
 			self:Bar(args.spellId, 40)
 		end
 	end
 end
+
 function mod:Burrow(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
