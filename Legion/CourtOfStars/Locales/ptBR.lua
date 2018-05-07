@@ -50,7 +50,7 @@ if L then
 	L.spyFoundChat = "Eu encontrei o espião!"
 	L.spyFoundPattern = "Ora, ora, não sejamos apressados" -- Ora, ora, não sejamos apressados, [playername]. Que tal me seguir e conversar em um local mais reservado...
 
-	L.hints = {
+	L.hints =  {
 		"Capa",
 		"Sem capa",
 		"Bolsa",
@@ -65,7 +65,7 @@ if L then
 		"Roupa escura",
 		"Sem poções",
 		"Livro",
-	--}
+	}
 
 	--[[ !!! IMPORTANT NOTE TO TRANSLATORS !!! ]]--
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
