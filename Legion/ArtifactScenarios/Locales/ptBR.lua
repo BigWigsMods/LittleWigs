@@ -4,32 +4,32 @@ if L then
 	L.tugar = "Tugar Totem de Sangue"
 	L.jormog = "Jormog, o Beemote"
 
-	--L.remaining = "Scales Remaining"
+	L.remaining = "Escalas restantes"
 
-	--L.submerge = "Submerge"
-	--L.submerge_desc = "Submerges below the ground, summoning spitter eggs and falling spikes."
+	L.submerge = "Submergir"
+	L.submerge_desc = "Submerge abaixo do solo, sumonando ovos e fazendo cair estalactites."
 
-	--L.charge_desc = "When Jormog is submerged, he will periodically charge in your direction."
+	L.charge_desc = "Quando Jormog estiver submerso, ele investirá periodicamente em sua direção."
 
-	--L.rupture = "{243382} (X)"
-	--L.rupture_desc = "A Fel Rupture in the shape of an X appears under you. After 5 seconds it will rupture the ground, sending spikes into the air and knocking back players on top of it."
+	L.rupture = "{243382} (X)"
+	L.rupture_desc = "Uma Ruptura Vil em forma de um X aparece embaixo de você. Após 5 segundos, ele romperá o solo, enviando espinhos para o ar e repelindo os jogadores em cima dele."
 
-	--L.totem_warning = "The totem hit you!"
+	L.totem_warning = "O Totem te acertou!"
 end
 
 L = BigWigs:NewBossLocale("Raest", "ptBR")
 if L then
 	L.name = "Raest Magilança"
 
-	--L.handFromBeyond = "Hand from Beyond"
+	L.handFromBeyond = "Mão do Além"
 
-	--L.rune_desc = "Places a Rune of Summoning on the ground. If left unsoaked a Thing of Nightmare will spawn."
+	L.rune_desc = "Coloca uma runa de invocação no chão. Se não for absorvida, uma Coisa de Pesadelo irá aparecer."
 
-	--L.killed = "%s killed"
+	L.killed = "%s morto"
 
-	--L.warmup_text = "Karam Magespear Active"
-	--L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
-	--L.warmup_trigger2 = "Kill this interloper, brother!"
+	L.warmup_text = "Karam Magilança Ativo"
+	L.warmup_trigger = "Foi tolice sua vir atrás de mim, irmão. A Espiral Etérea alimenta minhas forças. Eu me tornei mais poderoso do que você pode imaginar!"
+	L.warmup_trigger2 = "Mate este intruso, irmão!"
 end
 
 L = BigWigs:NewBossLocale("Kruul", "ptBR")
@@ -38,23 +38,23 @@ if L then
 	L.inquisitor = "Inquisidor Variss"
 	L.velen = "Profeta Velen"
 
-	--L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
-	--L.win_trigger = "So be it. You will not stand in our way any longer."
+	L.warmup_trigger = "Tolos arrogantes! Eu me fortaleci com a alma de mil mundos conquistados!"
+	L.win_trigger = "Que assim seja. Vocês não vão ficar no caminho por muito tempo."
 
-	--L.engage_message = "Highlord Kruul's Challenge Engaged!"
+	L.engage_message = "Desafio do Grão-lorde Kruul iniciado!"
 
-	--L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
+	L.nether_aberration_desc = "Evoca portais ao redor da sala, gerando Aberrações Etéreas."
 
-	--L.smoldering_infernal = "Smoldering Infernal"
-	--L.smoldering_infernal_desc = "Summons a Smoldering Infernal."
+	L.smoldering_infernal = "Infernal Fumegante"
+	L.smoldering_infernal_desc = "Sumona um Infernal Fumegante."
 end
 
 L = BigWigs:NewBossLocale("Lord Erdris Thorn", "ptBR")
 if L then
 	L.erdris = "Lorde Erdris Cardo"
 
-	--L.warmup_trigger = "Your arrival is well-timed."
-	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
+	L.warmup_trigger = "Sua chegada foi em boa hora."
+	L.warmup_trigger2 = "O que está... Acontecendo?" --Stage 5 Warm up
 
 	L.mage = "Mago Reanimado Corrompido"
 	L.soldier = "Soldado Reanimado Corrompido"
@@ -73,6 +73,6 @@ if L then
 	L.imp_servant = "Diabrete Serviçal"
 	L.fuming_imp = "Diabrete Fumegante"
 
-	-- L.absorb = "Absorb"
-	-- L.stacks = "Stacks"
+	L.absorb = "Absorve"
+	L.stacks = "Acumula"
 end
