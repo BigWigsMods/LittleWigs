@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Temporus", 269, 553)
 if not mod then return end
 mod:RegisterEnableMob(17880)
+-- mod.engageId = 1921 -- TODO: check if wipes work fine
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -29,11 +30,12 @@ end
 --
 
 function mod:Hasten(args)
-	self:Message(args.spellId, "Important")
+	if self:MobId(args.destGUID) ~= 17880 then return end -- mages can spellsteal it
+	self:Message(args.spellId, "Important", self:Dispeller("magic", true) and "Warning")
 	self:Bar(args.spellId, 10)
 end
 
 function mod:HastenRemoved(args)
+	if self:MobId(args.destGUID) ~= 17880 then return end -- mages can spellsteal it
 	self:StopBar(args.spellName)
 end
-
