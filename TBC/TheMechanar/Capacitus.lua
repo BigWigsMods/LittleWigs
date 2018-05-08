@@ -81,6 +81,7 @@ do
 			tDeleteItem(oppositeChargeList, name)
 			if self:Me(guid) then
 				self:OpenProximity(39096, 10, sameChargeList, true)
+				-- Cyan for Positive, Red for Negative
 				self:Message(39096, spellId == 39088 and "Neutral" or "Important", "Info", CL.you:format(self:SpellName(spellId)), spellId)
 			end
 		end
