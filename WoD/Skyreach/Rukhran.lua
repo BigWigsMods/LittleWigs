@@ -29,7 +29,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("RAID_BOSS_WHISPER")	
+	self:RegisterEvent("RAID_BOSS_WHISPER")
 	--self:Log("SPELL_AURA_APPLIED", "Fixate", 167757) -- XXX
 	
 	self:Log("SPELL_CAST_START", "PierceArmor", 153794)
