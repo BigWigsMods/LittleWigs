@@ -5,6 +5,7 @@
 <Script file="Crawg.lua"/>
 <Script file="Zancha.lua"/>
 <Script file="Abomination.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 

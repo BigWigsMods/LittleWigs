@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	visageRemaining = 10 -- XXX Was 9 on a kill?
+	visageRemaining = 10
 	self:Bar(269310, 7.2) -- Cleansing Light
 	self:Bar(269843, 8.5) -- Vile Expulsion
 end
@@ -64,6 +64,6 @@ end
 
 function mod:VisageDeath(args)
 	visageRemaining = visageRemaining - 1
-	self:Message("stages", "cyan", nil, CL.add_remaining:format(visageRemaining))
+	self:Message("stages", "cyan", nil, CL.add_remaining:format(visageRemaining), false)
 	self:PlaySound("stages", "info")
 end

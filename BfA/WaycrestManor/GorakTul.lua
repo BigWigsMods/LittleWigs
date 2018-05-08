@@ -16,24 +16,23 @@ mod.engageId = 2117
 function mod:GetOptions()
 	return {
 		266181, -- Dread Essence
-		266258, -- Summon Deathtouched Slaver
+		266266, -- Summon Deathtouched Slaver
 		266225, -- Darkened Lightning
-		268208, -- Grim Portal
-		268202, -- Death Lens
-		266198, -- Alchemical Fire
+		266198, -- Alchemical Fire -- XXX Didn't work in my normal run (no log)
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DreadEssence", 266181)
-	self:Log("SPELL_CAST_SUCCESS", "SummonDeathtouchedSlaver", 266258)
+	self:Log("SPELL_CAST_SUCCESS", "SummonDeathtouchedSlaver", 266266)
 	self:Log("SPELL_CAST_START", "DarkenedLightning", 266225)
-	self:Log("SPELL_CAST_SUCCESS", "GrimPortal", 268208)
-	self:Log("SPELL_AURA_APPLIED", "DeathLens", 268202)
 	self:Log("SPELL_CAST_SUCCESS", "AlchemicalFire", 266198)
 end
 
 function mod:OnEngage()
+	self:Bar(266225, 9) -- Darkened Lightning
+	self:Bar(266266, 17) -- Summon Deathtouched Slaver
+	self:Bar(266181, 27.5) -- Dread Essence
 end
 
 --------------------------------------------------------------------------------
@@ -41,25 +40,26 @@ end
 --
 
 function mod:DreadEssence(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+	self:Bar(args.spellId, 27.5)
 end
 
 function mod:SummonDeathtouchedSlaver(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 27.5)
 end
 
 function mod:DarkenedLightning(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Warning")
-end
-
-function mod:GrimPortal(args)
-	self:Message(args.spellId, "cyan", "Info")
-end
-
-function mod:DeathLens(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Healer())
+	self:Message(args.spellId, "orange")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alert")
+	end
+	self:Bar(args.spellId, 14.5)
 end
 
 function mod:AlchemicalFire(args)
-	self:Message(args.spellId, "green", "Long")
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "long")
 end

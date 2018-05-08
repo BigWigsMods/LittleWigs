@@ -176,7 +176,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "Urgent", not self:UnitDebuff("player", args.spellId) and "Warning", CL.onboss:format(args.spellName)) -- don't annoy with sounds those who are already intercepting some
+				self:Message(args.spellId, "Urgent", not self:UnitDebuff("player", 114451) and "Warning", CL.onboss:format(args.spellName)) -- don't annoy with sounds those who are already intercepting some
 			end
 		end
 	end

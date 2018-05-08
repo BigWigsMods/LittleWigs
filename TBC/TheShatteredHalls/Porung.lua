@@ -31,7 +31,7 @@ end
 do
 	local prev = 0
 	function mod:Cleave(args)
-		if self:Me(args.destGUID) and not self:Tank() and UnitLevel("player") <= 70 then
+		if self:Me(args.destGUID) and not self:Tank() and UnitEffectiveLevel("player") <= 80 then
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
