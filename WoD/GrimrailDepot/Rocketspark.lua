@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Rocketspark and Borka", 1208, 1138)
 if not mod then return end
 mod:RegisterEnableMob(77816, 77803) -- Borka, Rocketspark
+mod.engageId = 1715
+mod.respawnTime = 8
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -37,8 +39,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "MadDash", 161090)
 	self:Log("SPELL_CAST_START", "Slam", 161087, 162617)
 
@@ -55,7 +55,6 @@ end
 -- Event Handlers
 --
 
-
 function mod:MadDash(args)
 	self:Message(args.spellId, "Important", "Warning")
 	self:CDBar(args.spellId, 43)
@@ -71,9 +70,7 @@ end
 
 function mod:Deaths(args)
 	deathCount = deathCount + 1
-	if deathCount > 1 then
-		self:Win()
-	else
+	if deathCount < 2 then
 		if args.mobId == 77816 then -- Borka
 			self:StopBar(161090) -- Mad Dash
 			self:StopBar(162617) -- Slam

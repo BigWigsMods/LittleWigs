@@ -6,14 +6,15 @@
 local mod, CL = BigWigs:NewBoss("Orebender Gor'ashan", 1358, 1226)
 if not mod then return end
 mod:RegisterEnableMob(76413)
---BOSS_KILL#1761#Orebender Gor'ashan
+mod.engageId = 1761
+mod.respawnTime = 29
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local stacks = 0
-local hpPercent = 100
+local nextPowerConduitWarning = 80
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -36,21 +37,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "PowerConduit", 166168)
 	self:Log("SPELL_AURA_REMOVED", "PowerConduitRemoved", 166168)
 	self:Log("SPELL_AURA_REMOVED_DOSE", "PowerConduitReduced", 166168)
 
 	self:Log("SPELL_CAST_START", "ShrapnelNova", 154448)
-
-	self:Death("Win", 76413)
 end
 
 function mod:OnEngage()
 	stacks = 0
-	hpPercent = 100
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "PhaseWarn", "boss1")
+	nextPowerConduitWarning = 80 -- 75%, 50%, 25%
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:CDBar(154448, 14.4) -- Shrapnel Nova
 end
 
@@ -58,20 +55,20 @@ end
 -- Event Handlers
 --
 
-function mod:PhaseWarn(unitId)
-	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
-	if (hp < 81 and hpPercent == 100) or (hp < 56 and hpPercent == 75) or (hp < 31 and hpPercent == 50) then
-		hpPercent = hpPercent - 25
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < nextPowerConduitWarning then
+		nextPowerConduitWarning = nextPowerConduitWarning - 25
 		self:Message(166168, "Positive", nil, CL.soon:format(self:SpellName(166168)), false)
-		if hpPercent == 25 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
+		if nextPowerConduitWarning < 25 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 		end
 	end
 end
 
 function mod:PowerConduit(args)
 	stacks = stacks + (self:Normal() and 1 or 2)
-	self:Message(args.spellId, "Important", "Warning", ("%d%% - %s"):format(hpPercent, CL.count:format(args.spellName, stacks)))
+	self:Message(args.spellId, "Important", "Warning", CL.percent:format(nextPowerConduitWarning + 20, CL.count:format(args.spellName, stacks)))
 end
 
 function mod:PowerConduitRemoved(args)

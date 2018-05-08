@@ -6,7 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Commander Tharbek", 1358, 1228)
 if not mod then return end
 mod:RegisterEnableMob(79912, 80098) -- Commander Tharbek, Ironbarb Skyreaver
---BOSS_KILL#1759#Commander Tharbek
+mod.engageId = 1759
+mod.respawnTime = 26
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -25,24 +26,21 @@ end
 
 function mod:GetOptions()
 	return {
+		"stages",
 		161833, -- Noxious Spit
 		162090, -- Imbued Iron Axe
 		"iron_reaver",
 		161882, -- Incinerating Breath
-		"stages",
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterEvent("UNIT_TARGETABLE_CHANGED")
+	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2")
 
 	self:Log("SPELL_AURA_APPLIED", "NoxiousSpit", 161833)
 	self:Log("SPELL_CAST_SUCCESS", "ImbuedIronAxe", 162090)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "IronReaver", "boss1", "boss2")
-
-	self:Death("Win", 79912)
 	self:Death("DragonDies", 80098)
 end
 
@@ -52,8 +50,7 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(unit)
 	if self:MobId(UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
-		local boss = UnitName(unit)
-		self:Message("stages", "Neutral", "Info", boss)
+		self:Message("stages", "Neutral", "Info", self.displayName, "ability_warrior_endlessrage")
 	end
 end
 
