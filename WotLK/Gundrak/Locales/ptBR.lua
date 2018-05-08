@@ -1,9 +1,9 @@
 local L = BigWigs:NewBossLocale("Gal'darah", "ptBR")
 if not L then return end
 if L then
-	--L.forms = "Forms"
-	--L.forms_desc = "Warn before Gal'darah changes forms."
+	L.forms = "Formas"
+	L.forms_desc = "Avisar antes de Gal'darah mudar de forma."
 
-	--L.form_rhino = "Rhino Form"
-	--L.form_troll = "Troll Form"
+	L.form_rhino = "Forma de Rinoceronte"
+	L.form_troll = "Forma de Troll"
 end
