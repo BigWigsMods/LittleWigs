@@ -29,7 +29,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("RAID_BOSS_WHISPER")
+	self:RegisterEvent("RAID_BOSS_WHISPER")	
+	--self:Log("SPELL_AURA_APPLIED", "Fixate", 167757) -- XXX
+	
 	self:Log("SPELL_CAST_START", "PierceArmor", 153794)
 	self:Log("SPELL_CAST_START", "SummonSolarFlare", 153810)
 	self:Log("SPELL_CAST_START", "Quills", 159382)
@@ -50,6 +52,14 @@ function mod:RAID_BOSS_WHISPER()
 	self:Message(167757, "Personal", "Alarm", CL.you:format(self:SpellName(167757)))
 	self:Flash(167757)
 end
+
+-- XXX
+--function mod:Fixate(args)
+--	if self:Me(args.destGUID) then
+--		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+--		self:Flash(args.spellId)
+--	end
+--end
 
 function mod:PierceArmor(args)
 	self:Message(args.spellId, "Attention", "Warning")
