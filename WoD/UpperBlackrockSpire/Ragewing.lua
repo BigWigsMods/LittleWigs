@@ -50,7 +50,6 @@ end
 -- Event Handlers
 --
 
-
 function mod:BurningRage(args)
 	self:Message(args.spellId, "Urgent", self:Dispeller("enrage", true) and "Info", CL.onboss:format(args.spellName))
 	if self:Dispeller("enrage", true) then
