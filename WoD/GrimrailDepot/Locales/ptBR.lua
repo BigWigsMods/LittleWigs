@@ -1,13 +1,13 @@
 local L = BigWigs:NewBossLocale("Rocketspark and Borka", "ptBR")
 if not L then return end
 if L then
-	--L.enrage = "Enrage"
-	--L.enrage_desc = "When Rocketspark or Borka is killed, the other will enrage."
+	L.enrage = "Enfurecer"
+	L.enrage_desc = "Quando Rocketspark ou Borka morre, o outro se enfurece."
 end
 
 L = BigWigs:NewBossLocale("Nitrogg Thundertower", "ptBR")
 if L then
-	--L.dropped = "%s dropped!"
+	L.dropped = "%s soltou-se!"
 end
 
 L = BigWigs:NewBossLocale("Skylord Tovra", "ptBR")
