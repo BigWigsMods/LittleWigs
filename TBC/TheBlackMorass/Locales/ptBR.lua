@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("The Black Morass Trash", "ptBR")
 if not L then return end
 if L then
-	--L.wave = "Wave Warnings"
-	--L.wave_desc = "Announce approximate warning messages for the waves."
+	L.wave = "Avisos de Onda"
+	L.wave_desc = "Anuncia mensagens de aviso da aproximação das ondas."
 
 	L.medivh = "Medivh"
 end
