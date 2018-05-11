@@ -6,7 +6,7 @@ if L then
 	 L.summons = "Convocações"
 	 L.debuffs = "Debuffs"
 
-	 L.start_say = "CONTEMPLEM" -- CONTEMPPLEM! Eu consegui controlar as energias vis deste mundo! O poder demoníaco que eu comando agora... É indescritível, ilimitado, ONIPOTENTE!
+	 L.start_say = "CONTEMPLEM" -- CONTEMPLEM! Eu consegui controlar as energias vis deste mundo! O poder demoníaco que eu comando agora... É indescritível, ilimitado, ONIPOTENTE!
 	 L.win_say = "Jubeka" -- Jubeka?! O que você está...?!
 end
 
