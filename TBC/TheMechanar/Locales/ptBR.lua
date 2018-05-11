@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Pathaleon the Calculator", "ptBR")
 if not L then return end
 if L then
-	--L.despawn_message = "Nether Wraiths Despawning Soon"
+	L.despawn_message = "Aparições Etéreas desaparecendo em breve"
 end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "ptBR")
