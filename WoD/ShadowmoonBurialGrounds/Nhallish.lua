@@ -6,16 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Nhallish", 1176, 1168)
 if not mod then return end
 mod:RegisterEnableMob(75829)
---BOSS_KILL#1688#Nhallish
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
+mod.engageId = 1688
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -31,14 +23,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "PlanarShift", 153623)
 	self:Log("SPELL_CAST_START", "VoidVortex", 152801)
 	self:Log("SPELL_CAST_SUCCESS", "SoulShred", 152979)
 	self:Log("SPELL_CAST_START", "VoidDevastation", 153067)
-
-	self:Death("Win", 75829)
 end
 
 function mod:OnEngage()

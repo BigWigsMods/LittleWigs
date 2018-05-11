@@ -6,12 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Nitrogg Thundertower", 1208, 1163)
 if not mod then return end
 mod:RegisterEnableMob(79545)
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local phase = 1
+mod.engageId = 1732
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -28,17 +24,16 @@ end
 
 function mod:GetOptions()
 	return {
+		"stages",
 		161073, -- Blackrock Grenade
 		160965, -- Blackrock Mortar Shells
 		{160681, "ICON", "FLASH"}, -- Suppressive Fire
 		166570, -- Slag Blast
-		"stages",
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2") -- Nitrogg becomes boss2 after cannon activates, cannon doesn't fire this event
 
 	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
 	self:Log("SPELL_AURA_REMOVED", "SuppressiveFireRemoved", 160681)
@@ -52,26 +47,21 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_AURA_APPLIED", "SlagBlast", 166570)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlast", 166570)
-
-	self:Death("Win", 79545)
 end
 
 function mod:OnEngage()
-	phase = 1
-	self:Message("stages", "Neutral", nil, CL.phase:format(1), false)
+	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_TARGETABLE_CHANGED()
-	if phase == 1 then
-		phase = 2
-		self:Message("stages", "Neutral", "Long", "60% - ".. CL.phase:format(2), false)
-	elseif phase == 2 then
-		phase = 3
-		self:Message("stages", "Neutral", "Long", CL.phase:format(3), false)
+function mod:UNIT_TARGETABLE_CHANGED(unit)
+	if UnitCanAttack("player", unit) then
+		self:Message("stages", "Neutral", "Long", CL.stage:format(3), false)
+	else
+		self:Message("stages", "Neutral", "Long", CL.percent:format(60, CL.stage:format(2)), false)
 	end
 end
 
@@ -100,7 +90,7 @@ end
 
 do
 	function mod:EngineerDies()
-		self:Message(160965, "Urgent", "Info", L.dropped:format(self:SpellName(160965)))
+		self:Message(160965, "Urgent", "Info", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
 	end
 
 	function mod:PickedUpMortarShells(args)
@@ -110,7 +100,7 @@ end
 
 do
 	function mod:GrenadierDies()
-		self:Message(161073, "Attention", nil, L.dropped:format(self:SpellName(161073)))
+		self:Message(161073, "Attention", nil, L.dropped:format(self:SpellName(161073))) -- Blackrock Grenade
 	end
 
 	function mod:PickedUpGrenades(args)

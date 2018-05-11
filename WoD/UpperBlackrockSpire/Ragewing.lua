@@ -6,12 +6,14 @@
 local mod, CL = BigWigs:NewBoss("Ragewing the Untamed", 1358, 1229)
 if not mod then return end
 mod:RegisterEnableMob(76585)
+mod.engageId = 1760
+mod.respawnTime = 11
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local percent = 70
+local nextAddsWarning = 75
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -27,23 +29,20 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "BurningRage", 155620)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BurningRage", 155620)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "EngulfingFire", "boss1")
 
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "SwirlingWinds", 167203)
 	self:Log("SPELL_AURA_REMOVED", "SwirlingWindsOver", 167203)
 
 	self:Log("SPELL_AURA_APPLIED", "MagmaPool", 155057)
-
-	self:Death("Win", 76585)
 end
 
 function mod:OnEngage()
-	percent = 70
+	nextAddsWarning = 75 -- 70% and 40%
 	self:CDBar(154996, 15.7) -- Engulfing Fire
 end
 
@@ -66,16 +65,26 @@ function mod:EngulfingFire(_, _, _, _, spellId)
 	end
 end
 
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < nextAddsWarning then
+		nextAddsWarning = nextAddsWarning - 30
+		self:Message(-10740, "Positive", nil, CL.soon:format(self:SpellName(93679)), false)
+		if nextAddsWarning < 40 then
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		end
+	end
+end
+
 function mod:SwirlingWinds()
-	self:Message(-10740, "Important", "Long", ("%d%% - %s"):format(percent, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
+	self:Message(-10740, "Important", "Long", CL.percent:format(nextAddsWarning + 25, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
 	self:Bar(-10740, 20, CL.intermission, 93679) -- Whelp icon
 	self:StopBar(155025) -- Engulfing Fire
 end
 
 function mod:SwirlingWindsOver()
-	if percent == 70 then
+	if nextAddsWarning > 40 then
 		self:CDBar(154996, self:Normal() and 9.3 or 12.8) -- Engulfing Fire
-		percent = 40
 	end
 end
 

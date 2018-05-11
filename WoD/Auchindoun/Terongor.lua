@@ -6,6 +6,21 @@
 local mod, CL = BigWigs:NewBoss("Teron'gor", 1182, 1225)
 if not mod then return end
 mod:RegisterEnableMob(77734)
+mod.engageId = 1714
+mod.respawnTime = 33
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	local _
+	_, L.affliction = GetSpecializationInfoByID(265)
+	_, L.demonology = GetSpecializationInfoByID(266)
+	_, L.destruction = GetSpecializationInfoByID(267)
+end
+
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,26 +28,23 @@ mod:RegisterEnableMob(77734)
 
 function mod:GetOptions()
 	return {
+		"stages",
+		156854, -- Drain Life
+		156856, -- Rain of Fire
+		{157168, "ICON"}, -- Fixate
 		{156921, "FLASH", "PROXIMITY"}, -- Seed of Malevolence
 		{157001, "SAY"}, -- Chaos Wave
 		{157039, "SAY", "FLASH"}, -- Demonic Leap
-		156854, -- Drain Life
-		{157168, "ICON"}, -- Fixate
-		156856, -- Rain of Fire
 		156975, -- Chaos Bolt
+	}, {
+		["stages"] = "general",
+		[156921] = L.affliction,
+		[157001] = L.demonology,
+		[156975] = L.destruction,
 	}
 end
 
-function mod:VerifyEnable(unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp > 15 then
-		return true
-	end
-end
-
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "SeedOfMalevolence", 156921)
 	self:Log("SPELL_AURA_REMOVED", "SeedOfMalevolenceRemoved", 156921)
 	self:Log("SPELL_AURA_APPLIED", "Fixate", 157168)
@@ -42,12 +54,25 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DrainLife", 156854)
 	self:Log("SPELL_CAST_START", "ChaosBolt", 156975)
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "Success", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+end
+
+function mod:OnEngage()
+	self:Message("stages", "Positive", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 80 then
+		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message("stages", "Attention", "Info", CL.soon:format(CL.stage:format(2)), false)
+	end
+end
 
 function mod:SeedOfMalevolence(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
@@ -113,8 +138,12 @@ function mod:ChaosBolt(args)
 	self:Bar(args.spellId, 24)
 end
 
-function mod:Success(_, _, _, _, spellId)
-	if spellId == 114268 then -- Shadow Nova
-		self:Win()
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	if spellId == 156863 then -- Affliction Transformation
+		self:Message("stages", "Positive", "Info", CL.other:format(CL.stage:format(2), L.affliction), "spell_shadow_deathcoil")
+	elseif spellId == 156919 then -- Demonology Transformation
+		self:Message("stages", "Positive", "Info", CL.other:format(CL.stage:format(2), L.demonology), "spell_shadow_metamorphosis")
+	elseif spellId == 156866 then -- Destruction Transformation
+		self:Message("stages", "Positive", "Info", CL.other:format(CL.stage:format(2), L.destruction), "spell_shadow_rainoffire")
 	end
 end

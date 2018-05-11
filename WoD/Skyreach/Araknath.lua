@@ -6,21 +6,14 @@
 local mod, CL = BigWigs:NewBoss("Araknath", 1209, 966)
 if not mod then return end
 mod:RegisterEnableMob(76141)
+mod.engageId = 1699
+mod.respawnTime = 23 -- respawns 11s after, unattackable for a while
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local smashCount, burstCount = 0, 0
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,13 +28,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "Energize", 154159)
 	self:Log("SPELL_CAST_START", "Smash", 154110, 154113)
 	self:Log("SPELL_CAST_START", "Burst", 154135)
-
-	self:Death("Win", 76141)
 end
 
 function mod:OnEngage()

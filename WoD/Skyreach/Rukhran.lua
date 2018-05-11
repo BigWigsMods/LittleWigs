@@ -6,17 +6,14 @@
 local mod, CL = BigWigs:NewBoss("Rukhran", 1209, 967)
 if not mod then return end
 mod:RegisterEnableMob(76143)
-
-local quillsWarn = 100
+mod.engageId = 1700
+mod.respawnTime = 15
 
 --------------------------------------------------------------------------------
--- Localization
+-- Locals
 --
 
-local L = mod:GetLocale()
-if L then
-
-end
+local quillsWarn = 100
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -32,16 +29,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:RegisterEvent("RAID_BOSS_WHISPER")
-
-	--self:Log("SPELL_AURA_APPLIED", "Fixate", 167757) -- XXX wowNext/6.2
+	--self:Log("SPELL_AURA_APPLIED", "Fixate", 167757) -- XXX
+	
 	self:Log("SPELL_CAST_START", "PierceArmor", 153794)
 	self:Log("SPELL_CAST_START", "SummonSolarFlare", 153810)
 	self:Log("SPELL_CAST_START", "Quills", 159382)
-
-	self:Death("Win", 76143)
 end
 
 function mod:OnEngage()
@@ -54,19 +47,19 @@ end
 -- Event Handlers
 --
 
--- XXX wowNext/6.2
+function mod:RAID_BOSS_WHISPER()
+	-- RAID_BOSS_WHISPER#|TInterface\\Icons\\ability_fixated_state_red:20|tA Solar Flare has |cFFFF0000|Hspell:176544|h[Fixated]|h|r on you! If it reaches you it will |cFFFF0000|Hspell:153828|h[Explode]|h|r!#Solar Flare#1#true
+	self:Message(167757, "Personal", "Alarm", CL.you:format(self:SpellName(167757)))
+	self:Flash(167757)
+end
+
+-- XXX
 --function mod:Fixate(args)
 --	if self:Me(args.destGUID) then
 --		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
 --		self:Flash(args.spellId)
 --	end
 --end
-
-function mod:RAID_BOSS_WHISPER()
-	-- RAID_BOSS_WHISPER#|TInterface\\Icons\\ability_fixated_state_red:20|tA Solar Flare has |cFFFF0000|Hspell:176544|h[Fixated]|h|r on you! If it reaches you it will |cFFFF0000|Hspell:153828|h[Explode]|h|r!#Solar Flare#1#true
-	self:Message(167757, "Personal", "Alarm", CL.you:format(self:SpellName(167757)))
-	self:Flash(167757)
-end
 
 function mod:PierceArmor(args)
 	self:Message(args.spellId, "Attention", "Warning")
@@ -78,7 +71,7 @@ function mod:SummonSolarFlare(args)
 end
 
 function mod:Quills(args)
-	self:Message(args.spellId, "Urgent", "Long", ("%d%% - %s"):format(quillsWarn, args.spellName))
+	self:Message(args.spellId, "Urgent", "Long", CL.percent:format(quillsWarn, args.spellName))
 	self:Bar(args.spellId, 17)
 end
 

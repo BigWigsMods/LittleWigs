@@ -6,21 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Fleshrender Nok'gar", 1195, 1235)
 if not mod then return end
 mod:RegisterEnableMob(81297, 81305) -- Dreadfang, Fleshrender Nok'gar
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local deaths = 0
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
+mod.engageId = 1749
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,9 +27,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
-	self:Log("SPELL_AURA_APPLIED", "BloodlettingHowl", 164835)
+	self:Log("SPELL_CAST_SUCCESS", "BloodlettingHowl", 164835)
 	self:Log("SPELL_AURA_APPLIED", "BurningArrows", 164632)
 
 	self:Log("SPELL_AURA_APPLIED", "SavageMauling", 164837)
@@ -51,14 +36,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
-
-	self:Death("Deaths", 81297, 81305) -- Dreadfang, Fleshrender Nok'gar
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss2")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
 function mod:OnEngage()
-	deaths = 0
 	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
 end
 
@@ -67,10 +49,7 @@ end
 --
 
 function mod:BloodlettingHowl(args)
-	local id = self:MobId(args.destGUID)
-	if id == 81297 or id == 81305 then -- Trash also gain it
-		self:TargetMessage(args.spellId, args.destName, "Attention", self:Dispeller("enrage", true) and "Long")
-	end
+	self:Message(args.spellId, "Attention"--[[, self:Dispeller("enrage", true) and "Long"]])
 end
 
 function mod:BurningArrows(args)
@@ -116,12 +95,5 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	if spellId == 175755 then -- Dismount
 		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
 		self:CDBar(164426, 16) -- Reckless Provocation
-	end
-end
-
-function mod:Deaths()
-	deaths = deaths + 1
-	if deaths > 1 then
-		self:Win()
 	end
 end

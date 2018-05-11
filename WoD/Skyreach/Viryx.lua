@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("High Sage Viryx", 1209, 968)
 if not mod then return end
 mod:RegisterEnableMob(76266)
+mod.engageId = 1701
+mod.respawnTime = 15
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -14,7 +16,7 @@ mod:RegisterEnableMob(76266)
 local L = mod:GetLocale()
 if L then
 	L.custom_on_markadd = "Mark the Solar Zealot"
-	L.custom_on_markadd_desc = "Mark the Solar Zealot with a skull, requires promoted or leader."
+	L.custom_on_markadd_desc = "Mark the Solar Zealot with {rt8}, requires promoted or leader."
 	L.custom_on_markadd_icon = 8
 
 	L.add = "Add Spawning"
@@ -36,16 +38,13 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
 
 	self:Log("SPELL_CAST_START", "Shielding", 154055)
-
-	self:Death("Win", 76266)
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	self:CDBar(153954, 15) -- Cast Down
 	self:Bar("add", 32, CL.add, L.add_icon)
 end
@@ -55,8 +54,7 @@ end
 --
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	self:CheckBossStatus()
-	if self.db.profile.custom_on_markadd then
+	if self:GetOption("custom_on_markadd") then
 		for i = 1, 5 do
 			local unit = ("boss%d"):format(i)
 			local guid = UnitGUID(unit)

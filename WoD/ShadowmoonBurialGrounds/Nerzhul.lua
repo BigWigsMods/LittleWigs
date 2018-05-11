@@ -6,22 +6,14 @@
 local mod, CL = BigWigs:NewBoss("Ner'zhul", 1176, 1160)
 if not mod then return end
 mod:RegisterEnableMob(76407)
---BOSS_KILL#1682#Ner'zhul
+mod.engageId = 1682
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local omenCounter = 1
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -36,13 +28,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "Malevolence", 154442)
 	self:Log("SPELL_SUMMON", "OmenOfDeath", 154350)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "RitualOfBones", "boss1")
-
-	self:Death("Win", 76407)
 end
 
 function mod:OnEngage()
