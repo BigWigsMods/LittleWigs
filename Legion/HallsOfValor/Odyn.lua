@@ -61,6 +61,10 @@ function mod:OnEngage()
 	self:Bar(197961, 44) -- Runic Brand
 end
 
+function mod:VerifyEnable(unit)
+	return UnitCanAttack("player", unit) or (UnitHealth(unit) / UnitHealthMax(unit) > 0.8)
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
