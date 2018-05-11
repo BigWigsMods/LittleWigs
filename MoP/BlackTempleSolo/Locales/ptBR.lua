@@ -6,8 +6,8 @@ if L then
 	 L.summons = "Convocações"
 	 L.debuffs = "Debuffs"
 
-	 L.start_say = "CONTEMPLEM" -- BEHOLD! I have truly mastered the fel energies of this world! The demonic power I now command... It is indescribable, unlimited, OMNIPOTENT!
-	 L.win_say = "Jubeka" -- Jubeka?! What are you...?!
+	 L.start_say = "CONTEMPLEM" -- CONTEMPPLEM! Eu consegui controlar as energias vis deste mundo! O poder demoníaco que eu comando agora... É indescritível, ilimitado, ONIPOTENTE!
+	 L.win_say = "Jubeka" -- Jubeka?! O que você está...?!
 end
 
 L = BigWigs:NewBossLocale("Essence of Order", "ptBR")
