@@ -70,12 +70,6 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.erdris
-
-	-- Big evul hack to enable the module when entering the scenario
-	-- self:RegisterEvent("SCENARIO_UPDATE")
-	-- if C_Scenario.IsInScenario() then
-	-- 	self:SCENARIO_UPDATE()
-	-- end
 end
 
 function mod:OnBossEnable()
@@ -94,24 +88,9 @@ function mod:OnEngage()
 	wipe(castCollector)
 end
 
--- function mod:OnDisable()
--- 	self:RegisterEvent("SCENARIO_UPDATE")
--- end
-
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- function mod:SCENARIO_UPDATE()
--- 	if self:IsEnabled() then return end
--- 	local _, _, numCriteria = C_Scenario.GetStepInfo()
--- 	for i = 1, numCriteria do
--- 		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
--- 		if criteriaID == 00000 then -- Kill the defenders / Your allies must survive
--- 			mod:Enable()
--- 		end
--- 	end
--- end
 
 function mod:Warmup(_, msg)
 	if msg:find(L.warmup_trigger, nil, true) then -- Start

@@ -54,23 +54,16 @@ function mod:GetOptions()
 
 		--[[ Agatha ]]--
 		"warmup",
-		"stages",
 		{243111, "INFOBOX"}, -- Dark Fury
 		242989, -- Translocate
 	}, {
-		imp_servant = "adds",
+		imp_servant = CL.adds,
 		warmup = L.name,
 	}
 end
 
 function mod:OnRegister()
 	self.displayName = L.name
-
-	-- Big evul hack to enable the module when entering the scenario
-	self:RegisterEvent("SCENARIO_UPDATE")
-	if C_Scenario.IsInScenario() then
-		self:SCENARIO_UPDATE()
-	end
 end
 
 function mod:OnBossEnable()
@@ -109,27 +102,9 @@ function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 end
 
-function mod:OnDisable()
-	self:RegisterEvent("SCENARIO_UPDATE")
-end
-
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:SCENARIO_UPDATE()
-	if self:IsEnabled() then return end
-	local _, _, numCriteria = C_Scenario.GetStepInfo()
-	for i = 1, numCriteria do
-		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
-		if criteriaID == 34734 then -- Agatha Defeated
-			mod:Enable()
-		end
-	end
-end
-
----------------------------------------
--- Imps
 
 function mod:AddScanner(event, unit, guid)
 	if not guid or imps[guid] then return end
@@ -264,8 +239,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 242987 then -- Translocate
 		if phase == 1 then
 			phase = 2
-			self:Message(242989, "Neutral")
-			self:Message("stages", "Neutral", nil, CL.percent:format(50, CL.phase:format(2)), false)
+			self:Message(242989, "Neutral", nil, CL.percent:format(50, spellName), false)
 
 			-- Recalc Dark Fury time
 			local remaining = (100 - UnitPower(unit)) * 0.68
@@ -279,7 +253,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
-		self:Message("stages", "Neutral", nil, CL.soon:format(CL.phase:format(2)), false)
+		self:Message(242989, "Neutral", nil, CL.soon:format(self:SpellName(242987)), false)
 		-- Seems like it's based on damage done after the initial 50% cast, cba to track that
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 	end

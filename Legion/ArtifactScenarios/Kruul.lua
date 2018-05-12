@@ -27,11 +27,8 @@ if L then
 	L.velen = "Prophet Velen"
 
 	-- Triggers
-	-- L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
-	-- L.win_trigger = "So be it. You will not stand in our way any longer."
-
-	-- Engage / Options
-	-- L.engage_message = "Highlord Kruul's Challenge Engaged!"
+	L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
+	L.win_trigger = "So be it. You will not stand in our way any longer."
 
 	L.nether_aberration = 235110
 	L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
@@ -78,17 +75,11 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.name
-
-	-- Big evul hack to enable the module when entering the scenario
-	self:RegisterEvent("SCENARIO_UPDATE")
-	if C_Scenario.IsInScenario() then
-		self:SCENARIO_UPDATE()
-	end
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "SayTriggers")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "NetherStorm", 240790)
@@ -111,28 +102,16 @@ function mod:OnEngage()
 	self:CDBar("smoldering_infernal", 35, L.smoldering_infernal, L.smoldering_infernal_icon) -- Smoldering Infernal Summon
 end
 
-function mod:OnDisable()
-	self:RegisterEvent("SCENARIO_UPDATE")
-end
-
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:SCENARIO_UPDATE()
-	if self:IsEnabled() then return end
-	local _, _, numCriteria = C_Scenario.GetStepInfo()
-	for i = 1, numCriteria do
-		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
-		if criteriaID == 34961 then -- Destroy Highlord Kruul permanently
-			mod:Enable()
-		end
+function mod:SayTriggers(_, msg)
+	if msg == L.warmup_trigger then
+		self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
+	elseif msg == L.win_trigger then
+		self:Win()
 	end
-end
-
-function mod:Warmup(event)
-	self:UnregisterEvent(event)
-	self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)

@@ -67,12 +67,6 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.tugar
-
-	-- Big evul hack to enable the module when entering the scenario
-	self:RegisterEvent("SCENARIO_UPDATE")
-	if C_Scenario.IsInScenario() then
-		self:SCENARIO_UPDATE()
-	end
 end
 
 function mod:OnBossEnable()
@@ -104,24 +98,9 @@ function mod:OnEngage()
 	self:CDBar("rupture", 7, "X", L.rupture_icon)
 end
 
-function mod:OnDisable()
-	self:RegisterEvent("SCENARIO_UPDATE")
-end
-
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:SCENARIO_UPDATE()
-	if self:IsEnabled() then return end
-	local _, _, numCriteria = C_Scenario.GetStepInfo()
-	for i = 1, numCriteria do
-		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
-		if criteriaID == 35052 then -- Follow Tugar Bloodtotem
-			mod:Enable()
-		end
-	end
-end
 
 function mod:FelBurst(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))

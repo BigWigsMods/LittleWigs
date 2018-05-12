@@ -38,7 +38,7 @@ if L then
 	L.name = "Archmage Xylem"
 	L.corruptingShadows = "Corrupting Shadows"
 
-	-- L.warmup_trigger1 = "You are too late, warrior! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!"
+	L.warmup_trigger1 = "You are too late, warrior! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!"
 	-- L.warmup_trigger2 = "Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!"
 end
 
@@ -69,12 +69,6 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.name
-
-	-- Big evul hack to enable the module when entering the scenario
-	self:RegisterEvent("SCENARIO_UPDATE")
-	if C_Scenario.IsInScenario() then
-		self:SCENARIO_UPDATE()
-	end
 end
 
 function mod:OnBossEnable()
@@ -100,24 +94,9 @@ function mod:OnEngage()
 	self:Bar(242015, 11, ("%s (%s)"):format(self:SpellName(242015), self:SpellName(232661))) -- Blink (Razor Ice)
 end
 
-function mod:OnDisable()
-	self:RegisterEvent("SCENARIO_UPDATE")
-end
-
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:SCENARIO_UPDATE()
-	if self:IsEnabled() then return end
-	local _, _, numCriteria = C_Scenario.GetStepInfo()
-	for i = 1, numCriteria do
-		local criteriaID = select(9, C_Scenario.GetCriteriaInfo(i))
-		if criteriaID == 34702 then -- Confront Archmage Xylem
-			mod:Enable()
-		end
-	end
-end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 	if not self.isEngaged then
@@ -148,9 +127,11 @@ end
 ---------------------------------------
 -- Archmage Xylem
 
-function mod:Warmup(event)
-	self:UnregisterEvent(event)
-	self:Bar("warmup", 28, CL.active, "spell_mage_focusingcrystal")
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger1 then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 28, CL.active, "spell_mage_focusingcrystal")
+	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
