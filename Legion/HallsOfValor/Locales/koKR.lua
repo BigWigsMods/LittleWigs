@@ -5,7 +5,7 @@ if L then
 	L.custom_on_autotalk_desc = "전투를 시작하는 대화 선택지를 즉시 선택합니다."
 
 	L.gossip_available = "대화 가능"
-	--L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
+	L.gossip_trigger = "정말 놀랍군! 발라리아르의 힘에 견줄 만큼 강력한 자를 보게 될 줄은 몰랐거늘, 이렇게 너희가 나타나다니."
 
 	L[197963] = "|cFF800080우측 상단|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
 	L[197964] = "|cFFFFA500우측 하단|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
@@ -18,7 +18,7 @@ L = BigWigs:NewBossLocale("God-King Skovald", "koKR")
 if L then
 	L.warmup_text = "신왕 스코발드 활성화"
 	L.warmup_trigger = "스코발드, 아이기스는 이미 주인을 찾았다. 자격이 충분한 용사들이지. 네 권리를 주장하기엔 너무 늦었어."
-	--L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
+	L.warmup_trigger_2 = "이 가짜 용사들이 아이기스를 포기하지 않는다면... 목숨을 포기해야 할 거다!"
 end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "koKR")

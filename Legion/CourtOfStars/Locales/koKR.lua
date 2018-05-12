@@ -148,5 +148,5 @@ end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "koKR")
 if L then
-	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+	L.warmup_trigger = "또 실패했구나 멜란드루스. 이번이 네 잘못을 바로잡을 기회다. 이 외부인들을 제거해라. 난 밤의 요새로 돌아가겠다."
 end
