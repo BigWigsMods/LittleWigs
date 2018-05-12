@@ -1,10 +1,10 @@
 local L = BigWigs:NewBossLocale("Corborus", "ptBR")
 if not L then return end
 if L then
-	--L.burrow = "Burrow/emerge"
-	--L.burrow_desc = "Warn when Corborus burrows or emerges."
-	--L.burrow_message = "Corborus burrows!"
-	--L.burrow_warning = "Burrow in 5 sec!"
-	--L.emerge_message = "Corborus emerges!"
-	--L.emerge_warning = "Emerge in 5 sec!"
+	L.burrow = "Afunda/emerge"
+	L.burrow_desc = "Avisa quando Corborus afunda ou emerge."
+	L.burrow_message = "Corborus afundou!"
+	L.burrow_warning = "Afundará em 5 seg!"
+	L.emerge_message = "Corborus emergiu!"
+	L.emerge_warning = "Emergirá em 5 seg!"
 end
