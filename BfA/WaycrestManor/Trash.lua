@@ -126,8 +126,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Etch", 263943)
 	self:Log("SPELL_CAST_START", "MarkingCleave", 263905)
 	-- Maddened Survivalist
-	self:Log("SPELL_CAST_START", "ShrapnelTrap", 263905)
-	self:Log("SPELL_CAST_START", "SeveringSerpent", 263905)
+	self:Log("SPELL_CAST_START", "ShrapnelTrap", 264525)
+	self:Log("SPELL_CAST_START", "SeveringSerpent", 264520)
 	-- Matron Bryndle
 	self:Log("SPELL_CAST_SUCCESS", "SplinterSpike", 265759)
 	self:Log("SPELL_CAST_START", "ThornedBarrage", 265760)
@@ -151,6 +151,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SpectralTalisman", 264396)
 	self:Log("SPELL_CAST_START", "Spellbind", 264390)
 	-- Marked Sister
+	self:Log("SPELL_CAST_START", "RunicMark", 264105)
 	self:Log("SPELL_AURA_APPLIED", "RunicMarkApplied", 264105)
 	self:Log("SPELL_AURA_REMOVED", "RunicMarkRemoved", 264105)
 	-- Matron Alma
@@ -309,6 +310,11 @@ function mod:Spellbind(args)
 end
 
 -- Marked Sister
+function mod:RunicMark(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
 function mod:RunicMarkApplied(args)
 	self:TargetMessage2(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) then
