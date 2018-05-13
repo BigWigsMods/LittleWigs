@@ -6,6 +6,7 @@
 <Script file="Raal.lua"/>
 <Script file="Waycrest.lua"/>
 <Script file="GorakTul.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 
