@@ -16,6 +16,7 @@ local imps = {}
 local phase = 1
 local partyCount = 1
 local marker = 1
+local hasFury = nil
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -91,6 +92,7 @@ function mod:OnEngage()
 	phase = 1
 	partyCount = 1
 	marker = 1
+	hasFury = nil
 
 	self:Bar("imp_servant", 16, L.imp_servant, "spell_warlock_demonsoul")
 	self:Bar("fuming_imp", 19, L.fuming_imp, "spell_deathknight_necroticplague")
@@ -164,7 +166,7 @@ do
 		count = count - 1
 		if count < 1 then -- Of course the immunity buff doesn't show on the boss.
 			self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
-			if self:UnitBuff("boss1", self:SpellName(243111)) then -- Play sound if Dark Fury is on the boss
+			if hasFury then -- Play sound if Dark Fury is on the boss
 				self:PlaySound(args.spellId, "Alert")
 			end
 		end
@@ -197,6 +199,7 @@ do
 	function mod:DarkFury(args)
 		self:Message(243111, "Important", "Long")
 		self:Bar(243111, phase == 1 and 51 or 68) -- Energy generation slows in phase 2 (2/s->3/2s)
+		hasFury = true
 
 		if self:CheckOption(243111, "INFOBOX") then
 			maxAbsorb = UnitGetTotalAbsorbs("boss1")
@@ -216,13 +219,14 @@ do
 
 	function mod:DarkFuryShieldRemoved(args)
 		self:Message(243111, "Positive", "Long", CL.removed:format(args.spellName))
-		if not self:UnitBuff("boss1", args.spellName) then
+		if not self:UnitBuff("boss1", 243111) then -- Dark Fury damage buff
 			-- Translocate during Dark Fury does weird things
 			self:DarkFuryRemoved()
 		end
 	end
 
 	function mod:DarkFuryRemoved(args)
+		hasFury = nil
 		self:CloseInfo(243111)
 		if timer then
 			self:CancelTimer(timer)
