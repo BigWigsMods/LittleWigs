@@ -20,7 +20,7 @@ BigWigs:AddColors("Commander Tharbek", {
 })
 
 BigWigs:AddColors("Ragewing the Untamed", {
-	[-10740] = "Important",
+	[-10740] = {"Important","Positive"},
 	[154996] = "Attention",
 	[155057] = "Personal",
 	[155620] = "Urgent",
@@ -28,5 +28,5 @@ BigWigs:AddColors("Ragewing the Untamed", {
 
 BigWigs:AddColors("Warlord Zaela", {
 	[155721] = {"Attention","Personal"},
-	["stages"] = "Important",
+	["stages"] = {"Important","Positive"},
 })

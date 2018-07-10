@@ -18,6 +18,6 @@ BigWigs:AddColors("Loken", {
 })
 
 BigWigs:AddColors("Halls of Lightning Trash", {
-	[53045] = {"Attention","Personal"},
+	[59165] = {"Attention","Personal"},
 	[61581] = "Important",
 })

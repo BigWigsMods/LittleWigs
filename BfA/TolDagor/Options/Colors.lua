@@ -28,3 +28,14 @@ BigWigs:AddColors("Overseer Korgus", {
 	[256199] = "cyan",
 	[263345] = "yellow",
 })
+
+BigWigs:AddColors("Tol Dagor Trash", {
+	[258079] = {"orange","Personal"},
+	[258128] = "yellow",
+	[258153] = "yellow",
+	[258313] = "red",
+	[258634] = "orange",
+	[258864] = "orange",
+	[258917] = "red",
+	[258935] = "orange",
+})

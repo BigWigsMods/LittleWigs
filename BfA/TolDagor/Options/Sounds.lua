@@ -28,3 +28,14 @@ BigWigs:AddSounds("Overseer Korgus", {
 	[256199] = "Info",
 	[263345] = "Alert",
 })
+
+BigWigs:AddSounds("Tol Dagor Trash", {
+	[258079] = "alarm",
+	[258128] = "alert",
+	[258153] = "alert",
+	[258313] = "warning",
+	[258634] = "alarm",
+	[258864] = "long",
+	[258917] = "alarm",
+	[258935] = "warning",
+})

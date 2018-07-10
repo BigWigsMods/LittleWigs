@@ -1,6 +1,7 @@
 
 BigWigs:AddColors("Temporus", {
 	[31458] = "Important",
+	[38592] = "Urgent",
 })
 
 BigWigs:AddColors("Aeonus", {

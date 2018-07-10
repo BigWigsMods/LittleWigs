@@ -11,6 +11,7 @@ BigWigs:AddColors("Striker Ga'dok", {
 
 BigWigs:AddColors("Commander Ri'mok", {
 	[-5666] = {"Important","Personal","Urgent"},
+	[106874] = "Personal",
 	[107120] = {"Attention","Personal"},
 })
 

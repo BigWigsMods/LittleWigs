@@ -25,6 +25,7 @@ BigWigs:AddColors("Teron'gor", {
 	[157001] = {"Important","Personal"},
 	[157039] = {"Personal","Urgent"},
 	[157168] = {"Personal","Positive"},
+	["stages"] = {"Attention","Positive"},
 })
 
 BigWigs:AddColors("Auchindoun Trash", {
