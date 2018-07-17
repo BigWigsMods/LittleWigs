@@ -65,7 +65,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_POWER(unit)
+function mod:UNIT_POWER(_, unit)
 	local nextSpecial = (100 - (UnitPower(unit) / (UnitPowerMax(unit)) * 100)) / 3.3
 	if nextSpecial > 0 and addsKilled ~= 0 then -- doesn't work like that while Guardian's Image is active
 		local spellName = self:SpellName(L.focused_power)

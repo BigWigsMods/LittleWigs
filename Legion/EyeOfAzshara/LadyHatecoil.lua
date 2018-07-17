@@ -101,7 +101,7 @@ function mod:BeckonStorm(args)
 	self:CDBar("blob", 47, -12139, L.blob_icon) -- Saltsea Globule -- pull:21.3, 47.4 / m pull:21.3, 49.8, 47.4
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	-- Starts by using 196629 then randomly swaps to using 196634 (mythic)
 	if spellId == 196634 or spellId == 196629 then -- Monsoon
 		self:Message(196610, "Positive")

@@ -84,10 +84,10 @@ function mod:Havoc(args)
 	self:CDBar(190830, 14.5) -- Hatred
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 190830 then -- Hatred
 		self:Message(spellId, "Attention", "Warning")
-		self:Bar(spellId, 10, CL.cast:format(spellName))
+		self:CastBar(spellId, 10)
 		self:CDBar(spellId, 30)
 	end
 end

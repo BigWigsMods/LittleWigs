@@ -71,7 +71,7 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 193092 then -- Bloodletting Sweep
 		self:Message(spellId, "Attention", self:Tank() and "Info")
 		self:CDBar(spellId, 18) -- 18.2 - 23

@@ -45,7 +45,7 @@ function mod:SummonVolatileEnergy(args)
 	self:Bar(args.spellId, 9.7)
 end
 
-function mod:PowerDischarge(_, _, _, _, spellId)
+function mod:PowerDischarge(_, _, _, spellId)
 	if spellId == 227278 then
 		self:Message(227279, "Urgent", "Alert")
 		self:CDBar(227279, 12)

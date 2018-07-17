@@ -70,7 +70,7 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 234283 and phase == 2 then -- Expel Shadows
 		self:Message(233206, "Attention", "Warning", 234283)
 		local timeLeft = 0
@@ -107,7 +107,7 @@ end
 
 do
 	local list, guid = mod:NewTargetList(), nil
-	function mod:UNIT_AURA(event, unit)
+	function mod:UNIT_AURA(_, unit)
 		local name = self:UnitDebuff(unit, 233963) -- Demonic Upheaval Debuff Id
 		local n = self:UnitName(unit)
 		if upheavalWarned[n] and not name then

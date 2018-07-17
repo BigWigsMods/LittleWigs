@@ -69,13 +69,13 @@ end
 -- Event Handlers
 --
 
-function mod:BlinkStrikes(_, spellName, _, _, spellId)
+function mod:BlinkStrikes(_, _, _, spellId)
 	if spellId == 199809 then -- UNIT_SPELLCAST_SUCCEEDED
 		blinkCount = 1
 		self:Bar(-12687, 30)
 	elseif spellId == 199811 then -- UNIT_SPELLCAST_CHANNEL_START
 		local target = self:UnitName("boss1target")
-		self:TargetMessage(-12687, target, "Urgent", "Alarm", CL.count:format(spellName, blinkCount))
+		self:TargetMessage(-12687, target, "Urgent", "Alarm", CL.count:format(self:SpellName(spellId), blinkCount))
 		blinkCount = blinkCount + 1
 	end
 end

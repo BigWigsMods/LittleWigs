@@ -90,7 +90,7 @@ function mod:ToxicRetch(args)
 	self:CDBar(args.spellId, 15) -- pull:12.1, 17.0, 14.6, 24.3, 14.5, 14.6
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 199817 then -- Call Minions
 		self:ScheduleTimer("Message", 4, -12527, "Attention", "Info", CL.incoming:format(self:SpellName(-12527)), 209906)
 		self:ScheduleTimer("Bar", 4, -12527, 65, -12527, 209906) -- spell_shadow_ritualofsacrifice / Fanatic's Sacrifice / icon 136189

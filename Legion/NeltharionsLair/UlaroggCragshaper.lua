@@ -57,7 +57,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 198509 then -- Stance of the Mountain
 		totemsAlive = self:Normal() and 3 or 5
 		self:StopBar(198496) -- Sunder
