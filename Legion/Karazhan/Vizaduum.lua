@@ -160,7 +160,7 @@ function mod:BossSwing(args)
 end
 
 -- [[ Stages 1 & 2 ]] --
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 229284 then -- Command: Bombardment
 		self:Message(spellId, "Urgent", nil, CL.incoming:format(self:SpellName(229287))) -- 229287 = Bombardment
 		self:CDBar(spellId, stage == 1 and 40.1 or 25.5)

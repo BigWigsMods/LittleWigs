@@ -80,7 +80,7 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 249336 then -- Summon Ethereal Guards
 		self:Message(248804, "Attention", "Info", CL.spawned:format(L.guards))
 	end

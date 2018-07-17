@@ -97,7 +97,7 @@ function mod:ShatterSpears(args)
 	self:Bar(args.spellId, 56) -- m pull:40.0, 56.0
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 198396 then -- Spear of Light
 		self:Message(200988, "Urgent", "Alert")
 	end

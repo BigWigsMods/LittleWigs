@@ -64,7 +64,7 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 247206 then -- Overload Trap
 		self:Message(spellId, "Attention", "Alarm")
 		self:Bar(spellId, 20.7)

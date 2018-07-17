@@ -76,9 +76,9 @@ function mod:RAID_BOSS_WHISPER(_, msg, sender)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 236650 then -- Choking Vines
-		self:Message(236650, "Attention", "Alert", spellName)
+		self:Message(236650, "Attention", "Alert", spellId, 236650)
 		self:Bar(236650, 40.1)
 	end
 end

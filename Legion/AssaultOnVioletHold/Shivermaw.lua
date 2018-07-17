@@ -58,7 +58,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 201355 then -- Wing Buffet
 		self:Message(spellId, "Urgent", "Alert")
 		buffetCount = buffetCount + 1

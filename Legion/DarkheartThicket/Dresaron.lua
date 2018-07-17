@@ -64,7 +64,7 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 199332 then -- Breath of Corruption
 		self:Message(191325, "Attention", "Info")
 		self:CDBar(191325, first and 20 or 30) -- XXX m pull:13.5, 21.5, 13.8, 20.6, 14.6, 20.6

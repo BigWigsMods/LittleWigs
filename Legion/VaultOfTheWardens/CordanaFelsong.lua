@@ -85,7 +85,7 @@ end
 
 do
 	local prev, prevGUID = 0, nil
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, castGUID, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
 		if unit == "boss1" then
 			if spellId == 197796 then -- Avatar of Vengeance
 				self:Message(spellId, "Urgent", "Long")
@@ -148,7 +148,7 @@ function mod:AvatarDeath()
 	self:Message(197796, "Positive", "Long", CL.removed:format(self:SpellName(205004))) -- Vengeance removed
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 80 and not warnedForStealLight then
 		warnedForStealLight = true
@@ -156,6 +156,6 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	elseif hp < 45 and not warnedForCreepingDoom then
 		warnedForCreepingDoom = true
 		self:Message(197422, "Important", nil, CL.soon:format(self:SpellName(197422))) -- Creeping Doom soon
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 	end
 end

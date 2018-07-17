@@ -108,10 +108,10 @@ end
 -- Dul'zak
 do
 	local prev = nil
-	function mod:ShadowWave(_, _, spellName, _, castGUID, spellId)
+	function mod:ShadowWave(_, _, castGUID, spellId)
 		if spellId == 238653 and castGUID ~= prev then -- Shadow Wave
 			prev = castGUID
-			self:Message(spellId, "Urgent", "Alarm", CL.incoming:format(spellName))
+			self:Message(spellId, "Urgent", "Alarm", CL.incoming:format(self:SpellName(spellId)))
 			self:Bar(spellId, 23.2)
 		end
 	end

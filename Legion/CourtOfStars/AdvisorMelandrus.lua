@@ -73,9 +73,9 @@ function mod:BladeSurge(args)
 	self:CDBar(args.spellId, 12, CL.count:format(args.spellName, bladeSurgeCount))
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 224327 then -- Enveloping Winds
-		self:Message(224333, "Attention", "Info", spellName)
+		self:Message(224333, "Attention", "Info", spellId, 224333)
 		self:CDBar(224333, 9.4) -- actual spellid has no icon/tooltip
 	end
 end

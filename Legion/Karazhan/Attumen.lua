@@ -41,15 +41,15 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227404 then -- Intangible Presence
 		self:Message(spellId, "Attention", self:Dispeller("magic") and "Warning")
 		self:Bar(spellId, 30)
 	elseif spellId == 227338 then -- Riderless
-		self:Message("stages", "Neutral", "Long", spellName, false)
+		self:Message("stages", "Neutral", "Long", spellId, false)
 		self:StopBar(227404) -- Intangible Presence
 	elseif spellId == 227584 then -- Mounted
-		self:Message("stages", "Neutral", "Long", spellName, false)
+		self:Message("stages", "Neutral", "Long", spellId, false)
 	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
 		self:Message(227365, "Attention", "Alert")
 	end

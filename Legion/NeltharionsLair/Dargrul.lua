@@ -61,7 +61,7 @@ function mod:CrystalSpikes(args)
 	self:CDBar(args.spellId, 21) -- pull:21.9, 21.8, 24.3, 21.8, 21.8
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	-- Faster that combat log event for Magma Wave (200404)
 	if spellId == 201661 or spellId == 201663 then -- Dargrul Ability Callout 02, Dargrul Ability Callout 03
 		self:Message(200404, "Positive", "Long")

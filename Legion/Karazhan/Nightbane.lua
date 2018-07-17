@@ -91,7 +91,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 228806 then -- Charred Earth
 		self:Message(228808, "Urgent", self:Ranged() and "Alert")
 		self:CDBar(228808, 20)
