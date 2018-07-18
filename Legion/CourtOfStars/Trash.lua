@@ -444,7 +444,6 @@ do
 				["Healer"] = true,
 			},
 			["professions"] = {
-				[135966] = 760, -- First Aid -- XXX Guess
 				[136249] = 100, -- Tailoring
 			},
 		},
