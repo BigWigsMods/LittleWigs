@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_POWER", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ function mod:InfernoLeap(args)
 end
 
 do
-	function mod:UNIT_POWER(unit)
+	function mod:UNIT_POWER_FREQUENT(unit)
 		local power = UnitPower(unit) / UnitPowerMax(unit) * 100
 		if power <= 30 and not warnedAboutBlessingIncoming then
 			warnedAboutBlessingIncoming = true

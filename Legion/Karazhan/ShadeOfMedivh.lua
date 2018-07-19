@@ -43,7 +43,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_POWER", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Frostbite", 227592)
 	self:Log("SPELL_AURA_APPLIED", "FrostbiteApplied", 227592)
 	self:Log("SPELL_AURA_REMOVED", "FrostbiteRemoved", 227592)
@@ -65,7 +65,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_POWER(_, unit)
+function mod:UNIT_POWER_FREQUENT(_, unit)
 	local nextSpecial = (100 - (UnitPower(unit) / (UnitPowerMax(unit)) * 100)) / 3.3
 	if nextSpecial > 0 and addsKilled ~= 0 then -- doesn't work like that while Guardian's Image is active
 		local spellName = self:SpellName(L.focused_power)
