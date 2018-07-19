@@ -27,7 +27,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_CAST_START", "ChainLightning", 15659, 15305) -- normal, heroic
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 15659, 15305)
 	self:Log("SPELL_AURA_APPLIED", "FrostShock", 12548, 21401) -- normal, heroic
