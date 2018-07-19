@@ -45,7 +45,7 @@ function mod:Pound(args)
 	self:Message(53472, "Attention", "Warning", CL.casting:format(args.spellName))
 end
 
-function mod:UNIT_TARGETABLE_CHANGED(event, unit)
+function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	-- Submerge
 	if UnitCanAttack("player", unit) then
 		self:Message(-6359, "Neutral", nil, CL.over:format(self:SpellName(-6359)))
