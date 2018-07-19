@@ -34,7 +34,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 102334 then -- Servant of the Queen
 		self:Message(-3968, "Attention", "Alert")
 	end

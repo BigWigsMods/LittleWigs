@@ -55,10 +55,10 @@ function mod:DarkArchangelForm(args)
 	self:Message(args.spellId, "Attention", "Long")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 25 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message(93757, "Attention", nil, CL.soon:format(self:SpellName(93757)), false)
 	end
 end

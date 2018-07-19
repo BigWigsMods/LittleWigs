@@ -59,7 +59,7 @@ function mod:InfernoLeap(args)
 end
 
 do
-	function mod:UNIT_POWER_FREQUENT(unit)
+	function mod:UNIT_POWER_FREQUENT(_, unit)
 		local power = UnitPower(unit) / UnitPowerMax(unit) * 100
 		if power <= 30 and not warnedAboutBlessingIncoming then
 			warnedAboutBlessingIncoming = true
@@ -68,10 +68,10 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 76352 then -- Blessing of the Sun
-		self:Message(76355, "Positive", "Long", CL.casting:format(spellName))
+		self:Message(76355, "Positive", "Long", CL.casting:format(self:SpellName(spellId)))
 		self:CastBar(76355, 20) -- EJ says "reenergizes himself with ... for 3 sec" but it took 17s for him to get back 100 energy when I tried, and the last SPELL_PERIODIC_ENERGIZE event fired 20s after the USCS
-		self:ScheduleTimer(function() warnedAboutBlessingIncoming = nil end, 20) -- no events that indicate the end of this "phase"
+		self:SimpleTimer(function() warnedAboutBlessingIncoming = nil end, 20) -- no events that indicate the end of this "phase"
 	end
 end

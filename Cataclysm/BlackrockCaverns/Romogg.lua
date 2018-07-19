@@ -62,7 +62,7 @@ do
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextChainsWarning then
 		self:Message(75539, "Attention", nil, CL.soon:format(self:SpellName(75539))) -- Chains of Woe
@@ -74,7 +74,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		end
 
 		if nextChainsWarning < 33 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

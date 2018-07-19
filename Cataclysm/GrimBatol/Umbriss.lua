@@ -56,11 +56,11 @@ function mod:Siege(args)
 	self:Message(args.spellId, "Urgent")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 39625 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 36 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 			self:Message(74853, "Attention", nil, CL.soon:format(self:SpellName(74853)))
 		end
 	end

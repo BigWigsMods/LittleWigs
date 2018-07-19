@@ -59,7 +59,7 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 42377 then -- Shape of the Bear
 		self:StopBar(42402) -- Surge's CD
 		self:Message("stages", "Important", nil, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form

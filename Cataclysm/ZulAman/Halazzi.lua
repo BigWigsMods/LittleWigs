@@ -75,7 +75,7 @@ function mod:Totems(args)
 	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	-- All spells used are called "Halazzi Transform"
 	if spellId == 43143 then -- Spirit Phase
 		self:Message("stages", "Positive", nil, CL.percent:format(30 * spiritPhasesLeft, L.spirit_message), "ability_hunter_pet_cat")
@@ -85,14 +85,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextPhaseWarning then
 		nextPhaseWarning = nextPhaseWarning - 30
 		self:Message("stages", "Attention", nil, CL.soon:format(L.spirit_message), false)
 
 		if nextPhaseWarning < 35 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

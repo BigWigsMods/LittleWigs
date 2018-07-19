@@ -53,11 +53,11 @@ function mod:ElementiumBulwarkRemoved(args)
 	self:StopBar(args.spellName)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 40586 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 27 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 			self:Message(80467, "Attention", nil, CL.soon:format(self:SpellName(80467)), false)
 		end
 	end

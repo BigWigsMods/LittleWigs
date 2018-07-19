@@ -84,7 +84,7 @@ function mod:ToxicCoagulant(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId) -- Conjure Mystery Toxin
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- Conjure Mystery Toxin
 	-- spellIds ruin the mystery :(
 	if spellId == 93695 then -- Toxic Coagulant
 		coagulantCastEnds = GetTime() + 11

@@ -45,7 +45,7 @@ do
 		{ 50, -4297 }, -- Infernal
 	}
 
-	function mod:UNIT_HEALTH_FREQUENT(unit)
+	function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		if self:MobId(UnitGUID(unit)) ~= 54969 then return end -- Varo'then is of no interest
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < adds[spawnWarnings][1] then
@@ -59,7 +59,7 @@ do
 			end
 
 			if spawnWarnings > #adds then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1", "boss2")
+				self:UnregisterUnitEvent(event, "boss1", "boss2")
 			end
 		end
 	end

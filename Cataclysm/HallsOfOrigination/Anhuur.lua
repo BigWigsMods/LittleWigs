@@ -41,13 +41,13 @@ end
 --  Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextShieldOfLightWarning then
 		self:Message(74938, "Attention", nil, CL.soon:format(self:SpellName(74938))) -- Shield of Light
 		nextShieldOfLightWarning = nextShieldOfLightWarning - 33
 		if nextShieldOfLightWarning < 33 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

@@ -49,7 +49,7 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 43962 then -- Summon Amani'shi Hatcher
 		self:Message(-2625, "Attention", "Long", CL.incoming:format(self:SpellName(-2625)), "achievement_character_troll_male")
 		self:CDBar(-2625, 92, nil, "achievement_character_troll_male")
@@ -59,10 +59,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 40 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message(-2625, "Attention", nil, CL.soon:format(self:SpellName(-2628)), false) -- Hatch All Eggs Soon
 	end
 end

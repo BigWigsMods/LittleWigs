@@ -98,10 +98,10 @@ function mod:SpiritWarriorsGazeRemoved()
 	self:SecondaryIcon(-2910)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 98861 then -- Spirit World
 		barriersLeft = 3
-		self:Message("stages", "Important", "Long", CL.other:format(CL.stage:format(2), spellName), false)
+		self:Message("stages", "Important", "Long", CL.other:format(CL.stage:format(2), self:SpellName(spellId)), false)
 		self:StopBar(97172) -- Shadows of Hakkar
 	end
 end

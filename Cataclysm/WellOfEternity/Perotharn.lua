@@ -59,7 +59,7 @@ function mod:Enfeebled(args)
 	self:Bar(args.spellId, 15)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 105341 then -- Camouflage
 		self:DelayedMessage("eyes", 8, "Positive", L.eyes, L.eyes_icon, "Info")
 		self:Bar("eyes", 8, L.eyes, L.eyes_icon)

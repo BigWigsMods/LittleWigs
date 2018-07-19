@@ -60,7 +60,7 @@ function mod:CrepuscularVeil(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextTransformationWarning then
 		self:Message(-2385, "Attention", nil, CL.soon:format(self:SpellName(-2385))) -- Transformation
@@ -72,12 +72,12 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		end
 
 		if nextTransformationWarning < 34 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 76196 then -- Transformation
 		self:Message(-2385, "Urgent")
 		if self:CheckOption(-2385, "ICON") then
