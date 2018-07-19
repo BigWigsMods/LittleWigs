@@ -63,15 +63,15 @@ function mod:BlackIronCycloneOver(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 65 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message("stages", "Positive", nil, CL.soon:format(CL.intermission), false)
 	end
 end
 
-function mod:UNIT_TARGETABLE_CHANGED(unit)
+function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Important", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else

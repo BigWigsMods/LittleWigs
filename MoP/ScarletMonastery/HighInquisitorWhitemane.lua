@@ -76,7 +76,7 @@ function mod:Sleep(args)
 	self:Bar("stages", 10, args.spellId)
 end
 
-function mod:Steel(_, _, _, _, spellId)
+function mod:Steel(_, _, _, spellId)
 	if spellId == 115627 then
 		self:Message("steel", "Attention", nil, 115629)
 		self:CDBar("steel", 26, 115629) -- 26.x - 27.x

@@ -111,14 +111,14 @@ end
 
 -- SPELL_AURA_* events for Intensity behave inconsistently on this encounter, sometimes one of them fires them
 -- but the other one doesn't, then they might even switch on the next pull. A lot of fun.
-function mod:UNIT_AURA(unit)
+function mod:UNIT_AURA(event, unit)
 	local guid = UnitGUID(unit)
 	if not isTrialOfTheYaungol then -- check mob ids and unregister the event if it's not needed
 		local mobId = self:MobId(guid)
 		if mobId == 59051 or mobId == 59726 then
 			isTrialOfTheYaungol = true
 		else
-			self:UnregisterUnitEvent("UNIT_AURA", "boss1", "boss2")
+			self:UnregisterUnitEvent(event, "boss1", "boss2")
 			return
 		end
 	end

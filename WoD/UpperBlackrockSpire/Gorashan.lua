@@ -55,13 +55,13 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextPowerConduitWarning then
 		nextPowerConduitWarning = nextPowerConduitWarning - 25
 		self:Message(166168, "Positive", nil, CL.soon:format(self:SpellName(166168)), false)
 		if nextPowerConduitWarning < 25 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

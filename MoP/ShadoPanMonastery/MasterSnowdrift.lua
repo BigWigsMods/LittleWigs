@@ -86,7 +86,7 @@ function mod:Stage3(_, msg)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 110324 then -- Shado-pan Vanish
 		if stage == 1 then
 			stage = 2
@@ -99,13 +99,13 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	end
 end
 
-function mod:StageWarn(unit)
+function mod:StageWarn(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 65 and stage == 1 then
 		self:Message("stages", "Positive", nil, CL.soon:format(CL.stage:format(2)), false)
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 	elseif hp < 35 and stage == 2 then
 		self:Message("stages", "Positive", nil, CL.soon:format(CL.stage:format(3)), false)
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 	end
 end

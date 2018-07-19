@@ -87,7 +87,7 @@ function mod:Inhale(args)
 	self:Message(args.spellId, "Important", "Info")
 end
 
-function mod:UNIT_TARGETABLE_CHANGED(unit)
+function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Important", "Info", CL.incoming:format(self.displayName), "inv_misc_monsterspidercarapace_01")
 	end

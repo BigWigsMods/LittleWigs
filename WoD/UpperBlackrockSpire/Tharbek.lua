@@ -48,7 +48,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_TARGETABLE_CHANGED(unit)
+function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if self:MobId(UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
 		self:Message("stages", "Neutral", "Info", self.displayName, "ability_warrior_endlessrage")
 	end
@@ -64,12 +64,12 @@ function mod:ImbuedIronAxe(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
 end
 
-function mod:IronReaver(_, spellName, _, _, spellId)
+function mod:IronReaver(_, _, _, spellId)
 	if spellId == 161989 then -- Iron Reaver
-		self:Message("iron_reaver", "Important", nil, mod:SpellName(100), spellId) -- 100 = "Charge"
-		self:CDBar("iron_reaver", 19, mod:SpellName(100), spellId) -- 19.4-22.7s
+		self:Message("iron_reaver", "Important", nil, self:SpellName(100), spellId) -- 100 = "Charge"
+		self:CDBar("iron_reaver", 19, self:SpellName(100), spellId) -- 19.4-22.7s
 	elseif spellId == 161882 then -- Incinerating Breath
-		self:Message(spellId, "Urgent", "Long", CL.incoming:format(spellName))
+		self:Message(spellId, "Urgent", "Long", CL.incoming:format(self:SpellName(spellId)))
 		self:CDBar(spellId, 20)
 	end
 end

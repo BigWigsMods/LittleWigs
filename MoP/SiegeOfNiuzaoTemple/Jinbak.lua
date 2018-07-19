@@ -36,7 +36,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 119990 then -- Summon Saplings
 		self:Message(-5958, "Attention", "Info", CL.incoming:format(CL.adds))
 		self:CDBar(-5958, 46.1, CL.adds)

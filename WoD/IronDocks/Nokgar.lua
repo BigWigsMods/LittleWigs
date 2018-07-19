@@ -83,15 +83,15 @@ function mod:RecklessProvocationOver(args)
 	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message("stages", "Attention", nil, CL.soon:format(CL.stage:format(2)), false)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 175755 then -- Dismount
 		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
 		self:CDBar(164426, 16) -- Reckless Provocation

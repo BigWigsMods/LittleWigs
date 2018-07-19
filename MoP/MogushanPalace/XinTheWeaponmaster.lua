@@ -67,13 +67,13 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	end
 end
 
-function mod:StageWarn(unit)
+function mod:StageWarn(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 70 and stage == 1 then
 		self:Message("blades", "Positive", nil, CL.soon:format(self:SpellName(L.blades)), false)
 		stage = 2
 	elseif hp < 39 and stage == 2 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message("crossbows", "Positive", nil, CL.soon:format(self:SpellName(L.crossbows)), false)
 	end
 end

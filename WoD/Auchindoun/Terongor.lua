@@ -66,10 +66,10 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 80 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message("stages", "Attention", "Info", CL.soon:format(CL.stage:format(2)), false)
 	end
 end
@@ -138,7 +138,7 @@ function mod:ChaosBolt(args)
 	self:Bar(args.spellId, 24)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 156863 then -- Affliction Transformation
 		self:Message("stages", "Positive", "Info", CL.other:format(CL.stage:format(2), L.affliction), "spell_shadow_deathcoil")
 	elseif spellId == 156919 then -- Demonology Transformation

@@ -30,7 +30,7 @@ end
 -- Event Handlers
 --
 
-function mod:InhaleIncUnitEvent(_, _, _, _, spellId)
+function mod:InhaleIncUnitEvent(_, _, _, spellId)
 	if spellId == 154868 then
 		-- Unit event is 1s faster than emote, but only works for first Inhale, so register Emote after that.
 		self:InhaleInc()

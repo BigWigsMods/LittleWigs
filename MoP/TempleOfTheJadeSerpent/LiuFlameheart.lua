@@ -58,10 +58,10 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 35 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message("stages", "Positive", "Info", CL.soon:format(CL.stage:format(3)), false)
 	elseif hp < 75 and stage == 1 then
 		stage = 2
@@ -69,9 +69,9 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 106895 then -- Summon Jade Serpent
-		self:UnregisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message("stages", "Attention", "Info", CL.stage:format(3), false)
 	elseif spellId == 106797 then -- Jade Essence
 		self:Message("stages", "Attention", "Info", CL.stage:format(2), false)

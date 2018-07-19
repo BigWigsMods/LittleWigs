@@ -49,10 +49,10 @@ function mod:EnrageRemoved(args)
 	self:StopBar(args.spellName)
 end
 
-function mod:EnrageSoon(unit)
+function mod:EnrageSoon(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 25 then
 		self:Message(-5813, "Positive", "Info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 	end
 end

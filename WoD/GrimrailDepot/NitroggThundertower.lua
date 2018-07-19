@@ -57,7 +57,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_TARGETABLE_CHANGED(unit)
+function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Neutral", "Long", CL.stage:format(3), false)
 	else

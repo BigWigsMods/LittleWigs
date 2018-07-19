@@ -31,7 +31,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("RAID_BOSS_WHISPER")
 	--self:Log("SPELL_AURA_APPLIED", "Fixate", 167757) -- XXX
-	
+
 	self:Log("SPELL_CAST_START", "PierceArmor", 153794)
 	self:Log("SPELL_CAST_START", "SummonSolarFlare", 153810)
 	self:Log("SPELL_CAST_START", "Quills", 159382)
@@ -75,13 +75,13 @@ function mod:Quills(args)
 	self:Bar(args.spellId, 17)
 end
 
-function mod:QuillsWarn(unitId)
+function mod:QuillsWarn(event, unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if (hp < 67 and quillsWarn == 100) or (hp < 27 and quillsWarn == 60) then
 		quillsWarn = quillsWarn - 40
 		self:Message(159382, "Positive", nil, CL.soon:format(self:SpellName(159382)), false)
 		if quillsWarn == 20 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unitId)
+			self:UnregisterUnitEvent(event, unitId)
 		end
 	end
 end

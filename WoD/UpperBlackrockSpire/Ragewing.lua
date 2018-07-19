@@ -57,7 +57,7 @@ function mod:BurningRage(args)
 	end
 end
 
-function mod:EngulfingFire(_, _, _, _, spellId)
+function mod:EngulfingFire(_, _, _, spellId)
 	if spellId == 154996 then -- Engulfing Fire
 		self:Message(spellId, "Attention", "Warning")
 		self:Flash(spellId)
@@ -65,13 +65,13 @@ function mod:EngulfingFire(_, _, _, _, spellId)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextAddsWarning then
 		nextAddsWarning = nextAddsWarning - 30
 		self:Message(-10740, "Positive", nil, CL.soon:format(self:SpellName(93679)), false)
 		if nextAddsWarning < 40 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

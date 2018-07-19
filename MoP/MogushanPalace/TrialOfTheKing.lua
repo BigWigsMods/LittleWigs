@@ -98,7 +98,7 @@ function mod:Shockwave(args)
 	self:Bar(args.spellId, 2, CL.cast:format(args.spellName), args.spellId)
 end
 
-function mod:MeteorFinished(_, _, _, _, spellId)
+function mod:MeteorFinished(_, _, _, spellId)
 	if spellId == 120195 then
 		self:PrimaryIcon(spellId)
 	end

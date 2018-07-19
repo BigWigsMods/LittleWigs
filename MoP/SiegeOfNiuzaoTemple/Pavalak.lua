@@ -56,13 +56,13 @@ function mod:ReinforcementsPhase(args)
 	self:Message(-5946, "Attention", "Info", CL.incoming:format(CL.adds), false)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextReinforcementsWarning then
 		self:Message(-5946, "Attention", nil, CL.soon:format(self:SpellName(-5946)))
 		nextReinforcementsWarning = nextReinforcementsWarning - 30
 		if nextReinforcementsWarning < 45 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end
