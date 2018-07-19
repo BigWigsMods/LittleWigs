@@ -34,7 +34,7 @@ function mod:Radiance(args)
 	self:CastBar(args.spellId, 3)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 43979 then -- Full Heal
 		self:Win()
 	end

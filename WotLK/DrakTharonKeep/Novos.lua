@@ -109,7 +109,7 @@ function mod:AddDied(args)
 end
 
 -- Stage 2
-function mod:UNIT_TARGETABLE_CHANGED(unit)
+function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
 		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
 		self:CDBar(50089, 6) -- Wrath of Misery

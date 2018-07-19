@@ -52,15 +52,15 @@ function mod:GreaterHeal(args)
 	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning" or "Alarm", CL.casting:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 60 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message(-5411, "Neutral", nil, CL.soon:format(self:SpellName(-5411))) -- Summon Reinforcements
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 34803 then -- Summon Reinforcements
 		self:Message(-5411, "Attention", "Info")
 		if not self:Normal() then

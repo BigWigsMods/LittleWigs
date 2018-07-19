@@ -45,7 +45,7 @@ do
 		self:TargetMessage(-5293, player, "Urgent", nil, 100, -5293)
 	end
 
-	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 36038 then -- Charge Targeting
 			self:GetBossTarget(printTarget, 0.4, UnitGUID(unit))
 		end

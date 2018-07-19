@@ -88,7 +88,7 @@ do
 	end
 
 	-- no SPELL_AURA_APPLIED events
-	function mod:UNIT_AURA(unit)
+	function mod:UNIT_AURA(_, unit)
 		if self:UnitDebuff(unit, 39088) then -- Positive Charge
 			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088)
 		elseif self:UnitDebuff(unit, 39091) then -- Negative Charge

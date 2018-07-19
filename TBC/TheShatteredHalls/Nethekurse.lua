@@ -60,10 +60,10 @@ function mod:DarkSpin(args)
 	self:Message(args.spellId, "Important", "Info", CL.percent:format(25, args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 30 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		self:Message(30502, "Positive", nil, CL.soon:format(self:SpellName(30502)), false) -- Dark Spin
 	end
 end
