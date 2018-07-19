@@ -36,7 +36,7 @@ do
 		self:TargetMessage(-5894, target, "Attention", "Warning", nil, nil, true)
 	end
 
-	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 30618 then -- Beatdown
 			self:GetBossTarget(announce, 0.4, UnitGUID(unit))
 		end

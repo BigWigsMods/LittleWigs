@@ -55,11 +55,11 @@ function mod:GrievousWound(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 17991 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 26 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 			self:Message(34970, "Positive", nil, CL.soon:format(self:SpellName(34970)), false)
 		end
 	end

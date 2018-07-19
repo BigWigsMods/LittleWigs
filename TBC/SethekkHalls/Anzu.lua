@@ -71,7 +71,7 @@ function mod:AddDied()
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 42354 then -- Banish Self
 		self:Bar(-5253, 45, CL.onboss:format(self:SpellName(spellId)), spellId)
 		self:Message(-5253, "Urgent", nil, CL.incoming:format(self:SpellName(-5253))) -- Brood of Anzu
@@ -79,14 +79,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextBroodWarning then
 		self:Message(-5253, "Urgent", nil, CL.soon:format(self:SpellName(42354)), 42354) -- Banish Self
 		nextBroodWarning = nextBroodWarning - 40
 
 		if nextBroodWarning < 15 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

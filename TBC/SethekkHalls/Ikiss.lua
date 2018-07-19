@@ -100,7 +100,7 @@ end
 
 do
 	local warnAt = { 85, 55, 30 }
-	function mod:UNIT_HEALTH_FREQUENT(unit)
+	function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < warnAt[explosionWarnings] then
 			explosionWarnings = explosionWarnings + 1
@@ -112,7 +112,7 @@ do
 			end
 
 			if explosionWarnings > #warnAt then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+				self:UnregisterUnitEvent(event, unit)
 			end
 	 	end
 	end

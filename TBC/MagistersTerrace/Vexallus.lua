@@ -50,7 +50,7 @@ function mod:EnergyFeedbackRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 44322 or spellId == 46154 then -- Summon Pure Energy (normal / heroic)
 		self:Message(-5085, "Important", nil, L.energy_discharged:format(self:SpellName(-5085)), false)
  	end

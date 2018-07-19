@@ -27,7 +27,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 30738 then -- Blade Dance Targeting
 		self:Message(-5899, "Attention", "Warning")
 		self:CDBar(-5899, 30)

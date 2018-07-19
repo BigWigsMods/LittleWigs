@@ -90,10 +90,10 @@ function mod:ShadowsOfThePast(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		if self:CheckOption("confess", "MESSAGE") then -- both happen at the same time, just display one message depending on the user's settings
 			self:Message("confess", "Attention", nil, CL.soon:format(self:SpellName(66680)), 66680)
 		else
@@ -102,7 +102,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 43979 then -- Full Heal
 		self:Win()
 	end

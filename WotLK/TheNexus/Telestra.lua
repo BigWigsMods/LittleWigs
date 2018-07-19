@@ -38,12 +38,12 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if (hp < 56 and splitPhase == 0) or (hp < 16 and splitPhase == 1) then
 		splitPhase = splitPhase + 1
 		if splitPhase > 1 or self:Normal() then -- No 2nd split on Normal mode
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
+			self:UnregisterUnitEvent(event, unit)
 		end
 		self:Message(-7395, "Positive", nil, CL.soon:format(self:SpellName(-7395)), false)
 	end

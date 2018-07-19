@@ -50,7 +50,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 55297 then -- Rhino Form
 		self:CDBar("forms", 34.1, L.form_troll, "achievement_character_troll_male")
 		self:DelayedMessage("forms", 29, "Attention", CL.soon:format(L.form_troll))
