@@ -60,7 +60,7 @@ if L then
 		"Gants",
 		"Pas de gants",
 		"Homme",
-		"Femmme",
+		"Femme",
 		"Gilet clair",
 		"Gilet sombre",
 		"Pas de potions",
