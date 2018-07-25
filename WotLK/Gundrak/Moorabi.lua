@@ -30,8 +30,8 @@ end
 
 function mod:Transformation(args)
 	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
-	local _, _, _, _, _, endOfCast = UnitCastingInfo("boss1") -- cast time is different on each cast, at least on heroic/tw
-	local remaining = endOfCast / 1000 - GetTime()
+	local _, _, _, _, endTime = UnitCastingInfo("boss1") -- cast time is different on each cast, at least on heroic/tw
+	local remaining = endTime / 1000 - GetTime()
 	self:Bar(args.spellId, remaining)
 end
 
