@@ -73,10 +73,10 @@ end
 
 function mod:ArcaneBlitz(args)
 	if self:Interrupter(args.sourceGUID) then
-		self:TargetMessage(args.spellId, args.sourceName, "Attention", "Alarm")
+		self:TargetMessage(args.spellId, args.sourceName, "yellow", "Alarm")
 	end
 end
 
 function mod:BonecrushingStrike(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", "Alarm", CL.incoming:format(args.spellName))
 end

@@ -1,22 +1,22 @@
 
 BigWigs:AddColors("Rocketspark and Borka", {
-	[161090] = "Important",
-	[162617] = "Urgent",
-	["enrage"] = "Attention",
+	[161090] = "red",
+	[162617] = "orange",
+	["enrage"] = "yellow",
 })
 
 BigWigs:AddColors("Nitrogg Thundertower", {
-	[160681] = {"Important","Personal"},
-	[160965] = {"Personal","Positive","Urgent"},
-	[161073] = {"Attention","Personal","Positive"},
-	[166570] = "Personal",
-	["stages"] = "Neutral",
+	[160681] = {"red","blue"},
+	[160965] = {"blue","green","orange"},
+	[161073] = {"yellow","blue","green"},
+	[166570] = "blue",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Skylord Tovra", {
-	[161588] = "Personal",
-	[161801] = "Important",
-	[162058] = "Attention",
-	[162066] = {"Personal","Urgent"},
-	[163447] = {"Personal","Urgent"},
+	[161588] = "blue",
+	[161801] = "red",
+	[162058] = "yellow",
+	[162066] = {"blue","orange"},
+	[163447] = {"blue","orange"},
 })

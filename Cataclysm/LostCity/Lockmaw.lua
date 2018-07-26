@@ -53,7 +53,7 @@ function mod:Deaths(args)
 end
 
 function mod:ViscousPoison(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:Bar(args.spellId, 12, args.destName)
 end
 
@@ -62,7 +62,7 @@ function mod:ViscousPoisonRemoved(args)
 end
 
 function mod:ScentOfBlood(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 	self:Bar(args.spellId, 30, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
@@ -71,7 +71,7 @@ function mod:ScentOfBlood(args)
 end
 
 function mod:Whirlwind(args)
-	self:Message(84784, "Urgent")
+	self:Message(84784, "orange")
 	if args.spellId == 91408 then
 		self:CDBar(84784, 26)
 	end

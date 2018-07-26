@@ -25,6 +25,6 @@ end
 --  Event Handlers
 
 function mod:BurningNova(args)
-	self:Message(-5388, "Important", nil, CL.casting:format(args.spellName))
+	self:Message(-5388, "red", nil, CL.casting:format(args.spellName))
 	self:CastBar(-5388, 6)
 end

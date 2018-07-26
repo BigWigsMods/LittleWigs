@@ -30,13 +30,13 @@ end
 --
 
 function mod:RitualOfTheSword(args)
-	self:Message(args.spellId, "Urgent", "Info")
-	self:DelayedMessage(args.spellId, 36, "Attention", CL.soon:format(args.spellName))
+	self:Message(args.spellId, "orange", "Info")
+	self:DelayedMessage(args.spellId, 36, "yellow", CL.soon:format(args.spellName))
 	self:Bar(args.spellId, 26, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 36)
 end
 
 function mod:RitualPreparation(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 end
 

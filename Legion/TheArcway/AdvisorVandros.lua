@@ -47,7 +47,7 @@ end
 
 function mod:AcceleratingBlast(args)
 	if self:Interrupter() then
-		self:Message(args.spellId, "Attention", nil, CL.count:format(args.spellName, blastCount))
+		self:Message(args.spellId, "yellow", nil, CL.count:format(args.spellName, blastCount))
 	end
 	blastCount = blastCount + 1
 	if blastCount > 3 then blastCount = 1 end
@@ -56,17 +56,17 @@ end
 function mod:AcceleratingBlastApplied(args)
 	local count = args.amount or 1
 	if self:Dispeller("magic", true) and count > 5 and count % 3 == 0 then
-		self:StackMessage(args.spellId, args.destName, count, "Urgent", "Alert")
+		self:StackMessage(args.spellId, args.destName, count, "orange", "Alert")
 	end
 end
 
 function mod:ForceBomb(args)
-	self:Message(args.spellId, "Attention", "Info")
+	self:Message(args.spellId, "yellow", "Info")
 	-- self:CDBar(args.spellId, 30) -- never in p1 long enough to get a second cast :\
 end
 
 function mod:UnstableMana(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
@@ -74,5 +74,5 @@ function mod:BanishInTime(args)
 	self:StopBar(202974) -- Force Bomb
 	blastCount = 1
 
-	self:Message(args.spellId, "Important", "Long")
+	self:Message(args.spellId, "red", "Long")
 end

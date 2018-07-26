@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Adderis and Aspix", {
-	[263246] = {"cyan","Personal"},
-	[263371] = {"orange","Personal"},
+	[263246] = {"cyan","blue"},
+	[263371] = {"orange","blue"},
 	[263573] = "yellow",
 })
 
@@ -14,7 +14,7 @@ BigWigs:AddColors("Merektha", {
 
 BigWigs:AddColors("Galvazzt", {
 	[266512] = "red",
-	[266923] = {"cyan","orange","Personal"},
+	[266923] = {"cyan","orange","blue"},
 })
 
 BigWigs:AddColors("Avatar of Sethraliss", {

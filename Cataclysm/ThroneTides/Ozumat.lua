@@ -40,7 +40,7 @@ end
 function mod:OnEngage()
 	-- this stage lasts 1:40 on both difficulties, EJ's entry is incorrect
 	self:Bar("stages", 100, CL.stage:format(1), "Achievement_Dungeon_Throne of the Tides") -- Yes, " " is the correct delimiter.
-	self:DelayedMessage("stages", 90, "Attention", CL.soon:format(CL.stage:format(2)))
+	self:DelayedMessage("stages", 90, "yellow", CL.soon:format(CL.stage:format(2)))
 end
 
 --------------------------------------------------------------------------------
@@ -55,17 +55,17 @@ do
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:Message("stages", "Attention", "Info", CL.stage:format(2), false)
+			self:Message("stages", "yellow", "Info", CL.stage:format(2), false)
 		end
 	end
 	function mod:EntanglingGraspRemoved(args)
 		addsAlive = addsAlive - 1
-		self:Message("stages", "Positive", nil, CL.add_remaining:format(addsAlive), false)
+		self:Message("stages", "green", nil, CL.add_remaining:format(addsAlive), false)
 	end
 end
 
 function mod:TidalSurge(args)
-	self:Message("stages", "Attention", "Info", CL.stage:format(3), false)
+	self:Message("stages", "yellow", "Info", CL.stage:format(3), false)
 end
 
 function mod:GOSSIP_SHOW()

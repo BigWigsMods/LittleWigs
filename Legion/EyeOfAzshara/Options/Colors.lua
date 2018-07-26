@@ -1,51 +1,51 @@
 
 BigWigs:AddColors("Warlord Parjesh", {
-	[191900] = "Attention",
-	[192053] = "Personal",
-	[192072] = "Attention",
-	[192094] = {"Important","Personal"},
-	[192131] = {"Important","Personal"},
-	[196563] = "Attention",
-	[197064] = "Urgent",
-	[197502] = "Positive",
+	[191900] = "yellow",
+	[192053] = "blue",
+	[192072] = "yellow",
+	[192094] = {"red","blue"},
+	[192131] = {"red","blue"},
+	[196563] = "yellow",
+	[197064] = "orange",
+	[197502] = "green",
 })
 
 BigWigs:AddColors("Lady Hatecoil", {
-	[193597] = "Urgent",
-	[193611] = "Attention",
-	[193698] = "Personal",
-	[196610] = "Positive",
-	["blob"] = "Important",
+	[193597] = "orange",
+	[193611] = "yellow",
+	[193698] = "blue",
+	[196610] = "green",
+	["blob"] = "red",
 })
 
 BigWigs:AddColors("Serpentrix", {
-	[191855] = {"Important","Personal"},
-	[191873] = "Attention",
+	[191855] = {"red","blue"},
+	[191873] = "yellow",
 })
 
 BigWigs:AddColors("King Deepbeard", {
-	[193018] = "Personal",
-	[193051] = "Attention",
-	[193093] = "Urgent",
-	[193152] = {"Important","Personal"},
+	[193018] = "blue",
+	[193051] = "yellow",
+	[193093] = "orange",
+	[193152] = {"red","blue"},
 })
 
 BigWigs:AddColors("Wrath of Azshara", {
-	[192617] = "Attention",
-	[192675] = "Urgent",
-	[192706] = {"Important","Personal"},
-	[192985] = "Positive",
-	[197365] = {"Important","Personal"},
+	[192617] = "yellow",
+	[192675] = "orange",
+	[192706] = {"red","blue"},
+	[192985] = "green",
+	[197365] = {"red","blue"},
 })
 
 BigWigs:AddColors("Eye of Azshara Trash", {
-	[195046] = "Attention",
-	[195109] = "Attention",
-	[195129] = "Important",
-	[195284] = "Attention",
-	[196027] = "Attention",
-	[196127] = "Attention",
-	[196870] = "Attention",
-	[197105] = {"Attention","Personal"},
-	[225089] = "Urgent",
+	[195046] = "yellow",
+	[195109] = "yellow",
+	[195129] = "red",
+	[195284] = "yellow",
+	[196027] = "yellow",
+	[196127] = "yellow",
+	[196870] = "yellow",
+	[197105] = {"yellow","blue"},
+	[225089] = "orange",
 })

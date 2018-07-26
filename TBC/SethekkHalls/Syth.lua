@@ -48,7 +48,7 @@ do
 		if self:Me(guid) then
 			self:Say(15659)
 		end
-		self:TargetMessage(15659, target, "Attention")
+		self:TargetMessage(15659, target, "yellow")
 		self:PrimaryIcon(15659, target)
 	end
 
@@ -64,7 +64,7 @@ end
 
 function mod:FrostShock(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(12548, args.destName, "Urgent")
+		self:TargetMessage(12548, args.destName, "orange")
 		self:TargetBar(12548, 8, args.destName)
 	end
 end
@@ -74,7 +74,7 @@ function mod:FrostShockRemoved(args)
 end
 
 function mod:SummonElementals()
-	self:Message(-5235, "Important", nil, CL.spawned:format(CL.adds))
+	self:Message(-5235, "red", nil, CL.spawned:format(CL.adds))
 end
 
 do
@@ -83,7 +83,7 @@ do
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < warnAt[elementalsWarnings] then
 			elementalsWarnings = elementalsWarnings + 1
-			self:Message(-5235, "Important", nil, CL.soon:format(self:SpellName(-5235))) -- Summon Elementals
+			self:Message(-5235, "red", nil, CL.soon:format(self:SpellName(-5235))) -- Summon Elementals
 
 			while elementalsWarnings <= #warnAt and hp < warnAt[elementalsWarnings] do
 				-- account for high-level characters hitting multiple thresholds

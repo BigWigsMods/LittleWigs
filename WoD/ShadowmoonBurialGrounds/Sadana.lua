@@ -50,7 +50,7 @@ end
 function mod:DarkEclipse(args)
 	self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
 	--self:CDBar(args.spellId, 0) 48.2, 73.9, 51.9,
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 end
 
 do
@@ -59,7 +59,7 @@ do
 			self:Flash(153240)
 			self:Say(153240)
 		end
-		self:TargetMessage(153240, player, "Attention", "Alert")
+		self:TargetMessage(153240, player, "yellow", "Alert")
 	end
 	function mod:Daggerfall(args)
 		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
@@ -74,7 +74,7 @@ function mod:FindAdd(_, unit, guid)
 end
 
 function mod:DarkCommunion(args)
-	self:Message(args.spellId, "Positive", "Info", CL.add_spawned)
+	self:Message(args.spellId, "green", "Info", CL.add_spawned)
 	self:Bar(args.spellId, 61, CL.next_add)
 	if self:GetOption("custom_on_markadd") then
 		self:RegisterTargetEvents("FindAdd")

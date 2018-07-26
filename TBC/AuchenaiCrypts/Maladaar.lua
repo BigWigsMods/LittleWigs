@@ -39,11 +39,11 @@ end
 --  Event Handlers
 
 function mod:StolenSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 end
 
 function mod:AvatarOfTheMartyred(args)
-	self:Message("avatar", "Important", "Info", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
+	self:Message("avatar", "red", "Info", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
@@ -51,6 +51,6 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 30 then
 		self:UnregisterUnitEvent(event, "target", "focus")
-		self:Message("avatar", "Attention", nil, CL.soon:format(CL.spawning:format(self:SpellName(L.avatar))), 32424)
+		self:Message("avatar", "yellow", nil, CL.soon:format(CL.spawning:format(self:SpellName(L.avatar))), 32424)
 	end
 end

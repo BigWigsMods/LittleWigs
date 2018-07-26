@@ -49,18 +49,18 @@ end
 --
 
 function mod:FelSlash(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 end
 
 function mod:MightySmash(args)
-	self:Message(args.spellId, "Urgent", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Long", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 	--CDBar is being covered by Execution
 	self:CDBar(210879, 21) -- Seed of Destruction, very vague timer
 end
 
 function mod:Execution(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
 	self:CDBar(args.spellId, 48)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
@@ -70,7 +70,7 @@ end
 
 function mod:ImpactRemoved(args) -- Execution root got removed
 	self:StopBar(205233, args.destName) -- Stop Execution bar
-	self:TargetMessage(205233, args.destName, "Positive", "Info", CL.removed:format(self:SpellName(75215)), 205233, true) -- Root removed with Execution icon
+	self:TargetMessage(205233, args.destName, "green", "Info", CL.removed:format(self:SpellName(75215)), 205233, true) -- Root removed with Execution icon
 	if self:Me(args.destGUID) then
 		self:Flash(205233)
 	end
@@ -81,7 +81,7 @@ do
 	function mod:SeedOfDestruction(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "Attention", "Alert", nil, nil, true)
+			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "yellow", "Alert", nil, nil, true)
 			self:CDBar(args.spellId, 22)
 		end
 		if self:Me(args.destGUID) then

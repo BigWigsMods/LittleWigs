@@ -35,12 +35,12 @@ end
 --
 
 function mod:GronnSmash(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "orange", "Warning")
 	self:CDBar(args.spellId, 60)
 end
 
 function mod:CannonBarrage(args)
-	self:Message(args.spellId, "Attention", "Long")
+	self:Message(args.spellId, "yellow", "Long")
 	self:Flash(args.spellId)
 end
 

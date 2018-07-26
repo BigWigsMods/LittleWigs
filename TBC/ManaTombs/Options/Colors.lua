@@ -1,26 +1,26 @@
 
 BigWigs:AddColors("Pandemonius", {
-	[38759] = "Attention",
+	[38759] = "yellow",
 })
 
 BigWigs:AddColors("Tavarok", {
-	[32361] = {"Important","Personal"},
+	[32361] = {"red","blue"},
 })
 
 BigWigs:AddColors("Yor", {
-	[36405] = "Important",
-	[38361] = "Attention",
+	[36405] = "red",
+	[38361] = "yellow",
 })
 
 BigWigs:AddColors("Nexus-Prince Shaffar", {
-	[32365] = {"Important","Personal"},
+	[32365] = {"red","blue"},
 })
 
 BigWigs:AddColors("Mana-Tombs Trash", {
-	[13323] = {"Attention","Personal"},
-	[22883] = "Urgent",
-	[33871] = {"Attention","Personal"},
-	[34322] = {"Important","Personal"},
-	[34922] = {"Personal","Urgent"},
-	[34925] = {"Attention","Personal"},
+	[13323] = {"yellow","blue"},
+	[22883] = "orange",
+	[33871] = {"yellow","blue"},
+	[34322] = {"red","blue"},
+	[34922] = {"blue","orange"},
+	[34925] = {"yellow","blue"},
 })

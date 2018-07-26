@@ -35,7 +35,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end

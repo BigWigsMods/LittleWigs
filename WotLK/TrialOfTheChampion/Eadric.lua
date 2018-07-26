@@ -30,7 +30,7 @@ end
 --  Event Handlers
 
 function mod:Radiance(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 end
 

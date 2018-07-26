@@ -54,11 +54,11 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:Message(args.spellId, "Important", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
 		end
 	end
 end
 
 function mod:Sleep(args)
-	self:TargetMessage(59165, args.destName, "Attention", "Alarm")
+	self:TargetMessage(59165, args.destName, "yellow", "Alarm")
 end

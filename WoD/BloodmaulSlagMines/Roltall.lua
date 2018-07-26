@@ -33,15 +33,15 @@ end
 --
 
 function mod:FieryBoulder(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "orange", "Warning")
 end
 
 function mod:HeatWaveInc(args)
-	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
 end
 
 function mod:HeatWaveBegin(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
 end
 
@@ -53,7 +53,7 @@ do
 			if t - prev > 2 then
 				prev = t
 				self:Flash(args.spellId)
-				self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+				self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
 			end
 		end
 	end

@@ -1,19 +1,19 @@
 
 BigWigs:AddColors("Glubtok", {
-	["stages"] = "Neutral",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Helix Gearbreaker", {
-	[88352] = {"Important","Personal"},
+	[88352] = {"red","blue"},
 })
 
 BigWigs:AddColors("Foe Reaper 5000", {
-	[88481] = "Urgent",
-	[88495] = {"Important","Personal"},
-	[88522] = "Attention",
+	[88481] = "orange",
+	[88495] = {"red","blue"},
+	[88522] = "yellow",
 })
 
 BigWigs:AddColors("Vanessa VanCleef", {
-	[92614] = "Urgent",
-	[95542] = "Attention",
+	[92614] = "orange",
+	[95542] = "yellow",
 })

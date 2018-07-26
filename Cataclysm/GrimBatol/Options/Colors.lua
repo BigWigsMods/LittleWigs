@@ -1,28 +1,28 @@
 
 BigWigs:AddColors("General Umbriss", {
-	[74634] = "Urgent",
-	[74670] = {"Important","Personal"},
-	[74846] = {"Attention","Personal"},
-	[74853] = "Attention",
+	[74634] = "orange",
+	[74670] = {"red","blue"},
+	[74846] = {"yellow","blue"},
+	[74853] = "yellow",
 })
 
 BigWigs:AddColors("Forgemaster Throngus", {
-	[74908] = "Important",
-	[74976] = "Personal",
-	[74981] = "Important",
-	[74987] = "Personal",
-	[75007] = "Important",
-	[75056] = {"Personal","Urgent"},
+	[74908] = "red",
+	[74976] = "blue",
+	[74981] = "red",
+	[74987] = "blue",
+	[75007] = "red",
+	[75056] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Drahga Shadowburner", {
-	[75218] = "Attention",
-	[90950] = "Important",
+	[75218] = "yellow",
+	[90950] = "red",
 })
 
 BigWigs:AddColors("Erudax", {
-	[75664] = "Urgent",
-	[75755] = "Important",
-	[75763] = "Important",
-	["summon"] = "Attention",
+	[75664] = "orange",
+	[75755] = "red",
+	[75763] = "red",
+	["summon"] = "yellow",
 })

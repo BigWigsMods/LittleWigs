@@ -37,13 +37,13 @@ do
 
 	function mod:Upwind(args)
 		if self:Me(args.destGUID) and not haveDownwind then
-			self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
+			self:TargetMessage(args.spellId, args.destName, "blue", "Info")
 		end
 	end
 
 	function mod:Downwind(args)
 		if self:Me(args.destGUID) then
-			self:TargetMessage(args.spellId, args.destName, "Personal", "Info")
+			self:TargetMessage(args.spellId, args.destName, "blue", "Info")
 			haveDownwind = true
 		end
 	end
@@ -57,7 +57,7 @@ end
 
 function mod:ChillingBreath(args)
 	self:Bar(args.spellId, 12)
-	self:TargetMessage(args.spellId, self:UnitName("boss1target"), "Urgent")
+	self:TargetMessage(args.spellId, self:UnitName("boss1target"), "orange")
 	self:PrimaryIcon(args.spellId, self:UnitName("boss1target"))
 	self:ScheduleTimer("PrimaryIcon", 4, args.spellId)
 end

@@ -33,7 +33,7 @@ do
 			self:Say(-5894)
 			self:Flash(-5894)
 		end
-		self:TargetMessage(-5894, target, "Attention", "Warning", nil, nil, true)
+		self:TargetMessage(-5894, target, "yellow", "Warning", nil, nil, true)
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)

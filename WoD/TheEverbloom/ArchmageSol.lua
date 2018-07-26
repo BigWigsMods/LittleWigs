@@ -30,7 +30,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Neutral", nil, 166475) -- Fire
+	self:Message("stages", "cyan", nil, 166475) -- Fire
 	self:CDBar(168885, 33) -- Parasitic Growth
 end
 
@@ -39,12 +39,12 @@ end
 --
 
 function mod:ParasiticGrowth(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "orange", "Warning")
 	self:Bar(args.spellId, 34)
 end
 
 function mod:MagicSchools(args)
-	self:Message("stages", "Neutral", nil, args.spellId)
+	self:Message("stages", "cyan", nil, args.spellId)
 end
 
 do
@@ -53,7 +53,7 @@ do
 		local t = GetTime()
 		if t-prev > 7 then
 			prev = t
-			self:Message(args.spellId, "Important", "Alert")
+			self:Message(args.spellId, "red", "Alert")
 			self:Flash(args.spellId)
 		end
 	end
@@ -61,6 +61,6 @@ end
 
 function mod:FrozenRain(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
 	end
 end

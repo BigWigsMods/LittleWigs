@@ -31,7 +31,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then -- all remaining ghouls start casting Explode simultaneously when the boss transitions to stage 3
 			prev = t
-			self:Message(-7598, "Urgent", nil, CL.casting:format(self:SpellName(args.spellId)))
+			self:Message(-7598, "orange", nil, CL.casting:format(self:SpellName(args.spellId)))
 			self:CastBar(-7598, self:Normal() and 5 or 4, args.spellId)
 		end
 	end
@@ -39,6 +39,6 @@ end
 
 function mod:Desecration(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
 	end
 end

@@ -41,38 +41,38 @@ end
 function mod:Roar(args)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
-		self:StackMessage(args.spellId, args.destName, 3, "Personal", "Long", self:SpellName(56748)) -- 56748 = "Roar"
+		self:StackMessage(args.spellId, args.destName, 3, "blue", "Long", self:SpellName(56748)) -- 56748 = "Roar"
 	end
 end
 
 function mod:RoarRemoved(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "Personal", nil, self:SpellName(56748)) -- 56748 = "Roar"
+		self:StackMessage(args.spellId, args.destName, args.amount, "blue", nil, self:SpellName(56748)) -- 56748 = "Roar"
 	end
 end
 
 function mod:Phalanx(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "red", "Alert")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:Encumbered(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "red", "Alert")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:Blades(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "red", "Alert")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:Impale(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 end
 
 function mod:CaveIn(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
 		self:Flash(args.spellId)
 	end
 end

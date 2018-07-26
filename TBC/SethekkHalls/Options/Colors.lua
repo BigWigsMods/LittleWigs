@@ -1,19 +1,19 @@
 
 BigWigs:AddColors("Darkweaver Syth", {
-	[-5235] = "Important",
-	[12548] = {"Personal","Urgent"},
-	[15659] = {"Attention","Personal"},
+	[-5235] = "red",
+	[12548] = {"blue","orange"},
+	[15659] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Anzu", {
-	[-5253] = {"Positive","Urgent"},
-	[-5252] = {"Attention","Personal"},
-	[40184] = "Important",
-	[40303] = {"Attention","Personal"},
+	[-5253] = {"green","orange"},
+	[-5252] = {"yellow","blue"},
+	[40184] = "red",
+	[40303] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Talon King Ikiss", {
-	[35032] = {"Important","Personal"},
-	[38197] = "Urgent",
-	[38245] = {"Attention","Personal"},
+	[35032] = {"red","blue"},
+	[38197] = "orange",
+	[38245] = {"yellow","blue"},
 })

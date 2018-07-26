@@ -1,25 +1,25 @@
 
 BigWigs:AddColors("Ranjit", {
-	[153315] = "Important",
-	[156793] = "Urgent",
-	[165731] = {"Attention","Personal"},
+	[153315] = "red",
+	[156793] = "orange",
+	[165731] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Araknath", {
-	[154110] = "Urgent",
-	[154135] = "Important",
-	[154159] = "Attention",
+	[154110] = "orange",
+	[154135] = "red",
+	[154159] = "yellow",
 })
 
 BigWigs:AddColors("Rukhran", {
-	[153794] = "Attention",
-	[153810] = "Important",
-	[159382] = {"Positive","Urgent"},
-	[167757] = "Personal",
+	[153794] = "yellow",
+	[153810] = "red",
+	[159382] = {"green","orange"},
+	[167757] = "blue",
 })
 
 BigWigs:AddColors("High Sage Viryx", {
-	[153954] = {"Attention","Personal"},
-	[154055] = "Urgent",
-	["add"] = "Important",
+	[153954] = {"yellow","blue"},
+	[154055] = "orange",
+	["add"] = "red",
 })

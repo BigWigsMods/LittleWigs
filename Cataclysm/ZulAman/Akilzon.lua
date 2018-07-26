@@ -41,7 +41,7 @@ function mod:ElectricalStorm(args)
 	if not self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 20, args.destName, true)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 	self:Bar(args.spellId, 8)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -55,7 +55,7 @@ end
 
 function mod:Plucked(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+		self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 		self:SecondaryIcon(args.spellId, args.destName)
 	end
 end

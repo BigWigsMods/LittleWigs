@@ -44,14 +44,14 @@ end
 --
 
 function mod:Malevolence(args)
-	self:Message(args.spellId, "Attention", self:Tank() and "Alarm")
+	self:Message(args.spellId, "yellow", self:Tank() and "Alarm")
 	self:CDBar(args.spellId, 9) -- 8.4-10.8, remove?
 end
 
 do
 	-- BETA: 36.8, 13.7, 35.8, 17.2, 37, 14.8, 35.8
 	function mod:OmenOfDeath(args)
-		self:Message(args.spellId, "Important", "Alert")
+		self:Message(args.spellId, "red", "Alert")
 		self:CDBar(args.spellId, omenCounter % 2 == 0 and 14 or 35.8)
 		omenCounter = omenCounter + 1
 	end
@@ -59,7 +59,7 @@ end
 
 function mod:RitualOfBones(_, _, _, spellId)
 	if spellId == 154671 then -- Ritual of Bones
-		self:Message(-9680, "Urgent", "Warning")
+		self:Message(-9680, "orange", "Warning")
 		self:CDBar(-9680, 50.5) -- 50.5-53.0
 	end
 end

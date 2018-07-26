@@ -47,16 +47,16 @@ end
 --
 
 function mod:Doom(args)
-	self:Message(args.spellId, "Attention", "Info")
+	self:Message(args.spellId, "yellow", "Info")
 	self:CDBar(args.spellId, 11)
 end
 
 function mod:Hysteria(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
 	self:CDBar(args.spellId, 20)
 end
 
 function mod:EternalDarkness(args)
-	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 40)
 end

@@ -29,11 +29,11 @@ end
 --
 
 function mod:StaticCharge(args)
-	self:TargetMessage(50834, args.destName, "Personal", "Alarm")
+	self:TargetMessage(50834, args.destName, "blue", "Alarm")
 	self:TargetBar(50834, 10, args.destName)
 end
 
 function mod:LightningRing(args)
-	self:Message(50840, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(50840, "orange", nil, CL.casting:format(args.spellName))
 	self:CastBar(50840, 10)
 end

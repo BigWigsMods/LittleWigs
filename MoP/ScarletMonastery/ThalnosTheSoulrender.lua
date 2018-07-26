@@ -49,13 +49,13 @@ end
 --
 
 function mod:SpiritGaleCast(args)
-	self:Message(-5865, "Attention", nil, CL["casting"]:format(args.spellName), args.spellId)
+	self:Message(-5865, "yellow", nil, CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar(-5865, 2, CL["cast"]:format(args.spellName), args.spellId)
 end
 
 function mod:SpiritGaleYou(args)
 	if self:Me(args.destGUID) then
-		self:Message(-5865, "Personal", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
+		self:Message(-5865, "blue", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
 		self:Flash(-5865)
 	end
 end
@@ -67,7 +67,7 @@ function mod:SpiritGaleStopped(args)
 end
 
 function mod:EvictSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Info")
+	self:TargetMessage(args.spellId, args.destName, "orange", "Info")
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:CDBar(args.spellId, 41)
 end

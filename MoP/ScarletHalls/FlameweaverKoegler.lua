@@ -40,12 +40,12 @@ end
 --
 
 function mod:QuickenedMind(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL["onboss"]:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alert", CL["onboss"]:format(args.spellName))
 end
 
 function mod:BreathCast(args)
 	local breath = self:SpellName(31661)
-	self:Message(args.spellId, "Attention", "Long", CL["casting"]:format(breath))
+	self:Message(args.spellId, "yellow", "Long", CL["casting"]:format(breath))
 	self:Bar(args.spellId, 2, CL["cast"]:format(breath), args.spellId)
 end
 
@@ -55,11 +55,11 @@ end
 
 function mod:BreathEnd(args)
 	self:CDBar(args.spellId, 33, 31661) -- Dragon's Breath
-	self:Message(args.spellId, "Positive", nil, CL["over"]:format(self:SpellName(31661)))
+	self:Message(args.spellId, "green", nil, CL["over"]:format(self:SpellName(31661)))
 end
 
 function mod:BookBurner(args)
 	self:Bar(args.spellId, 3, CL["cast"]:format(args.spellName))
-	self:Message(args.spellId, "Important", "Info", CL["casting"]:format(args.spellName))
+	self:Message(args.spellId, "red", "Info", CL["casting"]:format(args.spellName))
 end
 

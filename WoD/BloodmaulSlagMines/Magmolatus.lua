@@ -30,7 +30,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
+	self:Message("stages", "cyan", nil, CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -38,13 +38,13 @@ end
 --
 
 function mod:SpawnAdd(args)
-	self:Message(args.spellId, "Positive", "Info", CL.add_spawned)
+	self:Message(args.spellId, "green", "Info", CL.add_spawned)
 end
 
 function mod:MoltenImpact(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "orange", "Warning")
 end
 
 function mod:Stage2()
-	self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
+	self:Message("stages", "cyan", nil, CL.stage:format(2), false)
 end

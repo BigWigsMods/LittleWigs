@@ -50,7 +50,7 @@ end
 
 function mod:SpellLock(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	end
 end
 
@@ -59,7 +59,7 @@ do
 
 	local function announce(self, spellId)
 		if self:Dispeller("magic") or isOnMe then
-			self:TargetMessage(spellId, playerList, "Urgent", "Alert", nil, nil, true)
+			self:TargetMessage(spellId, playerList, "orange", "Alert", nil, nil, true)
 		else
 			wipe(playerList) -- TargetMessage wipes the table; if we don't call it, we should do the same manually
 		end

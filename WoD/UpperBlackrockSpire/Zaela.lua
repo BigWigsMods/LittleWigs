@@ -43,7 +43,7 @@ end
 
 do
 	local function bossTarget(self, name, guid)
-		self:TargetMessage(155721, name, "Attention", "Alert")
+		self:TargetMessage(155721, name, "yellow", "Alert")
 		self:PrimaryIcon(155721, name)
 		if self:Me(guid) then
 			self:Flash(155721)
@@ -67,16 +67,16 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 65 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "Positive", nil, CL.soon:format(CL.intermission), false)
+		self:Message("stages", "green", nil, CL.soon:format(CL.intermission), false)
 	end
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
-		self:Message("stages", "Important", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
+		self:Message("stages", "red", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else
-		self:Message("stages", "Important", "Info", CL.percent:format(60, CL.intermission), "achievement_character_orc_female")
-		self:DelayedMessage("stages", 1, "Important", self:SpellName(-10741), "achievement_character_orc_male") -- Black Iron Wyrm Riders
+		self:Message("stages", "red", "Info", CL.percent:format(60, CL.intermission), "achievement_character_orc_female")
+		self:DelayedMessage("stages", 1, "red", self:SpellName(-10741), "achievement_character_orc_male") -- Black Iron Wyrm Riders
 		self:Bar("stages", self:Normal() and 28 or 36.5, CL.intermission, "achievement_character_orc_female")
 		self:StopBar(155721) -- Black Iron Cyclone
 	end

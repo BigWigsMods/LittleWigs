@@ -33,7 +33,7 @@ end
 
 function mod:Hasten(args)
 	if self:MobId(args.destGUID) ~= 17880 then return end -- mages can spellsteal it
-	self:Message(args.spellId, "Important", self:Dispeller("magic", true) and "Warning")
+	self:Message(args.spellId, "red", self:Dispeller("magic", true) and "Warning")
 	self:Bar(args.spellId, 10)
 end
 
@@ -43,6 +43,6 @@ function mod:HastenRemoved(args)
 end
 
 function mod:SpellReflection(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 6)
 end

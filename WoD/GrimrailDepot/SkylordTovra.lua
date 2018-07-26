@@ -51,19 +51,19 @@ end
 
 function mod:Thunder(_, _, _, _, _, target)
 	if target == L.rakun then
-		self:Message(161801, "Important", "Long", CL.incoming:format(self:SpellName(161801)))
+		self:Message(161801, "red", "Long", CL.incoming:format(self:SpellName(161801)))
 		self:Bar(161801, 17.3)
 	end
 end
 
 function mod:SpinningSpear(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 16.5) -- 16.4-16.9
 end
 
 function mod:DiffusedEnergy(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 	end
 end
 
@@ -73,7 +73,7 @@ do
 			self:Say(162066)
 			self:Flash(162066)
 		end
-		self:TargetMessage(162066, player, "Urgent", "Info")
+		self:TargetMessage(162066, player, "orange", "Info")
 	end
 	function mod:FreezingSnare(args)
 		self:CDBar(args.spellId, 16.5) -- 16.5-17
@@ -83,7 +83,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessage(163447, player, "Urgent", "Info")
+		self:TargetMessage(163447, player, "orange", "Info")
 	end
 	function mod:HuntersMark(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)

@@ -42,12 +42,12 @@ function mod:Warmup()
 end
 
 function mod:CorruptedFlesh(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 end
 
 function mod:SharedSuffering(args)
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 
@@ -58,7 +58,7 @@ end
 
 function mod:CorruptedTouch(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetMessage(args.spellId, args.destName, "orange")
 		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end

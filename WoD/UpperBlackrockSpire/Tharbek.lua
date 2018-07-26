@@ -50,26 +50,26 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if self:MobId(UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
-		self:Message("stages", "Neutral", "Info", self.displayName, "ability_warrior_endlessrage")
+		self:Message("stages", "cyan", "Info", self.displayName, "ability_warrior_endlessrage")
 	end
 end
 
 function mod:NoxiousSpit(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 	end
 end
 
 function mod:ImbuedIronAxe(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
 end
 
 function mod:IronReaver(_, _, _, spellId)
 	if spellId == 161989 then -- Iron Reaver
-		self:Message("iron_reaver", "Important", nil, self:SpellName(100), spellId) -- 100 = "Charge"
+		self:Message("iron_reaver", "red", nil, self:SpellName(100), spellId) -- 100 = "Charge"
 		self:CDBar("iron_reaver", 19, self:SpellName(100), spellId) -- 19.4-22.7s
 	elseif spellId == 161882 then -- Incinerating Breath
-		self:Message(spellId, "Urgent", "Long", CL.incoming:format(self:SpellName(spellId)))
+		self:Message(spellId, "orange", "Long", CL.incoming:format(self:SpellName(spellId)))
 		self:CDBar(spellId, 20)
 	end
 end

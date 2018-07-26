@@ -42,13 +42,13 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("191873", nil, true) then
-		self:Message(191873, "Attention", "Long", CL.percent:format(submergeHp, self:SpellName(191873)))
+		self:Message(191873, "yellow", "Long", CL.percent:format(submergeHp, self:SpellName(191873)))
 		submergeHp = submergeHp - 33
 	end
 end
 
 function mod:ToxicWound(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alarm")
 	--self:CDBar(args.spellId, 25) -- pull:27.8, 25.5, 29.2 -- pull:5.9, 25.1, 41.0
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

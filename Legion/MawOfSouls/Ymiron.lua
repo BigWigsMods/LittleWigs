@@ -48,17 +48,17 @@ end
 
 function mod:WindsOfNorthrend(args)
 	self:Bar(args.spellId, 29)
-	self:Message(args.spellId, "Attention", "Alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Alarm", CL.incoming:format(args.spellName))
 end
 
 function mod:DarkSlash(args)
 	self:Bar(args.spellId, 15.5)
-	self:Message(args.spellId, "Urgent", "Alert", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alert", CL.incoming:format(args.spellName))
 end
 
 function mod:ScreamsOfTheDead(args)
 	self:Bar(args.spellId, 31)
-	self:Message(args.spellId, "Important", "Long", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", "Long", CL.incoming:format(args.spellName))
 end
 
 function mod:Bane(args)
@@ -66,5 +66,5 @@ function mod:Bane(args)
 end
 
 function mod:AriseFallen(args)
-	self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Warning", CL.incoming:format(args.spellName))
 end

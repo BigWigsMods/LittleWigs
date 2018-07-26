@@ -1,44 +1,44 @@
 
 BigWigs:AddColors("Agronox", {
-	[235751] = "Urgent",
-	[236524] = "Attention",
-	[236527] = "Attention",
-	[236639] = "Attention",
-	[236640] = "Personal",
-	[236650] = {"Attention","Personal"},
-	[238674] = "Personal",
+	[235751] = "orange",
+	[236524] = "yellow",
+	[236527] = "yellow",
+	[236639] = "yellow",
+	[236640] = "blue",
+	[236650] = {"yellow","blue"},
+	[238674] = "blue",
 })
 
 BigWigs:AddColors("Thrashbite the Scornful", {
-	[237276] = "Urgent",
-	[237726] = {"Personal","Urgent"},
-	[243124] = "Important",
+	[237276] = "orange",
+	[237726] = {"blue","orange"},
+	[243124] = "red",
 })
 
 BigWigs:AddColors("Domatrax", {
-	[-15076] = "Important",
-	[234107] = "Urgent",
-	[236543] = "Attention",
-	[238410] = {"Personal","Urgent"},
+	[-15076] = "red",
+	[234107] = "orange",
+	[236543] = "yellow",
+	[238410] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Mephistroth", {
-	[233155] = "Attention",
-	[233196] = {"Attention","Important","Personal"},
-	[233206] = {"Attention","Positive"},
-	[234817] = "Attention",
+	[233155] = "yellow",
+	[233196] = {"yellow","red","blue"},
+	[233206] = {"yellow","green"},
+	[234817] = "yellow",
 })
 
 BigWigs:AddColors("Cathedral of Eternal Night Trash", {
-	[236737] = {"Attention","Personal"},
-	[237391] = "Urgent",
-	[237565] = "Attention",
-	[238543] = "Urgent",
-	[238653] = "Urgent",
-	[239101] = "Urgent",
-	[239232] = "Urgent",
-	[239320] = "Urgent",
-	[241598] = "Attention",
-	[241772] = "Urgent",
-	[242760] = "Important",
+	[236737] = {"yellow","blue"},
+	[237391] = "orange",
+	[237565] = "yellow",
+	[238543] = "orange",
+	[238653] = "orange",
+	[239101] = "orange",
+	[239232] = "orange",
+	[239320] = "orange",
+	[241598] = "yellow",
+	[241772] = "orange",
+	[242760] = "red",
 })

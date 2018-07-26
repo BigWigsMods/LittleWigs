@@ -35,7 +35,7 @@ do
 		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER = 0x400, filtering out pets
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Important", "Alert", nil, nil, self:Dispeller("magic"))
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "red", "Alert", nil, nil, self:Dispeller("magic"))
 		end
 	end
 end

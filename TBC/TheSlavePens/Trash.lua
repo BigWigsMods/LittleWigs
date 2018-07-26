@@ -75,7 +75,7 @@ end
 --
 
 function mod:ShieldSlam(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, self:Healer())
+	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 2, args.destName)
 end
 
@@ -85,7 +85,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:TargetMessage(args.spellId, args.destName, "Attention", "Long", nil, nil, true)
+			self:TargetMessage(args.spellId, args.destName, "yellow", "Long", nil, nil, true)
 		end
 	end
 end
@@ -98,7 +98,7 @@ do
 		playerList[#playerList + 1] = args.destName
 		if #playerList == 1 then
 			self:Bar(args.spellId, 8)
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Info", nil, nil, self:Dispeller("magic"))
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Info", nil, nil, self:Dispeller("magic"))
 		end
 	end
 
@@ -117,14 +117,14 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:Message(39378, "Urgent", "Alarm", CL.casting:format(args.spellName))
+			self:Message(39378, "orange", "Alarm", CL.casting:format(args.spellName))
 		end
 	end
 end
 
 function mod:Cripple(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Info", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Info", nil, nil, true)
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 end
@@ -137,7 +137,7 @@ function mod:PsychicHorror(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId) -- helps prioritizing dispelling those who are about to run into some pack
 	end
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 3, args.destName)
 end
 

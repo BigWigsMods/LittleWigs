@@ -56,13 +56,13 @@ end
 --
 
 function mod:MadDash(args)
-	self:Message(args.spellId, "Important", "Warning")
+	self:Message(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 43)
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 end
 
 function mod:Slam(args)
-	self:Message(162617, "Urgent", not self:Normal() and "Alert", CL.incoming:format(args.spellName))
+	self:Message(162617, "orange", not self:Normal() and "Alert", CL.incoming:format(args.spellName))
 	if not self:Normal() then
 		self:CDBar(162617, 16) -- 16-19, will delay to ~24 if just about to expire after Mad Dash
 	end
@@ -74,9 +74,9 @@ function mod:Deaths(args)
 		if args.mobId == 77816 then -- Borka
 			self:StopBar(161090) -- Mad Dash
 			self:StopBar(162617) -- Slam
-			self:Message("enrage", "Attention", "Info", CL.other:format(self:SpellName(26662), self:SpellName(-9430)), 26662) -- Enrage: Railmaster Rocketspark
+			self:Message("enrage", "yellow", "Info", CL.other:format(self:SpellName(26662), self:SpellName(-9430)), 26662) -- Enrage: Railmaster Rocketspark
 		else -- Rocketspark
-			self:Message("enrage", "Attention", "Info", CL.other:format(self:SpellName(26662), self:SpellName(-9433)), 26662) -- Enrage: Borka the Brute
+			self:Message("enrage", "yellow", "Info", CL.other:format(self:SpellName(26662), self:SpellName(-9433)), 26662) -- Enrage: Borka the Brute
 		end
 	end
 end

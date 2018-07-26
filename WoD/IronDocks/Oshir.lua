@@ -41,13 +41,13 @@ do
 	local t = 0
 	function mod:TimeToFeed(args)
 		t = GetTime()
-		self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "red", "Alarm")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
 
 	function mod:TimeToFeedOver(args)
-		self:Message(args.spellId, "Positive", nil, L.freed:format(GetTime()-t))
+		self:Message(args.spellId, "green", nil, L.freed:format(GetTime()-t))
 		self:PrimaryIcon(args.spellId)
 		self:StopBar(args.spellId, args.destName)
 	end

@@ -36,13 +36,13 @@ end
 --  Event Handlers
 
 function mod:Debilitate(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 function mod:Deaths(args)
 	deaths = deaths + 1
 	if deaths < 2 then
-		self:Message("stages", "Positive", "Info", CL.mob_killed:format(args.destName, deaths, 2), false)
+		self:Message("stages", "green", "Info", CL.mob_killed:format(args.destName, deaths, 2), false)
 	end
 end

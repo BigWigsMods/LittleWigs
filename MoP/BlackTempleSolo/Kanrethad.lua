@@ -88,35 +88,35 @@ function mod:Curse(args)
 end
 
 function mod:PitLord(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 10, "<"..args.spellName..">")
 	self:CDBar(138685, 66) -- Imps
 	self:CDBar(138559, 30) -- Chaos Bolt
 end
 
 function mod:Imps(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:StopBar(args.spellId)
 	self:Bar(args.spellId, 10, "<"..args.spellName..">")
 	self:CDBar(138751, 57) -- Felhunters
 end
 
 function mod:Felhunters(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:StopBar(args.spellId)
 	self:Bar(args.spellId, 9, "<"..args.spellName..">")
 	self:CDBar(138755, 59) -- Doom Lord
 end
 
 function mod:DoomLord(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:StopBar(args.spellId)
 	self:Bar(args.spellId, 10, "<"..args.spellName..">")
 	self:CDBar(138685, 60) -- Imps
 end
 
 function mod:DevourEnslavement(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL["removed"]:format(self:SpellName(1098))) -- Enslave Demon
+	self:Message(args.spellId, "orange", "Warning", CL["removed"]:format(self:SpellName(1098))) -- Enslave Demon
 	self:Flash(args.spellId)
 	self:StopBar(1098)
 	self:CancelDelayedMessage(CL["custom_sec"]:format(CL["over"]:format(args.spellName), 60))
@@ -128,17 +128,17 @@ end
 function mod:EnslaveDemon(args)
 	if self:Me(args.sourceGUID) and self:MobId(args.destGUID) == 70075 then
 		self:Bar(args.spellId, 300)
-		self:DelayedMessage(args.spellId, 240, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 60))
-		self:DelayedMessage(args.spellId, 270, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 30))
-		self:DelayedMessage(args.spellId, 290, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 10))
-		self:DelayedMessage(args.spellId, 295, "Neutral", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 5))
+		self:DelayedMessage(args.spellId, 240, "cyan", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 60))
+		self:DelayedMessage(args.spellId, 270, "cyan", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 30))
+		self:DelayedMessage(args.spellId, 290, "cyan", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 10))
+		self:DelayedMessage(args.spellId, 295, "cyan", CL["custom_sec"]:format(CL["over"]:format(args.spellName), 5))
 	end
 end
 
 do
 	local t = 0
 	function mod:Cataclysm(args)
-		self:Message(args.spellId, "Important", "Warning")
+		self:Message(args.spellId, "red", "Warning")
 		self:Bar(args.spellId, 6, "<"..args.spellName..">")
 		self:CDBar(args.spellId, 60)
 		t = GetTime()
@@ -146,31 +146,31 @@ do
 	function mod:CataclysmInterrupted(args)
 		if (GetTime() - t) < 5.5 then
 			self:StopBar("<"..args.spellName..">")
-			self:Message(args.spellId, "Positive", nil, CL["interrupted"]:format(args.spellName))
+			self:Message(args.spellId, "green", nil, CL["interrupted"]:format(args.spellName))
 		end
 	end
 end
 
 function mod:Agony(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL["you"]:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alarm", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:AgonyRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Positive", nil, CL["removed"]:format(args.spellName))
+		self:Message(args.spellId, "green", nil, CL["removed"]:format(args.spellName))
 	end
 end
 
 function mod:RainOfFire(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alert", CL["you"]:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alert", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:ChaosBolt(args)
-	self:Message(args.spellId, "Urgent", "Long")
+	self:Message(args.spellId, "orange", "Long")
 	self:Bar(args.spellId, 6, "<"..args.spellName..">")
 	self:Bar(args.spellId, 60)
 end

@@ -60,12 +60,12 @@ end
 --
 
 function mod:Shank(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 5, args.destName)
 end
 
 function mod:HexOfLethargy(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 20, args.destName, 66054, args.spellId) -- Hex
 end
 
@@ -75,7 +75,7 @@ end
 
 function mod:Heal(args)
 	local heal = self:SpellName(33144)
-	self:Message("heal", "Urgent", "Alert", CL.other:format(args.sourceName, heal), args.spellId)
+	self:Message("heal", "orange", "Alert", CL.other:format(args.sourceName, heal), args.spellId)
 	self:CastBar("heal", 4, heal, args.spellId)
 end
 
@@ -89,7 +89,7 @@ end
 function mod:Deaths(args)
 	deaths = deaths + 1
 	if deaths < 5 then
-		self:Message("stages", "Positive", "Info", CL.mob_killed:format(args.destName, deaths, 5), false)
+		self:Message("stages", "green", "Info", CL.mob_killed:format(args.destName, deaths, 5), false)
 	end
 end
 

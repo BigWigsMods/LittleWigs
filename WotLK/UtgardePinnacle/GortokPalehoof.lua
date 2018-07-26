@@ -30,11 +30,11 @@ end
 --
 
 function mod:WitheringRoar()
-	self:Message(59267, "Urgent")
+	self:Message(59267, "orange")
 	self:CDBar(59267, 10)
 end
 
 function mod:Impale(args)
-	self:TargetMessage(59268, args.destName, "Attention")
+	self:TargetMessage(59268, args.destName, "yellow")
 end
 

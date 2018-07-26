@@ -1,33 +1,33 @@
 
 BigWigs:AddColors("Temple Guardian Anhuur", {
-	[74938] = {"Attention","Important"},
-	[75592] = {"Attention","Personal"},
+	[74938] = {"yellow","red"},
+	[75592] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Anraphet", {
-	[75603] = {"Personal","Urgent"},
-	[75609] = "Personal",
-	[75622] = "Important",
-	[76184] = {"Attention","Personal"},
+	[75603] = {"blue","orange"},
+	[75609] = "blue",
+	[75622] = "red",
+	[76184] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Isiset", {
-	[-2556] = {"Neutral","Positive"},
-	[74045] = "Personal",
-	[74135] = "Personal",
-	[74137] = "Important",
-	[74373] = "Attention",
+	[-2556] = {"cyan","green"},
+	[74045] = "blue",
+	[74135] = "blue",
+	[74137] = "red",
+	[74373] = "yellow",
 })
 
 BigWigs:AddColors("Ammunae", {
-	[75790] = "Attention",
-	[76043] = {"Important","Personal","Urgent"},
-	[80968] = {"Attention","Personal"},
+	[75790] = "yellow",
+	[76043] = {"red","blue","orange"},
+	[80968] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Rajh", {
-	[-2863] = "Personal",
-	[-2862] = "Urgent",
-	[-2861] = "Attention",
-	[76355] = {"Neutral","Positive"},
+	[-2863] = "blue",
+	[-2862] = "orange",
+	[-2861] = "yellow",
+	[76355] = {"cyan","green"},
 })

@@ -35,13 +35,13 @@ end
 --
 
 function mod:Smash(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", 34618) -- 34618 = Smash
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", 34618) -- 34618 = Smash
 	self:TargetBar(args.spellId, 4, args.destName, 34618)
 	self:CDBar(args.spellId, 17, 34618) -- 17-19
 end
 
 function mod:Enrage(args)
-	self:Message(-5813, "Important", "Long", args.spellId)
+	self:Message(-5813, "red", "Long", args.spellId)
 	self:Bar(-5813, 30, args.spellId)
 end
 
@@ -52,7 +52,7 @@ end
 function mod:EnrageSoon(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 25 then
-		self:Message(-5813, "Positive", "Info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
+		self:Message(-5813, "green", "Info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
 		self:UnregisterUnitEvent(event, unit)
 	end
 end

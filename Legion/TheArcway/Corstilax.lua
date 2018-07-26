@@ -42,12 +42,12 @@ end
 --
 
 function mod:Quarantine(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Info", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Info", nil, nil, true)
 	self:CDBar(args.spellId, 46)
 end
 
 function mod:SuppressionProtocol(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
 	self:TargetBar(args.spellId, 12, args.destName)
 	self:ScheduleTimer("CDBar", 12, args.spellId, 34)
 	self:PrimaryIcon(args.spellId, args.destName)
@@ -58,13 +58,13 @@ function mod:SuppressionProtocolRemoved(args)
 end
 
 function mod:CleansingForce(args)
-	self:Message(args.spellId, "Urgent", "Alert")
+	self:Message(args.spellId, "orange", "Alert")
 	self:Bar(args.spellId, 10, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 46)
 end
 
 function mod:DestabilizedOrb(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 end
 
 do
@@ -75,7 +75,7 @@ do
 			if t-prev > 2 then
 				prev = t
 				self:Flash(220481)
-				self:Message(220481, "Personal", "Alarm", CL.underyou:format(args.spellName))
+				self:Message(220481, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

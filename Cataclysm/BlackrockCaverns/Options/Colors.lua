@@ -1,28 +1,28 @@
 
 BigWigs:AddColors("Rom'ogg Bonecrusher", {
-	[75272] = {"Attention","Personal"},
-	[75539] = {"Attention","Important"},
-	[75543] = "Urgent",
+	[75272] = {"yellow","blue"},
+	[75539] = {"yellow","red"},
+	[75543] = "orange",
 })
 
 BigWigs:AddColors("Corla, Herald of Twilight", {
-	[75697] = {"Personal","Positive"},
-	[75823] = {"Important","Personal","Urgent"},
+	[75697] = {"blue","green"},
+	[75823] = {"red","blue","orange"},
 })
 
 BigWigs:AddColors("Karsh Steelbender", {
-	[75842] = "Attention",
-	[75846] = {"Important","Personal"},
+	[75842] = "yellow",
+	[75846] = {"red","blue"},
 })
 
 BigWigs:AddColors("Beauty", {
-	[76028] = {"Attention","Personal"},
-	[76031] = {"Personal","Urgent"},
-	[76628] = "Personal",
+	[76028] = {"yellow","blue"},
+	[76031] = {"blue","orange"},
+	[76628] = "blue",
 })
 
 BigWigs:AddColors("Ascendant Lord Obsidius", {
-	[-2385] = {"Attention","Urgent"},
-	[76188] = {"Important","Personal"},
-	[76189] = {"Attention","Personal"},
+	[-2385] = {"yellow","orange"},
+	[76188] = {"red","blue"},
+	[76189] = {"yellow","blue"},
 })

@@ -62,7 +62,7 @@ end
 --
 
 function mod:Teleport(args)
-	self:Message(args.spellId, "Attention", "Info", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
 end
 
 function mod:VoidShieldApplied(args)
@@ -70,7 +70,7 @@ function mod:VoidShieldApplied(args)
 end
 
 function mod:VoidShieldRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", "Info", CL.removed:format(args.spellName))
 end
 
 do
@@ -80,7 +80,7 @@ do
 			local t = GetTime()
 			if t-prev > 0.5 then
 				prev = t
-				self:Message(args.spellId, "Urgent", "Alarm")
+				self:Message(args.spellId, "orange", "Alarm")
 			end
 			self:CastBar(args.spellId, 3)
 		end
@@ -88,12 +88,12 @@ do
 end
 
 function mod:SapSoul(args)
-	self:Message(200904, "Attention", "Info", CL.casting:format(args.spellName))
+	self:Message(200904, "yellow", "Info", CL.casting:format(args.spellName))
 	self:CDBar(200904, 15.8, args.spellName)
 end
 
 function mod:SapSoulInterruptible(args)
-	self:Message(200904, "Attention", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
+	self:Message(200904, "yellow", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
 	self:CDBar(200904, 20, args.spellName)
 end
 
@@ -104,7 +104,7 @@ do
 			local t = GetTime()
 			if t-prev > 0.5 then
 				prev = t
-				self:TargetMessage(args.spellId, args.destName, "Important", "Long")
+				self:TargetMessage(args.spellId, args.destName, "red", "Long")
 				self:Flash(args.spellId)
 			end
 		end
@@ -114,7 +114,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextTeleportSoonWarning then
-		self:Message(200898, "Attention", nil, CL.soon:format(self:SpellName(200898)))
+		self:Message(200898, "yellow", nil, CL.soon:format(self:SpellName(200898)))
 		nextTeleportSoonWarning = nextTeleportSoonWarning - 30 -- Teleport at 40%
 		if nextTeleportSoonWarning < 40 then
 			self:UnregisterUnitEvent(event, unit)
@@ -123,11 +123,11 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:SeedofCorruption(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:FrighteningShout(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 end
 
 do
@@ -137,7 +137,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -159,7 +159,7 @@ do
 		self:SetInfoByTable(args.spellId, playerList)
 
 		if self:Me(args.destGUID) and args.amount > 6 then
-			self:StackMessage(args.spellId, args.destName, args.amount, "Urgent")
+			self:StackMessage(args.spellId, args.destName, args.amount, "orange")
 			if stacks < 9 then
 				self:PlaySound(args.spellId, "Alarm")
 			else

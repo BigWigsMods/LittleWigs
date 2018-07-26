@@ -1,23 +1,23 @@
 
 BigWigs:AddColors("Grand Champions", {
-	[-7534] = "Personal",
-	[66043] = {"Attention","Personal"},
-	[67528] = "Urgent",
-	[67534] = {"Attention","Personal"},
+	[-7534] = "blue",
+	[66043] = {"yellow","blue"},
+	[67528] = "orange",
+	[67534] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Eadric the Pure", {
-	[66935] = "Urgent",
+	[66935] = "orange",
 })
 
 BigWigs:AddColors("Argent Confessor Paletress", {
-	[66515] = {"Attention","Important","Positive"},
-	[66537] = "Urgent",
-	[66619] = {"Attention","Personal"},
-	["confess"] = {"Attention","Important"},
+	[66515] = {"yellow","red","green"},
+	[66537] = "orange",
+	[66619] = {"yellow","blue"},
+	["confess"] = {"yellow","red"},
 })
 
 BigWigs:AddColors("The Black Knight", {
-	[-7598] = "Urgent",
-	[67781] = "Personal",
+	[-7598] = "orange",
+	[67781] = "blue",
 })

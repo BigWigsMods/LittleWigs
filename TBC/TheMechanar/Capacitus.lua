@@ -56,16 +56,16 @@ end
 --
 
 function mod:ReflectiveShield(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 10)
 end
 
 function mod:ReflectiveShieldRemoved(args)
-	self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", nil, CL.removed:format(args.spellName))
 end
 
 function mod:PolarityShift(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 end
 
@@ -82,7 +82,7 @@ do
 			if self:Me(guid) then
 				self:OpenProximity(39096, 10, sameChargeList, true)
 				-- Cyan for Positive, Red for Negative
-				self:Message(39096, spellId == 39088 and "Neutral" or "Important", "Info", CL.you:format(self:SpellName(spellId)), spellId)
+				self:Message(39096, spellId == 39088 and "cyan" or "red", "Info", CL.you:format(self:SpellName(spellId)), spellId)
 			end
 		end
 	end

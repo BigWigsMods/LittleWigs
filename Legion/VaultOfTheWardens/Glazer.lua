@@ -56,7 +56,7 @@ end
 --
 
 function mod:LingeringGazeCast(args)
-	self:Message(194945, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:Message(194945, "red", "Alarm", CL.casting:format(args.spellName))
 	if nextFocusing - GetTime() > 18 then -- values lower than 18 sometimes failed
 		self:CDBar(194945, 15.7)
 	end
@@ -64,17 +64,17 @@ end
 
 function mod:LingeringGazeApplied(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 	end
 end
 
 function mod:Focusing(args)
-	self:Message(args.spellId, "Urgent", "Info")
+	self:Message(args.spellId, "orange", "Info")
 end
 
 function mod:RadiationLevel(args)
 	if args.amount >= 10 and args.amount % 5 == 0 then -- 10, 15, 20
-		self:Message(194323, "Urgent", "Info", L.radiation_level:format(args.spellName, args.amount), args.spellId)
+		self:Message(194323, "orange", "Info", L.radiation_level:format(args.spellName, args.amount), args.spellId)
 	end
 end
 
@@ -85,14 +85,14 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:Beamed(args)
-	self:Message(args.spellId, "Positive", "Info")
+	self:Message(args.spellId, "green", "Info")
 	self:Bar(args.spellId, 15)
 	self:Bar(194323, 60) -- Focusing
 	nextFocusing = GetTime() + 60

@@ -96,7 +96,7 @@ do
 			if not bosses[guid] and self:MobId(guid) ~= 96759 then
 				tentacleDeaths = tentacleDeaths + 1
 				if tentacleDeaths < 7 then
-					self:Message("stages", "Neutral", "Info", CL.mob_remaining:format(self:SpellName(201178), 6 - tentacleDeaths), false) -- 201178 = Tentacle
+					self:Message("stages", "cyan", "Info", CL.mob_remaining:format(self:SpellName(201178), 6 - tentacleDeaths), false) -- 201178 = Tentacle
 				end
 			end
 			seen[guid] = nil
@@ -107,13 +107,13 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg) -- Destructor Tentacle
 	if msg:find("inv_misc_monsterhorn_03", nil, true) then -- |TInterface\\Icons\\inv_misc_monsterhorn_03.blp:20|t A %s emerges!#Destructor Tentacle###Destructor Tentacle
-		self:Message("destructor_tentacle", "Attention", self:Tank() and "Warning", CL.spawned:format(self:SpellName(L.destructor_tentacle)), L.destructor_tentacle_icon)
+		self:Message("destructor_tentacle", "yellow", self:Tank() and "Warning", CL.spawned:format(self:SpellName(L.destructor_tentacle)), L.destructor_tentacle_icon)
 		self:CDBar("destructor_tentacle", 26, L.destructor_tentacle, L.destructor_tentacle_icon) -- 25-27, but can be delayed upto 10s by Piercing Tentacle (I think)
 	end
 end
 
 function mod:TaintOfTheSea(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert", nil, nil, self:Dispeller("magic"))
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
@@ -121,7 +121,7 @@ end
 
 function mod:RapidRupture(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Warning", CL.you:format(args.spellName))
+		self:Message(args.spellId, "blue", "Warning", CL.you:format(args.spellName))
 	end
 end
 
@@ -131,13 +131,13 @@ function mod:Submerged(args)
 	self:StopBar(227233) -- Corrupted Bellow
 	self:UnregisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 
-	self:Message(args.spellId, "Neutral", "Info")
+	self:Message(args.spellId, "cyan", "Info")
 	self:Bar(args.spellId, 15)
 	firstTorrent = true
 end
 
 function mod:SubmergedRemoved(args)
-	self:Message(args.spellId, "Neutral", "Info", CL.over:format(args.spellName))
+	self:Message(args.spellId, "cyan", "Info", CL.over:format(args.spellName))
 	self:CDBar(198495, 10) -- Torrent
 end
 
@@ -150,16 +150,16 @@ function mod:Torrent(args)
 
 	firstTorrent = nil
 	afterCorrupted = nil
-	self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:CorruptedBellow(args)
-	self:Message(args.spellId, "Urgent", "Alarm")
+	self:Message(args.spellId, "orange", "Alarm")
 	self:Bar(args.spellId, 22)
 	afterCorrupted = true
 end
 
 function mod:BrackwaterBarrage(args)
-	self:Message(args.spellId, "Urgent", "Alarm")
+	self:Message(args.spellId, "orange", "Alarm")
 	self:CDBar(args.spellId, 22.2)
 end

@@ -45,15 +45,15 @@ end
 --
 
 function mod:ZanziliFire(args)
-	self:Message(args.spellId, "Attention", "Info", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
 end
 
 function mod:BlueResurrectionElixir(args)
-	self:Message(args.spellId, "Attention", "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 end
 
 function mod:GraveyardGasCast(args)
-	self:Message(args.spellId, "Attention", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 7)
 end
 
@@ -69,7 +69,7 @@ do
 		if self:Me(guid) then
 			self:Flash(96316, 96342)
 		end
-		self:TargetMessage(96316, player, "Important", "Alert", 96342)
+		self:TargetMessage(96316, player, "red", "Alert", 96342)
 		self:PrimaryIcon(96316, player)
 	end
 
@@ -82,7 +82,7 @@ do
 			if self:Me(args.destGUID) then
 				self:Flash(96316, args.spellId)
 			end
-			self:TargetMessage(96316, args.destName, "Important", "Alert", args.spellId)
+			self:TargetMessage(96316, args.destName, "red", "Alert", args.spellId)
 			self:PrimaryIcon(96316, args.destName)
 		else
 			targetFound = nil

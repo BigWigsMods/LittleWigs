@@ -58,11 +58,11 @@ end
 --
 
 function mod:ShieldOfLight(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "red", "Alert")
 end
 
 function mod:EyeOfTheStormOrSanctify(args)
-	self:Message(args.spellId, "Urgent", "Long")
+	self:Message(args.spellId, "orange", "Long")
 	self:CDBar(192018, 15.8) -- 192018 = Shield of Light. Yes, I checked both EotS and Sanctify.
 
 	-- adjust Arcing Bolt's and Expel Light's CD bars
@@ -84,7 +84,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(191976, player, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(191976, player, "yellow", "Alarm", nil, nil, true)
 		self:SecondaryIcon(191976, player)
 		if self:Me(guid) then
 			self:Say(191976)
@@ -103,7 +103,7 @@ do
 end
 
 function mod:ExpelLight(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 8)

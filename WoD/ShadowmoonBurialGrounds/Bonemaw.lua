@@ -39,15 +39,15 @@ function mod:InhaleIncUnitEvent(_, _, _, spellId)
 end
 
 function mod:InhaleInc()
-	self:Message(153804, "Urgent", "Warning", CL.incoming:format(self:SpellName(153804)))
+	self:Message(153804, "orange", "Warning", CL.incoming:format(self:SpellName(153804)))
 	self:Flash(153804)
 end
 
 function mod:Inhale(args)
 	self:CastBar(args.spellId, 9)
-	self:Message(args.spellId, "Urgent", "Alarm")
+	self:Message(args.spellId, "orange", "Alarm")
 end
 
 function mod:BodySlam(args)
-	self:Message(args.spellId, "Attention", "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 end

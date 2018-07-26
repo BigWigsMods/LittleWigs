@@ -98,7 +98,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1 then
 			prevTable[args.spellId] = t
-			self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 		end
 	end
 
@@ -107,7 +107,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1 then
 			prevTable[args.spellId] = t
-			self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 		end
 	end
 end
@@ -117,7 +117,7 @@ function mod:NightmareToxinApplied(args)
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 3, nil, 2)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert", nil, nil, self:Dispeller("poison"))
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert", nil, nil, self:Dispeller("poison"))
 	self:TargetBar(args.spellId, 3, args.destName)
 end
 
@@ -136,7 +136,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Warning", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Warning", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -144,5 +144,5 @@ end
 
 -- Bloodtainted Fury
 function mod:BloodBomb(args)
-	self:Message(args.spellId, "Urgent", "Alert")
+	self:Message(args.spellId, "orange", "Alert")
 end

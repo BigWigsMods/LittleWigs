@@ -55,14 +55,14 @@ function mod:CursedBullets(args)
 	cursedBulletsCount = cursedBulletsCount + 1
 	self:CDBar(args.spellId, cursedBulletsCount % 2 == 0 and 18.2 or 12.1)
 	if self:Interrupter() then
-		self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	end
 end
 
 function mod:CursedBulletsApplied(args)
 	local canDispel = self:Dispeller("curse")
 	if canDispel or self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", canDispel and "Alarm", nil, nil, canDispel)
+		self:TargetMessage(args.spellId, args.destName, "orange", canDispel and "Alarm", nil, nil, canDispel)
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 end
@@ -73,16 +73,16 @@ end
 
 function mod:MortalWound(args)
 	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "Attention")
+	self:StackMessage(args.spellId, args.destName, amount, "yellow")
 end
 
 function mod:SummonBloodthirstyGhouls(args)
-	self:Message(args.spellId, "Neutral", "Info")
+	self:Message(args.spellId, "cyan", "Info")
 	self:CDBar(args.spellId, 30.3)
 end
 
 function mod:PistolBarrage(args)
-	self:Message(args.spellId, "Important", "Long")
+	self:Message(args.spellId, "red", "Long")
 	self:CastBar(args.spellId, 6)
 	self:CDBar(args.spellId, 30.3)
 end
@@ -94,7 +94,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:Message(93520, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(93520, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end

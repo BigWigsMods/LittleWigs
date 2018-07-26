@@ -29,7 +29,7 @@ end
 --
 
 function mod:ManaRage(args)
-	self:Message(args.spellId, "Important", "Info", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Info", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 10)
 end
 

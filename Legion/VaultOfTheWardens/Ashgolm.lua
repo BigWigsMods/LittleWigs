@@ -48,22 +48,22 @@ end
 --
 function mod:CHAT_MSG_MONSTER_EMOTE(_, _, sender)
 	if sender == self:SpellName(-12727) then -- Countermeasures
-		self:Message(-12727, "Positive", "Info", self:SpellName(-12727), false)
+		self:Message(-12727, "green", "Info", self:SpellName(-12727), false)
 	end
 end
 
 function mod:Fissure(args)
-	self:Message(args.spellId, "Attention", "Alarm")
+	self:Message(args.spellId, "yellow", "Alarm")
 	self:Bar(args.spellId, 42)
 end
 
 function mod:Volcano(args)
-	self:Message(args.spellId, "Important", "Long")
+	self:Message(args.spellId, "red", "Long")
 	self:Bar(args.spellId, 20)
 end
 
 function mod:Brittle(args)
-	self:Message(args.spellId, "Positive", "Info")
+	self:Message(args.spellId, "green", "Info")
 	self:Bar(args.spellId, 20)
 	local remainingVolcano = self:BarTimeLeft(192520)
 	if remainingVolcano > 0 then
@@ -76,6 +76,6 @@ end
 
 function mod:Lava(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 	end
 end

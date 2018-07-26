@@ -1,112 +1,112 @@
 
 BigWigs:AddColors("Maiden of Virtue", {
-	[227508] = "Attention",
-	[227789] = {"Important","Personal","Positive"},
-	[227800] = "Attention",
-	[227809] = {"Important","Personal"},
-	[227823] = {"Important","Urgent"},
+	[227508] = "yellow",
+	[227789] = {"red","blue","green"},
+	[227800] = "yellow",
+	[227809] = {"red","blue"},
+	[227823] = {"red","orange"},
 })
 
 BigWigs:AddColors("Opera Hall: Wikket", {
-	[227410] = "Urgent",
-	[227447] = "Attention",
-	[227477] = "Urgent",
-	[227776] = "Important",
+	[227410] = "orange",
+	[227447] = "yellow",
+	[227477] = "orange",
+	[227776] = "red",
 })
 
 BigWigs:AddColors("Opera Hall: Westfall Story", {
-	[227568] = "Attention",
-	[227777] = "Important",
-	[227783] = "Urgent",
-	["stages"] = "Neutral",
+	[227568] = "yellow",
+	[227777] = "red",
+	[227783] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Opera Hall: Beautiful Beast", {
-	[227985] = {"Personal","Urgent"},
-	[227987] = "Attention",
-	[228019] = "Important",
-	[228025] = "Important",
-	[228221] = {"Personal","Urgent"},
-	[232153] = "Urgent",
-	["stages"] = {"Neutral","Positive"},
+	[227985] = {"blue","orange"},
+	[227987] = "yellow",
+	[228019] = "red",
+	[228025] = "red",
+	[228221] = {"blue","orange"},
+	[232153] = "orange",
+	["stages"] = {"cyan","green"},
 })
 
 BigWigs:AddColors("Attumen the Huntsman", {
-	[227365] = "Attention",
-	[227404] = "Attention",
-	[227493] = "Important",
-	[228852] = "Urgent",
-	[228895] = "Important",
-	["stages"] = "Neutral",
+	[227365] = "yellow",
+	[227404] = "yellow",
+	[227493] = "red",
+	[228852] = "orange",
+	[228895] = "red",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Moroes", {
-	[227463] = {"Personal","Urgent"},
-	[227545] = "Urgent",
-	[227578] = "Important",
-	[227616] = "Important",
-	[227646] = {"Attention","Personal"},
-	[227672] = "Important",
-	[227736] = "Attention",
-	[227742] = {"Personal","Urgent"},
-	[227851] = {"Personal","Urgent"},
-	[227872] = "Neutral",
+	[227463] = {"blue","orange"},
+	[227545] = "orange",
+	[227578] = "red",
+	[227616] = "red",
+	[227646] = {"yellow","blue"},
+	[227672] = "red",
+	[227736] = "yellow",
+	[227742] = {"blue","orange"},
+	[227851] = {"blue","orange"},
+	[227872] = "cyan",
 })
 
 BigWigs:AddColors("The Curator", {
-	[227254] = {"Neutral","Positive"},
-	[227267] = "Attention",
-	[227279] = {"Personal","Urgent"},
+	[227254] = {"cyan","green"},
+	[227267] = "yellow",
+	[227279] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Shade of Medivh", {
-	[227592] = {"Personal","Urgent"},
-	[227615] = {"Important","Urgent"},
-	[227628] = "Attention",
-	[227779] = {"Attention","Personal"},
-	[228269] = {"Attention","Important","Personal"},
-	[228334] = "Attention",
-	["stages"] = "Neutral",
+	[227592] = {"blue","orange"},
+	[227615] = {"red","orange"},
+	[227628] = "yellow",
+	[227779] = {"yellow","blue"},
+	[228269] = {"yellow","red","blue"},
+	[228334] = "yellow",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Mana Devourer", {
-	[227297] = "Urgent",
-	[227502] = {"Personal","Positive"},
-	[227523] = {"Attention","Personal"},
-	[227618] = "Important",
+	[227297] = "orange",
+	[227502] = {"blue","green"},
+	[227523] = {"yellow","blue"},
+	[227618] = "red",
 })
 
 BigWigs:AddColors("Viz'aduum the Watcher", {
-	[229083] = {"Attention","Important","Personal"},
-	[229151] = "Attention",
-	[229159] = {"Important","Personal"},
-	[229248] = {"Personal","Urgent"},
-	[229284] = "Urgent",
-	[229905] = "Personal",
-	[230084] = {"Positive","Urgent"},
-	["stages"] = "Positive",
+	[229083] = {"yellow","red","blue"},
+	[229151] = "yellow",
+	[229159] = {"red","blue"},
+	[229248] = {"blue","orange"},
+	[229284] = "orange",
+	[229905] = "blue",
+	[230084] = {"green","orange"},
+	["stages"] = "green",
 })
 
 BigWigs:AddColors("Nightbane", {
-	[228785] = "Important",
-	[228790] = {"Important","Positive"},
-	[228792] = {"Important","Positive"},
-	[228796] = {"Important","Personal"},
-	[228808] = {"Personal","Urgent"},
-	[228829] = {"Personal","Urgent"},
-	[228834] = "Important",
-	[228835] = {"Personal","Urgent"},
-	[228837] = "Attention",
-	[229307] = "Attention",
-	["stages"] = "Neutral",
+	[228785] = "red",
+	[228790] = {"red","green"},
+	[228792] = {"red","green"},
+	[228796] = {"red","blue"},
+	[228808] = {"blue","orange"},
+	[228829] = {"blue","orange"},
+	[228834] = "red",
+	[228835] = {"blue","orange"},
+	[228837] = "yellow",
+	[229307] = "yellow",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Karazhan Trash", {
-	[227966] = "Attention",
-	[227999] = "Attention",
-	[228279] = "Attention",
-	[228528] = "Attention",
-	[228575] = "Important",
-	[228625] = "Attention",
-	[241774] = "Urgent",
+	[227966] = "yellow",
+	[227999] = "yellow",
+	[228279] = "yellow",
+	[228528] = "yellow",
+	[228575] = "red",
+	[228625] = "yellow",
+	[241774] = "orange",
 })

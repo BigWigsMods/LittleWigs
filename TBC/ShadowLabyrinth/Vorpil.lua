@@ -41,12 +41,12 @@ end
 --
 
 function mod:DrawShadows()
-	self:Message(-5267, "Urgent")
+	self:Message(-5267, "orange")
 	self:CDBar(-5267, 41)
 end
 
 function mod:Banish(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 

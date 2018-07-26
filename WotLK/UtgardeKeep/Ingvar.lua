@@ -43,7 +43,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
+	self:Message("stages", "cyan", nil, CL.stage:format(1), false)
 end
 
 -------------------------------------------------------------------------------
@@ -51,18 +51,18 @@ end
 --
 
 function mod:Smash(args)
-	self:Message(42669, "Attention", nil, CL.casting:format(args.spellName))
+	self:Message(42669, "yellow", nil, CL.casting:format(args.spellName))
 	self:CastBar(42669, 3, args.spellId)
 end
 
 function mod:Roar(args)
-	self:Message(42708, "Important", self:Ranged() and "Warning", CL.casting:format(args.spellName), args.spellId)
+	self:Message(42708, "red", self:Ranged() and "Warning", CL.casting:format(args.spellName), args.spellId)
 	self:CastBar(42708, 2, args.spellId)
 end
 
 function mod:WoeStrike(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("curse") then
-		self:TargetMessage(42730, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetMessage(42730, args.destName, "orange", "Alarm", nil, nil, true)
 		self:TargetBar(42730, 10, args.destName)
 	end
 end
@@ -79,6 +79,6 @@ function mod:Deaths()
 		self:StopBar(42669) -- Smash
 		self:StopBar(42708) -- Staggering Roar
 		self:Bar("stages", 25.4, CL.stage:format(2), "spell_shadow_raisedead")
-		self:DelayedMessage("stages", 25.4, "Neutral", CL.stage:format(2))
+		self:DelayedMessage("stages", 25.4, "cyan", CL.stage:format(2))
 	end
 end

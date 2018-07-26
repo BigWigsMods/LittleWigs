@@ -45,7 +45,7 @@ function mod:MagmaSpit(args)
 	else
 		self:OpenProximity(args.spellId, 5, args.destName)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 	self:TargetBar(args.spellId, 9, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -68,7 +68,7 @@ do
 	function mod:TerrifyingRoarApplied(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Attention")
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "yellow")
 		end
 	end
 end
@@ -80,7 +80,7 @@ do
 		local t = GetTime()
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 		end
 	end
 end

@@ -36,13 +36,13 @@ end
 
 function mod:Blizzard(player, spellId, _, _, spellName)
 	if player == pName then
-		self:LocalMessage(58693, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
+		self:LocalMessage(58693, BCL["you"]:format(spellName), "blue", spellId, "Alarm")
 		self:FlashShake(58693)
 	end
 end
 
 function mod:Destruction(player, spellId, _, _, spellName)
-	self:Message(58693, spellName..": "..player, "Important", spellId)
+	self:Message(58693, spellName..": "..player, "red", spellId)
 	self:Bar(58693, player..": "..spellName, 8, spellId)
 end
 

@@ -32,9 +32,9 @@ end
 --
 
 function mod:Stomp(args)
-	self:Message(args.spellId, "Important", "Info")
+	self:Message(args.spellId, "red", "Info")
 end
 
 function mod:DoubleBreath(args)
-	self:Message(args.spellId, "Attention", "Long")
+	self:Message(args.spellId, "yellow", "Long")
 end

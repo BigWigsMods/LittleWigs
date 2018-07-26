@@ -88,12 +88,12 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:DragonsBreath(args)
 		playerList[#playerList + 1] = args.destName
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Alarm", nil, nil, self:Dispeller("magic"))
+		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
 	end
 end
 
 function mod:ArcaneBlast(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 end
 
 do
@@ -103,7 +103,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId == 35283 and -5488 or args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId == 35283 and -5488 or args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -114,7 +114,7 @@ do
 	local fixatedTargets, isOnMe = mod:NewTargetList(), nil
 
 	local function showFixateMessage(self)
-		self:TargetMessage(41951, fixatedTargets, "Attention", "Long")
+		self:TargetMessage(41951, fixatedTargets, "yellow", "Long")
 		isOnMe = nil
 	end
 
@@ -184,7 +184,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:Message(-5488, "Neutral", "Info", CL.casting:format(args.spellName))
+			self:Message(-5488, "cyan", "Info", CL.casting:format(args.spellName))
 		end
 		self:CastBar(-5488, 8)
 	end

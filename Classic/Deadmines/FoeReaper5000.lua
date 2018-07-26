@@ -38,7 +38,7 @@ end
 --
 
 function mod:Overdrive(args)
-	self:Message(args.spellId, "Urgent", "Alarm")
+	self:Message(args.spellId, "orange", "Alarm")
 	self:Bar(args.spellId, 53)
 end
 
@@ -48,7 +48,7 @@ do
 			self:Flash(88495)
 			self:Say(88495)
 		end
-		self:TargetMessage(88495, player, "Important", "Alert")
+		self:TargetMessage(88495, player, "red", "Alert")
 	end
 	function mod:Harvest(args)
 		self:Bar(args.spellId, 56)
@@ -57,6 +57,6 @@ do
 end
 
 function mod:SafetyRestrictionsOffline(args) -- Enrage
-	self:Message(args.spellId, "Attention", "Long", self:SpellName(8599)) -- 8599 = "Enrage"
+	self:Message(args.spellId, "yellow", "Long", self:SpellName(8599)) -- 8599 = "Enrage"
 end
 

@@ -1,29 +1,29 @@
 
 BigWigs:AddColors("Mechano-Lord Capacitus", {
-	[35158] = {"Positive","Urgent"},
-	[35159] = {"Positive","Urgent"},
-	[39096] = {"Important","Neutral","Urgent"},
+	[35158] = {"green","orange"},
+	[35159] = {"green","orange"},
+	[39096] = {"red","cyan","orange"},
 })
 
 BigWigs:AddColors("Gatewatcher Iron-Hand", {
-	[35311] = {"Personal","Urgent"},
-	[39193] = "Important",
-	[39194] = {"Attention","Personal"},
+	[35311] = {"blue","orange"},
+	[39193] = "red",
+	[39194] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Gatewatcher Gyro-Kill", {
-	[35311] = {"Personal","Urgent"},
-	[39193] = "Important",
+	[35311] = {"blue","orange"},
+	[39193] = "red",
 })
 
 BigWigs:AddColors("Nethermancer Sepethrea", {
-	[-5488] = {"Neutral","Personal"},
-	[35250] = {"Personal","Urgent"},
-	[35314] = {"Important","Personal"},
-	[41951] = {"Attention","Personal"},
+	[-5488] = {"cyan","blue"},
+	[35250] = {"blue","orange"},
+	[35314] = {"red","blue"},
+	[41951] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Pathaleon the Calculator", {
-	[35280] = {"Important","Personal"},
-	[35285] = "Important",
+	[35280] = {"red","blue"},
+	[35285] = "red",
 })

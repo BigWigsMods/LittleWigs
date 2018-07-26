@@ -34,7 +34,7 @@ end
 --
 
 function mod:ShadowNova()
-	self:Message(39005, "Important")
+	self:Message(39005, "red")
 end
 
 do
@@ -44,14 +44,14 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(36119, "Personal", "Alert", CL.underyou:format(self:SpellName(36119))) -- args.spellName is "Consumption"
+				self:Message(36119, "blue", "Alert", CL.underyou:format(self:SpellName(36119))) -- args.spellName is "Consumption"
 			end
 		end
 	end
 end
 
 function mod:SeedOfCorruption(args)
-	self:TargetMessage(36123, args.destName, "Urgent")
+	self:TargetMessage(36123, args.destName, "orange")
 	self:TargetBar(36123, 18, args.destName)
 	self:PrimaryIcon(36123, args.destName)
 	if self:Me(args.destGUID) then

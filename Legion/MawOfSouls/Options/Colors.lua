@@ -1,37 +1,37 @@
 
 BigWigs:AddColors("Ymiron", {
-	[193211] = "Urgent",
-	[193364] = "Important",
-	[193566] = "Attention",
-	[193977] = "Attention",
+	[193211] = "orange",
+	[193364] = "red",
+	[193566] = "yellow",
+	[193977] = "yellow",
 })
 
 BigWigs:AddColors("Harbaron", {
-	[194216] = "Urgent",
-	[194231] = "Attention",
-	[194325] = {"Important","Personal"},
-	[194668] = "Personal",
+	[194216] = "orange",
+	[194231] = "yellow",
+	[194325] = {"red","blue"},
+	[194668] = "blue",
 })
 
 BigWigs:AddColors("Helya", {
-	[185539] = "Personal",
-	[196947] = "Neutral",
-	[197262] = {"Attention","Personal"},
-	[198495] = "Important",
-	[202088] = "Urgent",
-	[227233] = "Urgent",
-	["destructor_tentacle"] = "Attention",
-	["stages"] = "Neutral",
+	[185539] = "blue",
+	[196947] = "cyan",
+	[197262] = {"yellow","blue"},
+	[198495] = "red",
+	[202088] = "orange",
+	[227233] = "orange",
+	["destructor_tentacle"] = "yellow",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Maw of Souls Trash", {
-	[192019] = "Attention",
-	[194615] = "Attention",
-	[194657] = "Urgent",
-	[195293] = "Urgent",
-	[198324] = {"Important","Personal"},
-	[198405] = {"Attention","Important"},
-	[199514] = {"Personal","Urgent"},
-	[199589] = {"Personal","Urgent"},
-	[216197] = "Urgent",
+	[192019] = "yellow",
+	[194615] = "yellow",
+	[194657] = "orange",
+	[195293] = "orange",
+	[198324] = {"red","blue"},
+	[198405] = {"yellow","red"},
+	[199514] = {"blue","orange"},
+	[199589] = {"blue","orange"},
+	[216197] = "orange",
 })

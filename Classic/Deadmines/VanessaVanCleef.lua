@@ -35,17 +35,17 @@ end
 --
 
 function mod:Deflection(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 10)
 end
 
 function mod:VengeanceOfVanCleef(args)
-	self:Message(args.spellId, "Attention", "Long")
+	self:Message(args.spellId, "yellow", "Long")
 end
 
 --function mod:Blades(player, spellId, _, _, spellName)
 --	if UnitIsUnit(player, "player") then
---		self:LocalMessage(90961, BCL["you"]:format(spellName), "Personal", spellId, "Alarm")
+--		self:LocalMessage(90961, BCL["you"]:format(spellName), "blue", spellId, "Alarm")
 --		self:Say(90961, BCL["say"]:format(spellName))
 --		self:FlashShake(90961)
 --	end

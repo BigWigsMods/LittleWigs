@@ -1,18 +1,18 @@
 
 BigWigs:AddColors("Heartsbane Triad", {
-	[260703] = {"orange","Personal"},
+	[260703] = {"orange","blue"},
 	[260741] = "orange",
 	[260773] = "red",
-	[260805] = {"cyan","Personal"},
-	[260907] = {"orange","Personal"},
+	[260805] = {"cyan","blue"},
+	[260907] = {"orange","blue"},
 })
 
 BigWigs:AddColors("Soulbound Goliath", {
 	[260508] = "yellow",
-	[260512] = {"Personal","yellow"},
-	[260541] = {"cyan","Personal"},
+	[260512] = {"blue","yellow"},
+	[260541] = {"cyan","blue"},
 	[260551] = "orange",
-	[260569] = {"blue","Personal"},
+	[260569] = {"blue","blue"},
 })
 
 BigWigs:AddColors("Raal the Gluttonous", {
@@ -25,8 +25,8 @@ BigWigs:AddColors("Raal the Gluttonous", {
 
 BigWigs:AddColors("Lord and Lady Waycrest", {
 	[261438] = "yellow",
-	[261440] = {"Personal","red"},
-	[261447] = {"cyan","Personal"},
+	[261440] = {"blue","red"},
+	[261447] = {"cyan","blue"},
 	[268306] = "orange",
 })
 
@@ -39,19 +39,19 @@ BigWigs:AddColors("Gorak Tul", {
 
 BigWigs:AddColors("Waycrest Manor Trash", {
 	[263905] = "yellow",
-	[263943] = {"orange","Personal"},
+	[263943] = {"orange","blue"},
 	[263959] = "red",
 	[263961] = "yellow",
 	[264038] = "orange",
 	[264050] = "yellow",
-	[264105] = {"orange","Personal","yellow"},
+	[264105] = {"orange","blue","yellow"},
 	[264150] = "red",
 	[264390] = "red",
 	[264396] = "yellow",
 	[264456] = "yellow",
 	[264520] = "yellow",
 	[264525] = "red",
-	[264556] = {"blue","Personal"},
+	[264556] = {"blue","blue"},
 	[265346] = "orange",
 	[265352] = "red",
 	[265368] = "cyan",
@@ -60,7 +60,7 @@ BigWigs:AddColors("Waycrest Manor Trash", {
 	[265759] = "orange",
 	[265760] = "red",
 	[265876] = "red",
-	[265880] = {"orange","Personal"},
+	[265880] = {"orange","blue"},
 	[265881] = "yellow",
 	[271174] = "yellow",
 })

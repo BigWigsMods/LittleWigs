@@ -1,32 +1,32 @@
 
 BigWigs:AddColors("Orebender Gor'ashan", {
-	[154448] = "Urgent",
-	[166168] = {"Attention","Important","Positive"},
+	[154448] = "orange",
+	[166168] = {"yellow","red","green"},
 })
 
 BigWigs:AddColors("Kyrak", {
-	[155037] = "Important",
-	[161199] = "Attention",
-	[161203] = {"Personal","Urgent"},
-	[161288] = "Personal",
+	[155037] = "red",
+	[161199] = "yellow",
+	[161203] = {"blue","orange"},
+	[161288] = "blue",
 })
 
 BigWigs:AddColors("Commander Tharbek", {
-	[161833] = "Personal",
-	[161882] = "Urgent",
-	[162090] = {"Attention","Personal"},
-	["iron_reaver"] = "Important",
-	["stages"] = "Neutral",
+	[161833] = "blue",
+	[161882] = "orange",
+	[162090] = {"yellow","blue"},
+	["iron_reaver"] = "red",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Ragewing the Untamed", {
-	[-10740] = {"Important","Positive"},
-	[154996] = "Attention",
-	[155057] = "Personal",
-	[155620] = "Urgent",
+	[-10740] = {"red","green"},
+	[154996] = "yellow",
+	[155057] = "blue",
+	[155620] = "orange",
 })
 
 BigWigs:AddColors("Warlord Zaela", {
-	[155721] = {"Attention","Personal"},
-	["stages"] = {"Important","Positive"},
+	[155721] = {"yellow","blue"},
+	["stages"] = {"red","green"},
 })

@@ -1,23 +1,23 @@
 
 BigWigs:AddColors("General Bjarngrim", {
-	[16856] = {"Important","Personal"},
-	[41107] = {"Positive","Urgent"},
+	[16856] = {"red","blue"},
+	[41107] = {"green","orange"},
 })
 
 BigWigs:AddColors("Volkhan", {
-	[59529] = "Urgent",
+	[59529] = "orange",
 })
 
 BigWigs:AddColors("Ionar", {
-	[52770] = "Urgent",
-	[59795] = {"Attention","Personal"},
+	[52770] = "orange",
+	[59795] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Loken", {
-	[59835] = "Urgent",
+	[59835] = "orange",
 })
 
 BigWigs:AddColors("Halls of Lightning Trash", {
-	[59165] = {"Attention","Personal"},
-	[61581] = "Important",
+	[59165] = {"yellow","blue"},
+	[61581] = "red",
 })

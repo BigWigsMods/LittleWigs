@@ -42,15 +42,15 @@ end
 
 function mod:Pound(args)
 	self:CastBar(53472, 3.2)
-	self:Message(53472, "Attention", "Warning", CL.casting:format(args.spellName))
+	self:Message(53472, "yellow", "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	-- Submerge
 	if UnitCanAttack("player", unit) then
-		self:Message(-6359, "Neutral", nil, CL.over:format(self:SpellName(-6359)))
+		self:Message(-6359, "cyan", nil, CL.over:format(self:SpellName(-6359)))
 	else
-		self:Message(-6359, "Neutral")
+		self:Message(-6359, "cyan")
 		self:Bar(-6359, self:Normal() and 41 or 62)
 	end
 end
@@ -58,7 +58,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSubmergeWarning then
-		self:Message(-6359, "Neutral", nil, CL.soon:format(self:SpellName(-6359))) -- Submerge
+		self:Message(-6359, "cyan", nil, CL.soon:format(self:SpellName(-6359))) -- Submerge
 		nextSubmergeWarning = nextSubmergeWarning - 25
 
 		while nextSubmergeWarning >= 25 and hp < nextSubmergeWarning do

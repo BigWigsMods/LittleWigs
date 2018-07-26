@@ -87,37 +87,37 @@ end
 -- Life Warden Gola
 function mod:RevitalizingWaters(args)
 	local raidIcon = CombatLog_String_GetIcon(args.sourceRaidFlags)
-	self:Message(args.spellId, "Urgent", "Warning", CL.other:format(raidIcon.. L[83892], CL.casting:format(self:SpellName(31730)))) -- 31730 = "Heal"
+	self:Message(args.spellId, "orange", "Warning", CL.other:format(raidIcon.. L[83892], CL.casting:format(self:SpellName(31730)))) -- 31730 = "Heal"
 end
 
 function mod:RapidTides(args)
 	local raidIcon = CombatLog_String_GetIcon(args.destRaidFlags)
 	local name = L[self:MobId(args.destGUID)] or args.destName
-	self:Message(args.spellId, "Important", self:Dispeller("magic", true) and "Alarm", CL.other:format(args.spellName, raidIcon..name))
+	self:Message(args.spellId, "red", self:Dispeller("magic", true) and "Alarm", CL.other:format(args.spellName, raidIcon..name))
 end
 
 -- Earthshaper Telu
 function mod:Briarskin(args)
 	local raidIcon = CombatLog_String_GetIcon(args.sourceRaidFlags)
-	self:Message(args.spellId, "Attention", "Alert", CL.other:format(raidIcon.. L[83893], CL.casting:format(args.spellName)))
+	self:Message(args.spellId, "yellow", "Alert", CL.other:format(raidIcon.. L[83893], CL.casting:format(args.spellName)))
 end
 
 function mod:BramblePatch(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", nil, CL.underyou:format(args.spellName))
+		self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
 	end
 end
 
 -- Dulhu
 function mod:Slash(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 end
 
 -- General
 function mod:ShapersFortitude(args)
 	local raidIcon = CombatLog_String_GetIcon(args.destRaidFlags)
 	local name = L[self:MobId(args.destGUID)] or args.destName
-	self:Message(args.spellId, "Attention", nil, CL.other:format(args.spellName, raidIcon..name))
+	self:Message(args.spellId, "yellow", nil, CL.other:format(args.spellName, raidIcon..name))
 	self:Bar(args.spellId, 8, CL.other:format(self:SpellName(111923), raidIcon..name)) -- 111923 = "Fortitude"
 end
 

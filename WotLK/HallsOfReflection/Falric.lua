@@ -37,7 +37,7 @@ end
 
 function mod:QuiveringStrike(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Urgent")
+		self:TargetMessage(args.spellId, args.destName, "orange")
 		self:TargetBar(args.spellId, 5, args.destName)
 	end
 end
@@ -48,7 +48,7 @@ end
 
 function mod:ImpendingDespair(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 		self:TargetBar(args.spellId, 6, args.destName)
 	end
 end

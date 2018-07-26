@@ -87,7 +87,7 @@ do
 	-- there are no SPELL_CAST_* and UNIT_SPELLCAST_* events for this mechanic
 	-- fortunately, it consistently happens every 30 seconds
 	local function warnForWallOfSuds(self)
-		self:Message(-5658, "Important", "Long", CL.incoming:format(self:SpellName(-5658)))
+		self:Message(-5658, "red", "Long", CL.incoming:format(self:SpellName(-5658)))
 		self:CDBar(-5658, 30)
 		self:ScheduleTimer(warnForWallOfSuds, 30, self)
 	end
@@ -119,7 +119,7 @@ end
 function mod:BrewBolt(args)
 	local amount = args.amount or 1
 	if amount % 2 == 1 then
-		self:StackMessage(args.spellId, args.destName, amount, "Important", "Alert") -- casts when there's nobody nearby
+		self:StackMessage(args.spellId, args.destName, amount, "red", "Alert") -- casts when there's nobody nearby
 	end
 end
 
@@ -128,7 +128,7 @@ function mod:Bloat(args)
 end
 
 function mod:BloatApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 30, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
@@ -146,7 +146,7 @@ end
 function mod:BlackoutBrewApplied(args)
 	local amount = args.amount or 3 -- 1 event for every 3 stacks
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, amount, "Attention", amount > 6 and "Warning" or "Alarm")
+		self:StackMessage(args.spellId, args.destName, amount, "yellow", amount > 6 and "Warning" or "Alarm")
 	end
 end
 
@@ -154,7 +154,7 @@ function mod:BrewBoltAdds(args)
 	if not mobCollector[args.sourceGUID] then
 		mobCollector[args.sourceGUID] = true
 		addsSpawned = addsSpawned + 1
-		self:Message("summon", "Neutral", nil, CL.spawned:format(self:SpellName(L.summon)), 116155)
+		self:Message("summon", "cyan", nil, CL.spawned:format(self:SpellName(L.summon)), 116155)
 		if addsSpawned < 5 then
 			self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
 		end
@@ -167,7 +167,7 @@ do
 		if not mobCollector[args.sourceGUID] then
 			mobCollector[args.sourceGUID] = true
 			addsSpawned = addsSpawned + 1
-			self:Message("summon", "Neutral", nil, CL.spawned:format(self:SpellName(L.summon)), 116155)
+			self:Message("summon", "cyan", nil, CL.spawned:format(self:SpellName(L.summon)), 116155)
 			if addsSpawned < 5 then
 				self:CDBar("summon", 18, CL.next_add, 116155) -- 18-22s
 			end
@@ -176,7 +176,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "Urgent", not self:UnitDebuff("player", 114451) and "Warning", CL.onboss:format(args.spellName)) -- don't annoy with sounds those who are already intercepting some
+				self:Message(args.spellId, "orange", not self:UnitDebuff("player", 114451) and "Warning", CL.onboss:format(args.spellName)) -- don't annoy with sounds those who are already intercepting some
 			end
 		end
 	end
@@ -184,17 +184,17 @@ end
 
 function mod:BubbleShield(args)
 	nextBubbleShield = GetTime() + 43
-	self:Message(args.spellId, "Urgent", "Alert", CL.onboss:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alert", CL.onboss:format(args.spellName))
 end
 
 function mod:BubbleShieldRemoved(args)
 	local remaining = nextBubbleShield - GetTime()
-	self:Message(args.spellId, "Positive", "Info", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", "Info", CL.removed:format(args.spellName))
 	self:CDBar(args.spellId, remaining > 2.5 and remaining or 2.5)
 end
 
 function mod:Carbonation(args)
-	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 	self:CDBar(args.spellId, 63.3)
 end

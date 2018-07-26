@@ -49,12 +49,12 @@ do
 		if self:MobId(UnitGUID(unit)) ~= 54969 then return end -- Varo'then is of no interest
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < adds[spawnWarnings][1] then
-			self:Message(-4287, "Attention", "Info", CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
+			self:Message(-4287, "yellow", "Info", CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
 			spawnWarnings = spawnWarnings + 1
 
 			while spawnWarnings <= #adds and hp < adds[spawnWarnings][1] do
 				-- display multiple messages if a high-level character hits multiple thresholds with 1 damage event
-				self:Message(-4287, "Attention", nil, CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
+				self:Message(-4287, "yellow", nil, CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
 				spawnWarnings = spawnWarnings + 1
 			end
 
