@@ -62,6 +62,8 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
 	self:Log("SPELL_CAST_START", "ArcaneBlitz", 200248)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ArcaneBlitzApplied", 200248)
+	self:Log("SPELL_AURA_REMOVED", "ArcaneBlitzRemoved", 200248)
 	self:Log("SPELL_CAST_START", "BonebreakingStrike", 200261, 197974) -- 197974 = Bonecrushing Strike
 	self:Log("SPELL_CAST_START", "CoupdeGrace", 214003)
 	self:Log("SPELL_CAST_START", "ArrowBarrage", 200343)
@@ -75,15 +77,22 @@ end
 -- Event Handlers
 --
 
--- Risen Arcanist
-function mod:ArcaneBlitz(args)
-	-- only show a message if stacks are getting high (6 = 300% which is around 1m damage a hit)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit then
-		local _, amount = self:UnitBuff(unit, args.spellName)
-		if amount and amount > 5 and (self:Interrupter(args.destGUID) or self:Dispeller("magic", true)) then
+do
+	local blitzTracker = {}
+
+	-- Risen Arcanist
+	function mod:ArcaneBlitz(args)
+		-- only show a message if stacks are getting high (6 = 300% which is around 1m damage a hit)
+		local amount = blitzTracker[args.sourceGUID]
+		if amount and amount > 5 and (self:Interrupter(args.sourceGUID) or self:Dispeller("magic", true)) then
 			self:Message(args.spellId, "Attention", "Alert", CL.count:format(args.spellName, amount))
 		end
+	end
+	function mod:ArcaneBlitzApplied(args)
+		blitzTracker[args.destGUID] = args.amount
+	end
+	function mod:ArcaneBlitzRemoved(args)
+		blitzTracker[args.destGUID] = nil
 	end
 end
 
