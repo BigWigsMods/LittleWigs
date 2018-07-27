@@ -402,13 +402,13 @@ do
 	}
 
 	local buffs = {
-		[105160] = 211081, -- Fel Orb
-		[105831] = 211080, -- Infernal Tome
-		[106024] = 211093, -- Magical Lantern
-		[105249] = 211102, -- Nightshade Refreshments
-		[106108] = 211071, -- Starlight Rose Brew
-		[105340] = 211110, -- Umbral Bloom
-		[106110] = 211084, -- Waterlogged Scroll
+		[105160] = 211081, -- Fel Orb = Fel Surge
+		[105831] = 211080, -- Infernal Tome = Comforting Light
+		[106024] = 211093, -- Magical Lantern = Arcane Infusion
+		[105249] = 211102, -- Nightshade Refreshments = Succulent Cuisine
+		[106108] = 211071, -- Starlight Rose Brew = Starlight Rose Brew
+		[105340] = 211110, -- Umbral Bloom = Umbral Spores
+		[106110] = 211084, -- Waterlogged Scroll = Flowing Waters
 	}
 
 	local guardItems = {
@@ -650,7 +650,7 @@ do
 
 	local prevTable, usableTimer, lastProfessionUpdate = {}, nil, 0
 	local function usableFound(self, id, item)
-		if buffs[id] and self:UnitBuff("player", self:SpellName(buffs[id])) then -- there's no point in showing a message if we already have the buff
+		if buffs[id] and self:UnitBuff("player", self:SpellName(buffs[id]), buffs[id]) then -- there's no point in showing a message if we already have the buff
 			return
 		end
 
