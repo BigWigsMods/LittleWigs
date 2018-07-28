@@ -160,7 +160,7 @@ do
 
 		if self:Me(args.destGUID) and args.amount > 6 then
 			self:StackMessage(args.spellId, args.destName, args.amount, "orange")
-			if stacks < 9 then
+			if args.amount < 9 then
 				self:PlaySound(args.spellId, "Alarm")
 			else
 				self:PlaySound(args.spellId, "Warning")
