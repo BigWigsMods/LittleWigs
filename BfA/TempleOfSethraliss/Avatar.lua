@@ -39,9 +39,16 @@ end
 -- Event Handlers
 --
 
-function mod:Taint(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:Taint(args)
+		local t = GetTime()
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 do
