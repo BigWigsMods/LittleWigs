@@ -13,6 +13,7 @@ mod.engageId = 1850
 --
 
 local nextTeleportSoonWarning = 0
+local fleshToStoneList = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -53,6 +54,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	fleshToStoneList = {}
 	nextTeleportSoonWarning = 75 -- Teleport at 70%
 	self:CDBar(200904, 11.6, self:SpellName(206303)) -- Sap Soul
 end
@@ -143,37 +145,33 @@ do
 	end
 end
 
-do
-	local playerList = {}
-
-	function mod:FleshToStoneApplied(args)
-		if not next(playerList) then
-			self:OpenInfo(args.spellId, args.spellName)
-		end
-		playerList[args.destName] = 1
-		self:SetInfoByTable(args.spellId, playerList)
+function mod:FleshToStoneApplied(args)
+	if not next(fleshToStoneList) then
+		self:OpenInfo(args.spellId, args.spellName)
 	end
+	fleshToStoneList[args.destName] = 1
+	self:SetInfoByTable(args.spellId, fleshToStoneList)
+end
 
-	function mod:FleshToStoneAppliedDose(args)
-		playerList[args.destName] = args.amount
-		self:SetInfoByTable(args.spellId, playerList)
+function mod:FleshToStoneAppliedDose(args)
+	fleshToStoneList[args.destName] = args.amount
+	self:SetInfoByTable(args.spellId, fleshToStoneList)
 
-		if self:Me(args.destGUID) and args.amount > 6 then
-			self:StackMessage(args.spellId, args.destName, args.amount, "orange")
-			if args.amount < 9 then
-				self:PlaySound(args.spellId, "Alarm")
-			else
-				self:PlaySound(args.spellId, "Warning")
-			end
-		end
-	end
-
-	function mod:FleshToStoneRemoved(args)
-		playerList[args.destName] = nil
-		if not next(playerList) then
-			self:CloseInfo(args.spellId)
+	if self:Me(args.destGUID) and args.amount > 6 then
+		self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+		if args.amount < 9 then
+			self:PlaySound(args.spellId, "Alarm")
 		else
-			self:SetInfoByTable(args.spellId, playerList)
+			self:PlaySound(args.spellId, "Warning")
 		end
+	end
+end
+
+function mod:FleshToStoneRemoved(args)
+	fleshToStoneList[args.destName] = nil
+	if not next(fleshToStoneList) then
+		self:CloseInfo(args.spellId)
+	else
+		self:SetInfoByTable(args.spellId, fleshToStoneList)
 	end
 end
