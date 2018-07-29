@@ -22,7 +22,7 @@ mod.engageId = 2127
 
 function mod:GetOptions()
 	return {
-		{269688, "HEALER"}, -- Rain of Toads
+		269688, -- Rain of Toads
 		273677, -- Taint
 		268024, -- Pulse
 		269686, -- Plague
