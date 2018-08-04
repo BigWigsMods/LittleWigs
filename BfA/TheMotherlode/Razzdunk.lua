@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		260280, -- Gatling Gun
-		260829, -- Homing Missile
+		{260829, "ICON", "SAY"}, -- Homing Missile
 		271456, -- Drill Smash
 		--270277, -- Big Red Rocket XXX Missing from logs, UNIT event?
 	}
