@@ -47,7 +47,7 @@ function mod:OnEngage()
 	explosiveBurstCount = 1
 
 	self:CDBar(256198, 6) -- Azerite Rounds: Incendiary
-	self:CDBar(256101, 13) -- Explosive Burst
+	self:CDBar(256105, 13) -- Explosive Burst
 	self:CDBar(256083, 18) -- Cross Ignition
 	self:CDBar(256038, 28) -- Deadeye
 end
