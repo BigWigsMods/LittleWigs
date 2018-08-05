@@ -182,7 +182,7 @@
 <Include file="BfA\AtalDazar\locales.xml"/>
 
 <Include file="BfA\Freehold\modules.xml"/>
-<!--<Include file="BfA\Freehold\locales.xml"/>-->
+<Include file="BfA\Freehold\locales.xml"/>
 
 <Include file="BfA\KingsRest\modules.xml"/>
 <!--<Include file="BfA\KingsRest\locales.xml"/>-->
