@@ -1,6 +1,4 @@
 
--- GLOBALS: tContains
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -80,9 +78,9 @@ function mod:ExplosiveBurst(args)
 end
 
 do
-	local playerList = {}
+	local playerList, isOnMe = {}, nil
 	local function warn(self, spellName)
-		if tContains(playerList, self:UnitName("player")) then
+		if isOnMe then
 			self:Message(256105, "blue", nil, CL.you:format(spellName))
 			self:PlaySound(256105, "warning", "moveout")
 			self:OpenProximity(256105, 5)
@@ -92,11 +90,13 @@ do
 			self:OpenProximity(256105, 5, playerList)
 		end
 		playerList = {}
+		isOnMe = nil
 	end
 
 	function mod:ExplosiveBurstApplied(args)
 		playerList[#playerList + 1] = args.destName
 		if self:Me(args.destGUID) then
+			isOnMe = true
 			self:Say(args.spellId)
 			self:SayCountdown(args.spellId, 4)
 		end
