@@ -200,11 +200,11 @@
 <!--<Include file="BfA\TheMotherlode\locales.xml"/>-->
 
 <Include file="BfA\TolDagor\modules.xml"/>
-<!--<Include file="BfA\TolDagor\locales.xml"/>-->
+<Include file="BfA\TolDagor\locales.xml"/>
 
 <Include file="BfA\Underrot\modules.xml"/>
-<!--<Include file="BfA\Underrot\locales.xml"/>-->
+<Include file="BfA\Underrot\locales.xml"/>
 
 <Include file="BfA\WaycrestManor\modules.xml"/>
-<!--<Include file="BfA\WaycrestManor\locales.xml"/>-->
+<Include file="BfA\WaycrestManor\locales.xml"/>
 </Ui>
