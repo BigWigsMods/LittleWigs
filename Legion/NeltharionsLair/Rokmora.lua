@@ -62,12 +62,12 @@ function mod:Warmup(event, msg)
 end
 
 function mod:RazorShards(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "orange", "Warning", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, 29) -- pull:25.6, 29.1, 29.9
 end
 
 function mod:Shatter(args)
-	self:Message(args.spellId, "Attention", "Alert")
+	self:Message(args.spellId, "yellow", "Alert")
 	self:CDBar(args.spellId, 24) -- pull:20.7, 24.3, 25.1
 end
 
@@ -78,7 +78,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

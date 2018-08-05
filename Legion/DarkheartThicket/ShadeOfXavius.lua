@@ -39,20 +39,20 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp <= 50 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 
 		-- Bars might show less time than you
 		-- actually have, but never show more.
-		local _, _, _, _, _, endOfCast = UnitCastingInfo(unit) -- Nightmare Bolt, Growing Paranoia
-		if endOfCast then
-			local timeLeft = endOfCast / 1000 - GetTime()
-			self:ScheduleTimer("Message", timeLeft, 200050, "Attention", "Info", CL.incoming:format(self:SpellName(200050)))
+		local _, _, _, _, endTime = UnitCastingInfo(unit) -- Nightmare Bolt, Growing Paranoia
+		if endTime then
+			local timeLeft = endTime / 1000 - GetTime()
+			self:ScheduleTimer("Message", timeLeft, 200050, "yellow", "Info", CL.incoming:format(self:SpellName(200050)))
 			self:ScheduleTimer("CDBar", timeLeft, 200050, 5)
 		else
-			self:Message(200050, "Attention", "Info", CL.incoming:format(self:SpellName(200050)))
+			self:Message(200050, "yellow", "Info", CL.incoming:format(self:SpellName(200050)))
 			self:CDBar(200050, 5)
 		end
 	end
@@ -60,7 +60,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(200289, player, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(200289, player, "yellow", "Alarm", nil, nil, true)
 		self:PrimaryIcon(200289, player)
 		if self:Me(guid) then
 			self:Say(200289)
@@ -77,13 +77,13 @@ end
 
 function mod:FeedOnTheWeakApplied(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 	end
 end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(200185, player, "Urgent", "Alert", nil, nil, true)
+		self:TargetMessage(200185, player, "orange", "Alert", nil, nil, true)
 
 		if not self:Normal() then
 			if self:Me(guid) then

@@ -37,7 +37,7 @@ end
 
 function mod:PiercingSlash(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end
@@ -51,6 +51,6 @@ function mod:PiercingSlashCastSuccess(args)
 end
 
 function mod:RaptorCall(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 30.4) -- can randomly skip one cast
 end

@@ -5,6 +5,7 @@
 <Script file="Captains.lua"/>
 <Script file="Booty.lua"/>
 <Script file="Sweete.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 

@@ -33,7 +33,7 @@ end
 --
 
 function mod:FelfireKnockback(args)
-	self:Message(-5293, "Important", nil, CL.incoming:format(self:SpellName(-5293)))
+	self:Message(-5293, "red", nil, CL.incoming:format(self:SpellName(-5293)))
 	self:CastBar(-5293, 4.9)
 end
 
@@ -42,10 +42,10 @@ do
 		if self:Me(guid) then
 			self:Say(-5293, 100) -- 100 = Charge
 		end
-		self:TargetMessage(-5293, player, "Urgent", nil, 100, -5293)
+		self:TargetMessage(-5293, player, "orange", nil, 100, -5293)
 	end
 
-	function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 36038 then -- Charge Targeting
 			self:GetBossTarget(printTarget, 0.4, UnitGUID(unit))
 		end
@@ -54,7 +54,7 @@ end
 
 function mod:FelfireShock(args)
 	if self:Me(args.destGUID) or (args.spellId == 35759 and self:Dispeller("magic")) then -- heroic version can't be dispelled
-		self:TargetMessage(35759, args.destName, "Attention")
+		self:TargetMessage(35759, args.destName, "yellow")
 		self:TargetBar(35759, 6, args.destName)
 	end
 end

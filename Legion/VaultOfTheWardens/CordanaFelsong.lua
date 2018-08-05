@@ -85,35 +85,35 @@ end
 
 do
 	local prev, prevGUID = 0, nil
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, castGUID, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
 		if unit == "boss1" then
 			if spellId == 197796 then -- Avatar of Vengeance
-				self:Message(spellId, "Urgent", "Long")
+				self:Message(spellId, "orange", "Long")
 				self:Bar(spellId, 45)
 			elseif spellId == 213583 or spellId == 197578 or spellId == 226312 or spellId == 213576 then -- Deepening Shadows
 				local t = GetTime()
 				if t-prev > 2 then
 					prev = t
-					self:Message(213583, "Attention", "Alarm")
+					self:Message(213583, "yellow", "Alarm")
 				end
 			end
 		elseif spellId == 228210 and castGUID ~= prevGUID then -- Elune's Light picked up
 			prevGUID = castGUID
-			self:Message(204481, "Positive", "Long", L.light_picked:format(self:ColorName(self:UnitName(unit))))
+			self:Message(204481, "green", "Long", L.light_picked:format(self:ColorName(self:UnitName(unit))))
 		end
 	end
 end
 
 function mod:ElunesLight(args)
-	self:Message(args.spellId, "Neutral", "Long", L.light_dropped:format(self:ColorName(args.sourceName)))
+	self:Message(args.spellId, "cyan", "Long", L.light_dropped:format(self:ColorName(args.sourceName)))
 end
 
 function mod:FelGlaive(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:Message(args.spellId, "red", "Alert")
 end
 
 function mod:StolenLight(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 	end
@@ -121,12 +121,12 @@ function mod:StolenLight(args)
 end
 
 function mod:StolenLightRemoved(args)
-	self:Message(args.spellId, "Neutral", "Info", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "cyan", "Info", CL.removed:format(args.spellName))
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
 function mod:CreepingDoom(args)
-	self:Message(197422, "Important", "Info", CL.incoming:format(args.spellName))
+	self:Message(197422, "red", "Info", CL.incoming:format(args.spellName))
 	self:Flash(197422)
 	if args.spellId == 197422 then
 		self:StopBar(L.kick_combo)
@@ -135,27 +135,27 @@ function mod:CreepingDoom(args)
 end
 
 function mod:CreepingDoomRemoved(args)
-	self:Message(args.spellId, "Neutral", "Info", CL.over:format(args.spellName))
+	self:Message(args.spellId, "cyan", "Info", CL.over:format(args.spellName))
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
 function mod:KnockdownKick(args)
-	self:Message("kick_combo", "Attention", self:Tank() and "Warning", L.kick_combo, L.kick_combo_icon)
+	self:Message("kick_combo", "yellow", self:Tank() and "Warning", L.kick_combo, L.kick_combo_icon)
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
 function mod:AvatarDeath()
-	self:Message(197796, "Positive", "Long", CL.removed:format(self:SpellName(205004))) -- Vengeance removed
+	self:Message(197796, "green", "Long", CL.removed:format(self:SpellName(205004))) -- Vengeance removed
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 80 and not warnedForStealLight then
 		warnedForStealLight = true
-		self:Message(206567, "Attention", nil, CL.soon:format(self:SpellName(206387))) -- Steal Light soon
+		self:Message(206567, "yellow", nil, CL.soon:format(self:SpellName(206387))) -- Steal Light soon
 	elseif hp < 45 and not warnedForCreepingDoom then
 		warnedForCreepingDoom = true
-		self:Message(197422, "Important", nil, CL.soon:format(self:SpellName(197422))) -- Creeping Doom soon
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:Message(197422, "red", nil, CL.soon:format(self:SpellName(197422))) -- Creeping Doom soon
+		self:UnregisterUnitEvent(event, unit)
 	end
 end

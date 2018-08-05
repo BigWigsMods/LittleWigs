@@ -1,42 +1,42 @@
 
 BigWigs:AddColors("Zuraal", {
-	[244433] = "Personal",
-	[244579] = "Urgent",
-	[244602] = "Attention",
-	[244621] = {"Neutral","Positive"},
-	[244653] = "Personal",
-	[246134] = "Important",
+	[244433] = "blue",
+	[244579] = "orange",
+	[244602] = "yellow",
+	[244621] = {"cyan","green"},
+	[244653] = "blue",
+	[246134] = "red",
 })
 
 BigWigs:AddColors("Saprish", {
-	[245802] = {"Attention","Personal"},
-	[245873] = "Neutral",
-	[247206] = "Attention",
-	[247245] = {"Personal","Urgent"},
-	[248831] = "Important",
+	[245802] = {"yellow","blue"},
+	[245873] = "cyan",
+	[247206] = "yellow",
+	[247245] = {"blue","orange"},
+	[248831] = "red",
 })
 
 BigWigs:AddColors("Viceroy Nezhar", {
-	[-15926] = "Attention",
-	[244751] = "Urgent",
-	[244906] = "Personal",
-	[246324] = {"Important","Positive"},
-	[248736] = {"Neutral","Positive"},
-	[248804] = {"Attention","Neutral"},
+	[-15926] = "yellow",
+	[244751] = "orange",
+	[244906] = "blue",
+	[246324] = {"red","green"},
+	[248736] = {"cyan","green"},
+	[248804] = {"yellow","cyan"},
 })
 
 BigWigs:AddColors("L'ura", {
-	[245164] = "Important",
-	[247795] = "Important",
-	[247816] = "Positive",
-	[247930] = "Attention",
-	[248535] = "Neutral",
-	[249009] = "Urgent",
+	[245164] = "red",
+	[247795] = "red",
+	[247816] = "green",
+	[247930] = "yellow",
+	[248535] = "cyan",
+	[249009] = "orange",
 })
 
 BigWigs:AddColors("Seat of the Triumvirate Trash", {
-	[245510] = "Personal",
-	[248227] = "Important",
-	[249078] = "Attention",
-	[249081] = "Personal",
+	[245510] = "blue",
+	[248227] = "red",
+	[249078] = "yellow",
+	[249081] = "blue",
 })

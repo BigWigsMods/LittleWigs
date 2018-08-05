@@ -1,25 +1,25 @@
 
 BigWigs:AddColors("Wise Mari", {
-	[-6327] = {"Attention","Important"},
-	[106653] = "Personal",
-	[115167] = "Personal",
-	["stages"] = "Positive",
+	[-6327] = {"yellow","red"},
+	[106653] = "blue",
+	[115167] = "blue",
+	["stages"] = "green",
 })
 
 BigWigs:AddColors("Lorewalker Stonestep", {
-	[-5549] = {"Important","Positive","Urgent"},
-	["stages"] = "Positive",
+	[-5549] = {"red","green","orange"},
+	["stages"] = "green",
 })
 
 BigWigs:AddColors("Liu Flameheart", {
-	[106823] = {"Personal","Urgent"},
-	[106841] = {"Personal","Urgent"},
-	[107110] = "Personal",
-	[118540] = "Personal",
-	["stages"] = {"Attention","Positive"},
+	[106823] = {"blue","orange"},
+	[106841] = {"blue","orange"},
+	[107110] = "blue",
+	[118540] = "blue",
+	["stages"] = {"yellow","green"},
 })
 
 BigWigs:AddColors("Sha of Doubt", {
-	[106113] = {"Attention","Personal"},
-	[117665] = {"Positive","Urgent"},
+	[106113] = {"yellow","blue"},
+	[117665] = {"green","orange"},
 })

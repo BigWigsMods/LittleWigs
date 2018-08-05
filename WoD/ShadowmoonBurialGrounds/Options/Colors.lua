@@ -1,24 +1,24 @@
 
 BigWigs:AddColors("Sadana Bloodfury", {
-	[153153] = "Positive",
-	[153240] = {"Attention","Personal"},
-	[164974] = "Urgent",
+	[153153] = "green",
+	[153240] = {"yellow","blue"},
+	[164974] = "orange",
 })
 
 BigWigs:AddColors("Nhallish", {
-	[152801] = "Attention",
-	[152979] = "Important",
-	[153067] = "Urgent",
-	[153623] = "Attention",
+	[152801] = "yellow",
+	[152979] = "red",
+	[153067] = "orange",
+	[153623] = "yellow",
 })
 
 BigWigs:AddColors("Bonemaw", {
-	[153804] = "Urgent",
-	[154175] = "Attention",
+	[153804] = "orange",
+	[154175] = "yellow",
 })
 
 BigWigs:AddColors("Ner'zhul", {
-	[-9680] = "Urgent",
-	[154350] = "Important",
-	[154442] = "Attention",
+	[-9680] = "orange",
+	[154350] = "red",
+	[154442] = "yellow",
 })

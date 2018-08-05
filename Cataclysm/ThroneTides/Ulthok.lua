@@ -36,11 +36,11 @@ end
 --
 
 function mod:DarkFissure(args)
-	self:Message(args.spellId, "Important", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Squeeze(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -50,10 +50,10 @@ end
 
 function mod:CurseOfFatigue(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessage(args.spellId, args.destName, "Attention")
+		self:TargetMessage(args.spellId, args.destName, "yellow")
 	end
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 end

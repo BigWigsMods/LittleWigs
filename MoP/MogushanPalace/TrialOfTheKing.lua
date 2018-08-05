@@ -69,12 +69,12 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:TraumaticBlow(args)
-	self:TargetMessage(args.spellId, args.destName, "Positive")
+	self:TargetMessage(args.spellId, args.destName, "green")
 	self:TargetBar(args.spellId, 5, args.destName)
 end
 
 function mod:Ravage(args)
-	self:TargetMessage(-6017, args.destName, "Attention", nil, args.spellId)
+	self:TargetMessage(-6017, args.destName, "yellow", nil, args.spellId)
 	self:TargetBar(-6017, 11, args.destName, args.spellId)
 	self:PrimaryIcon(-6017, args.destName)
 end
@@ -84,7 +84,7 @@ function mod:RavageOver()
 end
 
 function mod:Conflagrate(args)
-	self:TargetMessage(-6024, args.destName, "Attention", nil, args.spellId)
+	self:TargetMessage(-6024, args.destName, "yellow", nil, args.spellId)
 	self:TargetBar(-6024, 5, args.destName, args.spellId)
 	self:SecondaryIcon(-6024, args.destName)
 end
@@ -94,11 +94,11 @@ function mod:ConflagrateOver()
 end
 
 function mod:Shockwave(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName), args.spellId)
 	self:Bar(args.spellId, 2, CL.cast:format(args.spellName), args.spellId)
 end
 
-function mod:MeteorFinished(_, _, _, _, spellId)
+function mod:MeteorFinished(_, _, _, spellId)
 	if spellId == 120195 then
 		self:PrimaryIcon(spellId)
 	end
@@ -106,7 +106,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg:find("meteorstorm", nil, true) then -- |TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
-		self:TargetMessage(120195, player, "Important", "Alarm")
+		self:TargetMessage(120195, player, "red", "Alarm")
 		self:TargetBar(120195, 5, player)
 		self:PrimaryIcon(120195, player)
 		if UnitIsUnit(player, "player") then

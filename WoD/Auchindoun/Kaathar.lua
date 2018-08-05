@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Vigilant Kaathar", 1182, 1185)
 if not mod then return end
 mod:RegisterEnableMob(75839)
+mod.engageId = 1686
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -27,15 +29,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "HolyShield", 153002)
 	self:Log("SPELL_CAST_START", "ConsecratedLight", 153006)
 	self:Log("SPELL_AURA_REMOVED", "ConsecratedLightOver", 153006)
 	self:Log("SPELL_CAST_START", "SanctifiedStrike", 152954)
 	self:Log("SPELL_AURA_APPLIED", "SanctifiedGround", 153430)
-
-	self:Death("Win", 75839)
 end
 
 function mod:OnEngage()
@@ -50,7 +48,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessage(153002, player, "Urgent", "Alert", nil, nil, true)
+		self:TargetMessage(153002, player, "orange", "Alert", nil, nil, true)
 	end
 	function mod:HolyShield(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
@@ -60,7 +58,7 @@ do
 end
 
 function mod:ConsecratedLight(args)
-	self:Message(args.spellId, "Important", "Warning")
+	self:Message(args.spellId, "red", "Warning")
 	self:Bar(args.spellId, self:Normal() and 12 or 8, CL.cast:format(args.spellName))
 	self:Flash(args.spellId)
 end
@@ -72,7 +70,7 @@ end
 
 function mod:SanctifiedStrike(args)
 	strikeCount = strikeCount + 1
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 	if strikeCount < 3 then
 		self:CDBar(args.spellId, 8.5)
 	end
@@ -80,6 +78,6 @@ end
 
 function mod:SanctifiedGround(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 	end
 end

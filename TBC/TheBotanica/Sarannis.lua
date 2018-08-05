@@ -36,7 +36,7 @@ function mod:OnEngage()
 		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	else -- every minute
 		self:CDBar(-5411, 60)
-		self:DelayedMessage(-5411, 55, "Attention", CL.soon:format(self:SpellName(-5411)))
+		self:DelayedMessage(-5411, 55, "yellow", CL.soon:format(self:SpellName(-5411)))
 	end
 end
 
@@ -45,27 +45,27 @@ end
 --
 
 function mod:ArcaneResonance(args)
-	self:TargetMessage(args.spellId, args.spellName, "Important")
+	self:TargetMessage(args.spellId, args.spellName, "red")
 end
 
 function mod:GreaterHeal(args)
-	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning" or "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", self:Interrupter() and "Warning" or "Alarm", CL.casting:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 60 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message(-5411, "Neutral", nil, CL.soon:format(self:SpellName(-5411))) -- Summon Reinforcements
+		self:UnregisterUnitEvent(event, unit)
+		self:Message(-5411, "cyan", nil, CL.soon:format(self:SpellName(-5411))) -- Summon Reinforcements
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 34803 then -- Summon Reinforcements
-		self:Message(-5411, "Attention", "Info")
+		self:Message(-5411, "yellow", "Info")
 		if not self:Normal() then
 			self:CDBar(-5411, 60)
-			self:DelayedMessage(-5411, 55, "Attention", CL.soon:format(self:SpellName(-5411)))
+			self:DelayedMessage(-5411, 55, "yellow", CL.soon:format(self:SpellName(-5411)))
 		end
 	end
 end

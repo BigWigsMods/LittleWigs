@@ -6,21 +6,14 @@
 local mod, CL = BigWigs:NewBoss("Araknath", 1209, 966)
 if not mod then return end
 mod:RegisterEnableMob(76141)
+mod.engageId = 1699
+mod.respawnTime = 23 -- respawns 11s after, unattackable for a while
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local smashCount, burstCount = 0, 0
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,13 +28,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "Energize", 154159)
 	self:Log("SPELL_CAST_START", "Smash", 154110, 154113)
 	self:Log("SPELL_CAST_START", "Burst", 154135)
-
-	self:Death("Win", 76141)
 end
 
 function mod:OnEngage()
@@ -60,20 +49,20 @@ do
 		local t = GetTime()
 		if t-prev > 5 then -- More than 1 in Challenge Mode
 			prev = t
-			self:Message(args.spellId, "Attention", "Long", CL.incoming:format(args.spellName))
+			self:Message(args.spellId, "yellow", "Long", CL.incoming:format(args.spellName))
 			self:Bar(args.spellId, 23)
 		end
 	end
 end
 
 function mod:Smash()
-	self:Message(154110, "Urgent", "Warning")
+	self:Message(154110, "orange", "Warning")
 	smashCount = smashCount + 1
 	self:CDBar(154110, smashCount % 2 == 0 and 14.6 or 8.5)
 end
 
 function mod:Burst(args)
 	burstCount = burstCount + 1
-	self:Message(args.spellId, "Important", "Info", CL.count:format(args.spellName, burstCount))
+	self:Message(args.spellId, "red", "Info", CL.count:format(args.spellName, burstCount))
 	self:CDBar(args.spellId, 23)
 end

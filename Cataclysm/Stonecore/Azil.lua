@@ -30,10 +30,10 @@ end
 --
 
 function mod:CurseOfBlood(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 end
 
 function mod:EnergyShield(args)
-	self:Message(79050, "Important", "Alert")
+	self:Message(79050, "red", "Alert")
 end
 

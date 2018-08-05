@@ -55,26 +55,26 @@ end
 --
 
 function mod:GroundSlam(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName), args.spellId)
 	self:CastBar(args.spellId, 3)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("119311", nil, true) then -- Stream of Blades (Blade Trap)
-		self:Message("blades", "Attention", "Info", CL.percent:format(66, self:SpellName(L.blades)), 119311)
+		self:Message("blades", "yellow", "Info", CL.percent:format(66, self:SpellName(L.blades)), 119311)
 	elseif msg:find("120142", nil, true) then -- Crossbow (Death From Above!)
-		self:Message("crossbows", "Attention", "Info", CL.percent:format(33, self:SpellName(L.crossbows)), 120142)
+		self:Message("crossbows", "yellow", "Info", CL.percent:format(33, self:SpellName(L.crossbows)), 120142)
 	end
 end
 
-function mod:StageWarn(unit)
+function mod:StageWarn(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 70 and stage == 1 then
-		self:Message("blades", "Positive", nil, CL.soon:format(self:SpellName(L.blades)), false)
+		self:Message("blades", "green", nil, CL.soon:format(self:SpellName(L.blades)), false)
 		stage = 2
 	elseif hp < 39 and stage == 2 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message("crossbows", "Positive", nil, CL.soon:format(self:SpellName(L.crossbows)), false)
+		self:UnregisterUnitEvent(event, unit)
+		self:Message("crossbows", "green", nil, CL.soon:format(self:SpellName(L.crossbows)), false)
 	end
 end
 

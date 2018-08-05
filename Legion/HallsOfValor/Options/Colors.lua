@@ -1,54 +1,54 @@
 
 BigWigs:AddColors("Hymdall", {
-	[191284] = "Important",
-	[193092] = "Attention",
-	[193235] = {"Personal","Urgent"},
+	[191284] = "red",
+	[193092] = "yellow",
+	[193235] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Hyrja", {
-	[191976] = {"Attention","Personal"},
-	[192018] = "Important",
-	[192048] = {"Attention","Personal"},
-	[192307] = "Urgent",
-	[200901] = "Urgent",
+	[191976] = {"yellow","blue"},
+	[192018] = "red",
+	[192048] = {"yellow","blue"},
+	[192307] = "orange",
+	[200901] = "orange",
 })
 
 BigWigs:AddColors("Fenryr", {
-	[196512] = "Important",
-	[196543] = "Urgent",
-	[196838] = {"Personal","Urgent"},
-	[197556] = {"Attention","Personal"},
-	["stages"] = "Neutral",
+	[196512] = "red",
+	[196543] = "orange",
+	[196838] = {"blue","orange"},
+	[197556] = {"yellow","blue"},
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("God-King Skovald", {
-	[193659] = {"Important","Personal"},
-	[193668] = "Attention",
-	[193702] = "Personal",
-	[193826] = "Urgent",
+	[193659] = {"red","blue"},
+	[193668] = "yellow",
+	[193702] = "blue",
+	[193826] = "orange",
 })
 
 BigWigs:AddColors("Odyn", {
-	[197961] = {"Attention","Urgent"},
-	[198077] = "Important",
-	[198263] = "Important",
-	[200988] = "Urgent",
-	["warmup"] = "Neutral",
+	[197961] = {"yellow","orange"},
+	[198077] = "red",
+	[198263] = "red",
+	[200988] = "orange",
+	["warmup"] = "cyan",
 })
 
 BigWigs:AddColors("Halls of Valor Trash", {
-	[191508] = "Important",
-	[192158] = "Important",
-	[192563] = "Important",
-	[198745] = "Attention",
-	[198888] = "Important",
-	[198931] = "Important",
-	[198934] = "Important",
-	[199210] = "Important",
-	[199341] = "Important",
-	[199726] = "Important",
-	[199805] = {"Personal","Urgent"},
-	[210875] = "Important",
-	[215430] = {"Personal","Urgent"},
-	[215433] = "Important",
+	[191508] = "red",
+	[192158] = "red",
+	[192563] = "red",
+	[198745] = "yellow",
+	[198888] = "red",
+	[198931] = "red",
+	[198934] = "red",
+	[199210] = "red",
+	[199341] = "red",
+	[199726] = "red",
+	[199805] = {"blue","orange"},
+	[210875] = "red",
+	[215430] = {"blue","orange"},
+	[215433] = "red",
 })

@@ -38,7 +38,7 @@ end
 --  Event Handlers
 
 function mod:CorruptingBlight(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 120, args.destName)
 end
 

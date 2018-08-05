@@ -9,9 +9,9 @@ end
 
 L = BigWigs:NewBossLocale("Rokmora", "koKR")
 if L then
-	--L.warmup_text = "Rokmora Active"
-	--L.warmup_trigger = "Navarrogg?! Betrayer! You would lead these intruders against us?!"
-	--L.warmup_trigger_2 = "Either way, I will enjoy every moment of it. Rokmora, crush them!"
+	L.warmup_text = "로크모라 활성화"
+	L.warmup_trigger = "나바로그? 이 배신자! 감히 침입자들을 끌고 여기 오다니!"
+	L.warmup_trigger_2 = "어느 쪽이든, 매 순간을 다 즐겨 주지. 로크모라, 박살내라!"
 end
 
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "koKR")

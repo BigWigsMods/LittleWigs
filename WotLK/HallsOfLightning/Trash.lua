@@ -30,10 +30,10 @@ function mod:GetOptions()
 		61581, -- Charged Flurry
 
 		--[[ Stormforged Sentinel ]]--
-		53045, -- Sleep
+		59165, -- Sleep
 	}, {
 		[61581] = L.runeshaper,
-		[53045] = L.sentinel,
+		[59165] = L.sentinel,
 	}
 end
 
@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
 	self:Log("SPELL_AURA_APPLIED", "ChargedFlurry", 61581) -- does inadequate amount of damage since The Great Squish
-	self:Log("SPELL_AURA_APPLIED", "Sleep", 53045)
+	self:Log("SPELL_AURA_APPLIED", "Sleep", 53045, 59165) -- normal, heroic
 end
 
 --------------------------------------------------------------------------------
@@ -54,11 +54,11 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:Message(args.spellId, "Important", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
 		end
 	end
 end
 
 function mod:Sleep(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+	self:TargetMessage(59165, args.destName, "yellow", "Alarm")
 end

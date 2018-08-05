@@ -53,11 +53,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	if not C_UIWidgetManager then -- XXX 8.0
-		self:RegisterEvent("UPDATE_WORLD_STATES")
-	else
-		self:RegisterWidgetEvent(566, "UpdateWaveTimers")
-	end
+	self:RegisterWidgetEvent(566, "UpdateWaveTimers")
 	self:Death("BossDeaths", 29315, 29316, 29313, 29266, 29312, 29314, 32226, 32230, 32231, 32234, 32235, 32237)
 	self:Death("Disable", 31134)
 end
@@ -70,35 +66,6 @@ end
 -- Event Handlers
 --
 
-function mod:UPDATE_WORLD_STATES() -- XXX 8.0
-	for i = 1, GetNumWorldStateUI() do
-		local _, state, _, num = GetWorldStateUIInfo(i)
-		if state > 0 and num then -- Check if state is visible and if text exists.
-			local wave = num:match("(%d+).+18")
-			if wave then
-				local currentWave = tonumber(wave)
-				if currentWave and currentWave ~= prevWave then
-					prevWave = currentWave
-					local portal = self:SpellName(216299) -- Portal
-					if currentWave == 6 or currentWave == 12 then
-						self:Message("portals", "Attention", "Info", CL.incoming:format(_G.BOSS), false)
-						self:StopBar(CL.count:format(portal, currentWave))
-					elseif currentWave == 18 then
-						local cyanigosa = EJ_GetEncounterInfo(632)
-						self:Message("portals", "Attention", "Info", CL.custom_sec:format(cyanigosa, 17), false)
-						self:Bar("portals", 17, CL.count:format(portal, currentWave), "spell_arcane_portaldalaran")
-					else
-						-- The single mobs (Guardian/Keeper) are 15s, the groups are about 12s. The spawn in random so stick to 15s.
-						self:Bar("portals", 15, CL.count:format(portal, currentWave), "spell_arcane_portaldalaran")
-						self:Message("portals", "Attention", "Info", CL.custom_sec:format(CL.count:format(portal, currentWave), 15), false)
-						self:Bar("portals", 134, CL.count:format(portal, currentWave+1), "spell_arcane_portaldalaran") -- 119s + 15s depending on spawn, sometimes it's 101s + 15s if the spawn is a group. Stick with 134s.
-					end
-				end
-			end
-		end
-	end
-end
-
 function mod:UpdateWaveTimers(id, text)
 	local wave = text:match("(%d+).+18")
 	if wave then
@@ -107,17 +74,17 @@ function mod:UpdateWaveTimers(id, text)
 			prevWave = currentWave
 			local portal = self:SpellName(216299) -- Portal
 			if currentWave == 6 or currentWave == 12 then
-				self:Message("portals", "Attention", "Info", CL.incoming:format(_G.BOSS), false)
+				self:Message("portals", "yellow", "Info", CL.incoming:format(_G.BOSS), false)
 				self:StopBar(CL.count:format(portal, currentWave))
 			elseif currentWave == 18 then
 				self:UnregisterWidgetEvent(id)
 				local cyanigosa = EJ_GetEncounterInfo(632)
-				self:Message("portals", "Attention", "Info", CL.custom_sec:format(cyanigosa, 17), false)
+				self:Message("portals", "yellow", "Info", CL.custom_sec:format(cyanigosa, 17), false)
 				self:Bar("portals", 17, CL.count:format(portal, currentWave), "spell_arcane_portaldalaran")
 			else
 				-- The single mobs (Guardian/Keeper) are 15s, the groups are about 12s. The spawn in random so stick to 15s.
 				self:Bar("portals", 15, CL.count:format(portal, currentWave), "spell_arcane_portaldalaran")
-				self:Message("portals", "Attention", "Info", CL.custom_sec:format(CL.count:format(portal, currentWave), 15), false)
+				self:Message("portals", "yellow", "Info", CL.custom_sec:format(CL.count:format(portal, currentWave), 15), false)
 				self:Bar("portals", 134, CL.count:format(portal, currentWave+1), "spell_arcane_portaldalaran") -- 119s + 15s depending on spawn, sometimes it's 101s + 15s if the spawn is a group. Stick with 134s.
 			end
 		end

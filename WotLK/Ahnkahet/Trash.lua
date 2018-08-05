@@ -61,19 +61,19 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:Message(args.spellId, "Important", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
 		end
 	end
 end
 
 function mod:EyesInTheDark(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Important", "Alert", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "red", "Alert", nil, nil, true)
 	end
 end
 
 function mod:CurseOfTongues(args)
 	if self:Dispeller("curse") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	end
 end

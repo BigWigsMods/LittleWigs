@@ -1,4 +1,3 @@
-if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -53,7 +52,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 264921 then -- Tenderize
 		self:Bar(264923, 29) -- Tenderize
 	end

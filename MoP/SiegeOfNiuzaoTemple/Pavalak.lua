@@ -44,25 +44,25 @@ end
 --
 
 function mod:BladeRush(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 2)
 end
 
 function mod:Tempest(args)
-	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:ReinforcementsPhase(args)
-	self:Message(-5946, "Attention", "Info", CL.incoming:format(CL.adds), false)
+	self:Message(-5946, "yellow", "Info", CL.incoming:format(CL.adds), false)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextReinforcementsWarning then
-		self:Message(-5946, "Attention", nil, CL.soon:format(self:SpellName(-5946)))
+		self:Message(-5946, "yellow", nil, CL.soon:format(self:SpellName(-5946)))
 		nextReinforcementsWarning = nextReinforcementsWarning - 30
 		if nextReinforcementsWarning < 45 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

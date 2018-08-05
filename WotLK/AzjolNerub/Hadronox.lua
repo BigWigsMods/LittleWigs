@@ -26,9 +26,9 @@ end
 --  Event Handlers
 
 function mod:AcidCloud()
-	self:Message(53400, "Attention")
+	self:Message(53400, "yellow")
 end
 
 function mod:LeechPoison()
-	self:Message(53030, "Urgent")
+	self:Message(53030, "orange")
 end

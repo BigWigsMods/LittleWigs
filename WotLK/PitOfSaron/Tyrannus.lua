@@ -33,13 +33,13 @@ end
 --
 
 function mod:Brand(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:SecondaryIcon(args.spellId, args.destName)
 end
 
 function mod:Mark(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alarm")
 	self:TargetBar(args.spellId, 7, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
@@ -56,7 +56,7 @@ function mod:BrandRemoved(args)
 end
 
 function mod:Power(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 10)
 end
 

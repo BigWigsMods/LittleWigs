@@ -51,43 +51,43 @@ end
 
 function mod:OnEngage()
 	stage = 1
-	self:Message("stages", "Attention", "Info", CL.stage:format(1), false)
+	self:Message("stages", "yellow", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 35 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message("stages", "Positive", "Info", CL.soon:format(CL.stage:format(3)), false)
+		self:UnregisterUnitEvent(event, unit)
+		self:Message("stages", "green", "Info", CL.soon:format(CL.stage:format(3)), false)
 	elseif hp < 75 and stage == 1 then
 		stage = 2
-		self:Message("stages", "Positive", "Info", CL.soon:format(CL.stage:format(2)), false)
+		self:Message("stages", "green", "Info", CL.soon:format(CL.stage:format(2)), false)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 106895 then -- Summon Jade Serpent
-		self:UnregisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", unit)
-		self:Message("stages", "Attention", "Info", CL.stage:format(3), false)
+		self:UnregisterUnitEvent(event, unit)
+		self:Message("stages", "yellow", "Info", CL.stage:format(3), false)
 	elseif spellId == 106797 then -- Jade Essence
-		self:Message("stages", "Attention", "Info", CL.stage:format(2), false)
+		self:Message("stages", "yellow", "Info", CL.stage:format(2), false)
 	end
 end
 
 function mod:SerpentStrike(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
 
 function mod:JadeSerpentStrike(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
@@ -103,7 +103,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

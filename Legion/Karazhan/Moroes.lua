@@ -137,43 +137,43 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:Vanish(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 20.5)
 end
 
 function mod:Garrote(args)
 	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "Urgent", "Info")
+	self:StackMessage(args.spellId, args.destName, amount, "orange", "Info")
 end
 
 function mod:CoatCheck(args)
 	if self:Tank() then
-		self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 	end
 	self:Bar(args.spellId, 34)
 end
 
 function mod:CoatCheckDispellable(args)
 	if not self:Tank() then
-		self:TargetMessage(227851, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetMessage(227851, args.destName, "orange", "Alarm", nil, nil, true)
 	end
 end
 
 function mod:GhastlyPurge(args)
-	self:Message(args.spellId, "Neutral")
+	self:Message(args.spellId, "cyan")
 end
 
 function mod:ManaDrain(args)
-	self:Message(args.spellId, "Urgent", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
 end
 
 function mod:HealingStream(args)
-	self:Message(args.spellId, "Important", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:IronWhirlwind(args)
-	self:Message(args.spellId, "Attention", "Long")
+	self:Message(args.spellId, "yellow", "Long")
 	self:Bar(args.spellId, 10.5)
 end
 
@@ -184,14 +184,14 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(227646, "Personal", "Alarm", CL.underyou:format(args.spellName))
+				self:Message(227646, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:EmpoweredArms(args)
-	self:Message(args.spellId, "Important", self:Tank() and "Info", CL.on:format(args.spellName, args.destName))
+	self:Message(args.spellId, "red", self:Tank() and "Info", CL.on:format(args.spellName, args.destName))
 end
 
 do
@@ -199,7 +199,7 @@ do
 		if self:Me(guid) then
 			self:Say(227463)
 		end
-		self:TargetMessage(227463, player, "Urgent", "Warning")
+		self:TargetMessage(227463, player, "orange", "Warning")
 	end
 
 	function mod:WhirlingEdge(args)
@@ -208,7 +208,7 @@ do
 end
 
 function mod:WillBreaker(args)
-	self:Message(args.spellId, "Important", "Long")
+	self:Message(args.spellId, "red", "Long")
 	self:Bar(args.spellId, 10.9)
 end
 

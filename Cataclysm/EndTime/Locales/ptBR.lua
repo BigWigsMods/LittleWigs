@@ -1,6 +1,6 @@
 local L = BigWigs:NewBossLocale("Echo of Baine", "ptBR")
 if not L then return end
 if L then
-	-- L.totemDrop = "Totem dropped"
-	-- L.totemThrow = "Totem thrown by %s"
+	 L.totemDrop = "Totem dropado"
+	 L.totemThrow = "Totem lançado por %s"
 end

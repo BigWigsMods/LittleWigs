@@ -47,13 +47,13 @@ function mod:WaterspoutRemoved(args) -- if all 3 adds die, she stops casting
 	self:StopBar(args.spellId)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSpoutWarning then
-		self:Message(75683, "Attention", nil, CL.soon:format(self:SpellName(75683)), false)
+		self:Message(75683, "yellow", nil, CL.soon:format(self:SpellName(75683)), false)
 		nextSpoutWarning = nextSpoutWarning - 30
 		if nextSpoutWarning < 36 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

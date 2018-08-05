@@ -1,25 +1,25 @@
 
 BigWigs:AddColors("Vizier Jin'bak", {
-	[-5960] = "Personal",
-	[-5959] = "Important",
-	[-5958] = "Attention",
+	[-5960] = "blue",
+	[-5959] = "red",
+	[-5958] = "yellow",
 })
 
 BigWigs:AddColors("Commander Vo'jak", {
-	[-6287] = {"Important","Personal"},
-	[120778] = "Personal",
-	[120789] = {"Attention","Personal"},
+	[-6287] = {"red","blue"},
+	[120778] = "blue",
+	[120789] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("General Pa'valak", {
-	[-5946] = "Attention",
-	[119875] = "Important",
-	[124283] = "Urgent",
+	[-5946] = "yellow",
+	[119875] = "red",
+	[124283] = "orange",
 })
 
 BigWigs:AddColors("Wing Leader Ner'onok", {
-	[-6205] = {"Personal","Positive"},
-	[121284] = {"Positive","Urgent"},
-	[121443] = "Personal",
-	["stages"] = "Attention",
+	[-6205] = {"blue","green"},
+	[121284] = {"green","orange"},
+	[121443] = "blue",
+	["stages"] = "yellow",
 })

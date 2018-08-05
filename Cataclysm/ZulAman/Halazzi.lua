@@ -59,7 +59,7 @@ end
 --
 
 function mod:FlameShock(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 
@@ -68,31 +68,31 @@ function mod:FlameShockRemoved(args)
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 end
 
 function mod:Totems(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	-- All spells used are called "Halazzi Transform"
 	if spellId == 43143 then -- Spirit Phase
-		self:Message("stages", "Positive", nil, CL.percent:format(30 * spiritPhasesLeft, L.spirit_message), "ability_hunter_pet_cat")
+		self:Message("stages", "green", nil, CL.percent:format(30 * spiritPhasesLeft, L.spirit_message), "ability_hunter_pet_cat")
 		spiritPhasesLeft = spiritPhasesLeft - 1
 	elseif spellId == 43145 or spellId == 43271 then -- Normal Phase
-		self:Message("stages", "Positive", nil, L.normal_message, "achievement_character_troll_male")
+		self:Message("stages", "green", nil, L.normal_message, "achievement_character_troll_male")
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextPhaseWarning then
 		nextPhaseWarning = nextPhaseWarning - 30
-		self:Message("stages", "Attention", nil, CL.soon:format(L.spirit_message), false)
+		self:Message("stages", "yellow", nil, CL.soon:format(L.spirit_message), false)
 
 		if nextPhaseWarning < 35 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

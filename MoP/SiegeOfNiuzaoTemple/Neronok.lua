@@ -56,7 +56,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -64,27 +64,27 @@ end
 
 function mod:QuickDryResin(args)
 	if self:Me(args.destGUID) then
-		self:Message(-6205, "Personal", "Alarm", CL.you:format(args.spellName))
+		self:Message(-6205, "blue", "Alarm", CL.you:format(args.spellName))
 	end
 end
 
 function mod:Invigorated(args)
 	if self:Me(args.destGUID) then
-		self:Message(-6205, "Positive", "Info", CL.you:format(args.spellName), args.spellId)
+		self:Message(-6205, "green", "Info", CL.you:format(args.spellName), args.spellId)
 	end
 end
 
 do
 	local scheduledCooldownTimer = nil
 	function mod:GustingWinds(args)
-		self:Message(121284, "Urgent", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
+		self:Message(121284, "orange", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
 		self:CastBar(121284, 4)
 		scheduledCooldownTimer = self:ScheduleTimer("CDBar", 4.1, 121284, 3.2) -- 7.3s CD
 	end
 
 	function mod:GustingWindsInterrupted(args)
 		if args.extraSpellId == 121282 or args.extraSpellId == 121284 then -- Gusting Winds
-			self:Message(121284, "Positive", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+			self:Message(121284, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 			self:StopBar(CL.cast:format(args.extraSpellName))
 			if scheduledCooldownTimer then
 				self:CancelTimer(scheduledCooldownTimer)
@@ -94,13 +94,13 @@ do
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextWindsWarning then
-		self:Message("stages", "Attention", nil, CL.soon:format(self:SpellName(-6297)), false) -- -6297 = Treacherous Winds
+		self:Message("stages", "yellow", nil, CL.soon:format(self:SpellName(-6297)), false) -- -6297 = Treacherous Winds
 		nextWindsWarning = nextWindsWarning - 30
 		if nextWindsWarning < 40 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

@@ -43,7 +43,7 @@ end
 --
 
 function mod:FrenziedAssault(args)
-	self:Message(args.spellId, "Attention", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 7) -- 1s cast + 6s channel
 	self:CDBar(args.spellId, 17)
 end
@@ -55,7 +55,7 @@ do
 			local t = GetTime()
 			if (not self:Tank() and t-prev > 1.5) or t-prev > 6 then -- the tank might want to bring adds in front of Ri'mok
 				prev = t
-				self:Message(107120, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(107120, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -64,17 +64,17 @@ end
 function mod:ViscousFluid(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount % 2 == 1 then
-		self:StackMessage(-5666, args.destName, amount, "Important", "Alarm")
+		self:StackMessage(-5666, args.destName, amount, "red", "Alarm")
 	end
 end
 
 do
 	local laststacks = 0
-	function mod:UNIT_AURA(unit) -- no SPELL_AURA_ events for the boss's buffs
+	function mod:UNIT_AURA(_, unit) -- no SPELL_AURA_ events for the boss's buffs
 		local _, stacks = self:UnitBuff(unit, 107091) -- Viscous Fluid
 		if stacks then
 			if (stacks % 2 == 0 or stacks == 5) and stacks ~= laststacks then
-				self:StackMessage(-5666, self.displayName, stacks, "Urgent", "Info")
+				self:StackMessage(-5666, self.displayName, stacks, "orange", "Info")
 			end
 			laststacks = stacks
 		else
@@ -90,7 +90,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

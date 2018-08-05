@@ -1,12 +1,12 @@
 
 BigWigs:AddColors("The Maker", {
-	[30923] = {"Important","Personal"},
+	[30923] = {"red","blue"},
 })
 
 BigWigs:AddColors("Broggok", {
-	[30916] = "Personal",
+	[30916] = "blue",
 })
 
 BigWigs:AddColors("Keli'dan the Breaker", {
-	[-5388] = "Important",
+	[-5388] = "red",
 })

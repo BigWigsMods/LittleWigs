@@ -118,11 +118,11 @@ end
 
 --[[ Felsworn Infester ]]--
 function mod:NightmaresCast(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Info", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", self:Interrupter() and "Info", CL.casting:format(args.spellName))
 end
 
 function mod:NightmaresApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", self:Healer() and "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "orange", self:Healer() and "Alarm")
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
@@ -130,12 +130,12 @@ end
 
 --[[ Felsworn Myrmidon ]]--
 function mod:DeafeningScreech(args)
-	self:Message(args.spellId, "Important", self:Ranged() and "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", self:Ranged() and "Alert", CL.casting:format(args.spellName))
 end
 
 --[[ Fel-Infused Fury ]]--
 function mod:UnleashFury(args)
-	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
 	if self:Interrupter(args.sourceGUID) then
 		self:Flash(args.spellId)
 	end
@@ -147,7 +147,7 @@ do
 		local t = GetTime()
 		if t-prev > 0.5 then
 			prev = t
-			self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 		end
 	end
 end
@@ -160,7 +160,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -168,18 +168,18 @@ end
 
 --[[ Blade Dancer Illianna ]]--
 function mod:DeafeningShout(args)
-	self:Message(args.spellId, "Important", self:Ranged() and "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", self:Ranged() and "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:GiftOfTheDoomsayer(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 	end
 end
 
 --[[ Dreadlord Mendacius ]]--
 function mod:Meteor(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alarm", CL.incoming:format(args.spellName))
 end
 
 --[[ Grimhorn the Enslaver ]]--
@@ -188,7 +188,7 @@ function mod:Torment(args)
 		tormentOnMe = true
 		self:Say(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
@@ -206,7 +206,7 @@ do
 			-- Increased throttle if the player can't move due to having Torment
 			if t-prev > (tormentOnMe and 6 or 1.5) then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

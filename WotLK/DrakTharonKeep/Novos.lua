@@ -67,7 +67,7 @@ end
 function mod:OnEngage()
 	crystalHandlersSpawned = 1
 	crystalHandlersLeft = 4
-	self:Message("stages", "Neutral", nil, CL.stage:format(1), false)
+	self:Message("stages", "cyan", nil, CL.stage:format(1), false)
 	self:CDBar("adds", 15.5, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
 end
 
@@ -83,7 +83,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId == 59854 and 49034 or args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(args.spellId == 59854 and 49034 or args.spellId, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -93,7 +93,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source, _, _, target) -- Crystal Handler spawned
 	if source == self.displayName then -- cross-module safety, this is the only BOSS_EMOTE present in this encounter.
 		crystalHandlersSpawned = crystalHandlersSpawned + 1
-		self:Message("adds", "Attention", "Alarm", CL.spawned:format(target), false)
+		self:Message("adds", "yellow", "Alarm", CL.spawned:format(target), false)
 		if crystalHandlersSpawned <= 4 then
 			self:CDBar("adds", 15.8, CL.count:format(target, crystalHandlersSpawned), "spell_shadow_raisedead")
 		end
@@ -102,16 +102,16 @@ end
 
 function mod:AddDied(args)
 	crystalHandlersLeft = crystalHandlersLeft - 1
-	self:Message("stages", "Neutral", nil, CL.mob_remaining:format(args.destName, crystalHandlersLeft), false)
+	self:Message("stages", "cyan", nil, CL.mob_remaining:format(args.destName, crystalHandlersLeft), false)
 	if crystalHandlersLeft == 0 then
 		self:Bar("stages", 6.5, CL.stage:format(2), "inv_trinket_naxxramas06") -- icon that's used in the "Defeat Kel'thuzad" achievement
 	end
 end
 
 -- Stage 2
-function mod:UNIT_TARGETABLE_CHANGED(unit)
+function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
-		self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
+		self:Message("stages", "cyan", nil, CL.stage:format(2), false)
 		self:CDBar(50089, 6) -- Wrath of Misery
 		if not self:Normal() then
 			self:CDBar(59910, 1.5) -- Summon Minions
@@ -121,7 +121,7 @@ end
 
 function mod:WrathOfMisery(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("curse") then
-		self:TargetMessage(50089, args.destName, "Urgent")
+		self:TargetMessage(50089, args.destName, "orange")
 		self:TargetBar(50089, 8, args.destName)
 	end
 end
@@ -135,6 +135,6 @@ function mod:WrathOfMiseryCastSuccess(args)
 end
 
 function mod:SummonMinions(args)
-	self:Message(args.spellId, "Attention", nil, CL.spawned:format(CL.adds))
+	self:Message(args.spellId, "yellow", nil, CL.spawned:format(CL.adds))
 	self:CDBar(args.spellId, 39.8) -- time until the next SPELL_CAST_START, 39.8 - 42.3s
 end

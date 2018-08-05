@@ -39,20 +39,20 @@ end
 --
 
 function mod:WorgenSpirit(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextWorgenSpiritWarning then
-		self:Message(93857, "Attention", nil, CL.soon:format(self:SpellName(93857)), false)
+		self:Message(93857, "yellow", nil, CL.soon:format(self:SpellName(93857)), false)
 		if self:Normal() then
 			nextWorgenSpiritWarning = nextWorgenSpiritWarning - 35
 		else
 			nextWorgenSpiritWarning = nextWorgenSpiritWarning - 30
 		end
 		if nextWorgenSpiritWarning < 30 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

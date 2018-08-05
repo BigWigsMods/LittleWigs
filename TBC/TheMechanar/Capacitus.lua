@@ -56,21 +56,21 @@ end
 --
 
 function mod:ReflectiveShield(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 10)
 end
 
 function mod:ReflectiveShieldRemoved(args)
-	self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", nil, CL.removed:format(args.spellName))
 end
 
 function mod:PolarityShift(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 end
 
 do
-	local function fillTheTableAndOpenProximity(self, unit, sameChargeList, oppositeChargeList, spellId, color)
+	local function fillTheTableAndOpenProximity(self, unit, sameChargeList, oppositeChargeList, spellId)
 		local guid = UnitGUID(unit)
 		if not playerCollector[guid] then
 			playerCollector[guid] = true
@@ -81,17 +81,18 @@ do
 			tDeleteItem(oppositeChargeList, name)
 			if self:Me(guid) then
 				self:OpenProximity(39096, 10, sameChargeList, true)
-				self:Message(39096, spellId == 39088 and "Neutral" or "Important", "Info", CL.you:format(self:SpellName(spellId)), spellId)
+				-- Cyan for Positive, Red for Negative
+				self:Message(39096, spellId == 39088 and "cyan" or "red", "Info", CL.you:format(self:SpellName(spellId)), spellId)
 			end
 		end
 	end
 
 	-- no SPELL_AURA_APPLIED events
-	function mod:UNIT_AURA(unit)
+	function mod:UNIT_AURA(_, unit)
 		if self:UnitDebuff(unit, 39088) then -- Positive Charge
-			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088) -- cyan
+			fillTheTableAndOpenProximity(self, unit, positiveList, negativeList, 39088)
 		elseif self:UnitDebuff(unit, 39091) then -- Negative Charge
-			fillTheTableAndOpenProximity(self, unit, negativeList, positiveList, 39091) -- red
+			fillTheTableAndOpenProximity(self, unit, negativeList, positiveList, 39091)
 		end
 	end
 

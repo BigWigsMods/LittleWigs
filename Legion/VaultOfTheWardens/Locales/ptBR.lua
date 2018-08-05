@@ -1,33 +1,33 @@
 local L = BigWigs:NewBossLocale("Cordana Felsong", "ptBR")
 if not L then return end
 if L then
-	--L.kick_combo = "Kick Combo"
+	L.kick_combo = "Combo de Chute"
 
-	--L.light_dropped = "%s dropped the Light."
-	--L.light_picked = "%s picked up the Light."
+	L.light_dropped = "%s derrubou a Luz."
+	L.light_picked = "%s pegou a Luz."
 
-	--L.warmup_text = "Cordana Felsong Active"
-	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
-	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
+	L.warmup_text = "Cordana Vilcanto Ativa"
+	L.warmup_trigger = "Eu já estou com o que queria. Mas continuei aqui para que pudesse acabar com você... De uma vez por todas!"
+	L.warmup_trigger_2 = "E agora, vocês caem na minha armadilha. Tolos. Vamos ver como vocês ficam no escuro."
 end
 
 L = BigWigs:NewBossLocale("Glazer", "ptBR")
 if L then
-	--L.radiation_level = "%s: %d%%"
+	L.radiation_level = "%s: %d%%"
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "ptBR")
 if L then
-	--L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
+	L.warmup_trigger = "Servirei ao MEU povo, os exilados e enxovalhados."
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "ptBR")
 if L then
-	--L.infester = "Felsworn Infester"
-	--L.myrmidon = "Felsworn Myrmidon"
-	--L.fury = "Fel-Infused Fury"
-	--L.mother = "Foul Mother"
-	--L.illianna = "Blade Dancer Illianna"
-	--L.mendacius = "Dreadlord Mendacius"
-	--L.grimhorn = "Grimhorn the Enslaver"
+	L.infester = "Infestador Devoto Vil"
+	L.myrmidon = "Mirmidão Devoto Vil"
+	L.fury = "Fúria Vilinfusa"
+	L.mother = "Mãe Imunda"
+	L.illianna = "Dançarina das Lâminas Illiana"
+	L.mendacius = "Senhor do Medo Mendácius"
+	L.grimhorn = "Chifre Austero, o Escravizador"
 end

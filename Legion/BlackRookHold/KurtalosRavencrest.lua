@@ -55,18 +55,18 @@ end
 --
 
 function mod:DarkBlast(args)
-	self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Warning", CL.incoming:format(args.spellName))
 end
 
 function mod:WhirlingBlade(args)
-	self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Info", CL.incoming:format(args.spellName))
 end
 
 function mod:ShadowBoltValley(args)
 	if shadowBoltCount == 1 then
-		self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
+		self:Message(args.spellId, "red", "Warning", CL.incoming:format(args.spellName))
 	else
-		self:Message(args.spellId, "Attention", "Info", CL.incoming:format(args.spellName))
+		self:Message(args.spellId, "yellow", "Info", CL.incoming:format(args.spellName))
 	end
 	self:Bar(args.spellId, 8.5)
 	shadowBoltCount = shadowBoltCount + 1

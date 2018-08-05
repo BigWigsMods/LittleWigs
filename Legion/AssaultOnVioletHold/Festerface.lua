@@ -38,19 +38,19 @@ end
 --
 
 function mod:CongealingVomit(args)
-	self:Message(args.spellId, "Important", "Alarm")
+	self:Message(args.spellId, "red", "Alarm")
 	self:Bar(args.spellId, 51)
 end
 
 do
 	local prev = 0
-	function mod:UNIT_POWER_FREQUENT(unit)
+	function mod:UNIT_POWER_FREQUENT(_, unit)
 		local power = UnitPower(unit)
 		if power > 70 then
 			local t = GetTime()
 			if t-prev > 5 then
 				prev = t
-				self:Message(201729, "Urgent", "Alert", CL.soon:format(self:SpellName(201729))) -- Uh Oh... soon!
+				self:Message(201729, "orange", "Alert", CL.soon:format(self:SpellName(201729))) -- Uh Oh... soon!
 			end
 		end
 	end

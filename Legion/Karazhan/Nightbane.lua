@@ -91,9 +91,9 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 228806 then -- Charred Earth
-		self:Message(228808, "Urgent", self:Ranged() and "Alert")
+		self:Message(228808, "orange", self:Ranged() and "Alert")
 		self:CDBar(228808, 20)
 	elseif spellId == 228789 then -- Flowing Power (Stage 3)
 		self:Bar(228785, 8.5) -- Cinder Breath
@@ -108,13 +108,13 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
 end
 
 function mod:BonecurseDeath(args)
-	self:Message("stages", "Neutral", "Long", CL.stage:format(3), false)
+	self:Message("stages", "cyan", "Long", CL.stage:format(3), false)
 	self:StopBar(CL.count:format(self:SpellName(228834), shardCount)) -- Jagged Shards
 	self:StopBar(228835) -- Absorb Vitality
 end
 
 function mod:Stage2(args)
-	self:Message("stages", "Neutral", "Long", CL.stage:format(2), false)
+	self:Message("stages", "cyan", "Long", CL.stage:format(2), false)
 	self:StopBar(228785) -- Cinder Breath
 	self:StopBar(228808) -- Charred Earth
 	self:StopBar(228829) -- Burning Bones
@@ -130,32 +130,32 @@ function mod:Stage2(args)
 end
 
 function mod:CinderBreath(args)
-	self:Message(args.spellId, "Important", self:Tank() and "Alert")
+	self:Message(args.spellId, "red", self:Tank() and "Alert")
 	self:CDBar(args.spellId, 22.5)
 end
 
 function mod:ReverberatingShadows(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 11)
 end
 
 function mod:BurningBones(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Info")
+	self:TargetMessage(args.spellId, args.destName, "orange", "Info")
 	self:CDBar(args.spellId, 18)
 end
 
 function mod:InfernalPower(args)
-	self:Message(args.spellId, "Important", "Info")
+	self:Message(args.spellId, "red", "Info")
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
 
 function mod:InfernalPowerRemoved(args)
-	self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
+	self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
 	self:Bar(args.spellId, 30)
 end
 
 function mod:IgniteSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
 	self:TargetBar(args.spellId, 9, args.destName)
 	if self:Me(args.destGUID) then
 		igniteSoulOnMe = true
@@ -175,23 +175,23 @@ function mod:IgniteSoulRemoved(args)
 end
 
 function mod:ConcentratedPower(args)
-	self:Message(args.spellId, "Important", "Info")
+	self:Message(args.spellId, "red", "Info")
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
 
 function mod:ConcentratedPowerRemoved(args)
-	self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
+	self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
 	self:Bar(args.spellId, 30)
 end
 
 function mod:JaggedShards(args)
-	self:Message(args.spellId, "Important", nil, CL.count:format(args.spellName, shardCount))
+	self:Message(args.spellId, "red", nil, CL.count:format(args.spellName, shardCount))
 	shardCount = shardCount + 1
 	self:CDBar(args.spellId, 8, CL.count:format(args.spellName, shardCount))
 end
 
 function mod:AbsorbVitality(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Healer())
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 18, args.destName)
 	self:Bar(args.spellId, 20)
 end
@@ -201,7 +201,7 @@ function mod:AbsorbVitalityRemoved(args)
 end
 
 function mod:BellowingRoar(args)
-	self:Message(args.spellId, "Attention", "Warning")
+	self:Message(args.spellId, "yellow", "Warning")
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 45)
 end
@@ -213,7 +213,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "Personal", not igniteSoulOnMe and "Alarm", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", not igniteSoulOnMe and "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

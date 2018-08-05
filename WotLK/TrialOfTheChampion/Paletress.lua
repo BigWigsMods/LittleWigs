@@ -68,41 +68,41 @@ end
 function mod:ReflectiveShield(args)
 	shielded = true
 	if not self:CheckOption("confess", "MESSAGE") then -- happens at the same time as Confess, display a message for it only if notifications for Confess are turned off
-		self:Message(args.spellId, "Important", nil, CL.onboss:format(args.spellName))
+		self:Message(args.spellId, "red", nil, CL.onboss:format(args.spellName))
 	end
 end
 
 function mod:ReflectiveShieldRemoved(args)
 	shielded = false
-	self:Message(args.spellId, "Positive", "Info", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", "Info", CL.removed:format(args.spellName))
 end
 
 function mod:Renew(args)
 	if shielded then return end -- don't bother announcing while she is shielded
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Confess(args)
-	self:Message("confess", "Important", nil, CL.casting:format(args.spellName), args.spellId)
+	self:Message("confess", "red", nil, CL.casting:format(args.spellName), args.spellId)
 end
 
 function mod:ShadowsOfThePast(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 		if self:CheckOption("confess", "MESSAGE") then -- both happen at the same time, just display one message depending on the user's settings
-			self:Message("confess", "Attention", nil, CL.soon:format(self:SpellName(66680)), 66680)
+			self:Message("confess", "yellow", nil, CL.soon:format(self:SpellName(66680)), 66680)
 		else
-			self:Message(66515, "Attention", nil, CL.soon:format(self:SpellName(66515)))
+			self:Message(66515, "yellow", nil, CL.soon:format(self:SpellName(66515)))
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 43979 then -- Full Heal
 		self:Win()
 	end

@@ -61,6 +61,10 @@ function mod:OnEngage()
 	self:Bar(197961, 44) -- Runic Brand
 end
 
+function mod:VerifyEnable(unit)
+	return UnitCanAttack("player", unit) or (UnitHealth(unit) / UnitHealthMax(unit) > 0.8)
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -73,29 +77,29 @@ function mod:Warmup(event, msg)
 end
 
 function mod:RunicBrand(args)
-	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 56) -- m pull:44.0, 56.0
 end
 
 function mod:RunicBrandYou(args)
 	if self:Me(args.destGUID) then
-		self:Message(197961, "Urgent", "Warning", L[args.spellId], args.spellId)
+		self:Message(197961, "orange", "Warning", L[args.spellId], args.spellId)
 	end
 end
 
 function mod:RadiantTempest(args)
-	self:Message(args.spellId, "Important", "Long")
+	self:Message(args.spellId, "red", "Long")
 	self:CDBar(args.spellId, self:Mythic() and 80 or 56) -- hc pull:24.0 / m pull:8.0, 80.0
 end
 
 function mod:ShatterSpears(args)
-	self:Message(args.spellId, "Important", "Alert", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
 	self:Bar(args.spellId, 56) -- m pull:40.0, 56.0
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 198396 then -- Spear of Light
-		self:Message(200988, "Urgent", "Alert")
+		self:Message(200988, "orange", "Alert")
 	end
 end
 
@@ -111,7 +115,7 @@ end
 function mod:BigWigs_BossComm(_, msg)
 	if msg == "odyn" then
 		local name = EJ_GetEncounterInfo(1489)
-		self:Message("warmup", "Neutral", "Info", CL.incoming:format(name), false)
+		self:Message("warmup", "cyan", "Info", CL.incoming:format(name), false)
 		self:CDBar("warmup", 2.7, name, "achievement_boss_odyn")
 	end
 end

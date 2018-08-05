@@ -27,7 +27,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:Log("SPELL_CAST_START", "ChainLightning", 15659, 15305) -- normal, heroic
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 15659, 15305)
 	self:Log("SPELL_AURA_APPLIED", "FrostShock", 12548, 21401) -- normal, heroic
@@ -48,7 +48,7 @@ do
 		if self:Me(guid) then
 			self:Say(15659)
 		end
-		self:TargetMessage(15659, target, "Attention")
+		self:TargetMessage(15659, target, "yellow")
 		self:PrimaryIcon(15659, target)
 	end
 
@@ -64,7 +64,7 @@ end
 
 function mod:FrostShock(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(12548, args.destName, "Urgent")
+		self:TargetMessage(12548, args.destName, "orange")
 		self:TargetBar(12548, 8, args.destName)
 	end
 end
@@ -74,16 +74,16 @@ function mod:FrostShockRemoved(args)
 end
 
 function mod:SummonElementals()
-	self:Message(-5235, "Important", nil, CL.spawned:format(CL.adds))
+	self:Message(-5235, "red", nil, CL.spawned:format(CL.adds))
 end
 
 do
 	local warnAt = { 95, 60, 20 }
-	function mod:UNIT_HEALTH_FREQUENT(unit)
+	function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < warnAt[elementalsWarnings] then
 			elementalsWarnings = elementalsWarnings + 1
-			self:Message(-5235, "Important", nil, CL.soon:format(self:SpellName(-5235))) -- Summon Elementals
+			self:Message(-5235, "red", nil, CL.soon:format(self:SpellName(-5235))) -- Summon Elementals
 
 			while elementalsWarnings <= #warnAt and hp < warnAt[elementalsWarnings] do
 				-- account for high-level characters hitting multiple thresholds
@@ -91,7 +91,7 @@ do
 			end
 
 			if elementalsWarnings > #warnAt then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+				self:UnregisterUnitEvent(event, unit)
 			end
 	 	end
 	end

@@ -2,7 +2,6 @@
 BigWigs:AddSounds("Fleshrender Nok'gar", {
 	[164426] = {"Info","Warning"},
 	[164632] = "Alarm",
-	[164835] = "Long",
 	[164837] = "Alert",
 })
 

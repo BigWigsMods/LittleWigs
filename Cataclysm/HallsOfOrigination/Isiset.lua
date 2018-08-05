@@ -54,7 +54,7 @@ end
 --
 
 function mod:VeilOfSky(args)
-	self:Message(74373, "Attention")
+	self:Message(74373, "yellow")
 	self:CDBar(74373, 60)
 end
 
@@ -63,7 +63,7 @@ function mod:VeilOfSkyRemoved(args)
 end
 
 function mod:Supernova(args)
-	self:Message(74137, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:Message(74137, "red", "Alarm", CL.casting:format(args.spellName))
 	self:CastBar(74137, 3)
 end
 
@@ -74,7 +74,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(74135, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(74135, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -84,26 +84,26 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSplitWarning then
-		self:Message(-2556, "Positive", nil, CL.soon:format(self:SpellName(-2556))) -- Mirror Image
+		self:Message(-2556, "green", nil, CL.soon:format(self:SpellName(-2556))) -- Mirror Image
 		nextSplitWarning = nextSplitWarning - 33
 
 		if nextSplitWarning < 33 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 69941 then -- Mirror Image
-		self:Message(-2556, "Neutral", "Info")
+		self:Message(-2556, "cyan", "Info")
 	end
 end

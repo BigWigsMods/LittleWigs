@@ -43,7 +43,7 @@ end
 
 function mod:ShockOfSorrow(args)
 	shouldBeTakingDamage = true
-	self:Message(59726, "Important", "Warning", CL.casting:format(args.spellName))
+	self:Message(59726, "red", "Warning", CL.casting:format(args.spellName))
 	self:Bar(59726, 4, CL.casting:format(args.spellName))
 end
 
@@ -54,7 +54,7 @@ do
 		playerList[#playerList + 1] = args.destName
 		playersIncapacitated = playersIncapacitated + 1
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.2, 59726, playerList, "Urgent")
+			self:ScheduleTimer("TargetMessage", 0.2, 59726, playerList, "orange")
 			self:Bar(59726, args.spellId == 59726 and 10 or 6)
 		end
 	end
@@ -78,7 +78,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(59772, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(59772, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

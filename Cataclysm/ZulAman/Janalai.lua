@@ -38,7 +38,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessage(97497, player, "Important", "Alert")
+		self:TargetMessage(97497, player, "red", "Alert")
 		self:PrimaryIcon(97497, player)
 	end
 	function mod:FlameBreath(args)
@@ -49,20 +49,20 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 43962 then -- Summon Amani'shi Hatcher
-		self:Message(-2625, "Attention", "Long", CL.incoming:format(self:SpellName(-2625)), "achievement_character_troll_male")
+		self:Message(-2625, "yellow", "Long", CL.incoming:format(self:SpellName(-2625)), "achievement_character_troll_male")
 		self:CDBar(-2625, 92, nil, "achievement_character_troll_male")
 	elseif spellId == 43098 then -- Teleport to Center (to cast Fire Bombs)
-		self:Message(-2622, "Urgent", "Info", CL.incoming:format(self:SpellName(-2622)))
+		self:Message(-2622, "orange", "Info", CL.incoming:format(self:SpellName(-2622)))
 		self:Bar(-2622, 12)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 40 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message(-2625, "Attention", nil, CL.soon:format(self:SpellName(-2628)), false) -- Hatch All Eggs Soon
+		self:UnregisterUnitEvent(event, unit)
+		self:Message(-2625, "yellow", nil, CL.soon:format(self:SpellName(-2628)), false) -- Hatch All Eggs Soon
 	end
 end

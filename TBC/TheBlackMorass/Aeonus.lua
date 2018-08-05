@@ -38,7 +38,7 @@ end
 --
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 8)
 end
 

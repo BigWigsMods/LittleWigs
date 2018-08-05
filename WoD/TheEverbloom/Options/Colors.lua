@@ -1,36 +1,36 @@
 
 BigWigs:AddColors("Witherbark", {
-	[164275] = {"Attention","Neutral"},
-	[164294] = {"Personal","Urgent"},
-	[164357] = "Important",
+	[164275] = {"yellow","cyan"},
+	[164294] = {"blue","orange"},
+	[164357] = "red",
 })
 
 BigWigs:AddColors("Ancient Protectors", {
-	[167977] = "Personal",
-	[168041] = "Attention",
-	[168082] = "Urgent",
-	[168105] = "Important",
-	[168383] = "Attention",
-	[168520] = "Attention",
+	[167977] = "blue",
+	[168041] = "yellow",
+	[168082] = "orange",
+	[168105] = "red",
+	[168383] = "yellow",
+	[168520] = "yellow",
 })
 
 BigWigs:AddColors("Xeri'tac", {
-	[-10502] = "Attention",
-	[169233] = "Important",
-	[169248] = "Urgent",
-	[173080] = "Personal",
-	["stages"] = {"Important","Neutral"},
+	[-10502] = "yellow",
+	[169233] = "red",
+	[169248] = "orange",
+	[173080] = "blue",
+	["stages"] = {"red","cyan"},
 })
 
 BigWigs:AddColors("Archmage Sol", {
-	[166492] = "Important",
-	[166726] = "Personal",
-	[168885] = "Urgent",
-	["stages"] = "Neutral",
+	[166492] = "red",
+	[166726] = "blue",
+	[168885] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Yalnu", {
-	[169179] = "Urgent",
-	[169251] = "Positive",
-	[169613] = "Attention",
+	[169179] = "orange",
+	[169251] = "green",
+	[169613] = "yellow",
 })

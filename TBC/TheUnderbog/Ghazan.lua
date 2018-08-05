@@ -44,12 +44,12 @@ do
 
 	function mod:AcidBreath(args)
 		if self:Me(args.destGUID) and not self:Healer() then
-			self:TargetMessage(args.spellId, args.destName, "Personal", not self:Tank() and "Warning")
+			self:TargetMessage(args.spellId, args.destName, "blue", not self:Tank() and "Warning")
 			self:TargetBar(args.spellId, 20, args.destName) -- this will have 100% uptime on the tank, can't be dispelled, no reason to show this to anyone not affected
 		elseif self:Healer() then
 			playerList[#playerList+1] = args.destName
 			if #playerList == 1 then
-				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Important")
+				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "red")
 			end
 		end
 	end
@@ -66,20 +66,20 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(38737, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(38737, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Urgent", "Long", CL.percent:format(20, args.spellName))
+	self:Message(args.spellId, "orange", "Long", CL.percent:format(20, args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealth(unit) * 100
 	if hp < 25 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message(15716, "Positive", "Info", CL.soon:format(self:SpellName(15716))) -- Enrage
+		self:UnregisterUnitEvent(event, unit)
+		self:Message(15716, "green", "Info", CL.soon:format(self:SpellName(15716))) -- Enrage
 	end
 end

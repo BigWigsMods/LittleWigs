@@ -42,20 +42,20 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:EnvelopingWinds(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
 function mod:LungBurst(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end

@@ -42,7 +42,7 @@ do
 	function mod:NetherLink(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "Attention", "Info")
+			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "yellow", "Info")
 			self:CDBar(args.spellId, 33)
 		end
 	end
@@ -56,7 +56,7 @@ do
 		else
 			self:OpenProximity(spellId, 8, targets)
 		end
-		self:TargetMessage(spellId, self:ColorName(targets), "Urgent", "Alarm", nil, nil, true)
+		self:TargetMessage(spellId, self:ColorName(targets), "orange", "Alarm", nil, nil, true)
 		wipe(targets)
 		isOnMe = nil
 	end
@@ -80,6 +80,6 @@ do
 end
 
 function mod:OverchargeMana(args)
-	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 40)
 end

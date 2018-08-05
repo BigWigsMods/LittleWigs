@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Positive", "Info", CL.stage:format(1)..": "..self.displayName, false)
+	self:Message("stages", "green", "Info", CL.stage:format(1)..": "..self.displayName, false)
 end
 
 --------------------------------------------------------------------------------
@@ -41,31 +41,31 @@ end
 --
 
 function mod:LightningBreath(args)
-	self:Message(args.spellId, "Urgent", "Alert")
+	self:Message(args.spellId, "orange", "Alert")
 	self:CDBar(args.spellId, 9.5) -- 9.6 - 9.7
 end
 
 function mod:MagneticShroud(args)
-	self:Message(args.spellId, "Attention", nil)
+	self:Message(args.spellId, "yellow", nil)
 	self:CDBar(args.spellId, 13) -- 13.2 - 15.7
 end
 
 function mod:Stage2()
 	local _, serpent = EJ_GetCreatureInfo(2, 673)
-	self:Message("stages", "Positive", "Info", CL.stage:format(2)..": "..serpent, false)
+	self:Message("stages", "green", "Info", CL.stage:format(2)..": "..serpent, false)
 	self:CDBar(102573, 7) -- Breath
 	self:Bar(107140, 20) -- Shroud
 end
 
 function mod:Stage3()
-	self:Message("stages", "Positive", "Info", CL.stage:format(3)..": "..self.displayName.. " ("..self:SpellName(65294)..")", false) -- (Empowered)
+	self:Message("stages", "green", "Info", CL.stage:format(3)..": "..self.displayName.. " ("..self:SpellName(65294)..")", false) -- (Empowered)
 	self:StopBar(102573) -- Breath
 	self:StopBar(107140) -- Shroud
 end
 
 function mod:StaticField(args)
 	if self:Me(args.destGUID) then
-		self:Message(-5630, "Personal", "Alarm", CL.underyou:format(args.spellName), 106941)
+		self:Message(-5630, "blue", "Alarm", CL.underyou:format(args.spellName), 106941)
 		self:Flash(-5630)
 	end
 end

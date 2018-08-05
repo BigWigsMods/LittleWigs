@@ -9,19 +9,19 @@ BigWigs:AddSounds("Coin-Operated Crowd Pummeler", {
 BigWigs:AddSounds("Tik'ali", {
 	[257582] = "warning",
 	[257593] = "info",
-	[257597] = "alert",
 	[258622] = "long",
+	[271698] = "alert",
 })
 
 BigWigs:AddSounds("Rixxa Fluxflame", {
-	[259022] = "long",
 	[259853] = "alarm",
 	[260669] = "alert",
+	[270042] = "long",
 })
 
 BigWigs:AddSounds("Mogul Razzdunk", {
-	[260202] = "alert",
-	[260279] = "alert",
+	[260280] = "alert",
 	[260811] = "warning",
-	[270277] = "long",
+	[271456] = "alert",
+	["stages"] = "info",
 })

@@ -62,6 +62,8 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
 	self:Log("SPELL_CAST_START", "ArcaneBlitz", 200248)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ArcaneBlitzApplied", 200248)
+	self:Log("SPELL_AURA_REMOVED", "ArcaneBlitzRemoved", 200248)
 	self:Log("SPELL_CAST_START", "BonebreakingStrike", 200261, 197974) -- 197974 = Bonecrushing Strike
 	self:Log("SPELL_CAST_START", "CoupdeGrace", 214003)
 	self:Log("SPELL_CAST_START", "ArrowBarrage", 200343)
@@ -75,46 +77,53 @@ end
 -- Event Handlers
 --
 
--- Risen Arcanist
-function mod:ArcaneBlitz(args)
-	-- only show a message if stacks are getting high (6 = 300% which is around 1m damage a hit)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit then
-		local _, amount = self:UnitBuff(unit, args.spellName)
-		if amount and amount > 5 and (self:Interrupter(args.destGUID) or self:Dispeller("magic", true)) then
-			self:Message(args.spellId, "Attention", "Alert", CL.count:format(args.spellName, amount))
+do
+	local blitzTracker = {}
+
+	-- Risen Arcanist
+	function mod:ArcaneBlitz(args)
+		-- only show a message if stacks are getting high (6 = 300% which is around 1m damage a hit)
+		local amount = blitzTracker[args.sourceGUID]
+		if amount and amount > 5 and (self:Interrupter(args.sourceGUID) or self:Dispeller("magic", true)) then
+			self:Message(args.spellId, "yellow", "Alert", CL.count:format(args.spellName, amount))
 		end
+	end
+	function mod:ArcaneBlitzApplied(args)
+		blitzTracker[args.destGUID] = args.amount
+	end
+	function mod:ArcaneBlitzRemoved(args)
+		blitzTracker[args.destGUID] = nil
 	end
 end
 
 -- Soul-torn Champion, Soul-torn Vanguard
 function mod:BonebreakingStrike(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alarm", CL.incoming:format(args.spellName))
 end
 
 -- Risen Swordsman
 function mod:CoupdeGrace(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", "Alarm", CL.incoming:format(args.spellName))
 end
 
 -- Risen Archer
 function mod:ArrowBarrage(args)
-	self:Message(args.spellId, "Attention", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Warning", CL.casting:format(args.spellName))
 end
 
 -- Risen Scout
 function mod:KnifeDance(args)
-	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 end
 
 -- Ghostly Councilor
 function mod:DarkMending(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Felspite Dominator
 function mod:Felfrenzy(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 do
@@ -123,7 +132,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning")
+			self:TargetMessage(args.spellId, args.destName, "orange", "Warning")
 		end
 	end
 end

@@ -36,12 +36,12 @@ end
 --
 
 function mod:Wither(args)
-	self:Message(args.spellId, "Important", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 19)
 end
 
 function mod:WitherApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -50,7 +50,7 @@ function mod:WitherRemoved(args)
 end
 
 function mod:ConsumeLifeEnergy(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Long", nil, nil, self:Healer())
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Long", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 4, args.destName)
 	self:CDBar(args.spellId, 20)
 end
@@ -60,5 +60,5 @@ function mod:ConsumeLifeEnergyOver(args)
 end
 
 function mod:RampantGrowth(args)
-	self:Message(args.spellId, "Attention", "Info", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
 end

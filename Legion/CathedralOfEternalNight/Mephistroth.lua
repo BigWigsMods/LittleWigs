@@ -70,9 +70,9 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 234283 and phase == 2 then -- Expel Shadows
-		self:Message(233206, "Attention", "Warning", 234283)
+		self:Message(233206, "yellow", "Warning", 234283)
 		local timeLeft = 0
 		if timeLost == 0 or not self:GetOption("custom_on_time_lost") then
 			timeLeft = self:BarTimeLeft(233206) -- Shadow Fade
@@ -92,14 +92,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 end
 
 function mod:CarrionSwarm(args)
-	self:Message(args.spellId, "Attention", "Alarm")
+	self:Message(args.spellId, "yellow", "Alarm")
 	if self:BarTimeLeft(233206) > 18.2 then -- Shadow Fade
 		self:Bar(args.spellId, 19.8)
 	end
 end
 
 function mod:DemonicUpheaval(args)
-	self:Message(args.spellId, "Attention", "Alert", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Alert", CL.incoming:format(args.spellName))
 	if self:BarTimeLeft(233206) > 31.9 then -- Shadow Fade
 		self:Bar(args.spellId, 31.9)
 	end
@@ -107,7 +107,7 @@ end
 
 do
 	local list, guid = mod:NewTargetList(), nil
-	function mod:UNIT_AURA(event, unit)
+	function mod:UNIT_AURA(_, unit)
 		local name = self:UnitDebuff(unit, 233963) -- Demonic Upheaval Debuff Id
 		local n = self:UnitName(unit)
 		if upheavalWarned[n] and not name then
@@ -116,7 +116,7 @@ do
 			guid = UnitGUID(n)
 			list[#list+1] = n
 			if #list == 1 then
-				self:ScheduleTimer("TargetMessage", 1, 233196, list, "Important", "Warning", 233963) -- Travel time
+				self:ScheduleTimer("TargetMessage", 1, 233196, list, "red", "Warning", 233963) -- Travel time
 			end
 			if self:Me(guid) then
 				self:Say(233196)
@@ -128,7 +128,7 @@ do
 end
 
 function mod:DarkSolitude(args)
-	self:Message(args.spellId, "Attention", "Alarm")
+	self:Message(args.spellId, "yellow", "Alarm")
 	if self:BarTimeLeft(233206) > 8.5 then -- Shadow Fade
 		self:CDBar(args.spellId, 8.5)
 	end
@@ -138,14 +138,14 @@ function mod:ShadowFade(args)
 	phase = 2
 	timeLost = 0
 	self:CloseProximity(234817) -- Dark Solitude
-	self:Message(args.spellId, "Positive", "Long")
+	self:Message(args.spellId, "green", "Long")
 	self:Bar(args.spellId, 34)
 end
 
 function mod:ShadowFadeRemoved(args)
 	phase = 1
 	self:OpenProximity(234817, 8) -- Dark Solitude
-	self:Message(args.spellId, "Positive", "Long", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", "Long", CL.removed:format(args.spellName))
 	self:Bar(args.spellId, 79.3)
 	self:Bar(233196, 3.5) -- Demonic Upheaval
 	self:Bar(234817, 7.1) -- Dark Solitude

@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Oshir", 1195, 1237)
 if not mod then return end
 mod:RegisterEnableMob(79852)
+mod.engageId = 1750
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -27,16 +29,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_AURA_APPLIED", "TimeToFeed", 162415)
 	self:Log("SPELL_AURA_REMOVED", "TimeToFeedOver", 162415)
-
-	self:Death("Win", 79852)
-end
-
-function mod:OnEngage()
-
 end
 
 --------------------------------------------------------------------------------
@@ -47,13 +41,13 @@ do
 	local t = 0
 	function mod:TimeToFeed(args)
 		t = GetTime()
-		self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "red", "Alarm")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
 
 	function mod:TimeToFeedOver(args)
-		self:Message(args.spellId, "Positive", nil, L.freed:format(GetTime()-t))
+		self:Message(args.spellId, "green", nil, L.freed:format(GetTime()-t))
 		self:PrimaryIcon(args.spellId)
 		self:StopBar(args.spellId, args.destName)
 	end

@@ -53,7 +53,7 @@ end
 
 do
 	function mod:GrievousThrow(args)
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
 		self:TargetBar(args.spellId, 15, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
@@ -64,19 +64,19 @@ do
 end
 
 function mod:Whirlwind(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "orange")
 end
 
 function mod:CreepingParalysis(args)
-	self:Message(args.spellId, "Attention", self:Dispeller("magic") and "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", self:Dispeller("magic") and "Warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 6)
 	self:CDBar(args.spellId, 27)
 end
 
 function mod:ClawRage(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 end
 
 function mod:Forms(args)
-	self:Message("stages", "Important", nil, L[args.spellId], args.spellId)
+	self:Message("stages", "red", nil, L[args.spellId], args.spellId)
 end

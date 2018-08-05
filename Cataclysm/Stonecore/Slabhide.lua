@@ -38,13 +38,13 @@ end
 
 function mod:LavaPool(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:CrystalStorm(args)
-	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 2.5, CL.cast:format(args.spellName))
 end
 

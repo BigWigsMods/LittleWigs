@@ -42,7 +42,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:Message("stages", "Positive", "Info", CL.stage:format(1), false)
+	self:Message("stages", "green", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -51,18 +51,18 @@ end
 
 function mod:BubbleBurst(args)
 	local text = CL.stage:format(2)
-	self:DelayedMessage("stages", 4, "Positive", text, false, "Info")
+	self:DelayedMessage("stages", 4, "green", text, false, "Info")
 	self:Bar("stages", 4, text, args.spellId)
 end
 
 function mod:CallWater(args)
-	self:DelayedMessage(-6327, 5, "Important", CL.count:format(CL.add_spawned, deaths+1), args.spellId, "Alarm")
+	self:DelayedMessage(-6327, 5, "red", CL.count:format(CL.add_spawned, deaths+1), args.spellId, "Alarm")
 	self:Bar(-6327, 5, CL.next_add, args.spellId)
 end
 
 function mod:AddDeath()
 	deaths = deaths + 1
-	self:Message(-6327, "Attention", nil, CL.add_killed:format(deaths, 4), 106526)
+	self:Message(-6327, "yellow", nil, CL.add_killed:format(deaths, 4), 106526)
 end
 
 do
@@ -72,7 +72,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

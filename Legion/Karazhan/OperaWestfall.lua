@@ -64,24 +64,24 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 
 	if foundMrrgria and phase == 1 then -- Mrrgria
 		phase = 2
-		self:Message("stages", "Neutral", "Long", CL.stage:format(2), false)
+		self:Message("stages", "cyan", "Long", CL.stage:format(2), false)
 		self:StopBar(227568) -- Burning Leg Sweep
 		self:Bar(227777, 8.5) -- Thunder Ritual
 		self:Bar(227783, 15.5) -- Wash Away
 	elseif foundToeKnee and phase == 2 then -- Toe Knee
 		phase = 3
-		self:Message("stages", "Neutral", "Long", CL.stage:format(3), false)
+		self:Message("stages", "cyan", "Long", CL.stage:format(3), false)
 		self:Bar(227568, 8) -- Burning Leg Sweep
 	end
 end
 
 function mod:BurningLegSweep(args)
-	self:Message(args.spellId, "Attention", "Alarm")
+	self:Message(args.spellId, "yellow", "Alarm")
 	self:CDBar(args.spellId, 19)
 end
 
 function mod:ThunderRitual(args)
-	self:Message(args.spellId, "Important", "Warning")
+	self:Message(args.spellId, "red", "Warning")
 	self:Bar(args.spellId, 17)
 end
 
@@ -99,7 +99,7 @@ function mod:ThunderRitualRemoved(args)
 end
 
 function mod:WashAway(args)
-	self:Message(args.spellId, "Urgent", "Info")
+	self:Message(args.spellId, "orange", "Info")
 	self:Bar(args.spellId, 23)
 end
 

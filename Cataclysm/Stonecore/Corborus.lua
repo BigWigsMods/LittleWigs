@@ -40,7 +40,7 @@ end
 
 function mod:OnEngage()
 	self:Bar("burrow", 30, L.burrow_message, "ABILITY_HUNTER_PET_WORM")
-	self:DelayedMessage("burrow", 25, "Attention", L.burrow_warning)
+	self:DelayedMessage("burrow", 25, "yellow", L.burrow_warning)
 	self:ScheduleTimer("Burrow", 30)
 end
 
@@ -49,22 +49,22 @@ end
 --
 
 function mod:Burrow()
-	self:Message("burrow", "Important", "Info", L.burrow_message, "ABILITY_HUNTER_PET_WORM")
+	self:Message("burrow", "red", "Info", L.burrow_message, "ABILITY_HUNTER_PET_WORM")
 	self:Bar("burrow", 25, L.emerge_message, "ABILITY_HUNTER_PET_WORM")
-	self:DelayedMessage("burrow", 20, "Attention", L.emerge_warning)
+	self:DelayedMessage("burrow", 20, "yellow", L.emerge_warning)
 	self:ScheduleTimer("Emerge", 25)
 end
 
 function mod:Emerge()
-	self:Message("burrow", "Important", "Info", L.emerge_message, "ABILITY_HUNTER_PET_WORM")
+	self:Message("burrow", "red", "Info", L.emerge_message, "ABILITY_HUNTER_PET_WORM")
 	self:Bar("burrow", 90, L.burrow_message, "ABILITY_HUNTER_PET_WORM")
-	self:DelayedMessage("burrow", 85, "Attention", L.burrow_warning)
+	self:DelayedMessage("burrow", 85, "yellow", L.burrow_warning)
 	self:ScheduleTimer("Burrow", 90) --guesstimate
 end
 
 function mod:Barrage(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(86881, args.destName, "Personal", "Alarm")
+		self:TargetMessage(86881, args.destName, "blue", "Alarm")
 		self:Flash(86881)
 	end
 end

@@ -1,4 +1,3 @@
-if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -42,7 +41,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 257454 then -- Swiftwind Saber with Loaded Dice: All Hands!
 		self:Message(257278, "yellow")
 		self:PlaySound(257278, "alert", "watchstep")

@@ -69,25 +69,25 @@ end
 -- Event Handlers
 --
 
-function mod:BlinkStrikes(_, spellName, _, _, spellId)
+function mod:BlinkStrikes(_, _, _, spellId)
 	if spellId == 199809 then -- UNIT_SPELLCAST_SUCCEEDED
 		blinkCount = 1
 		self:Bar(-12687, 30)
 	elseif spellId == 199811 then -- UNIT_SPELLCAST_CHANNEL_START
 		local target = self:UnitName("boss1target")
-		self:TargetMessage(-12687, target, "Urgent", "Alarm", CL.count:format(spellName, blinkCount))
+		self:TargetMessage(-12687, target, "orange", "Alarm", CL.count:format(self:SpellName(spellId), blinkCount))
 		blinkCount = blinkCount + 1
 	end
 end
 
 -- function mod:ViciousManafang()
--- 	self:Message("vicious_manafang", "Attention", self:Tank() and "Info", L.spawned:format(L.vicious_manafang), false)
+-- 	self:Message("vicious_manafang", "yellow", self:Tank() and "Info", L.spawned:format(L.vicious_manafang), false)
 -- 	self:Bar("vicious_manafang", 20, L.vicious_manafang, L.vicious_manafang_icon)
 -- 	self:ScheduleTimer("ViciousManafang", 20)
 -- end
 
 function mod:Devour(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Info", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "red", "Info", nil, nil, true)
 end
 
 do
@@ -96,7 +96,7 @@ do
 		if isOnMe then
 			self:OpenProximity(spellId, 30, targets)
 		end
-		self:TargetMessage(spellId, self:ColorName(targets), "Attention", "Warning")
+		self:TargetMessage(spellId, self:ColorName(targets), "yellow", "Warning")
 		wipe(targets)
 		isOnMe = nil
 	end
@@ -115,7 +115,7 @@ do
 
 	function mod:TangledWebRemoved(args)
 		if self:Me(args.destName) then
-			self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+			self:Message(args.spellId, "green", nil, CL.removed:format(args.spellName))
 			self:CloseProximity(args.spellId)
 		end
 	end
@@ -127,7 +127,7 @@ do
 		local t = GetTime()
 		if t-prev > 5 then
 			prev = t
-			self:Message(args.spellId, "Urgent")
+			self:Message(args.spellId, "orange")
 			self:CDBar(args.spellId, 30)
 		end
 	end
@@ -141,7 +141,7 @@ do
 			if t-prev > 2 then
 				prev = t
 				self:Flash(args.spellId)
-				self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

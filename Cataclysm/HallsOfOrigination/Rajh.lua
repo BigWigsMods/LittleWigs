@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_POWER", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
@@ -44,34 +44,34 @@ end
 --
 
 function mod:SunStrike(args)
-	self:Message(-2861, "Attention")
+	self:Message(-2861, "yellow")
 end
 
 function mod:SummonSunOrb(args)
-	self:Message(-2862, "Urgent")
+	self:Message(-2862, "orange")
 end
 
 function mod:InfernoLeap(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(-2863, args.destName, "Personal", "Warning")
+		self:TargetMessage(-2863, args.destName, "blue", "Warning")
 		self:Flash(-2863)
 	end
 end
 
 do
-	function mod:UNIT_POWER(unit)
+	function mod:UNIT_POWER_FREQUENT(_, unit)
 		local power = UnitPower(unit) / UnitPowerMax(unit) * 100
 		if power <= 30 and not warnedAboutBlessingIncoming then
 			warnedAboutBlessingIncoming = true
-			self:Message(76355, "Neutral", nil, CL.soon:format(self:SpellName(76355)))
+			self:Message(76355, "cyan", nil, CL.soon:format(self:SpellName(76355)))
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 76352 then -- Blessing of the Sun
-		self:Message(76355, "Positive", "Long", CL.casting:format(spellName))
+		self:Message(76355, "green", "Long", CL.casting:format(self:SpellName(spellId)))
 		self:CastBar(76355, 20) -- EJ says "reenergizes himself with ... for 3 sec" but it took 17s for him to get back 100 energy when I tried, and the last SPELL_PERIODIC_ENERGIZE event fired 20s after the USCS
-		self:ScheduleTimer(function() warnedAboutBlessingIncoming = nil end, 20) -- no events that indicate the end of this "phase"
+		self:SimpleTimer(function() warnedAboutBlessingIncoming = nil end, 20) -- no events that indicate the end of this "phase"
 	end
 end

@@ -71,19 +71,19 @@ end
 function mod:CausticTar(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount % 3 == 1 then -- 1, 4, 7
-		self:StackMessage(args.spellId, args.destName, amount, "Personal", amount > 1 and "Warning")
+		self:StackMessage(args.spellId, args.destName, amount, "blue", amount > 1 and "Warning")
 	end
 end
 
 do
 	local function printTarget(self, player, guid)
 		if not UnitDetailedThreatSituation(player, "boss1") then
-			self:TargetMessage(120789, player, "Attention", "Alarm")
+			self:TargetMessage(120789, player, "yellow", "Alarm")
 			if self:Me(guid) then
 				self:Say(120789)
 			end
 		else -- either incorrect (cast time depends on distance between the boss and the target) or only one player is alive
-			self:Message(120789, "Attention")
+			self:Message(120789, "yellow")
 		end
 	end
 	function mod:DashingStrike(args)
@@ -93,7 +93,7 @@ do
 end
 
 function mod:ThousandBlades(args)
-	self:Message(-6287, "Important", "Long", CL.casting:format(args.spellName))
+	self:Message(-6287, "red", "Long", CL.casting:format(args.spellName))
 	self:CastBar(-6287, 5)
 end
 
@@ -104,7 +104,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(-6287, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(-6287, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end

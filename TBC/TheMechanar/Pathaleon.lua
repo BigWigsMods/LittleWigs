@@ -65,21 +65,21 @@ function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) ~= 19220 then return end
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 28 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
-		self:Message(35285, "Important", nil, L.despawn_message)
+		self:UnregisterUnitEvent(event, "target", "focus")
+		self:Message(35285, "red", nil, L.despawn_message)
 	end
 end
 
 function mod:NetherWraith(args)
-	self:Message(35285, "Important")
+	self:Message(35285, "red")
 end
 
 function mod:Domination(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 

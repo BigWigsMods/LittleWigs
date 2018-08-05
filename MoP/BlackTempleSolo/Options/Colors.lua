@@ -1,18 +1,18 @@
 
 BigWigs:AddColors("Essence of Order", {
-	[134225] = "Urgent",
-	[134234] = "Attention",
+	[134225] = "orange",
+	[134234] = "yellow",
 })
 
 BigWigs:AddColors("Kanrethad Ebonlocke", {
-	[1098] = "Neutral",
-	[138559] = "Urgent",
-	[138560] = {"Personal","Positive"},
-	[138561] = "Personal",
-	[138564] = {"Important","Positive"},
-	[138685] = "Attention",
-	[138751] = "Attention",
-	[138755] = "Attention",
-	[138789] = "Attention",
-	[139060] = "Urgent",
+	[1098] = "cyan",
+	[138559] = "orange",
+	[138560] = {"blue","green"},
+	[138561] = "blue",
+	[138564] = {"red","green"},
+	[138685] = "yellow",
+	[138751] = "yellow",
+	[138755] = "yellow",
+	[138789] = "yellow",
+	[139060] = "orange",
 })

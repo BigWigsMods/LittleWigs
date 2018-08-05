@@ -54,23 +54,23 @@ do
 	function mod:SuperShrinkRay(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Alert")
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Alert")
 		end
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.mech_trigger or msg:find(L.mech_trigger, nil, true) then
-		self:Message(-5999, "Attention", nil, CL.incoming:format(self:SpellName(-5999))) -- Steamrigger Mechanics
+		self:Message(-5999, "yellow", nil, CL.incoming:format(self:SpellName(-5999))) -- Steamrigger Mechanics
 	end
 end
 
 do
-	function mod:UNIT_HEALTH_FREQUENT(unit)
+	function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < nextAddWarning then
 			nextAddWarning = nextAddWarning - 25
-			self:Message(-5999, "Important", nil, CL.soon:format(self:SpellName(-5999))) -- Steamrigger Mechanics
+			self:Message(-5999, "red", nil, CL.soon:format(self:SpellName(-5999))) -- Steamrigger Mechanics
 
 			while nextAddWarning >= 25 and hp < nextAddWarning do
 				-- account for high-level characters hitting multiple thresholds
@@ -78,7 +78,7 @@ do
 			end
 
 			if nextAddWarning < 25 then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+				self:UnregisterUnitEvent(event, unit)
 			end
 	 	end
 	end

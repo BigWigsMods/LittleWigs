@@ -39,7 +39,7 @@ end
 --  Event Handlers
 
 function mod:SporeCloud(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "Urgent", self:Me(args.destGUID) and "Warning" or "Info")
+	self:StackMessage(args.spellId, args.destName, args.amount, "orange", self:Me(args.destGUID) and "Warning" or "Info")
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 
@@ -48,7 +48,7 @@ function mod:SporeCloudRemoved(args)
 end
 
 function mod:FoulSpores(args)
-	self:Message(-6008, "Attention", "Alarm", CL.casting:format(args.spellName))
+	self:Message(-6008, "yellow", "Alarm", CL.casting:format(args.spellName))
 	self:CastBar(-6008, 11)
 end
 
@@ -63,16 +63,16 @@ do
 			local t = GetTime()
 			if t - prev > (self:Melee() and 4 or 1.5) then -- melees/tank can't hit the boss while he's casting that but they are still healing the boss taking this damage and he's immobile, so not throttling for the entire cast
 				prev = t
-				self:Message(-6008, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(-6008, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealth(unit) * 100
 	if hp < 25 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message(-6008, "Urgent", nil, CL.soon:format(self:SpellName(-6008))) -- Foul Spores
+		self:UnregisterUnitEvent(event, unit)
+		self:Message(-6008, "orange", nil, CL.soon:format(self:SpellName(-6008))) -- Foul Spores
 	end
 end

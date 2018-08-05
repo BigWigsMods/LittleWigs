@@ -14,6 +14,12 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local meteorsGoingOff, castersCollector = 0, {}
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -69,6 +75,12 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "Meteor", 38903)
 	self:Log("SPELL_CAST_SUCCESS", "MeteorSuccess", 38903)
+	self:Death("AbyssalDeath", 20898)
+end
+
+function mod:OnBossDisable()
+	meteorsGoingOff = 0
+	wipe(castersCollector)
 end
 
 --------------------------------------------------------------------------------
@@ -79,9 +91,10 @@ do
 	-- One of the randomly chosen debuffs that apply to people being hit by Chaos Breath (36677), so there's a chance of multiple people getting it.
 	local playerList = mod:NewTargetList()
 	function mod:Hex(args)
+		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER = 0x400, filtering out pets
 		playerList[#playerList + 1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Alert", nil, nil, self:Dispeller("magic"))
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Alert", nil, nil, self:Dispeller("magic"))
 		end
 	end
 end
@@ -92,32 +105,32 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:Message(38815, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+			self:Message(38815, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 		end
 	end
 end
 
 function mod:SoulStealDebuff(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end
 
 function mod:SoulStealBuff(args)
 	if self:Dispeller("magic", true) and not self:Dispeller("magic") then -- Only show 1 message to those who can dispel both (priests, restoration shamans)
-		self:TargetMessage(36778, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(36778, args.destName, "yellow", "Alarm", nil, nil, true)
 	end
 end
 
 function mod:Domination(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
 function mod:SpitefulFury(args)
 	if self:Me(args.destGUID) or self:Tank() or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Long", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "orange", "Long", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
@@ -127,9 +140,10 @@ function mod:DebuffRemoved(args)
 end
 
 do
-	local prev, meteorsGoingOff = 0, 0
+	local prev = 0
 	function mod:Meteor(args)
 		meteorsGoingOff = meteorsGoingOff + 1 -- just in case both Abyssals are pulled
+		castersCollector[args.sourceGUID] = true
 		if meteorsGoingOff == 1 then
 			self:OpenProximity(args.spellId, 10) -- not possible to detect its target, no helpful visual circle either
 		end
@@ -137,15 +151,26 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
+			self:Message(args.spellId, "red", "Warning", CL.incoming:format(args.spellName))
 		end
 		self:Bar(args.spellId, 2)
 	end
 
 	function mod:MeteorSuccess(args)
 		meteorsGoingOff = meteorsGoingOff - 1
+		castersCollector[args.sourceGUID] = nil
 		if meteorsGoingOff == 0 then
 			self:CloseProximity(args.spellId)
+		end
+	end
+
+	function mod:AbyssalDeath(args)
+		if castersCollector[args.destGUID] then
+			meteorsGoingOff = meteorsGoingOff - 1
+			castersCollector[args.destGUID] = nil
+			if meteorsGoingOff == 0 then
+				self:CloseProximity(38903)
+			end
 		end
 	end
 end

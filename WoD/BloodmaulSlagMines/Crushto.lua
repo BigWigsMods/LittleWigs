@@ -6,7 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Slave Watcher Crushto", 1175, 888)
 if not mod then return end
 mod:RegisterEnableMob(74787)
---BOSS_KILL#1653#Slave Watcher Crushto
+mod.engageId = 1653
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -36,14 +37,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "FerociousYell", 150759)
 	self:Log("SPELL_CAST_START", "WildSlam", 150753)
 	self:Log("SPELL_AURA_APPLIED", "CrushingLeap", 150751)
 	self:Log("SPELL_AURA_REMOVED", "CrushingLeapOver", 150751)
-
-	self:Death("Win", 74787)
 end
 
 function mod:OnEngage()
@@ -56,16 +53,16 @@ end
 
 function mod:FerociousYell(args)
 	yellCount = yellCount + 1
-	self:Message(args.spellId, "Urgent", "Warning", CL.count:format(args.spellName, yellCount))
+	self:Message(args.spellId, "orange", "Warning", CL.count:format(args.spellName, yellCount))
 	self:CDBar(args.spellId, 13.3) -- Something will randomly delay this up to 19s
 end
 
 function mod:WildSlam(args)
-	self:Message(args.spellId, "Attention", "Long")
+	self:Message(args.spellId, "yellow", "Long")
 end
 
 function mod:CrushingLeap(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

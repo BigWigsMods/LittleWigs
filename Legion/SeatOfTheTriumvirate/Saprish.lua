@@ -64,15 +64,15 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 247206 then -- Overload Trap
-		self:Message(spellId, "Attention", "Alarm")
+		self:Message(spellId, "yellow", "Alarm")
 		self:Bar(spellId, 20.7)
 	end
 end
 
 function mod:VoidTrap(args)
-	self:Message(245873, "Neutral", "Info")
+	self:Message(245873, "cyan", "Info")
 	self:Bar(245873, 15.8)
 end
 
@@ -85,7 +85,7 @@ do
 	function mod:UmbralFlankingApplied(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "Urgent", "Alert")
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "orange", "Alert")
 		end
 		if self:Me(args.destGUID)then
 			self:Say(args.spellId)
@@ -94,7 +94,7 @@ do
 end
 
 function mod:RavagingDarkness(args)
-	self:Message(args.spellId, "Attention", "Long")
+	self:Message(args.spellId, "yellow", "Long")
 	self:Bar(args.spellId, 9.7)
 end
 
@@ -105,13 +105,13 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(245802, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(245802, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:DreadScreech(args)
-	self:Message(args.spellId, "Important", "Warning")
+	self:Message(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 15)
 end

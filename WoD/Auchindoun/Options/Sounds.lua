@@ -23,6 +23,7 @@ BigWigs:AddSounds("Teron'gor", {
 	[157001] = "Alert",
 	[157039] = "Alarm",
 	[157168] = "Warning",
+	["stages"] = "Info",
 })
 
 BigWigs:AddSounds("Auchindoun Trash", {

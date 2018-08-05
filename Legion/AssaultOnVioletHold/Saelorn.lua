@@ -44,7 +44,7 @@ do
 	function mod:VenomSpray(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "Attention", "Alert", nil, nil, self:Dispeller("poison"))
+			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "yellow", "Alert", nil, nil, self:Dispeller("poison"))
 			self:CDBar(args.spellId, 22)
 		end
 		if self:Me(args.destGUID) then
@@ -55,12 +55,12 @@ end
 
 function mod:CreepingSlaughter(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:FelDetonation(args)
-	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 30)
 end

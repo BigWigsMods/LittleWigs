@@ -1,28 +1,28 @@
 local L = BigWigs:NewBossLocale("Viceroy Nezhar", "ptBR")
 if not L then return end
 if L then
-	--L.tentacles = "Tentacles"
-	--L.guards = "Guards"
-	--L.interrupted = "%s interrupted %s (%.1fs left)!"
+	L.tentacles = "Tentáculos"
+	L.guards = "Guardas"
+	L.interrupted = "%s interrompido %s (%.1fs restando)!"
 end
 
 L = BigWigs:NewBossLocale("L'ura", "ptBR")
 if L then
-	--L.warmup_text = "L'ura Active"
-	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+	L.warmup_text = "L'ura Ativa"
+	L.warmup_trigger = "Quanto caos, quanta angústia. Nunca senti nada igual."
+	L.warmup_trigger_2 = "Tais reflexões podem esperar, entretanto. Esta entidade deve morrer."
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "ptBR")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunners gossip option."
-	--L.gossip_available = "Gossip available"
-	--L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated
+	L.custom_on_autotalk = "Conversa Automática"
+	L.custom_on_autotalk_desc = "Seleciona instantaneamente a opção de conversa com Alleria Correventos."
+	L.gossip_available = "Conversa disponível"
+	L.alleria_gossip_trigger = "Siga-me!" -- Allerias yell after the first boss is defeated
 
-	--L.alleria = "Alleria Windrunner"
-	--L.subjugator = "Shadowguard Subjugator"
-	--L.voidbender = "Shadowguard Voidbender"
-	--L.conjurer = "Shadowguard Conjurer"
-	--L.weaver = "Grand Shadow-Weaver"
+	L.alleria = "Alleria Correventos"
+	L.subjugator = "Subjugante da Guarda Sombria"
+	L.voidbender = "Dobra-caos da Guarda Sombria"
+	L.conjurer = "Conjuradora da Guarda Sombria"
+	L.weaver = "Tecelã-mor das Sombras"
 end

@@ -111,14 +111,14 @@ end
 
 -- SPELL_AURA_* events for Intensity behave inconsistently on this encounter, sometimes one of them fires them
 -- but the other one doesn't, then they might even switch on the next pull. A lot of fun.
-function mod:UNIT_AURA(unit)
+function mod:UNIT_AURA(event, unit)
 	local guid = UnitGUID(unit)
 	if not isTrialOfTheYaungol then -- check mob ids and unregister the event if it's not needed
 		local mobId = self:MobId(guid)
 		if mobId == 59051 or mobId == 59726 then
 			isTrialOfTheYaungol = true
 		else
-			self:UnregisterUnitEvent("UNIT_AURA", "boss1", "boss2")
+			self:UnregisterUnitEvent(event, "boss1", "boss2")
 			return
 		end
 	end
@@ -132,26 +132,26 @@ function mod:UNIT_AURA(unit)
 		if stacksOfIntensity[guid] and stacksOfIntensity[guid] > 0 then
 			stacksOfIntensity[guid] = 0
 			if not UnitIsDead(unit) and not self:UnitBuff(unit, 113309) then -- Ultimate Power
-				self:Message(-5549, "Positive", "Info", CL.removed_from:format(spellName, destName))
+				self:Message(-5549, "green", "Info", CL.removed_from:format(spellName, destName))
 			end
 		end
 	elseif not stacksOfIntensity[guid] or stacksOfIntensity[guid] < stacks then
 		stacksOfIntensity[guid] = stacks
 		if (stacks % 3 == 1 or stacks > 7) and stacks ~= 10 then
-			self:Message(-5549, "Urgent", stacks > 7 and UnitGUID("target") == guid and "Warning" or "Alert", CL.stack:format(stacks, spellName, destName))
+			self:Message(-5549, "orange", stacks > 7 and UnitGUID("target") == guid and "Warning" or "Alert", CL.stack:format(stacks, spellName, destName))
 		end
 	end
 end
 
 function mod:UltimatePower(args)
-	self:Message(-5549, "Important", "Warning", CL.other:format(args.spellName, args.destName), args.spellId)
+	self:Message(-5549, "red", "Warning", CL.other:format(args.spellName, args.destName), args.spellId)
 	self:TargetBar(-5549, 15, args.destName, args.spellId)
 end
 
 -- [[ The Champion of the Five Suns ]] --
 function mod:SunDeath(args)
 	sunsDead = sunsDead + 1
-	self:Message("stages", "Positive", "Info", CL.mob_killed:format(args.destName, sunsDead, 4), false)
+	self:Message("stages", "green", "Info", CL.mob_killed:format(args.destName, sunsDead, 4), false)
 end
 
 function mod:ShaDeath(args)
@@ -162,7 +162,7 @@ function mod:ShaDeath(args)
 		sunsDead = shaDead
 	end
 
-	self:Message("stages", "Positive", "Info", CL.mob_killed:format(args.destName, shaDead, 4), false)
+	self:Message("stages", "green", "Info", CL.mob_killed:format(args.destName, shaDead, 4), false)
 	if shaDead == 4 then
 		self:Bar("stages", 9.5, CL.stage:format(2), "inv_summerfest_firespirit")
 	end
@@ -173,5 +173,5 @@ end
 -- when IEEU fires.
 function mod:HellfireArrows(args)
 	self:RemoveLog("SPELL_CAST_START", args.spellId)
-	self:Message("stages", "Positive", "Info", CL.stage:format(2), false)
+	self:Message("stages", "green", "Info", CL.stage:format(2), false)
 end

@@ -47,7 +47,7 @@ end
 --
 
 function mod:Quake(args)
-	self:Message(args.spellId, "Attention", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
 end
 
 do
@@ -57,15 +57,15 @@ do
 		local t = GetTime()
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 		end
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextChainsWarning then
-		self:Message(75539, "Attention", nil, CL.soon:format(self:SpellName(75539))) -- Chains of Woe
+		self:Message(75539, "yellow", nil, CL.soon:format(self:SpellName(75539))) -- Chains of Woe
 		nextChainsWarning = nextChainsWarning - 33
 
 		while nextChainsWarning >= 33 and hp < nextChainsWarning do
@@ -74,17 +74,17 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		end
 
 		if nextChainsWarning < 33 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end
 
 function mod:ChainsOfWoe(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
 end
 
 function mod:TheSkullcracker(args)
 	local time = self:Normal() and 12 or 8 -- 12 sec on normal, 8 on heroic
 	self:CastBar(args.spellId, time)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 end

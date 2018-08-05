@@ -48,12 +48,12 @@ end
 --
 
 function mod:ArcaneExplosion(args)
-	self:Message(38197, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:Message(38197, "orange", "Warning", CL.casting:format(args.spellName))
 	self:CastBar(38197, 5)
 end
 
 function mod:Polymorph(args)
-	self:TargetMessage(38245, args.destName, "Attention")
+	self:TargetMessage(38245, args.destName, "yellow")
 	self:TargetBar(38245, 6, args.destName)
 end
 
@@ -66,13 +66,13 @@ do
 	local function announce(self, spellId, spellName)
 		-- this applies to the whole group but can be immuned
 		if self:Dispeller("magic") then -- the only case where we care who exactly got the debuff
-			self:TargetMessage(spellId, playerList, "Important", "Alarm", nil, nil, true)
+			self:TargetMessage(spellId, playerList, "red", "Alarm", nil, nil, true)
 		else
 			wipe(playerList)
 			if isOnMe then
-				self:TargetMessage(spellId, isOnMe, "Important", "Alarm")
+				self:TargetMessage(spellId, isOnMe, "red", "Alarm")
 			else
-				self:Message(spellId, "Important")
+				self:Message(spellId, "red")
 			end
 		end
 		isOnMe = nil
@@ -100,11 +100,11 @@ end
 
 do
 	local warnAt = { 85, 55, 30 }
-	function mod:UNIT_HEALTH_FREQUENT(unit)
+	function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < warnAt[explosionWarnings] then
 			explosionWarnings = explosionWarnings + 1
-			self:Message(38197, "Urgent", nil, CL.soon:format(self:SpellName(38197))) -- Arcane Explosion
+			self:Message(38197, "orange", nil, CL.soon:format(self:SpellName(38197))) -- Arcane Explosion
 
 			while explosionWarnings <= #warnAt and hp < warnAt[explosionWarnings] do
 				-- account for high-level characters hitting multiple thresholds
@@ -112,7 +112,7 @@ do
 			end
 
 			if explosionWarnings > #warnAt then
-				self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+				self:UnregisterUnitEvent(event, unit)
 			end
 	 	end
 	end

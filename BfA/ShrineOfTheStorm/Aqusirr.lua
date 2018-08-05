@@ -1,4 +1,3 @@
-if not C_ChatInfo then return end -- XXX Don't load outside of 8.0
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -17,7 +16,7 @@ function mod:GetOptions()
 	return {
 		265001, -- Sea Blast
 		264560, -- Choking Brine
-		264155, -- Surging Rush
+		264101, -- Surging Rush
 		264166, -- Undertow
 		264903, -- Erupting Waters
 	}
@@ -27,14 +26,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SeaBlast", 265001)
 	self:Log("SPELL_CAST_SUCCESS", "ChokingBrine", 264560)
 	self:Log("SPELL_AURA_APPLIED", "ChokingBrineApplied", 264560, 264773) -- Initial, Ground Pickup
-	self:Log("SPELL_CAST_START", "SurgingRush", 264155)
-	self:Log("SPELL_CAST_SUCCESS", "Undertow", 264166)
+	self:Log("SPELL_CAST_START", "SurgingRush", 264101)
+	self:Log("SPELL_CAST_SUCCESS", "Undertow", 264166, 264144)
 	self:Log("SPELL_CAST_START", "EruptingWaters", 264903)
 end
 
 function mod:OnEngage()
 	self:Bar(264560, 12) -- Choking Brine _success
-	self:Bar(264155, 15.5) -- Surging Rush _start
+	self:Bar(264101, 15.5) -- Surging Rush _start
 	self:Bar(264166, 32) -- Undertow _success
 end
 
@@ -92,11 +91,11 @@ do
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:TargetMessage2(args.spellId, "orange", args.destName)
+			self:TargetMessage2(264166, "orange", args.destName)
 			if self:Me(args.destGUID) then
-				self:PlaySound(args.spellId, "warning")
+				self:PlaySound(264166, "warning")
 			end
-			--self:Bar(args.spellId, 32) XXX Need more info
+			--self:Bar(264166, 32) XXX Need more info
 		end
 	end
 end
@@ -105,6 +104,6 @@ function mod:EruptingWaters(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long", "intermission")
 	self:Bar(264560, 13.5) -- Choking Brine _success
-	self:Bar(264155, 18.5) -- Surging Rush _start
+	self:Bar(264101, 18.5) -- Surging Rush _start
 	self:Bar(264166, 28.5) -- Undertow _success
 end

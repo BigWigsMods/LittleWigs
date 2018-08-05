@@ -91,17 +91,17 @@ end
 
 -- Arcane Anomaly
 function mod:ArcaneSlicer(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 end
 
 -- Arcane Anomaly and Warp Shade
 function mod:ArcaneReconstitution(args)
-	self:Message(args.spellId, "Urgent", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Warp Shade
 function mod:PhaseBreach(args)
-	self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Withered Manawraith, Wrathguard Felblade
@@ -112,7 +112,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Warning", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Warning", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -121,34 +121,34 @@ end
 -- Eredar Chaosbringer
 function mod:BrandoftheLegion(args)
 	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
-		self:Message(args.spellId, "Attention", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 	end
 end
 
 function mod:BrandoftheLegionApplied(args)
 	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	end
 end
 
 function mod:DemonicAscension(args)
 	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
-		self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 	end
 end
 
 function mod:DemonicAscensionApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
 	end
 end
 
 function mod:DemonicAscensionDispelled(args)
 	if args.extraSpellId == 226285 then
-		self:Message(226285, "Positive", "Info", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:Message(226285, "green", "Info", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 	end
 end
 
 function mod:PortalArgus(args)
-	self:Message(args.spellId, "Urgent", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end

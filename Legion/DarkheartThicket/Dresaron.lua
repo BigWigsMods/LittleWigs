@@ -47,7 +47,7 @@ end
 --
 
 function mod:DownDraft(args)
-	self:Message(args.spellId, "Important", "Warning")
+	self:Message(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 30) -- pull:20.8, 34.7 / hc pull:21.7, 30.3, 30.4 / m pull:21.8, 34.0, 35.2
 end
 
@@ -58,15 +58,15 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alarm", CL.you:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 199332 then -- Breath of Corruption
-		self:Message(191325, "Attention", "Info")
+		self:Message(191325, "yellow", "Info")
 		self:CDBar(191325, first and 20 or 30) -- XXX m pull:13.5, 21.5, 13.8, 20.6, 14.6, 20.6
 		first = false
 	end

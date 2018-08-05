@@ -1,23 +1,23 @@
 
 BigWigs:AddColors("Hungarfen", {
-	[-6008] = {"Attention","Personal","Urgent"},
-	[31689] = {"Personal","Urgent"},
+	[-6008] = {"yellow","blue","orange"},
+	[31689] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Ghaz'an", {
-	[15716] = {"Positive","Urgent"},
-	[34268] = {"Important","Personal"},
-	[38737] = "Personal",
+	[15716] = {"green","orange"},
+	[34268] = {"red","blue"},
+	[38737] = "blue",
 })
 
 BigWigs:AddColors("Swamplord Musel'ek", {
-	[31429] = {"Important","Personal"},
-	[31615] = {"Attention","Personal"},
-	[34971] = {"Personal","Urgent"},
+	[31429] = {"red","blue"},
+	[31615] = {"yellow","blue"},
+	[34971] = {"blue","orange"},
 })
 
 BigWigs:AddColors("The Black Stalker", {
-	[31704] = {"Personal","Urgent"},
-	[31715] = {"Important","Personal","Positive"},
-	[31717] = {"Attention","Personal"},
+	[31704] = {"blue","orange"},
+	[31715] = {"red","blue","green"},
+	[31717] = {"yellow","blue"},
 })

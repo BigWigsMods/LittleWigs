@@ -28,7 +28,7 @@ end
 
 function mod:MirroredSoul(args)
 	if self:MobId(args.destGUID) ~= 36502 then -- both the boss and its target get this debuff
-		self:TargetMessage(args.spellId, args.destName, "Urgent", "Alert")
+		self:TargetMessage(args.spellId, args.destName, "orange", "Alert")
 		self:TargetBar(args.spellId, 8, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
@@ -42,6 +42,6 @@ function mod:MirroredSoulRemoved(args)
 end
 
 function mod:WailingSouls(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 15)
 end

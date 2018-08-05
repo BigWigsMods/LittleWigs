@@ -35,18 +35,18 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 40825 then -- Erunak Stonespeaker
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 55 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-			self:Message("stages", "Positive", nil, CL.soon:format(CL.stage:format(2)), false)
+			self:UnregisterUnitEvent(event, unit)
+			self:Message("stages", "green", nil, CL.soon:format(CL.stage:format(2)), false)
 		end
 	end
 end
 
 function mod:Enslave(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -55,12 +55,12 @@ function mod:EnslaveRemoved(args)
 end
 
 function mod:AbsorbMagic(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 end
 
 function mod:MindFog(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "Personal", "Alarm")
+		self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
 	end
 end
 

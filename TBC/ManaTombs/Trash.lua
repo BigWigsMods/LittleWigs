@@ -68,7 +68,7 @@ end
 
 function mod:ShieldBash(args)
 	if self:Me(args.destGUID) or self:Healer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, true)
+		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
@@ -79,7 +79,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:Message(22883, "Urgent", "Long", CL.casting:format(args.spellName))
+			self:Message(22883, "orange", "Long", CL.casting:format(args.spellName))
 		end
 	end
 end
@@ -93,21 +93,21 @@ do
 		end
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Important", "Alert", nil, nil, self:Dispeller("magic"))
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "red", "Alert", nil, nil, self:Dispeller("magic"))
 		end
 	end
 end
 
 function mod:ShadowsEmbrace(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
 end
 
 function mod:CurseOfImpotence(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessage(args.spellId, args.destName, "Attention")
+		self:TargetMessage(args.spellId, args.destName, "yellow")
 	end
 end
 
 function mod:Polymorph(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("magic"))
 end

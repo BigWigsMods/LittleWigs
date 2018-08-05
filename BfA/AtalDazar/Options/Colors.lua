@@ -3,7 +3,7 @@ BigWigs:AddColors("Priestess Alun'za", {
 	[255558] = {"blue","green"},
 	[255577] = "red",
 	[255579] = "yellow",
-	[255582] = {"orange","Personal"},
+	[255582] = {"orange","blue"},
 	[258709] = "blue",
 })
 
@@ -17,20 +17,20 @@ BigWigs:AddColors("Vol'kaal", {
 BigWigs:AddColors("Rezan", {
 	[255371] = "red",
 	[255434] = "yellow",
-	[257407] = {"orange","Personal"},
+	[257407] = {"orange","blue"},
 })
 
 BigWigs:AddColors("Yazma", {
 	[249919] = "yellow",
-	[249923] = {"Personal","red"},
+	[249923] = {"blue","red"},
 	[250036] = "blue",
 	[250050] = "yellow",
 	[250096] = "orange",
 })
 
 BigWigs:AddColors("Atal'Dazar Trash", {
-	[252687] = {"orange","Personal"},
-	[252781] = {"blue","Personal"},
+	[252687] = {"orange","blue"},
+	[252781] = {"blue","blue"},
 	[253721] = "yellow",
 	[255041] = "orange",
 	[255567] = "yellow",

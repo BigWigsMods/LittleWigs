@@ -1,36 +1,36 @@
 
 BigWigs:AddColors("Rokmora", {
-	[188114] = "Attention",
-	[188169] = "Urgent",
-	[192800] = "Personal",
+	[188114] = "yellow",
+	[188169] = "orange",
+	[192800] = "blue",
 })
 
 BigWigs:AddColors("Ularogg Cragshaper", {
-	[198428] = "Important",
-	[198496] = "Attention",
-	[198564] = "Attention",
-	["bellow"] = "Urgent",
+	[198428] = "red",
+	[198496] = "yellow",
+	[198564] = "yellow",
+	["bellow"] = "orange",
 })
 
 BigWigs:AddColors("Naraxas", {
-	[-12527] = "Attention",
-	[199178] = {"Personal","Positive","Urgent"},
-	[199775] = "Attention",
-	[205549] = "Important",
-	[210150] = "Urgent",
+	[-12527] = "yellow",
+	[199178] = {"blue","green","orange"},
+	[199775] = "yellow",
+	[205549] = "red",
+	[210150] = "orange",
 })
 
 BigWigs:AddColors("Dargrul", {
-	[200154] = {"Attention","Personal"},
-	[200404] = "Positive",
-	[200551] = "Positive",
-	[200700] = "Urgent",
-	[200732] = "Important",
+	[200154] = {"yellow","blue"},
+	[200404] = "green",
+	[200551] = "green",
+	[200700] = "orange",
+	[200732] = "red",
 })
 
 BigWigs:AddColors("Neltharions Lair Trash", {
-	[183088] = "Attention",
-	[193585] = "Important",
-	[202181] = "Important",
-	[226296] = "Urgent",
+	[183088] = "yellow",
+	[193585] = "red",
+	[202181] = "red",
+	[226296] = "orange",
 })

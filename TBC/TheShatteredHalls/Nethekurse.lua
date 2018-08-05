@@ -40,7 +40,7 @@ function mod:DeathCoil(args)
 end
 
 function mod:DeathCoilApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 end
 
 do
@@ -50,20 +50,20 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(30496, "Personal", "Alarm", CL.underyou:format(self:SpellName(30496)))
+				self:Message(30496, "blue", "Alarm", CL.underyou:format(self:SpellName(30496)))
 			end
 		end
 	end
 end
 
 function mod:DarkSpin(args)
-	self:Message(args.spellId, "Important", "Info", CL.percent:format(25, args.spellName))
+	self:Message(args.spellId, "red", "Info", CL.percent:format(25, args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 30 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message(30502, "Positive", nil, CL.soon:format(self:SpellName(30502)), false) -- Dark Spin
+		self:UnregisterUnitEvent(event, unit)
+		self:Message(30502, "green", nil, CL.soon:format(self:SpellName(30502)), false) -- Dark Spin
 	end
 end

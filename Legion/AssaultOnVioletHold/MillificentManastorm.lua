@@ -44,22 +44,22 @@ end
 --
 
 function mod:DeltaFinger(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 	self:Bar(args.spellId, 8.5)
 end
 
 function mod:SquirrelBomb(args)
-	self:Message(201240, "Attention", "Info")
+	self:Message(201240, "yellow", "Info")
 	self:CDBar(201240, 18)
 end
 
 function mod:RocketChicken(args)
-	self:Message(201392, "Important", "Alarm")
+	self:Message(201392, "red", "Alarm")
 	self:CDBar(201392, args.spellId == 201438 and 9.7 or 18)
 end
 
 function mod:MillificentsRage(args)
-	self:Message(args.spellId, "Neutral", "Warning")
+	self:Message(args.spellId, "cyan", "Warning")
 	self:CDBar(201240, 5) -- Overloaded Squirrel Bomb
 	self:CDBar(201392, 13.5) -- Reinforced Rocket Chicken
 end

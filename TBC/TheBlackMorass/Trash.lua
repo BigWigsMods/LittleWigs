@@ -43,11 +43,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	if not C_UIWidgetManager then -- XXX 8.0
-		self:RegisterEvent("UPDATE_WORLD_STATES")
-	else
-		self:RegisterWidgetEvent(527, "UpdateWaveTimers")
-	end
+	self:RegisterWidgetEvent(527, "UpdateWaveTimers")
 
 	self:Death("BossDeath", 17879, 17880) -- Chrono Lord Deja, Temporus
 	self:Death("Disable", 17881) -- Aeonus
@@ -62,36 +58,6 @@ end
 -- Event Handlers
 --
 
-function mod:UPDATE_WORLD_STATES() -- XXX 8.0
-	for i = 1, GetNumWorldStateUI() do
-		local _, state, _, num = GetWorldStateUIInfo(i)
-		if state > 0 and num then -- Check if state is visible and if text exists.
-			local wave = num:match("(%d+).+18")
-			if wave then
-				local currentWave = tonumber(wave)
-				if currentWave and currentWave ~= prevWave then
-					prevWave = currentWave
-					local rift = self:SpellName(147840) -- Time Rift
-					self:Bar("wave", 15, CL.count:format(rift, currentWave), "INV_Misc_ShadowEgg")
-					if currentWave == 6 then
-						local chronoLordDeja = EJ_GetEncounterInfo(552)
-						self:Message("wave", "Attention", "Info", CL.custom_sec:format(chronoLordDeja, 15), false)
-					elseif currentWave == 12 then
-						local temporus = EJ_GetEncounterInfo(553)
-						self:Message("wave", "Attention", "Info", CL.custom_sec:format(temporus, 15), false)
-					elseif currentWave == 18 then
-						local aeonus = EJ_GetEncounterInfo(554)
-						self:Message("wave", "Attention", "Info", CL.custom_sec:format(aeonus, 15), false)
-					else
-						self:Message("wave", "Attention", "Info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
-						self:Bar("wave", 135, CL.count:format(rift, currentWave+1), "INV_Misc_ShadowEgg") -- 120s + 15s
-					end
-				end
-			end
-		end
-	end
-end
-
 function mod:UpdateWaveTimers(id, text)
 	local wave = text:match("(%d+).+18")
 	if wave then
@@ -102,16 +68,16 @@ function mod:UpdateWaveTimers(id, text)
 			self:Bar("wave", 15, CL.count:format(rift, currentWave), "INV_Misc_ShadowEgg")
 			if currentWave == 6 then
 				local chronoLordDeja = EJ_GetEncounterInfo(552)
-				self:Message("wave", "Attention", "Info", CL.custom_sec:format(chronoLordDeja, 15), false)
+				self:Message("wave", "yellow", "Info", CL.custom_sec:format(chronoLordDeja, 15), false)
 			elseif currentWave == 12 then
 				local temporus = EJ_GetEncounterInfo(553)
-				self:Message("wave", "Attention", "Info", CL.custom_sec:format(temporus, 15), false)
+				self:Message("wave", "yellow", "Info", CL.custom_sec:format(temporus, 15), false)
 			elseif currentWave == 18 then
 				self:UnregisterWidgetEvent(id)
 				local aeonus = EJ_GetEncounterInfo(554)
-				self:Message("wave", "Attention", "Info", CL.custom_sec:format(aeonus, 15), false)
+				self:Message("wave", "yellow", "Info", CL.custom_sec:format(aeonus, 15), false)
 			else
-				self:Message("wave", "Attention", "Info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
+				self:Message("wave", "yellow", "Info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
 				self:Bar("wave", 135, CL.count:format(rift, currentWave+1), "INV_Misc_ShadowEgg") -- 120s + 15s
 			end
 		end

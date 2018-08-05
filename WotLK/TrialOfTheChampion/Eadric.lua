@@ -30,11 +30,11 @@ end
 --  Event Handlers
 
 function mod:Radiance(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 43979 then -- Full Heal
 		self:Win()
 	end

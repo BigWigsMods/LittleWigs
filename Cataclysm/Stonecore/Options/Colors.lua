@@ -1,22 +1,22 @@
 
 BigWigs:AddColors("Corborus", {
-	[86881] = "Personal",
-	["burrow"] = {"Attention","Important"},
+	[86881] = "blue",
+	["burrow"] = {"yellow","red"},
 })
 
 BigWigs:AddColors("Slabhide", {
-	[80801] = "Personal",
-	[92265] = "Important",
+	[80801] = "blue",
+	[92265] = "red",
 })
 
 BigWigs:AddColors("Ozruk", {
-	[78903] = "Urgent",
-	[78939] = "Important",
-	[80467] = "Attention",
-	[92426] = "Important",
+	[78903] = "orange",
+	[78939] = "red",
+	[80467] = "yellow",
+	[92426] = "red",
 })
 
 BigWigs:AddColors("High Priestess Azil", {
-	[79050] = "Important",
-	[79345] = {"Attention","Personal"},
+	[79050] = "red",
+	[79345] = {"yellow","blue"},
 })

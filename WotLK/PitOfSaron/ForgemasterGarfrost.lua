@@ -30,7 +30,7 @@ end
 --
 
 function mod:DeepFreeze(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 14, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -40,7 +40,7 @@ function mod:DeepFreezeRemoved(args)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
-	self:Message(68789, "Personal", "Alarm", CL.incoming:format(self:SpellName(68789)))
+	self:Message(68789, "blue", "Alarm", CL.incoming:format(self:SpellName(68789)))
 	self:Flash(68789)
 end
 

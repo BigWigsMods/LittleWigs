@@ -80,9 +80,9 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 249336 then -- Summon Ethereal Guards
-		self:Message(248804, "Attention", "Info", CL.spawned:format(L.guards))
+		self:Message(248804, "yellow", "Info", CL.spawned:format(L.guards))
 	end
 end
 
@@ -109,7 +109,7 @@ do
 		local t = GetTime()
 		if t-prev > 3 then
 			prev = t
-			self:Message(-15926, "Attention", "Info", CL.spawned:format(L.tentacles))
+			self:Message(-15926, "yellow", "Info", CL.spawned:format(L.tentacles))
 			if not self:Mythic() or nextDarkBulwark - GetTime() > 30.5 then
 				self:CDBar(-15926, 30.5, L.tentacles)
 			end
@@ -124,21 +124,21 @@ function mod:TentacleDeath(args)
 end
 
 function mod:HowlingDark(args)
-	self:Message(args.spellId, "Urgent", "Alarm")
+	self:Message(args.spellId, "orange", "Alarm")
 	if not self:Mythic() or nextDarkBulwark - GetTime() > 31.6 then
 		self:CDBar(args.spellId, 31.6)
 	end
 end
 
 function mod:EntropicForce(args)
-	self:Message(args.spellId, "Important", "Long")
+	self:Message(args.spellId, "red", "Long")
 	self:Bar(args.spellId, 62)
 	self:CastBar(args.spellId, 10)
 end
 
 function mod:EntropicForceRemoved(args)
 	self:StopBar(CL.cast:format(args.spellId))
-	self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
+	self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
 end
 
 function mod:DarkBulwark(args)
@@ -149,15 +149,15 @@ end
 function mod:DarkBulwarkRemoved(args)
 	guardsUp = guardsUp - 1
 	if guardsUp > 0 then
-		self:Message(args.spellId, "Neutral", nil, CL.mob_remaining:format(args.sourceName, guardsUp))
+		self:Message(args.spellId, "cyan", nil, CL.mob_remaining:format(args.sourceName, guardsUp))
 	else
-		self:Message(args.spellId, "Neutral", "Info", CL.removed:format(args.spellName))
+		self:Message(args.spellId, "cyan", "Info", CL.removed:format(args.spellName))
 	end
 	self:UpdateInfoBox()
 end
 
 function mod:EternalTwilight(args)
-	self:Message(args.spellId, "Neutral", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "cyan", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 10)
 	eternalTwilightExplo = GetTime() + 10
 	self:CDBar(248804, 57, L.guards) -- Guards
@@ -167,7 +167,7 @@ end
 function mod:Interrupt(args)
 	if args.extraSpellId == 248736 then -- Eternal Twilight
 		self:StopBar(CL.cast:format(args.extraSpellName))
-		self:Message(248736, "Positive", "Long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
+		self:Message(248736, "green", "Long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
 		self:CDBar(-15926, 11, L.tentacles) -- Tentacles
 		self:CDBar(244751, 16) -- Howling Dark
 	end
@@ -180,7 +180,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

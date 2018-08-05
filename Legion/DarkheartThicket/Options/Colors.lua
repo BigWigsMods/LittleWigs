@@ -1,38 +1,38 @@
 
 BigWigs:AddColors("Archdruid Glaidalis", {
-	[196376] = {"Attention","Personal"},
-	[198379] = "Important",
-	[198408] = "Personal",
+	[196376] = {"yellow","blue"},
+	[198379] = "red",
+	[198408] = "blue",
 })
 
 BigWigs:AddColors("Oakheart", {
-	[204574] = "Attention",
-	[204646] = {"Personal","Urgent"},
-	[204666] = "Important",
-	[204667] = "Important",
+	[204574] = "yellow",
+	[204646] = {"blue","orange"},
+	[204666] = "red",
+	[204667] = "red",
 })
 
 BigWigs:AddColors("Dresaron", {
-	[191325] = "Attention",
-	[199345] = "Important",
-	[199460] = "Personal",
+	[191325] = "yellow",
+	[199345] = "red",
+	[199460] = "blue",
 })
 
 BigWigs:AddColors("Shade of Xavius", {
-	[200050] = "Attention",
-	[200185] = {"Personal","Urgent"},
-	[200238] = {"Important","Personal"},
-	[200289] = {"Attention","Personal"},
+	[200050] = "yellow",
+	[200185] = {"blue","orange"},
+	[200238] = {"red","blue"},
+	[200289] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Darkheart Thicket Trash", {
-	[200580] = "Urgent",
-	[200658] = "Attention",
-	[200684] = {"Important","Personal"},
-	[200768] = "Urgent",
-	[201226] = "Urgent",
-	[201272] = "Urgent",
-	[201399] = "Attention",
-	[218759] = "Personal",
-	[225562] = "Urgent",
+	[200580] = "orange",
+	[200658] = "yellow",
+	[200684] = {"red","blue"},
+	[200768] = "orange",
+	[201226] = "orange",
+	[201272] = "orange",
+	[201399] = "yellow",
+	[218759] = "blue",
+	[225562] = "orange",
 })

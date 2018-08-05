@@ -44,7 +44,7 @@ end
 --
 
 function mod:HexOfMendingApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -53,12 +53,12 @@ function mod:HexOfMendingRemoved(args)
 end
 
 function mod:HealingWave(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 end
 
 function mod:PolymorphApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 4, args.destName)
 end
 
@@ -73,7 +73,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:Message(-7534, "Personal", "Alarm", CL.underyou:format(args.spellName))
+				self:Message(-7534, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

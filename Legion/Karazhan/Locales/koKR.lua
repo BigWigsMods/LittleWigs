@@ -12,10 +12,10 @@ if L then
 	--L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
 	--L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
 	--L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
-	--L.barnes = "Barnes"
-	--L.maiden = "Reformed Maiden"
-	--L.philanthropist = "Ghostly Philanthropist"
-	--L.guardsman = "Phantom Guardsman"
+	L.barnes = "반즈"
+	L.maiden = "교화된 무희"
+	L.philanthropist = "유령 자선가"
+	L.guardsman = "유령 경비병"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "koKR")

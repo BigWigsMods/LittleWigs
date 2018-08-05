@@ -46,15 +46,15 @@ do
 	function mod:Stomp(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Urgent", "Alert", nil, nil, self:Healer())
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Alert", nil, nil, self:Healer())
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 34741 then -- Summon Saplings
 		addsAlive = 6 -- when they despawn to heal him, they don't fire any events; fortunately, no 2 waves can be alive at the same time
-		self:Message(-5478, "Important", "Alarm")
+		self:Message(-5478, "red", "Alarm")
 		self:Bar(-5478, 25, CL.onboss:format(self:SpellName(32130)), 38658) -- text is "Heal on BOSS", icon is that of druids' Healing Touch
 		self:CDBar(-5478, 45)
 	end
@@ -62,7 +62,7 @@ end
 
 function mod:AddDeath()
 	addsAlive = addsAlive - 1
-	self:Message(-5478, "Positive", "Info", CL.add_remaining:format(addsAlive))
+	self:Message(-5478, "green", "Info", CL.add_remaining:format(addsAlive))
 	if addsAlive == 0 then
 		self:StopBar(CL.onboss:format(self:SpellName(32130))) -- "Heal on BOSS"
 	end

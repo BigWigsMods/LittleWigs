@@ -6,6 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Azzakel", 1182, 1216)
 if not mod then return end
 mod:RegisterEnableMob(75927)
+mod.engageId = 1678
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -26,13 +28,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "ClawsOfArgus", 153764)
 	self:Log("SPELL_AURA_APPLIED", "CurtainOfFlame", 153392)
 	self:Log("SPELL_AURA_REMOVED", "CurtainOfFlameRemoved", 153392)
-
-	self:Death("Win", 75927)
 end
 
 function mod:OnEngage()
@@ -47,7 +45,7 @@ end
 --
 
 function mod:ClawsOfArgus(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 91)
 	self:Bar(args.spellId, 20, CL.cast:format(args.spellName))
 end
@@ -55,7 +53,7 @@ end
 
 function mod:CurtainOfFlame(args)
 	curtainPlayers[args.destName] = true
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
 	self:TargetBar(args.spellId, self:Normal() and 9 or 12, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

@@ -138,9 +138,6 @@
 <Include file="WoD\UpperBlackrockSpire\locales.xml"/>
 
 <!-- Legion -->
-<Include file="Legion\ArtifactScenarios\modules.xml"/>
-<Include file="Legion\ArtifactScenarios\locales.xml"/>
-
 <Include file="Legion\AssaultOnVioletHold\modules.xml"/>
 <Include file="Legion\AssaultOnVioletHold\locales.xml"/>
 

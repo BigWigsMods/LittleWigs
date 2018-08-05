@@ -43,13 +43,13 @@ end
 --
 
 function mod:Stealth(args)
-	self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
+	self:Message("stages", "cyan", nil, CL.stage:format(2), false)
 	-- Prevent the module wiping when moving to phase 2 and ENCOUNTER_END fires.
 	self:ScheduleTimer("Reboot", 0.5) -- Delay a little
 end
 
 function mod:UnnervingHowl(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 30)
 end
 
@@ -59,7 +59,7 @@ do
 		--"pull:10.1, 36.0" p2
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "Attention", "Info", nil, nil, true)
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "yellow", "Info", nil, nil, true)
 			self:CDBar(args.spellId, 31)
 		end
 		if self:Me(args.destGUID) then
@@ -76,7 +76,7 @@ do
 end
 
 function mod:ClawFrenzy(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 end
 
 do
@@ -85,7 +85,7 @@ do
 			self:Say(196838)
 		end
 		self:PrimaryIcon(196838, player)
-		self:TargetMessage(196838, player, "Urgent", "Warning")
+		self:TargetMessage(196838, player, "orange", "Warning")
 	end
 	function mod:ScentOfBlood(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)

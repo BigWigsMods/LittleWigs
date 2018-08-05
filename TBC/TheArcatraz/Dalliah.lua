@@ -37,11 +37,11 @@ end
 --
 
 function mod:Heal(args)
-	self:Message(39013, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(39013, "orange", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Whirlwind()
-	self:Message(36175, "Important")
+	self:Message(36175, "red")
 	self:CastBar(36175, 6)
 end
 
@@ -52,19 +52,19 @@ do
 			local t = GetTime()
 			if t - prev > (self:Melee() and 6 or 1.5) then
 				prev = t
-				self:Message(36175, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(36175, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:GiftOfTheDoomsayer(args)
-	self:Message(39009, "Attention", nil, CL.casting:format(args.spellName))
+	self:Message(39009, "yellow", nil, CL.casting:format(args.spellName))
 end
 
 function mod:GiftOfTheDoomsayerApplied(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(39009, args.destName, "Attention")
+		self:TargetMessage(39009, args.destName, "yellow")
 		self:TargetBar(39009, 10, args.destName)
 	end
 end

@@ -1,30 +1,30 @@
 
 BigWigs:AddColors("Commander Kolurg/Stoutbeard", {
-	[38618] = "Urgent",
+	[38618] = "orange",
 })
 
 BigWigs:AddColors("Grand Magus Telestra", {
-	[-7395] = "Positive",
-	[47731] = {"Personal","Urgent"},
+	[-7395] = "green",
+	[47731] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Anomalus", {
-	[47743] = "Attention",
+	[47743] = "yellow",
 })
 
 BigWigs:AddColors("Ormorok the Tree-Shaper", {
-	[47981] = "Attention",
-	[48017] = "Important",
+	[47981] = "yellow",
+	[48017] = "red",
 })
 
 BigWigs:AddColors("Keristrasza", {
-	[8599] = "Important",
-	[48095] = "Personal",
-	[48179] = "Urgent",
-	[50997] = {"Attention","Personal"},
+	[8599] = "red",
+	[48095] = "blue",
+	[48179] = "orange",
+	[50997] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("The Nexus Trash", {
-	[30849] = {"Attention","Personal"},
-	[47779] = {"Personal","Urgent"},
+	[30849] = {"yellow","blue"},
+	[47779] = {"blue","orange"},
 })

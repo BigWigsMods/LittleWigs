@@ -6,15 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Ranjit", 1209, 965)
 if not mod then return end
 mod:RegisterEnableMob(75964)
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
+mod.engageId = 1698
+mod.respawnTime = 15
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -29,13 +22,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	self:Log("SPELL_CAST_START", "FourWinds", 156793)
 	self:Log("SPELL_CAST_START", "Windwall", 153315)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingRush", 165731)
-
-	self:Death("Win", 75964)
 end
 
 function mod:OnEngage()
@@ -47,14 +36,14 @@ end
 --
 
 function mod:FourWinds(args)
-	self:Message(args.spellId, "Urgent", "Warning")
+	self:Message(args.spellId, "orange", "Warning")
 	self:Bar(args.spellId, 36)
 end
 
 function mod:Windwall(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 end
 
 function mod:PiercingRush(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
 end

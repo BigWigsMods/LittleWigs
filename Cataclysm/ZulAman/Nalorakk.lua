@@ -54,21 +54,21 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.troll_trigger then
-		self:Message("stages", "Important", nil, L.troll_message, "achievement_character_troll_male")
+		self:Message("stages", "red", nil, L.troll_message, "achievement_character_troll_male")
 		self:Bar("stages", 30, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 42377 then -- Shape of the Bear
 		self:StopBar(42402) -- Surge's CD
-		self:Message("stages", "Important", nil, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
+		self:Message("stages", "red", nil, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
 		self:Bar("stages", 30, L.troll_message, "achievement_character_troll_male")
 	end
 end
 
 function mod:Surge(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 
@@ -85,7 +85,7 @@ do
 	function mod:DeafeningRoar(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Attention", "Info", nil, nil, true)
+			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "yellow", "Info", nil, nil, true)
 		end
 	end
 end

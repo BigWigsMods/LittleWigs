@@ -28,7 +28,7 @@ end
 --
 
 function mod:AllergicReaction(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 15, args.destName)
 end
 

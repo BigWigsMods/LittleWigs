@@ -45,19 +45,19 @@ end
 --
 
 function mod:SpiritBolts(args)
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 	self:CDBar(args.spellId, 30)
 end
 
 function mod:SoulSiphon(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:CDBar(args.spellId, 60)
 end
 
 function mod:HealingCasts(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 end
 
 function mod:Lifebloom(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, self:Dispeller("magic", true))
+	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic", true))
 end

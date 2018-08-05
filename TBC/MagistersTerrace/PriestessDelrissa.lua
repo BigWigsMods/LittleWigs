@@ -73,32 +73,32 @@ end
 
 -- Priestess Delrissa
 function mod:Renew(args)
-	self:TargetMessage(46192, args.destName, "Attention")
+	self:TargetMessage(46192, args.destName, "yellow")
 	self:TargetBar(46192, 15, args.destName)
 end
 
 function mod:PowerWordShield(args)
-	self:TargetMessage(46193, args.destName, "Attention")
+	self:TargetMessage(46193, args.destName, "yellow")
 end
 
 -- Apoko
 function mod:WindfuryTotem(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 end
 
 -- Yazzai
 function mod:Blizzard(args)
-	self:Message(44178, "Important", nil, CL.casting:format(args.spellName))
+	self:Message(44178, "red", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Polymorph(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 -- Ellrys Duskhallow
 function mod:SeedOfCorruption(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 18, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

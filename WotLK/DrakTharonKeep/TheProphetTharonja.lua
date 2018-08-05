@@ -35,21 +35,21 @@ end
 --  Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 60 then
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-		self:Message("stages", "Neutral", nil, CL.soon:format(CL.phase:format(2)), false)
+		self:UnregisterUnitEvent(event, unit)
+		self:Message("stages", "cyan", nil, CL.soon:format(CL.phase:format(2)), false)
 	end
 end
 
 function mod:DecayFlesh(args)
-	self:DelayedMessage("stages", 3, "Neutral", CL.phase:format(2)) -- the 3s stun that's being applied before the 2nd phase starts
+	self:DelayedMessage("stages", 3, "cyan", CL.phase:format(2)) -- the 3s stun that's being applied before the 2nd phase starts
 	self:CDBar("stages", 23.64, CL.phase:format(1), 53463)
 end
 
 function mod:ReturnFlesh(args)
-	self:DelayedMessage("stages", 3, "Neutral", CL.phase:format(1)) -- the 3s stun that's being applied before transitioning back to the 1st phase
+	self:DelayedMessage("stages", 3, "cyan", CL.phase:format(1)) -- the 3s stun that's being applied before transitioning back to the 1st phase
 end
 
 do
@@ -59,7 +59,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(59971, "Personal", "Alert", CL.you:format(args.spellName))
+				self:Message(59971, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -67,7 +67,7 @@ end
 
 function mod:CurseOfLife(args)
 	if self:Me(args.destGUID) or self:Healer() then -- despite its name, it's not actually a curse
-		self:TargetMessage(49527, args.destName, "Urgent")
+		self:TargetMessage(49527, args.destName, "orange")
 		self:TargetBar(49527, 9, args.destName)
 	end
 end

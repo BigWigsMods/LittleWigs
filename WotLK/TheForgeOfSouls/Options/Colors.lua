@@ -1,10 +1,10 @@
 
 BigWigs:AddColors("Bronjahm", {
-	[68839] = {"Personal","Urgent"},
-	[68872] = "Important",
+	[68839] = {"blue","orange"},
+	[68872] = "red",
 })
 
 BigWigs:AddColors("Devourer of Souls", {
-	[68912] = "Important",
-	[69051] = {"Personal","Urgent"},
+	[68912] = "red",
+	[69051] = {"blue","orange"},
 })

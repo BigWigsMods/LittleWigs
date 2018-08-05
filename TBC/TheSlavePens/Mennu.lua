@@ -32,9 +32,9 @@ end
 --
 
 function mod:HealingWard(args)
-	self:Message(args.spellId, "Urgent")
+	self:Message(args.spellId, "orange")
 end
 
 function mod:CorruptedNovaTotem(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 end

@@ -49,7 +49,7 @@ end
 function mod:Barrage(args)
 	if barrage then return end
 	barrage = true
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 18)
 end
 
@@ -60,13 +60,13 @@ end
 
 function mod:ToxicWaste(args)
 	if self:Me(args.destGUID) then
-		self:Message(70274, "Personal", "Alarm", CL.underyou:format(args.spellName))
+		self:Message(70274, "blue", "Alarm", CL.underyou:format(args.spellName))
 		self:Flash(70274)
 	end
 end
 
 function mod:PoisonNova(args)
-	self:Message(args.spellId, "Urgent", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 5)
 end
 
@@ -76,7 +76,7 @@ function mod:UNIT_AURA(event, unit)
 	if pursuitWarned[n] and not name then
 		pursuitWarned[n] = nil
 	elseif name and not pursuitWarned[n] then
-		self:TargetMessage(68987, n, "Attention", "Alert")
+		self:TargetMessage(68987, n, "yellow", "Alert")
 		pursuitWarned[n] = true
 	end
 end

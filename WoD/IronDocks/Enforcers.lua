@@ -6,12 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Grimrail Enforcers", 1195, 1236)
 if not mod then return end
 mod:RegisterEnableMob(80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local deaths = 0
+mod.engageId = 1748
+mod.respawnTime = 33
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -41,12 +37,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
 	self:Log("SPELL_AURA_REMOVED", "SanguineSphereRemoved", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
-
-	self:Death("Deaths", 80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
-end
-
-function mod:OnEngage()
-	deaths = 0
 end
 
 --------------------------------------------------------------------------------
@@ -55,14 +45,14 @@ end
 
 function mod:SanguineSphere(args)
 	local bubble = self:SpellName(119924) -- 119924 = "Bubble"
-	self:TargetMessage("sphere", args.destName, "Attention", UnitIsUnit("target", args.destName) and "Warning", bubble, args.spellId)
+	self:TargetMessage("sphere", args.destName, "yellow", UnitIsUnit("target", args.destName) and "Warning", bubble, args.spellId)
 	self:TargetBar("sphere", 15, args.destName, bubble, args.spellId)
 end
 
 do
 	local scheduled = nil
 	function mod:SanguineSphereRemoved(args)
-		scheduled = self:ScheduleTimer("Message", 0.3, "sphere", "Positive", "Info", CL.over:format(self:SpellName(119924)), args.spellId)
+		scheduled = self:ScheduleTimer("Message", 0.3, "sphere", "green", "Info", CL.over:format(self:SpellName(119924)), args.spellId)
 	end
 
 	local prev = 0
@@ -72,15 +62,7 @@ do
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:Message("sphere", "Attention", nil, L.sphere_fail_message, args.spellId)
+			self:Message("sphere", "yellow", nil, L.sphere_fail_message, args.spellId)
 		end
 	end
 end
-
-function mod:Deaths()
-	deaths = deaths + 1
-	if deaths > 2 then
-		self:Win()
-	end
-end
-

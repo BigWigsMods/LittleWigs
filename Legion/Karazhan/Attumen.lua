@@ -41,22 +41,22 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227404 then -- Intangible Presence
-		self:Message(spellId, "Attention", self:Dispeller("magic") and "Warning")
+		self:Message(spellId, "yellow", self:Dispeller("magic") and "Warning")
 		self:Bar(spellId, 30)
 	elseif spellId == 227338 then -- Riderless
-		self:Message("stages", "Neutral", "Long", spellName, false)
+		self:Message("stages", "cyan", "Long", spellId, false)
 		self:StopBar(227404) -- Intangible Presence
 	elseif spellId == 227584 then -- Mounted
-		self:Message("stages", "Neutral", "Long", spellName, false)
+		self:Message("stages", "cyan", "Long", spellId, false)
 	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
-		self:Message(227365, "Attention", "Alert")
+		self:Message(227365, "yellow", "Alert")
 	end
 end
 
 function mod:MortalStrike(args)
-	self:Message(args.spellId, "Important", (self:Tank() or self:Healer()) and "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", (self:Tank() or self:Healer()) and "Alarm", CL.casting:format(args.spellName))
 end
 
 function mod:MortalStrikeApplied(args)
@@ -70,9 +70,9 @@ function mod:MortalStrikeRemoved(args)
 end
 
 function mod:SharedSuffering(args)
-	self:Message(args.spellId, "Urgent", "Info")
+	self:Message(args.spellId, "orange", "Info")
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Important", "Long")
+	self:Message(args.spellId, "red", "Long")
 end

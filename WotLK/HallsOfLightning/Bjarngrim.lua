@@ -31,19 +31,19 @@ end
 --
 
 function mod:MortalStrike(args)
-	self:TargetMessage(args.spellId, args.destName, "Important")
+	self:TargetMessage(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 5, args.destName)
 end
 
 function mod:BerserkerAura(args)
 	if self:MobId(args.destGUID) == 28586 then -- Boss only
-		self:Message(args.spellId, "Urgent")
+		self:Message(args.spellId, "orange")
 	end
 end
 
 function mod:BerserkerAuraRemoved(args)
 	if self:MobId(args.destGUID) == 28586 then -- Boss only
-		self:Message(args.spellId, "Positive", nil, CL.over:format(args.spellName))
+		self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
 	end
 end
 

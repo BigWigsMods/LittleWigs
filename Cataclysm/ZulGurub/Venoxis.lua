@@ -56,7 +56,7 @@ do
 		end
 		linkTargets[#linkTargets + 1] = args.destName
 		if #linkTargets == 1 then
-			self:ScheduleTimer("TargetMessage", 0.2, args.spellId, linkTargets, "Urgent", "Alarm")
+			self:ScheduleTimer("TargetMessage", 0.2, args.spellId, linkTargets, "orange", "Alarm")
 			self:PrimaryIcon(args.spellId, args.destName)
 		else
 			self:SecondaryIcon(args.spellId, args.destName)
@@ -71,7 +71,7 @@ end
 
 function mod:BreathOfHethiss(args)
 	breathsLeft = breathsLeft - 1
-	self:Message(args.spellId, "Important")
+	self:Message(args.spellId, "red")
 	if (breathsLeft > 0) then
 		self:CDBar(args.spellId, 12)
 	end
@@ -79,7 +79,7 @@ end
 
 function mod:WhispersOfHethiss(args)
 	if self:MobId(args.destGUID) == 52155 then return end -- applies this to himself as well
-	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
@@ -89,7 +89,7 @@ function mod:WhispersOfHethissRemoved(args)
 end
 
 function mod:Bloodvenom(args)
-	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 	self:ScheduleTimer("Bar", 3, args.spellId, 14)
 end
 
@@ -100,6 +100,6 @@ function mod:BlessingOfTheSnakeGod()
 end
 
 function mod:BlessingOfTheSnakeGodRemoved()
-	self:Message(96653, "Positive", "Info") -- Venom Withdrawal
+	self:Message(96653, "green", "Info") -- Venom Withdrawal
 	self:Bar(96653, 10)
 end

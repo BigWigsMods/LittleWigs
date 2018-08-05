@@ -34,20 +34,20 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 102334 then -- Servant of the Queen
-		self:Message(-3968, "Attention", "Alert")
+		self:Message(-3968, "yellow", "Alert")
 	end
 end
 
 function mod:TotalObedience(args)
-	self:Message(-3969, "Urgent", "Long")
+	self:Message(-3969, "orange", "Long")
 	self:CastBar(-3969, 10)
 end
 
 function mod:Interrupt(args)
 	if args.extraSpellId == 103241 then -- Total Obedience
-		self:Message(-3969, "Positive", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:Message(-3969, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:StopBar(CL.cast:format(args.extraSpellName))
 	end
 end

@@ -48,45 +48,45 @@ end
 --
 
 function mod:ParalyzingScreech(args)
-	self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 5)
 	self:Flash(args.spellId)
 end
 
 function mod:SpellBomb(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, self:Dispeller("curse"))
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("curse"))
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 function mod:CycloneOfFeathers(args)
-	self:TargetMessage(-5252, args.destName, "Attention", "Alert")
+	self:TargetMessage(-5252, args.destName, "yellow", "Alert")
 	self:TargetBar(-5252, 6, args.destName)
 end
 
 function mod:AddDied()
 	addsAlive = addsAlive - 1
-	self:Message(-5253, "Positive", nil, CL.add_remaining:format(addsAlive))
+	self:Message(-5253, "green", nil, CL.add_remaining:format(addsAlive))
 	if addsAlive == 0 and not UnitCastingInfo("boss1") then -- he doesn't unbanish himself if you kill the last add when he's casting Paralyzing Screech
 		self:StopBar(CL.onboss:format(self:SpellName(42354))) -- Banish Self
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 42354 then -- Banish Self
 		self:Bar(-5253, 45, CL.onboss:format(self:SpellName(spellId)), spellId)
-		self:Message(-5253, "Urgent", nil, CL.incoming:format(self:SpellName(-5253))) -- Brood of Anzu
+		self:Message(-5253, "orange", nil, CL.incoming:format(self:SpellName(-5253))) -- Brood of Anzu
 		addsAlive = addsAlive + 7
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextBroodWarning then
-		self:Message(-5253, "Urgent", nil, CL.soon:format(self:SpellName(42354)), 42354) -- Banish Self
+		self:Message(-5253, "orange", nil, CL.soon:format(self:SpellName(42354)), 42354) -- Banish Self
 		nextBroodWarning = nextBroodWarning - 40
 
 		if nextBroodWarning < 15 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end

@@ -43,25 +43,25 @@ end
 
 function mod:OnEngage()
 	self:CDBar("forms", 32.5, L.form_rhino, "ability_hunter_pet_rhino")
-	self:DelayedMessage("forms", 27.5, "Attention", CL.soon:format(L.form_rhino))
+	self:DelayedMessage("forms", 27.5, "yellow", CL.soon:format(L.form_rhino))
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 55297 then -- Rhino Form
 		self:CDBar("forms", 34.1, L.form_troll, "achievement_character_troll_male")
-		self:DelayedMessage("forms", 29, "Attention", CL.soon:format(L.form_troll))
+		self:DelayedMessage("forms", 29, "yellow", CL.soon:format(L.form_troll))
 	elseif spellId == 55299 then -- Troll Form
 		self:CDBar("forms", 33.6, L.form_rhino, "ability_hunter_pet_rhino")
-		self:DelayedMessage("forms", 28.5, "Attention", CL.soon:format(L.form_rhino))
+		self:DelayedMessage("forms", 28.5, "yellow", CL.soon:format(L.form_rhino))
 	end
 end
 
 function mod:ImpalingCharge(args)
-	self:TargetMessage(59827, args.destName, "Attention", "Info", nil, nil, true)
+	self:TargetMessage(59827, args.destName, "yellow", "Info", nil, nil, true)
 end
 
 do
@@ -71,7 +71,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(59825, "Personal", "Alarm", CL.underyou:format(args.spellName))
+				self:Message(59825, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

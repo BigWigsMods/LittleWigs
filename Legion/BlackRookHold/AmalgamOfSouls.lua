@@ -61,9 +61,9 @@ end
 
 function mod:SoulBurstStart(args)
 	if gorgeCount == 2 then
-		self:Message(args.spellId, "Attention", "Alert", CL.incoming:format(args.spellName))
+		self:Message(args.spellId, "yellow", "Alert", CL.incoming:format(args.spellName))
 	elseif gorgeCount >= 3 then
-		self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
+		self:Message(args.spellId, "red", "Warning", CL.incoming:format(args.spellName))
 	end
 end
 
@@ -84,12 +84,12 @@ end
 function mod:ReapSoul(args)
 	self:Bar(args.spellId, 13.4)
 	if self:Tank() then
-		self:Message(args.spellId, "Attention", "Warning", CL.incoming:format(args.spellName))
+		self:Message(args.spellId, "yellow", "Warning", CL.incoming:format(args.spellName))
 	end
 end
 
 function mod:SwirlingScythe(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 21.2)
 end
 

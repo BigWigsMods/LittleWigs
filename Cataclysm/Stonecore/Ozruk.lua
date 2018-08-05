@@ -44,7 +44,7 @@ end
 
 function mod:ElementiumBulwark(args)
 	if self:MobId(args.destGUID) == 42188 then -- we only warn if the boss gains it, not a mage spell stealing
-		self:Message(args.spellId, "Important", "Alarm")
+		self:Message(args.spellId, "red", "Alarm")
 		self:Bar(args.spellId, 10)
 	end
 end
@@ -53,22 +53,22 @@ function mod:ElementiumBulwarkRemoved(args)
 	self:StopBar(args.spellName)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 40586 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 27 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
-			self:Message(80467, "Attention", nil, CL.soon:format(self:SpellName(80467)), false)
+			self:UnregisterUnitEvent(event, unit)
+			self:Message(80467, "yellow", nil, CL.soon:format(self:SpellName(80467)), false)
 		end
 	end
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 end
 
 function mod:Paralyze(args)
-	self:Message(args.spellId, "Important", "Alert", CL.other:format(args.spellName, CL.soon:format(self:SpellName(78807))))
+	self:Message(args.spellId, "red", "Alert", CL.other:format(args.spellName, CL.soon:format(self:SpellName(78807))))
 end
 
 function mod:Shatter(args)
@@ -77,7 +77,7 @@ function mod:Shatter(args)
 end
 
 function mod:GroundSlam(args)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 end
 

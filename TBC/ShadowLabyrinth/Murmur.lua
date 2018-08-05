@@ -36,7 +36,7 @@ function mod:MurmursTouch(args)
 		self:Say(38794)
 		self:SayCountdown(38794, duration)
 	end
-	self:TargetMessage(38794, args.destName, "Attention", "Alarm")
+	self:TargetMessage(38794, args.destName, "yellow", "Alarm")
 	self:TargetBar(38794, duration, args.destName)
 	self:PrimaryIcon(38794, args.destName)
 end
@@ -50,6 +50,6 @@ function mod:MurmursTouchRemoved(args)
 end
 
 function mod:SonicBoom(args)
-	self:Message(33923, "Important", nil, CL.casting:format(args.spellName))
+	self:Message(33923, "red", nil, CL.casting:format(args.spellName))
 	self:CastBar(33923, 5)
 end

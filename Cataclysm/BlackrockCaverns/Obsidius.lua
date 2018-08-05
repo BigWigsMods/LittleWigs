@@ -45,7 +45,7 @@ end
 --
 
 function mod:TwilightCorruption(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 
@@ -55,15 +55,15 @@ end
 
 function mod:CrepuscularVeil(args)
 	if self:Tank(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "Attention")
+		self:TargetMessage(args.spellId, args.destName, "yellow")
 		self:TargetBar(args.spellId, 4, args.destName)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextTransformationWarning then
-		self:Message(-2385, "Attention", nil, CL.soon:format(self:SpellName(-2385))) -- Transformation
+		self:Message(-2385, "yellow", nil, CL.soon:format(self:SpellName(-2385))) -- Transformation
 		nextTransformationWarning = nextTransformationWarning - 35
 
 		while nextTransformationWarning >= 34 and hp < nextTransformationWarning do
@@ -72,14 +72,14 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		end
 
 		if nextTransformationWarning < 34 then
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+			self:UnregisterUnitEvent(event, unit)
 		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 76196 then -- Transformation
-		self:Message(-2385, "Urgent")
+		self:Message(-2385, "orange")
 		if self:CheckOption(-2385, "ICON") then
 			SetRaidTarget(unit, 8) -- self:PrimaryIcon() is for group members
 		end

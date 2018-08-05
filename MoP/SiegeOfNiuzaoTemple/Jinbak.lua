@@ -36,21 +36,21 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 119990 then -- Summon Saplings
-		self:Message(-5958, "Attention", "Info", CL.incoming:format(CL.adds))
+		self:Message(-5958, "yellow", "Info", CL.incoming:format(CL.adds))
 		self:CDBar(-5958, 46.1, CL.adds)
 	end
 end
 
 function mod:SapResidue(args)
 	if self:Me(args.destGUID) and args.amount % 2 == 0 then
-		self:StackMessage(-5960, args.destName, args.amount, "Personal", "Alert")
+		self:StackMessage(-5960, args.destName, args.amount, "blue", "Alert")
 	end
 end
 
 function mod:Detonate(args)
-	self:Message(-5959, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:Message(-5959, "red", "Alarm", CL.casting:format(args.spellName))
 	self:CastBar(-5959, 5)
 	self:CDBar(-5959, 46.1)
 end

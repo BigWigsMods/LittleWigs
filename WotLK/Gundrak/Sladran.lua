@@ -29,13 +29,13 @@ end
 --
 
 function mod:PoisonNova(args)
-	self:Message(59842, "Attention", "Info", CL.casting:format(args.spellName))
+	self:Message(59842, "yellow", "Info", CL.casting:format(args.spellName))
 	self:Bar(59842, 3.5)
 end
 
 function mod:PoisonNovaApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(59842, args.destName, "Personal", "Alarm")
+		self:TargetMessage(59842, args.destName, "blue", "Alarm")
 		self:TargetBar(59842, args.spellId == 59842 and 10 or 16, args.destName)
 	end
 end

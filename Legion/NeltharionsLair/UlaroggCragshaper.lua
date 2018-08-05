@@ -57,28 +57,28 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 198509 then -- Stance of the Mountain
 		totemsAlive = self:Normal() and 3 or 5
 		self:StopBar(198496) -- Sunder
 		self:StopBar(198428) -- Strike of the Mountain
 		self:StopBar(198564) -- Stance of the Mountain
-		self:Message(198564, "Attention", "Long")
+		self:Message(198564, "yellow", "Long")
 	end
 end
 
 function mod:StrikeOfTheMountain(args)
-	self:Message(args.spellId, "Important", "Alarm")
+	self:Message(args.spellId, "red", "Alarm")
 	self:Bar(args.spellId, 15.5)
 end
 
 function mod:BellowOfTheDeeps(args)
-	self:Message("bellow", "Urgent", "Info", CL.incoming:format(L.totems), args.spellId)
+	self:Message("bellow", "orange", "Info", CL.incoming:format(L.totems), args.spellId)
 	--self:CDBar(args.spellId, 29) -- pull:20.6, 44.9, 31.5, 31.5
 end
 
 function mod:Sunder(args)
-	self:Message(args.spellId, "Attention", "Alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 9.3)
 end
 
