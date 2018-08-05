@@ -26,7 +26,7 @@ function mod:GetOptions()
 		256198, -- Azerite Rounds: Incendiary
 		256199, -- Azerite Rounds: Blast
 		256083, -- Cross Ignition
-		{256101, "SAY", "PROXIMITY"}, -- Explosive Burst
+		{256105, "SAY", "PROXIMITY"}, -- Explosive Burst
 		256038, -- Deadeye
 		263345, -- Massive Blast
 	}
@@ -36,7 +36,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AzeriteRoundsIncendiary", 256198)
 	self:Log("SPELL_CAST_START", "AzeriteRoundsBlast", 256199)
 	self:Log("SPELL_CAST_START", "CrossIgnition", 256083)
-	self:Log("SPELL_CAST_SUCCESS", "ExplosiveBurst", 256101)
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveBurstApplied", 256105)
 	self:Log("SPELL_AURA_REMOVED", "ExplosiveBurstRemoved", 256105)
 	self:Log("SPELL_CAST_SUCCESS", "Deadeye", 256038)
@@ -74,32 +73,41 @@ function mod:CrossIgnition(args)
 	self:CastBar(args.spellId, 5.5)
 end
 
-function mod:ExplosiveBurst(args)
-	self:PlaySound(args.spellId, "alarm")
-	explosiveBurstCount = explosiveBurstCount + 1
-	self:Bar(args.spellId, explosiveBurstCount % 2 == 0 and 38 or 17)
-end
-
 do
-	local playerList = mod:NewTargetList()
-	function mod:ExplosiveBurstApplied(args)
-		playerList[#playerList+1] = args.destName
-		if self:Me(args.destGUID) then
-			self:Say(256101)
-			self:SayCountdown(256101, 4)
-			self:OpenProximity(256101, 5)
-		elseif not tContains(playerList, self:UnitName("player")) then
-			self:OpenProximity(256101, 5, playerList)
+	local playerList, scheduled = {}, nil
+	local function warn(self, spellName)
+		if tContains(playerList, self:UnitName("player")) then
+			self:Message(256105, "blue", nil, CL.you:format(spellName))
+			self:PlaySound(256105, "warning", "moveout")
+			self:OpenProximity(256105, 5)
+		else
+			self:Message(256105, "orange")
+			self:PlaySound(256105, "alarm")
+			self:OpenProximity(256105, 5, playerList)
 		end
-		self:TargetsMessage(256101, "orange", playerList, 3)
+		playerList = {}
+		scheduled = nil
+	end
+
+	function mod:ExplosiveBurstApplied(args)
+		playerList[#playerList + 1] = args.destName
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 4)
+		end
+		if not scheduled then
+			scheduled = self:ScheduleTimer(warn, 0.1, self, args.spellName)
+			explosiveBurstCount = explosiveBurstCount + 1
+			self:Bar(args.spellId, explosiveBurstCount % 2 == 0 and 38 or 17)
+		end
 	end
 end
 
 function mod:ExplosiveBurstRemoved(args)
 	if self:Me(args.destGUID) then
-		self:CancelSayCountdown(256101)
+		self:CancelSayCountdown(args.spellId)
 	end
-	self:CloseProximity(256101)
+	self:CloseProximity(args.spellId)
 end
 
 function mod:Deadeye(args)
