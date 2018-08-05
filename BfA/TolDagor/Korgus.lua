@@ -36,6 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AzeriteRoundsIncendiary", 256198)
 	self:Log("SPELL_CAST_START", "AzeriteRoundsBlast", 256199)
 	self:Log("SPELL_CAST_START", "CrossIgnition", 256083)
+	self:Log("SPELL_CAST_SUCCESS", "ExplosiveBurst", 256101)
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveBurstApplied", 256105)
 	self:Log("SPELL_AURA_REMOVED", "ExplosiveBurstRemoved", 256105)
 	self:Log("SPELL_CAST_SUCCESS", "Deadeye", 256038)
@@ -73,8 +74,13 @@ function mod:CrossIgnition(args)
 	self:CastBar(args.spellId, 5.5)
 end
 
+function mod:ExplosiveBurst(args)
+	explosiveBurstCount = explosiveBurstCount + 1
+	self:Bar(256105, explosiveBurstCount % 2 == 0 and 38 or 17)
+end
+
 do
-	local playerList, scheduled = {}, nil
+	local playerList = {}
 	local function warn(self, spellName)
 		if tContains(playerList, self:UnitName("player")) then
 			self:Message(256105, "blue", nil, CL.you:format(spellName))
@@ -86,7 +92,6 @@ do
 			self:OpenProximity(256105, 5, playerList)
 		end
 		playerList = {}
-		scheduled = nil
 	end
 
 	function mod:ExplosiveBurstApplied(args)
@@ -95,10 +100,8 @@ do
 			self:Say(args.spellId)
 			self:SayCountdown(args.spellId, 4)
 		end
-		if not scheduled then
-			scheduled = self:ScheduleTimer(warn, 0.1, self, args.spellName)
-			explosiveBurstCount = explosiveBurstCount + 1
-			self:Bar(args.spellId, explosiveBurstCount % 2 == 0 and 38 or 17)
+		if #playerList == 1 then
+			self:ScheduleTimer(warn, 0.1, self, args.spellName)
 		end
 	end
 end
