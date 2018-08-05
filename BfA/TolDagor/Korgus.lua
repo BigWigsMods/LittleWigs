@@ -1,4 +1,6 @@
 
+-- GLOBALS: tContains
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -24,7 +26,7 @@ function mod:GetOptions()
 		256198, -- Azerite Rounds: Incendiary
 		256199, -- Azerite Rounds: Blast
 		256083, -- Cross Ignition
-		256101, -- Explosive Burst
+		{256101, "SAY", "PROXIMITY"}, -- Explosive Burst
 		256038, -- Deadeye
 		263345, -- Massive Blast
 	}
@@ -35,6 +37,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AzeriteRoundsBlast", 256199)
 	self:Log("SPELL_CAST_START", "CrossIgnition", 256083)
 	self:Log("SPELL_CAST_SUCCESS", "ExplosiveBurst", 256101)
+	self:Log("SPELL_AURA_APPLIED", "ExplosiveBurstApplied", 256105)
+	self:Log("SPELL_AURA_REMOVED", "ExplosiveBurstRemoved", 256105)
 	self:Log("SPELL_CAST_SUCCESS", "Deadeye", 256038)
 	self:Log("SPELL_CAST_START", "MassiveBlast", 263345)
 end
@@ -71,9 +75,31 @@ function mod:CrossIgnition(args)
 end
 
 function mod:ExplosiveBurst(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:PlaySound(args.spellId, "alarm")
 	explosiveBurstCount = explosiveBurstCount + 1
 	self:Bar(args.spellId, explosiveBurstCount % 2 == 0 and 38 or 17)
+end
+
+do
+	local playerList = mod:NewTargetList()
+	function mod:ExplosiveBurstApplied(args)
+		playerList[#playerList+1] = args.destName
+		if self:Me(args.destGUID) then
+			self:Say(256101)
+			self:SayCountdown(256101, 4)
+			self:OpenProximity(256101, 5)
+		elseif not tContains(playerList, self:UnitName("player")) then
+			self:OpenProximity(256101, 5, playerList)
+		end
+		self:TargetsMessage(256101, "orange", playerList, 3)
+	end
+end
+
+function mod:ExplosiveBurstRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(256101)
+	end
+	self:CloseProximity(256101)
 end
 
 function mod:Deadeye(args)
