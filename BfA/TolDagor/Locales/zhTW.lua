@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Tol Dagor Trash", "zhCN")
+local L = BigWigs:NewBossLocale("Tol Dagor Trash", "zhTW")
 if not L then return end
 if L then
 	-- L.vicejaw = "Sewer Vicejaw"
