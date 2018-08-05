@@ -34,7 +34,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(257777, 7) -- Crippling Shiv
+	self:CDBar(257777, 7) -- Crippling Shiv
 	self:Bar(257791, 8.5) -- Howling Fear
 	self:Bar(257785, 12) -- Flashing Daggers
 end
