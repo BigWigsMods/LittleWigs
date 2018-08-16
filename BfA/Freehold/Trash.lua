@@ -19,7 +19,7 @@ mod:RegisterEnableMob(
 	129547, -- Blacktooth Knuckleduster
 	129526, -- Bilge Rat Swabby
 	130404, -- Vermin Trapper
-	129527, -- Bilge Rat Ooker
+	129527, -- Bilge Rat Buccaneer
 	129550, -- Bilge Rat Padfoot
 	130024, -- Soggy Shiprat
 	130400, -- Irontide Crusher
@@ -49,7 +49,7 @@ if L then
 	L.knuckleduster = "Blacktooth Knuckleduster"
 	L.swabby = "Bilge Rat Swabby"
 	L.trapper = "Vermin Trapper"
-	L.ooker = "Bilge Rat Ooker"
+	L.rat_buccaneer = "Bilge Rat Buccaneer"
 	L.padfoot = "Bilge Rat Padfoot"
 	L.rat = "Soggy Shiprat"
 	L.crusher = "Irontide Crusher"
@@ -93,7 +93,7 @@ function mod:GetOptions()
 		274507, -- Slippery Suds
 		-- Vermin Trapper
 		274383, -- Rat Traps
-		-- Bilge Rat Ooker
+		-- Bilge Rat Buccaneer
 		257756, -- Goin' Bananas
 		-- Bilge Rat Padfoot
 		257775, -- Plague Step
@@ -127,7 +127,7 @@ function mod:GetOptions()
 		[257732] = L.knuckleduster,
 		[274507] = L.swabby,
 		[274383] = L.trapper,
-		[257756] = L.ooker,
+		[257756] = L.rat_buccaneer,
 		[257775] = L.padfoot,
 		[274555] = L.rat,
 		[258181] = L.crusher,
@@ -174,7 +174,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SlipperySudsApplied", 274507)
 	-- Vermin Trapper
 	self:Log("SPELL_CAST_START", "RatTraps", 274383)
-	-- Bilge Rat Ooker
+	-- Bilge Rat Buccaneer
 	self:Log("SPELL_CAST_START", "GoinBananas", 257756)
 	-- Bilge Rat Padfoot
 	self:Log("SPELL_AURA_APPLIED", "PlagueStepApplied", 257775)
@@ -338,7 +338,7 @@ function mod:RatTraps(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
--- Bilge Rat Ooker
+-- Bilge Rat Buccaneer
 function mod:GoinBananas(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")

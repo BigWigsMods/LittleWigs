@@ -25,16 +25,16 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlashingDaggers", 257785)
 	self:Log("SPELL_CAST_SUCCESS", "CripplingShiv", 257777)
+	self:Log("SPELL_AURA_REMOVED", "CripplingShivRemoved", 257777)
 	self:Log("SPELL_CAST_START", "HowlingFear", 257791)
 	self:Log("SPELL_CAST_SUCCESS", "SmokePowder", 257793)
 	self:Log("SPELL_CAST_SUCCESS", "MotivatingCry", 257827)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "Motivated", 257956)
 	self:Log("SPELL_INTERRUPT", "MotivatingCryInterupted", "*")
-
-	self:Death("Win", 127484) -- XXX Remove when this encounter has ENCOUNTER_END
 end
 
 function mod:OnEngage()
-	self:Bar(257777, 7) -- Crippling Shiv
+	self:CDBar(257777, 7) -- Crippling Shiv
 	self:Bar(257791, 8.5) -- Howling Fear
 	self:Bar(257785, 12) -- Flashing Daggers
 end
@@ -50,8 +50,16 @@ function mod:FlashingDaggers(args)
 end
 
 function mod:CripplingShiv(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
-	self:Bar(args.spellId, 17)
+	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("poison") then
+		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alarm")
+		self:TargetBar(args.spellId, 12, args.destName)
+	end
+	self:CDBar(args.spellId, 17)
+end
+
+function mod:CripplingShivRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:HowlingFear(args)
@@ -70,10 +78,19 @@ function mod:MotivatingCry(args)
 	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 end
 
+function mod:Motivated(args)
+	if self:MobId(args.destGUID) ~= 127484 then return end -- also applies it to nearby adds
+	if args.amount % 4 == 0 then -- every 8 seconds
+		self:StackMessage(257827, args.destName, args.amount, "orange")
+		self:PlaySound(257827, "alert")
+	end
+end
+
 function mod:MotivatingCryInterupted(args)
 	if args.extraSpellId == 257827 then
-		self:Message(257827, "cyan", "Info", CL.interrupted:format(args.spellName))
-		self:Bar(257777, 1.5) -- Crippling Shiv
+		self:Message(257827, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:PlaySound(257827, "info")
+		self:CDBar(257777, 1.5) -- Crippling Shiv
 		self:Bar(257791, 2) -- Howling Fear
 		self:Bar(257785, 5.5) -- Flashing Daggers
 	end
