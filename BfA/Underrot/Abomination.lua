@@ -13,7 +13,7 @@ mod.engageId = 2123
 --
 
 local putridBloodList = {}
-local visageRemaining = 10
+local visageRemaining = 6
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -42,7 +42,7 @@ end
 
 function mod:OnEngage()
 	putridBloodList = {}
-	visageRemaining = 10
+	visageRemaining = 6
 	self:Bar(269310, 7.2) -- Cleansing Light
 	self:Bar(269843, 8.5) -- Vile Expulsion
 end
