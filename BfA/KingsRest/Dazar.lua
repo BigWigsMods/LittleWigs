@@ -96,7 +96,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:Deaths(args)
-	if args.modId == 136984 then -- Reban
+	if args.mobId == 136984 then -- Reban
 		self:StopBar(269231) -- Hunting Leap
 	else -- T'zala
 		self:StopBar(269369) -- Deathly Roar
