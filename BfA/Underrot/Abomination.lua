@@ -43,8 +43,8 @@ end
 function mod:OnEngage()
 	putridBloodList = {}
 	visageRemaining = 6
-	self:Bar(269310, 7.2) -- Cleansing Light
 	self:Bar(269843, 8.5) -- Vile Expulsion
+	self:Bar(269310, 18) -- Cleansing Light
 end
 
 --------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ do
 	end
 	function mod:CleansingLight(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 32) -- pull:7.2, 32.8, 24.3, 37.6, 32.7
+		self:CDBar(args.spellId, 26) -- 18.0, 26.7, 36.5 & 18.3, 28.0, 32.4
 	end
 	function mod:CleansingLightSuccess(args)
 		self:SecondaryIcon(args.spellId)
