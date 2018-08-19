@@ -19,6 +19,10 @@ function mod:GetOptions()
 		263914, -- Blinding Sand
 		264239, -- Hatch
 		264206, -- Burrow
+		{263958, "SAY", "ICON"}, -- A Knot of Snakes
+	}, {
+		[263912] = "general",
+		[263958] = "heroic",
 	}
 end
 
@@ -27,9 +31,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ToxicPool", 263927)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ToxicPool", 263927)
 	self:Log("SPELL_PERIODIC_MISSED", "ToxicPool", 263927)
-	 self:Log("SPELL_CAST_START", "BlindingSand", 263914)
-	self:Log("SPELL_CAST_START", "Hatch", 264239)
+	self:Log("SPELL_CAST_START", "BlindingSand", 263914)
+	self:Log("SPELL_CAST_START", "Hatch", 264239, 264233) -- different sides
 	-- self:Log("SPELL_CAST_SUCCESS", "Burrow", 264194)
+	self:Log("SPELL_AURA_APPLIED", "KnotOfSnakes", 263958)
+	self:Log("SPELL_AURA_REMOVED", "KnotOfSnakesRemoved", 263958)
 
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 end
@@ -42,7 +48,7 @@ end
 --
 
 function mod:NoxiousBreath(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 83)
 end
@@ -62,7 +68,8 @@ do
 end
 
 function mod:BlindingSand(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 2.5)
 end
 
@@ -72,9 +79,9 @@ do
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
-			self:CDBar(args.spellId, 40)
+			self:Message(264239, "orange")
+			self:PlaySound(264239, "alarm")
+			self:CDBar(264239, 40)
 		end
 	end
 end
@@ -87,6 +94,21 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	else
 		self:Message(264206, "cyan")
 		self:PlaySound(264206, "long")
-		self:Bar(264206, 40)
+		self:Bar(264206, 28)
 	end
+end
+
+function mod:KnotOfSnakes(args)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
+	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "warning")
+	self:TargetBar(args.spellId, 15, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
+end
+
+function mod:KnotOfSnakesRemoved(args)
+	self:PrimaryIcon(args.spellId)
+	self:StopBar(args.spellName, args.destName)
 end

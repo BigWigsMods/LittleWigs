@@ -2,8 +2,8 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="GoldenSerpent.lua"/>
-<Script file="Mummification.lua"/>
-<Script file="Warlords.lua"/>
+<Script file="Mchimba.lua"/>
+<Script file="Council.lua"/>
 <Script file="Dazar.lua"/>
 
 <Include file="Options\options.xml"/>
