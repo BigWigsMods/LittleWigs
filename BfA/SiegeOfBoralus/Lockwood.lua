@@ -15,6 +15,15 @@ mod.engageId = 2109
 local withdrawn = 0
 
 --------------------------------------------------------------------------------
+-- Locales
+--
+
+local L = mod:GetLocale()
+if L then
+	L.ordanance_dropped = "Unstable Ordnance Dropped"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -69,7 +78,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message(spellId, "orange")
 		self:PlaySound(spellId, "alarm")
 	elseif spellId == 268963 then -- Unstable Ordnance (Dropped)
-		self:Message(spellId, "cyan", nil, "Unstable Ordnance Dropped")
+		self:Message(spellId, "cyan", nil, L.ordanance_dropped)
 		self:PlaySound(spellId, "info")
 	end
 end
