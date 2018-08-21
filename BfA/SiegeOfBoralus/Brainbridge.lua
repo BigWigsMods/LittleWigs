@@ -39,15 +39,18 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 257540 then -- Cannon Barrage
 		self:Message(257585, "orange")
 		self:PlaySound(257585, "warning")
 		self:CDBar(257585, 60) -- XXX Double check
 	elseif spellId == 274002 then -- Call Adds
-		self:Message("stages", "yellow", nil, CL.incoming:format(CL.adds), false)
-		self:PlaySound("stages", "long")
-		self:CDBar("stages", 17, CL.adds, "inv_misc_groupneedmore") -- XXX Double check
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp < 30.1 then
+			self:Message("stages", "yellow", nil, CL.incoming:format(CL.adds), false)
+			self:PlaySound("stages", "long")
+			self:CDBar("stages", 17, CL.adds, "inv_misc_groupneedmore") -- XXX Double check
+		end
 	end
 end
 
