@@ -182,7 +182,7 @@ function mod:DeathlyRoar(args)
 	self:CDBar(args.spellId, 13.3)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 269377 then -- Spike Pattern Controller
 		self:Message("stages", "yellow", nil, L.spears_active)
 		self:UnregisterUnitEvent(event, unit)
