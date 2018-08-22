@@ -31,13 +31,13 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
+		{228790, "TANK_HEALER"}, -- Concentrated Power
+		{228792, "HEALER"}, -- Infernal Power
 		228785, -- Cinder Breath
 		228808, -- Charred Earth
 		229307, -- Reverberating Shadows
 		228829, -- Burning Bones
-		{228792, "HEALER"}, -- Infernal Power
-		{228796, "SAY", "FLASH"}, -- Ignite Soul
-		{228790, "TANK_HEALER"}, -- Concentrated Power
+		{228796, "SAY", "SAY_COUNTDOWN", "FLASH"}, -- Ignite Soul
 		228834, -- Jagged Shards
 		228835, -- Absorb Vitality
 		228837, -- Bellowing Roar

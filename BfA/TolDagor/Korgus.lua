@@ -24,7 +24,7 @@ function mod:GetOptions()
 		256198, -- Azerite Rounds: Incendiary
 		256199, -- Azerite Rounds: Blast
 		256083, -- Cross Ignition
-		{256105, "SAY", "PROXIMITY"}, -- Explosive Burst
+		{256105, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Explosive Burst
 		256038, -- Deadeye
 		263345, -- Massive Blast
 	}

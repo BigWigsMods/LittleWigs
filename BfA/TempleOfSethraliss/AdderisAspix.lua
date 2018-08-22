@@ -19,7 +19,7 @@ mod.engageId = 2124
 function mod:GetOptions()
 	return {
 		263246, -- Lightning Shield
-		263371, -- Conduction
+		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
 		263573, -- Cyclone Strike
 		-- 263257, -- Static Shock
 		-- 263424, -- Arc Dash

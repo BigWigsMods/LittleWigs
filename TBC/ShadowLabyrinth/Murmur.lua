@@ -14,7 +14,7 @@ mod:RegisterEnableMob(18708)
 
 function mod:GetOptions()
 	return {
-		{38794, "ICON", "SAY"}, -- Murmur's Touch
+		{38794, "ICON", "SAY", "SAY_COUNTDOWN"}, -- Murmur's Touch
 		33923, -- Sonic Boom
 	}
 end

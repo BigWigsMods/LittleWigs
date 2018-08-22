@@ -88,10 +88,10 @@ function mod:GetOptions()
 		264396, -- Spectral Talisman
 		264390, -- Spellbind
 		-- Marked Sister
-		{264105, "SAY"}, -- Runic Mark
+		{264105, "SAY", "SAY_COUNTDOWN"}, -- Runic Mark
 		-- Matron Alma
 		265876, -- Ruinous Volley
-		{265880, "SAY"}, -- Dread Mark
+		{265880, "SAY", "SAY_COUNTDOWN"}, -- Dread Mark
 		265881, -- Decaying Touch
 	}, {
 		[265407] = L.steward,

@@ -39,7 +39,7 @@ function mod:GetOptions()
 		200658, -- Star Shower
 
 		--[[ Dreadsoul Poisoner ]]--
-		{200684, "SAY"}, -- Nightmare Toxin
+		{200684, "SAY", "SAY_COUNTDOWN"}, -- Nightmare Toxin
 
 		--[[ Crazed Razorbeak ]]--
 		200768, -- Propelling Charge

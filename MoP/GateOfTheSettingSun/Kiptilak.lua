@@ -21,7 +21,7 @@ local nextExplosionWarning = 75
 
 function mod:GetOptions()
 	return {
-		{107268, "SAY", "ICON"}, -- Sabotage
+		{107268, "SAY", "SAY_COUNTDOWN", "ICON"}, -- Sabotage
 		-5394, -- World in Flames
 	}
 end

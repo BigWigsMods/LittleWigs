@@ -21,7 +21,7 @@ local nextShieldOfLightWarning = 0
 function mod:GetOptions()
 	return {
 		74938, -- Shield of Light
-		{75592, "FLASH", "SAY", "PROXIMITY", "ICON"}, -- Divine Reckoning
+		{75592, "FLASH", "SAY", "SAY_COUNTDOWN", "PROXIMITY", "ICON"}, -- Divine Reckoning
 	}
 end
 
