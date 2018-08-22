@@ -39,7 +39,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4")
 
 	self:Log("SPELL_AURA_APPLIED", "Evasive", 272471)
 	self:Log("SPELL_CAST_START", "CleartheDeck", 269029)
