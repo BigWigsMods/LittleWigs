@@ -18,7 +18,7 @@ function mod:GetOptions()
 		268306, -- Discordant Cadenza
 		--[[ Lord Waycrest ]]--
 		{261438, "TANK_HEALER"}, -- Wasting Strike
-		{261440, "SAY"}, -- Virulent Pathogen
+		{261440, "SAY", "SAY_COUNTDOWN"}, -- Virulent Pathogen
 		261447, -- Putrid Vitality
 	}
 end

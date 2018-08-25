@@ -15,7 +15,7 @@ mod.engageId = 2014
 function mod:GetOptions()
 	return {
 		51103, -- Frostbomb
-		{51121, "ICON", "SAY"}, -- Time Bomb
+		{51121, "ICON", "SAY", "SAY_COUNTDOWN"}, -- Time Bomb
 		51110, -- Empowered Arcane Explosion
 	}
 end

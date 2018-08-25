@@ -14,7 +14,7 @@ mod.engageId = 2087
 
 function mod:GetOptions()
 	return {
-		{249923, "SAY"}, -- Soulrend
+		{249923, "SAY", "SAY_COUNTDOWN"}, -- Soulrend
 		250096, -- Wracking Pain
 		250050, -- Echoes of Shadra
 		250036, -- Shadowy Remains

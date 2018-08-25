@@ -44,7 +44,7 @@ function mod:GetOptions()
 		-- Shieldbearer of Zul
 		253721, -- Bulwark of Juju
 		-- Zanchuli Witch-Doctor
-		{252781, "SAY"}, -- Unstable Hex
+		{252781, "SAY", "SAY_COUNTDOWN"}, -- Unstable Hex
 		-- Dinomancer Kish'o
 		256849, -- Dino Might
 		-- Gilded Priestess

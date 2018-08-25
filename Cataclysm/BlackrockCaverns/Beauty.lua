@@ -14,7 +14,7 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
-		{76031, "SAY", "ICON", "PROXIMITY"}, -- Magma Spit
+		{76031, "SAY", "SAY_COUNTDOWN", "ICON", "PROXIMITY"}, -- Magma Spit
 		76028, -- Terrifying Roar
 		76628, -- Lava Drool
 	}, {
