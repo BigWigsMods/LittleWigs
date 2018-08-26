@@ -46,7 +46,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		self:CDBar(257585, 60) -- XXX Double check
 	elseif spellId == 274002 then -- Call Adds
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 30.1 then
+		if hp > 30 then
 			self:Message("stages", "yellow", nil, CL.incoming:format(CL.adds), false)
 			self:PlaySound("stages", "long")
 			self:CDBar("stages", 17, CL.adds, "inv_misc_groupneedmore") -- XXX Double check
