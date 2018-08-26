@@ -5,8 +5,17 @@
 
 local mod, CL = BigWigs:NewBoss("Aqu'sirr", 1864, 2153)
 if not mod then return end
-mod:RegisterEnableMob(134056)
+mod:RegisterEnableMob(134056, 139737) -- Aqu'sirr, Stormsong (for warmup timer)
 mod.engageId = 2130
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_trigger = "How dare you sully this holy place with your presence!"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -14,6 +23,7 @@ mod.engageId = 2130
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		265001, -- Sea Blast
 		264560, -- Choking Brine
 		264101, -- Surging Rush
@@ -23,6 +33,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+
 	self:Log("SPELL_CAST_START", "SeaBlast", 265001)
 	self:Log("SPELL_CAST_SUCCESS", "ChokingBrine", 264560)
 	self:Log("SPELL_AURA_APPLIED", "ChokingBrineApplied", 264560, 264773) -- Initial, Ground Pickup
@@ -40,6 +52,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 18.8, CL.active, "achievement_dungeon_shrineofthestorm")
+	end
+end
 
 do
 	local prev = 0

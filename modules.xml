@@ -188,7 +188,7 @@
 <!--<Include file="BfA\KingsRest\locales.xml"/>-->
 
 <Include file="BfA\ShrineOfTheStorm\modules.xml"/>
-<!--<Include file="BfA\ShrineOfTheStorm\locales.xml"/>-->
+<Include file="BfA\ShrineOfTheStorm\locales.xml"/>
 
 <Include file="BfA\SiegeOfBoralus\modules.xml"/>
 <!--<Include file="BfA\SiegeOfBoralus\locales.xml"/>-->
