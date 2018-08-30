@@ -1,13 +1,13 @@
-if UnitFactionGroup("player") ~= "Horde" then return end
+if UnitFactionGroup("player") ~= "Alliance" then return end
 
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sergeant Bainbridge", 1822, 2133)
+local mod, CL = BigWigs:NewBoss("Chopper Redhook", 1822, 2132)
 if not mod then return end
-mod:RegisterEnableMob(128649) -- Sergeant Bainbridge
-mod.engageId = 2097
+mod:RegisterEnableMob(128650) -- Chopper Redhook
+mod.engageId = 2098
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -26,22 +26,22 @@ end
 function mod:GetOptions()
 	return {
 		"adds",
-		{260954, "FLASH"}, -- Iron Gaze
-		261428, -- Hangman's Noose
-		260924, -- Steel Tempest
+		{257459, "FLASH"}, -- On the Hook
+		{257348, "SAY"}, -- Meat Hook
+		257326, -- Gore Crash
 		257585, -- Cannon Barrage
-		277965, -- Heavy Ordnance
+		273721, -- Heavy Ordnance
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
-	self:Log("SPELL_AURA_APPLIED", "IronGaze", 260954)
-	self:Log("SPELL_AURA_REMOVED", "IronGazeRemoved", 260954)
-	self:Log("SPELL_AURA_APPLIED", "HangmansNoose", 261428)
-	self:Log("SPELL_CAST_START", "SteelTempest", 260924)
-	self:Log("SPELL_AURA_APPLIED", "HeavyOrdnance", 277965)
+	self:Log("SPELL_AURA_APPLIED", "OnTheHook", 257459)
+	self:Log("SPELL_AURA_APPLIED", "OnTheHookRemoved", 257459)
+	self:Log("SPELL_CAST_START", "MeatHook", 257348)
+	self:Log("SPELL_CAST_START", "GoreCrash", 257326)
+	self:Log("SPELL_AURA_APPLIED", "HeavyOrdnance", 273721)
 end
 
 function mod:OnEngage()
@@ -68,7 +68,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	end
 end
 
-function mod:IronGaze(args)
+function mod:OnTheHook(args)
 	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
@@ -77,18 +77,25 @@ function mod:IronGaze(args)
 	end
 end
 
-function mod:IronGazeRemoved(args)
+function mod:OnTheHookRemoved(args)
 	self:StopBar(args.spellId, args.destName)
 end
 
-function mod:HangmansNoose(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
-	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "alert")
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(257348, "red", name)
+		self:PlaySound(257348, "alert")
+		if self:Me(guid) then
+			self:Say(257348)
+		end
+	end
+	function mod:MeatHook(args)
+		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
+		-- self:CastBar(257348, 2.7)
 	end
 end
 
-function mod:SteelTempest(args)
+function mod:GoreCrash(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
