@@ -60,7 +60,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	elseif spellId == 274002 then -- Call Adds
 		self:StopBar(CL.adds)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp > 30 then -- Low CD under 30%
+		if hp > 33 then -- Low CD under 33%
 			self:Message("adds", "yellow", nil, CL.incoming:format(CL.adds), false)
 			self:PlaySound("adds", "long")
 			self:CDBar("adds", 17, CL.adds, L.adds_icon) -- XXX Double check
