@@ -1,14 +1,14 @@
 
 BigWigs:AddColors("Temple Guardian Anhuur", {
-	[74938] = {"yellow","red"},
-	[75592] = {"yellow","blue"},
+	[74938] = {"red","yellow"},
+	[75592] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Anraphet", {
 	[75603] = {"blue","orange"},
 	[75609] = "blue",
 	[75622] = "red",
-	[76184] = {"yellow","blue"},
+	[76184] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Isiset", {
@@ -21,8 +21,8 @@ BigWigs:AddColors("Isiset", {
 
 BigWigs:AddColors("Ammunae", {
 	[75790] = "yellow",
-	[76043] = {"red","blue","orange"},
-	[80968] = {"yellow","blue"},
+	[76043] = {"blue","orange","red"},
+	[80968] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Rajh", {

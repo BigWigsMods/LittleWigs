@@ -1,6 +1,6 @@
 
 BigWigs:AddColors("Thalnos the Soulrender", {
-	[-5865] = {"yellow","blue"},
+	[-5865] = {"blue","yellow"},
 	[115297] = {"blue","orange"},
 })
 

@@ -1,14 +1,14 @@
 
 BigWigs:AddColors("Blackheart the Inciter", {
-	[33676] = {"yellow","red"},
+	[33676] = {"red","yellow"},
 })
 
 BigWigs:AddColors("Grandmaster Vorpil", {
 	[-5267] = "orange",
-	[38791] = {"red","blue"},
+	[38791] = {"blue","red"},
 })
 
 BigWigs:AddColors("Murmur", {
 	[33923] = "red",
-	[38794] = {"yellow","blue"},
+	[38794] = {"blue","yellow"},
 })

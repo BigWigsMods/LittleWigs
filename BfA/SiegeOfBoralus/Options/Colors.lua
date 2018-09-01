@@ -1,11 +1,20 @@
 
+BigWigs:AddColors("Chopper Redhook", {
+	[257326] = "orange",
+	[257348] = {"blue","red"},
+	[257459] = {"blue","yellow"},
+	[257585] = "orange",
+	[273721] = "green",
+	["adds"] = "yellow",
+})
+
 BigWigs:AddColors("Sergeant Bainbridge", {
 	[257585] = "orange",
 	[260924] = "orange",
 	[260954] = {"blue","yellow"},
 	[261428] = {"blue","red"},
 	[277965] = "green",
-	["stages"] = "yellow",
+	["adds"] = "yellow",
 })
 
 BigWigs:AddColors("Dread Captain Lockwood", {

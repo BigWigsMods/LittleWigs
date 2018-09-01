@@ -1,8 +1,8 @@
 
 BigWigs:AddColors("General Umbriss", {
 	[74634] = "orange",
-	[74670] = {"red","blue"},
-	[74846] = {"yellow","blue"},
+	[74670] = {"blue","red"},
+	[74846] = {"blue","yellow"},
 	[74853] = "yellow",
 })
 

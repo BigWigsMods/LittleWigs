@@ -6,7 +6,7 @@ BigWigs:AddColors("Drakos the Interrogator", {
 BigWigs:AddColors("Varos Cloudstrider", {
 	[-7442] = "orange",
 	[51021] = "blue",
-	[51054] = {"red","blue"},
+	[51054] = {"blue","red"},
 })
 
 BigWigs:AddColors("Mage-Lord Urom", {

@@ -1,21 +1,21 @@
 
 BigWigs:AddColors("Trial of the King", {
-	[-6024] = {"yellow","blue"},
-	[-6017] = {"yellow","blue"},
+	[-6024] = {"blue","yellow"},
+	[-6017] = {"blue","yellow"},
 	[119922] = "orange",
-	[120195] = {"red","blue"},
+	[120195] = {"blue","red"},
 	[123655] = {"blue","green"},
 })
 
 BigWigs:AddColors("Gekkan", {
-	[118903] = {"red","blue"},
-	[118963] = {"yellow","blue"},
+	[118903] = {"blue","red"},
+	[118963] = {"blue","yellow"},
 	["heal"] = "orange",
 	["stages"] = "green",
 })
 
 BigWigs:AddColors("Xin the Weaponmaster", {
 	[119684] = "orange",
-	["blades"] = {"yellow","green"},
-	["crossbows"] = {"yellow","green"},
+	["blades"] = {"green","yellow"},
+	["crossbows"] = {"green","yellow"},
 })

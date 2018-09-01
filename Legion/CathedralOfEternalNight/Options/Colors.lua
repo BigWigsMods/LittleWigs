@@ -5,7 +5,7 @@ BigWigs:AddColors("Agronox", {
 	[236527] = "yellow",
 	[236639] = "yellow",
 	[236640] = "blue",
-	[236650] = {"yellow","blue"},
+	[236650] = {"blue","yellow"},
 	[238674] = "blue",
 })
 
@@ -24,13 +24,13 @@ BigWigs:AddColors("Domatrax", {
 
 BigWigs:AddColors("Mephistroth", {
 	[233155] = "yellow",
-	[233196] = {"yellow","red","blue"},
-	[233206] = {"yellow","green"},
+	[233196] = {"blue","red","yellow"},
+	[233206] = {"green","yellow"},
 	[234817] = "yellow",
 })
 
 BigWigs:AddColors("Cathedral of Eternal Night Trash", {
-	[236737] = {"yellow","blue"},
+	[236737] = {"blue","yellow"},
 	[237391] = "orange",
 	[237565] = "yellow",
 	[238543] = "orange",

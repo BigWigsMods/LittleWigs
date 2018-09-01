@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Krik'thir the Gatewatcher", {
 	[28747] = "red",
-	[52592] = {"yellow","blue"},
+	[52592] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Hadronox", {

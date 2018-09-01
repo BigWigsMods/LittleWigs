@@ -2,7 +2,7 @@
 BigWigs:AddColors("Ranjit", {
 	[153315] = "red",
 	[156793] = "orange",
-	[165731] = {"yellow","blue"},
+	[165731] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Araknath", {
@@ -19,7 +19,7 @@ BigWigs:AddColors("Rukhran", {
 })
 
 BigWigs:AddColors("High Sage Viryx", {
-	[153954] = {"yellow","blue"},
+	[153954] = {"blue","yellow"},
 	[154055] = "orange",
 	["add"] = "red",
 })

@@ -1,11 +1,20 @@
 
+BigWigs:AddSounds("Chopper Redhook", {
+	[257326] = "alarm",
+	[257348] = "alert",
+	[257459] = "warning",
+	[257585] = "warning",
+	[273721] = "alert",
+	["adds"] = "long",
+})
+
 BigWigs:AddSounds("Sergeant Bainbridge", {
 	[257585] = "warning",
 	[260924] = "alarm",
 	[260954] = "warning",
 	[261428] = "alert",
 	[277965] = "alert",
-	["stages"] = "long",
+	["adds"] = "long",
 })
 
 BigWigs:AddSounds("Dread Captain Lockwood", {

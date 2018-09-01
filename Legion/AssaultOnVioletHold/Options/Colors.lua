@@ -34,23 +34,23 @@ BigWigs:AddColors("Kaahrj", {
 
 BigWigs:AddColors("Anub'esset", {
 	[201863] = "orange",
-	[202217] = {"yellow","blue"},
-	[202341] = {"red","blue"},
+	[202217] = {"blue","yellow"},
+	[202341] = {"blue","red"},
 	[202480] = "blue",
 	[202485] = "blue",
 })
 
 BigWigs:AddColors("Saelorn", {
 	[202306] = {"blue","orange"},
-	[202414] = {"yellow","blue"},
+	[202414] = {"blue","yellow"},
 	[202473] = "red",
 })
 
 BigWigs:AddColors("Fel Lord Betrug", {
 	[202328] = "orange",
 	[203641] = "red",
-	[205233] = {"red","blue","green"},
-	[210879] = {"yellow","blue"},
+	[205233] = {"blue","green","red"},
+	[210879] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Assault on Violet Hold Trash", {

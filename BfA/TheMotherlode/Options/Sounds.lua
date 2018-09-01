@@ -21,7 +21,7 @@ BigWigs:AddSounds("Rixxa Fluxflame", {
 
 BigWigs:AddSounds("Mogul Razzdunk", {
 	[260280] = "alert",
-	[260811] = "warning",
+	[260829] = "warning",
 	[271456] = "alert",
 	["stages"] = "info",
 })

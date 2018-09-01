@@ -6,9 +6,9 @@ BigWigs:AddColors("Vizier Jin'bak", {
 })
 
 BigWigs:AddColors("Commander Vo'jak", {
-	[-6287] = {"red","blue"},
+	[-6287] = {"blue","red"},
 	[120778] = "blue",
-	[120789] = {"yellow","blue"},
+	[120789] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("General Pa'valak", {

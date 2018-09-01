@@ -9,7 +9,7 @@ BigWigs:AddColors("Zuraal", {
 })
 
 BigWigs:AddColors("Saprish", {
-	[245802] = {"yellow","blue"},
+	[245802] = {"blue","yellow"},
 	[245873] = "cyan",
 	[247206] = "yellow",
 	[247245] = {"blue","orange"},
@@ -20,9 +20,9 @@ BigWigs:AddColors("Viceroy Nezhar", {
 	[-15926] = "yellow",
 	[244751] = "orange",
 	[244906] = "blue",
-	[246324] = {"red","green"},
+	[246324] = {"green","red"},
 	[248736] = {"cyan","green"},
-	[248804] = {"yellow","cyan"},
+	[248804] = {"cyan","yellow"},
 })
 
 BigWigs:AddColors("L'ura", {

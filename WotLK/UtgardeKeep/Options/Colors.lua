@@ -1,10 +1,10 @@
 
 BigWigs:AddColors("Prince Keleseth", {
-	[48400] = {"red","blue"},
+	[48400] = {"blue","red"},
 })
 
 BigWigs:AddColors("Skarvald & Dalronn", {
-	[43650] = {"yellow","blue"},
+	[43650] = {"blue","yellow"},
 	["stages"] = "green",
 })
 

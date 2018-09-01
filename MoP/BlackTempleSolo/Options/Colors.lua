@@ -9,7 +9,7 @@ BigWigs:AddColors("Kanrethad Ebonlocke", {
 	[138559] = "orange",
 	[138560] = {"blue","green"},
 	[138561] = "blue",
-	[138564] = {"red","green"},
+	[138564] = {"green","red"},
 	[138685] = "yellow",
 	[138751] = "yellow",
 	[138755] = "yellow",

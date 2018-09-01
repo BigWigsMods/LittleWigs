@@ -4,7 +4,7 @@ BigWigs:AddColors("Krystallus", {
 })
 
 BigWigs:AddColors("Maiden of Grief", {
-	[59726] = {"red","blue","orange"},
+	[59726] = {"blue","orange","red"},
 	[59772] = "blue",
 })
 

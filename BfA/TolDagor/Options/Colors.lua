@@ -11,7 +11,7 @@ BigWigs:AddColors("Jes Howlis", {
 	[257785] = "red",
 	[257791] = "orange",
 	[257793] = "cyan",
-	[257827] = {"cyan","orange"},
+	[257827] = {"blue","green","orange"},
 })
 
 BigWigs:AddColors("Knight Captain Valyri", {
@@ -23,14 +23,14 @@ BigWigs:AddColors("Knight Captain Valyri", {
 BigWigs:AddColors("Overseer Korgus", {
 	[256038] = {"blue","red"},
 	[256083] = "yellow",
-	[256101] = "orange",
+	[256105] = {"blue","orange"},
 	[256198] = "cyan",
 	[256199] = "cyan",
 	[263345] = "yellow",
 })
 
 BigWigs:AddColors("Tol Dagor Trash", {
-	[258079] = {"orange","blue"},
+	[258079] = {"blue","orange"},
 	[258128] = "yellow",
 	[258153] = "yellow",
 	[258313] = "red",
