@@ -58,7 +58,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:CDBar(270185, timer)
 	elseif spellId == 269984 then -- Damage Boss 35%
 		stage = stage + 1
-		if stage > 4 then
+		if stage < 4 then
 			self:Message("stages", "green", nil, CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 
