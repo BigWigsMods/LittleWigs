@@ -24,6 +24,7 @@ end
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		256405, -- Sharknado
 		256358, -- Shark Toss
 		256489, -- Rearm
