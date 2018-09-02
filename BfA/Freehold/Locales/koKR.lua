@@ -25,3 +25,9 @@ if L then
 	-- L.officer = "Irontide Officer"
 	-- L.stormcaller = "Irontide Stormcaller"
 end
+
+L = BigWigs:NewBossLocale("Ring of Booty", "koKR")
+if L then
+	-- Our champion that sleeps with the fishes... literally! The Freehold Fanatic... the Master of the Jagged Jawbone Jab... the Powerful Pugilist Predator... Trothak the Shark Puncher!
+	-- L.warmup_trigger = "sleeps with the fishes..."
+end
