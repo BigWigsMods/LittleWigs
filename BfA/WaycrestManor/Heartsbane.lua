@@ -20,7 +20,7 @@ mod.engageId = 2113
 function mod:GetOptions()
 	return {
 		260741, -- Jagged Nettles
-		{260703, "SAY"}, -- Unstable Runic Mark
+		{260703, "SAY", "FLASH"}, -- Unstable Runic Mark
 		260907, -- Soul Manipulation
 		260805, -- Focusing Iris
 		260773, -- Dire Ritual

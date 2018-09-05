@@ -27,7 +27,7 @@ end
 function mod:GetOptions()
 	return {
 		164974, -- Dark Eclipse
-		153240, -- Daggerfall
+		{153240, "SAY", "FLASH"}, -- Daggerfall
 		153153, -- Dark Communion
 		"custom_on_markadd", -- Add marker option
 	}

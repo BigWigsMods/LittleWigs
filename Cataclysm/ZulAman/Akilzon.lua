@@ -15,7 +15,7 @@ mod.respawnTime = 60
 function mod:GetOptions()
 	return {
 		{43622, "PROXIMITY"}, -- Static Disruption
-		{43648, "PROXIMITY"}, -- Electrical Storm
+		{43648, "PROXIMITY", "ICON"}, -- Electrical Storm
 		{97318, "ICON"}, -- Plucked
 	}
 end

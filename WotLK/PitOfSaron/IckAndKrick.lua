@@ -20,7 +20,7 @@ local pursuitWarned = {}
 
 function mod:GetOptions()
 	return {
-		70274, -- Toxic Waste
+		{70274, "ICON", "FLASH"}, -- Toxic Waste
 		68989, -- Poison Nova
 		69263, -- Explosive Barrage
 		68987, -- Pursuit
@@ -80,4 +80,3 @@ function mod:UNIT_AURA(event, unit)
 		pursuitWarned[n] = true
 	end
 end
-
