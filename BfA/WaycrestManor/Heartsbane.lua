@@ -80,14 +80,11 @@ function mod:FocusingIris(args)
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:StopBar(260741) -- Jagged Nettles
 	self:StopBar(260703) -- Unstable Runic Mark
-	self:StopBar(260907) -- Soul Manipulation
 
 	if self:MobId(args.destGUID) == 131825 then -- Sister Briar
 		self:Bar(260741, 8.5)  -- Jagged Nettles
 	elseif self:MobId(args.destGUID) == 131823 then -- Sister Malady
 		self:Bar(260703, 9) -- Unstable Runic Mark
-	elseif self:MobId(args.destGUID) == 131824 then -- Sister Solena
-		self:Bar(260907, 10) -- Soul Manipulation
 	end
 end
 
