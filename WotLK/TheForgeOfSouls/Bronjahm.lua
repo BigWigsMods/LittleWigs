@@ -13,7 +13,7 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		68872, -- Soulstorm
-		68839, -- Corrupt Soul
+		{68839, "ICON"}, -- Corrupt Soul
 	}
 end
 

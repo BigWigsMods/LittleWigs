@@ -8,26 +8,26 @@ BigWigs:AddColors("Vigilant Kaathar", {
 
 BigWigs:AddColors("Soulbinder Nyami", {
 	[153994] = "yellow",
-	[154477] = {"red","blue"},
+	[154477] = {"blue","red"},
 	[155327] = "orange",
 })
 
 BigWigs:AddColors("Azzakel", {
-	[153392] = {"red","blue"},
+	[153392] = {"blue","red"},
 	[153764] = "yellow",
 })
 
 BigWigs:AddColors("Teron'gor", {
 	[156854] = "yellow",
 	[156856] = "blue",
-	[156921] = {"yellow","blue"},
+	[156921] = {"blue","yellow"},
 	[156975] = "yellow",
-	[157001] = {"red","blue"},
+	[157001] = {"blue","red"},
 	[157039] = {"blue","orange"},
 	[157168] = {"blue","green"},
-	["stages"] = {"yellow","green"},
+	["stages"] = {"green","yellow"},
 })
 
 BigWigs:AddColors("Auchindoun Trash", {
-	[157168] = {"red","blue"},
+	[157168] = {"blue","red"},
 })

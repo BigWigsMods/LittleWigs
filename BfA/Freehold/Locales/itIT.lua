@@ -25,3 +25,9 @@ if L then
 	L.officer = "Ufficiale Marferreo"
 	L.stormcaller = "Invocatore delle Tempeste Marferreo"
 end
+
+L = BigWigs:NewBossLocale("Ring of Booty", "itIT")
+if L then
+	-- Our champion that sleeps with the fishes... literally! The Freehold Fanatic... the Master of the Jagged Jawbone Jab... the Powerful Pugilist Predator... Trothak the Shark Puncher!
+	-- L.warmup_trigger = "sleeps with the fishes..."
+end

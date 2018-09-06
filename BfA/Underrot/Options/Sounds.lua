@@ -3,21 +3,25 @@ BigWigs:AddSounds("Elder Leaxa", {
 	[260879] = "alert",
 	[260894] = "alarm",
 	[264603] = {"info","long"},
+	[264757] = "alarm",
 })
 
 BigWigs:AddSounds("Infested Crawg", {
 	[260292] = "alert",
+	[260333] = "long",
 	[260793] = "warning",
 })
 
 BigWigs:AddSounds("Sporecaller Zancha", {
 	[259718] = "warning",
-	[259732] = "long",
+	[259732] = "alarm",
 	[259830] = "info",
 	[272457] = "alert",
+	[273285] = "long",
 })
 
 BigWigs:AddSounds("Unbound Abomination", {
+	[269301] = {"alarm","warning"},
 	[269310] = "long",
 	[269843] = "warning",
 	["stages"] = "info",

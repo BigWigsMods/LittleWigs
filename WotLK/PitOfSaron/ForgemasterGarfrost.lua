@@ -13,7 +13,7 @@ mod:RegisterEnableMob(36494)
 
 function mod:GetOptions()
 	return {
-		70381, -- Deep Freeze
+		{70381, "ICON"}, -- Deep Freeze
 		{68789, "FLASH"}, -- Throw Saronite
 	}
 end
@@ -43,4 +43,3 @@ function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
 	self:Message(68789, "blue", "Alarm", CL.incoming:format(self:SpellName(68789)))
 	self:Flash(68789)
 end
-

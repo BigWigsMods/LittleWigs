@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Corborus", {
 	[86881] = "blue",
-	["burrow"] = {"yellow","red"},
+	["burrow"] = {"red","yellow"},
 })
 
 BigWigs:AddColors("Slabhide", {
@@ -18,5 +18,5 @@ BigWigs:AddColors("Ozruk", {
 
 BigWigs:AddColors("High Priestess Azil", {
 	[79050] = "red",
-	[79345] = {"yellow","blue"},
+	[79345] = {"blue","yellow"},
 })

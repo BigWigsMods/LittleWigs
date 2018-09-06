@@ -1,10 +1,10 @@
 
 BigWigs:AddColors("Maiden of Virtue", {
 	[227508] = "yellow",
-	[227789] = {"red","blue","green"},
+	[227789] = {"blue","green","red"},
 	[227800] = "yellow",
-	[227809] = {"red","blue"},
-	[227823] = {"red","orange"},
+	[227809] = {"blue","red"},
+	[227823] = {"orange","red"},
 })
 
 BigWigs:AddColors("Opera Hall: Wikket", {
@@ -45,7 +45,7 @@ BigWigs:AddColors("Moroes", {
 	[227545] = "orange",
 	[227578] = "red",
 	[227616] = "red",
-	[227646] = {"yellow","blue"},
+	[227646] = {"blue","yellow"},
 	[227672] = "red",
 	[227736] = "yellow",
 	[227742] = {"blue","orange"},
@@ -61,10 +61,10 @@ BigWigs:AddColors("The Curator", {
 
 BigWigs:AddColors("Shade of Medivh", {
 	[227592] = {"blue","orange"},
-	[227615] = {"red","orange"},
+	[227615] = {"orange","red"},
 	[227628] = "yellow",
-	[227779] = {"yellow","blue"},
-	[228269] = {"yellow","red","blue"},
+	[227779] = {"blue","yellow"},
+	[228269] = {"blue","red","yellow"},
 	[228334] = "yellow",
 	["stages"] = "cyan",
 })
@@ -72,14 +72,14 @@ BigWigs:AddColors("Shade of Medivh", {
 BigWigs:AddColors("Mana Devourer", {
 	[227297] = "orange",
 	[227502] = {"blue","green"},
-	[227523] = {"yellow","blue"},
+	[227523] = {"blue","yellow"},
 	[227618] = "red",
 })
 
 BigWigs:AddColors("Viz'aduum the Watcher", {
-	[229083] = {"yellow","red","blue"},
+	[229083] = {"blue","red","yellow"},
 	[229151] = "yellow",
-	[229159] = {"red","blue"},
+	[229159] = {"blue","red"},
 	[229248] = {"blue","orange"},
 	[229284] = "orange",
 	[229905] = "blue",
@@ -89,9 +89,9 @@ BigWigs:AddColors("Viz'aduum the Watcher", {
 
 BigWigs:AddColors("Nightbane", {
 	[228785] = "red",
-	[228790] = {"red","green"},
-	[228792] = {"red","green"},
-	[228796] = {"red","blue"},
+	[228790] = {"green","red"},
+	[228792] = {"green","red"},
+	[228796] = {"blue","red"},
 	[228808] = {"blue","orange"},
 	[228829] = {"blue","orange"},
 	[228834] = "red",

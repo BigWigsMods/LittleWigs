@@ -1,10 +1,5 @@
 
 --------------------------------------------------------------------------------
--- Todo:
--- - Mark the boss with Focusing Iris?
---
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -20,9 +15,10 @@ mod.engageId = 2113
 function mod:GetOptions()
 	return {
 		260741, -- Jagged Nettles
-		{260703, "SAY"}, -- Unstable Runic Mark
-		260907, -- Soul Manipulation
-		260805, -- Focusing Iris
+		{260703, "SAY", "FLASH"}, -- Unstable Runic Mark
+		{260926, "ICON"}, -- Soul Manipulation
+		{260805, "ICON"}, -- Focusing Iris
+		focusingIrisMarker,
 		260773, -- Dire Ritual
 	}
 end
@@ -31,7 +27,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "JaggedNettles", 260741)
 	-- self:Log("SPELL_CAST_SUCCESS", "UnstableRunicMark", 260703)
 	self:Log("SPELL_AURA_APPLIED", "UnstableRunicMarkApplied", 260703)
-	self:Log("SPELL_AURA_APPLIED", "SoulManipulation", 260907)
+	self:Log("SPELL_AURA_APPLIED", "SoulManipulation", 260926)
+	self:Log("SPELL_AURA_REMOVED", "SoulManipulationRemovedFromBoss", 260923)
 	self:Log("SPELL_AURA_APPLIED", "FocusingIris", 260805)
 	self:Log("SPELL_CAST_START", "DireRitual", 260773)
 end
@@ -69,22 +66,25 @@ end
 function mod:SoulManipulation(args)
 	self:TargetMessage2(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
-	self:Bar(args.spellId, 24)
+	self:PrimaryIcon(args.spellId, args.destName) -- Move icon from boss to player
+end
+
+function mod:SoulManipulationRemovedFromBoss(args)
+	-- Move the icon away from the player and back to the boss
+	self:PrimaryIcon(260805, self:GetUnitIdByGUID(args.destGUID)) -- Focusing Iris
 end
 
 function mod:FocusingIris(args)
 	self:TargetMessage2(args.spellId, "cyan", args.destName)
 	self:PlaySound(args.spellId, "long", nil, args.destName)
+	self:PrimaryIcon(args.spellId, self:GetUnitIdByGUID(args.destGUID))
 	self:StopBar(260741) -- Jagged Nettles
 	self:StopBar(260703) -- Unstable Runic Mark
-	self:StopBar(260907) -- Soul Manipulation
 
 	if self:MobId(args.destGUID) == 131825 then -- Sister Briar
 		self:Bar(260741, 8.5)  -- Jagged Nettles
 	elseif self:MobId(args.destGUID) == 131823 then -- Sister Malady
 		self:Bar(260703, 9) -- Unstable Runic Mark
-	elseif self:MobId(args.destGUID) == 131824 then -- Sister Solena
-		self:Bar(260907, 10) -- Soul Manipulation
 	end
 end
 

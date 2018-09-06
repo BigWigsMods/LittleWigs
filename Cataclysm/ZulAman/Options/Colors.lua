@@ -1,11 +1,11 @@
 
 BigWigs:AddColors("Akil'zon", {
-	[43648] = {"red","blue"},
-	[97318] = {"red","blue"},
+	[43648] = {"blue","red"},
+	[97318] = {"blue","red"},
 })
 
 BigWigs:AddColors("Nalorakk", {
-	[42398] = {"yellow","blue"},
+	[42398] = {"blue","yellow"},
 	[42402] = {"blue","orange"},
 	["stages"] = "red",
 })
@@ -13,15 +13,15 @@ BigWigs:AddColors("Nalorakk", {
 BigWigs:AddColors("Jan'alai", {
 	[-2625] = "yellow",
 	[-2622] = "orange",
-	[97497] = {"red","blue"},
+	[97497] = {"blue","red"},
 })
 
 BigWigs:AddColors("Halazzi", {
 	[43139] = "red",
 	[43302] = "orange",
-	[43303] = {"yellow","blue"},
+	[43303] = {"blue","yellow"},
 	[97499] = "orange",
-	["stages"] = {"yellow","green"},
+	["stages"] = {"green","yellow"},
 })
 
 BigWigs:AddColors("Hex Lord Malacrass", {
@@ -29,14 +29,14 @@ BigWigs:AddColors("Hex Lord Malacrass", {
 	[43421] = {"blue","orange"},
 	[43431] = "orange",
 	[43451] = "orange",
-	[43501] = {"yellow","blue"},
+	[43501] = {"blue","yellow"},
 	[43548] = "orange",
 })
 
 BigWigs:AddColors("Daakara", {
 	[17207] = "orange",
-	[43093] = {"yellow","blue"},
+	[43093] = {"blue","yellow"},
 	[43095] = "yellow",
-	[43150] = {"red","blue"},
+	[43150] = {"blue","red"},
 	["stages"] = "red",
 })

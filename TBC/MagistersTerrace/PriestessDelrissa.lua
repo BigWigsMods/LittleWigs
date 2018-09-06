@@ -62,9 +62,10 @@ function mod:OnBossEnable()
 
 	-- Ellrys Duskhallow
 	self:Log("SPELL_AURA_APPLIED", "SeedOfCorruption", 44141)
+	self:Log("SPELL_AURA_REMOVED", "SeedOfCorruptionRemoved", 44141)
 
 	-- General _AURA_REMOVED events:
-	self:Log("SPELL_AURA_REMOVED", "Removed", 13323, 44141, 44174, 46192) -- Polymorh, Seed of Corruption, normal/heroic Renew
+	self:Log("SPELL_AURA_REMOVED", "Removed", 13323, 44174, 46192) -- Polymorh, normal/heroic Renew
 end
 
 --------------------------------------------------------------------------------
@@ -103,10 +104,12 @@ function mod:SeedOfCorruption(args)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
+function mod:SeedOfCorruptionRemoved(args)
+	self:PrimaryIcon(args.spellId)
+	self:StopBar(args.spellName, args.destName)
+end
+
 -- General _AURA_REMOVED events:
 function mod:Removed(args)
-	if args.spellId == 44141 then -- Seed of Corruption
-		self:PrimaryIcon(args.spellId)
-	end
 	self:StopBar(args.spellName, args.destName)
 end

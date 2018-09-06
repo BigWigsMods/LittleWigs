@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Aqu'sirr", {
 	[264101] = "yellow",
-	[264166] = {"orange","blue"},
+	[264166] = {"blue","orange"},
 	[264560] = {"blue","yellow"},
 	[264903] = "cyan",
 	[265001] = "orange",
@@ -21,7 +21,7 @@ BigWigs:AddColors("Lord Stormsong", {
 })
 
 BigWigs:AddColors("Vol'zith the Whisperer", {
-	[267037] = {"cyan","blue"},
+	[267037] = {"blue","cyan"},
 	[267360] = "red",
 	[267385] = "orange",
 	[269399] = "yellow",

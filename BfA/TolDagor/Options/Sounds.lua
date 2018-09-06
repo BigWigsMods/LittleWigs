@@ -7,11 +7,11 @@ BigWigs:AddSounds("The Sand Queen", {
 })
 
 BigWigs:AddSounds("Jes Howlis", {
-	[257777] = "Alarm",
+	[257777] = "alarm",
 	[257785] = "Warning",
 	[257791] = "Alert",
 	[257793] = "Long",
-	[257827] = {"Alert","Info"},
+	[257827] = {"Alert","alert","info"},
 })
 
 BigWigs:AddSounds("Knight Captain Valyri", {
@@ -23,7 +23,7 @@ BigWigs:AddSounds("Knight Captain Valyri", {
 BigWigs:AddSounds("Overseer Korgus", {
 	[256038] = "Warning",
 	[256083] = "Alert",
-	[256101] = "Alarm",
+	[256105] = {"alarm","warning"},
 	[256198] = "Info",
 	[256199] = "Info",
 	[263345] = "Alert",

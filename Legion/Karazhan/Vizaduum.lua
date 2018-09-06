@@ -39,7 +39,7 @@ function mod:GetOptions()
 
 		-- [[ Stage 3 ]] --
 		230084, -- Stabilize Rift
-		230066, -- Shadow Phlegm
+		{230066, "PROXIMITY"}, -- Shadow Phlegm
 	}, {
 		["stages"] = "general",
 		[229248] = CL.stage:format(1),

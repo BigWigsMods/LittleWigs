@@ -9,11 +9,21 @@ mod:RegisterEnableMob(134060)
 mod.engageId = 2132
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_trigger = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		268347, -- Void Bolt
 		269097, -- Waken the Void
 		269131, -- Ancient Mindbender
@@ -21,6 +31,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+
 	self:Log("SPELL_CAST_START", "VoidBolt", 268347)
 	self:Log("SPELL_CAST_SUCCESS", "WakentheVoid", 269097)
 	self:Log("SPELL_CAST_SUCCESS", "AncientMindbender", 269131)
@@ -35,6 +47,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 19, CL.active, "achievement_dungeon_shrineofthestorm")
+	end
+end
 
 function mod:VoidBolt(args)
 	self:Message(args.spellId, "yellow")

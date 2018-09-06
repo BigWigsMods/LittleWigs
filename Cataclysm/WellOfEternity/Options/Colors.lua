@@ -1,8 +1,8 @@
 
 BigWigs:AddColors("Peroth'arn", {
-	[105442] = {"yellow","blue"},
-	[105493] = {"yellow","blue"},
-	[105544] = {"red","blue"},
+	[105442] = {"blue","yellow"},
+	[105493] = {"blue","yellow"},
+	[105544] = {"blue","red"},
 	["eyes"] = "green",
 })
 

@@ -35,7 +35,7 @@ end
 function mod:GetOptions()
 	return {
 		233155, -- Carrion Swarm
-		233196, -- Demonic Upheaval
+		{233196, "SAY", "FLASH"}, -- Demonic Upheaval
 		{234817, "PROXIMITY"}, -- Dark Solitude
 		233206, -- Shadow Fade
 		"custom_on_time_lost",

@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Sadana Bloodfury", {
 	[153153] = "green",
-	[153240] = {"yellow","blue"},
+	[153240] = {"blue","yellow"},
 	[164974] = "orange",
 })
 

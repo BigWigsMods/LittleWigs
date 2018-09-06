@@ -21,7 +21,7 @@ BigWigs:AddColors("Naraxas", {
 })
 
 BigWigs:AddColors("Dargrul", {
-	[200154] = {"yellow","blue"},
+	[200154] = {"blue","yellow"},
 	[200404] = "green",
 	[200551] = "green",
 	[200700] = "orange",

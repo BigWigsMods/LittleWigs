@@ -89,9 +89,9 @@ end
 do
 	local isOnMe, playerList = false, mod:NewTargetList()
 
-	local function announce(self, spellId)
+	local function announce(self)
 		if isOnMe or self:Dispeller("magic") then
-			self:TargetMessage(spellId, playerList, "orange", "Alarm", nil, nil, true)
+			self:TargetMessage(59868, playerList, "orange", "Alarm", nil, nil, true)
 		else
 			wipe(playerList) -- :TargetMessage calls wipe() on its 2nd argument
 		end
@@ -108,7 +108,7 @@ do
 		if self:UnitDebuff(args.destName, args.spellId) then
 			playerList[#playerList + 1] = args.destName
 			if #playerList == 1 then
-				self:ScheduleTimer(announce, 0.3, self, 59868)
+				self:ScheduleTimer(announce, 0.3, self)
 			end
 		end
 	end

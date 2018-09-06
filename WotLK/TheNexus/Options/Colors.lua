@@ -21,10 +21,10 @@ BigWigs:AddColors("Keristrasza", {
 	[8599] = "red",
 	[48095] = "blue",
 	[48179] = "orange",
-	[50997] = {"yellow","blue"},
+	[50997] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("The Nexus Trash", {
-	[30849] = {"yellow","blue"},
+	[30849] = {"blue","yellow"},
 	[47779] = {"blue","orange"},
 })

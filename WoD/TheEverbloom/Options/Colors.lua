@@ -1,6 +1,6 @@
 
 BigWigs:AddColors("Witherbark", {
-	[164275] = {"yellow","cyan"},
+	[164275] = {"cyan","yellow"},
 	[164294] = {"blue","orange"},
 	[164357] = "red",
 })
@@ -19,7 +19,7 @@ BigWigs:AddColors("Xeri'tac", {
 	[169233] = "red",
 	[169248] = "orange",
 	[173080] = "blue",
-	["stages"] = {"red","cyan"},
+	["stages"] = {"cyan","red"},
 })
 
 BigWigs:AddColors("Archmage Sol", {

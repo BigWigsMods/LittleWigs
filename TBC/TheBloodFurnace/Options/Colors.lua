@@ -1,6 +1,6 @@
 
 BigWigs:AddColors("The Maker", {
-	[30923] = {"red","blue"},
+	[30923] = {"blue","red"},
 })
 
 BigWigs:AddColors("Broggok", {

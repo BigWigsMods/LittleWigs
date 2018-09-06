@@ -29,7 +29,7 @@ end
 function mod:GetOptions()
 	return {
 		"fists",
-		114460, -- Scorched Earth
+		{114460, "FLASH"}, -- Scorched Earth
 		"firestorm",
 	}
 end
@@ -73,4 +73,3 @@ function mod:FirestormKick(args)
 	self:Bar("firestorm", 6, CL["cast"]:format(args.spellName), args.spellId)
 	self:Bar("firestorm", 25.2, args.spellId)
 end
-

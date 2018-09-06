@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Orebender Gor'ashan", {
 	[154448] = "orange",
-	[166168] = {"yellow","red","green"},
+	[166168] = {"green","red","yellow"},
 })
 
 BigWigs:AddColors("Kyrak", {
@@ -14,19 +14,19 @@ BigWigs:AddColors("Kyrak", {
 BigWigs:AddColors("Commander Tharbek", {
 	[161833] = "blue",
 	[161882] = "orange",
-	[162090] = {"yellow","blue"},
+	[162090] = {"blue","yellow"},
 	["iron_reaver"] = "red",
 	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Ragewing the Untamed", {
-	[-10740] = {"red","green"},
+	[-10740] = {"green","red"},
 	[154996] = "yellow",
 	[155057] = "blue",
 	[155620] = "orange",
 })
 
 BigWigs:AddColors("Warlord Zaela", {
-	[155721] = {"yellow","blue"},
-	["stages"] = {"red","green"},
+	[155721] = {"blue","yellow"},
+	["stages"] = {"green","red"},
 })

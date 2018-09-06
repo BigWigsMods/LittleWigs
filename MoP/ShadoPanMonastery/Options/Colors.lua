@@ -9,12 +9,12 @@ BigWigs:AddColors("Gu Cloudstrike", {
 BigWigs:AddColors("Master Snowdrift", {
 	[106434] = "orange",
 	[106747] = "green",
-	[118961] = {"red","blue"},
+	[118961] = {"blue","red"},
 	["stages"] = "green",
 })
 
 BigWigs:AddColors("Sha of Violence", {
-	[-5813] = {"red","green"},
+	[-5813] = {"green","red"},
 	[106872] = {"blue","orange"},
 })
 

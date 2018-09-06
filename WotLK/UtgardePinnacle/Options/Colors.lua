@@ -1,12 +1,12 @@
 
 BigWigs:AddColors("Svala Sorrowgrave", {
-	[48267] = {"red","blue"},
-	[48276] = {"yellow","orange"},
+	[48267] = {"blue","red"},
+	[48276] = {"orange","yellow"},
 })
 
 BigWigs:AddColors("Gortok Palehoof", {
 	[59267] = "orange",
-	[59268] = {"yellow","blue"},
+	[59268] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Skadi the Ruthless", {

@@ -1,23 +1,23 @@
 
 BigWigs:AddColors("Saboteur Kip'tilak", {
 	[-5394] = "yellow",
-	[107268] = {"red","blue"},
+	[107268] = {"blue","red"},
 })
 
 BigWigs:AddColors("Striker Ga'dok", {
-	[-5660] = {"yellow","blue"},
-	[106933] = {"red","blue"},
+	[-5660] = {"blue","yellow"},
+	[106933] = {"blue","red"},
 })
 
 BigWigs:AddColors("Commander Ri'mok", {
-	[-5666] = {"red","blue","orange"},
+	[-5666] = {"blue","orange","red"},
 	[106874] = "blue",
-	[107120] = {"yellow","blue"},
+	[107120] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Raigonn", {
 	[111668] = "orange",
-	[111723] = {"red","blue"},
+	[111723] = {"blue","red"},
 	[111728] = "yellow",
 	["stages"] = {"cyan","green"},
 })

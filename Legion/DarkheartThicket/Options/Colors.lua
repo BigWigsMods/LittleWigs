@@ -1,6 +1,6 @@
 
 BigWigs:AddColors("Archdruid Glaidalis", {
-	[196376] = {"yellow","blue"},
+	[196376] = {"blue","yellow"},
 	[198379] = "red",
 	[198408] = "blue",
 })
@@ -21,14 +21,14 @@ BigWigs:AddColors("Dresaron", {
 BigWigs:AddColors("Shade of Xavius", {
 	[200050] = "yellow",
 	[200185] = {"blue","orange"},
-	[200238] = {"red","blue"},
-	[200289] = {"yellow","blue"},
+	[200238] = {"blue","red"},
+	[200289] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Darkheart Thicket Trash", {
 	[200580] = "orange",
 	[200658] = "yellow",
-	[200684] = {"red","blue"},
+	[200684] = {"blue","red"},
 	[200768] = "orange",
 	[201226] = "orange",
 	[201272] = "orange",

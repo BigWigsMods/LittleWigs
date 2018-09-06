@@ -1,11 +1,11 @@
 
 BigWigs:AddColors("Slad'ran", {
-	[59842] = {"yellow","blue"},
+	[59842] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Drakkari Colossus", {
 	[59451] = "blue",
-	["stages"] = {"yellow","red"},
+	["stages"] = {"red","yellow"},
 })
 
 BigWigs:AddColors("Moorabi", {
@@ -18,6 +18,6 @@ BigWigs:AddColors("Eck the Ferocious", {
 
 BigWigs:AddColors("Gal'darah", {
 	[59825] = "blue",
-	[59827] = {"yellow","blue"},
+	[59827] = {"blue","yellow"},
 	["forms"] = "yellow",
 })

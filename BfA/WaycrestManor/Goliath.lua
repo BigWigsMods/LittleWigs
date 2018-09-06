@@ -12,11 +12,13 @@ mod.engageId = 2114
 -- Initialization
 --
 
+local soulThornsMarker = mod:AddMarkerOption(true, "npc", 8, 267907, 8) -- Soul Thorns
 function mod:GetOptions()
 	return {
 		{260508, "TANK"}, -- Crush
 		260512, -- Soul Harvest
-		{260551, "SAY", "ICON"}, -- Soul Thorns
+		{267907, "SAY"}, -- Soul Thorns
+		soulThornsMarker,
 		260541, -- Burning Brush
 		260569, -- Wildfire
 	}
@@ -25,6 +27,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SoulHarvest", 260512)
 	self:Log("SPELL_CAST_SUCCESS", "SoulThorns", 260551)
+	self:Log("SPELL_SUMMON", "SoulThornsSummon", 267907)
 	self:Log("SPELL_AURA_APPLIED", "SoulThornsApplied", 267907)
 	self:Log("SPELL_AURA_REMOVED", "SoulThornsRemoved", 267907)
 	self:Log("SPELL_CAST_START", "Crush", 260508)
@@ -34,7 +37,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(260508, 6) -- Crush
-	self:Bar(260551, 10) -- Soul Thorns
+	self:Bar(267907, 10) -- Soul Thorns
 end
 
 --------------------------------------------------------------------------------
@@ -49,22 +52,42 @@ function mod:SoulHarvest(args)
 end
 
 function mod:SoulThorns(args)
-	self:CDBar(args.spellId, 22)
+	self:CDBar(267907, 22)
 end
 
-function mod:SoulThornsApplied(args)
-	if self:Me(args.destGUID) then
-		self:Say(260551)
+do
+	local soulThornsGUID = nil
+
+	function mod:MarkSoulThorns(_, unit, guid)
+		if soulThornsGUID == guid then
+			soulThornsGUID = nil
+			SetRaidTarget(unit, 8)
+			self:UnregisterTargetEvents()
+		end
 	end
-	self:TargetMessage2(260551, "orange", args.destName)
-	self:PlaySound(260551, "alarm")
-	self:TargetBar(260551, 15, args.destName)
-	self:PrimaryIcon(260551, args.destName)
+
+	function mod:SoulThornsSummon(args)
+		if self:GetOption(soulThornsMarker) then
+			soulThornsGUID = args.destGUID
+		end
+	end
+
+	function mod:SoulThornsApplied(args)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+		end
+		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alarm")
+		self:TargetBar(args.spellId, 15, args.destName)
+		if self:GetOption(soulThornsMarker) then
+			soulThornsGUID = nil
+			self:RegisterTargetEvents("MarkSoulThorns")
+		end
+	end
 end
 
 function mod:SoulThornsRemoved(args)
-	self:StopBar(260551, args.destName)
-	self:PrimaryIcon(260551)
+	self:StopBar(args.spellId, args.destName)
 end
 
 function mod:Crush(args)
