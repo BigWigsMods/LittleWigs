@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:Log("SPELL_AURA_APPLIED", "OnTheHook", 257459)
-	self:Log("SPELL_AURA_APPLIED", "OnTheHookRemoved", 257459)
+	self:Log("SPELL_AURA_REMOVED", "OnTheHookRemoved", 257459)
 	self:Log("SPELL_CAST_START", "MeatHook", 257348)
 	self:Log("SPELL_CAST_START", "GoreCrash", 257326)
 	self:Log("SPELL_AURA_APPLIED", "HeavyOrdnance", 273721)
