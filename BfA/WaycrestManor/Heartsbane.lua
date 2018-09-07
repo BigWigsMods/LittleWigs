@@ -18,7 +18,6 @@ function mod:GetOptions()
 		{260703, "SAY", "FLASH"}, -- Unstable Runic Mark
 		{260926, "ICON"}, -- Soul Manipulation
 		{260805, "ICON"}, -- Focusing Iris
-		focusingIrisMarker,
 		260773, -- Dire Ritual
 	}
 end
