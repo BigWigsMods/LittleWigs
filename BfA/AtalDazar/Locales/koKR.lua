@@ -8,6 +8,6 @@ if L then
 	-- L.kisho = "Dinomancer Kish'o"
 	-- L.priestess = "Gilded Priestess"
 	-- L.stalker = "Shadowblade Stalker"
-	-- L.confessor = "Dazar'ai Confessor"
-	-- L.augur = "Dazar'ai Augur"
+	L.confessor = "다자르아이 고해사제"
+	L.augur = "다자르아이 점술가"
 end
