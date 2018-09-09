@@ -8,4 +8,6 @@ if L then
 	L.kisho = "Dinomántica Kish'o"
 	L.priestess = "Sacerdotisa dorada"
 	L.stalker = "Acechador Hoja de las Sombras"
+	-- L.confessor = "Dazar'ai Confessor"
+	-- L.augur = "Dazar'ai Augur"
 end

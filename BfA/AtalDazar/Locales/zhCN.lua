@@ -8,4 +8,6 @@ if L then
 	L.kisho = "恐龙首领吉什奥"
 	L.priestess = "鎏金女祭司"
 	L.stalker = "影刃追猎者"
+	-- L.confessor = "Dazar'ai Confessor"
+	-- L.augur = "Dazar'ai Augur"
 end

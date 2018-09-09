@@ -8,4 +8,6 @@ if L then
 	L.kisho = "Диномант Киш'о"
 	L.priestess = "Позолоченная жрица"
 	L.stalker = "Крадущийся теневой клинок"
+	-- L.confessor = "Dazar'ai Confessor"
+	-- L.augur = "Dazar'ai Augur"
 end
