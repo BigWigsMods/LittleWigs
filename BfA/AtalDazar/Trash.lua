@@ -162,7 +162,7 @@ function mod:BwonsamdisMantle(args)
 end
 
 function mod:MendingWord(args)
-	self:Message(args.spellId, "purple", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info", "interrupt")
 end
 
