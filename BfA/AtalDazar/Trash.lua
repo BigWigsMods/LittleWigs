@@ -157,17 +157,17 @@ end
 
 --Dazar'ai Confessor
 function mod:BwonsamdisMantle(args)
-	self:Message(args.spellId, "blue", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 function mod:MendingWord(args)
-	self:Message(args.spellId, "green", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "purple", nil, CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info", "interrupt")
 end
 
 -- Dazar'ai Augur
 function mod:FieryEnchant(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm", "interrupt")
 end
