@@ -36,4 +36,7 @@ BigWigs:AddSounds("Atal'Dazar Trash", {
 	[255567] = "alert",
 	[256849] = "alert",
 	[260666] = "alert",
+	[253544] = "warning",
+	[253517] = "info",
+	[253583] = "alarm",
 })
