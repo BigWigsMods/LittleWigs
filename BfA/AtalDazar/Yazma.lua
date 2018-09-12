@@ -14,7 +14,7 @@ mod.engageId = 2087
 
 function mod:GetOptions()
 	return {
-		{249923, "SAY", "SAY_COUNTDOWN"}, -- Soulrend
+		259187, -- Soulrend
 		250096, -- Wracking Pain
 		250050, -- Echoes of Shadra
 		250036, -- Shadowy Remains
@@ -23,8 +23,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Soulrend
-	--self:Log("SPELL_CAST_START", "Soulrend", 249923)
+	self:Log("SPELL_CAST_START", "Soulrend", 259187)
 	self:Log("SPELL_CAST_START", "WrackingPain", 250096)
 	self:Log("SPELL_CAST_START", "EchoesofShadra", 250050)
 	self:Log("SPELL_AURA_APPLIED", "ShadowyRemains", 250036)
@@ -34,47 +33,35 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(250096, 4) -- Wracking Pain
-	self:Bar(249923, 6.4) -- Soulrend
-	self:Bar(250050, 23.4) -- Echoes of Shadra
-	self:Bar(249919, 29) -- Skewer
+	self:Bar(250096, 3.7) -- Wracking Pain
+	self:Bar(259187, 9.7) -- Soulrend
+	self:Bar(250050, 15.8) -- Echoes of Shadra
+	self:Bar(249919, 6.1) -- Skewer
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-	if msg:find("249924") then -- Soulrend
-		self:TargetMessage(249923, destName, "red")
-		local guid = UnitGUID(destName)
-		if self:Me(guid) then
-			self:PlaySound(249923, "warning", "runaway")
-			self:Say(249923)
-			self:SayCountdown(249923, 5)
-		end
-		self:Bar(249923, 26.5)
-	end
+function mod:Soulrend(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning", "runaway")
+	self:Bar(args.spellId, 41)
 end
-
--- XXX Remove if not needed
--- function mod:Soulrend(args)
---	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
---	self:Bar(args.spellId, 26.5)
--- end
 
 function mod:WrackingPain(args)
 	self:Message(args.spellId, "orange")
-	if self:Interrupter() then
+	local _, ready = self:Interrupter()
+	if ready then
 		self:PlaySound(args.spellId, "alert", "interrupt")
 	end
-	self:Bar(args.spellId, 11)
+	self:CDBar(args.spellId, 17) -- 17-24
 end
 
 function mod:EchoesofShadra(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info", "watchstep")
-	self:Bar(args.spellId, 26.5)
+	self:CDBar(args.spellId, 31.6) -- 31-35
 end
 
 do
@@ -92,7 +79,7 @@ do
 end
 
 function mod:Skewer(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "defensive")
-	self:Bar(args.spellId, 25.5)
+	self:CDBar(args.spellId, 12) -- 12-17
 end
