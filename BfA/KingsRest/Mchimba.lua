@@ -28,8 +28,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(267639, 11.5) -- Burn Corruption
-	self:CDBar(267618, 18.5) -- Drain Fluids
+	self:CDBar(267639, 11.1) -- Burn Corruption
+	self:CDBar(267618, 17.9) -- Drain Fluids
 	self:CDBar(267702, 29.5) -- Entomb
 end
 
@@ -40,7 +40,7 @@ end
 function mod:BurnCorruption(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 13)
+	self:CDBar(args.spellId, 13) -- pull:11.1, 13.3, 23.9, 13.4, 19.5, 32.8
 end
 
 function mod:DrainFluids(args)
@@ -48,7 +48,7 @@ function mod:DrainFluids(args)
 	if self:Me(args.destGUID) or self:Healer() then
 		self:PlaySound(args.spellId, "alarm")
 	end
-	self:CDBar(args.spellId, 17)
+	self:CDBar(args.spellId, 17) -- pull:17.9, 37.3, 17.0, 17.1
 end
 
 function mod:EntombApplied(args)
@@ -60,9 +60,9 @@ function mod:EntombApplied(args)
 end
 
 function mod:EntombRemoved(args)
-	self:Message(args.spellId, "green")
+	self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 11) -- Burn Corruption
-	self:CDBar(args.spellId, 18) -- Drain Fluids
-	self:CDBar(args.spellId, 60) -- Entomb XXX Need longer logs
+	self:CDBar(267639, 10.4) -- Burn Corruption
+	self:CDBar(267618, 17.3) -- Drain Fluids
+	self:CDBar(args.spellId, 57.3) -- Entomb XXX Need longer logs
 end
