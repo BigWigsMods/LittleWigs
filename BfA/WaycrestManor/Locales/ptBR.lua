@@ -5,6 +5,7 @@ if L then
 	L.gorger = "Devorador Pálido"
 	L.marksman = "Atirador Perito Enlouquecido"
 	L.runeweaver = "Fiarruna Sangra-coração"
+	L.vinetwister = "Cipoeira Sangra-coração"
 	L.survivalist = "Sobrevivencialista Louco"
 	L.bryndle = "Máter Brinda"
 	L.thornshaper = "Molda-espinho do Conventículo"

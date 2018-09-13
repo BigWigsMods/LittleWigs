@@ -5,6 +5,7 @@ if L then
 	-- L.gorger = "Pallid Gorger"
 	-- L.marksman = "Crazed Marksman"
 	-- L.runeweaver = "Heartsbane Runeweaver"
+	L.vinetwister = "심장파멸 덩굴왜곡사"
 	-- L.survivalist = "Maddened Survivalist"
 	-- L.bryndle = "Matron Bryndle"
 	-- L.thornshaper = "Coven Thornshaper"

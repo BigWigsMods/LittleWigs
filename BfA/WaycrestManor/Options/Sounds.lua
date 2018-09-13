@@ -39,6 +39,7 @@ BigWigs:AddSounds("Gorak Tul", {
 })
 
 BigWigs:AddSounds("Waycrest Manor Trash", {
+	[263891] = {"alarm","warning"},
 	[263905] = "alert",
 	[263943] = "warning",
 	[263959] = "warning",

@@ -5,6 +5,7 @@ if L then
 	L.gorger = "Divoratore Pallido"
 	L.marksman = "Tiratore Frenetico"
 	L.runeweaver = "Tessirune Frangicuore"
+	L.vinetwister = "Torciradici Frangicuore"
 	L.survivalist = "Survivalista Impazzito"
 	L.bryndle = "Matrona Bryndle"
 	L.thornshaper = "Plasmaspine della Congrega"
