@@ -68,6 +68,10 @@ function mod:OnEngage()
 	self:CDBar(268932, 12.1) -- Gale Slash
 end
 
+function mod:VerifyEnable(unit)
+	return UnitCanAttack("player", unit)
+end
+
 function mod:OnBossDisable()
 	mobCollector = {}
 end
