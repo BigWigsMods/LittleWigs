@@ -13,17 +13,32 @@ mod.engageId = 2100
 --
 
 local stage = 1
+local markCount = 1
+local playersWithPutridWaters = {}
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.demolishing = -18340 -- Demolishing Terror
+	L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
+	L.demolishing_icon = "achievement_boss_yoggsaron_01"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
+local putridWatersMarker = mod:AddMarkerOption(false, "player", 1, 275014, 1, 2, 3, 4)
 function mod:GetOptions()
 	return {
 		"stages",
-		{275014, "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Putrid Waters
+		{275014, "PROXIMITY", "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Putrid Waters
+		putridWatersMarker,
 		270185, -- Call of the Deep
-		270605, -- Summon Demolisher XXX Icon and Desc needed (also for warnings and timer)
+		"demolishing", -- Demolishing Terror
 		269266, -- Slam
 		269366, -- Repair
 	}
@@ -40,9 +55,15 @@ end
 
 function mod:OnEngage()
 	stage = 1
+	markCount = 1
+	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
-	self:CDBar(270605, 20) -- Summon Demolisher
+	self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
+end
+
+function mod:OnBossDisable()
+	playersWithPutridWaters = {}
 end
 
 --------------------------------------------------------------------------------
@@ -62,35 +83,64 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			self:Message("stages", "green", nil, CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 
-			self:CDBar(270605, stage == 2 and 39.5 or 55.5) -- Summon Demolisher
+			self:CDBar("demolishing", stage == 2 and 39.5 or 55.5) -- Summon Demolisher
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
-		self:Message(spellId, "yellow")
-		self:PlaySound(spellId, "alert")
-		self:CDBar(spellId, 20) -- XXX Need to Check
+		self:Message("demolishing", "yellow", nil, CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
+		self:PlaySound("demolishing", "alert")
+		self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon) -- XXX Need to Check
 	end
 end
 
 do
+	local isOnMe = nil
 	local playerList = mod:NewTargetList()
 	function mod:PutridWatersApplied(args)
 		playerList[#playerList+1] = args.destName
+		playersWithPutridWaters[#playersWithPutridWaters + 1] = args.destName
+
+		if self:GetOption(putridWatersMarker) then
+			SetRaidTarget(args.destName, markCount)
+			if markCount == 4 then
+				markCount = 1
+			else
+				markCount = markCount + 1
+			end
+		end
+
 		if #playerList == 1 then
 			self:CDBar(args.spellId, 20)
 		end
 		if self:Me(args.destGUID) then
+			isOnMe = true
+			self:OpenProximity(args.spellId, 10)
 			self:PlaySound(args.spellId, "warning")
 			self:Say(args.spellId)
 			self:Flash(args.spellId)
 			self:SayCountdown(args.spellId, 30)
+		elseif not isOnMe then
+			self:OpenProximity(args.spellId, 10, playersWithPutridWaters)
 		end
 		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
 	end
-end
 
-function mod:PutridWatersRemoved(args)
-	if self:Me(args.destGUID) then
-		self:CancelSayCountdown(args.spellId)
+	function mod:PutridWatersRemoved(args)
+		tDeleteItem(playersWithPutridWaters, args.destName)
+
+		if self:GetOption(putridWatersMarker) then
+			SetRaidTarget(args.destName, 0)
+		end
+
+		if self:Me(args.destGUID) then
+			isOnMe = nil
+			self:CancelSayCountdown(args.spellId)
+		end
+
+		if #playersWithPutridWaters == 0 then
+			self:CloseProximity(args.spellId)
+		elseif not isOnMe then
+			self:OpenProximity(args.spellId, 10, playersWithPutridWaters)
+		end
 	end
 end
 

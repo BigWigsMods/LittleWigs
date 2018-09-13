@@ -191,7 +191,7 @@
 <Include file="BfA\ShrineOfTheStorm\locales.xml"/>
 
 <Include file="BfA\SiegeOfBoralus\modules.xml"/>
-<!--<Include file="BfA\SiegeOfBoralus\locales.xml"/>-->
+<Include file="BfA\SiegeOfBoralus\locales.xml"/>
 
 <Include file="BfA\TempleOfSethraliss\modules.xml"/>
 <!--<Include file="BfA\TempleOfSethraliss\locales.xml"/>-->
