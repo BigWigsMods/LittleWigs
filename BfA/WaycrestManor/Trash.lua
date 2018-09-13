@@ -164,6 +164,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "RunicMarkRemoved", 264105)
 	-- Matron Alma
 	self:Log("SPELL_CAST_START", "RuinousVolley", 265876)
+	self:Log("SPELL_AURA_SUCCESS", "DreadMark", 265880)
 	self:Log("SPELL_AURA_APPLIED", "DreadMarkApplied", 265880)
 	self:Log("SPELL_AURA_REMOVED", "DreadMarkRemoved", 265880)
 	self:Log("SPELL_CAST_START", "DecayingTouch", 265881)
@@ -366,10 +367,13 @@ function mod:RuinousVolley(args)
 	self:PlaySound(args.spellId, "warning")
 end
 
+function mod:DreadMark(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 function mod:DreadMarkApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "alarm")
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 6)
 	end
