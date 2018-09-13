@@ -93,7 +93,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 do
-	local isOnMe = nil
+	local isOnMe = false
 	local playerList = mod:NewTargetList()
 	function mod:PutridWatersApplied(args)
 		playerList[#playerList+1] = args.destName
@@ -132,7 +132,7 @@ do
 		end
 
 		if self:Me(args.destGUID) then
-			isOnMe = nil
+			isOnMe = false
 			self:CancelSayCountdown(args.spellId)
 		end
 
