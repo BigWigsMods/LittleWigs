@@ -83,7 +83,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			self:Message("stages", "green", nil, CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 
-			self:CDBar("demolishing", stage == 2 and 39.5 or 55.5) -- Summon Demolisher
+			self:CDBar("demolishing", stage == 2 and 39.5 or 55.5, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
 		self:Message("demolishing", "yellow", nil, CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
