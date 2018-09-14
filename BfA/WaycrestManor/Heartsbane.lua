@@ -60,7 +60,7 @@ function mod:JaggedNettles(args)
 	self:Bar(args.spellId, 13.5)
 end
 
-function mod:UnstableRunicMark()
+function mod:UnstableRunicMark(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	-- self:Bar(args.spellId, 13.5) XXX Need a timer
