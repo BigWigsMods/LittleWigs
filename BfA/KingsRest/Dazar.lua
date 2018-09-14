@@ -69,7 +69,8 @@ function mod:OnEngage()
 end
 
 function mod:VerifyEnable(unit)
-	return UnitCanAttack("player", unit)
+	local hp = UnitHealthMax(unit)
+	return hp > 0 and (UnitHealth(unit) / hp) > 0.1 -- 10%
 end
 
 function mod:OnBossDisable()
