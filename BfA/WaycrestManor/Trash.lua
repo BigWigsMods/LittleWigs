@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	137830, -- Pallid Gorger
 	131849, -- Crazed Marksman
 	131677, -- Heartsbane Runeweaver
+	131670, -- Heartsbane Vinetwister
 	131850, -- Maddened Survivalist
 	135329, -- Matron Bryndle
 	131666, -- Coven Thornshaper
@@ -34,6 +35,7 @@ if L then
 	L.gorger = "Pallid Gorger"
 	L.marksman = "Crazed Marksman"
 	L.runeweaver = "Heartsbane Runeweaver"
+	L.vinetwister = "Heartsbane Vinetwister"
 	L.survivalist = "Maddened Survivalist"
 	L.bryndle = "Matron Bryndle"
 	L.thornshaper = "Coven Thornshaper"
@@ -62,6 +64,8 @@ function mod:GetOptions()
 		-- Heartsbane Runeweaver
 		263943, -- Etch
 		263905, -- Marking Cleave
+		-- Heartsbane Vinetwister
+		263891, -- Grasping Thorns
 		-- Maddened Survivalist
 		264525, -- Shrapnel Trap
 		264520, -- Severing Serpent
@@ -98,6 +102,7 @@ function mod:GetOptions()
 		[271174] = L.gorger,
 		[264456] = L.marksman,
 		[263943] = L.runeweaver,
+		[263891] = L.vinetwister,
 		[264525] = L.survivalist,
 		[265759] = L.bryndle,
 		[264050] = L.thornshaper,
@@ -124,6 +129,10 @@ function mod:OnBossEnable()
 	-- Heartsbane Runeweaver
 	self:Log("SPELL_CAST_SUCCESS", "Etch", 263943)
 	self:Log("SPELL_CAST_START", "MarkingCleave", 263905)
+	-- Heartsbane Vinetwister
+	self:Log("SPELL_CAST_START", "GraspingThorns", 263891)
+	self:Log("SPELL_CAST_APPLIED", "GraspingThornsApplied", 263891)
+	self:Log("SPELL_CAST_REMOVED", "GraspingThornsRemoved", 263891)
 	-- Maddened Survivalist
 	self:Log("SPELL_CAST_START", "ShrapnelTrap", 264525)
 	self:Log("SPELL_CAST_START", "SeveringSerpent", 264520)
@@ -155,6 +164,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "RunicMarkRemoved", 264105)
 	-- Matron Alma
 	self:Log("SPELL_CAST_START", "RuinousVolley", 265876)
+	self:Log("SPELL_AURA_SUCCESS", "DreadMark", 265880)
 	self:Log("SPELL_AURA_APPLIED", "DreadMarkApplied", 265880)
 	self:Log("SPELL_AURA_REMOVED", "DreadMarkRemoved", 265880)
 	self:Log("SPELL_CAST_START", "DecayingTouch", 265881)
@@ -194,6 +204,28 @@ end
 function mod:MarkingCleave(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Heartsbane Vinetwister
+function mod:GraspingThorns(args)
+	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+
+	local _, interruptReady = self:Interrupter()
+	if interruptReady then
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
+function mod:GraspingThornsApplied(args)
+	if self:Dispeller("magic") then
+		self:TargetMessage2(args.spellId, "red")
+		self:PlaySound(args.spellId, "warning")
+		self:TargetBar(args.spellId, 4, args.destName)
+	end
+end
+
+function mod:GraspingThornsRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 -- Maddened Survivalist
@@ -335,10 +367,13 @@ function mod:RuinousVolley(args)
 	self:PlaySound(args.spellId, "warning")
 end
 
+function mod:DreadMark(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 function mod:DreadMarkApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "alarm")
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 6)
 	end

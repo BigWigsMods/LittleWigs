@@ -5,6 +5,7 @@ if L then
 	L.gorger = "Engullidor pálido"
 	L.marksman = "Tirador enloquecido"
 	L.runeweaver = "Tejerruna Aterracorazón"
+	L.vinetwister = "Rizavid Aterracorazón"
 	L.survivalist = "Superviviente enajenado"
 	L.bryndle = "Matriarca Bryndle"
 	L.thornshaper = "Urdespina del aquelarre"

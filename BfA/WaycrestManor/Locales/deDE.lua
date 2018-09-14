@@ -5,6 +5,7 @@ if L then
 	L.gorger = "Bleicher Schlinger"
 	L.marksman = "Wahnsinniger Schütze"
 	L.runeweaver = "Runenweberin des Herzbanns"
+	L.vinetwister = "Herzbannrankenwinderin"
 	L.survivalist = "Irrsinniger Überlebenskünstler"
 	L.bryndle = "Matrone Brünndel"
 	L.thornshaper = "Dornformerin des Zirkels"

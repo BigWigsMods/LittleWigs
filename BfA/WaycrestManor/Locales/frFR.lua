@@ -5,6 +5,7 @@ if L then
 	L.gorger = "Goinfre blafard"
 	L.marksman = "Tireur frénétique"
 	L.runeweaver = "Tisserune malecarde"
+	L.vinetwister = "Tourneronces malecarde"
 	L.survivalist = "Survivaliste affolé"
 	L.bryndle = "Matrone Bryndle"
 	L.thornshaper = "Formeronces du Sabbat"
