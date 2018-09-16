@@ -2,5 +2,6 @@ package-as: LittleWigs
 wowi-archive-previous: no
 
 ignore:
+  - .luacheckrc
   - .travis.yml
   - README.md
