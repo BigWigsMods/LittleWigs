@@ -38,12 +38,14 @@ end
 --
 
 function mod:Ignition(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 47.5)
 end
 
 function mod:Cinderflame(args)
-	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 8)
 	self:Bar(args.spellId, 25)
 end
@@ -53,5 +55,8 @@ function mod:Fuselighter(args)
 end
 
 function mod:FuselighterApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	if self:Dispeller("magic") then
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	end
 end

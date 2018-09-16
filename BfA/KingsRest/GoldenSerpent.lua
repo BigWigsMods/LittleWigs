@@ -57,19 +57,19 @@ function mod:SpitGoldRemoved(args)
 end
 
 function mod:LucresCall(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 41.5)
 end
 
 function mod:SerpentineGust(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 21.5)
 end
 
 function mod:TailThrash(args)
-	self:Message(args.spellId, "purple")
+	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 17)
 end

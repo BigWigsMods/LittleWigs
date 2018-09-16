@@ -56,7 +56,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:VoidBolt(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -64,8 +64,8 @@ function mod:VoidBolt(args)
 end
 
 function mod:WakentheVoid(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "Alarm")
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 43.5)
 end
 
@@ -75,5 +75,5 @@ end
 
 function mod:AncientMindbenderApplied(args)
 	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "Warning", nil, args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end

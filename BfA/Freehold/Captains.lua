@@ -41,20 +41,20 @@ end
 --
 
 function mod:BlackoutBarrel(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "killadd")
 	self:CDBar(args.spellId, 47)
 end
 
 function mod:BarrelSmash(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long", "watchaoe")
 	self:CastBar(args.spellId, 7) -- 3s Cast, 4s Channel
 	self:CDBar(args.spellId, 23)
 end
 
 function mod:GrapeShot(args)
-	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "watchstep")
 	self:CDBar(args.spellId, 30.4)
 end

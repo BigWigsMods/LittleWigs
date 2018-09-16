@@ -41,19 +41,19 @@ end
 --
 
 function mod:Charge(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 20)
 end
 
 function mod:Indigestion(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "mobsoon")
 	self:CDBar(args.spellId, 42)
 end
 
 function mod:Tantrum(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "mobsoon")
 	self:CDBar(args.spellId, 45)
 end

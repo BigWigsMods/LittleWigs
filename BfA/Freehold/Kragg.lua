@@ -45,14 +45,14 @@ end
 
 
 function mod:Charrrrrge(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 8.5)
 end
 
 function mod:SpawnParrot()
 	self:StopBar(255952) -- Charrrrrge
-	self:Message("stages", "cyan", nil, CL.stage:format(2), false)
+	self:Message2("stages", "cyan", CL.stage:format(2), false)
 	self:PlaySound("stages", "info", "stage2")
 
 	self:CDBar(256106, 6) -- Azerite Powder Shot
@@ -60,13 +60,13 @@ function mod:SpawnParrot()
 end
 
 function mod:AzeritePowderShot(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 12.5)
 end
 
 function mod:RevitalizingBrew(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
 	self:CDBar(args.spellId, 28.5)
 end
@@ -78,7 +78,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "alarm", "gtfo")
 			end
 		end

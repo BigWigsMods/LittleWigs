@@ -48,7 +48,7 @@ end
 --
 
 function mod:NoxiousBreath(args)
-	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 83)
 end
@@ -60,7 +60,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "alarm")
 			end
 		end
@@ -68,7 +68,7 @@ do
 end
 
 function mod:BlindingSand(args)
-	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 2.5)
 end
@@ -79,7 +79,7 @@ do
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:Message(264239, "orange")
+			self:Message2(264239, "orange")
 			self:PlaySound(264239, "alarm")
 			self:CDBar(264239, 40)
 		end
@@ -89,10 +89,10 @@ end
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	-- Burrow
 	if UnitCanAttack("player", unit) then
-		self:Message(264206, "green", nil, CL.over:format(self:SpellName(264206)))
+		self:Message2(264206, "green", CL.over:format(self:SpellName(264206)))
 		self:PlaySound(264206, "info")
 	else
-		self:Message(264206, "cyan")
+		self:Message2(264206, "cyan")
 		self:PlaySound(264206, "long")
 		self:Bar(264206, 28)
 	end
@@ -103,7 +103,7 @@ function mod:KnotOfSnakes(args)
 		self:Say(args.spellId)
 	end
 	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	self:TargetBar(args.spellId, 15, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

@@ -102,7 +102,7 @@ end
 
 -- Irontide Thug
 function mod:DebilitatingShout(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -113,7 +113,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -126,7 +126,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -139,7 +139,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "red")
+			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
@@ -152,7 +152,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "long")
 		end
 	end
@@ -165,7 +165,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "red")
+			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -177,7 +177,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "warning")
 		end
 	end

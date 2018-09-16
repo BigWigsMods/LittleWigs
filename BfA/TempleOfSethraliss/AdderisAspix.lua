@@ -48,7 +48,7 @@ end
 --
 
 function mod:LightningShield(args)
-	self:TargetMessage2(args.spellId, "cyan", args.destName)
+	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -69,19 +69,19 @@ function mod:ConductionRemoved(args)
 end
 
 function mod:CycloneStrike(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 13.5)
 end
 
 -- function mod:StaticShock(args)
-	-- self:Message(args.spellId, "orange", "Long")
+	-- self:Message2(args.spellId, "orange", "Long")
 -- end
 
 -- function mod:ArcDash(args)
-	-- self:Message(args.spellId, "yellow", "Alert")
+	-- self:Message2(args.spellId, "yellow", "Alert")
 -- end
 
 -- function mod:Twister(args)
-	-- self:Message(args.spellId, "orange", "Alarm")
+	-- self:Message2(args.spellId, "orange", "Alarm")
 -- end

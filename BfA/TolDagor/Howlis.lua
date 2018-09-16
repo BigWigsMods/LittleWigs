@@ -44,7 +44,8 @@ end
 --
 
 function mod:FlashingDaggers(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 31.5)
 	self:CastBar(args.spellId, 6)
 end
@@ -52,7 +53,7 @@ end
 function mod:CripplingShiv(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("poison") then
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alarm")
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		self:TargetBar(args.spellId, 12, args.destName)
 	end
 	self:CDBar(args.spellId, 17)
@@ -63,19 +64,22 @@ function mod:CripplingShivRemoved(args)
 end
 
 function mod:HowlingFear(args)
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 15)
 end
 
 function mod:SmokePowder(args)
-	self:Message(args.spellId, "cyan", "Long")
+	self:Message2(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "long")
 	self:StopBar(257777) -- Crippling Shiv
 	self:StopBar(257791) -- Howling Fear
 	self:StopBar(257785) -- Flashing Daggers
 end
 
 function mod:MotivatingCry(args)
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Motivated(args)
@@ -88,7 +92,7 @@ end
 
 function mod:MotivatingCryInterupted(args)
 	if args.extraSpellId == 257827 then
-		self:Message(257827, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:Message2(257827, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:PlaySound(257827, "info")
 		self:CDBar(257777, 1.5) -- Crippling Shiv
 		self:Bar(257791, 2) -- Howling Fear

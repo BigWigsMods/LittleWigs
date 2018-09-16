@@ -39,7 +39,7 @@ end
 --
 
 function mod:CallEarthrager(args)
-	self:Message(args.spellId, "cyan")
+	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info", "mobsoon")
 	--self:Bar(args.spellId, 64) -- XXX Only seen it once
 end
@@ -57,13 +57,13 @@ do
 end
 
 function mod:AzeriteInfusion(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "killmob")
 	self:Bar(args.spellId, 17)
 end
 
 function mod:ResonantPulse(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "aesoon")
 	self:Bar(args.spellId, 34)
 end

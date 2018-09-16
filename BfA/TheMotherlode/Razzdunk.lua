@@ -44,7 +44,7 @@ end
 --
 
 function mod:GatlingGun(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 20)
 end
@@ -54,7 +54,7 @@ function mod:HomingMissile(args)
 		self:Say(args.spellId)
 	end
 	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 
@@ -67,25 +67,25 @@ function mod:HomingMissileRemoved(args)
 end
 
 function mod:ConfigurationDrill(args)
-	self:Message("stages", "cyan", nil, args.spellName, args.spellId)
+	self:Message2("stages", "cyan", args.spellName, args.spellId)
 	self:PlaySound("stages", "info")
 	self:StopBar(260829) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
 end
 
 function mod:DrillSmash(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:Bar(args.spellId, 8.5)
 end
 
 -- function mod:BigRedRocket(args)
-	-- self:Message(args.spellId, "yellow")
+	-- self:Message2(args.spellId, "yellow")
 	-- self:Playsound(args.spellId, "long")
 -- end
 
 function mod:ConfigurationCombat(args)
-	self:Message("stages", "cyan", nil, args.spellName, args.spellId)
+	self:Message2("stages", "cyan", args.spellName, args.spellId)
 	self:PlaySound("stages", "info")
 	-- XXX Update timers below
 	self:CDBar(260829, 5) -- Homing Missile
