@@ -96,19 +96,19 @@ end
 
 -- Feasting Skyscreamer
 function mod:TerrifyingScreech(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 -- T'lonja
 function mod:FrenziedCharge(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 end
 
 -- Shieldbearer of Zul
 function mod:BulwarkofJuju(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long", "mobout")
 end
 
@@ -120,7 +120,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then -- Can be cast by 2 Witch-Doctors on the same player
 				prev = t
-				self:TargetMessage(args.spellId, args.destName, "blue")
+				self:PersonalMessage(args.spellId)
 				self:PlaySound(args.spellId, "alarm", "moveout")
 				self:Say(args.spellId)
 				self:SayCountdown(args.spellId, 5)
@@ -137,13 +137,13 @@ end
 
 -- Dinomancer Kish'o
 function mod:DinoMight(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
 -- Gilded Priestess
 function mod:Transfusion(args)
-	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
@@ -157,17 +157,17 @@ end
 
 --Dazar'ai Confessor
 function mod:BwonsamdisMantle(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 function mod:MendingWord(args)
-	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info", "interrupt")
 end
 
 -- Dazar'ai Augur
 function mod:FieryEnchant(args)
-	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm", "interrupt")
 end

@@ -56,11 +56,11 @@ end
 
 function mod:WhispersofPowerApplied(args)
 	self:TargetMessage2(args.spellId, "cyan", args.destName)
-	self:PlaySound(args.spellId, "info")
+	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 
 function mod:YawningGate(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	local timer = 20.5
 	if nextStage - (GetTime() + timer) < 0 then
@@ -69,13 +69,13 @@ function mod:YawningGate(args)
 end
 
 function mod:TentacleSlam(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "Alarm")
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 4)
 end
 
 function mod:GraspoftheSunkenCity(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 4)
 end

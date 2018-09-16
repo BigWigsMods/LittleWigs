@@ -72,7 +72,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 270183 then -- Call of the Deep
-		self:Message(270185, "orange")
+		self:Message2(270185, "orange")
 		self:PlaySound(270185, "alarm")
 
 		local timer = stage == 1 and 15 or stage == 2 and 12 or 7
@@ -80,13 +80,13 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 269984 then -- Damage Boss 35%
 		stage = stage + 1
 		if stage < 4 then
-			self:Message("stages", "green", nil, CL.stage:format(stage), false)
+			self:Message2("stages", "green", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 
 			self:CDBar("demolishing", stage == 2 and 39.5 or 55.5, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
-		self:Message("demolishing", "yellow", nil, CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
+		self:Message2("demolishing", "yellow", CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
 		self:PlaySound("demolishing", "alert")
 		self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon) -- XXX Need to Check
 	end
@@ -145,12 +145,12 @@ do
 end
 
 function mod:Slam(args)
-	self:Message(args.spellId, "purple")
+	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 8)
 end
 
 function mod:RepairStart(args)
-	self:Message(args.spellId, "cyan", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "cyan", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end

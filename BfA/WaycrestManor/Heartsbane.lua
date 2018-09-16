@@ -55,13 +55,13 @@ end
 --
 
 function mod:JaggedNettles(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 13.5)
 end
 
 function mod:UnstableRunicMark(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	-- self:Bar(args.spellId, 13.5) XXX Need a timer
 end
@@ -109,8 +109,8 @@ function mod:AuraOfDread(args)
 end
 
 function mod:FocusingIris(args)
-	self:TargetMessage2(args.spellId, "cyan", args.destName)
-	self:PlaySound(args.spellId, "long", nil, args.destName)
+	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
+	self:PlaySound(args.spellId, "long")
 	self:PrimaryIcon(args.spellId, self:GetUnitIdByGUID(args.destGUID))
 	self:StopBar(260741) -- Jagged Nettles
 	self:StopBar(260703) -- Unstable Runic Mark
@@ -123,6 +123,6 @@ function mod:FocusingIris(args)
 end
 
 function mod:DireRitual(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end

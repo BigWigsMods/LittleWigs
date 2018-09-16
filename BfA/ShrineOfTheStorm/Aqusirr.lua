@@ -66,7 +66,7 @@ do
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -78,7 +78,7 @@ do
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message2(args.spellId, "yellow")
 			--self:Bar(args.spellId, 32) XXX Need more info
 		end
 	end
@@ -86,7 +86,7 @@ end
 
 function mod:ChokingBrineApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage2(264560, "yellow", args.destName)
+		self:PersonalMessage(264560)
 		self:PlaySound(264560, "alarm")
 	end
 end
@@ -97,7 +97,7 @@ do
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 			--self:Bar(args.spellId, 32) XXX Need more info
 		end
@@ -120,7 +120,7 @@ do
 end
 
 function mod:EruptingWaters(args)
-	self:Message(args.spellId, "cyan")
+	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long", "intermission")
 	self:Bar(264560, 13.5) -- Choking Brine _success
 	self:Bar(264101, 18.5) -- Surging Rush _start

@@ -44,13 +44,13 @@ end
 --
 
 function mod:Soulrend(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "runaway")
 	self:Bar(args.spellId, 41)
 end
 
 function mod:WrackingPain(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	local _, ready = self:Interrupter()
 	if ready then
 		self:PlaySound(args.spellId, "alert", "interrupt")
@@ -59,7 +59,7 @@ function mod:WrackingPain(args)
 end
 
 function mod:EchoesofShadra(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info", "watchstep")
 	self:CDBar(args.spellId, 31.6) -- 31-35
 end
@@ -71,7 +71,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "alarm", "gtfo")
 			end
 		end
@@ -79,7 +79,7 @@ do
 end
 
 function mod:Skewer(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "defensive")
 	self:CDBar(args.spellId, 12) -- 12-17
 end

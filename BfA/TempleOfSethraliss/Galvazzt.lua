@@ -66,11 +66,11 @@ function mod:GalvanizeRemoved(args)
 end
 
 function mod:GalvanizeOnBoss(args)
-	self:TargetMessage2(266923, "orange", args.destName)
+	self:Message2(266923, "orange", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(266923, "alarm")
 end
 
 function mod:ConsumeCharge(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end

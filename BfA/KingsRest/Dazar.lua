@@ -90,10 +90,10 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 
 			local mobId = self:MobId(guid)
 			if mobId == 136984 then -- Reban
-				self:Message("stages", "yellow", nil, CL.spawned:format(self:SpellName(-18251)), false)
+				self:Message2("stages", "yellow", CL.spawned:format(self:SpellName(-18251)), false)
 				self:CDBar(269231, 5) -- Hunting Leap
 			elseif mobId == 136976 then -- T'zala
-				self:Message("stages", "yellow", nil, CL.spawned:format(self:SpellName(-18254)), false)
+				self:Message2("stages", "yellow", CL.spawned:format(self:SpellName(-18254)), false)
 				self:CDBar(269369, 8.5) -- Deathly Roar
 			end
 		end
@@ -119,7 +119,7 @@ do
 		if hp < nextHPWarning then
 			local index = 3 - (nextHPWarning - 45) / 20 -- 85 -> 1, 65 -> 2, 45 -> 3
 			nextHPWarning = nextHPWarning - 20
-			self:Message("stages", "cyan", nil, CL.soon:format(self:SpellName(mechanics[index])), false)
+			self:Message2("stages", "cyan", CL.soon:format(self:SpellName(mechanics[index])), false)
 			self:PlaySound("stages", "info")
 
 			if index >= #mechanics then
@@ -130,7 +130,7 @@ do
 end
 
 function mod:BladeCombo(args)
-	self:Message(args.spellId, "purple")
+	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 17)
 end
@@ -138,7 +138,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		self:TargetMessage2(268932, "orange", player)
-		self:PlaySound(268932, "long")
+		self:PlaySound(268932, "long", nil, player)
 		self:PrimaryIcon(268932, player)
 		if self:Me(guid) then
 			self:Say(268932)
@@ -174,7 +174,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:Message(269231, "blue", nil, CL.near:format(args.spellName))
+				self:PersonalMessage(269231, "near")
 				self:PlaySound(269231, "alert")
 			end
 		end
@@ -182,14 +182,14 @@ do
 end
 
 function mod:DeathlyRoar(args)
-	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 13.3)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 269377 then -- Spike Pattern Controller
-		self:Message("stages", "yellow", nil, L.spears_active, 268796) -- Impaling Spear
+		self:Message2("stages", "yellow", L.spears_active, 268796) -- Impaling Spear
 		self:UnregisterUnitEvent(event, unit)
 	end
 end

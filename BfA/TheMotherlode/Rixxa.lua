@@ -37,7 +37,7 @@ end
 --
 
 function mod:AgentAzerite(args)
-	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long", "watchstep")
 	self:CDBar(args.spellId, 8)
 end
@@ -59,7 +59,7 @@ do
 end
 
 function mod:PropellantBlast(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CastBar(args.spellId, 5.5)
 	--self:Bar(args.spellId, 8) -- XXX 3 chain casts and then a cooldown?
