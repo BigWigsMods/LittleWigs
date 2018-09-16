@@ -48,7 +48,7 @@ function mod:DeltaFinger(args)
 	self:Bar(args.spellId, 8.5)
 end
 
-function mod:SquirrelBomb(args)
+function mod:SquirrelBomb()
 	self:Message(201240, "yellow", "Info")
 	self:CDBar(201240, 18)
 end

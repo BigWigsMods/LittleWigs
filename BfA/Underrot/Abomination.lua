@@ -111,7 +111,7 @@ function mod:PutridBloodRemoved(args)
 	end
 end
 
-function mod:VisageDeath(args)
+function mod:VisageDeath()
 	visageRemaining = visageRemaining - 1
 	self:Message2("stages", "cyan", CL.add_remaining:format(visageRemaining), false)
 	self:PlaySound("stages", "info")

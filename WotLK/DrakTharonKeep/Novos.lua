@@ -130,7 +130,7 @@ function mod:WrathOfMiseryRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:WrathOfMiseryCastSuccess(args)
+function mod:WrathOfMiseryCastSuccess()
 	self:CDBar(50089, 8.5) -- 8.5 - 15.8s
 end
 

@@ -490,7 +490,7 @@ function mod:BloodedLeap(args)
 end
 
 -- Spectral Witch Doctor
-function mod:HealingTideTotem(args)
+function mod:HealingTideTotem()
 	self:Message2("healing_tide_totem", "red", self:SpellName(L.healing_tide_totem), L.healing_tide_totem_icon) -- 5th arg is ignored if 4th is a number
 
 	if isThrottled("healing_tide_totem") then return end

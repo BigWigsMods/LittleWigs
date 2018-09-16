@@ -51,7 +51,7 @@ function mod:SoulHarvest(args)
 	end
 end
 
-function mod:SoulThorns(args)
+function mod:SoulThorns()
 	self:CDBar(267907, 22)
 end
 

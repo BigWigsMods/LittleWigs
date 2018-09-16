@@ -75,7 +75,7 @@ end
 
 do
 	local prev = 0
-	function mod:Hatch(args)
+	function mod:Hatch()
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t

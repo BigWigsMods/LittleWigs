@@ -121,7 +121,7 @@ function mod:ShapersFortitude(args)
 	self:Bar(args.spellId, 8, CL.other:format(self:SpellName(111923), raidIcon..name)) -- 111923 = "Fortitude"
 end
 
-function mod:GolasDeath(args)
+function mod:GolasDeath()
 	golaHasDied = true
 	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT() -- no IEEU events on deaths
 end

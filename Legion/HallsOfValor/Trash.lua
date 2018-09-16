@@ -108,7 +108,7 @@ function mod:Casts(args)
 end
 
 do
-	local function printTarget(self, name, guid)
+	local function printTarget(self, _, guid)
 		if self:Me(guid) then
 			self:Message(199805, "orange", "Warning", CL.you:format(self:SpellName(199805)))
 			self:Say(199805)

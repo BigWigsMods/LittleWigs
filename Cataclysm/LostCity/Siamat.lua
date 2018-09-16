@@ -58,7 +58,7 @@ function mod:Servant(args)
 	end
 end
 
-function mod:ServantDied(args)
+function mod:ServantDied()
 	addsLeft = addsLeft - 1
 	if addsLeft > 0 then
 		self:Message("stages", "cyan", nil, CL.add_remaining:format(addsLeft), false)

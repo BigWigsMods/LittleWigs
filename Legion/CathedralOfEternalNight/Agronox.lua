@@ -69,7 +69,7 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:RAID_BOSS_WHISPER(_, msg, sender)
+function mod:RAID_BOSS_WHISPER(_, msg)
 	if msg:find("238674", nil, true) then -- Fixates
 		self:Message(238674, "blue", "Alarm", CL.you:format(self:SpellName(238674)))
 		self:Flash(238674)

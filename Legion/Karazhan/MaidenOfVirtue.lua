@@ -134,7 +134,7 @@ do
 		end
 	end
 
-	function mod:MassRepentanceSuccess(args)
+	function mod:MassRepentanceSuccess()
 		if sacredGroundCheck then
 			self:CancelTimer(sacredGroundCheck)
 			sacredGroundCheck = nil
@@ -147,7 +147,7 @@ function mod:HolyBulwarkRemoved(args)
 end
 
 do
-	local function printTarget(self, player, guid)
+	local function printTarget(self, player)
 		self:TargetMessage(227809, player, "red")
 	end
 

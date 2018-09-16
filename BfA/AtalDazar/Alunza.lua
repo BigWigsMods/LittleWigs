@@ -81,7 +81,7 @@ do
 		end
 	end
 
-	function mod:TransfusionSuccess(args)
+	function mod:TransfusionSuccess()
 		if taintedBloodCheck then
 			self:CancelTimer(taintedBloodCheck)
 			taintedBloodCheck = nil

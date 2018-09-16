@@ -43,12 +43,12 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	end
 end
 
-function mod:DecayFlesh(args)
+function mod:DecayFlesh()
 	self:DelayedMessage("stages", 3, "cyan", CL.phase:format(2)) -- the 3s stun that's being applied before the 2nd phase starts
 	self:CDBar("stages", 23.64, CL.phase:format(1), 53463)
 end
 
-function mod:ReturnFlesh(args)
+function mod:ReturnFlesh()
 	self:DelayedMessage("stages", 3, "cyan", CL.phase:format(1)) -- the 3s stun that's being applied before transitioning back to the 1st phase
 end
 

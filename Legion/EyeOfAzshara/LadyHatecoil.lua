@@ -96,7 +96,7 @@ function mod:CurseOfTheWitchRemoved(args)
 	end
 end
 
-function mod:BeckonStorm(args)
+function mod:BeckonStorm()
 	self:Message("blob", "red", "Info", CL.spawned:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
 	self:CDBar("blob", 47, -12139, L.blob_icon) -- Saltsea Globule -- pull:21.3, 47.4 / m pull:21.3, 49.8, 47.4
 end

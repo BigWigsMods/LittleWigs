@@ -49,7 +49,7 @@ end
 
 do
 	local prev, addsAlive = 0, 0
-	function mod:EntanglingGrasp(args)
+	function mod:EntanglingGrasp()
 		addsAlive = addsAlive + 1
 
 		local t = GetTime()
@@ -58,13 +58,13 @@ do
 			self:Message("stages", "yellow", "Info", CL.stage:format(2), false)
 		end
 	end
-	function mod:EntanglingGraspRemoved(args)
+	function mod:EntanglingGraspRemoved()
 		addsAlive = addsAlive - 1
 		self:Message("stages", "green", nil, CL.add_remaining:format(addsAlive), false)
 	end
 end
 
-function mod:TidalSurge(args)
+function mod:TidalSurge()
 	self:Message("stages", "yellow", "Info", CL.stage:format(3), false)
 end
 

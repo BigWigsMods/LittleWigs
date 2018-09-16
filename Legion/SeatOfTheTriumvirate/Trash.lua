@@ -97,7 +97,7 @@ function mod:DarkMatterCast(args)
 	end
 end
 
-function mod:MarkMatter(event, unit, guid)
+function mod:MarkMatter(_, unit, guid)
 	if self:MobId(guid) == 124964 then -- Unstable Dark Matter
 		SetRaidTarget(unit, 8)
 		self:UnregisterTargetEvents()

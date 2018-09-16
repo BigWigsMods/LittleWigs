@@ -55,10 +55,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
-	local tornado = self:SpellName(106434)
-	self:CDBar(106434, 15)
 	stage = 1
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
+	self:CDBar(106434, 15) -- Tornado Kick
 end
 
 --------------------------------------------------------------------------------

@@ -42,7 +42,7 @@ end
 -- Event Handlers
 --
 
-function mod:Stealth(args)
+function mod:Stealth()
 	self:Message("stages", "cyan", nil, CL.stage:format(2), false)
 	-- Prevent the module wiping when moving to phase 2 and ENCOUNTER_END fires.
 	self:ScheduleTimer("Reboot", 0.5) -- Delay a little

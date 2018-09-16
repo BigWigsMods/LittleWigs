@@ -33,7 +33,7 @@ function mod:CurseOfBlood(args)
 	self:TargetMessage(args.spellId, args.destName, "yellow")
 end
 
-function mod:EnergyShield(args)
+function mod:EnergyShield()
 	self:Message(79050, "red", "Alert")
 end
 

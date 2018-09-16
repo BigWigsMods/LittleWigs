@@ -70,7 +70,7 @@ function mod:PoisonNova(args)
 	self:Bar(args.spellId, 5)
 end
 
-function mod:UNIT_AURA(event, unit)
+function mod:UNIT_AURA(_, unit)
 	local name = self:UnitDebuff(unit, 68987) -- Pursuit
 	local n = self:UnitName(unit)
 	if pursuitWarned[n] and not name then

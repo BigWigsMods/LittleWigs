@@ -71,7 +71,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 34098 then -- ClearAllDebuffs // Stage Change
 		self:StopBar(267273) -- Poison Nova
 		self:StopBar(267060) -- Call of the Elements

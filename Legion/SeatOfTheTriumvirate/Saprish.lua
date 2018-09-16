@@ -71,7 +71,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	end
 end
 
-function mod:VoidTrap(args)
+function mod:VoidTrap()
 	self:Message(245873, "cyan", "Info")
 	self:Bar(245873, 15.8)
 end

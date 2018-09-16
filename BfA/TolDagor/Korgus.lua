@@ -75,14 +75,14 @@ function mod:CrossIgnition(args)
 	self:CastBar(args.spellId, 5.5)
 end
 
-function mod:ExplosiveBurst(args)
+function mod:ExplosiveBurst()
 	explosiveBurstCount = explosiveBurstCount + 1
 	self:Bar(256105, explosiveBurstCount % 2 == 0 and 38 or 17)
 end
 
 do
 	local playerList, isOnMe = {}, nil
-	local function warn(self, spellName)
+	local function warn(self)
 		if isOnMe then
 			self:PersonalMessage(256105)
 			self:PlaySound(256105, "warning", "moveout")
@@ -104,7 +104,7 @@ do
 			self:SayCountdown(args.spellId, 4)
 		end
 		if #playerList == 1 then
-			self:ScheduleTimer(warn, 0.1, self, args.spellName)
+			self:ScheduleTimer(warn, 0.1, self)
 		end
 	end
 end
