@@ -217,7 +217,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:PersonalMessage(257272)
+				self:PersonalMessage(257272, "underyou")
 				self:PlaySound(257272, "alarm", "gtfo")
 			end
 		end
@@ -237,6 +237,7 @@ function mod:HealingBalm(args)
 end
 
 function mod:HealingBalmApplied(args)
+	if self:MobId(args.sourceGUID) ~= 129788 then return end -- filter out Spellsteal
 	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
 end

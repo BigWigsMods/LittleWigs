@@ -97,9 +97,10 @@ end
 
 function mod:MoltenGold(args)
 	self:TargetMessage2(args.spellId, "orange", args.destName)
-	local canDispel = self:Dispeller("magic")
-	if self:Me(args.destGUID) or canDispel then
-		self:PlaySound(args.spellId, "info", canDispel and "dispelnow", args.destName)
+	if self:Dispeller("magic") then
+		self:PlaySound(args.spellId, "info", "dispelnow", args.destName)
+	elseif self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "info")
 	end
 	self:Bar(args.spellId, 34)
 end
