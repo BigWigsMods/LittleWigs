@@ -45,8 +45,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DashingStrike", 120789)
 
 	self:Log("SPELL_AURA_APPLIED", "ThousandBlades", 120759)
- 	self:Log("SPELL_DAMAGE", "ThousandBladesDamage", 120760)
- 	self:Log("SPELL_MISSED", "ThousandBladesDamage", 120760)
+	self:Log("SPELL_DAMAGE", "ThousandBladesDamage", 120760)
+	self:Log("SPELL_MISSED", "ThousandBladesDamage", 120760)
 
 	self:RegisterEvent("GOSSIP_SHOW")
 end

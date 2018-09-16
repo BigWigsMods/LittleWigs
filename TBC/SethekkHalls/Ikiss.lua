@@ -114,6 +114,6 @@ do
 			if explosionWarnings > #warnAt then
 				self:UnregisterUnitEvent(event, unit)
 			end
-	 	end
+		end
 	end
 end

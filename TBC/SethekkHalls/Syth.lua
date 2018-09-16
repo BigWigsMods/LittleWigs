@@ -93,6 +93,6 @@ do
 			if elementalsWarnings > #warnAt then
 				self:UnregisterUnitEvent(event, unit)
 			end
-	 	end
+		end
 	end
 end
