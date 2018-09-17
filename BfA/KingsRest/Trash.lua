@@ -394,7 +394,7 @@ function mod:InduceRegeneration(args)
 end
 
 function mod:InduceRegenerationApplied(args)
-	if self:mobId(args.sourceGUID) ~= 134251 then return end -- filter out Spellsteal
+	if self:MobId(args.sourceGUID) ~= 134251 then return end -- filter out Spellsteal
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
