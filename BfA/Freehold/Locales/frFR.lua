@@ -18,7 +18,7 @@ if L then
 	L.rat = "Rat de cale trempé"
 	L.crusher = "Ecraseur des Lamineurs"
 	L.lightning = "Foudre"
-	-- L.lightning_caught = "Lightning caught after %s seconds!"
+	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Ludwig Von Tortollan"
 	L.buccaneer = "Boucanier des Lamineurs"
 	L.ravager = "Ravageur des Lamineurs"

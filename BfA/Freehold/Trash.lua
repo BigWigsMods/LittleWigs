@@ -54,7 +54,7 @@ if L then
 	L.rat = "Soggy Shiprat"
 	L.crusher = "Irontide Crusher"
 	L.lightning = "Lightning"
-	L.lightning_caught = "Lightning caught after %s seconds!"
+	L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Ludwig Von Tortollen"
 	L.buccaneer = "Irontide Buccaneer"
 	L.ravager = "Irontide Ravager"
@@ -375,7 +375,7 @@ end
 -- Lightning
 do
 	local seconds = 0
-	function mod:GreasyApplied()
+	function mod:GreasyApplied(args)
 		seconds = args.time
 	end
 

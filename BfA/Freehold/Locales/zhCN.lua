@@ -18,7 +18,7 @@ if L then
 	L.rat = "湿乎乎的舱底鼠"
 	L.crusher = "铁潮打击者"
 	L.lightning = "闪电"
-	L.lightning_caught = "%s秒后抓住闪电！"
+	L.lightning_caught = "%.1f秒后抓住闪电！"
 	L.ludwig = "路德维希·冯·托尔托伦"
 	L.buccaneer = "铁潮冒险家"
 	L.ravager = "铁潮破坏者"

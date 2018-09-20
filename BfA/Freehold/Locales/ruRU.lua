@@ -18,7 +18,7 @@ if L then
 	L.rat = "Мокрая корабельная крыса"
 	L.crusher = "Сокрушитель из братства Стальных Волн"
 	L.lightning = "Молния"
-	-- L.lightning_caught = "Lightning caught after %s seconds!"
+	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Людвиг фон Тортоллен"
 	L.buccaneer = "Буканьер из братства Стальных Волн"
 	L.ravager = "Опустошитель из братства Стальных Волн"
