@@ -117,7 +117,7 @@ do
 	local prev = 0
 	function mod:UnstableHex(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 2 then -- Can be cast by 2 Witch-Doctors on the same player
 				prev = t
 				self:PersonalMessage(args.spellId)

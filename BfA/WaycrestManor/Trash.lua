@@ -271,7 +271,7 @@ do
 	local prev = 0
 	function mod:TearingStrike(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
 				self:PersonalMessage(args.spellId)
@@ -284,7 +284,7 @@ end
 do
 	local prev = 0
 	function mod:Shatter(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "red")
@@ -297,7 +297,7 @@ end
 do
 	local prev = 0
 	function mod:ToadBlight(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "red")

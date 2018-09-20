@@ -75,7 +75,7 @@ do
 	local prev = 0
 	function mod:VileCoatingDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
 				self:PersonalMessage(args.spellId, "underyou")

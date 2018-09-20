@@ -266,7 +266,7 @@ end
 do
 	local prev = 0
 	function mod:AbyssalReach(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "cyan")
@@ -278,7 +278,7 @@ end
 do
 	local prev = 0
 	function mod:MaddeningGaze(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "orange")
@@ -291,7 +291,7 @@ do
 	local prev = 0
 	function mod:WaveOfDecayDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
 				self:PersonalMessage(265668, "underyou")

@@ -55,7 +55,7 @@ end
 do
 	local prev = 0
 	function mod:BloodBolt(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "orange")
@@ -69,7 +69,7 @@ end
 do
 	local prev = 0
 	function mod:CreepingRot(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "yellow")

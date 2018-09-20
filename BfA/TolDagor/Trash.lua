@@ -110,7 +110,7 @@ end
 do
 	local prev = 0
 	function mod:WateryDome(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "yellow")
@@ -123,7 +123,7 @@ end
 do
 	local prev = 0
 	function mod:Fuselighter(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "orange")
@@ -136,7 +136,7 @@ end
 do
 	local prev = 0
 	function mod:Handcuff(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "red")
@@ -149,7 +149,7 @@ end
 do
 	local prev = 0
 	function mod:SuppressionFire(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "orange")
@@ -162,7 +162,7 @@ end
 do
 	local prev = 0
 	function mod:RighteousFlames(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "red")
@@ -174,7 +174,7 @@ end
 do
 	local prev = 0
 	function mod:InnerFlames(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "orange")
