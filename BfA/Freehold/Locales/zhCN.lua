@@ -18,6 +18,7 @@ if L then
 	L.rat = "湿乎乎的舱底鼠"
 	L.crusher = "铁潮打击者"
 	L.lightning = "闪电"
+	-- L.lightning_rp = "Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!"
 	L.lightning_caught = "%.1f秒后抓住闪电！"
 	L.ludwig = "路德维希·冯·托尔托伦"
 	L.buccaneer = "铁潮冒险家"

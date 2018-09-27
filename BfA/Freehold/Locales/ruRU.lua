@@ -18,6 +18,7 @@ if L then
 	L.rat = "Мокрая корабельная крыса"
 	L.crusher = "Сокрушитель из братства Стальных Волн"
 	L.lightning = "Молния"
+	-- L.lightning_rp = "Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!"
 	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Людвиг фон Тортоллен"
 	L.buccaneer = "Буканьер из братства Стальных Волн"

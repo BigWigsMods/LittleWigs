@@ -18,6 +18,7 @@ if L then
 	L.rat = "Durchnässte Schiffsratte"
 	L.crusher = "Zermalmer der Eisenfluträuber"
 	L.lightning = "Blitz"
+	-- L.lightning_rp = "Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!"
 	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Ludwig Von Tortollen"
 	L.buccaneer = "Bukanier der Eisenfluträuber"

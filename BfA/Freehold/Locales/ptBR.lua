@@ -18,6 +18,7 @@ if L then
 	L.rat = "Rato de Navio Encharcado"
 	L.crusher = "Esmagador Maré-férrea"
 	L.lightning = "Raio"
+	-- L.lightning_rp = "Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!"
 	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Ludovico Von Tortollano"
 	L.buccaneer = "Bucaneiro Maré-férrea"

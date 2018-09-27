@@ -23,6 +23,7 @@ mod:RegisterEnableMob(
 	129550, -- Bilge Rat Padfoot
 	130024, -- Soggy Shiprat
 	130400, -- Irontide Crusher
+	130086, -- Davey "Two Eyes"
 	130099, -- Lightning
 	129699, -- Ludwig Von Tortollen
 	130011, -- Irontide Buccaneer
@@ -54,6 +55,7 @@ if L then
 	L.rat = "Soggy Shiprat"
 	L.crusher = "Irontide Crusher"
 	L.lightning = "Lightning"
+	L.lightning_rp = "Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!"
 	L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Ludwig Von Tortollen"
 	L.buccaneer = "Irontide Buccaneer"
@@ -68,6 +70,7 @@ end
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		-- Sharkbait
 		257272, -- Vile Bombardment
 		-- Irontide Enforcer
@@ -142,6 +145,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 
 	-- Sharkbait
 	self:Log("SPELL_CAST_SUCCESS", "VileBombardment", 257272)
@@ -204,6 +208,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(_, msg)
+	if msg:find(L.lightning_rp, nil, true) then
+		self:CDBar("warmup", 58, L.lightning, 257829) -- Greasy
+	end
+end
 
 -- Sharkbait
 function mod:VileBombardment(args)
