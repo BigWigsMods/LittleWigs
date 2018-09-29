@@ -37,11 +37,7 @@ function mod:OnEngage()
 end
 
 function mod:VerifyEnable(unit)
-	if UnitIsFriend("player", unit) then -- one of the captains should be friendly
-		local _, _, completed = C_Scenario.GetCriteriaInfo(2)
-		return not completed
-	end
-	return true
+	return UnitCanAttack("player", unit) -- one of the captains should be friendly
 end
 
 --------------------------------------------------------------------------------
