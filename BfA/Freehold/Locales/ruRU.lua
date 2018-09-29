@@ -17,10 +17,6 @@ if L then
 	L.padfoot = "Тихолап из братства Трюмных Крыс"
 	L.rat = "Мокрая корабельная крыса"
 	L.crusher = "Сокрушитель из братства Стальных Волн"
-	L.lightning = "Молния"
-	-- L.lightning_rp = "Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!"
-	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
-	L.ludwig = "Людвиг фон Тортоллен"
 	L.buccaneer = "Буканьер из братства Стальных Волн"
 	L.ravager = "Опустошитель из братства Стальных Волн"
 	L.officer = "Офицер из братства Стальных Волн"
@@ -29,6 +25,16 @@ end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "ruRU")
 if L then
-	-- Our champion that sleeps with the fishes... literally! The Freehold Fanatic... the Master of the Jagged Jawbone Jab... the Powerful Pugilist Predator... Trothak the Shark Puncher!
-	-- L.warmup_trigger = "sleeps with the fishes..."
+	L.custom_on_autotalk = "Авторазговор"
+	L.custom_on_autotalk_desc = "Мгновенный выбор опции запуска боя в диалоге."
+
+	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
+	-- L.lightning_warmup = "new set of vict--"
+	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
+	-- L.lightning_warmup_2 = "not a professional setup"
+
+	L.lightning = "Молния"
+	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
+	L.ludwig = "Людвиг фон Тортоллен"
+	L.trothak = "Тротак"
 end

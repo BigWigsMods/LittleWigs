@@ -17,6 +17,8 @@ BigWigs:AddSounds("Ring of Booty", {
 	[256358] = "alert",
 	[256405] = "warning",
 	[256489] = "info",
+	[257829] = "info",
+	[257904] = "alert",
 })
 
 BigWigs:AddSounds("Harlan Sweete", {
@@ -24,7 +26,7 @@ BigWigs:AddSounds("Harlan Sweete", {
 	[257305] = {"alarm","warning"},
 	[257314] = "warning",
 	[257316] = "long",
-	["stages"] = {"Info","info"},
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Freehold Trash", {
@@ -37,10 +39,8 @@ BigWigs:AddSounds("Freehold Trash", {
 	[257739] = "alarm",
 	[257756] = "warning",
 	[257775] = "alert",
-	[257829] = "info",
 	[257870] = "alert",
 	[257899] = {"alarm","warning"},
-	[257904] = "alert",
 	[257908] = "warning",
 	[258181] = "alarm",
 	[258199] = "alert",
