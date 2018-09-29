@@ -145,7 +145,7 @@ function mod:ShellBounce(args)
 end
 
 function mod:TortollanDeath()
-	self:Bar("warmup", 35, self.displayName, L.trothak, "achievement_dungeon_freehold")
+	self:Bar("warmup", 35, L.trothak, "achievement_dungeon_freehold")
 end
 
 -- Trothak
