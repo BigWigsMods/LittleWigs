@@ -143,7 +143,7 @@ function mod:DeadeyeRemoved(args)
 	deadeyeTimes[args.destName] = nil
 	self:SetInfoByTable(256038, deadeyes, deadeyeTimes)
 	if self:Me(args.destGUID) then
-		self:Message2(args.spellId, "green", CL.removed:format(args.spellName))
+		self:Message2(256038, "green", CL.removed:format(args.spellName))
 	end
 end
 
