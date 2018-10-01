@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Overseer Korgus", 1771, 2096)
 if not mod then return end
-mod:RegisterEnableMob(127503) -- Overseer Korgus
+mod:RegisterEnableMob(127503)
 mod.engageId = 2104
 
 --------------------------------------------------------------------------------
@@ -14,6 +14,8 @@ mod.engageId = 2104
 
 local crossIgnitionCount = 0 -- XXX If we track which Azerite Rounds are used we can better timers if a player disconnects
 local explosiveBurstCount = 0
+local deadeyes = {}
+local deadeyeTimes = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,7 +27,7 @@ function mod:GetOptions()
 		256199, -- Azerite Rounds: Blast
 		256083, -- Cross Ignition
 		{256105, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Explosive Burst
-		256038, -- Deadeye
+		{256038, "INFOBOX"}, -- Deadeye
 		263345, -- Massive Blast
 	}
 end
@@ -38,17 +40,24 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveBurstApplied", 256105)
 	self:Log("SPELL_AURA_REMOVED", "ExplosiveBurstRemoved", 256105)
 	self:Log("SPELL_CAST_SUCCESS", "Deadeye", 256038)
+	self:Log("SPELL_AURA_APPLIED", "DeadeyeApplied", 256044)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "DeadeyeApplied", 256044)
+	self:Log("SPELL_AURA_REMOVED", "DeadeyeRemoved", 256044)
 	self:Log("SPELL_CAST_START", "MassiveBlast", 263345)
 end
 
 function mod:OnEngage()
 	crossIgnitionCount = 1
 	explosiveBurstCount = 1
+	deadeyes = {}
+	deadeyeTimes = {}
 
 	self:CDBar(256198, 6) -- Azerite Rounds: Incendiary
 	self:CDBar(256105, 13) -- Explosive Burst
 	self:CDBar(256083, 18) -- Cross Ignition
 	self:CDBar(256038, 28) -- Deadeye
+
+	self:OpenInfo(256038, self:SpellName(256038)) -- Deadeye
 end
 
 --------------------------------------------------------------------------------
@@ -121,6 +130,21 @@ function mod:Deadeye(args)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	self:Bar(args.spellId, 27.5)
 	self:CastBar(args.spellId, 5)
+end
+
+function mod:DeadeyeApplied(args)
+	deadeyes[args.destName] = args.amount or 1
+	deadeyeTimes[args.destName] = GetTime()+80
+	self:SetInfoByTable(256038, deadeyes, deadeyeTimes)
+end
+
+function mod:DeadeyeRemoved(args)
+	deadeyes[args.destName] = nil
+	deadeyeTimes[args.destName] = nil
+	self:SetInfoByTable(256038, deadeyes, deadeyeTimes)
+	if self:Me(args.destGUID) then
+		self:Message2(args.spellId, "green", CL.removed:format(args.spellName))
+	end
 end
 
 function mod:MassiveBlast(args)
