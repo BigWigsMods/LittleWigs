@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Merektha", 1877, 2143)
 if not mod then return end
 mod:RegisterEnableMob(133384, 134487) -- Creature and Vehicle
 mod.engageId = 2125
+mod.respawnTime = 21
 
 --------------------------------------------------------------------------------
 -- Initialization

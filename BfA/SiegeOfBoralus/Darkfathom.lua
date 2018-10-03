@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Hadal Darkfathom", 1822, 2134)
 if not mod then return end
 mod:RegisterEnableMob(128651) -- Hadal Darkfathom
 mod.engageId = 2099
+mod.respawnTime = 32
 
 --------------------------------------------------------------------------------
 -- Initialization

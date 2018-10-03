@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Soulbound Goliath", 1862, 2126)
 if not mod then return end
 mod:RegisterEnableMob(131667) -- Soulbound Goliath
 mod.engageId = 2114
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization

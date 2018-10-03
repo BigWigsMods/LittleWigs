@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Dread Captain Lockwood", 1822, 2173)
 if not mod then return end
 mod:RegisterEnableMob(129208) -- Dread Captain Lockwood
 mod.engageId = 2109
+mod.respawnTime = 36
 
 --------------------------------------------------------------------------------
 -- Locals
