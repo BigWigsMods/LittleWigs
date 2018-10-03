@@ -1,32 +1,32 @@
 
 BigWigs:AddSounds("The Sand Queen", {
-	[257092] = "Alert",
-	[257495] = "Long",
-	[257608] = "Alarm",
-	[257609] = "Info",
+	[257092] = "alert",
+	[257495] = "long",
+	[257608] = "alarm",
+	[257609] = "info",
 })
 
 BigWigs:AddSounds("Jes Howlis", {
 	[257777] = "alarm",
-	[257785] = "Warning",
-	[257791] = "Alert",
-	[257793] = "Long",
-	[257827] = {"Alert","alert","info"},
+	[257785] = "warning",
+	[257791] = "alert",
+	[257793] = "long",
+	[257827] = {"alert","info"},
 })
 
 BigWigs:AddSounds("Knight Captain Valyri", {
-	[256955] = "Warning",
-	[256970] = "Alert",
-	[257028] = "Alarm",
+	[256955] = "warning",
+	[256970] = "alert",
+	[257028] = "alarm",
 })
 
 BigWigs:AddSounds("Overseer Korgus", {
-	[256038] = "Warning",
-	[256083] = "Alert",
+	[256038] = "warning",
+	[256083] = "alert",
 	[256105] = {"alarm","warning"},
-	[256198] = "Info",
-	[256199] = "Info",
-	[263345] = "Alert",
+	[256198] = "info",
+	[256199] = "info",
+	[263345] = "alert",
 })
 
 BigWigs:AddSounds("Tol Dagor Trash", {
