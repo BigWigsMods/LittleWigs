@@ -15,7 +15,6 @@ mod.engageId = 2104
 local crossIgnitionCount = 0 -- XXX If we track which Azerite Rounds are used we can better timers if a player disconnects
 local explosiveBurstCount = 0
 local deadeyes = {}
-local deadeyeTimes = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -50,7 +49,6 @@ function mod:OnEngage()
 	crossIgnitionCount = 1
 	explosiveBurstCount = 1
 	deadeyes = {}
-	deadeyeTimes = {}
 
 	self:CDBar(256198, 6) -- Azerite Rounds: Incendiary
 	self:CDBar(256105, 13) -- Explosive Burst
@@ -133,15 +131,13 @@ function mod:Deadeye(args)
 end
 
 function mod:DeadeyeApplied(args)
-	deadeyes[args.destName] = args.amount or 1
-	deadeyeTimes[args.destName] = GetTime()+80
-	self:SetInfoByTable(256038, deadeyes, deadeyeTimes)
+	deadeyes[args.destName] = {args.amount or 1, 80, 0}
+	self:SetInfoBarsByTable(256038, deadeyes)
 end
 
 function mod:DeadeyeRemoved(args)
 	deadeyes[args.destName] = nil
-	deadeyeTimes[args.destName] = nil
-	self:SetInfoByTable(256038, deadeyes, deadeyeTimes)
+	self:SetInfoBarsByTable(256038, deadeyes)
 	if self:Me(args.destGUID) then
 		self:Message2(256038, "green", CL.removed:format(args.spellName))
 	end
