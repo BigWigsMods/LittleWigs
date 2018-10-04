@@ -25,16 +25,16 @@ end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "deDE")
 if L then
-	-- L.custom_on_autotalk = "Autotalk"
-	-- L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
+	L.custom_on_autotalk = "Automatisch ansprechen"
+	L.custom_on_autotalk_desc = "Wählt direkt die Tratsch-Option zum Beginnen des Kampfes."
 
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
-	-- L.lightning_warmup = "new set of vict--"
+	L.lightning_warmup = "Wir haben Frischflei...."
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
-	-- L.lightning_warmup_2 = "not a professional setup"
+	L.lightning_warmup_2 = "hier sind Amateure am Werk"
 
 	L.lightning = "Blitz"
-	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
+	L.lightning_caught = "Blitz nach %.1f Sekunden gefangen!"
 	L.ludwig = "Ludwig Von Tortollen"
 	L.trothak = "Trothak"
 end
