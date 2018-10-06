@@ -6,5 +6,5 @@ end
 
 L = BigWigs:NewBossLocale("Lord Stormsong", "zhCN")
 if L then
-	-- L.warmup_trigger = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
+	L.warmup_trigger = "我要把你们的躯体扔入黑暗的深渊"
 end
