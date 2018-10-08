@@ -96,7 +96,7 @@ end
 
 function mod:SoulManipulationRemovedFromBoss(args)
 	-- Move the icon away from the player and back to the boss
-	self:PrimaryIcon(260805, self:GetUnitIdByGUID(args.destGUID)) -- Focusing Iris
+	self:PrimaryIcon(260805, self:GetBossIdByGUID(args.destGUID)) -- Focusing Iris
 end
 
 function mod:AuraOfDread(args)
@@ -111,7 +111,7 @@ end
 function mod:FocusingIris(args)
 	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "long")
-	self:PrimaryIcon(args.spellId, self:GetUnitIdByGUID(args.destGUID))
+	self:PrimaryIcon(args.spellId, self:GetBossIdByGUID(args.destGUID))
 	self:StopBar(260741) -- Jagged Nettles
 	self:StopBar(260703) -- Unstable Runic Mark
 
