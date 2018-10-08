@@ -1,14 +1,14 @@
 local L = BigWigs:NewBossLocale("Ancient Protectors", "deDE")
 if not L then return end
 if L then
-	--L[83892] = "|cFF00CCFFGola|r"
-	--L[83893] = "|cFF00CC00Telu|r"
+	L[83892] = "|cFF00CCFFGola|r"
+	L[83893] = "|cFF00CC00Telu|r"
 
-	--L.custom_on_automark = "Auto-Mark Bosses"
-	--L.custom_on_automark_desc = "Automatically mark Gola with a {rt8} and Telu with a {rt7}, requires promoted or leader."
+	L.custom_on_automark = "Bosse automatisch markieren"
+	L.custom_on_automark_desc = "Markiert Gola automatisch mit {rt8} und Telu mit {rt7}, benötigt Assistent oder Leiter."
 end
 
 L = BigWigs:NewBossLocale("Witherbark", "deDE")
 if L then
-	--L.energyStatus = "A Globule reached Witherbark: %d%% energy"
+	L.energyStatus = "Eine Sphäre hat Bleichborke erreicht: %d%% Energie"
 end
