@@ -7,5 +7,5 @@ end
 L = BigWigs:NewBossLocale("Lord Stormsong", "deDE")
 if L then
 	L.warmup_trigger_horde = "Eindringlinge?! Ich versenke Eure Leichen in den schwarzen Tiefen, wo sie auf ewig gemartert werden!"
-	-- L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
+	L.warmup_trigger_alliance = "Meister! Stoppt diesen Wahnsinn! Die Flotte von Kul Tiras darf nicht der Dunkelheit anheimfallen!"
 end
