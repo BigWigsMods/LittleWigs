@@ -14,7 +14,8 @@ mod.engageId = 2132
 
 local L = mod:GetLocale()
 if L then
-	L.warmup_trigger = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
+	L.warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
+	L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
 end
 
 --------------------------------------------------------------------------------
@@ -49,9 +50,12 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg == L.warmup_trigger then
+	if msg == L.warmup_trigger_horde then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 19, CL.active, "achievement_dungeon_shrineofthestorm")
+	elseif msg == L.warmup_trigger_alliance then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 19.5, CL.active, "achievement_dungeon_shrineofthestorm")
 	end
 end
 
