@@ -1,6 +1,6 @@
 local L = BigWigs:NewBossLocale("Sadana Bloodfury", "deDE")
 if not L then return end
 if L then
-	--L.custom_on_markadd = "Mark the Dark Communion Add"
-	--L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with {rt8}, requires promoted or leader."
+	L.custom_on_markadd = "Add der Dunklen Kommunion markieren"
+	L.custom_on_markadd_desc = "Markiert das durch die Dunkle Kommunion beschworene Add mit {rt8}, benötigt Assistent oder Leiter."
 end
