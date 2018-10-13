@@ -183,13 +183,13 @@ function mod:Overcharge(args)
 end
 
 function mod:Repair(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
 function mod:OverchargeApplied(args)
 	if self:MobId(args.sourceGUID) ~= 133593 then return end -- filter out Spellsteal
-	self:Message2(args.spellId, "red", CL.other:format(args.spellName, args.destName))
+	self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
 	if self:Dispeller("magic", true) then
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -212,10 +212,9 @@ function mod:TransmuteEnemyToGoo(args)
 end
 
 function mod:TransmuteEnemyToGooApplied(args)
-	if self:Me(args.destGUID) or self:Healer() then
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
-		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end
 
@@ -234,10 +233,9 @@ end
 
 -- Refreshment Vendor
 function mod:BrainFreezeApplied(args)
-	if self:Me(args.destGUID) or self:Healer() then
+	if self:Me(args.destGUID) or self:Dispeller("magic") then
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
-		self:TargetBar(args.spellId, 6, args.destName)
 	end
 end
 
