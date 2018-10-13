@@ -106,8 +106,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "AzeriteInjectionApplied", 262947)
 	self:Log("SPELL_CAST_START", "TransmuteEnemyToGoo", 268797)
 	self:Log("SPELL_AURA_APPLIED", "TransmuteEnemyToGooApplied", 268797)
+	self:Log("SPELL_AURA_REMOVED", "TransmuteEnemyToGooRemoved", 268797)
 	self:Log("SPELL_CAST_START", "FinalBlast", 269313)
 	self:Log("SPELL_AURA_APPLIED", "BrainFreezeApplied", 280605)
+	self:Log("SPELL_AURA_REMOVED", "BrainFreezeRemoved", 280605)
 	self:Log("SPELL_CAST_SUCCESS", "PowerThrough", 268415)
 end
 
@@ -209,6 +211,7 @@ end
 function mod:TransmuteEnemyToGoo(args)
 	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
+	self:TargetBar(args.spellId, 10, args.destName)
 end
 
 function mod:TransmuteEnemyToGooApplied(args)
@@ -216,6 +219,10 @@ function mod:TransmuteEnemyToGooApplied(args)
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
+end
+
+function mod:TransmuteEnemyToGooRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 -- Wanton Sapper
@@ -236,7 +243,12 @@ function mod:BrainFreezeApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
+		self:TargetBar(args.spellId, 6, args.destName)
 	end
+end
+
+function mod:BrainFreezeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 -- Azerite Extractor
