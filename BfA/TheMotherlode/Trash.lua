@@ -190,10 +190,11 @@ function mod:Repair(args)
 end
 
 function mod:OverchargeApplied(args)
-	if self:MobId(args.sourceGUID) ~= 133593 then return end -- filter out Spellsteal
-	self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
-	if self:Dispeller("magic", true) then
-		self:PlaySound(args.spellId, "alarm")
+	if not UnitIsPlayer(args.destName) then
+		self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
+		if self:Dispeller("magic", true) then
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
