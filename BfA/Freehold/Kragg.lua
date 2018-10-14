@@ -16,6 +16,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		255952, -- Charrrrrge
+		272046, -- Dive Bomb
 		256106, -- Azerite Powder Shot
 		256060, -- Revitalizing Brew
 		256016, -- Vile Coating
@@ -25,9 +26,10 @@ end
 function mod:OnBossEnable()
 	-- Stage 1
 	self:Log("SPELL_CAST_START", "Charrrrrge", 255952)
-	self:Log("SPELL_CAST_SUCCESS", "SpawnParrot", 256056) -- Stage 2
+	self:Log("SPELL_CAST_SUCCESS", "SpawnParrot", 256056) -- Stage 2 XXX Does not exist anymore?
 
 	-- Stage 2
+	self:Log("SPELL_CAST_START", "DiveBomb", 272046)
 	self:Log("SPELL_CAST_START", "AzeritePowderShot", 256106)
 	self:Log("SPELL_CAST_SUCCESS", "RevitalizingBrew", 256060)
 	self:Log("SPELL_AURA_APPLIED", "VileCoatingDamage", 256016)
@@ -57,6 +59,12 @@ function mod:SpawnParrot()
 
 	self:CDBar(256106, 6) -- Azerite Powder Shot
 	self:CDBar(256060, 27.5) -- Revitalizing Brew
+end
+
+function mod:DiveBomb(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 15.5) -- ranges from 12-18
 end
 
 function mod:AzeritePowderShot(args)
