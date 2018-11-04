@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Knight Captain Valyri", 1771, 2099)
 if not mod then return end
 mod:RegisterEnableMob(127490) -- Knight Captain Valyri
 mod.engageId = 2103
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
