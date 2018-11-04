@@ -1,16 +1,16 @@
 local L = BigWigs:NewBossLocale("The MOTHERLODE!! Trash", "deDE")
 if not L then return end
 if L then
-	-- L.tester = "Weapons Tester"
-	-- L.assassin = "Hired Assassin"
-	-- L.jockey = "Mech Jockey"
-	-- L.earthshaper = "Venture Co. Earthshaper"
-	-- l.stonefury = "Stonefury"
-	-- L.assistant = "Feckless Assistant"
-	-- L.technician = "Expert Technician"
-	-- L.mastermind = "Venture Co. Mastermind"
-	-- L.alchemist = "Venture Co. Alchemist"
-	-- L.sapper = "Wanton Sapper"
-	-- L.vendor = "Refreshment Vendor"
-	-- L.extractor = "Azerite Extractor"
+	L.tester = "Waffentester"
+	L.assassin = "Auftragsmörder"
+	L.jockey = "Mechjockey"
+	L.earthshaper = "Erdformer der Venture Co."
+	L.stonefury = "Steinzorn"
+	L.assistant = "Nichtsnutziger Assistent"
+	L.technician = "Technikexperte"
+	L.mastermind = "Genie der Venture Co."
+	L.alchemist = "Alchemistin der Venture Co."
+	L.sapper = "Zerstörungswütige Pionierin"
+	L.vendor = "Snackverkäuferin"
+	L.extractor = "Azeritextraktor"
 end
