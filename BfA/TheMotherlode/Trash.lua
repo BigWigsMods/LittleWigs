@@ -154,7 +154,7 @@ end
 do
 	local prev = 0
 	function mod:TectonicBarrier(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
@@ -230,7 +230,7 @@ end
 do
 	local prev = 0
 	function mod:FinalBlast(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
