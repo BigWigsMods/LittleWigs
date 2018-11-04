@@ -5,6 +5,7 @@
 <Script file="Tikali.lua"/>
 <Script file="Rixxa.lua"/>
 <Script file="Razzdunk.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 
