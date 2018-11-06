@@ -9,6 +9,8 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	138465, -- Ashvane Cannoneer
 	128969, -- Ashvane Commander
+	135263, -- Ashvane Spotter
+	138255, -- Ashvane Spotter
 	135245, -- Bilge Rat Demolisher
 	129369, -- Irontide Raider
 	141284, -- Kul Tiran Wavetender
@@ -23,6 +25,7 @@ local L = mod:GetLocale()
 if L then
 	L.cannoneer = "Ashvane Cannoneer"
 	L.commander = "Ashvane Commander"
+	L.spotter = "Ashvane Spotter"
 	L.demolisher = "Bilge Rat Demolisher"
 	L.wavetender = "Kul Tiran Wavetender"
 	L.halberd = "Kul Tiran Halberd"
@@ -40,6 +43,8 @@ function mod:GetOptions()
 		-- Ashvane Commander
 		272874, -- Trample
 		275826, -- Bolstering Shout
+		-- Ashvane Spotter
+		272421, -- Sighted Artillery
 		-- Bilge Rat Demolisher
 		257169, -- Terrifying Roar
 		272711, -- Crushing Slam
@@ -50,6 +55,7 @@ function mod:GetOptions()
 		-- Kul Tiran Halberd
 		256627, -- Slobber Knocker
 	}, {
+		[272421] = L.spotter,
 		[272874] = L.commander,
 		[257169] = L.demolisher,
 		[257170] = L.raider,
@@ -66,6 +72,8 @@ function mod:OnBossEnable()
 	-- Ashvane Commander
 	self:Log("SPELL_CAST_START", "Trample", 272874)
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
+	-- Ashvane Spotter
+	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
 	self:Log("SPELL_CAST_SUCCESS", "TerrifyingRoarSuccess", 257169)
@@ -97,6 +105,10 @@ end
 function mod:BolsteringShout(args)
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:SightedArtillery(args)
+	self:TargetMessage(args.spellId, args.destName)
 end
 
 function mod:TerrifyingRoar(args)
