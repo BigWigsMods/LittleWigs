@@ -41,6 +41,9 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 	
+	-- Ashvane Commander
+	self:Log("SPELL_CAST_START", "Trample", 272874)
+	
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
 	self:Log("SPELL_CAST_SUCCESS", "TerrifyingRoarSuccess", 257169)
