@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("The Sand Queen", 1771, 2097)
 if not mod then return end
 mod:RegisterEnableMob(127479) -- The Sand Queen
 mod.engageId = 2101
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
