@@ -55,6 +55,7 @@ function mod:GetOptions()
 		-- Kul Tiran Halberd
 		256627, -- Slobber Knocker
 	}, {
+		[268260] = L.cannoneer,
 		[272421] = L.spotter,
 		[272874] = L.commander,
 		[257169] = L.demolisher,
@@ -91,7 +92,7 @@ function mod:OnBossEnable()
 end
 
 function mod:Broadside(args)
-	self:Message2(args.spellId, "red")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 3)
 end
@@ -124,7 +125,7 @@ function mod:TerrifyingRoarSuccess(args)
 end
 
 function mod:SavageTempest(args)
-	self:Message2(args.spellId, "orange")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 end
 
