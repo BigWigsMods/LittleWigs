@@ -108,7 +108,8 @@ function mod:BolsteringShout(args)
 end
 
 function mod:SightedArtillery(args)
-	self:TargetMessage(args.spellId, args.destName)
+	self:TargetMessage2(args.spellId, "cyan", args.destName)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:TerrifyingRoar(args)
