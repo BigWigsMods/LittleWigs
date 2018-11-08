@@ -95,12 +95,12 @@ end
 
 
 function mod:BolsteringShout(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message2(args.spellId, "cyan", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:BolsteringShoutSuccess(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
