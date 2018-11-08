@@ -73,6 +73,7 @@ function mod:OnBossEnable()
 	-- Ashvane Commander
 	self:Log("UNIT_SPELLCAST_START", "Trample")
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
+	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
 	-- Ashvane Spotter
 	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
 	-- Bilge Rat Demolisher
@@ -85,6 +86,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SavageTempestSuccess", 257170)
 	-- Kul Tiran Wavetender
 	self:Log("SPELL_CAST_START", "WatertightShell", 256957)
+	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
 	-- Kul Tiran Halberd
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
 end
@@ -116,6 +118,11 @@ end
 function mod:BolsteringShout(args)
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:BolsteringShoutSuccess(args)
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SightedArtillery(args)
@@ -166,8 +173,13 @@ function mod:SavageTempestSuccess(args)
 end
 
 function mod:WatertightShell(args)
-	self:Message2(args.spellId, "orange")
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:WatertightShellApplied(args)
+	self:Message2(args.spellId, "blue")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:SlobberKnocker(args)
