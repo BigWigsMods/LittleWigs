@@ -101,7 +101,7 @@ end
 
 function mod:BolsteringShoutSuccess(args)
 	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:SightedArtillery(args)
@@ -118,8 +118,6 @@ end
 function mod:TerrifyingRoarSuccess(args)
 	self:CDBar(272711, 18) -- Crushing Slam
 end
-
-
 
 function mod:SavageTempest(args)
 	self:Message2(args.spellId, "yellow")
@@ -163,7 +161,7 @@ do
 		elseif spellId == 272874 and castGUID ~= prevTrample then -- Trample
 			prevTrample = castGUID
 			self:Message2(spellId, "orange")
-			self:PlaySound(spellId, "alert")
+			self:PlaySound(spellId, "info")
 			self:CastBar(spellId, 3)
 		end
 	end
