@@ -68,14 +68,18 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 	
+	-- Ashvane Cannoneer's Broadside
+	self:RegisterEvent("UNIT_SPELLCAST_START", "Broadside")
 	-- Ashvane Commander
-	self:Log("SPELL_CAST_START", "Trample", 272874)
+	self:Log("UNIT_SPELLCAST_START", "Trample")
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	-- Ashvane Spotter
 	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
 	self:Log("SPELL_CAST_SUCCESS", "TerrifyingRoarSuccess", 257169)
+	self:RegisterEvent("UNIT_SPELLCAST_START", "CrushingSlam")
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "CrushingSlamSuccess")
 	-- Irontide Raider
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
 	self:Log("SPELL_CAST_SUCCESS", "SavageTempestSuccess", 257170)
@@ -83,18 +87,30 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WatertightShell", 256957)
 	-- Kul Tiran Halberd
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
-	
-	-- Ashvane Cannoneer's Broadside
-	self:RegisterEvent("UNIT_SPELLCAST_START", "Broadside")
-	-- Bilge Rat Demolisher's Crushing Slam
-	self:RegisterEvent("UNIT_SPELLCAST_START", "CrushingSlam")
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "CrushingSlamSuccess")
 end
 
-function mod:Trample(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	self:CastBar(args.spellId, 3)
+do
+	local prev = nil
+	function mod:Broadside(_, _, castGUID, spellId)
+		if spellId == 268260 and castGUID ~= prev then -- Broadside
+			prev = castGUID
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+			self:CastBar(args.spellId, 3)
+		end
+	end
+end
+
+do
+	local prev = nil
+	function mod:Trample(_, _, castGUID, spellId)
+		if spellId == 272874 and castGUID ~= prev then -- Trample
+			prev = castGUID
+			self:Message2(spellId, "orange")
+			self:PlaySound(spellId, "alert")
+			self:CastBar(spellId, 3)
+		end
+	end
 end
 
 function mod:BolsteringShout(args)
@@ -118,37 +134,6 @@ function mod:TerrifyingRoarSuccess(args)
 	self:CDBar(272711, 6) -- Crushing Slam
 end
 
-function mod:SavageTempest(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-end
-
-function mod:SavageTempestSuccess(args)
-	self:CDBar(257170, 14) -- Savage Tempest
-end
-
-function mod:WatertightShell(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:SlobberKnocker(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-end
-
-do
-	local prev = nil
-	function mod:Broadside(_, _, castGUID, spellId)
-		if spellId == 268260 and castGUID ~= prev then -- Broadside
-			prev = castGUID
-			self:Message2(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
-			self:CastBar(args.spellId, 3)
-		end
-	end
-end
-
 do
 	local prev = nil
 	function mod:CrushingSlam(_, _, castGUID, spellId)
@@ -169,4 +154,23 @@ do
 			self:CDBar(257169, 6) -- Terrifying Roar
 		end
 	end
+end
+
+function mod:SavageTempest(args)
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:SavageTempestSuccess(args)
+	self:CDBar(257170, 14) -- Savage Tempest
+end
+
+function mod:WatertightShell(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:SlobberKnocker(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
