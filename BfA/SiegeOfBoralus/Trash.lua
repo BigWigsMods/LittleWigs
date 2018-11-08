@@ -92,7 +92,7 @@ function mod:OnBossEnable()
 	-- Ashvane Cannoneer's Broadside
 	-- Ashvane Commander's Trample
 	-- Bilge Rat Demolisher's Crushing Slam
-	-- Kul Tiran Vanguard's Heavy Slam
+	-- Kul Tiran Vanguard's Heavy Slash
 	self:RegisterEvent("UNIT_SPELLCAST_START")
 	-- Bilge Rat Demolisher's Crushing Slam
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
@@ -148,7 +148,7 @@ do
 	local prevCrushingSlam = nil
 	local prevBroadside = nil
 	local prevTrample = nil
-	local prevHeavySlam = nil
+	local prevHeavySlash = nil
 	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
 		if spellId == 272711 and castGUID ~= prevCrushingSlam then -- Crushing Slam
 			prevCrushingSlam = castGUID
@@ -165,8 +165,8 @@ do
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "info")
 			self:CastBar(spellId, 3)
-		elseif spellId == 257288 and castGUID ~= prevHeavySlam then
-			prevHeavySlam = castGUID
+		elseif spellId == 257288 and castGUID ~= prevHeavySlash then -- Heavy Slash
+			prevHeavySlash = castGUID
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 2.8)
