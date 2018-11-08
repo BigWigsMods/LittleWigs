@@ -85,9 +85,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
 	
 	-- Ashvane Cannoneer's Broadside
+	self:RegisterEvent("UNIT_SPELLCAST_START", "Broadside")
 	-- Bilge Rat Demolisher's Crushing Slam
-	self:RegisterEvent("UNIT_SPELLCAST_START")
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterEvent("UNIT_SPELLCAST_START", "CrushingSlam")
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", "CrushingSlamSuccess")
 end
 
 function mod:Trample(args)
@@ -136,20 +137,36 @@ function mod:SlobberKnocker(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
-	if spellId == 268260 then -- Broadside
-		self:Message2(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
-		self:CastBar(args.spellId, 3)
-	elseif spellId == 272711 then -- Crushing Slam
-		self:Message2(spellId, "orange")
-		self:PlaySound(spellId, "alert")
-		self:CastBar(spellId, 3.5)
+do
+	local prev = nil
+	function mod:Broadside(_, _, castGUID, spellId)
+		if spellId == 268260 and castGUID ~= prev then -- Broadside
+			prev = castGUID
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+			self:CastBar(args.spellId, 3)
+		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 272711 then -- Crushing Slam
-		self:CDBar(257169, 6) -- Terrifying Roar
+do
+	local prev = nil
+	function mod:CrushingSlam(_, _, castGUID, spellId)
+		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
+			prev = castGUID
+			self:Message2(spellId, "orange")
+			self:PlaySound(spellId, "alert")
+			self:CastBar(spellId, 3.5)
+		end
+	end
+end
+
+do
+	local prev = nil
+	function mod:CrushingSlamSuccess(_, _, castGUID, spellId)
+		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
+			prev = castGUID
+			self:CDBar(257169, 6) -- Terrifying Roar
+		end
 	end
 end
