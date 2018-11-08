@@ -51,4 +51,5 @@ BigWigs:AddSounds("Siege of Boralus Trash", {
 	[256957] = {"alert", "warning"},
 	[256627] = "alert",
 	[272711] = "alert",
+	[257288] = "alert",
 })

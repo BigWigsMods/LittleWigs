@@ -14,7 +14,8 @@ mod:RegisterEnableMob(
 	135245, -- Bilge Rat Demolisher
 	129369, -- Irontide Raider
 	141284, -- Kul Tiran Wavetender
-	141283  -- Kul Tiran Halberd
+	141283, -- Kul Tiran Halberd
+	138019  -- Kul Tiran Vanguard
 )
 
 --------------------------------------------------------------------------------
@@ -30,6 +31,7 @@ if L then
 	L.wavetender = "Kul Tiran Wavetender"
 	L.halberd = "Kul Tiran Halberd"
 	L.raider = "Irontide Raider"
+	L.vanguard = "Kul Tiran Vanguard"
 end
 
 --------------------------------------------------------------------------------
@@ -54,14 +56,17 @@ function mod:GetOptions()
 		256957, -- Watertight Shell
 		-- Kul Tiran Halberd
 		256627, -- Slobber Knocker
+		-- Kul Tiran Vanguard
+		257288, -- Heavy Slash
 	}, {
 		[268260] = L.cannoneer,
-		[272421] = L.spotter,
 		[272874] = L.commander,
+		[272421] = L.spotter,
 		[257169] = L.demolisher,
 		[257170] = L.raider,
 		[256957] = L.wavetender,
 		[256627] = L.halberd,
+		[257288] = L.vanguard,
 	}
 end
 
@@ -88,6 +93,7 @@ function mod:OnBossEnable()
 	-- Ashvane Cannoneer's Broadside
 	-- Ashvane Commander's Trample
 	-- Bilge Rat Demolisher's Crushing Slam
+	-- Kul Tiran Vanguard's Heavy Slam
 	self:RegisterEvent("UNIT_SPELLCAST_START")
 	-- Bilge Rat Demolisher's Crushing Slam
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
@@ -147,6 +153,7 @@ do
 	local prevCrushingSlam = nil
 	local prevBroadside = nil
 	local prevTrample = nil
+	local prevHeavySlam = nil
 	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
 		if spellId == 272711 and castGUID ~= prevCrushingSlam then -- Crushing Slam
 			prevCrushingSlam = castGUID
@@ -163,6 +170,11 @@ do
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "info")
 			self:CastBar(spellId, 3)
+		elseif spellId == 257288 and castGUID ~= prevHeavySlam then
+			prevHeavySlam = castGUID
+			self:Message2(spellId, "orange")
+			self:PlaySound(spellId, "alert")
+			self:CastBar(spellId, 2.8)
 		end
 	end
 end
