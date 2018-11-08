@@ -68,8 +68,6 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 	
-	-- Ashvane Cannoneer
-	self:Log("SPELL_CAST_START", "Broadside", 268260)
 	-- Ashvane Commander
 	self:Log("SPELL_CAST_START", "Trample", 272874)
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
@@ -86,15 +84,10 @@ function mod:OnBossEnable()
 	-- Kul Tiran Halberd
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
 	
+	-- Ashvane Cannoneer's Broadside
 	-- Bilge Rat Demolisher's Crushing Slam
 	self:RegisterEvent("UNIT_SPELLCAST_START")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-end
-
-function mod:Broadside(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CastBar(args.spellId, 3)
 end
 
 function mod:Trample(args)
@@ -120,7 +113,7 @@ function mod:TerrifyingRoar(args)
 end
 
 function mod:TerrifyingRoarSuccess(args)
-	-- This timer might not be right
+	-- This timer might be too low
 	self:CDBar(272711, 6) -- Crushing Slam
 end
 
@@ -144,7 +137,11 @@ function mod:SlobberKnocker(args)
 end
 
 function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
-	if spellId == 272711 then -- Crushing Slam
+	if spellId == 268260 then -- Broadside
+		self:Message2(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CastBar(args.spellId, 3)
+	elseif spellId == 272711 then -- Crushing Slam
 		self:Message2(spellId, "orange")
 		self:PlaySound(spellId, "alert")
 		self:CastBar(spellId, 3.5)
