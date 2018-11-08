@@ -80,7 +80,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
-	self:Log("SPELL_CAST_SUCCESS", "TerrifyingRoarSuccess", 257169)
 	-- Irontide Raider
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
 	self:Log("SPELL_CAST_SUCCESS", "SavageTempestSuccess", 257170)
@@ -119,10 +118,6 @@ function mod:TerrifyingRoar(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 3)
-end
-
-function mod:TerrifyingRoarSuccess(args)
-	self:CDBar(272711, 18) -- Crushing Slam
 end
 
 function mod:SavageTempest(args)
