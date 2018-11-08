@@ -137,8 +137,7 @@ function mod:TerrifyingRoar(args)
 end
 
 function mod:TerrifyingRoarSuccess(args)
-	-- This timer might be too low
-	self:CDBar(272711, 6) -- Crushing Slam
+	self:CDBar(272711, 18) -- Crushing Slam
 end
 
 do
