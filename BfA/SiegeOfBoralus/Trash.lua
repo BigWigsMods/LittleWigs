@@ -175,6 +175,7 @@ do
 	local prev = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
 		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
+			prev = castGUID
 			self:CDBar(257169, 6) -- Terrifying Roar
 		end
 	end
