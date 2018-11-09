@@ -98,6 +98,9 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 end
 
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:BolsteringShout(args)
 	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
