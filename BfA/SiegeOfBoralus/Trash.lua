@@ -100,17 +100,17 @@ end
 
 
 function mod:BolsteringShout(args)
-	self:Message2(args.spellId, "cyan", CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:BolsteringShoutSuccess(args)
-	self:Message2(args.spellId, "orange")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:SightedArtillery(args)
-	self:TargetMessage2(args.spellId, "cyan", args.destName)
+	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -135,7 +135,7 @@ function mod:WatertightShell(args)
 end
 
 function mod:WatertightShellApplied(args)
-	self:Message2(args.spellId, "blue")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
