@@ -6,6 +6,7 @@
 <Script file="Lockwood.lua"/>
 <Script file="Darkfathom.lua"/>
 <Script file="Viqgoth.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 

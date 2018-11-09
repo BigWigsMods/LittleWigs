@@ -41,3 +41,16 @@ BigWigs:AddSounds("Viq'Goth", {
 	["demolishing"] = "alert",
 	["stages"] = "long",
 })
+
+BigWigs:AddSounds("Siege of Boralus Trash", {
+	[268260] = "alarm",
+	[272874] = "info",
+	[275826] = {"info", "alarm"},
+	[272421] = "info",
+	[257169] = "alarm",
+	[257170] = "long",
+	[256957] = {"alert", "warning"},
+	[256627] = "alert",
+	[272711] = "alert",
+	[257288] = "alert",
+})
