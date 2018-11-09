@@ -145,28 +145,25 @@ function mod:SlobberKnocker(args)
 end
 
 do
-	local prevCrushingSlam = nil
-	local prevBroadside = nil
-	local prevTrample = nil
-	local prevHeavySlash = nil
+	local prev = nil
 	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
-		if spellId == 272711 and castGUID ~= prevCrushingSlam then -- Crushing Slam
-			prevCrushingSlam = castGUID
+		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
+			prev = castGUID
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 3.5)
-		elseif spellId == 268260 and castGUID ~= prevBroadside then -- Broadside
-			prevBroadside = castGUID
+		elseif spellId == 268260 and castGUID ~= prev then -- Broadside
+			prev = castGUID
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "alarm")
 			self:CastBar(spellId, 3)
-		elseif spellId == 272874 and castGUID ~= prevTrample then -- Trample
-			prevTrample = castGUID
+		elseif spellId == 272874 and castGUID ~= prev then -- Trample
+			prev = castGUID
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "info")
 			self:CastBar(spellId, 3)
-		elseif spellId == 257288 and castGUID ~= prevHeavySlash then -- Heavy Slash
-			prevHeavySlash = castGUID
+		elseif spellId == 257288 and castGUID ~= prev then -- Heavy Slash
+			prev = castGUID
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 2.8)
@@ -175,9 +172,9 @@ do
 end
 
 do
-	local prevCrushingSlam = nil
+	local prev = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if spellId == 272711 and castGUID ~= prevCrushingSlam then -- Crushing Slam
+		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
 			self:CDBar(257169, 6) -- Terrifying Roar
 		end
 	end
