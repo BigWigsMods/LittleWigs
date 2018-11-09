@@ -14,6 +14,7 @@ BigWigs:AddColors("Sergeant Bainbridge", {
 	[260954] = {"blue","yellow"},
 	[261428] = {"blue","red"},
 	[277965] = "green",
+	[257288] = "orange",
 	["adds"] = "yellow",
 })
 
