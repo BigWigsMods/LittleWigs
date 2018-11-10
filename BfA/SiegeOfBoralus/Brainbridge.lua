@@ -31,7 +31,7 @@ function mod:GetOptions()
 		260924, -- Steel Tempest
 		257585, -- Cannon Barrage
 		277965, -- Heavy Ordnance
-		257288, -- Heavy Slash
+		279761, -- Heavy Slash
 	}
 end
 
