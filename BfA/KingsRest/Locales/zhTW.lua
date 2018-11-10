@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Dazar, The First King", "zhTW")
 if not L then return end
 if L then
-	-- L.spears_active = "Spear Launchers Active"
+	L.spears_active = "穿刺之矛開始"
 end
 
 L = BigWigs:NewBossLocale("King's Rest Trash", "zhTW")
