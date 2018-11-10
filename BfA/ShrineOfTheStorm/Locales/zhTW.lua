@@ -7,5 +7,5 @@ end
 L = BigWigs:NewBossLocale("Lord Stormsong", "zhTW")
 if L then
 	L.warmup_trigger_horde = "是入侵者？我會把你們丟往黑暗深淵，大海會讓你們粉身碎骨，直到永遠。"
-	-- L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
+	L.warmup_trigger_alliance = "大人！快住手！別把庫爾提拉斯的艦隊送入黑暗之中！"
 end
