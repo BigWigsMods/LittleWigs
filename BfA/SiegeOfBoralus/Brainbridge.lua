@@ -55,7 +55,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
-	if spellId == 257288 then -- Heavy Slash
+	if spellId == 279761 then -- Heavy Slash
 		self:Message2(spellId, "orange")
 		self:PlaySound(spellId, "alert")
 	end
