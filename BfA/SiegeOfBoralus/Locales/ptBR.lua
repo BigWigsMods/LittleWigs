@@ -5,6 +5,7 @@ if L then
 	L.commander = "Comandante Grimpagris"
 	L.spotter = "Avistador Grimpagris"
 	L.demolisher = "Demolidor Rato de Porão"
+	L.tempest = "Trovoeiro Rato de Porão"
 	L.wavetender = "Zelamar Kultireno"
 	L.halberd = "Alabardeiro Kultireno"
 	L.raider = "Saqueador Maré-férrea"

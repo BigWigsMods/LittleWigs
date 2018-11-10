@@ -5,6 +5,7 @@ if L then
 	-- L.commander = "Ashvane Commander"
 	-- L.spotter = "Ashvane Spotter"
 	-- L.demolisher = "Bilge Rat Demolisher"
+	-- L.tempest = "Bilge Rat Tempest"
 	-- L.wavetender = "Kul Tiran Wavetender"
 	-- L.halberd = "Kul Tiran Halberd"
 	-- L.raider = "Irontide Raider"

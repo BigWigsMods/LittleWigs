@@ -5,6 +5,7 @@ if L then
 	L.commander = "艾什凡指挥官"
 	L.spotter = "艾什凡观察员"
 	L.demolisher = "水鼠帮歼灭者"
+	L.tempest = "水鼠帮唤风者"
 	L.wavetender = "库尔提拉斯护潮者"
 	L.halberd = "库尔提拉斯戟兵"
 	L.raider = "铁潮袭击者"
