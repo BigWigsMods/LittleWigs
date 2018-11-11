@@ -13,5 +13,5 @@ end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "zhTW")
 if L then
-	-- L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
+	L.demolishing_desc = "為滅擊觸鬚的出現顯示警告與計時。"
 end
