@@ -5,6 +5,7 @@ if L then
 	L.commander = "Aschenwindkommandant"
 	L.spotter = "Aschenwindkundschafter"
 	L.demolisher = "Verwüster der Bilgeratten"
+	L.pillager = "Brandschatzer der Bilgeratten"
 	L.tempest = "Orkan der Bilgeratten"
 	L.wavetender = "Wellenzähmer von Kul Tiras"
 	L.halberd = "Hellebardier von Kul Tiras"

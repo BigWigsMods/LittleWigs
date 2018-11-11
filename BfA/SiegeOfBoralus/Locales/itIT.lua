@@ -5,6 +5,7 @@ if L then
 	L.commander = "Comandante dei Bracescura"
 	L.spotter = "Ricognitore dei Bracescura"
 	L.demolisher = "Demolitore dei Ratti di Sentina"
+	L.pillager = "Sciacallo dei Ratti di Sentina"
 	L.tempest = "Tempesta dei Ratti di Sentina"
 	L.wavetender = "Tracciaonde di Kul Tiras"
 	L.halberd = "Alabardiere di Kul Tiras"

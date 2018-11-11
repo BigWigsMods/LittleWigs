@@ -5,6 +5,7 @@ if L then
 	L.commander = "Comandante Gobernalle"
 	L.spotter = "Avistador de los Gobernalle"
 	L.demolisher = "Demoledor de las Ratas de Pantoque"
+	L.pillager = "Saqueador de las Ratas de Pantoque"
 	L.tempest = "Tempestad de las Ratas de Pantoque"
 	L.wavetender = "Cuidaolas de Kul Tiras"
 	L.halberd = "Alabardero de Kul Tiras"
