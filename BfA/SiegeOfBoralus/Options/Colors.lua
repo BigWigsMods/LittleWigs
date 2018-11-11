@@ -48,6 +48,7 @@ BigWigs:AddColors("Siege of Boralus Trash", {
 	[275826] = {"orange", "red"},
 	[272421] = "yellow",
 	[257169] = "red",
+	[272827] = "orange",
 	[257170] = "yellow",
 	[274569] = "orange",
 	[256957] = {"orange", "red"},

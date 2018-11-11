@@ -12,6 +12,7 @@ mod:RegisterEnableMob(
 	135263, -- Ashvane Spotter
 	138255, -- Ashvane Spotter
 	135245, -- Bilge Rat Demolisher
+	135241, -- Bilge Rat Pillager
 	129367, -- Bilge Rat Tempest
 	129369, -- Irontide Raider
 	141284, -- Kul Tiran Wavetender
@@ -29,6 +30,7 @@ if L then
 	L.commander = "Ashvane Commander"
 	L.spotter = "Ashvane Spotter"
 	L.demolisher = "Bilge Rat Demolisher"
+	L.pillager = "Bilge Rat Pillager"
 	L.tempest = "Bilge Rat Tempest"
 	L.wavetender = "Kul Tiran Wavetender"
 	L.halberd = "Kul Tiran Halberd"
@@ -52,6 +54,8 @@ function mod:GetOptions()
 		-- Bilge Rat Demolisher
 		257169, -- Terrifying Roar
 		272711, -- Crushing Slam
+		-- Bilge Rat Pillager
+		272827, -- Viscous Slobber
 		-- Bilge Rat Tempest
 		274569, -- Revitalizing Mist
 		-- Irontide Raider
@@ -67,6 +71,7 @@ function mod:GetOptions()
 		[272874] = L.commander,
 		[272421] = L.spotter,
 		[257169] = L.demolisher,
+		[272827] = L.pillager,
 		[274569] = L.tempest,
 		[257170] = L.raider,
 		[256957] = L.wavetender,
@@ -85,6 +90,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
+	-- Bilge Rat Pillager
+	self:Log("SPELL_CAST_START", "ViscousSlobber", 272827)
 	-- Bilge Rat Tempest
 	self:Log("SPELL_CAST_START", "RevitalizingMist", 274569)
 	-- Irontide Raider
@@ -128,6 +135,11 @@ function mod:TerrifyingRoar(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 3)
+end
+
+function mod:ViscousSlobber(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:RevitalizingMist(args)
