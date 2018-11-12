@@ -23,6 +23,13 @@ if L then
 	L.stormcaller = "Призыватель шторма из братства Стальных Волн"
 end
 
+L = BigWigs:NewBossLocale("Council o' Captains", "ruRU")
+if L then
+	-- L.crit_brew "Crit Brew"
+	-- L.haste_brew = "Haste Brew"
+	-- L.bad_brew = "Bad Brew"
+end
+
 L = BigWigs:NewBossLocale("Ring of Booty", "ruRU")
 if L then
 	L.custom_on_autotalk = "Авторазговор"
