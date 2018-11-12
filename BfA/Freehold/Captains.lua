@@ -119,7 +119,7 @@ do
 			local t = args.time
 			if t-prev > 2 then
 				prev = t
-				self:PersonalMessage(265168, "underyou")
+				self:PersonalMessage(265168, "underyou", L.bad_brew)
 				self:PlaySound(265168, "alarm")
 			end
 		end
