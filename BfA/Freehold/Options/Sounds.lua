@@ -4,6 +4,7 @@ BigWigs:AddSounds("Skycap'n Kragg", {
 	[256016] = "alarm",
 	[256060] = "warning",
 	[256106] = "alert",
+	[272046] = "alarm",
 	["stages"] = "info",
 })
 
@@ -11,6 +12,9 @@ BigWigs:AddSounds("Council o' Captains", {
 	[256589] = "long",
 	[258338] = "alert",
 	[258381] = "warning",
+	[264608] = "info",
+	[265088] = "info",
+	[265168] = "alarm",
 })
 
 BigWigs:AddSounds("Ring of Booty", {

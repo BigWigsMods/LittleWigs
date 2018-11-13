@@ -23,6 +23,13 @@ if L then
 	L.stormcaller = "Invocatore delle Tempeste Marferreo"
 end
 
+L = BigWigs:NewBossLocale("Council o' Captains", "itIT")
+if L then
+	-- L.crit_brew "Crit Brew"
+	-- L.haste_brew = "Haste Brew"
+	-- L.bad_brew = "Bad Brew"
+end
+
 L = BigWigs:NewBossLocale("Ring of Booty", "itIT")
 if L then
 	-- L.custom_on_autotalk = "Autotalk"
