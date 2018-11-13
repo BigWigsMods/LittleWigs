@@ -25,9 +25,9 @@ end
 
 L = BigWigs:NewBossLocale("Council o' Captains", "deDE")
 if L then
-	-- L.crit_brew "Crit Brew"
-	-- L.haste_brew = "Haste Brew"
-	-- L.bad_brew = "Bad Brew"
+	L.crit_brew "Krit-Bräu"
+	L.haste_brew = "Tempo-Bräu"
+	L.bad_brew = "Schlechtes Bräu"
 end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "deDE")
