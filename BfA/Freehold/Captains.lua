@@ -18,7 +18,7 @@ mod.engageId = 2094
 
 local L = mod:GetLocale()
 if L then
-	L.crit_brew "Crit Brew"
+	L.crit_brew = "Crit Brew"
 	L.haste_brew = "Haste Brew"
 	L.bad_brew = "Bad Brew"
 end
