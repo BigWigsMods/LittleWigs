@@ -40,6 +40,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss2", "boss3", "boss4")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4")
 
 	self:Log("SPELL_AURA_APPLIED", "Evasive", 272471)
@@ -56,6 +57,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
+	if spellId == 268260 then -- Broadside
+		self:Message2(spellId, "orange")
+		self:PlaySound(spellId, "alarm")
+	end
+end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 268752 then -- Withdraw
@@ -75,9 +83,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			self:CDBar(269029, 7) -- Clear the Deck
 			self:Bar(268752, 36) -- Withdraw
 		end
-	elseif spellId == 268260 then -- Broadside
-		self:Message2(spellId, "orange")
-		self:PlaySound(spellId, "alarm")
 	elseif spellId == 268963 then -- Unstable Ordnance (Dropped)
 		self:Message2(spellId, "cyan", L.ordanance_dropped)
 		self:PlaySound(spellId, "info")

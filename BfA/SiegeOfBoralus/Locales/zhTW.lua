@@ -5,6 +5,8 @@ if L then
 	L.commander = "艾胥凡指揮官"
 	L.spotter = "艾胥凡偵察兵"
 	L.demolisher = "污鼠會毀滅者"
+	-- L.pillager = "Bilge Rat Pillager"
+	-- L.tempest = "Bilge Rat Tempest"
 	L.wavetender = "庫爾提拉斯平浪者"
 	L.halberd = "庫爾提拉斯長戟兵"
 	L.raider = "鐵潮劫掠者"

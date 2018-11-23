@@ -5,6 +5,8 @@ if L then
 	L.commander = "Commandant corsandre"
 	L.spotter = "Guetteur corsandre"
 	L.demolisher = "Démolisseur des Soutaillons"
+	L.pillager = "Pilleur des Soutaillons"
+	L.tempest = "Tempête des Soutaillons"
 	L.wavetender = "Soigne-vagues kultirassien"
 	L.halberd = "Hallebardier kultirassien"
 	L.raider = "Ecumeur des Lamineurs"

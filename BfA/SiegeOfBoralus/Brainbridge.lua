@@ -31,10 +31,12 @@ function mod:GetOptions()
 		260924, -- Steel Tempest
 		257585, -- Cannon Barrage
 		277965, -- Heavy Ordnance
+		279761, -- Heavy Slash
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss2", "boss3", "boss4", "boss5")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:Log("SPELL_AURA_APPLIED", "IronGaze", 260954)
@@ -51,6 +53,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
+	if spellId == 279761 then -- Heavy Slash
+		self:Message2(spellId, "orange")
+		self:PlaySound(spellId, "alert")
+	end
+end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 257540 then -- Cannon Barrage
