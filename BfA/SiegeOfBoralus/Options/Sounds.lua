@@ -5,6 +5,7 @@ BigWigs:AddSounds("Chopper Redhook", {
 	[257459] = "warning",
 	[257585] = "warning",
 	[273721] = "alert",
+	[257288] = "alert",
 	["adds"] = "long",
 })
 
