@@ -22,7 +22,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AgentAzerite", 270042)
-	--self:Log("SPELL_CAST_SUCCESS", "ChemicalBurnSuccess", 259853) -- XXX Maybe a UNIT Event? casts 2x in rapid succession right now.
+	self:Log("SPELL_CAST_SUCCESS", "ChemicalBurnSuccess", 259856)
 	self:Log("SPELL_AURA_APPLIED", "ChemicalBurnApplied", 259853)
 	self:Log("SPELL_CAST_START", "PropellantBlast", 260669)
 end
@@ -42,9 +42,19 @@ function mod:AgentAzerite(args)
 	self:CDBar(args.spellId, 8)
 end
 
---function mod:ChemicalBurnSuccess(args)
-	-- self:Bar(args.spellId, 20)
---end
+do
+	local prev = 0
+	local count = 0
+	function mod:ChemicalBurnSuccess(args)
+		local t = args.time
+		if t-prev > 2 then -- Ignore second cast
+			prev = t
+			count = count + 1
+			-- Cooldown alternates between 15 and 27, starting with 15
+			self:Bar(259853, count % 2 == 1 and 15 or 27)
+		end
+	end
+end
 
 do
 	local playerList = mod:NewTargetList()
@@ -54,7 +64,6 @@ do
 			self:PlaySound(args.spellId, "alarm", self:Dispeller("magic") and "dispel")
 		end
 		self:TargetsMessage(args.spellId, "orange", playerList)
-		self:Bar(args.spellId, 30) -- XXX Move to a singular event if possible
 	end
 end
 
