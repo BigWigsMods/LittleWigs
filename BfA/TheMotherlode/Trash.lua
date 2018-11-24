@@ -111,6 +111,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BrainFreezeApplied", 280605)
 	self:Log("SPELL_AURA_REMOVED", "BrainFreezeRemoved", 280605)
 	self:Log("SPELL_CAST_SUCCESS", "PowerThrough", 268415)
+	
+	self:Log("SPELL_DAMAGE", "StonefuryInteract", "*")
+	self:Log("SWING_DAMAGE", "StonefuryInteract", "*")
+	self:Log("SPELL_AURA_APPLIED", "StonefuryAuraApplied", "*")
 end
 
 --------------------------------------------------------------------------------
@@ -146,9 +150,29 @@ function mod:EarthShieldApplied(args)
 end
 
 -- Stonefury
-function mod:FuriousQuake(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning", "interrupt")
+do
+	local engagedStonefury = {}
+	function mod:StonefuryInteract(args)
+		if self:MobId(args.sourceGUID) == 130635 then
+			engagedStonefury[args.sourceGUID] = true
+		elseif self:MobId(args.destGUID) == 130635 then
+			engagedStonefury[args.destGUID] = true
+		end
+	end
+
+	function mod:StonefuryAuraApplied(args)
+		local destGUID = args.destGUID
+		if self:MobId(destGUID) == 130635 and args.sourceGUID ~= destGUID then
+			engagedStonefury[destGUID] = true
+		end
+	end
+
+	function mod:FuriousQuake(args)
+		if engagedStonefury[args.sourceGUID] then
+			self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning", "interrupt")
+		end
+	end
 end
 
 do
