@@ -22,12 +22,6 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
--- Initialization
---
-
-local engagedStonefury = {}
-
---------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -156,25 +150,28 @@ function mod:EarthShieldApplied(args)
 end
 
 -- Stonefury
-function mod:StonefuryInteract(args)
-	if self:MobId(args.sourceGUID) == 130635 then
-		engagedStonefury[args.sourceGUID] = true
-	elseif self:MobId(args.destGUID) == 130635 then
-		engagedStonefury[args.destGUID] = true
+do
+	local engagedStonefury = {}
+	function mod:StonefuryInteract(args)
+		if self:MobId(args.sourceGUID) == 130635 then
+			engagedStonefury[args.sourceGUID] = true
+		elseif self:MobId(args.destGUID) == 130635 then
+			engagedStonefury[args.destGUID] = true
+		end
 	end
-end
 
-function mod:StonefuryAuraApplied(args)
-	local destGUID = args.destGUID
-	if self:MobId(destGUID) == 130635 and args.sourceGUID ~= destGUID then
-		engagedStonefury[destGUID] = true
+	function mod:StonefuryAuraApplied(args)
+		local destGUID = args.destGUID
+		if self:MobId(destGUID) == 130635 and args.sourceGUID ~= destGUID then
+			engagedStonefury[destGUID] = true
+		end
 	end
-end
 
-function mod:FuriousQuake(args)
-	if engagedStonefury[args.sourceGUID] then
-		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "warning", "interrupt")
+	function mod:FuriousQuake(args)
+		if engagedStonefury[args.sourceGUID] then
+			self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning", "interrupt")
+		end
 	end
 end
 
