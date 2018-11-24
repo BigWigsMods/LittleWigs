@@ -25,7 +25,7 @@ mod:RegisterEnableMob(
 -- Initialization
 --
 
-local engagedStonefury = {}
+local stonefury = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -120,10 +120,11 @@ function mod:OnBossEnable()
 	
 	self:Log("SPELL_DAMAGE", "StonefuryInteract", "*")
 	self:Log("SWING_DAMAGE", "StonefuryInteract", "*")
+	self:Log("SPELL_AURA_APPLIED", "StonefuryAuraApplied", "*")
 end
 
 function mod:OnEngage()
-	engagedStonefury = {}
+	stonefury = {}
 end
 
 --------------------------------------------------------------------------------
@@ -161,14 +162,20 @@ end
 -- Stonefury
 function mod:StonefuryInteract(args)
 	if self:MobId(args.sourceGUID) == 130635 then
-		engagedStonefury[args.sourceGUID] = true
+		stonefury[args.sourceGUID] = true
 	elseif self:MobId(args.destGUID) == 130635 then
-		engagedStonefury[args.destGUID] = true
+		stonefury[args.destGUID] = true
+	end
+end
+
+function mod:StonefuryAuraApplied(args)
+	if self:MobId(args.destGUID) == 130635 then
+		stonefury[args.destGUID] = true
 	end
 end
 
 function mod:FuriousQuake(args)
-	if engagedStonefury[args.sourceGUID] then
+	if stonefury[args.sourceGUID] then
 		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning", "interrupt")
 	end
