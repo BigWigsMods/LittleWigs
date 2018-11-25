@@ -13,4 +13,8 @@ if L then
 	-- L.sapper = "Wanton Sapper"
 	-- L.vendor = "Refreshment Vendor"
 	-- L.extractor = "Azerite Extractor"
+	-- L.thug = "Addled Thug"
+	-- L.specialist = "Ordnance Specialist"
+	-- L.taskmaster = "Taskmaster Askari"
+	-- L.warmachine = "Venture Co. War Machine"
 end
