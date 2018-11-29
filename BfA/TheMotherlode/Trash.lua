@@ -57,12 +57,12 @@ function mod:GetOptions()
 	return {
 		-- Weapons Tester
 		{268846, "TANK"}, -- Echo Blade
-		268865, -- Force Cannon
+		--268865, -- Force Cannon
 		-- Hired Assassin
 		269302, -- Toxic Blades
 		-- Mech Jockey
 		267433, -- Activate Mech
-		281621, -- Concussion Charge
+		--281621, -- Concussion Charge
 		-- Venture Co. Earthshaper
 		268709, -- Earth Shield cast
 		268710, -- Earth Shield buff
@@ -122,10 +122,10 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
 	self:Log("SPELL_CAST_START", "EchoBlade", 268846)
-	self:Log("SPELL_CAST_START", "ForceCannon", 268865)
+	-- self:Log("SPELL_CAST_START", "ForceCannon", 268865)
 	self:Log("SPELL_CAST_START", "ToxicBlades", 269302)
 	self:Log("SPELL_CAST_START", "ActivateMech", 267433)
-	self:Log("SPELL_CAST_START", "ConcussionCharge", 281621)
+	--self:Log("SPELL_CAST_START", "ConcussionCharge", 281621)
 	self:Log("SPELL_CAST_START", "EarthShield", 268709)
 	self:Log("SPELL_AURA_APPLIED", "EarthShieldApplied", 268710)
 	self:Log("SPELL_CAST_START", "FuriousQuake", 268702)
@@ -167,10 +167,10 @@ function mod:EchoBlade(args)
 	self:PlaySound(args.spellId, "alert", "watchstep")
 end
 
-function mod:ForceCannon(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert", "watchstep")
-end
+-- function mod:ForceCannon(args)
+-- 	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+-- 	self:PlaySound(args.spellId, "alert", "watchstep")
+-- end
 
 -- Hired Assassin
 function mod:ToxicBlades(args)
@@ -184,10 +184,10 @@ function mod:ActivateMech(args)
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
-function mod:ConcussionCharge(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "info", "watchstep")
-end
+-- function mod:ConcussionCharge(args)
+-- 	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+-- 	self:PlaySound(args.spellId, "info", "watchstep")
+-- end
 
 -- Venture Co. Earthshaper
 function mod:EarthShieldApplied(args)
@@ -343,8 +343,8 @@ function mod:BrainFreezeRemoved(args)
 end
 
 function mod:IcedSpritzer(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert", "interrupt")
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "info", "interrupt")
 end
 
 function mod:KajacolaRefresher(args)
