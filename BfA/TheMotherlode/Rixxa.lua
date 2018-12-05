@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		270042, -- Agent Azerite
 		259853, -- Chemical Burn
-		260669, -- Propellant Blast
+		{260669, "SAY", "FLASH"}, -- Propellant Blast
 	}
 end
 
@@ -67,9 +67,20 @@ do
 	end
 end
 
-function mod:PropellantBlast(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CastBar(args.spellId, 5.5)
-	--self:Bar(args.spellId, 8) -- XXX 3 chain casts and then a cooldown?
+do
+	local prev = 0
+	function mod:PropellantBlast(args)
+		local t = args.time
+		if t-prev > 10 then
+			prev = t
+			self:CastBar(args.spellId, 6)
+			self:Bar(args.spellId, 42)
+		end
+		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", "watchstep")
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+			self:Flash(args.spellId)
+		end
+	end
 end
