@@ -52,7 +52,7 @@ function mod:BlazingAzerite(args)
 	elseif UnitGUID("boss1") == args.destGUID then
 		self:PlaySound(args.spellId, "info")
 		self:StackMessage(args.spellId, args.destName, args.amount, "green")
-		self:TargetBar(args.spellId, 15, args.destName) -- XXX Stacks on bar?
+		self:TargetBar(args.spellId, 15, args.destName, CL.count:format(args.spellName, args.amount))
 	end
 end
 
