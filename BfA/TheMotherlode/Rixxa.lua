@@ -29,7 +29,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(270042, 8) -- Agent Azerite
-	self:Bar(260669, 46) -- Propellant Blast
+	self:Bar(260669, 31) -- Propellant Blast
 end
 
 --------------------------------------------------------------------------------
@@ -70,11 +70,11 @@ end
 do
 	local prev = 0
 	local function printTarget(self, player, guid)
-		if mod:Me(guid) then
-			mod:Say(260669)
-			mod:Flash(260669)
+		if self:Me(guid) then
+			self:Say(260669)
+			self:Flash(260669)
 		end
-		self:TargetMessage2(260669, "yellow", args.destName)
+		self:TargetMessage2(260669, "yellow", player)
 	end
 	
 	function mod:PropellantBlast(args)
