@@ -69,6 +69,14 @@ end
 
 do
 	local prev = 0
+	local function printTarget(self, player, guid)
+		if mod:Me(guid) then
+			mod:Say(260669)
+			mod:Flash(260669)
+		end
+		self:TargetMessage2(260669, "yellow", args.destName)
+	end
+	
 	function mod:PropellantBlast(args)
 		local t = args.time
 		if t-prev > 10 then
@@ -76,11 +84,7 @@ do
 			self:CastBar(args.spellId, 6)
 			self:Bar(args.spellId, 42)
 		end
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", "watchstep")
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
-			self:Flash(args.spellId)
-		end
+		self:GetBossTarget(printTarget, 0.5, UnitGUID("boss1"))
 	end
 end
