@@ -85,6 +85,6 @@ do
 			self:Bar(args.spellId, 42)
 		end
 		self:PlaySound(args.spellId, "alert", "watchstep")
-		self:GetBossTarget(printTarget, 0.5, UnitGUID("boss1"))
+		self:GetBossTarget(printTarget, 0.5, args.sourceGUID)
 	end
 end

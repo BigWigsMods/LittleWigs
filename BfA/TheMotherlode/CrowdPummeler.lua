@@ -46,7 +46,7 @@ function mod:FootbombLauncher(args)
 end
 
 do
-	local prev = nil
+	local prev = ""
 	function mod:BlazingAzerite(args)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "alarm")
@@ -54,9 +54,7 @@ do
 		elseif UnitGUID("boss1") == args.destGUID then
 			self:PlaySound(args.spellId, "info")
 			self:StackMessage(args.spellId, args.destName, args.amount, "green")
-			if prev then
-				self:StopBar(prev, args.destName)
-			end
+			self:StopBar(prev, args.destName)
 			prev = CL.count:format(args.spellName, args.amount or 1)
 			self:TargetBar(args.spellId, 15, args.destName, prev)
 		end
