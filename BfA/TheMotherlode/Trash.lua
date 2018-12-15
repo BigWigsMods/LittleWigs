@@ -64,8 +64,7 @@ function mod:GetOptions()
 		267433, -- Activate Mech
 		281621, -- Concussion Charge
 		-- Venture Co. Earthshaper
-		268709, -- Earth Shield cast
-		268710, -- Earth Shield buff
+		268709, -- Earth Shield 
 		-- Stonefury
 		268702, -- Furious Quake
 		263215, -- Tectonic Barrier
@@ -78,8 +77,7 @@ function mod:GetOptions()
 		-- Venture Co. Mastermind
 		262947, -- Azerite Injection
 		-- Venture Co. Alchemist
-		268797, -- Transmute: Enemy to Goo cast
-		{268791, "SAY"}, -- Transmute: Enemy to Goo debuff
+		268797, -- Transmute: Enemy to Goo 
 		-- Wanton Sapper
 		269313, -- Final Blast
 		268362, -- Mining Charge
@@ -127,7 +125,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ActivateMech", 267433)
 	self:Log("SPELL_CAST_START", "ConcussionCharge", 281621)
 	self:Log("SPELL_CAST_START", "EarthShield", 268709)
-	self:Log("SPELL_AURA_APPLIED", "EarthShieldApplied", 268710)
+	self:Log("SPELL_AURA_APPLIED", "EarthShieldApplied", 268709)
 	self:Log("SPELL_CAST_START", "FuriousQuake", 268702)
 	self:Log("SPELL_CAST_START", "TectonicBarrier", 263215)
 	self:Log("SPELL_AURA_APPLIED", "TectonicBarrierApplied", 263215)
@@ -138,8 +136,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Repair", 262554)
 	self:Log("SPELL_AURA_APPLIED", "AzeriteInjectionApplied", 262947)
 	self:Log("SPELL_CAST_START", "TransmuteEnemyToGoo", 268797)
-	self:Log("SPELL_AURA_APPLIED", "TransmuteEnemyToGooApplied", 268791)
-	self:Log("SPELL_AURA_REMOVED", "TransmuteEnemyToGooRemoved", 268791)
+	self:Log("SPELL_AURA_APPLIED", "TransmuteEnemyToGooApplied", 268797)
+	self:Log("SPELL_AURA_REMOVED", "TransmuteEnemyToGooRemoved", 268797)
 	self:Log("SPELL_CAST_START", "FinalBlast", 269313)
 	self:Log("SPELL_CAST_SUCCESS", "MiningCharge", 268362)
 	self:Log("SPELL_CAST_START", "IcedSpritzer", 280604)
@@ -152,9 +150,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DesperateMeasuresApplied", 263601)
 	self:Log("SPELL_CAST_START", "ChargedShot", 269429)
 
-	-- self:Log("SPELL_DAMAGE", "StonefuryInteract", "*")
-	-- self:Log("SWING_DAMAGE", "StonefuryInteract", "*")
-	-- self:Log("SPELL_AURA_APPLIED", "StonefuryAuraApplied", "*")
 end
 
 --------------------------------------------------------------------------------
@@ -289,9 +284,6 @@ function mod:TransmuteEnemyToGooApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
 		self:TargetMessage2(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
-		end
 	end
 end
 
