@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Dazar, The First King", "zhCN")
 if not L then return end
 if L then
-	-- L.spears_active = "Spear Launchers Active"
+	L.spears_active = "长矛发射器已激活"
 end
 
 L = BigWigs:NewBossLocale("King's Rest Trash", "zhCN")
@@ -30,6 +30,6 @@ if L then
 	L.brute = "幽魂蛮兵"
 	L.zul = "祖尔之影"
 
-	-- L.casting_on_you = "Casting %s on YOU"
-	-- L.casting_on_other = "Casting %s: %s"
+	L.casting_on_you = "对你施放%s"
+	L.casting_on_other = "施放%s：%s"
 end
