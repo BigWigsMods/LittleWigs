@@ -123,7 +123,7 @@ do
 		self:ScheduleTimer(checkForLackOfAegis, 3, self)
 	end
 
-	function mod:ChaoticEnergySuccess(args)
+	function mod:ChaoticEnergySuccess()
 		isCastingChaoticEnergy = false
 		aegisCheck = self:ScheduleTimer(periodicCheckForAegisOfAggramar, 1, self)
 	end

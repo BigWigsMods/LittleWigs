@@ -14,7 +14,8 @@ mod.engageId = 2132
 
 local L = mod:GetLocale()
 if L then
-	L.warmup_trigger = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
+	L.warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
+	L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
 end
 
 --------------------------------------------------------------------------------
@@ -49,14 +50,17 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg == L.warmup_trigger then
+	if msg == L.warmup_trigger_horde then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 19, CL.active, "achievement_dungeon_shrineofthestorm")
+	elseif msg == L.warmup_trigger_alliance then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 19.5, CL.active, "achievement_dungeon_shrineofthestorm")
 	end
 end
 
 function mod:VoidBolt(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -64,8 +68,8 @@ function mod:VoidBolt(args)
 end
 
 function mod:WakentheVoid(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "Alarm")
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 43.5)
 end
 
@@ -75,5 +79,5 @@ end
 
 function mod:AncientMindbenderApplied(args)
 	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "Warning", nil, args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end

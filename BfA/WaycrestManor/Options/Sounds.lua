@@ -4,15 +4,16 @@ BigWigs:AddSounds("Heartsbane Triad", {
 	[260741] = "alarm",
 	[260773] = "warning",
 	[260805] = "long",
-	[260907] = "alarm",
+	[260926] = "alarm",
+	[268086] = {"alert","warning"},
 })
 
 BigWigs:AddSounds("Soulbound Goliath", {
 	[260508] = "alert",
 	[260512] = "alert",
 	[260541] = "long",
-	[260551] = "alarm",
 	[260569] = "alarm",
+	[267907] = "alarm",
 })
 
 BigWigs:AddSounds("Raal the Gluttonous", {
@@ -38,6 +39,7 @@ BigWigs:AddSounds("Gorak Tul", {
 })
 
 BigWigs:AddSounds("Waycrest Manor Trash", {
+	[263891] = {"alarm","warning"},
 	[263905] = "alert",
 	[263943] = "warning",
 	[263959] = "warning",

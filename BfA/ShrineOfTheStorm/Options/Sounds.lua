@@ -16,13 +16,13 @@ BigWigs:AddSounds("Tidesage Coucil", {
 
 BigWigs:AddSounds("Lord Stormsong", {
 	[268347] = "alert",
-	[269097] = "Alarm",
-	[269131] = "Warning",
+	[269097] = "alarm",
+	[269131] = "warning",
 })
 
 BigWigs:AddSounds("Vol'zith the Whisperer", {
 	[267037] = "info",
 	[267360] = "long",
-	[267385] = "Alarm",
+	[267385] = "alarm",
 	[269399] = "alert",
 })

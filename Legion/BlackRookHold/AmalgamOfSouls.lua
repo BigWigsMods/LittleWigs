@@ -55,7 +55,7 @@ end
 -- Event Handlers
 --
 
-function mod:Soulgorge(args)
+function mod:Soulgorge()
 	gorgeCount = gorgeCount + 1
 end
 
@@ -67,14 +67,14 @@ function mod:SoulBurstStart(args)
 	end
 end
 
-function mod:SoulBurstSuccess(args)
+function mod:SoulBurstSuccess()
 	self:CDBar(195254, 8.5) -- Swirling scythe
 	self:CDBar(194966, 15.6) -- Soul Echoes
 	self:CDBar(194956, 20.4) -- Reap Soul
 	gorgeCount = 0
 end
 
-function mod:CallSouls(args)
+function mod:CallSouls()
 	self:CDBar(196587, 27.5) -- Soul Burst
 	self:StopBar(195254) -- Swirling scythe
 	self:StopBar(194966) -- Soul Echoes

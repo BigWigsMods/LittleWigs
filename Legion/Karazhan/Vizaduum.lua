@@ -128,7 +128,7 @@ function mod:BurningBlastApplied(args)
 	end
 end
 
-function mod:DemonicPortal(args)
+function mod:DemonicPortal()
 	self:Message("stages", "green", "Info", CL.stage:format(stage + 1), false)
 	self:StopBar(229151) -- Disintegrate
 	self:StopBar(229159) -- Chaotic Shadows

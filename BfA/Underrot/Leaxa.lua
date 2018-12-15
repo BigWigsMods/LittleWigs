@@ -55,10 +55,10 @@ end
 do
 	local prev = 0
 	function mod:BloodBolt(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			if self:Interrupter() then
 				self:PlaySound(args.spellId, "alert", "interrupt")
 			end
@@ -69,10 +69,10 @@ end
 do
 	local prev = 0
 	function mod:CreepingRot(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alarm", "watchstep")
 		end
 		local mobID = self:MobId(args.sourceGUID)
@@ -85,23 +85,23 @@ end
 function mod:BloodMirror(args)
 	effigySpawned = self:Normal() and 1 or effigySpawned + 1 -- XXX Always 1 in normal?
 	effigyKilled = 0
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "long", "intermission")
 end
 
 function mod:EffigyDeath(args)
 	effigyKilled = effigyKilled + 1
 	if effigyKilled == effigySpawned then
-		self:Message(264603, "green", nil, CL.over:format(self:SpellName(264603)))
+		self:Message2(264603, "green", CL.over:format(self:SpellName(264603)))
 		self:PlaySound(264603, "long", "stage")
 	else
-		self:Message(264603, "cyan", nil, CL.mob_killed:format(args.destName, effigyKilled, effigySpawned))
+		self:Message2(264603, "cyan", CL.mob_killed:format(args.destName, effigyKilled, effigySpawned))
 		self:PlaySound(264603, "info")
 	end
 end
 
 function mod:SanguineFeast(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm", "watchstep")
 	self:Bar(args.spellId, 30.5)
 end

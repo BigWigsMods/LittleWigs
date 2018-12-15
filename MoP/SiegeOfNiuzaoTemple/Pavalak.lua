@@ -52,7 +52,7 @@ function mod:Tempest(args)
 	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 end
 
-function mod:ReinforcementsPhase(args)
+function mod:ReinforcementsPhase()
 	self:Message(-5946, "yellow", "Info", CL.incoming:format(CL.adds), false)
 end
 

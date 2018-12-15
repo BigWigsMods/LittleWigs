@@ -40,13 +40,13 @@ end
 --
 
 function mod:ToxicLeap(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:Bar(args.spellId, 6)
 end
 
 function mod:NoxiousStench(args)
-	self:Message(259572, "red")
+	self:Message2(259572, "red")
 	if args.spellId == 250368 then -- Stage 2 cast not interruptable
 		self:PlaySound(259572, "alert")
 	elseif self:Interrupter() then
@@ -56,7 +56,7 @@ function mod:NoxiousStench(args)
 end
 
 function mod:RapidDecay(args)
-	self:Message(args.spellId, "green")
+	self:Message2(args.spellId, "green")
 	self:PlaySound(args.spellId, "info", "stage2")
 	self:Bar(259572, 4.5) -- Noxious Stench
 end
@@ -65,10 +65,10 @@ do
 	local prev = 0
 	function mod:ToxicPool(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "alarm", "gtfo")
 			end
 		end

@@ -40,7 +40,7 @@ end
 --
 
 function mod:FootbombLauncher(args)
-	self:Message(args.spellId, "cyan")
+	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 33)
 end
@@ -57,13 +57,13 @@ function mod:BlazingAzerite(args)
 end
 
 function mod:StaticPulse(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "knockback")
 	self:Bar(args.spellId, 33)
 end
 
 function mod:ChockingClaw(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm", "watchfront")
 	self:Bar(args.spellId, 33)
 end

@@ -44,8 +44,8 @@ function mod:OnBossEnable()
 
 	--[[ Darkfang ]]--
 	self:Log("SPELL_CAST_START", "RavagingDarkness", 245802)
- 	self:Log("SPELL_DAMAGE", "RavagingDarknessDamage", 245803)
- 	self:Log("SPELL_MISSED", "RavagingDarknessDamage", 245803)
+	self:Log("SPELL_DAMAGE", "RavagingDarknessDamage", 245803)
+	self:Log("SPELL_MISSED", "RavagingDarknessDamage", 245803)
 
 	--[[ Duskwing (Mythic) ]]--
 	self:Log("SPELL_CAST_START", "DreadScreech", 248831)
@@ -71,7 +71,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	end
 end
 
-function mod:VoidTrap(args)
+function mod:VoidTrap()
 	self:Message(245873, "cyan", "Info")
 	self:Bar(245873, 15.8)
 end

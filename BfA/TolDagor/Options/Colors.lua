@@ -21,7 +21,7 @@ BigWigs:AddColors("Knight Captain Valyri", {
 })
 
 BigWigs:AddColors("Overseer Korgus", {
-	[256038] = {"blue","red"},
+	[256038] = {"blue","green","red"},
 	[256083] = "yellow",
 	[256105] = {"blue","orange"},
 	[256198] = "cyan",

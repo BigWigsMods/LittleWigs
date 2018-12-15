@@ -5,6 +5,7 @@ if L then
 	L.gorger = "苍白吞噬者"
 	L.marksman = "发狂的射手"
 	L.runeweaver = "毒心织符者"
+	L.vinetwister = "毒心藤蔓扭曲者"
 	L.survivalist = "疯狂的生存专家"
 	L.bryndle = "主母布琳德尔"
 	L.thornshaper = "女巫会塑棘者"

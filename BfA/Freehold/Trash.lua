@@ -23,6 +23,7 @@ mod:RegisterEnableMob(
 	129550, -- Bilge Rat Padfoot
 	130024, -- Soggy Shiprat
 	130400, -- Irontide Crusher
+	130086, -- Davey "Two Eyes"
 	130099, -- Lightning
 	129699, -- Ludwig Von Tortollen
 	130011, -- Irontide Buccaneer
@@ -53,9 +54,6 @@ if L then
 	L.padfoot = "Bilge Rat Padfoot"
 	L.rat = "Soggy Shiprat"
 	L.crusher = "Irontide Crusher"
-	L.lightning = "Lightning"
-	L.lightning_caught = "Lightning caught after %s seconds!"
-	L.ludwig = "Ludwig Von Tortollen"
 	L.buccaneer = "Irontide Buccaneer"
 	L.ravager = "Irontide Ravager"
 	L.officer = "Irontide Officer"
@@ -102,10 +100,6 @@ function mod:GetOptions()
 		-- Irontide Crusher
 		258181, -- Boulder Throw
 		258199, -- Ground Shatter
-		-- Lightning
-		257829, -- Greasy
-		-- Ludwig Von Tortollen
-		257904, -- Shell Bounce
 		-- Irontide Buccaneer
 		257870, -- Blade Barrage
 		-- Irontide Ravager
@@ -131,8 +125,6 @@ function mod:GetOptions()
 		[257775] = L.padfoot,
 		[274555] = L.rat,
 		[258181] = L.crusher,
-		[257829] = L.lightning,
-		[257904] = L.ludwig,
 		[257870] = L.buccaneer,
 		[257899] = L.ravager,
 		[257908] = L.officer,
@@ -184,12 +176,6 @@ function mod:OnBossEnable()
 	-- Irontide Crusher
 	self:Log("SPELL_CAST_START", "BoulderThrow", 258181)
 	self:Log("SPELL_CAST_START", "GroundShatter", 258199)
-	-- Lightning
-	self:Log("SPELL_AURA_APPLIED", "GreasyApplied", 257829)
-	self:Log("SPELL_AURA_REMOVED_DOSE", "GreasyRemoved", 257829)
-	self:Log("SPELL_AURA_REMOVED", "GreasyRemoved", 257829)
-	-- Ludwig Von Tortollen
-	self:Log("SPELL_CAST_START", "ShellBounce", 257904)
 	-- Irontide Buccaneer
 	self:Log("SPELL_CAST_START", "BladeBarrage", 257870)
 	-- Irontide Ravager
@@ -214,10 +200,10 @@ do
 	local prev = 0
 	function mod:VileCoating(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(257272, "blue", nil, CL.underyou:format(args.spellName))
+				self:PersonalMessage(257272, "underyou")
 				self:PlaySound(257272, "alarm", "gtfo")
 			end
 		end
@@ -226,31 +212,32 @@ end
 
 -- Irontide Enforcer
 function mod:BrutalBackhand(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Irontide Bonesaw
 function mod:HealingBalm(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:HealingBalmApplied(args)
-	self:TargetMessage2(args.spellId, "cyan", args.destName)
+	if self:MobId(args.sourceGUID) ~= 129788 then return end -- filter out Spellsteal
+	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:InfectedWoundApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "blue", args.destName)
+		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 -- Irontide Crackshot
 function mod:AzeriteGrenade(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -269,7 +256,7 @@ do
 			self:Say(274400)
 		end
 		self:TargetMessage2(274400, "red", name)
-		self:PlaySound(274400, "alarm")
+		self:PlaySound(274400, "alarm", nil, name)
 	end
 
 	function mod:DuelistDash(args)
@@ -279,7 +266,7 @@ end
 
 -- Irontide Oarsman
 function mod:SeaSpout(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -290,7 +277,7 @@ do
 			self:Say(272402)
 		end
 		self:TargetMessage2(272402, "orange", name)
-		self:PlaySound(272402, "alert")
+		self:PlaySound(272402, "alert", nil, name)
 	end
 
 	function mod:RicochetingThrow(args)
@@ -303,10 +290,10 @@ do
 	local prev = 0
 	function mod:BlindRage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 2 then
 				prev = t
-				self:TargetMessage2(args.spellId, "blue", args.destName)
+				self:PersonalMessage(args.spellId)
 				self:PlaySound(args.spellId, "alarm")
 			end
 		end
@@ -315,39 +302,39 @@ end
 
 -- Blacktooth Knuckleduster
 function mod:ShatteringBellow(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Bilge Rat Swabby
 function mod:SlipperySuds(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:SlipperySudsApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "blue", args.destName)
+		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 -- Vermin Trapper
 function mod:RatTraps(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Bilge Rat Buccaneer
 function mod:GoinBananas(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Bilge Rat Padfoot
 function mod:PlagueStepApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "blue", args.destName)
+		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alert")
 	end
 end
@@ -362,59 +349,34 @@ end
 
 -- Irontide Crusher
 function mod:BoulderThrow(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:GroundShatter(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-end
-
--- Lightning
-do
-	local seconds = 0
-	function mod:GreasyApplied()
-		seconds = GetTime()
-	end
-
-	function mod:GreasyRemoved(args)
-		if args.amount then -- Slippery when oily
-			self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
-			self:PlaySound(args.spellId, "info")
-		else -- Caught!
-			seconds = math.floor((GetTime() - seconds) * 100)/100
-			self:Message(args.spellId, "green", nil, L.lightning_caught:format(seconds))
-			self:Win() -- XXX Replace with normal victory PlaySound preferably
-		end
-	end
-end
-
--- Ludwig Von Tortollen
-function mod:ShellBounce(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Irontide Buccaneer
 function mod:BladeBarrage(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Irontide Ravager
 function mod:PainfulMotivation(args)
-	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 do
 	local prev = 0
 	function mod:PainfulMotivationApplied(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "red")
+			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
@@ -424,12 +386,12 @@ end
 function mod:OiledBladeApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
 		self:TargetMessage2(args.spellId, "blue", args.destName)
-		self:PlaySound(args.spellId, "warning")
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
 
 -- Irontide Stormcaller
 function mod:ThunderingSquall(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
 end

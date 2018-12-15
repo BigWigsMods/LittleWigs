@@ -53,7 +53,7 @@ end
 -- Event Handlers
 --
 
-function mod:SpiderlingDeath(args)
+function mod:SpiderlingDeath()
 	deaths = deaths + 1
 	if deaths < 9 then
 		self:Message("stages", "cyan", nil, CL.add_killed:format(deaths, 8), false)

@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Overseer Korgus", 1771, 2096)
 if not mod then return end
-mod:RegisterEnableMob(127503) -- Overseer Korgus
+mod:RegisterEnableMob(127503)
 mod.engageId = 2104
 
 --------------------------------------------------------------------------------
@@ -14,6 +14,7 @@ mod.engageId = 2104
 
 local crossIgnitionCount = 0 -- XXX If we track which Azerite Rounds are used we can better timers if a player disconnects
 local explosiveBurstCount = 0
+local deadeyes = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,7 +26,7 @@ function mod:GetOptions()
 		256199, -- Azerite Rounds: Blast
 		256083, -- Cross Ignition
 		{256105, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Explosive Burst
-		256038, -- Deadeye
+		{256038, "INFOBOX"}, -- Deadeye
 		263345, -- Massive Blast
 	}
 end
@@ -38,17 +39,23 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveBurstApplied", 256105)
 	self:Log("SPELL_AURA_REMOVED", "ExplosiveBurstRemoved", 256105)
 	self:Log("SPELL_CAST_SUCCESS", "Deadeye", 256038)
+	self:Log("SPELL_AURA_APPLIED", "DeadeyeApplied", 256044)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "DeadeyeApplied", 256044)
+	self:Log("SPELL_AURA_REMOVED", "DeadeyeRemoved", 256044)
 	self:Log("SPELL_CAST_START", "MassiveBlast", 263345)
 end
 
 function mod:OnEngage()
 	crossIgnitionCount = 1
 	explosiveBurstCount = 1
+	deadeyes = {}
 
 	self:CDBar(256198, 6) -- Azerite Rounds: Incendiary
 	self:CDBar(256105, 13) -- Explosive Burst
 	self:CDBar(256083, 18) -- Cross Ignition
 	self:CDBar(256038, 28) -- Deadeye
+
+	self:OpenInfo(256038, self:SpellName(256038)) -- Deadeye
 end
 
 --------------------------------------------------------------------------------
@@ -56,36 +63,39 @@ end
 --
 
 function mod:AzeriteRoundsIncendiary(args)
-	self:Message(args.spellId, "cyan", "Info")
+	self:Message2(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
 	self:CDBar(256199, 27.5) -- Azerite Rounds: Blast
 end
 
 function mod:AzeriteRoundsBlast(args)
-	self:Message(args.spellId, "cyan", "Info")
+	self:Message2(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
 	self:Bar(256198, 27.5) -- Azerite Rounds: Incendiary
 end
 
 function mod:CrossIgnition(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	crossIgnitionCount = crossIgnitionCount + 1
 	self:Bar(args.spellId, crossIgnitionCount % 2 == 0 and 21 or 34)
 	self:CastBar(args.spellId, 5.5)
 end
 
-function mod:ExplosiveBurst(args)
+function mod:ExplosiveBurst()
 	explosiveBurstCount = explosiveBurstCount + 1
 	self:Bar(256105, explosiveBurstCount % 2 == 0 and 38 or 17)
 end
 
 do
 	local playerList, isOnMe = {}, nil
-	local function warn(self, spellName)
+	local function warn(self)
 		if isOnMe then
-			self:Message(256105, "blue", nil, CL.you:format(spellName))
+			self:PersonalMessage(256105)
 			self:PlaySound(256105, "warning", "moveout")
 			self:OpenProximity(256105, 5)
 		else
-			self:Message(256105, "orange")
+			self:Message2(256105, "orange")
 			self:PlaySound(256105, "alarm")
 			self:OpenProximity(256105, 5, playerList)
 		end
@@ -101,7 +111,7 @@ do
 			self:SayCountdown(args.spellId, 4)
 		end
 		if #playerList == 1 then
-			self:ScheduleTimer(warn, 0.1, self, args.spellName)
+			self:ScheduleTimer(warn, 0.1, self)
 		end
 	end
 end
@@ -114,13 +124,28 @@ function mod:ExplosiveBurstRemoved(args)
 end
 
 function mod:Deadeye(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	self:Bar(args.spellId, 27.5)
 	self:CastBar(args.spellId, 5)
 end
 
+function mod:DeadeyeApplied(args)
+	deadeyes[args.destName] = {args.amount or 1, 80, 0}
+	self:SetInfoBarsByTable(256038, deadeyes)
+end
+
+function mod:DeadeyeRemoved(args)
+	deadeyes[args.destName] = nil
+	self:SetInfoBarsByTable(256038, deadeyes)
+	if self:Me(args.destGUID) then
+		self:Message2(256038, "green", CL.removed:format(args.spellName))
+	end
+end
+
 function mod:MassiveBlast(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 27.5)
 	self:CastBar(args.spellId, 4)
 end

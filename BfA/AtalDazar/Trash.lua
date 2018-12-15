@@ -13,7 +13,9 @@ mod:RegisterEnableMob(
 	122969, -- Zanchuli Witch-Doctor
 	129553, -- Dinomancer Kish'o
 	132126, -- Gilded Priestess
-	122970 -- Shadowblade Stalker
+	122970, -- Shadowblade Stalker
+	122973, -- Dazar'ai Confessor
+	122972  -- Dazar'ai Augur
 )
 
 --------------------------------------------------------------------------------
@@ -29,6 +31,8 @@ if L then
 	L.kisho = "Dinomancer Kish'o"
 	L.priestess = "Gilded Priestess"
 	L.stalker = "Shadowblade Stalker"
+	L.confessor = "Dazar'ai Confessor"
+	L.augur = "Dazar'ai Augur"
 end
 
 --------------------------------------------------------------------------------
@@ -51,6 +55,11 @@ function mod:GetOptions()
 		260666, -- Transfusion
 		-- Shadowblade Stalker
 		252687, -- Venomfang Strike
+		-- Dazar'ai Confessor
+		253544, -- Bwonsamdi's Mantle
+		253517, -- Mending Word
+		-- Dazar'ai Augur
+		253583, -- Fiery Enchant
 	}, {
 		[255041] = L.skyscreamer,
 		[255567] = L.tlonja,
@@ -59,6 +68,8 @@ function mod:GetOptions()
 		[256849] = L.kisho,
 		[260666] = L.priestess,
 		[252687] = L.stalker,
+		[253544] = L.confessor,
+		[253583] = L.augur,
 	}
 end
 
@@ -74,6 +85,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Transfusion", 260666)
 	self:Log("SPELL_AURA_APPLIED", "VenomfangStrike", 252687)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "VenomfangStrike", 252687)
+	self:Log("SPELL_CAST_START", "BwonsamdisMantle", 253544)
+	self:Log("SPELL_CAST_START", "MendingWord", 253517)
+	self:Log("SPELL_CAST_SUCCESS", "FieryEnchant", 253583)
 end
 
 --------------------------------------------------------------------------------
@@ -82,19 +96,19 @@ end
 
 -- Feasting Skyscreamer
 function mod:TerrifyingScreech(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 -- T'lonja
 function mod:FrenziedCharge(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 end
 
 -- Shieldbearer of Zul
 function mod:BulwarkofJuju(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long", "mobout")
 end
 
@@ -103,10 +117,10 @@ do
 	local prev = 0
 	function mod:UnstableHex(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 2 then -- Can be cast by 2 Witch-Doctors on the same player
 				prev = t
-				self:TargetMessage(args.spellId, args.destName, "blue")
+				self:PersonalMessage(args.spellId)
 				self:PlaySound(args.spellId, "alarm", "moveout")
 				self:Say(args.spellId)
 				self:SayCountdown(args.spellId, 5)
@@ -123,13 +137,13 @@ end
 
 -- Dinomancer Kish'o
 function mod:DinoMight(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
 -- Gilded Priestess
 function mod:Transfusion(args)
-	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
@@ -139,4 +153,21 @@ function mod:VenomfangStrike(args)
 		self:StackMessage(args.spellId, args.destName, args.amount, "orange")
 		self:PlaySound(args.spellId, "alarm")
 	end
+end
+
+--Dazar'ai Confessor
+function mod:BwonsamdisMantle(args)
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning", "interrupt")
+end
+
+function mod:MendingWord(args)
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "info", "interrupt")
+end
+
+-- Dazar'ai Augur
+function mod:FieryEnchant(args)
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm", "interrupt")
 end

@@ -80,6 +80,6 @@ do
 			if nextAddWarning < 25 then
 				self:UnregisterUnitEvent(event, unit)
 			end
-	 	end
+		end
 	end
 end

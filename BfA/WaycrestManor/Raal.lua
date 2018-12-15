@@ -54,24 +54,24 @@ end
 --
 
 function mod:ConsumeAll(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:CallServant(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 29)
 end
 
 function mod:ConsumeServants(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Tenderize(args)
 	tenderizeCount = tenderizeCount + 1
-	self:Message(args.spellId, "red", nil, CL.count:format(args.spellName, tenderizeCount))
+	self:Message2(args.spellId, "red", CL.count:format(args.spellName, tenderizeCount))
 	if tenderizeCount == 3 then
 		tenderizeCount = 0
 		self:Bar(args.spellId, 36.4)
@@ -80,7 +80,7 @@ function mod:Tenderize(args)
 end
 
 function mod:RottenExpulsion(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	rottenExpulsionCount = rottenExpulsionCount + 1
 	self:Bar(args.spellId, rottenExpulsionCount == 2 and 14 or rottenExpulsionCount == 3 and 25 or 29) -- 5.7, 14.6, 25.5, 29.1
@@ -90,10 +90,10 @@ do
 	local prev = 0
 	function mod:RottenExpulsionDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(264694, "blue", nil, CL.underyou:format(args.spellName))
+				self:PersonalMessage(264694, "underyou")
 				self:PlaySound(264694, "alarm", "gtfo")
 			end
 		end

@@ -44,45 +44,45 @@ end
 --
 
 function mod:SwiftnessWard(args)
-	self:Message(args.spellId, "cyan")
+	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 31.5)
 end
 
 function mod:SwiftnessWardApplied(args)
 	if self:Me(args.destGUID) then
-		self:Message(267891, "green")
+		self:Message2(267891, "green")
 		self:PlaySound(267891, "info")
 	end
 end
 
 -- function mod:BlessingoftheTempest(args)
--- 	self:Message(args.spellId, "orange")
+-- 	self:Message2(args.spellId, "orange")
 -- 	self:PlaySound(args.spellId, "warning")
 -- 	self:CastBar(args.spellId, 11)
 -- end
 
 function mod:SlicingBlast(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	if self:Interrupter(args.sourceGUID) then
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:ReinforcingWard(args)
-	self:Message(args.spellId, "cyan")
+	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 30)
 end
 
 -- function mod:BlessingofIronsides(args)
--- 	self:Message(args.spellId, "red")
+-- 	self:Message2(args.spellId, "red")
 -- 	self:PlaySound(args.spellId, "warning")
 -- 	self:CastBar(args.spellId, 8)
 -- end
 
 function mod:HinderingCleave(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 17)
 end

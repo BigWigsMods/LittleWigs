@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("The Sand Queen", 1771, 2097)
 if not mod then return end
 mod:RegisterEnableMob(127479) -- The Sand Queen
 mod.engageId = 2101
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,12 +41,14 @@ end
 --
 
 function mod:SandTrap(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 14.5)
 end
 
 function mod:Sandstorm(args)
-	self:Message(args.spellId, "orange", "Long")
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 35)
 end
 
@@ -56,7 +59,8 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("257617") then -- Upheaval
-		self:TargetMessage(257608, destName, "red", "Alarm")
+		self:TargetMessage2(257608, "red", destName)
+		self:PlaySound(257608, "alarm", nil, destName)
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
 			self:Say(257608)
@@ -65,5 +69,6 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "yellow", "Info")
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end

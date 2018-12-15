@@ -104,7 +104,7 @@ end
 
 do
 	local prev = 0
-	function mod:TentacleSpawn(args)
+	function mod:TentacleSpawn()
 		tentaclesUp = tentaclesUp + 1
 		local t = GetTime()
 		if t-prev > 3 then
@@ -118,7 +118,7 @@ do
 	end
 end
 
-function mod:TentacleDeath(args)
+function mod:TentacleDeath()
 	tentaclesUp = tentaclesUp - 1
 	self:UpdateInfoBox()
 end
@@ -141,7 +141,7 @@ function mod:EntropicForceRemoved(args)
 	self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
 end
 
-function mod:DarkBulwark(args)
+function mod:DarkBulwark()
 	guardsUp = guardsUp + 1
 	self:UpdateInfoBox()
 end

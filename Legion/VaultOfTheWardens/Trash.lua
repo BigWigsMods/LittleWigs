@@ -94,8 +94,8 @@ function mod:OnBossEnable()
 
 	--[[ Foul Mother ]]--
 	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 210202, 194071) -- Foul Stench, A Mother's Love
- 	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 210202, 194071)
- 	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 210202, 194071)
+	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 210202, 194071)
+	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 210202, 194071)
 
 	--[[ Blade Dancer Illianna ]]--
 	self:Log("SPELL_CAST_START", "DeafeningShout", 191527)
@@ -108,8 +108,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Torment", 202615)
 	self:Log("SPELL_AURA_REMOVED", "TormentRemoved", 202615)
 	self:Log("SPELL_AURA_APPLIED", "AnguishedSouls", 202607) -- Anguished Souls
- 	self:Log("SPELL_PERIODIC_DAMAGE", "AnguishedSouls", 202607)
- 	self:Log("SPELL_PERIODIC_MISSED", "AnguishedSouls", 202607)
+	self:Log("SPELL_PERIODIC_DAMAGE", "AnguishedSouls", 202607)
+	self:Log("SPELL_PERIODIC_MISSED", "AnguishedSouls", 202607)
 end
 
 --------------------------------------------------------------------------------

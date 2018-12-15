@@ -34,8 +34,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "GaseousBubblesRemoved", 193018)
 	self:Log("SPELL_CAST_START", "GroundSlam", 193093)
 	self:Log("SPELL_CAST_START", "Quake", 193152)
- 	self:Log("SPELL_DAMAGE", "Aftershock", 193171)
- 	self:Log("SPELL_MISSED", "Aftershock", 193171)
+	self:Log("SPELL_DAMAGE", "Aftershock", 193171)
+	self:Log("SPELL_MISSED", "Aftershock", 193171)
 end
 
 function mod:OnEngage()

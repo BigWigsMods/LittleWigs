@@ -66,7 +66,7 @@ function mod:Decimate(args)
 	self:CDBar(args.spellId, 12.5)
 end
 
-function mod:CoalescedVoid(args)
+function mod:CoalescedVoid()
 	self:Message(244602, "yellow", "Alert")
 	self:CDBar(244602, 55)
 end

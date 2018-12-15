@@ -85,11 +85,11 @@ function mod:Phoenix(args)
 	self:Message(args.spellId, "orange", "Info", CL.spawned:format(args.spellName))
 end
 
-function mod:FlameStrike(args)
+function mod:FlameStrike()
 	self:Message(-5167, "red")
 end
 
-function mod:ShockBarrier(args)
+function mod:ShockBarrier()
 	self:Message(-5180, "yellow")
 end
 

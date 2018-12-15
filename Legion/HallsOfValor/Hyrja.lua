@@ -121,20 +121,20 @@ function mod:ExpelLightRemoved(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:EmpowermentThunder(args)
+function mod:EmpowermentThunder()
 	local remaining = nextArcingBolt - GetTime()
 	self:CDBar(191976, remaining > 1 and remaining or 1) -- Arcing Bolt
 end
 
-function mod:EmpowermentThunderRemoved(args)
+function mod:EmpowermentThunderRemoved()
 	self:StopBar(191976) -- Arcing Bolt
 end
 
-function mod:EmpowermentHoly(args)
+function mod:EmpowermentHoly()
 	local remaining = nextExpelLight - GetTime()
 	self:CDBar(192048, remaining > 0.4 and remaining or 0.4) -- Expel Light
 end
 
-function mod:EmpowermentHolyRemoved(args)
+function mod:EmpowermentHolyRemoved()
 	self:StopBar(192048) -- Expel Light
 end

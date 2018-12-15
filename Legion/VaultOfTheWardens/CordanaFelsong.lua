@@ -139,7 +139,7 @@ function mod:CreepingDoomRemoved(args)
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
-function mod:KnockdownKick(args)
+function mod:KnockdownKick()
 	self:Message("kick_combo", "yellow", self:Tank() and "Warning", L.kick_combo, L.kick_combo_icon)
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end

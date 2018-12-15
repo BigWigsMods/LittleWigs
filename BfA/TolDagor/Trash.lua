@@ -102,7 +102,7 @@ end
 
 -- Irontide Thug
 function mod:DebilitatingShout(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -110,10 +110,10 @@ end
 do
 	local prev = 0
 	function mod:WateryDome(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -123,10 +123,10 @@ end
 do
 	local prev = 0
 	function mod:Fuselighter(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -136,10 +136,10 @@ end
 do
 	local prev = 0
 	function mod:Handcuff(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "red")
+			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
@@ -149,10 +149,10 @@ end
 do
 	local prev = 0
 	function mod:SuppressionFire(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "long")
 		end
 	end
@@ -162,10 +162,10 @@ end
 do
 	local prev = 0
 	function mod:RighteousFlames(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "red")
+			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -174,10 +174,10 @@ end
 do
 	local prev = 0
 	function mod:InnerFlames(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "warning")
 		end
 	end

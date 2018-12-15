@@ -49,7 +49,7 @@ end
 -- Event Handlers
 --
 
-function mod:DreadFelbats(args)
+function mod:DreadFelbats()
 	self:Message("dread_felbat", "cyan", "Info", CL.soon:format(self:SpellName(L.dread_felbat)), false)
 	self:CDBar("dread_felbat", 31.5, L.dread_felbat, L.dread_felbat_icon)
 	self:ScheduleTimer("DreadFelbats", 31.5)

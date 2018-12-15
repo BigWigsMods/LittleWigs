@@ -60,7 +60,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("266951") then -- Barrel Through
-		self:TargetMessage(266951, destName, "red")
+		self:TargetMessage2(266951, "red", destName)
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
 			self:PlaySound(266951, "warning", "runaway")
@@ -71,7 +71,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 34098 then -- ClearAllDebuffs // Stage Change
 		self:StopBar(267273) -- Poison Nova
 		self:StopBar(267060) -- Call of the Elements
@@ -86,7 +86,7 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if stage > 2 and self:MobId(UnitGUID(unit)) == 135475 then -- Kula the Butcher
 		if UnitCanAttack("player", unit) then
 			stage = 2
-			self:Message("stages", "cyan", nil, CL.stage:format(stage), false)
+			self:Message2("stages", "cyan", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 			self:CDBar(266206, 8) -- Whirling Axes
 			self:CDBar(266231, 24) -- Severing Axe
@@ -94,7 +94,7 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	elseif stage > 3 and self:MobId(UnitGUID(unit)) == 135470 then -- Aka'ali the Conqueror
 		if UnitCanAttack("player", unit) then
 			stage = 3
-			self:Message("stages", "cyan", nil, CL.stage:format(stage), false)
+			self:Message2("stages", "cyan", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 			self:CDBar(266951, 5.5) -- Barrel Through
 			self:CDBar(266237, 14) -- Debilitating Backhand
@@ -103,19 +103,19 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 end
 
 function mod:PoisonNova(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 26)
 end
 
 function mod:CalloftheElements(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	--self:CDBar(args.spellId, 13)
 end
 
 function mod:WhirlingAxes(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 10.5)
 end
@@ -127,12 +127,12 @@ end
 function mod:SeveringAxeApplied(args)
 	self:TargetMessage2(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:PlaySound(args.spellId, "alarm")
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
 
 function mod:DebilitatingBackhand(args)
-	self:Message(args.spellId, "purple")
+	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 24)
 end

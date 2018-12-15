@@ -60,6 +60,6 @@ function mod:Crush(args)
 	self:CDBar(args.spellId, 8) -- 8 - 15.2s
 end
 
-function mod:Consume(args)
+function mod:Consume()
 	self:CDBar(59803, 15.8)
 end

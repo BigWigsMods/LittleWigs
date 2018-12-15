@@ -53,12 +53,12 @@ end
 --  Event Handlers
 --
 
-function mod:VeilOfSky(args)
+function mod:VeilOfSky()
 	self:Message(74373, "yellow")
 	self:CDBar(74373, 60)
 end
 
-function mod:VeilOfSkyRemoved(args)
+function mod:VeilOfSkyRemoved()
 	self:StopBar(74373)
 end
 

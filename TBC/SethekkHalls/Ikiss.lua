@@ -63,16 +63,16 @@ end
 
 do
 	local playerList, isOnMe = mod:NewTargetList(), nil
-	local function announce(self, spellId, spellName)
+	local function announce(self)
 		-- this applies to the whole group but can be immuned
 		if self:Dispeller("magic") then -- the only case where we care who exactly got the debuff
-			self:TargetMessage(spellId, playerList, "red", "Alarm", nil, nil, true)
+			self:TargetMessage(35032, playerList, "red", "Alarm", nil, nil, true)
 		else
 			wipe(playerList)
 			if isOnMe then
-				self:TargetMessage(spellId, isOnMe, "red", "Alarm")
+				self:TargetMessage(35032, isOnMe, "red", "Alarm")
 			else
-				self:Message(spellId, "red")
+				self:Message(35032, "red")
 			end
 		end
 		isOnMe = nil
@@ -85,7 +85,7 @@ do
 		end
 		playerList[#playerList + 1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer(announce, 0.3, args.spellId, args.spellName)
+			self:ScheduleTimer(announce, 0.3, self)
 		end
 	end
 
@@ -114,6 +114,6 @@ do
 			if explosionWarnings > #warnAt then
 				self:UnregisterUnitEvent(event, unit)
 			end
-	 	end
+		end
 	end
 end

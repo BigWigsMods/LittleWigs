@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Soulbound Goliath", 1862, 2126)
 if not mod then return end
 mod:RegisterEnableMob(131667) -- Soulbound Goliath
 mod.engageId = 2114
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -51,7 +52,7 @@ function mod:SoulHarvest(args)
 	end
 end
 
-function mod:SoulThorns(args)
+function mod:SoulThorns()
 	self:CDBar(267907, 22)
 end
 
@@ -77,7 +78,7 @@ do
 			self:Say(args.spellId)
 		end
 		self:TargetMessage2(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "alarm")
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		self:TargetBar(args.spellId, 15, args.destName)
 		if self:GetOption(soulThornsMarker) then
 			soulThornsGUID = nil
@@ -91,19 +92,19 @@ function mod:SoulThornsRemoved(args)
 end
 
 function mod:Crush(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 17)
 end
 
 function mod:BurningBrush(args)
-	self:TargetMessage2(args.spellId, "cyan", args.destName)
+	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:Wildfire(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "blue", args.destName)
+		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end

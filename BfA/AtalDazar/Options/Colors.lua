@@ -22,15 +22,18 @@ BigWigs:AddColors("Rezan", {
 
 BigWigs:AddColors("Yazma", {
 	[249919] = "yellow",
-	[249923] = {"blue","red"},
 	[250036] = "blue",
 	[250050] = "yellow",
 	[250096] = "orange",
+	[259187] = "red",
 })
 
 BigWigs:AddColors("Atal'Dazar Trash", {
 	[252687] = {"blue","orange"},
 	[252781] = "blue",
+	[253517] = "yellow",
+	[253544] = "orange",
+	[253583] = "red",
 	[253721] = "yellow",
 	[255041] = "orange",
 	[255567] = "yellow",

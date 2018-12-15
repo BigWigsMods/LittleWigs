@@ -39,7 +39,7 @@ function mod:DeepFreezeRemoved(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
+function mod:CHAT_MSG_RAID_BOSS_WHISPER()
 	self:Message(68789, "blue", "Alarm", CL.incoming:format(self:SpellName(68789)))
 	self:Flash(68789)
 end

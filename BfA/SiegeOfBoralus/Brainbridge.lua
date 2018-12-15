@@ -31,10 +31,12 @@ function mod:GetOptions()
 		260924, -- Steel Tempest
 		257585, -- Cannon Barrage
 		277965, -- Heavy Ordnance
+		279761, -- Heavy Slash
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss2", "boss3", "boss4", "boss5")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:Log("SPELL_AURA_APPLIED", "IronGaze", 260954)
@@ -52,16 +54,23 @@ end
 -- Event Handlers
 --
 
+function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
+	if spellId == 279761 then -- Heavy Slash
+		self:Message2(spellId, "orange")
+		self:PlaySound(spellId, "alert")
+	end
+end
+
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 257540 then -- Cannon Barrage
-		self:Message(257585, "orange")
+		self:Message2(257585, "orange")
 		self:PlaySound(257585, "warning")
 		self:CDBar(257585, 60) -- XXX Double check
 	elseif spellId == 274002 then -- Call Adds
 		self:StopBar(CL.adds)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 33 then -- Low CD under 33%
-			self:Message("adds", "yellow", nil, CL.incoming:format(CL.adds), false)
+			self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
 			self:PlaySound("adds", "long")
 			self:CDBar("adds", 17, CL.adds, L.adds_icon) -- XXX Double check
 		end
@@ -89,12 +98,12 @@ function mod:HangmansNoose(args)
 end
 
 function mod:SteelTempest(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:HeavyOrdnance(args)
-	self:Message(args.spellId, "green", nil, CL.onboss:format(args.spellName)) -- XXX Check if this does not mean it's also on adds
+	self:Message2(args.spellId, "green", CL.onboss:format(args.spellName)) -- XXX Check if this does not mean it's also on adds
 	self:PlaySound(args.spellId, "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 end

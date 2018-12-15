@@ -30,8 +30,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CausticPitch", 121443)
- 	self:Log("SPELL_PERIODIC_DAMAGE", "CausticPitch", 121443)
- 	self:Log("SPELL_PERIODIC_MISSED", "CausticPitch", 121443)
+	self:Log("SPELL_PERIODIC_DAMAGE", "CausticPitch", 121443)
+	self:Log("SPELL_PERIODIC_MISSED", "CausticPitch", 121443)
 
 	self:Log("SPELL_AURA_APPLIED", "QuickDryResin", 121447)
 	self:Log("SPELL_AURA_APPLIED", "Invigorated", 121449)

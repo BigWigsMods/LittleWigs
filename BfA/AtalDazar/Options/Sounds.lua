@@ -21,16 +21,19 @@ BigWigs:AddSounds("Rezan", {
 })
 
 BigWigs:AddSounds("Yazma", {
-	[249919] = {"Alert","alert"},
-	[249923] = "warning",
+	[249919] = "alert",
 	[250036] = "alarm",
 	[250050] = "info",
 	[250096] = "alert",
+	[259187] = "warning",
 })
 
 BigWigs:AddSounds("Atal'Dazar Trash", {
 	[252687] = "alarm",
 	[252781] = "alarm",
+	[253517] = "info",
+	[253544] = "warning",
+	[253583] = "alarm",
 	[253721] = "long",
 	[255041] = "warning",
 	[255567] = "alert",

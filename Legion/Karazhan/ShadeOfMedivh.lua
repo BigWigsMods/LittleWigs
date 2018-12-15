@@ -87,12 +87,12 @@ function mod:FrostbiteApplied(args)
 	end
 end
 
-function mod:FrostbiteRemoved(args)
+function mod:FrostbiteRemoved()
 	frostbiteTarget = nil
 end
 
 do
-	local function printTarget(self, player, guid)
+	local function printTarget(self, _, guid)
 		if self:Me(guid) then
 			local text = CL.you:format(self:SpellName(227615)) .. (frostbiteTarget and " - " .. CL.on:format(self:SpellName(227592), self:ColorName(frostbiteTarget)) or "")
 			self:Message(227615, "orange", "Alert", text)

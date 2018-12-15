@@ -33,11 +33,11 @@ end
 -- Event Handlers
 --
 
-function mod:Emerge(args)
+function mod:Emerge()
 	self:Message("stages", "yellow", nil, -6421) -- Phase 2: The Elemental
 end
 
-function mod:Merge(args)
+function mod:Merge()
 	self:Message("stages", "red", nil, -6418) -- Phase 1: The Colossus
 end
 

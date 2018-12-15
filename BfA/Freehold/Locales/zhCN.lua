@@ -17,17 +17,31 @@ if L then
 	L.padfoot = "水鼠帮健步者"
 	L.rat = "湿乎乎的舱底鼠"
 	L.crusher = "铁潮打击者"
-	L.lightning = "闪电"
-	L.lightning_caught = "%s秒后抓住闪电！"
-	L.ludwig = "路德维希·冯·托尔托伦"
 	L.buccaneer = "铁潮冒险家"
 	L.ravager = "铁潮破坏者"
 	L.officer = "铁潮军官"
 	L.stormcaller = "铁潮唤雷者"
 end
 
+L = BigWigs:NewBossLocale("Council o' Captains", "zhCN")
+if L then
+	L.crit_brew = "爆击酒"
+	L.haste_brew = "急速酒"
+	L.bad_brew = "坏酒别吃！"
+end
+
 L = BigWigs:NewBossLocale("Ring of Booty", "zhCN")
 if L then
-	-- Our champion that sleeps with the fishes... literally! The Freehold Fanatic... the Master of the Jagged Jawbone Jab... the Powerful Pugilist Predator... Trothak the Shark Puncher!
-	-- L.warmup_trigger = "sleeps with the fishes..."
+	L.custom_on_autotalk = "自动对话"
+	L.custom_on_autotalk_desc = "立即选择对话选项以开始战斗。"
+
+	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
+	L.lightning_warmup = "又来了一群受害"
+	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
+	L.lightning_warmup_2 = "我开始对这场比赛的专业性产生怀疑了"
+
+	L.lightning = "闪电"
+	L.lightning_caught = "%.1f秒后抓住闪电！"
+	L.ludwig = "路德维希·冯·托尔托伦"
+	L.trothak = "托萨克"
 end

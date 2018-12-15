@@ -107,7 +107,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	end
 end
 
-function mod:BonecurseDeath(args)
+function mod:BonecurseDeath()
 	self:Message("stages", "cyan", "Long", CL.stage:format(3), false)
 	self:StopBar(CL.count:format(self:SpellName(228834), shardCount)) -- Jagged Shards
 	self:StopBar(228835) -- Absorb Vitality

@@ -48,17 +48,17 @@ do
 
 	local function checkForTaintedBlood(self)
 		if not onMe then
-			self:Message(255558, "blue", nil, CL.no:format(name))
+			self:Message2(255558, "blue", CL.no:format(name))
 			self:PlaySound(255558, "warning", "runin")
 			taintedBloodCheck = self:ScheduleTimer(checkForTaintedBlood, 1.5, self)
 		else
-			self:Message(255558, "green", nil, CL.you:format(name))
+			self:Message2(255558, "green", CL.you:format(name))
 			taintedBloodCheck = nil
 		end
 	end
 
 	function mod:Transfusion(args)
-		self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+		self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning") -- voice warning is in the Taunted Blood check if needed
 		self:Bar(args.spellId, 34)
 		self:Bar(args.spellId, 4, CL.cast:format(args.spellName))
@@ -81,7 +81,7 @@ do
 		end
 	end
 
-	function mod:TransfusionSuccess(args)
+	function mod:TransfusionSuccess()
 		if taintedBloodCheck then
 			self:CancelTimer(taintedBloodCheck)
 			taintedBloodCheck = nil
@@ -90,15 +90,17 @@ do
 end
 
 function mod:GildedClaws(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "defensive")
 	self:Bar(args.spellId, 34)
 end
 
 function mod:MoltenGold(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
-	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:PlaySound(args.spellId, "info", self:Dispeller("magic") and "dispelnow")
+	self:TargetMessage2(args.spellId, "orange", args.destName)
+	if self:Dispeller("magic") then
+		self:PlaySound(args.spellId, "info", "dispelnow", args.destName)
+	elseif self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "info")
 	end
 	self:Bar(args.spellId, 34)
 end
@@ -107,10 +109,10 @@ do
 	local prev = 0
 	function mod:CorruptedGold(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 2 then
 				prev = t
-				self:Message(args.spellId, "blue", nil, CL.underyou:format(args.spellName))
+				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "alarm", "gtfo")
 			end
 		end

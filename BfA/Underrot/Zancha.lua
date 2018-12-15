@@ -44,18 +44,18 @@ end
 --
 
 function mod:FesteringHarvest(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 51)
 end
 
 function mod:BoundlessRot(args)
-	self:Message(args.spellId, "cyan")
+	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info", "watchstep")
 end
 
 function mod:Shockwave(args)
-	self:Message(args.spellId, "purple")
+	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 14.5)
 end
@@ -86,10 +86,10 @@ end
 do
 	local prev = 0
 	function mod:VolatilePods(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "long", "interrupt")
 			self:CDBar(args.spellId, 30)
 		end

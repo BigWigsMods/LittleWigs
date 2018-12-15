@@ -52,7 +52,7 @@ end
 --
 
 function mod:VileExpulsion(args)
-	self:Message(args.spellId, "red")
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "watchwave")
 	self:Bar(args.spellId, 15.5)
 end
@@ -60,7 +60,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		self:TargetMessage2(269310, "green", player)
-		self:PlaySound(269310, "long", "runin")
+		self:PlaySound(269310, "long", "runin", player)
 		self:SecondaryIcon(269310, player)
 		if self:Me(guid) then
 			self:Say(269310)
@@ -111,8 +111,8 @@ function mod:PutridBloodRemoved(args)
 	end
 end
 
-function mod:VisageDeath(args)
+function mod:VisageDeath()
 	visageRemaining = visageRemaining - 1
-	self:Message("stages", "cyan", nil, CL.add_remaining:format(visageRemaining), false)
+	self:Message2("stages", "cyan", CL.add_remaining:format(visageRemaining), false)
 	self:PlaySound("stages", "info")
 end

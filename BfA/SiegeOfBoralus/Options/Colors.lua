@@ -5,6 +5,7 @@ BigWigs:AddColors("Chopper Redhook", {
 	[257459] = {"blue","yellow"},
 	[257585] = "orange",
 	[273721] = "green",
+	[257288] = "orange",
 	["adds"] = "yellow",
 })
 
@@ -14,6 +15,7 @@ BigWigs:AddColors("Sergeant Bainbridge", {
 	[260954] = {"blue","yellow"},
 	[261428] = {"blue","red"},
 	[277965] = "green",
+	[279761] = "orange",
 	["adds"] = "yellow",
 })
 
@@ -36,7 +38,22 @@ BigWigs:AddColors("Viq'Goth", {
 	[269266] = "purple",
 	[269366] = "cyan",
 	[270185] = "orange",
-	[270605] = "yellow",
 	[275014] = {"blue","yellow"},
+	["demolishing"] = "yellow",
 	["stages"] = "green",
+})
+
+BigWigs:AddColors("Siege of Boralus Trash", {
+	[268260] = "orange",
+	[272874] = "orange",
+	[275826] = {"orange", "red"},
+	[272421] = "yellow",
+	[257169] = "red",
+	[272827] = "orange",
+	[257170] = "yellow",
+	[274569] = "orange",
+	[256957] = {"orange", "red"},
+	[256627] = "orange",
+	[272711] = "orange",
+	[257288] = "orange",
 })

@@ -44,13 +44,13 @@ end
 --
 
 function mod:DiscordantCadenza(args)
-	self:Message(args.spellId, "orange")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 18.1)
 end
 
 function mod:WastingStrike(args)
-	self:Message(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 15.5)
 end

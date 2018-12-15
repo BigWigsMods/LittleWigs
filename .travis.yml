@@ -8,7 +8,8 @@ addons:
 install: luarocks install --local luacheck
 before_script:
  - curl -s https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/gen_option_values.lua | lua
- - /home/travis/.luarocks/bin/luacheck . -qo "011"
+ - curl -sO https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/.luacheckrc
+ - /home/travis/.luarocks/bin/luacheck . -q
 script: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash
 
 notifications:

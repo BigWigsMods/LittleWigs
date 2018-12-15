@@ -648,7 +648,7 @@ do
 		self:Message("announce_buff_items", "cyan", "Info", message, false)
 	end
 
-	local prevTable, usableTimer, lastProfessionUpdate = {}, nil, 0
+	local prevTable, lastProfessionUpdate = {}, 0
 	local function usableFound(self, id, item)
 		if buffs[id] and self:UnitBuff("player", self:SpellName(buffs[id]), buffs[id]) then -- there's no point in showing a message if we already have the buff
 			return
@@ -667,7 +667,7 @@ do
 				end
 			end
 			if delayAnnouncement then
-				usableTimer = self:ScheduleTimer(announceUsable, 0.3, self, id, item)
+				self:ScheduleTimer(announceUsable, 0.3, self, id, item)
 			else
 				announceUsable(self, id, item)
 			end

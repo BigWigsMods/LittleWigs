@@ -43,11 +43,11 @@ end
 --  Event Handlers
 --
 
-function mod:SunStrike(args)
+function mod:SunStrike()
 	self:Message(-2861, "yellow")
 end
 
-function mod:SummonSunOrb(args)
+function mod:SummonSunOrb()
 	self:Message(-2862, "orange")
 end
 

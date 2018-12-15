@@ -40,7 +40,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	end
 end
 
-function mod:TotalObedience(args)
+function mod:TotalObedience()
 	self:Message(-3969, "orange", "Long")
 	self:CastBar(-3969, 10)
 end

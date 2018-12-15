@@ -74,7 +74,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	end
 end
 
-function mod:NetherWraith(args)
+function mod:NetherWraith()
 	self:Message(35285, "red")
 end
 

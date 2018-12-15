@@ -49,7 +49,7 @@ function mod:AmplifyMagicRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:CallAzureRingCaptain(args)
+function mod:CallAzureRingCaptain()
 	self:Message(-7442, "orange", nil, CL.spawned:format(self:SpellName(-7443))) -- -7443 = Azure Ring Captain
 	self:CDBar(-7442, 13.3) -- 13-18s, most are ~15s
 end
