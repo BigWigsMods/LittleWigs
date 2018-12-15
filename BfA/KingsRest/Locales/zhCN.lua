@@ -30,6 +30,6 @@ if L then
 	L.brute = "幽魂蛮兵"
 	L.zul = "祖尔之影"
 
-	-- L.casting_on_you = "Casting %s on YOU"
-	-- L.casting_on_other = "Casting %s: %s"
+	L.casting_on_you = "对你施放%s"
+	L.casting_on_other = "施放%s：%s"
 end
