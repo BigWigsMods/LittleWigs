@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	134390, -- Sand-crusted Striker
 	134364, -- Faithless Tender
 	139425, -- Crazed Incubator
+	136076 -- Agitated Nimbus
 )
 
 --------------------------------------------------------------------------------
@@ -29,6 +30,7 @@ if L then
 	L.striker = "Sand-crusted Striker"
 	L.tender = "Faithless Tender"
 	L.incubator = "Crazed Incubator"
+	L.nimbus = "Agitated Nimbus"
 end
 
 --------------------------------------------------------------------------------
@@ -52,6 +54,8 @@ function mod:GetOptions()
 		272700, -- Greater Healing Potion
 		-- Crazed Incubator
 		273995, -- Pyrrhic Blast
+		-- Agitated Nimbus
+		265912, -- Accumulate Charge
 	}, {
 		[265968] = L.dustDevil,
 		[264574] = L.marksman,
@@ -60,6 +64,7 @@ function mod:GetOptions()
 		[268705] = L.striker,
 		[272700] = L.tender,
 		[273995] = L.incubator,
+		[265912] = L.nimbus,
 	}
 end
 
@@ -74,6 +79,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DustCloud", 268705)
 	self:Log("SPELL_CAST_START", "GreaterHealingPotion", 272700)
 	self:Log("SPELL_CAST_START", "PyrrhicBlast", 273995)
+	self:Log("SPELL_CAST_START", "AccumulateCharge", 265912)
 end
 
 --------------------------------------------------------------------------------
@@ -128,4 +134,9 @@ end
 function mod:PyrrhicBlast(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:AccumulateCharge(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
