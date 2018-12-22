@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	134990, -- Charged Dust Devil
 	134600, -- Sandswept Marksman
 	134602, -- Shrouded Fang
+	134629, -- Scaled Krolust Rider
 )
 
 --------------------------------------------------------------------------------
@@ -21,6 +22,7 @@ if L then
 	L.dustDevil = "Charged Dust Devil"
 	L.marksman = "Sandswept Marksman"
 	L.fang = "Shrouded Fang"
+	L.rider = "Scaled Krolusk Rider"
 end
 
 --------------------------------------------------------------------------------
@@ -35,10 +37,14 @@ function mod:GetOptions()
 		264574, -- Power Shot
 		-- Shrouded Fang
 		258908, -- Blade Flurry
+		-- Scaled Krolusk Rider
+		272659, -- Electrified Scales
+		272657, -- Noxious Breath
 	}, {
 		[265968] = L.dustDevil,
 		[264574] = L.marksman,
 		[258908] = L.fang,
+		[272659] = L.rider,
 	}
 end
 
@@ -47,6 +53,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PowerShot", 264574)
 	self:Log("SPELL_CAST_START", "BladeFlurry", 258908)
 	self:Log("SPELL_AURA_APPLIED", "BladeFlurryApplied", 258908)
+	self:Log("SPELL_AURA_APPLIED", "ElectrifiedScalesApplied", 272659)
+	self:Log("SPELL_CAST_START", "NoxiousBreath", 272657)
 end
 
 --------------------------------------------------------------------------------
@@ -71,4 +79,15 @@ end
 function mod:BladeFlurryApplied(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	self:CastBar(args.spellId, 8)
+end
+
+function mod:ElectrifiedScalesApplied(args)
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:NoxiousBreath(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
