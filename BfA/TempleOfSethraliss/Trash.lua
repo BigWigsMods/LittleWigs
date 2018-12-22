@@ -53,6 +53,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PowerShot", 264574)
 	self:Log("SPELL_CAST_START", "BladeFlurry", 258908)
 	self:Log("SPELL_AURA_APPLIED", "BladeFlurryApplied", 258908)
+	self:Log("SPELL_CAST_START", "ElectrifiedScales", 272659)
 	self:Log("SPELL_AURA_APPLIED", "ElectrifiedScalesApplied", 272659)
 	self:Log("SPELL_CAST_START", "NoxiousBreath", 272657)
 end
@@ -80,6 +81,10 @@ function mod:BladeFlurryApplied(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 8)
+end
+
+function mod:ElectrifiedScales(args)
+	self:CastBar(args.spellId, 2)
 end
 
 function mod:ElectrifiedScalesApplied(args)
