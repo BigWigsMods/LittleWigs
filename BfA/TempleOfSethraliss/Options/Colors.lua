@@ -25,3 +25,15 @@ BigWigs:AddColors("Avatar of Sethraliss", {
 	[269688] = "cyan",
 	[273677] = "red",
 })
+
+BigWigs:AddColors("Temple of Sethraliss Trash", {
+	[258908] = {"orange","red"},
+	[264574] = "orange",
+	[265912] = "orange",
+	[265968] = "yellow",
+	[268705] = "orange",
+	[272657] = "orange",
+	[272659] = "yellow",
+	[272700] = "orange",
+	[273995] = "red",
+})

@@ -10,7 +10,7 @@ mod:RegisterEnableMob(
 	134990, -- Charged Dust Devil
 	134600, -- Sandswept Marksman
 	134602, -- Shrouded Fang
-	134629, -- Scaled Krolust Rider
+	134629, -- Scaled Krolusk Rider
 	134390, -- Sand-crusted Striker
 	134364, -- Faithless Tender
 	139425, -- Crazed Incubator
