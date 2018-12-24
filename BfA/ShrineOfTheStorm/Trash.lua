@@ -13,7 +13,8 @@ mod:RegisterEnableMob(
 	136214, -- Windspeaker Heldis
 	139799, -- Ironhull Apprentice
 	134150, -- Runecarver Sorn
-	136249 -- Guardian Elemental
+	136249, -- Guardian Elemental
+	134417 -- Deepsea Ritualist
 )
 
 --------------------------------------------------------------------------------
@@ -29,6 +30,7 @@ if L then
 	L.ironhullApprentice = "Ironhull Apprentice"
 	L.runecarver = "Runecarver Sorn"
 	L.guardianElemental = "Guardian Elemental"
+	L.ritualist = "Deepsea Ritualist"
 end
 
 --------------------------------------------------------------------------------
@@ -60,6 +62,9 @@ function mod:GetOptions()
 		-- Guardian Elemental
 		268239, -- Shipbreaker Storm
 		268233, -- Electrifying Shock
+		-- Deepsea Ritualist
+		268309, -- Unending Darkness
+		276297, -- Void Seed
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
@@ -68,6 +73,7 @@ function mod:GetOptions()
 		[274631] = L.ironhullApprentice,
 		[268211] = L.runecarver,
 		[268239] = L.guardianElemental,
+		[268309] = L.ritualist,
 	}
 end
 
@@ -91,6 +97,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CarveFlesh", 268214)
 	self:Log("SPELL_CAST_START", "ShipbreakerStorm", 268239)
 	self:Log("SPELL_AURA_APPLIED", "ElectrifyingShock", 268233)
+	self:Log("SPELL_CAST_START", "UnendingDarkness", 268309)
+	self:Log("SPELL_AURA_APPLIED", "VoidSeedApplied", 276297)
+	self:Log("SPELL_AURA_REMOVED", "VoidSeedRemoved", 276297)
 	
 	self:Death("WindspeakerDeath", 136214)
 	self:Death("RunecarverDeath", 134150)
@@ -196,4 +205,25 @@ function mod:ElectrifyingShock(args)
 	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 15)
+end
+
+function mod:UnendingDarkness(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:VoidSeedApplied(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "blue")
+		self:PlaySound(args.spellId, "alarm")
+		self:TargetBar(args.spellId, 12, args.destName)
+	end
+end
+
+function mod:VoidSeedRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message2(args.spellId, CL.removed:format(args.destName))
+		self:PlaySound(args.spellId, "info")
+		self:StopBar(args.spellId)
+	end
 end
