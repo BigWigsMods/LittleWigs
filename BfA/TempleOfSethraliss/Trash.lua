@@ -69,6 +69,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
+	
 	self:Log("SPELL_CAST_START", "HealingSurge", 265968)
 	self:Log("SPELL_CAST_START", "PowerShot", 264574)
 	self:Log("SPELL_CAST_START", "BladeFlurry", 258908)
