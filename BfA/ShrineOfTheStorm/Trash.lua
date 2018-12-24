@@ -12,7 +12,8 @@ mod:RegisterEnableMob(
 	139800, -- Galecaller Apprentice
 	136214, -- Windspeaker Heldis
 	139799, -- Ironhull Apprentice
-	134150  -- Runecarver Sorn
+	134150, -- Runecarver Sorn
+	136249 -- Guardian Elemental
 )
 
 --------------------------------------------------------------------------------
@@ -27,6 +28,7 @@ if L then
 	L.windspeaker = "Windspeaker Heldis"
 	L.ironhullApprentice = "Ironhull Apprentice"
 	L.runecarver = "Runecarver Sorn"
+	L.guardianElemental = "Guardian Elemental"
 end
 
 --------------------------------------------------------------------------------
@@ -55,6 +57,9 @@ function mod:GetOptions()
 		-- Runecarver Sorn
 		268211, -- Minor Reinforcing Ward
 		268214, -- Carve Flesh
+		-- Guardian Elemental
+		268239, -- Shipbreaker Storm
+		268233, -- Electrifying Shock
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
@@ -62,6 +67,7 @@ function mod:GetOptions()
 		[268177] = L.windspeaker,
 		[274631] = L.ironhullApprentice,
 		[268211] = L.runecarver,
+		[268239] = L.guardianElemental,
 	}
 end
 
@@ -83,9 +89,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WhirlingSlam", 276292)
 	self:Log("SPELL_CAST_START", "MinorReinforcingWard", 268211)
 	self:Log("SPELL_CAST_START", "CarveFlesh", 268214)
-	self:Log("SPELL_CAST_SUCCESS", "CarveFleshSuccess", 268214)
+	self:Log("SPELL_CAST_START", "ShipbreakerStorm", 268239)
+	self:Log("SPELL_AURA_APPLIED", "ElectrifyingShock", 268233)
 	
 	self:Death("WindspeakerDeath", 136214)
+	self:Death("RunecarverDeath", 134150)
 end
 
 --------------------------------------------------------------------------------
@@ -174,6 +182,18 @@ do
 	end
 end
 
-function mod:CarveFleshSuccess(args)
-	self:CastBar(args.spellId, 5)
+function mod:RunecarverDeath(args)
+	self:StopBar(268214)
+end
+
+function mod:ShipbreakerStorm(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 13)
+end
+
+function mod:ElectrifyingShock(args)
+	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 15)
 end
