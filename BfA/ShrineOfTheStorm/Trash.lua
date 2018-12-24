@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Shrine of the Storm Trash", 1822)
+local mod, CL = BigWigs:NewBoss("Shrine of the Storm Trash", 1864)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
