@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Temple of Sethraliss Trash", 1822)
+local mod, CL = BigWigs:NewBoss("Temple of Sethraliss Trash", 1877)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
