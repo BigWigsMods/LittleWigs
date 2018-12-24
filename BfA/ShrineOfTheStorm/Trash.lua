@@ -16,7 +16,7 @@ mod:RegisterEnableMob(
 	136249, -- Guardian Elemental
 	134417, -- Deepsea Ritualist
 	134514, -- Abyssal Cultist
-	134418 -- Drowned Depthbringer
+	134418  -- Drowned Depthbringer
 )
 
 --------------------------------------------------------------------------------
