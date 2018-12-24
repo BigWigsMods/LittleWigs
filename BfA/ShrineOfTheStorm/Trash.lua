@@ -54,6 +54,7 @@ function mod:GetOptions()
 		276292, -- Whirling Slam
 		-- Runecarver Sorn
 		268211, -- Minor Reinforcing Ward
+		268214, -- Carve Flesh
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
@@ -81,6 +82,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SunderingBlow", 274633)
 	self:Log("SPELL_CAST_START", "WhirlingSlam", 276292)
 	self:Log("SPELL_CAST_START", "MinorReinforcingWard", 268211)
+	self:Log("SPELL_CAST_START", "CarveFlesh", 268214)
+	self:Log("SPELL_CAST_SUCCESS", "CarveFleshSuccess", 268214)
 	
 	self:Death("WindspeakerDeath", 136214)
 end
@@ -159,4 +162,18 @@ end
 function mod:MinorReinforcingWard(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
+end
+
+do
+	local prev = 0
+	function mod:CarveFlesh(args)
+		self:Bar(args.spellId, args.time - prev > 12 and 11 or 18)
+		prev = args.time
+		self:TargetMessage(args.spellId, args.destName, "orange")
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+function mod:CarveFleshSuccess(args)
+	self:CastBar(args.spellId, 5)
 end
