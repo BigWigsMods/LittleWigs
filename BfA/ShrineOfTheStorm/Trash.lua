@@ -14,7 +14,9 @@ mod:RegisterEnableMob(
 	139799, -- Ironhull Apprentice
 	134150, -- Runecarver Sorn
 	136249, -- Guardian Elemental
-	134417 -- Deepsea Ritualist
+	134417, -- Deepsea Ritualist
+	134514, -- Abyssal Cultist
+	134418 -- Drowned Depthbringer
 )
 
 --------------------------------------------------------------------------------
@@ -31,6 +33,8 @@ if L then
 	L.runecarver = "Runecarver Sorn"
 	L.guardianElemental = "Guardian Elemental"
 	L.ritualist = "Deepsea Ritualist"
+	L.cultist = "Abyssal Cultist"
+	L.depthbringer = "Drowned Depthbringer"
 end
 
 --------------------------------------------------------------------------------
@@ -65,6 +69,11 @@ function mod:GetOptions()
 		-- Deepsea Ritualist
 		268309, -- Unending Darkness
 		276297, -- Void Seed
+		-- Abyssal Cultist
+		268391, -- Mental Assault
+		268375, -- Detect Thoughts
+		-- Drowned Depthbringer
+		268322, -- Touch of the Drowned
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
@@ -74,6 +83,8 @@ function mod:GetOptions()
 		[268211] = L.runecarver,
 		[268239] = L.guardianElemental,
 		[268309] = L.ritualist,
+		[268391] = L.cultist,
+		[268322] = L.depthbringer,
 	}
 end
 
@@ -100,6 +111,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "UnendingDarkness", 268309)
 	self:Log("SPELL_AURA_APPLIED", "VoidSeedApplied", 276297)
 	self:Log("SPELL_AURA_REMOVED", "VoidSeedRemoved", 276297)
+	self:Log("SPELL_CAST_START", "MentalAssault", 268391)
+	self:Log("SPELL_CAST_START", "DetectThoughts", 268375)
+	self:Log("SPELL_CAST_START", "TouchOfTheDrowned", 268322)
+	self:Log("SPELL_AURA_APPLIED", "TouchOfTheDrownedApplied", 268322)
 	
 	self:Death("WindspeakerDeath", 136214)
 	self:Death("RunecarverDeath", 134150)
@@ -226,4 +241,24 @@ function mod:VoidSeedRemoved(args)
 		self:PlaySound(args.spellId, "info")
 		self:StopBar(args.spellId)
 	end
+end
+
+function mod:MentalAssault(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:DetectThoughts(args)
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:TouchOfTheDrowned(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:TouchOfTheDrownedApplied(args)
+	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
