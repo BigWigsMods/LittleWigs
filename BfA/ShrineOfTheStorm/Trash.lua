@@ -3,12 +3,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Siege of Boralus Trash", 1822)
+local mod, CL = BigWigs:NewBoss("Shrine of the Storm Trash", 1822)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	134139, -- Shrine Templar
-	136186 -- Tidesage Spiritualist
+	136186, -- Tidesage Spiritualist
+	139800 -- Galecaller Apprentice
 )
 
 --------------------------------------------------------------------------------
@@ -19,6 +20,7 @@ local L = mod:GetLocale()
 if L then
 	L.templar = "Shrine Templar"
 	L.spiritualist = "Tidesage Spiritualist"
+	L.apprentice = "Galecaller Apprentice"
 end
 
 --------------------------------------------------------------------------------
@@ -34,9 +36,12 @@ function mod:GetOptions()
 		268050, -- Anchor of Binding
 		276266, -- Spirit's Swiftness
 		268030, -- Mending Rapids
+		-- Galecaller Apprentice
+		274437, -- Tempest
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
+		[274437] = L.apprentice,
 	}
 end
 
@@ -48,6 +53,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AnchorOfBinding", 268050)
 	self:Log("SPELL_AURA_APPLIED", "SpiritsSwiftness", 276266)
 	self:Log("SPELL_CAST_START", "MendingRapids", 268030)
+	self:Log("SPELL_CAST_START", "Tempest", 274437)
 end
 
 --------------------------------------------------------------------------------
@@ -75,6 +81,11 @@ function mod:SpiritsSwiftness(args)
 end
 
 function mod:MendingRapids(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:Tempest(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
