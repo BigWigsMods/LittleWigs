@@ -10,7 +10,9 @@ mod:RegisterEnableMob(
 	134139, -- Shrine Templar
 	136186, -- Tidesage Spiritualist
 	139800, -- Galecaller Apprentice
-	136214 -- Windspeaker Heldis
+	136214, -- Windspeaker Heldis
+	139799, -- Ironhull Apprentice
+	134150  -- Runecarver Sorn
 )
 
 --------------------------------------------------------------------------------
@@ -21,8 +23,10 @@ local L = mod:GetLocale()
 if L then
 	L.templar = "Shrine Templar"
 	L.spiritualist = "Tidesage Spiritualist"
-	L.apprentice = "Galecaller Apprentice"
+	L.galecallerApprentice = "Galecaller Apprentice"
 	L.windspeaker = "Windspeaker Heldis"
+	L.ironhullApprentice = "Ironhull Apprentice"
+	L.runecarver = "Runecarver Sorn"
 end
 
 --------------------------------------------------------------------------------
@@ -44,11 +48,19 @@ function mod:GetOptions()
 		268177, -- Windblast
 		268187, -- Gale Winds
 		268184, -- Minor Swiftness Ward
+		-- Ironhull Apprentice
+		{274631,"TANK"}, -- Lesser Blessing of Ironsides
+		{274633,"TANK"}, -- Sundering Blow
+		276292, -- Whirling Slam
+		-- Runecarver Sorn
+		268211, -- Minor Reinforcing Ward
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
-		[274437] = L.apprentice,
+		[274437] = L.galecallerApprentice,
 		[268177] = L.windspeaker,
+		[274631] = L.ironhullApprentice,
+		[268211] = L.runecarver,
 	}
 end
 
@@ -64,6 +76,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Windblast", 268177)
 	self:Log("SPELL_CAST_START", "GaleWinds", 268187)
 	self:Log("SPELL_CAST_START", "MinorSwiftnessWard", 268187)
+	self:Log("SPELL_CAST_START", "LesserBlessingOfIronsides", 274631)
+	self:Log("SPELL_AURA_APPLIED", "SunderingBlow", 274633)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SunderingBlow", 274633)
+	self:Log("SPELL_CAST_START", "WhirlingSlam", 276292)
+	self:Log("SPELL_CAST_START", "MinorReinforcingWard", 268211)
 	
 	self:Death("WindspeakerDeath", 136214)
 end
@@ -113,11 +130,33 @@ function mod:GaleWinds(args)
 	self:CDBar(args.spellId, 22)
 end
 
+function mod:WindspeakerDeath(args)
+	self:StopBar(268187)
+end
+
 function mod:MinorSwiftnessWard(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:WindspeakerDeath(args)
-	self:StopBar(268187)
+function mod:LesserBlessingOfIronsides(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:SunderingBlow(args)
+	if self:Me(args.destGUID) then
+		self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+		self:PlaySound(args.spellId, "info")	
+	end
+end
+
+function mod:WhirlingSlam(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:MinorReinforcingWard(args)
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
