@@ -63,7 +63,7 @@ end
 function mod:LightningShield(args)
 	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
-	if self:MobId(args.destGUID) == 133944 then -- Adderis
+	if self:MobId(args.destGUID) == 133379 then -- Adderis
 		self:Bar(263424, 20) -- Arc Dash
 	else -- Aspix
 		self:Bar(263257, 20) -- Static Shock
