@@ -71,8 +71,8 @@ function mod:LightningShield(args)
 end
 
 function mod:LightningShieldRemoved(args)
-	if UnitIsDead("boss2") then
-		self:Message2(args.spellId, "yellow", CL.removed:format(args.spellName))
+	if not UnitExists("boss2") or UnitIsDead("boss2") then
+		self:Message2(args.spellId, "cyan", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
