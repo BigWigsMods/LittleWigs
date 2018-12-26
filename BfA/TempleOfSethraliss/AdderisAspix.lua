@@ -106,7 +106,6 @@ function mod:StaticShock(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 2)
-	self:Bar(263246, 6) -- Lightning Shield removal
 end
 
 function mod:BossDeath(args)
