@@ -46,6 +46,7 @@ function mod:GetOptions()
 		-- Shrine Templar
 		276268, -- Heaving Blow
 		267977, -- Tidal Surge
+		267981, -- Protective Aura
 		-- Tidesage Spiritualist
 		268050, -- Anchor of Binding
 		276266, -- Spirit's Swiftness
@@ -93,13 +94,14 @@ function mod:OnBossEnable()
 	
 	self:Log("SPELL_CAST_START", "HeavingBlow", 276268)
 	self:Log("SPELL_CAST_START", "TidalSurge", 267977)
+	self:Log("SPELL_CAST_START", "ProtectiveAura", 267981)
 	self:Log("SPELL_CAST_SUCCESS", "AnchorOfBinding", 268050)
 	self:Log("SPELL_AURA_APPLIED", "SpiritsSwiftness", 276266)
 	self:Log("SPELL_CAST_START", "MendingRapids", 268030)
 	self:Log("SPELL_CAST_START", "Tempest", 274437)
 	self:Log("SPELL_CAST_START", "Windblast", 268177)
 	self:Log("SPELL_CAST_START", "GaleWinds", 268187)
-	self:Log("SPELL_CAST_START", "MinorSwiftnessWard", 268187)
+	self:Log("SPELL_CAST_START", "MinorSwiftnessWard", 268184)
 	self:Log("SPELL_CAST_START", "LesserBlessingOfIronsides", 274631)
 	self:Log("SPELL_AURA_APPLIED", "SunderingBlow", 274633)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SunderingBlow", 274633)
@@ -125,12 +127,17 @@ end
 --
 
 function mod:HeavingBlow(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:TidalSurge(args)
 	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ProtectiveAura(args)
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
