@@ -52,6 +52,7 @@ function mod:GetOptions()
 		268705, -- Dust Cloud
 		-- Faithless Tender
 		272700, -- Greater Healing Potion
+		267237, -- Drain
 		-- Crazed Incubator
 		273995, -- Pyrrhic Blast
 		-- Agitated Nimbus
@@ -80,6 +81,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NoxiousBreath", 272657)
 	self:Log("SPELL_CAST_START", "DustCloud", 268705)
 	self:Log("SPELL_CAST_START", "GreaterHealingPotion", 272700)
+	self:Log("SPELL_CAST_SUCCESS", "Drain", 267237)
 	self:Log("SPELL_CAST_START", "PyrrhicBlast", 273995)
 	self:Log("SPELL_CAST_START", "AccumulateCharge", 265912)
 end
@@ -130,6 +132,11 @@ end
 
 function mod:GreaterHealingPotion(args)
 	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:Drain(args)
+	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
