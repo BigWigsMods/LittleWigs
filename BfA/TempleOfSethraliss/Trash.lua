@@ -99,7 +99,7 @@ function mod:PowerShot(args)
 end
 
 function mod:BladeFlurry(args)
-	self:Message2(args.spellId, "orange", L.casting:format(args.spellId))
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellId))
 	self:PlaySound(args.spellId, "alert")
 end
 
