@@ -51,19 +51,15 @@ do
 	function mod:UNIT_POWER_FREQUENT(event, unit)
 		local guid = UnitGUID(unit)
 		local t = GetTime()
-		if t-prev > 2 then
-			if self:MobId(guid) == 133379 then -- Adderis
-				if UnitPower(unit) == 100 then
-					prev = t
-					self:Message2(263424, "orange") -- Arc Dash
-					self:PlaySound(263424, "alert") -- Arc Dash
-				end
-			else -- Aspix
-				if UnitPower(unit) == 0 then
-					prev = t
-					self:Bar(263246, 4)
-				end
+		if t-prev > 2 and self:MobId(guid) == 133379 then -- Adderis
+			if UnitPower(unit) == 100 then
+				prev = t
+				self:Message2(263424, "orange") -- Arc Dash
+				self:PlaySound(263424, "alert") -- Arc Dash
 			end
+		end
+		if UnitPower(unit) == 0 then
+			self:Bar(263246, 4) -- Lightning Shield
 		end
 	end
 end
