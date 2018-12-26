@@ -20,7 +20,7 @@ function mod:GetOptions()
 	return {
 		263246, -- Lightning Shield
 		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
-		263573, -- Cyclone Strike
+		263309, -- Cyclone Strike
 		263257, -- Static Shock
 		263424, -- Arc Dash
 	}
@@ -32,13 +32,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "LightningShieldRemoved", 263246)
 	self:Log("SPELL_AURA_APPLIED", "Conduction", 263371)
 	self:Log("SPELL_AURA_REMOVED", "ConductionRemoved", 263371)
-	self:Log("SPELL_CAST_START", "CycloneStrike", 263573)
+	self:Log("SPELL_CAST_START", "CycloneStrike", 263309)
 	self:Log("SPELL_CAST_START", "StaticShock", 263257)
 	self:Death("BossDeath", 133379, 133944)
 end
 
 function mod:OnEngage()
-	self:Bar(263573, 8.5) -- Cyclone Strike
+	self:Bar(263309, 8.5) -- Cyclone Strike
 	self:Bar(263371, 22.5) -- Conduction
 end
 
