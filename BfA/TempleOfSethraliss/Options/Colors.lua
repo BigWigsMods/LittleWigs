@@ -31,6 +31,7 @@ BigWigs:AddColors("Temple of Sethraliss Trash", {
 	[264574] = "orange",
 	[265912] = "orange",
 	[265968] = "yellow",
+	[267237] = "yellow",
 	[268705] = "orange",
 	[272657] = "orange",
 	[272659] = "yellow",
