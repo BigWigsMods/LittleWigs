@@ -95,7 +95,7 @@ end
 
 function mod:PowerShot(args)
 	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:BladeFlurry(args)
@@ -120,7 +120,7 @@ end
 
 function mod:NoxiousBreath(args)
 	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:DustCloud(args)
