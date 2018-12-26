@@ -106,7 +106,7 @@ end
 function mod:BladeFlurryApplied(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CastBar(args.spellId, 8)
+	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 function mod:ElectrifiedScales(args)
