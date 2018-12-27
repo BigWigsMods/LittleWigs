@@ -8,4 +8,5 @@ if L then
 	L.tender = "Curatore Senzafede"
 	L.incubator = "Incubatore Frenetico"
 	L.nimbus = "Nembo Agitato"
+	L.doctor = "Dottoressa della Pestilenza"
 end

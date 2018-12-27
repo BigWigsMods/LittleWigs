@@ -32,8 +32,10 @@ BigWigs:AddSounds("Temple of Sethraliss Trash", {
 	[265912] = "alert",
 	[265968] = "alert",
 	[267237] = "alert",
+	[268008] = {"alert","info"},
 	[272657] = "alarm",
 	[272659] = {"alert","info"},
 	[272700] = "alert",
+	[273563] = "info",
 	[273995] = "alarm",
 })

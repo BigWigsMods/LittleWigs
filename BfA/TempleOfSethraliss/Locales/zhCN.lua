@@ -8,4 +8,5 @@ if L then
 	L.tender = "无信护卵员"
 	L.incubator = "疯狂的孵化者"
 	L.nimbus = "暴怒云气"
+	L.doctor = "瘟疫博士"
 end

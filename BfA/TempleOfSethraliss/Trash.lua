@@ -30,6 +30,7 @@ if L then
 	L.tender = "Faithless Tender"
 	L.incubator = "Crazed Incubator"
 	L.nimbus = "Agitated Nimbus"
+	L.doctor = "Plague Doctor"
 end
 
 --------------------------------------------------------------------------------

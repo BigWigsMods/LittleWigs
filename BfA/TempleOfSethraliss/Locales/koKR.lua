@@ -8,4 +8,5 @@ if L then
 	L.tender = "부정한 관리인"
 	L.incubator = "광포한 부화자"
 	L.nimbus = "흥분한 빛구름"
+	L.doctor = "역병 의사"
 end

@@ -8,4 +8,5 @@ if L then
 	L.tender = "Garde-oeuf infidèle"
 	L.incubator = "Incubateur dément"
 	L.nimbus = "Nimbus agité"
+	L.doctor = "Médecin de peste"
 end
