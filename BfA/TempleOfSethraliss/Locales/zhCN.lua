@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Temple of Sethraliss Trash", "zhCN")
 if not L then return end
 if L then
-	L.dustDevil = "充能的沙尘恶魔"
+	L.dust_devil = "充能的沙尘恶魔"
 	L.marksman = "卷沙神射手"
 	L.fang = "隐秘之牙"
 	L.rider = "厚鳞三叶虫骑手"

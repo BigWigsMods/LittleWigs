@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Temple of Sethraliss Trash", "ruRU")
 if not L then return end
 if L then
-	L.dustDevil = "Заряженная песчаная дьяволица"
+	L.dust_devil = "Заряженная песчаная дьяволица"
 	L.marksman = "Песчаный стрелок"
 	L.fang = "Скрытный убийца"
 	L.rider = "Чешуйчатый наездник на кролуске"

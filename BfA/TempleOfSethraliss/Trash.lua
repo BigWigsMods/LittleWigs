@@ -23,7 +23,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.dustDevil = "Charged Dust Devil"
+	L.dust_devil = "Charged Dust Devil"
 	L.marksman = "Sandswept Marksman"
 	L.fang = "Shrouded Fang"
 	L.rider = "Scaled Krolusk Rider"
