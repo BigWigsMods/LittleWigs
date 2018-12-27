@@ -112,7 +112,7 @@ function mod:BladeFlurryApplied(args)
 end
 
 function mod:ElectrifiedScales(args)
-	self:Message2(args.spellId, "orange")
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
