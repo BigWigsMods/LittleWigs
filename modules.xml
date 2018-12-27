@@ -185,7 +185,7 @@
 <Include file="BfA\Freehold\locales.xml"/>
 
 <Include file="BfA\KingsRest\modules.xml"/>
-<!--<Include file="BfA\KingsRest\locales.xml"/>-->
+<Include file="BfA\KingsRest\locales.xml"/>
 
 <Include file="BfA\ShrineOfTheStorm\modules.xml"/>
 <Include file="BfA\ShrineOfTheStorm\locales.xml"/>
