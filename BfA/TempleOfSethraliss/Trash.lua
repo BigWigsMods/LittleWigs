@@ -59,7 +59,7 @@ function mod:GetOptions()
 		-- Plague Doctor
 		268008, -- Snake Charm
 	}, {
-		[265968] = L.dustDevil,
+		[265968] = L.dust_devil,
 		[264574] = L.marksman,
 		[258908] = L.fang,
 		[272659] = L.rider,
