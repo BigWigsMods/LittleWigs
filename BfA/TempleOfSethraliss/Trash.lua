@@ -120,9 +120,16 @@ function mod:NoxiousBreath(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:GreaterHealingPotion(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:GreaterHealingPotion(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:Drain(args)
