@@ -42,18 +42,20 @@ end
 --
 
 do
-	local prev = 0
+	local prevDash = 0
+	local prevShieldGUID = nil
 	function mod:UNIT_POWER_FREQUENT(event, unit)
 		local guid = UnitGUID(unit)
 		local t = GetTime()
-		if t-prev > 2 and self:MobId(guid) == 133379 then -- Adderis
+		if t-prevDash > 2 and self:MobId(guid) == 133379 then -- Adderis
 			if UnitPower(unit) == 100 then
-				prev = t
+				prevDash = t
 				self:Message2(263424, "orange") -- Arc Dash
 				self:PlaySound(263424, "alert") -- Arc Dash
 			end
 		end
-		if UnitPower(unit) == 0 and self:UnitBuff(unit, 263246) then -- Lightning Shield
+		if guid ~= prevShieldGUID and UnitPower(unit) == 0 then
+			prevShieldGUID = guid
 			self:Bar(263246, 4) -- Lightning Shield
 		end
 	end
