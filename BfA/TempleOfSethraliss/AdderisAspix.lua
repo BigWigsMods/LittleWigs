@@ -29,7 +29,6 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "LightningShield", 263246)
-	self:Log("SPELL_AURA_REMOVED", "LightningShieldRemoved", 263246)
 	self:Log("SPELL_AURA_APPLIED", "Conduction", 263371)
 	self:Log("SPELL_AURA_REMOVED", "ConductionRemoved", 263371)
 	self:Log("SPELL_CAST_START", "CycloneStrike", 263309)
@@ -71,13 +70,6 @@ function mod:LightningShield(args)
 		self:Bar(263424, 20) -- Arc Dash
 	else -- Aspix
 		self:Bar(263257, 20) -- Static Shock
-	end
-end
-
-function mod:LightningShieldRemoved(args)
-	if not UnitExists("boss2") or UnitIsDead("boss2") then
-		self:Message2(args.spellId, "cyan", CL.removed:format(args.spellName))
-		self:PlaySound(args.spellId, "info")
 	end
 end
 
