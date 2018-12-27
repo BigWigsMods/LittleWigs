@@ -11,7 +11,6 @@ mod:RegisterEnableMob(
 	134600, -- Sandswept Marksman
 	134602, -- Shrouded Fang
 	134629, -- Scaled Krolusk Rider
-	134390, -- Sand-crusted Striker
 	134364, -- Faithless Tender
 	139425, -- Crazed Incubator
 	136076 -- Agitated Nimbus
@@ -27,7 +26,6 @@ if L then
 	L.marksman = "Sandswept Marksman"
 	L.fang = "Shrouded Fang"
 	L.rider = "Scaled Krolusk Rider"
-	L.striker = "Sand-crusted Striker"
 	L.tender = "Faithless Tender"
 	L.incubator = "Crazed Incubator"
 	L.nimbus = "Agitated Nimbus"
@@ -48,8 +46,6 @@ function mod:GetOptions()
 		-- Scaled Krolusk Rider
 		272659, -- Electrified Scales
 		272657, -- Noxious Breath
-		-- Sand-crusted Striker
-		268705, -- Dust Cloud
 		-- Faithless Tender
 		272700, -- Greater Healing Potion
 		267237, -- Drain
@@ -62,7 +58,6 @@ function mod:GetOptions()
 		[264574] = L.marksman,
 		[258908] = L.fang,
 		[272659] = L.rider,
-		[268705] = L.striker,
 		[272700] = L.tender,
 		[273995] = L.incubator,
 		[265912] = L.nimbus,
@@ -79,7 +74,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ElectrifiedScales", 272659)
 	self:Log("SPELL_AURA_APPLIED", "ElectrifiedScalesApplied", 272659)
 	self:Log("SPELL_CAST_START", "NoxiousBreath", 272657)
-	self:Log("SPELL_CAST_START", "DustCloud", 268705)
 	self:Log("SPELL_CAST_START", "GreaterHealingPotion", 272700)
 	self:Log("SPELL_CAST_SUCCESS", "Drain", 267237)
 	self:Log("SPELL_CAST_START", "PyrrhicBlast", 273995)
@@ -124,11 +118,6 @@ end
 function mod:NoxiousBreath(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:DustCloud(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:GreaterHealingPotion(args)
