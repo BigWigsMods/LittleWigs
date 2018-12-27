@@ -57,7 +57,7 @@ do
 				self:PlaySound(263424, "alert") -- Arc Dash
 			end
 		end
-		if UnitPower(unit) == 0 then
+		if UnitPower(unit) == 0 and self:UnitBuff(unit, 263246) then -- Lightning Shield
 			self:Bar(263246, 4) -- Lightning Shield
 		end
 	end
