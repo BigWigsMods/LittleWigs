@@ -13,7 +13,8 @@ mod:RegisterEnableMob(
 	134629, -- Scaled Krolusk Rider
 	134364, -- Faithless Tender
 	139425, -- Crazed Incubator
-	136076 -- Agitated Nimbus
+	136076, -- Agitated Nimbus
+	139949  -- Plague Doctor
 )
 
 --------------------------------------------------------------------------------
@@ -41,6 +42,7 @@ function mod:GetOptions()
 		265968, -- Healing Surge
 		-- Sandswept Marksman
 		264574, -- Power Shot
+		273563, -- Neurotoxin
 		-- Shrouded Fang
 		258908, -- Blade Flurry
 		-- Scaled Krolusk Rider
@@ -53,6 +55,8 @@ function mod:GetOptions()
 		273995, -- Pyrrhic Blast
 		-- Agitated Nimbus
 		265912, -- Accumulate Charge
+		-- Plague Doctor
+		268008, -- Snake Charm
 	}, {
 		[265968] = L.dustDevil,
 		[264574] = L.marksman,
@@ -61,6 +65,7 @@ function mod:GetOptions()
 		[272700] = L.tender,
 		[273995] = L.incubator,
 		[265912] = L.nimbus,
+		[268008] = L.doctor,
 	}
 end
 
@@ -69,6 +74,7 @@ function mod:OnBossEnable()
 	
 	self:Log("SPELL_CAST_START", "HealingSurge", 265968)
 	self:Log("SPELL_CAST_START", "PowerShot", 264574)
+	self:Log("SPELL_AURA_APPLIED", "NeurotoxinApplied", 273563)
 	self:Log("SPELL_CAST_START", "BladeFlurry", 258908)
 	self:Log("SPELL_AURA_APPLIED", "BladeFlurryApplied", 258908)
 	self:Log("SPELL_CAST_START", "ElectrifiedScales", 272659)
@@ -78,6 +84,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Drain", 267237)
 	self:Log("SPELL_CAST_START", "PyrrhicBlast", 273995)
 	self:Log("SPELL_CAST_START", "AccumulateCharge", 265912)
+	self:Log("SPELL_CAST_START", "SnakeCharm", 268008)
+	self:Log("SPELL_AURA_APPLIED", "SnakeCharmApplied", 268008)
 end
 
 --------------------------------------------------------------------------------
@@ -92,6 +100,13 @@ end
 function mod:PowerShot(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:NeurotoxinApplied(args)
+	if self:Dispeller("poison") or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "red")
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 function mod:BladeFlurry(args)
@@ -145,4 +160,16 @@ end
 function mod:AccumulateCharge(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:SnakeCharm(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:SnakeCharmApplied(args)
+	if self:Dispeller("poison") or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "red")
+		self:PlaySound(args.spellId, "info")
+	end
 end
