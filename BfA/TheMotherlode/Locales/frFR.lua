@@ -13,4 +13,8 @@ if L then
 	L.sapper = "Sapeuse incontrôlable"
 	L.vendor = "Vendeuse de rafraîchissements"
 	L.extractor = "Extracteur d'azérite"
+	L.thug = "Criminel confus"
+	L.specialist = "Spécialiste en munitions"
+	L.taskmaster = "Sous-chef Askari"
+	L.warmachine = "Machine de guerre de la KapitalRisk"
 end
