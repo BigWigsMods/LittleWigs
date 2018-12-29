@@ -164,7 +164,7 @@ end
 
 function mod:ForceCannon(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit ~= nil and UnitAffectingCombat(unit) then
+	if unit and UnitAffectingCombat(unit) then
 		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert", "watchstep")
 	end
@@ -205,7 +205,7 @@ end
 -- Stonefury
 function mod:FuriousQuake(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit ~= nil and UnitAffectingCombat(unit) then
+	if unit and UnitAffectingCombat(unit) then
 		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning", "interrupt")
 	end
@@ -305,7 +305,7 @@ do
 
 	function mod:MiningCharge(args)
 		local unit = self:GetUnitIdByGUID(args.sourceGUID)
-		if unit ~= nil and UnitAffectingCombat(unit) then
+		if unit and UnitAffectingCombat(unit) then
 			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "info", "watchstep")
 		end
