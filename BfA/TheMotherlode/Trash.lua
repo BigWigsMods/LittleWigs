@@ -64,7 +64,7 @@ function mod:GetOptions()
 		267433, -- Activate Mech
 		281621, -- Concussion Charge
 		-- Venture Co. Earthshaper
-		268709, -- Earth Shield 
+		268709, -- Earth Shield
 		-- Stonefury
 		268702, -- Furious Quake
 		263215, -- Tectonic Barrier
@@ -77,7 +77,7 @@ function mod:GetOptions()
 		-- Venture Co. Mastermind
 		262947, -- Azerite Injection
 		-- Venture Co. Alchemist
-		268797, -- Transmute: Enemy to Goo 
+		268797, -- Transmute: Enemy to Goo
 		-- Wanton Sapper
 		269313, -- Final Blast
 		268362, -- Mining Charge
