@@ -1,8 +1,10 @@
 
 BigWigs:AddColors("Adderis and Aspix", {
 	[263246] = "cyan",
+	[263257] = "orange",
+	[263309] = "yellow",
 	[263371] = {"blue","orange"},
-	[263573] = "yellow",
+	[263424] = "orange",
 })
 
 BigWigs:AddColors("Merektha", {

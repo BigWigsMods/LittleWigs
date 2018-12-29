@@ -1,8 +1,10 @@
 
 BigWigs:AddSounds("Adderis and Aspix", {
 	[263246] = "info",
+	[263257] = "alarm",
+	[263309] = "alert",
 	[263371] = "warning",
-	[263573] = "alert",
+	[263424] = "alert",
 })
 
 BigWigs:AddSounds("Merektha", {
