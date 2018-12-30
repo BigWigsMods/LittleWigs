@@ -13,4 +13,8 @@ if L then
 	L.sapper = "통제불가 공병"
 	L.vendor = "원기 회복 음식 상인"
 	L.extractor = "아제라이트 추출기"
+	L.thug = "띨띨한 불량배"
+	L.specialist = "포격 전문가"
+	L.taskmaster = "작업반장 아스카리"
+	L.warmachine = "투자개발회사 전쟁 기계"
 end

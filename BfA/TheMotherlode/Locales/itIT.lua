@@ -13,4 +13,8 @@ if L then
 	L.sapper = "Geniera Sregolata"
 	L.vendor = "Mercante di Rinfreschi"
 	L.extractor = "Estrattore d'Azerite"
+	L.thug = "Teppista Confuso"
+	L.specialist = "Specialista d'Ordinanza"
+	L.taskmaster = "Coordinatore Askari"
+	L.warmachine = "Macchina da Guerra della S.P.R. & Co."
 end
