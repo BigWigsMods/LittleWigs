@@ -99,8 +99,8 @@ function mod:ConductionRemoved(args)
 end
 
 do
-	local function printTarget(self, player, guid)
-		if self:Me(player) then
+	local function printTarget(self, name, guid)
+		if self:Me(name) then
 			self:Say(263309) -- Cyclone Strike
 			self:Flash(263309) -- Cyclone Strike
 		end
