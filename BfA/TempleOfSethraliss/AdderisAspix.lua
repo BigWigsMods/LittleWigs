@@ -12,6 +12,8 @@ mod.engageId = 2124
 -- Initialization
 --
 
+local cycloneStrikeCount = 0
+
 function mod:GetOptions()
 	return {
 		263246, -- Lightning Shield
@@ -33,6 +35,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	cycloneStrikeCount = 0
 	self:Bar(263309, 8.5) -- Cyclone Strike
 	self:Bar(263371, 22.5) -- Conduction
 end
@@ -87,9 +90,12 @@ function mod:ConductionRemoved(args)
 end
 
 function mod:CycloneStrike(args)
+	cycloneStrikeCount = cycloneStrikeCount + 1
+	if cycloneStrikeCount % 2 == 1 then
+		self:Bar(args.spellId, 13.5)
+	end
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 13.5)
 end
 
 function mod:StaticShock(args)
