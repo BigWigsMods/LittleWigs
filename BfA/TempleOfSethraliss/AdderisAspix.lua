@@ -70,6 +70,9 @@ function mod:LightningShield(args)
 	if self:MobId(args.destGUID) == 133379 then -- Adderis
 		self:Bar(263424, 20) -- Arc Dash
 	else -- Aspix
+		if cycloneStrikeCount ~= 0 then -- Timer is slightly different from the first
+			self:Bar(263309, 6.5) -- Cyclone Strike
+		end
 		self:Bar(263257, 20) -- Static Shock
 	end
 end
