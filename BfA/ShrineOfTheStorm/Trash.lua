@@ -204,12 +204,16 @@ function mod:MinorReinforcingWard(args)
 end
 
 do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(268214, name, "orange") -- Carve Flesh
+		self:PlaySound(268214, "alert") -- Carve Flesh
+	end
+	
 	local prev = 0
 	function mod:CarveFlesh(args)
 		self:Bar(args.spellId, args.time - prev > 16 and 11 or 18)
 		prev = args.time
-		self:TargetMessage(args.spellId, args.destName, "orange")
-		self:PlaySound(args.spellId, "alert")
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 
