@@ -58,8 +58,8 @@ function mod:GetOptions()
 		268187, -- Gale Winds
 		268184, -- Minor Swiftness Ward
 		-- Ironhull Apprentice
-		{274631,"TANK"}, -- Lesser Blessing of Ironsides
-		{274633,"TANK"}, -- Sundering Blow
+		{274631, "TANK"}, -- Lesser Blessing of Ironsides
+		{274633, "TANK"}, -- Sundering Blow
 		276292, -- Whirling Slam
 		-- Runecarver Sorn
 		268211, -- Minor Reinforcing Ward
@@ -69,7 +69,7 @@ function mod:GetOptions()
 		268233, -- Electrifying Shock
 		-- Deepsea Ritualist
 		268309, -- Unending Darkness
-		276297, -- Void Seed
+		{276297, "SAY_COUNTDOWN"} -- Void Seed
 		-- Abyssal Cultist
 		268391, -- Mental Assault
 		268375, -- Detect Thoughts
@@ -239,6 +239,7 @@ function mod:VoidSeedApplied(args)
 		self:TargetMessage(args.spellId, args.destName, "blue")
 		self:PlaySound(args.spellId, "alarm")
 		self:TargetBar(args.spellId, 12, args.destName)
+		self:SayCountdown(args.spellId, 12)
 	end
 end
 
@@ -247,6 +248,7 @@ function mod:VoidSeedRemoved(args)
 		self:Message2(args.spellId, "blue", CL.removed:format(args.destName))
 		self:PlaySound(args.spellId, "info")
 		self:StopBar(args.spellId)
+		self:StopSayCountdown(args.spellId)
 	end
 end
 
