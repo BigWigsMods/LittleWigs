@@ -16,7 +16,7 @@ local cycloneStrikeCount = 0
 
 function mod:GetOptions()
 	return {
-		263246, -- Lightning Shield
+		{263246, "ICON"}, -- Lightning Shield
 		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
 		263309, -- Cyclone Strike
 		263257, -- Static Shock
@@ -27,6 +27,8 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "LightningShield", 263246)
+	self:Log("SPELL_AURA_APPLIED", "LightningShieldRemoved", 263246)
+	self:Log("SPELL_AURA_APPLIED", "LightningShieldRemoved", 273411) -- Active on pull
 	self:Log("SPELL_AURA_APPLIED", "Conduction", 263371)
 	self:Log("SPELL_AURA_REMOVED", "ConductionRemoved", 263371)
 	self:Log("SPELL_CAST_START", "CycloneStrike", 263309)
@@ -75,6 +77,10 @@ function mod:LightningShield(args)
 		end
 		self:Bar(263257, 20) -- Static Shock
 	end
+end
+
+function mod:LightningShieldRemoved(args)
+	self:PrimaryIcon(263246, self:GetBossIdByGUID(args.destGUID)) -- Lightning Shield
 end
 
 function mod:Conduction(args)
