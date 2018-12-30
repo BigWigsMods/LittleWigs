@@ -206,7 +206,7 @@ end
 do
 	local prev = 0
 	function mod:CarveFlesh(args)
-		self:Bar(args.spellId, args.time - prev > 12 and 11 or 18)
+		self:Bar(args.spellId, args.time - prev > 16 and 11 or 18)
 		prev = args.time
 		self:TargetMessage(args.spellId, args.destName, "orange")
 		self:PlaySound(args.spellId, "alert")
