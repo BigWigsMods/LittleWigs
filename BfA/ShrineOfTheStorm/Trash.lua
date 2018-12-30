@@ -224,9 +224,11 @@ function mod:ShipbreakerStorm(args)
 end
 
 function mod:ElectrifyingShock(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
-	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 15)
+	if self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, args.destName, "yellow")
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 15)
+	end
 end
 
 function mod:UnendingDarkness(args)
@@ -268,6 +270,10 @@ function mod:TouchOfTheDrowned(args)
 end
 
 function mod:TouchOfTheDrownedApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
-	self:PlaySound(args.spellId, "info")
+	local unit = self:GetUnitByGUID(args.destGUID)
+	if self:UnitBuff(unit, 5697) then return end -- Warlock Unending Breath
+	if self:Dispeller("magic") or IsSpellKnown(5697) then -- Warlock Unending Breath
+		self:TargetMessage(args.spellId, args.destName, "yellow")
+		self:PlaySound(args.spellId, "info")
+	end
 end
