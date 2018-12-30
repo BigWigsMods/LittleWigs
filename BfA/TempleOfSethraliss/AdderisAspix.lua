@@ -18,7 +18,7 @@ function mod:GetOptions()
 	return {
 		{263246, "ICON"}, -- Lightning Shield
 		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
-		263309, -- Cyclone Strike
+		{263309, "SAY", "FLASH"}, -- Cyclone Strike
 		263257, -- Static Shock
 		263424, -- Arc Dash
 	}
@@ -98,13 +98,23 @@ function mod:ConductionRemoved(args)
 	end
 end
 
-function mod:CycloneStrike(args)
-	cycloneStrikeCount = cycloneStrikeCount + 1
-	if cycloneStrikeCount % 2 == 1 then
-		self:Bar(args.spellId, 13.5)
+do
+	local function printTarget(self, player, guid)
+		if self:Me(player) then
+			self:Say(263309) -- Cyclone Strike
+			self:Flash(263309) -- Cyclone Strike
+		end
 	end
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	
+	function mod:CycloneStrike(args)
+		cycloneStrikeCount = cycloneStrikeCount + 1
+		if cycloneStrikeCount % 2 == 1 then
+			self:Bar(args.spellId, 13.5)
+		end
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:Message2(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:StaticShock(args)
