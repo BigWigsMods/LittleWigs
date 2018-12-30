@@ -27,11 +27,11 @@ local L = mod:GetLocale()
 if L then
 	L.templar = "Shrine Templar"
 	L.spiritualist = "Tidesage Spiritualist"
-	L.galecallerApprentice = "Galecaller Apprentice"
+	L.galecaller_apprentice = "Galecaller Apprentice"
 	L.windspeaker = "Windspeaker Heldis"
-	L.ironhullApprentice = "Ironhull Apprentice"
+	L.ironhull_apprentice = "Ironhull Apprentice"
 	L.runecarver = "Runecarver Sorn"
-	L.guardianElemental = "Guardian Elemental"
+	L.guardian_elemental = "Guardian Elemental"
 	L.ritualist = "Deepsea Ritualist"
 	L.cultist = "Abyssal Cultist"
 	L.depthbringer = "Drowned Depthbringer"
@@ -78,11 +78,11 @@ function mod:GetOptions()
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
-		[274437] = L.galecallerApprentice,
+		[274437] = L.galecaller_apprentice,
 		[268177] = L.windspeaker,
-		[274631] = L.ironhullApprentice,
+		[274631] = L.ironhull_apprentice,
 		[268211] = L.runecarver,
-		[268239] = L.guardianElemental,
+		[268239] = L.guardian_elemental,
 		[268309] = L.ritualist,
 		[268391] = L.cultist,
 		[268322] = L.depthbringer,
