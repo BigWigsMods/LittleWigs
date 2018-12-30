@@ -185,7 +185,7 @@
 <Include file="BfA\Freehold\locales.xml"/>
 
 <Include file="BfA\KingsRest\modules.xml"/>
-<!--<Include file="BfA\KingsRest\locales.xml"/>-->
+<Include file="BfA\KingsRest\locales.xml"/>
 
 <Include file="BfA\ShrineOfTheStorm\modules.xml"/>
 <Include file="BfA\ShrineOfTheStorm\locales.xml"/>
@@ -194,7 +194,7 @@
 <Include file="BfA\SiegeOfBoralus\locales.xml"/>
 
 <Include file="BfA\TempleOfSethraliss\modules.xml"/>
-<!--<Include file="BfA\TempleOfSethraliss\locales.xml"/>-->
+<Include file="BfA\TempleOfSethraliss\locales.xml"/>
 
 <Include file="BfA\TheMotherlode\modules.xml"/>
 <Include file="BfA\TheMotherlode\locales.xml"/>

@@ -13,4 +13,8 @@ if L then
 	L.sapper = "暴虐的工兵"
 	L.vendor = "零食商贩"
 	L.extractor = "艾泽里特提取器"
+	L.thug = "混乱的暴徒"
+	L.specialist = "军械专家"
+	L.taskmaster = "监工阿斯加里"
+	L.warmachine = "风险投资公司战争机器"
 end
