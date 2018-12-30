@@ -69,7 +69,7 @@ function mod:GetOptions()
 		268233, -- Electrifying Shock
 		-- Deepsea Ritualist
 		268309, -- Unending Darkness
-		{276297, "SAY_COUNTDOWN"} -- Void Seed
+		{276297, "SAY_COUNTDOWN"}, -- Void Seed
 		-- Abyssal Cultist
 		268391, -- Mental Assault
 		268375, -- Detect Thoughts
