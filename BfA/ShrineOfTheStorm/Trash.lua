@@ -142,8 +142,10 @@ function mod:ProtectiveAura(args)
 end
 
 function mod:AnchorOfBinding(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "blue")
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 function mod:SpiritsSwiftness(args)
