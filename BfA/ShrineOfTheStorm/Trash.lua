@@ -16,7 +16,8 @@ mod:RegisterEnableMob(
 	136249, -- Guardian Elemental
 	134417, -- Deepsea Ritualist
 	134514, -- Abyssal Cultist
-	134418  -- Drowned Depthbringer
+	134418, -- Drowned Depthbringer
+	134144  -- Living Current
 )
 
 --------------------------------------------------------------------------------
@@ -35,6 +36,7 @@ if L then
 	L.ritualist = "Deepsea Ritualist"
 	L.cultist = "Abyssal Cultist"
 	L.depthbringer = "Drowned Depthbringer"
+	L.living_current = "Living Current"
 end
 
 --------------------------------------------------------------------------------
@@ -75,6 +77,8 @@ function mod:GetOptions()
 		268375, -- Detect Thoughts
 		-- Drowned Depthbringer
 		268322, -- Touch of the Drowned
+		-- Living Current
+		268027, -- Rising Tides
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
@@ -86,6 +90,7 @@ function mod:GetOptions()
 		[268309] = L.ritualist,
 		[268391] = L.cultist,
 		[268322] = L.depthbringer,
+		[268027] = L.living_current,
 	}
 end
 
@@ -117,9 +122,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DetectThoughts", 268375)
 	self:Log("SPELL_CAST_START", "TouchOfTheDrowned", 268322)
 	self:Log("SPELL_AURA_APPLIED", "TouchOfTheDrownedApplied", 268322)
+	self:Log("SPELL_CAST_START", "RisingTides", 268027)
 	
 	self:Death("WindspeakerDeath", 136214)
 	self:Death("RunecarverDeath", 134150)
+	self:Death("LivingCurrentDeath", 134144)
 end
 
 --------------------------------------------------------------------------------
@@ -282,4 +289,14 @@ function mod:TouchOfTheDrownedApplied(args)
 		self:TargetMessage(args.spellId, args.destName, "yellow")
 		self:PlaySound(args.spellId, "info")
 	end
+end
+
+function mod:RisingTides(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 23)
+end
+
+function mod:LivingCurrentDeath(args)
+	self:StopBar(268027)
 end
