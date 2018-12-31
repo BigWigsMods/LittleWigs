@@ -64,7 +64,7 @@ function mod:GetOptions()
 		268187, -- Gale Winds
 		268184, -- Minor Swiftness Ward
 		-- Ironhull Apprentice
-		{274631, "TANK"}, -- Lesser Blessing of Ironsides
+		274631, -- Lesser Blessing of Ironsides
 		{274633, "TANK"}, -- Sundering Blow
 		276292, -- Whirling Slam
 		-- Runecarver Sorn
