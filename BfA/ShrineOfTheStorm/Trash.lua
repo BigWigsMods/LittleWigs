@@ -17,7 +17,8 @@ mod:RegisterEnableMob(
 	134417, -- Deepsea Ritualist
 	134514, -- Abyssal Cultist
 	134418, -- Drowned Depthbringer
-	134144  -- Living Current
+	134144, -- Living Current
+	134338  -- Tidesage Enforcer
 )
 
 --------------------------------------------------------------------------------
@@ -37,6 +38,7 @@ if L then
 	L.cultist = "Abyssal Cultist"
 	L.depthbringer = "Drowned Depthbringer"
 	L.living_current = "Living Current"
+	L.enforcer = "Tidesage Enforcer"
 end
 
 --------------------------------------------------------------------------------
@@ -71,6 +73,8 @@ function mod:GetOptions()
 		-- Guardian Elemental
 		268239, -- Shipbreaker Storm
 		268233, -- Electrifying Shock
+		-- Tidesage Enforcer
+		268273, -- Deep Smash
 		-- Deepsea Ritualist
 		268309, -- Unending Darkness
 		{276297, "SAY_COUNTDOWN"}, -- Void Seed
@@ -88,6 +92,7 @@ function mod:GetOptions()
 		[274631] = L.ironhull_apprentice,
 		[268211] = L.runecarver,
 		[268239] = L.guardian_elemental,
+		[268273] = L.enforcer,
 		[268309] = L.ritualist,
 		[268391] = L.cultist,
 		[268322] = L.depthbringer,
@@ -123,6 +128,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TouchOfTheDrowned", 268322)
 	self:Log("SPELL_AURA_APPLIED", "TouchOfTheDrownedApplied", 268322)
 	self:Log("SPELL_CAST_START", "RisingTides", 268027)
+	self:Log("SPELL_CAST_START", "DeepSmash", 268273)
+	self:Log("SPELL_CAST_SUCCESS", "DeepSmashSuccess", 268273)
 	
 	self:Death("WindspeakerDeath", 136214)
 	self:Death("RunecarverDeath", 134150)
@@ -188,6 +195,7 @@ end
 function mod:MinorSwiftnessWard(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 32)
 end
 
 function mod:LesserBlessingOfIronsides(args)
@@ -299,4 +307,18 @@ end
 
 function mod:LivingCurrentDeath(args)
 	self:StopBar(268027)
+end
+
+function mod:DeepSmash(args)
+	if self:Tank() then
+		self:Message2(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+function mod:DeepSmashSuccess(args)
+	if not self:Tank() then
+		self:Message2(args.spellId, "orange")
+		self:Message2(args.spellId, "alert")
+	end
 end
