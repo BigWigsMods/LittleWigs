@@ -55,6 +55,8 @@ function mod:GetOptions()
 		268030, -- Mending Rapids
 		-- Galecaller Apprentice
 		274437, -- Tempest
+		-- Living Current
+		268027, -- Rising Tides
 		-- Windspeaker Heldis
 		268177, -- Windblast
 		268187, -- Gale Winds
@@ -77,12 +79,11 @@ function mod:GetOptions()
 		268375, -- Detect Thoughts
 		-- Drowned Depthbringer
 		268322, -- Touch of the Drowned
-		-- Living Current
-		268027, -- Rising Tides
 	}, {
 		[276268] = L.templar,
 		[268050] = L.spiritualist,
 		[274437] = L.galecaller_apprentice,
+		[268027] = L.living_current,
 		[268177] = L.windspeaker,
 		[274631] = L.ironhull_apprentice,
 		[268211] = L.runecarver,
@@ -90,7 +91,6 @@ function mod:GetOptions()
 		[268309] = L.ritualist,
 		[268391] = L.cultist,
 		[268322] = L.depthbringer,
-		[268027] = L.living_current,
 	}
 end
 
