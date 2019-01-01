@@ -30,8 +30,9 @@ BigWigs:AddColors("Vol'zith the Whisperer", {
 BigWigs:AddColors("Shrine of the Storm Trash", {
 	[267977] = "yellow",
 	[267981] = "orange",
+	[268027] = "orange",
 	[268030] = "orange",
-	[268050] = "orange",
+	[268050] = "blue",
 	[268177] = "orange",
 	[268184] = "yellow",
 	[268187] = "orange",
@@ -39,6 +40,7 @@ BigWigs:AddColors("Shrine of the Storm Trash", {
 	[268214] = {"blue","orange"},
 	[268233] = {"blue","yellow"},
 	[268239] = "orange",
+	[268273] = {"orange","purple"},
 	[268309] = "orange",
 	[268322] = {"blue","orange","yellow"},
 	[268375] = "yellow",

@@ -30,8 +30,9 @@ BigWigs:AddSounds("Vol'zith the Whisperer", {
 BigWigs:AddSounds("Shrine of the Storm Trash", {
 	[267977] = "alert",
 	[267981] = "alert",
+	[268027] = "alarm",
 	[268030] = "alert",
-	[268050] = "alert",
+	[268050] = "alarm",
 	[268177] = "alert",
 	[268184] = "info",
 	[268187] = "alert",
@@ -39,6 +40,7 @@ BigWigs:AddSounds("Shrine of the Storm Trash", {
 	[268214] = "alert",
 	[268233] = "info",
 	[268239] = "alert",
+	[268273] = "alert",
 	[268309] = "alert",
 	[268322] = {"alert","info"},
 	[268375] = "info",
