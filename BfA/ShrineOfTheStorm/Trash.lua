@@ -156,8 +156,8 @@ function mod:ProtectiveAura(args)
 end
 
 function mod:AnchorOfBinding(args)
-	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "blue")
+	if IsItemInRange(37727, args.destName) then -- Ruby Acorn, 5yd
+		self:Message2(args.spellId, "blue", CL.near:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
