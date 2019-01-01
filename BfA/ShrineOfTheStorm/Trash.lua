@@ -319,6 +319,6 @@ end
 function mod:DeepSmashSuccess(args)
 	if not self:Tank() then
 		self:Message2(args.spellId, "orange")
-		self:Message2(args.spellId, "alert")
+		self:PlaySound(args.spellId, "alert")
 	end
 end
