@@ -27,8 +27,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "LightningShield", 263246)
-	self:Log("SPELL_AURA_APPLIED", "LightningShieldRemoved", 263246)
-	self:Log("SPELL_AURA_APPLIED", "LightningShieldRemoved", 273411) -- Active on pull
+	self:Log("SPELL_AURA_APPLIED", "LightningShieldRemoved", 263246, 273411)
 	self:Log("SPELL_AURA_APPLIED", "Conduction", 263371)
 	self:Log("SPELL_AURA_REMOVED", "ConductionRemoved", 263371)
 	self:Log("SPELL_CAST_START", "CycloneStrike", 263309)
