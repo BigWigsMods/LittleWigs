@@ -110,6 +110,7 @@ do
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 		self:Message2(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alert")
+		self:CastBar(args.spellId, 2.5)
 	end
 end
 
