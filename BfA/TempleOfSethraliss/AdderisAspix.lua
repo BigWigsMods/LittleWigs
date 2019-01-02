@@ -27,7 +27,6 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "LightningShield", 263246)
-	self:Log("SPELL_AURA_REMOVED", "LightningShieldRemoved", 263246, 273411)
 	self:Log("SPELL_AURA_APPLIED", "Conduction", 263371)
 	self:Log("SPELL_AURA_REMOVED", "ConductionRemoved", 263371)
 	self:Log("SPELL_CAST_START", "CycloneStrike", 263309)
@@ -68,6 +67,8 @@ end
 function mod:LightningShield(args)
 	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
+	local otherBoss = UnitGUID("boss1") == guid and "boss2" or "boss1"
+	self:PrimaryIcon(args.spellId, otherBoss)
 	if self:MobId(args.destGUID) == 133379 then -- Adderis
 		self:Bar(263424, 20) -- Arc Dash
 	else -- Aspix
@@ -76,10 +77,6 @@ function mod:LightningShield(args)
 		end
 		self:Bar(263257, 20) -- Static Shock
 	end
-end
-
-function mod:LightningShieldRemoved(args)
-	self:PrimaryIcon(263246, self:GetBossIdByGUID(args.destGUID)) -- Lightning Shield
 end
 
 function mod:Conduction(args)
