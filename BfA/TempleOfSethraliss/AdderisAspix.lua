@@ -96,7 +96,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		if self:Me(name) then
+		if self:Me(guid) then
 			self:Say(263309) -- Cyclone Strike
 			self:Flash(263309) -- Cyclone Strike
 		end
