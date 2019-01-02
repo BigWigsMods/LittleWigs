@@ -67,7 +67,7 @@ end
 function mod:LightningShield(args)
 	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
-	local otherBoss = UnitGUID("boss1") == guid and "boss2" or "boss1"
+	local otherBoss = UnitGUID("boss1") == args.destGUID and "boss2" or "boss1"
 	self:PrimaryIcon(args.spellId, otherBoss)
 	if self:MobId(args.destGUID) == 133379 then -- Adderis
 		self:Bar(263424, 20) -- Arc Dash
