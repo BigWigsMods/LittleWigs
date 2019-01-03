@@ -261,9 +261,15 @@ function mod:InfectedThorn(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:Uproot(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(264038, name, "orange") -- Uproot
+		self:PlaySound(264038, "alarm") -- Uproot
+	end
+
+	function mod:Uproot(args)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
+	end
 end
 
 -- Thornguard
