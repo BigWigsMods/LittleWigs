@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Heartsbane Triad", {
 	[260703] = "orange",
-	[260741] = "orange",
+	[260741] = {"blue","orange"},
 	[260773] = "red",
 	[260805] = "cyan",
 	[260926] = {"blue","orange"},
@@ -44,7 +44,7 @@ BigWigs:AddColors("Waycrest Manor Trash", {
 	[263943] = {"blue","orange"},
 	[263959] = "red",
 	[263961] = "yellow",
-	[264038] = "orange",
+	[264038] = {"blue","orange"},
 	[264050] = "yellow",
 	[264105] = {"blue","orange","yellow"},
 	[264150] = "red",
