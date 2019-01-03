@@ -414,7 +414,7 @@ function mod:HiddenBladeApplied(args)
 	end
 
 	if isOnMe or self:Dispeller("poison") or self:Healer() then
-		self:TargetBar(args.spellId, 8, args.destName)
+		self:TargetBar(args.spellId, 4, args.destName)
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
