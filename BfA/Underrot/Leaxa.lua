@@ -9,13 +9,6 @@ mod:RegisterEnableMob(131318)
 mod.engageId = 2111
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local effigySpawned = 0
-local effigyKilled = 0
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -39,8 +32,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	effigySpawned = 0
-	effigyKilled = 0
 	self:Bar(260894, 12) -- Creeping Rot
 	self:Bar(264603, 15.5) -- Blood Mirror
 	if not self:Normal() then
