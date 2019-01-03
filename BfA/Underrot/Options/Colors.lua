@@ -2,7 +2,7 @@
 BigWigs:AddColors("Elder Leaxa", {
 	[260879] = "orange",
 	[260894] = "yellow",
-	[264603] = {"cyan","green","red"},
+	[264603] = {"green","red"},
 	[264757] = "yellow",
 })
 

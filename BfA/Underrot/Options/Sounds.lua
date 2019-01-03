@@ -2,7 +2,7 @@
 BigWigs:AddSounds("Elder Leaxa", {
 	[260879] = "alert",
 	[260894] = "alarm",
-	[264603] = {"info","long"},
+	[264603] = "long",
 	[264757] = "alarm",
 })
 
