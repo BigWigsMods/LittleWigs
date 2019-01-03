@@ -9,14 +9,20 @@ mod:RegisterEnableMob(133379, 133944) -- Adderis, Aspix
 mod.engageId = 2124
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local cycloneStrikeCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		263246, -- Lightning Shield
+		{263246, "ICON"}, -- Lightning Shield
 		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
-		263309, -- Cyclone Strike
+		{263309, "SAY", "FLASH"}, -- Cyclone Strike
 		263257, -- Static Shock
 		263424, -- Arc Dash
 	}
@@ -33,6 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	cycloneStrikeCount = 0
 	self:Bar(263309, 8.5) -- Cyclone Strike
 	self:Bar(263371, 22.5) -- Conduction
 end
@@ -64,9 +71,14 @@ end
 function mod:LightningShield(args)
 	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
+	local otherBoss = UnitGUID("boss1") == args.destGUID and "boss2" or "boss1"
+	self:PrimaryIcon(args.spellId, otherBoss)
 	if self:MobId(args.destGUID) == 133379 then -- Adderis
 		self:Bar(263424, 20) -- Arc Dash
 	else -- Aspix
+		if cycloneStrikeCount ~= 0 then -- Timer is slightly different from the first
+			self:Bar(263309, 6.5) -- Cyclone Strike
+		end
 		self:Bar(263257, 20) -- Static Shock
 	end
 end
@@ -86,10 +98,24 @@ function mod:ConductionRemoved(args)
 	end
 end
 
-function mod:CycloneStrike(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 13.5)
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) then
+			self:Say(263309) -- Cyclone Strike
+			self:Flash(263309) -- Cyclone Strike
+		end
+	end
+	
+	function mod:CycloneStrike(args)
+		cycloneStrikeCount = cycloneStrikeCount + 1
+		if cycloneStrikeCount % 2 == 1 then
+			self:Bar(args.spellId, 13.5)
+		end
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:Message2(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alert")
+		self:CastBar(args.spellId, 2.5)
+	end
 end
 
 function mod:StaticShock(args)
