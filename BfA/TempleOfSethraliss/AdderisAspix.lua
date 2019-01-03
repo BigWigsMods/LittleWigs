@@ -9,10 +9,14 @@ mod:RegisterEnableMob(133379, 133944) -- Adderis, Aspix
 mod.engageId = 2124
 
 --------------------------------------------------------------------------------
--- Initialization
+-- Locals
 --
 
 local cycloneStrikeCount = 0
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
