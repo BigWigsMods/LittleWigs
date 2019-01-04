@@ -156,7 +156,8 @@ function mod:ProtectiveAura(args)
 end
 
 function mod:AnchorOfBinding(args)
-	if IsItemInRange(37727, args.destName) then -- Ruby Acorn, 5yd
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and IsItemInRange(37727, unit .. "target") then -- Ruby Acorn, 5yd
 		self:Message2(args.spellId, "blue", CL.near:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
 	end
