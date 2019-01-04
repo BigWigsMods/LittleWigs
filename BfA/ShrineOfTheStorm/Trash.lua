@@ -101,7 +101,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-	
+
 	self:Log("SPELL_CAST_START", "HeavingBlow", 276268)
 	self:Log("SPELL_CAST_START", "TidalSurge", 267977)
 	self:Log("SPELL_CAST_START", "ProtectiveAura", 267981)
@@ -130,7 +130,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RisingTides", 268027)
 	self:Log("SPELL_CAST_START", "DeepSmash", 268273)
 	self:Log("SPELL_CAST_SUCCESS", "DeepSmashSuccess", 268273)
-	
+
 	self:Death("WindspeakerDeath", 136214)
 	self:Death("RunecarverDeath", 134150)
 	self:Death("LivingCurrentDeath", 134144)
@@ -163,8 +163,11 @@ function mod:AnchorOfBinding(args)
 end
 
 function mod:SpiritsSwiftness(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+	local unit = self:GetUnitIdByGUID(args.destGUID)
+	if UnitAffectingCombat(unit) then
+		self:Message2(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 function mod:MendingRapids(args)
@@ -206,7 +209,7 @@ end
 function mod:SunderingBlow(args)
 	if self:Me(args.destGUID) then
 		self:StackMessage(args.spellId, args.destName, args.amount, "purple")
-		self:PlaySound(args.spellId, "info")	
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
@@ -225,7 +228,7 @@ do
 		self:TargetMessage(268214, name, "orange") -- Carve Flesh
 		self:PlaySound(268214, "alert") -- Carve Flesh
 	end
-	
+
 	local prev = 0
 	function mod:CarveFlesh(args)
 		self:Bar(args.spellId, args.time - prev > 16 and 11 or 18)
