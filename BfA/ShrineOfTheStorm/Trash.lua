@@ -294,7 +294,7 @@ function mod:TouchOfTheDrowned(args)
 end
 
 function mod:TouchOfTheDrownedApplied(args)
-	local unit = self:GetUnitByGUID(args.destGUID)
+	local unit = self:GetUnitIdByGUID(args.destGUID)
 	if self:UnitBuff(unit, 5697) then return end -- Warlock Unending Breath
 	if self:Dispeller("magic") or IsSpellKnown(5697) then -- Warlock Unending Breath
 		self:TargetMessage(args.spellId, args.destName, "yellow")
