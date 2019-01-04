@@ -164,7 +164,7 @@ end
 
 function mod:SpiritsSwiftness(args)
 	local unit = self:GetUnitIdByGUID(args.destGUID)
-	if UnitAffectingCombat(unit) then
+	if unit and UnitAffectingCombat(unit) then
 		self:Message2(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "info")
 	end
