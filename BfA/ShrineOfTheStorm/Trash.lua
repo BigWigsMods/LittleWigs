@@ -264,8 +264,13 @@ function mod:VoidSeedApplied(args)
 	if self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, args.destName, "blue")
 		self:PlaySound(args.spellId, "alarm")
-		self:TargetBar(args.spellId, 12, args.destName)
-		self:SayCountdown(args.spellId, 12)
+		-- Duration seems to vary, so we can't hardcode a fixed duration
+		local expirationTime = select(6, self:UnitDebuff(args.destName, args.spellId))
+		if expirationTime then
+			local duration = expirationTime - GetTime()
+			self:TargetBar(args.spellId, duration, args.destName)
+			self:SayCountdown(args.spellId, duration)
+		end
 	end
 end
 
