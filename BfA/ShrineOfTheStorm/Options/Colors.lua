@@ -48,7 +48,7 @@ BigWigs:AddColors("Shrine of the Storm Trash", {
 	[274437] = "orange",
 	[274631] = "orange",
 	[274633] = {"blue","purple"},
-	[276266] = "yellow",
+	[276265] = {"blue","yellow"},
 	[276268] = "red",
 	[276292] = "red",
 	[276297] = "blue",

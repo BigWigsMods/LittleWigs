@@ -48,7 +48,7 @@ BigWigs:AddSounds("Shrine of the Storm Trash", {
 	[274437] = "alert",
 	[274631] = "alert",
 	[274633] = "info",
-	[276266] = "info",
+	[276265] = "info",
 	[276268] = "alarm",
 	[276292] = "alarm",
 	[276297] = {"alarm","info"},
