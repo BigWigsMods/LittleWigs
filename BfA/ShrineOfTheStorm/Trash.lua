@@ -264,7 +264,7 @@ function mod:VoidSeedApplied(args)
 		self:TargetMessage(args.spellId, args.destName, "blue")
 		self:PlaySound(args.spellId, "alarm")
 		-- Duration seems to vary, so we can't hardcode a fixed duration
-		local expirationTime = select(6, self:UnitDebuff(args.destName, args.spellId))
+		local expirationTime = select(4, self:UnitDebuff(args.destName, args.spellId))
 		if expirationTime then
 			local duration = expirationTime - GetTime()
 			self:TargetBar(args.spellId, duration, args.destName)
@@ -277,7 +277,7 @@ function mod:VoidSeedRemoved(args)
 	if self:Me(args.destGUID) then
 		self:Message2(args.spellId, "blue", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
-		self:StopBar(args.spellId)
+		self:StopBar(args.spellId, args.destName)
 		self:CancelSayCountdown(args.spellId)
 	end
 end
