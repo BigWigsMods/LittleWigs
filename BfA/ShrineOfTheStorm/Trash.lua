@@ -164,7 +164,7 @@ function mod:AnchorOfBinding(args)
 end
 
 function mod:Swiftness(args)
-	self:Message2(args.spellId, "yellow")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
