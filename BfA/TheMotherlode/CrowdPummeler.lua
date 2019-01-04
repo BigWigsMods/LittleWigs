@@ -45,14 +45,19 @@ function mod:FootbombLauncher(args)
 	self:Bar(args.spellId, 33)
 end
 
-function mod:BlazingAzerite(args)
-	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "alarm")
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue")
-	elseif UnitGUID("boss1") == args.destGUID then
-		self:PlaySound(args.spellId, "info")
-		self:StackMessage(args.spellId, args.destName, args.amount, "green")
-		self:TargetBar(args.spellId, 15, args.destName) -- XXX Stacks on bar?
+do
+	local prev = ""
+	function mod:BlazingAzerite(args)
+		if self:Me(args.destGUID) then
+			self:PlaySound(args.spellId, "alarm")
+			self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+		elseif UnitGUID("boss1") == args.destGUID then
+			self:PlaySound(args.spellId, "info")
+			self:StackMessage(args.spellId, args.destName, args.amount, "green")
+			self:StopBar(prev, args.destName)
+			prev = CL.count:format(args.spellName, args.amount or 1)
+			self:TargetBar(args.spellId, 15, args.destName, prev)
+		end
 	end
 end
 

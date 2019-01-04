@@ -46,9 +46,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BarrelSmash", 256589)
 	self:Log("SPELL_CAST_SUCCESS", "GrapeShot", 258381)
 
-	self:Log("SPELL_CAST_START", "CritBrew", 265088)
-	self:Log("SPELL_CAST_START", "HasteBrew", 264608)
-	self:Log("SPELL_CAST_START", "CausticBrew", 265168)
+	self:Log("SPELL_CAST_SUCCESS", "CritBrew", 265088)
+	self:Log("SPELL_CAST_SUCCESS", "HasteBrew", 264608)
+	self:Log("SPELL_CAST_SUCCESS", "CausticBrew", 265168)
 	self:Log("SPELL_AURA_APPLIED", "CausticBrewDamage", 278467)
 	self:Log("SPELL_PERIODIC_DAMAGE", "CausticBrewDamage", 278467)
 

@@ -1,8 +1,10 @@
 
 BigWigs:AddSounds("Adderis and Aspix", {
 	[263246] = "info",
+	[263257] = "alarm",
+	[263309] = "alert",
 	[263371] = "warning",
-	[263573] = "alert",
+	[263424] = "alert",
 })
 
 BigWigs:AddSounds("Merektha", {
@@ -24,4 +26,18 @@ BigWigs:AddSounds("Avatar of Sethraliss", {
 	[269686] = "alarm",
 	[269688] = "info",
 	[273677] = "warning",
+})
+
+BigWigs:AddSounds("Temple of Sethraliss Trash", {
+	[258908] = {"alarm","alert"},
+	[264574] = "alarm",
+	[265912] = "alert",
+	[265968] = "alert",
+	[267237] = "alert",
+	[268008] = {"alert","info"},
+	[272657] = "alarm",
+	[272659] = {"alert","info"},
+	[272700] = "alert",
+	[273563] = "info",
+	[273995] = "alarm",
 })
