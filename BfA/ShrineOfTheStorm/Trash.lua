@@ -276,7 +276,7 @@ end
 
 function mod:VoidSeedRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Message2(args.spellId, "blue", CL.removed:format(args.destName))
+		self:Message2(args.spellId, "blue", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 		self:StopBar(args.spellId)
 		self:CancelSayCountdown(args.spellId)
