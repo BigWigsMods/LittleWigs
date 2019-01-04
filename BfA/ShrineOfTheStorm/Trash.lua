@@ -192,7 +192,8 @@ function mod:GaleWinds(args)
 end
 
 function mod:WindspeakerDeath(args)
-	self:StopBar(268187)
+	self:StopBar(268187) -- Gale Winds
+	self:StopBar(268184) -- Minor Swiftness Ward
 end
 
 function mod:MinorSwiftnessWard(args)
