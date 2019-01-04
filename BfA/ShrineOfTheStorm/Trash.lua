@@ -53,7 +53,7 @@ function mod:GetOptions()
 		267981, -- Protective Aura
 		-- Tidesage Spiritualist
 		268050, -- Anchor of Binding
-		276265, -- Spirit's Swiftness
+		276265, -- Swiftness
 		268030, -- Mending Rapids
 		-- Galecaller Apprentice
 		274437, -- Tempest
@@ -106,7 +106,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TidalSurge", 267977)
 	self:Log("SPELL_CAST_START", "ProtectiveAura", 267981)
 	self:Log("SPELL_CAST_SUCCESS", "AnchorOfBinding", 268050)
-	self:Log("SPELL_AURA_APPLIED", "SpiritsSwiftness", 276265)
+	self:Log("SPELL_AURA_APPLIED", "Swiftness", 276265)
 	self:Log("SPELL_CAST_START", "MendingRapids", 268030)
 	self:Log("SPELL_CAST_START", "Tempest", 274437)
 	self:Log("SPELL_CAST_START", "Windblast", 268177)
@@ -163,7 +163,7 @@ function mod:AnchorOfBinding(args)
 	end
 end
 
-function mod:SpiritsSwiftness(args)
+function mod:Swiftness(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
