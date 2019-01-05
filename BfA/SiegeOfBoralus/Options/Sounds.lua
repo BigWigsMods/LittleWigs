@@ -1,11 +1,11 @@
 
 BigWigs:AddSounds("Chopper Redhook", {
+	[257288] = "alert",
 	[257326] = "alarm",
 	[257348] = "alert",
 	[257459] = "warning",
 	[257585] = "warning",
 	[273721] = "alert",
-	[257288] = "alert",
 	["adds"] = "long",
 })
 
@@ -44,16 +44,16 @@ BigWigs:AddSounds("Viq'Goth", {
 })
 
 BigWigs:AddSounds("Siege of Boralus Trash", {
-	[268260] = "alarm",
-	[272874] = "info",
-	[275826] = {"info", "alarm"},
-	[272421] = "info",
-	[257169] = "alarm",
-	[272827] = "alert",
-	[257170] = "long",
-	[274569] = "alert",
-	[256957] = {"alert", "warning"},
 	[256627] = "alert",
-	[272711] = "alert",
+	[256957] = {"alert","warning"},
+	[257169] = "alarm",
+	[257170] = "long",
 	[257288] = "alert",
+	[268260] = "alarm",
+	[272421] = "info",
+	[272711] = "alert",
+	[272827] = "alert",
+	[272874] = "info",
+	[274569] = "alert",
+	[275826] = {"alarm","info"},
 })
