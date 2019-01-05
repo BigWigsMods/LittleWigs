@@ -282,19 +282,40 @@ function mod:VoidSeedRemoved(args)
 	end
 end
 
-function mod:MentalAssault(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:MentalAssault(args)
+		local t = args.time
+		if t-prev > 1 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:DetectThoughts(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:DetectThoughts(args)
+		local t = args.time
+		if t-prev > 1 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
-function mod:TouchOfTheDrowned(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:TouchOfTheDrowned(args)
+		local t = args.time
+		if t-prev > 1 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:TouchOfTheDrownedApplied(args)
@@ -315,16 +336,23 @@ function mod:LivingCurrentDeath(args)
 	self:StopBar(268027)
 end
 
-function mod:DeepSmash(args)
-	if self:Tank() then
-		self:Message2(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:DeepSmash(args)
+		local t = args.time
+		if self:Tank() and t-prev > 1 then
+			prev = t
+			self:Message2(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
-end
 
-function mod:DeepSmashSuccess(args)
-	if not self:Tank() then
-		self:Message2(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alert")
+	function mod:DeepSmashSuccess(args)
+		local t = args.time
+		if not self:Tank() and t-prev > 1 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
