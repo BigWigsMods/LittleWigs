@@ -145,14 +145,28 @@ function mod:HeavingBlow(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:TidalSurge(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:TidalSurge(args)
+		local t = args.time
+		if t-prev > 2 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:ProtectiveAura(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:ProtectiveAura(args)
+		local t = args.time
+		if t-prev > 2 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:AnchorOfBinding(args)
