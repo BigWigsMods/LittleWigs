@@ -10,18 +10,18 @@ if L then
 	-- L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
 end
 
-L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "ptBR")
+L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "koKR")
 if L then
-	L.templar = "Templário do Santuário"
-	L.spiritualist = "Espiritualista Sábia das Marés"
-	L.galecaller_apprentice = "Aprendiz de Chamaventos"
-	L.windspeaker = "Voz dos Ventos Heldis"
-	L.ironhull_apprentice = "Aprendiz Cascoférreo"
-	L.runecarver = "Entalhador de Runas Sorn"
-	L.guardian_elemental = "Elemental Guardião"
-	L.ritualist = "Ritualista Abissal"
-	L.cultist = "Sectário Abissal"
-	L.depthbringer = "Arauto das Profundezas Afogado"
-	L.living_current = "Corrente Viva"
-	L.enforcer = "Sábio das Marés Impositor"
+	L.templar = "사원 기사단원"
+	L.spiritualist = "파도현자 심령술사"
+	L.galecaller_apprentice = "강풍술사 수습생"
+	L.windspeaker = "바람예언자 헬디스"
+	L.ironhull_apprentice = "아이언헐 수습생"
+	L.runecarver = "룬조각사 소른"
+	L.guardian_elemental = "수호정령"
+	L.ritualist = "깊은바다 의식술사"
+	L.cultist = "심연의 이교도"
+	L.depthbringer = "익사한 심연인도자"
+	L.living_current = "살아있는 급류"
+	L.enforcer = "파도현자 집행자"
 end

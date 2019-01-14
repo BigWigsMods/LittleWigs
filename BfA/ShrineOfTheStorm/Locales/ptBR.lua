@@ -10,18 +10,18 @@ if L then
 	-- L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
 end
 
-L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "ruRU")
+L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "ptBR")
 if L then
-	L.templar = "Храмовник из Святилища Штормов"
-	L.spiritualist = "Жрица моря - спиритуалистка"
-	L.galecaller_apprentice = "Ученик призывательницы штормов"
-	L.windspeaker = "Говорящая с ветрами Хелдис"
-	L.ironhull_apprentice = "Ученик Айронхалла"
-	L.runecarver = "Резчик рун Сорн"
-	L.guardian_elemental = "Сторожевой элементаль"
-	L.ritualist = "Глубоководный ритуалист"
-	L.cultist = "Глубинный сектант"
-	L.depthbringer = "Утонувший вестник глубин"
-	L.living_current = "Живой поток"
-	L.enforcer = "Жрец моря - каратель"
+	L.templar = "Templário do Santuário"
+	L.spiritualist = "Espiritualista Sábia das Marés"
+	L.galecaller_apprentice = "Aprendiz de Chamaventos"
+	L.windspeaker = "Voz dos Ventos Heldis"
+	L.ironhull_apprentice = "Aprendiz Cascoférreo"
+	L.runecarver = "Entalhador de Runas Sorn"
+	L.guardian_elemental = "Elemental Guardião"
+	L.ritualist = "Ritualista Abissal"
+	L.cultist = "Sectário Abissal"
+	L.depthbringer = "Arauto das Profundezas Afogado"
+	L.living_current = "Corrente Viva"
+	L.enforcer = "Sábio das Marés Impositor"
 end
