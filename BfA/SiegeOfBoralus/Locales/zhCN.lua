@@ -17,3 +17,8 @@ L = BigWigs:NewBossLocale("Viq'Goth", "zhCN")
 if L then
 	L.demolishing_desc = "当攻城恐魔出现时的警报和计时器。"
 end
+
+L = BigWigs:NewBossLocale("Dread Captain Lockwood", "zhCN")
+if L then
+	L.ordanance_dropped = "易爆军火已掉落"
+end
