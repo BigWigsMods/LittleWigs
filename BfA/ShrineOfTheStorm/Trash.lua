@@ -261,11 +261,9 @@ function mod:ShipbreakerStorm(args)
 end
 
 function mod:ElectrifyingShock(args)
-	if self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "yellow")
-		self:PlaySound(args.spellId, "info")
-		self:CDBar(args.spellId, 15)
-	end
+	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 15)
 end
 
 function mod:UnendingDarkness(args)
