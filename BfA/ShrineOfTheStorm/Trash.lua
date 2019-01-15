@@ -72,7 +72,7 @@ function mod:GetOptions()
 		268214, -- Carve Flesh
 		-- Guardian Elemental
 		268239, -- Shipbreaker Storm
-		268233, -- Electrifying Shock
+		{268233, "DISPEL"}, -- Electrifying Shock
 		-- Tidesage Enforcer
 		268273, -- Deep Smash
 		-- Deepsea Ritualist
