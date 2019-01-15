@@ -261,7 +261,7 @@ function mod:ShipbreakerStorm(args)
 end
 
 function mod:ElectrifyingShock(args)
-	if self:Dispeller("magic") then
+	if self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, args.destName, "yellow")
 		self:PlaySound(args.spellId, "info")
 		self:CDBar(args.spellId, 15)
