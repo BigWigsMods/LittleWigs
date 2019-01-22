@@ -29,7 +29,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ToxicLeap", 250258)
-	self:Log("SPELL_CAST_SUCCESS", "NoxiousStench", 259572, 250368) -- Stage 1, Stage 2
+	self:Log("SPELL_CAST_SUCCESS", "NoxiousStench", 259572)
 	self:Log("SPELL_CAST_SUCCESS", "RapidDecay", 250241) -- Stage 2 start
 	self:Log("SPELL_AURA_APPLIED", "ToxicPool", 250585)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ToxicPool", 250585)
@@ -54,13 +54,9 @@ function mod:ToxicLeap(args)
 end
 
 function mod:NoxiousStench(args)
-	self:Message2(259572, "red")
-	if args.spellId == 250368 then -- Stage 2 cast not interruptable
-		self:PlaySound(259572, "alert")
-	elseif self:Interrupter() then
-		self:PlaySound(259572, "warning", "interrupt")
-	end
-	self:Bar(259572, args.spellId == 250368 and 18.2 or 24.3)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning", "interrupt")
+	self:CDBar(args.spellId, 19.5)
 end
 
 function mod:RapidDecay(args)
