@@ -98,8 +98,7 @@ end
 function mod:ConfigurationCombat(args)
 	self:Message2("stages", "cyan", args.spellName, args.spellId)
 	self:PlaySound("stages", "info")
-	-- XXX Update timers below
-	self:CDBar(260829, 5) -- Homing Missile
-	self:Bar(260280, 15) -- Gatling Gun
+	self:CDBar(260829, 9) -- Homing Missile
+	self:Bar(260280, 17) -- Gatling Gun
 	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
 end
