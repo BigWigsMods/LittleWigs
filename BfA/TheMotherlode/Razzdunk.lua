@@ -39,7 +39,6 @@ function mod:OnEngage()
 	self:Bar(260829, 5) -- Homing Missile
 	self:Bar(260280, 15) -- Gatling Gun
 	self:Bar(276229, 6)
-	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
 end
 
 --------------------------------------------------------------------------------
@@ -100,5 +99,4 @@ function mod:ConfigurationCombat(args)
 	self:PlaySound("stages", "info")
 	self:CDBar(260829, 9) -- Homing Missile
 	self:Bar(260280, 17) -- Gatling Gun
-	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
 end
