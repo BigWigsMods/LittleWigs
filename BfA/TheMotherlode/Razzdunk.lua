@@ -38,7 +38,7 @@ end
 function mod:OnEngage()
 	self:Bar(260829, 5) -- Homing Missile
 	self:Bar(260280, 15) -- Gatling Gun
-	self:Bar(276229, 6)
+	self:Bar(276229, 6) -- Micro Missiles
 end
 
 --------------------------------------------------------------------------------
