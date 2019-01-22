@@ -62,7 +62,6 @@ end
 function mod:RapidDecay(args)
 	self:Message2(args.spellId, "green")
 	self:PlaySound(args.spellId, "info", "stage2")
-	self:Bar(259572, 4.5) -- Noxious Stench
 end
 
 do
