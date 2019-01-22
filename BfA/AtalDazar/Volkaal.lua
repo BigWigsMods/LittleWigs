@@ -9,6 +9,12 @@ mod:RegisterEnableMob(122965)
 mod.engageId = 2085
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local toxicLeapCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -31,6 +37,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	toxicLeapCount = 0
 	self:Bar(250258, 2) -- Toxic Leap
 	self:Bar(259572, 6) -- Noxious Stench
 end
@@ -42,7 +49,8 @@ end
 function mod:ToxicLeap(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:Bar(args.spellId, 6)
+	self:Bar(args.spellId, (toxicLeapCount / 3) % 1 == 0 and 9 or 6)
+	toxicLeapCount = toxicLeapCount + 1
 end
 
 function mod:NoxiousStench(args)
