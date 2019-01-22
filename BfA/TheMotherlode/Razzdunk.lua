@@ -18,6 +18,7 @@ function mod:GetOptions()
 		260280, -- Gatling Gun
 		{260829, "ICON", "SAY"}, -- Homing Missile
 		271456, -- Drill Smash
+		276229, -- MicroMissiles
 		--270277, -- Big Red Rocket XXX Missing from logs, UNIT event?
 	}
 end
@@ -28,6 +29,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "HomingMissileRemoved", 260829)
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationDrill", 260189)
 	self:Log("SPELL_CAST_START", "DrillSmash", 271456)
+	self:Log("SPELL_CAST_START", "MicroMissiles", 276229)
 	--self:Log("SPELL_CAST_START", "BigRedRocket", 270277)
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationCombat", 260190)
 
@@ -36,6 +38,7 @@ end
 function mod:OnEngage()
 	self:Bar(260829, 5) -- Homing Missile
 	self:Bar(260280, 15) -- Gatling Gun
+	self:Bar(276229, 6)
 	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
 end
 
@@ -71,12 +74,20 @@ function mod:ConfigurationDrill(args)
 	self:PlaySound("stages", "info")
 	self:StopBar(260829) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
+	self:StopBar(276229) -- Micro Missiles
 end
 
 function mod:DrillSmash(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:Bar(args.spellId, 8.5)
+end
+
+function mod:MicroMissiles(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 20) -- 20 to 30 seconds
+	self:CastBar(args.spellId, 5)
 end
 
 -- function mod:BigRedRocket(args)
