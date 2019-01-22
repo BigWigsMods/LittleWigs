@@ -15,6 +15,12 @@ mod:RegisterEnableMob(
 mod.engageId = 2095
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local sharkTossCount = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -78,6 +84,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	sharkTossCount = 0
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
@@ -165,7 +172,8 @@ function mod:SharkToss(args)
 		self:TargetMessage2(args.spellId, args.destName, "yellow")
 	end
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CDBar(args.spellId, 29)
+	self:CDBar(args.spellId, sharkTossCount % 2 == 0 and 22 or 30)
+	sharkTossCount = sharkTossCount + 1
 end
 
 function mod:Rearm(args)
