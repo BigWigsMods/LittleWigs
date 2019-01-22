@@ -48,7 +48,7 @@ function mod:GetOptions()
 		257904, -- Shell Bounce
 		-- Trothak
 		256405, -- Sharknado
-		256358, -- Shark Toss
+		{256358, "SAY"}, -- Shark Toss
 		256489, -- Rearm
 	}, {
 		[257829] = L.lightning,
@@ -156,7 +156,14 @@ function mod:Sharknado(args)
 end
 
 function mod:SharkToss(args)
-	self:Message2(args.spellId, "yellow")
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+		self:PersonalMessage(args.spellId)
+	elseif IsItemInRange(37727, args.destName) then -- Worgsaw, 8yd
+		self:Message2(args.spellId, "yellow", CL.near:format(args.spellName))
+	else
+		self:TargetMessage2(args.spellId, args.destName, "yellow")
+	end
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 29)
 end
