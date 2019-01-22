@@ -62,6 +62,7 @@ end
 function mod:RapidDecay(args)
 	self:Message2(args.spellId, "green")
 	self:PlaySound(args.spellId, "info", "stage2")
+	self:StopBar(250258) -- Toxic Leap
 end
 
 do
