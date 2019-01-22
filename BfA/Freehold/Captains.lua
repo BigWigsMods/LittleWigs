@@ -101,7 +101,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(256979, name, "red")
+		self:TargetMessage2(256979, "red", name)
 	end
 
 	function mod:PowderShot(args)
