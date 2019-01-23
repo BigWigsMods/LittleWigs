@@ -88,9 +88,9 @@ do
 end
 
 function mod:Avastye(args)
-	self:Message2(args.spellId, "red", CL.add_spawned)
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "long", "addincoming")
-	self:CDBar(args.spellId, 18.2, CL.next_add)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:BlackPowderBomb(args)
