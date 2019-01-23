@@ -82,11 +82,18 @@ function mod:DrillSmash(args)
 	self:Bar(args.spellId, 8.5)
 end
 
-function mod:MicroMissiles(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 20) -- 20 to 30 seconds
-	self:CastBar(args.spellId, 5)
+do
+	local prev = 0
+	function mod:MicroMissiles(args)
+		local t = args.time
+		if t-prev > 2 then
+			prev = t
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+			self:CDBar(args.spellId, 20) -- 20 to 30 seconds
+			self:CastBar(args.spellId, 5)
+		end
+	end
 end
 
 -- function mod:BigRedRocket(args)
