@@ -56,7 +56,7 @@ end
 function mod:NoxiousStench(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
-	self:CDBar(args.spellId, 19.5)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:RapidDecay(args)
