@@ -50,7 +50,7 @@ function mod:ToxicLeap(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	-- Every third leap has a longer timer, starting with the first
-	self:Bar(args.spellId, (toxicLeapCount / 3) % 1 == 0 and 9 or 6)
+	self:Bar(args.spellId, toxicLeapCount % 3 == 0 and 9 or 6)
 	toxicLeapCount = toxicLeapCount + 1
 end
 
