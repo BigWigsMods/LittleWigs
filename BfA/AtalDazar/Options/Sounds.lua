@@ -11,7 +11,7 @@ BigWigs:AddSounds("Vol'kaal", {
 	[250241] = "info",
 	[250258] = "alert",
 	[250585] = "alarm",
-	[259572] = {"alert","warning"},
+	[259572] = "warning",
 })
 
 BigWigs:AddSounds("Rezan", {
