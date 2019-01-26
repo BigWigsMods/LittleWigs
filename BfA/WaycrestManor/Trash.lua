@@ -263,7 +263,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(264038, name, "orange") -- Uproot
+		self:TargetMessage2(264038, "orange", name) -- Uproot
 		self:PlaySound(264038, "alarm") -- Uproot
 	end
 
