@@ -5,6 +5,7 @@
 <Script file="Council.lua"/>
 <Script file="Stormsong.lua"/>
 <Script file="Volzith.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 
