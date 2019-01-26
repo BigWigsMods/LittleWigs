@@ -56,7 +56,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(260741, name, "orange") -- Jagged Nettles
+		self:TargetMessage2(260741, "orange", name) -- Jagged Nettles
 		self:PlaySound(260741, "alarm") -- Jagged Nettles
 	end
 
