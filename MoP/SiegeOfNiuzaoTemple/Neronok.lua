@@ -97,8 +97,8 @@ end
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextWindsWarning then
-		self:Message("stages", "yellow", nil, CL.soon:format(self:SpellName(-6297)), false) -- -6297 = Treacherous Winds
 		nextWindsWarning = nextWindsWarning - 30
+		self:Message("stages", "yellow", nil, CL.soon:format(self:SpellName(-6297)), false) -- -6297 = Treacherous Winds
 		if nextWindsWarning < 40 then
 			self:UnregisterUnitEvent(event, unit)
 		end

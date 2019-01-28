@@ -54,8 +54,8 @@ end
 function mod:RageWarn(event, unitId)
 	local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 	if hp < 55 then
-		self:Message(-5611, "green", "Info", CL["soon"]:format(self:SpellName(116140)), false) -- Bloody Rage
 		self:UnregisterUnitEvent(event, unitId)
+		self:Message(-5611, "green", "Info", CL["soon"]:format(self:SpellName(116140)), false) -- Bloody Rage
 	end
 end
 

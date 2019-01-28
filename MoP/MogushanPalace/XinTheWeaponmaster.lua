@@ -70,8 +70,8 @@ end
 function mod:StageWarn(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 70 and stage == 1 then
-		self:Message("blades", "green", nil, CL.soon:format(self:SpellName(L.blades)), false)
 		stage = 2
+		self:Message("blades", "green", nil, CL.soon:format(self:SpellName(L.blades)), false)
 	elseif hp < 39 and stage == 2 then
 		self:UnregisterUnitEvent(event, unit)
 		self:Message("crossbows", "green", nil, CL.soon:format(self:SpellName(L.crossbows)), false)
