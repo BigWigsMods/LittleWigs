@@ -12,16 +12,16 @@ end
 
 L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "zhTW")
 if L then
-	-- L.templar = "Shrine Templar"
-	-- L.spiritualist = "Tidesage Spiritualist"
-	-- L.galecaller_apprentice = "Galecaller Apprentice"
-	-- L.windspeaker = "Windspeaker Heldis"
-	-- L.ironhull_apprentice = "Ironhull Apprentice"
-	-- L.runecarver = "Runecarver Sorn"
-	-- L.guardian_elemental = "Guardian Elemental"
-	-- L.ritualist = "Deepsea Ritualist"
-	-- L.cultist = "Abyssal Cultist"
-	-- L.depthbringer = "Drowned Depthbringer"
-	-- L.living_current = "Living Current"
-	-- L.enforcer = "Tidesage Enforcer"
+	L.templar = "聖壇護衛"
+	L.spiritualist = "浪潮賢者降靈師"
+	L.galecaller_apprentice = "喚風者學徒"
+	L.windspeaker = "風語者海蒂絲"
+	L.ironhull_apprentice = "鐵甲學徒"
+	L.runecarver = "符刻師索恩"
+	L.guardian_elemental = "守護者元素"
+	L.ritualist = "深海祭儀師"
+	L.cultist = "深海教徒"
+	L.depthbringer = "溺沒的深海使者"
+	L.living_current = "活化海流"
+	L.enforcer = "浪潮賢者執法官"
 end
