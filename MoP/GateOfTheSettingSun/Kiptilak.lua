@@ -64,8 +64,8 @@ end
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextExplosionWarning then
-		self:Message(-5394, "yellow", nil, CL.soon:format(self:SpellName(-5394)))
 		nextExplosionWarning = nextExplosionWarning - 40
+		self:Message(-5394, "yellow", nil, CL.soon:format(self:SpellName(-5394)))
 		if nextExplosionWarning < 30 then
 			self:UnregisterUnitEvent(event, unit)
 		end

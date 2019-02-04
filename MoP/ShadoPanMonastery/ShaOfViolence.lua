@@ -52,7 +52,7 @@ end
 function mod:EnrageSoon(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 25 then
-		self:Message(-5813, "green", "Info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
 		self:UnregisterUnitEvent(event, unit)
+		self:Message(-5813, "green", "Info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
 	end
 end
