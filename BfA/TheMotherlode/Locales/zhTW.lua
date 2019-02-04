@@ -5,7 +5,7 @@ if L then
 	L.assassin = "受雇的刺客"
 	L.jockey = "機甲駕駛員"
 	L.earthshaper = "風險投資公司塑地者"
-	l.stonefury = "石怒"
+	L.stonefury = "石怒"
 	L.assistant = "打混裝忙的助理"
 	L.technician = "專家技師"
 	L.mastermind = "風險投資公司高階主管"
