@@ -54,7 +54,7 @@ end
 
 function mod:Upheaval(args)
 	self:Bar(args.spellId, 42)
-	self:CastBar(args.spellId, 5)
+	self:CastBar(args.spellId, 4.35)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
