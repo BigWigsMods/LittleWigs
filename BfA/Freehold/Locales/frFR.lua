@@ -25,15 +25,15 @@ end
 
 L = BigWigs:NewBossLocale("Council o' Captains", "frFR")
 if L then
-	--L.crit_brew = "Crit Brew"
-	--L.haste_brew = "Haste Brew"
-	--L.bad_brew = "Bad Brew"
+	L.crit_brew = "Brevage de critique"
+	L.haste_brew = "Brevage de hâte"
+	L.bad_brew = "Brevage néfaste"
 end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "frFR")
 if L then
-	-- L.custom_on_autotalk = "Autotalk"
-	-- L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
+	 L.custom_on_autotalk = "Parler automatiquement"
+	 L.custom_on_autotalk_desc = "Selectionne instantanément l'option des ragots pour commencer le combat."
 
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
 	-- L.lightning_warmup = "new set of vict--"
