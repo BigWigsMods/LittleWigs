@@ -165,12 +165,8 @@ end
 function mod:SharkToss(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
-		self:PersonalMessage(args.spellId)
-	elseif IsItemInRange(37727, args.destName) then -- Worgsaw, 8yd
-		self:Message2(args.spellId, "yellow", CL.near:format(args.spellName))
-	else
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
 	end
+	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, sharkTossCount % 2 == 0 and 22 or 30)
 	sharkTossCount = sharkTossCount + 1
