@@ -32,7 +32,7 @@ function mod:GetOptions()
 		258338, -- Blackout Barrel
 		256589, -- Barrel Smash
 		258381, -- Grape Shot
-		{256979, "ME_ONLY"}, -- Powder Shot
+		256979, -- Powder Shot
 		--[[ Tending Bar ]]--
 		265088, -- Confidence-Boosting Brew (Crit)
 		264608, -- Invigorating Brew (Haste)
@@ -101,8 +101,10 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(256979, "red", name)
-		self:PlaySound(256979, "alert")
+		if self:Me(guid) or self:Healer() then
+			self:TargetMessage2(256979, "red", name)
+			self:PlaySound(256979, "alert")
+		end
 	end
 
 	function mod:PowderShot(args)
