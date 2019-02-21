@@ -75,7 +75,7 @@ function mod:GetOptions()
 		265741, -- Drain Soul Essence
 		-- Coven Thornshaper
 		264050, -- Infected Thorn
-		264038, -- Uproot
+		{264038, "SAY"}, -- Uproot
 		-- Thornguard
 		264556, -- Tearing Strike
 		264150, -- Shatter
