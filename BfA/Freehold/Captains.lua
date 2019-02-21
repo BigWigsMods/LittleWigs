@@ -102,6 +102,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage2(256979, "red", name)
+		self:PlaySound(256979, "alert")
 	end
 
 	function mod:PowderShot(args)
