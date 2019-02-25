@@ -18,7 +18,7 @@ function mod:GetOptions()
 		260280, -- Gatling Gun
 		{260829, "ICON", "SAY"}, -- Homing Missile
 		271456, -- Drill Smash
-		276229, -- MicroMissiles
+		276229, -- Micro Missiles
 		--270277, -- Big Red Rocket XXX Missing from logs, UNIT event?
 	}
 end
