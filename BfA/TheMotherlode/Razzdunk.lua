@@ -90,7 +90,6 @@ do
 			prev = t
 			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
-			self:Bar(args.spellId, 18, CL.soon:format(args.spellName)) -- Timer for when B.O.O.M.B.A. changes position
 			self:CastBar(args.spellId, 5)
 		end
 	end
