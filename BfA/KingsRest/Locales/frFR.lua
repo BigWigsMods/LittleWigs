@@ -30,6 +30,6 @@ if L then
 	L.brute = "Brute spectrale"
 	L.zul = "Ombre de Zul"
 
-	-- L.casting_on_you = "Casting %s on YOU"
-	-- L.casting_on_other = "Casting %s: %s"
+	 L.casting_on_you = "Est en train d'incanter %s sur VOUS"
+	 L.casting_on_other = "Est en train d'incanter %s: %s"
 end
