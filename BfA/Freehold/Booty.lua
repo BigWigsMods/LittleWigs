@@ -15,6 +15,12 @@ mod:RegisterEnableMob(
 mod.engageId = 2095
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local sharkTossCount = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -48,7 +54,7 @@ function mod:GetOptions()
 		257904, -- Shell Bounce
 		-- Trothak
 		256405, -- Sharknado
-		256358, -- Shark Toss
+		{256358, "SAY"}, -- Shark Toss
 		256489, -- Rearm
 	}, {
 		[257829] = L.lightning,
@@ -78,6 +84,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	sharkTossCount = 0
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
@@ -156,9 +163,13 @@ function mod:Sharknado(args)
 end
 
 function mod:SharkToss(args)
-	self:Message2(args.spellId, "yellow")
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
+	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CDBar(args.spellId, 29)
+	self:CDBar(args.spellId, sharkTossCount % 2 == 0 and 22 or 30)
+	sharkTossCount = sharkTossCount + 1
 end
 
 function mod:Rearm(args)
