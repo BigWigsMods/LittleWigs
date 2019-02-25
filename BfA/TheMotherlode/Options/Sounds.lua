@@ -23,6 +23,7 @@ BigWigs:AddSounds("Mogul Razzdunk", {
 	[260280] = "alert",
 	[260829] = "warning",
 	[271456] = "alert",
+	[276229] = "alarm",
 	["stages"] = "info",
 })
 
