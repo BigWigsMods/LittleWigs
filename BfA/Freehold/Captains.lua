@@ -108,7 +108,7 @@ do
 	end
 
 	function mod:PowderShot(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetBossTarget(printTarget, 1, args.sourceGUID)
 	end
 end
 
