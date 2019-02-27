@@ -10,6 +10,7 @@ BigWigs:AddColors("Skycap'n Kragg", {
 
 BigWigs:AddColors("Council o' Captains", {
 	[256589] = "orange",
+	[256979] = {"blue","red"},
 	[258338] = "yellow",
 	[258381] = "red",
 	[264608] = "green",
@@ -18,7 +19,7 @@ BigWigs:AddColors("Council o' Captains", {
 })
 
 BigWigs:AddColors("Ring of Booty", {
-	[256358] = "yellow",
+	[256358] = {"blue","yellow"},
 	[256405] = "red",
 	[256489] = "cyan",
 	[257829] = {"blue","cyan","green"},

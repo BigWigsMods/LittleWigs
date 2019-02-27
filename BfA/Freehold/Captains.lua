@@ -32,6 +32,7 @@ function mod:GetOptions()
 		258338, -- Blackout Barrel
 		256589, -- Barrel Smash
 		258381, -- Grape Shot
+		256979, -- Powder Shot
 		--[[ Tending Bar ]]--
 		265088, -- Confidence-Boosting Brew (Crit)
 		264608, -- Invigorating Brew (Haste)
@@ -45,6 +46,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BlackoutBarrel", 258338)
 	self:Log("SPELL_CAST_START", "BarrelSmash", 256589)
 	self:Log("SPELL_CAST_SUCCESS", "GrapeShot", 258381)
+	self:Log("SPELL_CAST_START", "PowderShot", 256979)
 
 	self:Log("SPELL_CAST_SUCCESS", "CritBrew", 265088)
 	self:Log("SPELL_CAST_SUCCESS", "HasteBrew", 264608)
@@ -95,6 +97,19 @@ function mod:GrapeShot(args)
 	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "watchstep")
 	self:CDBar(args.spellId, 30.4)
+end
+
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) or self:Healer() then
+			self:TargetMessage2(256979, "red", name) -- Powder Shot
+			self:PlaySound(256979, "alert") -- Powder Shot
+		end
+	end
+
+	function mod:PowderShot(args)
+		self:GetBossTarget(printTarget, 1, args.sourceGUID)
+	end
 end
 
 function mod:CritBrew(args)

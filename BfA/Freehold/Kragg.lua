@@ -70,7 +70,7 @@ end
 function mod:AzeritePowderShot(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 12.5)
+	self:CDBar(args.spellId, 11)
 end
 
 function mod:RevitalizingBrew(args)

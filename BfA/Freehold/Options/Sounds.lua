@@ -10,6 +10,7 @@ BigWigs:AddSounds("Skycap'n Kragg", {
 
 BigWigs:AddSounds("Council o' Captains", {
 	[256589] = "long",
+	[256979] = "alert",
 	[258338] = "alert",
 	[258381] = "warning",
 	[264608] = "info",
