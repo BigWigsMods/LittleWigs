@@ -18,6 +18,7 @@ function mod:GetOptions()
 		260280, -- Gatling Gun
 		{260829, "ICON", "SAY"}, -- Homing Missile
 		271456, -- Drill Smash
+		276229, -- Micro Missiles
 		--270277, -- Big Red Rocket XXX Missing from logs, UNIT event?
 	}
 end
@@ -28,6 +29,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "HomingMissileRemoved", 260829)
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationDrill", 260189)
 	self:Log("SPELL_CAST_START", "DrillSmash", 271456)
+	self:Log("SPELL_CAST_START", "MicroMissiles", 276229)
 	--self:Log("SPELL_CAST_START", "BigRedRocket", 270277)
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationCombat", 260190)
 
@@ -36,7 +38,6 @@ end
 function mod:OnEngage()
 	self:Bar(260829, 5) -- Homing Missile
 	self:Bar(260280, 15) -- Gatling Gun
-	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
 end
 
 --------------------------------------------------------------------------------
@@ -73,10 +74,29 @@ function mod:ConfigurationDrill(args)
 	self:StopBar(260280) -- Gatling Gun
 end
 
-function mod:DrillSmash(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:Bar(args.spellId, 8.5)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(271456, "orange", name)
+		self:PlaySound(271456, "alert", "watchstep")
+	end
+
+	function mod:DrillSmash(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:Bar(args.spellId, 8.5)
+	end
+end
+
+do
+	local prev = 0
+	function mod:MicroMissiles(args)
+		local t = args.time
+		if t-prev > 2 then
+			prev = t
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+			self:CastBar(args.spellId, 5)
+		end
+	end
 end
 
 -- function mod:BigRedRocket(args)
@@ -87,8 +107,6 @@ end
 function mod:ConfigurationCombat(args)
 	self:Message2("stages", "cyan", args.spellName, args.spellId)
 	self:PlaySound("stages", "info")
-	-- XXX Update timers below
-	self:CDBar(260829, 5) -- Homing Missile
-	self:Bar(260280, 15) -- Gatling Gun
-	self:Bar("stages", 49, self:SpellName(260189), 260189) -- Configuration: Drill
+	self:CDBar(260829, 9) -- Homing Missile
+	self:Bar(260280, 17) -- Gatling Gun
 end
