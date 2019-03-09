@@ -54,7 +54,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:PlaySound("stages", "long", "stage2")
 
 		self:CDBar(256106, 7) -- Azerite Powder Shot
-		self:CDBar(256060, 27.5) -- Revitalizing Brew
 	end
 end
 
@@ -79,7 +78,6 @@ end
 function mod:RevitalizingBrew(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
-	self:CDBar(args.spellId, 28.5)
 end
 
 do
