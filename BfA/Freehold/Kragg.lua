@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Skycap'n Kragg", 1754, 2102)
 if not mod then return end
 mod:RegisterEnableMob(126832)
 mod.engageId = 2093
+mod.respawnTime = 25
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -24,9 +25,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+
 	-- Stage 1
 	self:Log("SPELL_CAST_START", "Charrrrrge", 255952)
-	self:Log("SPELL_CAST_SUCCESS", "SpawnParrot", 256056) -- Stage 2 XXX Does not exist anymore?
 
 	-- Stage 2
 	self:Log("SPELL_CAST_START", "DiveBomb", 272046)
@@ -45,20 +47,20 @@ end
 -- Event Handlers
 --
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 256056 then -- Spawn Parrot
+		self:StopBar(255952) -- Charrrrrge
+		self:Message2("stages", "cyan", CL.stage:format(2), false)
+		self:PlaySound("stages", "long", "stage2")
+
+		self:CDBar(256106, 7) -- Azerite Powder Shot
+	end
+end
 
 function mod:Charrrrrge(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 8.5)
-end
-
-function mod:SpawnParrot()
-	self:StopBar(255952) -- Charrrrrge
-	self:Message2("stages", "cyan", CL.stage:format(2), false)
-	self:PlaySound("stages", "info", "stage2")
-
-	self:CDBar(256106, 6) -- Azerite Powder Shot
-	self:CDBar(256060, 27.5) -- Revitalizing Brew
 end
 
 function mod:DiveBomb(args)
@@ -76,7 +78,6 @@ end
 function mod:RevitalizingBrew(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
-	self:CDBar(args.spellId, 28.5)
 end
 
 do
