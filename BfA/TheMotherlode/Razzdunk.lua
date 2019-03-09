@@ -38,7 +38,6 @@ end
 function mod:OnEngage()
 	self:Bar(260829, 5) -- Homing Missile
 	self:Bar(260280, 15) -- Gatling Gun
-	self:Bar(276229, 6) -- Micro Missiles
 end
 
 --------------------------------------------------------------------------------
@@ -73,13 +72,18 @@ function mod:ConfigurationDrill(args)
 	self:PlaySound("stages", "info")
 	self:StopBar(260829) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
-	self:StopBar(276229) -- Micro Missiles
 end
 
-function mod:DrillSmash(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:Bar(args.spellId, 8.5)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(271456, "orange")
+		self:PlaySound(271456, "alert", "watchstep")
+	end
+
+	function mod:DrillSmash(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:Bar(args.spellId, 8.5)
+	end
 end
 
 do
