@@ -76,7 +76,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(271456, "orange")
+		self:TargetMessage2(271456, "orange", name)
 		self:PlaySound(271456, "alert", "watchstep")
 	end
 
