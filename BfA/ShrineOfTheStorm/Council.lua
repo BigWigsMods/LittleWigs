@@ -70,6 +70,7 @@ end
 function mod:BlessingofIronsides(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+	self:Bar(args.spellId, 33)
 	self:CastBar(args.spellId, 8)
 end
 
