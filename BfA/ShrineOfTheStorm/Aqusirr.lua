@@ -24,11 +24,11 @@ end
 function mod:GetOptions()
 	return {
 		"warmup",
+		"stages",
 		265001, -- Sea Blast
 		264560, -- Choking Brine
 		264101, -- Surging Rush
 		264166, -- Undertow
-		264903, -- Erupting Waters
 		264526, -- Grasp from the Depths
 	}
 end
@@ -42,12 +42,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SurgingRush", 264101)
 	self:Log("SPELL_CAST_SUCCESS", "Undertow", 264166, 264144)
 	self:Log("SPELL_CAST_START", "EruptingWaters", 264903)
+	self:Log("SPELL_AURA_REMOVED", "EruptingWatersRemoved", 264903)
 	self:Log("SPELL_AURA_APPLIED", "GraspFromTheDepths", 264526)
 end
 
 function mod:OnEngage()
-	self:Bar(264560, 12) -- Choking Brine _success
+	self:Bar(264560, 9.5) -- Choking Brine _success
 	self:Bar(264101, 15.5) -- Surging Rush _start
+	self:Bar(264526, 24) -- Grasp from the Depths _success
 	self:Bar(264166, 32) -- Undertow _success
 end
 
@@ -128,10 +130,19 @@ function mod:GraspFromTheDepths(args)
 end
 
 function mod:EruptingWaters(args)
-	self:Message2(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "long", "intermission")
+	self:Message2("stages", "cyan", CL.intermission)
+	self:PlaySound("stages", "long", "intermission")
 	self:Bar(264560, 13.5) -- Choking Brine _success
 	self:Bar(264101, 18.5) -- Surging Rush _start
 	self:Bar(264166, 28.5) -- Undertow _success
-	self:Bar(264526, 38) -- Grasp from the Depths _applied
+	self:Bar(264526, 32) -- Grasp from the Depths _applied
+end
+
+function mod:EruptingWatersRemoved(args)
+	self:Message2("stages", "cyan", CL.over:format(CL.intermission))
+	self:PlaySound("stages", "long")
+	self:Bar(264560, 9.5) -- Choking Brine _success
+	self:Bar(264101, 15.5) -- Surging Rush _start
+	self:Bar(264526, 24) -- Grasp from the Depths _success
+	self:Bar(264166, 32) -- Undertow _success
 end
