@@ -18,7 +18,7 @@ function mod:GetOptions()
 		--267830, -- Blessing of the Tempest XXX Was not in normal?
 		267818, -- Slicing Blast
 		267905, -- Reinforcing Ward
-		--{267901, "TANK"}, -- Blessing of Ironsides XXX Not used in normal?
+		{267901, "TANK"}, -- Blessing of Ironsides
 		{267899, "TANK"}, -- Hindering Cleave
 	}
 end
@@ -29,7 +29,7 @@ function mod:OnBossEnable()
 	--self:Log("SPELL_CAST_SUCCESS", "BlessingoftheTempest", 267830)
 	self:Log("SPELL_CAST_START", "SlicingBlast", 267818)
 	self:Log("SPELL_CAST_START", "ReinforcingWard", 267905)
-	--self:Log("SPELL_CAST_START", "BlessingofIronsides", 267901)
+	self:Log("SPELL_CAST_START", "BlessingofIronsides", 267901)
 	self:Log("SPELL_CAST_START", "HinderingCleave", 267899)
 end
 
@@ -75,11 +75,11 @@ function mod:ReinforcingWard(args)
 	self:Bar(args.spellId, 30)
 end
 
--- function mod:BlessingofIronsides(args)
--- 	self:Message2(args.spellId, "red")
--- 	self:PlaySound(args.spellId, "warning")
--- 	self:CastBar(args.spellId, 8)
--- end
+function mod:BlessingofIronsides(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+	self:CastBar(args.spellId, 8)
+end
 
 function mod:HinderingCleave(args)
 	self:Message2(args.spellId, "yellow")
