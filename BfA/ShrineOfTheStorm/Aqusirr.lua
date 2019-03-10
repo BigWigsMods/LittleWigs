@@ -29,6 +29,7 @@ function mod:GetOptions()
 		264101, -- Surging Rush
 		264166, -- Undertow
 		264903, -- Erupting Waters
+		264526, -- Grasp from the Depths
 	}
 end
 
@@ -41,6 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SurgingRush", 264101)
 	self:Log("SPELL_CAST_SUCCESS", "Undertow", 264166, 264144)
 	self:Log("SPELL_CAST_START", "EruptingWaters", 264903)
+	self:Log("SPELL_AURA_APPLIED", "GraspFromTheDepths", 264526)
 end
 
 function mod:OnEngage()
@@ -117,6 +119,11 @@ do
 			self:Bar(264166, 32)
 		end
 	end
+end
+
+function mod:GraspFromTheDepths(args)
+	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:EruptingWaters(args)
