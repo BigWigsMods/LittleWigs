@@ -124,6 +124,7 @@ end
 function mod:GraspFromTheDepths(args)
 	self:TargetMessage2(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 32)
 end
 
 function mod:EruptingWaters(args)
@@ -132,4 +133,5 @@ function mod:EruptingWaters(args)
 	self:Bar(264560, 13.5) -- Choking Brine _success
 	self:Bar(264101, 18.5) -- Surging Rush _start
 	self:Bar(264166, 28.5) -- Undertow _success
+	self:Bar(264526, 38) -- Grasp from the Depths _applied
 end
