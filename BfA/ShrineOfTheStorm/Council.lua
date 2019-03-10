@@ -15,7 +15,6 @@ mod.engageId = 2131
 function mod:GetOptions()
 	return {
 		267891, -- Swiftness Ward
-		--267830, -- Blessing of the Tempest XXX Was not in normal?
 		267818, -- Slicing Blast
 		267905, -- Reinforcing Ward
 		{267901, "TANK"}, -- Blessing of Ironsides
@@ -26,7 +25,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SwiftnessWard", 267891)
 	self:Log("SPELL_AURA_APPLIED", "SwiftnessWardApplied", 267888)
-	--self:Log("SPELL_CAST_SUCCESS", "BlessingoftheTempest", 267830)
 	self:Log("SPELL_CAST_START", "SlicingBlast", 267818)
 	self:Log("SPELL_CAST_START", "ReinforcingWard", 267905)
 	self:Log("SPELL_CAST_START", "BlessingofIronsides", 267901)
@@ -55,12 +53,6 @@ function mod:SwiftnessWardApplied(args)
 		self:PlaySound(267891, "info")
 	end
 end
-
--- function mod:BlessingoftheTempest(args)
--- 	self:Message2(args.spellId, "orange")
--- 	self:PlaySound(args.spellId, "warning")
--- 	self:CastBar(args.spellId, 11)
--- end
 
 function mod:SlicingBlast(args)
 	self:Message2(args.spellId, "yellow")
