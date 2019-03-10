@@ -27,6 +27,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:Bar(255371, 12) -- Terrifying Visage
+	self:Bar(257407, 22) -- Pursuit
+	self:CDBar(255434, 6) -- Serrated Teeth
 end
 
 --------------------------------------------------------------------------------
