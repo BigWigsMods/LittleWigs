@@ -79,7 +79,7 @@ do
 		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "yellow")
-			--self:Bar(args.spellId, 32) XXX Need more info
+			self:Bar(args.spellId, 32)
 		end
 	end
 end
@@ -99,7 +99,7 @@ do
 			prev = t
 			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
-			--self:Bar(args.spellId, 32) XXX Need more info
+			self:Bar(args.spellId, 32)
 		end
 	end
 end
@@ -114,7 +114,7 @@ do
 			if self:Me(args.destGUID) then
 				self:PlaySound(264166, "warning")
 			end
-			--self:Bar(264166, 32) XXX Need more info
+			self:Bar(264166, 32)
 		end
 	end
 end
