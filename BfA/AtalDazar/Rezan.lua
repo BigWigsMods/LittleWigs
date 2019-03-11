@@ -23,11 +23,13 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TerrifyingVisage", 255371)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Pursuit
-	--self:Log("SPELL_CAST_START", "Pursuit", 257407)
 	self:Log("SPELL_CAST_SUCCESS", "SerratedTeeth", 255434)
 end
 
 function mod:OnEngage()
+	self:Bar(255371, 12) -- Terrifying Visage
+	self:Bar(257407, 22) -- Pursuit
+	self:CDBar(255434, 6) -- Serrated Teeth
 end
 
 --------------------------------------------------------------------------------
@@ -53,13 +55,6 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 		self:Bar(257407, 35.2)
 	end
 end
-
--- XXX Remove if not needed
--- function mod:Pursuit(args)
---	 self:Message2(args.spellId, "orange")
---	 self:PlaySound(args.spellId, "alarm")
---	 self:Bar(args.spellId, 35.2)
--- end
 
 function mod:SerratedTeeth(args)
 	self:Message2(args.spellId, "yellow")
