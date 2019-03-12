@@ -28,7 +28,7 @@ function mod:GetOptions()
 		268347, -- Void Bolt
 		269097, -- Waken the Void
 		269131, -- Ancient Mindbender
-		268896, -- Mind Rend
+		{268896, "DISPEL"}, -- Mind Rend
 	}
 end
 
