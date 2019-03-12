@@ -26,7 +26,7 @@ function mod:GetOptions()
 		"warmup",
 		"stages",
 		265001, -- Sea Blast
-		264560, -- Choking Brine
+		{264560, "DISPEL"}, -- Choking Brine
 		264101, -- Surging Rush
 		264166, -- Undertow
 		264526, -- Grasp from the Depths
@@ -82,15 +82,14 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
 			self:Bar(args.spellId, 32)
 		end
 	end
 end
 
 function mod:ChokingBrineApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(264560)
+	if self:Dispeller("magic", nil, 264560) or self:Me(args.destGUID) then
+		self:TargetMessage2(264560, "yellow", args.destName)
 		self:PlaySound(264560, "alarm")
 	end
 end
