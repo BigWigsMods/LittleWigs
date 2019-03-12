@@ -28,6 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SlicingBlast", 267818)
 	self:Log("SPELL_CAST_START", "ReinforcingWard", 267905)
 	self:Log("SPELL_CAST_START", "BlessingofIronsides", 267901)
+	self:Log("SPELL_AURA_APPLIED", "BlessingofIronsidesApplied", 267901)
 	self:Log("SPELL_CAST_START", "HinderingCleave", 267899)
 end
 
@@ -71,7 +72,10 @@ function mod:BlessingofIronsides(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 33)
-	self:CastBar(args.spellId, 8)
+end
+
+function mod:BlessingofIronsidesApplied(args)
+	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 function mod:HinderingCleave(args)
