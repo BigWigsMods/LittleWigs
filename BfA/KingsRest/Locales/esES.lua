@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Dazar, The First King", "esES") or BigWigs:NewBossLocale("Dazar, The First King", "esMX")
 if not L then return end
 if L then
-	-- L.spears_active = "Spear Launchers Active"
+	L.spears_active = "Lanzadores de lanzas Activos"
 end
 
 L = BigWigs:NewBossLocale("King's Rest Trash", "esES") or BigWigs:NewBossLocale("King's Rest Trash", "esMX")
@@ -30,6 +30,6 @@ if L then
 	L.brute = "Bruto espectral"
 	L.zul = "Sombra de Zul"
 
-	-- L.casting_on_you = "Casting %s on YOU"
-	-- L.casting_on_other = "Casting %s: %s"
+	L.casting_on_you = "Lanzando %s en TI"
+	L.casting_on_other = "Lanzando %s: %s"
 end
