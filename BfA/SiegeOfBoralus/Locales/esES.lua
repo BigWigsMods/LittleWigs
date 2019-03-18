@@ -15,5 +15,5 @@ end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "esES") or BigWigs:NewBossLocale("Viq'Goth", "esMX")
 if L then
-	-- L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
+	L.demolishing_desc = "Alertas y temporizadores para cuando aparece el Terror demoledor."
 end
