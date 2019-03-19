@@ -68,7 +68,7 @@ do
 	local prev = 0
 	function mod:SeaBlast(args)
 		local t = args.time
-		if t-prev > 6 then
+		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
