@@ -88,7 +88,7 @@ function mod:OnEngage()
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
-	self:CDBar(256358, 17) -- Shark Toss
+	self:CDBar(256358, 14) -- Shark Toss
 	self:CDBar(256405, 23) -- Sharknado
 	self:CDBar(256489, 46) -- Rearm
 end
@@ -168,7 +168,7 @@ function mod:SharkToss(args)
 	end
 	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CDBar(args.spellId, sharkTossCount % 2 == 0 and 22 or 30)
+	self:CDBar(args.spellId, sharkTossCount % 2 == 0 and 30 or 20)
 	sharkTossCount = sharkTossCount + 1
 end
 
