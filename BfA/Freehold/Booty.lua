@@ -168,6 +168,7 @@ do
 		local t = args.time
 		-- Starts with either 20s or 30s timer and then alternates
 		self:CDBar(args.spellId, t-prev < 25 and 30 or 20)
+		prev = t
 	end
 end
 
