@@ -87,10 +87,13 @@ do
 	end
 end
 
-function mod:ChokingBrineApplied(args)
-	if self:Dispeller("magic", nil, 264560) or self:Me(args.destGUID) then
-		self:TargetMessage2(264560, "yellow", args.destName)
-		self:PlaySound(264560, "alarm")
+do
+	local playerList = mod:NewTargetList()
+	function mod:ChokingBrineApplied(args)
+		if self:Dispeller("magic", nil, 264560) or self:Me(args.destGUID) then
+			self:TargetsMessage(264560, "yellow", playerList, 3)
+			self:PlaySound(264560, "alarm", nil, playerList)
+		end
 	end
 end
 
