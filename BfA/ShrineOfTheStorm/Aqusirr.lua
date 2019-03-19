@@ -80,7 +80,7 @@ do
 	local prev = 0
 	function mod:ChokingBrine(args)
 		local t = args.time
-		if t-prev > 2 then
+		if t-prev > 10 then
 			prev = t
 			self:Bar(args.spellId, 32)
 		end
