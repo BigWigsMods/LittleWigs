@@ -94,9 +94,11 @@ end
 
 do
 	local isOnMe = false
-	local playerList = mod:NewTargetList()
+	local playerList, playerIcons = mod:NewTargetList(), {}
 	function mod:PutridWatersApplied(args)
-		playerList[#playerList+1] = args.destName
+		local playerListCount = #playerList+1
+		playerList[playerListCount] = args.destName
+		playerIcons[playerListCount] = markCount
 		playersWithPutridWaters[#playersWithPutridWaters + 1] = args.destName
 
 		if self:GetOption(putridWatersMarker) then
@@ -121,7 +123,7 @@ do
 		elseif not isOnMe then
 			self:OpenProximity(args.spellId, 10, playersWithPutridWaters)
 		end
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, 0.6)
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 0.6, playerIcons)
 	end
 
 	function mod:PutridWatersRemoved(args)
