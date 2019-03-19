@@ -82,7 +82,7 @@ do
 		local t = args.time
 		if t-prev > 6 then
 			prev = t
-			self:Bar(args.spellId, 32)
+			self:CDBar(args.spellId, 32)
 		end
 	end
 end
@@ -102,7 +102,7 @@ do
 			prev = t
 			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
-			self:Bar(args.spellId, 32)
+			self:CDBar(args.spellId, 30)
 		end
 	end
 end
