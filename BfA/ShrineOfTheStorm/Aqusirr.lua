@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ChokingBrine", 264560)
 	self:Log("SPELL_AURA_APPLIED", "ChokingBrineApplied", 264560, 264773) -- Initial, Ground Pickup
 	self:Log("SPELL_CAST_START", "SurgingRush", 264101)
-	self:Log("SPELL_CAST_SUCCESS", "Undertow", 264166, 264144)
+	self:Log("SPELL_CAST_SUCCESS", "Undertow", 264166, 264144, 265366)
 	self:Log("SPELL_CAST_START", "EruptingWaters", 264903)
 	self:Log("SPELL_AURA_REMOVED", "EruptingWatersRemoved", 264903)
 	self:Log("SPELL_AURA_APPLIED", "GraspFromTheDepths", 264526)
@@ -111,13 +111,13 @@ do
 	local prev = 0
 	function mod:Undertow(args)
 		local t = args.time
-		if t-prev > 2 then
+		if t-prev > 10 then
 			prev = t
-			self:TargetMessage2(264166, "orange", args.destName)
-			if self:Me(args.destGUID) then
-				self:PlaySound(264166, "warning")
-			end
 			self:Bar(264166, 32)
+		end
+		self:TargetMessage2(264166, "orange", args.destName)
+		if self:Me(args.destGUID) then
+			self:PlaySound(264166, "warning")
 		end
 	end
 end
