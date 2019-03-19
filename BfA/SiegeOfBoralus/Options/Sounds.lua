@@ -26,6 +26,7 @@ BigWigs:AddSounds("Dread Captain Lockwood", {
 	[268963] = "info",
 	[269029] = "alarm",
 	[272471] = "alert",
+	[273470] = "alert",
 })
 
 BigWigs:AddSounds("Hadal Darkfathom", {
