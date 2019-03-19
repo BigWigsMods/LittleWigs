@@ -44,7 +44,7 @@ function mod:GetOptions()
 		-- Feasting Skyscreamer
 		255041, -- Terrifying Screech
 		-- T'lonja
-		255567, -- Frenzied Charge
+		{255567, "SAY"}, -- Frenzied Charge
 		-- Shieldbearer of Zul
 		253721, -- Bulwark of Juju
 		-- Zanchuli Witch-Doctor
@@ -101,9 +101,18 @@ function mod:TerrifyingScreech(args)
 end
 
 -- T'lonja
-function mod:FrenziedCharge(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert", "watchstep")
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(255567, "yellow", name)
+		self:PlaySound(255567, "alert", "watchstep")
+		if self:Me(guid) then
+			self:Say(255567)
+		end
+	end
+
+	function mod:FrenziedCharge(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
 end
 
 -- Shieldbearer of Zul
