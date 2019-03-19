@@ -36,6 +36,7 @@ function mod:GetOptions()
 		268230, -- Crimson Swipe
 		268260, -- Broadside
 		268963, -- Unstable Ordnance
+		273470, -- Gut Shot
 	}
 end
 
@@ -46,6 +47,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Evasive", 272471)
 	self:Log("SPELL_CAST_START", "CleartheDeck", 269029)
 	self:Log("SPELL_CAST_START", "CrimsonSwipe", 268230)
+	self:Log("SPELL_CAST_SUCCESS", "GutShot", 273470)
 end
 
 function mod:OnEngage()
@@ -111,4 +113,9 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
+end
+
+function mod:GutShot(args)
+	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert")
 end
