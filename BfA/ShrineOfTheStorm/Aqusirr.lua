@@ -68,7 +68,7 @@ do
 	local prev = 0
 	function mod:SeaBlast(args)
 		local t = args.time
-		if t-prev > 2 then
+		if t-prev > 6 then
 			prev = t
 			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
@@ -80,7 +80,7 @@ do
 	local prev = 0
 	function mod:ChokingBrine(args)
 		local t = args.time
-		if t-prev > 10 then
+		if t-prev > 6 then
 			prev = t
 			self:Bar(args.spellId, 32)
 		end
@@ -98,7 +98,7 @@ do
 	local prev = 0
 	function mod:SurgingRush(args)
 		local t = args.time
-		if t-prev > 2 then
+		if t-prev > 6 then
 			prev = t
 			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
@@ -111,7 +111,7 @@ do
 	local prev = 0
 	function mod:Undertow(args)
 		local t = args.time
-		if t-prev > 10 then
+		if t-prev > 6 then
 			prev = t
 			self:Bar(264166, 32)
 		end
