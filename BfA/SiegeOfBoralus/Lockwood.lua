@@ -50,7 +50,7 @@ end
 
 function mod:OnEngage()
 	withdrawn = 0
-	self:CDBar(269029, 3.5) -- Clear the Deck
+	self:Bar(269029, 3.5) -- Clear the Deck
 	self:Bar(268752, 12.1) -- Withdraw
 end
 
@@ -81,7 +81,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			self:Message2(268752, "green", CL.over:format(self:SpellName(268752)))
 			self:PlaySound(268752, "long")
 
-			self:CDBar(269029, 3) -- Clear the Deck
+			self:Bar(269029, 3) -- Clear the Deck
 			self:Bar(268752, 35.7) -- Withdraw
 		end
 	elseif spellId == 268963 then -- Unstable Ordnance (Dropped)
@@ -98,7 +98,7 @@ end
 function mod:CleartheDeck(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18)
+	self:Bar(args.spellId, 18)
 end
 
 do
