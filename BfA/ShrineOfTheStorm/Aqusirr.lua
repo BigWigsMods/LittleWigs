@@ -9,6 +9,12 @@ mod:RegisterEnableMob(134056, 139737) -- Aqu'sirr, Stormsong (for warmup timer)
 mod.engageId = 2130
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local stage = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -113,15 +119,26 @@ end
 
 do
 	local prev = 0
+	local playerList = mod:NewTargetList()
 	function mod:Undertow(args)
 		local t = args.time
 		if t-prev > 6 then
 			prev = t
 			self:Bar(264166, 32)
 		end
-		self:TargetMessage2(264166, "orange", args.destName)
-		if self:Me(args.destGUID) then
-			self:PlaySound(264166, "warning")
+		if stage == 1 then
+			self:TargetMessage2(264166, "orange", args.destName)
+			if self:Healer() or self:Me(args.destGUID) then
+				self:PlaySound(264166, "warning")
+			end
+		else
+			playerList[#playerList+1] = args.destName
+			self:TargetsMessage(264166, "orange", playerList, 3)
+			if self:Healer() then
+				self:PlaySound(264166, "warning", nil, playerList)
+			elseif self:Me(args.destGUID) then
+				self:PlaySound(264166, "warning")
+			end
 		end
 	end
 end
@@ -133,6 +150,7 @@ function mod:GraspFromTheDepths(args)
 end
 
 function mod:EruptingWaters(args)
+	stage = 2
 	self:Message2("stages", "cyan", CL.intermission, false)
 	self:PlaySound("stages", "long", "intermission")
 	self:Bar(264560, 13.5) -- Choking Brine _success
@@ -142,6 +160,7 @@ function mod:EruptingWaters(args)
 end
 
 function mod:EruptingWatersRemoved(args)
+	stage = 1
 	self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
 	self:PlaySound("stages", "long")
 	self:Bar(264560, 9.5) -- Choking Brine _success
