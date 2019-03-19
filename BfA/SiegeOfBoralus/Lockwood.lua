@@ -109,7 +109,6 @@ do
 			prev = t
 			self:Message2(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
-			self:CDBar(args.spellId, 9)
 		end
 	end
 end
