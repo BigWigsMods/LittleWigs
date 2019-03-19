@@ -132,7 +132,7 @@ function mod:GraspFromTheDepths(args)
 end
 
 function mod:EruptingWaters(args)
-	self:Message2("stages", "cyan", CL.intermission)
+	self:Message2("stages", "cyan", CL.intermission, false)
 	self:PlaySound("stages", "long", "intermission")
 	self:Bar(264560, 13.5) -- Choking Brine _success
 	self:Bar(264101, 18.5) -- Surging Rush _start
@@ -141,7 +141,7 @@ function mod:EruptingWaters(args)
 end
 
 function mod:EruptingWatersRemoved(args)
-	self:Message2("stages", "cyan", CL.over:format(CL.intermission))
+	self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
 	self:PlaySound("stages", "long")
 	self:Bar(264560, 9.5) -- Choking Brine _success
 	self:Bar(264101, 15.5) -- Surging Rush _start
