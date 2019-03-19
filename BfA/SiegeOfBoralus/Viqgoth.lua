@@ -121,7 +121,7 @@ do
 		elseif not isOnMe then
 			self:OpenProximity(args.spellId, 10, playersWithPutridWaters)
 		end
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, 0.6)
 	end
 
 	function mod:PutridWatersRemoved(args)
