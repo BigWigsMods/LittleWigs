@@ -143,10 +143,24 @@ do
 	end
 end
 
-function mod:GraspFromTheDepths(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 32)
+do
+	local prev = 0
+	local playerList = mod:NewTargetList()
+	function mod:GraspFromTheDepths(args)
+		local t = args.time
+		if t-prev > 6 then
+			prev = t
+			self:Bar(args.spellId, 32)
+		end
+		if stage == 1 then
+			self:TargetMessage2(args.spellId, "orange", args.destName)
+			self:PlaySound(args.spellId, "info")
+		else
+			playerList[#playerList+1] = args.destName
+			self:TargetsMessage(args.spellId, "orange", playerList, 3)
+			self:PlaySound(args.spellId, "info", nil, playerList)
+		end
+	end
 end
 
 function mod:EruptingWaters(args)
