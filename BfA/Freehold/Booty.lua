@@ -78,8 +78,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	sharkTossCount = 0
-	sharkTossOffset = 0
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
