@@ -34,7 +34,7 @@ function mod:OnEngage()
 	self:Bar(258622, 9.5) -- Resonant Pulse
 	self:Bar(271698, 20) -- Azerite Infusion
 	self:Bar(257593, 64) -- Call Earthrager
-	self:Bar(275907, 6) -- Tectonic Smash
+	self:Bar(275907, 5) -- Tectonic Smash
 end
 
 --------------------------------------------------------------------------------
