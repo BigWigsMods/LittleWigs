@@ -83,7 +83,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			self:Message2(268752, "green", CL.over:format(self:SpellName(268752)))
 			self:PlaySound(268752, "long")
 
-			self:Bar(269029, 3) -- Clear the Deck
+			self:Bar(269029, 7) -- Clear the Deck
 			self:Bar(268752, 35.7) -- Withdraw
 		end
 	elseif spellId == 268963 then -- Unstable Ordnance (Dropped)
