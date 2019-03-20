@@ -53,7 +53,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(264560, 9.5) -- Choking Brine _success
+	self:Bar(264560, 10.2) -- Choking Brine _success
 	self:Bar(264101, 15.5) -- Surging Rush _start
 	self:Bar(264526, 24) -- Grasp from the Depths _success
 	self:Bar(264166, 32) -- Undertow _success
