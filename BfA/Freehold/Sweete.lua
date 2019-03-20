@@ -94,10 +94,12 @@ function mod:Avastye(args)
 end
 
 function mod:BlackPowderBomb(args)
-	if args.sourceGUID ~= args.destGUID and self:Me(args.destGUID) then -- The add buffs itself with the same spell id
+	if args.sourceGUID ~= args.destGUID then
 		self:TargetMessage2(args.spellId, "yellow", args.destName, self:SpellName(244657), args.spellId) -- Fixate
-		self:PlaySound(args.spellId, "warning", "fixate")
-		self:Say(args.spellId, self:SpellName(244657)) -- Fixate
-		self:Flash(args.spellId)
+		if self:Me(args.destGUID) then -- The add buffs itself with the same spell id
+			self:PlaySound(args.spellId, "warning", "fixate")
+			self:Say(args.spellId, self:SpellName(244657)) -- Fixate
+			self:Flash(args.spellId)
+		end
 	end
 end
