@@ -9,6 +9,21 @@ mod:RegisterEnableMob(131817)
 mod.engageId = 2118
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local firstCast = true
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.random_cast = "Random Cast"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -29,10 +44,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(260793, 8) -- Indigestion
-	self:CDBar(260292, 21) -- Charge
+	firstCast = true
+	self:CDBar(260292, 8, L.random_cast) -- Charge
 	if not self:Normal() then
-		self:CDBar(260333, 45) -- Tantrum
+		self:Bar(260333, 45) -- Tantrum
 	end
 end
 
@@ -43,17 +58,26 @@ end
 function mod:Charge(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CDBar(args.spellId, 20)
+	if firstCast then
+		firstCast = false
+		self:Bar(args.spellId, 23)
+		self:Bar(260793, 11) -- Indigestion
+	end
 end
 
 function mod:Indigestion(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "mobsoon")
-	self:CDBar(args.spellId, 42)
+	if firstCast then
+		firstCast = false
+		self:Bar(260292, 12, CL.count:format(self:SpellName(260292), 1)) -- Charge
+		self:Bar(260292, 32, CL.count:format(self:SpellName(260292), 2)) -- Charge
+	end
 end
 
 function mod:Tantrum(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "mobsoon")
 	self:CDBar(args.spellId, 45)
+	firstCast = true
 end
