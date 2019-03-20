@@ -12,3 +12,8 @@ if L then
 	L.defiler = "Profanador Jurasangre"
 	L.corruptor = "Corruptor ignoto"
 end
+
+L = BigWigs:NewBossLocale("Infested Crawg", "esES") or BigWigs:NewBossLocale("Infested Crawg", "esMX")
+if L then
+	-- L.random_cast = "Random Cast"
+end

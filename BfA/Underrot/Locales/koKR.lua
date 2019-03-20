@@ -12,3 +12,8 @@ if L then
 	-- L.defiler = "Bloodsworn Defiler"
 	-- L.corruptor = "Faceless Corruptor"
 end
+
+L = BigWigs:NewBossLocale("Infested Crawg", "koKR")
+if L then
+	-- L.random_cast = "Random Cast"
+end
