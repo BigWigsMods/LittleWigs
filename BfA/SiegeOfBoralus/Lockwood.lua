@@ -33,7 +33,7 @@ function mod:GetOptions()
 		272471, -- Evasive
 		269029, -- Clear the Deck
 		268752, -- Withdraw
-		268230, -- Crimson Swipe
+		{268230, "TANK"}, -- Crimson Swipe
 		268260, -- Broadside
 		268963, -- Unstable Ordnance
 		273470, -- Gut Shot
@@ -107,7 +107,7 @@ do
 	local prev = 0
 	function mod:CrimsonSwipe(args)
 		local t = args.time
-		if t-prev > 1.5 then
+		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
