@@ -45,7 +45,7 @@ end
 
 function mod:OnEngage()
 	firstCast = true
-	self:CDBar(260292, 8, L.random_cast) -- Charge
+	self:CBar(260292, 8, L.random_cast) -- Charge
 	if not self:Normal() then
 		self:Bar(260333, 45) -- Tantrum
 	end
@@ -79,5 +79,6 @@ function mod:Tantrum(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "mobsoon")
 	self:CDBar(args.spellId, 45)
+	self:Bar(260292, 18, L.random_cast) -- Charge
 	firstCast = true
 end
