@@ -36,7 +36,7 @@ end
 function mod:OnEngage()
 	self:Bar(272457, 10) -- Shockwave
 	self:Bar(259718, 16) -- Upheaval
-	self:Bar(259732, 35) -- Festering Harvest
+	self:Bar(259732, 45) -- Festering Harvest
 end
 
 --------------------------------------------------------------------------------
@@ -47,6 +47,7 @@ function mod:FesteringHarvest(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 51)
+	self:Bar(259718, 15) -- Upheaval
 end
 
 function mod:BoundlessRot(args)
