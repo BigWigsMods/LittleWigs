@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	self:Bar(257585, 10) -- Cannon Barrage
 end
 
 --------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 257540 then -- Cannon Barrage
 		self:Message2(257585, "orange")
 		self:PlaySound(257585, "warning")
-		self:CDBar(257585, 60) -- XXX Double check
+		self:Bar(257585, 60)
 	elseif spellId == 274002 then -- Call Adds
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 33 then -- Low CD under 33%
