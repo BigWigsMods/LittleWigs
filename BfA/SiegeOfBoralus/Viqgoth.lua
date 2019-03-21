@@ -159,6 +159,7 @@ end
 function mod:RepairStart(args)
 	self:Message2(args.spellId, "cyan", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
+	self:CastBar(args.spellId, 3.5)
 end
 
 function mod:HullCracker(args)
