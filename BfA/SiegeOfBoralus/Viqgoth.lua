@@ -88,7 +88,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 270605 then -- Summon Demolisher
 		self:Message2("demolishing", "yellow", CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
 		self:PlaySound("demolishing", "alert")
-		self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon) -- XXX Need to Check
+		self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon)
 	end
 end
 
