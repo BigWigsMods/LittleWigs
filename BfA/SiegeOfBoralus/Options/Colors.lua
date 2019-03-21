@@ -5,7 +5,7 @@ BigWigs:AddColors("Chopper Redhook", {
 	[257348] = {"blue","red"},
 	[257459] = {"blue","yellow"},
 	[257585] = "orange",
-	[273721] = "green",
+	[273721] = {"green","orange"},
 	["adds"] = "yellow",
 })
 
@@ -14,7 +14,7 @@ BigWigs:AddColors("Sergeant Bainbridge", {
 	[260924] = "orange",
 	[260954] = {"blue","yellow"},
 	[261428] = {"blue","red"},
-	[277965] = "green",
+	[277965] = {"green","orange"},
 	[279761] = "orange",
 	["adds"] = "yellow",
 })
@@ -39,6 +39,7 @@ BigWigs:AddColors("Viq'Goth", {
 	[269266] = "purple",
 	[269366] = "cyan",
 	[270185] = "orange",
+	[270590] = "red",
 	[275014] = {"blue","yellow"},
 	["demolishing"] = "yellow",
 	["stages"] = "green",
