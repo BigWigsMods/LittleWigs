@@ -13,6 +13,16 @@ if L then
 	L.vanguard = "库尔提拉斯先锋"
 end
 
+L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhCN")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
+L = BigWigs:NewBossLocale("Chopper Redhook", "zhCN")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
 L = BigWigs:NewBossLocale("Viq'Goth", "zhCN")
 if L then
 	L.demolishing_desc = "当攻城恐魔出现时的警报和计时器。"

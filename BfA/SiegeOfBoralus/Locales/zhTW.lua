@@ -13,6 +13,16 @@ if L then
 	L.vanguard = "庫爾提拉斯先鋒"
 end
 
+L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhTW")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
+L = BigWigs:NewBossLocale("Chopper Redhook", "zhTW")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
 L = BigWigs:NewBossLocale("Viq'Goth", "zhTW")
 if L then
 	L.demolishing_desc = "為滅擊觸鬚的出現顯示警告與計時。"

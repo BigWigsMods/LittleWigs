@@ -13,6 +13,16 @@ if L then
 	L.vanguard = "쿨 티란 선봉대원"
 end
 
+L = BigWigs:NewBossLocale("Sergeant Bainbridge", "koKR")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
+L = BigWigs:NewBossLocale("Chopper Redhook", "koKR")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
 L = BigWigs:NewBossLocale("Viq'Goth", "koKR")
 if L then
 	-- L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."

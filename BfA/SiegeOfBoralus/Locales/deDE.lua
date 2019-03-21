@@ -13,6 +13,16 @@ if L then
 	L.vanguard = "Vorhut von Kul Tiras"
 end
 
+L = BigWigs:NewBossLocale("Sergeant Bainbridge", "deDE")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
+L = BigWigs:NewBossLocale("Chopper Redhook", "deDE")
+if L then
+	-- L.remaining = "%s (%d remaining)"
+end
+
 L = BigWigs:NewBossLocale("Viq'Goth", "deDE")
 if L then
 	L.demolishing_desc = "Warnungen und Timer für das Erscheinen des Verwüstenden Schreckens."
