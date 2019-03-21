@@ -98,7 +98,6 @@ do
 	end
 	function mod:MeatHook(args)
 		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
-		-- self:CastBar(257348, 2.7)
 	end
 end
 
