@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(257585, 10) -- Cannon Barrage
+	self:Bar(257585, 11) -- Cannon Barrage
 end
 
 --------------------------------------------------------------------------------
