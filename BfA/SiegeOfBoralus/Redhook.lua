@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar("adds", 17, CL.adds, L.adds_icon)
+	
 end
 
 --------------------------------------------------------------------------------
