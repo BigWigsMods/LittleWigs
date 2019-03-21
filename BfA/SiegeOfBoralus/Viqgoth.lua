@@ -15,6 +15,7 @@ mod.engageId = 2100
 local stage = 1
 local markCount = 1
 local playersWithPutridWaters = {}
+local engagedGripping = true
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -47,6 +48,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4", "boss5")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 
 	self:Log("SPELL_AURA_APPLIED", "PutridWatersApplied", 275014)
 	self:Log("SPELL_AURA_REMOVED", "PutridWatersRemoved", 275014)
@@ -60,6 +62,7 @@ end
 function mod:OnEngage()
 	stage = 1
 	markCount = 1
+	engagedGripping = true
 	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
@@ -84,6 +87,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 269984 then -- Damage Boss 35%
 		stage = stage + 1
 		if stage < 4 then
+			engagedGripping = false
 			self:Message2("stages", "green", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 
@@ -92,7 +96,29 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 270605 then -- Summon Demolisher
 		self:Message2("demolishing", "yellow", CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
 		self:PlaySound("demolishing", "alert")
-		self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon)
+		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon)
+	end
+end
+
+do
+	local bossUnits = {
+		"boss1", "boss2", "boss3", "boss4", "boss5"
+	}
+	local function findBossById(id)
+		for i = 2, 5 do
+			local guid = UnitGUID(bossUnits[i])
+			if not guid then return end
+			if mod:MobId(guid) == id then
+				return true
+			end
+		end
+	end
+
+	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+		if not engagedGripping and findBossById(137405) then -- Gripping Terror
+			engagedGripping = true
+			self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
+		end
 	end
 end
 
