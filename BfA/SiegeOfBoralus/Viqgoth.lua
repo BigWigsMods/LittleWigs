@@ -41,6 +41,7 @@ function mod:GetOptions()
 		"demolishing", -- Demolishing Terror
 		269266, -- Slam
 		269366, -- Repair
+		270590, -- Hull Cracker
 	}
 end
 
@@ -51,6 +52,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "PutridWatersRemoved", 275014)
 	self:Log("SPELL_CAST_START", "Slam", 269266)
 	self:Log("SPELL_CAST_START", "RepairStart", 269366)
+	self:Log("SPELL_CAST_START", "HullCracker", 270590)
 end
 
 function mod:OnEngage()
@@ -155,4 +157,9 @@ end
 function mod:RepairStart(args)
 	self:Message2(args.spellId, "cyan", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:HullCracker(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 end
