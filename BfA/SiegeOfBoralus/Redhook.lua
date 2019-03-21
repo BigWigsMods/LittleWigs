@@ -66,12 +66,9 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		self:Message2(257585, "orange")
 		self:PlaySound(257585, "warning")
 		self:Bar(257585, 60)
-	elseif spellId == 274002 then -- Call Adds
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp > 33 then -- Low CD under 33%
-			self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
-			self:PlaySound("adds", "long")
-		end
+	elseif spellId == 274002 and not UnitExists("boss5") then -- Call Adds
+		self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
+		self:PlaySound("adds", "long")
 	end
 end
 
