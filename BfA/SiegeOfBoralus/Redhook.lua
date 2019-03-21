@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	
+
 end
 
 --------------------------------------------------------------------------------
@@ -67,12 +67,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		self:PlaySound(257585, "warning")
 		self:CDBar(257585, 60) -- XXX Double check
 	elseif spellId == 274002 then -- Call Adds
-		self:StopBar(CL.adds)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 33 then -- Low CD under 33%
 			self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
 			self:PlaySound("adds", "long")
-			self:CDBar("adds", 17, CL.adds, L.adds_icon) -- XXX Double check
 		end
 	end
 end
