@@ -108,7 +108,7 @@ function mod:GoreCrash(args)
 end
 
 function mod:HeavyOrdnance(args)
-	self:Message2(args.spellId, "green", CL.onboss:format(args.spellName)) -- XXX Check if this does not mean it's also on adds
+	self:Message2(args.spellId, "green", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 end
