@@ -77,6 +77,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		self:Message2(257585, "orange")
 		self:PlaySound(257585, "warning")
 		self:Bar(257585, 60)
+		self:Bar(273721, 45, CL.count:format(self:SpellName(273721), bombsRemaining)) -- Heavy Ordnance
 	elseif spellId == 274002 and not UnitExists("boss5") then -- Call Adds
 		self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
 		self:PlaySound("adds", "long")
@@ -115,13 +116,25 @@ function mod:GoreCrash(args)
 end
 
 function mod:HeavyOrdnance(args)
+	local barText = CL.count:format(args.spellName, bombsRemaining)
 	bombsRemaining = bombsRemaining - 1
-	self:Message2(277965, "orange", L.used_remaining:format(args.spellName, bombsRemaining))
-	self:PlaySound(277965, "info")
+	local timer = self:BarTimeLeft(barText)
+	if timer then
+		self:StopBar(barText)
+		self:Bar(273721, timer, CL.count:format(args.spellName, bombsRemaining))
+	end
+	self:Message2(273721, "orange", L.used_remaining:format(args.spellName, bombsRemaining))
+	self:PlaySound(273721, "info")
 end
 
 function mod:HeavyOrdnanceApplied(args)
+	local barText = CL.count:format(args.spellName, bombsRemaining)
 	bombsRemaining = bombsRemaining - 1
+	local timer = self:BarTimeLeft(barText)
+	if timer then
+		self:StopBar(barText)
+		self:Bar(args.spellId, timer, CL.count:format(args.spellName, bombsRemaining))
+	end
 	self:Message2(args.spellId, "green", L.remaining:format(CL.onboss:format(args.spellName), bombsRemaining))
 	self:PlaySound(args.spellId, "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
