@@ -15,12 +15,14 @@ end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "esES") or BigWigs:NewBossLocale("Sergeant Bainbridge", "esMX")
 if L then
-	-- L.remaining = "%s (%d remaining)"
+	-- L.remaining = "%s, %d remaining"
+	-- L.used_remaining = "%s used, %d remaining"
 end
 
 L = BigWigs:NewBossLocale("Chopper Redhook", "esES") or BigWigs:NewBossLocale("Chopper Redhook", "esMX")
 if L then
-	-- L.remaining = "%s (%d remaining)"
+	-- L.remaining = "%s, %d remaining"
+	-- L.used_remaining = "%s used, %d remaining"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "esES") or BigWigs:NewBossLocale("Viq'Goth", "esMX")

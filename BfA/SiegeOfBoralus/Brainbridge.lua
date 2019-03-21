@@ -23,7 +23,8 @@ local L = mod:GetLocale()
 if L then
 	L.adds = 274002
 	L.adds_icon = "inv_misc_groupneedmore"
-	L.remaining = "%s (%d remaining)"
+	L.remaining = "%s, %d remaining"
+	L.used_remaining = "%s used, %d remaining"
 end
 
 --------------------------------------------------------------------------------
@@ -109,7 +110,7 @@ end
 
 function mod:HeavyOrdnance(args)
 	bombsRemaining = bombsRemaining - 1
-	self:Message2(277965, "orange", L.remaining:format(self:SpellName(277965), bombsRemaining))
+	self:Message2(277965, "orange", L.used_remaining:format(args.spellName, bombsRemaining))
 	self:PlaySound(277965, "info")
 end
 
