@@ -66,7 +66,7 @@ function mod:OnEngage()
 	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
-	self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
+	self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 end
 
 function mod:OnBossDisable()
@@ -105,7 +105,7 @@ do
 		"boss1", "boss2", "boss3", "boss4", "boss5"
 	}
 	local function findBossById(id)
-		for i = 2, 5 do
+		for i = 1, 5 do
 			local guid = UnitGUID(bossUnits[i])
 			if not guid then return end
 			if mod:MobId(guid) == id then
