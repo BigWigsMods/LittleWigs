@@ -53,6 +53,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Slam", 269266)
 	self:Log("SPELL_CAST_START", "RepairStart", 269366)
 	self:Log("SPELL_CAST_START", "HullCracker", 270590)
+
+	self:Death("GrippingTerrorDeath", 137405) -- Gripping Terror
 end
 
 function mod:OnEngage()
@@ -162,4 +164,8 @@ end
 function mod:HullCracker(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:GrippingTerrorDeath(args)
+	self:StopBar(L.demolishing)
 end
