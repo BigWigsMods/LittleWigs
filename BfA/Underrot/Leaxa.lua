@@ -74,7 +74,7 @@ end
 
 function mod:BloodMirror(args)
 	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "long", "intermission")
+	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 47.4)
 end
 
