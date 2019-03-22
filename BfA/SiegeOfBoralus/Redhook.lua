@@ -24,7 +24,6 @@ if L then
 	L.adds = 274002
 	L.adds_icon = "inv_misc_groupneedmore"
 	L.remaining = "%s, %d remaining"
-	L.used_remaining = "%s used, %d remaining"
 end
 
 --------------------------------------------------------------------------------
@@ -123,7 +122,7 @@ function mod:HeavyOrdnance(args)
 		self:StopBar(barText)
 		self:Bar(273721, timer, CL.count:format(args.spellName, bombsRemaining))
 	end
-	self:Message2(273721, "orange", L.used_remaining:format(args.spellName, bombsRemaining))
+	self:Message2(273721, "orange", L.remaining:format(CL.on:format(args.spellName, args.destName), bombsRemaining))
 	self:PlaySound(273721, "info")
 end
 
