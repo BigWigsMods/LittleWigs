@@ -114,16 +114,23 @@ function mod:GoreCrash(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:HeavyOrdnance(args)
-	local barText = CL.count:format(args.spellName, bombsRemaining)
-	bombsRemaining = bombsRemaining - 1
-	local timer = self:BarTimeLeft(barText)
-	if timer and bombsRemaining > 0 then
-		self:StopBar(barText)
-		self:Bar(273721, timer, CL.count:format(args.spellName, bombsRemaining))
+do
+	local prev = 0
+	function mod:HeavyOrdnance(args)
+		local t = args.time
+		if t ~= prev then
+			prev = t
+			local barText = CL.count:format(args.spellName, bombsRemaining)
+			bombsRemaining = bombsRemaining - 1
+			local timer = self:BarTimeLeft(barText)
+			if timer and bombsRemaining > 0 then
+				self:StopBar(barText)
+				self:Bar(273721, timer, CL.count:format(args.spellName, bombsRemaining))
+			end
+			self:Message2(273721, "orange", L.remaining:format(CL.on:format(args.spellName, args.destName), bombsRemaining))
+			self:PlaySound(273721, "info")
+		end
 	end
-	self:Message2(273721, "orange", L.remaining:format(CL.on:format(args.spellName, args.destName), bombsRemaining))
-	self:PlaySound(273721, "info")
 end
 
 function mod:HeavyOrdnanceApplied(args)
