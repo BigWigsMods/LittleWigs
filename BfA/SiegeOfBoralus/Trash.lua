@@ -192,7 +192,7 @@ do
 	end
 
 	function mod:MoltenSlug(args)
-		self:GetUnitTarget(printTarget, 0.4, args.destGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 
