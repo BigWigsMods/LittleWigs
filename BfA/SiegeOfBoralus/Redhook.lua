@@ -76,7 +76,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		self:Message2(257585, "orange")
 		self:PlaySound(257585, "warning")
 		self:Bar(257585, 60)
-		self:Bar(273721, 45, CL.count:format(self:SpellName(273721), bombsRemaining)) -- Heavy Ordnance
+		self:Bar(273721, 42, CL.count:format(self:SpellName(273721), bombsRemaining)) -- Heavy Ordnance
 	elseif spellId == 274002 and not UnitExists("boss5") then -- Call Adds
 		self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
 		self:PlaySound("adds", "long")
@@ -118,7 +118,7 @@ function mod:HeavyOrdnance(args)
 	local barText = CL.count:format(args.spellName, bombsRemaining)
 	bombsRemaining = bombsRemaining - 1
 	local timer = self:BarTimeLeft(barText)
-	if timer then
+	if timer and bombsRemaining > 0 then
 		self:StopBar(barText)
 		self:Bar(273721, timer, CL.count:format(args.spellName, bombsRemaining))
 	end
@@ -130,7 +130,7 @@ function mod:HeavyOrdnanceApplied(args)
 	local barText = CL.count:format(args.spellName, bombsRemaining)
 	bombsRemaining = bombsRemaining - 1
 	local timer = self:BarTimeLeft(barText)
-	if timer then
+	if timer and bombsRemaining > 0 then
 		self:StopBar(barText)
 		self:Bar(args.spellId, timer, CL.count:format(args.spellName, bombsRemaining))
 	end
