@@ -75,11 +75,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		bombsRemaining = 3
 		self:Message2(257585, "orange")
 		self:PlaySound(257585, "warning")
-		self:Bar(257585, 60)
+		self:CDBar(257585, 60)
 		self:Bar(277965, 42, CL.count:format(self:SpellName(277965), bombsRemaining)) -- Heavy Ordnance
-	elseif spellId == 274002 and not UnitExists("boss5") then -- Call Adds
-		self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
-		self:PlaySound("adds", "long")
+	elseif spellId == 274002 then -- Call Adds
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp > 33 then -- Spams every second under 33% but doesn't actually span adds
+			self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
+			self:PlaySound("adds", "long")
+		end
 	end
 end
 
