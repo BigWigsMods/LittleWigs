@@ -136,6 +136,7 @@ end
 function mod:SightedArtillery(args)
 	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info")
+	self:TargetBar(args.spellId, 6, args.destName)
 end
 
 function mod:TerrifyingRoar(args)
