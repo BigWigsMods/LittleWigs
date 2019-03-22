@@ -50,7 +50,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "IronGazeRemoved", 260954)
 	self:Log("SPELL_AURA_APPLIED", "HangmansNoose", 261428)
 	self:Log("SPELL_CAST_START", "SteelTempest", 260924)
-	self:Log("SPELL_DAMAGE", "HeavyOrdnance", 273720)
+	self:Log("SPELL_DAMAGE", "HeavyOrdnance", 273720, 280933) -- Damage to player, damage to add
 	self:Log("SPELL_AURA_APPLIED", "HeavyOrdnanceApplied", 277965)
 end
 

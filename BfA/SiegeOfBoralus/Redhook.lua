@@ -50,7 +50,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "OnTheHookRemoved", 257459)
 	self:Log("SPELL_CAST_START", "MeatHook", 257348)
 	self:Log("SPELL_CAST_START", "GoreCrash", 257326)
-	self:Log("SPELL_DAMAGE", "HeavyOrdnance", 273720)
+	self:Log("SPELL_DAMAGE", "HeavyOrdnance", 273720) -- XXX Damage to player, damage to add
 	self:Log("SPELL_AURA_APPLIED", "HeavyOrdnanceApplied", 273721)
 end
 
