@@ -17,7 +17,8 @@ mod:RegisterEnableMob(
 	129369, -- Irontide Raider
 	141284, -- Kul Tiran Wavetender
 	141283, -- Kul Tiran Halberd
-	138019  -- Kul Tiran Vanguard
+	138019, -- Kul Tiran Vanguard
+	141285  -- Kul Tiran Marksman
 )
 
 --------------------------------------------------------------------------------
@@ -36,6 +37,7 @@ if L then
 	L.halberd = "Kul Tiran Halberd"
 	L.raider = "Irontide Raider"
 	L.vanguard = "Kul Tiran Vanguard"
+	L.marksman = "Kul Tiran Marksman"
 end
 
 --------------------------------------------------------------------------------
@@ -66,6 +68,8 @@ function mod:GetOptions()
 		256627, -- Slobber Knocker
 		-- Kul Tiran Vanguard
 		257288, -- Heavy Slash
+		-- Kul Tiran Marksman
+		257641, -- Molten Slug
 	}, {
 		[268260] = L.cannoneer,
 		[272874] = L.commander,
@@ -77,12 +81,13 @@ function mod:GetOptions()
 		[256957] = L.wavetender,
 		[256627] = L.halberd,
 		[257288] = L.vanguard,
+		[257641] = L.marksman,
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-	
+
 	-- Ashvane Commander
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
@@ -102,7 +107,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
 	-- Kul Tiran Halberd
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
-	
+	-- Kul Tiran Marksman
+	self:Log("SPELL_CAST_START", "MoltenSlug", 257641)
+
 	-- Ashvane Cannoneer's Broadside
 	-- Ashvane Commander's Trample
 	-- Bilge Rat Demolisher's Crushing Slam
@@ -169,6 +176,19 @@ end
 function mod:SlobberKnocker(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+end
+
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) then
+			self:PersonalMessage(257641) -- Molten Slug
+			self:PlaySound(257641, "alert") -- Molten Slug
+		end
+	end
+
+	function mod:MoltenSlug(args)
+		self:GetUnitTarget(printTarget, 0.4, args.destGUID)
+	end
 end
 
 do

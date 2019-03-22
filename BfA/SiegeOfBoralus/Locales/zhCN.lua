@@ -11,6 +11,7 @@ if L then
 	L.halberd = "库尔提拉斯戟兵"
 	L.raider = "铁潮袭击者"
 	L.vanguard = "库尔提拉斯先锋"
+	L.marksman = "库尔提拉斯神射手"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhCN")

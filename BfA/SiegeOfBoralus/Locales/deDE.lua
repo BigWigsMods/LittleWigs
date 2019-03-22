@@ -11,6 +11,7 @@ if L then
 	L.halberd = "Hellebardier von Kul Tiras"
 	L.raider = "Eisenfluträuber"
 	L.vanguard = "Vorhut von Kul Tiras"
+	L.marksman = "Schütze von Kul Tiras"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "deDE")

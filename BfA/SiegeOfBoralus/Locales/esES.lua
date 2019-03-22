@@ -11,6 +11,7 @@ if L then
 	L.halberd = "Alabardero de Kul Tiras"
 	L.raider = "Asaltante Marea de Hierro"
 	L.vanguard = "Vanguardia de Kul Tiras"
+	L.marksman = "Tirador de Kul Tiras"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "esES") or BigWigs:NewBossLocale("Sergeant Bainbridge", "esMX")
