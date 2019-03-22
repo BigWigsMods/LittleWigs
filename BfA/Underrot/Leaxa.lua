@@ -33,7 +33,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(260894, 12) -- Creeping Rot
-	self:Bar(264603, 15.5) -- Blood Mirror
+	self:Bar(264603, 19) -- Blood Mirror
 	if not self:Normal() then
 		self:Bar(264757, 9) -- Sanguine Feast
 	end
@@ -76,6 +76,7 @@ end
 function mod:BloodMirror(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "long", "intermission")
+	self:Bar(args.spellId, 47.4)
 end
 
 function mod:EffigyDeath(args)
