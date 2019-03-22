@@ -92,7 +92,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
 	-- Ashvane Spotter
-	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
+	self:Log("SPELL_CAST_START", "SightedArtillery", 272422)
+	self:Log("SPELL_AURA_APPLIED", "SightedArtilleryApplied", 272421)
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
 	-- Bilge Rat Pillager
@@ -133,9 +134,26 @@ function mod:BolsteringShoutSuccess(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:SightedArtillery(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info")
+do
+	local foundTarget = false
+	local function printTarget(self, name, guid)
+		foundTarget = true
+		self:TargetMessage2(272421, "yellow", name)
+		self:PlaySound(272421, "info")
+	end
+
+	function mod:SightedArtillery(args)
+		foundTarget = false
+		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+	end
+
+	function mod:SightedArtilleryApplied(args)
+		self:TargetBar(args.spellId, 6, args.destName)
+		if not foundTarget then -- If the scan fails
+			self:TargetMessage2(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 function mod:TerrifyingRoar(args)
