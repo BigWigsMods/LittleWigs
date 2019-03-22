@@ -90,8 +90,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			engagedGripping = false
 			self:Message2("stages", "green", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
-
-			self:CDBar("demolishing", stage == 2 and 28 or 44, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
 		self:Message2("demolishing", "yellow", CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
