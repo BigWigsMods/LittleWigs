@@ -179,10 +179,15 @@ function mod:SlobberKnocker(args)
 end
 
 do
+	local prev = 0
 	local function printTarget(self, name, guid)
 		if self:Me(guid) then
-			self:PersonalMessage(257641) -- Molten Slug
-			self:PlaySound(257641, "alert") -- Molten Slug
+			local t = GetTime()
+			if t-prev > 2 then
+				prev = t
+				self:PersonalMessage(257641) -- Molten Slug
+				self:PlaySound(257641, "alert") -- Molten Slug
+			end
 		end
 	end
 
