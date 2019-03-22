@@ -187,7 +187,7 @@ do
 			if t-prev > 2 then
 				prev = t
 				self:PersonalMessage(257641) -- Molten Slug
-				self:PlaySound(257641, "alert") -- Molten Slug
+				self:PlaySound(257641, "info") -- Molten Slug
 			end
 		end
 	end
