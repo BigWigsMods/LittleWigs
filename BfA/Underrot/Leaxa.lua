@@ -25,7 +25,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BloodBolt", 260879)
 	self:Log("SPELL_CAST_START", "CreepingRot", 260894)
 	self:Log("SPELL_CAST_START", "BloodMirror", 264603)
-	self:Death("EffigyDeath", 134701)
 
 	-- Heroic+
 	self:Log("SPELL_CAST_START", "SanguineFeast", 264757)
@@ -77,11 +76,6 @@ function mod:BloodMirror(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "long", "intermission")
 	self:Bar(args.spellId, 47.4)
-end
-
-function mod:EffigyDeath(args)
-	self:Message2(264603, "green", CL.over:format(self:SpellName(264603)))
-	self:PlaySound(264603, "long", "stage")
 end
 
 function mod:SanguineFeast(args)
