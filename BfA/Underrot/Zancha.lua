@@ -37,6 +37,7 @@ function mod:OnEngage()
 	self:Bar(272457, 10) -- Shockwave
 	self:Bar(259718, 16) -- Upheaval
 	self:Bar(259732, 45) -- Festering Harvest
+	self:Bar(273285, 46) -- Volatile Pods
 end
 
 --------------------------------------------------------------------------------
