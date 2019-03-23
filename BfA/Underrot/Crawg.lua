@@ -45,7 +45,7 @@ end
 
 function mod:OnEngage()
 	firstCast = true
-	self:CBar(260292, 8, L.random_cast) -- Charge
+	self:CDBar(260292, 8, L.random_cast) -- Charge
 	if not self:Normal() then
 		self:Bar(260333, 45) -- Tantrum
 	end
