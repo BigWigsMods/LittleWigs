@@ -72,7 +72,7 @@ function mod:Indigestion(args)
 	self:PlaySound(args.spellId, "warning", "mobsoon")
 	if randomCast then
 		randomCast = false
-		if tantrumCount == 0 then -- He'll only do two charges if he hasn't tantrumed yet
+		if tantrumCount == 0 then -- He'll do two charges if he hasn't tantrumed yet
 			self:Bar(260292, 12, CL.count:format(self:SpellName(260292), 1)) -- Charge
 			self:Bar(260292, 32, CL.count:format(self:SpellName(260292), 2)) -- Charge
 		else
