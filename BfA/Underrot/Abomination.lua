@@ -71,7 +71,7 @@ do
 	end
 	function mod:CleansingLight(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 26) -- 18.0, 26.7, 36.5 & 18.3, 28.0, 32.4
+		self:Bar(args.spellId, 26)
 	end
 	function mod:CleansingLightSuccess(args)
 		self:SecondaryIcon(args.spellId)
