@@ -70,8 +70,7 @@ function mod:Indigestion(args)
 	self:PlaySound(args.spellId, "warning", "mobsoon")
 	if firstCast then
 		firstCast = false
-		self:Bar(260292, 12, CL.count:format(self:SpellName(260292), 1)) -- Charge
-		self:Bar(260292, 32, CL.count:format(self:SpellName(260292), 2)) -- Charge
+		self:Bar(260292, 12) -- Charge
 	end
 end
 
