@@ -11,6 +11,7 @@ BigWigs:AddSounds("Tik'ali", {
 	[257593] = "info",
 	[258622] = "long",
 	[271698] = "alert",
+	[275907] = "alarm",
 })
 
 BigWigs:AddSounds("Rixxa Fluxflame", {

@@ -18,6 +18,7 @@ function mod:GetOptions()
 		{257582, "SAY"}, -- Raging Gaze
 		271698, -- Azerite Infusion
 		258622, -- Resonant Pulse
+		275907, -- Tectonic Smash
 	}
 end
 
@@ -26,12 +27,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RagingGaze", 257582)
 	self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusion", 271698)
 	self:Log("SPELL_CAST_START", "ResonantPulse", 258622)
+	self:Log("SPELL_CAST_START", "TectonicSmash", 275907)
 end
 
 function mod:OnEngage()
 	self:Bar(258622, 9.5) -- Resonant Pulse
 	self:Bar(271698, 20) -- Azerite Infusion
 	self:Bar(257593, 64) -- Call Earthrager
+	self:Bar(275907, 5) -- Tectonic Smash
 end
 
 --------------------------------------------------------------------------------
@@ -66,4 +69,10 @@ function mod:ResonantPulse(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "aesoon")
 	self:Bar(args.spellId, 34)
+end
+
+function mod:TectonicSmash(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 21)
 end

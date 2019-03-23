@@ -15,12 +15,6 @@ mod:RegisterEnableMob(
 mod.engageId = 2095
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local sharkTossCount = 0
-
---------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -84,11 +78,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	sharkTossCount = 0
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
-	self:CDBar(256358, 17) -- Shark Toss
+	self:CDBar(256358, 14) -- Shark Toss
 	self:CDBar(256405, 23) -- Sharknado
 	self:CDBar(256489, 46) -- Rearm
 end
@@ -162,14 +155,19 @@ function mod:Sharknado(args)
 	self:Bar(args.spellId, 40)
 end
 
-function mod:SharkToss(args)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+do
+	local prev = 0
+	function mod:SharkToss(args)
+		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", "watchstep")
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+		end
+		local t = args.time
+		-- Starts with either 20s or 30s timer and then alternates
+		self:CDBar(args.spellId, t-prev < 25 and 30 or 20)
+		prev = t
 	end
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CDBar(args.spellId, sharkTossCount % 2 == 0 and 22 or 30)
-	sharkTossCount = sharkTossCount + 1
 end
 
 function mod:Rearm(args)

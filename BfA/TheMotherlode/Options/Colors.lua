@@ -11,6 +11,7 @@ BigWigs:AddColors("Tik'ali", {
 	[257593] = "cyan",
 	[258622] = "orange",
 	[271698] = "yellow",
+	[275907] = "red",
 })
 
 BigWigs:AddColors("Rixxa Fluxflame", {
