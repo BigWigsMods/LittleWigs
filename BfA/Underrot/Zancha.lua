@@ -18,7 +18,7 @@ function mod:GetOptions()
 		259830, -- Boundless Rot
 		272457, -- Shockwave
 		{259718, "SAY", "SAY_COUNTDOWN", "FLASH"}, -- Upheaval
-		273285,
+		273285, -- Volatile Pods
 	}
 end
 
@@ -91,8 +91,8 @@ do
 		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "long", "interrupt")
-			self:CDBar(args.spellId, 30)
+			self:PlaySound(args.spellId, "long")
+			self:CDBar(args.spellId, 25)
 		end
 	end
 end
