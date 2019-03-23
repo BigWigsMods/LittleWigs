@@ -12,7 +12,8 @@ mod.engageId = 2118
 -- Locals
 --
 
-local firstCast = true
+local randomCast = true
+local tantrumCount = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -44,7 +45,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	firstCast = true
+	randomCast = true
+	tantrumCount = 0
 	self:CDBar(260292, 8, L.random_cast) -- Charge
 	if not self:Normal() then
 		self:Bar(260333, 45) -- Tantrum
@@ -58,8 +60,8 @@ end
 function mod:Charge(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	if firstCast then
-		firstCast = false
+	if randomCast then
+		randomCast = false
 		self:Bar(args.spellId, 23)
 		self:Bar(260793, 11) -- Indigestion
 	end
@@ -68,9 +70,14 @@ end
 function mod:Indigestion(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "mobsoon")
-	if firstCast then
-		firstCast = false
-		self:Bar(260292, 12) -- Charge
+	if randomCast then
+		randomCast = false
+		if tantrumCount == 0 then -- He'll only do two charges if he hasn't tantrumed yet
+			self:Bar(260292, 12, CL.count:format(self:SpellName(260292), 1)) -- Charge
+			self:Bar(260292, 32, CL.count:format(self:SpellName(260292), 2)) -- Charge
+		else
+			self:Bar(260292, 12) -- Charge
+		end
 	end
 end
 
@@ -79,5 +86,6 @@ function mod:Tantrum(args)
 	self:PlaySound(args.spellId, "long", "mobsoon")
 	self:CDBar(args.spellId, 45)
 	self:Bar(260292, 18, L.random_cast) -- Charge
-	firstCast = true
+	randomCast = true
+	tantrumCount = tantrumCount + 1
 end
