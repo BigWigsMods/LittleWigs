@@ -58,9 +58,12 @@ function mod:VileExpulsion(args)
 end
 
 do
+	local prev = 0
 	local function printTarget(self, player, guid)
 		self:TargetMessage2(269310, "green", player)
 		self:PlaySound(269310, "long", "runin", player)
+		local elapsed = GetTime() - prev
+		self:TargetBar(269310, 5 - elapsed, player)
 		self:SecondaryIcon(269310, player)
 		if self:Me(guid) then
 			self:Say(269310)
@@ -72,6 +75,7 @@ do
 	function mod:CleansingLight(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 26)
+		prev = GetTime()
 	end
 	function mod:CleansingLightSuccess(args)
 		self:SecondaryIcon(args.spellId)
