@@ -32,7 +32,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(260894, 12) -- Creeping Rot
-	self:Bar(264603, 19) -- Blood Mirror
+	self:CDBar(264603, 15.5) -- Blood Mirror
 	if not self:Normal() then
 		self:Bar(264757, 9) -- Sanguine Feast
 	end
