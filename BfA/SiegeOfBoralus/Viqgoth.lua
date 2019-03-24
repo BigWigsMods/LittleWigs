@@ -99,25 +99,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	end
 end
 
-do
-	local bossUnits = {
-		"boss1", "boss2", "boss3", "boss4", "boss5"
-	}
-	local function findBossById(id)
-		for i = 1, 5 do
-			local guid = UnitGUID(bossUnits[i])
-			if not guid then return end
-			if mod:MobId(guid) == id then
-				return true
-			end
-		end
-	end
-
-	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-		if not engagedGripping and findBossById(137405) then -- Gripping Terror
-			engagedGripping = true
-			self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
-		end
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	if not engagedGripping and self:GetUnitIdByGUID(137405) then -- Check if Gripping Terror is up
+		engagedGripping = true
+		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 	end
 end
 
