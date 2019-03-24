@@ -50,7 +50,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "OnTheHookRemoved", 257459)
 	self:Log("SPELL_CAST_START", "MeatHook", 257348)
 	self:Log("SPELL_CAST_START", "GoreCrash", 257326)
-	self:Log("SPELL_DAMAGE", "HeavyOrdnance", 273720, 280934) -- Damage to player, damage to add
+	self:Log("SPELL_DAMAGE", "HeavyOrdnanceDamage", 273720, 280934) -- Damage to player, damage to add
 	self:Log("SPELL_AURA_APPLIED", "HeavyOrdnanceApplied", 273721)
 end
 
@@ -79,7 +79,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		self:Bar(273721, 43, CL.count:format(self:SpellName(273721), bombsRemaining)) -- Heavy Ordnance
 	elseif spellId == 274002 then -- Call Adds
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp > 33 then -- Spams every second under 33% but doesn't actually span adds
+		if hp > 33 then -- Spams every second under 33% but doesn't actually spawn adds
 			self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
 			self:PlaySound("adds", "long")
 		end
@@ -119,7 +119,7 @@ end
 
 do
 	local prev = 0
-	function mod:HeavyOrdnance(args)
+	function mod:HeavyOrdnanceDamage(args)
 		local t = args.time
 		if t ~= prev then
 			prev = t

@@ -47,8 +47,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- The Gripping Terror can be any boss besides boss1, which is Viq'goth
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4", "boss5")
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 
 	self:Log("SPELL_AURA_APPLIED", "PutridWatersApplied", 275014)
 	self:Log("SPELL_AURA_REMOVED", "PutridWatersRemoved", 275014)
@@ -60,6 +60,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	stage = 1
 	markCount = 1
 	engagedGripping = true
