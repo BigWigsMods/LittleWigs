@@ -64,6 +64,7 @@ function mod:Charge(args)
 		randomCast = false
 		self:Bar(args.spellId, 23)
 		self:Bar(260793, 11) -- Indigestion
+		self:Bar(260333, tantrumCount == 0 and 37.6 or 34) -- Tantrum
 	end
 end
 
@@ -75,8 +76,10 @@ function mod:Indigestion(args)
 		if tantrumCount == 0 then -- He'll do two charges if he hasn't tantrumed yet
 			self:Bar(260292, 12, CL.count:format(self:SpellName(260292), 1)) -- Charge
 			self:Bar(260292, 32, CL.count:format(self:SpellName(260292), 2)) -- Charge
+			self:Bar(260333, 43.6) -- Tantrum
 		else
 			self:Bar(260292, 12) -- Charge
+			self:Bar(260333, 26.7) -- Tantrum
 		end
 	end
 end
