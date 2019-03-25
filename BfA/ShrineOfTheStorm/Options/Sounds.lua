@@ -2,20 +2,23 @@
 BigWigs:AddSounds("Aqu'sirr", {
 	[264101] = "alert",
 	[264166] = "warning",
+	[264526] = "info",
 	[264560] = "alarm",
-	[264903] = "long",
 	[265001] = "alarm",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Tidesage Coucil", {
 	[267818] = "alert",
 	[267891] = {"info","long"},
 	[267899] = "alert",
+	[267901] = "warning",
 	[267905] = "long",
 })
 
 BigWigs:AddSounds("Lord Stormsong", {
 	[268347] = "alert",
+	[268896] = "alert",
 	[269097] = "alarm",
 	[269131] = "warning",
 })
