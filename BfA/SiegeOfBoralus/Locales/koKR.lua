@@ -16,12 +16,14 @@ end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "koKR")
 if L then
-	-- L.remaining = "%s, %d remaining"
+	-- L.remaining = "%s on %s, %d remaining"
+	-- L.remaining_boss = "%s on BOSS, %d remaining"
 end
 
 L = BigWigs:NewBossLocale("Chopper Redhook", "koKR")
 if L then
-	-- L.remaining = "%s, %d remaining"
+	-- L.remaining = "%s on %s, %d remaining"
+	-- L.remaining_boss = "%s on BOSS, %d remaining"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "koKR")

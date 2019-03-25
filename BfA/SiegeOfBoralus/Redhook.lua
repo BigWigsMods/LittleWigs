@@ -23,7 +23,8 @@ local L = mod:GetLocale()
 if L then
 	L.adds = 274002
 	L.adds_icon = "inv_misc_groupneedmore"
-	L.remaining = "%s, %d remaining"
+	L.remaining = "%s on %s, %d remaining"
+	L.remaining_boss = "%s on BOSS, %d remaining"
 end
 
 --------------------------------------------------------------------------------
@@ -130,7 +131,7 @@ do
 				self:StopBar(barText)
 				self:Bar(273721, timer, CL.count:format(args.spellName, bombsRemaining))
 			end
-			self:Message2(273721, "orange", L.remaining:format(CL.on:format(args.spellName, args.destName), bombsRemaining))
+			self:Message2(273721, "orange", L.remaining:format(args.spellName, args.destName, bombsRemaining))
 			self:PlaySound(273721, "info")
 		end
 	end
@@ -144,7 +145,7 @@ function mod:HeavyOrdnanceApplied(args)
 		self:StopBar(barText)
 		self:Bar(args.spellId, timer, CL.count:format(args.spellName, bombsRemaining))
 	end
-	self:Message2(args.spellId, "green", L.remaining:format(CL.onboss:format(args.spellName), bombsRemaining))
+	self:Message2(args.spellId, "green", L.remaining_boss:format(args.spellName, bombsRemaining))
 	self:PlaySound(args.spellId, "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 end
