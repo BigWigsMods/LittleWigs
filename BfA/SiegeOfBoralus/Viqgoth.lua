@@ -100,7 +100,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	if not engagedGripping and self:GetBossIdByGUID(137405) then -- Check if Gripping Terror is up
+	if not engagedGripping and self:GetBossId(137405) then -- Check if Gripping Terror is up
 		engagedGripping = true
 		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 	end
