@@ -22,6 +22,8 @@ local tantrumCount = 0
 local L = mod:GetLocale()
 if L then
 	L.random_cast = "Charge or Indigestion"
+	L.random_cast_desc = "The first cast after each Tantrum is random."
+	L.random_cast_icon = "inv_misc_questionmark"
 end
 
 --------------------------------------------------------------------------------
@@ -30,6 +32,7 @@ end
 
 function mod:GetOptions()
 	return {
+		"random_cast",
 		260292, -- Charge
 		260793, -- Indigestion
 		260333, -- Tantrum
@@ -47,7 +50,7 @@ end
 function mod:OnEngage()
 	randomCast = true
 	tantrumCount = 0
-	self:CDBar(260292, 8, L.random_cast) -- Charge
+	self:CDBar("random_cast", 8, L.random_cast) -- Charge
 	if not self:Normal() then
 		self:Bar(260333, 45) -- Tantrum
 	end
@@ -88,7 +91,7 @@ function mod:Tantrum(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "mobsoon")
 	self:CDBar(args.spellId, 45)
-	self:Bar(260292, 18, L.random_cast) -- Charge
+	self:Bar("random_cast", 18, L.random_cast) -- Charge
 	randomCast = true
 	tantrumCount = tantrumCount + 1
 end
