@@ -15,5 +15,5 @@ end
 
 L = BigWigs:NewBossLocale("Infested Crawg", "esES") or BigWigs:NewBossLocale("Infested Crawg", "esMX")
 if L then
-	-- L.random_cast = "Random Cast"
+	-- L.random_cast = "Charge or Indigestion"
 end

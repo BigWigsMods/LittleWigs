@@ -21,7 +21,7 @@ local tantrumCount = 0
 
 local L = mod:GetLocale()
 if L then
-	L.random_cast = "Random Cast"
+	L.random_cast = "Charge or Indigestion"
 end
 
 --------------------------------------------------------------------------------
