@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Infested Crawg", 1841, 2131)
 if not mod then return end
 mod:RegisterEnableMob(131817)
 mod.engageId = 2118
+mod.respawnTime = 25
 
 --------------------------------------------------------------------------------
 -- Locals
