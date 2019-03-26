@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Sporecaller Zancha", 1841, 2130)
 if not mod then return end
 mod:RegisterEnableMob(131383)
 mod.engageId = 2112
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
