@@ -50,7 +50,7 @@ end
 function mod:OnEngage()
 	randomCast = true
 	tantrumCount = 0
-	self:CDBar("random_cast", 8, L.random_cast) -- Charge
+	self:CDBar("random_cast", 8, L.random_cast, "inv_misc_questionmark") -- Charge
 	if not self:Normal() then
 		self:Bar(260333, 45) -- Tantrum
 	end
@@ -91,7 +91,7 @@ function mod:Tantrum(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "mobsoon")
 	self:CDBar(args.spellId, 45)
-	self:Bar("random_cast", 18, L.random_cast) -- Charge
+	self:Bar("random_cast", 18, L.random_cast, "inv_misc_questionmark") -- Charge
 	randomCast = true
 	tantrumCount = tantrumCount + 1
 end
