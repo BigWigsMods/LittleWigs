@@ -62,7 +62,7 @@ do
 	local function printTarget(self, player, guid)
 		self:TargetMessage2(269310, "green", player)
 		self:PlaySound(269310, "long", "runin", player)
-		local elapsed = GetTime() - prev
+		local elapsed = GetTime() - prev -- Subtract time spent scanning for the target
 		self:TargetBar(269310, 5 - elapsed, player)
 		self:SecondaryIcon(269310, player)
 		if self:Me(guid) then
