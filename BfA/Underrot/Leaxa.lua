@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Elder Leaxa", 1841, 2157)
 if not mod then return end
 mod:RegisterEnableMob(131318)
 mod.engageId = 2111
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
