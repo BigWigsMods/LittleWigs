@@ -25,15 +25,15 @@ end
 
 L = BigWigs:NewBossLocale("Council o' Captains", "esES") or BigWigs:NewBossLocale("Council o' Captains", "esMX")
 if L then
-	--L.crit_brew = "Crit Brew"
-	--L.haste_brew = "Haste Brew"
-	--L.bad_brew = "Bad Brew"
+	L.crit_brew = "Brebaje de Crítico"
+	L.haste_brew = "Brebaje de Celeridad"
+	L.bad_brew = "Brebaje Malo"
 end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "esES") or BigWigs:NewBossLocale("Ring of Booty", "esMX")
 if L then
-	-- L.custom_on_autotalk = "Autotalk"
-	-- L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
+	L.custom_on_autotalk = "Hablar automáticamente"
+	L.custom_on_autotalk_desc = "Selecciona instantáneamente la opción de charla para comenzar la pelea."
 
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
 	-- L.lightning_warmup = "new set of vict--"

@@ -33,9 +33,10 @@ function mod:GetOptions()
 		272471, -- Evasive
 		269029, -- Clear the Deck
 		268752, -- Withdraw
-		268230, -- Crimson Swipe
+		{268230, "TANK"}, -- Crimson Swipe
 		268260, -- Broadside
 		268963, -- Unstable Ordnance
+		273470, -- Gut Shot
 	}
 end
 
@@ -46,12 +47,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Evasive", 272471)
 	self:Log("SPELL_CAST_START", "CleartheDeck", 269029)
 	self:Log("SPELL_CAST_START", "CrimsonSwipe", 268230)
+	self:Log("SPELL_CAST_SUCCESS", "GutShot", 273470)
 end
 
 function mod:OnEngage()
 	withdrawn = 0
-	self:CDBar(269029, 4.5) -- Clear the Deck
-	self:CDBar(268752, 13.5) -- Withdraw
+	self:Bar(269029, 3.5) -- Clear the Deck
+	self:Bar(268752, 12.1) -- Withdraw
 end
 
 --------------------------------------------------------------------------------
@@ -62,6 +64,7 @@ function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
 	if spellId == 268260 then -- Broadside
 		self:Message2(spellId, "orange")
 		self:PlaySound(spellId, "alarm")
+		self:Bar(268260, 12) -- Broadside
 	end
 end
 
@@ -74,14 +77,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:StopBar(269029) -- Clear the Deck
 		self:StopBar(268752) -- Withdraw
 
-		self:CDBar(268260, 16) -- Broadside
+		self:Bar(268260, 11.2) -- Broadside
 	elseif spellId == 268745 then -- Energy Tracker / Jump Back
 		if withdrawn == 1 then
 			self:Message2(268752, "green", CL.over:format(self:SpellName(268752)))
 			self:PlaySound(268752, "long")
 
-			self:CDBar(269029, 7) -- Clear the Deck
-			self:Bar(268752, 36) -- Withdraw
+			self:Bar(269029, 7) -- Clear the Deck
+			self:Bar(268752, 35.7) -- Withdraw
 		end
 	elseif spellId == 268963 then -- Unstable Ordnance (Dropped)
 		self:Message2(spellId, "cyan", L.ordanance_dropped)
@@ -97,18 +100,22 @@ end
 function mod:CleartheDeck(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18)
+	self:Bar(args.spellId, 18)
 end
 
 do
 	local prev = 0
 	function mod:CrimsonSwipe(args)
 		local t = args.time
-		if t-prev > 1.5 then
+		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
-			self:CDBar(args.spellId, 9)
 		end
 	end
+end
+
+function mod:GutShot(args)
+	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert")
 end

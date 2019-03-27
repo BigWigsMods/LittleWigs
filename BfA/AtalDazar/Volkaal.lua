@@ -9,6 +9,12 @@ mod:RegisterEnableMob(122965)
 mod.engageId = 2085
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local toxicLeapCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -23,7 +29,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ToxicLeap", 250258)
-	self:Log("SPELL_CAST_SUCCESS", "NoxiousStench", 259572, 250368) -- Stage 1, Stage 2
+	self:Log("SPELL_CAST_SUCCESS", "NoxiousStench", 259572)
 	self:Log("SPELL_CAST_SUCCESS", "RapidDecay", 250241) -- Stage 2 start
 	self:Log("SPELL_AURA_APPLIED", "ToxicPool", 250585)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ToxicPool", 250585)
@@ -31,6 +37,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	toxicLeapCount = 0
 	self:Bar(250258, 2) -- Toxic Leap
 	self:Bar(259572, 6) -- Noxious Stench
 end
@@ -42,23 +49,21 @@ end
 function mod:ToxicLeap(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:Bar(args.spellId, 6)
+	-- Every third leap has a longer timer, starting with the first
+	self:Bar(args.spellId, toxicLeapCount % 3 == 0 and 9 or 6)
+	toxicLeapCount = toxicLeapCount + 1
 end
 
 function mod:NoxiousStench(args)
-	self:Message2(259572, "red")
-	if args.spellId == 250368 then -- Stage 2 cast not interruptable
-		self:PlaySound(259572, "alert")
-	elseif self:Interrupter() then
-		self:PlaySound(259572, "warning", "interrupt")
-	end
-	self:Bar(259572, args.spellId == 250368 and 18.2 or 24.3)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning", "interrupt")
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:RapidDecay(args)
 	self:Message2(args.spellId, "green")
 	self:PlaySound(args.spellId, "info", "stage2")
-	self:Bar(259572, 4.5) -- Noxious Stench
+	self:StopBar(250258) -- Toxic Leap
 end
 
 do

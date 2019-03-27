@@ -48,7 +48,7 @@ function mod:GetOptions()
 		257904, -- Shell Bounce
 		-- Trothak
 		256405, -- Sharknado
-		256358, -- Shark Toss
+		{256358, "SAY"}, -- Shark Toss
 		256489, -- Rearm
 	}, {
 		[257829] = L.lightning,
@@ -81,7 +81,7 @@ function mod:OnEngage()
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
-	self:CDBar(256358, 17) -- Shark Toss
+	self:CDBar(256358, 14) -- Shark Toss
 	self:CDBar(256405, 23) -- Sharknado
 	self:CDBar(256489, 46) -- Rearm
 end
@@ -155,10 +155,19 @@ function mod:Sharknado(args)
 	self:Bar(args.spellId, 40)
 end
 
-function mod:SharkToss(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CDBar(args.spellId, 29)
+do
+	local prev = 0
+	function mod:SharkToss(args)
+		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", "watchstep")
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+		end
+		local t = args.time
+		-- Starts with either 20s or 30s timer and then alternates
+		self:CDBar(args.spellId, t-prev < 25 and 30 or 20)
+		prev = t
+	end
 end
 
 function mod:Rearm(args)
