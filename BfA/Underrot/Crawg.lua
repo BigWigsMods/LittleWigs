@@ -53,7 +53,7 @@ function mod:OnEngage()
 	tantrumCount = 0
 	self:CDBar("random_cast", 8, L.random_cast, "inv_misc_questionmark") -- Charge
 	if not self:Normal() then
-		self:CDBar(260333, 45) -- Tantrum estimate, updated after the first Chrage or Indigestion
+		self:CDBar(260333, 45) -- Tantrum estimate, updated after the first Charge or Indigestion
 	end
 end
 
@@ -91,7 +91,7 @@ end
 function mod:Tantrum(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "mobsoon")
-	self:CDBar(args.spellId, 45) -- Estimate, updated after the next Chrage or Indigestion
+	self:CDBar(args.spellId, 45) -- Estimate, updated after the next Charge or Indigestion
 	self:Bar("random_cast", 18, L.random_cast, "inv_misc_questionmark") -- Charge
 	randomCast = true
 	tantrumCount = tantrumCount + 1
