@@ -15,6 +15,6 @@ end
 
 L = BigWigs:NewBossLocale("Infested Crawg", "zhCN")
 if L then
-	-- L.random_cast = "Charge or Indigestion"
-	-- L.random_cast_desc = "The first cast after each Tantrum is random."
+	L.random_cast = "冲锋或消化不良"
+	L.random_cast_desc = "每次发脾气滞后施放的第一个技能是随机的。"
 end
