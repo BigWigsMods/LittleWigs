@@ -15,8 +15,8 @@ mod.respawnTime = 25
 
 function mod:GetOptions()
 	return {
-		257272, -- Vile Bombardment
 		"stages",
+		256005, -- Vile Bombardment
 		255952, -- Charrrrrge
 		272046, -- Dive Bomb
 		256106, -- Azerite Powder Shot
@@ -28,13 +28,11 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
-	-- Sharkbait
-	self:Log("SPELL_CAST_SUCCESS", "VileBombardment", 257272)
-
 	-- Stage 1
 	self:Log("SPELL_CAST_START", "Charrrrrge", 255952)
 
 	-- Stage 2
+	self:Log("SPELL_CAST_SUCCESS", "VileBombardment", 256005)
 	self:Log("SPELL_CAST_START", "DiveBomb", 272046)
 	self:Log("SPELL_CAST_START", "AzeritePowderShot", 256106)
 	self:Log("SPELL_CAST_SUCCESS", "RevitalizingBrew", 256060)
