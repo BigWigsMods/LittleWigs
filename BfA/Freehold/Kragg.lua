@@ -10,6 +10,12 @@ mod.engageId = 2093
 mod.respawnTime = 25
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local vileBombardmentCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -42,6 +48,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	vileBombardmentCount = 0
 	self:CDBar(255952, 4.8) -- Charrrrrge
 end
 
@@ -49,13 +56,9 @@ end
 -- Event Handlers
 --
 
-do
-	local prev = 0
-	function mod:VileBombardment(args)
-		local t = args.time
-		self:Bar(args.spellId, t-prev > 7 and 6 or 10.8)
-		prev = t
-	end
+function mod:VileBombardment(args)
+	self:Bar(args.spellId, vileBombardmentCount % 2 == 0 and 6 or 10.8)
+	vileBombardmentCount = vileBombardmentCount + 1
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
