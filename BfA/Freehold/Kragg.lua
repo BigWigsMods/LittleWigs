@@ -15,6 +15,7 @@ mod.respawnTime = 25
 
 function mod:GetOptions()
 	return {
+		257272, -- Vile Bombardment
 		"stages",
 		255952, -- Charrrrrge
 		272046, -- Dive Bomb
@@ -26,6 +27,9 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+
+	-- Sharkbait
+	self:Log("SPELL_CAST_SUCCESS", "VileBombardment", 257272)
 
 	-- Stage 1
 	self:Log("SPELL_CAST_START", "Charrrrrge", 255952)
@@ -46,6 +50,10 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:VileBombardment(args)
+	self:Bar(args.spellId, 16)
+end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 256056 then -- Spawn Parrot
