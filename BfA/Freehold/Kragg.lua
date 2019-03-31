@@ -49,8 +49,13 @@ end
 -- Event Handlers
 --
 
-function mod:VileBombardment(args)
-	self:Bar(args.spellId, 6)
+do
+	local prev = 0
+	function mod:VileBombardment(args)
+		local t = args.time
+		self:Bar(args.spellId, t-prev > 7 and 6 or 10.8)
+		prev = t
+	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
