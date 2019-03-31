@@ -50,7 +50,7 @@ end
 --
 
 function mod:VileBombardment(args)
-	self:Bar(args.spellId, 16)
+	self:Bar(args.spellId, 6)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
