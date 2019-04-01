@@ -72,6 +72,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:PlaySound("stages", "long", "stage2")
 
 		self:CDBar(256106, 7) -- Azerite Powder Shot
+		self:Bar(256005, 6) -- Vile Bombardment
 	end
 end
 
