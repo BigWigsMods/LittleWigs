@@ -57,7 +57,11 @@ end
 --
 
 function mod:VileBombardment(args)
-	self:Bar(args.spellId, vileBombardmentCount % 2 == 0 and 6 or 10.8)
+	if self:Normal() then
+		self:Bar(args.spellId, 6)
+	else
+		self:Bar(args.spellId, vileBombardmentCount % 2 == 0 and 6 or 10.8)
+	end
 	vileBombardmentCount = vileBombardmentCount + 1
 end
 
@@ -68,6 +72,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:PlaySound("stages", "long", "stage2")
 
 		self:CDBar(256106, 7) -- Azerite Powder Shot
+		self:Bar(256005, 6) -- Vile Bombardment
 	end
 end
 
