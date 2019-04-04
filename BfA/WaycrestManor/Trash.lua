@@ -271,7 +271,7 @@ do
 	end
 
 	function mod:Uproot(args)
-		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 

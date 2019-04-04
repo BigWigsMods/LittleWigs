@@ -61,7 +61,7 @@ do
 	end
 
 	function mod:JaggedNettles(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 13.5)
 	end
 end
