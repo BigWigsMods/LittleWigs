@@ -12,3 +12,9 @@ if L then
 	L.defiler = "Corruptor Jurassangue"
 	L.corruptor = "Corruptor Sem-rosto"
 end
+
+L = BigWigs:NewBossLocale("Infested Crawg", "ptBR")
+if L then
+	-- L.random_cast = "Charge or Indigestion"
+	-- L.random_cast_desc = "The first cast after each Tantrum is random."
+end

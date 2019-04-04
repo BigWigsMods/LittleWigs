@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Sporecaller Zancha", 1841, 2130)
 if not mod then return end
 mod:RegisterEnableMob(131383)
 mod.engageId = 2112
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -18,7 +19,7 @@ function mod:GetOptions()
 		259830, -- Boundless Rot
 		272457, -- Shockwave
 		{259718, "SAY", "SAY_COUNTDOWN", "FLASH"}, -- Upheaval
-		273285,
+		273285, -- Volatile Pods
 	}
 end
 
@@ -36,7 +37,8 @@ end
 function mod:OnEngage()
 	self:Bar(272457, 10) -- Shockwave
 	self:Bar(259718, 16) -- Upheaval
-	self:Bar(259732, 35) -- Festering Harvest
+	self:Bar(259732, 45) -- Festering Harvest
+	self:Bar(273285, 46) -- Volatile Pods
 end
 
 --------------------------------------------------------------------------------
@@ -47,6 +49,7 @@ function mod:FesteringHarvest(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 51)
+	self:Bar(259718, 15) -- Upheaval
 end
 
 function mod:BoundlessRot(args)
@@ -90,8 +93,8 @@ do
 		if t-prev > 2 then
 			prev = t
 			self:Message2(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "long", "interrupt")
-			self:CDBar(args.spellId, 30)
+			self:PlaySound(args.spellId, "long")
+			self:CDBar(args.spellId, 25)
 		end
 	end
 end

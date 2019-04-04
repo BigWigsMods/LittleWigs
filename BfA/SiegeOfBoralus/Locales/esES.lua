@@ -11,9 +11,22 @@ if L then
 	L.halberd = "Alabardero de Kul Tiras"
 	L.raider = "Asaltante Marea de Hierro"
 	L.vanguard = "Vanguardia de Kul Tiras"
+	L.marksman = "Tirador de Kul Tiras"
+end
+
+L = BigWigs:NewBossLocale("Sergeant Bainbridge", "esES") or BigWigs:NewBossLocale("Sergeant Bainbridge", "esMX")
+if L then
+	-- L.remaining = "%s on %s, %d remaining"
+	-- L.remaining_boss = "%s on BOSS, %d remaining"
+end
+
+L = BigWigs:NewBossLocale("Chopper Redhook", "esES") or BigWigs:NewBossLocale("Chopper Redhook", "esMX")
+if L then
+	-- L.remaining = "%s on %s, %d remaining"
+	-- L.remaining_boss = "%s on BOSS, %d remaining"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "esES") or BigWigs:NewBossLocale("Viq'Goth", "esMX")
 if L then
-	-- L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
+	L.demolishing_desc = "Alertas y temporizadores para cuando aparece el Terror demoledor."
 end

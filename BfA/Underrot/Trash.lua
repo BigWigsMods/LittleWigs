@@ -108,8 +108,6 @@ function mod:OnBossEnable()
 	-- Feral Bloodswarmer
 	self:Log("SPELL_AURA_APPLIED", "ThirstForBloodApplied", 266107)
 	self:Log("SPELL_CAST_START", "SonicScreech", 266106)
-	-- Living Rot
-	self:Log("SPELL_CAST_START", "WaveOfDecay", 265668)
 	-- Fallen Deathspeaker
 	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
 	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
@@ -227,12 +225,6 @@ end
 function mod:SonicScreech(args)
 	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-end
-
--- Living Rot
-function mod:WaveOfDecay(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
 end
 
 -- Fallen Deathspeaker

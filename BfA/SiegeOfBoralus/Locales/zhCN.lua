@@ -11,6 +11,19 @@ if L then
 	L.halberd = "库尔提拉斯戟兵"
 	L.raider = "铁潮袭击者"
 	L.vanguard = "库尔提拉斯先锋"
+	L.marksman = "库尔提拉斯神射手"
+end
+
+L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhCN")
+if L then
+	L.remaining = "%s位于%s，剩余%d"
+	L.remaining_boss = "%s位于首领，剩余%d"
+end
+
+L = BigWigs:NewBossLocale("Chopper Redhook", "zhCN")
+if L then
+	L.remaining = "%s位于%s，剩余%d"
+	L.remaining_boss = "%s位于首领，剩余%d"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "zhCN")

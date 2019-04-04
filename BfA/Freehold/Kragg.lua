@@ -7,6 +7,13 @@ local mod, CL = BigWigs:NewBoss("Skycap'n Kragg", 1754, 2102)
 if not mod then return end
 mod:RegisterEnableMob(126832)
 mod.engageId = 2093
+mod.respawnTime = 25
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local vileBombardmentCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,6 +22,7 @@ mod.engageId = 2093
 function mod:GetOptions()
 	return {
 		"stages",
+		256005, -- Vile Bombardment
 		255952, -- Charrrrrge
 		272046, -- Dive Bomb
 		256106, -- Azerite Powder Shot
@@ -24,11 +32,13 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+
 	-- Stage 1
 	self:Log("SPELL_CAST_START", "Charrrrrge", 255952)
-	self:Log("SPELL_CAST_SUCCESS", "SpawnParrot", 256056) -- Stage 2 XXX Does not exist anymore?
 
 	-- Stage 2
+	self:Log("SPELL_CAST_SUCCESS", "VileBombardment", 256005)
 	self:Log("SPELL_CAST_START", "DiveBomb", 272046)
 	self:Log("SPELL_CAST_START", "AzeritePowderShot", 256106)
 	self:Log("SPELL_CAST_SUCCESS", "RevitalizingBrew", 256060)
@@ -38,6 +48,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	vileBombardmentCount = 0
 	self:CDBar(255952, 4.8) -- Charrrrrge
 end
 
@@ -45,20 +56,30 @@ end
 -- Event Handlers
 --
 
+function mod:VileBombardment(args)
+	if self:Normal() then
+		self:Bar(args.spellId, 6)
+	else
+		self:Bar(args.spellId, vileBombardmentCount % 2 == 0 and 6 or 10.8)
+	end
+	vileBombardmentCount = vileBombardmentCount + 1
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 256056 then -- Spawn Parrot
+		self:StopBar(255952) -- Charrrrrge
+		self:Message2("stages", "cyan", CL.stage:format(2), false)
+		self:PlaySound("stages", "long", "stage2")
+
+		self:CDBar(256106, 7) -- Azerite Powder Shot
+		self:Bar(256005, 6) -- Vile Bombardment
+	end
+end
 
 function mod:Charrrrrge(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 8.5)
-end
-
-function mod:SpawnParrot()
-	self:StopBar(255952) -- Charrrrrge
-	self:Message2("stages", "cyan", CL.stage:format(2), false)
-	self:PlaySound("stages", "info", "stage2")
-
-	self:CDBar(256106, 6) -- Azerite Powder Shot
-	self:CDBar(256060, 27.5) -- Revitalizing Brew
 end
 
 function mod:DiveBomb(args)
@@ -70,13 +91,12 @@ end
 function mod:AzeritePowderShot(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 12.5)
+	self:CDBar(args.spellId, 11)
 end
 
 function mod:RevitalizingBrew(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
-	self:CDBar(args.spellId, 28.5)
 end
 
 do

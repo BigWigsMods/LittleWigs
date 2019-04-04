@@ -2,7 +2,7 @@
 BigWigs:AddColors("Elder Leaxa", {
 	[260879] = "orange",
 	[260894] = "yellow",
-	[264603] = {"green","red"},
+	[264603] = "red",
 	[264757] = "yellow",
 })
 
@@ -37,7 +37,7 @@ BigWigs:AddColors("Underrot Trash", {
 	[265523] = "yellow",
 	[265540] = "yellow",
 	[265568] = {"blue","cyan"},
-	[265668] = {"blue","yellow"},
+	[265668] = "blue",
 	[266106] = "red",
 	[266107] = "blue",
 	[266209] = "cyan",

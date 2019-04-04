@@ -29,8 +29,8 @@ end
 
 function mod:OnEngage()
 	self:CDBar(257882, 7) -- Break Water
-	self:CDBar(261563, 13) -- Crashing Tide
-	self:CDBar(276068, 24) -- Tidal Surge
+	self:CDBar(261563, 12.5) -- Crashing Tide
+	self:CDBar(276068, 23.5) -- Tidal Surge
 end
 
 --------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 257861 then -- Crashing Tide
 		self:Message2(261563, "yellow")
 		self:PlaySound(261563, "alert")
-		self:CDBar(261563, 17)
+		self:CDBar(261563, 16)
 	end
 end
 
@@ -49,6 +49,7 @@ function mod:BreakWater(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 26)
+	self:CastBar(args.spellId, 4.6)
 end
 
 function mod:TidalSurge(args)

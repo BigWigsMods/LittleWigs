@@ -15,6 +15,7 @@ mod.engageId = 2100
 local stage = 1
 local markCount = 1
 local playersWithPutridWaters = {}
+local engagedGripping = true
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -41,25 +42,32 @@ function mod:GetOptions()
 		"demolishing", -- Demolishing Terror
 		269266, -- Slam
 		269366, -- Repair
+		270590, -- Hull Cracker
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	-- The Gripping Terror can be any boss besides boss1, which is Viq'goth
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4", "boss5")
 
 	self:Log("SPELL_AURA_APPLIED", "PutridWatersApplied", 275014)
 	self:Log("SPELL_AURA_REMOVED", "PutridWatersRemoved", 275014)
 	self:Log("SPELL_CAST_START", "Slam", 269266)
 	self:Log("SPELL_CAST_START", "RepairStart", 269366)
+	self:Log("SPELL_CAST_START", "HullCracker", 270590)
+
+	self:Death("GrippingTerrorDeath", 137405) -- Gripping Terror
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	stage = 1
 	markCount = 1
+	engagedGripping = true
 	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
-	self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
+	self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 end
 
 function mod:OnBossDisable()
@@ -80,23 +88,31 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 269984 then -- Damage Boss 35%
 		stage = stage + 1
 		if stage < 4 then
+			engagedGripping = false
 			self:Message2("stages", "green", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
-
-			self:CDBar("demolishing", stage == 2 and 39.5 or 55.5, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
 		self:Message2("demolishing", "yellow", CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
 		self:PlaySound("demolishing", "alert")
-		self:CDBar("demolishing", 20, L.demolishing, L.demolishing_icon) -- XXX Need to Check
+		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon)
+	end
+end
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	if not engagedGripping and self:GetBossId(137405) then -- Check if Gripping Terror is up
+		engagedGripping = true
+		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
 	end
 end
 
 do
 	local isOnMe = false
-	local playerList = mod:NewTargetList()
+	local playerList, playerIcons = mod:NewTargetList(), {}
 	function mod:PutridWatersApplied(args)
-		playerList[#playerList+1] = args.destName
+		local playerListCount = #playerList+1
+		playerList[playerListCount] = args.destName
+		playerIcons[playerListCount] = markCount
 		playersWithPutridWaters[#playersWithPutridWaters + 1] = args.destName
 
 		if self:GetOption(putridWatersMarker) then
@@ -121,7 +137,7 @@ do
 		elseif not isOnMe then
 			self:OpenProximity(args.spellId, 10, playersWithPutridWaters)
 		end
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 0.6, playerIcons)
 	end
 
 	function mod:PutridWatersRemoved(args)
@@ -153,4 +169,14 @@ end
 function mod:RepairStart(args)
 	self:Message2(args.spellId, "cyan", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
+	self:CastBar(args.spellId, 3.5)
+end
+
+function mod:HullCracker(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:GrippingTerrorDeath(args)
+	self:StopBar(L.demolishing)
 end

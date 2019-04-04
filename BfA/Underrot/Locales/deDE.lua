@@ -12,3 +12,9 @@ if L then
 	L.defiler = "Blutverschworener Schänder"
 	L.corruptor = "Gesichtsloser Verderber"
 end
+
+L = BigWigs:NewBossLocale("Infested Crawg", "deDE")
+if L then
+	-- L.random_cast = "Charge or Indigestion"
+	-- L.random_cast_desc = "The first cast after each Tantrum is random."
+end
