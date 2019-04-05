@@ -14,11 +14,14 @@ mod.engageId = 2087
 
 function mod:GetOptions()
 	return {
-		259187, -- Soulrend
 		250096, -- Wracking Pain
 		250050, -- Echoes of Shadra
 		250036, -- Shadowy Remains
 		{249919, "TANK"}, -- Skewer
+		259187, -- Soulrend
+	}, {
+		[250096] = CL.general,
+		[259187] = CL.heroic,
 	}
 end
 
@@ -34,9 +37,11 @@ end
 
 function mod:OnEngage()
 	self:Bar(250096, 3.7) -- Wracking Pain
-	self:Bar(259187, 9.7) -- Soulrend
 	self:Bar(250050, 15.8) -- Echoes of Shadra
 	self:Bar(249919, 6.1) -- Skewer
+	if not self:Normal() then
+		self:Bar(259187, 9.7) -- Soulrend
+	end
 end
 
 --------------------------------------------------------------------------------

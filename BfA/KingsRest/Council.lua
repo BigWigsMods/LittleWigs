@@ -21,15 +21,19 @@ local stage = 1
 function mod:GetOptions()
 	return {
 		"stages",
-		-- Zanazal the Wise
-		267273, -- Poison Nova
-		267060, -- Call of the Elements
 		-- Kula the Butcher
 		266206, -- Whirling Axes
 		266231, -- Severing Axe
 		-- Aka'ali the Conqueror
 		{266951, "SAY", "SAY_COUNTDOWN"}, -- Barrel Through
 		{266237, "TANK"}, -- Debilitating Backhand
+		-- Zanazal the Wise
+		267273, -- Poison Nova
+		267060, -- Call of the Elements
+	}, {
+		[266206] = -18261, -- Kula the Butcher
+		[266951] = -18264, -- Aka'ali the Conqueror
+		[267273] = -18267, --Zanazal the Wise
 	}
 end
 

@@ -21,10 +21,13 @@ local cycloneStrikeCount = 0
 function mod:GetOptions()
 	return {
 		{263246, "ICON"}, -- Lightning Shield
-		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
-		{263309, "SAY", "FLASH"}, -- Cyclone Strike
 		263257, -- Static Shock
+		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
 		263424, -- Arc Dash
+		{263309, "SAY", "FLASH"}, -- Cyclone Strike
+	}, {
+		[263257] = -18484, -- Aspix
+		[263424] = -18485, -- Adderis
 	}
 end
 
@@ -105,7 +108,7 @@ do
 			self:Flash(263309) -- Cyclone Strike
 		end
 	end
-	
+
 	function mod:CycloneStrike(args)
 		cycloneStrikeCount = cycloneStrikeCount + 1
 		if cycloneStrikeCount % 2 == 1 then

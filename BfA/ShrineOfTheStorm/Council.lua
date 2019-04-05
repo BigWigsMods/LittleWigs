@@ -17,8 +17,11 @@ function mod:GetOptions()
 		267891, -- Swiftness Ward
 		267818, -- Slicing Blast
 		267905, -- Reinforcing Ward
-		{267901, "TANK"}, -- Blessing of Ironsides
 		{267899, "TANK"}, -- Hindering Cleave
+		{267901, "TANK"}, -- Blessing of Ironsides
+	}, {
+		[267891] = -17970, -- Galecaller Faye
+		[267905] = -18154, -- Brother Ironhull
 	}
 end
 

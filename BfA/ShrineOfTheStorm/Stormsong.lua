@@ -29,6 +29,9 @@ function mod:GetOptions()
 		269097, -- Waken the Void
 		269131, -- Ancient Mindbender
 		{268896, "DISPEL"}, -- Mind Rend
+	}, {
+		[268347] = CL.general,
+		[268896] = CL.heroic,
 	}
 end
 
