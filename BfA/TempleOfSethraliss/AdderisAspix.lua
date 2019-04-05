@@ -26,6 +26,7 @@ function mod:GetOptions()
 		263424, -- Arc Dash
 		{263309, "SAY", "FLASH"}, -- Cyclone Strike
 	}, {
+		[263246] = "general",
 		[263257] = -18484, -- Aspix
 		[263424] = -18485, -- Adderis
 	}
