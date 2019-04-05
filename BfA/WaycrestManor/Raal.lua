@@ -28,7 +28,7 @@ function mod:GetOptions()
 		264694, -- Rotten Expulsion
 	}, {
 		[264734] = "general",
-		[264594] = "heroic",
+		[264694] = "heroic",
 	}
 end
 
