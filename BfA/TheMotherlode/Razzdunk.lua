@@ -17,9 +17,12 @@ function mod:GetOptions()
 		"stages",
 		260280, -- Gatling Gun
 		{260829, "ICON", "SAY"}, -- Homing Missile
-		271456, -- Drill Smash
 		276229, -- Micro Missiles
+		271456, -- Drill Smash
 		--270277, -- Big Red Rocket XXX Missing from logs, UNIT event?
+	}, {
+		[260280] = -18916, -- Stage One: Big Guns
+		[271456] = -17498, -- Stage Two: Drill!
 	}
 end
 

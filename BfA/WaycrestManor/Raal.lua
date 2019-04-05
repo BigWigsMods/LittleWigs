@@ -26,6 +26,9 @@ function mod:GetOptions()
 		265002, -- Consume Servants
 		264923, -- Tenderize
 		264694, -- Rotten Expulsion
+	}, {
+		[264734] = "general",
+		[264594] = "heroic",
 	}
 end
 
@@ -44,9 +47,11 @@ end
 function mod:OnEngage()
 	rottenExpulsionCount = 1
 	tenderizeCount = 0
-	self:Bar(264694, 5.5) -- Rotten Expulsion
 	self:Bar(264923, 20.5) -- Tenderize
 	self:Bar(264931, 43.5) -- Call Servant
+	if not self:Normal() then
+		self:Bar(264694, 5.5) -- Rotten Expulsion
+	end
 end
 
 --------------------------------------------------------------------------------

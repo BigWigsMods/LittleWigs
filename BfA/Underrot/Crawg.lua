@@ -37,6 +37,9 @@ function mod:GetOptions()
 		260292, -- Charge
 		260793, -- Indigestion
 		260333, -- Tantrum
+	}, {
+		["random_cast"] = "general",
+		[260333] = "heroic",
 	}
 end
 
