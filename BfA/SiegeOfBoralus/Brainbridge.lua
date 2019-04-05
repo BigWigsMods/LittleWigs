@@ -41,7 +41,7 @@ function mod:GetOptions()
 		277965, -- Heavy Ordnance
 		279761, -- Heavy Slash
 	}, {
-		["adds"] = CL.general,
+		["adds"] = "general",
 		[279761] = -17762, -- Kul Tiran Vanguard
 	}
 end

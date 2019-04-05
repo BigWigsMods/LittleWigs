@@ -30,8 +30,8 @@ function mod:GetOptions()
 		269131, -- Ancient Mindbender
 		{268896, "DISPEL"}, -- Mind Rend
 	}, {
-		[268347] = CL.general,
-		[268896] = CL.heroic,
+		[268347] = "general",
+		[268896] = "heroic",
 	}
 end
 

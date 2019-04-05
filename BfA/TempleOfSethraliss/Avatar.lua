@@ -27,7 +27,7 @@ function mod:GetOptions()
 		268024, -- Pulse
 		273677, -- Taint
 	}, {
-		[269688] = CL.general,
+		[269688] = "general",
 		[273667] = -18513, -- Hoodoo Hexer
 	}
 end

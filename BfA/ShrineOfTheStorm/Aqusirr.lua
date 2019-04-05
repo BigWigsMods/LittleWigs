@@ -37,8 +37,8 @@ function mod:GetOptions()
 		264166, -- Undertow
 		264526, -- Grasp from the Depths
 	}, {
-		[265001] = CL.general,
-		[264526] = CL.heroic,
+		[265001] = "general",
+		[264526] = "heroic",
 	}
 end
 

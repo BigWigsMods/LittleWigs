@@ -44,7 +44,7 @@ function mod:GetOptions()
 		269266, -- Slam
 		270590, -- Hull Cracker
 	}, {
-		[275014] = CL.general,
+		[275014] = "general",
 		["demolishing"] = -18340, -- Demolishing Terror
 	}
 end

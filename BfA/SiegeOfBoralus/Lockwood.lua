@@ -38,7 +38,7 @@ function mod:GetOptions()
 		268260, -- Broadside
 		268963, -- Unstable Ordnance
 	}, {
-		[272471] = CL.general,
+		[272471] = "general",
 		[268230] = -18230, -- Ashvane Deckhand
 		[268260] = -18232, -- Ashvane Cannoneer
 	}

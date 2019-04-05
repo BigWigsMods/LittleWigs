@@ -41,7 +41,7 @@ function mod:GetOptions()
 		273721, -- Heavy Ordnance
 		257288, -- Heavy Slash
 	}, {
-		["adds"] = CL.general,
+		["adds"] = "general",
 		[257288] = -17725, -- Irontide Cleaver
 	}
 end

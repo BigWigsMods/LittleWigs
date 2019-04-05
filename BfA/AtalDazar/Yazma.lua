@@ -20,8 +20,8 @@ function mod:GetOptions()
 		{249919, "TANK"}, -- Skewer
 		259187, -- Soulrend
 	}, {
-		[250096] = CL.general,
-		[259187] = CL.heroic,
+		[250096] = "general",
+		[259187] = "heroic",
 	}
 end
 
