@@ -28,7 +28,7 @@ function mod:GetOptions()
 		273677, -- Taint
 	}, {
 		[269688] = "general",
-		[273667] = -18513, -- Hoodoo Hexer
+		[273677] = -18513, -- Hoodoo Hexer
 	}
 end
 
