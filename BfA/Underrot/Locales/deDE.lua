@@ -15,6 +15,6 @@ end
 
 L = BigWigs:NewBossLocale("Infested Crawg", "deDE")
 if L then
-	-- L.random_cast = "Charge or Indigestion"
-	-- L.random_cast_desc = "The first cast after each Tantrum is random."
+	L.random_cast = "Ansturm oder Verdauungsstörung"
+	L.random_cast_desc = "Der erste Zauber nach jedem Tobsuchtanfall ist zufällig."
 end
