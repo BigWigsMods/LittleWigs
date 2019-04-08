@@ -32,11 +32,15 @@ function mod:GetOptions()
 	return {
 		272471, -- Evasive
 		269029, -- Clear the Deck
+		273470, -- Gut Shot
 		268752, -- Withdraw
 		{268230, "TANK"}, -- Crimson Swipe
 		268260, -- Broadside
 		268963, -- Unstable Ordnance
-		273470, -- Gut Shot
+	}, {
+		[272471] = "general",
+		[268230] = -18230, -- Ashvane Deckhand
+		[268260] = -18232, -- Ashvane Cannoneer
 	}
 end
 

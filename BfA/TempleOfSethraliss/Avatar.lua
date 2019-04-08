@@ -23,9 +23,12 @@ mod.engageId = 2127
 function mod:GetOptions()
 	return {
 		269688, -- Rain of Toads
-		273677, -- Taint
-		268024, -- Pulse
 		269686, -- Plague
+		268024, -- Pulse
+		273677, -- Taint
+	}, {
+		[269688] = "general",
+		[273677] = -18513, -- Hoodoo Hexer
 	}
 end
 

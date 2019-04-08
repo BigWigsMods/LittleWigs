@@ -20,6 +20,9 @@ function mod:GetOptions()
 		{261438, "TANK_HEALER"}, -- Wasting Strike
 		{261440, "SAY", "SAY_COUNTDOWN"}, -- Virulent Pathogen
 		261447, -- Putrid Vitality
+	}, {
+		[268306] = -17773, -- Lady Waycrest
+		[261438] = -17777, -- Lord Waycrest
 	}
 end
 

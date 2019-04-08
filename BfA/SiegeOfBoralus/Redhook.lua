@@ -40,6 +40,9 @@ function mod:GetOptions()
 		257585, -- Cannon Barrage
 		273721, -- Heavy Ordnance
 		257288, -- Heavy Slash
+	}, {
+		["adds"] = "general",
+		[257288] = -17725, -- Irontide Cleaver
 	}
 end
 

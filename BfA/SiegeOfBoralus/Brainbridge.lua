@@ -40,6 +40,9 @@ function mod:GetOptions()
 		257585, -- Cannon Barrage
 		277965, -- Heavy Ordnance
 		279761, -- Heavy Slash
+	}, {
+		["adds"] = "general",
+		[279761] = -17762, -- Kul Tiran Vanguard
 	}
 end
 

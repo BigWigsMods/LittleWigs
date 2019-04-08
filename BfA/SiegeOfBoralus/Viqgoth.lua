@@ -39,10 +39,13 @@ function mod:GetOptions()
 		{275014, "PROXIMITY", "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Putrid Waters
 		putridWatersMarker,
 		270185, -- Call of the Deep
+		269366, -- Repair
 		"demolishing", -- Demolishing Terror
 		269266, -- Slam
-		269366, -- Repair
 		270590, -- Hull Cracker
+	}, {
+		[275014] = "general",
+		["demolishing"] = -18340, -- Demolishing Terror
 	}
 end
 
