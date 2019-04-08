@@ -33,7 +33,7 @@ function mod:GetOptions()
 	}, {
 		[266206] = -18261, -- Kula the Butcher
 		[266951] = -18264, -- Aka'ali the Conqueror
-		[267273] = -18267, --Zanazal the Wise
+		[267273] = -18267, -- Zanazal the Wise
 	}
 end
 
