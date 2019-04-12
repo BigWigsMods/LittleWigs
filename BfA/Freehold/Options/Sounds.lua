@@ -14,9 +14,11 @@ BigWigs:AddSounds("Council o' Captains", {
 	[256979] = "alert",
 	[258338] = "alert",
 	[258381] = "warning",
-	[264608] = "info",
-	[265088] = "info",
-	[265168] = "alarm",
+	[264608] = {"alarm","info"},
+	[265088] = {"alarm","info"},
+	[265168] = {"alarm","info"},
+	[267522] = "alert",
+	[267533] = "alert",
 })
 
 BigWigs:AddSounds("Ring of Booty", {
