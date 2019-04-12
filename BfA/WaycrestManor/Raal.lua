@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Raal the Gluttonous", 1862, 2127)
 if not mod then return end
 mod:RegisterEnableMob(131863)
 mod.engageId = 2115
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Locals
