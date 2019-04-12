@@ -39,7 +39,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	local coinMagnetCount = 1
 	self:Bar(262347, 6) -- Static Pulse
 	self:Bar(269493, 9.7) -- Footbomb Launcher
 	self:Bar(257337, 14.2) -- Shocking Claw
