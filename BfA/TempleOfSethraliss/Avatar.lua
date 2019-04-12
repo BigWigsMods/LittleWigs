@@ -9,12 +9,14 @@
 
 local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", 1877, 2145)
 if not mod then return end
-mod:RegisterEnableMob(136250, 133392) -- Hoodoo Hexxer, Avatar of Sethraliss
+mod:RegisterEnableMob(133392) -- Avatar of Sethraliss
 mod.engageId = 2127
 
 --------------------------------------------------------------------------------
 -- Locals
 --
+
+local hexerCount = 4
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -22,13 +24,16 @@ mod.engageId = 2127
 
 function mod:GetOptions()
 	return {
-		269688, -- Rain of Toads
-		269686, -- Plague
+		"stages",
 		268024, -- Pulse
-		273677, -- Taint
+		274149, -- Life Force
+		269688, -- Rain of Toads
+		{269686, "DISPEL"}, -- Plague
+		{268008, "DISPEL"}, -- Snake Charm
+		{268007, "TANK"}, -- Heart Attack
 	}, {
-		[269688] = "general",
-		[273677] = -18513, -- Hoodoo Hexer
+		["stages"] = "general",
+		[268008] = -18295, -- Plague Doctor
 	}
 end
 
@@ -39,21 +44,26 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Pulse", 268024)
 	self:Log("SPELL_AURA_APPLIED", "Plague", 269686)
 	self:Log("SPELL_AURA_REMOVED", "PlagueRemoved", 269686)
+	self:Log("SPELL_CAST_START", "SnakeCharm", 268008)
+	self:Log("SPELL_AURA_APPLIED", "SnakeCharmApplied", 268008)
+	self:Log("SPELL_AURA_APPLIED", "LifeForceApplied", 274149)
+	self:Log("SPELL_AURA_APPLIED", "HeartAttack", 268007)
+
+	self:Death("HexerDeath", 137204)
 end
 
 function mod:OnEngage()
+	hexerCount = 4
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
--- Rain of Toads
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("269688", nil, true) then
-		self:Message2(269688, "cyan")
+	if msg:find("269688", nil, true) then -- Rain of Toads
+		self:Message2(269688, "orange")
 		self:PlaySound(269688, "info")
-		-- self:CDBar(269688, ???) -- pull:36.76, 36.93, 50.1
 	end
 end
 
@@ -61,10 +71,12 @@ do
 	local prev = 0
 	function mod:Taint(args)
 		local t = args.time
-		if t - prev > 2 then
+		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "red")
-			self:PlaySound(args.spellId, "warning")
+			hexerCount = 4
+			self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
+			self:PlaySound("stages", "long")
+			self:StopBar(268024) -- Pulse
 		end
 	end
 end
@@ -77,13 +89,13 @@ do
 			prev = t
 			self:Message2(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
-			self:Bar(args.spellId, 40)
+			self:Bar(args.spellId, 15)
 		end
 	end
 end
 
 function mod:Plague(args)
-	if self:Me(args.destGUID) or self:Dispeller("disease") then
+	if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId) then
 		self:TargetMessage2(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		self:TargetBar(args.spellId, 12, args.destName)
@@ -92,4 +104,39 @@ end
 
 function mod:PlagueRemoved(args)
 	self:StopBar(args.spellName, args.destName)
+end
+
+function mod:SnakeCharm(args)
+	if self:Interrupter() then
+		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+function mod:SnakeCharmApplied(args)
+	if self:Me(args.destName) or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+function mod:LifeForceApplied(args)
+	self:TargetMessage2(args.spellId, "green", args.destName)
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:HeartAttack(args)
+	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:HexerDeath(args)
+	hexerCount = hexerCount - 1
+	if hexerCount > 0 then
+		self:Message2("stages", "cyan", CL.add_remaining:format(hexerCount), false)
+		self:PlaySound("stages", "info")
+	else
+		self:Message2("stages", "cyan", CL.intermission, false)
+		self:PlaySound("stages", "long")
+	end
 end
