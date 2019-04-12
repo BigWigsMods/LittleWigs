@@ -70,6 +70,7 @@ do
 	function mod:VileCoatingDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
+			-- Don't show message for the first tick after vile bombardment lands
 			if t-prevDamage > 1.5 and t-prevBombardment > 2 then
 				prevDamage = t
 				self:PersonalMessage(args.spellId, "underyou")
