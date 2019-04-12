@@ -23,7 +23,7 @@ function mod:GetOptions()
 		271867, -- Pay to Win
 	}, {
 		[269493] = "general",
-		[271867] = "heroic",
+		[271784] = "heroic",
 	}
 end
 
