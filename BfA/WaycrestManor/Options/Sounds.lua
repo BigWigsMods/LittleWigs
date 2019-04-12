@@ -32,10 +32,11 @@ BigWigs:AddSounds("Lord and Lady Waycrest", {
 })
 
 BigWigs:AddSounds("Gorak Tul", {
-	[266181] = "warning",
-	[266198] = "long",
+	[266181] = {"info","warning"},
+	[266198] = {"info","long"},
 	[266225] = "alert",
 	[266266] = "info",
+	[268202] = "alert",
 })
 
 BigWigs:AddSounds("Waycrest Manor Trash", {
@@ -65,4 +66,5 @@ BigWigs:AddSounds("Waycrest Manor Trash", {
 	[265880] = "alarm",
 	[265881] = "alert",
 	[271174] = "alert",
+	[278474] = "alert",
 })

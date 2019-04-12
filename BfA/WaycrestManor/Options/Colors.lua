@@ -32,10 +32,11 @@ BigWigs:AddColors("Lord and Lady Waycrest", {
 })
 
 BigWigs:AddColors("Gorak Tul", {
-	[266181] = "red",
-	[266198] = "green",
+	[266181] = {"orange","red"},
+	[266198] = {"green","orange"},
 	[266225] = "orange",
 	[266266] = "yellow",
+	[268202] = {"blue","red"},
 })
 
 BigWigs:AddColors("Waycrest Manor Trash", {
@@ -65,4 +66,5 @@ BigWigs:AddColors("Waycrest Manor Trash", {
 	[265880] = "orange",
 	[265881] = "yellow",
 	[271174] = "yellow",
+	[278474] = "red",
 })
