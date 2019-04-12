@@ -22,10 +22,13 @@ BigWigs:AddSounds("Galvazzt", {
 })
 
 BigWigs:AddSounds("Avatar of Sethraliss", {
+	[268007] = "alert",
+	[268008] = "alert",
 	[268024] = "alert",
 	[269686] = "alarm",
 	[269688] = "info",
-	[273677] = "warning",
+	[274149] = "info",
+	["stages"] = {"info","long"},
 })
 
 BigWigs:AddSounds("Temple of Sethraliss Trash", {
