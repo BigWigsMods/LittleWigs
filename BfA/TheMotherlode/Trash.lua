@@ -20,7 +20,7 @@ mod:RegisterEnableMob(
 	136470, -- Refreshment Vendor
 	130435, -- Addled Thug
 	137029, -- Ordnance Specialist
-	134012, -- Taskmaster Askari 
+	134012, -- Taskmaster Askari
 	133463, -- Venture Co. War Machine
 	136643  -- Azerite Extractor
 )
@@ -277,7 +277,6 @@ end
 function mod:TransmuteEnemyToGoo(args)
 	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
-	self:TargetBar(args.spellId, 10, args.destName)
 end
 
 function mod:TransmuteEnemyToGooApplied(args)
