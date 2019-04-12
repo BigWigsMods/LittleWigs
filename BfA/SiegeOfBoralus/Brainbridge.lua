@@ -8,6 +8,7 @@ local mod, CL = BigWigs:NewBoss("Sergeant Bainbridge", 1822, 2133)
 if not mod then return end
 mod:RegisterEnableMob(128649) -- Sergeant Bainbridge
 mod.engageId = 2097
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
