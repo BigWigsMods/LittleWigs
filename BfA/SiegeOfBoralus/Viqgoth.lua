@@ -16,6 +16,7 @@ local stage = 1
 local markCount = 1
 local playersWithPutridWaters = {}
 local engagedGripping = true
+local demolisherCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -66,6 +67,7 @@ function mod:OnEngage()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	stage = 1
 	markCount = 1
+	demolisherCount = 1
 	engagedGripping = true
 	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
@@ -92,13 +94,17 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		stage = stage + 1
 		if stage < 4 then
 			engagedGripping = false
+			demolisherCount = 1
 			self:Message2("stages", "green", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
-		self:Message2("demolishing", "yellow", CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
+		demolisherCount = demolisherCount + 1
+		self:Message2("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
 		self:PlaySound("demolishing", "alert")
-		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon)
+		if demolisherCount <= 4 then -- XXX check this
+			self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon)
+		end
 	end
 end
 
