@@ -12,6 +12,7 @@ BigWigs:AddSounds("Jes Howlis", {
 	[257791] = "alert",
 	[257793] = "long",
 	[257827] = {"alert","info"},
+	[260067] = "alert",
 })
 
 BigWigs:AddSounds("Knight Captain Valyri", {
