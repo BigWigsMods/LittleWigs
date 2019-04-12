@@ -76,7 +76,7 @@ do
 	function mod:ChemicalBurnApplied(args)
 		playerList[#playerList+1] = args.destName
 		if self:Me(args.destGUID) or self:Dispeller("magic") then
-			self:PlaySound(args.spellId, "alarm", self:Dispeller("magic") and "dispel", playerList)
+			self:PlaySound(args.spellId, "alarm", self:Dispeller("magic") and "dispel")
 		end
 		self:TargetsMessage(args.spellId, "orange", playerList, 2, nil, nil, 1)
 	end
