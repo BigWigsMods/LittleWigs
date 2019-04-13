@@ -264,7 +264,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage2(264038, "orange", name) -- Uproot
-		self:PlaySound(264038, "alarm") -- Uproot
+		self:PlaySound(264038, "alarm", nil, name) -- Uproot
 		if self:Me(guid) then
 			self:Say(264038) -- Uproot
 		end

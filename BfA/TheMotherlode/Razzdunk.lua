@@ -80,7 +80,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage2(271456, "orange", name)
-		self:PlaySound(271456, "alert", "watchstep")
+		self:PlaySound(271456, "alert", "watchstep", name)
 	end
 
 	function mod:DrillSmash(args)
