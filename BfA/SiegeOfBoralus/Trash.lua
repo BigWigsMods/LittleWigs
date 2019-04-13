@@ -161,7 +161,7 @@ function mod:SavageTempest(args)
 end
 
 function mod:SavageTempestSuccess(args)
-	self:CDBar(257170, 14) -- Savage Tempest
+	self:CDBar(args.spellId, 14)
 end
 
 function mod:WatertightShell(args)
