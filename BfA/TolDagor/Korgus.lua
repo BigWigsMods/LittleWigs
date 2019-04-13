@@ -126,7 +126,7 @@ end
 function mod:Deadeye(args)
 	local _, stacks = self:UnitDebuff(args.destName, 256044) -- Deadeye damage taken debuff
 	if stacks then
-		self:StackMessage(args.spellId, args.destName, stacks, "red")
+		self:StackMessage(args.spellId, args.destName, stacks+1, "red")
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	else
 		self:TargetMessage2(args.spellId, "orange", args.destName)
