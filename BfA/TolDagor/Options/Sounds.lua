@@ -22,7 +22,7 @@ BigWigs:AddSounds("Knight Captain Valyri", {
 })
 
 BigWigs:AddSounds("Overseer Korgus", {
-	[256038] = "warning",
+	[256038] = {"info","warning"},
 	[256083] = "alert",
 	[256105] = {"alarm","warning"},
 	[256198] = "info",
