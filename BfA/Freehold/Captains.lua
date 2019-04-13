@@ -105,7 +105,7 @@ do
 	local function printTarget(self, name, guid)
 		if self:Me(guid) or self:Healer() then
 			self:TargetMessage2(256979, "red", name) -- Powder Shot
-			self:PlaySound(256979, "alert") -- Powder Shot
+			self:PlaySound(256979, "alert", nil, name) -- Powder Shot
 		end
 	end
 
