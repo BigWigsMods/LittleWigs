@@ -116,5 +116,5 @@ end
 
 function mod:DeathLens(args)
 	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
