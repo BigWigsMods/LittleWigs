@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Aqu'sirr", 1864, 2153)
 if not mod then return end
 mod:RegisterEnableMob(134056, 139737) -- Aqu'sirr, Stormsong (for warmup timer)
 mod.engageId = 2130
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -36,6 +37,9 @@ function mod:GetOptions()
 		264101, -- Surging Rush
 		264166, -- Undertow
 		264526, -- Grasp from the Depths
+	}, {
+		[265001] = "general",
+		[264526] = "heroic",
 	}
 end
 
@@ -56,8 +60,10 @@ function mod:OnEngage()
 	stage = 1
 	self:Bar(264560, 10.2) -- Choking Brine _success
 	self:Bar(264101, 15.5) -- Surging Rush _start
-	self:Bar(264526, 24) -- Grasp from the Depths _success
 	self:Bar(264166, 32) -- Undertow _success
+	if not self:Normal() then
+		self:Bar(264526, 24) -- Grasp from the Depths _success
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -174,7 +180,9 @@ function mod:EruptingWaters(args)
 	self:Bar(264560, 13.5) -- Choking Brine _success
 	self:Bar(264101, 18.5) -- Surging Rush _start
 	self:Bar(264166, 28.5) -- Undertow _success
-	self:Bar(264526, 32) -- Grasp from the Depths _applied
+	if not self:Normal() then
+		self:Bar(264526, 32) -- Grasp from the Depths _applied
+	end
 end
 
 function mod:EruptingWatersRemoved(args)
@@ -183,6 +191,8 @@ function mod:EruptingWatersRemoved(args)
 	self:PlaySound("stages", "long")
 	self:Bar(264560, 9.5) -- Choking Brine _success
 	self:Bar(264101, 15.5) -- Surging Rush _start
-	self:Bar(264526, 24) -- Grasp from the Depths _success
 	self:Bar(264166, 32) -- Undertow _success
+	if not self:Normal() then
+		self:Bar(264526, 24) -- Grasp from the Depths _success
+	end
 end

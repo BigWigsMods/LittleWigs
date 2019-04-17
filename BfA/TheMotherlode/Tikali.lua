@@ -14,11 +14,14 @@ mod.engageId = 2106
 
 function mod:GetOptions()
 	return {
-		257593, -- Call Earthrager
-		{257582, "SAY"}, -- Raging Gaze
 		271698, -- Azerite Infusion
 		258622, -- Resonant Pulse
+		257593, -- Call Earthrager
+		{257582, "SAY"}, -- Raging Gaze
 		275907, -- Tectonic Smash
+	}, {
+		[271698] = "general",
+		[275907] = "heroic",
 	}
 end
 
@@ -34,7 +37,9 @@ function mod:OnEngage()
 	self:Bar(258622, 9.5) -- Resonant Pulse
 	self:Bar(271698, 20) -- Azerite Infusion
 	self:Bar(257593, 64) -- Call Earthrager
-	self:Bar(275907, 5) -- Tectonic Smash
+	if not self:Normal() then
+		self:Bar(275907, 5) -- Tectonic Smash
+	end
 end
 
 --------------------------------------------------------------------------------

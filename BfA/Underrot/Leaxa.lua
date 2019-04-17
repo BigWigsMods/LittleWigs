@@ -19,6 +19,9 @@ function mod:GetOptions()
 		260894, -- Creeping Rot
 		264603, -- Blood Mirror
 		264757, -- Sanguine Feast
+	}, {
+		[260879] = "general",
+		[264757] = "heroic",
 	}
 end
 

@@ -35,7 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "JaggedNettles", 260741)
+	self:Log("SPELL_CAST_START", "JaggedNettles", 260741)
 	self:Log("SPELL_CAST_SUCCESS", "UnstableRunicMark", 260703)
 	self:Log("SPELL_AURA_APPLIED", "UnstableRunicMarkApplied", 260703)
 	self:Log("SPELL_AURA_REMOVED", "UnstableRunicMarkRemoved", 260703)
@@ -54,10 +54,16 @@ end
 -- Event Handlers
 --
 
-function mod:JaggedNettles(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 13.5)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(260741, "orange", name) -- Jagged Nettles
+		self:PlaySound(260741, "alarm") -- Jagged Nettles
+	end
+
+	function mod:JaggedNettles(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:Bar(args.spellId, 13.5)
+	end
 end
 
 function mod:UnstableRunicMark(args)

@@ -38,6 +38,8 @@ function mod:GetOptions()
 		264608, -- Invigorating Brew (Haste)
 		265168, -- Caustic Brew
 	},{
+		[258338] = -17023, -- Captain Raoul
+		[258381] = -17024, -- Captain Eudora
 		[265088] = -18476, -- Rummy Mancomb
 	}
 end

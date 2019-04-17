@@ -75,7 +75,7 @@ function mod:GetOptions()
 		265741, -- Drain Soul Essence
 		-- Coven Thornshaper
 		264050, -- Infected Thorn
-		264038, -- Uproot
+		{264038, "SAY"}, -- Uproot
 		-- Thornguard
 		264556, -- Tearing Strike
 		264150, -- Shatter
@@ -261,9 +261,18 @@ function mod:InfectedThorn(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:Uproot(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(264038, "orange", name) -- Uproot
+		self:PlaySound(264038, "alarm") -- Uproot
+		if self:Me(guid) then
+			self:Say(264038) -- Uproot
+		end
+	end
+
+	function mod:Uproot(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
 end
 
 -- Thornguard
