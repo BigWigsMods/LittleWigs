@@ -67,17 +67,17 @@ end
 
 do
 	local function startTimers()
-		local elapsed = 0.1
+		-- 0.1 sec is subtracted from the timers
 		if UnitCanAttack("player", mod:GetBossId(126847)) then -- Captain Raoul
-			mod:Bar(256589, 6.9 - elapsed) -- Barrel Smash
-			mod:Bar(258338, 19 - elapsed) -- Blackout Barrel
+			mod:Bar(256589, 6.8) -- Barrel Smash, 6.9 sec
+			mod:Bar(258338, 18.9) -- Blackout Barrel, 19 sec
 		end
 		if UnitCanAttack("player", mod:GetBossId(126848)) then -- Captain Eudora
-			mod:Bar(258381, 8.5 - elapsed) -- Grape Shot
+			mod:Bar(258381, 8.4) -- Grape Shot, 8.5 sec
 		end
 		if UnitCanAttack("player", mod:GetBossId(126845)) then -- Captain Jolly
-			mod:Bar(267533, 13 - elapsed) -- Whirlpool of Blades
-			mod:Bar(267522, 5.7 - elapsed) -- Cutting Surge
+			mod:Bar(267533, 12.9) -- Whirlpool of Blades, 13 sec
+			mod:Bar(267522, 5.6) -- Cutting Surge, 5.7 sec
 		end
 	end
 
