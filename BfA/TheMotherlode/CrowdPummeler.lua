@@ -100,7 +100,7 @@ do
 
 	local function warn()
 		timerStarted = false
-		mod:StackMessage(271867, UnitName("boss1"), stacks, "red") -- Coin Magnet
+		mod:StackMessage(271867, mod.displayName, stacks, "red") -- Coin Magnet
 		mod:PlaySound(271867, "alarm") -- Coin Magnet
 	end
 
