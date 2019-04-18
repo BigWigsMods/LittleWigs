@@ -56,8 +56,8 @@ function mod:FesteringHarvest(args)
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 51)
 	self:Bar(259718, 15) -- Upheaval
-	self:Bar(272457, 24.3, CL.count:format(self:SpellName(272457), 1)) -- Shockwave
-	self:Bar(272457, 44.9, CL.count:format(self:SpellName(272457), 2)) -- Shockwave
+	self:Bar(272457, 24.3) -- Shockwave
+	self:ScheduleTimer("Bar", 24.3, 272457, 20.6) -- Second shockwave, 44.9 sec total
 end
 
 function mod:BoundlessRot(args)
