@@ -76,7 +76,6 @@ do
 			hexerCount = 4
 			self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
 			self:PlaySound("stages", "long")
-			self:StopBar(268024) -- Pulse
 		end
 	end
 end
@@ -138,5 +137,6 @@ function mod:HexerDeath(args)
 	else
 		self:Message2("stages", "cyan", CL.intermission, false)
 		self:PlaySound("stages", "long")
+		self:StopBar(268024) -- Pulse
 	end
 end
