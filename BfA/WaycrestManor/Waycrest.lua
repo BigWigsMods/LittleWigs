@@ -13,10 +13,19 @@ mod.respawnTime = 20
 -- Initialization
 --
 
+local stage = 1
+local vitalityTransferCount = 1
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
 function mod:GetOptions()
 	return {
+		"stages",
 		--[[ Lady Waycrest ]]--
 		268306, -- Discordant Cadenza
+		268278, -- Wracking Chord
 		--[[ Lord Waycrest ]]--
 		{261438, "TANK_HEALER"}, -- Wasting Strike
 		{261440, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Virulent Pathogen
@@ -28,7 +37,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "VitalityTransfer", 261446)
 	self:Log("SPELL_CAST_SUCCESS", "DiscordantCadenza", 268306)
+	self:Log("SPELL_CAST_START", "WrackingChord", 268278)
 	self:Log("SPELL_CAST_SUCCESS", "WastingStrike", 261438)
 	self:Log("SPELL_CAST_SUCCESS", "VirulentPathogen", 261440)
 	self:Log("SPELL_AURA_APPLIED", "VirulentPathogenApplied", 261440)
@@ -38,6 +49,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	stage = 1
+	vitalityTransferCount = 0
 	self:Bar(261438, 6.5) -- Wasting Strike
 	self:Bar(261440, 11.5) -- Virulent Pathogen
 	self:Bar(268306, 18) -- Discordant Cadenza
@@ -47,10 +60,26 @@ end
 -- Event Handlers
 --
 
+function mod:VitalityTransfer(args)
+	vitalityTransferCount = vitalityTransferCount + 1
+	if vitalityTransferCount == 3 then
+		stage = 2
+		self:Message2("stages", "cyan", CL.incoming:format(self:SpellName(-17773))) -- Lady Waycrest
+		self:PlaySound("stages", "long")
+	end
+end
+
 function mod:DiscordantCadenza(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 18.1)
+end
+
+function mod:WrackingChord(args)
+	if stage == 2 and self:Interrupter() then
+		self:Message2(args.spellId, "red")
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:WastingStrike(args)
