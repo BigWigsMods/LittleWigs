@@ -28,7 +28,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "DiscordantCadenza", 268306)
+	self:Log("SPELL_CAST_SUCCESS", "DiscordantCadenza", 268306)
 	self:Log("SPELL_CAST_SUCCESS", "WastingStrike", 261438)
 	self:Log("SPELL_CAST_SUCCESS", "VirulentPathogen", 261440)
 	self:Log("SPELL_AURA_APPLIED", "VirulentPathogenApplied", 261440)
