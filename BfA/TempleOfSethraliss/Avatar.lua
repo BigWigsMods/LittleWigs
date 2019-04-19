@@ -19,12 +19,22 @@ mod.engageId = 2127
 local hexerCount = 4
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	-- L.adds = "Adds"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		"stages",
+		"adds",
 		268024, -- Pulse
 		274149, -- Life Force
 		269688, -- Rain of Toads
@@ -68,6 +78,16 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 end
 
 do
+	local function warnHeartGuardian()
+		mod:Message2("adds", CL.spawned:format(mod:SpellName(-18205))) -- Heart Guardian
+		mod:PlaySound("adds", "warning")
+	end
+
+	local function warnPlagueDoctor()
+		mod:Message2("adds", CL.spawned:format(mod:SpellName(-18295))) -- Plague Doctor
+		mod:PlaySound("adds", "warning")
+	end
+
 	local prev = 0
 	function mod:Taint(args)
 		local t = args.time
@@ -76,6 +96,11 @@ do
 			hexerCount = 4
 			self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
 			self:PlaySound("stages", "long")
+
+			self:Bar("adds", 4, CL.spawning:format(self:SpellName(-18205))) -- Heart Guardian
+			self:SimpleTimer(warnHeartGuardian, 4)
+			self:Bar("adds", 18, CL.spawning:format(self:SpellName(-18295))) -- Plague Doctor
+			self:SimpleTimer(warnPlagueDoctor, 18)
 		end
 	end
 end
