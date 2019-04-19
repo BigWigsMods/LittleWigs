@@ -32,8 +32,8 @@ BigWigs:AddColors("Lord and Lady Waycrest", {
 })
 
 BigWigs:AddColors("Gorak Tul", {
-	[266181] = {"orange","red"},
-	[266198] = {"green","orange"},
+	[266181] = "red",
+	[266198] = {"green","yellow"},
 	[266225] = "orange",
 	[266266] = "yellow",
 	[268202] = {"blue","red"},
