@@ -76,9 +76,12 @@ function mod:DiscordantCadenza(args)
 end
 
 function mod:WrackingChord(args)
-	if stage == 2 and self:Interrupter() then
-		self:Message2(args.spellId, "red")
-		self:PlaySound(args.spellId, "alert")
+	if stage == 2 then
+		if self:Interrupter() then
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+		self:CDBar(args.spellId, 8)
 	end
 end
 
