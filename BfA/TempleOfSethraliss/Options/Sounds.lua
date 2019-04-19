@@ -28,6 +28,7 @@ BigWigs:AddSounds("Avatar of Sethraliss", {
 	[269686] = "alarm",
 	[269688] = "info",
 	[274149] = "info",
+	["adds"] = "warning",
 	["stages"] = {"info","long"},
 })
 

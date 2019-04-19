@@ -28,6 +28,7 @@ BigWigs:AddColors("Avatar of Sethraliss", {
 	[269686] = {"blue","orange"},
 	[269688] = "orange",
 	[274149] = {"blue","green"},
+	["adds"] = "orange",
 	["stages"] = "cyan",
 })
 
