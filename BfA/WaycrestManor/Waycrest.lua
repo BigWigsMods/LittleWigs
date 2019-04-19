@@ -18,7 +18,7 @@ function mod:GetOptions()
 		268306, -- Discordant Cadenza
 		--[[ Lord Waycrest ]]--
 		{261438, "TANK_HEALER"}, -- Wasting Strike
-		{261440, "SAY", "SAY_COUNTDOWN"}, -- Virulent Pathogen
+		{261440, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Virulent Pathogen
 		261447, -- Putrid Vitality
 	}, {
 		[268306] = -17773, -- Lady Waycrest
@@ -58,22 +58,35 @@ function mod:WastingStrike(args)
 	self:Bar(args.spellId, 15.5)
 end
 
-function mod:VirulentPathogen(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "warning", nil, args.destName)
-	self:Bar(args.spellId, 15.5)
-end
-
-function mod:VirulentPathogenApplied(args) -- XXX Proximity ?
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:SayCountdown(args.spellId, 5)
+do
+	local playerList, isOnMe = {}, false
+	function mod:VirulentPathogen(args)
+		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+		self:Bar(args.spellId, 15.5)
 	end
-end
 
-function mod:VirulentPathogenRemoved(args)
-	if self:Me(args.destGUID) then
-		self:CancelSayCountdown(args.spellId)
+	function mod:VirulentPathogenApplied(args)
+		if self:Me(args.destGUID) then
+			isOnMe = true
+			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 5)
+		end
+		playerList[#playerList+1] = args.destName
+		self:OpenProximity(args.spellId, 5, not isOnMe and playerList)
+	end
+
+	function mod:VirulentPathogenRemoved(args)
+		if self:Me(args.destGUID) then
+			isOnMe = false
+			self:CancelSayCountdown(args.spellId)
+		end
+		tDeleteItem(playerList, args.destName)
+		if #playerList == 0 then
+			self:CloseProximity(args.spellId)
+		else
+			self:OpenProximity(args.spellId, 5, not isOnMe and playerList)
+		end
 	end
 end
 
