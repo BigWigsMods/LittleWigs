@@ -24,7 +24,7 @@ local hexerCount = 4
 
 local L = mod:GetLocale()
 if L then
-	-- L.adds = "Adds"
+	L.adds = CL.adds
 end
 
 --------------------------------------------------------------------------------
