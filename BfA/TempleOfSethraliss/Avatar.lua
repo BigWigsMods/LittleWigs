@@ -75,12 +75,12 @@ end
 
 do
 	local function warnHeartGuardian()
-		mod:Message2("adds", "orange", CL.spawned:format(mod:SpellName(-18205))) -- Heart Guardian
+		mod:Message2("adds", "orange", CL.spawned:format(mod:SpellName(-18205)), false) -- Heart Guardian
 		mod:PlaySound("adds", "warning")
 	end
 
 	local function warnPlagueDoctor()
-		mod:Message2("adds", "orange", CL.spawned:format(mod:SpellName(-18295))) -- Plague Doctor
+		mod:Message2("adds", "orange", CL.spawned:format(mod:SpellName(-18295)), false) -- Plague Doctor
 		mod:PlaySound("adds", "warning")
 	end
 
