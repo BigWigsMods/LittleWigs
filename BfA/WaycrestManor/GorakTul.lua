@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Gorak Tul", 1862, 2129)
 if not mod then return end
 mod:RegisterEnableMob(131864)
 mod.engageId = 2117
-
+mod.respawnTime = 15
 
 --------------------------------------------------------------------------------
 -- Localization
