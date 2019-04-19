@@ -12,6 +12,7 @@ BigWigs:AddColors("Jes Howlis", {
 	[257791] = "orange",
 	[257793] = "cyan",
 	[257827] = {"blue","green","orange"},
+	[260067] = {"blue","red"},
 })
 
 BigWigs:AddColors("Knight Captain Valyri", {
@@ -21,7 +22,7 @@ BigWigs:AddColors("Knight Captain Valyri", {
 })
 
 BigWigs:AddColors("Overseer Korgus", {
-	[256038] = {"blue","green","red"},
+	[256038] = {"blue","green","orange","red"},
 	[256083] = "yellow",
 	[256105] = {"blue","orange"},
 	[256198] = "cyan",
