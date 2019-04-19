@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Lord and Lady Waycrest", 1862, 2128)
 if not mod then return end
 mod:RegisterEnableMob(131545, 131527) -- Lady Waycrest, Lord Waycrest
 mod.engageId = 2116
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Initialization
