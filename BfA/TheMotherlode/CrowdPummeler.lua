@@ -19,6 +19,11 @@ function mod:GetOptions()
 		256493, -- Blazing Azerite
 		262347, -- Static Pulse
 		257337, -- Shocking Claw
+		{271784, "TANK"}, -- Throw Coins
+		271867, -- Pay to Win
+	}, {
+		[269493] = "general",
+		[271784] = "heroic",
 	}
 end
 
@@ -28,6 +33,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BlazingAzerite", 256493)
 	self:Log("SPELL_CAST_START", "StaticPulse", 262347)
 	self:Log("SPELL_CAST_START", "ShockingClaw", 257337)
+	self:Log("SPELL_CAST_SUCCESS", "ThrowCoins", 271784)
+	self:Log("SPELL_AURA_APPLIED", "PayToWin", 271867)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "PayToWin", 271867)
 end
 
 function mod:OnEngage()
@@ -72,4 +80,35 @@ function mod:ShockingClaw(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm", "watchfront")
 	self:CDBar(args.spellId, 33)
+end
+
+do
+	local prev = 0
+	function mod:ThrowCoins(args)
+		local t = args.time
+		if t-prev > 5 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+do
+	local stacks = 0
+	local timerStarted = false
+
+	local function warn()
+		timerStarted = false
+		mod:StackMessage(271867, mod.displayName, stacks, "red") -- Coin Magnet
+		mod:PlaySound(271867, "alarm") -- Coin Magnet
+	end
+
+	function mod:PayToWin(args)
+		stacks = args.amount
+		if not timerStarted then
+			timerStarted = true
+			self:SimpleTimer(warn, 0.3)
+		end
+	end
 end
