@@ -21,7 +21,7 @@ BigWigs:AddSounds("Raal the Gluttonous", {
 	[264734] = "warning",
 	[264923] = "warning",
 	[264931] = "long",
-	[265002] = "alert",
+	[265005] = "alert",
 })
 
 BigWigs:AddSounds("Lord and Lady Waycrest", {
