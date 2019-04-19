@@ -17,7 +17,11 @@ function mod:GetOptions()
 		266181, -- Dread Essence
 		266266, -- Summon Deathtouched Slaver
 		266225, -- Darkened Lightning
-		266198, -- Alchemical Fire -- XXX Didn't work in my normal run (no log)
+		266198, -- Alchemical Fire
+		268202, -- Death Lens
+	}, {
+		[266181] = "general",
+		[268202] = "heroic",
 	}
 end
 
@@ -26,12 +30,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SummonDeathtouchedSlaver", 266266)
 	self:Log("SPELL_CAST_START", "DarkenedLightning", 266225)
 	self:Log("SPELL_CAST_SUCCESS", "AlchemicalFire", 266198)
+	self:Log("SPELL_CAST_SUCCESS", "DeathLens", 268202)
 end
 
 function mod:OnEngage()
-	self:Bar(266225, 9) -- Darkened Lightning
-	self:Bar(266266, 17) -- Summon Deathtouched Slaver
-	self:Bar(266181, 27.5) -- Dread Essence
+	self:Bar(266266, 4.4) -- Summon Deathtouched Slaver
+	self:Bar(266225, 7.2) -- Darkened Lightning
+	self:Bar(266181, 26.7) -- Dread Essence
 end
 
 --------------------------------------------------------------------------------
@@ -41,13 +46,13 @@ end
 function mod:DreadEssence(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 27.5)
+	self:Bar(args.spellId, 28)
 end
 
 function mod:SummonDeathtouchedSlaver(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 27.5)
+	self:CDBar(args.spellId, 17)
 end
 
 function mod:DarkenedLightning(args)
@@ -61,4 +66,9 @@ end
 function mod:AlchemicalFire(args)
 	self:Message2(args.spellId, "green")
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:DeathLens(args)
+	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
