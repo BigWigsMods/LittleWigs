@@ -59,10 +59,8 @@ function mod:WastingStrike(args)
 end
 
 do
-	local playerList, isOnMe = {}, false
+	local playerList, isOnMe, proxList = mod:NewTargetList(), false, {}
 	function mod:VirulentPathogen(args)
-		self:TargetMessage2(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:Bar(args.spellId, 15.5)
 	end
 
@@ -72,8 +70,13 @@ do
 			self:Say(args.spellId)
 			self:SayCountdown(args.spellId, 5)
 		end
+
 		playerList[#playerList+1] = args.destName
-		self:OpenProximity(args.spellId, 5, not isOnMe and playerList)
+		self:TargetsMessage(args.spellId, "red", playerList, 5)
+		self:PlaySound(args.spellId, "warning", nil, playerList)
+
+		proxList[#proxList+1] = args.destName
+		self:OpenProximity(args.spellId, 5, not isOnMe and proxList)
 	end
 
 	function mod:VirulentPathogenRemoved(args)
@@ -81,11 +84,11 @@ do
 			isOnMe = false
 			self:CancelSayCountdown(args.spellId)
 		end
-		tDeleteItem(playerList, args.destName)
-		if #playerList == 0 then
+		tDeleteItem(proxList, args.destName)
+		if #proxList == 0 then
 			self:CloseProximity(args.spellId)
 		else
-			self:OpenProximity(args.spellId, 5, not isOnMe and playerList)
+			self:OpenProximity(args.spellId, 5, not isOnMe and proxList)
 		end
 	end
 end
