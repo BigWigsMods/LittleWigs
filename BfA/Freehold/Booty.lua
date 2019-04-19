@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	126969 -- Trothak
 )
 mod.engageId = 2095
+mod.respawnTime = 25
 
 --------------------------------------------------------------------------------
 -- Localization

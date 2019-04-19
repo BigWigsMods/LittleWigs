@@ -16,14 +16,14 @@ end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhCN")
 if L then
-	L.remaining = "%s位于%s，剩余%d"
-	L.remaining_boss = "%s位于首领，剩余%d"
+	L.remaining = "%2$s中了%d层%1$s"
+	L.remaining_boss = "首领中了%d层%s"
 end
 
 L = BigWigs:NewBossLocale("Chopper Redhook", "zhCN")
 if L then
-	L.remaining = "%s位于%s，剩余%d"
-	L.remaining_boss = "%s位于首领，剩余%d"
+	L.remaining = "%2$s中了%d层%1$s"
+	L.remaining_boss = "首领中了%d层%s"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "zhCN")
