@@ -18,10 +18,3 @@ if L then
 	L.sister = "Hermana marcada"
 	L.alma = "Matriarca Alma"
 end
-
-L = BigWigs:NewBossLocale("Gorak Tul", "esES") or BigWigs:NewBossLocale("Gorak Tul", "esMX")
-if L then
-	-- L.add_killed = "Add killed, %d corpses remaining"
-	-- L.corpses_burned = "%d corpses burned, %d remaining"
-	-- L.adds_resurrected = "%d adds resurrected"
-end
