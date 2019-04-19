@@ -72,7 +72,7 @@ function mod:DarkenedLightning(args)
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:Bar(args.spellId, 14.5)
+	self:Bar(args.spellId, 15.8)
 end
 
 function mod:AlchemicalFire(args)
