@@ -8,6 +8,16 @@ if not mod then return end
 mod:RegisterEnableMob(131864)
 mod.engageId = 2117
 
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.add_killed = "Add killed"
+end
+
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -31,6 +41,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DarkenedLightning", 266225)
 	self:Log("SPELL_CAST_SUCCESS", "AlchemicalFire", 266198)
 	self:Log("SPELL_CAST_SUCCESS", "DeathLens", 268202)
+
+	self:Death("DeathtouchedSlaverDeath", 135552)
 end
 
 function mod:OnEngage()
@@ -71,4 +83,9 @@ end
 function mod:DeathLens(args)
 	self:TargetMessage2(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
+end
+
+function mod:DeathtouchedSlaverDeath(args)
+	self:Message2(266198, "yellow", L.add_killed) -- Alchemical Fire
+	self:PlaySound(266198, "info") -- Alchemical Fire
 end

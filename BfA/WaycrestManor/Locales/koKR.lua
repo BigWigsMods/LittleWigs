@@ -18,3 +18,8 @@ if L then
 	-- L.sister = "Marked Sister"
 	-- L.alma = "Matron Alma"
 end
+
+L = BigWigs:NewBossLocale("Gorak Tul", "koKR")
+if L then
+	-- L.add_killed = "Add killed"
+end
