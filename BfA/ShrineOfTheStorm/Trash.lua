@@ -169,11 +169,18 @@ do
 	end
 end
 
-function mod:AnchorOfBinding(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and IsItemInRange(37727, unit .. "target") then -- Ruby Acorn, 5yd
-		self:Message2(args.spellId, "blue", CL.near:format(args.spellName))
-		self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:AnchorOfBinding(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			if unit and IsItemInRange(37727, unit .. "target") then -- Ruby Acorn, 5yd
+				prev = t
+				self:Message2(args.spellId, "blue", CL.near:format(args.spellName))
+				self:PlaySound(args.spellId, "alarm")
+			end
+		end
 	end
 end
 

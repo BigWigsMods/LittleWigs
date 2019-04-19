@@ -14,11 +14,15 @@ mod.engageId = 2102
 
 function mod:GetOptions()
 	return {
+		257791, -- Howling Fear
 		257785, -- Flashing Daggers
 		257777, -- Crippling Shiv
-		257791, -- Howling Fear
 		257793, -- Smoke Powder
 		257827, -- Motivating Cry
+		260067, -- Viscious Mauling
+	}, {
+		[257791] = "general",
+		[260067] = -17128,
 	}
 end
 
@@ -31,6 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MotivatingCry", 257827)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Motivated", 257956)
 	self:Log("SPELL_INTERRUPT", "MotivatingCryInterupted", "*")
+	self:Log("SPELL_CAST_SUCCESS", "VisciousMauling", 260067)
 end
 
 function mod:OnEngage()
@@ -98,4 +103,9 @@ function mod:MotivatingCryInterupted(args)
 		self:Bar(257791, 2) -- Howling Fear
 		self:Bar(257785, 5.5) -- Flashing Daggers
 	end
+end
+
+function mod:VisciousMauling(args)
+	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end

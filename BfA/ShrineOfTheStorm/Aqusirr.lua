@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Aqu'sirr", 1864, 2153)
 if not mod then return end
 mod:RegisterEnableMob(134056, 139737) -- Aqu'sirr, Stormsong (for warmup timer)
 mod.engageId = 2130
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals

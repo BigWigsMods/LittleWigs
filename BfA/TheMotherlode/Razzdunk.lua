@@ -19,7 +19,6 @@ function mod:GetOptions()
 		{260829, "ICON", "SAY"}, -- Homing Missile
 		276229, -- Micro Missiles
 		271456, -- Drill Smash
-		--270277, -- Big Red Rocket XXX Missing from logs, UNIT event?
 	}, {
 		[260280] = -18916, -- Stage One: Big Guns
 		[271456] = -17498, -- Stage Two: Drill!
@@ -33,7 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationDrill", 260189)
 	self:Log("SPELL_CAST_START", "DrillSmash", 271456)
 	self:Log("SPELL_CAST_START", "MicroMissiles", 276229)
-	--self:Log("SPELL_CAST_START", "BigRedRocket", 270277)
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationCombat", 260190)
 
 end
@@ -75,6 +73,7 @@ function mod:ConfigurationDrill(args)
 	self:PlaySound("stages", "info")
 	self:StopBar(260829) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
+	self:StopBar(CL.cast:format(self:SpellName(276229))) --  Micro Missiles Cast Bar
 end
 
 do
@@ -101,11 +100,6 @@ do
 		end
 	end
 end
-
--- function mod:BigRedRocket(args)
-	-- self:Message2(args.spellId, "yellow")
-	-- self:Playsound(args.spellId, "long")
--- end
 
 function mod:ConfigurationCombat(args)
 	self:Message2("stages", "cyan", args.spellName, args.spellId)

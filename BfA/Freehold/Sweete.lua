@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Harlan Sweete", 1754, 2095)
 if not mod then return end
 mod:RegisterEnableMob(126983)
 mod.engageId = 2096
+mod.respawnTime = 15
 
 --------------------------------------------------------------------------------
 -- Initialization
