@@ -64,7 +64,7 @@ function mod:VitalityTransfer(args)
 	vitalityTransferCount = vitalityTransferCount + 1
 	if vitalityTransferCount == 3 then
 		stage = 2
-		self:Message2("stages", "cyan", CL.incoming:format(self:SpellName(-17773))) -- Lady Waycrest
+		self:Message2("stages", "cyan", CL.incoming:format(self:SpellName(-17773)), false) -- Lady Waycrest
 		self:PlaySound("stages", "long")
 	end
 end
