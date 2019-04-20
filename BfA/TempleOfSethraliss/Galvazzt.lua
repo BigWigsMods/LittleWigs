@@ -14,6 +14,16 @@ mod.engageId = 2126
 
 local galvanizeList = {}
 
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.percent = "%s (%d%%)"
+end
+
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -26,6 +36,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1")
+
 	self:Log("SPELL_AURA_APPLIED", "Galvanize", 266923)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "GalvanizeStack", 266923)
 	self:Log("SPELL_AURA_REMOVED", "GalvanizeRemoved", 266923)
@@ -41,6 +53,16 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_POWER_FREQUENT(_, unit, powerType)
+	if powerType == "ALTERNATE" then
+		local power = UnitPower(unit, 10) -- Alternate power
+		if power > 0 then
+			self:Message2(266512, L.percent:format(self:SpellName(266512))) -- Consume Charge
+			self:PlaySound(266512, "alarm")
+		end
+	end
+end
 
 function mod:Galvanize(args)
 	galvanizeList[args.destName] = 1
