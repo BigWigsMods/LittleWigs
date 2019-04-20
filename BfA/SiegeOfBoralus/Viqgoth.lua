@@ -103,7 +103,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message2("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
 		self:PlaySound("demolishing", "alert")
 		if demolisherCount <= 4 then -- XXX check this
-			self:Bar("demolishing", 20, CL.count:format(L.demolishing, demolisherCount+1), L.demolishing_icon)
+			self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), demolisherCount+1), L.demolishing_icon)
 		end
 	end
 end
@@ -111,7 +111,7 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if not engagedGripping and self:GetBossId(137405) then -- Check if Gripping Terror is up
 		engagedGripping = true
-		self:Bar("demolishing", 20, CL.count:format(L.demolishing, 1), L.demolishing_icon) -- Summon Demolisher
+		self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 1), L.demolishing_icon) -- Summon Demolisher
 	end
 end
 
