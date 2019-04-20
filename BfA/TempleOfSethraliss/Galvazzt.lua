@@ -58,7 +58,7 @@ function mod:UNIT_POWER_FREQUENT(_, unit, powerType)
 	if powerType == "ALTERNATE" then
 		local power = UnitPower(unit, 10) -- Alternate power
 		if power > 0 then
-			self:Message2(266512, L.percent:format(self:SpellName(266512))) -- Consume Charge
+			self:Message2(266512, "orange", L.percent:format(self:SpellName(266512))) -- Consume Charge
 			self:PlaySound(266512, "alarm")
 		end
 	end
