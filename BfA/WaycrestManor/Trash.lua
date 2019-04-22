@@ -184,9 +184,16 @@ function mod:DinnerBell(args)
 end
 
 -- Pallid Gorger
-function mod:Retch(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Retch(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Crazed Marksman
