@@ -65,6 +65,7 @@ function mod:GetOptions()
 		281621, -- Concussion Charge
 		-- Venture Co. Earthshaper
 		268709, -- Earth Shield
+		263202, -- Rock Lance
 		-- Stonefury
 		268702, -- Furious Quake
 		263215, -- Tectonic Barrier
@@ -126,6 +127,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ConcussionCharge", 281621)
 	self:Log("SPELL_CAST_START", "EarthShield", 268709)
 	self:Log("SPELL_AURA_APPLIED", "EarthShieldApplied", 268709)
+	self:Log("SPELL_CAST_START", "RockLance", 263202)
 	self:Log("SPELL_CAST_START", "FuriousQuake", 268702)
 	self:Log("SPELL_CAST_START", "TectonicBarrier", 263215)
 	self:Log("SPELL_AURA_APPLIED", "TectonicBarrierApplied", 263215)
@@ -216,7 +218,19 @@ do
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "alert", "interrupt")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:RockLance(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellid, "warning", "interrupt")
 		end
 	end
 end
