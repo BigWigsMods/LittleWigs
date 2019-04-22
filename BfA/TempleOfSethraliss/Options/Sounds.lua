@@ -17,7 +17,7 @@ BigWigs:AddSounds("Merektha", {
 })
 
 BigWigs:AddSounds("Galvazzt", {
-	[266512] = "warning",
+	[266512] = {"alarm","warning"},
 	[266923] = {"alarm","info"},
 })
 
