@@ -96,7 +96,7 @@ do
 			hexerCount = 4
 			self:Bar("adds", 3.5, CL.spawning:format(self:SpellName(-18205)), 268007) -- Heart Guardian, Heart Attack
 			self:SimpleTimer(warnHeartGuardian, 3.5)
-			self:Bar("adds", 18, CL.spawning:format(self:SpellName(-18295)), 268008) -- Plague Doctor, Snake Charm
+			self:Bar("adds", 16.5, CL.spawning:format(self:SpellName(-18295)), 268008) -- Plague Doctor, Snake Charm
 			self:SimpleTimer(warnPlagueDoctor, 16.5)
 			if stage ~= 1 then -- Don't show on pull
 				self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
