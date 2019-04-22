@@ -134,6 +134,7 @@ function mod:PlagueRemoved(args)
 end
 
 function mod:SnakeCharm(args)
+	if not self.isEngaged then return end -- Trash before the boss casts the same spell
 	if self:Interrupter() then
 		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
@@ -153,6 +154,7 @@ function mod:LifeForceApplied(args)
 end
 
 function mod:HeartAttack(args)
+	if not self.isEngaged then return end -- Trash before the boss casts the same spell
 	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "alert")
 end
