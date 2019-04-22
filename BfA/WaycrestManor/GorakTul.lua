@@ -68,8 +68,8 @@ function mod:SummonDeathtouchedSlaver(args)
 end
 
 function mod:DarkenedLightning(args)
-	self:Message2(args.spellId, "orange")
 	if self:Interrupter() then
+		self:Message2(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alert")
 	end
 	self:Bar(args.spellId, 15.8)
