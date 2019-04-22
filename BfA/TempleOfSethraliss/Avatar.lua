@@ -112,8 +112,10 @@ do
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "alert")
+			if self:Healer() then
+				self:Message2(args.spellId, "yellow")
+				self:PlaySound(args.spellId, "alert")
+			end
 			self:Bar(args.spellId, 15)
 		end
 	end
