@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Adderis and Aspix", 1877, 2142)
 if not mod then return end
 mod:RegisterEnableMob(133379, 133944) -- Adderis, Aspix
 mod.engageId = 2124
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Locals
