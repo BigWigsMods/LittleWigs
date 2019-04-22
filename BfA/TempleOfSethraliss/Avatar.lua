@@ -96,11 +96,11 @@ do
 				hexerCount = 4
 				self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
 				self:PlaySound("stages", "long")
-
-				self:Bar("adds", 4, CL.spawning:format(self:SpellName(-18205))) -- Heart Guardian
-				self:SimpleTimer(warnHeartGuardian, 4)
+				-- XXX add icons to bars
+				self:Bar("adds", 3.5, CL.spawning:format(self:SpellName(-18205))) -- Heart Guardian
+				self:SimpleTimer(warnHeartGuardian, 3.5)
 				self:Bar("adds", 18, CL.spawning:format(self:SpellName(-18295))) -- Plague Doctor
-				self:SimpleTimer(warnPlagueDoctor, 18)
+				self:SimpleTimer(warnPlagueDoctor, 16.5)
 			end
 		end
 	end
