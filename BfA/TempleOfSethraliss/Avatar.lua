@@ -14,7 +14,6 @@ mod.engageId = 2127
 
 local stage = 0
 local hexerCount = 4
-local bossHexers = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -63,7 +62,6 @@ end
 function mod:OnEngage()
 	stage = 0
 	hexerCount = 4
-	bossHexers = {}
 end
 
 --------------------------------------------------------------------------------
@@ -90,7 +88,6 @@ do
 
 	local prev = 0
 	function mod:Taint(args)
-		bossHexers[args.sourceGUID] = true
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
@@ -163,16 +160,13 @@ function mod:HeartAttack(args)
 end
 
 function mod:HexerDeath(args)
-	if bossHexers[args.destGUID] then
-		bossHexers[args.destGUID] = nil
-		hexerCount = hexerCount - 1
-		if hexerCount > 0 then
-			self:Message2("stages", "cyan", CL.add_remaining:format(hexerCount), false)
-			self:PlaySound("stages", "info")
-		else
-			self:Message2("stages", "cyan", CL.intermission, false)
-			self:PlaySound("stages", "long")
-			self:StopBar(268024) -- Pulse
-		end
+	hexerCount = hexerCount - 1
+	if hexerCount > 0 then
+		self:Message2("stages", "cyan", CL.add_remaining:format(hexerCount), false)
+		self:PlaySound("stages", "info")
+	else
+		self:Message2("stages", "cyan", CL.intermission, false)
+		self:PlaySound("stages", "long")
+		self:StopBar(268024) -- Pulse
 	end
 end
