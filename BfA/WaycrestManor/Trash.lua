@@ -178,9 +178,16 @@ end
 --
 
 -- Banquet Steward
-function mod:DinnerBell(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:DinnerBell(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 -- Pallid Gorger
