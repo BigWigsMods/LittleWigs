@@ -63,6 +63,7 @@ end
 function mod:OnEngage()
 	stage = 0
 	hexerCount = 4
+	self:Bar(268024, 10) -- Pulse
 end
 
 --------------------------------------------------------------------------------
