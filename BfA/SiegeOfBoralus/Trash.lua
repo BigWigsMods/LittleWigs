@@ -102,6 +102,7 @@ function mod:OnBossEnable()
 	-- Irontide Raider
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
 	self:Log("SPELL_CAST_SUCCESS", "SavageTempestSuccess", 257170)
+	self:Death("IrontideRaiderDeath", 129369)
 	-- Kul Tiran Wavetender
 	self:Log("SPELL_CAST_START", "WatertightShell", 256957)
 	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
@@ -162,6 +163,10 @@ end
 
 function mod:SavageTempestSuccess(args)
 	self:CDBar(args.spellId, 14)
+end
+
+function mod:IrontideRaiderDeath(args)
+	self:StopBar(257170) -- Savage Tempest
 end
 
 function mod:WatertightShell(args)
