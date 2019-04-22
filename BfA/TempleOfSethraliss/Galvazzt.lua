@@ -55,12 +55,19 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_POWER_FREQUENT(_, unit, powerType)
-	if powerType == "ALTERNATE" then
-		local power = UnitPower(unit, 10) -- Alternate power
-		if power > 0 then
-			self:Message2(266512, "orange", L.percent:format(self:SpellName(266512))) -- Consume Charge
-			self:PlaySound(266512, "alarm")
+do
+	local prev = 0
+	function mod:UNIT_POWER_FREQUENT(_, unit, powerType)
+		if powerType == "ALTERNATE" then
+			local t = GetTime()
+			if t-prev > 0.5 then
+				prev = t
+				local power = UnitPower(unit, 10) -- Alternate power, max 100
+				if power > 0 then
+					self:Message2(266512, "orange", L.percent:format(self:SpellName(266512), power)) -- Consume Charge
+					self:PlaySound(266512, "alarm")
+				end
+			end
 		end
 	end
 end
