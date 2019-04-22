@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Galvazzt", 1877, 2144)
 if not mod then return end
 mod:RegisterEnableMob(133389)
 mod.engageId = 2126
+mod.respawnTime = 25
 
 --------------------------------------------------------------------------------
 -- Locals
