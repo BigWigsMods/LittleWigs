@@ -65,7 +65,7 @@ do
 				local power = UnitPower(unit, 10) -- Alternate power, max 100
 				if power > 0 then
 					self:Message2(266512, "orange", L.percent:format(self:SpellName(266512), power)) -- Consume Charge
-					self:PlaySound(266512, "alarm")
+					self:PlaySound(266512, "alarm") -- Consume Charge
 				end
 			end
 		end
@@ -103,4 +103,5 @@ end
 function mod:ConsumeCharge(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+	self:CastBar(args.spellId, 3)
 end
