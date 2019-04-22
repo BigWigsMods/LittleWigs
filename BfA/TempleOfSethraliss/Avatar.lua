@@ -5,8 +5,9 @@
 
 local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", 1877, 2145)
 if not mod then return end
-mod:RegisterEnableMob(133392) -- Avatar of Sethraliss
+mod:RegisterEnableMob(133392, 137204) -- Avatar of Sethraliss, Hoodoo Hexer (boss add)
 mod.engageId = 2127
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -92,15 +93,14 @@ do
 		if t-prev > 2 then
 			prev = t
 			stage = stage + 1
-			if stage == 2 or stage == 3 then -- 1 is on pull, 4 is on kill
-				hexerCount = 4
+			hexerCount = 4
+			self:Bar("adds", 3.5, CL.spawning:format(self:SpellName(-18205)), 268007) -- Heart Guardian, Heart Attack
+			self:SimpleTimer(warnHeartGuardian, 3.5)
+			self:Bar("adds", 18, CL.spawning:format(self:SpellName(-18295)), 268008) -- Plague Doctor, Snake Charm
+			self:SimpleTimer(warnPlagueDoctor, 16.5)
+			if stage ~= 1 then -- Don't show on pull
 				self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
 				self:PlaySound("stages", "long")
-
-				self:Bar("adds", 3.5, CL.spawning:format(self:SpellName(-18205)), 268007) -- Heart Guardian, Heart Attack
-				self:SimpleTimer(warnHeartGuardian, 3.5)
-				self:Bar("adds", 18, CL.spawning:format(self:SpellName(-18295)), 268008) -- Plague Doctor, Snake Charm
-				self:SimpleTimer(warnPlagueDoctor, 16.5)
 			end
 		end
 	end
@@ -164,7 +164,7 @@ function mod:HexerDeath(args)
 	if hexerCount > 0 then
 		self:Message2("stages", "cyan", CL.add_remaining:format(hexerCount), false)
 		self:PlaySound("stages", "info")
-	else
+	elseif stage ~= 3 then -- 3 is the last phase
 		self:Message2("stages", "cyan", CL.intermission, false)
 		self:PlaySound("stages", "long")
 		self:StopBar(268024) -- Pulse
