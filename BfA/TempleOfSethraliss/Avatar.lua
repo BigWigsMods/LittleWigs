@@ -12,6 +12,7 @@ mod.engageId = 2127
 -- Locals
 --
 
+local stage = 0
 local hexerCount = 4
 
 --------------------------------------------------------------------------------
@@ -59,6 +60,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	stage = 0
 	hexerCount = 4
 end
 
@@ -89,14 +91,17 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			hexerCount = 4
-			self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
-			self:PlaySound("stages", "long")
+			stage = stage + 1
+			if stage == 2 or stage == 3 then -- 1 is on pull, 4 is on kill
+				hexerCount = 4
+				self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
+				self:PlaySound("stages", "long")
 
-			self:Bar("adds", 4, CL.spawning:format(self:SpellName(-18205))) -- Heart Guardian
-			self:SimpleTimer(warnHeartGuardian, 4)
-			self:Bar("adds", 18, CL.spawning:format(self:SpellName(-18295))) -- Plague Doctor
-			self:SimpleTimer(warnPlagueDoctor, 18)
+				self:Bar("adds", 4, CL.spawning:format(self:SpellName(-18205))) -- Heart Guardian
+				self:SimpleTimer(warnHeartGuardian, 4)
+				self:Bar("adds", 18, CL.spawning:format(self:SpellName(-18295))) -- Plague Doctor
+				self:SimpleTimer(warnPlagueDoctor, 18)
+			end
 		end
 	end
 end
