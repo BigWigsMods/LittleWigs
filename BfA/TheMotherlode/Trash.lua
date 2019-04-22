@@ -177,9 +177,16 @@ function mod:ToxicBlades(args)
 end
 
 -- Mech Jockey
-function mod:ActivateMech(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning", "interrupt")
+do
+	local prev = 0
+	function mod:ActivateMech(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning", "interrupt")
+		end
+	end
 end
 
 function mod:ConcussionCharge(args)
@@ -188,18 +195,30 @@ function mod:ConcussionCharge(args)
 end
 
 -- Venture Co. Earthshaper
-function mod:EarthShieldApplied(args)
-	if not UnitIsPlayer(args.destName) then
-		self:Message2(args.spellId, "red", CL.other:format(args.spellName, args.destName))
-		if self:Dispeller("magic", true) then
-			self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:EarthShieldApplied(args)
+		local t = args.time
+		if t-prev > 1.5 and not UnitIsPlayer(args.destName) then
+			prev = t
+			self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
+			if self:Dispeller("magic", true) then
+				self:PlaySound(args.spellId, "info")
+			end
 		end
 	end
 end
 
-function mod:EarthShield(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning", "interrupt")
+do
+	local prev = 0
+	function mod:EarthShield(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert", "interrupt")
+		end
+	end
 end
 
 -- Stonefury
@@ -301,15 +320,21 @@ do
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
+end
 
+do
+	local prev = 0
 	function mod:MiningCharge(args)
-		local unit = self:GetUnitIdByGUID(args.sourceGUID)
-		if unit and UnitAffectingCombat(unit) then
-			self:Message2(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info", "watchstep")
+		local t = args.time
+		if t-prev > 1.5 then
+			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			if unit and UnitAffectingCombat(unit) then
+				prev = t
+				self:Message2(args.spellId, "yellow")
+				self:PlaySound(args.spellId, "info", "watchstep")
+			end
 		end
 	end
-
 end
 
 -- Refreshment Vendor
