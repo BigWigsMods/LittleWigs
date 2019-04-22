@@ -245,14 +245,28 @@ function mod:GraspingThornsRemoved(args)
 end
 
 -- Maddened Survivalist
-function mod:ShrapnelTrap(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:ShrapnelTrap(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
-function mod:SeveringSerpent(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:SeveringSerpent(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Matron Bryndle
