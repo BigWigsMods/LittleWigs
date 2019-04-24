@@ -46,6 +46,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "VirulentPathogenRemoved", 261440)
 	self:Log("SPELL_AURA_APPLIED", "PutridVitality", 261447)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PutridVitality", 261447)
+	self:Log("SPELL_AURA_REMOVED", "SoulArmorRemoved", 271590)
 end
 
 function mod:OnEngage()
@@ -64,8 +65,8 @@ function mod:VitalityTransfer(args)
 	vitalityTransferCount = vitalityTransferCount + 1
 	if vitalityTransferCount == 3 then
 		stage = 2
-		self:Message2("stages", "cyan", CL.incoming:format(self:SpellName(-17773)), false) -- Lady Waycrest
-		self:PlaySound("stages", "long")
+		self:Message2("stages", "cyan", CL.soon:format(self:SpellName(-17773)), false) -- Lady Waycrest
+		self:PlaySound("stages", "info")
 	end
 end
 
@@ -129,4 +130,9 @@ end
 function mod:PutridVitality(args)
 	self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:SoulArmorRemoved(args)
+	self:Message2("stages", "cyan", self:SpellName(-17773), false) -- Lady Waycrest
+	self:PlaySound("stages", "long")
 end

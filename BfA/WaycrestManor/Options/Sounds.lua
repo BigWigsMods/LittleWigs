@@ -30,7 +30,7 @@ BigWigs:AddSounds("Lord and Lady Waycrest", {
 	[261447] = "info",
 	[268278] = "alert",
 	[268306] = "alarm",
-	["stages"] = "long",
+	["stages"] = {"info","long"},
 })
 
 BigWigs:AddSounds("Gorak Tul", {
