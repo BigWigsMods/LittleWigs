@@ -48,7 +48,7 @@ end
 function mod:OnEngage()
 	self:Bar(266266, 4.4) -- Summon Deathtouched Slaver
 	self:Bar(266225, 7.2) -- Darkened Lightning
-	self:Bar(266181, 25.5) -- Dread Essence
+	self:CDBar(266181, 25.5) -- Dread Essence
 end
 
 --------------------------------------------------------------------------------
