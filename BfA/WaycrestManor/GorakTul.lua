@@ -58,7 +58,7 @@ end
 function mod:DreadEssence(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 28)
+	self:CDBar(args.spellId, 28)
 end
 
 function mod:SummonDeathtouchedSlaver(args)
@@ -72,7 +72,7 @@ function mod:DarkenedLightning(args)
 		self:Message2(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:Bar(args.spellId, 15.8)
+	self:CDBar(args.spellId, 15.8)
 end
 
 function mod:AlchemicalFire(args)
