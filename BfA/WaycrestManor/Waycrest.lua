@@ -46,7 +46,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "VirulentPathogenRemoved", 261440)
 	self:Log("SPELL_AURA_APPLIED", "PutridVitality", 261447)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PutridVitality", 261447)
-	self:Log("SPELL_AURA_REMOVED", "SoulArmorRemoved", 271590)
 end
 
 function mod:OnEngage()
