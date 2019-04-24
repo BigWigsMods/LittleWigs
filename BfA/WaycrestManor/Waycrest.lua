@@ -61,12 +61,21 @@ end
 -- Event Handlers
 --
 
-function mod:VitalityTransfer(args)
-	vitalityTransferCount = vitalityTransferCount + 1
-	if vitalityTransferCount == 3 then
-		stage = 2
-		self:Message2("stages", "cyan", CL.soon:format(self:SpellName(-17773)), false) -- Lady Waycrest
-		self:PlaySound("stages", "info")
+do
+	local function warnLadyWacrest()
+		mod:Message2("stages", "cyan", mod:SpellName(-17773), false)
+		mod:PlaySound("stages", "long")
+	end
+
+	function mod:VitalityTransfer(args)
+		vitalityTransferCount = vitalityTransferCount + 1
+		if vitalityTransferCount == 3 then
+			stage = 2
+			self:Message2("stages", "cyan", CL.soon:format(self:SpellName(-17773)), false) -- Lady Waycrest
+			self:PlaySound("stages", "info")
+			self:Bar("stages", 6, CL.incoming:format(self:SpellName(-17773)), false)
+			self:SimpleTimer(warnLadyWacrest, 6)
+		end
 	end
 end
 
@@ -130,9 +139,4 @@ end
 function mod:PutridVitality(args)
 	self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
 	self:PlaySound(args.spellId, "info")
-end
-
-function mod:SoulArmorRemoved(args)
-	self:Message2("stages", "cyan", self:SpellName(-17773), false) -- Lady Waycrest
-	self:PlaySound("stages", "long")
 end
