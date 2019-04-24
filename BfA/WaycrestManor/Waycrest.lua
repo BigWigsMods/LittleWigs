@@ -72,7 +72,7 @@ do
 			stage = 2
 			self:Message2("stages", "cyan", CL.soon:format(self:SpellName(-17773)), false) -- Lady Waycrest
 			self:PlaySound("stages", "info")
-			self:Bar("stages", 6, CL.incoming:format(self:SpellName(-17773)), false)
+			self:Bar("stages", 6, CL.incoming:format(self:SpellName(-17773)), "achievement_character_undead_female")
 			self:SimpleTimer(warnLadyWacrest, 6)
 		end
 	end
