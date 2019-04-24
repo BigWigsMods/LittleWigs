@@ -15,7 +15,7 @@ mod.respawnTime = 15
 
 local L = mod:GetLocale()
 if L then
-	L.add_killed = "Add killed"
+	L.add_killed = "Add killed - Ready to burn"
 end
 
 --------------------------------------------------------------------------------
