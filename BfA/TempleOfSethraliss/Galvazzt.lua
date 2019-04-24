@@ -96,7 +96,7 @@ function mod:GalvanizeRemoved(args)
 end
 
 function mod:GalvanizeOnBoss(args)
-	self:Message2(266923, "orange", CL.other:format(args.spellName, args.destName))
+	self:Message2(266923, "orange", -18921) -- Galvanize, Energy Core
 	self:PlaySound(266923, "alarm")
 end
 
