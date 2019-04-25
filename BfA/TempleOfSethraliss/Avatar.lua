@@ -71,8 +71,8 @@ end
 --
 
 -- The encounter starts 0.5 sec before the first mob is engaged.
--- The adds actually apply a debuff to the boss before they spawn,
--- so this is needed to ensure the boss is engaged first
+-- The event for the adds casting Taint fires before they spawn,
+-- so this is needed to ensure the boss is engaged first.
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == self.engageId then
 		self:Engage()
