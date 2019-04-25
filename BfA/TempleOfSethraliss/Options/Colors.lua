@@ -13,7 +13,6 @@ BigWigs:AddColors("Merektha", {
 	[263927] = "blue",
 	[263958] = {"blue","red"},
 	[264206] = {"cyan","green"},
-	[264239] = "orange",
 })
 
 BigWigs:AddColors("Galvazzt", {
