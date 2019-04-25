@@ -5,7 +5,6 @@
 
 local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", 1877, 2145)
 if not mod then return end
-mod:RegisterEnableMob(133392, 137204) -- Avatar of Sethraliss, Hoodoo Hexer (boss add)
 mod.engageId = 2127
 mod.respawnTime = 20
 
@@ -46,6 +45,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
 	self:Log("SPELL_CAST_SUCCESS", "Taint", 273677)
@@ -63,12 +63,21 @@ end
 function mod:OnEngage()
 	stage = 0
 	hexerCount = 4
-	self:Bar(268024, 9.5) -- Pulse
+	self:Bar(268024, 10) -- Pulse
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- The encounter starts 0.5 sec before the first mob is engaged.
+-- The adds actually apply a debuff to the boss before they spawn,
+-- so this is needed to ensure the boss is engaged first
+function mod:ENCOUNTER_START(_, encounterId)
+	if encounterId == self.engageId then
+		self:Engage()
+	end
+end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("269688", nil, true) then -- Rain of Toads
