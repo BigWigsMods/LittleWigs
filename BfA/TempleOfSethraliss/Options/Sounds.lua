@@ -18,7 +18,7 @@ BigWigs:AddSounds("Merektha", {
 
 BigWigs:AddSounds("Galvazzt", {
 	[266512] = {"alarm","warning"},
-	[266923] = {"alarm","info"},
+	[266923] = {"alert","info"},
 })
 
 BigWigs:AddSounds("Avatar of Sethraliss", {
