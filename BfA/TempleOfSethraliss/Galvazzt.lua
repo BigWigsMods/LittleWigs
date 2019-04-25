@@ -97,7 +97,7 @@ end
 
 function mod:GalvanizeOnBoss(args)
 	self:Message2(266923, "orange", -18921) -- Galvanize, Energy Core
-	self:PlaySound(266923, "alarm")
+	self:PlaySound(266923, "alert")
 end
 
 function mod:ConsumeCharge(args)
