@@ -113,7 +113,7 @@ do
 				if not self:Normal() then
 					self:Bar("adds", 3.5, plagueDoctorSpawning, 268008) -- Snake Charm icon
 					self:SimpleTimer(warnPlagueDoctor, 3.5)
-					self:ScheduleTimer("Bar", 2.5, "adds", 7, plagueDoctorSpawning, 268008) -- Snake Charm icon, 9.5 sec total
+					self:ScheduleTimer("Bar", 3.5, "adds", 6, plagueDoctorSpawning, 268008) -- Snake Charm icon, 9.5 sec total
 					self:SimpleTimer(warnPlagueDoctor, 9.5)
 				end
 			else -- Stage 1 or 2
