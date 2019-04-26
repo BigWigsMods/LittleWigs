@@ -104,16 +104,22 @@ do
 			prev = t
 			stage = stage + 1
 			hexerCount = 4
-			self:Bar("adds", 3.5, CL.spawning:format(self:SpellName(-18205)), 268007) -- Heart Guardian, Heart Attack
-			self:SimpleTimer(warnHeartGuardian, 3.5)
-			if not self:Normal() then
-				local plagueDoctorSpawning = CL.spawning:format(self:SpellName(-18295))
-				if stage == 3 then
+
+			local plagueDoctorSpawning = CL.spawning:format(self:SpellName(-18295))
+			local heartGuardianSpawning = CL.spawning:format(self:SpellName(-18205))
+			if stage == 3 then
+				self:Bar("adds", 3.5, heartGuardianSpawning, 268007) -- Heart Guardian, Heart Attack
+				self:SimpleTimer(warnHeartGuardian, 2.5)
+				if not self:Normal() then
 					self:Bar("adds", 2.5, plagueDoctorSpawning, 268008) -- Snake Charm icon
-					self:SimpleTimer(warnPlagueDoctor, 2.5)
+					self:SimpleTimer(warnPlagueDoctor, 3.5)
 					self:ScheduleTimer("Bar", 2.5, "adds", 7, plagueDoctorSpawning, 268008) -- Snake Charm icon, 9.5 sec total
 					self:SimpleTimer(warnPlagueDoctor, 9.5)
-				else
+				end
+			else -- Stage 1 or 2
+				self:Bar("adds", 3.5, heartGuardianSpawning, 268007) -- Heart Guardian, Heart Attack
+				self:SimpleTimer(warnHeartGuardian, 3.5)
+				if not self:Normal() then
 					self:Bar("adds", 16.5, plagueDoctorSpawning, 268008) -- Snake Charm icon
 					self:SimpleTimer(warnPlagueDoctor, 16.5)
 				end
