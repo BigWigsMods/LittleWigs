@@ -58,7 +58,7 @@ end
 do
 	local prev = 0
 	function mod:UNIT_POWER_FREQUENT(_, unit, powerType)
-		if powerType == "ALTERNATE" then
+		if not self:Normal() and powerType == "ALTERNATE" then
 			local t = GetTime()
 			if t-prev > 0.5 then
 				prev = t
