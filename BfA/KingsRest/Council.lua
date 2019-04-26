@@ -65,7 +65,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("266951") then -- Barrel Through
 		self:TargetMessage2(266951, "red", destName)
-		self:PlaySound(266951, "warning", "runaway", destName)
+		self:PlaySound(266951, "warning", nil, destName)
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
 			self:Say(266951)
