@@ -108,10 +108,10 @@ do
 			local plagueDoctorSpawning = CL.spawning:format(self:SpellName(-18295))
 			local heartGuardianSpawning = CL.spawning:format(self:SpellName(-18205))
 			if stage == 3 then
-				self:Bar("adds", 3.5, heartGuardianSpawning, 268007) -- Heart Guardian, Heart Attack
+				self:Bar("adds", 2.5, heartGuardianSpawning, 268007) -- Heart Guardian, Heart Attack
 				self:SimpleTimer(warnHeartGuardian, 2.5)
 				if not self:Normal() then
-					self:Bar("adds", 2.5, plagueDoctorSpawning, 268008) -- Snake Charm icon
+					self:Bar("adds", 3.5, plagueDoctorSpawning, 268008) -- Snake Charm icon
 					self:SimpleTimer(warnPlagueDoctor, 3.5)
 					self:ScheduleTimer("Bar", 2.5, "adds", 7, plagueDoctorSpawning, 268008) -- Snake Charm icon, 9.5 sec total
 					self:SimpleTimer(warnPlagueDoctor, 9.5)
