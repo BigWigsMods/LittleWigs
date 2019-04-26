@@ -75,6 +75,7 @@ function mod:GetOptions()
 		265741, -- Drain Soul Essence
 		-- Coven Thornshaper
 		264050, -- Infected Thorn
+		278474, -- Effigy Reconstruction
 		{264038, "SAY"}, -- Uproot
 		-- Thornguard
 		264556, -- Tearing Strike
@@ -142,6 +143,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DrainSoulEssence", 265741)
 	-- Coven Thornshaper
 	self:Log("SPELL_CAST_START", "InfectedThorn", 264050)
+	self:Log("SPELL_CAST_START", "EffigyReconstruction", 278474)
 	self:Log("SPELL_CAST_START", "Uproot", 264038)
 	-- Thornguard
 	self:Log("SPELL_AURA_APPLIED", "TearingStrike", 264556)
@@ -176,15 +178,29 @@ end
 --
 
 -- Banquet Steward
-function mod:DinnerBell(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:DinnerBell(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 -- Pallid Gorger
-function mod:Retch(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Retch(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Crazed Marksman
@@ -229,14 +245,28 @@ function mod:GraspingThornsRemoved(args)
 end
 
 -- Maddened Survivalist
-function mod:ShrapnelTrap(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:ShrapnelTrap(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
-function mod:SeveringSerpent(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:SeveringSerpent(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Matron Bryndle
@@ -256,8 +286,20 @@ function mod:DrainSoulEssence(args)
 end
 
 -- Coven Thornshaper
-function mod:InfectedThorn(args)
-	self:Message2(args.spellId, "yellow")
+do
+	local prev = 0
+	function mod:InfectedThorn(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:EffigyReconstruction(args)
+	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 end
 
