@@ -90,6 +90,6 @@ end
 function mod:MindRendApplied(args)
 	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
 		self:TargetMessage2(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
