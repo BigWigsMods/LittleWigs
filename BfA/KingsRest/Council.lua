@@ -54,8 +54,6 @@ end
 
 function mod:OnEngage()
 	stage = 1
-	self:CDBar(267273, 10.5) -- Poison Nova
-	self:CDBar(267060, 21.5) -- Call of the Elements
 end
 
 --------------------------------------------------------------------------------
