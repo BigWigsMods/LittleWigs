@@ -120,7 +120,7 @@ end
 function mod:CalloftheElements(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 50) -- XXX check this
+	self:CDBar(args.spellId, 53) -- XXX check this
 end
 
 function mod:WhirlingAxes(args)
