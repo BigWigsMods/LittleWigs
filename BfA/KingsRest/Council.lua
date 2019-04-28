@@ -52,8 +52,24 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DebilitatingBackhand", 266237)
 end
 
-function mod:OnEngage()
-	stage = 1
+do
+	local function startTimers()
+		local mobId = mod:MobId(UnitGUID("boss1"))
+		if mobId == 135475 then -- Kula the Butcher
+			mod:Bar(266206, 8) -- Whirling Axes
+			mod:Bar(266231, 23) -- Severing Axe
+		elseif mobId == 135470 then -- Aka'ali the Conqueror
+			mod:Bar(266951, 6) -- Barrel Through
+		elseif mobId == 135472 then -- Zanazal the Wise
+			mod:Bar(267273, 16) -- Poison Nova
+			mod:Bar(267060, 20) -- Call of the Elements
+		end
+	end
+
+	function mod:OnEngage()
+		stage = 1
+		self:SimpleTimer(startTimers, 0.1)
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -69,7 +85,8 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 			self:Say(266951)
 			self:SayCountdown(266951, 8)
 		end
-		self:Bar(266951, 23.5)
+		self:Bar(266951, 23.5) -- Barrel Through
+		self:Bar(266237, 9) -- Debilitating Backhand
 	end
 end
 
@@ -119,7 +136,8 @@ end
 function mod:WhirlingAxes(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 10.5)
+	local mobId = self:MobId(UnitGUID("boss1"))
+	self:CDBar(args.spellId, mobId == 135475 and 10.5 or 50) -- Kula the Butcher
 end
 
 function mod:SeveringAxeSuccess(args)
@@ -136,5 +154,4 @@ end
 function mod:DebilitatingBackhand(args)
 	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 24)
 end
