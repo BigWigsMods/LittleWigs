@@ -86,7 +86,7 @@ function mod:BossDeath(args)
 	-- Stop timers
 	if mobId == 135475 then -- Kula the Butcher
 		local whirlingAxesTime = self:BarTimeLeft(266206)
-		self:Bar(266206, 30 - whirlingAxesTime)
+		self:Bar(266206, 30 - (10.5 - whirlingAxesTime)) -- Subtract time elapsed since last cast
 		self:StopBar(266231) -- Severing Axe
 	elseif mobId == 135470 then -- Aka'ali the Conqueror
 		self:StopBar(266951) -- Barrel Through XXX add timer while boss is not active
