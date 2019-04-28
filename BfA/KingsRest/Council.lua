@@ -12,7 +12,8 @@ mod.engageId = 2140
 -- Locals
 --
 
-local stage = 1
+local stage = 0
+local bossStages = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -39,8 +40,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Barrel Through
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "PoisonNova", 267273)
 	self:Log("SPELL_CAST_START", "CalloftheElements", 267060)
@@ -50,31 +49,53 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SeveringAxeApplied", 266231)
 
 	self:Log("SPELL_CAST_START", "DebilitatingBackhand", 266237)
+
+	self:Death("BossDeath", 135475, 135470, 135472) -- Kula the Butcher, Aka'ali the Conqueror, Zanazal the Wise
 end
 
-do
-	local function startTimers()
-		local mobId = mod:MobId(UnitGUID("boss1"))
-		if mobId == 135475 then -- Kula the Butcher
-			mod:Bar(266206, 8) -- Whirling Axes
-			mod:Bar(266231, 23) -- Severing Axe
-		elseif mobId == 135470 then -- Aka'ali the Conqueror
-			mod:Bar(266951, 6) -- Barrel Through
-		elseif mobId == 135472 then -- Zanazal the Wise
-			mod:Bar(267273, 16) -- Poison Nova
-			mod:Bar(267060, 20) -- Call of the Elements
-		end
-	end
-
-	function mod:OnEngage()
-		stage = 1
-		self:SimpleTimer(startTimers, 0.1)
-	end
+function mod:OnEngage()
+	bossStages = {}
+	stage = 0
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	local mobId = self:MobId(UnitGUID("boss1"))
+	if not bossStages[mobId] then
+		stage = stage + 1
+		bossStages[mobId] = stage
+		-- Start timers
+		if mobId == 135475 then -- Kula the Butcher
+			self:Bar(266206, 8) -- Whirling Axes
+			self:Bar(266231, 24) -- Severing Axe
+		elseif mobId == 135470 then -- Aka'ali the Conqueror
+			self:Bar(266951, 5.5) -- Barrel Through
+		elseif mobId == 135472 then -- Zanazal the Wise
+			self:Bar(267273, 16) -- Poison Nova
+			self:Bar(267060, 20) -- Call of the Elements
+		end
+	end
+end
+
+function mod:BossDeath(args)
+	local mobId = self:MobId(args.destGUID)
+	-- Stop timers
+	if mobId == 135475 then -- Kula the Butcher
+		self:StopBar(266206) -- Whirling Axes XXX add timer while boss is not active
+		self:StopBar(266231) -- Severing Axe
+	elseif mobId == 135470 then -- Aka'ali the Conqueror
+		self:StopBar(266951) -- Barrel Through XXX add timer while boss is not active
+		self:StopSayCountdown(266951) -- Barrel Through
+		self:StopBar(266237) -- Debilitating Backhan
+	elseif mobId == 135472 then -- Zanazal the Wise
+		self:StopBar(267273) -- Poison Nova XXX add timer while boss is not active
+		self:StopBar(267060) -- Call of the Elements
+	end
+end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("266951") then -- Barrel Through
@@ -87,37 +108,6 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 		end
 		self:Bar(266951, 23.5) -- Barrel Through
 		self:Bar(266237, 9) -- Debilitating Backhand
-	end
-end
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 34098 then -- ClearAllDebuffs // Stage Change
-		self:StopBar(267273) -- Poison Nova
-		self:StopBar(267060) -- Call of the Elements
-		self:StopBar(266206) -- Whirling Axes
-		self:StopBar(266231) -- Severing Axe
-		-- XXX Roleplay timer
-		-- XXX Killed Message?
-	end
-end
-
-function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	if stage > 2 and self:MobId(UnitGUID(unit)) == 135475 then -- Kula the Butcher
-		if UnitCanAttack("player", unit) then
-			stage = 2
-			self:Message2("stages", "cyan", CL.stage:format(stage), false)
-			self:PlaySound("stages", "long")
-			self:CDBar(266206, 8) -- Whirling Axes
-			self:CDBar(266231, 24) -- Severing Axe
-		end
-	elseif stage > 3 and self:MobId(UnitGUID(unit)) == 135470 then -- Aka'ali the Conqueror
-		if UnitCanAttack("player", unit) then
-			stage = 3
-			self:Message2("stages", "cyan", CL.stage:format(stage), false)
-			self:PlaySound("stages", "long")
-			self:CDBar(266951, 5.5) -- Barrel Through
-			self:CDBar(266237, 14) -- Debilitating Backhand
-		end
 	end
 end
 
