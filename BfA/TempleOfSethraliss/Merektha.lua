@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Merektha", 1877, 2143)
 if not mod then return end
 mod:RegisterEnableMob(133384, 134487) -- Creature and Vehicle
 mod.engageId = 2125
-mod.respawnTime = 21
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -34,7 +34,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "ToxicPool", 263927)
 	self:Log("SPELL_CAST_START", "BlindingSand", 263914)
 	self:Log("SPELL_CAST_START", "Hatch", 264239, 264233) -- different sides
-	-- self:Log("SPELL_CAST_SUCCESS", "Burrow", 264194)
 	self:Log("SPELL_AURA_APPLIED", "KnotOfSnakes", 263958)
 	self:Log("SPELL_AURA_REMOVED", "KnotOfSnakesRemoved", 263958)
 
@@ -42,6 +41,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:Bar(263912, 6) -- Noxious Breath
+	self:Bar(263958, 12) -- A Knot of Snakes
 end
 
 --------------------------------------------------------------------------------
@@ -51,7 +52,7 @@ end
 function mod:NoxiousBreath(args)
 	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 83)
+	self:Bar(args.spellId, 9)
 end
 
 do
@@ -80,9 +81,7 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(264239, "orange")
-			self:PlaySound(264239, "alarm")
-			self:CDBar(264239, 40)
+			self:Bar(264239, 35)
 		end
 	end
 end
@@ -90,12 +89,16 @@ end
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	-- Burrow
 	if UnitCanAttack("player", unit) then
-		self:Message2(264206, "green", CL.over:format(self:SpellName(264206)))
-		self:PlaySound(264206, "info")
+		self:Message2(264206, "green", CL.over:format(self:SpellName(264206))) -- Burrow
+		self:PlaySound(264206, "info") -- Burrow
+		self:CDBar(263914, 6) -- Blinding Sand
+		self:CDBar(263958, 8) -- A Knot of Snakes
 	else
-		self:Message2(264206, "cyan")
-		self:PlaySound(264206, "long")
-		self:Bar(264206, 28)
+		self:Message2(264206, "cyan") -- Burrow
+		self:PlaySound(264206, "long") -- Burrow
+		self:Bar(264206, 29) -- Burrow
+		self:StopBar(264239) -- Hatch
+		self:StopBar(263912) -- Noxious Breath
 	end
 end
 
