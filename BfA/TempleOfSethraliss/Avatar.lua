@@ -63,7 +63,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(268024, 10) -- Pulse
+	self:Bar(268024, 9.5) -- Pulse
 end
 
 --------------------------------------------------------------------------------
