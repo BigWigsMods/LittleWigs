@@ -47,7 +47,6 @@ end
 
 function mod:OnBossEnable()
 	stage = 0
-	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
 	self:Log("SPELL_CAST_SUCCESS", "Taint", 273677)
@@ -69,15 +68,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- The encounter starts 0.5 sec before the first mob is engaged.
--- The event for the adds casting Taint fires before they spawn,
--- so this is needed to ensure the boss is engaged first.
-function mod:ENCOUNTER_START(_, encounterId)
-	if encounterId == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("269688", nil, true) then -- Rain of Toads
