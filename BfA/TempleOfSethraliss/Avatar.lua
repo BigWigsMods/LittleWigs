@@ -4,8 +4,8 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", 1877, 2145)
-mod:RegisterEnableMob(133392, 137204) -- Avatar of Sethraliss, Hoodoo Hexer (boss add)
 if not mod then return end
+mod:RegisterEnableMob(133392, 137204) -- Avatar of Sethraliss, Hoodoo Hexer (boss add)
 mod.engageId = 2127
 mod.respawnTime = 20
 
