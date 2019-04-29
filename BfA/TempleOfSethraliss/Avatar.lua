@@ -4,7 +4,7 @@
 --
 
 local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", 1877, 2145)
-mod:RegisterEnableMob(136250, 133392) -- Hoodoo Hexxer, Avatar of Sethraliss
+mod:RegisterEnableMob(133392, 137204) -- Avatar of Sethraliss, Hoodoo Hexer (boss add)
 if not mod then return end
 mod.engageId = 2127
 mod.respawnTime = 20
@@ -46,6 +46,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	stage = 0
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
@@ -62,8 +63,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	stage = 0
-	hexerCount = 4
 	self:Bar(268024, 10) -- Pulse
 end
 
