@@ -46,6 +46,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- The module engages just after the first Taint cast, but Taint increments stage.
+	-- The module enables before taint, so it is reset here instead.
+	-- The issue is that when the hexers fire INSTANCE_ENCOUNTER_ENGAGE_UNIT,
+	-- Unit functions other than UnitGUID don't work on them right away.
+	-- UnitHealth will return 0, UnitExists false, etc.
 	stage = 0
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
