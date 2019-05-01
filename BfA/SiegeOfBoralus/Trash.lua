@@ -19,7 +19,8 @@ mod:RegisterEnableMob(
 	141283, -- Kul Tiran Halberd
 	138019, -- Kul Tiran Vanguard
 	141285, -- Kul Tiran Marksman
-	129366  -- Bilge Rat Buccaneer
+	129366, -- Bilge Rat Buccaneer
+	137516  -- Ashvane Invader
 )
 
 --------------------------------------------------------------------------------
@@ -40,6 +41,7 @@ if L then
 	L.vanguard = "Kul Tiran Vanguard"
 	L.marksman = "Kul Tiran Marksman"
 	L.buccaneer = "Bilge Rat Buccaneer"
+	L.invader = "Ashvane Invader"
 end
 
 --------------------------------------------------------------------------------
@@ -53,6 +55,8 @@ function mod:GetOptions()
 		-- Ashvane Commander
 		272874, -- Trample
 		275826, -- Bolstering Shout
+		-- Ashvane Invader
+		275835, -- Stinging Venom Coating
 		-- Ashvane Spotter
 		272421, -- Sighted Artillery
 		-- Bilge Rat Demolisher
@@ -77,6 +81,7 @@ function mod:GetOptions()
 	}, {
 		[268260] = L.cannoneer,
 		[272874] = L.commander,
+		[275835] = L.invader,
 		[272421] = L.spotter,
 		[257169] = L.demolisher,
 		[272827] = L.pillager,
@@ -96,6 +101,8 @@ function mod:OnBossEnable()
 	-- Ashvane Commander
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
+	-- Ashvane Invader
+	self:Log("SPELL_CAST_START", "StingingVenomCoating", 275835)
 	-- Ashvane Spotter
 	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
 	-- Bilge Rat Demolisher
@@ -139,6 +146,17 @@ end
 function mod:BolsteringShoutSuccess(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:StingingVenomCoating(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:SightedArtillery(args)

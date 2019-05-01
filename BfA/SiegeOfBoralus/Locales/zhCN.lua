@@ -13,6 +13,7 @@ if L then
 	L.vanguard = "库尔提拉斯先锋"
 	L.marksman = "库尔提拉斯神射手"
 	L.buccaneer = "水鼠帮海盗"
+	L.invader = "艾什凡入侵者"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhCN")

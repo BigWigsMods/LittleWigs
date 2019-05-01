@@ -13,6 +13,7 @@ if L then
 	L.vanguard = "Avant-garde de Kul Tiras"
 	L.marksman = "Tireur d'élite de Kul Tiras"
 	L.buccaneer = "Boucanier des Soutaillons"
+	L.invader = "Envahisseur corsandre"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "frFR")
