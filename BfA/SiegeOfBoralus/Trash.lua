@@ -18,7 +18,8 @@ mod:RegisterEnableMob(
 	141284, -- Kul Tiran Wavetender
 	141283, -- Kul Tiran Halberd
 	138019, -- Kul Tiran Vanguard
-	141285  -- Kul Tiran Marksman
+	141285, -- Kul Tiran Marksman
+	129366  -- Bilge Rat Buccaneer
 )
 
 --------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ if L then
 	L.raider = "Irontide Raider"
 	L.vanguard = "Kul Tiran Vanguard"
 	L.marksman = "Kul Tiran Marksman"
+	L.buccaneer = "Bilge Rat Buccaneer"
 end
 
 --------------------------------------------------------------------------------
@@ -60,6 +62,8 @@ function mod:GetOptions()
 		272827, -- Viscous Slobber
 		-- Bilge Rat Tempest
 		274569, -- Revitalizing Mist
+		-- Bilge Rat Buccaneer
+		272546, -- Banana Rampage
 		-- Irontide Raider
 		257170, -- Savage Tempest
 		-- Kul Tiran Wavetender
@@ -77,6 +81,7 @@ function mod:GetOptions()
 		[257169] = L.demolisher,
 		[272827] = L.pillager,
 		[274569] = L.tempest,
+		[272546] = L.buccaneer,
 		[257170] = L.raider,
 		[256957] = L.wavetender,
 		[256627] = L.halberd,
@@ -99,6 +104,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ViscousSlobber", 272827)
 	-- Bilge Rat Tempest
 	self:Log("SPELL_CAST_START", "RevitalizingMist", 274569)
+	-- Bilge Rat Buccaneer
+	self:Log("SPELL_CAST_START", "BananaRampage", 272546)
 	-- Irontide Raider
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
 	self:Log("SPELL_CAST_SUCCESS", "SavageTempestSuccess", 257170)
@@ -152,6 +159,11 @@ function mod:ViscousSlobber(args)
 end
 
 function mod:RevitalizingMist(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BananaRampage(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
