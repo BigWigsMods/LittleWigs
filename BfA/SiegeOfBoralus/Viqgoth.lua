@@ -72,7 +72,7 @@ function mod:OnEngage()
 	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
-	self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
+	self:Bar("demolishing", 20, CL.count:format(L.demolishing, 2), L.demolishing_icon) -- Summon Demolisher
 end
 
 function mod:OnBossDisable()
@@ -100,9 +100,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
 		demolisherCount = demolisherCount + 1
-		self:Message2("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
-		self:PlaySound("demolishing", "alert")
-		if demolisherCount <= 4 then -- XXX check this
+		if demolisherCount <= 5 then -- Demolishers stop spawning after the fifth, but the spell is still cast
+			self:Message2("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
+			self:PlaySound("demolishing", "alert")
+		end
+		if demolisherCount <= 4 then
 			self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), demolisherCount+1), L.demolishing_icon)
 		end
 	end
@@ -111,7 +113,7 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if not engagedGripping and self:GetBossId(137405) then -- Check if Gripping Terror is up
 		engagedGripping = true
-		self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 1), L.demolishing_icon) -- Summon Demolisher
+		self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 2), L.demolishing_icon) -- Summon Demolisher
 	end
 end
 
