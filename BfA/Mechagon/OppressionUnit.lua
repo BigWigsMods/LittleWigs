@@ -45,9 +45,11 @@ function mod:CannonBlast(args)
 	self:CastBar(args.spellId, 3)
 end
 
-function mod:FulminatingZap(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
+function mod:FulminatingZapApplied(args)
+	if self:Healer() or self:Me(args.destGUID) then
+		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+	end
 end
 
 function mod:Wreck(args)
