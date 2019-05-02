@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Viq'Goth", 1822, 2140)
 if not mod then return end
 mod:RegisterEnableMob(128652) -- Viq'Goth
 mod.engageId = 2100
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
