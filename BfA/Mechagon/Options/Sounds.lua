@@ -1,1 +1,6 @@
--- Don't error because I'm empty, please.
+
+BigWigs:AddSounds("King Gobbamak", {
+	[297254] = "alert",
+	[297257] = "info",
+	[297261] = "alarm",
+})
