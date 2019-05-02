@@ -153,6 +153,7 @@ do
 	function mod:StingingVenomCoating(args)
 		local t = args.time
 		if t-prev > 1.5 then
+			prev = t
 			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
 		end
