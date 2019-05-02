@@ -5,6 +5,14 @@ BigWigs:AddSounds("King Gobbamak", {
 	[297261] = "alarm",
 })
 
+BigWigs:AddSounds("Gunker", {
+	[297834] = "alert",
+	[297835] = "alert",
+	[297985] = "alert",
+	[298212] = "alarm",
+	[298259] = "warning",
+})
+
 BigWigs:AddSounds("Trixie & Naeno", {
 	[298718] = "alarm",
 	[298940] = "alert",
