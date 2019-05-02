@@ -72,7 +72,7 @@ function mod:OnEngage()
 	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
-	self:Bar("demolishing", 20, CL.count:format(L.demolishing, 2), L.demolishing_icon) -- Summon Demolisher
+	self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 2), L.demolishing_icon) -- Summon Demolisher
 end
 
 function mod:OnBossDisable()
