@@ -31,7 +31,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-
+	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 end
 
 --------------------------------------------------------------------------------
