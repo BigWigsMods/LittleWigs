@@ -4,9 +4,9 @@ if not IsTestBuild() then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("K.U.-J.O.", 2097, 2339)
+local mod, CL = BigWigs:NewBoss("K.U.-J.0.", 2097, 2339)
 if not mod then return end
-mod:RegisterEnableMob(0)
+mod:RegisterEnableMob(144246)
 --mod.engageId = XXX
 
 --------------------------------------------------------------------------------
