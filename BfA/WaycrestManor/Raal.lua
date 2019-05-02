@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Raal the Gluttonous", 1862, 2127)
 if not mod then return end
 mod:RegisterEnableMob(131863)
 mod.engageId = 2115
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -23,7 +24,7 @@ function mod:GetOptions()
 	return {
 		264734, -- Consume All
 		264931, -- Call Servant
-		265002, -- Consume Servants
+		265005, -- Consumed Servant
 		264923, -- Tenderize
 		264694, -- Rotten Expulsion
 	}
@@ -32,7 +33,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ConsumeAll", 264734)
 	self:Log("SPELL_CAST_START", "CallServant", 264931)
-	self:Log("SPELL_CAST_START", "ConsumeServants", 265002)
+	self:Log("SPELL_AURA_APPLIED", "ConsumedServant", 265005)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ConsumedServant", 265005)
 	self:Log("SPELL_CAST_START", "Tenderize", 264923)
 	self:Log("SPELL_CAST_START", "RottenExpulsion", 264694)
 	self:Log("SPELL_AURA_APPLIED", "RottenExpulsionDamage", 264712)
@@ -64,8 +66,8 @@ function mod:CallServant(args)
 	self:Bar(args.spellId, 29)
 end
 
-function mod:ConsumeServants(args)
-	self:Message2(args.spellId, "orange")
+function mod:ConsumedServant(args)
+	self:StackMessage(args.spellId, args.destName, args.amount, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 

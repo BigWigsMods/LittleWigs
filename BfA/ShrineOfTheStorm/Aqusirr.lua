@@ -139,7 +139,7 @@ do
 		if stage == 1 then
 			self:TargetMessage2(264166, "orange", args.destName)
 			if self:Healer() or self:Me(args.destGUID) then
-				self:PlaySound(264166, "warning")
+				self:PlaySound(264166, "warning", nil, args.destName)
 			end
 		else
 			playerList[#playerList+1] = args.destName
@@ -164,7 +164,7 @@ do
 		end
 		if stage == 1 then
 			self:TargetMessage2(args.spellId, "orange", args.destName)
-			self:PlaySound(args.spellId, "info")
+			self:PlaySound(args.spellId, "info", nil, args.destName)
 		else
 			playerList[#playerList+1] = args.destName
 			self:TargetsMessage(args.spellId, "orange", playerList, 3)

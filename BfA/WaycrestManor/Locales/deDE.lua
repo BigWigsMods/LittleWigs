@@ -18,3 +18,8 @@ if L then
 	L.sister = "Gezeichnete Schwester"
 	L.alma = "Matrone Alma"
 end
+
+L = BigWigs:NewBossLocale("Gorak Tul", "deDE")
+if L then
+	L.add_killed = "Add getötet - Bereit zum Verbrennen"
+end

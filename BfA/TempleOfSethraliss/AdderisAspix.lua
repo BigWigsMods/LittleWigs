@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Adderis and Aspix", 1877, 2142)
 if not mod then return end
 mod:RegisterEnableMob(133379, 133944) -- Adderis, Aspix
 mod.engageId = 2124
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -58,7 +59,8 @@ do
 	function mod:UNIT_POWER_FREQUENT(event, unit)
 		local guid = UnitGUID(unit)
 		local t = GetTime()
-		if t-prevDash > 2 and self:MobId(guid) == 133379 then -- Adderis
+		-- Adderis gets 100 energy when he dies
+		if t-prevDash > 2 and self:MobId(guid) == 133379 and not UnitIsDead(unit) then -- Adderis
 			if UnitPower(unit) == 100 then
 				prevDash = t
 				self:Message2(263424, "orange") -- Arc Dash
