@@ -19,3 +19,11 @@ BigWigs:AddColors("Trixie & Naeno", {
 	[298946] = "orange",
 	[299241] = {"blue","red"},
 })
+
+BigWigs:AddColors("HK-8 Aerial Oppression Unit", {
+	[295445] = "orange",
+	[295536] = "red",
+	[296080] = "cyan",
+	[296464] = "orange",
+	[302274] = {"blue","orange"},
+})

@@ -19,3 +19,11 @@ BigWigs:AddSounds("Trixie & Naeno", {
 	[298946] = "alert",
 	[299241] = "info",
 })
+
+BigWigs:AddSounds("HK-8 Aerial Oppression Unit", {
+	[295445] = "alarm",
+	[295536] = "alert",
+	[296080] = "long",
+	[296464] = "alarm",
+	[302274] = "info",
+})
