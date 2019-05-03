@@ -7,7 +7,7 @@ if not IsTestBuild() then return end
 local mod, CL = BigWigs:NewBoss("Trixie & Naeno", 2097, 2360)
 if not mod then return end
 mod:RegisterEnableMob(150712, 153755) -- Trixie Tazer, Naeno Megacrash
-mod.engageId = 2360
+--mod.engageId = XXX
 
 --------------------------------------------------------------------------------
 -- Initialization

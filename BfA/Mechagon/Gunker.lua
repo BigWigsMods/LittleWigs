@@ -7,7 +7,7 @@ if not IsTestBuild() then return end
 local mod, CL = BigWigs:NewBoss("Gunker", 2097, 2358)
 if not mod then return end
 mod:RegisterEnableMob(150222)
-mod.engageId = 2358
+--mod.engageId = XXX
 
 --------------------------------------------------------------------------------
 -- Initialization
