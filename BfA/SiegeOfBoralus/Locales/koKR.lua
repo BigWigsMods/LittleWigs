@@ -12,6 +12,8 @@ if L then
 	L.raider = "무쇠파도 약탈단"
 	L.vanguard = "쿨 티란 선봉대원"
 	L.marksman = "쿨 티란 명사수"
+	L.buccaneer = "항만의 시궁쥐단 해적단원"
+	L.invader = "애쉬베인 침략자"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "koKR")

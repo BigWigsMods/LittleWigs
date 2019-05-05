@@ -8,6 +8,7 @@ local mod, CL = BigWigs:NewBoss("Chopper Redhook", 1822, 2132)
 if not mod then return end
 mod:RegisterEnableMob(128650) -- Chopper Redhook
 mod.engageId = 2098
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals

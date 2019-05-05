@@ -18,7 +18,9 @@ mod:RegisterEnableMob(
 	141284, -- Kul Tiran Wavetender
 	141283, -- Kul Tiran Halberd
 	138019, -- Kul Tiran Vanguard
-	141285  -- Kul Tiran Marksman
+	141285, -- Kul Tiran Marksman
+	129366, -- Bilge Rat Buccaneer
+	137516  -- Ashvane Invader
 )
 
 --------------------------------------------------------------------------------
@@ -38,6 +40,8 @@ if L then
 	L.raider = "Irontide Raider"
 	L.vanguard = "Kul Tiran Vanguard"
 	L.marksman = "Kul Tiran Marksman"
+	L.buccaneer = "Bilge Rat Buccaneer"
+	L.invader = "Ashvane Invader"
 end
 
 --------------------------------------------------------------------------------
@@ -51,6 +55,8 @@ function mod:GetOptions()
 		-- Ashvane Commander
 		272874, -- Trample
 		275826, -- Bolstering Shout
+		-- Ashvane Invader
+		275835, -- Stinging Venom Coating
 		-- Ashvane Spotter
 		272421, -- Sighted Artillery
 		-- Bilge Rat Demolisher
@@ -60,6 +66,8 @@ function mod:GetOptions()
 		272827, -- Viscous Slobber
 		-- Bilge Rat Tempest
 		274569, -- Revitalizing Mist
+		-- Bilge Rat Buccaneer
+		272546, -- Banana Rampage
 		-- Irontide Raider
 		257170, -- Savage Tempest
 		-- Kul Tiran Wavetender
@@ -73,10 +81,12 @@ function mod:GetOptions()
 	}, {
 		[268260] = L.cannoneer,
 		[272874] = L.commander,
+		[275835] = L.invader,
 		[272421] = L.spotter,
 		[257169] = L.demolisher,
 		[272827] = L.pillager,
 		[274569] = L.tempest,
+		[272546] = L.buccaneer,
 		[257170] = L.raider,
 		[256957] = L.wavetender,
 		[256627] = L.halberd,
@@ -91,6 +101,8 @@ function mod:OnBossEnable()
 	-- Ashvane Commander
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
+	-- Ashvane Invader
+	self:Log("SPELL_CAST_START", "StingingVenomCoating", 275835)
 	-- Ashvane Spotter
 	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
 	-- Bilge Rat Demolisher
@@ -99,9 +111,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ViscousSlobber", 272827)
 	-- Bilge Rat Tempest
 	self:Log("SPELL_CAST_START", "RevitalizingMist", 274569)
+	-- Bilge Rat Buccaneer
+	self:Log("SPELL_CAST_START", "BananaRampage", 272546)
 	-- Irontide Raider
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
 	self:Log("SPELL_CAST_SUCCESS", "SavageTempestSuccess", 257170)
+	self:Death("IrontideRaiderDeath", 129369)
 	-- Kul Tiran Wavetender
 	self:Log("SPELL_CAST_START", "WatertightShell", 256957)
 	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
@@ -133,6 +148,18 @@ function mod:BolsteringShoutSuccess(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+do
+	local prev = 0
+	function mod:StingingVenomCoating(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
 function mod:SightedArtillery(args)
 	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info")
@@ -155,13 +182,22 @@ function mod:RevitalizingMist(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+function mod:BananaRampage(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
 function mod:SavageTempest(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:SavageTempestSuccess(args)
-	self:CDBar(257170, 14) -- Savage Tempest
+	self:CDBar(args.spellId, 14)
+end
+
+function mod:IrontideRaiderDeath(args)
+	self:StopBar(257170) -- Savage Tempest
 end
 
 function mod:WatertightShell(args)
