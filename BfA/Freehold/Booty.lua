@@ -160,7 +160,7 @@ do
 	local prev = 0
 	function mod:SharkToss(args)
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", "watchstep")
+		self:PlaySound(args.spellId, "alert", "watchstep", args.destName)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
 		end

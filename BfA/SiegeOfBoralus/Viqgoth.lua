@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Viq'Goth", 1822, 2140)
 if not mod then return end
 mod:RegisterEnableMob(128652) -- Viq'Goth
 mod.engageId = 2100
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -16,6 +17,7 @@ local stage = 1
 local markCount = 1
 local playersWithPutridWaters = {}
 local engagedGripping = true
+local demolisherCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -66,11 +68,12 @@ function mod:OnEngage()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	stage = 1
 	markCount = 1
+	demolisherCount = 1
 	engagedGripping = true
 	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
-	self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
+	self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 2), L.demolishing_icon) -- Summon Demolisher
 end
 
 function mod:OnBossDisable()
@@ -92,20 +95,26 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		stage = stage + 1
 		if stage < 4 then
 			engagedGripping = false
+			demolisherCount = 1
 			self:Message2("stages", "green", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
-		self:Message2("demolishing", "yellow", CL.spawned:format(self:SpellName(L.demolishing)), L.demolishing_icon)
-		self:PlaySound("demolishing", "alert")
-		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon)
+		demolisherCount = demolisherCount + 1
+		if demolisherCount <= 5 then -- Demolishers stop spawning after the fifth, but the spell is still cast
+			self:Message2("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
+			self:PlaySound("demolishing", "alert")
+		end
+		if demolisherCount <= 4 then
+			self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), demolisherCount+1), L.demolishing_icon)
+		end
 	end
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if not engagedGripping and self:GetBossId(137405) then -- Check if Gripping Terror is up
 		engagedGripping = true
-		self:Bar("demolishing", 20, L.demolishing, L.demolishing_icon) -- Summon Demolisher
+		self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 2), L.demolishing_icon) -- Summon Demolisher
 	end
 end
 

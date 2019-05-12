@@ -106,13 +106,20 @@ end
 function mod:NeurotoxinApplied(args)
 	if self:Dispeller("poison") or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, args.destName, "red")
-		self:PlaySound(args.spellId, "info")
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 
-function mod:BladeFlurry(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:BladeFlurry(args)
+		local t = args.time
+		if t-prev > 2 then
+			prev = t
+			self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:BladeFlurryApplied(args)
@@ -121,14 +128,28 @@ function mod:BladeFlurryApplied(args)
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
-function mod:ElectrifiedScales(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:ElectrifiedScales(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:ElectrifiedScalesApplied(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:ElectrifiedScalesApplied(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:TargetMessage2(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 function mod:NoxiousBreath(args)
@@ -171,6 +192,6 @@ end
 function mod:SnakeCharmApplied(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, args.destName, "red")
-		self:PlaySound(args.spellId, "info")
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end

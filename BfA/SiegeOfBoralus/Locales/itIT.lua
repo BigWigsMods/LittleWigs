@@ -12,6 +12,8 @@ if L then
 	L.raider = "Incursore Marferreo"
 	L.vanguard = "Avanguardia di Kul Tiras"
 	L.marksman = "Tiratore di Kul Tiras"
+	L.buccaneer = "Bucaniere dei Ratti di Sentina"
+	L.invader = "Invasore dei Bracescura"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "itIT")

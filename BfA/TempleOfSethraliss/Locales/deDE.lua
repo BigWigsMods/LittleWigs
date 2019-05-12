@@ -10,3 +10,8 @@ if L then
 	L.nimbus = "Aufgebrachter Nimbus"
 	L.doctor = "Seuchenärztin"
 end
+
+L = BigWigs:NewBossLocale("Galvazzt", "deDE")
+if L then
+	-- L.percent = "%s (%d%%)"
+end

@@ -10,3 +10,8 @@ if L then
 	L.nimbus = "흥분한 빛구름"
 	L.doctor = "역병 의사"
 end
+
+L = BigWigs:NewBossLocale("Galvazzt", "koKR")
+if L then
+	-- L.percent = "%s (%d%%)"
+end
