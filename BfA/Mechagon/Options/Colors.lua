@@ -27,3 +27,34 @@ BigWigs:AddColors("HK-8 Aerial Oppression Unit", {
 	[296464] = "orange",
 	[302274] = {"blue","orange"},
 })
+
+BigWigs:AddColors("Tussle Tonks", {
+	[283565] = "orange",
+	[285020] = "red",
+	[285153] = {"blue","yellow"},
+	[285351] = "orange",
+	[285388] = "red",
+	[299869] = {"blue","green"},
+})
+
+BigWigs:AddColors("K.U.-J.0.", {
+	[291930] = "yellow",
+	[291946] = "red",
+	[292022] = "orange",
+	[294929] = {"blue","purple"},
+})
+
+BigWigs:AddColors("Machinist's Garden", {
+	[285437] = "red",
+	[285460] = {"blue","orange","yellow"},
+	[294855] = {"blue","orange"},
+})
+
+BigWigs:AddColors("King Mechagon", {
+	[283534] = "red",
+	[291613] = "orange",
+	[291865] = "orange",
+	[291914] = "red",
+	[291928] = {"blue","red"},
+	[292290] = "yellow",
+})
