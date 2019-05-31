@@ -16,6 +16,7 @@ function mod:GetOptions()
 	return {
 		267891, -- Swiftness Ward
 		267818, -- Slicing Blast
+		267830, -- Blessing of the Tempest
 		267905, -- Reinforcing Ward
 		{267899, "TANK"}, -- Hindering Cleave
 		{267901, "TANK"}, -- Blessing of Ironsides
@@ -33,6 +34,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BlessingofIronsides", 267901)
 	self:Log("SPELL_AURA_APPLIED", "BlessingofIronsidesApplied", 267901)
 	self:Log("SPELL_CAST_START", "HinderingCleave", 267899)
+	self:Log("SPELL_AURA_APPLIED", "BlessingoftheTempestApplied", 267830)
+	self:Log("SPELL_AURA_REMOVED", "BlessingoftheTempestRemoved", 267830)
+	self:Log("SPELL_INTERRUPT", "Interupted", "*")
 end
 
 function mod:OnEngage()
@@ -79,6 +83,33 @@ end
 
 function mod:BlessingofIronsidesApplied(args)
 	self:TargetBar(args.spellId, 8, args.destName)
+end
+
+do
+	local blessingActive = false
+
+	function mod:BlessingoftheTempestApplied(args)
+		blessingActive = true
+		self:Message2(args.spellId, "yellow", CL.onboss:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+		self:TargetBar(args.spellId, 11, args.destName)
+	end
+
+	function mod:BlessingoftheTempestRemoved(args)
+		blessingActive = false
+		self:StopBar(args.spellId, args.destName)
+	end
+
+	function mod:Interrupted(args)
+		if blessingActive and self:MobId(args.destGUID) == 134058 then -- Galecaller Faye
+			local bossId = self:GetBossId(args.destGUID)
+			-- Tempest spawns close to the boss, so warnings aren't needed for ranged
+			if IsItemInRange(63427, bossId) then --Worgsaw, 8yd
+				self:Message2(args.spellId, "yellow", self:SpellName(274437), 274437) -- Tempest
+				self:PlaySound(args.spellId, "info")
+			end
+		end
+	end
 end
 
 function mod:HinderingCleave(args)
