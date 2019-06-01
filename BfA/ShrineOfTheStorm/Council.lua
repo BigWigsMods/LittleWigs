@@ -57,7 +57,7 @@ end
 
 function mod:SwiftnessWardApplied(args)
 	if self:Me(args.destGUID) then
-		self:Message2(267891, "green")
+		self:PersonalMessage(267891)
 		self:PlaySound(267891, "info")
 	end
 end
