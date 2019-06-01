@@ -37,6 +37,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BlessingoftheTempestApplied", 267830)
 	self:Log("SPELL_AURA_REMOVED", "BlessingoftheTempestRemoved", 267830)
 	self:Log("SPELL_INTERRUPT", "Interrupted", "*")
+
+	self:Death("FayeDeath", 134058)
+	self:Death("IronhullDeath", 134063)
 end
 
 function mod:OnEngage()
@@ -116,4 +119,15 @@ function mod:HinderingCleave(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 17)
+end
+
+function mod:FayeDeath(args)
+	self:StopBar(267830) -- Blessing of the Tempest
+	self:StopBar(267891) -- Swiftness Ward
+end
+
+function mod:IronhullDeath(args)
+	self:StopBar(267899) -- Hindering Cleave
+	self:StopBar(267905) -- Reinforcing Ward
+	self:StopBar(267901) -- Blessing of Ironsides
 end
