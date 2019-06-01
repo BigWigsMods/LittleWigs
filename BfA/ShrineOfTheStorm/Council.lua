@@ -96,7 +96,7 @@ do
 
 	function mod:BlessingoftheTempestApplied(args)
 		blessingActive = true
-		self:Message2(args.spellId, "yellow", CL.onboss:format(args.spellName))
+		self:Message2(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "info")
 		self:TargetBar(args.spellId, 11, args.destName)
 		self:CDBar(args.spellId, 20)
