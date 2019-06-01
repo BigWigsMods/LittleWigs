@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HinderingCleave", 267899)
 	self:Log("SPELL_AURA_APPLIED", "BlessingoftheTempestApplied", 267830)
 	self:Log("SPELL_AURA_REMOVED", "BlessingoftheTempestRemoved", 267830)
-	self:Log("SPELL_INTERRUPT", "Interupted", "*")
+	self:Log("SPELL_INTERRUPT", "Interrupted", "*")
 end
 
 function mod:OnEngage()
