@@ -43,9 +43,11 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(267899, 6) -- Hindering Cleave
-	self:Bar(267891, 14.5) -- Swiftness Ward
+	self:Bar(267899, 8.5) -- Hindering Cleave
+	self:Bar(267891, 17) -- Swiftness Ward
 	self:Bar(267905, 30) -- Reinforcing Ward
+	self:Bar(267901, 6.1) -- Blessing of Ironsides
+	self:Bar(267830, 26.7) -- Blessing of the Tempest
 end
 
 --------------------------------------------------------------------------------
@@ -75,7 +77,7 @@ end
 function mod:ReinforcingWard(args)
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 30)
+	self:Bar(args.spellId, 32)
 end
 
 function mod:BlessingofIronsides(args)
@@ -96,7 +98,7 @@ do
 		self:Message2(args.spellId, "yellow", CL.onboss:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 		self:TargetBar(args.spellId, 11, args.destName)
-		self:CDBar(args.spellId, 25)
+		self:CDBar(args.spellId, 20)
 	end
 
 	function mod:BlessingoftheTempestRemoved(args)
