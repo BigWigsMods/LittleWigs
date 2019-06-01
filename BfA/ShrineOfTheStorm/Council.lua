@@ -105,8 +105,8 @@ do
 			local bossId = self:GetBossId(args.destGUID)
 			-- Tempest spawns close to the boss, so warnings aren't needed for ranged
 			if IsItemInRange(63427, bossId) then --Worgsaw, 8yd
-				self:Message2(args.spellId, "yellow", self:SpellName(274437), 274437) -- Tempest
-				self:PlaySound(args.spellId, "info")
+				self:Message2(267830, "yellow", self:SpellName(274437), 274437) -- Tempest
+				self:PlaySound(267830, "info")
 			end
 		end
 	end
