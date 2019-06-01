@@ -10,7 +10,8 @@ BigWigs:AddColors("Aqu'sirr", {
 
 BigWigs:AddColors("Tidesage Coucil", {
 	[267818] = "yellow",
-	[267891] = {"cyan","green"},
+	[267830] = "yellow",
+	[267891] = {"blue","cyan"},
 	[267899] = "yellow",
 	[267901] = "red",
 	[267905] = "cyan",
