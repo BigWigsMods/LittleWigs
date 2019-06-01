@@ -68,8 +68,8 @@ function mod:SwiftnessWardApplied(args)
 end
 
 function mod:SlicingBlast(args)
-	self:Message2(args.spellId, "yellow")
-	if self:Interrupter(args.sourceGUID) then
+	self:Message2(args.spellId, "orange")
+	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
 end
@@ -118,8 +118,8 @@ do
 end
 
 function mod:HinderingCleave(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 17)
 end
 
