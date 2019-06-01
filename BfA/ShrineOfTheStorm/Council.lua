@@ -93,11 +93,11 @@ do
 		self:Message2(args.spellId, "yellow", CL.onboss:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 		self:TargetBar(args.spellId, 11, args.destName)
+		self:CDBar(args.spellId, 25)
 	end
 
 	function mod:BlessingoftheTempestRemoved(args)
 		blessingActive = false
-		self:StopBar(args.spellId, args.destName)
 	end
 
 	function mod:Interrupted(args)
