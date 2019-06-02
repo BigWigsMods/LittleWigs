@@ -10,8 +10,9 @@ BigWigs:AddSounds("Aqu'sirr", {
 
 BigWigs:AddSounds("Tidesage Coucil", {
 	[267818] = "alert",
+	[267830] = "info",
 	[267891] = {"info","long"},
-	[267899] = "alert",
+	[267899] = "alarm",
 	[267901] = "warning",
 	[267905] = "long",
 })
