@@ -7,7 +7,6 @@ local mod, CL = BigWigs:NewBoss("Tidesage Coucil", 1864, 2154)
 if not mod then return end
 mod:RegisterEnableMob(134058, 134063) -- Galecaller Faye, Brother Ironhull
 mod.engageId = 2131
-mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
