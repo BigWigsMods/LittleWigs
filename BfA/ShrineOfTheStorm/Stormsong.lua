@@ -7,7 +7,6 @@ local mod, CL = BigWigs:NewBoss("Lord Stormsong", 1864, 2155)
 if not mod then return end
 mod:RegisterEnableMob(134060)
 mod.engageId = 2132
-mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
