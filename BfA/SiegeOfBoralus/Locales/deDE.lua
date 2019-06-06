@@ -14,6 +14,9 @@ if L then
 	L.marksman = "Schütze von Kul Tiras"
 	L.buccaneer = "Bukanier der Bilgeratten"
 	L.invader = "Aschenwindeindringling"
+	L.dockhound = "Knurrender Dockhund"
+	L.shredder = "Springflutschredder"
+	L.packmaster = "Rottenkommandant der Dockhunde"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "deDE")
