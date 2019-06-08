@@ -16,28 +16,30 @@ mod.engageId = 2257
 function mod:GetOptions()
 	return {
 		-- The Platinum Pummeler
-		299869, -- Platinum Plating
+		282801, -- Platinum Plating
 		285020, -- Whirling Edge
-		285351, -- Lay Mine
+		285344, -- Lay Mine
 		-- Gnomercy 4.U.
-		{285153, "SAY", "FLASH"}, -- Foe Flipper
+		{285152, "SAY", "FLASH"}, -- Foe Flipper
 		285388, -- Vent Jets
-		283565, -- Maximum Thrust
+		{283421, "SAY", "FLASH"}, -- Maximum Thrust
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_REMOVED", "PlatinumPlatingRemoved", 299869)
-	self:Log("SPELL_AURA_REMOVED_DOSE", "PlatinumPlatingRemoved", 299869)
+	self:Log("SPELL_AURA_REMOVED", "PlatinumPlatingRemoved", 282801)
+	self:Log("SPELL_AURA_REMOVED_DOSE", "PlatinumPlatingRemoved", 282801)
 	self:Log("SPELL_CAST_START", "WhirlingEdge", 285020)
-	self:Log("SPELL_CAST_SUCCESS", "LayMine", 285351)
-	self:Log("SPELL_CAST_SUCCESS", "FoeFlipper", 285153)
-	self:Log("SPELL_CAST_SUCCESS", "VentJets", 285388)
-	self:Log("SPELL_CAST_START", "MaximumThrust", 283565)
+	self:Log("SPELL_CAST_SUCCESS", "LayMine", 285344)
+	self:Log("SPELL_CAST_SUCCESS", "FoeFlipper", 285152)
+	self:Log("SPELL_CAST_START", "VentJets", 285388)
+	self:Log("SPELL_CAST_SUCCESS", "VentJetsSuccess", 285388)
+	self:Log("SPELL_CAST_START", "MaximumThrust", 283421)
 end
 
 function mod:OnEngage()
-
+	self:Bar(285020, 8.2) -- Whirling Edge
+	self:Bar(285388, 22) -- Vent Jets
 end
 
 --------------------------------------------------------------------------------
@@ -52,6 +54,7 @@ end
 function mod:WhirlingEdge(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 32.8)
 end
 
 function mod:LayMine(args)
@@ -61,11 +64,11 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(285153, "yellow", name)
-		self:PlaySound(285153, "alert", nil, name)
+		self:TargetMessage2(285152, "yellow", name)
+		self:PlaySound(285152, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(285153)
-			self:Flash(285153)
+			self:Say(285152)
+			self:Flash(285152)
 		end
 	end
 
@@ -77,10 +80,25 @@ end
 function mod:VentJets(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 43.7)
+end
+
+function mod:VentJetsSuccess(args)
 	self:CastBar(args.spellId, 10)
 end
 
-function mod:MaximumThrust(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(283421, "yellow", name)
+		self:PlaySound(283421, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(283421)
+			self:Flash(283421)
+		end
+	end
+
+	function mod:MaximumThrust(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:Bar(args.spellId, 43.7)
+	end
 end
