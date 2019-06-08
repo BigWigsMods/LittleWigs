@@ -16,7 +16,7 @@ mod.engageId = 2290
 function mod:GetOptions()
 	return {
 		297254, -- Charged Smash
-		297257, -- Electrical Charge
+		{297257, "ME_ONLY"}, -- Electrical Charge
 		297261, -- Rumble
 	}
 end
@@ -28,7 +28,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	
+	self:Bar(297261, 8.4) -- Rumble
+	self:Bar(297254, 21.8) -- Charged Smash
 end
 
 --------------------------------------------------------------------------------
@@ -38,6 +39,8 @@ end
 function mod:ChargedSmash(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:CastBar(args.spellId, 3)
+	self:CDBar(args.spellId, 33)
 end
 
 function mod:ElectricalChargeApplied(args)
@@ -49,4 +52,5 @@ function mod:Rumble(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 5)
+	self:CDBar(args.spellId, 50)
 end

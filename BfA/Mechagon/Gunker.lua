@@ -19,7 +19,7 @@ function mod:GetOptions()
 		297834, -- Toxic Wave
 		297835, -- Coalesce
 		298259, -- Gooped
-		{298212, "TANK"}, -- Sludge Bolt
+		{298212, "TANK"}, -- Sludge Bolt XXX check spell id. only cast when tank is out of range.
 	}
 end
 
@@ -27,12 +27,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Splatter", 297985)
 	self:Log("SPELL_CAST_START", "ToxicWave", 297834)
 	self:Log("SPELL_CAST_START", "Coalesce", 297835)
-	self:Log("SPELL_AURA_APPLIED", "GoopedApplied", 298259)
+	self:Log("SPELL_AURA_APPLIED", "GoopedApplied", 298259, 298124) -- Player debuff, bot debuff
 	self:Log("SPELL_CAST_START", "SludgeBolt", 298212)
 end
 
 function mod:OnEngage()
-
+	self:Bar(297985, 8.3) -- Splatter
+	self:Bar(297835, 20.5) -- Coalesce
+	self:Bar(297834, 44.8) -- Toxic Wave
 end
 
 --------------------------------------------------------------------------------
@@ -42,21 +44,25 @@ end
 function mod:Splatter(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 25)
 end
 
 function mod:ToxicWave(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 49)
+	self:CastBar(args.spellId, 3.5)
 end
 
 function mod:Coalesce(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 49)
 end
 
 function mod:GoopedApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "warning", nil, args.destName)
+	self:TargetMessage2(298259, "orange", args.destName)
+	self:PlaySound(298259, "warning", nil, args.destName)
 end
 
 function mod:SludgeBolt(args)
