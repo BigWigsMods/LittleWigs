@@ -14,47 +14,52 @@ BigWigs:AddSounds("Gunker", {
 })
 
 BigWigs:AddSounds("Trixie & Naeno", {
-	[298718] = "alarm",
+	[298571] = "info",
+	[298651] = "alert",
 	[298940] = "alert",
 	[298946] = "alert",
-	[299241] = "info",
+	[299153] = "info",
+	[302682] = "alarm",
 })
 
 BigWigs:AddSounds("HK-8 Aerial Oppression Unit", {
 	[295445] = "alarm",
 	[295536] = "alert",
 	[296080] = "long",
-	[296464] = "alarm",
+	[301351] = "alarm",
 	[302274] = "info",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Tussle Tonks", {
-	[283565] = "alert",
+	[282801] = "long",
+	[283421] = "alert",
 	[285020] = "alert",
-	[285153] = "alert",
-	[285351] = "info",
+	[285152] = "alert",
+	[285344] = "info",
 	[285388] = "alarm",
-	[299869] = "long",
 })
 
 BigWigs:AddSounds("K.U.-J.0.", {
-	[291930] = "info",
+	[291918] = "info",
 	[291946] = "alarm",
-	[292022] = "alert",
+	[291973] = "alert",
 	[294929] = "alert",
 })
 
 BigWigs:AddSounds("Machinist's Garden", {
-	[285437] = "alarm",
-	[285460] = {"alert","info"},
+	[285440] = "alarm",
+	[285454] = {"alert","info"},
+	[294853] = "long",
 	[294855] = "alert",
 })
 
 BigWigs:AddSounds("King Mechagon", {
-	[283534] = "alarm",
+	[283551] = "alarm",
 	[291613] = "info",
+	[291626] = "alarm",
 	[291865] = "alert",
-	[291914] = "alarm",
 	[291928] = "alarm",
 	[292290] = "warning",
+	["stages"] = "long",
 })

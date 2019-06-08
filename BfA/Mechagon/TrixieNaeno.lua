@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BoltBuster", 298940)
 	self:Log("SPELL_CAST_SUCCESS", "Burnout", 298571)
 	self:Log("SPELL_CAST_SUCCESS", "RollOut", 298898)
-	self:Log("SPELL_CAST_START", "PedalToTheMetal", 298651, 299164) -- First cast, second cast
+	self:Log("SPELL_CAST_START", "PedaltotheMetal", 298651, 299164) -- First cast, second cast
 end
 
 function mod:OnEngage()

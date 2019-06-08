@@ -27,7 +27,7 @@ function mod:GetOptions()
 		{291928, "SAY", "FLASH"}, -- Giga-Zap
 		291613, -- Take Off!
 		291626, -- Cutting Beam
-		283534, -- Magneto-Arm
+		283551, -- Magneto-Arm
 		292290, -- Protocol: Ninety-Nine XXX check spell id. only cast when tank is out of range.
 	}
 end
@@ -61,7 +61,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 296323 then -- Activate Omega buster
 		self:Bar(291928, 16) -- Giga-Zap
-		self:Bar(283534, 40.3) -- Magneto Arm
+		self:Bar(283551, 40.3) -- Magneto Arm
 	end
 end
 
