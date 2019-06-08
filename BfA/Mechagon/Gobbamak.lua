@@ -16,7 +16,7 @@ mod.engageId = 2290
 function mod:GetOptions()
 	return {
 		297254, -- Charged Smash
-		297257, -- Electrical Charge XXX spell id is probably wrong
+		297257, -- Electrical Charge
 		297261, -- Rumble
 	}
 end
@@ -28,7 +28,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	
 end
 
 --------------------------------------------------------------------------------

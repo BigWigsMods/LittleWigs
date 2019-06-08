@@ -15,7 +15,7 @@ mod.engageId = 2258
 
 function mod:GetOptions()
 	return {
-		291930, -- Air Drop XXX spell id might be wrong
+		291874, -- Air Drop
 		291946, -- Venting Flames
 		292022, -- Explosive Leap
 		{294929, "TANK_HEALER"}, -- Blazing Chomp
@@ -23,7 +23,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "AirDrop", 291930)
+	self:Log("SPELL_CAST_SUCCESS", "AirDrop", 291874)
 	self:Log("SPELL_CAST_START", "VentingFlames", 291946)
 	self:Log("SPELL_CAST_START", "ExplosiveLeap", 292022)
 	self:Log("SPELL_AURA_APPLIED", "BlazingChompApplied", 294929)
