@@ -17,13 +17,13 @@ mod:RegisterEnableMob(
 	150146, -- Scrapbone Shaman
 	150160, -- Scrapbone Bully
 	150143, -- Scrapbone Grinder
-	150154, -- Saurolist Bonenipper
+	150154, -- Saurolisk Bonenipper
 	152009, -- Malfunctioning Scrapbot
 	150276, -- Heavy Scrapbot
 	150250, -- Pistonhead Blaster
 	150249, -- Pistonhead Scrapper
 	150253, -- Weaponized Crawler
-	150165, -- Slime ELemental
+	150165, -- Slime Elemental
 	150168, -- Toxic Monstrosity
 	154758, -- Toxic Monstrosity
 	154744, -- Toxic Monstrosity
@@ -71,6 +71,7 @@ if L then
 	L.mechagon_trooper = "Mechagon Trooper"
 	L.anodized_coilbearer = "Anodized Coilbearer"
 	L.bomb_tonk = "Bomb Tonk"
+	L.rocket_tonk = "Rocket Tonk"
 	L.waste_processing_unit = "Waste Processing Unit"
 	L.living_waste = "Living Waste"
 	L.mechagon_tinkerer = "Mechagon Tinkerer"
@@ -177,6 +178,7 @@ function mod:GetOptions()
 		[299502] = L.mechagon_trooper,
 		[303941] = L.anodized_coilbearer,
 		[301088] = L.bomb_tonk,
+		[294103] = L.rocket_tonk,
 		[294324] = L.waste_processing_unit,
 		[294349] = L.living_waste,
 		[293827] = L.mechagon_tinkerer,
