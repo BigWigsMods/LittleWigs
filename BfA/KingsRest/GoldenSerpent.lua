@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(265773, 11) -- Spit Gold
+	self:CDBar(265773, 9) -- Spit Gold
 	self:CDBar(265923, 40) -- Lucre's Call
 	self:CDBar(265781, 12.5) -- Serpentine Gust
 	self:CDBar(265910, 15.5) -- Tail Thrash
