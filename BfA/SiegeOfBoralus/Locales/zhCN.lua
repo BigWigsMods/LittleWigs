@@ -14,6 +14,9 @@ if L then
 	L.marksman = "库尔提拉斯神射手"
 	L.buccaneer = "水鼠帮海盗"
 	L.invader = "艾什凡入侵者"
+	L.dockhound = "咆哮的港口猎犬"
+	L.shredder = "激流破浪者"
+	L.packmaster = "港口猎犬训练师"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhCN")

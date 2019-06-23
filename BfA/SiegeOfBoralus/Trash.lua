@@ -20,7 +20,13 @@ mod:RegisterEnableMob(
 	138019, -- Kul Tiran Vanguard
 	141285, -- Kul Tiran Marksman
 	129366, -- Bilge Rat Buccaneer
-	137516  -- Ashvane Invader
+	137516, -- Ashvane Invader
+	129370, -- Irontide Waveshaper
+	137521, -- Irontide Powdershot
+	129374, -- Scrimshaw Enforcer (Alliance)
+	129371, -- Riptide Shredder (Alliance)
+	129640, -- Snarling Dockhound (Alliance)
+	129373  -- Dockhound Packmaster (Alliance)
 )
 
 --------------------------------------------------------------------------------
@@ -42,6 +48,9 @@ if L then
 	L.marksman = "Kul Tiran Marksman"
 	L.buccaneer = "Bilge Rat Buccaneer"
 	L.invader = "Ashvane Invader"
+	L.dockhound = "Snarling Dockhound"
+	L.shredder = "Riptide Shredder"
+	L.packmaster = "Dockhound Packmaster"
 end
 
 --------------------------------------------------------------------------------
@@ -78,6 +87,12 @@ function mod:GetOptions()
 		257288, -- Heavy Slash
 		-- Kul Tiran Marksman
 		257641, -- Molten Slug
+		-- Snarling Dockhound
+		256897, -- Clamping Jaws
+		-- Riptide Shredder
+		256866, -- Iron Ambush
+		-- Dockhound Packmaster
+		{257036, "SAY"}, -- Feral Charge
 	}, {
 		[268260] = L.cannoneer,
 		[272874] = L.commander,
@@ -92,6 +107,9 @@ function mod:GetOptions()
 		[256627] = L.halberd,
 		[257288] = L.vanguard,
 		[257641] = L.marksman,
+		[256897] = L.dockhound,
+		[256866] = L.shredder,
+		[257036] = L.packmaster,
 	}
 end
 
@@ -124,6 +142,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
 	-- Kul Tiran Marksman
 	self:Log("SPELL_CAST_START", "MoltenSlug", 257641)
+	-- Snarling Dockhound
+	self:Log("SPELL_CAST_SUCCESS", "ClampingJaws", 256897)
+	-- Riptide Shredder
+	self:Log("SPELL_CAST_START", "IronAmbush", 256866)
+	-- Dockhound Packmaster
+	self:Log("SPELL_CAST_START", "FeralCharge", 257036)
 
 	-- Ashvane Cannoneer's Broadside
 	-- Ashvane Commander's Trample
@@ -229,6 +253,30 @@ do
 	end
 
 	function mod:MoltenSlug(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
+end
+
+function mod:ClampingJaws(args)
+	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
+end
+
+function mod:IronAmbush(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(257036, "orange", name)
+		self:PlaySound(257036, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(257036)
+		end
+	end
+
+	function mod:FeralCharge(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
