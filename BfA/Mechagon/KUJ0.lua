@@ -4,8 +4,6 @@
 -- Air Drop timers pull:7.3, 28.3, 28.7, 15.8, 19.7, 30.3, 27.8, 15.8
 --
 
-if not IsTestBuild() then return end
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --

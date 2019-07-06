@@ -4,8 +4,6 @@
 -- Bolt Buster timer
 --
 
-if not IsTestBuild() then return end
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --

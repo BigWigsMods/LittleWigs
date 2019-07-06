@@ -4,8 +4,6 @@
 -- Scrapbone Grunter fixate nameplate icons
 --
 
-if not IsTestBuild() then return end
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
