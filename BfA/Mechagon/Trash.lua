@@ -228,7 +228,7 @@ function mod:OnBossEnable()
 	self:Death("ToxicMonstrosityDeath", 150168, 154758, 154744) -- Different mob ids with the same name and spells
 	-- Toxic Lurker
 	self:Log("SPELL_CAST_START", "SuffocatingSmog", 300650)
-	self:Log("SPELL_CAST_START", "SuffocatingSmogApplied", 300650)
+	self:Log("SPELL_AURA_APPLIED", "SuffocatingSmogApplied", 300650)
 	-- Pistonhead Mechanic
 	self:Log("SPELL_CAST_START", "Overclock", 299588)
 	self:Log("SPELL_AURA_APPLIED", "PistonheadMechanicOverclockApplied", 299588)
