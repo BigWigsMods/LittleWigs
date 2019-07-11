@@ -1,7 +1,6 @@
 --------------------------------------------------------------------------------
 -- TODO
 -- Mega Taze timer
--- Bolt Buster timer
 --
 
 --------------------------------------------------------------------------------
@@ -45,6 +44,7 @@ end
 function mod:OnEngage()
 	self:Bar(302682, 26.4) -- Mega Taze
 	self:Bar(298946, 30) -- Roadkill
+	self:Bar(298940, 35.1) -- Bolt Buster
 end
 
 --------------------------------------------------------------------------------
@@ -82,6 +82,7 @@ end
 function mod:BoltBuster(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 52.3)
 end
 
 function mod:Burnout(args)
