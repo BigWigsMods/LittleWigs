@@ -44,9 +44,17 @@ end
 -- Event Handlers
 --
 
-function mod:PlatinumPlatingRemoved(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "green")
-	self:PlaySound(args.spellId, "long")
+do
+	-- If the event fires more than once, args.amount is the same for both events
+	local prev = 0
+	function mod:PlatinumPlatingRemoved(args)
+		local t = args.time
+		if t-prev > 0.1 then
+			prev = t
+			self:StackMessage(args.spellId, args.destName, args.amount, "green")
+			self:PlaySound(args.spellId, "long")
+		end
+	end
 end
 
 function mod:WhirlingEdge(args)
