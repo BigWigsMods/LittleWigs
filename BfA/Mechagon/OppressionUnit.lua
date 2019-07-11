@@ -85,7 +85,7 @@ end
 function mod:LiftOff(args)
 	self:Message2("stages", "cyan", CL.stage:format(1), false)
 	self:PlaySound("stages", "long")
-	self:Bar(301351, 32.8) -- Reinforcement Relay
+	self:Bar(301351, 31.5) -- Reinforcement Relay
 end
 
 function mod:HaywireApplied(args)
