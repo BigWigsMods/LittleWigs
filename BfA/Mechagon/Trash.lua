@@ -204,11 +204,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RippingSlashApplied", 299474)
 	-- Malfunctioning Scrapbot
 	self:Log("SPELL_CAST_START", "MalfunctioningExhaust", 300102)
-	self:Log("SPELL_CAST_SUCCESS", "MalfunctioningGyroScrap", 294884)
+	self:Log("SPELL_CAST_START", "MalfunctioningGyroScrap", 294884)
 	self:Log("SPELL_CAST_START", "SelfDestructProtocol", 300129)
 	-- Heavy Scrapbot
 	self:Log("SPELL_CAST_START", "HeavyExhaust", 300177)
-	self:Log("SPELL_CAST_SUCCESS", "HeavyGyroScrap", 300159)
+	self:Log("SPELL_CAST_START", "HeavyGyroScrap", 300159)
 	self:Log("SPELL_CAST_START", "RepairProtocol", 300171)
 	-- Pistonhead Blaster
 	self:Log("SPELL_CAST_SUCCESS", "ScrapGrenade", 299525)
