@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 -- TODO
--- Roadkill timer
+-- Mega Taze timer
 -- Bolt Buster timer
 --
 
@@ -37,10 +37,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Burnout", 298571)
 	self:Log("SPELL_CAST_SUCCESS", "RollOut", 298898)
 	self:Log("SPELL_CAST_START", "PedaltotheMetal", 298651, 299164) -- First cast, second cast
+
+	self:Death("TrixieDeath", 150712)
+	self:Death("NaenoDeath", 153755)
 end
 
 function mod:OnEngage()
 	self:Bar(302682, 26.4) -- Mega Taze
+	self:Bar(298946, 30) -- Roadkill
 end
 
 --------------------------------------------------------------------------------
@@ -72,6 +76,7 @@ end
 function mod:Roadkill(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 52.3)
 end
 
 function mod:BoltBuster(args)
@@ -94,4 +99,12 @@ function mod:PedaltotheMetal(args)
 	self:Message2(298651, "red")
 	self:PlaySound(298651, "alert")
 	self:CastBar(298651, 4.5) -- Pedal to the Metal
+end
+
+function mod:TrixieDeath(args)
+	self:StopBar(302682) -- Mega Taze
+end
+
+function mod:NaenoDeath(args)
+	self:StopBar(298946) -- Roadkill
 end
