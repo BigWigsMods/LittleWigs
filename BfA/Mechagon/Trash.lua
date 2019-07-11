@@ -2,6 +2,7 @@
 -- TODO
 -- Walkie Shockie X1 spawn warning and fixate nameplate icons
 -- Scrapbone Grunter fixate nameplate icons
+-- Add Junkyard D.0.G. spells
 --
 
 --------------------------------------------------------------------------------
