@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(301351, 23.9) -- Reinforcement Relay
+	self:Bar(301351, 21.4) -- Reinforcement Relay
 end
 
 --------------------------------------------------------------------------------
