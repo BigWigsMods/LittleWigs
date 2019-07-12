@@ -49,7 +49,7 @@ end
 
 do
 	local function startTimer()
-		if mod:GetBossId(151168) then
+		if mod:GetBossId(151168) then -- Annihilo-tron 5000, only active on hard mode
 			mod:Bar(292750, 32.1) -- H.A.R.D.M.O.D.E.
 		end
 	end
