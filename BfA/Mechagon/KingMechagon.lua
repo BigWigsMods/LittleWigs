@@ -1,9 +1,4 @@
 --------------------------------------------------------------------------------
--- TODO
--- Don't show hard mode timer when hard mode is not active
---
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -43,7 +38,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GigaZap", 291928, 292264) -- Stage 1, stage 2
 	self:Log("SPELL_CAST_START", "TakeOff", 291613)
 	self:Log("SPELL_CAST_SUCCESS", "CuttingBeam", 291626)
-	self:Log("SPELL_CAST_SUCCESS", "MagnetoArm", 283551) -- Boss' cast activating the device
+	self:Log("SPELL_CAST_SUCCESS", "MagnetoArm", 283551) -- Boss's cast activating the device
 	self:Log("SPELL_CAST_SUCCESS", "MagnetoArmSuccess", 283143) -- Pull in effect start
 	self:Log("SPELL_CAST_START", "ProtocolNinetyNine", 292290)
 
@@ -51,14 +46,21 @@ function mod:OnBossEnable()
 	self:Death("OmegaBusterDeath", 144249)
 end
 
-function mod:OnEngage()
-	stage = 1
-	gigaZapCount = 0
-	self:Bar(291865, 5.9) -- Recalibrate
-	self:Bar(291928, 8.4) -- Giga-Zap
-	self:Bar(291613, 30) -- Take Off
-	self:Bar(292750, 32.2) -- H.A.R.D.M.O.D.E.
+do
+	local function startTimer()
+		if mod:GetBossId(151168) then
+			mod:Bar(292750, 32.1) -- H.A.R.D.M.O.D.E.
+		end
+	end
 
+	function mod:OnEngage()
+		stage = 1
+		gigaZapCount = 0
+		self:SimpleTimer(startTimer, 0.1)
+		self:Bar(291865, 5.9) -- Recalibrate
+		self:Bar(291928, 8.4) -- Giga-Zap
+		self:Bar(291613, 30) -- Take Off
+	end
 end
 
 --------------------------------------------------------------------------------
