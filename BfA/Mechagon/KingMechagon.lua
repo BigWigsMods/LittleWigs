@@ -1,4 +1,9 @@
 --------------------------------------------------------------------------------
+-- TODO
+-- Don't show hard mode timer when hard mode is not active
+--
+
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -27,11 +32,12 @@ function mod:GetOptions()
 		291626, -- Cutting Beam
 		283551, -- Magneto-Arm
 		292290, -- Protocol: Ninety-Nine XXX check spell id. only cast when tank is out of range.
+		292750, -- H.A.R.D.M.O.D.E.
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
 
 	self:Log("SPELL_CAST_START", "Recalibrate", 291865)
 	self:Log("SPELL_CAST_START", "GigaZap", 291928, 292264) -- Stage 1, stage 2
@@ -51,6 +57,8 @@ function mod:OnEngage()
 	self:Bar(291865, 5.9) -- Recalibrate
 	self:Bar(291928, 8.4) -- Giga-Zap
 	self:Bar(291613, 30) -- Take Off
+	self:Bar(292750, 32.2) -- H.A.R.D.M.O.D.E.
+
 end
 
 --------------------------------------------------------------------------------
@@ -61,6 +69,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 296323 then -- Activate Omega buster
 		self:Bar(291928, 14.8) -- Giga-Zap
 		self:Bar(283551, 35.6) -- Magneto Arm
+	elseif spellId == 292750 then -- H.A.R.D.M.O.D.E.
+		self:Message2(292750, "cyan")
+		self:PlaySound(292750, "long")
+		self:CDBar(292750, 43)
 	end
 end
 
