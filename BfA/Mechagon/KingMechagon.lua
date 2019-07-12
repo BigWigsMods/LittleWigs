@@ -37,7 +37,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GigaZap", 291928, 292264) -- Stage 1, stage 2
 	self:Log("SPELL_CAST_START", "TakeOff", 291613)
 	self:Log("SPELL_CAST_SUCCESS", "CuttingBeam", 291626)
-	self:Log("SPELL_CAST_SUCCESS", "MagnetoArm", 283551)
+	self:Log("SPELL_CAST_SUCCESS", "MagnetoArm", 283551) -- Boss' cast activating the device
+	self:Log("SPELL_CAST_SUCCESS", "MagnetoArmSuccess", 283143) -- Pull in effect start
 	self:Log("SPELL_CAST_START", "ProtocolNinetyNine", 292290)
 
 	self:Death("AerialUnitDeath", 150396)
@@ -49,7 +50,7 @@ function mod:OnEngage()
 	gigaZapCount = 0
 	self:Bar(291865, 5.9) -- Recalibrate
 	self:Bar(291928, 8.4) -- Giga-Zap
-	self:Bar(291613, 31.4) -- Take Off
+	self:Bar(291613, 30) -- Take Off
 end
 
 --------------------------------------------------------------------------------
@@ -58,8 +59,8 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 296323 then -- Activate Omega buster
-		self:Bar(291928, 16) -- Giga-Zap
-		self:Bar(283551, 40.3) -- Magneto Arm
+		self:Bar(291928, 14.8) -- Giga-Zap
+		self:Bar(283551, 35.6) -- Magneto Arm
 	end
 end
 
@@ -112,7 +113,7 @@ end
 function mod:TakeOff(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 37)
+	self:CDBar(args.spellId, 34)
 end
 
 function mod:CuttingBeam(args)
@@ -124,8 +125,11 @@ end
 function mod:MagnetoArm(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CastBar(args.spellId, 9)
 	self:Bar(args.spellId, 62)
+end
+
+function mod:MagnetoArmSuccess(args)
+	self:CastBar(283551, 9)
 end
 
 function mod:ProtocolNinetyNine(args)
