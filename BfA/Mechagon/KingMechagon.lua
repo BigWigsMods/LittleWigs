@@ -74,7 +74,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 292750 then -- H.A.R.D.M.O.D.E.
 		self:Message2(292750, "cyan")
 		self:PlaySound(292750, "long")
-		self:CDBar(292750, 43)
+		self:CDBar(292750, 43.7)
 	end
 end
 
