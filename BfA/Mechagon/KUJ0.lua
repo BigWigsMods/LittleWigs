@@ -30,6 +30,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VentingFlames", 291946)
 	self:Log("SPELL_CAST_START", "ExplosiveLeap", 291973)
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveLeapApplied", 291972)
+	self:Log("SPELL_AURA_REMOVED", "ExplosiveLeapRemoved", 291972)
 	self:Log("SPELL_AURA_APPLIED", "BlazingChompApplied", 294929)
 end
 
