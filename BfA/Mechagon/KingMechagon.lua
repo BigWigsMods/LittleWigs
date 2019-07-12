@@ -27,6 +27,7 @@ function mod:GetOptions()
 		291626, -- Cutting Beam
 		283551, -- Magneto-Arm
 		292290, -- Protocol: Ninety-Nine
+		-- Hard Mode
 		292750, -- H.A.R.D.M.O.D.E.
 	}
 end

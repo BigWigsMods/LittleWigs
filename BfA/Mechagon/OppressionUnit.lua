@@ -25,7 +25,7 @@ function mod:GetOptions()
 		301351, -- Reinforcement Relay
 		296522, -- Self-Destruct
 		296080, -- Haywire
-		-- Hardmode
+		-- Hard Mode
 		303885, -- Fulminating Burst
 	}
 end
