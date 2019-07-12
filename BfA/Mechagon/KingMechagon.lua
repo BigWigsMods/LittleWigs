@@ -31,7 +31,7 @@ function mod:GetOptions()
 		291613, -- Take Off!
 		291626, -- Cutting Beam
 		283551, -- Magneto-Arm
-		292290, -- Protocol: Ninety-Nine XXX check spell id. only cast when tank is out of range.
+		292290, -- Protocol: Ninety-Nine
 		292750, -- H.A.R.D.M.O.D.E.
 	}
 end
