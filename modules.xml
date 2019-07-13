@@ -207,4 +207,7 @@
 
 <Include file="BfA\WaycrestManor\modules.xml"/>
 <Include file="BfA\WaycrestManor\locales.xml"/>
+
+<Include file="BfA\Mechagon\modules.xml"/>
+<Include file="BfA\Mechagon\locales.xml"/>
 </Ui>

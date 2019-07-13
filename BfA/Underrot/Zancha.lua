@@ -38,7 +38,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(272457, 10) -- Shockwave
+	self:Bar(272457, 10.5) -- Shockwave
+	self:ScheduleTimer("Bar", 10.5, 272457, 14) -- Second Shockwave, 24.5 sec total
 	self:Bar(259718, 16) -- Upheaval
 	self:Bar(259732, 45) -- Festering Harvest
 	if not self:Normal() then
@@ -55,6 +56,8 @@ function mod:FesteringHarvest(args)
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 51)
 	self:Bar(259718, 15) -- Upheaval
+	self:Bar(272457, 24.3) -- Shockwave
+	self:ScheduleTimer("Bar", 24.3, 272457, 20.6) -- Second Shockwave, 44.9 sec total
 end
 
 function mod:BoundlessRot(args)
@@ -65,7 +68,6 @@ end
 function mod:Shockwave(args)
 	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 14.5)
 end
 
 do

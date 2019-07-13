@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Lord Stormsong", 1864, 2155)
 if not mod then return end
 mod:RegisterEnableMob(134060)
 mod.engageId = 2132
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -90,6 +91,6 @@ end
 function mod:MindRendApplied(args)
 	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
 		self:TargetMessage2(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end

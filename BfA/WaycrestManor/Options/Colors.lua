@@ -21,21 +21,24 @@ BigWigs:AddColors("Raal the Gluttonous", {
 	[264734] = "orange",
 	[264923] = "red",
 	[264931] = "yellow",
-	[265002] = "orange",
+	[265005] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Lord and Lady Waycrest", {
 	[261438] = "yellow",
 	[261440] = {"blue","red"},
 	[261447] = {"blue","cyan"},
+	[268278] = "red",
 	[268306] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Gorak Tul", {
 	[266181] = "red",
-	[266198] = "green",
+	[266198] = {"green","yellow"},
 	[266225] = "orange",
 	[266266] = "yellow",
+	[268202] = {"blue","red"},
 })
 
 BigWigs:AddColors("Waycrest Manor Trash", {
@@ -65,4 +68,5 @@ BigWigs:AddColors("Waycrest Manor Trash", {
 	[265880] = "orange",
 	[265881] = "yellow",
 	[271174] = "yellow",
+	[278474] = "red",
 })

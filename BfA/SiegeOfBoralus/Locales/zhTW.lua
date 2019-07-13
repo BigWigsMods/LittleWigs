@@ -12,18 +12,23 @@ if L then
 	L.raider = "鐵潮劫掠者"
 	L.vanguard = "庫爾提拉斯先鋒"
 	L.marksman = "庫爾提拉斯神射手"
+	L.buccaneer = "污鼠會海盜"
+	L.invader = "艾胥凡入侵者"
+	-- L.dockhound = "Snarling Dockhound"
+	-- L.shredder = "Riptide Shredder"
+	-- L.packmaster = "Dockhound Packmaster"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhTW")
 if L then
-	L.remaining = "%2$s中了%d層%1$s"
-	L.remaining_boss = "王中了%d層%s"
+	L.remaining = "%2$s中了%1$s，場上還剩%3$d個"
+	L.remaining_boss = "王中了%s，場上還剩%d個"
 end
 
 L = BigWigs:NewBossLocale("Chopper Redhook", "zhTW")
 if L then
-	L.remaining = "%2$s中了%d層%1$s"
-	L.remaining_boss = "王中了%d層%s"
+	L.remaining = "%2$s中了%1$s，場上還剩%3$d個"
+	L.remaining_boss = "王中了%s，場上還剩%d個"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "zhTW")

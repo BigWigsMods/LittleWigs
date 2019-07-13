@@ -22,6 +22,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "SpitGold", 265773)
 	self:Log("SPELL_AURA_APPLIED", "SpitGoldApplied", 265773)
 	self:Log("SPELL_AURA_REMOVED", "SpitGoldRemoved", 265773)
 	self:Log("SPELL_CAST_START", "LucresCall", 265923)
@@ -30,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(265773, 11) -- Spit Gold
+	self:CDBar(265773, 9) -- Spit Gold
 	self:CDBar(265923, 40) -- Lucre's Call
 	self:CDBar(265781, 12.5) -- Serpentine Gust
 	self:CDBar(265910, 15.5) -- Tail Thrash
@@ -40,14 +41,25 @@ end
 -- Event Handlers
 --
 
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) or self:Healer() then
+			self:TargetMessage2(265773, "orange", name)
+			self:PlaySound(265773, "warning", nil, name)
+		end
+	end
+
+	function mod:SpitGold(args)
+		self:GetBossTarget(printTarget, 0.5, args.sourceGUID)
+		self:CDBar(args.spellId, 11)
+	end
+end
+
 function mod:SpitGoldApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "warning")
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 9)
 	end
-	self:CDBar(args.spellId, 11)
 end
 
 function mod:SpitGoldRemoved(args)

@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Heartsbane Triad", 1862, 2125)
 if not mod then return end
 mod:RegisterEnableMob(131825, 131823, 131824) -- Sister Briar, Sister Malady, Sister Solena
 mod.engageId = 2113
+mod.respawnTime = 20
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -57,7 +58,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage2(260741, "orange", name) -- Jagged Nettles
-		self:PlaySound(260741, "alarm") -- Jagged Nettles
+		self:PlaySound(260741, "alarm", nil, name) -- Jagged Nettles
 	end
 
 	function mod:JaggedNettles(args)
