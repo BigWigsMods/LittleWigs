@@ -101,7 +101,7 @@ end
 function mod:FulminatingBurstApplied(args)
 	self:TargetMessage2(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
-	self:TargetBar(args.spellid, 9)
+	self:TargetBar(args.spellId, 9)
 end
 
 function mod:FulminatingBurstRemoved(args)
