@@ -20,7 +20,7 @@ function mod:GetOptions()
 		-- Gnomercy 4.U.
 		{285152, "SAY", "FLASH"}, -- Foe Flipper
 		285388, -- Vent Jets
-		{283421, "SAY", "FLASH"}, -- Maximum Thrust
+		{283422, "SAY", "FLASH"}, -- Maximum Thrust
 	}
 end
 
@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "FoeFlipper", 285152)
 	self:Log("SPELL_CAST_START", "VentJets", 285388)
 	self:Log("SPELL_CAST_SUCCESS", "VentJetsSuccess", 285388)
-	self:Log("SPELL_CAST_START", "MaximumThrust", 283421)
+	self:Log("SPELL_CAST_START", "MaximumThrust", 283422)
 end
 
 function mod:OnEngage()
@@ -44,9 +44,17 @@ end
 -- Event Handlers
 --
 
-function mod:PlatinumPlatingRemoved(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "green")
-	self:PlaySound(args.spellId, "long")
+do
+	-- If the event fires more than once, args.amount is the same for both events
+	local prev = 0
+	function mod:PlatinumPlatingRemoved(args)
+		local t = args.time
+		if t-prev > 0.1 then
+			prev = t
+			self:StackMessage(args.spellId, args.destName, args.amount, "green")
+			self:PlaySound(args.spellId, "long")
+		end
+	end
 end
 
 function mod:WhirlingEdge(args)
@@ -87,11 +95,11 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(283421, "yellow", name)
-		self:PlaySound(283421, "alert", nil, name)
+		self:TargetMessage2(283422, "yellow", name)
+		self:PlaySound(283422, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(283421)
-			self:Flash(283421)
+			self:Say(283422)
+			self:Flash(283422)
 		end
 	end
 

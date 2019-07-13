@@ -43,7 +43,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 294853 then -- Activate Plant
 		self:Message2(spellId, "orange")
 		self:PlaySound(spellId, "long")
-		self:Bar(spellId, 46.2)
+		self:Bar(spellId, 45)
 	end
 end
 
@@ -57,7 +57,7 @@ end
 function mod:HiddenFlameCannon(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CastBar(args.spellId, 13.5)
+	self:CastBar(args.spellId, 12.5)
 	self:Bar(args.spellId, 47.3)
 end
 

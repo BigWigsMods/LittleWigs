@@ -41,7 +41,9 @@ mod:RegisterEnableMob(
 	144298, -- Defense Bot Mk III
 	151476, -- Blastatron X-80
 	144295, -- Mechagon Mechanic
-	144299 -- Workshop Defender
+	144299, -- Workshop Defender
+	144296, -- Spider Tank
+	151773  -- Junkyard D.0.G.
 )
 
 --------------------------------------------------------------------------------
@@ -78,6 +80,7 @@ if L then
 	L.blastatron_x80 = "Blastatron X-80"
 	L.mechagon_mechanic = "Mechagon Mechanic"
 	L.workshop_defender = "Workshop Defender"
+	L.junkyard_d0g = "Junkyard D.0.G."
 end
 
 --------------------------------------------------------------------------------
@@ -158,6 +161,8 @@ function mod:GetOptions()
 		-- Workshop Defender
 		{293670, "TANK_HEALER"}, -- Chainblade
 		293683, -- Shield Generator
+		-- Junkyard D.0.G.
+		{294180, "DISPEL"}, -- Flaming Refuse
 	}, {
 		[300436] = L.scrapbone_shaman,
 		[300414] = L.scrapbone_grinder,
@@ -185,6 +190,7 @@ function mod:GetOptions()
 		[294015] = L.blastatron_x80,
 		[293729] = L.mechagon_mechanic,
 		[293670] = L.workshop_defender,
+		[294180] = L.junkyard_d0g,
 	}
 end
 
@@ -204,11 +210,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RippingSlashApplied", 299474)
 	-- Malfunctioning Scrapbot
 	self:Log("SPELL_CAST_START", "MalfunctioningExhaust", 300102)
-	self:Log("SPELL_CAST_SUCCESS", "MalfunctioningGyroScrap", 294884)
+	self:Log("SPELL_CAST_START", "MalfunctioningGyroScrap", 294884)
 	self:Log("SPELL_CAST_START", "SelfDestructProtocol", 300129)
 	-- Heavy Scrapbot
 	self:Log("SPELL_CAST_START", "HeavyExhaust", 300177)
-	self:Log("SPELL_CAST_SUCCESS", "HeavyGyroScrap", 300159)
+	self:Log("SPELL_CAST_START", "HeavyGyroScrap", 300159)
 	self:Log("SPELL_CAST_START", "RepairProtocol", 300171)
 	-- Pistonhead Blaster
 	self:Log("SPELL_CAST_SUCCESS", "ScrapGrenade", 299525)
@@ -276,6 +282,8 @@ function mod:OnBossEnable()
 	-- Workshop Defender
 	self:Log("SPELL_AURA_APPLIED", "ChainbladeApplied", 293670)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ChainbladeApplied", 293670)
+	-- Junkyard D.0.G.
+	self:Log("SPELL_AURA_APPLIED", "FlamingRefuseApplied", 294180)
 end
 
 --------------------------------------------------------------------------------
@@ -724,4 +732,13 @@ end
 function mod:ChainbladeApplied(args)
 	self:StackMessage(args.spellId, args.destName, args.amount, "red")
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
+end
+
+-- Junkyard D.0.G.
+
+function mod:FlamingRefuseApplied(args)
+	if self:Dispeller("magic") then
+		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
