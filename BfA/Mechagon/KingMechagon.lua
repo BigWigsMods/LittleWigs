@@ -35,7 +35,8 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
 
-	self:Log("SPELL_CAST_START", "Recalibrate", 291865)
+	self:Log("SPELL_CAST_START", "Recalibrate", 291865) -- Stage 1 only
+	self:Log("SPELL_CAST_SUCCESS", "RecalibrateSuccess", 291856)
 	self:Log("SPELL_CAST_START", "GigaZap", 291928, 292264) -- Stage 1, stage 2
 	self:Log("SPELL_CAST_START", "TakeOff", 291613)
 	self:Log("SPELL_CAST_SUCCESS", "CuttingBeam", 291626)
@@ -101,6 +102,42 @@ function mod:Recalibrate(args)
 end
 
 do
+	local function warnRecalibrate()
+		mod:Message2(291865, "orange")
+		mod:PlaySound(291865, "alert")
+		mod:CastBar(291865, 2)
+	end
+
+	local prev = 0
+	function mod:RecalibrateSuccess(args)
+		local t = args.time
+		if stage > 1 and t-prev > 1.5 then
+			prev = t
+			local magnetoTime = self:BarTimeLeft(283534) -- Magneto Arm
+			-- Recalibrate is not cast during Magneto Arm's pull in effect,
+			-- which starts 2s after the timer expires.
+			if magnetoTime > 3.5 then
+				self:Bar(291865, 5.5) -- Recalibrate
+				self:SimpleTimer(warnRecalibrate, 5.5)
+			end
+		end
+	end
+
+	function mod:MagnetoArmSuccess(args)
+		self:CastBar(283551, 9) -- Magneto Arm
+		self:Bar(291865, 14.5) -- 9s for Magneto Arm cast plus 5.5 sec Recalibrate timer
+		self:SimpleTimer(warnRecalibrate, 14.5)
+	end
+end
+
+
+function mod:MagnetoArm(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 62)
+end
+
+do
 	local function printTarget(self, name, guid)
 		self:TargetMessage2(291928, "red", name)
 		self:PlaySound(291928, "alarm", nil, name)
@@ -135,16 +172,6 @@ function mod:CuttingBeam(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 6)
-end
-
-function mod:MagnetoArm(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 62)
-end
-
-function mod:MagnetoArmSuccess(args)
-	self:CastBar(283551, 9)
 end
 
 function mod:ProtocolNinetyNine(args)
