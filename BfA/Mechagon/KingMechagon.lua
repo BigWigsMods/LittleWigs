@@ -13,6 +13,7 @@ mod.engageId = 2260
 
 local stage = 1
 local gigaZapCount = 0
+local recalibrateTimer = nil
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -113,20 +114,16 @@ do
 		local t = args.time
 		if stage > 1 and t-prev > 1.5 then
 			prev = t
-			local magnetoTime = self:BarTimeLeft(283534) -- Magneto Arm
-			-- Recalibrate is not cast during Magneto Arm's pull in effect,
-			-- which starts 2s after the timer expires.
-			if magnetoTime > 3.5 then
-				self:Bar(291865, 5.5) -- Recalibrate
-				self:SimpleTimer(warnRecalibrate, 5.5)
-			end
+			self:Bar(291865, 5.5) -- Recalibrate
+			recalibrateTimer = self:ScheduleTimer(warnRecalibrate, 5.5)
 		end
 	end
 
 	function mod:MagnetoArmSuccess(args)
 		self:CastBar(283551, 9) -- Magneto Arm
 		self:Bar(291865, 14.5) -- 9s for Magneto Arm cast plus 5.5 sec Recalibrate timer
-		self:SimpleTimer(warnRecalibrate, 14.5)
+		self:CancelTimer(recalibrateTimer)
+		recalibrateTimer = self:ScheduleTimer(warnRecalibrate, 14.5)
 	end
 end
 
