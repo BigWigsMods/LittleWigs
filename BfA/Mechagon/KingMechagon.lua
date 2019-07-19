@@ -59,6 +59,7 @@ do
 	function mod:OnEngage()
 		stage = 1
 		gigaZapCount = 0
+		recalibrateTimer = nil
 		self:SimpleTimer(startTimer, 0.1)
 		self:Bar(291865, 5.9) -- Recalibrate
 		self:Bar(291928, 8.4) -- Giga-Zap
@@ -96,7 +97,9 @@ function mod:OmegaBusterDeath(args)
 	self:StopBar(291928) -- Giga-Zap
 	self:StopBar(283534) -- Magneto Arm
 	self:StopBar(291865) -- Recalibrate
-	self:CancelTimer(recalibrateTimer)
+	if recalibrateTimer then
+		self:CancelTimer(recalibrateTimer)
+	end
 end
 
 function mod:Recalibrate(args)
@@ -124,7 +127,9 @@ do
 
 	function mod:MagnetoArmSuccess(args)
 		self:CastBar(283551, 9) -- Magneto Arm
-		self:CancelTimer(recalibrateTimer)
+		if recalibrateTimer then
+			self:CancelTimer(recalibrateTimer)
+		end
 		-- Every 8 sec, recalibrate is attempted.
 		-- It does not cast between the start of the magnet's channel and the magnet despawning.
 		-- The magnet despawns after 10 sec and the cast time of Recalibrate is 2.5sec
