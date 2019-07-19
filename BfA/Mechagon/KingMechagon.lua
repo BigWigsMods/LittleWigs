@@ -92,8 +92,11 @@ function mod:AerialUnitDeath(args)
 end
 
 function mod:OmegaBusterDeath(args)
+	stage = 3
 	self:StopBar(291928) -- Giga-Zap
 	self:StopBar(283534) -- Magneto Arm
+	self:StopBar(291865) -- Recalibrate
+	self:CancelTimer(recalibrateTimer)
 end
 
 function mod:Recalibrate(args)
@@ -112,7 +115,7 @@ do
 	local prev = 0
 	function mod:RecalibrateSuccess(args)
 		local t = args.time
-		if stage > 1 and t-prev > 1.5 then
+		if stage == 2 and t-prev > 1.5 then
 			prev = t
 			self:Bar(291865, 5.5) -- Recalibrate
 			recalibrateTimer = self:ScheduleTimer(warnRecalibrate, 5.5)
