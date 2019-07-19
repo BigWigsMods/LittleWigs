@@ -121,9 +121,19 @@ do
 
 	function mod:MagnetoArmSuccess(args)
 		self:CastBar(283551, 9) -- Magneto Arm
-		self:Bar(291865, 14.5) -- 9s for Magneto Arm cast plus 5.5 sec Recalibrate timer
 		self:CancelTimer(recalibrateTimer)
-		recalibrateTimer = self:ScheduleTimer(warnRecalibrate, 14.5)
+		-- Every 8 sec, recalibrate is attempted.
+		-- It does not cast between the start of the magnet's channel and the magnet despawning.
+		-- The magnet despawns after 10 sec and the cast time of Recalibrate is 2.5sec
+		local elapsed = args.time - prev
+		-- The next recalibreate will be in greater than 10 seconds.
+		-- Find the lowest multiple of 8 (recalibrate timer) that is still greater than 10 after the following have been subtracted
+		-- - 2.5 sec (for the cast time)
+		-- - The already elapsed time
+		local multiple = math.ceil((12.5 + elapsed) / 8) * 8
+		local nextCast = multiple - 2.5 - elapsed
+		self:Bar(291865, nextCast) -- Recalibrate
+		recalibrateTimer = self:ScheduleTimer(warnRecalibrate, nextCast)
 	end
 end
 
