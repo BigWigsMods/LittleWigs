@@ -13,6 +13,7 @@ mod.engageId = 2260
 
 local stage = 1
 local gigaZapCount = 0
+local recalibrateTimer = nil
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,7 +36,8 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
 
-	self:Log("SPELL_CAST_START", "Recalibrate", 291865)
+	self:Log("SPELL_CAST_START", "Recalibrate", 291865) -- Stage 1 only
+	self:Log("SPELL_CAST_SUCCESS", "RecalibrateSuccess", 291856)
 	self:Log("SPELL_CAST_START", "GigaZap", 291928, 292264) -- Stage 1, stage 2
 	self:Log("SPELL_CAST_START", "TakeOff", 291613)
 	self:Log("SPELL_CAST_SUCCESS", "CuttingBeam", 291626)
@@ -57,6 +59,7 @@ do
 	function mod:OnEngage()
 		stage = 1
 		gigaZapCount = 0
+		recalibrateTimer = nil
 		self:SimpleTimer(startTimer, 0.1)
 		self:Bar(291865, 5.9) -- Recalibrate
 		self:Bar(291928, 8.4) -- Giga-Zap
@@ -90,14 +93,63 @@ function mod:AerialUnitDeath(args)
 end
 
 function mod:OmegaBusterDeath(args)
+	stage = 3
 	self:StopBar(291928) -- Giga-Zap
 	self:StopBar(283534) -- Magneto Arm
+	self:StopBar(291865) -- Recalibrate
+	if recalibrateTimer then
+		self:CancelTimer(recalibrateTimer)
+	end
 end
 
 function mod:Recalibrate(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CastBar(args.spellId, 2)
+end
+
+do
+	local function warnRecalibrate()
+		mod:Message2(291865, "orange")
+		mod:PlaySound(291865, "alert")
+		mod:CastBar(291865, 2)
+	end
+
+	local prev = 0
+	function mod:RecalibrateSuccess(args)
+		local t = args.time
+		if stage == 2 and t-prev > 1.5 then
+			prev = t
+			self:Bar(291865, 5.5) -- Recalibrate
+			recalibrateTimer = self:ScheduleTimer(warnRecalibrate, 5.5)
+		end
+	end
+
+	function mod:MagnetoArmSuccess(args)
+		self:CastBar(283551, 9) -- Magneto Arm
+		if recalibrateTimer then
+			self:CancelTimer(recalibrateTimer)
+		end
+		-- Every 8 sec, recalibrate is attempted.
+		-- It does not cast between the start of the magnet's channel and the magnet despawning.
+		-- The magnet despawns after 10 sec and the cast time of Recalibrate is 2.5sec
+		local elapsed = args.time - prev
+		-- The next recalibreate will be in greater than 10 seconds.
+		-- Find the lowest multiple of 8 (recalibrate timer) that is still greater than 10 after the following have been subtracted
+		-- - 2.5 sec (for the cast time)
+		-- - The already elapsed time
+		local multiple = math.ceil((12.5 + elapsed) / 8) * 8
+		local nextCast = multiple - 2.5 - elapsed
+		self:Bar(291865, nextCast) -- Recalibrate
+		recalibrateTimer = self:ScheduleTimer(warnRecalibrate, nextCast)
+	end
+end
+
+
+function mod:MagnetoArm(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 62)
 end
 
 do
@@ -135,16 +187,6 @@ function mod:CuttingBeam(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 6)
-end
-
-function mod:MagnetoArm(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 62)
-end
-
-function mod:MagnetoArmSuccess(args)
-	self:CastBar(283551, 9)
 end
 
 function mod:ProtocolNinetyNine(args)
