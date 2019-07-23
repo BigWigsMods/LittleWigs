@@ -291,20 +291,23 @@ function mod:VoidSeedApplied(args)
 			local _, _, _, _, _, expirationTime, _, _, _, spellId = UnitAura(args.destName, i, "HARMFUL")
 			if spellId == args.spellId then
 				count = count + 1
+				if count > 1 then
+					BigWigs:Error(string.format(
+					"Void seed applied: count: %d, duration: %d, previous max duration: %d. Tell the authors!",
+					count, expirationTime - GetTime(), maxExpirationTime - GetTime()
+				))
+				end
 				if expirationTime > maxExpirationTime then
 					maxExpirationTime = expirationTime
 				end
+			elseif not spellId then
+				break
 			end
 		end
 		local duration = maxExpirationTime - GetTime()
 		if duration >= 0 then
 			self:TargetBar(args.spellId, duration, args.destName)
 			self:SayCountdown(args.spellId, duration)
-		else
-			BigWigs:Error(string.format(
-				"Void seed applied: count: %d, duration: %d, max duration: %d. Tell the authors!",
-				count, duration, maxExpirationTime - GetTime()
-			))
 		end
 	end
 end
