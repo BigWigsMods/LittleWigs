@@ -288,8 +288,26 @@ function mod:VoidSeedApplied(args)
 		local _, _, _, expirationTime = self:UnitDebuff(args.destName, args.spellId)
 		if expirationTime then
 			local duration = expirationTime - GetTime()
-			self:TargetBar(args.spellId, duration, args.destName)
-			self:SayCountdown(args.spellId, duration)
+			if duration >= 0 then
+				self:TargetBar(args.spellId, duration, args.destName)
+				self:SayCountdown(args.spellId, duration)
+			else
+				local count = 0
+				local maxExpirationTime = 0
+				for i = 1, 100 do
+					local _, _, _, _, _, currentExpirationTime, _, _, _, spellId = UnitAura(args.destName, i, "HARMFUL")
+					if spellId == args.spellId then
+						count = count + 1
+						if currentExpirationTime > maxExpirationTime then
+							maxExpirationTime = currentExpirationTime
+						end
+					end
+				end
+				print(string.format(
+					"BigWigs: |cffffff00 Void seed applied: count: %d, duration: %d, max duration: %d. Tell the authors!|r",
+					count, duration, maxExpirationTime - GetTime()
+				))
+			end
 		end
 	end
 end
