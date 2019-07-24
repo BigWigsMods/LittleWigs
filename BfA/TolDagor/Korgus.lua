@@ -137,7 +137,7 @@ function mod:Deadeye(args)
 end
 
 function mod:DeadeyeApplied(args)
-	deadeyes[args.destName] = {args.amount or 1, 80, 0}
+	deadeyes[args.destName] = {args.amount or 1, GetTime()+80}
 	self:SetInfoBarsByTable(256038, deadeyes)
 end
 
