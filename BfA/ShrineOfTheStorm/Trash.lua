@@ -285,9 +285,27 @@ function mod:VoidSeedApplied(args)
 		self:TargetMessage(args.spellId, args.destName, "blue")
 		self:PlaySound(args.spellId, "alarm")
 		-- Duration seems to vary, so we can't hardcode a fixed duration
-		local _, _, _, expirationTime = self:UnitDebuff(args.destName, args.spellId)
-		if expirationTime then
-			local duration = expirationTime - GetTime()
+		local count = 0
+		local maxExpirationTime = 0
+		for i = 1, 100 do
+			local _, _, _, _, _, expirationTime, _, _, _, spellId = UnitAura(args.destName, i, "HARMFUL")
+			if spellId == args.spellId then
+				count = count + 1
+				if count > 1 then
+					BigWigs:Error(string.format(
+						"Void seed applied: count: %d, duration: %d, previous max duration: %d. Tell the authors!",
+						count, expirationTime - GetTime(), maxExpirationTime - GetTime()
+					))
+				end
+				if expirationTime > maxExpirationTime then
+					maxExpirationTime = expirationTime
+				end
+			elseif not spellId then
+				break
+			end
+		end
+		local duration = maxExpirationTime - GetTime()
+		if duration >= 0 then
 			self:TargetBar(args.spellId, duration, args.destName)
 			self:SayCountdown(args.spellId, duration)
 		end
