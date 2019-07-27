@@ -45,6 +45,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:CDBar(295445, 12) -- Wreck
 	self:Bar(301351, 21.4) -- Reinforcement Relay
 end
 
@@ -54,6 +55,7 @@ end
 
 function mod:TankBusterDeath(args)
 	self:StopBar(301351) -- Reinforcement Relay
+	self:StopBar(295445) -- Wreck
 end
 
 function mod:AnnihilationRay(args)
@@ -77,6 +79,7 @@ end
 function mod:Wreck(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 23)
 end
 
 function mod:ReinforcementRelay(args)
@@ -89,6 +92,7 @@ end
 function mod:LiftOff(args)
 	self:Message2("stages", "cyan", CL.stage:format(1), false)
 	self:PlaySound("stages", "long")
+	self:CDBar(295445, 20.5) -- Wreck
 	self:Bar(301351, 31.5) -- Reinforcement Relay
 end
 
