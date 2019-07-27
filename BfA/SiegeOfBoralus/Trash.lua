@@ -67,7 +67,7 @@ function mod:GetOptions()
 		-- Ashvane Invader
 		275835, -- Stinging Venom Coating
 		-- Ashvane Spotter
-		272421, -- Sighted Artillery
+		{272421, "SAY"}, -- Sighted Artillery
 		-- Bilge Rat Demolisher
 		257169, -- Terrifying Roar
 		272711, -- Crushing Slam
@@ -188,6 +188,9 @@ function mod:SightedArtillery(args)
 	self:TargetMessage2(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info")
 	self:TargetBar(args.spellId, 6, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
 end
 
 function mod:TerrifyingRoar(args)
