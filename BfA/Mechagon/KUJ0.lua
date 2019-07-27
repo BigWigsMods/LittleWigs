@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 -- TODO
--- Air Drop timers pull:7.3, 28.3, 28.7, 15.8, 19.7, 30.3, 27.8, 15.8
+-- Air Drop timers pull:6.2, 26.7, 32.7, 32.9 (need more data)
 --
 
 --------------------------------------------------------------------------------
@@ -35,9 +35,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(291918, 8.1) -- Air Drop
-	self:Bar(291946, 18) -- Venting Flames
-	self:Bar(291973, 30.2) -- Explosive Leap
+	self:Bar(291918, 6.2) -- Air Drop
+	self:Bar(291946, 15.6) -- Venting Flames
+	self:Bar(291973, 38) -- Explosive Leap
 end
 
 --------------------------------------------------------------------------------
@@ -47,20 +47,20 @@ end
 function mod:AirDrop(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 27) -- Between 27 and 33
+	self:CDBar(args.spellId, 26.7) -- Between 26.7 and 33
 end
 
 function mod:VentingFlames(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 6)
-	self:Bar(args.spellId, 31.6)
+	self:Bar(args.spellId, 32)
 end
 
 function mod:ExplosiveLeap(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 30.4)
+	self:CDBar(args.spellId, 30)
 end
 
 do
