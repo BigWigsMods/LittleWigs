@@ -51,7 +51,7 @@ function mod:AirDrop(args)
 	airDropCount = airDropCount + 1
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, airDropCount == 1 and 26.7 or 34) -- Second air drop is a shorter timer
+	self:Bar(args.spellId, (airDropCount == 1) and 26.7 or 34) -- Second air drop is a shorter timer
 end
 
 function mod:VentingFlames(args)
