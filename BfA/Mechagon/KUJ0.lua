@@ -1,9 +1,4 @@
 --------------------------------------------------------------------------------
--- TODO
--- Air Drop timers pull:7.3, 28.3, 28.7, 15.8, 19.7, 30.3, 27.8, 15.8
---
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -11,6 +6,12 @@ local mod, CL = BigWigs:NewBoss("K.U.-J.0.", 2097, 2339)
 if not mod then return end
 mod:RegisterEnableMob(144246)
 mod.engageId = 2258
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local airDropCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,9 +36,11 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(291918, 8.1) -- Air Drop
-	self:Bar(291946, 18) -- Venting Flames
-	self:Bar(291973, 30.2) -- Explosive Leap
+	airDropCount = 0
+	self:Bar(291918, 7.1) -- Air Drop
+	self:Bar(294929, 10.9) -- Blazing Chomp
+	self:Bar(291946, 15.6) -- Venting Flames
+	self:Bar(291973, 38) -- Explosive Leap
 end
 
 --------------------------------------------------------------------------------
@@ -45,22 +48,23 @@ end
 --
 
 function mod:AirDrop(args)
+	airDropCount = airDropCount + 1
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 27) -- Between 27 and 33
+	self:Bar(args.spellId, (airDropCount == 1) and 26.7 or 34) -- Second air drop is a shorter timer
 end
 
 function mod:VentingFlames(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 6)
-	self:Bar(args.spellId, 31.6)
+	self:Bar(args.spellId, 32)
 end
 
 function mod:ExplosiveLeap(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 30.4)
+	self:CDBar(args.spellId, 30)
 end
 
 do
@@ -89,4 +93,5 @@ end
 function mod:BlazingChompApplied(args)
 	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	self:CDBar(args.spellId, 16) -- Varies, one of these numbers: 15.8, 17, 18.2, 19.4
 end
