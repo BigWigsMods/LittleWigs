@@ -1,9 +1,4 @@
 --------------------------------------------------------------------------------
--- TODO
--- Air Drop timers pull:6.2, 26.7, 32.7, 32.9 (need more data)
---
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -11,6 +6,12 @@ local mod, CL = BigWigs:NewBoss("K.U.-J.0.", 2097, 2339)
 if not mod then return end
 mod:RegisterEnableMob(144246)
 mod.engageId = 2258
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local airDropCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,7 +36,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(291918, 6.2) -- Air Drop
+	airDropCount = 0
+	self:Bar(291918, 7.1) -- Air Drop
+	self:Bar(294929, 10.9) -- Blazing Chomp
 	self:Bar(291946, 15.6) -- Venting Flames
 	self:Bar(291973, 38) -- Explosive Leap
 end
@@ -45,9 +48,10 @@ end
 --
 
 function mod:AirDrop(args)
+	airDropCount = airDropCount + 1
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 26.7) -- Between 26.7 and 33
+	self:CDBar(args.spellId, airDropCount == 1 and 26.7 or 34) -- Second air drop is a shorter timer
 end
 
 function mod:VentingFlames(args)
@@ -89,4 +93,5 @@ end
 function mod:BlazingChompApplied(args)
 	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	self:CDBar(args.spellId, 16) -- Varies, one of these numbers: 15.8, 17, 18.2, 19.4
 end
