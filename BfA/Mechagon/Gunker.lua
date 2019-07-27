@@ -17,7 +17,7 @@ function mod:GetOptions()
 		297834, -- Toxic Wave
 		297835, -- Coalesce
 		298259, -- Gooped
-		{298212, "TANK"}, -- Sludge Bolt XXX check spell id. only cast when tank is out of range.
+		{298212, "TANK"}, -- Sludge Bolt
 	}
 end
 

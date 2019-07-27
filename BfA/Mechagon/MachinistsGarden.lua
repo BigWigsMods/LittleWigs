@@ -26,7 +26,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BlossomBlast", 294855)
 	self:Log("SPELL_CAST_SUCCESS", "HiddenFlameCannon", 285440)
 	self:Log("SPELL_CAST_SUCCESS", "Discombombulator", 285454)
-	self:Log("SPELL_AURA_APPLIED", "DiscombombulatorApplied", 285460) -- XXX check spell id
+	self:Log("SPELL_AURA_APPLIED", "DiscombombulatorApplied", 285460)
 end
 
 function mod:OnEngage()
