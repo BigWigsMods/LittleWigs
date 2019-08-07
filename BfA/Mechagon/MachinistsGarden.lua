@@ -70,7 +70,7 @@ end
 do
 	local playerList = mod:NewTargetList()
 	function mod:DiscombombulatorApplied(args)
-		if self:Dispeller("magic", nil, args.spellId) then
+		if self:Dispeller("magic", nil, 285454) then
 			self:TargetsMessage(285454, "orange", playerList)
 			self:PlaySound(285454, "alert", nil, playerList)
 		end
