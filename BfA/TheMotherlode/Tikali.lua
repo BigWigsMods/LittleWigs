@@ -74,7 +74,6 @@ end
 function mod:CallEarthrager(args)
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info", "mobsoon")
-	--self:Bar(args.spellId, 64) -- XXX Only seen it once
 end
 
 do
