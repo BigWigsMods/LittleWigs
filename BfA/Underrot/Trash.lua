@@ -221,12 +221,19 @@ function mod:DecayingMindRemoved(args)
 end
 
 -- Feral Bloodswarmer
-function mod:ThirstForBloodApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alarm")
-		if self:GetOption("custom_on_fixate_plates") then
-			self:AddPlateIcon(args.spellId, args.sourceGUID)
+do
+	local prev = 0
+	function mod:ThirstForBloodApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t-prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId)
+				self:PlaySound(args.spellId, "alarm")
+			end
+			if self:GetOption("custom_on_fixate_plates") then
+				self:AddPlateIcon(args.spellId, args.sourceGUID)
+			end
 		end
 	end
 end
