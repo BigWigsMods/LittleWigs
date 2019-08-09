@@ -10,15 +10,29 @@ mod.engageId = 2106
 mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.custom_on_fixate_plates = "Raging Gaze icon on Enemy Nameplate"
+	L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+	L.custom_on_fixate_plates_icon = 257582
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		-- General
 		271698, -- Azerite Infusion
 		258622, -- Resonant Pulse
 		257593, -- Call Earthrager
 		{257582, "SAY"}, -- Raging Gaze
+		"custom_on_fixate_plates",
+		-- Heroic
 		275907, -- Tectonic Smash
 	}, {
 		[271698] = "general",
@@ -28,7 +42,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CallEarthrager", 257593)
-	self:Log("SPELL_AURA_APPLIED", "RagingGaze", 257582)
+	self:Log("SPELL_AURA_APPLIED", "RagingGazeApplied", 257582)
+	self:Log("SPELL_AURA_REMOVED", "RagingGazeRemoved", 257582)
 	self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusion", 271698)
 	self:Log("SPELL_CAST_START", "ResonantPulse", 258622)
 	self:Log("SPELL_CAST_START", "TectonicSmash", 275907)
@@ -40,6 +55,15 @@ function mod:OnEngage()
 	self:Bar(257593, 64) -- Call Earthrager
 	if not self:Normal() then
 		self:Bar(275907, 5) -- Tectonic Smash
+	end
+	if self:GetOption("custom_on_fixate_plates") then
+		self:ShowPlates()
+	end
+end
+
+function mod:OnBossDisable()
+	if self:GetOption("custom_on_fixate_plates") then
+		self:HidePlates()
 	end
 end
 
@@ -56,15 +80,26 @@ end
 do
 	local playerList = mod:NewTargetList()
 	local prev = 0
-	function mod:RagingGaze(args)
+	function mod:RagingGazeApplied(args)
 		playerList[#playerList+1] = args.destName
-		local t = args.time
-		if self:Me(args.destGUID) and t-prev > 0.3 then -- Only run once per targetsmessage
-			prev = t
-			self:PlaySound(args.spellId, "warning", "fixate")
-			self:Say(args.spellId)
-		end
 		self:TargetsMessage(args.spellId, "red", playerList)
+		if self:Me(args.destGUID) then
+			if self:GetOption("custom_on_fixate_plates") then
+				self:AddPlateIcon(args.spellId, args.sourceGUID)
+			end
+			local t = args.time
+			if t-prev > 0.3 then -- Only run once per targetsmessage
+				prev = t
+				self:PlaySound(args.spellId, "warning", "fixate")
+				self:Say(args.spellId)
+			end
+		end
+	end
+end
+
+function mod:RagingGazeRemoved(args)
+	if self:GetOption("custom_on_fixate_plates") and self:Me(args.destGUID) then
+		self:RemovePlateIcon(args.spellId, args.sourceGUID)
 	end
 end
 
