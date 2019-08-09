@@ -10,6 +10,12 @@ mod.engageId = 2106
 mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local callEarthragerCount = 0
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -50,6 +56,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	callEarthragerCount = 0
 	self:Bar(258622, 9.5) -- Resonant Pulse
 	self:Bar(271698, 20) -- Azerite Infusion
 	self:Bar(257593, 64) -- Call Earthrager
@@ -72,9 +79,10 @@ end
 --
 
 function mod:CallEarthrager(args)
+	callEarthragerCount = callEarthragerCount + 1
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info", "mobsoon")
-	--self:Bar(args.spellId, 64) -- XXX Only seen it once
+	self:Bar(args.spellId, (callEarthragerCount % 2 == 0) and 60 or 120)
 end
 
 do
