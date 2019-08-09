@@ -124,10 +124,20 @@ function mod:OnBossEnable()
 	-- Faceless Corruptor
 	self:Log("SPELL_CAST_START", "AbyssalReach", 272592)
 	self:Log("SPELL_CAST_START", "MaddeningGaze", 272609)
-
+	-- Living Rot
 	self:Log("SPELL_AURA_APPLIED", "WaveOfDecayDamage", 278789)
 	self:Log("SPELL_PERIODIC_DAMAGE", "WaveOfDecayDamage", 278789)
 	self:Log("SPELL_PERIODIC_MISSED", "WaveOfDecayDamage", 278789)
+
+	if self:GetOption("custom_on_fixate_plates") then
+		self:ShowPlates()
+	end
+end
+
+function mod:OnBossDisable()
+	if self:GetOption("custom_on_fixate_plates") then
+		self:HidePlates()
+	end
 end
 
 --------------------------------------------------------------------------------
