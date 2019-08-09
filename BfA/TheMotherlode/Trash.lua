@@ -186,7 +186,7 @@ do
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "warning", "interrupt")
+			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
