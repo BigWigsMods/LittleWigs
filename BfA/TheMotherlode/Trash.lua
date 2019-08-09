@@ -199,20 +199,6 @@ end
 -- Venture Co. Earthshaper
 do
 	local prev = 0
-	function mod:EarthShieldApplied(args)
-		local t = args.time
-		if t-prev > 1.5 and not UnitIsPlayer(args.destName) then
-			prev = t
-			self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
-			if self:Dispeller("magic", true) then
-				self:PlaySound(args.spellId, "info")
-			end
-		end
-	end
-end
-
-do
-	local prev = 0
 	function mod:EarthShield(args)
 		local t = args.time
 		if t-prev > 1.5 then
@@ -225,12 +211,24 @@ end
 
 do
 	local prev = 0
+	function mod:EarthShieldApplied(args)
+		local t = args.time
+		if t-prev > 1.5 and not UnitIsPlayer(args.destName) and self:Dispeller("magic", true) then
+			prev = t
+			self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+do
+	local prev = 0
 	function mod:RockLance(args)
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellid, "warning", "interrupt")
+			self:PlaySound(args.spellId, "warning", "interrupt")
 		end
 	end
 end
