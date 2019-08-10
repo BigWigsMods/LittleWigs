@@ -13,7 +13,7 @@ mod.engageId = 2140
 --
 
 local stage = 0
-local bossStages = {}
+local bossOrder = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -54,8 +54,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	bossStages = {}
 	stage = 0
+	bossOrder = {}
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
@@ -64,10 +64,11 @@ end
 --
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	-- This event will fire when totems spawn, so only run for each boss once
 	local mobId = self:MobId(UnitGUID("boss1"))
-	if not bossStages[mobId] then
+	if not tContains(bossOrder, mobId) then
 		stage = stage + 1
-		bossStages[mobId] = stage
+		bossOrder[stage] = mobId
 		-- Start timers
 		if mobId == 135475 then -- Kula the Butcher
 			self:Bar(266206, 8) -- Whirling Axes
@@ -81,58 +82,84 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	end
 end
 
-function mod:BossDeath(args)
-	local mobId = self:MobId(args.destGUID)
-	-- Stop timers
-	if mobId == 135475 then -- Kula the Butcher
-		local whirlingAxesTime = self:BarTimeLeft(266206)
-		self:Bar(266206, 30 - (10.5 - whirlingAxesTime)) -- Subtract time elapsed since last cast
-		self:StopBar(266231) -- Severing Axe
-	elseif mobId == 135470 then -- Aka'ali the Conqueror
-		self:StopBar(266951) -- Barrel Through XXX add timer while boss is not active
-		self:StopSayCountdown(266951) -- Barrel Through
-		self:StopBar(266237) -- Debilitating Backhan
-	elseif mobId == 135472 then -- Zanazal the Wise
-		self:StopBar(267273) -- Poison Nova XXX add timer while boss is not active
-		self:StopBar(267060) -- Call of the Elements
+do
+	local function startTimer(mobId, time)
+		if mobId == 135475 then -- Kula the Butcher
+			mod:Bar(266206, time) -- Whirling Axes
+		elseif mobId == 135470 then -- Aka'ali the Conqueror
+			mod:Bar(266951, time) -- Barrel Through
+		elseif mobId == 135472 then -- Zanazal the Wise
+			mod:Bar(267273, time) -- Poison Nova
+		end
+	end
+
+	function mod:BossDeath(args)
+		local mobId = self:MobId(args.destGUID)
+		-- Stop timers
+		if mobId == 135475 then -- Kula the Butcher
+			local whirlingAxesTime = self:BarTimeLeft(266206)
+			self:StopBar(266206) -- Whirling Axes
+			self:StopBar(266231) -- Severing Axe
+		elseif mobId == 135470 then -- Aka'ali the Conqueror
+			self:StopBar(266951) -- Barrel Through
+			self:StopSayCountdown(266951) -- Barrel Through
+			self:StopBar(266237) -- Debilitating Backhan
+		elseif mobId == 135472 then -- Zanazal the Wise
+			self:StopBar(267273) -- Poison Nova
+			self:StopBar(267060) -- Call of the Elements
+		end
+		if stage < 3 then
+			-- The first boss's ability is used 23 sec after any death.
+			-- The second boss's ability is used 55 sec after its death.
+			startTimer(bossOrder[1], 23)
+			if bossOrder[2] then
+				startTimer(bossOrder[2], 55)
+			end
+		end
 	end
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("266951") then -- Barrel Through
 		self:TargetMessage2(266951, "red", destName)
+		self:PlaySound(266951, "warning", nil, destName)
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
-			self:PlaySound(266951, "warning", "runaway")
 			self:Say(266951)
 			self:SayCountdown(266951, 8)
 		end
-		self:Bar(266951, 23.5) -- Barrel Through
-		self:Bar(266237, 9) -- Debilitating Backhand
+		local mobId = self:MobId(UnitGUID("boss1"))
+		if mobId == 135470 then -- Aka'ali the Conqueror
+			self:Bar(266951, 23.1) -- Barrel Through
+			self:Bar(266237, 9) -- Debilitating Backhand
+		else
+			self:Bar(266951, 51) -- Barrel Through
+		end
 	end
 end
 
 function mod:PoisonNova(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 26)
+	local mobId = self:MobId(UnitGUID("boss1"))
+	self:CDBar(args.spellId, (mobId == 135472) and 29.2 or 51) -- Zanazal the Wise
 end
 
 function mod:CalloftheElements(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 53) -- XXX check this
+	self:CDBar(args.spellId, 53.5)
 end
 
 function mod:WhirlingAxes(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	local mobId = self:MobId(UnitGUID("boss1"))
-	self:CDBar(args.spellId, mobId == 135475 and 10.5 or 50) -- Kula the Butcher
+	self:CDBar(args.spellId, (mobId == 135475) and 10.9 or 50) -- Kula the Butcher
 end
 
 function mod:SeveringAxeSuccess(args)
-	self:CDBar(args.spellId, 21.5)
+	self:CDBar(args.spellId, 21.9)
 end
 
 function mod:SeveringAxeApplied(args)
