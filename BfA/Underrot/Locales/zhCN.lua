@@ -1,6 +1,9 @@
 local L = BigWigs:NewBossLocale("Underrot Trash", "zhCN")
 if not L then return end
 if L then
+	-- L.custom_on_fixate_plates = "Thirst For Blood icon on Enemy Nameplate"
+	-- L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+
 	L.spirit = "亵渎之灵"
 	L.priest = "虔诚鲜血祭司"
 	L.maggot = "恶臭蛆虫"
