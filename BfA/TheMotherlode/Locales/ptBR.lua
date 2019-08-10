@@ -18,3 +18,9 @@ if L then
 	L.taskmaster = "Capataz Askari"
 	L.warmachine = "Máquina de Guerra da Empreendimentos S.A."
 end
+
+L = BigWigs:NewBossLocale("Tik'ali", "ptBR")
+if L then
+	-- L.custom_on_fixate_plates = "Raging Gaze icon on Enemy Nameplate"
+	-- L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+end
