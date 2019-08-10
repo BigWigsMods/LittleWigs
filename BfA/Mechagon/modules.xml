@@ -1,0 +1,16 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Gobbamak.lua"/>
+<Script file="Gunker.lua"/>
+<Script file="TrixieNaeno.lua"/>
+<Script file="OppressionUnit.lua"/>
+<Script file="TussleTonks.lua"/>
+<Script file="KUJ0.lua"/>
+<Script file="MachinistsGarden.lua"/>
+<Script file="KingMechagon.lua"/>
+<Script file="Trash.lua"/>
+
+<Include file="Options\options.xml"/>
+
+</Ui>

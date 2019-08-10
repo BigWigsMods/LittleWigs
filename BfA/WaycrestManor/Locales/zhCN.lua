@@ -21,5 +21,5 @@ end
 
 L = BigWigs:NewBossLocale("Gorak Tul", "zhCN")
 if L then
-	-- L.add_killed = "Add killed - Ready to burn"
+	L.add_killed = "增援已击杀 - 准备净化"
 end

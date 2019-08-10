@@ -8,6 +8,7 @@ local mod, CL = BigWigs:NewBoss("Chopper Redhook", 1822, 2132)
 if not mod then return end
 mod:RegisterEnableMob(128650) -- Chopper Redhook
 mod.engageId = 2098
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -130,8 +131,8 @@ do
 			local barText = CL.count:format(args.spellName, bombsRemaining)
 			bombsRemaining = bombsRemaining - 1
 			local timer = self:BarTimeLeft(barText)
-			if timer and bombsRemaining > 0 then
-				self:StopBar(barText)
+			self:StopBar(barText)
+			if bombsRemaining > 0 then
 				self:Bar(273721, timer, CL.count:format(args.spellName, bombsRemaining))
 			end
 			self:Message2(273721, "orange", L.remaining:format(args.spellName, args.destName, bombsRemaining))
@@ -144,8 +145,8 @@ function mod:HeavyOrdnanceApplied(args)
 	local barText = CL.count:format(args.spellName, bombsRemaining)
 	bombsRemaining = bombsRemaining - 1
 	local timer = self:BarTimeLeft(barText)
-	if timer and bombsRemaining > 0 then
-		self:StopBar(barText)
+	self:StopBar(barText)
+	if bombsRemaining > 0 then
 		self:Bar(args.spellId, timer, CL.count:format(args.spellName, bombsRemaining))
 	end
 	self:Message2(args.spellId, "green", L.remaining_boss:format(args.spellName, bombsRemaining))

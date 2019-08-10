@@ -12,6 +12,11 @@ if L then
 	L.raider = "Налетчик из братства Стальных Волн"
 	L.vanguard = "Кул-тирасский боец авангарда"
 	L.marksman = "Кул-тирасский стрелок"
+	L.buccaneer = "Буканьер из братства Трюмных Крыс"
+	L.invader = "Захватчик дома Эшвейнов"
+	L.dockhound = "Злобный портовый пес"
+	L.shredder = "Мастер клинков прилива"
+	L.packmaster = "Портовый заводчик"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "ruRU")
