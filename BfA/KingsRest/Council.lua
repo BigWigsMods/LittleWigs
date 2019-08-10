@@ -21,7 +21,6 @@ local bossOrder = {}
 
 function mod:GetOptions()
 	return {
-		"stages",
 		-- Kula the Butcher
 		266206, -- Whirling Axes
 		266231, -- Severing Axe
