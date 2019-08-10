@@ -19,7 +19,6 @@ BigWigs:AddSounds("The Council of Tribes", {
 	[266951] = "warning",
 	[267060] = "long",
 	[267273] = "alarm",
-	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Dazar, The First King", {
