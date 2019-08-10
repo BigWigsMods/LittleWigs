@@ -39,6 +39,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Barrel Through
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "PoisonNova", 267273)
 	self:Log("SPELL_CAST_START", "CalloftheElements", 267060)
@@ -92,27 +93,29 @@ do
 		end
 	end
 
-	function mod:BossDeath(args)
-		local mobId = self:MobId(args.destGUID)
-		-- Stop timers
-		if mobId == 135475 then -- Kula the Butcher
-			local whirlingAxesTime = self:BarTimeLeft(266206)
-			self:StopBar(266206) -- Whirling Axes
-			self:StopBar(266231) -- Severing Axe
-		elseif mobId == 135470 then -- Aka'ali the Conqueror
-			self:StopBar(266951) -- Barrel Through
-			self:StopSayCountdown(266951) -- Barrel Through
-			self:StopBar(266237) -- Debilitating Backhan
-		elseif mobId == 135472 then -- Zanazal the Wise
-			self:StopBar(267273) -- Poison Nova
-			self:StopBar(267060) -- Call of the Elements
-		end
-		if stage < 3 then
-			-- The first boss's ability is used 23 sec after any death.
-			-- The second boss's ability is used 55 sec after its death.
-			startTimer(bossOrder[1], 23)
-			if bossOrder[2] then
-				startTimer(bossOrder[2], 55)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+		if spellId == 34098 then -- ClearAllDebuffs (boss death)
+			local mobId = self:MobId(UnitGUID(unit))
+			-- Stop timers
+			if mobId == 135475 then -- Kula the Butcher
+				local whirlingAxesTime = self:BarTimeLeft(266206)
+				self:StopBar(266206) -- Whirling Axes
+				self:StopBar(266231) -- Severing Axe
+			elseif mobId == 135470 then -- Aka'ali the Conqueror
+				self:StopBar(266951) -- Barrel Through
+				self:StopSayCountdown(266951) -- Barrel Through
+				self:StopBar(266237) -- Debilitating Backhan
+			elseif mobId == 135472 then -- Zanazal the Wise
+				self:StopBar(267273) -- Poison Nova
+				self:StopBar(267060) -- Call of the Elements
+			end
+			if stage < 3 then
+				-- The first boss's ability is used 23 sec after any death.
+				-- The second boss's ability is used 55 sec after its death.
+				startTimer(bossOrder[1], 23)
+				if bossOrder[2] then
+					startTimer(bossOrder[2], 55)
+				end
 			end
 		end
 	end
