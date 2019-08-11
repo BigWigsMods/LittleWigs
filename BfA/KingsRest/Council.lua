@@ -57,6 +57,8 @@ function mod:OnEngage()
 	stage = 0
 	bossOrder = {}
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	-- IEEU engages the boss module, so the first time the event fires, it is not yet registered here.
+	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 --------------------------------------------------------------------------------
