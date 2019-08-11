@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Council of Tribes", 1762, 2170)
 if not mod then return end
-mod:RegisterEnableMob(135472, 135475, 135470) -- Zanazal the Wise, Kula the Butcher, Aka'ali the Conqueror
+mod:RegisterEnableMob(135475, 135470, 135472) -- Kula the Butcher, Aka'ali the Conqueror, Zanazal the Wise
 mod.engageId = 2140
 
 --------------------------------------------------------------------------------
@@ -49,8 +49,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SeveringAxeApplied", 266231)
 
 	self:Log("SPELL_CAST_START", "DebilitatingBackhand", 266237)
-
-	self:Death("BossDeath", 135475, 135470, 135472) -- Kula the Butcher, Aka'ali the Conqueror, Zanazal the Wise
 end
 
 function mod:OnEngage()
