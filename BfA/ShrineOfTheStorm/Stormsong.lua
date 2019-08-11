@@ -5,7 +5,8 @@
 
 local mod, CL = BigWigs:NewBoss("Lord Stormsong", 1864, 2155)
 if not mod then return end
-mod:RegisterEnableMob(134060)
+-- Enable on trash before the boss to be sure the module is enabled for the warmup RP.
+mod:RegisterEnableMob(134060, 134423) -- Lord Stormsong, Abyss Dweller
 mod.engageId = 2132
 mod.respawnTime = 30
 
