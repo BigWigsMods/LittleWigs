@@ -79,7 +79,7 @@ end
 function mod:SwiftwindSaber(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:CDBar(args.spellId, 15)
+	self:CDBar(args.spellId, (stage == 1) and 15.8 or 12.2)
 end
 
 do
