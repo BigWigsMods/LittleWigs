@@ -16,12 +16,23 @@ mod.respawnTime = 15
 local stage = 1
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.custom_on_stop_timers = "Always show ability bars"
+	L.custom_on_stop_timers_desc = "Harlan Sweete can delay his abilities. When this option is enabled, the bars for those abilities will stay on your screen."
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		"stages", -- Loaded Dice
+		"custom_on_stop_timers",
 		257278, -- Swiftwind Saber
 		{257305, "SAY"}, -- Cannon Barrage
 		257316, -- Avast, ye!
@@ -30,6 +41,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterMessage("BigWigs_BarCreated", "BarCreated")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "LoadedDiceAllHands", 257402)
 	self:Log("SPELL_CAST_START", "LoadedDiceManOWar", 257458)
@@ -49,6 +61,31 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local abilitysToPause = {
+		[257278] = true, -- Swiftwind Saber
+		[257305] = true, -- Cannon Barrage
+		[257316] = true, -- Avast, ye!
+	}
+
+	local castPattern = CL.cast:gsub("%%s", ".+")
+
+	local function stopAtZeroSec(bar)
+		if bar.remaining < 0.15 then -- Pause at 0.0
+			bar:SetDuration(0.01) -- Make the bar look full
+			bar:Start()
+			bar:Pause()
+			bar:SetTimeVisibility(false)
+		end
+	end
+
+	function mod:BarCreated(_, _, bar, _, key, text)
+		if self:GetOption("custom_on_stop_timers") and abilitysToPause[key] and not text:match(castPattern) then
+			bar:AddUpdateFunction(stopAtZeroSec)
+		end
+	end
+end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 257454 then -- Swiftwind Saber with Loaded Dice: All Hands!
