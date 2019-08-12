@@ -103,7 +103,7 @@ do
 		end
 		if not scheduled then
 			scheduled = self:ScheduleTimer(warn, 0.1, self)
-			self:CDBar(args.spellId, 15.3)
+			self:CDBar(args.spellId, 18.2)
 		end
 	end
 end
