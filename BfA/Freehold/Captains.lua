@@ -152,7 +152,6 @@ do
 	function mod:ChainShot(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 15.8)
-		self:CastBar(args.spellId, 3)
 	end
 end
 
