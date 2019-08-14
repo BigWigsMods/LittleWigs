@@ -54,6 +54,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "GrapeShot", 258381)
 	self:Log("SPELL_CAST_START", "PowderShot", 256979)
 	self:Log("SPELL_CAST_START", "ChainShot", 272902)
+	self:Log("SPELL_AURA_APPLIED", "ChainShotApplied", 272902)
 	self:Log("SPELL_CAST_START", "WhirlpoolofBlades", 267533)
 	self:Log("SPELL_CAST_START", "CuttingSurge", 267522)
 
@@ -151,7 +152,12 @@ do
 	function mod:ChainShot(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 15.8)
+		self:CastBar(args.spellId, 3)
 	end
+end
+
+function mod:ChainShotApplied(args)
+	self:TargetBar(272902, args.destName)
 end
 
 function mod:WhirlpoolofBlades(args)
