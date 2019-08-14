@@ -78,7 +78,7 @@ do
 		if UnitCanAttack("player", mod:GetBossId(126848)) then -- Captain Eudora
 			mod:Bar(258381, 8.4) -- Grape Shot, 8.5 sec
 		else
-			mod:Bar(272902, 4.4) -- Chain Shot, 4.5 sec
+			mod:Bar(272902, 4.6) -- Chain Shot, 4.7 sec
 		end
 		if UnitCanAttack("player", mod:GetBossId(126845)) then -- Captain Jolly
 			mod:Bar(267533, 12.9) -- Whirlpool of Blades, 13 sec
