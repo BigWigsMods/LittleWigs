@@ -45,9 +45,3 @@ if L then
 	L.ludwig = "Ludwig Von Tortollan"
 	L.trothak = "Trothak"
 end
-
-L = BigWigs:NewBossLocale("Harlan Sweete", "frFR")
-if L then
-	-- L.custom_on_stop_timers = "Always show ability bars"
-	-- L.custom_on_stop_timers_desc = "Harlan Sweete can delay his abilities. When this option is enabled, the bars for those abilities will stay on your screen."
-end
