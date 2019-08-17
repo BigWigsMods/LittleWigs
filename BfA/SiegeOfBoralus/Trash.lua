@@ -233,8 +233,10 @@ function mod:WatertightShell(args)
 end
 
 function mod:WatertightShellApplied(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+	if not UnitIsPlayer(args.destName) then
+		self:Message2(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:SlobberKnocker(args)
