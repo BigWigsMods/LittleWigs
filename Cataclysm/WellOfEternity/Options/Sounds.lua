@@ -6,7 +6,7 @@ BigWigs:AddSounds("Peroth'arn", {
 	["eyes"] = "Info",
 })
 
-BigWigs:AddSounds("Queen Azshara", {
+BigWigs:AddSounds("Queen Azshara WellOfEternity", {
 	[-3969] = "Long",
 	[-3968] = "Alert",
 })
