@@ -39,7 +39,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Barrel Through
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Boss frame no longer exists when this event fires
 
 	self:Log("SPELL_CAST_START", "PoisonNova", 267273)
 	self:Log("SPELL_CAST_START", "CalloftheElements", 267060)
@@ -93,8 +93,10 @@ do
 		end
 	end
 
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-		if spellId == 34098 then -- ClearAllDebuffs (boss death)
+	local prev = nil
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
+		if spellId == 34098 and prev ~= castGUID then -- ClearAllDebuffs (boss death)
+			prev = castGUID
 			local mobId = self:MobId(UnitGUID(unit))
 			-- Stop timers
 			if mobId == 135475 then -- Kula the Butcher
