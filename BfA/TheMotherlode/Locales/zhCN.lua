@@ -21,6 +21,6 @@ end
 
 L = BigWigs:NewBossLocale("Tik'ali", "zhCN")
 if L then
-	-- L.custom_on_fixate_plates = "Raging Gaze icon on Enemy Nameplate"
-	-- L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+	L.custom_on_fixate_plates = "愤怒凝视图标位于敌对姓名板"
+	L.custom_on_fixate_plates_desc = "当你被凝视时在目标姓名板上显示一个图标。\n需要使用敌对姓名板。此功能当前只支持 KuiNameplates。"
 end
