@@ -129,11 +129,11 @@ do
 
 		if self:GetOption(putridWatersMarker) then
 			SetRaidTarget(args.destName, markCount)
-			if markCount == 4 then
-				markCount = 1
-			else
-				markCount = markCount + 1
-			end
+		end
+		if markCount == 4 then
+			markCount = 1
+		else
+			markCount = markCount + 1
 		end
 
 		if #playerList == 1 then
