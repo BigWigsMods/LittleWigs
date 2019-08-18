@@ -26,7 +26,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BlossomBlast", 294855)
 	self:Log("SPELL_CAST_SUCCESS", "HiddenFlameCannon", 285440)
 	self:Log("SPELL_CAST_SUCCESS", "Discombombulator", 285454)
-	self:Log("SPELL_AURA_APPLIED", "DiscombombulatorApplied", 285460) -- XXX check spell id
+	self:Log("SPELL_AURA_APPLIED", "DiscombombulatorApplied", 285460)
 end
 
 function mod:OnEngage()
@@ -70,7 +70,7 @@ end
 do
 	local playerList = mod:NewTargetList()
 	function mod:DiscombombulatorApplied(args)
-		if self:Dispeller("magic", nil, args.spellId) then
+		if self:Dispeller("magic", nil, 285454) then
 			self:TargetsMessage(285454, "orange", playerList)
 			self:PlaySound(285454, "alert", nil, playerList)
 		end

@@ -32,6 +32,7 @@ function mod:GetOptions()
 		-- Captain Eudora
 		258381, -- Grape Shot
 		256979, -- Powder Shot
+		272902, -- Chain Shot
 		-- Captain Jolly
 		267533, -- Whirlpool of Blades
 		267522, -- Cutting Surge
@@ -52,6 +53,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BarrelSmash", 256589)
 	self:Log("SPELL_CAST_SUCCESS", "GrapeShot", 258381)
 	self:Log("SPELL_CAST_START", "PowderShot", 256979)
+	self:Log("SPELL_CAST_START", "ChainShot", 272902)
+	self:Log("SPELL_AURA_APPLIED", "ChainShotApplied", 272905)
 	self:Log("SPELL_CAST_START", "WhirlpoolofBlades", 267533)
 	self:Log("SPELL_CAST_START", "CuttingSurge", 267522)
 
@@ -74,6 +77,8 @@ do
 		end
 		if UnitCanAttack("player", mod:GetBossId(126848)) then -- Captain Eudora
 			mod:Bar(258381, 8.4) -- Grape Shot, 8.5 sec
+		else
+			mod:Bar(272902, 4.6) -- Chain Shot, 4.7 sec
 		end
 		if UnitCanAttack("player", mod:GetBossId(126845)) then -- Captain Jolly
 			mod:Bar(267533, 12.9) -- Whirlpool of Blades, 13 sec
@@ -136,6 +141,22 @@ do
 	function mod:PowderShot(args)
 		self:GetBossTarget(printTarget, 1, args.sourceGUID)
 	end
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(272902, "green", name)
+		self:PlaySound(272902, "info")
+	end
+
+	function mod:ChainShot(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:Bar(args.spellId, 15.8)
+	end
+end
+
+function mod:ChainShotApplied(args)
+	self:TargetBar(272902, 6, args.destName)
 end
 
 function mod:WhirlpoolofBlades(args)

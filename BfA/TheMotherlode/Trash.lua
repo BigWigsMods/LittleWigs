@@ -65,6 +65,7 @@ function mod:GetOptions()
 		281621, -- Concussion Charge
 		-- Venture Co. Earthshaper
 		268709, -- Earth Shield
+		263202, -- Rock Lance
 		-- Stonefury
 		268702, -- Furious Quake
 		263215, -- Tectonic Barrier
@@ -126,6 +127,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ConcussionCharge", 281621)
 	self:Log("SPELL_CAST_START", "EarthShield", 268709)
 	self:Log("SPELL_AURA_APPLIED", "EarthShieldApplied", 268709)
+	self:Log("SPELL_CAST_START", "RockLance", 263202)
 	self:Log("SPELL_CAST_START", "FuriousQuake", 268702)
 	self:Log("SPELL_CAST_START", "TectonicBarrier", 263215)
 	self:Log("SPELL_AURA_APPLIED", "TectonicBarrierApplied", 263215)
@@ -177,9 +179,16 @@ function mod:ToxicBlades(args)
 end
 
 -- Mech Jockey
-function mod:ActivateMech(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning", "interrupt")
+do
+	local prev = 0
+	function mod:ActivateMech(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 function mod:ConcussionCharge(args)
@@ -188,18 +197,40 @@ function mod:ConcussionCharge(args)
 end
 
 -- Venture Co. Earthshaper
-function mod:EarthShieldApplied(args)
-	if not UnitIsPlayer(args.destName) then
-		self:Message2(args.spellId, "red", CL.other:format(args.spellName, args.destName))
-		if self:Dispeller("magic", true) then
-			self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:EarthShield(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
-function mod:EarthShield(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning", "interrupt")
+do
+	local prev = 0
+	function mod:EarthShieldApplied(args)
+		local t = args.time
+		if t-prev > 1.5 and not UnitIsPlayer(args.destName) and self:Dispeller("magic", true) then
+			prev = t
+			self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:RockLance(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert", "interrupt")
+		end
+	end
 end
 
 -- Stonefury
@@ -301,15 +332,21 @@ do
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
+end
 
+do
+	local prev = 0
 	function mod:MiningCharge(args)
-		local unit = self:GetUnitIdByGUID(args.sourceGUID)
-		if unit and UnitAffectingCombat(unit) then
-			self:Message2(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info", "watchstep")
+		local t = args.time
+		if t-prev > 1.5 then
+			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			if unit and UnitAffectingCombat(unit) then
+				prev = t
+				self:Message2(args.spellId, "yellow")
+				self:PlaySound(args.spellId, "info", "watchstep")
+			end
 		end
 	end
-
 end
 
 -- Refreshment Vendor

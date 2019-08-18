@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Queen Azshara", 939, 291)
+local mod, CL = BigWigs:NewBoss("Queen Azshara WellOfEternity", 939, 291)
 if not mod then return end
 mod:RegisterEnableMob(54853, 54884, 54882, 54883) -- Queen Azshara, 3x Enchanted Magi
 mod.engageId = 1273

@@ -46,7 +46,6 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	self:Death("Deaths", 136984, 136976) -- Reban, T'zala
 
 	self:Log("SPELL_CAST_START", "BladeCombo", 268586)
@@ -62,6 +61,8 @@ end
 function mod:OnEngage()
 	nextHPWarning = 85 -- 80%, 60% and 40%
 	mobCollector = {}
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 
 	self:CDBar(268586, 18.2) -- Blade Combo
 	self:CDBar(268932, 12.1) -- Quaking Leap
@@ -82,7 +83,6 @@ end
 --
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	self:CheckForEncounterEngage()
 	for i = 1, 3 do
 		local guid = UnitGUID(("boss%d"):format(i))
 		if guid and not mobCollector[guid] then

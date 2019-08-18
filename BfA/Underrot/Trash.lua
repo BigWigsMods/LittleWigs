@@ -25,6 +25,10 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.custom_on_fixate_plates = "Thirst For Blood icon on Enemy Nameplate"
+	L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+	L.custom_on_fixate_plates_icon = 266107
+
 	L.spirit = "Befouled Spirit"
 	L.priest = "Devout Blood Priest"
 	L.maggot = "Fetid Maggot"
@@ -57,6 +61,7 @@ function mod:GetOptions()
 		278961, -- Decaying Mind
 		-- Feral Bloodswarmer
 		266107, -- Thirst For Blood
+		"custom_on_fixate_plates",
 		266106, -- Sonic Screech
 		-- Living Rot
 		265668, -- Wave of Decay
@@ -107,6 +112,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "DecayingMindRemoved", 278961)
 	-- Feral Bloodswarmer
 	self:Log("SPELL_AURA_APPLIED", "ThirstForBloodApplied", 266107)
+	self:Log("SPELL_AURA_REMOVED", "ThirstForBloodRemoved", 266107)
 	self:Log("SPELL_CAST_START", "SonicScreech", 266106)
 	-- Fallen Deathspeaker
 	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
@@ -118,10 +124,20 @@ function mod:OnBossEnable()
 	-- Faceless Corruptor
 	self:Log("SPELL_CAST_START", "AbyssalReach", 272592)
 	self:Log("SPELL_CAST_START", "MaddeningGaze", 272609)
-
+	-- Living Rot
 	self:Log("SPELL_AURA_APPLIED", "WaveOfDecayDamage", 278789)
 	self:Log("SPELL_PERIODIC_DAMAGE", "WaveOfDecayDamage", 278789)
 	self:Log("SPELL_PERIODIC_MISSED", "WaveOfDecayDamage", 278789)
+
+	if self:GetOption("custom_on_fixate_plates") then
+		self:ShowPlates()
+	end
+end
+
+function mod:OnBossDisable()
+	if self:GetOption("custom_on_fixate_plates") then
+		self:HidePlates()
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -215,10 +231,26 @@ function mod:DecayingMindRemoved(args)
 end
 
 -- Feral Bloodswarmer
-function mod:ThirstForBloodApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:ThirstForBloodApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t-prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId)
+				self:PlaySound(args.spellId, "alarm")
+			end
+			if self:GetOption("custom_on_fixate_plates") then
+				self:AddPlateIcon(args.spellId, args.sourceGUID)
+			end
+		end
+	end
+end
+
+function mod:ThirstForBloodRemoved(args)
+	if self:Me(args.destGUID) and self:GetOption("custom_on_fixate_plates") then
+		self:RemovePlateIcon(args.spellId, args.sourceGUID)
 	end
 end
 

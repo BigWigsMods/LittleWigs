@@ -6,7 +6,7 @@ BigWigs:AddColors("Peroth'arn", {
 	["eyes"] = "green",
 })
 
-BigWigs:AddColors("Queen Azshara", {
+BigWigs:AddColors("Queen Azshara WellOfEternity", {
 	[-3969] = {"green","orange"},
 	[-3968] = "yellow",
 })
