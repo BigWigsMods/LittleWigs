@@ -63,25 +63,6 @@ end
 -- Event Handlers
 --
 
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	-- This event will fire when totems spawn, so only run for each boss once
-	local mobId = self:MobId(UnitGUID("boss1"))
-	if not tContains(bossOrder, mobId) then
-		stage = stage + 1
-		bossOrder[stage] = mobId
-		-- Start timers
-		if mobId == 135475 then -- Kula the Butcher
-			self:Bar(266206, 8) -- Whirling Axes
-			self:Bar(266231, 24) -- Severing Axe
-		elseif mobId == 135470 then -- Aka'ali the Conqueror
-			self:Bar(266951, 5.5) -- Barrel Through
-		elseif mobId == 135472 then -- Zanazal the Wise
-			self:Bar(267273, 16) -- Poison Nova
-			self:Bar(267060, 20) -- Call of the Elements
-		end
-	end
-end
-
 do
 	local function startTimer(mobId, time)
 		if mobId == 135475 then -- Kula the Butcher
@@ -93,6 +74,35 @@ do
 		end
 	end
 
+	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+		-- This event will fire when totems spawn, so only run for each boss once
+		local mobId = self:MobId(UnitGUID("boss1"))
+		if not tContains(bossOrder, mobId) then
+			stage = stage + 1
+			bossOrder[stage] = mobId
+			-- Start timers
+			if mobId == 135475 then -- Kula the Butcher
+				self:Bar(266206, 8) -- Whirling Axes
+				self:Bar(266231, 24) -- Severing Axe
+			elseif mobId == 135470 then -- Aka'ali the Conqueror
+				self:Bar(266951, 5.5) -- Barrel Through
+			elseif mobId == 135472 then -- Zanazal the Wise
+				self:Bar(267273, 16) -- Poison Nova
+				self:Bar(267060, 20) -- Call of the Elements
+			end
+
+			if stage == 2 or stage == 3 then
+				-- The dead bosses use their abilities 17 and 49 seconds after the living one spawns
+				startTimer(bossOrder[1], 17)
+				if bossOrder[2] then
+					startTimer(bossOrder[2], 49)
+				end
+			end
+		end
+	end
+end
+
+do
 	local prev = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
 		if spellId == 34098 and prev ~= castGUID then -- ClearAllDebuffs (boss death)
@@ -100,7 +110,6 @@ do
 			local mobId = self:MobId(UnitGUID(unit))
 			-- Stop timers
 			if mobId == 135475 then -- Kula the Butcher
-				local whirlingAxesTime = self:BarTimeLeft(266206)
 				self:StopBar(266206) -- Whirling Axes
 				self:StopBar(266231) -- Severing Axe
 			elseif mobId == 135470 then -- Aka'ali the Conqueror
@@ -110,14 +119,6 @@ do
 			elseif mobId == 135472 then -- Zanazal the Wise
 				self:StopBar(267273) -- Poison Nova
 				self:StopBar(267060) -- Call of the Elements
-			end
-			if stage < 3 then
-				-- The first boss's ability is used 23 sec after any death.
-				-- The second boss's ability is used 55 sec after its death.
-				startTimer(bossOrder[1], 23)
-				if bossOrder[2] then
-					startTimer(bossOrder[2], 55)
-				end
 			end
 		end
 	end
