@@ -92,8 +92,8 @@ do
 			end
 
 			if stage == 2 or stage == 3 then
-				-- The dead bosses use their abilities 17 and 49 seconds after the living one spawns
-				startTimer(bossOrder[1], 17)
+				-- The dead bosses use their abilities 15.8 and 49 seconds after the living one spawns
+				startTimer(bossOrder[1], 15.8)
 				if bossOrder[2] then
 					startTimer(bossOrder[2], 49)
 				end
@@ -147,24 +147,24 @@ function mod:PoisonNova(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	local mobId = self:MobId(UnitGUID("boss1"))
-	self:CDBar(args.spellId, (mobId == 135472) and 29.2 or 51) -- Zanazal the Wise
+	self:Bar(args.spellId, (mobId == 135472) and 29.2 or 51) -- Zanazal the Wise
 end
 
 function mod:CalloftheElements(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 53.5)
+	self:Bar(args.spellId, 53.5)
 end
 
 function mod:WhirlingAxes(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	local mobId = self:MobId(UnitGUID("boss1"))
-	self:CDBar(args.spellId, (mobId == 135475) and 10.9 or 50) -- Kula the Butcher
+	self:Bar(args.spellId, (mobId == 135475) and 10.9 or 50) -- Kula the Butcher
 end
 
 function mod:SeveringAxeSuccess(args)
-	self:CDBar(args.spellId, 21.9)
+	self:Bar(args.spellId, 21.9)
 end
 
 function mod:SeveringAxeApplied(args)
