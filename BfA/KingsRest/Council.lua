@@ -114,7 +114,7 @@ do
 				self:StopBar(266231) -- Severing Axe
 			elseif mobId == 135470 then -- Aka'ali the Conqueror
 				self:StopBar(266951) -- Barrel Through
-				self:StopSayCountdown(266951) -- Barrel Through
+				self:CancelSayCountdown(266951) -- Barrel Through
 				self:StopBar(266237) -- Debilitating Backhan
 			elseif mobId == 135472 then -- Zanazal the Wise
 				self:StopBar(267273) -- Poison Nova
