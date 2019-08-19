@@ -82,9 +82,10 @@ do
 	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		-- IEEU fires on living boss spawn and death
 		-- mobId will be nil if the boss died
-		local mobId = self:MobId(UnitGUID("boss1"))
-		if mobId then
+		local guid = UnitGUID("boss1")
+		if guid then
 			stage = stage + 1
+			local mobId = self:MobId(guid)
 			bossOrder[stage] = mobId
 			-- Start timers
 			if mobId == 135475 then -- Kula the Butcher
