@@ -104,6 +104,8 @@ do
 				if bossOrder[2] then
 					startTimer(bossOrder[2], 49)
 				end
+			elseif stage > 3 then
+				BigWigs:Error(string.format("Stage %d is greater than 3", stage))
 			end
 		end
 	end
