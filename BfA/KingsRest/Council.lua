@@ -92,7 +92,7 @@ do
 			end
 
 			if stage == 2 or stage == 3 then
-				-- The dead bosses use their abilities 15.8 and 49 seconds after the living one spawns
+				-- The dead bosses use their abilities a number of seconds after the current living one spawns
 				startTimer(bossOrder[1], 15.8)
 				if bossOrder[2] then
 					startTimer(bossOrder[2], 49)
