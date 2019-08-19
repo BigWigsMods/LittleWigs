@@ -14,6 +14,11 @@ mod.engageId = 2140
 
 local stage = 0
 local bossOrder = {}
+local bosses = {
+	135475, -- Kula the Butcher
+	135470, -- Aka'ali the Conqueror
+	135472, -- Zanazal the Wise
+}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -77,7 +82,7 @@ do
 	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		-- This event will fire when totems spawn, so only run for each boss once
 		local mobId = self:MobId(UnitGUID("boss1"))
-		if not tContains(bossOrder, mobId) then
+		if bosses[mobId] and not tContains(bossOrder, mobId) then
 			stage = stage + 1
 			bossOrder[stage] = mobId
 			-- Start timers
