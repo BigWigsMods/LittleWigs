@@ -80,9 +80,8 @@ do
 	end
 
 	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-		-- This event will fire when totems spawn, so only run for each boss once
 		local mobId = self:MobId(UnitGUID("boss1"))
-		if bosses[mobId] and not tContains(bossOrder, mobId) then
+		if mobId and not tContains(bossOrder, mobId) then
 			stage = stage + 1
 			bossOrder[stage] = mobId
 			-- Start timers
