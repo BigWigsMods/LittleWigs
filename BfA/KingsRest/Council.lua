@@ -80,8 +80,10 @@ do
 	end
 
 	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+		-- IEEU fires on living boss spawn and death
+		-- mobId will be nil if the boss died
 		local mobId = self:MobId(UnitGUID("boss1"))
-		if mobId and not tContains(bossOrder, mobId) then
+		if mobId then
 			stage = stage + 1
 			bossOrder[stage] = mobId
 			-- Start timers
