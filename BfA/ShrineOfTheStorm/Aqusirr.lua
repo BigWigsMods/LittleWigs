@@ -5,7 +5,8 @@
 
 local mod, CL = BigWigs:NewBoss("Aqu'sirr", 1864, 2153)
 if not mod then return end
-mod:RegisterEnableMob(134056, 139737) -- Aqu'sirr, Stormsong (for warmup timer)
+-- Enable on trash before the boss to be sure the module is enabled for the warmup RP.
+mod:RegisterEnableMob(134056, 139737, 134173) -- Aqu'sirr, Stormsong (for warmup timer), Animated Droplet (for warmup tiemr)
 mod.engageId = 2130
 mod.respawnTime = 30
 
