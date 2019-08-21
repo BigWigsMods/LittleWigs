@@ -33,7 +33,7 @@ end
 
 L = BigWigs:NewBossLocale("King Mechagon", "koKR")
 if L then
-	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 reaches 35 energy and the button order starts showing."
+	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
 
 	--L.button = "Button"
 	--L.button_desc = "Show a warning when someone clicks a button."

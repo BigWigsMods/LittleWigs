@@ -23,7 +23,7 @@ local recalibrateTimer = nil
 local L = mod:GetLocale()
 if L then
 	L.hardmode = 292750
-	L.hardmode_desc = "Warning for when the Annihilo-tron 5000 reaches 35 energy and the button order starts showing."
+	L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
 	L.hardmode_icon = "inv_misc_bomb_03"
 
 	L.button = "Button"
