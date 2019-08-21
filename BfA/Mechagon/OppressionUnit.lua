@@ -107,14 +107,14 @@ function mod:FulminatingBurstApplied(args)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 	self:TargetBar(args.spellId, 9)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:SayCountdown(args.spellId, 9, nil, 5)
+		self:Yell2(args.spellId)
+		self:YellCountdown(args.spellId, 9, nil, 5)
 	end
 end
 
 function mod:FulminatingBurstRemoved(args)
 	self:StopBar(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
-		self:CancelSayCountdown(args.spellId)
+		self:CancelYellCountdown(args.spellId)
 	end
 end
