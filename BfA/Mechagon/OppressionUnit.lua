@@ -26,7 +26,7 @@ function mod:GetOptions()
 		296522, -- Self-Destruct
 		296080, -- Haywire
 		-- Hard Mode
-		303885, -- Fulminating Burst
+		{303885, "SAY", "SAY_COUNTDOWN"}, -- Fulminating Burst
 	}
 end
 
@@ -106,8 +106,15 @@ function mod:FulminatingBurstApplied(args)
 	self:TargetMessage2(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 	self:TargetBar(args.spellId, 9)
+	if self:Me(args.destGUID) then
+		self:Yell2(args.spellId)
+		self:YellCountdown(args.spellId, 9, nil, 5)
+	end
 end
 
 function mod:FulminatingBurstRemoved(args)
 	self:StopBar(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:CancelYellCountdown(args.spellId)
+	end
 end

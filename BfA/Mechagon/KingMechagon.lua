@@ -13,7 +13,23 @@ mod.engageId = 2260
 
 local stage = 1
 local gigaZapCount = 0
+local clickCount = 0
 local recalibrateTimer = nil
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.hardmode = 292750
+	L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
+	L.hardmode_icon = "inv_misc_bomb_03"
+
+	L.button = "Button"
+	L.button_desc = "Show a warning when someone clicks a button."
+	L.button_icon = 275549
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -29,12 +45,16 @@ function mod:GetOptions()
 		283551, -- Magneto-Arm
 		292290, -- Protocol: Ninety-Nine
 		-- Hard Mode
-		292750, -- H.A.R.D.M.O.D.E.
+		{"hardmode", "COUNTDOWN"}, -- H.A.R.D.M.O.D.E.
+		"button", -- Button
+	}, {
+		["hardmode"] = 292750,
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
+	self:Log("SPELL_CAST_SUCCESS", "ClickButton", 292785)
 
 	self:Log("SPELL_CAST_START", "Recalibrate", 291865) -- Stage 1 only
 	self:Log("SPELL_CAST_SUCCESS", "RecalibrateSuccess", 291856)
@@ -52,13 +72,14 @@ end
 do
 	local function startTimer()
 		if mod:GetBossId(151168) then -- Annihilo-tron 5000, only active on hard mode
-			mod:Bar(292750, 32.1) -- H.A.R.D.M.O.D.E.
+			mod:Bar("hardmode", 32.1, L.hardmode, L.hardmode_icon) -- H.A.R.D.M.O.D.E.
 		end
 	end
 
 	function mod:OnEngage()
 		stage = 1
 		gigaZapCount = 0
+		clickCount = 0
 		recalibrateTimer = nil
 		self:SimpleTimer(startTimer, 0.1)
 		self:Bar(291865, 5.9) -- Recalibrate
@@ -76,10 +97,17 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Bar(291928, 14.8) -- Giga-Zap
 		self:Bar(283551, 35.6) -- Magneto Arm
 	elseif spellId == 292750 then -- H.A.R.D.M.O.D.E.
-		self:Message2(292750, "cyan")
-		self:PlaySound(292750, "long")
-		self:CDBar(292750, 43.7)
+		clickCount = 0
+		self:Message2("hardmode", "yellow", L.hardmode, L.hardmode_icon)
+		self:PlaySound("hardmode", "long")
+		self:CDBar("hardmode", 43.7, L.hardmode, L.hardmode_icon)
 	end
+end
+
+function mod:ClickButton(args)
+	clickCount = clickCount + 1
+	self:TargetMessage2("button", "cyan", args.sourceName, CL.count:format(L.button, clickCount), L.button_icon)
+	self:PlaySound("button", "warning")
 end
 
 function mod:AerialUnitDeath(args)
