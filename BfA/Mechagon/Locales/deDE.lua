@@ -33,8 +33,8 @@ end
 
 L = BigWigs:NewBossLocale("King Mechagon", "deDE")
 if L then
-	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
+	L.hardmode_desc = "Warnung wenn der Annihilo-tron 5000 beginnt die Knopf-Reihenfolge anzuzeigen."
 
-	--L.button = "Button"
-	--L.button_desc = "Show a warning when someone clicks a button."
+	L.button = "Knopf"
+	L.button_desc = "Zeigt eine Warnung sobald jemand einen Knopf drückt."
 end
