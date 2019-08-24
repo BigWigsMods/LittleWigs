@@ -185,8 +185,10 @@ do
 end
 
 function mod:Swiftness(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
-	self:PlaySound(args.spellId, "info")
+	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then
+		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 function mod:MendingRapids(args)
