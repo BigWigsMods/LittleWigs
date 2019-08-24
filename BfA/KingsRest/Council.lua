@@ -102,10 +102,8 @@ do
 				-- The dead bosses use their abilities a number of seconds after the current living one spawns
 				startTimer(bossOrder[1], 15.8)
 				if bossOrder[2] then
-					startTimer(bossOrder[2], 49)
+					startTimer(bossOrder[2], 48.1)
 				end
-			elseif stage > 3 then
-				BigWigs:Error(string.format("Stage %d is greater than 3", stage))
 			end
 		end
 	end
@@ -162,7 +160,7 @@ end
 function mod:CalloftheElements(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 53.5)
+	self:CDBar(args.spellId, 53.5) -- Can be delayed if the boss is casting Poison Nova
 end
 
 function mod:WhirlingAxes(args)
