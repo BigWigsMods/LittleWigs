@@ -110,18 +110,19 @@ do
 		if spellId == 34098 and prev ~= castGUID then -- ClearAllDebuffs (boss death)
 			prev = castGUID
 			local mobId = self:MobId(UnitGUID(unit))
-			-- Stop timers
+			-- Stop all timers
 			if mobId == 135475 then -- Kula the Butcher
-				self:StopBar(266206) -- Whirling Axes
 				self:StopBar(266231) -- Severing Axe
 			elseif mobId == 135470 then -- Aka'ali the Conqueror
-				self:StopBar(266951) -- Barrel Through
 				self:CancelSayCountdown(266951) -- Barrel Through
 				self:StopBar(266237) -- Debilitating Backhan
 			elseif mobId == 135472 then -- Zanazal the Wise
-				self:StopBar(267273) -- Poison Nova
 				self:StopBar(267060) -- Call of the Elements
 			end
+			-- Spells cast while dead
+			self:StopBar(266206) -- Whirling Axes
+			self:StopBar(266951) -- Barrel Through
+			self:StopBar(267273) -- Poison Nova
 		end
 	end
 end
