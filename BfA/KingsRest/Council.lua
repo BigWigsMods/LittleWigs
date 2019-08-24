@@ -14,11 +14,6 @@ mod.engageId = 2140
 
 local stage = 0
 local bossOrder = {}
-local bosses = {
-	135475, -- Kula the Butcher
-	135470, -- Aka'ali the Conqueror
-	135472, -- Zanazal the Wise
-}
 
 --------------------------------------------------------------------------------
 -- Initialization
