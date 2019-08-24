@@ -19,6 +19,7 @@ BigWigs:AddColors("The Council of Tribes", {
 	[266951] = {"blue","red"},
 	[267060] = "yellow",
 	[267273] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Dazar, The First King", {

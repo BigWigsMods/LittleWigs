@@ -21,6 +21,7 @@ local bossOrder = {}
 
 function mod:GetOptions()
 	return {
+		"stages",
 		-- Kula the Butcher
 		266206, -- Whirling Axes
 		266231, -- Severing Axe
@@ -94,6 +95,8 @@ do
 			end
 
 			if stage == 2 or stage == 3 then
+				self:Message2("stages", "cyan", CL.stage:format(stage), false)
+				self:PlaySound("stages", "long")
 				-- The dead bosses use their abilities a number of seconds after the current living one spawns
 				startTimer(bossOrder[1], 15.8)
 				if bossOrder[2] then
