@@ -53,7 +53,7 @@ function mod:GetOptions()
 		267981, -- Protective Aura
 		-- Tidesage Spiritualist
 		268050, -- Anchor of Binding
-		276265, -- Swiftness
+		{276265, "DISPEL"}, -- Swiftness
 		268030, -- Mending Rapids
 		-- Galecaller Apprentice
 		274437, -- Tempest
@@ -185,7 +185,7 @@ do
 end
 
 function mod:Swiftness(args)
-	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then
+	if self:Dispeller("magic", true, args.spellId) and bit.band(args.destFlags, 0x400) == 0 then -- COMBATLOG_OBJECT_TYPE_PLAYER
 		self:TargetMessage2(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info")
 	end
