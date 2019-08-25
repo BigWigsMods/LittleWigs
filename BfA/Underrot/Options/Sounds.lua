@@ -40,7 +40,7 @@ BigWigs:AddSounds("Underrot Trash", {
 	[265668] = "alarm",
 	[266106] = "warning",
 	[266107] = "alarm",
-	[266209] = "info",
+	[266209] = {"alarm","alert","info"},
 	[272183] = "alert",
 	[272592] = "long",
 	[272609] = "alarm",
