@@ -40,7 +40,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Barrel Through
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Boss frame no longer exists when this event fires
 
 	self:Log("SPELL_CAST_START", "PoisonNova", 267273)
 	self:Log("SPELL_CAST_START", "CalloftheElements", 267060)
@@ -79,7 +78,7 @@ do
 		-- IEEU fires on living boss spawn and death
 		-- mobId will be nil if the boss died
 		local guid = UnitGUID("boss1")
-		if guid then
+		if guid then -- Boss spawned
 			stage = stage + 1
 			local mobId = self:MobId(guid)
 			bossOrder[stage] = mobId
@@ -99,33 +98,24 @@ do
 				self:PlaySound("stages", "long")
 				-- The dead bosses use their abilities a number of seconds after the current living one spawns
 				startTimer(bossOrder[1], 15.8)
-				if bossOrder[2] then
+				if stage == 3 then
 					startTimer(bossOrder[2], 48.1)
 				end
 			end
-		end
-	end
-end
-
-do
-	local prev = nil
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
-		if spellId == 34098 and prev ~= castGUID then -- ClearAllDebuffs (boss death)
-			prev = castGUID
-			local mobId = self:MobId(UnitGUID(unit))
-			-- Stop all timers
-			if mobId == 135475 then -- Kula the Butcher
-				self:StopBar(266231) -- Severing Axe
-			elseif mobId == 135470 then -- Aka'ali the Conqueror
-				self:CancelSayCountdown(266951) -- Barrel Through
-				self:StopBar(266237) -- Debilitating Backhan
-			elseif mobId == 135472 then -- Zanazal the Wise
-				self:StopBar(267060) -- Call of the Elements
-			end
-			-- Spells cast while dead
+		else -- Boss killed
+			-- Kula the Butcher
+			self:StopBar(266231) -- Severing Axe
 			self:StopBar(266206) -- Whirling Axes
+			-- Aka'ali the Conqueror
 			self:StopBar(266951) -- Barrel Through
+			self:CancelSayCountdown(266951) -- Barrel Through
+			self:StopBar(266237) -- Debilitating Backhan
+			-- Zanazal the Wise
+			self:StopBar(267060) -- Call of the Elements
 			self:StopBar(267273) -- Poison Nova
+			if stage == 1 or stage == 2 then
+				self:Bar("stages", 6, CL.stage:format(stage + 1), "achievement_dungeon_kingsrest")
+			end
 		end
 	end
 end
