@@ -5,14 +5,15 @@
 
 local mod, CL = BigWigs:NewBoss("The Council of Tribes", 1762, 2170)
 if not mod then return end
-mod:RegisterEnableMob(135472, 135475, 135470) -- Zanazal the Wise, Kula the Butcher, Aka'ali the Conqueror
+mod:RegisterEnableMob(135475, 135470, 135472) -- Kula the Butcher, Aka'ali the Conqueror, Zanazal the Wise
 mod.engageId = 2140
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local stage = 1
+local stage = 0
+local bossOrder = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -39,8 +40,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Barrel Through
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "PoisonNova", 267273)
 	self:Log("SPELL_CAST_START", "CalloftheElements", 267060)
@@ -53,14 +52,73 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	stage = 1
-	self:CDBar(267273, 10.5) -- Poison Nova
-	self:CDBar(267060, 21.5) -- Call of the Elements
+	stage = 0
+	bossOrder = {}
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	-- IEEU engages the boss module, so the first time the event fires, it is not yet registered here.
+	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local function startTimer(mobId, time)
+		if mobId == 135475 then -- Kula the Butcher
+			mod:Bar(266206, time) -- Whirling Axes
+		elseif mobId == 135470 then -- Aka'ali the Conqueror
+			mod:Bar(266951, time) -- Barrel Through
+		elseif mobId == 135472 then -- Zanazal the Wise
+			mod:Bar(267273, time) -- Poison Nova
+		end
+	end
+
+	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+		-- IEEU fires on living boss spawn and death
+		-- mobId will be nil if the boss died
+		local guid = UnitGUID("boss1")
+		if guid then -- Boss spawned
+			stage = stage + 1
+			local mobId = self:MobId(guid)
+			bossOrder[stage] = mobId
+			-- Start timers
+			if mobId == 135475 then -- Kula the Butcher
+				self:Bar(266206, 8) -- Whirling Axes
+				self:Bar(266231, 24) -- Severing Axe
+			elseif mobId == 135470 then -- Aka'ali the Conqueror
+				self:Bar(266951, 5.5) -- Barrel Through
+			elseif mobId == 135472 then -- Zanazal the Wise
+				self:Bar(267273, 16) -- Poison Nova
+				self:Bar(267060, 20) -- Call of the Elements
+			end
+
+			if stage == 2 or stage == 3 then
+				self:Message2("stages", "cyan", CL.stage:format(stage), false)
+				self:PlaySound("stages", "long")
+				-- The dead bosses use their abilities a number of seconds after the current living one spawns
+				startTimer(bossOrder[1], 15.8)
+				if stage == 3 then
+					startTimer(bossOrder[2], 48.1)
+				end
+			end
+		else -- Boss killed
+			-- Kula the Butcher
+			self:StopBar(266231) -- Severing Axe
+			self:StopBar(266206) -- Whirling Axes
+			-- Aka'ali the Conqueror
+			self:StopBar(266951) -- Barrel Through
+			self:CancelSayCountdown(266951) -- Barrel Through
+			self:StopBar(266237) -- Debilitating Backhan
+			-- Zanazal the Wise
+			self:StopBar(267060) -- Call of the Elements
+			self:StopBar(267273) -- Poison Nova
+			if stage == 1 or stage == 2 then
+				self:Bar("stages", 6, CL.stage:format(stage + 1), "achievement_dungeon_kingsrest")
+			end
+		end
+	end
+end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("266951") then -- Barrel Through
@@ -71,37 +129,12 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 			self:Say(266951)
 			self:SayCountdown(266951, 8)
 		end
-		self:Bar(266951, 23.5)
-	end
-end
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 34098 then -- ClearAllDebuffs // Stage Change
-		self:StopBar(267273) -- Poison Nova
-		self:StopBar(267060) -- Call of the Elements
-		self:StopBar(266206) -- Whirling Axes
-		self:StopBar(266231) -- Severing Axe
-		-- XXX Roleplay timer
-		-- XXX Killed Message?
-	end
-end
-
-function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	if stage > 2 and self:MobId(UnitGUID(unit)) == 135475 then -- Kula the Butcher
-		if UnitCanAttack("player", unit) then
-			stage = 2
-			self:Message2("stages", "cyan", CL.stage:format(stage), false)
-			self:PlaySound("stages", "long")
-			self:CDBar(266206, 8) -- Whirling Axes
-			self:CDBar(266231, 24) -- Severing Axe
-		end
-	elseif stage > 3 and self:MobId(UnitGUID(unit)) == 135470 then -- Aka'ali the Conqueror
-		if UnitCanAttack("player", unit) then
-			stage = 3
-			self:Message2("stages", "cyan", CL.stage:format(stage), false)
-			self:PlaySound("stages", "long")
-			self:CDBar(266951, 5.5) -- Barrel Through
-			self:CDBar(266237, 14) -- Debilitating Backhand
+		local mobId = self:MobId(UnitGUID("boss1"))
+		if mobId == 135470 then -- Aka'ali the Conqueror
+			self:Bar(266951, 23.1) -- Barrel Through
+			self:Bar(266237, 9) -- Debilitating Backhand
+		else
+			self:Bar(266951, 51) -- Barrel Through
 		end
 	end
 end
@@ -109,23 +142,25 @@ end
 function mod:PoisonNova(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 26)
+	local mobId = self:MobId(UnitGUID("boss1"))
+	self:Bar(args.spellId, mobId == 135472 and 29.2 or 51) -- Zanazal the Wise
 end
 
 function mod:CalloftheElements(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	--self:CDBar(args.spellId, 13)
+	self:CDBar(args.spellId, 53.5) -- Can be delayed if the boss is casting Poison Nova
 end
 
 function mod:WhirlingAxes(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 10.5)
+	local mobId = self:MobId(UnitGUID("boss1"))
+	self:Bar(args.spellId, mobId == 135475 and 10.9 or 50) -- Kula the Butcher
 end
 
 function mod:SeveringAxeSuccess(args)
-	self:CDBar(args.spellId, 21.5)
+	self:Bar(args.spellId, 21.9)
 end
 
 function mod:SeveringAxeApplied(args)
@@ -138,5 +173,4 @@ end
 function mod:DebilitatingBackhand(args)
 	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 24)
 end
