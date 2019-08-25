@@ -143,7 +143,7 @@ function mod:PoisonNova(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	local mobId = self:MobId(UnitGUID("boss1"))
-	self:Bar(args.spellId, (mobId == 135472) and 29.2 or 51) -- Zanazal the Wise
+	self:Bar(args.spellId, mobId == 135472 and 29.2 or 51) -- Zanazal the Wise
 end
 
 function mod:CalloftheElements(args)
@@ -156,7 +156,7 @@ function mod:WhirlingAxes(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	local mobId = self:MobId(UnitGUID("boss1"))
-	self:Bar(args.spellId, (mobId == 135475) and 10.9 or 50) -- Kula the Butcher
+	self:Bar(args.spellId, mobId == 135475 and 10.9 or 50) -- Kula the Butcher
 end
 
 function mod:SeveringAxeSuccess(args)
