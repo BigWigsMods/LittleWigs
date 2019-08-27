@@ -17,6 +17,7 @@ if L then
 	L.dockhound = "Злобный портовый пес"
 	L.shredder = "Мастер клинков прилива"
 	L.packmaster = "Портовый заводчик"
+	L.bomber = "Метатель черной смолы"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "ruRU")

@@ -17,6 +17,7 @@ if L then
 	-- L.dockhound = "Snarling Dockhound"
 	-- L.shredder = "Riptide Shredder"
 	-- L.packmaster = "Dockhound Packmaster"
+	-- L.bomber = "Blackar Bomber"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhTW")

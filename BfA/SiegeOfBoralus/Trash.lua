@@ -26,7 +26,8 @@ mod:RegisterEnableMob(
 	129374, -- Scrimshaw Enforcer (Alliance)
 	129371, -- Riptide Shredder (Alliance)
 	129640, -- Snarling Dockhound (Alliance)
-	129373  -- Dockhound Packmaster (Alliance)
+	129373, -- Dockhound Packmaster (Alliance)
+	129372  -- Blacktar Bomber (Alliance)
 )
 
 --------------------------------------------------------------------------------
@@ -51,6 +52,7 @@ if L then
 	L.dockhound = "Snarling Dockhound"
 	L.shredder = "Riptide Shredder"
 	L.packmaster = "Dockhound Packmaster"
+	L.bomber = "Blackar Bomber"
 end
 
 --------------------------------------------------------------------------------
@@ -93,6 +95,9 @@ function mod:GetOptions()
 		256866, -- Iron Ambush
 		-- Dockhound Packmaster
 		{257036, "SAY"}, -- Feral Charge
+		-- Blacktar Bomber
+		256640, -- Burning Tar
+		256673, -- Immolation
 	}, {
 		[268260] = L.cannoneer,
 		[272874] = L.commander,
@@ -110,6 +115,7 @@ function mod:GetOptions()
 		[256897] = L.dockhound,
 		[256866] = L.shredder,
 		[257036] = L.packmaster,
+		[256640] = L.bomber,
 	}
 end
 
@@ -148,6 +154,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "IronAmbush", 256866)
 	-- Dockhound Packmaster
 	self:Log("SPELL_CAST_START", "FeralCharge", 257036)
+	-- Blacktar Bomber
+	self:Log("SPELL_CAST_SUCCESS", "BurningTar", 256640)
+	self:Log("SPELL_CAST_START", "Immolation", 256673)
 
 	-- Ashvane Cannoneer's Broadside
 	-- Ashvane Commander's Trample
@@ -284,6 +293,16 @@ do
 	function mod:FeralCharge(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
+end
+
+function mod:BurningTar(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:Immolation(args)
+	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 do

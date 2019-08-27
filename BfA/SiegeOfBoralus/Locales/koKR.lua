@@ -17,6 +17,7 @@ if L then
 	L.dockhound = "으르렁거리는 부두사냥개"
 	L.shredder = "성난파도 파쇄꾼"
 	L.packmaster = "부두사냥개 무리주인"
+	L.bomber = "검은타르 폭탄마"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "koKR")
