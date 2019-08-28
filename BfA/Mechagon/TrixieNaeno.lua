@@ -19,7 +19,7 @@ mod.engageId = 2312
 function mod:GetOptions()
 	return {
 		299153, -- Turbo Boost
-		{302682, "FLASH"}, -- Mega Taze
+		{302682, "FLASH", "ME_ONLY_EMPHASIZE"}, -- Mega Taze
 		298946, -- Roadkill
 		298940, -- Bolt Buster
 		298571, -- Burnout
@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(302682, 26.4) -- Mega Taze
+	self:CDBar(302682, 26.4) -- Mega Taze
 	self:Bar(298946, 30) -- Roadkill
 	self:Bar(298940, 35.1) -- Bolt Buster
 end
@@ -59,17 +59,16 @@ end
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage2(302682, "orange", name)
+		self:TargetBar(302682, 8, name)
 		self:PlaySound(302682, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Flash(302682)
 		end
 	end
-	local prev = 0
 	function mod:MegaTaze(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		local t = args.time
-		self:CastBar(args.spellId, t-prev < 30 and 32 or 25.5)
-		prev = t
+		self:CDBar(args.spellId, 25.5)
 	end
 end
 
