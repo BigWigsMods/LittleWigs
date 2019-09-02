@@ -133,8 +133,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Sharkbait
 	self:Log("SPELL_CAST_SUCCESS", "VileBombardment", 257272)
 	self:Log("SPELL_AURA_APPLIED", "VileCoating", 257274)

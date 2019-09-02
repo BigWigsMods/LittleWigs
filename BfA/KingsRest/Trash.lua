@@ -190,8 +190,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Animated Guardian
 	self:Log("SPELL_CAST_START", "SuppressionSlam", 270003)
 	self:Log("SPELL_AURA_APPLIED", "ReleasedInihibitors", 270016)

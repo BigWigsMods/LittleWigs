@@ -118,8 +118,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	self:Log("SPELL_CAST_START", "EchoBlade", 268846)
 	self:Log("SPELL_CAST_START", "ForceCannon", 268865)
 	self:Log("SPELL_CAST_START", "ToxicBlades", 269302)

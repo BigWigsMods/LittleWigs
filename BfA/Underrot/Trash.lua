@@ -90,8 +90,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Befouled Spirit
 	self:Log("SPELL_CAST_START", "DarkOmen", 265568)
 	self:Log("SPELL_AURA_APPLIED", "DarkOmenApplied", 265568)

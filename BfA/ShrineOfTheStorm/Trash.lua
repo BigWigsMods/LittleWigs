@@ -100,8 +100,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	self:Log("SPELL_CAST_START", "HeavingBlow", 276268)
 	self:Log("SPELL_CAST_START", "TidalSurge", 267977)
 	self:Log("SPELL_CAST_START", "ProtectiveAura", 267981)

@@ -74,8 +74,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	self:Log("SPELL_CAST_START", "TerrifyingScreech", 255041)
 	self:Log("SPELL_CAST_START", "FrenziedCharge", 255567)
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkofJuju", 253721)

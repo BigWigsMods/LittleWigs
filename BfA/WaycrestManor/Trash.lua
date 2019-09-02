@@ -119,8 +119,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Banquet Steward
 	self:Log("SPELL_CAST_START", "DinnerBell", 265407)
 	-- Pallid Gorger

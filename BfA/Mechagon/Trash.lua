@@ -195,8 +195,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Scrapbone Shaman
 	self:Log("SPELL_CAST_START", "GraspingHex", 300436)
 	self:Log("SPELL_CAST_START", "Stoneskin", 300514)
