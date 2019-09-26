@@ -1,4 +1,4 @@
-## Interface: 80200
+## Interface: 80205
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
