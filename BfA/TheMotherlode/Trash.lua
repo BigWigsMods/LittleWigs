@@ -423,5 +423,5 @@ function mod:ChargedClaw(args)
 end
 
 function mod:ChargedClawSuccess(args)
-	self:TargetBar(args.spellId, 10, args.destName)
+	self:TargetBar(args.spellId, 10, args.sourceName)
 end
