@@ -349,6 +349,7 @@ end
 function mod:BoulderThrow(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:NameplateCDBar(args.spellId, 14, args.sourceGUID)
 end
 
 function mod:GroundShatter(args)
