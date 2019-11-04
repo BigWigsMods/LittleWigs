@@ -17,6 +17,7 @@ if L then
 	L.specialist = "Geschützspezialist"
 	L.taskmaster = "Vorarbeiter Askari"
 	L.warmachine = "Kriegsmaschine der Venture Co."
+	L.peacekeeper = "Mechanisierter Friedensbewahrer"
 end
 
 L = BigWigs:NewBossLocale("Tik'ali", "deDE")
