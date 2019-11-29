@@ -190,5 +190,5 @@ function mod:HullCracker(args)
 end
 
 function mod:GrippingTerrorDeath(args)
-	self:StopBar(L.demolishing)
+	self:StopBar(CL.count:format(self:SpellName(L.demolishing), demolisherCount+1))
 end
