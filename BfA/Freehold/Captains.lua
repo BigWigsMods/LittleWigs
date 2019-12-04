@@ -10,6 +10,13 @@ mod.engageId = 2094
 mod.respawnTime = 17.5
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local engageTime = 0
+local initialTimersStarted = false
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -68,26 +75,34 @@ function mod:OnBossEnable()
 	self:Death("Deaths", 126847, 126848, 126845)
 end
 
+function mod:OnEngage()
+	engageTime = GetTime()
+	initialTimersStarted = false
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+end
+
 do
-	local function startTimers()
-		-- 0.1 sec is subtracted from the timers
+	local function startTimers(elapsed)
 		if UnitCanAttack("player", mod:GetBossId(126847)) then -- Captain Raoul
-			mod:Bar(256589, 6.8) -- Barrel Smash, 6.9 sec
-			mod:Bar(258338, 18.9) -- Blackout Barrel, 19 sec
+			mod:Bar(256589, 6.9 - elapsed) -- Barrel Smash, 6.9 sec
+			mod:Bar(258338, 19 - elapsed) -- Blackout Barrel, 19 sec
 		end
 		if UnitCanAttack("player", mod:GetBossId(126848)) then -- Captain Eudora
-			mod:Bar(258381, 8.4) -- Grape Shot, 8.5 sec
+			mod:Bar(258381, 8.5 - elapsed) -- Grape Shot, 8.5 sec
 		else
-			mod:Bar(272902, 4.6) -- Chain Shot, 4.7 sec
+			mod:Bar(272902, 4.7 - elapsed) -- Chain Shot, 4.7 sec
 		end
 		if UnitCanAttack("player", mod:GetBossId(126845)) then -- Captain Jolly
-			mod:Bar(267533, 12.9) -- Whirlpool of Blades, 13 sec
-			mod:Bar(267522, 5.6) -- Cutting Surge, 5.7 sec
+			mod:Bar(267533, 13 - elapsed) -- Whirlpool of Blades, 13 sec
+			mod:Bar(267522, 5.7 - elapsed) -- Cutting Surge, 5.7 sec
 		end
 	end
 
-	function mod:OnEngage()
-		self:SimpleTimer(startTimers, 0.1)
+	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+		if not initialTimersStarted and UnitExists("boss3") then -- All bosses active
+			startTimers(engageTime - GetTime())
+			initialTimersStarted = true
+		end
 	end
 end
 
