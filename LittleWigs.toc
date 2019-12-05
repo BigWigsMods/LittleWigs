@@ -17,7 +17,7 @@
 ## X-Credits: Ulic
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
 ## X-Curse-Project-ID: 4383
-# X-WoWI-ID: 9577
+## X-WoWI-ID: 9577
 
 ## X-BigWigs-LoadOn-InstanceId: 33
 ## Dependencies: BigWigs

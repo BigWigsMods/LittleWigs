@@ -15,27 +15,29 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
-		93581, -- Pain and Suffering
-		93423, -- Asphyxiate
-		93757, -- Dark Archangel Form
+		17002, -- XXX placeholder
+
+		--93581, -- Pain and Suffering
+		--93423, -- Asphyxiate
+		--93757, -- Dark Archangel Form
 	}, {
-		[93581] = "general",
-		[93757] = "heroic",
+		--[93581] = "general",
+		--[93757] = "heroic",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "PainAndSuffering", 93581)
-	self:Log("SPELL_CAST_SUCCESS", "Asphyxiate", 93423)
-	self:Log("SPELL_CAST_START", "DarkArchangelForm", 93757)
+	--self:Log("SPELL_AURA_APPLIED", "PainAndSuffering", 93581)
+	--self:Log("SPELL_CAST_SUCCESS", "Asphyxiate", 93423)
+	--self:Log("SPELL_CAST_START", "DarkArchangelForm", 93757)
 end
 
-function mod:OnEngage()
-	self:CDBar(93423, self:Heroic() and 20.6 or 15.5) -- Asphyxiate
-	if self:Heroic() then -- Dark Archangel Form is heroic-only
-		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
-	end
-end
+--function mod:OnEngage()
+--	self:CDBar(93423, self:Heroic() and 20.6 or 15.5) -- Asphyxiate
+--	if self:Heroic() then -- Dark Archangel Form is heroic-only
+--		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+--	end
+--end
 
 -------------------------------------------------------------------------------
 --  Event Handlers
