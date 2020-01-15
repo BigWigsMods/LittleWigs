@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
