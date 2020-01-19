@@ -22,7 +22,10 @@ mod:RegisterEnableMob(
 	156653, -- Coagulated Horror
 	156143, -- Voidcrazed Hulk
 	155656, -- Misha
-	153531 -- Aqir Bonecrusher
+	153531, -- Aqir Bonecrusher
+	156089, -- Aqir Venomweaver
+	153526, -- Aqir Swarmer
+	153527 -- Aqir Swarmer
 )
 
 --------------------------------------------------------------------------------
@@ -45,6 +48,7 @@ if L then
 	L.voidcrazed_hulk = "Voidcrazed Hulk"
 	L.misha = "Misha"
 	L.aqir_bonecrusher = "Aqir Bonecrusher"
+	L.aqir_venomweaver = "Aqir Venomweaver"
 end
 
 --------------------------------------------------------------------------------
@@ -88,6 +92,9 @@ function mod:GetOptions()
 		304101, -- Maddening Roar
 		-- Aqir Bonecrusher
 		298502, -- Toxic Breath
+		-- Aqir Venomweaver
+		305236, -- Venom Bolt
+		298510, -- Aqiri Mind Toxin
 	}, {
 		["altpower"] = "general",
 		[297237] = L.voidbound_shaman,
@@ -130,6 +137,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DesperateRetchingApplied", 304165)
 	self:Log("SPELL_CAST_START", "MaddeningRoar", 304101)
 	self:Log("SPELL_CAST_START", "ToxicBreath", 298502)
+	self:Log("SPELL_CAST_START", "VenomBolt", 305236)
+	self:Log("SPELL_AURA_APPLIED", "AqiriMindToxinApplied", 298510)
 
 	self:Death("DecimatorShiqvothDeath", 153943)
 	self:Death("AnnihilatorLakhalDeath", 153942)
@@ -302,4 +311,18 @@ end
 function mod:ToxicBreath(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:VenomBolt(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:AqiriMindToxinApplied(args)
+	if args.amount >= 3 then
+		if self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId) then
+			self:Message2(args.spellId, "red", args.destName)
+			self:PlaySound(args.spellId, "alert", args.destName)
+		end
+	end
 end
