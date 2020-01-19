@@ -94,7 +94,7 @@ function mod:GetOptions()
 		298502, -- Toxic Breath
 		-- Aqir Venomweaver
 		305236, -- Venom Bolt
-		298510, -- Aqiri Mind Toxin
+		{298510, "DISPEL"}, -- Aqiri Mind Toxin
 	}, {
 		["altpower"] = "general",
 		[297237] = L.voidbound_shaman,
@@ -139,6 +139,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ToxicBreath", 298502)
 	self:Log("SPELL_CAST_START", "VenomBolt", 305236)
 	self:Log("SPELL_AURA_APPLIED", "AqiriMindToxinApplied", 298510)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "AqiriMindToxinApplied", 298510)
 
 	self:Death("DecimatorShiqvothDeath", 153943)
 	self:Death("AnnihilatorLakhalDeath", 153942)
@@ -319,9 +320,10 @@ function mod:VenomBolt(args)
 end
 
 function mod:AqiriMindToxinApplied(args)
-	if args.amount >= 3 then
+	local amount = args.amount or 1
+	if amount >= 3 then
 		if self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId) then
-			self:Message2(args.spellId, "red", args.destName)
+			self:StackMessage(args.spellId, args.destName, amount, "red")
 			self:PlaySound(args.spellId, "alert", args.destName)
 		end
 	end
