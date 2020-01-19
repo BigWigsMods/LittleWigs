@@ -17,6 +17,8 @@ if L then
 	L.inquisitor_gnshal = "Inquisitor Gnshal"
 end
 
+mod.displayName = L.inquisitor_gnshal
+
 --------------------------------------------------------------------------------
 -- Initialization
 --

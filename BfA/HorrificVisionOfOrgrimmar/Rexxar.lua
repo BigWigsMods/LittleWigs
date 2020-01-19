@@ -17,6 +17,8 @@ if L then
 	L.rexxar = "Rexxar"
 end
 
+L.displayName = L.rexxar
+
 --------------------------------------------------------------------------------
 -- Initialization
 --
