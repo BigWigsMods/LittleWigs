@@ -4,6 +4,7 @@
 <Script file="Thrall.lua"/>
 <Script file="OblivionElemental.lua"/>
 <Script file="InquisitorGnshal.lua"/>
+<Script file="Vezokk.lua"/>
 <Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
