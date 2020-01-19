@@ -192,13 +192,18 @@ function mod:TouchOfTheAbyss(args)
 	self:PlaySound(args.spellId, "warning")
 end
 
-function mod:UNIT_POWER_FREQUENT(_, unit)
-	local guid = UnitGUID(unit)
-	if self:MobId(guid) == 154524 then -- K'thir Mindcarver
-		-- Gains 12 energy from every melee, so this must be a multiple of 12
-		if UnitPower(unit) == 84 then
-			self:Message2(300530, "orange", CL.soon:format(self:SpellName(300530))) -- Mind Carver
-			self:PlaySound(300530, "info") -- Mind Carver
+do
+	local prev = 0
+	function mod:UNIT_POWER_FREQUENT(_, unit)
+		local guid = UnitGUID(unit)
+		if self:MobId(guid) == 154524 then -- K'thir Mindcarver
+			-- Gains 12 energy from every melee, so this must be a multiple of 12
+			local t = GetTime()
+			if UnitPower(unit) == 84 and t-prev > 1.5 then
+				prev = t
+				self:Message2(300530, "orange", CL.soon:format(self:SpellName(300530))) -- Mind Carver
+				self:PlaySound(300530, "info") -- Mind Carver
+			end
 		end
 	end
 end
