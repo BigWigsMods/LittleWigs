@@ -9,6 +9,15 @@ mod:RegisterEnableMob(155098)
 mod.engageId = 2370
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.rexxar = "Rexxar"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 

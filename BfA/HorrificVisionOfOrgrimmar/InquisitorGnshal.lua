@@ -9,6 +9,15 @@ mod:RegisterEnableMob(156161)
 mod.engageId = 2371
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.inquisitor_gnshal = "Inquisitor Gnshal"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
