@@ -17,8 +17,6 @@ if L then
 	L.oblivion_elemental = "Oblivion Elemental"
 end
 
-mod.displayName = L.oblivion_elemental
-
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -27,6 +25,10 @@ function mod:GetOptions()
 	return {
 		297574, -- Hopelessness
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.oblivion_elemental
 end
 
 function mod:OnBossEnable()

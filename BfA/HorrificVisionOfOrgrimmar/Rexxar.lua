@@ -17,8 +17,6 @@ if L then
 	L.rexxar = "Rexxar"
 end
 
-L.displayName = L.rexxar
-
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -27,6 +25,10 @@ function mod:GetOptions()
 	return {
 		304251, -- Void Quills
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.rexxar
 end
 
 function mod:OnBossEnable()

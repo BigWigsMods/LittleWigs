@@ -17,8 +17,6 @@ if L then
 	L.vezokk = "Vez'okk the Lightless"
 end
 
-mod.displayName = L.vezokk
-
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -29,6 +27,10 @@ function mod:GetOptions()
 		306617, -- Ring of Chaos
 		306656, -- Unleash Corruption
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.vezokk
 end
 
 function mod:OnBossEnable()

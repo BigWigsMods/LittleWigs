@@ -17,8 +17,6 @@ if L then
 	L.thrall = "Thrall"
 end
 
-mod.displayName = L.thrall
-
 ----------------------------------------------------------------------------------
 -- Initialization
 --
@@ -29,6 +27,10 @@ function mod:GetOptions()
 		297822, -- Surging Darkness
 		304976, -- Cries of the Void
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.thrall
 end
 
 function mod:OnBossEnable()
