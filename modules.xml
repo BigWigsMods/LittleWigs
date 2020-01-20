@@ -210,4 +210,7 @@
 
 <Include file="BfA\Mechagon\modules.xml"/>
 <Include file="BfA\Mechagon\locales.xml"/>
+
+<Include file="BfA\HorrificVisionOfOrgrimmar\modules.xml"/>
+<Include file="BfA\HorrificVisionOfOrgrimmar\locales.xml"/>
 </Ui>
