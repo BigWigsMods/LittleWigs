@@ -22,7 +22,9 @@ mod:RegisterEnableMob(
 	137029, -- Ordnance Specialist
 	134012, -- Taskmaster Askari
 	133463, -- Venture Co. War Machine
-	136643  -- Azerite Extractor
+	136643, -- Azerite Extractor
+	136139, -- Mechanized Peacekeeper
+	130485  -- Mechanized Peacekeeper
 )
 
 --------------------------------------------------------------------------------
@@ -47,6 +49,7 @@ if L then
 	L.specialist = "Ordnance Specialist"
 	L.taskmaster = "Taskmaster Askari"
 	L.warmachine = "Venture Co. War Machine"
+	L.peacekeeper = "Mechanized Peacekeeper"
 end
 
 --------------------------------------------------------------------------------
@@ -96,7 +99,9 @@ function mod:GetOptions()
 		{263601, "TANK"}, -- Desperate Measures
 		-- Venture Co. War Machine
 		{269429, "TANK"}, -- Charged Shot
-
+		-- Mechanized Peacekeeper
+		262412, -- Energy Shield
+		263628, -- Charged Claw
 	}, {
 		[268846] = L.tester,
 		[269302] = L.assassin,
@@ -114,6 +119,7 @@ function mod:GetOptions()
 		[269090] = L.specialist,
 		[263601] = L.taskmaster,
 		[269429] = L.warmachine,
+		[262412] = L.peacekeeper,
 	}
 end
 
@@ -149,7 +155,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ArtilleryBarrage", 269090)
 	self:Log("SPELL_AURA_APPLIED", "DesperateMeasuresApplied", 263601)
 	self:Log("SPELL_CAST_START", "ChargedShot", 269429)
-
+	self:Log("SPELL_CAST_START", "EnergyShield", 262412)
+	self:Log("SPELL_CAST_START", "ChargedClaw", 263628)
+	self:Log("SPELL_CAST_SUCCESS", "ChargedClawSuccess", 263628)
 end
 
 --------------------------------------------------------------------------------
@@ -403,4 +411,17 @@ end
 function mod:ChargedShot(args)
 	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:EnergyShield(args)
+    self:NameplateBar(args.spellId, 22.5, args.sourceGUID)
+end
+
+function mod:ChargedClaw(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:ChargedClawSuccess(args)
+	self:TargetBar(args.spellId, 10, args.sourceName)
 end

@@ -17,6 +17,7 @@ if L then
 	L.specialist = "军械专家"
 	L.taskmaster = "监工阿斯加里"
 	L.warmachine = "风险投资公司战争机器"
+	L.peacekeeper = "机械化维和者"
 end
 
 L = BigWigs:NewBossLocale("Tik'ali", "zhCN")
