@@ -114,6 +114,12 @@ function mod:GetOptions()
 	}
 end
 
+-- Some mob ids are shared by different visions
+function mod:VerifyEnable()
+	local _, _, _, _, _, _, _, instanceId = GetInstanceInfo()
+	return instanceId == 2212
+end
+
 function mod:OnBossEnable()
 	self:OpenAltPower("altpower", 318335, "ZA") -- Sanity
 
