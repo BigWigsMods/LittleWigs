@@ -27,8 +27,8 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Blitz")
 
 	self:Log("SPELL_CAST_START", "Siege", 74634)
-	self:Log("SPELL_AURA_APPIED", "Frenzy", 74853)
-	self:Log("SPELL_AURA_APPIED", "Wound", 74846)
+	self:Log("SPELL_AURA_APPLIED", "Frenzy", 74853)
+	self:Log("SPELL_AURA_APPLIED", "Wound", 74846)
 	self:Log("SPELL_AURA_REMOVED", "WoundRemoved", 74846)
 end
 
