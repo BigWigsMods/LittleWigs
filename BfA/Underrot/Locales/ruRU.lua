@@ -18,6 +18,6 @@ end
 
 L = BigWigs:NewBossLocale("Infested Crawg", "ruRU")
 if L then
-	-- L.random_cast = "Charge or Indigestion"
-	-- L.random_cast_desc = "The first cast after each Tantrum is random."
+	L.random_cast = "Рывок или Несварение"
+	L.random_cast_desc = "Первая способность после Припадка случайна."
 end
