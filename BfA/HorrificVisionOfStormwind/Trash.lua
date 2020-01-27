@@ -13,7 +13,9 @@ mod:RegisterEnableMob(
 	153760, -- Enthralled Footman
 	158146, -- Fallen Riftwalker
 	157158, -- Cultist Slavedriver
-	158136 -- Inquisitor Darkspeak
+	158136, -- Inquisitor Darkspeak
+	158437, -- Fallen Taskmaster
+	158158 -- Forge-Guard Hurrul
 )
 
 --------------------------------------------------------------------------------
@@ -28,6 +30,8 @@ if L then
 	L.fallen_riftwalker = "Fallen Riftwalker"
 	L.cultist_slavedriver = "Cultist Slavedriver"
 	L.inquisitor_darkspeak = "Inquisitor Darkspeak"
+	L.fallen_taskmaster = "Fallen Taskmaster"
+	L.forge_guard_hurrul = "Forge-Guard Hurrul"
 end
 
 --------------------------------------------------------------------------------
@@ -53,6 +57,11 @@ function mod:GetOptions()
 		-- Inquisitor Darkspeak
 		308366, -- Agonizing Torment
 		308380, -- Convert
+		-- Fallen Taskmaster
+		308998, -- Improve Morale
+		308967, -- Continuous Beatings
+		-- Forge-Guard Hurrul
+		308406, -- Entropic Leap
 	}, {
 		["altpower"] = "general",
 		[296510] = L.crawling_corruption,
@@ -60,6 +69,8 @@ function mod:GetOptions()
 		[308481] = L.fallen_riftwalker,
 		[309882] = L.cultist_slavedriver,
 		[308366] = L.inquisitor_darkspeak,
+		[308998] = L.fallen_taskmaster,
+		[308406] = L.forge_guard_hurrul,
 	}
 end
 
@@ -82,6 +93,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BrutalSmash", 309882)
 	self:Log("SPELL_CAST_START", "AgonizingTorment", 308366)
 	self:Log("SPELL_CAST_START", "Convert", 308380)
+	self:Log("SPELL_CAST_START", "ImproveMorale", 308998)
+	self:Log("SPELL_AURA_APPLIED", "ContinuousBeatingsApplied", 308967)
+	self:Log("SPELL_CAST_START", "EntropicLeap", 308406)
 end
 
 --------------------------------------------------------------------------------
@@ -118,14 +132,14 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(308308, "orange", name)
-		self:PlaySound(308308, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Say(308308)
 		end
 	end
 	
 	function mod:PiercingShot(args)
+		self:Message2(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
 		self:GetUnitTarget(printTarget, 0.6, args.sourceGUID)
 	end
 end
@@ -170,4 +184,19 @@ end
 function mod:Convert(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ImproveMorale(args)
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ContinuousBeatingsApplied(args)
+	self:Message2(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:EntropicLeap(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end

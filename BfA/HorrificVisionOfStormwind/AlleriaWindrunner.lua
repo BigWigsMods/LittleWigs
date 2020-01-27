@@ -46,7 +46,7 @@ function mod:OnEngage()
 	self:Bar(309819, 20.6) -- Void Eruption
 end
 
--- There is no INSTANCE_ENCOUNTER_ENGAGE_UNIT event to trigger the engage
+-- There are no boss frames to trigger the engage
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == self.engageId then
 		self:Engage()
