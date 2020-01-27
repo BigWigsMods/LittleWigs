@@ -6,8 +6,8 @@ end
 
 L = BigWigs:NewBossLocale("Lord Stormsong", "ruRU")
 if L then
-	-- L.warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
-	-- L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
+	L.warmup_trigger_horde = "Чужаки?! Я отправлю ваши трупы в черную бездну! Вас ждут вечные страдания!"
+	L.warmup_trigger_alliance = "Милорд, это безумие! Не отдавайте наши корабли силам зла!"
 end
 
 L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "ruRU")
