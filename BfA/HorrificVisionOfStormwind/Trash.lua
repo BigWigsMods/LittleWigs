@@ -15,7 +15,11 @@ mod:RegisterEnableMob(
 	157158, -- Cultist Slavedriver
 	158136, -- Inquisitor Darkspeak
 	158437, -- Fallen Taskmaster
-	158158 -- Forge-Guard Hurrul
+	158158, -- Forge-Guard Hurrul
+	152722, -- Fallen Voidspeaker
+	156795, -- SI:7 Informant
+	152809, -- Alx'kov the Infested
+	156949 -- Armsmaster Terenson
 )
 
 --------------------------------------------------------------------------------
@@ -32,6 +36,10 @@ if L then
 	L.inquisitor_darkspeak = "Inquisitor Darkspeak"
 	L.fallen_taskmaster = "Fallen Taskmaster"
 	L.forge_guard_hurrul = "Forge-Guard Hurrul"
+	L.fallen_voidspeaker = "Fallen Voidspeaker"
+	L.si7_informant = "SI:7 Informant"
+	L.alxkov_the_infested = "Alx'kov the Infested"
+	L.armsmaster_terenson = "Armsmaster Terenson"
 end
 
 --------------------------------------------------------------------------------
@@ -62,6 +70,17 @@ function mod:GetOptions()
 		308967, -- Continuous Beatings
 		-- Forge-Guard Hurrul
 		308406, -- Entropic Leap
+		-- Fallen Voidspeaker
+		308375, -- Psychic Scream
+		-- SI:7 Informant
+		298033, -- Touch of the Abyss
+		-- Alx'kov the Infested
+		{308265, "DISPEL"}, -- Corrupted Blight
+		296669, -- Lurking Appendage
+		308305, -- Blight Eruption
+		-- Armsmaster Terenson
+		311399, -- Blade Flourish
+		311456, -- Roaring Blast
 	}, {
 		["altpower"] = "general",
 		[296510] = L.crawling_corruption,
@@ -71,6 +90,10 @@ function mod:GetOptions()
 		[308366] = L.inquisitor_darkspeak,
 		[308998] = L.fallen_taskmaster,
 		[308406] = L.forge_guard_hurrul,
+		[308375] = L.fallen_voidspeaker,
+		[298033] = L.si7_informant,
+		[308265] = L.alxkov_the_infested,
+		[311399] = L.armsmaster_terenson,
 	}
 end
 
@@ -96,6 +119,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ImproveMorale", 308998)
 	self:Log("SPELL_AURA_APPLIED", "ContinuousBeatingsApplied", 308967)
 	self:Log("SPELL_CAST_START", "EntropicLeap", 308406)
+	self:Log("SPELL_CAST_START", "PsychicScream", 308375)
+	self:Log("SPELL_CAST_START", "TouchOfTheAbyss", 298033)
+	self:Log("SPELL_AURA_APPLIED", "CorruptedBlightApplied", 308265)
+	self:Log("SPELL_CAST_START", "LurkingAppendage", 296669)
+	self:Log("SPELL_CAST_START", "BlightEruption", 308305)
+	self:Log("SPELL_CAST_START", "BladeFlourish", 311399)
+	self:Log("SPELL_CAST_START", "RoaringBlast", 311456)
 end
 
 --------------------------------------------------------------------------------
@@ -199,4 +229,44 @@ end
 function mod:EntropicLeap(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:PsychicScream(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:TouchOfTheAbyss(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:CorruptedBlightApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId) then
+		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+	end
+end
+
+function mod:LurkingAppendage(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BlightEruption(args)
+	self:Message2(args.spellId, "red")
+	self:Message2(args.spellId, "alarm")
+	if self:UnitDebuff("player", 308265) then -- Corrupted Blight
+		self:Say(args.spellId)
+	end
+end
+
+function mod:BladeFlourish(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:RoaringBlast(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
