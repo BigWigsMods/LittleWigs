@@ -45,5 +45,6 @@ BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {
 	[305875] = "alarm",
 	[306001] = "alert",
 	[306199] = "alarm",
+	[311390] = "info",
 	[311996] = "long",
 })
