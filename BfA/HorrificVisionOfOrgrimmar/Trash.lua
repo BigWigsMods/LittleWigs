@@ -173,7 +173,7 @@ end
 function mod:MadnessEntomophobiaApplied(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount >= 3 then
-		self:PersonalMessage(args.spellId)
+		self:StackMessage(args.spellId, args.destName, amount, "blue")
 		self:PlaySound(args.spellId, "info")
 	end
 end
