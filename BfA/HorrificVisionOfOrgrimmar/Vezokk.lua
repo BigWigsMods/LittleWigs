@@ -35,6 +35,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
+	self:RegisterEvent("ENCOUNTER_END")
 
 	self:Log("SPELL_CAST_START", "DefiledGround", 306726)
 	self:Log("SPELL_CAST_START", "RingOfChaos", 306617)
@@ -49,6 +50,17 @@ end
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == self.engageId then
 		self:Engage()
+	end
+end
+
+function mod:ENCOUNTER_END(_, engageId, name, diff, size, status)
+	if engageId == self.engageId then
+		if status == 0 then
+			self:Wipe()
+		else
+			self:Win()
+		end
+		self:SendMessage("BigWigs_EncounterEnd", self, engageId, name, diff, size, status)
 	end
 end
 
