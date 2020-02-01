@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Aqu'sirr", "ruRU")
 if not L then return end
 if L then
-	-- L.warmup_trigger = "How dare you sully this holy place with your presence!"
+	L.warmup_trigger = "Как вы смеете осквернять мой храм своим присутствием?!"
 end
 
 L = BigWigs:NewBossLocale("Lord Stormsong", "ruRU")
