@@ -98,7 +98,7 @@ function mod:GetOptions()
 		-- Soggy Shiprat
 		274555, -- Scabrous Bite
 		-- Irontide Crusher
-		258181, -- Boulder Throw
+		{258181, "NAMEPLATEBAR"}, -- Boulder Throw
 		258199, -- Ground Shatter
 		-- Irontide Buccaneer
 		257870, -- Blade Barrage
