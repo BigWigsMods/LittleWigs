@@ -2,7 +2,7 @@
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
-## Notes-deDE: Boss warnings for 5-man dungeons & scenarios.
+## Notes-deDE: Boss Warnungen für 5-Spieler Dungeons & Szenarien.
 ## Notes-esES: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-esMX: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-frFR: Boss warnings for 5-man dungeons & scenarios.
