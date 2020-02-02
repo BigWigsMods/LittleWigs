@@ -58,9 +58,9 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if msg:find(L.warmup_trigger, nil, true) then
-		self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 7.9, CL.active, "inv_sword_01")
 	end
 end
