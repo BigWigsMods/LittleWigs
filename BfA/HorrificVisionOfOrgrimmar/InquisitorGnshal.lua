@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Inquisitor Gnshal", 2212)
 if not mod then return end
 mod:RegisterEnableMob(156161)
+mod:SetAllowWin(true)
 mod.engageId = 2371
 
 --------------------------------------------------------------------------------

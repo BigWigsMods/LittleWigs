@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Oblivion Elemental", 2212)
 if not mod then return end
 mod:RegisterEnableMob(153244)
+mod:SetAllowWin(true)
 mod.engageId = 2372
 
 --------------------------------------------------------------------------------

@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Rexxar", 2212)
 if not mod then return end
 mod:RegisterEnableMob(155098)
+mod:SetAllowWin(true)
 mod.engageId = 2370
 
 --------------------------------------------------------------------------------

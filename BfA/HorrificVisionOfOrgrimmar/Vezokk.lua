@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Vez'okk the Lightless", 2212)
 if not mod then return end
 mod:RegisterEnableMob(152874)
+mod:SetAllowWin(true)
 mod.engageId = 2373
 
 --------------------------------------------------------------------------------
