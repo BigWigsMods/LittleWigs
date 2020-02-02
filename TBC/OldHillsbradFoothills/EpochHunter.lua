@@ -49,11 +49,11 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	if msg:find(L.trash_warmup_trigger, nil, true) then
 		self:Bar("warmup", 22.6, CL.active, "inv_sword_01")
 	elseif msg:find(L.boss_warmup_trigger, nil, true) then
-		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		self:UnregisterEvent(event)
 		self:Bar("warmup", 2.7, CL.active, "inv_sword_01")
 	end
 end
