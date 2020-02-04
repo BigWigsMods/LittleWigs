@@ -1,30 +1,30 @@
 local L = BigWigs:NewBossLocale("Old Hillsbrad Foothills Trash", "ruRU")
 if not L then return end
 if L then
-	-- L.custom_on_autotalk = "Autotalk"
-	-- L.custom_on_autotalk_desc = "Instantly select Erozion's, Thrall's and Taretha's gossip options."
+	L.custom_on_autotalk = "Авторазговор"
+	L.custom_on_autotalk_desc = "Мгновенный выбор опций в диалогах с Эрозионом, Траллом и Таретой."
 
-	-- L.incendiary_bombs = "Incendiary Bombs"
-	-- L.incendiary_bombs_desc = "Display a message when an Incendiary Bomb is planted."
+	L.incendiary_bombs = "Зажигательные бомбы"
+	L.incendiary_bombs_desc = "Показывать сообщение, когда Зажигательная бомба заложена."
 end
 
 L = BigWigs:NewBossLocale("Lieutenant Drake", "ruRU")
 if L then
-	-- You there, fetch water quickly! Get these flames out before they spread to the rest of the keep! Hurry, damn you!
-	-- L.warmup_trigger = "fetch water"
+	-- Эй, воды сюда, живо! Тушите огонь, пока вся крепость не сгорела! Ну быстрее же, будьте вы прокляты!
+	L.warmup_trigger = "Тушите огонь"
 end
 
 L = BigWigs:NewBossLocale("Captain Skarloc", "ruRU")
 if L then
-	-- Thrall! You didn't really think you would escape, did you?  You and your allies shall answer to Blackmoore... after I've had my fun.
-	-- L.warmup_trigger = "answer to Blackmoore"
+	-- Тралл! Ты ведь не думал, что в самом деле сможешь сбежать? Ты ответишь перед Блэкмуром, как и твои союзники... но сперва я позабавлюсь.
+	L.warmup_trigger = "перед Блэкмуром"
 end
 
 L = BigWigs:NewBossLocale("Epoch Hunter", "ruRU")
 if L then
-	-- Ah, there you are. I had hoped to accomplish this with a bit of subtlety, but I suppose direct confrontation was inevitable. Your future, Thrall, must not come to pass and so... you and your troublesome friends must die!
-	-- L.trash_warmup_trigger = "troublesome friends"
-	-- Enough, I will erase your very existence!
-	-- L.boss_warmup_trigger = "very existence!"
+	-- А, вот и ты. Я надеялся решить эту проблему более изящно, но, похоже, открытого боя не избежать. У тебя нет будущего, Тралл. Так что, тебе и твоим назойливым друзьям придется умереть.
+	L.trash_warmup_trigger = "назойливым друзьям"
+	-- Довольно! От вас не останется и следа!
+	L.boss_warmup_trigger = "не останется"
 end
 
