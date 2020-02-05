@@ -18,3 +18,28 @@ if L then
 	-- L.portal_keeper = "Portal Keeper"
 	L.zardeth_of_the_black_claw = "黑爪加尔德斯"
 end
+
+L = BigWigs:NewBossLocale("Alleria Windrunner", "zhCN")
+if L then
+	L.alleria_windrunner = "奥蕾莉亚·风行者"
+end
+
+L = BigWigs:NewBossLocale("Magister Umbric", "zhCN")
+if L then
+	L.magister_umbric = "魔导师乌布里克"
+end
+
+L = BigWigs:NewBossLocale("Overlord Mathias Shaw", "zhCN")
+if L then
+	L.overlord_mathias_shaw = "马迪亚斯·肖尔大王"
+end
+
+L = BigWigs:NewBossLocale("Slavemaster Ul'rok", "zhCN")
+if L then
+	-- L.slavemaster_ulrok = "Slavemaster Ul'rok"
+end
+
+L = BigWigs:NewBossLocale("Therum Deepforge", "zhCN")
+if L then
+	L.therum_deepforge = "瑟鲁姆·深炉"
+end

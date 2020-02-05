@@ -18,3 +18,28 @@ if L then
 	L.portal_keeper = "Vigilante de portal"
 	L.zardeth_of_the_black_claw = "Zardeth de los Zarpanegra"
 end
+
+L = BigWigs:NewBossLocale("Alleria Windrunner", "esES") or BigWigs:NewBossLocale("Alleria Windrunner", "esMX")
+if L then
+	L.alleria_windrunner = "Alleria Brisaveloz"
+end
+
+L = BigWigs:NewBossLocale("Magister Umbric", "esES") or BigWigs:NewBossLocale("Magister Umbric", "esMX")
+if L then
+	L.magister_umbric = "Magister Umbric"
+end
+
+L = BigWigs:NewBossLocale("Overlord Mathias Shaw", "esES") or BigWigs:NewBossLocale("Overlord Mathias Shaw", "esMX")
+if L then
+	L.overlord_mathias_shaw = "Señor supremo Mathias Shaw"
+end
+
+L = BigWigs:NewBossLocale("Slavemaster Ul'rok", "esES") or BigWigs:NewBossLocale("Slavemaster Ul'rok", "esMX")
+if L then
+	L.slavemaster_ulrok = "Maestro de esclavos Ul'rok"
+end
+
+L = BigWigs:NewBossLocale("Therum Deepforge", "esES") or BigWigs:NewBossLocale("Therum Deepforge", "esMX")
+if L then
+	L.therum_deepforge = "Therum Forjahonda"
+end

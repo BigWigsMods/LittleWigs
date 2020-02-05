@@ -18,3 +18,28 @@ if L then
 	L.portal_keeper = "차원문 수호병"
 	L.zardeth_of_the_black_claw = "검은발톱 자데스"
 end
+
+L = BigWigs:NewBossLocale("Alleria Windrunner", "koKR")
+if L then
+	L.alleria_windrunner = "알레리아 윈드러너"
+end
+
+L = BigWigs:NewBossLocale("Magister Umbric", "koKR")
+if L then
+	L.magister_umbric = "마법학자 엄브릭"
+end
+
+L = BigWigs:NewBossLocale("Overlord Mathias Shaw", "koKR")
+if L then
+	L.overlord_mathias_shaw = "대군주 마티아스 쇼"
+end
+
+L = BigWigs:NewBossLocale("Slavemaster Ul'rok", "koKR")
+if L then
+	L.slavemaster_ulrok = "노예감독 울로크"
+end
+
+L = BigWigs:NewBossLocale("Therum Deepforge", "koKR")
+if L then
+	L.therum_deepforge = "테룸 딥포지"
+end
