@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Overlord Mathias Shaw", 2213)
 if not mod then return end
 mod:RegisterEnableMob(158157, 158315) -- Overlord Mathias Shaw, Eye of Chaos
+mod:SetAllowWin(true)
 mod.engageId = 2376
 
 --------------------------------------------------------------------------------
@@ -33,7 +34,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
-	self:RegisterEvent("ENCOUNTER_END")
 
 	self:Log("SPELL_CAST_START", "DarkGaze", 308669)
 end
@@ -42,16 +42,6 @@ end
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == self.engageId then
 		self:Engage()
-	end
-end
-
-function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
-	if engageId == self.engageId then
-		if status == 0 then
-			self:Wipe()
-		else
-			self:Win()
-		end
 	end
 end
 

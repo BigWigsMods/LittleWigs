@@ -215,5 +215,5 @@
 <Include file="BfA\HorrificVisionOfOrgrimmar\locales.xml"/>
 
 <Include file="BfA\HorrificVisionOfStormwind\modules.xml"/>
-<!-- <Include file="BfA\HorrificVisionOfOrgrimmar\locales.xml"/> -->
+<Include file="BfA\HorrificVisionOfOrgrimmar\locales.xml"/>
 </Ui>

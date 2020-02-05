@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Therum Deepforge", 2213)
 if not mod then return end
 mod:RegisterEnableMob(156577)
+mod:SetAllowWin(true)
 mod.engageId = 2374
 
 --------------------------------------------------------------------------------
@@ -33,7 +34,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
-	self:RegisterEvent("ENCOUNTER_END")
 
 	self:Log("SPELL_CAST_START", "EmpoweredForgeBreath", 309671)
 end
@@ -42,16 +42,6 @@ end
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == self.engageId then
 		self:Engage()
-	end
-end
-
-function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
-	if engageId == self.engageId then
-		if status == 0 then
-			self:Wipe()
-		else
-			self:Win()
-		end
 	end
 end
 

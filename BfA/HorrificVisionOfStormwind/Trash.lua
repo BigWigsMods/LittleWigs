@@ -9,6 +9,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	155604, -- Image of Wrathion
 	152704, -- Crawling Corruption
+	160061, -- Crawling Corruption
 	158092, -- Fallen Heartpiercer
 	153760, -- Enthralled Footman
 	158146, -- Fallen Riftwalker
@@ -19,7 +20,12 @@ mod:RegisterEnableMob(
 	152722, -- Fallen Voidspeaker
 	156795, -- SI:7 Informant
 	152809, -- Alx'kov the Infested
-	156949 -- Armsmaster Terenson
+	156949, -- Armsmaster Terenson
+	153130, -- Greater Void Elemental
+	152939, -- Boundless Corruption
+	152722, -- Fallen Voidspeaker
+	159275, -- Portal Keeper
+	158371 -- Zardeth of the Black Claw
 )
 
 --------------------------------------------------------------------------------
@@ -40,7 +46,12 @@ if L then
 	L.si7_informant = "SI:7 Informant"
 	L.alxkov_the_infested = "Alx'kov the Infested"
 	L.armsmaster_terenson = "Armsmaster Terenson"
+	L.greater_void_elemental = "Greater Void Elemental"
+	L.boundless_corruption = "Boundless Corruption"
+	L.portal_keeper = "Portal Keeper"
+	L.zardeth_of_the_black_claw = "Zardeth of the Black Claw"
 end
+
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -77,10 +88,18 @@ function mod:GetOptions()
 		-- Alx'kov the Infested
 		{308265, "DISPEL"}, -- Corrupted Blight
 		296669, -- Lurking Appendage
-		308305, -- Blight Eruption
+		{308305, "SAY"}, -- Blight Eruption
 		-- Armsmaster Terenson
 		311399, -- Blade Flourish
 		311456, -- Roaring Blast
+		-- Greater Void Elemental
+		297315, -- Void Buffet
+		-- Boundless Corruption
+		296911, -- Chaos Breath
+		-- Fallen Voidspeaker
+		308375, -- Psychic Scream
+		-- Zardeth of the Black Claw
+		308801, -- Rain of Fire
 	}, {
 		["altpower"] = "general",
 		[296510] = L.crawling_corruption,
@@ -94,6 +113,10 @@ function mod:GetOptions()
 		[298033] = L.si7_informant,
 		[308265] = L.alxkov_the_infested,
 		[311399] = L.armsmaster_terenson,
+		[297315] = L.greater_void_elemental,
+		[296911] = L.boundless_corruption,
+		[308375] = L.fallen_voidspeaker,
+		[308801] = L.zardeth_of_the_black_claw,
 	}
 end
 
@@ -126,6 +149,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BlightEruption", 308305)
 	self:Log("SPELL_CAST_START", "BladeFlourish", 311399)
 	self:Log("SPELL_CAST_START", "RoaringBlast", 311456)
+	self:Log("SPELL_CAST_START", "VoidBuffet", 297315)
+	self:Log("SPELL_CAST_START", "ChaosBreath", 296911)
+	self:Log("SPELL_CAST_START", "PsychicScream", 308375)
+	self:Log("SPELL_CAST_START", "RainOfFire", 308801)
 end
 
 --------------------------------------------------------------------------------
@@ -255,7 +282,7 @@ end
 
 function mod:BlightEruption(args)
 	self:Message2(args.spellId, "red")
-	self:Message2(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "alarm")
 	if self:UnitDebuff("player", 308265) then -- Corrupted Blight
 		self:Say(args.spellId)
 	end
@@ -267,6 +294,26 @@ function mod:BladeFlourish(args)
 end
 
 function mod:RoaringBlast(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:VoidBuffet(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ChaosBreath(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:PsychicScream(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:RainOfFire(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end

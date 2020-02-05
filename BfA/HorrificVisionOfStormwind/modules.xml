@@ -4,6 +4,8 @@
 <Script file="AlleriaWindrunner.lua"/>
 <Script file="SlavemasterUlrok.lua"/>
 <Script file="TherumDeepforge.lua"/>
+<Script file="MathiasShaw.lua"/>
+<Script file="MagisterUmbric.lua"/>
 <Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>

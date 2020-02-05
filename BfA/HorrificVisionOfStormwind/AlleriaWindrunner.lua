@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Alleria Windrunner", 2213)
 if not mod then return end
 mod:RegisterEnableMob(152718)
+mod:SetAllowWin(true)
 mod.engageId = 2338
 
 --------------------------------------------------------------------------------
@@ -35,7 +36,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
-	self:RegisterEvent("ENCOUNTER_END")
 
 	self:Log("SPELL_CAST_SUCCESS", "DarkenedSky", 308278)
 	self:Log("SPELL_CAST_START", "VoidEruption", 309819)
@@ -51,16 +51,6 @@ end
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == self.engageId then
 		self:Engage()
-	end
-end
-
-function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
-	if engageId == self.engageId then
-		if status == 0 then
-			self:Wipe()
-		else
-			self:Win()
-		end
 	end
 end
 
