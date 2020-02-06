@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Oblivion Elemental", 2212)
 if not mod then return end
 mod:RegisterEnableMob(153244)
+mod:SetAllowWin(true)
 mod.engageId = 2372
 
 --------------------------------------------------------------------------------
@@ -32,7 +33,16 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START")
+
 	self:Log("SPELL_CAST_SUCCESS", "Hopelessness", 297574)
+end
+
+-- There are no boss frames to trigger the engage
+function mod:ENCOUNTER_START(_, encounterId)
+	if encounterId == self.engageId then
+		self:Engage()
+	end
 end
 
 --------------------------------------------------------------------------------

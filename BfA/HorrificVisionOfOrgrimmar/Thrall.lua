@@ -6,6 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Thrall", 2212)
 if not mod then return end
 mod:RegisterEnableMob(152089)
+mod:SetAllowWin(true)
 mod.engageId = 2332
 
 --------------------------------------------------------------------------------
@@ -34,6 +35,8 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START")
+
 	self:Log("SPELL_CAST_START", "SeismicSlam", 297746)
 	self:Log("SPELL_CAST_SUCCESS", "SurgingDarkness", 297822)
 	self:Log("SPELL_CAST_START", "CriesOfTheVoid", 304976)
@@ -42,6 +45,13 @@ end
 function mod:OnEngage()
 	self:Bar(297746, 5) -- Seismic Slam
 	self:Bar(297822, 12) -- Surging Darkness
+end
+
+-- There are no boss frames to trigger the engage
+function mod:ENCOUNTER_START(_, encounterId)
+	if encounterId == self.engageId then
+		self:Engage()
+	end
 end
 
 --------------------------------------------------------------------------------

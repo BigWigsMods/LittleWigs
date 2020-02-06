@@ -100,7 +100,7 @@ function mod:GetOptions()
 		-- Venture Co. War Machine
 		{269429, "TANK"}, -- Charged Shot
 		-- Mechanized Peacekeeper
-		262412, -- Energy Shield
+		{262412, "NAMEPLATEBAR"}, -- Energy Shield
 		263628, -- Charged Claw
 	}, {
 		[268846] = L.tester,
