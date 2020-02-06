@@ -40,11 +40,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TaintedPolymorph", 309648)
 end
 
-function mod:OnEngage()
-	self:Bar(309373, 5) -- Entropic Missiles
-	self:Bar(309648, 13.4) -- Tainted Polymorph
-end
-
 -- There are no boss frames to trigger the engage
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == self.engageId then
