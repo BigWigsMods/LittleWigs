@@ -96,8 +96,6 @@ function mod:GetOptions()
 		297315, -- Void Buffet
 		-- Boundless Corruption
 		296911, -- Chaos Breath
-		-- Fallen Voidspeaker
-		308375, -- Psychic Scream
 		-- Zardeth of the Black Claw
 		308801, -- Rain of Fire
 	}, {
@@ -151,7 +149,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RoaringBlast", 311456)
 	self:Log("SPELL_CAST_START", "VoidBuffet", 297315)
 	self:Log("SPELL_CAST_START", "ChaosBreath", 296911)
-	self:Log("SPELL_CAST_START", "PsychicScream", 308375)
 	self:Log("SPELL_CAST_START", "RainOfFire", 308801)
 end
 
@@ -306,11 +303,6 @@ end
 function mod:ChaosBreath(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:PsychicScream(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:RainOfFire(args)
