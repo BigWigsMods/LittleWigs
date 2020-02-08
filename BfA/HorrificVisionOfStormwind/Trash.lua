@@ -77,7 +77,6 @@ function mod:GetOptions()
 		308366, -- Agonizing Torment
 		308380, -- Convert
 		-- Fallen Taskmaster
-		308998, -- Improve Morale
 		308967, -- Continuous Beatings
 		-- Forge-Guard Hurrul
 		308406, -- Entropic Leap
@@ -105,7 +104,7 @@ function mod:GetOptions()
 		[308481] = L.fallen_riftwalker,
 		[309882] = L.cultist_slavedriver,
 		[308366] = L.inquisitor_darkspeak,
-		[308998] = L.fallen_taskmaster,
+		[308967] = L.fallen_taskmaster,
 		[308406] = L.forge_guard_hurrul,
 		[308375] = L.fallen_voidspeaker,
 		[298033] = L.si7_informant,
@@ -137,7 +136,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BrutalSmash", 309882)
 	self:Log("SPELL_CAST_START", "AgonizingTorment", 308366)
 	self:Log("SPELL_CAST_START", "Convert", 308380)
-	self:Log("SPELL_CAST_START", "ImproveMorale", 308998)
 	self:Log("SPELL_AURA_APPLIED", "ContinuousBeatingsApplied", 308967)
 	self:Log("SPELL_CAST_START", "EntropicLeap", 308406)
 	self:Log("SPELL_CAST_START", "PsychicScream", 308375)
@@ -237,11 +235,6 @@ end
 
 function mod:Convert(args)
 	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "info")
-end
-
-function mod:ImproveMorale(args)
-	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
