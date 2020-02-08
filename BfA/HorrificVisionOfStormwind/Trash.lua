@@ -78,8 +78,6 @@ function mod:GetOptions()
 		308380, -- Convert
 		-- Fallen Taskmaster
 		308967, -- Continuous Beatings
-		-- Forge-Guard Hurrul
-		308406, -- Entropic Leap
 		-- Fallen Voidspeaker
 		308375, -- Psychic Scream
 		-- SI:7 Informant
@@ -105,7 +103,6 @@ function mod:GetOptions()
 		[309882] = L.cultist_slavedriver,
 		[308366] = L.inquisitor_darkspeak,
 		[308967] = L.fallen_taskmaster,
-		[308406] = L.forge_guard_hurrul,
 		[308375] = L.fallen_voidspeaker,
 		[298033] = L.si7_informant,
 		[308265] = L.alxkov_the_infested,
@@ -137,7 +134,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AgonizingTorment", 308366)
 	self:Log("SPELL_CAST_START", "Convert", 308380)
 	self:Log("SPELL_AURA_APPLIED", "ContinuousBeatingsApplied", 308967)
-	self:Log("SPELL_CAST_START", "EntropicLeap", 308406)
 	self:Log("SPELL_CAST_START", "PsychicScream", 308375)
 	self:Log("SPELL_CAST_START", "TouchOfTheAbyss", 298033)
 	self:Log("SPELL_AURA_APPLIED", "CorruptedBlightApplied", 308265)
@@ -189,9 +185,14 @@ do
 		end
 	end
 	
+	local prev = 0
 	function mod:PiercingShot(args)
-		self:Message2(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
+		local t = args.time
+		if t-prev > 1 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 		self:GetUnitTarget(printTarget, 0.6, args.sourceGUID)
 	end
 end
@@ -240,11 +241,6 @@ end
 
 function mod:ContinuousBeatingsApplied(args)
 	self:Message2(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:EntropicLeap(args)
-	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
