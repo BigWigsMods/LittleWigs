@@ -17,6 +17,7 @@ if L then
 	L.dockhound = "Can de muelle gruñidor"
 	L.shredder = "Triturador Mareaviva"
 	L.packmaster = "Maestro de manada de canes de muelle"
+	L.bomber = "Bombardero Breanegra"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "esES") or BigWigs:NewBossLocale("Sergeant Bainbridge", "esMX")

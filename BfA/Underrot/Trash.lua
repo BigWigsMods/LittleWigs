@@ -90,8 +90,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Befouled Spirit
 	self:Log("SPELL_CAST_START", "DarkOmen", 265568)
 	self:Log("SPELL_AURA_APPLIED", "DarkOmenApplied", 265568)
@@ -117,6 +115,9 @@ function mod:OnBossEnable()
 	-- Fallen Deathspeaker
 	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
 	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
+	self:Log("SPELL_AURA_APPLIED", "WickedFrenzyApplied", 266209)
+	self:Log("SPELL_AURA_REMOVED", "WickedFrenzyRemoved", 266209)
+	self:Log("SPELL_DISPEL", "WickedFrenzySoothed", "*")
 	-- Bloodsworn Defiler
 	self:Log("SPELL_CAST_START", "ShadowBoltVolley", 265487)
 	self:Log("SPELL_CAST_START", "WitheringCurse", 265433)
@@ -268,6 +269,30 @@ end
 function mod:WickedFrenzy(args)
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:WickedFrenzyApplied(args)
+	local isTank = self:Tank()
+	if isTank or self:Dispeller("enrage", true) then
+		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, isTank and "alarm" or "alert")
+		if isTank then
+			self:TargetBar(args.spellId, 8, args.destName)
+		end
+	end
+end
+
+function mod:WickedFrenzyRemoved(args)
+	if self:Tank() then
+		self:StopBar(args.spellId, args.destName)
+	end
+end
+
+function mod:WickedFrenzySoothed(args)
+	if args.extraSpellId == 266209 and self:Tank() then
+		self:Message2(266209, "green", CL.removed:format(args.extraSpellName))
+		self:PlaySound(266209, "info")
+	end
 end
 
 -- Bloodsworn Defiler

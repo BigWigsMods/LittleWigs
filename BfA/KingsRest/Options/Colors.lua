@@ -44,6 +44,7 @@ BigWigs:AddColors("King's Rest Trash", {
 	[270492] = {"blue","cyan","orange"},
 	[270499] = {"blue","cyan"},
 	[270503] = "blue",
+	[270506] = {"blue","red"},
 	[270507] = {"blue","cyan","red"},
 	[270514] = "orange",
 	[270865] = {"blue","yellow"},

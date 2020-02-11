@@ -155,6 +155,7 @@ function mod:GetOptions()
 
 		-- Spectral Beastmaster
 		{270507, "SAY", "FLASH"}, -- Poison Barrage
+		{270506, "FLASH", "ME_ONLY_EMPHASIZE"}, -- Deadeye Shot
 
 		-- Spectral Brute
 		270514, -- Ground Crush
@@ -189,8 +190,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Animated Guardian
 	self:Log("SPELL_CAST_START", "SuppressionSlam", 270003)
 	self:Log("SPELL_AURA_APPLIED", "ReleasedInihibitors", 270016)
@@ -263,6 +262,7 @@ function mod:OnBossEnable()
 	-- Spectral Beastmaster
 	self:Log("SPELL_CAST_START", "PoisonBarrage", 270507)
 	self:Log("SPELL_AURA_APPLIED", "PoisonBarrageApplied", 270507)
+	self:Log("SPELL_CAST_START", "DeadeyeShot", 270506)
 
 	-- Spectral Brute
 	self:Log("SPELL_CAST_START", "GroundCrush", 270514)
@@ -560,6 +560,20 @@ do
 		if self:Me(args.destGUID) then
 			isOnMe = true
 		end
+	end
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(270506, "red", name)
+		self:PlaySound(270506, "warning", nil, name)
+		if self:Me(guid) then
+			self:Flash(270506)
+		end
+	end
+
+	function mod:DeadeyeShot(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 

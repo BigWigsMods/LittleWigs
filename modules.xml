@@ -15,7 +15,7 @@
 <Include file="TBC\MagistersTerrace\locales.xml"/>
 <Include file="TBC\ManaTombs\modules.xml"/>
 <Include file="TBC\ManaTombs\locales.xml"/>
-<!--<Include file="TBC\OldHillsbradFoothills\modules.xml"/>-->
+<Include file="TBC\OldHillsbradFoothills\modules.xml"/>
 <Include file="TBC\SethekkHalls\modules.xml"/>
 <Include file="TBC\ShadowLabyrinth\modules.xml"/>
 <Include file="TBC\TheArcatraz\modules.xml"/>
@@ -210,4 +210,10 @@
 
 <Include file="BfA\Mechagon\modules.xml"/>
 <Include file="BfA\Mechagon\locales.xml"/>
+
+<Include file="BfA\HorrificVisionOfOrgrimmar\modules.xml"/>
+<Include file="BfA\HorrificVisionOfOrgrimmar\locales.xml"/>
+
+<Include file="BfA\HorrificVisionOfStormwind\modules.xml"/>
+<Include file="BfA\HorrificVisionOfStormwind\locales.xml"/>
 </Ui>

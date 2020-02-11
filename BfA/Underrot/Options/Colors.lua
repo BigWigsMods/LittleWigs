@@ -40,7 +40,7 @@ BigWigs:AddColors("Underrot Trash", {
 	[265668] = "blue",
 	[266106] = "red",
 	[266107] = "blue",
-	[266209] = "cyan",
+	[266209] = {"blue","cyan","green","red"},
 	[272183] = "yellow",
 	[272592] = "cyan",
 	[272609] = "orange",

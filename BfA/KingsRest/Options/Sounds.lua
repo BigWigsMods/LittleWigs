@@ -44,6 +44,7 @@ BigWigs:AddSounds("King's Rest Trash", {
 	[270492] = {"alarm","info"},
 	[270499] = "info",
 	[270503] = "alert",
+	[270506] = "warning",
 	[270507] = {"alert","warning"},
 	[270514] = "long",
 	[270865] = "alarm",

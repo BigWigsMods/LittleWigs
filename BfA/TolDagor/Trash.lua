@@ -65,8 +65,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Sewer Vicejaw
 	self:Log("SPELL_AURA_APPLIED", "MassiveChomp", 258079)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MassiveChomp", 258079)

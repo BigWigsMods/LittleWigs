@@ -17,6 +17,7 @@ if L then
 	L.dockhound = "咆哮的港口猎犬"
 	L.shredder = "激流破浪者"
 	L.packmaster = "港口猎犬训练师"
+	L.bomber = "黑油投弹者"
 end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhCN")
