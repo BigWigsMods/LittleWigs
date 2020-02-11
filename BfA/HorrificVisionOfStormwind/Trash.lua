@@ -62,6 +62,7 @@ function mod:GetOptions()
 		-- General
 		"altpower",
 		311996, -- Open Vision
+		306583, -- Leaden Foot
 		-- Crawling Corruption
 		296510, -- Creepy Crawler
 		-- Fallen Heartpiercer
@@ -125,6 +126,9 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("UNIT_SPELLCAST_START")
 	self:Log("SPELL_CAST_SUCCESS", "MindProtected", 291295)	-- Cast when the vision ends
+	self:Log("SPELL_AURA_APPLIED", "LeadenFootApplied", 306583)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
+	self:Log("SPELL_AURA_REMOVED", "LeadenFootRemoved", 306583)
 	self:Log("SPELL_CAST_START", "CreepyCrawler", 296510)
 	self:Log("SPELL_CAST_START", "PiercingShot", 308308)
 	self:Log("SPELL_CAST_SUCCESS", "Repel", 298584)
@@ -164,6 +168,21 @@ end
 
 function mod:MindProtected(args)
 	self:CloseAltPower("altpower")
+end
+
+function mod:LeadenFootApplied(args)
+	local amount = args.amount or 1
+	if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
+		self:StackMessage(args.spellId, args.destName, amount, "blue")
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+function mod:LeadenFootRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message2(args.spellId, "blue", CL.removed:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 do
