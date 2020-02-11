@@ -41,5 +41,5 @@ end
 
 L = BigWigs:NewBossLocale("Therum Deepforge", "deDE")
 if L then
-	-- L.therum_deepforge = "Therum Tiefenschmied"
+	L.therum_deepforge = "Therum Tiefenschmied"
 end
