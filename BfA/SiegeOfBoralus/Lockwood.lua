@@ -64,11 +64,14 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
+function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
 	if spellId == 268260 then -- Broadside
-		self:Message2(spellId, "orange")
-		self:PlaySound(spellId, "alarm")
-		self:Bar(268260, 12) -- Broadside
+		local guid = UnitGUID(unit)
+		if self:MobId(guid) == 136549 then -- Boss add, trash cannoneers have a different id
+			self:Message2(spellId, "orange")
+			self:PlaySound(spellId, "alarm")
+			self:Bar(268260, 12) -- Broadside
+		end
 	end
 end
 
