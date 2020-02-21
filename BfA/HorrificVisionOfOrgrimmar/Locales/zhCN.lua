@@ -1,21 +1,21 @@
 local L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "zhCN")
 if not L then return end
 if L then
-	-- L.voidbound_shaman = "Voidbound Shaman"
-	-- L.crawling_corruption = "Crawling Corruption"
-	-- L.voidbound_honor_guard = "Voidbound Honor Guard"
-	-- L.voidbound_shieldbearer = "Voidbound Shieldbearer"
-	-- L.decimator_shiqvoth = "Decimator Shiq'voth"
-	-- L.voidbound_berserker = "Voidbound Berserker"
-	-- L.greater_void_elemental = "Greater Void Elemental"
-	-- L.annihilator_lakhal = "Annihilator Lak'hal"
-	-- L.kthir_dominator = "K'thir Dominator"
-	-- L.kthir_mindcarver = "K'thir Mindcarver"
-	-- L.coagulated_horror = "Coagulated Horror"
-	-- L.voidcrazed_hulk = "Voidcrazed Hulk"
-	-- L.misha = "Misha"
-	-- L.aqir_bonecrusher = "Aqir Bonecrusher"
-	-- L.aqir_venomweaver = "Aqir Venomweaver"
+	L.voidbound_shaman = "虚缚萨满祭司"
+	L.crawling_corruption = "蠕行腐蚀"
+	L.voidbound_honor_guard = "虚缚荣誉卫兵"
+	L.voidbound_shieldbearer = "虚缚持盾卫士"
+	L.decimator_shiqvoth = "屠戮者西克沃斯"
+	L.voidbound_berserker = "虚缚狂战士"
+	L.greater_void_elemental = "巨型虚空元素"
+	L.annihilator_lakhal = "歼灭者拉克哈尔"
+	L.kthir_dominator = "克熙尔支配者"
+	L.kthir_mindcarver = "克熙尔剜心者"
+	L.coagulated_horror = "凝结恐惧"
+	L.voidcrazed_hulk = "虚狂巨兽"
+	L.misha = "米莎"
+	L.aqir_bonecrusher = "亚基碾骨虫"
+	L.aqir_venomweaver = "亚基织毒者"
 end
 
 L = BigWigs:NewBossLocale("Thrall", "zhCN")
@@ -25,20 +25,20 @@ end
 
 L = BigWigs:NewBossLocale("Oblivion Elemental", "zhCN")
 if L then
-	-- L.oblivion_elemental = "Oblivion Elemental"
+	L.oblivion_elemental = "湮灭元素"
 end
 
 L = BigWigs:NewBossLocale("Inquisitor Gnshal", "zhCN")
 if L then
-	-- L.inquisitor_gnshal = "Inquisitor Gnshal"
+	L.inquisitor_gnshal = "审判官格恩肖尔"
 end
 
 L = BigWigs:NewBossLocale("Vez'okk the Lightless", "zhCN")
 if L then
-	-- L.vezokk = "Vez'okk the Lightless"
+	L.vezokk = "无光者维兹奥克"
 end
 
 L = BigWigs:NewBossLocale("Rexxar", "zhCN")
 if L then
-	-- L.rexxar = "Rexxar"
+	L.rexxar = "雷克萨"
 end
