@@ -165,18 +165,23 @@ do
 	end
 end
 
-function mod:LeadenFootApplied(args)
-	local amount = args.amount or 1
-	if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
-		self:StackMessage(args.spellId, args.destName, amount, "blue")
-		self:PlaySound(args.spellId, "alert")
+do
+	local showRemovedWarning = false
+	function mod:LeadenFootApplied(args)
+		local amount = args.amount or 1
+		if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
+			showRemovedWarning = true
+			self:StackMessage(args.spellId, args.destName, amount, "blue")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
-end
 
-function mod:LeadenFootRemoved(args)
-	if self:Me(args.destGUID) then
-		self:Message2(args.spellId, "blue", CL.removed:format(args.spellName))
-		self:PlaySound(args.spellId, "info")
+	function mod:LeadenFootRemoved(args)
+		if self:Me(args.destGUID) and showRemovedWarning then
+			showRemovedWarning = false
+			self:Message2(args.spellId, "blue", CL.removed:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 
