@@ -305,17 +305,20 @@ end
 
 do
 	local prev = nil
-	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
+	function mod:UNIT_SPELLCAST_START(_, unit, castGUID, spellId)
 		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
 			prev = castGUID
 			self:Message2(spellId, "orange")
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 3.5)
 		elseif spellId == 268260 and castGUID ~= prev then -- Broadside
-			prev = castGUID
-			self:Message2(spellId, "orange")
-			self:PlaySound(spellId, "alarm")
-			self:CastBar(spellId, 3)
+			local guid = UnitGUID(unit)
+			if self:MobId(guid) == 138465 then -- Trash cannoneer, Lockwood cannoneers have a different id
+				prev = castGUID
+				self:Message2(spellId, "orange")
+				self:PlaySound(spellId, "alarm")
+				self:CastBar(spellId, 3)
+			end
 		elseif spellId == 272874 and castGUID ~= prev then -- Trample
 			prev = castGUID
 			self:Message2(spellId, "orange")

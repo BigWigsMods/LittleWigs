@@ -125,7 +125,6 @@ function mod:OnBossEnable()
 	self:OpenAltPower("altpower", 318335, "ZA") -- Sanity
 
 	self:RegisterEvent("UNIT_SPELLCAST_START")
-	self:Log("SPELL_CAST_SUCCESS", "MindProtected", 291295)	-- Cast when the vision ends
 	self:Log("SPELL_AURA_APPLIED", "MadnessEntomophobiaApplied", 311390)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MadnessEntomophobiaApplied", 311390)
 	self:Log("SPELL_CAST_SUCCESS", "EndlessHungerTotem", 297237)
@@ -170,10 +169,6 @@ do
 			self:Bar(311996, 10) -- Open Vision
 		end
 	end
-end
-
-function mod:MindProtected(args)
-	self:CloseAltPower("altpower")
 end
 
 function mod:MadnessEntomophobiaApplied(args)

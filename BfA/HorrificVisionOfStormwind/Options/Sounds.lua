@@ -29,6 +29,7 @@ BigWigs:AddSounds("Horrific Vision of Stormwind Trash", {
 	[297315] = "alert",
 	[298033] = "alert",
 	[298584] = "alert",
+	[306583] = {"alert","info"},
 	[308265] = "info",
 	[308305] = "alarm",
 	[308308] = "alarm",
