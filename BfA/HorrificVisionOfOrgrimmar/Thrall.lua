@@ -27,7 +27,7 @@ function mod:GetOptions()
 		297746, -- Seismic Slam
 		297822, -- Surging Darkness
 		304976, -- Cries of the Void
-		306726, -- Defiled Ground
+		306828, -- Defiled Ground
 	}
 end
 
