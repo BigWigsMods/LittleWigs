@@ -4,8 +4,24 @@
 
 local mod, CL = BigWigs:NewBoss("Tussle Tonks", 2097, 2336)
 if not mod then return end
-mod:RegisterEnableMob(144244, 145185) -- The Platinum Pummeler, Gnomercy 4.U.
+-- Enable on trash before boss for warmup
+mod:RegisterEnableMob(
+	144244, -- The Platinum Pummeler
+	145185, -- Gnomercy 4.U.
+	151657, -- Bomb Tonk
+	151658, -- Strider Tonk
+	151659  -- Rocket Tonk
+)
 mod.engageId = 2257
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,6 +29,8 @@ mod.engageId = 2257
 
 function mod:GetOptions()
 	return {
+		-- General
+		"warmup",
 		-- The Platinum Pummeler
 		282801, -- Platinum Plating
 		285020, -- Whirling Edge
@@ -21,10 +39,16 @@ function mod:GetOptions()
 		{285152, "SAY", "FLASH"}, -- Foe Flipper
 		285388, -- Vent Jets
 		{283422, "SAY", "FLASH"}, -- Maximum Thrust
+	}, {
+		["warmup"] = "general",
+		[282801] = -19237,
+		[285152] = -19236,
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+
 	self:Log("SPELL_AURA_REMOVED", "PlatinumPlatingRemoved", 282801)
 	self:Log("SPELL_AURA_REMOVED_DOSE", "PlatinumPlatingRemoved", 282801)
 	self:Log("SPELL_CAST_START", "WhirlingEdge", 285020)
@@ -43,6 +67,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 23, CL.active, "inv_engineering_autohammer")
+	end
+end
 
 do
 	-- If the event fires more than once, args.amount is the same for both events

@@ -31,6 +31,11 @@ if L then
 	L.workshop_defender = "작업실 방어병"
 end
 
+L = BigWigs:NewBossLocale("Tussle Tonks", "koKR")
+if L then
+	-- L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
+end
+
 L = BigWigs:NewBossLocale("King Mechagon", "koKR")
 if L then
 	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."

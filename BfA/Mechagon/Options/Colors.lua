@@ -62,7 +62,8 @@ BigWigs:AddColors("King Mechagon", {
 	[291865] = "orange",
 	[291928] = {"blue","red"},
 	[292290] = "yellow",
-	[292750] = "cyan",
+	["button"] = {"blue","cyan"},
+	["hardmode"] = "yellow",
 	["stages"] = "cyan",
 })
 
