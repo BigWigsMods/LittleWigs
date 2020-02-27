@@ -46,6 +46,7 @@ BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
 	[305875] = "red",
 	[306001] = "orange",
 	[306199] = "yellow",
+	[306583] = "blue",
 	[311390] = "blue",
 	[311996] = "cyan",
 })

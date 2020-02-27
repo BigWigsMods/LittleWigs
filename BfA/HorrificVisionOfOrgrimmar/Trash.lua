@@ -61,6 +61,7 @@ function mod:GetOptions()
 		"altpower",
 		311996, -- Open Vision
 		311390, -- Madness: Entomophobia
+		306583, -- Leaden Foot
 		-- Voidbound Shaman
 		297237, -- Endless Hunger Totem
 		-- Crawling Corruption
@@ -127,6 +128,9 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_START")
 	self:Log("SPELL_AURA_APPLIED", "MadnessEntomophobiaApplied", 311390)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MadnessEntomophobiaApplied", 311390)
+	self:Log("SPELL_AURA_APPLIED", "LeadenFootApplied", 306583)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
+	self:Log("SPELL_AURA_REMOVED", "LeadenFootRemoved", 306583)
 	self:Log("SPELL_CAST_SUCCESS", "EndlessHungerTotem", 297237)
 	self:Log("SPELL_CAST_START", "CreepyCrawler", 296510)
 	self:Log("SPELL_CAST_START", "HorrifyingShout", 305378)
@@ -176,6 +180,26 @@ function mod:MadnessEntomophobiaApplied(args)
 	if self:Me(args.destGUID) and amount >= 3 then
 		self:StackMessage(args.spellId, args.destName, amount, "blue")
 		self:PlaySound(args.spellId, "info")
+	end
+end
+
+do
+	local showRemovedWarning = false
+	function mod:LeadenFootApplied(args)
+		local amount = args.amount or 1
+		if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
+			showRemovedWarning = true
+			self:StackMessage(args.spellId, args.destName, amount, "blue")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+
+	function mod:LeadenFootRemoved(args)
+		if self:Me(args.destGUID) and showRemovedWarning then
+			showRemovedWarning = false
+			self:Message2(args.spellId, "blue", CL.removed:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 
