@@ -62,6 +62,7 @@ function mod:GetOptions()
 		-- General
 		"altpower",
 		311996, -- Open Vision
+		311390, -- Madness: Entomophobia
 		306583, -- Leaden Foot
 		-- Crawling Corruption
 		296510, -- Creepy Crawler
@@ -125,6 +126,8 @@ function mod:OnBossEnable()
 	self:OpenAltPower("altpower", 318335, "ZA") -- Sanity
 
 	self:RegisterEvent("UNIT_SPELLCAST_START")
+	self:Log("SPELL_AURA_APPLIED", "MadnessEntomophobiaApplied", 311390)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "MadnessEntomophobiaApplied", 311390)
 	self:Log("SPELL_AURA_APPLIED", "LeadenFootApplied", 306583)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
 	self:Log("SPELL_AURA_REMOVED", "LeadenFootRemoved", 306583)
@@ -162,6 +165,14 @@ do
 			self:PlaySound(311996, "long")
 			self:Bar(311996, 10) -- Open Vision
 		end
+	end
+end
+
+function mod:MadnessEntomophobiaApplied(args)
+	local amount = args.amount or 1
+	if self:Me(args.destGUID) and amount >= 3 then
+		self:StackMessage(args.spellId, args.destName, amount, "blue")
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
