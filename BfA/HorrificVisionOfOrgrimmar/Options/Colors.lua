@@ -3,6 +3,7 @@ BigWigs:AddColors("Thrall", {
 	[297746] = "orange",
 	[297822] = "orange",
 	[304976] = "red",
+	[306828] = "orange",
 })
 
 BigWigs:AddColors("Oblivion Elemental", {
@@ -45,6 +46,7 @@ BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
 	[305875] = "red",
 	[306001] = "orange",
 	[306199] = "yellow",
+	[306583] = "blue",
 	[311390] = "blue",
 	[311996] = "cyan",
 })

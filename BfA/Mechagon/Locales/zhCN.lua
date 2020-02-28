@@ -31,6 +31,11 @@ if L then
 	L.workshop_defender = "车间防御者"
 end
 
+L = BigWigs:NewBossLocale("Tussle Tonks", "zhCN")
+if L then
+	-- L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
+end
+
 L = BigWigs:NewBossLocale("King Mechagon", "zhCN")
 if L then
 	L.hardmode_desc = "当歼敌机器人5000型开始显示按钮顺序时发出警报。"

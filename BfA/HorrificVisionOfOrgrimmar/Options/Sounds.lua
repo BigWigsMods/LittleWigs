@@ -3,6 +3,7 @@ BigWigs:AddSounds("Thrall", {
 	[297746] = "alert",
 	[297822] = "alarm",
 	[304976] = "warning",
+	[306828] = "alert",
 })
 
 BigWigs:AddSounds("Oblivion Elemental", {
@@ -45,6 +46,7 @@ BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {
 	[305875] = "alarm",
 	[306001] = "alert",
 	[306199] = "alarm",
+	[306583] = {"alert","info"},
 	[311390] = "info",
 	[311996] = "long",
 })

@@ -62,7 +62,8 @@ BigWigs:AddSounds("King Mechagon", {
 	[291865] = "alert",
 	[291928] = "alarm",
 	[292290] = "warning",
-	[292750] = "long",
+	["button"] = "warning",
+	["hardmode"] = "long",
 	["stages"] = "long",
 })
 

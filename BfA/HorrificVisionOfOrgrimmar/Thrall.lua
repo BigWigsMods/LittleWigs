@@ -27,6 +27,7 @@ function mod:GetOptions()
 		297746, -- Seismic Slam
 		297822, -- Surging Darkness
 		304976, -- Cries of the Void
+		306828, -- Defiled Ground
 	}
 end
 
@@ -40,6 +41,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SeismicSlam", 297746)
 	self:Log("SPELL_CAST_SUCCESS", "SurgingDarkness", 297822)
 	self:Log("SPELL_CAST_START", "CriesOfTheVoid", 304976)
+	self:Log("SPELL_CAST_START", "DefiledGround", 306828)
 end
 
 function mod:OnEngage()
@@ -73,4 +75,10 @@ end
 function mod:CriesOfTheVoid(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:DefiledGround(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 12.1)
 end
