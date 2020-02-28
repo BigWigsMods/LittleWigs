@@ -33,7 +33,7 @@ end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "deDE")
 if L then
-	-- L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
+	L.warmup_trigger = "Also, das ist mal eine statistische Anomalie. Unsere Besucher leben noch!"
 end
 
 L = BigWigs:NewBossLocale("King Mechagon", "deDE")
