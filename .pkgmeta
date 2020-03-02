@@ -1,6 +1,19 @@
 package-as: LittleWigs
 wowi-archive-previous: no
 
+required-dependencies:
+	BigWigs
+
+move-folders:
+	LittleWigs/BfA: LittleWigs_Module_BfA
+	LittleWigs/Cataclysm: LittleWigs_Module_Cataclysm
+	LittleWigs/Classic: LittleWigs_Module_Classic
+	LittleWigs/Legion: LittleWigs_Module_Legion
+	LittleWigs/MoP: LittleWigs_Module_MoP
+	LittleWigs/TBC: LittleWigs_Module_TBC
+	LittleWigs/WoD: LittleWigs_Module_WoD
+	LittleWigs/WotLK: LittleWigs_Module_WotLK
+
 ignore:
   - .travis.yml
   - README.md

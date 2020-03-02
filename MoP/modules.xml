@@ -1,0 +1,31 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<!-- Mists of Pandaria -->
+
+<Include file="ShadoPanMonastery\modules.xml"/>
+<Include file="ShadoPanMonastery\locales.xml"/>
+
+<Include file="SiegeOfNiuzaoTemple\modules.xml"/>
+<Include file="SiegeOfNiuzaoTemple\locales.xml"/>
+
+<Include file="GateOfTheSettingSun\modules.xml"/>
+
+<Include file="StormstoutBrewery\modules.xml"/>
+<Include file="StormstoutBrewery\locales.xml"/>
+
+<Include file="ScarletHalls\modules.xml"/>
+<Include file="ScarletHalls\locales.xml"/>
+
+<Include file="ScarletMonastery\modules.xml"/>
+<Include file="ScarletMonastery\locales.xml"/>
+
+<Include file="MogushanPalace\modules.xml"/>
+
+<Include file="TempleOfTheJadeSerpent\modules.xml"/>
+<Include file="TempleOfTheJadeSerpent\locales.xml"/>
+
+<Include file="BlackTempleSolo\modules.xml"/>
+<Include file="BlackTempleSolo\locales.xml"/>
+
+</Ui>

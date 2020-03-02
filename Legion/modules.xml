@@ -1,0 +1,44 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<!-- Legion -->
+<Include file="AssaultOnVioletHold\modules.xml"/>
+<Include file="AssaultOnVioletHold\locales.xml"/>
+
+<Include file="BlackRookHold\modules.xml"/>
+<Include file="BlackRookHold\locales.xml"/>
+
+<Include file="CourtOfStars\modules.xml"/>
+<Include file="CourtOfStars\locales.xml"/>
+
+<Include file="DarkheartThicket\modules.xml"/>
+<Include file="DarkheartThicket\locales.xml"/>
+
+<Include file="EyeOfAzshara\modules.xml"/>
+<Include file="EyeOfAzshara\locales.xml"/>
+
+<Include file="HallsOfValor\modules.xml"/>
+<Include file="HallsOfValor\locales.xml"/>
+
+<Include file="Karazhan\modules.xml"/>
+<Include file="Karazhan\locales.xml"/>
+
+<Include file="MawOfSouls\modules.xml"/>
+<Include file="MawOfSouls\locales.xml"/>
+
+<Include file="NeltharionsLair\modules.xml"/>
+<Include file="NeltharionsLair\locales.xml"/>
+
+<Include file="TheArcway\modules.xml"/>
+<Include file="TheArcway\locales.xml"/>
+
+<Include file="VaultOfTheWardens\modules.xml"/>
+<Include file="VaultOfTheWardens\locales.xml"/>
+
+<Include file="CathedralOfEternalNight\modules.xml"/>
+<Include file="CathedralOfEternalNight\locales.xml"/>
+
+<Include file="SeatOfTheTriumvirate\modules.xml"/>
+<Include file="SeatOfTheTriumvirate\locales.xml"/>
+
+</Ui>

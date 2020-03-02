@@ -1,0 +1,27 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<!-- Cataclysm -->
+
+<Include file="BlackrockCaverns\modules.xml"/>
+<Include file="EndTime\modules.xml"/>
+<Include file="EndTime\locales.xml"/>
+<Include file="GrimBatol\modules.xml"/>
+<Include file="GrimBatol\locales.xml"/>
+<Include file="HallsOfOrigination\modules.xml"/>
+<!--<Include file="HourOfTwilight\modules.xml"/>-->
+<Include file="LostCity\modules.xml"/>
+<Include file="LostCity\locales.xml"/>
+<Include file="Stonecore\modules.xml"/>
+<Include file="Stonecore\locales.xml"/>
+<Include file="ThroneTides\modules.xml"/>
+<Include file="ThroneTides\locales.xml"/>
+<Include file="VortexPinnacle\modules.xml"/>
+<Include file="WellOfEternity\modules.xml"/>
+<Include file="WellOfEternity\locales.xml"/>
+<Include file="ZulAman\modules.xml"/>
+<Include file="ZulAman\locales.xml"/>
+<Include file="ZulGurub\modules.xml"/>
+<Include file="ZulGurub\locales.xml"/>
+
+</Ui>

@@ -1,6 +1,6 @@
 ## Interface: 80300
 
-## Title: LittleWigs
+## Title: LittleWigs Legion
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-deDE: Boss Warnungen für 5-Spieler Dungeons & Szenarien.
 ## Notes-esES: Boss warnings for 5-man dungeons & scenarios.
@@ -19,6 +19,9 @@
 ## X-Curse-Project-ID: 4383
 ## X-WoWI-ID: 9577
 
-## Version: @project-version@
+## X-BigWigs-LoadOn-InstanceId: 1456, 1458, 1466, 1477, 1492, 1493, 1501, 1516, 1544, 1571, 1651, 1677, 1753
+## Dependencies: BigWigs
+## LoadOnDemand: 1
+## Version: v8.3.10
 
 modules.xml

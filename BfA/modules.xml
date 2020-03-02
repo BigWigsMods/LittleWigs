@@ -1,0 +1,43 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<!-- Battle for Azeroth -->
+<Include file="AtalDazar\modules.xml"/>
+<Include file="AtalDazar\locales.xml"/>
+
+<Include file="Freehold\modules.xml"/>
+<Include file="Freehold\locales.xml"/>
+
+<Include file="KingsRest\modules.xml"/>
+<Include file="KingsRest\locales.xml"/>
+
+<Include file="ShrineOfTheStorm\modules.xml"/>
+<Include file="ShrineOfTheStorm\locales.xml"/>
+
+<Include file="SiegeOfBoralus\modules.xml"/>
+<Include file="SiegeOfBoralus\locales.xml"/>
+
+<Include file="TempleOfSethraliss\modules.xml"/>
+<Include file="TempleOfSethraliss\locales.xml"/>
+
+<Include file="TheMotherlode\modules.xml"/>
+<Include file="TheMotherlode\locales.xml"/>
+
+<Include file="TolDagor\modules.xml"/>
+<Include file="TolDagor\locales.xml"/>
+
+<Include file="Underrot\modules.xml"/>
+<Include file="Underrot\locales.xml"/>
+
+<Include file="WaycrestManor\modules.xml"/>
+<Include file="WaycrestManor\locales.xml"/>
+
+<Include file="Mechagon\modules.xml"/>
+<Include file="Mechagon\locales.xml"/>
+
+<Include file="HorrificVisionOfOrgrimmar\modules.xml"/>
+<Include file="HorrificVisionOfOrgrimmar\locales.xml"/>
+
+<Include file="HorrificVisionOfStormwind\modules.xml"/>
+<Include file="HorrificVisionOfStormwind\locales.xml"/>
+</Ui>

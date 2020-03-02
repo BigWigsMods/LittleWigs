@@ -1,0 +1,32 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<!-- Wrath of the Lich King -->
+
+<Include file="Ahnkahet\modules.xml"/>
+<Include file="Ahnkahet\locales.xml"/>
+<Include file="AzjolNerub\modules.xml"/>
+<Include file="DrakTharonKeep\modules.xml"/>
+<Include file="Gundrak\modules.xml"/>
+<Include file="Gundrak\locales.xml"/>
+<Include file="HallsOfLightning\modules.xml"/>
+<Include file="HallsOfLightning\locales.xml"/>
+<Include file="HallsOfReflection\modules.xml"/>
+<Include file="HallsOfStone\modules.xml"/>
+<Include file="HallsOfStone\locales.xml"/>
+<Include file="PitOfSaron\modules.xml"/>
+<Include file="TheCullingOfStratholme\modules.xml"/>
+<Include file="TheCullingOfStratholme\locales.xml"/>
+<Include file="TheForgeOfSouls\modules.xml"/>
+<Include file="TheNexus\modules.xml"/>
+<Include file="TheNexus\locales.xml"/>
+<Include file="TheOculus\modules.xml"/>
+<Include file="TheVioletHold\modules.xml"/>
+<Include file="TheVioletHold\locales.xml"/>
+<Include file="TrialOfTheChampion\modules.xml"/>
+<Include file="TrialOfTheChampion\locales.xml"/>
+<Include file="UtgardeKeep\modules.xml"/>
+<Include file="UtgardePinnacle\modules.xml"/>
+<Include file="UtgardePinnacle\locales.xml"/>
+
+</Ui>
