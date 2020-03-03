@@ -32,6 +32,11 @@ if L then
 	L.remaining_boss = "%s на БОССЕ, %d осталось"
 end
 
+L = BigWigs:NewBossLocale("Dread Captain Lockwood", "ruRU")
+if L then
+	L.ordanance_dropped = "Нестабильное орудие упало"
+end
+
 L = BigWigs:NewBossLocale("Viq'Goth", "ruRU")
 if L then
 	L.demolishing_desc = "Предупреждать и отображать таймер появления Крушащего ужаса."
