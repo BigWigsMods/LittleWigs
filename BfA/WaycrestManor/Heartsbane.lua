@@ -72,7 +72,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:ArmorRemoved(args)
-	self:Message2(260805, "cyan", CL.removed_from:format(args.spellName, args.destName)) -- Focusing Iris
+	self:Message2(260805, "cyan", CL.removed_from:format(self:SpellName(260805), args.destName)) -- Focusing Iris
 	self:PlaySound(260805, "long") -- Focusing Iris
 	self:PrimaryIcon(260805, self:GetBossId(args.destGUID)) -- Focusing Iris
 	self:StopBar(260741) -- Jagged Nettles
