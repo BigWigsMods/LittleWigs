@@ -40,7 +40,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_REMOVED", "ArmorRemoved", 260907, 261266, 261265)
+	self:Log("SPELL_CAST_SUCCESS", "ClaimTheIris", 260852)
 	self:Log("SPELL_AURA_APPLIED", "FocusingIris", 260805)
 	self:Log("SPELL_CAST_START", "DireRitual", 260773)
 	self:Log("SPELL_CAST_START", "SoulManipulation", 260907)
@@ -56,25 +56,16 @@ end
 function mod:OnEngage()
 	playersWithRunicMark = 0
 	self:Bar(260907, 8.5) -- Soul Manipulation
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	local unit = self:GetBossId(131824) -- Sister Solena
-	if unit then
-		self:PrimaryIcon(260805, unit) -- Focusing Iris
-		self:UnregisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-	end
-end
-
-function mod:ArmorRemoved(args)
-	self:Message2(260805, "cyan", CL.removed_from:format(self:SpellName(260805), args.destName)) -- Focusing Iris
+function mod:ClaimTheIris(args)
+	self:Message2(260805, "cyan", CL.other:format(self:SpellName(260805), args.sourceName)) -- Focusing Iris
 	self:PlaySound(260805, "long") -- Focusing Iris
-	self:PrimaryIcon(260805, self:GetBossId(args.destGUID)) -- Focusing Iris
+	self:PrimaryIcon(260805, self:GetBossId(args.sourceGUID)) -- Focusing Iris
 	self:StopBar(260741) -- Jagged Nettles
 	self:StopBar(260703) -- Unstable Runic Mark
 	self:StopBar(260907) -- Soul Manipulation
