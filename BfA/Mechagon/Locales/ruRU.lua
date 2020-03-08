@@ -33,13 +33,13 @@ end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "ruRU")
 if L then
-	-- L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
+	L.warmup_trigger = "Что это? Ошибка в расчетах? Наши гости еще живы!"
 end
 
 L = BigWigs:NewBossLocale("King Mechagon", "ruRU")
 if L then
-	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
+	L.hardmode_desc = "Предупреждать, когда Аннигилятрон-5000 отображает порядок нажатия кнопок."
 
-	--L.button = "Button"
-	--L.button_desc = "Show a warning when someone clicks a button."
+	L.button = "Кнопка"
+	L.button_desc = "Предупреждать, когда кто-нибудь нажимает кнопку."
 end
