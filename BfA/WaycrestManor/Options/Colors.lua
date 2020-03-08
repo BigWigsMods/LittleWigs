@@ -4,7 +4,7 @@ BigWigs:AddColors("Heartsbane Triad", {
 	[260741] = {"blue","orange"},
 	[260773] = "red",
 	[260805] = "cyan",
-	[260926] = {"blue","orange"},
+	[260907] = {"blue","orange"},
 	[268086] = "blue",
 })
 
