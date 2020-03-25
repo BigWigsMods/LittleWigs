@@ -34,17 +34,8 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
-
 	self:Log("SPELL_CAST_START", "VoidTorrent", 307863)
 	self:Log("SPELL_CAST_START", "CriesOfTheVoid", 304976)
-end
-
--- There are no boss frames to trigger the engage
-function mod:ENCOUNTER_START(_, encounterId)
-	if encounterId == self.engageId then
-		self:Engage()
-	end
 end
 
 --------------------------------------------------------------------------------

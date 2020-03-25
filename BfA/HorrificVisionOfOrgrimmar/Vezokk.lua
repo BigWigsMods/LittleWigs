@@ -35,8 +35,6 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
-
 	self:Log("SPELL_CAST_START", "DefiledGround", 306726)
 	self:Log("SPELL_CAST_START", "RingOfChaos", 306617)
 	self:Log("SPELL_CAST_SUCCESS", "UnleashCorruption", 306656)
@@ -44,13 +42,6 @@ end
 
 function mod:OnEngage()
 	self:Bar(306726, 3.3) -- Defiled Ground
-end
-
--- There are no boss frames to trigger the engage
-function mod:ENCOUNTER_START(_, encounterId)
-	if encounterId == self.engageId then
-		self:Engage()
-	end
 end
 
 --------------------------------------------------------------------------------
