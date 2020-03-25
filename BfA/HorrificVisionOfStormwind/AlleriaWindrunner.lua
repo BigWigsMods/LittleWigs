@@ -35,8 +35,6 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
-
 	self:Log("SPELL_CAST_SUCCESS", "DarkenedSky", 308278)
 	self:Log("SPELL_CAST_START", "VoidEruption", 309819)
 	self:Log("SPELL_CAST_START", "ChainsOfServitude", 298691)
@@ -45,13 +43,6 @@ end
 function mod:OnEngage()
 	self:Bar(308278, 6.8) -- Darkened Sky
 	self:Bar(309819, 20.6) -- Void Eruption
-end
-
--- There are no boss frames to trigger the engage
-function mod:ENCOUNTER_START(_, encounterId)
-	if encounterId == self.engageId then
-		self:Engage()
-	end
 end
 
 --------------------------------------------------------------------------------
