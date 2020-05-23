@@ -57,6 +57,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VentJets", 285388)
 	self:Log("SPELL_CAST_SUCCESS", "VentJetsSuccess", 285388)
 	self:Log("SPELL_CAST_START", "MaximumThrust", 283422)
+
+	self:Death("PlatinumPummelerDeath", 144244)
+	self:Death("GnomercyDeath", 145185)
 end
 
 function mod:OnEngage()
@@ -138,4 +141,13 @@ do
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 43.7)
 	end
+end
+
+function mod:PlatinumPummelerDeath()
+	self:StopBar(285020) -- Whirling Edge
+end
+
+function mod:GnomercyDeath()
+	self:StopBar(285388) -- Vent Jets
+	self:StopBar(283422) -- Maximum Thrust
 end
