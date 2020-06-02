@@ -15,6 +15,12 @@ mod:RegisterEnableMob(
 mod.engageId = 2257
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local platingStacks = 3
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -50,7 +56,6 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 
 	self:Log("SPELL_AURA_REMOVED", "PlatinumPlatingRemoved", 282801)
-	self:Log("SPELL_AURA_REMOVED_DOSE", "PlatinumPlatingRemoved", 282801)
 	self:Log("SPELL_CAST_START", "WhirlingEdge", 285020)
 	self:Log("SPELL_CAST_SUCCESS", "LayMine", 285344)
 	self:Log("SPELL_CAST_SUCCESS", "FoeFlipper", 285152)
@@ -63,6 +68,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	platingStacks = 3
 	self:Bar(285020, 8.2) -- Whirling Edge
 	self:Bar(285388, 22) -- Vent Jets
 end
@@ -78,17 +84,11 @@ function mod:Warmup(event, msg)
 	end
 end
 
-do
-	-- If the event fires more than once, args.amount is the same for both events
-	local prev = 0
-	function mod:PlatinumPlatingRemoved(args)
-		local t = args.time
-		if t-prev > 0.1 then
-			prev = t
-			self:StackMessage(args.spellId, args.destName, args.amount, "green")
-			self:PlaySound(args.spellId, "long")
-		end
-	end
+function mod:PlatinumPlatingRemoved(args)
+	-- Manually track stacks since every time a stack is removed, the entire aura is removed and reapplied
+	platingStacks = platingStacks - 1
+	self:StackMessage(args.spellId, args.destName, platingStacks, "green")
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:WhirlingEdge(args)
