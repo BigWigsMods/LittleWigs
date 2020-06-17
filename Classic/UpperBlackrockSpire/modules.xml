@@ -1,8 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Script file="Emberseer.lua"/>
+<Script file="Beast.lua"/>
 <Script file="Drakkisath.lua"/>
+<Script file="Emberseer.lua"/>
+<Script file="Goraluk.lua"/>
+<Script file="Jed.lua"/>
+<Script file="Rend.lua"/>
+<Script file="Solakar.lua"/>
 
 <Include file="Options\options.xml"/>
 
