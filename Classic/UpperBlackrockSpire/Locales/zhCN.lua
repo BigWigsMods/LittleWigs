@@ -1,5 +1,7 @@
-local L = BigWigs:NewBossLocale("Orebender Gor'ashan", "zhCN")
-if not L then return end
-if L then
-	L.counduitLeft = "%d 导管剩余"
-end
+-- This file is a stub
+
+-- local L = BigWigs:NewBossLocale("<boss name>", "zhCN")
+-- if not L then return end
+-- if L then
+-- 	-- localise strings here
+-- end

@@ -1,5 +1,7 @@
-local L = BigWigs:NewBossLocale("Orebender Gor'ashan", "frFR")
-if not L then return end
-if L then
-	L.counduitLeft = "Il reste %d |4conduit:conduits;"
-end
+-- This file is a stub
+
+-- local L = BigWigs:NewBossLocale("<boss name>", "frFR")
+-- if not L then return end
+-- if L then
+-- 	-- localise strings here
+-- end
