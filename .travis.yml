@@ -10,7 +10,7 @@ before_script:
  - curl -s https://raw.githubusercontent.com/BigWigsMods/BigWigs/classic/gen_option_values.lua | lua
  - curl -sO https://raw.githubusercontent.com/BigWigsMods/BigWigs/classic/.luacheckrc
  - /home/travis/.luarocks/bin/luacheck . -q
-script: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -g 1.13.3
+script: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash
 
 notifications:
   email:
