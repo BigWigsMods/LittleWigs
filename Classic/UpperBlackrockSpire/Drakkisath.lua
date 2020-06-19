@@ -12,7 +12,7 @@ mod:RegisterEnableMob(10363)
 
 function mod:GetOptions()
 	return {
-		16805, -- Conflagration
+		{16805, "ICON"}, -- Conflagration
 	}
 end
 

@@ -21,7 +21,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "CurseCast", self:SpellName(18267))
 	self:Log("SPELL_CAST_SUCCESS", "ImmolateCast", self:SpellName(20800))
 	self:Log("SPELL_AURA_APPLIED", "CurseApplied", self:SpellName(18267))
-	self:Log("SPELL_AURA_APPLIED", "Immolate", self:SpellName(20800))
+	self:Log("SPELL_AURA_APPLIED", "ImmolateApplied", self:SpellName(20800))
 
 	self:Death("Win", 11518)
 end
