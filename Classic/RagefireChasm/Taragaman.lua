@@ -25,8 +25,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(18267, 180) -- Curse of Weakness
-	self:Bar(20800, 180) -- Immolate
+	self:Bar(18072, 180) -- Curse of Weakness
+	self:Bar(11970, 180) -- Immolate
 end
 
 --------------------------------------------------------------------------------
