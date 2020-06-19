@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Goraluk Anvilcrack", 1583)
+local mod, CL = BigWigs:NewBoss("Goraluk Anvilcrack", 229)
 if not mod then return end
 mod:RegisterEnableMob(10899)
 

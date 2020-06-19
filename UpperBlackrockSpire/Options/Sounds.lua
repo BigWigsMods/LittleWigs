@@ -1,5 +1,1 @@
--- This file is a stub
-
--- BigWigs:AddSounds("<boss name>", {
--- 	[<spell id>] = {"<typeA>","<typeB>"},
--- })
+-- Don't error because I'm empty, please.

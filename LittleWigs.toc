@@ -25,7 +25,7 @@
 ## LoadOnDemand: 1
 ## Dependencies: BigWigs
 
-## X-BigWigs-LoadOn-InstanceId: 209, 491, 717, 718, 719, 721, 722, 796, 1176, 1337, 1477, 1581, 1583, 1584, 2017, 2057, 2100, 2437, 2557
+## X-BigWigs-LoadOn-InstanceId: 33, 34, 36, 43, 44, 47, 48, 70, 90, 109, 129, 189, 209, 229, 230, 289, 329, 349, 389, 429
 
 warning.lua
 
