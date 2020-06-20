@@ -7,6 +7,16 @@ if not mod then return end
 mod:RegisterEnableMob(11518)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.bossName = "Jergosh the Invoker"
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -15,6 +25,10 @@ function mod:GetOptions()
 		18267, -- Curse of Weakness
 		20800, -- Immolate
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.bossName
 end
 
 function mod:OnBossEnable()

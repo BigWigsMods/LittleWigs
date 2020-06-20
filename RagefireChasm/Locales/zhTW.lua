@@ -1,7 +1,23 @@
--- This file is a stub
+local L = BigWigs:NewBossLocale("Bazzalan", "zhTW")
+if not L then return end
+if L then
+	-- L.bossName = "Bazzalan"
+end
 
--- local L = BigWigs:NewBossLocale("<boss name>", "zhTW")
--- if not L then return end
--- if L then
--- 	-- localise strings here
--- end
+L = BigWigs:NewBossLocale("Jergosh the Invoker", "zhTW")
+if not L then return end
+if L then
+	-- L.bossName = "Jergosh the Invoker"
+end
+
+L = BigWigs:NewBossLocale("Oggleflint", "zhTW")
+if not L then return end
+if L then
+	-- L.bossName = "Oggleflint"
+end
+
+L = BigWigs:NewBossLocale("Taragaman the Hungerer", "zhTW")
+if not L then return end
+if L then
+	-- L.bossName = "Taragaman the Hungerer"
+end

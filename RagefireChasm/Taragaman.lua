@@ -7,6 +7,16 @@ if not mod then return end
 mod:RegisterEnableMob(11520)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.bossName = "Taragaman the Hungerer"
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -15,6 +25,10 @@ function mod:GetOptions()
 		{18072, "TANK"}, -- Uppercut
 		11970, -- Fire Nova
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.bossName
 end
 
 function mod:OnBossEnable()
