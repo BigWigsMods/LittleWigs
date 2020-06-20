@@ -5,6 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Jergosh the Invoker", 389)
 if not mod then return end
 mod:RegisterEnableMob(11518)
+mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -18,43 +19,39 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "CurseCast", self:SpellName(18267))
-	self:Log("SPELL_CAST_SUCCESS", "ImmolateCast", self:SpellName(20800))
-	self:Log("SPELL_AURA_APPLIED", "CurseApplied", self:SpellName(18267))
-	self:Log("SPELL_AURA_APPLIED", "ImmolateApplied", self:SpellName(20800))
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+
+	self:Log("SPELL_CAST_SUCCESS", "Curse", 18267)
+	self:Log("SPELL_CAST_SUCCESS", "Immolate", 20800)
+	self:Log("SPELL_AURA_APPLIED", "CurseDebuff", 18267)
+	self:Log("SPELL_AURA_APPLIED", "ImmolateDebuff", 20800)
 
 	self:Death("Win", 11518)
 end
 
 function mod:OnEngage()
-	self:Bar(18267, 180) -- Curse of Weakness
-	self:Bar(20800, 180) -- Immolate
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
+	self:CDBar(18267, 10) -- Curse of Weakness
+	self:CDBar(20800, 8) -- Immolate
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:CurseCast(args)
-	if self:Hostile(args.sourceGUID) then
-		self:CDBar(18267, 180)
-	end
+function mod:Curse()
+	self:CDBar(18267, 10) -- 6~16
 end
 
-function mod:CurseApplied(args)
-	if self:Friendly(args.destGUID) then
-		self:Message(18267, "yellow")
-	end
+function mod:CurseDebuff()
+	self:Message2(18267, "yellow")
 end
 
-function mod:ImmolateCast(args)
-	if self:Hostile(args.sourceFlags) then
-		self:CDBar(20800, 180)
-	end
+function mod:Immolate()
+	self:CDBar(20800, 8) -- 5~12
 end
 
-function mod:ImmolateApplied(args)
-	if self:Friendly(args.destGUID) then
-		self:Message(20800, "yellow")
-	end
+function mod:ImmolateDebuff()
+	self:Message2(20800, "yellow")
 end

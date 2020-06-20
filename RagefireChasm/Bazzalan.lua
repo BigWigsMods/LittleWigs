@@ -5,6 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Bazzalan", 389)
 if not mod then return end
 mod:RegisterEnableMob(11519)
+mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -17,24 +18,26 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "PoisonCast", self:SpellName(744))
-	self:Log("SPELL_AURA_APPLIED", "PosionApplied", self:SpellName(744))
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+
+	self:Log("SPELL_CAST_SUCCESS", "Poison", 744)
+	self:Log("SPELL_AURA_APPLIED", "PosionDebuff", 744)
 
 	self:Death("Win", 11519)
+end
+
+function mod:OnEngage()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:PoisonCast(args)
-	if self:Hostile(args.sourceFlags) then
-		self:Message(744, "yellow")
-	end
+function mod:Poison(args)
+	self:Message2(744, "yellow")
 end
 
-function mod:PosionApplied(args)
-	if self:Friendly(args.destFlags) then
-		self:CDBar(744, 180)
-	end
+function mod:PosionDebuff()
+	self:CDBar(744, 10)
 end

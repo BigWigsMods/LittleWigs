@@ -5,6 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Taragaman the Hungerer", 389)
 if not mod then return end
 mod:RegisterEnableMob(11520)
+mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -18,26 +19,30 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "Uppercut", self:SpellName(18072))
-	self:Log("SPELL_CAST_SUCCESS", "FireNova", self:SpellName(11970))
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+
+	self:Log("SPELL_CAST_SUCCESS", "Uppercut", 18072)
+	self:Log("SPELL_CAST_SUCCESS", "FireNova", 11970)
 
 	self:Death("Win", 11520)
 end
 
 function mod:OnEngage()
-	self:Bar(18072, 180) -- Curse of Weakness
-	self:Bar(11970, 180) -- Immolate
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
+	self:CDBar(18072, 12) -- Uppercut
+	self:CDBar(11970, 16) -- Fire Nova
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Uppercut(args)
-	self:Message(18072, "orange")
-	self:CDBar(18072, 180)
+function mod:Uppercut()
+	self:Message2(18072, "orange")
+	self:CDBar(18072, 7) -- 7~17
 end
 
-function mod:FireNova(args)
-	self:CDBar(11970, 180)
+function mod:FireNova()
+	self:CDBar(11970, 12) -- 12~21
 end
