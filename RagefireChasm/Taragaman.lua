@@ -5,7 +5,6 @@
 local mod, CL = BigWigs:NewBoss("Taragaman the Hungerer", 389)
 if not mod then return end
 mod:RegisterEnableMob(11520)
-mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
 -- Initialization

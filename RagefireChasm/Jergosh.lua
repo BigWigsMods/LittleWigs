@@ -5,7 +5,6 @@
 local mod, CL = BigWigs:NewBoss("Jergosh the Invoker", 389)
 if not mod then return end
 mod:RegisterEnableMob(11518)
-mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
 -- Initialization

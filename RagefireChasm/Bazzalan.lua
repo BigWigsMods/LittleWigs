@@ -5,7 +5,6 @@
 local mod, CL = BigWigs:NewBoss("Bazzalan", 389)
 if not mod then return end
 mod:RegisterEnableMob(11519)
-mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
 -- Initialization
