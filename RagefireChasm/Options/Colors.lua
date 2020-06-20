@@ -1,6 +1,6 @@
 
-BigWigs:AddColors("Bazzalan", {
-	[744] = "yellow",
+BigWigs:AddColors("Taragaman the Hungerer", {
+	[18072] = "orange",
 })
 
 BigWigs:AddColors("Jergosh the Invoker", {
@@ -8,6 +8,6 @@ BigWigs:AddColors("Jergosh the Invoker", {
 	[20800] = "yellow",
 })
 
-BigWigs:AddColors("Taragaman the Hungerer", {
-	[18072] = "orange",
+BigWigs:AddColors("Bazzalan", {
+	[744] = "yellow",
 })
