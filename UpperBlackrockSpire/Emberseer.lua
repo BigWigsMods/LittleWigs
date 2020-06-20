@@ -27,9 +27,14 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
 	self:Death("Win", 9816)
+end
+function mod:OnEngage()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
 
 --------------------------------------------------------------------------------
