@@ -7,6 +7,19 @@ if not mod then return end
 mod:RegisterEnableMob(10363)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+local L = mod:NewLocale("enUS", true)
+if L then
+	L.bossName = "General Drakkisath"
+end
+L = mod:GetLocale()
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 

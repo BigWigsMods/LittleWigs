@@ -12,6 +12,8 @@ mod:RegisterEnableMob(9816)
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.bossName = "Pyroguard Emberseer"
+
 	L.start_trigger = "begins to regain its strength"
 end
 L = mod:GetLocale()
@@ -26,6 +28,10 @@ function mod:GetOptions()
 	}
 end
 
+function mod:OnRegister()
+	self.displayName = L.bossName
+end
+
 function mod:OnBossEnable()
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 
@@ -33,6 +39,7 @@ function mod:OnBossEnable()
 
 	self:Death("Win", 9816)
 end
+
 function mod:OnEngage()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 end
