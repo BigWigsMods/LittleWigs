@@ -65,8 +65,8 @@ end
 function mod:ConflagrationApply(args)
 	self:PrimaryIcon(16805, args.destName)
 	self:TargetBar(16805, 10, args.destName, "yellow")
-	self:TargetMessage2(16805, args.destName)
-	self:PlaySound("Alarm")
+	self:TargetMessage2(16805, "yellow", args.destName)
+	self:PlaySound(16805, "Alarm")
 end
 
 function mod:ConflagrationRemove(args)
