@@ -1,14 +1,46 @@
-
-local L = BigWigs:NewBossLocale("Pyroguard Emberseer", "esES") or BigWigs:NewBossLocale("Pyroguard Emberseer", "esMX")
+local L = BigWigs:NewBossLocale("The Beast", "esES")  or BigWigs:NewBossLocale("The Beast", "esMX")
 if not L then return end
 if L then
-	-- L.bossName = "Pyroguard Emberseer"
-	-- L.start_trigger = "begins to regain its strength"end
-
+	-- L.bossName = "The Beast"
 end
 
-local L = BigWigs:NewBossLocale("General Drakkisath", "esES") or BigWigs:NewBossLocale("General Drakkisath", "esMX")
+L = BigWigs:NewBossLocale("General Drakkisath", "esES")  or BigWigs:NewBossLocale("General Drakkisath", "esMX")
 if not L then return end
 if L then
 	-- L.bossName = "General Drakkisath"
+
+	-- L.guard = "Guard Deaths"
+	-- L.guard_desc = "Announces when a Chromatic Elite Guard dies"
+	-- L.guard_msg = "Guards dead: %d/%d"
+end
+
+L = BigWigs:NewBossLocale("Pyroguard Emberseer", "esES")  or BigWigs:NewBossLocale("Pyroguard Emberseer", "esMX")
+if not L then return end
+if L then
+	-- L.bossName = "Pyroguard Emberseer"
+	-- L.start_trigger = "begins to regain its strength"
+end
+
+L = BigWigs:NewBossLocale("Goraluk Anvilcrack", "esES")  or BigWigs:NewBossLocale("Goraluk Anvilcrack", "esMX")
+if not L then return end
+if L then
+	-- L.bossName = "Goraluk Anvilcrack"
+end
+
+L = BigWigs:NewBossLocale("Jed Runewatcher", "esES")  or BigWigs:NewBossLocale("Jed Runewatcher", "esMX")
+if not L then return end
+if L then
+	-- L.bossName = "Jed Runewatcher"
+end
+
+L = BigWigs:NewBossLocale("Warchief Rend Blackhand", "esES")  or BigWigs:NewBossLocale("Warchief Rend Blackhand", "esMX")
+if not L then return end
+if L then
+	-- L.bossName = "Warchief Rend Blackhand"
+end
+
+L = BigWigs:NewBossLocale("Solakar Flamewreath", "esES")  or BigWigs:NewBossLocale("Solakar Flamewreath", "esMX")
+if not L then return end
+if L then
+	-- L.bossName = "Solakar Flamewreath"
 end
