@@ -1,4 +1,5 @@
 
 BigWigs:AddColors("General Drakkisath", {
-	[16805] = "blue",
+	[16805] = "yellow",
+	["guard"] = "green",
 })
