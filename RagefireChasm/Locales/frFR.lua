@@ -4,7 +4,7 @@ if L then
 	-- L.bossName = "Bazzalan"
 end
 
-L = BigWigs:NewBossLocale("Jergosh the Invoker", "frFR")
+L = BigWigs:NewBossLocale("Jergosh", "frFR")
 if not L then return end
 if L then
 	-- L.bossName = "Jergosh the Invoker"
@@ -16,7 +16,7 @@ if L then
 	-- L.bossName = "Oggleflint"
 end
 
-L = BigWigs:NewBossLocale("Taragaman the Hungerer", "frFR")
+L = BigWigs:NewBossLocale("Taragaman", "frFR")
 if not L then return end
 if L then
 	-- L.bossName = "Taragaman the Hungerer"

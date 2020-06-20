@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Jed Runewatcher", 229)
+local mod, CL = BigWigs:NewBoss("Jed", 229)
 if not mod then return end
 mod:RegisterEnableMob(10509)
 

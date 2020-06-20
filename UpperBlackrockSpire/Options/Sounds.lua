@@ -1,4 +1,4 @@
 
-BigWigs:AddSounds("General Drakkisath", {
+BigWigs:AddSounds("Drakkisath", {
 	[16805] = "Alarm",
 })

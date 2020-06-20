@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("General Drakkisath", 229)
+local mod, CL = BigWigs:NewBoss("Drakkisath", 229)
 if not mod then return end
 mod:RegisterEnableMob(10363, 10814) -- Drakkisath, Chromatic Elite Guard
 

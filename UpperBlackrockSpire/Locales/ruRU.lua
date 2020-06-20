@@ -1,11 +1,11 @@
 
-local L = BigWigs:NewBossLocale("The Beast", "ruRU")
+local L = BigWigs:NewBossLocale("Beast", "ruRU")
 if not L then return end
 if L then
 	-- L.bossName = "The Beast"
 end
 
-L = BigWigs:NewBossLocale("General Drakkisath", "ruRU")
+L = BigWigs:NewBossLocale("Drakkisath", "ruRU")
 if not L then return end
 if L then
 	-- L.bossName = "General Drakkisath"
@@ -15,32 +15,32 @@ if L then
 	-- L.guard_msg = "Guards dead: %d/%d"
 end
 
-L = BigWigs:NewBossLocale("Pyroguard Emberseer", "ruRU")
+L = BigWigs:NewBossLocale("Emberseer", "ruRU")
 if not L then return end
 if L then
 	-- L.bossName = "Pyroguard Emberseer"
 	-- L.start_trigger = "begins to regain its strength"
 end
 
-L = BigWigs:NewBossLocale("Goraluk Anvilcrack", "ruRU")
+L = BigWigs:NewBossLocale("Goraluk", "ruRU")
 if not L then return end
 if L then
 	-- L.bossName = "Goraluk Anvilcrack"
 end
 
-L = BigWigs:NewBossLocale("Jed Runewatcher", "ruRU")
+L = BigWigs:NewBossLocale("Jed", "ruRU")
 if not L then return end
 if L then
 	-- L.bossName = "Jed Runewatcher"
 end
 
-L = BigWigs:NewBossLocale("Warchief Rend Blackhand", "ruRU")
+L = BigWigs:NewBossLocale("Rend", "ruRU")
 if not L then return end
 if L then
 	-- L.bossName = "Warchief Rend Blackhand"
 end
 
-L = BigWigs:NewBossLocale("Solakar Flamewreath", "ruRU")
+L = BigWigs:NewBossLocale("Solakar", "ruRU")
 if not L then return end
 if L then
 	-- L.bossName = "Solakar Flamewreath"

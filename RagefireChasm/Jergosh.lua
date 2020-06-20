@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Jergosh the Invoker", 389)
+local mod, CL = BigWigs:NewBoss("Jergosh", 389)
 if not mod then return end
 mod:RegisterEnableMob(11518)
 

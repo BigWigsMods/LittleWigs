@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Pyroguard Emberseer", 229)
+local mod, CL = BigWigs:NewBoss("Emberseer", 229)
 if not mod then return end
 mod:RegisterEnableMob(9816)
 
