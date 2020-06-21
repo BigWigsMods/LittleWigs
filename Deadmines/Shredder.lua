@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Sneed's Shredder", 389)
+local mod, CL = BigWigs:NewBoss("Sneed's Shredder", 36)
 if not mod then return end
 mod:RegisterEnableMob(642)
 
