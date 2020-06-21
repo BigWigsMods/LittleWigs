@@ -1,0 +1,16 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Gizrul.lua"/>
+<Script file="Halycon.lua"/>
+<Script file="Omokk.lua"/>
+<Script file="Smolderweb.lua"/>
+<Script file="Urok.lua"/>
+<Script file="Voone.lua"/>
+<Script file="Voshgajin.lua"/>
+<Script file="Wyrmthalak.lua"/>
+<Script file="Zigris.lua"/>
+
+<Include file="Options\options.xml"/>
+
+</Ui>
