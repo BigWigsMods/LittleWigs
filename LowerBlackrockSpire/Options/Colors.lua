@@ -1,4 +1,5 @@
+-- This file is a stub
 
--- BigWigs:AddColors("Taragaman", {
--- 	[18072] = "orange",
+-- BigWigs:AddColors("bossName", {
+-- 	[option] = "color",
 -- })
