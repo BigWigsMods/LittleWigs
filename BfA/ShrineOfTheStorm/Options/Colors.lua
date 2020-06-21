@@ -21,7 +21,8 @@ BigWigs:AddColors("Lord Stormsong", {
 	[268347] = "yellow",
 	[268896] = {"blue","orange"},
 	[269097] = "orange",
-	[269131] = {"blue","red"},
+	[269131] = {"blue","green","red"},
+	[274714] = "blue",
 })
 
 BigWigs:AddColors("Vol'zith the Whisperer", {
