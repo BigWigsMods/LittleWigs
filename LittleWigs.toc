@@ -13,16 +13,18 @@
 ## Notes-zhCN: 5人地下城和场景战役首领警报。
 ## Notes-zhTW: 5人地城和情境地圖首領警報。
 ## Author: Funkydude
+## Version: @project-version@
+
 ## X-Category: Party
 ## X-Credits: Ulic
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
 ## X-Curse-Project-ID: 4383
 ## X-WoWI-ID: 9577
 
-## X-BigWigs-LoadOn-InstanceId: 33
+## X-BigWigs-LoadOn-InstanceId: 999999
+
 ## Dependencies: BigWigs
 ## LoadOnDemand: 1
-## Version: @project-version@
 
 warning.lua
 
