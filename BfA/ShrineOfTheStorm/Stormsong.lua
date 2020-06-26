@@ -105,7 +105,7 @@ end
 do
 	local prev = 0
 	function mod:TwistingVoid(args)
-		if self:Me(args.destGUID) and not self:UnitDebuff("player", 269131) then -- do not display the warning if affected by Mindbender
+		if self:Me(args.destGUID) then
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
