@@ -21,7 +21,8 @@ BigWigs:AddSounds("Lord Stormsong", {
 	[268347] = "alert",
 	[268896] = "alert",
 	[269097] = "alarm",
-	[269131] = "warning",
+	[269131] = {"info","warning"},
+	[274714] = "alarm",
 })
 
 BigWigs:AddSounds("Vol'zith the Whisperer", {

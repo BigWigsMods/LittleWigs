@@ -30,6 +30,7 @@ function mod:GetOptions()
 		268347, -- Void Bolt
 		269097, -- Waken the Void
 		269131, -- Ancient Mindbender
+		274714, -- Twisting Void
 		{268896, "DISPEL"}, -- Mind Rend
 	}, {
 		[268347] = "general",
@@ -44,6 +45,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "WakentheVoid", 269097)
 	self:Log("SPELL_CAST_SUCCESS", "AncientMindbender", 269131)
 	self:Log("SPELL_AURA_APPLIED", "AncientMindbenderApplied", 269131)
+	self:Log("SPELL_AURA_REMOVED", "AncientMindbenderRemoved", 269131)
+	self:Log("SPELL_PERIODIC_DAMAGE", "TwistingVoid", 274714)
+	self:Log("SPELL_PERIODIC_MISSED", "TwistingVoid", 274714)
 	self:Log("SPELL_AURA_APPLIED", "MindRendApplied", 268896)
 end
 
@@ -86,7 +90,30 @@ end
 
 function mod:AncientMindbenderApplied(args)
 	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetBar(args.spellId, 20, args.destName, 269242) -- Surrender to the Void
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
+end
+
+function mod:AncientMindbenderRemoved(args)
+	self:StopBar(269242, args.destName) -- Surrender to the Void
+	if self:Me(args.destGUID) then
+		self:Message2(args.spellId, "green", CL.removed:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+do
+	local prev = 0
+	function mod:TwistingVoid(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "alarm", "gtfo")
+			end
+		end
+	end
 end
 
 function mod:MindRendApplied(args)
