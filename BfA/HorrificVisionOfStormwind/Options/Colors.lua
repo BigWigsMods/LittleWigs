@@ -2,6 +2,7 @@
 BigWigs:AddColors("Alleria Windrunner", {
 	[298691] = "red",
 	[308278] = "orange",
+	[309648] = "yellow",
 	[309819] = "red",
 })
 

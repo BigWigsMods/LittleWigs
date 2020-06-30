@@ -2,6 +2,7 @@
 BigWigs:AddSounds("Alleria Windrunner", {
 	[298691] = "alarm",
 	[308278] = "alert",
+	[309648] = "alert",
 	[309819] = "alarm",
 })
 
