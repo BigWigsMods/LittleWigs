@@ -5,6 +5,7 @@
 <Script file="SkarvaldAndDalronn.lua"/>
 <Script file="Ingvar.lua"/>
 
+<!-- <Include file="Locales\locales.xml"/> -->
 <Include file="Options\options.xml"/>
 
 </Ui>

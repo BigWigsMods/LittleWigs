@@ -7,6 +7,7 @@
 <Script file="Beauty.lua"/>
 <Script file="Obsidius.lua"/>
 
+<!-- <Include file="Locales\locales.xml"/> -->
 <Include file="Options\options.xml"/>
 
 </Ui>

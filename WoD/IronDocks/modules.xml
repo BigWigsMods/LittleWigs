@@ -6,6 +6,7 @@
 <Script file="Oshir.lua"/>
 <Script file="Skulloc.lua"/>
 
+<Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
 
 </Ui>

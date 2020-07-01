@@ -5,6 +5,7 @@
 <Script file="Anzu.lua"/>
 <Script file="Ikiss.lua"/>
 
+<!-- <Include file="Locales\locales.xml"/> -->
 <Include file="Options\options.xml"/>
 
 </Ui>

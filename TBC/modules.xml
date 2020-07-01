@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="AuchenaiCrypts\modules.xml"/>
+<Include file="HellfireRamparts\modules.xml"/>
+<Include file="MagistersTerrace\modules.xml"/>
+<Include file="ManaTombs\modules.xml"/>
+<Include file="OldHillsbradFoothills\modules.xml"/>
+<Include file="SethekkHalls\modules.xml"/>
+<Include file="ShadowLabyrinth\modules.xml"/>
+<Include file="TheArcatraz\modules.xml"/>
+<Include file="TheBlackMorass\modules.xml"/>
+<Include file="TheBloodFurnace\modules.xml"/>
+<Include file="TheBotanica\modules.xml"/>
+<Include file="TheMechanar\modules.xml"/>
+<Include file="TheShatteredHalls\modules.xml"/>
+<Include file="TheSlavePens\modules.xml"/>
+<Include file="TheSteamvault\modules.xml"/>
+<Include file="TheUnderbog\modules.xml"/>
+
+</Ui>
