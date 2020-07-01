@@ -1,0 +1,21 @@
+## Interface: 80300
+
+## Title: LittleWigs [|cffeda55fLegion|r]
+## Title-deDE: LittleWigs [|cffeda55fLegion|r]
+## Title-esES: LittleWigs [|cffeda55fLegion|r]
+## Title-esMX: LittleWigs [|cffeda55fLegion|r]
+## Title-frFR: LittleWigs [|cffeda55fLegion|r]
+## Title-itIT: LittleWigs [|cffeda55fLegion|r]
+## Title-koKR: LittleWigs [|cffeda55f군단|r]
+## Title-ptBR: LittleWigs [|cffeda55fLegion|r]
+## Title-ruRU: LittleWigs [|cffeda55fLegion|r]
+## Title-zhCN: LittleWigs [|cffeda55f军团再临|r]
+## Title-zhTW: LittleWigs [|cffeda55f軍臨天下|r]
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 1456, 1466, 1477, 1458, 1492, 1493, 1501, 1516, 1544, 1571, 1651, 1677, 1753
+
+modules.xml

@@ -1,2 +1,11 @@
 package-as: LittleWigs
 wowi-archive-previous: no
+
+move-folders:
+    LittleWigs/Classic: LittleWigs_Classic
+    LittleWigs/TBC: LittleWigs_BurningCrusade
+    LittleWigs/WotLK: LittleWigs_WrathOfTheLichKing
+    LittleWigs/Cataclysm: LittleWigs_Cataclysm
+    LittleWigs/MoP: LittleWigs_MistsOfPandaria
+    LittleWigs/WoD: LittleWigs_WarlordsOfDraenor
+    LittleWigs/Legion: LittleWigs_Legion
