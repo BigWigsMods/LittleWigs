@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Margrave Stradama", 2289, 2404)
 if not mod then return end
-mod:RegisterEnableMob(163157) -- Amarth
+mod:RegisterEnableMob(164267) -- Margrave Stradama
 mod.engageId = 2386
 --mod.respawnTime = 30
 

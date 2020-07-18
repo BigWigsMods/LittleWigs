@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("High Adjudicator Aleez", 2287, 2411)
 if not mod then return end
---mod:RegisterEnableMob(0)
+mod:RegisterEnableMob(165410) -- High Adjudicator Aleez
 mod.engageId = 2403
 --mod.respawnTime = 30
 

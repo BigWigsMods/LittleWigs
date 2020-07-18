@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Tred'ova", 2290, 2405)
 if not mod then return end
---mod:RegisterEnableMob(0)
+mod:RegisterEnableMob(164517) -- Tred'ova
 mod.engageId = 2393
 --mod.respawnTime = 30
 
