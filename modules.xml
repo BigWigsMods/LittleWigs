@@ -216,4 +216,14 @@
 
 <Include file="BfA\HorrificVisionOfStormwind\modules.xml"/>
 <Include file="BfA\HorrificVisionOfStormwind\locales.xml"/>
+
+<!-- Shadowlands -->
+<Include file="Shadowlands\TheNecroticWake\modules.xml"/>
+<!-- <Include file="Shadowlands\TheNecroticWake\locales.xml"/> -->
+
+<Include file="Shadowlands\Plaguefall\modules.xml"/>
+<!-- <Include file="Shadowlands\Plaguefall\locales.xml"/> -->
+
+<Include file="Shadowlands\TheaterOfPain\modules.xml"/>
+<!-- <Include file="Shadowlands\TheaterOfPain\locales.xml"/> -->
 </Ui>
