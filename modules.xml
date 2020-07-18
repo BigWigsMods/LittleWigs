@@ -218,12 +218,28 @@
 <Include file="BfA\HorrificVisionOfStormwind\locales.xml"/>
 
 <!-- Shadowlands -->
+<Include file="Shadowlands\SanguineDepths\modules.xml"/>
+<!-- <Include file="Shadowlands\SanguineDepths\locales.xml"/> -->
+
+<Include file="Shadowlands\SpiresOfAscension\modules.xml"/>
+<!-- <Include file="Shadowlands\SpiresOfAscension\locales.xml"/> -->
+
 <Include file="Shadowlands\TheNecroticWake\modules.xml"/>
 <!-- <Include file="Shadowlands\TheNecroticWake\locales.xml"/> -->
+
+<Include file="Shadowlands\HallsofAtonement\modules.xml"/>
+<!-- <Include file="Shadowlands\HallsofAtonement\locales.xml"/> -->
 
 <Include file="Shadowlands\Plaguefall\modules.xml"/>
 <!-- <Include file="Shadowlands\Plaguefall\locales.xml"/> -->
 
+<Include file="Shadowlands\MistsofTirnaScithe\modules.xml"/>
+<!-- <Include file="Shadowlands\MistsofTirnaScithe\locales.xml"/> -->
+
+<Include file="Shadowlands\DeOtherSide\modules.xml"/>
+<!-- <Include file="Shadowlands\DeOtherSide\locales.xml"/> -->
+
 <Include file="Shadowlands\TheaterOfPain\modules.xml"/>
 <!-- <Include file="Shadowlands\TheaterOfPain\locales.xml"/> -->
+
 </Ui>
