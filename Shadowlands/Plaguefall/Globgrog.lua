@@ -10,6 +10,13 @@ mod.engageId = 2382
 --mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local plaguestompCount = 1
+local slimeWaveCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -28,9 +35,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	--self:CDBar(324459, 17.1) -- Beckon Slime
-	--self:CDBar(324527, 17.1) -- Plaguestomp
-	--self:CDBar(324667, 17.1) -- Slime Wave
+	plaguestompCount = 1
+	slimeWaveCount = 1
+
+	self:CDBar(324459, 25.5) -- Beckon Slime
+	self:CDBar(324527, 8.9) -- Plaguestomp
+	self:CDBar(324667, 17.1) -- Slime Wave
 end
 
 --------------------------------------------------------------------------------
@@ -40,17 +50,19 @@ end
 function mod:BeckonSlime(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	--self:Bar(args.spellId, 37.7)
+	self:CDBar(args.spellId, 54.5)
 end
 
 function mod:Plaguestomp(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	--self:Bar(args.spellId, 37.7)
+	plaguestompCount = plaguestompCount + 1
+	self:CDBar(args.spellId, plaguestompCount % 2 == 0 and 35 or 20) -- XXX pull:10.5, 37.7, 24.3, 30.4 // pull:8.9, 38.8, 19.0, 36.4, 24.3, 30.4
 end
 
 function mod:SlimeWave(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:Bar(args.spellId, 37.7)
+	slimeWaveCount = slimeWaveCount + 1
+	self:Bar(args.spellId, slimeWaveCount % 2 == 0 and 37.7 or 10) -- XXX pull:17.9, 37.6, 11.0, 43.7 // pull:16.1, 39.7, 18.2, 36.4, 10.9, 43.7
 end
