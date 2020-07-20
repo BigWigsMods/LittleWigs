@@ -30,11 +30,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "InfectiousRain", 322232)
 	self:Log("SPELL_CAST_SUCCESS", "MalignantGrowth", 322304)
-
 end
 
 function mod:OnEngage()
@@ -68,7 +67,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	if self:MobId(UnitGUID(unit)) == 164267 and not UnitCanAttack("player", unit) then -- Xalzaix
+	if self:MobId(UnitGUID(unit)) == 164267 and UnitCanAttack("player", unit) then -- Margrave Stradama
 		self:Message2("stages", "green", CL.over:format(CL.intermission), false)
 		intermission = false
 		if intermissionCount < 2 then -- No adds after the last intermission

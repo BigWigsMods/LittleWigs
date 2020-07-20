@@ -22,14 +22,14 @@ local slimeWaveCount = 1
 
 function mod:GetOptions()
 	return {
-		324459, -- Beckon Slime
+		324490, -- Beckon Slime
 		324527, -- Plaguestomp
 		324667, -- Slime Wave
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "BeckonSlime", 324459)
+	self:Log("SPELL_CAST_START", "BeckonSlime", 324490)
 	self:Log("SPELL_CAST_START", "Plaguestomp", 324527)
 	self:Log("SPELL_CAST_START", "SlimeWave", 324667)
 end
@@ -38,7 +38,7 @@ function mod:OnEngage()
 	plaguestompCount = 1
 	slimeWaveCount = 1
 
-	self:CDBar(324459, 25.5) -- Beckon Slime
+	self:CDBar(324490, 25.5) -- Beckon Slime
 	self:CDBar(324527, 8.9) -- Plaguestomp
 	self:CDBar(324667, 17.1) -- Slime Wave
 end
