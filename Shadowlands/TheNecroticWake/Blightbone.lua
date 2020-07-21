@@ -24,16 +24,16 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HeavingRetchStart", 320596)
-	self:Log("SPELL_AURA_APPLIED", "BloodGorgeApplied", 257829)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "BloodGorgeApplied", 257829)
-	self:Log("SPELL_CAST_START", "FetidGasStart", 320637)
-	self:Log("SPELL_CAST_START", "CrunchStart", 320655)
+	self:Log("SPELL_AURA_APPLIED", "BloodGorgeApplied", 320630)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "BloodGorgeApplied", 320630)
+	self:Log("SPELL_CAST_START", "FetidGas", 320637)
+	self:Log("SPELL_CAST_START", "Crunch", 320655)
 end
 
 function mod:OnEngage()
-	self:CDBar(320655, 10.5) -- Crunch
+	self:Bar(320655, 5.5) -- Crunch
 	self:CDBar(320596, 10.5) -- Heaving Retch
-	self:CDBar(320637, 10.5) -- Fetid Gas
+	self:Bar(320637, 22.5) -- Fetid Gas
 end
 
 --------------------------------------------------------------------------------
@@ -44,17 +44,15 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage2(320596, "red", name)
 		if self:Me(guid) then
-			--self:PlaySound(320596, "warning")
+			self:PlaySound(320596, "warning")
 			self:Flash(320596)
 			self:Say(320596)
-		else
-			--self:PlaySound(320596, "alarm")
 		end
 	end
 
 	function mod:HeavingRetchStart(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 22.5)
+		self:Bar(args.spellId, 24.5)
 	end
 end
 
@@ -66,14 +64,14 @@ function mod:BloodGorgeApplied(args)
 	end
 end
 
-function mod:FetidGasStart(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
-	--self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 25)
+function mod:FetidGas(args)
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:Bar(args.spellId, 25)
 end
 
-function mod:CrunchStart(args)
-	self:Message2(args.spellId, "purple", CL.casting:format(args.spellName))
-	--self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 12)
+function mod:Crunch(args)
+	self:Message2(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 12.5)
 end

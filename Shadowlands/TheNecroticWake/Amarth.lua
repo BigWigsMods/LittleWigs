@@ -9,7 +9,6 @@ mod:RegisterEnableMob(163157) -- Amarth
 mod.engageId = 2388
 --mod.respawnTime = 30
 
-local frenzyCount = 1
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -18,53 +17,59 @@ function mod:GetOptions()
 	return {
 		321226, -- Land of the Dead
 		321247, -- Final Harvest
-		--322519, -- Bone Spikes
-		--320015, -- Unholy Frenzy
+		333488, -- Necrotic Breath
+		{320012, "TANK_HEALER"}, -- Unholy Frenzy
+		320171, -- Necrotic Bolt
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "LandoftheDeadStart", 321226)
-	self:Log("SPELL_CAST_START", "FinalHarvestStart", 321247)
-	self:Log("SPELL_CAST_START", "BoneSpikesStart", 321247)
-	self:Log("SPELL_CAST_START", "UnholyFrenzyStart", 320015)
+	self:Log("SPELL_CAST_START", "LandoftheDead", 321226)
+	self:Log("SPELL_CAST_START", "FinalHarvest", 321247)
+	self:Log("SPELL_CAST_START", "NecroticBreath", 333488)
+	self:Log("SPELL_CAST_SUCCESS", "UnholyFrenzy", 320012)
+	self:Log("SPELL_CAST_START", "NecroticBolt", 320171)
 end
 
 function mod:OnEngage()
-	frenzyCount = 1
-
-	--self:CDBar(322519, 8.6) -- Bone Spikes
-	--self:CDBar(320015, 11.9) -- Unholy Frenzy
-	self:CDBar(321226, 17.1) -- Land of the Dead
-	self:CDBar(321247, 42.2) -- Final Harvest
+	self:Bar(320012, 7) -- Unholy Frenzy
+	self:Bar(321226, 12) -- Land of the Dead
+	self:Bar(333488, 29.5) -- Necrotic Breath
+	self:Bar(321247, 41.5) -- Final Harvest
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:LandoftheDeadStart(args)
-	self:Message2(args.spellId, "yellow")
-	--self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 37.7)
+function mod:LandoftheDead(args)
+	self:Message2(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "long")
+	self:Bar(args.spellId, 42.5)
 end
 
-function mod:FinalHarvestStart(args)
+function mod:FinalHarvest(args)
 	self:Message2(args.spellId, "red")
-	--self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 4)
-	self:Bar(args.spellId, 37.7)
+	self:Bar(args.spellId, 47.5)
 end
 
-function mod:BoneSpikesStart(args)
+function mod:NecroticBreath(args)
 	self:Message2(args.spellId, "orange")
-	--self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 20)
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 46)
 end
 
-function mod:UnholyFrenzyStart(args)
+function mod:UnholyFrenzy(args)
 	self:Message2(args.spellId, "purple")
-	--self:PlaySound(args.spellId, "alarm")
-	frenzyCount = frenzyCount + 1
-	self:CDBar(args.spellId, frenzyCount == 4 and 35 or 25.5)
+	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 45)
+end
+
+function mod:NecroticBolt(args)
+	if self:Interrupter() then
+		self:Message2(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alert")
+	end
 end
