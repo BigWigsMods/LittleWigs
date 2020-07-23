@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Consumption", 322450)
 	self:Log("SPELL_CAST_SUCCESS", "AcceleratedIncubation", 322550)
 	self:Log("SPELL_CAST_SUCCESS", "MindLink", 322614)
-	self:Log("SPELL_AURA_APPLIED", "MarkedPreyApplied", 323059)
+	self:Log("SPELL_AURA_APPLIED", "MarkedPreyApplied", 322563)
 	self:Log("SPELL_CAST_START", "Parasitic", 337235, 337249, 337255) -- Parasitic Pacification, Incapacitation and Domination
 end
 
@@ -67,17 +67,18 @@ end
 function mod:AcceleratedIncubation(args)
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 25)
+	self:CDBar(args.spellId, 24)
 end
 
 function mod:MindLink(args)
-	self:Message2(args.spellId, "orange")
+	self:TargetMessage2(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 17)
 end
 
 function mod:MarkedPreyApplied(args)
 	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:CDBar(args.spellId, 24)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alarm")
 	end

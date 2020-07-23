@@ -92,5 +92,5 @@ function mod:DromansWrathRemoved(args)
 	self:Bar(323137, 9) -- Bewildering Pollen
 	self:Bar(323177, 18.4) -- Tears of the Forest
 	self:Bar(328756, 26.5) -- Repulsive Visage XXX Estimated
-	self:Bar(328756, 30) -- Embrace Darkness XXX Estimated
+	self:Bar(323149, 36) -- Embrace Darkness
 end

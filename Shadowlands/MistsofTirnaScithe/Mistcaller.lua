@@ -44,10 +44,17 @@ function mod:GuessingGame(args)
 	self:PlaySound(args.spellId, "long")
 end
 
-function mod:DodgeBall(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 14.5)
+do
+	local prev = 0
+	function mod:DodgeBall(args)
+		local t = args.time
+		if t-prev > 2 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+			self:CDBar(args.spellId, 14.5)
+		end
+	end
 end
 
 do
