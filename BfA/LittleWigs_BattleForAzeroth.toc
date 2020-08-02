@@ -1,0 +1,21 @@
+## Interface: 80300
+
+## Title: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-deDE: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-esES: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-esMX: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-frFR: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-itIT: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-koKR: LittleWigs [|cffeda55f격전의 아제로스|r]
+## Title-ptBR: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-ruRU: LittleWigs [|cffeda55fBattle for Azeroth|r]
+## Title-zhCN: LittleWigs [|cffeda55f争霸艾泽拉斯|r]
+## Title-zhTW: LittleWigs [|cffeda55f決戰艾澤拉斯|r]
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 1594, 1754, 1762, 1763, 1771, 1822, 1841, 1862, 1864, 1877, 2097, 2212, 2213
+
+modules.xml
