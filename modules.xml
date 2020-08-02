@@ -11,30 +11,6 @@
 <Include file="Legion\modules.xml"/>
 <!--@end-do-not-package@-->
 <Include file="BfA\modules.xml"/>
-
-<!-- Shadowlands -->
-<Include file="Shadowlands\SanguineDepths\modules.xml"/>
-<!-- <Include file="Shadowlands\SanguineDepths\locales.xml"/> -->
-
-<Include file="Shadowlands\SpiresOfAscension\modules.xml"/>
-<!-- <Include file="Shadowlands\SpiresOfAscension\locales.xml"/> -->
-
-<Include file="Shadowlands\TheNecroticWake\modules.xml"/>
-<!-- <Include file="Shadowlands\TheNecroticWake\locales.xml"/> -->
-
-<Include file="Shadowlands\HallsOfAtonement\modules.xml"/>
-<!-- <Include file="Shadowlands\HallsOfAtonement\locales.xml"/> -->
-
-<Include file="Shadowlands\Plaguefall\modules.xml"/>
-<Include file="Shadowlands\Plaguefall\locales.xml"/>
-
-<Include file="Shadowlands\MistsOfTirnaScithe\modules.xml"/>
-<!-- <Include file="Shadowlands\MistsOfTirnaScithe\locales.xml"/> -->
-
-<Include file="Shadowlands\DeOtherSide\modules.xml"/>
-<!-- <Include file="Shadowlands\DeOtherSide\locales.xml"/> -->
-
-<Include file="Shadowlands\TheaterOfPain\modules.xml"/>
-<!-- <Include file="Shadowlands\TheaterOfPain\locales.xml"/> -->
+<Include file="Shadowlands\modules.xml"/>
 
 </Ui>

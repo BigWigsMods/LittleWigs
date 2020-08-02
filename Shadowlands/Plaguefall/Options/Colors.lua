@@ -27,3 +27,25 @@ BigWigs:AddColors("Margrave Stradama", {
 	[322475] = "green",
 	["stages"] = "green",
 })
+
+BigWigs:AddColors("Plaguefall Trash", {
+	[318949] = "red",
+	[320512] = {"blue","yellow"},
+	[320517] = "yellow",
+	[321935] = {"blue","red","yellow"},
+	[323572] = "red",
+	[327233] = "red",
+	[327515] = {"blue","yellow"},
+	[327882] = {"blue","yellow"},
+	[327995] = "red",
+	[328016] = "orange",
+	[328177] = "orange",
+	[328180] = {"blue","orange","yellow"},
+	[328395] = {"blue","orange"},
+	[328475] = "red",
+	[329239] = "orange",
+	[330403] = "red",
+	[330786] = "orange",
+	[330816] = "yellow",
+	[336451] = "orange",
+})

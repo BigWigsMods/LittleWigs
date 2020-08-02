@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="SanguineDepths\modules.xml"/>
+<Include file="SpiresOfAscension\modules.xml"/>
+<Include file="TheNecroticWake\modules.xml"/>
+<Include file="HallsOfAtonement\modules.xml"/>
+<Include file="Plaguefall\modules.xml"/>
+<Include file="MistsOfTirnaScithe\modules.xml"/>
+<Include file="DeOtherSide\modules.xml"/>
+<Include file="TheaterOfPain\modules.xml"/>
+
+</Ui>
