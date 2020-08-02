@@ -227,14 +227,14 @@
 <Include file="Shadowlands\TheNecroticWake\modules.xml"/>
 <!-- <Include file="Shadowlands\TheNecroticWake\locales.xml"/> -->
 
-<Include file="Shadowlands\HallsofAtonement\modules.xml"/>
-<!-- <Include file="Shadowlands\HallsofAtonement\locales.xml"/> -->
+<Include file="Shadowlands\HallsOfAtonement\modules.xml"/>
+<!-- <Include file="Shadowlands\HallsOfAtonement\locales.xml"/> -->
 
 <Include file="Shadowlands\Plaguefall\modules.xml"/>
 <!-- <Include file="Shadowlands\Plaguefall\locales.xml"/> -->
 
-<Include file="Shadowlands\MistsofTirnaScithe\modules.xml"/>
-<!-- <Include file="Shadowlands\MistsofTirnaScithe\locales.xml"/> -->
+<Include file="Shadowlands\MistsOfTirnaScithe\modules.xml"/>
+<!-- <Include file="Shadowlands\MistsOfTirnaScithe\locales.xml"/> -->
 
 <Include file="Shadowlands\DeOtherSide\modules.xml"/>
 <!-- <Include file="Shadowlands\DeOtherSide\locales.xml"/> -->
