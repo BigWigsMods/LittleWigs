@@ -21,7 +21,7 @@ local hooked = false
 function mod:GetOptions()
 	return {
 		320358, -- Awaken Creation
-		{322681, "SAY", "SAY_COUNTDOWN"}, -- Meat Hook
+		{322681, "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Meat Hook
 		{320376, "TANK"}, -- Mutlilate
 		334476, -- Embalming Ichor
 		{320200, "ME_ONLY"}, -- Stitchneedle
