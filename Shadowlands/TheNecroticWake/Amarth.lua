@@ -68,8 +68,7 @@ function mod:UnholyFrenzy(args)
 end
 
 function mod:NecroticBolt(args)
-	-- Trash mobs cast the same spell
-	if self:MobId(args.sourceGUID) == 163157 and self:Interrupter() then
+	if self:Interrupter() then
 		self:Message2(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alert")
 	end
