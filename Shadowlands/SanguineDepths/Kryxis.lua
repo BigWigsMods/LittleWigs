@@ -5,9 +5,15 @@
 
 local mod, CL = BigWigs:NewBoss("Kryxis the Voracious", 2284, 2388)
 if not mod then return end
---mod:RegisterEnableMob(0)
+mod:RegisterEnableMob(162100)
 mod.engageId = 2360
 --mod.respawnTime = 30
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local viciousHeadbuttCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -16,15 +22,53 @@ mod.engageId = 2360
 function mod:GetOptions()
 	return {
 		"berserk",
+		{319650, "TANK_HEALER"}, -- Vicious Headbutt
+		319654, -- Hungering Drain
+		{319713, "SAY"}, -- Juggernaut Rush
+		319685, -- Severing Smash
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:Log("SPELL_CAST_START", "ViciousHeadbutt", 319650)
+	self:Log("SPELL_CAST_SUCCESS", "HungeringDrain", 319654)
+	self:Log("SPELL_CAST_START", "SeveringSmash", 319685)
 end
 
 function mod:OnEngage()
+	viciousHeadbuttCount = 0
+	self:Bar(319650, 6.6) -- Vicious Headbutt
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
+	if msg:find("319713") then
+		self:Message2(319713, "red", destName)
+		self:PlaySound(319713, "alarm", nil, destName)
+		local guid = UnitGUID(destName)
+		if self:Me(guid) then
+			self:Say(319713)
+		end
+	end
+end
+
+function mod:ViciousHeadbutt(args)
+	viciousHeadbuttCount = viciousHeadbuttCount + 1
+	self:Message2(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, viciousHeadbuttCount % 2 == 0 and 25.5 or 12.2)
+end
+
+function mod:HungeringDrain(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:SeveringSmash(args)
+	self:Message2(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
