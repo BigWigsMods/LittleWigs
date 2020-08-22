@@ -13,7 +13,6 @@ mod.engageId = 2363
 -- Locals
 --
 
-local wickedRushCount = 0
 local piercingBlurCount = 0
 
 --------------------------------------------------------------------------------
@@ -39,8 +38,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	wickedRushCount = 0
+	piercingBlurCount = 0
 	self:Bar(323845, 5.2) -- Wicked Rush
+	self:Bar(323810, 16.7) -- Piercing Blur
 	self:Bar(322903, 35.3) -- Gloom Squall
 end
 
@@ -49,8 +49,13 @@ end
 --
 
 function mod:WickedRush(args)
-	wickedRushCount = wickedRushCount + 1
-	self:Bar(args.spellId, wickedRushCount % 2 == 0 and 21.8 or 15.3)
+	-- The next cast will be delayed if it overlaps with Gloom Squall
+	local gloomSquallTimeLeft = self:BarTimeLeft(322903)
+	if gloomSquallTimeLeft < 15.8 then
+		self:Bar(args.spellId, math.max(gloomSquallTimeLeft+4, 15.8))
+	else
+		self:Bar(args.spellId, 15.8)
+	end
 end
 
 do
@@ -68,16 +73,20 @@ end
 
 function mod:PiercingBlurStart(args)
 	piercingBlurCount = 0
-	self:Message2(args.spellId, "yellow")
+	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 21)
 	self:Bar(args.spellId, 4.2, CL.count:format(args.spellName, piercingBlurCount+1))
+	-- The next cast will be delayed if it overlaps with Gloom Squall
+	local gloomSquallTimeLeft = self:BarTimeLeft(322903)
+	if gloomSquallTimeLeft <= 17 then
+		self:CDBar(args.spellId, math.max(gloomSquallTimeLeft+4, 17)) -- Add cast time of Gloom Squall
+	else
+		self:CDBar(args.spellId, 17)
+	end
 end
 
 function mod:PiercingBlur(args)
 	piercingBlurCount = piercingBlurCount + 1
-	self:Message2(323821, "yellow", CL.count:format(args.spellName, piercingBlurCount))
-	self:PlaySound(323821, "info")
 	if piercingBlurCount < 3 then
 		self:Bar(323821, 1.2, CL.count:format(args.spellName, piercingBlurCount+1))
 	end
