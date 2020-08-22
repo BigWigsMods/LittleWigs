@@ -21,7 +21,6 @@ local viciousHeadbuttCount = 0
 
 function mod:GetOptions()
 	return {
-		"berserk",
 		{319650, "TANK_HEALER"}, -- Vicious Headbutt
 		319654, -- Hungering Drain
 		{319713, "SAY"}, -- Juggernaut Rush
