@@ -46,7 +46,7 @@ end
 
 do
 	local prev = nil
-	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
 		if castGUID ~= prev then return end
 		prev = castGUID
 		if spellId == 322573 then -- Coalesce Manifestation
