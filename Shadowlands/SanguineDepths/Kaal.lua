@@ -51,8 +51,9 @@ end
 function mod:WickedRush(args)
 	-- The next cast will be delayed if it overlaps with Gloom Squall
 	local gloomSquallTimeLeft = self:BarTimeLeft(322903)
-	if gloomSquallTimeLeft < 15.8 then
-		self:Bar(args.spellId, math.max(gloomSquallTimeLeft+4, 15.8))
+	if gloomSquallTimeLeft < 17.8 then -- Wicked Rush timer plus Gloom Squall queue time
+		-- Add cast time of Gloom Squall plus the approximate time the spell is queued for
+		self:Bar(args.spellId, math.max(gloomSquallTimeLeft+8, 15.8))
 	else
 		self:Bar(args.spellId, 15.8)
 	end
@@ -78,8 +79,9 @@ function mod:PiercingBlurStart(args)
 	self:Bar(args.spellId, 4.2, CL.count:format(args.spellName, piercingBlurCount+1))
 	-- The next cast will be delayed if it overlaps with Gloom Squall
 	local gloomSquallTimeLeft = self:BarTimeLeft(322903)
-	if gloomSquallTimeLeft <= 17 then
-		self:CDBar(args.spellId, math.max(gloomSquallTimeLeft+4, 17)) -- Add cast time of Gloom Squall
+	if gloomSquallTimeLeft <= 19 then -- Piercing Blur timer plus Gloom Squall queue time
+		-- Add cast time of Gloom Squall plus the approximate time the spell is queued for
+		self:CDBar(args.spellId, math.max(gloomSquallTimeLeft+9, 17))
 	else
 		self:CDBar(args.spellId, 17)
 	end
