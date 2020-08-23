@@ -5,7 +5,7 @@
 <Script file="DoctorIckus.lua"/>
 <Script file="DominaVenomblade.lua"/>
 <Script file="MargraveStradama.lua"/>
-<!-- <Script file="Trash.lua"/> -->
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 
