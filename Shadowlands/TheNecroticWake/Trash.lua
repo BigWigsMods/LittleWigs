@@ -132,7 +132,7 @@ function mod:DrainFluids(args)
 end
 
 function mod:MeatShield(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -146,12 +146,14 @@ end
 function mod:WrathOfZolramus(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:NameplateCDBar(args.spellId, 18, args.sourceGUID)
+	self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 end
 
 function mod:FrostboltVolley(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	if self:MobId(args.sourceGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
+		self:Message2(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:GutturalScream(args)
@@ -191,7 +193,9 @@ end
 function mod:GrimFateApplied(args)
 	self:TargetMessage2(327393, "yellow", args.destName)
 	self:PlaySound(327393, "alert", nil, args.destName)
-	self:Bar(327393, 16)
+	if self:MobId(args.sourceGUID) == 165824 then -- Nar'zudah
+		self:CDBar(327393, 18.3)
+	end
 	if self:Me(args.destGUID) then
 		self:Say(327393)
 		self:SayCountdown(327393, 4)
@@ -201,7 +205,7 @@ end
 function mod:NarzudahDeath(args)
 	self:StopBar(327399) -- Shared Agony
 	self:StopBar(335141) -- Dark Shroud
-	self:StopBar(327396) -- Grim Fate
+	self:StopBar(327393) -- Grim Fate
 end
 
 function mod:Shatter(args)
@@ -213,16 +217,20 @@ end
 function mod:GraveSpikes(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 12.1)
 end
 
 function mod:ReapingWinds(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 20)
 	self:CastBar(args.spellId, 4)
 end
 
 function mod:SkeletalMonstrosityDeath(args)
 	self:StopBar(324394) -- Shatter
+	self:StopBar(324372) -- Reaping Winds
+	self:StopBar(324387) -- Grave Spikes
 	self:StopBar(CL.cast:format(self:SpellName(324372))) -- Reaping Winds
 end
 
@@ -260,7 +268,7 @@ do
 		self:TargetMessage2(338606, "yellow", name) -- Morbid Fixation
 		self:PlaySound(338606, self:Me(guid) and "alarm" or "info", nil, name) -- Morbid Fixation
 	end
-	
+
 	function mod:MorbidFixation(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
