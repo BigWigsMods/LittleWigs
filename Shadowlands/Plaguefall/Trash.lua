@@ -15,13 +15,15 @@ mod:RegisterEnableMob(
 	168396, -- Plaguebelcher
 	163892, -- Rotting Slimeclaw
 	163894, -- Blighted Spinebreaker
-	163891, -- Rotmarrow Slime
 	168627, -- Plaguebinder
 	164707, -- Congealed Slime
 	163862, -- Defender of Many Eyes
 	167493, -- Venomous Sniper
 	164737, -- Brood Ambusher
-	169861 -- Ickor Bileflesh
+	169861, -- Ickor Bileflesh
+	168578, -- Fungalmancer
+	168574, -- Pestilent Harvester
+	168572 -- Fungi Stormer
 )
 
 --------------------------------------------------------------------------------
@@ -37,13 +39,15 @@ if L then
 	L.plaguebelcher = "Plaguebelcher"
 	L.rotting_slimeclaw = "Rotting Slimeclaw"
 	L.blighted_spinebreaker = "Blighted Spinebreaker"
-	L.rotmarrow_slime = "Rotmarrow Slime"
 	L.plaguebinder = "Plaguebinder"
 	L.congealed_slime = "Congealed Slime"
 	L.defender_of_many_eyes = "Defender of Many Eyes"
 	L.venomous_sniper = "Venomous Sniper"
 	L.brood_ambusher = "Brood Ambusher"
 	L.ickor_bileflesh = "Ickor Bileflesh"
+	L.fungalmancer = "Fungalmancer"
+	L.pestilent_harvester = "Pestilent Harvester"
+	L.fungi_stormer = "Fungi Stormer"
 end
 
 --------------------------------------------------------------------------------
@@ -68,8 +72,6 @@ function mod:GetOptions()
 		-- Blighted Spinebreaker
 		318949, -- Festering Belch
 		320517, -- Jagged Spines
-		-- Rotmarrow Slime
-		319070, -- Corrosive Gunk
 		-- Plaguebinder
 		{328180, "DISPEL"}, -- Gripping Infection
 		-- Congealed Slime
@@ -83,6 +85,12 @@ function mod:GetOptions()
 		-- Ickor Bileflesh
 		330786, -- Oozing Carcass
 		330816, -- Ghost Step
+		-- Fungalmancer
+		328016, -- Wonder Grow
+		-- Pestilent Harvester
+		327995, -- Doom Shroom
+		-- Fungi Stormer
+		328177, -- Fungistorm
 	}, {
 		[323572] = L.plagueborer,
 		[327515] = L.fen_hornet,
@@ -91,13 +99,15 @@ function mod:GetOptions()
 		[327233] = L.plaguebelcher,
 		[320512] = L.rotting_slimeclaw,
 		[318949] = L.blighted_spinebreaker,
-		[319070] = L.rotmarrow_slime,
 		[328180] = L.plaguebinder,
 		[321935] = L.congealed_slime,
 		[336451] = L.defender_of_many_eyes,
 		[328395] = L.venomous_sniper,
 		[328475] = L.brood_ambusher,
 		[330786] = L.ickor_bileflesh,
+		[328016] = L.fungalmancer,
+		[327995] = L.pestilent_harvester,
+		[328177] = L.fungi_stormer,
 	}
 end
 
@@ -113,7 +123,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "CorrodedClawsApplied", 320512)
 	self:Log("SPELL_CAST_START", "FesteringBelch", 318949)
 	self:Log("SPELL_CAST_SUCCESS", "JaggedSpines", 320517)
-	self:Log("SPELL_CAST_START", "CorrosiveGunk", 319070)
 	self:Log("SPELL_CAST_START", "GrippingInfection", 328180)
 	self:Log("SPELL_AURA_APPLIED", "GrippingInfectionApplied", 328180)
 	self:Log("SPELL_CAST_START", "WitheringFilth", 321935)
@@ -122,6 +131,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EnvelopingWebbing", 328475)
 	self:Log("SPELL_CAST_START", "OozingCarcass", 330786)
 	self:Log("SPELL_CAST_START", "GhostStep", 330816)
+	self:Log("SPELL_CAST_START", "WonderGrow", 328016)
+	self:Log("SPELL_CAST_SUCCESS", "DoomShroom", 327995)
+	self:Log("SPELL_CAST_SUCCESS", "Fungistorm", 328177)
 end
 
 --------------------------------------------------------------------------------
@@ -141,8 +153,11 @@ function mod:FenStingerApplied(args)
 end
 
 function mod:CreepyCrawlers(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:WingBuffet(args)
@@ -158,8 +173,11 @@ function mod:BlightbeakApplied(args)
 end
 
 function mod:BelchPlague(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message2(args.spellId, "red")
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 function mod:CorrodedClawsApplied(args)
@@ -177,17 +195,6 @@ end
 function mod:JaggedSpines(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-end
-
-do
-	local prev = 0
-	function mod:CorrosiveGunk(args)
-		local t = args.time
-		if t-prev > 1 then
-			self:Message2(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
 end
 
 function mod:GrippingInfection(args)
@@ -211,7 +218,7 @@ do
 			self:Say(321935)
 		end
 	end
-	
+
 	function mod:WitheringFilth(args)
 		-- XXX check if the mob actually changes target
 		self:GetUnitTarget(printTarget, 0.6, args.sourceGUID)
@@ -219,8 +226,11 @@ do
 end
 
 function mod:BulwarkOfMaldraxxus(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message2(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 do
@@ -231,7 +241,7 @@ do
 			self:Say(328395)
 		end
 	end
-	
+
 	function mod:Venompiercer(args)
 		self:GetUnitTarget(printTarget, 0.6, args.sourceGUID)
 	end
@@ -250,4 +260,29 @@ end
 function mod:GhostStep(args)
 	self:Message2(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:WonderGrow(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(327995, "red", name)
+		self:PlaySound(327995, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(327995)
+		end
+	end
+
+	function mod:DoomShroom(args)
+		-- XXX check if this works
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
+end
+
+function mod:Fungistorm(args)
+	self:Message2(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
