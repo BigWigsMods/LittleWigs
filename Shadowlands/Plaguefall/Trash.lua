@@ -267,19 +267,9 @@ function mod:WonderGrow(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage2(327995, "red", name)
-		self:PlaySound(327995, "alarm", nil, name)
-		if self:Me(guid) then
-			self:Say(327995)
-		end
-	end
-
-	function mod:DoomShroom(args)
-		-- XXX check if this works
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-	end
+function mod:DoomShroom(args)
+	self:Message2(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Fungistorm(args)
