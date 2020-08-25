@@ -85,11 +85,11 @@ function mod:MarkedPreyApplied(args)
 end
 
 do
-	local function printTarget(self, name, guid, spellId)
-		self:TargetMessage2("parasitic", "red", name, spellId, spellId)
+	local function printTarget(self, name, guid)
+		self:TargetMessage2("parasitic", "red", name, 278431, 278431) -- Parasitic
 		if self:Me(guid) then
 			self:PlaySound("parasitic", "warning")
-			self:Say("parasitic", spellId)
+			self:Say("parasitic", 278431) -- Parasitic
 		end
 	end
 
