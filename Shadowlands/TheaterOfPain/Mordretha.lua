@@ -16,7 +16,7 @@ mod.engageId = 2404
 function mod:GetOptions()
 	return {
 		-- General
-		324079, -- Reaping Scythe
+		{324079, "TANK_HEALER"}, -- Reaping Scythe
 		323608, -- Dark Devastation
 		323683, -- Grasping Rift
 		324449, -- Manifest Death
