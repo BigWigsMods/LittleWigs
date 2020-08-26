@@ -49,7 +49,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SearingDeath", 333231)
 	self:Log("SPELL_AURA_APPLIED", "SearingDeathApplied", 333231)
 	self:Log("SPELL_CAST_SUCCESS", "OneWithDeath", 320293)
-	self:Log("SPELL_AURA_APPLIED", "SpectralTransference", 320272)
+	self:Log("SPELL_AURA_APPLIED", "SpectralTransferenceApplied", 320272)
 	self:Log("SPELL_AURA_APPLIED", "AmbushApplied", 333540)
 end
 
@@ -72,10 +72,10 @@ end
 function mod:MortalStrike(args)
 	self:Message2(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(21)
+	self:CDBar(args.spellId, 21)
 end
 
-function mod:Enrage(args)
+function mod:EnrageApplied(args)
 	self:Message2(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "long")
 end
