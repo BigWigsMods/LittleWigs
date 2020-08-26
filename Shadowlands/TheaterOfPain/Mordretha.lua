@@ -78,11 +78,11 @@ end
 function mod:EchoesOfCarnage(args)
 	self:Message2(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
+	self:Bar(339550, 4) -- Echo of Battle
 	self:Bar(324079, 6.9) -- Reaping Scythe
 	self:Bar(339706, 13.5) -- Ghostly Charge
 	self:Bar(323608, 14.6) -- Dark Devastation
 	self:Bar(323683, 22.5) -- Grasping Rift
-	self:Bar(339550, 4) -- Echo of Battle
 end
 
 do
