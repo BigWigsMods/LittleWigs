@@ -23,9 +23,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "DrawSoul", 319521)
 	self:Log("SPELL_AURA_APPLIED", "DrawSoulApplied", 319521)
 	self:Log("SPELL_AURA_APPLIED", "ReclaimedSoul", 319637)
-	self:Log("SPELL_AURA_APPLIED", "PhantasmalParasite", 319626)
+	self:Log("SPELL_CAST_SUCCESS", "PhantasmalParasite", 319626)
+	self:Log("SPELL_AURA_APPLIED", "PhantasmalParasiteApplied", 319626)
 	self:Log("SPELL_CAST_SUCCESS", "SpectralReach", 319669)
 end
 
@@ -36,6 +38,10 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:DrawSoul(args)
+	self:CDBar(319521, 20.6)
+end
 
 do
 	local playerList = mod:NewTargetList()
@@ -52,11 +58,19 @@ function mod:ReclaimedSoul(args)
 end
 
 function mod:PhantasmalParasite(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:Flash(args.spellId)
+	self:Bar(args.spellId, 25.5)
+end
+
+do
+	local playerList = mod:NewTargetList()
+	function mod:PhantasmalParasiteApplied(args)
+		playerList[#playerList+1] = args.destName
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 0.8)
+		self:PlaySound(args.spellId, "alert", nil, playerList)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+			self:Flash(args.spellId)
+		end
 	end
 end
 
