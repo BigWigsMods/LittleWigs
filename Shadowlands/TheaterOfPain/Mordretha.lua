@@ -23,6 +23,7 @@ function mod:GetOptions()
 		-- Mythic
 		339573, -- Echoes of Carnage
 		339706, -- Ghostly Charge
+		339550, -- Echo of Battle
 	}, {
 		[324079] = "general",
 		[339573] = "mythic",
@@ -36,6 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ManifestDeath", 324449)
 	self:Log("SPELL_CAST_START", "EchoesOfCarnage", 339573)
 	self:Log("SPELL_CAST_START", "GhostlyCharge", 339706)
+	self:Log("SPELL_CAST_START", "EchoOfBattle", 339550)
 end
 
 function mod:OnEngage()
@@ -80,6 +82,7 @@ function mod:EchoesOfCarnage(args)
 	self:Bar(339706, 13.5) -- Ghostly Charge
 	self:Bar(323608, 14.6) -- Dark Devastation
 	self:Bar(323683, 22.5) -- Grasping Rift
+	self:Bar(339550, 4) -- Echo of Battle
 end
 
 do
@@ -91,6 +94,18 @@ do
 			self:PlaySound(args.spellId, "alarm")
 			self:Bar(args.spellId, 24.3)
 			self:CastBar(args.spellId, 2)
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:EchoOfBattle(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+			self:Bar(args.spellId, 24.3)
 		end
 	end
 end
