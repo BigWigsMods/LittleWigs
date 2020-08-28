@@ -44,12 +44,10 @@ function mod:DrawSoul(args)
 	self:CDBar(319521, 20.6)
 end
 
-do
-	local playerList = mod:NewTargetList()
-	function mod:DrawSoulApplied(args)
-		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
-		self:PlaySound(args.spellId, "alert", nil, playerList)
+function mod:DrawSoulApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
