@@ -15,7 +15,7 @@ mod.engageId = 2364
 
 function mod:GetOptions()
 	return {
-		319521, -- Draw Soul
+		{319521, "ME_ONLY"}, -- Draw Soul
 		{319637, "ME_ONLY"}, -- Reclaimed Soul
 		{319626, "SAY", "FLASH"}, -- Phantasmal Parasite
 		{319669, "TANK"}, -- Spectral Reach
@@ -25,7 +25,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DrawSoul", 319521)
 	self:Log("SPELL_AURA_APPLIED", "DrawSoulApplied", 319521)
-	self:Log("SPELL_AURA_APPLIED", "ReclaimedSoul", 319637)
+	self:Log("SPELL_AURA_APPLIED", "ReclaimedSoulApplied", 319637)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ReclaimedSoulApplied", 319637)
 	self:Log("SPELL_CAST_SUCCESS", "PhantasmalParasite", 319626)
 	self:Log("SPELL_AURA_APPLIED", "PhantasmalParasiteApplied", 319626)
 	self:Log("SPELL_CAST_SUCCESS", "SpectralReach", 319669)
@@ -47,12 +48,12 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:DrawSoulApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "orange", playerList, 2)
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
 	end
 end
 
-function mod:ReclaimedSoul(args)
+function mod:ReclaimedSoulApplied(args)
 	self:StackMessage(args.spellId, args.destName, args.amount, "green")
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
@@ -65,7 +66,7 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:PhantasmalParasiteApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 0.8)
+		self:TargetsMessage(args.spellId, "orange", playerList, 2, nil, nil, 0.8)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)

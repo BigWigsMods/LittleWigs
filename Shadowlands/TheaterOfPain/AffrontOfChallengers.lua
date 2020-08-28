@@ -25,6 +25,7 @@ function mod:GetOptions()
 		320069, -- Mortal Strike
 		326892, -- Fixate
 		324085, -- Enrage
+		{326892, "FLASH", "ME_ONLY"}, -- Fixate
 		-- Paceran the Virulent
 		320248, -- Genetic Alteration
 		-- Sathel the Accursed
@@ -45,6 +46,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Slam", 320063)
 	self:Log("SPELL_CAST_START", "MortalStrike", 320069)
 	self:Log("SPELL_AURA_APPLIED", "EnrageApplied", 324085)
+	self:Log("SPELL_AURA_APPLIED", "FixateApplied", 326892)
 	self:Log("SPELL_CAST_SUCCESS", "GeneticAlteration", 320248)
 	self:Log("SPELL_CAST_START", "SearingDeath", 333231)
 	self:Log("SPELL_AURA_APPLIED", "SearingDeathApplied", 333231)
@@ -78,6 +80,14 @@ end
 function mod:EnrageApplied(args)
 	self:Message2(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:FixateApplied(args)
+	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Flash(args.spellId)
+	end
 end
 
 function mod:GeneticAlteration(args)

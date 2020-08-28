@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(322795, 5.8+4.5) -- Meat Hooks
+	self:Bar(322795, 10.8) -- Meat Hooks, 5.8 sec until the first cast
 	self:Bar(323515, 7) -- Hateful Strike
 	self:Bar(318406, 13.1) -- Tenderizing Smash
 end
@@ -50,8 +50,9 @@ do
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+		-- The boss casts Meat Hooks 5 seconds before anything actually happens
 		if spellId == 322795 then -- Meat Hooks
-			self:SimpleTimer(warnMeatHooks, 4.5)
+			self:SimpleTimer(warnMeatHooks, 5)
 		end
 	end
 end
@@ -59,7 +60,7 @@ end
 function mod:HatefulStrike(args)
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 15)
+	self:CDBar(args.spellId, 14.6)
 end
 
 function mod:TenderizingSmash(args)

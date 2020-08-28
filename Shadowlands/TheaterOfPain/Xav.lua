@@ -62,7 +62,7 @@ end
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(text, winner, _, _, loser)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, text, winner, _, _, loser)
 	if text:find("Ability_PVP_GladiatorMedallion") then
 		self:Message2(320102, "yellow", L.defeated:format(self:ColorName(winner), self:ColorName(loser))) -- Blood and Glory
 		self:PlaySound(320102, "info") -- Blood and Glory
@@ -85,7 +85,7 @@ function mod:MassiveCleave(args)
 end
 
 function mod:BloodAndGlory(args)
-	self:CDBar(320102, 60) -- Blood and Glory
+	self:CDBar(320102, 70) -- Blood and Glory
 end
 
 do

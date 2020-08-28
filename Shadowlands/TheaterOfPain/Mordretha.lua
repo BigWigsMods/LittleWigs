@@ -35,7 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DarkDevastation", 323608)
 	self:Log("SPELL_CAST_START", "GraspingRift", 323683)
 	self:Log("SPELL_CAST_SUCCESS", "ManifestDeath", 324449)
-	self:Log("SPELL_CAST_START", "EchoesOfCarnage", 339573)
+	self:Log("SPELL_CAST_SUCCESS", "EchoesOfCarnage", 339573)
 	self:Log("SPELL_CAST_START", "GhostlyCharge", 339706)
 	self:Log("SPELL_CAST_START", "EchoOfBattle", 339550)
 end
@@ -60,7 +60,7 @@ end
 function mod:DarkDevastation(args)
 	self:Message2(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 24)
+	self:CDBar(args.spellId, 23.1)
 end
 
 function mod:GraspingRift(args)
@@ -82,6 +82,7 @@ function mod:EchoesOfCarnage(args)
 	self:Bar(324079, 6.9) -- Reaping Scythe
 	self:Bar(339706, 13.5) -- Ghostly Charge
 	self:Bar(323608, 14.6) -- Dark Devastation
+	self:Bar(324449, 21) -- Manifest Death
 	self:Bar(323683, 22.5) -- Grasping Rift
 end
 
@@ -90,10 +91,11 @@ do
 	function mod:GhostlyCharge(args)
 		local t = args.time
 		if t-prev > 1.5 then
+			prev = t
 			self:Message2(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 			self:Bar(args.spellId, 24.3)
-			self:CastBar(args.spellId, 2)
+			self:CastBar(args.spellId, 3)
 		end
 	end
 end
@@ -103,6 +105,7 @@ do
 	function mod:EchoOfBattle(args)
 		local t = args.time
 		if t-prev > 1.5 then
+			prev = t
 			self:Message2(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 			self:Bar(args.spellId, 24.3)
