@@ -25,7 +25,7 @@ function mod:GetOptions()
 		320069, -- Mortal Strike
 		326892, -- Fixate
 		324085, -- Enrage
-		{326892, "FLASH", "ME_ONLY"}, -- Fixate
+		{326892, "FLASH"}, -- Fixate
 		-- Paceran the Virulent
 		320248, -- Genetic Alteration
 		-- Sathel the Accursed
@@ -83,10 +83,19 @@ function mod:EnrageApplied(args)
 end
 
 function mod:FixateApplied(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "warning", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Flash(args.spellId)
+	if args.sourceGUID ~= args.destGUID then -- Boss buffs itself as well as the target
+		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+		self:TargetBar(args.spellId, 10, args.destName)
+		if self:Me(args.destGUID) then
+			self:Flash(args.spellId)
+		end
+	end
+end
+
+function mod:FixateRemoved(args)
+	if args.sourceGUID ~= args.destGUID then
+		self:StopBar(args.spellId, args.destName)
 	end
 end
 
