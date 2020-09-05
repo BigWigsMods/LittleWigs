@@ -48,15 +48,19 @@ end
 -- Event Handlers
 --
 
-function mod:WickedRush(args)
-	-- The next cast will be delayed if it overlaps with Gloom Squall
-	local gloomSquallTimeLeft = self:BarTimeLeft(322903)
-	if gloomSquallTimeLeft < 17.8 then -- Wicked Rush timer plus Gloom Squall queue time
-		-- Add cast time of Gloom Squall plus the approximate time the spell is queued for
-		self:Bar(args.spellId, math.max(gloomSquallTimeLeft+8, 15.8))
-	else
-		self:Bar(args.spellId, 15.8)
+
+local function getGloomSquallDelayedTimer(time, duration)
+	-- Some casts are delayed if the cast or the subsequent effects would overlap with gloom squall
+	local gloomSquallCastTime = 4
+	local gloomSquallTimeLeft = mod:BarTimeLeft(322903)
+	if gloomSquallTimeLeft < time + duration then
+		return math.max(gloomSquallTimeLeft + gloomSquallCastTime + duration, time)
 	end
+	return time
+end
+
+function mod:WickedRush(args)
+	self:Bar(args.spellId, getGloomSquallDelayedTimer(15.8, 5))
 end
 
 do
@@ -65,7 +69,7 @@ do
 		playerList[#playerList+1] = args.destName
 		self:TargetsMessage(args.spellId, "orange", playerList, 2)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
-		if self:Me(args.destName) then
+		if self:Me(args.desetGUID) then
 			self:Say(args.spellId)
 			self:Flash(args.spellId)
 		end
@@ -76,15 +80,8 @@ function mod:PiercingBlurStart(args)
 	piercingBlurCount = 0
 	self:Message2(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, getGloomSquallDelayedTimer(17, 6.6))
 	self:Bar(args.spellId, 4.2, CL.count:format(args.spellName, piercingBlurCount+1))
-	-- The next cast will be delayed if it overlaps with Gloom Squall
-	local gloomSquallTimeLeft = self:BarTimeLeft(322903)
-	if gloomSquallTimeLeft <= 19 then -- Piercing Blur timer plus Gloom Squall queue time
-		-- Add cast time of Gloom Squall plus the approximate time the spell is queued for
-		self:CDBar(args.spellId, math.max(gloomSquallTimeLeft+9, 17))
-	else
-		self:CDBar(args.spellId, 17)
-	end
 end
 
 function mod:PiercingBlur(args)

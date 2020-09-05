@@ -31,8 +31,8 @@ end
 
 function mod:OnEngage()
 	self:Bar(325254, 3.5) -- Iron Spikes
-	self:Bar(325360, 11.1) -- Rite of Supremacy
-	self:Bar(326039, 25.7) -- Endless Torment
+	self:Bar(325360, 11) -- Rite of Supremacy
+	self:Bar(326039, 24.1) -- Endless Torment
 end
 
 --------------------------------------------------------------------------------

@@ -65,9 +65,10 @@ do
 			self:Say(322554)
 		end
 	end
-	
+
 	function mod:Castigate(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		-- XXX Change to GetBossTarget if boss frames get added to this fight
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 20.7)
 	end
 end
