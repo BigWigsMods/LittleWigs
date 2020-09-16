@@ -51,10 +51,10 @@ end
 
 local function getGloomSquallDelayedTimer(time, duration)
 	-- Some casts are delayed if the cast or the subsequent effects would overlap with gloom squall
-	local gloomSquallCastTime = 4
+	local gloomSquallCastTime = 5.5 -- 4 sec cast time, then he waits 1.5 sec before doing anything else
 	local gloomSquallTimeLeft = mod:BarTimeLeft(322903)
 	if gloomSquallTimeLeft < time + duration then
-		return math.max(gloomSquallTimeLeft + gloomSquallCastTime + duration, time)
+		return math.max(gloomSquallTimeLeft + gloomSquallCastTime, time)
 	end
 	return time
 end
