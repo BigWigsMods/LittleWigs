@@ -40,7 +40,7 @@ end
 function mod:OnEngage()
 	piercingBlurCount = 0
 	self:Bar(323845, 5.2) -- Wicked Rush
-	self:Bar(323810, 16.7) -- Piercing Blur
+	self:Bar(323821, 16.7) -- Piercing Blur
 	self:Bar(322903, 35.3) -- Gloom Squall
 end
 
