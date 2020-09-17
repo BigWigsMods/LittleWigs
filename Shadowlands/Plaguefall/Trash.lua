@@ -140,9 +140,16 @@ end
 -- Event Handlers
 --
 
-function mod:RollingPlague(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:RollingPlague(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:FenStingerApplied(args)
@@ -225,11 +232,15 @@ do
 	end
 end
 
-function mod:BulwarkOfMaldraxxus(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		self:Message2(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:BulwarkOfMaldraxxus(args)
+		local t = args.time
+		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		if t-prev > 1.5 and unit and UnitAffectingCombat(unit) then
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 
@@ -263,16 +274,30 @@ function mod:GhostStep(args)
 end
 
 function mod:WonderGrow(args)
-	self:Message2(args.spellId, "orange")
+	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:DoomShroom(args)
-	self:Message2(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:DoomShroom(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
-function mod:Fungistorm(args)
-	self:Message2(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Fungistorm(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message2(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
