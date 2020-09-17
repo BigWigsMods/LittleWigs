@@ -69,7 +69,7 @@ do
 		playerList[#playerList+1] = args.destName
 		self:TargetsMessage(args.spellId, "orange", playerList, 2)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
-		if self:Me(args.desetGUID) then
+		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
 			self:Flash(args.spellId)
 		end
