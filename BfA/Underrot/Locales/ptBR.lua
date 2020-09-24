@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Underrot Trash", "ptBR")
 if not L then return end
 if L then
-	-- L.custom_on_fixate_plates = "Thirst For Blood icon on Enemy Nameplate"
-	-- L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+	L.custom_on_fixate_plates = "Ícone de Sede de Sangue na barra de identificação inimiga"
+	L.custom_on_fixate_plates_desc = "Mostra um ícone na barra identificação do alvo que setá fixado em você.\nRequer o uso de barra de identificação inimigas. Essa função é suportada pelo addon KuiNameplates."
 
 	L.spirit = "Espírito Conspurcado"
 	L.priest = "Sacerdotisa Sangrenta Devota"
@@ -18,6 +18,6 @@ end
 
 L = BigWigs:NewBossLocale("Infested Crawg", "ptBR")
 if L then
-	-- L.random_cast = "Charge or Indigestion"
-	-- L.random_cast_desc = "The first cast after each Tantrum is random."
+	L.random_cast = "Investida ou Indigestão"
+	L.random_cast_desc = "A primeira conjuração de cada Birra é aleatória."
 end
