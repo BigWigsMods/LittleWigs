@@ -25,9 +25,9 @@ end
 
 L = BigWigs:NewBossLocale("Council o' Captains", "ptBR")
 if L then
-	--L.crit_brew = "Crit Brew"
-	--L.haste_brew = "Haste Brew"
-	--L.bad_brew = "Bad Brew"
+	L.crit_brew = "Fermentação de Crítico"
+	L.haste_brew = "Fermentação de Aceleração"
+	L.bad_brew = "Fermentação Ruim"
 end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "ptBR")
@@ -41,7 +41,7 @@ if L then
 	-- L.lightning_warmup_2 = "not a professional setup"
 
 	L.lightning = "Raio"
-	-- L.lightning_caught = "Lightning caught after %.1f seconds!"
+	L.lightning_caught = "Raio pego em %.1f segundos!"
 	L.ludwig = "Ludovico Von Tortollano"
 	L.trothak = "Trothak"
 end
