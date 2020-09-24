@@ -22,17 +22,17 @@ end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "ptBR")
 if L then
-	-- L.remaining = "%s on %s, %d remaining"
-	-- L.remaining_boss = "%s on BOSS, %d remaining"
+	L.remaining = "%s em %s, %d restando"
+	L.remaining_boss = "%s no CHEFE, %d restando"
 end
 
 L = BigWigs:NewBossLocale("Chopper Redhook", "ptBR")
 if L then
-	-- L.remaining = "%s on %s, %d remaining"
-	-- L.remaining_boss = "%s on BOSS, %d remaining"
+	L.remaining = "%s em %s, %d restando"
+	L.remaining_boss = "%s no CHEFE, %d restando"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "ptBR")
 if L then
-	-- L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
+	L.demolishing_desc = "Alertas e temporizadores para quando o Terror Demolidor surge."
 end
