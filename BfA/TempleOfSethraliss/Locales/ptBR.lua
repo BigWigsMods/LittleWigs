@@ -13,5 +13,5 @@ end
 
 L = BigWigs:NewBossLocale("Galvazzt", "ptBR")
 if L then
-	-- L.percent = "%s (%d%%)"
+	L.percent = "%s (%d%%)"
 end
