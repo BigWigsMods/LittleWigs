@@ -98,8 +98,8 @@ end
 -- Barnes
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 114339 then
-		if GetGossipOptions() then
-			SelectGossipOption(1)
+		if self:GetGossipOptions() then
+			self:SelectGossipOption(1)
 		end
 	end
 end

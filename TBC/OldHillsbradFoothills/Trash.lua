@@ -54,7 +54,7 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") then
-		if GetGossipAvailableQuests() or GetGossipActiveQuests() then return end -- let the player take / turn in the quest
+		if C_GossipInfo.GetNumAvailableQuests() > 0 or C_GossipInfo.GetNumActiveQuests() > 0 then return end -- let the player take / turn in the quest
 
 		-- If the player is in a group, do not free Thrall automatically,
 		-- because they may deny others a chance to turn in the quest.
@@ -64,8 +64,8 @@ function mod:GOSSIP_SHOW()
 			if not completed then return end
 		end
 
-		if GetGossipOptions() then
-			SelectGossipOption(1)
+		if self:GetGossipOptions() then
+			self:SelectGossipOption(1)
 		end
 	end
 end

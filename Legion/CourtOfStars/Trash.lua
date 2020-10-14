@@ -540,8 +540,8 @@ do
 		local mobId = self:MobId(UnitGUID("npc"))
 		local spyEventHelper = self:GetOption("spy_helper") > 0
 		if autoTalk[mobId] or buffItems[mobId] then
-			if not GetGossipOptions() and mobId == 107486 then -- Chatty Rumormonger
-				local clue = GetGossipText()
+			if not self:GetGossipOptions() and mobId == 107486 then -- Chatty Rumormonger
+				local clue = C_GossipInfo.GetText()
 				local num = L[clue]
 				if num then
 					prev = GetTime()
@@ -558,7 +558,7 @@ do
 				end
 			end
 			if (spyEventHelper and autoTalk[mobId]) or (self:GetOption("custom_on_use_buff_items") and buffItems[mobId]) then
-				SelectGossipOption(1)
+				self:SelectGossipOption(1)
 			end
 		end
 	end

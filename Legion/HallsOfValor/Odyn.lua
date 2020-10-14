@@ -105,8 +105,8 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 95676 then
-		if GetGossipOptions() then
-			SelectGossipOption(1, "", true) -- auto confirm it
+		if self:GetGossipOptions() then
+			self:SelectGossipOption(1, true) -- auto confirm it
 			mod:Sync("odyn")
 		end
 	end
