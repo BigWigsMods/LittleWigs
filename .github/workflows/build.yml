@@ -19,13 +19,15 @@ jobs:
         with:
           fetch-depth: 100
 
-      - name: Install luarocks
-        run: |
-          sudo apt-get -q install luarocks
-          sudo luarocks install luacheck
-
       - name: Run luacheck
-        run: luacheck . -q
+        uses: nebularg/actions-luacheck@v1
+        with:
+          args: -q
+          config: https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/.luacheckrc
+
+      - name: Update option files
+        if: always()
+        run: curl -s https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/gen_option_values.lua | lua
 
       - name: Package
         uses: BigWigsMods/packager@master
