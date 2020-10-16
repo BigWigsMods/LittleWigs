@@ -20,14 +20,14 @@ jobs:
           fetch-depth: 100
 
       - name: Run luacheck
-        uses: nebularg/actions-luacheck@v1
+        uses: BigWigsMods/actions/luacheck@master
         with:
           args: -q
           config: https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/.luacheckrc
 
       - name: Update option files
         if: always()
-        run: curl -s https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/gen_option_values.lua | lua
+        uses: BigWigsMods/actions/gen-options@master
 
       - name: Package
         uses: BigWigsMods/packager@master

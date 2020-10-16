@@ -11,7 +11,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run luacheck
-        uses: nebularg/actions-luacheck@v1
+        uses: BigWigsMods/actions/luacheck@master
         with:
           args: -q
           config: https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/.luacheckrc
+
+      - name: Lint boss modules
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          quiet: true
+          lint: true
