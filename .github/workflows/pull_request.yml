@@ -1,0 +1,19 @@
+name: Check PR
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout addon
+        uses: actions/checkout@v2
+
+      - name: Install luacheck
+        run: |
+          sudo apt-get install luarocks
+          sudo luarocks install luacheck
+
+      - name: Run luacheck
+        run: luacheck . -q
