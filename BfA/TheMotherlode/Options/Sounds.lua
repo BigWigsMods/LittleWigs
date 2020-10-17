@@ -40,6 +40,7 @@ BigWigs:AddSounds("The MOTHERLODE!! Trash", {
 	[263202] = "alert",
 	[263215] = {"alarm","warning"},
 	[263601] = "alarm",
+	[263628] = "alarm",
 	[267433] = "warning",
 	[268129] = "warning",
 	[268362] = "info",
