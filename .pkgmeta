@@ -1,6 +1,2 @@
 package-as: LittleWigs
 wowi-archive-previous: no
-
-ignore:
-  - .travis.yml
-  - README.md
