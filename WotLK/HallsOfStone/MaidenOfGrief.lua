@@ -51,6 +51,8 @@ do
 	local playerList = mod:NewTargetList()
 
 	function mod:ShockOfSorrowDebuff(args)
+		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER
+
 		playerList[#playerList + 1] = args.destName
 		playersIncapacitated = playersIncapacitated + 1
 		if #playerList == 1 then
@@ -60,6 +62,8 @@ do
 	end
 
 	function mod:ShockOfSorrowDebuffRemoved(args)
+		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER
+
 		playersIncapacitated = playersIncapacitated - 1
 		if playersIncapacitated == 0 then
 			self:StopBar(args.spellName)
