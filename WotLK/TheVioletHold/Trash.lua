@@ -78,7 +78,7 @@ function mod:UpdateWaveTimers(id, text)
 				self:StopBar(CL.count:format(portal, currentWave))
 			elseif currentWave == 18 then
 				self:UnregisterWidgetEvent(id)
-				local cyanigosa = EJ_GetEncounterInfo(632)
+				local cyanigosa = self:BossName(632) -- Cyanigosa
 				self:Message("portals", "yellow", "Info", CL.custom_sec:format(cyanigosa, 17), false)
 				self:Bar("portals", 17, CL.count:format(portal, currentWave), "spell_arcane_portaldalaran")
 			else

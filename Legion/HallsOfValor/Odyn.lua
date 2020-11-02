@@ -114,7 +114,7 @@ end
 
 function mod:BigWigs_BossComm(_, msg)
 	if msg == "odyn" then
-		local name = EJ_GetEncounterInfo(1489)
+		local name = self:BossName(1489) -- Odyn
 		self:Message("warmup", "cyan", "Info", CL.incoming:format(name), false)
 		self:CDBar("warmup", 2.7, name, "achievement_boss_odyn")
 	end

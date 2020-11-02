@@ -67,14 +67,14 @@ function mod:UpdateWaveTimers(id, text)
 			local rift = self:SpellName(147840) -- Time Rift
 			self:Bar("wave", 15, CL.count:format(rift, currentWave), "INV_Misc_ShadowEgg")
 			if currentWave == 6 then
-				local chronoLordDeja = EJ_GetEncounterInfo(552)
+				local chronoLordDeja = self:BossName(552) -- Chrono Lord Deja
 				self:Message("wave", "yellow", "Info", CL.custom_sec:format(chronoLordDeja, 15), false)
 			elseif currentWave == 12 then
-				local temporus = EJ_GetEncounterInfo(553)
+				local temporus = self:BossName(553) -- Temporus
 				self:Message("wave", "yellow", "Info", CL.custom_sec:format(temporus, 15), false)
 			elseif currentWave == 18 then
 				self:UnregisterWidgetEvent(id)
-				local aeonus = EJ_GetEncounterInfo(554)
+				local aeonus = self:BossName(554) -- Aeonus
 				self:Message("wave", "yellow", "Info", CL.custom_sec:format(aeonus, 15), false)
 			else
 				self:Message("wave", "yellow", "Info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
