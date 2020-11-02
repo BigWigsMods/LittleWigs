@@ -61,14 +61,12 @@ function mod:GOSSIP_SHOW()
 		if mobId == 26527 or mobId == 27915 then -- Chromie
 			if C_GossipInfo.GetNumAvailableQuests() > 0 or C_GossipInfo.GetNumActiveQuests() > 0 then return end -- let the player take / turn in the quest
 
-			local tbl = self:GetGossipOptions()
-			if tbl then
-				if tbl[2] then
-					self:SelectGossipOption(2) -- skip the roleplay if possible
-					self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
-				elseif tbl[1] then
-					self:SelectGossipOption(1)
-				end
+			local first, second = self:GetGossipOptions()
+			if second then
+				self:SelectGossipOption(2) -- skip the roleplay if possible
+				self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
+			elseif first then
+				self:SelectGossipOption(1)
 			end
 		elseif mobId == 26499 then -- Arthas
 			if self:GetGossipOptions() then
