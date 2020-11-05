@@ -101,7 +101,7 @@ end
 
 function mod:SoulManipulationApplied(args)
 	isMCApplied = true
-	self:TargetMessage2(260907, "orange", args.destName) -- Soul Manipulation
+	self:TargetMessage(260907, "orange", args.destName) -- Soul Manipulation
 	self:PlaySound(260907, "alarm", nil, args.destName) -- Soul Manipulation
 	self:PrimaryIcon(260907, args.destName) -- Soul Manipulation, Move icon from boss to player
 end
@@ -153,7 +153,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(260741, "orange", name) -- Jagged Nettles
+		self:TargetMessage(260741, "orange", name) -- Jagged Nettles
 		self:PlaySound(260741, "alarm", nil, name) -- Jagged Nettles
 	end
 

@@ -84,7 +84,7 @@ end
 
 function mod:FixateApplied(args)
 	if args.sourceGUID ~= args.destGUID then -- Boss buffs itself as well as the target
-		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:TargetBar(args.spellId, 10, args.destName)
 		if self:Me(args.destGUID) then
@@ -112,7 +112,7 @@ end
 
 function mod:SearingDeathApplied(args)
 	local isOnMe = self:Me(args.destGUID)
-	self:TargetMessage2(args.spellId, isOnMe and "red" or "yellow", args.destName)
+	self:TargetMessage(args.spellId, isOnMe and "red" or "yellow", args.destName)
 	self:PlaySound(args.spellId, isOnMe and "alarm" or "info", nil, args.destName)
 	if isOnMe then
 		self:Say(args.spellId)
@@ -133,6 +133,6 @@ function mod:SpectralTransferenceApplied(args)
 end
 
 function mod:AmbushApplied(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end

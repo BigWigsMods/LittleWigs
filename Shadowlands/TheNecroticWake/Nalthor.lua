@@ -73,7 +73,7 @@ do
 end
 
 function mod:FrozenBinds(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
@@ -82,7 +82,7 @@ function mod:FrozenBinds(args)
 end
 
 function mod:DarkExile(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	self:CDBar(args.spellId, 35)
 end

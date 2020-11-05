@@ -353,7 +353,7 @@ end
 function mod:Bladestorm(args)
 	if self:MobId(args.destGUID) == 137474 then return end -- applies to himself too
 	self:CastBar(270928, 10)
-	self:TargetMessage2(270928, "orange", args.destName)
+	self:TargetMessage(270928, "orange", args.destName)
 	self:PlaySound(270928, "alarm", nil, args.destName)
 
 	if self:Me(args.destGUID) then
@@ -368,7 +368,7 @@ end
 -- Queen Wasi
 function mod:Seduction(args)
 	self:TargetBar(args.spellId, 30, args.destName)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, self:Dispeller("magic", true) and "warning" or "long", nil, args.destName)
 end
 
@@ -415,7 +415,7 @@ function mod:HiddenBladeApplied(args)
 
 	if isOnMe or self:Dispeller("poison") or self:Healer() then
 		self:TargetBar(args.spellId, 4, args.destName)
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
@@ -455,7 +455,7 @@ end
 
 -- Interment Construct
 function mod:Entomb(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
 
@@ -469,7 +469,7 @@ end
 function mod:HexApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") or self:Healer(args.destName) then
 		self:TargetBar(args.spellId, 10, args.destName)
-		self:TargetMessage2(args.spellId, "cyan", args.destName)
+		self:TargetMessage(args.spellId, "cyan", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -506,7 +506,7 @@ function mod:FrostShockApplied(args)
 	end
 
 	if isOnMe or self:Dispeller("magic") then
-		self:TargetMessage2(args.spellId, "cyan", args.destName)
+		self:TargetMessage(args.spellId, "cyan", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -565,7 +565,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(270506, "red", name)
+		self:TargetMessage(270506, "red", name)
 		self:PlaySound(270506, "warning", nil, name)
 		if self:Me(guid) then
 			self:Flash(270506)
@@ -579,7 +579,7 @@ end
 
 function mod:DarkRevelation(args)
 	self:TargetBar(args.spellId, 10, args.destName)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 
 	if self:Me(args.destGUID) then

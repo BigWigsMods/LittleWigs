@@ -51,7 +51,7 @@ function mod:VolleyofPower(args)
 end
 
 function mod:HauntingFixation(args)
-	self:TargetMessage2(args.spellId, "cyan", args.destName)
+	self:TargetMessage(args.spellId, "cyan", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
 		self:Flash(args.spellId)

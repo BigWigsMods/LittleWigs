@@ -42,7 +42,7 @@ function mod:ChargedSmash(args)
 end
 
 function mod:ElectricalChargeApplied(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 

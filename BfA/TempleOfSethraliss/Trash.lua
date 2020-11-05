@@ -103,7 +103,7 @@ end
 
 function mod:NeurotoxinApplied(args)
 	if self:Dispeller("poison") or self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -144,7 +144,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:TargetMessage2(args.spellId, "yellow", args.destName)
+			self:TargetMessage(args.spellId, "yellow", args.destName)
 			self:PlaySound(args.spellId, "info")
 		end
 	end
@@ -189,7 +189,7 @@ end
 
 function mod:SnakeCharmApplied(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end

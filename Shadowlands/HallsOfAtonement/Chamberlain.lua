@@ -79,7 +79,7 @@ function mod:UnleashedSuffering(args)
 end
 
 function mod:StigmaofPrideApplied(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	if self:Me(args.destGUID) or self:Healer() then
 		self:PlaySound(args.spellId, "alert")
 	end

@@ -91,7 +91,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(322977, "orange", name) -- Sinlight Visions
+		self:TargetMessage(322977, "orange", name) -- Sinlight Visions
 		self:PlaySound(322977, "alarm", nil, name) -- Sinlight Visions
 	end
 

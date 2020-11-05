@@ -56,7 +56,7 @@ function mod:AwakenCreation(args)
 end
 
 function mod:MeatHookApplied(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
 		self:Say(args.spellId, args.spellName)
@@ -69,7 +69,7 @@ end
 function mod:MeatHookHit(args)
 	if self:MobId(args.destGUID) == 162689 and not hooked then -- Surgeon Stitchflesh
 		hooked = true
-		self:TargetMessage2(322681, "green", args.destName)
+		self:TargetMessage(322681, "green", args.destName)
 		self:PlaySound(322681, "long")
 
 		self:StopBar(320358) -- Summon Creation
@@ -90,7 +90,7 @@ function mod:EmbalmingIchor(args)
 end
 
 function mod:StitchneedleApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
 

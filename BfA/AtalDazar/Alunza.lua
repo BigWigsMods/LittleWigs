@@ -97,7 +97,7 @@ function mod:GildedClaws(args)
 end
 
 function mod:MoltenGold(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	if self:Dispeller("magic") then
 		self:PlaySound(args.spellId, "info", "dispelnow", args.destName)
 	elseif self:Me(args.destGUID) then

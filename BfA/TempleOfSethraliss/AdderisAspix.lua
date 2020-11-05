@@ -90,7 +90,7 @@ function mod:LightningShield(args)
 end
 
 function mod:Conduction(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
 		self:Say(args.spellId)

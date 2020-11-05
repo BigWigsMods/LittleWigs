@@ -52,13 +52,13 @@ end
 --
 
 function mod:TurboBoostApplied(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "info")
 end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(302682, "orange", name)
+		self:TargetMessage(302682, "orange", name)
 		self:TargetBar(302682, 8, name)
 		self:PlaySound(302682, "alarm", nil, name)
 		if self:Me(guid) then

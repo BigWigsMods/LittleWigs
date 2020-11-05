@@ -101,7 +101,7 @@ end
 -- T'lonja
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(255567, "yellow", name)
+		self:TargetMessage(255567, "yellow", name)
 		self:PlaySound(255567, "alert", "watchstep", name)
 		if self:Me(guid) then
 			self:Say(255567)

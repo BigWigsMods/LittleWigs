@@ -56,7 +56,7 @@ function mod:Fuselighter(args)
 end
 
 function mod:FuselighterApplied(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	if self:Dispeller("magic") then
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end

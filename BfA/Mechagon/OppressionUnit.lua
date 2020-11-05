@@ -71,7 +71,7 @@ end
 
 function mod:FulminatingZapApplied(args)
 	if self:Healer() or self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -103,7 +103,7 @@ function mod:HaywireApplied(args)
 end
 
 function mod:FulminatingBurstApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 	self:TargetBar(args.spellId, 9)
 	if self:Me(args.destGUID) then

@@ -123,6 +123,6 @@ do
 end
 
 function mod:GutShot(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end

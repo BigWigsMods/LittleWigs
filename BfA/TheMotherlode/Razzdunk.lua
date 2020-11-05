@@ -55,7 +55,7 @@ function mod:HomingMissile(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
@@ -78,7 +78,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(271456, "orange", name)
+		self:TargetMessage(271456, "orange", name)
 		self:PlaySound(271456, "alert", "watchstep", name)
 	end
 

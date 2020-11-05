@@ -55,7 +55,7 @@ function mod:WhispersofPower()
 end
 
 function mod:WhispersofPowerApplied(args)
-	self:TargetMessage2(args.spellId, "cyan", args.destName)
+	self:TargetMessage(args.spellId, "cyan", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 

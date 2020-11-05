@@ -116,7 +116,7 @@ end
 
 function mod:BlackPowderBomb(args)
 	if args.sourceGUID ~= args.destGUID then -- The add buffs itself with the same spell id
-		self:TargetMessage2(args.spellId, "yellow", args.destName, self:SpellName(244657), args.spellId) -- Fixate
+		self:TargetMessage(args.spellId, "yellow", args.destName, self:SpellName(244657), args.spellId) -- Fixate
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning", "fixate")
 			self:Say(args.spellId, self:SpellName(244657)) -- Fixate

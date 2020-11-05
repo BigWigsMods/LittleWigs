@@ -44,7 +44,7 @@ function mod:BurnCorruption(args)
 end
 
 function mod:DrainFluids(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) or self:Healer() then
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
@@ -52,7 +52,7 @@ function mod:DrainFluids(args)
 end
 
 function mod:EntombApplied(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 	self:StopBar(267639) -- Burn Corruption
 	self:StopBar(267618) -- Drain Fluids

@@ -144,7 +144,7 @@ end
 
 function mod:Plague(args)
 	if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		self:TargetBar(args.spellId, 12, args.destName)
 	end
@@ -164,13 +164,13 @@ end
 
 function mod:SnakeCharmApplied(args)
 	if self:Me(args.destName) or self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
 
 function mod:LifeForceApplied(args)
-	self:TargetMessage2(args.spellId, "green", args.destName)
+	self:TargetMessage(args.spellId, "green", args.destName)
 	self:PlaySound(args.spellId, "info")
 end
 

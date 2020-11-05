@@ -44,7 +44,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		if self:Me(guid) or self:Healer() then
-			self:TargetMessage2(265773, "orange", name)
+			self:TargetMessage(265773, "orange", name)
 			self:PlaySound(265773, "warning", nil, name)
 		end
 	end

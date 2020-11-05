@@ -92,7 +92,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 end
 
 function mod:OnTheHook(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
@@ -106,7 +106,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(257348, "red", name)
+		self:TargetMessage(257348, "red", name)
 		self:PlaySound(257348, "alert", nil, name)
 		if self:Me(guid) then
 			self:Say(257348)

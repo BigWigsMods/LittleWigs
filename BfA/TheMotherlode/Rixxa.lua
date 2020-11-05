@@ -89,7 +89,7 @@ do
 			self:Say(260669)
 			self:Flash(260669)
 		end
-		self:TargetMessage2(260669, "yellow", player)
+		self:TargetMessage(260669, "yellow", player)
 	end
 
 	function mod:PropellantBlast(args)

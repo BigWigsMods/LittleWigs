@@ -92,7 +92,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 end
 
 function mod:IronGaze(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
@@ -105,7 +105,7 @@ function mod:IronGazeRemoved(args)
 end
 
 function mod:HangmansNoose(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alert")
 	end

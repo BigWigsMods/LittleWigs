@@ -137,7 +137,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage2(268932, "orange", player)
+		self:TargetMessage(268932, "orange", player)
 		self:PlaySound(268932, "long", nil, player)
 		self:PrimaryIcon(268932, player)
 		if self:Me(guid) then

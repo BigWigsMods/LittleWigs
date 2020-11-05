@@ -122,7 +122,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("266951") then -- Barrel Through
-		self:TargetMessage2(266951, "red", destName)
+		self:TargetMessage(266951, "red", destName)
 		self:PlaySound(266951, "warning", nil, destName)
 		local guid = UnitGUID(destName)
 		if self:Me(guid) then
@@ -164,7 +164,7 @@ function mod:SeveringAxeSuccess(args)
 end
 
 function mod:SeveringAxeApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) or self:Healer() then
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end

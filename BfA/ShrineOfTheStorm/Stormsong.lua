@@ -89,7 +89,7 @@ function mod:AncientMindbender(args)
 end
 
 function mod:AncientMindbenderApplied(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:TargetBar(args.spellId, 20, args.destName, 269242) -- Surrender to the Void
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
@@ -118,7 +118,7 @@ end
 
 function mod:MindRendApplied(args)
 	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end

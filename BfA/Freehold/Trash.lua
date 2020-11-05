@@ -253,7 +253,7 @@ do
 		if self:Me(guid) then
 			self:Say(274400)
 		end
-		self:TargetMessage2(274400, "red", name)
+		self:TargetMessage(274400, "red", name)
 		self:PlaySound(274400, "alarm", nil, name)
 	end
 
@@ -274,7 +274,7 @@ do
 		if self:Me(guid) then
 			self:Say(272402)
 		end
-		self:TargetMessage2(272402, "orange", name)
+		self:TargetMessage(272402, "orange", name)
 		self:PlaySound(272402, "alert", nil, name)
 	end
 
@@ -384,7 +384,7 @@ end
 -- Irontide Officer
 function mod:OiledBladeApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage2(args.spellId, "blue", args.destName)
+		self:TargetMessage(args.spellId, "blue", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end

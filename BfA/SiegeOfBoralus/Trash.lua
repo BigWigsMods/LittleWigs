@@ -192,7 +192,7 @@ do
 end
 
 function mod:SightedArtillery(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info")
 	self:TargetBar(args.spellId, 6, args.destName)
 	if self:Me(args.destGUID) then
@@ -270,7 +270,7 @@ do
 end
 
 function mod:ClampingJaws(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 
@@ -281,7 +281,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(257036, "orange", name)
+		self:TargetMessage(257036, "orange", name)
 		self:PlaySound(257036, "alert", nil, name)
 		if self:Me(guid) then
 			self:Say(257036)

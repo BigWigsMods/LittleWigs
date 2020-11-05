@@ -49,7 +49,7 @@ end
 
 function mod:BlossomBlast(args)
 	if self:Healer() or self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end

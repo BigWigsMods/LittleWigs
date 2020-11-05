@@ -59,7 +59,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(321828, "purple", name) -- Patty Cake
+		self:TargetMessage(321828, "purple", name) -- Patty Cake
 		if self:Me(guid) then
 			self:PlaySound(321828, "warning") -- Patty Cake
 		end

@@ -129,7 +129,7 @@ function mod:Deadeye(args)
 		self:StackMessage(args.spellId, args.destName, deadeyeInfo[1]+1, "red")
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	else
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 	self:Bar(args.spellId, 27.5)

@@ -209,7 +209,7 @@ end
 
 -- Heartsbane Runeweaver
 function mod:Etch(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) or self:Healer() then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
@@ -232,7 +232,7 @@ end
 
 function mod:GraspingThornsApplied(args)
 	if self:Dispeller("magic") then
-		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:TargetBar(args.spellId, 4, args.destName)
 	end
@@ -303,7 +303,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(264038, "orange", name) -- Uproot
+		self:TargetMessage(264038, "orange", name) -- Uproot
 		self:PlaySound(264038, "alarm", nil, name) -- Uproot
 		if self:Me(guid) then
 			self:Say(264038) -- Uproot
@@ -396,7 +396,7 @@ function mod:RunicMark(args)
 end
 
 function mod:RunicMarkApplied(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
 		self:Say(args.spellId)

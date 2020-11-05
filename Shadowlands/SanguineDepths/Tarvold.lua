@@ -75,7 +75,7 @@ end
 
 function mod:SintouchedAnimaApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end

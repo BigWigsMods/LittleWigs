@@ -249,7 +249,7 @@ end
 
 function mod:ShadowBrandApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId)then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
@@ -261,7 +261,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(299055, "orange", name)
+		self:TargetMessage(299055, "orange", name)
 		self:PlaySound(299055, "alarm", nil, name)
 		self:Bar(299055, 12.1)
 		if self:Me(guid) then
@@ -335,7 +335,7 @@ end
 
 function mod:DesperateRetchingApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end

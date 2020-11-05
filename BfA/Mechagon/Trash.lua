@@ -346,7 +346,7 @@ end
 
 function mod:RippingSlashApplied(args)
 	if self:Healer() or self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
@@ -410,7 +410,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(300188, "red", name)
+		self:TargetMessage(300188, "red", name)
 		self:PlaySound(300188, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Say(300188)
@@ -484,7 +484,7 @@ end
 
 function mod:SuffocatingSmogApplied(args)
 	if self:Dispeller("disease", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -532,7 +532,7 @@ do
 	function mod:ShrinkApplied(args)
 		local isOnMe = self:Me(args.destGUID)
 		if self:Dispeller("magic", nil, true) or isOnMe then
-			self:TargetMessage2(args.spellId, "yellow", args.destName)
+			self:TargetMessage(args.spellId, "yellow", args.destName)
 			self:PlaySound(args.spellId, "info", nil, args.destName)
 			if isOnMe then
 				self:Say(args.spellId)
@@ -571,7 +571,7 @@ end
 
 function mod:NanoslicerApplied(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -736,7 +736,7 @@ end
 
 function mod:FlamingRefuseApplied(args)
 	if self:Dispeller("magic") then
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end

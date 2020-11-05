@@ -42,7 +42,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(320596, "red", name)
+		self:TargetMessage(320596, "red", name)
 		if self:Me(guid) then
 			self:PlaySound(320596, "warning")
 			self:Flash(320596)

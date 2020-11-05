@@ -106,7 +106,7 @@ end
 
 function mod:ClickButton(args)
 	clickCount = clickCount + 1
-	self:TargetMessage2("button", "cyan", args.sourceName, CL.count:format(L.button, clickCount), L.button_icon)
+	self:TargetMessage("button", "cyan", args.sourceName, CL.count:format(L.button, clickCount), L.button_icon)
 	self:PlaySound("button", "warning")
 end
 
@@ -182,7 +182,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(291928, "red", name)
+		self:TargetMessage(291928, "red", name)
 		self:PlaySound(291928, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Say(291928)

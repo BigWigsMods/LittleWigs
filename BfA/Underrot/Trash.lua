@@ -221,7 +221,7 @@ end
 
 function mod:DecayingMindApplied(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("disease") then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 		self:TargetBar(args.spellId, 30, args.destName)
 	end
@@ -274,7 +274,7 @@ end
 function mod:WickedFrenzyApplied(args)
 	local isTank = self:Tank()
 	if isTank or self:Dispeller("enrage", true) then
-		self:TargetMessage2(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, isTank and "alarm" or "alert")
 		if isTank then
 			self:TargetBar(args.spellId, 8, args.destName)

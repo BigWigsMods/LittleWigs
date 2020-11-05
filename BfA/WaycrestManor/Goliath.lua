@@ -77,7 +77,7 @@ do
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
 		end
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		self:TargetBar(args.spellId, 15, args.destName)
 		if self:GetOption(soulThornsMarker) then

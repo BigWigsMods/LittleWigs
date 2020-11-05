@@ -57,7 +57,7 @@ end
 
 function mod:CripplingShiv(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("poison") then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		self:TargetBar(args.spellId, 12, args.destName)
 	end
@@ -106,6 +106,6 @@ function mod:MotivatingCryInterupted(args)
 end
 
 function mod:VisciousMauling(args)
-	self:TargetMessage2(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end

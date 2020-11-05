@@ -59,7 +59,7 @@ function mod:Coalesce(args)
 end
 
 function mod:GoopedApplied(args)
-	self:TargetMessage2(298259, "orange", args.destName)
+	self:TargetMessage(298259, "orange", args.destName)
 	self:PlaySound(298259, "warning", nil, args.destName)
 end
 

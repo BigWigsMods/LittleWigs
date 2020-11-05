@@ -318,7 +318,7 @@ end
 
 function mod:TransmuteEnemyToGooApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage2(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
@@ -358,7 +358,7 @@ end
 -- Refreshment Vendor
 function mod:BrainFreezeApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 		self:TargetBar(args.spellId, 6, args.destName)
 		if self:Me(args.destGUID) then

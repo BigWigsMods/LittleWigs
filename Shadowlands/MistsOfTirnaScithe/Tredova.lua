@@ -71,13 +71,13 @@ function mod:AcceleratedIncubation(args)
 end
 
 function mod:MindLink(args)
-	self:TargetMessage2(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 17)
 end
 
 function mod:MarkedPreyApplied(args)
-	self:TargetMessage2(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:CDBar(args.spellId, 24)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alarm")
@@ -86,7 +86,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2("parasitic", "red", name, 278431, 278431) -- Parasitic
+		self:TargetMessage("parasitic", "red", name, 278431, 278431) -- Parasitic
 		if self:Me(guid) then
 			self:PlaySound("parasitic", "warning")
 			self:Say("parasitic", 278431) -- Parasitic

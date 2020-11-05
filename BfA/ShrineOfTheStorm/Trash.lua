@@ -184,7 +184,7 @@ end
 
 function mod:Swiftness(args)
 	if self:Dispeller("magic", true, args.spellId) and bit.band(args.destFlags, 0x400) == 0 then -- COMBATLOG_OBJECT_TYPE_PLAYER
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info")
 	end
 end
@@ -245,7 +245,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(268214, "orange", name) -- Carve Flesh
+		self:TargetMessage(268214, "orange", name) -- Carve Flesh
 		self:PlaySound(268214, "alert") -- Carve Flesh
 	end
 
@@ -269,7 +269,7 @@ end
 
 function mod:ElectrifyingShock(args)
 	if self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info")
 		self:CDBar(args.spellId, 15)
 	end
@@ -282,7 +282,7 @@ end
 
 function mod:VoidSeedApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage2(args.spellId, "blue", args.destName)
+		self:TargetMessage(args.spellId, "blue", args.destName)
 		self:PlaySound(args.spellId, "alarm")
 		-- Duration seems to vary, so we can't hardcode a fixed duration
 		local count = 0
@@ -360,7 +360,7 @@ end
 function mod:TouchOfTheDrownedApplied(args)
 	if self:UnitBuff(args.destName, 5697) then return end -- Warlock Unending Breath
 	if self:Dispeller("magic") or IsSpellKnown(5697) then -- Warlock Unending Breath
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info")
 	end
 end
