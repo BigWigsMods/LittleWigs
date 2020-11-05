@@ -112,25 +112,25 @@ end
 
 function mod:SoulStealDebuff(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end
 
 function mod:SoulStealBuff(args)
 	if self:Dispeller("magic", true) and not self:Dispeller("magic") then -- Only show 1 message to those who can dispel both (priests, restoration shamans)
-		self:TargetMessage(36778, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(36778, args.destName, "yellow", "Alarm", nil, nil, true)
 	end
 end
 
 function mod:Domination(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
 function mod:SpitefulFury(args)
 	if self:Me(args.destGUID) or self:Tank() or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Long", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "Long", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end

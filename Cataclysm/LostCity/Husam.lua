@@ -46,7 +46,7 @@ function mod:DetonateTraps(args)
 end
 
 function mod:BadIntentions(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 	self:CDBar(args.spellId, 25)
 end
 

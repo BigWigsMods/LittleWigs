@@ -125,7 +125,7 @@ function mod:ProtectiveShield(args)
 end
 
 function mod:Thunderstrike(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning")
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)

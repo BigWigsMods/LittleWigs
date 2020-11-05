@@ -66,7 +66,7 @@ function mod:AddDeath()
 end
 
 function mod:FreezingTouch(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 3, args.destName)
 end
 

@@ -45,7 +45,7 @@ end
 
 function mod:SanguineSphere(args)
 	local bubble = self:SpellName(119924) -- 119924 = "Bubble"
-	self:TargetMessage("sphere", args.destName, "yellow", UnitIsUnit("target", args.destName) and "Warning", bubble, args.spellId)
+	self:TargetMessageOld("sphere", args.destName, "yellow", UnitIsUnit("target", args.destName) and "Warning", bubble, args.spellId)
 	self:TargetBar("sphere", 15, args.destName, bubble, args.spellId)
 end
 

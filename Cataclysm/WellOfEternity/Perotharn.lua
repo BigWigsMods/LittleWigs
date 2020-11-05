@@ -46,16 +46,16 @@ end
 --
 
 function mod:FelDecay(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
 function mod:EasyPrey(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Long", self:SpellName(42203)) -- 42203 = "Discovered", hopefully it translates as such
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Long", self:SpellName(42203)) -- 42203 = "Discovered", hopefully it translates as such
 end
 
 function mod:Enfeebled(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Long")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Long")
 	self:Bar(args.spellId, 15)
 end
 

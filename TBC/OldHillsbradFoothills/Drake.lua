@@ -53,7 +53,7 @@ function mod:Warmup(duration)
 end
 
 function mod:MortalStrike(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning")
 	self:TargetBar(args.spellId, 5, args.destName)
 end
 

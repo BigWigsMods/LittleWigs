@@ -35,7 +35,7 @@ end
 
 function mod:PoisonNovaApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(59842, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(59842, args.destName, "blue", "Alarm")
 		self:TargetBar(59842, args.spellId == 59842 and 10 or 16, args.destName)
 	end
 end

@@ -25,7 +25,7 @@ end
 --  Event Handlers
 
 function mod:TwistedFlesh(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:Bar(args.spellId, 30, args.destName)
 end
 

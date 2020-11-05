@@ -121,7 +121,7 @@ end
 
 function mod:WrathOfMisery(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("curse") then
-		self:TargetMessage(50089, args.destName, "orange")
+		self:TargetMessageOld(50089, args.destName, "orange")
 		self:TargetBar(50089, 8, args.destName)
 	end
 end

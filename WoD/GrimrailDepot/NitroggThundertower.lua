@@ -77,7 +77,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(160681, player, "red", "Alert")
+		self:TargetMessageOld(160681, player, "red", "Alert")
 		self:PrimaryIcon(160681, player)
 		if self:Me(guid) then
 			self:Flash(160681)
@@ -94,7 +94,7 @@ do
 	end
 
 	function mod:PickedUpMortarShells(args)
-		self:TargetMessage(160965, args.destName, "green")
+		self:TargetMessageOld(160965, args.destName, "green")
 	end
 end
 
@@ -104,7 +104,7 @@ do
 	end
 
 	function mod:PickedUpGrenades(args)
-		self:TargetMessage(161073, args.destName, "green")
+		self:TargetMessageOld(161073, args.destName, "green")
 	end
 end
 

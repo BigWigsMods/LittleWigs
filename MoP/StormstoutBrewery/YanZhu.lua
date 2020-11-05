@@ -128,7 +128,7 @@ function mod:Bloat(args)
 end
 
 function mod:BloatApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 30, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)

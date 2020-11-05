@@ -91,7 +91,7 @@ do
 
 	local function announce(self)
 		if isOnMe or self:Dispeller("magic") then
-			self:TargetMessage(59868, playerList, "orange", "Alarm", nil, nil, true)
+			self:TargetMessageOld(59868, playerList, "orange", "Alarm", nil, nil, true)
 		else
 			wipe(playerList) -- :TargetMessage calls wipe() on its 2nd argument
 		end

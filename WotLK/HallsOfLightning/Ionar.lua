@@ -31,7 +31,7 @@ end
 --
 
 function mod:StaticOverload(args)
-	self:TargetMessage(59795, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(59795, args.destName, "yellow", "Alarm")
 	self:TargetBar(59795, 10, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(59795)

@@ -52,7 +52,7 @@ function mod:MandibleStrikesCast(args)
 end
 
 function mod:MandibleStrikesApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -62,7 +62,7 @@ do
 			self:Say(202341)
 			self:Flash(202341)
 		end
-		self:TargetMessage(202341, player, "red", "Long")
+		self:TargetMessageOld(202341, player, "red", "Long")
 		self:PrimaryIcon(202341, player)
 	end
 
@@ -81,7 +81,7 @@ end
 
 function mod:Fixated(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "blue", "Warning")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
 	end
 end
 

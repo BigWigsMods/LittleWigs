@@ -45,7 +45,7 @@ end
 --
 
 function mod:ArcaneResonance(args)
-	self:TargetMessage(args.spellId, args.spellName, "red")
+	self:TargetMessageOld(args.spellId, args.spellName, "red")
 end
 
 function mod:GreaterHeal(args)

@@ -41,7 +41,7 @@ end
 --
 
 function mod:AmplifyMagic(args)
-	self:TargetMessage(51054, args.destName, "red")
+	self:TargetMessageOld(51054, args.destName, "red")
 	self:TargetBar(51054, 30, args.destName)
 end
 

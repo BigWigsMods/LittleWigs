@@ -45,7 +45,7 @@ function mod:MagmaSpit(args)
 	else
 		self:OpenProximity(args.spellId, 5, args.destName)
 	end
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:TargetBar(args.spellId, 9, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

@@ -38,7 +38,7 @@ end
 
 function mod:LavaPool(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
 		self:Flash(args.spellId)
 	end
 end

@@ -65,7 +65,7 @@ function mod:DivineReckoning(args)
 	else
 		self:OpenProximity(args.spellId, 7, args.destName)
 	end
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

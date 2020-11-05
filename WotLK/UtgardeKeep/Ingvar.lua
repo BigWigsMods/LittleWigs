@@ -62,7 +62,7 @@ end
 
 function mod:WoeStrike(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("curse") then
-		self:TargetMessage(42730, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(42730, args.destName, "orange", "Alarm", nil, nil, true)
 		self:TargetBar(42730, 10, args.destName)
 	end
 end

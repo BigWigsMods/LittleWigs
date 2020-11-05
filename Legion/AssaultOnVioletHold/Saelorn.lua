@@ -55,7 +55,7 @@ end
 
 function mod:CreepingSlaughter(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm")
 		self:Flash(args.spellId)
 	end
 end

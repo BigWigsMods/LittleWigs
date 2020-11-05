@@ -56,7 +56,7 @@ end
 
 function mod:MagicDampeningField(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Alert")
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "Alert")
 	end
 end
 
@@ -72,5 +72,5 @@ do
 end
 
 function mod:Banish(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("magic"))
 end

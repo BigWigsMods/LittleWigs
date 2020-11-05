@@ -70,7 +70,7 @@ function mod:TornadoKick(args)
 end
 
 function mod:ChaseDown(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm")
 	self:TargetBar(args.spellId, 11, args.destName)
 end
 

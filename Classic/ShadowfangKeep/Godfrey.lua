@@ -62,7 +62,7 @@ end
 function mod:CursedBulletsApplied(args)
 	local canDispel = self:Dispeller("curse")
 	if canDispel or self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "orange", canDispel and "Alarm", nil, nil, canDispel)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", canDispel and "Alarm", nil, nil, canDispel)
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 end

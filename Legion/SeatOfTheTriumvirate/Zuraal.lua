@@ -72,12 +72,12 @@ function mod:CoalescedVoid()
 end
 
 function mod:UmbraShift(args)
-	self:TargetMessage(args.spellId, args.destName, "blue", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
 	self:CDBar(args.spellId, 55)
 end
 
 function mod:Fixate(args)
-	self:TargetMessage(args.spellId, args.destName, "blue", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end

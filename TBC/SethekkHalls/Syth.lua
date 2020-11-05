@@ -48,7 +48,7 @@ do
 		if self:Me(guid) then
 			self:Say(15659)
 		end
-		self:TargetMessage(15659, target, "yellow")
+		self:TargetMessageOld(15659, target, "yellow")
 		self:PrimaryIcon(15659, target)
 	end
 
@@ -64,7 +64,7 @@ end
 
 function mod:FrostShock(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(12548, args.destName, "orange")
+		self:TargetMessageOld(12548, args.destName, "orange")
 		self:TargetBar(12548, 8, args.destName)
 	end
 end

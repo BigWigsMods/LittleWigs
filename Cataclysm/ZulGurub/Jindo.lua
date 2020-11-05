@@ -90,7 +90,7 @@ function mod:SpiritWarriorsGaze(args)
 		self:Say(-2910, args.spellId)
 		self:Flash(-2910, args.spellId)
 	end
-	self:TargetMessage(-2910, args.destName, "red", "Alert", args.spellId)
+	self:TargetMessageOld(-2910, args.destName, "red", "Alert", args.spellId)
 	self:SecondaryIcon(-2910, args.destName)
 end
 

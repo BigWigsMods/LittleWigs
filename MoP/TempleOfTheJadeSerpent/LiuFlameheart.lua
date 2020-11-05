@@ -80,14 +80,14 @@ end
 
 function mod:SerpentStrike(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
 
 function mod:JadeSerpentStrike(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end

@@ -48,7 +48,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 end
 
 function mod:ToxicWound(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm")
 	--self:CDBar(args.spellId, 25) -- pull:27.8, 25.5, 29.2 -- pull:5.9, 25.1, 41.0
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

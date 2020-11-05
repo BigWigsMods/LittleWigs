@@ -27,6 +27,6 @@ end
 --
 
 function mod:ConstrictingChains(args)
-	self:TargetMessage(52696, args.destName, "red")
+	self:TargetMessageOld(52696, args.destName, "red")
 	self:TargetBar(52696, 5, args.destName)
 end

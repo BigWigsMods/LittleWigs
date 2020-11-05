@@ -52,7 +52,7 @@ function mod:Doom(args)
 end
 
 function mod:Hysteria(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
 	self:CDBar(args.spellId, 20)
 end
 

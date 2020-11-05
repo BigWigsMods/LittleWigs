@@ -40,7 +40,7 @@ function mod:DarkFissure(args)
 end
 
 function mod:Squeeze(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -50,7 +50,7 @@ end
 
 function mod:CurseOfFatigue(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessage(args.spellId, args.destName, "yellow")
+		self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	end
 end
 

@@ -61,7 +61,7 @@ function mod:NoxiousSpit(args)
 end
 
 function mod:ImbuedIronAxe(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 end
 
 function mod:IronReaver(_, _, _, spellId)

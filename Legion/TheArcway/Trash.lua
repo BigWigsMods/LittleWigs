@@ -127,7 +127,7 @@ end
 
 function mod:BrandoftheLegionApplied(args)
 	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	end
 end
 
@@ -139,7 +139,7 @@ end
 
 function mod:DemonicAscensionApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
 	end
 end
 

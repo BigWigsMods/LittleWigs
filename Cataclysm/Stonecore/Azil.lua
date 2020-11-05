@@ -30,7 +30,7 @@ end
 --
 
 function mod:CurseOfBlood(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 end
 
 function mod:EnergyShield()

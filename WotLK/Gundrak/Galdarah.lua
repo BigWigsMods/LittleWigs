@@ -61,7 +61,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:ImpalingCharge(args)
-	self:TargetMessage(59827, args.destName, "yellow", "Info", nil, nil, true)
+	self:TargetMessageOld(59827, args.destName, "yellow", "Info", nil, nil, true)
 end
 
 do

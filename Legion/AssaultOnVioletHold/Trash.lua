@@ -68,7 +68,7 @@ function mod:Casts(args)
 end
 
 function mod:FelPrison(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 end
 
 -- Lieutenant Sinclari

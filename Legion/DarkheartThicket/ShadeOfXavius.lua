@@ -60,7 +60,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(200289, player, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(200289, player, "yellow", "Alarm", nil, nil, true)
 		self:PrimaryIcon(200289, player)
 		if self:Me(guid) then
 			self:Say(200289)
@@ -77,13 +77,13 @@ end
 
 function mod:FeedOnTheWeakApplied(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 	end
 end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(200185, player, "orange", "Alert", nil, nil, true)
+		self:TargetMessageOld(200185, player, "orange", "Alert", nil, nil, true)
 
 		if not self:Normal() then
 			if self:Me(guid) then

@@ -93,7 +93,7 @@ do
 end
 
 function mod:ArcaneBlast(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 end
 
 do
@@ -114,7 +114,7 @@ do
 	local fixatedTargets, isOnMe = mod:NewTargetList(), nil
 
 	local function showFixateMessage(self)
-		self:TargetMessage(41951, fixatedTargets, "yellow", "Long")
+		self:TargetMessageOld(41951, fixatedTargets, "yellow", "Long")
 		isOnMe = nil
 	end
 

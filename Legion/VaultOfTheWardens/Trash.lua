@@ -122,7 +122,7 @@ function mod:NightmaresCast(args)
 end
 
 function mod:NightmaresApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", self:Healer() and "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", self:Healer() and "Alarm")
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
@@ -173,7 +173,7 @@ end
 
 function mod:GiftOfTheDoomsayer(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 	end
 end
 
@@ -188,7 +188,7 @@ function mod:Torment(args)
 		tormentOnMe = true
 		self:Say(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 

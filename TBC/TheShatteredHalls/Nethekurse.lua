@@ -40,7 +40,7 @@ function mod:DeathCoil(args)
 end
 
 function mod:DeathCoilApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 end
 
 do

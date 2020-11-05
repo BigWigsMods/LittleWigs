@@ -49,7 +49,7 @@ end
 --
 
 function mod:PreyTime(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 5, args.destName)
 	self:CDBar(args.spellId, 15.6)
 end

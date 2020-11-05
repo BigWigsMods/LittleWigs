@@ -50,6 +50,6 @@ end
 
 function mod:ShadowWordPain(args)
 	if self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
 	end
 end

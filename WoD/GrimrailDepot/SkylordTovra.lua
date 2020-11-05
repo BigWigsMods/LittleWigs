@@ -73,7 +73,7 @@ do
 			self:Say(162066)
 			self:Flash(162066)
 		end
-		self:TargetMessage(162066, player, "orange", "Info")
+		self:TargetMessageOld(162066, player, "orange", "Info")
 	end
 	function mod:FreezingSnare(args)
 		self:CDBar(args.spellId, 16.5) -- 16.5-17
@@ -83,7 +83,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessage(163447, player, "orange", "Info")
+		self:TargetMessageOld(163447, player, "orange", "Info")
 	end
 	function mod:HuntersMark(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)

@@ -68,7 +68,7 @@ end
 
 do
 	local function bossTarget(self, name)
-		self:TargetMessage(153954, name, "yellow", "Warning", nil, nil, true)
+		self:TargetMessageOld(153954, name, "yellow", "Warning", nil, nil, true)
 	end
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 153954 then -- Cast Down

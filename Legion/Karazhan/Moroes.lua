@@ -155,7 +155,7 @@ end
 
 function mod:CoatCheckDispellable(args)
 	if not self:Tank() then
-		self:TargetMessage(227851, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(227851, args.destName, "orange", "Alarm", nil, nil, true)
 	end
 end
 
@@ -199,7 +199,7 @@ do
 		if self:Me(guid) then
 			self:Say(227463)
 		end
-		self:TargetMessage(227463, player, "orange", "Warning")
+		self:TargetMessageOld(227463, player, "orange", "Warning")
 	end
 
 	function mod:WhirlingEdge(args)

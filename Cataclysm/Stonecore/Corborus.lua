@@ -64,7 +64,7 @@ end
 
 function mod:Barrage(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(86881, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(86881, args.destName, "blue", "Alarm")
 		self:Flash(86881)
 	end
 end

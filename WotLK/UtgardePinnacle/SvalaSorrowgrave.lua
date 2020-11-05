@@ -37,6 +37,6 @@ function mod:RitualOfTheSword(args)
 end
 
 function mod:RitualPreparation(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 end
 

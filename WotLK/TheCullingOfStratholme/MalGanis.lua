@@ -45,7 +45,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:Sleep(args)
-	self:TargetMessage(52721, args.destName, "red")
+	self:TargetMessageOld(52721, args.destName, "red")
 	self:TargetBar(52721, args.spellId == 52721 and 10 or 8, args.destName)
 end
 

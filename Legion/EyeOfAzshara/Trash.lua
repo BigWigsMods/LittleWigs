@@ -130,6 +130,6 @@ end
 
 function mod:PolymorphFish(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "yellow", "Info", self:SpellName(118), nil, true) -- 118 is Polymorph, which is shorter than "Polymorph: Fish"
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Info", self:SpellName(118), nil, true) -- 118 is Polymorph, which is shorter than "Polymorph: Fish"
 	end
 end

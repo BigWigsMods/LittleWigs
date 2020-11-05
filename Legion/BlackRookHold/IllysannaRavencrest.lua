@@ -73,7 +73,7 @@ end
 
 function mod:ArcaneBlitz(args)
 	if self:Interrupter(args.sourceGUID) then
-		self:TargetMessage(args.spellId, args.sourceName, "yellow", "Alarm")
+		self:TargetMessageOld(args.spellId, args.sourceName, "yellow", "Alarm")
 	end
 end
 

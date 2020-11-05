@@ -64,7 +64,7 @@ function mod:BrokenCarapace(args)
 end
 
 function mod:Fixate(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Long")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Long")
 	self:TargetBar(args.spellId, 15, args.destName)
 end
 

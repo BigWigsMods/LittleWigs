@@ -96,7 +96,7 @@ end
 
 function mod:ChokingVines(args)
 	if self:Me(args.destGUID)then
-		self:TargetMessage(236650, args.destName, "blue", "Warning")
+		self:TargetMessageOld(236650, args.destName, "blue", "Warning")
 	end
 end
 

@@ -61,7 +61,7 @@ function mod:GrievousTearApplied(args)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:CDBar(args.spellId, 13) -- pull:5.7, 14.5, 13.3 / m pull:6.8, 15.5, 16.1, 15.3, 12.5, 14.3
 end
 

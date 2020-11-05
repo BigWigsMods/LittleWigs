@@ -51,7 +51,7 @@ do
 end
 
 function mod:SeedOfCorruption(args)
-	self:TargetMessage(36123, args.destName, "orange")
+	self:TargetMessageOld(36123, args.destName, "orange")
 	self:TargetBar(36123, 18, args.destName)
 	self:PrimaryIcon(36123, args.destName)
 	if self:Me(args.destGUID) then

@@ -59,7 +59,7 @@ function mod:BurningArrows(args)
 end
 
 function mod:SavageMauling(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

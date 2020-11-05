@@ -63,7 +63,7 @@ end
 function mod:GaseousBubblesApplied(args)
 	if self:Me(args.destGUID) then
 		bubblesOnMe = true
-		self:TargetMessage(args.spellId, args.destName, "blue", "Warning")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:Flash(args.spellId)
 	end

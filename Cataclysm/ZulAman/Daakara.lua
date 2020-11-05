@@ -53,7 +53,7 @@ end
 
 do
 	function mod:GrievousThrow(args)
-		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm")
 		self:TargetBar(args.spellId, 15, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
@@ -74,7 +74,7 @@ function mod:CreepingParalysis(args)
 end
 
 function mod:ClawRage(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 end
 
 function mod:Forms(args)

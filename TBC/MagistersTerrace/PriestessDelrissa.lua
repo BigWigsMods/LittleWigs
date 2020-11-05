@@ -68,12 +68,12 @@ end
 
 -- Priestess Delrissa
 function mod:Renew(args)
-	self:TargetMessage(46192, args.destName, "yellow")
+	self:TargetMessageOld(46192, args.destName, "yellow")
 	self:TargetBar(46192, 15, args.destName)
 end
 
 function mod:PowerWordShield(args)
-	self:TargetMessage(46193, args.destName, "yellow")
+	self:TargetMessageOld(46193, args.destName, "yellow")
 end
 
 -- Apoko
@@ -87,13 +87,13 @@ function mod:Blizzard(args)
 end
 
 function mod:Polymorph(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 -- Ellrys Duskhallow
 function mod:SeedOfCorruption(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 18, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

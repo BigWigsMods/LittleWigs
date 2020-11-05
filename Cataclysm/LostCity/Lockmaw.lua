@@ -53,7 +53,7 @@ function mod:Deaths(args)
 end
 
 function mod:ViscousPoison(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:Bar(args.spellId, 12, args.destName)
 end
 
@@ -62,7 +62,7 @@ function mod:ViscousPoisonRemoved(args)
 end
 
 function mod:ScentOfBlood(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 	self:Bar(args.spellId, 30, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

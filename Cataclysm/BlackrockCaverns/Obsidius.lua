@@ -45,7 +45,7 @@ end
 --
 
 function mod:TwilightCorruption(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 
@@ -55,7 +55,7 @@ end
 
 function mod:CrepuscularVeil(args)
 	if self:Tank(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "yellow")
+		self:TargetMessageOld(args.spellId, args.destName, "yellow")
 		self:TargetBar(args.spellId, 4, args.destName)
 	end
 end

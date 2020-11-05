@@ -53,7 +53,7 @@ function mod:Landslide(args)
 end
 
 function mod:BurningHatred(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm")
 end
 
 function mod:CrystalSpikes(args)

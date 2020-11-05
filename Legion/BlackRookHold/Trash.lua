@@ -132,7 +132,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:TargetMessage(args.spellId, args.destName, "orange", "Warning")
+			self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning")
 		end
 	end
 end

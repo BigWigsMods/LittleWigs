@@ -140,7 +140,7 @@ function mod:ReverberatingShadows(args)
 end
 
 function mod:BurningBones(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Info")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Info")
 	self:CDBar(args.spellId, 18)
 end
 
@@ -155,7 +155,7 @@ function mod:InfernalPowerRemoved(args)
 end
 
 function mod:IgniteSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
 	self:TargetBar(args.spellId, 9, args.destName)
 	if self:Me(args.destGUID) then
 		igniteSoulOnMe = true
@@ -191,7 +191,7 @@ function mod:JaggedShards(args)
 end
 
 function mod:AbsorbVitality(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 18, args.destName)
 	self:Bar(args.spellId, 20)
 end

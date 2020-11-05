@@ -62,7 +62,7 @@ function mod:WildSlam(args)
 end
 
 function mod:CrushingLeap(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

@@ -35,7 +35,7 @@ function mod:TreacherousAura(args)
 	else
 		self:OpenProximity(30695, 15, args.destName)
 	end
-	self:TargetMessage(30695, args.destName, "orange", nil, args.spellName)
+	self:TargetMessageOld(30695, args.destName, "orange", nil, args.spellName)
 	self:TargetBar(30695, 15, args.destName, args.spellName)
 	self:PrimaryIcon(30695, args.destName)
 end

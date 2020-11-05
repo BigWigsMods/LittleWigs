@@ -61,7 +61,7 @@ function mod:HatefulGaze(args)
 		self:Say(args.spellId)
 	end
 	self:Bar(args.spellId, 25.4)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Warning", nil, nil, true)
 end
 
 function mod:FelVomit(args)

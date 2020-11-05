@@ -42,7 +42,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(204646, player, "orange", "Alert", nil, nil, true)
+		self:TargetMessageOld(204646, player, "orange", "Alert", nil, nil, true)
 		self:PrimaryIcon(204646, player)
 		if self:Me(guid) then
 			self:Say(204646)

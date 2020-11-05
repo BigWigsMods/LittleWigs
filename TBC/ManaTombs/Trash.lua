@@ -68,7 +68,7 @@ end
 
 function mod:ShieldBash(args)
 	if self:Me(args.destGUID) or self:Healer(args.destName) then
-		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
@@ -99,15 +99,15 @@ do
 end
 
 function mod:ShadowsEmbrace(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
 end
 
 function mod:CurseOfImpotence(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessage(args.spellId, args.destName, "yellow")
+		self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	end
 end
 
 function mod:Polymorph(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("magic"))
 end

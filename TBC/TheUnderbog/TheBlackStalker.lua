@@ -35,7 +35,7 @@ end
 --
 
 function mod:Levitate(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
@@ -50,7 +50,7 @@ function mod:StaticCharge(args)
 	else
 		self:OpenProximity(args.spellId, 8, args.destName)
 	end
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
 	self:TargetBar(args.spellId, 12, args.destName)
 	self:SecondaryIcon(args.spellId, args.destName)
 end
@@ -69,7 +69,7 @@ do
 		if self:Me(guid) then
 			self:Say(31717)
 		end
-		self:TargetMessage(31717, target, "yellow")
+		self:TargetMessageOld(31717, target, "yellow")
 		self:PrimaryIcon(31717, target)
 	end
 

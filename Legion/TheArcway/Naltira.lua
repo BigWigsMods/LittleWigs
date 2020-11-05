@@ -75,7 +75,7 @@ function mod:BlinkStrikes(_, _, _, spellId)
 		self:Bar(-12687, 30)
 	elseif spellId == 199811 then -- UNIT_SPELLCAST_CHANNEL_START
 		local target = self:UnitName("boss1target")
-		self:TargetMessage(-12687, target, "orange", "Alarm", CL.count:format(self:SpellName(spellId), blinkCount))
+		self:TargetMessageOld(-12687, target, "orange", "Alarm", CL.count:format(self:SpellName(spellId), blinkCount))
 		blinkCount = blinkCount + 1
 	end
 end
@@ -87,7 +87,7 @@ end
 -- end
 
 function mod:Devour(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Info", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Info", nil, nil, true)
 end
 
 do
@@ -96,7 +96,7 @@ do
 		if isOnMe then
 			self:OpenProximity(spellId, 30, targets)
 		end
-		self:TargetMessage(spellId, self:ColorName(targets), "yellow", "Warning")
+		self:TargetMessageOld(spellId, self:ColorName(targets), "yellow", "Warning")
 		wipe(targets)
 		isOnMe = nil
 	end

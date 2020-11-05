@@ -50,7 +50,7 @@ function mod:BaneRemoved(args)
 end
 
 function mod:FetidRot(args)
-	self:TargetMessage(59300, args.destName, "orange")
+	self:TargetMessageOld(59300, args.destName, "orange")
 	self:TargetBar(59300, 9, args.destName)
 end
 

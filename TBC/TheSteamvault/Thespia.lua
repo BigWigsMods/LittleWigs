@@ -49,13 +49,13 @@ do
 end
 
 function mod:EnvelopingWinds(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
 function mod:LungBurst(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end

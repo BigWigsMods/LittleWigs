@@ -69,7 +69,7 @@ function mod:TouchOfNothingness(args)
 	end
 
 	local canDispel = self:Dispeller("magic")
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, canDispel)
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, canDispel)
 	if canDispel then
 		self:TargetBar(args.spellId, 30, args.destName)
 	end

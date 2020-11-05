@@ -67,7 +67,7 @@ end
 
 function mod:CurseOfLife(args)
 	if self:Me(args.destGUID) or self:Healer() then -- despite its name, it's not actually a curse
-		self:TargetMessage(49527, args.destName, "orange")
+		self:TargetMessageOld(49527, args.destName, "orange")
 		self:TargetBar(49527, 9, args.destName)
 	end
 end

@@ -58,7 +58,7 @@ function mod:DarkCommand(args)
 end
 
 function mod:DarkCommandApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 4, args.destName)
 end
 

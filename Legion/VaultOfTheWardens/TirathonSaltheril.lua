@@ -74,7 +74,7 @@ function mod:DarkstrikesCast(args)
 end
 
 function mod:DarkstrikesApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
 

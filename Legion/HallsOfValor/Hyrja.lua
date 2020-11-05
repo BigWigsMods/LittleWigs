@@ -84,7 +84,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(191976, player, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(191976, player, "yellow", "Alarm", nil, nil, true)
 		self:SecondaryIcon(191976, player)
 		if self:Me(guid) then
 			self:Say(191976)
@@ -103,7 +103,7 @@ do
 end
 
 function mod:ExpelLight(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 8)

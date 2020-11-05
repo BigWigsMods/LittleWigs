@@ -76,7 +76,7 @@ function mod:Leftovers(args)
 end
 
 function mod:SevereDusting(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning")
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
@@ -89,7 +89,7 @@ function mod:SpectralService(args)
 end
 
 function mod:DentArmor(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 

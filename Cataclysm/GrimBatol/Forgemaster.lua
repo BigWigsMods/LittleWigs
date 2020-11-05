@@ -67,12 +67,12 @@ function mod:Blades(args)
 end
 
 function mod:Impale(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 end
 
 function mod:CaveIn(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
 		self:Flash(args.spellId)
 	end
 end

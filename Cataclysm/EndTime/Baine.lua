@@ -47,7 +47,7 @@ end
 function mod:Blitz(_, msg, _, _, _, player)
 	if msg:find(self:SpellName(-4140)) then
 		if player then
-			self:TargetMessage(-4140, player, "red", "Alert")
+			self:TargetMessageOld(-4140, player, "red", "Alert")
 			self:PrimaryIcon(-4140, player)
 			self:ScheduleTimer("PrimaryIcon", 4, -4140)
 		else

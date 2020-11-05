@@ -49,7 +49,7 @@ do
 		if self:Me(guid) then
 			self:Say(194325)
 		end
-		self:TargetMessage(194325, player, "red", "Warning")
+		self:TargetMessageOld(194325, player, "red", "Warning")
 	end
 	function mod:Fragment(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)

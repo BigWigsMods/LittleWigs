@@ -65,7 +65,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessage(227789, player, "red", "Alarm")
+		self:TargetMessageOld(227789, player, "red", "Alarm")
 		if self:Me(guid) then
 			self:Say(227789)
 			self:Flash(227789)
@@ -148,7 +148,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessage(227809, player, "red")
+		self:TargetMessageOld(227809, player, "red")
 	end
 
 	function mod:HolyBolt(args)

@@ -80,7 +80,7 @@ function mod:Frostbite(args)
 end
 
 function mod:FrostbiteApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
 	frostbiteTarget = args.destName
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)

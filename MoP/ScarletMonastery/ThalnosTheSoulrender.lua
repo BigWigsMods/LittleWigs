@@ -67,7 +67,7 @@ function mod:SpiritGaleStopped(args)
 end
 
 function mod:EvictSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Info")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Info")
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:CDBar(args.spellId, 41)
 end

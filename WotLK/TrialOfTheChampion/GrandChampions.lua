@@ -44,7 +44,7 @@ end
 --
 
 function mod:HexOfMendingApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -58,7 +58,7 @@ function mod:HealingWave(args)
 end
 
 function mod:PolymorphApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 4, args.destName)
 end
 

@@ -30,7 +30,7 @@ end
 --
 
 function mod:DeepFreeze(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 14, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

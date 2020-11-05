@@ -755,18 +755,18 @@ end
 
 function mod:Fortification(args)
 	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then -- mages can spellsteal it
-		self:TargetMessage(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "Alert", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "Alert", nil, nil, true)
 	end
 end
 
 function mod:Suppress(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
 function mod:SingleTargetDebuffs(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
+		self:TargetMessageOld(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "Alert", nil, nil, self:Dispeller("magic"))
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
@@ -801,7 +801,7 @@ do
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:TargetMessage(args.spellId, args.sourceName, "cyan", "Info")
+			self:TargetMessageOld(args.spellId, args.sourceName, "cyan", "Info")
 		end
 	end
 end
@@ -812,7 +812,7 @@ do
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:TargetMessage(args.spellId, args.sourceName, "green", "Long", args.destName)
+			self:TargetMessageOld(args.spellId, args.sourceName, "green", "Long", args.destName)
 		end
 	end
 end

@@ -43,7 +43,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:CurseOfExertion(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:Bar(args.spellId, 10, args.destName)
 end
 

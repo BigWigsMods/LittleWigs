@@ -106,7 +106,7 @@ do
 			local t = GetTime()
 			if t-prev > 0.5 then
 				prev = t
-				self:TargetMessage(args.spellId, args.destName, "red", "Long")
+				self:TargetMessageOld(args.spellId, args.destName, "red", "Long")
 				self:Flash(args.spellId)
 			end
 		end

@@ -43,7 +43,7 @@ end
 
 function mod:InfectedWound(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("disease") then
-		self:TargetMessage(args.spellId, args.destName, "orange")
+		self:TargetMessageOld(args.spellId, args.destName, "orange")
 		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end

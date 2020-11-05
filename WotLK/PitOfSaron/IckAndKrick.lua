@@ -76,7 +76,7 @@ function mod:UNIT_AURA(_, unit)
 	if pursuitWarned[n] and not name then
 		pursuitWarned[n] = nil
 	elseif name and not pursuitWarned[n] then
-		self:TargetMessage(68987, n, "yellow", "Alert")
+		self:TargetMessageOld(68987, n, "yellow", "Alert")
 		pursuitWarned[n] = true
 	end
 end

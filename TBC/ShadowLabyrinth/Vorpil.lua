@@ -46,7 +46,7 @@ function mod:DrawShadows()
 end
 
 function mod:Banish(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 

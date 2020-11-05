@@ -63,7 +63,7 @@ end
 
 function mod:SpikedTongueApplied(args)
 	if self:MobId(args.destGUID) ~= 91005 then -- Naraxas
-		self:TargetMessage(args.spellId, args.destName, "green", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "green", "Alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 10, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end

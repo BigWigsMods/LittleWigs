@@ -35,7 +35,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 end
 
 function mod:BroodPlague(args)
-	self:TargetMessage(56130, args.destName, "yellow")
+	self:TargetMessageOld(56130, args.destName, "yellow")
 	self:TargetBar(56130, 30, args.destName)
 end
 

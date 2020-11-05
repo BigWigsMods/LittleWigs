@@ -80,7 +80,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:Fear(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 4, args.destName)
 end
 
@@ -89,12 +89,12 @@ function mod:FearRemoved(args)
 end
 
 function mod:Domination(args)
-	self:TargetMessage(37162, args.destName, "orange")
+	self:TargetMessageOld(37162, args.destName, "orange")
 	self:TargetBar(37162, 6, args.destName)
 end
 
 function mod:MindRend(args)
-	self:TargetMessage(36924, args.destName, "red")
+	self:TargetMessageOld(36924, args.destName, "red")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

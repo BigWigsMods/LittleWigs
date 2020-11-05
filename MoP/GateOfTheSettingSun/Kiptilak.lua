@@ -43,7 +43,7 @@ end
 --
 
 function mod:Sabotage(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 5, args.destName)
 	self:CDBar(args.spellId, 13.4)
 	self:PrimaryIcon(args.spellId, args.destName)

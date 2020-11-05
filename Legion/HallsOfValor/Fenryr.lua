@@ -85,7 +85,7 @@ do
 			self:Say(196838)
 		end
 		self:PrimaryIcon(196838, player)
-		self:TargetMessage(196838, player, "orange", "Warning")
+		self:TargetMessageOld(196838, player, "orange", "Warning")
 	end
 	function mod:ScentOfBlood(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)

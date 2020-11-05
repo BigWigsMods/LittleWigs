@@ -29,7 +29,7 @@ end
 --  Event Handlers
 
 function mod:CurseOfFatigue(args)
-	self:TargetMessage(52592, args.destName, "yellow")
+	self:TargetMessageOld(52592, args.destName, "yellow")
 	self:TargetBar(52592, 10, args.destName)
 end
 

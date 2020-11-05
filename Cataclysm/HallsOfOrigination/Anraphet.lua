@@ -74,7 +74,7 @@ end
 
 function mod:NemesisStrike(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "orange")
+		self:TargetMessageOld(args.spellId, args.destName, "orange")
 		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end

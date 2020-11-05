@@ -60,7 +60,7 @@ function mod:MightySmash(args)
 end
 
 function mod:Execution(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
 	self:CDBar(args.spellId, 48)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
@@ -70,7 +70,7 @@ end
 
 function mod:ImpactRemoved(args) -- Execution root got removed
 	self:StopBar(205233, args.destName) -- Stop Execution bar
-	self:TargetMessage(205233, args.destName, "green", "Info", CL.removed:format(self:SpellName(75215)), 205233, true) -- Root removed with Execution icon
+	self:TargetMessageOld(205233, args.destName, "green", "Info", CL.removed:format(self:SpellName(75215)), 205233, true) -- Root removed with Execution icon
 	if self:Me(args.destGUID) then
 		self:Flash(205233)
 	end

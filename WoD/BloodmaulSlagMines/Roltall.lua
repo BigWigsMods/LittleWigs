@@ -53,7 +53,7 @@ do
 			if t - prev > 2 then
 				prev = t
 				self:Flash(args.spellId)
-				self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
+				self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
 			end
 		end
 	end

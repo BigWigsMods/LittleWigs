@@ -77,7 +77,7 @@ do
 		local isANewPairOfCasts = t - prev > 1
 		if isANewPairOfCasts or (prevGUID ~= args.destGUID) then
 			prev = t
-			self:TargetMessage(args.spellId, args.destName, "yellow")
+			self:TargetMessageOld(args.spellId, args.destName, "yellow")
 			if isANewPairOfCasts then
 				self:PlaySound(args.spellId, "Alarm") -- don't play 2 sounds if 2 different targets get Renew at the same time
 			end
@@ -88,7 +88,7 @@ end
 
 function mod:ShadowWordPain(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "orange")
+		self:TargetMessageOld(args.spellId, args.destName, "orange")
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 end

@@ -124,7 +124,7 @@ do
 		local t = GetTime()
 		if self:Me(guid) then
 			prev = t
-			self:TargetMessage(236737, name, "blue", "Alert")
+			self:TargetMessageOld(236737, name, "blue", "Alert")
 			self:Say(236737)
 		elseif t-prev > 1.5 then
 			prev = t

@@ -53,7 +53,7 @@ function mod:ArcaneExplosion(args)
 end
 
 function mod:Polymorph(args)
-	self:TargetMessage(38245, args.destName, "yellow")
+	self:TargetMessageOld(38245, args.destName, "yellow")
 	self:TargetBar(38245, 6, args.destName)
 end
 
@@ -66,11 +66,11 @@ do
 	local function announce(self)
 		-- this applies to the whole group but can be immuned
 		if self:Dispeller("magic") then -- the only case where we care who exactly got the debuff
-			self:TargetMessage(35032, playerList, "red", "Alarm", nil, nil, true)
+			self:TargetMessageOld(35032, playerList, "red", "Alarm", nil, nil, true)
 		else
 			wipe(playerList)
 			if isOnMe then
-				self:TargetMessage(35032, isOnMe, "red", "Alarm")
+				self:TargetMessageOld(35032, isOnMe, "red", "Alarm")
 			else
 				self:Message(35032, "red")
 			end

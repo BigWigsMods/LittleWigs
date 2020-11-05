@@ -59,7 +59,7 @@ do
 			self:Flash(153240)
 			self:Say(153240)
 		end
-		self:TargetMessage(153240, player, "yellow", "Alert")
+		self:TargetMessageOld(153240, player, "yellow", "Alert")
 	end
 	function mod:Daggerfall(args)
 		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)

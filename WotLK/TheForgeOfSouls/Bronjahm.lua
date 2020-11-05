@@ -35,7 +35,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:CorruptSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alert")
 	self:TargetBar(args.spellId, 4, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

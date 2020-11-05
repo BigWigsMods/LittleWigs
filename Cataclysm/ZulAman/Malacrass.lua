@@ -50,7 +50,7 @@ function mod:SpiritBolts(args)
 end
 
 function mod:SoulSiphon(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:CDBar(args.spellId, 60)
 end
 
@@ -59,5 +59,5 @@ function mod:HealingCasts(args)
 end
 
 function mod:Lifebloom(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic", true))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic", true))
 end

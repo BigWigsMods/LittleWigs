@@ -36,7 +36,7 @@ function mod:DevastatingSlam(args)
 end
 
 function mod:Decapitate(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 	self:CDBar(args.spellId, 30)
 end
 

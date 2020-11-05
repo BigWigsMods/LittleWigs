@@ -42,12 +42,12 @@ end
 --
 
 function mod:Quarantine(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Info", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Info", nil, nil, true)
 	self:CDBar(args.spellId, 46)
 end
 
 function mod:SuppressionProtocol(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm")
 	self:TargetBar(args.spellId, 12, args.destName)
 	self:ScheduleTimer("CDBar", 12, args.spellId, 34)
 	self:PrimaryIcon(args.spellId, args.destName)

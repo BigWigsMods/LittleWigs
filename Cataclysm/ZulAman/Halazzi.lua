@@ -59,7 +59,7 @@ end
 --
 
 function mod:FlameShock(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm")
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 

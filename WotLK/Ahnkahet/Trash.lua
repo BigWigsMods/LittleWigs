@@ -68,12 +68,12 @@ end
 
 function mod:EyesInTheDark(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "red", "Alert", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "red", "Alert", nil, nil, true)
 	end
 end
 
 function mod:CurseOfTongues(args)
 	if self:Dispeller("curse") or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
 	end
 end

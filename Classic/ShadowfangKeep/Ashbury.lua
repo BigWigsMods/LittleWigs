@@ -42,7 +42,7 @@ end
 --
 
 function mod:PainAndSuffering(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 end
 
 function mod:Asphyxiate(args)

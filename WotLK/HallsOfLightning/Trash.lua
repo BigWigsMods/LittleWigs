@@ -60,5 +60,5 @@ do
 end
 
 function mod:Sleep(args)
-	self:TargetMessage(59165, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(59165, args.destName, "yellow", "Alarm")
 end

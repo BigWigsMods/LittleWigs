@@ -117,7 +117,7 @@ function mod:NightmareToxinApplied(args)
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 3, nil, 2)
 	end
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert", nil, nil, self:Dispeller("poison"))
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert", nil, nil, self:Dispeller("poison"))
 	self:TargetBar(args.spellId, 3, args.destName)
 end
 

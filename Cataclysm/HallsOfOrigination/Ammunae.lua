@@ -41,7 +41,7 @@ function mod:Wither(args)
 end
 
 function mod:WitherApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -50,7 +50,7 @@ function mod:WitherRemoved(args)
 end
 
 function mod:ConsumeLifeEnergy(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Long", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Long", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 4, args.destName)
 	self:CDBar(args.spellId, 20)
 end

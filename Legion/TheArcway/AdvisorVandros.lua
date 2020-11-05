@@ -66,7 +66,7 @@ function mod:ForceBomb(args)
 end
 
 function mod:UnstableMana(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 

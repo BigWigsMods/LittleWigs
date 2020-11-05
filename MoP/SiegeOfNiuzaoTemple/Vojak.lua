@@ -78,7 +78,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if not UnitDetailedThreatSituation(player, "boss1") then
-			self:TargetMessage(120789, player, "yellow", "Alarm")
+			self:TargetMessageOld(120789, player, "yellow", "Alarm")
 			if self:Me(guid) then
 				self:Say(120789)
 			end

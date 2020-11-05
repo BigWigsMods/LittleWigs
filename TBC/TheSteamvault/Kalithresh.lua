@@ -39,7 +39,7 @@ end
 --
 
 function mod:HeadCrack(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 15, args.destName)
 end
 

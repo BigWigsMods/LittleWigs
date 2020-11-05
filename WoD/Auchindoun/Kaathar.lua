@@ -48,7 +48,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessage(153002, player, "orange", "Alert", nil, nil, true)
+		self:TargetMessageOld(153002, player, "orange", "Alert", nil, nil, true)
 	end
 	function mod:HolyShield(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)

@@ -87,7 +87,7 @@ function mod:Confess(args)
 end
 
 function mod:ShadowsOfThePast(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

@@ -48,7 +48,7 @@ do
 			self:Flash(88495)
 			self:Say(88495)
 		end
-		self:TargetMessage(88495, player, "red", "Alert")
+		self:TargetMessageOld(88495, player, "red", "Alert")
 	end
 	function mod:Harvest(args)
 		self:Bar(args.spellId, 56)

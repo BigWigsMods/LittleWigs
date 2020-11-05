@@ -64,7 +64,7 @@ end
 
 function mod:GiftOfTheDoomsayerApplied(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(39009, args.destName, "yellow")
+		self:TargetMessageOld(39009, args.destName, "yellow")
 		self:TargetBar(39009, 10, args.destName)
 	end
 end

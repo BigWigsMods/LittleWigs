@@ -76,11 +76,11 @@ do
 end
 
 function mod:WordOfShame(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 end
 
 --function mod:ShieldOfThePerfidious(args)
 --	if self.Me(args.destGUID) then
---		self:TargetMessage(args.spellId, args.destName, "blue")
+--		self:TargetMessageOld(args.spellId, args.destName, "blue")
 --	end
 --end

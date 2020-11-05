@@ -45,5 +45,5 @@ function mod:Windwall(args)
 end
 
 function mod:PiercingRush(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm")
 end

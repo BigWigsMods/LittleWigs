@@ -35,7 +35,7 @@ end
 --
 
 function mod:Smash(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm", 34618) -- 34618 = Smash
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", 34618) -- 34618 = Smash
 	self:TargetBar(args.spellId, 4, args.destName, 34618)
 	self:CDBar(args.spellId, 17, 34618) -- 17-19
 end

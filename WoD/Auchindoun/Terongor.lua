@@ -75,7 +75,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:SeedOfMalevolence(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 18, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
@@ -91,7 +91,7 @@ function mod:SeedOfMalevolenceRemoved(args)
 end
 
 function mod:Fixate(args)
-	self:TargetMessage(args.spellId, args.destName, "green", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "green", "Warning")
 	self:TargetBar(args.spellId, 12, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -107,7 +107,7 @@ do
 		if self:Me(guid) then
 			self:Say(157001)
 		end
-		self:TargetMessage(157001, player, "red", "Alert")
+		self:TargetMessageOld(157001, player, "red", "Alert")
 	end
 	function mod:ChaosWave(args)
 		self:CDBar(args.spellId, 13.2) -- 13.2-15.7
@@ -121,7 +121,7 @@ do
 			self:Say(157039)
 			self:Flash(157039)
 		end
-		self:TargetMessage(157039, player, "orange", "Alarm")
+		self:TargetMessageOld(157039, player, "orange", "Alarm")
 	end
 	function mod:DemonicLeap(args)
 		self:CDBar(args.spellId, 20) -- 20-23

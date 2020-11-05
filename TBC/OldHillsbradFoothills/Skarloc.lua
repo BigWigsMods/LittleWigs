@@ -77,7 +77,7 @@ end
 
 function mod:HammerOfJustice(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, args.destName, "red", "Warning")
+		self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
 		self:TargetBar(args.spellId, 5, args.destName)
 	end
 end

@@ -31,7 +31,7 @@ end
 --
 
 function mod:MortalStrike(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 5, args.destName)
 end
 

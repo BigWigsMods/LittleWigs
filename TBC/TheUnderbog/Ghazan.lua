@@ -44,7 +44,7 @@ do
 
 	function mod:AcidBreath(args)
 		if self:Me(args.destGUID) and not self:Healer() then
-			self:TargetMessage(args.spellId, args.destName, "blue", not self:Tank() and "Warning")
+			self:TargetMessageOld(args.spellId, args.destName, "blue", not self:Tank() and "Warning")
 			self:TargetBar(args.spellId, 20, args.destName) -- this will have 100% uptime on the tank, can't be dispelled, no reason to show this to anyone not affected
 		elseif self:Healer() then
 			playerList[#playerList+1] = args.destName

@@ -50,7 +50,7 @@ function mod:PulverizingCudgel(args)
 end
 
 function mod:ScornfulGaze(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Warning", args.spellName)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", args.spellName)
 	self:TargetBar(args.spellId, 7, args.destName)
 	self:CDBar(args.spellId, 37)
 	if self:Me(args.destGUID) then

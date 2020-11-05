@@ -53,7 +53,7 @@ end
 
 function mod:InfernoLeap(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(-2863, args.destName, "blue", "Warning")
+		self:TargetMessageOld(-2863, args.destName, "blue", "Warning")
 		self:Flash(-2863)
 	end
 end

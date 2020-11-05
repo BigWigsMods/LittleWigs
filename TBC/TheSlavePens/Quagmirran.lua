@@ -36,7 +36,7 @@ function mod:AcidSpray(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:CastBar(args.spellId, 8)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

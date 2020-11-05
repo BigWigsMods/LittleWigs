@@ -35,7 +35,7 @@ function mod:Insanity(args)
 end
 
 function mod:Shiver(args)
-	self:TargetMessage(59978, args.destName, "yellow")
+	self:TargetMessageOld(59978, args.destName, "yellow")
 	self:TargetBar(59978, 15, args.destName)
 end
 

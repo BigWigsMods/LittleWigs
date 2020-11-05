@@ -43,7 +43,7 @@ end
 
 do
 	local function bossTarget(self, name, guid)
-		self:TargetMessage(155721, name, "yellow", "Alert")
+		self:TargetMessageOld(155721, name, "yellow", "Alert")
 		self:PrimaryIcon(155721, name)
 		if self:Me(guid) then
 			self:Flash(155721)

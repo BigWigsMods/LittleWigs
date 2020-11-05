@@ -58,7 +58,7 @@ function mod:TearsOfBloodRemoved(args)
 end
 
 function mod:LashOfAnguish(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -72,7 +72,7 @@ function mod:WaveOfAgony(args)
 end
 
 function mod:Ravage(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 

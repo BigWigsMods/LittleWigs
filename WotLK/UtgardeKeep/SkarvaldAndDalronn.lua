@@ -36,7 +36,7 @@ end
 --  Event Handlers
 
 function mod:Debilitate(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 

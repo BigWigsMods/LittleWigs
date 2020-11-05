@@ -47,7 +47,7 @@ function mod:RejuvenatingSerumIncoming(args)
 end
 
 function mod:RejuvenatingSerum(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Warning", nil, nil, self:Dispeller("magic", true))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", nil, nil, self:Dispeller("magic", true))
 end
 
 function mod:VilebloodSerum(args)

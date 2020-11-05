@@ -60,12 +60,12 @@ end
 --
 
 function mod:Shank(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 5, args.destName)
 end
 
 function mod:HexOfLethargy(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 20, args.destName, 66054, args.spellId) -- Hex
 end
 

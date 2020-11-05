@@ -57,7 +57,7 @@ end
 --
 
 function mod:Essence(args)
-	self:TargetMessage(202779, args.destName, "green", "Info")
+	self:TargetMessageOld(202779, args.destName, "green", "Info")
 	self:TargetBar(202779, 30, args.destName, L.essence) -- Are 4 bars (at max) too much?
 	if self:Me(args.destGUID) then
 		self:Say(202779, L.essence)
@@ -66,7 +66,7 @@ end
 
 function mod:EssenceRemoved(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(202779, args.destName, "blue", "Alert", CL.removed:format(L.essence))
+		self:TargetMessageOld(202779, args.destName, "blue", "Alert", CL.removed:format(L.essence))
 		self:Flash(202779)
 	end
 end

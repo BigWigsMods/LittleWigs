@@ -41,7 +41,7 @@ function mod:Frenzy(args)
 end
 
 function mod:EnsnaringMoss(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -51,7 +51,7 @@ end
 
 function mod:GrievousWound(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage(38801, args.destName, "orange")
+		self:TargetMessageOld(38801, args.destName, "orange")
 	end
 end
 

@@ -43,7 +43,7 @@ end
 function mod:Blitz(_, msg, _, _, _, player)
 	if msg:find(self:SpellName(74670)) then
 		if player then
-			self:TargetMessage(74670, player, "red", "Alert")
+			self:TargetMessageOld(74670, player, "red", "Alert")
 			self:PrimaryIcon(74670, player)
 			self:ScheduleTimer("PrimaryIcon", 3.5, 74670)
 		else
@@ -71,7 +71,7 @@ function mod:Frenzy(args)
 end
 
 function mod:Wound(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 

@@ -31,7 +31,7 @@ end
 --
 
 function mod:CrystalPrison(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 5)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

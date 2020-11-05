@@ -39,7 +39,7 @@ end
 --  Event Handlers
 
 function mod:StolenSoul(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 end
 
 function mod:AvatarOfTheMartyred(args)

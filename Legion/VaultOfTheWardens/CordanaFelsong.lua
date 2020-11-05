@@ -113,7 +113,7 @@ function mod:FelGlaive(args)
 end
 
 function mod:StolenLight(args)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm")
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 	end

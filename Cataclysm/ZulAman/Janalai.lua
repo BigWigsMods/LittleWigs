@@ -38,7 +38,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessage(97497, player, "red", "Alert")
+		self:TargetMessageOld(97497, player, "red", "Alert")
 		self:PrimaryIcon(97497, player)
 	end
 	function mod:FlameBreath(args)

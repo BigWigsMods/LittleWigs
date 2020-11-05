@@ -44,7 +44,7 @@ end
 --
 
 function mod:DeltaFinger(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:Bar(args.spellId, 8.5)
 end
 

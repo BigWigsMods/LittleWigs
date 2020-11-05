@@ -79,7 +79,7 @@ function mod:NetherWraith()
 end
 
 function mod:Domination(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 

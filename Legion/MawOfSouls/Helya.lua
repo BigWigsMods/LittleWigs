@@ -113,7 +113,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg) -- Destructor Tentacle
 end
 
 function mod:TaintOfTheSea(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert", nil, nil, self:Dispeller("magic"))
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end

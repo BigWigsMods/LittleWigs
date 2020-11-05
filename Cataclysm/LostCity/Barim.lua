@@ -36,7 +36,7 @@ end
 
 function mod:Plague(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
 		self:Flash(args.spellId)
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
@@ -52,7 +52,7 @@ end
 
 function mod:HallowedGround(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "blue")
+		self:TargetMessageOld(args.spellId, args.destName, "blue")
 		self:Flash(args.spellId)
 	end
 end

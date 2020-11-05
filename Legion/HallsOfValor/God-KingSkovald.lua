@@ -88,7 +88,7 @@ do
 			self:Say(193659)
 		end
 		self:PrimaryIcon(193659, player)
-		self:TargetMessage(193659, player, "red", "Alarm")
+		self:TargetMessageOld(193659, player, "red", "Alarm")
 	end
 	function mod:FelblazeRush(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
