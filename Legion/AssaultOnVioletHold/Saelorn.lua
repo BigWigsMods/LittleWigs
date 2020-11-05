@@ -44,7 +44,7 @@ do
 	function mod:VenomSpray(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "yellow", "Alert", nil, nil, self:Dispeller("poison"))
+			self:ScheduleTimer("TargetMessageOld", 0.1, args.spellId, list, "yellow", "Alert", nil, nil, self:Dispeller("poison"))
 			self:CDBar(args.spellId, 22)
 		end
 		if self:Me(args.destGUID) then

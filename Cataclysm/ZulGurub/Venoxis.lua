@@ -56,7 +56,7 @@ do
 		end
 		linkTargets[#linkTargets + 1] = args.destName
 		if #linkTargets == 1 then
-			self:ScheduleTimer("TargetMessage", 0.2, args.spellId, linkTargets, "orange", "Alarm")
+			self:ScheduleTimer("TargetMessageOld", 0.2, args.spellId, linkTargets, "orange", "Alarm")
 			self:PrimaryIcon(args.spellId, args.destName)
 		else
 			self:SecondaryIcon(args.spellId, args.destName)

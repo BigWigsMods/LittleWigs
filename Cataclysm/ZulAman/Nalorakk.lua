@@ -85,7 +85,7 @@ do
 	function mod:DeafeningRoar(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "yellow", "Info", nil, nil, true)
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "yellow", "Info", nil, nil, true)
 		end
 	end
 end

@@ -42,7 +42,7 @@ do
 	function mod:NetherLink(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.1, args.spellId, list, "yellow", "Info")
+			self:ScheduleTimer("TargetMessageOld", 0.1, args.spellId, list, "yellow", "Info")
 			self:CDBar(args.spellId, 33)
 		end
 	end

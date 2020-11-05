@@ -56,7 +56,7 @@ do
 		playerList[#playerList + 1] = args.destName
 		playersIncapacitated = playersIncapacitated + 1
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.2, 59726, playerList, "orange")
+			self:ScheduleTimer("TargetMessageOld", 0.2, 59726, playerList, "orange")
 			self:Bar(59726, args.spellId == 59726 and 10 or 6)
 		end
 	end

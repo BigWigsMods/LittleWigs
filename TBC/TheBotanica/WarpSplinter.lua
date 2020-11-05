@@ -46,7 +46,7 @@ do
 	function mod:Stomp(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Alert", nil, nil, self:Healer())
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "Alert", nil, nil, self:Healer())
 		end
 	end
 end

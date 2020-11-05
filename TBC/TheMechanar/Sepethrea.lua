@@ -88,7 +88,7 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:DragonsBreath(args)
 		playerList[#playerList + 1] = args.destName
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
+		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
 	end
 end
 

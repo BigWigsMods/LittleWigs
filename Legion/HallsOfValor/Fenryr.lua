@@ -59,7 +59,7 @@ do
 		--"pull:10.1, 36.0" p2
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "yellow", "Info", nil, nil, true)
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "yellow", "Info", nil, nil, true)
 			self:CDBar(args.spellId, 31)
 		end
 		if self:Me(args.destGUID) then

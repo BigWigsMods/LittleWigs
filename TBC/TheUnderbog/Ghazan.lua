@@ -49,7 +49,7 @@ do
 		elseif self:Healer() then
 			playerList[#playerList+1] = args.destName
 			if #playerList == 1 then
-				self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "red")
+				self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "red")
 			end
 		end
 	end

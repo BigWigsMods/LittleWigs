@@ -133,7 +133,7 @@ do
 	function mod:FlameWreathApplied(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.2, 228269, list, "red", "Warning", nil, nil, true)
+			self:ScheduleTimer("TargetMessageOld", 0.2, 228269, list, "red", "Warning", nil, nil, true)
 			self:Bar(228269, 20)
 		end
 		if self:Me(args.destGUID) then

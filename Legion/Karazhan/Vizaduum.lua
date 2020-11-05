@@ -106,7 +106,7 @@ do
 	function mod:ChaoticShadows(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.5, args.spellId, list, "red", "Warning", nil, nil, self:Dispeller("magic"))
+			self:ScheduleTimer("TargetMessageOld", 0.5, args.spellId, list, "red", "Warning", nil, nil, self:Dispeller("magic"))
 		end
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)

@@ -116,7 +116,7 @@ do
 			guid = UnitGUID(n)
 			list[#list+1] = n
 			if #list == 1 then
-				self:ScheduleTimer("TargetMessage", 1, 233196, list, "red", "Warning", 233963) -- Travel time
+				self:ScheduleTimer("TargetMessageOld", 1, 233196, list, "red", "Warning", 233963) -- Travel time
 			end
 			if self:Me(guid) then
 				self:Say(233196)
