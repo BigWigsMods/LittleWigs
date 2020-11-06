@@ -31,7 +31,7 @@ end
 --
 
 function mod:Insanity(args)
-	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Shiver(args)

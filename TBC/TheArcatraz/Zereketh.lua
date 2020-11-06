@@ -34,7 +34,7 @@ end
 --
 
 function mod:ShadowNova()
-	self:Message(39005, "red")
+	self:MessageOld(39005, "red")
 end
 
 do
@@ -44,7 +44,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(36119, "blue", "Alert", CL.underyou:format(self:SpellName(36119))) -- args.spellName is "Consumption"
+				self:MessageOld(36119, "blue", "Alert", CL.underyou:format(self:SpellName(36119))) -- args.spellName is "Consumption"
 			end
 		end
 	end

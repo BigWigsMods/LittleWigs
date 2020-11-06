@@ -510,7 +510,7 @@ do
 			knownClues[clue] = true
 			clueCount = clueCount + 1
 			self:SetInfo("spy_helper", (clueCount*2)-1, L.hints[clue])
-			self:Message("spy_helper", "cyan", "Info", L.clueFound:format(clueCount, L.hints[clue]), false)
+			self:MessageOld("spy_helper", "cyan", "Info", L.clueFound:format(clueCount, L.hints[clue]), false)
 		end
 	end
 
@@ -565,7 +565,7 @@ do
 
 	function mod:CHAT_MSG_MONSTER_SAY(_, msg, _, _, _, target)
 		if msg:find(L.spyFoundPattern) and self:GetOption("spy_helper") > 0 then
-			self:Message("spy_helper", "green", "Info", L.spyFound:format(self:ColorName(target)), false)
+			self:MessageOld("spy_helper", "green", "Info", L.spyFound:format(self:ColorName(target)), false)
 			self:CloseInfo("spy_helper")
 			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat, englishSpyFound ~= L.spyFoundChat and englishSpyFound)
@@ -645,7 +645,7 @@ do
 			end
 		end
 
-		self:Message("announce_buff_items", "cyan", "Info", message, false)
+		self:MessageOld("announce_buff_items", "cyan", "Info", message, false)
 	end
 
 	local prevTable, lastProfessionUpdate = {}, 0
@@ -732,12 +732,12 @@ end
 
 function mod:AlertCasts(args)
 	if throttleMessages(args.spellId) then return end
-	self:Message(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:AlarmCasts(args)
 	if throttleMessages(args.spellId) then return end
-	self:Message(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
 end
 
 do
@@ -747,7 +747,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Warning", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Warning", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -786,12 +786,12 @@ do
 end
 
 function mod:DisintegrationBeam(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:CastBar(args.spellId, 5)
 end
 
 function mod:EyeStorm(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:CastBar(args.spellId, 8)
 end
 

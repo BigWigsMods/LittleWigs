@@ -52,17 +52,17 @@ function mod:RoarRemoved(args)
 end
 
 function mod:Phalanx(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:Encumbered(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:Blades(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 	self:Bar(args.spellId, 30)
 end
 

@@ -61,6 +61,6 @@ function mod:CreepingSlaughter(args)
 end
 
 function mod:FelDetonation(args)
-	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 30)
 end

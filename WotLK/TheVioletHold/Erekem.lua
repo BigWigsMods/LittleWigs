@@ -22,5 +22,5 @@ end
 --  Event Handlers
 
 function mod:ChainHeal(_, spellId, _, _, spellName)
-	self:Message(54481, CL["casting"]:format(spellName), "orange", spellId)
+	self:MessageOld(54481, CL["casting"]:format(spellName), "orange", spellId)
 end

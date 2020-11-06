@@ -49,13 +49,13 @@ end
 --
 
 function mod:SpiritGaleCast(args)
-	self:Message(-5865, "yellow", nil, CL["casting"]:format(args.spellName), args.spellId)
+	self:MessageOld(-5865, "yellow", nil, CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar(-5865, 2, CL["cast"]:format(args.spellName), args.spellId)
 end
 
 function mod:SpiritGaleYou(args)
 	if self:Me(args.destGUID) then
-		self:Message(-5865, "blue", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
+		self:MessageOld(-5865, "blue", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
 		self:Flash(-5865)
 	end
 end

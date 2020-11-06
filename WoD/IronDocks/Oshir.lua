@@ -47,7 +47,7 @@ do
 	end
 
 	function mod:TimeToFeedOver(args)
-		self:Message(args.spellId, "green", nil, L.freed:format(GetTime()-t))
+		self:MessageOld(args.spellId, "green", nil, L.freed:format(GetTime()-t))
 		self:PrimaryIcon(args.spellId)
 		self:StopBar(args.spellId, args.destName)
 	end

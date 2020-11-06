@@ -48,21 +48,21 @@ end
 --  Event Handlers
 
 function mod:Submerge()
-	self:Message("state", L["submerge_message"], "yellow")
+	self:MessageOld("state", L["submerge_message"], "yellow")
 	self:Bar("state", L["submerge_message"], 39)
 	self:DelayedMessage("state", 29, L["stand_soon"], "yellow")
 	standing = false
 end
 
 function mod:Stand()
-	self:Message("state", L["stand_message"], "yellow")
+	self:MessageOld("state", L["stand_message"], "yellow")
 	self:Bar("state", L["stand_message"], 94)
 	self:DelayedMessage("state", 86, L["submerge_soon"], "yellow")
 	standing = true
 end
 
 function mod:Attack()
-	self:Message("state", L["attack_message"], "yellow")
+	self:MessageOld("state", L["attack_message"], "yellow")
 	self:Bar("state", L["attack_message"], 45)
 	standing = false
 end

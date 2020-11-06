@@ -66,20 +66,20 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(38737, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(38737, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "orange", "Long", CL.percent:format(20, args.spellName))
+	self:MessageOld(args.spellId, "orange", "Long", CL.percent:format(20, args.spellName))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealth(unit) * 100
 	if hp < 25 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message(15716, "green", "Info", CL.soon:format(self:SpellName(15716))) -- Enrage
+		self:MessageOld(15716, "green", "Info", CL.soon:format(self:SpellName(15716))) -- Enrage
 	end
 end

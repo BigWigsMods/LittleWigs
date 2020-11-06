@@ -58,7 +58,7 @@ do
 end
 
 function mod:ConsecratedLight(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:MessageOld(args.spellId, "red", "Warning")
 	self:Bar(args.spellId, self:Normal() and 12 or 8, CL.cast:format(args.spellName))
 	self:Flash(args.spellId)
 end
@@ -70,7 +70,7 @@ end
 
 function mod:SanctifiedStrike(args)
 	strikeCount = strikeCount + 1
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	if strikeCount < 3 then
 		self:CDBar(args.spellId, 8.5)
 	end
@@ -78,6 +78,6 @@ end
 
 function mod:SanctifiedGround(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 	end
 end

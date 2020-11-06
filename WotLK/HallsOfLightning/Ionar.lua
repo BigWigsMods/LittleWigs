@@ -48,6 +48,6 @@ function mod:StaticOverloadRemoved(args)
 end
 
 function mod:Disperse(args)
-	self:Message(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "Info")
 end
 

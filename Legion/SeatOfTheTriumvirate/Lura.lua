@@ -73,29 +73,29 @@ function mod:Warmup(event, msg)
 end
 
 function mod:CalltotheVoid(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:MessageOld(args.spellId, "red", "Warning")
 	self:CDBar(245164, 11) -- Fragment of Despair
 end
 
 function mod:NaarusLament(args)
-	self:Message(args.spellId, "cyan", "Info")
+	self:MessageOld(args.spellId, "cyan", "Info")
 end
 
 function mod:UmbralCadence(args)
-	self:Message(args.spellId, "yellow", "Alert")
+	self:MessageOld(args.spellId, "yellow", "Alert")
 	self:CDBar(args.spellId, 10.5)
 end
 
 function mod:FragmentofDespair(args)
-	self:Message(args.spellId, "red", "Warning", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Warning", CL.incoming:format(args.spellName))
 end
 
 function mod:Backlash(args)
-	self:Message(args.spellId, "green", "Long")
+	self:MessageOld(args.spellId, "green", "Long")
 	self:Bar(args.spellId, 12.5)
 end
 
 function mod:GrandShift(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "Alarm")
 	self:Bar(args.spellId, 14.5)
 end

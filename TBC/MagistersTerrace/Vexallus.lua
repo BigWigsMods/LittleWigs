@@ -52,6 +52,6 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 44322 or spellId == 46154 then -- Summon Pure Energy (normal / heroic)
-		self:Message(-5085, "red", nil, L.energy_discharged:format(self:SpellName(-5085)), false)
+		self:MessageOld(-5085, "red", nil, L.energy_discharged:format(self:SpellName(-5085)), false)
 	end
 end

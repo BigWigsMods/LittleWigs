@@ -30,7 +30,7 @@ end
 --
 
 function mod:WitheringRoar()
-	self:Message(59267, "orange")
+	self:MessageOld(59267, "orange")
 	self:CDBar(59267, 10)
 end
 

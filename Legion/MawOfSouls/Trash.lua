@@ -85,7 +85,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1 then
 			prevTable[args.spellId] = t
-			self:Message(args.spellId, "orange", "Alarm")
+			self:MessageOld(args.spellId, "orange", "Alarm")
 		end
 	end
 
@@ -96,7 +96,7 @@ do
 				prevTable[args.spellId] = t
 
 				local spellId = self:CheckOption(199514, "MESSAGE") and 199514 or 199589 -- both these spells do damage with 199519
-				self:Message(spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -105,7 +105,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1.5 then
 			prevTable[args.spellId] = t
-			self:Message(198405, "yellow", "Info", CL.soon:format(self:SpellName(5782))) -- Bone Chilling Scream, 5782 = "Fear"
+			self:MessageOld(198405, "yellow", "Info", CL.soon:format(self:SpellName(5782))) -- Bone Chilling Scream, 5782 = "Fear"
 			self:CDBar(198405, 6)
 		end
 	end
@@ -114,7 +114,7 @@ do
 		local t = GetTime()
 		if t - (prevTable[args.spellId] or 0) > 1 then
 			prevTable[args.spellId] = t
-			self:Message(args.spellId, "red", "Warning")
+			self:MessageOld(args.spellId, "red", "Warning")
 		end
 	end
 
@@ -126,19 +126,19 @@ do
 			local t = GetTime()
 			if t - (prevTable[args.spellId] or 0) > 1 then
 				prevTable[args.spellId] = t
-				self:Message(args.spellId, "yellow", "Alarm", CL.other:format(args.spellName, args.destName))
+				self:MessageOld(args.spellId, "yellow", "Alarm", CL.other:format(args.spellName, args.destName))
 			end
 		end
 	end
 end
 
 function mod:LanternOfDarkness(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:CastBar(args.spellId, 7)
 end
 
 function mod:DebilitatingShout(args)
-	self:Message(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "Long")
 end
 
 function mod:GiveNoQuarter(args)

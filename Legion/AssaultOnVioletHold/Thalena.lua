@@ -72,7 +72,7 @@ function mod:EssenceRemoved(args)
 end
 
 function mod:BloodCall(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:Bar(args.spellId, 30)
 end
 
@@ -83,7 +83,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

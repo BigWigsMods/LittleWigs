@@ -37,7 +37,7 @@ end
 --
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "red", nil, CL.percent:format(20, args.spellName))
+	self:MessageOld(args.spellId, "red", nil, CL.percent:format(20, args.spellName))
 end
 
 function mod:EnsnaringMoss(args)
@@ -60,7 +60,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 26 then
 			self:UnregisterUnitEvent(event, "target", "focus")
-			self:Message(34970, "green", nil, CL.soon:format(self:SpellName(34970)), false)
+			self:MessageOld(34970, "green", nil, CL.soon:format(self:SpellName(34970)), false)
 		end
 	end
 end

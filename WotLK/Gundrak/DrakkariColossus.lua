@@ -34,11 +34,11 @@ end
 --
 
 function mod:Emerge()
-	self:Message("stages", "yellow", nil, -6421) -- Phase 2: The Elemental
+	self:MessageOld("stages", "yellow", nil, -6421) -- Phase 2: The Elemental
 end
 
 function mod:Merge()
-	self:Message("stages", "red", nil, -6418) -- Phase 1: The Colossus
+	self:MessageOld("stages", "red", nil, -6418) -- Phase 1: The Colossus
 end
 
 do
@@ -48,7 +48,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

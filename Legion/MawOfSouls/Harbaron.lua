@@ -63,11 +63,11 @@ end
 
 function mod:SummonShackledServitor(args)
 	self:CDBar(args.spellId, 25) -- cd varies between 23-26
-	self:Message(args.spellId, "yellow", "Info", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Info", CL.incoming:format(args.spellName))
 end
 
 function mod:CosmicScythe(args)
-	self:Message(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "Alert")
 end
 
 do
@@ -77,7 +77,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(194668, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(194668, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

@@ -63,22 +63,22 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:StopBar(198496) -- Sunder
 		self:StopBar(198428) -- Strike of the Mountain
 		self:StopBar(198564) -- Stance of the Mountain
-		self:Message(198564, "yellow", "Long")
+		self:MessageOld(198564, "yellow", "Long")
 	end
 end
 
 function mod:StrikeOfTheMountain(args)
-	self:Message(args.spellId, "red", "Alarm")
+	self:MessageOld(args.spellId, "red", "Alarm")
 	self:Bar(args.spellId, 15.5)
 end
 
 function mod:BellowOfTheDeeps(args)
-	self:Message("bellow", "orange", "Info", CL.incoming:format(L.totems), args.spellId)
+	self:MessageOld("bellow", "orange", "Info", CL.incoming:format(L.totems), args.spellId)
 	--self:CDBar(args.spellId, 29) -- pull:20.6, 44.9, 31.5, 31.5
 end
 
 function mod:Sunder(args)
-	self:Message(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 9.3)
 end
 

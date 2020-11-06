@@ -94,7 +94,7 @@ function mod:ConflagrateOver()
 end
 
 function mod:Shockwave(args)
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName), args.spellId)
 	self:Bar(args.spellId, 2, CL.cast:format(args.spellName), args.spellId)
 end
 

@@ -67,11 +67,11 @@ end
 --
 
 function mod:HeatWave(args)
-	self:Message(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "Info")
 end
 
 function mod:Leftovers(args)
-	self:Message(args.spellId, "red", self:Interrupter() and "Alert")
+	self:MessageOld(args.spellId, "red", self:Interrupter() and "Alert")
 	self:CDBar(args.spellId, 18)
 end
 
@@ -83,7 +83,7 @@ function mod:SevereDusting(args)
 end
 
 function mod:SpectralService(args)
-	self:Message("stages", "green", "Long", CL.removed:format(args.spellName), args.spellId)
+	self:MessageOld("stages", "green", "Long", CL.removed:format(args.spellName), args.spellId)
 	self:Bar(227987, 8.5) -- Dinner Bell
 	self:Bar(227985, 15.8) -- Dent Armor
 end
@@ -98,18 +98,18 @@ function mod:DentArmorRemoved(args)
 end
 
 function mod:DinnerBell(args)
-	self:Message(args.spellId, "yellow", self:Interrupter() and "Alert")
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alert")
 	self:Bar(args.spellId, 12)
 end
 
 function mod:KaraKazham(args)
-	self:Message(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "Info")
 	self:Bar(args.spellId, 17)
 end
 
 function mod:AddsKilled(args)
 	addsKilled = addsKilled + 1
-	self:Message("stages", "cyan", "Long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
+	self:MessageOld("stages", "cyan", "Long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
 
 	if args.mobId == 114329 then -- Luminore
 		self:StopBar(228025) -- Heat Wave

@@ -33,11 +33,11 @@ end
 
 function mod:Storm()
 	self:Bar(86930, 10)
-	self:Message(86930, "red", nil, CL.custom_sec:format(self:SpellName(86930), 10))
+	self:MessageOld(86930, "red", nil, CL.custom_sec:format(self:SpellName(86930), 10))
 end
 
 function mod:StaticCling(args)
 	self:CDBar(args.spellId, 1.25)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 end
 

@@ -46,18 +46,18 @@ end
 --
 
 function mod:MagmaEruption(args)
-	self:Message(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "Info")
 	self:CDBar(args.spellId, 20) -- 20-21
 end
 
 function mod:UnstableSlag(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:MessageOld(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 21)
 end
 
 function mod:MoltenBlast(args)
 	blastCount = blastCount + 1
-	self:Message(args.spellId, "yellow", "Long", CL.count:format(args.spellName, blastCount))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.count:format(args.spellName, blastCount))
 end
 
 function mod:MoltenCore(args)

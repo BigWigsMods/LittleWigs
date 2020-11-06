@@ -74,7 +74,7 @@ function mod:FrostShockRemoved(args)
 end
 
 function mod:SummonElementals()
-	self:Message(-5235, "red", nil, CL.spawned:format(CL.adds))
+	self:MessageOld(-5235, "red", nil, CL.spawned:format(CL.adds))
 end
 
 do
@@ -83,7 +83,7 @@ do
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < warnAt[elementalsWarnings] then
 			elementalsWarnings = elementalsWarnings + 1
-			self:Message(-5235, "red", nil, CL.soon:format(self:SpellName(-5235))) -- Summon Elementals
+			self:MessageOld(-5235, "red", nil, CL.soon:format(self:SpellName(-5235))) -- Summon Elementals
 
 			while elementalsWarnings <= #warnAt and hp < warnAt[elementalsWarnings] do
 				-- account for high-level characters hitting multiple thresholds

@@ -75,12 +75,12 @@ do
 			self:GetBossTarget(bossTarget, 0.7, UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
 		elseif spellId == 154049 then -- Call Adds
-			self:Message("add", "red", "Info", CL.add_spawned, L.add_icon) -- Cog icon
+			self:MessageOld("add", "red", "Info", CL.add_spawned, L.add_icon) -- Cog icon
 			self:CDBar("add", 58, CL.add, L.add_icon) -- 57-60
 		end
 	end
 end
 
 function mod:Shielding(args)
-	self:Message(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "Long")
 end

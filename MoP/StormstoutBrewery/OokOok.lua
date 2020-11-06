@@ -51,14 +51,14 @@ end
 --
 
 function mod:GroundPound(args)
-	self:Message(args.spellId, "red", self:Tank() and "Alarm" or "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", self:Tank() and "Alarm" or "Long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, poundCastTime[bananasStacks] + 3) -- pre-cast depends on stacks of "Going Bananas", channel is constant-time
 	self:CDBar(args.spellId, 10.9)
 end
 
 function mod:GoingBananas(args)
 	bananasStacks = args.amount or 1
-	self:Message(args.spellId, "cyan", "Info", CL.stack:format(bananasStacks, args.spellName, args.destName)) -- StackMessage transforms "Ook-Ook" to "Ook*"
+	self:MessageOld(args.spellId, "cyan", "Info", CL.stack:format(bananasStacks, args.spellName, args.destName)) -- StackMessage transforms "Ook-Ook" to "Ook*"
 end
 
 function mod:BrewExplosion(args)

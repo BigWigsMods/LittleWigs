@@ -48,7 +48,7 @@ end
 --
 
 function mod:ShadowPower(args)
-	self:Message(39193, "red", nil, CL.casting:format(args.spellName))
+	self:MessageOld(39193, "red", nil, CL.casting:format(args.spellName))
 end
 
 function mod:ShadowPowerApplied()

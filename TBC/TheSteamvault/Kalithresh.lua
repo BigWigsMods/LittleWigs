@@ -48,7 +48,7 @@ function mod:HeadCrackRemoved(args)
 end
 
 function mod:SpellReflection()
-	self:Message(-6003, "red", "Warning")
+	self:MessageOld(-6003, "red", "Warning")
 	self:Bar(-6003, 8)
 end
 
@@ -57,7 +57,7 @@ function mod:WarlordsRage(args)
 end
 
 function mod:WarlordsRageCast(args)
-	self:Message(36453, "orange", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(36453, "orange", "Long", CL.casting:format(args.spellName))
 	self:CastBar(36453, 7)
 	self:CDBar(36453, 40)
 end

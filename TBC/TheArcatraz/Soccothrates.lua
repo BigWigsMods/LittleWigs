@@ -33,7 +33,7 @@ end
 --
 
 function mod:FelfireKnockback()
-	self:Message(-5293, "red", nil, CL.incoming:format(self:SpellName(-5293)))
+	self:MessageOld(-5293, "red", nil, CL.incoming:format(self:SpellName(-5293)))
 	self:CastBar(-5293, 4.9)
 end
 

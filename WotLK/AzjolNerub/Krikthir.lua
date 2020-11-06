@@ -38,13 +38,13 @@ function mod:CurseOfFatigueRemoved(args)
 end
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "red", nil, CL.percent:format(10, args.spellName))
+	self:MessageOld(args.spellId, "red", nil, CL.percent:format(10, args.spellName))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local health = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if health > 10 and health <= 15 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message(28747, "red", nil, CL.soon:format(self:SpellName(28747))) -- Frenzy
+		self:MessageOld(28747, "red", nil, CL.soon:format(self:SpellName(28747))) -- Frenzy
 	end
 end

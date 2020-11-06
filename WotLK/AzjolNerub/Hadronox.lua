@@ -26,9 +26,9 @@ end
 --  Event Handlers
 
 function mod:AcidCloud()
-	self:Message(53400, "yellow")
+	self:MessageOld(53400, "yellow")
 end
 
 function mod:LeechPoison()
-	self:Message(53030, "orange")
+	self:MessageOld(53030, "orange")
 end

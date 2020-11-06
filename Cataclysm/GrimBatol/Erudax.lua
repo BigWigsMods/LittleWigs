@@ -50,12 +50,12 @@ end
 
 function mod:ShadowGale(args)
 	self:Bar(args.spellId, 5)
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:Summon(_, msg)
 	if msg:find(L.summon_trigger) then
-		self:Message("summon", "yellow", nil, L.summon_message, false)
+		self:MessageOld("summon", "yellow", nil, L.summon_message, false)
 	end
 end
 
@@ -65,7 +65,7 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:Message(args.spellId, "red", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
+			self:MessageOld(args.spellId, "red", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 		end
 	end
 end
@@ -76,7 +76,7 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:Message(args.spellId, "red", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+			self:MessageOld(args.spellId, "red", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 		end
 	end
 end

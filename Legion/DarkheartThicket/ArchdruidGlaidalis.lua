@@ -40,7 +40,7 @@ end
 --
 
 function mod:PrimalRampage(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:MessageOld(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 30) -- pull:12.7, 30.3 / m pull:12.6, 31.6, 29.9, 27.9
 end
 
@@ -51,7 +51,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

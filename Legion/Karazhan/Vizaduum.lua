@@ -76,7 +76,7 @@ end
 function mod:OnEngage()
 	stage = 1
 	longDisintegratesLeft = 0
-	self:Message("stages", "green", "Info", CL.stage:format(1), false)
+	self:MessageOld("stages", "green", "Info", CL.stage:format(1), false)
 	self:CDBar(229248, 5.9) -- Fel Beam
 	self:CDBar(229151, 10.8) -- Disintegrate
 	self:CDBar(229159, 15.76) -- Chaotic Shadows
@@ -89,7 +89,7 @@ end
 
 -- [[ General ]] --
 function mod:Disintegrate(args)
-	self:Message(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
 	if (stage ~= 1.5) then
 		self:CDBar(args.spellId, 12.1)
 	end
@@ -119,7 +119,7 @@ do
 end
 
 function mod:BurningBlast(args)
-	self:Message(args.spellId, "yellow", self:Interrupter() and "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:BurningBlastApplied(args)
@@ -129,7 +129,7 @@ function mod:BurningBlastApplied(args)
 end
 
 function mod:DemonicPortal()
-	self:Message("stages", "green", "Info", CL.stage:format(stage + 1), false)
+	self:MessageOld("stages", "green", "Info", CL.stage:format(stage + 1), false)
 	self:StopBar(229151) -- Disintegrate
 	self:StopBar(229159) -- Chaotic Shadows
 	self:StopBar(229284) -- Command: Bombardment
@@ -162,7 +162,7 @@ end
 -- [[ Stages 1 & 2 ]] --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 229284 then -- Command: Bombardment
-		self:Message(spellId, "orange", nil, CL.incoming:format(self:SpellName(229287))) -- 229287 = Bombardment
+		self:MessageOld(spellId, "orange", nil, CL.incoming:format(self:SpellName(229287))) -- 229287 = Bombardment
 		self:CDBar(spellId, stage == 1 and 40.1 or 25.5)
 	end
 end
@@ -184,7 +184,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alert", CL.near:format(args.sourceName)) -- args.sourceName = Soul Harvester
+				self:MessageOld(args.spellId, "blue", "Alert", CL.near:format(args.sourceName)) -- args.sourceName = Soul Harvester
 			end
 		end
 	end
@@ -192,13 +192,13 @@ end
 
 -- [[ Stage 3 ]] --
 function mod:StabilizeRift(args)
-	self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 30)
 end
 
 function mod:StabilizeRiftInterrupted(args)
 	if args.extraSpellId == 230084 then -- Stabilize Rift
-		self:Message(230084, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:MessageOld(230084, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:CDBar(229159, 6.15) -- Chaotic Shadows
 	end

@@ -81,7 +81,7 @@ function mod:BlinkStrikes(_, _, _, spellId)
 end
 
 -- function mod:ViciousManafang()
--- 	self:Message("vicious_manafang", "yellow", self:Tank() and "Info", L.spawned:format(L.vicious_manafang), false)
+-- 	self:MessageOld("vicious_manafang", "yellow", self:Tank() and "Info", L.spawned:format(L.vicious_manafang), false)
 -- 	self:Bar("vicious_manafang", 20, L.vicious_manafang, L.vicious_manafang_icon)
 -- 	self:ScheduleTimer("ViciousManafang", 20)
 -- end
@@ -115,7 +115,7 @@ do
 
 	function mod:TangledWebRemoved(args)
 		if self:Me(args.destName) then
-			self:Message(args.spellId, "green", nil, CL.removed:format(args.spellName))
+			self:MessageOld(args.spellId, "green", nil, CL.removed:format(args.spellName))
 			self:CloseProximity(args.spellId)
 		end
 	end
@@ -127,7 +127,7 @@ do
 		local t = GetTime()
 		if t-prev > 5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:MessageOld(args.spellId, "orange")
 			self:CDBar(args.spellId, 30)
 		end
 	end
@@ -141,7 +141,7 @@ do
 			if t-prev > 2 then
 				prev = t
 				self:Flash(args.spellId)
-				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

@@ -33,7 +33,7 @@ end
 --
 
 function mod:BaneCast(args)
-	self:Message(59301, "orange", nil, CL.casting:format(args.spellName))
+	self:MessageOld(59301, "orange", nil, CL.casting:format(args.spellName))
 end
 
 function mod:BaneApplied(args)
@@ -44,7 +44,7 @@ end
 
 function mod:BaneRemoved(args)
 	if self:MobId(args.destGUID) == 26861 then -- Boss only
-		self:Message(59301, "green", nil, CL.over:format(args.spellName))
+		self:MessageOld(59301, "green", nil, CL.over:format(args.spellName))
 		self:StopBar(args.spellName)
 	end
 end

@@ -85,7 +85,7 @@ do
 		-- only show a message if stacks are getting high (6 = 300% which is around 1m damage a hit)
 		local amount = blitzTracker[args.sourceGUID]
 		if amount and amount > 5 and (self:Interrupter(args.sourceGUID) or self:Dispeller("magic", true)) then
-			self:Message(args.spellId, "yellow", "Alert", CL.count:format(args.spellName, amount))
+			self:MessageOld(args.spellId, "yellow", "Alert", CL.count:format(args.spellName, amount))
 		end
 	end
 	function mod:ArcaneBlitzApplied(args)
@@ -98,32 +98,32 @@ end
 
 -- Soul-torn Champion, Soul-torn Vanguard
 function mod:BonebreakingStrike(args)
-	self:Message(args.spellId, "orange", "Alarm", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alarm", CL.incoming:format(args.spellName))
 end
 
 -- Risen Swordsman
 function mod:CoupdeGrace(args)
-	self:Message(args.spellId, "red", "Alarm", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alarm", CL.incoming:format(args.spellName))
 end
 
 -- Risen Archer
 function mod:ArrowBarrage(args)
-	self:Message(args.spellId, "yellow", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Warning", CL.casting:format(args.spellName))
 end
 
 -- Risen Scout
 function mod:KnifeDance(args)
-	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 end
 
 -- Ghostly Councilor
 function mod:DarkMending(args)
-	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Felspite Dominator
 function mod:Felfrenzy(args)
-	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 do

@@ -46,11 +46,11 @@ end
 --
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "yellow", "Long", CL.percent:format(20, args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.percent:format(20, args.spellName))
 end
 
 function mod:SpikedTongue(args)
-	self:Message(199178, "orange", self:Tank() and "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(199178, "orange", self:Tank() and "Warning", CL.casting:format(args.spellName))
 	self:CDBar(199178, 6, CL.cast:format(args.spellName))
 	--self:CDBar(199178, 18)
 	for unit in self:IterateGroup() do
@@ -71,19 +71,19 @@ end
 
 function mod:SpikedTongueRemoved(args)
 	if self:MobId(args.destGUID) ~= 91005 then -- Naraxas
-		self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
+		self:MessageOld(args.spellId, "green", nil, CL.over:format(args.spellName))
 		self:StopBar(args.spellName, args.destName)
 		self:PrimaryIcon(args.spellId)
 	end
 end
 
 function mod:RancidMaw(args)
-	self:Message(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, 18) -- pull:7.2, 18.2, 20.6, 24.3, 18.2
 end
 
 function mod:ToxicRetchStart(args)
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:ToxicRetch(args)
@@ -92,7 +92,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 199817 then -- Call Minions
-		self:ScheduleTimer("Message", 4, -12527, "yellow", "Info", CL.incoming:format(self:SpellName(-12527)), 209906)
+		self:ScheduleTimer("MessageOld", 4, -12527, "yellow", "Info", CL.incoming:format(self:SpellName(-12527)), 209906)
 		self:ScheduleTimer("Bar", 4, -12527, 65, -12527, 209906) -- spell_shadow_ritualofsacrifice / Fanatic's Sacrifice / icon 136189
 	end
 end

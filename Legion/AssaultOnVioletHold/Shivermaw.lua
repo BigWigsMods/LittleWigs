@@ -60,31 +60,31 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 201355 then -- Wing Buffet
-		self:Message(spellId, "orange", "Alert")
+		self:MessageOld(spellId, "orange", "Alert")
 		buffetCount = buffetCount + 1
 		self:Bar(spellId, buffetCount % 2 == 0 and 18 or 43)
 	end
 end
 
 function mod:FrostBreath(args)
-	self:Message(args.spellId, "yellow", self:Tank() and "Warning")
+	self:MessageOld(args.spellId, "yellow", self:Tank() and "Warning")
 	frostBreathCount = frostBreathCount + 1
 	self:Bar(args.spellId, frostBreathCount % 2 == 0 and 26 or 35)
 end
 
 function mod:RelentlessStorm(args)
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 	stormCount = stormCount + 1
 	self:Bar(args.spellId, stormCount % 2 == 0 and 14 or 47)
 end
 
 function mod:TailSweep(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "Alarm")
 	self:Bar(args.spellId, 61)
 end
 
 function mod:FrigidWindsCast(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:MessageOld(args.spellId, "red", "Warning")
 	self:Bar(args.spellId, 61)
 end
 
@@ -102,6 +102,6 @@ function mod:FrigidWindsRemoved(args)
 end
 
 function mod:IceBomb(args)
-	self:Message(args.spellId, "cyan", "Info")
+	self:MessageOld(args.spellId, "cyan", "Info")
 	self:Bar(args.spellId, 59)
 end

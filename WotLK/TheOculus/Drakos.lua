@@ -31,7 +31,7 @@ end
 --
 
 function mod:ThunderingStomp(args)
-	self:Message(50774, "red", nil, CL.casting:format(args.spellName))
+	self:MessageOld(50774, "red", nil, CL.casting:format(args.spellName))
 	self:CastBar(50774, 1)
 	self:CDBar(50774, self:Normal() and 14.6 or 12.2) -- can take up to 20s
 end

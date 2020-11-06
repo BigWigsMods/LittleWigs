@@ -50,7 +50,7 @@ end
 function mod:DarkEclipse(args)
 	self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
 	--self:CDBar(args.spellId, 0) 48.2, 73.9, 51.9,
-	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 end
 
 do
@@ -74,7 +74,7 @@ function mod:FindAdd(_, unit, guid)
 end
 
 function mod:DarkCommunion(args)
-	self:Message(args.spellId, "green", "Info", CL.add_spawned)
+	self:MessageOld(args.spellId, "green", "Info", CL.add_spawned)
 	self:Bar(args.spellId, 61, CL.next_add)
 	if self:GetOption("custom_on_markadd") then
 		self:RegisterTargetEvents("FindAdd")

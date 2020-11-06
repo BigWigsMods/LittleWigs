@@ -57,7 +57,7 @@ end
 
 function mod:StaticChargeRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
+		self:MessageOld(args.spellId, "green", nil, CL.over:format(args.spellName))
 	end
 	self:CloseProximity(args.spellId)
 	self:SecondaryIcon(args.spellId)

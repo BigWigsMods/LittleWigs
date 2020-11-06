@@ -49,14 +49,14 @@ end
 --
 
 function mod:Burrow()
-	self:Message("burrow", "red", "Info", L.burrow_message, "ABILITY_HUNTER_PET_WORM")
+	self:MessageOld("burrow", "red", "Info", L.burrow_message, "ABILITY_HUNTER_PET_WORM")
 	self:Bar("burrow", 25, L.emerge_message, "ABILITY_HUNTER_PET_WORM")
 	self:DelayedMessage("burrow", 20, "yellow", L.emerge_warning)
 	self:ScheduleTimer("Emerge", 25)
 end
 
 function mod:Emerge()
-	self:Message("burrow", "red", "Info", L.emerge_message, "ABILITY_HUNTER_PET_WORM")
+	self:MessageOld("burrow", "red", "Info", L.emerge_message, "ABILITY_HUNTER_PET_WORM")
 	self:Bar("burrow", 90, L.burrow_message, "ABILITY_HUNTER_PET_WORM")
 	self:DelayedMessage("burrow", 85, "yellow", L.burrow_warning)
 	self:ScheduleTimer("Burrow", 90) --guesstimate

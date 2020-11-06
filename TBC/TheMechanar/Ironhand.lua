@@ -52,13 +52,13 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source)
 	if source == self.displayName then
-		self:Message(39194, "yellow", "Long", CL.casting:format(self:SpellName(39194)))
+		self:MessageOld(39194, "yellow", "Long", CL.casting:format(self:SpellName(39194)))
 		self:CastBar(39194, 10) -- 3s cast + ~7s channel
 	end
 end
 
 function mod:ShadowPower(args)
-	self:Message(39193, "red", nil, CL.casting:format(args.spellName))
+	self:MessageOld(39193, "red", nil, CL.casting:format(args.spellName))
 end
 
 function mod:ShadowPowerApplied()
@@ -96,7 +96,7 @@ do
 			local t = GetTime()
 			if t - prev > (self:Melee() and 6 or 1.5) then
 				prev = t
-				self:Message(39194, "blue", "Alert", CL.you:format(self:SpellName(39194))) -- args.spellName is "Jackhammer Effect"
+				self:MessageOld(39194, "blue", "Alert", CL.you:format(self:SpellName(39194))) -- args.spellName is "Jackhammer Effect"
 			end
 		end
 	end

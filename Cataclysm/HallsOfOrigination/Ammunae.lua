@@ -36,7 +36,7 @@ end
 --
 
 function mod:Wither(args)
-	self:Message(args.spellId, "red", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 19)
 end
 
@@ -60,5 +60,5 @@ function mod:ConsumeLifeEnergyOver(args)
 end
 
 function mod:RampantGrowth(args)
-	self:Message(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
 end

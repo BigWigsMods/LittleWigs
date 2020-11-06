@@ -56,7 +56,7 @@ function mod:BrandRemoved(args)
 end
 
 function mod:Power(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	self:Bar(args.spellId, 10)
 end
 

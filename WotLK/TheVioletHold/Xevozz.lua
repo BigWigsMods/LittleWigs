@@ -30,5 +30,5 @@ end
 --  Event Handlers
 
 function mod:Sphere(_, spellId)
-	self:Message(54102, L["sphere_message"], "red", spellId)
+	self:MessageOld(54102, L["sphere_message"], "red", spellId)
 end

@@ -43,22 +43,22 @@ end
 --
 
 function mod:DefyGravity(args)
-	self:Message(args.spellId, "yellow", "Info")
+	self:MessageOld(args.spellId, "yellow", "Info")
 	self:CDBar(args.spellId, 17)
 end
 
 function mod:WondrousRadiance(args)
-	self:Message(args.spellId, "orange", self:Tank() and "Warning")
+	self:MessageOld(args.spellId, "orange", self:Tank() and "Warning")
 	self:CDBar(args.spellId, 11)
 end
 
 function mod:MagicMagnificent(args)
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 	self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
 end
 
 function mod:SummonAssistants(args)
-	self:Message(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "Alert")
 	self:CDBar(args.spellId, 32.5)
 end
 

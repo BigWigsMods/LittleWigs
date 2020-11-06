@@ -73,12 +73,12 @@ function mod:Warmup(event, msg)
 end
 
 function mod:SavageBlade(args)
-	self:Message(args.spellId, "yellow", self:Tank() and "Warning")
+	self:MessageOld(args.spellId, "yellow", self:Tank() and "Warning")
 	self:CDBar(args.spellId, 18) -- pull:24.3, 24.3, 17.8, 20.9 / hc pull:48.6, 19.5 / m pull:47.3, 24.3, 37.6
 end
 
 function mod:Ragnarok(args)
-	self:Message(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "Long")
 	self:CDBar(args.spellId, 63) -- pull:11.4, 63.5
 end
 
@@ -106,7 +106,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

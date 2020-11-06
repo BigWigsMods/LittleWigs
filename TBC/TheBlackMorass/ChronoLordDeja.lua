@@ -29,7 +29,7 @@ end
 --
 
 --function mod:Enrage(args)
---	self:Message(args.spellId, "orange")
+--	self:MessageOld(args.spellId, "orange")
 --	self:Bar(args.spellId, 8)
 --end
 --

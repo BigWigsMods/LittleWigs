@@ -101,7 +101,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSplitWarning then
 		nextSplitWarning = nextSplitWarning - 33
-		self:Message(-5335, "green", nil, CL.soon:format(self:SpellName(143024)), false) -- 143024 = Split
+		self:MessageOld(-5335, "green", nil, CL.soon:format(self:SpellName(143024)), false) -- 143024 = Split
 		if nextSplitWarning < 33 then
 			self:UnregisterUnitEvent(event, unit)
 		end
@@ -110,7 +110,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 36931 or spellId == 36932 then -- 66% / 33% illusions
-		self:Message(-5335, "cyan", nil, CL.spawned:format(self:SpellName(-5335)))
+		self:MessageOld(-5335, "cyan", nil, CL.spawned:format(self:SpellName(-5335)))
 		if spellId == 36932 then
 			self:UnregisterUnitEvent(event, unit)
 		end

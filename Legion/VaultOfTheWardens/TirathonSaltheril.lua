@@ -69,7 +69,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:DarkstrikesCast(args)
-	self:Message(191941, "red", self:Tank() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(191941, "red", self:Tank() and "Alarm", CL.casting:format(args.spellName))
 	self:CDBar(191941, 31)
 end
 
@@ -79,30 +79,30 @@ function mod:DarkstrikesApplied(args)
 end
 
 function mod:Havoc(args)
-	self:Message(args.spellId, "cyan", "Info")
+	self:MessageOld(args.spellId, "cyan", "Info")
 	self:CDBar(191941, 24) -- Darkstrikes
 	self:CDBar(190830, 14.5) -- Hatred
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 190830 then -- Hatred
-		self:Message(spellId, "yellow", "Warning")
+		self:MessageOld(spellId, "yellow", "Warning")
 		self:CastBar(spellId, 10)
 		self:CDBar(spellId, 30)
 	end
 end
 
 function mod:Vengeance(args)
-	self:Message(args.spellId, "cyan", "Info")
+	self:MessageOld(args.spellId, "cyan", "Info")
 	self:StopBar(191941) -- Darkstrikes
 end
 
 function mod:FuriousFlamesApplied(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 	end
 end
 
 function mod:FuriousBlast(args)
-	self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 end

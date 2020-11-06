@@ -71,26 +71,26 @@ end
 --
 function mod:RAID_BOSS_WHISPER(_, msg)
 	if msg:find("238674", nil, true) then -- Fixates
-		self:Message(238674, "blue", "Alarm", CL.you:format(self:SpellName(238674)))
+		self:MessageOld(238674, "blue", "Alarm", CL.you:format(self:SpellName(238674)))
 		self:Flash(238674)
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 236650 then -- Choking Vines
-		self:Message(236650, "yellow", "Alert", spellId, 236650)
+		self:MessageOld(236650, "yellow", "Alert", spellId, 236650)
 		self:Bar(236650, 40.1)
 	end
 end
 
 function mod:PoisonousSpores(args)
-	self:Message(args.spellId, "yellow", "Info", CL.count:format(args.spellName, sporeCounter))
+	self:MessageOld(args.spellId, "yellow", "Info", CL.count:format(args.spellName, sporeCounter))
 	sporeCounter = sporeCounter + 1
 	self:Bar(args.spellId, 21.1, CL.count:format(args.spellName, sporeCounter))
 end
 
 function mod:TimberSmash(args)
-	self:Message(args.spellId, "orange", "Alarm", args.spellName)
+	self:MessageOld(args.spellId, "orange", "Alarm", args.spellName)
 	self:Bar(args.spellId, 21.8)
 end
 
@@ -101,12 +101,12 @@ function mod:ChokingVines(args)
 end
 
 function mod:FulminatingLashers(args)
-	self:Message(args.spellId, "yellow", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alert", CL.incoming:format(args.spellName))
 	self:Bar(args.spellId, 40.1)
 end
 
 function mod:SucculentLashers(args)
-	self:Message(args.spellId, "yellow", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alert", CL.incoming:format(args.spellName))
 	self:Bar(args.spellId, 40.1)
 end
 
@@ -117,7 +117,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(236640, "blue", "Alert", CL.underyou:format(self:SpellName(236640)))
+				self:MessageOld(236640, "blue", "Alert", CL.underyou:format(self:SpellName(236640)))
 			end
 		end
 	end

@@ -30,7 +30,7 @@ end
 --
 
 function mod:DarkShell(args)
-	self:Message(38759, "yellow", nil, CL.casting:format(args.spellName))
+	self:MessageOld(38759, "yellow", nil, CL.casting:format(args.spellName))
 	self:Bar(38759, 6)
 end
 

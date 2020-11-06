@@ -31,7 +31,7 @@ end
 --
 
 function mod:SpellReflection(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:Bar(args.spellId, 15)
 end
 
@@ -40,6 +40,6 @@ function mod:SpellReflectionRemoved(args)
 end
 
 function mod:Frenzy()
-	self:Message(48017, "red")
+	self:MessageOld(48017, "red")
 end
 

@@ -36,15 +36,15 @@ end
 --
 
 function mod:Genesis(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:Bar(args.spellId, 17, CL.cast:format(args.spellName))
 	self:Bar(args.spellId, 60)
 end
 
 function mod:ColossalBlow(args)
-	self:Message(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "Warning")
 end
 
 function mod:Entanglement(args)
-	self:Message(args.spellId, "green", "Info")
+	self:MessageOld(args.spellId, "green", "Info")
 end

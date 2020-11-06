@@ -64,11 +64,11 @@ do
 end
 
 function mod:Whirlwind(args)
-	self:Message(args.spellId, "orange")
+	self:MessageOld(args.spellId, "orange")
 end
 
 function mod:CreepingParalysis(args)
-	self:Message(args.spellId, "yellow", self:Dispeller("magic") and "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Dispeller("magic") and "Warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 6)
 	self:CDBar(args.spellId, 27)
 end
@@ -78,5 +78,5 @@ function mod:ClawRage(args)
 end
 
 function mod:Forms(args)
-	self:Message("stages", "red", nil, L[args.spellId], args.spellId)
+	self:MessageOld("stages", "red", nil, L[args.spellId], args.spellId)
 end

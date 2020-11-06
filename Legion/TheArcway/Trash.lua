@@ -91,17 +91,17 @@ end
 
 -- Arcane Anomaly
 function mod:ArcaneSlicer(args)
-	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 end
 
 -- Arcane Anomaly and Warp Shade
 function mod:ArcaneReconstitution(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Warp Shade
 function mod:PhaseBreach(args)
-	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Withered Manawraith, Wrathguard Felblade
@@ -112,7 +112,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Warning", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Warning", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -121,7 +121,7 @@ end
 -- Eredar Chaosbringer
 function mod:BrandoftheLegion(args)
 	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
-		self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+		self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 	end
 end
 
@@ -133,7 +133,7 @@ end
 
 function mod:DemonicAscension(args)
 	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
-		self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+		self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 	end
 end
 
@@ -145,10 +145,10 @@ end
 
 function mod:DemonicAscensionDispelled(args)
 	if args.extraSpellId == 226285 then
-		self:Message(226285, "green", "Info", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:MessageOld(226285, "green", "Info", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 	end
 end
 
 function mod:PortalArgus(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end

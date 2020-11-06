@@ -22,6 +22,6 @@ end
 --  Event Handlers
 
 function mod:OpticLink(player, spellId, _, _, spellName)
-	self:Message(54396, spellName..": "..player, "red", spellId)
+	self:MessageOld(54396, spellName..": "..player, "red", spellId)
 	self:Bar(54396, player..": "..spellName, 12, spellId)
 end

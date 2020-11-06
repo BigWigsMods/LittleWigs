@@ -44,7 +44,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextShieldOfLightWarning then
-		self:Message(74938, "yellow", nil, CL.soon:format(self:SpellName(74938))) -- Shield of Light
+		self:MessageOld(74938, "yellow", nil, CL.soon:format(self:SpellName(74938))) -- Shield of Light
 		nextShieldOfLightWarning = nextShieldOfLightWarning - 33
 		if nextShieldOfLightWarning < 33 then
 			self:UnregisterUnitEvent(event, unit)
@@ -53,7 +53,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:ShieldOfLight(args)
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 end
 
 function mod:DivineReckoning(args)

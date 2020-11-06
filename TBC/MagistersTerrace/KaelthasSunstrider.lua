@@ -72,7 +72,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message(44224, "green", nil, CL.soon:format(self:SpellName(44224)), false) -- Gravity Lapse
+		self:MessageOld(44224, "green", nil, CL.soon:format(self:SpellName(44224)), false) -- Gravity Lapse
 	end
 end
 
@@ -82,18 +82,18 @@ function mod:GravityLapse(args)
 end
 
 function mod:Phoenix(args)
-	self:Message(args.spellId, "orange", "Info", CL.spawned:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Info", CL.spawned:format(args.spellName))
 end
 
 function mod:FlameStrike()
-	self:Message(-5167, "red")
+	self:MessageOld(-5167, "red")
 end
 
 function mod:ShockBarrier()
-	self:Message(-5180, "yellow")
+	self:MessageOld(-5180, "yellow")
 end
 
 function mod:Pyroblast(args)
 	self:CastBar(args.spellId, 4)
-	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 end

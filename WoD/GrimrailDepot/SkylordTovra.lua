@@ -51,19 +51,19 @@ end
 
 function mod:Thunder(_, _, _, _, _, target)
 	if target == L.rakun then
-		self:Message(161801, "red", "Long", CL.incoming:format(self:SpellName(161801)))
+		self:MessageOld(161801, "red", "Long", CL.incoming:format(self:SpellName(161801)))
 		self:Bar(161801, 17.3)
 	end
 end
 
 function mod:SpinningSpear(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:CDBar(args.spellId, 16.5) -- 16.4-16.9
 end
 
 function mod:DiffusedEnergy(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 	end
 end
 

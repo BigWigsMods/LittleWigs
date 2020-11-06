@@ -32,12 +32,12 @@ end
 --
 
 function mod:EnragedAssault(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:Bar(args.spellId, 12)
 end
 
 function mod:PlanarShift(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	self:Bar(args.spellId, 18)
 end
 

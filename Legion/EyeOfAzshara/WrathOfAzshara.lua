@@ -61,13 +61,13 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, unit) -- Arcane Bomb
 end
 
 function mod:MassiveDeluge(args)
-	self:Message(args.spellId, "yellow", self:Tank() and "Warning")
+	self:MessageOld(args.spellId, "yellow", self:Tank() and "Warning")
 	self:CDBar(args.spellId, self:Normal() and 51 or 56) -- pull:12.1, 51.0 / hc pull:12.1, 55.9 / m pull:12.2, 59.1, 35.3 XXX
 end
 
 function mod:CryOfWrath(args)
 	p2 = true
-	self:Message(args.spellId, "green", "Long", CL.percent:format(10, args.spellName))
+	self:MessageOld(args.spellId, "green", "Long", CL.percent:format(10, args.spellName))
 end
 
 do
@@ -89,7 +89,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 192680 then -- Mystic Tornado
-		self:Message(192675, "orange", "Alert", CL.near:format(self:SpellName(192675)))
+		self:MessageOld(192675, "orange", "Alert", CL.near:format(self:SpellName(192675)))
 		self:CDBar(192675, p2 and 15 or 25) -- hc pull:8.5, 26.3, 15.8 / m pull:8.6, 25.1, 34.0, 18.2, 15.8, 20.7, 15.8
 	end
 end

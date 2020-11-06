@@ -53,7 +53,7 @@ function mod:HexOfMendingRemoved(args)
 end
 
 function mod:HealingWave(args)
-	self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 end
 
@@ -73,7 +73,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:Message(-7534, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(-7534, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

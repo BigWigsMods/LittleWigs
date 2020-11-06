@@ -49,11 +49,11 @@ end
 --
 
 function mod:FelSlash(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 end
 
 function mod:MightySmash(args)
-	self:Message(args.spellId, "orange", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Long", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 	--CDBar is being covered by Execution
 	self:CDBar(210879, 21) -- Seed of Destruction, very vague timer

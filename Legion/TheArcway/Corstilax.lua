@@ -58,13 +58,13 @@ function mod:SuppressionProtocolRemoved(args)
 end
 
 function mod:CleansingForce(args)
-	self:Message(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "Alert")
 	self:Bar(args.spellId, 10, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 46)
 end
 
 function mod:DestabilizedOrb(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 end
 
 do
@@ -75,7 +75,7 @@ do
 			if t-prev > 2 then
 				prev = t
 				self:Flash(220481)
-				self:Message(220481, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(220481, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

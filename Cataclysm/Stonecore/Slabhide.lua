@@ -44,7 +44,7 @@ function mod:LavaPool(args)
 end
 
 function mod:CrystalStorm(args)
-	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 2.5, CL.cast:format(args.spellName))
 end
 

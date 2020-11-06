@@ -51,7 +51,7 @@ end
 
 function mod:OnEngage()
 	stage = 1
-	self:Message("stages", "yellow", "Info", CL.stage:format(1), false)
+	self:MessageOld("stages", "yellow", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -62,19 +62,19 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 35 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "green", "Info", CL.soon:format(CL.stage:format(3)), false)
+		self:MessageOld("stages", "green", "Info", CL.soon:format(CL.stage:format(3)), false)
 	elseif hp < 75 and stage == 1 then
 		stage = 2
-		self:Message("stages", "green", "Info", CL.soon:format(CL.stage:format(2)), false)
+		self:MessageOld("stages", "green", "Info", CL.soon:format(CL.stage:format(2)), false)
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 106895 then -- Summon Jade Serpent
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "yellow", "Info", CL.stage:format(3), false)
+		self:MessageOld("stages", "yellow", "Info", CL.stage:format(3), false)
 	elseif spellId == 106797 then -- Jade Essence
-		self:Message("stages", "yellow", "Info", CL.stage:format(2), false)
+		self:MessageOld("stages", "yellow", "Info", CL.stage:format(2), false)
 	end
 end
 
@@ -103,7 +103,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

@@ -34,13 +34,13 @@ end
 --  Event Handlers
 
 function mod:Bubble(_, spellId)
-	self:Message(54306, L["bubble_message"], "red", spellId)
+	self:MessageOld(54306, L["bubble_message"], "red", spellId)
 end
 
 function mod:BubbleRemoved(_, spellId)
-	self:Message(54306, L["bubbleEnded_message"], "green", spellId)
+	self:MessageOld(54306, L["bubbleEnded_message"], "green", spellId)
 end
 
 function mod:Frenzy(_, spellId, _, _, spellName)
-	self:Message(54312, spellName, "red", spellId)
+	self:MessageOld(54312, spellName, "red", spellId)
 end

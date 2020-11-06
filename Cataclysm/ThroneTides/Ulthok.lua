@@ -36,7 +36,7 @@ end
 --
 
 function mod:DarkFissure(args)
-	self:Message(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Squeeze(args)
@@ -55,5 +55,5 @@ function mod:CurseOfFatigue(args)
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 end

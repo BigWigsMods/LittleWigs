@@ -50,20 +50,20 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(30496, "blue", "Alarm", CL.underyou:format(self:SpellName(30496)))
+				self:MessageOld(30496, "blue", "Alarm", CL.underyou:format(self:SpellName(30496)))
 			end
 		end
 	end
 end
 
 function mod:DarkSpin(args)
-	self:Message(args.spellId, "red", "Info", CL.percent:format(25, args.spellName))
+	self:MessageOld(args.spellId, "red", "Info", CL.percent:format(25, args.spellName))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 30 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message(30502, "green", nil, CL.soon:format(self:SpellName(30502)), false) -- Dark Spin
+		self:MessageOld(30502, "green", nil, CL.soon:format(self:SpellName(30502)), false) -- Dark Spin
 	end
 end

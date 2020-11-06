@@ -83,7 +83,7 @@ do
 				self:Say(120789)
 			end
 		else -- either incorrect (cast time depends on distance between the boss and the target) or only one player is alive
-			self:Message(120789, "yellow")
+			self:MessageOld(120789, "yellow")
 		end
 	end
 	function mod:DashingStrike(args)
@@ -93,7 +93,7 @@ do
 end
 
 function mod:ThousandBlades(args)
-	self:Message(-6287, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(-6287, "red", "Long", CL.casting:format(args.spellName))
 	self:CastBar(-6287, 5)
 end
 
@@ -104,7 +104,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(-6287, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(-6287, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end

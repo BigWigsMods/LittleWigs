@@ -48,11 +48,11 @@ end
 --
 
 function mod:BrutalHaymaker(args)
-	self:Message(args.spellId, "green", "Alarm", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "Alarm", CL.incoming:format(args.spellName))
 end
 
 function mod:EarthshakingStomp(args)
-	self:Message(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "Info")
 	self:Bar(args.spellId, 24.3)
 end
 
@@ -65,7 +65,7 @@ function mod:HatefulGaze(args)
 end
 
 function mod:FelVomit(args)
-	self:Message(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
 	felVomitCD = felVomitCD * 0.64
 	self:CDBar(args.spellId, felVomitCD)
 end

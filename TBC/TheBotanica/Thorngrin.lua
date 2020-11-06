@@ -50,7 +50,7 @@ function mod:AuraRemoved(args)
 end
 
 function mod:Hellfire(args)
-	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 6)
 end
 
@@ -61,7 +61,7 @@ do
 			local t = GetTime()
 			if t - prev > (self:Melee() and 6 or 1.5) then
 				prev = t
-				self:Message(34659, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(34659, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end

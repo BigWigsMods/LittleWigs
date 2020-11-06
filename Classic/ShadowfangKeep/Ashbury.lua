@@ -46,19 +46,19 @@ function mod:PainAndSuffering(args)
 end
 
 function mod:Asphyxiate(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	self:CDBar(args.spellId, self:Heroic() and 40 or 35.7)
 	self:CastBar(args.spellId, 6)
 end
 
 function mod:DarkArchangelForm(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 25 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message(93757, "yellow", nil, CL.soon:format(self:SpellName(93757)), false)
+		self:MessageOld(93757, "yellow", nil, CL.soon:format(self:SpellName(93757)), false)
 	end
 end

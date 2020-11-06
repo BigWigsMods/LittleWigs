@@ -61,7 +61,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.mech_trigger or msg:find(L.mech_trigger, nil, true) then
-		self:Message(-5999, "yellow", nil, CL.incoming:format(self:SpellName(-5999))) -- Steamrigger Mechanics
+		self:MessageOld(-5999, "yellow", nil, CL.incoming:format(self:SpellName(-5999))) -- Steamrigger Mechanics
 	end
 end
 
@@ -70,7 +70,7 @@ do
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < nextAddWarning then
 			nextAddWarning = nextAddWarning - 25
-			self:Message(-5999, "red", nil, CL.soon:format(self:SpellName(-5999))) -- Steamrigger Mechanics
+			self:MessageOld(-5999, "red", nil, CL.soon:format(self:SpellName(-5999))) -- Steamrigger Mechanics
 
 			while nextAddWarning >= 25 and hp < nextAddWarning do
 				-- account for high-level characters hitting multiple thresholds

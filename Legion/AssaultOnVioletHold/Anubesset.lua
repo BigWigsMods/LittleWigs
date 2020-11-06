@@ -47,7 +47,7 @@ end
 --
 
 function mod:MandibleStrikesCast(args)
-	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 22)
 end
 
@@ -76,7 +76,7 @@ do
 end
 
 function mod:CallOfTheSwarm(args)
-	self:Message(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "Info")
 end
 
 function mod:Fixated(args)
@@ -92,7 +92,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

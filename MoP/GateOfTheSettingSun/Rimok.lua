@@ -43,7 +43,7 @@ end
 --
 
 function mod:FrenziedAssault(args)
-	self:Message(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 7) -- 1s cast + 6s channel
 	self:CDBar(args.spellId, 17)
 end
@@ -55,7 +55,7 @@ do
 			local t = GetTime()
 			if (not self:Tank() and t-prev > 1.5) or t-prev > 6 then -- the tank might want to bring adds in front of Ri'mok
 				prev = t
-				self:Message(107120, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(107120, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -90,7 +90,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

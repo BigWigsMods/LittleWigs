@@ -50,7 +50,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSpoutWarning then
-		self:Message(75683, "yellow", nil, CL.soon:format(self:SpellName(75683)), false)
+		self:MessageOld(75683, "yellow", nil, CL.soon:format(self:SpellName(75683)), false)
 		nextSpoutWarning = nextSpoutWarning - 30
 		if nextSpoutWarning < 36 then
 			self:UnregisterUnitEvent(event, unit)

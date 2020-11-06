@@ -47,7 +47,7 @@ end
 
 function mod:AcceleratingBlast(args)
 	if self:Interrupter() then
-		self:Message(args.spellId, "yellow", nil, CL.count:format(args.spellName, blastCount))
+		self:MessageOld(args.spellId, "yellow", nil, CL.count:format(args.spellName, blastCount))
 	end
 	blastCount = blastCount + 1
 	if blastCount > 3 then blastCount = 1 end
@@ -61,7 +61,7 @@ function mod:AcceleratingBlastApplied(args)
 end
 
 function mod:ForceBomb(args)
-	self:Message(args.spellId, "yellow", "Info")
+	self:MessageOld(args.spellId, "yellow", "Info")
 	-- self:CDBar(args.spellId, 30) -- never in p1 long enough to get a second cast :\
 end
 
@@ -74,5 +74,5 @@ function mod:BanishInTime(args)
 	self:StopBar(202974) -- Force Bomb
 	blastCount = 1
 
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 end

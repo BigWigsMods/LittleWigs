@@ -64,7 +64,7 @@ end
 --
 
 function mod:Casts(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 end
 
 function mod:FelPrison(args)

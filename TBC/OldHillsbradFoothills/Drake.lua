@@ -66,7 +66,7 @@ do
 	function mod:Whirlwind(args)
 		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
-			self:Message(args.spellId, "blue", "Alarm", CL.near:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "Alarm", CL.near:format(args.spellName))
 		end
 	end
 end

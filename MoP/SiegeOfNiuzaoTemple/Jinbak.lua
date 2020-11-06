@@ -38,7 +38,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 119990 then -- Summon Saplings
-		self:Message(-5958, "yellow", "Info", CL.incoming:format(CL.adds))
+		self:MessageOld(-5958, "yellow", "Info", CL.incoming:format(CL.adds))
 		self:CDBar(-5958, 46.1, CL.adds)
 	end
 end
@@ -50,7 +50,7 @@ function mod:SapResidue(args)
 end
 
 function mod:Detonate(args)
-	self:Message(-5959, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(-5959, "red", "Alarm", CL.casting:format(args.spellName))
 	self:CastBar(-5959, 5)
 	self:CDBar(-5959, 46.1)
 end

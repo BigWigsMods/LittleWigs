@@ -53,7 +53,7 @@ do
 	end
 
 	function mod:Furlwind(args)
-		self:Message(args.spellId, "yellow", nil, CL.incoming:format(args.spellName))
+		self:MessageOld(args.spellId, "yellow", nil, CL.incoming:format(args.spellName))
 		self:CastBar(args.spellId, 12.5) -- 2.5s cast + 10s channeling
 		self:CDBar(args.spellId, 43.8)
 	end
@@ -66,14 +66,14 @@ do
 			local t = GetTime()
 			if (not self:Melee() and t-prev > 1.5) or t-prev > 6 then
 				prev = t
-				self:Message(112992, "blue", "Alert", CL.near:format(args.spellName))
+				self:MessageOld(112992, "blue", "Alert", CL.near:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:CarrotBreath(args)
-	self:Message(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 43.8)
 end
 
@@ -83,7 +83,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+			self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 		end
 	end
 end

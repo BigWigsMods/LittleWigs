@@ -67,15 +67,15 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 65 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "green", nil, CL.soon:format(CL.intermission), false)
+		self:MessageOld("stages", "green", nil, CL.soon:format(CL.intermission), false)
 	end
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
-		self:Message("stages", "red", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
+		self:MessageOld("stages", "red", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else
-		self:Message("stages", "red", "Info", CL.percent:format(60, CL.intermission), "achievement_character_orc_female")
+		self:MessageOld("stages", "red", "Info", CL.percent:format(60, CL.intermission), "achievement_character_orc_female")
 		self:DelayedMessage("stages", 1, "red", self:SpellName(-10741), "achievement_character_orc_male") -- Black Iron Wyrm Riders
 		self:Bar("stages", self:Normal() and 28 or 36.5, CL.intermission, "achievement_character_orc_female")
 		self:StopBar(155721) -- Black Iron Cyclone

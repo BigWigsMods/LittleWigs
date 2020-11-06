@@ -29,7 +29,7 @@ end
 --
 
 function mod:PoisonNova(args)
-	self:Message(59842, "yellow", "Info", CL.casting:format(args.spellName))
+	self:MessageOld(59842, "yellow", "Info", CL.casting:format(args.spellName))
 	self:Bar(59842, 3.5)
 end
 

@@ -48,7 +48,7 @@ end
 --
 
 function mod:ParalyzingScreech(args)
-	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 5)
 	self:Flash(args.spellId)
 end
@@ -65,7 +65,7 @@ end
 
 function mod:AddDied()
 	addsAlive = addsAlive - 1
-	self:Message(-5253, "green", nil, CL.add_remaining:format(addsAlive))
+	self:MessageOld(-5253, "green", nil, CL.add_remaining:format(addsAlive))
 	if addsAlive == 0 and not UnitCastingInfo("boss1") then -- he doesn't unbanish himself if you kill the last add when he's casting Paralyzing Screech
 		self:StopBar(CL.onboss:format(self:SpellName(42354))) -- Banish Self
 	end
@@ -74,7 +74,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 42354 then -- Banish Self
 		self:Bar(-5253, 45, CL.onboss:format(self:SpellName(spellId)), spellId)
-		self:Message(-5253, "orange", nil, CL.incoming:format(self:SpellName(-5253))) -- Brood of Anzu
+		self:MessageOld(-5253, "orange", nil, CL.incoming:format(self:SpellName(-5253))) -- Brood of Anzu
 		addsAlive = addsAlive + 7
 	end
 end
@@ -82,7 +82,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextBroodWarning then
-		self:Message(-5253, "orange", nil, CL.soon:format(self:SpellName(42354)), 42354) -- Banish Self
+		self:MessageOld(-5253, "orange", nil, CL.soon:format(self:SpellName(42354)), 42354) -- Banish Self
 		nextBroodWarning = nextBroodWarning - 40
 
 		if nextBroodWarning < 15 then

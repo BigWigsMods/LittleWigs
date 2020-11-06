@@ -43,6 +43,6 @@ end
 function mod:Deaths(args)
 	deaths = deaths + 1
 	if deaths < 2 then
-		self:Message("stages", "green", "Info", CL.mob_killed:format(args.destName, deaths, 2), false)
+		self:MessageOld("stages", "green", "Info", CL.mob_killed:format(args.destName, deaths, 2), false)
 	end
 end

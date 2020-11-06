@@ -49,10 +49,10 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local _, _, _, _, endTime = UnitCastingInfo(unit) -- Nightmare Bolt, Growing Paranoia
 		if endTime then
 			local timeLeft = endTime / 1000 - GetTime()
-			self:ScheduleTimer("Message", timeLeft, 200050, "yellow", "Info", CL.incoming:format(self:SpellName(200050)))
+			self:ScheduleTimer("MessageOld", timeLeft, 200050, "yellow", "Info", CL.incoming:format(self:SpellName(200050)))
 			self:ScheduleTimer("CDBar", timeLeft, 200050, 5)
 		else
-			self:Message(200050, "yellow", "Info", CL.incoming:format(self:SpellName(200050)))
+			self:MessageOld(200050, "yellow", "Info", CL.incoming:format(self:SpellName(200050)))
 			self:CDBar(200050, 5)
 		end
 	end

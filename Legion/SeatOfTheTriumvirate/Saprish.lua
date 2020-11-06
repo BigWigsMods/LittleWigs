@@ -66,13 +66,13 @@ end
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 247206 then -- Overload Trap
-		self:Message(spellId, "yellow", "Alarm")
+		self:MessageOld(spellId, "yellow", "Alarm")
 		self:Bar(spellId, 20.7)
 	end
 end
 
 function mod:VoidTrap()
-	self:Message(245873, "cyan", "Info")
+	self:MessageOld(245873, "cyan", "Info")
 	self:Bar(245873, 15.8)
 end
 
@@ -94,7 +94,7 @@ do
 end
 
 function mod:RavagingDarkness(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:Bar(args.spellId, 9.7)
 end
 
@@ -105,13 +105,13 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:Message(245802, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(245802, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:DreadScreech(args)
-	self:Message(args.spellId, "red", "Warning")
+	self:MessageOld(args.spellId, "red", "Warning")
 	self:CDBar(args.spellId, 15)
 end

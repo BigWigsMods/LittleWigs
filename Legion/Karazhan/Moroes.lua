@@ -137,7 +137,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:Vanish(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:Bar(args.spellId, 20.5)
 end
 
@@ -148,7 +148,7 @@ end
 
 function mod:CoatCheck(args)
 	if self:Tank() then
-		self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+		self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 	end
 	self:Bar(args.spellId, 34)
 end
@@ -160,20 +160,20 @@ function mod:CoatCheckDispellable(args)
 end
 
 function mod:GhastlyPurge(args)
-	self:Message(args.spellId, "cyan")
+	self:MessageOld(args.spellId, "cyan")
 end
 
 function mod:ManaDrain(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
 end
 
 function mod:HealingStream(args)
-	self:Message(args.spellId, "red", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
 end
 
 function mod:IronWhirlwind(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:Bar(args.spellId, 10.5)
 end
 
@@ -184,14 +184,14 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(227646, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(227646, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:EmpoweredArms(args)
-	self:Message(args.spellId, "red", self:Tank() and "Info", CL.on:format(args.spellName, args.destName))
+	self:MessageOld(args.spellId, "red", self:Tank() and "Info", CL.on:format(args.spellName, args.destName))
 end
 
 do
@@ -208,7 +208,7 @@ do
 end
 
 function mod:WillBreaker(args)
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 	self:Bar(args.spellId, 10.9)
 end
 

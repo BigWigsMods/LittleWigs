@@ -41,7 +41,7 @@ function mod:Smash(args)
 end
 
 function mod:Enrage(args)
-	self:Message(-5813, "red", "Long", args.spellId)
+	self:MessageOld(-5813, "red", "Long", args.spellId)
 	self:Bar(-5813, 30, args.spellId)
 end
 
@@ -53,6 +53,6 @@ function mod:EnrageSoon(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 25 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message(-5813, "green", "Info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
+		self:MessageOld(-5813, "green", "Info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
 	end
 end

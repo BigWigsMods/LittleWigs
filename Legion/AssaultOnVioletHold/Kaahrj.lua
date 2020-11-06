@@ -47,7 +47,7 @@ end
 --
 
 function mod:Doom(args)
-	self:Message(args.spellId, "yellow", "Info")
+	self:MessageOld(args.spellId, "yellow", "Info")
 	self:CDBar(args.spellId, 11)
 end
 
@@ -57,6 +57,6 @@ function mod:Hysteria(args)
 end
 
 function mod:EternalDarkness(args)
-	self:Message(args.spellId, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Long", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 40)
 end

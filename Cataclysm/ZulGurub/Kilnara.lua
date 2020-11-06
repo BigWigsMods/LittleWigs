@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "yellow", "Info", CL.stage:format(1), false)
+	self:MessageOld("stages", "yellow", "Info", CL.stage:format(1), false)
 end
 
 -------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ end
 --
 
 function mod:TearsOfBlood(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 	self:CastBar(args.spellId, 6)
 end
 
@@ -67,7 +67,7 @@ function mod:LashOfAnguishRemoved(args)
 end
 
 function mod:WaveOfAgony(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	self:CDBar(args.spellId, 32)
 end
 
@@ -77,20 +77,20 @@ function mod:Ravage(args)
 end
 
 function mod:Camouflage()
-	self:Message(-2702, "red", "Alert")
+	self:MessageOld(-2702, "red", "Alert")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "yellow", nil, CL.soon:format(CL.stage:format(2)), false)
+		self:MessageOld("stages", "yellow", nil, CL.soon:format(CL.stage:format(2)), false)
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 97380 then -- Cave In
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "yellow", "Info", CL.stage:format(2), false)
+		self:MessageOld("stages", "yellow", "Info", CL.stage:format(2), false)
 	end
 end

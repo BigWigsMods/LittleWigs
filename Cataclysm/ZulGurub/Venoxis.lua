@@ -71,7 +71,7 @@ end
 
 function mod:BreathOfHethiss(args)
 	breathsLeft = breathsLeft - 1
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	if (breathsLeft > 0) then
 		self:CDBar(args.spellId, 12)
 	end
@@ -79,7 +79,7 @@ end
 
 function mod:WhispersOfHethiss(args)
 	if self:MobId(args.destGUID) == 52155 then return end -- applies this to himself as well
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
@@ -89,7 +89,7 @@ function mod:WhispersOfHethissRemoved(args)
 end
 
 function mod:Bloodvenom(args)
-	self:Message(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
 	self:ScheduleTimer("Bar", 3, args.spellId, 14)
 end
 
@@ -100,6 +100,6 @@ function mod:BlessingOfTheSnakeGod()
 end
 
 function mod:BlessingOfTheSnakeGodRemoved()
-	self:Message(96653, "green", "Info") -- Venom Withdrawal
+	self:MessageOld(96653, "green", "Info") -- Venom Withdrawal
 	self:Bar(96653, 10)
 end

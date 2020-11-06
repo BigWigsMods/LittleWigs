@@ -70,7 +70,7 @@ function mod:TimeBombRemoved(args)
 end
 
 function mod:EmpoweredArcaneExplosion(args)
-	self:Message(51110, "yellow", nil, CL.casting:format(args.spellName))
+	self:MessageOld(51110, "yellow", nil, CL.casting:format(args.spellName))
 	self:CastBar(51110, self:Normal() and 8 or 6, 1449) -- 1449 = Arcane Explosion, to prevent the bar's text overlapping with its timer
 	self:CDBar(51110, 38.9)
 end
@@ -83,7 +83,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

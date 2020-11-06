@@ -121,7 +121,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(59866, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(59866, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

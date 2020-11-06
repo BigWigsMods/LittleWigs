@@ -42,7 +42,7 @@ function mod:Blizzard(player, spellId, _, _, spellName)
 end
 
 function mod:Destruction(player, spellId, _, _, spellName)
-	self:Message(58693, spellName..": "..player, "red", spellId)
+	self:MessageOld(58693, spellName..": "..player, "red", spellId)
 	self:Bar(58693, player..": "..spellName, 8, spellId)
 end
 

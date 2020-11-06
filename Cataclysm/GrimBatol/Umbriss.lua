@@ -47,13 +47,13 @@ function mod:Blitz(_, msg, _, _, _, player)
 			self:PrimaryIcon(74670, player)
 			self:ScheduleTimer("PrimaryIcon", 3.5, 74670)
 		else
-			self:Message(74670, "red", "Alert")
+			self:MessageOld(74670, "red", "Alert")
 		end
 	end
 end
 
 function mod:Siege(args)
-	self:Message(args.spellId, "orange")
+	self:MessageOld(args.spellId, "orange")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
@@ -61,13 +61,13 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 36 then
 			self:UnregisterUnitEvent(event, unit)
-			self:Message(74853, "yellow", nil, CL.soon:format(self:SpellName(74853)))
+			self:MessageOld(74853, "yellow", nil, CL.soon:format(self:SpellName(74853)))
 		end
 	end
 end
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 end
 
 function mod:Wound(args)

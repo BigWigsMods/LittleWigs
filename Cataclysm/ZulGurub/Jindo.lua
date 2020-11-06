@@ -62,12 +62,12 @@ end
 
 
 function mod:ShadowsOfHakkar(args)
-	self:Message(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 19)
 end
 
 function mod:ShadowsOfHakkarApplied(args)
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
@@ -76,13 +76,13 @@ function mod:ShadowsOfHakkarRemoved(args)
 end
 
 function mod:Deadzone(args)
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 	self:Bar(args.spellId, 21)
 end
 
 function mod:BrittleBarrierRemoved()
 	barriersLeft = barriersLeft - 1
-	self:Message(-2910, "red", "Alert", L.barrier_down_message:format(barriersLeft))
+	self:MessageOld(-2910, "red", "Alert", L.barrier_down_message:format(barriersLeft))
 end
 
 function mod:SpiritWarriorsGaze(args)
@@ -101,7 +101,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 98861 then -- Spirit World
 		barriersLeft = 3
-		self:Message("stages", "red", "Long", CL.other:format(CL.stage:format(2), self:SpellName(spellId)), false)
+		self:MessageOld("stages", "red", "Long", CL.other:format(CL.stage:format(2), self:SpellName(spellId)), false)
 		self:StopBar(97172) -- Shadows of Hakkar
 	end
 end

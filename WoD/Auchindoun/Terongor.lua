@@ -59,7 +59,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "green", "Info", CL.stage:format(1), false)
+	self:MessageOld("stages", "green", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 80 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "yellow", "Info", CL.soon:format(CL.stage:format(2)), false)
+		self:MessageOld("stages", "yellow", "Info", CL.soon:format(CL.stage:format(2)), false)
 	end
 end
 
@@ -98,7 +98,7 @@ end
 
 function mod:RainOfFire(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
 	end
 end
 
@@ -130,20 +130,20 @@ do
 end
 
 function mod:DrainLife(args)
-	self:Message(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
 end
 
 function mod:ChaosBolt(args)
-	self:Message(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 24)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 156863 then -- Affliction Transformation
-		self:Message("stages", "green", "Info", CL.other:format(CL.stage:format(2), L.affliction), "spell_shadow_deathcoil")
+		self:MessageOld("stages", "green", "Info", CL.other:format(CL.stage:format(2), L.affliction), "spell_shadow_deathcoil")
 	elseif spellId == 156919 then -- Demonology Transformation
-		self:Message("stages", "green", "Info", CL.other:format(CL.stage:format(2), L.demonology), "spell_shadow_metamorphosis")
+		self:MessageOld("stages", "green", "Info", CL.other:format(CL.stage:format(2), L.demonology), "spell_shadow_metamorphosis")
 	elseif spellId == 156866 then -- Destruction Transformation
-		self:Message("stages", "green", "Info", CL.other:format(CL.stage:format(2), L.destruction), "spell_shadow_rainoffire")
+		self:MessageOld("stages", "green", "Info", CL.other:format(CL.stage:format(2), L.destruction), "spell_shadow_rainoffire")
 	end
 end

@@ -29,10 +29,10 @@ end
 
 function mod:GroundSlam()
 	self:CDBar(50810, 8) -- Shatter
-	self:Message(50810, "orange", nil, CL.soon:format(self:SpellName(50810)))
+	self:MessageOld(50810, "orange", nil, CL.soon:format(self:SpellName(50810)))
 end
 
 function mod:Shatter()
 	self:StopBar(50810)
-	self:Message(50810, "orange")
+	self:MessageOld(50810, "orange")
 end

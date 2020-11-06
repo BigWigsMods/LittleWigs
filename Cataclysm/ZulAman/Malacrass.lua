@@ -45,7 +45,7 @@ end
 --
 
 function mod:SpiritBolts(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	self:CDBar(args.spellId, 30)
 end
 
@@ -55,7 +55,7 @@ function mod:SoulSiphon(args)
 end
 
 function mod:HealingCasts(args)
-	self:Message(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
 end
 
 function mod:Lifebloom(args)

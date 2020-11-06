@@ -65,7 +65,7 @@ end
 --
 
 function mod:TornadoKick(args)
-	self:Message(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "Alert")
 	self:CastBar(args.spellId, 6.5) -- 5s channel + 1.5s cast
 end
 
@@ -81,7 +81,7 @@ end
 
 function mod:Stage3(_, msg)
 	if msg:find(L.stage3_yell, nil, true) then
-		self:Message("stages", "green", "Info", CL.stage:format(3), 118961) -- 118961 = Chase Down
+		self:MessageOld("stages", "green", "Info", CL.stage:format(3), 118961) -- 118961 = Chase Down
 	end
 end
 
@@ -90,10 +90,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		if stage == 1 then
 			stage = 2
 			local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
-			self:Message("stages", "green", "Info", (CL.stage:format(2))..": "..mirror, 106747)
+			self:MessageOld("stages", "green", "Info", (CL.stage:format(2))..": "..mirror, 106747)
 			self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
 		else
-			self:Message(106747, "green")
+			self:MessageOld(106747, "green")
 		end
 	end
 end
@@ -102,9 +102,9 @@ function mod:StageWarn(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 65 and stage == 1 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "green", nil, CL.soon:format(CL.stage:format(2)), false)
+		self:MessageOld("stages", "green", nil, CL.soon:format(CL.stage:format(2)), false)
 	elseif hp < 35 and stage == 2 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "green", nil, CL.soon:format(CL.stage:format(3)), false)
+		self:MessageOld("stages", "green", nil, CL.soon:format(CL.stage:format(3)), false)
 	end
 end

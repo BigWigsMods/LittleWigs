@@ -103,7 +103,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId == 35283 and -5488 or args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId == 35283 and -5488 or args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -184,7 +184,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:Message(-5488, "cyan", "Info", CL.casting:format(args.spellName))
+			self:MessageOld(-5488, "cyan", "Info", CL.casting:format(args.spellName))
 		end
 		self:CastBar(-5488, 8)
 	end

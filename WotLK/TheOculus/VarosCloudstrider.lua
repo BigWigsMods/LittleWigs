@@ -50,7 +50,7 @@ function mod:AmplifyMagicRemoved(args)
 end
 
 function mod:CallAzureRingCaptain()
-	self:Message(-7442, "orange", nil, CL.spawned:format(self:SpellName(-7443))) -- -7443 = Azure Ring Captain
+	self:MessageOld(-7442, "orange", nil, CL.spawned:format(self:SpellName(-7443))) -- -7443 = Azure Ring Captain
 	self:CDBar(-7442, 13.3) -- 13-18s, most are ~15s
 end
 
@@ -61,7 +61,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

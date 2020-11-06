@@ -42,7 +42,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:Message("stages", "green", "Info", CL.stage:format(1), false)
+	self:MessageOld("stages", "green", "Info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ end
 
 function mod:AddDeath()
 	deaths = deaths + 1
-	self:Message(-6327, "yellow", nil, CL.add_killed:format(deaths, 4), 106526)
+	self:MessageOld(-6327, "yellow", nil, CL.add_killed:format(deaths, 4), 106526)
 end
 
 do
@@ -72,7 +72,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

@@ -43,13 +43,13 @@ end
 --
 
 function mod:Stealth()
-	self:Message("stages", "cyan", nil, CL.stage:format(2), false)
+	self:MessageOld("stages", "cyan", nil, CL.stage:format(2), false)
 	-- Prevent the module wiping when moving to phase 2 and ENCOUNTER_END fires.
 	self:ScheduleTimer("Reboot", 0.5) -- Delay a little
 end
 
 function mod:UnnervingHowl(args)
-	self:Message(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 30)
 end
 
@@ -76,7 +76,7 @@ do
 end
 
 function mod:ClawFrenzy(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 end
 
 do

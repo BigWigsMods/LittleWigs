@@ -51,6 +51,6 @@ function mod:PiercingSlashCastSuccess(args)
 end
 
 function mod:RaptorCall(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:CDBar(args.spellId, 30.4) -- can randomly skip one cast
 end

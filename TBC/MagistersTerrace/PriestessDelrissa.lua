@@ -78,12 +78,12 @@ end
 
 -- Apoko
 function mod:WindfuryTotem(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 end
 
 -- Yazzai
 function mod:Blizzard(args)
-	self:Message(44178, "red", nil, CL.casting:format(args.spellName))
+	self:MessageOld(44178, "red", nil, CL.casting:format(args.spellName))
 end
 
 function mod:Polymorph(args)

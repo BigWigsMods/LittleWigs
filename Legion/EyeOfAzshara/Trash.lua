@@ -90,42 +90,42 @@ end
 
 -- Hatecoil Wrangler
 function mod:LightningProd(args)
-	self:Message(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Stormweaver
 function mod:Storm(args)
-	self:Message(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
 end
 
 function mod:ArcLightning(args)
-	self:Message(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Crusher
 function mod:ThunderingStomp(args)
-	self:Message(args.spellId, "red", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Oracle
 function mod:RejuvenatingWaters(args)
-	self:Message(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
 end
 
 -- Mak'rana Siltwalker
 function mod:SpraySand(args)
-	self:Message(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
 end
 
 -- Restless Tides
 function mod:Undertow(args)
-	self:Message(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Arcanist
 
 function mod:AquaSpout(args)
-	self:Message(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
 end
 
 function mod:PolymorphFish(args)

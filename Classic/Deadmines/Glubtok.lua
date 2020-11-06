@@ -35,7 +35,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 56 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "cyan", nil, CL.soon:format(CL.phase:format(2)), false)
+		self:MessageOld("stages", "cyan", nil, CL.soon:format(CL.phase:format(2)), false)
 	end
 end
 

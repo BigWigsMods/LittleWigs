@@ -58,16 +58,16 @@ do
 end
 
 function mod:StranglingRoots(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:CDBar(args.spellId, 23) -- hc pull:12.5, 24.3, 26.7, 23.1 / m pull:14.6, 24.3, 32.8, 33.6
 end
 
 function mod:NightmareBreath(args)
-	self:Message(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "Info")
 	self:CDBar(args.spellId, 26) -- hc pull:18.6, 26.7, 32.8 / m pull:19.5, 32.8, 26.7, 33.5
 end
 
 function mod:ShatteredEarth(args)
-	self:Message(args.spellId, "red", "Alarm")
+	self:MessageOld(args.spellId, "red", "Alarm")
 	self:CDBar(args.spellId, 51) -- m pull: 7.3, 50.9, 51.1
 end

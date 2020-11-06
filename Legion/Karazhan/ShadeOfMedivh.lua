@@ -76,7 +76,7 @@ function mod:UNIT_POWER_FREQUENT(_, unit)
 end
 
 function mod:Frostbite(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Alarm")
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Alarm")
 end
 
 function mod:FrostbiteApplied(args)
@@ -95,9 +95,9 @@ do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
 			local text = CL.you:format(self:SpellName(227615)) .. (frostbiteTarget and " - " .. CL.on:format(self:SpellName(227592), self:ColorName(frostbiteTarget)) or "")
-			self:Message(227615, "orange", "Alert", text)
+			self:MessageOld(227615, "orange", "Alert", text)
 		else
-			self:Message(227615, "red")
+			self:MessageOld(227615, "red")
 		end
 	end
 
@@ -105,27 +105,27 @@ do
 		if frostbiteTarget then
 			self:GetBossTarget(printTarget, 1, args.sourceGUID)
 		else
-			self:Message(args.spellId, "red")
+			self:MessageOld(args.spellId, "red")
 		end
 	end
 end
 
 function mod:PiercingMissiles(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 end
 
 function mod:GuardiansImage(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	addsKilled = 0
 end
 
 function mod:ImageDeath(args)
 	addsKilled = addsKilled + 1
-	self:Message("stages", "cyan", addsKilled == 3 and "Long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
+	self:MessageOld("stages", "cyan", addsKilled == 3 and "Long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
 end
 
 function mod:FlameWreathStart(args)
-	self:Message(args.spellId, "yellow", "Long", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Long", CL.incoming:format(args.spellName))
 end
 
 do
@@ -143,7 +143,7 @@ do
 end
 
 function mod:CeaselessWinter(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 	self:Bar(args.spellId, 20)
 end
 

@@ -35,7 +35,7 @@ end
 --
 
 function mod:Chaos(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	self:CastBar(args.spellId, 15)
 	self:CDBar(args.spellId, 70)
 	self:DelayedMessage(args.spellId, 65, "yellow", CL.soon:format(args.spellName), nil, "Alarm")

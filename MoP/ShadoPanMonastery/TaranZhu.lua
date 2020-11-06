@@ -54,20 +54,20 @@ do
 		local t = GetTime()
 		if t-prev > 5 then
 			prev = t
-			self:Message(args.spellId, "orange", "Info")
+			self:MessageOld(args.spellId, "orange", "Info")
 		end
 	end
 end
 
 function mod:HazeOfHate(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Long", CL.you:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Long", CL.you:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:RisingHateStart(args)
-	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 5)
 	self:CDBar(args.spellId, 16.5) -- 16-19
 end

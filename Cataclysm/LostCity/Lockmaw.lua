@@ -71,7 +71,7 @@ function mod:ScentOfBlood(args)
 end
 
 function mod:Whirlwind(args)
-	self:Message(84784, "orange")
+	self:MessageOld(84784, "orange")
 	if args.spellId == 91408 then
 		self:CDBar(84784, 26)
 	end

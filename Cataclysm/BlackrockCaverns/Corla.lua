@@ -49,12 +49,12 @@ end
 function mod:EvolutionRemoved(args)
 	if self:Me(args.destGUID) and warnedAboutEvolution then
 		warnedAboutEvolution = nil
-		self:Message(args.spellId, "green", nil, CL.removed:format(args.spellName))
+		self:MessageOld(args.spellId, "green", nil, CL.removed:format(args.spellName))
 	end
 end
 
 function mod:DarkCommand(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Alert", CL.casting:format(args.spellName))
 end
 
 function mod:DarkCommandApplied(args)

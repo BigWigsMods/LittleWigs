@@ -55,7 +55,7 @@ function mod:CursedBullets(args)
 	cursedBulletsCount = cursedBulletsCount + 1
 	self:CDBar(args.spellId, cursedBulletsCount % 2 == 0 and 18.2 or 12.1)
 	if self:Interrupter() then
-		self:Message(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+		self:MessageOld(args.spellId, "orange", nil, CL.casting:format(args.spellName))
 	end
 end
 
@@ -77,12 +77,12 @@ function mod:MortalWound(args)
 end
 
 function mod:SummonBloodthirstyGhouls(args)
-	self:Message(args.spellId, "cyan", "Info")
+	self:MessageOld(args.spellId, "cyan", "Info")
 	self:CDBar(args.spellId, 30.3)
 end
 
 function mod:PistolBarrage(args)
-	self:Message(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "Long")
 	self:CastBar(args.spellId, 6)
 	self:CDBar(args.spellId, 30.3)
 end
@@ -94,7 +94,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:Message(93520, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(93520, "blue", "Alert", CL.you:format(args.spellName))
 			end
 		end
 	end

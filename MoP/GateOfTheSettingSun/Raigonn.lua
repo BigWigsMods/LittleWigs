@@ -43,7 +43,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "cyan", nil, CL.other:format(CL.stage:format(1), self:SpellName(107118)), false)
+	self:MessageOld("stages", "cyan", nil, CL.other:format(CL.stage:format(1), self:SpellName(107118)), false)
 end
 
 --------------------------------------------------------------------------------
@@ -51,13 +51,13 @@ end
 --
 
 function mod:BatteringHeadbutt(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "Alarm")
 	self:CDBar(args.spellId, 32.5)
 end
 
 function mod:BrokenCarapace(args)
 	stompCount = 0
-	self:Message("stages", "green", "Info", CL.other:format(CL.stage:format(2), args.spellName), false)
+	self:MessageOld("stages", "green", "Info", CL.other:format(CL.stage:format(2), args.spellName), false)
 	self:CDBar(111723, 3) -- Fixate
 
 	self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss2") -- in case Weak Spot died too fast
@@ -74,13 +74,13 @@ end
 
 function mod:Stomp(args)
 	stompCount = stompCount + 1
-	self:Message(args.spellId, "yellow", "Alert", CL.count:format(args.spellName, stompCount))
+	self:MessageOld(args.spellId, "yellow", "Alert", CL.count:format(args.spellName, stompCount))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 15 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "green", nil, CL.soon:format(CL.stage:format(2)), false)
+		self:MessageOld("stages", "green", nil, CL.soon:format(CL.stage:format(2)), false)
 	end
 end

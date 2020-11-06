@@ -84,26 +84,26 @@ do
 	function mod:CallReinforcementsNormal(args) -- Normal only
 		--["192073-Call Reinforcements"] = "pull:26.0, 52.3",
 		--["192072-Call Reinforcements"] = "pull:5.4, 52.3, 52.2",
-		self:Message(192072, "yellow", "Info", args.spellName, args.spellId)
+		self:MessageOld(192072, "yellow", "Info", args.spellName, args.spellId)
 		self:CDBar(192072, addCount % 2 == 0 and 31 or 20, args.spellName, args.spellId == 192072 and 192073 or 192072) -- Use correct icon for upcoming add
 		addCount = addCount + 1
 	end
 	function mod:CallReinforcements(args) -- Heroic +
-		self:Message(args.spellId, "yellow", "Info")
+		self:MessageOld(args.spellId, "yellow", "Info")
 		self:CDBar(args.spellId, 28) -- hc pull:5.4, 31.6, 31.6, 27.9, 29.2 / m pull:5.7, 31.5, 28.0, 27.9, 27.9
 	end
 end
 
 function mod:Enrage(args)
-	self:Message(args.spellId, "orange", "Alert", CL.percent:format(30, args.spellName))
+	self:MessageOld(args.spellId, "orange", "Alert", CL.percent:format(30, args.spellName))
 end
 
 function mod:Restoration(args)
-	self:Message(args.spellId, "green", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "green", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
 end
 
 function mod:CrashingWave(args)
-	self:Message(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
 end
 
 do
@@ -113,7 +113,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:Message(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

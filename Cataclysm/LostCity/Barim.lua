@@ -47,7 +47,7 @@ function mod:PlagueRemoved(args)
 end
 
 function mod:FiftyLashings(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 end
 
 function mod:HallowedGround(args)
@@ -62,7 +62,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 55 then
 			self:UnregisterUnitEvent(event, unit)
-			self:Message(88814, "yellow", nil, CL.soon:format(CL.phase:format(2)))
+			self:MessageOld(88814, "yellow", nil, CL.soon:format(CL.phase:format(2)))
 		end
 	end
 end

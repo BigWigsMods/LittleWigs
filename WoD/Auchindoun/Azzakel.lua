@@ -45,7 +45,7 @@ end
 --
 
 function mod:ClawsOfArgus(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:Bar(args.spellId, 91)
 	self:Bar(args.spellId, 20, CL.cast:format(args.spellName))
 end

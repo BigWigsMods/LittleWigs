@@ -35,12 +35,12 @@ end
 --
 
 function mod:Deflection(args)
-	self:Message(args.spellId, "orange")
+	self:MessageOld(args.spellId, "orange")
 	self:Bar(args.spellId, 10)
 end
 
 function mod:VengeanceOfVanCleef(args)
-	self:Message(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "Long")
 end
 
 --function mod:Blades(player, spellId, _, _, spellName)

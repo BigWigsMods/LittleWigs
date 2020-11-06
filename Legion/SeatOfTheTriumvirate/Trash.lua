@@ -87,11 +87,11 @@ function mod:PersonalAurasWithSay(args)
 end
 
 function mod:VoidDiffusionCast(args)
-	self:Message(args.spellId, "yellow", self:Interrupter() and "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Info", CL.casting:format(args.spellName))
 end
 
 function mod:DarkMatterCast(args)
-	self:Message(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
 	if self:GetOption(matterMarker) then
 		self:RegisterTargetEvents("MarkMatter")
 	end

@@ -36,13 +36,13 @@ end
 --
 
 function mod:Shockwave(args)
-	self:Message(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "Info")
 	self:Bar(args.spellId, 5, CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 40)
 end
 
 function mod:DetonateTraps(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "Alarm")
 end
 
 function mod:BadIntentions(args)
