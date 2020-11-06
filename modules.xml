@@ -231,7 +231,7 @@
 <!-- <Include file="Shadowlands\HallsOfAtonement\locales.xml"/> -->
 
 <Include file="Shadowlands\Plaguefall\modules.xml"/>
-<!-- <Include file="Shadowlands\Plaguefall\locales.xml"/> -->
+<Include file="Shadowlands\Plaguefall\locales.xml"/>
 
 <Include file="Shadowlands\MistsOfTirnaScithe\modules.xml"/>
 <!-- <Include file="Shadowlands\MistsOfTirnaScithe\locales.xml"/> -->
