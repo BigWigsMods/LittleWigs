@@ -51,7 +51,7 @@ end
 --
 
 function mod:CometStorm(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 6) -- 2s Cast, 4s Channel
 	self:Bar(args.spellId, 25.5)
@@ -61,14 +61,14 @@ do
 	local seconds = 0
 	function mod:IceboundAegisApplied(args)
 		seconds = args.time
-		self:Message2(args.spellId, "cyan")
+		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "info")
 		self:Bar(args.spellId, 25.5)
 	end
 
 	function mod:IceboundAegisRemoved(args)
 		seconds = math.floor((args.time - seconds) * 100)/100
-		self:Message2(args.spellId, "green", L.aegis:format(seconds))
+		self:Message(args.spellId, "green", L.aegis:format(seconds))
 	end
 end
 

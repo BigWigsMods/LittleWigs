@@ -64,23 +64,23 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, text, winner, _, _, loser)
 	if text:find("Ability_PVP_GladiatorMedallion") then
-		self:Message2(320102, "yellow", L.defeated:format(self:ColorName(winner), self:ColorName(loser))) -- Blood and Glory
+		self:Message(320102, "yellow", L.defeated:format(self:ColorName(winner), self:ColorName(loser))) -- Blood and Glory
 		self:PlaySound(320102, "info") -- Blood and Glory
 	end
 end
 
 function mod:BrutalCombo(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:DeafeningCrash(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:MassiveCleave(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -98,7 +98,7 @@ do
 end
 
 function mod:CrushingSlam(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -107,7 +107,7 @@ function mod:MightOfMaldraxxus(args)
 end
 
 function mod:OppressiveBanner(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 30)
 end

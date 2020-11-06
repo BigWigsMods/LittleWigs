@@ -74,6 +74,6 @@ do
 end
 
 function mod:SpectralReach(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end

@@ -53,19 +53,19 @@ end
 --
 
 function mod:DoorofShadows(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 35)
 end
 
 function mod:RitualofWoe(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 35)
 end
 
 function mod:TelekineticToss(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	tossCount = tossCount + 1
 	self:CDBar(args.spellId, tossCount == 2 and 15.5 or 35)
@@ -73,7 +73,7 @@ end
 
 
 function mod:UnleashedSuffering(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	--self:CDBar(args.spellId, 35)
 end

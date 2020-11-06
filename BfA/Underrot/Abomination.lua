@@ -52,7 +52,7 @@ end
 --
 
 function mod:VileExpulsion(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "watchwave")
 	self:Bar(args.spellId, 15.5)
 end
@@ -117,6 +117,6 @@ end
 
 function mod:VisageDeath()
 	visageRemaining = visageRemaining - 1
-	self:Message2("stages", "cyan", CL.add_remaining:format(visageRemaining), false)
+	self:Message("stages", "cyan", CL.add_remaining:format(visageRemaining), false)
 	self:PlaySound("stages", "info")
 end

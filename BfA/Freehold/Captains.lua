@@ -127,20 +127,20 @@ function mod:Deaths(args)
 end
 
 function mod:BlackoutBarrel(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "killadd")
 	self:CDBar(args.spellId, 47)
 end
 
 function mod:BarrelSmash(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long", "watchaoe")
 	self:CastBar(args.spellId, 7) -- 3s Cast, 4s Channel
 	self:CDBar(args.spellId, 23)
 end
 
 function mod:GrapeShot(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "watchstep")
 	self:CDBar(args.spellId, 30.4)
 end
@@ -175,19 +175,19 @@ function mod:ChainShotApplied(args)
 end
 
 function mod:WhirlpoolofBlades(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 20)
 end
 
 function mod:CuttingSurge(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 23)
 end
 
 function mod:CritBrew(args)
-	self:Message2(args.spellId, "green", L.crit_brew)
+	self:Message(args.spellId, "green", L.crit_brew)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -202,7 +202,7 @@ do
 			local bossId = self:GetBossId(args.destGUID)
 			if bossId and UnitCanAttack("player", bossId) then
 				prev = t
-				self:Message2(265088, "purple", CL.onboss:format(L.crit_brew))
+				self:Message(265088, "purple", CL.onboss:format(L.crit_brew))
 				self:PlaySound(265088, "alarm")
 			end
 		end
@@ -210,7 +210,7 @@ do
 end
 
 function mod:HasteBrew(args)
-	self:Message2(args.spellId, "green", L.haste_brew)
+	self:Message(args.spellId, "green", L.haste_brew)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -225,7 +225,7 @@ do
 			local bossId = self:GetBossId(args.destGUID)
 			if bossId and UnitCanAttack("player", bossId) then
 				prev = t
-				self:Message2(264608, "purple", CL.onboss:format(L.haste_brew))
+				self:Message(264608, "purple", CL.onboss:format(L.haste_brew))
 				self:PlaySound(264608, "alarm")
 			end
 		end
@@ -233,7 +233,7 @@ do
 end
 
 function mod:CausticBrew(args)
-	self:Message2(args.spellId, "red", L.bad_brew)
+	self:Message(args.spellId, "red", L.bad_brew)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -248,7 +248,7 @@ do
 			local bossId = self:GetBossId(args.destGUID)
 			if bossId and UnitCanAttack("player", bossId) then
 				prev = t
-				self:Message2(265168, "green", CL.onboss:format(L.bad_brew))
+				self:Message(265168, "green", CL.onboss:format(L.bad_brew))
 				self:PlaySound(265168, "info")
 			end
 		end

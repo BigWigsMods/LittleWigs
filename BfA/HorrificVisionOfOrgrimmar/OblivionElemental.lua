@@ -41,6 +41,6 @@ end
 --
 
 function mod:Hopelessness(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end

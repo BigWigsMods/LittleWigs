@@ -48,35 +48,35 @@ end
 
 function mod:SpiritBolt(args)
 	if self:Interrupter() then
-		self:Message2(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:RepulsiveVisage(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:EmbraceDarkness(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:BewilderingPollen(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:TearsoftheForest(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 15)
 end
 
 function mod:DromansWrath(args)
-	self:Message2(args.spellId, "green")
+	self:Message(args.spellId, "green")
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -87,7 +87,7 @@ function mod:DromansWrathApplied(args)
 end
 
 function mod:DromansWrathRemoved(args)
-	self:Message2(args.spellId, "cyan", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "cyan", CL.removed:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 	self:Bar(323137, 9) -- Bewildering Pollen
 	self:Bar(323177, 18.4) -- Tears of the Forest

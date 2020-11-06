@@ -49,7 +49,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("319713") then
-		self:Message2(319713, "red", destName)
+		self:Message(319713, "red", destName)
 		self:PlaySound(319713, "alarm", nil, destName)
 		self:Bar(319713, 36.4)
 		local guid = UnitGUID(destName)
@@ -61,19 +61,19 @@ end
 
 function mod:ViciousHeadbutt(args)
 	viciousHeadbuttCount = viciousHeadbuttCount + 1
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, viciousHeadbuttCount % 2 == 0 and 24.3 or 12.1)
 end
 
 function mod:HungeringDrain(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 36.4)
 end
 
 function mod:SeveringSmash(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 36.4)
 end

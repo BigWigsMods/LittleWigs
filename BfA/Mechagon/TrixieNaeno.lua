@@ -73,19 +73,19 @@ do
 end
 
 function mod:Roadkill(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 52.3)
 end
 
 function mod:BoltBuster(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 52.3)
 end
 
 function mod:Burnout(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(298651, 2.9) -- Pedal to the Metal
 end
@@ -96,7 +96,7 @@ function mod:RollOut(args)
 end
 
 function mod:PedaltotheMetal(args)
-	self:Message2(298651, "red")
+	self:Message(298651, "red")
 	self:PlaySound(298651, "alert")
 	self:CastBar(298651, 4.5) -- Pedal to the Metal
 end

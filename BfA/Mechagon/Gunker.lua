@@ -40,20 +40,20 @@ end
 --
 
 function mod:Splatter(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 25)
 end
 
 function mod:ToxicWave(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 49)
 	self:CastBar(args.spellId, 3.5)
 end
 
 function mod:Coalesce(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 49)
 end
@@ -64,6 +64,6 @@ function mod:GoopedApplied(args)
 end
 
 function mod:SludgeBolt(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end

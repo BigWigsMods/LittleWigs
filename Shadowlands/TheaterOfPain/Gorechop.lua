@@ -44,7 +44,7 @@ end
 
 do
 	local function warnMeatHooks()
-		mod:Message2(322795, "orange")
+		mod:Message(322795, "orange")
 		mod:PlaySound(322795, "alert")
 		mod:Bar(322795, 20.6)
 	end
@@ -58,13 +58,13 @@ do
 end
 
 function mod:HatefulStrike(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 14.6)
 end
 
 function mod:TenderizingSmash(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 19.4)
 end

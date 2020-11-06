@@ -56,7 +56,7 @@ end
 --
 
 function mod:SwiftnessWard(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 31.5)
 end
@@ -69,20 +69,20 @@ function mod:SwiftnessWardApplied(args)
 end
 
 function mod:SlicingBlast(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:ReinforcingWard(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 32)
 end
 
 function mod:BlessingofIronsides(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 33)
 end
@@ -96,7 +96,7 @@ do
 
 	function mod:BlessingoftheTempestApplied(args)
 		blessingActive = true
-		self:Message2(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "info")
 		self:TargetBar(args.spellId, 11, args.destName)
 		self:CDBar(args.spellId, 20)
@@ -111,7 +111,7 @@ do
 			local bossId = self:GetBossId(args.destGUID)
 			-- Tempest spawns close to the boss, so warnings aren't needed for ranged
 			if IsItemInRange(63427, bossId) then -- Worgsaw, 8yd
-				self:Message2(267830, "yellow", self:SpellName(274437), 274437) -- Tempest
+				self:Message(267830, "yellow", self:SpellName(274437), 274437) -- Tempest
 				self:PlaySound(267830, "info")
 			end
 		end
@@ -119,7 +119,7 @@ do
 end
 
 function mod:HinderingCleave(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 17)
 end

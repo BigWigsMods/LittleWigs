@@ -170,12 +170,12 @@ end
 --
 
 function mod:BolsteringShout(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:BolsteringShoutSuccess(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -185,7 +185,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -201,28 +201,28 @@ function mod:SightedArtillery(args)
 end
 
 function mod:TerrifyingRoar(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 3)
 end
 
 function mod:ViscousSlobber(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:RevitalizingMist(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BananaRampage(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SavageTempest(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -235,19 +235,19 @@ function mod:IrontideRaiderDeath(args)
 end
 
 function mod:WatertightShell(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:WatertightShellApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:Message2(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+		self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "warning")
 	end
 end
 
 function mod:SlobberKnocker(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -275,7 +275,7 @@ function mod:ClampingJaws(args)
 end
 
 function mod:IronAmbush(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -294,12 +294,12 @@ do
 end
 
 function mod:BurningTar(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Immolation(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -308,25 +308,25 @@ do
 	function mod:UNIT_SPELLCAST_START(_, unit, castGUID, spellId)
 		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
 			prev = castGUID
-			self:Message2(spellId, "orange")
+			self:Message(spellId, "orange")
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 3.5)
 		elseif spellId == 268260 and castGUID ~= prev then -- Broadside
 			local guid = UnitGUID(unit)
 			if self:MobId(guid) == 138465 then -- Trash cannoneer, Lockwood cannoneers have a different id
 				prev = castGUID
-				self:Message2(spellId, "orange")
+				self:Message(spellId, "orange")
 				self:PlaySound(spellId, "alarm")
 				self:CastBar(spellId, 3)
 			end
 		elseif spellId == 272874 and castGUID ~= prev then -- Trample
 			prev = castGUID
-			self:Message2(spellId, "orange")
+			self:Message(spellId, "orange")
 			self:PlaySound(spellId, "info")
 			self:CastBar(spellId, 3)
 		elseif spellId == 257288 and castGUID ~= prev then -- Heavy Slash
 			prev = castGUID
-			self:Message2(spellId, "orange")
+			self:Message(spellId, "orange")
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 2.8)
 		end

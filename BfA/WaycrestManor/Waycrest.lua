@@ -62,7 +62,7 @@ end
 
 do
 	local function warnLadyWacrest()
-		mod:Message2("stages", "cyan", mod:SpellName(-17773), false)
+		mod:Message("stages", "cyan", mod:SpellName(-17773), false)
 		mod:PlaySound("stages", "long")
 	end
 
@@ -70,7 +70,7 @@ do
 		vitalityTransferCount = vitalityTransferCount + 1
 		if vitalityTransferCount == 3 then
 			stage = 2
-			self:Message2("stages", "cyan", CL.soon:format(self:SpellName(-17773)), false) -- Lady Waycrest
+			self:Message("stages", "cyan", CL.soon:format(self:SpellName(-17773)), false) -- Lady Waycrest
 			self:PlaySound("stages", "info")
 			self:Bar("stages", 7.5, CL.incoming:format(self:SpellName(-17773)), "achievement_character_undead_female")
 			self:SimpleTimer(warnLadyWacrest, 7.5)
@@ -79,7 +79,7 @@ do
 end
 
 function mod:DiscordantCadenza(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 18.1)
 end
@@ -87,7 +87,7 @@ end
 function mod:WrackingChord(args)
 	if stage == 2 then
 		if self:Interrupter() then
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
 		end
 		self:CDBar(args.spellId, 8)
@@ -95,7 +95,7 @@ function mod:WrackingChord(args)
 end
 
 function mod:WastingStrike(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 15.5)
 end

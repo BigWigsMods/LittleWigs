@@ -40,13 +40,13 @@ end
 --
 
 function mod:IronSpikes(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 31)
 end
 
 function mod:RiteOfSupremacy(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 38.8)
 end
@@ -59,7 +59,7 @@ function mod:FragmentOfRadianceApplied(args)
 end
 
 function mod:EndlessTorment(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 38.8)
 end

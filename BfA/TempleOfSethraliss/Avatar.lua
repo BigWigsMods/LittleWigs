@@ -76,19 +76,19 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("269688", nil, true) then -- Rain of Toads
-		self:Message2(269688, "orange")
+		self:Message(269688, "orange")
 		self:PlaySound(269688, "info")
 	end
 end
 
 do
 	local function warnHeartGuardian()
-		mod:Message2("adds", "orange", CL.spawned:format(mod:SpellName(-18205)), false) -- Heart Guardian
+		mod:Message("adds", "orange", CL.spawned:format(mod:SpellName(-18205)), false) -- Heart Guardian
 		mod:PlaySound("adds", "warning")
 	end
 
 	local function warnPlagueDoctor()
-		mod:Message2("adds", "orange", CL.spawned:format(mod:SpellName(-18295)), false) -- Plague Doctor
+		mod:Message("adds", "orange", CL.spawned:format(mod:SpellName(-18295)), false) -- Plague Doctor
 		mod:PlaySound("adds", "warning")
 	end
 
@@ -120,7 +120,7 @@ do
 				end
 			end
 			if stage ~= 1 then -- Don't show on pull
-				self:Message2("stages", "cyan", CL.over:format(CL.intermission), false)
+				self:Message("stages", "cyan", CL.over:format(CL.intermission), false)
 				self:PlaySound("stages", "long")
 			end
 		end
@@ -134,7 +134,7 @@ do
 		if t - prev > 2 then
 			prev = t
 			if self:Healer() then
-				self:Message2(args.spellId, "yellow")
+				self:Message(args.spellId, "yellow")
 				self:PlaySound(args.spellId, "alert")
 			end
 			self:Bar(args.spellId, 15)
@@ -157,7 +157,7 @@ end
 function mod:SnakeCharm(args)
 	if not self.isEngaged then return end -- Trash before the boss casts the same spell
 	if self:Interrupter() then
-		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
@@ -183,10 +183,10 @@ end
 function mod:HexerDeath(args)
 	hexerCount = hexerCount - 1
 	if hexerCount > 0 then
-		self:Message2("stages", "cyan", CL.add_remaining:format(hexerCount), false)
+		self:Message("stages", "cyan", CL.add_remaining:format(hexerCount), false)
 		self:PlaySound("stages", "info")
 	elseif stage ~= 3 then -- 3 is the last phase
-		self:Message2("stages", "cyan", CL.intermission, false)
+		self:Message("stages", "cyan", CL.intermission, false)
 		self:PlaySound("stages", "long")
 		self:StopBar(268024) -- Pulse
 	end

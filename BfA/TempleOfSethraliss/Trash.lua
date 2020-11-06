@@ -92,12 +92,12 @@ end
 --
 
 function mod:HealingSurge(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:PowerShot(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -114,14 +114,14 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
 function mod:BladeFlurryApplied(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
@@ -132,7 +132,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -151,7 +151,7 @@ do
 end
 
 function mod:NoxiousBreath(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -161,29 +161,29 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
 function mod:Drain(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:PyrrhicBlast(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:AccumulateCharge(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SnakeCharm(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 

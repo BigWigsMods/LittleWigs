@@ -56,7 +56,7 @@ do
 	local prevBombardment = 0
 	local prevDamage = 0
 	function mod:VileBombardment(args)
-		self:Message2(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "info")
 		if self:Normal() then
 			self:Bar(args.spellId, 6)
@@ -83,7 +83,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 256056 then -- Spawn Parrot
 		self:StopBar(255952) -- Charrrrrge
-		self:Message2("stages", "cyan", CL.stage:format(2), false)
+		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long", "stage2")
 
 		self:CDBar(256106, 7) -- Azerite Powder Shot
@@ -95,24 +95,24 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:Charrrrrge(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	self:CDBar(args.spellId, 8.5)
 end
 
 function mod:DiveBomb(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 17)
 end
 
 function mod:AzeritePowderShot(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 11)
 end
 
 function mod:RevitalizingBrew(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end

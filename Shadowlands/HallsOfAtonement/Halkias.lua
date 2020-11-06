@@ -70,21 +70,21 @@ do
 end
 
 function mod:CrumblingSlam(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	slamCount = slamCount + 1
 	self:CDBar(args.spellId, slamCount % 2 == 0 and 14 or 45)
 end
 
 function mod:HeaveDebris(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 	debrisCount = debrisCount + 1
 	self:CDBar(args.spellId, debrisCount % 2 == 0 and 17 or 28)
 end
 
 function mod:RefractedSinlight(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 45) -- XXX Estimated
 end

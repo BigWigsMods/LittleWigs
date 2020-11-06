@@ -65,13 +65,13 @@ function mod:BloodGorgeApplied(args)
 end
 
 function mod:FetidGas(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 25)
 end
 
 function mod:Crunch(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 12.5)
 end

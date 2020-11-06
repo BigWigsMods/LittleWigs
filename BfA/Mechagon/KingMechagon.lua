@@ -98,7 +98,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Bar(283551, 35.6) -- Magneto Arm
 	elseif spellId == 292750 then -- H.A.R.D.M.O.D.E.
 		clickCount = 0
-		self:Message2("hardmode", "yellow", L.hardmode, L.hardmode_icon)
+		self:Message("hardmode", "yellow", L.hardmode, L.hardmode_icon)
 		self:PlaySound("hardmode", "long")
 		self:CDBar("hardmode", 43.7, L.hardmode, L.hardmode_icon)
 	end
@@ -113,7 +113,7 @@ end
 function mod:AerialUnitDeath(args)
 	stage = 2
 	gigaZapCount = 0 -- Giga-Zap sequence is different in stage 2
-	self:Message2("stages", "cyan", CL.stage:format(stage), false)
+	self:Message("stages", "cyan", CL.stage:format(stage), false)
 	self:PlaySound("stages", "long")
 	self:StopBar(291865) -- Recalibrate
 	self:StopBar(291928) -- Giga-Zap
@@ -131,14 +131,14 @@ function mod:OmegaBusterDeath(args)
 end
 
 function mod:Recalibrate(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CastBar(args.spellId, 2)
 end
 
 do
 	local function warnRecalibrate()
-		mod:Message2(291865, "orange")
+		mod:Message(291865, "orange")
 		mod:PlaySound(291865, "alert")
 		mod:CastBar(291865, 2)
 	end
@@ -175,7 +175,7 @@ end
 
 
 function mod:MagnetoArm(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 62)
 end
@@ -206,18 +206,18 @@ do
 end
 
 function mod:TakeOff(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 34)
 end
 
 function mod:CuttingBeam(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 6)
 end
 
 function mod:ProtocolNinetyNine(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
 end

@@ -45,7 +45,7 @@ end
 --
 
 function mod:EmpoweredForgeBreath(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 14.6)
 end

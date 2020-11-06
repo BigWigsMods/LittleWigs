@@ -68,7 +68,7 @@ function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
 	if spellId == 268260 then -- Broadside
 		local guid = UnitGUID(unit)
 		if self:MobId(guid) == 136549 then -- Boss add, trash cannoneers have a different id
-			self:Message2(spellId, "orange")
+			self:Message(spellId, "orange")
 			self:PlaySound(spellId, "alarm")
 			self:Bar(268260, 12) -- Broadside
 		end
@@ -78,7 +78,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 268752 then -- Withdraw
 		withdrawn = 1
-		self:Message2(spellId, "yellow")
+		self:Message(spellId, "yellow")
 		self:PlaySound(spellId, "long")
 
 		self:StopBar(269029) -- Clear the Deck
@@ -87,25 +87,25 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Bar(268260, 11.2) -- Broadside
 	elseif spellId == 268745 then -- Energy Tracker / Jump Back
 		if withdrawn == 1 then
-			self:Message2(268752, "green", CL.over:format(self:SpellName(268752)))
+			self:Message(268752, "green", CL.over:format(self:SpellName(268752)))
 			self:PlaySound(268752, "long")
 
 			self:Bar(269029, 7) -- Clear the Deck
 			self:Bar(268752, 35.7) -- Withdraw
 		end
 	elseif spellId == 268963 then -- Unstable Ordnance (Dropped)
-		self:Message2(spellId, "cyan", L.ordanance_dropped)
+		self:Message(spellId, "cyan", L.ordanance_dropped)
 		self:PlaySound(spellId, "info")
 	end
 end
 
 function mod:Evasive(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:CleartheDeck(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 18)
 end
@@ -116,7 +116,7 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "purple")
+			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end

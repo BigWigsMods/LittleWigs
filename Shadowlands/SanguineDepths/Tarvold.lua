@@ -50,7 +50,7 @@ do
 		if castGUID ~= prev then return end
 		prev = castGUID
 		if spellId == 322573 then -- Coalesce Manifestation
-			self:Message2(322573, "yellow")
+			self:Message(322573, "yellow")
 			self:PlaySound(322573, "info")
 			self:CDBar(322573, 30)
 		end
@@ -59,7 +59,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:Message2(322554, "orange", name)
+		self:Message(322554, "orange", name)
 		self:PlaySound(322554, "alert", nil, name)
 		if self:Me(guid) then
 			self:Say(322554)
@@ -81,6 +81,6 @@ function mod:SintouchedAnimaApplied(args)
 end
 
 function mod:FleetingManifestationDeath(args)
-	self:Message2(323551, "orange") -- Residue
+	self:Message(323551, "orange") -- Residue
 	self:PlaySound(323551, "alert") -- Residue
 end

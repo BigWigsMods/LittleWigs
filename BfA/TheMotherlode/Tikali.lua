@@ -72,7 +72,7 @@ end
 --
 
 function mod:CallEarthrager(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info", "mobsoon")
 	-- The boss casts "Set Energy to 0" (280479) every 60 sec.
 	-- There is a chance that the boss will cast Call Earthrager afterwards,
@@ -106,19 +106,19 @@ function mod:RagingGazeRemoved(args)
 end
 
 function mod:AzeriteInfusion(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "killmob")
 	self:Bar(args.spellId, 17)
 end
 
 function mod:ResonantPulse(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long", "aesoon")
 	self:Bar(args.spellId, 34)
 end
 
 function mod:TectonicSmash(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 21)
 end

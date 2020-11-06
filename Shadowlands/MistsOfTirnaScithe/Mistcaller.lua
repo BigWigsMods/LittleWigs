@@ -40,7 +40,7 @@ end
 --
 
 function mod:GuessingGame(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -50,7 +50,7 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 			self:CDBar(args.spellId, 14.5)
 		end
@@ -72,7 +72,7 @@ do
 end
 
 function mod:FreezeTag(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 23)
 end

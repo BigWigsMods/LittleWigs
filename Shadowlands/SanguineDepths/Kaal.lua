@@ -78,7 +78,7 @@ end
 
 function mod:PiercingBlurStart(args)
 	piercingBlurCount = 0
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, getGloomSquallDelayedTimer(17, 6.6))
 	self:Bar(args.spellId, 4.2, CL.count:format(args.spellName, piercingBlurCount+1))
@@ -92,13 +92,13 @@ function mod:PiercingBlur(args)
 end
 
 function mod:GloomSquall(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 38.9)
 	self:CastBar(args.spellId, 4)
 end
 
 function mod:ShiningRadiance(args)
-	self:Message2(args.spellId, "green")
+	self:Message(args.spellId, "green")
 	self:PlaySound(args.spellId, "info")
 end

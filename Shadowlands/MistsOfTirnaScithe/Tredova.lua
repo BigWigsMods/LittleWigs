@@ -50,14 +50,14 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 322651 then -- Acid Expulsion
-		self:Message2(322651, "yellow")
+		self:Message(322651, "yellow")
 		self:PlaySound(322651, "alert")
 		self:Bar(322651, 14.5)
 	end
 end
 
 function mod:Consumption(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:StopBar(322651) -- Acid Expulsion
 	self:StopBar(322550) -- Accelerated Incubation
@@ -65,7 +65,7 @@ function mod:Consumption(args)
 end
 
 function mod:AcceleratedIncubation(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 24)
 end

@@ -52,7 +52,7 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			if self:Interrupter() then
 				self:PlaySound(args.spellId, "alert", "interrupt")
 			end
@@ -66,7 +66,7 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alarm", "watchstep")
 		end
 		local mobID = self:MobId(args.sourceGUID)
@@ -77,13 +77,13 @@ do
 end
 
 function mod:BloodMirror(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 47.4)
 end
 
 function mod:SanguineFeast(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm", "watchstep")
 	self:Bar(args.spellId, 30.5)
 end

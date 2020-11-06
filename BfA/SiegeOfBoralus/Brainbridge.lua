@@ -70,7 +70,7 @@ end
 
 function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
 	if spellId == 279761 then -- Heavy Slash
-		self:Message2(spellId, "orange")
+		self:Message(spellId, "orange")
 		self:PlaySound(spellId, "alert")
 	end
 end
@@ -78,14 +78,14 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 257540 then -- Cannon Barrage
 		bombsRemaining = 3
-		self:Message2(257585, "orange")
+		self:Message(257585, "orange")
 		self:PlaySound(257585, "warning")
 		self:CDBar(257585, 60)
 		self:Bar(277965, 42, CL.count:format(self:SpellName(277965), bombsRemaining)) -- Heavy Ordnance
 	elseif spellId == 274002 then -- Call Adds
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 33 then -- Spams every second under 33% but doesn't actually spawn adds
-			self:Message2("adds", "yellow", CL.incoming:format(CL.adds), false)
+			self:Message("adds", "yellow", CL.incoming:format(CL.adds), false)
 			self:PlaySound("adds", "long")
 		end
 	end
@@ -112,7 +112,7 @@ function mod:HangmansNoose(args)
 end
 
 function mod:SteelTempest(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -129,7 +129,7 @@ do
 			if bombsRemaining > 0 then
 				self:Bar(277965, timer, CL.count:format(args.spellName, bombsRemaining))
 			end
-			self:Message2(277965, "orange", L.remaining:format(args.spellName, args.destName, bombsRemaining))
+			self:Message(277965, "orange", L.remaining:format(args.spellName, args.destName, bombsRemaining))
 			self:PlaySound(277965, "info")
 		end
 	end
@@ -143,7 +143,7 @@ function mod:HeavyOrdnanceApplied(args)
 	if bombsRemaining > 0 then
 		self:Bar(args.spellId, timer, CL.count:format(args.spellName, bombsRemaining))
 	end
-	self:Message2(args.spellId, "green", L.remaining_boss:format(args.spellName, bombsRemaining))
+	self:Message(args.spellId, "green", L.remaining_boss:format(args.spellName, bombsRemaining))
 	self:PlaySound(args.spellId, "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 end

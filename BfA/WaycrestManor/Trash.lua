@@ -182,7 +182,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
@@ -195,7 +195,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -203,7 +203,7 @@ end
 
 -- Crazed Marksman
 function mod:TrackingExplosive(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -216,13 +216,13 @@ function mod:Etch(args)
 end
 
 function mod:MarkingCleave(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Heartsbane Vinetwister
 function mod:GraspingThorns(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 
 	local _, interruptReady = self:Interrupter()
 	if interruptReady then
@@ -249,7 +249,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -261,7 +261,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -269,17 +269,17 @@ end
 
 -- Matron Bryndle
 function mod:SplinterSpike(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:ThornedBarrage(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:DrainSoulEssence(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -290,14 +290,14 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
 function mod:EffigyReconstruction(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -336,7 +336,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -349,7 +349,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -357,41 +357,41 @@ end
 
 -- Dreadwing Raven
 function mod:PallidGlare(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Heartsbane Soulcharmer
 function mod:SoulVolley(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:WardingCandles(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Bewitched Captain
 function mod:SpiritedDefense(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Runic Disciple
 function mod:SpectralTalisman(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Spellbind(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Marked Sister
 function mod:RunicMark(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -412,12 +412,12 @@ end
 
 -- Matron Alma
 function mod:RuinousVolley(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:DreadMark(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -435,6 +435,6 @@ function mod:DreadMarkRemoved(args)
 end
 
 function mod:DecayingTouch(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end

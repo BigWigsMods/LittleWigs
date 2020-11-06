@@ -166,21 +166,21 @@ end
 
 -- Weapons Tester
 function mod:EchoBlade(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "watchstep")
 end
 
 function mod:ForceCannon(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
-		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert", "watchstep")
 	end
 end
 
 -- Hired Assassin
 function mod:ToxicBlades(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
@@ -191,14 +191,14 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
 
 function mod:ConcussionCharge(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info", "watchstep")
 end
 
@@ -209,7 +209,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -221,7 +221,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 and not UnitIsPlayer(args.destName) and self:Dispeller("magic", true) then
 			prev = t
-			self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
+			self:Message(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
 			self:PlaySound(args.spellId, "info")
 		end
 	end
@@ -233,7 +233,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert", "interrupt")
 		end
 	end
@@ -243,7 +243,7 @@ end
 function mod:FuriousQuake(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
-		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning", "interrupt")
 	end
 end
@@ -254,7 +254,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning", "interrupt")
 		end
 	end
@@ -262,7 +262,7 @@ end
 
 function mod:TectonicBarrierApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:Message2(args.spellId, "red", CL.other:format(args.spellName, args.destName))
+		self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
 		if self:Dispeller("magic", true) then
 			self:PlaySound(args.spellId, "alarm")
 		end
@@ -271,29 +271,29 @@ end
 
 -- Feckless Assistant
 function mod:TransfigurationSerum(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 function mod:Blowtorch(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
 -- Expert Technician
 function mod:Overcharge(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 function mod:Repair(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
 end
 
 function mod:OverchargeApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:Message2(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
+		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
 		if self:Dispeller("magic", true) then
 			self:PlaySound(args.spellId, "alarm")
 		end
@@ -303,7 +303,7 @@ end
 -- Venture Co. Mastermind
 function mod:AzeriteInjectionApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:Message2(args.spellId, "red", CL.other:format(args.spellName, args.destName))
+		self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
 		if self:Dispeller("magic", true) then
 			self:PlaySound(args.spellId, "alarm")
 		end
@@ -312,7 +312,7 @@ end
 
 -- Venture Co. Alchemist
 function mod:TransmuteEnemyToGoo(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
@@ -334,7 +334,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -348,7 +348,7 @@ do
 			local unit = self:GetUnitIdByGUID(args.sourceGUID)
 			if unit and UnitAffectingCombat(unit) then
 				prev = t
-				self:Message2(args.spellId, "yellow")
+				self:Message(args.spellId, "yellow")
 				self:PlaySound(args.spellId, "info", "watchstep")
 			end
 		end
@@ -372,44 +372,44 @@ function mod:BrainFreezeRemoved(args)
 end
 
 function mod:IcedSpritzer(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info", "interrupt")
 end
 
 function mod:KajacolaRefresher(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 -- Azerite Extractor
 function mod:PowerThrough(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm", "watchstep")
 end
 
 -- Addled Thug
 function mod:InhaleVapors(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm", "interrupt")
 end
 
 -- Ordnance Specialist
 function mod:ArtilleryBarrage(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm", "interrupt")
 end
 
 -- Taskmaster Askari
 function mod:DesperateMeasuresApplied(args)
 	if not UnitIsPlayer(args.destName) then
-		self:Message2(args.spellId, "red", CL.other:format(args.spellName, args.destName))
+		self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 -- Venture Co. War Machine
 function mod:ChargedShot(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -418,7 +418,7 @@ function mod:EnergyShield(args)
 end
 
 function mod:ChargedClaw(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 

@@ -50,7 +50,7 @@ end
 --
 
 function mod:AwakenCreation(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 27.9)
 end
@@ -79,12 +79,12 @@ function mod:MeatHookHit(args)
 end
 
 function mod:MutlilateStart(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:EmbalmingIchor(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 12.1)
 end
@@ -95,13 +95,13 @@ function mod:StitchneedleApplied(args)
 end
 
 function mod:CleaveFlesh(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 9.7)
 end
 
 function mod:Escape(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 
 	hooked = false

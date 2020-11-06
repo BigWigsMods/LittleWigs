@@ -59,12 +59,12 @@ function mod:TankBusterDeath(args)
 end
 
 function mod:AnnihilationRay(args)
-	self:Message2("stages", "cyan", CL.stage:format(2), false)
+	self:Message("stages", "cyan", CL.stage:format(2), false)
 	self:PlaySound("stages", "long")
 end
 
 function mod:CannonBlast(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 	self:CastBar(args.spellId, 3)
 end
@@ -77,27 +77,27 @@ function mod:FulminatingZapApplied(args)
 end
 
 function mod:Wreck(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 23)
 end
 
 function mod:ReinforcementRelay(args)
-	self:Message2(args.spellId, "orange", CL.spawning:format(CL.adds))
+	self:Message(args.spellId, "orange", CL.spawning:format(CL.adds))
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 32.8)
 	self:CDBar(296522, 15) -- Self-Destruct
 end
 
 function mod:LiftOff(args)
-	self:Message2("stages", "cyan", CL.stage:format(1), false)
+	self:Message("stages", "cyan", CL.stage:format(1), false)
 	self:PlaySound("stages", "long")
 	self:CDBar(295445, 20.5) -- Wreck
 	self:Bar(301351, 31.5) -- Reinforcement Relay
 end
 
 function mod:HaywireApplied(args)
-	self:Message2(args.spellId, "cyan", CL.onboss:format(args.spellName))
+	self:Message(args.spellId, "cyan", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 	self:TargetBar(args.spellId, 30, args.destName)
 end

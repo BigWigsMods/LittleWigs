@@ -49,20 +49,20 @@ end
 
 function mod:AirDrop(args)
 	airDropCount = airDropCount + 1
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, (airDropCount == 1) and 26.7 or 34) -- Second air drop is a shorter timer
 end
 
 function mod:VentingFlames(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 6)
 	self:Bar(args.spellId, 32)
 end
 
 function mod:ExplosiveLeap(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 30)
 end

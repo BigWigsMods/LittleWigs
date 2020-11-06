@@ -52,31 +52,31 @@ end
 --
 
 function mod:ReapingScythe(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 15.8)
 end
 
 function mod:DarkDevastation(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 23.1)
 end
 
 function mod:GraspingRift(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 25.5)
 end
 
 function mod:ManifestDeath(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 39)
 end
 
 function mod:EchoesOfCarnage(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(339550, 3.2) -- Echo of Battle
 	self:Bar(324079, 6.9) -- Reaping Scythe
@@ -92,7 +92,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 			self:Bar(args.spellId, 24.3)
 			self:CastBar(args.spellId, 3)
@@ -106,7 +106,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 			self:Bar(args.spellId, 24.3)
 		end

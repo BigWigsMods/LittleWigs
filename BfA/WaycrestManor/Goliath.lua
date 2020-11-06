@@ -92,13 +92,13 @@ function mod:SoulThornsRemoved(args)
 end
 
 function mod:Crush(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 17)
 end
 
 function mod:BurningBrush(args)
-	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
+	self:Message(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "long")
 end
 

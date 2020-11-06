@@ -41,7 +41,7 @@ end
 --
 
 function mod:DarkGaze(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 12)
 end

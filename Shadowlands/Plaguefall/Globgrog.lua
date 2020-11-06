@@ -48,20 +48,20 @@ end
 --
 
 function mod:BeckonSlime(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 54.5)
 end
 
 function mod:Plaguestomp(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	plaguestompCount = plaguestompCount + 1
 	self:CDBar(args.spellId, plaguestompCount % 2 == 0 and 35 or 20) -- XXX pull:10.5, 37.7, 24.3, 30.4 // pull:8.9, 38.8, 19.0, 36.4, 24.3, 30.4
 end
 
 function mod:SlimeWave(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	slimeWaveCount = slimeWaveCount + 1
 	self:Bar(args.spellId, slimeWaveCount % 2 == 0 and 37.7 or 10) -- XXX pull:17.9, 37.6, 11.0, 43.7 // pull:16.1, 39.7, 18.2, 36.4, 10.9, 43.7

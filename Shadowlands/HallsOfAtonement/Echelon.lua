@@ -52,14 +52,14 @@ end
 --
 
 function mod:StoneCall(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	stoneCallCount = stoneCallCount + 1
 	self:CDBar(args.spellId, stoneCallCount % 2 == 0 and 43.5 or 36.5)
 end
 
 function mod:CurseofStone(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 29)
 end
@@ -82,7 +82,7 @@ do
 end
 
 function mod:BloodTorrent(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 17)
 end

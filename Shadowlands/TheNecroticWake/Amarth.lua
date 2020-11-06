@@ -43,33 +43,33 @@ end
 --
 
 function mod:LandoftheDead(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 42.5)
 end
 
 function mod:FinalHarvest(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 4)
 	self:Bar(args.spellId, 47.5)
 end
 
 function mod:NecroticBreath(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 46)
 end
 
 function mod:UnholyFrenzy(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 45)
 end
 
 function mod:NecroticBolt(args)
 	if self:Interrupter() then
-		self:Message2(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alert")
 	end
 end

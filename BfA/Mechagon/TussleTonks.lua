@@ -92,13 +92,13 @@ function mod:PlatinumPlatingRemoved(args)
 end
 
 function mod:WhirlingEdge(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 32.8)
 end
 
 function mod:LayMine(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -118,7 +118,7 @@ do
 end
 
 function mod:VentJets(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 43.7)
 end

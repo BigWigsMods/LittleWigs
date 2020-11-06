@@ -86,7 +86,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 270183 then -- Call of the Deep
-		self:Message2(270185, "orange")
+		self:Message(270185, "orange")
 		self:PlaySound(270185, "alarm")
 
 		local timer = stage == 1 and 15 or stage == 2 and 12 or 7
@@ -96,13 +96,13 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		if stage < 4 then
 			engagedGripping = false
 			demolisherCount = 1
-			self:Message2("stages", "green", CL.stage:format(stage), false)
+			self:Message("stages", "green", CL.stage:format(stage), false)
 			self:PlaySound("stages", "long")
 		end
 	elseif spellId == 270605 then -- Summon Demolisher
 		demolisherCount = demolisherCount + 1
 		if demolisherCount <= 5 then -- Demolishers stop spawning after the fifth, but the spell is still cast
-			self:Message2("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
+			self:Message("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
 			self:PlaySound("demolishing", "alert")
 		end
 		if demolisherCount <= 4 then
@@ -173,19 +173,19 @@ do
 end
 
 function mod:Slam(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 8)
 end
 
 function mod:RepairStart(args)
-	self:Message2(args.spellId, "cyan", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 	self:CastBar(args.spellId, 3.5)
 end
 
 function mod:HullCracker(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 

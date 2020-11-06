@@ -49,7 +49,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("329200") then -- Virulent Explosion
-		self:Message2(67382, "yellow") -- 'Leap'
+		self:Message(67382, "yellow") -- 'Leap'
 		self:PlaySound(67382, "long")
 		self:CDBar(67382, 57) -- Leap
 		self:CDBar(332617, 10.5) -- Pestilence Surge
@@ -57,12 +57,12 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 end
 
 function mod:BurningStrain(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:SlimeLunge(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -77,17 +77,17 @@ function mod:SlimeInjectionApplied(args)
 end
 
 function mod:SlimeInjectionRemoved(args)
-	self:Message2(args.spellId, "yellow", CL.spawning:format(self:SpellName(-21712))) -- Slithering Ooze
+	self:Message(args.spellId, "yellow", CL.spawning:format(self:SpellName(-21712))) -- Slithering Ooze
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:PestilenceSurge(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:VirulentExplosion(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 30)
 end

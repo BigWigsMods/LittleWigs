@@ -161,7 +161,7 @@ do
 	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
 		if spellId == 311996 and castGUID ~= prevCastGUID then -- Open Vision
 			prevCastGUID = castGUID
-			self:Message2(311996, "cyan")
+			self:Message(311996, "cyan")
 			self:PlaySound(311996, "long")
 			self:Bar(311996, 10) -- Open Vision
 		end
@@ -190,7 +190,7 @@ do
 	function mod:LeadenFootRemoved(args)
 		if self:Me(args.destGUID) and showRemovedWarning then
 			showRemovedWarning = false
-			self:Message2(args.spellId, "blue", CL.removed:format(args.spellName))
+			self:Message(args.spellId, "blue", CL.removed:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
 		end
 	end
@@ -202,7 +202,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -220,7 +220,7 @@ do
 		local t = args.time
 		if t-prev > 1 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 		self:GetUnitTarget(printTarget, 0.6, args.sourceGUID)
@@ -228,7 +228,7 @@ do
 end
 
 function mod:Repel(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -238,7 +238,7 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 and IsItemInRange(37727, name) then -- Ruby Acorn, 5yd
 			prev = t
-			self:Message2(308481, "blue", CL.near:format(self:SpellName(308481)))
+			self:Message(308481, "blue", CL.near:format(self:SpellName(308481)))
 			self:PlaySound(308481, "alarm")
 		end
 	end
@@ -250,37 +250,37 @@ do
 end
 
 function mod:ShadowShift(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BrutalSmash(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:AgonizingTorment(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Convert(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:ContinuousBeatingsApplied(args)
-	self:Message2(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
+	self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:PsychicScream(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:TouchOfTheAbyss(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -292,12 +292,12 @@ function mod:CorruptedBlightApplied(args)
 end
 
 function mod:LurkingAppendage(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BlightEruption(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	if self:UnitDebuff("player", 308265) then -- Corrupted Blight
 		self:Say(args.spellId)
@@ -305,26 +305,26 @@ function mod:BlightEruption(args)
 end
 
 function mod:BladeFlourish(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:RoaringBlast(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:VoidBuffet(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ChaosBreath(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:RainOfFire(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end

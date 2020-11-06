@@ -46,7 +46,7 @@ end
 --
 
 function mod:GatlingGun(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 20)
 end
@@ -69,7 +69,7 @@ function mod:HomingMissileRemoved(args)
 end
 
 function mod:ConfigurationDrill(args)
-	self:Message2("stages", "cyan", args.spellName, args.spellId)
+	self:Message("stages", "cyan", args.spellName, args.spellId)
 	self:PlaySound("stages", "info")
 	self:StopBar(260829) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
@@ -94,7 +94,7 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 			self:CastBar(args.spellId, 5)
 		end
@@ -102,7 +102,7 @@ do
 end
 
 function mod:ConfigurationCombat(args)
-	self:Message2("stages", "cyan", args.spellName, args.spellId)
+	self:Message("stages", "cyan", args.spellName, args.spellId)
 	self:PlaySound("stages", "info")
 	self:CDBar(260829, 9) -- Homing Missile
 	self:Bar(260280, 17) -- Gatling Gun

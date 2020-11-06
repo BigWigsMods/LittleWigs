@@ -300,12 +300,12 @@ end
 -- Animated Guardian
 function mod:SuppressionSlam(args)
 	if isThrottled(args.spellId) then return end
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:ReleasedInihibitors(args)
-	self:Message2(args.spellId, "orange", CL.other:format(args.spellName, args.destName))
+	self:Message(args.spellId, "orange", CL.other:format(args.spellName, args.destName))
 
 	if isThrottled(args.spellId) then return end
 	self:PlaySound(args.spellId, "info")
@@ -322,7 +322,7 @@ end
 
 -- Shadow-Borne Champion
 function mod:AncestralFury(args)
-	self:Message2(args.spellId, "orange", CL.other:format(args.spellName, args.destName))
+	self:Message(args.spellId, "orange", CL.other:format(args.spellName, args.destName))
 
 	if isThrottled(args.spellId) then return end
 	self:PlaySound(args.spellId, self:Dispeller("enrage", true) and "alarm" or "info")
@@ -331,14 +331,14 @@ end
 -- Shadow-Borne Witchdoctor
 function mod:ShadowBoltVolley(args)
 	if isThrottled(args.spellId) then return end
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Shadow-Borne Warrior
 function mod:GustSlash(args)
 	if isThrottled(args.spellId) then return end
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -378,26 +378,26 @@ end
 
 -- King Rahu'ai
 function mod:ChannelLightning(args)
-	self:Message2(270891, "orange", CL.casting:format(args.spellName))
+	self:Message(270891, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(270891, "long")
 end
 
 -- Guard Captain Atu
 function mod:AxeBarrage(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Seneschal M'bara
 function mod:InduceRegeneration(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:InduceRegenerationApplied(args)
 	if self:MobId(args.sourceGUID) ~= 134251 then return end -- filter out Spellsteal
 	self:TargetBar(args.spellId, 10, args.destName)
-	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
+	self:Message(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -427,13 +427,13 @@ end
 -- Bloodsworn Agent
 function mod:ShadowWhirl(args)
 	if isThrottled(args.spellId) then return end
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Purification Construct
 function mod:PurificationBeam(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -462,7 +462,7 @@ end
 -- Spectral Hex Priest
 function mod:Hex(args)
 	if isThrottled(args.spellId) then return end
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -486,13 +486,13 @@ end
 
 function mod:BloodedLeap(args)
 	if isThrottled(args.spellId) then return end
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Spectral Witch Doctor
 function mod:HealingTideTotem()
-	self:Message2("healing_tide_totem", "red", self:SpellName(L.healing_tide_totem), L.healing_tide_totem_icon) -- 5th arg is ignored if 4th is a number
+	self:Message("healing_tide_totem", "red", self:SpellName(L.healing_tide_totem), L.healing_tide_totem_icon) -- 5th arg is ignored if 4th is a number
 
 	if isThrottled("healing_tide_totem") then return end
 	self:PlaySound("healing_tide_totem", "warning")
@@ -520,11 +520,11 @@ do
 	local function printTarget(self, name, guid)
 		if isThrottled(("%d-%s"):format(270507, guid)) then return end
 		if self:Me(guid) then
-			self:Message2(270507, "red", L.casting_on_you:format(self:SpellName(270507)))
+			self:Message(270507, "red", L.casting_on_you:format(self:SpellName(270507)))
 			self:Flash(270507)
 			self:Say(270507)
 		else
-			self:Message2(270507, "red", L.casting_on_other:format(self:SpellName(270507), self:ColorName(name)))
+			self:Message(270507, "red", L.casting_on_other:format(self:SpellName(270507), self:ColorName(name)))
 		end
 		self:PlaySound(270507, "warning", nil, name)
 	end
@@ -598,7 +598,7 @@ end
 -- Spectral Brute
 function mod:GroundCrush(args)
 	if isThrottled(args.spellId) then return end
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 end
 

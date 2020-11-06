@@ -56,12 +56,12 @@ end
 --
 
 function mod:ConsumeAll(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:CallServant(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 29)
 end
@@ -73,7 +73,7 @@ end
 
 function mod:Tenderize(args)
 	tenderizeCount = tenderizeCount + 1
-	self:Message2(args.spellId, "red", CL.count:format(args.spellName, tenderizeCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, tenderizeCount))
 	if tenderizeCount == 3 then
 		tenderizeCount = 0
 		self:Bar(args.spellId, 36.4)
@@ -82,7 +82,7 @@ function mod:Tenderize(args)
 end
 
 function mod:RottenExpulsion(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	rottenExpulsionCount = rottenExpulsionCount + 1
 	self:Bar(args.spellId, rottenExpulsionCount == 2 and 14 or rottenExpulsionCount == 3 and 25 or 29) -- 5.7, 14.6, 25.5, 29.1

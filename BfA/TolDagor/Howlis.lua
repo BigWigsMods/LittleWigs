@@ -49,7 +49,7 @@ end
 --
 
 function mod:FlashingDaggers(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 31.5)
 	self:CastBar(args.spellId, 6)
@@ -69,13 +69,13 @@ function mod:CripplingShivRemoved(args)
 end
 
 function mod:HowlingFear(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 15)
 end
 
 function mod:SmokePowder(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:StopBar(257777) -- Crippling Shiv
 	self:StopBar(257791) -- Howling Fear
@@ -83,7 +83,7 @@ function mod:SmokePowder(args)
 end
 
 function mod:MotivatingCry(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -97,7 +97,7 @@ end
 
 function mod:MotivatingCryInterupted(args)
 	if args.extraSpellId == 257827 then
-		self:Message2(257827, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:Message(257827, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:PlaySound(257827, "info")
 		self:CDBar(257777, 1.5) -- Crippling Shiv
 		self:Bar(257791, 2) -- Howling Fear

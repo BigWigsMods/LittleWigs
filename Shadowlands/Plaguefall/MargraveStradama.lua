@@ -51,7 +51,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 333941 or spellId == 322473 then -- Plague Crash
-		self:Message2(322475, "green")
+		self:Message(322475, "green")
 		self:PlaySound(322475, "long")
 		if intermission == false then
 			self:Bar(322475, 20.5)
@@ -59,7 +59,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 322477 then -- Start Plague Crash Phase // Intermission
 		intermission = true
 		intermissionCount = intermissionCount + 1
-		self:Message2("stages", "green", CL.count:format(CL.intermission, intermissionCount), false)
+		self:Message("stages", "green", CL.count:format(CL.intermission, intermissionCount), false)
 		self:StopBar(322304) -- Malignant Growth
 		self:StopBar(322475) -- Plague Crash
 		self:StopBar(322232) -- Infectious Rain
@@ -68,7 +68,7 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if self:MobId(UnitGUID(unit)) == 164267 and UnitCanAttack("player", unit) then -- Margrave Stradama
-		self:Message2("stages", "green", CL.over:format(CL.intermission), false)
+		self:Message("stages", "green", CL.over:format(CL.intermission), false)
 		intermission = false
 		if intermissionCount < 2 then -- No adds after the last intermission
 			self:Bar(322304, 5) -- Malignant Growth
@@ -79,13 +79,13 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 end
 
 function mod:InfectiousRain(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 20.5)
 end
 
 function mod:MalignantGrowth(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 20.5)
 end

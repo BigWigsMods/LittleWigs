@@ -41,6 +41,6 @@ end
 --
 
 function mod:ChainsOfServitude(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end

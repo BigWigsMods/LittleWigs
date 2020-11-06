@@ -52,7 +52,7 @@ end
 --
 
 function mod:FesteringHarvest(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 51)
 	self:Bar(259718, 15) -- Upheaval
@@ -61,12 +61,12 @@ function mod:FesteringHarvest(args)
 end
 
 function mod:BoundlessRot(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info", "watchstep")
 end
 
 function mod:Shockwave(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -99,7 +99,7 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "long")
 			self:CDBar(args.spellId, 25)
 		end

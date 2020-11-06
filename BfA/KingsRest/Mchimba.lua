@@ -38,7 +38,7 @@ end
 --
 
 function mod:BurnCorruption(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 13) -- pull:11.1, 13.3, 23.9, 13.4, 19.5, 32.8
 end
@@ -60,7 +60,7 @@ function mod:EntombApplied(args)
 end
 
 function mod:EntombRemoved(args)
-	self:Message2(args.spellId, "green", CL.over:format(args.spellName))
+	self:Message(args.spellId, "green", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(267639, 10.4) -- Burn Corruption
 	self:CDBar(267618, 17.3) -- Drain Fluids

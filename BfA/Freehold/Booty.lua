@@ -132,7 +132,7 @@ do
 			self:PlaySound(args.spellId, "info")
 		else -- Caught!
 			seconds = math.floor((args.time - seconds) * 100)/100
-			self:Message2(args.spellId, "green", L.lightning_caught:format(seconds))
+			self:Message(args.spellId, "green", L.lightning_caught:format(seconds))
 			self:Bar("warmup", 24, L.ludwig, "achievement_dungeon_freehold")
 			self:PlayVictorySound()
 		end
@@ -141,7 +141,7 @@ end
 
 -- Ludwig Von Tortollan
 function mod:ShellBounce(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -151,7 +151,7 @@ end
 
 -- Trothak
 function mod:Sharknado(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "runout")
 	self:Bar(args.spellId, 40)
 end
@@ -172,7 +172,7 @@ do
 end
 
 function mod:Rearm(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 40)
 end

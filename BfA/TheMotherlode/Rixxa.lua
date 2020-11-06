@@ -51,7 +51,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 270028 then -- Azerite Catalyst
 		azeriteCatalystCount = azeriteCatalystCount + 1
-		self:Message2(spellId, "red")
+		self:Message(spellId, "red")
 		self:PlaySound(spellId, "long", "watchstep")
 		-- Cooldown alternates between 15 and 27, starting with 15
 		self:Bar(spellId, azeriteCatalystCount % 2 == 1 and 15 or 27)

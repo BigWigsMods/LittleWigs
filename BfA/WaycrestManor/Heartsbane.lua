@@ -68,7 +68,7 @@ end
 
 function mod:ClaimTheIris(args)
 	bossWithIris = args.sourceGUID
-	self:Message2(260805, "cyan", CL.other:format(self:SpellName(260805), args.sourceName)) -- Focusing Iris
+	self:Message(260805, "cyan", CL.other:format(self:SpellName(260805), args.sourceName)) -- Focusing Iris
 	self:PlaySound(260805, "long") -- Focusing Iris
 	if not isMCApplied then
 		self:PrimaryIcon(260805, self:GetBossId(bossWithIris)) -- Focusing Iris
@@ -90,7 +90,7 @@ function mod:FocusingIris(args)
 end
 
 function mod:DireRitual(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -124,7 +124,7 @@ function mod:AuraOfDread(args)
 end
 
 function mod:UnstableRunicMark(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 12)
 end

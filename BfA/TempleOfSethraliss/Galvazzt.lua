@@ -64,7 +64,7 @@ do
 				prev = t
 				local power = UnitPower(unit, 10) -- Alternate power, max 100
 				if power > 0 then
-					self:Message2(266512, "orange", L.percent:format(self:SpellName(266512), power)) -- Consume Charge
+					self:Message(266512, "orange", L.percent:format(self:SpellName(266512), power)) -- Consume Charge
 					self:PlaySound(266512, "alarm") -- Consume Charge
 				end
 			end
@@ -96,12 +96,12 @@ function mod:GalvanizeRemoved(args)
 end
 
 function mod:GalvanizeOnBoss(args)
-	self:Message2(266923, "orange", -18921) -- Galvanize, Energy Core
+	self:Message(266923, "orange", -18921) -- Galvanize, Energy Core
 	self:PlaySound(266923, "alert")
 end
 
 function mod:ConsumeCharge(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 3)
 end

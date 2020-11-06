@@ -294,7 +294,7 @@ do
 		if castGUID == prev then return end
 		prev = castGUID
 		if spellId == 293683 then -- Workshop Defender, Shield Generator
-			self:Message2(spellId, "green")
+			self:Message(spellId, "green")
 			self:PlaySound(spellId, "info")
 		end
 	end
@@ -303,20 +303,20 @@ end
 -- Scrapbone Shaman
 
 function mod:GraspingHex(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Stoneskin(args)
 	if self:Interrupter() then
-		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:StoneskinApplied(args)
 	if self:Dispeller("magic", true, args.spellId) then
-		self:Message2(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+		self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
@@ -324,13 +324,13 @@ end
 -- Scrapbone Grinder
 
 function mod:Enrage(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:EnrageApplied(args)
 	if self:Dispeller("enrage", true, args.spellId) then
-		self:Message2(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+		self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -338,7 +338,7 @@ end
 -- Scrapbone Bully
 
 function mod:Shockwave(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -354,29 +354,29 @@ end
 -- Malfunctioning Scrapbot
 
 function mod:MalfunctioningExhaust(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:MalfunctioningGyroScrap(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:SelfDestructProtocol(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Heavy Scrapbot
 
 function mod:HeavyExhaust(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:HeavyGyroScrap(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -386,7 +386,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -395,7 +395,7 @@ end
 -- Pistonhead Blaster
 
 function mod:ScrapGrenade(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -425,7 +425,7 @@ do
 end
 
 function mod:ShockCoil(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 19.4)
 end
@@ -448,21 +448,21 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
 function mod:Slimewave(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Toxic Monstrosity
 
 function mod:Consume(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 19.5)
 end
@@ -478,7 +478,7 @@ end
 -- Toxic Lurker
 
 function mod:SuffocatingSmog(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -492,7 +492,7 @@ end
 -- Pistonhead Mechanic
 
 function mod:Overclock(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -502,28 +502,28 @@ do
 		local t = args.time
 		if self:Dispeller("magic", true, args.spellId) and t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "info")
 		end
 	end
 end
 
 function mod:Repair(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Scraphound
 
 function mod:BORK(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Mechagon Renormalizer
 
 function mod:Shrink(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -553,19 +553,19 @@ end
 -- Mechagon Cavalry
 
 function mod:RapidFire(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Charge(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Mechagon Trooper
 
 function mod:Nanoslicer(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -580,7 +580,7 @@ end
 
 function mod:CoilbearerDefensiveCountermeasureApplied(args)
 	if self:Dispeller("magic", true, args.spellId) then
-		self:Message2(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
@@ -588,14 +588,14 @@ end
 -- Bomb Tonk
 
 function mod:Detonate(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Rocket Tonk
 
 function mod:RocketBarrage(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 5)
 end
@@ -603,12 +603,12 @@ end
 -- Waste Processing Unit
 
 function mod:MegaDrill(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:ProcessWaste(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -620,7 +620,7 @@ do
 		local t = args.time
 		if t-prev > 5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -634,7 +634,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -646,7 +646,7 @@ function mod:AntiPersonnelSquirrel(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if not unit or IsItemInRange(33278, unit) then -- Burning Torch, 11yd
 		-- Display mesage without "near YOU" if the unit is not found
-		self:Message2(args.spellId, "yellow", unit and CL.near:format(args.spellName))
+		self:Message(args.spellId, "yellow", unit and CL.near:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -665,13 +665,13 @@ end
 
 function mod:DefenseBotDefensiveCountermeasureApplied(args)
 	if self:Dispeller("magic", true, args.spellId) then
-		self:Message2(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
 
 function mod:ShortOut(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -682,17 +682,17 @@ end
 -- Blastatron X-80
 
 function mod:LaunchHighExplosiveRockets(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:SonicPulse(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:CapacitorDischarge(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 4, CL.count:format(args.spellName, 1))
 	self:Bar(args.spellId, 8, CL.count:format(args.spellName, 2))
@@ -709,7 +709,7 @@ end
 -- Mechagon Mechanic
 
 function mod:TuneUp(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -719,7 +719,7 @@ do
 		local t = args.time
 		if self:Dispeller("enrage", true, args.spellId) and t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "info")
 		end
 	end

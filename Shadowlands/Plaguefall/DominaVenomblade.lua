@@ -44,7 +44,7 @@ end
 --
 
 function mod:BroodAssassins(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 36)
 end

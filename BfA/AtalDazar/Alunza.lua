@@ -49,17 +49,17 @@ do
 
 	local function checkForTaintedBlood(self)
 		if not onMe then
-			self:Message2(255558, "blue", CL.no:format(name))
+			self:Message(255558, "blue", CL.no:format(name))
 			self:PlaySound(255558, "warning", "runin")
 			taintedBloodCheck = self:ScheduleTimer(checkForTaintedBlood, 1.5, self)
 		else
-			self:Message2(255558, "green", CL.you:format(name))
+			self:Message(255558, "green", CL.you:format(name))
 			taintedBloodCheck = nil
 		end
 	end
 
 	function mod:Transfusion(args)
-		self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning") -- voice warning is in the Taunted Blood check if needed
 		self:Bar(args.spellId, 34)
 		self:Bar(args.spellId, 4, CL.cast:format(args.spellName))
@@ -91,7 +91,7 @@ do
 end
 
 function mod:GildedClaws(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "defensive")
 	self:Bar(args.spellId, 34)
 end

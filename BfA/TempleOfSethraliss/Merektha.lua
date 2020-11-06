@@ -50,7 +50,7 @@ end
 --
 
 function mod:NoxiousBreath(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 9)
 end
@@ -70,7 +70,7 @@ do
 end
 
 function mod:BlindingSand(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 2.5)
 end
@@ -89,12 +89,12 @@ end
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	-- Burrow
 	if UnitCanAttack("player", unit) then
-		self:Message2(264206, "green", CL.over:format(self:SpellName(264206))) -- Burrow
+		self:Message(264206, "green", CL.over:format(self:SpellName(264206))) -- Burrow
 		self:PlaySound(264206, "info") -- Burrow
 		self:CDBar(263914, 6) -- Blinding Sand
 		self:CDBar(263958, 8) -- A Knot of Snakes
 	else
-		self:Message2(264206, "cyan") -- Burrow
+		self:Message(264206, "cyan") -- Burrow
 		self:PlaySound(264206, "long") -- Burrow
 		self:Bar(264206, 29) -- Burrow
 		self:StopBar(264239) -- Hatch

@@ -71,7 +71,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:VoidBolt(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -79,7 +79,7 @@ function mod:VoidBolt(args)
 end
 
 function mod:WakentheVoid(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 43.5)
 end
@@ -97,7 +97,7 @@ end
 function mod:AncientMindbenderRemoved(args)
 	self:StopBar(269242, args.destName) -- Surrender to the Void
 	if self:Me(args.destGUID) then
-		self:Message2(args.spellId, "green", CL.removed:format(args.spellName))
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
 end

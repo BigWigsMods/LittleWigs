@@ -48,7 +48,7 @@ end
 --
 
 function mod:ToxicLeap(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
 	-- Every third leap has a longer timer, starting with the first
 	self:Bar(args.spellId, toxicLeapCount % 3 == 0 and 9 or 6)
@@ -56,13 +56,13 @@ function mod:ToxicLeap(args)
 end
 
 function mod:NoxiousStench(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
 	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:RapidDecay(args)
-	self:Message2(args.spellId, "green")
+	self:Message(args.spellId, "green")
 	self:PlaySound(args.spellId, "info", "stage2")
 	self:StopBar(250258) -- Toxic Leap
 end

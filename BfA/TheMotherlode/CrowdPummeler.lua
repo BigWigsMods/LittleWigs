@@ -49,7 +49,7 @@ end
 --
 
 function mod:FootbombLauncher(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 34)
 end
@@ -71,13 +71,13 @@ do
 end
 
 function mod:StaticPulse(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "knockback")
 	self:Bar(args.spellId, 23)
 end
 
 function mod:ShockingClaw(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm", "watchfront")
 	self:CDBar(args.spellId, 33)
 end
@@ -88,7 +88,7 @@ do
 		local t = args.time
 		if t-prev > 5 then
 			prev = t
-			self:Message2(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end

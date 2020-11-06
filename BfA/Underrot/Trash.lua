@@ -147,7 +147,7 @@ end
 
 -- Befouled Spirit
 function mod:DarkOmen(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -161,18 +161,18 @@ end
 
 -- Devout Blood Priest
 function mod:DarkReconstitution(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:GiftOfGhuun(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:GiftOfGhuunApplied(args)
 	if self:MobId(args.sourceGUID) ~= 131492 then return end -- filter out Spellsteal
-	self:Message2(args.spellId, "red", CL.other:format(args.spellName, args.destName))
+	self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
 	if self:Dispeller("magic", true) then
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -180,7 +180,7 @@ end
 
 -- Fetid Maggot
 function mod:RottenBile(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -193,10 +193,10 @@ do
 
 	function mod:SavageCleave(args)
 		if IsItemInRange(33278, lastChargeTarget) then -- 11 yards
-			self:Message2(args.spellId, "red", CL.near:format(args.spellName))
+			self:Message(args.spellId, "red", CL.near:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		else
-			self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		end
 	end
 end
@@ -209,13 +209,13 @@ function mod:SavageCleaveApplied(args)
 end
 
 function mod:Warcry(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 end
 
 -- Diseased Lasher
 function mod:DecayingMind(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -256,18 +256,18 @@ function mod:ThirstForBloodRemoved(args)
 end
 
 function mod:SonicScreech(args)
-	self:Message2(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Fallen Deathspeaker
 function mod:RaiseDead(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:WickedFrenzy(args)
-	self:Message2(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -290,24 +290,24 @@ end
 
 function mod:WickedFrenzySoothed(args)
 	if args.extraSpellId == 266209 and self:Tank() then
-		self:Message2(266209, "green", CL.removed:format(args.extraSpellName))
+		self:Message(266209, "green", CL.removed:format(args.extraSpellName))
 		self:PlaySound(266209, "info")
 	end
 end
 
 -- Bloodsworn Defiler
 function mod:ShadowBoltVolley(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:WitheringCurse(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SummonSpiritDrainTotem(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -318,7 +318,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "cyan")
+			self:Message(args.spellId, "cyan")
 			self:PlaySound(args.spellId, "long")
 		end
 	end
@@ -330,7 +330,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end

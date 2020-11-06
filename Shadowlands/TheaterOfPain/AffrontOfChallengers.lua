@@ -66,19 +66,19 @@ end
 --
 
 function mod:Slam(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 8.5) -- Will be delayed if nobody is in melee range
 end
 
 function mod:MortalStrike(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 21)
 end
 
 function mod:EnrageApplied(args)
-	self:Message2(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -100,12 +100,12 @@ function mod:FixateRemoved(args)
 end
 
 function mod:GeneticAlteration(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SearingDeath(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 12.2)
 end
@@ -121,13 +121,13 @@ function mod:SearingDeathApplied(args)
 end
 
 function mod:OneWithDeath(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:SpectralTransferenceApplied(args)
 	if self:Dispeller("magic", true, args.spellId) then
-		self:Message2(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
 end

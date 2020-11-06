@@ -63,7 +63,7 @@ do
 		if t-prevDash > 2 and self:MobId(guid) == 133379 and not UnitIsDead(unit) then -- Adderis
 			if UnitPower(unit) == 100 then
 				prevDash = t
-				self:Message2(263424, "orange") -- Arc Dash
+				self:Message(263424, "orange") -- Arc Dash
 				self:PlaySound(263424, "alert") -- Arc Dash
 			end
 		end
@@ -75,7 +75,7 @@ do
 end
 
 function mod:LightningShield(args)
-	self:Message2(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
+	self:Message(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
 	local otherBoss = UnitGUID("boss1") == args.destGUID and "boss2" or "boss1"
 	self:PrimaryIcon(args.spellId, otherBoss)
@@ -118,14 +118,14 @@ do
 			self:Bar(args.spellId, 13.5)
 		end
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-		self:Message2(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alert")
 		self:CastBar(args.spellId, 2.5)
 	end
 end
 
 function mod:StaticShock(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 2)
 end

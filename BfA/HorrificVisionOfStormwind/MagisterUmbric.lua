@@ -49,13 +49,13 @@ do
 			-- UNIT_SPELLCAST_SUCCEEDED fires when the channel starts.
 			-- CLEU fires for every tick of the channel.
 			prev = castGUID
-			self:Message2(309373, "orange")
+			self:Message(309373, "orange")
 			self:PlaySound(309373, "alert")
 		end
 	end
 end
 
 function mod:TaintedPolymorph(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
