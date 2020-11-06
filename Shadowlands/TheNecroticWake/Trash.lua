@@ -127,42 +127,42 @@ end
 --
 
 function mod:DrainFluids(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:MeatShield(args)
-	self:Message2(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ClingingDarkness(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 
 function mod:WrathOfZolramus(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 end
 
 function mod:FrostboltVolley(args)
 	if self:MobId(args.sourceGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
-		self:Message2(args.spellId, "orange")
+		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:GutturalScream(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Bonemend(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -180,18 +180,18 @@ do
 end
 
 function mod:DarkShroud(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 24)
 end
 
 function mod:DarkShroudRemoved(args)
-	self:Message2(args.spellId, "yellow", CL.removed:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.removed:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:GrimFateApplied(args)
-	self:TargetMessage2(327393, "yellow", args.destName)
+	self:TargetMessage(327393, "yellow", args.destName)
 	self:PlaySound(327393, "alert", nil, args.destName)
 	if self:MobId(args.sourceGUID) == 165824 then -- Nar'zudah
 		self:CDBar(327393, 18.3)
@@ -209,19 +209,19 @@ function mod:NarzudahDeath(args)
 end
 
 function mod:Shatter(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, self:Tank() and "alarm" or "info")
 	self:CDBar(args.spellId, 16)
 end
 
 function mod:GraveSpikes(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 12.1)
 end
 
 function mod:ReapingWinds(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 20)
 	self:CastBar(args.spellId, 4)
@@ -235,12 +235,12 @@ function mod:SkeletalMonstrosityDeath(args)
 end
 
 function mod:Goresplatter(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Tenderize(args)
-	self:Message2(args.spellId, "purple")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, self:Tank() and "alert" or "info")
 	-- This bar is here in case dps/pets taunt to let the tank drop stacks
 	self:NameplateCDBar(args.spellId, 12.2, args.sourceGUID)
@@ -248,19 +248,19 @@ end
 
 function mod:Mutlilate(args)
 	if self:MobId(args.sourceGUID) ~= 164578 then -- Stitchflesh's Creation, add on Amarth
-		self:Message2(args.spellId, "purple")
+		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 function mod:RepairFlesh(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(323496, "yellow", name)
+		self:TargetMessage(323496, "yellow", name)
 		self:PlaySound(323496, "info", nil, name)
 		if self:Me(guid) then
 			self:Say(323496)
@@ -275,7 +275,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(338606, "yellow", name) -- Morbid Fixation
+		self:TargetMessage(338606, "yellow", name) -- Morbid Fixation
 		self:PlaySound(338606, self:Me(guid) and "alarm" or "info", nil, name) -- Morbid Fixation
 	end
 
