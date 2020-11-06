@@ -75,7 +75,7 @@ function mod:GetOptions()
 		{338456, "TANK_HEALER"}, -- Mutlilate
 		-- Flesh Crafter
 		327130, -- Repair Flesh
-		323496, -- Throw Cleaver
+		{323496, "SAY"}, -- Throw Cleaver
 		-- Separation Assistant
 		338606, -- Morbid Fixation
 	}, {
@@ -258,9 +258,19 @@ function mod:RepairFlesh(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:ThrowCleaver(args)
-	self:Message2(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage2(323496, "yellow", name)
+		self:PlaySound(323496, "info", nil, name)
+		if self:Me(guid) then
+			self:Say(323496)
+		end
+	end
+
+	function mod:ThrowCleaver(args)
+		-- The mob takes a long time to actually target the player
+		self:GetUnitTarget(printTarget, 2, args.sourceGUID)
+	end
 end
 
 do
