@@ -146,7 +146,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -154,7 +154,7 @@ end
 
 function mod:FenStingerApplied(args)
 	if self:Dispeller("poison", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
@@ -162,13 +162,13 @@ end
 function mod:CreepyCrawlers(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
-		self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:WingBuffet(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -182,7 +182,7 @@ end
 function mod:BelchPlague(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
-		self:Message2(args.spellId, "red")
+		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -195,23 +195,23 @@ function mod:CorrodedClawsApplied(args)
 end
 
 function mod:FesteringBelch(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:JaggedSpines(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:GrippingInfection(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:GrippingInfectionApplied(args)
 	if self:Dispeller("disease", nil, args.spellId) then
-		self:TargetMessage2(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -219,7 +219,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		local isOnMe = self:Me(guid)
-		self:TargetMessage2(321935, isOnMe and "red" or "yellow", name)
+		self:TargetMessage(321935, isOnMe and "red" or "yellow", name)
 		self:PlaySound(321935, isOnMe and "alarm" or "info", nil, name)
 		if isOnMe then
 			self:Say(321935)
@@ -238,7 +238,7 @@ do
 		local t = args.time
 		local unit = self:GetUnitIdByGUID(args.sourceGUID)
 		if t-prev > 1.5 and unit and UnitAffectingCombat(unit) then
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -246,7 +246,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage2(328395, "orange", name)
+		self:TargetMessage(328395, "orange", name)
 		self:PlaySound(328395, "alert", nil, name)
 		if self:Me(guid) then
 			self:Say(328395)
@@ -259,22 +259,22 @@ do
 end
 
 function mod:EnvelopingWebbing(args)
-	self:Message2(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:OozingCarcass(args)
-	self:Message2(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:GhostStep(args)
-	self:Message2(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:WonderGrow(args)
-	self:Message2(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -284,7 +284,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "red")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -296,7 +296,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message2(args.spellId, "orange")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
