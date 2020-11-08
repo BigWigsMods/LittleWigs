@@ -70,14 +70,14 @@ do
 	function mod:Consecration(args)
 		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
-			self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 		end
 	end
 end
 
 function mod:HammerOfJustice(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
+		self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 		self:TargetBar(args.spellId, 5, args.destName)
 	end
 end
@@ -87,7 +87,7 @@ function mod:HammerOfJusticeRemoved(args)
 end
 
 function mod:HolyLight(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 2.5)
 end
 

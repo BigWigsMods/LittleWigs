@@ -30,7 +30,7 @@ end
 --
 
 function mod:RitualOfTheSword(args)
-	self:MessageOld(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "info")
 	self:DelayedMessage(args.spellId, 36, "yellow", CL.soon:format(args.spellName))
 	self:Bar(args.spellId, 26, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 36)

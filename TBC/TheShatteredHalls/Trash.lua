@@ -73,7 +73,7 @@ end
 
 function mod:Interrupts(args)
 	if self:Me(args.destGUID) or self:Healer(args.destName) then
-		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, true)
 		self:TargetBar(args.spellId, args.spellId == 15615 and 4 or 6, args.destName)
 	end
 end
@@ -90,7 +90,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:MessageOld(35943, "orange", self:Interrupter() and "Long", CL.casting:format(args.spellName))
+			self:MessageOld(35943, "orange", self:Interrupter() and "long", CL.casting:format(args.spellName))
 		end
 	end
 end
@@ -99,7 +99,7 @@ function mod:Fear(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId) -- helps prioritizing dispelling those who are about to run into some pack
 	end
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 4, args.destName)
 end
 
@@ -108,5 +108,5 @@ function mod:FearRemoved(args)
 end
 
 function mod:Sap(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm")
 end

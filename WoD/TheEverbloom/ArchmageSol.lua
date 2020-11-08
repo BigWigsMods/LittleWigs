@@ -39,7 +39,7 @@ end
 --
 
 function mod:ParasiticGrowth(args)
-	self:MessageOld(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "warning")
 	self:Bar(args.spellId, 34)
 end
 
@@ -53,7 +53,7 @@ do
 		local t = GetTime()
 		if t-prev > 7 then
 			prev = t
-			self:MessageOld(args.spellId, "red", "Alert")
+			self:MessageOld(args.spellId, "red", "alert")
 			self:Flash(args.spellId)
 		end
 	end
@@ -61,6 +61,6 @@ end
 
 function mod:FrozenRain(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL.you:format(args.spellName))
 	end
 end

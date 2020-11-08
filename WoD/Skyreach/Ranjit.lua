@@ -36,7 +36,7 @@ end
 --
 
 function mod:FourWinds(args)
-	self:MessageOld(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "warning")
 	self:Bar(args.spellId, 36)
 end
 
@@ -45,5 +45,5 @@ function mod:Windwall(args)
 end
 
 function mod:PiercingRush(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm")
 end

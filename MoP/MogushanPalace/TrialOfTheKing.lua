@@ -94,7 +94,7 @@ function mod:ConflagrateOver()
 end
 
 function mod:Shockwave(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName), args.spellId)
 	self:Bar(args.spellId, 2, CL.cast:format(args.spellName), args.spellId)
 end
 
@@ -106,7 +106,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 	if msg:find("meteorstorm", nil, true) then -- |TInterface\\Icons\\spell_fire_meteorstorm.blp:20|tHaiyan the Unstoppable targets |cFFFF0000PLAYER|r with a |cFFFF0000|Hspell:120195|h[Meteor]|h|r!
-		self:TargetMessageOld(120195, player, "red", "Alarm")
+		self:TargetMessageOld(120195, player, "red", "alarm")
 		self:TargetBar(120195, 5, player)
 		self:PrimaryIcon(120195, player)
 		if UnitIsUnit(player, "player") then

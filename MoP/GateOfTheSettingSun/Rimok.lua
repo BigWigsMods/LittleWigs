@@ -43,7 +43,7 @@ end
 --
 
 function mod:FrenziedAssault(args)
-	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 7) -- 1s cast + 6s channel
 	self:CDBar(args.spellId, 17)
 end
@@ -55,7 +55,7 @@ do
 			local t = GetTime()
 			if (not self:Tank() and t-prev > 1.5) or t-prev > 6 then -- the tank might want to bring adds in front of Ri'mok
 				prev = t
-				self:MessageOld(107120, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(107120, "blue", "alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -64,7 +64,7 @@ end
 function mod:ViscousFluid(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount % 2 == 1 then
-		self:StackMessage(-5666, args.destName, amount, "red", "Alarm")
+		self:StackMessage(-5666, args.destName, amount, "red", "alarm")
 	end
 end
 
@@ -74,7 +74,7 @@ do
 		local _, stacks = self:UnitBuff(unit, 107091) -- Viscous Fluid
 		if stacks then
 			if (stacks % 2 == 0 or stacks == 5) and stacks ~= laststacks then
-				self:StackMessage(-5666, self.displayName, stacks, "orange", "Info")
+				self:StackMessage(-5666, self.displayName, stacks, "orange", "info")
 			end
 			laststacks = stacks
 		else
@@ -90,7 +90,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

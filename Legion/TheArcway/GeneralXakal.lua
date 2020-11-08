@@ -50,7 +50,7 @@ end
 --
 
 function mod:DreadFelbats()
-	self:MessageOld("dread_felbat", "cyan", "Info", CL.soon:format(self:SpellName(L.dread_felbat)), false)
+	self:MessageOld("dread_felbat", "cyan", "info", CL.soon:format(self:SpellName(L.dread_felbat)), false)
 	self:CDBar("dread_felbat", 31.5, L.dread_felbat, L.dread_felbat_icon)
 	self:ScheduleTimer("DreadFelbats", 31.5)
 end
@@ -61,11 +61,11 @@ function mod:FelFissure(args)
 end
 
 function mod:ShadowSlash(args)
-	self:MessageOld(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "alarm")
 	self:CDBar(args.spellId, 25)
 end
 
 function mod:WickedSlam(args)
-	self:MessageOld(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "alert")
 	self:CDBar(args.spellId, 47)
 end

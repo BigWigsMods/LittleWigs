@@ -58,7 +58,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:MessageOld(93687, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(93687, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -70,7 +70,7 @@ do
 		local t = GetTime()
 		if t - prev > 2 then -- adds cast this, he spawns 2 at a time
 			prev = t
-			self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+			self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
 		end
 	end
 end

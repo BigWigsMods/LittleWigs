@@ -1,25 +1,25 @@
 
 BigWigs:AddSounds("Wise Mari", {
-	[-6327] = "Alarm",
-	[106653] = "Alert",
-	[115167] = "Alert",
-	["stages"] = "Info",
+	[-6327] = "alarm",
+	[106653] = "alert",
+	[115167] = "alert",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Lorewalker Stonestep", {
-	[-5549] = {"Alert","Info","Warning"},
-	["stages"] = "Info",
+	[-5549] = {"alert","info","warning"},
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Liu Flameheart", {
-	[106823] = "Alarm",
-	[106841] = "Alarm",
-	[107110] = "Alert",
-	[118540] = "Alert",
-	["stages"] = "Info",
+	[106823] = "alarm",
+	[106841] = "alarm",
+	[107110] = "alert",
+	[118540] = "alert",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Sha of Doubt", {
-	[106113] = "Alarm",
-	[117665] = {"Info","Long"},
+	[106113] = "alarm",
+	[117665] = {"info","long"},
 })

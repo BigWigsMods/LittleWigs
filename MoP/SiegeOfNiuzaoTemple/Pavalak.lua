@@ -44,16 +44,16 @@ end
 --
 
 function mod:BladeRush(args)
-	self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 2)
 end
 
 function mod:Tempest(args)
-	self:MessageOld(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alert", CL.casting:format(args.spellName))
 end
 
 function mod:ReinforcementsPhase()
-	self:MessageOld(-5946, "yellow", "Info", CL.incoming:format(CL.adds), false)
+	self:MessageOld(-5946, "yellow", "info", CL.incoming:format(CL.adds), false)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

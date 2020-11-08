@@ -44,7 +44,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(36119, "blue", "Alert", CL.underyou:format(self:SpellName(36119))) -- args.spellName is "Consumption"
+				self:MessageOld(36119, "blue", "alert", CL.underyou:format(self:SpellName(36119))) -- args.spellName is "Consumption"
 			end
 		end
 	end

@@ -42,7 +42,7 @@ end
 
 function mod:Pound(args)
 	self:CastBar(53472, 3.2)
-	self:MessageOld(53472, "yellow", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(53472, "yellow", "warning", CL.casting:format(args.spellName))
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)

@@ -47,7 +47,7 @@ end
 
 function mod:VoidVortex(args)
 	self:CDBar(args.spellId, 77)
-	self:MessageOld(args.spellId, "yellow", "Alarm")
+	self:MessageOld(args.spellId, "yellow", "alarm")
 end
 
 function mod:SoulShred(args)
@@ -57,5 +57,5 @@ end
 
 function mod:VoidDevastation(args)
 	self:CDBar(args.spellId, 77)
-	self:MessageOld(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "warning")
 end

@@ -1,4 +1,4 @@
 
 BigWigs:AddSounds("The Violet Hold Trash", {
-	["portals"] = "Info",
+	["portals"] = "info",
 })

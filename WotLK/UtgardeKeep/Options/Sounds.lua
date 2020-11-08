@@ -1,13 +1,13 @@
 
 BigWigs:AddSounds("Prince Keleseth", {
-	[48400] = "Warning",
+	[48400] = "warning",
 })
 
 BigWigs:AddSounds("Skarvald & Dalronn", {
-	["stages"] = "Info",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Ingvar the Plunderer", {
-	[42708] = "Warning",
-	[42730] = "Alarm",
+	[42708] = "warning",
+	[42730] = "alarm",
 })

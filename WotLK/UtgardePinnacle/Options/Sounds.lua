@@ -1,12 +1,12 @@
 
 BigWigs:AddSounds("Svala Sorrowgrave", {
-	[48276] = "Info",
+	[48276] = "info",
 })
 
 BigWigs:AddSounds("Skadi the Ruthless", {
-	[59322] = {"Alarm","Info"},
+	[59322] = {"alarm","info"},
 })
 
 BigWigs:AddSounds("Utgarde Pinnacle Trash", {
-	[49106] = "Alert",
+	[49106] = "alert",
 })

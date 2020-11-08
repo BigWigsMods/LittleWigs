@@ -1,20 +1,20 @@
 
 BigWigs:AddSounds("Rocketspark and Borka", {
-	[161090] = "Warning",
-	[162617] = "Alert",
-	["enrage"] = "Info",
+	[161090] = "warning",
+	[162617] = "alert",
+	["enrage"] = "info",
 })
 
 BigWigs:AddSounds("Nitrogg Thundertower", {
-	[160681] = "Alert",
-	[160965] = "Info",
-	[166570] = "Alarm",
-	["stages"] = "Long",
+	[160681] = "alert",
+	[160965] = "info",
+	[166570] = "alarm",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Skylord Tovra", {
-	[161588] = "Alarm",
-	[161801] = "Long",
-	[162066] = "Info",
-	[163447] = "Info",
+	[161588] = "alarm",
+	[161801] = "long",
+	[162066] = "info",
+	[163447] = "info",
 })

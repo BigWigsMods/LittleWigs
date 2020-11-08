@@ -49,20 +49,20 @@ do
 		local t = GetTime()
 		if t-prev > 5 then -- More than 1 in Challenge Mode
 			prev = t
-			self:MessageOld(args.spellId, "yellow", "Long", CL.incoming:format(args.spellName))
+			self:MessageOld(args.spellId, "yellow", "long", CL.incoming:format(args.spellName))
 			self:Bar(args.spellId, 23)
 		end
 	end
 end
 
 function mod:Smash()
-	self:MessageOld(154110, "orange", "Warning")
+	self:MessageOld(154110, "orange", "warning")
 	smashCount = smashCount + 1
 	self:CDBar(154110, smashCount % 2 == 0 and 14.6 or 8.5)
 end
 
 function mod:Burst(args)
 	burstCount = burstCount + 1
-	self:MessageOld(args.spellId, "red", "Info", CL.count:format(args.spellName, burstCount))
+	self:MessageOld(args.spellId, "red", "info", CL.count:format(args.spellName, burstCount))
 	self:CDBar(args.spellId, 23)
 end

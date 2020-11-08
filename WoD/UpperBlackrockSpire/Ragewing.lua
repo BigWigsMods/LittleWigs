@@ -51,7 +51,7 @@ end
 --
 
 function mod:BurningRage(args)
-	self:MessageOld(args.spellId, "orange", self:Dispeller("enrage", true) and "Info", CL.onboss:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Dispeller("enrage", true) and "info", CL.onboss:format(args.spellName))
 	if self:Dispeller("enrage", true) then
 		self:Flash(args.spellId)
 	end
@@ -59,7 +59,7 @@ end
 
 function mod:EngulfingFire(_, _, _, spellId)
 	if spellId == 154996 then -- Engulfing Fire
-		self:MessageOld(spellId, "yellow", "Warning")
+		self:MessageOld(spellId, "yellow", "warning")
 		self:Flash(spellId)
 		self:CDBar(spellId, 24) -- 24-28
 	end
@@ -77,7 +77,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:SwirlingWinds()
-	self:MessageOld(-10740, "red", "Long", CL.percent:format(nextAddsWarning + 25, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
+	self:MessageOld(-10740, "red", "long", CL.percent:format(nextAddsWarning + 25, self:SpellName(93679)), 93679) -- 93679 = Summon Whelps
 	self:Bar(-10740, 20, CL.intermission, 93679) -- Whelp icon
 	self:StopBar(155025) -- Engulfing Fire
 end
@@ -90,6 +90,6 @@ end
 
 function mod:MagmaPool(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 	end
 end

@@ -1,4 +1,4 @@
 
 BigWigs:AddSounds("Mal'Ganis", {
-	[52723] = "Info",
+	[52723] = "info",
 })

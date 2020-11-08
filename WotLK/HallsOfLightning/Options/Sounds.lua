@@ -1,14 +1,14 @@
 
 BigWigs:AddSounds("Ionar", {
-	[52770] = "Info",
-	[59795] = "Alarm",
+	[52770] = "info",
+	[59795] = "alarm",
 })
 
 BigWigs:AddSounds("Loken", {
-	[59835] = "Alert",
+	[59835] = "alert",
 })
 
 BigWigs:AddSounds("Halls of Lightning Trash", {
-	[59165] = "Alarm",
-	[61581] = {"Long","Warning"},
+	[59165] = "alarm",
+	[61581] = {"long","warning"},
 })

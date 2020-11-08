@@ -61,7 +61,7 @@ end
 
 function mod:MagicDisruptionAura(args)
 	if self:Dispeller("magic", true, args.spellId) then
-		self:MessageOld(args.spellId, "orange", "Alert")
+		self:MessageOld(args.spellId, "orange", "alert")
 		self:Bar(args.spellId, 15)
 	end
 end
@@ -72,6 +72,6 @@ end
 
 function mod:SandBreath(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "warning")
 	end
 end

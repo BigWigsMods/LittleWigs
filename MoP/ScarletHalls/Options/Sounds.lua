@@ -1,16 +1,16 @@
 
 BigWigs:AddSounds("Houndmaster Braun", {
-	[-5611] = {"Alert","Info"},
-	[114259] = "Alert",
+	[-5611] = {"alert","info"},
+	[114259] = "alert",
 })
 
 BigWigs:AddSounds("Armsmaster Harlan", {
-	["blades"] = "Alert",
-	["help"] = "Info",
+	["blades"] = "alert",
+	["help"] = "info",
 })
 
 BigWigs:AddSounds("Flameweaver Koegler", {
-	[113364] = "Info",
-	[113641] = "Long",
-	[113682] = "Alert",
+	[113364] = "info",
+	[113641] = "long",
+	[113682] = "alert",
 })

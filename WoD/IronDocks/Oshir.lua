@@ -41,7 +41,7 @@ do
 	local t = 0
 	function mod:TimeToFeed(args)
 		t = GetTime()
-		self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "red", "alarm")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end

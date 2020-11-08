@@ -55,7 +55,7 @@ end
 
 function mod:SpiritGaleYou(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(-5865, "blue", "Alarm", CL["underyou"]:format(args.spellName), args.spellId)
+		self:MessageOld(-5865, "blue", "alarm", CL["underyou"]:format(args.spellName), args.spellId)
 		self:Flash(-5865)
 	end
 end
@@ -67,7 +67,7 @@ function mod:SpiritGaleStopped(args)
 end
 
 function mod:EvictSoul(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Info")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "info")
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:CDBar(args.spellId, 41)
 end

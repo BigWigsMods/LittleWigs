@@ -56,14 +56,14 @@ end
 --
 
 function mod:BlazingFists(args)
-	self:MessageOld("fists", "orange", "Alert", args.spellId)
+	self:MessageOld("fists", "orange", "alert", args.spellId)
 	self:Bar("fists", 6, CL["cast"]:format(args.spellName), args.spellId)
 	self:Bar("fists", 30, args.spellId)
 end
 
 function mod:ScorchedEarthYou(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(114460, "blue", "Alarm", CL["underyou"]:format(args.spellName))
+		self:MessageOld(114460, "blue", "alarm", CL["underyou"]:format(args.spellName))
 		self:Flash(114460)
 	end
 end

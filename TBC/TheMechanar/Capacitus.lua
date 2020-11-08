@@ -82,7 +82,7 @@ do
 			if self:Me(guid) then
 				self:OpenProximity(39096, 10, sameChargeList, true)
 				-- Cyan for Positive, Red for Negative
-				self:MessageOld(39096, spellId == 39088 and "cyan" or "red", "Info", CL.you:format(self:SpellName(spellId)), spellId)
+				self:MessageOld(39096, spellId == 39088 and "cyan" or "red", "info", CL.you:format(self:SpellName(spellId)), spellId)
 			end
 		end
 	end

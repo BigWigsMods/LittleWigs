@@ -40,12 +40,12 @@ function mod:Deflection(args)
 end
 
 function mod:VengeanceOfVanCleef(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 end
 
 --function mod:Blades(player, spellId, _, _, spellName)
 --	if UnitIsUnit(player, "player") then
---		self:LocalMessage(90961, BCL["you"]:format(spellName), "blue", spellId, "Alarm")
+--		self:LocalMessage(90961, BCL["you"]:format(spellName), "blue", spellId, "alarm")
 --		self:Say(90961, BCL["say"]:format(spellName))
 --		self:FlashShake(90961)
 --	end

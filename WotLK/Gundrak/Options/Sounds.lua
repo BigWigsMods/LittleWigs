@@ -1,21 +1,21 @@
 
 BigWigs:AddSounds("Slad'ran", {
-	[59842] = {"Alarm","Info"},
+	[59842] = {"alarm","info"},
 })
 
 BigWigs:AddSounds("Drakkari Colossus", {
-	[59451] = "Alarm",
+	[59451] = "alarm",
 })
 
 BigWigs:AddSounds("Moorabi", {
-	[55098] = "Warning",
+	[55098] = "warning",
 })
 
 BigWigs:AddSounds("Eck the Ferocious", {
-	[55817] = "Info",
+	[55817] = "info",
 })
 
 BigWigs:AddSounds("Gal'darah", {
-	[59825] = "Alarm",
-	[59827] = "Info",
+	[59825] = "alarm",
+	[59827] = "info",
 })

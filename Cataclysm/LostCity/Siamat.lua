@@ -50,7 +50,7 @@ end
 --
 
 function mod:Servant(args)
-	self:MessageOld("servant", "red", "Alert", CL.spawned:format(self:SpellName(-2477)), args.spellId)
+	self:MessageOld("servant", "red", "alert", CL.spawned:format(self:SpellName(-2477)), args.spellId)
 	if args.spellId ~= 84554 then -- 1st & 2nd adds
 		self:CDBar("servant", 45, CL.next_add, args.spellId)
 	else -- last add
@@ -63,7 +63,7 @@ function mod:ServantDied()
 	if addsLeft > 0 then
 		self:MessageOld("stages", "cyan", nil, CL.add_remaining:format(addsLeft), false)
 	else
-		self:MessageOld("stages", "green", "Info", CL.stage:format(2), false)
+		self:MessageOld("stages", "green", "info", CL.stage:format(2), false)
 	end
 end
 

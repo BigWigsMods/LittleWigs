@@ -69,7 +69,7 @@ function mod:TouchOfNothingness(args)
 	end
 
 	local canDispel = self:Dispeller("magic")
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, canDispel)
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, canDispel)
 	if canDispel then
 		self:TargetBar(args.spellId, 30, args.destName)
 	end
@@ -94,13 +94,13 @@ function mod:TouchOfNothingnessRemoved(args)
 end
 
 function mod:BoundsOfReality(args)
-	self:MessageOld(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "long")
 	self:CastBar(args.spellId, 30)
 	self:CDBar(args.spellId, 60.3)
 end
 
 function mod:BoundsOfRealityOver(args)
-	self:MessageOld(args.spellId, "green", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "info", CL.over:format(args.spellName))
 	self:StopBar(CL.cast:format(args.spellName))
 end
 
@@ -114,7 +114,7 @@ function mod:AddDeath(args)
 		mobCollector[args.destGUID] = nil
 		addsAlive = addsAlive - 1
 		if addsAlive > 0 then
-			self:MessageOld(117665, "green", "Info", CL.add_remaining:format(addsAlive), false)
+			self:MessageOld(117665, "green", "info", CL.add_remaining:format(addsAlive), false)
 		end
 	end
 end

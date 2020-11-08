@@ -32,24 +32,24 @@ end
 --  Event Handlers
 
 function mod:DevastatingSlam(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 end
 
 function mod:Decapitate(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
 	self:CDBar(args.spellId, 30)
 end
 
 function mod:Bloodletting(args)
-	self:MessageOld(args.spellId, "yellow", "Alert")
+	self:MessageOld(args.spellId, "yellow", "alert")
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:CDBar(args.spellId, 25)
 end
 
 function mod:Frenzy(args)
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 end
 
 function mod:ReanimateOhgan(args)
-	self:MessageOld(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "info", CL.casting:format(args.spellName))
 end

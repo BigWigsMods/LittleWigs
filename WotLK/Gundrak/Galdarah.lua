@@ -61,7 +61,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:ImpalingCharge(args)
-	self:TargetMessageOld(59827, args.destName, "yellow", "Info", nil, nil, true)
+	self:TargetMessageOld(59827, args.destName, "yellow", "info", nil, nil, true)
 end
 
 do
@@ -71,7 +71,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(59825, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(59825, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

@@ -48,13 +48,13 @@ end
 --
 
 function mod:DancingBlade(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, bladeCount % 2 == 0 and 10 or 31) -- pull:5.2, 31.5, 10.9, 31.6, 10.9, 32.4, 10.1
 	bladeCount = bladeCount + 1
 end
 
 function mod:HornOfValor(args)
-	self:MessageOld(args.spellId, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "long", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 42) -- pull:10.1, 42.4, 43.3
 end
 
@@ -65,7 +65,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(193235, "blue", "Alarm", CL.you:format(args.spellName))
+				self:MessageOld(193235, "blue", "alarm", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -73,7 +73,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 193092 then -- Bloodletting Sweep
-		self:MessageOld(spellId, "yellow", self:Tank() and "Info")
+		self:MessageOld(spellId, "yellow", self:Tank() and "info")
 		self:CDBar(spellId, 18) -- 18.2 - 23
 	end
 end

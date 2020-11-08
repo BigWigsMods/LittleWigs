@@ -38,11 +38,11 @@ end
 --
 
 function mod:SpawnAdd(args)
-	self:MessageOld(args.spellId, "green", "Info", CL.add_spawned)
+	self:MessageOld(args.spellId, "green", "info", CL.add_spawned)
 end
 
 function mod:MoltenImpact(args)
-	self:MessageOld(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "warning")
 end
 
 function mod:Stage2()

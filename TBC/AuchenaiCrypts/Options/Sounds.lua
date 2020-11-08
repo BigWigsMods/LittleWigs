@@ -1,4 +1,4 @@
 
 BigWigs:AddSounds("Exarch Maladaar", {
-	["avatar"] = "Info",
+	["avatar"] = "info",
 })

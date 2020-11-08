@@ -56,7 +56,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -64,20 +64,20 @@ end
 
 function mod:QuickDryResin(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(-6205, "blue", "Alarm", CL.you:format(args.spellName))
+		self:MessageOld(-6205, "blue", "alarm", CL.you:format(args.spellName))
 	end
 end
 
 function mod:Invigorated(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(-6205, "green", "Info", CL.you:format(args.spellName), args.spellId)
+		self:MessageOld(-6205, "green", "info", CL.you:format(args.spellName), args.spellId)
 	end
 end
 
 do
 	local scheduledCooldownTimer = nil
 	function mod:GustingWinds(args)
-		self:MessageOld(121284, "orange", self:Interrupter() and "Warning" or "Long", CL.casting:format(args.spellName))
+		self:MessageOld(121284, "orange", self:Interrupter() and "warning" or "long", CL.casting:format(args.spellName))
 		self:CastBar(121284, 4)
 		scheduledCooldownTimer = self:ScheduleTimer("CDBar", 4.1, 121284, 3.2) -- 7.3s CD
 	end

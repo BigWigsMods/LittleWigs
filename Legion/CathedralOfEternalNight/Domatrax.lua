@@ -84,12 +84,12 @@ end
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 235822 or spellId == 235862 then -- Start Wave 1 + 2
-		self:MessageOld(-15076, "red", "Alarm", CL.incoming:format(self:SpellName(-15076)))
+		self:MessageOld(-15076, "red", "alarm", CL.incoming:format(self:SpellName(-15076)))
 	end
 end
 
 function mod:FelsoulCleave(args)
-	self:MessageOld(args.spellId, "yellow", "Alert")
+	self:MessageOld(args.spellId, "yellow", "alert")
 	self:CDBar(args.spellId, 18.5)
 end
 
@@ -98,14 +98,14 @@ do
 
 	local function periodicCheckForAegisOfAggramar(self)
 		if isOnMe then
-			self:MessageOld(238410, "blue", "Alert", self:Healer() and L.aegis_healing or L.aegis_damage)
+			self:MessageOld(238410, "blue", "alert", self:Healer() and L.aegis_healing or L.aegis_damage)
 			aegisCheck = self:ScheduleTimer(periodicCheckForAegisOfAggramar, 1.5, self)
 		end
 	end
 
 	local function checkForLackOfAegis(self)
 		if not isOnMe and self:MobId(UnitGUID("boss2")) == 118884 then -- make sure the Aegis is not depleted
-			self:MessageOld(238410, "orange", "Warning", L.missing_aegis)
+			self:MessageOld(238410, "orange", "warning", L.missing_aegis)
 		end
 	end
 
@@ -115,7 +115,7 @@ do
 			aegisCheck = nil
 		end
 		isCastingChaoticEnergy = true
-		self:MessageOld(args.spellId, "orange", "Warning")
+		self:MessageOld(args.spellId, "orange", "warning")
 		self:CDBar(args.spellId, 37.6)
 		self:CastBar(args.spellId, 5)
 

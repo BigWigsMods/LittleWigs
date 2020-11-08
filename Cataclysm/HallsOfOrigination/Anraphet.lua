@@ -55,14 +55,14 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(76184, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(76184, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:OmegaStance(args)
-	self:MessageOld(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 41)
 end
 

@@ -41,7 +41,7 @@ end
 function mod:Evolution(args)
 	if self:Me(args.destGUID) and args.amount >= 80 and not warnedAboutEvolution then
 		warnedAboutEvolution = true
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue", "Warning")
+		self:StackMessage(args.spellId, args.destName, args.amount, "blue", "warning")
 		self:Flash(args.spellId)
 	end
 end
@@ -54,11 +54,11 @@ function mod:EvolutionRemoved(args)
 end
 
 function mod:DarkCommand(args)
-	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "alert", CL.casting:format(args.spellName))
 end
 
 function mod:DarkCommandApplied(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 4, args.destName)
 end
 

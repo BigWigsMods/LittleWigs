@@ -1,22 +1,22 @@
 
 BigWigs:AddSounds("Sadana Bloodfury", {
-	[153153] = "Info",
-	[153240] = "Alert",
-	[164974] = "Warning",
+	[153153] = "info",
+	[153240] = "alert",
+	[164974] = "warning",
 })
 
 BigWigs:AddSounds("Nhallish", {
-	[152801] = "Alarm",
-	[153067] = "Warning",
+	[152801] = "alarm",
+	[153067] = "warning",
 })
 
 BigWigs:AddSounds("Bonemaw", {
-	[153804] = {"Alarm","Warning"},
-	[154175] = "Alert",
+	[153804] = {"alarm","warning"},
+	[154175] = "alert",
 })
 
 BigWigs:AddSounds("Ner'zhul", {
-	[-9680] = "Warning",
-	[154350] = "Alert",
-	[154442] = "Alarm",
+	[-9680] = "warning",
+	[154350] = "alert",
+	[154442] = "alarm",
 })

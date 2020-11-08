@@ -34,6 +34,6 @@ function mod:CurseOfBlood(args)
 end
 
 function mod:EnergyShield()
-	self:MessageOld(79050, "red", "Alert")
+	self:MessageOld(79050, "red", "alert")
 end
 

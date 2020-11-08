@@ -51,20 +51,20 @@ end
 --
 
 function mod:BatteringHeadbutt(args)
-	self:MessageOld(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "alarm")
 	self:CDBar(args.spellId, 32.5)
 end
 
 function mod:BrokenCarapace(args)
 	stompCount = 0
-	self:MessageOld("stages", "green", "Info", CL.other:format(CL.stage:format(2), args.spellName), false)
+	self:MessageOld("stages", "green", "info", CL.other:format(CL.stage:format(2), args.spellName), false)
 	self:CDBar(111723, 3) -- Fixate
 
 	self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "boss2") -- in case Weak Spot died too fast
 end
 
 function mod:Fixate(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Long")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "long")
 	self:TargetBar(args.spellId, 15, args.destName)
 end
 
@@ -74,7 +74,7 @@ end
 
 function mod:Stomp(args)
 	stompCount = stompCount + 1
-	self:MessageOld(args.spellId, "yellow", "Alert", CL.count:format(args.spellName, stompCount))
+	self:MessageOld(args.spellId, "yellow", "alert", CL.count:format(args.spellName, stompCount))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

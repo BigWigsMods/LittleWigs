@@ -53,7 +53,7 @@ end
 
 function mod:CurtainOfFlame(args)
 	curtainPlayers[args.destName] = true
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	self:TargetBar(args.spellId, self:Normal() and 9 or 12, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

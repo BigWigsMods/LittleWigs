@@ -42,12 +42,12 @@ end
 --
 
 function mod:Hellfire(args)
-	self:MessageOld(args.spellId, "orange", "Long", CL["casting"]:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "long", CL["casting"]:format(args.spellName))
 	self:Bar(args.spellId, 6, CL["cast"]:format(args.spellName))
 	self:CDBar(args.spellId, 30)
 end
 
 function mod:Spellflame(args)
-	self:MessageOld(args.spellId, "yellow", "Alert", CL["casting"]:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alert", CL["casting"]:format(args.spellName))
 	self:CDBar(args.spellId, 10)
 end

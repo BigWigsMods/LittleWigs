@@ -104,13 +104,13 @@ end
 --
 
 function mod:Casts(args)
-	self:MessageOld(args.spellId, "red", "Alarm")
+	self:MessageOld(args.spellId, "red", "alarm")
 end
 
 do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
-			self:MessageOld(199805, "orange", "Warning", CL.you:format(self:SpellName(199805)))
+			self:MessageOld(199805, "orange", "warning", CL.you:format(self:SpellName(199805)))
 			self:Say(199805)
 		end
 	end
@@ -121,11 +121,11 @@ do
 end
 
 function mod:ProtectiveShield(args)
-	self:MessageOld(args.spellId, "yellow", self:Dispeller("magic", true, args.spellId) and "Info", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
+	self:MessageOld(args.spellId, "yellow", self:Dispeller("magic", true, args.spellId) and "info", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
 end
 
 function mod:Thunderstrike(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning")
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
@@ -147,7 +147,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(199805, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(199805, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

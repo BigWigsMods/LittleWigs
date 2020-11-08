@@ -38,7 +38,7 @@ end
 --
 
 function mod:CongealingVomit(args)
-	self:MessageOld(args.spellId, "red", "Alarm")
+	self:MessageOld(args.spellId, "red", "alarm")
 	self:Bar(args.spellId, 51)
 end
 
@@ -50,7 +50,7 @@ do
 			local t = GetTime()
 			if t-prev > 5 then
 				prev = t
-				self:MessageOld(201729, "orange", "Alert", CL.soon:format(self:SpellName(201729))) -- Uh Oh... soon!
+				self:MessageOld(201729, "orange", "alert", CL.soon:format(self:SpellName(201729))) -- Uh Oh... soon!
 			end
 		end
 	end

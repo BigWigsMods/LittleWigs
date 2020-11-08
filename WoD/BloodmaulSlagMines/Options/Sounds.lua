@@ -1,24 +1,24 @@
 
 BigWigs:AddSounds("Slave Watcher Crushto", {
-	[150751] = "Alert",
-	[150753] = "Long",
-	[150759] = "Warning",
+	[150751] = "alert",
+	[150753] = "long",
+	[150759] = "warning",
 })
 
 BigWigs:AddSounds("Magmolatus", {
-	[150038] = "Warning",
-	[150076] = "Info",
-	[150078] = "Info",
+	[150038] = "warning",
+	[150076] = "info",
+	[150078] = "info",
 })
 
 BigWigs:AddSounds("Roltall", {
-	[152940] = "Alert",
-	[153247] = "Warning",
-	[167739] = "Alarm",
+	[152940] = "alert",
+	[153247] = "warning",
+	[167739] = "alarm",
 })
 
 BigWigs:AddSounds("Gug'rokk", {
-	[150677] = "Long",
-	[150755] = "Warning",
-	[150776] = "Info",
+	[150677] = "long",
+	[150755] = "warning",
+	[150776] = "info",
 })

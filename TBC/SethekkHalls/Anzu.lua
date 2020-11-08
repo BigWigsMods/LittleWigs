@@ -48,18 +48,18 @@ end
 --
 
 function mod:ParalyzingScreech(args)
-	self:MessageOld(args.spellId, "red", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 5)
 	self:Flash(args.spellId)
 end
 
 function mod:SpellBomb(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("curse"))
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, self:Dispeller("curse"))
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
 function mod:CycloneOfFeathers(args)
-	self:TargetMessageOld(-5252, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(-5252, args.destName, "yellow", "alert")
 	self:TargetBar(-5252, 6, args.destName)
 end
 

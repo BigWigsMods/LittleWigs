@@ -45,7 +45,7 @@ end
 --
 
 function mod:TwilightCorruption(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 

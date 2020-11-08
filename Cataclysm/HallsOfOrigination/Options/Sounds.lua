@@ -1,28 +1,28 @@
 
 BigWigs:AddSounds("Temple Guardian Anhuur", {
-	[74938] = "Long",
-	[75592] = "Alert",
+	[74938] = "long",
+	[75592] = "alert",
 })
 
 BigWigs:AddSounds("Anraphet", {
-	[75622] = "Alarm",
-	[76184] = "Alert",
+	[75622] = "alarm",
+	[76184] = "alert",
 })
 
 BigWigs:AddSounds("Isiset", {
-	[-2556] = "Info",
-	[74045] = "Alert",
-	[74135] = "Alert",
-	[74137] = "Alarm",
+	[-2556] = "info",
+	[74045] = "alert",
+	[74135] = "alert",
+	[74137] = "alarm",
 })
 
 BigWigs:AddSounds("Ammunae", {
-	[75790] = "Info",
-	[76043] = {"Alarm","Alert"},
-	[80968] = "Long",
+	[75790] = "info",
+	[76043] = {"alarm","alert"},
+	[80968] = "long",
 })
 
 BigWigs:AddSounds("Rajh", {
-	[-2863] = "Warning",
-	[76355] = "Long",
+	[-2863] = "warning",
+	[76355] = "long",
 })

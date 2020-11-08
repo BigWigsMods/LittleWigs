@@ -1,44 +1,44 @@
 
 BigWigs:AddSounds("Ivanyr", {
-	[196392] = "Long",
-	[196562] = "Alarm",
-	[196805] = "Info",
+	[196392] = "long",
+	[196562] = "alarm",
+	[196805] = "info",
 })
 
 BigWigs:AddSounds("Corstilax", {
-	[195804] = "Info",
-	[196068] = "Alarm",
-	[196115] = "Alert",
-	[220481] = "Alarm",
+	[195804] = "info",
+	[196068] = "alarm",
+	[196115] = "alert",
+	[220481] = "alarm",
 })
 
 BigWigs:AddSounds("General Xakal", {
-	[197810] = "Alert",
-	[212030] = "Alarm",
-	["dread_felbat"] = "Info",
+	[197810] = "alert",
+	[212030] = "alarm",
+	["dread_felbat"] = "info",
 })
 
 BigWigs:AddSounds("Naltira", {
-	[-12687] = "Alarm",
-	[200040] = "Alarm",
-	[200284] = "Warning",
-	[211543] = "Info",
+	[-12687] = "alarm",
+	[200040] = "alarm",
+	[200284] = "warning",
+	[211543] = "info",
 })
 
 BigWigs:AddSounds("Advisor Vandros", {
-	[202974] = "Info",
-	[203176] = "Alert",
-	[203882] = "Long",
-	[220871] = "Alarm",
+	[202974] = "info",
+	[203176] = "alert",
+	[203882] = "long",
+	[220871] = "alarm",
 })
 
 BigWigs:AddSounds("The Arcway Trash", {
-	[210750] = "Warning",
-	[211115] = "Alarm",
-	[211217] = "Warning",
-	[211632] = "Alarm",
-	[211745] = "Warning",
-	[211757] = "Alarm",
-	[226206] = "Alarm",
-	[226285] = {"Alarm","Info","Warning"},
+	[210750] = "warning",
+	[211115] = "alarm",
+	[211217] = "warning",
+	[211632] = "alarm",
+	[211745] = "warning",
+	[211757] = "alarm",
+	[226206] = "alarm",
+	[226285] = {"alarm","info","warning"},
 })

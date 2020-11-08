@@ -68,16 +68,16 @@ function mod:UpdateWaveTimers(id, text)
 			self:Bar("wave", 15, CL.count:format(rift, currentWave), "INV_Misc_ShadowEgg")
 			if currentWave == 6 then
 				local chronoLordDeja = self:BossName(552) -- Chrono Lord Deja
-				self:MessageOld("wave", "yellow", "Info", CL.custom_sec:format(chronoLordDeja, 15), false)
+				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(chronoLordDeja, 15), false)
 			elseif currentWave == 12 then
 				local temporus = self:BossName(553) -- Temporus
-				self:MessageOld("wave", "yellow", "Info", CL.custom_sec:format(temporus, 15), false)
+				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(temporus, 15), false)
 			elseif currentWave == 18 then
 				self:UnregisterWidgetEvent(id)
 				local aeonus = self:BossName(554) -- Aeonus
-				self:MessageOld("wave", "yellow", "Info", CL.custom_sec:format(aeonus, 15), false)
+				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(aeonus, 15), false)
 			else
-				self:MessageOld("wave", "yellow", "Info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
+				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
 				self:Bar("wave", 135, CL.count:format(rift, currentWave+1), "INV_Misc_ShadowEgg") -- 120s + 15s
 			end
 		end

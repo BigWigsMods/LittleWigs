@@ -1,21 +1,21 @@
 
 BigWigs:AddSounds("Hungarfen", {
-	[-6008] = {"Alarm","Alert"},
-	[31689] = {"Info","Warning"},
+	[-6008] = {"alarm","alert"},
+	[31689] = {"info","warning"},
 })
 
 BigWigs:AddSounds("Ghaz'an", {
-	[15716] = {"Info","Long"},
-	[34268] = "Warning",
-	[38737] = "Alert",
+	[15716] = {"info","long"},
+	[34268] = "warning",
+	[38737] = "alert",
 })
 
 BigWigs:AddSounds("Swamplord Musel'ek", {
-	[31429] = "Warning",
-	[31615] = "Alarm",
-	[34971] = "Long",
+	[31429] = "warning",
+	[31615] = "alarm",
+	[34971] = "long",
 })
 
 BigWigs:AddSounds("The Black Stalker", {
-	[31715] = "Warning",
+	[31715] = "warning",
 })

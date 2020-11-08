@@ -1,16 +1,16 @@
 
 BigWigs:AddSounds("Trial of the King", {
-	[119922] = "Alert",
-	[120195] = "Alarm",
+	[119922] = "alert",
+	[120195] = "alarm",
 })
 
 BigWigs:AddSounds("Gekkan", {
-	["heal"] = "Alert",
-	["stages"] = "Info",
+	["heal"] = "alert",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Xin the Weaponmaster", {
-	[119684] = "Alert",
-	["blades"] = "Info",
-	["crossbows"] = "Info",
+	[119684] = "alert",
+	["blades"] = "info",
+	["crossbows"] = "info",
 })

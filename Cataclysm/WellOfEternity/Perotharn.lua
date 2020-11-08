@@ -46,22 +46,22 @@ end
 --
 
 function mod:FelDecay(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
 function mod:EasyPrey(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Long", self:SpellName(42203)) -- 42203 = "Discovered", hopefully it translates as such
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "long", self:SpellName(42203)) -- 42203 = "Discovered", hopefully it translates as such
 end
 
 function mod:Enfeebled(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Long")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "long")
 	self:Bar(args.spellId, 15)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 105341 then -- Camouflage
-		self:DelayedMessage("eyes", 8, "green", L.eyes, L.eyes_icon, "Info")
+		self:DelayedMessage("eyes", 8, "green", L.eyes, L.eyes_icon, "info")
 		self:Bar("eyes", 8, L.eyes, L.eyes_icon)
 		self:CDBar(105442, 48) -- Enfeebled
 	end

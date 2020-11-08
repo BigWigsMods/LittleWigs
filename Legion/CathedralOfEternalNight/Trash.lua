@@ -111,7 +111,7 @@ do
 	function mod:ShadowWave(_, _, castGUID, spellId)
 		if spellId == 238653 and castGUID ~= prev then -- Shadow Wave
 			prev = castGUID
-			self:MessageOld(spellId, "orange", "Alarm", CL.incoming:format(self:SpellName(spellId)))
+			self:MessageOld(spellId, "orange", "alarm", CL.incoming:format(self:SpellName(spellId)))
 			self:Bar(spellId, 23.2)
 		end
 	end
@@ -124,11 +124,11 @@ do
 		local t = GetTime()
 		if self:Me(guid) then
 			prev = t
-			self:TargetMessageOld(236737, name, "blue", "Alert")
+			self:TargetMessageOld(236737, name, "blue", "alert")
 			self:Say(236737)
 		elseif t-prev > 1.5 then
 			prev = t
-			self:MessageOld(236737, "yellow", "Alert")
+			self:MessageOld(236737, "yellow", "alert")
 		end
 	end
 	function mod:FelStrike(args)
@@ -138,37 +138,37 @@ end
 
 -- Felguard Destroyer
 function mod:ShadowWall(args)
-	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "long", CL.casting:format(args.spellName))
 end
 
 -- Helblaze Soulmender
 function mod:DemonicMending(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 -- Felborne Botanist
 function mod:BlisteringRain(args)
-	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "long", CL.casting:format(args.spellName))
 end
 
 -- Hellblaze Temptress
 function mod:AlluringAroma(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 -- Felstrider Orbcaster
 function mod:FelblazeOrb(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 -- Wa'glur
 function mod:UnearthyHowl(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 -- Gazerax
 function mod:BlindingGlare(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 2.5)
 end
 
@@ -178,12 +178,12 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:MessageOld(args.spellId == 242837 and 239101 or args.spellId, "orange", "Warning", CL.casting:format(L.throw_tome)) -- using a different ID for Arcane Tome's options because 242837 has no description
+			self:MessageOld(args.spellId == 242837 and 239101 or args.spellId, "orange", "warning", CL.casting:format(L.throw_tome)) -- using a different ID for Arcane Tome's options because 242837 has no description
 		end
 	end
 end
 
 -- Vilebark Walker
 function mod:LumberingCrash(args)
-	self:MessageOld(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(args.spellName))
 end

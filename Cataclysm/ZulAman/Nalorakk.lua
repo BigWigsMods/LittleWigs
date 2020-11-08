@@ -68,7 +68,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:Surge(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 
@@ -85,7 +85,7 @@ do
 	function mod:DeafeningRoar(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "yellow", "Info", nil, nil, true)
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "yellow", "info", nil, nil, true)
 		end
 	end
 end

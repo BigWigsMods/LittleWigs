@@ -59,7 +59,7 @@ end
 --
 
 function mod:FlameShock(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm")
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 
@@ -72,7 +72,7 @@ function mod:Enrage(args)
 end
 
 function mod:Totems(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)

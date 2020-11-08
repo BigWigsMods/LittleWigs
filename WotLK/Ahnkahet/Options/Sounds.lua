@@ -1,14 +1,14 @@
 
 BigWigs:AddSounds("Prince Taldaram", {
-	[59513] = "Warning",
+	[59513] = "warning",
 })
 
 BigWigs:AddSounds("Amanitar", {
-	[57055] = "Info",
+	[57055] = "info",
 })
 
 BigWigs:AddSounds("Ahn'kahet Trash", {
-	[13338] = "Alarm",
-	[56728] = "Alert",
-	[59102] = {"Long","Warning"},
+	[13338] = "alarm",
+	[56728] = "alert",
+	[59102] = {"long","warning"},
 })

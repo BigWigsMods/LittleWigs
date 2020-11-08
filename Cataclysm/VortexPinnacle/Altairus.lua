@@ -37,13 +37,13 @@ do
 
 	function mod:Upwind(args)
 		if self:Me(args.destGUID) and not haveDownwind then
-			self:TargetMessageOld(args.spellId, args.destName, "blue", "Info")
+			self:TargetMessageOld(args.spellId, args.destName, "blue", "info")
 		end
 	end
 
 	function mod:Downwind(args)
 		if self:Me(args.destGUID) then
-			self:TargetMessageOld(args.spellId, args.destName, "blue", "Info")
+			self:TargetMessageOld(args.spellId, args.destName, "blue", "info")
 			haveDownwind = true
 		end
 	end

@@ -52,7 +52,7 @@ function mod:MandibleStrikesCast(args)
 end
 
 function mod:MandibleStrikesApplied(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -62,7 +62,7 @@ do
 			self:Say(202341)
 			self:Flash(202341)
 		end
-		self:TargetMessageOld(202341, player, "red", "Long")
+		self:TargetMessageOld(202341, player, "red", "long")
 		self:PrimaryIcon(202341, player)
 	end
 
@@ -76,12 +76,12 @@ do
 end
 
 function mod:CallOfTheSwarm(args)
-	self:MessageOld(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "info")
 end
 
 function mod:Fixated(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "warning")
 	end
 end
 
@@ -92,7 +92,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

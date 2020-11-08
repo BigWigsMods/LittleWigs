@@ -48,7 +48,7 @@ end
 
 function mod:ImpendingDespair(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "red", "warning", nil, nil, true)
 		self:TargetBar(args.spellId, 6, args.destName)
 	end
 end

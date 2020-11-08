@@ -68,27 +68,27 @@ end
 
 function mod:Fixate(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(173080, "blue", "Alarm", CL.you:format(args.spellName))
+		self:MessageOld(173080, "blue", "alarm", CL.you:format(args.spellName))
 	end
 end
 
 function mod:AddSpawn()
-	self:MessageOld(-10502, "yellow", "Info", CL.add_spawned, false)
+	self:MessageOld(-10502, "yellow", "info", CL.add_spawned, false)
 	self:Bar(-10502, 30, CL.next_add, "spell_festergutgas")
 	self:ScheduleTimer("AddSpawn", 30)
 end
 
 function mod:Consume(args)
-	self:MessageOld(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "warning")
 	self:Bar(args.spellId, 10)
 end
 
 function mod:Inhale(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
-		self:MessageOld("stages", "red", "Info", CL.incoming:format(self.displayName), "inv_misc_monsterspidercarapace_01")
+		self:MessageOld("stages", "red", "info", CL.incoming:format(self.displayName), "inv_misc_monsterspidercarapace_01")
 	end
 end

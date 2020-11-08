@@ -58,18 +58,18 @@ end
 
 function mod:UncheckedGrowth(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL.you:format(args.spellName))
 	end
 end
 
 function mod:BrittleBark(args)
 	energy = 0
-	self:MessageOld(args.spellId, "yellow", "Info", ("%s - %s"):format(args.spellName, CL.incoming:format(self:SpellName(-10100)))) -- 10100 = Aqueous Globules
+	self:MessageOld(args.spellId, "yellow", "info", ("%s - %s"):format(args.spellName, CL.incoming:format(self:SpellName(-10100)))) -- 10100 = Aqueous Globules
 	self:StopBar(164357) -- Parched Gasp
 end
 
 function mod:BrittleBarkOver(args)
-	self:MessageOld(args.spellId, "yellow", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "info", CL.over:format(args.spellName))
 	self:Bar(args.spellId, 30)
 	self:CDBar(164357, 4) -- Parched Gasp
 end

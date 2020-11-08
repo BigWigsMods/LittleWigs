@@ -53,7 +53,7 @@ function mod:Warmup(duration)
 end
 
 function mod:MortalStrike(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning")
 	self:TargetBar(args.spellId, 5, args.destName)
 end
 
@@ -66,7 +66,7 @@ do
 	function mod:Whirlwind(args)
 		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
-			self:MessageOld(args.spellId, "blue", "Alarm", CL.near:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "alarm", CL.near:format(args.spellName))
 		end
 	end
 end

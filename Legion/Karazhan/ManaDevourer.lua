@@ -51,12 +51,12 @@ end
 --
 
 function mod:ArcaneBomb(args)
-	self:MessageOld(args.spellId, "red", "Warning")
+	self:MessageOld(args.spellId, "red", "warning")
 	self:CDBar(args.spellId, 14.5)
 end
 
 function mod:EnergyVoid(args)
-	self:MessageOld(args.spellId, "yellow", "Info")
+	self:MessageOld(args.spellId, "yellow", "info")
 	self:Bar(args.spellId, 21.9)
 end
 
@@ -75,7 +75,7 @@ function mod:UnstableManaRemoved(args)
 end
 
 function mod:CoalescePower(args)
-	self:MessageOld(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "long")
 	self:Bar(args.spellId, 30.3)
 end
 
@@ -86,7 +86,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(227523, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(227523, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

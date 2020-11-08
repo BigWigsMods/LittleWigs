@@ -57,7 +57,7 @@ end
 --
 
 function mod:Essence(args)
-	self:TargetMessageOld(202779, args.destName, "green", "Info")
+	self:TargetMessageOld(202779, args.destName, "green", "info")
 	self:TargetBar(202779, 30, args.destName, L.essence) -- Are 4 bars (at max) too much?
 	if self:Me(args.destGUID) then
 		self:Say(202779, L.essence)
@@ -66,13 +66,13 @@ end
 
 function mod:EssenceRemoved(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(202779, args.destName, "blue", "Alert", CL.removed:format(L.essence))
+		self:TargetMessageOld(202779, args.destName, "blue", "alert", CL.removed:format(L.essence))
 		self:Flash(202779)
 	end
 end
 
 function mod:BloodCall(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 	self:Bar(args.spellId, 30)
 end
 
@@ -83,7 +83,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

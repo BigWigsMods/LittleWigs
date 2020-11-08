@@ -56,17 +56,17 @@ end
 function mod:AcceleratingBlastApplied(args)
 	local count = args.amount or 1
 	if self:Dispeller("magic", true) and count > 5 and count % 3 == 0 then
-		self:StackMessage(args.spellId, args.destName, count, "orange", "Alert")
+		self:StackMessage(args.spellId, args.destName, count, "orange", "alert")
 	end
 end
 
 function mod:ForceBomb(args)
-	self:MessageOld(args.spellId, "yellow", "Info")
+	self:MessageOld(args.spellId, "yellow", "info")
 	-- self:CDBar(args.spellId, 30) -- never in p1 long enough to get a second cast :\
 end
 
 function mod:UnstableMana(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm")
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
@@ -74,5 +74,5 @@ function mod:BanishInTime(args)
 	self:StopBar(202974) -- Force Bomb
 	blastCount = 1
 
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 end

@@ -1,15 +1,15 @@
 
 BigWigs:AddSounds("Forgemaster Garfrost", {
-	[68789] = "Alarm",
-	[70381] = "Alert",
+	[68789] = "alarm",
+	[70381] = "alert",
 })
 
 BigWigs:AddSounds("Ick & Krick", {
-	[68987] = "Alert",
-	[70274] = "Alarm",
+	[68987] = "alert",
+	[70274] = "alarm",
 })
 
 BigWigs:AddSounds("Scourgelord Tyrannus", {
-	[69172] = "Alert",
-	[69275] = "Alarm",
+	[69172] = "alert",
+	[69275] = "alarm",
 })

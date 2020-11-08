@@ -38,13 +38,13 @@ end
 
 function mod:LavaPool(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "alarm")
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:CrystalStorm(args)
-	self:MessageOld(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alert", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 2.5, CL.cast:format(args.spellName))
 end
 

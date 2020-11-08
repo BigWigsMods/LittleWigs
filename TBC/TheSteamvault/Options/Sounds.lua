@@ -1,16 +1,16 @@
 
 BigWigs:AddSounds("Hydromancer Thespia", {
-	[25033] = "Alert",
-	[31481] = "Alarm",
-	[31718] = "Warning",
+	[25033] = "alert",
+	[31481] = "alarm",
+	[31718] = "warning",
 })
 
 BigWigs:AddSounds("Mekgineer Steamrigger", {
-	[31485] = "Alert",
+	[31485] = "alert",
 })
 
 BigWigs:AddSounds("Warlord Kalithresh", {
-	[-6003] = "Warning",
-	[16172] = "Alarm",
-	[36453] = "Long",
+	[-6003] = "warning",
+	[16172] = "alarm",
+	[36453] = "long",
 })

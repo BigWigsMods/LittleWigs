@@ -65,12 +65,12 @@ end
 --
 
 function mod:TornadoKick(args)
-	self:MessageOld(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "alert")
 	self:CastBar(args.spellId, 6.5) -- 5s channel + 1.5s cast
 end
 
 function mod:ChaseDown(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alarm")
 	self:TargetBar(args.spellId, 11, args.destName)
 end
 
@@ -81,7 +81,7 @@ end
 
 function mod:Stage3(_, msg)
 	if msg:find(L.stage3_yell, nil, true) then
-		self:MessageOld("stages", "green", "Info", CL.stage:format(3), 118961) -- 118961 = Chase Down
+		self:MessageOld("stages", "green", "info", CL.stage:format(3), 118961) -- 118961 = Chase Down
 	end
 end
 
@@ -90,7 +90,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		if stage == 1 then
 			stage = 2
 			local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
-			self:MessageOld("stages", "green", "Info", (CL.stage:format(2))..": "..mirror, 106747)
+			self:MessageOld("stages", "green", "info", (CL.stage:format(2))..": "..mirror, 106747)
 			self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
 		else
 			self:MessageOld(106747, "green")

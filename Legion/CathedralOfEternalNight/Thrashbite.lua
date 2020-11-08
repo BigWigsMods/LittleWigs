@@ -45,12 +45,12 @@ end
 --
 
 function mod:PulverizingCudgel(args)
-	self:MessageOld(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "alert")
 	self:CDBar(args.spellId, 37)
 end
 
 function mod:ScornfulGaze(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", args.spellName)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning", args.spellName)
 	self:TargetBar(args.spellId, 7, args.destName)
 	self:CDBar(args.spellId, 37)
 	if self:Me(args.destGUID) then
@@ -60,6 +60,6 @@ function mod:ScornfulGaze(args)
 end
 
 function mod:HeaveCudgel(args)
-	self:MessageOld(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alert", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, 37)
 end

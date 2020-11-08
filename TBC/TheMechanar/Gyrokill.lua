@@ -67,7 +67,7 @@ do
 		playerList[#playerList + 1] = args.destName
 		if #playerList == 1 then
 			self:Bar(args.spellId, 10)
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "Alarm", nil, nil, self:Dispeller("poison"))
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "alarm", nil, nil, self:Dispeller("poison"))
 		end
 	end
 

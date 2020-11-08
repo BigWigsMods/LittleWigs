@@ -46,17 +46,17 @@ end
 --
 
 function mod:InfernalEruption(args)
-	self:MessageOld(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "long")
 	self:CDBar(args.spellId, 18)
 end
 
 function mod:BurningIntensity(args)
 	burningIntensityCount = burningIntensityCount + 1
-	self:MessageOld(args.spellId, "red", "Info", CL.count:format(args.spellName, burningIntensityCount))
+	self:MessageOld(args.spellId, "red", "info", CL.count:format(args.spellName, burningIntensityCount))
 	self:CDBar(args.spellId, 22)
 end
 
 function mod:WitheringSoul(args)
-	self:MessageOld(args.spellId, "yellow", "Alert")
+	self:MessageOld(args.spellId, "yellow", "alert")
 	self:CDBar(args.spellId, 14)
 end

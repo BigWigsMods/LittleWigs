@@ -1,42 +1,42 @@
 
 BigWigs:AddSounds("Zuraal", {
-	[244433] = "Warning",
-	[244579] = "Warning",
-	[244602] = "Alert",
-	[244621] = {"Info","Long"},
-	[244653] = "Warning",
-	[246134] = "Alarm",
+	[244433] = "warning",
+	[244579] = "warning",
+	[244602] = "alert",
+	[244621] = {"info","long"},
+	[244653] = "warning",
+	[246134] = "alarm",
 })
 
 BigWigs:AddSounds("Saprish", {
-	[245802] = {"Alert","Long"},
-	[245873] = "Info",
-	[247206] = "Alarm",
-	[247245] = "Alert",
-	[248831] = "Warning",
+	[245802] = {"alert","long"},
+	[245873] = "info",
+	[247206] = "alarm",
+	[247245] = "alert",
+	[248831] = "warning",
 })
 
 BigWigs:AddSounds("Viceroy Nezhar", {
-	[-15926] = "Info",
-	[244751] = "Alarm",
-	[244906] = "Alert",
-	[246324] = "Long",
-	[248736] = "Long",
-	[248804] = "Info",
+	[-15926] = "info",
+	[244751] = "alarm",
+	[244906] = "alert",
+	[246324] = "long",
+	[248736] = "long",
+	[248804] = "info",
 })
 
 BigWigs:AddSounds("L'ura", {
-	[245164] = "Warning",
-	[247795] = "Warning",
-	[247816] = "Long",
-	[247930] = "Alert",
-	[248535] = "Info",
-	[249009] = "Alarm",
+	[245164] = "warning",
+	[247795] = "warning",
+	[247816] = "long",
+	[247930] = "alert",
+	[248535] = "info",
+	[249009] = "alarm",
 })
 
 BigWigs:AddSounds("Seat of the Triumvirate Trash", {
-	[245510] = "Alarm",
-	[248227] = "Warning",
-	[249078] = "Info",
-	[249081] = "Alarm",
+	[245510] = "alarm",
+	[248227] = "warning",
+	[249078] = "info",
+	[249081] = "alarm",
 })

@@ -28,7 +28,7 @@ end
 --
 
 function mod:FrostTomb(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning", nil, nil, true)
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 

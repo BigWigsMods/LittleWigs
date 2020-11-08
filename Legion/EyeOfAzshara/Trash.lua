@@ -90,46 +90,46 @@ end
 
 -- Hatecoil Wrangler
 function mod:LightningProd(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Stormweaver
 function mod:Storm(args)
-	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "long", CL.casting:format(args.spellName))
 end
 
 function mod:ArcLightning(args)
-	self:MessageOld(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alarm", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Crusher
 function mod:ThunderingStomp(args)
-	self:MessageOld(args.spellId, "red", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", self:Interrupter() and "warning" or "info", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Oracle
 function mod:RejuvenatingWaters(args)
-	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "alarm", CL.casting:format(args.spellName))
 end
 
 -- Mak'rana Siltwalker
 function mod:SpraySand(args)
-	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "long", CL.casting:format(args.spellName))
 end
 
 -- Restless Tides
 function mod:Undertow(args)
-	self:MessageOld(args.spellId, "yellow", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "long", CL.casting:format(args.spellName))
 end
 
 -- Hatecoil Arcanist
 
 function mod:AquaSpout(args)
-	self:MessageOld(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alarm", CL.casting:format(args.spellName))
 end
 
 function mod:PolymorphFish(args)
 	if self:Dispeller("magic") or self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Info", self:SpellName(118), nil, true) -- 118 is Polymorph, which is shorter than "Polymorph: Fish"
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "info", self:SpellName(118), nil, true) -- 118 is Polymorph, which is shorter than "Polymorph: Fish"
 	end
 end

@@ -55,15 +55,15 @@ end
 --
 
 function mod:GroundSlam(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName), args.spellId)
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName), args.spellId)
 	self:CastBar(args.spellId, 3)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("119311", nil, true) then -- Stream of Blades (Blade Trap)
-		self:MessageOld("blades", "yellow", "Info", CL.percent:format(66, self:SpellName(L.blades)), 119311)
+		self:MessageOld("blades", "yellow", "info", CL.percent:format(66, self:SpellName(L.blades)), 119311)
 	elseif msg:find("120142", nil, true) then -- Crossbow (Death From Above!)
-		self:MessageOld("crossbows", "yellow", "Info", CL.percent:format(33, self:SpellName(L.crossbows)), 120142)
+		self:MessageOld("crossbows", "yellow", "info", CL.percent:format(33, self:SpellName(L.crossbows)), 120142)
 	end
 end
 

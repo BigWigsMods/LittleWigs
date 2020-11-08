@@ -1,4 +1,4 @@
 
 BigWigs:AddSounds("Broggok", {
-	[30916] = "Alert",
+	[30916] = "alert",
 })

@@ -54,7 +54,7 @@ do
 	function mod:SuperShrinkRay(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "Alert")
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "alert")
 		end
 	end
 end

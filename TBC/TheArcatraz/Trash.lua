@@ -94,7 +94,7 @@ do
 		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER = 0x400, filtering out pets
 		playerList[#playerList + 1] = args.destName
 		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "Alert", nil, nil, self:Dispeller("magic"))
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "alert", nil, nil, self:Dispeller("magic"))
 		end
 	end
 end
@@ -105,32 +105,32 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:MessageOld(38815, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+			self:MessageOld(38815, "yellow", self:Interrupter() and "alarm", CL.casting:format(args.spellName))
 		end
 	end
 end
 
 function mod:SoulStealDebuff(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end
 
 function mod:SoulStealBuff(args)
 	if self:Dispeller("magic", true) and not self:Dispeller("magic") then -- Only show 1 message to those who can dispel both (priests, restoration shamans)
-		self:TargetMessageOld(36778, args.destName, "yellow", "Alarm", nil, nil, true)
+		self:TargetMessageOld(36778, args.destName, "yellow", "alarm", nil, nil, true)
 	end
 end
 
 function mod:Domination(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)
 end
 
 function mod:SpitefulFury(args)
 	if self:Me(args.destGUID) or self:Tank() or self:Healer() then
-		self:TargetMessageOld(args.spellId, args.destName, "orange", "Long", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "long", nil, nil, true)
 		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
@@ -151,7 +151,7 @@ do
 		local t = GetTime()
 		if t - prev > 1 then
 			prev = t
-			self:MessageOld(args.spellId, "red", "Warning", CL.incoming:format(args.spellName))
+			self:MessageOld(args.spellId, "red", "warning", CL.incoming:format(args.spellName))
 		end
 		self:Bar(args.spellId, 2)
 	end

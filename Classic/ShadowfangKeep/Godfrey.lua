@@ -62,7 +62,7 @@ end
 function mod:CursedBulletsApplied(args)
 	local canDispel = self:Dispeller("curse")
 	if canDispel or self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessageOld(args.spellId, args.destName, "orange", canDispel and "Alarm", nil, nil, canDispel)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", canDispel and "alarm", nil, nil, canDispel)
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 end
@@ -77,12 +77,12 @@ function mod:MortalWound(args)
 end
 
 function mod:SummonBloodthirstyGhouls(args)
-	self:MessageOld(args.spellId, "cyan", "Info")
+	self:MessageOld(args.spellId, "cyan", "info")
 	self:CDBar(args.spellId, 30.3)
 end
 
 function mod:PistolBarrage(args)
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 	self:CastBar(args.spellId, 6)
 	self:CDBar(args.spellId, 30.3)
 end
@@ -94,7 +94,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:MessageOld(93520, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(93520, "blue", "alert", CL.you:format(args.spellName))
 			end
 		end
 	end

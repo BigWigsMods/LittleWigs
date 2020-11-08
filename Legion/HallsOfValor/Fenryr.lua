@@ -49,7 +49,7 @@ function mod:Stealth()
 end
 
 function mod:UnnervingHowl(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 30)
 end
 
@@ -59,7 +59,7 @@ do
 		--"pull:10.1, 36.0" p2
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "yellow", "Info", nil, nil, true)
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "yellow", "info", nil, nil, true)
 			self:CDBar(args.spellId, 31)
 		end
 		if self:Me(args.destGUID) then
@@ -85,7 +85,7 @@ do
 			self:Say(196838)
 		end
 		self:PrimaryIcon(196838, player)
-		self:TargetMessageOld(196838, player, "orange", "Warning")
+		self:TargetMessageOld(196838, player, "orange", "warning")
 	end
 	function mod:ScentOfBlood(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)

@@ -71,14 +71,14 @@ end
 function mod:CausticTar(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount % 3 == 1 then -- 1, 4, 7
-		self:StackMessage(args.spellId, args.destName, amount, "blue", amount > 1 and "Warning")
+		self:StackMessage(args.spellId, args.destName, amount, "blue", amount > 1 and "warning")
 	end
 end
 
 do
 	local function printTarget(self, player, guid)
 		if not UnitDetailedThreatSituation(player, "boss1") then
-			self:TargetMessageOld(120789, player, "yellow", "Alarm")
+			self:TargetMessageOld(120789, player, "yellow", "alarm")
 			if self:Me(guid) then
 				self:Say(120789)
 			end
@@ -93,7 +93,7 @@ do
 end
 
 function mod:ThousandBlades(args)
-	self:MessageOld(-6287, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(-6287, "red", "long", CL.casting:format(args.spellName))
 	self:CastBar(-6287, 5)
 end
 
@@ -104,7 +104,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(-6287, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(-6287, "blue", "alert", CL.you:format(args.spellName))
 			end
 		end
 	end

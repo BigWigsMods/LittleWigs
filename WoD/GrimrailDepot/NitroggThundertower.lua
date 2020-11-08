@@ -59,9 +59,9 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
-		self:MessageOld("stages", "cyan", "Long", CL.stage:format(3), false)
+		self:MessageOld("stages", "cyan", "long", CL.stage:format(3), false)
 	else
-		self:MessageOld("stages", "cyan", "Long", CL.percent:format(60, CL.stage:format(2)), false)
+		self:MessageOld("stages", "cyan", "long", CL.percent:format(60, CL.stage:format(2)), false)
 	end
 end
 
@@ -77,7 +77,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessageOld(160681, player, "red", "Alert")
+		self:TargetMessageOld(160681, player, "red", "alert")
 		self:PrimaryIcon(160681, player)
 		if self:Me(guid) then
 			self:Flash(160681)
@@ -90,7 +90,7 @@ end
 
 do
 	function mod:EngineerDies()
-		self:MessageOld(160965, "orange", "Info", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
+		self:MessageOld(160965, "orange", "info", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
 	end
 
 	function mod:PickedUpMortarShells(args)
@@ -110,6 +110,6 @@ end
 
 function mod:SlagBlast(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 	end
 end

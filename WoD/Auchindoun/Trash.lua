@@ -40,7 +40,7 @@ end
 --
 
 function mod:Fixate(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:TargetBar(args.spellId, 12, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

@@ -31,7 +31,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessageOld(59322, player, "orange", "Info", nil, nil, true)
+		self:TargetMessageOld(59322, player, "orange", "info", nil, nil, true)
 		if self:Me(guid) then
 			self:Say(59322)
 		end
@@ -51,7 +51,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(59322, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(59322, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

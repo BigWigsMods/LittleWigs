@@ -43,7 +43,7 @@ end
 
 do
 	local function bossTarget(self, name, guid)
-		self:TargetMessageOld(155721, name, "yellow", "Alert")
+		self:TargetMessageOld(155721, name, "yellow", "alert")
 		self:PrimaryIcon(155721, name)
 		if self:Me(guid) then
 			self:Flash(155721)
@@ -73,9 +73,9 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
-		self:MessageOld("stages", "red", "Info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
+		self:MessageOld("stages", "red", "info", CL.incoming:format(self.displayName), "achievement_character_orc_female")
 	else
-		self:MessageOld("stages", "red", "Info", CL.percent:format(60, CL.intermission), "achievement_character_orc_female")
+		self:MessageOld("stages", "red", "info", CL.percent:format(60, CL.intermission), "achievement_character_orc_female")
 		self:DelayedMessage("stages", 1, "red", self:SpellName(-10741), "achievement_character_orc_male") -- Black Iron Wyrm Riders
 		self:Bar("stages", self:Normal() and 28 or 36.5, CL.intermission, "achievement_character_orc_female")
 		self:StopBar(155721) -- Black Iron Cyclone

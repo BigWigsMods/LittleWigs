@@ -53,7 +53,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:ShieldOfLight(args)
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 end
 
 function mod:DivineReckoning(args)
@@ -65,7 +65,7 @@ function mod:DivineReckoning(args)
 	else
 		self:OpenProximity(args.spellId, 7, args.destName)
 	end
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

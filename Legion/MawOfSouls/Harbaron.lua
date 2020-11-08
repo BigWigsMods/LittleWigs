@@ -49,7 +49,7 @@ do
 		if self:Me(guid) then
 			self:Say(194325)
 		end
-		self:TargetMessageOld(194325, player, "red", "Warning")
+		self:TargetMessageOld(194325, player, "red", "warning")
 	end
 	function mod:Fragment(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
@@ -63,11 +63,11 @@ end
 
 function mod:SummonShackledServitor(args)
 	self:CDBar(args.spellId, 25) -- cd varies between 23-26
-	self:MessageOld(args.spellId, "yellow", "Info", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "info", CL.incoming:format(args.spellName))
 end
 
 function mod:CosmicScythe(args)
-	self:MessageOld(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "alert")
 end
 
 do
@@ -77,7 +77,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(194668, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(194668, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

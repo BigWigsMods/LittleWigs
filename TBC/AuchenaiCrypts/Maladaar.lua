@@ -43,7 +43,7 @@ function mod:StolenSoul(args)
 end
 
 function mod:AvatarOfTheMartyred(args)
-	self:MessageOld("avatar", "red", "Info", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
+	self:MessageOld("avatar", "red", "info", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

@@ -37,11 +37,11 @@ end
 
 function mod:InvocationOfFlame(_, msg)
 	if msg:find(self:SpellName(75218)) then
-		self:MessageOld(75218, "yellow", "Alarm", CL.add_spawned)
+		self:MessageOld(75218, "yellow", "alarm", CL.add_spawned)
 	end
 end
 
 function mod:DevouringFlames(args)
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 end
 

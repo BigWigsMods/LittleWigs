@@ -47,22 +47,22 @@ end
 function mod:Blitz(_, msg, _, _, _, player)
 	if msg:find(self:SpellName(-4140)) then
 		if player then
-			self:TargetMessageOld(-4140, player, "red", "Alert")
+			self:TargetMessageOld(-4140, player, "red", "alert")
 			self:PrimaryIcon(-4140, player)
 			self:ScheduleTimer("PrimaryIcon", 4, -4140)
 		else
-			self:MessageOld(-4140, "red", "Alert")
+			self:MessageOld(-4140, "red", "alert")
 		end
 	end
 end
 
 function mod:TotemDown()
-	self:MessageOld(-4141, "red", "Alarm", L.totemDrop)
+	self:MessageOld(-4141, "red", "alarm", L.totemDrop)
 	self:Bar(-4141, 20, L.totemDrop)
 end
 
 function mod:TotemUp(args)
-	self:MessageOld(-4141, "green", "Info", L.totemThrow:format(args.destName))
+	self:MessageOld(-4141, "green", "info", L.totemThrow:format(args.destName))
 	self:StopBar(L.totemDrop)
 end
 

@@ -67,12 +67,12 @@ end
 --
 
 function mod:StaticNova(args)
-	self:MessageOld(args.spellId, "orange", "Warning", self:GetOption("custom_on_show_helper_messages") and L.land_safe:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", self:GetOption("custom_on_show_helper_messages") and L.land_safe:format(args.spellName))
 	self:CDBar(args.spellId, 34) -- pull:10.8, 35.2, 34.0 / m pull:10.8, 35.2, 36.4, 37.6, 34.0
 end
 
 function mod:FocusedLightning(args)
-	self:MessageOld(args.spellId, "yellow", "Alert", self:GetOption("custom_on_show_helper_messages") and L.water_safe:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alert", self:GetOption("custom_on_show_helper_messages") and L.water_safe:format(args.spellName))
 	self:CDBar(args.spellId, 35) -- pull:25.4, 36.4, 35.2 / m pull:25.3, 36.4, 36.4, 37.6
 	self:OpenProximity(args.spellId, 5) -- Excess Lightning (193624)
 end
@@ -83,7 +83,7 @@ end
 
 function mod:CurseOfTheWitch(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "alarm")
 		local _, _, duration = self:UnitDebuff("player", args.spellId) -- Random lengths
 		self:Bar(args.spellId, duration or 6)
 	end
@@ -97,7 +97,7 @@ function mod:CurseOfTheWitchRemoved(args)
 end
 
 function mod:BeckonStorm()
-	self:MessageOld("blob", "red", "Info", CL.spawned:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
+	self:MessageOld("blob", "red", "info", CL.spawned:format(self:SpellName(-12139)), L.blob_icon) -- Saltsea Globule
 	self:CDBar("blob", 47, -12139, L.blob_icon) -- Saltsea Globule -- pull:21.3, 47.4 / m pull:21.3, 49.8, 47.4
 end
 

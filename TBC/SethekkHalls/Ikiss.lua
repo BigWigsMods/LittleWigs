@@ -48,7 +48,7 @@ end
 --
 
 function mod:ArcaneExplosion(args)
-	self:MessageOld(38197, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(38197, "orange", "warning", CL.casting:format(args.spellName))
 	self:CastBar(38197, 5)
 end
 
@@ -66,11 +66,11 @@ do
 	local function announce(self)
 		-- this applies to the whole group but can be immuned
 		if self:Dispeller("magic") then -- the only case where we care who exactly got the debuff
-			self:TargetMessageOld(35032, playerList, "red", "Alarm", nil, nil, true)
+			self:TargetMessageOld(35032, playerList, "red", "alarm", nil, nil, true)
 		else
 			wipe(playerList)
 			if isOnMe then
-				self:TargetMessageOld(35032, isOnMe, "red", "Alarm")
+				self:TargetMessageOld(35032, isOnMe, "red", "alarm")
 			else
 				self:MessageOld(35032, "red")
 			end

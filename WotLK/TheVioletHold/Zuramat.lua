@@ -27,6 +27,6 @@ end
 --  Event Handlers
 
 function mod:VoidShift(player, spellId, _, _, spellName)
-	self:TargetMessageOld(54361, spellName, player, "blue", spellId, "Alert")
+	self:TargetMessageOld(54361, spellName, player, "blue", spellId, "alert")
 	if player == pName then self:FlashShake(54361) end
 end

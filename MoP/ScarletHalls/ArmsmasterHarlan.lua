@@ -73,7 +73,7 @@ function mod:Cleave()
 end
 
 function mod:BladesCastStart(args)
-	self:MessageOld("blades", "orange", "Alert", CL["casting"]:format(args.spellName), args.spellId)
+	self:MessageOld("blades", "orange", "alert", CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar("blades", 6, CL["cast"]:format(args.spellName), args.spellId)
 	self:Flash("blades")
 	self:StopBar(845)
@@ -92,7 +92,7 @@ end
 do
 	local timers = {30, 25, 22, 20, 18, 16, 14}
 	function mod:Adds()
-		self:MessageOld("help", "orange", "Info", L["help"], L.help_icon)
+		self:MessageOld("help", "orange", "info", L["help"], L.help_icon)
 		self:Bar("help", timers[helpCount] or 13, L["help"], L.help_icon)
 		helpCount = helpCount + 1
 	end

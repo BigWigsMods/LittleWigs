@@ -64,7 +64,7 @@ end
 --
 
 function mod:Teleport(args)
-	self:MessageOld(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "info", CL.casting:format(args.spellName))
 end
 
 function mod:VoidShieldApplied(args)
@@ -72,7 +72,7 @@ function mod:VoidShieldApplied(args)
 end
 
 function mod:VoidShieldRemoved(args)
-	self:MessageOld(args.spellId, "green", "Info", CL.removed:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "info", CL.removed:format(args.spellName))
 end
 
 do
@@ -82,7 +82,7 @@ do
 			local t = GetTime()
 			if t-prev > 0.5 then
 				prev = t
-				self:MessageOld(args.spellId, "orange", "Alarm")
+				self:MessageOld(args.spellId, "orange", "alarm")
 			end
 			self:CastBar(args.spellId, 3)
 		end
@@ -90,12 +90,12 @@ do
 end
 
 function mod:SapSoul(args)
-	self:MessageOld(200904, "yellow", "Info", CL.casting:format(args.spellName))
+	self:MessageOld(200904, "yellow", "info", CL.casting:format(args.spellName))
 	self:CDBar(200904, 15.8, args.spellName)
 end
 
 function mod:SapSoulInterruptible(args)
-	self:MessageOld(200904, "yellow", self:Interrupter() and "Warning" or "Info", CL.casting:format(args.spellName))
+	self:MessageOld(200904, "yellow", self:Interrupter() and "warning" or "info", CL.casting:format(args.spellName))
 	self:CDBar(200904, 20, args.spellName)
 end
 
@@ -106,7 +106,7 @@ do
 			local t = GetTime()
 			if t-prev > 0.5 then
 				prev = t
-				self:TargetMessageOld(args.spellId, args.destName, "red", "Long")
+				self:TargetMessageOld(args.spellId, args.destName, "red", "long")
 				self:Flash(args.spellId)
 			end
 		end
@@ -125,11 +125,11 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:SeedofCorruption(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 function mod:FrighteningShout(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 do
@@ -139,7 +139,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -160,9 +160,9 @@ function mod:FleshToStoneAppliedDose(args)
 	if self:Me(args.destGUID) and args.amount > 6 then
 		self:StackMessage(args.spellId, args.destName, args.amount, "orange")
 		if args.amount < 9 then
-			self:PlaySound(args.spellId, "Alarm")
+			self:PlaySound(args.spellId, "alarm")
 		else
-			self:PlaySound(args.spellId, "Warning")
+			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end

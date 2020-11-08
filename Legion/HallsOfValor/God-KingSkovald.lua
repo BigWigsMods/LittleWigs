@@ -73,12 +73,12 @@ function mod:Warmup(event, msg)
 end
 
 function mod:SavageBlade(args)
-	self:MessageOld(args.spellId, "yellow", self:Tank() and "Warning")
+	self:MessageOld(args.spellId, "yellow", self:Tank() and "warning")
 	self:CDBar(args.spellId, 18) -- pull:24.3, 24.3, 17.8, 20.9 / hc pull:48.6, 19.5 / m pull:47.3, 24.3, 37.6
 end
 
 function mod:Ragnarok(args)
-	self:MessageOld(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "long")
 	self:CDBar(args.spellId, 63) -- pull:11.4, 63.5
 end
 
@@ -88,7 +88,7 @@ do
 			self:Say(193659)
 		end
 		self:PrimaryIcon(193659, player)
-		self:TargetMessageOld(193659, player, "red", "Alarm")
+		self:TargetMessageOld(193659, player, "red", "alarm")
 	end
 	function mod:FelblazeRush(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
@@ -106,7 +106,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

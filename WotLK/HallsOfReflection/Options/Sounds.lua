@@ -1,4 +1,4 @@
 
 BigWigs:AddSounds("Falric", {
-	[72426] = "Warning",
+	[72426] = "warning",
 })

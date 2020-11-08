@@ -53,7 +53,7 @@ end
 
 function mod:InfernoLeap(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(-2863, args.destName, "blue", "Warning")
+		self:TargetMessageOld(-2863, args.destName, "blue", "warning")
 		self:Flash(-2863)
 	end
 end
@@ -70,7 +70,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 76352 then -- Blessing of the Sun
-		self:MessageOld(76355, "green", "Long", CL.casting:format(self:SpellName(spellId)))
+		self:MessageOld(76355, "green", "long", CL.casting:format(self:SpellName(spellId)))
 		self:CastBar(76355, 20) -- EJ says "reenergizes himself with ... for 3 sec" but it took 17s for him to get back 100 energy when I tried, and the last SPELL_PERIODIC_ENERGIZE event fired 20s after the USCS
 		self:SimpleTimer(function() warnedAboutBlessingIncoming = nil end, 20) -- no events that indicate the end of this "phase"
 	end

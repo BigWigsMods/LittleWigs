@@ -36,7 +36,7 @@ end
 
 function mod:IntenseCold(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue", args.amount > 3 and "Alarm")
+		self:StackMessage(args.spellId, args.destName, args.amount, "blue", args.amount > 3 and "alarm")
 	end
 end
 
@@ -54,6 +54,6 @@ function mod:CrystalChainsRemoved(args)
 end
 
 function mod:Enrage(args)
-	self:MessageOld(args.spellId, "red", self:Dispeller("enrage", true) and "Info", CL.percent:format(25, args.spellName))
+	self:MessageOld(args.spellId, "red", self:Dispeller("enrage", true) and "info", CL.percent:format(25, args.spellName))
 end
 

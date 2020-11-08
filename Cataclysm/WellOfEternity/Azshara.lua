@@ -36,12 +36,12 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 102334 then -- Servant of the Queen
-		self:MessageOld(-3968, "yellow", "Alert")
+		self:MessageOld(-3968, "yellow", "alert")
 	end
 end
 
 function mod:TotalObedience()
-	self:MessageOld(-3969, "orange", "Long")
+	self:MessageOld(-3969, "orange", "long")
 	self:CastBar(-3969, 10)
 end
 

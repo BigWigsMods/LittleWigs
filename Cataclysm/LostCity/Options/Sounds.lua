@@ -1,19 +1,19 @@
 
 BigWigs:AddSounds("General Husam", {
-	[83113] = "Alert",
-	[83445] = "Info",
-	[91263] = "Alarm",
+	[83113] = "alert",
+	[83445] = "info",
+	[91263] = "alarm",
 })
 
 BigWigs:AddSounds("Lockmaw", {
-	[81690] = "Alert",
+	[81690] = "alert",
 })
 
 BigWigs:AddSounds("High Prophet Barim", {
-	[82622] = "Alarm",
+	[82622] = "alarm",
 })
 
 BigWigs:AddSounds("Siamat", {
-	["servant"] = "Alert",
-	["stages"] = "Info",
+	["servant"] = "alert",
+	["stages"] = "info",
 })

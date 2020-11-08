@@ -49,29 +49,29 @@ end
 
 function mod:RAID_BOSS_WHISPER()
 	-- RAID_BOSS_WHISPER#|TInterface\\Icons\\ability_fixated_state_red:20|tA Solar Flare has |cFFFF0000|Hspell:176544|h[Fixated]|h|r on you! If it reaches you it will |cFFFF0000|Hspell:153828|h[Explode]|h|r!#Solar Flare#1#true
-	self:MessageOld(167757, "blue", "Alarm", CL.you:format(self:SpellName(167757)))
+	self:MessageOld(167757, "blue", "alarm", CL.you:format(self:SpellName(167757)))
 	self:Flash(167757)
 end
 
 -- XXX
 --function mod:Fixate(args)
 --	if self:Me(args.destGUID) then
---		self:MessageOld(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
+--		self:MessageOld(args.spellId, "blue", "alarm", CL.you:format(args.spellName))
 --		self:Flash(args.spellId)
 --	end
 --end
 
 function mod:PierceArmor(args)
-	self:MessageOld(args.spellId, "yellow", "Warning")
+	self:MessageOld(args.spellId, "yellow", "warning")
 	self:Bar(args.spellId, 10.9)
 end
 
 function mod:SummonSolarFlare(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 end
 
 function mod:Quills(args)
-	self:MessageOld(args.spellId, "orange", "Long", CL.percent:format(quillsWarn, args.spellName))
+	self:MessageOld(args.spellId, "orange", "long", CL.percent:format(quillsWarn, args.spellName))
 	self:Bar(args.spellId, 17)
 end
 

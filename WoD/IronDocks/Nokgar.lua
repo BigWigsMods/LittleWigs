@@ -49,17 +49,17 @@ end
 --
 
 function mod:BloodlettingHowl(args)
-	self:MessageOld(args.spellId, "yellow"--[[, self:Dispeller("enrage", true) and "Long"]])
+	self:MessageOld(args.spellId, "yellow"--[[, self:Dispeller("enrage", true) and "long"]])
 end
 
 function mod:BurningArrows(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL.you:format(args.spellName))
 	end
 end
 
 function mod:SavageMauling(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -70,17 +70,17 @@ end
 
 function mod:RecklessProvocationInc(args)
 	self:CDBar(args.spellId, 42.6)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.incoming:format(args.spellName))
 	self:Flash(args.spellId)
 end
 
 function mod:RecklessProvocation(args)
 	self:Bar(args.spellId, 5, CL.onboss:format(args.spellName))
-	self:MessageOld(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "warning")
 end
 
 function mod:RecklessProvocationOver(args)
-	self:MessageOld(args.spellId, "green", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "info", CL.over:format(args.spellName))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

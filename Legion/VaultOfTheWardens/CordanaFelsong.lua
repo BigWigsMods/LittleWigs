@@ -88,32 +88,32 @@ do
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
 		if unit == "boss1" then
 			if spellId == 197796 then -- Avatar of Vengeance
-				self:MessageOld(spellId, "orange", "Long")
+				self:MessageOld(spellId, "orange", "long")
 				self:Bar(spellId, 45)
 			elseif spellId == 213583 or spellId == 197578 or spellId == 226312 or spellId == 213576 then -- Deepening Shadows
 				local t = GetTime()
 				if t-prev > 2 then
 					prev = t
-					self:MessageOld(213583, "yellow", "Alarm")
+					self:MessageOld(213583, "yellow", "alarm")
 				end
 			end
 		elseif spellId == 228210 and castGUID ~= prevGUID then -- Elune's Light picked up
 			prevGUID = castGUID
-			self:MessageOld(204481, "green", "Long", L.light_picked:format(self:ColorName(self:UnitName(unit))))
+			self:MessageOld(204481, "green", "long", L.light_picked:format(self:ColorName(self:UnitName(unit))))
 		end
 	end
 end
 
 function mod:ElunesLight(args)
-	self:MessageOld(args.spellId, "cyan", "Long", L.light_dropped:format(self:ColorName(args.sourceName)))
+	self:MessageOld(args.spellId, "cyan", "long", L.light_dropped:format(self:ColorName(args.sourceName)))
 end
 
 function mod:FelGlaive(args)
-	self:MessageOld(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 end
 
 function mod:StolenLight(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm")
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 	end
@@ -121,12 +121,12 @@ function mod:StolenLight(args)
 end
 
 function mod:StolenLightRemoved(args)
-	self:MessageOld(args.spellId, "cyan", "Info", CL.removed:format(args.spellName))
+	self:MessageOld(args.spellId, "cyan", "info", CL.removed:format(args.spellName))
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
 function mod:CreepingDoom(args)
-	self:MessageOld(197422, "red", "Info", CL.incoming:format(args.spellName))
+	self:MessageOld(197422, "red", "info", CL.incoming:format(args.spellName))
 	self:Flash(197422)
 	if args.spellId == 197422 then
 		self:StopBar(L.kick_combo)
@@ -135,17 +135,17 @@ function mod:CreepingDoom(args)
 end
 
 function mod:CreepingDoomRemoved(args)
-	self:MessageOld(args.spellId, "cyan", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "cyan", "info", CL.over:format(args.spellName))
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
 function mod:KnockdownKick()
-	self:MessageOld("kick_combo", "yellow", self:Tank() and "Warning", L.kick_combo, L.kick_combo_icon)
+	self:MessageOld("kick_combo", "yellow", self:Tank() and "warning", L.kick_combo, L.kick_combo_icon)
 	self:CDBar("kick_combo", 16, L.kick_combo, L.kick_combo_icon)
 end
 
 function mod:AvatarDeath()
-	self:MessageOld(197796, "green", "Long", CL.removed:format(self:SpellName(205004))) -- Vengeance removed
+	self:MessageOld(197796, "green", "long", CL.removed:format(self:SpellName(205004))) -- Vengeance removed
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

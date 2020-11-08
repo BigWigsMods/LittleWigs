@@ -72,7 +72,7 @@ end
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 234283 and phase == 2 then -- Expel Shadows
-		self:MessageOld(233206, "yellow", "Warning", 234283)
+		self:MessageOld(233206, "yellow", "warning", 234283)
 		local timeLeft = 0
 		if timeLost == 0 or not self:GetOption("custom_on_time_lost") then
 			timeLeft = self:BarTimeLeft(233206) -- Shadow Fade
@@ -92,14 +92,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:CarrionSwarm(args)
-	self:MessageOld(args.spellId, "yellow", "Alarm")
+	self:MessageOld(args.spellId, "yellow", "alarm")
 	if self:BarTimeLeft(233206) > 18.2 then -- Shadow Fade
 		self:Bar(args.spellId, 19.8)
 	end
 end
 
 function mod:DemonicUpheaval(args)
-	self:MessageOld(args.spellId, "yellow", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alert", CL.incoming:format(args.spellName))
 	if self:BarTimeLeft(233206) > 31.9 then -- Shadow Fade
 		self:Bar(args.spellId, 31.9)
 	end
@@ -116,7 +116,7 @@ do
 			guid = UnitGUID(n)
 			list[#list+1] = n
 			if #list == 1 then
-				self:ScheduleTimer("TargetMessageOld", 1, 233196, list, "red", "Warning", 233963) -- Travel time
+				self:ScheduleTimer("TargetMessageOld", 1, 233196, list, "red", "warning", 233963) -- Travel time
 			end
 			if self:Me(guid) then
 				self:Say(233196)
@@ -128,7 +128,7 @@ do
 end
 
 function mod:DarkSolitude(args)
-	self:MessageOld(args.spellId, "yellow", "Alarm")
+	self:MessageOld(args.spellId, "yellow", "alarm")
 	if self:BarTimeLeft(233206) > 8.5 then -- Shadow Fade
 		self:CDBar(args.spellId, 8.5)
 	end
@@ -138,14 +138,14 @@ function mod:ShadowFade(args)
 	phase = 2
 	timeLost = 0
 	self:CloseProximity(234817) -- Dark Solitude
-	self:MessageOld(args.spellId, "green", "Long")
+	self:MessageOld(args.spellId, "green", "long")
 	self:Bar(args.spellId, 34)
 end
 
 function mod:ShadowFadeRemoved(args)
 	phase = 1
 	self:OpenProximity(234817, 8) -- Dark Solitude
-	self:MessageOld(args.spellId, "green", "Long", CL.removed:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "long", CL.removed:format(args.spellName))
 	self:Bar(args.spellId, 79.3)
 	self:Bar(233196, 3.5) -- Demonic Upheaval
 	self:Bar(234817, 7.1) -- Dark Solitude

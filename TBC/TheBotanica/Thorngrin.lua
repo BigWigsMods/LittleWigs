@@ -41,7 +41,7 @@ function mod:Sacrifice(args)
 end
 
 function mod:Enrage(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", nil, nil, self:Tank() or self:Healer()) -- or self:Dispeller("enrage"))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning", nil, nil, self:Tank() or self:Healer()) -- or self:Dispeller("enrage"))
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -50,7 +50,7 @@ function mod:AuraRemoved(args)
 end
 
 function mod:Hellfire(args)
-	self:MessageOld(args.spellId, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 6)
 end
 
@@ -61,7 +61,7 @@ do
 			local t = GetTime()
 			if t - prev > (self:Melee() and 6 or 1.5) then
 				prev = t
-				self:MessageOld(34659, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(34659, "blue", "alert", CL.you:format(args.spellName))
 			end
 		end
 	end

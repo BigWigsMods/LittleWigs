@@ -30,17 +30,17 @@ end
 --
 
 function mod:QuicksilverArmor(args)
-	self:MessageOld(args.spellId, "yellow", "Alert")
+	self:MessageOld(args.spellId, "yellow", "alert")
 end
 
 function mod:SuperheatedQuicksilverArmor(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 	self:Bar(args.spellId, 17)
 end
 
 function mod:SuperheatedQuicksilverArmorDose(args)
 	self:Bar(args.spellId, 17)
 	if args.amount % 2 == 1 or args.amount > 5 then
-		self:StackMessage(args.spellId, args.destName, args.amount, "red", self:Tank() and "Warning")
+		self:StackMessage(args.spellId, args.destName, args.amount, "red", self:Tank() and "warning")
 	end
 end

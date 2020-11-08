@@ -47,7 +47,7 @@ end
 --
 
 function mod:Tranquility()
-	self:MessageOld(34550, "red", "Long", CL.casting:format(self:SpellName(34550)))
+	self:MessageOld(34550, "red", "long", CL.casting:format(self:SpellName(34550)))
 	self:CastBar(34550, 45)
 end
 
@@ -62,11 +62,11 @@ end
 
 function mod:AddDeath()
 	addsAlive = addsAlive - 1
-	self:MessageOld(34550, "green", "Info", CL.add_remaining:format(addsAlive))
+	self:MessageOld(34550, "green", "info", CL.add_remaining:format(addsAlive))
 end
 
 function mod:FreezingTouch(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 3, args.destName)
 end
 

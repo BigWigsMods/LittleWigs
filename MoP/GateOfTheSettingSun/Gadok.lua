@@ -49,7 +49,7 @@ end
 --
 
 function mod:PreyTime(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 5, args.destName)
 	self:CDBar(args.spellId, 15.6)
 end
@@ -69,7 +69,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId == 115458 and args.spellId or -5660, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId == 115458 and args.spellId or -5660, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

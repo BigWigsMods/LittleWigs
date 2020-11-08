@@ -43,11 +43,11 @@ end
 function mod:Blitz(_, msg, _, _, _, player)
 	if msg:find(self:SpellName(74670)) then
 		if player then
-			self:TargetMessageOld(74670, player, "red", "Alert")
+			self:TargetMessageOld(74670, player, "red", "alert")
 			self:PrimaryIcon(74670, player)
 			self:ScheduleTimer("PrimaryIcon", 3.5, 74670)
 		else
-			self:MessageOld(74670, "red", "Alert")
+			self:MessageOld(74670, "red", "alert")
 		end
 	end
 end
@@ -67,7 +67,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:Frenzy(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 end
 
 function mod:Wound(args)

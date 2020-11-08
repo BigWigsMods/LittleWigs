@@ -82,7 +82,7 @@ function mod:GravityLapse(args)
 end
 
 function mod:Phoenix(args)
-	self:MessageOld(args.spellId, "orange", "Info", CL.spawned:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "info", CL.spawned:format(args.spellName))
 end
 
 function mod:FlameStrike()
@@ -95,5 +95,5 @@ end
 
 function mod:Pyroblast(args)
 	self:CastBar(args.spellId, 4)
-	self:MessageOld(args.spellId, "red", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "long", CL.casting:format(args.spellName))
 end

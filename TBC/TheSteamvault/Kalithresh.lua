@@ -39,7 +39,7 @@ end
 --
 
 function mod:HeadCrack(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 15, args.destName)
 end
 
@@ -48,7 +48,7 @@ function mod:HeadCrackRemoved(args)
 end
 
 function mod:SpellReflection()
-	self:MessageOld(-6003, "red", "Warning")
+	self:MessageOld(-6003, "red", "warning")
 	self:Bar(-6003, 8)
 end
 
@@ -57,7 +57,7 @@ function mod:WarlordsRage(args)
 end
 
 function mod:WarlordsRageCast(args)
-	self:MessageOld(36453, "orange", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(36453, "orange", "long", CL.casting:format(args.spellName))
 	self:CastBar(36453, 7)
 	self:CDBar(36453, 40)
 end

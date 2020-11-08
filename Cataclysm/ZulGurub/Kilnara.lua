@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:MessageOld("stages", "yellow", "Info", CL.stage:format(1), false)
+	self:MessageOld("stages", "yellow", "info", CL.stage:format(1), false)
 end
 
 -------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ end
 --
 
 function mod:TearsOfBlood(args)
-	self:MessageOld(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 	self:CastBar(args.spellId, 6)
 end
 
@@ -58,7 +58,7 @@ function mod:TearsOfBloodRemoved(args)
 end
 
 function mod:LashOfAnguish(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -72,12 +72,12 @@ function mod:WaveOfAgony(args)
 end
 
 function mod:Ravage(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
 function mod:Camouflage()
-	self:MessageOld(-2702, "red", "Alert")
+	self:MessageOld(-2702, "red", "alert")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
@@ -91,6 +91,6 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 97380 then -- Cave In
 		self:UnregisterUnitEvent(event, unit)
-		self:MessageOld("stages", "yellow", "Info", CL.stage:format(2), false)
+		self:MessageOld("stages", "yellow", "info", CL.stage:format(2), false)
 	end
 end

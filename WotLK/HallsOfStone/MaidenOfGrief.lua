@@ -43,7 +43,7 @@ end
 
 function mod:ShockOfSorrow(args)
 	shouldBeTakingDamage = true
-	self:MessageOld(59726, "red", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(59726, "red", "warning", CL.casting:format(args.spellName))
 	self:Bar(59726, 4, CL.casting:format(args.spellName))
 end
 
@@ -82,7 +82,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(59772, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(59772, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

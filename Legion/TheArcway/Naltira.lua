@@ -75,19 +75,19 @@ function mod:BlinkStrikes(_, _, _, spellId)
 		self:Bar(-12687, 30)
 	elseif spellId == 199811 then -- UNIT_SPELLCAST_CHANNEL_START
 		local target = self:UnitName("boss1target")
-		self:TargetMessageOld(-12687, target, "orange", "Alarm", CL.count:format(self:SpellName(spellId), blinkCount))
+		self:TargetMessageOld(-12687, target, "orange", "alarm", CL.count:format(self:SpellName(spellId), blinkCount))
 		blinkCount = blinkCount + 1
 	end
 end
 
 -- function mod:ViciousManafang()
--- 	self:MessageOld("vicious_manafang", "yellow", self:Tank() and "Info", L.spawned:format(L.vicious_manafang), false)
+-- 	self:MessageOld("vicious_manafang", "yellow", self:Tank() and "info", L.spawned:format(L.vicious_manafang), false)
 -- 	self:Bar("vicious_manafang", 20, L.vicious_manafang, L.vicious_manafang_icon)
 -- 	self:ScheduleTimer("ViciousManafang", 20)
 -- end
 
 function mod:Devour(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Info", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "info", nil, nil, true)
 end
 
 do
@@ -96,7 +96,7 @@ do
 		if isOnMe then
 			self:OpenProximity(spellId, 30, targets)
 		end
-		self:TargetMessageOld(spellId, self:ColorName(targets), "yellow", "Warning")
+		self:TargetMessageOld(spellId, self:ColorName(targets), "yellow", "warning")
 		wipe(targets)
 		isOnMe = nil
 	end
@@ -141,7 +141,7 @@ do
 			if t-prev > 2 then
 				prev = t
 				self:Flash(args.spellId)
-				self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

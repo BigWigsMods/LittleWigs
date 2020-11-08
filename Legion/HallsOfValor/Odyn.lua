@@ -77,29 +77,29 @@ function mod:Warmup(event, msg)
 end
 
 function mod:RunicBrand(args)
-	self:MessageOld(args.spellId, "yellow", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alarm", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 56) -- m pull:44.0, 56.0
 end
 
 function mod:RunicBrandYou(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(197961, "orange", "Warning", L[args.spellId], args.spellId)
+		self:MessageOld(197961, "orange", "warning", L[args.spellId], args.spellId)
 	end
 end
 
 function mod:RadiantTempest(args)
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 	self:CDBar(args.spellId, self:Mythic() and 80 or 56) -- hc pull:24.0 / m pull:8.0, 80.0
 end
 
 function mod:ShatterSpears(args)
-	self:MessageOld(args.spellId, "red", "Alert", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alert", CL.incoming:format(args.spellName))
 	self:Bar(args.spellId, 56) -- m pull:40.0, 56.0
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 198396 then -- Spear of Light
-		self:MessageOld(200988, "orange", "Alert")
+		self:MessageOld(200988, "orange", "alert")
 	end
 end
 
@@ -115,7 +115,7 @@ end
 function mod:BigWigs_BossComm(_, msg)
 	if msg == "odyn" then
 		local name = self:BossName(1489) -- Odyn
-		self:MessageOld("warmup", "cyan", "Info", CL.incoming:format(name), false)
+		self:MessageOld("warmup", "cyan", "info", CL.incoming:format(name), false)
 		self:CDBar("warmup", 2.7, name, "achievement_boss_odyn")
 	end
 end

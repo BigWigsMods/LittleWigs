@@ -93,7 +93,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 228806 then -- Charred Earth
-		self:MessageOld(228808, "orange", self:Ranged() and "Alert")
+		self:MessageOld(228808, "orange", self:Ranged() and "alert")
 		self:CDBar(228808, 20)
 	elseif spellId == 228789 then -- Flowing Power (Stage 3)
 		self:Bar(228785, 8.5) -- Cinder Breath
@@ -108,13 +108,13 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:BonecurseDeath()
-	self:MessageOld("stages", "cyan", "Long", CL.stage:format(3), false)
+	self:MessageOld("stages", "cyan", "long", CL.stage:format(3), false)
 	self:StopBar(CL.count:format(self:SpellName(228834), shardCount)) -- Jagged Shards
 	self:StopBar(228835) -- Absorb Vitality
 end
 
 function mod:Stage2(args)
-	self:MessageOld("stages", "cyan", "Long", CL.stage:format(2), false)
+	self:MessageOld("stages", "cyan", "long", CL.stage:format(2), false)
 	self:StopBar(228785) -- Cinder Breath
 	self:StopBar(228808) -- Charred Earth
 	self:StopBar(228829) -- Burning Bones
@@ -130,22 +130,22 @@ function mod:Stage2(args)
 end
 
 function mod:CinderBreath(args)
-	self:MessageOld(args.spellId, "red", self:Tank() and "Alert")
+	self:MessageOld(args.spellId, "red", self:Tank() and "alert")
 	self:CDBar(args.spellId, 22.5)
 end
 
 function mod:ReverberatingShadows(args)
-	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "alarm", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 11)
 end
 
 function mod:BurningBones(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Info")
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "info")
 	self:CDBar(args.spellId, 18)
 end
 
 function mod:InfernalPower(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
 
@@ -155,7 +155,7 @@ function mod:InfernalPowerRemoved(args)
 end
 
 function mod:IgniteSoul(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	self:TargetBar(args.spellId, 9, args.destName)
 	if self:Me(args.destGUID) then
 		igniteSoulOnMe = true
@@ -175,7 +175,7 @@ function mod:IgniteSoulRemoved(args)
 end
 
 function mod:ConcentratedPower(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
 
@@ -191,7 +191,7 @@ function mod:JaggedShards(args)
 end
 
 function mod:AbsorbVitality(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, self:Healer())
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, self:Healer())
 	self:TargetBar(args.spellId, 18, args.destName)
 	self:Bar(args.spellId, 20)
 end
@@ -201,7 +201,7 @@ function mod:AbsorbVitalityRemoved(args)
 end
 
 function mod:BellowingRoar(args)
-	self:MessageOld(args.spellId, "yellow", "Warning")
+	self:MessageOld(args.spellId, "yellow", "warning")
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 45)
 end
@@ -213,7 +213,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", not igniteSoulOnMe and "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", not igniteSoulOnMe and "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end

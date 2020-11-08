@@ -52,7 +52,7 @@ end
 --
 
 function mod:CallTheSeas(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 	self:Bar(args.spellId, 30) -- pull:20.5, 30.4, 30.3
 end
 
@@ -63,7 +63,7 @@ end
 function mod:GaseousBubblesApplied(args)
 	if self:Me(args.destGUID) then
 		bubblesOnMe = true
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "warning")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:Flash(args.spellId)
 	end
@@ -72,18 +72,18 @@ end
 function mod:GaseousBubblesRemoved(args)
 	if self:Me(args.destGUID) then
 		bubblesOnMe = false
-		self:MessageOld(args.spellId, "blue", "Warning", CL.removed:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "warning", CL.removed:format(args.spellName))
 		self:StopBar(args.spellName, args.destName)
 	end
 end
 
 function mod:GroundSlam(args)
-	self:MessageOld(args.spellId, "orange", "Info", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "info", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, 18) -- pull:5.9, 18.2, 20.6, 19.4
 end
 
 function mod:Quake(args)
-	self:MessageOld(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 	self:Bar(args.spellId, 21) -- pull:15.6, 21.9, 21.8, 21.8
 end
 
@@ -95,7 +95,7 @@ do
 			-- players with Gaseous Bubbles may (and should) be taking damage intentionally
 			if t-prev > (bubblesOnMe and 6 or 1.5) then
 				prev = t
-				self:MessageOld(193152, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(193152, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

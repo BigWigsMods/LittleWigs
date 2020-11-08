@@ -57,7 +57,7 @@ do
 		local t = GetTime()
 		if t - prev > 1.5 then
 			prev = t
-			self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 		end
 	end
 end
@@ -80,7 +80,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:ChainsOfWoe(args)
-	self:MessageOld(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(args.spellName))
 end
 
 function mod:TheSkullcracker(args)

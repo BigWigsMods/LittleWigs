@@ -38,7 +38,7 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessageOld(97497, player, "red", "Alert")
+		self:TargetMessageOld(97497, player, "red", "alert")
 		self:PrimaryIcon(97497, player)
 	end
 	function mod:FlameBreath(args)
@@ -51,10 +51,10 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 43962 then -- Summon Amani'shi Hatcher
-		self:MessageOld(-2625, "yellow", "Long", CL.incoming:format(self:SpellName(-2625)), "achievement_character_troll_male")
+		self:MessageOld(-2625, "yellow", "long", CL.incoming:format(self:SpellName(-2625)), "achievement_character_troll_male")
 		self:CDBar(-2625, 92, nil, "achievement_character_troll_male")
 	elseif spellId == 43098 then -- Teleport to Center (to cast Fire Bombs)
-		self:MessageOld(-2622, "orange", "Info", CL.incoming:format(self:SpellName(-2622)))
+		self:MessageOld(-2622, "orange", "info", CL.incoming:format(self:SpellName(-2622)))
 		self:Bar(-2622, 12)
 	end
 end

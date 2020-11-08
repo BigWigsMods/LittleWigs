@@ -1,23 +1,23 @@
 
 BigWigs:AddSounds("Gu Cloudstrike", {
-	[-5630] = "Alarm",
-	[102573] = "Alert",
-	["stages"] = "Info",
+	[-5630] = "alarm",
+	[102573] = "alert",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Master Snowdrift", {
-	[106434] = "Alert",
-	[118961] = "Alarm",
-	["stages"] = "Info",
+	[106434] = "alert",
+	[118961] = "alarm",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Sha of Violence", {
-	[-5813] = {"Info","Long"},
-	[106872] = "Alarm",
+	[-5813] = {"info","long"},
+	[106872] = "alarm",
 })
 
 BigWigs:AddSounds("Taran Zhu", {
-	[107087] = "Long",
-	[107356] = "Warning",
-	[115002] = "Info",
+	[107087] = "long",
+	[107356] = "warning",
+	[115002] = "info",
 })

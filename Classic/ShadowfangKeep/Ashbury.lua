@@ -52,7 +52,7 @@ function mod:Asphyxiate(args)
 end
 
 function mod:DarkArchangelForm(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

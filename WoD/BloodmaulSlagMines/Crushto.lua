@@ -53,16 +53,16 @@ end
 
 function mod:FerociousYell(args)
 	yellCount = yellCount + 1
-	self:MessageOld(args.spellId, "orange", "Warning", CL.count:format(args.spellName, yellCount))
+	self:MessageOld(args.spellId, "orange", "warning", CL.count:format(args.spellName, yellCount))
 	self:CDBar(args.spellId, 13.3) -- Something will randomly delay this up to 19s
 end
 
 function mod:WildSlam(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 end
 
 function mod:CrushingLeap(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

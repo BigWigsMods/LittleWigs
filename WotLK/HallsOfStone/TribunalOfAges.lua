@@ -54,7 +54,7 @@ end
 function mod:OnEngage()
 	self:Bar("timers", 298, L.victory, "INV_Misc_PocketWatch_01")
 	self:Bar("timers", 43, self.displayName, "Achievement_Character_Dwarf_Male") -- first wave
-	self:DelayedMessage("timers", 43, "yellow", CL.incoming:format(CL.adds), false, "Info")
+	self:DelayedMessage("timers", 43, "yellow", CL.incoming:format(CL.adds), false, "info")
 end
 
 function mod:OnWin()
@@ -91,7 +91,7 @@ do
 
 	local function announce(self)
 		if isOnMe or self:Dispeller("magic") then
-			self:TargetMessageOld(59868, playerList, "orange", "Alarm", nil, nil, true)
+			self:TargetMessageOld(59868, playerList, "orange", "alarm", nil, nil, true)
 		else
 			wipe(playerList) -- :TargetMessage calls wipe() on its 2nd argument
 		end
@@ -121,7 +121,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(59866, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(59866, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

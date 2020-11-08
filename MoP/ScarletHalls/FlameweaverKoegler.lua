@@ -40,12 +40,12 @@ end
 --
 
 function mod:QuickenedMind(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL["onboss"]:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL["onboss"]:format(args.spellName))
 end
 
 function mod:BreathCast(args)
 	local breath = self:SpellName(31661)
-	self:MessageOld(args.spellId, "yellow", "Long", CL["casting"]:format(breath))
+	self:MessageOld(args.spellId, "yellow", "long", CL["casting"]:format(breath))
 	self:Bar(args.spellId, 2, CL["cast"]:format(breath), args.spellId)
 end
 
@@ -60,6 +60,6 @@ end
 
 function mod:BookBurner(args)
 	self:Bar(args.spellId, 3, CL["cast"]:format(args.spellName))
-	self:MessageOld(args.spellId, "red", "Info", CL["casting"]:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "info", CL["casting"]:format(args.spellName))
 end
 

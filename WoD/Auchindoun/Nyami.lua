@@ -37,19 +37,19 @@ end
 --
 
 function mod:SoulVessel(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, 51)
 	self:Bar(args.spellId, 11.5, CL.cast:format(args.spellName))
 end
 
 function mod:TornSpirits(args)
-	self:MessageOld(args.spellId, "yellow", "Alert", CL.incoming:format(CL.adds))
+	self:MessageOld(args.spellId, "yellow", "alert", CL.incoming:format(CL.adds))
 	self:CDBar(args.spellId, 51)
 	self:Bar(args.spellId, 3, CL.adds)
 end
 
 function mod:ShadowWordPain(args)
 	if self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "red", "alarm", nil, nil, true)
 	end
 end

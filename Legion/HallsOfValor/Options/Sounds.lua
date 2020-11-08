@@ -1,52 +1,52 @@
 
 BigWigs:AddSounds("Hymdall", {
-	[191284] = "Long",
-	[193092] = "Info",
-	[193235] = {"Alarm","Alert"},
+	[191284] = "long",
+	[193092] = "info",
+	[193235] = {"alarm","alert"},
 })
 
 BigWigs:AddSounds("Hyrja", {
-	[191976] = "Alarm",
-	[192018] = "Alert",
-	[192048] = "Alarm",
-	[192307] = "Long",
-	[200901] = "Long",
+	[191976] = "alarm",
+	[192018] = "alert",
+	[192048] = "alarm",
+	[192307] = "long",
+	[200901] = "long",
 })
 
 BigWigs:AddSounds("Fenryr", {
-	[196543] = "Alert",
-	[196838] = "Warning",
-	[197556] = "Info",
+	[196543] = "alert",
+	[196838] = "warning",
+	[197556] = "info",
 })
 
 BigWigs:AddSounds("God-King Skovald", {
-	[193659] = "Alarm",
-	[193668] = "Warning",
-	[193702] = "Alarm",
-	[193826] = "Long",
+	[193659] = "alarm",
+	[193668] = "warning",
+	[193702] = "alarm",
+	[193826] = "long",
 })
 
 BigWigs:AddSounds("Odyn", {
-	[197961] = {"Alarm","Warning"},
-	[198077] = "Alert",
-	[198263] = "Long",
-	[200988] = "Alert",
-	["warmup"] = "Info",
+	[197961] = {"alarm","warning"},
+	[198077] = "alert",
+	[198263] = "long",
+	[200988] = "alert",
+	["warmup"] = "info",
 })
 
 BigWigs:AddSounds("Halls of Valor Trash", {
-	[191508] = "Alarm",
-	[192158] = "Alarm",
-	[192563] = "Alarm",
-	[198745] = "Info",
-	[198888] = "Alarm",
-	[198931] = "Alarm",
-	[198934] = "Alarm",
-	[199210] = "Alarm",
-	[199341] = "Alarm",
-	[199726] = "Alarm",
-	[199805] = {"Alert","Warning"},
-	[210875] = "Alarm",
-	[215430] = "Warning",
-	[215433] = "Alarm",
+	[191508] = "alarm",
+	[192158] = "alarm",
+	[192563] = "alarm",
+	[198745] = "info",
+	[198888] = "alarm",
+	[198931] = "alarm",
+	[198934] = "alarm",
+	[199210] = "alarm",
+	[199341] = "alarm",
+	[199726] = "alarm",
+	[199805] = {"alert","warning"},
+	[210875] = "alarm",
+	[215430] = "warning",
+	[215433] = "alarm",
 })

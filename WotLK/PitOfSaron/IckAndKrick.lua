@@ -60,7 +60,7 @@ end
 
 function mod:ToxicWaste(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(70274, "blue", "Alarm", CL.underyou:format(args.spellName))
+		self:MessageOld(70274, "blue", "alarm", CL.underyou:format(args.spellName))
 		self:Flash(70274)
 	end
 end
@@ -76,7 +76,7 @@ function mod:UNIT_AURA(_, unit)
 	if pursuitWarned[n] and not name then
 		pursuitWarned[n] = nil
 	elseif name and not pursuitWarned[n] then
-		self:TargetMessageOld(68987, n, "yellow", "Alert")
+		self:TargetMessageOld(68987, n, "yellow", "alert")
 		pursuitWarned[n] = true
 	end
 end

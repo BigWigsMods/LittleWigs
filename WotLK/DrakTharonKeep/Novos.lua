@@ -83,7 +83,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId == 59854 and 49034 or args.spellId, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(args.spellId == 59854 and 49034 or args.spellId, "blue", "alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -93,7 +93,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source, _, _, target) -- Crystal Handler spawned
 	if source == self.displayName then -- cross-module safety, this is the only BOSS_EMOTE present in this encounter.
 		crystalHandlersSpawned = crystalHandlersSpawned + 1
-		self:MessageOld("adds", "yellow", "Alarm", CL.spawned:format(target), false)
+		self:MessageOld("adds", "yellow", "alarm", CL.spawned:format(target), false)
 		if crystalHandlersSpawned <= 4 then
 			self:CDBar("adds", 15.8, CL.count:format(target, crystalHandlersSpawned), "spell_shadow_raisedead")
 		end

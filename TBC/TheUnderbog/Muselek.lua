@@ -36,7 +36,7 @@ end
 --
 
 function mod:HuntersMark(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Dispeller("magic"))
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 
@@ -45,7 +45,7 @@ function mod:HuntersMarkRemoved(args)
 end
 
 function mod:Frenzy(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Long", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "long", nil, nil, true)
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 
@@ -54,11 +54,11 @@ do
 
 	function mod:EchoingRoar(args)
 		if self:Me(args.destGUID) and not self:Healer() then
-			self:TargetMessageOld(args.spellId, args.destName, "blue", "Warning")
+			self:TargetMessageOld(args.spellId, args.destName, "blue", "warning")
 		elseif self:Healer() then
 			playerList[#playerList+1] = args.destName
 			if #playerList == 1 then
-				self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "red", "Warning", nil, nil, true)
+				self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "red", "warning", nil, nil, true)
 			end
 		end
 	end

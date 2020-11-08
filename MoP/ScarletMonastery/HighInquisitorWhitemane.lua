@@ -61,7 +61,7 @@ end
 --
 
 function mod:MassRes(args)
-	self:MessageOld(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "alarm")
 	self:Bar(args.spellId, 10)
 end
 

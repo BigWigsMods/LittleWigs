@@ -38,25 +38,25 @@ end
 --
 
 function mod:DebilitatingFixation(args)
-	self:MessageOld(args.spellId, "yellow", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 20) -- 20-23
 end
 
 function mod:RejuvenatingSerumIncoming(args)
-	self:MessageOld(args.spellId, "orange", "Long", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "long", CL.incoming:format(args.spellName))
 end
 
 function mod:RejuvenatingSerum(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", nil, nil, self:Dispeller("magic", true))
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning", nil, nil, self:Dispeller("magic", true))
 end
 
 function mod:VilebloodSerum(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL.underyou:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 	end
 end
 
 function mod:Eruption(args)
 	local raidIcon = CombatLog_String_GetIcon(args.sourceRaidFlags)
-	self:MessageOld(args.spellId, "red", "Info", raidIcon.. args.spellName)
+	self:MessageOld(args.spellId, "red", "info", raidIcon.. args.spellName)
 end

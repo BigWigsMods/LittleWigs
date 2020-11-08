@@ -1,20 +1,20 @@
 
 BigWigs:AddSounds("Baron Ashbury", {
-	[93757] = "Long",
+	[93757] = "long",
 })
 
 BigWigs:AddSounds("Commander Springvale", {
-	[93687] = "Alert",
-	[93844] = "Alarm",
+	[93687] = "alert",
+	[93844] = "alarm",
 })
 
 BigWigs:AddSounds("Lord Walden", {
-	[93617] = {"Info","Warning"},
-	[93689] = "Info",
+	[93617] = {"info","warning"},
+	[93689] = "info",
 })
 
 BigWigs:AddSounds("Lord Godfrey", {
-	[93520] = {"Alert","Long"},
-	[93629] = "Alarm",
-	[93707] = "Info",
+	[93520] = {"alert","long"},
+	[93629] = "alarm",
+	[93707] = "info",
 })

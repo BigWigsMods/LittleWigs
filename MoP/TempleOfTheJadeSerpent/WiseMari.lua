@@ -42,7 +42,7 @@ end
 
 function mod:OnEngage()
 	deaths = 0
-	self:MessageOld("stages", "green", "Info", CL.stage:format(1), false)
+	self:MessageOld("stages", "green", "info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -51,12 +51,12 @@ end
 
 function mod:BubbleBurst(args)
 	local text = CL.stage:format(2)
-	self:DelayedMessage("stages", 4, "green", text, false, "Info")
+	self:DelayedMessage("stages", 4, "green", text, false, "info")
 	self:Bar("stages", 4, text, args.spellId)
 end
 
 function mod:CallWater(args)
-	self:DelayedMessage(-6327, 5, "red", CL.count:format(CL.add_spawned, deaths+1), args.spellId, "Alarm")
+	self:DelayedMessage(-6327, 5, "red", CL.count:format(CL.add_spawned, deaths+1), args.spellId, "alarm")
 	self:Bar(-6327, 5, CL.next_add, args.spellId)
 end
 
@@ -72,7 +72,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

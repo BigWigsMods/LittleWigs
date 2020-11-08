@@ -56,7 +56,7 @@ function mod:TimeBomb(args)
 		self:Say(51121)
 		self:SayCountdown(51121, 6)
 	end
-	self:TargetMessageOld(51121, args.destName, "orange", "Alert", nil, nil, self:Healer()) -- damage is based on missing health
+	self:TargetMessageOld(51121, args.destName, "orange", "alert", nil, nil, self:Healer()) -- damage is based on missing health
 	self:TargetBar(51121, 6, args.destName)
 	self:PrimaryIcon(51121, args.destName)
 end
@@ -83,7 +83,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end

@@ -28,6 +28,6 @@ end
 --
 
 function mod:Mini(args)
-	self:MessageOld(args.spellId, "yellow", "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "info", CL.casting:format(args.spellName))
 end
 

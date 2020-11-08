@@ -116,7 +116,7 @@ function mod:DoomLord(args)
 end
 
 function mod:DevourEnslavement(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL["removed"]:format(self:SpellName(1098))) -- Enslave Demon
+	self:MessageOld(args.spellId, "orange", "warning", CL["removed"]:format(self:SpellName(1098))) -- Enslave Demon
 	self:Flash(args.spellId)
 	self:StopBar(1098)
 	self:CancelDelayedMessage(CL["custom_sec"]:format(CL["over"]:format(args.spellName), 60))
@@ -138,7 +138,7 @@ end
 do
 	local t = 0
 	function mod:Cataclysm(args)
-		self:MessageOld(args.spellId, "red", "Warning")
+		self:MessageOld(args.spellId, "red", "warning")
 		self:Bar(args.spellId, 6, "<"..args.spellName..">")
 		self:CDBar(args.spellId, 60)
 		t = GetTime()
@@ -153,7 +153,7 @@ end
 
 function mod:Agony(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL["you"]:format(args.spellName))
 	end
 end
 
@@ -165,12 +165,12 @@ end
 
 function mod:RainOfFire(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alert", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alert", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:ChaosBolt(args)
-	self:MessageOld(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "long")
 	self:Bar(args.spellId, 6, "<"..args.spellName..">")
 	self:Bar(args.spellId, 60)
 end

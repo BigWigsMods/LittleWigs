@@ -55,7 +55,7 @@ do
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:MessageOld("stages", "yellow", "Info", CL.stage:format(2), false)
+			self:MessageOld("stages", "yellow", "info", CL.stage:format(2), false)
 		end
 	end
 	function mod:EntanglingGraspRemoved()
@@ -65,7 +65,7 @@ do
 end
 
 function mod:TidalSurge()
-	self:MessageOld("stages", "yellow", "Info", CL.stage:format(3), false)
+	self:MessageOld("stages", "yellow", "info", CL.stage:format(3), false)
 end
 
 function mod:GOSSIP_SHOW()

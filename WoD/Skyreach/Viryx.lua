@@ -68,19 +68,19 @@ end
 
 do
 	local function bossTarget(self, name)
-		self:TargetMessageOld(153954, name, "yellow", "Warning", nil, nil, true)
+		self:TargetMessageOld(153954, name, "yellow", "warning", nil, nil, true)
 	end
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 153954 then -- Cast Down
 			self:GetBossTarget(bossTarget, 0.7, UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
 		elseif spellId == 154049 then -- Call Adds
-			self:MessageOld("add", "red", "Info", CL.add_spawned, L.add_icon) -- Cog icon
+			self:MessageOld("add", "red", "info", CL.add_spawned, L.add_icon) -- Cog icon
 			self:CDBar("add", 58, CL.add, L.add_icon) -- 57-60
 		end
 	end
 end
 
 function mod:Shielding(args)
-	self:MessageOld(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "long")
 end

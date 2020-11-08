@@ -1,5 +1,5 @@
 
 BigWigs:AddSounds("Altairus", {
-	[88282] = "Info",
-	[88286] = "Info",
+	[88282] = "info",
+	[88286] = "info",
 })

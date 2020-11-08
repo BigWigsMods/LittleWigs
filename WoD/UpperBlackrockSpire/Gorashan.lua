@@ -68,11 +68,11 @@ end
 
 function mod:PowerConduit(args)
 	stacks = stacks + (self:Normal() and 1 or 2)
-	self:MessageOld(args.spellId, "red", "Warning", CL.percent:format(nextPowerConduitWarning + 20, CL.count:format(args.spellName, stacks)))
+	self:MessageOld(args.spellId, "red", "warning", CL.percent:format(nextPowerConduitWarning + 20, CL.count:format(args.spellName, stacks)))
 end
 
 function mod:PowerConduitRemoved(args)
-	self:MessageOld(args.spellId, "green", "Long", CL.removed:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "long", CL.removed:format(args.spellName))
 end
 
 function mod:PowerConduitReduced(args)
@@ -80,7 +80,7 @@ function mod:PowerConduitReduced(args)
 end
 
 function mod:ShrapnelNova(args)
-	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 2.5, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 30) -- 29-33
 end

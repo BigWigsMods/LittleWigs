@@ -1,44 +1,44 @@
 
 BigWigs:AddSounds("Agronox", {
-	[235751] = "Alarm",
-	[236524] = "Info",
-	[236527] = "Alert",
-	[236639] = "Alert",
-	[236640] = "Alert",
-	[236650] = {"Alert","Warning"},
-	[238674] = "Alarm",
+	[235751] = "alarm",
+	[236524] = "info",
+	[236527] = "alert",
+	[236639] = "alert",
+	[236640] = "alert",
+	[236650] = {"alert","warning"},
+	[238674] = "alarm",
 })
 
 BigWigs:AddSounds("Thrashbite the Scornful", {
-	[237276] = "Alert",
-	[237726] = "Warning",
-	[243124] = "Alert",
+	[237276] = "alert",
+	[237726] = "warning",
+	[243124] = "alert",
 })
 
 BigWigs:AddSounds("Domatrax", {
-	[-15076] = "Alarm",
-	[234107] = "Warning",
-	[236543] = "Alert",
-	[238410] = {"Alert","Warning"},
+	[-15076] = "alarm",
+	[234107] = "warning",
+	[236543] = "alert",
+	[238410] = {"alert","warning"},
 })
 
 BigWigs:AddSounds("Mephistroth", {
-	[233155] = "Alarm",
-	[233196] = {"Alert","Warning"},
-	[233206] = {"Long","Warning"},
-	[234817] = "Alarm",
+	[233155] = "alarm",
+	[233196] = {"alert","warning"},
+	[233206] = {"long","warning"},
+	[234817] = "alarm",
 })
 
 BigWigs:AddSounds("Cathedral of Eternal Night Trash", {
-	[236737] = "Alert",
-	[237391] = "Warning",
-	[237565] = "Long",
-	[238543] = "Warning",
-	[238653] = "Alarm",
-	[239101] = "Warning",
-	[239232] = "Warning",
-	[239320] = "Warning",
-	[241598] = "Long",
-	[241772] = "Warning",
-	[242760] = "Alarm",
+	[236737] = "alert",
+	[237391] = "warning",
+	[237565] = "long",
+	[238543] = "warning",
+	[238653] = "alarm",
+	[239101] = "warning",
+	[239232] = "warning",
+	[239320] = "warning",
+	[241598] = "long",
+	[241772] = "warning",
+	[242760] = "alarm",
 })

@@ -44,7 +44,7 @@ end
 
 function mod:ElementiumBulwark(args)
 	if self:MobId(args.destGUID) == 42188 then -- we only warn if the boss gains it, not a mage spell stealing
-		self:MessageOld(args.spellId, "red", "Alarm")
+		self:MessageOld(args.spellId, "red", "alarm")
 		self:Bar(args.spellId, 10)
 	end
 end
@@ -68,7 +68,7 @@ function mod:Enrage(args)
 end
 
 function mod:Paralyze(args)
-	self:MessageOld(args.spellId, "red", "Alert", CL.other:format(args.spellName, CL.soon:format(self:SpellName(78807))))
+	self:MessageOld(args.spellId, "red", "alert", CL.other:format(args.spellName, CL.soon:format(self:SpellName(78807))))
 end
 
 function mod:Shatter(args)
@@ -77,7 +77,7 @@ function mod:Shatter(args)
 end
 
 function mod:GroundSlam(args)
-	self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 end
 

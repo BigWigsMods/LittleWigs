@@ -56,7 +56,7 @@ do
 		end
 		linkTargets[#linkTargets + 1] = args.destName
 		if #linkTargets == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.2, args.spellId, linkTargets, "orange", "Alarm")
+			self:ScheduleTimer("TargetMessageOld", 0.2, args.spellId, linkTargets, "orange", "alarm")
 			self:PrimaryIcon(args.spellId, args.destName)
 		else
 			self:SecondaryIcon(args.spellId, args.destName)
@@ -79,7 +79,7 @@ end
 
 function mod:WhispersOfHethiss(args)
 	if self:MobId(args.destGUID) == 52155 then return end -- applies this to himself as well
-	self:MessageOld(args.spellId, "orange", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
@@ -89,7 +89,7 @@ function mod:WhispersOfHethissRemoved(args)
 end
 
 function mod:Bloodvenom(args)
-	self:MessageOld(args.spellId, "red", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alert", CL.casting:format(args.spellName))
 	self:ScheduleTimer("Bar", 3, args.spellId, 14)
 end
 
@@ -100,6 +100,6 @@ function mod:BlessingOfTheSnakeGod()
 end
 
 function mod:BlessingOfTheSnakeGodRemoved()
-	self:MessageOld(96653, "green", "Info") -- Venom Withdrawal
+	self:MessageOld(96653, "green", "info") -- Venom Withdrawal
 	self:Bar(96653, 10)
 end

@@ -66,20 +66,20 @@ end
 
 -- Mightstone Breaker
 function mod:Avalanche(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 end
 
 -- Vileshard Hulk
 function mod:PiercingShards(args)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end
 
 -- Rockback Gnasher
 function mod:StoneGaze(args)
-	self:MessageOld(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(args.spellName))
 end
 
 -- Rockbound Trapper
 function mod:Bound(args)
-	self:MessageOld(args.spellId, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(args.spellName))
 end

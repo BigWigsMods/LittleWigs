@@ -41,13 +41,13 @@ end
 --
 
 function mod:SummonVolatileEnergy(args)
-	self:MessageOld(args.spellId, "yellow", "Info")
+	self:MessageOld(args.spellId, "yellow", "info")
 	self:Bar(args.spellId, 9.7)
 end
 
 function mod:PowerDischarge(_, _, _, spellId)
 	if spellId == 227278 then
-		self:MessageOld(227279, "orange", "Alert")
+		self:MessageOld(227279, "orange", "alert")
 		self:CDBar(227279, 12)
 	end
 end
@@ -59,20 +59,20 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(227279, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(227279, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:Evocation(args)
-	self:MessageOld(args.spellId, "green", "Long")
+	self:MessageOld(args.spellId, "green", "long")
 	self:CastBar(args.spellId, 20)
 	self:StopBar(227267) -- Summon Volatile Energy
 	self:StopBar(227279) -- Power Discharges
 end
 
 function mod:EvocationOver(args)
-	self:MessageOld(args.spellId, "cyan", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "cyan", "info", CL.over:format(args.spellName))
 	self:CDBar(args.spellId, 69)
 end

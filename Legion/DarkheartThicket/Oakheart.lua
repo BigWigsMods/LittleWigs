@@ -42,7 +42,7 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessageOld(204646, player, "orange", "Alert", nil, nil, true)
+		self:TargetMessageOld(204646, player, "orange", "alert", nil, nil, true)
 		self:PrimaryIcon(204646, player)
 		if self:Me(guid) then
 			self:Say(204646)
@@ -63,11 +63,11 @@ function mod:StranglingRoots(args)
 end
 
 function mod:NightmareBreath(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 	self:CDBar(args.spellId, 26) -- hc pull:18.6, 26.7, 32.8 / m pull:19.5, 32.8, 26.7, 33.5
 end
 
 function mod:ShatteredEarth(args)
-	self:MessageOld(args.spellId, "red", "Alarm")
+	self:MessageOld(args.spellId, "red", "alarm")
 	self:CDBar(args.spellId, 51) -- m pull: 7.3, 50.9, 51.1
 end

@@ -56,13 +56,13 @@ function mod:Smash(args)
 end
 
 function mod:Roar(args)
-	self:MessageOld(42708, "red", self:Ranged() and "Warning", CL.casting:format(args.spellName), args.spellId)
+	self:MessageOld(42708, "red", self:Ranged() and "warning", CL.casting:format(args.spellName), args.spellId)
 	self:CastBar(42708, 2, args.spellId)
 end
 
 function mod:WoeStrike(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("curse") then
-		self:TargetMessageOld(42730, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(42730, args.destName, "orange", "alarm", nil, nil, true)
 		self:TargetBar(42730, 10, args.destName)
 	end
 end

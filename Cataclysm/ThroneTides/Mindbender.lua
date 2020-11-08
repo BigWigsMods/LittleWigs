@@ -46,7 +46,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 end
 
 function mod:Enslave(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -60,7 +60,7 @@ end
 
 function mod:MindFog(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "alarm")
 	end
 end
 

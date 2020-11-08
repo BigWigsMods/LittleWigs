@@ -143,19 +143,19 @@ end
 
 function mod:Garrote(args)
 	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "orange", "Info")
+	self:StackMessage(args.spellId, args.destName, amount, "orange", "info")
 end
 
 function mod:CoatCheck(args)
 	if self:Tank() then
-		self:MessageOld(args.spellId, "orange", "Alarm", CL.casting:format(args.spellName))
+		self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
 	end
 	self:Bar(args.spellId, 34)
 end
 
 function mod:CoatCheckDispellable(args)
 	if not self:Tank() then
-		self:TargetMessageOld(227851, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(227851, args.destName, "orange", "alarm", nil, nil, true)
 	end
 end
 
@@ -164,16 +164,16 @@ function mod:GhastlyPurge(args)
 end
 
 function mod:ManaDrain(args)
-	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
 end
 
 function mod:HealingStream(args)
-	self:MessageOld(args.spellId, "red", self:Interrupter() and "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", self:Interrupter() and "warning", CL.casting:format(args.spellName))
 end
 
 function mod:IronWhirlwind(args)
-	self:MessageOld(args.spellId, "yellow", "Long")
+	self:MessageOld(args.spellId, "yellow", "long")
 	self:Bar(args.spellId, 10.5)
 end
 
@@ -184,14 +184,14 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(227646, "blue", "Alarm", CL.underyou:format(args.spellName))
+				self:MessageOld(227646, "blue", "alarm", CL.underyou:format(args.spellName))
 			end
 		end
 	end
 end
 
 function mod:EmpoweredArms(args)
-	self:MessageOld(args.spellId, "red", self:Tank() and "Info", CL.on:format(args.spellName, args.destName))
+	self:MessageOld(args.spellId, "red", self:Tank() and "info", CL.on:format(args.spellName, args.destName))
 end
 
 do
@@ -199,7 +199,7 @@ do
 		if self:Me(guid) then
 			self:Say(227463)
 		end
-		self:TargetMessageOld(227463, player, "orange", "Warning")
+		self:TargetMessageOld(227463, player, "orange", "warning")
 	end
 
 	function mod:WhirlingEdge(args)
@@ -208,7 +208,7 @@ do
 end
 
 function mod:WillBreaker(args)
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 	self:Bar(args.spellId, 10.9)
 end
 

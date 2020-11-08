@@ -87,19 +87,19 @@ end
 -- Life Warden Gola
 function mod:RevitalizingWaters(args)
 	local raidIcon = CombatLog_String_GetIcon(args.sourceRaidFlags)
-	self:MessageOld(args.spellId, "orange", "Warning", CL.other:format(raidIcon.. L[83892], CL.casting:format(self:SpellName(31730)))) -- 31730 = "Heal"
+	self:MessageOld(args.spellId, "orange", "warning", CL.other:format(raidIcon.. L[83892], CL.casting:format(self:SpellName(31730)))) -- 31730 = "Heal"
 end
 
 function mod:RapidTides(args)
 	local raidIcon = CombatLog_String_GetIcon(args.destRaidFlags)
 	local name = L[self:MobId(args.destGUID)] or args.destName
-	self:MessageOld(args.spellId, "red", self:Dispeller("magic", true) and "Alarm", CL.other:format(args.spellName, raidIcon..name))
+	self:MessageOld(args.spellId, "red", self:Dispeller("magic", true) and "alarm", CL.other:format(args.spellName, raidIcon..name))
 end
 
 -- Earthshaper Telu
 function mod:Briarskin(args)
 	local raidIcon = CombatLog_String_GetIcon(args.sourceRaidFlags)
-	self:MessageOld(args.spellId, "yellow", "Alert", CL.other:format(raidIcon.. L[83893], CL.casting:format(args.spellName)))
+	self:MessageOld(args.spellId, "yellow", "alert", CL.other:format(raidIcon.. L[83893], CL.casting:format(args.spellName)))
 end
 
 function mod:BramblePatch(args)

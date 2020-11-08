@@ -63,7 +63,7 @@ function mod:VeilOfSkyRemoved()
 end
 
 function mod:Supernova(args)
-	self:MessageOld(74137, "red", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(74137, "red", "alarm", CL.casting:format(args.spellName))
 	self:CastBar(74137, 3)
 end
 
@@ -74,7 +74,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(74135, "blue", "Alert", CL.you:format(args.spellName))
+				self:MessageOld(74135, "blue", "alert", CL.you:format(args.spellName))
 			end
 		end
 	end
@@ -84,7 +84,7 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
@@ -104,6 +104,6 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 69941 then -- Mirror Image
-		self:MessageOld(-2556, "cyan", "Info")
+		self:MessageOld(-2556, "cyan", "info")
 	end
 end

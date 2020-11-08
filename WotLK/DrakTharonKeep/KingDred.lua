@@ -37,7 +37,7 @@ end
 
 function mod:PiercingSlash(args)
 	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessageOld(args.spellId, args.destName, "orange", "Alarm", nil, nil, true)
+		self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, true)
 		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end

@@ -28,7 +28,7 @@ end
 --
 
 function mod:Whirlwind(args)
-	self:MessageOld(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "info")
 	self:CDBar(args.spellId, 14.5)
 end
 

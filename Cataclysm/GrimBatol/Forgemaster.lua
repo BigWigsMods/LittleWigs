@@ -41,7 +41,7 @@ end
 function mod:Roar(args)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
-		self:StackMessage(args.spellId, args.destName, 3, "blue", "Long", self:SpellName(56748)) -- 56748 = "Roar"
+		self:StackMessage(args.spellId, args.destName, 3, "blue", "long", self:SpellName(56748)) -- 56748 = "Roar"
 	end
 end
 
@@ -52,17 +52,17 @@ function mod:RoarRemoved(args)
 end
 
 function mod:Phalanx(args)
-	self:MessageOld(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:Encumbered(args)
-	self:MessageOld(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 	self:Bar(args.spellId, 30)
 end
 
 function mod:Blades(args)
-	self:MessageOld(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 	self:Bar(args.spellId, 30)
 end
 
@@ -72,7 +72,7 @@ end
 
 function mod:CaveIn(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "alarm")
 		self:Flash(args.spellId)
 	end
 end

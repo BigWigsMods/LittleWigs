@@ -1,14 +1,14 @@
 
 BigWigs:AddSounds("Thalnos the Soulrender", {
-	[-5865] = "Alarm",
-	[115297] = "Info",
+	[-5865] = "alarm",
+	[115297] = "info",
 })
 
 BigWigs:AddSounds("Brother Korloff", {
-	[114460] = "Alarm",
-	["fists"] = "Alert",
+	[114460] = "alarm",
+	["fists"] = "alert",
 })
 
 BigWigs:AddSounds("High Inquisitor Whitemane", {
-	[113134] = "Alarm",
+	[113134] = "alarm",
 })

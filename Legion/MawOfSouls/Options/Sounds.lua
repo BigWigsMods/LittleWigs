@@ -1,37 +1,37 @@
 
 BigWigs:AddSounds("Ymiron", {
-	[193211] = "Alert",
-	[193364] = "Long",
-	[193566] = "Warning",
-	[193977] = "Alarm",
+	[193211] = "alert",
+	[193364] = "long",
+	[193566] = "warning",
+	[193977] = "alarm",
 })
 
 BigWigs:AddSounds("Harbaron", {
-	[194216] = "Alert",
-	[194231] = "Info",
-	[194325] = "Warning",
-	[194668] = "Alarm",
+	[194216] = "alert",
+	[194231] = "info",
+	[194325] = "warning",
+	[194668] = "alarm",
 })
 
 BigWigs:AddSounds("Helya", {
-	[185539] = "Warning",
-	[196947] = "Info",
-	[197262] = "Alert",
-	[198495] = "Warning",
-	[202088] = "Alarm",
-	[227233] = "Alarm",
-	["destructor_tentacle"] = "Warning",
-	["stages"] = "Info",
+	[185539] = "warning",
+	[196947] = "info",
+	[197262] = "alert",
+	[198495] = "warning",
+	[202088] = "alarm",
+	[227233] = "alarm",
+	["destructor_tentacle"] = "warning",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Maw of Souls Trash", {
-	[192019] = "Long",
-	[194615] = "Alarm",
-	[194657] = "Alarm",
-	[195293] = "Long",
-	[198324] = {"Alarm","Warning"},
-	[198405] = {"Info","Warning"},
-	[199514] = {"Alarm","Alert"},
-	[199589] = {"Alarm","Alert"},
-	[216197] = "Alarm",
+	[192019] = "long",
+	[194615] = "alarm",
+	[194657] = "alarm",
+	[195293] = "long",
+	[198324] = {"alarm","warning"},
+	[198405] = {"info","warning"},
+	[199514] = {"alarm","alert"},
+	[199589] = {"alarm","alert"},
+	[216197] = "alarm",
 })

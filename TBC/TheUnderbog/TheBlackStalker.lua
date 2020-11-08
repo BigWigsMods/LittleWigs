@@ -50,7 +50,7 @@ function mod:StaticCharge(args)
 	else
 		self:OpenProximity(args.spellId, 8, args.destName)
 	end
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	self:TargetBar(args.spellId, 12, args.destName)
 	self:SecondaryIcon(args.spellId, args.destName)
 end

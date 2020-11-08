@@ -36,7 +36,7 @@ function mod:MurmursTouch(args)
 		self:Say(38794)
 		self:SayCountdown(38794, duration)
 	end
-	self:TargetMessageOld(38794, args.destName, "yellow", "Alarm")
+	self:TargetMessageOld(38794, args.destName, "yellow", "alarm")
 	self:TargetBar(38794, duration, args.destName)
 	self:PrimaryIcon(38794, args.destName)
 end

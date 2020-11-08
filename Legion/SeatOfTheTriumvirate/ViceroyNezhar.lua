@@ -82,7 +82,7 @@ end
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 249336 then -- Summon Ethereal Guards
-		self:MessageOld(248804, "yellow", "Info", CL.spawned:format(L.guards))
+		self:MessageOld(248804, "yellow", "info", CL.spawned:format(L.guards))
 	end
 end
 
@@ -109,7 +109,7 @@ do
 		local t = GetTime()
 		if t-prev > 3 then
 			prev = t
-			self:MessageOld(-15926, "yellow", "Info", CL.spawned:format(L.tentacles))
+			self:MessageOld(-15926, "yellow", "info", CL.spawned:format(L.tentacles))
 			if not self:Mythic() or nextDarkBulwark - GetTime() > 30.5 then
 				self:CDBar(-15926, 30.5, L.tentacles)
 			end
@@ -124,14 +124,14 @@ function mod:TentacleDeath()
 end
 
 function mod:HowlingDark(args)
-	self:MessageOld(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "alarm")
 	if not self:Mythic() or nextDarkBulwark - GetTime() > 31.6 then
 		self:CDBar(args.spellId, 31.6)
 	end
 end
 
 function mod:EntropicForce(args)
-	self:MessageOld(args.spellId, "red", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 	self:Bar(args.spellId, 62)
 	self:CastBar(args.spellId, 10)
 end
@@ -151,7 +151,7 @@ function mod:DarkBulwarkRemoved(args)
 	if guardsUp > 0 then
 		self:MessageOld(args.spellId, "cyan", nil, CL.mob_remaining:format(args.sourceName, guardsUp))
 	else
-		self:MessageOld(args.spellId, "cyan", "Info", CL.removed:format(args.spellName))
+		self:MessageOld(args.spellId, "cyan", "info", CL.removed:format(args.spellName))
 	end
 	self:UpdateInfoBox()
 end
@@ -167,7 +167,7 @@ end
 function mod:Interrupt(args)
 	if args.extraSpellId == 248736 then -- Eternal Twilight
 		self:StopBar(CL.cast:format(args.extraSpellName))
-		self:MessageOld(248736, "green", "Long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
+		self:MessageOld(248736, "green", "long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
 		self:CDBar(-15926, 11, L.tentacles) -- Tentacles
 		self:CDBar(244751, 16) -- Howling Dark
 	end
@@ -180,7 +180,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 			end
 		end
 	end
