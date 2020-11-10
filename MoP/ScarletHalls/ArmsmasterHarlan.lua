@@ -75,7 +75,7 @@ end
 function mod:BladesCastStart(args)
 	self:MessageOld("blades", "orange", "alert", CL["casting"]:format(args.spellName), args.spellId)
 	self:Bar("blades", 6, CL["cast"]:format(args.spellName), args.spellId)
-	self:Flash("blades")
+	self:Flash("blades", args.spellId)
 	self:StopBar(845)
 end
 
