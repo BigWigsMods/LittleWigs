@@ -6,6 +6,7 @@
 <Script file="Vorpil.lua"/>
 <Script file="Murmur.lua"/>
 
+<!-- <Include file="Locales\locales.xml"/> -->
 <Include file="Options\options.xml"/>
 
 </Ui>

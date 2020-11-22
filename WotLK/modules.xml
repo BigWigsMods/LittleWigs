@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="Ahnkahet\modules.xml"/>
+<Include file="AzjolNerub\modules.xml"/>
+<Include file="DrakTharonKeep\modules.xml"/>
+<Include file="Gundrak\modules.xml"/>
+<Include file="HallsOfLightning\modules.xml"/>
+<Include file="HallsOfReflection\modules.xml"/>
+<Include file="HallsOfStone\modules.xml"/>
+<Include file="PitOfSaron\modules.xml"/>
+<Include file="TheCullingOfStratholme\modules.xml"/>
+<Include file="TheForgeOfSouls\modules.xml"/>
+<Include file="TheNexus\modules.xml"/>
+<Include file="TheOculus\modules.xml"/>
+<Include file="TheVioletHold\modules.xml"/>
+<Include file="TrialOfTheChampion\modules.xml"/>
+<Include file="UtgardeKeep\modules.xml"/>
+<Include file="UtgardePinnacle\modules.xml"/>
+
+</Ui>

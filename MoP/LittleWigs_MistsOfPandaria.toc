@@ -1,0 +1,21 @@
+## Interface: 90001
+
+## Title: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-deDE: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-esES: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-esMX: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-frFR: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-itIT: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-koKR: LittleWigs [|cffeda55f판다리아의 안개|r]
+## Title-ptBR: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-ruRU: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-zhCN: LittleWigs [|cffeda55f熊猫人之谜|r]
+## Title-zhTW: LittleWigs [|cffeda55f潘達利亞之謎|r]
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 959, 960, 961, 962, 994, 1001, 1004, 1011, 1112
+
+modules.xml

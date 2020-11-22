@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="AssaultOnVioletHold\modules.xml"/>
+<Include file="BlackRookHold\modules.xml"/>
+<Include file="CourtOfStars\modules.xml"/>
+<Include file="DarkheartThicket\modules.xml"/>
+<Include file="EyeOfAzshara\modules.xml"/>
+<Include file="HallsOfValor\modules.xml"/>
+<Include file="Karazhan\modules.xml"/>
+<Include file="MawOfSouls\modules.xml"/>
+<Include file="NeltharionsLair\modules.xml"/>
+<Include file="TheArcway\modules.xml"/>
+<Include file="VaultOfTheWardens\modules.xml"/>
+<Include file="CathedralOfEternalNight\modules.xml"/>
+<Include file="SeatOfTheTriumvirate\modules.xml"/>
+
+</Ui>

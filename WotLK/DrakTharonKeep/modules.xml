@@ -6,6 +6,7 @@
 <Script file="KingDred.lua"/>
 <Script file="TheProphetTharonja.lua"/>
 
+<!-- <Include file="Locales\locales.xml"/> -->
 <Include file="Options\options.xml"/>
 
 </Ui>

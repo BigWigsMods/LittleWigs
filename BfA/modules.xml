@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="AtalDazar\modules.xml"/>
+<Include file="Freehold\modules.xml"/>
+<Include file="KingsRest\modules.xml"/>
+<Include file="ShrineOfTheStorm\modules.xml"/>
+<Include file="SiegeOfBoralus\modules.xml"/>
+<Include file="TempleOfSethraliss\modules.xml"/>
+<Include file="TheMotherlode\modules.xml"/>
+<Include file="TolDagor\modules.xml"/>
+<Include file="Underrot\modules.xml"/>
+<Include file="WaycrestManor\modules.xml"/>
+<Include file="Mechagon\modules.xml"/>
+<Include file="HorrificVisionOfOrgrimmar\modules.xml"/>
+<Include file="HorrificVisionOfStormwind\modules.xml"/>
+
+</Ui>

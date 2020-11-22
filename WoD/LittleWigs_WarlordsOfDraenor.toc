@@ -1,0 +1,21 @@
+## Interface: 90001
+
+## Title: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-deDE: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-esES: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-esMX: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-frFR: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-itIT: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-koKR: LittleWigs [|cffeda55f드레노어의 전쟁군주|r]
+## Title-ptBR: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-ruRU: LittleWigs [|cffeda55fWarlords of Draenor|r]
+## Title-zhCN: LittleWigs [|cffeda55f德拉诺之王|r]
+## Title-zhTW: LittleWigs [|cffeda55f德拉諾之霸|r]
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 1175, 1176, 1182, 1195, 1208, 1209, 1279, 1358
+
+modules.xml

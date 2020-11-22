@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="Auchindoun\modules.xml"/>
+<Include file="BloodmaulSlagMines\modules.xml"/>
+<Include file="GrimrailDepot\modules.xml"/>
+<Include file="IronDocks\modules.xml"/>
+<Include file="ShadowmoonBurialGrounds\modules.xml"/>
+<Include file="Skyreach\modules.xml"/>
+<Include file="TheEverbloom\modules.xml"/>
+<Include file="UpperBlackrockSpire\modules.xml"/>
+
+</Ui>

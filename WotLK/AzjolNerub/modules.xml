@@ -5,6 +5,7 @@
 <Script file="Hadronox.lua"/>
 <Script file="Anubarak.lua"/>
 
+<!-- <Include file="Locales\locales.xml"/> -->
 <Include file="Options\options.xml"/>
 
 </Ui>

@@ -5,6 +5,7 @@
 <Script file="IckAndKrick.lua"/>
 <Script file="Tyrannus.lua"/>
 
+<!-- <Include file="Locales\locales.xml"/> -->
 <Include file="Options\options.xml"/>
 
 </Ui>
