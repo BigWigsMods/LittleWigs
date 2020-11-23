@@ -72,7 +72,7 @@ do
 			self:Say(334053)
 			self:PlaySound(334053, "warning")
 		end
-		self:TargetMessage(334053, name, "red")
+		self:TargetMessage(334053, "red", name)
 	end
 
 	function mod:PurifyingBlast(args)
@@ -82,7 +82,7 @@ do
 end
 
 function mod:ChargedStomp(args)
-	self:Message(args.spellId, "yelow")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 26)
 end
