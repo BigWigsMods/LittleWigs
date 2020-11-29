@@ -16,7 +16,7 @@ mod.engageId = 2394
 function mod:GetOptions()
 	return {
 		320787, -- Summon Power Crystal
-		323877, -- Echo Finger Laser X-treme
+		{323877, "SAY"}, -- Echo Finger Laser X-treme
 		320823, -- Experimental Squirrel Bomb
 		321061, -- Aerial Rocket Chicken Barrage
 	}, {
@@ -42,7 +42,7 @@ end
 -- Event Handlers
 --
 
-function mod:SummonPowerCrystal()
+function mod:SummonPowerCrystal(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 9) -- pull:9.0, 8.0, 16.0
