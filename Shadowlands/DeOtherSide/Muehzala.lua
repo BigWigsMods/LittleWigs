@@ -18,6 +18,7 @@ function mod:GetOptions()
 		325725, -- Cosmic Artifice
 		325258, -- Master of Death
 		{326171, "EMPHASIZE"}, -- Shatter Reality
+		334970, -- Coalescing
 	}
 end
 
@@ -25,6 +26,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CosmicArtificeApplied", 325725)
 	self:Log("SPELL_CAST_START", "MasterOfDeath", 325258)
 	self:Log("SPELL_CAST_START", "ShatterReality", 326171)
+	self:Log("SPELL_CAST_SUCCESS", "CoalescingStart", 334970)
 end
 
 function mod:OnEngage()
@@ -54,4 +56,10 @@ function mod:ShatterReality(args)
 	self:CastBar(args.spellId, 10)
 	self:PlaySound(args.spellId, "long")
 	self:StopBar(325258) -- Master of Death
+end
+
+function mod:CoalescingStart(args)
+	self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
+	self:CastBar(args.spellId, 25)
 end
