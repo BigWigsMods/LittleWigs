@@ -51,6 +51,7 @@ end
 function mod:ExplosiveContrivance(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
+	self:CastBar(args.spellId, 5)
 	self:Bar(args.spellId, 35) -- pull:31.8, 35.2
 end
 
