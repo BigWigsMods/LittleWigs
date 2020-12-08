@@ -60,6 +60,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		intermission = true
 		intermissionCount = intermissionCount + 1
 		self:Message("stages", "green", CL.count:format(CL.intermission, intermissionCount), false)
+		self:Bar("stages", 26.6, CL.intermission, "achievement_dungeon_plaguefall")
 		self:StopBar(322304) -- Malignant Growth
 		self:StopBar(322475) -- Plague Crash
 		self:StopBar(322232) -- Infectious Rain
@@ -68,8 +69,8 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if self:MobId(UnitGUID(unit)) == 164267 and UnitCanAttack("player", unit) then -- Margrave Stradama
-		self:Message("stages", "green", CL.over:format(CL.intermission), false)
 		intermission = false
+		self:Message("stages", "green", CL.over:format(CL.intermission), false)
 		if intermissionCount < 2 then -- No adds after the last intermission
 			self:Bar(322304, 5) -- Malignant Growth
 		end
