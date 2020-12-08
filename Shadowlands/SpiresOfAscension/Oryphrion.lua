@@ -29,6 +29,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_AURA_APPLIED", "DrainedApplied", 323878)
 	self:Log("SPELL_CAST_START", "RechargeAnima", 324046)
 	self:Log("SPELL_CAST_START", "EmpyrealOrdnance", 324427)
@@ -40,12 +41,18 @@ function mod:OnEngage()
 	self:Bar(324427, 17) -- Empyreal Ordnance
 	self:Bar(334053, 8.5) -- Purifying Blast
 	self:Bar(324608, 46) -- Charged Stomp
-	self:Bar(323878, 108) -- Drained
+	self:Bar(323878, self:Mythic() and 89 or 108) -- Drained
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:ENCOUNTER_START(_, id)
+	if id == self.engageId then
+		self:Engage()
+	end
+end
 
 function mod:DrainedApplied(args)
 	self:Message(args.spellId, "green")
@@ -76,7 +83,7 @@ do
 	end
 
 	function mod:PurifyingBlast(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID) -- XXX no boss frame, yet
 		self:CDBar(args.spellId, 13)
 	end
 end
