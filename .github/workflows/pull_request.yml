@@ -16,6 +16,12 @@ jobs:
           args: -q
           config: https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/.luacheckrc
 
+      - name: Download common locale
+        if: always()
+        run: |
+          mkdir -p Core/Locales
+          curl -sS https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/Core/Locales/common.enUS.lua > Core/Locales/common.enUS.lua
+
       - name: Lint boss modules
         if: always()
         uses: BigWigsMods/actions/gen-options@master
