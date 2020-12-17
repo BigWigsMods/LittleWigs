@@ -23,5 +23,5 @@ BigWigs:AddSounds("Oryphrion", {
 BigWigs:AddSounds("Devos, Paragon of Doubt", {
 	[322818] = {"alarm","info"},
 	[323943] = "alert",
-	[334625] = "alert",
+	[334625] = "warning",
 })

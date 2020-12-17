@@ -22,6 +22,7 @@ BigWigs:AddSounds("Surgeon Stitchflesh", {
 	[322681] = {"long","warning"},
 	[334476] = "alert",
 	[334488] = "alert",
+	[343556] = "warning",
 })
 
 BigWigs:AddSounds("Nalthor the Rimebinder", {

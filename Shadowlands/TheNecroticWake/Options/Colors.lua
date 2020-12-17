@@ -22,6 +22,7 @@ BigWigs:AddColors("Surgeon Stitchflesh", {
 	[322681] = {"blue","green","red"},
 	[334476] = "yellow",
 	[334488] = "purple",
+	[343556] = {"blue","red"},
 })
 
 BigWigs:AddColors("Nalthor the Rimebinder", {
