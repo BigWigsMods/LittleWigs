@@ -29,7 +29,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_AURA_APPLIED", "DrainedApplied", 323878)
 	self:Log("SPELL_CAST_START", "RechargeAnima", 324046)
 	self:Log("SPELL_CAST_START", "EmpyrealOrdnance", 324427)
@@ -47,12 +46,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:DrainedApplied(args)
 	self:Message(args.spellId, "green")
@@ -83,7 +76,7 @@ do
 	end
 
 	function mod:PurifyingBlast(args)
-		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID) -- XXX no boss frame, yet
+		self:GetBossTarget(printTarget, args.sourceGUID)
 		self:CDBar(args.spellId, 13)
 	end
 end
