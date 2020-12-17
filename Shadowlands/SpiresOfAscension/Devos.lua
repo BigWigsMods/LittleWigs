@@ -21,7 +21,7 @@ mod.engageId = 2359
 
 function mod:GetOptions()
 	return {
-		334625, -- Abyssal Detonation
+		{334625, "EMPHASIZE"}, -- Abyssal Detonation
 		{322818, "SAY", "SAY_COUNTDOWN"}, -- Lost Confidence
 		323943, -- Run Through
 	}
@@ -47,8 +47,8 @@ end
 
 function mod:AbyssalDetonation(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	--self:Bar(args.spellId, 0)
+	self:PlaySound(args.spellId, "warning")
+	self:CastBar(args.spellId, 4)
 end
 
 function mod:LostConfidence(args)
