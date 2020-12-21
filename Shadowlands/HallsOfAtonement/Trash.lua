@@ -106,7 +106,7 @@ end
 function mod:JaggedSwipe(args)
 	local stacks = args.amount
 	if self:Me(args.destGUID) and stacks % 3 == 0 then
-		self:Message(args.spellId, "blue", CL.stackyou:format(stacks, args.spellName))
+		self:StackMessage(args.spellId, args.destName, stacks, "blue")
 		self:PlaySound(args.spellId, stacks > 5 and "warning" or "alert")
 	end
 end
