@@ -5,9 +5,9 @@
 <Script file="Echelon.lua"/>
 <Script file="Aleez.lua"/>
 <Script file="Chamberlain.lua"/>
-<!-- <Script file="Trash.lua"/> -->
+<Script file="Trash.lua"/>
 
-<!-- <Include file="Locales\locales.xml"/> -->
+<Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
 
 </Ui>

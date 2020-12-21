@@ -28,3 +28,11 @@ BigWigs:AddSounds("Lord Chamberlain", {
 	[328791] = "warning",
 	[329104] = "long",
 })
+
+BigWigs:AddSounds("Halls of Atonement Trash", {
+	[325700] = "alert",
+	[325701] = "alarm",
+	[325876] = {"alarm","alert"},
+	[326450] = "warning",
+	[344993] = {"alert","warning"},
+})
