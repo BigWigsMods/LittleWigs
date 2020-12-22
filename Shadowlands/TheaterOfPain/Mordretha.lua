@@ -95,7 +95,7 @@ do
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 			self:Bar(args.spellId, 24.3)
-			self:CastBar(args.spellId, 3)
+			self:CastBar(args.spellId, 3.5)
 		end
 	end
 end
