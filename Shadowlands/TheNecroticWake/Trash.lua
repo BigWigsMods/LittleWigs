@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -14,9 +13,11 @@ mod:RegisterEnableMob(
 	165919, -- Skeletal Marauder
 	165222, -- Zolramus Bonemender
 	165824, -- Nar'zudah
-	-- XXX Skeletal Montrosity
+	165197, -- Skeletal Monstrosity
 	173016, -- Corpse Collector
 	172981, -- Kyrian Stitchwerk
+	163620, -- Rotspew
+	163621, -- Goregrind
 	165872, -- Flesh Crafter
 	167731 -- Separation Assistant
 )
@@ -61,18 +62,17 @@ function mod:GetOptions()
 		-- Zolramus Bonemender
 		335143, -- Bonemend
 		-- Nar'zudah
-		327399, -- Shared Agony
 		335141, -- Dark Shroud
-		{327393, "SAY", "SAY_COUNTDOWN"}, -- Grim Fate
+		{327396, "SAY", "SAY_COUNTDOWN"}, -- Grim Fate
 		-- Skeletal Monstrosity
 		324394, -- Shatter
-		324387, -- Grave Spikes
+		324387, -- Frigid Spikes
 		324372, -- Reaping Winds
 		-- Corpse Collector
 		338353, -- Goresplatter
 		-- Kyrian Stitchwerk
+		{338456, "TANK_HEALER"}, -- Mutilate
 		{338357, "NAMEPLATEBAR"}, -- Tenderize
-		{338456, "TANK_HEALER"}, -- Mutlilate
 		-- Flesh Crafter
 		327130, -- Repair Flesh
 		{323496, "SAY"}, -- Throw Cleaver
@@ -88,7 +88,7 @@ function mod:GetOptions()
 		[327401] = L.narzudah,
 		[324394] = L.skeletal_monstrosity,
 		[338353] = L.corpse_collector,
-		[338357] = L.kyrian_stitchwerk,
+		[338456] = L.kyrian_stitchwerk,
 		[327130] = L.flesh_crafter,
 		[338606] = L.separation_assistant,
 	}
@@ -102,17 +102,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
 	self:Log("SPELL_CAST_START", "GutturalScream", 324293)
 	self:Log("SPELL_CAST_START", "Bonemend", 335143)
-	self:Log("SPELL_CAST_START", "SharedAgony", 327399)
-	self:Log("SPELL_AURA_APPLIED", "SharedAgonyApplied", 327401)
 	self:Log("SPELL_CAST_START", "DarkShroud", 335141)
+	self:Log("SPELL_CAST_SUCCESS", "DarkShroudSuccess", 335141)
 	self:Log("SPELL_AURA_REMOVED", "DarkShroudRemoved", 335141)
 	self:Log("SPELL_AURA_APPLIED", "GrimFateApplied", 327396)
 	self:Log("SPELL_CAST_START", "Shatter", 324394)
-	self:Log("SPELL_CAST_START", "GraveSpikes", 324387)
+	self:Log("SPELL_CAST_START", "FrigidSpikes", 324387)
 	self:Log("SPELL_CAST_SUCCESS", "ReapingWinds", 324372)
 	self:Log("SPELL_CAST_START", "Goresplatter", 338353)
+	self:Log("SPELL_CAST_START", "Mutilate", 338456)
 	self:Log("SPELL_CAST_START", "Tenderize", 338357)
-	self:Log("SPELL_CAST_START", "Mutlilate", 338456)
 	self:Log("SPELL_CAST_START", "RepairFlesh", 327130)
 	self:Log("SPELL_CAST_START", "ThrowCleaver", 323496)
 	self:Log("SPELL_CAST_START", "MorbidFixation", 338606)
@@ -126,16 +125,19 @@ end
 -- Event Handlers
 --
 
+-- Corpse Harvester
 function mod:DrainFluids(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Stitched Vanguard
 function mod:MeatShield(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Zolramus Gatekeeper
 function mod:ClingingDarkness(args)
 	if self:Me(args.destGUID) or self:Healer() then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -144,45 +146,39 @@ function mod:ClingingDarkness(args)
 end
 
 function mod:WrathOfZolramus(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 	self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 end
 
+-- Brittlebone Mage
 function mod:FrostboltVolley(args)
 	if self:MobId(args.sourceGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
-		self:Message(args.spellId, "orange")
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
+-- Skeletal Marauder
 function mod:GutturalScream(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Zolramus Bonemender
 function mod:Bonemend(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:SharedAgony(args)
-	self:Bar(args.spellId, 24)
-end
-
-do
-	local playerList = mod:NewTargetList()
-	function mod:SharedAgonyApplied(args)
-		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(327399, "red", playerList, 2)
-		self:PlaySound(327399, "alarm", nil, playerList)
-	end
-end
-
+-- Nar'zudah
 function mod:DarkShroud(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 24)
+end
+
+function mod:DarkShroudSuccess(args)
+	self:Bar(args.spellId, 23.5)
 end
 
 function mod:DarkShroudRemoved(args)
@@ -191,37 +187,37 @@ function mod:DarkShroudRemoved(args)
 end
 
 function mod:GrimFateApplied(args)
-	self:TargetMessage(327393, "yellow", args.destName)
-	self:PlaySound(327393, "alert", nil, args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:MobId(args.sourceGUID) == 165824 then -- Nar'zudah
-		self:CDBar(327393, 18.3)
+		self:CDBar(args.spellId, 17.4)
 	end
 	if self:Me(args.destGUID) then
-		self:Say(327393)
-		self:SayCountdown(327393, 4)
+		self:Say(args.spellId)
+		self:SayCountdown(args.spellId, 4)
 	end
 end
 
 function mod:NarzudahDeath(args)
-	self:StopBar(327399) -- Shared Agony
 	self:StopBar(335141) -- Dark Shroud
-	self:StopBar(327393) -- Grim Fate
+	self:StopBar(327396) -- Grim Fate
 end
 
+-- Skeletal Monstrosity
 function mod:Shatter(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Tank() and "alarm" or "info")
-	self:CDBar(args.spellId, 16)
+	self:CDBar(args.spellId, 15.7)
 end
 
-function mod:GraveSpikes(args)
-	self:Message(args.spellId, "yellow")
+function mod:FrigidSpikes(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 12.1)
 end
 
 function mod:ReapingWinds(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 20)
 	self:CastBar(args.spellId, 4)
@@ -229,32 +225,37 @@ end
 
 function mod:SkeletalMonstrosityDeath(args)
 	self:StopBar(324394) -- Shatter
-	self:StopBar(324372) -- Reaping Winds
-	self:StopBar(324387) -- Grave Spikes
-	self:StopBar(CL.cast:format(self:SpellName(324372))) -- Reaping Winds
+	self:StopBar(324387) -- Rigid Spikes
+
+	-- Reaping Winds
+	self:StopBar(324372)
+	self:StopBar(CL.cast:format(self:SpellName(324372)))
 end
 
+-- Corpse Collector
 function mod:Goresplatter(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Kyrian Stitchwerk
+function mod:Mutilate(args)
+	if self:MobId(args.sourceGUID) ~= 164578 then -- Stitchflesh's Creation, add on Surgeon Stitchflesh
+		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
 function mod:Tenderize(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Tank() and "alert" or "info")
 	-- This bar is here in case dps/pets taunt to let the tank drop stacks
 	self:NameplateCDBar(args.spellId, 12.2, args.sourceGUID)
 end
 
-function mod:Mutlilate(args)
-	if self:MobId(args.sourceGUID) ~= 164578 then -- Stitchflesh's Creation, add on Amarth
-		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alarm")
-	end
-end
-
+-- Flesh Crafter
 function mod:RepairFlesh(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -273,6 +274,7 @@ do
 	end
 end
 
+-- Separation Assistant
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(338606, "yellow", name) -- Morbid Fixation
