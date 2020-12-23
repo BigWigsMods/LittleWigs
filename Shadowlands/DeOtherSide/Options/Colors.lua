@@ -1,7 +1,9 @@
 
 BigWigs:AddColors("Hakkar the Soulflayer", {
+	[322736] = "purple",
 	[322746] = {"blue","red"},
 	[322759] = "orange",
+	[323569] = "blue",
 })
 
 BigWigs:AddColors("The Manastorms", {
