@@ -45,6 +45,7 @@ end
 function mod:GetOptions()
 	return {
 		326450, -- Loyal Beasts
+		325799, -- Rapid Fire
 		344993, -- Jagged Swipe
 		346866, -- Stone Breath
 		{325523, "TANK"}, -- Deadly Thrust
@@ -66,7 +67,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "LoyalBeasts", 326450)
+	self:Log("SPELL_CAST_START", "LoyalBeasts", 326450)
+	self:Log("SPELL_AURA_APPLIED", "LoyalBeastsSuccess", 326450)
+	self:Log("SPELL_DAMAGE", "RapidFire", 325799)
+	self:Log("SPELL_MISSED", "RapidFire", 325799)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "JaggedSwipe", 344993)
 	self:Log("SPELL_CAST_START", "StoneBreath", 346866)
 	self:Log("SPELL_CAST_START", "DeadlyThrust", 325523)
@@ -86,17 +90,36 @@ end
 --
 
 -- Depraved Houndmaster
+function mod:LoyalBeasts(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
 do
 	-- This is an AoE cast that could affect 0 Gargons,
 	-- so SPELL_AURA_APPLIED with throttling it is.
 	local prev = 0
-	function mod:LoyalBeasts(args)
+	function mod:LoyalBeastsSuccess(args)
 		if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 				self:PlaySound(args.spellId, "warning")
+			end
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:RapidFire(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "near")
+				self.PlaySound(args.spellId, "alarm")
 			end
 		end
 	end
@@ -120,23 +143,39 @@ function mod:StoneBreath(args)
 end
 
 -- Depraved Darkblade
-function mod:DeadlyThrust(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:DeadlyThrust(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Depraved Obliterator
-function mod:CurseOfObliteration(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:CurseOfObliteration(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:CurseOfObliterationApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:TargetBar(args.spellId, 6, args.destName)
-	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	local isOnMe = self:Me(args.destGUID)
 
-	if self:Me(args.destGUID) then
+	self:TargetMessage(args.spellId, "cyan", args.destName)
+	self:TargetBar(args.spellId, 6, args.destName)
+	self:PlaySound(args.spellId, isOnMe and "alarm" or "info", nil, args.destName)
+
+	if isOnMe then
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 6)
 	end
