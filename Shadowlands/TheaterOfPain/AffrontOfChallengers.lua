@@ -23,7 +23,6 @@ function mod:GetOptions()
 		-- Dessia the Decapitator
 		320063, -- Slam
 		320069, -- Mortal Strike
-		326892, -- Fixate
 		324085, -- Enrage
 		{326892, "FLASH"}, -- Fixate
 		-- Paceran the Virulent
