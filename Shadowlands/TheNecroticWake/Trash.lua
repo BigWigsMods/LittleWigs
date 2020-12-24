@@ -85,7 +85,7 @@ function mod:GetOptions()
 		[328667] = L.brittlebone_mage,
 		[324293] = L.skeletal_marauder,
 		[335143] = L.zolramus_bonemender,
-		[327401] = L.narzudah,
+		[335141] = L.narzudah,
 		[324394] = L.skeletal_monstrosity,
 		[338353] = L.corpse_collector,
 		[338456] = L.kyrian_stitchwerk,
@@ -118,6 +118,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MorbidFixationApplied", 338606)
 	self:Log("SPELL_AURA_REMOVED", "MorbidFixationRemoved", 338606)
 
+	self:Death("SkeletalMonstrosityDeath", 165197)
 	self:Death("NarzudahDeath", 165824)
 end
 
