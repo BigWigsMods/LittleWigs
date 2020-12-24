@@ -11,7 +11,6 @@ if L then
 	-- L.plaguebinder = "Plaguebinder"
 	-- L.congealed_slime = "Congealed Slime"
 	-- L.defender_of_many_eyes = "Defender of Many Eyes"
-	-- L.venomous_sniper = "Venomous Sniper"
 	-- L.brood_ambusher = "Brood Ambusher"
 	-- L.ickor_bileflesh = "Ickor Bileflesh"
 	-- L.fungalmancer = "Fungalmancer"

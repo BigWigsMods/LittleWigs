@@ -1,5 +1,10 @@
-local L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "frFR")
+local L = BigWigs:NewBossLocale("Nalthor the Rimebinder", "frFR")
 if not L then return end
+if L then
+	-- L.aegis = "%s removed after %.1f seconds!"
+end
+
+L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "frFR")
 if L then
 	L.corpse_harvester = "Moissonneur de cadavres"
 	L.stitched_vanguard = "Avant-garde recousue"

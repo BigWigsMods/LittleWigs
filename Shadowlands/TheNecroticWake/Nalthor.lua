@@ -15,7 +15,7 @@ mod.engageId = 2390
 
 local L = mod:GetLocale()
 if L then
-	L.aegis = "Icebound Aegis removed after %.1f seconds!"
+	L.aegis = "%s removed after %.1f seconds!"
 end
 
 --------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ do
 
 	function mod:IceboundAegisRemoved(args)
 		seconds = math.floor((args.time - seconds) * 100)/100
-		self:Message(args.spellId, "green", L.aegis:format(seconds))
+		self:Message(args.spellId, "green", L.aegis:format(args.spellName, seconds))
 	end
 end
 

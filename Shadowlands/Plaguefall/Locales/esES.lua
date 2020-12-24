@@ -11,7 +11,6 @@ if L then
 	L.plaguebinder = "Vinculapestes"
 	L.congealed_slime = "Baba coagulada"
 	L.defender_of_many_eyes = "Defensor de muchos ojos"
-	L.venomous_sniper = "Francotirador venenoso"
 	L.brood_ambusher = "Emboscador de linaje"
 	L.ickor_bileflesh = "Ickor Carnebilis"
 	L.fungalmancer = "Fungimántico"

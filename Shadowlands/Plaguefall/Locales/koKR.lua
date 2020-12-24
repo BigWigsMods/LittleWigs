@@ -11,7 +11,6 @@ if L then
 	L.plaguebinder = "역병결속자"
 	L.congealed_slime = "응결된 점액"
 	L.defender_of_many_eyes = "수많은 눈의 수호병"
-	L.venomous_sniper = "맹독 저격수"
 	L.brood_ambusher = "혈족 매복꾼"
 	L.ickor_bileflesh = "이코르 바일플래시"
 	L.fungalmancer = "곰팡이술사"
