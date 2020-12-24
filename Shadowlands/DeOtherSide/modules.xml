@@ -5,9 +5,9 @@
 <Script file="TheManastorms.lua"/>
 <Script file="Xyexa.lua"/>
 <Script file="Muehzala.lua"/>
-<!-- <Script file="Trash.lua"/> -->
+<Script file="Trash.lua"/>
 
-<!-- <Include file="Locales\locales.xml"/> -->
+<Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
 
 </Ui>
