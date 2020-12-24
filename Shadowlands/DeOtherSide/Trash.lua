@@ -267,7 +267,7 @@ end
 do
 	local startedAt = 0
 	local function printTarget(self, name, guid)
-		local left = GetTime() + 3 - startedAt
+		local left = startedAt + 3 - GetTime()
 		local isOnMe = self:Me(guid)
 
 		self:TargetMessage(331846, "orange", name)
