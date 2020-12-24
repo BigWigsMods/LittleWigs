@@ -188,7 +188,7 @@ end
 -- Atal'ai Deathwalker
 function mod:GushingWound(args)
 	local stacks = args.amount
-	if stacks % 2 == 0 then
+	if stacks % 3 == 0 then
 		self:StackMessage(args.spellId, args.destName, stacks, "purple")
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
