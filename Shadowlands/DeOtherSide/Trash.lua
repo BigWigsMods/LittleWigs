@@ -281,7 +281,7 @@ do
 	end
 
 	function mod:Woof(args)
-		startedAt = args.time
+		startedAt = GetTime()
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
