@@ -26,3 +26,19 @@ BigWigs:AddSounds("Mueh'zala", {
 	[327646] = "alert",
 	[334970] = "info",
 })
+
+BigWigs:AddSounds("De Other Side Trash", {
+	[328740] = "alarm",
+	[331548] = "alert",
+	[331846] = {"alert","warning"},
+	[331927] = "warning",
+	[332605] = "alert",
+	[332612] = "warning",
+	[332671] = {"alarm","info"},
+	[332678] = "alert",
+	[332706] = "warning",
+	[333227] = {"alert","info","warning"},
+	[333787] = "warning",
+	[334051] = "alert",
+	["soporific_shimmerdust"] = {"alarm","warning"},
+})
