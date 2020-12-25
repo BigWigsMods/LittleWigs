@@ -19,5 +19,5 @@ if L then
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "Waldschimmermotte"
 
-	-- L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
+	L.soporific_shimmerdust_desc = "Dieser Fluch lässt den Spieler bei 10 Stapeln einschlafen. Springen entfernt die Stapel."
 end
