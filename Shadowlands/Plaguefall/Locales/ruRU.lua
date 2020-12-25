@@ -11,7 +11,6 @@ if L then
 	L.plaguebinder = "Заклинатель чумы"
 	L.congealed_slime = "Сгусток слизи"
 	L.defender_of_many_eyes = "Защитник из многоокой рати"
-	L.venomous_sniper = "Стрелок-отравитель"
 	L.brood_ambusher = "Таящийся паук"
 	L.ickor_bileflesh = "Икор Желчная Плоть"
 	L.fungalmancer = "Грибомаг"

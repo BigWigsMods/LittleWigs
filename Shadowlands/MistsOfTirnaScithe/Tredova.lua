@@ -11,8 +11,8 @@ mod.engageId = 2393
 
 local L = mod:GetLocale()
 if L then
-	L.parasitic = mod:SpellName(278431)
-	L.parasitic_desc = "Show warnings and timers for Parasitic Pacification, Incapacitation and Domination"
+	L.parasitic = 278431
+	L.parasitic_desc = "Show warnings and timers for Parasitic Pacification, Incapacitation and Domination."
 	L.parasitic_icon = 337235
 end
 

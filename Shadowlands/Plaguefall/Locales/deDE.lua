@@ -11,7 +11,6 @@ if L then
 	L.plaguebinder = "Seuchenbinder"
 	L.congealed_slime = "Geronnener Schleim"
 	L.defender_of_many_eyes = "Verteidiger der vielzähligen Augen"
-	L.venomous_sniper = "Giftiger Heckenschütze"
 	L.brood_ambusher = "Brutwegelagerer"
 	L.ickor_bileflesh = "Ickor Gallenfleisch"
 	L.fungalmancer = "Fungumant"

@@ -11,7 +11,6 @@ if L then
 	L.plaguebinder = "魔药束缚者"
 	L.congealed_slime = "凝结软泥"
 	L.defender_of_many_eyes = "万眼防御者"
-	L.venomous_sniper = "喷毒狙击手"
 	L.brood_ambusher = "巢群伏击者"
 	L.ickor_bileflesh = "艾柯尔·胆肉"
 	L.fungalmancer = "菌菇术士"

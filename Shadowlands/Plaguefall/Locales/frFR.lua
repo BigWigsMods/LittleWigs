@@ -11,7 +11,6 @@ if L then
 	L.plaguebinder = "Lieur de peste"
 	L.congealed_slime = "Gelée figée"
 	L.defender_of_many_eyes = "Défenseur aux innombrables yeux"
-	L.venomous_sniper = "Tireur d'élite venimeux"
 	L.brood_ambusher = "Embusqué de la couvée"
 	L.ickor_bileflesh = "Ickor Aigrechair"
 	L.fungalmancer = "Fongimancien"
