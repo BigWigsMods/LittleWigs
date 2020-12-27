@@ -92,8 +92,10 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:BloodAndGloryApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
-		self:PlaySound(args.spellId, "long", nil, playerList)
+		if #playerList == 2 then
+			self:PlaySound(args.spellId, "long")
+		end
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 1) -- 1s wait time as it can be a little delayed sometimes
 	end
 end
 
