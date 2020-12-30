@@ -16,6 +16,13 @@ mod.engageId = 2359
 --mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local foundYells = {}
+local locale = GetLocale()
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -90,7 +97,7 @@ end
 do
 	local scheduled = nil
 
-	local function fallback(self)
+	local function fallback()
 		scheduled = nil
 
 		mod:Message(323943, "orange")
@@ -102,7 +109,7 @@ do
 		self:Bar(args.spellId, 20)
 	end
 
-	function mod:CHAT_MSG_MONSTER_YELL(_, msg, _, _, _, target)
+	function mod:CHAT_MSG_MONSTER_YELL(_, msg, source, _, _, target)
 		if msg == L.run_through_yell_1 or msg == L.run_through_yell_2 then
 			if scheduled then
 				self:CancelTimer(scheduled)
@@ -115,6 +122,15 @@ do
 			local guid = self:UnitGUID(target)
 			if self:Me(guid) then
 				self:Say(323943)
+			end
+		elseif target and scheduled and not foundYells[msg] then -- scheduled not being nil means we are within 0.3s since the CAST_START
+			local guid = self:UnitGUID(target)
+
+			if guid and guid:find("Player", nil, true) then
+				foundYells[msg] = true
+
+				BigWigs:Print(("Found a potential yell (%s) for Run Through. Please report it on Discord/Curse/GitHub."):format(locale))
+				BigWigs:Error(("TELL THE AUTHORS: %s"):format(msg))
 			end
 		end
 	end
