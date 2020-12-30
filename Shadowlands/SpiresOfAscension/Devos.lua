@@ -16,6 +16,16 @@ mod.engageId = 2359
 --mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.run_through_yell_1 = "This spear shall pierce your heart!"
+	L.run_through_yell_2 = "I will strike you down!"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -23,7 +33,7 @@ function mod:GetOptions()
 	return {
 		{334625, "EMPHASIZE"}, -- Abyssal Detonation
 		{322818, "SAY", "SAY_COUNTDOWN"}, -- Lost Confidence
-		323943, -- Run Through
+		{323943, "SAY"}, -- Run Through
 	}
 end
 
@@ -34,6 +44,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "LostConfidenceRemoved", 322818)
 	self:Log("SPELL_CAST_START", "RunThrough", 323943)
 
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
 
 function mod:OnEngage()
@@ -76,8 +87,35 @@ do
 	end
 end
 
-function mod:RunThrough(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 20)
+do
+	local scheduled = nil
+
+	local function fallback(self)
+		scheduled = nil
+
+		mod:Message(323943, "orange")
+		mod:PlaySound(323943, "alert")
+	end
+
+	function mod:RunThrough(args)
+		scheduled = self:ScheduleTimer(fallback, 0.3)
+		self:Bar(args.spellId, 20)
+	end
+
+	function mod:CHAT_MSG_MONSTER_YELL(_, msg, _, _, _, target)
+		if msg == L.run_through_yell_1 or msg == L.run_through_yell_2 then
+			if scheduled then
+				self:CancelTimer(scheduled)
+				scheduled = nil
+			end
+
+			self:TargetMessage(323943, "orange", target)
+			self:PlaySound(323943, "alert", nil, target)
+
+			local guid = self:UnitGUID(target)
+			if self:Me(guid) then
+				self:Say(323943)
+			end
+		end
+	end
 end
