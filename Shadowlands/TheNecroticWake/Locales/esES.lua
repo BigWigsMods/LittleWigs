@@ -2,6 +2,9 @@ local L = BigWigs:NewBossLocale("Nalthor the Rimebinder", "esES") or BigWigs:New
 if not L then return end
 if L then
 	-- L.aegis = "%s removed after %.1f seconds!"
+
+	L.casting_on_you = "Lanzando %s en TI"
+	L.casting_on_other = "Lanzando %s: %s"
 end
 
 L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "esES") or BigWigs:NewBossLocale("The Necrotic Wake Trash", "esMX")

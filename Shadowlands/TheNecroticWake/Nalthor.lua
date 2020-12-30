@@ -16,6 +16,9 @@ mod.engageId = 2390
 local L = mod:GetLocale()
 if L then
 	L.aegis = "%s removed after %.1f seconds!"
+
+	L.casting_on_you = "Casting %s on YOU"
+	L.casting_on_other = "Casting %s: %s"
 end
 
 --------------------------------------------------------------------------------
@@ -35,7 +38,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CometStorm", 320772)
 	self:Log("SPELL_AURA_APPLIED", "IceboundAegisApplied", 321368)
 	self:Log("SPELL_AURA_REMOVED", "IceboundAegisRemoved", 321368)
-	self:Log("SPELL_CAST_SUCCESS", "FrozenBinds", 320788)
+	self:Log("SPELL_CAST_START", "FrozenBinds", 320788)
+	self:Log("SPELL_CAST_SUCCESS", "FrozenBindsSuccess", 320788)
 	self:Log("SPELL_CAST_SUCCESS", "DarkExile", 321894)
 end
 
@@ -72,7 +76,22 @@ do
 	end
 end
 
-function mod:FrozenBinds(args)
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) then
+			self:Message(320788, "blue", L.casting_on_you:format(self:SpellName(320788)))
+		else
+			self:Message(320788, "cyan", L.casting_on_other:format(self:SpellName(320788), self:ColorName(name)))
+		end
+		self:PlaySound(320788, "info", nil, name)
+	end
+
+	function mod:FrozenBinds(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+	end
+end
+
+function mod:FrozenBindsSuccess(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
