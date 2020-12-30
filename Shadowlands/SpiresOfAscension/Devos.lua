@@ -33,8 +33,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LostConfidenceApplied", 322818)
 	self:Log("SPELL_AURA_REMOVED", "LostConfidenceRemoved", 322818)
 	self:Log("SPELL_CAST_START", "RunThrough", 323943)
-
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
 
 function mod:OnEngage()
