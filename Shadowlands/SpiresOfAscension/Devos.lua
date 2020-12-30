@@ -16,23 +16,6 @@ mod.engageId = 2359
 --mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local foundYells = {}
-local locale = GetLocale()
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.run_through_yell_1 = "This spear shall pierce your heart!"
-	L.run_through_yell_2 = "I will strike you down!"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -94,43 +77,21 @@ do
 	end
 end
 
-do
-	local scheduled = nil
+function mod:RunThrough(args)
+	self:Bar(args.spellId, 20)
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+end
 
-	local function fallback()
-		scheduled = nil
+function mod:CHAT_MSG_MONSTER_YELL(event, _, _, _, _, target)
+	if target then
+		self:UnregisterEvent(event)
 
-		mod:Message(323943, "orange")
-		mod:PlaySound(323943, "alert")
-	end
+		self:TargetMessage(323943, "orange", target)
+		self:PlaySound(323943, "alert", nil, target)
 
-	function mod:RunThrough(args)
-		scheduled = self:ScheduleTimer(fallback, 0.3)
-		self:Bar(args.spellId, 20)
-	end
-
-	function mod:CHAT_MSG_MONSTER_YELL(_, msg, source, _, _, target)
-		if msg == L.run_through_yell_1 or msg == L.run_through_yell_2 then
-			if scheduled then
-				self:CancelTimer(scheduled)
-				scheduled = nil
-			end
-
-			self:TargetMessage(323943, "orange", target)
-			self:PlaySound(323943, "alert", nil, target)
-
-			local guid = self:UnitGUID(target)
-			if self:Me(guid) then
-				self:Say(323943)
-			end
-		elseif target and scheduled and not foundYells[msg] then -- scheduled not being nil means we are within 0.3s since the CAST_START
-			local guid = self:UnitGUID(target)
-
-			if guid and guid:find("Player", nil, true) then
-				foundYells[msg] = true
-
-				BigWigs:Error(("Found a potential yell for Run Through: '%s' (%s). Please report it on Discord/Curse/GitHub."):format(msg, locale))
-			end
+		local guid = self:UnitGUID(target)
+		if self:Me(guid) then
+			self:Say(323943)
 		end
 	end
 end
