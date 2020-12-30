@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		{334625, "EMPHASIZE"}, -- Abyssal Detonation
 		{322818, "SAY", "SAY_COUNTDOWN"}, -- Lost Confidence
-		323943, -- Run Through
+		{323943, "SAY"}, -- Run Through
 	}
 end
 
@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LostConfidenceApplied", 322818)
 	self:Log("SPELL_AURA_REMOVED", "LostConfidenceRemoved", 322818)
 	self:Log("SPELL_CAST_START", "RunThrough", 323943)
-
+	self:Log("SPELL_CAST_SUCCESS", "RunThroughSuccess", 323943)
 end
 
 function mod:OnEngage()
@@ -77,7 +77,24 @@ do
 end
 
 function mod:RunThrough(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 20)
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+end
+
+function mod:RunThroughSuccess()
+	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(event, _, _, _, _, target)
+	if target then
+		self:UnregisterEvent(event)
+
+		self:TargetMessage(323943, "orange", target)
+		self:PlaySound(323943, "alert", nil, target)
+
+		local guid = self:UnitGUID(target)
+		if self:Me(guid) then
+			self:Say(323943)
+		end
+	end
 end

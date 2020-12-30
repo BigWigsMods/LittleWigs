@@ -22,6 +22,6 @@ BigWigs:AddColors("Oryphrion", {
 
 BigWigs:AddColors("Devos, Paragon of Doubt", {
 	[322818] = {"blue","green","yellow"},
-	[323943] = "orange",
+	[323943] = {"blue","orange"},
 	[334625] = "yellow",
 })
