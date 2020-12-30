@@ -129,8 +129,7 @@ do
 			if guid and guid:find("Player", nil, true) then
 				foundYells[msg] = true
 
-				BigWigs:Print(("Found a potential yell (%s) for Run Through. Please report it on Discord/Curse/GitHub."):format(locale))
-				BigWigs:Error(("TELL THE AUTHORS: %s"):format(msg))
+				BigWigs:Error(("Found a potential yell for Run Through: '%s' (%s). Please report it on Discord/Curse/GitHub."):format(msg, locale))
 			end
 		end
 	end
