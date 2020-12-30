@@ -19,5 +19,5 @@ if L then
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "Чащобный мерцающий мотылек"
 
-	-- L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
+	L.soporific_shimmerdust_desc = "Проклятье, заставляющее персонажа засыпать на 10 стаках. Прыжки сбрасывают стаки."
 end
