@@ -71,79 +71,79 @@ if L then
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
 
 	-- Cape
-	L["Escuché que al espía le gusta usar capas."] = 1
-	L["Alguien mencionó que el espía pasó por aquí usando una capa."] = 1
+	L.clue_1_1 = "Escuché que al espía le gusta usar capas."
+	L.clue_1_2 = "Alguien mencionó que el espía pasó por aquí usando una capa."
 
 	-- No Cape
-	L["Oí que el espía dejó la capa en el palacio antes de venir aquí."] = 2
-	L["Escuché que el espía odia las capas y se rehúsa a usar una."] = 2
+	L.clue_2_1 = "Oí que el espía dejó la capa en el palacio antes de venir aquí."
+	L.clue_2_2 = "Escuché que el espía odia las capas y se rehúsa a usar una."
 
 	-- Pouch
-	L["Un amigo dijo que al espía le encanta el oro y un bolso lleno de él."] = 3
-	L["Oí que la bolsa del cinturón del espía está llena de oro para demostrar su extravagancia."] = 3
-	L["Oí que el espía siempre lleva consigo una bolsa mágica."] = 3
-	L["Escuché que la bolsa del cinturón del espía tiene un bordado de lujo."] = 3
+	L.clue_3_1 = "Un amigo dijo que al espía le encanta el oro y un bolso lleno de él."
+	L.clue_3_2 = "Oí que la bolsa del cinturón del espía está llena de oro para demostrar su extravagancia."
+	L.clue_3_3 = "Oí que el espía siempre lleva consigo una bolsa mágica."
+	L.clue_3_4 = "Escuché que la bolsa del cinturón del espía tiene un bordado de lujo."
 
 	-- Potions
-	L["Tengo entendido que el espía trajo consigo algunas pociones... por si acaso."] = 4
-	L["Tengo la certeza de que el espía tiene pociones en su cinturón."] = 4
-	L["Tengo entendido que el espía trajo varias pociones. Me pregunto para qué."] = 4
-	L["No te lo dije... pero el espía se disfraza como un alquimista y lleva pociones en su cinturón."] = 4
+	L.clue_4_1 = "Tengo entendido que el espía trajo consigo algunas pociones... por si acaso."
+	L.clue_4_2 = "Tengo la certeza de que el espía tiene pociones en su cinturón."
+	L.clue_4_3 = "Tengo entendido que el espía trajo varias pociones. Me pregunto para qué."
+	L.clue_4_4 = "No te lo dije... pero el espía se disfraza como un alquimista y lleva pociones en su cinturón."
 
 	-- Long Sleeves
-	L["Más temprano pude ver las mangas largas del espía."] = 5
-	L["Oí que el traje del espía es de mangas largas esta noche."] = 5
-	L["Alguien dijo que el espía cubrirá sus brazos con mangas largas esta noche."] = 5
-	L["Un amigo mío mencionó que el espía lleva puestas mangas largas."] = 5
+	L.clue_5_1 = "Más temprano pude ver las mangas largas del espía."
+	L.clue_5_2 = "Oí que el traje del espía es de mangas largas esta noche."
+	L.clue_5_3 = "Alguien dijo que el espía cubrirá sus brazos con mangas largas esta noche."
+	L.clue_5_4 = "Un amigo mío mencionó que el espía lleva puestas mangas largas."
 
 	-- Short Sleeves
-	L["Escuché que el espía disfruta del aire fresco y no usará mangas largas esta noche."] = 6
-	L["Una amiga me contó que vio el atuendo que llevaba puesto el espía. No usaba mangas largas."] = 6
-	L["Alguien me dijo que el espía odia usar mangas largas."] = 6
-	L["Tengo entendido que el espía usa mangas cortas para dejar sus brazos al descubierto."] = 6
+	L.clue_6_1 = "Escuché que el espía disfruta del aire fresco y no usará mangas largas esta noche."
+	L.clue_6_2 = "Una amiga me contó que vio el atuendo que llevaba puesto el espía. No usaba mangas largas."
+	L.clue_6_3 = "Alguien me dijo que el espía odia usar mangas largas."
+	L.clue_6_4 = "Tengo entendido que el espía usa mangas cortas para dejar sus brazos al descubierto."
 
 	-- Gloves
-	L["Oí que el espía siempre usa guantes."] = 7
-	L["Dicen los rumores que el espía siempre usa guantes."] = 7
-	L["Alguien dijo que el espía usa guantes para cubrir cicatrices evidentes."] = 7
-	L["Oí que el espía se cubre cuidadosamente las manos."] = 7
+	L.clue_7_1 = "Oí que el espía siempre usa guantes."
+	L.clue_7_2 = "Dicen los rumores que el espía siempre usa guantes."
+	L.clue_7_3 = "Alguien dijo que el espía usa guantes para cubrir cicatrices evidentes."
+	L.clue_7_4 = "Oí que el espía se cubre cuidadosamente las manos."
 
 	-- No Gloves
-	L["Hay un rumor de que el espía nunca usa guantes."] = 8
-	L["Oí que al espía no le gusta usar guantes."] = 8
-	L["Oí que el espía evita usar guantes, en caso de que tenga que tomar decisiones rápidas."] = 8
-	L["Sabes... encontré otro par de guantes en la sala trasera. Seguro que el espía ande por aquí con las manos descubiertas."] = 8
+	L.clue_8_1 = "Hay un rumor de que el espía nunca usa guantes."
+	L.clue_8_2 = "Oí que al espía no le gusta usar guantes."
+	L.clue_8_3 = "Oí que el espía evita usar guantes, en caso de que tenga que tomar decisiones rápidas."
+	L.clue_8_4 = "Sabes... encontré otro par de guantes en la sala trasera. Seguro que el espía ande por aquí con las manos descubiertas."
 
 	-- Male
-	L["Un invitado dijo que lo vio entrar a la mansión junto con la gran magistrix."] = 9
-	L["Oí por ahí que el espía no es mujer."] = 9
-	L["Oí que el espía está aquí y que es muy apuesto."] = 9
-	L["Uno de los músicos dijo que no dejaba de preguntar sobre el distrito."] = 9
+	L.clue_9_1 = "Un invitado dijo que lo vio entrar a la mansión junto con la gran magistrix."
+	L.clue_9_2 = "Oí por ahí que el espía no es mujer."
+	L.clue_9_3 = "Oí que el espía está aquí y que es muy apuesto."
+	L.clue_9_4 = "Uno de los músicos dijo que no dejaba de preguntar sobre el distrito."
 
 	-- Female
-	L["Un invitado la vio a ella y a Elisande llegar juntas hace rato."] = 10
-	L["Escuché que una mujer no deja de preguntar sobre el distrito..."] = 10
-	L["Alguien anda diciendo que nuestro nuevo huésped no es hombre."] = 10
-	L["Dicen que la espía está aquí y que es impresionante."] = 10
+	L.clue_10_1 = "Un invitado la vio a ella y a Elisande llegar juntas hace rato."
+	L.clue_10_2 = "Escuché que una mujer no deja de preguntar sobre el distrito..."
+	L.clue_10_3 = "Alguien anda diciendo que nuestro nuevo huésped no es hombre."
+	L.clue_10_4 = "Dicen que la espía está aquí y que es impresionante."
 
 	-- Light Vest
-	L["El espía definitivamente prefiere los jubones de colores claros."] = 11
-	L["Oí que el espía vestirá un jubón de color claro para la fiesta de esta noche."] = 11
-	L["La gente dice que el espía no viste un jubón oscuro esta noche."] = 11
+	L.clue_11_1 = "El espía definitivamente prefiere los jubones de colores claros."
+	L.clue_11_2 = "Oí que el espía vestirá un jubón de color claro para la fiesta de esta noche."
+	L.clue_11_3 = "La gente dice que el espía no viste un jubón oscuro esta noche."
 
 	-- Dark Vest
-	L["Escuché que el chaleco del espía es de un tono oscuro muy exquisito esta misma noche."] = 12
-	L["Al espía le gustan los jubones de colores oscuros... como la noche."] = 12
-	L["Dicen los rumores que el espía está evitando usar ropa de colores claros para intentar pasar más desapercibido."] = 12
-	L["El espía definitivamente prefiere la ropa oscura."] = 12
+	L.clue_12_1 = "Escuché que el chaleco del espía es de un tono oscuro muy exquisito esta misma noche."
+	L.clue_12_2 = "Al espía le gustan los jubones de colores oscuros... como la noche."
+	L.clue_12_3 = "Dicen los rumores que el espía está evitando usar ropa de colores claros para intentar pasar más desapercibido."
+	L.clue_12_4 = "El espía definitivamente prefiere la ropa oscura."
 
 	-- No Potions
-	L["Oí que el espía no tiene pociones."] = 13
-	L["Un músico me dijo que vio al espía tirar su última poción verde y que ya no le quedan más."] = 13
+	L.clue_13_1 = "Oí que el espía no tiene pociones."
+	L.clue_13_2 = "Un músico me dijo que vio al espía tirar su última poción verde y que ya no le quedan más."
 
 	-- Book
-	L["Oí que el espía siempre lleva un libro de secretos en el cinturón."] = 14
-	L["Dicen que al espía le encanta leer y siempre lleva al menos un libro."] = 14
+	L.clue_14_1 = "Oí que el espía siempre lleva un libro de secretos en el cinturón."
+	L.clue_14_2 = "Dicen que al espía le encanta leer y siempre lleva al menos un libro."
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "esMX")

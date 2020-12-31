@@ -71,79 +71,79 @@ if L then
 	--[[ The following translations have to exactly match the gossip text of the Chatty Rumormongers. ]]--
 
 	-- Cape
-	L["On dit que la taupe aime porter des capes."] = 1
-	L["Quelqu’un affirme que la taupe portait une cape lors de son passage ici."] = 1
+	L.clue_1_1 = "On dit que la taupe aime porter des capes."
+	L.clue_1_2 = "Quelqu’un affirme que la taupe portait une cape lors de son passage ici."
 
 	-- No Cape
-	L["J’ai entendu dire que la taupe avait laissé sa cape au palais avant de venir ici."] = 2
-	L["Il paraît que la taupe n’aime pas les capes et refuse d’en porter."] = 2
+	L.clue_2_1 = "J’ai entendu dire que la taupe avait laissé sa cape au palais avant de venir ici."
+	L.clue_2_2 = "Il paraît que la taupe n’aime pas les capes et refuse d’en porter."
 
 	-- Pouch
-	L["D’après l’un de mes amis, la taupe aime l’or et les sacoches qui en sont pleines."] = 3
-	L["On raconte que la sacoche de la taupe est pleine d’or. Si ça, ce n’est pas un signe extérieur de richesse…"] = 3
-	L["On raconte que la taupe ne se sépare jamais de sa sacoche magique."] = 3
-	L["On raconte que la sacoche de la taupe est bordée d’une élégante broderie."] = 3
+	L.clue_3_1 = "D’après l’un de mes amis, la taupe aime l’or et les sacoches qui en sont pleines."
+	L.clue_3_2 = "On raconte que la sacoche de la taupe est pleine d’or. Si ça, ce n’est pas un signe extérieur de richesse…"
+	L.clue_3_3 = "On raconte que la taupe ne se sépare jamais de sa sacoche magique."
+	L.clue_3_4 = "On raconte que la sacoche de la taupe est bordée d’une élégante broderie."
 
 	-- Potions
-	L["J’ai entendu dire que la taupe a apporté quelques potions… au cas où."] = 4
-	L["La taupe porte des potions à la ceinture. J’en mettrais ma main au feu !"] = 4
-	L["J’ai entendu dire que la taupe a apporté quelques potions. Je me demande bien pourquoi."] = 4
-	L["Ça reste entre nous… La taupe se fait passer pour un alchimiste et porte des potions à sa ceinture."] = 4
+	L.clue_4_1 = "J’ai entendu dire que la taupe a apporté quelques potions… au cas où."
+	L.clue_4_2 = "La taupe porte des potions à la ceinture. J’en mettrais ma main au feu !"
+	L.clue_4_3 = "J’ai entendu dire que la taupe a apporté quelques potions. Je me demande bien pourquoi."
+	L.clue_4_4 = "Ça reste entre nous… La taupe se fait passer pour un alchimiste et porte des potions à sa ceinture."
 
 	-- Long Sleeves
-	L["J’ai brièvement entraperçu la taupe dans sa tenue à manches longues tout à l’heure."] = 5
-	L["Il paraît que la taupe porte une tenue à manches longues ce soir."] = 5
-	L["Quelqu’un m’a dit que les bras de la taupe étaient dissimulés par un habit à manches longues, ce soir."] = 5
-	L["D’après l’un de mes amis, la taupe porterait un habit à manches longues."] = 5
+	L.clue_5_1 = "J’ai brièvement entraperçu la taupe dans sa tenue à manches longues tout à l’heure."
+	L.clue_5_2 = "Il paraît que la taupe porte une tenue à manches longues ce soir."
+	L.clue_5_3 = "Quelqu’un m’a dit que les bras de la taupe étaient dissimulés par un habit à manches longues, ce soir."
+	L.clue_5_4 = "D’après l’un de mes amis, la taupe porterait un habit à manches longues."
 
 	-- Short Sleeves
-	L["Il paraît que la taupe aime sentir la caresse du vent sur sa peau et ne porte pas de manches longues ce soir."] = 6
-	L["Une de mes amies prétend avoir vu la tenue que porte notre taupe. À l’en croire, ce ne serait pas un habit à manches longues."] = 6
-	L["Quelqu’un m’a dit que la taupe détestait porter des manches longues."] = 6
-	L["Il paraît que la taupe porte des manches courtes pour rester plus libre de ses mouvements."] = 6
+	L.clue_6_1 = "Il paraît que la taupe aime sentir la caresse du vent sur sa peau et ne porte pas de manches longues ce soir."
+	L.clue_6_2 = "Une de mes amies prétend avoir vu la tenue que porte notre taupe. À l’en croire, ce ne serait pas un habit à manches longues."
+	L.clue_6_3 = "Quelqu’un m’a dit que la taupe détestait porter des manches longues."
+	L.clue_6_4 = "Il paraît que la taupe porte des manches courtes pour rester plus libre de ses mouvements."
 
 	-- Gloves
-	L["On dit que la taupe porte toujours des gants."] = 7
-	L["Le bruit court que la taupe porte toujours des gants."] = 7
-	L["On m’a raconté que la taupe portait des gants pour masquer d’affreuses cicatrices."] = 7
-	L["Il paraît que la taupe prend toujours soin de cacher ses mains."] = 7
+	L.clue_7_1 = "On dit que la taupe porte toujours des gants."
+	L.clue_7_2 = "Le bruit court que la taupe porte toujours des gants."
+	L.clue_7_3 = "On m’a raconté que la taupe portait des gants pour masquer d’affreuses cicatrices."
+	L.clue_7_4 = "Il paraît que la taupe prend toujours soin de cacher ses mains."
 
 	-- No Gloves
-	L["Le bruit court que la taupe ne porte jamais de gants."] = 8
-	L["On dit que la taupe déteste porter des gants."] = 8
-	L["J’ai entendu dire que la taupe évite de porter des gants, de crainte que cela ne nuise à sa dextérité."] = 8
-	L["Vous savez… J’ai trouvé une paire de gants abandonnée dans l’arrière-salle. Il faut croire que la taupe n’en porte pas."] = 8
+	L.clue_8_1 = "Le bruit court que la taupe ne porte jamais de gants."
+	L.clue_8_2 = "On dit que la taupe déteste porter des gants."
+	L.clue_8_3 = "J’ai entendu dire que la taupe évite de porter des gants, de crainte que cela ne nuise à sa dextérité."
+	L.clue_8_4 = "Vous savez… J’ai trouvé une paire de gants abandonnée dans l’arrière-salle. Il faut croire que la taupe n’en porte pas."
 
 	-- Male
-	L["Une invitée l’aurait vu entrer dans le manoir au côté de la grande magistrice."] = 9
-	L["À en croire la rumeur, la taupe ne serait pas une espionne."] = 9
-	L["Il paraît que l’espion est ici et qu’il est fort séduisant, de surcroît."] = 9
-	L["À en croire l’un des musiciens, il n’arrêtait pas de poser des questions sur le quartier."] = 9
+	L.clue_9_1 = "Une invitée l’aurait vu entrer dans le manoir au côté de la grande magistrice."
+	L.clue_9_2 = "À en croire la rumeur, la taupe ne serait pas une espionne."
+	L.clue_9_3 = "Il paraît que l’espion est ici et qu’il est fort séduisant, de surcroît."
+	L.clue_9_4 = "À en croire l’un des musiciens, il n’arrêtait pas de poser des questions sur le quartier."
 
 	-- Female
-	L["Quelqu’un l’a vue arriver en compagnie d’Élisande."] = 10
-	L["On me dit qu’une femme ne cesse de poser des questions à propos du quartier…"] = 10
-	L["Le bruit court que notre hôte ne serait pas un homme."] = 10
-	L["On dit que la taupe est ici et que c’est une vraie beauté."] = 10
+	L.clue_10_1 = "Quelqu’un l’a vue arriver en compagnie d’Élisande."
+	L.clue_10_2 = "On me dit qu’une femme ne cesse de poser des questions à propos du quartier…"
+	L.clue_10_3 = "Le bruit court que notre hôte ne serait pas un homme."
+	L.clue_10_4 = "On dit que la taupe est ici et que c’est une vraie beauté."
 
 	-- Light Vest
-	L["La taupe préfère les gilets de couleur claire."] = 11
-	L["Il paraît que la taupe porte un gilet clair ce soir."] = 11
-	L["On raconte que la taupe ne porte pas de gilet sombre ce soir."] = 11
+	L.clue_11_1 = "La taupe préfère les gilets de couleur claire."
+	L.clue_11_2 = "Il paraît que la taupe porte un gilet clair ce soir."
+	L.clue_11_3 = "On raconte que la taupe ne porte pas de gilet sombre ce soir."
 
 	-- Dark Vest
-	L["J’ai entendu dire que la taupe porte un gilet de couleur sombre ce soir."] = 12
-	L["La taupe préfère les gilets sombres… comme la nuit."] = 12
-	L["D’après les rumeurs, la taupe évite les tenues de couleur claire pour mieux se fondre dans la masse."] = 12
-	L["Une chose est sûre, la taupe préfère les vêtements sombres."] = 12
+	L.clue_12_1 = "J’ai entendu dire que la taupe porte un gilet de couleur sombre ce soir."
+	L.clue_12_2 = "La taupe préfère les gilets sombres… comme la nuit."
+	L.clue_12_3 = "D’après les rumeurs, la taupe évite les tenues de couleur claire pour mieux se fondre dans la masse."
+	L.clue_12_4 = "Une chose est sûre, la taupe préfère les vêtements sombres."
 
 	-- No Potions
-	L["Il paraît que la taupe ne transporte aucune potion."] = 13
-	L["Une musicienne m’a dit avoir vu la taupe jeter sa dernière potion. Il semblerait donc qu’il ne lui en reste plus."] = 13
+	L.clue_13_1 = "Il paraît que la taupe ne transporte aucune potion."
+	L.clue_13_2 = "Une musicienne m’a dit avoir vu la taupe jeter sa dernière potion. Il semblerait donc qu’il ne lui en reste plus."
 
 	-- Book
-	L["Il paraît que la taupe porte toujours un livre des secrets à sa ceinture."] = 14
-	L["Le bruit court que la taupe adore lire et transporte toujours au moins un livre."] = 14
+	L.clue_14_1 = "Il paraît que la taupe porte toujours un livre des secrets à sa ceinture."
+	L.clue_14_2 = "Le bruit court que la taupe adore lire et transporte toujours au moins un livre."
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "frFR")
