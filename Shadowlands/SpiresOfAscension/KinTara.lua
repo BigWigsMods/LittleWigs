@@ -2,7 +2,6 @@
 -- TODO:
 -- - Mythic Abilties
 -- - Improve timers
--- - Respawn
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -12,7 +11,7 @@ local mod, CL = BigWigs:NewBoss("Kin-Tara", 2285, 2399)
 if not mod then return end
 mod:RegisterEnableMob(162059, 163077) -- Kin-Tara, Azoras
 mod.engageId = 2357
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -2,7 +2,6 @@
 -- TODO:
 -- - Mythic Abilties
 -- - Improve timers
--- - Respawn
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -12,7 +11,7 @@ local mod, CL = BigWigs:NewBoss("Ventunax", 2285, 2416)
 if not mod then return end
 mod:RegisterEnableMob(162058) -- Ventunax
 mod.engageId = 2356
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
