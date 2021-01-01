@@ -75,7 +75,7 @@ do
 	end
 
 	function mod:PurifyingBlast(args)
-		self:GetBossTarget(printTarget, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 13)
 	end
 end
