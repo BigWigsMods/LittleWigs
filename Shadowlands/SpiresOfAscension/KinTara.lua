@@ -139,23 +139,24 @@ do
 	-- When she starts flying, she clears her current target.
 	-- The sequence for this ability is:
 	-- -1.21s UNIT_TARGET -> a player (sometimes this one is missing)
-	-- -1.20s UNIT_SPELLCAST_SUCCEEDED (320966) (sometimes this one triggers multiple times)
+	-- -1.20s UNIT_SPELLCAST_SUCCEEDED (321088) (sometimes this one triggers multiple times)
 	-- -1.17s UNIT_TARGET -> empty target
 	-- -1.00s CHAT_MSG_RAID_BOSS_EMOTE
-	-- +0.00s SPELL_CAST_START (321009)
+	-- +0.00s SPELL_CAST_START + UNIT_SPELLCAST_START (321009)
 	-- +0.00s UNIT_TARGET -> a player
-	-- +0.50s SPELL_CAST_SUCCESS (321009)
-	local function printTarget(destName, offset)
-		mod:TargetMessage(321009, "yellow", destName)
-		mod:PlaySound(321009, "alert", nil, destName)
-		mod:CastBar(321009, 2.7 + offset) -- Targetting + actual cast + travel time (it's constant)
-		mod:CDBar(321009, 10.9 + offset)
-		mod:PrimaryIcon(321009, destName)
+	-- +0.50s SPELL_CAST_SUCCESS + UNIT_SPELLCAST_SUCCEEDED (321009)
+	-- +1.50s UNIT_SPELLCAST_SUCCEEDED (324662)
+	local function printTarget(self, destName, offset)
+		self:TargetMessage(321009, "yellow", destName)
+		self:PlaySound(321009, "alert", nil, destName)
+		self:CastBar(321009, 2.7 + offset) -- Targetting + actual cast + travel time (it's constant)
+		self:CDBar(321009, 10.9 + offset)
+		self:PrimaryIcon(321009, destName)
 
-		local guid = mod:UnitGUID(destName)
-		if mod:Me(guid) then
-			mod:Say(321009)
-			mod:SayCountdown(321009, 2.7 + offset, nil, 2)
+		local guid = self:UnitGUID(destName)
+		if self:Me(guid) then
+			self:Say(321009)
+			self:SayCountdown(321009, 2.7 + offset, nil, 2)
 		end
 	end
 
@@ -166,9 +167,9 @@ do
 			if t - prev > 1 then
 				prev = t
 
-				local destName = UnitName(unit.."target")
+				local destName = self:UnitName(unit.."target")
 				if destName then
-					printTarget(destName, 0)
+					printTarget(self, destName, 0)
 				else
 					self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 				end
@@ -182,7 +183,7 @@ do
 
 	function mod:CHAT_MSG_RAID_BOSS_EMOTE(event, _, _, _, _, destName)
 		self:UnregisterEvent(event)
-		printTarget(destName, -0.2)
+		printTarget(self, destName, -0.2)
 	end
 end
 
