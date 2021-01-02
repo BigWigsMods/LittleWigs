@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "IonizedPlasma", 324662)
 	self:Log("SPELL_PERIODIC_MISSED", "IonizedPlasma", 324662)
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Charged Spear
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2") -- Charged Spear
 
 	-- Stage detection
 	if self:Mythic() then
