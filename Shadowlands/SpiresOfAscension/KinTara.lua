@@ -136,7 +136,7 @@ do
 	-- When she starts flying, she clears her current target.
 	-- The sequence for this ability is:
 	-- -1.21s UNIT_TARGET -> a player (sometimes this one is missing)
-	-- -1.20s UNIT_SPELLCAST_SUCCEEDED (321088) (sometimes this one triggers multiple times)
+	-- -1.20s UNIT_SPELLCAST_SUCCEEDED (321088)
 	-- -1.17s UNIT_TARGET -> empty target
 	-- -1.00s CHAT_MSG_RAID_BOSS_EMOTE
 	-- +0.00s SPELL_CAST_START + UNIT_SPELLCAST_START (321009)
@@ -157,19 +157,13 @@ do
 		end
 	end
 
-	local prev = 0
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 321088 then -- Charged Spear (targetting)
-			local t = GetTime()
-			if t - prev > 1 then
-				prev = t
-
-				local destName = self:UnitName(unit.."target")
-				if destName then
-					printTarget(self, destName, 0)
-				else
-					self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-				end
+			local destName = self:UnitName(unit.."target")
+			if destName then
+				printTarget(self, destName, 0)
+			else
+				self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 			end
 		elseif spellId == 321009 then -- Charged Spear (thrown)
 			self:UnregisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
