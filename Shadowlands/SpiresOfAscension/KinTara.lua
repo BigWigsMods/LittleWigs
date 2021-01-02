@@ -32,7 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "OverheadSlash", 320966)
 	self:Log("SPELL_CAST_SUCCESS", "DarkLanceSuccess", 327481)
 	self:Log("SPELL_AURA_APPLIED", "DarkLanceApplied", 327481)
-	self:Log("SPELL_AURA_REMOVED", "DarkLanceRemoved", 327481)
 	self:Log("SPELL_CAST_START", "AttenuatedBarrage", 324368)
 
 	self:Log("SPELL_AURA_APPLIED", "DeepConnection", 331251)
@@ -128,10 +127,6 @@ do
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
-end
-
-function mod:DarkLanceRemoved(args)
-	self:StopBar(args.spellName, args.destName)
 end
 
 -- Charged Spear:
