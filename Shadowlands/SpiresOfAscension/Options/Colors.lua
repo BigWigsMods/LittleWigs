@@ -1,9 +1,10 @@
 
 BigWigs:AddColors("Kin-Tara", {
-	[320966] = "orange",
-	[321009] = "yellow",
+	[320966] = "purple",
+	[321009] = {"blue","yellow"},
 	[324368] = "cyan",
-	[327481] = "orange",
+	[327481] = {"blue","orange"},
+	[331251] = {"blue","red"},
 })
 
 BigWigs:AddColors("Ventunax", {
