@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "IonizedPlasma", 324662)
 	self:Log("SPELL_PERIODIC_MISSED", "IonizedPlasma", 324662)
 
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Charged Spear
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Charged Spear
 
 	-- Stage detection
 	if self:Mythic() then
@@ -66,22 +66,22 @@ end
 --
 
 do
-	local function startTimers(offset)
-		mod:StopBar(324368) -- Attenuated Barrage
-		mod:StopBar(320966) -- Overhead Slash
-		mod:StopBar(327481) -- Dark Lance
+	local function startTimers(self, offset)
+		self:StopBar(324368) -- Attenuated Barrage
+		self:StopBar(320966) -- Overhead Slash
+		self:StopBar(327481) -- Dark Lance
 
-		mod:CDBar(321009, 3.6 + offset) -- Charged Spear (timers are very inconsistent for this one)
-		mod:CDBar("stages", 22 + offset, CL.over:format(CL.intermission), "inv_sword_01")
+		self:CDBar(321009, 3.6 + offset) -- Charged Spear (timers are very inconsistent for this one)
+		self:CDBar("stages", 22 + offset, CL.over:format(CL.intermission), "inv_sword_01")
 	end
 
 	function mod:Intermission()
-		startTimers(0)
+		startTimers(self, 0)
 	end
 
 	function mod:CHAT_MSG_MONSTER_YELL(_, _, source, _, _, target)
 		if source == target then -- Intermission (or a wipe, or someone with the same name on koKR where it doesn't have a hyphen)
-			startTimers(-0.2)
+			startTimers(self, -0.2)
 			self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1") -- Power resets to 0 at the end of the intermission
 		end
 	end
@@ -96,12 +96,9 @@ function mod:IntermissionOver()
 end
 
 function mod:UNIT_POWER_FREQUENT(event, unit, powerType)
-	if powerType == "ENERGY" then
-		local energy = UnitPower(unit, 3)
-		if energy == 0 then
-			self:UnregisterUnitEvent(event, unit)
-			self:IntermissionOver()
-		end
+	if powerType == "ENERGY" and UnitPower(unit, 3) == 0 then -- ENERGY = 3
+		self:UnregisterUnitEvent(event, unit)
+		self:IntermissionOver()
 	end
 end
 
