@@ -45,11 +45,11 @@ end
 --
 
 do
-	local prev = nil
+	local prevGUID = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if castGUID ~= prev then return end
-		prev = castGUID
-		if spellId == 322573 then -- Coalesce Manifestation
+		if spellId == 322573 and prevGUID ~= castGUID then -- Coalesce Manifestation
+			prevGUID = castGUID
+
 			self:Message(322573, "yellow")
 			self:PlaySound(322573, "info")
 			self:CDBar(322573, 30)
