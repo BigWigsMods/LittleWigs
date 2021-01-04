@@ -601,7 +601,7 @@ do
 				self:CustomIcon(false, "target", 8)
 			else
 				for unit in self:IterateGroup() do
-					if UnitName(unit) == target then -- Normal UnitName since CHAT_MSG_MONSTER_SAY doesn't append servers to names
+					if self:UnitGUID(unit) == self:UnitGUID(target) then
 						self:CustomIcon(false, unit.."target", 8)
 						break
 					end
