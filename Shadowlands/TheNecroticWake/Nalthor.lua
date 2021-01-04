@@ -33,8 +33,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CometStorm", 320772)
-	self:Log("SPELL_AURA_APPLIED", "IceboundAegisApplied", 321368)
-	self:Log("SPELL_AURA_REMOVED", "IceboundAegisRemoved", 321368)
+	self:Log("SPELL_AURA_APPLIED", "IceboundAegisApplied", 321368, 321754) -- normal/heroic, mythic
+	self:Log("SPELL_AURA_REMOVED", "IceboundAegisRemoved", 321368, 321754)
 	self:Log("SPELL_CAST_SUCCESS", "FrozenBinds", 320788)
 	self:Log("SPELL_CAST_SUCCESS", "DarkExile", 321894)
 end
@@ -58,17 +58,17 @@ function mod:CometStorm(args)
 end
 
 do
-	local seconds = 0
+	local appliedAt = 0
 	function mod:IceboundAegisApplied(args)
-		seconds = args.time
-		self:Message(args.spellId, "cyan")
-		self:PlaySound(args.spellId, "info")
-		self:Bar(args.spellId, 25.5)
+		appliedAt = args.time
+
+		self:Message(321368, "cyan")
+		self:PlaySound(321368, "info")
+		self:Bar(321368, 25.5)
 	end
 
 	function mod:IceboundAegisRemoved(args)
-		seconds = math.floor((args.time - seconds) * 100)/100
-		self:Message(args.spellId, "green", L.aegis:format(args.spellName, seconds))
+		self:Message(321368, "green", L.aegis:format(args.spellName, args.time - appliedAt))
 	end
 end
 
