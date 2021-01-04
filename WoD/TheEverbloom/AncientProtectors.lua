@@ -74,11 +74,9 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 			local unit = ("boss%d"):format(i)
 			local id = self:MobId(self:UnitGUID(unit))
 			if id == 83892 and not golaHasDied then
-				if not IsInGroup() then SetRaidTarget(unit, 0) end -- setting the same icon twice while not in a group removes it
-				SetRaidTarget(unit, 8)
+				self:CustomIcon(false, unit, 8)
 			elseif id == 83893 then
-				if not IsInGroup() then SetRaidTarget(unit, 0) end
-				SetRaidTarget(unit, golaHasDied and 8 or 7)
+				self:CustomIcon(false, unit, golaHasDied and 8 or 7)
 			end
 		end
 	end

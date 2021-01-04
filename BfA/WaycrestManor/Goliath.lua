@@ -62,7 +62,7 @@ do
 	function mod:MarkSoulThorns(_, unit, guid)
 		if soulThornsGUID == guid then
 			soulThornsGUID = nil
-			SetRaidTarget(unit, 8)
+			self:CustomIcon(soulThornsMarker, unit, 8)
 			self:UnregisterTargetEvents()
 		end
 	end

@@ -59,7 +59,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 			local unit = ("boss%d"):format(i)
 			local guid = self:UnitGUID(unit)
 			if self:MobId(guid) == 76267 then -- Solar Zealot
-				SetRaidTarget(unit, 8)
+				self:CustomIcon(false, unit, 8)
 				break
 			end
 		end

@@ -99,7 +99,7 @@ end
 
 function mod:MarkMatter(_, unit, guid)
 	if self:MobId(guid) == 124964 then -- Unstable Dark Matter
-		SetRaidTarget(unit, 8)
+		self:CustomIcon(matterMarker, unit, 8)
 		self:UnregisterTargetEvents()
 	end
 end
