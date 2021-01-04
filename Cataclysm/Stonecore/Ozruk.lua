@@ -54,12 +54,10 @@ function mod:ElementiumBulwarkRemoved(args)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
-	if self:MobId(UnitGUID(unit)) == 40586 then
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 27 then
-			self:UnregisterUnitEvent(event, unit)
-			self:MessageOld(80467, "yellow", nil, CL.soon:format(self:SpellName(80467)), false)
-		end
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 27 then
+		self:UnregisterUnitEvent(event, unit)
+		self:MessageOld(80467, "yellow", nil, CL.soon:format(self:SpellName(80467)), false)
 	end
 end
 

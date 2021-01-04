@@ -72,7 +72,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if self:GetOption("custom_on_automark") then
 		for i = 1, 3 do
 			local unit = ("boss%d"):format(i)
-			local id = self:MobId(UnitGUID(unit))
+			local id = self:MobId(self:UnitGUID(unit))
 			if id == 83892 and not golaHasDied then
 				if not IsInGroup() then SetRaidTarget(unit, 0) end -- setting the same icon twice while not in a group removes it
 				SetRaidTarget(unit, 8)

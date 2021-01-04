@@ -87,7 +87,7 @@ do
 	function mod:CheckTentacles()
 		local bosses = {}
 		for i = 1, 5 do
-			local guid = UnitGUID(("boss%d"):format(i))
+			local guid = self:UnitGUID(("boss%d"):format(i))
 			if guid then
 				bosses[guid] = true
 			end

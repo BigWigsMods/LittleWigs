@@ -77,7 +77,7 @@ do
 	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		-- IEEU fires on living boss spawn and death
 		-- mobId will be nil if the boss died
-		local guid = UnitGUID("boss1")
+		local guid = self:UnitGUID("boss1")
 		if guid then -- Boss spawned
 			stage = stage + 1
 			local mobId = self:MobId(guid)
@@ -124,12 +124,12 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	if msg:find("266951") then -- Barrel Through
 		self:TargetMessage(266951, "red", destName)
 		self:PlaySound(266951, "warning", nil, destName)
-		local guid = UnitGUID(destName)
+		local guid = self:UnitGUID(destName)
 		if self:Me(guid) then
 			self:Say(266951)
 			self:SayCountdown(266951, 8)
 		end
-		local mobId = self:MobId(UnitGUID("boss1"))
+		local mobId = self:MobId(self:UnitGUID("boss1"))
 		if mobId == 135470 then -- Aka'ali the Conqueror
 			self:Bar(266951, 23.1) -- Barrel Through
 			self:Bar(266237, 9) -- Debilitating Backhand
@@ -142,7 +142,7 @@ end
 function mod:PoisonNova(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	local mobId = self:MobId(UnitGUID("boss1"))
+	local mobId = self:MobId(self:UnitGUID("boss1"))
 	self:Bar(args.spellId, mobId == 135472 and 29.2 or 51) -- Zanazal the Wise
 end
 
@@ -155,7 +155,7 @@ end
 function mod:WhirlingAxes(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	local mobId = self:MobId(UnitGUID("boss1"))
+	local mobId = self:MobId(self:UnitGUID("boss1"))
 	self:Bar(args.spellId, mobId == 135475 and 10.9 or 50) -- Kula the Butcher
 end
 

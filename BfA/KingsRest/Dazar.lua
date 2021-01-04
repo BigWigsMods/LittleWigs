@@ -84,7 +84,7 @@ end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	for i = 1, 3 do
-		local guid = UnitGUID(("boss%d"):format(i))
+		local guid = self:UnitGUID(("boss%d"):format(i))
 		if guid and not mobCollector[guid] then
 			mobCollector[guid] = true
 

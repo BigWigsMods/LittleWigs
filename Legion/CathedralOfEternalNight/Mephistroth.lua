@@ -113,7 +113,7 @@ do
 		if upheavalWarned[n] and not name then
 			upheavalWarned[n] = nil
 		elseif name and not upheavalWarned[n] then
-			guid = UnitGUID(n)
+			guid = self:UnitGUID(n)
 			list[#list+1] = n
 			if #list == 1 then
 				self:ScheduleTimer("TargetMessageOld", 1, 233196, list, "red", "warning", 233963) -- Travel time

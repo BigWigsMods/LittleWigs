@@ -51,7 +51,7 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	local foundMrrgria, foundToeKnee = nil, nil
 	for i = 1, 5 do
-		local guid = UnitGUID(("boss%d"):format(i))
+		local guid = self:UnitGUID(("boss%d"):format(i))
 		if guid  then
 			local mobId = self:MobId(guid)
 			if mobId == 114260 then -- Mrrgria

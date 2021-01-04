@@ -57,7 +57,7 @@ do
 	local prevDash = 0
 	local prevShieldGUID = nil
 	function mod:UNIT_POWER_FREQUENT(event, unit)
-		local guid = UnitGUID(unit)
+		local guid = self:UnitGUID(unit)
 		local t = GetTime()
 		-- Adderis gets 100 energy when he dies
 		if t-prevDash > 2 and self:MobId(guid) == 133379 and not UnitIsDead(unit) then -- Adderis
@@ -77,7 +77,7 @@ end
 function mod:LightningShield(args)
 	self:Message(args.spellId, "cyan", CL.other:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
-	local otherBoss = UnitGUID("boss1") == args.destGUID and "boss2" or "boss1"
+	local otherBoss = self:UnitGUID("boss1") == args.destGUID and "boss2" or "boss1"
 	self:PrimaryIcon(args.spellId, otherBoss)
 	if self:MobId(args.destGUID) == 133379 then -- Adderis
 		self:Bar(263424, 20) -- Arc Dash

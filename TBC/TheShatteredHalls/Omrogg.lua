@@ -38,7 +38,7 @@ do
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 30618 then -- Beatdown
-			self:GetBossTarget(announce, 0.4, UnitGUID(unit))
+			self:GetBossTarget(announce, 0.4, self:UnitGUID(unit))
 		end
 	end
 end

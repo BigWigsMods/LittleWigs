@@ -47,7 +47,7 @@ do
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 36038 then -- Charge Targeting
-			self:GetBossTarget(printTarget, 0.4, UnitGUID(unit))
+			self:GetBossTarget(printTarget, 0.4, self:UnitGUID(unit))
 		end
 	end
 end

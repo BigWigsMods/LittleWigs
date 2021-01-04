@@ -60,7 +60,7 @@ do
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "alarm")
 			self:StackMessage(args.spellId, args.destName, args.amount, "blue")
-		elseif UnitGUID("boss1") == args.destGUID then
+		elseif self:UnitGUID("boss1") == args.destGUID then
 			self:PlaySound(args.spellId, "info")
 			self:StackMessage(args.spellId, args.destName, args.amount, "green")
 			self:StopBar(prev, args.destName)

@@ -286,7 +286,7 @@ end
 do
 	local prev = 0
 	function mod:UNIT_POWER_FREQUENT(_, unit)
-		local guid = UnitGUID(unit)
+		local guid = self:UnitGUID(unit)
 		local mobId = self:MobId(guid)
 		if mobId == 154524 or mobId == 157609 then -- K'thir Mindcarver (same mob with different ids)
 			-- Gains 12 energy from every melee, so this must be a multiple of 12

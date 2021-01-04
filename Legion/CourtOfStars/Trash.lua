@@ -566,7 +566,7 @@ do
 			timer = nil
 		end
 
-		local mobId = self:MobId(UnitGUID("npc"))
+		local mobId = self:MobId(self:UnitGUID("npc"))
 		local spyEventHelper = self:GetOption("spy_helper") > 0
 		if autoTalk[mobId] or buffItems[mobId] then
 			if not self:GetGossipOptions() and mobId == 107486 then -- Chatty Rumormonger
@@ -704,7 +704,7 @@ do
 	end
 
 	function mod:UPDATE_MOUSEOVER_UNIT()
-		local id = self:MobId(UnitGUID("mouseover"))
+		local id = self:MobId(self:UnitGUID("mouseover"))
 		local item = buffItems[id] or guardItems[id]
 		if item then
 			usableFound(self, id, item)
