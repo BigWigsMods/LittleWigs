@@ -19,5 +19,5 @@ if L then
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "Lumídia do Bosque"
 
-	-- L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
+	L.soporific_shimmerdust_desc = "Maldição que faz seu personagem dormir com 10 pilhas. Pular reinicia a pilha."
 end
