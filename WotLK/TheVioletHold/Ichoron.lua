@@ -1,46 +1,65 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Ichoron", 536)
+local mod, CL = BigWigs:NewBoss("Ichoron", 608, 628)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Dalaran"
-mod:RegisterEnableMob(29313, 32234)
-mod.toggleOptions = {
-	54306, -- Bubble
-	54312, -- Frenzy
-}
+mod:RegisterEnableMob(
+	29313, -- Ichoron
+	32224 -- Swirling Water Revenant (replacement boss)
+)
+-- mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
+-- mod.respawnTime = 0
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
-local L = mod:GetLocale()
-if L then
-	L["bubbleEnded_message"] = "Protective Bubble Faded"
-	L["bubble_message"] = "Gained Protective Bubble"
+function mod:GetOptions()
+	return {
+		"stages",
+		54306, -- Protective Bubble
+		54312, -- Frenzy
+		54241, -- Water Bolt Volley
+	}
 end
-
--------------------------------------------------------------------------------
---  Initialization
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Bubble", 54306)
-	self:Log("SPELL_AURA_REMOVED", "BubbleRemoved", 54306)
-	self:Log("SPELL_AURA_APPLIED", "Frenzy", 54312, 59522)
-	self:Death("Win", 29313, 32234)
+	self:Log("SPELL_AURA_APPLIED", "Drained", 59820)
+	self:Log("SPELL_AURA_APPLIED", "ProtectiveBubble", 54306)
+	self:Log("SPELL_AURA_REMOVED", "ProtectiveBubbleRemoved", 54306)
+	self:Log("SPELL_AURA_APPLIED", "Frenzy", 54312, 59522) -- Normal, Heroic
+	self:Log("SPELL_CAST_START", "WaterBoltVolley", 54241, 59521) -- Normal, Heroic
+
+	self:Death("Win", 29313, 32224)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Bubble(_, spellId)
-	self:MessageOld(54306, L["bubble_message"], "red", spellId)
+function mod:Drained()
+	self:Bar("stages", 15, CL.intermission, "spell_frost_summonwaterelemental_2")
 end
 
-function mod:BubbleRemoved(_, spellId)
-	self:MessageOld(54306, L["bubbleEnded_message"], "green", spellId)
+function mod:ProtectiveBubble(args)
+	self:Message(args.spellId, "yellow", CL.onboss:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
 end
 
-function mod:Frenzy(_, spellId, _, _, spellName)
-	self:MessageOld(54312, spellName, "red", spellId)
+function mod:ProtectiveBubbleRemoved(args)
+	self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:Frenzy()
+	self:Message(54312, "red")
+	self:PlaySound(54312, "alert")
+end
+
+function mod:WaterBoltVolley(args)
+	self:Message(54241, "orange", CL.casting:format(args.spellName))
+	if self:Interrupter() then
+		self:PlaySound(54312, "alarm")
+	end
 end
