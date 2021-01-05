@@ -17,7 +17,7 @@ function mod:GetOptions()
 		{58688, "TANK_HEALER"}, -- Uncontrollable Energy
 		58694, -- Arcane Vacuum
 		58693, -- Blizzard
-		{59374, "HEALER", "FLASH"}, -- Mana Destruction
+		{59374, "DISPEL"}, -- Mana Destruction
 	}, {
 		[58688] = "normal",
 		[59374] = "heroic",
@@ -43,7 +43,7 @@ function mod:OnEngage()
 	self:CDBar(58688, 7) -- Uncontrollable Energy
 	self:CDBar(58694, 26.7) -- Arcane Vacuum
 
-	-- if self:Heroic then
+	-- if self:Heroic and self:Dispeller("magic", nil, 59374) then
 	-- 	self:CDBar(59374, 0) -- Mana Destruction
 	-- end
 end
@@ -80,15 +80,11 @@ function mod:ArcaneVacuum(args)
 end
 
 function mod:ManaDestruction(args)
-	local isOnMe = self:Me(args.destGUID)
-
-	self:TargetBar(args.spellId, 8, args.destName)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, isOnMe and "warning" or "info", nil, args.destName)
-	-- self:CDBar(args.spellId, 0)
-
-	if isOnMe then
-		self:Flash(args.spellId)
+	if self:Dispeller("magic", nil, args.spellId) then
+		self:TargetBar(args.spellId, 8, args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+		-- self:CDBar(args.spellId, 0)
 	end
 end
 

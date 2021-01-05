@@ -33,7 +33,7 @@ BigWigs:AddSounds("Cyanigosa", {
 	[58688] = "alert",
 	[58693] = "alarm",
 	[58694] = "info",
-	[59374] = {"info","warning"},
+	[59374] = "alert",
 })
 
 BigWigs:AddSounds("The Violet Hold Trash", {
