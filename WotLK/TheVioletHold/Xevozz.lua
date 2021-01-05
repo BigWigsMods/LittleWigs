@@ -1,34 +1,46 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Xevozz", 536)
+local mod, CL = BigWigs:NewBoss("Xevozz", 608, 629)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Dalaran"
-mod:RegisterEnableMob(29266, 32231)
-mod.toggleOptions = {
-	54102, -- Summon Sphere
-}
+mod:RegisterEnableMob(
+	29266, -- Xevozz
+	32231 -- Ethereal Wind Trader (replacement boss)
+)
+-- mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
+-- mod.respawnTime = 0
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
+--
 
 local L = mod:GetLocale()
 if L then
-	L["sphere_message"] = "Summoning Ethereal Sphere"
+	L.summon_sphere = "Summoning Ethereal Sphere"
 end
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:GetOptions()
+	return {
+		54102, -- Summon Ethereal Sphere
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Sphere", 54102, 54137, 54138, 61337, 61338)
+	self:Log("SPELL_CAST_START", "SummonEtherealSphere", 54102, 54137, 54138, 61337, 61338) -- 3x Normal, 2x Heroic
+
 	self:Death("Win", 29266, 32231)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Sphere(_, spellId)
-	self:MessageOld(54102, L["sphere_message"], "red", spellId)
+function mod:SummonEtherealSphere()
+	self:Message(54102, "red", L.summon_sphere)
+	self:PlaySound(54102, "alert")
 end
