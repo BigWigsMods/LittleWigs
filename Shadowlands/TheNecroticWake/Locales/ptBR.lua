@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Nalthor the Rimebinder", "ptBR")
 if not L then return end
 if L then
-	-- L.aegis = "%s removed after %.1f seconds!"
+	L.aegis = "%s removido depois de %.1f segundos!"
 end
 
 L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "ptBR")
