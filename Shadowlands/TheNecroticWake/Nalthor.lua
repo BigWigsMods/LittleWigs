@@ -79,8 +79,8 @@ end
 do
 	local function printTarget(self, name, guid)
 		if self:Me(guid) then
-			self:Message(320788, "blue", L.casting_on_you:format(self:SpellName(320788)))
-		else
+			self:PersonalMessage(320788, false, L.casting_on_you:format(self:SpellName(320788)))
+		elseif not self:CheckOption(320788, "ME_ONLY") then
 			self:Message(320788, "cyan", L.casting_on_other:format(self:SpellName(320788), self:ColorName(name)))
 		end
 		self:PlaySound(320788, "info", nil, name)
