@@ -15,9 +15,12 @@ if L then
 	-- [[ Path to the Manastorms ]] --
 	L.drill = "Испорченная бормашина"
 	L.arf_arf = "Г4В-Г4В"
+	L.lubricator = "Смазчик"
+	L.headless = "Безголовый клиент"
 
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "Чащобный мерцающий мотылек"
+	L.mythresh = "Мифреш Небесный Коготь"
 
 	L.soporific_shimmerdust_desc = "Проклятье, заставляющее персонажа засыпать на 10 стаках. Прыжки сбрасывают стаки."
 end

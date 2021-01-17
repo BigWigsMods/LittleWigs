@@ -15,9 +15,12 @@ if L then
 	-- [[ Path to the Manastorms ]] --
 	L.drill = "사용 중지된 치과용 천공기"
 	L.arf_arf = "댕-댕"
+	L.lubricator = "윤활유 도포기"
+	L.headless = "머리 없는 수신로봇"
 
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "숲 아른나방"
+	L.mythresh = "하늘의 발톱 미스레쉬"
 
 	-- L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
 end

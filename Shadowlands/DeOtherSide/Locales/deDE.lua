@@ -15,9 +15,12 @@ if L then
 	-- [[ Path to the Manastorms ]] --
 	L.drill = "Defekter Zahnbohrer"
 	L.arf_arf = "W4U-W4U"
+	L.lubricator = "Schmierer"
+	L.headless = "Kopfloser Klient"
 
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "Waldschimmermotte"
+	L.mythresh = "Mythresh, Krallen des Himmels"
 
 	L.soporific_shimmerdust_desc = "Dieser Fluch lässt den Spieler bei 10 Stapeln einschlafen. Springen entfernt die Stapel."
 end

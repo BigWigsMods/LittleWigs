@@ -15,9 +15,12 @@ if L then
 	-- [[ Path to the Manastorms ]] --
 	L.drill = "失灵的牙钻"
 	L.arf_arf = "4.RF-4.RF"
+	L.lubricator = "润滑器"
+	L.headless = "无头的终端机"
 
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "仙野烁光蛾"
+	L.mythresh = "密斯雷什，苍穹之爪"
 
 	-- L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
 end
