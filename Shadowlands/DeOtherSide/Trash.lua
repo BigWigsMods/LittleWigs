@@ -271,7 +271,7 @@ end
 
 function mod:Haywire(args)
 	self:CastBar(args.spellId, 4)
-	self:NameplateCDBar(args.spellId, 23, args.sourceGUID)
+	self:NameplateCDBar(args.spellId, 19, args.sourceGUID)
 end
 
 function mod:HaywireOver(args)
