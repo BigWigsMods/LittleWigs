@@ -15,9 +15,12 @@ if L then
 	-- [[ Path to the Manastorms ]] --
 	L.drill = "Fraise de dentiste abandonnée"
 	L.arf_arf = "0U.AF-0U.AF"
+	L.lubricator = "Lubrificateur"
+	L.headless = "Client décapité"
 
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "Phaluisant sylvestre"
+	L.mythresh = "Mythresh, Serres des Cieux"
 
 	-- L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
 end

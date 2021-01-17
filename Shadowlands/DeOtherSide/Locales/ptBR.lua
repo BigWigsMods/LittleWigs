@@ -15,9 +15,12 @@ if L then
 	-- [[ Path to the Manastorms ]] --
 	L.drill = "Broca Dental Defunta"
 	L.arf_arf = "4.RF-4.RF"
+	L.lubricator = "Lubrificador"
+	L.headless = "Cliente Sem Cabeça"
 
 	-- [[ Path to Xyexa ]] --
 	L.shimmermoth = "Lumídia do Bosque"
+	L.mythresh = "Mythresh, as Garras do Céu"
 
 	L.soporific_shimmerdust_desc = "Maldição que faz seu personagem dormir com 10 pilhas. Pular reinicia a pilha."
 end
