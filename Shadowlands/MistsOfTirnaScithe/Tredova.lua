@@ -9,13 +9,6 @@ mod:RegisterEnableMob(164517) -- Tred'ova
 mod.engageId = 2393
 --mod.respawnTime = 30
 
-local L = mod:GetLocale()
-if L then
-	L.parasitic = 278431
-	L.parasitic_desc = "Show warnings and timers for Parasitic Pacification, Incapacitation and Domination."
-	L.parasitic_icon = 337235
-end
-
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -27,7 +20,13 @@ function mod:GetOptions()
 		322614, -- Mind Link
 		322563, -- Marked Prey
 		322651, -- Acid Expulsion
-		{"parasitic", "SAY"}, -- Parasitic Pacification, Incapacitation and Domination
+		{337235, "SAY"}, -- Parasitic Pacification
+		{337249, "SAY"}, -- Parasitic Incapacitation
+		{337255, "SAY"}, -- Parasitic Domination
+	},nil,{
+		[337235] = self:SpellName(36469), -- Parasitic Pacification (Parasite)
+		[337249] = self:SpellName(36469), -- Parasitic Incapacitation (Parasite)
+		[337255] = self:SpellName(36469), -- Parasitic Domination (Parasite)
 	}
 end
 
@@ -38,7 +37,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AcceleratedIncubation", 322550)
 	self:Log("SPELL_CAST_SUCCESS", "MindLink", 322614)
 	self:Log("SPELL_AURA_APPLIED", "MarkedPreyApplied", 322563)
-	self:Log("SPELL_CAST_START", "Parasitic", 337235, 337249, 337255) -- Parasitic Pacification, Incapacitation and Domination
+	self:Log("SPELL_CAST_START", "Parasite", 337235, 337249, 337255) -- Parasitic Pacification, Parasitic Incapacitation, Parasitic Domination
+	self:Log("SPELL_CAST_SUCCESS", "ParasiteSuccess", 337235, 337249, 337255) -- Parasitic Pacification, Parasitic Incapacitation, Parasitic Domination
 end
 
 function mod:OnEngage()
@@ -84,17 +84,16 @@ function mod:MarkedPreyApplied(args)
 	end
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage("parasitic", "red", name, 278431, 278431) -- Parasitic
-		if self:Me(guid) then
-			self:PlaySound("parasitic", "warning")
-			self:Say("parasitic", 278431) -- Parasitic
-		end
-	end
+function mod:Parasite(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 22, 36469, args.spellId) -- 36469 = Parasite
+end
 
-	function mod:Parasitic(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID, args.spellId)
-		self:CDBar("parasitic", 22, L.parasitic, L.parasitic_icon)
+function mod:ParasiteSuccess(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "warning")
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
 	end
 end
