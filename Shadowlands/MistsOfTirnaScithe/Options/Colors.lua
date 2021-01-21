@@ -21,5 +21,7 @@ BigWigs:AddColors("Tred'ova", {
 	[322563] = {"blue","yellow"},
 	[322614] = {"blue","orange"},
 	[322651] = "yellow",
-	["parasitic"] = {"blue","red"},
+	[337235] = {"blue","red"},
+	[337249] = {"blue","red"},
+	[337255] = {"blue","red"},
 })

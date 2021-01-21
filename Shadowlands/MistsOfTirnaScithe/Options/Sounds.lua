@@ -21,5 +21,7 @@ BigWigs:AddSounds("Tred'ova", {
 	[322563] = "alarm",
 	[322614] = "alarm",
 	[322651] = "alert",
-	["parasitic"] = "warning",
+	[337235] = "warning",
+	[337249] = "warning",
+	[337255] = "warning",
 })
