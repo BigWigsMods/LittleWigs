@@ -97,7 +97,6 @@ do
 			self:OpenProximity(spellId, 30, targets)
 		end
 		self:TargetMessageOld(spellId, self:ColorName(targets), "yellow", "warning")
-		wipe(targets)
 		isOnMe = nil
 	end
 

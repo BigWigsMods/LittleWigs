@@ -45,14 +45,14 @@ end
 
 function mod:OnEngage()
 	addsAlive = 0
-	wipe(playersWithTouch)
-	wipe(mobCollector)
+	playersWithTouch = {}
+	mobCollector = {}
 	self:CDBar(117665, 24.4) -- Bounds of Reality
 end
 
 function mod:OnBossDisable()
-	wipe(playersWithTouch)
-	wipe(mobCollector)
+	playersWithTouch = {}
+	mobCollector = {}
 end
 
 --------------------------------------------------------------------------------

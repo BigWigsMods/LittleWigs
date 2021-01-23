@@ -70,13 +70,13 @@ end
 
 function mod:OnEngage()
 	isCastingChaoticEnergy = false
+	if self:Mythic() then
+		felPortalGuardiansCounter = 1
+		felPortalGuardianCollector = {}
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	end
 	self:CDBar(236543, 8.3) -- Felsoul Cleave
 	self:CDBar(234107, 32.5) -- Chaotic Energy
-	if self:Mythic() then
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-		felPortalGuardiansCounter = 1
-		wipe(felPortalGuardianCollector)
-	end
 end
 
 --------------------------------------------------------------------------------

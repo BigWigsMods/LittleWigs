@@ -70,13 +70,13 @@ end
 
 function mod:OnEngage()
 	addsSpawned = 0
-	wipe(mobCollector)
+	mobCollector = {}
 
 	self:StartTimers()
 end
 
 function mod:OnBossDisable()
-	wipe(mobCollector)
+	mobCollector = {}
 end
 
 --------------------------------------------------------------------------------

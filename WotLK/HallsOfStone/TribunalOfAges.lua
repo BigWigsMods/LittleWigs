@@ -87,13 +87,13 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 end
 
 do
-	local isOnMe, playerList = false, mod:NewTargetList()
+	local isOnMe, playerList = false, {}
 
 	local function announce(self)
 		if isOnMe or self:Dispeller("magic") then
-			self:TargetMessageOld(59868, playerList, "orange", "alarm", nil, nil, true)
+			self:TargetMessageOld(59868, self:ColorName(playerList), "orange", "alarm", nil, nil, true)
 		else
-			wipe(playerList) -- :TargetMessage calls wipe() on its 2nd argument
+			playerList = {} -- :TargetMessage calls wipe() on its 2nd argument
 		end
 
 		isOnMe = false

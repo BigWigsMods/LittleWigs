@@ -522,7 +522,7 @@ do
 	function mod:OnBossDisable()
 		clueCount = 0
 		timer = nil
-		wipe(knownClues)
+		knownClues = {}
 	end
 
 	local function sendChatMessage(msg, english)

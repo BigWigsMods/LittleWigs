@@ -58,7 +58,7 @@ end
 function mod:OnEngage()
 	phase = 1
 	timeLost = 0
-	wipe(upheavalWarned)
+	upheavalWarned = {}
 	self:OpenProximity(234817, 8) -- Dark Solitude
 
 	self:Bar(233196, 3.5) -- Demonic Upheaval

@@ -536,7 +536,7 @@ end
 
 do
 	local isOnMe = nil
-	local playerList = mod:NewTargetList()
+	local playerList = {}
 
 	local function announceDebuffs()
 		if isOnMe or mod:Dispeller("poison") then
@@ -545,9 +545,10 @@ do
 				-- has 1 entry, if ME_ONLY is disabled.
 				mod:PlaySound(270507, "alert")
 			end
-			mod:TargetsMessage(270507, "cyan", playerList, #playerList)
+			local numInTable = #playerList
+			mod:TargetsMessage(270507, "cyan", mod:ColorName(playerList), numInTable)
 		else
-			wipe(playerList)
+			playerList = {}
 		end
 		isOnMe = nil
 	end

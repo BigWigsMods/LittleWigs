@@ -56,12 +56,12 @@ end
 
 function mod:OnEngage()
 	mobsFound = 0
-	wipe(mobCollector)
+	mobCollector = {}
 end
 
 function mod:OnBossDisable()
 	mobsFound = 0
-	wipe(mobCollector)
+	mobCollector {}
 end
 
 --------------------------------------------------------------------------------

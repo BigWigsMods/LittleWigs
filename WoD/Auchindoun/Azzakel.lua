@@ -34,10 +34,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	curtainOnMe = nil
+	curtainPlayers = {}
 	self:CDBar(153764, 32) -- Claws of Argus
 	self:CDBar(153392, 15) -- Curtain of Flame
-	curtainOnMe = nil
-	wipe(curtainPlayers)
 end
 
 --------------------------------------------------------------------------------

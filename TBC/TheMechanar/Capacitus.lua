@@ -45,6 +45,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	negativeList, positiveList = {}, {}
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	if not self:Normal() then
 		self:Berserk(180)
@@ -97,7 +98,7 @@ do
 	end
 
 	function mod:PolarityShiftSuccess()
-		wipe(playerCollector)
+		playerCollector = {}
 		self:RegisterUnitEvent("UNIT_AURA", nil, "player", "party1", "party2", "party3", "party4")
 		self:ScheduleTimer("UnregisterUnitEvent", 3, "UNIT_AURA", "player", "party1", "party2", "party3", "party4")
 	end

@@ -62,13 +62,13 @@ function mod:PolymorphRemoved(args)
 end
 
 do
-	local playerList, isOnMe = mod:NewTargetList(), nil
+	local playerList, isOnMe = {}, nil
 	local function announce(self)
 		-- this applies to the whole group but can be immuned
 		if self:Dispeller("magic") then -- the only case where we care who exactly got the debuff
-			self:TargetMessageOld(35032, playerList, "red", "alarm", nil, nil, true)
+			self:TargetMessageOld(35032, self:ColorName(playerList), "red", "alarm", nil, nil, true)
 		else
-			wipe(playerList)
+			playerList = {}
 			if isOnMe then
 				self:TargetMessageOld(35032, isOnMe, "red", "alarm")
 			else

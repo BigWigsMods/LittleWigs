@@ -55,13 +55,13 @@ function mod:SpellLock(args)
 end
 
 do
-	local playerList, isOnMe = mod:NewTargetList(), false
+	local playerList, isOnMe = {}, false
 
 	local function announce(self, spellId)
 		if self:Dispeller("magic") or isOnMe then
-			self:TargetMessageOld(spellId, playerList, "orange", "alert", nil, nil, true)
+			self:TargetMessageOld(spellId, self:ColorName(playerList), "orange", "alert", nil, nil, true)
 		else
-			wipe(playerList) -- TargetMessage wipes the table; if we don't call it, we should do the same manually
+			playerList = {} -- TargetMessage wipes the table; if we don't call it, we should do the same manually
 		end
 		isOnMe = false
 	end

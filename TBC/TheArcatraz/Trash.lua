@@ -80,7 +80,7 @@ end
 
 function mod:OnBossDisable()
 	meteorsGoingOff = 0
-	wipe(castersCollector)
+	castersCollector = {}
 end
 
 --------------------------------------------------------------------------------

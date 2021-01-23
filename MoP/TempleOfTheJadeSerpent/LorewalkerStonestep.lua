@@ -78,11 +78,11 @@ function mod:OnEngage()
 	sunsDead = 0
 	shaDead = 0
 	isTrialOfTheYaungol = nil
-	wipe(stacksOfIntensity)
+	stacksOfIntensity = {}
 end
 
 function mod:OnBossDisable()
-	wipe(stacksOfIntensity)
+	stacksOfIntensity = {}
 end
 
 --------------------------------------------------------------------------------
