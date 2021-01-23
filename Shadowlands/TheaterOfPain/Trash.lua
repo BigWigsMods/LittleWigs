@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	164506, -- Ancient Captain
 	174210, -- Blighted Sludge-Spewer
 	163086, -- Rancid Gasbag
+	160495, -- Maniacal Soulbinder
 )
 
 --------------------------------------------------------------------------------
@@ -21,6 +22,7 @@ if L then
 	L.ancient_captain = "Ancient Captain"
 	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
 	L.rancid_gasbag = "Rancid Gasbag"
+	L.maniacal_soulbinder = "Maniacal Soulbinder"
 end
 
 --------------------------------------------------------------------------------
@@ -35,10 +37,13 @@ function mod:GetOptions()
 		341969, -- Withering Discharge
 		-- Rancid Gasbag
 		330614, -- Vile Eruption
+		-- Maniacal Soulbinder
+		330868, -- Necrotic Bolt Volley
 	}, {
 		[330562] = L.ancient_captain,
 		[341969] = L.blighted_sludge_spewer,
 		[330614] = L.rancid_gasbag,
+		[330868] = L.maniacal_soulbinder,
 	}
 end
 
@@ -46,6 +51,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 330562)
 	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969)
 	self:Log("SPELL_CAST_START", "VileEruption", 330614)
+	self:Log("SPELL_CAST_START", "NecroticBoltVolley", 330868)
 end
 
 --------------------------------------------------------------------------------
@@ -68,5 +74,11 @@ end
 function mod:VileEruption(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Maniacal Soulbinder
+function mod:NecroticBoltVolley(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 
