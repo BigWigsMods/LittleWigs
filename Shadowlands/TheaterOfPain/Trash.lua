@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	174210, -- Blighted Sludge-Spewer
 	163086, -- Rancid Gasbag
 	160495, -- Maniacal Soulbinder
+	170882 -- Bone Magus
 )
 
 --------------------------------------------------------------------------------
@@ -23,6 +24,7 @@ if L then
 	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
 	L.rancid_gasbag = "Rancid Gasbag"
 	L.maniacal_soulbinder = "Maniacal Soulbinder"
+	L.bone_magus = "Bone Magus"
 end
 
 --------------------------------------------------------------------------------
@@ -39,11 +41,14 @@ function mod:GetOptions()
 		330614, -- Vile Eruption
 		-- Maniacal Soulbinder
 		330868, -- Necrotic Bolt Volley
+		-- Bone Magus
+		342675, -- Bone Spear
 	}, {
 		[330562] = L.ancient_captain,
 		[341969] = L.blighted_sludge_spewer,
 		[330614] = L.rancid_gasbag,
 		[330868] = L.maniacal_soulbinder,
+		[342675] = L.bone_magus
 	}
 end
 
@@ -52,6 +57,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969)
 	self:Log("SPELL_CAST_START", "VileEruption", 330614)
 	self:Log("SPELL_CAST_START", "NecroticBoltVolley", 330868)
+	self:Log("SPELL_CAST_START", "BoneSpear", 342675)
 end
 
 --------------------------------------------------------------------------------
@@ -82,3 +88,8 @@ function mod:NecroticBoltVolley(args)
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 
+-- Bone Magus
+function mod:BoneSpear(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
