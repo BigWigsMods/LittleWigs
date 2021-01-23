@@ -29,7 +29,7 @@ function mod:GetOptions()
 	return {
 		320772, -- Comet Storm
 		321368, -- Icebound Aegis
-		{320788, "SAY"}, -- Frozen Binds
+		{320788, "ICON", "SAY"}, -- Frozen Binds
 		321894, -- Dark Exile
 	}
 end
@@ -40,6 +40,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "IceboundAegisRemoved", 321368, 321754)
 	self:Log("SPELL_CAST_START", "FrozenBinds", 320788)
 	self:Log("SPELL_CAST_SUCCESS", "FrozenBindsSuccess", 320788)
+	self:Log("SPELL_AURA_REMOVED", "FrozenBindsRemoved", 320788)
+	self:Log("SPELL_MISSED", "FrozenBindsRemoved", 320788) -- Anti-Magic Shell, Hand of Freedom, immunities, etc.
 	self:Log("SPELL_CAST_SUCCESS", "DarkExile", 321894)
 end
 
@@ -84,6 +86,7 @@ do
 			self:Message(320788, "cyan", L.casting_on_other:format(self:SpellName(320788), self:ColorName(name)))
 		end
 		self:PlaySound(320788, "info", nil, name)
+		self:PrimaryIcon(320788, name)
 	end
 
 	function mod:FrozenBinds(args)
@@ -98,6 +101,11 @@ function mod:FrozenBindsSuccess(args)
 		self:Say(args.spellId)
 	end
 	self:Bar(args.spellId, 25.5)
+	self:PrimaryIcon(args.spellId, args.destName)
+end
+
+function mod:FrozenBindsRemoved(args)
+	self:PrimaryIcon(args.spellId)
 end
 
 function mod:DarkExile(args)
