@@ -104,7 +104,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 95676 then
+	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 95676 then
 		if self:GetGossipOptions() then
 			self:SelectGossipOption(1, true) -- auto confirm it
 			mod:Sync("odyn")

@@ -40,7 +40,7 @@ end
 
 -- Illidan
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 55500 then
+	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 55500 then
 		if self:GetGossipOptions() then
 			self:SelectGossipOption(1)
 		end

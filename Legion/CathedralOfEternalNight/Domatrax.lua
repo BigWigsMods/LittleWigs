@@ -104,7 +104,7 @@ do
 	end
 
 	local function checkForLackOfAegis(self)
-		if not isOnMe and self:MobId(UnitGUID("boss2")) == 118884 then -- make sure the Aegis is not depleted
+		if not isOnMe and self:MobId(self:UnitGUID("boss2")) == 118884 then -- make sure the Aegis is not depleted
 			self:MessageOld(238410, "orange", "warning", L.missing_aegis)
 		end
 	end
@@ -152,7 +152,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	local felPortalGuardians = {}
 
 	for i = 1, 5 do
-		local guid = UnitGUID(("boss%d"):format(i))
+		local guid = self:UnitGUID(("boss%d"):format(i))
 		if guid then
 			local mobId = self:MobId(guid)
 			if mobId == 118834 then -- Fel Portal Guardian
@@ -178,7 +178,7 @@ end
 
 -- Aegis of Aggramar
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 118884 then
+	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 118884 then
 		if self:GetGossipOptions() then
 			self:SelectGossipOption(1, true) -- auto confirm it
 		end

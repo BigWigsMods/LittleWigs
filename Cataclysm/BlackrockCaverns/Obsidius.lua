@@ -81,7 +81,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 76196 then -- Transformation
 		self:MessageOld(-2385, "orange")
 		if self:CheckOption(-2385, "ICON") then
-			SetRaidTarget(unit, 8) -- self:PrimaryIcon() is for group members
+			self:CustomIcon(false, unit, 8) -- self:PrimaryIcon() is for group members
 		end
 	end
 end

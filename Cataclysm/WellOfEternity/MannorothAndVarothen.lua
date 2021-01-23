@@ -46,7 +46,7 @@ do
 	}
 
 	function mod:UNIT_HEALTH_FREQUENT(event, unit)
-		if self:MobId(UnitGUID(unit)) ~= 54969 then return end -- Varo'then is of no interest
+		if self:MobId(self:UnitGUID(unit)) ~= 54969 then return end -- Varo'then is of no interest
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < adds[spawnWarnings][1] then
 			self:MessageOld(-4287, "yellow", "info", CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)

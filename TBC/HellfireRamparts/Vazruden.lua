@@ -40,7 +40,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source) -- Stage 2
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
-	if self:MobId(UnitGUID(unit)) == 17537 then -- Vazruden
+	if self:MobId(self:UnitGUID(unit)) == 17537 then -- Vazruden
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 45 then
 			self:UnregisterUnitEvent(event, "target", "focus")

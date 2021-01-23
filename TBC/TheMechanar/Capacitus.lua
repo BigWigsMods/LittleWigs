@@ -71,7 +71,7 @@ end
 
 do
 	local function fillTheTableAndOpenProximity(self, unit, sameChargeList, oppositeChargeList, spellId)
-		local guid = UnitGUID(unit)
+		local guid = self:UnitGUID(unit)
 		if not playerCollector[guid] then
 			playerCollector[guid] = true
 			local name = self:UnitName(unit)

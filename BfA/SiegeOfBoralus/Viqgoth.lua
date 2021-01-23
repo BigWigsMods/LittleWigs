@@ -127,9 +127,7 @@ do
 		playerIcons[playerListCount] = markCount
 		playersWithPutridWaters[#playersWithPutridWaters + 1] = args.destName
 
-		if self:GetOption(putridWatersMarker) then
-			SetRaidTarget(args.destName, markCount)
-		end
+		self:CustomIcon(putridWatersMarker, args.destName, markCount)
 		if markCount == 4 then
 			markCount = 1
 		else
@@ -155,9 +153,7 @@ do
 	function mod:PutridWatersRemoved(args)
 		tDeleteItem(playersWithPutridWaters, args.destName)
 
-		if self:GetOption(putridWatersMarker) then
-			SetRaidTarget(args.destName, 0)
-		end
+		self:CustomIcon(putridWatersMarker, args.destName)
 
 		if self:Me(args.destGUID) then
 			isOnMe = false

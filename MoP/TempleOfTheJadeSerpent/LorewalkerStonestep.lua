@@ -112,7 +112,7 @@ end
 -- SPELL_AURA_* events for Intensity behave inconsistently on this encounter, sometimes one of them fires them
 -- but the other one doesn't, then they might even switch on the next pull. A lot of fun.
 function mod:UNIT_AURA(event, unit)
-	local guid = UnitGUID(unit)
+	local guid = self:UnitGUID(unit)
 	if not isTrialOfTheYaungol then -- check mob ids and unregister the event if it's not needed
 		local mobId = self:MobId(guid)
 		if mobId == 59051 or mobId == 59726 then
@@ -138,7 +138,7 @@ function mod:UNIT_AURA(event, unit)
 	elseif not stacksOfIntensity[guid] or stacksOfIntensity[guid] < stacks then
 		stacksOfIntensity[guid] = stacks
 		if (stacks % 3 == 1 or stacks > 7) and stacks ~= 10 then
-			self:MessageOld(-5549, "orange", stacks > 7 and UnitGUID("target") == guid and "warning" or "alert", CL.stack:format(stacks, spellName, destName))
+			self:MessageOld(-5549, "orange", stacks > 7 and self:UnitGUID("target") == guid and "warning" or "alert", CL.stack:format(stacks, spellName, destName))
 		end
 	end
 end

@@ -99,7 +99,7 @@ end
 
 function mod:MarkMatter(_, unit, guid)
 	if self:MobId(guid) == 124964 then -- Unstable Dark Matter
-		SetRaidTarget(unit, 8)
+		self:CustomIcon(matterMarker, unit, 8)
 		self:UnregisterTargetEvents()
 	end
 end
@@ -109,7 +109,7 @@ function mod:CollapseCast(args)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(UnitGUID("npc")) == 125836 then
+	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 125836 then
 		if self:GetGossipOptions() then
 			self:SelectGossipOption(1)
 		end

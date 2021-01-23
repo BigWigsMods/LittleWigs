@@ -57,9 +57,9 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if self:GetOption("custom_on_markadd") then
 		for i = 1, 5 do
 			local unit = ("boss%d"):format(i)
-			local guid = UnitGUID(unit)
+			local guid = self:UnitGUID(unit)
 			if self:MobId(guid) == 76267 then -- Solar Zealot
-				SetRaidTarget(unit, 8)
+				self:CustomIcon(false, unit, 8)
 				break
 			end
 		end
@@ -72,7 +72,7 @@ do
 	end
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 153954 then -- Cast Down
-			self:GetBossTarget(bossTarget, 0.7, UnitGUID(unit))
+			self:GetBossTarget(bossTarget, 0.7, self:UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
 		elseif spellId == 154049 then -- Call Adds
 			self:MessageOld("add", "red", "info", CL.add_spawned, L.add_icon) -- Cog icon

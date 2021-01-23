@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Nalthor the Rimebinder", "ptBR")
 if not L then return end
 if L then
-	-- L.aegis = "%s removed after %.1f seconds!"
+	L.aegis = "%s removido depois de %.1f segundos!"
 
 	L.casting_on_you = "Conjurando %s em VOCÊ"
 	L.casting_on_other = "Conjurando %s: %s"

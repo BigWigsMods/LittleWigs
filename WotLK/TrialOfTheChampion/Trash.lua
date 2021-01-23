@@ -40,7 +40,7 @@ end
 --
 
 function mod:GOSSIP_SHOW()
-	local mobId = self:MobId(UnitGUID("npc"))
+	local mobId = self:MobId(self:UnitGUID("npc"))
 	if self:GetOption("custom_on_autotalk") and (mobId == 35004 or mobId == 35005) then
 		local first, second = self:GetGossipOptions()
 		if second then

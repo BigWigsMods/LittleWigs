@@ -57,12 +57,10 @@ function mod:Siege(args)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
-	if self:MobId(UnitGUID(unit)) == 39625 then
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < 36 then
-			self:UnregisterUnitEvent(event, unit)
-			self:MessageOld(74853, "yellow", nil, CL.soon:format(self:SpellName(74853)))
-		end
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 36 then
+		self:UnregisterUnitEvent(event, unit)
+		self:MessageOld(74853, "yellow", nil, CL.soon:format(self:SpellName(74853)))
 	end
 end
 

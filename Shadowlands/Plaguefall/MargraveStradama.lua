@@ -68,7 +68,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	if self:MobId(UnitGUID(unit)) == 164267 and UnitCanAttack("player", unit) then -- Margrave Stradama
+	if self:MobId(self:UnitGUID(unit)) == 164267 and UnitCanAttack("player", unit) then -- Margrave Stradama
 		intermission = false
 		self:Message("stages", "green", CL.over:format(CL.intermission), false)
 		if intermissionCount < 2 then -- No adds after the last intermission

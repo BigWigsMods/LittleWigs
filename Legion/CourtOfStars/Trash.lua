@@ -63,6 +63,7 @@ local englishClueNames = {
 	"No Potions",
 	"Book",
 }
+local localized_clues = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -125,79 +126,94 @@ if L then
 	L.hints = englishClueNames
 
 	-- Cape
-	L["I heard the spy enjoys wearing capes."] = 1
-	L["Someone mentioned the spy came in earlier wearing a cape."] = 1
+	L.clue_1_1 = "I heard the spy enjoys wearing capes."
+	L.clue_1_2 = "Someone mentioned the spy came in earlier wearing a cape."
 
 	-- No Cape
-	L["I heard that the spy left their cape in the palace before coming here."] = 2
-	L["I heard the spy dislikes capes and refuses to wear one."] = 2
+	L.clue_2_1 = "I heard that the spy left their cape in the palace before coming here."
+	L.clue_2_2 = "I heard the spy dislikes capes and refuses to wear one."
 
 	-- Pouch
-	L["A friend said the spy loves gold and a belt pouch filled with it."] = 3
-	L["I heard the spy's belt pouch is filled with gold to show off extravagance."] = 3
-	L["I heard the spy carries a magical pouch around at all times."] = 3
-	L["I heard the spy's belt pouch is lined with fancy threading."] = 3
+	L.clue_3_1 = "A friend said the spy loves gold and a belt pouch filled with it."
+	L.clue_3_2 = "I heard the spy's belt pouch is filled with gold to show off extravagance."
+	L.clue_3_3 = "I heard the spy carries a magical pouch around at all times."
+	L.clue_3_4 = "I heard the spy's belt pouch is lined with fancy threading."
+	L.clue_3_5 = "" -- for ruRU
+	L.clue_3_6 = "" -- for ruRU
 
 	-- Potions
-	L["I heard the spy brought along some potions... just in case."] = 4
-	L["I'm pretty sure the spy has potions at the belt."] = 4
-	L["I heard the spy brought along potions, I wonder why?"] = 4
-	L["I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."] = 4
+	L.clue_4_1 = "I heard the spy brought along some potions... just in case."
+	L.clue_4_2 = "I'm pretty sure the spy has potions at the belt."
+	L.clue_4_3 = "I heard the spy brought along potions, I wonder why?"
+	L.clue_4_4 = "I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."
+	L.clue_4_5 = "" -- for ruRU
+	L.clue_4_6 = "" -- for ruRU
 
 	-- Long Sleeves
-	L["I just barely caught a glimpse of the spy's long sleeves earlier in the evening."] = 5
-	L["I heard the spy's outfit has long sleeves tonight."] = 5
-	L["Someone said the spy is covering up their arms with long sleeves tonight."] = 5
-	L["A friend of mine mentioned the spy has long sleeves on."] = 5
+	L.clue_5_1 = "I just barely caught a glimpse of the spy's long sleeves earlier in the evening."
+	L.clue_5_2 = "I heard the spy's outfit has long sleeves tonight."
+	L.clue_5_3 = "Someone said the spy is covering up their arms with long sleeves tonight."
+	L.clue_5_4 = "A friend of mine mentioned the spy has long sleeves on."
+	L.clue_5_5 = "" -- for ruRU
 
 	-- Short Sleeves
-	L["I heard the spy enjoys the cool air and is not wearing long sleeves tonight."] = 6
-	L["A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."] = 6
-	L["Someone told me the spy hates wearing long sleeves."] = 6
-	L["I heard the spy wears short sleeves to keep their arms unencumbered."] = 6
+	L.clue_6_1 = "I heard the spy enjoys the cool air and is not wearing long sleeves tonight."
+	L.clue_6_2 = "A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."
+	L.clue_6_3 = "Someone told me the spy hates wearing long sleeves."
+	L.clue_6_4 = "I heard the spy wears short sleeves to keep their arms unencumbered."
+	L.clue_6_5 = "" -- for ruRU
 
 	-- Gloves
-	L["I heard the spy always dons gloves."] = 7
-	L["There's a rumor that the spy always wears gloves."] = 7
-	L["Someone said the spy wears gloves to cover obvious scars."] = 7
-	L["I heard the spy carefully hides their hands."] = 7
+	L.clue_7_1 = "I heard the spy always dons gloves."
+	L.clue_7_2 = "There's a rumor that the spy always wears gloves."
+	L.clue_7_3 = "Someone said the spy wears gloves to cover obvious scars."
+	L.clue_7_4 = "I heard the spy carefully hides their hands."
+	L.clue_7_5 = "" -- for ruRU
+	L.clue_7_6 = "" -- for ruRU
 
 	-- No Gloves
-	L["There's a rumor that the spy never has gloves on."] = 8
-	L["I heard the spy dislikes wearing gloves."] = 8
-	L["I heard the spy avoids having gloves on, in case some quick actions are needed."] = 8
-	L["You know... I found an extra pair of gloves in the back room. The spy is likely to be bare handed somewhere around here."] = 8
+	L.clue_8_1 = "There's a rumor that the spy never has gloves on."
+	L.clue_8_2 = "I heard the spy dislikes wearing gloves."
+	L.clue_8_3 = "I heard the spy avoids having gloves on, in case some quick actions are needed."
+	L.clue_8_4 = "You know... I found an extra pair of gloves in the back room. The spy is likely to be bare handed somewhere around here."
+	L.clue_8_5 = "" -- for ruRU
+	L.clue_8_6 = "" -- for ruRU
+	L.clue_8_7 = "" -- for ruRU
 
 	-- Male
-	L["A guest said she saw him entering the manor alongside the Grand Magistrix."] = 9
-	L["I heard somewhere that the spy isn't female."] = 9
-	L["I heard the spy is here and he's very good looking."] = 9
-	L["One of the musicians said he would not stop asking questions about the district."] = 9
+	L.clue_9_1 = "A guest said she saw him entering the manor alongside the Grand Magistrix."
+	L.clue_9_2 = "I heard somewhere that the spy isn't female."
+	L.clue_9_3 = "I heard the spy is here and he's very good looking."
+	L.clue_9_4 = "One of the musicians said he would not stop asking questions about the district."
+	L.clue_9_5 = "" -- for ruRU
+	L.clue_9_6 = "" -- for ruRU
 
 	-- Female
-	L["A guest saw both her and Elisande arrive together earlier."] = 10
-	L["I hear some woman has been constantly asking about the district..."] = 10
-	L["Someone's been saying that our new guest isn't male."] = 10
-	L["They say that the spy is here and she's quite the sight to behold."] = 10
+	L.clue_10_1 = "A guest saw both her and Elisande arrive together earlier."
+	L.clue_10_2 = "I hear some woman has been constantly asking about the district..."
+	L.clue_10_3 = "Someone's been saying that our new guest isn't male."
+	L.clue_10_4 = "They say that the spy is here and she's quite the sight to behold."
+	L.clue_10_5 = "" -- for ruRU
 
 	-- Light Vest
-	L["The spy definitely prefers the style of light colored vests."] = 11
-	L["I heard that the spy is wearing a lighter vest to tonight's party."] = 11
-	L["People are saying the spy is not wearing a darker vest tonight."] = 11
+	L.clue_11_1 = "The spy definitely prefers the style of light colored vests."
+	L.clue_11_2 = "I heard that the spy is wearing a lighter vest to tonight's party."
+	L.clue_11_3 = "People are saying the spy is not wearing a darker vest tonight."
 
 	-- Dark Vest
-	L["I heard the spy's vest is a dark, rich shade this very night."] = 12
-	L["The spy enjoys darker colored vests... like the night."] = 12
-	L["Rumor has it the spy is avoiding light colored clothing to try and blend in more."] = 12
-	L["The spy definitely prefers darker clothing."] = 12
+	L.clue_12_1 = "I heard the spy's vest is a dark, rich shade this very night."
+	L.clue_12_2 = "The spy enjoys darker colored vests... like the night."
+	L.clue_12_3 = "Rumor has it the spy is avoiding light colored clothing to try and blend in more."
+	L.clue_12_4 = "The spy definitely prefers darker clothing."
 
 	-- No Potions
-	L["I heard the spy is not carrying any potions around."] = 13
-	L["A musician told me she saw the spy throw away their last potion and no longer has any left."] = 13
+	L.clue_13_1 = "I heard the spy is not carrying any potions around."
+	L.clue_13_2 = "A musician told me she saw the spy throw away their last potion and no longer has any left."
 
 	-- Book
-	L["I heard the spy always has a book of written secrets at the belt."] = 14
-	L["Rumor has is the spy loves to read and always carries around at least one book."] = 14
+	L.clue_14_1 = "I heard the spy always has a book of written secrets at the belt."
+	L.clue_14_2 = "Rumor has is the spy loves to read and always carries around at least one book."
+	L.clue_14_3 = "" -- for ruRU
 end
 
 --------------------------------------------------------------------------------
@@ -260,6 +276,19 @@ function mod:GetOptions()
 		[216000] = L.Velimar,
 		[214697] = L.ArcaneKeys,
 	}
+end
+
+function mod:OnRegister()
+	-- populate our clue lookup table
+	for i = 1, 14 do
+		local j = 1
+		local clue = L[("clue_%d_%d"):format(i, j)]
+		while clue and clue ~= "" do
+			localized_clues[clue] = i
+			j = j + 1
+			clue = L[("clue_%d_%d"):format(i, j)]
+		end
+	end
 end
 
 function mod:OnBossEnable()
@@ -537,12 +566,12 @@ do
 			timer = nil
 		end
 
-		local mobId = self:MobId(UnitGUID("npc"))
+		local mobId = self:MobId(self:UnitGUID("npc"))
 		local spyEventHelper = self:GetOption("spy_helper") > 0
 		if autoTalk[mobId] or buffItems[mobId] then
 			if not self:GetGossipOptions() and mobId == 107486 then -- Chatty Rumormonger
 				local clue = C_GossipInfo.GetText()
-				local num = L[clue]
+				local num = localized_clues[clue]
 				if num then
 					prev = GetTime()
 					if spyEventHelper and not knownClues[num] then
@@ -569,11 +598,11 @@ do
 			self:CloseInfo("spy_helper")
 			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat, englishSpyFound ~= L.spyFoundChat and englishSpyFound)
-				SetRaidTarget("target", 8)
+				self:CustomIcon(false, "target", 8)
 			else
 				for unit in self:IterateGroup() do
-					if UnitName(unit) == target then -- Normal UnitName since CHAT_MSG_MONSTER_SAY doesn't append servers to names
-						SetRaidTarget(unit.."target", 8)
+					if self:UnitGUID(unit) == self:UnitGUID(target) then
+						self:CustomIcon(false, unit.."target", 8)
 						break
 					end
 				end
@@ -675,7 +704,7 @@ do
 	end
 
 	function mod:UPDATE_MOUSEOVER_UNIT()
-		local id = self:MobId(UnitGUID("mouseover"))
+		local id = self:MobId(self:UnitGUID("mouseover"))
 		local item = buffItems[id] or guardItems[id]
 		if item then
 			usableFound(self, id, item)

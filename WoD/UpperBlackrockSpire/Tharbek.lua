@@ -49,7 +49,7 @@ end
 --
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	if self:MobId(UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
+	if self:MobId(self:UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
 		self:MessageOld("stages", "cyan", "info", self.displayName, "ability_warrior_endlessrage")
 	end
 end

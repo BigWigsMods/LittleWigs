@@ -68,7 +68,7 @@ end
 
 function mod:FindAdd(_, unit, guid)
 	if self:MobId(guid) == 75966 then -- Defiled Spirit
-		SetRaidTarget(unit, 8)
+		self:CustomIcon(false, unit, 8)
 		self:UnregisterTargetEvents()
 	end
 end

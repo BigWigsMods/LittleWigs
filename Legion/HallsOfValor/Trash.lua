@@ -162,7 +162,7 @@ do
 	}
 
 	function mod:GOSSIP_SHOW()
-		local mobId = self:MobId(UnitGUID("npc"))
+		local mobId = self:MobId(self:UnitGUID("npc"))
 		if self:GetOption("custom_on_autotalk") and autoTalk[mobId] then
 			if self:GetGossipOptions() then
 				self:SelectGossipOption(1)

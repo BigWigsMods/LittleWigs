@@ -312,7 +312,7 @@ do
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 3.5)
 		elseif spellId == 268260 and castGUID ~= prev then -- Broadside
-			local guid = UnitGUID(unit)
+			local guid = self:UnitGUID(unit)
 			if self:MobId(guid) == 138465 then -- Trash cannoneer, Lockwood cannoneers have a different id
 				prev = castGUID
 				self:Message(spellId, "orange")

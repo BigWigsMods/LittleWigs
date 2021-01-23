@@ -66,7 +66,7 @@ end
 
 function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
 	if spellId == 268260 then -- Broadside
-		local guid = UnitGUID(unit)
+		local guid = self:UnitGUID(unit)
 		if self:MobId(guid) == 136549 then -- Boss add, trash cannoneers have a different id
 			self:Message(spellId, "orange")
 			self:PlaySound(spellId, "alarm")

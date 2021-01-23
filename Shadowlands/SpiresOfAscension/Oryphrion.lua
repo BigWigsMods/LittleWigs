@@ -2,7 +2,6 @@
 -- TODO:
 -- - Mythic Abilties
 -- - Improve timers
--- - Respawn
 
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -12,7 +11,7 @@ local mod, CL = BigWigs:NewBoss("Oryphrion", 2285, 2414)
 if not mod then return end
 mod:RegisterEnableMob(162060) -- Oryphrion
 mod.engageId = 2358
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -76,7 +75,7 @@ do
 	end
 
 	function mod:PurifyingBlast(args)
-		self:GetBossTarget(printTarget, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 13)
 	end
 end

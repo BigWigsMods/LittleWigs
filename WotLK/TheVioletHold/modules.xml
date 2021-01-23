@@ -1,6 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
+<Script file="Erekem.lua"/>
+<Script file="Moragg.lua"/>
+<Script file="Ichoron.lua"/>
+<Script file="Xevozz.lua"/>
+<Script file="Lavanthor.lua"/>
+<Script file="Zuramat.lua"/>
+<Script file="Cyanigosa.lua"/>
 <Script file="Trash.lua"/>
 
 <Include file="Locales\locales.xml"/>
