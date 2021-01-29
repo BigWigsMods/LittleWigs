@@ -82,7 +82,7 @@ do
 			if t - prev > 1.5 then
 				prev = t
 				self:PersonalMessage(args.spellId, "underyou")
-				self:PlaySound(args.spellId, "alert")
+				self:PlaySound(args.spellId, "underyou")
 			end
 		end
 	end

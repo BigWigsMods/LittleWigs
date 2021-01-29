@@ -94,8 +94,8 @@ do
 			local t = args.time
 			if t-prev > 2 then
 				prev = t
-				self:PlaySound(326389, "alarm")
 				self:PersonalMessage(326389, "underyou")
+				self:PlaySound(326389, "underyou")
 			end
 		end
 	end
