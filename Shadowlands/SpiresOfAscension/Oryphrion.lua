@@ -38,7 +38,6 @@ end
 function mod:OnEngage()
 	self:Bar(324427, 17) -- Empyreal Ordnance
 	self:Bar(334053, 8.5) -- Purifying Blast
-	self:Bar(324608, 46) -- Charged Stomp
 	self:Bar(323878, self:Mythic() and 89 or 108) -- Drained
 end
 
@@ -81,7 +80,6 @@ do
 end
 
 function mod:ChargedStomp(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 26)
 end
