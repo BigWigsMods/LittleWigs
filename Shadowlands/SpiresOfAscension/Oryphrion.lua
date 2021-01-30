@@ -18,6 +18,16 @@ mod.respawnTime = 30
 --
 
 local prevEnergy = 100
+local orbsReached = 0
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.early_intermission_over = "Intermission Over (%d orbs reached)"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -36,6 +46,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DrainedApplied", 323878)
 	self:Log("SPELL_AURA_REMOVED", "DrainedApplied", 323878)
+	self:Log("SPELL_CAST_SUCCESS", "OverchargeAnima", 324307) -- an orb reached the boss during the intermission
 	self:Log("SPELL_AURA_APPLIED", "RechargeAnima", 324046)
 	self:Log("SPELL_AURA_REMOVED", "RechargeAnimaOver", 324046)
 	self:Log("SPELL_CAST_START", "EmpyrealOrdnance", 324427)
@@ -57,6 +68,8 @@ end
 --
 
 function mod:DrainedApplied()
+	orbsReached = 0
+
 	self:Message("stages", "green", CL.intermission, false)
 	self:PlaySound("stages", "long")
 
@@ -65,11 +78,19 @@ function mod:DrainedApplied()
 end
 
 function mod:DrainedRemoved()
-	self:Message("stages", "orange", CL.over:format(CL.intermission), false)
+	if orbsReached > 0 then
+		self:Message("stages", "orange", L.early_intermission_over:format(orbsReached), false)
+	else
+		self:Message("stages", "orange", CL.over:format(CL.intermission), false)
+	end
 	self:PlaySound("stages", "long")
 
 	self:Bar(334053, 9) -- Purifying Blast
 	self:Bar(324427, 17.1) -- Empyreal Ordnance
+end
+
+function mod:OverchargeAnima()
+	orbsReached = orbsReached + 1
 end
 
 function mod:RechargeAnima(args)
