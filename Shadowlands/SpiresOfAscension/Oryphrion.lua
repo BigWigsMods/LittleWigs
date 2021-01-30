@@ -48,7 +48,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "DrainedApplied", 323878)
 	self:Log("SPELL_CAST_SUCCESS", "OverchargeAnima", 324307) -- an orb reached the boss during the intermission
 	self:Log("SPELL_AURA_APPLIED", "RechargeAnima", 324046)
-	self:Log("SPELL_AURA_REMOVED", "RechargeAnimaOver", 324046)
 	self:Log("SPELL_CAST_START", "EmpyrealOrdnance", 324427)
 	self:Log("SPELL_CAST_START", "PurifyingBlast", 334053)
 	self:Log("SPELL_CAST_START", "ChargedStomp", 324608)
@@ -85,22 +84,25 @@ function mod:DrainedRemoved()
 	end
 	self:PlaySound("stages", "long")
 
+	self:StopBar(232880) -- Fully Charged
 	self:Bar(334053, 9) -- Purifying Blast
 	self:Bar(324427, 17.1) -- Empyreal Ordnance
 end
 
 function mod:OverchargeAnima()
 	orbsReached = orbsReached + 1
+
+	local timeLeft = self:BarTimeLeft(232880) - 1 -- Fully Charged
+	if timeLeft > 0 then
+		self:Bar("stages", timeLeft, 232880, 323878) -- Fully Charged, Drained
+	end
 end
 
 function mod:RechargeAnima(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CastBar(args.spellId, 20)
-end
 
-function mod:RechargeAnimaOver(args)
-	self:StopBar(CL.cast:format(args.spellName))
+	self:Bar("stages", 20, 232880, 323878) -- Fully Charged, Drained
 end
 
 function mod:EmpyrealOrdnance(args)
