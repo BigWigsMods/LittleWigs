@@ -14,11 +14,11 @@ BigWigs:AddColors("Ventunax", {
 })
 
 BigWigs:AddColors("Oryphrion", {
-	[323878] = "green",
 	[324046] = "yellow",
 	[324427] = "red",
 	[324608] = "yellow",
 	[334053] = {"blue","red"},
+	["stages"] = {"cyan","green","orange"},
 })
 
 BigWigs:AddColors("Devos, Paragon of Doubt", {
