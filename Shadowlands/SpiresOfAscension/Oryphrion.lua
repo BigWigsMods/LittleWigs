@@ -18,7 +18,6 @@ mod.respawnTime = 30
 --
 
 local prevEnergy = 100
-local orbsReached = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -66,43 +65,47 @@ end
 -- Event Handlers
 --
 
-function mod:DrainedApplied()
-	orbsReached = 0
+do
+	local orbsReached, intermissionEnds = 0, 0
+	function mod:DrainedApplied(args)
+		orbsReached = 0
+		intermissionEnds = args.time + 23.2
 
-	self:Message("stages", "green", CL.intermission, false)
-	self:PlaySound("stages", "long")
+		self:Message("stages", "green", CL.intermission, false)
+		self:PlaySound("stages", "long")
 
-	self:StopBar(324427) -- Empyreal Ordnance
-	self:StopBar(334053) -- Purifying Blast
-end
-
-function mod:DrainedRemoved()
-	if orbsReached > 0 then
-		self:Message("stages", "orange", L.early_intermission_over:format(orbsReached), false)
-	else
-		self:Message("stages", "orange", CL.over:format(CL.intermission), false)
+		self:Bar("stages", 23.2, CL.over:format(CL.intermission), args.spellId)
+		self:StopBar(324427) -- Empyreal Ordnance
+		self:StopBar(334053) -- Purifying Blast
 	end
-	self:PlaySound("stages", "long")
 
-	self:StopBar(232880) -- Fully Charged
-	self:Bar(334053, 9) -- Purifying Blast
-	self:Bar(324427, 17.1) -- Empyreal Ordnance
-end
+	function mod:DrainedRemoved()
+		if orbsReached > 0 then
+			self:Message("stages", "orange", L.early_intermission_over:format(orbsReached), false)
+		else
+			self:Message("stages", "orange", CL.over:format(CL.intermission), false)
+		end
+		self:PlaySound("stages", "long")
 
-function mod:OverchargeAnima()
-	orbsReached = orbsReached + 1
+		self:StopBar(CL.over:format(CL.intermission))
+		self:Bar(334053, 9) -- Purifying Blast
+		self:Bar(324427, 17.1) -- Empyreal Ordnance
+	end
 
-	local timeLeft = self:BarTimeLeft(232880) - 1 -- Fully Charged
-	if timeLeft > 0 then
-		self:Bar("stages", timeLeft, 232880, 323878) -- Fully Charged, Drained
+	function mod:OverchargeAnima(args)
+		orbsReached = orbsReached + 1
+		intermissionEnds = intermissionEnds - 1
+
+		local timeLeft = intermissionEnds - args.time
+		if timeLeft > 0 then
+			self:Bar("stages", timeLeft, CL.over:format(CL.intermission), 323878) -- Drained
+		end
 	end
 end
 
 function mod:RechargeAnima(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-
-	self:Bar("stages", 20, 232880, 323878) -- Fully Charged, Drained
 end
 
 function mod:EmpyrealOrdnance(args)
