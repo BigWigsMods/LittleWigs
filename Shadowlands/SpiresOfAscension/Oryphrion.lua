@@ -14,12 +14,18 @@ mod.engageId = 2358
 mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local prevEnergy = 100
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		323878, -- Drained
+		"stages",
 		324046, -- Recharge Anima
 		324427, -- Empyreal Ordnance
 		{334053, "SAY"}, -- Purifying Blast
@@ -29,33 +35,51 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DrainedApplied", 323878)
-	self:Log("SPELL_CAST_START", "RechargeAnima", 324046)
+	self:Log("SPELL_AURA_REMOVED", "DrainedApplied", 323878)
+	self:Log("SPELL_AURA_APPLIED", "RechargeAnima", 324046)
+	self:Log("SPELL_AURA_REMOVED", "RechargeAnimaOver", 324046)
 	self:Log("SPELL_CAST_START", "EmpyrealOrdnance", 324427)
 	self:Log("SPELL_CAST_START", "PurifyingBlast", 334053)
 	self:Log("SPELL_CAST_START", "ChargedStomp", 324608)
+
+	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1")
 end
 
 function mod:OnEngage()
-	self:Bar(324427, 17) -- Empyreal Ordnance
+	prevEnergy = 100
+
 	self:Bar(334053, 8.5) -- Purifying Blast
-	self:Bar(323878, self:Mythic() and 89 or 108) -- Drained
+	self:Bar(324427, 17) -- Empyreal Ordnance
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:DrainedApplied(args)
-	self:Message(args.spellId, "green")
-	self:PlaySound(args.spellId, "long")
-	--self:Bar(args.spellId, 42)
+function mod:DrainedApplied()
+	self:Message("stages", "green", CL.intermission, false)
+	self:PlaySound("stages", "long")
+
+	self:StopBar(324427) -- Empyreal Ordnance
+	self:StopBar(334053) -- Purifying Blast
+end
+
+function mod:DrainedRemoved()
+	self:Message("stages", "orange", CL.over:format(CL.intermission), false)
+	self:PlaySound("stages", "long")
+
+	self:Bar(334053, 9) -- Purifying Blast
+	self:Bar(324427, 17.1) -- Empyreal Ordnance
 end
 
 function mod:RechargeAnima(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:CastBar(args.spellId, 0)
-	--self:Bar(args.spellId, 42)
+	self:CastBar(args.spellId, 20)
+end
+
+function mod:RechargeAnimaOver(args)
+	self:StopBar(CL.cast:format(args.spellName))
 end
 
 function mod:EmpyrealOrdnance(args)
@@ -82,4 +106,19 @@ end
 function mod:ChargedStomp(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:UNIT_POWER_FREQUENT(_, unit, powerType)
+	if powerType ~= "ENERGY" then return end
+
+	local current = UnitPower(unit, 3) -- ENERGY = 3
+	if current < prevEnergy and current == 10 then
+		self:Message("stages", "cyan", CL.soon:format(self:SpellName(323878)), false) -- Drained Soon
+		self:PlaySound("stages", "info")
+	elseif current > prevEnergy and current == 80 then
+		self:Message("stages", "cyan", CL.soon:format(self:SpellName(232880)), false) -- Fully Charged Soon
+		self:PlaySound("stages", "info")
+	end
+
+	prevEnergy = current
 end
