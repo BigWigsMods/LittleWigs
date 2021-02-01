@@ -58,21 +58,21 @@ function mod:GetOptions()
 		322938, -- Harvest Essence
 		-- Drust Soulcleaver
 		{322569, "TANK"}, -- Hand of Thros
-		322557, -- Soul Split
+		{322557, "DISPEL"}, -- Soul Split
 		-- Mistveil Defender
 		331718, -- Spear Flurry
 		-- Mistveil Gorgegullet
 		340304, -- Poisonous Secretions
 		340305, -- Crushing Leap
-		{340300, "TANK"}, -- Tongue Lashing
+		{340300, "TANK_HEALER"}, -- Tongue Lashing
 		-- Mistveil Guardian
 		331743, -- Bucking Rampage
 		-- Mistveil Matriarch
 		340189, -- Pool of Radiance
 		340160, -- Radiant Breath
-		{340208, "TANK"}, -- Shred Armor
+		{340208, "TANK_HEALER"}, -- Shred Armor
 		-- Mistveil Nightblossom
-		{340289, "TANK"}, -- Triple Bite
+		{340289, "TANK_HEALER"}, -- Triple Bite
 		{340279, "DISPEL"}, -- Poisonous Discharge
 		-- Mistveil Shaper
 		324776, -- Bramblethorn Coat
@@ -81,7 +81,7 @@ function mod:GetOptions()
 		-- Mistveil Tender
 		{324914, "DISPEL"}, -- Nourish the Forest
 		-- Spinemaw Acidgullet
-		325418, -- Volatile Acid
+		{325418, "ME_ONLY", "SAY"}, -- Volatile Acid
 		-- Spinemaw Staghorn
 		340544, -- Stimulate Regeneration
 		{326046, "DISPEL"}, -- Stimulate Resistance
@@ -194,15 +194,20 @@ do
 	function mod:SoulSplit(args)
 		local t = args.time
 		if self:Tank() and t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "purple")
-			self:PlaySound(args.spellId, "alarm")
+			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			if unit and UnitAffectingCombat(unit) then
+				prev = t
+				self:Message(args.spellId, "purple")
+				self:PlaySound(args.spellId, "alarm")
+			end
 		end
 	end
 end
 
 function mod:SoulSplitApplied(args)
-	if self:Dispeller("magic") then
+	-- Some mobs fight each other before being engagead by players.
+	-- Only show messages when the target is a player controlled unit.
+	if self:Dispeller("magic", nil, args.spellId) and bit.band(args.sourceFlags, 0x100) ~= 0 then -- COMBATLOG_OBJECT_CONTROL_PLAYER
 		self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
@@ -215,9 +220,12 @@ do
 	function mod:SpearFlurry(args)
 		local t = args.time
 		if t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alert")
+			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			if unit and UnitAffectingCombat(unit) then
+				prev = t
+				self:Message(args.spellId, "orange")
+				self:PlaySound(args.spellId, "alert")
+			end
 		end
 	end
 end
@@ -246,9 +254,16 @@ end
 
 -- Mistveil Guardian
 
-function mod:BuckingRampage(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:BuckingRampage(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Mistveil Matriarch
@@ -331,13 +346,11 @@ end
 
 -- Spinemaw Acidgullet
 
-do
-	local playerList = mod:NewTargetList()
-	function mod:VolatileAcidApplied(args)
-		-- Each mob only casts one at a time, but packs with two acidgullets have synchronized casts
-		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "orange", playerList)
-		self:PlaySound(args.spellId, "alert", nil, playerList)
+function mod:VolatileAcidApplied(args)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
 	end
 end
 
