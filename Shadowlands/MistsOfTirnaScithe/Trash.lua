@@ -260,7 +260,7 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -318,7 +318,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(324987, "orange", name)
+		self:TargetMessage(324987, "yellow", name)
 		self:PlaySound(324987, "alert", nil, name)
 		if self:Me(guid) then
 			self:Flash(324987)
