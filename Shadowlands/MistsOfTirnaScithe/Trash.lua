@@ -134,6 +134,7 @@ function mod:OnBossEnable()
 	-- Mistveil Nightblossom
 	self:Log("SPELL_CAST_START", "TripleBite", 340289)
 	self:Log("SPELL_CAST_SUCCESS", "PoisonousDischarge", 340279)
+	self:Log("SPELL_AURA_APPLIED", "PoisonousDischargeApplied", 340283)
 	-- Mistveil Shaper
 	self:Log("SPELL_CAST_START", "BramblethornCoat", 324776)
 	-- Mistveil Stalker
@@ -297,11 +298,20 @@ function mod:TripleBite(args)
 end
 
 function mod:PoisonousDischarge(args)
-	if self:Dispeller("poison", nil, args.spellId) then
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "info")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local playerList = mod:NewTargetList()
+	function mod:PoisonousDischargeApplied(args)
+		if self:Dispeller("poison", nil, 340279) then
+			playerList[#playerList+1] = args.destName
+			self:TargetsMessage(340279, "yellow", playerList)
+			self:PlaySound(340279, "info", nil, playerList)
+		end
 	end
-end	
+end
 
 function mod:MistveilNightblossomDeath(args)
 	self:StopBar(340289) -- Triple Bite
