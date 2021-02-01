@@ -208,7 +208,7 @@ end
 function mod:SoulSplitApplied(args)
 	-- Some mobs fight each other before being engagead by players.
 	-- Only show messages when the target is a player controlled unit.
-	if self:Dispeller("magic", nil, args.spellId) and bit.band(args.sourceFlags, 0x100) ~= 0 then -- COMBATLOG_OBJECT_CONTROL_PLAYER
+	if self:Dispeller("magic", nil, args.spellId) and bit.band(args.destFlags, 0x100) ~= 0 then -- COMBATLOG_OBJECT_CONTROL_PLAYER
 		self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
