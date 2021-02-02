@@ -3,7 +3,7 @@ BigWigs:AddSounds("Hakkar the Soulflayer", {
 	[322736] = "alert",
 	[322746] = "warning",
 	[322759] = "alarm",
-	[323569] = "alert",
+	[323569] = "underyou",
 })
 
 BigWigs:AddSounds("The Manastorms", {

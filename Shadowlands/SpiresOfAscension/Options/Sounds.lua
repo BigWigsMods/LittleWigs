@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Kin-Tara", {
 	[320966] = "alarm",
-	[321009] = {"alarm","alert"},
+	[321009] = {"alert","underyou"},
 	[324368] = "long",
 	[327481] = "alert",
 	[331251] = {"alert","warning"},
