@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "纱雾夜花"
 	L.mistveil_shaper = "纱雾塑形者"
 	L.mistveil_stalker = "纱雾追猎者"
+	L.mistveil_stinger = "纱雾钉刺蛾"
 	L.mistveil_tender = "纱雾照看者"
 	L.spinemaw_acidgullet = "锥喉酸咽者"
 	L.spinemaw_staghorn = "锥喉鹿角巨虫"

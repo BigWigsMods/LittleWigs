@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "Sboccianotte Velofosco"
 	L.mistveil_shaper = "Plasmatore Velofosco"
 	L.mistveil_stalker = "Inseguitore Velofosco"
+	L.mistveil_stinger = "Pungitore Velofosco"
 	L.mistveil_tender = "Guaritrice Velofosco"
 	L.spinemaw_acidgullet = "Gozzoacido Spinafauce"
 	L.spinemaw_staghorn = "Cervicorno Spinafauce"

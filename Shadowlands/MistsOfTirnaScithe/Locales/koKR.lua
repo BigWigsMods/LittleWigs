@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "안개장막 밤만개꽃"
 	L.mistveil_shaper = "안개장막 구체자"
 	L.mistveil_stalker = "안개장막 추적자"
+	L.mistveil_stinger = "안개장막 쐐기나방"
 	L.mistveil_tender = "안개장막 숲지기"
 	L.spinemaw_acidgullet = "가시아귀 산성식도"
 	L.spinemaw_staghorn = "가시아귀 사슴뿔"

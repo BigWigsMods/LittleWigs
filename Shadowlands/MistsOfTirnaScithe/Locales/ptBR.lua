@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "Flor-da-noite do Véu da Névoa"
 	L.mistveil_shaper = "Moldador do Véu da Névoa"
 	L.mistveil_stalker = "Caçador do Véu da Névoa"
+	L.mistveil_stinger = "Aguilhante do Véu da Névoa"
 	L.mistveil_tender = "Conservadora do Véu da Névoa"
 	L.spinemaw_acidgullet = "Gorjácida Espinogórjeo"
 	L.spinemaw_staghorn = "Galhagamo Espinogórjeo"

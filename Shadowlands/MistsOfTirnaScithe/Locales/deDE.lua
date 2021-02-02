@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "Nebelschleiernachtblüte"
 	L.mistveil_shaper = "Nebelschleierformer"
 	L.mistveil_stalker = "Nebelschleierpirscher"
+	L.mistveil_stinger = "Nebelschleierstecher"
 	L.mistveil_tender = "Nebelschleierhüterin"
 	L.spinemaw_acidgullet = "Stachelschlundsäurerachen"
 	L.spinemaw_staghorn = "Stachelschlundzottelhorn"

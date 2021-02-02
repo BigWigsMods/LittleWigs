@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "Ночноцвет Туманной Завесы"
 	L.mistveil_shaper = "Туманный культиватор"
 	L.mistveil_stalker = "Туманный хищник"
+	L.mistveil_stinger = "Туманный острожал"
 	L.mistveil_tender = "Туманная хранительница"
 	L.spinemaw_acidgullet = "Иглобрюх-кислотник"
 	L.spinemaw_staghorn = "Иглобрюх-рогач"

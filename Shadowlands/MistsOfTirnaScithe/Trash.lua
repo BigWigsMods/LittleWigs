@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	173714, -- Mistveil Nightblossom
 	166275, -- Mistveil Shaper
 	166301, -- Mistveil Stalker
+	166304, -- Mistveil Stinger
 	166299, -- Mistveil Tender
 	167113, -- Spinemaw Acidgullet
 	167111, -- Spinemaw Staghorn
@@ -39,6 +40,7 @@ if L then
 	L.mistveil_nightblossom = "Mistveil Nightblossom"
 	L.mistveil_shaper = "Mistveil Shaper"
 	L.mistveil_stalker = "Mistveil Stalker"
+	L.mistveil_stinger = "Mistveil Stinger"
 	L.mistveil_tender = "Mistveil Tender"
 	L.spinemaw_acidgullet = "Spinemaw Acidgullet"
 	L.spinemaw_staghorn = "Spinemaw Staghorn"
@@ -78,6 +80,8 @@ function mod:GetOptions()
 		324776, -- Bramblethorn Coat
 		-- Mistveil Stalker
 		{324987, "FLASH"}, -- Mistveil Bite
+		-- Mistveil Stinger
+		{325224, "DISPEL"}, -- Anima Injection
 		-- Mistveil Tender
 		{324914, "DISPEL"}, -- Nourish the Forest
 		-- Spinemaw Acidgullet
@@ -99,6 +103,7 @@ function mod:GetOptions()
 		[340289] = L.mistveil_nightblossom,
 		[324776] = L.mistveil_shaper,
 		[324987] = L.mistveil_stalker,
+		[325224] = L.mistveil_stinger,
 		[324914] = L.mistveil_tender,
 		[325418] = L.spinemaw_acidgullet,
 		[340544] = L.spinemaw_staghorn,
@@ -139,6 +144,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BramblethornCoat", 324776)
 	-- Mistveil Stalker
 	self:Log("SPELL_CAST_START", "MistveilBite", 324987)
+	-- Mistveil Stinger
+	self:Log("SPELL_AURA_APPLIED", "AnimaInjectionApplied", 325224)
 	-- Mistveil Tender
 	self:Log("SPELL_CAST_START", "NourishTheForest", 324914)
 	self:Log("SPELL_CAST_SUCCESS", "NourishTheForestSuccess", 324914)
@@ -337,6 +344,15 @@ do
 	
 	function mod:MistveilBite(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
+end
+
+-- Mistveil Stinger
+
+function mod:AnimaInjectionApplied(args)
+	if self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 

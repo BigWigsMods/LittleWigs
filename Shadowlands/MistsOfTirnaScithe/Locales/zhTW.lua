@@ -11,6 +11,7 @@ if L then
 	-- L.mistveil_nightblossom = "Mistveil Nightblossom"
 	-- L.mistveil_shaper = "Mistveil Shaper"
 	-- L.mistveil_stalker = "Mistveil Stalker"
+	-- L.mistveil_stinger = "Mistveil Stinger"
 	-- L.mistveil_tender = "Mistveil Tender"
 	-- L.spinemaw_acidgullet = "Spinemaw Acidgullet"
 	-- L.spinemaw_staghorn = "Spinemaw Staghorn"

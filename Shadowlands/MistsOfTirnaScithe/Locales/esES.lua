@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "Flor de noche Velo de Niebla"
 	L.mistveil_shaper = "Modelador Velo de Niebla"
 	L.mistveil_stalker = "Acechador Velo de Niebla"
+	L.mistveil_stinger = "Aguijonero Velo de Niebla"
 	L.mistveil_tender = "Cuidadora Velo de Niebla"
 	L.spinemaw_acidgullet = "Gargantácida faucespina"
 	L.spinemaw_staghorn = "Astado faucespina"

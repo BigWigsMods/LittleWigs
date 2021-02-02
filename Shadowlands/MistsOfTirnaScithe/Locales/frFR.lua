@@ -11,6 +11,7 @@ if L then
 	L.mistveil_nightblossom = "Belle-de-nuit voile-de-brume"
 	L.mistveil_shaper = "Façonneur voile-de-brume"
 	L.mistveil_stalker = "Traqueur voile-de-brume"
+	L.mistveil_stinger = "Aiguillonneur voile-de-brume"
 	L.mistveil_tender = "Soigneuse voile-de-brume"
 	L.spinemaw_acidgullet = "Gosier-acide gueule-épine"
 	L.spinemaw_staghorn = "Corne-cerf gueule-épine"
