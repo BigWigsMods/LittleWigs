@@ -201,7 +201,7 @@ do
 	local prev = 0
 	function mod:SoulSplit(args)
 		local t = args.time
-		if self:Tank() and t-prev > 1.5 then
+		if t-prev > 1.5 and self:Tank() then
 			local unit = self:GetUnitIdByGUID(args.sourceGUID)
 			if unit and UnitAffectingCombat(unit) then
 				prev = t
@@ -213,7 +213,7 @@ do
 end
 
 function mod:SoulSplitApplied(args)
-	-- Some mobs fight each other before being engagead by players.
+	-- Some mobs fight each other before being engaged by players.
 	-- Only show messages when the target is a player controlled unit.
 	if self:Dispeller("magic", nil, args.spellId) and bit.band(args.destFlags, 0x100) ~= 0 then -- COMBATLOG_OBJECT_CONTROL_PLAYER
 		self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
