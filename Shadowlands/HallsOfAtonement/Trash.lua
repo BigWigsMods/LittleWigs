@@ -228,6 +228,6 @@ end
 
 -- Stoneborn Slasher
 function mod:PowerfulSwipe(args)
-	self:Message(args.spellId, "Purple", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
