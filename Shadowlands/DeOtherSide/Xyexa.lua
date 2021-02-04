@@ -24,12 +24,13 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LocalizedExplosiveContrivance", 321948)
 	self:Log("SPELL_CAST_START", "ExplosiveContrivance", 320230)
+	self:Log("SPELL_CAST_SUCCESS", "ExplosiveContrivanceSuccess", 320230)
 	self:Log("SPELL_AURA_APPLIED", "ArcaneLightning", 323687)
 end
 
 function mod:OnEngage()
 	self:CDBar(321948, 14, 174716, 321948) -- Localized Explosive Contrivance | 174716 = "Bomb"
-	self:CDBar(320230, 31) -- Explosive Contrivance
+	self:CDBar(320230, 36.8) -- Explosive Contrivance (~31.8s cd + 5s cast)
 end
 
 --------------------------------------------------------------------------------
@@ -51,7 +52,10 @@ end
 function mod:ExplosiveContrivance(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
-	self:CastBar(args.spellId, 5)
+	self:Bar(args.spellId, 5) -- restart with the exact time
+end
+
+function mod:ExplosiveContrivanceSuccess(args)
 	self:Bar(args.spellId, 35) -- pull:31.8, 35.2
 end
 
