@@ -20,7 +20,7 @@ mod:RegisterEnableMob(
 	165529, -- Depraved Collector
 	164557, -- Shard of Halkias
 	167612, -- Stoneborn Reaver
-	167607 -- Stonebron Slasher
+	167607 -- Stoneborn Slasher
 )
 
 --------------------------------------------------------------------------------
@@ -226,8 +226,8 @@ function mod:TurnToStone(args)
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 
--- Stoneborn Slaher
+-- Stoneborn Slasher
 function mod:PowerfulSwipe(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "Purple", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
