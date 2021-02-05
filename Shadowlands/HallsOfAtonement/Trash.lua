@@ -19,7 +19,8 @@ mod:RegisterEnableMob(
 	165414, -- Depraved Obliterator
 	165529, -- Depraved Collector
 	164557, -- Shard of Halkias
-	167612 -- Stoneborn Reaver
+	167612, -- Stoneborn Reaver
+	167607 -- Stoneborn Slasher
 )
 
 --------------------------------------------------------------------------------
@@ -36,6 +37,7 @@ if L then
 	L.collector = "Depraved Collector"
 	L.shard = "Shard of Halkias"
 	L.reaver = "Stoneborn Reaver"
+	L.slasher = "Stoneborn Slasher"
 end
 
 --------------------------------------------------------------------------------
@@ -54,6 +56,7 @@ function mod:GetOptions()
 		325701, -- Siphon Life
 		326409, -- Thrash
 		326607, -- Turn to Stone
+		{326997, "TANK"} -- Powerful Swipe
 	}, {
 		[326450] = L.houndmaster,
 		[344993] = L.gargon,
@@ -63,6 +66,7 @@ function mod:GetOptions()
 		[325700] = L.collector,
 		[326409] = L.shard,
 		[326607] = L.reaver,
+		[326997] = L.slasher,
 	}
 end
 
@@ -83,6 +87,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Thrash", 326409)
 	self:Log("SPELL_AURA_REMOVED", "ThrashOver", 326409)
 	self:Log("SPELL_CAST_START", "TurnToStone", 326607)
+	self:Log("SPELL_CAST_START", "PowerfulSwipe", 326997)
 end
 
 --------------------------------------------------------------------------------
@@ -219,4 +224,10 @@ end
 function mod:TurnToStone(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
+end
+
+-- Stoneborn Slasher
+function mod:PowerfulSwipe(args)
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
