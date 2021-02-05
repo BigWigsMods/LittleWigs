@@ -54,7 +54,7 @@ end
 
 function mod:Activate(args)
 	self:SetStage(2)
-	self:Message("stages", "cyan", CL.stage:format(2))
+	self:Message("stages", "cyan", CL.stage:format(2), false)
 	self:PlaySound("stages", "long")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:StopBar(323943) -- Run Through
@@ -67,7 +67,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		runThroughCount = 1
 		lostConfidenceCount = 1
 		self:SetStage(1)
-		self:Message("stages", "cyan", CL.stage:format(1))
+		self:Message("stages", "cyan", CL.stage:format(1), false)
 		self:PlaySound("stages", "long")
 		self:CDBar(323943, 11.8) -- Run Through
 		self:CDBar(334625, 20.7) -- Abyssal Detonation
