@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		320358, -- Awaken Creation
 		{322681, "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Meat Hook
-		{320376, "TANK"}, -- Mutlilate
+		{320376, "TANK"}, -- Mutilate
 		334476, -- Embalming Ichor
 		{320200, "ME_ONLY"}, -- Stitchneedle
 		{334488, "TANK"}, -- Cleave Flesh
@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MeatHookApplied", 322681) -- Aim Debuff
 	self:Log("SPELL_AURA_REMOVED", "MeatHookRemoved", 322681)
 	self:Log("SPELL_AURA_APPLIED", "MeatHookHit", 322548) -- Surgeon Stitchflesh Pull Down
-	self:Log("SPELL_CAST_START", "MutlilateStart", 320376)
+	self:Log("SPELL_CAST_START", "MutilateStart", 320376)
 	self:Log("SPELL_CAST_SUCCESS", "EmbalmingIchor", 334476)
 	self:Log("SPELL_AURA_APPLIED", "StitchneedleApplied", 320200)
 	self:Log("SPELL_CAST_START", "CleaveFlesh", 334488)
@@ -91,7 +91,7 @@ function mod:MeatHookHit(args)
 	end
 end
 
-function mod:MutlilateStart(args)
+function mod:MutilateStart(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 end
@@ -132,7 +132,7 @@ do
 	end
 
 	function mod:MorbidFixation(args)
-		self:GetBossTarget(printTarget, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 
