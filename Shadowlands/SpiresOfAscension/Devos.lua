@@ -1,11 +1,4 @@
 --------------------------------------------------------------------------------
--- TODO:
--- - Mythic Abilties
--- - Improve timers
--- - Respawn
--- - Stage 2
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -14,6 +7,14 @@ if not mod then return end
 mod:RegisterEnableMob(162061) -- Devos
 mod.engageId = 2359
 --mod.respawnTime = 30
+mod:SetStage(1)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local runThroughCount = 1
+local lostConfidenceCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -21,6 +22,7 @@ mod.engageId = 2359
 
 function mod:GetOptions()
 	return {
+		"stages",
 		{334625, "EMPHASIZE"}, -- Abyssal Detonation
 		{322818, "SAY", "SAY_COUNTDOWN"}, -- Lost Confidence
 		{323943, "SAY"}, -- Run Through
@@ -28,6 +30,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Activate", 322999)
 	self:Log("SPELL_CAST_START", "AbyssalDetonation", 334625)
 	self:Log("SPELL_CAST_SUCCESS", "LostConfidence", 322818)
 	self:Log("SPELL_AURA_APPLIED", "LostConfidenceApplied", 322818)
@@ -37,22 +40,51 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(334625, 23.3) -- Abyssal Detonation
-	self:Bar(322818, 16.3) -- Lost Confidence
+	runThroughCount = 1
+	lostConfidenceCount = 1
+	self:SetStage(1)
+	self:CDBar(323943, 12) -- Run Through
+	self:CDBar(334625, 21) -- Abyssal Detonation
+	self:CDBar(322818, 25.5) -- Lost Confidence
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:Activate(args)
+	self:SetStage(2)
+	self:Message("stages", "cyan", CL.stage:format(2))
+	self:PlaySound("stages", "long")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:StopBar(323943) -- Run Through
+	self:StopBar(334625) -- Abyssal Detonation
+	self:StopBar(322818) -- Lost Confidence
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+	if spellId == 330433 then -- Shut Down
+		runThroughCount = 1
+		lostConfidenceCount = 1
+		self:SetStage(1)
+		self:Message("stages", "cyan", CL.stage:format(1))
+		self:PlaySound("stages", "long")
+		self:CDBar(323943, 11.8) -- Run Through
+		self:CDBar(334625, 20.7) -- Abyssal Detonation
+		self:CDBar(322818, 25.5) -- Lost Confidence
+	end
+end
+
 function mod:AbyssalDetonation(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
+	self:Bar(args.spellId, 20.6)
 	self:CastBar(args.spellId, 4)
 end
 
 function mod:LostConfidence(args)
-	self:Bar(args.spellId, 20)
+	lostConfidenceCount = lostConfidenceCount + 1
+	self:Bar(args.spellId, lostConfidenceCount == 2 and 31.6 or 20.6)
 end
 
 do
@@ -77,7 +109,8 @@ do
 end
 
 function mod:RunThrough(args)
-	self:Bar(args.spellId, 20)
+	runThroughCount = runThroughCount + 1
+	self:Bar(args.spellId, runThroughCount == 3 and 14.6 or 20.6)
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
 
