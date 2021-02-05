@@ -191,8 +191,11 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
-			self:PlaySound(args.spellId, "alarm")
+			local unit = self:GetUnitIdByGUID(args.destGUID)
+			if unit and UnitAffectingCombat(unit) then
+				self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+				self:PlaySound(args.spellId, "alarm")
+			end
 		end
 	end
 end
