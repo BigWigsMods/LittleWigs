@@ -9,4 +9,5 @@ if L then
 	L.collector = "墮落的收集者"
 	L.shard = "哈奇厄斯裂片"
 	L.reaver = "石源魔劫奪者"
+	-- L.slasher = "Stoneborn Slasher"
 end

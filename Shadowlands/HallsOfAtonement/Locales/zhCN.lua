@@ -9,4 +9,5 @@ if L then
 	L.collector = "堕落的搜集者"
 	L.shard = "哈尔吉亚斯的碎片"
 	L.reaver = "石裔掠夺者"
+	L.slasher = "石裔切割者"
 end

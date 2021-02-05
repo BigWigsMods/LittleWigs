@@ -9,4 +9,5 @@ if L then
 	L.collector = "Verkommener Sammler"
 	L.shard = "Splitter von Halkias"
 	L.reaver = "Steingeborener Häscher"
+	L.slasher = "Steingeborener Schlitzer"
 end

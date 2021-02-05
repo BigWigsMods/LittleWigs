@@ -9,4 +9,5 @@ if L then
 	L.collector = "Collettrice Degenerata"
 	L.shard = "Scheggia di Halkias"
 	L.reaver = "Razziatore Litogeno"
+	L.slasher = "Sfregiatore Litogeno"
 end

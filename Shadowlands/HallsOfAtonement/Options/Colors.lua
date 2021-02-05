@@ -38,6 +38,7 @@ BigWigs:AddColors("Halls of Atonement Trash", {
 	[326409] = "red",
 	[326450] = {"orange","red"},
 	[326607] = "red",
+	[326997] = "purple",
 	[344993] = "blue",
 	[346866] = "yellow",
 })

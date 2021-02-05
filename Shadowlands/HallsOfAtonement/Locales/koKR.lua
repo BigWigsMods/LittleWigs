@@ -9,4 +9,5 @@ if L then
 	L.collector = "타락한 수집가"
 	L.shard = "할키아스의 조각"
 	L.reaver = "돌숨결 약탈자"
+	L.slasher = "돌숨결 난도질꾼"
 end
