@@ -16,9 +16,6 @@ mod.engageId = 2390
 local L = mod:GetLocale()
 if L then
 	L.aegis = "%s removed after %.1f seconds!"
-
-	L.casting_on_you = "Casting %s on YOU"
-	L.casting_on_other = "Casting %s: %s"
 end
 
 --------------------------------------------------------------------------------
@@ -80,11 +77,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		if self:Me(guid) then
-			self:PersonalMessage(320788, false, L.casting_on_you:format(self:SpellName(320788)))
-		elseif not self:CheckOption(320788, "ME_ONLY") then
-			self:Message(320788, "cyan", L.casting_on_other:format(self:SpellName(320788), self:ColorName(name)))
-		end
+		self:TargetMessage(320788, "cyan", name, CL.casting:format(self:SpellName(320788)))
 		self:PlaySound(320788, "info", nil, name)
 		self:PrimaryIcon(320788, name)
 	end
