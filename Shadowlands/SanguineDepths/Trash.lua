@@ -16,7 +16,6 @@ mod:RegisterEnableMob(
 	162047, -- Insatiable Brute
 	162038, -- Regal Mistdancer
 	171805, -- Research Scribe
-	162049, -- Vestige of Doubt
 	162039 -- Wicked Oppressor
 )
 
@@ -35,7 +34,6 @@ if L then
 	L.insatiable_brute = "Insatiable Brute"
 	L.regal_mistdancer = "Regal Mistdancer"
 	L.research_scribe = "Research Scribe"
-	L.vestige_of_doubt = "Vestige of Doubt"
 	L.wicked_oppressor = "Wicked Oppressor"
 end
 
@@ -55,9 +53,7 @@ function mod:GetOptions()
 		-- Dreadful Huntmaster
 		334558, -- Volatile Trap
 		-- General Kaal
-		327811, -- Blink Step
 		324103, -- Gloom Squall
-		324089, -- Z'rali's Essence
 		324086, -- Shining Radiance
 		-- Grand Overseer
 		326827, -- Dread Bindings
@@ -71,58 +67,52 @@ function mod:GetOptions()
 		320991, -- Echoing Thrust
 		-- Research Scribe
 		334377, -- Explosive Vellum
-		-- Vestige of Doubt
-		322169, -- Growing Mistrust
 		-- Wicked Oppressor
-		321038, -- Wrack Soul
-		326836, -- Curse of Suppression
+		{326836, "DISPEL"}, -- Curse of Suppression
 	}, {
 		[328170] = L.chamber_sentinel,
 		[335305] = L.depths_warden,
 		[334558] = L.dreadful_huntmaster,
-		[327811] = L.general_kaal,
+		[324103] = L.general_kaal,
 		[326827] = L.grand_overseer,
 		[334329] = L.head_custodian_javlin,
 		[321178] = L.insatiable_brute,
 		[320991] = L.regal_mistdancer,
 		[334377] = L.research_scribe,
-		[322169] = L.vestige_of_doubt,
-		[321038] = L.wicked_oppressor,
+		[326836] = L.wicked_oppressor,
 	}
 end
 
 function mod:OnBossEnable()
 		-- Chamber Sentinel
-		self:Log("SPELL_CAST_", "CraggyFracture", 328170) -- Craggy Fracture
-		self:Log("SPELL_CAST_", "SeveringSlice", 322429) -- Severing Slice
-		self:Log("SPELL_CAST_", "Stoneskin", 322433) -- Stoneskin
+		self:Log("SPELL_CAST_SUCCESS", "CraggyFracture", 328170) -- Craggy Fracture
+		self:Log("SPELL_CAST_START", "SeveringSlice", 322429) -- Severing Slice
+		self:Log("SPELL_CAST_START", "Stoneskin", 322433) -- Stoneskin
+		self:Log("SPELL_AURA_APPLIED", "StoneskinApplied", 322433) -- Stoneskin
 		-- Depths Warden
-		self:Log("SPELL_CAST_", "BarbedShackles", 335305) -- Barbed Shackles
-		self:Log("SPELL_CAST_", "CrushingStrike", 335308) -- Crushing Strike
+		self:Log("SPELL_CAST_START", "BarbedShackles", 335305) -- Barbed Shackles
+		self:Log("SPELL_AURA_APPLIED", "BarbedShacklesApplied", 335306) -- Barbed Shackles
+		self:Log("SPELL_CAST_START", "CrushingStrike", 335308) -- Crushing Strike
 		-- Dreadful Huntmaster
-		self:Log("SPELL_CAST_", "VolatileTrap", 334558) -- Volatile Trap
+		self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
 		-- General Kaal
-		self:Log("SPELL_CAST_", "BlinkStep", 327811) -- Blink Step
-		self:Log("SPELL_CAST_", "GloomSquall", 324103) -- Gloom Squall
-		self:Log("SPELL_CAST_", "ZralisEssence", 324089) -- Z'rali's Essence
-		self:Log("SPELL_CAST_", "ShiningRadiance", 324086) -- Shining Radiance
+		self:Log("SPELL_CAST_START", "GloomSquall", 324103) -- Gloom Squall
+		self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
 		-- Grand Overseer
-		self:Log("SPELL_CAST_", "DreadBindings", 326827) -- Dread Bindings
+		self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
 		-- Head Custodian Javlin
-		self:Log("SPELL_CAST_", "SweepingSlash", 334329) -- Sweeping Slash
-		self:Log("SPELL_CAST_", "BludgeoningBash", 334326) -- Bludgeoning Bash
+		self:Log("SPELL_CAST_START", "SweepingSlash", 334329) -- Sweeping Slash
+		self:Log("SPELL_CAST_START", "BludgeoningBash", 334326) -- Bludgeoning Bash
 		-- Insatiable Brute
-		self:Log("SPELL_CAST_", "Slam", 321178) -- Slam
-		self:Log("SPELL_CAST_", "UmbralCrash", 334918) -- Umbral Crash
+		self:Log("SPELL_CAST_START", "Slam", 321178) -- Slam
+		self:Log("SPELL_CAST_START", "UmbralCrash", 334918) -- Umbral Crash
 		-- Regal Mistdancer
-		self:Log("SPELL_CAST_", "EchoingThrust", 320991) -- Echoing Thrust
+		self:Log("SPELL_CAST_START", "EchoingThrust", 320991) -- Echoing Thrust
 		-- Research Scribe
-		self:Log("SPELL_CAST_", "ExplosiveVellum", 334377) -- Explosive Vellum
-		-- Vestige of Doubt
-		self:Log("SPELL_CAST_", "GrowingMistrust", 322169) -- Growing Mistrust
+		self:Log("SPELL_CAST_SUCCESS", "ExplosiveVellum", 334377) -- Explosive Vellum
 		-- Wicked Oppressor
-		self:Log("SPELL_CAST_", "WrackSoul", 321038) -- Wrack Soul
-		self:Log("SPELL_CAST_", "CurseOfSuppression", 326836) -- Curse of Suppression
+		self:Log("SPELL_CAST_START", "CurseOfSuppression", 326836) -- Curse of Suppression
+		self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
 end
 
 --------------------------------------------------------------------------------
@@ -131,23 +121,124 @@ end
 
 -- Chamber Sentinel
 
+function mod:CraggyFracture(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:SeveringSlice(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:Stoneskin(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:StoneskinApplied(args)
+	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+	self:PlaySound(args.spellId, "warning")
+end
+
 -- Depths Warden
+
+function mod:BarbedShackles(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BarbedShacklesApplied(args)
+	self:TargetMessage(335305, "yellow", args.destName)
+	self:PlaySound(335305, "alert", nil, args.destName)
+end
+
+function mod:CrushingStrike(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+end
 
 -- Dreadful Huntmaster
 
+function mod:VolatileTrap(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
 -- General Kaal
+
+function mod:GloomSquall(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:ShiningRadiance(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+end
 
 -- Grand Overseer
 
+function mod:DreadBindings(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
 -- Head Custodian Javlin
+
+function mod:SweepingSlash(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BludgeoningBash(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
 
 -- Insatiable Brute
 
+function mod:Slam(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:UmbralCrash(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
 -- Regal Mistdancer
+
+function mod:EchoingThrust(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
 
 -- Research Scribe
 
--- Vestige of Doubt
+do
+	local prev = 0
+	function mod:ExplosiveVellum(args)
+		local t = args.time
+		if t-prev > 2 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
 
 -- Wicked Oppressor
 
+function mod:CurseOfSuppression(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:CurseOfSuppressionApplied(args)
+	if self:Dispeller("curse", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
+end
