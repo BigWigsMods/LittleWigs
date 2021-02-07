@@ -65,6 +65,7 @@ function mod:GetOptions()
 		{327882, "DISPEL"}, -- Blightbeak
 		-- Plaguebelcher
 		327233, -- Belch Plague
+		327584, -- Beckon Slime
 		-- Rotting Slimeclaw
 		{320512, "DISPEL"}, -- Corroded Claws
 		-- Blighted Spinebreaker
@@ -114,6 +115,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BlightbeakApplied", 327882)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BlightbeakApplied", 327882)
 	self:Log("SPELL_CAST_START", "BelchPlague", 327233)
+	self:Log("SPELL_CAST_START", "BeckonSlime", 327584)
 	self:Log("SPELL_AURA_APPLIED", "CorrodedClawsApplied", 320512)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "CorrodedClawsApplied", 320512)
 	self:Log("SPELL_CAST_START", "FesteringBelch", 318949)
@@ -179,6 +181,11 @@ function mod:BelchPlague(args)
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alarm")
 	end
+end
+
+function mod:BeckonSlime(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:CorrodedClawsApplied(args)
