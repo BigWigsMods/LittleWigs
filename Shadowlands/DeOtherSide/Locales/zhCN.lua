@@ -22,5 +22,5 @@ if L then
 	L.shimmermoth = "仙野烁光蛾"
 	L.mythresh = "密斯雷什，苍穹之爪"
 
-	-- L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
+	L.soporific_shimmerdust_desc = "当诅咒堆叠达到 10 层，你的角色会陷入沉睡。跳跃可以重置层数。"
 end
