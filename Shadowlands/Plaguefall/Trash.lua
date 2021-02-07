@@ -184,8 +184,8 @@ function mod:BelchPlague(args)
 end
 
 function mod:BeckonSlime(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:CorrodedClawsApplied(args)
