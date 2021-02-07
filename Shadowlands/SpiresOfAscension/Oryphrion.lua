@@ -25,7 +25,7 @@ local prevEnergy = 100
 
 local L = mod:GetLocale()
 if L then
-	L.early_intermission_over = "Intermission Over (%d orbs reached)"
+	L.early_intermission_over = "Intermission Over (%d |4orb:orbs; reached)"
 end
 
 --------------------------------------------------------------------------------
