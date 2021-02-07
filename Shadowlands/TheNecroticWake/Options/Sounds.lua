@@ -27,9 +27,9 @@ BigWigs:AddSounds("Surgeon Stitchflesh", {
 
 BigWigs:AddSounds("Nalthor the Rimebinder", {
 	[320772] = "warning",
-	[320788] = "alarm",
+	[320788] = {"alarm","alert"},
 	[321368] = "info",
-	[321894] = "alert",
+	[321894] = "long",
 })
 
 BigWigs:AddSounds("The Necrotic Wake Trash", {
