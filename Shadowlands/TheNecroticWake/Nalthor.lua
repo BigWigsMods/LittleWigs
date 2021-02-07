@@ -77,8 +77,8 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(320788, "cyan", name, CL.casting:format(self:SpellName(320788)))
-		self:PlaySound(320788, "info", nil, name)
+		self:TargetMessage(320788, "orange", name, CL.casting:format(self:SpellName(320788)))
+		self:PlaySound(320788, "alert", nil, name)
 		self:PrimaryIcon(320788, name)
 	end
 
@@ -103,6 +103,6 @@ end
 
 function mod:DarkExile(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	self:PlaySound(args.spellId, "long", nil, args.destName)
 	self:CDBar(args.spellId, 35)
 end
