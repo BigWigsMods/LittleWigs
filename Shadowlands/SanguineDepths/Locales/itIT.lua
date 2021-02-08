@@ -1,6 +1,7 @@
 local L = BigWigs:NewBossLocale("Sanguine Depths Trash", "itIT")
 if not L then return end
 if L then
+	L.anima_collector = "Collettore d'Animum"
 	L.chamber_sentinel = "Sentinella della Sala"
 	L.depths_warden = "Custode delle Profondità"
 	L.dreadful_huntmaster = "Mastro Cacciatore Terrificante"

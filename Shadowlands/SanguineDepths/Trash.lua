@@ -7,13 +7,16 @@ local mod, CL = BigWigs:NewBoss("Sanguine Depths Trash", 2284)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	174001, -- Anima Collector
 	162057, -- Chamber Sentinel
 	171799, -- Depths Warden
 	171448, -- Dreadful Huntmaster
+	162046, -- Famished Tick
 	162133, -- General Kaal
 	162040, -- Grand Overseer
 	171376, -- Head Custodian Javlin
 	162047, -- Insatiable Brute
+	166396, -- Noble Skirmisher
 	162038, -- Regal Mistdancer
 	171805, -- Research Scribe
 	162039 -- Wicked Oppressor
@@ -25,6 +28,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.anima_collector = "Anima Collector"
 	L.chamber_sentinel = "Chamber Sentinel"
 	L.depths_warden = "Depths Warden"
 	L.dreadful_huntmaster = "Dreadful Huntmaster"
@@ -43,6 +47,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Anima Collector
+		341321, -- Summon Anima Collector Stalker
 		-- Chamber Sentinel
 		328170, -- Craggy Fracture
 		322429, -- Severing Slice
@@ -70,6 +76,7 @@ function mod:GetOptions()
 		-- Wicked Oppressor
 		{326836, "DISPEL"}, -- Curse of Suppression
 	}, {
+		[341321] = L.anima_collector,
 		[328170] = L.chamber_sentinel,
 		[335305] = L.depths_warden,
 		[334558] = L.dreadful_huntmaster,
@@ -84,8 +91,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-		-- Chamber Sentinel
-		self:Log("SPELL_CAST_SUCCESS", "CraggyFracture", 328170) -- Craggy Fracture
+		-- Anima Container
+		self:Log("SPELL_SUMMON", "SummonAnimaCollectorStalker", 341321)
+		-- Chamber Sentine, l
+		self:Log("SPELL_CAST_START", "CraggyFracture", 328170) -- Craggy Fracture
 		self:Log("SPELL_CAST_START", "SeveringSlice", 322429) -- Severing Slice
 		self:Log("SPELL_CAST_START", "Stoneskin", 322433) -- Stoneskin
 		self:Log("SPELL_AURA_APPLIED", "StoneskinApplied", 322433) -- Stoneskin
@@ -118,6 +127,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Anima Collector
+
+function mod:SummonAnimaCollectorStalker(args)
+	self:Message(args.spellId, "green", L.anima_collector)
+	self:PlaySound(args.spellId, "long")
+end
 
 -- Chamber Sentinel
 
@@ -160,9 +176,16 @@ end
 
 -- Dreadful Huntmaster
 
-function mod:VolatileTrap(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:VolatileTrap(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- General Kaal
@@ -210,9 +233,16 @@ end
 
 -- Regal Mistdancer
 
-function mod:EchoingThrust(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:EchoingThrust(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Research Scribe
@@ -231,9 +261,16 @@ end
 
 -- Wicked Oppressor
 
-function mod:CurseOfSuppression(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:CurseOfSuppression(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:CurseOfSuppressionApplied(args)
