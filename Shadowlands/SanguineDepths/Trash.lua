@@ -93,7 +93,7 @@ end
 function mod:OnBossEnable()
 		-- Anima Container
 		self:Log("SPELL_SUMMON", "SummonAnimaCollectorStalker", 341321)
-		-- Chamber Sentine, l
+		-- Chamber Sentinel
 		self:Log("SPELL_CAST_START", "CraggyFracture", 328170) -- Craggy Fracture
 		self:Log("SPELL_CAST_START", "SeveringSlice", 322429) -- Severing Slice
 		self:Log("SPELL_CAST_START", "Stoneskin", 322433) -- Stoneskin
@@ -109,6 +109,7 @@ function mod:OnBossEnable()
 		self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
 		-- Grand Overseer
 		self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
+		self:Log("SPELL_AURA_REMOVED", "DreadBindingsRemoved", 326827)
 		-- Head Custodian Javlin
 		self:Log("SPELL_CAST_START", "SweepingSlash", 334329) -- Sweeping Slash
 		self:Log("SPELL_CAST_START", "BludgeoningBash", 334326) -- Bludgeoning Bash
@@ -132,7 +133,7 @@ end
 
 function mod:SummonAnimaCollectorStalker(args)
 	self:Message(args.spellId, "green", L.anima_collector)
-	self:PlaySound(args.spellId, "long")
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Chamber Sentinel
@@ -143,8 +144,8 @@ function mod:CraggyFracture(args)
 end
 
 function mod:SeveringSlice(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Stoneskin(args)
@@ -205,6 +206,13 @@ end
 function mod:DreadBindings(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:DreadBindingsRemoved(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, "removed")
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+	end
 end
 
 -- Head Custodian Javlin
