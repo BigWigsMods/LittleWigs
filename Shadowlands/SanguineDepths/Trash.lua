@@ -154,8 +154,10 @@ function mod:Stoneskin(args)
 end
 
 function mod:StoneskinApplied(args)
-	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
-	self:PlaySound(args.spellId, "warning")
+	if bit.band(args.destFlags, 0x400) == 0 then -- COMBATLOG_OBJECT_TYPE_PLAYER
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 -- Depths Warden
@@ -210,8 +212,8 @@ end
 
 function mod:DreadBindingsRemoved(args)
 	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "removed")
-		self:PlaySound(args.spellId, "info", nil, args.destName)
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
