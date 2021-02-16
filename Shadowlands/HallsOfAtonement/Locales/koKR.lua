@@ -10,4 +10,5 @@ if L then
 	L.shard = "할키아스의 조각"
 	L.reaver = "돌숨결 약탈자"
 	L.slasher = "돌숨결 난도질꾼"
+	L.sigar = "심문관 시가르"
 end

@@ -27,6 +27,8 @@ function mod:GetOptions()
 		322943, -- Heave Debris
 		322711, -- Refracted Sinlight
 		322977, -- Sinlight Visions
+	}, nil, {
+		[322711] = CL.beam, -- Refracted Sinlight (Beam)
 	}
 end
 
@@ -47,8 +49,7 @@ function mod:OnEngage()
 
 	self:CDBar(322936, 5) -- Crumbling Slam
 	self:CDBar(322943, 12) -- Heave Debris
-	self:CDBar(322977, 27) -- Sinlight Visions
-	self:CDBar(322711, 35) -- Refracted Sinlight
+	self:CDBar(322711, 31, CL.beam) -- Refracted Sinlight
 end
 
 --------------------------------------------------------------------------------
@@ -84,19 +85,18 @@ function mod:HeaveDebris(args)
 end
 
 function mod:RefractedSinlight(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.beam)
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 45) -- XXX Estimated
+	self:Bar(args.spellId, 45, CL.beam) -- XXX Estimated
 end
 
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(322977, "orange", name) -- Sinlight Visions
-		self:PlaySound(322977, "alarm", nil, name) -- Sinlight Visions
+		self:PlaySound(322977, "alarm")
 	end
 
 	function mod:SinlightVisions(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:Bar(args.spellId, 45)
 	end
 end

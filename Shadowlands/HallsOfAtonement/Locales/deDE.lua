@@ -10,4 +10,5 @@ if L then
 	L.shard = "Splitter von Halkias"
 	L.reaver = "Steingeborener Häscher"
 	L.slasher = "Steingeborener Schlitzer"
+	L.sigar = "Inquisitor Sigar"
 end

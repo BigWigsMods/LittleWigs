@@ -20,7 +20,8 @@ mod:RegisterEnableMob(
 	165529, -- Depraved Collector
 	164557, -- Shard of Halkias
 	167612, -- Stoneborn Reaver
-	167607 -- Stoneborn Slasher
+	167607, -- Stoneborn Slasher
+	167876 -- Inquisitor Sigar
 )
 
 --------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ if L then
 	L.shard = "Shard of Halkias"
 	L.reaver = "Stoneborn Reaver"
 	L.slasher = "Stoneborn Slasher"
+	L.sigar = "Inquisitor Sigar"
 end
 
 --------------------------------------------------------------------------------
@@ -56,7 +58,8 @@ function mod:GetOptions()
 		325701, -- Siphon Life
 		326409, -- Thrash
 		326607, -- Turn to Stone
-		{326997, "TANK"} -- Powerful Swipe
+		{326997, "TANK"}, -- Powerful Swipe
+		326891, -- Anguish
 	}, {
 		[326450] = L.houndmaster,
 		[344993] = L.gargon,
@@ -67,12 +70,13 @@ function mod:GetOptions()
 		[326409] = L.shard,
 		[326607] = L.reaver,
 		[326997] = L.slasher,
+		[326891] = L.sigar,
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "LoyalBeasts", 326450)
-	self:Log("SPELL_AURA_APPLIED", "LoyalBeastsSuccess", 326450)
+	self:Log("SPELL_AURA_APPLIED", "LoyalBeastsApplied", 326450)
 	self:Log("SPELL_DAMAGE", "RapidFire", 325799)
 	self:Log("SPELL_MISSED", "RapidFire", 325799)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "JaggedSwipe", 344993)
@@ -88,6 +92,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ThrashOver", 326409)
 	self:Log("SPELL_CAST_START", "TurnToStone", 326607)
 	self:Log("SPELL_CAST_START", "PowerfulSwipe", 326997)
+
+	self:Log("SPELL_AURA_APPLIED", "AnguishDamage", 326891)
+	self:Log("SPELL_PERIODIC_DAMAGE", "AnguishDamage", 326891)
+	self:Log("SPELL_PERIODIC_MISSED", "AnguishDamage", 326891)
 end
 
 --------------------------------------------------------------------------------
@@ -104,7 +112,7 @@ do
 	-- This is an AoE cast that could affect 0 Gargons,
 	-- so SPELL_AURA_APPLIED with throttling it is.
 	local prev = 0
-	function mod:LoyalBeastsSuccess(args)
+	function mod:LoyalBeastsApplied(args)
 		if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
 			local t = args.time
 			if t - prev > 1.5 then
@@ -176,7 +184,7 @@ end
 function mod:CurseOfObliterationApplied(args)
 	local isOnMe = self:Me(args.destGUID)
 
-	self:TargetMessage(args.spellId, "cyan", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:PlaySound(args.spellId, isOnMe and "alarm" or "info", nil, args.destName)
 
@@ -230,4 +238,19 @@ end
 function mod:PowerfulSwipe(args)
 	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Inquisitor Sigar
+do
+	local prev = 0
+	function mod:AnguishDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t-prev > 2 then
+				prev = t
+				self:PlaySound(args.spellId, "underyou")
+				self:PersonalMessage(args.spellId, "underyou")
+			end
+		end
+	end
 end

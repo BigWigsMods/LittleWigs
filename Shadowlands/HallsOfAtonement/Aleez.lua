@@ -40,14 +40,18 @@ end
 --
 
 function mod:BoltofPower(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	if self:Interrupter(args.sourceGUID) then
+		self:Message(args.spellId, "yellow")
+	end
 end
 
 function mod:VolleyofPower(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 14.5)
+	local _, ready = self:Interrupter(args.sourceGUID)
+	if ready then
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:HauntingFixation(args)

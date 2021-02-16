@@ -10,4 +10,5 @@ if L then
 	L.shard = "Estilhaço de Hálkias"
 	L.reaver = "Aniquiladora Litonata"
 	L.slasher = "Rasgador Litonato"
+	L.sigar = "Inquisidor Sigarro"
 end

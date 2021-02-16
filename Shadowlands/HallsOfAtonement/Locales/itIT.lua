@@ -10,4 +10,5 @@ if L then
 	L.shard = "Scheggia di Halkias"
 	L.reaver = "Razziatore Litogeno"
 	L.slasher = "Sfregiatore Litogeno"
+	L.sigar = "Inquisitore Sigar"
 end
