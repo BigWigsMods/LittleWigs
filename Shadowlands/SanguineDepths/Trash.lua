@@ -194,7 +194,7 @@ end
 -- General Kaal
 
 function mod:GloomSquall(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -206,7 +206,7 @@ end
 -- Grand Overseer
 
 function mod:DreadBindings(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
