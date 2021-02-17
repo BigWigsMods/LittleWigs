@@ -15,7 +15,6 @@ BigWigs:AddSounds("Echelon", {
 })
 
 BigWigs:AddSounds("High Adjudicator Aleez", {
-	[323538] = "alert",
 	[323552] = "warning",
 	[323650] = "warning",
 	[329340] = "alarm",
@@ -38,6 +37,7 @@ BigWigs:AddSounds("Halls of Atonement Trash", {
 	[326409] = "warning",
 	[326450] = {"alert","warning"},
 	[326607] = {"alert","warning"},
+	[326891] = "underyou",
 	[326997] = "alert",
 	[344993] = {"alert","warning"},
 	[346866] = "alarm",

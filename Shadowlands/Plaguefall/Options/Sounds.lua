@@ -35,6 +35,7 @@ BigWigs:AddSounds("Plaguefall Trash", {
 	[323572] = "alarm",
 	[327233] = "alarm",
 	[327515] = "alert",
+	[327584] = "long",
 	[327882] = "alert",
 	[327995] = "alarm",
 	[328016] = "alert",
