@@ -79,6 +79,7 @@ function mod:GetOptions()
 		336451, -- Bulwark of Maldraxxus
 		-- Brood Ambusher
 		328475, -- Enveloping Webbing
+		328400, -- Stealthlings
 		-- Ickor Bileflesh
 		330786, -- Oozing Carcass
 		330816, -- Ghost Step
@@ -125,6 +126,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WitheringFilth", 321935)
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkOfMaldraxxus", 336451)
 	self:Log("SPELL_CAST_START", "EnvelopingWebbing", 328475)
+	self:Log("SPELL_CAST_SUCCESS", "Stealthlings", 328400)
 	self:Log("SPELL_CAST_START", "OozingCarcass", 330786)
 	self:Log("SPELL_CAST_START", "GhostStep", 330816)
 	self:Log("SPELL_CAST_START", "WonderGrow", 328016)
@@ -248,6 +250,11 @@ end
 function mod:EnvelopingWebbing(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:Stealthlings(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:OozingCarcass(args)
