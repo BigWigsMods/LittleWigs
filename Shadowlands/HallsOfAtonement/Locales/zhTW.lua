@@ -10,5 +10,5 @@ if L then
 	L.shard = "哈奇厄斯裂片"
 	L.reaver = "石源魔劫奪者"
 	L.slasher = "石源魔斬擊者"
-	--L.sigar = "Inquisitor Sigar"
+	L.sigar = "審判者席加爾"
 end
