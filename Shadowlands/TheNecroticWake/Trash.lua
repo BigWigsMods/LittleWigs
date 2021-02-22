@@ -127,15 +127,29 @@ end
 --
 
 -- Corpse Harvester
-function mod:DrainFluids(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:DrainFluids(args)
+		local t = args.time
+		if t-prev > 0.5 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Stitched Vanguard
-function mod:MeatShield(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:MeatShield(args)
+		local t = args.time
+		if t-prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Zolramus Gatekeeper
