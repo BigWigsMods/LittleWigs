@@ -40,7 +40,7 @@ end
 --
 
 function mod:BoltofPower(args)
-	if self:Interrupter(args.sourceGUID) then
+	if self:Interrupter() then
 		self:Message(args.spellId, "yellow")
 	end
 end
@@ -48,7 +48,7 @@ end
 function mod:VolleyofPower(args)
 	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 14.5)
-	local _, ready = self:Interrupter(args.sourceGUID)
+	local _, ready = self:Interrupter()
 	if ready then
 		self:PlaySound(args.spellId, "warning")
 	end
