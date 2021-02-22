@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Sanguine Depths Trash", "zhTW")
 if not L then return end
 if L then
-	L.anima_collector = "靈魄牢籠"
+	L.anima_collector = "靈魄收集器"
 	L.chamber_sentinel = "大廳哨兵"
 	L.depths_warden = "深淵看守者"
 	L.dreadful_huntmaster = "恐怖神獵手"
