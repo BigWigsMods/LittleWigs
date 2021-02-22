@@ -17,3 +17,13 @@ if L then
 	L.spinemaw_staghorn = "脊喉雄角蟲"
 	L.tirnenn_villager = "木靈村民"
 end
+
+L = BigWigs:NewBossLocale("Mistcaller", "zhTW")
+if L then
+	--L.vulpin = "Vulpin"
+end
+
+L = BigWigs:NewBossLocale("Tred'ova", "zhTW")
+if L then
+	--L.parasite = "Parasite"
+end

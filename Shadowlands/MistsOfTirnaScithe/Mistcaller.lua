@@ -10,6 +10,21 @@ mod.engageId = 2392
 --mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local guessingGameHp = 100
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.vulpin = "Vulpin"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -17,8 +32,12 @@ function mod:GetOptions()
 	return {
 		336499, -- Guessing Game
 		321834, -- Dodge Ball
-		321828, -- Patty Cake
+		{321828, "ME_ONLY_EMPHASIZE"}, -- Patty Cake
 		326180, -- Freeze Tag
+		{321891, "SAY", "ME_ONLY_EMPHASIZE"}, -- Freeze Tag Fixation
+	},nil,{
+		[326180] = L.vulpin, -- Freeze Tag (Vulpin)
+		[321891] = CL.fixate, -- Freeze Tag Fixation (Fixate)
 	}
 end
 
@@ -27,12 +46,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DodgeBall", 321834)
 	self:Log("SPELL_CAST_START", "PattyCake", 321828)
 	self:Log("SPELL_CAST_START", "FreezeTag", 326180)
+	self:Log("SPELL_AURA_APPLIED", "FreezeTagFixation", 321891)
 end
 
 function mod:OnEngage()
+	guessingGameHp = 100
 	self:CDBar(321834, 7) -- Dodge Ball
-	self:CDBar(321828, 14.5) -- Patty Cake
-	self:CDBar(326180, 22) -- Freeze Tag
+	self:CDBar(321828, 13.7) -- Patty Cake
+	self:CDBar(326180, 18.1, L.vulpin) -- Freeze Tag
 end
 
 --------------------------------------------------------------------------------
@@ -40,39 +61,36 @@ end
 --
 
 function mod:GuessingGame(args)
-	self:Message(args.spellId, "cyan")
+	guessingGameHp = guessingGameHp - 30 -- 70, 40, 10
+	self:Message(args.spellId, "cyan", CL.percent:format(guessingGameHp, args.spellName))
 	self:PlaySound(args.spellId, "long")
 end
 
-do
-	local prev = 0
-	function mod:DodgeBall(args)
-		local t = args.time
-		if t-prev > 2 then
-			prev = t
-			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
-			self:CDBar(args.spellId, 14.5)
-		end
-	end
+function mod:DodgeBall(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 13.5)
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(321828, "purple", name) -- Patty Cake
-		if self:Me(guid) then
-			self:PlaySound(321828, "warning") -- Patty Cake
-		end
+function mod:PattyCake(args)
+	local bossUnit = self:GetBossId(args.sourceGUID)
+	if bossUnit and self:Tanking(bossUnit) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "warning")
 	end
-
-	function mod:PattyCake(args)
-		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
-		self:CDBar(args.spellId, 22)
-	end
+	self:CDBar(args.spellId, 19.3) -- 19-23
 end
 
 function mod:FreezeTag(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.incoming:format(L.vulpin))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 23)
+	self:CDBar(args.spellId, 23, L.vulpin)
+end
+
+function mod:FreezeTagFixation(args)
+	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
+	if self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "warning")
+		self:Say(args.spellId)
+	end
 end

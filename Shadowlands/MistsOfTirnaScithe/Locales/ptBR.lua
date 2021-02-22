@@ -17,3 +17,13 @@ if L then
 	L.spinemaw_staghorn = "Galhagamo Espinogórjeo"
 	L.tirnenn_villager = "Habitante da Vila Tirnenn"
 end
+
+L = BigWigs:NewBossLocale("Mistcaller", "ptBR")
+if L then
+	L.vulpin = "Vulpin"
+end
+
+L = BigWigs:NewBossLocale("Tred'ova", "ptBR")
+if L then
+	L.parasite = "Parasita"
+end
