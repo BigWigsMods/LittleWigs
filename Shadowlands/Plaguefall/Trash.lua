@@ -46,6 +46,10 @@ if L then
 	L.fungalmancer = "Fungalmancer"
 	L.pestilent_harvester = "Pestilent Harvester"
 	L.fungi_stormer = "Fungi Stormer"
+
+	L.summon_stealthlings = 328400
+	L.summon_stealthlings_desc = "Warnings and timers for when Stealthlings spawn."
+	L.summon_stealthlings_icon = 328400
 end
 
 --------------------------------------------------------------------------------
@@ -79,6 +83,7 @@ function mod:GetOptions()
 		336451, -- Bulwark of Maldraxxus
 		-- Brood Ambusher
 		328475, -- Enveloping Webbing
+		"summon_stealthlings", -- Stealthlings
 		-- Ickor Bileflesh
 		330786, -- Oozing Carcass
 		330816, -- Ghost Step
@@ -125,6 +130,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WitheringFilth", 321935)
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkOfMaldraxxus", 336451)
 	self:Log("SPELL_CAST_START", "EnvelopingWebbing", 328475)
+	self:Log("SPELL_CAST_SUCCESS", "Stealthlings", 328400)
 	self:Log("SPELL_CAST_START", "OozingCarcass", 330786)
 	self:Log("SPELL_CAST_START", "GhostStep", 330816)
 	self:Log("SPELL_CAST_START", "WonderGrow", 328016)
@@ -248,6 +254,11 @@ end
 function mod:EnvelopingWebbing(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:Stealthlings(args)
+	self:Message("summon_stealthlings", "red", CL.spawned:format(args.spellName), args.spellId)
+	self:PlaySound("summon_stealthlings", "warning")
 end
 
 function mod:OozingCarcass(args)
