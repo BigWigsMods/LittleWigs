@@ -16,4 +16,6 @@ if L then
 	L.fungalmancer = "Грибомаг"
 	L.pestilent_harvester = "Заразный добытчик"
 	L.fungi_stormer = "Гриб-штурмовик"
+
+	-- L.summon_stealthlings_desc = "Warnings and timers for when Stealthlings spawn."
 end

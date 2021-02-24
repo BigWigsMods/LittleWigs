@@ -16,4 +16,6 @@ if L then
 	L.fungalmancer = "菌菇术士"
 	L.pestilent_harvester = "致命的收割者"
 	L.fungi_stormer = "真菌猛攻者"
+
+	-- L.summon_stealthlings_desc = "Warnings and timers for when Stealthlings spawn."
 end
