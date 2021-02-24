@@ -48,7 +48,7 @@ if L then
 	L.fungi_stormer = "Fungi Stormer"
 
 	L.summon_stealthlings = 328400
-	L.summon_stealthlings_desc = "Warnings and timers for when Stealthlings spawn."
+	L.summon_stealthlings_desc = "Warnings for when Stealthlings spawn."
 	L.summon_stealthlings_icon = 328400
 end
 
