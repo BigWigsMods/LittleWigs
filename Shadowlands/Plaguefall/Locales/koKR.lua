@@ -17,5 +17,5 @@ if L then
 	L.pestilent_harvester = "전염성 수확자"
 	L.fungi_stormer = "버섯 번개술사"
 
-	-- L.summon_stealthlings_desc = "Warnings and timers for when Stealthlings spawn."
+	-- L.summon_stealthlings_desc = "Show a warning when the Stealthlings spawn."
 end
