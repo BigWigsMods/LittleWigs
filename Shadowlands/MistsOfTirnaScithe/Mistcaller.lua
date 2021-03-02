@@ -42,7 +42,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "GuessingGame", 336499)
+	self:Log("SPELL_CAST_START", "GuessingGame", 336499, 321471) -- Mythic, Heroic/Normal
 	self:Log("SPELL_CAST_START", "DodgeBall", 321834)
 	self:Log("SPELL_CAST_START", "PattyCake", 321828)
 	self:Log("SPELL_CAST_START", "FreezeTag", 326180)
@@ -62,8 +62,8 @@ end
 
 function mod:GuessingGame(args)
 	guessingGameHp = guessingGameHp - 30 -- 70, 40, 10
-	self:Message(args.spellId, "cyan", CL.percent:format(guessingGameHp, args.spellName))
-	self:PlaySound(args.spellId, "long")
+	self:Message(336499, "cyan", CL.percent:format(guessingGameHp, args.spellName))
+	self:PlaySound(336499, "long")
 end
 
 function mod:DodgeBall(args)
