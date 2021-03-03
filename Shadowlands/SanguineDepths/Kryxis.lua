@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Kryxis the Voracious", 2284, 2388)
 if not mod then return end
 mod:RegisterEnableMob(162100)
 mod.engageId = 2360
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals

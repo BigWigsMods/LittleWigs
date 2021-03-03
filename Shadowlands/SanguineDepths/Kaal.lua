@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("General Kaal", 2284, 2407)
 if not mod then return end
 mod:RegisterEnableMob(162099)
 mod.engageId = 2363
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Locals

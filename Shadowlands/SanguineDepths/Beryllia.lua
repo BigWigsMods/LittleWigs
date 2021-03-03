@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Grand Proctor Beryllia", 2284, 2421)
 if not mod then return end
 mod:RegisterEnableMob(162102)
 mod.engageId = 2362
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
