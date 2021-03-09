@@ -9,7 +9,8 @@ BigWigs:AddColors("Trial of the King", {
 
 BigWigs:AddColors("Gekkan", {
 	[118903] = {"blue","red"},
-	[118963] = {"blue","yellow"},
+	[118963] = {"blue","purple","yellow"},
+	[118988] = {"blue","red"},
 	["heal"] = "orange",
 	["stages"] = "green",
 })

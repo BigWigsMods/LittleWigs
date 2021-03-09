@@ -5,6 +5,8 @@ BigWigs:AddSounds("Trial of the King", {
 })
 
 BigWigs:AddSounds("Gekkan", {
+	[118963] = "warning",
+	[118988] = "alarm",
 	["heal"] = "alert",
 	["stages"] = "info",
 })
