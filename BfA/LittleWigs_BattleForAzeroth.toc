@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90005
 
 ## Title: LittleWigs [|cffeda55fBattle for Azeroth|r]
 ## Title-deDE: LittleWigs [|cffeda55fBattle for Azeroth|r]

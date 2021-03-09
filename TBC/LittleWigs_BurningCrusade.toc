@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90005
 
 ## Title: LittleWigs [|cffeda55fBurning Crusade|r]
 ## Title-deDE: LittleWigs [|cffeda55fBurning Crusade|r]
