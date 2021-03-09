@@ -31,13 +31,10 @@ function mod:GetOptions()
 		{333231, "SAY", "FLASH"}, -- Searing Death
 		320293, -- One with Death
 		320272, -- Spectral Transference
-		-- Xira the Underhanded
-		333540, -- Opportunity Strikes
 	}, {
 		[320063] = -21582, -- Dessia the Decapitator
 		[320248] = -21581, -- Paceran the Virulent
 		[333231] = -21591, -- Sathel the Accursed
-		[333540] = -22272, -- Xira the Underhanded
 	}
 end
 
@@ -51,11 +48,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SearingDeathApplied", 333231)
 	self:Log("SPELL_CAST_SUCCESS", "OneWithDeath", 320293)
 	self:Log("SPELL_AURA_APPLIED", "SpectralTransferenceApplied", 320272)
-	self:Log("SPELL_AURA_APPLIED", "AmbushApplied", 333540)
 end
 
 function mod:OnEngage()
-	self:Bar(320063, 8.5) -- SLam
+	self:Bar(320063, 8.5) -- Slam
 	self:Bar(320069, 21) -- Mortal Strike
 	self:Bar(333231, 9.7) -- Searing Death
 end
@@ -129,9 +125,4 @@ function mod:SpectralTransferenceApplied(args)
 		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
-end
-
-function mod:AmbushApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
