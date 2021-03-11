@@ -27,7 +27,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "EnrageSoon", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", "EnrageSoon", "boss1")
 end
 
 --------------------------------------------------------------------------------

@@ -36,7 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss2")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss2")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
 
@@ -83,7 +83,7 @@ function mod:RecklessProvocationOver(args)
 	self:MessageOld(args.spellId, "green", "info", CL.over:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)

@@ -21,7 +21,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 49518, 59971) -- normal, heroic
 	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFire", 49518, 59971)
 	self:Log("SPELL_PERIODIC_MISSED", "RainOfFire", 49518, 59971)
@@ -35,7 +35,7 @@ end
 --  Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 60 then
 		self:UnregisterUnitEvent(event, unit)

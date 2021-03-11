@@ -27,7 +27,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "EnsnaringMossRemoved", 31948)
 	self:Log("SPELL_AURA_APPLIED", "GrievousWound", 31956, 38801)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 
 	self:Death("Win", 17991)
 end
@@ -55,7 +55,7 @@ function mod:GrievousWound(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 17991 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 26 then

@@ -56,7 +56,7 @@ end
 
 function mod:OnEngage()
 	stage = 1
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", "StageWarn", "boss1")
 	self:CDBar(106434, 15) -- Tornado Kick
 end
 
@@ -91,7 +91,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			stage = 2
 			local mirror = mod:SpellName(106747) -- Shado-pan Mirror Image
 			self:MessageOld("stages", "green", "info", (CL.stage:format(2))..": "..mirror, 106747)
-			self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
+			self:RegisterUnitEvent("UNIT_HEALTH", "StageWarn", "boss1")
 		else
 			self:MessageOld(106747, "green")
 		end

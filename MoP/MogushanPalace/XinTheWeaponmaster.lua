@@ -46,7 +46,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "StageWarn", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", "StageWarn", "boss1")
 	stage = 1
 end
 

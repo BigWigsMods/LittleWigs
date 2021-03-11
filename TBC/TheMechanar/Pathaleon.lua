@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 end
 
 --------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) ~= 19220 then return end
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 28 then

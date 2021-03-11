@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Tempest", 119875)
 	self:Log("SPELL_AURA_APPLIED", "ReinforcementsPhase", 119476) -- 119476 = Bulwark
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 function mod:OnEngage()
@@ -56,7 +56,7 @@ function mod:ReinforcementsPhase()
 	self:MessageOld(-5946, "yellow", "info", CL.incoming:format(CL.adds), false)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextReinforcementsWarning then
 		nextReinforcementsWarning = nextReinforcementsWarning - 30

@@ -23,7 +23,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Blitz")
 
 	self:Log("SPELL_CAST_START", "Siege", 74634)
@@ -56,7 +56,7 @@ function mod:Siege(args)
 	self:MessageOld(args.spellId, "orange")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 36 then
 		self:UnregisterUnitEvent(event, unit)

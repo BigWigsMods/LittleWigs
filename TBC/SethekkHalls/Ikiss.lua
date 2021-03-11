@@ -27,7 +27,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil,  "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil,  "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "ArcaneExplosion", 38197, 40425) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "Polymorph", 38245, 43309) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "PolymorphRemoved", 38245, 43309)
@@ -100,7 +100,7 @@ end
 
 do
 	local warnAt = { 85, 55, 30 }
-	function mod:UNIT_HEALTH_FREQUENT(event, unit)
+	function mod:UNIT_HEALTH(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < warnAt[explosionWarnings] then
 			explosionWarnings = explosionWarnings + 1

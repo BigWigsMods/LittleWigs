@@ -27,7 +27,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WorgenSpirit", 93857)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 function mod:OnEngage()
@@ -42,7 +42,7 @@ function mod:WorgenSpirit(args)
 	self:MessageOld(args.spellId, "red")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextWorgenSpiritWarning then
 		self:MessageOld(93857, "yellow", nil, CL.soon:format(self:SpellName(93857)), false)

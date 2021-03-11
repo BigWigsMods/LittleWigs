@@ -28,7 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "ConsumptionDamage", 35951)
 	self:Log("SPELL_AURA_APPLIED", "DarkSpin", 30502)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ function mod:DarkSpin(args)
 	self:MessageOld(args.spellId, "red", "info", CL.percent:format(25, args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 30 then
 		self:UnregisterUnitEvent(event, unit)

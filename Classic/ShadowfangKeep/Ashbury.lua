@@ -33,7 +33,7 @@ end
 function mod:OnEngage()
 	self:CDBar(93423, self:Heroic() and 20.6 or 15.5) -- Asphyxiate
 	if self:Heroic() then -- Dark Archangel Form is heroic-only
-		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	end
 end
 
@@ -55,7 +55,7 @@ function mod:DarkArchangelForm(args)
 	self:MessageOld(args.spellId, "yellow", "long")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 25 then
 		self:UnregisterUnitEvent(event, unit)

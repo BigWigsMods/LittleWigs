@@ -26,7 +26,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "ShieldOfLight", 74938)
 
 	self:Log("SPELL_AURA_APPLIED", "DivineReckoning", 75592)
@@ -41,7 +41,7 @@ end
 --  Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextShieldOfLightWarning then
 		self:MessageOld(74938, "yellow", nil, CL.soon:format(self:SpellName(74938))) -- Shield of Light

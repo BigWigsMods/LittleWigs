@@ -26,7 +26,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "Pound", 53472, 59433) -- normal, heroic
@@ -55,7 +55,7 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSubmergeWarning then
 		self:MessageOld(-6359, "cyan", nil, CL.soon:format(self:SpellName(-6359))) -- Submerge

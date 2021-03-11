@@ -34,7 +34,7 @@ function mod:OnBossEnable()
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "EngulfingFire", "boss1")
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "SwirlingWinds", 167203)
 	self:Log("SPELL_AURA_REMOVED", "SwirlingWindsOver", 167203)
 
@@ -65,7 +65,7 @@ function mod:EngulfingFire(_, _, _, spellId)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextAddsWarning then
 		nextAddsWarning = nextAddsWarning - 30

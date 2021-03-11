@@ -38,7 +38,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "GravityLapse", 44224)
 	self:Log("SPELL_CAST_START", "Pyroblast", 36819)
@@ -68,7 +68,7 @@ function mod:Warmup(event, msg)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)

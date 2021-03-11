@@ -33,7 +33,7 @@ end
 function mod:OnEngage()
 	-- Summon Reinforcements:
 	if self:Normal() then -- at 55%
-		self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	else -- every minute
 		self:CDBar(-5411, 60)
 		self:DelayedMessage(-5411, 55, "yellow", CL.soon:format(self:SpellName(-5411)))
@@ -52,7 +52,7 @@ function mod:GreaterHeal(args)
 	self:MessageOld(args.spellId, "orange", self:Interrupter() and "warning" or "alarm", CL.casting:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 60 then
 		self:UnregisterUnitEvent(event, unit)

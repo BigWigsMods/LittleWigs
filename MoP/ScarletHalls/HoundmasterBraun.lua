@@ -34,7 +34,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "RageWarn", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", "RageWarn", "boss1")
 	nextCallDogs = 90
 end
 

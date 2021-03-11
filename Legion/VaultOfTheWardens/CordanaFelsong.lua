@@ -61,7 +61,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CreepingDoomRemoved", 197422)
 	self:Log("SPELL_CAST_START", "KnockdownKick", 197251) -- used for kick_combo
 	self:Death("AvatarDeath", 100351)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 function mod:OnEngage()
@@ -148,7 +148,7 @@ function mod:AvatarDeath()
 	self:MessageOld(197796, "green", "long", CL.removed:format(self:SpellName(205004))) -- Vengeance removed
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 80 and not warnedForStealLight then
 		warnedForStealLight = true

@@ -39,7 +39,7 @@ end
 
 function mod:OnEngage()
 	quillsWarn = 100
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "QuillsWarn", "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", "QuillsWarn", "boss1")
 	self:Bar(153794, 10.5) -- Pierce Armor
 end
 

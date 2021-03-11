@@ -31,14 +31,14 @@ end
 
 function mod:OnEngage()
 	splitPhase = 0
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if (hp < 56 and splitPhase == 0) or (hp < 16 and splitPhase == 1) then
 		splitPhase = splitPhase + 1

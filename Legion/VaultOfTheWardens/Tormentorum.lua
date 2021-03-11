@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SapSoulInterruptible", 200905) -- Normal, Heroic
 	self:Log("SPELL_AURA_APPLIED", "SappedSoul", 200904)
 	self:Log("SPELL_AURA_REFRESH", "SappedSoul", 200904)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:Log("SPELL_CAST_START", "SeedofCorruption", 196208)
 	self:Log("SPELL_CAST_START", "FrighteningShout", 201488)
 	self:Log("SPELL_AURA_APPLIED", "ShadowCrashDamage", 199918) -- Shadow Crash
@@ -113,7 +113,7 @@ do
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextTeleportSoonWarning then
 		self:MessageOld(200898, "yellow", nil, CL.soon:format(self:SpellName(200898)))

@@ -22,7 +22,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CurseOfFatigueRemoved", 52592, 59368)
 	self:Log("SPELL_AURA_APPLIED", "Frenzy", 28747)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ function mod:Frenzy(args)
 	self:MessageOld(args.spellId, "red", nil, CL.percent:format(10, args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local health = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if health > 10 and health <= 15 then
 		self:UnregisterUnitEvent(event, unit)

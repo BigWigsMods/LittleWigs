@@ -32,14 +32,14 @@ end
 function mod:OnEngage()
 	self:CDBar(200289, 25.5) -- Growing Paranoia
 	self:CDBar(200185, 7) -- Nightmare Bolt
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp <= 50 then
 		self:UnregisterUnitEvent(event, unit)

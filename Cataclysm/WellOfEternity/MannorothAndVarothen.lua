@@ -25,7 +25,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1", "boss2") -- Mannoroth is boss2 until Varo'then dies
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1", "boss2") -- Mannoroth is boss2 until Varo'then dies
 end
 
 function mod:OnEngage()
@@ -45,7 +45,7 @@ do
 		{ 50, -4297 }, -- Infernal
 	}
 
-	function mod:UNIT_HEALTH_FREQUENT(event, unit)
+	function mod:UNIT_HEALTH(event, unit)
 		if self:MobId(self:UnitGUID(unit)) ~= 54969 then return end -- Varo'then is of no interest
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < adds[spawnWarnings][1] then

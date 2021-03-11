@@ -47,7 +47,7 @@ end
 function mod:OnEngage()
 	stacks = 0
 	nextPowerConduitWarning = 80 -- 75%, 50%, 25%
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:CDBar(154448, 14.4) -- Shrapnel Nova
 end
 
@@ -55,7 +55,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextPowerConduitWarning then
 		nextPowerConduitWarning = nextPowerConduitWarning - 25

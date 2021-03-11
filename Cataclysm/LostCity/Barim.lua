@@ -27,7 +27,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FiftyLashings", 82506)
 	self:Log("SPELL_AURA_APPLIED", "HallowedGround", 88814)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ function mod:HallowedGround(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)

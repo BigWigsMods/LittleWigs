@@ -30,7 +30,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Sabotage", 107268)
 	self:Log("SPELL_AURA_REMOVED", "SabotageRemoved", 107268)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 function mod:OnEngage()
@@ -61,7 +61,7 @@ function mod:SabotageRemoved(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextExplosionWarning then
 		nextExplosionWarning = nextExplosionWarning - 40

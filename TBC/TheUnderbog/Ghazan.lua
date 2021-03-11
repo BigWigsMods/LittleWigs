@@ -29,7 +29,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "TailSweep", 34267, 38737)
 
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 15716)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 18105)
@@ -76,7 +76,7 @@ function mod:Enrage(args)
 	self:MessageOld(args.spellId, "orange", "long", CL.percent:format(20, args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealth(unit) * 100
 	if hp < 25 then
 		self:UnregisterUnitEvent(event, unit)

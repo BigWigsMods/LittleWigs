@@ -27,7 +27,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:Log("SPELL_CAST_START", "ChainLightning", 15659, 15305) -- normal, heroic
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 15659, 15305)
 	self:Log("SPELL_AURA_APPLIED", "FrostShock", 12548, 21401) -- normal, heroic
@@ -79,7 +79,7 @@ end
 
 do
 	local warnAt = { 95, 60, 20 }
-	function mod:UNIT_HEALTH_FREQUENT(event, unit)
+	function mod:UNIT_HEALTH(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < warnAt[elementalsWarnings] then
 			elementalsWarnings = elementalsWarnings + 1

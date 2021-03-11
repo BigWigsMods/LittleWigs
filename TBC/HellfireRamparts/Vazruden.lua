@@ -24,7 +24,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	self:Death("Win", 17537)
 end
 
@@ -39,7 +39,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source) -- Stage 2
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 17537 then -- Vazruden
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < 45 then

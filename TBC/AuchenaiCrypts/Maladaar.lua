@@ -28,7 +28,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	self:Log("SPELL_AURA_APPLIED", "StolenSoul", 32346)
 	self:Log("SPELL_CAST_SUCCESS", "AvatarOfTheMartyred", 32424)
 
@@ -46,7 +46,7 @@ function mod:AvatarOfTheMartyred(args)
 	self:MessageOld("avatar", "red", "info", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) ~= 18373 then return end
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 30 then

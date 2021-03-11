@@ -29,7 +29,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "FoulSporesRemoved", 31673)
 	self:Log("SPELL_DAMAGE", "FoulSporesDamage", 31697)
 	self:Log("SPELL_MISSED", "FoulSporesDamage", 31697)
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 17770)
@@ -69,7 +69,7 @@ do
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealth(unit) * 100
 	if hp < 25 then
 		self:UnregisterUnitEvent(event, unit)

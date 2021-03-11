@@ -46,7 +46,7 @@ end
 
 function mod:OnEngage()
 	nextSplitWarning = 71 -- 66% and 33%
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 -------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ do
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSplitWarning then
 		self:MessageOld(-2556, "green", nil, CL.soon:format(self:SpellName(-2556))) -- Mirror Image

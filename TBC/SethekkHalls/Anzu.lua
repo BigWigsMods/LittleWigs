@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SpellBomb", 40303)
 	self:Log("SPELL_AURA_APPLIED", "CycloneOfFeathers", 40321)
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil,  "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil,  "boss1")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Death("AddDied", 23132)
 end
@@ -79,7 +79,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextBroodWarning then
 		self:MessageOld(-5253, "orange", nil, CL.soon:format(self:SpellName(42354)), 42354) -- Banish Self

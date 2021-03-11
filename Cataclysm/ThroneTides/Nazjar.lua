@@ -26,7 +26,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "Waterspout", 75683)
 	self:Log("SPELL_AURA_REMOVED", "WaterspoutRemoved", 75683)
 end
@@ -47,7 +47,7 @@ function mod:WaterspoutRemoved(args) -- if all 3 adds die, she stops casting
 	self:StopBar(args.spellId)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
+function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < nextSpoutWarning then
 		self:MessageOld(75683, "yellow", nil, CL.soon:format(self:SpellName(75683)), false)
