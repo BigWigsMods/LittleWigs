@@ -1,10 +1,10 @@
 local L = BigWigs:NewBossLocale("Grimrail Enforcers", "ruRU")
 if not L then return end
 if L then
-	--L.sphere_fail_message = "Bubble was removed - They're all healing :("
+	L.sphere_fail_message = "Щит снят - Они все исцелились :("
 end
 
 L = BigWigs:NewBossLocale("Oshir", "ruRU")
 if L then
-	--L.freed = "Freed after %.1f sec!"
+	L.freed = "Освобожден спустя %.1f сек!"
 end
