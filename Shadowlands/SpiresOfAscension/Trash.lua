@@ -107,7 +107,6 @@ end
 --
 
 -- Etherdiver
-
 function mod:InsidiousVenomApplied(args)
 	if self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -116,35 +115,30 @@ function mod:InsidiousVenomApplied(args)
 end
 
 -- Forsworn Castigator
-
 function mod:BurdenOfKnowledge(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Forsworn Champion
-
 function mod:InfuseWeapon(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
 -- Forsworn Goliath
-
 function mod:RebelliousFist(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Forsworn Inquisitor
-
 function mod:InternalStrife(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Forsworn Mender
-
 function mod:ForswornDoctrine(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
@@ -163,14 +157,12 @@ function mod:ImbueWeapon(args)
 end
 
 -- Forsworn Squad-Leader
-
 function mod:CrashingStrike(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Forsworn Warden
-
 function mod:GreaterMending(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
@@ -182,7 +174,6 @@ function mod:BlessWeapon(args)
 end
 
 -- Lakesis
-
 function mod:ChargedSpear(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
