@@ -53,7 +53,7 @@ function mod:OnEngage()
 	guessingGameHp = 100
 	self:CDBar(321834, 7) -- Dodge Ball
 	self:CDBar(321828, 13.7) -- Patty Cake
-	self:CDBar(326180, 18.1, L.vulpin) -- Freeze Tag
+	self:CDBar(341709, 18.1, L.vulpin) -- Freeze Tag
 end
 
 --------------------------------------------------------------------------------
