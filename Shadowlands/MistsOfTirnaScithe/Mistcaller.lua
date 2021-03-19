@@ -33,7 +33,7 @@ function mod:GetOptions()
 		336499, -- Guessing Game
 		321834, -- Dodge Ball
 		{321828, "ME_ONLY_EMPHASIZE"}, -- Patty Cake
-		326180, -- Freeze Tag
+		341709, -- Freeze Tag
 		{321891, "SAY", "ME_ONLY_EMPHASIZE"}, -- Freeze Tag Fixation
 	},nil,{
 		[326180] = L.vulpin, -- Freeze Tag (Vulpin)
@@ -45,7 +45,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GuessingGame", 336499, 321471) -- Mythic, Heroic/Normal
 	self:Log("SPELL_CAST_START", "DodgeBall", 321834)
 	self:Log("SPELL_CAST_START", "PattyCake", 321828)
-	self:Log("SPELL_CAST_START", "FreezeTag", 326180)
+	self:Log("SPELL_CAST_START", "FreezeTag", 341709)
 	self:Log("SPELL_AURA_APPLIED", "FreezeTagFixation", 321891)
 end
 
