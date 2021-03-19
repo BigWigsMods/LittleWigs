@@ -36,7 +36,7 @@ function mod:GetOptions()
 		341709, -- Freeze Tag
 		{321891, "SAY", "ME_ONLY_EMPHASIZE"}, -- Freeze Tag Fixation
 	},nil,{
-		[326180] = L.vulpin, -- Freeze Tag (Vulpin)
+		[341709] = L.vulpin, -- Freeze Tag (Vulpin)
 		[321891] = CL.fixate, -- Freeze Tag Fixation (Fixate)
 	}
 end
