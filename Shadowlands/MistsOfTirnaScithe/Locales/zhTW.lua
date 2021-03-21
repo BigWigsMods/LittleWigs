@@ -20,10 +20,10 @@ end
 
 L = BigWigs:NewBossLocale("Mistcaller", "zhTW")
 if L then
-	--L.vulpin = "Vulpin"
+	L.vulpin = "靈狐"
 end
 
 L = BigWigs:NewBossLocale("Tred'ova", "zhTW")
 if L then
-	--L.parasite = "Parasite"
+	L.parasite = "寄生"
 end
