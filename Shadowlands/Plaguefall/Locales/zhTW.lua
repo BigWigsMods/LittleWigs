@@ -17,5 +17,5 @@ if L then
 	L.pestilent_harvester = "惡性收割者"
 	L.fungi_stormer = "蘑菇風暴者"
 
-	-- L.summon_stealthlings_desc = "Show a warning when the Stealthlings spawn."
+	L.summon_stealthlings_desc = "潛行蛛出現時顯示警告"
 end
