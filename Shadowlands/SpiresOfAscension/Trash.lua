@@ -46,7 +46,7 @@ function mod:GetOptions()
 		-- Etherdiver
 		{317661, "DISPEL"}, -- Insidious Venom
 		-- Forsworn Castigator
-		317963, -- Burden of Knowledge
+		{317963, "DISPEL"}, -- Burden of Knowledge
 		-- Forsworn Champion
 		327655, -- Infuse Weapon
 		-- Forsworn Goliath
@@ -82,8 +82,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "InsidiousVenomApplied", 317661)
 	-- Forsworn Castigator
 	self:Log("SPELL_CAST_START", "BurdenOfKnowledge", 317963)
+	self:Log("SPELL_AURA_APPLIED", "BurdenOfKnowledgeApplied", 317963)
 	-- Forsworn Champion
 	self:Log("SPELL_CAST_START", "InfuseWeapon", 327655)
+	self:Log("SPELL_AURA_APPLIED", "InfuseWeaponApplied", 327655)
 	-- Forsworn Goliath
 	self:Log("SPELL_CAST_START", "RebelliousFist", 327413)
 	-- Forsworn Inquisitor
@@ -92,11 +94,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ForswornDoctrine", 317936)
 	self:Log("SPELL_AURA_APPLIED", "ForswornDoctrineApplied", 317936)
 	self:Log("SPELL_CAST_START", "ImbueWeapon", 327332)
+	self:Log("SPELL_AURA_APPLIED", "ImbueWeaponApplied", 327332)
 	-- Forsworn Squad-Leader
 	self:Log("SPELL_CAST_START", "CrashingStrike", 317985)
 	-- Forsworn Warden
 	self:Log("SPELL_CAST_START", "GreaterMending", 328295)
 	self:Log("SPELL_CAST_START", "BlessWeapon", 328288)
+	self:Log("SPELL_AURA_APPLIED", "BlessWeaponApplied", 328288)
 	-- Lakesis
 	self:Log("SPELL_CAST_START", "ChargedSpear", 328462)
 	self:Log("SPELL_CAST_START", "Diminuendo", 328458)
@@ -120,10 +124,24 @@ function mod:BurdenOfKnowledge(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+function mod:BurdenOfKnowledgeApplied(args)
+	if self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
 -- Forsworn Champion
 function mod:InfuseWeapon(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:InfuseWeaponApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 -- Forsworn Goliath
@@ -156,6 +174,13 @@ function mod:ImbueWeapon(args)
 	self:PlaySound(args.spellId, "info")
 end
 
+function mod:ImbueWeaponApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
 -- Forsworn Squad-Leader
 function mod:CrashingStrike(args)
 	self:Message(args.spellId, "red")
@@ -171,6 +196,13 @@ end
 function mod:BlessWeapon(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:BlessWeaponApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 -- Lakesis
