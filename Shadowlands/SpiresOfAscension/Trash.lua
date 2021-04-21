@@ -174,13 +174,6 @@ function mod:ForswornDoctrine(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:ForswornDoctrineApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and bit.band(args.destFlags, 0x400) == 0 then -- COMBATLOG_OBJECT_TYPE_PLAYER
-		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
-		self:PlaySound(args.spellId, "warning")
-	end
-end
-
 function mod:ImbueWeapon(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
