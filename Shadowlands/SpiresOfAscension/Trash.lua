@@ -124,9 +124,16 @@ function mod:InsidiousVenomApplied(args)
 end
 
 -- Forsworn Castigator
-function mod:BurdenOfKnowledge(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:BurdenOfKnowledge(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:BurdenOfKnowledgeApplied(args)
