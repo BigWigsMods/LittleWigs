@@ -34,6 +34,7 @@ if L then
 	L.forsworn_mender = "Forsworn Mender"
 	L.forsworn_squad_leader = "Forsworn Squad-Leader"
 	L.forsworn_warden = "Forsworn Warden"
+	L.astronos = "Astronos"
 	L.lakesis = "Lakesis"
 end
 
@@ -62,8 +63,9 @@ function mod:GetOptions()
 		328295, -- Greater Mending
 		328288, -- Bless Weapon
 		-- Lakesis
-		328462, -- Charged Spear
 		328458, -- Diminuendo
+		-- Astronos
+		328462, -- Charged Spear
 	}, {
 		[317661] = L.forsworn_squad_leader,
 		[317963] = L.forsworn_castigator,
@@ -73,7 +75,8 @@ function mod:GetOptions()
 		[317936] = L.forsworn_mender,
 		[317936] = L.forsworn_squad_leader,
 		[328295] = L.forsworn_warden,
-		[328462] = L.lakesis,
+		[328458] = L.lakesis,
+		[328462] = L.astronos,
 	}
 end
 
@@ -102,8 +105,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BlessWeapon", 328288)
 	self:Log("SPELL_AURA_APPLIED", "BlessWeaponApplied", 328288)
 	-- Lakesis
-	self:Log("SPELL_CAST_START", "ChargedSpear", 328462)
 	self:Log("SPELL_CAST_START", "Diminuendo", 328458)
+	self:Death("LakesisDeath", 168844)
+	-- Astronos
+	self:Log("SPELL_CAST_START", "ChargedSpear", 328462)
 end
 
 --------------------------------------------------------------------------------
@@ -164,7 +169,7 @@ end
 
 function mod:ForswornDoctrineApplied(args)
 	if self:Dispeller("magic", true, args.spellId) and bit.band(args.destFlags, 0x400) == 0 then -- COMBATLOG_OBJECT_TYPE_PLAYER
-		self:Message(args.spellId, "yellow", CL.on:format(args.destName))
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "warning")
 	end
 end
@@ -206,12 +211,18 @@ function mod:BlessWeaponApplied(args)
 end
 
 -- Lakesis
-function mod:ChargedSpear(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-end
-
 function mod:Diminuendo(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 16)
+end
+
+function mod:LakesisDeath(args)
+	self:StopBar(328458) -- Diminuendo
+end
+
+-- Astronos
+function mod:ChargedSpear(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
