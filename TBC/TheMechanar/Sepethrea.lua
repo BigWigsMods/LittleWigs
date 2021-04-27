@@ -61,7 +61,7 @@ end
 
 function mod:OnBossDisable()
 	mobsFound = 0
-	mobCollector {}
+	mobCollector = {}
 end
 
 --------------------------------------------------------------------------------
