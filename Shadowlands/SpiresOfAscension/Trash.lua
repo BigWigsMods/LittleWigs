@@ -95,7 +95,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InternalStrife", 327648)
 	-- Forsworn Mender
 	self:Log("SPELL_CAST_START", "ForswornDoctrine", 317936)
-	self:Log("SPELL_AURA_APPLIED", "ForswornDoctrineApplied", 317936)
 	self:Log("SPELL_CAST_START", "ImbueWeapon", 327332)
 	self:Log("SPELL_AURA_APPLIED", "ImbueWeaponApplied", 327332)
 	-- Forsworn Squad-Leader
