@@ -22,7 +22,7 @@ local soulcrusherCount = 1
 function mod:GetOptions()
 	return {
 		{327646, "TANK_HEALER"}, -- Soulcrusher
-		325725, -- Cosmic Artifice
+		{325725, "SAY_COUNTDOWN"}, -- Cosmic Artifice
 		325258, -- Master of Death
 		{326171, "EMPHASIZE"}, -- Shatter Reality
 		334970, -- Coalescing
@@ -32,6 +32,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Soulcrusher", 327646)
 	self:Log("SPELL_AURA_APPLIED", "CosmicArtificeApplied", 325725)
+	self:Log("SPELL_AURA_REMOVED", "CosmicArtificeRemoved", 325725)
 	self:Log("SPELL_CAST_START", "MasterOfDeath", 325258)
 	self:Log("SPELL_CAST_START", "ShatterReality", 326171)
 	self:Log("SPELL_CAST_SUCCESS", "CoalescingStart", 334970)
@@ -59,6 +60,13 @@ function mod:CosmicArtificeApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alarm")
+		self:SayCountdown(args.spellId, 6)
+	end
+end
+
+function mod:CosmicArtificeRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
 	end
 end
 
