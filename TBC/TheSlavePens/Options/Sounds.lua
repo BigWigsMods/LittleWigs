@@ -1,4 +1,13 @@
 
+BigWigs:AddSounds("Mennu the Betrayer", {
+})
+
+BigWigs:AddSounds("Rokmar the Crackler", {
+})
+
+BigWigs:AddSounds("Quagmirran", {
+})
+
 BigWigs:AddSounds("The Slave Pens Trash", {
 	[15655] = "alarm",
 	[31554] = "long",

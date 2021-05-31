@@ -3,6 +3,9 @@ BigWigs:AddSounds("Baron Ashbury", {
 	[93757] = "long",
 })
 
+BigWigs:AddSounds("Baron Silverlaine", {
+})
+
 BigWigs:AddSounds("Commander Springvale", {
 	[93687] = "alert",
 	[93844] = "alarm",

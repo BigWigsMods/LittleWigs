@@ -21,3 +21,6 @@ BigWigs:AddColors("The Black Knight", {
 	[-7598] = "orange",
 	[67781] = "blue",
 })
+
+BigWigs:AddColors("Trial of the Champion Trash", {
+})

@@ -1,4 +1,7 @@
 
+BigWigs:AddColors("Ambassador Hellmaw", {
+})
+
 BigWigs:AddColors("Blackheart the Inciter", {
 	[33676] = {"red","yellow"},
 })

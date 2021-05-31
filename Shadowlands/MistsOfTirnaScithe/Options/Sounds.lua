@@ -11,8 +11,8 @@ BigWigs:AddSounds("Mistcaller", {
 	[321828] = "warning",
 	[321834] = "alarm",
 	[321891] = "warning",
-	[326180] = "alert",
 	[336499] = "long",
+	[341709] = "alert",
 })
 
 BigWigs:AddSounds("Tred'ova", {

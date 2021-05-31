@@ -14,6 +14,9 @@ BigWigs:AddSounds("Thorngrin the Tender", {
 	[34670] = "warning",
 })
 
+BigWigs:AddSounds("Laj", {
+})
+
 BigWigs:AddSounds("Warp Splinter", {
 	[-5478] = {"alarm","info"},
 	[34716] = "alert",

@@ -3,6 +3,12 @@ BigWigs:AddSounds("Selin Fireheart", {
 	[44320] = "info",
 })
 
+BigWigs:AddSounds("Vexallus", {
+})
+
+BigWigs:AddSounds("Priestess Delrissa", {
+})
+
 BigWigs:AddSounds("Kael'thas Sunstrider ", {
 	[36819] = "long",
 	[44194] = "info",

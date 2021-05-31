@@ -7,6 +7,12 @@ BigWigs:AddSounds("Dalliah the Doomsayer", {
 	[36175] = "alert",
 })
 
+BigWigs:AddSounds("Wrath-Scryer Soccothrates", {
+})
+
+BigWigs:AddSounds("Harbinger Skyriss", {
+})
+
 BigWigs:AddSounds("The Arcatraz Trash", {
 	[36778] = "alarm",
 	[36866] = "warning",

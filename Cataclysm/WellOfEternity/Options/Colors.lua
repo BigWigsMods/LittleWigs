@@ -14,3 +14,6 @@ BigWigs:AddColors("Queen Azshara WellOfEternity", {
 BigWigs:AddColors("Mannoroth and Varo'then", {
 	[-4287] = "yellow",
 })
+
+BigWigs:AddColors("Well Of Eternity Trash", {
+})

@@ -1,4 +1,10 @@
 
+BigWigs:AddSounds("Pandemonius", {
+})
+
+BigWigs:AddSounds("Tavarok", {
+})
+
 BigWigs:AddSounds("Yor", {
 	[36405] = "info",
 	[38361] = "long",

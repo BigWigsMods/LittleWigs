@@ -1,4 +1,7 @@
 
+BigWigs:AddSounds("Krystallus", {
+})
+
 BigWigs:AddSounds("Maiden of Grief", {
 	[59726] = "warning",
 	[59772] = "alert",

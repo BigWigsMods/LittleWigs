@@ -14,3 +14,6 @@ BigWigs:AddSounds("Queen Azshara WellOfEternity", {
 BigWigs:AddSounds("Mannoroth and Varo'then", {
 	[-4287] = "info",
 })
+
+BigWigs:AddSounds("Well Of Eternity Trash", {
+})

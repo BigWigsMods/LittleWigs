@@ -19,3 +19,6 @@ BigWigs:AddColors("Mal'Ganis", {
 BigWigs:AddColors("Infinite Corruptor", {
 	[60588] = {"blue","red"},
 })
+
+BigWigs:AddColors("The Culling of Stratholme Trash", {
+})

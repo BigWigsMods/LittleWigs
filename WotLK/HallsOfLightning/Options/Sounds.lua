@@ -1,4 +1,10 @@
 
+BigWigs:AddSounds("General Bjarngrim", {
+})
+
+BigWigs:AddSounds("Volkhan", {
+})
+
 BigWigs:AddSounds("Ionar", {
 	[52770] = "info",
 	[59795] = "alarm",
