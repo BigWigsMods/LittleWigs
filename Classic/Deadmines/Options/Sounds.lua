@@ -12,7 +12,7 @@ BigWigs:AddSounds("Foe Reaper 5000", {
 	[88522] = "long",
 })
 
-BigWigs:AddSounds("\\", {
+BigWigs:AddSounds("Cookie", {
 })
 
 BigWigs:AddSounds("Vanessa VanCleef", {
