@@ -30,7 +30,7 @@ BigWigs:AddSounds("Devos, Paragon of Doubt", {
 
 BigWigs:AddSounds("Spires of Ascension Trash", {
 	[317661] = "alert",
-	[317936] = {"alert","warning"},
+	[317936] = "alert",
 	[317963] = "alert",
 	[317985] = "alarm",
 	[327332] = "info",
