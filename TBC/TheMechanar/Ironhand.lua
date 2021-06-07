@@ -14,7 +14,7 @@ mod:RegisterEnableMob(19710)
 
 local L = mod:GetLocale()
 if L then
-	L.name = "Gatewatcher Iron-Hand"
+	L.bossName = "Gatewatcher Iron-Hand"
 end
 
 --------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ function mod:GetOptions()
 end
 
 function mod:OnRegister()
-	self.displayName = L.name -- no journal entry
+	self.displayName = L.bossName -- no journal entry
 end
 
 function mod:OnBossEnable()

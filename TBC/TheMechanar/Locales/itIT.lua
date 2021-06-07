@@ -6,10 +6,15 @@ end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "itIT")
 if L then
-	L.name = "Guardiano del Portale Mandiferro"
+	L.bossName = "Guardiano del Portale Mandiferro"
 end
 
 L = BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "itIT")
 if L then
-	L.name = "Guardiano del Portale Giro-Morte"
+	L.bossName = "Guardiano del Portale Giro-Morte"
+end
+
+L = BigWigs:NewBossLocale("Nethermancer Sepethrea", "itIT")
+if L then
+	L.fixate_desc = "Induce l'incantatore a prendere di mira un bersaglio casuale."
 end

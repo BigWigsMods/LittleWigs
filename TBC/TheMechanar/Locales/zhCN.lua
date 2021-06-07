@@ -6,10 +6,15 @@ end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "zhCN")
 if L then
-	L.name = "看守者埃隆汉"
+	L.bossName = "看守者埃隆汉"
 end
 
 L = BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "zhCN")
 if L then
-	L.name = "看守者盖罗基尔"
+	L.bossName = "看守者盖罗基尔"
+end
+
+L = BigWigs:NewBossLocale("Nethermancer Sepethrea", "zhCN")
+if L then
+	L.fixate_desc = "使施法者锁定一个随机目标。"
 end

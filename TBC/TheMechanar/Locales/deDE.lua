@@ -6,10 +6,15 @@ end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "deDE")
 if L then
-	L.name = "Torwächter Eisenhand"
+	L.bossName = "Torwächter Eisenhand"
 end
 
 L = BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "deDE")
 if L then
-	L.name = "Torwächter Gyrotod"
+	L.bossName = "Torwächter Gyrotod"
+end
+
+L = BigWigs:NewBossLocale("Nethermancer Sepethrea", "deDE")
+if L then
+	L.fixate_desc = "Lässt den Zaubernden sich auf ein zufälliges Ziel fixieren."
 end

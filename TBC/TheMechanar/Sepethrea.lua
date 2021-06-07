@@ -16,6 +16,17 @@ local mobCollector = {}
 local mobsFound = 0
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.fixate = CL.fixate
+	L.fixate_desc = "Causes the caster to fixate on a random target."
+	L.fixate_icon = "ability_fixated_state_red"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -23,12 +34,12 @@ function mod:GetOptions()
 	return {
 		35250, -- Dragon's Breath
 		35314, -- Arcane Blast
-		{41951, "SAY"}, -- Fixate
+		{"fixate", "SAY"}, -- Fixate
 		-5488, -- Inferno
 		35312, -- Raging Flames (the trail of fire the adds leave behind them)
 	}, {
 		[35250] = "general",
-		[41951] = 35312, -- Raging Flames
+		["fixate"] = 35312, -- Raging Flames
 	}
 end
 
@@ -114,14 +125,14 @@ do
 	local fixatedTargets, isOnMe = mod:NewTargetList(), nil
 
 	local function showFixateMessage(self)
-		self:TargetMessageOld(41951, fixatedTargets, "yellow", "long")
+		self:TargetMessageOld("fixate", fixatedTargets, "yellow", "long", L.fixate, L.fixate_icon)
 		isOnMe = nil
 	end
 
 	local function fixateAnnounce(self, target, guid)
 		if self:Me(guid) and not isOnMe then
 			isOnMe = true
-			self:Say(41951)
+			self:Say(L.fixate)
 		end
 
 		if #fixatedTargets > 0 and fixatedTargets[#fixatedTargets] == self:ColorName(target) then return end -- don't announce the same player twice

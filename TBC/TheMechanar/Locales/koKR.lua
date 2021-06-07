@@ -6,10 +6,15 @@ end
 
 L = BigWigs:NewBossLocale("Gatewatcher Iron-Hand", "koKR")
 if L then
-	L.name = "문지기 무쇠주먹"
+	L.bossName = "문지기 무쇠주먹"
 end
 
 L = BigWigs:NewBossLocale("Gatewatcher Gyro-Kill", "koKR")
 if L then
-	L.name = "문지기 회전톱날"
+	L.bossName = "문지기 회전톱날"
+end
+
+L = BigWigs:NewBossLocale("Nethermancer Sepethrea", "koKR")
+if L then
+	L.fixate_desc = "무작위 대상에게 시선을 고정합니다."
 end
