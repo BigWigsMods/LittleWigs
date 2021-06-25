@@ -19,6 +19,10 @@ BigWigs:AddSounds("The Grand Menagerie", {
 })
 
 BigWigs:AddSounds("Mailroom Mayhem", {
+	[346286] = "alert",
+	[346742] = "alarm",
+	[346947] = "long",
+	[346962] = "alert",
 })
 
 BigWigs:AddSounds("Myza's Oasis", {

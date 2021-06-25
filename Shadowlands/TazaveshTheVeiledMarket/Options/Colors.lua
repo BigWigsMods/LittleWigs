@@ -19,6 +19,10 @@ BigWigs:AddColors("The Grand Menagerie", {
 })
 
 BigWigs:AddColors("Mailroom Mayhem", {
+	[346286] = "yellow",
+	[346742] = "red",
+	[346947] = "yellow",
+	[346962] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Myza's Oasis", {
