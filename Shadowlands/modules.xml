@@ -9,5 +9,6 @@
 <Include file="MistsOfTirnaScithe\modules.xml"/>
 <Include file="DeOtherSide\modules.xml"/>
 <Include file="TheaterOfPain\modules.xml"/>
+<Include file="TazaveshTheVeiledMarket\modules.xml"/>
 
 </Ui>
