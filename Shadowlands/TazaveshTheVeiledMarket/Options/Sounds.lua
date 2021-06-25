@@ -7,6 +7,15 @@ BigWigs:AddSounds("Zo'phex the Sentinel", {
 })
 
 BigWigs:AddSounds("The Grand Menagerie", {
+	[349627] = "info",
+	[349663] = "alarm",
+	[349797] = "alarm",
+	[349934] = "alert",
+	[349954] = "alert",
+	[349987] = "alarm",
+	[350010] = "info",
+	[350086] = "alarm",
+	[350101] = "alert",
 })
 
 BigWigs:AddSounds("Mailroom Mayhem", {
