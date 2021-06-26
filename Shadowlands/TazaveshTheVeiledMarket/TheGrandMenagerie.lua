@@ -20,7 +20,7 @@ function mod:GetOptions()
 	return {
 		-- Alcruux
 		349627, -- Gluttony
-		{350010, "EMPHASIZED", "ME_ONLY"}, -- Devoured Anima
+		{350010, "EMPHASIZE", "ME_ONLY"}, -- Devoured Anima
 		349663, -- Grip of Hunger
 		349797, -- Grand Consumption
 		-- Achillite
