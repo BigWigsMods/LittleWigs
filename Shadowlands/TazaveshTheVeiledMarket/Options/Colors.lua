@@ -26,6 +26,12 @@ BigWigs:AddColors("Mailroom Mayhem", {
 })
 
 BigWigs:AddColors("Myza's Oasis", {
+	[350916] = "red",
+	[350919] = "orange",
+	[350922] = "orange",
+	[355438] = "red",
+	[356482] = "yellow",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("So'azmi", {
