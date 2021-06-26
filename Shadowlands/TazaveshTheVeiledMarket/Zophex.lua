@@ -31,7 +31,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	self:Bar(347949, 34.1) -- Interrogation
+	self:Bar(345770, 19.3) -- Impound Contraband
+	self:Bar(346204, 8.7) -- Armed Security
 end
 
 --------------------------------------------------------------------------------
@@ -41,6 +43,7 @@ end
 function mod:InterrogationApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, self:Me(args.destGUID) and "warning" or "alert", nil, args.destName)
+	self:CDBar(args.spellId, 42.5)
 	self:CastBar(args.spellId, 5)
 end
 
