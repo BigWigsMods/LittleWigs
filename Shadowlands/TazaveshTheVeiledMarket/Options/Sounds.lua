@@ -57,4 +57,11 @@ BigWigs:AddSounds("Timecap'n Hooktail", {
 })
 
 BigWigs:AddSounds("So'leah", {
+	[350796] = "alert",
+	[350804] = "info",
+	[351086] = "long",
+	[351096] = "alert",
+	[351124] = "alert",
+	[353635] = "alarm",
+	["stages"] = "long",
 })

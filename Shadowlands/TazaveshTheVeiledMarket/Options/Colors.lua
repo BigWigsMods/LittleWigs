@@ -57,4 +57,11 @@ BigWigs:AddColors("Timecap'n Hooktail", {
 })
 
 BigWigs:AddColors("So'leah", {
+	[350796] = "orange",
+	[350804] = "blue",
+	[351086] = "yellow",
+	[351096] = "orange",
+	[351124] = "yellow",
+	[353635] = "red",
+	["stages"] = "cyan",
 })
