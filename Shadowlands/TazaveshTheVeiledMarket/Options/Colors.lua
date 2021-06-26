@@ -35,6 +35,10 @@ BigWigs:AddColors("Myza's Oasis", {
 })
 
 BigWigs:AddColors("So'azmi", {
+	[347249] = "yellow",
+	[347610] = "red",
+	[347623] = "orange",
+	[357188] = "orange",
 })
 
 BigWigs:AddColors("Hylbrande", {

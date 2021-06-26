@@ -35,6 +35,10 @@ BigWigs:AddSounds("Myza's Oasis", {
 })
 
 BigWigs:AddSounds("So'azmi", {
+	[347249] = "info",
+	[347610] = "warning",
+	[347623] = "alarm",
+	[357188] = "alert",
 })
 
 BigWigs:AddSounds("Hylbrande", {
