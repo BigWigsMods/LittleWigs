@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Timecap'n Hooktail", 2441, 2449)
 if not mod then return end
 mod:RegisterEnableMob(175546) -- Timecap'n Hooktail
-mod.engageId = 2419
+mod:SetEncounterID(2419)
 
 --------------------------------------------------------------------------------
 -- Initialization

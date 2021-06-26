@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("So'leah", 2441, 2455)
 if not mod then return end
 mod:RegisterEnableMob(177269) -- So'leah
-mod.engageId = 2442
+mod:SetEncounterID(2442)
 
 --------------------------------------------------------------------------------
 -- Initialization

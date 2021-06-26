@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Mailroom Mayhem", 2441, 2436)
 if not mod then return end
 mod:RegisterEnableMob(175646) -- P.O.S.T. Master
-mod.engageId = 2424
+mod:SetEncounterID(2424)
 
 --------------------------------------------------------------------------------
 -- Initialization

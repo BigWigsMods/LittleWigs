@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Zo'phex the Sentinel", 2441, 2437)
 if not mod then return end
 mod:RegisterEnableMob(175616) -- Zo'phex
-mod.engageId = 2425
+mod:SetEncounterID(2425)
 
 --------------------------------------------------------------------------------
 -- Initialization

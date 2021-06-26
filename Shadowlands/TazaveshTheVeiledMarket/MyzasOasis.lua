@@ -11,7 +11,7 @@ mod:RegisterEnableMob(
 	176565, -- Disruptive Patron
 	179269  -- Oasis Security
 )
-mod.engageId = 2440
+mod:SetEncounterID(2440)
 
 --------------------------------------------------------------------------------
 -- Locals

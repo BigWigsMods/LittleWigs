@@ -10,7 +10,7 @@ mod:RegisterEnableMob(
 	176555, -- Achillite
 	176705  -- Venza Goldfuse
 )
-mod.engageId = 2441
+mod:SetEncounterID(2441)
 
 --------------------------------------------------------------------------------
 -- Initialization
