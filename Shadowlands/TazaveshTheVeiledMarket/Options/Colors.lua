@@ -49,6 +49,11 @@ BigWigs:AddColors("Hylbrande", {
 })
 
 BigWigs:AddColors("Timecap'n Hooktail", {
+	[347149] = "red",
+	[347151] = "orange",
+	[347371] = "yellow",
+	[352345] = {"blue","red"},
+	[354334] = {"blue","orange"},
 })
 
 BigWigs:AddColors("So'leah", {

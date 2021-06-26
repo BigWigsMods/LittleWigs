@@ -49,6 +49,11 @@ BigWigs:AddSounds("Hylbrande", {
 })
 
 BigWigs:AddSounds("Timecap'n Hooktail", {
+	[347149] = "alarm",
+	[347151] = "alert",
+	[347371] = "alert",
+	[352345] = "alarm",
+	[354334] = "alert",
 })
 
 BigWigs:AddSounds("So'leah", {
