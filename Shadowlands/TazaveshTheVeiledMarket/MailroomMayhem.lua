@@ -30,7 +30,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	self:Bar(346286, 6) -- Hazardous Liquids
+	self:Bar(346742, 16) -- Fan Mail
+	self:Bar(346962, 23.1) -- Money Order
+	self:Bar(346947, 32.4) -- Unstable Goods
 end
 
 --------------------------------------------------------------------------------
@@ -40,16 +43,19 @@ end
 function mod:HazardousLiquids(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 52.2)
 end
 
 function mod:FanMail(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 25.5)
 end
 
 function mod:MoneyOrderApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	self:Bar(args.spellId, 50.5)
 	if self:Me(args.destGUID) then
 		self:Yell(args.spellId)
 		self:YellCountdown(args.spellId, 7)
@@ -65,4 +71,5 @@ end
 function mod:UnstableGoods(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+	self:Bar(args.spellId, 52.2)
 end
