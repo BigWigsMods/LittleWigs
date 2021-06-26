@@ -42,6 +42,10 @@ BigWigs:AddSounds("So'azmi", {
 })
 
 BigWigs:AddSounds("Hylbrande", {
+	[346116] = "alarm",
+	[346766] = "long",
+	[346957] = "alert",
+	[347094] = "alarm",
 })
 
 BigWigs:AddSounds("Timecap'n Hooktail", {

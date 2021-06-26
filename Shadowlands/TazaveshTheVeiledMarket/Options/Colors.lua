@@ -42,6 +42,10 @@ BigWigs:AddColors("So'azmi", {
 })
 
 BigWigs:AddColors("Hylbrande", {
+	[346116] = "purple",
+	[346766] = "cyan",
+	[346957] = "orange",
+	[347094] = "red",
 })
 
 BigWigs:AddColors("Timecap'n Hooktail", {
