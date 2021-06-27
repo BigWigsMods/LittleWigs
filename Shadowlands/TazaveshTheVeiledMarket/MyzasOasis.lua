@@ -40,7 +40,6 @@ function mod:GetOptions()
 		350922, -- Menacing Shout
 		350919, -- Crowd Control
 		355438, -- Suppression Spark
-		-- Oasis Security
 		{350916, "TANK"}, -- Security Slam
 		-- Unruly Patron
 		356482, -- Rotten Food
@@ -80,6 +79,10 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stages:format(2), false)
 		self:PlaySound("stages", "long")
+		self:Bar(350916, 8.8) -- Security Slam
+		self:Bar(350922, 12.5) -- Menacing Shout
+		self:Bar(350919, 18.5) -- Crowd Control
+		self:Bar(355438, 27.1) -- Suppression Spark
 	end
 end
 
@@ -96,11 +99,13 @@ end
 function mod:CrowdControl(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 21.8)
 end
 
 function mod:SuppressionSpark(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 30.4)
 end
 
 do
