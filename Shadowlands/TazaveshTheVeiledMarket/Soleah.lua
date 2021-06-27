@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	self:Bar(350796, 12.2) -- Hyperlight Spark
 end
 
 --------------------------------------------------------------------------------
@@ -49,6 +49,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 351104 then -- Phase Transition
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
+		self:StopBar(350796) -- Hyperlight Spark
 	end
 end
 
@@ -78,6 +79,7 @@ end
 function mod:HyperlightSpark(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 15.8)
 end
 
 function mod:PowerOverwhelming(args)
