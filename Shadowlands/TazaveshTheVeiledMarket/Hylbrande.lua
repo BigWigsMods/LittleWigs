@@ -36,7 +36,7 @@ function mod:OnEngage()
 	self:Bar(346116, 8.1) -- Shearing Swings
 	self:Bar(346957, 10.5) -- Purged by Fire
 	self:Bar(347094, 15.4) -- Titanic Crash
-	self:Bar(346971, 19) -- [DNT] Summon Vault Defender
+	self:Bar(346971, 19, CL.adds) -- [DNT] Summon Vault Defender
 	self:Bar(346766, 38.8) -- Sanitizing Cycle
 end
 
@@ -49,7 +49,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message(spellId, "yellow", CL.add_spawned)
 		self:PlaySound(spellId, "info")
 		if self:BarTimeLeft(346766) > 29.1 then -- Sanitizing Cycle
-			self:Bar(spellId, 29.1)
+			self:Bar(spellId, 29.1, CL.adds)
 		end
 	end
 end
@@ -84,7 +84,7 @@ function mod:SanitizingCycle(args)
 	self:StopBar(args.spellId)
 	self:StopBar(346116) -- Shearing Swings
 	self:StopBar(346957) -- Purged by Fire
-	self:StopBar(346971) -- [DNT] Summon Vault Defender
+	self:StopBar(CL.adds) -- [DNT] Summon Vault Defender
 	self:StopBar(347094) -- Titanic Crash
 end
 
@@ -94,6 +94,6 @@ function mod:SanitizingCycleRemoved(args)
 	self:Bar(args.spellId, 70)
 	self:Bar(346116, 16.6) -- Shearing Swings
 	self:Bar(346957, 19.2) -- Purged by Fire
-	self:Bar(346971, 20.3) -- [DNT] Summon Vault Defender
+	self:Bar(346971, 20.3, CL.adds) -- [DNT] Summon Vault Defender
 	self:Bar(347094, 22.8) -- Titanic Crash
 end
