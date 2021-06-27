@@ -29,7 +29,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-
+	self:Bar(347623, 8.2) -- Quickblade
+	self:Bar(347610, 20) -- Shuri
 end
 
 --------------------------------------------------------------------------------
@@ -60,4 +61,5 @@ end
 function mod:Quickblade(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 15.5)
 end
