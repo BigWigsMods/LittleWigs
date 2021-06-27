@@ -12,12 +12,13 @@ mod:RegisterEnableMob(
 	179269  -- Oasis Security
 )
 mod:SetEncounterID(2440)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local killedAddCount = 0
+local addWave = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -47,21 +48,40 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:Log("SPELL_CAST_START", "MenacingShout", 350922)
 	self:Log("SPELL_CAST_START", "SecuritySlam", 350916)
 	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
 	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 	self:Log("SPELL_CAST_START", "RottenFood", 356482)
-	self:Death("AddDeath", 176562, 176565, 179269) -- Brawling Patron, Disruptive Patron, Oasis Security
 end
 
 function mod:OnEngage()
-	killedAddCount = 0
+	addWave = 0
+	self:SetStage(1)
+
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:CHAT_MSG_RAID_BOSS_EMOTE()
+	if addWave >= 1 then
+		self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 3), false)
+		self:PlaySound("stages", "long")
+	end
+	addWave = addWave + 1
+end
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	if self:GetStage() == 1 and self:GetBossId(176563) then -- Zo'gron
+		self:SetStage(2)
+		self:Message("stages", "cyan", CL.stages:format(2), false)
+		self:PlaySound("stages", "long")
+	end
+end
 
 function mod:MenacingShout(args)
 	self:Message(args.spellId, "orange")
@@ -92,13 +112,5 @@ do
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "info")
 		end
-	end
-end
-
-function mod:AddDeath(args)
-	killedAddCount = killedAddCount + 1
-	if killedAddCount % 4 == 0 then
-		self:Message("stages", "cyan", L.add_wave_killed:format(killedAddCount/4, 3), false)
-		self:PlaySound("stages", "long")
 	end
 end
