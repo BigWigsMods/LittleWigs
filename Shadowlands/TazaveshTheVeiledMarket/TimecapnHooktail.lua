@@ -19,6 +19,7 @@ function mod:GetOptions()
 		354334, -- Hook'd!
 		{352345, "ME_ONLY"}, -- Anchor Shot
 		347371, -- Grapeshot
+		350517, -- Double Time
 	}
 end
 
@@ -28,10 +29,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "HookdApplied", 354334)
 	self:Log("SPELL_AURA_APPLIED", "AnchorShotApplied", 352345)
 	self:Log("SPELL_CAST_SUCCESS", "Grapeshot", 347371)
+	self:Log("SPELL_CAST_START", "DoubleTime", 350517)
 end
 
 function mod:OnEngage()
-
+	self:Bar(347151, 8.1) -- Hook Swipe
+	self:Bar(347149, 15) -- Infinite Breath
+	self:Bar(350517, 55) -- Double Time
 end
 
 --------------------------------------------------------------------------------
@@ -41,6 +45,7 @@ end
 function mod:InfiniteBreath(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 12)
 end
 
 function mod:HookSwipe(args)
@@ -70,4 +75,10 @@ do
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
+end
+
+function mod:DoubleTime(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 55)
 end
