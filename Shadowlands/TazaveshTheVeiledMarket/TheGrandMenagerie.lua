@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	176705  -- Venza Goldfuse
 )
 mod:SetEncounterID(2441)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
