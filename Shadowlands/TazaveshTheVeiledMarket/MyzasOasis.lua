@@ -67,6 +67,7 @@ end
 --
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE()
+	-- There is one performance phase immediately at the start of the fight and then one after each add wave
 	if addWave >= 1 then
 		self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 3), false)
 		self:PlaySound("stages", "long")
