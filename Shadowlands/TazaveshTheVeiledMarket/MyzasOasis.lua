@@ -78,7 +78,7 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if self:GetStage() == 1 and self:GetBossId(176563) then -- Zo'gron
 		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stages:format(2), false)
+		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
 		self:Bar(350916, 8.8) -- Security Slam
 		self:Bar(350922, 12.5) -- Menacing Shout
