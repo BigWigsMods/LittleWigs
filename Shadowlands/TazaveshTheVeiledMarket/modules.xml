@@ -1,0 +1,16 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Zophex.lua"/>
+<Script file="TheGrandMenagerie.lua"/>
+<Script file="MailroomMayhem.lua"/>
+<Script file="MyzasOasis.lua"/>
+<Script file="Soazmi.lua"/>
+<Script file="Hylbrande.lua"/>
+<Script file="TimecapnHooktail.lua"/>
+<Script file="Soleah.lua"/>
+
+<Include file="Locales\locales.xml"/>
+<Include file="Options\options.xml"/>
+
+</Ui>
