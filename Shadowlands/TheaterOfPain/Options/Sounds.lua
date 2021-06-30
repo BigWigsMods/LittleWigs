@@ -8,6 +8,7 @@ BigWigs:AddSounds("An Affront of Challengers", {
 	[324085] = "long",
 	[326892] = "warning",
 	[333231] = {"alarm","alert","info"},
+	[333540] = "alarm",
 })
 
 BigWigs:AddSounds("Gorechop", {

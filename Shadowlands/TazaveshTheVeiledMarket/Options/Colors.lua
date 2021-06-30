@@ -45,6 +45,7 @@ BigWigs:AddColors("Hylbrande", {
 	[346116] = "purple",
 	[346766] = "cyan",
 	[346957] = "orange",
+	[346971] = "yellow",
 	[347094] = "red",
 })
 
