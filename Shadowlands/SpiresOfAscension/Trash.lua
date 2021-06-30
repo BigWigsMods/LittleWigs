@@ -73,7 +73,7 @@ function mod:GetOptions()
 		[327413] = L.forsworn_goliath,
 		[327648] = L.forsworn_inquisitor,
 		[317936] = L.forsworn_mender,
-		[317936] = L.forsworn_squad_leader,
+		[317985] = L.forsworn_squad_leader,
 		[328295] = L.forsworn_warden,
 		[328458] = L.lakesis,
 		[328462] = L.astronos,

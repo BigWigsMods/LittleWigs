@@ -111,7 +111,6 @@ function mod:GetOptions()
 		[311399] = L.armsmaster_terenson,
 		[297315] = L.greater_void_elemental,
 		[296911] = L.boundless_corruption,
-		[308375] = L.fallen_voidspeaker,
 		[308801] = L.zardeth_of_the_black_claw,
 	}
 end
@@ -214,7 +213,7 @@ do
 			self:Say(308308)
 		end
 	end
-	
+
 	local prev = 0
 	function mod:PiercingShot(args)
 		local t = args.time
@@ -242,7 +241,7 @@ do
 			self:PlaySound(308481, "alarm")
 		end
 	end
-	
+
 	function mod:RiftStrike(args)
 		-- Does an AoE around the target
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
