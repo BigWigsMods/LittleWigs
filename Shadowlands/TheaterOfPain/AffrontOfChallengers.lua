@@ -55,7 +55,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(320063, 8.5) -- SLam
+	self:Bar(320063, 8.5) -- Slam
 	self:Bar(320069, 21) -- Mortal Strike
 	self:Bar(333231, 9.7) -- Searing Death
 end
