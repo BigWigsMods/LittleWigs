@@ -18,6 +18,8 @@ function mod:GetOptions()
 		{321948, "SAY", "SAY_COUNTDOWN"}, -- Localized Explosive Contrivance
 		320230, -- Explosive Contrivance
 		323687, -- Arcane Lightning
+	}, nil, {
+		[321948] = CL.bomb, -- Localized Explosive Contrivance (Bomb)
 	}
 end
 
@@ -29,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(321948, 14, 174716, 321948) -- Localized Explosive Contrivance | 174716 = "Bomb"
+	self:CDBar(321948, 14, CL.bomb) -- Localized Explosive Contrivance
 	self:CDBar(320230, 36.8) -- Explosive Contrivance (~31.8s cd + 5s cast)
 end
 
@@ -38,13 +40,12 @@ end
 --
 
 function mod:LocalizedExplosiveContrivance(args)
-	local bomb = self:SpellName(174716) -- 174716 = "Bomb"
-	self:TargetBar(args.spellId, 5, args.destName, bomb)
+	self:TargetBar(args.spellId, 5, args.destName, CL.bomb)
 	self:Bar(args.spellId, 35) -- pull:14.4, 36.8
-	self:TargetMessage(args.spellId, "red", args.destName, bomb)
+	self:TargetMessage(args.spellId, "red", args.destName, CL.bomb)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-		self:Say(args.spellId, bomb)
+		self:Say(args.spellId, CL.bomb)
 		self:SayCountdown(args.spellId, 5)
 	end
 end
