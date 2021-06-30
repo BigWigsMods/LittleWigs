@@ -91,7 +91,7 @@ function mod:Devour(args)
 end
 
 do
-	local targets, isOnMe = {}
+	local targets, isOnMe = {}, nil
 	local function printTarget(self, spellId)
 		if isOnMe then
 			self:OpenProximity(spellId, 30, targets)
