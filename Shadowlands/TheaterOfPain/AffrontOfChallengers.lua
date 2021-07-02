@@ -37,7 +37,7 @@ function mod:GetOptions()
 		[320063] = -21582, -- Dessia the Decapitator
 		[320248] = -21581, -- Paceran the Virulent
 		[333231] = -21591, -- Sathel the Accursed
-		[333540] = -22272, -- Xira the Underhanded
+		[333540] = -23841, -- Xira the Underhanded
 	}
 end
 
