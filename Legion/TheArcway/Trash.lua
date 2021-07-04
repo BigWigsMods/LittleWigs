@@ -120,7 +120,7 @@ end
 
 -- Eredar Chaosbringer
 function mod:BrandoftheLegion(args)
-	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
+	if not self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by warlocks
 		self:MessageOld(args.spellId, "yellow", self:Interrupter() and "alarm", CL.casting:format(args.spellName))
 	end
 end
@@ -132,7 +132,7 @@ function mod:BrandoftheLegionApplied(args)
 end
 
 function mod:DemonicAscension(args)
-	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by warlocks
+	if not self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by warlocks
 		self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
 	end
 end

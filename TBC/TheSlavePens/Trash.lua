@@ -93,7 +93,7 @@ end
 do
 	local playerList, playersAffected = mod:NewTargetList(), 0
 	function mod:EntanglingRoots(args)
-		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER = 0x400, filtering out pets
+		if not self:Player(args.destFlags) then return end -- filter out pets
 		playersAffected = playersAffected + 1
 		playerList[#playerList + 1] = args.destName
 		if #playerList == 1 then
@@ -103,7 +103,7 @@ do
 	end
 
 	function mod:EntanglingRootsRemoved(args)
-		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER = 0x400, filtering out pets
+		if not self:Player(args.destFlags) then return end -- filter out pets
 		playersAffected = playersAffected - 1
 		if playersAffected == 0 then
 			self:StopBar(args.spellName)

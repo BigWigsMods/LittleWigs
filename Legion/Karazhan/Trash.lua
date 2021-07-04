@@ -129,7 +129,7 @@ function mod:AlluringAura(args)
 end
 
 function mod:BansheeWail(args)
-	if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) == 0 then -- these NPCs can be mind-controlled by DKs
+	if not self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 		self:MessageOld(args.spellId, "yellow", "warning", CL.casting:format(args.spellName))
 	end
 end
@@ -155,7 +155,7 @@ end
 do
 	local prev = 0
 	function mod:ShieldSmash(args)
-		if bit.band(args.sourceFlags, COMBATLOG_OBJECT_REACTION_FRIENDLY) ~= 0 then -- these NPCs can be mind-controlled by DKs
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
 		local t = GetTime()

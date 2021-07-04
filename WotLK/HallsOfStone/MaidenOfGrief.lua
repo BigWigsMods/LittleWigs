@@ -51,7 +51,7 @@ do
 	local playerList = mod:NewTargetList()
 
 	function mod:ShockOfSorrowDebuff(args)
-		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER
+		if not self:Player(args.destFlags) then return end
 
 		playerList[#playerList + 1] = args.destName
 		playersIncapacitated = playersIncapacitated + 1
@@ -62,7 +62,7 @@ do
 	end
 
 	function mod:ShockOfSorrowDebuffRemoved(args)
-		if bit.band(args.destFlags, 0x400) == 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER
+		if not self:Player(args.destFlags) then return end
 
 		playersIncapacitated = playersIncapacitated - 1
 		if playersIncapacitated == 0 then

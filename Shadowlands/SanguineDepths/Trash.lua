@@ -154,7 +154,7 @@ function mod:Stoneskin(args)
 end
 
 function mod:StoneskinApplied(args)
-	if bit.band(args.destFlags, 0x400) == 0 then -- COMBATLOG_OBJECT_TYPE_PLAYER
+	if not self:Player(args.destFlags) then
 		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "warning")
 	end

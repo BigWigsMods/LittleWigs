@@ -56,7 +56,7 @@ function mod:ShroudOfDarkness(args)
 end
 
 function mod:ShroudOfDarknessApplied(args)
-	if bit.band(args.destFlags, 0x400) ~= 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER
+	if self:Player(args.destFlags) then return end
 
 	self:Message(54524, "red", CL.onboss:format(args.spellName))
 	self:PlaySound(54524, self:Dispeller("magic", true) and "warning" or "alarm")
@@ -64,7 +64,7 @@ function mod:ShroudOfDarknessApplied(args)
 end
 
 function mod:ShroudOfDarknessRemoved(args)
-	if bit.band(args.destFlags, 0x400) ~= 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER
+	if self:Player(args.destFlags) then return end
 
 	self:StopBar(CL.onboss:format(args.spellName))
 	self:Message(54524, "green", CL.removed_from:format(args.spellName, L.short_name))

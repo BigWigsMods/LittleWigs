@@ -183,7 +183,7 @@ do
 end
 
 function mod:Swiftness(args)
-	if self:Dispeller("magic", true, args.spellId) and bit.band(args.destFlags, 0x400) == 0 then -- COMBATLOG_OBJECT_TYPE_PLAYER
+	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info")
 	end

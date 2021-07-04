@@ -170,7 +170,7 @@ end
 do
 	local prev = 0
 	function mod:DarkLotus(args)
-		if bit.band(args.sourceFlags, 0x10) ~= 0 then return end -- COMBATLOG_OBJECT_REACTION_FRIENDLY
+		if self:Friendly(args.sourceFlags) then return end
 
 		local t = args.time
 		if t - prev > 1 then

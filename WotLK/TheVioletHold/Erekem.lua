@@ -36,7 +36,7 @@ end
 --
 
 function mod:EarthShield(args)
-	if bit.band(args.destFlags, 0x400) ~= 0 then return end -- COMBATLOG_OBJECT_TYPE_PLAYER
+	if self:Player(args.destFlags) then return end
 
 	if self:Dispeller("magic", true, 54479) then
 		self:Message(54479, "yellow", CL.onboss:format(args.spellName))
