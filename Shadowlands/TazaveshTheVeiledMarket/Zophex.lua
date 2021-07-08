@@ -43,7 +43,7 @@ end
 function mod:InterrogationApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, self:Me(args.destGUID) and "warning" or "alert", nil, args.destName)
-	self:CDBar(args.spellId, 42.5)
+	self:CDBar(args.spellId, 46)
 	self:CastBar(args.spellId, 5)
 end
 
@@ -74,4 +74,5 @@ end
 function mod:ArmedSecurity(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 47)
 end
