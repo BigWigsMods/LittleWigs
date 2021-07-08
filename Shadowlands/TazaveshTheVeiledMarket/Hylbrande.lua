@@ -78,14 +78,22 @@ function mod:PurgedByFire(args)
 	end
 end
 
-function mod:SanitizingCycle(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "long")
-	self:StopBar(args.spellId)
-	self:StopBar(346116) -- Shearing Swings
-	self:StopBar(346957) -- Purged by Fire
-	self:StopBar(CL.adds) -- [DNT] Summon Vault Defender
-	self:StopBar(347094) -- Titanic Crash
+do
+	local prev = 0
+	function mod:SanitizingCycle(args)
+		-- SPELL_CAST_START fires twice for this spell at the exact same time
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "cyan")
+			self:PlaySound(args.spellId, "long")
+			self:StopBar(args.spellId)
+			self:StopBar(346116) -- Shearing Swings
+			self:StopBar(346957) -- Purged by Fire
+			self:StopBar(CL.adds) -- [DNT] Summon Vault Defender
+			self:StopBar(347094) -- Titanic Crash
+		end
+	end
 end
 
 function mod:SanitizingCycleRemoved(args)
