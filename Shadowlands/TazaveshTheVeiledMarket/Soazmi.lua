@@ -9,6 +9,13 @@ mod:RegisterEnableMob(175806) -- So'azmi
 mod:SetEncounterID(2437)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local divideCount = 0
+local shuriCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -24,13 +31,15 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DoubleTechnique", 357188)
 	self:Log("SPELL_CAST_SUCCESS", "Shuri", 347610)
-	self:Log("SPELL_CAST_START", "Divide", 347249)
+	self:Log("SPELL_CAST_START", "Divide", 347249, 347414)
 	self:Log("SPELL_CAST_START", "Quickblade", 347623)
 end
 
 function mod:OnEngage()
+	divideCount = 0
+	shuriCount = 0
 	self:Bar(347623, 8.2) -- Quickblade
-	self:Bar(347610, 20) -- Shuri
+	self:Bar(347610, 19.4) -- Shuri
 end
 
 --------------------------------------------------------------------------------
@@ -49,13 +58,22 @@ do
 end
 
 function mod:Shuri(args)
+	shuriCount = shuriCount + 1
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+	if divideCount == 2 then
+		self:CDBar(args.spellId, shuriCount % 3 == 0 and 31.5 or 15.8)
+	end
 end
 
 function mod:Divide(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+	divideCount = divideCount + 1
+	self:Message(347249, "yellow")
+	self:PlaySound(347249, "info")
+	if divideCount == 2 then
+		shuriCount = 0
+		self:Bar(347610, 27.9) -- Shuri
+	end
 end
 
 function mod:Quickblade(args)
