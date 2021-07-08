@@ -47,6 +47,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:Log("SPELL_CAST_START", "MenacingShout", 350922)
 	self:Log("SPELL_CAST_START", "SecuritySlam", 350916)
@@ -65,6 +66,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Stage 1 has no boss frames to trigger Engage
+function mod:ENCOUNTER_START(_, encounterId)
+	if encounterId == self.engageId then
+		self:Engage()
+	end
+end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE()
 	-- There is one performance phase immediately at the start of the fight and then one after each add wave
