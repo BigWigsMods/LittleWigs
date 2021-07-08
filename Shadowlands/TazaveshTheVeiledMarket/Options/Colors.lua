@@ -7,7 +7,7 @@ BigWigs:AddColors("Zo'phex the Sentinel", {
 })
 
 BigWigs:AddColors("The Grand Menagerie", {
-	[349627] = "yellow",
+	[349627] = {"blue","yellow"},
 	[349663] = "red",
 	[349797] = "red",
 	[349934] = "red",

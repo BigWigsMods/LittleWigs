@@ -35,8 +35,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- Alcruus
+	-- Alcruux
 	self:Log("SPELL_AURA_APPLIED", "GluttonyApplied", 349627)
+	self:Log("SPELL_AURA_REMOVED", "GluttonyRemoved", 349627)
 	self:Log("SPELL_AURA_APPLIED", "DevouredAnimaApplied", 350010)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DevouredAnimaApplied", 350010)
 	self:Log("SPELL_CAST_START", "GripOfHunger", 349663)
@@ -82,9 +83,13 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:GluttonyApplied(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
 	self:TargetBar(args.spellId, 21, args.destName)
+end
+
+function mod:GluttonyRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 end
 
 function mod:DevouredAnimaApplied(args)
