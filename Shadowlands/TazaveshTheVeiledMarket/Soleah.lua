@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("So'leah", 2441, 2455)
 if not mod then return end
 mod:RegisterEnableMob(177269) -- So'leah
 mod:SetEncounterID(2442)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -34,11 +35,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CollapsingEnergyRemoved", 350804)
 	self:Log("SPELL_CAST_START", "HyperlightSpark", 350796)
 	self:Log("SPELL_CAST_SUCCESS", "PowerOverwhelming", 351086)
+	self:Log("SPELL_AURA_REMOVED", "PowerOverwhelmingRemoved", 351086)
 	self:Log("SPELL_CAST_SUCCESS", "EnergyFragmentation", 351096)
 end
 
 function mod:OnEngage()
+	self:SetStage(1)
+	self:Bar(351124, 6.6) -- Summon Assassins
 	self:Bar(350796, 12.2) -- Hyperlight Spark
+	self:Bar(353635, 20.3) -- Collapsing Star
 end
 
 --------------------------------------------------------------------------------
@@ -47,20 +52,29 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 351104 then -- Phase Transition
+		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
 		self:StopBar(350796) -- Hyperlight Spark
+		self:StopBar(351124) -- Summon Assassins
+		self:StopBar(353635) -- Collapsing Star
 	end
 end
 
 function mod:SummonAssassins(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 42)
 end
 
 function mod:CollapsingStar(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	if self:GetStage() == 1 then
+		self:Bar(args.spellId, 61)
+	else
+		self:StopBar(args.spellId)
+	end
 end
 
 function mod:CollapsingEnergyApplied(args)
@@ -85,6 +99,14 @@ end
 function mod:PowerOverwhelming(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+	self:StopBar(args.spellId)
+end
+
+function mod:PowerOverwhelmingRemoved(args)
+	self:Message(args.spellId, "yellow", CL.removed:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
+	self:Bar(args.spellId, 65)
+	self:Bar(353635, 25) -- Collapsing Star
 end
 
 function mod:EnergyFragmentation(args)
