@@ -26,9 +26,10 @@ function mod:GetOptions()
 		{322936, "TANK"}, -- Crumbling Slam
 		322943, -- Heave Debris
 		322711, -- Refracted Sinlight
-		322977, -- Sinlight Visions
+		339237, -- Sinlight Visions
 	}, nil, {
 		[322711] = CL.beams, -- Refracted Sinlight (Beams)
+		[339237] = CL.fear, -- Sinlight Visions (Fear)
 	}
 end
 
@@ -39,8 +40,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrumblingSlam", 322936)
 	self:Log("SPELL_CAST_SUCCESS", "HeaveDebris", 322943)
 	self:Log("SPELL_CAST_START", "RefractedSinlight", 322711)
-	self:Log("SPELL_CAST_START", "SinlightVisions", 322977)
-	--self:Log("SPELL_AURA_APPLIED", "SinlightVisionsApplied", 322977)
+	self:Log("SPELL_AURA_APPLIED", "SinlightVisionsApplied", 339237)
+
+	self:RegisterMessage("BigWigs_BarCreated", "BarCreated")
 end
 
 function mod:OnEngage()
@@ -55,6 +57,23 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local function stopAtZeroSec(bar)
+		if bar.remaining < 0.15 then -- Pause at 0.0
+			bar:SetDuration(0.01) -- Make the bar look full
+			bar:Start()
+			bar:Pause()
+			bar:SetTimeVisibility(false)
+		end
+	end
+
+	function mod:BarCreated(_, _, bar, _, key)
+		if key == 322711 then -- Refracted Sinlight
+			bar:AddUpdateFunction(stopAtZeroSec)
+		end
+	end
+end
 
 do
 	local prev = 0
@@ -78,8 +97,8 @@ function mod:CrumblingSlam(args)
 end
 
 function mod:HeaveDebris(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
 	debrisCount = debrisCount + 1
 	self:CDBar(args.spellId, debrisCount % 2 == 0 and 17 or 28)
 end
@@ -90,13 +109,7 @@ function mod:RefractedSinlight(args)
 	self:Bar(args.spellId, 45, CL.beams) -- XXX Estimated
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(322977, "orange", name) -- Sinlight Visions
-		self:PlaySound(322977, "alarm")
-	end
-
-	function mod:SinlightVisions(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-	end
+function mod:SinlightVisionsApplied(args)
+	self:TargetMessage(args.spellId, "orange", args.destName, CL.fear)
+	self:PlaySound(args.spellId, "alert")
 end
