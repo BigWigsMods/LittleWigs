@@ -49,7 +49,7 @@ function mod:OnEngage()
 
 	self:CDBar(322936, 5) -- Crumbling Slam
 	self:CDBar(322943, 12) -- Heave Debris
-	self:CDBar(322711, 31, CL.beams) -- Refracted Sinlight
+	self:CDBar(322711, 50, CL.beams) -- Refracted Sinlight
 end
 
 --------------------------------------------------------------------------------
