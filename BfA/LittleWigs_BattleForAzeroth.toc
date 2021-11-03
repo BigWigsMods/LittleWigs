@@ -1,4 +1,4 @@
-## Interface: 90100
+## Interface: 90105
 
 ## Title: LittleWigs [|cffeda55fBattle for Azeroth|r]
 ## Title-deDE: LittleWigs [|cffeda55fBattle for Azeroth|r]
