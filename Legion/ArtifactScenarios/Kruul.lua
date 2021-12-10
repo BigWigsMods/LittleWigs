@@ -116,20 +116,20 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 234428 then -- Summon Tormenting Eye
-		self:Message(spellId, "Attention", "Info")
+		self:MessageOld(spellId, "yellow", "info")
 		self:CDBar(spellId, 17)
 	elseif spellId == 235110 then -- Nether Aberration
 		aberrationCounter = aberrationCounter + 1
-		self:Message("nether_aberration", "Attention", "Info", CL.incoming:format(CL.count:format(spellName, aberrationCounter-1)), L.nether_aberration_icon)
+		self:MessageOld("nether_aberration", "yellow", "info", CL.incoming:format(CL.count:format(spellName, aberrationCounter-1)), L.nether_aberration_icon)
 		self:CDBar("nether_aberration", 35, CL.count:format(spellName, aberrationCounter), L.nether_aberration_icon)
 	elseif spellId == 235112 then -- Smoldering Infernal Summon
-		self:Message("smoldering_infernal", "Attention", "Info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
+		self:MessageOld("smoldering_infernal", "yellow", "info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
 		self:CDBar("smoldering_infernal", 65, L.smoldering_infernal, L.smoldering_infernal_icon)
 	elseif spellId == 234920 then -- Shadow Sweep
-		self:Message(spellId, "Attention", "Info", CL.incoming:format(spellName))
+		self:MessageOld(spellId, "yellow", "info", CL.incoming:format(spellName))
 		self:Bar(spellId, 20.7)
 	elseif spellId == 234673 then -- Netherstomp
-		self:Message(spellId, "Urgent", "Alert")
+		self:MessageOld(spellId, "orange", "alert")
 		self:Bar(spellId, 15.8)
 	elseif spellId == 233458 then -- Gift of Sargeras
 		-- Spoiler: HE EXPLODES!
@@ -143,18 +143,18 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:Message(args.spellId, "Important", "Warning", CL.casting:format(args.spellName))
+			self:MessageOld(args.spellId, "red", "warning", CL.casting:format(args.spellName))
 		end
 	end
 end
 
 function mod:DrainLife(args)
-	self:Message(args.spellId, "Urgent", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 23)
 end
 
 function mod:HolyWard(args)
-	self:Message(args.spellId, "Positive", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 8)
 	self:CDBar(args.spellId, 35)
 end
@@ -165,18 +165,18 @@ function mod:AuraOfDecay(args)
 end
 
 function mod:Smash(args)
-	self:Message(args.spellId, "Important", "Alarm", args.spellName)
+	self:MessageOld(args.spellId, "red", "alarm", args.spellName)
 end
 
 function mod:KruulIncoming(args)
-	self:Message("stages", "Positive", "Long", CL.incoming:format(L.name), "warlock_summon_doomguard")
+	self:MessageOld("stages", "green", "long", CL.incoming:format(L.name), "warlock_summon_doomguard")
 	self:StopBar(L.smoldering_infernal) -- Smoldering Infernal
 	self:StopBar(234423) -- Drain Life
 	self:StopBar(234428) -- Summon Tormenting Eye
 end
 
 function mod:Annihilate(args)
-	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(CL.count:format(args.spellName, annihilateCounter)))
+	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(CL.count:format(args.spellName, annihilateCounter)))
 end
 
 function mod:AnnihilateSuccess(args)
@@ -185,5 +185,5 @@ function mod:AnnihilateSuccess(args)
 end
 
 function mod:TwistedReflections(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 end

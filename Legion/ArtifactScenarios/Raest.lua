@@ -102,22 +102,22 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 202081 then -- Fixate
-		self:Message(spellId, "Important", "Long", spellName .. " - " .. CL.stage:format(phase))
+		self:MessageOld(spellId, "red", "long", spellName .. " - " .. CL.stage:format(phase))
 		if phase == 2 then
 			self:Bar("handFromBeyond", 9, L.handFromBeyond, L.handFromBeyond_icon) -- Grasp from Beyond
 		end
 	elseif spellId == 236468 then -- Rune of Summoning
-		self:Message("rune", "Attention", "Warning", spellName, spellId)
+		self:MessageOld("rune", "yellow", "warning", spellName, spellId)
 		self:Flash("rune")
 		self:CDBar("rune", 37, spellName, spellId)
 		self:Bar("thing", 11, self:SpellName(L.thing), L.thing_icon)
 	elseif spellId == 236470 then -- Thing of Nightmares
-		self:Message("thing", "Important", "Alarm", spellName, spellId)
+		self:MessageOld("thing", "yellow", "alarm", spellName, spellId)
 	end
 end
 
 function mod:Purgatory(args)
-	self:Message(args.spellId, "Positive", "Info")
+	self:MessageOld(args.spellId, "green", "info")
 	phase = phase + 1
 	self:CastBar(args.spellId, 38.3)
 	if phase == 3 then
@@ -126,12 +126,12 @@ function mod:Purgatory(args)
 end
 
 function mod:PurgatoryRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "info", CL.over:format(args.spellName))
 	self:StopBar(CL.cast:format(args.spellName))
 end
 
 function mod:GraspFromBeyond(args)
-	self:Message(args.spellId, "Urgent", "Alert")
+	self:MessageOld(args.spellId, "orange", "alert")
 	self:CastBar(args.spellId, 10)
 	self:Bar(args.spellId, 15)
 	if handGUID ~= args.sourceGUID then
@@ -143,13 +143,13 @@ end
 
 function mod:Interrupts(args)
 	if args.extraSpellId == 235578 then -- Grasp from Beyond
-		self:Message(235578, "Personal", nil, CL.interrupted:format(args.extraSpellName))
+		self:MessageOld(235578, "blue", nil, CL.interrupted:format(args.extraSpellName))
 		self:StopBar(CL.cast:format(args.extraSpellName))
 	end
 end
 
 function mod:HandFromBeyondDeath(args)
-	self:Message("handFromBeyond", "Neutral", nil, L.killed:format(L.handFromBeyond), false)
+	self:MessageOld("handFromBeyond", "cyan", nil, L.killed:format(L.handFromBeyond), false)
 	self:StopBar(CL.cast:format(self:SpellName(235578))) -- Grasp from Beyond
 	self:StopBar(235578) -- Grasp from Beyond
 end

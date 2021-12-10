@@ -122,12 +122,12 @@ function mod:AddScanner(event, unit, guid)
 end
 
 function mod:ImpServant(_, msg)
-	self:Message("imp_servant", "Attention", "Info", L.imp_servant, false)
+	self:MessageOld("imp_servant", "yellow", "info", L.imp_servant, false)
 	self:Bar("imp_servant", 46, L.imp_servant, "spell_warlock_demonsoul")
 end
 
 function mod:FumingImp()
-	self:Message("fuming_imp", "Urgent", "Warning", L.fuming_imp, false)
+	self:MessageOld("fuming_imp", "orange", "warning", L.fuming_imp, false)
 	self:CDBar("fuming_imp", 35.2, L.fuming_imp, "spell_deathknight_necroticplague")
 	self:ScheduleTimer("FumingImp", 35.2)
 end
@@ -138,7 +138,7 @@ do
 		local t = GetTime()
 		if t-prev > 0.9 then -- Ticks every second, but don't spam for stacked zones
 			prev = t
-			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 		end
 	end
 end
@@ -155,7 +155,7 @@ do
 		if t-prev > 5 then
 			prev = t
 			count = 0
-			self:Message(args.spellId, "Urgent", "Alert", CL.count:format(args.spellName, partyCount))
+			self:MessageOld(args.spellId, "orange", "alert", CL.count:format(args.spellName, partyCount))
 			partyCount = partyCount + 1
 			self:CDBar(args.spellId, 61, CL.count:format(args.spellName, partyCount))
 		end
@@ -165,7 +165,7 @@ do
 	function mod:ShadowShieldRemoved(args)
 		count = count - 1
 		if count < 1 then -- Of course the immunity buff doesn't show on the boss.
-			self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+			self:MessageOld(args.spellId, "green", nil, CL.removed:format(args.spellName))
 			if hasFury then -- Play sound if Dark Fury is on the boss
 				self:PlaySound(args.spellId, "Alert")
 			end
@@ -197,7 +197,7 @@ do
 	end
 
 	function mod:DarkFury(args)
-		self:Message(243111, "Important", "Long")
+		self:MessageOld(243111, "red", "long")
 		self:Bar(243111, phase == 1 and 51 or 68) -- Energy generation slows in phase 2 (2/s->3/2s)
 		hasFury = true
 
@@ -218,7 +218,7 @@ do
 	end
 
 	function mod:DarkFuryShieldRemoved(args)
-		self:Message(243111, "Positive", "Long", CL.removed:format(args.spellName))
+		self:MessageOld(243111, "green", "long", CL.removed:format(args.spellName))
 		if not self:UnitBuff("boss1", 243111) then -- Dark Fury damage buff
 			-- Translocate during Dark Fury does weird things
 			self:DarkFuryRemoved()
@@ -236,20 +236,20 @@ do
 end
 
 function mod:Translocate(args)
-	self:Message(args.spellId, "Neutral")
+	self:MessageOld(args.spellId, "cyan")
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 242987 then -- Translocate
 		if phase == 1 then
 			phase = 2
-			self:Message(242989, "Neutral", nil, CL.percent:format(50, spellName), false)
+			self:MessageOld(242989, "cyan", nil, CL.percent:format(50, spellName), false)
 
 			-- Recalc Dark Fury time
 			local remaining = (100 - UnitPower(unit)) * 0.68
 			self:CDBar(243111, remaining)
 		else
-			self:Message(242989, "Neutral")
+			self:MessageOld(242989, "cyan")
 		end
 	end
 end
@@ -257,7 +257,7 @@ end
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
-		self:Message(242989, "Neutral", nil, CL.soon:format(self:SpellName(242987)), false)
+		self:MessageOld(242989, "cyan", nil, CL.soon:format(self:SpellName(242987)), false)
 		-- Seems like it's based on damage done after the initial 50% cast, cba to track that
 		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
 	end

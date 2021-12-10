@@ -111,12 +111,12 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 			-- Need to ignore the IEEU from defeating Archmage Xylem so we don't disable
 			self:SendMessage("BigWigs_StopBars", self)
 			phase = 2
-			self:Message("stages", "Neutral", nil, CL.soon:format(CL.phase:format(2)), false)
+			self:MessageOld("stages", "cyan", nil, CL.soon:format(CL.phase:format(2)), false)
 			self:Bar("warmup", 29, CL.phase:format(2), "spell_arcane_prismaticcloak")
 		elseif phase == 2 and UnitExists("boss1") then
 			-- Phase 2 OnEngage
 			phase = 3
-			self:Message("stages", "Neutral", nil, CL.phase:format(2), false)
+			self:MessageOld("stages", "cyan", nil, CL.phase:format(2), false)
 			self:Bar(233248, 21) -- Seed of Darkness
 
 			self:RegisterEvent(event, "CheckBossStatus") -- Shenanigans over
@@ -136,7 +136,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 242015 then -- Blink
-		self:Message(242015, "Attention", nil, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
+		self:MessageOld(242015, "yellow", nil, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
 		blinkCount = blinkCount + 1
 		self:CDBar(242015, 26, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
 		-- XXX second second razor ice is actually shadow barrage and it's a mystery what happens after that
@@ -144,7 +144,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 end
 
 function mod:ArcaneAnnihilation(args)
-	self:Message(args.spellId, "Neutral")
+	self:MessageOld(args.spellId, "cyan")
 	self:Bar(args.spellId, 40, CL.cast:format(args.spellName))
 
 	annihilationCount = annihilationCount + 1
@@ -155,7 +155,7 @@ function mod:UNIT_SPELLCAST_STOP(unit, spellName, _, _, spellId)
 	if spellId == 234728 then -- Arcane Annihilation
 		self:StopBar(CL.cast:format(spellName))
 
-		self:Message(spellId, "Neutral", nil, CL.over:format(spellName))
+		self:MessageOld(spellId, "cyan", nil, CL.over:format(spellName))
 		blinkCount = blinkCount + 1
 		if blinkCount > #blinkSpells then
 			blinkCount = 1
@@ -174,12 +174,12 @@ end
 
 function mod:ShadowBarrage(args)
 	self:StopBar(args.spellName)
-	self:Message(args.spellId, "Urgent", "Alarm")
+	self:MessageOld(args.spellId, "orange", "alarm")
 	self:Bar(args.spellId, 8, CL.cast:format(args.spellName))
 end
 
 function mod:DrawPower(args)
-	self:Message(args.spellId, "Important", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 	drawPowerCount = drawPowerCount + 1
 	if drawPowerCount < 2 then
 		self:CDBar(args.spellId, 20)
@@ -190,11 +190,11 @@ end
 -- Corrupting Shadows
 
 function mod:CreepingShadowsDamage(args)
-	self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+	self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 end
 
 function mod:SeedOfDarkness(args)
-	self:Message(args.spellId, "Important", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:Bar(args.spellId, 65.6)
 end

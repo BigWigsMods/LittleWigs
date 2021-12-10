@@ -116,7 +116,7 @@ end
 -- Sigryn
 
 function mod:BloodOfTheFatherCast(args)
-	self:Message(args.spellId, "Important", "Long", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "long", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 	bloodCount = bloodCount + 1
 	if bloodCount < 4 then
@@ -129,7 +129,7 @@ end
 
 -- Fallback for if Sigryn was CC'd for the cast
 function mod:CheckBloodCast()
-	self:Message(237945, "Positive", "Info", CL.interrupted:format(self:SpellName(237945)))
+	self:MessageOld(237945, "green", "info", CL.interrupted:format(self:SpellName(237945)))
 	bloodCount = bloodCount + 1
 	if bloodCount < 4 then
 		local cd = bloodCount == 2 and 70 or 100
@@ -140,14 +140,14 @@ end
 
 function mod:BloodOfTheFatherApplied(args)
 	-- RIP
-	self:Message(args.spellId, "Important", "Long")
+	self:MessageOld(args.spellId, "red", "long")
 	self:TargetBar(args.spellId, 27, args.destName)
 end
 
 function mod:UNIT_SPELLCAST_INTERRUPTED(unit, spellName, _, _, spellId)
 	if spellId == 237945 then -- Blood of the Father
 		self:StopBar(CL.cast:format(spellName))
-		self:Message(spellId, "Positive", "Info", CL.interrupted:format(spellName))
+		self:MessageOld(spellId, "green", "info", CL.interrupted:format(spellName))
 	end
 end
 
@@ -158,7 +158,7 @@ do
 		if t-prev > 2 then
 			prev = t
 			self:StopBar(args.spellName)
-			self:Message(args.spellId, "Urgent", "Alarm", CL.soon:format(args.spellName))
+			self:MessageOld(args.spellId, "orange", "alarm", CL.soon:format(args.spellName))
 			self:Bar(args.spellId, 5, 100, args.spellId) -- 100 = Charge
 			self:ScheduleTimer("CDBar", 5, args.spellId, 15) -- mostly ~20
 		end
@@ -166,7 +166,7 @@ do
 end
 
 function mod:ThrowSpear(args)
-	self:Message(args.spellId, "Attention", "Info")
+	self:MessageOld(args.spellId, "yellow", "info")
 end
 
 do
@@ -175,7 +175,7 @@ do
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "Personal", "Alarm", CL.underyou:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
 		end
 	end
 end
@@ -199,7 +199,7 @@ do
 	end
 
 	function mod:AncestralKnowledge(args)
-		self:Message(args.spellId, "Urgent", "Alert")
+		self:MessageOld(args.spellId, "orange", "alert")
 		shieldCount = shieldCount + 1
 		if shieldCount > 3 then
 			self:CDBar(args.spellId, shieldTimers[shieldCount] or 25)
@@ -219,13 +219,13 @@ do
 
 	function mod:AncestralKnowledgeRemoved(args)
 		self:CloseInfo(args.spellId)
-		self:Message(args.spellId, "Positive", "Info", CL.removed:format(args.spellName))
+		self:MessageOld(args.spellId, "green", "info", CL.removed:format(args.spellName))
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
 	if spellId == 237914 then -- Runic Detonation
-		self:Message(spellId, "Important", "Warning")
+		self:MessageOld(spellId, "red", "warning")
 		runeCount = runeCount + 1
 		local cd = runeTimers[runeCount]
 		if cd then
@@ -238,16 +238,16 @@ end
 -- Jarl Velbrand
 
 function mod:BerserkersRage(args)
-	self:Message(args.spellId, "Urgent", "Alarm")
+	self:MessageOld(args.spellId, "orange", "alarm")
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 
 function mod:BerserkersRageRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "info", CL.over:format(args.spellName))
 end
 
 function mod:BladestormCast(args)
-	self:Message(args.spellId, "Attention", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alarm", CL.casting:format(args.spellName))
 	bladestormCount = bladestormCount + 1
 	if bladestormCount == 2 then
 		self:Bar(args.spellId, 105)

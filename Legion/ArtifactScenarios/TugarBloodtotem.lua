@@ -103,14 +103,14 @@ end
 --
 
 function mod:FelBurst(args)
-	self:Message(args.spellId, "Urgent", "Warning", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 	burstCount = burstCount + 1
 	if burstCount == 4 then burstCount = 1 end
 	self:CDBar(args.spellId, burstCount == 2 and 23 or 18)
 end
 
 function mod:SonicScream(args)
-	self:Message(args.spellId, "Important", "Alert", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alert", CL.casting:format(args.spellName))
 	screamCount = screamCount + 1
 	--self:CDBar(args.spellId, screamTimers[screamCount]) -- innacurate
 end
@@ -120,26 +120,26 @@ function mod:ScaleRemoved(args)
 end
 
 function mod:FitSurgeStart(args)
-	self:Message(243224, "Important", "Long")
+	self:MessageOld(243224, "red", "long")
 	self:CDBar(243224, 25.5)
 end
 
 function mod:FitSurgeHitYou(args)
 	if self:Me(args.destGUID) then
-		self:Message(243224, "Personal", "Long", L.totem_warning)
+		self:MessageOld(243224, "blue", "long", L.totem_warning)
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE()
-	self:Message("charge", "Personal", "Alarm", CL.incoming:format(self:SpellName(100)), L.charge_icon)
+	self:MessageOld("charge", "blue", "alarm", CL.incoming:format(self:SpellName(100)), L.charge_icon)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	if spellId == 34098 then -- ClearAllDebuffs
-		self:Message("submerge", "Urgent", "Alarm", L.submerge, L.submerge_icon)
+		self:MessageOld("submerge", "orange", "alarm", L.submerge, L.submerge_icon)
 		self:CDBar("submerge", 60.7, L.submerge, L.submerge_icon)
 	elseif spellId == 241664 then
-		self:Message("rupture", "Attention", "Alarm", CL.underyou:format("X"), L.rupture_icon)
+		self:MessageOld("rupture", "yellow", "alarm", CL.underyou:format("X"), L.rupture_icon)
 		self:CDBar("rupture", 11, "X", L.rupture_icon)
 	end
 end

@@ -105,7 +105,7 @@ function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, spellName, _, castGUID, spellId)
 	if spellId == 235984 then -- Mana Sting
 		castCollector[castGUID] = true
 		self:CDBar(spellId, 14.6)
-		self:Message(spellId, "Important", "Alert", CL.casting:format(spellName))
+		self:MessageOld(spellId, "red", "alert", CL.casting:format(spellName))
 	end
 end
 
@@ -114,7 +114,7 @@ function mod:ArcaneBlitz(args)
 	if unit then
 		local _, amount = self:UnitBuff(unit, args.spellName)
 		if amount and amount > 3 then
-			self:Message(args.spellId, "Attention", "Alert", CL.count:format(args.spellName, amount))
+			self:MessageOld(args.spellId, "yellow", "alert", CL.count:format(args.spellName, amount))
 		end
 	end
 end
@@ -123,22 +123,22 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellName, _, castGUID, spellId)
 	if castCollector[castGUID] then return end
 	if spellId == 237191 then -- Fel Stomp
 		castCollector[castGUID] = true
-		self:Message(spellId, "Urgent", "Alarm", CL.incoming:format(spellName))
+		self:MessageOld(spellId, "orange", "alarm", CL.incoming:format(spellName))
 		self:CDBar(spellId, 11)
 	end
 end
 
 function mod:IgniteSoul(args)
 	self:CDBar(args.spellId, 18)
-	self:Message(args.spellId, "Important", "Warning", CL.incoming:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "warning", CL.incoming:format(args.spellName))
 end
 
 function mod:KnifeDance(args)
 	self:CDBar(args.spellId, 23)
-	self:Message(args.spellId, "Urgent", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
 end
 
 function mod:FrenziedAssault(args)
 	self:CDBar(args.spellId, 19)
-	self:Message(args.spellId, "Important", "Alarm", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(args.spellName))
 end
