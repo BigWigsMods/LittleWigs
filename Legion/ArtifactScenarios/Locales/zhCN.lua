@@ -77,11 +77,11 @@ end
 
 L = BigWigs:NewBossLocale("Sigryn", "zhCN")
 if L then
-	-- L.sigryn = "Sigryn"
-	-- L.jarl = "Jarl Velbrand"
-	-- L.faljar = "Runenseher Faljar"
+	L.sigryn = "希格林"
+	L.jarl = "维尔布兰德族长" 
+	L.faljar = "符文先知法尔加"
 
-	-- L.warmup_trigger = "What's this? The outsider has come to stop me?"
+	L.warmup_trigger = "什么？外来者来阻止我了？"
 
 	L.absorb = "吸收"
 end
