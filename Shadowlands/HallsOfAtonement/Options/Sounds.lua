@@ -2,9 +2,9 @@
 BigWigs:AddSounds("Halkias, the Sin-Stained Goliath", {
 	[322711] = "warning",
 	[322936] = "alert",
-	[322943] = "info",
-	[322977] = "alarm",
+	[322943] = "alarm",
 	[323001] = "underyou",
+	[339237] = "alert",
 })
 
 BigWigs:AddSounds("Echelon", {

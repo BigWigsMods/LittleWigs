@@ -2,9 +2,9 @@
 BigWigs:AddColors("Halkias, the Sin-Stained Goliath", {
 	[322711] = "red",
 	[322936] = "purple",
-	[322943] = "cyan",
-	[322977] = {"blue","orange"},
+	[322943] = "yellow",
 	[323001] = "blue",
+	[339237] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Echelon", {

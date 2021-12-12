@@ -3,7 +3,7 @@ BigWigs:AddColors("Agatha", {
 	[236161] = "blue",
 	[242989] = "cyan",
 	[243027] = {"green","orange"},
-	[243111] = {"red","green"},
+	[243111] = {"green","red"},
 	["fuming_imp"] = "orange",
 	["imp_servant"] = "yellow",
 })
@@ -49,14 +49,14 @@ BigWigs:AddColors("Raest", {
 	[235578] = {"blue","orange"},
 	["handFromBeyond"] = "cyan",
 	["rune"] = "yellow",
-	["thing"] = "red",
+	["thing"] = "yellow",
 })
 
 BigWigs:AddColors("Sigryn", {
 	[237730] = "orange",
 	[237857] = "yellow",
 	[237914] = "red",
-	[237945] = {"red","green"},
+	[237945] = {"green","red"},
 	[237947] = {"green","orange"},
 	[237949] = {"green","orange"},
 	[238691] = "blue",
@@ -66,7 +66,7 @@ BigWigs:AddColors("Sigryn", {
 BigWigs:AddColors("Tugar Bloodtotem", {
 	[241687] = "red",
 	[242733] = "orange",
-	[243224] = {"red","blue"},
+	[243224] = {"blue","red"},
 	["charge"] = "blue",
 	["rupture"] = "yellow",
 	["submerge"] = "orange",

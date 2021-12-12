@@ -61,8 +61,8 @@ BigWigs:AddSounds("Sigryn", {
 BigWigs:AddSounds("Tugar Bloodtotem", {
 	[241687] = "alert",
 	[242733] = "warning",
-	[243224] = "Long",
-	["charge"] = "Alarm",
-	["rupture"] = "Alarm",
-	["submerge"] = "Alarm",
+	[243224] = "long",
+	["charge"] = "alarm",
+	["rupture"] = "alarm",
+	["submerge"] = "alarm",
 })
