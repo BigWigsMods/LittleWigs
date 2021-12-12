@@ -108,7 +108,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 		end
 	elseif spellId == 236468 then -- Rune of Summoning
 		self:MessageOld("rune", "yellow", "warning", spellName, spellId)
-		self:Flash("rune")
+		self:Flash("rune", 236468)
 		self:CDBar("rune", 37, spellName, spellId)
 		self:Bar("thing", 11, self:SpellName(L.thing), L.thing_icon)
 	elseif spellId == 236470 then -- Thing of Nightmares
