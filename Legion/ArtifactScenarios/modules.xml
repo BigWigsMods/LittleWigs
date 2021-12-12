@@ -1,0 +1,15 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Agatha.lua"/>
+<Script file="Xylem.lua"/>
+<Script file="Kruul.lua"/>
+<Script file="LordErdrisThorn.lua"/>
+<Script file="Raest.lua"/>
+<Script file="Sigryn.lua"/>
+<Script file="TugarBloodtotem.lua"/>
+
+<Include file="Locales\locales.xml"/>
+<Include file="Options\options.xml"/>
+
+</Ui>
