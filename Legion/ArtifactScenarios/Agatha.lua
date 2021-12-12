@@ -167,7 +167,7 @@ do
 		if count < 1 then -- Of course the immunity buff doesn't show on the boss.
 			self:MessageOld(args.spellId, "green", nil, CL.removed:format(args.spellName))
 			if hasFury then -- Play sound if Dark Fury is on the boss
-				self:PlaySound(args.spellId, "Alert")
+				self:PlaySound(args.spellId, "alert")
 			end
 		end
 	end
