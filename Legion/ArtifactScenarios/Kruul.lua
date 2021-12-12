@@ -30,8 +30,6 @@ if L then
 	L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
 	L.win_trigger = "So be it. You will not stand in our way any longer."
 
-	L.engage_message = "Highlord Kruul's Challenge Engaged!"
-
 	L.nether_aberration = 235110
 	L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
 	L.nether_aberration_icon = "ability_socererking_summonaberration"

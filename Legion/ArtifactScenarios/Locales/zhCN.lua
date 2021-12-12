@@ -41,8 +41,6 @@ if L then
 	L.warmup_trigger = "傲慢的蠢货！我掌握着千万世界的灵魂之力！"
 	L.win_trigger = "那好吧。你们别想再挡路了。"
 
-	L.engage_message = "魔王库鲁尔挑战开始！"
-
 	L.nether_aberration_desc = "在房间内召唤传送门，出现虚空畸变怪。"
 
 	L.smoldering_infernal = "阴燃的地狱火"

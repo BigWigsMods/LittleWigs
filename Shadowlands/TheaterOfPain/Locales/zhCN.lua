@@ -11,4 +11,5 @@ if L then
 	L.rancid_gasbag = "腐臭的气囊怪"
 	L.maniacal_soulbinder = "狂热的缚魂者"
 	L.bone_magus = "白骨魔导师"
+	L.nefarious_darkspeaker = "卑劣的暗语者"
 end

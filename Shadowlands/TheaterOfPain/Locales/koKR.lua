@@ -11,4 +11,5 @@ if L then
 	L.rancid_gasbag = "썩은 가스주머니"
 	L.maniacal_soulbinder = "광기 어린 영혼결속사"
 	L.bone_magus = "해골 학자"
+	L.nefarious_darkspeaker = "사악한 암흑예언자"
 end

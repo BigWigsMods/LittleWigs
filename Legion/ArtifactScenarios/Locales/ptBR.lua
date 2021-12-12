@@ -41,8 +41,6 @@ if L then
 	L.warmup_trigger = "Tolos arrogantes! Eu me fortaleci com a alma de mil mundos conquistados!"
 	L.win_trigger = "Que assim seja. Vocês não vão ficar no caminho por muito tempo."
 
-	L.engage_message = "Desafio do Grão-lorde Kruul iniciado!"
-
 	L.nether_aberration_desc = "Evoca portais ao redor da sala, gerando Aberrações Etéreas."
 
 	L.smoldering_infernal = "Infernal Fumegante"

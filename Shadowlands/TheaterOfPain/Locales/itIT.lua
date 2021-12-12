@@ -11,4 +11,5 @@ if L then
 	L.rancid_gasbag = "Pallone Gonfiato Rancido"
 	L.maniacal_soulbinder = "Vincolatore d'Anime Maniacale"
 	L.bone_magus = "Magus d'Ossa"
+	L.nefarious_darkspeaker = "Oratore Oscuro Nefasto"
 end

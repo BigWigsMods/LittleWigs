@@ -11,4 +11,5 @@ if L then
 	L.rancid_gasbag = "Тошнотворный газовый мешок"
 	L.maniacal_soulbinder = "Маниакальный стражник душ"
 	L.bone_magus = "Костяной чародей"
+	L.nefarious_darkspeaker = "Пагубный темный проповедник"
 end

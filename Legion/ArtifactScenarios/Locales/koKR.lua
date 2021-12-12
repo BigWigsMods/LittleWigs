@@ -41,8 +41,6 @@ if L then
 	L.warmup_trigger = "오만하고 멍청한 것들! 나에게는 수천 개의 세계에서 얻은 영혼의 힘이 흘러넘친다!"
 	--L.win_trigger = "So be it. You will not stand in our way any longer."
 
-	L.engage_message = "대군주 크룰의 도전 전투 시작!"
-
 	L.nether_aberration_desc = "방 안에 황천 흉물을 생성하는 차원문을 소환합니다."
 
 	L.smoldering_infernal = "이글거리는 지옥불정령"
