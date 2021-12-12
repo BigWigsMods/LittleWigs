@@ -85,7 +85,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	wipe(castCollector)
+	castCollector = {}
 end
 
 --------------------------------------------------------------------------------

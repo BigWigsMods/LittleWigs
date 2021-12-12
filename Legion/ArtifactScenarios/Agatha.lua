@@ -88,7 +88,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	wipe(imps)
+	imps = {}
 	phase = 1
 	partyCount = 1
 	marker = 1
@@ -113,7 +113,7 @@ function mod:AddScanner(event, unit, guid)
 	imps[guid] = true
 
 	if self:MobId(guid) == 115640 and self:CheckOption("fuming_imp", "ICON") then
-		SetRaidTarget(unit, marker)
+		self:CustomIcon(unit, marker)
 		marker = marker + 1
 		if marker > 8 then
 			marker = 1
