@@ -178,7 +178,7 @@ end
 
 function mod:Warmup(event)
 	self:UnregisterEvent(event)
-	self:Bar("warmup", 35, CL.active, "sha_spell_shaman_lavaburst_nightborne")
+	self:Bar("warmup", 15, CL.active, "sha_spell_shaman_lavaburst_nightborne")
 end
 
 do
