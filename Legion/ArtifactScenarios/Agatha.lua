@@ -101,7 +101,7 @@ function mod:OnEngage()
 	self:Bar(243027, 62, CL.count:format(self:SpellName(243027), partyCount)) -- Shadow Shield
 
 	self:RegisterTargetEvents("AddScanner")
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
 --------------------------------------------------------------------------------
@@ -254,11 +254,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+function mod:UNIT_HEALTH(event, unit)
+	local hp = self:GetHealth(unit)
 	if hp < 55 then
 		self:MessageOld(242989, "cyan", nil, CL.soon:format(self:SpellName(242987)), false)
 		-- Seems like it's based on damage done after the initial 50% cast, cba to track that
-		self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", unit)
+		self:UnregisterUnitEvent(event, unit)
 	end
 end
