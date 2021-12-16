@@ -70,6 +70,11 @@ if L then
 	L.name = "Агата"
 	L.imp_servant = "Бес-прислужник"
 	L.fuming_imp = "Тлеющий бес"
+	L.levia = "Левия" -- Shortcut for warmup_trigger1, since the name "Levia" should be unique
+
+	-- L.warmup_trigger1 = "You are too late! Levia's power is mine! Using her knowledge, my minions will infiltrate the Kirin Tor and dismantle it from the inside!" -- 35
+	-- L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
+	-- L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
 
 	L.absorb = "Поглощение"
 	L.stacks = "Стаки"

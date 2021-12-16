@@ -70,6 +70,11 @@ if L then
 	L.name = "阿加莎"
 	L.imp_servant = "小鬼仆从"
 	L.fuming_imp = "阴燃的小鬼"
+	L.levia = "莱维娅" -- Shortcut for warmup_trigger1, since the name "Levia" should be unique
+
+	-- L.warmup_trigger1 = "You are too late! Levia's power is mine! Using her knowledge, my minions will infiltrate the Kirin Tor and dismantle it from the inside!" -- 35
+	-- L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
+	-- L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
 
 	L.absorb = "吸收"
 	L.stacks = "层数"
@@ -78,7 +83,7 @@ end
 L = BigWigs:NewBossLocale("Sigryn", "zhCN")
 if L then
 	L.sigryn = "希格林"
-	L.jarl = "维尔布兰德族长" 
+	L.jarl = "维尔布兰德族长"
 	L.faljar = "符文先知法尔加"
 
 	L.warmup_trigger = "什么？外来者来阻止我了？"
