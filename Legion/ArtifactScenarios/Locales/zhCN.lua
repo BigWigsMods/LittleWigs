@@ -72,9 +72,9 @@ if L then
 	L.fuming_imp = "阴燃的小鬼"
 	L.levia = "莱维娅" -- Shortcut for warmup_trigger1, since the name "Levia" should be unique
 
-	-- L.warmup_trigger1 = "You are too late! Levia's power is mine! Using her knowledge, my minions will infiltrate the Kirin Tor and dismantle it from the inside!" -- 35
-	-- L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
-	-- L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
+	L.warmup_trigger1 = "你太迟了！莱维娅的力量归我了！有了她的知识，我的人就能潜入肯瑞托，从内部瓦解它！" -- 35
+	L.warmup_trigger2 = "此刻，我的萨亚德正在诱惑软弱的法师，你的盟友会自愿倒向军团！" -- 16
+	L.warmup_trigger3 = "但，你得先为抢走我的宠物付出代价！" -- 3
 
 	L.absorb = "吸收"
 	L.stacks = "层数"
