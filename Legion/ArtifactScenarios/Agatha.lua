@@ -183,9 +183,9 @@ function mod:Warmup(event, msg)
 	if msg:find(L.warmup_trigger1, nil, true) or msg:find(L.levia, nil, true) then
 		self:Bar("warmup", 35, CL.active, "sha_spell_shaman_lavaburst_nightborne")
 	elseif msg:find(L.warmup_trigger2, nil, true) then
-		self:Bar("warmup", 15, CL.active, "sha_spell_shaman_lavaburst_nightborne")
+		self:Bar("warmup", 16.8, CL.active, "sha_spell_shaman_lavaburst_nightborne")
 	elseif msg:find(L.warmup_trigger3, nil, true) then
-		self:Bar("warmup", 3, CL.active, "sha_spell_shaman_lavaburst_nightborne")
+		self:Bar("warmup", 3.4, CL.active, "sha_spell_shaman_lavaburst_nightborne")
 	end
 end
 
