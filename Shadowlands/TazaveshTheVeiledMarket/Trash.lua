@@ -70,7 +70,7 @@ function mod:GetOptions()
 		{357029, "SAY_COUNTDOWN"}, -- Hyperlight Bomb
 		-- Support Officer
 		355980, -- Refraction Shield
-        {355934, "DISPEL"}, -- Hard Light Barrier
+		{355934, "DISPEL"}, -- Hard Light Barrier
 		-- Commerce Enforcer
 		355782, -- Force Multiplier
 		-- Commerce Enforcer / Commander Zo'far
