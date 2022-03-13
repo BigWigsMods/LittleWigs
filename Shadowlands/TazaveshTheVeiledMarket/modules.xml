@@ -9,6 +9,7 @@
 <Script file="Hylbrande.lua"/>
 <Script file="TimecapnHooktail.lua"/>
 <Script file="Soleah.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>

@@ -67,3 +67,17 @@ BigWigs:AddSounds("So'leah", {
 	[353635] = "alarm",
 	["stages"] = "long",
 })
+
+BigWigs:AddSounds("Tazavesh Trash", {
+	[355132] = "warning",
+	[355057] = {"alert","warning"},
+	[355429] = "alert",
+	[355584] = "warning",
+	[355577] = "alert",
+	[355581] = "underyou",
+	[356133] = {"alert","warning"},
+	[357226] = "warning",
+	[357238] = "warning",
+	[357260] = "warning",
+	[357284] = "warning",
+})

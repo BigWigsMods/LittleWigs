@@ -67,3 +67,17 @@ BigWigs:AddColors("So'leah", {
 	[353635] = "red",
 	["stages"] = "cyan",
 })
+
+BigWigs:AddColors("Tazavesh Trash", {
+	[355132] = "red",
+	[355057] = {"orange","red"},
+	[355429] = "purple",
+	[355584] = "cyan",
+	[355577] = "purple",
+	[355581] = "blue",
+	[356133] = {"orange","red"},
+	[357226] = "purple",
+	[357238] = "cyan",
+	[357260] = "yellow",
+	[357284] = "red",
+})
