@@ -75,7 +75,7 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[357029] = "blue",
 	[356001] = "cyan",
 	[355980] = "yellow",
-	[355934] = "orange",
+	[355934] = {"orange","cyan"},
 	[355782] = "red",
 	[355477] = "yellow",
 	-- So'leah's Gambit

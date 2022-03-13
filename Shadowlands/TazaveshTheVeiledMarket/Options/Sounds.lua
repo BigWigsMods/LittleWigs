@@ -75,7 +75,7 @@ BigWigs:AddSounds("Tazavesh Trash", {
 	[357029] = "alarm",
 	[356001] = "warning",
 	[355980] = "warning",
-	[355934] = "alert",
+	[355934] = {"alert","warning"},
 	[355782] = "warning",
 	[355477] = "alert",
 	-- So'leah's Gambit
