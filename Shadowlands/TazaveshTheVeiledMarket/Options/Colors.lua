@@ -69,6 +69,16 @@ BigWigs:AddColors("So'leah", {
 })
 
 BigWigs:AddColors("Tazavesh Trash", {
+	-- Streets of Wonder
+	[356031] = "yellow",
+	[356967] = "yellow",
+	[357029] = "blue",
+	[356001] = "cyan",
+	[355980] = "yellow",
+	[355934] = "orange",
+	[355782] = "red",
+	[355477] = "yellow",
+	-- So'leah's Gambit
 	[355132] = "red",
 	[355057] = {"orange","red"},
 	[355429] = "purple",

@@ -69,6 +69,16 @@ BigWigs:AddSounds("So'leah", {
 })
 
 BigWigs:AddSounds("Tazavesh Trash", {
+	-- Streets of Wonder
+	[356031] = "alert",
+	[356967] = "alert",
+	[357029] = "alarm",
+	[356001] = "warning",
+	[355980] = "warning",
+	[355934] = "alert",
+	[355782] = "warning",
+	[355477] = "alert",
+	-- So'leah's Gambit
 	[355132] = "warning",
 	[355057] = {"alert","warning"},
 	[355429] = "alert",
