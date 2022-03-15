@@ -13,6 +13,8 @@ mod:RegisterEnableMob(
 	180348, -- Cartel Muscle
 	180335, -- Cartel Smuggler
 	177817, -- Support Officer
+	176396, -- Defective Sorter
+	179840, -- Market Peacekeeper
 	179842, -- Commerce Enforcer
 	179821, -- Commander Zo'far
 
@@ -39,8 +41,11 @@ if L then
 	L.cartel_muscle = "Cartel Muscle"
 	L.cartel_smuggler = "Cartel Smuggler"
 	L.support_officer = "Support Officer"
+	L.defective_sorter = "Defective Sorter"
+	L.market_peacekeeper = "Market Peacekeeper"
 	L.commerce_enforcer = "Commerce Enforcer"
 	L.commerce_enforcer_commander_zofar = "Commerce Enforcer / Commander Zo'far"
+	L.commander_zofar = "Commander Zo'far"
 
 	------ So'leah's Gambit ------
 	L.murkbrine_scalebinder = "Murkbrine Scalebinder"
@@ -71,10 +76,16 @@ function mod:GetOptions()
 		-- Support Officer
 		355980, -- Refraction Shield
 		{355934, "DISPEL"}, -- Hard Light Barrier
+		-- Defective Sorter
+		347721, -- Open Cage
+		-- Market Peacekeeper
+		355637, -- Quelling Strike
 		-- Commerce Enforcer
 		355782, -- Force Multiplier
 		-- Commerce Enforcer / Commander Zo'far
 		{355477, "TANK_HEALER"}, -- Power Kick
+		-- Commander Zo'far
+		355480, -- Lethal Force
 
 		------ So'leah's Gambit ------
 		-- Murkbrine Scalebinder
@@ -102,8 +113,11 @@ function mod:GetOptions()
 		[356967] = L.cartel_muscle,
 		[357029] = L.cartel_smuggler,
 		[355980] = L.support_officer,
+		[347721] = L.defective_sorter,
+		[355637] = L.market_peacekeeper,
 		[355782] = L.commerce_enforcer,
 		[355477] = L.commerce_enforcer_commander_zofar,
+		[355480] = L.commander_zofar,
 
 		------ So'leah's Gambit ------
 		[355132] = L.murkbrine_scalebinder,
@@ -128,8 +142,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RefractionShieldApplied", 355980)
 	self:Log("SPELL_CAST_START", "HardLightBarrier", 355934)
 	self:Log("SPELL_AURA_APPLIED", "HardLightBarrierApplied", 355934)
+	self:Log("SPELL_CAST_START", "OpenCage", 347721)
+	self:Log("SPELL_CAST_START", "QuellingStrike", 355637)
 	self:Log("SPELL_AURA_APPLIED", "ForceMultiplierApplied", 355782)
 	self:Log("SPELL_CAST_START", "PowerKick", 355477)
+	self:Log("SPELL_AURA_APPLIED", "LethalForceApplied", 355480)
+	self:Log("SPELL_AURA_REMOVED", "LethalForceRemoved", 355480)
 
 	------ So'leah's Gambit ------
 	self:Log("SPELL_CAST_START", "InvigoratingFishStick", 355132)
@@ -164,7 +182,11 @@ end
 
 -- Armored Overseer / Tracker Zo'korss
 function mod:BeamSplicer(args)
-	self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "orange", CL.near:format(args.spellName))
+	else
+		self:Message(args.spellId, "orange")
+	end
 	self:PlaySound(args.spellId, "warning")
 end
 do
@@ -212,30 +234,80 @@ function mod:HardLightBarrier(args)
 end
 function mod:HardLightBarrierApplied(args)
 	if self:Dispeller("magic", true, args.spellId) then
-		self:Message(args.spellId, "cyan", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
-	end
-end
-
--- Commerce Enforcer
-function mod:ForceMultiplierApplied(args)
-	if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
 		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
 end
 
+-- Defective Sorter
+function mod:OpenCage(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
+-- Market Peacekeeper
+function mod:QuellingStrike(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "red", CL.you:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	else
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+-- Commerce Enforcer
+function mod:ForceMultiplierApplied(args)
+	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+	self:PlaySound(args.spellId, "warning")
+end
+
 -- Commerce Enforcer / Commander Zo'far
 function mod:PowerKick(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Commander Zo'far
+do
+	local playerList = {}
+	local onMe = false
+    -- This debuff applies to two players at once, who will be pulled towards each other.
+    -- If they touch they take a lot of damage.
+	function mod:LethalForceApplied(args)
+		local count = #playerList+1
+		playerList[count] = args.destName
+		if self:Me(args.destGUID) then
+			if #playerList > 1 then
+				local partner = playerList[1]
+				self:PersonalMessage(args.spellId, false, CL.link_with:format(self:ColorName(partner)))
+				self:PlaySound(args.spellId, "warning")
+			else
+				onMe = true
+			end
+		else
+			if onMe then
+				local partner = args.destName
+				self:PersonalMessage(args.spellId, false, CL.link_with:format(self:ColorName(partner)))
+				self:PlaySound(args.spellId, "warning")
+			elseif #playerList > 1 then
+				self:Message(args.spellId, "red", CL.link_both:format(playerList[1], playerList[2]))
+				self:PlaySound(args.spellId, "alert")
+			end
+		end
+	end
+
+	function mod:LethalForceRemoved(args)
+		wipe(playerList)
+		onMe = false
+	end
 end
 
 ------ So'leah's Gambit ------
 
 -- Murkbrine Scalebinder
 function mod:InvigoratingFishStick(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 function mod:InvigoratingFishStickSpawned(args)
@@ -264,17 +336,17 @@ end
 
 -- Coastwalker Goliath
 function mod:TidalStomp(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Stormforged Guardian
 function mod:ChargedPulse(args)
-	self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 function mod:Crackle(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 do
@@ -310,13 +382,13 @@ do
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "warning")
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 end
 function mod:WanderingPulsar(args)
-	self:Message(args.spellId, "cyan")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
 end
 
