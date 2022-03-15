@@ -205,8 +205,10 @@ end
 
 -- Cartel Muscle
 function mod:HyperlightBackhand(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	if self:Tank() or self:Healer() or self:Me(args.destGUID) then
+		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Cartel Smuggler
@@ -214,6 +216,7 @@ function mod:HyperlightBombApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alarm")
+		self:Say(args.spellId, CL.bomb)
 		self:SayCountdown(args.spellId, 5)
 	end
 end
@@ -264,16 +267,18 @@ end
 
 -- Commerce Enforcer / Commander Zo'far
 function mod:PowerKick(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	if self:Tank() or self:Healer() or self:Me(args.destGUID) then
+		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Commander Zo'far
 do
 	local playerList = {}
 	local onMe = false
-    -- This debuff applies to two players at once, who will be pulled towards each other.
-    -- If they touch they take a lot of damage.
+	-- This debuff applies to two players at once, who will be pulled towards each other.
+	-- If they touch they take a lot of damage.
 	function mod:LethalForceApplied(args)
 		local count = #playerList+1
 		playerList[count] = args.destName
