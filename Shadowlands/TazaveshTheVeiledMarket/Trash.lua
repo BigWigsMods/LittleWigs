@@ -11,6 +11,8 @@ mod:RegisterEnableMob(
 	177816, -- Interrogation Specialist
 	177808, -- Armored Overseer
 	179837, -- Tracker Zo'korss
+	180091, -- Ancient Core Hound
+	180495, -- Enraged Direhorn
 	180348, -- Cartel Muscle
 	180335, -- Cartel Smuggler
 	177817, -- Support Officer
@@ -39,6 +41,9 @@ if L then
 	------ Streets of Wonder ------
 	L.interrogation_specialist = "Interrogation Specialist"
 	L.armored_overseer_tracker_zokorss = "Armored Overseer / Tracker Zo'korss"
+	L.tracker_zokorss = "Tracker Zo'korss"
+	L.ancient_core_hound = "Ancient Core Hound"
+	L.enraged_direhorn = "Enraged Direhorn"
 	L.cartel_muscle = "Cartel Muscle"
 	L.cartel_smuggler = "Cartel Smuggler"
 	L.support_officer = "Support Officer"
@@ -70,6 +75,14 @@ function mod:GetOptions()
 		356031, -- Stasis Beam
 		-- Armored Overseer / Tracker Zo'korss
 		356001, -- Beam Splicer
+		-- Tracker Zo'korss
+		356929, -- Chain of Custody
+		{356942, "TANK"}, -- Lockdown
+		-- Ancient Core Hound
+		356404, -- Lava Breath
+		356407, -- Ancient Dread
+		-- Enraged Direhorn
+		357512, -- Frenzied Charge
 		-- Cartel Muscle
 		{356967, "TANK_HEALER"}, -- Hyperlight Backhand
 		-- Cartel Smuggler
@@ -111,6 +124,9 @@ function mod:GetOptions()
 		------ Streets of Wonder ------
 		[356031] = L.interrogation_specialist,
 		[356001] = L.armored_overseer_tracker_zokorss,
+		[356929] = L.tracker_zokorss,
+		[356404] = L.ancient_core_hound,
+		[357512] = L.enraged_direhorn,
 		[356967] = L.cartel_muscle,
 		[357029] = L.cartel_smuggler,
 		[355980] = L.support_officer,
@@ -137,6 +153,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BeamSplicerDamage", 356011)
+	self:Log("SPELL_CAST_START", "ChainOfCustody", 356929)
+	self:Log("SPELL_CAST_START", "Lockdown", 356942)
+	self:Log("SPELL_CAST_START", "LavaBreath", 356404)
+	self:Log("SPELL_CAST_START", "AncientDread", 356407)
+	self:Log("SPELL_AURA_APPLIED", "AncientDreadApplied", 356407)
+	self:Log("SPELL_CAST_START", "FrenziedCharge", 357512)
 	self:Log("SPELL_CAST_START", "HyperlightBackhand", 356967)
 	self:Log("SPELL_AURA_APPLIED", "HyperlightBombApplied", 357029)
 	self:Log("SPELL_AURA_REMOVED", "HyperlightBombRemoved", 357029)
@@ -204,6 +226,40 @@ do
 	end
 end
 
+-- Tracker Zo'korss
+function mod:ChainOfCustody(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
+end
+function mod:Lockdown(args)
+	if self:Tank() then
+		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+-- Ancient Core Hound
+function mod:LavaBreath(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+end
+function mod:AncientDread(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+function mod:AncientDreadApplied(args)
+	if self:Dispeller("curse") then
+		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
+end
+
+-- Enraged Direhorn
+function mod:FrenziedCharge(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
 -- Cartel Muscle
 function mod:HyperlightBackhand(args)
 	if self:Tank() or self:Healer() then
@@ -237,7 +293,7 @@ function mod:HardLightBarrier(args)
 	self:PlaySound(args.spellId, "alert")
 end
 function mod:HardLightBarrierApplied(args)
-	if self:Dispeller("magic", true, args.spellId) then
+	if self:Dispeller("magic", true) then
 		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
