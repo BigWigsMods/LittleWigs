@@ -217,7 +217,7 @@ do
 	function mod:BeamSplicerDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t-prev > 1 then
+			if t - prev > 1 then
 				prev = t
 				self:PersonalMessage(356001, "underyou")
 				self:PlaySound(356001, "underyou")
@@ -247,10 +247,17 @@ function mod:AncientDread(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
-function mod:AncientDreadApplied(args)
-	if self:Dispeller("curse") then
-		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:AncientDreadApplied(args)
+		if self:Dispeller("curse") then
+			local t = args.time
+			if t - prev > 1 then
+				prev = t
+				self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
+				self:PlaySound(args.spellId, "warning")
+			end
+		end
 	end
 end
 
@@ -418,7 +425,7 @@ do
 	function mod:CrackleDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t-prev > 2 then
+			if t - prev > 2 then
 				prev = t
 				self:PersonalMessage(355577, "underyou")
 				self:PlaySound(355577, "underyou")
