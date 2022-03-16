@@ -72,7 +72,7 @@ function mod:GetOptions()
 		-- Cartel Muscle
 		{356967, "TANK_HEALER"}, -- Hyperlight Backhand
 		-- Cartel Smuggler
-		{357029, "SAY_COUNTDOWN"}, -- Hyperlight Bomb
+		{357029, "SAY", "SAY_COUNTDOWN"}, -- Hyperlight Bomb
 		-- Support Officer
 		355980, -- Refraction Shield
 		{355934, "DISPEL"}, -- Hard Light Barrier
