@@ -253,8 +253,8 @@ end
 do
 	local function printTarget(self, name, guid)
 		local isOnMe = self:Me(guid)
-		self:TargetMessage(355637, isOnMe and "red" or "yellow", name)
-		self:PlaySound(355637, isOnMe and "alarm" or "info", nil, name)
+		self:TargetMessage(355637, "yellow", name)
+		self:PlaySound(355637, isOnMe and "warning" or "info", nil, name)
 	end
 
 	function mod:QuellingStrike(args)
