@@ -4,6 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Tazavesh Trash", 2441)
 if not mod then return end
+local wipe = table.wipe
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	------ Streets of Wonder ------
@@ -205,7 +206,7 @@ end
 
 -- Cartel Muscle
 function mod:HyperlightBackhand(args)
-	if self:Tank() or self:Healer() or self:Me(args.destGUID) then
+	if self:Tank() or self:Healer() then
 		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -249,13 +250,15 @@ function mod:OpenCage(args)
 end
 
 -- Market Peacekeeper
-function mod:QuellingStrike(args)
-	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "red", CL.you:format(args.spellName))
-		self:PlaySound(args.spellId, "warning")
-	else
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alert")
+do
+	local function printTarget(self, name, guid)
+		local isOnMe = self:Me(guid)
+		self:TargetMessage(355637, isOnMe and "red" or "yellow", name)
+		self:PlaySound(355637, isOnMe and "alarm" or "info", nil, name)
+	end
+
+	function mod:QuellingStrike(args)
+		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 	end
 end
 
@@ -267,7 +270,7 @@ end
 
 -- Commerce Enforcer / Commander Zo'far
 function mod:PowerKick(args)
-	if self:Tank() or self:Healer() or self:Me(args.destGUID) then
+	if self:Tank() or self:Healer() then
 		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end

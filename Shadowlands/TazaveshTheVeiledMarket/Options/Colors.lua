@@ -77,7 +77,7 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[355480] = {"blue","red"},
 	[355577] = {"blue","red"},
 	[355584] = "yellow",
-	[355637] = {"red","yellow"},
+	[355637] = {"blue","red","yellow"},
 	[355782] = "red",
 	[355934] = {"orange","red"},
 	[355980] = "yellow",
