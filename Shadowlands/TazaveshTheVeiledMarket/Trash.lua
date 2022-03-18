@@ -300,7 +300,7 @@ function mod:HardLightBarrier(args)
 	self:PlaySound(args.spellId, "alert")
 end
 function mod:HardLightBarrierApplied(args)
-	if self:Dispeller("magic", true) then
+	if self:Dispeller("magic", true) not self:Player(args.destFlags) then
 		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
@@ -309,7 +309,7 @@ end
 -- Defective Sorter
 function mod:OpenCage(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Market Peacekeeper
