@@ -4,7 +4,6 @@
 
 local mod, CL = BigWigs:NewBoss("Tazavesh Trash", 2441)
 if not mod then return end
-local wipe = table.wipe
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	------ Streets of Wonder ------
@@ -369,7 +368,7 @@ do
 	end
 
 	function mod:LethalForceRemoved(args)
-		wipe(playerList)
+		playerList = {}
 		onMe = false
 	end
 end
