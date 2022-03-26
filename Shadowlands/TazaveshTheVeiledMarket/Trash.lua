@@ -291,8 +291,10 @@ end
 
 -- Support Officer
 function mod:RefractionShieldApplied(args)
-	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
-	self:PlaySound(args.spellId, "warning")
+	if not self:Player(args.destFlags) then
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 function mod:HardLightBarrier(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
