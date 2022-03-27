@@ -22,7 +22,7 @@ if L then
 	L.commander_zofar = "Kommandant Zo'far"
 
 	------ So'leah's Gambit ------
-	L.murkbrine_scalebinder = "Schuppenbinder der Finstergisch"
+	L.murkbrine_scalebinder = "Schuppenbinder der Finstergischt"
 	L.murkbrine_shellcrusher = "Panzerbrecher der Finstergischt"
 	L.coastwalker_goliath = "Küstenschreitergoliath"
 	L.stormforged_guardian = "Sturmgeschmiedeter Wächter"
