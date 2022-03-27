@@ -2,7 +2,7 @@
 BigWigs:AddSounds("Zo'phex the Sentinel", {
 	[345770] = {"alarm","info"},
 	[345990] = {"alert","info","warning"},
-	[346204] = "alert",
+	[346204] = {"alert","underyou"},
 	[347949] = {"alert","warning"},
 })
 
