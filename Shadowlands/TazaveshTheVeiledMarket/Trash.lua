@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	177817, -- Support Officer
 	176396, -- Defective Sorter
 	179840, -- Market Peacekeeper
+	179841, -- Veteran Sparkcaster
 	179842, -- Commerce Enforcer
 	179821, -- Commander Zo'far
 
@@ -48,6 +49,7 @@ if L then
 	L.support_officer = "Support Officer"
 	L.defective_sorter = "Defective Sorter"
 	L.market_peacekeeper = "Market Peacekeeper"
+	L.veteran_sparkcaster = "Veteran Sparkcaster"
 	L.commerce_enforcer = "Commerce Enforcer"
 	L.commerce_enforcer_commander_zofar = "Commerce Enforcer / Commander Zo'far"
 	L.commander_zofar = "Commander Zo'far"
@@ -72,6 +74,8 @@ function mod:GetOptions()
 		------ Streets of Wonder ------
 		-- Interrogation Specialist
 		356031, -- Stasis Beam
+		-- Portalmancer Zo'honn
+		356324, -- Empowered Glyph of Restraint
 		-- Armored Overseer / Tracker Zo'korss
 		356001, -- Beam Splicer
 		-- Tracker Zo'korss
@@ -93,6 +97,8 @@ function mod:GetOptions()
 		347721, -- Open Cage
 		-- Market Peacekeeper
 		355637, -- Quelling Strike
+		-- Veteran Sparkcaster
+		355642, -- Hyperlight Salvo
 		-- Commerce Enforcer
 		355782, -- Force Multiplier
 		-- Commerce Enforcer / Commander Zo'far
@@ -122,6 +128,7 @@ function mod:GetOptions()
 	}, {
 		------ Streets of Wonder ------
 		[356031] = L.interrogation_specialist,
+		[356324] = L.portalmancer_zohonn,
 		[356001] = L.armored_overseer_tracker_zokorss,
 		[356929] = L.tracker_zokorss,
 		[356404] = L.ancient_core_hound,
@@ -131,6 +138,7 @@ function mod:GetOptions()
 		[355980] = L.support_officer,
 		[347721] = L.defective_sorter,
 		[355637] = L.market_peacekeeper,
+		[355642] = L.veteran_sparkcaster,
 		[355782] = L.commerce_enforcer,
 		[355477] = L.commerce_enforcer_commander_zofar,
 		[355480] = L.commander_zofar,
@@ -150,6 +158,7 @@ end
 function mod:OnBossEnable()
 	------ Streets of Wonder ------
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
+	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BeamSplicerDamage", 356011)
 	self:Log("SPELL_CAST_START", "ChainOfCustody", 356929)
@@ -166,6 +175,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "HardLightBarrierApplied", 355934)
 	self:Log("SPELL_CAST_START", "OpenCage", 347721)
 	self:Log("SPELL_CAST_START", "QuellingStrike", 355637)
+	self:Log("SPELL_CAST_START", "HyperlightSalvo", 355642)
 	self:Log("SPELL_AURA_APPLIED", "ForceMultiplierApplied", 355782)
 	self:Log("SPELL_CAST_START", "PowerKick", 355477)
 	self:Log("SPELL_AURA_APPLIED", "LethalForceApplied", 355480)
@@ -200,6 +210,12 @@ end
 function mod:StasisBeam(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Portalmancer Zo'honn
+function mod:EmpoweredGlyphOfRestraint(args)
+	self:Message(356324, "red", CL.casting:format(args.spellName))
+	self:PlaySound(356324, "warning")
 end
 
 -- Armored Overseer / Tracker Zo'korss
@@ -324,6 +340,12 @@ do
 	function mod:QuellingStrike(args)
 		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 	end
+end
+
+-- Veteran Sparkcaster
+function mod:HyperlightSalvo(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Commerce Enforcer
