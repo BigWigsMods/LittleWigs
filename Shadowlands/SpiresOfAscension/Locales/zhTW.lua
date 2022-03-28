@@ -6,14 +6,14 @@ end
 
 L = BigWigs:NewBossLocale("Spires of Ascension Trash", "zhTW")
 if L then
-	-- L.etherdiver = "Etherdiver"
-	-- L.forsworn_castigator = "Forsworn Castigator"
-	-- L.forsworn_champion = "Forsworn Champion"
-	-- L.forsworn_goliath = "Forsworn Goliath"
-	-- L.forsworn_inquisitor = "Forsworn Inquisitor"
-	-- L.forsworn_mender = "Forsworn Mender"
-	-- L.forsworn_squad_leader = "Forsworn Squad-Leader"
-	-- L.forsworn_warden = "Forsworn Warden"
-	-- L.astronos = "Astronos"
-	-- L.lakesis = "Lakesis"
+	L.etherdiver = "乙太掠靈者"
+	L.forsworn_castigator = "棄誓懲戒者"
+	L.forsworn_champion = "棄誓者勇士"
+	L.forsworn_goliath = "棄誓者巨人"
+	L.forsworn_inquisitor = "棄誓者審判官"
+	L.forsworn_mender = "棄誓治療者"
+	L.forsworn_squad_leader = "棄誓者小隊長"
+	L.forsworn_warden = "棄誓看守者"
+	L.astronos = "阿斯卓諾斯"
+	L.lakesis = "萊克西斯"
 end
