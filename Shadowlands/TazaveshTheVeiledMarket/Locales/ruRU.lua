@@ -7,6 +7,7 @@ end
 L = BigWigs:NewBossLocale("Tazavesh Trash", "ruRU")
 if L then
 	L.interrogation_specialist = "Специалист по допросу"
+	L.portalmancer_zohonn = "Заклинатель порталов Зо'хонн"
 	L.armored_overseer_tracker_zokorss = "Тяжелый смотритель / Следопыт Зо'корсс"
 	L.tracker_zokorss = "Следопыт Зо'корсс"
 	L.ancient_core_hound = "Древняя гончая недр"
@@ -16,6 +17,7 @@ if L then
 	L.support_officer = "Офицер поддержки"
 	L.defective_sorter = "Дефективный сортировщик"
 	L.market_peacekeeper = "Тазавешский хранитель порядка"
+	L.veteran_sparkcaster = "Опытный заклинатель искр"
 	L.commerce_enforcer = "Охранитель коммерции"
 	L.commerce_enforcer_commander_zofar = "Охранитель коммерции / Командир Зо'фар"
 	L.commander_zofar = "Командир Зо'фар"

@@ -7,6 +7,7 @@ end
 L = BigWigs:NewBossLocale("Tazavesh Trash", "zhTW")
 if L then
 	L.interrogation_specialist = "審問專家"
+	--L.portalmancer_zohonn = "Portalmancer Zo'honn"
 	L.armored_overseer_tracker_zokorss = "武裝監督者 / 『追蹤者』佐寇司"
 	L.tracker_zokorss = "『追蹤者』佐寇司"
 	L.ancient_core_hound = "上古熔核犬"
@@ -16,6 +17,7 @@ if L then
 	L.support_officer = "支援官"
 	L.defective_sorter = "故障的分類機"
 	L.market_peacekeeper = "市場保安官"
+	--L.veteran_sparkcaster = "Veteran Sparkcaster"
 	L.commerce_enforcer = "貿易執法者"
 	L.commerce_enforcer_commander_zofar = "貿易執法者 / 指揮官佐發"
 	L.commander_zofar = "指揮官佐發"

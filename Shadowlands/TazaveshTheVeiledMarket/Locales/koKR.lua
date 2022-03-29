@@ -7,6 +7,7 @@ end
 L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
 if L then
 	L.interrogation_specialist = "심문 전문가"
+	L.portalmancer_zohonn = "차원문술사 조혼"
 	L.armored_overseer_tracker_zokorss = "무장한 감독관 / 추적자 조코르스"
 	L.tracker_zokorss = "추적자 조코르스"
 	L.ancient_core_hound = "고대의 심장부 사냥개"
@@ -16,6 +17,7 @@ if L then
 	L.support_officer = "지원 장교"
 	L.defective_sorter = "불량 분류기"
 	L.market_peacekeeper = "시장 평화감시단"
+	L.veteran_sparkcaster = "노련한 불꽃술사"
 	L.commerce_enforcer = "상업구 집행자"
 	L.commerce_enforcer_commander_zofar = "상업구 집행자 / 사령관 조파르"
 	L.commander_zofar = "사령관 조파르"
