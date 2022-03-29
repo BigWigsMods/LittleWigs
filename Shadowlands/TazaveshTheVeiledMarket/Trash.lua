@@ -8,6 +8,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	------ Streets of Wonder ------
 	177816, -- Interrogation Specialist
+	179334, -- Portalmancer Zo'honn
 	177808, -- Armored Overseer
 	179837, -- Tracker Zo'korss
 	180091, -- Ancient Core Hound
@@ -40,6 +41,7 @@ local L = mod:GetLocale()
 if L then
 	------ Streets of Wonder ------
 	L.interrogation_specialist = "Interrogation Specialist"
+	L.portalmancer_zohonn = "Portalmancer Zo'honn"
 	L.armored_overseer_tracker_zokorss = "Armored Overseer / Tracker Zo'korss"
 	L.tracker_zokorss = "Tracker Zo'korss"
 	L.ancient_core_hound = "Ancient Core Hound"
