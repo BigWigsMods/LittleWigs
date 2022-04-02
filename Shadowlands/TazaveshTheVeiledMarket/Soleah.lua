@@ -5,7 +5,10 @@
 
 local mod, CL = BigWigs:NewBoss("So'leah", 2441, 2455)
 if not mod then return end
-mod:RegisterEnableMob(177269) -- So'leah
+mod:RegisterEnableMob(
+	177269, -- So'leah
+	177716, -- So' Cartel Assassin
+)
 mod:SetEncounterID(2442)
 mod:SetStage(1)
 
@@ -22,6 +25,7 @@ function mod:GetOptions()
 		350796, -- Hyperlight Spark
 		351086, -- Power Overwhelming
 		351096, -- Energy Fragmentation
+		351119, -- Shuriken Blitz
 	}
 end
 
@@ -37,6 +41,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "PowerOverwhelming", 351086)
 	self:Log("SPELL_AURA_REMOVED", "PowerOverwhelmingRemoved", 351086)
 	self:Log("SPELL_CAST_SUCCESS", "EnergyFragmentation", 351096)
+	self:Log("SPELL_CAST_START", "ShurikenBlitz", 351119)
 end
 
 function mod:OnEngage()
@@ -112,4 +117,9 @@ end
 function mod:EnergyFragmentation(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ShurikenBlitz(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end

@@ -63,6 +63,7 @@ BigWigs:AddSounds("So'leah", {
 	[350804] = "info",
 	[351086] = "long",
 	[351096] = "alert",
+	[351119] = "warning",
 	[351124] = "alert",
 	[353635] = "alarm",
 	["stages"] = "long",
