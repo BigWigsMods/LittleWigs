@@ -18,4 +18,5 @@ if L then
 	L.kyrian_stitchwerk = "Kyrian suturé"
 	L.flesh_crafter = "Façonneur de chair"
 	L.separation_assistant = "Préposé à l'équarrissage"
+	L.goregrind = "Broyaux"
 end

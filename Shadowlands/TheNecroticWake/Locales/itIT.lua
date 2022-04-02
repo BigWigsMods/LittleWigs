@@ -18,4 +18,5 @@ if L then
 	L.kyrian_stitchwerk = "Opera Ricucita dei Kyrian"
 	L.flesh_crafter = "Plasmatore di Carne"
 	L.separation_assistant = "Assistente alla Separazione"
+	L.goregrind = "Tritabudella"
 end

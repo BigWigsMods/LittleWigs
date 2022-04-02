@@ -44,6 +44,7 @@ BigWigs:AddColors("The Necrotic Wake Trash", {
 	[327130] = "orange",
 	[327396] = {"blue","yellow"},
 	[328667] = "orange",
+	[333477] = "red",
 	[334748] = "orange",
 	[335141] = {"red","yellow"},
 	[335143] = "orange",
