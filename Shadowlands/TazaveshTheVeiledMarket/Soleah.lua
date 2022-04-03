@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("So'leah", 2441, 2455)
 if not mod then return end
 mod:RegisterEnableMob(
 	177269, -- So'leah
-	177716, -- So' Cartel Assassin
+	177716 -- So' Cartel Assassin
 )
 mod:SetEncounterID(2442)
 mod:SetStage(1)
