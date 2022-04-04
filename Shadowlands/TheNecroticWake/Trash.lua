@@ -16,10 +16,10 @@ mod:RegisterEnableMob(
 	165197, -- Skeletal Monstrosity
 	173016, -- Corpse Collector
 	172981, -- Kyrian Stitchwerk
-	163621, -- Goregrind
-	163620, -- Rotspew
 	165872, -- Flesh Crafter
-	167731 -- Separation Assistant
+	167731, -- Separation Assistant
+	163621, -- Goregrind
+	163620 -- Rotspew
 )
 
 --------------------------------------------------------------------------------
