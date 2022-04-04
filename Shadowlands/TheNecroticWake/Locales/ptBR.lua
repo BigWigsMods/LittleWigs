@@ -19,4 +19,5 @@ if L then
 	L.flesh_crafter = "Artesão de Carne"
 	L.separation_assistant = "Assistente de Separação"
 	L.goregrind = "Raspatripa"
+	L.rotspew = "Cuspepodre"
 end

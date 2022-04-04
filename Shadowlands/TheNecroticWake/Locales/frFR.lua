@@ -19,4 +19,5 @@ if L then
 	L.flesh_crafter = "Façonneur de chair"
 	L.separation_assistant = "Préposé à l'équarrissage"
 	L.goregrind = "Broyaux"
+	L.rotspew = "Crache-Vérole"
 end

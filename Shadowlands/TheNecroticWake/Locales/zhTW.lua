@@ -19,4 +19,5 @@ if L then
 	L.flesh_crafter = "血肉工匠"
 	L.separation_assistant = "肢解助理"
 	--L.goregrind = "Goregrind"
+	--L.rotspew = "Rotspew"
 end

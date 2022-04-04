@@ -19,4 +19,5 @@ if L then
 	L.flesh_crafter = "살점 공예가"
 	L.separation_assistant = "분리 조수"
 	L.goregrind = "피갈이"
+	L.rotspew = "썩은토"
 end

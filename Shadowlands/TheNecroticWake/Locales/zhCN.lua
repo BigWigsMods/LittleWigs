@@ -19,4 +19,5 @@ if L then
 	L.flesh_crafter = "血肉工匠"
 	L.separation_assistant = "分离助理"
 	L.goregrind = "碎淤"
+	L.rotspew = "烂吐"
 end

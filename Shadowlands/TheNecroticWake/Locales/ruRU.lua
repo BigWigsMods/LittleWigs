@@ -19,4 +19,5 @@ if L then
 	L.flesh_crafter = "Изготовитель кадавров"
 	L.separation_assistant = "Ассистент-расчленитель"
 	L.goregrind = "Кровомес"
+	L.rotspew = "Тошногнил"
 end
