@@ -97,7 +97,7 @@ end
 
 function mod:MenacingShout(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:SecuritySlam(args)
