@@ -55,6 +55,7 @@ function mod:OnBossEnable()
 	-- Venza Goldfuse
 	self:Log("SPELL_CAST_START", "ChainsOfDamnation", 350101)
 	self:Log("SPELL_CAST_START", "WhirlingAnnihilation", 350086)
+	self:Log("SPELL_DAMAGE", "WhirlingAnnihilationDamage", 350090)
 end
 
 function mod:OnEngage()
@@ -177,4 +178,18 @@ function mod:WhirlingAnnihilation(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 25.5)
+end
+
+do
+	local prev = 0
+	function mod:WhirlingAnnihilationDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(350086, "underyou")
+				self:PlaySound(350086, "underyou")
+			end
+		end
+	end
 end

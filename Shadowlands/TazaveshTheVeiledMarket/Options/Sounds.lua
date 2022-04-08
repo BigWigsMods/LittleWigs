@@ -14,7 +14,7 @@ BigWigs:AddSounds("The Grand Menagerie", {
 	[349954] = "alert",
 	[349987] = "alarm",
 	[350010] = "info",
-	[350086] = "alarm",
+	[350086] = {"alarm","underyou"},
 	[350101] = "alert",
 })
 
