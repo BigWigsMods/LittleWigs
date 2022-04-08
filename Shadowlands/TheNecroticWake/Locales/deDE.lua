@@ -18,4 +18,6 @@ if L then
 	L.kyrian_stitchwerk = "Kyrianisches Flickwerk"
 	L.flesh_crafter = "Fleischformer"
 	L.separation_assistant = "Trennungsgehilfe"
+	L.goregrind = "Metzelmahler"
+	L.rotspew = "Rottspeier"
 end

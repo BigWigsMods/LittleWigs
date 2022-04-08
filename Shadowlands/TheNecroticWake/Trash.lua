@@ -16,10 +16,10 @@ mod:RegisterEnableMob(
 	165197, -- Skeletal Monstrosity
 	173016, -- Corpse Collector
 	172981, -- Kyrian Stitchwerk
-	163620, -- Rotspew
-	163621, -- Goregrind
 	165872, -- Flesh Crafter
-	167731 -- Separation Assistant
+	167731, -- Separation Assistant
+	163621, -- Goregrind
+	163620 -- Rotspew
 )
 
 --------------------------------------------------------------------------------
@@ -40,6 +40,8 @@ if L then
 	L.kyrian_stitchwerk = "Kyrian Stitchwerk"
 	L.flesh_crafter = "Flesh Crafter"
 	L.separation_assistant = "Separation Assistant"
+	L.goregrind = "Goregrind"
+	L.rotspew = "Rotspew"
 end
 
 --------------------------------------------------------------------------------
@@ -78,6 +80,10 @@ function mod:GetOptions()
 		{323496, "SAY"}, -- Throw Cleaver
 		-- Separation Assistant
 		338606, -- Morbid Fixation
+		-- Goregrind
+		333477, -- Gut Slice
+		-- Rotspew
+		{333479, "SAY"}, -- Spew Disease
 	}, {
 		[334748] = L.corpse_harvester,
 		[323190] = L.stitched_vanguard,
@@ -91,6 +97,8 @@ function mod:GetOptions()
 		[338456] = L.kyrian_stitchwerk,
 		[327130] = L.flesh_crafter,
 		[338606] = L.separation_assistant,
+		[333477] = L.goregrind,
+		[333479] = L.rotspew,
 	}
 end
 
@@ -117,6 +125,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MorbidFixation", 338606)
 	self:Log("SPELL_AURA_APPLIED", "MorbidFixationApplied", 338606)
 	self:Log("SPELL_AURA_REMOVED", "MorbidFixationRemoved", 338606)
+	self:Log("SPELL_CAST_START", "GutSlice", 333477)
+	self:Log("SPELL_CAST_START", "SpewDisease", 333479)
 
 	self:Death("SkeletalMonstrosityDeath", 165197)
 	self:Death("NarzudahDeath", 165824)
@@ -298,6 +308,27 @@ do
 
 	function mod:MorbidFixation(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
+end
+
+-- Goregrind
+function mod:GutSlice(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Rotspew
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(333479, "yellow", name)
+		self:PlaySound(333479, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(333479)
+		end
+	end
+
+	function mod:SpewDisease(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 
