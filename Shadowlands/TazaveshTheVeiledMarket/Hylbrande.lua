@@ -16,6 +16,7 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		346971, -- [DNT] Summon Vault Defender
+		353312, -- Purifying Burst
 		{346116, "TANK"}, -- Shearing Swings
 		347094, -- Titanic Crash
 		346957, -- Purged by Fire
@@ -25,6 +26,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_START", "PurifyingBurst", 353312)
 	self:Log("SPELL_CAST_SUCCESS", "ShearingSwings", 346116)
 	self:Log("SPELL_CAST_START", "TitanicCrash", 347094)
 	self:Log("SPELL_CAST_START", "PurgedByFire", 346957)
@@ -33,6 +35,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:Bar(353312, 5.6) -- Purifying Burst
 	self:Bar(346116, 8.1) -- Shearing Swings
 	self:Bar(346957, 10.5) -- Purged by Fire
 	self:Bar(347094, 15.4) -- Titanic Crash
@@ -51,6 +54,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		if self:BarTimeLeft(346766) > 29.1 then -- Sanitizing Cycle
 			self:Bar(spellId, 29.1, CL.adds)
 		end
+	end
+end
+
+function mod:PurifyingBurst(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+	if self:BarTimeLeft(346766) > 21.8 then -- Sanitizing Cycle
+		self:CDBar(args.spellId, 21.8)
 	end
 end
 
@@ -88,6 +99,7 @@ do
 			self:Message(args.spellId, "cyan")
 			self:PlaySound(args.spellId, "long")
 			self:StopBar(args.spellId)
+			self:StopBar(353312) -- Purifying Burst
 			self:StopBar(346116) -- Shearing Swings
 			self:StopBar(346957) -- Purged by Fire
 			self:StopBar(CL.adds) -- [DNT] Summon Vault Defender
@@ -100,6 +112,7 @@ function mod:SanitizingCycleRemoved(args)
 	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 70)
+	self:Bar(353312, 13.3) -- Purifying Burst
 	self:Bar(346116, 16.6) -- Shearing Swings
 	self:Bar(346957, 19.2) -- Purged by Fire
 	self:Bar(346971, 20.3, CL.adds) -- [DNT] Summon Vault Defender
