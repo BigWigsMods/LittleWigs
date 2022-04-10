@@ -30,6 +30,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ShearingSwings", 346116)
 	self:Log("SPELL_CAST_START", "TitanicCrash", 347094)
 	self:Log("SPELL_CAST_START", "PurgedByFire", 346957)
+	self:Log("SPELL_DAMAGE", "PurgedByFireDamage", 346960)
 	self:Log("SPELL_CAST_START", "SanitizingCycle", 346766)
 	self:Log("SPELL_AURA_REMOVED", "SanitizingCycleRemoved", 346766)
 end
@@ -86,6 +87,20 @@ function mod:PurgedByFire(args)
 	self:PlaySound(args.spellId, "alert")
 	if self:BarTimeLeft(346766) > 17 then -- Sanitizing Cycle
 		self:Bar(args.spellId, 17)
+	end
+end
+
+do
+	local prev = 0
+	function mod:PurgedByFireDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1 then
+				prev = t
+				self:PersonalMessage(346957, "underyou")
+				self:PlaySound(346957, "underyou")
+			end
+		end
 	end
 end
 
