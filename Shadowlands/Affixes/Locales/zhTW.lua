@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("De Other Side Trash", "zhTW")
+local L = BigWigs:NewBossLocale("Encrypted", "zhTW")
 if not L then return end
 if L then
 	--L.urh_dismantler = "Urh Dismantler"
