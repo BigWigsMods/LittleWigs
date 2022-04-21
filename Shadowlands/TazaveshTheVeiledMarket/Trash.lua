@@ -87,7 +87,7 @@ function mod:GetOptions()
 		356404, -- Lava Breath
 		356407, -- Ancient Dread
 		-- Enraged Direhorn
-		357512, -- Frenzied Charge
+		{357512, "SAY"}, -- Frenzied Charge
 		-- Cartel Muscle
 		{356967, "TANK_HEALER"}, -- Hyperlight Backhand
 		-- Cartel Smuggler
@@ -162,7 +162,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
-	self:Log("SPELL_PERIODIC_DAMAGE", "BeamSplicerDamage", 356011)
+	self:Log("SPELL_AURA_APPLIED", "BeamSplicerApplied", 356011)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "BeamSplicerApplied", 356011)
 	self:Log("SPELL_CAST_START", "ChainOfCustody", 356929)
 	self:Log("SPELL_CAST_START", "Lockdown", 356942)
 	self:Log("SPELL_CAST_START", "LavaBreath", 356404)
@@ -231,7 +232,7 @@ function mod:BeamSplicer(args)
 end
 do
 	local prev = 0
-	function mod:BeamSplicerDamage(args)
+	function mod:BeamSplicerApplied(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
 			if t - prev > 1 then
@@ -279,9 +280,18 @@ do
 end
 
 -- Enraged Direhorn
-function mod:FrenziedCharge(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local function printTarget(self, name, guid)
+		local onMe = self:Me(guid)
+		self:TargetMessage(357512, "red", name)
+		self:PlaySound(357512, onMe and "warning" or "alert", nil, name)
+		if onMe then
+			self:Say(357512)
+		end
+	end
+	function mod:FrenziedCharge(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+	end
 end
 
 -- Cartel Muscle

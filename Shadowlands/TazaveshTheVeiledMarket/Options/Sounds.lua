@@ -98,5 +98,5 @@ BigWigs:AddSounds("Tazavesh Trash", {
 	[357238] = "warning",
 	[357260] = "warning",
 	[357284] = "warning",
-	[357512] = "alert",
+	[357512] = {"alert","warning"},
 })
