@@ -34,6 +34,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_SUCCESS", "SummonAssassins", 351124)
 	self:Log("SPELL_CAST_START", "CollapsingStar", 353635)
+	self:Log("SPELL_CAST_SUCCESS", "CollapsingStarSummoned", 353635)
 	self:Log("SPELL_AURA_APPLIED", "CollapsingEnergyApplied", 350804)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "CollapsingEnergyApplied", 350804)
 	self:Log("SPELL_AURA_REMOVED", "CollapsingEnergyRemoved", 350804)
@@ -43,6 +44,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "EnergyFragmentation", 351096)
 	self:Log("SPELL_CAST_START", "ShurikenBlitz", 351119)
 end
+
+local starCount = 4
 
 function mod:OnEngage()
 	self:SetStage(1)
@@ -82,9 +85,19 @@ function mod:CollapsingStar(args)
 	end
 end
 
+function mod:CollapsingStarSummoned(args)
+	starCount = 4
+	self:Bar(350804, 30, CL.count:format(CL.explosion, starCount))
+end
+
 function mod:CollapsingEnergyApplied(args)
 	if self:Me(args.destGUID) then
 		self:NewStackMessage(args.spellId, "blue", args.destName, args.amount)
+
+		local barTimeLeft = self:BarTimeLeft(CL.count:format(CL.explosion, starCount))
+		self:StopBar(CL.count:format(CL.explosion, starCount))
+		starCount = starCount - 1
+		self:Bar(args.spellId, barTimeLeft, CL.count:format(CL.explosion, starCount))
 	end
 end
 
