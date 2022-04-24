@@ -97,7 +97,9 @@ function mod:CollapsingEnergyApplied(args)
 		local barTimeLeft = self:BarTimeLeft(CL.count:format(CL.explosion, starCount))
 		self:StopBar(CL.count:format(CL.explosion, starCount))
 		starCount = starCount - 1
-		self:Bar(args.spellId, barTimeLeft, CL.count:format(CL.explosion, starCount))
+		if starCount > 0 then
+			self:Bar(args.spellId, barTimeLeft, CL.count:format(CL.explosion, starCount))
+		end
 	end
 end
 
