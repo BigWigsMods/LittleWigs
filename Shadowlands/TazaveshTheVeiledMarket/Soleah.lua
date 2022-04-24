@@ -6,8 +6,7 @@
 local mod, CL = BigWigs:NewBoss("So'leah", 2441, 2455)
 if not mod then return end
 mod:RegisterEnableMob(
-	177269, -- So'leah
-	177716 -- So' Cartel Assassin
+	177269 -- So'leah
 )
 mod:SetEncounterID(2442)
 mod:SetStage(1)
@@ -44,8 +43,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "EnergyFragmentation", 351096)
 	self:Log("SPELL_CAST_START", "ShurikenBlitz", 351119)
 end
-
-local starCount = 4
 
 function mod:OnEngage()
 	self:SetStage(1)
@@ -85,20 +82,24 @@ function mod:CollapsingStar(args)
 	end
 end
 
-function mod:CollapsingStarSummoned(args)
-	starCount = 4
-	self:Bar(350804, 30, CL.count:format(CL.explosion, starCount))
-end
+do
+	local starCount = 4
 
-function mod:CollapsingEnergyApplied(args)
-	if self:Me(args.destGUID) then
-		self:NewStackMessage(args.spellId, "blue", args.destName, args.amount)
+	function mod:CollapsingStarSummoned(args)
+		starCount = 4
+		self:Bar(350804, 30, CL.count:format(CL.explosion, starCount))
+	end
 
-		local barTimeLeft = self:BarTimeLeft(CL.count:format(CL.explosion, starCount))
-		self:StopBar(CL.count:format(CL.explosion, starCount))
-		starCount = starCount - 1
-		if starCount > 0 then
-			self:Bar(args.spellId, barTimeLeft, CL.count:format(CL.explosion, starCount))
+	function mod:CollapsingEnergyApplied(args)
+		if self:Me(args.destGUID) then
+			self:NewStackMessage(args.spellId, "blue", args.destName, args.amount)
+
+			local barTimeLeft = self:BarTimeLeft(CL.count:format(CL.explosion, starCount))
+			self:StopBar(CL.count:format(CL.explosion, starCount))
+			starCount = starCount - 1
+			if starCount > 0 then
+				self:Bar(args.spellId, barTimeLeft, CL.count:format(CL.explosion, starCount))
+			end
 		end
 	end
 end
