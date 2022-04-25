@@ -5,9 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("So'leah", 2441, 2455)
 if not mod then return end
-mod:RegisterEnableMob(
-	177269 -- So'leah
-)
+mod:RegisterEnableMob(177269) -- So'leah
 mod:SetEncounterID(2442)
 mod:SetStage(1)
 
@@ -85,7 +83,7 @@ end
 do
 	local starCount = 4
 
-	function mod:CollapsingStarSummoned(args)
+	function mod:CollapsingStarSummoned()
 		starCount = 4
 		self:Bar(350804, 30, CL.count:format(CL.explosion, starCount))
 	end

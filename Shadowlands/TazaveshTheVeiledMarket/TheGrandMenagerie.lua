@@ -162,12 +162,12 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(350101, "orange", name)
 		self:PlaySound(350101, "alert", nil, name)
-		
+
 		if self:Me(guid) then
 			self:Say(350101)
 		end
 	end
-	
+
 	function mod:ChainsOfDamnation(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 25.5)

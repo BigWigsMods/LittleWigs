@@ -66,7 +66,7 @@ function mod:Shuri(args)
 	end
 end
 
-function mod:Divide(args)
+function mod:Divide()
 	divideCount = divideCount + 1
 	self:Message(347249, "yellow")
 	self:PlaySound(347249, "info")

@@ -403,7 +403,7 @@ do
 		end
 	end
 
-	function mod:LethalForceRemoved(args)
+	function mod:LethalForceRemoved()
 		playerList = {}
 		onMe = false
 	end

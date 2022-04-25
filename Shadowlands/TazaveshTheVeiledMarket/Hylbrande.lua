@@ -5,17 +5,19 @@
 
 local mod, CL = BigWigs:NewBoss("Hylbrande", 2441, 2448)
 if not mod then return end
-mod:RegisterEnableMob(
-	175663 -- Hylbrande
-)
+mod:RegisterEnableMob(175663) -- Hylbrande
 mod:SetEncounterID(2426)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
--- Initialization
+-- Locals
 --
 
 local sanitizingCycleTime = 0
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -41,13 +43,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	sanitizingCycleTime = GetTime() + 38.8
 	self:Bar(353312, 5.6) -- Purifying Burst
 	self:Bar(346116, 8.1) -- Shearing Swings
 	self:Bar(346957, 10.5) -- Purged by Fire
 	self:Bar(347094, 15.4) -- Titanic Crash
 	self:Bar(346971, 19, CL.adds) -- [DNT] Summon Vault Defender
 	self:Bar(346766, 38.8) -- Sanitizing Cycle
-	sanitizingCycleTime = GetTime() + 38.8
 end
 
 --------------------------------------------------------------------------------
@@ -110,6 +112,7 @@ do
 		end
 	end
 end
+
 do
 	local prev = 0
 	function mod:PurgedByFireDamage(args)
@@ -131,10 +134,10 @@ do
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
+			sanitizingCycleTime = 0
 			self:Message(args.spellId, "cyan")
 			self:PlaySound(args.spellId, "long")
 			self:StopBar(args.spellId)
-			sanitizingCycleTime = 0
 			self:StopBar(353312) -- Purifying Burst
 			self:StopBar(346116) -- Shearing Swings
 			self:StopBar(346957) -- Purged by Fire
@@ -145,10 +148,10 @@ do
 end
 
 function mod:SanitizingCycleRemoved(args)
+	sanitizingCycleTime = GetTime() + 70
 	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 70)
-	sanitizingCycleTime = GetTime() + 70
 	self:Bar(353312, 13.3) -- Purifying Burst
 	self:Bar(346116, 16.6) -- Shearing Swings
 	self:Bar(346957, 19.2) -- Purged by Fire

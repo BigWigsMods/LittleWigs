@@ -77,6 +77,7 @@ function mod:ArmedSecurity(args)
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 47)
 end
+
 do
 	local prev = 0
 	function mod:ArmedSecurityDamage(args)
