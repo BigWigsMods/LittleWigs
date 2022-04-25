@@ -7,6 +7,7 @@ end
 L = BigWigs:NewBossLocale("Tazavesh Trash", "frFR")
 if L then
 	L.interrogation_specialist = "Spécialiste en interrogatoire"
+	L.portalmancer_zohonn = "Portomancien Zo'honn"
 	L.armored_overseer_tracker_zokorss = "Surveillant cuirassé / Pisteur Zo'korss"
 	L.tracker_zokorss = "Pisteur Zo'korss"
 	L.ancient_core_hound = "Ancien chien du magma"
@@ -16,6 +17,7 @@ if L then
 	L.support_officer = "Agent de soutien"
 	L.defective_sorter = "Trieur défectueux"
 	L.market_peacekeeper = "Garde-paix du marché"
+	L.veteran_sparkcaster = "Embraseur vétéran"
 	L.commerce_enforcer = "Massacreur du marché"
 	L.commerce_enforcer_commander_zofar = "Massacreur du marché / Commandant Zo'far"
 	L.commander_zofar = "Commandant Zo'far"

@@ -28,6 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ImpoundContrabandApplied", 345770)
 	self:Log("SPELL_AURA_REMOVED", "ImpoundContrabandRemoved", 345770)
 	self:Log("SPELL_CAST_SUCCESS", "ArmedSecurity", 346204)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ArmedSecurityDamage", 348366)
 end
 
 function mod:OnEngage()
@@ -75,4 +76,17 @@ function mod:ArmedSecurity(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 47)
+end
+do
+	local prev = 0
+	function mod:ArmedSecurityDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(346204, "underyou")
+				self:PlaySound(346204, "underyou")
+			end
+		end
+	end
 end
