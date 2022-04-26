@@ -257,7 +257,6 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 			menagerieModule:Enable()
 			menagerieModule:Warmup()
 		end
-	end
 	elseif msg == L.soazmi_warmup_trigger then
 		-- So'azmi Warmup
 		local soazmiModule = BigWigs:GetBossModule("So'azmi", true)
