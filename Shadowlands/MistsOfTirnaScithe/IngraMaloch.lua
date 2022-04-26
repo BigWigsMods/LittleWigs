@@ -47,6 +47,7 @@ function mod:OnEngage()
 	if self:Mythic() then
 		self:Bar(328756, 26.5, CL.fear) -- Repulsive Visage
 	end
+	self:CDBar(323149, 30.5) -- Embrace Darkness
 end
 
 --------------------------------------------------------------------------------
@@ -69,6 +70,7 @@ function mod:RepulsiveVisage(args)
 end
 
 function mod:EmbraceDarkness(args)
+	self:StopBar(args.spellId)
 	self:Message(args.spellId, "orange")
 end
 
@@ -92,6 +94,7 @@ end
 function mod:DromansWrathApplied(args)
 	self:StopBar(323137) -- Bewildering Pollen
 	self:StopBar(323177) -- Tears of the Forest
+	self:StopBar(323149) -- Embrace Darkness
 	self:Bar(args.spellId, 12)
 end
 
@@ -104,4 +107,5 @@ function mod:SoulShackleApplied()
 	self:CDBar(323137, 7.8) -- Bewildering Pollen
 	self:CDBar(323177, 18.5) -- Tears of the Forest
 	self:CDBar(328756, 26.5, CL.fear) -- Repulsive Visage
+	self:CDBar(323149, 30) -- Embrace Darkness
 end
