@@ -42,6 +42,7 @@ if L then
 	------ Streets of Wonder ------
 	L.zophex_warmup_trigger = "Surrender... all... contraband..."
 	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.trading_game = "Trading Game"
 	L.trading_game_desc = "Alerts with the right password during the Trading Game."
 	L.custom_on_autotalk = "Autotalk"
@@ -249,6 +250,14 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 			self:Message("trading_game", "green", password, "achievement_dungeon_brokerdungeon")
 			self:PlaySound("trading_game", "info")
 		end
+	elseif msg == L.menagerie_warmup_trigger then
+		-- Menagerie Warmup
+		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
+		if menagerieModule then
+			menagerieModule:Enable()
+			menagerieModule:Warmup()
+		end
+	end
 	elseif msg == L.soazmi_warmup_trigger then
 		-- So'azmi Warmup
 		local soazmiModule = BigWigs:GetBossModule("So'azmi", true)
