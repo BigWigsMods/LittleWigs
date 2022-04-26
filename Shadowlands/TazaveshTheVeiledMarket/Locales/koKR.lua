@@ -6,6 +6,26 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
 if L then
+	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
+	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+	--L.trading_game = "Trading Game"
+	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
+	--L.custom_on_autotalk = "Autotalk"
+	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	--[[L.password_triggers = {
+		"Ivory Shell",
+		"Amber Sunset",
+		"Crimson Knife",
+		"Emerald Ocean",
+		"Golden Sands",
+		"Jade Palm",
+		"Pale Flower",
+		"Pewter Stone",
+		"Ruby Gem",
+		"Sapphire Oasis"
+	}]]--
+
 	L.interrogation_specialist = "심문 전문가"
 	L.portalmancer_zohonn = "차원문술사 조혼"
 	L.armored_overseer_tracker_zokorss = "무장한 감독관 / 추적자 조코르스"
