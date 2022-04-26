@@ -40,6 +40,22 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	------ Streets of Wonder ------
+	L.trading_game = "Trading Game"
+	L.trading_game_desc = "Alerts with the right password during the Trading Game."
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.password_triggers = {
+		"Ivory Shell",
+		"Amber Sunset",
+		"Crimson Knife",
+		"Emerald Ocean",
+		"Golden Sands",
+		"Jade Palm",
+		"Pale Flower",
+		"Pewter Stone",
+		"Ruby Gem",
+		"Sapphire Oasis"
+	}
 	L.interrogation_specialist = "Interrogation Specialist"
 	L.portalmancer_zohonn = "Portalmancer Zo'honn"
 	L.armored_overseer_tracker_zokorss = "Armored Overseer / Tracker Zo'korss"
@@ -68,12 +84,20 @@ if L then
 end
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local password = nil
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		------ Streets of Wonder ------
+		"trading_game",
+		"custom_on_autotalk",
 		-- Interrogation Specialist
 		356031, -- Stasis Beam
 		-- Portalmancer Zo'honn
@@ -129,6 +153,7 @@ function mod:GetOptions()
 		357284, -- Reinvigorate
 	}, {
 		------ Streets of Wonder ------
+		["trading_game"] = L.trading_game,
 		[356031] = L.interrogation_specialist,
 		[356324] = L.portalmancer_zohonn,
 		[356001] = L.armored_overseer_tracker_zokorss,
@@ -158,7 +183,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	password = nil
+
 	------ Streets of Wonder ------
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Password")
+	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
@@ -208,6 +237,33 @@ end
 --
 
 ------ Streets of Wonder ------
+
+-- Market Trading Game
+function mod:Password(event, msg)
+	if tContains(L.password_triggers, msg) then
+		password = msg
+		self:UnregisterEvent(event)
+		if self:GetOption("trading_game") then
+			self:Message("trading_game", "achievement_dungeon_brokerdungeon", password)
+			self:PlaySound("trading_game", "info")
+		end
+	end
+end
+function mod:GOSSIP_SHOW(event)
+	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 176564 and password ~= nil then
+		if self:GetGossipOptions() then
+			local gossipOptions = C_GossipInfo.GetOptions() -- bigwigs only gives 5 options...
+			local titleIndex = 1
+			for titleIndex, optionInfo in ipairs(gossipOptions) do
+				if optionInfo.name == password then
+					self:UnregisterEvent(event)
+					self:SelectGossipOption(titleIndex)
+					break
+				end
+			end
+		end
+	end
+end
 
 -- Interrogation Specialist
 function mod:StasisBeam(args)
