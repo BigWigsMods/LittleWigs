@@ -40,6 +40,8 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	------ Streets of Wonder ------
+	L.zophex_warmup_trigger = "Surrender... all... contraband..."
+	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	L.trading_game = "Trading Game"
 	L.trading_game_desc = "Alerts with the right password during the Trading Game."
 	L.custom_on_autotalk = "Autotalk"
@@ -186,7 +188,8 @@ function mod:OnBossEnable()
 	password = nil
 
 	------ Streets of Wonder ------
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Password")
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
@@ -238,17 +241,35 @@ end
 
 ------ Streets of Wonder ------
 
--- Market Trading Game
-function mod:Password(event, msg)
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if tContains(L.password_triggers, msg) then
+		-- Market Trading Game
 		password = msg
-		self:UnregisterEvent(event)
 		if self:GetOption("trading_game") then
 			self:Message("trading_game", "achievement_dungeon_brokerdungeon", password)
 			self:PlaySound("trading_game", "info")
 		end
+	elseif msg == L.soazmi_warmup_trigger then
+		-- So'azmi Warmup
+		local soazmiModule = BigWigs:GetBossModule("So'azmi", true)
+		if soazmiModule then
+			soazmiModule:Enable()
+			soazmiModule:Warmup()
+		end
 	end
 end
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.zophex_warmup_trigger then
+		-- Zo'phex Warmup
+		local zophexModule = BigWigs:GetBossModule("Zo'phex the Sentinel", true)
+		if zophexModule then
+			zophexModule:Enable()
+			zophexModule:Warmup()
+		end
+	end
+end
+
+-- Auto-gossip
 function mod:GOSSIP_SHOW(event)
 	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 176564 and password ~= nil then
 		if self:GetGossipOptions() then

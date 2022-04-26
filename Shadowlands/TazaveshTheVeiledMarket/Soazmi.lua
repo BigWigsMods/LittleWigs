@@ -9,15 +9,6 @@ mod:RegisterEnableMob(175806) -- So'azmi
 mod:SetEncounterID(2437)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
-end
-
---------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -39,7 +30,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
 	self:Log("SPELL_CAST_START", "DoubleTechnique", 357188)
 	self:Log("SPELL_CAST_SUCCESS", "Shuri", 347610)
 	self:Log("SPELL_CAST_START", "Divide", 347249, 347414)
@@ -57,9 +47,9 @@ end
 -- Event Handlers
 --
 
-function mod:Warmup(event, msg)
-	if msg == L.warmup_trigger then
-		self:UnregisterEvent(event)
+-- called from trash module
+function mod:Warmup()
+	if self:GetOption("warmup") then
 		self:Bar("warmup", 24, CL.active, "achievement_dungeon_brokerdungeon")
 	end
 end
