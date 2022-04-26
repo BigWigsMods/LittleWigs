@@ -246,7 +246,7 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 		-- Market Trading Game
 		password = msg
 		if self:GetOption("trading_game") then
-			self:Message("trading_game", "achievement_dungeon_brokerdungeon", password)
+			self:Message("trading_game", "green", password, "achievement_dungeon_brokerdungeon")
 			self:PlaySound("trading_game", "info")
 		end
 	elseif msg == L.soazmi_warmup_trigger then
