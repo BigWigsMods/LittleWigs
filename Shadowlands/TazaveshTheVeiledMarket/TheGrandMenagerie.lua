@@ -14,11 +14,21 @@ mod:SetEncounterID(2441)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		-- Alcruux
 		349627, -- Gluttony
 		{350010, "EMPHASIZE", "ME_ONLY"}, -- Devoured Anima
@@ -35,6 +45,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
+
 	-- Alcruux
 	self:Log("SPELL_AURA_APPLIED", "GluttonyApplied", 349627)
 	self:Log("SPELL_AURA_REMOVED", "GluttonyRemoved", 349627)
@@ -69,6 +81,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 39, CL.active, "achievement_dungeon_brokerdungeon")
+	end
+end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if self:GetStage() == 1 and self:GetBossId(176555) then -- Achillite
