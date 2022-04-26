@@ -7,7 +7,7 @@ end
 L = BigWigs:NewBossLocale("Tazavesh Trash", "deDE")
 if L then
 	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
-	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	L.soazmi_warmup_trigger = "Entschuldigt unser Eindringen, So'leah. Ich hoffe, wir stören."
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
@@ -18,12 +18,12 @@ if L then
 		"Amber Sunset",
 		"Crimson Knife",
 		"Emerald Ocean",
-		"Golden Sands",
+		"Goldsand",
 		"Jade Palm",
 		"Pale Flower",
 		"Pewter Stone",
 		"Ruby Gem",
-		"Sapphire Oasis"
+		"Saphiroase"
 	}]]--
 
 	L.interrogation_specialist = "Verhörspezialist"
