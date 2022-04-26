@@ -17,15 +17,15 @@ if L then
 	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	--[[L.password_triggers = {
 		"Ivory Shell",
-		"Amber Sunset",
-		"Crimson Knife",
-		"Emerald Ocean",
-		"Golden Sands",
+		"Sapphire Oasis",
 		"Jade Palm",
-		"Pale Flower",
-		"Pewter Stone",
+		"Golden Sands",
+		"Amber Sunset",
+		"Emerald Ocean",
 		"Ruby Gem",
-		"Sapphire Oasis"
+		"Pewter Stone",
+		"Pale Flower",
+		"Crimson Knife"
 	}]]--
 
 	L.interrogation_specialist = "審問專家"

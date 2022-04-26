@@ -13,19 +13,19 @@ if L then
 	L.soazmi_warmup_trigger = "Entschuldigt unser Eindringen, So'leah. Ich hoffe, wir stören."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	--L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk = "Automatisch ansprechen"
 	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	--[[L.password_triggers = {
 		"Ivory Shell",
-		"Amber Sunset",
-		"Crimson Knife",
-		"Emerald Ocean",
-		"Goldsand",
+		"Saphiroase",
 		"Jade Palm",
-		"Pale Flower",
-		"Pewter Stone",
+		"Goldsand",
+		"Amber Sunset",
+		"Emerald Ocean",
 		"Ruby Gem",
-		"Saphiroase"
+		"Pewter Stone",
+		"Pale Flower",
+		"Crimson Knife"
 	}]]--
 
 	L.interrogation_specialist = "Verhörspezialist"
