@@ -6,10 +6,10 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "frFR")
 if L then
-	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
+	L.zophex_warmup_trigger = "Toute contrebande… sera saisie…"
 	--L.menagerie_warmup_trigger1 = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	--L.menagerie_warmup_trigger2 = "Are rampaging beasts ruining your day? We have the solution!"
-	--L.menagerie_warmup_trigger3 = "Now's my chance! That axe is mine!"
+	L.menagerie_warmup_trigger2 = "Des bêtes enragées vous pourrissent la vie ? Nous avons la solution !"
+	L.menagerie_warmup_trigger3 = "C’est maintenant ou jamais ! La hache est à moi !"
 	L.soazmi_warmup_trigger = "Pardonnez notre intrusion, So’leah. J’espère que nous ne vous dérangeons pas."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."

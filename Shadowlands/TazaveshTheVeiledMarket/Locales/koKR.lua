@@ -6,7 +6,7 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
 if L then
-	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
+	L.zophex_warmup_trigger = "밀수품을... 전부... 내놓아라..."
 	--L.menagerie_warmup_trigger1 = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	--L.menagerie_warmup_trigger2 = "Are rampaging beasts ruining your day? We have the solution!"
 	--L.menagerie_warmup_trigger3 = "Now's my chance! That axe is mine!"
