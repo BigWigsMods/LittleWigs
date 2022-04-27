@@ -79,12 +79,12 @@ function mod:Warmup_FirstBoss()
 end
 function mod:Warmup_SecondBoss()
 	if self:GetOption("warmup") then
-		self:Bar("warmup", 22, CL.active, "achievement_dungeon_brokerdungeon")
+		self:Bar("warmup", 22, CL.count:format(CL.active, 2), "achievement_dungeon_brokerdungeon")
 	end
 end
 function mod:Warmup_ThirdBoss()
 	if self:GetOption("warmup") then
-		self:Bar("warmup", 23, CL.active, "achievement_dungeon_brokerdungeon")
+		self:Bar("warmup", 23, CL.count:format(CL.active, 3), "achievement_dungeon_brokerdungeon")
 	end
 end
 
@@ -180,12 +180,12 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(350101, "orange", name)
 		self:PlaySound(350101, "alert", nil, name)
-		
+
 		if self:Me(guid) then
 			self:Say(350101)
 		end
 	end
-	
+
 	function mod:ChainsOfDamnation(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 25.5)

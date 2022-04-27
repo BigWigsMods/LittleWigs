@@ -297,7 +297,7 @@ end
 function mod:GOSSIP_SHOW(event)
 	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 176564 and password ~= nil then
 		if self:GetGossipOptions() then
-			local gossipOptions = C_GossipInfo.GetOptions() -- bigwigs only gives 5 options...
+			local gossipOptions = C_GossipInfo.GetOptions() -- GetGossipOptions only gives 5 options but there are 10 passwords
 			local titleIndex = 1
 			for titleIndex, optionInfo in ipairs(gossipOptions) do
 				if optionInfo.name == password then
