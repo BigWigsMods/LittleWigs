@@ -36,13 +36,21 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
+		-- Unruly Patron
+		356482, -- Rotten Food
+		-- Disruptive Patron
+		353783, -- Teleport
+		353835, -- Suppression
+		-- All add waves
+		353706, -- Rowdy
 		-- Zo'gron
 		350922, -- Menacing Shout
 		350919, -- Crowd Control
 		355438, -- Suppression Spark
 		{350916, "TANK"}, -- Security Slam
-		-- Unruly Patron
-		356482, -- Rotten Food
+	}, {
+		[356482] = -23096,
+		[350922] = -23749,
 	}
 end
 
@@ -54,6 +62,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
 	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 	self:Log("SPELL_CAST_START", "RottenFood", 356482)
+	self:Log("SPELL_CAST_START", "Teleport", 353783)
+	self:Log("SPELL_CAST_START", "Suppression", 353835)
+	self:Log("SPELL_AURA_APPLIED", "RowdyApplied", 353706)
 end
 
 function mod:OnEngage()
@@ -125,6 +136,28 @@ do
 			prev = t
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+function mod:Teleport(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:Supression(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:RowdyApplied(args)
+		local t = args.time
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
