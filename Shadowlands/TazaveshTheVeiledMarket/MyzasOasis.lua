@@ -57,14 +57,14 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-	self:Log("SPELL_CAST_START", "MenacingShout", 350922)
-	self:Log("SPELL_CAST_START", "SecuritySlam", 350916)
-	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
-	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 	self:Log("SPELL_CAST_START", "RottenFood", 356482)
 	self:Log("SPELL_CAST_START", "Teleport", 353783)
 	self:Log("SPELL_CAST_START", "Suppression", 353835)
 	self:Log("SPELL_AURA_APPLIED", "RowdyApplied", 353706)
+	self:Log("SPELL_CAST_START", "MenacingShout", 350922)
+	self:Log("SPELL_CAST_START", "SecuritySlam", 350916)
+	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
+	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 end
 
 function mod:OnEngage()
@@ -86,10 +86,14 @@ function mod:ENCOUNTER_START(_, encounterId)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE()
+	self:StopBar(353706) -- Rowdy
+
 	-- There is one performance phase immediately at the start of the fight and then one after each add wave
 	if addWave >= 1 then
 		self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 3), false)
 		self:PlaySound("stages", "long")
+	elseif addWave < 3 then
+		self:Bar(353706, 36) -- Rowdy
 	end
 	addWave = addWave + 1
 end
@@ -145,7 +149,7 @@ function mod:Teleport(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:Supression(args)
+function mod:Suppression(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
