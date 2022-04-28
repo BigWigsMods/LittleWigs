@@ -1,5 +1,3 @@
--- GLOBALS: tContains
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -52,16 +50,16 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		"Ivory Shell",
-		"Sapphire Oasis",
-		"Jade Palm",
-		"Golden Sands",
-		"Amber Sunset",
-		"Emerald Ocean",
-		"Ruby Gem",
-		"Pewter Stone",
-		"Pale Flower",
-		"Crimson Knife"
+		["Ivory Shell"] = true,
+		["Sapphire Oasis"] = true,
+		["Jade Palm"] = true,
+		["Golden Sands"] = true,
+		["Amber Sunset"] = true,
+		["Emerald Ocean"] = true,
+		["Ruby Gem"] = true,
+		["Pewter Stone"] = true,
+		["Pale Flower"] = true,
+		["Crimson Knife"] = true
 	}
 	L.interrogation_specialist = "Interrogation Specialist"
 	L.portalmancer_zohonn = "Portalmancer Zo'honn"
@@ -247,7 +245,7 @@ end
 ------ Streets of Wonder ------
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
-	if tContains(L.password_triggers, msg) then
+	if L.password_triggers[msg] then
 		-- Market Trading Game
 		password = msg
 		if self:GetOption("trading_game") then

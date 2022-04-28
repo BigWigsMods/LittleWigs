@@ -16,16 +16,16 @@ if L then
 	L.custom_on_autotalk = "Automatisch ansprechen"
 	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	--[[L.password_triggers = {
-		"Ivory Shell",
-		"Saphiroase",
-		"Jade Palm",
-		"Goldsand",
-		"Amber Sunset",
-		"Emerald Ocean",
-		"Ruby Gem",
-		"Pewter Stone",
-		"Pale Flower",
-		"Crimson Knife"
+		["Ivory Shell"] = true,
+		["Saphiroase"] = true,
+		["Jade Palm"] = true,
+		["Goldsand"] = true,
+		["Amber Sunset"] = true,
+		["Emerald Ocean"] = true,
+		["Ruby Gem"] = true,
+		["Pewter Stone"] = true,
+		["Pale Flower"] = true,
+		["Crimson Knife"] = true
 	}]]--
 
 	L.interrogation_specialist = "Verhörspezialist"
