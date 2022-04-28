@@ -73,19 +73,13 @@ end
 
 -- called from trash module
 function mod:Warmup_FirstBoss()
-	if self:GetOption("warmup") then
-		self:Bar("warmup", 39, CL.active, "achievement_dungeon_brokerdungeon")
-	end
+	self:Bar("warmup", 39, CL.active, "achievement_dungeon_brokerdungeon")
 end
 function mod:Warmup_SecondBoss()
-	if self:GetOption("warmup") then
-		self:Bar("warmup", 22, CL.count:format(CL.active, 2), "achievement_dungeon_brokerdungeon")
-	end
+	self:Bar("warmup", 22, CL.count:format(CL.active, 2), "achievement_dungeon_brokerdungeon")
 end
 function mod:Warmup_ThirdBoss()
-	if self:GetOption("warmup") then
-		self:Bar("warmup", 23, CL.count:format(CL.active, 3), "achievement_dungeon_brokerdungeon")
-	end
+	self:Bar("warmup", 23, CL.count:format(CL.active, 3), "achievement_dungeon_brokerdungeon")
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
