@@ -100,12 +100,12 @@ function mod:Warmup(_, msg)
 	end
 end
 
-function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, spellName, _, castGUID, spellId)
+function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, castGUID, spellId)
 	if castCollector[castGUID] then return end
 	if spellId == 235984 then -- Mana Sting
 		castCollector[castGUID] = true
 		self:CDBar(spellId, 14.6)
-		self:MessageOld(spellId, "red", "alert", CL.casting:format(spellName))
+		self:MessageOld(spellId, "red", "alert", CL.casting:format(self:SpellName(spellId)))
 	end
 end
 
@@ -119,11 +119,11 @@ function mod:ArcaneBlitz(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellName, _, castGUID, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
 	if castCollector[castGUID] then return end
 	if spellId == 237191 then -- Fel Stomp
 		castCollector[castGUID] = true
-		self:MessageOld(spellId, "orange", "alarm", CL.incoming:format(spellName))
+		self:MessageOld(spellId, "orange", "alarm", CL.incoming:format(self:SpellName(spellId)))
 		self:CDBar(spellId, 11)
 	end
 end
