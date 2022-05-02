@@ -114,19 +114,19 @@ function mod:SayTriggers(_, msg)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 234428 then -- Summon Tormenting Eye
 		self:MessageOld(spellId, "yellow", "info")
 		self:CDBar(spellId, 17)
 	elseif spellId == 235110 then -- Nether Aberration
 		aberrationCounter = aberrationCounter + 1
-		self:MessageOld("nether_aberration", "yellow", "info", CL.incoming:format(CL.count:format(spellName, aberrationCounter-1)), L.nether_aberration_icon)
-		self:CDBar("nether_aberration", 35, CL.count:format(spellName, aberrationCounter), L.nether_aberration_icon)
+		self:MessageOld("nether_aberration", "yellow", "info", CL.incoming:format(CL.count:format(self:SpellName(spellId), aberrationCounter-1)), L.nether_aberration_icon)
+		self:CDBar("nether_aberration", 35, CL.count:format(self:SpellName(spellId), aberrationCounter), L.nether_aberration_icon)
 	elseif spellId == 235112 then -- Smoldering Infernal Summon
 		self:MessageOld("smoldering_infernal", "yellow", "info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
 		self:CDBar("smoldering_infernal", 65, L.smoldering_infernal, L.smoldering_infernal_icon)
 	elseif spellId == 234920 then -- Shadow Sweep
-		self:MessageOld(spellId, "yellow", "info", CL.incoming:format(spellName))
+		self:MessageOld(spellId, "yellow", "info", CL.incoming:format(self:SpellName(spellId)))
 		self:Bar(spellId, 20.7)
 	elseif spellId == 234673 then -- Netherstomp
 		self:MessageOld(spellId, "orange", "alert")

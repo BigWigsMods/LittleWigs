@@ -144,10 +144,10 @@ function mod:BloodOfTheFatherApplied(args)
 	self:TargetBar(args.spellId, 27, args.destName)
 end
 
-function mod:UNIT_SPELLCAST_INTERRUPTED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_INTERRUPTED(_, _, _, spellId)
 	if spellId == 237945 then -- Blood of the Father
-		self:StopBar(CL.cast:format(spellName))
-		self:MessageOld(spellId, "green", "info", CL.interrupted:format(spellName))
+		self:StopBar(CL.cast:format(self:SpellName(spellId)))
+		self:MessageOld(spellId, "green", "info", CL.interrupted:format(self:SpellName(spellId)))
 	end
 end
 
@@ -223,7 +223,7 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 237914 then -- Runic Detonation
 		self:MessageOld(spellId, "red", "warning")
 		runeCount = runeCount + 1

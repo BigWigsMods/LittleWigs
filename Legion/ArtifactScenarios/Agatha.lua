@@ -247,11 +247,11 @@ function mod:Translocate(args)
 	self:MessageOld(args.spellId, "cyan")
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 	if spellId == 242987 then -- Translocate
 		if phase == 1 then
 			phase = 2
-			self:MessageOld(242989, "cyan", nil, CL.percent:format(50, spellName), false)
+			self:MessageOld(242989, "cyan", nil, CL.percent:format(50, self:SpellName(spellId)), false)
 
 			-- Recalc Dark Fury time
 			local remaining = (100 - UnitPower(unit)) * 0.68
