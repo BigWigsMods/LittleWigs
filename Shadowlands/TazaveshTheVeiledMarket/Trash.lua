@@ -269,7 +269,7 @@ end
 function mod:GOSSIP_SHOW(event)
 	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 176564 and password ~= nil then
 		local gossipTbl = self:GetGossipOptions()
-		if gossipTbl and gossipTbl[1] then
+		if gossipTbl then
 			for i = 1, #gossipTbl do
 				if gossipTbl[i] == password then
 					self:UnregisterEvent(event)
