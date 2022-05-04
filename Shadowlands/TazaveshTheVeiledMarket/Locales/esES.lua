@@ -1,15 +1,23 @@
-local L = BigWigs:NewBossLocale("Myza's Oasis", "esES") or BigWigs:NewBossLocale("Myza's Oasis", "esMX")
+local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "esES") or BigWigs:NewBossLocale("Zo'phex the Sentinel", "esMX")
 if not L then return end
+if L then
+	L.zophex_warmup_trigger = "Entrega... todo... el contrabando..."
+end
+
+L = BigWigs:NewBossLocale("The Grand Menagerie", "esES") or BigWigs:NewBossLocale("The Grand Menagerie", "esMX")
+if L then
+	L.achillite_warmup_trigger = "¿Las bestias devastadoras no os dejan vivir? ¡Tenemos la solución!"
+	L.venza_goldfuse_warmup_trigger = "¡Es mi oportunidad! ¡El hacha será mía!"
+end
+
+L = BigWigs:NewBossLocale("Myza's Oasis", "esES") or BigWigs:NewBossLocale("Myza's Oasis", "esMX")
 if L then
 	-- L.add_wave_killed = "Add wave killed (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "esES") or BigWigs:NewBossLocale("Tazavesh Trash", "esMX")
 if L then
-	L.zophex_warmup_trigger = "Entrega... todo... el contrabando..."
-	--L.menagerie_warmup_trigger1 = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	L.menagerie_warmup_trigger2 = "¿Las bestias devastadoras no os dejan vivir? ¡Tenemos la solución!"
-	L.menagerie_warmup_trigger3 = "¡Es mi oportunidad! ¡El hacha será mía!"
+	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."

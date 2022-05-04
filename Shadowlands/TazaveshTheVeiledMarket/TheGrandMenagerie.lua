@@ -14,6 +14,16 @@ mod:SetEncounterID(2441)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
+	L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -36,6 +46,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 	-- Alcruux
 	self:Log("SPELL_AURA_APPLIED", "GluttonyApplied", 349627)
 	self:Log("SPELL_AURA_REMOVED", "GluttonyRemoved", 349627)
@@ -72,14 +84,16 @@ end
 --
 
 -- called from trash module
-function mod:Warmup_FirstBoss()
+function mod:Warmup()
 	self:Bar("warmup", 39, CL.active, "achievement_dungeon_brokerdungeon")
 end
-function mod:Warmup_SecondBoss()
-	self:Bar("warmup", 22, CL.count:format(CL.active, 2), "achievement_dungeon_brokerdungeon")
-end
-function mod:Warmup_ThirdBoss()
-	self:Bar("warmup", 23, CL.count:format(CL.active, 3), "achievement_dungeon_brokerdungeon")
+
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.achillite_warmup_trigger then
+		self:Bar("warmup", 22, CL.count:format(CL.active, 2), "achievement_dungeon_brokerdungeon")
+	elseif msg == L.venza_goldfuse_warmup_trigger then
+		self:Bar("warmup", 23, CL.count:format(CL.active, 3), "achievement_dungeon_brokerdungeon")
+	end
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()

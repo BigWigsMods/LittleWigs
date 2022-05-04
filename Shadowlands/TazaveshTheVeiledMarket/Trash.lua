@@ -40,10 +40,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	------ Streets of Wonder ------
-	L.zophex_warmup_trigger = "Surrender... all... contraband..."
-	L.menagerie_warmup_trigger1 = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	L.menagerie_warmup_trigger2 = "Are rampaging beasts ruining your day? We have the solution!"
-	L.menagerie_warmup_trigger3 = "Now's my chance! That axe is mine!"
+	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	L.trading_game = "Trading Game"
 	L.trading_game_desc = "Alerts with the right password during the Trading Game."
@@ -192,7 +189,6 @@ function mod:OnBossEnable()
 
 	------ Streets of Wonder ------
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
@@ -252,26 +248,12 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 			self:Message("trading_game", "green", password, "achievement_dungeon_brokerdungeon")
 			self:PlaySound("trading_game", "info")
 		end
-	elseif msg == L.menagerie_warmup_trigger1 then
+	elseif msg == L.menagerie_warmup_trigger then
 		-- Menagerie 1st boss Warmup
 		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
 		if menagerieModule then
 			menagerieModule:Enable()
-			menagerieModule:Warmup_FirstBoss()
-		end
-	elseif msg == L.menagerie_warmup_trigger2 then
-		-- Menagerie 2nd boss Warmup
-		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
-		if menagerieModule then
-			menagerieModule:Enable()
-			menagerieModule:Warmup_SecondBoss()
-		end
-	elseif msg == L.menagerie_warmup_trigger3 then
-		-- Menagerie 3rd boss Warmup
-		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
-		if menagerieModule then
-			menagerieModule:Enable()
-			menagerieModule:Warmup_ThirdBoss()
+			menagerieModule:Warmup()
 		end
 	elseif msg == L.soazmi_warmup_trigger then
 		-- So'azmi Warmup
@@ -279,16 +261,6 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 		if soazmiModule then
 			soazmiModule:Enable()
 			soazmiModule:Warmup()
-		end
-	end
-end
-function mod:CHAT_MSG_MONSTER_YELL(event, msg)
-	if msg == L.zophex_warmup_trigger then
-		-- Zo'phex Warmup
-		local zophexModule = BigWigs:GetBossModule("Zo'phex the Sentinel", true)
-		if zophexModule then
-			zophexModule:Enable()
-			zophexModule:Warmup()
 		end
 	end
 end

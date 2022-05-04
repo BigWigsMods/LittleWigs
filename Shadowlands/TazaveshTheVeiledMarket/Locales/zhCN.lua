@@ -1,15 +1,23 @@
-local L = BigWigs:NewBossLocale("Myza's Oasis", "zhCN")
+local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "zhCN")
 if not L then return end
+if L then
+	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
+end
+
+L = BigWigs:NewBossLocale("The Grand Menagerie", "zhCN")
+if L then
+	--L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
+	--L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
+end
+
+L = BigWigs:NewBossLocale("Myza's Oasis", "zhCN")
 if L then
 	-- L.add_wave_killed = "Add wave killed (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "zhCN")
 if L then
-	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
-	--L.menagerie_warmup_trigger1 = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	--L.menagerie_warmup_trigger2 = "Are rampaging beasts ruining your day? We have the solution!"
-	--L.menagerie_warmup_trigger3 = "Now's my chance! That axe is mine!"
+	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."

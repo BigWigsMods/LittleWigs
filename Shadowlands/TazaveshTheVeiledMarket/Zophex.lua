@@ -5,8 +5,20 @@
 
 local mod, CL = BigWigs:NewBoss("Zo'phex the Sentinel", 2441, 2437)
 if not mod then return end
-mod:RegisterEnableMob(175616) -- Zo'phex
+mod:RegisterEnableMob(
+	179334, -- Portalmancer Zo'honn
+	175616  -- Zo'phex the Sentinel
+)
 mod:SetEncounterID(2425)
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.zophex_warmup_trigger = "Surrender... all... contraband..."
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,6 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:Log("SPELL_AURA_APPLIED", "InterrogationApplied", 347949)
 	self:Log("SPELL_AURA_APPLIED", "ContainmentCellApplied", 345990)
 	self:Death("ContainmentCellDeath", 175576)
@@ -42,9 +55,10 @@ end
 -- Event Handlers
 --
 
--- called from trash module
-function mod:Warmup()
-	self:Bar("warmup", 10, CL.active, "achievement_dungeon_brokerdungeon")
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.zophex_warmup_trigger then
+		self:Bar("warmup", 10, CL.active, "achievement_dungeon_brokerdungeon")
+	end
 end
 
 function mod:InterrogationApplied(args)
