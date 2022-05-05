@@ -20,7 +20,7 @@ if L then
 	L.menagerie_warmup_trigger = "Und nun zu dem Posten, auf den alle warten! Die angeblich dämonenverfluchte Schneide des Vergessens!"
 	L.soazmi_warmup_trigger = "Entschuldigt unser Eindringen, So'leah. Ich hoffe, wir stören."
 	L.trading_game = "Handels-Event"
-	L.trading_game_desc = "Warnung beim korrekten Password während des Handels-Event."
+	L.trading_game_desc = "Warnungen mit korrektem Password während des Handels-Event."
 	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt das korrekte Passwort nach Abschluss des Handels-Events."
 	--[[L.password_triggers = {
