@@ -1,11 +1,41 @@
-local L = BigWigs:NewBossLocale("Myza's Oasis", "esES") or BigWigs:NewBossLocale("Myza's Oasis", "esMX")
+local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "esES") or BigWigs:NewBossLocale("Zo'phex the Sentinel", "esMX")
 if not L then return end
+if L then
+	L.zophex_warmup_trigger = "Entrega... todo... el contrabando..."
+end
+
+L = BigWigs:NewBossLocale("The Grand Menagerie", "esES") or BigWigs:NewBossLocale("The Grand Menagerie", "esMX")
+if L then
+	L.achillite_warmup_trigger = "¿Las bestias devastadoras no os dejan vivir? ¡Tenemos la solución!"
+	L.venza_goldfuse_warmup_trigger = "¡Es mi oportunidad! ¡El hacha será mía!"
+end
+
+L = BigWigs:NewBossLocale("Myza's Oasis", "esES") or BigWigs:NewBossLocale("Myza's Oasis", "esMX")
 if L then
 	-- L.add_wave_killed = "Add wave killed (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "esES") or BigWigs:NewBossLocale("Tazavesh Trash", "esMX")
 if L then
+	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno."
+	--L.trading_game = "Trading Game"
+	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
+	L.custom_on_autotalk = "Hablar automáticamente"
+	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	--[[L.password_triggers = {
+		["Ivory Shell"] = true,
+		["Sapphire Oasis"] = true,
+		["Jade Palm"] = true,
+		["Golden Sands"] = true,
+		["Amber Sunset"] = true,
+		["Emerald Ocean"] = true,
+		["Ruby Gem"] = true,
+		["Pewter Stone"] = true,
+		["Pale Flower"] = true,
+		["Crimson Knife"] = true
+	}]]--
+
 	L.interrogation_specialist = "Especialista en interrogatorios"
 	L.portalmancer_zohonn = "Portalmante Zo'honn"
 	L.armored_overseer_tracker_zokorss = "Sobrestante acorazado / Rastreador Zo'korss"

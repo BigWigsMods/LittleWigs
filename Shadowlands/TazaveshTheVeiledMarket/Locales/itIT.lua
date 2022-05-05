@@ -1,11 +1,41 @@
-local L = BigWigs:NewBossLocale("Myza's Oasis", "itIT")
+local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "itIT")
 if not L then return end
+if L then
+	L.zophex_warmup_trigger = "Consegnate... tutto... il contrabbando..."
+end
+
+L = BigWigs:NewBossLocale("The Grand Menagerie", "itIT")
+if L then
+	L.achillite_warmup_trigger = "Delle bestie sfrenate vi rovinano la giornata? Abbiamo la soluzione!"
+	L.venza_goldfuse_warmup_trigger = "È la mia occasione! Quell'ascia è mia!"
+end
+
+L = BigWigs:NewBossLocale("Myza's Oasis", "itIT")
 if L then
 	-- L.add_wave_killed = "Add wave killed (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "itIT")
 if L then
+	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	--L.trading_game = "Trading Game"
+	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
+	--L.custom_on_autotalk = "Autotalk"
+	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	--[[L.password_triggers = {
+		["Ivory Shell"] = true,
+		["Sapphire Oasis"] = true,
+		["Jade Palm"] = true,
+		["Golden Sands"] = true,
+		["Amber Sunset"] = true,
+		["Emerald Ocean"] = true,
+		["Ruby Gem"] = true,
+		["Pewter Stone"] = true,
+		["Pale Flower"] = true,
+		["Crimson Knife"] = true
+	}]]--
+
 	L.interrogation_specialist = "Specialista in Interrogatori"
 	L.portalmancer_zohonn = "Portalmante Zo'honn"
 	L.armored_overseer_tracker_zokorss = "Sovrintendente Corazzato / Braccatore Zo'korss"

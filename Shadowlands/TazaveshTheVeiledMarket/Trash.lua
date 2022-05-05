@@ -40,6 +40,24 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	------ Streets of Wonder ------
+	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	L.trading_game = "Trading Game"
+	L.trading_game_desc = "Alerts with the right password during the Trading Game."
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.password_triggers = {
+		["Ivory Shell"] = true,
+		["Sapphire Oasis"] = true,
+		["Jade Palm"] = true,
+		["Golden Sands"] = true,
+		["Amber Sunset"] = true,
+		["Emerald Ocean"] = true,
+		["Ruby Gem"] = true,
+		["Pewter Stone"] = true,
+		["Pale Flower"] = true,
+		["Crimson Knife"] = true
+	}
 	L.interrogation_specialist = "Interrogation Specialist"
 	L.portalmancer_zohonn = "Portalmancer Zo'honn"
 	L.armored_overseer_tracker_zokorss = "Armored Overseer / Tracker Zo'korss"
@@ -68,12 +86,20 @@ if L then
 end
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local password = nil
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		------ Streets of Wonder ------
+		"trading_game",
+		"custom_on_autotalk",
 		-- Interrogation Specialist
 		356031, -- Stasis Beam
 		-- Portalmancer Zo'honn
@@ -129,6 +155,7 @@ function mod:GetOptions()
 		357284, -- Reinvigorate
 	}, {
 		------ Streets of Wonder ------
+		["trading_game"] = L.trading_game,
 		[356031] = L.interrogation_specialist,
 		[356324] = L.portalmancer_zohonn,
 		[356001] = L.armored_overseer_tracker_zokorss,
@@ -158,7 +185,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	password = nil
+
 	------ Streets of Wonder ------
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
@@ -208,6 +239,47 @@ end
 --
 
 ------ Streets of Wonder ------
+
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if L.password_triggers[msg] then
+		-- Market Trading Game
+		password = msg
+		if self:GetOption("trading_game") then
+			self:Message("trading_game", "green", password, "achievement_dungeon_brokerdungeon")
+			self:PlaySound("trading_game", "info")
+		end
+	elseif msg == L.menagerie_warmup_trigger then
+		-- Menagerie 1st boss Warmup
+		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
+		if menagerieModule then
+			menagerieModule:Enable()
+			menagerieModule:Warmup()
+		end
+	elseif msg == L.soazmi_warmup_trigger then
+		-- So'azmi Warmup
+		local soazmiModule = BigWigs:GetBossModule("So'azmi", true)
+		if soazmiModule then
+			soazmiModule:Enable()
+			soazmiModule:Warmup()
+		end
+	end
+end
+
+-- Auto-gossip
+function mod:GOSSIP_SHOW(event)
+	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 176564 and password ~= nil then
+		local gossipTbl = self:GetGossipOptions()
+		if gossipTbl then
+			for i = 1, #gossipTbl do
+				if gossipTbl[i] == password then
+					self:UnregisterEvent(event)
+					self:SelectGossipOption(i)
+					break
+				end
+			end
+		end
+	end
+end
 
 -- Interrogation Specialist
 function mod:StasisBeam(args)

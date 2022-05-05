@@ -21,6 +21,7 @@ local shuriCount = 0
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		357188, -- Double Technique
 		347610, -- Shuri
 		347249, -- Divide
@@ -45,6 +46,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 24, CL.active, "achievement_dungeon_brokerdungeon")
+end
 
 do
 	local prev = 0
