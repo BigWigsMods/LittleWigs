@@ -1,28 +1,28 @@
 local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "zhCN")
 if not L then return end
 if L then
-	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
+	L.zophex_warmup_trigger = "上交……所有……违禁品……"
 end
 
 L = BigWigs:NewBossLocale("The Grand Menagerie", "zhCN")
 if L then
-	--L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
-	--L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
+	L.achillite_warmup_trigger = "狂暴的野兽给您添乱了？解决方法很简单！"
+	L.venza_goldfuse_warmup_trigger = "机会来了！斧子归我了！"
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "zhCN")
 if L then
-	-- L.add_wave_killed = "Add wave killed (%d/%d)"
+	L.add_wave_killed = "击退保安 (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "zhCN")
 if L then
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
-	--L.trading_game = "Trading Game"
-	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
+	L.trading_game = "交易游戏"
+	L.trading_game_desc = "在交易游戏期间使用正确的密码发出警报。"
 	L.custom_on_autotalk = "自动对话"
-	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.custom_on_autotalk_desc = "交易游戏结束后，立即选择正确的密码。"
 	--[[L.password_triggers = {
 		["Ivory Shell"] = true,
 		["Sapphire Oasis"] = true,
