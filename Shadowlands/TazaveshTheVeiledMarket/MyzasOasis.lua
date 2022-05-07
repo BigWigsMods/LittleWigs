@@ -57,6 +57,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
 	self:Log("SPELL_CAST_START", "RottenFood", 356482)
 	self:Log("SPELL_CAST_START", "Teleport", 353783)
 	self:Log("SPELL_CAST_START", "Suppression", 353835)
@@ -92,10 +93,15 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE()
 	if addWave >= 1 then
 		self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 3), false)
 		self:PlaySound("stages", "long")
-	elseif addWave < 3 then
-		self:Bar(353706, 36) -- Rowdy
 	end
 	addWave = addWave + 1
+end
+
+function mod:CHAT_MSG_RAID_BOSS_WHISPER()
+	-- Unruly patrons rush the stage!
+	if addWave <= 2 then
+		self:Bar(353706, 36) -- Rowdy
+	end
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
