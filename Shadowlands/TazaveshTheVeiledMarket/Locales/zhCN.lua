@@ -17,7 +17,7 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "zhCN")
 if L then
-	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+	L.menagerie_warmup_trigger = "现在是大家期待已久的拍品！传说中被恶魔诅咒的湮灭之刃！"
 	L.soazmi_warmup_trigger = "不好意思打扰了，索·莉亚。希望我们没耽误你什么大事。"
 	L.trading_game = "交易游戏"
 	L.trading_game_desc = "在交易游戏期间使用正确的密码发出警报。"
