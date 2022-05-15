@@ -97,18 +97,18 @@ end
 
 function mod:MillificentCastSucceeded(_, _, _, spellId)
 	if spellId == 326804 then -- Rocket Jump (Stage 2 start)
-		-- stop phase 1
+		-- stop stage 1
 		self:StopBar(320787) -- Summon Power Crystal
 		if self:Mythic() then
 			self:StopBar(323877) -- Echo Finger Laser X-treme
 			self:StopBar(320141) -- Diabolical Dooooooom!
 		end
 
-		-- phase
+		-- stage
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long", "stage2")
 
-		-- set up phase 2
+		-- set up stage 2
 		self:Bar(320823, 8.5) -- Experimental Squirrel Bomb
 		if self:Mythic() then
 			shadowfuryCount = 1
@@ -165,18 +165,18 @@ end
 
 function mod:MillhouseCastSucceeded(_, _, _, spellId)
 	if spellId == 326920 then -- Teleport (Stage 1 start)
-		-- stop phase 2
+		-- stop stage 2
 		self:StopBar(320823) -- Experimental Squirrel Bomb
 		if self:Mythic() then
 			self:StopBar(320132) -- Shadowfury
 			self:StopBar(321061) -- Aerial Rocket Chicken Barrage
 		end
 
-		-- phase
+		-- stage
 		self:Message("stages", "cyan", CL.stage:format(1), false)
 		self:PlaySound("stages", "long", "stage1")
 
-		-- set up phase 1
+		-- set up stage 1
 		self:Bar(320787, 10.3) -- Summon Power Crystal
 		if self:Mythic() then
 			if not millificentDefeated then
