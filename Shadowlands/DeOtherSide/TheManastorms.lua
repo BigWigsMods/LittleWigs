@@ -120,7 +120,7 @@ function mod:MillificentCastSucceeded(_, _, _, spellId)
 	end
 end
 
-function mod:MillhouseDefeated(_, unit)
+function mod:MillhouseDefeated()
 	if not UnitExists("boss1") then
 		millhouseDefeated = true
 		if self:Mythic() then
@@ -187,7 +187,7 @@ function mod:MillhouseCastSucceeded(_, _, _, spellId)
 	end
 end
 
-function mod:MillificentDefeated(_, unit)
+function mod:MillificentDefeated()
 	if not UnitExists("boss2") then
 		millificentDefeated = true
 		if self:Mythic() then
