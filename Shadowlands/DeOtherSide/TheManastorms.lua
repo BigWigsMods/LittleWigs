@@ -38,7 +38,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stage Changes
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2")
 
 	-- Stage 1
