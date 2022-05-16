@@ -7,10 +7,13 @@ BigWigs:AddColors("Hakkar the Soulflayer", {
 })
 
 BigWigs:AddColors("The Manastorms", {
+	[320132] = {"blue","red"},
+	[320141] = "red",
 	[320787] = "yellow",
 	[320823] = "orange",
 	[321061] = "red",
 	[323877] = {"blue","red"},
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Dealer Xy'exa", {
