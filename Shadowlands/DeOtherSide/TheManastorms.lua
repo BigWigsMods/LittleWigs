@@ -80,7 +80,9 @@ do
 	function mod:EchoFingerLaserXtreme(args)
 		local laser = self:SpellName(143444)
 		playerList[#playerList+1] = args.destName
-		self:Bar(args.spellId, 15)
+		if #playerList == 1 then
+			self:Bar(args.spellId, 15)
+		end
 		self:TargetsMessage(args.spellId, "red", playerList, 2, laser)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning")
