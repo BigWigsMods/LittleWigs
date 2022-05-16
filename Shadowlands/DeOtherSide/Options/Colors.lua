@@ -44,7 +44,6 @@ BigWigs:AddColors("De Other Side Trash", {
 	[332678] = {"blue","purple"},
 	[332706] = "red",
 	[333227] = {"green","red"},
-	[333250] = "blue",
 	[333787] = "red",
 	[334051] = "orange",
 	[340026] = "orange",
