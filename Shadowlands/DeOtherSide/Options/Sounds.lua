@@ -41,6 +41,7 @@ BigWigs:AddSounds("De Other Side Trash", {
 	[332678] = "alert",
 	[332706] = "warning",
 	[333227] = {"alert","info","warning"},
+	[333250] = "underyou",
 	[333787] = "warning",
 	[334051] = "alert",
 	[340026] = "alert",
