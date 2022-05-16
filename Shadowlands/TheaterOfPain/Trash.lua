@@ -72,12 +72,18 @@ end
 
 -- Ancient Captain
 function mod:DemoralizingShout(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 
 -- Blighted Sludge-Spewer
 function mod:WitheringDischarge(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -90,12 +96,18 @@ end
 
 -- Maniacal Soulbinder
 function mod:NecroticBoltVolley(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 
 -- Bone Magus
 function mod:BoneSpear(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
