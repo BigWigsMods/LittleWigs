@@ -44,10 +44,21 @@ BigWigs:AddSounds("Mordretha, the Endless Empress", {
 })
 
 BigWigs:AddSounds("Theater Of Pain Trash", {
+	[317605] = "alarm",
 	[330562] = {"alert","warning"},
 	[330614] = "alert",
 	[330868] = {"alert","warning"},
+	[331275] = "info",
+	[332708] = "alert",
 	[333294] = "alarm",
+	[333827] = "alert",
+	[333845] = "alert",
+	[333861] = "alert",
+	[334025] = "alert",
+	[337037] = "underyou",
 	[341969] = "alert",
+	[342125] = "alert",
+	[342135] = "warning",
+	[342139] = "warning",
 	[342675] = "alert",
 })

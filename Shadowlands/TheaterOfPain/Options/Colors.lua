@@ -44,10 +44,21 @@ BigWigs:AddColors("Mordretha, the Endless Empress", {
 })
 
 BigWigs:AddColors("Theater Of Pain Trash", {
+	[317605] = "red",
 	[330562] = "red",
 	[330614] = "yellow",
 	[330868] = "red",
+	[331275] = "yellow",
+	[332708] = "orange",
 	[333294] = "red",
+	[333827] = "red",
+	[333845] = "purple",
+	[333861] = "red",
+	[334025] = "yellow",
+	[337037] = "blue",
 	[341969] = "orange",
+	[342125] = "orange",
+	[342135] = "yellow",
+	[342139] = "red",
 	[342675] = "orange",
 })
