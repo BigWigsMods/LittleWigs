@@ -1,43 +1,43 @@
 local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "zhTW")
 if not L then return end
 if L then
-	--L.zophex_warmup_trigger = "Surrender... all... contraband..."
+	L.zophex_warmup_trigger = "放下...所有...違禁品..."
 end
 
 L = BigWigs:NewBossLocale("The Grand Menagerie", "zhTW")
 if L then
-	--L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
-	--L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
+	L.achillite_warmup_trigger = "橫衝直撞的野獸毀了你的生活嗎？找我們準沒錯！"
+	L.venza_goldfuse_warmup_trigger = "機會來了！那斧頭是我的了！"
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "zhTW")
 if L then
-	-- L.add_wave_killed = "Add wave killed (%d/%d)"
+	L.add_wave_killed = "擊退保安 (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "zhTW")
 if L then
-	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
-	--L.trading_game = "Trading Game"
-	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
-	--[[L.password_triggers = {
-		["Ivory Shell"] = true,
-		["Sapphire Oasis"] = true,
-		["Jade Palm"] = true,
-		["Golden Sands"] = true,
-		["Amber Sunset"] = true,
-		["Emerald Ocean"] = true,
-		["Ruby Gem"] = true,
-		["Pewter Stone"] = true,
-		["Pale Flower"] = true,
-		["Crimson Knife"] = true
-	}]]--
+	L.menagerie_warmup_trigger = "接下來，是你們千呼萬喚的東西！據說是被惡魔詛咒的湮滅之鋒！"
+	L.soazmi_warmup_trigger = "索利亞，抱歉打擾啦。看來我們來的時機不太對啊。"
+	L.trading_game = "交易游戲"
+	L.trading_game_desc = "在交易游戲期間使用正確的密碼發出警報。"
+	L.custom_on_autotalk = "自動對話"
+	L.custom_on_autotalk_desc = "交易游戲結束後，立即選擇正確的密碼。"
+	L.password_triggers = {
+		["Ivory Shell"] = "象牙貝殼",
+		["Sapphire Oasis"] = "寶藍綠洲",
+		["Jade Palm"] = "翠玉棕櫚",
+		["Golden Sands"] = "金黃沙粒",
+		["Amber Sunset"] = "琥珀日落",
+		["Emerald Ocean"] = "翡翠海洋",
+		["Ruby Gem"] = "深紅寶石",
+		["Pewter Stone"] = "白鑞石塊",
+		["Pale Flower"] = "蒼白花朵",
+		["Crimson Knife"] = "赤紅小刀"
+	}
 
 	L.interrogation_specialist = "審問專家"
-	--L.portalmancer_zohonn = "Portalmancer Zo'honn"
+	L.portalmancer_zohonn = "傳送門法師佐尼"
 	L.armored_overseer_tracker_zokorss = "武裝監督者 / 『追蹤者』佐寇司"
 	L.tracker_zokorss = "『追蹤者』佐寇司"
 	L.ancient_core_hound = "上古熔核犬"
@@ -47,7 +47,7 @@ if L then
 	L.support_officer = "支援官"
 	L.defective_sorter = "故障的分類機"
 	L.market_peacekeeper = "市場保安官"
-	--L.veteran_sparkcaster = "Veteran Sparkcaster"
+	L.veteran_sparkcaster = "老練的火花施放者"
 	L.commerce_enforcer = "貿易執法者"
 	L.commerce_enforcer_commander_zofar = "貿易執法者 / 指揮官佐發"
 	L.commander_zofar = "指揮官佐發"
