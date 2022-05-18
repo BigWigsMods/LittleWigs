@@ -23,7 +23,7 @@ if L then
 	L.trading_game_desc = "Warnungen mit korrektem Password während des Handels-Event."
 	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt das korrekte Passwort nach Abschluss des Handels-Events."
-	[[L.password_triggers = {
+	L.password_triggers = {
 		["Elfenbeinmuschel"] = true,
 		["Saphiroase"] = true,
 		["Jadepalme"] = true,
@@ -34,8 +34,7 @@ if L then
 		["Zinngestein"] = true,
 		["Fahlblume"] = true,
 		["Purpurmesser"] = true
-	}]]
-
+	}
 	L.interrogation_specialist = "Verhörspezialist"
 	L.portalmancer_zohonn = "Portalmagier Zo'honn"
 	L.armored_overseer_tracker_zokorss = "Gepanzerter Aufseher / Fährtenleser Zo'korss"
