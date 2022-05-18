@@ -78,7 +78,7 @@ function mod:GetOptions()
 		-- Plaguebinder
 		{328180, "DISPEL"}, -- Gripping Infection
 		-- Congealed Slime
-		{321935, "SAY"}, -- Withering Filth
+		321935, -- Withering Filth
 		-- Defender of Many Eyes
 		336451, -- Bulwark of Maldraxxus
 		-- Brood Ambusher
@@ -223,20 +223,9 @@ function mod:GrippingInfectionApplied(args)
 	end
 end
 
-do
-	local function printTarget(self, name, guid)
-		local isOnMe = self:Me(guid)
-		self:TargetMessage(321935, isOnMe and "red" or "yellow", name)
-		self:PlaySound(321935, isOnMe and "alarm" or "info", nil, name)
-		if isOnMe then
-			self:Say(321935)
-		end
-	end
-
-	function mod:WitheringFilth(args)
-		-- XXX check if the mob actually changes target
-		self:GetUnitTarget(printTarget, 0.6, args.sourceGUID)
-	end
+function mod:WitheringFilth(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
