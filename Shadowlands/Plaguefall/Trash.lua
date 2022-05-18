@@ -217,7 +217,7 @@ function mod:GrippingInfection(args)
 end
 
 function mod:GrippingInfectionApplied(args)
-	if self:Dispeller("disease", nil, args.spellId) then
+	if self:Dispeller("disease", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
