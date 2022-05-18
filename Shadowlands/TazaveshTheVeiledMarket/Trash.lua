@@ -392,8 +392,11 @@ end
 -- Support Officer
 function mod:RefractionShieldApplied(args)
 	if not self:Player(args.destFlags) then
-		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
-		self:PlaySound(args.spellId, "warning")
+		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		if unit and UnitAffectingCombat(unit) then
+			self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+			self:PlaySound(args.spellId, "warning")
+		end
 	end
 end
 function mod:HardLightBarrier(args)
