@@ -78,7 +78,7 @@ function mod:GetOptions()
 		-- Plaguebinder
 		{328180, "DISPEL"}, -- Gripping Infection
 		-- Congealed Slime
-		{321935, "SAY"}, -- Withering Filth
+		321935, -- Withering Filth
 		-- Defender of Many Eyes
 		336451, -- Bulwark of Maldraxxus
 		-- Brood Ambusher
@@ -217,26 +217,17 @@ function mod:GrippingInfection(args)
 end
 
 function mod:GrippingInfectionApplied(args)
-	if self:Dispeller("disease", nil, args.spellId) then
+	if self:Dispeller("disease", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 
-do
-	local function printTarget(self, name, guid)
-		local isOnMe = self:Me(guid)
-		self:TargetMessage(321935, isOnMe and "red" or "yellow", name)
-		self:PlaySound(321935, isOnMe and "alarm" or "info", nil, name)
-		if isOnMe then
-			self:Say(321935)
-		end
-	end
-
-	function mod:WitheringFilth(args)
-		-- XXX check if the mob actually changes target
-		self:GetUnitTarget(printTarget, 0.6, args.sourceGUID)
-	end
+function mod:WitheringFilth(args)
+	-- This ability has been bugged since 9.0, currently it seems to put the targeting circle on the player
+	-- at the top of the threat table but then it actually leaps to the closest target at the end of the cast.
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
