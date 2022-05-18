@@ -24,8 +24,8 @@ if L then
 	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "交易游戏结束后，立即选择正确的密码。"
 	L.password_triggers = {
-		["乳白贝壳"] = true,
-		["蓝宝石绿洲"] = true,
+		["乳白贝壳？"] = true,
+		["蓝宝石绿洲？"] = true,
 		["翠玉棕榈"] = true,
 		["金色砂砾"] = true,
 		["琥珀日落"] = true,
