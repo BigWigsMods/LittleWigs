@@ -224,6 +224,8 @@ function mod:GrippingInfectionApplied(args)
 end
 
 function mod:WitheringFilth(args)
+	-- This ability has been bugged since 9.0, currently it seems to put the targeting circle on the player
+	-- at the top of the threat table but then it actually leap to the closest target at the end of the cast.
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
