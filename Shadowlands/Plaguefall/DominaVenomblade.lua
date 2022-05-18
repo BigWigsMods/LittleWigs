@@ -16,7 +16,7 @@ mod.engageId = 2385
 function mod:GetOptions()
 	return {
 		332313, -- Brood Assassins
-		325552, -- Cytotoxic Slash
+		{325552, "DISPEL"}, -- Cytotoxic Slash
 		{325245, "SAY", "SAY_COUNTDOWN"}, -- Shadow Ambush
 		336258, -- Solitary Prey
 	}
@@ -53,9 +53,11 @@ function mod:CytotoxicSlash(args)
 	self:Bar(args.spellId, 22)
 end
 
-function mod:CytotoxicSlashApplied(args) -- XXX Only for tanks, healers, poison dispellers?
-	self:TargetMessage(args.spellId, "purple", args.destName)
-	self:PlaySound(args.spellId, "alert")
+function mod:CytotoxicSlashApplied(args)
+	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("poison", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "purple", args.destName)
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:ShadowwhirlApplied(args)
