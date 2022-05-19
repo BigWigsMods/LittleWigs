@@ -59,8 +59,10 @@ function mod:GetOptions()
 		{333241, "DISPEL"}, -- Raging Tantrum
 		-- Diseased Horror
 		341977, -- Meat Shield
+		{330700, "DISPEL"}, -- Decaying Blight
 		-- Blighted Sludge-Spewer
 		341969, -- Withering Discharge
+		{341949, "DISPEL"}, -- Withering Blight
 		-- Rancid Gasbag
 		330614, -- Vile Eruption
 		-- Dokigg the Brutalizer / Harugia the Bloodthirsty
@@ -117,7 +119,10 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RagingTantrumApplied", 333241)
 	self:Log("SPELL_CAST_START", "MeatShield", 341977)
+	self:Log("SPELL_AURA_APPLIED", "DecayingBlightApplied", 330700)
 	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969)
+	self:Log("SPELL_AURA_APPLIED", "WitheringBlightApplied", 341949)
+	-- TODO putrid butcher's devour flesh, what about chop?
 	self:Log("SPELL_CAST_START", "VileEruption", 330614)
 	self:Log("SPELL_CAST_START", "BattleTrance", 342139)
 	self:Log("SPELL_AURA_APPLIED", "BattleTranceApplied", 342139)
@@ -132,8 +137,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SeismicStomp", 333827)
 	self:Log("SPELL_CAST_START", "UnbreakableGuard", 331275)
 	self:Log("SPELL_CAST_START", "UnbalancingBlow", 333845)
+	-- TODO portal guardian's soulstorm and shadow vulnerability
 	self:Log("SPELL_CAST_START", "NecroticBoltVolley", 330868)
+	-- TODO soulbinder's soul corruption
 	self:Log("SPELL_CAST_START", "BoneSpear", 342675)
+	-- TODO bonereaver's bone storm and bone spikes
 	self:Log("SPELL_CAST_START", "DeathWinds", 333294)
 end
 
@@ -157,6 +165,24 @@ function mod:MeatShield(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
+do
+	local prev = 0
+	function mod:DecayingBlightApplied(args)
+		if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
+		if self:Dispeller("disease") then
+			if args.amount > 3 then
+				local t = args.time
+				if t - prev > 3 then
+					prev = t
+					self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+					self:PlaySound(args.spellId, "alert", nil, args.destName)
+				end
+			end
+		end
+	end
+end
 
 -- Blighted Sludge-Spewer
 function mod:WitheringDischarge(args)
@@ -165,6 +191,19 @@ function mod:WitheringDischarge(args)
 	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+do
+	local playerList = mod:NewTargetList()
+	function mod:WitheringBlightApplied(args)
+		if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
+		if self:Dispeller("disease") then
+			playerList[#playerList+1] = args.destName
+			self:TargetsMessage(args.spellId, "yellow", playerList, 5)
+			self:PlaySound(args.spellId, "alert", nil, playerList)
+		end
+	end
 end
 
 -- Rancid Gasbag
