@@ -213,7 +213,7 @@ function mod:WitheringDischarge(args)
 		return
 	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "warning")
 end
 do
 	local playerList = mod:NewTargetList()
