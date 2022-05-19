@@ -62,7 +62,7 @@ function mod:GetOptions()
 		-- Raging Bloodhorn
 		{333241, "DISPEL"}, -- Raging Tantrum
 		-- Diseased Horror
-		341977, -- Meat Shield
+		319290, -- Meat Shield
 		{330700, "DISPEL"}, -- Decaying Blight
 		-- Blighted Sludge-Spewer
 		341969, -- Withering Discharge
@@ -178,8 +178,8 @@ function mod:MeatShield(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 		return
 	end
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:Message(319290, "red", CL.casting:format(args.spellName))
+	self:PlaySound(319290, "alert")
 end
 do
 	local prev = 0
