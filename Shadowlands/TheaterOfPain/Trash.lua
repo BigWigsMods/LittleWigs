@@ -8,6 +8,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	170850, -- Raging Bloodhorn
+	170690, -- Diseased Horror
 	174210, -- Blighted Sludge-Spewer
 	163086, -- Rancid Gasbag
 	167538, -- Dokigg the Brutalizer
@@ -29,6 +30,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.raging_bloodhorn = "Raging Bloodhorn"
+	L.diseased_horror = "Diseased Horror"
 	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
 	L.rancid_gasbag = "Rancid Gasbag"
 	L.dokigg_the_brutalizer_harugia_the_bloodthirsty = "Dokigg the Brutalizer / Harugia the Bloodthirsty"
@@ -55,6 +57,8 @@ function mod:GetOptions()
 	return {
 		-- Raging Bloodhorn
 		{333241, "DISPEL"}, -- Raging Tantrum
+		-- Diseased Horror
+		341977, -- Meat Shield
 		-- Blighted Sludge-Spewer
 		341969, -- Withering Discharge
 		-- Rancid Gasbag
@@ -90,6 +94,7 @@ function mod:GetOptions()
 		333294, -- Death Winds
 	}, {
 		[333241] = L.raging_bloodhorn,
+		[341977] = L.diseased_horror,
 		[341969] = L.blighted_sludge_spewer,
 		[330614] = L.rancid_gasbag,
 		[342139] = L.dokigg_the_brutalizer_harugia_the_bloodthirsty,
@@ -111,6 +116,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RagingTantrumApplied", 333241)
+	self:Log("SPELL_CAST_START", "MeatShield", 341977)
 	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969)
 	self:Log("SPELL_CAST_START", "VileEruption", 330614)
 	self:Log("SPELL_CAST_START", "BattleTrance", 342139)
@@ -141,6 +147,15 @@ function mod:RagingTantrumApplied(args)
 		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
+end
+
+-- Diseased Horror
+function mod:MeatShield(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Blighted Sludge-Spewer

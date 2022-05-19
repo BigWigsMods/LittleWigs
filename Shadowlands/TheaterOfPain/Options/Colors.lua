@@ -58,6 +58,7 @@ BigWigs:AddColors("Theater Of Pain Trash", {
 	[334023] = "yellow",
 	[337037] = "blue",
 	[341969] = "orange",
+	[341977] = "red",
 	[342125] = {"blue","orange"},
 	[342135] = "yellow",
 	[342139] = {"orange","red"},
