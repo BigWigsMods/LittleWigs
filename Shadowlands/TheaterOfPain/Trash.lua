@@ -54,7 +54,7 @@ function mod:GetOptions()
 		-- Dokigg the Brutalizer / Harugia the Bloodthirsty
 		342139, -- Battle Trance
 		-- Dokigg the Brutalizer
-		342125, -- Brutal Leap
+		{342125, "SAY"}, -- Brutal Leap
 		-- Nekthara the Mangler / Heavin the Breaker
 		342135, -- Interrupting Roar
 		-- Nekthara the Mangler / Rek the Hardened
@@ -64,9 +64,9 @@ function mod:GetOptions()
 		-- Heavin the Breaker
 		332708, -- Ground Smash
 		-- Harugia the Bloodthirsty / Advent Nevermore
-		333861, -- Ricocheting Blade
+		{333861, "SAY"}, -- Ricocheting Blade
 		-- Harugia the Bloodthirsty
-		334023, -- Bloodthirsty Charge
+		{334023, "SAY"}, -- Bloodthirsty Charge
 		-- Ancient Captain
 		330562, -- Demoralizing Shout
 		-- Advent Nevermore
@@ -224,7 +224,7 @@ do
 	local function printTarget(self, name, guid)
 		local onMe = self:Me(guid)
 		self:TargetMessage(334023, "yellow", name)
-		self:PlaySound(334023, onMe and "warning" or "alert", nil, name)
+		self:PlaySound(334023, onMe and "alarm" or "alert", nil, name)
 		if onMe then
 			self:Say(334023)
 		end
