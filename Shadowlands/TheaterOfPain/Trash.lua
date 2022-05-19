@@ -66,7 +66,7 @@ function mod:GetOptions()
 		-- Harugia the Bloodthirsty / Advent Nevermore
 		333861, -- Ricocheting Blade
 		-- Harugia the Bloodthirsty
-		334025, -- Bloodthirsty Charge
+		334023, -- Bloodthirsty Charge
 		-- Ancient Captain
 		330562, -- Demoralizing Shout
 		-- Advent Nevermore
@@ -92,7 +92,7 @@ function mod:GetOptions()
 		[337037] = L.nekthara_the_mangler,
 		[332708] = L.heavin_the_breaker,
 		[333861] = L.harugia_the_bloodthirsty_advent_nevermore,
-		[334025] = L.harugia_the_bloodthirsty,
+		[334023] = L.harugia_the_bloodthirsty,
 		[330562] = L.ancient_captain,
 		[333827] = L.advent_nevermore,
 		[333845] = L.rek_the_hardened,
@@ -113,7 +113,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "WhirlingBladeDamage", 337037)
 	self:Log("SPELL_CAST_START", "GroundSmash", 332708)
 	self:Log("SPELL_CAST_START", "RicochetingBlade", 333861)
-	self:Log("SPELL_CAST_START", "BloodthirstyCharge", 334025)
+	self:Log("SPELL_CAST_START", "BloodthirstyCharge", 334023)
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 330562)
 	self:Log("SPELL_CAST_START", "SeismicStomp", 333827)
 	self:Log("SPELL_CAST_START", "UnbreakableGuard", 331275)
