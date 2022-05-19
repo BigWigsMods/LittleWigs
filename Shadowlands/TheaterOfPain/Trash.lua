@@ -131,31 +131,40 @@ end
 
 -- Dokigg the Brutalizer / Harugia the Bloodthirsty
 function mod:BattleTrance(args)
-	-- TODO higher priority for interrupters only
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "warning")
-	end
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 function mod:BattleTranceApplied(args)
 	if self:Dispeller("enrage", true) then
-		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
 end
 
 -- Dokigg the Brutalizer
-function mod:BrutalLeap(args)
-	-- TODO get target and make higher priority?
+do
+	local function printTarget(self, name, guid)
+		local onMe = self:Me(guid)
+		self:TargetMessage(342125, "orange", name)
+		self:PlaySound(342125, onMe and "warning" or "alert", nil, name)
+		if onMe then
+			self:Say(342125)
+		end
+	end
+	function mod:BrutalLeap(args)
+		-- TODO targeting not tested
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+	end
+end
+--[[function mod:BrutalLeap(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-end
+end]]--
 
 -- Nekthara the Mangler / Heavin the Breaker
 function mod:InterruptingRoar(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
+	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
@@ -164,7 +173,7 @@ end
 -- Nekthara the Mangler / Rek the Hardened
 function mod:Whirlwind(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
+	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -187,11 +196,8 @@ end
 
 -- Heavin the Breaker
 function mod:GroundSmash(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Harugia the Bloodthirsty / Advent Nevermore
@@ -205,8 +211,9 @@ do
 		end
 	end
 	function mod:RicochetingBlade(args)
+		-- TODO targeting not tested
 		local unit = self:GetUnitIdByGUID(args.sourceGUID)
-		if unit and UnitAffectingCombat(unit) then
+		if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 		end
 	end
@@ -223,20 +230,13 @@ do
 		end
 	end
 	function mod:BloodthirstyCharge(args)
-		-- TODO i dunno if target check works
-		local unit = self:GetUnitIdByGUID(args.sourceGUID)
-		if unit and UnitAffectingCombat(unit) then
-			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		end
+		-- todo targeting not tested
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 --[[function mod:BloodthirstyCharge(args)
-	-- TODO get target and make higher priority?
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end]]--
 
 -- Ancient Captain
@@ -251,14 +251,14 @@ end
 -- Advent Nevermore
 function mod:SeismicStomp(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
+	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 function mod:UnbreakableGuard(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
+	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
@@ -268,7 +268,7 @@ end
 function mod:UnbalancingBlow(args)
 	if self:Tank() or self:Healer() then
 		local unit = self:GetUnitIdByGUID(args.sourceGUID)
-		if unit and UnitAffectingCombat(unit) then
+		if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
