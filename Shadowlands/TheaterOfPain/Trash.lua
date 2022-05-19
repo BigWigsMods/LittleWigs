@@ -73,7 +73,7 @@ function mod:GetOptions()
 		333827, -- Seismic Stomp
 		331275, -- Unbreakable Guard
 		-- Rek the Hardened
-		333845, -- Unbalancing Blow TODO tank only
+		{333845, "TANK_HEALER"}, -- Unbalancing Blow
 		-- Blighted Sludge-Spewer
 		341969, -- Withering Discharge
 		-- Rancid Gasbag
@@ -195,21 +195,49 @@ function mod:GroundSmash(args)
 end
 
 -- Harugia the Bloodthirsty / Advent Nevermore
-function mod:RicochetingBlade(args)
-	-- TODO get target and make higher priority?
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
+do
+	local function printTarget(self, name, guid)
+		local onMe = self:Me(guid)
+		self:TargetMessage(333861, "red", name)
+		self:PlaySound(333861, onMe and "warning" or "alert", nil, name)
+		if onMe then
+			self:Say(333861)
+		end
+	end
+	function mod:RicochetingBlade(args)
+		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		if unit and UnitAffectingCombat(unit) then
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		end
 	end
 end
 
 -- Harugia the Bloodthirsty
-function mod:BloodthirstyCharge(args)
-	-- TODO get target and make higher priority?
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local function printTarget(self, name, guid)
+		local onMe = self:Me(guid)
+		self:TargetMessage(334023, "yellow", name)
+		self:PlaySound(334023, onMe and "warning" or "alert", nil, name)
+		if onMe then
+			self:Say(334023)
+		end
+	end
+	function mod:BloodthirstyCharge(args)
+		-- TODO i dunno if target check works
+		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		if unit and UnitAffectingCombat(unit) then
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		end
+	end
 end
+--[[function mod:BloodthirstyCharge(args)
+	-- TODO get target and make higher priority?
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end]]--
 
 -- Ancient Captain
 function mod:DemoralizingShout(args)
@@ -238,11 +266,12 @@ end
 
 -- Rek the Hardened
 function mod:UnbalancingBlow(args)
-	-- TODO tank scope only
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
+	if self:Tank() or self:Healer() then
+		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		if unit and UnitAffectingCombat(unit) then
+			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 
