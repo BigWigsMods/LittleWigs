@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	170850, -- Raging Bloodhorn
 	170690, -- Diseased Horror
 	174210, -- Blighted Sludge-Spewer
+	169927, -- Putrid Butcher
 	163086, -- Rancid Gasbag
 	167538, -- Dokigg the Brutalizer
 	162744, -- Nekthara the Mangler
@@ -34,6 +35,7 @@ if L then
 	L.raging_bloodhorn = "Raging Bloodhorn"
 	L.diseased_horror = "Diseased Horror"
 	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
+	L.putrid_butcher = "Putrid Butcher"
 	L.rancid_gasbag = "Rancid Gasbag"
 	L.dokigg_the_brutalizer_harugia_the_bloodthirsty = "Dokigg the Brutalizer / Harugia the Bloodthirsty"
 	L.dokigg_the_brutalizer = "Dokigg the Brutalizer"
@@ -67,6 +69,9 @@ function mod:GetOptions()
 		-- Blighted Sludge-Spewer
 		341969, -- Withering Discharge
 		{341949, "DISPEL"}, -- Withering Blight
+		-- Putrid Butcher
+		330586, -- Devour Flesh
+		{332836, "HEALER"}, -- Chop
 		-- Rancid Gasbag
 		330614, -- Vile Eruption
 		-- Dokigg the Brutalizer / Harugia the Bloodthirsty
@@ -109,6 +114,7 @@ function mod:GetOptions()
 		[333241] = L.raging_bloodhorn,
 		[341977] = L.diseased_horror,
 		[341969] = L.blighted_sludge_spewer,
+		[330586] = L.putrid_butcher,
 		[330614] = L.rancid_gasbag,
 		[342139] = L.dokigg_the_brutalizer_harugia_the_bloodthirsty,
 		[342125] = L.dokigg_the_brutalizer,
@@ -135,7 +141,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DecayingBlightApplied", 330700)
 	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969)
 	self:Log("SPELL_AURA_APPLIED", "WitheringBlightApplied", 341949)
-	-- TODO putrid butcher's devour flesh, what about chop?
+	self:Log("SPELL_CAST_START", "DevourFlesh", 330586)
+	self:Log("SPELL_CAST_START", "Chop", 332836)
 	self:Log("SPELL_CAST_START", "VileEruption", 330614)
 	self:Log("SPELL_CAST_START", "BattleTrance", 342139)
 	self:Log("SPELL_AURA_APPLIED", "BattleTranceApplied", 342139)
@@ -219,6 +226,29 @@ do
 			self:TargetsMessage(args.spellId, "yellow", playerList, 5)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
 		end
+	end
+end
+
+-- Putrid Butcher
+function mod:DevourFlesh(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) or self:Healer() then
+			self:TargetMessage(332836, "red", name)
+			self:PlaySound(332836, onMe and "warning" or "alert", nil, name)
+		end
+	end
+	function mod:Chop(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 
