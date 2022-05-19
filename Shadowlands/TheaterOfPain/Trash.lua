@@ -54,7 +54,7 @@ end
 function mod:GetOptions()
 	return {
 		-- Raging Bloodhorn
-		333241, -- Raging Tantrum
+		{333241, "DISPEL"}, -- Raging Tantrum
 		-- Dokigg the Brutalizer / Harugia the Bloodthirsty
 		342139, -- Battle Trance
 		-- Dokigg the Brutalizer
