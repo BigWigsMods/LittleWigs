@@ -18,9 +18,11 @@ mod:RegisterEnableMob(
 	164506, -- Ancient Captain
 	167533, -- Advent Nevermore
 	167534, -- Rek the Hardened
+	167998, -- Portal Guardian
 	160495, -- Maniacal Soulbinder
 	170882, -- Bone Magus
-	169893 -- Nefarious Darkspeaker
+	169893, -- Nefarious Darkspeaker
+	162763 -- Soulforged Bonereaver
 )
 
 --------------------------------------------------------------------------------
@@ -44,9 +46,11 @@ if L then
 	L.ancient_captain = "Ancient Captain"
 	L.advent_nevermore = "Advent Nevermore"
 	L.rek_the_hardened = "Rek the Hardened"
+	L.portal_guardian = "Portal Guardian"
 	L.maniacal_soulbinder = "Maniacal Soulbinder"
 	L.bone_magus = "Bone Magus"
 	L.nefarious_darkspeaker = "Nefarious Darkspeaker"
+	L.soulforged_bonereaver = "Soulforged Bonereaver"
 end
 
 --------------------------------------------------------------------------------
@@ -88,12 +92,19 @@ function mod:GetOptions()
 		331275, -- Unbreakable Guard
 		-- Rek the Hardened
 		{333845, "TANK_HEALER"}, -- Unbalancing Blow
+		-- Portal Guardian
+		330716, -- Soulstorm
+		{330725, "DISPEL"}, -- Shadow Vulnerability
 		-- Maniacal Soulbinder
 		330868, -- Necrotic Bolt Volley
+		{333708, "DISPEL"}, -- Soul Corruption
 		-- Bone Magus
 		342675, -- Bone Spear
 		-- Nefarious Darkspeaker
 		333294, -- Death Winds
+		-- Soulforged Bonereaver
+		331223, -- Bonestorm
+		331237, -- Bone Spikes
 	}, {
 		[333241] = L.raging_bloodhorn,
 		[341977] = L.diseased_horror,
@@ -110,9 +121,11 @@ function mod:GetOptions()
 		[330562] = L.ancient_captain,
 		[333827] = L.advent_nevermore,
 		[333845] = L.rek_the_hardened,
+		[330716] = L.portal_guardian,
 		[330868] = L.maniacal_soulbinder,
 		[342675] = L.bone_magus,
-		[333294] = L.nefarious_darkspeaker
+		[333294] = L.nefarious_darkspeaker,
+		[331223] = L.soulforged_bonereaver
 	}
 end
 
@@ -137,11 +150,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SeismicStomp", 333827)
 	self:Log("SPELL_CAST_START", "UnbreakableGuard", 331275)
 	self:Log("SPELL_CAST_START", "UnbalancingBlow", 333845)
-	-- TODO portal guardian's soulstorm and shadow vulnerability
+	self:Log("SPELL_CAST_START", "Soulstorm", 330716)
+	self:Log("SPELL_AURA_APPLIED", "ShadowVulnerabilityApplied", 330725)
 	self:Log("SPELL_CAST_START", "NecroticBoltVolley", 330868)
-	-- TODO soulbinder's soul corruption
+	self:Log("SPELL_AURA_APPLIED", "SoulCorruptionApplied", 333708)
 	self:Log("SPELL_CAST_START", "BoneSpear", 342675)
-	-- TODO bonereaver's bone storm and bone spikes
+	self:Log("SPELL_CAST_START", "Bonestorm", 331223)
+	self:Log("SPELL_DAMAGE", "BonestormDamage", 331224)
+	self:Log("SPELL_CAST_START", "BoneSpikes", 331237)
 	self:Log("SPELL_CAST_START", "DeathWinds", 333294)
 end
 
@@ -344,6 +360,18 @@ function mod:UnbalancingBlow(args)
 	end
 end
 
+-- Portal Guardian
+function mod:Soulstorm(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
+end
+function mod:ShadowVulnerabilityApplied(args)
+	if self:Dispeller("curse") then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
 -- Maniacal Soulbinder
 function mod:NecroticBoltVolley(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
@@ -351,6 +379,12 @@ function mod:NecroticBoltVolley(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
+end
+function mod:SoulCorruptionApplied(args)
+	if self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
 
 -- Bone Magus
@@ -366,4 +400,20 @@ end
 function mod:DeathWinds(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Soulforged Bonereaver
+function mod:Bonestorm(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
+end
+function mod:BonestormDamage(args)
+	if not self:Tank() then
+		self:PersonalMessage(331223, "underyou")
+		self:PlaySound(331223, "underyou")
+	end
+end
+function mod:BoneSpikes(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
 end
