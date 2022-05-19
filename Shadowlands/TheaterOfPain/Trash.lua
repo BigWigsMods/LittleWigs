@@ -78,7 +78,7 @@ function mod:GetOptions()
 		-- Harugia the Bloodthirsty / Advent Nevermore
 		{333861, "SAY"}, -- Ricocheting Blade
 		-- Harugia the Bloodthirsty
-		{334023, "SAY"}, -- Bloodthirsty Charge
+		334023, -- Bloodthirsty Charge
 		-- Ancient Captain
 		330562, -- Demoralizing Shout
 		-- Advent Nevermore
