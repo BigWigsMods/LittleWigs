@@ -64,7 +64,8 @@ function mod:GetOptions()
 		-- Brittlebone Mage
 		328667, -- Frostbolt Volley
 		-- Skeletal Marauder
-		324293, -- Guttural Scream
+		324293, -- Rasping Scream
+		343470, -- Boneshatter Shield
 		-- Zolramus Bonemender
 		335143, -- Bonemend
 		320822, -- Final Bargain
@@ -115,7 +116,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WrathOfZolramus", 322756)
 	self:Log("SPELL_CAST_START", "AnimateDead", 321780)
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
-	self:Log("SPELL_CAST_START", "GutturalScream", 324293)
+	self:Log("SPELL_CAST_START", "RaspingScream", 324293)
+	self:Log("SPELL_AURA_APPLIED", "BoneshatterShieldApplied", 343470)
 	self:Log("SPELL_CAST_START", "Bonemend", 335143)
 	self:Log("SPELL_CAST_START", "FinalBargain", 320822)
 	self:Log("SPELL_CAST_START", "DarkShroud", 335141)
@@ -199,8 +201,13 @@ function mod:FrostboltVolley(args)
 end
 
 -- Skeletal Marauder
-function mod:GutturalScream(args)
+function mod:RaspingScream(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BoneshatterShieldApplied(args)
+	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "alert")
 end
 
