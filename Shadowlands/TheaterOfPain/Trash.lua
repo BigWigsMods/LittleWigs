@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Theater Of Pain Trash", 2293)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	170850, -- Raging Bloodhorn
 	167538, -- Dokigg the Brutalizer
 	162744, -- Nekthara the Mangler
 	167532, -- Heavin the Breaker
@@ -27,6 +28,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.raging_bloodhorn = "Raging Bloodhorn"
 	L.dokigg_the_brutalizer_harugia_the_bloodthirsty = "Dokigg the Brutalizer / Harugia the Bloodthirsty"
 	L.dokigg_the_brutalizer = "Dokigg the Brutalizer"
 	L.nekthara_the_mangler_heavin_the_breaker = "Nekthara the Mangler / Heavin the Breaker"
@@ -51,6 +53,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Raging Bloodhorn
+		333241, -- Raging Tantrum
 		-- Dokigg the Brutalizer / Harugia the Bloodthirsty
 		342139, -- Battle Trance
 		-- Dokigg the Brutalizer
@@ -85,6 +89,7 @@ function mod:GetOptions()
 		-- Nefarious Darkspeaker
 		333294, -- Death Winds
 	}, {
+		[333241] = L.raging_bloodhorn,
 		[342139] = L.dokigg_the_brutalizer_harugia_the_bloodthirsty,
 		[342125] = L.dokigg_the_brutalizer,
 		[342135] = L.nekthara_the_mangler_heavin_the_breaker,
@@ -105,6 +110,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "RagingTantrumApplied", 333241)
 	self:Log("SPELL_CAST_START", "BattleTrance", 342139)
 	self:Log("SPELL_AURA_APPLIED", "BattleTranceApplied", 342139)
 	self:Log("SPELL_CAST_START", "BrutalLeap", 342125)
@@ -128,6 +134,14 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Raging Bloodhorn
+function mod:RagingTantrumApplied(args)
+	if self:Dispeller("enrage", true) then
+		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
+end
 
 -- Dokigg the Brutalizer / Harugia the Bloodthirsty
 function mod:BattleTrance(args)
