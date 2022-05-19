@@ -411,6 +411,9 @@ function mod:NecroticBoltVolley(args)
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 function mod:SoulCorruptionApplied(args)
+	if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	if self:Dispeller("magic") then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
