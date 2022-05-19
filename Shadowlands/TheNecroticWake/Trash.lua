@@ -67,6 +67,7 @@ function mod:GetOptions()
 		324293, -- Guttural Scream
 		-- Zolramus Bonemender
 		335143, -- Bonemend
+		320822, -- Final Bargain
 		-- Nar'zudah
 		335141, -- Dark Shroud
 		{327396, "SAY", "SAY_COUNTDOWN"}, -- Grim Fate
@@ -116,6 +117,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
 	self:Log("SPELL_CAST_START", "GutturalScream", 324293)
 	self:Log("SPELL_CAST_START", "Bonemend", 335143)
+	self:Log("SPELL_CAST_START", "FinalBargain", 320822)
 	self:Log("SPELL_CAST_START", "DarkShroud", 335141)
 	self:Log("SPELL_CAST_SUCCESS", "DarkShroudSuccess", 335141)
 	self:Log("SPELL_AURA_REMOVED", "DarkShroudRemoved", 335141)
@@ -205,6 +207,11 @@ end
 -- Zolramus Bonemender
 function mod:Bonemend(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:FinalBargain(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
