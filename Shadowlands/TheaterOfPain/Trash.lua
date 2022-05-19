@@ -132,8 +132,11 @@ end
 -- Dokigg the Brutalizer / Harugia the Bloodthirsty
 function mod:BattleTrance(args)
 	-- TODO higher priority for interrupters only
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 function mod:BattleTranceApplied(args)
 	if self:Dispeller("enrage", true) then
@@ -151,14 +154,20 @@ end
 
 -- Nekthara the Mangler / Heavin the Breaker
 function mod:InterruptingRoar(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 -- Nekthara the Mangler / Rek the Hardened
 function mod:Whirlwind(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 -- Nekthara the Mangler
@@ -178,15 +187,21 @@ end
 
 -- Heavin the Breaker
 function mod:GroundSmash(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Harugia the Bloodthirsty / Advent Nevermore
 function mod:RicochetingBlade(args)
 	-- TODO get target and make higher priority?
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Harugia the Bloodthirsty
@@ -207,19 +222,28 @@ end
 
 -- Advent Nevermore
 function mod:SeismicStomp(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 function mod:UnbreakableGuard(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 -- Rek the Hardened
 function mod:UnbalancingBlow(args)
 	-- TODO tank scope only
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Blighted Sludge-Spewer
