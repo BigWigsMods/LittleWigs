@@ -225,7 +225,6 @@ do
 		end
 	end
 	function mod:RicochetingBlade(args)
-		-- TODO targeting not tested
 		local unit = self:GetUnitIdByGUID(args.sourceGUID)
 		if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
@@ -234,24 +233,11 @@ do
 end
 
 -- Harugia the Bloodthirsty
-do
-	local function printTarget(self, name, guid)
-		local onMe = self:Me(guid)
-		self:TargetMessage(334023, "yellow", name)
-		self:PlaySound(334023, onMe and "alarm" or "alert", nil, name)
-		if onMe then
-			self:Say(334023)
-		end
-	end
-	function mod:BloodthirstyCharge(args)
-		-- todo targeting not tested
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-	end
-end
---[[function mod:BloodthirstyCharge(args)
+function mod:BloodthirstyCharge(args)
+	-- target detection not possible with this spell
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-end]]--
+end
 
 -- Ancient Captain
 function mod:DemoralizingShout(args)
