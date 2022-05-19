@@ -9,6 +9,7 @@ if L then
 	L.corpse_harvester = "Сборщик трупов"
 	L.stitched_vanguard = "Сшитый боец авангарда"
 	L.zolramus_gatekeeper = "Хранитель врат с \"Золрамуса\""
+	L.zolramus_necromancer = "Некромант с \"Золрамуса\""
 	L.brittlebone_mage = "Хрупкий маг"
 	L.skeletal_marauder = "Скелет-мародер"
 	L.zolramus_bonemender = "Костоправ с \"Золрамуса\""

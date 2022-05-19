@@ -9,6 +9,7 @@ if L then
 	L.corpse_harvester = "Cata-cadáver"
 	L.stitched_vanguard = "Vanguarda Suturada"
 	L.zolramus_gatekeeper = "Guarda-pórtico Zolramus"
+	L.zolramus_necromancer = "Necromante Zolramus"
 	L.brittlebone_mage = "Mago Ossofraco"
 	L.skeletal_marauder = "Espoliador Descarnado"
 	L.zolramus_bonemender = "Junta-ossos Zoralmus"
