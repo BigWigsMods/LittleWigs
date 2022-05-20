@@ -168,7 +168,7 @@ function mod:BarbedShackles(args)
 end
 
 function mod:BarbedShacklesApplied(args)
-	if self:Dispeller("movement") or self:Me(args.destGUID) then
+	if self:Dispeller("movement") or self:Me(args.destGUID) or self:Healer() then
 		self:TargetMessage(335305, "yellow", args.destName)
 		self:PlaySound(335305, "alert", nil, args.destName)
 	end
