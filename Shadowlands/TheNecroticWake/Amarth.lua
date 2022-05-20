@@ -25,7 +25,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "LandoftheDead", 321226)
+	self:Log("SPELL_AURA_APPLIED", "LandoftheDead", 321226)
 	self:Log("SPELL_CAST_START", "FinalHarvest", 321247)
 	self:Log("SPELL_CAST_START", "NecroticBreath", 333488)
 	self:Log("SPELL_CAST_SUCCESS", "UnholyFrenzy", 320012)
