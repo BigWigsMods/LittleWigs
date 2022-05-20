@@ -23,18 +23,18 @@ if L then
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
 	L.custom_on_autotalk = "Conversa automática"
 	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
-	--[[L.password_triggers = {
-		["Ivory Shell"] = true,
-		["Sapphire Oasis"] = true,
-		["Jade Palm"] = true,
-		["Golden Sands"] = true,
-		["Amber Sunset"] = true,
-		["Emerald Ocean"] = true,
-		["Ruby Gem"] = true,
-		["Pewter Stone"] = true,
-		["Pale Flower"] = true,
-		["Crimson Knife"] = true
-	}]]--
+	L.password_triggers = {
+		["Concha de Marfim"] = true,
+		["Oásis de Safira"] = true,
+		["Palmeira de Jade"] = true,
+		["Areia Dourada"] = true,
+		["Âmbar Crepúsculo"] = true,
+		["Oceano Esmeralda"] = true,
+		["Gema de Rubi"] = true,
+		["Pedra de Estanho"] = true,
+		["Flor Pálida"] = true,
+		["Faca Carmesim"] = true
+	}
 
 	L.interrogation_specialist = "Especialista em Interrogatório"
 	L.portalmancer_zohonn = "Portalmante Zo'honn"
