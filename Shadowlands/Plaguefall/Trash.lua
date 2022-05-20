@@ -17,6 +17,8 @@ mod:RegisterEnableMob(
 	163894, -- Blighted Spinebreaker
 	168627, -- Plaguebinder
 	164707, -- Congealed Slime
+	168022, -- Slime Tentacle
+	168907, -- Slime Tentacle (CC immune version)
 	163862, -- Defender of Many Eyes
 	164737, -- Brood Ambusher
 	169861, -- Ickor Bileflesh
@@ -40,6 +42,7 @@ if L then
 	L.blighted_spinebreaker = "Blighted Spinebreaker"
 	L.plaguebinder = "Plaguebinder"
 	L.congealed_slime = "Congealed Slime"
+	L.slime_tentacle = "Slime Tentacle"
 	L.defender_of_many_eyes = "Defender of Many Eyes"
 	L.brood_ambusher = "Brood Ambusher"
 	L.ickor_bileflesh = "Ickor Bileflesh"
@@ -79,6 +82,8 @@ function mod:GetOptions()
 		{328180, "DISPEL"}, -- Gripping Infection
 		-- Congealed Slime
 		321935, -- Withering Filth
+		-- Slime Tentacle
+		328429, -- Crushing Embrace
 		-- Defender of Many Eyes
 		336451, -- Bulwark of Maldraxxus
 		-- Brood Ambusher
@@ -103,6 +108,7 @@ function mod:GetOptions()
 		[318949] = L.blighted_spinebreaker,
 		[328180] = L.plaguebinder,
 		[321935] = L.congealed_slime,
+		[328429] = L.slime_tentacle,
 		[336451] = L.defender_of_many_eyes,
 		[328475] = L.brood_ambusher,
 		[330786] = L.ickor_bileflesh,
@@ -128,6 +134,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GrippingInfection", 328180)
 	self:Log("SPELL_AURA_APPLIED", "GrippingInfectionApplied", 328180)
 	self:Log("SPELL_CAST_START", "WitheringFilth", 321935)
+	self:Log("SPELL_CAST_START", "CrushingEmbrace", 328429)
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkOfMaldraxxus", 336451)
 	self:Log("SPELL_CAST_START", "EnvelopingWebbing", 328475)
 	self:Log("SPELL_CAST_SUCCESS", "Stealthlings", 328400)
@@ -228,6 +235,13 @@ function mod:WitheringFilth(args)
 	-- at the top of the threat table but then it actually leaps to the closest target at the end of the cast.
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:CrushingEmbrace(args)
+	-- TODO get target, it's a 1 second cast
+	-- depending on source NPC id it is either CCable or only movement dispellers
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 end
 
 do
