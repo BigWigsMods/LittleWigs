@@ -114,7 +114,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MeatShield", 323190)
 	self:Log("SPELL_AURA_APPLIED", "ClingingDarkness", 323347)
 	self:Log("SPELL_CAST_START", "WrathOfZolramus", 322756)
-	self:Log("SPELL_CAST_START", "AnimateDead", 321780)
+	self:Log("SPELL_AURA_APPLIED", "AnimateDead", 321780)
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
 	self:Log("SPELL_CAST_START", "RaspingScream", 324293)
 	self:Log("SPELL_AURA_APPLIED", "BoneshatterShieldApplied", 343470)
@@ -188,7 +188,7 @@ end
 
 -- Zolramus Necromancer
 function mod:AnimateDead(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
