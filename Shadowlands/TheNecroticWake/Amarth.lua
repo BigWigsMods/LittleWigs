@@ -15,6 +15,7 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		321226, -- Land of the Dead
 		321247, -- Final Harvest
 		333488, -- Necrotic Breath
@@ -41,6 +42,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 24.75, CL.active, "achievement_dungeon_theneroticwake")
+end
 
 function mod:LandoftheDead(args)
 	self:Message(args.spellId, "cyan")
