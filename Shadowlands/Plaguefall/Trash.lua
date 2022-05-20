@@ -254,7 +254,8 @@ do
 
 	function mod:CrushingEmbrace(args)
 		sourceMobId = self:MobId(args.sourceGUID)
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		-- TODO test target detection, but i think it should work
+		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
 	end
 end
 
