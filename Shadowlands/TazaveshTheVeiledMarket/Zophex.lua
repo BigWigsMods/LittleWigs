@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:Log("SPELL_AURA_APPLIED", "InterrogationApplied", 347949)
 	self:Log("SPELL_AURA_APPLIED", "ContainmentCellApplied", 345990)
-	self:Death("ContainmentCellDeath", 175576)
+	self:Log("SPELL_AURA_REMOVED", "ContainmentCellRemoved", 345990)
 	self:Log("SPELL_AURA_APPLIED", "ImpoundContrabandApplied", 345770)
 	self:Log("SPELL_AURA_REMOVED", "ImpoundContrabandRemoved", 345770)
 	self:Log("SPELL_CAST_SUCCESS", "ArmedSecurity", 346204)
@@ -46,7 +46,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(347949, 34.1) -- Interrogation
+	self:Bar(347949, 25.6) -- Interrogation
 	self:Bar(345770, 19.3) -- Impound Contraband
 	self:Bar(346204, 8.7) -- Armed Security
 end
@@ -64,7 +64,6 @@ end
 function mod:InterrogationApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, self:Me(args.destGUID) and "warning" or "alert", nil, args.destName)
-	self:CDBar(args.spellId, 46)
 	self:CastBar(args.spellId, 5)
 end
 
@@ -73,9 +72,10 @@ function mod:ContainmentCellApplied(args)
 	self:PlaySound(args.spellId, self:Me(args.destGUID) and "alert" or "warning")
 end
 
-function mod:ContainmentCellDeath(args)
-	self:Message(345990, "green", CL.removed:format(args.destName))
-	self:PlaySound(345990, "info")
+function mod:ContainmentCellRemoved(args)
+	self:Message(args.spellId, "green", CL.removed:format(args.destName))
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(347949, 34)
 end
 
 function mod:ImpoundContrabandApplied(args)
