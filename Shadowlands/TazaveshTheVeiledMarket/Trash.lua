@@ -221,8 +221,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "LethalForceRemoved", 355480)
 
 	------ So'leah's Gambit ------
-	self:RegisterEvent("UNIT_TARGET")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
+	self:RegisterEvent("UNIT_TARGET")
 	self:Log("SPELL_CAST_START", "InvigoratingFishStick", 355132)
 	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStickSpawned", 355132)
 	self:Log("SPELL_CAST_START", "CryofMrrggllrrgg", 355057)
