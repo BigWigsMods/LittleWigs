@@ -34,6 +34,12 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local gambitName = C_ChallengeMode.GetMapUIInfo(392) -- Tazavesh: So'leah's Gambit
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -96,8 +102,6 @@ local password = nil
 --
 
 function mod:GetOptions()
-	local gambitName = C_ChallengeMode.GetMapUIInfo(392)
-
 	return {
 		------ Streets of Wonder ------
 		"trading_game",
