@@ -49,7 +49,7 @@ end
 
 -- called from trash module
 function mod:Warmup()
-	self:Bar("warmup", 24, CL.active, "achievement_dungeon_brokerdungeon")
+	self:Bar("warmup", 23.1, CL.active, "achievement_dungeon_brokerdungeon")
 end
 
 do

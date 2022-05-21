@@ -100,7 +100,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_WHISPER()
 	-- Unruly patrons rush the stage!
 	if addWave <= 2 then
-		self:Bar(353706, 36) -- Rowdy
+		self:Bar(353706, 37.5) -- Rowdy
 	end
 end
 
