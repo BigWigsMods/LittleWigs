@@ -96,6 +96,8 @@ local password = nil
 --
 
 function mod:GetOptions()
+	local gambitName = C_ChallengeMode.GetMapUIInfo(392)
+
 	return {
 		------ Streets of Wonder ------
 		"trading_game",
@@ -136,7 +138,7 @@ function mod:GetOptions()
 
 		------ So'leah's Gambit ------
 		-- Murkbrine Scalebinder
-		355132, -- Invigorating Fish Stick
+		{355132, "NAMEPLATEBAR"}, -- Invigorating Fish Stick
 		-- Murkbrine Shellcrusher
 		355057, -- Cry of Mrrggllrrgg
 		-- Coastwalker Goliath
@@ -216,6 +218,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "LethalForceRemoved", 355480)
 
 	------ So'leah's Gambit ------
+	self:RegisterEvent("UNIT_TARGET")
 	self:Log("SPELL_CAST_START", "InvigoratingFishStick", 355132)
 	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStickSpawned", 355132)
 	self:Log("SPELL_CAST_START", "CryofMrrggllrrgg", 355057)
@@ -487,9 +490,22 @@ end
 ------ So'leah's Gambit ------
 
 -- Murkbrine Scalebinder
+do
+	local registeredMobs = {}
+
+	function mod:UNIT_TARGET(event, unit)
+		local sourceGUID = self:UnitGUID(unit)
+		local mobId = self:MobId(sourceGUID)
+		if mobId == 178141 and not registeredMobs[sourceGUID] then -- Murkbrine Scalebinder
+			registeredMobs[sourceGUID] = true
+			self:NameplateCDBar(355132, 7.2, sourceGUID) -- Invigorating Fish Stick
+		end
+	end
+end
 function mod:InvigoratingFishStick(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
 end
 function mod:InvigoratingFishStickSpawned(args)
 	self:Message(args.spellId, "red")
