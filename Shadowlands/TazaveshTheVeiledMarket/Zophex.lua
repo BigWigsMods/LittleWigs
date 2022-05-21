@@ -57,7 +57,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	if msg == L.zophex_warmup_trigger then
-		self:Bar("warmup", 10, CL.active, "achievement_dungeon_brokerdungeon")
+		self:Bar("warmup", 9.2, CL.active, "achievement_dungeon_brokerdungeon")
 	end
 end
 
