@@ -535,6 +535,7 @@ end
 function mod:TidalStomp(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 17)
 end
 
 -- Stormforged Guardian
