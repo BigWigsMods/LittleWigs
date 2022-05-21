@@ -240,7 +240,8 @@ function mod:DevourFlesh(args)
 end
 do
 	local function printTarget(self, name, guid)
-		if self:Me(guid) or self:Healer() then
+		local onMe = self:Me(guid)
+		if onMe or self:Healer() then
 			self:TargetMessage(332836, "red", name)
 			self:PlaySound(332836, onMe and "warning" or "alert", nil, name)
 		end
