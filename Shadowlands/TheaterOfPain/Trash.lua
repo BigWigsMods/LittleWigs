@@ -77,7 +77,7 @@ function mod:GetOptions()
 		-- Dokigg the Brutalizer / Harugia the Bloodthirsty
 		342139, -- Battle Trance
 		-- Dokigg the Brutalizer
-		{342125, "SAY"}, -- Brutal Leap
+		342125, -- Brutal Leap
 		-- Nekthara the Mangler / Heavin the Breaker
 		342135, -- Interrupting Roar
 		-- Nekthara the Mangler / Rek the Hardened
@@ -271,24 +271,11 @@ function mod:BattleTranceApplied(args)
 end
 
 -- Dokigg the Brutalizer
-do
-	local function printTarget(self, name, guid)
-		local onMe = self:Me(guid)
-		self:TargetMessage(342125, "orange", name)
-		self:PlaySound(342125, onMe and "warning" or "alert", nil, name)
-		if onMe then
-			self:Say(342125)
-		end
-	end
-	function mod:BrutalLeap(args)
-		-- TODO targeting not tested
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-	end
-end
---[[function mod:BrutalLeap(args)
+function mod:BrutalLeap(args)
+	-- target detection not possible with this spell
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-end]]--
+end
 
 -- Nekthara the Mangler / Heavin the Breaker
 function mod:InterruptingRoar(args)

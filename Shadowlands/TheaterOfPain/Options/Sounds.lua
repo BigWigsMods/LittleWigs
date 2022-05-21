@@ -68,7 +68,7 @@ BigWigs:AddSounds("Theater Of Pain Trash", {
 	[337037] = "underyou",
 	[341949] = "alert",
 	[341969] = "warning",
-	[342125] = {"alert","warning"},
+	[342125] = "alert",
 	[342135] = "warning",
 	[342139] = {"alert","warning"},
 	[342675] = "alert",
