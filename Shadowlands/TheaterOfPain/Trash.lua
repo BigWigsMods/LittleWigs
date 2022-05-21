@@ -430,7 +430,7 @@ function mod:Bonestorm(args)
 	self:PlaySound(args.spellId, "long")
 end
 function mod:BonestormDamage(args)
-	if not self:Tank() then
+	if not self:Tank() and self:Me(args.destGUID) then
 		self:PersonalMessage(331223, "underyou")
 		self:PlaySound(331223, "underyou")
 	end
