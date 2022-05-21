@@ -137,6 +137,8 @@ function mod:GetOptions()
 		355480, -- Lethal Force
 
 		------ So'leah's Gambit ------
+		-- General
+		358443, -- Blood in the Water
 		-- Murkbrine Scalebinder
 		{355132, "NAMEPLATEBAR"}, -- Invigorating Fish Stick
 		-- Murkbrine Shellcrusher
@@ -175,6 +177,7 @@ function mod:GetOptions()
 		[355480] = L.commander_zofar,
 
 		------ So'leah's Gambit ------
+		[358443] = gambitName,
 		[355132] = L.murkbrine_scalebinder,
 		[355057] = L.murkbrine_shellcrusher,
 		[355429] = L.coastwalker_goliath,
@@ -219,6 +222,7 @@ function mod:OnBossEnable()
 
 	------ So'leah's Gambit ------
 	self:RegisterEvent("UNIT_TARGET")
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
 	self:Log("SPELL_CAST_START", "InvigoratingFishStick", 355132)
 	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStickSpawned", 355132)
 	self:Log("SPELL_CAST_START", "CryofMrrggllrrgg", 355057)
@@ -488,6 +492,13 @@ do
 end
 
 ------ So'leah's Gambit ------
+
+-- Blood in the Water
+function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
+	if msg:find("INV_Pet_BabyShark", nil, true) then
+		self:Bar(358443, 5.25) -- Blood in the Water
+	end
+end
 
 -- Murkbrine Scalebinder
 do
