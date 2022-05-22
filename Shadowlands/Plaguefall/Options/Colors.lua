@@ -44,6 +44,8 @@ BigWigs:AddColors("Plaguefall Trash", {
 	[328180] = {"blue","orange","yellow"},
 	[328475] = "red",
 	[329239] = "orange",
+	[330069] = {"blue","yellow"},
+	[330092] = {"blue","green","orange"},
 	[330403] = "red",
 	[330786] = "orange",
 	[330816] = "yellow",

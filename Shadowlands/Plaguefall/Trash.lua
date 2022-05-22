@@ -58,6 +58,9 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Environment
+		330069, -- Concentrated Plague
+		330092, -- Plaguefallen
 		-- Plagueborer
 		323572, -- Rolling Plague
 		-- Fen Hornet
@@ -94,6 +97,7 @@ function mod:GetOptions()
 		-- Fungi Stormer
 		328177, -- Fungistorm
 	}, {
+		[330069] = CL.general,
 		[323572] = L.plagueborer,
 		[327515] = L.fen_hornet,
 		[329239] = L.decaying_flesh_giant,
@@ -113,6 +117,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_AURA_APPLIED", "ConcentratedPlagueApplied", 330069)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ConcentratedPlagueApplied", 330069)
+	self:Log("SPELL_AURA_APPLIED", "PlaguefallenApplied", 330092)
+	self:Log("SPELL_AURA_REMOVED", "PlaguefallenRemoved", 330092)
 	self:Log("SPELL_CAST_START", "RollingPlague", 323572)
 	self:Log("SPELL_AURA_APPLIED", "FenStingerApplied", 327515)
 	self:Log("SPELL_CAST_START", "CreepyCrawlers", 329239)
@@ -141,6 +149,35 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Environment
+do
+	local plaguefallen = false
+
+	function mod:ConcentratedPlagueApplied(args)
+		local stacks = args.amount or 1
+		if self:Me(args.destGUID) and stacks > 5 then
+			self:StackMessage(args.spellId, args.destName, stacks, "yellow")
+			if (stacks ~= 10 or plaguefallen) then
+				self:PlaySound(args.spellId, stacks > 7 and "warning" or "alert", nil, args.destName)
+			end
+		end
+	end
+	function mod:PlaguefallenApplied(args)
+		if self:Me(args.destGUID) then
+			plaguefallen = true
+		end
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "long", nil, args.destName)
+	end
+	function mod:PlaguefallenRemoved(args)
+		if self:Me(args.destGUID) then
+			plaguefallen = false
+			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
 
 do
 	local prev = 0
