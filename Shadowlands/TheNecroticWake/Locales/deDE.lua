@@ -6,6 +6,7 @@ end
 
 L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "deDE")
 if L then
+	--L.amarth_warmup_trigger = "You will be brought to justice!"
 	L.corpse_harvester = "Leichenernter"
 	L.stitched_vanguard = "Zusammengeflickte Vorhut"
 	L.zolramus_gatekeeper = "Torwächter von Zolramus"

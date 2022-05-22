@@ -29,6 +29,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.amarth_warmup_trigger = "You will be brought to justice!"
 	L.corpse_harvester = "Corpse Harvester"
 	L.stitched_vanguard = "Stitched Vanguard"
 	L.zolramus_gatekeeper = "Zolramus Gatekeeper"
@@ -110,6 +111,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 	self:Log("SPELL_CAST_START", "DrainFluids", 334748)
 	self:Log("SPELL_CAST_START", "MeatShield", 323190)
 	self:Log("SPELL_AURA_APPLIED", "ClingingDarkness", 323347)
@@ -145,6 +148,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.amarth_warmup_trigger then
+		-- Amarth Warmup
+		local amarthModule = BigWigs:GetBossModule("Amarth, The Reanimator", true)
+		if amarthModule then
+			amarthModule:Enable()
+			amarthModule:Warmup()
+		end
+	end
+end
 
 -- Corpse Harvester
 do
