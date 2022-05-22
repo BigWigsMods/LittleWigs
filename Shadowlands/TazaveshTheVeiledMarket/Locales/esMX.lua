@@ -1,21 +1,21 @@
-local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "esES")
+local L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "esMX")
 if not L then return end
 if L then
 	L.zophex_warmup_trigger = "Entrega... todo... el contrabando..."
 end
 
-L = BigWigs:NewBossLocale("The Grand Menagerie", "esES")
+L = BigWigs:NewBossLocale("The Grand Menagerie", "esMX")
 if L then
 	L.achillite_warmup_trigger = "¿Las bestias devastadoras no os dejan vivir? ¡Tenemos la solución!"
 	L.venza_goldfuse_warmup_trigger = "¡Es mi oportunidad! ¡El hacha será mía!"
 end
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
+L = BigWigs:NewBossLocale("Myza's Oasis", "esMX")
 if L then
 	-- L.add_wave_killed = "Add wave killed (%d/%d)"
 end
 
-L = BigWigs:NewBossLocale("Tazavesh Trash", "esES")
+L = BigWigs:NewBossLocale("Tazavesh Trash", "esMX")
 if L then
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno." -- TODO unverified
@@ -26,11 +26,11 @@ if L then
 	L.password_triggers = {
 		["Caparazón de marfil"] = true,
 		["Oasis de zafiro"] = true,
-		["Palma de jade"] = true,
-		["Arenas doradas"] = true,
-		["Amanecer ámbar"] = true,
+		["Palmera de jade"] = true,
+		["Arena dorada"] = true,
+		["Puesta de sol ambarina"] = true,
 		["Océano esmeralda"] = true,
-		["Gema rubí"] = true,
+		["Gema de rubí"] = true,
 		["Piedra de peltre"] = true,
 		["Flor pálida"] = true,
 		["Cuchillo carmesí"] = true
@@ -52,7 +52,6 @@ if L then
 	L.commerce_enforcer_commander_zofar = "Déspota comercial / Comandante Zo'far"
 	L.commander_zofar = "Comandante Zo'far"
 
-	L.tazavesh_soleahs_gambit = "Tazavesh: Gambito de So'leah"
 	L.murkbrine_scalebinder = "Sujetascamas Salmuerasucia"
 	L.murkbrine_shellcrusher = "Rompeconchas Salmuerasucia"
 	L.coastwalker_goliath = "Goliat caminacostas"

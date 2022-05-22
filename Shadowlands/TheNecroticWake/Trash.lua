@@ -9,6 +9,7 @@ mod:RegisterEnableMob(
 	166302, -- Corpse Harvester
 	163121, -- Stitched Vanguard
 	165137, -- Zolramus Gatekeeper
+	163618, -- Zolramus Necromancer
 	163126, -- Brittlebone Mage
 	165919, -- Skeletal Marauder
 	165222, -- Zolramus Bonemender
@@ -28,9 +29,11 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.amarth_warmup_trigger = "You will be brought to justice!"
 	L.corpse_harvester = "Corpse Harvester"
 	L.stitched_vanguard = "Stitched Vanguard"
 	L.zolramus_gatekeeper = "Zolramus Gatekeeper"
+	L.zolramus_necromancer = "Zolramus Necromancer"
 	L.brittlebone_mage = "Brittlebone Mage"
 	L.skeletal_marauder = "Skeletal Marauder"
 	L.zolramus_bonemender = "Zolramus Bonemender"
@@ -57,12 +60,16 @@ function mod:GetOptions()
 		-- Zolramus Gatekeeper
 		323347, -- Clinging Darkness
 		{322756, "NAMEPLATEBAR"}, -- Wrath of Zolramus
+		-- Zolramus Necromancer
+		321780, -- Animate Dead
 		-- Brittlebone Mage
 		328667, -- Frostbolt Volley
 		-- Skeletal Marauder
-		324293, -- Guttural Scream
+		324293, -- Rasping Scream
+		343470, -- Boneshatter Shield
 		-- Zolramus Bonemender
 		335143, -- Bonemend
+		320822, -- Final Bargain
 		-- Nar'zudah
 		335141, -- Dark Shroud
 		{327396, "SAY", "SAY_COUNTDOWN"}, -- Grim Fate
@@ -88,6 +95,7 @@ function mod:GetOptions()
 		[334748] = L.corpse_harvester,
 		[323190] = L.stitched_vanguard,
 		[323347] = L.zolramus_gatekeeper,
+		[321780] = L.zolramus_necromancer,
 		[328667] = L.brittlebone_mage,
 		[324293] = L.skeletal_marauder,
 		[335143] = L.zolramus_bonemender,
@@ -103,13 +111,18 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 	self:Log("SPELL_CAST_START", "DrainFluids", 334748)
 	self:Log("SPELL_CAST_START", "MeatShield", 323190)
 	self:Log("SPELL_AURA_APPLIED", "ClingingDarkness", 323347)
 	self:Log("SPELL_CAST_START", "WrathOfZolramus", 322756)
+	self:Log("SPELL_AURA_APPLIED", "AnimateDead", 321780)
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
-	self:Log("SPELL_CAST_START", "GutturalScream", 324293)
+	self:Log("SPELL_CAST_START", "RaspingScream", 324293)
+	self:Log("SPELL_AURA_APPLIED", "BoneshatterShieldApplied", 343470)
 	self:Log("SPELL_CAST_START", "Bonemend", 335143)
+	self:Log("SPELL_CAST_START", "FinalBargain", 320822)
 	self:Log("SPELL_CAST_START", "DarkShroud", 335141)
 	self:Log("SPELL_CAST_SUCCESS", "DarkShroudSuccess", 335141)
 	self:Log("SPELL_AURA_REMOVED", "DarkShroudRemoved", 335141)
@@ -135,6 +148,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.amarth_warmup_trigger then
+		-- Amarth Warmup
+		local amarthModule = BigWigs:GetBossModule("Amarth, The Reanimator", true)
+		if amarthModule then
+			amarthModule:Enable()
+			amarthModule:Warmup()
+		end
+	end
+end
 
 -- Corpse Harvester
 do
@@ -176,6 +201,12 @@ function mod:WrathOfZolramus(args)
 	self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 end
 
+-- Zolramus Necromancer
+function mod:AnimateDead(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
 -- Brittlebone Mage
 function mod:FrostboltVolley(args)
 	if self:MobId(args.sourceGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
@@ -185,14 +216,24 @@ function mod:FrostboltVolley(args)
 end
 
 -- Skeletal Marauder
-function mod:GutturalScream(args)
+function mod:RaspingScream(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BoneshatterShieldApplied(args)
+	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 -- Zolramus Bonemender
 function mod:Bonemend(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:FinalBargain(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 

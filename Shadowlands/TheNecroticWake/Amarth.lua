@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Amarth, The Reanimator", 2286, 2391)
 if not mod then return end
 mod:RegisterEnableMob(163157) -- Amarth
 mod.engageId = 2388
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,6 +15,7 @@ mod.engageId = 2388
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		321226, -- Land of the Dead
 		321247, -- Final Harvest
 		333488, -- Necrotic Breath
@@ -24,7 +25,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "LandoftheDead", 321226)
+	self:Log("SPELL_AURA_APPLIED", "LandoftheDead", 321226)
 	self:Log("SPELL_CAST_START", "FinalHarvest", 321247)
 	self:Log("SPELL_CAST_START", "NecroticBreath", 333488)
 	self:Log("SPELL_CAST_SUCCESS", "UnholyFrenzy", 320012)
@@ -41,6 +42,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 24.75, CL.active, "achievement_dungeon_theneroticwake")
+end
 
 function mod:LandoftheDead(args)
 	self:Message(args.spellId, "cyan")
