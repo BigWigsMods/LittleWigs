@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("Plaguefall Trash", "koKR")
 if not L then return end
 if L then
 	L.plagueborer = "역병빈대"
+	L.fen_hatchling = "수렁 새끼벌"
 	L.fen_hornet = "수렁 땅벌"
 	L.decaying_flesh_giant = "부패하는 살점 거인"
 	L.plagueroc = "역병대괴조"

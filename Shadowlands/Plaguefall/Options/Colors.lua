@@ -49,6 +49,7 @@ BigWigs:AddColors("Plaguefall Trash", {
 	[330403] = "red",
 	[330786] = "orange",
 	[330816] = "yellow",
+	[335882] = {"blue","green","yellow"},
 	[336451] = "orange",
 	["summon_stealthlings"] = "red",
 })

@@ -8,6 +8,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	168580, -- Plagueborer
+	168579, -- Fen Hatchling
 	168361, -- Fen Hornet
 	163882, -- Decaying Flesh Giant
 	168153, -- Plagueroc
@@ -32,6 +33,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.plagueborer = "Plagueborer"
+	L.fen_hatchling = "Fen Hatchling"
 	L.fen_hornet = "Fen Hornet"
 	L.decaying_flesh_giant = "Decaying Flesh Giant"
 	L.plagueroc = "Plagueroc"
@@ -63,6 +65,8 @@ function mod:GetOptions()
 		330092, -- Plaguefallen
 		-- Plagueborer
 		323572, -- Rolling Plague
+		-- Fen Hatchling
+		335882, -- Clinging Infestation
 		-- Fen Hornet
 		{327515, "DISPEL"}, -- Fen Stinger
 		-- Decaying Flesh Giant
@@ -99,6 +103,7 @@ function mod:GetOptions()
 	}, {
 		[330069] = CL.general,
 		[323572] = L.plagueborer,
+		[335882] = L.fen_hatchling,
 		[327515] = L.fen_hornet,
 		[329239] = L.decaying_flesh_giant,
 		[330403] = L.plagueroc,
@@ -122,6 +127,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PlaguefallenApplied", 330092)
 	self:Log("SPELL_AURA_REMOVED", "PlaguefallenRemoved", 330092)
 	self:Log("SPELL_CAST_START", "RollingPlague", 323572)
+	self:Log("SPELL_AURA_APPLIED", "ClingingInfestationApplied", 335882)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ClingingInfestationApplied", 335882)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ClingingInfestationDamage", 335882)
+	self:Log("SPELL_AURA_REMOVED", "ClingingInfestationRemoved", 335882)
 	self:Log("SPELL_AURA_APPLIED", "FenStingerApplied", 327515)
 	self:Log("SPELL_CAST_START", "CreepyCrawlers", 329239)
 	self:Log("SPELL_CAST_START", "WingBuffet", 330403)
@@ -187,6 +196,35 @@ do
 			prev = t
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+-- Fen Hatchling
+do
+	local prev = 0
+	function mod:ClingingInfestationApplied(args)
+		if self:Me(args.destGUID) then
+			prev = args.time
+			local stacks = args.amount or 1
+			self:StackMessage(args.spellId, args.destName, stacks, "yellow")
+			self:PlaySound(args.spellId, stacks > 3 and "warning" or "alert", nil, args.destName)
+		end
+	end
+	function mod:ClingingInfestationDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t-prev > 4 then
+				prev = args.time
+				self:PersonalMessage(args.spellId)
+				self:PlaySound(args.spellId, "underyou", nil, args.destName)
+			end
+		end
+	end
+	function mod:ClingingInfestationRemoved(args)
+		if self:Me(args.destGUID) then
+			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
 		end
 	end
 end

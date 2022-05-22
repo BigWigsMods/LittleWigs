@@ -48,6 +48,7 @@ BigWigs:AddSounds("Plaguefall Trash", {
 	[330403] = "alarm",
 	[330786] = "alert",
 	[330816] = "info",
+	[335882] = {"alert","info","underyou","warning"},
 	[336451] = "alert",
 	["summon_stealthlings"] = "warning",
 })

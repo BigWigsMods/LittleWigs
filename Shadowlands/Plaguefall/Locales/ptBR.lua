@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("Plaguefall Trash", "ptBR")
 if not L then return end
 if L then
 	L.plagueborer = "Furapeste"
+	L.fen_hatchling = "Filhote do Pântano"
 	L.fen_hornet = "Marimbondo do Pântano"
 	L.decaying_flesh_giant = "Gigante de Carne em Decomposição"
 	L.plagueroc = "Roca-da-peste"
