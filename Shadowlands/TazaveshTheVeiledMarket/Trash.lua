@@ -329,7 +329,7 @@ function mod:Lockdown(args)
 	end
 end
 function mod:LockdownApplied(args)
-	if self:Dispeller("magic") or self:Dispeller("movement") then
+	if self:Dispeller("magic", nil, 356942) or self:Dispeller("movement", nil, 356942) then
 		self:TargetMessage(356942, "yellow", args.destName)
 		self:PlaySound(356942, "alert")
 	end
