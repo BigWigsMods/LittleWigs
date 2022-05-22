@@ -34,12 +34,6 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local gambitName = C_ChallengeMode.GetMapUIInfo(392) -- Tazavesh: So'leah's Gambit
-
---------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -81,6 +75,7 @@ if L then
 	L.commander_zofar = "Commander Zo'far"
 
 	------ So'leah's Gambit ------
+	L.tazavesh_soleahs_gambit = "Tazavesh: So'leah's Gambit"
 	L.murkbrine_scalebinder = "Murkbrine Scalebinder"
 	L.murkbrine_shellcrusher = "Murkbrine Shellcrusher"
 	L.coastwalker_goliath = "Coastwalker Goliath"
@@ -181,7 +176,7 @@ function mod:GetOptions()
 		[355480] = L.commander_zofar,
 
 		------ So'leah's Gambit ------
-		[358443] = gambitName,
+		[358443] = L.tazavesh_soleahs_gambit,
 		[355132] = L.murkbrine_scalebinder,
 		[355057] = L.murkbrine_shellcrusher,
 		[355429] = L.coastwalker_goliath,
