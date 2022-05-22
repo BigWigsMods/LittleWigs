@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -194,6 +193,7 @@ do
 	end
 end
 
+-- Plagueborer
 do
 	local prev = 0
 	function mod:RollingPlague(args)
@@ -235,6 +235,7 @@ do
 	end
 end
 
+-- Fen Hornet
 function mod:FenStingerApplied(args)
 	if self:Dispeller("poison", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -242,6 +243,7 @@ function mod:FenStingerApplied(args)
 	end
 end
 
+-- Decaying Flesh Giant
 function mod:CreepyCrawlers(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
@@ -250,11 +252,11 @@ function mod:CreepyCrawlers(args)
 	end
 end
 
+-- Plagueroc
 function mod:WingBuffet(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
-
 function mod:BlightbeakApplied(args)
 	if self:Dispeller("disease", nil, args.spellId) then
 		self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
@@ -262,6 +264,7 @@ function mod:BlightbeakApplied(args)
 	end
 end
 
+-- Plaguebelcher
 function mod:BelchPlague(args)
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
@@ -269,12 +272,12 @@ function mod:BelchPlague(args)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
-
 function mod:BeckonSlime(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 end
 
+-- Rotting Slimeclaw
 function mod:CorrodedClawsApplied(args)
 	if self:Dispeller("disease", nil, args.spellId) then
 		self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
@@ -282,21 +285,21 @@ function mod:CorrodedClawsApplied(args)
 	end
 end
 
+-- Blighted Spinebreaker
 function mod:FesteringBelch(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
-
 function mod:JaggedSpines(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Plaguebinder
 function mod:GrippingInfection(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
-
 function mod:GrippingInfectionApplied(args)
 	if self:Dispeller("disease", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -304,6 +307,7 @@ function mod:GrippingInfectionApplied(args)
 	end
 end
 
+-- Congealed Slime
 function mod:WitheringFilth(args)
 	-- This ability has been bugged since 9.0, currently it seems to put the targeting circle on the player
 	-- at the top of the threat table but then it actually leaps to the closest target at the end of the cast.
@@ -311,6 +315,7 @@ function mod:WitheringFilth(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+-- Defender of Maldraxxus
 do
 	local prev = 0
 	function mod:BulwarkOfMaldraxxus(args)
@@ -332,31 +337,33 @@ function mod:CallVenomfang(args)
 	end
 end
 
+-- Brood Ambusher
 function mod:EnvelopingWebbing(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
-
 function mod:Stealthlings(args)
 	self:Message("summon_stealthlings", "red", CL.spawned:format(args.spellName), args.spellId)
 	self:PlaySound("summon_stealthlings", "warning")
 end
 
+-- Ickor Bileflesh
 function mod:OozingCarcass(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
-
 function mod:GhostStep(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
+-- Fungalmancer
 function mod:WonderGrow(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Pestilent Harvester
 do
 	local prev = 0
 	function mod:DoomShroom(args)
@@ -369,6 +376,7 @@ do
 	end
 end
 
+-- Fungi Stormer
 do
 	local prev = 0
 	function mod:Fungistorm(args)
