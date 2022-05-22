@@ -29,7 +29,8 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "BurningStrain", 322358)
 	self:Log("SPELL_CAST_SUCCESS", "SlimeLunge", 329217)
-	self:Log("SPELL_CAST_SUCCESS", "SlimeInjection", 329110)
+	self:Log("SPELL_CAST_START", "SlimeInjection", 329110)
+	self:Log("SPELL_CAST_SUCCESS", "SlimeInjectionSuccess", 329110)
 	self:Log("SPELL_AURA_APPLIED", "SlimeInjectionApplied", 329110)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SlimeInjectionApplied", 329110)
 	self:Log("SPELL_AURA_REMOVED", "SlimeInjectionRemoved", 329110)
@@ -66,7 +67,19 @@ function mod:SlimeLunge(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:SlimeInjection(args)
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) then
+			self:Message(329110, "purple")
+			self:PlaySound(329110, "alert")
+		end
+	end
+	function mod:SlimeInjection(args)
+		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
+	end
+end
+
+function mod:SlimeInjectionSuccess(args)
 	self:CDBar(args.spellId, 20)
 end
 
@@ -77,7 +90,7 @@ function mod:SlimeInjectionApplied(args)
 end
 
 function mod:SlimeInjectionRemoved(args)
-	self:Message(args.spellId, "yellow", CL.spawning:format(self:SpellName(-21712))) -- Slithering Ooze
+	self:Message(args.spellId, "yellow", CL.spawning:format(self:SpellName(-21712))) -- Erupting Ooze
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -93,5 +106,5 @@ function mod:VirulentExplosion(args)
 end
 
 function mod:BombDeath(args)
-	self:StopBar(CL.casting:format(self:SpellName(321406))) -- Electric Shroud
+	self:StopBar(CL.casting:format(self:SpellName(321406))) -- Virulent Explosion
 end
