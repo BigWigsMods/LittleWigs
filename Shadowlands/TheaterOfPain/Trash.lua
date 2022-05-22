@@ -176,7 +176,7 @@ end
 
 -- Raging Bloodhorn
 function mod:RagingTantrumApplied(args)
-	if self:Dispeller("enrage", true) then
+	if self:Dispeller("enrage", true, args.spellId) or self:Healer() then
 		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
@@ -196,7 +196,7 @@ do
 		if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
-		if self:Dispeller("disease") then
+		if self:Dispeller("disease", nil, args.spellId) then
 			local amount = args.amount or 1
 			if amount > 3 then
 				local t = args.time
@@ -224,7 +224,7 @@ do
 		if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
-		if self:Dispeller("disease") then
+		if self:Dispeller("disease", nil, args.spellId) then
 			playerList[#playerList+1] = args.destName
 			self:TargetsMessage(args.spellId, "yellow", playerList, 5)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
@@ -268,7 +268,7 @@ function mod:BattleTrance(args)
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 function mod:BattleTranceApplied(args)
-	if self:Dispeller("enrage", true) then
+	if self:Dispeller("enrage", true) or self:Tank() then
 		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
@@ -387,7 +387,7 @@ function mod:Soulstorm(args)
 	self:PlaySound(args.spellId, "long")
 end
 function mod:ShadowVulnerabilityApplied(args)
-	if self:Dispeller("curse") then
+	if self:Dispeller("curse", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
@@ -405,7 +405,7 @@ function mod:SoulCorruptionApplied(args)
 	if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
 		return
 	end
-	if self:Dispeller("magic") then
+	if self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
