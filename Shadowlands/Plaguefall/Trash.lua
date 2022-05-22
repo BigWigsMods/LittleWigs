@@ -84,6 +84,7 @@ function mod:GetOptions()
 		321935, -- Withering Filth
 		-- Slime Tentacle
 		{328429, "SAY"}, -- Crushing Embrace
+		319898, -- Vile Spit
 		-- Defender of Many Eyes
 		336451, -- Bulwark of Maldraxxus
 		-- Brood Ambusher
@@ -135,6 +136,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "GrippingInfectionApplied", 328180)
 	self:Log("SPELL_CAST_START", "WitheringFilth", 321935)
 	self:Log("SPELL_CAST_START", "CrushingEmbrace", 328429)
+	self:Log("SPELL_CAST_START", "VileSpit", 319898)
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkOfMaldraxxus", 336451)
 	self:Log("SPELL_CAST_START", "EnvelopingWebbing", 328475)
 	self:Log("SPELL_CAST_SUCCESS", "Stealthlings", 328400)
@@ -256,6 +258,14 @@ do
 		sourceMobId = self:MobId(args.sourceGUID)
 		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
 	end
+end
+
+function mod:VileSpit(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by priests
+		return
+	end
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do

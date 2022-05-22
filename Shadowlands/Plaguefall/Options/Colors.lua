@@ -30,6 +30,7 @@ BigWigs:AddColors("Margrave Stradama", {
 
 BigWigs:AddColors("Plaguefall Trash", {
 	[318949] = "red",
+	[319898] = "red",
 	[320512] = {"blue","yellow"},
 	[320517] = "yellow",
 	[321935] = "red",

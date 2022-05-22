@@ -29,6 +29,7 @@ BigWigs:AddSounds("Margrave Stradama", {
 
 BigWigs:AddSounds("Plaguefall Trash", {
 	[318949] = "alarm",
+	[319898] = "alarm",
 	[320512] = "alert",
 	[320517] = "alert",
 	[321935] = "alarm",
