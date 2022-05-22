@@ -19,6 +19,7 @@ mod:RegisterEnableMob(
 	168627, -- Plaguebinder
 	164707, -- Congealed Slime
 	163862, -- Defender of Many Eyes
+	167493, -- Venomous Sniper
 	164737, -- Brood Ambusher
 	169861, -- Ickor Bileflesh
 	168578, -- Fungalmancer
@@ -43,6 +44,7 @@ if L then
 	L.plaguebinder = "Plaguebinder"
 	L.congealed_slime = "Congealed Slime"
 	L.defender_of_many_eyes = "Defender of Many Eyes"
+	L.venomous_sniper = "Venomous Sniper"
 	L.brood_ambusher = "Brood Ambusher"
 	L.ickor_bileflesh = "Ickor Bileflesh"
 	L.fungalmancer = "Fungalmancer"
@@ -88,6 +90,8 @@ function mod:GetOptions()
 		321935, -- Withering Filth
 		-- Defender of Many Eyes
 		336451, -- Bulwark of Maldraxxus
+		-- Venomous Sniper
+		328338, -- Call Venomfang
 		-- Brood Ambusher
 		328475, -- Enveloping Webbing
 		"summon_stealthlings", -- Stealthlings
@@ -113,6 +117,7 @@ function mod:GetOptions()
 		[328180] = L.plaguebinder,
 		[321935] = L.congealed_slime,
 		[336451] = L.defender_of_many_eyes,
+		[328338] = L.venomous_sniper,
 		[328475] = L.brood_ambusher,
 		[330786] = L.ickor_bileflesh,
 		[328016] = L.fungalmancer,
@@ -146,6 +151,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "GrippingInfectionApplied", 328180)
 	self:Log("SPELL_CAST_START", "WitheringFilth", 321935)
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkOfMaldraxxus", 336451)
+	self:Log("SPELL_CAST_START", "CallVenomfang", 328338)
 	self:Log("SPELL_CAST_START", "EnvelopingWebbing", 328475)
 	self:Log("SPELL_CAST_SUCCESS", "Stealthlings", 328400)
 	self:Log("SPELL_CAST_START", "OozingCarcass", 330786)
@@ -314,6 +320,15 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
 		end
+	end
+end
+
+-- Venomous Sniper
+function mod:CallVenomfang(args)
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "red")
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 

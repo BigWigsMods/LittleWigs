@@ -12,6 +12,7 @@ if L then
 	L.plaguebinder = "Vincolapiaga"
 	L.congealed_slime = "Poltiglia Coagulata"
 	L.defender_of_many_eyes = "Difensore dai Molti Occhi"
+	L.venomous_sniper = "Cecchino Velenoso"
 	L.brood_ambusher = "Aggressore della Stirpe"
 	L.ickor_bileflesh = "Ickor Carnebiliare"
 	L.fungalmancer = "Fungomante"
