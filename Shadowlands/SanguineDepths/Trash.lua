@@ -168,8 +168,10 @@ function mod:BarbedShackles(args)
 end
 
 function mod:BarbedShacklesApplied(args)
-	self:TargetMessage(335305, "yellow", args.destName)
-	self:PlaySound(335305, "alert", nil, args.destName)
+	if self:Dispeller("movement") or self:Me(args.destGUID) or self:Healer() then
+		self:TargetMessage(335305, "yellow", args.destName)
+		self:PlaySound(335305, "alert", nil, args.destName)
+	end
 end
 
 function mod:CrushingStrike(args)
