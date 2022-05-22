@@ -9,6 +9,7 @@ if L then
 	L.corpse_harvester = "屍體收割者"
 	L.stitched_vanguard = "縫合前鋒兵"
 	L.zolramus_gatekeeper = "佐拉慕斯守門者"
+	--L.zolramus_necromancer = "Zolramus Necromancer"
 	L.brittlebone_mage = "脆骨法師"
 	L.skeletal_marauder = "骷髏掠奪者"
 	L.zolramus_bonemender = "佐拉慕斯修骨者"
