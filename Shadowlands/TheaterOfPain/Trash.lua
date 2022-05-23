@@ -372,12 +372,10 @@ end
 
 -- Rek the Hardened
 function mod:UnbalancingBlow(args)
-	if self:Tank() or self:Healer() then
-		local unit = self:GetUnitIdByGUID(args.sourceGUID)
-		if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
-			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "alert")
-		end
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
+		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
