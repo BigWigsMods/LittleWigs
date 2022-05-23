@@ -494,6 +494,7 @@ end
 
 -- Blood in the Water
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
+	-- the debuff for Blood in the Water (358443) is a hidden aura that does not fire the SPELL_AURA events
 	if msg:find("INV_Pet_BabyShark", nil, true) then
 		self:Bar(358443, 5.25) -- Blood in the Water
 	end
