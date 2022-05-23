@@ -23,18 +23,18 @@ if L then
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
 	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
-	--[[L.password_triggers = {
-		["Ivory Shell"] = true,
-		["Sapphire Oasis"] = true,
-		["Jade Palm"] = true,
-		["Golden Sands"] = true,
-		["Amber Sunset"] = true,
-		["Emerald Ocean"] = true,
-		["Ruby Gem"] = true,
-		["Pewter Stone"] = true,
-		["Pale Flower"] = true,
-		["Crimson Knife"] = true
-	}]]--
+	L.password_triggers = {
+		["상아색 껍질"] = true,
+		["사파이어 오아시스"] = true,
+		["비취 손바닥"] = true,
+		["금빛 모래"] = true,
+		["호박색 석양"] = true,
+		["에메랄드빛 바다"] = true,
+		["루비 보석"] = true,
+		["땜납 돌"] = true,
+		["창백한 꽃"] = true,
+		["진홍색 손칼"] = true
+	}
 
 	L.interrogation_specialist = "심문 전문가"
 	L.portalmancer_zohonn = "차원문술사 조혼"

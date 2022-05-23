@@ -108,7 +108,7 @@ function mod:GetOptions()
 		356001, -- Beam Splicer
 		-- Tracker Zo'korss
 		356929, -- Chain of Custody
-		{356942, "TANK"}, -- Lockdown
+		{356942, "DISPEL"}, -- Lockdown
 		-- Ancient Core Hound
 		356404, -- Lava Breath
 		356407, -- Ancient Dread
@@ -197,6 +197,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BeamSplicerApplied", 356011)
 	self:Log("SPELL_CAST_START", "ChainOfCustody", 356929)
 	self:Log("SPELL_CAST_START", "Lockdown", 356942)
+	self:Log("SPELL_AURA_APPLIED", "LockdownApplied", 356943)
 	self:Log("SPELL_CAST_START", "LavaBreath", 356404)
 	self:Log("SPELL_CAST_START", "AncientDread", 356407)
 	self:Log("SPELL_AURA_APPLIED", "AncientDreadApplied", 356407)
@@ -325,6 +326,12 @@ function mod:Lockdown(args)
 	if self:Tank() then
 		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
+	end
+end
+function mod:LockdownApplied(args)
+	if self:Dispeller("magic", nil, 356942) or self:Dispeller("movement", nil, 356942) then
+		self:TargetMessage(356942, "yellow", args.destName)
+		self:PlaySound(356942, "alert")
 	end
 end
 

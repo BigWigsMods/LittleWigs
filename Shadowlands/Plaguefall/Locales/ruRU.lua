@@ -11,6 +11,7 @@ if L then
 	L.blighted_spinebreaker = "Чумной спинолом"
 	L.plaguebinder = "Заклинатель чумы"
 	L.congealed_slime = "Сгусток слизи"
+	L.slime_tentacle = "Склизкое щупальце"
 	L.defender_of_many_eyes = "Защитник из многоокой рати"
 	L.venomous_sniper = "Стрелок-отравитель"
 	L.brood_ambusher = "Таящийся паук"

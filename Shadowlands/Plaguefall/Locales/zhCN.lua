@@ -11,6 +11,7 @@ if L then
 	L.blighted_spinebreaker = "凋零碎脊者"
 	L.plaguebinder = "魔药束缚者"
 	L.congealed_slime = "凝结软泥"
+	L.slime_tentacle = "软泥触须"
 	L.defender_of_many_eyes = "万眼防御者"
 	L.venomous_sniper = "喷毒狙击手"
 	L.brood_ambusher = "巢群伏击者"

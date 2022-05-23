@@ -11,6 +11,7 @@ if L then
 	L.blighted_spinebreaker = "Spezzaschiena Ammorbato"
 	L.plaguebinder = "Vincolapiaga"
 	L.congealed_slime = "Poltiglia Coagulata"
+	L.slime_tentacle = "Tentacolo di Poltiglia"
 	L.defender_of_many_eyes = "Difensore dai Molti Occhi"
 	L.venomous_sniper = "Cecchino Velenoso"
 	L.brood_ambusher = "Aggressore della Stirpe"
