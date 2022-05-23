@@ -107,5 +107,5 @@ function mod:VirulentExplosion(args)
 end
 
 function mod:BombDeath(args)
-	self:StopBar(CL.casting:format(self:SpellName(321406))) -- Virulent Explosion
+	self:StopBar(CL.cast:format(self:SpellName(321406))) -- Virulent Explosion
 end
