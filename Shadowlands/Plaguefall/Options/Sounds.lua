@@ -19,6 +19,7 @@ BigWigs:AddSounds("Domina Venomblade", {
 	[325552] = "alert",
 	[332313] = "long",
 	[336258] = "alarm",
+	[336301] = {"alarm","info"},
 })
 
 BigWigs:AddSounds("Margrave Stradama", {

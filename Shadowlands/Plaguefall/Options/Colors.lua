@@ -19,6 +19,7 @@ BigWigs:AddColors("Domina Venomblade", {
 	[325552] = {"blue","purple"},
 	[332313] = "cyan",
 	[336258] = "blue",
+	[336301] = {"blue","green","red"},
 })
 
 BigWigs:AddColors("Margrave Stradama", {
