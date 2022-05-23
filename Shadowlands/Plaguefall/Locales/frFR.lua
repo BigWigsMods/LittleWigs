@@ -10,6 +10,7 @@ if L then
 	L.blighted_spinebreaker = "Brise-échine chancreux"
 	L.plaguebinder = "Lieur de peste"
 	L.congealed_slime = "Gelée figée"
+	L.slime_tentacle = "Tentacule visqueux"
 	L.defender_of_many_eyes = "Défenseur aux innombrables yeux"
 	L.brood_ambusher = "Embusqué de la couvée"
 	L.ickor_bileflesh = "Ickor Aigrechair"

@@ -10,6 +10,7 @@ if L then
 	L.blighted_spinebreaker = "荒蕪斷脊者"
 	L.plaguebinder = "瘟疫束縛者"
 	L.congealed_slime = "凝結軟泥怪"
+	L.slime_tentacle = "軟泥怪觸手"
 	L.defender_of_many_eyes = "多眼防衛者"
 	L.brood_ambusher = "育巢伏擊者"
 	L.ickor_bileflesh = "伊可‧膽肉"

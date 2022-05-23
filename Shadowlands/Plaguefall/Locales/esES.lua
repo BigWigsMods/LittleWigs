@@ -10,6 +10,7 @@ if L then
 	L.blighted_spinebreaker = "Partemédulas contagiado"
 	L.plaguebinder = "Vinculapestes"
 	L.congealed_slime = "Baba coagulada"
+	L.slime_tentacle = "Tentáculo de baba"
 	L.defender_of_many_eyes = "Defensor de muchos ojos"
 	L.brood_ambusher = "Emboscador de linaje"
 	L.ickor_bileflesh = "Ickor Carnebilis"

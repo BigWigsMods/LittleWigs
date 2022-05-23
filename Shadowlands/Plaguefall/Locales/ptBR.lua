@@ -10,6 +10,7 @@ if L then
 	L.blighted_spinebreaker = "Quebra-espinhas Pestilento"
 	L.plaguebinder = "Atapeste"
 	L.congealed_slime = "Visgo Coagulado"
+	L.slime_tentacle = "Tentáculo de Visgo"
 	L.defender_of_many_eyes = "Defensora de Muitos Olhos"
 	L.brood_ambusher = "Emboscadora da Ninhada"
 	L.ickor_bileflesh = "Carnebílis Línfico"

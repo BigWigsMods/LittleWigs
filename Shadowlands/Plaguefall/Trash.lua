@@ -17,6 +17,8 @@ mod:RegisterEnableMob(
 	163894, -- Blighted Spinebreaker
 	168627, -- Plaguebinder
 	164707, -- Congealed Slime
+	168022, -- Slime Tentacle
+	168907, -- Slime Tentacle (CC immune version)
 	163862, -- Defender of Many Eyes
 	164737, -- Brood Ambusher
 	169861, -- Ickor Bileflesh
@@ -40,6 +42,7 @@ if L then
 	L.blighted_spinebreaker = "Blighted Spinebreaker"
 	L.plaguebinder = "Plaguebinder"
 	L.congealed_slime = "Congealed Slime"
+	L.slime_tentacle = "Slime Tentacle"
 	L.defender_of_many_eyes = "Defender of Many Eyes"
 	L.brood_ambusher = "Brood Ambusher"
 	L.ickor_bileflesh = "Ickor Bileflesh"
@@ -79,6 +82,9 @@ function mod:GetOptions()
 		{328180, "DISPEL"}, -- Gripping Infection
 		-- Congealed Slime
 		321935, -- Withering Filth
+		-- Slime Tentacle
+		{328429, "SAY"}, -- Crushing Embrace
+		319898, -- Vile Spit
 		-- Defender of Many Eyes
 		336451, -- Bulwark of Maldraxxus
 		-- Brood Ambusher
@@ -103,6 +109,7 @@ function mod:GetOptions()
 		[318949] = L.blighted_spinebreaker,
 		[328180] = L.plaguebinder,
 		[321935] = L.congealed_slime,
+		[328429] = L.slime_tentacle,
 		[336451] = L.defender_of_many_eyes,
 		[328475] = L.brood_ambusher,
 		[330786] = L.ickor_bileflesh,
@@ -128,6 +135,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GrippingInfection", 328180)
 	self:Log("SPELL_AURA_APPLIED", "GrippingInfectionApplied", 328180)
 	self:Log("SPELL_CAST_START", "WitheringFilth", 321935)
+	self:Log("SPELL_CAST_START", "CrushingEmbrace", 328429)
+	self:Log("SPELL_CAST_START", "VileSpit", 319898)
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkOfMaldraxxus", 336451)
 	self:Log("SPELL_CAST_START", "EnvelopingWebbing", 328475)
 	self:Log("SPELL_CAST_SUCCESS", "Stealthlings", 328400)
@@ -226,6 +235,45 @@ end
 function mod:WitheringFilth(args)
 	-- This ability has been bugged since 9.0, currently it seems to put the targeting circle on the player
 	-- at the top of the threat table but then it actually leaps to the closest target at the end of the cast.
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local function printTargetMovementDispelOnly(self, name, guid)
+		if self:Dispeller("movement") or self:Healer() or self:Me(guid) then
+			self:TargetMessage(328429, "yellow", name)
+			self:PlaySound(328429, "alert", nil, name)
+			if self:Me(guid) then
+				self:Say(328429)
+			end
+		end
+	end
+
+	local function printTarget(self, name, guid)
+		self:TargetMessage(328429, "yellow", name)
+		self:PlaySound(328429, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(328429)
+		end
+	end
+
+	function mod:CrushingEmbrace(args)
+		-- depending on source NPC id it is either CCable or only can be stopped by movement dispellers
+		local movementDispelOnly = self:MobId(args.sourceGUID) == 168907
+
+		if movementDispelOnly then
+			self:GetUnitTarget(printTargetMovementDispelOnly, 0.5, args.sourceGUID)
+		else
+			self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+		end
+	end
+end
+
+function mod:VileSpit(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by priests
+		return
+	end
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
