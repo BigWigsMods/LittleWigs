@@ -19,6 +19,7 @@ function mod:GetOptions()
 		{325552, "DISPEL"}, -- Cytotoxic Slash
 		{325245, "SAY", "SAY_COUNTDOWN"}, -- Shadow Ambush
 		336258, -- Solitary Prey
+		336301, -- Web Wrap
 	}
 end
 
@@ -30,6 +31,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ShadowwhirlRemoved", 333353) -- Shadowwhirl, Shadow Ambush target debuff
 	self:Log("SPELL_AURA_APPLIED", "SolitaryPreyApplied", 336258)
 	self:Log("SPELL_AURA_REMOVED", "SolitaryPreyRemoved", 336258)
+	self:Log("SPELL_AURA_APPLIED", "WebWrapApplied", 336301)
+	self:Log("SPELL_AURA_REMOVED", "WebWrapRemoved", 336301)
 
 end
 
@@ -88,4 +91,14 @@ function mod:SolitaryPreyRemoved(args)
 	if self:Me(args.destGUID) then
 		self:StopBar(args.spellId, args.destName)
 	end
+end
+
+function mod:WebWrapApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:WebWrapRemoved(args)
+	self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, args.destName))
+	self:PlaySound(args.spellId, "info")
 end
