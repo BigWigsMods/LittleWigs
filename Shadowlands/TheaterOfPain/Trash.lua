@@ -193,7 +193,7 @@ end
 do
 	local prev = 0
 	function mod:DecayingBlightApplied(args)
-		if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
+		if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
 			return
 		end
 		if self:Dispeller("disease", nil, args.spellId) then
@@ -221,7 +221,7 @@ end
 do
 	local playerList = mod:NewTargetList()
 	function mod:WitheringBlightApplied(args)
-		if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
+		if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
 			return
 		end
 		if self:Dispeller("disease", nil, args.spellId) then
@@ -400,7 +400,7 @@ function mod:NecroticBoltVolley(args)
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 function mod:SoulCorruptionApplied(args)
-	if not self:Player(args.destFlags) then -- these NPCs can be mind-controlled by DKs
+	if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
 		return
 	end
 	if self:Dispeller("magic", nil, args.spellId) then
