@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -33,7 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SolitaryPreyRemoved", 336258)
 	self:Log("SPELL_AURA_APPLIED", "WebWrapApplied", 336301)
 	self:Log("SPELL_AURA_REMOVED", "WebWrapRemoved", 336301)
-
 end
 
 function mod:OnEngage()
