@@ -240,12 +240,8 @@ function mod:WitheringFilth(args)
 end
 
 do
-	local sourceMobId = nil
-
-	local function printTarget(self, name, guid)
-		-- depending on source NPC id it is either CCable or only can be stopped by movement dispellers
-		local movementDispelOnly = sourceMobId == 168907
-		if not movementDispelOnly or self:Dispeller("movement") or self:Healer() or self:Me(guid) then
+	local function printTargetMovementDispelOnly(self, name, guid)
+		if self:Dispeller("movement") or self:Healer() or self:Me(guid) then
 			self:TargetMessage(328429, "yellow", name)
 			self:PlaySound(328429, "alert", nil, name)
 			if self:Me(guid) then
@@ -254,9 +250,23 @@ do
 		end
 	end
 
+	local function printTarget(self, name, guid)
+		self:TargetMessage(328429, "yellow", name)
+		self:PlaySound(328429, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(328429)
+		end
+	end
+
 	function mod:CrushingEmbrace(args)
-		sourceMobId = self:MobId(args.sourceGUID)
-		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+		-- depending on source NPC id it is either CCable or only can be stopped by movement dispellers
+		local movementDispelOnly = self:MobId(args.sourceGUID) == 168907
+
+		if movementDispelOnly then
+			self:GetUnitTarget(printTargetMovementDispelOnly, 0.5, args.sourceGUID)
+		else
+			self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+		end
 	end
 end
 
