@@ -69,8 +69,9 @@ end
 
 do
 	local function printTarget(self, name, guid)
+		 -- cast on tank in an organized group, but use :Me() instead for soloers
 		if self:Me(guid) then
-			self:Message(329110, "purple")
+			self:Message(329110, "purple", CL.casting:format(self:SpellName(329110)))
 			self:PlaySound(329110, "alert")
 		end
 	end
