@@ -10,6 +10,7 @@ if L then
 	L.blighted_spinebreaker = "Verseuchter Rückenbrecher"
 	L.plaguebinder = "Seuchenbinder"
 	L.congealed_slime = "Geronnener Schleim"
+	L.slime_tentacle = "Schleimtentakel"
 	L.defender_of_many_eyes = "Verteidiger der vielzähligen Augen"
 	L.brood_ambusher = "Brutwegelagerer"
 	L.ickor_bileflesh = "Ickor Gallenfleisch"
