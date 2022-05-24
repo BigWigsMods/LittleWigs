@@ -71,7 +71,7 @@ function mod:GetOptions()
 		{341949, "DISPEL"}, -- Withering Blight
 		-- Putrid Butcher
 		330586, -- Devour Flesh
-		{332836, "HEALER"}, -- Chop
+		332836, -- Chop
 		-- Rancid Gasbag
 		330614, -- Vile Eruption
 		-- Dokigg the Brutalizer / Harugia the Bloodthirsty
