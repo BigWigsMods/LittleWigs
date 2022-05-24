@@ -264,8 +264,16 @@ end
 
 -- Dokigg the Brutalizer / Harugia the Bloodthirsty
 function mod:BattleTrance(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
+	local canInterrupt, interruptReady = self:Interrupter()
+	local enrageDispeller = self:Dispeller("enrage", true)
+
+	-- this can be interrupted or you can let the cast go through and dispel the enrage
+	if canInterrupt or enrageDispeller then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		if interruptReady or enrageDispeller then
+			self:PlaySound(args.spellId, interruptReady and "warning" or "alert")
+		end
+	end
 end
 function mod:BattleTranceApplied(args)
 	if self:Dispeller("enrage", true) or self:Tank() then
@@ -350,8 +358,14 @@ function mod:DemoralizingShout(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 		return
 	end
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
+	local canInterrupt, interruptReady = self:Interrupter()
+
+	if canInterrupt then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		if interruptReady then
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 -- Advent Nevermore
@@ -397,7 +411,10 @@ function mod:NecroticBoltVolley(args)
 		return
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
+
+	-- ideally this should be interrupted, but it can also be stunned/etc to delay this cast for 2.75 seconds + stun duration
+	local _, interruptReady = self:Interrupter()
+	self:PlaySound(args.spellId, interruptReady and "warning" or "alert")
 end
 function mod:SoulCorruptionApplied(args)
 	if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
