@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
-	self:Log("SPELL_CAST_START", "RottenFood", 356482)
+	self:Log("SPELL_CAST_START", "RottenFood", 359222)
 	self:Log("SPELL_CAST_START", "Teleport", 353783)
 	self:Log("SPELL_CAST_START", "Suppression", 353835)
 	self:Log("SPELL_AURA_APPLIED", "RowdyApplied", 353706)
@@ -144,12 +144,11 @@ end
 do
 	local prev = 0
 	function mod:RottenFood(args)
-		-- TODO i don't think this works
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info")
+			self:Message(356482, "yellow")
+			self:PlaySound(356482, "info")
 		end
 	end
 end
