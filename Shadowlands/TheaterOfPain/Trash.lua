@@ -269,8 +269,10 @@ function mod:BattleTrance(args)
 	-- this can be interrupted or you can let the cast go through and dispel the enrage
 	if canInterrupt or enrageDispeller then
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		if interruptReady or enrageDispeller then
-			self:PlaySound(args.spellId, interruptReady and "warning" or "alert")
+		if interruptReady then
+			self:PlaySound(args.spellId, "warning")
+		elseif enrageDispeller then
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
@@ -330,11 +332,12 @@ end
 -- Harugia the Bloodthirsty / Advent Nevermore
 do
 	local function printTarget(self, name, guid)
-		local onMe = self:Me(guid)
 		self:TargetMessage(333861, "red", name)
-		self:PlaySound(333861, onMe and "warning" or "alert", nil, name)
-		if onMe then
+		if self:Me(guid) then
 			self:Say(333861)
+			self:PlaySound(333861, "warning", nil, name)
+		else
+			self:PlaySound(333861, "alert", nil, name)
 		end
 	end
 	function mod:RicochetingBlade(args)
