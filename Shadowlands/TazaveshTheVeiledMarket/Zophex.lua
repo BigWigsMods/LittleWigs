@@ -74,7 +74,7 @@ function mod:ContainmentCellApplied(args)
 end
 
 function mod:ContainmentCellRemoved(args)
-	self:Message(args.spellId, "green", CL.removed:format(args.destName))
+	self:Message(args.spellId, "green", CL.removed_from:format(args.spellId, args.destName))
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(347949, 30)
 end
