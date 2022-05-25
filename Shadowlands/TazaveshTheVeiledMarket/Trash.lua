@@ -404,12 +404,19 @@ function mod:HyperlightBackhand(args)
 end
 
 -- Cartel Smuggler
-function mod:HyperlightBombApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alarm")
-		self:Say(args.spellId, CL.bomb)
-		self:SayCountdown(args.spellId, 5)
+do
+	local prev = 0
+	function mod:HyperlightBombApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId)
+				self:PlaySound(args.spellId, "alarm")
+				self:Say(args.spellId, CL.bomb)
+				self:SayCountdown(args.spellId, 5)
+			end
+		end
 	end
 end
 function mod:HyperlightBombRemoved(args)
