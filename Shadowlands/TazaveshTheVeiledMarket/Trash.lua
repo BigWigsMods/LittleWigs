@@ -381,10 +381,8 @@ end
 
 -- Cartel Muscle
 function mod:HyperlightBackhand(args)
-	if self:Tank() or self:Healer() then
-		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Cartel Smuggler
@@ -456,10 +454,8 @@ end
 
 -- Commerce Enforcer / Commander Zo'far
 function mod:PowerKick(args)
-	if self:Tank() or self:Healer() then
-		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Commander Zo'far
