@@ -102,8 +102,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_WHISPER()
 	-- Unruly patrons rush the stage!
 	if addWave <= 2 then
-		-- TODO rowdy timer is too short by a few seconds
-		self:Bar(353706, 37.5) -- Rowdy
+		self:Bar(353706, 39.8) -- Rowdy
 	end
 end
 
