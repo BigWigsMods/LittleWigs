@@ -52,6 +52,7 @@ if L then
 	L.commerce_enforcer_commander_zofar = "Déspota comercial / Comandante Zo'far"
 	L.commander_zofar = "Comandante Zo'far"
 
+	L.tazavesh_soleahs_gambit = "Tazavesh: Gambito de So'leah"
 	L.murkbrine_scalebinder = "Sujetascamas Salmuerasucia"
 	L.murkbrine_shellcrusher = "Rompeconchas Salmuerasucia"
 	L.coastwalker_goliath = "Goliat caminacostas"

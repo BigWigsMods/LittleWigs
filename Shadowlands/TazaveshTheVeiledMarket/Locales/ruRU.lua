@@ -52,6 +52,7 @@ if L then
 	L.commerce_enforcer_commander_zofar = "Охранитель коммерции / Командир Зо'фар"
 	L.commander_zofar = "Командир Зо'фар"
 
+	L.tazavesh_soleahs_gambit = "Тазавеш: гамбит Со'леи"
 	L.murkbrine_scalebinder = "Лататель чешуи из племени Соленой Хмари"
 	L.murkbrine_shellcrusher = "Крушитель панцирей из племени Соленой Хмари"
 	L.coastwalker_goliath = "Береговой голиаф"

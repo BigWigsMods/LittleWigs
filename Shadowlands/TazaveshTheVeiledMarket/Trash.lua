@@ -75,6 +75,7 @@ if L then
 	L.commander_zofar = "Commander Zo'far"
 
 	------ So'leah's Gambit ------
+	L.tazavesh_soleahs_gambit = "Tazavesh: So'leah's Gambit"
 	L.murkbrine_scalebinder = "Murkbrine Scalebinder"
 	L.murkbrine_shellcrusher = "Murkbrine Shellcrusher"
 	L.coastwalker_goliath = "Coastwalker Goliath"
@@ -135,8 +136,10 @@ function mod:GetOptions()
 		355480, -- Lethal Force
 
 		------ So'leah's Gambit ------
+		-- General
+		358443, -- Blood in the Water
 		-- Murkbrine Scalebinder
-		355132, -- Invigorating Fish Stick
+		{355132, "NAMEPLATEBAR"}, -- Invigorating Fish Stick
 		-- Murkbrine Shellcrusher
 		355057, -- Cry of Mrrggllrrgg
 		-- Coastwalker Goliath
@@ -173,6 +176,7 @@ function mod:GetOptions()
 		[355480] = L.commander_zofar,
 
 		------ So'leah's Gambit ------
+		[358443] = L.tazavesh_soleahs_gambit,
 		[355132] = L.murkbrine_scalebinder,
 		[355057] = L.murkbrine_shellcrusher,
 		[355429] = L.coastwalker_goliath,
@@ -217,6 +221,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "LethalForceRemoved", 355480)
 
 	------ So'leah's Gambit ------
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
+	self:RegisterEvent("UNIT_TARGET")
 	self:Log("SPELL_CAST_START", "InvigoratingFishStick", 355132)
 	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStickSpawned", 355132)
 	self:Log("SPELL_CAST_START", "CryofMrrggllrrgg", 355057)
@@ -493,10 +499,36 @@ end
 
 ------ So'leah's Gambit ------
 
+-- Blood in the Water
+function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
+	-- the debuff for Blood in the Water (358443) is a hidden aura that does not fire the SPELL_AURA events
+	if msg:find("INV_Pet_BabyShark", nil, true) then
+		self:Bar(358443, 5.25) -- Blood in the Water
+	end
+end
+
 -- Murkbrine Scalebinder
-function mod:InvigoratingFishStick(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local registeredMobs = {}
+
+	function mod:UNIT_TARGET(event, unit)
+		local sourceGUID = self:UnitGUID(unit)
+		local mobId = self:MobId(sourceGUID)
+		-- we only want to show the initial CD bar if it's the first time the mob has ever targeted anything.
+		-- we're using UNIT_TARGET as a proxy for the Scalebinder entering combat.
+		if mobId == 178141 and not registeredMobs[sourceGUID] then -- Murkbrine Scalebinder
+			registeredMobs[sourceGUID] = true
+			self:NameplateCDBar(355132, 7.2, sourceGUID) -- Invigorating Fish Stick
+		end
+	end
+	function mod:InvigoratingFishStick(args)
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+		
+		-- if for some reason this mob isn't registered already, register it so this bar won't be overwritten
+		registeredMobs[args.sourceGUID] = true
+		self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
+	end
 end
 function mod:InvigoratingFishStickSpawned(args)
 	self:Message(args.spellId, "red")
@@ -526,6 +558,7 @@ end
 function mod:TidalStomp(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 17)
 end
 
 -- Stormforged Guardian

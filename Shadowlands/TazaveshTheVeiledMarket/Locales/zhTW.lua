@@ -52,6 +52,7 @@ if L then
 	L.commerce_enforcer_commander_zofar = "貿易執法者 / 指揮官佐發"
 	L.commander_zofar = "指揮官佐發"
 
+	L.tazavesh_soleahs_gambit = "塔札維許：索利亞的險招"
 	L.murkbrine_scalebinder = "暗洋縛鱗者"
 	L.murkbrine_shellcrusher = "暗洋碎殼者"
 	L.coastwalker_goliath = "岸行者巨人"

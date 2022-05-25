@@ -52,6 +52,7 @@ if L then
 	L.commerce_enforcer_commander_zofar = "상업구 집행자 / 사령관 조파르"
 	L.commander_zofar = "사령관 조파르"
 
+	L.tazavesh_soleahs_gambit = "타자베쉬: 소레아의 승부수"
 	L.murkbrine_scalebinder = "진흙소금 비늘결속자"
 	L.murkbrine_shellcrusher = "진흙소금 껍질분쇄자"
 	L.coastwalker_goliath = "해안방랑자 거수"
