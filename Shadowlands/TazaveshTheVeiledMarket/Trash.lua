@@ -507,16 +507,21 @@ do
 	function mod:UNIT_TARGET(event, unit)
 		local sourceGUID = self:UnitGUID(unit)
 		local mobId = self:MobId(sourceGUID)
+		-- we only want to show the initial CD bar if it's the first time the mob has ever targeted anything.
+		-- we're using UNIT_TARGET as a proxy for the Scalebinder entering combat.
 		if mobId == 178141 and not registeredMobs[sourceGUID] then -- Murkbrine Scalebinder
 			registeredMobs[sourceGUID] = true
 			self:NameplateCDBar(355132, 7.2, sourceGUID) -- Invigorating Fish Stick
 		end
 	end
-end
-function mod:InvigoratingFishStick(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
+	function mod:InvigoratingFishStick(args)
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+		
+		-- if for some reason this mob isn't registered already, register it so this bar won't be overwritten
+		registeredMobs[args.sourceGUID] = true
+		self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
+	end
 end
 function mod:InvigoratingFishStickSpawned(args)
 	self:Message(args.spellId, "red")
