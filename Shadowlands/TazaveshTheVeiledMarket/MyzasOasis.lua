@@ -144,7 +144,7 @@ do
 	local prev = 0
 	function mod:RottenFood(args)
 		local t = args.time
-		if t-prev > 1.5 then
+		if t-prev > 2 then
 			prev = t
 			self:Message(356482, "yellow")
 			self:PlaySound(356482, "info")
@@ -167,7 +167,7 @@ do
 	local prev = 0
 	function mod:RowdyApplied(args)
 		local t = args.time
-		if t-prev > 1.5 then
+		if t-prev > 4 then
 			prev = t
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
