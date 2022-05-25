@@ -158,7 +158,6 @@ function mod:Teleport(args)
 end
 
 function mod:Suppression(args)
-	-- TODO does this work?
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
