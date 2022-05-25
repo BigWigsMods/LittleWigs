@@ -76,7 +76,7 @@ end
 function mod:ContainmentCellRemoved(args)
 	self:Message(args.spellId, "green", CL.removed:format(args.destName))
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(347949, 34)
+	self:CDBar(347949, 30)
 end
 
 function mod:ImpoundContrabandApplied(args)
