@@ -15,11 +15,20 @@ local instabilityCount = 0
 local unstableGoodsContainer = {}
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+L.delivery_portal = "Delivery Portal"
+L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
+L.delivery_portal_icon = "spell_arcane_portaldalarancrater"
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"delivery_portal",
 		346286, -- Hazardous Liquids
 		346742, -- Fan Mail
 		{346962, "SAY", "SAY_COUNTDOWN"}, -- Money Order
@@ -29,6 +38,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("RAID_BOSS_EMOTE")
 	self:Log("SPELL_CAST_SUCCESS", "HazardousLiquids", 346286)
 	self:Log("SPELL_CAST_START", "FanMail", 346742)
 	self:Log("SPELL_AURA_APPLIED", "MoneyOrderApplied", 346962)
@@ -45,11 +55,22 @@ function mod:OnEngage()
 	self:Bar(346742, 16) -- Fan Mail
 	self:Bar(346962, 22.8) -- Money Order
 	self:Bar(346947, 30.1) -- Unstable Goods
+	self:Bar("delivery_portal", 35, L.delivery_portal, L.delivery_portal_icon) -- Delivery Portal
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Delivery Portals
+function mod:RAID_BOSS_EMOTE(_, msg)
+	 -- Emotes that don't have the unstable goods icon must be for delivery portals
+	if not msg:find("spell_Mage_Flameorb", nil, true) then
+		self:Message("delivery_portal", "cyan", msg, L.delivery_portal_icon)
+		self:PlaySound("delivery_portal", "info")
+		self:Bar("delivery_portal", 35, L.delivery_portal, L.delivery_portal_icon)
+	end
+end
 
 function mod:HazardousLiquids(args)
 	self:Message(args.spellId, "yellow")

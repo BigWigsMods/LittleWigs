@@ -23,6 +23,7 @@ BigWigs:AddColors("Mailroom Mayhem", {
 	[346742] = "red",
 	[346947] = "yellow",
 	[346962] = {"blue","orange"},
+	["delivery_portal"] = "cyan",
 })
 
 BigWigs:AddColors("Myza's Oasis", {

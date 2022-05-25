@@ -23,6 +23,7 @@ BigWigs:AddSounds("Mailroom Mayhem", {
 	[346742] = "alarm",
 	[346947] = "long",
 	[346962] = "alert",
+	["delivery_portal"] = "info",
 })
 
 BigWigs:AddSounds("Myza's Oasis", {
