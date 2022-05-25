@@ -137,7 +137,7 @@ end
 function mod:SuppressionSpark(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 30.4)
+	self:CDBar(args.spellId, 38.9)
 end
 
 do
