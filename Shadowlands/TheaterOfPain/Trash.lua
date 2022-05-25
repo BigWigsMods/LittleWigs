@@ -138,7 +138,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RagingTantrumApplied", 333241)
 	self:Log("SPELL_CAST_START", "MeatShield", 341977)
-	self:Log("SPELL_AURA_APPLIED", "DecayingBlightApplied", 330700)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DecayingBlightApplied", 330700)
 	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969)
 	self:Log("SPELL_AURA_APPLIED", "WitheringBlightApplied", 341949)
