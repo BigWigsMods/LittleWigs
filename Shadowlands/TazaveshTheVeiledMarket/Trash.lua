@@ -307,7 +307,11 @@ end
 function mod:RadiantPulse(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 26.7)
+	if (self:MobId(args.sourceGUID) == 178392) then -- Gatewarden Zo'mazz
+		self:CDBar(args.spellId, 18.2)
+	else
+		self:CDBar(args.spellId, 26.7)
+	end
 end
 function mod:RaidantPulseCasterDeath(args)
 	self:StopBar(356324) -- Empowered Glyph Of Restraint
