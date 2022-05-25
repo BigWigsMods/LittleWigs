@@ -105,6 +105,7 @@ function mod:GetOptions()
 		356031, -- Stasis Beam
 		-- Portalmancer Zo'honn
 		356324, -- Empowered Glyph of Restraint
+		356548, -- Radiant Pulse
 		-- Armored Overseer / Tracker Zo'korss
 		356001, -- Beam Splicer
 		-- Tracker Zo'korss
@@ -196,6 +197,8 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
+	self:Log("SPELL_CAST_START", "RadiantPulse", 356548)
+	self:Death("RaidantPulseCasterDeath", 178392, 179334)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
 	self:Log("SPELL_AURA_APPLIED", "BeamSplicerApplied", 356011)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BeamSplicerApplied", 356011)
@@ -298,6 +301,16 @@ end
 function mod:EmpoweredGlyphOfRestraint(args)
 	self:Message(356324, "red", CL.casting:format(args.spellName))
 	self:PlaySound(356324, "warning")
+	self:CDBar(356324, 21.9)
+end
+function mod:RadiantPulse(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 26.7)
+end
+function mod:RaidantPulseCasterDeath(args)
+	self:StopBar(356324) -- Empowered Glyph Of Restraint
+	self:StopBar(356548) -- Radiant Pulse
 end
 
 -- Armored Overseer / Tracker Zo'korss
