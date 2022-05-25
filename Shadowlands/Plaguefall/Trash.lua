@@ -177,11 +177,10 @@ do
 	local plaguefallen = false
 
 	function mod:ConcentratedPlagueApplied(args)
-		local stacks = args.amount or 1
-		if self:Me(args.destGUID) and stacks > 5 then
-			self:StackMessage(args.spellId, args.destName, stacks, "yellow")
-			if (stacks ~= 10 or plaguefallen) then
-				self:PlaySound(args.spellId, stacks > 7 and "warning" or "alert", nil, args.destName)
+		if self:Me(args.destGUID) and args.amount > 5 then
+			self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
+			if (args.amount ~= 10 or plaguefallen) then
+				self:PlaySound(args.spellId, args.amount > 7 and "warning" or "alert", nil, args.destName)
 			end
 		end
 	end
