@@ -196,12 +196,11 @@ do
 			return
 		end
 		if self:Dispeller("disease", nil, args.spellId) then
-			local amount = args.amount or 1
-			if amount > 3 then
+			if args.amount > 3 then
 				local t = args.time
 				if t - prev > 3 then
 					prev = t
-					self:StackMessage(args.spellId, args.destName, amount, "purple")
+					self:StackMessage(args.spellId, args.destName, args.amount, "purple")
 					self:PlaySound(args.spellId, "alert", nil, args.destName)
 				end
 			end
