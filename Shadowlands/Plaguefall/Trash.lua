@@ -286,10 +286,14 @@ function mod:BeckonSlime(args)
 end
 
 -- Rotting Slimeclaw
-function mod:CorrodedClawsApplied(args)
-	if self:Dispeller("disease", nil, args.spellId) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+do
+	local prev = 0
+	function mod:CorrodedClawsApplied(args)
+		local t = args.time
+		if t-prev > 2 and self:Dispeller("disease", nil, args.spellId) then
+			self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
 	end
 end
 
