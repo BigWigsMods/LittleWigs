@@ -34,6 +34,7 @@ BigWigs:AddColors("Myza's Oasis", {
 	[353835] = "orange",
 	[355438] = "red",
 	[356482] = "yellow",
+	[359028] = "red",
 	["stages"] = "cyan",
 })
 

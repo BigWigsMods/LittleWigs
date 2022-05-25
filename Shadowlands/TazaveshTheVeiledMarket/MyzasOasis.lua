@@ -41,13 +41,15 @@ function mod:GetOptions()
 		-- Disruptive Patron
 		353783, -- Teleport
 		353835, -- Suppression
+		-- Oasis Security
+		{350916, "TANK"}, -- Security Slam
 		-- All add waves
 		353706, -- Rowdy
 		-- Zo'gron
 		350922, -- Menacing Shout
 		350919, -- Crowd Control
 		355438, -- Suppression Spark
-		{350916, "TANK"}, -- Security Slam
+		{359028, "TANK"}, -- Security Slam
 	}, {
 		[356482] = -23096,
 		[350922] = -23749,
@@ -63,7 +65,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Suppression", 353835)
 	self:Log("SPELL_AURA_APPLIED", "RowdyApplied", 353706)
 	self:Log("SPELL_CAST_START", "MenacingShout", 350922)
-	self:Log("SPELL_CAST_START", "SecuritySlam", 350916)
+	self:Log("SPELL_CAST_START", "SecuritySlam", 350916, 359028)
 	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
 	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 end
