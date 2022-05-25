@@ -102,6 +102,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_WHISPER()
 	-- Unruly patrons rush the stage!
 	if addWave <= 2 then
+		-- TODO rowdy timer is too short by a few seconds
 		self:Bar(353706, 37.5) -- Rowdy
 	end
 end
@@ -143,6 +144,7 @@ end
 do
 	local prev = 0
 	function mod:RottenFood(args)
+		-- TODO i don't think this works
 		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
@@ -158,6 +160,7 @@ function mod:Teleport(args)
 end
 
 function mod:Suppression(args)
+	-- TODO does this work?
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
