@@ -222,7 +222,7 @@ do
 			prev = args.time
 			local stacks = args.amount or 1
 			self:StackMessage(args.spellId, args.destName, stacks, "yellow")
-			self:PlaySound(args.spellId, stacks > 3 and "warning" or "alert", nil, args.destName)
+			self:PlaySound(args.spellId, stacks > 3 and "warning" or "alert")
 		end
 	end
 	function mod:ClingingInfestationDamage(args)
@@ -231,7 +231,7 @@ do
 			if t-prev > 4 then
 				prev = args.time
 				self:PersonalMessage(args.spellId)
-				self:PlaySound(args.spellId, "underyou", nil, args.destName)
+				self:PlaySound(args.spellId, "underyou")
 			end
 		end
 	end
