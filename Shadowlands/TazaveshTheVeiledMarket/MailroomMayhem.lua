@@ -87,10 +87,12 @@ function mod:UnstableGoods(args)
 end
 
 function mod:InstabilityApplied(args)
-	instabilityCount = instabilityCount + 1
-	local barText = CL.count:format(CL.explosion, instabilityCount)
-	self:Bar(args.spellId, 30, barText)
-	unstableGoodsContainer[args.sourceGUID] = barText
+	if not unstableGoodsContainer[args.sourceGUID] then
+		instabilityCount = instabilityCount + 1
+		local barText = CL.count:format(CL.explosion, instabilityCount)
+		self:Bar(args.spellId, 30, barText)
+		unstableGoodsContainer[args.sourceGUID] = barText
+	end
 end
 
 function mod:InstabilityRemoved(args)
