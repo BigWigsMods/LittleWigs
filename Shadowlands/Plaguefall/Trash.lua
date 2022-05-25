@@ -133,7 +133,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "ConcentratedPlagueApplied", 330069)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ConcentratedPlagueApplied", 330069)
 	self:Log("SPELL_AURA_APPLIED", "PlaguefallenApplied", 330092)
 	self:Log("SPELL_AURA_REMOVED", "PlaguefallenRemoved", 330092)
