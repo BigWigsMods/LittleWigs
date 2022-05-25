@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	------ Streets of Wonder ------
+	178392, -- Gatewarden Zo'mazz
 	177816, -- Interrogation Specialist
 	179334, -- Portalmancer Zo'honn
 	177808, -- Armored Overseer
