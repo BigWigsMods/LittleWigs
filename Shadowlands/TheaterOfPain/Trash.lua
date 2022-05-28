@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -250,7 +249,9 @@ do
 		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		if not self:Tank() then
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		end
 	end
 end
 
