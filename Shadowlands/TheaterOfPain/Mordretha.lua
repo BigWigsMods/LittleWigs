@@ -14,6 +14,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		-- General
 		{324079, "TANK_HEALER"}, -- Reaping Scythe
 		323608, -- Dark Devastation
@@ -51,6 +52,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 30.8, CL.active, "achievement_dungeon_theatreofpain")
+end
 
 function mod:ReapingScythe(args)
 	self:Message(args.spellId, "orange")

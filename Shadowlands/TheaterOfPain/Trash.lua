@@ -32,6 +32,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
 	L.raging_bloodhorn = "Raging Bloodhorn"
 	L.diseased_horror = "Diseased Horror"
 	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
@@ -136,6 +137,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 	self:Log("SPELL_AURA_APPLIED", "RagingTantrumApplied", 333241)
 	self:Log("SPELL_CAST_START", "MeatShield", 341977)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DecayingBlightApplied", 330700)
@@ -172,6 +175,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.mordretha_warmup_trigger then
+		-- Mordretha Warmup
+		local mordrethaModule = BigWigs:GetBossModule("Mordretha, the Endless Empress", true)
+		if mordrethaModule then
+			mordrethaModule:Enable()
+			mordrethaModule:Warmup()
+		end
+	end
+end
 
 -- Raging Bloodhorn
 function mod:RagingTantrumApplied(args)
