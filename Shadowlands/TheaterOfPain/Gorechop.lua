@@ -45,17 +45,15 @@ end
 
 do
 	local function warnMeatHooks()
-		if mod:IsEngaged() then
-			mod:Message(322795, "orange")
-			mod:PlaySound(322795, "alert")
-			mod:Bar(322795, 20.6)
-		end
+		mod:Message(322795, "orange")
+		mod:PlaySound(322795, "alert")
+		mod:Bar(322795, 20.6)
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		-- The boss casts Meat Hooks 5 seconds before anything actually happens
 		if spellId == 322795 then -- Meat Hooks
-			self:SimpleTimer(warnMeatHooks, 5)
+			self:ScheduleTimer(warnMeatHooks, 5)
 		end
 	end
 end
