@@ -18,7 +18,7 @@ function mod:GetOptions()
 		-- General
 		{324079, "TANK_HEALER"}, -- Reaping Scythe
 		323608, -- Dark Devastation
-		323683, -- Grasping Rift
+		323825, -- Grasping Rift
 		{323831, "DISPEL"}, -- Death Grasp
 		324449, -- Manifest Death
 		-- Mythic
@@ -46,7 +46,7 @@ function mod:OnEngage()
 	self:Bar(324079, 8.2) -- Reaping Scythe
 	self:Bar(323608, 15.5) -- Dark Devastation
 	self:Bar(324449, 21.6) -- Manifest Death
-	self:Bar(323683, 22.8) -- Grasping Rift
+	self:Bar(323825, 22.8) -- Grasping Rift
 end
 
 --------------------------------------------------------------------------------
@@ -66,9 +66,9 @@ function mod:DarkDevastation(args)
 end
 
 function mod:GraspingRift(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 25.5)
+	self:Message(323825, "orange")
+	self:PlaySound(323825, "alert")
+	self:Bar(323825, 25.5)
 end
 
 function mod:DeathGraspApplied(args)
