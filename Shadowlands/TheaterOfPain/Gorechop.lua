@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Gorechop", 2293, 2401)
 if not mod then return end
 mod:RegisterEnableMob(162317)
-mod.engageId = 2365
---mod.respawnTime = 30
+mod:SetEncounterID(2365)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
