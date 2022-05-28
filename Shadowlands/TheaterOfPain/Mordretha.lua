@@ -19,6 +19,7 @@ function mod:GetOptions()
 		{324079, "TANK_HEALER"}, -- Reaping Scythe
 		323608, -- Dark Devastation
 		323683, -- Grasping Rift
+		{323831, "DISPEL"}, -- Death Grasp
 		324449, -- Manifest Death
 		-- Mythic
 		339573, -- Echoes of Carnage
@@ -38,6 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "EchoesOfCarnage", 339573)
 	self:Log("SPELL_CAST_START", "GhostlyCharge", 339706)
 	self:Log("SPELL_CAST_START", "EchoOfBattle", 339550)
+	self:Log("SPELL_AURA_APPLIED", "DeathGraspApplied", 323831)
 end
 
 function mod:OnEngage()
@@ -69,6 +71,13 @@ function mod:GraspingRift(args)
 	self:Bar(args.spellId, 25.5)
 end
 
+function mod:DeathGraspApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
 function mod:ManifestDeath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
@@ -83,7 +92,7 @@ function mod:EchoesOfCarnage(args)
 	self:Bar(339706, 13.5) -- Ghostly Charge
 	self:Bar(323608, 14.6) -- Dark Devastation
 	self:Bar(324449, 21) -- Manifest Death
-	self:Bar(323683, 22.5) -- Grasping Rift
+	self:Bar(323825, 22.5) -- Grasping Rift
 end
 
 do
