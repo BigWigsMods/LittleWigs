@@ -45,9 +45,11 @@ end
 
 do
 	local function warnMeatHooks()
-		mod:Message(322795, "orange")
-		mod:PlaySound(322795, "alert")
-		mod:Bar(322795, 20.6)
+		if mod:IsEngaged() then
+			mod:Message(322795, "orange")
+			mod:PlaySound(322795, "alert")
+			mod:Bar(322795, 20.6)
+		end
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
