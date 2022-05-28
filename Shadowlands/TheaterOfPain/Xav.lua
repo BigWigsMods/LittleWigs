@@ -76,16 +76,6 @@ function mod:BrutalCombo(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:DeafeningCrash(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:MassiveCleave(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
-
 function mod:BloodAndGlory(args)
 	self:CDBar(320102, 70) -- Blood and Glory
 end
@@ -101,13 +91,31 @@ do
 	end
 end
 
-function mod:CrushingSlam(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
+do
+	local mightOfMaldraxxusCounter = 1
 
-function mod:MightOfMaldraxxus(args)
-	self:CDBar(args.spellId, 30)
+	function mod:CrushingSlam(args)
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, mightOfMaldraxxusCounter))
+		self:PlaySound(args.spellId, "alarm")
+		mightOfMaldraxxusCounter = mightOfMaldraxxusCounter + 1
+	end
+
+	function mod:DeafeningCrash(args)
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, mightOfMaldraxxusCounter))
+		self:PlaySound(args.spellId, "alarm")
+		mightOfMaldraxxusCounter = mightOfMaldraxxusCounter + 1
+	end
+
+	function mod:MassiveCleave(args)
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, mightOfMaldraxxusCounter))
+		self:PlaySound(args.spellId, "alarm")
+		mightOfMaldraxxusCounter = mightOfMaldraxxusCounter + 1
+	end
+
+	function mod:MightOfMaldraxxus(args)
+		mightOfMaldraxxusCounter = 1
+		self:CDBar(args.spellId, 30)
+	end
 end
 
 function mod:OppressiveBanner(args)
