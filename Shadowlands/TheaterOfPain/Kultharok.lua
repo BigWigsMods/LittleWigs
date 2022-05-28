@@ -32,6 +32,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:Bar(319626, 3.3) -- Phantasmal Parasite
 	self:Bar(319521, 15.8) -- Draw Soul
 end
 
