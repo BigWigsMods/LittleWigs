@@ -17,7 +17,7 @@ function mod:GetOptions()
 		{319521, "ME_ONLY"}, -- Draw Soul
 		{319637, "ME_ONLY"}, -- Reclaimed Soul
 		{319626, "SAY", "FLASH"}, -- Phantasmal Parasite
-		{319669, "TANK"}, -- Spectral Reach
+		319669, -- Spectral Reach
 	}
 end
 
@@ -28,7 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ReclaimedSoulApplied", 319637)
 	self:Log("SPELL_CAST_SUCCESS", "PhantasmalParasite", 319626)
 	self:Log("SPELL_AURA_APPLIED", "PhantasmalParasiteApplied", 319626)
-	self:Log("SPELL_CAST_SUCCESS", "SpectralReach", 319669)
+	self:Log("SPELL_CAST_START", "SpectralReach", 319669)
 end
 
 function mod:OnEngage()
