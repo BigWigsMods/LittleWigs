@@ -34,7 +34,9 @@ end
 function mod:OnEngage()
 	self:Bar(322795, 10.8) -- Meat Hooks, 5.8 sec until the first cast
 	self:Bar(323515, 7) -- Hateful Strike
-	self:Bar(318406, 13.1) -- Tenderizing Smash
+	if self:Mythic() then
+		self:Bar(318406, 13.1) -- Tenderizing Smash
+	end
 end
 
 --------------------------------------------------------------------------------
