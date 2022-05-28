@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -11,8 +10,8 @@ mod:RegisterEnableMob(
 	164461, -- Sathel the Accursed
 	164464  -- Xira the Underhanded
 )
-mod.engageId = 2391
---mod.respawnTime = 30
+mod:SetEncounterID(2391)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -51,7 +50,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SearingDeathApplied", 333231)
 	self:Log("SPELL_CAST_SUCCESS", "OneWithDeath", 320293)
 	self:Log("SPELL_AURA_APPLIED", "SpectralTransferenceApplied", 320272)
-	self:Log("SPELL_AURA_APPLIED", "AmbushApplied", 333540)
+	self:Log("SPELL_AURA_APPLIED", "OpportunityStrikesApplied", 333540)
 end
 
 function mod:OnEngage()
@@ -131,7 +130,7 @@ function mod:SpectralTransferenceApplied(args)
 	end
 end
 
-function mod:AmbushApplied(args)
+function mod:OpportunityStrikesApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
