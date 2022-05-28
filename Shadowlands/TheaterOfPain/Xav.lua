@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Xav the Unfallen", 2293, 2390)
 if not mod then return end
 mod:RegisterEnableMob(162329)
-mod.engageId = 2366
---mod.respawnTime = 30
+mod:SetEncounterID(2366)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
