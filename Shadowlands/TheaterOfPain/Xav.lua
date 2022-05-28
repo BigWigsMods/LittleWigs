@@ -55,7 +55,9 @@ function mod:OnEngage()
 	self:Bar(320644, 5.7) -- Brutal Combo
 	self:Bar(331618, 10.6) -- Oppressive Banner
 	self:Bar(320050, 16.7) -- Might of Maldraxxus
-	self:Bar(320102, 33.7) -- Blood and Glory
+	if GetNumGroupMembers() > 1 then
+		self:Bar(320102, 33.7) -- Blood and Glory
+	end
 end
 
 --------------------------------------------------------------------------------
