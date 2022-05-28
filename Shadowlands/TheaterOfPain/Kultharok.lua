@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Kul'tharok", 2293, 2389)
 if not mod then return end
 mod:RegisterEnableMob(162309)
-mod.engageId = 2364
---mod.respawnTime = 30
+mod:SetEncounterID(2364)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
