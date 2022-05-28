@@ -137,7 +137,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
 	self:Log("SPELL_AURA_APPLIED", "RagingTantrumApplied", 333241)
 	self:Log("SPELL_CAST_START", "MeatShield", 341977)
@@ -177,7 +177,7 @@ end
 --
 
 -- Warmup
-function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	if msg == L.mordretha_warmup_trigger then
 		-- Mordretha Warmup
 		local mordrethaModule = BigWigs:GetBossModule("Mordretha, the Endless Empress", true)
