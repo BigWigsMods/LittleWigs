@@ -49,6 +49,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrushingSlam", 317231)
 	self:Log("SPELL_CAST_SUCCESS", "MightOfMaldraxxus", 320050)
 	self:Log("SPELL_CAST_SUCCESS", "OppressiveBanner", 331618)
+	self:Log("SPELL_AURA_REMOVED", "OppressiveBannerRemoved", 331606)
 end
 
 function mod:OnEngage()
@@ -112,4 +113,11 @@ function mod:OppressiveBanner(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 30)
+end
+
+function mod:OppressiveBannerRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message(331618, "green", CL.removed:format(args.spellName))
+		self:PlaySound(331618, "info")
+	end
 end
