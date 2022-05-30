@@ -154,7 +154,7 @@ function mod:Stoneskin(args)
 end
 
 function mod:StoneskinApplied(args)
-	if not self:Player(args.destFlags) then
+	if not self:Player(args.destFlags) and self:Dispeller("magic", true) then
 		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "warning")
 	end
