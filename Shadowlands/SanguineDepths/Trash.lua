@@ -67,7 +67,7 @@ function mod:GetOptions()
 		334329, -- Sweeping Slash
 		{334326, "TANK_HEALER"}, -- Bludgeoning Bash
 		-- Insatiable Brute
-		{321178, "TANK_HEALER"}, -- Slam
+		{321178, "TANK"}, -- Slam
 		334918, -- Umbral Crash
 		-- Regal Mistdancer
 		320991, -- Echoing Thrust
