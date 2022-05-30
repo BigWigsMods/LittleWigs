@@ -28,6 +28,12 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.kaal_engage_trigger1 = "Guards! Slay them all!"
+	L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
+	L.kaal_engage_trigger3 = "These halls will be your tomb!"
+	L.kaal_retreat_trigger1 = "Wretched mortals!"
+	L.kaal_retreat_trigger2 = "You are nothing but Draven's dogs!"
+	L.kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!"
 	L.anima_collector = "Anima Collector"
 	L.chamber_sentinel = "Chamber Sentinel"
 	L.depths_warden = "Depths Warden"
@@ -105,6 +111,8 @@ function mod:OnBossEnable()
 		-- Dreadful Huntmaster
 		self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
 		-- General Kaal
+		self:RegisterEvent("CHAT_MSG_YELL")
+		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 		self:Log("SPELL_CAST_START", "GloomSquall", 324103) -- Gloom Squall
 		self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
 		-- Grand Overseer
@@ -195,9 +203,24 @@ end
 
 -- General Kaal
 
+-- Yes, actually CHAT_MSG_YELL instead of CHAT_MSG_MONSTER_YELL.
+function mod:CHAT_MSG_YELL(_, msg, _, _, _, playerName2)
+	if playerName2 == L.general_kaal and
+		(msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3) then
+		self:Bar(324103, 35) -- Gloom Squall
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
+		self:StopBar(324103) -- Gloom Squall
+	end
+end
+
 function mod:GloomSquall(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:Bar(324103, 40) -- Gloom Squall
 end
 
 function mod:ShiningRadiance(args)
