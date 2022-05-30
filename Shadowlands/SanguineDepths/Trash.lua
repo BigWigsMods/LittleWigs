@@ -51,7 +51,7 @@ function mod:GetOptions()
 		341321, -- Summon Anima Collector Stalker
 		-- Chamber Sentinel
 		328170, -- Craggy Fracture
-		322429, -- Severing Slice
+		{322429, "TANK_HEALER"}, -- Severing Slice
 		322433, -- Stoneskin
 		-- Depths Warden
 		335305, -- Barbed Shackles
