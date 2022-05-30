@@ -149,8 +149,14 @@ function mod:SeveringSlice(args)
 end
 
 function mod:Stoneskin(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	local canInterrupt, interruptReady = self:Interrupter()
+
+	if canInterrupt then
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+		if interruptReady then
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:StoneskinApplied(args)
