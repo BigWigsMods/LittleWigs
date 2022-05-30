@@ -155,7 +155,7 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 		-- Amarth Warmup
 		local amarthModule = BigWigs:GetBossModule("Amarth, The Reanimator", true)
 		if amarthModule then
-			self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
+			self:UnregisterEvent(event)
 			amarthModule:Enable()
 			amarthModule:Warmup()
 		end
