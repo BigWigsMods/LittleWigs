@@ -54,7 +54,7 @@ end
 function mod:GetOptions()
 	return {
 		-- Anima Collector
-		341321, -- Summon Anima Collector Stalker
+		341331, -- Anima Drain
 		-- Chamber Sentinel
 		328170, -- Craggy Fracture
 		322429, -- Severing Slice
@@ -82,7 +82,7 @@ function mod:GetOptions()
 		-- Wicked Oppressor
 		{326836, "DISPEL"}, -- Curse of Suppression
 	}, {
-		[341321] = L.anima_collector,
+		[341331] = L.anima_collector,
 		[328170] = L.chamber_sentinel,
 		[335305] = L.depths_warden,
 		[334558] = L.dreadful_huntmaster,
@@ -140,8 +140,9 @@ end
 -- Anima Collector
 
 function mod:SummonAnimaCollectorStalker(args)
-	self:Message(args.spellId, "green", L.anima_collector)
-	self:PlaySound(args.spellId, "info")
+	self:Message(341331, "green", L.anima_collector) -- Anima Drain
+	self:PlaySound(341331, "info") -- Anima Drain
+	self:Bar(341331, 60, L.anima_collector) -- Anima Drain
 end
 
 -- Chamber Sentinel
