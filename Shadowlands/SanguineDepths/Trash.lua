@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -19,7 +18,8 @@ mod:RegisterEnableMob(
 	166396, -- Noble Skirmisher
 	162038, -- Regal Mistdancer
 	171805, -- Research Scribe
-	162039 -- Wicked Oppressor
+	162039, -- Wicked Oppressor
+	168591 -- Ravenous Dreadbat
 )
 
 --------------------------------------------------------------------------------
@@ -39,6 +39,7 @@ if L then
 	L.regal_mistdancer = "Regal Mistdancer"
 	L.research_scribe = "Research Scribe"
 	L.wicked_oppressor = "Wicked Oppressor"
+	L.ravenous_dreadbat = "Ravenous Dreadbat"
 end
 
 --------------------------------------------------------------------------------
@@ -75,6 +76,8 @@ function mod:GetOptions()
 		334377, -- Explosive Vellum
 		-- Wicked Oppressor
 		{326836, "DISPEL"}, -- Curse of Suppression
+		-- Ravenous Dreadbat
+		321105, -- Sap Lifeblood
 	}, {
 		[341321] = L.anima_collector,
 		[328170] = L.chamber_sentinel,
@@ -87,6 +90,7 @@ function mod:GetOptions()
 		[320991] = L.regal_mistdancer,
 		[334377] = L.research_scribe,
 		[326836] = L.wicked_oppressor,
+		[321105] = L.ravenous_dreadbat,
 	}
 end
 
@@ -123,6 +127,8 @@ function mod:OnBossEnable()
 		-- Wicked Oppressor
 		self:Log("SPELL_CAST_START", "CurseOfSuppression", 326836) -- Curse of Suppression
 		self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
+		-- Ravenous Dreadbat
+		self:Log("SPELL_CAST_START", "SapLifeblood", 321105) -- Sap Lifeblood
 end
 
 --------------------------------------------------------------------------------
@@ -296,4 +302,11 @@ function mod:CurseOfSuppressionApplied(args)
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
+end
+
+-- Ravenous Dreadbat
+
+function mod:SapLifeblood(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end

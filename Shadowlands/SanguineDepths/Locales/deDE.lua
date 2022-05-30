@@ -12,4 +12,5 @@ if L then
 	L.regal_mistdancer = "Majestätischer Nebeltänzer"
 	L.research_scribe = "Forschungsschreiberin"
 	L.wicked_oppressor = "Tückische Unterdrückerin"
+	L.ravenous_dreadbat = "Unersättliche Fleddermaus"
 end
