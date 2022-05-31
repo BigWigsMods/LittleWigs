@@ -22,7 +22,7 @@ BigWigs:AddColors("Xav the Unfallen", {
 	[320102] = {"blue","yellow"},
 	[320644] = "purple",
 	[320729] = "red",
-	[331618] = "orange",
+	[331618] = {"green","orange"},
 	[339415] = "red",
 })
 

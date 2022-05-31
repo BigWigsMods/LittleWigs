@@ -22,7 +22,7 @@ BigWigs:AddSounds("Xav the Unfallen", {
 	[320102] = {"info","long"},
 	[320644] = "alert",
 	[320729] = "alarm",
-	[331618] = "alert",
+	[331618] = {"alert","info"},
 	[339415] = "alarm",
 })
 

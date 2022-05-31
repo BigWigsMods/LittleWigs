@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Xav the Unfallen", 2293, 2390)
 if not mod then return end
 mod:RegisterEnableMob(162329)
-mod.engageId = 2366
---mod.respawnTime = 30
+mod:SetEncounterID(2366)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -49,13 +48,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrushingSlam", 317231)
 	self:Log("SPELL_CAST_SUCCESS", "MightOfMaldraxxus", 320050)
 	self:Log("SPELL_CAST_SUCCESS", "OppressiveBanner", 331618)
+	self:Log("SPELL_AURA_REMOVED", "OppressiveBannerRemoved", 331606)
 end
 
 function mod:OnEngage()
 	self:Bar(320644, 5.7) -- Brutal Combo
 	self:Bar(331618, 10.6) -- Oppressive Banner
 	self:Bar(320050, 16.7) -- Might of Maldraxxus
-	self:Bar(320102, 33.7) -- Blood and Glory
+	if not self:Solo() then
+		self:Bar(320102, 33.7) -- Blood and Glory
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -74,16 +76,6 @@ function mod:BrutalCombo(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:DeafeningCrash(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:MassiveCleave(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
-
 function mod:BloodAndGlory(args)
 	self:CDBar(320102, 70) -- Blood and Glory
 end
@@ -99,17 +91,42 @@ do
 	end
 end
 
-function mod:CrushingSlam(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
+do
+	local mightOfMaldraxxusCounter = 1
 
-function mod:MightOfMaldraxxus(args)
-	self:CDBar(args.spellId, 30)
+	function mod:CrushingSlam(args)
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, mightOfMaldraxxusCounter))
+		self:PlaySound(args.spellId, "alarm")
+		mightOfMaldraxxusCounter = mightOfMaldraxxusCounter + 1
+	end
+
+	function mod:DeafeningCrash(args)
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, mightOfMaldraxxusCounter))
+		self:PlaySound(args.spellId, "alarm")
+		mightOfMaldraxxusCounter = mightOfMaldraxxusCounter + 1
+	end
+
+	function mod:MassiveCleave(args)
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, mightOfMaldraxxusCounter))
+		self:PlaySound(args.spellId, "alarm")
+		mightOfMaldraxxusCounter = mightOfMaldraxxusCounter + 1
+	end
+
+	function mod:MightOfMaldraxxus(args)
+		mightOfMaldraxxusCounter = 1
+		self:CDBar(args.spellId, 30)
+	end
 end
 
 function mod:OppressiveBanner(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 30)
+end
+
+function mod:OppressiveBannerRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message(331618, "green", CL.removed:format(args.spellName))
+		self:PlaySound(331618, "info")
+	end
 end
