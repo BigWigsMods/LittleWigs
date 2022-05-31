@@ -35,7 +35,8 @@ BigWigs:AddColors("Kul'tharok", {
 
 BigWigs:AddColors("Mordretha, the Endless Empress", {
 	[323608] = "red",
-	[323683] = "orange",
+	[323825] = "orange",
+	[323831] = {"blue","yellow"},
 	[324079] = "orange",
 	[324449] = "orange",
 	[339550] = "orange",
