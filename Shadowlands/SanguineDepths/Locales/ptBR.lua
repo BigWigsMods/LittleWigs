@@ -12,4 +12,5 @@ if L then
 	L.regal_mistdancer = "Dançarino da Névoa Régio"
 	L.research_scribe = "Escriba Pesquisadora"
 	L.wicked_oppressor = "Opressora Perversa"
+	L.ravenous_dreadbat = "Deimorcego Voraz"
 end

@@ -12,4 +12,5 @@ if L then
 	L.regal_mistdancer = "皇家霧舞者"
 	L.research_scribe = "研究紀錄者"
 	L.wicked_oppressor = "邪惡壓迫者"
+	L.ravenous_dreadbat = "飢餓的懼蝠"
 end
