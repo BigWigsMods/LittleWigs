@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Gorechop", 2293, 2401)
 if not mod then return end
 mod:RegisterEnableMob(162317)
-mod.engageId = 2365
---mod.respawnTime = 30
+mod:SetEncounterID(2365)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,7 +34,9 @@ end
 function mod:OnEngage()
 	self:Bar(322795, 10.8) -- Meat Hooks, 5.8 sec until the first cast
 	self:Bar(323515, 7) -- Hateful Strike
-	self:Bar(318406, 13.1) -- Tenderizing Smash
+	if self:Mythic() then
+		self:Bar(318406, 13.1) -- Tenderizing Smash
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -52,7 +53,7 @@ do
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		-- The boss casts Meat Hooks 5 seconds before anything actually happens
 		if spellId == 322795 then -- Meat Hooks
-			self:SimpleTimer(warnMeatHooks, 5)
+			self:ScheduleTimer(warnMeatHooks, 5)
 		end
 	end
 end

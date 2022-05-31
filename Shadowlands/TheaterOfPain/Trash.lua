@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -255,17 +254,18 @@ function mod:DevourFlesh(args)
 end
 do
 	local function printTarget(self, name, guid)
-		local onMe = self:Me(guid)
-		if onMe or self:Healer() then
+		if self:Me(guid) or self:Healer() then
 			self:TargetMessage(332836, "red", name)
-			self:PlaySound(332836, onMe and "warning" or "alert", nil, name)
+			self:PlaySound(332836, "alert", nil, name)
 		end
 	end
 	function mod:Chop(args)
 		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		if not self:Tank() then
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		end
 	end
 end
 
