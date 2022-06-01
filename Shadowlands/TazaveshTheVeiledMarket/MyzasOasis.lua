@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -121,6 +120,7 @@ end
 function mod:MenacingShout(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 20.7)
 end
 
 function mod:SecuritySlam(args)
