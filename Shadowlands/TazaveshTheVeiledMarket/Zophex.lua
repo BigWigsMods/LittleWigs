@@ -40,6 +40,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ContainmentCellApplied", 345990)
 	self:Log("SPELL_AURA_REMOVED", "ContainmentCellRemoved", 345990)
 	self:Log("SPELL_MISSED", "ContainmentCellMissed", 345990)
+	self:Log("SPELL_CAST_SUCCESS", "ImpoundContraband", 346006)
 	self:Log("SPELL_AURA_APPLIED", "ImpoundContrabandApplied", 345770)
 	self:Log("SPELL_AURA_REMOVED", "ImpoundContrabandRemoved", 345770)
 	self:Log("SPELL_CAST_SUCCESS", "ArmedSecurity", 346204)
@@ -84,6 +85,10 @@ function mod:ContainmentCellMissed(args)
 	self:PlaySound(args.spellId, "info")
 	-- if you immune the Interrogation cast Zo'phex's energy doesn't reset back to 0 which makes the next Interrogation phase come sooner
 	self:CDBar(347949, 26.5) -- Interrogation
+end
+
+function mod:ImpoundContraband(args)
+	self:CDBar(345770, 26.7) -- Impound Contraband
 end
 
 function mod:ImpoundContrabandApplied(args)
