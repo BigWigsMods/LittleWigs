@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -32,6 +31,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
 	L.raging_bloodhorn = "Raging Bloodhorn"
 	L.diseased_horror = "Diseased Horror"
 	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
@@ -136,6 +136,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
 	self:Log("SPELL_AURA_APPLIED", "RagingTantrumApplied", 333241)
 	self:Log("SPELL_CAST_START", "MeatShield", 341977)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DecayingBlightApplied", 330700)
@@ -172,6 +174,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.mordretha_warmup_trigger then
+		-- Mordretha Warmup
+		local mordrethaModule = BigWigs:GetBossModule("Mordretha, the Endless Empress", true)
+		if mordrethaModule then
+			mordrethaModule:Enable()
+			mordrethaModule:Warmup()
+		end
+	end
+end
 
 -- Raging Bloodhorn
 function mod:RagingTantrumApplied(args)
@@ -240,17 +254,18 @@ function mod:DevourFlesh(args)
 end
 do
 	local function printTarget(self, name, guid)
-		local onMe = self:Me(guid)
-		if onMe or self:Healer() then
+		if self:Me(guid) or self:Healer() then
 			self:TargetMessage(332836, "red", name)
-			self:PlaySound(332836, onMe and "warning" or "alert", nil, name)
+			self:PlaySound(332836, "alert", nil, name)
 		end
 	end
 	function mod:Chop(args)
 		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		if not self:Tank() then
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		end
 	end
 end
 

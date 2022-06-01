@@ -22,7 +22,7 @@ BigWigs:AddColors("Xav the Unfallen", {
 	[320102] = {"blue","yellow"},
 	[320644] = "purple",
 	[320729] = "red",
-	[331618] = "orange",
+	[331618] = {"green","orange"},
 	[339415] = "red",
 })
 
@@ -35,7 +35,8 @@ BigWigs:AddColors("Kul'tharok", {
 
 BigWigs:AddColors("Mordretha, the Endless Empress", {
 	[323608] = "red",
-	[323683] = "orange",
+	[323825] = "orange",
+	[323831] = {"blue","yellow"},
 	[324079] = "orange",
 	[324449] = "orange",
 	[339550] = "orange",

@@ -22,7 +22,7 @@ BigWigs:AddSounds("Xav the Unfallen", {
 	[320102] = {"info","long"},
 	[320644] = "alert",
 	[320729] = "alarm",
-	[331618] = "alert",
+	[331618] = {"alert","info"},
 	[339415] = "alarm",
 })
 
@@ -35,7 +35,8 @@ BigWigs:AddSounds("Kul'tharok", {
 
 BigWigs:AddSounds("Mordretha, the Endless Empress", {
 	[323608] = "alarm",
-	[323683] = "alert",
+	[323825] = "alert",
+	[323831] = "alert",
 	[324079] = "alert",
 	[324449] = "alert",
 	[339550] = "alert",
@@ -57,7 +58,7 @@ BigWigs:AddSounds("Theater Of Pain Trash", {
 	[331237] = "info",
 	[331275] = "info",
 	[332708] = "alert",
-	[332836] = {"alert","warning"},
+	[332836] = "alert",
 	[333241] = "warning",
 	[333294] = "alarm",
 	[333708] = "alert",

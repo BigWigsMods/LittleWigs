@@ -29,6 +29,7 @@ BigWigs:AddColors("General Kaal", {
 
 BigWigs:AddColors("Sanguine Depths Trash", {
 	[320991] = "red",
+	[321105] = "yellow",
 	[321178] = "red",
 	[322429] = "orange",
 	[322433] = {"orange","yellow"},

@@ -18,4 +18,5 @@ if L then
 	L.regal_mistdancer = "Благородный туманный танцор"
 	L.research_scribe = "Писец-исследовательница"
 	L.wicked_oppressor = "Зловещая подавительница"
+	L.ravenous_dreadbat = "Прожорливый жуткий нетопырь"
 end
