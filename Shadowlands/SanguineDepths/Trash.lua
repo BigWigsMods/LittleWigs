@@ -217,9 +217,8 @@ end
 -- General Kaal
 
 -- Yes, actually CHAT_MSG_YELL instead of CHAT_MSG_MONSTER_YELL.
-function mod:CHAT_MSG_YELL(_, msg, _, _, _, playerName2)
-	if playerName2 == L.general_kaal and
-		(msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3) then
+function mod:CHAT_MSG_YELL(_, msg, player)
+	if not player and (msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3) then
 		self:Bar(324103, 35) -- Gloom Squall
 	end
 end
