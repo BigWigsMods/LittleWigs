@@ -216,16 +216,26 @@ end
 
 -- General Kaal
 
--- Yes, actually CHAT_MSG_YELL instead of CHAT_MSG_MONSTER_YELL.
-function mod:CHAT_MSG_YELL(_, msg, player)
-	if not player and (msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3) then
-		self:Bar(324103, 35) -- Gloom Squall
+function mod:CHAT_MSG_YELL(_, msg, playerName)
+	-- General Kaal in the gauntlet event is bugged and uses the CHAT_MSG_YELL event for half of her lines and
+	-- the correct CHAT_MSG_MONSTER_YELL for the other half.
+	-- playerName will be nil for these bugged lines so pass them through to the MONSTER_YELL handler.
+	if playerName == nil then
+		self:CHAT_MSG_MONSTER_YELL(nil, msg)
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
+	if msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3 then
+		self:Bar(324103, 35) -- Gloom Squall
+	elseif msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
 		self:StopBar(324103) -- Gloom Squall
+
+		-- The gauntlet event is over once the third retreat line is said
+		if msg == L.kaal_retreat_trigger3 then
+			self:UnregisterEvent("CHAT_MSG_YELL")
+			self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		end
 	end
 end
 
