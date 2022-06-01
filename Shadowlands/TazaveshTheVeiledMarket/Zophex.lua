@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(347949, 25.6) -- Interrogation
+	self:Bar(347949, 34.1) -- Interrogation
 	self:Bar(345770, 19.3) -- Impound Contraband
 	self:Bar(346204, 8.7) -- Armed Security
 end
