@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Ingra Maloch", 2290, 2400)
 if not mod then return end
 mod:RegisterEnableMob(164567, 164804) -- Ingra Maloch, Droman Oulfarran
-mod.engageId = 2397
---mod.respawnTime = 30
+mod:SetEncounterID(2397)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
