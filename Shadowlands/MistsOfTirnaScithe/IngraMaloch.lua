@@ -94,6 +94,7 @@ end
 function mod:DromansWrathApplied(args)
 	self:StopBar(323137) -- Bewildering Pollen
 	self:StopBar(323177) -- Tears of the Forest
+	self:StopBar(328756) -- Repulsive Visage
 	self:StopBar(323149) -- Embrace Darkness
 	self:Bar(args.spellId, 12)
 end
