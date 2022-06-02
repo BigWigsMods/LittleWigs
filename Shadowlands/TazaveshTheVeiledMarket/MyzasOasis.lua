@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	179269  -- Oasis Security
 )
 mod:SetEncounterID(2440)
+mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
