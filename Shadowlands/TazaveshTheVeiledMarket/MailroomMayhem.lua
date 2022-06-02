@@ -74,11 +74,11 @@ do
 
 	function mod:RAID_BOSS_EMOTE(_, msg)
 		-- Emotes that don't have the unstable goods icon must be for delivery portals
-	    if not msg:find("spell_Mage_Flameorb", nil, true) then
-		    self:Bar("delivery_portal", 5, CL.spawning:format(L.delivery_portal), L.delivery_portal_icon)
-		    self:ScheduleTimer(deliveryPortalSpawned, 5)
-	    end
-    end
+		if not msg:find("spell_Mage_Flameorb", nil, true) then
+			self:Bar("delivery_portal", 5, CL.spawning:format(L.delivery_portal), L.delivery_portal_icon)
+			self:ScheduleTimer(deliveryPortalSpawned, 5)
+		end
+	end
 end
 
 function mod:HazardousLiquids(args)
