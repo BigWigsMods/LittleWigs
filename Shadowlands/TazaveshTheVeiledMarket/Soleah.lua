@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("So'leah", 2441, 2455)
 if not mod then return end
 mod:RegisterEnableMob(177269) -- So'leah
 mod:SetEncounterID(2442)
+mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
