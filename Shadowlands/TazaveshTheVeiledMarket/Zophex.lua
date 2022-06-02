@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -10,6 +9,7 @@ mod:RegisterEnableMob(
 	175616  -- Zo'phex the Sentinel
 )
 mod:SetEncounterID(2425)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
