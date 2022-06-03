@@ -307,10 +307,10 @@ end
 function mod:RadiantPulse(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	if self:MobId(args.sourceGUID) == 178392 then -- Gatewarden Zo'mazz
-		self:CDBar(args.spellId, 18.2)
+	if self:MobId(args.sourceGUID) == 178392 then
+		self:CDBar(args.spellId, 18.2) -- Gatewarden Zo'mazz
 	else
-		self:CDBar(args.spellId, 26.7)
+		self:CDBar(args.spellId, 26.7) -- Portalmancer Zo'honn
 	end
 end
 function mod:RaidantPulseCasterDeath(args)
