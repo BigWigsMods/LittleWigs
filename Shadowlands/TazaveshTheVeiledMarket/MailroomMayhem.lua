@@ -10,13 +10,6 @@ mod:SetEncounterID(2424)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local instabilityCount = 0
-local unstableGoodsContainer = {}
-
---------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -51,8 +44,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	instabilityCount = 0
-	unstableGoodsContainer = {}
 	self:Bar(346286, 6) -- Hazardous Liquids
 	self:Bar(346742, 16) -- Fan Mail
 	self:Bar(346962, 22.8) -- Money Order
@@ -109,23 +100,29 @@ function mod:MoneyOrderRemoved(args)
 	end
 end
 
-function mod:UnstableGoods(args)
-	instabilityCount = 0
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 52.2)
-end
+do
+	local instabilityCount = 0
+	local unstableGoodsContainer = {}
 
-function mod:InstabilityApplied(args)
-	if not unstableGoodsContainer[args.sourceGUID] then
-		instabilityCount = instabilityCount + 1
-		local barText = CL.count:format(CL.explosion, instabilityCount)
-		self:Bar(args.spellId, 30, barText)
-		unstableGoodsContainer[args.sourceGUID] = barText
+	function mod:UnstableGoods(args)
+		instabilityCount = 0
+		unstableGoodsContainer = {}
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "long")
+		self:Bar(args.spellId, 52.2)
 	end
-end
 
-function mod:InstabilityRemoved(args)
-	self:StopBar(unstableGoodsContainer[args.sourceGUID])
-	unstableGoodsContainer[args.sourceGUID] = nil
+	function mod:InstabilityApplied(args)
+		if not unstableGoodsContainer[args.sourceGUID] then
+			instabilityCount = instabilityCount + 1
+			local barText = CL.count:format(CL.explosion, instabilityCount)
+			self:Bar(args.spellId, 30, barText)
+			unstableGoodsContainer[args.sourceGUID] = barText
+		end
+	end
+
+	function mod:InstabilityRemoved(args)
+		self:StopBar(unstableGoodsContainer[args.sourceGUID])
+		unstableGoodsContainer[args.sourceGUID] = nil
+	end
 end
