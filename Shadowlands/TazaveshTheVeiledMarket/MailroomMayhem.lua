@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -13,9 +12,12 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-L.delivery_portal = "Delivery Portal"
-L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
-L.delivery_portal_icon = "spell_arcane_portaldalarancrater"
+local L = mod:GetLocale()
+if L then
+	L.delivery_portal = "Delivery Portal"
+	L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
+	L.delivery_portal_icon = "spell_arcane_portaldalarancrater"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
