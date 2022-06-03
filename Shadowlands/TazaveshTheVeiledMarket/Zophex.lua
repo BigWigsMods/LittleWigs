@@ -75,13 +75,21 @@ function mod:ContainmentCellApplied(args)
 end
 
 function mod:ContainmentCellRemoved(args)
-	self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+	else
+		self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	end
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(347949, 31.5) -- Interrogation
 end
 
 function mod:ContainmentCellMissed(args)
-	self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+	else
+		self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	end
 	self:PlaySound(args.spellId, "info")
 	-- if you immune the Interrogation cast Zo'phex's energy doesn't reset back to 0 which makes the next Interrogation phase come sooner
 	self:CDBar(347949, 26.5) -- Interrogation
