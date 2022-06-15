@@ -51,8 +51,8 @@ function mod:GetOptions()
 		355438, -- Suppression Spark
 		{359028, "TANK"}, -- Security Slam
 	}, {
-		[356482] = -23096,
-		[350922] = -23749,
+		[356482] = -23096, -- Stage One: Unruly Patrons
+		[350922] = -23749, -- Stage Two: Closing Time
 	}
 end
 
