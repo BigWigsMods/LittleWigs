@@ -314,7 +314,9 @@ function mod:RadiantPulse(args)
 	end
 end
 function mod:RadiantPulseCasterDeath(args)
-	self:StopBar(356324) -- Empowered Glyph Of Restraint
+	if args.mobId == 179334 then -- Portalmancer Zo'honn
+		self:StopBar(356324) -- Empowered Glyph Of Restraint
+	end
 	self:StopBar(356548) -- Radiant Pulse
 end
 
