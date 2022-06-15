@@ -199,7 +199,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
 	self:Log("SPELL_CAST_START", "RadiantPulse", 356548)
-	self:Death("RaidantPulseCasterDeath", 178392, 179334)
+	self:Death("RadiantPulseCasterDeath", 178392, 179334)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
 	self:Log("SPELL_AURA_APPLIED", "BeamSplicerApplied", 356011)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BeamSplicerApplied", 356011)
@@ -313,7 +313,7 @@ function mod:RadiantPulse(args)
 		self:CDBar(args.spellId, 26.7) -- Portalmancer Zo'honn
 	end
 end
-function mod:RaidantPulseCasterDeath(args)
+function mod:RadiantPulseCasterDeath(args)
 	self:StopBar(356324) -- Empowered Glyph Of Restraint
 	self:StopBar(356548) -- Radiant Pulse
 end
