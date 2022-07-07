@@ -92,7 +92,7 @@ end
 function mod:DromansWrathApplied(args)
 	self:StopBar(323137) -- Bewildering Pollen
 	self:StopBar(323177) -- Tears of the Forest
-	self:Bar(args.spellId, 12)
+	self:Bar(args.spellId, 15)
 end
 
 function mod:DromansWrathRemoved(args)
