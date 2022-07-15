@@ -3,11 +3,8 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Encrypted", {2284, 2285, 2286, 2287, 2289, 2290, 2291, 2293, 2441})
+local mod, CL = BigWigs:NewAffix("Encrypted", 130, {2284, 2285, 2286, 2287, 2289, 2290, 2291, 2293, 2441})
 if not mod then return end
-mod.displayName = select(1, C_ChallengeMode.GetAffixInfo(130)) -- Encrypted
--- TODO localization, this needs to match the othermenu name which is defined in toc, probably need some bigwigs core adjustments to localize it?
-mod.otherMenu = "Affixes"
 mod:RegisterEnableMob(
 	184911 -- Urh Dismantler
 )
