@@ -11,7 +11,7 @@ mod:RegisterEnableMob(
 	171799, -- Depths Warden
 	171448, -- Dreadful Huntmaster
 	162046, -- Famished Tick
-	162133, -- General Kaal
+	162133, -- General Kaal (trash)
 	162040, -- Grand Overseer
 	171376, -- Head Custodian Javlin
 	162047, -- Insatiable Brute
@@ -38,7 +38,6 @@ if L then
 	L.chamber_sentinel = "Chamber Sentinel"
 	L.depths_warden = "Depths Warden"
 	L.dreadful_huntmaster = "Dreadful Huntmaster"
-	L.general_kaal = "General Kaal"
 	L.grand_overseer = "Grand Overseer"
 	L.head_custodian_javlin = "Head Custodian Javlin"
 	L.insatiable_brute = "Insatiable Brute"
@@ -65,9 +64,6 @@ function mod:GetOptions()
 		{335308, "TANK_HEALER"}, -- Crushing Strike
 		-- Dreadful Huntmaster
 		334558, -- Volatile Trap
-		-- General Kaal
-		324103, -- Gloom Squall
-		324086, -- Shining Radiance
 		-- Grand Overseer
 		326827, -- Dread Bindings
 		-- Head Custodian Javlin
@@ -89,7 +85,6 @@ function mod:GetOptions()
 		[328170] = L.chamber_sentinel,
 		[335305] = L.depths_warden,
 		[334558] = L.dreadful_huntmaster,
-		[324103] = L.general_kaal,
 		[326827] = L.grand_overseer,
 		[334329] = L.head_custodian_javlin,
 		[321178] = L.insatiable_brute,
@@ -117,8 +112,6 @@ function mod:OnBossEnable()
 		-- General Kaal
 		self:RegisterEvent("CHAT_MSG_YELL")
 		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-		self:Log("SPELL_CAST_START", "GloomSquall", 324103) -- Gloom Squall
-		self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
 		-- Grand Overseer
 		self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
 		self:Log("SPELL_AURA_REMOVED", "DreadBindingsRemoved", 326827)
@@ -227,27 +220,24 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3 then
-		self:Bar(324103, 35) -- Gloom Squall
+		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
+		if kaalModule then
+			kaalModule:Enable()
+			kaalModule:KaalGauntletEngage()
+		end
 	elseif msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
-		self:StopBar(324103) -- Gloom Squall
+		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
+		if kaalModule then
+			kaalModule:Enable()
+			kaalModule:KaalGauntletRetreat()
+		end
 
-		-- The gauntlet event is over once the third retreat line is said
+		-- The gauntlet event is over once the third retreat line has triggered
 		if msg == L.kaal_retreat_trigger3 then
 			self:UnregisterEvent("CHAT_MSG_YELL")
 			self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 		end
 	end
-end
-
-function mod:GloomSquall(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-	self:Bar(324103, 40) -- Gloom Squall
-end
-
-function mod:ShiningRadiance(args)
-	self:Message(args.spellId, "green")
-	self:PlaySound(args.spellId, "info")
 end
 
 -- Grand Overseer

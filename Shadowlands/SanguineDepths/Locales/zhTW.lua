@@ -11,7 +11,6 @@ if L then
 	L.chamber_sentinel = "大廳哨兵"
 	L.depths_warden = "深淵看守者"
 	L.dreadful_huntmaster = "恐怖神獵手"
-	L.general_kaal = "凱厄將軍"
 	L.grand_overseer = "大監督者"
 	L.head_custodian_javlin = "監護長賈夫臨"
 	L.insatiable_brute = "貪婪蠻卒"

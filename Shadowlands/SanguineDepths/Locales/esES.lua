@@ -11,7 +11,6 @@ if L then
 	L.chamber_sentinel = "Centinela de la cámara"
 	L.depths_warden = "Celador de las profundidades"
 	L.dreadful_huntmaster = "Maestro de caza pavoroso"
-	L.general_kaal = "General Kaal"
 	L.grand_overseer = "Gran sobrestante"
 	L.head_custodian_javlin = "Custodio jefe Javlin"
 	L.insatiable_brute = "Bruto insaciable"

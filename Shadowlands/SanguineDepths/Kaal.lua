@@ -1,13 +1,15 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("General Kaal", 2284, 2407)
 if not mod then return end
-mod:RegisterEnableMob(162099)
-mod.engageId = 2363
-mod.respawnTime = 30
+mod:RegisterEnableMob(
+	162133, -- General Kaal (trash)
+	162099 -- General Kaal (boss)
+)
+mod:SetEncounterID(2363)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -24,17 +26,25 @@ function mod:GetOptions()
 		{323845, "SAY", "FLASH"}, -- Wicked Rush
 		323821, -- Piercing Blur
 		322903, -- Gloom Squall
-		{324086, "SAY"}, -- Shining Radiance
+		324086, -- Shining Radiance
 	}
 end
 
 function mod:OnBossEnable()
+	-- Z'rali
+	-- TODO this wouldn't work right away right? because this module only loads when the boss yells now
+	-- TODO what about wicked rush or whatever on trash? timer?
+	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086)
+
+	-- Gauntlet
+	self:Log("SPELL_CAST_START", "GloomSquallGauntlet", 324103)
+
+	-- Boss Fight
 	self:Log("SPELL_CAST_SUCCESS", "WickedRush", 323845)
 	self:Log("SPELL_AURA_APPLIED", "WickedRushApplied", 323845)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingBlurStart", 323821)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingBlur", 323810)
 	self:Log("SPELL_CAST_START", "GloomSquall", 322903)
-	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086)
 end
 
 function mod:OnEngage()
@@ -48,10 +58,36 @@ end
 -- Event Handlers
 --
 
+-- Z'rali
+
+function mod:ShiningRadiance(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+end
+
+-- Gauntlet
+
+-- called from trash module
+function mod:KaalGauntletEngage()
+	self:Bar(322903, 35) -- Gloom Squall
+end
+
+-- called from trash module
+function mod:KaalGauntletRetreat()
+	self:StopBar(322903) -- Gloom Squall
+end
+
+function mod:GloomSquallGauntlet(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+	self:Bar(322903, 40) -- Gloom Squall
+end
+
+-- Boss Fight
 
 local function getGloomSquallDelayedTimer(time, duration)
 	-- Some casts are delayed if the cast or the subsequent effects would overlap with gloom squall
-	local gloomSquallCastTime = 5.5 -- 4 sec cast time, then he waits 1.5 sec before doing anything else
+	local gloomSquallCastTime = 5.5 -- 4 sec cast time, then she waits 1.5 sec before doing anything else
 	local gloomSquallTimeLeft = mod:BarTimeLeft(322903)
 	if gloomSquallTimeLeft < time + duration then
 		return math.max(gloomSquallTimeLeft + gloomSquallCastTime, time)
@@ -92,13 +128,8 @@ function mod:PiercingBlur(args)
 end
 
 function mod:GloomSquall(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 38.9)
 	self:CastBar(args.spellId, 4)
-end
-
-function mod:ShiningRadiance(args)
-	self:Message(args.spellId, "green")
-	self:PlaySound(args.spellId, "info")
 end
