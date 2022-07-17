@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewAffix("Encrypted", 130, {2284, 2285, 2286, 2287, 2289, 2290, 2291, 2293, 2441})
+local mod, CL = BigWigs:NewDungeonAffix("Encrypted", 130, {2284, 2285, 2286, 2287, 2289, 2290, 2291, 2293, 2441})
 if not mod then return end
 mod:RegisterEnableMob(
 	184911 -- Urh Dismantler
