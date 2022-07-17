@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -19,7 +18,8 @@ mod:RegisterEnableMob(
 	166396, -- Noble Skirmisher
 	162038, -- Regal Mistdancer
 	171805, -- Research Scribe
-	162039 -- Wicked Oppressor
+	162039, -- Wicked Oppressor
+	168591 -- Ravenous Dreadbat
 )
 
 --------------------------------------------------------------------------------
@@ -28,6 +28,12 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.kaal_engage_trigger1 = "Guards! Slay them all!"
+	L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
+	L.kaal_engage_trigger3 = "These halls will be your tomb!"
+	L.kaal_retreat_trigger1 = "Wretched mortals!"
+	L.kaal_retreat_trigger2 = "You are nothing but Draven's dogs!"
+	L.kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!"
 	L.anima_collector = "Anima Collector"
 	L.chamber_sentinel = "Chamber Sentinel"
 	L.depths_warden = "Depths Warden"
@@ -39,6 +45,7 @@ if L then
 	L.regal_mistdancer = "Regal Mistdancer"
 	L.research_scribe = "Research Scribe"
 	L.wicked_oppressor = "Wicked Oppressor"
+	L.ravenous_dreadbat = "Ravenous Dreadbat"
 end
 
 --------------------------------------------------------------------------------
@@ -48,10 +55,10 @@ end
 function mod:GetOptions()
 	return {
 		-- Anima Collector
-		341321, -- Summon Anima Collector Stalker
+		341331, -- Anima Drain
 		-- Chamber Sentinel
 		328170, -- Craggy Fracture
-		322429, -- Severing Slice
+		{322429, "TANK_HEALER"}, -- Severing Slice
 		322433, -- Stoneskin
 		-- Depths Warden
 		335305, -- Barbed Shackles
@@ -67,7 +74,7 @@ function mod:GetOptions()
 		334329, -- Sweeping Slash
 		{334326, "TANK_HEALER"}, -- Bludgeoning Bash
 		-- Insatiable Brute
-		{321178, "TANK_HEALER"}, -- Slam
+		{321178, "TANK"}, -- Slam
 		334918, -- Umbral Crash
 		-- Regal Mistdancer
 		320991, -- Echoing Thrust
@@ -75,8 +82,10 @@ function mod:GetOptions()
 		334377, -- Explosive Vellum
 		-- Wicked Oppressor
 		{326836, "DISPEL"}, -- Curse of Suppression
+		-- Ravenous Dreadbat
+		321105, -- Sap Lifeblood
 	}, {
-		[341321] = L.anima_collector,
+		[341331] = L.anima_collector,
 		[328170] = L.chamber_sentinel,
 		[335305] = L.depths_warden,
 		[334558] = L.dreadful_huntmaster,
@@ -87,6 +96,7 @@ function mod:GetOptions()
 		[320991] = L.regal_mistdancer,
 		[334377] = L.research_scribe,
 		[326836] = L.wicked_oppressor,
+		[321105] = L.ravenous_dreadbat,
 	}
 end
 
@@ -105,6 +115,8 @@ function mod:OnBossEnable()
 		-- Dreadful Huntmaster
 		self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
 		-- General Kaal
+		self:RegisterEvent("CHAT_MSG_YELL")
+		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 		self:Log("SPELL_CAST_START", "GloomSquall", 324103) -- Gloom Squall
 		self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
 		-- Grand Overseer
@@ -123,6 +135,8 @@ function mod:OnBossEnable()
 		-- Wicked Oppressor
 		self:Log("SPELL_CAST_START", "CurseOfSuppression", 326836) -- Curse of Suppression
 		self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
+		-- Ravenous Dreadbat
+		self:Log("SPELL_CAST_START", "SapLifeblood", 321105) -- Sap Lifeblood
 end
 
 --------------------------------------------------------------------------------
@@ -132,8 +146,9 @@ end
 -- Anima Collector
 
 function mod:SummonAnimaCollectorStalker(args)
-	self:Message(args.spellId, "green", L.anima_collector)
-	self:PlaySound(args.spellId, "info")
+	self:Message(341331, "green", L.anima_collector) -- Anima Drain
+	self:PlaySound(341331, "info") -- Anima Drain
+	self:Bar(341331, 60, L.anima_collector) -- Anima Drain
 end
 
 -- Chamber Sentinel
@@ -149,12 +164,18 @@ function mod:SeveringSlice(args)
 end
 
 function mod:Stoneskin(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	local canInterrupt, interruptReady = self:Interrupter()
+
+	if canInterrupt then
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+		if interruptReady then
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:StoneskinApplied(args)
-	if not self:Player(args.destFlags) then
+	if not self:Player(args.destFlags) and self:Dispeller("magic", true) then
 		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "warning")
 	end
@@ -168,8 +189,10 @@ function mod:BarbedShackles(args)
 end
 
 function mod:BarbedShacklesApplied(args)
-	self:TargetMessage(335305, "yellow", args.destName)
-	self:PlaySound(335305, "alert", nil, args.destName)
+	if self:Dispeller("movement") or self:Me(args.destGUID) or self:Healer() then
+		self:TargetMessage(335305, "yellow", args.destName)
+		self:PlaySound(335305, "alert", nil, args.destName)
+	end
 end
 
 function mod:CrushingStrike(args)
@@ -193,9 +216,23 @@ end
 
 -- General Kaal
 
+-- Yes, actually CHAT_MSG_YELL instead of CHAT_MSG_MONSTER_YELL.
+function mod:CHAT_MSG_YELL(_, msg, player)
+	if not player and (msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3) then
+		self:Bar(324103, 35) -- Gloom Squall
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
+		self:StopBar(324103) -- Gloom Squall
+	end
+end
+
 function mod:GloomSquall(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:Bar(324103, 40) -- Gloom Squall
 end
 
 function mod:ShiningRadiance(args)
@@ -288,4 +325,11 @@ function mod:CurseOfSuppressionApplied(args)
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
+end
+
+-- Ravenous Dreadbat
+
+function mod:SapLifeblood(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end

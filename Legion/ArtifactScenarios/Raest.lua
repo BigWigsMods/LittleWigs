@@ -100,19 +100,19 @@ function mod:Warmup(_, msg)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 202081 then -- Fixate
-		self:MessageOld(spellId, "red", "long", spellName .. " - " .. CL.stage:format(phase))
+		self:MessageOld(spellId, "red", "long", self:SpellName(spellId) .. " - " .. CL.stage:format(phase))
 		if phase == 2 then
 			self:Bar("handFromBeyond", 9, L.handFromBeyond, L.handFromBeyond_icon) -- Grasp from Beyond
 		end
 	elseif spellId == 236468 then -- Rune of Summoning
-		self:MessageOld("rune", "yellow", "warning", spellName, spellId)
-		self:Flash("rune", 236468)
-		self:CDBar("rune", 37, spellName, spellId)
+		self:MessageOld("rune", "yellow", "warning", spellId)
+		self:Flash("rune", spellId)
+		self:CDBar("rune", 37, spellId)
 		self:Bar("thing", 11, self:SpellName(L.thing), L.thing_icon)
 	elseif spellId == 236470 then -- Thing of Nightmares
-		self:MessageOld("thing", "yellow", "alarm", spellName, spellId)
+		self:MessageOld("thing", "yellow", "alarm", spellId)
 	end
 end
 

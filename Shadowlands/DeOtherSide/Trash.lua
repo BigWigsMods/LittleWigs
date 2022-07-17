@@ -71,6 +71,7 @@ function mod:GetOptions()
 		328740, -- Dark Lotus
 		-- Risen Warlord
 		{333227, "NAMEPLATEBAR"}, -- Undying Rage
+		333250, -- Reaver
 		-- Enraged Spirit
 		333787, -- Rage
 		-- Death Speaker
@@ -128,6 +129,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DarkLotus", 328740)
 	self:Log("SPELL_AURA_APPLIED", "UndyingRageApplied", 333227)
 	self:Log("SPELL_AURA_REMOVED", "UndyingRageRemoved", 333227)
+	self:Log("SPELL_AURA_APPLIED", "ReaverApplied", 333250)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ReaverApplied", 333250)
+	self:Log("SPELL_PERIODIC_MISSED", "ReaverApplied", 333250)
 	self:Log("SPELL_CAST_SUCCESS", "Rage", 333787)
 	self:Log("SPELL_CAST_START", "EruptingDarkness", 334051)
 
@@ -191,6 +195,20 @@ end
 function mod:UndyingRageRemoved(args)
 	self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
+end
+
+do
+	local prev = 0
+	function mod:ReaverApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
+	end
 end
 
 -- Death Speaker

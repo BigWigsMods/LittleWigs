@@ -7,10 +7,13 @@ BigWigs:AddSounds("Hakkar the Soulflayer", {
 })
 
 BigWigs:AddSounds("The Manastorms", {
+	[320132] = {"alert","warning"},
+	[320141] = "long",
 	[320787] = "info",
 	[320823] = "info",
 	[321061] = "long",
 	[323877] = "warning",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Dealer Xy'exa", {
@@ -41,6 +44,7 @@ BigWigs:AddSounds("De Other Side Trash", {
 	[332678] = "alert",
 	[332706] = "warning",
 	[333227] = {"alert","info","warning"},
+	[333250] = "underyou",
 	[333787] = "warning",
 	[334051] = "alert",
 	[340026] = "alert",

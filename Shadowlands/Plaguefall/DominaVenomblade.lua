@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Domina Venomblade", 2289, 2423)
 if not mod then return end
 mod:RegisterEnableMob(164266) -- Domina Venomblade
 mod.engageId = 2385
---mod.respawnTime = 30
+mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -16,9 +15,10 @@ mod.engageId = 2385
 function mod:GetOptions()
 	return {
 		332313, -- Brood Assassins
-		325552, -- Cytotoxic Slash
+		{325552, "DISPEL"}, -- Cytotoxic Slash
 		{325245, "SAY", "SAY_COUNTDOWN"}, -- Shadow Ambush
 		336258, -- Solitary Prey
+		336301, -- Web Wrap
 	}
 end
 
@@ -30,7 +30,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ShadowwhirlRemoved", 333353) -- Shadowwhirl, Shadow Ambush target debuff
 	self:Log("SPELL_AURA_APPLIED", "SolitaryPreyApplied", 336258)
 	self:Log("SPELL_AURA_REMOVED", "SolitaryPreyRemoved", 336258)
-
+	self:Log("SPELL_AURA_APPLIED", "WebWrapApplied", 336301)
+	self:Log("SPELL_AURA_REMOVED", "WebWrapRemoved", 336301)
 end
 
 function mod:OnEngage()
@@ -53,9 +54,11 @@ function mod:CytotoxicSlash(args)
 	self:Bar(args.spellId, 22)
 end
 
-function mod:CytotoxicSlashApplied(args) -- XXX Only for tanks, healers, poison dispellers?
-	self:TargetMessage(args.spellId, "purple", args.destName)
-	self:PlaySound(args.spellId, "alert")
+function mod:CytotoxicSlashApplied(args)
+	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("poison", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "purple", args.destName)
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:ShadowwhirlApplied(args)
@@ -86,4 +89,14 @@ function mod:SolitaryPreyRemoved(args)
 	if self:Me(args.destGUID) then
 		self:StopBar(args.spellId, args.destName)
 	end
+end
+
+function mod:WebWrapApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:WebWrapRemoved(args)
+	self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, args.destName))
+	self:PlaySound(args.spellId, "info")
 end

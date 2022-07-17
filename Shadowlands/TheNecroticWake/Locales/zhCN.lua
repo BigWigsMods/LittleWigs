@@ -6,9 +6,11 @@ end
 
 L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "zhCN")
 if L then
+	L.amarth_warmup_trigger = "正义会制裁你！"
 	L.corpse_harvester = "尸体收割者"
 	L.stitched_vanguard = "缝合先锋"
 	L.zolramus_gatekeeper = "佐尔拉姆斯守门人"
+	L.zolramus_necromancer = "佐尔拉姆斯通灵师"
 	L.brittlebone_mage = "脆骨法师"
 	L.skeletal_marauder = "骷髅劫掠者"
 	L.zolramus_bonemender = "佐尔拉姆斯愈骨者"

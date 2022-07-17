@@ -134,7 +134,7 @@ function mod:CHAT_MSG_MONSTER_EMOTE()
 	self:MessageOld("charge", "blue", "alarm", CL.incoming:format(self:SpellName(100)), L.charge_icon)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 34098 then -- ClearAllDebuffs
 		self:MessageOld("submerge", "orange", "alarm", L.submerge, L.submerge_icon)
 		self:CDBar("submerge", 60.7, L.submerge, L.submerge_icon)

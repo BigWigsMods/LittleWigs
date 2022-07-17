@@ -134,8 +134,9 @@ function mod:Warmup(event, msg)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 242015 then -- Blink
+		local spellName = self:SpellName(spellId)
 		self:MessageOld(242015, "yellow", nil, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
 		blinkCount = blinkCount + 1
 		self:CDBar(242015, 26, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
@@ -151,11 +152,11 @@ function mod:ArcaneAnnihilation(args)
 	drawPowerCount = 0
 end
 
-function mod:UNIT_SPELLCAST_STOP(unit, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_STOP(_, _, _, spellId)
 	if spellId == 234728 then -- Arcane Annihilation
-		self:StopBar(CL.cast:format(spellName))
+		self:StopBar(CL.cast:format(self:SpellName(spellId)))
 
-		self:MessageOld(spellId, "cyan", nil, CL.over:format(spellName))
+		self:MessageOld(spellId, "cyan", nil, CL.over:format(self:SpellName(spellId)))
 		blinkCount = blinkCount + 1
 		if blinkCount > #blinkSpells then
 			blinkCount = 1

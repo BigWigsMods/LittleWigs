@@ -19,6 +19,7 @@ BigWigs:AddSounds("Domina Venomblade", {
 	[325552] = "alert",
 	[332313] = "long",
 	[336258] = "alarm",
+	[336301] = {"alarm","info"},
 })
 
 BigWigs:AddSounds("Margrave Stradama", {
@@ -29,9 +30,10 @@ BigWigs:AddSounds("Margrave Stradama", {
 
 BigWigs:AddSounds("Plaguefall Trash", {
 	[318949] = "alarm",
+	[319898] = "alarm",
 	[320512] = "alert",
 	[320517] = "alert",
-	[321935] = {"alarm","info"},
+	[321935] = "alarm",
 	[323572] = "alarm",
 	[327233] = "alarm",
 	[327515] = "alert",
@@ -41,11 +43,16 @@ BigWigs:AddSounds("Plaguefall Trash", {
 	[328016] = "alert",
 	[328177] = "alert",
 	[328180] = {"alert","info"},
+	[328338] = "alert",
+	[328429] = "alert",
 	[328475] = "alarm",
 	[329239] = "alert",
+	[330069] = {"alert","warning"},
+	[330092] = {"info","long"},
 	[330403] = "alarm",
 	[330786] = "alert",
 	[330816] = "info",
+	[335882] = {"alert","info","underyou","warning"},
 	[336451] = "alert",
 	["summon_stealthlings"] = "warning",
 })

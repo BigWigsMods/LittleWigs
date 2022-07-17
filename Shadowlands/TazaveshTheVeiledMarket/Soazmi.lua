@@ -21,6 +21,7 @@ local shuriCount = 0
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		357188, -- Double Technique
 		347610, -- Shuri
 		347249, -- Divide
@@ -46,6 +47,11 @@ end
 -- Event Handlers
 --
 
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 24, CL.active, "achievement_dungeon_brokerdungeon")
+end
+
 do
 	local prev = 0
 
@@ -66,7 +72,7 @@ function mod:Shuri(args)
 	end
 end
 
-function mod:Divide(args)
+function mod:Divide()
 	divideCount = divideCount + 1
 	self:Message(347249, "yellow")
 	self:PlaySound(347249, "info")

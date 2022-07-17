@@ -14,11 +14,22 @@ mod:SetEncounterID(2441)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
+	L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		-- Alcruux
 		349627, -- Gluttony
 		{350010, "EMPHASIZE", "ME_ONLY"}, -- Devoured Anima
@@ -29,12 +40,14 @@ function mod:GetOptions()
 		349934, -- Flagellation Protocol
 		349987, -- Venting Protocol
 		-- Venza Goldfuse
-		350101, -- Chains of Damnation
+		{350101, "SAY"}, -- Chains of Damnation
 		350086, -- Whirling Annihilation
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 	-- Alcruux
 	self:Log("SPELL_AURA_APPLIED", "GluttonyApplied", 349627)
 	self:Log("SPELL_AURA_REMOVED", "GluttonyRemoved", 349627)
@@ -55,6 +68,7 @@ function mod:OnBossEnable()
 	-- Venza Goldfuse
 	self:Log("SPELL_CAST_START", "ChainsOfDamnation", 350101)
 	self:Log("SPELL_CAST_START", "WhirlingAnnihilation", 350086)
+	self:Log("SPELL_DAMAGE", "WhirlingAnnihilationDamage", 350090)
 end
 
 function mod:OnEngage()
@@ -68,6 +82,19 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 39, CL.active, "achievement_dungeon_brokerdungeon")
+end
+
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.achillite_warmup_trigger then
+		self:Bar("warmup", 22, CL.count:format(CL.active, 2), "achievement_dungeon_brokerdungeon")
+	elseif msg == L.venza_goldfuse_warmup_trigger then
+		self:Bar("warmup", 23, CL.count:format(CL.active, 3), "achievement_dungeon_brokerdungeon")
+	end
+end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if self:GetStage() == 1 and self:GetBossId(176555) then -- Achillite
@@ -161,8 +188,12 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(350101, "orange", name)
 		self:PlaySound(350101, "alert", nil, name)
+
+		if self:Me(guid) then
+			self:Say(350101)
+		end
 	end
-	
+
 	function mod:ChainsOfDamnation(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 25.5)
@@ -173,4 +204,18 @@ function mod:WhirlingAnnihilation(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 25.5)
+end
+
+do
+	local prev = 0
+	function mod:WhirlingAnnihilationDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(350086, "underyou")
+				self:PlaySound(350086, "underyou")
+			end
+		end
+	end
 end
