@@ -105,6 +105,32 @@ end
 do
 	local instabilityCount = 0
 	local unstableGoodsContainer = {}
+	local barText
+
+	local function updateBar(spellId)
+		if instabilityCount > 0 then
+			-- calculate duration based on the minimum time until a bomb explodes
+			local duration = 30
+			local currentTime = GetTime()
+			for _, expirationTime in pairs(unstableGoodsContainer) do
+				duration = min(expirationTime - currentTime, duration)
+			end
+
+			-- stop any previous bar
+			if barText then
+				mod:StopBar(barText)
+			end
+
+			-- show new bar with updated duration
+			barText = CL.count:format(CL.explosion, instabilityCount)
+			mod:Bar(spellId, duration, barText, nil, 30)
+		else
+			mod:Message(spellId, "green", CL.over:format(mod:SpellName(346947))) -- Unstable Goods
+			mod:PlaySound(spellId, "info")
+			mod:StopBar(barText)
+			barText = nil
+		end
+	end
 
 	function mod:UnstableGoods(args)
 		instabilityCount = 0
@@ -117,14 +143,14 @@ do
 	function mod:InstabilityApplied(args)
 		if not unstableGoodsContainer[args.sourceGUID] then
 			instabilityCount = instabilityCount + 1
-			local barText = CL.count:format(CL.explosion, instabilityCount)
-			self:Bar(args.spellId, 30, barText)
-			unstableGoodsContainer[args.sourceGUID] = barText
+			unstableGoodsContainer[args.sourceGUID] = GetTime() + 30
+			updateBar(args.spellId)
 		end
 	end
 
 	function mod:InstabilityRemoved(args)
-		self:StopBar(unstableGoodsContainer[args.sourceGUID])
+		instabilityCount = instabilityCount - 1
 		unstableGoodsContainer[args.sourceGUID] = nil
+		updateBar(args.spellId)
 	end
 end
