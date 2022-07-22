@@ -41,14 +41,14 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-    -- Urh Dismantler
-    self:Log("SPELL_CAST_START", "ForceSlam", 366288) -- Force Slam
+	-- Urh Dismantler
+	self:Log("SPELL_CAST_START", "ForceSlam", 366288) -- Force Slam
 
 	-- Vy Interceptor
-    self:Log("SPELL_CAST_START", "FusionBeam", 366409) -- Fusion Beam
+	self:Log("SPELL_CAST_START", "FusionBeam", 366409) -- Fusion Beam
 
 	-- Wo Drifter
-    self:Log("SPELL_CAST_START", "Burst", 366566) -- Burst
+	self:Log("SPELL_CAST_START", "Burst", 366566) -- Burst
 end
 
 --------------------------------------------------------------------------------
