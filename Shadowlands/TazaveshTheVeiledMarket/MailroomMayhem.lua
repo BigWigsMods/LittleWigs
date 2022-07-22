@@ -68,6 +68,7 @@ do
 	function mod:RAID_BOSS_EMOTE(_, msg)
 		-- Emotes that don't have the unstable goods icon must be for delivery portals
 		if not msg:find("spell_Mage_Flameorb", nil, true) then
+			-- portal spawns 5 seconds after the emote, then lasts for 30 seconds
 			self:Bar("delivery_portal", 5, CL.spawning:format(L.delivery_portal), L.delivery_portal_icon)
 			self:ScheduleTimer(deliveryPortalSpawned, 5)
 		end
@@ -107,7 +108,7 @@ do
 	local unstableGoodsContainer = {}
 	local barText
 
-	local function updateBar(spellId)
+	local function updateInstabilityBar(spellId)
 		if instabilityCount > 0 then
 			-- calculate duration based on the minimum time until a bomb explodes
 			local duration = 30
@@ -125,6 +126,7 @@ do
 			barText = CL.count:format(CL.explosion, instabilityCount)
 			mod:Bar(spellId, duration, barText, nil, 30)
 		else
+			-- the last bomb has been delivered (or... it exploded)
 			mod:Message(spellId, "green", CL.over:format(mod:SpellName(346947))) -- Unstable Goods
 			mod:PlaySound(spellId, "info")
 			mod:StopBar(barText)
@@ -141,16 +143,18 @@ do
 	end
 
 	function mod:InstabilityApplied(args)
+		-- this event is fired twice for some reason, don't track duplicates
 		if not unstableGoodsContainer[args.sourceGUID] then
 			instabilityCount = instabilityCount + 1
+			-- bombs explode after 30 seconds
 			unstableGoodsContainer[args.sourceGUID] = GetTime() + 30
-			updateBar(args.spellId)
+			updateInstabilityBar(args.spellId)
 		end
 	end
 
 	function mod:InstabilityRemoved(args)
 		instabilityCount = instabilityCount - 1
 		unstableGoodsContainer[args.sourceGUID] = nil
-		updateBar(args.spellId)
+		updateInstabilityBar(args.spellId)
 	end
 end
