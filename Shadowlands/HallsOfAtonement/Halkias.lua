@@ -93,7 +93,7 @@ function mod:CrumblingSlam(args)
 	self:PlaySound(args.spellId, "alert")
 	crumblingSlamCount = crumblingSlamCount + 1
 	if refractedSinlightTime - GetTime() > 12.1 then
-		-- the very first Crumbling Slam of the fight is delayed
+		-- only the second Crumbling Slam of the fight is delayed
 		self:CDBar(args.spellId, crumblingSlamCount == 1 and 13.4 or 12.1)
 	end
 end
