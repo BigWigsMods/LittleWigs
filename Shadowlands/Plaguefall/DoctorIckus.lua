@@ -41,7 +41,6 @@ end
 
 function mod:OnEngage()
 	self:CDBar(329110, 10) -- Slime Injection
-	self:CDBar(67382, 26) -- Leap
 end
 
 --------------------------------------------------------------------------------
@@ -52,7 +51,6 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("329200") then -- Virulent Explosion
 		self:Message(67382, "yellow") -- 'Leap'
 		self:PlaySound(67382, "long")
-		self:CDBar(67382, 57) -- Leap
 		self:CDBar(332617, 10.5) -- Pestilence Surge
 	end
 end
