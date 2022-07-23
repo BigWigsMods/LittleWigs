@@ -22,9 +22,10 @@ BigWigs:AddColors("High Adjudicator Aleez", {
 })
 
 BigWigs:AddColors("Lord Chamberlain", {
-	[323150] = "yellow",
+	[323143] = "yellow",
 	[323236] = "orange",
 	[323437] = {"blue","yellow"},
+	[327885] = "red",
 	[328791] = "red",
 	[329104] = "yellow",
 })
