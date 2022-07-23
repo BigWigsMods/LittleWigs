@@ -16,6 +16,7 @@ function mod:GetOptions()
 	return {
 		323137, -- Bewildering Pollen
 		323177, -- Tears of the Forest
+		323250, -- Anima Puddle
 		323059, -- Droman's Wrath
 		323057, -- Spirit Bolt
 		328756, -- Repulsive Visage
@@ -34,6 +35,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EmbraceDarkness", 323149)
 	self:Log("SPELL_CAST_START", "BewilderingPollen", 323137)
 	self:Log("SPELL_CAST_SUCCESS", "TearsoftheForest", 323177)
+	self:Log("SPELL_PERIODIC_DAMAGE", "AnimaPuddle", 323250)
+	self:Log("SPELL_PERIODIC_MISSED", "AnimaPuddle", 323250)
 	self:Log("SPELL_CAST_START", "DromansWrath", 323059)
 	self:Log("SPELL_AURA_APPLIED", "DromansWrathApplied", 323059)
 	self:Log("SPELL_AURA_REMOVED", "DromansWrathRemoved", 323059)
@@ -83,6 +86,20 @@ function mod:TearsoftheForest(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 15)
+end
+
+do
+	local prev = 0
+	function mod:AnimaPuddle(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
+	end
 end
 
 function mod:DromansWrath(args)
