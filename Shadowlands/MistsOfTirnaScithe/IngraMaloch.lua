@@ -104,10 +104,12 @@ function mod:DromansWrathRemoved(args)
 end
 
 function mod:SoulShackleApplied()
-	self:CDBar(323137, 7.8) -- Bewildering Pollen
-	self:CDBar(323177, 18.5) -- Tears of the Forest
-	if self:Mythic() then
-		self:CDBar(328756, 26.5, CL.fear) -- Repulsive Visage
+	if self:IsEngaged() then
+		self:CDBar(323137, 7.8) -- Bewildering Pollen
+		self:CDBar(323177, 18.5) -- Tears of the Forest
+		if self:Mythic() then
+			self:CDBar(328756, 26.5, CL.fear) -- Repulsive Visage
+		end
+		self:CDBar(323149, 30) -- Embrace Darkness
 	end
-	self:CDBar(323149, 30) -- Embrace Darkness
 end
