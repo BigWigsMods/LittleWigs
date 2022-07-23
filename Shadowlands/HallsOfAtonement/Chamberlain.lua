@@ -25,7 +25,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DoorofShadows", 329104)
-	self:Log("SPELL_CAST_START", "RitualofWoe", 328791)
+	self:Log("SPELL_CAST_START", "RitualofWoe", 323393, 328791)
 	self:Log("SPELL_CAST_START", "TelekineticToss", 323150)
 	self:Log("SPELL_CAST_START", "UnleashedSuffering", 323236)
 	self:Log("SPELL_AURA_APPLIED", "StigmaofPrideApplied", 323437)
@@ -54,8 +54,8 @@ function mod:DoorofShadows(args)
 end
 
 function mod:RitualofWoe(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+	self:Message(328791, "red") -- Ritual of Woe
+	self:PlaySound(328791, "warning") -- Ritual of Woe
 end
 
 function mod:TelekineticToss(args)
