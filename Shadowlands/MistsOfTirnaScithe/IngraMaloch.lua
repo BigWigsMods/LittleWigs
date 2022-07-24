@@ -121,6 +121,7 @@ function mod:DromansWrathRemoved(args)
 end
 
 function mod:SoulShackleApplied()
+	-- Soul Shackle is also applied on respawn, so only create timers if the boss is engaged
 	if self:IsEngaged() then
 		self:CDBar(323137, 7.8) -- Bewildering Pollen
 		self:CDBar(323177, 18.5) -- Tears of the Forest
