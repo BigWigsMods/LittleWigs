@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Executor Tarvold", 2284, 2415)
 if not mod then return end
-mod:RegisterEnableMob(162103)
-mod.engageId = 2361
-mod.respawnTime = 30
+mod:RegisterEnableMob(162103) -- Executor Tarvold
+mod:SetEncounterID(2361)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization

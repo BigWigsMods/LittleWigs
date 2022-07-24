@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Kin-Tara", 2285, 2399)
 if not mod then return end
 mod:RegisterEnableMob(162059, 163077) -- Kin-Tara, Azules
-mod.engageId = 2357
-mod.respawnTime = 30
+mod:SetEncounterID(2357)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Ingra Maloch", 2290, 2400)
 if not mod then return end
 mod:RegisterEnableMob(164567, 164804) -- Ingra Maloch, Droman Oulfarran
-mod.engageId = 2397
---mod.respawnTime = 30
+mod:SetEncounterID(2397)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -92,7 +91,7 @@ end
 function mod:DromansWrathApplied(args)
 	self:StopBar(323137) -- Bewildering Pollen
 	self:StopBar(323177) -- Tears of the Forest
-	self:Bar(args.spellId, 12)
+	self:Bar(args.spellId, 15)
 end
 
 function mod:DromansWrathRemoved(args)

@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Devos, Paragon of Doubt", 2285, 2412)
 if not mod then return end
 mod:RegisterEnableMob(162061) -- Devos
-mod.engageId = 2359
---mod.respawnTime = 30
+mod:SetEncounterID(2359)
+mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------

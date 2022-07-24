@@ -6,6 +6,7 @@ end
 
 L = BigWigs:NewBossLocale("Theater Of Pain Trash", "itIT")
 if L then
+	--L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
 	L.raging_bloodhorn = "Cornocruento Furente"
 	L.diseased_horror = "Orrore Malato"
 	L.blighted_sludge_spewer = "Sputapoltiglia Ammorbato"
