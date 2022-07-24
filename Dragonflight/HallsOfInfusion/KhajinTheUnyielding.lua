@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Khajin the Unyielding", 2527, 0) -- TODO journal ID
+local mod, CL = BigWigs:NewBoss("Khajin the Unyielding", 2527) -- TODO journal ID
 if not mod then return end
 mod:RegisterEnableMob(189727) -- Khajin the Unyielding
 mod:SetEncounterID(2617)

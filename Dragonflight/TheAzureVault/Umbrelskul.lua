@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Umbrelskul", 2515, 0) -- TODO journal id
+local mod, CL = BigWigs:NewBoss("Umbrelskul", 2515) -- TODO journal ID
 if not mod then return end
 mod:RegisterEnableMob(186738) -- Umbrelskul
 mod:SetEncounterID(2584)

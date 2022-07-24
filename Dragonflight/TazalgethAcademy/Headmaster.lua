@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Headmaster", 2526, 0) -- TODO journal ID
+local mod, CL = BigWigs:NewBoss("Headmaster", 2526) -- TODO journal ID
 if not mod then return end
 mod:RegisterEnableMob(189670) -- Headmaster
 mod:SetEncounterID(2565)
