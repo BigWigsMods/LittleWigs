@@ -33,6 +33,7 @@ BigWigs:AddColors("Sanguine Depths Trash", {
 	[322429] = "orange",
 	[322433] = {"orange","yellow"},
 	[324086] = "green",
+	[324089] = "green",
 	[326827] = {"green","red"},
 	[326836] = {"blue","orange","red"},
 	[328170] = "red",

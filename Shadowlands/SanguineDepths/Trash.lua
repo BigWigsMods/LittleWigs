@@ -83,6 +83,7 @@ function mod:GetOptions()
 		-- Ravenous Dreadbat
 		321105, -- Sap Lifeblood
 		-- Z'rali
+		324089, -- Z'rali's Essence
 		324086, -- Shining Radiance
 	}, {
 		[341331] = L.anima_collector,
@@ -96,7 +97,7 @@ function mod:GetOptions()
 		[334377] = L.research_scribe,
 		[326836] = L.wicked_oppressor,
 		[321105] = L.ravenous_dreadbat,
-		[324086] = L.zrali
+		[324089] = L.zrali
 	}
 end
 
@@ -136,7 +137,9 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_YELL")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	-- Z'rali
-	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086)
+	self:Log("SPELL_AURA_APPLIED", "ZralisEssenceApplied", 324089) -- Z'rali's Essence
+	self:Log("SPELL_AURA_REMOVED", "ZralisEssenceRemoved", 324089) -- Z'rali's Essence
+	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
 end
 
 --------------------------------------------------------------------------------
@@ -309,6 +312,16 @@ function mod:SapLifeblood(args)
 end
 
 -- Z'rali
+
+function mod:ZralisEssenceApplied(args)
+	self:Message(args.spellId, "green", CL.on:format(args.spellName, self:ColorName(args.destName)))
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ZralisEssenceRemoved(args)
+	self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	self:PlaySound(args.spellId, "info")
+end
 
 function mod:ShiningRadiance(args)
 	self:Message(args.spellId, "green")

@@ -33,6 +33,7 @@ BigWigs:AddSounds("Sanguine Depths Trash", {
 	[322429] = "alert",
 	[322433] = {"alert","warning"},
 	[324086] = "info",
+	[324089] = "info",
 	[326827] = {"info","warning"},
 	[326836] = {"alert","warning"},
 	[328170] = "alarm",
