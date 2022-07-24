@@ -114,9 +114,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrushingStrike", 335308) -- Crushing Strike
 	-- Dreadful Huntmaster
 	self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
-	-- General Kaal
-	self:RegisterEvent("CHAT_MSG_YELL")
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	-- Grand Overseer
 	self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
 	self:Log("SPELL_AURA_REMOVED", "DreadBindingsRemoved", 326827)
@@ -135,6 +132,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
 	-- Ravenous Dreadbat
 	self:Log("SPELL_CAST_START", "SapLifeblood", 321105) -- Sap Lifeblood
+	-- General Kaal
+	self:RegisterEvent("CHAT_MSG_YELL")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	-- Z'rali
 	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086)
 end
@@ -210,39 +210,6 @@ do
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
--- General Kaal
-
-function mod:CHAT_MSG_YELL(_, msg, playerName)
-	-- General Kaal in the gauntlet event is bugged and uses the CHAT_MSG_YELL event for half of her lines and
-	-- the correct CHAT_MSG_MONSTER_YELL for the other half.
-	-- playerName will be nil for these bugged lines so pass them through to the MONSTER_YELL handler.
-	if playerName == nil then
-		self:CHAT_MSG_MONSTER_YELL(nil, msg)
-	end
-end
-
-function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3 then
-		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
-		if kaalModule then
-			kaalModule:Enable()
-			kaalModule:KaalGauntletEngage()
-		end
-	elseif msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
-		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
-		if kaalModule then
-			kaalModule:Enable()
-			kaalModule:KaalGauntletRetreat()
-		end
-
-		-- The gauntlet event is over once the third retreat line has triggered
-		if msg == L.kaal_retreat_trigger3 then
-			self:UnregisterEvent("CHAT_MSG_YELL")
-			self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 		end
 	end
 end
@@ -346,4 +313,37 @@ end
 function mod:ShiningRadiance(args)
 	self:Message(args.spellId, "green")
 	self:PlaySound(args.spellId, "info")
+end
+
+-- General Kaal Gauntlet Event
+
+function mod:CHAT_MSG_YELL(_, msg, playerName)
+	-- General Kaal in the gauntlet event is bugged and uses the CHAT_MSG_YELL event for half of her lines and
+	-- the correct CHAT_MSG_MONSTER_YELL for the other half.
+	-- playerName will be nil for these bugged lines so pass them through to the MONSTER_YELL handler.
+	if playerName == nil then
+		self:CHAT_MSG_MONSTER_YELL(nil, msg)
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3 then
+		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
+		if kaalModule then
+			kaalModule:Enable()
+			kaalModule:KaalGauntletEngage()
+		end
+	elseif msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
+		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
+		if kaalModule then
+			kaalModule:Enable()
+			kaalModule:KaalGauntletRetreat()
+		end
+
+		-- The gauntlet event is over once the third retreat line has triggered
+		if msg == L.kaal_retreat_trigger3 then
+			self:UnregisterEvent("CHAT_MSG_YELL")
+			self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		end
+	end
 end
