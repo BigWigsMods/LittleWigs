@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Granyth.lua"/>
+<Script file="TheRagingTempest.lua"/>
+<Script file="TeeraAndMaruuk.lua"/>
+<Script file="BalakarKhan.lua"/>
+<Script file="Trash.lua"/>
+
+<Include file="Locales\locales.xml"/>
+<Include file="Options\options.xml"/>
+
+</Ui>
