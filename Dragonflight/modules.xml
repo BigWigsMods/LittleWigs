@@ -8,6 +8,6 @@
 <Include file="TazalgethAcademy\modules.xml"/>
 <Include file="TheAzureVault\modules.xml"/>
 <Include file="TheNokhudOffensive\modules.xml"/>
-<Include file="UldamanLegacyofTyr\modules.xml"/>
+<Include file="UldamanLegacyOfTyr\modules.xml"/>
 
 </Ui>
