@@ -39,8 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrumblingSlam", 322936)
 	self:Log("SPELL_CAST_SUCCESS", "HeaveDebris", 322943)
 	self:Log("SPELL_CAST_START", "RefractedSinlight", 322711)
-	self:Log("SPELL_AURA_APPLIED", "SinlightVisionsApplied", 339237)
-	self:Log("SPELL_AURA_APPLIED", "SinlightVisionsApplied", 322977)
+	self:Log("SPELL_AURA_APPLIED", "SinlightVisionsApplied", 339237, 322977)
 
 	self:RegisterMessage("BigWigs_BarCreated", "BarCreated")
 end
