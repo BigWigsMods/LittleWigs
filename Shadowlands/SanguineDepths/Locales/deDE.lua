@@ -10,7 +10,7 @@ if L then
 	L.anima_collector = "Animasammler"
 	L.chamber_sentinel = "Kammerwache"
 	L.depths_warden = "Tiefenwächter"
-	L.dreadful_huntmaster = "Schrecklicher Meisterjäger"\
+	L.dreadful_huntmaster = "Schrecklicher Meisterjäger"
 	L.grand_overseer = "Oberaufseher"
 	L.head_custodian_javlin = "Oberverwalter Javlin"
 	L.insatiable_brute = "Unersättlicher Schläger"
