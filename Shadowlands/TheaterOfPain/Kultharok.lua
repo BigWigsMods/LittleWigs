@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Kul'tharok", 2293, 2389)
 if not mod then return end
-mod:RegisterEnableMob(162309)
+mod:RegisterEnableMob(162309) -- Kul'tharok
 mod:SetEncounterID(2364)
 mod:SetRespawnTime(30)
 

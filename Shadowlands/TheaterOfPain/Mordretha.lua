@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Mordretha, the Endless Empress", 2293, 2417)
 if not mod then return end
-mod:RegisterEnableMob(165946)
+mod:RegisterEnableMob(165946) -- Mordretha, the Endless Empress
 mod:SetEncounterID(2404)
 mod:SetRespawnTime(30)
 
