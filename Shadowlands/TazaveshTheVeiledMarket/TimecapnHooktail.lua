@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Timecap'n Hooktail", 2441, 2449)
 if not mod then return end
 mod:RegisterEnableMob(175546) -- Timecap'n Hooktail
 mod:SetEncounterID(2419)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization

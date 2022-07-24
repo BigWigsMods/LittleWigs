@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("High Adjudicator Aleez", 2287, 2411)
 if not mod then return end
 mod:RegisterEnableMob(165410) -- High Adjudicator Aleez
-mod.engageId = 2403
---mod.respawnTime = 30
+mod:SetEncounterID(2403)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization

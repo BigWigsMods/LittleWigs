@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("General Kaal", 2284, 2407)
 if not mod then return end
-mod:RegisterEnableMob(162099)
-mod.engageId = 2363
-mod.respawnTime = 30
+mod:RegisterEnableMob(162099) -- General Kaal
+mod:SetEncounterID(2363)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -47,7 +46,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
 
 local function getGloomSquallDelayedTimer(time, duration)
 	-- Some casts are delayed if the cast or the subsequent effects would overlap with gloom squall
