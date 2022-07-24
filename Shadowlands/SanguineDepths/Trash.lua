@@ -11,7 +11,6 @@ mod:RegisterEnableMob(
 	171799, -- Depths Warden
 	171448, -- Dreadful Huntmaster
 	162046, -- Famished Tick
-	162133, -- General Kaal (trash)
 	162040, -- Grand Overseer
 	171376, -- Head Custodian Javlin
 	162047, -- Insatiable Brute
