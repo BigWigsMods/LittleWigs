@@ -18,4 +18,5 @@ if L then
 	L.research_scribe = "Forschungsschreiberin"
 	L.wicked_oppressor = "Tückische Unterdrückerin"
 	L.ravenous_dreadbat = "Unersättliche Fleddermaus"
+	L.zrali = "Z'rali"
 end

@@ -19,7 +19,9 @@ mod:RegisterEnableMob(
 	162038, -- Regal Mistdancer
 	171805, -- Research Scribe
 	162039, -- Wicked Oppressor
-	168591 -- Ravenous Dreadbat
+	168591, -- Ravenous Dreadbat
+	162133, -- General Kaal (trash)
+	162099 -- General Kaal (boss)
 )
 
 --------------------------------------------------------------------------------
@@ -45,6 +47,7 @@ if L then
 	L.research_scribe = "Research Scribe"
 	L.wicked_oppressor = "Wicked Oppressor"
 	L.ravenous_dreadbat = "Ravenous Dreadbat"
+	L.zrali = "Z'rali"
 end
 
 --------------------------------------------------------------------------------
@@ -80,6 +83,8 @@ function mod:GetOptions()
 		{326836, "DISPEL"}, -- Curse of Suppression
 		-- Ravenous Dreadbat
 		321105, -- Sap Lifeblood
+		-- Z'rali
+		324086, -- Shining Radiance
 	}, {
 		[341331] = L.anima_collector,
 		[328170] = L.chamber_sentinel,
@@ -92,44 +97,47 @@ function mod:GetOptions()
 		[334377] = L.research_scribe,
 		[326836] = L.wicked_oppressor,
 		[321105] = L.ravenous_dreadbat,
+		[324086] = L.zrali
 	}
 end
 
 function mod:OnBossEnable()
-		-- Anima Container
-		self:Log("SPELL_SUMMON", "SummonAnimaCollectorStalker", 341321)
-		-- Chamber Sentinel
-		self:Log("SPELL_CAST_START", "CraggyFracture", 328170) -- Craggy Fracture
-		self:Log("SPELL_CAST_START", "SeveringSlice", 322429) -- Severing Slice
-		self:Log("SPELL_CAST_START", "Stoneskin", 322433) -- Stoneskin
-		self:Log("SPELL_AURA_APPLIED", "StoneskinApplied", 322433) -- Stoneskin
-		-- Depths Warden
-		self:Log("SPELL_CAST_START", "BarbedShackles", 335305) -- Barbed Shackles
-		self:Log("SPELL_AURA_APPLIED", "BarbedShacklesApplied", 335306) -- Barbed Shackles
-		self:Log("SPELL_CAST_START", "CrushingStrike", 335308) -- Crushing Strike
-		-- Dreadful Huntmaster
-		self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
-		-- General Kaal
-		self:RegisterEvent("CHAT_MSG_YELL")
-		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-		-- Grand Overseer
-		self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
-		self:Log("SPELL_AURA_REMOVED", "DreadBindingsRemoved", 326827)
-		-- Head Custodian Javlin
-		self:Log("SPELL_CAST_START", "SweepingSlash", 334329) -- Sweeping Slash
-		self:Log("SPELL_CAST_START", "BludgeoningBash", 334326) -- Bludgeoning Bash
-		-- Insatiable Brute
-		self:Log("SPELL_CAST_START", "Slam", 321178) -- Slam
-		self:Log("SPELL_CAST_START", "UmbralCrash", 334918) -- Umbral Crash
-		-- Regal Mistdancer
-		self:Log("SPELL_CAST_START", "EchoingThrust", 320991) -- Echoing Thrust
-		-- Research Scribe
-		self:Log("SPELL_CAST_SUCCESS", "ExplosiveVellum", 334377) -- Explosive Vellum
-		-- Wicked Oppressor
-		self:Log("SPELL_CAST_START", "CurseOfSuppression", 326836) -- Curse of Suppression
-		self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
-		-- Ravenous Dreadbat
-		self:Log("SPELL_CAST_START", "SapLifeblood", 321105) -- Sap Lifeblood
+	-- Anima Container
+	self:Log("SPELL_SUMMON", "SummonAnimaCollectorStalker", 341321)
+	-- Chamber Sentinel
+	self:Log("SPELL_CAST_START", "CraggyFracture", 328170) -- Craggy Fracture
+	self:Log("SPELL_CAST_START", "SeveringSlice", 322429) -- Severing Slice
+	self:Log("SPELL_CAST_START", "Stoneskin", 322433) -- Stoneskin
+	self:Log("SPELL_AURA_APPLIED", "StoneskinApplied", 322433) -- Stoneskin
+	-- Depths Warden
+	self:Log("SPELL_CAST_START", "BarbedShackles", 335305) -- Barbed Shackles
+	self:Log("SPELL_AURA_APPLIED", "BarbedShacklesApplied", 335306) -- Barbed Shackles
+	self:Log("SPELL_CAST_START", "CrushingStrike", 335308) -- Crushing Strike
+	-- Dreadful Huntmaster
+	self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
+	-- General Kaal
+	self:RegisterEvent("CHAT_MSG_YELL")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	-- Grand Overseer
+	self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
+	self:Log("SPELL_AURA_REMOVED", "DreadBindingsRemoved", 326827)
+	-- Head Custodian Javlin
+	self:Log("SPELL_CAST_START", "SweepingSlash", 334329) -- Sweeping Slash
+	self:Log("SPELL_CAST_START", "BludgeoningBash", 334326) -- Bludgeoning Bash
+	-- Insatiable Brute
+	self:Log("SPELL_CAST_START", "Slam", 321178) -- Slam
+	self:Log("SPELL_CAST_START", "UmbralCrash", 334918) -- Umbral Crash
+	-- Regal Mistdancer
+	self:Log("SPELL_CAST_START", "EchoingThrust", 320991) -- Echoing Thrust
+	-- Research Scribe
+	self:Log("SPELL_CAST_SUCCESS", "ExplosiveVellum", 334377) -- Explosive Vellum
+	-- Wicked Oppressor
+	self:Log("SPELL_CAST_START", "CurseOfSuppression", 326836) -- Curse of Suppression
+	self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
+	-- Ravenous Dreadbat
+	self:Log("SPELL_CAST_START", "SapLifeblood", 321105) -- Sap Lifeblood
+	-- Z'rali
+	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086)
 end
 
 --------------------------------------------------------------------------------
@@ -332,4 +340,11 @@ end
 function mod:SapLifeblood(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Z'rali
+
+function mod:ShiningRadiance(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
 end

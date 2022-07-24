@@ -26,25 +26,15 @@ function mod:GetOptions()
 		{323845, "SAY", "FLASH"}, -- Wicked Rush
 		323821, -- Piercing Blur
 		322903, -- Gloom Squall
-		324086, -- Shining Radiance
 	}
 end
 
 function mod:OnBossEnable()
-	-- Z'rali
-	-- TODO this wouldn't work right away right? because this module only loads when the boss yells now
-	-- TODO what about wicked rush or whatever on trash? timer?
-	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086)
-
-	-- Gauntlet
-	self:Log("SPELL_CAST_START", "GloomSquallGauntlet", 324103)
-
-	-- Boss Fight
 	self:Log("SPELL_CAST_SUCCESS", "WickedRush", 323845)
 	self:Log("SPELL_AURA_APPLIED", "WickedRushApplied", 323845)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingBlurStart", 323821)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingBlur", 323810)
-	self:Log("SPELL_CAST_START", "GloomSquall", 322903)
+	self:Log("SPELL_CAST_START", "GloomSquall", 322903, 324103)
 end
 
 function mod:OnEngage()
@@ -58,13 +48,6 @@ end
 -- Event Handlers
 --
 
--- Z'rali
-
-function mod:ShiningRadiance(args)
-	self:Message(args.spellId, "green")
-	self:PlaySound(args.spellId, "info")
-end
-
 -- Gauntlet
 
 -- called from trash module
@@ -75,12 +58,6 @@ end
 -- called from trash module
 function mod:KaalGauntletRetreat()
 	self:StopBar(322903) -- Gloom Squall
-end
-
-function mod:GloomSquallGauntlet(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-	self:Bar(322903, 40) -- Gloom Squall
 end
 
 -- Boss Fight
@@ -128,8 +105,9 @@ function mod:PiercingBlur(args)
 end
 
 function mod:GloomSquall(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 38.9)
-	self:CastBar(args.spellId, 4)
+	local isGauntletVersion = args.spellId == 324103
+	self:Message(322903, "red", CL.casting:format(args.spellName))
+	self:PlaySound(322903, "warning")
+	self:Bar(322903, isGauntletVersion and 40 or 38.9)
+	self:CastBar(322903, 4)
 end

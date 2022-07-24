@@ -18,4 +18,5 @@ if L then
 	L.research_scribe = "Scriba Ricercatrice"
 	L.wicked_oppressor = "Oppressora Malvagia"
 	L.ravenous_dreadbat = "Chirorrore Vorace"
+	L.zrali = "Z'rali"
 end

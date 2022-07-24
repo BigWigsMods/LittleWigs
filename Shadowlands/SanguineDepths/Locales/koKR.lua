@@ -18,4 +18,5 @@ if L then
 	L.research_scribe = "연구 필경사"
 	L.wicked_oppressor = "사악한 탄압자"
 	L.ravenous_dreadbat = "포악한 공포박쥐"
+	L.zrali = "제랄리"
 end
