@@ -24,7 +24,6 @@ BigWigs:AddSounds("General Kaal", {
 	[322903] = "warning",
 	[323821] = "alert",
 	[323845] = "alert",
-	[324086] = "info",
 })
 
 BigWigs:AddSounds("Sanguine Depths Trash", {
@@ -34,7 +33,6 @@ BigWigs:AddSounds("Sanguine Depths Trash", {
 	[322429] = "alert",
 	[322433] = {"alert","warning"},
 	[324086] = "info",
-	[324103] = "warning",
 	[326827] = {"info","warning"},
 	[326836] = {"alert","warning"},
 	[328170] = "alarm",
