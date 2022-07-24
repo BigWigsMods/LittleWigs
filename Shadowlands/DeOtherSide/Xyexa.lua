@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Dealer Xy'exa", 2291, 2398)
 if not mod then return end
-mod:RegisterEnableMob(164450)
-mod.engageId = 2400
---mod.respawnTime = 30
+mod:RegisterEnableMob(164450) -- Dealer Xy'exa
+mod:SetEncounterID(2400)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization

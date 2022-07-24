@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Echelon", 2287, 2387)
 if not mod then return end
 mod:RegisterEnableMob(164185) -- Echelon
-mod.engageId = 2380
---mod.respawnTime = 30
+mod:SetEncounterID(2380)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
