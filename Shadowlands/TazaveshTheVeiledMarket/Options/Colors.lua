@@ -1,6 +1,6 @@
 
 BigWigs:AddColors("Zo'phex the Sentinel", {
-	[345770] = "blue",
+	[345770] = {"blue","green"},
 	[345990] = {"blue","green","red"},
 	[346204] = {"blue","yellow"},
 	[347949] = {"blue","orange"},
@@ -29,8 +29,12 @@ BigWigs:AddColors("Myza's Oasis", {
 	[350916] = "red",
 	[350919] = "orange",
 	[350922] = "orange",
+	[353706] = "red",
+	[353783] = "yellow",
+	[353835] = "orange",
 	[355438] = "red",
 	[356482] = "yellow",
+	[359028] = "red",
 	["stages"] = "cyan",
 })
 
@@ -90,6 +94,7 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[356324] = "red",
 	[356404] = "red",
 	[356407] = {"orange","yellow"},
+	[356548] = "yellow",
 	[356929] = "orange",
 	[356942] = {"blue","purple","yellow"},
 	[356967] = "purple",

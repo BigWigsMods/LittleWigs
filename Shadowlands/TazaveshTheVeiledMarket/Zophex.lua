@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -10,6 +9,7 @@ mod:RegisterEnableMob(
 	175616  -- Zo'phex the Sentinel
 )
 mod:SetEncounterID(2425)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -38,7 +38,9 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:Log("SPELL_AURA_APPLIED", "InterrogationApplied", 347949)
 	self:Log("SPELL_AURA_APPLIED", "ContainmentCellApplied", 345990)
-	self:Death("ContainmentCellDeath", 175576)
+	self:Log("SPELL_AURA_REMOVED", "ContainmentCellRemoved", 345990)
+	self:Log("SPELL_MISSED", "ContainmentCellMissed", 345990)
+	self:Log("SPELL_CAST_SUCCESS", "ImpoundContraband", 346006)
 	self:Log("SPELL_AURA_APPLIED", "ImpoundContrabandApplied", 345770)
 	self:Log("SPELL_AURA_REMOVED", "ImpoundContrabandRemoved", 345770)
 	self:Log("SPELL_CAST_SUCCESS", "ArmedSecurity", 346204)
@@ -57,14 +59,13 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	if msg == L.zophex_warmup_trigger then
-		self:Bar("warmup", 10, CL.active, "achievement_dungeon_brokerdungeon")
+		self:Bar("warmup", 9.2, CL.active, "achievement_dungeon_brokerdungeon")
 	end
 end
 
 function mod:InterrogationApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, self:Me(args.destGUID) and "warning" or "alert", nil, args.destName)
-	self:CDBar(args.spellId, 46)
 	self:CastBar(args.spellId, 5)
 end
 
@@ -73,9 +74,29 @@ function mod:ContainmentCellApplied(args)
 	self:PlaySound(args.spellId, self:Me(args.destGUID) and "alert" or "warning")
 end
 
-function mod:ContainmentCellDeath(args)
-	self:Message(345990, "green", CL.removed:format(args.destName))
-	self:PlaySound(345990, "info")
+function mod:ContainmentCellRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+	else
+		self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	end
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(347949, 31.5) -- Interrogation
+end
+
+function mod:ContainmentCellMissed(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+	else
+		self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	end
+	self:PlaySound(args.spellId, "info")
+	-- if you immune the Interrogation cast Zo'phex's energy doesn't reset back to 0 which makes the next Interrogation phase come sooner
+	self:CDBar(347949, 26.5) -- Interrogation
+end
+
+function mod:ImpoundContraband(args)
+	self:CDBar(345770, 26.7) -- Impound Contraband
 end
 
 function mod:ImpoundContrabandApplied(args)
@@ -87,7 +108,7 @@ end
 
 function mod:ImpoundContrabandRemoved(args)
 	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "removed")
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
