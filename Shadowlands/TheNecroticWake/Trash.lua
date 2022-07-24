@@ -167,6 +167,9 @@ end
 do
 	local prev = 0
 	function mod:DrainFluids(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t-prev > 0.5 then
 			prev = t
@@ -180,6 +183,9 @@ end
 do
 	local prev = 0
 	function mod:MeatShield(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local t = args.time
 		if t-prev > 1 then
 			prev = t
@@ -205,6 +211,7 @@ end
 
 -- Zolramus Necromancer
 function mod:AnimateDead(args)
+	-- these NPCs can be mind-controlled by Priests but cannot cast Animate Dead while MC'd
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -212,6 +219,9 @@ end
 -- Brittlebone Mage
 function mod:FrostboltVolley(args)
 	if self:MobId(args.sourceGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -230,11 +240,17 @@ end
 
 -- Zolramus Bonemender
 function mod:Bonemend(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:FinalBargain(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -302,6 +318,9 @@ end
 
 -- Corpse Collector
 function mod:Goresplatter(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -323,6 +342,9 @@ end
 
 -- Flesh Crafter
 function mod:RepairFlesh(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end

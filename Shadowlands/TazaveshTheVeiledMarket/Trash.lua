@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	------ Streets of Wonder ------
+	178392, -- Gatewarden Zo'mazz
 	177816, -- Interrogation Specialist
 	179334, -- Portalmancer Zo'honn
 	177808, -- Armored Overseer
@@ -105,6 +106,7 @@ function mod:GetOptions()
 		356031, -- Stasis Beam
 		-- Portalmancer Zo'honn
 		356324, -- Empowered Glyph of Restraint
+		356548, -- Radiant Pulse
 		-- Armored Overseer / Tracker Zo'korss
 		356001, -- Beam Splicer
 		-- Tracker Zo'korss
@@ -196,6 +198,8 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
+	self:Log("SPELL_CAST_START", "RadiantPulse", 356548)
+	self:Death("RadiantPulseCasterDeath", 178392, 179334)
 	self:Log("SPELL_CAST_SUCCESS", "BeamSplicer", 356001)
 	self:Log("SPELL_AURA_APPLIED", "BeamSplicerApplied", 356011)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BeamSplicerApplied", 356011)
@@ -298,6 +302,22 @@ end
 function mod:EmpoweredGlyphOfRestraint(args)
 	self:Message(356324, "red", CL.casting:format(args.spellName))
 	self:PlaySound(356324, "warning")
+	self:CDBar(356324, 21.9)
+end
+function mod:RadiantPulse(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	if self:MobId(args.sourceGUID) == 178392 then
+		self:CDBar(args.spellId, 18.2) -- Gatewarden Zo'mazz
+	else
+		self:CDBar(args.spellId, 26.7) -- Portalmancer Zo'honn
+	end
+end
+function mod:RadiantPulseCasterDeath(args)
+	if args.mobId == 179334 then -- Portalmancer Zo'honn
+		self:StopBar(356324) -- Empowered Glyph Of Restraint
+	end
+	self:StopBar(356548) -- Radiant Pulse
 end
 
 -- Armored Overseer / Tracker Zo'korss
@@ -381,19 +401,24 @@ end
 
 -- Cartel Muscle
 function mod:HyperlightBackhand(args)
-	if self:Tank() or self:Healer() then
-		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Cartel Smuggler
-function mod:HyperlightBombApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alarm")
-		self:Say(args.spellId, CL.bomb)
-		self:SayCountdown(args.spellId, 5)
+do
+	local prev = 0
+	function mod:HyperlightBombApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId)
+				self:PlaySound(args.spellId, "alarm")
+				self:Say(args.spellId, CL.bomb)
+				self:SayCountdown(args.spellId, 5)
+			end
+		end
 	end
 end
 function mod:HyperlightBombRemoved(args)
@@ -456,10 +481,8 @@ end
 
 -- Commerce Enforcer / Commander Zo'far
 function mod:PowerKick(args)
-	if self:Tank() or self:Healer() then
-		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Commander Zo'far

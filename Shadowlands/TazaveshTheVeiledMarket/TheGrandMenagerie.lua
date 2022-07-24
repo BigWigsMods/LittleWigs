@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -11,6 +10,7 @@ mod:RegisterEnableMob(
 	176705  -- Venza Goldfuse
 )
 mod:SetEncounterID(2441)
+mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------

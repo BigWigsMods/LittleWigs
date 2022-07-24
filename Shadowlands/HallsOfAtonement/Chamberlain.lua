@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Lord Chamberlain", 2287, 2413)
 if not mod then return end
 mod:RegisterEnableMob(164218) -- Lord Chamberlain
-mod.engageId = 2381
---mod.respawnTime = 30
+mod:SetEncounterID(2381)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals

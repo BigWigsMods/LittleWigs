@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Amarth, The Reanimator", 2286, 2391)
 if not mod then return end
 mod:RegisterEnableMob(163157) -- Amarth
-mod.engageId = 2388
-mod.respawnTime = 30
+mod:SetEncounterID(2388)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization

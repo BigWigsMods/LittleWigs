@@ -100,12 +100,15 @@ function mod:Warmup(_, msg)
 	end
 end
 
-function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, castGUID, spellId)
-	if castCollector[castGUID] then return end
-	if spellId == 235984 then -- Mana Sting
-		castCollector[castGUID] = true
-		self:CDBar(spellId, 14.6)
-		self:MessageOld(spellId, "red", "alert", CL.casting:format(self:SpellName(spellId)))
+do
+	local prev = 0
+	function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, _, spellId)
+		local t = GetTime()
+		if spellId == 235984 and t-prev > 2 then -- Mana Sting
+			prev = t
+			self:CDBar(spellId, 14.6)
+			self:MessageOld(spellId, "red", "alert", CL.casting:format(self:SpellName(spellId)))
+		end
 	end
 end
 
