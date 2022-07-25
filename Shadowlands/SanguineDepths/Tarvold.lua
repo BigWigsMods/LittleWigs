@@ -30,6 +30,9 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Castigate", 322554)
 	self:Log("SPELL_AURA_APPLIED", "SintouchedAnimaApplied", 328494)
+	self:Log("SPELL_AURA_APPLIED", "Residue", 323573)
+	self:Log("SPELL_PERIODIC_DAMAGE", "Residue", 323573)
+	self:Log("SPELL_PERIODIC_MISSED", "Residue", 323573)
 	self:Death("FleetingManifestationDeath", 165556)
 end
 
@@ -74,6 +77,20 @@ function mod:SintouchedAnimaApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
+	end
+end
+
+do
+	local prev = 0
+	function mod:Residue(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(323551, "underyou") -- Residue
+				self:PlaySound(323551, "underyou") -- Residue
+			end
+		end
 	end
 end
 
