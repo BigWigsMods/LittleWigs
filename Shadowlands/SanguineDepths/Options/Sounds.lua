@@ -8,8 +8,8 @@ BigWigs:AddSounds("Kryxis the Voracious", {
 
 BigWigs:AddSounds("Executor Tarvold", {
 	[322554] = "alert",
-	[322573] = "info",
 	[323551] = "alert",
+	[322574] = "info",
 	[328494] = "info",
 })
 

@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		-- General
 		{322554, "SAY"}, -- Castigate
-		322573, -- Coalesce Manifestation
+		322574, -- Coalesce Manifestation
 		{328494, "DISPEL"}, -- Sintouched Anima
 		-- Fleeting Manifestation
 		323551, -- Residue
@@ -36,7 +36,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(322554, 4.7) -- Castigate
-	self:CDBar(322573, 10.8) -- Coalesce Manifestation
+	self:CDBar(322574, 10.8) -- Coalesce Manifestation
 end
 
 --------------------------------------------------------------------------------
@@ -49,9 +49,9 @@ do
 		if spellId == 322573 and prevGUID ~= castGUID then -- Coalesce Manifestation
 			prevGUID = castGUID
 
-			self:Message(322573, "yellow")
-			self:PlaySound(322573, "info")
-			self:CDBar(322573, 30)
+			self:Message(322574, "yellow") -- Coalesce Manifestation
+			self:PlaySound(322574, "info") -- Coalesce Manifestation
+			self:CDBar(322574, 30)  -- Coalesce Manifestation
 		end
 	end
 end
