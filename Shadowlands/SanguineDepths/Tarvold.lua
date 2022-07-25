@@ -27,8 +27,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- XXX Change to RegisterUnitEvent if boss frames get added to this fight
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Castigate", 322554)
 	self:Log("SPELL_AURA_APPLIED", "SintouchedAnimaApplied", 328494)
 	self:Death("FleetingManifestationDeath", 165556)
@@ -66,8 +65,7 @@ do
 	end
 
 	function mod:Castigate(args)
-		-- XXX Change to GetBossTarget if boss frames get added to this fight
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 20.7)
 	end
 end
