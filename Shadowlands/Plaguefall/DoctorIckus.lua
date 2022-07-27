@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,14 @@
 local mod, CL = BigWigs:NewBoss("Doctor Ickus", 2289, 2403)
 if not mod then return end
 mod:RegisterEnableMob(164967) -- Doctor Ickus
-mod.engageId = 2384
-mod.respawnTime = 30
+mod:SetEncounterID(2384)
+mod:SetRespawnTime(30)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local leapCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,8 +45,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	leapCount = 0
 	self:CDBar(329110, 10) -- Slime Injection
-	self:CDBar(67382, 26) -- Leap
 end
 
 --------------------------------------------------------------------------------
@@ -50,9 +55,10 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("329200") then -- Virulent Explosion
-		self:Message(67382, "yellow") -- 'Leap'
+		leapCount = leapCount + 1
+		-- Ickus leaps at 66% and 33% health
+		self:Message(67382, "yellow", CL.percent:format(leapCount == 1 and 66 or 33, self:SpellName(67382))) -- 'Leap'
 		self:PlaySound(67382, "long")
-		self:CDBar(67382, 57) -- Leap
 		self:CDBar(332617, 10.5) -- Pestilence Surge
 	end
 end

@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Mistcaller", 2290, 2402)
 if not mod then return end
 mod:RegisterEnableMob(164501) -- Mistcaller
-mod.engageId = 2392
---mod.respawnTime = 30
+mod:SetEncounterID(2392)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals

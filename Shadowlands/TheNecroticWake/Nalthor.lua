@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Nalthor the Rimebinder", 2286, 2396)
 if not mod then return end
 mod:RegisterEnableMob(162693) -- Nalthor the Rimebinder
-mod.engageId = 2390
---mod.respawnTime = 30
+mod:SetEncounterID(2390)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization

@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Surgeon Stitchflesh", 2286, 2392)
 if not mod then return end
 mod:RegisterEnableMob(162689) -- Surgeon Stitchflesh
-mod.engageId = 2389
---mod.respawnTime = 30
+mod:SetEncounterID(2389)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals

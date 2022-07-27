@@ -279,7 +279,6 @@ do
 	end
 end
 
-
 -- [[ Path to the Manastorms ]] --
 -- Defunct Dental Drill
 function mod:HaywirePreCast(args)

@@ -12,5 +12,6 @@
 <Include file="BfA\modules.xml"/>
 <!--@end-do-not-package@-->
 <Include file="Shadowlands\modules.xml"/>
+<Include file="Dragonflight\modules.xml"/>
 
 </Ui>
