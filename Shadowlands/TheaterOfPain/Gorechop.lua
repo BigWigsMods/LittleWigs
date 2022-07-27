@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Gorechop", 2293, 2401)
 if not mod then return end
-mod:RegisterEnableMob(162317)
+mod:RegisterEnableMob(162317) -- Gorechop
 mod:SetEncounterID(2365)
 mod:SetRespawnTime(30)
 

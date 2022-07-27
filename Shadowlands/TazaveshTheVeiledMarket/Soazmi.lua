@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("So'azmi", 2441, 2451)
 if not mod then return end
 mod:RegisterEnableMob(175806) -- So'azmi
 mod:SetEncounterID(2437)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -49,7 +49,7 @@ end
 
 -- called from trash module
 function mod:Warmup()
-	self:Bar("warmup", 24, CL.active, "achievement_dungeon_brokerdungeon")
+	self:Bar("warmup", 23.1, CL.active, "achievement_dungeon_brokerdungeon")
 end
 
 do

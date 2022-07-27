@@ -21,9 +21,10 @@ BigWigs:AddSounds("High Adjudicator Aleez", {
 })
 
 BigWigs:AddSounds("Lord Chamberlain", {
-	[323150] = "alert",
+	[323143] = "alert",
 	[323236] = "alarm",
 	[323437] = "alert",
+	[327885] = "alarm",
 	[328791] = "warning",
 	[329104] = "long",
 })

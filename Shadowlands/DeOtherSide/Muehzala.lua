@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Mueh'zala", 2291, 2410)
 if not mod then return end
-mod:RegisterEnableMob(166608)
-mod.engageId = 2396
---mod.respawnTime = 30
+mod:RegisterEnableMob(166608) -- Mueh'zala
+mod:SetEncounterID(2396)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
