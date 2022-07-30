@@ -1,9 +1,4 @@
 --------------------------------------------------------------------------------
--- TODO:
---
--- Turn to Stone applies a dispellable stun, might need a warning.
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -95,6 +90,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ThrashOver", 326409)
 	self:Log("SPELL_CAST_SUCCESS", "SinQuake", 326441)
 	self:Log("SPELL_CAST_START", "TurnToStone", 326607)
+	self:Log("SPELL_AURA_APPLIED", "TurnToStoneBuffApplied", 326607)
+	self:Log("SPELL_AURA_APPLIED", "TurnToStoneDebuffApplied", 326617)
 	self:Log("SPELL_CAST_START", "PowerfulSwipe", 326997)
 
 	self:Log("SPELL_AURA_APPLIED", "AnguishDamage", 326891)
@@ -247,6 +244,31 @@ end
 function mod:TurnToStone(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
+end
+
+do
+	local prev = 0
+	function mod:TurnToStoneBuffApplied(args)
+		if not self:Player(args.destFlags) and self:Dispeller("magic", true) then
+			local t = args.time
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+				self:PlaySound(args.spellId, "warning")
+			end
+		end
+	end
+end
+
+do
+	local playerList = mod:NewTargetList()
+	function mod:TurnToStoneDebuffApplied(args)
+		if self:Dispeller("magic") then
+			playerList[#playerList+1] = args.destName
+			self:TargetsMessage(326607, "orange", playerList, 5)
+			self:PlaySound(326607, "alert", nil, playerList)
+		end
+	end
 end
 
 -- Stoneborn Slasher
