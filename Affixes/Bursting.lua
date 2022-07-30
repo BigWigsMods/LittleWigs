@@ -25,9 +25,17 @@ end
 -- Event Handlers
 --
 
-function mod:BurstApplied(args)
-    if self:Me(args.destGUID) and args.amount >= 4 then
-        self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
-        self:PlaySound(args.spellId, args.amount >= 6 and "warning" or "alert", nil, args.destName)
-    end
+do
+	local prev = 0
+	function mod:BurstApplied(args)
+		local warningThreshold = 6
+		if self:Me(args.destGUID) and args.amount >= 4 then
+			local t = args.time
+			if t-prev > 1 or args.amount == warningThreshold then
+				prev = t
+				self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
+				self:PlaySound(args.spellId, args.amount >= warningThreshold and "warning" or "alert", nil, args.destName)
+			end
+		end
+	end
 end
