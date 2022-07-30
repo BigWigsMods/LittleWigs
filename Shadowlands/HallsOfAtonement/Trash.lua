@@ -57,6 +57,7 @@ function mod:GetOptions()
 		325700, -- Collect Sins
 		325701, -- Siphon Life
 		326409, -- Thrash
+		326441, -- Sin Quake
 		326607, -- Turn to Stone
 		{326997, "TANK"}, -- Powerful Swipe
 		326891, -- Anguish
@@ -90,6 +91,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ThrashPreCast", 326409)
 	self:Log("SPELL_AURA_APPLIED", "Thrash", 326409)
 	self:Log("SPELL_AURA_REMOVED", "ThrashOver", 326409)
+	self:Log("SPELL_CAST_SUCCESS", "SinQuake", 326441)
 	self:Log("SPELL_CAST_START", "TurnToStone", 326607)
 	self:Log("SPELL_CAST_START", "PowerfulSwipe", 326997)
 
@@ -226,6 +228,11 @@ end
 
 function mod:ThrashOver(args)
 	self:StopBar(args.spellName)
+end
+
+function mod:SinQuake(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Stoneborn Reaver
