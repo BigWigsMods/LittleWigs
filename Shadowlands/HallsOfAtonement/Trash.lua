@@ -52,6 +52,7 @@ function mod:GetOptions()
 		325799, -- Rapid Fire
 		344993, -- Jagged Swipe
 		346866, -- Stone Breath
+		342171, -- Loyal Stoneborn
 		{325523, "TANK"}, -- Deadly Thrust
 		{325876, "SAY", "SAY_COUNTDOWN"}, -- Curse of Obliteration
 		325700, -- Collect Sins
@@ -82,6 +83,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "RapidFire", 325799)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "JaggedSwipe", 344993)
 	self:Log("SPELL_CAST_START", "StoneBreath", 346866)
+	self:Log("SPELL_CAST_SUCCESS", "LoyalStoneborn", 342171)
 	self:Log("SPELL_CAST_START", "DeadlyThrust", 325523)
 	self:Log("SPELL_CAST_START", "CurseOfObliteration", 325876)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfObliterationApplied", 325876)
@@ -155,6 +157,12 @@ function mod:StoneBreath(args)
 
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:LoyalStoneborn(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 45)
 end
 
 -- Depraved Darkblade
