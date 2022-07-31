@@ -35,7 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("RAID_BOSS_EMOTE")
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:Log("SPELL_CAST_SUCCESS", "HazardousLiquids", 346286)
 	self:Log("SPELL_CAST_START", "FanMail", 346742)
 	self:Log("SPELL_AURA_APPLIED", "MoneyOrderApplied", 346962)
@@ -65,9 +65,9 @@ do
 		mod:Bar("delivery_portal", 30, L.delivery_portal, L.delivery_portal_icon)
 	end
 
-	function mod:RAID_BOSS_EMOTE(_, msg)
+	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 		-- Emotes that don't have the unstable goods icon must be for delivery portals
-		if not msg:find("spell_Mage_Flameorb", nil, true) then
+		if self:IsEngaged() and not msg:find("spell_Mage_Flameorb", nil, true) then
 			-- portal spawns 5 seconds after the emote, then lasts for 30 seconds
 			self:Bar("delivery_portal", 5, CL.spawning:format(L.delivery_portal), L.delivery_portal_icon)
 			self:ScheduleTimer(deliveryPortalSpawned, 5)
