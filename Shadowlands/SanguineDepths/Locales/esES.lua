@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Sanguine Depths Trash", "esES") or BigWigs:NewBossLocale("Sanguine Depths Trash", "esMX")
 if not L then return end
 if L then
-	--L.kaal_engage_trigger1 = "Guards! Slay them all!"
+	L.kaal_engage_trigger1 = "¡Guardias! ¡Mátalos a todos!"
 	--L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
 	--L.kaal_engage_trigger3 = "These halls will be your tomb!"
 	--L.kaal_retreat_trigger1 = "Wretched mortals!"
