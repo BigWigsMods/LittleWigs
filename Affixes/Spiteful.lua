@@ -52,7 +52,7 @@ function mod:SpitefulRemoved(args)
 	if self:Me(args.destGUID) then
 		spitefulCount = spitefulCount - 1
 		if spitefulCount == 0 then
-			self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, args.destName))
+			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
 		end
 	end
