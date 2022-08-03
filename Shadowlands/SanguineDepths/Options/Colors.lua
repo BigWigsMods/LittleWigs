@@ -8,8 +8,8 @@ BigWigs:AddColors("Kryxis the Voracious", {
 
 BigWigs:AddColors("Executor Tarvold", {
 	[322554] = {"blue","orange"},
-	[322573] = "yellow",
-	[323551] = "orange",
+	[322574] = "yellow",
+	[323551] = {"blue","orange"},
 	[328494] = {"blue","yellow"},
 })
 
