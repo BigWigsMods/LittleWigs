@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	164921, -- Drust Harvester
 	164920, -- Drust Soulcleaver
 	163058, -- Mistveil Defender
+	171772, -- Mistveil Defender
 	173720, -- Mistveil Gorgegullet
 	166276, -- Mistveil Guardian
 	173655, -- Mistveil Matriarch
@@ -187,6 +188,10 @@ end
 do
 	local prev = 0
 	function mod:HandOfThrosApplied(args)
+		if self:MobId(args.sourceGUID) == 172991 then
+			-- this version of the mob only RP fights and cannot be engaged by players
+			return
+		end
 		local t = args.time
 		if t-prev > 1.5 then
 			local unit = self:GetUnitIdByGUID(args.destGUID)
@@ -202,6 +207,10 @@ end
 do
 	local prev = 0
 	function mod:SoulSplit(args)
+		if self:MobId(args.sourceGUID) == 172991 then
+			-- this version of the mob only RP fights and cannot be engaged by players
+			return
+		end
 		local t = args.time
 		if t-prev > 1.5 and self:Tank() then
 			local unit = self:GetUnitIdByGUID(args.sourceGUID)
