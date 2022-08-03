@@ -4,7 +4,7 @@
 <Script file="Vexamus.lua"/>
 <Script file="AccidentalAmalgamation.lua"/>
 <Script file="Crawth.lua"/>
-<Script file="Headmaster.lua"/>
+<Script file="EchoOfHeadteacherDoragosa.lua"/>
 <Script file="Trash.lua"/>
 
 <Include file="Locales\locales.xml"/>

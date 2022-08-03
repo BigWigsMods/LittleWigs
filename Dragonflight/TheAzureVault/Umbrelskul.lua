@@ -3,7 +3,7 @@ if not IsTestBuild() then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Umbrelskul", 2515) -- TODO journal ID
+local mod, CL = BigWigs:NewBoss("Umbrelskul", 2515, 2508)
 if not mod then return end
 mod:RegisterEnableMob(186738) -- Umbrelskul
 mod:SetEncounterID(2584)

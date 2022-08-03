@@ -3,7 +3,7 @@ if not IsTestBuild() then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Telash Greywing", 2515) -- TODO journal ID
+local mod, CL = BigWigs:NewBoss("Telash Greywing", 2515, 2483)
 if not mod then return end
 mod:RegisterEnableMob(186737) -- Telash Greywing
 mod:SetEncounterID(2583)
