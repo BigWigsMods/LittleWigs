@@ -11,7 +11,6 @@ if L then
 	L.chamber_sentinel = "묘실의 파수병"
 	L.depths_warden = "심연의 감시관"
 	L.dreadful_huntmaster = "공포의 사냥지배자"
-	L.general_kaal = "장군 카알"
 	L.grand_overseer = "고위 감시자"
 	L.head_custodian_javlin = "수석 관리인 자블린"
 	L.insatiable_brute = "탐욕스러운 투사"
@@ -19,4 +18,5 @@ if L then
 	L.research_scribe = "연구 필경사"
 	L.wicked_oppressor = "사악한 탄압자"
 	L.ravenous_dreadbat = "포악한 공포박쥐"
+	L.zrali = "제랄리"
 end

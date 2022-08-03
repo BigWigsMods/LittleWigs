@@ -11,7 +11,6 @@ if L then
 	L.chamber_sentinel = "Sentinella della Sala"
 	L.depths_warden = "Custode delle Profondità"
 	L.dreadful_huntmaster = "Mastro Cacciatore Terrificante"
-	L.general_kaal = "Generale Kaal"
 	L.grand_overseer = "Gran Sovrintendente"
 	L.head_custodian_javlin = "Capocustode Javlin"
 	L.insatiable_brute = "Bruto Insaziabile"
@@ -19,4 +18,5 @@ if L then
 	L.research_scribe = "Scriba Ricercatrice"
 	L.wicked_oppressor = "Oppressora Malvagia"
 	L.ravenous_dreadbat = "Chirorrore Vorace"
+	L.zrali = "Z'rali"
 end

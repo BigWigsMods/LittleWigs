@@ -11,7 +11,6 @@ if L then
 	L.chamber_sentinel = "Часовой чертогов"
 	L.depths_warden = "Страж глубин"
 	L.dreadful_huntmaster = "Жуткий егерь"
-	L.general_kaal = "Генерал Кааль"
 	L.grand_overseer = "Старший смотритель"
 	L.head_custodian_javlin = "Главный смотритель Джавлин"
 	L.insatiable_brute = "Ненасытный громила"
@@ -19,4 +18,5 @@ if L then
 	L.research_scribe = "Писец-исследовательница"
 	L.wicked_oppressor = "Зловещая подавительница"
 	L.ravenous_dreadbat = "Прожорливый жуткий нетопырь"
+	L.zrali = "Зе'рали"
 end
