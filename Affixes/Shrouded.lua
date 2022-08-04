@@ -7,7 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(
 	189910, -- Ta'ilh
 	190128, -- Zul'gamux
-	189878, -- Nathrezim Infiltrator
+	189878 -- Nathrezim Infiltrator
 )
 
 --------------------------------------------------------------------------------
