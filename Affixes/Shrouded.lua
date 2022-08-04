@@ -39,7 +39,7 @@ function mod:GetOptions()
 		373513, -- Shadow Eruption
 		373724, -- Blood Barrier
 		373552, -- Hypnosis Bat
-		373607, -- Shadowy Barrier
+		373570, -- Hypnosis
 		-- Nathrezim Infiltrator
 		{373364, "TANK"}, -- Vampiric Claws
 		373429, -- Carrion Swarm
@@ -67,7 +67,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "BloodBarrierRemoved", 373724) -- Blood Barrier
 	self:Log("SPELL_CAST_SUCCESS", "HypnosisBat", 373552) -- Hypnosis Bat
 	-- TODO Hypnosis Bat cast (Hypnosis 373618) stopped?
-	self:Log("SPELL_AURA_APPLIED", "ShadowyBarrierApplied", 373607) -- Shadowy Barrier TODO unconfirmed spell id
+	self:Log("SPELL_AURA_APPLIED", "HypnosisApplied", 373570) -- Hypnosis
 	self:Death("ZulgamuxDeath", 190128)
 
 	-- Nathrezim Infiltrator
@@ -132,7 +132,7 @@ function mod:HypnosisBat(args)
 	self:CDBar(args.spellId, 18.2)
 end
 
-function mod:ShadowyBarrierApplied(args)
+function mod:HypnosisApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
