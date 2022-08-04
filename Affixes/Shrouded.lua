@@ -39,6 +39,7 @@ function mod:GetOptions()
 		373513, -- Shadow Eruption
 		373724, -- Blood Barrier
 		373552, -- Hypnosis Bat
+		373607, -- Shadowy Barrier
 		-- Nathrezim Infiltrator
 		{373364, "TANK"}, -- Vampiric Claws
 		373429, -- Carrion Swarm
@@ -53,7 +54,7 @@ end
 
 function mod:OnBossEnable()
 	-- Ta'ilh
-	-- TODO reminder to choose buff?
+	-- TODO reminder to choose buff? [CHAT_MSG_MONSTER_SAY] Excellent! I see you are here to help me with my problem. Let us talk more about how I can lend you additonal aid.#Ta'ilh#####0#0##0#218#nil#0#false#false#false#false",
 	self:Log("SPELL_AURA_APPLIED", "BountyApplied", 373121, 373108, 373113, 373116) -- Bounty: various
 
 	-- Shared
@@ -66,6 +67,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "BloodBarrierRemoved", 373724) -- Blood Barrier
 	self:Log("SPELL_CAST_SUCCESS", "HypnosisBat", 373552) -- Hypnosis Bat
 	-- TODO Hypnosis Bat cast (Hypnosis 373618) stopped?
+	self:Log("SPELL_AURA_APPLIED", "ShadowyBarrierApplied", 373607) -- Shadowy Barrier TODO unconfirmed spell id
 	self:Death("ZulgamuxDeath", 190128)
 
 	-- Nathrezim Infiltrator
@@ -128,6 +130,11 @@ function mod:HypnosisBat(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 18.2)
+end
+
+function mod:ShadowyBarrierApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
 
 function mod:ZulgamuxDeath()
