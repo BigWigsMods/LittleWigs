@@ -8,3 +8,8 @@ L = BigWigs:NewBossLocale("Oshir", "zhCN")
 if L then
 	L.freed = "%.1f秒后，进食时间！"
 end
+
+L = BigWigs:NewBossLocale("Iron Docks Trash", "zhCN")
+if L then
+
+end
