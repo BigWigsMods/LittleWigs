@@ -9,7 +9,6 @@ BigWigs:AddColors("Shrouded", {
 	[373391] = {"blue","orange"},
 	[373429] = "yellow",
 	[373513] = "yellow",
-	[373552] = "orange",
-	[373570] = {"blue","red"},
+	[373618] = {"blue","orange","red"},
 	[373724] = {"green","red"},
 })

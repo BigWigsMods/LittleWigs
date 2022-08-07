@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(
 	189910, -- Ta'ilh
 	190128, -- Zul'gamux
+	190174, -- Hypnosis Bat
 	189878 -- Nathrezim Infiltrator
 )
 
@@ -18,6 +19,7 @@ local L = mod:GetLocale()
 if L then
 	L.tailh = "Ta'ilh"
 	L.zulgamux = "Zul'gamux"
+	L.hypnosis_bat = "Hypnosis Bat"
 	L.nathrezim_infiltrator = "Nathrezim Infiltrator"
 end
 
@@ -38,16 +40,16 @@ function mod:GetOptions()
 		-- Zul'gamux
 		373513, -- Shadow Eruption
 		373724, -- Blood Barrier
-		373552, -- Hypnosis Bat
-		373570, -- Hypnosis
+		-- Hypnosis Bat
+		373618, -- Hypnosis
 		-- Nathrezim Infiltrator
 		{373364, "TANK"}, -- Vampiric Claws
 		373429, -- Carrion Swarm
-
 	}, {
 		[373121] = L.tailh,
 		[373370] = CL.general,
 		[373513] = L.zulgamux,
+		[373618] = L.hypnosis_bat,
 		[373364] = L.nathrezim_infiltrator,
 	}
 end
@@ -65,10 +67,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowEruption", 373513) -- Shadow Eruption
 	self:Log("SPELL_AURA_APPLIED", "BloodBarrierApplied", 373724) -- Blood Barrier
 	self:Log("SPELL_AURA_REMOVED", "BloodBarrierRemoved", 373724) -- Blood Barrier
-	self:Log("SPELL_CAST_SUCCESS", "HypnosisBat", 373552) -- Hypnosis Bat
-	-- TODO Hypnosis Bat cast (Hypnosis 373618) stopped?
-	self:Log("SPELL_AURA_APPLIED", "HypnosisApplied", 373570) -- Hypnosis
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
+	-- Hypnosis Bat
+	self:Log("SPELL_CAST_START", "Hypnosis", 373618) -- Hypnosis
+	self:Log("SPELL_AURA_APPLIED", "HypnosisApplied", 373570) -- Hypnosis cast success
 
 	-- Nathrezim Infiltrator
 	self:Log("SPELL_CAST_START", "VampiricClaws", 373364) -- Vampiric Claws
@@ -126,17 +129,6 @@ do
 	end
 end
 
-function mod:HypnosisBat(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 18.2)
-end
-
-function mod:HypnosisApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "warning", nil, args.destName)
-end
-
 function mod:CHAT_MSG_MONSTER_SAY(event, _, _, _, _, targetName)
 	-- when Zul'Gamux has been defeated
 	-- "[CHAT_MSG_MONSTER_SAY] Aha! This is the fiend I have been searching for, they will be quite useful.#Ta'ilh###Zul'gamux##0#0##0#307#nil#0#false#false#false#false"
@@ -146,6 +138,19 @@ function mod:CHAT_MSG_MONSTER_SAY(event, _, _, _, _, targetName)
 		self:StopBar(373618) -- Hypnosis
 		self:UnregisterEvent(event)
 	end
+end
+
+-- Hypnosis Bat
+
+function mod:Hypnosis(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 18.2)
+end
+
+function mod:HypnosisApplied(args)
+	self:TargetMessage(373618, "red", args.destName) -- Hypnosis
+	self:PlaySound(373618, "warning", nil, args.destName) -- Hypnosis
 end
 
 -- Nathrezim Infiltrator

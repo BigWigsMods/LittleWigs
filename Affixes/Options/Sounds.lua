@@ -9,7 +9,6 @@ BigWigs:AddSounds("Shrouded", {
 	[373391] = "alert",
 	[373429] = "alarm",
 	[373513] = "alarm",
-	[373552] = "alert",
-	[373570] = "warning",
+	[373618] = "warning",
 	[373724] = {"alert","info"},
 })
