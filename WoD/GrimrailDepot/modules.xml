@@ -4,9 +4,9 @@
 <Script file="Rocketspark.lua"/>
 <Script file="NitroggThundertower.lua"/>
 <Script file="SkylordTovra.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
 
 </Ui>
-

@@ -20,3 +20,8 @@ BigWigs:AddColors("Skylord Tovra", {
 	[162066] = {"blue","orange"},
 	[163447] = {"blue","orange"},
 })
+
+BigWigs:AddColors("Grimrail Depot Trash", {
+	[163966] = "red",
+	[164192] = "yellow",
+})

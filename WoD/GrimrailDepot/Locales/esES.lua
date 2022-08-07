@@ -14,3 +14,8 @@ L = BigWigs:NewBossLocale("Skylord Tovra", "esES") or BigWigs:NewBossLocale("Sky
 if L then
 	L.rakun = "Rakun"
 end
+
+L = BigWigs:NewBossLocale("Grimrail Depot Trash", "esES") or BigWigs:NewBossLocale("Grimrail Depot Trash", "esMX")
+if L then
+	--L.grimrail_technician = "Grimrail Technician"
+end

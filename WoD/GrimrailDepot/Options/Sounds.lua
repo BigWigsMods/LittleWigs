@@ -18,3 +18,8 @@ BigWigs:AddSounds("Skylord Tovra", {
 	[162066] = "info",
 	[163447] = "info",
 })
+
+BigWigs:AddSounds("Grimrail Depot Trash", {
+	[163966] = "alarm",
+	[164192] = "warning",
+})
