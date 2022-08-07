@@ -18,4 +18,5 @@ end
 L = BigWigs:NewBossLocale("Grimrail Depot Trash", "itIT")
 if L then
 	--L.grimrail_technician = "Grimrail Technician"
+	--L.grimrail_overseer = "Grimrail Overseer"
 end
