@@ -17,11 +17,11 @@ end
 
 L = BigWigs:NewBossLocale("Grimrail Depot Trash", "koKR")
 if L then
-	--L.grimrail_technician = "Grimrail Technician"
-	--L.grimrail_overseer = "Grimrail Overseer"
-	--L.gromkar_gunner = "Grom'kar Gunner"
-	--L.gromkar_cinderseer = "Grom'kar Cinderseer"
-	--L.gromkar_boomer = "Grom'kar Boomer"
-	--L.gromkar_far_seer = "Grom'kar Far Seer"
-	--L.gromkar_captain = "Grom'kar Captain"
+	L.grimrail_technician = "파멸철로 기술자"
+	L.grimrail_overseer = "파멸철로 감독관"
+	L.gromkar_gunner = "그롬카르 사수"
+	L.gromkar_cinderseer = "그롬카르 잿불현자"
+	L.gromkar_boomer = "그롬카르 폭파병"
+	L.gromkar_far_seer = "그롬카르 선견자"
+	L.gromkar_captain = "그롬카르 대장"
 end

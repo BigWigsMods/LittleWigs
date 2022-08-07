@@ -17,11 +17,11 @@ end
 
 L = BigWigs:NewBossLocale("Grimrail Depot Trash", "ruRU")
 if L then
-	--L.grimrail_technician = "Grimrail Technician"
-	--L.grimrail_overseer = "Grimrail Overseer"
-	--L.gromkar_gunner = "Grom'kar Gunner"
-	--L.gromkar_cinderseer = "Grom'kar Cinderseer"
-	--L.gromkar_boomer = "Grom'kar Boomer"
-	--L.gromkar_far_seer = "Grom'kar Far Seer"
-	--L.gromkar_captain = "Grom'kar Captain"
+	L.grimrail_technician = "Техник Мрачных Путей"
+	L.grimrail_overseer = "Надзиратель Мрачных Путей"
+	L.gromkar_gunner = "Гром'карская опалительница"
+	L.gromkar_cinderseer = "Гром'карская пророчица на пепле"
+	L.gromkar_boomer = "Гром'карский подрывник"
+	L.gromkar_far_seer = "Гром'карский ясновидящий"
+	L.gromkar_captain = "Гром'карский капитан"
 end
