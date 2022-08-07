@@ -7,7 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	81236, -- Grimrail Technician
-	164168, -- Grimrail Overseer
+	164168 -- Grimrail Overseer
 )
 
 --------------------------------------------------------------------------------
@@ -61,7 +61,14 @@ end
 
 -- Grimrail Overseer
 
-function mod:Dash(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Dash(args)
+		local t = GetTime()
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
