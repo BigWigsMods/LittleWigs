@@ -2,7 +2,11 @@
 BigWigs:AddColors("Rocketspark and Borka", {
 	[161090] = "red",
 	[161091] = "red",
+	[162171] = "yellow",
+	[162407] = "orange",
+	[162500] = {"blue","red"},
 	[162617] = "orange",
+	[163947] = "green",
 	["enrage"] = "yellow",
 })
 

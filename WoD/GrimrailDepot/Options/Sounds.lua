@@ -2,7 +2,11 @@
 BigWigs:AddSounds("Rocketspark and Borka", {
 	[161090] = "warning",
 	[161091] = "long",
+	[162171] = "alert",
+	[162407] = "long",
+	[162500] = {"alert","warning"},
 	[162617] = "alert",
+	[163947] = "info",
 	["enrage"] = "info",
 })
 
