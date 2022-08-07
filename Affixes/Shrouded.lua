@@ -68,7 +68,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "HypnosisBat", 373552) -- Hypnosis Bat
 	-- TODO Hypnosis Bat cast (Hypnosis 373618) stopped?
 	self:Log("SPELL_AURA_APPLIED", "HypnosisApplied", 373570) -- Hypnosis
-	self:Death("ZulgamuxDeath", 190128)
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 
 	-- Nathrezim Infiltrator
 	self:Log("SPELL_CAST_START", "VampiricClaws", 373364) -- Vampiric Claws
@@ -137,10 +137,15 @@ function mod:HypnosisApplied(args)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
 
-function mod:ZulgamuxDeath()
-	self:StopBar(373513) -- Shadow Eruption
-	self:StopBar(373724) -- Blood Barrier
-	self:StopBar(373552) -- Hypnosis Bat
+function mod:CHAT_MSG_MONSTER_SAY(event, _, _, _, _, targetName)
+	-- when Zul'Gamux has been defeated
+	-- "[CHAT_MSG_MONSTER_SAY] Aha! This is the fiend I have been searching for, they will be quite useful.#Ta'ilh###Zul'gamux##0#0##0#307#nil#0#false#false#false#false"
+	if targetName == L.zulgamux then
+		self:StopBar(373513) -- Shadow Eruption
+		self:StopBar(373724) -- Blood Barrier
+		self:StopBar(373618) -- Hypnosis
+		self:UnregisterEvent(event)
+	end
 end
 
 -- Nathrezim Infiltrator
