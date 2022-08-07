@@ -12,7 +12,7 @@ mod:RegisterEnableMob(
 	88163,  -- Grom'kar Cinderseer
 	80935,  -- Grom'kar Boomer
 	82579,  -- Grom'kar Far Seer
-	82597,  -- Grom'kar Captain
+	82597   -- Grom'kar Captain
 )
 
 --------------------------------------------------------------------------------
