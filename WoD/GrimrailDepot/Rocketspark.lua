@@ -42,6 +42,7 @@ function mod:GetOptions()
 		161091, -- New Plan!
 		161090, -- Mad Dash
 		162617, -- Slam
+		161092, -- Unmanaged Aggression
 	}, {
 		[162407] = -9430, -- Railmaster Rocketspark
 		[161090] = -9433, -- Borka the Brute
@@ -59,6 +60,7 @@ function mod:OnBossEnable()
 	-- Borka the Brute
 	self:Log("SPELL_CAST_START", "MadDash", 161090)
 	self:Log("SPELL_CAST_START", "Slam", 161087, 162617)
+	self:Log("SPELL_CAST_START", "UnmanagedAggression", 161092) -- TODO untested
 
 	self:Death("Deaths", 77816, 77803) -- Borka, Rocketspark
 end
@@ -137,6 +139,11 @@ function mod:Slam(args)
 		self:PlaySound(162617, "alert")
 		self:CDBar(162617, 15.8) -- 16-19, will delay to ~24 if just about to expire after Mad Dash
 	end
+end
+
+function mod:UnmanagedAggression(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
 end
 
 -- Enrage
