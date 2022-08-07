@@ -84,7 +84,14 @@ end
 
 -- Grom'kar Gunner
 
-function mod:ShrapnelBlast(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:ShrapnelBlast(args)
+		local t = GetTime()
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
