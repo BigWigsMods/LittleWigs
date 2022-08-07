@@ -17,3 +17,6 @@ BigWigs:AddSounds("Skulloc", {
 	[168227] = "warning",
 	[168929] = "long",
 })
+
+BigWigs:AddSounds("Iron Docks Trash", {
+})
