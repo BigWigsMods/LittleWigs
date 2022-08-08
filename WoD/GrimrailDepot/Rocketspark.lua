@@ -54,7 +54,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "X2101AMissileBarrage", 162407)
 	self:Log("SPELL_AURA_APPLIED", "RecoveringApplied", 163947)
 	self:Log("SPELL_CAST_START", "BetterPosition", 162171)
-	self:Log("SPELL_AURA_APPLIED", "AcquiringTargets", 162507) -- Acquiring Targets debuff precedes VX18-B Target Eliminator
+	self:Log("SPELL_CAST_START", "VX18BTargetEliminator", 162500)
 	self:Log("SPELL_CAST_START", "NewPlan", 161091) -- TODO replace the deaths enrage thing with this? (and one more on borka)
 
 	-- Borka the Brute
@@ -107,13 +107,11 @@ do
 		end
 	end
 
-	function mod:AcquiringTargets(args)
-		-- this player will soon be targeted by a VX18-B Target Eliminator
-		local onMe = self:Me(args.destGUID)
-		self:TargetMessage(162500, "red", args.destName)
-		self:PlaySound(162500, onMe and "warning" or "alert", nil, args.destName)
+	function mod:VX18BTargetEliminator(args)
+		self:TargetMessage(args.spellId, "red")
+		self:PlaySound(args.spellId, "warning")
 		if firstAcquiringTargets then
-			self:Bar(162500, 9)
+			self:Bar(args.spellId, 9)
 			firstAcquiringTargets = false
 		end
 	end
