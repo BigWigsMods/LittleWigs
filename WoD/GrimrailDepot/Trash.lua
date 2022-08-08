@@ -66,7 +66,7 @@ end
 
 function mod:OnBossEnable()
 	-- Grimrail Technician
-	self:Log("SPELL_CAST_START", "Activating", 163966)
+	self:Log("SPELL_AURA_APPLIED", "Activating", 163966)
 	self:Log("SPELL_CAST_START", "FiftyThousandVolts", 164192)
 	-- Grimrail Overseer
 	self:Log("SPELL_CAST_START", "Dash", 164168)
