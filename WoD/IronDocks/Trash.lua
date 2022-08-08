@@ -14,7 +14,8 @@ mod:RegisterEnableMob(
 	83578, -- Ogron Laborer
 	83761, -- Ogron Laborer
 	83390, -- Thunderlord Wrangler
-	83392  -- Rampaging Clefthoof
+	83392, -- Rampaging Clefthoof
+	83389  -- Ironwing Flamespitter
 )
 
 --------------------------------------------------------------------------------
@@ -29,6 +30,7 @@ if L then
 	L.ogron_laborer = "Ogron Laborer"
 	L.thunderlord_wrangler = "Thunderlord Wrangler"
 	L.rampaging_clefthoof = "Rampaging Clefthoof"
+	L.ironwing_flamespitter = "Ironwing Flamespitter"
 end
 
 --------------------------------------------------------------------------------
@@ -49,6 +51,9 @@ function mod:GetOptions()
 		173324, -- Jagged Caltrops
 		-- Rampaging Clefthoof
 		158337, -- Frenzy
+		-- Ironwing Flamespitter
+		173514, -- Lava Blast
+		173480, -- Lava Barrage
 	}, {
 		[167233] = L.gromkar_battlemaster,
 		[164632] = L.gromkar_flameslinger,
@@ -56,6 +61,7 @@ function mod:GetOptions()
 		[173135] = L.ogron_laborer,
 		[173324] = L.thunderlord_wrangler,
 		[158337] = L.rampaging_clefthoof,
+		[173514] = L.ironwing_flamespitter,
 	}
 end
 
@@ -80,6 +86,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "JaggedCaltropsDamage", 173324)
 	-- Rampaging Clefthoof
 	self:Log("SPELL_AURA_APPLIED", "FrenzyApplied", 158337)
+	-- Ironwing Flamespitter
+	self:Log("SPELL_CAST_START", "LavaBlast", 173514)
+	self:Log("SPELL_CAST_START", "LavaBarrage", 173480)
 end
 
 --------------------------------------------------------------------------------
@@ -169,4 +178,16 @@ function mod:FrenzyApplied(args)
 		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
+end
+
+-- Ironwing Flamespitter
+
+function mod:LavaBlast(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:LavaBarrage(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
