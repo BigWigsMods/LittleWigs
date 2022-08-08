@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	84028, -- Siegemaster Rokra
 	83578, -- Ogron Laborer
 	83761, -- Ogron Laborer
+	83390, -- Thunderlord Wrangler
 	83392  -- Rampaging Clefthoof
 )
 
@@ -26,6 +27,7 @@ if L then
 	L.gromkar_flameslinger = "Grom'kar Flameslinger"
 	L.siegemaster_olugar = "Siegemaster Olugar"
 	L.ogron_laborer = "Ogron Laborer"
+	L.thunderlord_wrangler = "Thunderlord Wrangler"
 	L.rampaging_clefthoof = "Rampaging Clefthoof"
 end
 
@@ -43,6 +45,8 @@ function mod:GetOptions()
 		172963, -- Bladestorm
 		-- Ogron Laborer
 		173135, -- Thundering Stomp
+		-- Thunderlord Wrangler
+		173324, -- Jagged Caltrops
 		-- Rampaging Clefthoof
 		158337, -- Frenzy
 	}, {
@@ -50,6 +54,7 @@ function mod:GetOptions()
 		[164632] = L.gromkar_flameslinger,
 		[172963] = L.siegemaster_olugar,
 		[173135] = L.ogron_laborer,
+		[173324] = L.thunderlord_wrangler,
 		[158337] = L.rampaging_clefthoof,
 	}
 end
@@ -69,6 +74,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "GatecrasherDamage", 172963)
 	-- Ogron Laborer
 	self:Log("SPELL_CAST_START", "ThunderingStomp", 173135)
+	-- Thunderlord Wrangler
+	self:Log("SPELL_AURA_APPLIED", "JaggedCaltropsDamage", 173324)
+	self:Log("SPELL_PERIODIC_DAMAGE", "JaggedCaltropsDamage", 173324)
+	self:Log("SPELL_PERIODIC_MISSED", "JaggedCaltropsDamage", 173324)
 	-- Rampaging Clefthoof
 	self:Log("SPELL_AURA_APPLIED", "FrenzyApplied", 158337)
 end
@@ -135,6 +144,22 @@ end
 function mod:ThunderingStomp(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Thunderlord Wrangler
+
+do
+	local prev = 0
+	function mod:JaggedCaltropsDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "near")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
+	end
 end
 
 -- Rampaging Clefthoof
