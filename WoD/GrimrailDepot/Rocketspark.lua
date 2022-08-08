@@ -109,6 +109,7 @@ end
 function mod:NewPlan(args)
 	borkaDefeated = true
 	self:StopBar(161090) -- Mad Dash
+	self:StopBar(CL.cast:format(args.spellName)) -- Casting: Mad Dash
 	self:StopBar(162617) -- Slam
 	self:StopBar(162407) -- X21-01A Missile Barrage
 	self:StopBar(162500) -- VX18-B Target Eliminator
