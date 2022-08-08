@@ -73,7 +73,7 @@ end
 
 do
 	local firstBetterPosition = true
-	local firstAcquiringTargets = true
+	local firstVX18BTargetEliminator = true
 
 	function mod:RecoveringApplied(args)
 		self:Message(args.spellId, "green")
@@ -82,7 +82,7 @@ do
 		self:Bar(162171, 8) -- Better Position
 		self:Bar(162500, 12) -- VX18-B Target Eliminator
 		firstBetterPosition = true
-		firstAcquiringTargets = true
+		firstVX18BTargetEliminator = true
 	end
 
 	function mod:BetterPosition(args)
@@ -99,9 +99,9 @@ do
 	function mod:VX18BTargetEliminator(args)
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "warning")
-		if firstAcquiringTargets then
+		if firstVX18BTargetEliminator then
 			self:Bar(args.spellId, 7.5)
-			firstAcquiringTargets = false
+			firstVX18BTargetEliminator = false
 		end
 	end
 end
