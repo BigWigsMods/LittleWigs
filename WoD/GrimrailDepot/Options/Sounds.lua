@@ -8,7 +8,6 @@ BigWigs:AddSounds("Rocketspark and Borka", {
 	[162500] = "warning",
 	[162617] = "alert",
 	[163947] = "info",
-	["enrage"] = "info",
 })
 
 BigWigs:AddSounds("Nitrogg Thundertower", {
