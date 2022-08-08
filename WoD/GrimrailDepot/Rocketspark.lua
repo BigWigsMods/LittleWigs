@@ -98,7 +98,7 @@ do
 
 	function mod:VX18BTargetEliminator(args)
 		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "warning")
+		self:PlaySound(args.spellId, "alarm")
 		if firstVX18BTargetEliminator then
 			self:Bar(args.spellId, 7.5)
 			firstVX18BTargetEliminator = false
