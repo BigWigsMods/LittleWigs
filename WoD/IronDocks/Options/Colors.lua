@@ -20,6 +20,7 @@ BigWigs:AddColors("Skulloc", {
 })
 
 BigWigs:AddColors("Iron Docks Trash", {
+	[158337] = "red",
 	[164632] = "blue",
 	[167233] = {"blue","red"},
 	[172963] = "blue",

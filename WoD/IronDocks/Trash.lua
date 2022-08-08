@@ -12,7 +12,8 @@ mod:RegisterEnableMob(
 	83026, -- Siegemaster Olugar
 	84028, -- Siegemaster Rokra
 	83578, -- Ogron Laborer
-	83761  -- Ogron Laborer
+	83761, -- Ogron Laborer
+	83392  -- Rampaging Clefthoof
 )
 
 --------------------------------------------------------------------------------
@@ -25,6 +26,7 @@ if L then
 	L.gromkar_flameslinger = "Grom'kar Flameslinger"
 	L.siegemaster_olugar = "Siegemaster Olugar"
 	L.ogron_laborer = "Ogron Laborer"
+	L.rampaging_clefthoof = "Rampaging Clefthoof"
 end
 
 --------------------------------------------------------------------------------
@@ -41,11 +43,14 @@ function mod:GetOptions()
 		172963, -- Bladestorm
 		-- Ogron Laborer
 		173135, -- Thundering Stomp
+		-- Rampaging Clefthoof
+		158337, -- Frenzy
 	}, {
 		[167233] = L.gromkar_battlemaster,
 		[164632] = L.gromkar_flameslinger,
 		[172963] = L.siegemaster_olugar,
 		[173135] = L.ogron_laborer,
+		[158337] = L.rampaging_clefthoof,
 	}
 end
 
@@ -64,6 +69,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "GatecrasherDamage", 172963)
 	-- Ogron Laborer
 	self:Log("SPELL_CAST_START", "ThunderingStomp", 173135)
+	-- Rampaging Clefthoof
+	self:Log("SPELL_AURA_APPLIED", "FrenzyApplied", 158337)
 end
 
 --------------------------------------------------------------------------------
@@ -128,4 +135,13 @@ end
 function mod:ThunderingStomp(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Rampaging Clefthoof
+
+function mod:FrenzyApplied(args)
+	if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
+		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
