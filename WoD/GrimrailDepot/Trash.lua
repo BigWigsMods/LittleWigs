@@ -44,7 +44,7 @@ function mod:GetOptions()
 		-- Grom'kar Gunner
 		166675, -- Shrapnel Blast
 		-- Grom'kar Cinderseer
-		{176025, "SAY"}, -- Lava Wreath
+		176032, -- Flametongue
 		-- Grom'kar Boomer
 		156301, -- Blackrock Mortar
 		176127, -- Cannon Barrage
@@ -57,7 +57,7 @@ function mod:GetOptions()
 		[163966] = L.grimrail_technician,
 		[164168] = L.grimrail_overseer,
 		[166675] = L.gromkar_gunner,
-		[176025] = L.gromkar_cinderseer,
+		[176032] = L.gromkar_cinderseer,
 		[156301] = L.gromkar_boomer,
 		[166335] = L.gromkar_far_seer,
 		[166380] = L.gromkar_captain,
@@ -72,8 +72,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Dash", 164168)
 	-- Grom'kar Gunner
 	self:Log("SPELL_CAST_START", "ShrapnelBlast", 166675)
+	-- TODO underyou ticks?
 	-- Grom'kar Cinderseer
-	self:Log("SPELL_AURA_APPLIED", "LavaWreathApplied", 176025)
+	self:Log("SPELL_AURA_APPLIED", "Flametongue", 176032)
 	-- Grom'kar Boomer
 	self:Log("SPELL_CAST_START", "BlackrockMortar", 156301)
 	self:Log("SPELL_CAST_START", "CannonBarrage", 176127)
@@ -130,19 +131,9 @@ end
 
 -- Grom'kar Cinderseer
 
-do
-	local prev = 0
-	function mod:LavaWreathApplied(args)
-		if self:Me(args.destGUID) then
-			local t = GetTime()
-			if t - prev > 2 then
-				prev = t
-				self:Say(args.spellId)
-				self:PersonalMessage(args.spellId)
-				self:PlaySound(args.spellId, "alarm")
-			end
-		end
-	end
+function mod:Flametongue(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Grom'kar Boomer
