@@ -34,6 +34,6 @@ BigWigs:AddColors("Iron Docks Trash", {
 	[173148] = {"blue","yellow"},
 	[173324] = "blue",
 	[173384] = "red",
-	[173480] = "orange",
+	[173480] = {"blue","orange"},
 	[173514] = "red",
 })

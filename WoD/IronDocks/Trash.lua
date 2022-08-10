@@ -127,6 +127,8 @@ function mod:OnBossEnable()
 	-- Ironwing Flamespitter
 	self:Log("SPELL_CAST_START", "LavaBlast", 173514)
 	self:Log("SPELL_CAST_START", "LavaBarrage", 173480)
+	self:Log("SPELL_AURA_APPLIED", "LavaBarrageDamage", 173489)
+	self:Log("SPELL_AURA_REFRESH", "LavaBarrageDamage", 173489)
 end
 
 --------------------------------------------------------------------------------
@@ -327,4 +329,18 @@ end
 function mod:LavaBarrage(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+end
+
+do
+	local prev = 0
+	function mod:LavaBarrageDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(173480, "near")
+				self:PlaySound(173480, "underyou")
+			end
+		end
+	end
 end
