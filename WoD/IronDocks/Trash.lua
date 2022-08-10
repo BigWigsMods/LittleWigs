@@ -51,6 +51,7 @@ function mod:GetOptions()
 		167815, -- Rending Cleave
 		173324, -- Jagged Caltrops
 		-- Rampaging Clefthoof
+		173384, -- Trampling Stampede
 		158337, -- Frenzy
 		-- Ironwing Flamespitter
 		173514, -- Lava Blast
@@ -61,7 +62,7 @@ function mod:GetOptions()
 		[172963] = L.siegemaster_olugar,
 		[173135] = L.ogron_laborer,
 		[167815] = L.thunderlord_wrangler,
-		[158337] = L.rampaging_clefthoof,
+		[173384] = L.rampaging_clefthoof,
 		[173514] = L.ironwing_flamespitter,
 	}
 end
@@ -87,6 +88,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "JaggedCaltropsDamage", 173324)
 	self:Log("SPELL_PERIODIC_MISSED", "JaggedCaltropsDamage", 173324)
 	-- Rampaging Clefthoof
+	self:Log("SPELL_CAST_START", "TramplingStampede", 173384)
 	self:Log("SPELL_AURA_APPLIED", "FrenzyApplied", 158337)
 	-- Ironwing Flamespitter
 	self:Log("SPELL_CAST_START", "LavaBlast", 173514)
@@ -186,9 +188,14 @@ end
 
 -- Rampaging Clefthoof
 
+function mod:TramplingStampede(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 function mod:FrenzyApplied(args)
 	if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
-		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
 end
