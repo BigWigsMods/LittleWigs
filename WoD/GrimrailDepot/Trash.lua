@@ -72,7 +72,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Dash", 164168)
 	-- Grom'kar Gunner
 	self:Log("SPELL_CAST_START", "ShrapnelBlast", 166675)
-	-- TODO underyou ticks?
+	self:Log("SPELL_DAMAGE", "ShrapnelBlastDamage", 166676)
+	self:Log("SPELL_MISSED", "ShrapnelBlastDamage", 166676)	
 	-- Grom'kar Cinderseer
 	self:Log("SPELL_AURA_APPLIED", "Flametongue", 176032)
 	-- Grom'kar Boomer
@@ -125,6 +126,20 @@ do
 			prev = t
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:ShrapnelBlastDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(166675, "near")
+				self:PlaySound(166675, "underyou")
+			end
 		end
 	end
 end
