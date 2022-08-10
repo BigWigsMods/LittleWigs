@@ -265,8 +265,8 @@ do
 	function mod:TurnToStoneDebuffApplied(args)
 		if self:Dispeller("magic") then
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(326607, "orange", playerList, 5)
 			self:PlaySound(326607, "alert", nil, playerList)
+			self:TargetsMessage(326607, "orange", playerList, 5)
 		end
 	end
 end
