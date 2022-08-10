@@ -9,6 +9,8 @@ mod:RegisterEnableMob(
 	83025, -- Grom'kar Battlemaster
 	84520, -- Pitwarden Gwarnok
 	81279, -- Grom'kar Flameslinger
+	81432, -- Grom'kar Technician
+	83763, -- Grom'kar Technician
 	83026, -- Siegemaster Olugar
 	84028, -- Siegemaster Rokra
 	87252, -- Unruly Ogron
@@ -27,6 +29,7 @@ local L = mod:GetLocale()
 if L then
 	L.gromkar_battlemaster = "Grom'kar Battlemaster"
 	L.gromkar_flameslinger = "Grom'kar Flameslinger"
+	L.gromkar_technician = "Grom'kar Technician"
 	L.siegemaster_olugar = "Siegemaster Olugar"
 	L.ogron_laborer = "Ogron Laborer"
 	L.thunderlord_wrangler = "Thunderlord Wrangler"
@@ -44,6 +47,8 @@ function mod:GetOptions()
 		167233, -- Bladestorm
 		-- Grom'kar Flameslinger
 		164632, -- Burning Arrows
+		-- Grom'kar Technician
+		172636, -- Slippery Grease
 		-- Siegemaster Olugar
 		172963, -- Gatecrasher
 		-- Ogron Laborer
@@ -60,6 +65,7 @@ function mod:GetOptions()
 	}, {
 		[167233] = L.gromkar_battlemaster,
 		[164632] = L.gromkar_flameslinger,
+		[172636] = L.gromkar_technician,
 		[172963] = L.siegemaster_olugar,
 		[173135] = L.ogron_laborer,
 		[167815] = L.thunderlord_wrangler,
@@ -77,6 +83,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BurningArrowsDamage", 164632)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BurningArrowsDamage", 164632)
 	self:Log("SPELL_PERIODIC_MISSED", "BurningArrowsDamage", 164632)
+	-- Grom'kar Flameslinger
+	self:Log("SPELL_AURA_APPLIED", "SlipperyGreaseApplied", 172636, 172631) -- Slippery Grease, Knocked Down
 	-- Siegemaster Olugar
 	self:Log("SPELL_AURA_APPLIED", "GatecrasherDamage", 172963)
 	self:Log("SPELL_PERIODIC_DAMAGE", "GatecrasherDamage", 172963)
@@ -132,6 +140,22 @@ do
 				prev = t
 				self:PersonalMessage(args.spellId, "near")
 				self:PlaySound(args.spellId, "underyou")
+			end
+		end
+	end
+end
+
+-- Grom'kar Technician
+
+do
+	local prev = 0
+	function mod:SlipperyGreaseApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1 then
+				prev = t
+				self:Message(172636, "blue", CL.underyou:format(self:SpellName(172636)))
+				self:PlaySound(172636, "underyou")
 			end
 		end
 	end

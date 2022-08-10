@@ -13,6 +13,7 @@ L = BigWigs:NewBossLocale("Iron Docks Trash", "zhTW")
 if L then
 	--L.gromkar_battlemaster = "Grom'kar Battlemaster"
 	--L.gromkar_flameslinger = "Grom'kar Flameslinger"
+	--L.gromkar_technician = "Grom'kar Technician"
 	--L.siegemaster_olugar = "Siegemaster Olugar"
 	--L.ogron_laborer = "Ogron Laborer"
 	--L.thunderlord_wrangler = "Thunderlord Wrangler"
