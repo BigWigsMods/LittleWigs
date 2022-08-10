@@ -15,6 +15,7 @@ if L then
 	L.gromkar_flameslinger = "Jette-flamme grom’kar"
 	L.gromkar_technician = "Technicien grom’kar"
 	L.siegemaster_olugar = "Maître de siège Olugar"
+	L.pitwarden_gwarnok = "Gardefosse Gwarnok"
 	L.ogron_laborer = "Travailleur ogron"
 	L.thunderlord_wrangler = "Querelleur sire-tonnerre"
 	L.rampaging_clefthoof = "Sabot-fourchu enragé"

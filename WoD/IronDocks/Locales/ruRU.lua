@@ -15,6 +15,7 @@ if L then
 	L.gromkar_flameslinger = "Гром'карская огненная лучница"
 	L.gromkar_technician = "Гром'карский техник"
 	L.siegemaster_olugar = "Осадный мастер Олугар"
+	L.pitwarden_gwarnok = "Страж ям Гварнок"
 	L.ogron_laborer = "Огрон-работник"
 	L.thunderlord_wrangler = "Укротитель из клана Громоборцев"
 	L.rampaging_clefthoof = "Буйный копытень"

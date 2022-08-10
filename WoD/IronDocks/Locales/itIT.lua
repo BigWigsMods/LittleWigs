@@ -15,6 +15,7 @@ if L then
 	L.gromkar_flameslinger = "Scagliafiamme Grom'kar"
 	L.gromkar_technician = "Tecnico Grom'kar"
 	L.siegemaster_olugar = "Maestro d'Assedio Olugar"
+	L.pitwarden_gwarnok = "Custode della Fossa Gwarnok"
 	L.ogron_laborer = "Bracciante Ogron"
 	L.thunderlord_wrangler = "Mandriano Spaccatuono"
 	L.rampaging_clefthoof = "Mammuceronte Sfrenato"

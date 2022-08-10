@@ -15,6 +15,7 @@ if L then
 	L.gromkar_flameslinger = "格罗姆卡火箭手"
 	L.gromkar_technician = "格罗姆卡技师"
 	L.siegemaster_olugar = "攻城大师奥鲁加"
+	L.pitwarden_gwarnok = "训练场守卫加诺克"
 	L.ogron_laborer = "独眼魔工人"
 	L.thunderlord_wrangler = "雷神驯兽师"
 	L.rampaging_clefthoof = "狂怒的裂蹄牛"

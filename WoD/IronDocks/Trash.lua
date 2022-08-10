@@ -7,11 +7,11 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	83025, -- Grom'kar Battlemaster
-	84520, -- Pitwarden Gwarnok
 	81279, -- Grom'kar Flameslinger
 	81432, -- Grom'kar Technician
 	83763, -- Grom'kar Technician
 	83026, -- Siegemaster Olugar
+	84520, -- Pitwarden Gwarnok
 	84028, -- Siegemaster Rokra
 	87252, -- Unruly Ogron
 	83578, -- Ogron Laborer
@@ -31,6 +31,7 @@ if L then
 	L.gromkar_flameslinger = "Grom'kar Flameslinger"
 	L.gromkar_technician = "Grom'kar Technician"
 	L.siegemaster_olugar = "Siegemaster Olugar"
+	L.pitwarden_gwarnok = "Pitwarden Gwarnok"
 	L.ogron_laborer = "Ogron Laborer"
 	L.thunderlord_wrangler = "Thunderlord Wrangler"
 	L.rampaging_clefthoof = "Rampaging Clefthoof"
@@ -53,6 +54,8 @@ function mod:GetOptions()
 		172982, -- Shattering Strike
 		172952, -- Throw Gatecrasher
 		172963, -- Gatecrasher
+		-- Pitwarden Gwarnok
+		172943, -- Brutal Inspiration
 		-- Ogron Laborer
 		173135, -- Thundering Stomp
 		-- Thunderlord Wrangler
@@ -69,6 +72,7 @@ function mod:GetOptions()
 		[164632] = L.gromkar_flameslinger,
 		[172636] = L.gromkar_technician,
 		[172982] = L.siegemaster_olugar,
+		[172943] = L.pitwarden_gwarnok,
 		[173135] = L.ogron_laborer,
 		[167815] = L.thunderlord_wrangler,
 		[173384] = L.rampaging_clefthoof,
@@ -93,6 +97,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "GatecrasherDamage", 172963)
 	self:Log("SPELL_PERIODIC_DAMAGE", "GatecrasherDamage", 172963)
 	self:Log("SPELL_MISSED", "GatecrasherDamage", 172963)
+	-- Pitwarden Gwarnok
+	self:Log("SPELL_AURA_APPLIED", "BrutalInspiration", 172943)
 	-- Ogron Laborer
 	self:Log("SPELL_CAST_START", "ThunderingStomp", 173135)
 	-- Thunderlord Wrangler
@@ -191,7 +197,16 @@ do
 	end
 end
 
--- Siegemaster Olugar
+-- Pitwarden Gwarnok
+
+function mod:BrutalInspiration(args)
+	if self:MobId(args.destGUID) == 172943 then -- Pitwarden Gwarnok, to avoid spam on this AOE buff
+		self:Message(args.spellId, "purple", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+-- Ogron Laborer
 
 function mod:ThunderingStomp(args)
 	self:Message(args.spellId, "yellow")
