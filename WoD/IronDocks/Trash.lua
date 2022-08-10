@@ -281,7 +281,7 @@ do
 	local prev = 0
 	function mod:RendingCleave(args)
 		local t = args.time
-		if t - prev > 1 then
+		if t - prev > 2.5 then
 			prev = t
 			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alarm")
