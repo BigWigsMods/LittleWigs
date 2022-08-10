@@ -78,7 +78,7 @@ end
 
 function mod:OnBossEnable()
 	-- Grom'kar Battlemaster
-	self:Log("SPELL_CAST_SUCCESS", "Bladestorm", 167233)
+	self:Log("SPELL_AURA_APPLIED", "Bladestorm", 167232)
 	self:Log("SPELL_DAMAGE", "BladestormDamage", 167233)
 	self:Log("SPELL_MISSED", "BladestormDamage", 167233)
 	-- Grom'kar Flameslinger
@@ -115,8 +115,8 @@ end
 -- Grom'kar Battlemaster
 
 function mod:Bladestorm(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(167233, "red")
+	self:PlaySound(167233, "alarm")
 end
 
 do
