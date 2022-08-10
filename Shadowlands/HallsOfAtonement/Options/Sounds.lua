@@ -36,10 +36,12 @@ BigWigs:AddSounds("Halls of Atonement Trash", {
 	[325799] = "alarm",
 	[325876] = {"alarm","alert","info"},
 	[326409] = "warning",
+	[326441] = "alarm",
 	[326450] = {"alert","warning"},
 	[326607] = {"alert","warning"},
 	[326891] = "underyou",
 	[326997] = "alert",
+	[342171] = "info",
 	[344993] = {"alert","warning"},
 	[346866] = "alarm",
 })
