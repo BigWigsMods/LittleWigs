@@ -11,5 +11,11 @@ end
 
 L = BigWigs:NewBossLocale("Iron Docks Trash", "deDE")
 if L then
-
+	L.gromkar_battlemaster = "Kampfmeister der Grom'kar"
+	L.gromkar_flameslinger = "Flammenschützin der Grom'kar"
+	L.siegemaster_olugar = "Belagerungsmeister Olugar"
+	L.ogron_laborer = "Ogronarbeiter"
+	L.thunderlord_wrangler = "Bändiger der Donnerfürsten"
+	L.rampaging_clefthoof = "Rasender Grollhuf"
+	L.ironwing_flamespitter = "Flammenspucker der Eisenschwingen"
 end
