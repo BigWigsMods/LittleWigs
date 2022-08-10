@@ -50,6 +50,8 @@ function mod:GetOptions()
 		-- Grom'kar Technician
 		172636, -- Slippery Grease
 		-- Siegemaster Olugar
+		172982, -- Shattering Strike
+		172952, -- Throw Gatecrasher
 		172963, -- Gatecrasher
 		-- Ogron Laborer
 		173135, -- Thundering Stomp
@@ -66,7 +68,7 @@ function mod:GetOptions()
 		[167233] = L.gromkar_battlemaster,
 		[164632] = L.gromkar_flameslinger,
 		[172636] = L.gromkar_technician,
-		[172963] = L.siegemaster_olugar,
+		[172982] = L.siegemaster_olugar,
 		[173135] = L.ogron_laborer,
 		[167815] = L.thunderlord_wrangler,
 		[173384] = L.rampaging_clefthoof,
@@ -82,13 +84,15 @@ function mod:OnBossEnable()
 	-- Grom'kar Flameslinger
 	self:Log("SPELL_AURA_APPLIED", "BurningArrowsDamage", 164632)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BurningArrowsDamage", 164632)
-	self:Log("SPELL_PERIODIC_MISSED", "BurningArrowsDamage", 164632)
+	self:Log("SPELL_MISSED", "BurningArrowsDamage", 164632)
 	-- Grom'kar Flameslinger
 	self:Log("SPELL_AURA_APPLIED", "SlipperyGreaseApplied", 172636, 172631) -- Slippery Grease, Knocked Down
 	-- Siegemaster Olugar
+	self:Log("SPELL_CAST_START", "ShatteringStrike", 172982)
+	self:Log("SPELL_CAST_START", "ThrowGatecrasher", 172952)
 	self:Log("SPELL_AURA_APPLIED", "GatecrasherDamage", 172963)
 	self:Log("SPELL_PERIODIC_DAMAGE", "GatecrasherDamage", 172963)
-	self:Log("SPELL_PERIODIC_MISSED", "GatecrasherDamage", 172963)
+	self:Log("SPELL_MISSED", "GatecrasherDamage", 172963)
 	-- Ogron Laborer
 	self:Log("SPELL_CAST_START", "ThunderingStomp", 173135)
 	-- Thunderlord Wrangler
@@ -162,6 +166,16 @@ do
 end
 
 -- Siegemaster Olugar
+
+function mod:ShatteringStrike(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:ThrowGatecrasher(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "warning")
+end
 
 do
 	local prev = 0
