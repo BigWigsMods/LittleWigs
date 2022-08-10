@@ -5,7 +5,7 @@
 <Include file="HallsOfInfusion\modules.xml"/>
 <Include file="Neltharus\modules.xml"/>
 <Include file="RubyLifePools\modules.xml"/>
-<Include file="TazalgethAcademy\modules.xml"/>
+<Include file="AlgetharAcademy\modules.xml"/>
 <Include file="TheAzureVault\modules.xml"/>
 <Include file="TheNokhudOffensive\modules.xml"/>
 <Include file="UldamanLegacyOfTyr\modules.xml"/>
