@@ -1,8 +1,13 @@
 
 BigWigs:AddColors("Rocketspark and Borka", {
 	[161090] = "red",
+	[161091] = "red",
+	[161092] = "red",
+	[162171] = "yellow",
+	[162407] = "orange",
+	[162500] = "red",
 	[162617] = "orange",
-	["enrage"] = "yellow",
+	[163947] = "green",
 })
 
 BigWigs:AddColors("Nitrogg Thundertower", {
