@@ -75,7 +75,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "ShrapnelBlastDamage", 166676)
 	self:Log("SPELL_MISSED", "ShrapnelBlastDamage", 166676)	
 	-- Grom'kar Cinderseer
-	self:Log("SPELL_AURA_APPLIED", "Flametongue", 176032)
+	self:Log("SPELL_CAST_START", "Flametongue", 176032)
+	self:Log("SPELL_AURA_APPLIED", "FlametongueDamage", 176033)
+	self:Log("SPELL_MISSED", "FlametongueDamage", 176033)
+	176033
 	-- Grom'kar Boomer
 	self:Log("SPELL_CAST_START", "BlackrockMortar", 156301)
 	self:Log("SPELL_CAST_START", "CannonBarrage", 176127)
@@ -149,6 +152,20 @@ end
 function mod:Flametongue(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:FlametongueDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(176032, "near")
+				self:PlaySound(176032, "underyou")
+			end
+		end
+	end
 end
 
 -- Grom'kar Boomer

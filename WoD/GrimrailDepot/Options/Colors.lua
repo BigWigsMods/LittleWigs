@@ -30,6 +30,6 @@ BigWigs:AddColors("Grimrail Depot Trash", {
 	[166341] = "yellow",
 	[166380] = "yellow",
 	[166675] = {"blue","red"},
-	[176032] = "orange",
+	[176032] = {"blue","orange"},
 	[176127] = "orange",
 })
