@@ -122,7 +122,7 @@ end
 do
 	local prev = 0
 	function mod:BladestormDamage(args)
-		if self:Me(args.destGUID) then
+		if self:Me(args.destGUID) and not self:Tank() then
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
