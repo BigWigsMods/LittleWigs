@@ -657,8 +657,8 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:ArcingZapApplied(args)
 		if self:Dispeller("magic", nil, args.spellId) then
-			self:TargetsMessage(args.spellId, "yellow", playerList, 3) -- Three bots that can all cast at the same time
 			self:PlaySound(args.spellId, "alert", nil, playerList)
+			self:TargetsMessage(args.spellId, "yellow", playerList, 3) -- Three bots that can all cast at the same time
 		end
 	end
 end
