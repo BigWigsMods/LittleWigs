@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	81279, -- Grom'kar Flameslinger
 	83026, -- Siegemaster Olugar
 	84028, -- Siegemaster Rokra
+	87252, -- Unruly Ogron
 	83578, -- Ogron Laborer
 	83761, -- Ogron Laborer
 	83390, -- Thunderlord Wrangler
@@ -42,9 +43,9 @@ function mod:GetOptions()
 		-- Grom'kar Battlemaster
 		167233, -- Bladestorm
 		-- Grom'kar Flameslinger
-		164632, -- Bladestorm
+		164632, -- Burning Arrows
 		-- Siegemaster Olugar
-		172963, -- Bladestorm
+		172963, -- Gatecrasher
 		-- Ogron Laborer
 		173135, -- Thundering Stomp
 		-- Thunderlord Wrangler
@@ -69,7 +70,7 @@ end
 
 function mod:OnBossEnable()
 	-- Grom'kar Battlemaster
-	self:Log("SPELL_CAST_START", "Bladestorm", 167233)
+	self:Log("SPELL_CAST_SUCCESS", "Bladestorm", 167233)
 	self:Log("SPELL_DAMAGE", "BladestormDamage", 167233)
 	self:Log("SPELL_MISSED", "BladestormDamage", 167233)
 	-- Grom'kar Flameslinger
