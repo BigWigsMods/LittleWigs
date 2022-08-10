@@ -17,6 +17,7 @@ if L then
 	L.siegemaster_olugar = "Осадный мастер Олугар"
 	L.pitwarden_gwarnok = "Страж ям Гварнок"
 	L.ogron_laborer = "Огрон-работник"
+	L.gromkar_chainmaster = "Гром'карский мастер цепей"
 	L.thunderlord_wrangler = "Укротитель из клана Громоборцев"
 	L.rampaging_clefthoof = "Буйный копытень"
 	L.ironwing_flamespitter = "Железнокрылый изрыгатель огня"

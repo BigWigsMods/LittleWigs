@@ -16,6 +16,7 @@ mod:RegisterEnableMob(
 	87252, -- Unruly Ogron
 	83578, -- Ogron Laborer
 	83761, -- Ogron Laborer
+	86526, -- Grom'kar Chainmaster
 	83390, -- Thunderlord Wrangler
 	83392, -- Rampaging Clefthoof
 	83389  -- Ironwing Flamespitter
@@ -33,6 +34,7 @@ if L then
 	L.siegemaster_olugar = "Siegemaster Olugar"
 	L.pitwarden_gwarnok = "Pitwarden Gwarnok"
 	L.ogron_laborer = "Ogron Laborer"
+	L.gromkar_chainmaster = "Grom'kar Chainmaster"
 	L.thunderlord_wrangler = "Thunderlord Wrangler"
 	L.rampaging_clefthoof = "Rampaging Clefthoof"
 	L.ironwing_flamespitter = "Ironwing Flamespitter"
@@ -58,6 +60,8 @@ function mod:GetOptions()
 		172943, -- Brutal Inspiration
 		-- Ogron Laborer
 		173135, -- Thundering Stomp
+		-- Grom'kar Chainmaster
+		173105, -- Whirling Chains
 		-- Thunderlord Wrangler
 		167815, -- Rending Cleave
 		173324, -- Jagged Caltrops
@@ -74,6 +78,7 @@ function mod:GetOptions()
 		[172982] = L.siegemaster_olugar,
 		[172943] = L.pitwarden_gwarnok,
 		[173135] = L.ogron_laborer,
+		[173105] = L.gromkar_chainmaster,
 		[167815] = L.thunderlord_wrangler,
 		[173384] = L.rampaging_clefthoof,
 		[173514] = L.ironwing_flamespitter,
@@ -101,6 +106,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BrutalInspiration", 172943)
 	-- Ogron Laborer
 	self:Log("SPELL_CAST_START", "ThunderingStomp", 173135)
+	-- Grom'kar Chainmaster
+	self:Log("SPELL_AURA_APPLIED", "WhirlingChains", 173108)
+	self:Log("SPELL_AURA_APPLIED", "WhirlingChainsDamage", 173105)
+	self:Log("SPELL_PERIODIC_DAMAGE", "WhirlingChainsDamage", 173105)
+	self:Log("SPELL_MISSED", "WhirlingChainsDamage", 173105)
 	-- Thunderlord Wrangler
 	self:Log("SPELL_CAST_START", "RendingCleave", 167815)
 	self:Log("SPELL_AURA_APPLIED", "JaggedCaltropsDamage", 173324)
@@ -213,7 +223,36 @@ function mod:ThunderingStomp(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Grom'kar Chainmaster
+
+do
+	local prev = 0
+	function mod:WhirlingChains(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(173105, "yellow")
+			self:PlaySound(173105, "alarm")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:WhirlingChainsDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(173105, "near")
+				self:PlaySound(173105, "underyou")
+			end
+		end
+	end
+end
+
 -- Thunderlord Wrangler
+
 do
 	local prev = 0
 	function mod:RendingCleave(args)

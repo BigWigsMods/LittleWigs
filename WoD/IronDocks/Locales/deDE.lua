@@ -17,6 +17,7 @@ if L then
 	L.siegemaster_olugar = "Belagerungsmeister Olugar"
 	L.pitwarden_gwarnok = "Grubenwächter Gwarnok"
 	L.ogron_laborer = "Ogronarbeiter"
+	L.gromkar_chainmaster = "Kettenmeister der Grom'kar"
 	L.thunderlord_wrangler = "Bändiger der Donnerfürsten"
 	L.rampaging_clefthoof = "Rasender Grollhuf"
 	L.ironwing_flamespitter = "Flammenspucker der Eisenschwingen"

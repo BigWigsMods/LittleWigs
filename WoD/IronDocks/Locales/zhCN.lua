@@ -17,6 +17,7 @@ if L then
 	L.siegemaster_olugar = "攻城大师奥鲁加"
 	L.pitwarden_gwarnok = "训练场守卫加诺克"
 	L.ogron_laborer = "独眼魔工人"
+	L.gromkar_chainmaster = "格罗姆卡锁链大师"
 	L.thunderlord_wrangler = "雷神驯兽师"
 	L.rampaging_clefthoof = "狂怒的裂蹄牛"
 	L.ironwing_flamespitter = "铁翼喷火者"

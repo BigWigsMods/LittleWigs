@@ -17,6 +17,7 @@ if L then
 	--L.siegemaster_olugar = "Siegemaster Olugar"
 	--L.pitwarden_gwarnok = "Pitwarden Gwarnok"
 	--L.ogron_laborer = "Ogron Laborer"
+	--L.gromkar_chainmaster = "Grom'kar Chainmaster"
 	--L.thunderlord_wrangler = "Thunderlord Wrangler"
 	--L.rampaging_clefthoof = "Rampaging Clefthoof"
 	--L.ironwing_flamespitter = "Ironwing Flamespitter"
