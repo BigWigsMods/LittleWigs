@@ -22,6 +22,7 @@ BigWigs:AddSounds("Iron Docks Trash", {
 	[158337] = "warning",
 	[164632] = "underyou",
 	[167233] = {"alarm","underyou"},
+	[167815] = "alarm",
 	[172963] = "underyou",
 	[173135] = "alert",
 	[173324] = "underyou",

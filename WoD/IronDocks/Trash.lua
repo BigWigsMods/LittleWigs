@@ -48,6 +48,7 @@ function mod:GetOptions()
 		-- Ogron Laborer
 		173135, -- Thundering Stomp
 		-- Thunderlord Wrangler
+		167815, -- Rending Cleave
 		173324, -- Jagged Caltrops
 		-- Rampaging Clefthoof
 		158337, -- Frenzy
@@ -59,7 +60,7 @@ function mod:GetOptions()
 		[164632] = L.gromkar_flameslinger,
 		[172963] = L.siegemaster_olugar,
 		[173135] = L.ogron_laborer,
-		[173324] = L.thunderlord_wrangler,
+		[167815] = L.thunderlord_wrangler,
 		[158337] = L.rampaging_clefthoof,
 		[173514] = L.ironwing_flamespitter,
 	}
@@ -81,6 +82,7 @@ function mod:OnBossEnable()
 	-- Ogron Laborer
 	self:Log("SPELL_CAST_START", "ThunderingStomp", 173135)
 	-- Thunderlord Wrangler
+	self:Log("SPELL_CAST_START", "RendingCleave", 167815)
 	self:Log("SPELL_AURA_APPLIED", "JaggedCaltropsDamage", 173324)
 	self:Log("SPELL_PERIODIC_DAMAGE", "JaggedCaltropsDamage", 173324)
 	self:Log("SPELL_PERIODIC_MISSED", "JaggedCaltropsDamage", 173324)
@@ -156,6 +158,17 @@ function mod:ThunderingStomp(args)
 end
 
 -- Thunderlord Wrangler
+do
+	local prev = 0
+	function mod:RendingCleave(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
 
 do
 	local prev = 0
