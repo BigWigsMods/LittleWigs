@@ -24,4 +24,5 @@ if L then
 	L.gromkar_boomer = "그롬카르 폭파병"
 	L.gromkar_far_seer = "그롬카르 선견자"
 	L.gromkar_captain = "그롬카르 대장"
+	L.grimrail_scout = "파멸철로 정찰병"
 end

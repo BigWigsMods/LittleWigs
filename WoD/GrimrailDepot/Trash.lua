@@ -12,7 +12,8 @@ mod:RegisterEnableMob(
 	88163,  -- Grom'kar Cinderseer
 	80935,  -- Grom'kar Boomer
 	82579,  -- Grom'kar Far Seer
-	82597   -- Grom'kar Captain
+	82597,  -- Grom'kar Captain
+	82590   -- Grimrail Scout
 )
 
 --------------------------------------------------------------------------------
@@ -28,6 +29,7 @@ if L then
 	L.gromkar_boomer = "Grom'kar Boomer"
 	L.gromkar_far_seer = "Grom'kar Far Seer"
 	L.gromkar_captain = "Grom'kar Captain"
+	L.grimrail_scout = "Grimrail Scout"
 end
 
 --------------------------------------------------------------------------------
@@ -53,6 +55,8 @@ function mod:GetOptions()
 		166341, -- Thunder Zone
 		-- Grom'kar Captain
 		166380, -- Reckless Slash
+		-- Grimrail Scout
+		166397, -- Arcane Blitz
 	}, {
 		[163966] = L.grimrail_technician,
 		[164168] = L.grimrail_overseer,
@@ -61,6 +65,7 @@ function mod:GetOptions()
 		[156301] = L.gromkar_boomer,
 		[166335] = L.gromkar_far_seer,
 		[166380] = L.gromkar_captain,
+		[166397] = L.grimrail_scout,
 	}
 end
 
@@ -87,6 +92,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ThunderZone", 166341)
 	-- Grom'kar Captain
 	self:Log("SPELL_CAST_START", "RecklessSlash", 166380)
+	-- Grimrail Scout
+	self:Log("SPELL_CAST_START", "ArcaneBlitz", 166397)
 end
 
 --------------------------------------------------------------------------------
@@ -211,6 +218,13 @@ end
 -- Grom'kar Captain
 
 function mod:RecklessSlash(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Grimrail Scout
+
+function mod:ArcaneBlitz(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end

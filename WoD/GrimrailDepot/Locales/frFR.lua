@@ -24,4 +24,5 @@ if L then
 	L.gromkar_boomer = "Boumeur grom’kar"
 	L.gromkar_far_seer = "Long-voyant grom’kar"
 	L.gromkar_captain = "Capitaine grom’kar"
+	L.grimrail_scout = "Eclaireuse de Tristerail"
 end

@@ -24,4 +24,5 @@ if L then
 	--L.gromkar_boomer = "Grom'kar Boomer"
 	--L.gromkar_far_seer = "Grom'kar Far Seer"
 	--L.gromkar_captain = "Grom'kar Captain"
+	--L.grimrail_scout = "Grimrail Scout"
 end

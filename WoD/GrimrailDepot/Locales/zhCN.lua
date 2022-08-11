@@ -24,4 +24,5 @@ if L then
 	L.gromkar_boomer = "格罗姆卡爆破手"
 	L.gromkar_far_seer = "格罗姆卡先知"
 	L.gromkar_captain = "格罗姆卡上尉"
+	L.grimrail_scout = "恐轨斥候"
 end

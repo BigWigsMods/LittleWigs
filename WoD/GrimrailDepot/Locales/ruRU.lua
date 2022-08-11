@@ -24,4 +24,5 @@ if L then
 	L.gromkar_boomer = "Гром'карский подрывник"
 	L.gromkar_far_seer = "Гром'карский ясновидящий"
 	L.gromkar_captain = "Гром'карский капитан"
+	L.grimrail_scout = "Разведчица Мрачных Путей"
 end
