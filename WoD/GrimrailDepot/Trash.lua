@@ -77,8 +77,8 @@ function mod:OnBossEnable()
 	-- Grom'kar Cinderseer
 	self:Log("SPELL_CAST_START", "Flametongue", 176032)
 	self:Log("SPELL_AURA_APPLIED", "FlametongueDamage", 176033)
+	self:Log("SPELL_PERIODIC_DAMAGE", "FlametongueDamage", 176033)
 	self:Log("SPELL_MISSED", "FlametongueDamage", 176033)
-	176033
 	-- Grom'kar Boomer
 	self:Log("SPELL_CAST_START", "BlackrockMortar", 156301)
 	self:Log("SPELL_CAST_START", "CannonBarrage", 176127)
