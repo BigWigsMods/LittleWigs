@@ -238,8 +238,8 @@ do
 		end
 		if self:Dispeller("disease", nil, args.spellId) then
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(args.spellId, "yellow", playerList, 5)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
+			self:TargetsMessage(args.spellId, "yellow", playerList, 5)
 		end
 	end
 end

@@ -325,8 +325,8 @@ do
 	function mod:PoisonousDischargeApplied(args)
 		if self:Dispeller("poison", nil, 340279) then
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(340279, "yellow", playerList)
 			self:PlaySound(340279, "info", nil, playerList)
+			self:TargetsMessage(340279, "yellow", playerList)
 		end
 	end
 end
