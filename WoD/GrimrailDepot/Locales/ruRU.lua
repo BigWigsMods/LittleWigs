@@ -8,3 +8,15 @@ L = BigWigs:NewBossLocale("Skylord Tovra", "ruRU")
 if L then
 	L.rakun = "Ракун"
 end
+
+L = BigWigs:NewBossLocale("Grimrail Depot Trash", "ruRU")
+if L then
+	L.grimrail_technician = "Техник Мрачных Путей"
+	L.grimrail_overseer = "Надзиратель Мрачных Путей"
+	L.gromkar_gunner = "Гром'карская опалительница"
+	L.gromkar_cinderseer = "Гром'карская пророчица на пепле"
+	L.gromkar_boomer = "Гром'карский подрывник"
+	L.gromkar_far_seer = "Гром'карский ясновидящий"
+	L.gromkar_captain = "Гром'карский капитан"
+	L.grimrail_scout = "Разведчица Мрачных Путей"
+end
