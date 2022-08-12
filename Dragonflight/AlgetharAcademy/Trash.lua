@@ -3,7 +3,7 @@ if not IsTestBuild() then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Taz'algeth Academy Trash", 2526)
+local mod, CL = BigWigs:NewBoss("Algeth'ar Academy Trash", 2526)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
