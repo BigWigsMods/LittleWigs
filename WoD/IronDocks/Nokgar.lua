@@ -32,9 +32,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SavageMauling", 164837)
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingOver", 164837)
 
+	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
-	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss2")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 end
@@ -88,6 +88,7 @@ function mod:RecklessProvocation(args)
 end
 
 function mod:RecklessProvocationOver(args)
+	self:StopBar(CL.onboss:format(args.spellName))
 	self:Message(args.spellId, "green", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
