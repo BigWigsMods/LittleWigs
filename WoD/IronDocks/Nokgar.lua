@@ -29,8 +29,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BloodlettingHowl", 164835)
 	self:Log("SPELL_AURA_APPLIED", "BurningArrows", 164632)
 
-	self:Log("SPELL_AURA_APPLIED", "SavageMauling", 164837)
-	self:Log("SPELL_AURA_REMOVED", "SavageMaulingOver", 164837)
+	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 164837)
+	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
 
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
@@ -47,31 +47,32 @@ end
 -- Event Handlers
 --
 
-function mod:BloodlettingHowl(args)
-	self:Message(args.spellId, "yellow")
-	if self:Dispeller("enrage", true) then
-		self:PlaySound(args.spellId, "warning")
-	else
-		self:PlaySound(args.spellId, "alert")
+-- General
+
+function mod:UNIT_HEALTH(event, unit)
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if hp < 55 then
+		self:UnregisterUnitEvent(event, unit)
+		self:Message("stages", "yellow", CL.soon:format(CL.stage:format(2)))
+		self:PlaySound("stages", "info")
 	end
 end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 175755 then -- Dismount
+		self:Message("stages", "cyan", CL.stage:format(2))
+		self:PlaySound("stages", "long")
+		self:CDBar(164426, 16) -- Reckless Provocation
+	end
+end
+
+-- Fleshrender Nok'gar
 
 function mod:BurningArrows(args)
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "blue", CL.you:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
 	end
-end
-
-function mod:SavageMauling(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "alert")
-	self:TargetBar(args.spellId, 6, args.destName)
-	self:PrimaryIcon(args.spellId, args.destName)
-end
-
-function mod:SavageMaulingOver(args)
-	self:PrimaryIcon(args.spellId)
 end
 
 function mod:RecklessProvocationInc(args)
@@ -93,19 +94,25 @@ function mod:RecklessProvocationOver(args)
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 55 then
-		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "yellow", CL.soon:format(CL.stage:format(2)))
-		self:PlaySound("stages", "info")
+-- Dreadfang
+
+function mod:BloodlettingHowl(args)
+	self:Message(args.spellId, "yellow")
+	if self:Dispeller("enrage", true) then
+		self:PlaySound(args.spellId, "warning")
+	else
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 175755 then -- Dismount
-		self:Message("stages", "cyan", CL.stage:format(2))
-		self:PlaySound("stages", "long")
-		self:CDBar(164426, 16) -- Reckless Provocation
-	end
+function mod:SavageMaulingApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert")
+	self:TargetBar(args.spellId, 6, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
+end
+
+function mod:SavageMaulingRemoved(args)
+	self:StopBar(args.spellId, args.destName)
+	self:PrimaryIcon(args.spellId)
 end
