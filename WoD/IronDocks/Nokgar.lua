@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Fleshrender Nok'gar", 1195, 1235)
 if not mod then return end
 mod:RegisterEnableMob(81297, 81305) -- Dreadfang, Fleshrender Nok'gar
-mod.engageId = 1749
-mod.respawnTime = 33
+mod:SetEncounterID(1749)
+mod:SetRespawnTime(33)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -41,7 +40,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:MessageOld("stages", "cyan", nil, CL.stage:format(1), false)
+	self:Message("stages", "cyan", CL.stage:format(1))
 end
 
 --------------------------------------------------------------------------------
@@ -49,17 +48,24 @@ end
 --
 
 function mod:BloodlettingHowl(args)
-	self:MessageOld(args.spellId, "yellow"--[[, self:Dispeller("enrage", true) and "long"]])
+	self:Message(args.spellId, "yellow")
+	if self:Dispeller("enrage", true) then
+		self:PlaySound(args.spellId, "warning")
+	else
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:BurningArrows(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "alarm", CL.you:format(args.spellName))
+		self:Message(args.spellId, "blue", CL.you:format(args.spellName))
+		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 function mod:SavageMauling(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -70,30 +76,35 @@ end
 
 function mod:RecklessProvocationInc(args)
 	self:CDBar(args.spellId, 42.6)
-	self:MessageOld(args.spellId, "orange", "warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 	self:Flash(args.spellId)
 end
 
 function mod:RecklessProvocation(args)
 	self:Bar(args.spellId, 5, CL.onboss:format(args.spellName))
-	self:MessageOld(args.spellId, "orange", "warning")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:RecklessProvocationOver(args)
-	self:MessageOld(args.spellId, "green", "info", CL.over:format(args.spellName))
+	self:Message(args.spellId, "green", CL.over:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)
-		self:MessageOld("stages", "yellow", nil, CL.soon:format(CL.stage:format(2)), false)
+		self:Message("stages", "yellow", CL.soon:format(CL.stage:format(2)))
+		self:PlaySound("stages", "info")
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 175755 then -- Dismount
-		self:MessageOld("stages", "cyan", nil, CL.stage:format(2), false)
+		self:Message("stages", "cyan", CL.stage:format(2))
+		self:PlaySound("stages", "long")
 		self:CDBar(164426, 16) -- Reckless Provocation
 	end
 end
