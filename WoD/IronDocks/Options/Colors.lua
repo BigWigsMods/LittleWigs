@@ -2,6 +2,7 @@
 BigWigs:AddColors("Fleshrender Nok'gar", {
 	[164426] = {"green","orange"},
 	[164632] = "blue",
+	[164835] = "yellow",
 	[164837] = {"blue","red"},
 	["stages"] = {"cyan","yellow"},
 })
