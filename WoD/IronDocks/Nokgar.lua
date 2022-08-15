@@ -70,6 +70,7 @@ end
 
 function mod:BurningArrows(args)
 	if self:Me(args.destGUID) then
+		-- TODO this conflicts with trash module right?
 		self:Message(args.spellId, "blue", CL.you:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -116,3 +117,5 @@ function mod:SavageMaulingRemoved(args)
 	self:StopBar(args.spellId, args.destName)
 	self:PrimaryIcon(args.spellId)
 end
+
+-- TODO shredding swipes?
