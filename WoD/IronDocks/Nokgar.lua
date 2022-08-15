@@ -21,6 +21,7 @@ function mod:GetOptions()
 		164835, -- Bloodletting Howl
 	}, {
 		["stages"] = "general",
+		[164632] = -10433, -- Fleshrender Nok'gar
 		[164837] = -10437, -- Dreadfang
 	}
 end
