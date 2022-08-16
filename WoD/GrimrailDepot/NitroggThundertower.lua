@@ -115,6 +115,7 @@ end
 
 function mod:SlagBlast(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou")
 	end
 end
