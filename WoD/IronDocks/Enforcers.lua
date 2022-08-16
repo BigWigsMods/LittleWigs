@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Grimrail Enforcers", 1195, 1236)
 if not mod then return end
 mod:RegisterEnableMob(80805, 80808, 80816) -- Makogg Emberblade, Neesa Nox, Ahri'ok Dugru
-mod.engageId = 1748
-mod.respawnTime = 33
+mod:SetEncounterID(1748)
+mod:SetRespawnTime(33)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -62,7 +61,7 @@ do
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:MessageOld("sphere", "yellow", nil, L.sphere_fail_message, args.spellId)
+			self:Message("sphere", "yellow", L.sphere_fail_message, args.spellId)
 		end
 	end
 end
