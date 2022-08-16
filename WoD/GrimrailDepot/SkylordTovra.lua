@@ -46,6 +46,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:Bar(162066, 5.7) -- Freezing Snare
 	self:Bar(162058, 14.2) -- Spinning Spear
 end
 
@@ -78,10 +79,11 @@ do
 			self:Say(162066)
 			self:Flash(162066)
 		end
-		self:TargetMessageOld(162066, player, "orange", "info")
+		self:TargetMessage(162066, "orange", player)
+		self:PlaySound(162066, "info", nil, player)
 	end
 	function mod:FreezingSnare(args)
-		self:CDBar(args.spellId, 16.5) -- 16.5-17
+		self:Bar(args.spellId, 17)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
