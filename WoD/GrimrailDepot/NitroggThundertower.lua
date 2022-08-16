@@ -50,7 +50,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:MessageOld("stages", "cyan", nil, CL.stage:format(1), false)
+	self:Message("stages", "cyan", CL.stage:format(1))
 	self:SetStage(1)
 end
 
@@ -82,7 +82,8 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessageOld(160681, player, "red", "alert")
+		self:TargetMessage(160681, "red", player)
+		self:PlaySound(160681, "alert", nil, player)
 		self:PrimaryIcon(160681, player)
 		if self:Me(guid) then
 			self:Flash(160681)
@@ -95,21 +96,22 @@ end
 
 do
 	function mod:EngineerDies()
-		self:MessageOld(160965, "orange", "info", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
+		self:Message(160965, "orange", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
+		self:PlaySound(160965, "info")
 	end
 
 	function mod:PickedUpMortarShells(args)
-		self:TargetMessageOld(160965, args.destName, "green")
+		self:TargetMessage(160965, "green", args.destName)
 	end
 end
 
 do
 	function mod:GrenadierDies()
-		self:MessageOld(161073, "yellow", nil, L.dropped:format(self:SpellName(161073))) -- Blackrock Grenade
+		self:Message(161073, "yellow", L.dropped:format(self:SpellName(161073))) -- Blackrock Grenade
 	end
 
 	function mod:PickedUpGrenades(args)
-		self:TargetMessageOld(161073, args.destName, "green")
+		self:TargetMessage(161073, "green", args.destName)
 	end
 end
 
