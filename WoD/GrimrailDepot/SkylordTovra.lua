@@ -42,11 +42,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
 
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Thunder")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "ThunderousBreath")
 end
 
 function mod:OnEngage()
 	self:Bar(162066, 5.7) -- Freezing Snare
+	self:Bar(161801, 8.6) -- Thunderous Breath
 	self:Bar(162058, 14.2) -- Spinning Spear
 end
 
@@ -54,10 +55,11 @@ end
 -- Event Handlers
 --
 
-function mod:Thunder(_, _, _, _, _, target)
+function mod:ThunderousBreath(_, _, _, _, _, target)
 	if target == L.rakun then
-		self:MessageOld(161801, "red", "long", CL.incoming:format(self:SpellName(161801)))
-		self:Bar(161801, 17.3)
+		self:Message(161801, "red", CL.incoming:format(self:SpellName(161801)))
+		self:PlaySound(161801, "long")
+		self:Bar(161801, 17.4)
 	end
 end
 
