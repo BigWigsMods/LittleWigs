@@ -33,16 +33,16 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "ThunderousBreath")
+	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
 	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
+	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
+
+	-- Heroic-only mechanic (apparently not present in Mythic, M+, or Timewalking)
 	self:Log("SPELL_CAST_START", "HuntersMark", 163447)
 	self:Log("SPELL_AURA_APPLIED", "HuntersMarkApplied", 163447)
 	self:Log("SPELL_AURA_REMOVED", "HuntersMarkRemoved", 163447)
-
-	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
-
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "ThunderousBreath")
 end
 
 function mod:OnEngage()
@@ -63,17 +63,17 @@ function mod:ThunderousBreath(_, _, _, _, _, target)
 	end
 end
 
-function mod:SpinningSpear(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 17)
-end
-
 function mod:DiffusedEnergy(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId, "underyou")
 		self:PlaySound(args.spellId, "underyou")
 	end
+end
+
+function mod:SpinningSpear(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 17)
 end
 
 do
