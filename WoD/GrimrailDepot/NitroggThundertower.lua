@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,9 @@
 local mod, CL = BigWigs:NewBoss("Nitrogg Thundertower", 1208, 1163)
 if not mod then return end
 mod:RegisterEnableMob(79545)
-mod.engageId = 1732
-mod.respawnTime = 30
+mod:SetEncounterID(1732)
+mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -51,6 +51,7 @@ end
 
 function mod:OnEngage()
 	self:MessageOld("stages", "cyan", nil, CL.stage:format(1), false)
+	self:SetStage(1)
 end
 
 --------------------------------------------------------------------------------
@@ -59,9 +60,13 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
-		self:MessageOld("stages", "cyan", "long", CL.stage:format(3), false)
+		self:SetStage(3)
+		self:Message("stages", "cyan", CL.stage:format(3))
+		self:PlaySound("stages", "long")
 	else
-		self:MessageOld("stages", "cyan", "long", CL.percent:format(60, CL.stage:format(2)), false)
+		self:SetStage(2)
+		self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)))
+		self:PlaySound("stages", "long")
 	end
 end
 
