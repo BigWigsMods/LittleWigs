@@ -94,25 +94,21 @@ do
 	end
 end
 
-do
-	function mod:EngineerDies()
-		self:Message(160965, "orange", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
-		self:PlaySound(160965, "info")
-	end
-
-	function mod:PickedUpMortarShells(args)
-		self:TargetMessage(160965, "green", args.destName)
-	end
+function mod:EngineerDies()
+	self:Message(160965, "orange", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
+	self:PlaySound(160965, "info")
 end
 
-do
-	function mod:GrenadierDies()
-		self:Message(161073, "yellow", L.dropped:format(self:SpellName(161073))) -- Blackrock Grenade
-	end
+function mod:PickedUpMortarShells(args)
+	self:TargetMessage(160965, "green", args.destName)
+end
 
-	function mod:PickedUpGrenades(args)
-		self:TargetMessage(161073, "green", args.destName)
-	end
+function mod:GrenadierDies()
+	self:Message(161073, "yellow", L.dropped:format(self:SpellName(161073))) -- Blackrock Grenade
+end
+
+function mod:PickedUpGrenades(args)
+	self:TargetMessage(161073, "green", args.destName)
 end
 
 function mod:SlagBlast(args)
