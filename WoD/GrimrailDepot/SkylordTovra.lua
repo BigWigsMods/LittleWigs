@@ -37,6 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
 	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
+	self:Log("SPELL_AURA_APPLIED", "FreezingSnareApplied", 162065)
 	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
 
 	-- Heroic-only mechanic (apparently not present in Mythic, M+, or Timewalking)
@@ -87,7 +88,14 @@ do
 	end
 	function mod:FreezingSnare(args)
 		self:Bar(args.spellId, 17)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+	end
+end
+
+function mod:FreezingSnareApplied(args)
+	if self:Player(args.destFlags) and (self:Me(args.destGUID) or self:Dispeller("movement")) then
+		self:TargetMessage(162066, "yellow", args.destName)
+		self:PlaySound(162066, "alert", nil, args.destName)
 	end
 end
 
