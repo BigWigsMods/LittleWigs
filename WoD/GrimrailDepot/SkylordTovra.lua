@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Skylord Tovra", 1208, 1133)
 if not mod then return end
-mod:RegisterEnableMob(80005)
-mod.engageId = 1736
-mod.respawnTime = 5
+mod:RegisterEnableMob(80005) -- Skylord Tovra
+mod:SetEncounterID(1736)
+mod:SetRespawnTime(5)
 
 --------------------------------------------------------------------------------
 -- Localization
