@@ -27,7 +27,7 @@ function mod:GetOptions()
 		"stages",
 		161073, -- Blackrock Grenade
 		160965, -- Blackrock Mortar Shells
-		{160681, "ICON", "FLASH"}, -- Suppressive Fire
+		{160681, "SAY", "ICON", "FLASH"}, -- Suppressive Fire
 		166570, -- Slag Blast
 	}
 end
@@ -71,6 +71,9 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 end
 
 function mod:SuppressiveFire(args)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
