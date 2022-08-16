@@ -22,7 +22,7 @@ BigWigs:AddColors("Skylord Tovra", {
 	[161588] = "blue",
 	[161801] = "red",
 	[162058] = "yellow",
-	[162066] = {"blue","orange"},
+	[162066] = {"blue","orange","yellow"},
 	[163447] = {"blue","orange"},
 })
 
