@@ -101,7 +101,8 @@ end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessageOld(163447, player, "orange", "info")
+		self:TargetMessage(163447, "orange", player)
+		self:PlaySound(163447, "info", nil, player)
 	end
 	function mod:HuntersMark(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
