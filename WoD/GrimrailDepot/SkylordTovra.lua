@@ -45,6 +45,10 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Thunder")
 end
 
+function mod:OnEngage()
+	self:Bar(162058, 14.2) -- Spinning Spear
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -57,8 +61,9 @@ function mod:Thunder(_, _, _, _, _, target)
 end
 
 function mod:SpinningSpear(args)
-	self:MessageOld(args.spellId, "yellow")
-	self:CDBar(args.spellId, 16.5) -- 16.4-16.9
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 17)
 end
 
 function mod:DiffusedEnergy(args)
