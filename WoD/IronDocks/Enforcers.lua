@@ -37,6 +37,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
 	self:Log("SPELL_AURA_REMOVED", "SanguineSphereRemoved", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
+	self:Death("AhriokDeath", 80816)
+end
+
+function mod:OnEngage()
+	-- TODO when is Sanguine Sphere first cast?
 end
 
 --------------------------------------------------------------------------------
@@ -47,6 +52,7 @@ function mod:SanguineSphere(args)
 	self:TargetMessage(args.spellId, UnitIsUnit("target", args.destName) and "red" or "yellow", args.destName)
 	self:PlaySound(args.spellId, UnitIsUnit("target", args.destName) and "warning" or "alert")
 	self:TargetBar(args.spellId, 15, args.destName)
+	self:Bar(args.spellId, 26.7)
 end
 
 do
@@ -71,4 +77,8 @@ do
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
+end
+
+function mod:AhriokDeath()
+	self:StopBar(163689) -- Sanguine Sphere
 end
