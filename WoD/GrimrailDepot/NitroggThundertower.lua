@@ -63,7 +63,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "cyan", CL.stage:format(1))
+	self:Message("stages", "cyan", CL.stage:format(1), false)
 	self:SetStage(1)
 	self:Bar(163550, 10.1) -- Blackrock Mortar
 end
@@ -77,12 +77,12 @@ end
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
 		self:SetStage(3)
-		self:Message("stages", "cyan", CL.stage:format(3))
+		self:Message("stages", "cyan", CL.stage:format(3), false)
 		self:PlaySound("stages", "long")
 		self:StopBar(166570) -- Slag Blast
 	else
 		self:SetStage(2)
-		self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)))
+		self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)), false)
 		self:PlaySound("stages", "long")
 		self:StopBar(163550) -- Blackrock Mortar
 	end
