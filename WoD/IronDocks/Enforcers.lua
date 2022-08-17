@@ -26,6 +26,7 @@ function mod:GetOptions()
 		163689, -- Sanguine Sphere
 		163705, -- Abrupt Restoration
 		{163740, "DISPEL"}, -- Tainted Blood
+		163665, -- Flaming Slash
 	}
 end
 
@@ -35,12 +36,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
 	self:Log("SPELL_AURA_REMOVED", "SanguineSphereRemoved", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
-	self:Death("AhriokDeath", 80816)
 	self:Log("SPELL_AURA_APPLIED", "TaintedBloodApplied", 163740)
+	self:Death("AhriokDeath", 80816)
+	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
 end
 
 function mod:OnEngage()
 	-- TODO when is Sanguine Sphere first cast?
+	-- TODO when is Flaming Slash first cast?
 end
 
 --------------------------------------------------------------------------------
@@ -89,4 +92,10 @@ function mod:TaintedBloodApplied(args)
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
+end
+
+function mod:FlamingSlash(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 29.2)
 end
