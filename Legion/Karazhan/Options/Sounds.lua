@@ -31,6 +31,7 @@ BigWigs:AddSounds("Opera Hall: Beautiful Beast", {
 })
 
 BigWigs:AddSounds("Attumen the Huntsman", {
+	[227363] = "alarm",
 	[227365] = "alert",
 	[227404] = "warning",
 	[227493] = "alarm",

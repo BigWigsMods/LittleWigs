@@ -21,6 +21,7 @@ function mod:GetOptions()
 		228852, -- Shared Suffering
 		227365, -- Spectral Charge
 		228895, -- Enrage
+		227363, -- Mighty Stomp
 	}
 end
 
@@ -32,6 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "MortalStrikeRemoved", 227493)
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Enrage", 228895)
+	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
 end
 
 function mod:OnEngage()
@@ -87,4 +89,9 @@ end
 function mod:Enrage(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:MightyStomp(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
 end
