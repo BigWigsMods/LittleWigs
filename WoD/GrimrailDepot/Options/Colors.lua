@@ -15,7 +15,7 @@ BigWigs:AddColors("Nitrogg Thundertower", {
 	[160965] = {"blue","green","orange"},
 	[161073] = {"blue","green","yellow"},
 	[163550] = "yellow",
-	[166570] = "blue",
+	[166570] = {"blue","orange"},
 	["stages"] = "cyan",
 })
 

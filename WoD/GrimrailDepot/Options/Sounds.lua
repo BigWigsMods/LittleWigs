@@ -14,7 +14,7 @@ BigWigs:AddSounds("Nitrogg Thundertower", {
 	[160681] = "alert",
 	[160965] = "info",
 	[163550] = "alert",
-	[166570] = "underyou",
+	[166570] = {"alert","underyou"},
 	["stages"] = "long",
 })
 
