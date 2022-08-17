@@ -50,8 +50,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
 	self:Log("SPELL_AURA_REMOVED", "SuppressiveFireRemoved", 160681)
 	self:Log("SPELL_CAST_START", "Reloading", 160680)
-	self:Log("SPELL_AURA_APPLIED", "SlagBlast", 166570)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlast", 166570)
+	self:Log("SPELL_CAST_START", "SlagBlast", 166565)
+	self:Log("SPELL_AURA_APPLIED", "SlagBlastApplied", 166570)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlastApplied", 166570)
 
 	-- Adds
 	self:Log("SPELL_AURA_APPLIED", "PickedUpMortarShells", 160702)
@@ -124,6 +125,12 @@ do
 end
 
 function mod:SlagBlast(args)
+	self:Message(166570, "orange")
+	self:PlaySound(166570, "alert")
+	self:Bar(166570, 25)
+end
+
+function mod:SlagBlastApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId, "underyou")
 		self:PlaySound(args.spellId, "underyou")
