@@ -31,6 +31,7 @@ function mod:OnBossEnable()
 	self:Death("SkullocDeath", 83612)
 
 	-- Koramar
+	-- TODO bladestorm? shattering blade? berserker leap?
 
 	-- Zoggosh
 	self:Log("SPELL_AURA_APPLIED", "RapidFire", 168398)
