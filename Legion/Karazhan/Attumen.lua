@@ -97,4 +97,5 @@ end
 function mod:MightyStomp(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 20.6) -- TODO needs confirm
 end
