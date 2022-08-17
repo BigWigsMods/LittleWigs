@@ -31,6 +31,7 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
+		163550, -- Blackrock Mortar
 		161073, -- Blackrock Grenade
 		160965, -- Blackrock Mortar Shells
 		{160681, "SAY", "ICON", "FLASH"}, -- Suppressive Fire
@@ -43,6 +44,7 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2") -- Nitrogg becomes boss2 after cannon activates, cannon doesn't fire this event
 
 	-- Nitrogg Thundertower
+	self:Log("SPELL_CAST_START", "BlackrockMortar", 163550)
 
 	-- Assault Cannon
 	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
@@ -62,6 +64,7 @@ end
 function mod:OnEngage()
 	self:Message("stages", "cyan", CL.stage:format(1))
 	self:SetStage(1)
+	self:Bar(163550, 10.1) -- Blackrock Mortar
 end
 
 --------------------------------------------------------------------------------
@@ -79,7 +82,16 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)))
 		self:PlaySound("stages", "long")
+		self:StopBar(163550) -- Blackrock Mortar
 	end
+end
+
+-- Nitrogg Thundertower
+
+function mod:BlackrockMortar(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 12.2)
 end
 
 -- Assault Cannon
