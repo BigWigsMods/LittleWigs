@@ -6,7 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Attumen the Huntsman", 1651, 1835)
 if not mod then return end
 mod:RegisterEnableMob(114262, 114264) -- Attumen, Midnight
-mod.engageId = 1960
+mod:SetEncounterID(1960)
+--mod:SetRespawnTime(30) TODO unknown respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -34,7 +35,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(227404, 5)
+	self:CDBar(227404, 5) -- Intangible Presence
 end
 
 --------------------------------------------------------------------------------
@@ -43,20 +44,29 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227404 then -- Intangible Presence
-		self:MessageOld(spellId, "yellow", self:Dispeller("magic") and "warning")
+		self:Message(spellId, "yellow")
+		if self:Dispeller("magic") then
+			self:PlaySound(spellId, "warning")
+		end
 		self:Bar(spellId, 30)
 	elseif spellId == 227338 then -- Riderless
-		self:MessageOld("stages", "cyan", "long", spellId, false)
+		self:Message("stages", "cyan", spellId)
+		self:PlaySound("stages", "long")
 		self:StopBar(227404) -- Intangible Presence
 	elseif spellId == 227584 then -- Mounted
-		self:MessageOld("stages", "cyan", "long", spellId, false)
+		self:Message("stages", "cyan", spellId)
+		self:PlaySound("stages", "long")
 	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
-		self:MessageOld(227365, "yellow", "alert")
+		self:Message(227365, "yellow")
+		self:PlaySound(227365, "alert")
 	end
 end
 
 function mod:MortalStrike(args)
-	self:MessageOld(args.spellId, "red", (self:Tank() or self:Healer()) and "alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	if self:Tank() or self:Healer() then
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 function mod:MortalStrikeApplied(args)
@@ -70,9 +80,11 @@ function mod:MortalStrikeRemoved(args)
 end
 
 function mod:SharedSuffering(args)
-	self:MessageOld(args.spellId, "orange", "info")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:Enrage(args)
-	self:MessageOld(args.spellId, "red", "long")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
 end
