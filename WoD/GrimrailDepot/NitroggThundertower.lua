@@ -4,7 +4,13 @@
 
 local mod, CL = BigWigs:NewBoss("Nitrogg Thundertower", 1208, 1163)
 if not mod then return end
-mod:RegisterEnableMob(79545)
+mod:RegisterEnableMob(
+	79545,  -- Nitrogg Thundertower
+	79548,  -- Assault Cannon
+	129822, -- Grom'kar Gunner
+	129824, -- Grom'kar Boomer
+	129823  -- Grom'kar Grenadier
+)
 mod:SetEncounterID(1732)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
