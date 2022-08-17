@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(81297, 81305) -- Dreadfang, Fleshrender Nok'gar
 mod:SetEncounterID(1749)
 mod:SetRespawnTime(33)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -41,7 +42,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "cyan", CL.stage:format(1))
+	self:Message("stages", "cyan", CL.stage:format(1), false)
+	self:SetStage(1)
 end
 
 --------------------------------------------------------------------------------
@@ -54,14 +56,15 @@ function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "yellow", CL.soon:format(CL.stage:format(2)))
+		self:Message("stages", "yellow", CL.soon:format(CL.stage:format(2)), false)
 		self:PlaySound("stages", "info")
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 175755 then -- Dismount
-		self:Message("stages", "cyan", CL.stage:format(2))
+		self:Message("stages", "cyan", CL.stage:format(2), false)
+		self:SetStage(2)
 		self:PlaySound("stages", "long")
 		self:CDBar(164426, 16) -- Reckless Provocation
 	end
