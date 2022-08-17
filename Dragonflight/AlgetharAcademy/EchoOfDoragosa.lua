@@ -3,9 +3,9 @@ if not IsTestBuild() then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Echo of Headteacher Doragosa", 2526, 2513)
+local mod, CL = BigWigs:NewBoss("Echo of Doragosa", 2526, 2514)
 if not mod then return end
-mod:RegisterEnableMob(189670) -- Echo of Headteacher Doragosa
+mod:RegisterEnableMob(189670) -- Echo of Doragosa
 mod:SetEncounterID(2565)
 mod:SetRespawnTime(30)
 
