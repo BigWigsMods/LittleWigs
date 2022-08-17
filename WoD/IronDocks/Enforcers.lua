@@ -25,6 +25,7 @@ function mod:GetOptions()
 	return {
 		163689, -- Sanguine Sphere
 		163705, -- Abrupt Restoration
+		{163740, "DISPEL"}, -- Tainted Blood
 	}
 end
 
@@ -35,6 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SanguineSphereRemoved", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
 	self:Death("AhriokDeath", 80816)
+	self:Log("SPELL_AURA_APPLIED", "TaintedBloodApplied", 163740)
 end
 
 function mod:OnEngage()
@@ -50,7 +52,7 @@ function mod:SanguineSphere(args)
 	self:TargetMessage(args.spellId, sphereOnTarget and "red" or "yellow", args.destName)
 	self:PlaySound(args.spellId, sphereOnTarget and "warning" or "alert")
 	self:TargetBar(args.spellId, 15, args.destName)
-	self:Bar(args.spellId, 26.7)
+	self:Bar(args.spellId, 26.7) -- TODO confirm timer
 end
 
 do
@@ -80,4 +82,11 @@ end
 
 function mod:AhriokDeath()
 	self:StopBar(163689) -- Sanguine Sphere
+end
+
+function mod:TaintedBloodApplied(args)
+	if self:Dispeller("disease", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
