@@ -16,7 +16,7 @@ mod:SetStage(1)
 function mod:GetOptions()
 	return {
 		"stages",
-		227404, -- Intangible Presence
+		{227404, "SAY"}, -- Intangible Presence
 		227493, -- Mortal Strike
 		228852, -- Shared Suffering
 		227365, -- Spectral Charge
@@ -34,6 +34,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 228895)
 	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
+	self:RegisterEvent("VEHICLE_ANGLE_UPDATE", "CheckIntangiblePresence")
 end
 
 function mod:OnEngage()
@@ -45,25 +46,41 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 227404 then -- Intangible Presence
-		self:Message(spellId, "yellow")
-		if self:Dispeller("magic") then
-			self:PlaySound(spellId, "warning")
+do
+	local lastIntangiblePresenceApplied = nil
+
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+		if spellId == 227404 then -- Intangible Presence
+			self:Message(spellId, "yellow")
+			if self:Dispeller("magic") then
+				self:PlaySound(spellId, "warning")
+			end
+			self:Bar(spellId, 30)
+			lastIntangiblePresenceApplied = GetTime()
+		elseif spellId == 227338 then -- Riderless
+			self:Message("stages", "cyan", spellId)
+			self:PlaySound("stages", "long")
+			self:StopBar(227404) -- Intangible Presence
+			self:StopBar(227363) -- Mighty Stomp
+			self:SetStage(2)
+		elseif spellId == 227584 then -- Mounted
+			self:Message("stages", "cyan", spellId)
+			self:PlaySound("stages", "long")
+			self:SetStage(1)
+		elseif spellId == 227601 then -- Intermission, starts Spectral Charges
+			self:Message(227365, "yellow")
+			self:PlaySound(227365, "alert")
 		end
-		self:Bar(spellId, 30)
-	elseif spellId == 227338 then -- Riderless
-		self:Message("stages", "cyan", spellId)
-		self:PlaySound("stages", "long")
-		self:StopBar(227404) -- Intangible Presence
-		self:SetStage(2)
-	elseif spellId == 227584 then -- Mounted
-		self:Message("stages", "cyan", spellId)
-		self:PlaySound("stages", "long")
-		self:SetStage(1)
-	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
-		self:Message(227365, "yellow")
-		self:PlaySound(227365, "alert")
+	end
+
+	function mod:CheckIntangiblePresence()
+		if not lastIntangiblePresenceApplied then
+			return
+		end
+		if GetTime() - lastIntangiblePresenceApplied < 1 then
+			self:Yell(227404, CL.on:format(self:SpellName(227404), UnitName("player"))) -- Intangible Presence
+			lastIntangiblePresenceApplied = nil
+		end
 	end
 end
 
