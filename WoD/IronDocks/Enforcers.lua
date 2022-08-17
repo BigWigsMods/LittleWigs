@@ -46,8 +46,9 @@ end
 --
 
 function mod:SanguineSphere(args)
-	self:TargetMessage(args.spellId, UnitIsUnit("target", args.destName) and "red" or "yellow", args.destName)
-	self:PlaySound(args.spellId, UnitIsUnit("target", args.destName) and "warning" or "alert")
+	local sphereOnTarget = UnitIsUnit("target", args.destName)
+	self:TargetMessage(args.spellId, sphereOnTarget and "red" or "yellow", args.destName)
+	self:PlaySound(args.spellId, sphereOnTarget and "warning" or "alert")
 	self:TargetBar(args.spellId, 15, args.destName)
 	self:Bar(args.spellId, 26.7)
 end
