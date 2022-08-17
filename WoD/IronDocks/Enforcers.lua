@@ -39,6 +39,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TaintedBloodApplied", 163740)
 	self:Death("AhriokDeath", 80816)
 	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
+
+	-- big boom?
+	-- lava sweep?
+	-- TODO blood bolt (too spammy?)
 end
 
 function mod:OnEngage()
