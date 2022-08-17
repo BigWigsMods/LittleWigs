@@ -26,7 +26,8 @@ end
 
 function mod:GetOptions()
 	return {
-		"sphere", -- Sanguine Sphere
+		163689, -- Sanguine Sphere
+		163705, -- Abrupt Restoration
 	}
 end
 
@@ -43,25 +44,31 @@ end
 --
 
 function mod:SanguineSphere(args)
-	local bubble = self:SpellName(119924) -- 119924 = "Bubble"
-	self:TargetMessageOld("sphere", args.destName, "yellow", UnitIsUnit("target", args.destName) and "warning", bubble, args.spellId)
-	self:TargetBar("sphere", 15, args.destName, bubble, args.spellId)
+	self:TargetMessage(args.spellId, UnitIsUnit("target", args.destName) and "red" or "yellow", args.destName)
+	self:PlaySound(args.spellId, UnitIsUnit("target", args.destName) and "warning" or "alert")
+	self:TargetBar(args.spellId, 15, args.destName)
 end
 
 do
+	local function alertSanguineSphereExpired(spellName)
+		mod:Message(163689, "green", CL.over:format(spellName))
+		mod:PlaySound(163689, "info")
+	end
+
 	local scheduled = nil
 	function mod:SanguineSphereRemoved(args)
-		scheduled = self:ScheduleTimer("MessageOld", 0.3, "sphere", "green", "info", CL.over:format(self:SpellName(119924)), args.spellId)
+		scheduled = self:ScheduleTimer(alertSanguineSphereExpired, 0.3, args.spellName)
 	end
 
 	local prev = 0
 	function mod:AbruptRestoration(args)
 		self:CancelTimer(scheduled)
-		self:StopBar(119924, args.destName) -- Bubble target bar
+		self:StopBar(163689, args.destName) -- Sanguine Sphere
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:Message("sphere", "yellow", L.sphere_fail_message, args.spellId)
+			self:Message(args.spellId, "yellow", L.sphere_fail_message)
+			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
