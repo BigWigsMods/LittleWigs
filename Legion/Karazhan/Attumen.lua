@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MortalStrikeApplied", 227493)
 	self:Log("SPELL_AURA_REMOVED", "MortalStrikeRemoved", 227493)
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "Enrage", 228895)
+	self:Log("SPELL_AURA_APPLIED", "Enrage", 228895)
 	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
 end
 
