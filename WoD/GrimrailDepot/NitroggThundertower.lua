@@ -39,20 +39,24 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Stages
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2") -- Nitrogg becomes boss2 after cannon activates, cannon doesn't fire this event
 
+	-- Nitrogg Thundertower
+
+	-- Assault Cannon
 	self:Log("SPELL_CAST_SUCCESS", "SuppressiveFire", 160681) -- APPLIED fires for cannon and player, use SUCCESS which happens at the exact same time
 	self:Log("SPELL_AURA_REMOVED", "SuppressiveFireRemoved", 160681)
 	self:Log("SPELL_CAST_START", "Reloading", 160680)
+	self:Log("SPELL_AURA_APPLIED", "SlagBlast", 166570)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlast", 166570)
 
+	-- Adds
 	self:Log("SPELL_AURA_APPLIED", "PickedUpMortarShells", 160702)
 	self:Death("EngineerDies", 79720) -- Blackrock Artillery Engineer
 
 	self:Log("SPELL_AURA_APPLIED", "PickedUpGrenades", 160703)
 	self:Death("GrenadierDies", 79739) -- Blackrock Grenadier
-
-	self:Log("SPELL_AURA_APPLIED", "SlagBlast", 166570)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlast", 166570)
 end
 
 function mod:OnEngage()
@@ -63,6 +67,8 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Stages
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if UnitCanAttack("player", unit) then
@@ -75,6 +81,8 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 		self:PlaySound("stages", "long")
 	end
 end
+
+-- Assault Cannon
 
 function mod:SuppressiveFire(args)
 	if self:Me(args.destGUID) then
@@ -103,6 +111,15 @@ do
 	end
 end
 
+function mod:SlagBlast(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou")
+	end
+end
+
+-- Adds
+
 function mod:EngineerDies()
 	self:Message(160965, "orange", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
 	self:PlaySound(160965, "info")
@@ -118,11 +135,4 @@ end
 
 function mod:PickedUpGrenades(args)
 	self:TargetMessage(161073, "green", args.destName)
-end
-
-function mod:SlagBlast(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou")
-	end
 end
