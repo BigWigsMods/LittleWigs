@@ -47,12 +47,14 @@ end
 -- Skulloc
 
 function mod:GronnSmash(args)
-	self:MessageOld(args.spellId, "orange", "warning")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 60)
 end
 
 function mod:CannonBarrage(args)
-	self:MessageOld(args.spellId, "yellow", "long")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	self:Flash(args.spellId)
 end
 
