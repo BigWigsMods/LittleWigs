@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -8,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(114262, 114264) -- Attumen, Midnight
 mod:SetEncounterID(1960)
 --mod:SetRespawnTime(30) TODO unknown respawn
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -38,6 +38,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(227404, 5) -- Intangible Presence
+	self:SetStage(1)
 end
 
 --------------------------------------------------------------------------------
@@ -55,9 +56,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message("stages", "cyan", spellId)
 		self:PlaySound("stages", "long")
 		self:StopBar(227404) -- Intangible Presence
+		self:SetStage(2)
 	elseif spellId == 227584 then -- Mounted
 		self:Message("stages", "cyan", spellId)
 		self:PlaySound("stages", "long")
+		self:SetStage(1)
 	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
 		self:Message(227365, "yellow")
 		self:PlaySound(227365, "alert")
