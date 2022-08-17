@@ -14,9 +14,6 @@ mod:SetRespawnTime(33)
 
 local L = mod:GetLocale()
 if L then
-	L.sphere = "{-10450} ({119924})" -- Sanguine Sphere (Bubble)
-	L.sphere_desc = -10450
-	L.sphere_icon = 163689
 	L.sphere_fail_message = "Bubble was removed - They're all healing :("
 end
 
