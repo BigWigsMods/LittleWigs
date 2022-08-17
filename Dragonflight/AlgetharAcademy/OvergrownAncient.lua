@@ -3,9 +3,9 @@ if not IsTestBuild() then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Accidental Amalgamation", 2526, 2512)
+local mod, CL = BigWigs:NewBoss("Overgrown Ancient", 2526, 2512)
 if not mod then return end
-mod:RegisterEnableMob(186951) -- Accidental Amalgamation
+mod:RegisterEnableMob(186951) -- Overgrown Ancient
 mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
 

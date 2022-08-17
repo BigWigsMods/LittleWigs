@@ -2,7 +2,7 @@
 BigWigs:AddSounds("Vexamus", {
 })
 
-BigWigs:AddSounds("Accidental Amalgamation", {
+BigWigs:AddSounds("Overgrown Ancient", {
 })
 
 BigWigs:AddSounds("Crawth", {

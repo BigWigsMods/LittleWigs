@@ -2,7 +2,7 @@
 BigWigs:AddColors("Vexamus", {
 })
 
-BigWigs:AddColors("Accidental Amalgamation", {
+BigWigs:AddColors("Overgrown Ancient", {
 })
 
 BigWigs:AddColors("Crawth", {
