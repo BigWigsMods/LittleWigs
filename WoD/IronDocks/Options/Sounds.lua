@@ -15,6 +15,7 @@ BigWigs:AddSounds("Oshir", {
 
 BigWigs:AddSounds("Skulloc", {
 	[168227] = "warning",
+	[168348] = {"alert","warning"},
 	[168929] = "long",
 })
 

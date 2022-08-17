@@ -20,6 +20,7 @@ function mod:GetOptions()
 	}, {
 		[168227] = -10747, -- Skulloc
 		--[168227] = -10425, -- Koramar
+		[168348] = -10429, -- Zoggosh
 	}
 end
 
@@ -32,6 +33,7 @@ function mod:OnBossEnable()
 	-- Koramar
 
 	-- Zoggosh
+	self:Log("SPELL_AURA_APPLIED", "RapidFire", 168398)
 end
 
 function mod:OnEngage()
@@ -59,3 +61,9 @@ function mod:SkullocDeath()
 end
 
 -- Zoggosh
+
+function mod:RapidFire(args)
+	local isOnMe = self:Me(args.destGUID)
+	self:TargetMessage(168348, "red", args.destName)
+	self:PlaySound(168348, isOnMe and "warning" or "alert")
+end
