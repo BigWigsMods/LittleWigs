@@ -79,6 +79,7 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 		self:SetStage(3)
 		self:Message("stages", "cyan", CL.stage:format(3))
 		self:PlaySound("stages", "long")
+		self:StopBar(166570) -- Slag Blast
 	else
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)))
