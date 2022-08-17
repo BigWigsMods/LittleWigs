@@ -54,14 +54,15 @@ function mod:SanguineSphere(args)
 end
 
 do
-	local function alertSanguineSphereExpired(spellName)
-		mod:Message(163689, "green", CL.over:format(spellName))
-		mod:PlaySound(163689, "info")
-	end
-
 	local scheduled = nil
-	function mod:SanguineSphereRemoved(args)
-		scheduled = self:ScheduleTimer(alertSanguineSphereExpired, 0.3, args.spellName)
+	do
+		local function alertSanguineSphereExpired(spellName)
+			mod:Message(163689, "green", CL.over:format(spellName))
+			mod:PlaySound(163689, "info")
+		end
+		function mod:SanguineSphereRemoved(args)
+			scheduled = self:ScheduleTimer(alertSanguineSphereExpired, 0.3, args.spellName)
+		end
 	end
 
 	local prev = 0
