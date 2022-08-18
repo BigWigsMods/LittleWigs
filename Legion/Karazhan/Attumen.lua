@@ -73,6 +73,7 @@ do
 		elseif spellId == 227338 then -- Riderless
 			self:Message("stages", "cyan", spellId, false)
 			self:PlaySound("stages", "long")
+			self:CDBar(228852, 18.2) -- Shared Suffering
 			self:StopBar(227404) -- Intangible Presence
 			self:StopBar(227363) -- Mighty Stomp
 			self:SetStage(2)
