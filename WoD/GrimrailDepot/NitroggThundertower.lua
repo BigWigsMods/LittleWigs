@@ -32,10 +32,14 @@ function mod:GetOptions()
 	return {
 		"stages",
 		163550, -- Blackrock Mortar
-		161073, -- Blackrock Grenade
-		160965, -- Blackrock Mortar Shells
 		{160681, "SAY", "ICON", "FLASH"}, -- Suppressive Fire
 		166570, -- Slag Blast
+		161073, -- Blackrock Grenade
+		160965, -- Blackrock Mortar Shells
+	}, {
+		[163550] = -10620,
+		[160681] = -10332,
+		[161073] = -9713,
 	}
 end
 
