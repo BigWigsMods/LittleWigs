@@ -39,6 +39,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(227404, 5) -- Intangible Presence
+	self:CDBar(227363, 15.4) -- Mighty Stomp
 	self:SetStage(1)
 end
 
@@ -114,5 +115,5 @@ end
 function mod:MightyStomp(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 20.6) -- TODO needs confirm
+	self:CDBar(args.spellId, 18.2)
 end
