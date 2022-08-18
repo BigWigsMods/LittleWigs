@@ -92,7 +92,7 @@ do
 			return
 		end
 		if GetTime() - lastIntangiblePresenceApplied < 1 then
-			self:Yell(227404, L.ghost) -- Intangible Presence
+			self:Say(227404, L.ghost) -- Intangible Presence
 			lastIntangiblePresenceApplied = nil
 		end
 	end
