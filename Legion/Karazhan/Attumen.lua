@@ -50,7 +50,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(227404, 5) -- Intangible Presence
+	self:CDBar(227404, 5.1) -- Intangible Presence
 	self:CDBar(227363, 15.4) -- Mighty Stomp
 	self:SetStage(1)
 end
