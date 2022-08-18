@@ -5,7 +5,7 @@ if not IsTestBuild() then return end
 
 local mod, CL = BigWigs:NewBoss("Echo of Doragosa", 2526, 2514)
 if not mod then return end
-mod:RegisterEnableMob(189670) -- Echo of Doragosa
+mod:RegisterEnableMob(190609) -- Echo of Doragosa
 mod:SetEncounterID(2565)
 mod:SetRespawnTime(30)
 
