@@ -25,12 +25,15 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
+		228895, -- Enrage
 		{227404, "SAY"}, -- Intangible Presence
+		227363, -- Mighty Stomp
+		227365, -- Spectral Charge
 		227493, -- Mortal Strike
 		228852, -- Shared Suffering
-		227365, -- Spectral Charge
-		228895, -- Enrage
-		227363, -- Mighty Stomp
+	}, {
+		[227404] = -14300,
+		[227493] = -14304,
 	}
 end
 
