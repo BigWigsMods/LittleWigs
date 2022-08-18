@@ -616,7 +616,11 @@ end
 function mod:PeriodicDamage(args)
 	if self:Me(args.destGUID) then
 		if isThrottled(args.spellId, 1.5) then return end
-		self:PersonalMessage(args.spellId, args.spellId == 270503 and "near" or "underyou")
+		if args.spellId == 270503 then
+			self:PersonalMessage(args.spellId, "near")
+		else
+			self:PersonalMessage(args.spellId, "underyou")
+		end
 		self:PlaySound(args.spellId, "alert")
 	end
 end
