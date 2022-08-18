@@ -22,6 +22,10 @@ local englishGhost = "Ghost on "..mod:UnitName("player") -- CL.on:format(L.ghost
 local L = mod:GetLocale()
 if L then
 	L.ghost = "Ghost"
+
+	L.ghost_helper = "Intangible Presence Helper"
+	L.ghost_helper_desc = "Attempts to detect if the real Intangible Presence debuff is on you. If detected, your party members will be notified in chat."
+	L.ghost_helper_icon = 227404
 end
 
 --------------------------------------------------------------------------------
@@ -33,6 +37,7 @@ function mod:GetOptions()
 		"stages",
 		228895, -- Enrage
 		227404, -- Intangible Presence
+		"ghost_helper", -- Intangible Presence ghost detection
 		227363, -- Mighty Stomp
 		227365, -- Spectral Charge
 		227493, -- Mortal Strike
@@ -107,7 +112,7 @@ do
 			return
 		end
 		if GetTime() - lastIntangiblePresenceApplied < 1 then
-			if self:GetOption(227404) > 0 then -- Intangible Presence
+			if self:GetOption("ghost_helper") > 0 then
 				local localizedGhost = CL.on:format(L.ghost, self:UnitName("player"))
 				sendChatMessage(localizedGhost, englishGhost ~= localizedGhost and englishGhost)
 			end
@@ -119,7 +124,7 @@ end
 
 function mod:BigWigs_BossComm(_, msg, _, sender)
 	if msg == "ghost" and sender then
-		self:TargetMessage(227404, "yellow", sender, L.ghost) -- Intangible Presence
+		self:TargetMessage("ghost_helper", "yellow", sender, L.ghost, L.ghost_helper_icon)
 	end
 end
 
