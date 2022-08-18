@@ -68,13 +68,13 @@ do
 			self:Bar(spellId, 30)
 			lastIntangiblePresenceApplied = GetTime()
 		elseif spellId == 227338 then -- Riderless
-			self:Message("stages", "cyan", spellId)
+			self:Message("stages", "cyan", spellId, false)
 			self:PlaySound("stages", "long")
 			self:StopBar(227404) -- Intangible Presence
 			self:StopBar(227363) -- Mighty Stomp
 			self:SetStage(2)
 		elseif spellId == 227584 then -- Mounted
-			self:Message("stages", "cyan", spellId)
+			self:Message("stages", "cyan", spellId, false)
 			self:PlaySound("stages", "long")
 			self:SetStage(1)
 		elseif spellId == 227601 then -- Intermission, starts Spectral Charges
