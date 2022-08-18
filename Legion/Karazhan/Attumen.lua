@@ -13,7 +13,7 @@ mod:SetStage(1)
 -- Locals
 --
 
-local englishGhost = "Ghost on "..UnitName("player") -- CL.on:format(L.ghost, UnitName("player"))
+local englishGhost = "Ghost on "..mod:UnitName("player") -- CL.on:format(L.ghost, mod:UnitName("player"))
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -108,7 +108,7 @@ do
 		end
 		if GetTime() - lastIntangiblePresenceApplied < 1 then
 			if self:GetOption(227404) > 0 then -- Intangible Presence
-				local localizedGhost = CL.on:format(L.ghost, UnitName("player"))
+				local localizedGhost = CL.on:format(L.ghost, self:UnitName("player"))
 				sendChatMessage(localizedGhost, englishGhost ~= localizedGhost and englishGhost)
 			end
 			self:Sync("ghost")
