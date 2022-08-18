@@ -10,6 +10,12 @@ mod:SetRespawnTime(15)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local englishGhost = "Ghost on "..UnitName("player") -- CL.on:format(L.ghost, UnitName("player"))
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -26,7 +32,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		228895, -- Enrage
-		{227404, "SAY"}, -- Intangible Presence
+		227404, -- Intangible Presence
 		227363, -- Mighty Stomp
 		227365, -- Spectral Charge
 		227493, -- Mortal Strike
@@ -47,6 +53,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 228895)
 	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
 	self:RegisterEvent("VEHICLE_ANGLE_UPDATE", "CheckIntangiblePresence")
+	self:RegisterMessage("BigWigs_BossComm")
 end
 
 function mod:OnEngage()
@@ -59,6 +66,12 @@ end
 -- Event Handlers
 --
 
+local function sendChatMessage(msg, english)
+	if IsInGroup() then
+		BigWigsLoader.SendChatMessage(english and ("[LittleWigs] %s / %s"):format(msg, english) or ("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
+	end
+end
+
 do
 	local lastIntangiblePresenceApplied = nil
 
@@ -67,6 +80,8 @@ do
 			self:Message(spellId, "yellow")
 			if self:Dispeller("magic") then
 				self:PlaySound(spellId, "warning")
+			else
+				self:PlaySound(spellId, "alert")
 			end
 			self:Bar(spellId, 30)
 			lastIntangiblePresenceApplied = GetTime()
@@ -92,9 +107,19 @@ do
 			return
 		end
 		if GetTime() - lastIntangiblePresenceApplied < 1 then
-			self:Say(227404, L.ghost) -- Intangible Presence
+			if self:GetOption(227404) > 0 then -- Intangible Presence
+				local localizedGhost = CL.on:format(L.ghost, UnitName("player"))
+				sendChatMessage(localizedGhost, englishGhost ~= localizedGhost and englishGhost)
+			end
+			self:Sync("ghost")
 			lastIntangiblePresenceApplied = nil
 		end
+	end
+end
+
+function mod:BigWigs_BossComm(_, msg, _, sender)
+	if msg == "ghost" and sender then
+		self:TargetMessage(227404, "yellow", sender, L.ghost) -- Intangible Presence
 	end
 end
 

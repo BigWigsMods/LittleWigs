@@ -25,5 +25,5 @@ end
 
 L = BigWigs:NewBossLocale("Attumen the Huntsman", "koKR")
 if L then
-	--L.ghost = "Ghost"
+	L.ghost = "유령"
 end
