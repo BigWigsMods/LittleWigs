@@ -103,9 +103,6 @@ end
 -- Assault Cannon
 
 function mod:SuppressiveFire(args)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-	end
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -122,6 +119,7 @@ do
 		self:PrimaryIcon(160681, player)
 		if self:Me(guid) then
 			self:Flash(160681)
+			self:Say(160681)
 		end
 	end
 	function mod:Reloading(args)
