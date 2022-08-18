@@ -15,7 +15,7 @@ mod:SetStage(1)
 
 local L = mod:GetLocale()
 if L then
-	L.ghostOnMe = "Ghost on me!"
+	L.ghost = "Ghost"
 end
 
 --------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ do
 			return
 		end
 		if GetTime() - lastIntangiblePresenceApplied < 1 then
-			self:Yell(L.ghostOnMe)
+			self:Yell(227404, L.ghost) -- Intangible Presence
 			lastIntangiblePresenceApplied = nil
 		end
 	end
