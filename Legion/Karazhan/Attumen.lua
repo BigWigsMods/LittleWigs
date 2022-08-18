@@ -100,9 +100,7 @@ end
 
 function mod:MortalStrike(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	if self:Tank() or self:Healer() then
-		self:PlaySound(args.spellId, "alarm")
-	end
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:MortalStrikeApplied(args)
