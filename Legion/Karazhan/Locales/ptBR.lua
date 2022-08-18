@@ -22,3 +22,8 @@ L = BigWigs:NewBossLocale("Nightbane", "ptBR")
 if L then
 	L.name = "Nocturno"
 end
+
+L = BigWigs:NewBossLocale("Attumen the Huntsman", "ptBR")
+if L then
+	--L.ghostOnMe = "Ghost on me!"
+end

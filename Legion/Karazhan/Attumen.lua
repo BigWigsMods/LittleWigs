@@ -10,6 +10,15 @@ mod:SetRespawnTime(15)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.ghostOnMe = "Ghost on me!"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -79,7 +88,7 @@ do
 			return
 		end
 		if GetTime() - lastIntangiblePresenceApplied < 1 then
-			self:Yell(227404, CL.on:format(self:SpellName(227404), UnitName("player"))) -- Intangible Presence
+			self:Yell(L.ghostOnMe)
 			lastIntangiblePresenceApplied = nil
 		end
 	end
