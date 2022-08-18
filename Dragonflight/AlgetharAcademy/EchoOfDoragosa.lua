@@ -3,10 +3,10 @@ if not IsTestBuild() then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Accidental Amalgamation", 2526, 2512)
+local mod, CL = BigWigs:NewBoss("Echo of Doragosa", 2526, 2514)
 if not mod then return end
-mod:RegisterEnableMob(186951) -- Accidental Amalgamation
-mod:SetEncounterID(2563)
+mod:RegisterEnableMob(190609) -- Echo of Doragosa
+mod:SetEncounterID(2565)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
