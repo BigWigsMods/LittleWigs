@@ -83,7 +83,7 @@ end
 -- Fleshrender Nok'gar
 
 function mod:RecklessProvocationInc(args)
-	self:CDBar(args.spellId, 42.6)
+	self:Bar(args.spellId, 42.2)
 	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	self:Flash(args.spellId)
