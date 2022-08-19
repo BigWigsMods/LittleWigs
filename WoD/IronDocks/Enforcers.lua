@@ -9,6 +9,12 @@ mod:SetEncounterID(1748)
 mod:SetRespawnTime(33)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local firstBombSquadSent = false
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -60,9 +66,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	firstBombSquadSent = false
 	self:CDBar(163689, 28) -- Sanguine Sphere
 	self:Bar(163665, 4.9) -- Flaming Slash
+	self:Bar(163390, 10.9) -- Ogre Traps
 	self:Bar(164956, 16.6) -- Lava Swipe
+	self:Bar(163376, 24.3) -- Malfunctioning Jumper Cables 9000-XL
 end
 
 --------------------------------------------------------------------------------
@@ -77,7 +86,8 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	elseif spellId == 163362 then -- Bombsquad
 		self:Message(spellId, "red")
 		self:PlaySound(spellId, "alert")
-		self:Bar(spellId, 29.2)
+		self:Bar(spellId, firstBombSquadSent and 29.2 or 15.8)
+		firstBombSquadSent = true
 	end
 end
 
