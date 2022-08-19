@@ -36,6 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 
+	self:Log("SPELL_CAST_SUCCESS", "SavageMauling", 164837)
 	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 164837)
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
 
@@ -71,6 +72,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:PlaySound("stages", "long")
 		self:CDBar(164426, 16) -- Reckless Provocation
 		self:Bar(164632, 14.6) -- Burning Arrows
+		self:CDBar(164837, 10) -- Savage Mauling
 	elseif spellId == 164635 then -- Burning Arrows
 		self:Message(164632, "red")
 		self:PlaySound(164632, "long")
@@ -115,6 +117,10 @@ function mod:BloodlettingHowl(args)
 	self:Bar(args.spellId, 25.5)
 end
 
+function mod:SavageMauling(args)
+	self:CDBar(args.spellId, 10)
+end
+
 function mod:SavageMaulingApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert")
@@ -130,4 +136,5 @@ end
 function mod:DreadfangDeath()
 	self:StopBar(164835) -- Bloodletting Howl
 	self:StopBar(164734) -- Shredding Swipes
+	self:StopBar(164837) -- Savage Mauling
 end
