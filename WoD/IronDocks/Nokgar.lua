@@ -44,6 +44,7 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
+	self:Bar(164632, 15.9) -- Burning Arrows
 end
 
 --------------------------------------------------------------------------------
@@ -67,6 +68,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:SetStage(2)
 		self:PlaySound("stages", "long")
 		self:CDBar(164426, 16) -- Reckless Provocation
+		self:Bar(164632, 14.6) -- Burning Arrows
+	elseif spellId == 164635 then -- Burning Arrows
+		self:Message(164632, "red")
+		self:PlaySound(164632, "long")
+		self:Bar(164632, self:GetStage() == 1 and 30.4 or 40.1)
 	elseif spellId == 164730 then -- Shredding Swipes
 		self:Message(164734, "yellow")
 		self:PlaySound(164734, "alarm")
@@ -75,14 +81,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 -- Fleshrender Nok'gar
-
-function mod:BurningArrows(args)
-	if self:Me(args.destGUID) then
-		-- TODO this conflicts with trash module right?
-		self:Message(args.spellId, "blue", CL.you:format(args.spellName))
-		self:PlaySound(args.spellId, "alarm")
-	end
-end
 
 function mod:RecklessProvocationInc(args)
 	self:CDBar(args.spellId, 42.6)
