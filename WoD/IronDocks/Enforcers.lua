@@ -58,9 +58,13 @@ end
 --
 
 function mod:SanguineSphere(args)
-	local sphereOnTarget = UnitIsUnit("target", args.destName)
-	self:TargetMessage(args.spellId, sphereOnTarget and "red" or "yellow", args.destName)
-	self:PlaySound(args.spellId, sphereOnTarget and "warning" or "alert")
+	if UnitIsUnit("target", args.destGUID) then
+		self:TargetMessage(args.spellId, "red", args.destName)	
+		self:PlaySound(args.spellId, "warning")
+	else
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert")
+	end
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:Bar(args.spellId, 26.7) -- TODO confirm timer
 end
