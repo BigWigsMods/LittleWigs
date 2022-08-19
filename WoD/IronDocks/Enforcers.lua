@@ -50,7 +50,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(163689, 28) -- Sanguine Sphere
-	-- TODO when is Flaming Slash first cast?
+	self:Bar(163665, 4.9) -- Flaming Slash
 end
 
 --------------------------------------------------------------------------------
