@@ -33,6 +33,7 @@ function mod:OnBossEnable()
 
 	-- Koramar
 	self:Log("SPELL_AURA_APPLIED", "BerserkerLeap", 168965)
+	self:Death("KoramarDeath", 83613)
 
 	-- Zoggosh
 	self:Log("SPELL_AURA_APPLIED", "RapidFire", 168398)
@@ -71,6 +72,10 @@ end
 function mod:BerserkerLeap(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:KoramarDeath()
+	self:StopBar(168348) -- Rapid Fire
 end
 
 -- Zoggosh
