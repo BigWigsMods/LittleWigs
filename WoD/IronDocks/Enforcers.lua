@@ -27,6 +27,10 @@ function mod:GetOptions()
 		163705, -- Abrupt Restoration
 		{163740, "DISPEL"}, -- Tainted Blood
 		163665, -- Flaming Slash
+	}, {
+		[163689] = -10449, -- Ahri'ok Dugru
+		[163665] = -10453, -- Makogg Emberblade
+		--[?] = -10456, -- Neesa Nox
 	}
 end
 
@@ -44,6 +48,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
 	self:Death("MakoggDeath", 80805)
 
+	-- Neesa Nox
 	-- big boom?
 	-- lava sweep?
 end
