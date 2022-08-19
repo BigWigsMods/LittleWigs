@@ -61,7 +61,7 @@ function mod:OnBossEnable()
 
 	-- Neesa Nox
 	self:Log("SPELL_CAST_START", "MalfunctioningJumperCables9000XL", 163376)
-	self:Log("SPELL_CAST_START", "OgreTraps", 163390)
+	self:Log("SPELL_CAST_SUCCESS", "OgreTraps", 163390)
 	self:Death("NeesaDeath", 80808)
 end
 
@@ -69,7 +69,7 @@ function mod:OnEngage()
 	firstBombSquadSent = false
 	self:CDBar(163689, 28) -- Sanguine Sphere
 	self:Bar(163665, 4.9) -- Flaming Slash
-	self:Bar(163390, 10.9) -- Ogre Traps
+	self:Bar(163390, 12.9) -- Ogre Traps
 	self:Bar(164956, 16.6) -- Lava Swipe
 	self:Bar(163376, 24.3) -- Malfunctioning Jumper Cables 9000-XL
 end
