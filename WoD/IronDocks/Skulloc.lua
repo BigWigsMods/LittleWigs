@@ -49,8 +49,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(168227, 30) -- Gronn Smash
-	self:Bar(168965, 10.9) -- Berserker Leap
+	self:Bar(168227, 30) -- Gronn Smash
+	self:CDBar(168965, 8.4) -- Berserker Leap
 	cannonBarrageActive = false
 end
 
@@ -63,6 +63,7 @@ end
 function mod:GronnSmash(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
+	self:StopBar(168965) -- Berserker Leap
 	self:StopBar(168348) -- Rapid Fire
 	cannonBarrageActive = true
 end
@@ -105,9 +106,11 @@ end
 function mod:BerserkerLeap(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 19.5)
 end
 
 function mod:KoramarDeath()
+	self:StopBar(168965) -- Berserker Leap
 	self:StopBar(168348) -- Rapid Fire
 end
 
