@@ -29,6 +29,7 @@ function mod:GetOptions()
 		163665, -- Flaming Slash
 		164956, -- Lava Swipe
 		163376, -- Malfunctioning Jumper Cables 9000-XL
+		163390, -- Ogre Traps
 	}, {
 		[163689] = -10449, -- Ahri'ok Dugru
 		[163665] = -10453, -- Makogg Emberblade
@@ -53,6 +54,7 @@ function mod:OnBossEnable()
 
 	-- Neesa Nox
 	self:Log("SPELL_CAST_START", "MalfunctioningJumperCables9000XL", 163376)
+	self:Log("SPELL_CAST_START", "OgreTraps", 163390)
 	self:Death("NeesaDeath", 80808)
 end
 
@@ -142,6 +144,14 @@ function mod:MalfunctioningJumperCables9000XL(args)
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 29.2)
 end
+
+function mod:OgreTraps(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 29.2)
+end
+
 function mod:NeesaDeath()
 	self:StopBar(163376) -- Malfunctioning Jumper Cables 9000-XL
+	self:StopBar(163390) -- Ogre Traps
 end
