@@ -110,6 +110,7 @@ function mod:BloodlettingHowl(args)
 	else
 		self:PlaySound(args.spellId, "alert")
 	end
+	self:Bar(args.spellId, 25.5)
 end
 
 function mod:SavageMaulingApplied(args)
