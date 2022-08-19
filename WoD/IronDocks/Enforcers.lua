@@ -33,16 +33,19 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
+	-- Ahri'ok Dugru
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
 	self:Log("SPELL_AURA_REMOVED", "SanguineSphereRemoved", 163689)
 	self:Log("SPELL_AURA_APPLIED", "AbruptRestoration", 163705)
 	self:Log("SPELL_AURA_APPLIED", "TaintedBloodApplied", 163740)
 	self:Death("AhriokDeath", 80816)
+
+	-- Makogg Emberblade
 	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
+	self:Death("MakoggDeath", 80805)
 
 	-- big boom?
 	-- lava sweep?
-	-- TODO blood bolt (too spammy?)
 end
 
 function mod:OnEngage()
@@ -102,4 +105,8 @@ function mod:FlamingSlash(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 29.2)
+end
+
+function mod:MakoggDeath()
+	self:StopBar(163665) -- Flaming Slash
 end
