@@ -81,7 +81,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 164956 then -- Lava Swipe
 		self:Message(spellId, "red")
-		self:PlaySound(spellId, "alert")
+		self:PlaySound(spellId, "alarm")
 		self:Bar(spellId, 29.2)
 	elseif spellId == 163362 then -- Bombsquad
 		self:Message(spellId, "red")
