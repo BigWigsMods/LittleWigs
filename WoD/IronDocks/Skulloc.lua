@@ -16,10 +16,11 @@ function mod:GetOptions()
 	return {
 		168227, -- Gronn Smash
 		{168929, "FLASH"}, -- Cannon Barrage
+		168965, -- Berserker Leap
 		168348, -- Rapid Fire
 	}, {
 		[168227] = -10747, -- Skulloc
-		--[168227] = -10425, -- Koramar
+		[168965] = -10425, -- Koramar
 		[168348] = -10429, -- Zoggosh
 	}
 end
@@ -31,7 +32,7 @@ function mod:OnBossEnable()
 	self:Death("SkullocDeath", 83612)
 
 	-- Koramar
-	-- TODO bladestorm? shattering blade? berserker leap?
+	self:Log("SPELL_AURA_APPLIED", "BerserkerLeap", 168965)
 
 	-- Zoggosh
 	self:Log("SPELL_AURA_APPLIED", "RapidFire", 168398)
@@ -39,6 +40,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(168227, 30) -- Gronn Smash
+	self:Bar(168965, 10.9) -- Berserker Leap
 end
 
 --------------------------------------------------------------------------------
@@ -61,6 +63,13 @@ end
 
 function mod:SkullocDeath()
 	self:StopBar(168227) -- Gronn Smash
+end
+
+-- Koramar
+
+function mod:BerserkerLeap(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Zoggosh
