@@ -20,6 +20,7 @@ function mod:GetOptions()
 		164632, -- Burning Arrows
 		{164837, "ICON"}, -- Savage Mauling
 		164835, -- Bloodletting Howl
+		164734, -- Shredding Swipes
 	}, {
 		["stages"] = "general",
 		[164632] = -10433, -- Fleshrender Nok'gar
@@ -66,6 +67,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:SetStage(2)
 		self:PlaySound("stages", "long")
 		self:CDBar(164426, 16) -- Reckless Provocation
+	elseif spellId == 164730 then -- Shredding Swipes
+		self:Message(164734, "yellow")
+		self:PlaySound(164734, "alarm")
+		self:CDBar(164734, 17)
 	end
 end
 
