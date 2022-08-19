@@ -84,7 +84,7 @@ end
 -- Ahri'ok Dugru
 
 function mod:SanguineSphere(args)
-	if UnitIsUnit("target", args.destGUID) then
+	if UnitIsUnit("target", self:GetBossId(args.destGUID)) then
 		self:TargetMessage(args.spellId, "red", args.destName)	
 		self:PlaySound(args.spellId, "warning")
 	else
