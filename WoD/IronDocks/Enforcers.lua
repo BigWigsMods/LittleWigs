@@ -68,9 +68,9 @@ end
 function mod:SanguineSphereRemoved(args)
 	-- if args.amount > 0 then the shield was not broken
 	if args.amount > 0 then
-		self:Message(args.spellId, "green", CL.over:format(spellName))
+		self:Message(args.spellId, "green", CL.over:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
-	else
+	end
 end
 
 do
