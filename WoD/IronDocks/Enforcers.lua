@@ -36,7 +36,7 @@ function mod:GetOptions()
 		164956, -- Lava Swipe
 		163376, -- Malfunctioning Jumper Cables 9000-XL
 		163390, -- Ogre Traps
-		163362, -- Bombsquad
+		163379, -- Big Boom
 	}, {
 		[163689] = -10449, -- Ahri'ok Dugru
 		[163665] = -10453, -- Makogg Emberblade
@@ -45,7 +45,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	-- Makogg Emberblade
@@ -62,6 +62,7 @@ function mod:OnBossEnable()
 	-- Neesa Nox
 	self:Log("SPELL_CAST_START", "MalfunctioningJumperCables9000XL", 163376)
 	self:Log("SPELL_CAST_SUCCESS", "OgreTraps", 163390)
+	self:Log("SPELL_CAST_START", "BigBoom", 163379)
 	self:Death("NeesaDeath", 80808)
 end
 
@@ -83,11 +84,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message(spellId, "red")
 		self:PlaySound(spellId, "alarm")
 		self:Bar(spellId, 29.2)
-	elseif spellId == 163362 then -- Bombsquad
-		self:Message(spellId, "red")
-		self:PlaySound(spellId, "alert")
-		self:Bar(spellId, firstBombSquadSent and 29.2 or 15.8)
-		firstBombSquadSent = true
 	end
 end
 
@@ -166,8 +162,15 @@ function mod:OgreTraps(args)
 	self:Bar(args.spellId, 29.2)
 end
 
+function mod:BigBoom(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, firstBombSquadSent and 29.2 or 15.8)
+	firstBombSquadSent = true
+end
+
 function mod:NeesaDeath()
 	self:StopBar(163376) -- Malfunctioning Jumper Cables 9000-XL
 	self:StopBar(163390) -- Ogre Traps
-	self:StopBar(163362) -- Bombsquad
+	self:StopBar(163379) -- Big Boom
 end
