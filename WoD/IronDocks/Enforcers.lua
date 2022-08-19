@@ -65,21 +65,17 @@ function mod:SanguineSphere(args)
 	self:Bar(args.spellId, 26.7) -- TODO confirm timer
 end
 
-do
-	local scheduled = nil
-	do
-		local function alertSanguineSphereExpired(spellName)
-			mod:Message(163689, "green", CL.over:format(spellName))
-			mod:PlaySound(163689, "info")
-		end
-		function mod:SanguineSphereRemoved(args)
-			scheduled = self:ScheduleTimer(alertSanguineSphereExpired, 0.3, args.spellName)
-		end
-	end
+function mod:SanguineSphereRemoved(args)
+	-- if args.amount > 0 then the shield was not broken
+	if args.amount > 0 then
+		self:Message(args.spellId, "green", CL.over:format(spellName))
+		self:PlaySound(args.spellId, "info")
+	else
+end
 
+do
 	local prev = 0
 	function mod:AbruptRestoration(args)
-		self:CancelTimer(scheduled)
 		self:StopBar(163689, args.destName) -- Sanguine Sphere
 		local t = GetTime()
 		if t-prev > 10 then
