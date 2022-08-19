@@ -30,6 +30,7 @@ function mod:GetOptions()
 		164956, -- Lava Swipe
 		163376, -- Malfunctioning Jumper Cables 9000-XL
 		163390, -- Ogre Traps
+		163362, -- Bombsquad
 	}, {
 		[163689] = -10449, -- Ahri'ok Dugru
 		[163665] = -10453, -- Makogg Emberblade
@@ -70,6 +71,10 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 164956 then -- Lava Swipe
+		self:Message(spellId, "red")
+		self:PlaySound(spellId, "alert")
+		self:Bar(spellId, 29.2)
+	elseif spellId == 163362 then -- Bombsquad
 		self:Message(spellId, "red")
 		self:PlaySound(spellId, "alert")
 		self:Bar(spellId, 29.2)
@@ -154,4 +159,5 @@ end
 function mod:NeesaDeath()
 	self:StopBar(163376) -- Malfunctioning Jumper Cables 9000-XL
 	self:StopBar(163390) -- Ogre Traps
+	self:StopBar(163362) -- Bombsquad
 end
