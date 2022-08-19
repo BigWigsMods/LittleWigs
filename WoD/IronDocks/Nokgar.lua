@@ -40,6 +40,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
 
 	self:Log("SPELL_CAST_SUCCESS", "BloodlettingHowl", 164835)
+
+	self:Death("DreadfangDeath", 81297)
 end
 
 function mod:OnEngage()
@@ -123,4 +125,9 @@ end
 function mod:SavageMaulingRemoved(args)
 	self:StopBar(args.spellId, args.destName)
 	self:PrimaryIcon(args.spellId)
+end
+
+function mod:DreadfangDeath()
+	self:StopBar(164835) -- Bloodletting Howl
+	self:StopBar(164734) -- Shredding Swipes
 end
