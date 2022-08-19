@@ -10,7 +10,7 @@ BigWigs:AddSounds("Grimrail Enforcers", {
 })
 
 BigWigs:AddSounds("Oshir", {
-	[162415] = "alarm",
+	[162415] = {"info","long"},
 })
 
 BigWigs:AddSounds("Skulloc", {

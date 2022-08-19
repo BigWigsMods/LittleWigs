@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Oshir", 1195, 1237)
 if not mod then return end
 mod:RegisterEnableMob(79852)
-mod.engageId = 1750
-mod.respawnTime = 33
+mod:SetEncounterID(1750)
+mod:SetRespawnTime(33)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -41,13 +40,15 @@ do
 	local t = 0
 	function mod:TimeToFeed(args)
 		t = GetTime()
-		self:TargetMessageOld(args.spellId, args.destName, "red", "alarm")
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "long")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
 
 	function mod:TimeToFeedOver(args)
-		self:MessageOld(args.spellId, "green", nil, L.freed:format(GetTime()-t))
+		self:Message(args.spellId, "green", L.freed:format(GetTime()-t))
+		self:PlaySound(args.spellId, "info")
 		self:PrimaryIcon(args.spellId)
 		self:StopBar(args.spellId, args.destName)
 	end
