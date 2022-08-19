@@ -25,6 +25,7 @@ function mod:GetOptions()
 	return {
 		{162415, "ICON"}, -- Time to Feed
 		178124, -- Breakout
+		161256, -- Primal Assault
 	}
 end
 
@@ -35,6 +36,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:CDBar(161256, 7.6) -- Primal Assault
 	self:CDBar(178124, 18.4) -- Breakout
 end
 
@@ -51,6 +53,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message(178124, "yellow", "Breakout (Ravenous Wolf)")
 		self:PlaySound(178124, "alert")
 		self:CDBar(178124, 40)
+	elseif spellId == 162769 then -- Hamstring Backflip
+		self:Message(161256, "orange") -- Primal Assault
+		self:PlaySound(161256, "alarm")
+		self:CDBar(161256, 18.3)
+	end
 end
 
 do
