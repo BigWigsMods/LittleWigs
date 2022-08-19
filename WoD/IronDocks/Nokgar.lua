@@ -30,7 +30,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss2")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
