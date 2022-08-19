@@ -49,7 +49,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	-- TODO when is Sanguine Sphere first cast?
+	self:CDBar(163689, 28) -- Sanguine Sphere
 	-- TODO when is Flaming Slash first cast?
 end
 
@@ -66,7 +66,7 @@ function mod:SanguineSphere(args)
 		self:PlaySound(args.spellId, "alert")
 	end
 	self:TargetBar(args.spellId, 10, args.destName)
-	self:Bar(args.spellId, 26.7) -- TODO confirm timer
+	self:Bar(args.spellId, 28)
 end
 
 function mod:SanguineSphereRemoved(args)
