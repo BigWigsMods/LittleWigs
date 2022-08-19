@@ -67,8 +67,8 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 175755 then -- Dismount
-		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:SetStage(2)
+		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
 		self:CDBar(164426, 16) -- Reckless Provocation
 		self:Bar(164632, 14.6) -- Burning Arrows
