@@ -52,7 +52,8 @@ end
 function mod:GronnSmash(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 60)
+	self:CDBar(args.spellId, 54.7)
+	self:StopBar(168348) -- Rapid Fire
 end
 
 function mod:CannonBarrage(args)
@@ -78,4 +79,5 @@ function mod:RapidFire(args)
 	local isOnMe = self:Me(args.destGUID)
 	self:TargetMessage(168348, "red", args.destName)
 	self:PlaySound(168348, isOnMe and "warning" or "alert")
+	self:Bar(168348, 12.2)
 end
