@@ -24,17 +24,34 @@ end
 function mod:GetOptions()
 	return {
 		{162415, "ICON"}, -- Time to Feed
+		178124, -- Breakout
 	}
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "TimeToFeed", 162415)
 	self:Log("SPELL_AURA_REMOVED", "TimeToFeedOver", 162415)
+end
+
+function mod:OnEngage()
+	self:CDBar(178124, 18.4) -- Breakout
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 178126 then -- Breakout (Rylak Skyterror)
+		self:Message(178124, "yellow", "Breakout (Rylak Skyterror)")
+		self:PlaySound(178124, "alert")
+		self:CDBar(178124, 40)
+	elseif spellId == 178128 then -- Breakout (Ravenous Wolf)
+		self:Message(178124, "yellow", "Breakout (Ravenous Wolf)")
+		self:PlaySound(178124, "alert")
+		self:CDBar(178124, 40)
+end
 
 do
 	local t = 0
