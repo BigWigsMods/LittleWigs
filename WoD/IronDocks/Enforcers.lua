@@ -20,7 +20,7 @@ local firstBombSquadSent = false
 
 local L = mod:GetLocale()
 if L then
-	L.sphere_fail_message = "Shield was broken - They're all healing :("
+	L.sphere_fail_message = "Bubble was broken - They're all healing :("
 end
 
 --------------------------------------------------------------------------------
