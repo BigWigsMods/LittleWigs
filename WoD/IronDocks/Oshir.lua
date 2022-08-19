@@ -15,6 +15,8 @@ mod:SetRespawnTime(33)
 local L = mod:GetLocale()
 if L then
 	L.freed = "Freed after %.1f sec!"
+	L.rylak_skyterror = "Rylak Skyterror"
+	L.ravenous_wolf = "Ravenous Wolf"
 end
 
 --------------------------------------------------------------------------------
@@ -46,11 +48,11 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 178126 then -- Breakout (Rylak Skyterror)
-		self:Message(178124, "yellow", "Breakout (Rylak Skyterror)")
+		self:Message(178124, "yellow", CL.spawning:format(L.rylak_skyterror))
 		self:PlaySound(178124, "alert")
 		self:CDBar(178124, 40)
 	elseif spellId == 178128 then -- Breakout (Ravenous Wolf)
-		self:Message(178124, "yellow", "Breakout (Ravenous Wolf)")
+		self:Message(178124, "yellow", CL.spawning:format(L.ravenous_wolf))
 		self:PlaySound(178124, "alert")
 		self:CDBar(178124, 40)
 	elseif spellId == 162769 then -- Hamstring Backflip

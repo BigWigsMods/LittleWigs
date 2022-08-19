@@ -7,6 +7,8 @@ end
 L = BigWigs:NewBossLocale("Oshir", "ptBR")
 if L then
 	L.freed = "Libertado após %.1f seg!"
+	L.rylak_skyterror = "Rylak Celesterror"
+	L.ravenous_wolf = "Lobo Voraz"
 end
 
 L = BigWigs:NewBossLocale("Iron Docks Trash", "ptBR")
