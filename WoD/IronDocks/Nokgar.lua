@@ -23,7 +23,7 @@ function mod:GetOptions()
 		164734, -- Shredding Swipes
 	}, {
 		["stages"] = "general",
-		[164632] = -10433, -- Fleshrender Nok'gar
+		[164426] = -10433, -- Fleshrender Nok'gar
 		[164837] = -10437, -- Dreadfang
 	}
 end
