@@ -29,17 +29,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "BloodlettingHowl", 164835)
-	self:Log("SPELL_AURA_APPLIED", "BurningArrows", 164632)
-
-	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 164837)
-	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss2")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss2")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+
+	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 164837)
+	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
+
+	self:Log("SPELL_CAST_SUCCESS", "BloodlettingHowl", 164835)
 end
 
 function mod:OnEngage()
@@ -124,5 +124,3 @@ function mod:SavageMaulingRemoved(args)
 	self:StopBar(args.spellId, args.destName)
 	self:PrimaryIcon(args.spellId)
 end
-
--- TODO shredding swipes?
