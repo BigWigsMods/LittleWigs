@@ -7,6 +7,7 @@ BigWigs:AddColors("Fleshrender Nok'gar", {
 })
 
 BigWigs:AddColors("Grimrail Enforcers", {
+	[163376] = "yellow",
 	[163665] = "orange",
 	[163689] = {"blue","green","red","yellow"},
 	[163705] = "yellow",

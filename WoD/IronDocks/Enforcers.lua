@@ -28,10 +28,11 @@ function mod:GetOptions()
 		{163740, "DISPEL"}, -- Tainted Blood
 		163665, -- Flaming Slash
 		164956, -- Lava Swipe
+		163376, -- Malfunctioning Jumper Cables 9000-XL
 	}, {
 		[163689] = -10449, -- Ahri'ok Dugru
 		[163665] = -10453, -- Makogg Emberblade
-		--[?] = -10456, -- Neesa Nox
+		[163376] = -10456, -- Neesa Nox
 	}
 end
 
@@ -51,7 +52,8 @@ function mod:OnBossEnable()
 	self:Death("AhriokDeath", 80816)
 
 	-- Neesa Nox
-	-- big boom?
+	self:Log("SPELL_CAST_START", "MalfunctioningJumperCables9000XL", 163376)
+	self:Death("NeesaDeath", 80808)
 end
 
 function mod:OnEngage()
@@ -71,6 +73,8 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Bar(spellId, 29.2)
 	end
 end
+
+-- Ahri'ok Dugru
 
 function mod:SanguineSphere(args)
 	if UnitIsUnit("target", args.destGUID) then
@@ -111,6 +115,8 @@ function mod:AhriokDeath()
 	self:StopBar(163689) -- Sanguine Sphere
 end
 
+-- Makogg Emberblade
+
 function mod:TaintedBloodApplied(args)
 	if self:Dispeller("disease", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -127,4 +133,15 @@ end
 function mod:MakoggDeath()
 	self:StopBar(163665) -- Flaming Slash
 	self:StopBar(164956) -- Lava Swipe
+end
+
+-- Neesa Nox
+
+function mod:MalfunctioningJumperCables9000XL(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 29.2)
+end
+function mod:NeesaDeath()
+	self:StopBar(163376) -- Malfunctioning Jumper Cables 9000-XL
 end
