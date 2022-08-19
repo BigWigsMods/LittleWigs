@@ -27,6 +27,7 @@ function mod:GetOptions()
 		163705, -- Abrupt Restoration
 		{163740, "DISPEL"}, -- Tainted Blood
 		163665, -- Flaming Slash
+		164956, -- Lava Swipe
 	}, {
 		[163689] = -10449, -- Ahri'ok Dugru
 		[163665] = -10453, -- Makogg Emberblade
@@ -35,7 +36,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+
+	-- Makogg Emberblade
+	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
+	self:Death("MakoggDeath", 80805)
 
 	-- Ahri'ok Dugru
 	self:Log("SPELL_AURA_APPLIED", "SanguineSphere", 163689)
@@ -44,23 +50,27 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TaintedBloodApplied", 163740)
 	self:Death("AhriokDeath", 80816)
 
-	-- Makogg Emberblade
-	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
-	self:Death("MakoggDeath", 80805)
-
 	-- Neesa Nox
 	-- big boom?
-	-- lava sweep?
 end
 
 function mod:OnEngage()
 	self:CDBar(163689, 28) -- Sanguine Sphere
 	self:Bar(163665, 4.9) -- Flaming Slash
+	self:Bar(164956, 16.6) -- Lava Swipe
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 164956 then -- Lava Swipe
+		self:Message(spellId, "red")
+		self:PlaySound(spellId, "alert")
+		self:Bar(spellId, 29.2)
+	end
+end
 
 function mod:SanguineSphere(args)
 	if UnitIsUnit("target", args.destGUID) then
@@ -116,4 +126,5 @@ end
 
 function mod:MakoggDeath()
 	self:StopBar(163665) -- Flaming Slash
+	self:StopBar(164956) -- Lava Swipe
 end
