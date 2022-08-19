@@ -38,8 +38,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(161256, 7.6) -- Primal Assault
-	self:CDBar(178124, 18.4) -- Breakout
+	self:CDBar(161256, 7.4) -- Primal Assault
+	self:CDBar(178124, 18.3, CL.other:format(self:SpellName(178124), L.ravenous_wolf)) -- Breakout: Ravenous Wolf
+	self:CDBar(162415, 39) -- Time to Feed
 end
 
 --------------------------------------------------------------------------------
@@ -48,17 +49,17 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 178126 then -- Breakout (Rylak Skyterror)
-		self:Message(178124, "yellow", CL.spawning:format(L.rylak_skyterror))
+		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), CL.spawning:format(L.rylak_skyterror)))
 		self:PlaySound(178124, "alert")
-		self:CDBar(178124, 40)
+		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.ravenous_wolf))
 	elseif spellId == 178128 then -- Breakout (Ravenous Wolf)
-		self:Message(178124, "yellow", CL.spawning:format(L.ravenous_wolf))
+		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), CL.spawning:format(L.ravenous_wolf)))
 		self:PlaySound(178124, "alert")
-		self:CDBar(178124, 40)
+		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.rylak_skyterror))
 	elseif spellId == 162769 then -- Hamstring Backflip
 		self:Message(161256, "orange") -- Primal Assault
 		self:PlaySound(161256, "alarm")
-		self:CDBar(161256, 18.3)
+		self:CDBar(161256, 26.8)
 	end
 end
 
@@ -70,6 +71,7 @@ do
 		self:PlaySound(args.spellId, "long")
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
+		self:StopBar(args.spellId)
 	end
 
 	function mod:TimeToFeedOver(args)
@@ -77,5 +79,6 @@ do
 		self:PlaySound(args.spellId, "info")
 		self:PrimaryIcon(args.spellId)
 		self:StopBar(args.spellId, args.destName)
+		self:CDBar(args.spellId, 47.4)
 	end
 end
