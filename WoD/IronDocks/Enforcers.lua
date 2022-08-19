@@ -66,6 +66,8 @@ function mod:SanguineSphere(args)
 end
 
 function mod:SanguineSphereRemoved(args)
+	self:StopBar(args.spellId, args.destName)
+
 	-- if args.amount > 0 then the shield was not broken
 	if args.amount > 0 then
 		self:Message(args.spellId, "green", CL.over:format(args.spellName))
