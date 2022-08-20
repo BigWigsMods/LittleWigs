@@ -133,7 +133,7 @@ end
 function mod:SlagBlast(args)
 	self:Message(166570, "orange")
 	self:PlaySound(166570, "alert")
-	self:Bar(166570, 25)
+	self:Bar(166570, 35.3)
 end
 
 function mod:SlagBlastApplied(args)
