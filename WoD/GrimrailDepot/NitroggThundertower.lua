@@ -5,11 +5,11 @@
 local mod, CL = BigWigs:NewBoss("Nitrogg Thundertower", 1208, 1163)
 if not mod then return end
 mod:RegisterEnableMob(
-	79545,  -- Nitrogg Thundertower
-	79548,  -- Assault Cannon
-	129822, -- Grom'kar Gunner
-	129824, -- Grom'kar Boomer
-	129823  -- Grom'kar Grenadier
+	79545, -- Nitrogg Thundertower
+	79548, -- Assault Cannon
+	77483, -- Grom'kar Gunner
+	79720, -- Grom'kar Boomer
+	79739  -- Grom'kar Grenadier
 )
 mod:SetEncounterID(1732)
 mod:SetRespawnTime(30)
@@ -60,10 +60,10 @@ function mod:OnBossEnable()
 
 	-- Adds
 	self:Log("SPELL_AURA_APPLIED", "PickedUpMortarShells", 160702)
-	self:Death("EngineerDies", 79720) -- Blackrock Artillery Engineer
+	self:Death("BoomerDies", 79720) -- Grom'kar Boomer
 
 	self:Log("SPELL_AURA_APPLIED", "PickedUpGrenades", 160703)
-	self:Death("GrenadierDies", 79739) -- Blackrock Grenadier
+	self:Death("GrenadierDies", 79739) -- Grom'kar Grenadier
 end
 
 function mod:OnEngage()
@@ -141,7 +141,7 @@ end
 
 -- Adds
 
-function mod:EngineerDies()
+function mod:BoomerDies()
 	self:Message(160965, "orange", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
 	self:PlaySound(160965, "info")
 end
