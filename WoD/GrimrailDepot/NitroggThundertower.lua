@@ -67,7 +67,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "cyan", CL.stage:format(1), false)
 	self:SetStage(1)
 	self:Bar(163550, 10.1) -- Blackrock Mortar
 end
