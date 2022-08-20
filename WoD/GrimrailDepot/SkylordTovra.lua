@@ -39,10 +39,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FreezingSnareApplied", 162065)
 	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
 
-	-- Heroic-only mechanic (apparently not present in Mythic, M+, or Timewalking)
-	self:Log("SPELL_CAST_START", "HuntersMark", 163447)
-	self:Log("SPELL_AURA_APPLIED", "HuntersMarkApplied", 163447)
-	self:Log("SPELL_AURA_REMOVED", "HuntersMarkRemoved", 163447)
+	-- Heroic-only mechanic (not present in Mythic, M+, or Timewalking)
+	if self:Heroic() then
+		self:Log("SPELL_CAST_START", "HuntersMark", 163447)
+		self:Log("SPELL_AURA_APPLIED", "HuntersMarkApplied", 163447)
+		self:Log("SPELL_AURA_REMOVED", "HuntersMarkRemoved", 163447)
+	end
 end
 
 function mod:OnEngage()
