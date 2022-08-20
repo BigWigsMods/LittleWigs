@@ -28,6 +28,8 @@ function mod:GetOptions()
 		161588, -- Diffused Energy
 		{162066, "SAY", "FLASH"}, -- Freezing Snare
 		{163447, "PROXIMITY"}, -- Hunter's Mark
+	}, {
+		[163447] = CL.heroic,
 	}
 end
 
