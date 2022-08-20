@@ -26,6 +26,6 @@ end
 L = BigWigs:NewBossLocale("Attumen the Huntsman", "zhCN")
 if L then
 	L.ghost = "鬼魂"
-	--L.ghost_helper = "Intangible Presence Helper"
-	--L.ghost_helper_desc = "Attempts to detect if the real Intangible Presence debuff is on you. If detected, your party members will be notified in chat."
+	L.ghost_helper = "无形助手"
+	L.ghost_helper_desc = "尝试检查你身上是否有真的无形DEBUFF，如果检测到，你的队友将在聊天频道收到你发送的信息。"
 end
