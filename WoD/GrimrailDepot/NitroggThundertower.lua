@@ -85,9 +85,9 @@ function mod:GetOptions()
 		156357, -- Blackrock Shrapnel
 		161073, -- Blackrock Grenade
 	}, {
-		[163550] = -10620,
-		[160681] = -10332,
-		["adds"] = -9713,
+		[163550] = -10620, -- Nitrogg Thundertower
+		[160681] = -10332, -- Assault Cannon
+		["adds"] = -9713,  -- Reinforcements
 	}
 end
 
