@@ -1,7 +1,10 @@
 local L = BigWigs:NewBossLocale("Nitrogg Thundertower", "zhTW")
 if not L then return end
 if L then
+	L.comma = "，"
 	--L.dropped = "%s dropped!"
+	--L.add_trigger1 = "Let 'em have it, boys!"
+	--L.add_trigger2 = "Give 'em all ya got."
 end
 
 L = BigWigs:NewBossLocale("Skylord Tovra", "zhTW")
