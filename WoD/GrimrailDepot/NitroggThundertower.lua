@@ -34,12 +34,13 @@ function mod:GetOptions()
 		163550, -- Blackrock Mortar
 		{160681, "SAY", "ICON", "FLASH"}, -- Suppressive Fire
 		166570, -- Slag Blast
-		161073, -- Blackrock Grenade
 		160965, -- Blackrock Mortar Shells
+		156357, -- Blackrock Shrapnel
+		161073, -- Blackrock Grenade
 	}, {
 		[163550] = -10620,
 		[160681] = -10332,
-		[161073] = -9713,
+		[160965] = -9713,
 	}
 end
 
@@ -59,6 +60,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SlagBlastApplied", 166570)
 
 	-- Adds
+	self:Log("SPELL_AURA_APPLIED", "PickedUpBlackrockShrapnel", 156357)
+	self:Death("GunnerDies", 77483) -- Grom'kar Gunner
+
 	self:Log("SPELL_AURA_APPLIED", "PickedUpMortarShells", 160702)
 	self:Death("BoomerDies", 79720) -- Grom'kar Boomer
 
@@ -140,6 +144,15 @@ function mod:SlagBlastApplied(args)
 end
 
 -- Adds
+
+function mod:GunnerDies()
+	self:Message(156357, "orange", L.dropped:format(self:SpellName(156357))) -- Blackrock Shrapnel
+	self:PlaySound(156357, "info")
+end
+
+function mod:PickedUpBlackrockShrapnel(args)
+	self:TargetMessage(156357, "green", args.destName)
+end
 
 function mod:BoomerDies()
 	self:Message(160965, "orange", L.dropped:format(self:SpellName(160965))) -- Blackrock Mortar Shells
