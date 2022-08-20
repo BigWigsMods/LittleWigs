@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Shrouded", "koKR")
 if not L then return end
 if L then
-	--L.tailh = "Ta'ilh"
-	--L.zulgamux = "Zul'gamux"
-	--L.hypnosis_bat = "Hypnosis Bat"
-	--L.nathrezim_infiltrator = "Nathrezim Infiltrator"
+	L.tailh = "타일"
+	L.zulgamux = "줄가묵스"
+	L.hypnosis_bat = "최면박쥐"
+	L.nathrezim_infiltrator = "나스레짐 침입자"
 end
