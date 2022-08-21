@@ -20,39 +20,6 @@ mod:SetStage(1)
 --
 
 local waveCount = 0
-local spawnTable = {
-	{
-		[-9721] = 1, -- Boomer
-		[-9717] = 1, -- Gunner
-	},
-	{
-		[-9717] = 1, -- Gunner
-		[-9719] = 1, -- Grenadier
-	},
-	{
-		[-9723] = 1, -- Infantry
-	},
-	{
-		[-9721] = 2, -- 2x Boomer
-	},
-	{
-		[-9723] = 1, -- Infantry
-	},
-	{
-		[-9717] = 2, -- 2x Gunner
-	},
-	{
-		[-9723] = 1, -- Infantry
-	},
-	{
-		[-9721] = 1, -- Boomer
-		[-9719] = 1, -- Grenadier
-	},
-	{
-		[-9721] = 3, -- 3x Boomer
-		[-9717] = 1, -- Gunner
-	}
-}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -68,6 +35,17 @@ if L then
 	L.dropped = "%s dropped!"
 	L.add_trigger1 = "Let 'em have it, boys!"
 	L.add_trigger2 = "Give 'em all ya got."
+
+	L.waves = {}
+	L.waves[1] = "1x Grom'kar Boomer, 1x Grom'kar Gunner"
+	L.waves[2] = "1x Grom'kar Gunner, 1x Grom'kar Grenadier"
+	L.waves[3] = "Iron Infantry"
+	L.waves[4] = "2x Grom'kar Boomer"
+	L.waves[5] = "Iron Infantry"
+	L.waves[6] = "2x Grom'kar Gunner"
+	L.waves[7] = "Iron Infantry"
+	L.waves[8] = "1x Grom'kar Boomer, 1x Grom'kar Grenadier"
+	L.waves[9] = "3x Grom'kar Boomer, 1x Grom'kar Gunner"
 end
 
 --------------------------------------------------------------------------------
@@ -197,26 +175,14 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.add_trigger1 or msg == L.add_trigger2 then
-		local addWave
+		local waveMessage
 		if waveCount == 0 then
-			addWave = spawnTable[1] -- first entry in table
+			waveMessage = L.waves[1] -- first entry in table
 		else
-			addWave = spawnTable[((waveCount - 1) % 8) + 2] -- then loop all except the first entry
+			waveMessage = L.waves[((waveCount - 1) % 8) + 2] -- then loop all except the first entry
 		end
 
-		local addString = ""
-		for spellName, count in pairs(addWave) do
-			if strlen(addString) > 0 then
-				addString = addString..L.comma
-			end
-			if count > 1 then
-				addString = addString..CL.count:format(self:SpellName(spellName), count)
-			else
-				addString = addString..self:SpellName(spellName)
-			end
-		end
-
-		self:Message("adds", "yellow", addString, L.adds_icon)
+		self:Message("adds", "yellow", waveMessage, L.adds_icon)
 		self:PlaySound("adds", "alert")
 		waveCount = waveCount + 1
 	end

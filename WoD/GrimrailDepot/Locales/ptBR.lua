@@ -1,10 +1,19 @@
 local L = BigWigs:NewBossLocale("Nitrogg Thundertower", "ptBR")
 if not L then return end
 if L then
-	L.comma = ", "
 	L.dropped = "%s soltou-se!"
-	--L.add_trigger1 = "Let 'em have it, boys!"
-	--L.add_trigger2 = "Give 'em all ya got."
+	L.add_trigger1 = "Chumbo neles, rapaziada!"
+	L.add_trigger2 = "Quero ver força total."
+
+	L.waves[1] = "1x Detonador Grom'kar, 1x Artilheiro Grom'kar"
+	L.waves[2] = "1x Artilheiro Grom'kar, 1x Granadeiro Grom'kar"
+	L.waves[3] = "Infantaria de Ferro"
+	L.waves[4] = "2x Detonador Grom'kar"
+	L.waves[5] = "Infantaria de Ferro"
+	L.waves[6] = "2x Artilheiro Grom'kar"
+	L.waves[7] = "Infantaria de Ferro"
+	L.waves[8] = "1x Detonador Grom'kar, 1x Granadeiro Grom'kar"
+	L.waves[9] = "3x Detonador Grom'kar, 1x Artilheiro Grom'kar"
 end
 
 L = BigWigs:NewBossLocale("Skylord Tovra", "ptBR")

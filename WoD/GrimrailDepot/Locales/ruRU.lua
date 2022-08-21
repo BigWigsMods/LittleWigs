@@ -1,10 +1,19 @@
 local L = BigWigs:NewBossLocale("Nitrogg Thundertower", "ruRU")
 if not L then return end
 if L then
-	L.comma = ", "
 	L.dropped = "%s уронены!"
-	--L.add_trigger1 = "Let 'em have it, boys!"
-	--L.add_trigger2 = "Give 'em all ya got."
+	L.add_trigger1 = "Зададим им жару!"
+	L.add_trigger2 = "Не щадите их!"
+
+	L.waves[1] = "1x Гром'карский подрывник, 1x Гром'карская опалительница"
+	L.waves[2] = "1x Гром'карская опалительница, 1x Гром'карский гренадер"
+	L.waves[3] = "Железный пехотинец"
+	L.waves[4] = "2x Гром'карский подрывник"
+	L.waves[5] = "Железный пехотинец"
+	L.waves[6] = "2x Гром'карская опалительница"
+	L.waves[7] = "Железный пехотинец"
+	L.waves[8] = "1x Гром'карский подрывник, 1x Гром'карский гренадер"
+	L.waves[9] = "3x Гром'карский подрывник, 1x Гром'карская опалительница"
 end
 
 L = BigWigs:NewBossLocale("Skylord Tovra", "ruRU")
