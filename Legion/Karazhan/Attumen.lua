@@ -23,7 +23,7 @@ local L = mod:GetLocale()
 if L then
 	L.ghost = "Ghost"
 
-	L.ghost_helper = "Intangible Presence Helper"
+	L.ghost_helper = "Ghost Helper"
 	L.ghost_helper_desc = "Attempts to detect if the real Intangible Presence debuff is on you. If detected, your party members will be notified in chat."
 	L.ghost_helper_icon = 227404
 end
@@ -45,6 +45,8 @@ function mod:GetOptions()
 	}, {
 		[227404] = -14300,
 		[227493] = -14304,
+	}, {
+		[227404] = L.ghost, -- Intangible Presence (Ghost)
 	}
 end
 
