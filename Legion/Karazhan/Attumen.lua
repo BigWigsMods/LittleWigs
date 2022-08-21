@@ -45,6 +45,8 @@ function mod:GetOptions()
 	}, {
 		[227404] = -14300,
 		[227493] = -14304,
+	}, {
+		["ghost_helper"] = L.ghost, -- Intangible Presence Helper (Ghost)
 	}
 end
 
