@@ -75,7 +75,6 @@ end
 function mod:OnEngage()
 	stage = 1
 	longDisintegratesLeft = 0
-	self:MessageOld("stages", "green", "info", CL.stage:format(1), false)
 	self:CDBar(229248, 5.9) -- Fel Beam
 	self:CDBar(229151, 10.8) -- Disintegrate
 	self:CDBar(229159, 15.76) -- Chaotic Shadows
