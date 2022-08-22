@@ -83,8 +83,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
 	self:Log("SPELL_CAST_START", "ShieldSmash", 241774)
+
+	-- Chess Event
 	self:Log("SPELL_AURA_REMOVED", "RoyaltyRemoved", 229489)
 	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
+	self:Death("ChessEventOver", 115388)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterEvent("GOSSIP_SHOW")
@@ -195,4 +198,8 @@ end
 function mod:RoyaltyApplied(args)
 	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ChessEventOver(args)
+	self:StopBar(229489) -- Royalty
 end
