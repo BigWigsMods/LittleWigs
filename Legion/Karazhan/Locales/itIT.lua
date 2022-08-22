@@ -16,6 +16,7 @@ if L then
 	--L.maiden = "Reformed Maiden"
 	--L.philanthropist = "Ghostly Philanthropist"
 	--L.guardsman = "Phantom Guardsman"
+	L.king = "Re"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "itIT")

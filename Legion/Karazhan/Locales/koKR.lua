@@ -16,6 +16,7 @@ if L then
 	L.maiden = "교화된 무희"
 	L.philanthropist = "유령 자선가"
 	L.guardsman = "유령 경비병"
+	L.king = "킹"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "koKR")

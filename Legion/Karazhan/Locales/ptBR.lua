@@ -16,6 +16,7 @@ if L then
 	L.maiden = "Donzela Reabilitada"
 	L.philanthropist = "Filantropo Fantasma"
 	L.guardsman = "Guarda Fantasma"
+	L.king = "Rei"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "ptBR")

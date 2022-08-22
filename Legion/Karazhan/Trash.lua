@@ -12,7 +12,12 @@ mod:RegisterEnableMob(
 	114632, -- Spectral Attendant
 	114636, -- Phantom Guardsman
 	114783, -- Reformed Maiden
-	114796 -- Wholesome Hostess
+	114796, -- Wholesome Hostess
+	115388, -- King
+	115395, -- Queen
+	115407, -- Rook
+	115401, -- Bishop
+	115406  -- Knight
 )
 
 --------------------------------------------------------------------------------
@@ -36,6 +41,7 @@ if L then
 	L.maiden = "Reformed Maiden"
 	L.philanthropist = "Ghostly Philanthropist"
 	L.guardsman = "Phantom Guardsman"
+	L.king = "King"
 end
 
 --------------------------------------------------------------------------------
@@ -52,7 +58,8 @@ function mod:GetOptions()
 		228625, -- Banshee Wail
 		227999, -- Pennies from Heaven
 		228528, -- Heartbreaker
-		241774  -- Shield Smash
+		241774, -- Shield Smash
+		229489, -- Royalty
 	}, {
 		[227966] = L.skeletalUsher,
 		["custom_on_autotalk"] = "general",
@@ -60,7 +67,10 @@ function mod:GetOptions()
 		[228575] = L.hostess,
 		[227999] = L.philanthropist,
 		[228528] = L.maiden,
-		[241774] = L.guardsman
+		[241774] = L.guardsman,
+		[229489] = L.king,
+	}, {
+		[229489] = self:SpellName(229495) -- Royalty (Vulnerable)
 	}
 end
 
@@ -73,6 +83,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
 	self:Log("SPELL_CAST_START", "ShieldSmash", 241774)
+	self:Log("SPELL_AURA_REMOVED", "RoyaltyRemoved", 229489)
+	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterEvent("GOSSIP_SHOW")
@@ -164,4 +176,16 @@ do
 			self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
 		end
 	end
+end
+
+-- King
+
+function mod:RoyaltyRemoved(args)
+	self:Message(args.spellId, "green", CL.buff_other:format(args.destName, self:SpellName(229495))) -- Vulnerable
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:RoyaltyApplied(args)
+	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+	self:PlaySound(args.spellId, "info")
 end
