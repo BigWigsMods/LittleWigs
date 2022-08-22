@@ -41,7 +41,7 @@ if L then
 	L.maiden = "Reformed Maiden"
 	L.philanthropist = "Ghostly Philanthropist"
 	L.guardsman = "Phantom Guardsman"
-	L.king = "King"
+	L.chess_event = "Chess Event"
 end
 
 --------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ function mod:GetOptions()
 		[227999] = L.philanthropist,
 		[228528] = L.maiden,
 		[241774] = L.guardsman,
-		[229489] = L.king,
+		[229489] = L.chess_event,
 	}, {
 		[229489] = self:SpellName(229495) -- Royalty (Vulnerable)
 	}
@@ -185,8 +185,7 @@ do
 	end
 end
 
--- King
-
+-- Chess Event
 function mod:RoyaltyRemoved(args)
 	self:Message(args.spellId, "green", CL.buff_other:format(args.destName, self:SpellName(229495))) -- Vulnerable
 	self:PlaySound(args.spellId, "long")

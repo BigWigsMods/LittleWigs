@@ -16,7 +16,7 @@ if L then
 	L.maiden = "Reformierte Jungfer"
 	L.philanthropist = "Geisterhafter Philanthrop"
 	L.guardsman = "Phantomgardist"
-	L.king = "König"
+	L.chess_event = "Das Schachspiel"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "deDE")

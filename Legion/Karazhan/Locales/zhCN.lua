@@ -16,7 +16,7 @@ if L then
 	L.maiden = "贞善女士"
 	L.philanthropist = "幽灵慈善家"
 	L.guardsman = "幻影卫兵"
-	L.king = "国王"
+	L.chess_event = "国际象棋"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "zhCN")
