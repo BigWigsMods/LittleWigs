@@ -101,7 +101,8 @@ do
 		local t = GetTime()
 		if t-prev > 3 then
 			prev = t
-			self:MessageOld(args.spellId, "yellow", "info")
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "info")
 		end
 		self:Bar(args.spellId, 3)
 	end
@@ -132,17 +133,20 @@ end
 
 -- Spectral Attendant
 function mod:ShadowRejuvenation(args)
-	self:MessageOld(args.spellId, "yellow", "warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Wholesome Hostess
 function mod:AlluringAura(args)
-	self:MessageOld(args.spellId, "red", "alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BansheeWail(args)
 	if not self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
-		self:MessageOld(args.spellId, "yellow", "warning", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 
@@ -153,14 +157,16 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:MessageOld(args.spellId, "yellow", "alert", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
 -- Reformed Maiden
 function mod:Heartbreaker(args)
-	self:MessageOld(args.spellId, "yellow", "warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Phantom Guardsman
@@ -173,7 +179,8 @@ do
 		local t = GetTime()
 		if t-prev > 1.5 then
 			prev = t
-			self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
