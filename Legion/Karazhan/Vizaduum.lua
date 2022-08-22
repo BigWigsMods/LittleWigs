@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Viz'aduum the Watcher", 1651, 1838)
 if not mod then return end
 mod:RegisterEnableMob(114790)
-mod.engageId = 2017
-mod.respawnTime = 30
+mod:SetEncounterID(2017)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -89,7 +88,8 @@ end
 
 -- [[ General ]] --
 function mod:Disintegrate(args)
-	self:MessageOld(args.spellId, "yellow", "alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
 	if (stage ~= 1.5) then
 		self:CDBar(args.spellId, 12.1)
 	end
@@ -119,17 +119,22 @@ do
 end
 
 function mod:BurningBlast(args)
-	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:BurningBlastApplied(args)
 	if self:Dispeller("magic") then
-		self:StackMessage(args.spellId, args.destName, args.amount, "red", "info")
+		self:NewStackMessage(args.spellId, "red", args.destName, args.amount)
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
 function mod:DemonicPortal()
-	self:MessageOld("stages", "green", "info", CL.stage:format(stage + 1), false)
+	self:Message("stages", "green", CL.stage:format(stage + 1), false)
+	self:PlaySound("stages", "info")
 	self:StopBar(229151) -- Disintegrate
 	self:StopBar(229159) -- Chaotic Shadows
 	self:StopBar(229284) -- Command: Bombardment
@@ -162,14 +167,15 @@ end
 -- [[ Stages 1 & 2 ]] --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 229284 then -- Command: Bombardment
-		self:MessageOld(spellId, "orange", nil, CL.incoming:format(self:SpellName(229287))) -- 229287 = Bombardment
+		self:Message(spellId, "orange", CL.incoming:format(self:SpellName(229287))) -- 229287 = Bombardment
 		self:CDBar(spellId, stage == 1 and 40.1 or 25.5)
 	end
 end
 
 -- [[ Stage 1 ]] --
 function mod:AcquiringTarget(args)
-	self:TargetMessageOld(229248, args.destName, "orange", "alarm")
+	self:TargetMessage(229248, "orange", args.destName)
+	self:PlaySound(229248, "alarm", args.destName)
 	self:CDBar(229248, 41.2)
 	if self:Me(args.destGUID) then
 		self:Say(229248)
@@ -184,7 +190,8 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "alert", CL.near:format(args.sourceName)) -- args.sourceName = Soul Harvester
+				self:Message(args.spellId, "blue", CL.near:format(args.sourceName)) -- args.sourceName = Soul Harvester
+				self:PlaySound(args.spellId, "alert")
 			end
 		end
 	end
@@ -192,13 +199,14 @@ end
 
 -- [[ Stage 3 ]] --
 function mod:StabilizeRift(args)
-	self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 30)
 end
 
 function mod:StabilizeRiftInterrupted(args)
 	if args.extraSpellId == 230084 then -- Stabilize Rift
-		self:MessageOld(230084, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:Message(230084, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:CDBar(229159, 6.15) -- Chaotic Shadows
 	end
