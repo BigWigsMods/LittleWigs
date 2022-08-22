@@ -41,9 +41,9 @@ function mod:GetOptions()
 		{230066, "PROXIMITY"}, -- Shadow Phlegm
 	}, {
 		["stages"] = "general",
-		[229248] = CL.stage:format(1),
-		[229905] = CL.stage:format(2),
-		[230084] = CL.stage:format(3),
+		[229248] = -14412, -- Stage One: Netherspace
+		[229905] = -14418, -- Stage Two: Command Ship
+		[230084] = -14424, -- Stage Three: The Rift!
 	}
 end
 
