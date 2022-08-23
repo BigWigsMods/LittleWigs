@@ -192,7 +192,7 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:PersonalMessage(227646, "underyou")
+				self:PersonalMessage(227646, "near")
 				self:PlaySound(227646, "underyou")
 			end
 		end
