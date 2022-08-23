@@ -87,7 +87,7 @@ end
 function mod:BurningLegSweep(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 19)
+	self:CDBar(args.spellId, 19.4)
 end
 
 function mod:ThunderRitual(args)
