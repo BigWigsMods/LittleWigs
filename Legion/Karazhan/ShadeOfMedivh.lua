@@ -111,7 +111,10 @@ do
 end
 
 function mod:PiercingMissiles(args)
-	self:MessageOld(args.spellId, "yellow")
+	self:Message(args.spellId, "purple")
+	if self:Tank() then
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:GuardiansImage(args)
