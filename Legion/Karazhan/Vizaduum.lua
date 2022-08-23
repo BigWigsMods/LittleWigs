@@ -51,8 +51,8 @@ end
 function mod:OnBossEnable()
 	-- [[ General ]] --
 	self:Log("SPELL_CAST_START", "Disintegrate", 229151)
-	self:Log("SPELL_AURA_APPLIED", "ChaoticShadows", 229159)
 	self:Log("SPELL_CAST_SUCCESS", "ChaoticShadowsCast", 229159)
+	self:Log("SPELL_AURA_APPLIED", "ChaoticShadowsApplied", 229159)
 	self:Log("SPELL_CAST_START", "BurningBlast", 229083)
 	self:Log("SPELL_AURA_APPLIED", "BurningBlastApplied", 229083)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BurningBlastApplied", 229083)
@@ -105,19 +105,22 @@ function mod:Disintegrate(args)
 end
 
 do
-	local list = mod:NewTargetList()
-	function mod:ChaoticShadows(args)
-		list[#list+1] = args.destName
-		if #list == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.5, args.spellId, list, "red", "warning", nil, nil, self:Dispeller("magic"))
-		end
+	local playerList = {}
+
+	function mod:ChaoticShadowsCast(args) -- debuff applications are delayed
+		playerList = {}
+		self:CDBar(args.spellId, 35.2) -- 35.2 - 38.9
+	end
+
+	function mod:ChaoticShadowsApplied(args)
+		-- targets 1 players in stage 1, 2 players in stage 2, 3 players in stage 3
+		local expectedTargets = self:GetStage()
+		playerList[#playerList+1] = args.destName
+		self:NewTargetsMessage(args.spellId, "red", playerList, expectedTargets)
+		self:PlaySound(args.spellId, "warning", playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
 		end
-	end
-
-	function mod:ChaoticShadowsCast(args) -- debuff applications are delayed
-		self:CDBar(args.spellId, 35.2) -- 35.2 - 38.9
 	end
 end
 
