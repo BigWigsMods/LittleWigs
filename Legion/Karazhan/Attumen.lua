@@ -22,8 +22,8 @@ function mod:GetOptions()
 		227493, -- Mortal Strike
 		228852, -- Shared Suffering
 	}, {
-		[227363] = -14300,
-		[227493] = -14304,
+		[227363] = -14300, -- Horse and Rider as One
+		[227493] = -14304, -- Fighting on Foot
 	}
 end
 
