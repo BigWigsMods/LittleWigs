@@ -207,13 +207,14 @@ end
 -- [[ Stage 3 ]] --
 function mod:StabilizeRift(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 30)
 end
 
 function mod:StabilizeRiftInterrupted(args)
 	if args.extraSpellId == 230084 then -- Stabilize Rift
 		self:Message(230084, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:PlaySound(230084, "info")
 		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:CDBar(229159, 6.15) -- Chaotic Shadows
 	end
