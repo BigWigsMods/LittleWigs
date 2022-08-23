@@ -39,7 +39,7 @@ function mod:GetOptions()
 
 		-- [[ Stage 3 ]] --
 		230084, -- Stabilize Rift
-		{230066, "PROXIMITY"}, -- Shadow Phlegm
+		230066, -- Shadow Phlegm
 	}, {
 		["stages"] = "general",
 		[229248] = -14412, -- Stage One: Netherspace
@@ -71,6 +71,7 @@ function mod:OnBossEnable()
 	-- [[ Stage 3 ]] --
 	self:Log("SPELL_AURA_APPLIED", "StabilizeRift", 230084)
 	self:Log("SPELL_INTERRUPT", "StabilizeRiftInterrupted", "*")
+	self:Log("SPELL_CAST_SUCCESS", "ShadowPhlegm", 230066)
 end
 
 function mod:OnEngage()
@@ -153,7 +154,6 @@ function mod:DemonicPortal()
 		self:Log("SWING_MISSED", "BossSwing", "*")
 	else
 		self:SetStage(3)
-		self:OpenProximity(230066, 6) -- Shadow Phlegm
 	end
 end
 
@@ -216,5 +216,17 @@ function mod:StabilizeRiftInterrupted(args)
 		self:Message(230084, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:CDBar(229159, 6.15) -- Chaotic Shadows
+	end
+end
+
+do
+	local prev = 0
+	function mod:ShadowPhlegm(args)
+		local t = GetTime()
+		if t - prev > 1.5 then
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+			self:Bar(args.spellId, 10)
+		end
 	end
 end

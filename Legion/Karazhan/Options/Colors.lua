@@ -83,6 +83,7 @@ BigWigs:AddColors("Viz'aduum the Watcher", {
 	[229248] = {"blue","orange"},
 	[229284] = "orange",
 	[229905] = "blue",
+	[230066] = "red",
 	[230084] = {"green","orange"},
 	["stages"] = "cyan",
 })
