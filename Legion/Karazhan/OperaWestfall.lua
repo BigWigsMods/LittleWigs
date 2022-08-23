@@ -99,7 +99,7 @@ end
 function mod:ThunderRitualApplied(args)
 	if self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 5)
-		self:TargetBar(args.spellId, 5, args.destName)
+		self:TargetBar(args.spellId, 8, args.destName)
 	end
 end
 
