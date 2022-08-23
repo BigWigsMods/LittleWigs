@@ -198,7 +198,7 @@ do
 			if t - prev > 1.5 then
 				prev = t
 				self:Message(args.spellId, "blue", CL.near:format(args.sourceName)) -- args.sourceName = Soul Harvester
-				self:PlaySound(args.spellId, "alert")
+				self:PlaySound(args.spellId, "underyou")
 			end
 		end
 	end

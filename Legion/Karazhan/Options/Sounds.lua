@@ -76,7 +76,7 @@ BigWigs:AddSounds("Viz'aduum the Watcher", {
 	[229151] = "alarm",
 	[229159] = "warning",
 	[229248] = "alarm",
-	[229905] = "alert",
+	[229905] = "underyou",
 	[230084] = "alarm",
 	["stages"] = "long",
 })
