@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,13 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Opera Hall: Westfall Story", 1651, 1826)
 if not mod then return end
 mod:RegisterEnableMob(114261, 114260) -- Toe Knee, Mrrgria
---mod.engageId = 1957 -- Same for every opera event. So it's basically useless.
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local phase = 1
+--mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -39,7 +33,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	phase = 1
+	self:SetStage(1)
 	self:Bar(227568, 8.5) -- Burning Leg Sweep
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
@@ -62,14 +56,14 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		end
 	end
 
-	if foundMrrgria and phase == 1 then -- Mrrgria
-		phase = 2
+	if foundMrrgria and self:GetStage() == 1 then -- Mrrgria
+		self:SetStage(2)
 		self:MessageOld("stages", "cyan", "long", CL.stage:format(2), false)
 		self:StopBar(227568) -- Burning Leg Sweep
 		self:Bar(227777, 8.5) -- Thunder Ritual
 		self:Bar(227783, 15.5) -- Wash Away
-	elseif foundToeKnee and phase == 2 then -- Toe Knee
-		phase = 3
+	elseif foundToeKnee and self:GetStage() == 2 then -- Toe Knee
+		self:SetStage(3)
 		self:MessageOld("stages", "cyan", "long", CL.stage:format(3), false)
 		self:Bar(227568, 8) -- Burning Leg Sweep
 	end
