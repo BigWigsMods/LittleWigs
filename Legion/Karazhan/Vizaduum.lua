@@ -97,7 +97,7 @@ function mod:Disintegrate(args)
 		-- TODO confirm this stuff
 		if longDisintegratesLeft > 0 then
 			longDisintegratesLeft = longDisintegratesLeft - 1
-			self:CastBar(args.spellId, 4)
+			self:CastBar(args.spellId, 10)
 		else
 			self:CastBar(args.spellId, 2.5)
 		end
