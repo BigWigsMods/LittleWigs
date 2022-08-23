@@ -49,7 +49,7 @@ BigWigs:AddColors("Moroes", {
 	[227672] = "red",
 	[227736] = "yellow",
 	[227742] = {"blue","orange"},
-	[227851] = {"blue","orange"},
+	[227851] = {"blue","orange","purple"},
 	[227872] = "cyan",
 })
 

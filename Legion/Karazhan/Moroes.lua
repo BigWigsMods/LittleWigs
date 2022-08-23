@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -14,7 +13,7 @@ mod:RegisterEnableMob(
 	114320, -- Lord Robin Daris
 	114321  -- Lord Crispin Ference
 )
-mod.engageId = 1961
+mod:SetEncounterID(1961)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -68,8 +67,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Vanish", 227736)
 	self:Log("SPELL_AURA_APPLIED", "Garrote", 227742)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Garrote", 227742)
-	self:Log("SPELL_AURA_APPLIED", "CoatCheck", 227851) -- the debuff Moroes applies at the start of his cast
-	self:Log("SPELL_AURA_APPLIED", "CoatCheckDispellable", 227832) -- the debuff that replaces the previous one 1.5s after, can be dispelled
+	self:Log("SPELL_AURA_APPLIED", "CoatCheck", 227851) -- the debuff Moroes applies to himself at the start of his cast
+	self:Log("SPELL_AURA_APPLIED", "CoatCheckDispellable", 227832) -- this debuff on tank replaces the previous one 1.5s after, can be dispelled
 	self:Log("SPELL_CAST_START", "GhastlyPurge", 227872)
 
 	--[[ Baroness Dorothea Millstripe ]]--
@@ -137,7 +136,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:Vanish(args)
-	self:MessageOld(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 20.5)
 end
 
@@ -148,33 +147,42 @@ end
 
 function mod:CoatCheck(args)
 	if self:Tank() then
-		self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alarm")
 	end
 	self:Bar(args.spellId, 34)
 end
 
 function mod:CoatCheckDispellable(args)
-	if not self:Tank() then
-		self:TargetMessageOld(227851, args.destName, "orange", "alarm", nil, nil, true)
+	if self:Dispeller("magic") then
+		self:TargetMessage(227851, "orange", args.destName)
+		self:PlaySound(227851, "warning")
 	end
 end
 
 function mod:GhastlyPurge(args)
-	self:MessageOld(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan")
 end
 
 function mod:ManaDrain(args)
-	self:MessageOld(args.spellId, "orange", self:Interrupter() and "warning", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 18)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:HealingStream(args)
-	self:MessageOld(args.spellId, "red", self:Interrupter() and "warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:IronWhirlwind(args)
-	self:MessageOld(args.spellId, "yellow", "long")
 	self:Bar(args.spellId, 10.5)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
 end
 
 do
@@ -184,14 +192,18 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(227646, "blue", "alarm", CL.underyou:format(args.spellName))
+				self:PersonalMessage(227646, "underyou")
+				self:PlaySound(227646, "underyou")
 			end
 		end
 	end
 end
 
 function mod:EmpoweredArms(args)
-	self:MessageOld(args.spellId, "red", self:Tank() and "info", CL.on:format(args.spellName, args.destName))
+	self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+	if self:Tank() then
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 do
@@ -199,7 +211,8 @@ do
 		if self:Me(guid) then
 			self:Say(227463)
 		end
-		self:TargetMessageOld(227463, player, "orange", "warning")
+		self:TargetMessage(227463, "orange", player)
+		self:PlaySound(227463, "warning", player)
 	end
 
 	function mod:WhirlingEdge(args)
@@ -208,7 +221,8 @@ do
 end
 
 function mod:WillBreaker(args)
-	self:MessageOld(args.spellId, "red", "long")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 10.9)
 end
 
