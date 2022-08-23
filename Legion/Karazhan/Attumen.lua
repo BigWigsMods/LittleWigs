@@ -36,7 +36,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 228895)
 	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
-	self:RegisterMessage("BigWigs_BossComm")
 end
 
 function mod:OnEngage()
