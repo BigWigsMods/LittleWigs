@@ -22,10 +22,3 @@ local L = BigWigs:NewBossLocale("Nightbane", "zhTW")
 if L then
 	--L.name = "Nightbane"
 end
-
-L = BigWigs:NewBossLocale("Attumen the Huntsman", "zhTW")
-if L then
-	--L.ghost = "Ghost"
-	--L.ghost_helper = "Intangible Presence Helper"
-	--L.ghost_helper_desc = "Attempts to detect if the real Intangible Presence debuff is on you. If detected, your party members will be notified in chat."
-end

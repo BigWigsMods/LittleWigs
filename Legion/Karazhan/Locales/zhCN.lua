@@ -22,10 +22,3 @@ L = BigWigs:NewBossLocale("Nightbane", "zhCN")
 if L then
 	L.name = "夜之魇"
 end
-
-L = BigWigs:NewBossLocale("Attumen the Huntsman", "zhCN")
-if L then
-	L.ghost = "鬼魂"
-	L.ghost_helper = "无形助手"
-	L.ghost_helper_desc = "尝试检查你身上是否有真的无形DEBUFF，如果检测到，你的队友将在聊天频道收到你发送的信息。"
-end

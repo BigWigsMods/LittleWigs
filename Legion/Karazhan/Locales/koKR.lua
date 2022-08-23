@@ -22,10 +22,3 @@ L = BigWigs:NewBossLocale("Nightbane", "koKR")
 if L then
 	L.name = "파멸의 어둠"
 end
-
-L = BigWigs:NewBossLocale("Attumen the Huntsman", "koKR")
-if L then
-	L.ghost = "유령"
-	--L.ghost_helper = "Intangible Presence Helper"
-	--L.ghost_helper_desc = "Attempts to detect if the real Intangible Presence debuff is on you. If detected, your party members will be notified in chat."
-end

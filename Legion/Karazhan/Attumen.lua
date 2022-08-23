@@ -10,25 +10,6 @@ mod:SetRespawnTime(15)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local englishGhost = "Ghost on "..mod:UnitName("player") -- CL.on:format(L.ghost, mod:UnitName("player"))
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.ghost = "Ghost"
-
-	L.ghost_helper = "Intangible Presence Helper"
-	L.ghost_helper_desc = "Attempts to detect if the real Intangible Presence debuff is on you. If detected, your party members will be notified in chat."
-	L.ghost_helper_icon = 227404
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -36,17 +17,13 @@ function mod:GetOptions()
 	return {
 		"stages",
 		228895, -- Enrage
-		227404, -- Intangible Presence
-		"ghost_helper", -- Intangible Presence ghost detection
 		227363, -- Mighty Stomp
 		227365, -- Spectral Charge
 		227493, -- Mortal Strike
 		228852, -- Shared Suffering
 	}, {
-		[227404] = -14300,
+		[227363] = -14300,
 		[227493] = -14304,
-	}, {
-		["ghost_helper"] = L.ghost, -- Intangible Presence Helper (Ghost)
 	}
 end
 
@@ -59,12 +36,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 228895)
 	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
-	self:RegisterEvent("VEHICLE_ANGLE_UPDATE", "CheckIntangiblePresence")
 	self:RegisterMessage("BigWigs_BossComm")
 end
 
 function mod:OnEngage()
-	self:CDBar(227404, 5.1) -- Intangible Presence
 	self:CDBar(227363, 15.4) -- Mighty Stomp
 	self:SetStage(1)
 end
@@ -73,60 +48,20 @@ end
 -- Event Handlers
 --
 
-local function sendChatMessage(msg, english)
-	if IsInGroup() then
-		BigWigsLoader.SendChatMessage(english and ("[LittleWigs] %s / %s"):format(msg, english) or ("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
-	end
-end
-
-do
-	local lastIntangiblePresenceApplied = nil
-
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-		if spellId == 227404 then -- Intangible Presence
-			self:Message(spellId, "yellow")
-			if self:Dispeller("magic") then
-				self:PlaySound(spellId, "warning")
-			else
-				self:PlaySound(spellId, "alert")
-			end
-			self:Bar(spellId, 30)
-			lastIntangiblePresenceApplied = GetTime()
-		elseif spellId == 227338 then -- Riderless
-			self:Message("stages", "cyan", spellId, false)
-			self:PlaySound("stages", "long")
-			self:CDBar(228852, 18.2) -- Shared Suffering
-			self:StopBar(227404) -- Intangible Presence
-			self:StopBar(227363) -- Mighty Stomp
-			self:SetStage(2)
-		elseif spellId == 227584 then -- Mounted
-			self:Message("stages", "cyan", spellId, false)
-			self:PlaySound("stages", "long")
-			self:SetStage(1)
-		elseif spellId == 227601 then -- Intermission, starts Spectral Charges
-			self:Message(227365, "yellow")
-			self:PlaySound(227365, "alert")
-		end
-	end
-
-	function mod:CheckIntangiblePresence()
-		if not lastIntangiblePresenceApplied then
-			return
-		end
-		if GetTime() - lastIntangiblePresenceApplied < 1 then
-			if self:GetOption("ghost_helper") > 0 then
-				local localizedGhost = CL.on:format(L.ghost, self:UnitName("player"))
-				sendChatMessage(localizedGhost, englishGhost ~= localizedGhost and englishGhost)
-			end
-			self:Sync("ghost")
-			lastIntangiblePresenceApplied = nil
-		end
-	end
-end
-
-function mod:BigWigs_BossComm(_, msg, _, sender)
-	if msg == "ghost" and sender then
-		self:TargetMessage("ghost_helper", "yellow", sender, L.ghost, L.ghost_helper_icon)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 227338 then -- Riderless
+		self:Message("stages", "cyan", spellId, false)
+		self:PlaySound("stages", "long")
+		self:CDBar(228852, 18.2) -- Shared Suffering
+		self:StopBar(227363) -- Mighty Stomp
+		self:SetStage(2)
+	elseif spellId == 227584 then -- Mounted
+		self:Message("stages", "cyan", spellId, false)
+		self:PlaySound("stages", "long")
+		self:SetStage(1)
+	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
+		self:Message(227365, "yellow")
+		self:PlaySound(227365, "alert")
 	end
 end
 

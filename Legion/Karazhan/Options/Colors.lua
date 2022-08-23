@@ -34,11 +34,9 @@ BigWigs:AddColors("Opera Hall: Beautiful Beast", {
 BigWigs:AddColors("Attumen the Huntsman", {
 	[227363] = "yellow",
 	[227365] = "yellow",
-	[227404] = "yellow",
 	[227493] = "red",
 	[228852] = "orange",
 	[228895] = "red",
-	["ghost_helper"] = {"blue","yellow"},
 	["stages"] = "cyan",
 })
 
