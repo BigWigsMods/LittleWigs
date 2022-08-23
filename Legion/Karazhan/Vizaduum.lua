@@ -7,12 +7,13 @@ if not mod then return end
 mod:RegisterEnableMob(114790)
 mod:SetEncounterID(2017)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local stage = 1
+local spammingDisintegrate = false
 local longDisintegratesLeft = 0 -- first 3 Disintegrates during stage 2 take longer to cast
 
 --------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	stage = 1
+	self:SetStage(1)
 	longDisintegratesLeft = 0
 	self:CDBar(229248, 5.9) -- Fel Beam
 	self:CDBar(229151, 10.8) -- Disintegrate
@@ -89,14 +90,17 @@ end
 function mod:Disintegrate(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
-	if (stage ~= 1.5) then
-		self:CDBar(args.spellId, 12.1)
-	end
-	if longDisintegratesLeft > 0 then
-		longDisintegratesLeft = longDisintegratesLeft - 1
-		self:CastBar(args.spellId, 4)
+	if not spammingDisintegrate then
+		self:CDBar(args.spellId, 10.1)
+		self:CastBar(args.spellId, 6.25)
 	else
-		self:CastBar(args.spellId, 2.5)
+		-- TODO confirm this stuff
+		if longDisintegratesLeft > 0 then
+			longDisintegratesLeft = longDisintegratesLeft - 1
+			self:CastBar(args.spellId, 4)
+		else
+			self:CastBar(args.spellId, 2.5)
+		end
 	end
 end
 
@@ -132,27 +136,28 @@ function mod:BurningBlastApplied(args)
 end
 
 function mod:DemonicPortal()
-	self:Message("stages", "green", CL.stage:format(stage + 1), false)
-	self:PlaySound("stages", "info")
+	self:Message("stages", "cyan", CL.stage:format(self:GetStage() + 1), false)
+	self:PlaySound("stages", "long")
 	self:StopBar(229151) -- Disintegrate
 	self:StopBar(229159) -- Chaotic Shadows
 	self:StopBar(229284) -- Command: Bombardment
-	if (stage == 1) then
-		stage = 1.5 -- Stage 2 before anyone gets to melee range
+	if self:GetStage() == 1 then
+		spammingDisintegrate = true
 		longDisintegratesLeft = 3
 		self:StopBar(229248) -- Fel Beam
 
 		self:Log("SWING_DAMAGE", "BossSwing", "*") -- I can't find a better way to find out when he stops spamming Disintegrate
 		self:Log("SWING_MISSED", "BossSwing", "*")
 	else
-		stage = 3
+		self:SetStage(3)
 		self:OpenProximity(230066, 6) -- Shadow Phlegm
 	end
 end
 
 function mod:BossSwing(args)
 	if self:MobId(args.sourceGUID) == 114790 then
-		stage = 2
+		spammingDisintegrate = false
+		self:SetStage(2)
 
 		self:RemoveLog("SWING_DAMAGE", "*")
 		self:RemoveLog("SWING_MISSED", "*")
@@ -167,7 +172,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 229284 then -- Command: Bombardment
 		self:Message(spellId, "orange", CL.incoming:format(self:SpellName(229287))) -- 229287 = Bombardment
-		self:CDBar(spellId, stage == 1 and 40.1 or 25.5)
+		self:CDBar(spellId, self:GetStage() == 1 and 40.1 or 25.5)
 	end
 end
 
