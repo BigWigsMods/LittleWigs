@@ -165,11 +165,11 @@ function mod:GhastlyPurge(args)
 end
 
 function mod:ManaDrain(args)
-	self:CDBar(args.spellId, 18)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "warning")
 	end
+	self:CDBar(args.spellId, 17)
 end
 
 function mod:HealingStream(args)
@@ -180,9 +180,9 @@ function mod:HealingStream(args)
 end
 
 function mod:IronWhirlwind(args)
-	self:Bar(args.spellId, 10.5)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+	self:Bar(args.spellId, 9.6)
 end
 
 do
