@@ -118,7 +118,7 @@ do
 		local expectedTargets = self:GetStage()
 		playerList[#playerList+1] = args.destName
 		self:NewTargetsMessage(args.spellId, "red", playerList, expectedTargets)
-		self:PlaySound(args.spellId, "warning", playerList)
+		self:PlaySound(args.spellId, "warning", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
 		end
