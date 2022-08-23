@@ -58,24 +58,28 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 
 	if foundMrrgria and self:GetStage() == 1 then -- Mrrgria
 		self:SetStage(2)
-		self:MessageOld("stages", "cyan", "long", CL.stage:format(2), false)
+		self:Message("stages", "cyan", CL.stage:format(2), false)
+		self:PlaySound("stages", "long")
 		self:StopBar(227568) -- Burning Leg Sweep
 		self:Bar(227777, 8.5) -- Thunder Ritual
 		self:Bar(227783, 15.5) -- Wash Away
 	elseif foundToeKnee and self:GetStage() == 2 then -- Toe Knee
 		self:SetStage(3)
-		self:MessageOld("stages", "cyan", "long", CL.stage:format(3), false)
+		self:Message("stages", "cyan", CL.stage:format(3), false)
+		self:PlaySound("stages", "long")
 		self:Bar(227568, 8) -- Burning Leg Sweep
 	end
 end
 
 function mod:BurningLegSweep(args)
-	self:MessageOld(args.spellId, "yellow", "alarm")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 19)
 end
 
 function mod:ThunderRitual(args)
-	self:MessageOld(args.spellId, "red", "warning")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 17)
 end
 
@@ -93,7 +97,8 @@ function mod:ThunderRitualRemoved(args)
 end
 
 function mod:WashAway(args)
-	self:MessageOld(args.spellId, "orange", "info")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 23)
 end
 
