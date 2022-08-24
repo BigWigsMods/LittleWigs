@@ -7,8 +7,8 @@ end
 L = BigWigs:NewBossLocale("Oshir", "zhTW")
 if L then
 	--L.freed = "Freed after %.1f sec!"
-	--L.rylak_skyterror = "Rylak Skyterror"
-	--L.ravenous_wolf = "Ravenous Wolf"
+	--L.wolves = "Wolves"
+	L.rylak = "萊拉克"
 end
 
 L = BigWigs:NewBossLocale("Iron Docks Trash", "zhTW")

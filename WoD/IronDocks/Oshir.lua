@@ -15,8 +15,8 @@ mod:SetRespawnTime(33)
 local L = mod:GetLocale()
 if L then
 	L.freed = "Freed after %.1f sec!"
-	L.rylak_skyterror = "Rylak Skyterror"
-	L.ravenous_wolf = "Ravenous Wolf"
+	L.wolves = "Wolves"
+	L.rylak = "Rylak"
 end
 
 --------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(161256, 7.4) -- Primal Assault
-	self:CDBar(178124, 18.3, CL.other:format(self:SpellName(178124), L.ravenous_wolf)) -- Breakout: Ravenous Wolf
+	self:CDBar(178124, 18.3, CL.other:format(self:SpellName(178124), L.wolves)) -- Breakout: Wolves
 	self:CDBar(162415, 39) -- Time to Feed
 end
 
@@ -49,13 +49,13 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 178126 then -- Breakout (Rylak Skyterror)
-		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), CL.spawning:format(L.rylak_skyterror)))
+		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), L.rylak)) -- Breakout: Rylak
 		self:PlaySound(178124, "alert")
-		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.ravenous_wolf))
+		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.wolves)) -- Breakout: Wolves
 	elseif spellId == 178128 then -- Breakout (Ravenous Wolf)
-		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), CL.spawning:format(L.ravenous_wolf)))
+		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), L.wolves)) -- Breakout: Wolves
 		self:PlaySound(178124, "alert")
-		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.rylak_skyterror))
+		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.rylak)) -- Breakout: Rylak
 	elseif spellId == 162769 then -- Hamstring Backflip
 		self:Message(161256, "orange") -- Primal Assault
 		self:PlaySound(161256, "alarm")
