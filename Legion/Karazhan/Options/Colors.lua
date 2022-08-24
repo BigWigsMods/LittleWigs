@@ -72,7 +72,7 @@ BigWigs:AddColors("Shade of Medivh", {
 BigWigs:AddColors("Mana Devourer", {
 	[227297] = "orange",
 	[227457] = "orange",
-	[227502] = {"blue","green"},
+	[227502] = "blue",
 	[227523] = {"blue","yellow"},
 	[227618] = "red",
 })
