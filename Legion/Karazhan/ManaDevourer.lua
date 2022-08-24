@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Mana Devourer", 1651, 1818)
 if not mod then return end
 mod:RegisterEnableMob(114252)
-mod.engageId = 1959
+mod:SetEncounterID(1959)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -51,12 +50,14 @@ end
 --
 
 function mod:ArcaneBomb(args)
-	self:MessageOld(args.spellId, "red", "warning")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 14.5)
 end
 
 function mod:EnergyVoid(args)
-	self:MessageOld(args.spellId, "yellow", "info")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 21.9)
 end
 
@@ -64,7 +65,7 @@ function mod:UnstableMana(args)
 	if self:Me(args.destGUID) then
 		unstableManaOnMe = true
 		local amount = args.amount or 1
-		self:StackMessage(args.spellId, args.destName, amount, "green")
+		self:NewStackMessage(args.spellId, "green", args.destName, amount)
 	end
 end
 
@@ -75,7 +76,8 @@ function mod:UnstableManaRemoved(args)
 end
 
 function mod:CoalescePower(args)
-	self:MessageOld(args.spellId, "orange", "long")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 30.3)
 end
 
@@ -86,7 +88,8 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(227523, "blue", "alarm", CL.underyou:format(args.spellName))
+				self:PersonalMessage(227523, "underyou")
+				self:PlaySound(227523, "underyou")
 			end
 		end
 	end
