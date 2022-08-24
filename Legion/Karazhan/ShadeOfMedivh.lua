@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Shade of Medivh", 1651, 1817)
 if not mod then return end
 mod:RegisterEnableMob(114350)
 mod:SetEncounterID(1965)
+mod:SetRespawnTime(30) -- TODO confirm
 
 --------------------------------------------------------------------------------
 -- Locals
