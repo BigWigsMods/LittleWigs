@@ -43,9 +43,10 @@ end
 
 function mod:OnEngage()
 	unstableManaOnMe = false
-	self:Bar(227618, 7) -- Arcane Bomb
-	self:Bar(227523, 14.5) -- Energy Void
-	-- TODO Energy Discharge
+	self:CDBar(227618, 7) -- Arcane Bomb
+	self:CDBar(227523, 14.5) -- Energy Void
+	self:CDBar(227457, 22.1) -- Energy Discharge
+	self:Bar(227297, 30.6) -- Coalesce Power
 end
 
 --------------------------------------------------------------------------------
@@ -56,7 +57,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227457 then -- Energy Discharge
 		self:Message(227457, "orange")
 		self:PlaySound(227457, "alarm")
-		self:CDBar(227457, 28)
+		self:CDBar(227457, 27.9)
 	end
 end
 
@@ -69,7 +70,7 @@ end
 function mod:EnergyVoid(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 20.7)
+	self:CDBar(args.spellId, 20.6)
 end
 
 function mod:UnstableMana(args)
