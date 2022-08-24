@@ -68,7 +68,7 @@ do
 	function mod:TimeToFeed(args)
 		t = GetTime()
 		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "long")
+		self:PlaySound(args.spellId, "long", nil, args.destName)
 		self:TargetBar(args.spellId, 20, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 		self:StopBar(args.spellId)
