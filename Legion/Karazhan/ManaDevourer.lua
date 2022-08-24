@@ -76,8 +76,7 @@ end
 function mod:UnstableMana(args)
 	if self:Me(args.destGUID) then
 		unstableManaOnMe = true
-		local amount = args.amount or 1
-		self:NewStackMessage(args.spellId, "green", args.destName, amount)
+		self:NewStackMessage(args.spellId, "green", args.destName, args.amount)
 	end
 end
 
