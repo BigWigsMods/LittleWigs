@@ -32,7 +32,7 @@ end
 function mod:OnEngage()
 	self:Bar(227267, 5) -- Summon Volatile Energy
 	self:CDBar(227279, 12) -- Power Discharge
-	self:CDBar(227254, 68) -- Evocation
+	self:CDBar(227254, 56.3) -- Evocation
 end
 
 --------------------------------------------------------------------------------
@@ -64,14 +64,25 @@ do
 	end
 end
 
-function mod:Evocation(args)
-	self:MessageOld(args.spellId, "green", "long")
-	self:CastBar(args.spellId, 20)
-	self:StopBar(227267) -- Summon Volatile Energy
-	self:StopBar(227279) -- Power Discharges
-end
+do
+	local prev = 0
+	function mod:Evocation(args)
+		-- sometimes this ability is double-applied, this restarts the channel to the full 20 seconds
+		-- but we don't need to alert again
+		local t = GetTime()
+		if t-prev > 3 then
+			self:MessageOld(args.spellId, "green", "long")
+			self:StopBar(227267) -- Summon Volatile Energy
+			self:StopBar(227279) -- Power Discharges
+		end
+		self:CastBar(args.spellId, 20)
+	end
 
-function mod:EvocationOver(args)
-	self:MessageOld(args.spellId, "cyan", "info", CL.over:format(args.spellName))
-	self:CDBar(args.spellId, 69)
+	function mod:EvocationOver(args)
+		if t-prev > 3 then
+			self:StopBar(args.spellId)
+			self:MessageOld(args.spellId, "cyan", "info", CL.over:format(args.spellName))
+			self:CDBar(args.spellId, 56.5)
+		end
+	end
 end
