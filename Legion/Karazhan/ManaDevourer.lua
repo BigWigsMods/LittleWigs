@@ -69,7 +69,7 @@ end
 function mod:EnergyVoid(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 21.9)
+	self:Bar(args.spellId, 20.7)
 end
 
 function mod:UnstableMana(args)
