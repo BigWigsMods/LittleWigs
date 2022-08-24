@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("The Curator", 1651, 1836)
 if not mod then return end
 mod:RegisterEnableMob(114247)
-mod.engageId = 1964
-mod.respawnTime = 30
+mod:SetEncounterID(1964)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
