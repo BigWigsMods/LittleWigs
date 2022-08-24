@@ -90,6 +90,7 @@ end
 -- Ahri'ok Dugru
 
 function mod:SanguineSphere(args)
+	-- use a more severe warning if you are still targeting the boss which gains the shield
 	if UnitIsUnit("target", self:GetBossId(args.destGUID)) then
 		self:TargetMessage(args.spellId, "red", args.destName)	
 		self:PlaySound(args.spellId, "warning")
