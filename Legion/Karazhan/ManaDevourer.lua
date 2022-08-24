@@ -45,7 +45,7 @@ function mod:OnEngage()
 	unstableManaOnMe = false
 	self:CDBar(227618, 7) -- Arcane Bomb
 	self:CDBar(227523, 14.5) -- Energy Void
-	self:CDBar(227457, 22.1) -- Energy Discharge
+	self:CDBar(227457, 21) -- Energy Discharge
 	self:Bar(227297, 30.6) -- Coalesce Power
 end
 
