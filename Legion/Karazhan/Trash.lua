@@ -182,5 +182,5 @@ function mod:RoyaltyApplied(args)
 end
 
 function mod:ChessEventOver(args)
-	self:StopBar(229489) -- Royalty
+	self:StopBar(self:SpellName(229495)) -- Vulnerable
 end
