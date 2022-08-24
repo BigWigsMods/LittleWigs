@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Mana Devourer", 1651, 1818)
 if not mod then return end
 mod:RegisterEnableMob(114252)
 mod:SetEncounterID(1959)
-mod:SetRespawnTime(30) -- TODO confirm
+mod:SetRespawnTime(15)
 
 --------------------------------------------------------------------------------
 -- Locals
