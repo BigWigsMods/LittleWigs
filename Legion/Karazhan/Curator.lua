@@ -40,13 +40,15 @@ end
 --
 
 function mod:SummonVolatileEnergy(args)
-	self:MessageOld(args.spellId, "yellow", "info")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 9.7)
 end
 
 function mod:PowerDischarge(_, _, _, spellId)
 	if spellId == 227278 then
-		self:MessageOld(227279, "orange", "alert")
+		self:Message(227279, "orange")
+		self:PlaySound(227279, "alert")
 		self:CDBar(227279, 12)
 	end
 end
@@ -58,7 +60,8 @@ do
 			local t = GetTime()
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(227279, "blue", "alarm", CL.underyou:format(args.spellName))
+				self:PersonalMessage(227279, "underyou")
+				self:PlaySound(227279, "underyou")
 			end
 		end
 	end
@@ -71,7 +74,8 @@ do
 		-- but we don't need to alert again
 		local t = GetTime()
 		if t-prev > 3 then
-			self:MessageOld(args.spellId, "green", "long")
+			self:Message(args.spellId, "green")
+			self:PlaySound(args.spellId, "long")
 			self:StopBar(227267) -- Summon Volatile Energy
 			self:StopBar(227279) -- Power Discharges
 		end
@@ -81,7 +85,8 @@ do
 	function mod:EvocationOver(args)
 		if t-prev > 3 then
 			self:StopBar(args.spellId)
-			self:MessageOld(args.spellId, "cyan", "info", CL.over:format(args.spellName))
+			self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
 			self:CDBar(args.spellId, 56.5)
 		end
 	end
