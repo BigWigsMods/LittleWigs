@@ -2,6 +2,18 @@ local L = BigWigs:NewBossLocale("Nitrogg Thundertower", "itIT")
 if not L then return end
 if L then
 	--L.dropped = "%s dropped!"
+	L.add_trigger1 = "Facciamogliela vedere!"
+	L.add_trigger2 = "Fate del vostro meglio!"
+
+	L.waves[1] = "1x Bombarolo Grom'kar, 1x Artigliere Grom'kar"
+	L.waves[2] = "1x Artigliere Grom'kar, 1x Granatiere Grom'kar"
+	L.waves[3] = "Gregario di Ferro"
+	L.waves[4] = "2x Bombarolo Grom'kar"
+	L.waves[5] = "Gregario di Ferro"
+	L.waves[6] = "2x Artigliere Grom'kar"
+	L.waves[7] = "Gregario di Ferro"
+	L.waves[8] = "1x Bombarolo Grom'kar, 1x Granatiere Grom'kar"
+	L.waves[9] = "3x Bombarolo Grom'kar, 1x Artigliere Grom'kar"
 end
 
 L = BigWigs:NewBossLocale("Skylord Tovra", "itIT")

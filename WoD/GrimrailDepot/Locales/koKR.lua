@@ -2,6 +2,18 @@ local L = BigWigs:NewBossLocale("Nitrogg Thundertower", "koKR")
 if not L then return end
 if L then
 	--L.dropped = "%s dropped!"
+	L.add_trigger1 = "가라, 얘들아!"
+	L.add_trigger2 = "모조리 없애라."
+
+	L.waves[1] = "1x 그롬카르 폭파병, 1x 그롬카르 사수"
+	L.waves[2] = "1x 그롬카르 사수, 1x 그롬카르 폭탄병"
+	L.waves[3] = "강철 보병"
+	L.waves[4] = "2x 그롬카르 폭파병"
+	L.waves[5] = "강철 보병"
+	L.waves[6] = "2x 그롬카르 사수"
+	L.waves[7] = "강철 보병"
+	L.waves[8] = "1x 그롬카르 폭파병, 1x 그롬카르 폭탄병"
+	L.waves[9] = "3x 그롬카르 폭파병, 1x 그롬카르 사수"
 end
 
 L = BigWigs:NewBossLocale("Skylord Tovra", "koKR")

@@ -11,9 +11,12 @@ BigWigs:AddSounds("Rocketspark and Borka", {
 })
 
 BigWigs:AddSounds("Nitrogg Thundertower", {
+	[156357] = "info",
 	[160681] = "alert",
 	[160965] = "info",
-	[166570] = "alarm",
+	[163550] = "alert",
+	[166570] = {"alert","underyou"},
+	["adds"] = "alert",
 	["stages"] = "long",
 })
 
