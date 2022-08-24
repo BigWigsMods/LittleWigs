@@ -39,6 +39,8 @@ function mod:GetOptions()
 		228334, -- Guardian's Image
 		{228269, "SAY"}, -- Flame Wreath
 		227779, -- Ceaseless Winter
+	}, {
+		["focused_power"] = -14036,
 	}
 end
 
