@@ -58,7 +58,6 @@ function mod:GetOptions()
 		228625, -- Banshee Wail
 		227999, -- Pennies from Heaven
 		228528, -- Heartbreaker
-		241774, -- Shield Smash
 		229489, -- Royalty
 	}, {
 		[227966] = L.skeletalUsher,
@@ -67,7 +66,6 @@ function mod:GetOptions()
 		[228575] = L.hostess,
 		[227999] = L.philanthropist,
 		[228528] = L.maiden,
-		[241774] = L.guardsman,
 		[229489] = L.chess_event,
 	}, {
 		[229489] = self:SpellName(229495) -- Royalty (Vulnerable)
@@ -82,7 +80,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BansheeWail", 228625)
 	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
-	self:Log("SPELL_CAST_START", "ShieldSmash", 241774)
 
 	-- Chess Event
 	self:Log("SPELL_AURA_REMOVED", "RoyaltyRemoved", 229489)
@@ -170,22 +167,6 @@ end
 function mod:Heartbreaker(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-end
-
--- Phantom Guardsman
-do
-	local prev = 0
-	function mod:ShieldSmash(args)
-		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
-			return
-		end
-		local t = GetTime()
-		if t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "warning")
-		end
-	end
 end
 
 -- Chess Event
