@@ -73,7 +73,8 @@ do
 		-- sometimes this ability is double-applied, this restarts the channel to the full 20 seconds
 		-- but we don't need to alert again
 		local t = GetTime()
-		if t-prev > 3 then
+		if t - prev > 3 then
+			prev = t
 			self:Message(args.spellId, "green")
 			self:PlaySound(args.spellId, "long")
 			self:StopBar(227267) -- Summon Volatile Energy
@@ -83,7 +84,7 @@ do
 	end
 
 	function mod:EvocationOver(args)
-		if t-prev > 3 then
+		if GetTime() - prev > 3 then
 			self:StopBar(args.spellId)
 			self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
