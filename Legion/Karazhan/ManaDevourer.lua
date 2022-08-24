@@ -63,7 +63,7 @@ end
 function mod:ArcaneBomb(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 14.5)
+	self:CDBar(args.spellId, 13.7)
 end
 
 function mod:EnergyVoid(args)
