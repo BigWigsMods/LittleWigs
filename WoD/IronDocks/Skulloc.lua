@@ -119,6 +119,6 @@ end
 function mod:RapidFire(args)
 	local isOnMe = self:Me(args.destGUID)
 	self:TargetMessage(168348, "red", args.destName)
-	self:PlaySound(168348, isOnMe and "warning" or "alert")
+	self:PlaySound(168348, isOnMe and "warning" or "alert", nil, args.destName)
 	self:Bar(168348, 12.2)
 end
