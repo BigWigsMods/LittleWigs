@@ -140,6 +140,13 @@ function mod:BurningBlastApplied(args)
 end
 
 function mod:DemonicPortal()
+	if spammingDisintegrate then
+		-- in case you skipped phase 2
+		spammingDisintegrate = false
+		self:SetStage(2)
+		self:RemoveLog("SWING_DAMAGE", "*")
+		self:RemoveLog("SWING_MISSED", "*")
+	end
 	self:Message("stages", "cyan", CL.stage:format(self:GetStage() + 1), false)
 	self:PlaySound("stages", "long")
 	self:StopBar(229151) -- Disintegrate
