@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Shade of Medivh", 1651, 1817)
 if not mod then return end
 mod:RegisterEnableMob(114350)
-mod.engageId = 1965
+mod:SetEncounterID(1965)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -76,11 +75,15 @@ function mod:UNIT_POWER_FREQUENT(_, unit)
 end
 
 function mod:Frostbite(args)
-	self:MessageOld(args.spellId, "orange", self:Interrupter() and "alarm")
+	self:Message(args.spellId, "orange")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 function mod:FrostbiteApplied(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning", nil, nil, true)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	frostbiteTarget = args.destName
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
@@ -95,9 +98,10 @@ do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
 			local text = CL.you:format(self:SpellName(227615)) .. (frostbiteTarget and " - " .. CL.on:format(self:SpellName(227592), self:ColorName(frostbiteTarget)) or "")
-			self:MessageOld(227615, "orange", "alert", text)
+			self:Message(227615, "orange", text)
+			self:PlaySound(227615, "alert")
 		else
-			self:MessageOld(227615, "red")
+			self:Message(227615, "red")
 		end
 	end
 
@@ -105,7 +109,7 @@ do
 		if frostbiteTarget then
 			self:GetBossTarget(printTarget, 1, args.sourceGUID)
 		else
-			self:MessageOld(args.spellId, "red")
+			self:Message(args.spellId, "red")
 		end
 	end
 end
@@ -118,27 +122,33 @@ function mod:PiercingMissiles(args)
 end
 
 function mod:GuardiansImage(args)
-	self:MessageOld(args.spellId, "yellow", "long")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
 	addsKilled = 0
 end
 
 function mod:ImageDeath(args)
 	addsKilled = addsKilled + 1
-	self:MessageOld("stages", "cyan", addsKilled == 3 and "long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
-end
-
-function mod:FlameWreathStart(args)
-	self:MessageOld(args.spellId, "yellow", "long", CL.incoming:format(args.spellName))
+	self:Message("stages", "cyan", CL.mob_killed:format(args.destName, addsKilled, 3), false)
+	if addsKilled == 3 then
+		self:PlaySound("stages", "long")
+	end
 end
 
 do
-	local list = mod:NewTargetList()
+	local playerList = {}
+
+	function mod:FlameWreathStart(args)
+		playerList = {}
+		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+		self:PlaySound(args.spellId, "long")
+	end
+
 	function mod:FlameWreathApplied(args)
-		list[#list+1] = args.destName
-		if #list == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.2, 228269, list, "red", "warning", nil, nil, true)
-			self:Bar(228269, 20)
-		end
+		playerList[#playerList+1] = args.destName
+		self:NewTargetsMessage(228269, "red", playerList, 2)
+		self:PlaySound(228269, "warning", nil, playerList)
+		self:Bar(228269, 20)
 		if self:Me(args.destGUID) then
 			self:Say(228269)
 		end
@@ -146,7 +156,8 @@ do
 end
 
 function mod:CeaselessWinter(args)
-	self:MessageOld(args.spellId, "yellow", "long")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 20)
 end
 
@@ -154,7 +165,8 @@ function mod:CeaselessWinterApplied(args)
 	if self:Me(args.destGUID) then
 		local amount = args.amount or 1
 		if amount % 2 == 0 then
-			self:StackMessage(227779, args.destName, amount, "blue", "warning")
+			self:NewStackMessage(227779, "blue", args.destName, amount)
+			self:PlaySound(227779, "warning")
 		end
 	end
 end
