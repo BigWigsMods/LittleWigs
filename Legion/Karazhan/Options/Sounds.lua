@@ -67,6 +67,7 @@ BigWigs:AddSounds("Shade of Medivh", {
 
 BigWigs:AddSounds("Mana Devourer", {
 	[227297] = "long",
+	[227457] = "alarm",
 	[227523] = {"info","underyou"},
 	[227618] = "warning",
 })

@@ -20,6 +20,7 @@ local unstableManaOnMe = false
 
 function mod:GetOptions()
 	return {
+		227457, -- Energy Discharge
 		227618, -- Arcane Bomb
 		227523, -- Energy Void
 		227502, -- Unstable Mana
@@ -29,6 +30,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "ArcaneBomb", 227618)
 	self:Log("SPELL_CAST_SUCCESS", "EnergyVoid", 227523)
 	self:Log("SPELL_AURA_APPLIED", "UnstableMana", 227502)
@@ -37,18 +39,26 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CoalescePower", 227297)
 	self:Log("SPELL_PERIODIC_DAMAGE", "EnergyVoidDamage", 227524)
 	self:Log("SPELL_PERIODIC_MISSED", "EnergyVoidDamage", 227524)
-	--self:Death("Win", 0)
 end
 
 function mod:OnEngage()
 	unstableManaOnMe = false
 	self:Bar(227618, 7) -- Arcane Bomb
 	self:Bar(227523, 14.5) -- Energy Void
+	-- TODO Energy Discharge
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 227457 then -- Energy Discharge
+		self:Message(227457, "orange")
+		self:PlaySound(227457, "alarm")
+		self:CDBar(227457, 28)
+	end
+end
 
 function mod:ArcaneBomb(args)
 	self:Message(args.spellId, "red")
