@@ -93,6 +93,7 @@ end
 
 function mod:SanguineSphere(args)
 	-- use a more severe warning if you are still targeting the boss which gains the shield
+	if args.destGUID == self:UnitGUID("target") then
 		self:TargetMessage(args.spellId, "red", args.destName, CL.shield) -- Shield on <boss>
 		self:PlaySound(args.spellId, "warning")
 	else
