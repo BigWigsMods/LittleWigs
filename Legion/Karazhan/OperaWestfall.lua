@@ -105,7 +105,8 @@ end
 function mod:ThunderRitualApplied(args)
 	if self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 5)
-		self:TargetBar(args.spellId, 8, args.destName)
+		local _, _, duration = self:UnitDebuff("player", args.spellId) -- Random duration
+		self:TargetBar(args.spellId, duration or 8, args.destName)
 	end
 end
 
