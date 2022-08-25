@@ -31,7 +31,6 @@ end
 
 function mod:GetOptions()
 	return {
-		"stages",
 		{227592, "SAY"}, -- Frostbite
 		{227615, "SAY"}, -- Inferno Bolt
 		227628, -- Piercing Missiles
@@ -52,12 +51,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InfernoBolt", 227615)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingMissiles", 227628)
 	self:Log("SPELL_CAST_START", "GuardiansImage", 228334)
+	self:Death("ImageDeath", 114675)
 	self:Log("SPELL_CAST_START", "FlameWreathStart", 228269)
 	self:Log("SPELL_AURA_APPLIED", "FlameWreathApplied", 228261)
 	self:Log("SPELL_CAST_START", "CeaselessWinter", 227779)
 	self:Log("SPELL_CAST_SUCCESS", "CeaselessWinterSuccess", 227779)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "CeaselessWinterApplied", 227806)
-	self:Death("ImageDeath", 114675)
 end
 
 function mod:OnEngage()
@@ -134,9 +133,9 @@ end
 
 function mod:ImageDeath(args)
 	addsKilled = addsKilled + 1
-	self:Message("stages", "cyan", CL.mob_killed:format(args.destName, addsKilled, 3), false)
+	self:Message(228334, "cyan", CL.mob_killed:format(args.destName, addsKilled, 3), false)
 	if addsKilled == 3 then
-		self:PlaySound("stages", "long")
+		self:PlaySound(228334, "info")
 	end
 end
 
