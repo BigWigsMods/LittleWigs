@@ -84,7 +84,8 @@ function mod:OnBossEnable()
 	-- Chess Event
 	self:Log("SPELL_AURA_REMOVED", "RoyaltyRemoved", 229489)
 	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
-	self:Death("ChessEventOver", 115388)
+	self:Death("ChessEventPieceDied", 115395, 115407, 115401, 115406) -- Queen, Rook, Bishop, Knight
+	self:Death("ChessEventOver", 115388) -- King
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterEvent("GOSSIP_SHOW")
@@ -179,6 +180,10 @@ end
 function mod:RoyaltyApplied(args)
 	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ChessEventPieceDied(args)
+	-- TODO we can't track Vulnerable refresh because it's a hidden aura, but if another add dies then 20s is added to the existing buff
 end
 
 function mod:ChessEventOver(args)
