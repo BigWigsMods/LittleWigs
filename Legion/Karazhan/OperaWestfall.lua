@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 )
 --mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
 mod:SetStage(1)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -28,14 +29,13 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("ENCOUNTER_END")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 	self:Log("SPELL_CAST_START", "BurningLegSweep", 227568)
 	self:Log("SPELL_CAST_START", "ThunderRitual", 227777)
 	self:Log("SPELL_AURA_APPLIED", "ThunderRitualApplied", 227777)
 	self:Log("SPELL_AURA_REMOVED", "ThunderRitualRemoved", 227777)
 	self:Log("SPELL_CAST_START", "WashAway", 227783)
-
-	self:RegisterEvent("BOSS_KILL")
 end
 
 function mod:OnEngage()
@@ -64,6 +64,18 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:PlaySound("stages", "long")
 		self:Bar(227568, 8) -- Burning Leg Sweep
 		self:Bar(227453, 19.7) -- Dashing Flame Gale
+	end
+end
+
+function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
+	if engageId == 1957 then
+		if status == 0 then
+			self:Wipe()
+			-- force a respawn timer
+			self:SendMessage("BigWigs_EncounterEnd", self, engageId, self.displayName, self:Difficulty(), 5, status)
+		else
+			self:Win()
+		end
 	end
 end
 
@@ -104,10 +116,4 @@ function mod:WashAway(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 23)
-end
-
-function mod:BOSS_KILL(_, id)
-	if id == 1957 then
-		self:Win()
-	end
 end
