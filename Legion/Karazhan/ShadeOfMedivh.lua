@@ -55,6 +55,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlameWreathStart", 228269)
 	self:Log("SPELL_AURA_APPLIED", "FlameWreathApplied", 228261)
 	self:Log("SPELL_CAST_START", "CeaselessWinter", 227779)
+	self:Log("SPELL_CAST_SUCCESS", "CeaselessWinterSuccess", 227779)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "CeaselessWinterApplied", 227806)
 	self:Death("ImageDeath", 114675)
 end
@@ -161,6 +162,9 @@ end
 function mod:CeaselessWinter(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:CeaselessWinterSuccess(args)
 	self:Bar(args.spellId, 20)
 end
 
