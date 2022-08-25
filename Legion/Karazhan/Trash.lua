@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	115395, -- Queen
 	115407, -- Rook
 	115401, -- Bishop
+	115402, -- Bishop
 	115406  -- Knight
 )
 
@@ -83,7 +84,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
 
 	-- Chess Event
-	self:Death("ChessEventPieceDied", 115395, 115407, 115401, 115406) -- Queen, Rook, Bishop, Knight
+	self:Death("ChessEventPieceDied", 115395, 115407, 115401, 115402, 115406) -- Queen, Rook, Bishop, Bishop, Knight
 	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
 	self:Death("ChessEventOver", 115388) -- King
 
