@@ -56,6 +56,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BurningBlastApplied", 229083)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BurningBlastApplied", 229083)
 	self:Log("SPELL_CAST_SUCCESS", "DemonicPortal", 229610)
+	self:Log("SWING_DAMAGE", "BossSwing", "*") -- I can't find a better way to find out when he stops spamming Disintegrate
+	self:Log("SWING_MISSED", "BossSwing", "*")
 
 	-- [[ Stages 1 & 2 ]] --
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Command: Bombardment
@@ -140,8 +142,6 @@ function mod:DemonicPortal()
 		-- in case you skipped phase 2
 		spammingDisintegrate = false
 		self:SetStage(2)
-		self:RemoveLog("SWING_DAMAGE", "*")
-		self:RemoveLog("SWING_MISSED", "*")
 	end
 	self:Message("stages", "cyan", CL.stage:format(self:GetStage() + 1), false)
 	self:PlaySound("stages", "long")
@@ -151,16 +151,13 @@ function mod:DemonicPortal()
 	if self:GetStage() == 1 then
 		spammingDisintegrate = true
 		self:StopBar(229248) -- Fel Beam
-
-		self:Log("SWING_DAMAGE", "BossSwing", "*") -- I can't find a better way to find out when he stops spamming Disintegrate
-		self:Log("SWING_MISSED", "BossSwing", "*")
 	else
 		self:SetStage(3)
 	end
 end
 
 function mod:BossSwing(args)
-	if self:MobId(args.sourceGUID) == 114790 then
+	if spammingDisintegrate and self:MobId(args.sourceGUID) == 114790 then
 		spammingDisintegrate = false
 		self:SetStage(2)
 
