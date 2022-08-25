@@ -4,7 +4,11 @@
 
 local mod, CL = BigWigs:NewBoss("Opera Hall: Westfall Story", 1651, 1826)
 if not mod then return end
-mod:RegisterEnableMob(114261, 114260) -- Toe Knee, Mrrgria
+mod:RegisterEnableMob(
+	114261, -- Toe Knee
+	114265, -- Gang Ruffian
+	114260  -- Mrrgria
+)
 --mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
 mod:SetStage(1)
 
