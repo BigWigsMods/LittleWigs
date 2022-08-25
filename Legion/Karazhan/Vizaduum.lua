@@ -76,6 +76,7 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
+	spammingDisintegrate = false
 	longDisintegratesLeft = 0
 	self:CDBar(229248, 5.9) -- Fel Beam
 	self:CDBar(229151, 10.8) -- Disintegrate
