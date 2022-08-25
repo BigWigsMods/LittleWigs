@@ -49,6 +49,18 @@ end
 -- Event Handlers
 --
 
+function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
+	if engageId == 1957 then
+		if status == 0 then
+			self:Wipe()
+			-- force a respawn timer
+			self:SendMessage("BigWigs_EncounterEnd", self, engageId, self.displayName, self:Difficulty(), 5, status)
+		else
+			self:Win()
+		end
+	end
+end
+
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	if self:GetStage() == 1 and self:GetBossId(114260) then -- Mrrgria
 		self:SetStage(2)
@@ -64,18 +76,6 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:PlaySound("stages", "long")
 		self:Bar(227568, 8) -- Burning Leg Sweep
 		self:Bar(227453, 19.7) -- Dashing Flame Gale
-	end
-end
-
-function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
-	if engageId == 1957 then
-		if status == 0 then
-			self:Wipe()
-			-- force a respawn timer
-			self:SendMessage("BigWigs_EncounterEnd", self, engageId, self.displayName, self:Difficulty(), 5, status)
-		else
-			self:Win()
-		end
 	end
 end
 
