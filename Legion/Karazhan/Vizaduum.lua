@@ -108,7 +108,7 @@ do
 
 	function mod:ChaoticShadowsCast(args) -- debuff applications are delayed
 		playerList = {}
-		self:CDBar(args.spellId, 35.2) -- 35.2 - 38.9
+		self:CDBar(args.spellId, 32.7)
 	end
 
 	function mod:ChaoticShadowsApplied(args)
