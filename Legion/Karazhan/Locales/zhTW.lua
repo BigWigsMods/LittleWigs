@@ -17,6 +17,7 @@ if L then
 	--L.philanthropist = "Ghostly Philanthropist"
 	--L.guardsman = "Phantom Guardsman"
 	L.chess_event = "西洋棋事件"
+	--L.king = "King"
 end
 
 local L = BigWigs:NewBossLocale("Nightbane", "zhTW")

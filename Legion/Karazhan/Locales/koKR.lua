@@ -17,6 +17,7 @@ if L then
 	L.philanthropist = "유령 자선가"
 	L.guardsman = "유령 경비병"
 	L.chess_event = "체스 이벤트"
+	L.king = "킹"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "koKR")

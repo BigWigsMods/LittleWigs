@@ -42,6 +42,7 @@ if L then
 	L.philanthropist = "Ghostly Philanthropist"
 	L.guardsman = "Phantom Guardsman"
 	L.chess_event = "Chess Event"
+	L.king = "King"
 end
 
 --------------------------------------------------------------------------------
@@ -82,9 +83,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
 
 	-- Chess Event
-	self:Log("SPELL_AURA_REMOVED", "RoyaltyRemoved", 229489)
-	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
 	self:Death("ChessEventPieceDied", 115395, 115407, 115401, 115406) -- Queen, Rook, Bishop, Knight
+	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
 	self:Death("ChessEventOver", 115388) -- King
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
@@ -171,19 +171,21 @@ function mod:Heartbreaker(args)
 end
 
 -- Chess Event
-function mod:RoyaltyRemoved(args)
-	self:Message(args.spellId, "green", CL.buff_other:format(args.destName, self:SpellName(229495))) -- Vulnerable
-	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 20, self:SpellName(229495)) -- Vulnerable
+function mod:ChessEventPieceDied(args)
+	local remainingVulnerable = self:BarTimeLeft(self:SpellName(229495)) -- Vulnerable
+	if remainingVulnerable > 0 then
+		-- we can't track Vulnerable refresh because it's a hidden aura, but if another add dies then 20s is added to the existing buff
+		self:Bar(229489, remainingVulnerable + 20, self:SpellName(229495)) -- Royality, Vulnerable
+	else
+		self:Message(229489, "green", CL.on:format(self:SpellName(229495), L.king)) -- Royality, Vulnerable
+		self:PlaySound(229489, "long") -- Royalty
+		self:Bar(229489, 20, self:SpellName(229495)) -- Royality, Vulnerable
+	end
 end
 
 function mod:RoyaltyApplied(args)
 	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 	self:PlaySound(args.spellId, "info")
-end
-
-function mod:ChessEventPieceDied(args)
-	-- TODO we can't track Vulnerable refresh because it's a hidden aura, but if another add dies then 20s is added to the existing buff
 end
 
 function mod:ChessEventOver(args)
