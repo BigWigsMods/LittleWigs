@@ -46,20 +46,7 @@ end
 --
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	local foundMrrgria, foundToeKnee = nil, nil
-	for i = 1, 5 do
-		local guid = self:UnitGUID(("boss%d"):format(i))
-		if guid  then
-			local mobId = self:MobId(guid)
-			if mobId == 114260 then -- Mrrgria
-				foundMrrgria = true
-			elseif mobId == 114261 then -- Toe Knee
-				foundToeKnee = true
-			end
-		end
-	end
-
-	if foundMrrgria and self:GetStage() == 1 then -- Mrrgria
+	if self:GetStage() == 1 and self:GetBossId(114260) then -- Mrrgria
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
@@ -67,7 +54,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:StopBar(227453) -- Dashing Flame Gale
 		self:Bar(227777, 8.5) -- Thunder Ritual
 		self:Bar(227783, 15.5) -- Wash Away
-	elseif foundToeKnee and self:GetStage() == 2 then -- Toe Knee
+	elseif self:GetStage() == 2 and self:GetBossId(114261) then -- Toe Knee
 		self:SetStage(3)
 		self:Message("stages", "cyan", CL.stage:format(3), false)
 		self:PlaySound("stages", "long")
