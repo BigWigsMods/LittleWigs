@@ -87,7 +87,7 @@ do
 
 	function mod:EvocationOver(args)
 		if args.time - prev > 3 then
-			self:StopBar(args.spellId)
+			self:StopBar(CL.cast:format(args.spellName))
 			self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
 			-- Mythic Plus:   900 energy, loses 18/second => 50.0 seconds
