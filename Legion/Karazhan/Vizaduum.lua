@@ -96,12 +96,11 @@ function mod:Disintegrate(args)
 		self:CDBar(args.spellId, 10.1)
 		self:CastBar(args.spellId, 6.25)
 	else
-		-- TODO confirm this stuff
 		if longDisintegratesLeft > 0 then
 			longDisintegratesLeft = longDisintegratesLeft - 1
 			self:CastBar(args.spellId, 10)
 		else
-			self:CastBar(args.spellId, 2.5)
+			self:CastBar(args.spellId, 6.25)
 		end
 	end
 end
@@ -155,7 +154,7 @@ function mod:DemonicPortal()
 	self:StopBar(229284) -- Command: Bombardment
 	if self:GetStage() == 1 then
 		spammingDisintegrate = true
-		longDisintegratesLeft = 3
+		longDisintegratesLeft = 1
 		self:StopBar(229248) -- Fel Beam
 
 		self:Log("SWING_DAMAGE", "BossSwing", "*") -- I can't find a better way to find out when he stops spamming Disintegrate
