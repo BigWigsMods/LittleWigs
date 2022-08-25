@@ -161,9 +161,6 @@ function mod:BossSwing(args)
 		spammingDisintegrate = false
 		self:SetStage(2)
 
-		self:RemoveLog("SWING_DAMAGE", "*")
-		self:RemoveLog("SWING_MISSED", "*")
-
 		self:CDBar(229151, 8.5) -- Disintegrate
 		self:CDBar(229284, 13.3) -- Command: Bombardment
 		self:CDBar(229159, 18.2) -- Chaotic Shadows
