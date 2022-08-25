@@ -21,9 +21,10 @@ BigWigs:AddSounds("Nitrogg Thundertower", {
 })
 
 BigWigs:AddSounds("Skylord Tovra", {
-	[161588] = "alarm",
+	[161588] = "underyou",
 	[161801] = "long",
-	[162066] = "info",
+	[162058] = "alarm",
+	[162066] = {"alert","info"},
 	[163447] = "info",
 })
 
