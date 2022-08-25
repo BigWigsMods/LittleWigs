@@ -13,7 +13,9 @@ BigWigs:AddColors("Grimrail Enforcers", {
 })
 
 BigWigs:AddColors("Oshir", {
+	[161256] = "orange",
 	[162415] = {"blue","green","red"},
+	[178124] = "yellow",
 })
 
 BigWigs:AddColors("Skulloc", {
