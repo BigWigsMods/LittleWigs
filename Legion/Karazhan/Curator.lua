@@ -59,7 +59,7 @@ do
 	local prev = 0
 	function mod:PowerDischargeDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 2 then
 				prev = t
 				self:PersonalMessage(227279, "underyou")
@@ -74,7 +74,7 @@ do
 	function mod:Evocation(args)
 		-- sometimes this ability is double-applied, this restarts the channel to the full 20 seconds
 		-- but we don't need to alert again
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 3 then
 			prev = t
 			self:Message(args.spellId, "green")
@@ -86,7 +86,7 @@ do
 	end
 
 	function mod:EvocationOver(args)
-		if GetTime() - prev > 3 then
+		if args.time - prev > 3 then
 			self:StopBar(args.spellId)
 			self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
