@@ -30,7 +30,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterEvent("ENCOUNTER_END")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2") -- Toe Knee can be either boss1 or boss2
 	self:Log("SPELL_CAST_START", "BurningLegSweep", 227568)
 	self:Log("SPELL_CAST_START", "ThunderRitual", 227777)
 	self:Log("SPELL_AURA_APPLIED", "ThunderRitualApplied", 227777)
