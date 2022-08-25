@@ -166,10 +166,9 @@ end
 
 function mod:CeaselessWinterApplied(args)
 	if self:Me(args.destGUID) then
-		local amount = args.amount or 1
-		if amount % 2 == 0 then
+		if args.amount % 2 == 0 then
 			-- Starts doing significant damage at 2+ stacks
-			self:NewStackMessage(227779, "blue", args.destName, amount, 2)
+			self:NewStackMessage(227779, "blue", args.destName, args.amount, 2)
 			self:PlaySound(227779, "warning")
 		end
 	end
