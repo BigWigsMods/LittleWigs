@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Grimrail Enforcers", "zhTW")
 if not L then return end
 if L then
-	--L.sphere_fail_message = "Bubble was removed - They're all healing :("
+	--L.sphere_fail_message = "Shield was broken - They're all healing :("
 end
 
 L = BigWigs:NewBossLocale("Oshir", "zhTW")
