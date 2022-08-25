@@ -31,7 +31,6 @@ if L then
 	L.adds_desc = -9708
 	L.adds_icon = "inv_misc_groupneedmore"
 
-	L.comma = ", "
 	L.dropped = "%s dropped!"
 	L.add_trigger1 = "Let 'em have it, boys!"
 	L.add_trigger2 = "Give 'em all ya got."
