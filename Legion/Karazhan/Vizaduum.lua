@@ -14,7 +14,6 @@ mod:SetStage(1)
 --
 
 local spammingDisintegrate = false
-local longDisintegratesLeft = 0 -- first 3 Disintegrates during stage 2 take longer to cast
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -77,7 +76,6 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	spammingDisintegrate = false
-	longDisintegratesLeft = 0
 	self:CDBar(229248, 5.9) -- Fel Beam
 	self:CDBar(229151, 10.8) -- Disintegrate
 	self:CDBar(229159, 15.76) -- Chaotic Shadows
@@ -96,12 +94,10 @@ function mod:Disintegrate(args)
 		self:CDBar(args.spellId, 10.1)
 		self:CastBar(args.spellId, 6.25)
 	else
-		if longDisintegratesLeft > 0 then
-			longDisintegratesLeft = longDisintegratesLeft - 1
-			self:CastBar(args.spellId, 10)
-		else
-			self:CastBar(args.spellId, 6.25)
-		end
+		-- cast time is extra long for the first few casts of p2
+		local _, _, _, startTime, endTime = UnitCastingInfo("boss1")
+		local castTime = (endTime - startTime) / 1000
+		self:CastBar(args.spellId, castTime)
 	end
 end
 
@@ -154,7 +150,6 @@ function mod:DemonicPortal()
 	self:StopBar(229284) -- Command: Bombardment
 	if self:GetStage() == 1 then
 		spammingDisintegrate = true
-		longDisintegratesLeft = 1
 		self:StopBar(229248) -- Fel Beam
 
 		self:Log("SWING_DAMAGE", "BossSwing", "*") -- I can't find a better way to find out when he stops spamming Disintegrate
