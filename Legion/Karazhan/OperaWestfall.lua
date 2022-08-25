@@ -24,6 +24,9 @@ function mod:GetOptions()
 		227453, -- Dashing Flame Gale
 		{227777, "PROXIMITY"}, -- Thunder Ritual
 		227783, -- Wash Away
+	}, {
+		[227568] = -14118, -- Toe Knee
+		[227777] = -14125, -- Mrrgria
 	}
 end
 
