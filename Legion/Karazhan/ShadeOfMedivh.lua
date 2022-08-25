@@ -13,7 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local frostbiteTarget = nil
-local addsKilled = 1
+local addsKilled = nil
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	addsKilled = 1 -- this variable is being reset at SPELL_CAST_START of Guardian's Image, comparing against it in UNIT_POWER to avoid introducing a new variable
+	addsKilled = nil -- this variable is being reset at SPELL_CAST_START of Guardian's Image, comparing against it in UNIT_POWER to avoid introducing a new variable
 end
 
 --------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ end
 function mod:UNIT_POWER_FREQUENT(_, unit)
 	-- ~30 seconds beween specials, cast at max Mana
 	local nextSpecial = 30 * (1 - UnitPower(unit) / UnitPowerMax(unit))
-	if nextSpecial > 0 and addsKilled ~= 0 then -- doesn't work like that while Guardian's Image is active
+	if nextSpecial > 0 and addsKilled == nil then -- doesn't work like that while Guardian's Image is active
 		local spellName = self:SpellName(L.focused_power)
 		if math.abs(nextSpecial - self:BarTimeLeft(spellName)) > 1 then
 			self:Bar("focused_power", nextSpecial, spellName, L.focused_power_icon)
@@ -132,10 +132,15 @@ function mod:GuardiansImage(args)
 end
 
 function mod:ImageDeath(args)
-	addsKilled = addsKilled + 1
+	if addsKilled == nil then
+		addsKilled = 1
+	else
+		addsKilled = addsKilled + 1
+	end
 	self:Message(228334, "cyan", CL.mob_killed:format(args.destName, addsKilled, 3), false)
 	if addsKilled == 3 then
 		self:PlaySound(228334, "info")
+		addsKilled = nil
 	end
 end
 
