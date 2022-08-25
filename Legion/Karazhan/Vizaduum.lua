@@ -56,7 +56,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BurningBlastApplied", 229083)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BurningBlastApplied", 229083)
 	self:Log("SPELL_CAST_SUCCESS", "DemonicPortal", 229610)
-	self:Log("SWING_DAMAGE", "BossSwing", "*") -- I can't find a better way to find out when he stops spamming Disintegrate
+	self:Log("SWING_DAMAGE", "BossSwing", "*")
 	self:Log("SWING_MISSED", "BossSwing", "*")
 
 	-- [[ Stages 1 & 2 ]] --
@@ -156,6 +156,7 @@ function mod:DemonicPortal()
 	end
 end
 
+-- used to detect when stage 2 really starts, while you're running to the boss he just spams Disintegrate
 function mod:BossSwing(args)
 	if spammingDisintegrate and self:MobId(args.sourceGUID) == 114790 then
 		spammingDisintegrate = false
