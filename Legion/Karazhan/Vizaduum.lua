@@ -193,7 +193,7 @@ do
 	local prev = 0
 	function mod:SoulHarvest(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:Message(args.spellId, "blue", CL.near:format(args.sourceName)) -- args.sourceName = Soul Harvester
@@ -222,7 +222,7 @@ end
 do
 	local prev = 0
 	function mod:ShadowPhlegm(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "red")
