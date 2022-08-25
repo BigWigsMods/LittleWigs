@@ -24,7 +24,7 @@ function mod:GetOptions()
 		-- [[ General ]] --
 		"stages",
 		229151, -- Disintegrate
-		{229159, "SAY"}, -- Chaotic Shadows
+		{229159, "SAY", "SAY_COUNTDOWN"}, -- Chaotic Shadows
 		229083, -- Burning Blast
 
 		-- [[ Stages 1 & 2 ]] --
@@ -50,8 +50,9 @@ end
 function mod:OnBossEnable()
 	-- [[ General ]] --
 	self:Log("SPELL_CAST_START", "Disintegrate", 229151)
-	self:Log("SPELL_CAST_SUCCESS", "ChaoticShadowsCast", 229159)
+	self:Log("SPELL_CAST_SUCCESS", "ChaoticShadows", 229159)
 	self:Log("SPELL_AURA_APPLIED", "ChaoticShadowsApplied", 229159)
+	self:Log("SPELL_AURA_REMOVED", "ChaoticShadowsRemoved", 229159)
 	self:Log("SPELL_CAST_START", "BurningBlast", 229083)
 	self:Log("SPELL_AURA_APPLIED", "BurningBlastApplied", 229083)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BurningBlastApplied", 229083)
@@ -106,7 +107,7 @@ end
 do
 	local playerList = {}
 
-	function mod:ChaoticShadowsCast(args) -- debuff applications are delayed
+	function mod:ChaoticShadows(args)
 		playerList = {}
 		self:CDBar(args.spellId, 32.7)
 	end
@@ -119,6 +120,13 @@ do
 		self:PlaySound(args.spellId, "warning", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 10)
+		end
+	end
+
+	function mod:ChaoticShadowsRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(args.spellId)
 		end
 	end
 end
