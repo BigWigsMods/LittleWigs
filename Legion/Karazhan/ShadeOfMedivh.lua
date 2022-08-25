@@ -13,7 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local frostbiteTarget = nil
-local addsKilled = 0
+local addsKilled = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -69,7 +69,8 @@ end
 --
 
 function mod:UNIT_POWER_FREQUENT(_, unit)
-	local nextSpecial = (100 - (UnitPower(unit) / (UnitPowerMax(unit)) * 100)) / 3.3
+	-- ~30 seconds beween specials, cast at max Mana
+	local nextSpecial = 30 * (1 - UnitPower(unit) / UnitPowerMax(unit))
 	if nextSpecial > 0 and addsKilled ~= 0 then -- doesn't work like that while Guardian's Image is active
 		local spellName = self:SpellName(L.focused_power)
 		if math.abs(nextSpecial - self:BarTimeLeft(spellName)) > 1 then
