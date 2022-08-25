@@ -20,7 +20,7 @@ local firstBombSquadSent = false
 
 local L = mod:GetLocale()
 if L then
-	L.sphere_fail_message = "Bubble was broken - They're all healing :("
+	L.sphere_fail_message = "Shield was broken - They're all healing :("
 end
 
 --------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ function mod:GetOptions()
 		[163665] = -10453, -- Makogg Emberblade
 		[163376] = -10456, -- Neesa Nox
 	}, {
-		[163689] = self:SpellName(119924) -- Sanguine Sphere (Bubble)
+		[163689] = CL.shield -- Sanguine Sphere (Shield)
 	}
 end
 
@@ -70,7 +70,7 @@ end
 
 function mod:OnEngage()
 	firstBombSquadSent = false
-	self:CDBar(163689, 28, self:SpellName(119924)) -- Bubble
+	self:CDBar(163689, 28, CL.shield) -- Shield
 	self:Bar(163665, 4.9) -- Flaming Slash
 	self:Bar(163390, 12.9) -- Ogre Traps
 	self:Bar(164956, 16.6) -- Lava Swipe
@@ -93,23 +93,22 @@ end
 
 function mod:SanguineSphere(args)
 	-- use a more severe warning if you are still targeting the boss which gains the shield
-	if UnitIsUnit("target", self:GetBossId(args.destGUID)) then
-		self:TargetMessage(args.spellId, "red", args.destName, self:SpellName(119924)) -- Bubble on <boss>
+		self:TargetMessage(args.spellId, "red", args.destName, CL.shield) -- Shield on <boss>
 		self:PlaySound(args.spellId, "warning")
 	else
-		self:TargetMessage(args.spellId, "yellow", args.destName, self:SpellName(119924)) -- Bubble on <boss>
+		self:TargetMessage(args.spellId, "yellow", args.destName, CL.shield) -- Shield on <boss>
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:TargetBar(args.spellId, 10, args.destName, self:SpellName(119924)) -- Bubble on <boss>
-	self:Bar(args.spellId, 28, self:SpellName(119924)) -- Bubble
+	self:TargetBar(args.spellId, 10, args.destName, CL.shield) -- Shield on <boss>
+	self:Bar(args.spellId, 28, CL.shield) -- Shield
 end
 
 function mod:SanguineSphereRemoved(args)
-	self:StopBar(self:SpellName(119924), args.destName) -- Bubble on <boss>
+	self:StopBar(CL.shield, args.destName) -- Shield on <boss>
 
 	-- if args.amount > 0 then the shield was not broken
 	if args.amount > 0 then
-		self:Message(args.spellId, "green", CL.over:format(self:SpellName(119924))) -- Bubble Over
+		self:Message(args.spellId, "green", CL.over:format(CL.shield)) -- Shield Over
 		self:PlaySound(args.spellId, "info")
 	end
 end
@@ -117,18 +116,18 @@ end
 do
 	local prev = 0
 	function mod:AbruptRestoration(args)
-		self:StopBar(self:SpellName(119924), args.destName) -- Bubble on <boss>
+		self:StopBar(CL.shield, args.destName) -- Shield on <boss>
 		local t = GetTime()
 		if t-prev > 10 then
 			prev = t
-			self:Message(args.spellId, "yellow", L.sphere_fail_message) -- Bubble was broken - They're all healing :(
+			self:Message(args.spellId, "yellow", L.sphere_fail_message) -- Shield was broken - They're all healing :(
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
 
 function mod:AhriokDeath()
-	self:StopBar(self:SpellName(119924)) -- Bubble
+	self:StopBar(CL.shield) -- Shield
 end
 
 -- Makogg Emberblade
