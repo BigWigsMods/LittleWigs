@@ -134,7 +134,7 @@ end
 
 function mod:BurningBlastApplied(args)
 	if self:Dispeller("magic") then
-		self:NewStackMessage(args.spellId, "red", args.destName, args.amount)
+		self:NewStackMessage(args.spellId, "red", args.destName, args.amount, 2)
 		self:PlaySound(args.spellId, "info")
 	end
 end
