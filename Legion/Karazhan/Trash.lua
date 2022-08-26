@@ -172,23 +172,32 @@ function mod:Heartbreaker(args)
 end
 
 -- Chess Event
-function mod:ChessEventPieceDied(args)
-	local remainingVulnerable = self:BarTimeLeft(self:SpellName(229495)) -- Vulnerable
-	if remainingVulnerable > 0 then
-		-- we can't track Vulnerable refresh because it's a hidden aura, but if another add dies then 20s is added to the existing buff
-		self:Bar(229489, remainingVulnerable + 20, self:SpellName(229495)) -- Royality, Vulnerable
-	else
-		self:Message(229489, "green", CL.on:format(self:SpellName(229495), L.king)) -- Royality, Vulnerable
-		self:PlaySound(229489, "long") -- Royalty
-		self:Bar(229489, 20, self:SpellName(229495)) -- Royality, Vulnerable
+do
+	local timeKingDied = 0
+
+	function mod:ChessEventPieceDied(args)
+		if args.time - timeKingDied < 10 then
+			-- if the king just died, ignore all other piece deaths as the event is over
+			return
+		end
+		local remainingVulnerable = self:BarTimeLeft(self:SpellName(229495)) -- Vulnerable
+		if remainingVulnerable > 0 then
+			-- we can't track Vulnerable refresh because it's a hidden aura, but if another add dies then 20s is added to the existing buff
+			self:Bar(229489, remainingVulnerable + 20, self:SpellName(229495)) -- Royality, Vulnerable
+		else
+			self:Message(229489, "green", CL.on:format(self:SpellName(229495), L.king)) -- Royality, Vulnerable
+			self:PlaySound(229489, "long") -- Royalty
+			self:Bar(229489, 20, self:SpellName(229495)) -- Royality, Vulnerable
+		end
+	end
+
+	function mod:ChessEventOver(args)
+		timeKingDied = args.time
+		self:StopBar(self:SpellName(229495)) -- Vulnerable
 	end
 end
 
 function mod:RoyaltyApplied(args)
 	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 	self:PlaySound(args.spellId, "info")
-end
-
-function mod:ChessEventOver(args)
-	self:StopBar(self:SpellName(229495)) -- Vulnerable
 end
