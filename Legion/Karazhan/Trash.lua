@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Karazhan Trash", 1651)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	-- Return to Karazhan: Lower
 	114544, -- Skeletal Usher
 	114339, -- Barnes
 	114542, -- Ghostly Philanthropist
@@ -13,6 +14,7 @@ mod:RegisterEnableMob(
 	114636, -- Phantom Guardsman
 	114783, -- Reformed Maiden
 	114796, -- Wholesome Hostess
+	-- Return to Karazhan: Upper
 	115388, -- King
 	115395, -- Queen
 	115407, -- Rook
@@ -27,6 +29,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	-- Return to Karazhan: Lower
 	L.skeletalUsher = "Skeletal Usher"
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
@@ -42,6 +45,7 @@ if L then
 	L.maiden = "Reformed Maiden"
 	L.philanthropist = "Ghostly Philanthropist"
 	L.guardsman = "Phantom Guardsman"
+	-- Return to Karazhan: Upper
 	L.chess_event = "Chess Event"
 	L.king = "King"
 end
