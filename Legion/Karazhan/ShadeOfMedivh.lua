@@ -163,7 +163,9 @@ do
 		playerList[#playerList+1] = args.destName
 		self:NewTargetsMessage(228269, "red", playerList, 2)
 		self:PlaySound(228269, "warning", nil, playerList)
-		self:Bar(228269, 20)
+		if #playerList == 1 then
+			self:Bar(228269, 20)
+		end
 		if self:Me(args.destGUID) then
 			self:Say(228269)
 		end
