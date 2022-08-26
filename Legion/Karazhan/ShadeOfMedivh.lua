@@ -13,7 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local frostbiteTarget = nil
-local addsKilled = nil
+local guardiansImagePhase = false
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	addsKilled = nil -- this variable is being reset at SPELL_CAST_START of Guardian's Image, comparing against it in UNIT_POWER to avoid introducing a new variable
+	guardiansImagesPhase = false
 end
 
 --------------------------------------------------------------------------------
@@ -68,9 +68,14 @@ end
 --
 
 function mod:UNIT_POWER_FREQUENT(_, unit)
+	if guardiansImagePhase then
+		-- Focused Power resumes after Guardian's Image is over
+		return
+	end
+
 	-- ~30 seconds beween specials, cast at max Mana
 	local nextSpecial = 30 * (1 - UnitPower(unit) / UnitPowerMax(unit))
-	if nextSpecial > 0 and addsKilled == nil then -- doesn't work like that while Guardian's Image is active
+	if nextSpecial > 0 then
 		local spellName = self:SpellName(L.focused_power)
 		if math.abs(nextSpecial - self:BarTimeLeft(spellName)) > 1 then
 			self:Bar("focused_power", nextSpecial, spellName, L.focused_power_icon)
@@ -125,22 +130,23 @@ function mod:PiercingMissiles(args)
 	end
 end
 
-function mod:GuardiansImage(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-	addsKilled = 0
-end
+do
+	local addsKilled = 0
 
-function mod:ImageDeath(args)
-	if addsKilled == nil then
-		addsKilled = 1
-	else
-		addsKilled = addsKilled + 1
+	function mod:GuardiansImage(args)
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "long")
+		guardiansImagePhase = true
+		addsKilled = 0
 	end
-	self:Message(228334, "cyan", CL.mob_killed:format(args.destName, addsKilled, 3), false)
-	if addsKilled == 3 then
-		self:PlaySound(228334, "info")
-		addsKilled = nil
+
+	function mod:ImageDeath(args)
+		addsKilled = addsKilled + 1
+		self:Message(228334, "cyan", CL.mob_killed:format(args.destName, addsKilled, 3), false)
+		if addsKilled == 3 then
+			self:PlaySound(228334, "info")
+			guardiansImagePhase = false
+		end
 	end
 end
 
