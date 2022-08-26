@@ -195,7 +195,7 @@ end
 -- [[ Stage 1 ]] --
 function mod:AcquiringTarget(args)
 	self:TargetMessage(229248, "orange", args.destName)
-	self:PlaySound(229248, "alarm", args.destName)
+	self:PlaySound(229248, "alarm", nil, args.destName)
 	self:CDBar(229248, 41.2)
 	if self:Me(args.destGUID) then
 		self:Say(229248)
