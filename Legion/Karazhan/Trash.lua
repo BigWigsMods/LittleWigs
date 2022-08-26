@@ -52,22 +52,26 @@ end
 
 function mod:GetOptions()
 	return {
-		227966, -- Flashlight
+		-- Return to Karazhan: Lower
 		"custom_on_autotalk", -- Barnes
 		"warmup", -- Opera Hall event timer
+		227966, -- Flashlight
 		228279, -- Shadow Rejuvenation
 		228575, -- Alluring Aura
 		228625, -- Banshee Wail
 		227999, -- Pennies from Heaven
 		228528, -- Heartbreaker
+		-- Return to Karazhan: Upper
 		229489, -- Royalty
 	}, {
-		[227966] = L.skeletalUsher,
+		-- Return to Karazhan: Lower
 		["custom_on_autotalk"] = "general",
+		[227966] = L.skeletalUsher,
 		[228279] = L.attendant,
 		[228575] = L.hostess,
 		[227999] = L.philanthropist,
 		[228528] = L.maiden,
+		-- Return to Karazhan: Upper
 		[229489] = L.chess_event,
 	}, {
 		[229489] = self:SpellName(229495) -- Royalty (Vulnerable)
@@ -76,6 +80,10 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
+
+	-- Return to Karazhan: Lower
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "Flashlight", 227966)
 	self:Log("SPELL_CAST_START", "ShadowRejuvenation", 228279)
 	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
@@ -83,34 +91,18 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
 
-	-- Chess Event
-	self:Death("ChessEventPieceDied", 115395, 115407, 115401, 115402, 115406) -- Queen, Rook, Bishop, Bishop, Knight
+	-- Return to Karazhan: Upper
 	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
+	self:Death("ChessEventPieceDied", 115395, 115407, 115401, 115402, 115406) -- Queen, Rook, Bishop, Bishop, Knight
 	self:Death("ChessEventOver", 115388) -- King
-
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
-	self:RegisterEvent("GOSSIP_SHOW")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
--- Skeletal Usher
-do
-	local prev = 0
-	function mod:Flashlight(args)
-		local t = GetTime()
-		if t-prev > 3 then
-			prev = t
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info")
-		end
-		self:Bar(args.spellId, 3)
-	end
-end
-
 -- Barnes
+
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 114339 then
 		if self:GetGossipOptions() then
@@ -133,13 +125,30 @@ function mod:Warmup(_, msg)
 	end
 end
 
+-- Skeletal Usher
+
+do
+	local prev = 0
+	function mod:Flashlight(args)
+		local t = GetTime()
+		if t-prev > 3 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "info")
+		end
+		self:Bar(args.spellId, 3)
+	end
+end
+
 -- Spectral Attendant
+
 function mod:ShadowRejuvenation(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Wholesome Hostess
+
 function mod:AlluringAura(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
@@ -153,6 +162,7 @@ function mod:BansheeWail(args)
 end
 
 -- Ghostly Philanthropist
+
 do
 	local prev = 0
 	function mod:PenniesFromHeaven(args)
@@ -166,12 +176,19 @@ do
 end
 
 -- Reformed Maiden
+
 function mod:Heartbreaker(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Chess Event
+
+function mod:RoyaltyApplied(args)
+	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+	self:PlaySound(args.spellId, "info")
+end
+
 do
 	local timeKingDied = 0
 
@@ -195,9 +212,4 @@ do
 		timeKingDied = args.time
 		self:StopBar(self:SpellName(229495)) -- Vulnerable
 	end
-end
-
-function mod:RoyaltyApplied(args)
-	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
-	self:PlaySound(args.spellId, "info")
 end
