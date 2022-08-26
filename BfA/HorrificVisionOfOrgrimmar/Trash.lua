@@ -360,7 +360,7 @@ function mod:AqiriMindToxinApplied(args)
 	if amount >= 3 then
 		if self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId) then
 			self:StackMessage(args.spellId, args.destName, amount, "red")
-			self:PlaySound(args.spellId, "alert", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
 		end
 	end
 end
