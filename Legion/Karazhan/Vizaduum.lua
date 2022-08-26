@@ -99,8 +99,11 @@ function mod:Disintegrate(args)
 	else
 		-- cast time is extra long for the first few casts of p2
 		local _, _, _, startTime, endTime = UnitCastingInfo("boss1")
-		local castTime = (endTime - startTime) / 1000
-		self:CastBar(args.spellId, castTime)
+		if startTime and endTime then
+			self:CastBar(args.spellId, (endTime - startTime) / 1000)
+		else
+			self:CastBar(args.spellId, 6.25)
+		end
 	end
 end
 
