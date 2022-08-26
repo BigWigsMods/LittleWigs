@@ -10,7 +10,8 @@
 local mod, CL = BigWigs:NewBoss("Maiden of Virtue", 1651, 1825)
 if not mod then return end
 mod:RegisterEnableMob(113971)
-mod.engageId = 1954
+mod:SetEncounterID(1954)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
