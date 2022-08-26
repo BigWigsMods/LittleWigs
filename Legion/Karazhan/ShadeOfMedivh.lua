@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	guardiansImagesPhase = false
+	guardiansImagePhase = false
 end
 
 --------------------------------------------------------------------------------
