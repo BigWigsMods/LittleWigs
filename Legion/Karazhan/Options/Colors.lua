@@ -62,11 +62,10 @@ BigWigs:AddColors("The Curator", {
 BigWigs:AddColors("Shade of Medivh", {
 	[227592] = {"blue","orange"},
 	[227615] = {"orange","red"},
-	[227628] = "yellow",
+	[227628] = "purple",
 	[227779] = {"blue","yellow"},
 	[228269] = {"blue","red","yellow"},
-	[228334] = "yellow",
-	["stages"] = "cyan",
+	[228334] = {"cyan","yellow"},
 })
 
 BigWigs:AddColors("Mana Devourer", {

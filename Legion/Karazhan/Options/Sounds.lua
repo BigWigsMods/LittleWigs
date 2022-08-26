@@ -59,10 +59,10 @@ BigWigs:AddSounds("The Curator", {
 BigWigs:AddSounds("Shade of Medivh", {
 	[227592] = {"alarm","warning"},
 	[227615] = "alert",
+	[227628] = "alert",
 	[227779] = {"long","warning"},
 	[228269] = {"long","warning"},
-	[228334] = "long",
-	["stages"] = "long",
+	[228334] = {"info","long"},
 })
 
 BigWigs:AddSounds("Mana Devourer", {
