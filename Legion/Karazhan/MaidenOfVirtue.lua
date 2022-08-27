@@ -53,11 +53,11 @@ function mod:OnEngage()
 	sacredGroundOnMe = false
 	sacredCount = 1
 	shockCount = 0
-	self:Bar(227809, 9) -- Holy Bolt
 	self:OpenProximity(227809, 6) -- Holy Bolt
-	self:Bar(227789, 11.1) -- Sacred Ground
-	self:Bar(227800, 16) -- Holy Shock
-	self:Bar(227508, 47.5) -- Mass Repentance
+	self:Bar(227809, 8.8) -- Holy Bolt
+	self:Bar(227789, 10) -- Sacred Ground
+	self:Bar(227800, 14.9) -- Holy Shock
+	self:Bar(227508, 45.2) -- Mass Repentance
 end
 
 --------------------------------------------------------------------------------
