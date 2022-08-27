@@ -18,7 +18,6 @@ mod:SetRespawnTime(30)
 --
 
 local sacredGroundOnMe = false
-local shockCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -50,7 +49,6 @@ end
 
 function mod:OnEngage()
 	sacredGroundOnMe = false
-	shockCount = 0
 	self:OpenProximity(227809, 6) -- Holy Bolt
 	self:Bar(227809, 8.8) -- Holy Bolt
 	self:Bar(227789, 10) -- Sacred Ground
@@ -80,15 +78,7 @@ do
 end
 
 function mod:HolyShock(args)
-	if shockCount == 4 then
-		self:CDBar(args.spellId, 28.8)
-		shockCount = 0
-	elseif shockCount == 2 then
-		self:CDBar(args.spellId, 28.8)
-	else
-		self:CDBar(args.spellId, 13.4)
-	end
-	shockCount = shockCount + 1
+	self:CDBar(args.spellId, 19.4)
 	if self:Interrupter(args.sourceGUID) then
 		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
