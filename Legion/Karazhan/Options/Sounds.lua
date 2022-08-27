@@ -14,6 +14,7 @@ BigWigs:AddSounds("Opera Hall: Wikket", {
 })
 
 BigWigs:AddSounds("Opera Hall: Westfall Story", {
+	[227453] = "alert",
 	[227568] = "alarm",
 	[227777] = "warning",
 	[227783] = "info",

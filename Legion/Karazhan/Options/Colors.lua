@@ -15,6 +15,7 @@ BigWigs:AddColors("Opera Hall: Wikket", {
 })
 
 BigWigs:AddColors("Opera Hall: Westfall Story", {
+	[227453] = "orange",
 	[227568] = "yellow",
 	[227777] = "red",
 	[227783] = "orange",
