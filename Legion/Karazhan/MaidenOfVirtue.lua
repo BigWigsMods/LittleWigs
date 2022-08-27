@@ -112,6 +112,7 @@ do
 			sacredGroundCheck = mod:ScheduleTimer(checkForSacredGround, 1.5)
 		else
 			mod:Message(227789, "green", CL.you:format(mod:SpellName(227848)))
+			mod:PlaySound(227789, "info")
 			sacredGroundCheck = nil
 		end
 	end
