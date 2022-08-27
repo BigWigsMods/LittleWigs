@@ -150,7 +150,7 @@ do
 	end
 
 	function mod:HolyBolt(args)
-		self:CDBar(args.spellId, 12)
+		self:CDBar(args.spellId, 9.7)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 	end
 
