@@ -65,7 +65,8 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessageOld(227789, player, "red", "alarm")
+		self:TargetMessage(227789, "red", player)
+		self:PlaySound(227789, "alarm")
 		if self:Me(guid) then
 			self:Say(227789)
 			self:Flash(227789)
@@ -90,12 +91,14 @@ function mod:HolyShock(args)
 	end
 	shockCount = shockCount + 1
 	if self:Interrupter(args.sourceGUID) then
-		self:MessageOld(args.spellId, "yellow", "alarm", CL.incoming:format(args.spellName))
+		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 function mod:HolyWrath(args)
-	self:MessageOld(args.spellId, "red", "alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", CL.incoming:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
@@ -103,16 +106,18 @@ do
 
 	local function checkForSacredGround()
 		if not sacredGroundOnMe then
-			mod:MessageOld(227789, "blue", "warning", CL.no:format(mod:SpellName(227848)))
+			mod:Message(227789, "blue", CL.no:format(mod:SpellName(227848)))
+			mod:PlaySound(227789, "warning")
 			sacredGroundCheck = mod:ScheduleTimer(checkForSacredGround, 1.5)
 		else
-			mod:MessageOld(227789, "green", nil, CL.you:format(mod:SpellName(227848)))
+			mod:Message(227789, "green", CL.you:format(mod:SpellName(227848)))
 			sacredGroundCheck = nil
 		end
 	end
 
 	function mod:MassRepentance(args)
-		self:MessageOld(args.spellId, "yellow", "warning", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
 		self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
 		self:Bar(args.spellId, 51)
 		checkForSacredGround()
@@ -143,12 +148,15 @@ do
 end
 
 function mod:HolyBulwarkRemoved(args)
-	self:MessageOld(227823, "orange", self:Interrupter(args.sourceGUID) and "alert", CL.casting:format(self:SpellName(227823)))
+	self:Message(227823, "orange", CL.casting:format(self:SpellName(227823)))
+	if self:Interrupter() then
+		self:PlaySound(227823, "alert")
+	end
 end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessageOld(227809, player, "red")
+		self:TargetMessage(227809, "red", player)
 	end
 
 	function mod:HolyBolt(args)
