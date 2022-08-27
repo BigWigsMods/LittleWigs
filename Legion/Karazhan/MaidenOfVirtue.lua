@@ -18,7 +18,6 @@ mod:SetRespawnTime(30)
 --
 
 local sacredGroundOnMe = false
-local sacredCount = 1
 local shockCount = 0
 
 --------------------------------------------------------------------------------
@@ -51,7 +50,6 @@ end
 
 function mod:OnEngage()
 	sacredGroundOnMe = false
-	sacredCount = 1
 	shockCount = 0
 	self:OpenProximity(227809, 6) -- Holy Bolt
 	self:Bar(227809, 8.8) -- Holy Bolt
@@ -75,7 +73,7 @@ do
 	end
 
 	function mod:SacredGround(args)
-		self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
+		self:CDBar(args.spellId, 19.4)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 		self:OpenProximity(227809, 6) -- Holy Bolt
 	end
