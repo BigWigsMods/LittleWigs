@@ -194,9 +194,9 @@ end
 -- Spectral Retainer
 
 function mod:OathOfFealtyApplied(args)
-	if self:Dispeller("magic", true) then
-		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
+	if self:Dispeller("magic", true, args.spellId) or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
 
