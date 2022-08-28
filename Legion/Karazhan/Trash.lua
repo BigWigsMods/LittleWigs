@@ -47,6 +47,7 @@ if L then
 	L.maiden = "Reformed Maiden"
 	L.philanthropist = "Ghostly Philanthropist"
 	L.spectral_valet = "Spectral Valet"
+	L.spectral_retainer = "Spectral Retainer"
 	L.guardsman = "Phantom Guardsman"
 	L.spectral_charger = "Spectral Charger"
 	-- Return to Karazhan: Upper
@@ -63,12 +64,13 @@ function mod:GetOptions()
 		-- Return to Karazhan: Lower
 		"custom_on_autotalk", -- Barnes
 		"warmup", -- Opera Hall event timer
+		227999, -- Pennies from Heaven
 		227966, -- Flashlight
 		228279, -- Shadow Rejuvenation
 		228575, -- Alluring Aura
 		228625, -- Banshee Wail
 		228278, -- Demoralizing Shout
-		227999, -- Pennies from Heaven
+		{228280, "DISPEL"}, -- Oath of Fealty
 		228528, -- Heartbreaker
 		{228603, "TANK"}, -- Charge
 		241828, -- Trampling Stomp
@@ -77,11 +79,12 @@ function mod:GetOptions()
 	}, {
 		-- Return to Karazhan: Lower
 		["custom_on_autotalk"] = "general",
+		[227999] = L.philanthropist,
 		[227966] = L.skeletalUsher,
 		[228279] = L.attendant,
 		[228575] = L.hostess,
 		[228278] = L.spectral_valet,
-		[227999] = L.philanthropist,
+		[228280] = L.spectral_retainer,
 		[228528] = L.maiden,
 		[241828] = L.spectral_charger,
 		-- Return to Karazhan: Upper
@@ -101,6 +104,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowRejuvenation", 228279)
 	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 228278)
+	self:Log("SPELL_AURA_APPLIED", "OathOfFealtyApplied", 228280)
 	self:Log("SPELL_CAST_START", "BansheeWail", 228625)
 	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
@@ -182,6 +186,15 @@ end
 function mod:DemoralizingShout(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+end
+
+-- Spectral Retainer
+
+function mod:OathOfFealtyApplied(args)
+	if self:Dispeller("magic", true) then
+		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 -- Ghostly Philanthropist
