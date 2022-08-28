@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	114636, -- Phantom Guardsman
 	114783, -- Reformed Maiden
 	114796, -- Wholesome Hostess
+	114804, -- Spectral Charger
 	-- Return to Karazhan: Upper
 	115388, -- King
 	115395, -- Queen
@@ -47,6 +48,7 @@ if L then
 	L.philanthropist = "Ghostly Philanthropist"
 	L.spectral_valet = "Spectral Valet"
 	L.guardsman = "Phantom Guardsman"
+	L.spectral_charger = "Spectral Charger"
 	-- Return to Karazhan: Upper
 	L.chess_event = "Chess Event"
 	L.king = "King"
@@ -68,6 +70,8 @@ function mod:GetOptions()
 		228278, -- Demoralizing Shout
 		227999, -- Pennies from Heaven
 		228528, -- Heartbreaker
+		{228603, "TANK"}, -- Charge
+		241828, -- Trampling Stomp
 		-- Return to Karazhan: Upper
 		229489, -- Royalty
 	}, {
@@ -79,6 +83,7 @@ function mod:GetOptions()
 		[228278] = L.spectral_valet,
 		[227999] = L.philanthropist,
 		[228528] = L.maiden,
+		[241828] = L.spectral_charger,
 		-- Return to Karazhan: Upper
 		[229489] = L.chess_event,
 	}, {
@@ -99,6 +104,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BansheeWail", 228625)
 	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
+	self:Log("SPELL_CAST_START", "Charge", 228603)
+	self:Log("SPELL_CAST_START", "TramplingStomp", 241828)
 
 	-- Return to Karazhan: Upper
 	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
@@ -195,6 +202,18 @@ end
 
 function mod:Heartbreaker(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+end
+
+-- Spectral Charger
+
+function mod:Charge(args)
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:TramplingStomp(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 

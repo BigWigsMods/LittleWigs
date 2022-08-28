@@ -108,6 +108,8 @@ BigWigs:AddColors("Karazhan Trash", {
 	[228279] = "yellow",
 	[228528] = "yellow",
 	[228575] = "red",
+	[228603] = "purple",
 	[228625] = "yellow",
 	[229489] = {"green","red"},
+	[241828] = "red",
 })
