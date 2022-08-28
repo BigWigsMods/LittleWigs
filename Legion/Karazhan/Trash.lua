@@ -70,13 +70,13 @@ function mod:GetOptions()
 		227999, -- Pennies from Heaven
 		227966, -- Flashlight
 		228279, -- Shadow Rejuvenation
-		228575, -- Alluring Aura
-		228625, -- Banshee Wail
 		228278, -- Demoralizing Shout
 		{228280, "DISPEL"}, -- Oath of Fealty
+		228575, -- Alluring Aura
+		228625, -- Banshee Wail
 		228528, -- Heartbreaker
-		{228603, "TANK"}, -- Charge
 		241828, -- Trampling Stomp
+		{228603, "TANK"}, -- Charge
 		-- Return to Karazhan: Upper
 		229489, -- Royalty
 	}, {
@@ -99,18 +99,18 @@ end
 
 function mod:OnBossEnable()
 	-- Return to Karazhan: Lower
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterEvent("GOSSIP_SHOW")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Flashlight", 227966)
 	self:Log("SPELL_CAST_START", "ShadowRejuvenation", 228279)
-	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 228278)
 	self:Log("SPELL_AURA_APPLIED", "OathOfFealtyApplied", 228280)
+	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
 	self:Log("SPELL_CAST_START", "BansheeWail", 228625)
-	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
-	self:Log("SPELL_CAST_START", "Charge", 228603)
 	self:Log("SPELL_CAST_START", "TramplingStomp", 241828)
+	self:Log("SPELL_CAST_START", "Charge", 228603)
 
 	-- Return to Karazhan: Upper
 	self:Log("SPELL_AURA_APPLIED", "RoyaltyApplied", 229489)
@@ -146,6 +146,20 @@ function mod:Warmup(_, msg)
 	end
 end
 
+-- Ghostly Philanthropist
+
+do
+	local prev = 0
+	function mod:PenniesFromHeaven(args)
+		local t = GetTime()
+		if t-prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
 -- Skeletal Usher
 
 do
@@ -168,6 +182,24 @@ function mod:ShadowRejuvenation(args)
 	self:PlaySound(args.spellId, "warning")
 end
 
+-- Spectral Valet
+
+function mod:DemoralizingShout(args)
+	if self:Interrupter() then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
+end
+
+-- Spectral Retainer
+
+function mod:OathOfFealtyApplied(args)
+	if self:Dispeller("magic", true) then
+		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
+end
+
 -- Wholesome Hostess
 
 function mod:AlluringAura(args)
@@ -183,43 +215,11 @@ function mod:BansheeWail(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
--- Spectral Valet
-
-function mod:DemoralizingShout(args)
-	if self:Interrupter() then
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "warning")
-	end
-end
-
--- Spectral Retainer
-
-function mod:OathOfFealtyApplied(args)
-	if self:Dispeller("magic", true) then
-		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "alarm")
-	end
-end
-
--- Ghostly Philanthropist
-
-do
-	local prev = 0
-	function mod:PenniesFromHeaven(args)
-		local t = GetTime()
-		if t-prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
 -- Reformed Maiden
 
 function mod:Heartbreaker(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Spectral Charger
