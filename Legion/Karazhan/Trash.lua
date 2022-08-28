@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	114544, -- Skeletal Usher
 	114339, -- Barnes
 	114542, -- Ghostly Philanthropist
+	114633, -- Spectral Valet
 	114632, -- Spectral Attendant
 	114636, -- Phantom Guardsman
 	114783, -- Reformed Maiden
@@ -44,6 +45,7 @@ if L then
 	L.barnes = "Barnes"
 	L.maiden = "Reformed Maiden"
 	L.philanthropist = "Ghostly Philanthropist"
+	L.spectral_valet = "Spectral Valet"
 	L.guardsman = "Phantom Guardsman"
 	-- Return to Karazhan: Upper
 	L.chess_event = "Chess Event"
@@ -63,6 +65,7 @@ function mod:GetOptions()
 		228279, -- Shadow Rejuvenation
 		228575, -- Alluring Aura
 		228625, -- Banshee Wail
+		228278, -- Demoralizing Shout
 		227999, -- Pennies from Heaven
 		228528, -- Heartbreaker
 		-- Return to Karazhan: Upper
@@ -73,6 +76,7 @@ function mod:GetOptions()
 		[227966] = L.skeletalUsher,
 		[228279] = L.attendant,
 		[228575] = L.hostess,
+		[228278] = L.spectral_valet,
 		[227999] = L.philanthropist,
 		[228528] = L.maiden,
 		-- Return to Karazhan: Upper
@@ -91,6 +95,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Flashlight", 227966)
 	self:Log("SPELL_CAST_START", "ShadowRejuvenation", 228279)
 	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
+	self:Log("SPELL_CAST_START", "DemoralizingShout", 228278)
 	self:Log("SPELL_CAST_START", "BansheeWail", 228625)
 	self:Log("SPELL_CAST_START", "PenniesFromHeaven", 227999)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
@@ -163,6 +168,13 @@ function mod:BansheeWail(args)
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
+end
+
+-- Spectral Valet
+
+function mod:DemoralizingShout(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Ghostly Philanthropist
