@@ -152,10 +152,10 @@ do
 	local prev = 0
 	function mod:Flashlight(args)
 		local t = GetTime()
-		if t-prev > 3 then
+		if t-prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info")
+			self:PlaySound(args.spellId, "alarm")
 		end
 		self:Bar(args.spellId, 3)
 	end

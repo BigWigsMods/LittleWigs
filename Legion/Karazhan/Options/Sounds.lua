@@ -95,7 +95,7 @@ BigWigs:AddSounds("Nightbane", {
 })
 
 BigWigs:AddSounds("Karazhan Trash", {
-	[227966] = "info",
+	[227966] = "alarm",
 	[227999] = "alert",
 	[228278] = "warning",
 	[228279] = "warning",
