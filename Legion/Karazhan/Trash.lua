@@ -98,8 +98,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	-- Return to Karazhan: Lower
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:RegisterEvent("GOSSIP_SHOW")
