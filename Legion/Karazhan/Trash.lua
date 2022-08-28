@@ -31,25 +31,28 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	-- Return to Karazhan: Lower
-	L.skeletalUsher = "Skeletal Usher"
+	-- Opera Event
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
-	L.attendant = "Spectral Attendant"
-	L.hostess = "Wholesome Hostess"
+	L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
+	L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
 	L.opera_hall_westfall_story_text = "Opera Hall: Westfall Story"
 	L.opera_hall_westfall_story_trigger = "we meet two lovers" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
 	L.opera_hall_beautiful_beast_story_text = "Opera Hall: Beautiful Beast"
 	L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
-	L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
-	L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
+
+	-- Return to Karazhan: Lower
 	L.barnes = "Barnes"
-	L.maiden = "Reformed Maiden"
-	L.philanthropist = "Ghostly Philanthropist"
+	L.ghostly_philanthropist = "Ghostly Philanthropist"
+	L.skeletal_usher = "Skeletal Usher"
+	L.spectral_attendant = "Spectral Attendant"
 	L.spectral_valet = "Spectral Valet"
 	L.spectral_retainer = "Spectral Retainer"
-	L.guardsman = "Phantom Guardsman"
+	L.phantom_guardsman = "Phantom Guardsman"
+	L.wholesome_hostess = "Wholesome Hostess"
+	L.reformed_maiden = "Reformed Maiden"
 	L.spectral_charger = "Spectral Charger"
+
 	-- Return to Karazhan: Upper
 	L.chess_event = "Chess Event"
 	L.king = "King"
@@ -79,13 +82,13 @@ function mod:GetOptions()
 	}, {
 		-- Return to Karazhan: Lower
 		["custom_on_autotalk"] = "general",
-		[227999] = L.philanthropist,
-		[227966] = L.skeletalUsher,
-		[228279] = L.attendant,
-		[228575] = L.hostess,
+		[227999] = L.ghostly_philanthropist,
+		[227966] = L.skeletal_usher,
+		[228279] = L.spectral_attendant,
 		[228278] = L.spectral_valet,
 		[228280] = L.spectral_retainer,
-		[228528] = L.maiden,
+		[228575] = L.wholesome_hostess,
+		[228528] = L.reformed_maiden,
 		[241828] = L.spectral_charger,
 		-- Return to Karazhan: Upper
 		[229489] = L.chess_event,
