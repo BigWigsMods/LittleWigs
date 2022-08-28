@@ -175,10 +175,11 @@ function mod:AlluringAura(args)
 end
 
 function mod:BansheeWail(args)
-	if not self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
-		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "warning")
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
 	end
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Spectral Valet

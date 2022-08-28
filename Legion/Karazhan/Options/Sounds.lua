@@ -103,7 +103,7 @@ BigWigs:AddSounds("Karazhan Trash", {
 	[228528] = "warning",
 	[228575] = "alert",
 	[228603] = "alert",
-	[228625] = "warning",
+	[228625] = "alert",
 	[229489] = {"info","long"},
 	[241828] = "warning",
 })
