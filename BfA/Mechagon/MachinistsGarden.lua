@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("activate_plant", 6.1, L.activate_plant) -- Activate Plant
+	self:Bar("activate_plant", 6.1, L.activate_plant, L.activate_plant_icon) -- Activate Plant
 	self:Bar(285454, 8.5) -- Discom-BOMB-ulator
 	self:Bar(285440, 14.1) -- "Hidden" Flame Cannon
 end
@@ -53,7 +53,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 294853 then -- Activate Plant
 		self:Message("activate_plant", "orange", L.activate_plant, L.activate_plant_icon)
 		self:PlaySound("activate_plant", "long")
-		self:Bar("activate_plant", 45, L.activate_plant)
+		self:Bar("activate_plant", 45, L.activate_plant, L.activate_plant_icon)
 	end
 end
 
