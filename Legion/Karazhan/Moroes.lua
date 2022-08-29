@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	114321  -- Lord Crispin Ference
 )
 mod:SetEncounterID(1961)
+mod:SetRespawnTime(30) -- TODO unconfirmed
 
 --------------------------------------------------------------------------------
 -- Locals
