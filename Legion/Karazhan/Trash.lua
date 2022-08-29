@@ -73,6 +73,7 @@ function mod:GetOptions()
 		228278, -- Demoralizing Shout
 		{228280, "DISPEL"}, -- Oath of Fealty
 		228575, -- Alluring Aura
+		{228576, "DISPEL"}, -- Allured
 		228625, -- Banshee Wail
 		228528, -- Heartbreaker
 		241828, -- Trampling Stomp
@@ -107,6 +108,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 228278)
 	self:Log("SPELL_AURA_APPLIED", "OathOfFealtyApplied", 228280)
 	self:Log("SPELL_CAST_START", "AlluringAura", 228575)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "AlluredApplied", 228576)
 	self:Log("SPELL_CAST_START", "BansheeWail", 228625)
 	self:Log("SPELL_CAST_START", "Heartbreaker", 228528)
 	self:Log("SPELL_CAST_START", "TramplingStomp", 241828)
@@ -201,6 +203,13 @@ end
 function mod:AlluringAura(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:AlluredApplied(args)
+	if (args.amount >= 50 and args.amount % 5 == 0) and (self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID)) then
+		self:NewStackMessage(args.spellId, "orange", args.destName, args.amount, 85) -- MC at 100 stacks
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
 end
 
 function mod:BansheeWail(args)
