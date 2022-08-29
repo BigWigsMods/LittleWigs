@@ -39,7 +39,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HolyShock", 227800)
 	self:Log("SPELL_CAST_START", "HolyWrath", 227823)
 	self:Log("SPELL_CAST_START", "HolyBolt", 227809)
-	self:Log("SPELL_CAST_SUCCESS", "HolyBoltSuccess", 227809)
 	self:Log("SPELL_CAST_START", "MassRepentance", 227508)
 	self:Log("SPELL_CAST_SUCCESS", "MassRepentanceSuccess", 227508)
 	self:Log("SPELL_CAST_START", "SacredGround", 227789)
@@ -73,7 +72,6 @@ do
 	function mod:SacredGround(args)
 		self:CDBar(args.spellId, 19.4)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-		self:OpenProximity(227809, 6) -- Holy Bolt
 	end
 end
 
@@ -152,9 +150,5 @@ do
 	function mod:HolyBolt(args)
 		self:CDBar(args.spellId, 9.7)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-	end
-
-	function mod:HolyBoltSuccess(args)
-		self:CloseProximity(args.spellId) -- we will later reopen it after a Sacred Ground cast, she never casts more than 1 Holy Bolt in between 2 Sacred Ground casts.
 	end
 end
