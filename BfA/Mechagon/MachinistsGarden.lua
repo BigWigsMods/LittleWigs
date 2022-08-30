@@ -5,7 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Machinist's Garden", 2097, 2348)
 if not mod then return end
 mod:RegisterEnableMob(144248) -- Head Machinist Sparkflux
-mod.engageId = 2259
+mod:SetEncounterID(2259)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
