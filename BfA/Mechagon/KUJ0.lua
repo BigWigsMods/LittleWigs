@@ -91,7 +91,7 @@ do
 end
 
 function mod:BlazingChompApplied(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	self:CDBar(args.spellId, 16) -- Varies, one of these numbers: 15.8, 17, 18.2, 19.4
 end

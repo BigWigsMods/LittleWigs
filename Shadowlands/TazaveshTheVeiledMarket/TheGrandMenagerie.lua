@@ -122,7 +122,7 @@ end
 function mod:DevouredAnimaApplied(args)
 	local amount = args.amount or 1
 	if amount % 5 == 0 then
-		self:NewStackMessage(args.spellId, "green", args.destName, args.amount, 20) -- Caps at 20 stacks
+		self:StackMessage(args.spellId, "green", args.destName, args.amount, 20) -- Caps at 20 stacks
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -152,7 +152,7 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:PurificationProtocolApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
+		self:TargetsMessageOld(args.spellId, "yellow", playerList, 2)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:SayCountdown(args.spellId, 6)

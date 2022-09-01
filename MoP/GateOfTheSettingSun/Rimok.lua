@@ -64,7 +64,7 @@ end
 function mod:ViscousFluid(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount % 2 == 1 then
-		self:StackMessage(-5666, args.destName, amount, "red", "alarm")
+		self:StackMessageOld(-5666, args.destName, amount, "red", "alarm")
 	end
 end
 
@@ -74,7 +74,7 @@ do
 		local _, stacks = self:UnitBuff(unit, 107091) -- Viscous Fluid
 		if stacks then
 			if (stacks % 2 == 0 or stacks == 5) and stacks ~= laststacks then
-				self:StackMessage(-5666, self.displayName, stacks, "orange", "info")
+				self:StackMessageOld(-5666, self.displayName, stacks, "orange", "info")
 			end
 			laststacks = stacks
 		else

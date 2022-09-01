@@ -39,7 +39,7 @@ end
 --  Event Handlers
 
 function mod:SporeCloud(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "orange", self:Me(args.destGUID) and "warning" or "info")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "orange", self:Me(args.destGUID) and "warning" or "info")
 	self:TargetBar(args.spellId, 20, args.destName)
 end
 

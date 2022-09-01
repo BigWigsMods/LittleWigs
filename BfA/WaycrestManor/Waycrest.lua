@@ -114,7 +114,7 @@ do
 		end
 
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "red", playerList, 5)
+		self:TargetsMessageOld(args.spellId, "red", playerList, 5)
 		self:PlaySound(args.spellId, "warning", nil, playerList)
 
 		proxList[#proxList+1] = args.destName
@@ -136,6 +136,6 @@ do
 end
 
 function mod:PutridVitality(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "cyan")
 	self:PlaySound(args.spellId, "info")
 end

@@ -36,7 +36,7 @@ end
 
 function mod:IntenseCold(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue", args.amount > 3 and "alarm")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue", args.amount > 3 and "alarm")
 	end
 end
 

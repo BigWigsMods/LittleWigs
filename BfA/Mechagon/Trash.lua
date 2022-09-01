@@ -402,7 +402,7 @@ end
 -- Pistonhead Scrapper
 
 function mod:SledgehammerApplied(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 
@@ -658,7 +658,7 @@ do
 	function mod:ArcingZapApplied(args)
 		if self:Dispeller("magic", nil, args.spellId) then
 			self:PlaySound(args.spellId, "alert", nil, playerList)
-			self:TargetsMessage(args.spellId, "yellow", playerList, 3) -- Three bots that can all cast at the same time
+			self:TargetsMessageOld(args.spellId, "yellow", playerList, 3) -- Three bots that can all cast at the same time
 		end
 	end
 end
@@ -728,7 +728,7 @@ end
 -- Workshop Defender
 
 function mod:ChainbladeApplied(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "red")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "red")
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 

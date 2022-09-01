@@ -143,7 +143,7 @@ end
 
 function mod:Garrote(args)
 	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "orange", "info")
+	self:StackMessageOld(args.spellId, args.destName, amount, "orange", "info")
 end
 
 function mod:CoatCheck(args)

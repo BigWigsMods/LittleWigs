@@ -117,7 +117,7 @@ do
 	function mod:DarkLanceApplied(args)
 		if self:Dispeller("magic", nil, args.spellId) then
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(args.spellId, "orange", playerList, 2)
+			self:TargetsMessageOld(args.spellId, "orange", playerList, 2)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
 		elseif self:Me(args.destGUID) then
 			self:PersonalMessage(args.spellId)
@@ -208,7 +208,7 @@ end
 function mod:DeepConnection(args)
 	local stacks = args.amount or 1
 	if self:Me(args.destGUID) and stacks % 2 == 1 then
-		self:StackMessage(args.spellId, args.destName, stacks, "red")
+		self:StackMessageOld(args.spellId, args.destName, stacks, "red")
 		self:PlaySound(args.spellId, stacks > 4 and "warning" or "alert")
 	end
 end

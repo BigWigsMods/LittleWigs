@@ -161,7 +161,7 @@ do
 
 	function mod:FlameWreathApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:NewTargetsMessage(228269, "red", playerList, 2)
+		self:TargetsMessage(228269, "red", playerList, 2)
 		self:PlaySound(228269, "warning", nil, playerList)
 		if #playerList == 1 then
 			self:Bar(228269, 20)
@@ -185,7 +185,7 @@ function mod:CeaselessWinterApplied(args)
 	if self:Me(args.destGUID) then
 		if args.amount % 2 == 0 then
 			-- Starts doing significant damage at 2+ stacks
-			self:NewStackMessage(227779, "blue", args.destName, args.amount, 2)
+			self:StackMessage(227779, "blue", args.destName, args.amount, 2)
 			self:PlaySound(227779, "warning")
 		end
 	end

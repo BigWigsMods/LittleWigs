@@ -77,7 +77,7 @@ function mod:UnstableMana(args)
 	if self:Me(args.destGUID) then
 		unstableManaOnMe = true
 		-- each stack gives the player a 10% damage increase, but starts getting dangerous at ~5 stacks
-		self:NewStackMessage(args.spellId, "blue", args.destName, args.amount, self:Tank() and 7 or 5)
+		self:StackMessage(args.spellId, "blue", args.destName, args.amount, self:Tank() and 7 or 5)
 	end
 end
 

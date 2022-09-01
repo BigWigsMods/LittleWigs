@@ -83,7 +83,7 @@ do
 			self:Flash(args.spellId)
 			self:SayCountdown(args.spellId, 6)
 		end
-		self:TargetsMessage(args.spellId, "orange", playerList, 2)
+		self:TargetsMessageOld(args.spellId, "orange", playerList, 2)
 	end
 end
 

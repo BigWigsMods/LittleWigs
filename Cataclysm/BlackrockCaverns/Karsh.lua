@@ -41,6 +41,6 @@ end
 function mod:SuperheatedQuicksilverArmorDose(args)
 	self:Bar(args.spellId, 17)
 	if args.amount % 2 == 1 or args.amount > 5 then
-		self:StackMessage(args.spellId, args.destName, args.amount, "red", self:Tank() and "warning")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "red", self:Tank() and "warning")
 	end
 end

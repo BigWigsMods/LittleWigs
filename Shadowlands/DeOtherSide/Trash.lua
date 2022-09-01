@@ -230,7 +230,7 @@ end
 function mod:GushingWound(args)
 	local stacks = args.amount
 	if stacks % 3 == 0 then
-		self:StackMessage(args.spellId, args.destName, stacks, "purple")
+		self:StackMessageOld(args.spellId, args.destName, stacks, "purple")
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
@@ -352,7 +352,7 @@ function mod:SoporificShimmerdust(args)
 	if self:Me(args.destGUID) then
 		local stacks = args.amount
 		if stacks % 2 == 0 or stacks >= 8 then
-			self:StackMessage("soporific_shimmerdust", args.destName, stacks, "blue", nil, self:SpellName(L.soporific_shimmerdust), L.soporific_shimmerdust_icon)
+			self:StackMessageOld("soporific_shimmerdust", args.destName, stacks, "blue", nil, self:SpellName(L.soporific_shimmerdust), L.soporific_shimmerdust_icon)
 			self:PlaySound("soporific_shimmerdust", stacks >= 8 and "warning" or "alarm")
 		end
 	end

@@ -92,7 +92,7 @@ function mod:MassiveChomp(args)
 	if self:Me(args.destGUID) then
 		local amount = args.amount or 1
 		if amount % 2 == 0 then
-			self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+			self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end

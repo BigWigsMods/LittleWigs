@@ -87,7 +87,7 @@ do
 		if #playerList == 2 then
 			self:PlaySound(args.spellId, "long")
 		end
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 1) -- 1s wait time as it can be a little delayed sometimes
+		self:TargetsMessageOld(args.spellId, "yellow", playerList, 2, nil, nil, 1) -- 1s wait time as it can be a little delayed sometimes
 	end
 end
 

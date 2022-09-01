@@ -143,7 +143,7 @@ do
 		if #playerList == 1 then
 			self:Bar(args.spellId, 15)
 		end
-		self:TargetsMessage(args.spellId, "red", playerList, 2, laser)
+		self:TargetsMessageOld(args.spellId, "red", playerList, 2, laser)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning")
 			self:Say(args.spellId, laser)
