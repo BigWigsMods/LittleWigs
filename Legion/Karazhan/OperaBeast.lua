@@ -132,7 +132,7 @@ function mod:SpectralService(args)
 end
 
 function mod:DentArmor(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "purple", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	self:TargetBar(args.spellId, 8, args.destName)
 end
