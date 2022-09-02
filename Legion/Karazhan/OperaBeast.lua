@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -11,13 +10,8 @@ mod:RegisterEnableMob(
 	114522, -- Mrs. Cauldrons
 	114330  -- Babblet
 )
---mod.engageId = 1957 -- Same for every opera event. So it's basically useless.
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local addsKilled = 0
+--mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -57,7 +51,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	addsKilled = 0
+	mod:SetStage(1)
 	self:Bar(228019, 7) -- Leftovers
 	self:Bar(228025, 30) -- Heat Wave
 end
@@ -108,8 +102,9 @@ function mod:KaraKazham(args)
 end
 
 function mod:AddsKilled(args)
-	addsKilled = addsKilled + 1
-	self:MessageOld("stages", "cyan", "long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
+	local stage = self:GetStage()
+	self:MessageOld("stages", "cyan", "long", CL.mob_killed:format(args.destName, stage, 3), false)
+	self:SetStage(stage + 1)
 
 	if args.mobId == 114329 then -- Luminore
 		self:StopBar(228025) -- Heat Wave
@@ -123,4 +118,3 @@ function mod:BOSS_KILL(_, id)
 	if id == 1957 then
 		self:Win()
 	end
-end
