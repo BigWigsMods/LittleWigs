@@ -12,6 +12,7 @@ mod:RegisterEnableMob(
 )
 --mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
 mod:SetStage(1)
+mod:SetRespawnTime(30) -- TODO confirm
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -31,6 +32,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("ENCOUNTER_END")
 
 	self:Log("SPELL_CAST_START", "HeatWave", 228025)
 	self:Log("SPELL_CAST_START", "Leftovers", 228019)
@@ -40,8 +42,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "DentArmorRemoved", 227985)
 	self:Log("SPELL_CAST_START", "DinnerBell", 227987)
 	self:Log("SPELL_CAST_START", "KaraKazham", 232153)
-
-	self:RegisterEvent("BOSS_KILL")
 
 	self:Death("AddsKilled",
 		114329, -- Luminore
@@ -59,6 +59,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
+	if engageId == 1957 then
+		if status == 0 then
+			self:Wipe()
+			-- force a respawn timer
+			self:SendMessage("BigWigs_EncounterEnd", self, engageId, self.displayName, self:Difficulty(), 5, status)
+		else
+			self:Win()
+		end
+	end
+end
 
 function mod:HeatWave(args)
 	self:MessageOld(args.spellId, "red", "info")
@@ -113,8 +125,3 @@ function mod:AddsKilled(args)
 	--elseif args.mobId == 114330 then -- Babblet
 	end
 end
-
-function mod:BOSS_KILL(_, id)
-	if id == 1957 then
-		self:Win()
-	end
