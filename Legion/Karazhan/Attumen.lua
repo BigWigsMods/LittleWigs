@@ -54,8 +54,8 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:CDBar(228852, 18.2) -- Shared Suffering
 		self:StopBar(227363) -- Mighty Stomp
 		self:SetStage(2)
-	elseif spellId == 227584 then -- Mounted
-		self:Message("stages", "cyan", spellId, false)
+	elseif spellId == 227601 then -- Intermission
+		self:Message("stages", "cyan", 227584, false) -- Mounted
 		self:PlaySound("stages", "long")
 		self:SetStage(1)
 	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
