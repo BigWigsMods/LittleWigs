@@ -27,6 +27,11 @@ function mod:GetOptions()
 		{227985, "TANK_HEALER"}, -- Dent Armor
 		227987, -- Dinner Bell!
 		232153, -- Kara Kazham!
+	}, {
+		[228025] = -14145, -- Luminore
+		[228019] = -14148, -- Mrs. Cauldrons
+		[228221] = -14151, -- Babblet
+		[227985] = -14142, -- Coggleston
 	}
 end
 
