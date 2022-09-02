@@ -16,7 +16,7 @@ BigWigs:AddColors("Grimrail Enforcers", {
 	[163689] = {"blue","green","red","yellow"},
 	[163705] = "yellow",
 	[163740] = {"blue","yellow"},
-	[164956] = "red",
+	[165152] = "red",
 })
 
 BigWigs:AddColors("Oshir", {

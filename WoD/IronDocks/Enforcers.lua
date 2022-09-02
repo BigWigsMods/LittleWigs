@@ -33,7 +33,7 @@ function mod:GetOptions()
 		163705, -- Abrupt Restoration
 		{163740, "DISPEL"}, -- Tainted Blood
 		163665, -- Flaming Slash
-		164956, -- Lava Swipe
+		165152, -- Lava Sweep
 		163376, -- Malfunctioning Jumper Cables 9000-XL
 		163390, -- Ogre Traps
 		163379, -- Big Boom
@@ -73,7 +73,7 @@ function mod:OnEngage()
 	self:CDBar(163689, 28, CL.shield) -- Shield
 	self:Bar(163665, 4.9) -- Flaming Slash
 	self:Bar(163390, 12.9) -- Ogre Traps
-	self:Bar(164956, 16.6) -- Lava Swipe
+	self:Bar(165152, 16.6) -- Lava Sweep
 	self:Bar(163376, 24.3) -- Malfunctioning Jumper Cables 9000-XL
 end
 
@@ -83,9 +83,9 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 164956 then -- Lava Swipe
-		self:Message(spellId, "red")
-		self:PlaySound(spellId, "alarm")
-		self:Bar(spellId, 29.2)
+		self:Message(165152, "red") -- Lava Sweep
+		self:PlaySound(165152, "alarm") -- Lava Sweep
+		self:Bar(165152, 29.2) -- Lava Sweep
 	end
 end
 
@@ -148,7 +148,7 @@ end
 
 function mod:MakoggDeath()
 	self:StopBar(163665) -- Flaming Slash
-	self:StopBar(164956) -- Lava Swipe
+	self:StopBar(165152) -- Lava Sweep
 end
 
 -- Neesa Nox
