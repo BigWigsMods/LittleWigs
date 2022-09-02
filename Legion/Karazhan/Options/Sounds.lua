@@ -25,8 +25,8 @@ BigWigs:AddSounds("Opera Hall: Beautiful Beast", {
 	[227985] = "alarm",
 	[227987] = "alert",
 	[228019] = "alert",
-	[228025] = "info",
-	[228221] = "warning",
+	[228025] = "warning",
+	[228221] = {"alert","warning"},
 	[232153] = "info",
 	["stages"] = "long",
 })

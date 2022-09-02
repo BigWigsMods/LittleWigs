@@ -73,29 +73,53 @@ function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 end
 
 function mod:HeatWave(args)
-	self:MessageOld(args.spellId, "red", "info")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:Leftovers(args)
-	self:MessageOld(args.spellId, "red", self:Interrupter() and "alert")
+	self:Message(args.spellId, "red")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alert")
+	end
 	self:CDBar(args.spellId, 18)
 end
 
 function mod:SevereDusting(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning")
-	if self:Me(args.destGUID) then
+	local onMe = self:Me(args.destGUID)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	if onMe then
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:Say(args.spellId)
+	else
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+function mod:AddsKilled(args)
+	local stage = self:GetStage() + 1
+	self:SetStage(stage)
+	self:Message("stages", "cyan", CL.mob_killed:format(args.destName, stage, 3), false)
+	self:PlaySound("stages", "long")
+
+	if args.mobId == 114329 then -- Luminore
+		self:StopBar(228025) -- Heat Wave
+	elseif args.mobId == 114522 then -- Mrs. Cauldrons
+		self:StopBar(228019) -- Leftovers
+	--elseif args.mobId == 114330 then -- Babblet
 	end
 end
 
 function mod:SpectralService(args)
-	self:MessageOld("stages", "green", "long", CL.removed:format(args.spellName), args.spellId)
+	self:Message("stages", "cyan", CL.removed:format(args.spellName), args.spellId)
+	self:PlaySound("stages", "long")
 	self:Bar(227987, 8.5) -- Dinner Bell
 	self:Bar(227985, 15.8) -- Dent Armor
 end
 
 function mod:DentArmor(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, true)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	self:TargetBar(args.spellId, 8, args.destName)
 end
 
@@ -104,24 +128,15 @@ function mod:DentArmorRemoved(args)
 end
 
 function mod:DinnerBell(args)
-	self:MessageOld(args.spellId, "yellow", self:Interrupter() and "alert")
+	self:Message(args.spellId, "yellow")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alert")
+	end
 	self:Bar(args.spellId, 12)
 end
 
 function mod:KaraKazham(args)
-	self:MessageOld(args.spellId, "orange", "info")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 17)
-end
-
-function mod:AddsKilled(args)
-	local stage = self:GetStage()
-	self:MessageOld("stages", "cyan", "long", CL.mob_killed:format(args.destName, stage, 3), false)
-	self:SetStage(stage + 1)
-
-	if args.mobId == 114329 then -- Luminore
-		self:StopBar(228025) -- Heat Wave
-	elseif args.mobId == 114522 then -- Mrs. Cauldrons
-		self:StopBar(228019) -- Leftovers
-	--elseif args.mobId == 114330 then -- Babblet
-	end
 end

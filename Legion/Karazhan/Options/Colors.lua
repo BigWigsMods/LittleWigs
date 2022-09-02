@@ -29,7 +29,7 @@ BigWigs:AddColors("Opera Hall: Beautiful Beast", {
 	[228025] = "red",
 	[228221] = {"blue","orange"},
 	[232153] = "orange",
-	["stages"] = {"cyan","green"},
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Attumen the Huntsman", {
