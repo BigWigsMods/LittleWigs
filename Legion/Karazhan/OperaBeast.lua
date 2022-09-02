@@ -24,6 +24,7 @@ function mod:GetOptions()
 		228025, -- Heat Wave
 		228019, -- Leftovers
 		{228221, "SAY"}, -- Severe Dusting
+		{228225, "DISPEL"}, -- Sultry Heat
 		{227985, "TANK_HEALER"}, -- Dent Armor
 		227987, -- Dinner Bell!
 		232153, -- Kara Kazham!
@@ -42,6 +43,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HeatWave", 228025)
 	self:Log("SPELL_CAST_START", "Leftovers", 228019)
 	self:Log("SPELL_CAST_SUCCESS", "SevereDusting", 228221)
+	self:Log("SPELL_AURA_APPLIED", "SultryHeat", 228225)
 	self:Log("SPELL_AURA_REMOVED", "SpectralService", 232156)
 	self:Log("SPELL_AURA_APPLIED", "DentArmor", 227985)
 	self:Log("SPELL_AURA_REMOVED", "DentArmorRemoved", 227985)
@@ -98,6 +100,13 @@ function mod:SevereDusting(args)
 		self:Say(args.spellId)
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+function mod:SultryHeat(args)
+	if self:Dispeller("magic", true, args.spellId) then
+		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 

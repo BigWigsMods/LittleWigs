@@ -28,6 +28,7 @@ BigWigs:AddColors("Opera Hall: Beautiful Beast", {
 	[228019] = "red",
 	[228025] = "red",
 	[228221] = {"blue","orange"},
+	[228225] = "yellow",
 	[232153] = "orange",
 	["stages"] = "cyan",
 })
