@@ -8,7 +8,7 @@ mod:RegisterEnableMob(
 	114329, -- Luminore
 	114522, -- Mrs. Cauldrons
 	114330, -- Babblet
-	114328  -- Coogleston
+	114328  -- Coggleston
 )
 --mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
 mod:SetStage(1)
