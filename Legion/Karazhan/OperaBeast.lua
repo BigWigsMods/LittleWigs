@@ -141,6 +141,7 @@ end
 function mod:SpectralService(args)
 	self:Message("stages", "cyan", CL.removed:format(args.spellName), args.spellId)
 	self:PlaySound("stages", "long")
+	self:StopBar(CL.active)
 	self:Bar(227987, 8.5) -- Dinner Bell
 	self:Bar(227985, 15.8) -- Dent Armor
 end
