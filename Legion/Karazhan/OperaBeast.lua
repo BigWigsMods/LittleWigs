@@ -45,7 +45,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SevereDustingApplied", 228221)
 	self:Log("SPELL_AURA_REMOVED", "SevereDustingRemoved", 228221)
 	self:Log("SPELL_AURA_APPLIED", "SultryHeat", 228225)
-	self:Log("SPELL_AURA_REMOVED", "SpectralService", 232156)
+	self:Log("SPELL_AURA_REMOVED", "SpectralServiceRemoved", 232156)
 	self:Log("SPELL_AURA_APPLIED", "DentArmor", 227985)
 	self:Log("SPELL_AURA_REMOVED", "DentArmorRemoved", 227985)
 	self:Log("SPELL_CAST_START", "DinnerBell", 227987)
@@ -138,7 +138,7 @@ function mod:AddsKilled(args)
 	end
 end
 
-function mod:SpectralService(args)
+function mod:SpectralServiceRemoved(args)
 	self:Message("stages", "cyan", CL.removed:format(args.spellName), args.spellId)
 	self:PlaySound("stages", "long")
 	self:StopBar(CL.active)
@@ -150,6 +150,7 @@ function mod:DentArmor(args)
 	self:TargetMessage(args.spellId, "purple", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	self:TargetBar(args.spellId, 8, args.destName)
+	self:CDBar(args.spellId, 21.8)
 end
 
 function mod:DentArmorRemoved(args)
