@@ -165,7 +165,7 @@ function mod:DinnerBell(args)
 end
 
 function mod:DinnerBellApplied(args)
-	if self:MobId(args.destGUID) == 114328 and self:Dispeller("magic", true, args.spellId) then
+	if self:MobId(args.destGUID) == 114328 and self:Dispeller("magic", true) then
 		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
