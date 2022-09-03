@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Maiden of Virtue", {
 	[227508] = "warning",
-	[227789] = {"alarm","warning"},
+	[227789] = {"alarm","info","warning"},
 	[227800] = "alarm",
 	[227823] = {"alarm","alert"},
 })
