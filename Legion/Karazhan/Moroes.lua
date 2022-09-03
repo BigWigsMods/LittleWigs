@@ -64,6 +64,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	
 	--[[ Moroes ]]--
 	self:Log("SPELL_CAST_START", "Vanish", 227736)
 	self:Log("SPELL_AURA_APPLIED", "Garrote", 227742)
@@ -104,7 +106,6 @@ end
 
 function mod:OnEngage()
 	mobCollector = {}
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	guestDeaths = 0
 	self:CDBar(227736, 7) -- Vanish
 	self:CDBar(227851, 30) -- Coat Check
