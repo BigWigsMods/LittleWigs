@@ -112,10 +112,10 @@ function mod:SultryHeat(args)
 end
 
 function mod:AddsKilled(args)
-	local stage = self:GetStage() + 1
-	self:SetStage(stage)
+	local stage = self:GetStage()
 	self:Message("stages", "cyan", CL.mob_killed:format(args.destName, stage, 3), false)
 	self:PlaySound("stages", "long")
+	self:SetStage(stage + 1)
 
 	if args.mobId == 114329 then -- Luminore
 		self:StopBar(228025) -- Heat Wave
