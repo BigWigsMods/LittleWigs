@@ -95,6 +95,7 @@ end
 function mod:SevereDusting(args)
 	local onMe = self:Me(args.destGUID)
 	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:TargetBar(args.spellId, 12, args.destName)
 	if onMe then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:Say(args.spellId)
