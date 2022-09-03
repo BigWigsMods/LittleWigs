@@ -23,7 +23,7 @@ BigWigs:AddSounds("Opera Hall: Westfall Story", {
 
 BigWigs:AddSounds("Opera Hall: Beautiful Beast", {
 	[227985] = "alarm",
-	[227987] = "alert",
+	[227987] = {"alert","warning"},
 	[228019] = "alert",
 	[228025] = "warning",
 	[228221] = {"alert","warning"},

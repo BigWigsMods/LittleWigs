@@ -5,10 +5,10 @@
 local mod, CL = BigWigs:NewBoss("Opera Hall: Beautiful Beast", 1651, 1827)
 if not mod then return end
 mod:RegisterEnableMob(
-	114328, -- Coogleston
 	114329, -- Luminore
 	114522, -- Mrs. Cauldrons
-	114330  -- Babblet
+	114330, -- Babblet
+	114328  -- Coogleston
 )
 --mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
 mod:SetStage(1)
@@ -48,6 +48,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DentArmor", 227985)
 	self:Log("SPELL_AURA_REMOVED", "DentArmorRemoved", 227985)
 	self:Log("SPELL_CAST_START", "DinnerBell", 227987)
+	self:Log("SPELL_AURA_APPLIED", "DinnerBellApplied", 227987)
 	self:Log("SPELL_CAST_START", "KaraKazham", 232153)
 
 	self:Death("AddsKilled",
@@ -149,6 +150,13 @@ function mod:DinnerBell(args)
 		self:PlaySound(args.spellId, "alert")
 	end
 	self:Bar(args.spellId, 12.1)
+end
+
+function mod:DinnerBellApplied(args)
+	if self:MobId(args.destGUID) == 114328 and self:Dispeller("magic", true, args.spellId) then
+		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:KaraKazham(args)
