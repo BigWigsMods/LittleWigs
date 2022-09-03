@@ -71,7 +71,7 @@ do
 end
 
 function mod:HolyShock(args)
-	self:CDBar(args.spellId, 19.4)
+	self:CDBar(args.spellId, 13.3)
 	if self:Interrupter(args.sourceGUID) then
 		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")
