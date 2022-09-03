@@ -57,7 +57,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		self:TargetMessage(227789, "red", player)
-		self:PlaySound(227789, "alarm")
+		self:PlaySound(227789, "alarm", nil, player)
 		if self:Me(guid) then
 			self:Say(227789)
 			self:Flash(227789)
