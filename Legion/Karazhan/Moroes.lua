@@ -64,7 +64,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	--[[ Moroes ]]--
 	self:Log("SPELL_CAST_START", "Vanish", 227736)
 	self:Log("SPELL_AURA_APPLIED", "Garrote", 227742)
