@@ -50,7 +50,7 @@ BigWigs:AddColors("Moroes", {
 	[227736] = "yellow",
 	[227742] = {"blue","orange"},
 	[227851] = {"blue","orange","purple"},
-	[227872] = "cyan",
+	[227872] = {"cyan","yellow"},
 })
 
 BigWigs:AddColors("The Curator", {

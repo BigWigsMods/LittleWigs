@@ -21,6 +21,7 @@ mod:SetRespawnTime(15)
 --
 
 local mobCollector = {}
+local guestDeaths = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -105,6 +106,7 @@ end
 function mod:OnEngage()
 	mobCollector = {}
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	guestDeaths = 0
 	self:CDBar(227736, 7) -- Vanish
 	self:CDBar(227851, 30) -- Coat Check
 	-- other bars are started in IEEU
@@ -113,13 +115,17 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 	for i = 1, 5 do
-		local guid = self:UnitGUID(("boss%d"):format(i))
+		local unitId = ("boss%d"):format(i)
+		local guid = self:UnitGUID(unitId)
 		if guid and not mobCollector[guid] then
 			mobCollector[guid] = true
 			local mobId = self:MobId(guid)
-			if mobId == 114316 then -- Baroness Dorothea Millstripe
+			if mobId == 114312 then -- Moroes
+				self:RegisterUnitEvent("UNIT_HEALTH", nil, unitId)
+			elseif mobId == 114316 then -- Baroness Dorothea Millstripe
 				self:CDBar(227545, 9) -- Mana Drain applied
 			--elseif mobId == 114317 then -- Lady Catriona Von'Indi
 				-- She casts Healing Stream whenever Moroes drops below 50%
@@ -132,6 +138,16 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 			elseif mobId == 114321 then -- Lord Crispin Ference
 				self:Bar(227672, 10.5) -- Will Breaker
 			end
+		end
+	end
+end
+
+function mod:UNIT_HEALTH(event, unit)
+	if self:mobId(unit) == 114312 and self:GetHealth(unit) < 65 then
+		self:UnregisterUnitEvent(event, unit)
+		if guestDeaths < 4 then
+			self:Message(227872, "yellow", CL.soon:format(self:SpellName(227872)), 227872) -- Ghastly Purge Soon
+			self:PlaySound("stages", "info")
 		end
 	end
 end
@@ -162,7 +178,9 @@ function mod:CoatCheckDispellable(args)
 end
 
 function mod:GhastlyPurge(args)
-	self:Message(args.spellId, "cyan")
+	if guestDeaths < 4 then
+		self:Message(args.spellId, "cyan")
+	end
 end
 
 function mod:ManaDrain(args)
@@ -228,6 +246,7 @@ function mod:WillBreaker(args)
 end
 
 function mod:GuestDeath(args)
+	guestDeaths = guestDeaths + 1
 	local mobId = self:MobId(args.destGUID)
 	if mobId == 114316 then -- Baroness Dorothea Millstripe
 		self:StopBar(227545) -- Mana Drain
