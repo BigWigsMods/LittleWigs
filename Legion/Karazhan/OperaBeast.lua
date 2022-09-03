@@ -148,11 +148,11 @@ function mod:DinnerBell(args)
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:Bar(args.spellId, 12)
+	self:Bar(args.spellId, 12.1)
 end
 
 function mod:KaraKazham(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 17)
+	self:Bar(args.spellId, 15.8)
 end
