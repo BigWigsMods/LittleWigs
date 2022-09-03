@@ -119,6 +119,11 @@ function mod:AddsKilled(args)
 	self:PlaySound("stages", "long")
 	self:SetStage(stage + 1)
 
+	if self:GetStage() == 4 then
+		-- 5.9 seconds after the 3rd boss is killed, the 4th boss becomes active
+		self:Bar("stages", 5.9, CL.active, 232156)
+	end
+
 	if args.mobId == 114329 then -- Luminore
 		self:StopBar(228025) -- Heat Wave
 	elseif args.mobId == 114522 then -- Mrs. Cauldrons
