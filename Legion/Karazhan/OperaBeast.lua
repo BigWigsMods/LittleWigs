@@ -42,7 +42,8 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_START", "HeatWave", 228025)
 	self:Log("SPELL_CAST_START", "Leftovers", 228019)
-	self:Log("SPELL_CAST_SUCCESS", "SevereDusting", 228221)
+	self:Log("SPELL_AURA_APPLIED", "SevereDustingApplied", 228221)
+	self:Log("SPELL_AURA_REMOVED", "SevereDustingRemoved", 228221)
 	self:Log("SPELL_AURA_APPLIED", "SultryHeat", 228225)
 	self:Log("SPELL_AURA_REMOVED", "SpectralService", 232156)
 	self:Log("SPELL_AURA_APPLIED", "DentArmor", 227985)
@@ -95,7 +96,7 @@ function mod:Leftovers(args)
 	self:CDBar(args.spellId, 18.2)
 end
 
-function mod:SevereDusting(args)
+function mod:SevereDustingApplied(args)
 	local onMe = self:Me(args.destGUID)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 12, args.destName)
@@ -105,6 +106,10 @@ function mod:SevereDusting(args)
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
+end
+
+function mod:SevereDustingRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 end
 
 function mod:SultryHeat(args)
