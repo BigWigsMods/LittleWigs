@@ -12,7 +12,7 @@ mod:RegisterEnableMob(
 )
 --mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
 mod:SetStage(1)
-mod:SetRespawnTime(30) -- TODO confirm
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
