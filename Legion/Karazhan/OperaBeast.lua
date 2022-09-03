@@ -59,7 +59,7 @@ end
 
 function mod:OnEngage()
 	mod:SetStage(1)
-	self:Bar(228019, 7) -- Leftovers
+	self:Bar(228019, 6.5) -- Leftovers
 	self:Bar(228025, 30) -- Heat Wave
 end
 
@@ -82,6 +82,7 @@ end
 function mod:HeatWave(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 26.7)
 end
 
 function mod:Leftovers(args)
@@ -89,7 +90,7 @@ function mod:Leftovers(args)
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:CDBar(args.spellId, 18)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:SevereDusting(args)
