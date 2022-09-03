@@ -59,7 +59,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	mod:SetStage(1)
+	self:SetStage(1)
 	self:Bar(228019, 6.5) -- Leftovers
 	self:Bar(228025, 30) -- Heat Wave
 end
@@ -87,16 +87,17 @@ function mod:HeatWave(args)
 end
 
 function mod:Leftovers(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "alert")
 	end
+	-- this won't be cast unless someone is in melee range
 	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:SevereDusting(args)
 	local onMe = self:Me(args.destGUID)
-	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 12, args.destName)
 	if onMe then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)

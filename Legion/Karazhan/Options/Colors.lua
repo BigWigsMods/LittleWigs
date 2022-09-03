@@ -24,10 +24,10 @@ BigWigs:AddColors("Opera Hall: Westfall Story", {
 
 BigWigs:AddColors("Opera Hall: Beautiful Beast", {
 	[227985] = {"blue","purple"},
-	[228019] = "red",
 	[227987] = {"red","yellow"},
+	[228019] = "orange",
 	[228025] = "red",
-	[228221] = {"blue","orange"},
+	[228221] = {"blue","yellow"},
 	[228225] = "yellow",
 	[232153] = "orange",
 	["stages"] = "cyan",
