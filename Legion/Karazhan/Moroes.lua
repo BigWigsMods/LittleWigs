@@ -84,7 +84,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Garrote", 227742)
 	self:Log("SPELL_AURA_APPLIED", "CoatCheck", 227851) -- the debuff Moroes applies to himself at the start of his cast
 	self:Log("SPELL_AURA_APPLIED", "CoatCheckDispellable", 227832) -- this debuff on tank replaces the previous one 1.5s after, can be dispelled
-	self:Log("SPELL_CAST_START", "GhastlyPurge", 227872)
+	self:Log("SPELL_CAST_SUCCESS", "GhastlyPurge", 227872)
 
 	--[[ Baroness Dorothea Millstripe ]]--
 	self:Log("SPELL_CAST_START", "ManaDrain", 227545)
@@ -174,16 +174,6 @@ do
 	end
 end
 
-function mod:UNIT_HEALTH(event, unit)
-	if self:GetHealth(unit) < 65 or guestDeaths == 4 then
-		self:UnregisterUnitEvent(event, unit)
-		if guestDeaths < 4 then
-			self:Message(227872, "yellow", CL.soon:format(self:SpellName(227872)), 227872) -- Ghastly Purge Soon
-			self:PlaySound(227872, "info")
-		end
-	end
-end
-
 function mod:Vanish(args)
 	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 20.5)
@@ -206,6 +196,16 @@ function mod:CoatCheckDispellable(args)
 	if self:Dispeller("magic") then
 		self:TargetMessage(227851, "orange", args.destName)
 		self:PlaySound(227851, "warning")
+	end
+end
+
+function mod:UNIT_HEALTH(event, unit)
+	if self:GetHealth(unit) < 65 or guestDeaths == 4 then
+		self:UnregisterUnitEvent(event, unit)
+		if guestDeaths < 4 then
+			self:Message(227872, "yellow", CL.soon:format(self:SpellName(227872)), 227872) -- Ghastly Purge Soon
+			self:PlaySound(227872, "info")
+		end
 	end
 end
 
