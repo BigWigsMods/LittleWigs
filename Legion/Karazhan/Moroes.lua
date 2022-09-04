@@ -291,6 +291,7 @@ end
 function mod:CrowdControlRemoved(args)
 	if self:IsEngaged() then
 		self:Message("cc", "cyan", CL.removed_from:format(args.spellName, args.destName), args.spellId)
+		self:PlaySound("cc", "info")
 		self:StopBar(args.spellId, args.destName)
 	end
 end

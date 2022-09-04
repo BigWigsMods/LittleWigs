@@ -49,6 +49,7 @@ BigWigs:AddSounds("Moroes", {
 	[227742] = "info",
 	[227851] = {"alarm","warning"},
 	[227872] = "info",
+	["cc"] = "info",
 })
 
 BigWigs:AddSounds("The Curator", {
