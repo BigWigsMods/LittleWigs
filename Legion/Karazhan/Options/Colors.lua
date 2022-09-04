@@ -51,6 +51,7 @@ BigWigs:AddColors("Moroes", {
 	[227742] = {"blue","orange"},
 	[227851] = {"blue","orange","purple"},
 	[227872] = {"cyan","yellow"},
+	["cc"] = "cyan",
 })
 
 BigWigs:AddColors("The Curator", {

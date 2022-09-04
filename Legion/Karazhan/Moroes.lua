@@ -31,7 +31,6 @@ end
 -- Locals
 --
 
--- TODO turn evil? control undead??
 local validCrowdControls = {227909, 9484, 115078, 3355, 20066, 10326} -- Ghost Trap, Shackle Undead, Paralysis, Freezing Trap, Repentance, Turn Evil
 local mobCollector = {}
 local guestDeaths = 0
@@ -110,7 +109,6 @@ function mod:OnBossEnable()
 	-- CC tracking
 	self:Log("SPELL_AURA_APPLIED", "CrowdControlApplied", unpack(validCrowdControls))
 	self:Log("SPELL_AURA_REMOVED", "CrowdControlRemoved", unpack(validCrowdControls))
-	self:Log("SPELL_AURA_BROKEN_SPELL", "CrowdControlBroken", unpack(validCrowdControls))
 
 	self:Death("GuestDeath",
 		114316, -- Baroness Dorothea Millstripe
@@ -291,14 +289,10 @@ function mod:CrowdControlApplied(args)
 end
 
 function mod:CrowdControlRemoved(args)
-	-- TODO don't want to message here if broken (which might fire after)
-	-- TODO message when cc expires
-	self:StopBar(args.spellId, args.destName)
-end
-
-function mod:CrowdControlBroken(args)
-	-- TODO message when cc is broken
-	self:StopBar(args.spellId, args.destName)
+	if self:IsEngaged() then
+		self:Message("cc", "cyan", CL.removed_from:format(args.spellName, args.destName), args.spellId)
+		self:StopBar(args.spellId, args.destName)
+	end
 end
 
 function mod:GuestDeath(args)
