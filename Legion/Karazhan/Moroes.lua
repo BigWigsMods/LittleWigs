@@ -52,7 +52,7 @@ function mod:GetOptions()
 
 		--[[ Lord Crispin Ference ]]--
 		227672, -- Will Breaker
-	},{
+	}, {
 		[227736] = -14360, -- Moroes
 		[227545] = -14366, -- Baroness Dorothea Millstripe
 		[227578] = -14369, -- Lady Catriona Von'Indi
@@ -143,11 +143,11 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	if self:mobId(unit) == 114312 and self:GetHealth(unit) < 65 then
+	if self:GetHealth(unit) < 65 then
 		self:UnregisterUnitEvent(event, unit)
 		if guestDeaths < 4 then
 			self:Message(227872, "yellow", CL.soon:format(self:SpellName(227872)), 227872) -- Ghastly Purge Soon
-			self:PlaySound("stages", "info")
+			self:PlaySound(227872, "info")
 		end
 	end
 end
