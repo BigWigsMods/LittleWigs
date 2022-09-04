@@ -257,6 +257,7 @@ function mod:EmpoweredArms(args)
 	if self:Tank() then
 		self:PlaySound(args.spellId, "info")
 	end
+	self:CDBar(args.spellId, 19.5)
 end
 
 do
