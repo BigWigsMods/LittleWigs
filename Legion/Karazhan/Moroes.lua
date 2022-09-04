@@ -273,7 +273,7 @@ end
 
 function mod:WillBreaker(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "long")
+	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 10.9)
 end
 
