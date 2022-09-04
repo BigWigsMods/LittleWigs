@@ -17,9 +17,22 @@ mod:SetEncounterID(1961)
 mod:SetRespawnTime(15)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.cc = "Crowd Control"
+	L.cc_desc = "Shows crowd control timers on the dinner guests."
+	L.cc_icon = "ability_hunter_traplauncher"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
+-- TODO turn evil? control undead??
+local validCrowdControls = {227909, 9484, 115078, 3355, 20066} -- Ghost Trap, Shackle Undead, Paralysis, Freezing Trap, Repentance
 local mobCollector = {}
 local guestDeaths = 0
 
@@ -29,6 +42,7 @@ local guestDeaths = 0
 
 function mod:GetOptions()
 	return {
+		"cc",
 		--[[ Moroes ]]--
 		227736, -- Vanish
 		227742, -- Garrote
@@ -53,6 +67,7 @@ function mod:GetOptions()
 		--[[ Lord Crispin Ference ]]--
 		227672, -- Will Breaker
 	}, {
+		["cc"] = CL.general,
 		[227736] = -14360, -- Moroes
 		[227545] = -14366, -- Baroness Dorothea Millstripe
 		[227578] = -14369, -- Lady Catriona Von'Indi
@@ -64,8 +79,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-	
 	--[[ Moroes ]]--
 	self:Log("SPELL_CAST_START", "Vanish", 227736)
 	self:Log("SPELL_AURA_APPLIED", "Garrote", 227742)
@@ -94,6 +107,11 @@ function mod:OnBossEnable()
 	--[[ Lord Crispin Ference ]]--
 	self:Log("SPELL_CAST_START", "WillBreaker", 227672)
 
+	-- CC tracking
+	self:Log("SPELL_AURA_APPLIED", "CrowdControlApplied", unpack(validCrowdControls))
+	self:Log("SPELL_AURA_REMOVED", "CrowdControlRemoved", unpack(validCrowdControls))
+	self:Log("SPELL_AURA_BROKEN_SPELL", "CrowdControlBroken", unpack(validCrowdControls))
+
 	self:Death("GuestDeath",
 		114316, -- Baroness Dorothea Millstripe
 		114317, -- Lady Catriona Von'Indi
@@ -105,6 +123,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	mobCollector = {}
 	guestDeaths = 0
 	self:CDBar(227736, 7) -- Vanish
@@ -116,27 +135,42 @@ end
 -- Event Handlers
 --
 
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	for i = 1, 5 do
-		local unitId = ("boss%d"):format(i)
-		local guid = self:UnitGUID(unitId)
-		if guid and not mobCollector[guid] then
-			mobCollector[guid] = true
-			local mobId = self:MobId(guid)
-			if mobId == 114312 then -- Moroes
-				self:RegisterUnitEvent("UNIT_HEALTH", nil, unitId)
-			elseif mobId == 114316 then -- Baroness Dorothea Millstripe
-				self:CDBar(227545, 9) -- Mana Drain applied
-			--elseif mobId == 114317 then -- Lady Catriona Von'Indi
-				-- She casts Healing Stream whenever Moroes drops below 50%
-			elseif mobId == 114318 then -- Baron Rafe Dreuger
-				self:CDBar(227646, 4.5) -- Iron Whirlwind
-			elseif mobId == 114319 then -- Lady Keira Berrybuck
-				self:CDBar(227616, 9.5) -- Empowered Arms
-			--elseif mobId == 114320 then -- Lord Robin Daris
-				-- Whirling Edge is cast instantly
-			elseif mobId == 114321 then -- Lord Crispin Ference
-				self:Bar(227672, 10.5) -- Will Breaker
+do
+	local function scanCrowdControl(unitId)
+		for j = 1, #validCrowdControls do
+			local _, _, _, expires = mod:UnitDebuff(unitId, validCrowdControls[j])
+			if expires and expires > 0 then
+				local duration = expires - GetTime()
+				mod:TargetBar("cc", duration, mod:UnitName(unitId), validCrowdControls[j])
+			end
+		end
+	end
+
+	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+		for i = 1, 5 do
+			local unitId = ("boss%d"):format(i)
+			local guid = self:UnitGUID(unitId)
+			if guid and not mobCollector[guid] then
+				mobCollector[guid] = true
+				local mobId = self:MobId(guid)
+				if mobId == 114312 then -- Moroes
+					self:RegisterUnitEvent("UNIT_HEALTH", nil, unitId)
+				else
+					if mobId == 114316 then -- Baroness Dorothea Millstripe
+						self:CDBar(227545, 9) -- Mana Drain applied
+					--elseif mobId == 114317 then -- Lady Catriona Von'Indi
+						-- She casts Healing Stream whenever Moroes drops below 50%
+					elseif mobId == 114318 then -- Baron Rafe Dreuger
+						self:CDBar(227646, 4.5) -- Iron Whirlwind
+					elseif mobId == 114319 then -- Lady Keira Berrybuck
+						self:CDBar(227616, 9.5) -- Empowered Arms
+					--elseif mobId == 114320 then -- Lord Robin Daris
+						-- Whirling Edge is cast instantly
+					elseif mobId == 114321 then -- Lord Crispin Ference
+						self:Bar(227672, 10.5) -- Will Breaker
+					end
+					scanCrowdControl(unitId)
+				end
 			end
 		end
 	end
@@ -243,6 +277,27 @@ function mod:WillBreaker(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 10.9)
+end
+
+function mod:CrowdControlApplied(args)
+	local bossId = self:GetBossId(args.destGUID)
+	if bossId then
+		local _, _, duration = self:UnitDebuff(bossId, args.spellId)
+		if duration then
+			self:TargetBar("cc", duration, args.destName, args.spellId)
+		end
+	end
+end
+
+function mod:CrowdControlRemoved(args)
+	-- TODO message when cc expires
+	self:StopBar(args.spellId, args.destName)
+end
+
+function mod:CrowdControlBroken(args)
+	-- TODO don't want to message here if removed (which might fire after)
+	-- TODO message when cc is broken
+	self:StopBar(args.spellId, args.destName)
 end
 
 function mod:GuestDeath(args)
