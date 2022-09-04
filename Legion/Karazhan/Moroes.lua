@@ -263,7 +263,7 @@ do
 			self:Say(227463)
 		end
 		self:TargetMessage(227463, "orange", player)
-		self:PlaySound(227463, "warning", player)
+		self:PlaySound(227463, "warning", nil, player)
 	end
 
 	function mod:WhirlingEdge(args)
