@@ -32,7 +32,7 @@ end
 --
 
 -- TODO turn evil? control undead??
-local validCrowdControls = {227909, 9484, 115078, 3355, 20066} -- Ghost Trap, Shackle Undead, Paralysis, Freezing Trap, Repentance
+local validCrowdControls = {227909, 9484, 115078, 3355, 20066, 10326} -- Ghost Trap, Shackle Undead, Paralysis, Freezing Trap, Repentance, Turn Evil
 local mobCollector = {}
 local guestDeaths = 0
 
@@ -290,12 +290,12 @@ function mod:CrowdControlApplied(args)
 end
 
 function mod:CrowdControlRemoved(args)
+	-- TODO don't want to message here if broken (which might fire after)
 	-- TODO message when cc expires
 	self:StopBar(args.spellId, args.destName)
 end
 
 function mod:CrowdControlBroken(args)
-	-- TODO don't want to message here if removed (which might fire after)
 	-- TODO message when cc is broken
 	self:StopBar(args.spellId, args.destName)
 end
