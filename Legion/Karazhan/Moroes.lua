@@ -175,7 +175,7 @@ do
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	if self:GetHealth(unit) < 65 then
+	if self:GetHealth(unit) < 65 or guestDeaths == 4 then
 		self:UnregisterUnitEvent(event, unit)
 		if guestDeaths < 4 then
 			self:Message(227872, "yellow", CL.soon:format(self:SpellName(227872)), 227872) -- Ghastly Purge Soon
