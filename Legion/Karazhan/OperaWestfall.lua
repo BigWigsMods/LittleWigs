@@ -55,6 +55,8 @@ end
 function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 	if engageId == 1957 then
 		if status == 0 then
+			-- this is needed because we're overriding the IEEU hooked up to CheckBossStatus in OnEngage
+			self:Wipe()
 			-- force a respawn timer
 			self:SendMessage("BigWigs_EncounterEnd", self, engageId, self.displayName, self:Difficulty(), 5, status)
 		else
