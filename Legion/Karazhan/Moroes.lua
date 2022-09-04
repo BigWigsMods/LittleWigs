@@ -233,7 +233,6 @@ end
 function mod:IronWhirlwind(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 9.6)
 end
 
 do
