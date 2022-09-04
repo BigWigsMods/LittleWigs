@@ -18,6 +18,12 @@ if L then
 	L.guardsman = "유령 경비병"
 end
 
+L = BigWigs:NewBossLocale("Moroes", "koKR")
+if L then
+	L.cc = "군중 제어"
+	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+end
+
 L = BigWigs:NewBossLocale("Nightbane", "koKR")
 if L then
 	L.name = "파멸의 어둠"

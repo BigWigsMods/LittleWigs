@@ -23,7 +23,7 @@ mod:SetRespawnTime(15)
 local L = mod:GetLocale()
 if L then
 	L.cc = "Crowd Control"
-	L.cc_desc = "Shows crowd control timers on the dinner guests."
+	L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
 	L.cc_icon = "ability_hunter_traplauncher"
 end
 

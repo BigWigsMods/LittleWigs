@@ -18,6 +18,12 @@ if L then
 	--L.guardsman = "Phantom Guardsman"
 end
 
+L = BigWigs:NewBossLocale("Moroes", "esES") or BigWigs:NewBossLocale("Moroes", "esMX")
+if L then
+	L.cc = "Control de masas"
+	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+end
+
 L = BigWigs:NewBossLocale("Nightbane", "esES") or BigWigs:NewBossLocale("Nightbane", "esMX")
 if L then
 	L.name = "Nocturno"
