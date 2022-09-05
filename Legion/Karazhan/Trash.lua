@@ -242,8 +242,11 @@ end
 -- Chess Event
 
 function mod:RoyaltyApplied(args)
-	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
-	self:PlaySound(args.spellId, "info")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 do
