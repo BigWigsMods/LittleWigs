@@ -207,7 +207,7 @@ end
 
 function mod:AlluredApplied(args)
 	if (args.amount >= 50 and args.amount % 5 == 0) and (self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID)) then
-		self:NewStackMessage(args.spellId, "orange", args.destName, args.amount, 85) -- MC at 100 stacks
+		self:StackMessage(args.spellId, "orange", args.destName, args.amount, 85) -- MC at 100 stacks
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
