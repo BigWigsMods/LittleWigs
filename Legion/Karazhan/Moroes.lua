@@ -135,11 +135,11 @@ end
 
 do
 	local function scanCrowdControl(unitId)
-		for j = 1, #validCrowdControls do
-			local _, _, _, expires = mod:UnitDebuff(unitId, validCrowdControls[j])
+		for i = 1, #validCrowdControls do
+			local _, _, _, expires = mod:UnitDebuff(unitId, validCrowdControls[i])
 			if expires and expires > 0 then
 				local duration = expires - GetTime()
-				mod:TargetBar("cc", duration, mod:UnitName(unitId), validCrowdControls[j])
+				mod:TargetBar("cc", duration, mod:UnitName(unitId), validCrowdControls[i])
 			end
 		end
 	end
