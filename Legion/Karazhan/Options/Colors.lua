@@ -108,9 +108,14 @@ BigWigs:AddColors("Nightbane", {
 BigWigs:AddColors("Karazhan Trash", {
 	[227966] = "yellow",
 	[227999] = "yellow",
+	[228278] = "red",
 	[228279] = "yellow",
+	[228280] = {"blue","orange"},
 	[228528] = "yellow",
 	[228575] = "red",
+	[228576] = {"blue","orange"},
+	[228603] = "purple",
 	[228625] = "yellow",
-	[241774] = "orange",
+	[229489] = {"green","red"},
+	[241828] = "red",
 })
