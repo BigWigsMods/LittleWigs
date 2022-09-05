@@ -28,6 +28,12 @@ if L then
 	L.king = "Rey"
 end
 
+L = BigWigs:NewBossLocale("Moroes", "esMX")
+if L then
+	L.cc = "Control de masas"
+	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+end
+
 L = BigWigs:NewBossLocale("Nightbane", "esMX")
 if L then
 	L.name = "Nocturno"
