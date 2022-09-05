@@ -254,19 +254,19 @@ do
 			-- if the king just died, ignore all other piece deaths as the event is over
 			return
 		end
-		local remainingVulnerable = self:BarTimeLeft(self:SpellName(229495)) -- Vulnerable
+		local remainingVulnerable = self:BarTimeLeft(229495) -- Vulnerable
 		if remainingVulnerable > 0 then
 			-- we can't track Vulnerable refresh because it's a hidden aura, but if another add dies then 20s is added to the existing buff
-			self:Bar(229489, remainingVulnerable + 20, self:SpellName(229495)) -- Royality, Vulnerable
+			self:Bar(229489, remainingVulnerable + 20, 229495) -- Royality, Vulnerable
 		else
 			self:Message(229489, "green", CL.on:format(self:SpellName(229495), L.king)) -- Royality, Vulnerable
 			self:PlaySound(229489, "long") -- Royalty
-			self:Bar(229489, 20, self:SpellName(229495)) -- Royality, Vulnerable
+			self:Bar(229489, 20, 229495) -- Royality, Vulnerable
 		end
 	end
 
 	function mod:ChessEventOver(args)
 		timeKingDied = args.time
-		self:StopBar(self:SpellName(229495)) -- Vulnerable
+		self:StopBar(229495) -- Vulnerable
 	end
 end
