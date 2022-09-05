@@ -149,7 +149,7 @@ end
 do
 	local prev = 0
 	function mod:PenniesFromHeaven(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
@@ -163,7 +163,7 @@ end
 do
 	local prev = 0
 	function mod:Flashlight(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "yellow")
