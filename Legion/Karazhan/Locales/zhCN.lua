@@ -18,6 +18,12 @@ if L then
 	L.guardsman = "幻影卫兵"
 end
 
+L = BigWigs:NewBossLocale("Moroes", "zhCN")
+if L then
+	L.cc = "群体控制"
+	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+end
+
 L = BigWigs:NewBossLocale("Nightbane", "zhCN")
 if L then
 	L.name = "夜之魇"
