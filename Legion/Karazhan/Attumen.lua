@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,9 @@
 local mod, CL = BigWigs:NewBoss("Attumen the Huntsman", 1651, 1835)
 if not mod then return end
 mod:RegisterEnableMob(114262, 114264) -- Attumen, Midnight
-mod.engageId = 1960
+mod:SetEncounterID(1960)
+mod:SetRespawnTime(15)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,11 +16,14 @@ mod.engageId = 1960
 function mod:GetOptions()
 	return {
 		"stages",
-		227404, -- Intangible Presence
+		228895, -- Enrage
+		227363, -- Mighty Stomp
+		227365, -- Spectral Charge
 		227493, -- Mortal Strike
 		228852, -- Shared Suffering
-		227365, -- Spectral Charge
-		228895, -- Enrage
+	}, {
+		[227363] = -14300, -- Horse and Rider as One
+		[227493] = -14304, -- Fighting on Foot
 	}
 end
 
@@ -30,11 +34,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MortalStrikeApplied", 227493)
 	self:Log("SPELL_AURA_REMOVED", "MortalStrikeRemoved", 227493)
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "Enrage", 228895)
+	self:Log("SPELL_AURA_APPLIED", "Enrage", 228895)
+	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
 end
 
 function mod:OnEngage()
-	self:CDBar(227404, 5)
+	self:CDBar(227363, 15.4) -- Mighty Stomp
+	self:SetStage(1)
 end
 
 --------------------------------------------------------------------------------
@@ -42,21 +48,25 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 227404 then -- Intangible Presence
-		self:MessageOld(spellId, "yellow", self:Dispeller("magic") and "warning")
-		self:Bar(spellId, 30)
-	elseif spellId == 227338 then -- Riderless
-		self:MessageOld("stages", "cyan", "long", spellId, false)
-		self:StopBar(227404) -- Intangible Presence
+	if spellId == 227338 then -- Riderless
+		self:Message("stages", "cyan", spellId, false)
+		self:PlaySound("stages", "long")
+		self:CDBar(228852, 18.2) -- Shared Suffering
+		self:StopBar(227363) -- Mighty Stomp
+		self:SetStage(2)
 	elseif spellId == 227584 then -- Mounted
-		self:MessageOld("stages", "cyan", "long", spellId, false)
+		self:Message("stages", "cyan", spellId, false)
+		self:PlaySound("stages", "long")
+		self:SetStage(1)
 	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
-		self:MessageOld(227365, "yellow", "alert")
+		self:Message(227365, "yellow")
+		self:PlaySound(227365, "alert")
 	end
 end
 
 function mod:MortalStrike(args)
-	self:MessageOld(args.spellId, "red", (self:Tank() or self:Healer()) and "alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:MortalStrikeApplied(args)
@@ -70,9 +80,17 @@ function mod:MortalStrikeRemoved(args)
 end
 
 function mod:SharedSuffering(args)
-	self:MessageOld(args.spellId, "orange", "info")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:Enrage(args)
-	self:MessageOld(args.spellId, "red", "long")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:MightyStomp(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 18.2)
 end

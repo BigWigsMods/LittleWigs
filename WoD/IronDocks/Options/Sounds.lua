@@ -1,21 +1,35 @@
 
 BigWigs:AddSounds("Fleshrender Nok'gar", {
 	[164426] = {"info","warning"},
-	[164632] = "alarm",
+	[164632] = "long",
+	[164734] = "alarm",
+	[164835] = {"alert","warning"},
 	[164837] = "alert",
+	["stages"] = {"info","long"},
 })
 
 BigWigs:AddSounds("Grimrail Enforcers", {
-	["sphere"] = {"info","warning"},
+	[163376] = "alert",
+	[163379] = "alert",
+	[163390] = "alarm",
+	[163665] = "alarm",
+	[163689] = {"alert","info","warning"},
+	[163705] = "warning",
+	[163740] = "alert",
+	[165152] = "alarm",
 })
 
 BigWigs:AddSounds("Oshir", {
-	[162415] = "alarm",
+	[161256] = "alarm",
+	[162415] = {"info","long"},
+	[178124] = "alert",
 })
 
 BigWigs:AddSounds("Skulloc", {
-	[168227] = "warning",
-	[168929] = "long",
+	[168227] = "long",
+	[168348] = {"alert","warning"},
+	[168929] = {"alert","info"},
+	[168965] = "alert",
 })
 
 BigWigs:AddSounds("Iron Docks Trash", {
@@ -30,7 +44,7 @@ BigWigs:AddSounds("Iron Docks Trash", {
 	[172982] = "alarm",
 	[173105] = {"alarm","underyou"},
 	[173135] = "alert",
-	[173148] = {"alert","underyou"},
+	[173148] = "underyou",
 	[173324] = "underyou",
 	[173384] = "alarm",
 	[173480] = {"alert","underyou"},

@@ -67,7 +67,7 @@ function mod:CallServant(args)
 end
 
 function mod:ConsumedServant(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
 

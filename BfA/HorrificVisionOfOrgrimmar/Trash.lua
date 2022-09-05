@@ -178,7 +178,7 @@ end
 function mod:MadnessEntomophobiaApplied(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount >= 3 then
-		self:StackMessage(args.spellId, args.destName, amount, "blue")
+		self:StackMessageOld(args.spellId, args.destName, amount, "blue")
 		self:PlaySound(args.spellId, "info")
 	end
 end
@@ -189,7 +189,7 @@ do
 		local amount = args.amount or 1
 		if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
 			showRemovedWarning = true
-			self:StackMessage(args.spellId, args.destName, amount, "blue")
+			self:StackMessageOld(args.spellId, args.destName, amount, "blue")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -359,8 +359,8 @@ function mod:AqiriMindToxinApplied(args)
 	local amount = args.amount or 1
 	if amount >= 3 then
 		if self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId) then
-			self:StackMessage(args.spellId, args.destName, amount, "red")
-			self:PlaySound(args.spellId, "alert", args.destName)
+			self:StackMessageOld(args.spellId, args.destName, amount, "red")
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
 		end
 	end
 end

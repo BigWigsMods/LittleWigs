@@ -68,7 +68,7 @@ end
 
 function mod:CrumblingRuin(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 	end
 end
 

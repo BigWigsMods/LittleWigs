@@ -1,22 +1,35 @@
 
 BigWigs:AddColors("Fleshrender Nok'gar", {
 	[164426] = {"green","orange"},
-	[164632] = "blue",
+	[164632] = "red",
+	[164734] = "yellow",
+	[164835] = "yellow",
 	[164837] = {"blue","red"},
 	["stages"] = {"cyan","yellow"},
 })
 
 BigWigs:AddColors("Grimrail Enforcers", {
-	["sphere"] = {"blue","green","yellow"},
+	[163376] = "yellow",
+	[163379] = "red",
+	[163390] = "red",
+	[163665] = "orange",
+	[163689] = {"blue","green","red","yellow"},
+	[163705] = "yellow",
+	[163740] = {"blue","yellow"},
+	[165152] = "red",
 })
 
 BigWigs:AddColors("Oshir", {
+	[161256] = "orange",
 	[162415] = {"blue","green","red"},
+	[178124] = "yellow",
 })
 
 BigWigs:AddColors("Skulloc", {
 	[168227] = "orange",
-	[168929] = "yellow",
+	[168348] = {"blue","red"},
+	[168929] = {"green","yellow"},
+	[168965] = "orange",
 })
 
 BigWigs:AddColors("Iron Docks Trash", {
@@ -31,7 +44,7 @@ BigWigs:AddColors("Iron Docks Trash", {
 	[172982] = "red",
 	[173105] = {"blue","yellow"},
 	[173135] = "yellow",
-	[173148] = {"blue","yellow"},
+	[173148] = "blue",
 	[173324] = "blue",
 	[173384] = "red",
 	[173480] = {"blue","orange"},

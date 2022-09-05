@@ -161,7 +161,7 @@ end
 
 function mod:AuraOfDecay(args)
 	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "blue", amount > 3 and "warning")
+	self:StackMessageOld(args.spellId, args.destName, amount, "blue", amount > 3 and "warning")
 end
 
 function mod:Smash(args)

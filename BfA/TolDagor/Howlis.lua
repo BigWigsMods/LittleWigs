@@ -90,7 +90,7 @@ end
 function mod:Motivated(args)
 	if self:MobId(args.destGUID) ~= 127484 then return end -- also applies it to nearby adds
 	if args.amount % 4 == 0 then -- every 8 seconds
-		self:StackMessage(257827, args.destName, args.amount, "orange")
+		self:StackMessageOld(257827, args.destName, args.amount, "orange")
 		self:PlaySound(257827, "alert")
 	end
 end

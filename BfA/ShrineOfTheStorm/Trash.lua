@@ -228,7 +228,7 @@ end
 
 function mod:SunderingBlow(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
 		self:PlaySound(args.spellId, "info")
 	end
 end

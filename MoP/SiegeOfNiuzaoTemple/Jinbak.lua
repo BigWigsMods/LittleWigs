@@ -45,7 +45,7 @@ end
 
 function mod:SapResidue(args)
 	if self:Me(args.destGUID) and args.amount % 2 == 0 then
-		self:StackMessage(-5960, args.destName, args.amount, "blue", "alert")
+		self:StackMessageOld(-5960, args.destName, args.amount, "blue", "alert")
 	end
 end
 

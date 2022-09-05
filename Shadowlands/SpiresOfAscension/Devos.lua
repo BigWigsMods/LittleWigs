@@ -97,7 +97,7 @@ do
 			self:SayCountdown(args.spellId, 15)
 			self:PlaySound(args.spellId, "alarm")
 		end
-		self:TargetsMessage(args.spellId, "yellow", playerList)
+		self:TargetsMessageOld(args.spellId, "yellow", playerList)
 	end
 
 	function mod:LostConfidenceRemoved(args)

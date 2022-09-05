@@ -59,10 +59,10 @@ do
 	function mod:BlazingAzerite(args)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "alarm")
-			self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+			self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 		elseif self:UnitGUID("boss1") == args.destGUID then
 			self:PlaySound(args.spellId, "info")
-			self:StackMessage(args.spellId, args.destName, args.amount, "green")
+			self:StackMessageOld(args.spellId, args.destName, args.amount, "green")
 			self:StopBar(prev, args.destName)
 			prev = CL.count:format(args.spellName, args.amount or 1)
 			self:TargetBar(args.spellId, 15, args.destName, prev)
@@ -100,7 +100,7 @@ do
 
 	local function warn()
 		timerStarted = false
-		mod:StackMessage(271867, mod.displayName, stacks, "red") -- Coin Magnet
+		mod:StackMessageOld(271867, mod.displayName, stacks, "red") -- Coin Magnet
 		mod:PlaySound(271867, "alarm") -- Coin Magnet
 	end
 

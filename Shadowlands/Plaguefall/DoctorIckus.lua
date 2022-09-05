@@ -92,7 +92,7 @@ end
 
 function mod:SlimeInjectionApplied(args)
 	local amount = args.amount or 0
-	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "info")
 end
 

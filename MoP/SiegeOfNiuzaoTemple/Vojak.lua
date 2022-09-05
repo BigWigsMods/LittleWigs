@@ -71,7 +71,7 @@ end
 function mod:CausticTar(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount % 3 == 1 then -- 1, 4, 7
-		self:StackMessage(args.spellId, args.destName, amount, "blue", amount > 1 and "warning")
+		self:StackMessageOld(args.spellId, args.destName, amount, "blue", amount > 1 and "warning")
 	end
 end
 

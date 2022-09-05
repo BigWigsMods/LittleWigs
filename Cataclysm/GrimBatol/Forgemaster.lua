@@ -41,13 +41,13 @@ end
 function mod:Roar(args)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
-		self:StackMessage(args.spellId, args.destName, 3, "blue", "long", self:SpellName(56748)) -- 56748 = "Roar"
+		self:StackMessageOld(args.spellId, args.destName, 3, "blue", "long", self:SpellName(56748)) -- 56748 = "Roar"
 	end
 end
 
 function mod:RoarRemoved(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue", nil, self:SpellName(56748)) -- 56748 = "Roar"
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue", nil, self:SpellName(56748)) -- 56748 = "Roar"
 	end
 end
 

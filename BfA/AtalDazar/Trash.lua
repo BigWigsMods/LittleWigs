@@ -157,7 +157,7 @@ end
 -- Shadowblade Stalker
 function mod:VenomfangStrike(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
 		self:PlaySound(args.spellId, "alarm")
 	end
 end

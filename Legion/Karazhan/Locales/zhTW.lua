@@ -28,6 +28,12 @@ if L then
 	--L.king = "King"
 end
 
+L = BigWigs:NewBossLocale("Moroes", "zhTW")
+if L then
+	--L.cc = "Crowd Control"
+	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+end
+
 local L = BigWigs:NewBossLocale("Nightbane", "zhTW")
 if L then
 	--L.name = "Nightbane"

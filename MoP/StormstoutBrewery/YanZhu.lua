@@ -119,7 +119,7 @@ end
 function mod:BrewBolt(args)
 	local amount = args.amount or 1
 	if amount % 2 == 1 then
-		self:StackMessage(args.spellId, args.destName, amount, "red", "alert") -- casts when there's nobody nearby
+		self:StackMessageOld(args.spellId, args.destName, amount, "red", "alert") -- casts when there's nobody nearby
 	end
 end
 
@@ -146,7 +146,7 @@ end
 function mod:BlackoutBrewApplied(args)
 	local amount = args.amount or 3 -- 1 event for every 3 stacks
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, amount, "yellow", amount > 6 and "warning" or "alarm")
+		self:StackMessageOld(args.spellId, args.destName, amount, "yellow", amount > 6 and "warning" or "alarm")
 	end
 end
 

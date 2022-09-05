@@ -61,7 +61,7 @@ end
 
 function mod:FragmentOfRadianceApplied(args)
 	if self:Me(args.destName) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 		self:PlaySound(args.spellId, "info", nil, self.destName)
 	end
 end

@@ -58,7 +58,7 @@ do
 	local playerList = mod:NewTargetList()
 	function mod:CorruptedBloodApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "red", playerList, 2)
+		self:TargetsMessageOld(args.spellId, "red", playerList, 2)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning")
 			self:Say(args.spellId)

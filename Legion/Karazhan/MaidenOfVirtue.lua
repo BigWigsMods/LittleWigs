@@ -1,8 +1,3 @@
-
---------------------------------------------------------------------------------
--- TODO List:
--- Timers kinda screw up after Mass Repentance Phase
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -10,15 +5,14 @@
 local mod, CL = BigWigs:NewBoss("Maiden of Virtue", 1651, 1825)
 if not mod then return end
 mod:RegisterEnableMob(113971)
-mod.engageId = 1954
+mod:SetEncounterID(1954)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local sacredGroundOnMe = false
-local sacredCount = 1
-local shockCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,7 +34,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HolyShock", 227800)
 	self:Log("SPELL_CAST_START", "HolyWrath", 227823)
 	self:Log("SPELL_CAST_START", "HolyBolt", 227809)
-	self:Log("SPELL_CAST_SUCCESS", "HolyBoltSuccess", 227809)
 	self:Log("SPELL_CAST_START", "MassRepentance", 227508)
 	self:Log("SPELL_CAST_SUCCESS", "MassRepentanceSuccess", 227508)
 	self:Log("SPELL_CAST_START", "SacredGround", 227789)
@@ -50,13 +43,11 @@ end
 
 function mod:OnEngage()
 	sacredGroundOnMe = false
-	sacredCount = 1
-	shockCount = 0
-	self:Bar(227809, 9) -- Holy Bolt
 	self:OpenProximity(227809, 6) -- Holy Bolt
-	self:Bar(227789, 11.1) -- Sacred Ground
-	self:Bar(227800, 16) -- Holy Shock
-	self:Bar(227508, 47.5) -- Mass Repentance
+	self:Bar(227809, 8.5) -- Holy Bolt
+	self:Bar(227789, 10) -- Sacred Ground
+	self:Bar(227800, 14.9) -- Holy Shock
+	self:Bar(227508, 45.2) -- Mass Repentance
 end
 
 --------------------------------------------------------------------------------
@@ -65,7 +56,8 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessageOld(227789, player, "red", "alarm")
+		self:TargetMessage(227789, "red", player)
+		self:PlaySound(227789, "alarm", nil, player)
 		if self:Me(guid) then
 			self:Say(227789)
 			self:Flash(227789)
@@ -73,29 +65,22 @@ do
 	end
 
 	function mod:SacredGround(args)
-		self:CDBar(args.spellId, sacredCount % 2 == 1 and 24 or 32)
+		self:CDBar(args.spellId, 19.4)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-		self:OpenProximity(227809, 6) -- Holy Bolt
 	end
 end
 
 function mod:HolyShock(args)
-	if shockCount == 4 then
-		self:CDBar(args.spellId, 28.8)
-		shockCount = 0
-	elseif shockCount == 2 then
-		self:CDBar(args.spellId, 28.8)
-	else
-		self:CDBar(args.spellId, 13.4)
-	end
-	shockCount = shockCount + 1
+	self:CDBar(args.spellId, 13.3)
 	if self:Interrupter(args.sourceGUID) then
-		self:MessageOld(args.spellId, "yellow", "alarm", CL.incoming:format(args.spellName))
+		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 function mod:HolyWrath(args)
-	self:MessageOld(args.spellId, "red", "alarm", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", CL.incoming:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
@@ -103,16 +88,19 @@ do
 
 	local function checkForSacredGround()
 		if not sacredGroundOnMe then
-			mod:MessageOld(227789, "blue", "warning", CL.no:format(mod:SpellName(227848)))
+			mod:Message(227789, "blue", CL.no:format(mod:SpellName(227848)))
+			mod:PlaySound(227789, "warning")
 			sacredGroundCheck = mod:ScheduleTimer(checkForSacredGround, 1.5)
 		else
-			mod:MessageOld(227789, "green", nil, CL.you:format(mod:SpellName(227848)))
+			mod:Message(227789, "green", CL.you:format(mod:SpellName(227848)))
+			mod:PlaySound(227789, "info")
 			sacredGroundCheck = nil
 		end
 	end
 
 	function mod:MassRepentance(args)
-		self:MessageOld(args.spellId, "yellow", "warning", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
 		self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
 		self:Bar(args.spellId, 51)
 		checkForSacredGround()
@@ -143,20 +131,19 @@ do
 end
 
 function mod:HolyBulwarkRemoved(args)
-	self:MessageOld(227823, "orange", self:Interrupter(args.sourceGUID) and "alert", CL.casting:format(self:SpellName(227823)))
+	self:Message(227823, "orange", CL.casting:format(self:SpellName(227823)))
+	if self:Interrupter() then
+		self:PlaySound(227823, "alert")
+	end
 end
 
 do
 	local function printTarget(self, player)
-		self:TargetMessageOld(227809, player, "red")
+		self:TargetMessage(227809, "red", player)
 	end
 
 	function mod:HolyBolt(args)
-		self:CDBar(args.spellId, 12)
+		self:CDBar(args.spellId, 9.7)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-	end
-
-	function mod:HolyBoltSuccess(args)
-		self:CloseProximity(args.spellId) -- we will later reopen it after a Sacred Ground cast, she never casts more than 1 Holy Bolt in between 2 Sacred Ground casts.
 	end
 end

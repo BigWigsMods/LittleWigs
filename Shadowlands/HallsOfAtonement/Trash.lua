@@ -143,7 +143,7 @@ end
 function mod:JaggedSwipe(args)
 	local stacks = args.amount
 	if self:Me(args.destGUID) and stacks % 3 == 0 then
-		self:StackMessage(args.spellId, args.destName, stacks, "blue")
+		self:StackMessageOld(args.spellId, args.destName, stacks, "blue")
 		self:PlaySound(args.spellId, stacks > 5 and "warning" or "alert")
 	end
 end
@@ -266,7 +266,7 @@ do
 		if self:Dispeller("magic") then
 			playerList[#playerList+1] = args.destName
 			self:PlaySound(326607, "alert", nil, playerList)
-			self:TargetsMessage(326607, "orange", playerList, 5)
+			self:TargetsMessageOld(326607, "orange", playerList, 5)
 		end
 	end
 end

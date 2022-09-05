@@ -95,7 +95,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BurningArrowsDamage", 164632)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BurningArrowsDamage", 164632)
 	self:Log("SPELL_MISSED", "BurningArrowsDamage", 164632)
-	self:Log("SPELL_CAST_START", "FlamingArrows", 173148)
 	self:Log("SPELL_AURA_APPLIED", "FlamingArrowsDamage", 173149)
 	self:Log("SPELL_PERIODIC_DAMAGE", "FlamingArrowsDamage", 173149)
 	self:Log("SPELL_MISSED", "FlamingArrowsDamage", 173149)
@@ -170,11 +169,6 @@ do
 			end
 		end
 	end
-end
-
-function mod:FlamingArrows(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
 end
 
 do
