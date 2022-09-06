@@ -124,7 +124,7 @@ do
 
 			-- show new bar with updated duration
 			barText = CL.count:format(CL.explosion, instabilityCount)
-			mod:Bar(spellId, duration, barText, nil, 30)
+			mod:Bar(spellId, {duration, 30}, barText)
 		else
 			-- the last bomb has been delivered (or... it exploded)
 			mod:Message(spellId, "green", CL.over:format(mod:SpellName(346947))) -- Unstable Goods
