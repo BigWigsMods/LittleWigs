@@ -147,7 +147,7 @@ do
 		if not unstableGoodsContainer[args.sourceGUID] then
 			instabilityCount = instabilityCount + 1
 			-- bombs explode after 30 seconds
-			unstableGoodsContainer[args.sourceGUID] = GetTime() + 30
+			unstableGoodsContainer[args.sourceGUID] = args.time + 30
 			updateInstabilityBar(args.spellId)
 		end
 	end
