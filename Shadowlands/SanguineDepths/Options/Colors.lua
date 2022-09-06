@@ -8,8 +8,8 @@ BigWigs:AddColors("Kryxis the Voracious", {
 
 BigWigs:AddColors("Executor Tarvold", {
 	[322554] = {"blue","orange"},
-	[322573] = "yellow",
-	[323551] = "orange",
+	[322574] = "yellow",
+	[323551] = {"blue","orange"},
 	[328494] = {"blue","yellow"},
 })
 
@@ -24,7 +24,6 @@ BigWigs:AddColors("General Kaal", {
 	[322903] = "red",
 	[323821] = "orange",
 	[323845] = {"blue","orange"},
-	[324086] = "green",
 })
 
 BigWigs:AddColors("Sanguine Depths Trash", {
@@ -34,7 +33,7 @@ BigWigs:AddColors("Sanguine Depths Trash", {
 	[322429] = "orange",
 	[322433] = {"orange","yellow"},
 	[324086] = "green",
-	[324103] = "red",
+	[324089] = "green",
 	[326827] = {"green","red"},
 	[326836] = {"blue","orange","red"},
 	[328170] = "red",

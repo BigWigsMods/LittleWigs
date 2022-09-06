@@ -106,7 +106,7 @@ do
 	function mod:ChokingBrineApplied(args)
 		if self:Dispeller("magic", nil, 264560) then
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(264560, "yellow", playerList, 5)
+			self:TargetsMessageOld(264560, "yellow", playerList, 5)
 			self:PlaySound(264560, "alarm", nil, playerList)
 		elseif self:Me(args.destGUID) then
 			self:PersonalMessage(264560)
@@ -144,7 +144,7 @@ do
 			end
 		else
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(264166, "orange", playerList, 3)
+			self:TargetsMessageOld(264166, "orange", playerList, 3)
 			if self:Healer() then
 				self:PlaySound(264166, "warning", nil, playerList)
 			elseif self:Me(args.destGUID) then
@@ -168,7 +168,7 @@ do
 			self:PlaySound(args.spellId, "info", nil, args.destName)
 		else
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(args.spellId, "orange", playerList, 3)
+			self:TargetsMessageOld(args.spellId, "orange", playerList, 3)
 			self:PlaySound(args.spellId, "info", nil, playerList)
 		end
 	end

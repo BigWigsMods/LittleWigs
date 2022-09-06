@@ -128,7 +128,7 @@ do
 
 	function mod:GreasyRemoved(args)
 		if args.amount then -- Slippery when oily
-			self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
+			self:StackMessageOld(args.spellId, args.destName, args.amount, "cyan")
 			self:PlaySound(args.spellId, "info")
 		else -- Caught!
 			seconds = math.floor((args.time - seconds) * 100)/100

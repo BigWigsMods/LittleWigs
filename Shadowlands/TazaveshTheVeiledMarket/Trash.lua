@@ -368,7 +368,7 @@ function mod:LavaBreath(args)
 end
 function mod:AncientDread(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
 end
 do
 	local prev = 0

@@ -41,7 +41,7 @@ end
 function mod:Evolution(args)
 	if self:Me(args.destGUID) and args.amount >= 80 and not warnedAboutEvolution then
 		warnedAboutEvolution = true
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue", "warning")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue", "warning")
 		self:Flash(args.spellId)
 	end
 end

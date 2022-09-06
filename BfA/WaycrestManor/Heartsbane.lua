@@ -117,7 +117,7 @@ end
 function mod:AuraOfDread(args)
 	if self:Me(args.destGUID) then
 		if args.amount % 3 == 0 or args.amount > 6 then
-			self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+			self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 			self:PlaySound(args.spellId, args.amount > 6 and "warning" or "alert")
 		end
 	end

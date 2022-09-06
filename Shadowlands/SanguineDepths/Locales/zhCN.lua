@@ -11,7 +11,6 @@ if L then
 	L.chamber_sentinel = "大厅哨兵"
 	L.depths_warden = "深渊狱卒"
 	L.dreadful_huntmaster = "恐怖的狩猎大师"
-	L.general_kaal = "卡尔将军"
 	L.grand_overseer = "大监督者"
 	L.head_custodian_javlin = "首席管理者加弗林"
 	L.insatiable_brute = "贪食的蛮兵"
@@ -19,4 +18,5 @@ if L then
 	L.research_scribe = "研究铭文师"
 	L.wicked_oppressor = "邪恶的镇压者"
 	L.ravenous_dreadbat = "贪婪的恐惧蝠"
+	L.zrali = "兹拉莉"
 end

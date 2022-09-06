@@ -90,7 +90,7 @@ do
 
 	function mod:CollapsingEnergyApplied(args)
 		if self:Me(args.destGUID) then
-			self:NewStackMessage(args.spellId, "blue", args.destName, args.amount)
+			self:StackMessage(args.spellId, "blue", args.destName, args.amount, 2)
 
 			local barTimeLeft = self:BarTimeLeft(CL.count:format(CL.explosion, starCount))
 			self:StopBar(CL.count:format(CL.explosion, starCount))
@@ -104,7 +104,7 @@ end
 
 function mod:CollapsingEnergyRemoved(args)
 	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "removed")
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
 end

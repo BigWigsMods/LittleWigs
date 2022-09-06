@@ -82,7 +82,7 @@ function mod:GalvanizeStack(args)
 	self:SetInfoByTable(args.spellId, galvanizeList)
 	if self:Me(args.destGUID) then
 		if args.amount % 3 == 0 then
-			self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+			self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 			if args.amount > 6 then
 				self:PlaySound(args.spellId, "info")
 			end

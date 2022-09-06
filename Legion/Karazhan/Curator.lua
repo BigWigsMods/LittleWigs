@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("The Curator", 1651, 1836)
 if not mod then return end
 mod:RegisterEnableMob(114247)
-mod.engageId = 1964
-mod.respawnTime = 30
+mod:SetEncounterID(1964)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -33,7 +32,9 @@ end
 function mod:OnEngage()
 	self:Bar(227267, 5) -- Summon Volatile Energy
 	self:CDBar(227279, 12) -- Power Discharge
-	self:CDBar(227254, 68) -- Evocation
+	-- Mythic Plus:   900 energy, loses 18/second => 50.0 seconds
+	-- Heroic/Mythic: 575 energy, loses 10/second => 57.5 seconds
+	self:Bar(227254, self:MythicPlus() and 50 or 57.3) -- Evocation
 end
 
 --------------------------------------------------------------------------------
@@ -41,13 +42,15 @@ end
 --
 
 function mod:SummonVolatileEnergy(args)
-	self:MessageOld(args.spellId, "yellow", "info")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 9.7)
 end
 
 function mod:PowerDischarge(_, _, _, spellId)
 	if spellId == 227278 then
-		self:MessageOld(227279, "orange", "alert")
+		self:Message(227279, "orange")
+		self:PlaySound(227279, "alert")
 		self:CDBar(227279, 12)
 	end
 end
@@ -56,23 +59,40 @@ do
 	local prev = 0
 	function mod:PowerDischargeDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 2 then
 				prev = t
-				self:MessageOld(227279, "blue", "alarm", CL.underyou:format(args.spellName))
+				self:PersonalMessage(227279, "underyou")
+				self:PlaySound(227279, "underyou")
 			end
 		end
 	end
 end
 
-function mod:Evocation(args)
-	self:MessageOld(args.spellId, "green", "long")
-	self:CastBar(args.spellId, 20)
-	self:StopBar(227267) -- Summon Volatile Energy
-	self:StopBar(227279) -- Power Discharges
-end
+do
+	local prev = 0
+	function mod:Evocation(args)
+		-- sometimes this ability is double-applied, this restarts the channel to the full 20 seconds
+		-- but we don't need to alert again
+		local t = args.time
+		if t - prev > 3 then
+			prev = t
+			self:Message(args.spellId, "green")
+			self:PlaySound(args.spellId, "long")
+			self:StopBar(227267) -- Summon Volatile Energy
+			self:StopBar(227279) -- Power Discharges
+		end
+		self:CastBar(args.spellId, 20)
+	end
 
-function mod:EvocationOver(args)
-	self:MessageOld(args.spellId, "cyan", "info", CL.over:format(args.spellName))
-	self:CDBar(args.spellId, 69)
+	function mod:EvocationOver(args)
+		if args.time - prev > 3 then
+			self:StopBar(CL.cast:format(args.spellName))
+			self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+			-- Mythic Plus:   900 energy, loses 18/second => 50.0 seconds
+			-- Heroic/Mythic: 575 energy, loses 10/second => 57.5 seconds
+			self:Bar(args.spellId, self:MythicPlus() and 49.25 or 56.5)
+		end
+	end
 end

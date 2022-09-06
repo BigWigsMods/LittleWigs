@@ -87,7 +87,7 @@ end
 function mod:PlatinumPlatingRemoved(args)
 	-- Manually track stacks since every time a stack is removed, the entire aura is removed and reapplied
 	platingStacks = platingStacks - 1
-	self:StackMessage(args.spellId, args.destName, platingStacks, "green")
+	self:StackMessageOld(args.spellId, args.destName, platingStacks, "green")
 	self:PlaySound(args.spellId, "long")
 end
 

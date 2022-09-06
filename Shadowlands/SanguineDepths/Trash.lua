@@ -11,7 +11,6 @@ mod:RegisterEnableMob(
 	171799, -- Depths Warden
 	171448, -- Dreadful Huntmaster
 	162046, -- Famished Tick
-	162133, -- General Kaal
 	162040, -- Grand Overseer
 	171376, -- Head Custodian Javlin
 	162047, -- Insatiable Brute
@@ -19,7 +18,9 @@ mod:RegisterEnableMob(
 	162038, -- Regal Mistdancer
 	171805, -- Research Scribe
 	162039, -- Wicked Oppressor
-	168591 -- Ravenous Dreadbat
+	168591, -- Ravenous Dreadbat
+	162133, -- General Kaal (trash)
+	162099 -- General Kaal (boss)
 )
 
 --------------------------------------------------------------------------------
@@ -38,7 +39,6 @@ if L then
 	L.chamber_sentinel = "Chamber Sentinel"
 	L.depths_warden = "Depths Warden"
 	L.dreadful_huntmaster = "Dreadful Huntmaster"
-	L.general_kaal = "General Kaal"
 	L.grand_overseer = "Grand Overseer"
 	L.head_custodian_javlin = "Head Custodian Javlin"
 	L.insatiable_brute = "Insatiable Brute"
@@ -46,6 +46,7 @@ if L then
 	L.research_scribe = "Research Scribe"
 	L.wicked_oppressor = "Wicked Oppressor"
 	L.ravenous_dreadbat = "Ravenous Dreadbat"
+	L.zrali = "Z'rali"
 end
 
 --------------------------------------------------------------------------------
@@ -65,9 +66,6 @@ function mod:GetOptions()
 		{335308, "TANK_HEALER"}, -- Crushing Strike
 		-- Dreadful Huntmaster
 		334558, -- Volatile Trap
-		-- General Kaal
-		324103, -- Gloom Squall
-		324086, -- Shining Radiance
 		-- Grand Overseer
 		326827, -- Dread Bindings
 		-- Head Custodian Javlin
@@ -84,12 +82,14 @@ function mod:GetOptions()
 		{326836, "DISPEL"}, -- Curse of Suppression
 		-- Ravenous Dreadbat
 		321105, -- Sap Lifeblood
+		-- Z'rali
+		324089, -- Z'rali's Essence
+		324086, -- Shining Radiance
 	}, {
 		[341331] = L.anima_collector,
 		[328170] = L.chamber_sentinel,
 		[335305] = L.depths_warden,
 		[334558] = L.dreadful_huntmaster,
-		[324103] = L.general_kaal,
 		[326827] = L.grand_overseer,
 		[334329] = L.head_custodian_javlin,
 		[321178] = L.insatiable_brute,
@@ -97,46 +97,49 @@ function mod:GetOptions()
 		[334377] = L.research_scribe,
 		[326836] = L.wicked_oppressor,
 		[321105] = L.ravenous_dreadbat,
+		[324089] = L.zrali
 	}
 end
 
 function mod:OnBossEnable()
-		-- Anima Container
-		self:Log("SPELL_SUMMON", "SummonAnimaCollectorStalker", 341321)
-		-- Chamber Sentinel
-		self:Log("SPELL_CAST_START", "CraggyFracture", 328170) -- Craggy Fracture
-		self:Log("SPELL_CAST_START", "SeveringSlice", 322429) -- Severing Slice
-		self:Log("SPELL_CAST_START", "Stoneskin", 322433) -- Stoneskin
-		self:Log("SPELL_AURA_APPLIED", "StoneskinApplied", 322433) -- Stoneskin
-		-- Depths Warden
-		self:Log("SPELL_CAST_START", "BarbedShackles", 335305) -- Barbed Shackles
-		self:Log("SPELL_AURA_APPLIED", "BarbedShacklesApplied", 335306) -- Barbed Shackles
-		self:Log("SPELL_CAST_START", "CrushingStrike", 335308) -- Crushing Strike
-		-- Dreadful Huntmaster
-		self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
-		-- General Kaal
-		self:RegisterEvent("CHAT_MSG_YELL")
-		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-		self:Log("SPELL_CAST_START", "GloomSquall", 324103) -- Gloom Squall
-		self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
-		-- Grand Overseer
-		self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
-		self:Log("SPELL_AURA_REMOVED", "DreadBindingsRemoved", 326827)
-		-- Head Custodian Javlin
-		self:Log("SPELL_CAST_START", "SweepingSlash", 334329) -- Sweeping Slash
-		self:Log("SPELL_CAST_START", "BludgeoningBash", 334326) -- Bludgeoning Bash
-		-- Insatiable Brute
-		self:Log("SPELL_CAST_START", "Slam", 321178) -- Slam
-		self:Log("SPELL_CAST_START", "UmbralCrash", 334918) -- Umbral Crash
-		-- Regal Mistdancer
-		self:Log("SPELL_CAST_START", "EchoingThrust", 320991) -- Echoing Thrust
-		-- Research Scribe
-		self:Log("SPELL_CAST_SUCCESS", "ExplosiveVellum", 334377) -- Explosive Vellum
-		-- Wicked Oppressor
-		self:Log("SPELL_CAST_START", "CurseOfSuppression", 326836) -- Curse of Suppression
-		self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
-		-- Ravenous Dreadbat
-		self:Log("SPELL_CAST_START", "SapLifeblood", 321105) -- Sap Lifeblood
+	-- Anima Container
+	self:Log("SPELL_SUMMON", "SummonAnimaCollectorStalker", 341321)
+	-- Chamber Sentinel
+	self:Log("SPELL_CAST_START", "CraggyFracture", 328170) -- Craggy Fracture
+	self:Log("SPELL_CAST_START", "SeveringSlice", 322429) -- Severing Slice
+	self:Log("SPELL_CAST_START", "Stoneskin", 322433) -- Stoneskin
+	self:Log("SPELL_AURA_APPLIED", "StoneskinApplied", 322433) -- Stoneskin
+	-- Depths Warden
+	self:Log("SPELL_CAST_START", "BarbedShackles", 335305) -- Barbed Shackles
+	self:Log("SPELL_AURA_APPLIED", "BarbedShacklesApplied", 335306) -- Barbed Shackles
+	self:Log("SPELL_CAST_START", "CrushingStrike", 335308) -- Crushing Strike
+	-- Dreadful Huntmaster
+	self:Log("SPELL_CAST_SUCCESS", "VolatileTrap", 334558) -- Volatile Trap
+	-- Grand Overseer
+	self:Log("SPELL_CAST_START", "DreadBindings", 326827) -- Dread Bindings
+	self:Log("SPELL_AURA_REMOVED", "DreadBindingsRemoved", 326827)
+	-- Head Custodian Javlin
+	self:Log("SPELL_CAST_START", "SweepingSlash", 334329) -- Sweeping Slash
+	self:Log("SPELL_CAST_START", "BludgeoningBash", 334326) -- Bludgeoning Bash
+	-- Insatiable Brute
+	self:Log("SPELL_CAST_START", "Slam", 321178) -- Slam
+	self:Log("SPELL_CAST_START", "UmbralCrash", 334918) -- Umbral Crash
+	-- Regal Mistdancer
+	self:Log("SPELL_CAST_START", "EchoingThrust", 320991) -- Echoing Thrust
+	-- Research Scribe
+	self:Log("SPELL_CAST_SUCCESS", "ExplosiveVellum", 334377) -- Explosive Vellum
+	-- Wicked Oppressor
+	self:Log("SPELL_CAST_START", "CurseOfSuppression", 326836) -- Curse of Suppression
+	self:Log("SPELL_AURA_APPLIED", "CurseOfSuppressionApplied", 326836) -- Curse of Suppression
+	-- Ravenous Dreadbat
+	self:Log("SPELL_CAST_START", "SapLifeblood", 321105) -- Sap Lifeblood
+	-- General Kaal
+	self:RegisterEvent("CHAT_MSG_YELL")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	-- Z'rali
+	self:Log("SPELL_AURA_APPLIED", "ZralisEssenceApplied", 324089) -- Z'rali's Essence
+	self:Log("SPELL_AURA_REMOVED", "ZralisEssenceRemoved", 324089) -- Z'rali's Essence
+	self:Log("SPELL_CAST_SUCCESS", "ShiningRadiance", 324086) -- Shining Radiance
 end
 
 --------------------------------------------------------------------------------
@@ -212,32 +215,6 @@ do
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
-end
-
--- General Kaal
-
--- Yes, actually CHAT_MSG_YELL instead of CHAT_MSG_MONSTER_YELL.
-function mod:CHAT_MSG_YELL(_, msg, player)
-	if not player and (msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3) then
-		self:Bar(324103, 35) -- Gloom Squall
-	end
-end
-
-function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
-		self:StopBar(324103) -- Gloom Squall
-	end
-end
-
-function mod:GloomSquall(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-	self:Bar(324103, 40) -- Gloom Squall
-end
-
-function mod:ShiningRadiance(args)
-	self:Message(args.spellId, "green")
-	self:PlaySound(args.spellId, "info")
 end
 
 -- Grand Overseer
@@ -332,4 +309,54 @@ end
 function mod:SapLifeblood(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Z'rali
+
+function mod:ZralisEssenceApplied(args)
+	self:Message(args.spellId, "green", CL.on:format(args.spellName, self:ColorName(args.destName)))
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ZralisEssenceRemoved(args)
+	self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ShiningRadiance(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+end
+
+-- General Kaal Gauntlet Event
+
+function mod:CHAT_MSG_YELL(_, msg, playerName)
+	-- General Kaal in the gauntlet event is bugged and uses the CHAT_MSG_YELL event for half of her lines and
+	-- the correct CHAT_MSG_MONSTER_YELL for the other half.
+	-- playerName will be an empty string for these bugged lines so pass them through to the MONSTER_YELL handler.
+	if playerName == "" then
+		self:CHAT_MSG_MONSTER_YELL(nil, msg)
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3 then
+		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
+		if kaalModule then
+			kaalModule:Enable()
+			kaalModule:KaalGauntletEngage()
+		end
+	elseif msg == L.kaal_retreat_trigger1 or msg == L.kaal_retreat_trigger2 or msg == L.kaal_retreat_trigger3 then
+		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
+		if kaalModule then
+			kaalModule:Enable()
+			kaalModule:KaalGauntletRetreat()
+		end
+
+		-- The gauntlet event is over once the third retreat line has triggered
+		if msg == L.kaal_retreat_trigger3 then
+			self:UnregisterEvent("CHAT_MSG_YELL")
+			self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
+		end
+	end
 end

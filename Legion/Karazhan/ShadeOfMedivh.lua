@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,14 +5,15 @@
 local mod, CL = BigWigs:NewBoss("Shade of Medivh", 1651, 1817)
 if not mod then return end
 mod:RegisterEnableMob(114350)
-mod.engageId = 1965
+mod:SetEncounterID(1965)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local frostbiteTarget = nil
-local addsKilled = 0
+local guardiansImagePhase = false
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -31,7 +31,6 @@ end
 
 function mod:GetOptions()
 	return {
-		"stages",
 		{227592, "SAY"}, -- Frostbite
 		{227615, "SAY"}, -- Inferno Bolt
 		227628, -- Piercing Missiles
@@ -39,6 +38,8 @@ function mod:GetOptions()
 		228334, -- Guardian's Image
 		{228269, "SAY"}, -- Flame Wreath
 		227779, -- Ceaseless Winter
+	}, {
+		["focused_power"] = -14036,
 	}
 end
 
@@ -50,15 +51,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InfernoBolt", 227615)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingMissiles", 227628)
 	self:Log("SPELL_CAST_START", "GuardiansImage", 228334)
+	self:Death("ImageDeath", 114675)
 	self:Log("SPELL_CAST_START", "FlameWreathStart", 228269)
 	self:Log("SPELL_AURA_APPLIED", "FlameWreathApplied", 228261)
 	self:Log("SPELL_CAST_START", "CeaselessWinter", 227779)
+	self:Log("SPELL_CAST_SUCCESS", "CeaselessWinterSuccess", 227779)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "CeaselessWinterApplied", 227806)
-	self:Death("ImageDeath", 114675)
 end
 
 function mod:OnEngage()
-	addsKilled = 1 -- this variable is being reset at SPELL_CAST_START of Guardian's Image, comparing against it in UNIT_POWER to avoid introducing a new variable
+	guardiansImagePhase = false
 end
 
 --------------------------------------------------------------------------------
@@ -66,8 +68,14 @@ end
 --
 
 function mod:UNIT_POWER_FREQUENT(_, unit)
-	local nextSpecial = (100 - (UnitPower(unit) / (UnitPowerMax(unit)) * 100)) / 3.3
-	if nextSpecial > 0 and addsKilled ~= 0 then -- doesn't work like that while Guardian's Image is active
+	if guardiansImagePhase then
+		-- Focused Power resumes after Guardian's Image is over
+		return
+	end
+
+	-- ~30 seconds beween specials, cast at max Mana
+	local nextSpecial = 30 * (1 - UnitPower(unit) / UnitPowerMax(unit))
+	if nextSpecial > 0 then
 		local spellName = self:SpellName(L.focused_power)
 		if math.abs(nextSpecial - self:BarTimeLeft(spellName)) > 1 then
 			self:Bar("focused_power", nextSpecial, spellName, L.focused_power_icon)
@@ -76,11 +84,15 @@ function mod:UNIT_POWER_FREQUENT(_, unit)
 end
 
 function mod:Frostbite(args)
-	self:MessageOld(args.spellId, "orange", self:Interrupter() and "alarm")
+	self:Message(args.spellId, "orange")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 function mod:FrostbiteApplied(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning", nil, nil, true)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	frostbiteTarget = args.destName
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
@@ -95,9 +107,10 @@ do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
 			local text = CL.you:format(self:SpellName(227615)) .. (frostbiteTarget and " - " .. CL.on:format(self:SpellName(227592), self:ColorName(frostbiteTarget)) or "")
-			self:MessageOld(227615, "orange", "alert", text)
+			self:Message(227615, "orange", text)
+			self:PlaySound(227615, "alert")
 		else
-			self:MessageOld(227615, "red")
+			self:Message(227615, "red")
 		end
 	end
 
@@ -105,35 +118,52 @@ do
 		if frostbiteTarget then
 			self:GetBossTarget(printTarget, 1, args.sourceGUID)
 		else
-			self:MessageOld(args.spellId, "red")
+			self:Message(args.spellId, "red")
 		end
 	end
 end
 
 function mod:PiercingMissiles(args)
-	self:MessageOld(args.spellId, "yellow")
-end
-
-function mod:GuardiansImage(args)
-	self:MessageOld(args.spellId, "yellow", "long")
-	addsKilled = 0
-end
-
-function mod:ImageDeath(args)
-	addsKilled = addsKilled + 1
-	self:MessageOld("stages", "cyan", addsKilled == 3 and "long", CL.mob_killed:format(args.destName, addsKilled, 3), false)
-end
-
-function mod:FlameWreathStart(args)
-	self:MessageOld(args.spellId, "yellow", "long", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "purple")
+	if self:Tank() then
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 do
-	local list = mod:NewTargetList()
+	local addsKilled = 0
+
+	function mod:GuardiansImage(args)
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "long")
+		guardiansImagePhase = true
+		addsKilled = 0
+	end
+
+	function mod:ImageDeath(args)
+		addsKilled = addsKilled + 1
+		self:Message(228334, "cyan", CL.mob_killed:format(args.destName, addsKilled, 3), false)
+		if addsKilled == 3 then
+			self:PlaySound(228334, "info")
+			guardiansImagePhase = false
+		end
+	end
+end
+
+do
+	local playerList = {}
+
+	function mod:FlameWreathStart(args)
+		playerList = {}
+		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+		self:PlaySound(args.spellId, "long")
+	end
+
 	function mod:FlameWreathApplied(args)
-		list[#list+1] = args.destName
-		if #list == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.2, 228269, list, "red", "warning", nil, nil, true)
+		playerList[#playerList+1] = args.destName
+		self:TargetsMessage(228269, "red", playerList, 2)
+		self:PlaySound(228269, "warning", nil, playerList)
+		if #playerList == 1 then
 			self:Bar(228269, 20)
 		end
 		if self:Me(args.destGUID) then
@@ -143,15 +173,20 @@ do
 end
 
 function mod:CeaselessWinter(args)
-	self:MessageOld(args.spellId, "yellow", "long")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:CeaselessWinterSuccess(args)
 	self:Bar(args.spellId, 20)
 end
 
 function mod:CeaselessWinterApplied(args)
 	if self:Me(args.destGUID) then
-		local amount = args.amount or 1
-		if amount % 2 == 0 then
-			self:StackMessage(227779, args.destName, amount, "blue", "warning")
+		if args.amount % 2 == 0 then
+			-- Starts doing significant damage at 2+ stacks
+			self:StackMessage(227779, "blue", args.destName, args.amount, 2)
+			self:PlaySound(227779, "warning")
 		end
 	end
 end

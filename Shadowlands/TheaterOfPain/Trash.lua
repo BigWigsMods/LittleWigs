@@ -214,7 +214,7 @@ do
 				local t = args.time
 				if t - prev > 3 then
 					prev = t
-					self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+					self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
 					self:PlaySound(args.spellId, "alert", nil, args.destName)
 				end
 			end
@@ -238,8 +238,8 @@ do
 		end
 		if self:Dispeller("disease", nil, args.spellId) then
 			playerList[#playerList+1] = args.destName
-			self:TargetsMessage(args.spellId, "yellow", playerList, 5)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
+			self:TargetsMessageOld(args.spellId, "yellow", playerList, 5)
 		end
 	end
 end

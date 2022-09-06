@@ -42,7 +42,7 @@ end
 --
 
 function mod:EnergyFeedback(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
 	self:TargetBar(args.spellId, 30, args.destName)
 end
 

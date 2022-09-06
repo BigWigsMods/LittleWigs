@@ -97,7 +97,7 @@ function mod:PutridBloodAppliedDose(args)
 
 	-- 1 stack is applied every 8 seconds
 	if self:Me(args.destGUID) and args.amount >= 4 and args.amount % 2 == 0 then
-		self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
 		if args.amount < 9 then
 			self:PlaySound(args.spellId, "alarm")
 		else

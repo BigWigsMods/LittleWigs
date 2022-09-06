@@ -1,9 +1,4 @@
 --------------------------------------------------------------------------------
--- TODO:
---
--- Turn to Stone applies a dispellable stun, might need a warning.
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -52,11 +47,13 @@ function mod:GetOptions()
 		325799, -- Rapid Fire
 		344993, -- Jagged Swipe
 		346866, -- Stone Breath
+		342171, -- Loyal Stoneborn
 		{325523, "TANK"}, -- Deadly Thrust
 		{325876, "SAY", "SAY_COUNTDOWN"}, -- Curse of Obliteration
 		325700, -- Collect Sins
 		325701, -- Siphon Life
 		326409, -- Thrash
+		326441, -- Sin Quake
 		326607, -- Turn to Stone
 		{326997, "TANK"}, -- Powerful Swipe
 		326891, -- Anguish
@@ -81,6 +78,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "RapidFire", 325799)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "JaggedSwipe", 344993)
 	self:Log("SPELL_CAST_START", "StoneBreath", 346866)
+	self:Log("SPELL_CAST_SUCCESS", "LoyalStoneborn", 342171)
 	self:Log("SPELL_CAST_START", "DeadlyThrust", 325523)
 	self:Log("SPELL_CAST_START", "CurseOfObliteration", 325876)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfObliterationApplied", 325876)
@@ -90,7 +88,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ThrashPreCast", 326409)
 	self:Log("SPELL_AURA_APPLIED", "Thrash", 326409)
 	self:Log("SPELL_AURA_REMOVED", "ThrashOver", 326409)
+	self:Log("SPELL_CAST_SUCCESS", "SinQuake", 326441)
 	self:Log("SPELL_CAST_START", "TurnToStone", 326607)
+	self:Log("SPELL_AURA_APPLIED", "TurnToStoneBuffApplied", 326607)
+	self:Log("SPELL_AURA_APPLIED", "TurnToStoneDebuffApplied", 326617)
 	self:Log("SPELL_CAST_START", "PowerfulSwipe", 326997)
 
 	self:Log("SPELL_AURA_APPLIED", "AnguishDamage", 326891)
@@ -142,7 +143,7 @@ end
 function mod:JaggedSwipe(args)
 	local stacks = args.amount
 	if self:Me(args.destGUID) and stacks % 3 == 0 then
-		self:StackMessage(args.spellId, args.destName, stacks, "blue")
+		self:StackMessageOld(args.spellId, args.destName, stacks, "blue")
 		self:PlaySound(args.spellId, stacks > 5 and "warning" or "alert")
 	end
 end
@@ -153,6 +154,12 @@ function mod:StoneBreath(args)
 
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:LoyalStoneborn(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 45)
 end
 
 -- Depraved Darkblade
@@ -228,10 +235,40 @@ function mod:ThrashOver(args)
 	self:StopBar(args.spellName)
 end
 
+function mod:SinQuake(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 -- Stoneborn Reaver
 function mod:TurnToStone(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
+end
+
+do
+	local prev = 0
+	function mod:TurnToStoneBuffApplied(args)
+		if not self:Player(args.destFlags) and self:Dispeller("magic", true) then
+			local t = args.time
+			if t-prev > 2 then
+				prev = t
+				self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+				self:PlaySound(args.spellId, "warning")
+			end
+		end
+	end
+end
+
+do
+	local playerList = mod:NewTargetList()
+	function mod:TurnToStoneDebuffApplied(args)
+		if self:Dispeller("magic") then
+			playerList[#playerList+1] = args.destName
+			self:PlaySound(326607, "alert", nil, playerList)
+			self:TargetsMessageOld(326607, "orange", playerList, 5)
+		end
+	end
 end
 
 -- Stoneborn Slasher

@@ -5,6 +5,7 @@
 <Script file="Enforcers.lua"/>
 <Script file="Oshir.lua"/>
 <Script file="Skulloc.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>

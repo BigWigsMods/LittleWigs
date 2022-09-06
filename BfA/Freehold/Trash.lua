@@ -242,7 +242,7 @@ end
 -- Irontide Corsair
 function mod:PoisoningStrikeApplied(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 		self:PlaySound(args.spellId, "alert")
 	end
 end
@@ -340,7 +340,7 @@ end
 -- Soggy Shiprat
 function mod:ScabrousBiteApplied(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, args.amount, "blue")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 		self:PlaySound(args.spellId, "alert")
 	end
 end

@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		-- General
 		{322554, "SAY"}, -- Castigate
-		322573, -- Coalesce Manifestation
+		322574, -- Coalesce Manifestation
 		{328494, "DISPEL"}, -- Sintouched Anima
 		-- Fleeting Manifestation
 		323551, -- Residue
@@ -27,16 +27,18 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- XXX Change to RegisterUnitEvent if boss frames get added to this fight
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Castigate", 322554)
 	self:Log("SPELL_AURA_APPLIED", "SintouchedAnimaApplied", 328494)
+	self:Log("SPELL_AURA_APPLIED", "Residue", 323573)
+	self:Log("SPELL_PERIODIC_DAMAGE", "Residue", 323573)
+	self:Log("SPELL_PERIODIC_MISSED", "Residue", 323573)
 	self:Death("FleetingManifestationDeath", 165556)
 end
 
 function mod:OnEngage()
 	self:Bar(322554, 4.7) -- Castigate
-	self:CDBar(322573, 10.8) -- Coalesce Manifestation
+	self:CDBar(322574, 10.8) -- Coalesce Manifestation
 end
 
 --------------------------------------------------------------------------------
@@ -49,9 +51,9 @@ do
 		if spellId == 322573 and prevGUID ~= castGUID then -- Coalesce Manifestation
 			prevGUID = castGUID
 
-			self:Message(322573, "yellow")
-			self:PlaySound(322573, "info")
-			self:CDBar(322573, 30)
+			self:Message(322574, "yellow") -- Coalesce Manifestation
+			self:PlaySound(322574, "info") -- Coalesce Manifestation
+			self:CDBar(322574, 30)  -- Coalesce Manifestation
 		end
 	end
 end
@@ -66,8 +68,7 @@ do
 	end
 
 	function mod:Castigate(args)
-		-- XXX Change to GetBossTarget if boss frames get added to this fight
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 20.7)
 	end
 end
@@ -76,6 +77,20 @@ function mod:SintouchedAnimaApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
+	end
+end
+
+do
+	local prev = 0
+	function mod:Residue(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(323551, "underyou") -- Residue
+				self:PlaySound(323551, "underyou") -- Residue
+			end
+		end
 	end
 end
 

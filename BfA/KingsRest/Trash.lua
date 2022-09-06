@@ -480,7 +480,7 @@ end
 
 -- Spectral Berserker
 function mod:SeveringBlade(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "long", nil, args.destName)
 end
 
@@ -546,7 +546,7 @@ do
 				mod:PlaySound(270507, "alert")
 			end
 			local numInTable = #playerList
-			mod:TargetsMessage(270507, "cyan", mod:ColorName(playerList), numInTable)
+			mod:TargetsMessageOld(270507, "cyan", mod:ColorName(playerList), numInTable)
 		else
 			playerList = {}
 		end
@@ -616,7 +616,11 @@ end
 function mod:PeriodicDamage(args)
 	if self:Me(args.destGUID) then
 		if isThrottled(args.spellId, 1.5) then return end
-		self:PersonalMessage(args.spellId, args.spellId == 270503 and "near" or "underyou")
+		if args.spellId == 270503 then
+			self:PersonalMessage(args.spellId, "near")
+		else
+			self:PersonalMessage(args.spellId, "underyou")
+		end
 		self:PlaySound(args.spellId, "alert")
 	end
 end

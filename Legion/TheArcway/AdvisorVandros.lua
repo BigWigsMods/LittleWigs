@@ -56,7 +56,7 @@ end
 function mod:AcceleratingBlastApplied(args)
 	local count = args.amount or 1
 	if self:Dispeller("magic", true) and count > 5 and count % 3 == 0 then
-		self:StackMessage(args.spellId, args.destName, count, "orange", "alert")
+		self:StackMessageOld(args.spellId, args.destName, count, "orange", "alert")
 	end
 end
 

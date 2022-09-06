@@ -5,6 +5,7 @@ BigWigs:AddColors("Ingra Maloch", {
 	[323137] = "yellow",
 	[323149] = "orange",
 	[323177] = "red",
+	[323250] = "blue",
 	[328756] = "orange",
 })
 

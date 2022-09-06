@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Maiden of Virtue", {
 	[227508] = "warning",
-	[227789] = {"alarm","warning"},
+	[227789] = {"alarm","info","warning"},
 	[227800] = "alarm",
 	[227823] = {"alarm","alert"},
 })
@@ -14,6 +14,7 @@ BigWigs:AddSounds("Opera Hall: Wikket", {
 })
 
 BigWigs:AddSounds("Opera Hall: Westfall Story", {
+	[227453] = "alert",
 	[227568] = "alarm",
 	[227777] = "warning",
 	[227783] = "info",
@@ -22,17 +23,18 @@ BigWigs:AddSounds("Opera Hall: Westfall Story", {
 
 BigWigs:AddSounds("Opera Hall: Beautiful Beast", {
 	[227985] = "alarm",
-	[227987] = "alert",
+	[227987] = {"alert","warning"},
 	[228019] = "alert",
-	[228025] = "info",
-	[228221] = "warning",
+	[228025] = "warning",
+	[228221] = {"alert","warning"},
+	[228225] = "warning",
 	[232153] = "info",
 	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Attumen the Huntsman", {
+	[227363] = "alarm",
 	[227365] = "alert",
-	[227404] = "warning",
 	[227493] = "alarm",
 	[228852] = "info",
 	[228895] = "long",
@@ -44,30 +46,33 @@ BigWigs:AddSounds("Moroes", {
 	[227545] = "warning",
 	[227578] = "warning",
 	[227616] = "info",
-	[227646] = {"alarm","long"},
-	[227672] = "long",
+	[227646] = {"long","underyou"},
+	[227672] = "alarm",
 	[227742] = "info",
-	[227851] = "alarm",
+	[227851] = {"alarm","warning"},
+	[227872] = "info",
+	["cc"] = "info",
 })
 
 BigWigs:AddSounds("The Curator", {
 	[227254] = {"info","long"},
 	[227267] = "info",
-	[227279] = {"alarm","alert"},
+	[227279] = {"alert","underyou"},
 })
 
 BigWigs:AddSounds("Shade of Medivh", {
 	[227592] = {"alarm","warning"},
 	[227615] = "alert",
+	[227628] = "alert",
 	[227779] = {"long","warning"},
 	[228269] = {"long","warning"},
-	[228334] = "long",
-	["stages"] = "long",
+	[228334] = {"info","long"},
 })
 
 BigWigs:AddSounds("Mana Devourer", {
 	[227297] = "long",
-	[227523] = {"alarm","info"},
+	[227457] = "alarm",
+	[227523] = {"info","underyou"},
 	[227618] = "warning",
 })
 
@@ -76,9 +81,10 @@ BigWigs:AddSounds("Viz'aduum the Watcher", {
 	[229151] = "alarm",
 	[229159] = "warning",
 	[229248] = "alarm",
-	[229905] = "alert",
-	[230084] = "alarm",
-	["stages"] = "info",
+	[229905] = "underyou",
+	[230066] = "alarm",
+	[230084] = {"info","long"},
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Nightbane", {
@@ -95,11 +101,16 @@ BigWigs:AddSounds("Nightbane", {
 })
 
 BigWigs:AddSounds("Karazhan Trash", {
-	[227966] = "info",
+	[227966] = "alarm",
 	[227999] = "alert",
+	[228278] = "warning",
 	[228279] = "warning",
-	[228528] = "warning",
+	[228280] = "warning",
+	[228528] = "alarm",
 	[228575] = "alert",
-	[228625] = "warning",
-	[241774] = "warning",
+	[228576] = "warning",
+	[228603] = "alert",
+	[228625] = "alert",
+	[229489] = {"info","long"},
+	[241828] = "warning",
 })

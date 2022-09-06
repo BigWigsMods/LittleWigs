@@ -21,9 +21,10 @@ BigWigs:AddSounds("High Adjudicator Aleez", {
 })
 
 BigWigs:AddSounds("Lord Chamberlain", {
-	[323150] = "alert",
+	[323143] = "alert",
 	[323236] = "alarm",
 	[323437] = "alert",
+	[327885] = "alarm",
 	[328791] = "warning",
 	[329104] = "long",
 })
@@ -35,10 +36,12 @@ BigWigs:AddSounds("Halls of Atonement Trash", {
 	[325799] = "alarm",
 	[325876] = {"alarm","alert","info"},
 	[326409] = "warning",
+	[326441] = "alarm",
 	[326450] = {"alert","warning"},
 	[326607] = {"alert","warning"},
 	[326891] = "underyou",
 	[326997] = "alert",
+	[342171] = "info",
 	[344993] = {"alert","warning"},
 	[346866] = "alarm",
 })

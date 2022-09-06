@@ -57,7 +57,7 @@ end
 
 function mod:BloodGorgeApplied(args)
 	local amount = args.amount or 0
-	self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "cyan")
 	if amount > 2 then
 		self:PlaySound(args.spellId, "warning")
 	end
