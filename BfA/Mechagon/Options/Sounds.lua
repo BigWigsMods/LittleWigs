@@ -42,7 +42,7 @@ BigWigs:AddSounds("Tussle Tonks", {
 })
 
 BigWigs:AddSounds("K.U.-J.0.", {
-	[291918] = "info",
+	[291930] = "info",
 	[291946] = "alarm",
 	[291973] = "alert",
 	[294929] = "alert",
