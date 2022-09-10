@@ -54,7 +54,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 294853 then -- Activate Plant
 		self:Message("activate_plant", "orange", L.activate_plant, L.activate_plant_icon)
 		self:PlaySound("activate_plant", "long")
-		self:Bar("activate_plant", 45, L.activate_plant, L.activate_plant_icon)
+		self:Bar("activate_plant", 45.1, L.activate_plant, L.activate_plant_icon)
 	end
 end
 
