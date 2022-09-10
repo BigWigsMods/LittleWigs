@@ -4,8 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("K.U.-J.0.", 2097, 2339)
 if not mod then return end
-mod:RegisterEnableMob(144246)
-mod.engageId = 2258
+mod:RegisterEnableMob(144246) -- K.U.-J.0.
+mod:SetEncounterID(2258)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
