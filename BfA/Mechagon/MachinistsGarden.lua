@@ -5,7 +5,18 @@
 local mod, CL = BigWigs:NewBoss("Machinist's Garden", 2097, 2348)
 if not mod then return end
 mod:RegisterEnableMob(144248) -- Head Machinist Sparkflux
-mod.engageId = 2259
+mod:SetEncounterID(2259)
+mod:SetRespawnTime(30)
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.activate_plant = 294853
+	L.activate_plant_icon = "inv_misc_herb_felblossom"
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -13,7 +24,7 @@ mod.engageId = 2259
 
 function mod:GetOptions()
 	return {
-		294853, -- Activate Plant
+		"activate_plant", -- Activate Plant
 		294855, -- Blossom Blast
 		285440, -- "Hidden" Flame Cannon
 		{285454, "DISPEL"}, -- Discom-BOMB-ulator
@@ -30,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(294853, 6.1) -- Activate Plant
+	self:Bar("activate_plant", 6.1, L.activate_plant, L.activate_plant_icon) -- Activate Plant
 	self:Bar(285454, 8.5) -- Discom-BOMB-ulator
 	self:Bar(285440, 14.1) -- "Hidden" Flame Cannon
 end
@@ -41,9 +52,9 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 294853 then -- Activate Plant
-		self:Message(spellId, "orange")
-		self:PlaySound(spellId, "long")
-		self:Bar(spellId, 45)
+		self:Message("activate_plant", "orange", L.activate_plant, L.activate_plant_icon)
+		self:PlaySound("activate_plant", "long")
+		self:Bar("activate_plant", 45.1, L.activate_plant, L.activate_plant_icon)
 	end
 end
 

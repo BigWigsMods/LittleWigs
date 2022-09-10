@@ -51,8 +51,8 @@ BigWigs:AddColors("K.U.-J.0.", {
 BigWigs:AddColors("Machinist's Garden", {
 	[285440] = "red",
 	[285454] = {"blue","orange","yellow"},
-	[294853] = "orange",
 	[294855] = {"blue","orange"},
+	["activate_plant"] = "orange",
 })
 
 BigWigs:AddColors("King Mechagon", {
