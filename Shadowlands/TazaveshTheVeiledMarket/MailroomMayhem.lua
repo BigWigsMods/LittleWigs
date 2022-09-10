@@ -108,11 +108,10 @@ do
 	local unstableGoodsContainer = {}
 	local barText
 
-	local function updateInstabilityBar(spellId)
+	local function updateInstabilityBar(spellId, currentTime)
 		if instabilityCount > 0 then
 			-- calculate duration based on the minimum time until a bomb explodes
 			local duration = 30
-			local currentTime = GetTime()
 			for _, expirationTime in pairs(unstableGoodsContainer) do
 				duration = min(expirationTime - currentTime, duration)
 			end
@@ -148,13 +147,13 @@ do
 			instabilityCount = instabilityCount + 1
 			-- bombs explode after 30 seconds
 			unstableGoodsContainer[args.sourceGUID] = args.time + 30
-			updateInstabilityBar(args.spellId)
+			updateInstabilityBar(args.spellId, args.time)
 		end
 	end
 
 	function mod:InstabilityRemoved(args)
 		instabilityCount = instabilityCount - 1
 		unstableGoodsContainer[args.sourceGUID] = nil
-		updateInstabilityBar(args.spellId)
+		updateInstabilityBar(args.spellId, args.time)
 	end
 end
