@@ -79,7 +79,7 @@ function mod:ToxicCoagulant(args)
 	if self:Me(args.destGUID) and args.amount == 2 then
 		local remaining = coagulantCastEnds - GetTime()
 		if remaining >= 3 then
-			self:StackMessage(args.spellId, args.destName, args.amount, "orange", "warning")
+			self:StackMessageOld(args.spellId, args.destName, args.amount, "orange", "warning")
 		end
 	end
 end

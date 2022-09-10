@@ -126,7 +126,7 @@ end
 function mod:Deadeye(args)
 	local deadeyeInfo = deadeyes[args.destName] -- [1] is stacks
 	if deadeyeInfo then
-		self:StackMessage(args.spellId, args.destName, deadeyeInfo[1]+1, "red")
+		self:StackMessageOld(args.spellId, args.destName, deadeyeInfo[1]+1, "red")
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	else
 		self:TargetMessage(args.spellId, "orange", args.destName)

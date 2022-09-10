@@ -53,7 +53,7 @@ function mod:SpellReflection()
 end
 
 function mod:WarlordsRage(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
 end
 
 function mod:WarlordsRageCast(args)

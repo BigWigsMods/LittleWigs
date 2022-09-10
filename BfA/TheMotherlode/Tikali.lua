@@ -84,7 +84,7 @@ do
 	local prev = 0
 	function mod:RagingGazeApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "red", playerList)
+		self:TargetsMessageOld(args.spellId, "red", playerList)
 		if self:Me(args.destGUID) then
 			if self:GetOption("custom_on_fixate_plates") then
 				self:AddPlateIcon(args.spellId, args.sourceGUID)

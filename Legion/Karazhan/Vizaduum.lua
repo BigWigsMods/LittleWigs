@@ -124,7 +124,7 @@ do
 		-- targets 1 players in stage 1, 2 players in stage 2, 3 players in stage 3
 		local expectedTargets = self:GetStage()
 		playerList[#playerList+1] = args.destName
-		self:NewTargetsMessage(args.spellId, "red", playerList, expectedTargets)
+		self:TargetsMessage(args.spellId, "red", playerList, expectedTargets)
 		self:PlaySound(args.spellId, "warning", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
@@ -148,7 +148,7 @@ end
 
 function mod:BurningBlastApplied(args)
 	if self:Dispeller("magic") then
-		self:NewStackMessage(args.spellId, "red", args.destName, args.amount, 2)
+		self:StackMessage(args.spellId, "red", args.destName, args.amount, 2)
 		self:PlaySound(args.spellId, "info")
 	end
 end

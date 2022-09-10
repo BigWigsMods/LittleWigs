@@ -62,6 +62,6 @@ end
 
 function mod:MoltenCore(args)
 	if self:MobId(args.destGUID) == 74790 then -- Filter spell steal
-		self:StackMessage(args.spellId, args.destName, args.amount, "yellow")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "yellow")
 	end
 end

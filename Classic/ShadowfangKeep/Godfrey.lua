@@ -73,7 +73,7 @@ end
 
 function mod:MortalWound(args)
 	local amount = args.amount or 1
-	self:StackMessage(args.spellId, args.destName, amount, "yellow")
+	self:StackMessageOld(args.spellId, args.destName, amount, "yellow")
 end
 
 function mod:SummonBloodthirstyGhouls(args)

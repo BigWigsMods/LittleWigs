@@ -78,7 +78,7 @@ do
 		if self:Me(args.destGUID) or self:Dispeller("magic") then
 			self:PlaySound(args.spellId, "alarm", self:Dispeller("magic") and "dispel")
 		end
-		self:TargetsMessage(args.spellId, "orange", playerList, 2, nil, nil, 1)
+		self:TargetsMessageOld(args.spellId, "orange", playerList, 2, nil, nil, 1)
 	end
 end
 

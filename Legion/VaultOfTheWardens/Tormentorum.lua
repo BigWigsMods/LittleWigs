@@ -158,7 +158,7 @@ function mod:FleshToStoneAppliedDose(args)
 	self:SetInfoByTable(args.spellId, fleshToStoneList)
 
 	if self:Me(args.destGUID) and args.amount > 6 then
-		self:StackMessage(args.spellId, args.destName, args.amount, "orange")
+		self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
 		if args.amount < 9 then
 			self:PlaySound(args.spellId, "alarm")
 		else

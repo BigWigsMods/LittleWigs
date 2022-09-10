@@ -176,7 +176,7 @@ end
 
 function mod:HeartAttack(args)
 	if not self.isEngaged then return end -- Trash before the boss casts the same spell
-	self:StackMessage(args.spellId, args.destName, args.amount, "purple")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
 	self:PlaySound(args.spellId, "alert")
 end
 

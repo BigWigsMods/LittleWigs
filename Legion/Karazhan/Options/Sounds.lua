@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Maiden of Virtue", {
 	[227508] = "warning",
-	[227789] = {"alarm","warning"},
+	[227789] = {"alarm","info","warning"},
 	[227800] = "alarm",
 	[227823] = {"alarm","alert"},
 })
@@ -23,10 +23,11 @@ BigWigs:AddSounds("Opera Hall: Westfall Story", {
 
 BigWigs:AddSounds("Opera Hall: Beautiful Beast", {
 	[227985] = "alarm",
-	[227987] = "alert",
+	[227987] = {"alert","warning"},
 	[228019] = "alert",
-	[228025] = "info",
-	[228221] = "warning",
+	[228025] = "warning",
+	[228221] = {"alert","warning"},
+	[228225] = "warning",
 	[232153] = "info",
 	["stages"] = "long",
 })
@@ -45,10 +46,12 @@ BigWigs:AddSounds("Moroes", {
 	[227545] = "warning",
 	[227578] = "warning",
 	[227616] = "info",
-	[227646] = {"alarm","long"},
-	[227672] = "long",
+	[227646] = {"long","underyou"},
+	[227672] = "alarm",
 	[227742] = "info",
-	[227851] = "alarm",
+	[227851] = {"alarm","warning"},
+	[227872] = "info",
+	["cc"] = "info",
 })
 
 BigWigs:AddSounds("The Curator", {
@@ -98,11 +101,16 @@ BigWigs:AddSounds("Nightbane", {
 })
 
 BigWigs:AddSounds("Karazhan Trash", {
-	[227966] = "info",
+	[227966] = "alarm",
 	[227999] = "alert",
+	[228278] = "warning",
 	[228279] = "warning",
-	[228528] = "warning",
+	[228280] = "warning",
+	[228528] = "alarm",
 	[228575] = "alert",
-	[228625] = "warning",
-	[241774] = "warning",
+	[228576] = "warning",
+	[228603] = "alert",
+	[228625] = "alert",
+	[229489] = {"info","long"},
+	[241828] = "warning",
 })

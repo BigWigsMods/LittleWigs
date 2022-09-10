@@ -64,6 +64,6 @@ end
 function mod:BrewExplosion(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, args.destName, amount, "blue", "alert")
+		self:StackMessageOld(args.spellId, args.destName, amount, "blue", "alert")
 	end
 end

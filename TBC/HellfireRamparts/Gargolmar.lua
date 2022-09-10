@@ -42,7 +42,7 @@ end
 --
 
 function mod:MortalWound(args)
-	self:StackMessage(args.spellId, args.destName, args.amount, "cyan")
+	self:StackMessageOld(args.spellId, args.destName, args.amount, "cyan")
 end
 
 -- There are 2 Hellfire Watchers on pull, so throttling everything
