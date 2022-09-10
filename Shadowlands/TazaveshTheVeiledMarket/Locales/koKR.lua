@@ -10,6 +10,12 @@ if L then
 	--L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
 end
 
+L = BigWigs:NewBossLocale("Mailroom Mayhem", "koKR")
+if L then
+	L.delivery_portal = "배달 차원문"
+	--L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
+end
+
 L = BigWigs:NewBossLocale("Myza's Oasis", "koKR")
 if L then
 	-- L.add_wave_killed = "Add wave killed (%d/%d)"
