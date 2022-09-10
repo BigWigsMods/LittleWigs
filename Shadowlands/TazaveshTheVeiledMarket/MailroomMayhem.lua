@@ -66,8 +66,8 @@ do
 	end
 
 	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-		-- Emotes that don't have the unstable goods icon must be for delivery portals
-		if self:IsEngaged() and not msg:find("spell_Mage_Flameorb", nil, true) then
+		-- emotes that don't have the unstable goods spell ID must be for delivery portals
+		if self:IsEngaged() and not msg:find("346947", nil, true) then
 			-- portal spawns 5 seconds after the emote, then lasts for 30 seconds
 			self:Bar("delivery_portal", 5, CL.spawning:format(L.delivery_portal), L.delivery_portal_icon)
 			self:ScheduleTimer(deliveryPortalSpawned, 5)
