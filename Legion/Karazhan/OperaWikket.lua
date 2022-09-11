@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -29,17 +28,17 @@ function mod:OnBossEnable()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterEvent("ENCOUNTER_END")
 
+	self:Log("SPELL_CAST_SUCCESS", "SummonAssistants", 227477)
 	self:Log("SPELL_CAST_START", "DefyGravity", 227447)
 	self:Log("SPELL_CAST_SUCCESS", "WondrousRadiance", 227410)
 	self:Log("SPELL_CAST_START", "MagicMagnificent", 227776)
-	self:Log("SPELL_CAST_SUCCESS", "SummonAssistants", 227477)
 end
 
 function mod:OnEngage()
 	self:Bar(227410, 8.5) -- Wondrous Radiance
 	self:Bar(227447, 10.5) -- Defy Gravity
 	self:Bar(227477, 32) -- Summon Assistants
-	self:Bar(227776, 48.5) -- Magic Magnificent
+	self:Bar(227776, 45.9) -- Magic Magnificent
 end
 
 --------------------------------------------------------------------------------
@@ -57,22 +56,29 @@ function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 	end
 end
 
+function mod:SummonAssistants(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 32.5)
+end
+
 function mod:DefyGravity(args)
-	self:MessageOld(args.spellId, "yellow", "info")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 17)
 end
 
 function mod:WondrousRadiance(args)
-	self:MessageOld(args.spellId, "orange", self:Tank() and "warning")
-	self:CDBar(args.spellId, 11)
+	self:Message(args.spellId, "orange")
+	if self:Tank() then
+		self:PlaySound(args.spellId, "warning")
+	end
+	self:CDBar(args.spellId, 10.9)
 end
 
 function mod:MagicMagnificent(args)
-	self:MessageOld(args.spellId, "red", "long")
-	self:Bar(args.spellId, 5, CL.cast:format(args.spellName))
-end
-
-function mod:SummonAssistants(args)
-	self:MessageOld(args.spellId, "orange", "alert")
-	self:CDBar(args.spellId, 32.5)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+	self:CastBar(args.spellId, 5)
+	self:Bar(args.spellId, 46.2)
 end
