@@ -13,7 +13,7 @@ end
 L = BigWigs:NewBossLocale("Mailroom Mayhem", "deDE")
 if L then
 	L.delivery_portal = "Zustellportal"
-	--L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
+	L.delivery_portal_desc = "Zeigt einen Timer für die Änderung der Position des Zustellportals."
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "deDE")
