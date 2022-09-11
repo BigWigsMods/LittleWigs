@@ -15,10 +15,13 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
+		227477, -- Summon Assistants
 		227447, -- Defy Gravity
 		227410, -- Wondrous Radiance
 		227776, -- Magic Magnificent
-		227477, -- Summon Assistants
+	}, {
+		[227477] = -14020, -- Elfyra
+		[227410] = -14028, -- Galindre
 	}
 end
 
