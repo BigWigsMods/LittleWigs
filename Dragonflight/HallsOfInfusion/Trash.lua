@@ -12,8 +12,7 @@ mod:RegisterEnableMob(
 	190342, -- Containment Apparatus
 	190340, -- Refti Defender
 	190362, -- Dazzling Dragonfly
-	190366, -- Curious Swoglet (trash version)
-	195399, -- Curious Swoglet (boss version)
+	190366, -- Curious Swoglet
 	190368, -- Flamecaller Aymi
 	190371, -- Primalist Earthshaker
 	190401, -- Gusting Proto-Dragon
@@ -182,7 +181,8 @@ end
 do
 	local prev = 0
 	function mod:GulpSwogToxinApplied(args)
-		if args.amount >= 6 and args.amount % 2 == 0 and (self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID)) then
+		if self:MobId(args.sourceGUID) == 190366 and args.amount >= 6 and args.amount % 2 == 0
+				and (self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID)) then
 			local t = args.time
 			if t - prev > 1 then
 				-- Insta-kill at 10 stacks
