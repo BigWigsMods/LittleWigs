@@ -12,6 +12,7 @@ BigWigs:AddSounds("Primal Tsunami", {
 	[387504] = "alert",
 	[387559] = "alarm",
 	[388424] = "alert",
+	[388882] = "alert",
 	["stages"] = {"info","long"},
 })
 
