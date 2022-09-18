@@ -1,5 +1,6 @@
 
 BigWigs:AddSounds("Melidrussa Chillworn", {
+	[373046] = "long",
 })
 
 BigWigs:AddSounds("Kokia Blazehoof", {
