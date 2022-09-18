@@ -56,9 +56,9 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	self:Bar(384524, 5.7) -- Titanic Fist
-	self:Bar(384014, 10.5) -- Static Surge
-	self:Bar(389179, 21.4) -- Power Overload
-	self:Bar(383840, 27.5) -- Ablative Barrier
+	self:CDBar(384014, 10.5) -- Static Surge
+	self:CDBar(389179, 21.4) -- Power Overload
+	self:CDBar(383840, 27.5) -- Ablative Barrier
 end
 
 --------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ end
 function mod:PowerOverload(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 59.5)
+	self:CDBar(args.spellId, 57.1)
 end
 
 function mod:SparkVolley(args)
@@ -82,7 +82,7 @@ end
 function mod:StaticSurge(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
-	self:Bar(args.spellId, 17)
+	self:CDBar(args.spellId, 17)
 end
 
 function mod:TitanicFist(args)
