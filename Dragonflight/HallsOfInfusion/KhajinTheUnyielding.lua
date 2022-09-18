@@ -24,7 +24,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Hailstorm", 386757)
 	self:Log("SPELL_CAST_START", "GlacialSurge", 386559)
-	self:Log("SPELL_CAST_START", "FrostShock", 385963)
+	self:Log("SPELL_CAST_SUCCESS", "FrostShock", 385963)
 	self:Log("SPELL_AURA_APPLIED", "FrostShockApplied", 385963)
 end
 
@@ -51,14 +51,12 @@ function mod:GlacialSurge(args)
 end
 
 function mod:FrostShock(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 36.1)
 end
 
 function mod:FrostShockApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "purple", args.destName)
 		self:PlaySound(args.spellId, "alert")
 	end
 end

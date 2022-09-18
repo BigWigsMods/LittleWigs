@@ -6,7 +6,7 @@ BigWigs:AddSounds("Gulping Goliath", {
 })
 
 BigWigs:AddSounds("Khajin the Unyielding", {
-	[385963] = {"alert","warning"},
+	[385963] = "alert",
 	[386559] = "warning",
 	[386757] = "warning",
 })
