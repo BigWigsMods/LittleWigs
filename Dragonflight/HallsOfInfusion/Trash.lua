@@ -139,12 +139,16 @@ end
 do
 	local prev = 0
 	function mod:GulpSwogToxinApplied(args)
-		if args.amount >= 5 and (self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID)) then
+		if args.amount >= 6 and args.amount % 2 == 0 and (self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID)) then
 			local t = args.time
 			if t - prev > 1 then
 				-- Insta-kill at 10 stacks
 				self:StackMessage(args.spellId, "red", args.destName, args.amount, 8)
-				self:PlaySound(args.spellId, "warning", nil, args.destName)
+				if args.amount <= 6 then
+					self:PlaySound(args.spellId, "alert", nil, args.destName)
+				else
+					self:PlaySound(args.spellId, "warning", nil, args.destName)
+				end
 			end
 		end
 	end
