@@ -16,5 +16,6 @@ BigWigs:AddColors("Halls of Infusion Trash", {
 	[374080] = "yellow",
 	[374339] = "red",
 	[374389] = {"blue","red"},
+	[374563] = "orange",
 	[374724] = {"blue","orange"},
 })

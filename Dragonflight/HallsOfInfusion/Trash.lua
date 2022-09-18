@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	190348, -- Primalist Ravager
 	190345, -- Primalist Geomancer
 	190340, -- Refti Defender
+	190362, -- Dazzling Dragonfly
 	190366, -- Curious Swoglet (trash version)
 	195399, -- Curious Swoglet (boss version)
 	190368  -- Flamecaller Aymi
@@ -24,6 +25,7 @@ if L then
 	L.primalist_ravager = "Primalist Ravager"
 	L.primalist_geomancer = "Primalist Geomancer"
 	L.refti_defender = "Refti Defender"
+	L.dazzling_dragonfly = "Dazzling Dragonfly"
 	L.curious_swoglet = "Curious Swoglet"
 	L.flamecaller_aymi = "Flamecaller Aymi"
 end
@@ -40,6 +42,8 @@ function mod:GetOptions()
 		374066, -- Earth Shield
 		-- Refti Defender
 		374339, -- Demoralizing Shout
+		-- Dazzling Dragonfly
+		374563, -- Dazzle
 		-- Curious Swoglet
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
 		-- Flamecaller Aymi
@@ -48,6 +52,7 @@ function mod:GetOptions()
 		[374080] = L.primalist_ravager,
 		[374066] = L.primalist_geomancer,
 		[374339] = L.refti_defender,
+		[374563] = L.dazzling_dragonfly,
 		[374389] = L.curious_swoglet,
 		[374724] = L.flamecaller_aymi,
 	}
@@ -62,6 +67,9 @@ function mod:OnBossEnable()
 
 	-- Refti Defender
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 374339)
+
+	-- Dazzling Dragonfly
+	self:Log("SPELL_CAST_START", "Dazzle", 374563)
 
 	-- Curious Swoglet
 	self:Log("SPELL_AURA_APPLIED_DOSE", "GulpSwogToxinApplied", 374389)
@@ -93,6 +101,13 @@ end
 function mod:DemoralizingShout(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Dazzling Dragonfly
+
+function mod:Dazzle(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Curious Swoglet
