@@ -57,7 +57,7 @@ do
 			if t - prev > 1 then
 				-- Insta-kill at 10 stacks
 				self:StackMessage(args.spellId, "red", args.destName, args.amount, 8)
-				self:PlaySound(args.spellId, "warning")
+				self:PlaySound(args.spellId, "warning", nil, args.destName)
 			end
 		end
 	end
