@@ -144,7 +144,7 @@ end
 
 function mod:Expulse(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Refti Defender
