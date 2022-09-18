@@ -9,6 +9,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	190348, -- Primalist Ravager
 	190345, -- Primalist Geomancer
+	190342, -- Containment Apparatus
 	190340, -- Refti Defender
 	190362, -- Dazzling Dragonfly
 	190366, -- Curious Swoglet (trash version)
@@ -27,6 +28,7 @@ local L = mod:GetLocale()
 if L then
 	L.primalist_ravager = "Primalist Ravager"
 	L.primalist_geomancer = "Primalist Geomancer"
+	L.containment_apparatus = "Containment Apparatus"
 	L.refti_defender = "Refti Defender"
 	L.dazzling_dragonfly = "Dazzling Dragonfly"
 	L.curious_swoglet = "Curious Swoglet"
@@ -46,6 +48,8 @@ function mod:GetOptions()
 		374080, -- Interrupting Gust
 		-- Primalist Geomancer
 		--374066, -- Earth Shield
+		-- Containment Apparatus
+		374045, -- Expulse
 		-- Refti Defender
 		374339, -- Demoralizing Shout
 		-- Dazzling Dragonfly
@@ -63,6 +67,7 @@ function mod:GetOptions()
 	}, {
 		[374080] = L.primalist_ravager,
 		--[374066] = L.primalist_geomancer,
+		[374045] = L.containment_apparatus,
 		[374339] = L.refti_defender,
 		[374563] = L.dazzling_dragonfly,
 		[374389] = L.curious_swoglet,
@@ -79,6 +84,9 @@ function mod:OnBossEnable()
 
 	-- Primalist Geomancer
 	--self:Log("SPELL_CAST_START", "EarthShield", 374066)
+
+	-- Containment Apparatus
+	self:Log("SPELL_CAST_START", "Expulse", 374045)
 
 	-- Refti Defender
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 374339)
@@ -122,6 +130,13 @@ function mod:EarthShield(args)
 		--self:Message(args.spellId, "orange")
 		--self:PlaySound(args.spellId, "alert")
 	end
+end
+
+-- Containment Apparatus
+
+function mod:Expulse(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Refti Defender
