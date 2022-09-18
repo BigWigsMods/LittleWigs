@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	190366, -- Curious Swoglet (trash version)
 	195399, -- Curious Swoglet (boss version)
 	190368, -- Flamecaller Aymi
+	190371, -- Primalist Earthshaker
 	190401, -- Gusting Proto-Dragon
 	190403, -- Oceanic Proto-Dragon
 	190404  -- Earthen Proto-Dragon
@@ -33,6 +34,7 @@ if L then
 	L.dazzling_dragonfly = "Dazzling Dragonfly"
 	L.curious_swoglet = "Curious Swoglet"
 	L.flamecaller_aymi = "Flamecaller Aymi"
+	L.primalist_earthshaker = "Primalist Earthshaker"
 	L.gusting_protodragon = "Gusting Proto-Dragon"
 	L.oceanic_protodragon = "Oceanic Proto-Dragon"
 	L.earthen_protodragon = "Earthen Proto-Dragon"
@@ -58,6 +60,8 @@ function mod:GetOptions()
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
 		-- Flamecaller Aymi
 		374724, -- Molten Subduction
+		-- Primalist Earthshaker
+		375384, -- Rumbling Earth
 		-- Gusting Proto-Dragon
 		375348, -- Gusting Breath
 		-- Oceanic Proto-Dragon
@@ -72,6 +76,7 @@ function mod:GetOptions()
 		[374563] = L.dazzling_dragonfly,
 		[374389] = L.curious_swoglet,
 		[374724] = L.flamecaller_aymi,
+		[375384] = L.primalist_earthshaker,
 		[375348] = L.gusting_protodragon,
 		[375351] = L.oceanic_protodragon,
 		[375327] = L.earthen_protodragon,
@@ -99,6 +104,9 @@ function mod:OnBossEnable()
 
 	-- Flamecaller Aymi
 	self:Log("SPELL_AURA_APPLIED", "MoltenSubductionApplied", 374724)
+
+	-- Primalist Earthshaker
+	self:Log("SPELL_CAST_START", "RumblingEarth", 375384)
 
 	-- Gusting Proto-Dragon
 	self:Log("SPELL_CAST_START", "GustingBreath", 375348)
@@ -179,6 +187,13 @@ function mod:MoltenSubductionApplied(args)
 	-- either movement dispel the target, target immunes, or everyone stacks on target (meteor)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+end
+
+-- Primalist Earthshaker
+
+function mod:RumblingEarth(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Gusting Proto-Dragon
