@@ -149,9 +149,15 @@ end
 
 -- Refti Defender
 
-function mod:DemoralizingShout(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:DemoralizingShout(args)
+		local t = args.time
+		if t - prev > 1 then
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Dazzling Dragonfly
