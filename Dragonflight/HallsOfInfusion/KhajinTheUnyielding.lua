@@ -51,7 +51,7 @@ function mod:GlacialSurge(args)
 end
 
 function mod:FrostShock(args)
-	self:CDBar(args.spellId, 36.1)
+	self:CDBar(args.spellId, 15.4)
 end
 
 function mod:FrostShockApplied(args)
