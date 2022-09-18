@@ -45,8 +45,8 @@ function mod:Hailstorm(args)
 end
 
 function mod:GlacialSurge(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "warning")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 22)
 end
 
