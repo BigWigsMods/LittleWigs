@@ -8,7 +8,8 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	190366, -- Curious Swoglet (trash version)
-	195399 -- Curious Swoglet (boss version)
+	195399, -- Curious Swoglet (boss version)
+	190368  -- Flamecaller Aymi
 )
 
 --------------------------------------------------------------------------------
@@ -18,6 +19,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.curious_swoglet = "Curious Swoglet"
+	L.flamecaller_aymi = "Flamecaller Aymi"
 end
 
 --------------------------------------------------------------------------------
@@ -27,14 +29,18 @@ end
 function mod:GetOptions()
 	return {
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
+		374724, -- Molten Subduction
 	}, {
 		[374389] = L.curious_swoglet,
+		[374724] = L.flamecaller_aymi
 	}
 end
 
 function mod:OnBossEnable()
 	-- Curious Swoglet
 	self:Log("SPELL_AURA_APPLIED_DOSE", "GulpSwogToxinApplied", 374389)
+	-- Flamecaller Aymi
+	self:Log("SPELL_AURA_APPLIED", "MoltenSubductionApplied", 374724)
 end
 
 --------------------------------------------------------------------------------
@@ -55,4 +61,12 @@ do
 			end
 		end
 	end
+end
+
+-- Flamecaller Aymi
+
+function mod:MoltenSubductionApplied(args)
+	-- either movement dispel the target, target immunes, or everyone stacks on target (meteor)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end

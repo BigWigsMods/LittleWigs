@@ -13,4 +13,5 @@ BigWigs:AddColors("Primal Tsunami", {
 
 BigWigs:AddColors("Halls of Infusion Trash", {
 	[374389] = {"blue","red"},
+	[374724] = {"blue","orange"},
 })
