@@ -8,6 +8,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	190348, -- Primalist Ravager
+	190345, -- Primalist Geomancer
 	190366, -- Curious Swoglet (trash version)
 	195399, -- Curious Swoglet (boss version)
 	190368  -- Flamecaller Aymi
@@ -20,6 +21,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.primalist_ravager = "Primalist Ravager"
+	L.primalist_geomancer = "Primalist Geomancer"
 	L.curious_swoglet = "Curious Swoglet"
 	L.flamecaller_aymi = "Flamecaller Aymi"
 end
@@ -32,12 +34,15 @@ function mod:GetOptions()
 	return {
 		-- Primalist Ravager
 		374080, -- Interrupting Gust
+		-- Primalist Geomancer
+		374066, -- Earth Shield
 		-- Curious Swoglet
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
 		-- Flamecaller Aymi
 		374724, -- Molten Subduction
 	}, {
 		[374080] = L.primalist_ravager,
+		[374066] = L.primalist_geomancer,
 		[374389] = L.curious_swoglet,
 		[374724] = L.flamecaller_aymi,
 	}
@@ -46,6 +51,8 @@ end
 function mod:OnBossEnable()
 	-- Primalist Ravager
 	self:Log("SPELL_CAST_START", "InterruptingGust", 374080)
+	-- Primalist Geomancer
+	self:Log("SPELL_CAST_START", "EarthShield", 374066)
 	-- Curious Swoglet
 	self:Log("SPELL_AURA_APPLIED_DOSE", "GulpSwogToxinApplied", 374389)
 	-- Flamecaller Aymi
@@ -61,6 +68,13 @@ end
 function mod:InterruptingGust(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
+end
+
+-- Primalist Geomancer
+
+function mod:EarthShield(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Curious Swoglet
