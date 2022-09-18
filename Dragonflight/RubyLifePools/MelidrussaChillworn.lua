@@ -25,6 +25,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AwakenWhelps", 373046)
 	self:Log("SPELL_CAST_START", "Chillstorm", 372851)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PrimalChillApplied", 372682)
+	-- TODO ice blast
+	-- TODO frost overload (mythic only)
 end
 
 function mod:OnEngage()
