@@ -70,7 +70,7 @@ end
 function mod:PowerOverload(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 57.1)
+	self:CDBar(args.spellId, 57.1) -- TODO maybe this is some time (16.84, 17.2?) after barrier removed instead
 end
 
 function mod:SparkVolley(args)
