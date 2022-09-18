@@ -19,6 +19,7 @@ function mod:GetOptions()
 		385181, -- Overpowering Croak
 		385531, -- Belly Slam
 		385442, -- Toxic Effluvia
+		{374389, "DISPEL"}, -- Gulp Swog Toxin
 	}
 end
 
@@ -27,6 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "OverpoweringCroak", 385181)
 	self:Log("SPELL_CAST_START", "BellySlam", 385531)
 	self:Log("SPELL_CAST_START", "ToxicEffluvia", 385442)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "GulpSwogToxinApplied", 374389)
 end
 
 function mod:OnEngage()
@@ -62,4 +64,23 @@ function mod:ToxicEffluvia(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 27.5)
+end
+
+do
+	local prev = 0
+	function mod:GulpSwogToxinApplied(args)
+		if self:MobId(args.sourceGUID) ~= 190366 and args.amount >= 6 and args.amount % 2 == 0
+				and (self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID)) then
+			local t = args.time
+			if t - prev > 1 then
+				-- Insta-kill at 10 stacks
+				self:StackMessage(args.spellId, "red", args.destName, args.amount, 8)
+				if args.amount <= 6 then
+					self:PlaySound(args.spellId, "alert", nil, args.destName)
+				else
+					self:PlaySound(args.spellId, "warning", nil, args.destName)
+				end
+			end
+		end
+	end
 end
