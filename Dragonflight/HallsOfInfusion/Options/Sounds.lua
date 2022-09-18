@@ -22,4 +22,6 @@ BigWigs:AddSounds("Halls of Infusion Trash", {
 	[375348] = "alarm",
 	[375351] = "alarm",
 	[375384] = "warning",
+	[377402] = "warning",
+	[390290] = "alarm",
 })

@@ -18,7 +18,8 @@ mod:RegisterEnableMob(
 	190371, -- Primalist Earthshaker
 	190401, -- Gusting Proto-Dragon
 	190403, -- Oceanic Proto-Dragon
-	190404  -- Earthen Proto-Dragon
+	190404, -- Earthen Proto-Dragon
+	190405  -- Infuser Sariya
 )
 
 --------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ if L then
 	L.gusting_protodragon = "Gusting Proto-Dragon"
 	L.oceanic_protodragon = "Oceanic Proto-Dragon"
 	L.earthen_protodragon = "Earthen Proto-Dragon"
+	L.infuser_sariya = "Infuser Sariya"
 end
 
 --------------------------------------------------------------------------------
@@ -68,6 +70,9 @@ function mod:GetOptions()
 		375351, -- Oceanic Breath
 		-- Earthen Proto-Dragon
 		375327, -- Tectonic Breath
+		-- Infuser Sariya
+		377402, -- Aqueous Barrier
+		390290, -- Flash Flood
 	}, {
 		[374080] = L.primalist_ravager,
 		--[374066] = L.primalist_geomancer,
@@ -80,6 +85,7 @@ function mod:GetOptions()
 		[375348] = L.gusting_protodragon,
 		[375351] = L.oceanic_protodragon,
 		[375327] = L.earthen_protodragon,
+		[377402] = L.infuser_sariya,
 	}
 end
 
@@ -116,6 +122,10 @@ function mod:OnBossEnable()
 
 	-- Earthen Proto-Dragon
 	self:Log("SPELL_CAST_START", "TectonicBreath", 375327)
+
+	-- Infuser Sariya
+	self:Log("SPELL_CAST_START", "AqueousBarrier", 377402)
+	self:Log("SPELL_CAST_START", "FlashFlood", 390290)
 end
 
 --------------------------------------------------------------------------------
@@ -219,6 +229,18 @@ end
 -- Earthen Proto-Dragon
 
 function mod:TectonicBreath(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Infuser Sariya
+
+function mod:AqueousBarrier(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:FlashFlood(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
