@@ -31,9 +31,9 @@ end
 
 function mod:OnEngage()
 	self:Bar(385181, 8.5) -- Overpowering Croak
-	self:Bar(385551, 19.1) -- Gulp
-	self:Bar(385442, 31.6) -- Toxic Effluvia
-	self:Bar(385531, 40.1) -- Belly Slam
+	self:CDBar(385551, 18.2) -- Gulp
+	self:CDBar(385442, 30.3) -- Toxic Effluvia
+	self:CDBar(385531, 38.9) -- Belly Slam
 end
 
 --------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ end
 function mod:OverpoweringCroak(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 40.1)
+	self:CDBar(args.spellId, 38.8)
 end
 
 function mod:BellySlam(args)
