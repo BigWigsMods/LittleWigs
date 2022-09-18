@@ -57,6 +57,6 @@ end
 function mod:FrostShockApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "purple", args.destName)
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
