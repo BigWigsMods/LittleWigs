@@ -14,7 +14,8 @@ mod:RegisterEnableMob(
 	190366, -- Curious Swoglet (trash version)
 	195399, -- Curious Swoglet (boss version)
 	190368, -- Flamecaller Aymi
-	190401  -- Gusting Proto-Dragon
+	190401, -- Gusting Proto-Dragon
+	190404  -- Earthen Proto-Dragon
 )
 
 --------------------------------------------------------------------------------
@@ -30,6 +31,7 @@ if L then
 	L.curious_swoglet = "Curious Swoglet"
 	L.flamecaller_aymi = "Flamecaller Aymi"
 	L.gusting_protodragon = "Gusting Proto-Dragon"
+	L.earthen_protodragon = "Earthen Proto-Dragon"
 end
 
 --------------------------------------------------------------------------------
@@ -52,6 +54,8 @@ function mod:GetOptions()
 		374724, -- Molten Subduction
 		-- Gusting Proto-Dragon
 		375348, -- Gusting Breath
+		-- Earthen Proto-Dragon
+		375327, -- Tectonic Breath
 	}, {
 		[374080] = L.primalist_ravager,
 		[374066] = L.primalist_geomancer,
@@ -60,6 +64,7 @@ function mod:GetOptions()
 		[374389] = L.curious_swoglet,
 		[374724] = L.flamecaller_aymi,
 		[375348] = L.gusting_protodragon,
+		[375327] = L.earthen_protodragon,
 	}
 end
 
@@ -84,6 +89,9 @@ function mod:OnBossEnable()
 
 	-- Gusting Proto-Dragon
 	self:Log("SPELL_CAST_START", "GustingBreath", 375348)
+
+	-- Earthen Proto-Dragon
+	self:Log("SPELL_CAST_START", "TectonicBreath", 375327)
 end
 
 --------------------------------------------------------------------------------
@@ -145,6 +153,13 @@ end
 -- Gusting Proto-Dragon
 
 function mod:GustingBreath(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Earthen Proto-Dragon
+
+function mod:TectonicBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
