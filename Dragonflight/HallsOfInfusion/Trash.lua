@@ -13,7 +13,8 @@ mod:RegisterEnableMob(
 	190362, -- Dazzling Dragonfly
 	190366, -- Curious Swoglet (trash version)
 	195399, -- Curious Swoglet (boss version)
-	190368  -- Flamecaller Aymi
+	190368, -- Flamecaller Aymi
+	190401  -- Gusting Proto-Dragon
 )
 
 --------------------------------------------------------------------------------
@@ -28,6 +29,7 @@ if L then
 	L.dazzling_dragonfly = "Dazzling Dragonfly"
 	L.curious_swoglet = "Curious Swoglet"
 	L.flamecaller_aymi = "Flamecaller Aymi"
+	L.gusting_protodragon = "Gusting Proto-Dragon"
 end
 
 --------------------------------------------------------------------------------
@@ -48,6 +50,8 @@ function mod:GetOptions()
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
 		-- Flamecaller Aymi
 		374724, -- Molten Subduction
+		-- Gusting Proto-Dragon
+		375348, -- Gusting Breath
 	}, {
 		[374080] = L.primalist_ravager,
 		[374066] = L.primalist_geomancer,
@@ -55,6 +59,7 @@ function mod:GetOptions()
 		[374563] = L.dazzling_dragonfly,
 		[374389] = L.curious_swoglet,
 		[374724] = L.flamecaller_aymi,
+		[375348] = L.gusting_protodragon,
 	}
 end
 
@@ -76,6 +81,9 @@ function mod:OnBossEnable()
 
 	-- Flamecaller Aymi
 	self:Log("SPELL_AURA_APPLIED", "MoltenSubductionApplied", 374724)
+
+	-- Gusting Proto-Dragon
+	self:Log("SPELL_CAST_START", "GustingBreath", 375348)
 end
 
 --------------------------------------------------------------------------------
@@ -132,4 +140,11 @@ function mod:MoltenSubductionApplied(args)
 	-- either movement dispel the target, target immunes, or everyone stacks on target (meteor)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+end
+
+-- Gusting Proto-Dragon
+
+function mod:GustingBreath(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
