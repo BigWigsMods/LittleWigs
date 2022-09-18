@@ -12,4 +12,5 @@ BigWigs:AddSounds("Primal Tsunami", {
 })
 
 BigWigs:AddSounds("Halls of Infusion Trash", {
+	[374389] = "warning",
 })
