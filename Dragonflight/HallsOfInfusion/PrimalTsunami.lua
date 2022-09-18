@@ -1,8 +1,3 @@
--- TODOs
--- stage 1 trigger after cast away
--- stage 2 abilities
-
-
 if not IsTestBuild() then return end
 --------------------------------------------------------------------------------
 -- Module Declaration
@@ -32,11 +27,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-	
 	self:Log("SPELL_CAST_START", "InfusedGlobules", 387559)
 	self:Log("SPELL_CAST_START", "TempestsFury", 388424)
 	self:Log("SPELL_CAST_START", "SquallBuffet", 387504)
+	self:Log("SPELL_AURA_APPLIED", "SubmergeApplied", 387585)
+	self:Log("SPELL_AURA_REMOVED", "SubmergeRemoved", 387585)
 end
 
 function mod:OnEngage()
@@ -44,20 +39,12 @@ function mod:OnEngage()
 	self:Bar(388424, 4) -- Tempest's Fury
 	self:Bar(387504, 16) -- Squall Buffet
 	self:Bar(387559, 17.6) -- Infused Globules
-	self:Bar("stages", 51, CL.stage:format(2), 388420) -- Cast Away (Stage 2)
+	self:Bar("stages", 51, CL.stage:format(2), 388420) -- Stage 2 (Submerge)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("388420", nil, true) then -- Cast Away
-		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stage:format(2), 388420)
-		self:PlaySound("stages", "long")
-	end
-end
 
 function mod:InfusedGlobules(args)
 	self:Message(args.spellId, "yellow")
@@ -74,4 +61,16 @@ end
 function mod:SquallBuffet(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:SubmergeApplied(args)
+	self:SetStage(2)
+	self:Message("stages", "cyan", CL.stage:format(2), args.spellId)
+	self:PlaySound("stages", "long")
+end
+
+function mod:SubmergeRemoved(args)
+	self:SetStage(1)
+	self:Message("stages", "cyan", CL.stage:format(1), args.spellId)
+	self:PlaySound("stages", "info")
 end
