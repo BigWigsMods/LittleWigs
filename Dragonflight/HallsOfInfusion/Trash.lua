@@ -45,7 +45,7 @@ function mod:GetOptions()
 		-- Primalist Ravager
 		374080, -- Interrupting Gust
 		-- Primalist Geomancer
-		374066, -- Earth Shield
+		--374066, -- Earth Shield
 		-- Refti Defender
 		374339, -- Demoralizing Shout
 		-- Dazzling Dragonfly
@@ -62,7 +62,7 @@ function mod:GetOptions()
 		375327, -- Tectonic Breath
 	}, {
 		[374080] = L.primalist_ravager,
-		[374066] = L.primalist_geomancer,
+		--[374066] = L.primalist_geomancer,
 		[374339] = L.refti_defender,
 		[374563] = L.dazzling_dragonfly,
 		[374389] = L.curious_swoglet,
@@ -78,7 +78,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InterruptingGust", 374080)
 
 	-- Primalist Geomancer
-	self:Log("SPELL_CAST_START", "EarthShield", 374066)
+	--self:Log("SPELL_CAST_START", "EarthShield", 374066)
 
 	-- Refti Defender
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 374339)
@@ -115,9 +115,13 @@ end
 
 -- Primalist Geomancer
 
+-- TODO this is cast during rp fighting and UnitAffectingCombat is always true
 function mod:EarthShield(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		--self:Message(args.spellId, "orange")
+		--self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Refti Defender
