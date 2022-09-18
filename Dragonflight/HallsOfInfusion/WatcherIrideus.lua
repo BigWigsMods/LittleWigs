@@ -35,7 +35,7 @@ function mod:GetOptions()
 		383840, -- Ablative Barrier
 	}, {
 		[389179] = -25745, -- Stage One: A Chance at Redemption
-		[389179] = -25744, -- Stage Two: Watcher's Last Stand
+		[389446] = -25744, -- Stage Two: Watcher's Last Stand
 	}
 end
 
