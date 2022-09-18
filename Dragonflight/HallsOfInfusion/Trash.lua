@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Halls of Infusion Trash", 2527)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	190348, -- Primalist Ravager
 	190366, -- Curious Swoglet (trash version)
 	195399, -- Curious Swoglet (boss version)
 	190368  -- Flamecaller Aymi
@@ -18,6 +19,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.primalist_ravager = "Primalist Ravager"
 	L.curious_swoglet = "Curious Swoglet"
 	L.flamecaller_aymi = "Flamecaller Aymi"
 end
@@ -28,15 +30,22 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Primalist Ravager
+		374080, -- Interrupting Gust
+		-- Curious Swoglet
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
+		-- Flamecaller Aymi
 		374724, -- Molten Subduction
 	}, {
+		[374080] = L.primalist_ravager,
 		[374389] = L.curious_swoglet,
-		[374724] = L.flamecaller_aymi
+		[374724] = L.flamecaller_aymi,
 	}
 end
 
 function mod:OnBossEnable()
+	-- Primalist Ravager
+	self:Log("SPELL_CAST_START", "InterruptingGust", 374080)
 	-- Curious Swoglet
 	self:Log("SPELL_AURA_APPLIED_DOSE", "GulpSwogToxinApplied", 374389)
 	-- Flamecaller Aymi
@@ -46,6 +55,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Primalist Ravager
+
+function mod:InterruptingGust(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "warning")
+end
 
 -- Curious Swoglet
 
