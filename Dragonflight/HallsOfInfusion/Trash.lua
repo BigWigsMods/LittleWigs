@@ -163,6 +163,7 @@ do
 	function mod:DemoralizingShout(args)
 		local t = args.time
 		if t - prev > 1 then
+			prev = t
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alert")
 		end
