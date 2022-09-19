@@ -66,8 +66,10 @@ do
 	function mod:PrimalChillApplied(args)
 		-- TODO build 45632 this ability is presumably bugged and cannot be dispelled by movement-dispelling effects
 		if args.amount > 2 and (self:Dispeller("magic", nil, args.spellId) --[[or self:Dispeller("movement", nil, args.spellId)]] or self:Me(args.destGUID)) then
+			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
 			local t = args.time
 			if t - prev > 1 then
+				prev = t
 				-- Stuns at 5 stacks
 				self:StackMessage(args.spellId, "red", args.destName, args.amount, 4)
 				if args.amount == 4 then
