@@ -18,6 +18,7 @@ function mod:GetOptions()
 		373046, -- Awaken Whelps
 		372851, -- Chillstorm
 		{372682, "DISPEL"}, -- Primal Chill
+		373528, -- Ice Blast
 	}
 end
 
@@ -25,13 +26,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AwakenWhelps", 373046)
 	self:Log("SPELL_CAST_START", "Chillstorm", 372851)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PrimalChillApplied", 372682)
-	-- TODO ice blast
+	self:Log("SPELL_CAST_START", "IceBlast", 373528)
 	-- TODO frost overload (mythic only)
 end
 
 function mod:OnEngage()
 	self:CDBar(373046, 5.9) -- Chillstorm
 	self:CDBar(373046, 15.6) -- Awaken Whelps
+	self:CDBar(373528, 23.3) -- Ice Blast
 end
 
 --------------------------------------------------------------------------------
@@ -66,4 +68,10 @@ do
 			end
 		end
 	end
+end
+
+function mod:IceBlast(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	-- TODO bar
 end
