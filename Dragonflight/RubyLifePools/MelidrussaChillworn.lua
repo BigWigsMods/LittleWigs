@@ -16,7 +16,7 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		373046, -- Awaken Whelps
-		372851, -- Chillstorm
+		{372851, "SAY"}, -- Chillstorm
 		{372682, "DISPEL"}, -- Primal Chill
 		373528, -- Ice Blast
 	}
@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(373046, 5.9) -- Chillstorm
+	self:CDBar(372851, 5.1) -- Chillstorm
 	self:CDBar(373046, 15.6) -- Awaken Whelps
 	self:CDBar(373528, 23.3) -- Ice Blast
 end
@@ -46,10 +46,18 @@ function mod:AwakenWhelps(args)
 	self:CDBar(args.spellId, 13.4)
 end
 
-function mod:Chillstorm(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 37.6)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(372851, "yellow", name)
+		self:PlaySound(372851, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(372851)
+		end
+	end
+	function mod:Chillstorm(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(args.spellId, 32.8)
+	end
 end
 
 do
