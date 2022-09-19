@@ -63,6 +63,13 @@ function mod:BossDeath(args)
 		self:SetStage(3)
 		self:Message("stages", "cyan", CL.stage:format(3), false)
 		self:PlaySound("stages", "long")
+		
+		if args.mobId == 190484 then -- Kyrakka
+			self:StopBar(381525) -- Roaring Firebreath
+		else -- Erkhart Stormvein
+			self:StopBar(381512) -- Stormslam
+			self:StopBar(381517) -- Winds of Change
+		end
 	end
 end
 
