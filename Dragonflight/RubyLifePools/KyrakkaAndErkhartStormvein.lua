@@ -32,7 +32,11 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss2")
 	self:Death("BossDeath", 190484, 190485)
+
+	-- Kyrakka
 	self:Log("SPELL_CAST_START", "RoaringFirebreath", 381525)
+
+	-- Erkhart Stormvein
 	self:Log("SPELL_CAST_START", "WindsOfChange", 381517)
 	self:Log("SPELL_CAST_START", "Stormslam", 381512)
 	self:Log("SPELL_AURA_APPLIED", "StormslamApplied", 381515)
@@ -48,6 +52,8 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Stages
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 382521 then -- Kyrakka
@@ -73,15 +79,19 @@ function mod:BossDeath(args)
 	end
 end
 
+-- Kyrakka
+
 function mod:RoaringFirebreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 18.2)
 end
 
+-- Erkhart Stormvein
+
 function mod:WindsOfChange(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 18.2)
 end
 
