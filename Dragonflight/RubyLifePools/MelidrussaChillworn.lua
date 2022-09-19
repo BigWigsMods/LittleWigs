@@ -63,7 +63,8 @@ end
 do
 	local prev = 0
 	function mod:PrimalChillApplied(args)
-		if args.amount > 2 and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)) then
+		-- TODO build 45632 this ability is presumably bugged and cannot be dispelled by movement-dispelling effects
+		if args.amount > 2 and (self:Dispeller("magic", nil, args.spellId) --[[or self:Dispeller("movement", nil, args.spellId)]] or self:Me(args.destGUID)) then
 			local t = args.time
 			if t - prev > 1 then
 				-- Stuns at 5 stacks
