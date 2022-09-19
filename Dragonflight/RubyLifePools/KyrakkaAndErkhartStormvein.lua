@@ -42,7 +42,7 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	self:Bar(381525, 1.6) -- Roaring Firebreath
-	self:Bar(381517, 2) -- Winds of Change
+	self:Bar(381512, 6.1) -- Stormslam
 end
 
 --------------------------------------------------------------------------------
@@ -69,13 +69,13 @@ end
 function mod:RoaringFirebreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 31.2)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:WindsOfChange(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18.6)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:Stormslam(args)
