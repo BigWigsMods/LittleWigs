@@ -59,9 +59,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:BossDeath(args)
-	self:SetStage(3)
-	self:Message("stages", "cyan", CL.stage:format(3), false)
-	self:PlaySound("stages", "long")
+	if self:GetStage() ~= 3 then
+		self:SetStage(3)
+		self:Message("stages", "cyan", CL.stage:format(3), false)
+		self:PlaySound("stages", "long")
+	end
 end
 
 function mod:RoaringFirebreath(args)
