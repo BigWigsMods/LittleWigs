@@ -56,6 +56,7 @@ do
 	end
 	function mod:Chillstorm(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CastBar(args.spellId, 3.5)
 		self:CDBar(args.spellId, 32.8)
 	end
 end
