@@ -181,16 +181,22 @@ end
 do
 	local prev = 0
 	function mod:GulpSwogToxinApplied(args)
-		if self:MobId(args.sourceGUID) == 190366 and args.amount >= 6 and args.amount % 2 == 0
-				and (self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID)) then
-			local t = args.time
-			if t - prev > 1 then
-				-- Insta-kill at 10 stacks
-				self:StackMessage(args.spellId, "red", args.destName, args.amount, 8)
-				if args.amount <= 6 then
-					self:PlaySound(args.spellId, "alert", nil, args.destName)
-				else
-					self:PlaySound(args.spellId, "warning", nil, args.destName)
+		if self:MobId(args.sourceGUID) == 190366 then -- only handle trash version
+			local amount = args.amount
+			if amount >= 6 and (self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID)) then
+				local t = args.time
+				-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
+				-- but always display the 9 stack warning for each player since 10 stacks kills instantly.
+				if amount == 9 or t - prev > 1 then
+					prev = t
+
+					-- Insta-kill at 10 stacks
+					self:StackMessage(args.spellId, "red", args.destName, amount, 8)
+					if amount < 8 then
+						self:PlaySound(args.spellId, "alert", nil, args.destName)
+					else
+						self:PlaySound(args.spellId, "warning", nil, args.destName)
+					end
 				end
 			end
 		end
