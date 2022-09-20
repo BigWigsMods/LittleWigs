@@ -56,7 +56,6 @@ end
 
 function mod:OnBossEnable()
 	-- Ta'ilh
-	-- TODO reminder to choose buff? [CHAT_MSG_MONSTER_SAY] Excellent! I see you are here to help me with my problem. Let us talk more about how I can lend you additonal aid.#Ta'ilh#####0#0##0#218#nil#0#false#false#false#false",
 	self:Log("SPELL_AURA_APPLIED", "BountyApplied", 373121, 373108, 373113, 373116) -- Bounty: various
 
 	-- Shared
