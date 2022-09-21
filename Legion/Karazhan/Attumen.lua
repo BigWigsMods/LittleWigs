@@ -133,7 +133,7 @@ function mod:Enrage(args)
 end
 
 function mod:MightyStomp(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 18.2)
 end
