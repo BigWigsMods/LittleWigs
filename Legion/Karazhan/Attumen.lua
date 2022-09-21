@@ -89,13 +89,13 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227601 then -- Intermission, starts Spectral Charges
 		inIntermission = true
-		self:Message("stages", "cyan", spellId, 227365) -- Spectral Charge
-		self:CDBar("stages", 13.3, spellId, 227365) -- Spectral Charge
+		self:Message("stages", "cyan", spellId, 227365) -- Intermission message, Spectral Charge icon
+		self:CDBar("stages", 13.3, spellId, 227365) -- Intermission bar, Spectral Charge icon
 	elseif spellId == 227603 then -- Intermission End
 		inIntermission = false
 		intermissionOver = true
 		self:StopBar(227601) -- Intermission
-		self:Message("stages", "cyan", CL.over:format(self:SpellName(227601)), 227365) -- Intermission Over
+		self:Message("stages", "cyan", CL.over:format(self:SpellName(227601)), 227365) -- Intermission Over, Spectral Charge icon
 		self:PlaySound("stages", "info")
 		self:Bar(227365, 12.3) -- Spectral Charge
 		self:CDBar(227363, 17.2) -- Mighty Stomp
