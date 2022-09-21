@@ -74,6 +74,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227601 then -- Intermission, starts Spectral Charges
 		self:Message(227365, "yellow") -- Spectral Charge
 		self:PlaySound(227365, "alert") -- Spectral Charge
+		self:Bar(227365, 13.3) -- Spectral Charge
 	end
 end
 
