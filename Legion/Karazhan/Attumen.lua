@@ -61,6 +61,7 @@ function mod:DismountedApplied(args)
 	self:PlaySound("stages", "long")
 	self:CDBar(228852, 18.2) -- Shared Suffering
 	self:StopBar(227363) -- Mighty Stomp
+	self:Bar("stages", ceil((100 - self:GetHealth("boss2")) / 2), args.spellId, 164558) -- Dismounted
 end
 
 function mod:DismountedRemoved(args)
