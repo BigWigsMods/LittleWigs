@@ -28,12 +28,18 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	-- Stages
+	self:Log("SPELL_AURA_APPLIED", "DismountedApplied", 227474)
+	self:Log("SPELL_AURA_REMOVED", "DismountedRemoved", 227474)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+
+	-- Attumen
 	self:Log("SPELL_CAST_START", "MortalStrike", 227493)
 	self:Log("SPELL_AURA_APPLIED", "MortalStrikeApplied", 227493)
 	self:Log("SPELL_AURA_REMOVED", "MortalStrikeRemoved", 227493)
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
+
+	-- Midnight
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 228895)
 	self:Log("SPELL_CAST_START", "MightyStomp", 227363)
 end
@@ -47,22 +53,30 @@ end
 -- Event Handlers
 --
 
+-- Stages
+
+function mod:DismountedApplied(args)
+	self:SetStage(2)
+	self:Message("stages", "cyan", args.spellId, 164558) -- Dismounted
+	self:PlaySound("stages", "long")
+	self:CDBar(228852, 18.2) -- Shared Suffering
+	self:StopBar(227363) -- Mighty Stomp
+end
+
+function mod:DismountedRemoved(args)
+	self:SetStage(1)
+	self:Message("stages", "cyan", 227584, 244457) -- Mounted
+	self:PlaySound("stages", "long")
+end
+
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 227338 then -- Riderless
-		self:Message("stages", "cyan", spellId, false)
-		self:PlaySound("stages", "long")
-		self:CDBar(228852, 18.2) -- Shared Suffering
-		self:StopBar(227363) -- Mighty Stomp
-		self:SetStage(2)
-	elseif spellId == 227601 then -- Intermission
-		self:Message("stages", "cyan", 227584, false) -- Mounted
-		self:PlaySound("stages", "long")
-		self:SetStage(1)
-	elseif spellId == 227601 then -- Intermission, starts Spectral Charges
-		self:Message(227365, "yellow")
-		self:PlaySound(227365, "alert")
+	if spellId == 227601 then -- Intermission, starts Spectral Charges
+		self:Message(227365, "yellow") -- Spectral Charge
+		self:PlaySound(227365, "alert") -- Spectral Charge
 	end
 end
+
+-- Attumen
 
 function mod:MortalStrike(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -83,6 +97,8 @@ function mod:SharedSuffering(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 end
+
+-- Midnight
 
 function mod:Enrage(args)
 	self:Message(args.spellId, "red")
