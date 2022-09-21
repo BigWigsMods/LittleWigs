@@ -14,6 +14,7 @@ mod:SetStage(1)
 --
 
 local inIntermission = false
+local intermissionOver = false
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -55,6 +56,7 @@ function mod:OnEngage()
 	self:CDBar(227363, 15.4) -- Mighty Stomp
 	self:SetStage(1)
 	inIntermission = false
+	intermissionOver = false
 end
 
 --------------------------------------------------------------------------------
@@ -78,6 +80,10 @@ function mod:DismountedRemoved(args)
 	self:SetStage(1)
 	self:Message("stages", "cyan", 227584, 244457) -- Mounted
 	self:PlaySound("stages", "long")
+	if intermissionOver then
+		self:Bar(227365, 12.3) -- Spectral Charge
+		self:CDBar(227363, 17.2) -- Mighty Stomp
+	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
@@ -87,10 +93,12 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:CDBar("stages", 13.3, spellId, 227365) -- Spectral Charge
 	elseif spellId == 227603 then -- Intermission End
 		inIntermission = false
+		intermissionOver = true
 		self:StopBar(227601) -- Intermission
 		self:Message("stages", "cyan", CL.over:format(self:SpellName(227601)), 227365) -- Intermission Over
 		self:PlaySound("stages", "info")
 		self:Bar(227365, 12.3) -- Spectral Charge
+		self:CDBar(227363, 17.2) -- Mighty Stomp
 	end
 end
 
