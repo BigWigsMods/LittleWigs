@@ -38,7 +38,7 @@ BigWigs:AddSounds("Attumen the Huntsman", {
 	[227493] = "alarm",
 	[228852] = "info",
 	[228895] = "long",
-	["stages"] = "long",
+	["stages"] = {"info","long"},
 })
 
 BigWigs:AddSounds("Moroes", {
