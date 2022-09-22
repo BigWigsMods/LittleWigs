@@ -18,7 +18,7 @@ function mod:GetOptions()
 		386746, -- Brittle
 		385399, -- Unleashed Destruction
 		385075, -- Arcane Eruption
-		384696, -- Crystalline Roar -- TODO or 384699?
+		384699, -- Crystalline Roar
 		{384978, "TANK_HEALER"}, -- Dragon Strike
 	}
 end
@@ -33,7 +33,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(384978, 7.5) -- Dragon Strike
-	self:CDBar(384696, 12.4) -- Crystalline Roar
+	self:CDBar(384699, 12.4) -- Crystalline Roar
 	self:CDBar(385399, 35.5) -- Unleashed Destruction
 	self:CDBar(385075, 68.3) -- Arcane Eruption
 end
@@ -43,7 +43,7 @@ end
 --
 
 -- TODO Brittle 386746 no CLEU
--- TODO Crystalline Roar 384696 (or 384699) no CLEU
+-- TODO Crystalline Roar 384696 and 384699 no CLEU
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 386746 then -- Brittle
 		self:Message(spellId, "orange") -- TODO add brittle %hp to message? 75, 50, 25
@@ -52,9 +52,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		-- TODO no way to clean up this bar when conditions met? (no UNIT_DIED on crystals)
 		self:Bar(spellId, 22.4, 385331) -- Fracture
 	elseif spellId == 384696 or spellId == 384699 then -- Crystalline Roar TODO pick one of these
-		spellId = 384696 -- TODO temp
+		spellId = 384699 -- TODO temp
 		self:Message(spellId, "red")
 		self:PlaySound(spellId, "alarm")
+		self:CDBar(spellId, 25.5)
 	end
 end
 
