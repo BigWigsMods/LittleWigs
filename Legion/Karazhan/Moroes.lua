@@ -108,6 +108,7 @@ function mod:OnBossEnable()
 
 	-- CC tracking
 	self:Log("SPELL_AURA_APPLIED", "CrowdControlApplied", unpack(validCrowdControls))
+	self:Log("SPELL_AURA_REFRESH", "CrowdControlApplied", unpack(validCrowdControls))
 	self:Log("SPELL_AURA_REMOVED", "CrowdControlRemoved", unpack(validCrowdControls))
 
 	self:Death("GuestDeath",
