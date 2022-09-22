@@ -50,7 +50,7 @@ BigWigs:AddSounds("So'azmi", {
 BigWigs:AddSounds("Hylbrande", {
 	[346116] = "alarm",
 	[346766] = "long",
-	[346957] = {"alert","underyou","warning"},
+	[346959] = {"alert","underyou","warning"},
 	[347094] = "alarm",
 	[353312] = "info",
 	["vault_purifier"] = "info",
