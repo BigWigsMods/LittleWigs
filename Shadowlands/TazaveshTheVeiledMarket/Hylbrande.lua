@@ -15,17 +15,29 @@ mod:SetRespawnTime(30)
 local sanitizingCycleTime = 0
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.vault_purifier = -23004
+	L.vault_purifier_icon = "achievement_dungeon_ulduarraid_titan_01"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		346971, -- [DNT] Summon Vault Defender
 		353312, -- Purifying Burst
 		{346116, "TANK"}, -- Shearing Swings
 		347094, -- Titanic Crash
 		{346957, "SAY"}, -- Purged by Fire
 		346766, -- Sanitizing Cycle
+		"vault_purifier", -- Vault Purifier
+	}, nil, {
+		["vault_purifier"] = CL.adds,
 	}
 end
 
@@ -47,7 +59,7 @@ function mod:OnEngage()
 	self:Bar(346116, 8.1) -- Shearing Swings
 	self:Bar(346957, 10.5) -- Purged by Fire
 	self:Bar(347094, 15.4) -- Titanic Crash
-	self:Bar(346971, 19, CL.adds) -- [DNT] Summon Vault Defender
+	self:Bar("vault_purifier", 19, CL.adds, L.vault_purifier_icon) -- Vault Purifier
 	self:Bar(346766, 38.8) -- Sanitizing Cycle
 end
 
@@ -57,10 +69,10 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 346971 then -- [DNT] Summon Vault Defender
-		self:Message(spellId, "yellow", CL.add_spawned)
-		self:PlaySound(spellId, "info")
+		self:Message("vault_purifier", "yellow", CL.add_spawned, L.vault_purifier_icon)
+		self:PlaySound("vault_purifier", "info")
 		if sanitizingCycleTime - GetTime() > 29.1 then -- Sanitizing Cycle
-			self:Bar(spellId, 29.1, CL.adds)
+			self:Bar("vault_purifier", 29.1, CL.adds, L.vault_purifier_icon)
 		end
 	end
 end
@@ -140,7 +152,7 @@ do
 			self:StopBar(353312) -- Purifying Burst
 			self:StopBar(346116) -- Shearing Swings
 			self:StopBar(346957) -- Purged by Fire
-			self:StopBar(CL.adds) -- [DNT] Summon Vault Defender
+			self:StopBar(CL.adds) -- Vault Purifier
 			self:StopBar(347094) -- Titanic Crash
 		end
 	end
@@ -154,6 +166,6 @@ function mod:SanitizingCycleRemoved(args)
 	self:Bar(353312, 13.3) -- Purifying Burst
 	self:Bar(346116, 16.6) -- Shearing Swings
 	self:Bar(346957, 19.2) -- Purged by Fire
-	self:Bar(346971, 20.3, CL.adds) -- [DNT] Summon Vault Defender
+	self:Bar("vault_purifier", 20.3, CL.adds, L.vault_purifier_icon) -- Vault Purifier
 	self:Bar(347094, 22.8) -- Titanic Crash
 end
