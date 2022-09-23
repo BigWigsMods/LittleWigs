@@ -181,8 +181,8 @@ function mod:Vanish(args)
 end
 
 function mod:Garrote(args)
-	local amount = args.amount or 1
-	self:StackMessageOld(args.spellId, args.destName, amount, "orange", "info")
+	self:StackMessage(args.spellId, "orange", args.destName, args.amount, 0)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:CoatCheck(args)
