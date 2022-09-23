@@ -50,7 +50,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:PlaySound(spellId, "long")
 		-- After a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture
 		-- TODO no way to clean up this bar when conditions met? (no UNIT_DIED on crystals)
-		self:Bar(spellId, 22.4, 385331) -- Fracture
+		self:Bar(spellId, 22.4, 385331) -- Fracture TODO separate option for this spell id?
 	elseif spellId == 384696 or spellId == 384699 then -- Crystalline Roar TODO pick one of these
 		spellId = 384699 -- TODO temp
 		self:Message(spellId, "red")
