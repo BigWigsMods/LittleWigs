@@ -52,7 +52,7 @@ function mod:GraspingVines(args)
 end
 
 do
-	local consumingStart
+	local consumingStart = 0
 
 	function mod:ConsumingApplied(args)
 		consumingStart = args.time
