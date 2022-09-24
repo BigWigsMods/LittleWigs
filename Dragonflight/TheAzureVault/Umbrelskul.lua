@@ -22,6 +22,7 @@ local brittleCount = 0
 function mod:GetOptions()
 	return {
 		386746, -- Brittle
+		385331, -- Fracture
 		385399, -- Unleashed Destruction
 		385075, -- Arcane Eruption
 		384699, -- Crystalline Roar
@@ -58,12 +59,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:PlaySound(spellId, "long")
 		-- After a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture
 		-- TODO no way to clean up this bar when conditions met? (no UNIT_DIED on crystals)
-		self:Bar(spellId, 22.4, 385331) -- Fracture TODO separate option for this spell id?
-	elseif spellId == 384696 or spellId == 384699 then -- Crystalline Roar TODO pick one of these
-		spellId = 384699 -- TODO temp
-		self:Message(spellId, "red")
-		self:PlaySound(spellId, "alarm")
-		self:CDBar(spellId, 25.5)
+		self:Bar(385331, 22.4) -- Fracture
+	elseif spellId == 384696 then -- Crystalline Roar
+		self:Message(384699, "red")
+		self:PlaySound(384699, "alarm")
+		self:CDBar(384699, 25.5)
 	end
 end
 
