@@ -10,6 +10,12 @@ mod:SetEncounterID(2584)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local brittleCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -33,6 +39,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(384978, 7.5) -- Dragon Strike
+	brittleCount = 0
 	self:CDBar(384699, 12.4) -- Crystalline Roar
 	self:CDBar(385399, 35.5) -- Unleashed Destruction
 	self:CDBar(385075, 68.3) -- Arcane Eruption
@@ -46,7 +53,8 @@ end
 -- TODO Crystalline Roar 384696 and 384699 no CLEU
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 386746 then -- Brittle
-		self:Message(spellId, "orange") -- TODO add brittle %hp to message? 75, 50, 25
+		brittleCount = brittleCount + 1
+		self:Message(spellId, "orange", CL.percent:format(100 - brittleCount * 25, self:SpellName(spellId)))
 		self:PlaySound(spellId, "long")
 		-- After a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture
 		-- TODO no way to clean up this bar when conditions met? (no UNIT_DIED on crystals)
