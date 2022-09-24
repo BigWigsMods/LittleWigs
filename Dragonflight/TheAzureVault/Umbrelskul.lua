@@ -38,8 +38,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(384978, 7.5) -- Dragon Strike
 	brittleCount = 0
+	self:CDBar(384978, 7.4) -- Dragon Strike
 	self:CDBar(384699, 12.4) -- Crystalline Roar
 	self:CDBar(385399, 35.5) -- Unleashed Destruction
 	self:CDBar(385075, 68.3) -- Arcane Eruption
@@ -84,7 +84,7 @@ function mod:DragonStrike(args)
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:CDBar(args.spellId, 12.2)
+	self:CDBar(args.spellId, 7.3)
 end
 
 function mod:DragonStrikeApplied(args)
