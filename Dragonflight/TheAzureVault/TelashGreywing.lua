@@ -61,7 +61,7 @@ do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
 			self:Say(387151)
-			self:PlaySound(387151, "alarm", nil, player)
+			self:PlaySound(387151, "alarm")
 		else
 			self:PlaySound(387151, "alert", nil, player)
 		end
