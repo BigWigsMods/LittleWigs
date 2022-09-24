@@ -75,7 +75,7 @@ end
 
 function mod:ArcaneEruption(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info") -- TODO long candidate?
+	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 61.9)
 end
 
