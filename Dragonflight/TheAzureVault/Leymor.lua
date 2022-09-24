@@ -20,6 +20,8 @@ function mod:GetOptions()
 		374720, -- Consuming Stomp
 		386660, -- Erupting Fissure
 		{374789, "TANK_HEALER"}, -- Infused Strike
+	}, nil, {
+		[374567] = CL.explosion, -- Explosive Brand (Explosion)
 	}
 end
 
