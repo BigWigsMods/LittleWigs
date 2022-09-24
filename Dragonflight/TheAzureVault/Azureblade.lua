@@ -8,6 +8,7 @@ if not mod then return end
 mod:RegisterEnableMob(186739) -- Azureblade
 mod:SetEncounterID(2585)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -31,6 +32,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:SetStage(1)
 	self:Bar(384223, 3.7) -- Summon Draconic Image
 	self:CDBar(372222, 6.1) -- Arcane Cleave
 	self:CDBar(385578, 10.9) -- Ancient Orb
@@ -46,6 +48,7 @@ do
 
 	function mod:OverwhelmingEnergy(args)
 		addKills = 0
+		self:SetStage(2)
 		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "long")
 		-- TODO unknown CD
@@ -58,7 +61,8 @@ do
 		if addKills < 4 then
 			self:Message(384132, "cyan", CL.add_killed:format(addKills, 4))
 		else
-			self:Message(384132, "green", CL.over:format(self:SpellName(384132)))
+			self:SetStage(1)
+			self:Message(384132, "green", CL.over:format(self:SpellName(384132))) -- Overwhelming Energy Over
 			self:PlaySound(384132, "info")
 		end
 	end
