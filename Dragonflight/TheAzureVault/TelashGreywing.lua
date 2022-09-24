@@ -29,9 +29,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(386781, 3.7) -- Frost Bomb
+	self:Bar(386781, 3.6) -- Frost Bomb
 	self:CDBar(387151, 10.9) -- Icy Devastator
-	self:Bar(388008, 23) -- Below Zero
+	self:Bar(388008, 22.9) -- Below Zero
 end
 
 --------------------------------------------------------------------------------
@@ -42,6 +42,7 @@ function mod:BelowZero(args)
 	self:Message(388008, "red")
 	self:PlaySound(388008, "long")
 	self:Bar(388008, 60.7)
+	self:CastBar(388008, 9) -- 1s delay, 8s cast
 end
 
 function mod:FrostBomb(args)
@@ -52,7 +53,7 @@ end
 
 function mod:FrostBombApplied(args)
 	if self:Me(args.destGUID) then
-		self:Bar(386781, 5)
+		self:TargetBar(386781, 5, args.destName)
 	end
 end
 
