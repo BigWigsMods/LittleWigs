@@ -31,11 +31,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	-- TODO these timers are all off
-	self:Bar(384223, 3) -- Summon Draconic Image
-	self:CDBar(372222, 5.8) -- Arcane Cleave
-	self:CDBar(385578, 10.7) -- Ancient Orb
-	self:CDBar(384132, 24) -- Overwhelming Energy
+	self:Bar(384223, 3.7) -- Summon Draconic Image
+	self:CDBar(372222, 6.1) -- Arcane Cleave
+	self:CDBar(385578, 10.9) -- Ancient Orb
+	self:CDBar(384132, 23.1) -- Overwhelming Energy
 end
 
 --------------------------------------------------------------------------------
@@ -80,5 +79,5 @@ end
 function mod:ArcaneCleave(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 13.4)
+	self:CDBar(args.spellId, 13.3)
 end
