@@ -108,6 +108,7 @@ function mod:OnBossEnable()
 
 	-- CC tracking
 	self:Log("SPELL_AURA_APPLIED", "CrowdControlApplied", unpack(validCrowdControls))
+	self:Log("SPELL_AURA_REFRESH", "CrowdControlApplied", unpack(validCrowdControls))
 	self:Log("SPELL_AURA_REMOVED", "CrowdControlRemoved", unpack(validCrowdControls))
 
 	self:Death("GuestDeath",
@@ -180,8 +181,8 @@ function mod:Vanish(args)
 end
 
 function mod:Garrote(args)
-	local amount = args.amount or 1
-	self:StackMessageOld(args.spellId, args.destName, amount, "orange", "info")
+	self:StackMessage(args.spellId, "orange", args.destName, args.amount, 0)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:CoatCheck(args)
