@@ -9,6 +9,7 @@ BigWigs:AddColors("Telash Greywing", {
 })
 
 BigWigs:AddColors("Umbrelskul", {
+	[384699] = "red",
 	[384978] = {"blue","purple"},
 	[385075] = "yellow",
 	[385399] = "yellow",
