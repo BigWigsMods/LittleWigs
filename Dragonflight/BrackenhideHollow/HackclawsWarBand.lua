@@ -94,6 +94,9 @@ end
 
 function mod:SavageChargeRemoved(args)
 	self:StopBar(381444, args.destName)
+	if self:Me(destGUID) then
+		self:CancelSayCountdown(381444)
+	end
 end
 
 function mod:BladestormFixateApplied(args)
