@@ -20,7 +20,7 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		-- Rira Hackclaw
-		-- TODO Savage Charge
+		{381444, "SAY", "SAY_COUNTDOWN"}, -- Savage Charge
 		377827, -- Bladestorm
 		-- Gashtooth
 		-- TODO Decayed Senses
@@ -39,6 +39,7 @@ end
 
 function mod:OnBossEnable()
 	-- Rira Hackclaw
+	self:Log("SPELL_AURA_APPLIED", "SavageChargeApplied", 381461)
 	self:Log("SPELL_AURA_APPLIED", "BladestormFixateApplied", 381835)
 	self:Log("SPELL_CAST_SUCCESS", "BladestormSuccess", 381834)
 
@@ -61,6 +62,23 @@ end
 --
 
 -- Rira Hackclaw
+
+function mod:SavageChargeApplied(args)
+	-- charge debuff applies to a random player, boss starts 10 second cast
+	-- tank must intercept or target must immune
+	local onMe = self:Me(destGUID)
+	self:TargetMessage(381444, "red", args.destName)
+	if self:Tank() or onMe then
+		self:PlaySound(381444, "warning", nil, args.destName)
+		if onMe then
+			self:Say(381444)
+			self:SayCountdown(381444, 10)
+		end
+	else
+		self:PlaySound(381444, "alert", nil, args.destName)
+	end
+	-- TODO unknown CD
+end
 
 function mod:BladestormFixateApplied(args)
 	-- fixate debuff applies to a random player, boss starts 3 second cast
