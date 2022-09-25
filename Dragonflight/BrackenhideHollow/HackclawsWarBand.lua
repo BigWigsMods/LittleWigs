@@ -68,6 +68,7 @@ function mod:SavageChargeApplied(args)
 	-- tank must intercept or target must immune
 	local onMe = self:Me(destGUID)
 	self:TargetMessage(381444, "red", args.destName)
+	self:TargetBar(381444, 10, args.destName)
 	if self:Tank() or onMe then
 		self:PlaySound(381444, "warning", nil, args.destName)
 		if onMe then
