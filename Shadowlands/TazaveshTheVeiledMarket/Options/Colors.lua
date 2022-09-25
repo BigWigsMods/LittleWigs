@@ -20,9 +20,11 @@ BigWigs:AddColors("The Grand Menagerie", {
 
 BigWigs:AddColors("Mailroom Mayhem", {
 	[346286] = "yellow",
+	[346296] = "green",
 	[346742] = "red",
 	[346947] = "yellow",
 	[346962] = {"blue","orange"},
+	["delivery_portal"] = "cyan",
 })
 
 BigWigs:AddColors("Myza's Oasis", {
@@ -48,10 +50,10 @@ BigWigs:AddColors("So'azmi", {
 BigWigs:AddColors("Hylbrande", {
 	[346116] = "purple",
 	[346766] = "cyan",
-	[346957] = {"blue","orange"},
-	[346971] = "yellow",
+	[346959] = {"blue","orange"},
 	[347094] = "red",
 	[353312] = "yellow",
+	["vault_purifier"] = "yellow",
 })
 
 BigWigs:AddColors("Timecap'n Hooktail", {

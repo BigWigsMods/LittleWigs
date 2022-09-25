@@ -42,7 +42,7 @@ BigWigs:AddColors("Tussle Tonks", {
 })
 
 BigWigs:AddColors("K.U.-J.0.", {
-	[291918] = "yellow",
+	[291930] = "yellow",
 	[291946] = "red",
 	[291973] = "orange",
 	[294929] = {"blue","purple"},
@@ -51,8 +51,8 @@ BigWigs:AddColors("K.U.-J.0.", {
 BigWigs:AddColors("Machinist's Garden", {
 	[285440] = "red",
 	[285454] = {"blue","orange","yellow"},
-	[294853] = "orange",
 	[294855] = {"blue","orange"},
+	["activate_plant"] = "orange",
 })
 
 BigWigs:AddColors("King Mechagon", {

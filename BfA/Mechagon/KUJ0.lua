@@ -4,8 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("K.U.-J.0.", 2097, 2339)
 if not mod then return end
-mod:RegisterEnableMob(144246)
-mod.engageId = 2258
+mod:RegisterEnableMob(144246) -- K.U.-J.0.
+mod:SetEncounterID(2258)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -19,7 +20,7 @@ local airDropCount = 0
 
 function mod:GetOptions()
 	return {
-		291918, -- Air Drop
+		291930, -- Air Drop
 		291946, -- Venting Flames
 		{291973, "PROXIMITY", "SAY"}, -- Explosive Leap
 		{294929, "TANK_HEALER"}, -- Blazing Chomp
@@ -37,7 +38,7 @@ end
 
 function mod:OnEngage()
 	airDropCount = 0
-	self:Bar(291918, 7.1) -- Air Drop
+	self:Bar(291930, 7.1) -- Air Drop
 	self:Bar(294929, 10.9) -- Blazing Chomp
 	self:Bar(291946, 15.6) -- Venting Flames
 	self:Bar(291973, 38) -- Explosive Leap
@@ -49,9 +50,9 @@ end
 
 function mod:AirDrop(args)
 	airDropCount = airDropCount + 1
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, (airDropCount == 1) and 26.7 or 34) -- Second air drop is a shorter timer
+	self:Message(291930, "yellow")
+	self:PlaySound(291930, "info")
+	self:Bar(291930, (airDropCount == 1) and 26.7 or 34) -- Second air drop is a shorter timer
 end
 
 function mod:VentingFlames(args)

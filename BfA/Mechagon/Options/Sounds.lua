@@ -42,7 +42,7 @@ BigWigs:AddSounds("Tussle Tonks", {
 })
 
 BigWigs:AddSounds("K.U.-J.0.", {
-	[291918] = "info",
+	[291930] = "info",
 	[291946] = "alarm",
 	[291973] = "alert",
 	[294929] = "alert",
@@ -51,8 +51,8 @@ BigWigs:AddSounds("K.U.-J.0.", {
 BigWigs:AddSounds("Machinist's Garden", {
 	[285440] = "alarm",
 	[285454] = {"alert","info"},
-	[294853] = "long",
 	[294855] = "alert",
+	["activate_plant"] = "long",
 })
 
 BigWigs:AddSounds("King Mechagon", {
