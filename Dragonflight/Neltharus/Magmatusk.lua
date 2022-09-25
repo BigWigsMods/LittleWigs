@@ -78,7 +78,8 @@ do
 	end
 
 	function mod:LavaSpray(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		-- TODO use GetBossTarget if boss frames get added for Magmatusk
+		self:GetUnitTarget(printTarget, 2, args.sourceGUID)
 		self:CastBar(args.spellId, 3.5)
 		self:CDBar(args.spellId, 24.3)
 	end
