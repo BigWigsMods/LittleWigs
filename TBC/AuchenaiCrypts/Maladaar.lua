@@ -23,14 +23,14 @@ end
 function mod:GetOptions()
 	return {
 		32346, -- Stolen Soul
-		"avatar",
+		"avatar", -- Avatar of the Martyred
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	self:Log("SPELL_AURA_APPLIED", "StolenSoul", 32346)
-	self:Log("SPELL_CAST_SUCCESS", "AvatarOfTheMartyred", 32424)
+	self:Log("SPELL_CAST_SUCCESS", "SummonAvatar", 32424)
 
 	self:Death("Win", 18373)
 end
@@ -42,7 +42,7 @@ function mod:StolenSoul(args)
 	self:TargetMessageOld(args.spellId, args.destName, "orange")
 end
 
-function mod:AvatarOfTheMartyred(args)
+function mod:SummonAvatar(args)
 	self:MessageOld("avatar", "red", "info", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
 end
 
@@ -51,6 +51,6 @@ function mod:UNIT_HEALTH(event, unit)
 	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if hp < 30 then
 		self:UnregisterUnitEvent(event, "target", "focus")
-		self:MessageOld("avatar", "yellow", nil, CL.soon:format(CL.spawning:format(self:SpellName(L.avatar))), 32424)
+		self:Message("avatar", "yellow", CL.soon:format(self:SpellName(32424)), false) -- Summon Avatar soon
 	end
 end
