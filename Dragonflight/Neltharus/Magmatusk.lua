@@ -85,15 +85,10 @@ do
 	end
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(375251, "red", name)
-		self:PlaySound(375251, "alarm", nil, name)
-	end
-
-	function mod:BlazingCharge(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CastBar(args.spellId, 3)
-		self:CDBar(args.spellId, 23)
-	end
+function mod:BlazingCharge(args)
+	--no debuff on the target, and Magamtusk doesn't target them during cast
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:CastBar(args.spellId, 3)
+	self:CDBar(args.spellId, 23)
 end
