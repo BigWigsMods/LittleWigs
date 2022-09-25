@@ -78,7 +78,7 @@ end
 function mod:SavageChargeApplied(args)
 	-- charge debuff applies to a random player, boss starts 10 second cast
 	-- tank must intercept or target must immune
-	local onMe = self:Me(destGUID)
+	local onMe = self:Me(args.destGUID)
 	self:TargetMessage(381444, "red", args.destName)
 	self:TargetBar(381444, 10, args.destName)
 	if self:Tank() or onMe then
@@ -95,7 +95,7 @@ end
 
 function mod:SavageChargeRemoved(args)
 	self:StopBar(381444, args.destName)
-	if self:Me(destGUID) then
+	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(381444)
 	end
 end
