@@ -26,7 +26,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GraspingVines", 376934)
-	self:Log("SPELL_AURA_APPLIED", "ConsumingApplied", 378022)
+	self:Log("SPELL_AURA_APPLIED", "ConsumingApplied", 377187)
 	self:Log("SPELL_AURA_REMOVED", "ConsumingRemoved", 378022)
 	-- TODO track partially digested debuff? (mythic only)
 	self:Log("SPELL_CAST_START", "DecaySpray", 376811)
@@ -56,8 +56,8 @@ do
 
 	function mod:ConsumingApplied(args)
 		consumingStart = args.time
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "long", nil, args.destName)
+		self:TargetMessage(378022, "red", args.destName)
+		self:PlaySound(378022, "long", nil, args.destName)
 	end
 
 	function mod:ConsumingRemoved(args)
