@@ -54,7 +54,7 @@ end
 function mod:OnEngage()
 	self:Bar(378029, 3.6) -- Gash Frenzy
 	self:Bar(377950, 12.2) -- Greater Healing Rapids
-	self:Bar(377827, 20.7) -- Bladestorm
+	self:Bar(377827, 20.3) -- Bladestorm
 end
 
 --------------------------------------------------------------------------------
@@ -100,7 +100,7 @@ end
 function mod:GashFrenzy(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	-- TODO unknown CD
+	self:Bar(args.spellId, 59)
 end
 
 -- Tricktotem
@@ -108,7 +108,7 @@ end
 function mod:GreaterHealingRapids(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
-	-- TODO unknown CD
+	self:Bar(args.spellId, 22.7)
 end
 
 function mod:Bloodlust(args)
