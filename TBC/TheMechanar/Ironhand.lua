@@ -44,6 +44,8 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_DAMAGE", "JackhammersDamage", 39195)
 	self:Log("SPELL_MISSED", "JackhammersDamage", 39195)
+
+	self:Death("Win", 19710)
 end
 
 --------------------------------------------------------------------------------
