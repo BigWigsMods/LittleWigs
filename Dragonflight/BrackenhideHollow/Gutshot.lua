@@ -36,11 +36,11 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(385359, 8.5) -- Ensnaring Trap
-	self:CDBar(384353, 12.2) -- Gut Shot
-	self:Bar(384633, 15.8) -- Master's Call
-	self:Bar(384416, 25.5) -- Meat Toss
-	self:Bar(384827, 34) -- Call Hyenas
+	self:CDBar(385359, 8.4) -- Ensnaring Trap
+	self:CDBar(384353, 12.1) -- Gut Shot
+	self:CDBar(384633, 15.8) -- Master's Call
+	self:CDBar(384416, 21.8) -- Meat Toss
+	self:Bar(384827, 33.9) -- Call Hyenas
 end
 
 --------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ end
 function mod:CallHyenas(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	-- TODO unknown CD
+	self:CDBar(385359, 31.6)
 end
 
 function mod:EnsnaringTrapCast(args)
