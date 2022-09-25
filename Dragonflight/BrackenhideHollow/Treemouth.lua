@@ -70,7 +70,7 @@ end
 do
 	local prev = 0
 	function mod:DecaySpray(args)
-		-- bug? sometimes this gets double-cast, but only the second one succeeds
+		-- bug? sometimes this gets cast multiple times, but only the last one succeeds
 		local t = args.time
 		if t - prev > 5 then
 			prev = t
@@ -87,8 +87,16 @@ function mod:InfectiousSpit(args)
 	self:CDBar(args.spellId, 20.2)
 end
 
-function mod:VineWhip(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 14.4)
+do
+	local prev = 0
+	function mod:VineWhip(args)
+		-- bug? sometimes this gets cast multiple times, but only the last one succeeds
+		local t = args.time
+		if t - prev > 5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+		self:CDBar(args.spellId, 13.5)
+	end
 end
