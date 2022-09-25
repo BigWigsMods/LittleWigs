@@ -22,7 +22,7 @@ function mod:GetOptions()
 		{384353, "TANK"}, -- Gut Shot
 	}, nil, {
 		[385359] = CL.traps, -- Ensnaring Trap (Traps)
-		[384416] = CL.fixate, -- Meat Toss (Smell Like Meat)
+		[384416] = CL.fixate, -- Meat Toss (Fixate)
 	}
 end
 
