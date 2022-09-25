@@ -40,19 +40,23 @@ end
 function mod:OnBossEnable()
 	-- Rira Hackclaw
 	self:Log("SPELL_AURA_APPLIED", "SavageChargeApplied", 381461)
+	self:Log("SPELL_AURA_REMOVED", "SavageChargeRemoved", 381461)
 	self:Log("SPELL_AURA_APPLIED", "BladestormFixateApplied", 377844) -- TODO and 381835?
 	self:Log("SPELL_CAST_SUCCESS", "BladestormSuccess", 381834) -- TODO cast start instead? or remove + track 381835 aura
+	self:Death("RiraHackclawDeath", 186122)
 
 	-- Gashtooth
 	self:Log("SPELL_CAST_START", "DecayedSenses", 381694)
 	self:Log("SPELL_AURA_APPLIED", "DecayedSensesApplied", 381379)
 	self:Log("SPELL_AURA_REMOVED", "DecayedSensesRemoved", 381379)
 	self:Log("SPELL_CAST_START", "GashFrenzy", 378029)
+	self:Death("GashtoothDeath", 186124)
 
 	-- Tricktotem
 	self:Log("SPELL_CAST_START", "HextrickTotem", 381470)
 	self:Log("SPELL_CAST_START", "GreaterHealingRapids", 377950)
 	self:Log("SPELL_CAST_SUCCESS", "Bloodlust", 377965)
+	self:Death("TricktotemDeath", 186125)
 end
 
 function mod:OnEngage()
@@ -88,6 +92,10 @@ function mod:SavageChargeApplied(args)
 	-- TODO unknown CD
 end
 
+function mod:SavageChargeRemoved(args)
+	self:StopBar(381444, args.destName)
+end
+
 function mod:BladestormFixateApplied(args)
 	-- fixate debuff applies to a random player, boss starts 3 second cast
 	self:TargetMessage(377827, "red", args.destName)
@@ -100,6 +108,12 @@ function mod:BladestormSuccess(args)
 	self:Message(377827, "red")
 	self:PlaySound(377827, "alarm")
 	self:CastBar(377827, 5)
+end
+
+function mod:RiraHackclawDeath(args)
+	self:StopBar(377827) -- Savage Charge
+	self:StopBar(377827) -- Bladestorm
+	self:StopBar(CL.cast:format(self:SpellName(377827))) -- <Cast: Bladestorm>
 end
 
 -- Gashtooth
@@ -128,6 +142,11 @@ function mod:GashFrenzy(args)
 	self:Bar(args.spellId, 59)
 end
 
+function mod:GashtoothDeath(args)
+	self:StopBar(381694) -- Decayed Senses
+	self:StopBar(378029) -- Gash Frenzy
+end
+
 -- Tricktotem
 
 function mod:HextrickTotem(args)
@@ -145,4 +164,9 @@ end
 function mod:Bloodlust(args)
 	self:Message(args.spellId, "orange", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:TricktotemDeath(args)
+	self:StopBar(381470) -- Hextrick Totem
+	self:StopBar(377950) -- Greater Healing Rapids
 end
