@@ -23,7 +23,7 @@ local L = mod:GetLocale()
 if L then
 	L.fixate = CL.fixate
 	L.fixate_desc = "Causes the caster to fixate on a random target."
-	L.fixate_icon = "ability_fixated_state_red"
+	L.fixate_icon = "spell_shadow_charm"
 end
 
 --------------------------------------------------------------------------------
