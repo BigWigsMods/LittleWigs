@@ -77,17 +77,17 @@ do
 			-- don't alert for pets
 			return
 		end
-		local t = args.time
-		if t - prev > 1.5 then
-			if onNpc then
+		if onNpc then
+			local t = args.time
+			if t - prev > 1.5 then
 				-- only throttle for enemies
 				prev = t
 				self:TargetMessage(385359, "green", args.destName)
 				self:PlaySound(385359, "info")
-			elseif self:Me(args.destGUID) or self:Dispeller("movement") then
-				self:TargetMessage(385359, "red", args.destName)
-				self:PlaySound(385359, "alarm", nil, args.destName)
 			end
+		elseif self:Me(args.destGUID) or self:Dispeller("movement") then
+			self:TargetMessage(385359, "red", args.destName)
+			self:PlaySound(385359, "alarm", nil, args.destName)
 		end
 	end
 end
