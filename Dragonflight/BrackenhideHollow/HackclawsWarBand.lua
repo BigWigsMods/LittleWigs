@@ -27,7 +27,7 @@ function mod:GetOptions()
 		378029, -- Gash Frenzy
 		-- TODO Marked for Butchery (Mythic-only)
 		-- Tricktotem
-		-- TODO Hextrick Totem
+		381470, -- Hextrick Totem
 		377950, -- Greater Healing Rapids
 		377965, -- Bloodlust
 	}, {
@@ -50,6 +50,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GashFrenzy", 378029)
 
 	-- Tricktotem
+	self:Log("SPELL_CAST_START", "HextrickTotem", 381470)
 	self:Log("SPELL_CAST_START", "GreaterHealingRapids", 377950)
 	self:Log("SPELL_CAST_SUCCESS", "Bloodlust", 377965)
 end
@@ -58,6 +59,7 @@ function mod:OnEngage()
 	self:Bar(378029, 3.6) -- Gash Frenzy
 	self:Bar(377950, 12.2) -- Greater Healing Rapids
 	self:Bar(377827, 20.3) -- Bladestorm
+	self:Bar(381470, 45.8) -- Hextrick Totem
 	self:Bar(381694, 46.8) -- Decayed Senses
 	self:Bar(381444, 49.3) -- Savage Charge
 end
@@ -127,6 +129,12 @@ function mod:GashFrenzy(args)
 end
 
 -- Tricktotem
+
+function mod:HextrickTotem(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
+	-- TODO unknown CD
+end
 
 function mod:GreaterHealingRapids(args)
 	self:Message(args.spellId, "yellow")
