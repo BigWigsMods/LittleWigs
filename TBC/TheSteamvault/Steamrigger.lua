@@ -21,6 +21,9 @@ local nextAddWarning = 80
 local L = mod:GetLocale()
 if L then
 	L.mech_trigger = "Tune 'em up good, boys!"
+
+	L.mechanics = -5999 -- Steamrigger Mechanics
+	L.mechanics_icon = "inv_misc_wrench_01"
 end
 
 -------------------------------------------------------------------------------
@@ -30,7 +33,7 @@ end
 function mod:GetOptions()
 	return {
 		31485, -- Super Shrink Ray
-		-5999, -- Steamrigger Mechanics
+		"mechanics", -- Steamrigger Mechanics
 	}
 end
 
@@ -61,7 +64,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.mech_trigger or msg:find(L.mech_trigger, nil, true) then
-		self:MessageOld(-5999, "yellow", nil, CL.incoming:format(self:SpellName(-5999))) -- Steamrigger Mechanics
+		self:Message("mechanics", "yellow", CL.incoming:format(self:SpellName(-5999)), L.mechanics_icon) -- Steamrigger Mechanics
 	end
 end
 
@@ -70,7 +73,7 @@ do
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp < nextAddWarning then
 			nextAddWarning = nextAddWarning - 25
-			self:MessageOld(-5999, "red", nil, CL.soon:format(self:SpellName(-5999))) -- Steamrigger Mechanics
+			self:Message("mechanics", "red", CL.soon:format(self:SpellName(-5999)), false) -- Steamrigger Mechanics
 
 			while nextAddWarning >= 25 and hp < nextAddWarning do
 				-- account for high-level characters hitting multiple thresholds
