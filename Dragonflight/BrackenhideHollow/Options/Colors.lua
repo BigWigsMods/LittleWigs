@@ -5,6 +5,7 @@ BigWigs:AddColors("Hackclaw's War-Band", {
 	[377965] = "orange",
 	[378029] = "orange",
 	[381444] = {"blue","red"},
+	[381694] = {"blue","green","red"},
 })
 
 BigWigs:AddColors("Treemouth", {

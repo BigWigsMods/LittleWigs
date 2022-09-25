@@ -23,7 +23,7 @@ function mod:GetOptions()
 		{381444, "SAY", "SAY_COUNTDOWN"}, -- Savage Charge
 		377827, -- Bladestorm
 		-- Gashtooth
-		-- TODO Decayed Senses
+		381694, -- Decayed Senses
 		378029, -- Gash Frenzy
 		-- TODO Marked for Butchery (Mythic-only)
 		-- Tricktotem
@@ -44,6 +44,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BladestormSuccess", 381834) -- TODO cast start instead? or remove + track 381835 aura
 
 	-- Gashtooth
+	self:Log("SPELL_CAST_START", "DecayedSenses", 381694)
+	self:Log("SPELL_AURA_APPLIED", "DecayedSensesApplied", 381379)
+	self:Log("SPELL_AURA_REMOVED", "DecayedSensesRemoved", 381379)
 	self:Log("SPELL_CAST_START", "GashFrenzy", 378029)
 
 	-- Tricktotem
@@ -96,6 +99,24 @@ function mod:BladestormSuccess(args)
 end
 
 -- Gashtooth
+
+function mod:DecayedSenses(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+	-- TODO unknown CD
+end
+
+function mod:DecayedSensesApplied(args)
+	if self:Dispeller("magic") then
+		self:TargetMessage(381694, "red", args.destName)
+		self:PlaySound(381694, "warning", nil, args.destName)
+	end
+end
+
+function mod:DecayedSensesRemoved(args)
+	self:Message(381694, "green", CL.removed:format(args.spellName))
+	self:PlaySound(381694, "info")
+end
 
 function mod:GashFrenzy(args)
 	self:Message(args.spellId, "orange")

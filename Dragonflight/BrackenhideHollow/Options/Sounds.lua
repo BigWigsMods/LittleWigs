@@ -5,6 +5,7 @@ BigWigs:AddSounds("Hackclaw's War-Band", {
 	[377965] = "long",
 	[378029] = "alert",
 	[381444] = {"alert","warning"},
+	[381694] = {"info","warning"},
 })
 
 BigWigs:AddSounds("Treemouth", {
