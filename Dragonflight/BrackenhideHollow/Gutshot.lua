@@ -21,12 +21,14 @@ function mod:GetOptions()
 		384633, -- Master's Call
 		{384353, "TANK"}, -- Gut Shot
 	}, nil, {
+		[385359] = CL.traps, -- Ensnaring Trap (Traps)
 		[384416] = CL.fixate, -- Meat Toss (Smell Like Meat)
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CallHyenas", 384827)
+	self:Log("SPELL_CAST_SUCCESS", "EnsnaringTrapPrecast", 383979)
 	self:Log("SPELL_AURA_APPLIED", "EnsnaringTrapCast", 385356)
 	self:Log("SPELL_AURA_APPLIED", "EnsnaringTrapApplied", 384148)
 	self:Log("SPELL_CAST_START", "MeatToss", 384416)
@@ -53,16 +55,40 @@ function mod:CallHyenas(args)
 	self:CDBar(385359, 31.6)
 end
 
-function mod:EnsnaringTrapCast(args)
-	self:Message(385359, "yellow")
-	self:PlaySound(385359, "alarm")
-	self:CDBar(385359, 8.5)
+do
+	local playerList = {}
+	function mod:EnsnaringTrapPrecast(args)
+		playerList = {}
+		self:CDBar(385359, 8.5)
+	end
+	function mod:EnsnaringTrapCast(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(385359, "yellow", playerList, 2, CL.casting:format(CL.traps)) -- Casting Traps: player1, player2
+		self:PlaySound(385359, "alert", nil, playerList)
+	end
 end
 
-function mod:EnsnaringTrapApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("movement") then
-		self:TargetMessage(385359, "red", args.destName)
-		self:PlaySound(385359, "alarm", nil, args.destName)
+do
+	local prev = 0
+	function mod:EnsnaringTrapApplied(args)
+		-- when triggered the trap will AOE root everything within 5 yards, ideally two Hyenas
+		local onNpc = not self:Player(args.destFlags)
+		if onNpc and self:Friendly(args.destFlags) then
+			-- don't alert for pets
+			return
+		end
+		local t = args.time
+		if t - prev > 1.5 then
+			if onNpc then
+				-- only throttle for enemies
+				prev = t
+				self:TargetMessage(385359, "green", args.destName)
+				self:PlaySound(385359, "info")
+			elseif self:Me(args.destGUID) or self:Dispeller("movement") then
+				self:TargetMessage(385359, "red", args.destName)
+				self:PlaySound(385359, "alarm", nil, args.destName)
+			end
+		end
 	end
 end
 
