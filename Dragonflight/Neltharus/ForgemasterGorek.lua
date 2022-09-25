@@ -48,6 +48,7 @@ function mod:MightOfTheForge(args)
 end
 
 function mod:BlazingAegis(args)
+	-- TODO on mythic this targets 3 players
 	self:TargetMessage(374839, "yellow", args.destName)
 	self:PlaySound(374839, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
