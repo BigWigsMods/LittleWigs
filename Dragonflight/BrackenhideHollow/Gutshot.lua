@@ -78,7 +78,7 @@ do
 
 	function mod:MeatToss(args)
 		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
-		self:CDBar(args.spellId, 23.1)
+		self:CDBar(args.spellId, 21.9)
 	end
 end
 
