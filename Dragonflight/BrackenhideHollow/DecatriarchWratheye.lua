@@ -31,10 +31,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(376170, 6.2) -- Choking Rotcloud
+	self:CDBar(376170, 5.8) -- Choking Rotcloud
 	self:CDBar(373917, 10.6) -- Decaystrike
 	self:CDBar(373944, 15.5) -- Rotburst Totem
-	self:CDBar(373960, 41) -- Decaying Strength
+	self:Bar(373960, 41) -- Decaying Strength
 end
 
 --------------------------------------------------------------------------------
@@ -57,11 +57,11 @@ end
 function mod:ChokingRotcloud(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 43.8)
+	self:CDBar(args.spellId, 42.9)
 end
 
 function mod:Decaystrike(args)
 	self:Message(373917, "purple")
 	self:PlaySound(373917, "alert")
-	self:CDBar(373917, 19.5)
+	self:CDBar(373917, 19.4)
 end
