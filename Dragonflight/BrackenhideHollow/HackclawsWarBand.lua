@@ -41,8 +41,9 @@ function mod:OnBossEnable()
 	-- Rira Hackclaw
 	self:Log("SPELL_AURA_APPLIED", "SavageChargeApplied", 381461)
 	self:Log("SPELL_AURA_REMOVED", "SavageChargeRemoved", 381461)
-	self:Log("SPELL_AURA_APPLIED", "BladestormFixateApplied", 377844) -- TODO and 381835?
-	self:Log("SPELL_CAST_SUCCESS", "BladestormSuccess", 381834) -- TODO cast start instead? or remove + track 381835 aura
+	self:Log("SPELL_AURA_APPLIED", "BladestormStarting", 381835)
+	self:Log("SPELL_AURA_APPLIED", "BladestormFixateApplied", 377844)
+	self:Log("SPELL_AURA_REMOVED", "BladestormFixateRemoved", 377844)
 	self:Death("RiraHackclawDeath", 186122)
 
 	-- Gashtooth
@@ -99,24 +100,50 @@ function mod:SavageChargeRemoved(args)
 	end
 end
 
-function mod:BladestormFixateApplied(args)
-	-- fixate debuff applies to a random player, boss starts 3 second cast
-	self:TargetMessage(377827, "red", args.destName)
-	self:PlaySound(377827, "alarm", nil, args.destName)
-	-- TODO unknown CD
+-- example Bladestorm sequence:
+-- 0s SPELL_CAST_START 381834 (3s cast)
+-- 0s SPELL_AURA_APPLIED 381835 (on player)
+-- 3s SPELL_CAST_SUCCESS 381834
+-- 3s SPELL_AURA_REMOVED 381835 (from player)
+-- 3s UNIT_SPELLCAST_CHANNEL_START 377844 (5s channel)
+-- 3s SPELL_AURA_APPLIED 377844 (on player)
+-- 3s SPELL_DAMAGE 377830
+-- gains bloodlust (40% haste)
+-- 8s SPELL_AURA_REMOVED 377844 (from player)
+-- 8s SPELL_CAST_START 377844 (.714s cast)
+-- 8.714s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
+-- 8.714s SPELL_AURA_APPLIED 377844 (on player)
+do
+	local firstChannel = true
+
+	function mod:BladestormStarting(args)
+		firstChannel = true
+		-- fixate debuff applies to a random player, boss starts 3 second cast
+		self:TargetMessage(377827, "red", args.destName, CL.casting:format(args.spellName))
+		self:PlaySound(377827, "long", nil, args.destName)
+		-- TODO unknown CD
+	end
+
+	function mod:BladestormFixateApplied(args)
+		-- fixate debuff applies to a random player, boss starts 5 or 4 second channel
+		self:TargetMessage(377827, "red", args.destName)
+		self:PlaySound(377827, "alarm", nil, args.destName)
+		if firstChannel then
+			firstChannel = false
+			self:TargetBar(377827, 5, args.destName)
+		else
+			self:TargetBar(377827, 4, args.destName)
+		end
+	end
 end
 
-function mod:BladestormSuccess(args)
-	-- start of 5 second channel
-	self:Message(377827, "red")
-	self:PlaySound(377827, "alarm")
-	self:CastBar(377827, 5)
+function mod:BladestormFixateRemoved(args)
+	self:StopBar(377827, args.destName) -- Bladestorm
 end
 
 function mod:RiraHackclawDeath(args)
-	self:StopBar(377827) -- Savage Charge
+	self:StopBar(381444) -- Savage Charge
 	self:StopBar(377827) -- Bladestorm
-	self:StopBar(CL.cast:format(self:SpellName(377827))) -- <Cast: Bladestorm>
 end
 
 -- Gashtooth
