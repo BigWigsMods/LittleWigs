@@ -58,6 +58,8 @@ function mod:OnEngage()
 	self:Bar(378029, 3.6) -- Gash Frenzy
 	self:Bar(377950, 12.2) -- Greater Healing Rapids
 	self:Bar(377827, 20.3) -- Bladestorm
+	self:Bar(381694, 46.8) -- Decayed Senses
+	self:Bar(381444, 49.3) -- Savage Charge
 end
 
 --------------------------------------------------------------------------------
