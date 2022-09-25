@@ -37,8 +37,8 @@ end
 function mod:OnEngage()
 	self:CDBar(377559, 5.7) -- Vine Whip
 	self:CDBar(376811, 12.3) -- Decay Spray
-	self:Bar(376934, 16.6) -- Grasping Vines
-	self:Bar(377859, 30) -- Infectious Spit
+	self:CDBar(376934, 15.9) -- Grasping Vines
+	self:CDBar(377859, 28) -- Infectious Spit
 end
 
 --------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ end
 function mod:GraspingVines(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 44.9)
+	self:CDBar(args.spellId, 44.9)
 end
 
 do
