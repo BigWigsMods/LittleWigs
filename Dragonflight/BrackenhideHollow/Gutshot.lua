@@ -83,9 +83,7 @@ do
 end
 
 function mod:SmellLikeMeatApplied(args)
-	if self:Me(args.destGUID) then
-		self:Bar(384416, 10, CL.fixate) -- Meat Toss (Fixate)
-	end
+	self:TargetBar(384416, 10, args.destName, CL.fixate) -- Meat Toss (Fixate)
 end
 
 function mod:MastersCall(args)
