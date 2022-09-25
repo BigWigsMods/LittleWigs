@@ -40,8 +40,8 @@ end
 function mod:OnBossEnable()
 	-- Rira Hackclaw
 	self:Log("SPELL_AURA_APPLIED", "SavageChargeApplied", 381461)
-	self:Log("SPELL_AURA_APPLIED", "BladestormFixateApplied", 381835)
-	self:Log("SPELL_CAST_SUCCESS", "BladestormSuccess", 381834)
+	self:Log("SPELL_AURA_APPLIED", "BladestormFixateApplied", 377844) -- TODO and 381835?
+	self:Log("SPELL_CAST_SUCCESS", "BladestormSuccess", 381834) -- TODO cast start instead? or remove + track 381835 aura
 
 	-- Gashtooth
 	self:Log("SPELL_CAST_START", "GashFrenzy", 378029)
