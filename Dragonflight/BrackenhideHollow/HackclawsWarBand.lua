@@ -108,11 +108,15 @@ end
 -- 3s UNIT_SPELLCAST_CHANNEL_START 377844 (5s channel)
 -- 3s SPELL_AURA_APPLIED 377844 (on player)
 -- 3s SPELL_DAMAGE 377830
--- gains bloodlust (40% haste)
 -- 8s SPELL_AURA_REMOVED 377844 (from player)
--- 8s SPELL_CAST_START 377844 (.714s cast)
--- 8.714s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
--- 8.714s SPELL_AURA_APPLIED 377844 (on player)
+-- 8s SPELL_CAST_START 377844 (1s cast)
+-- 9s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
+-- 9s SPELL_AURA_APPLIED 377844 (on player)
+-- gains bloodlust (40% haste)
+-- 13s SPELL_AURA_REMOVED 377844 (from player)
+-- 13s SPELL_CAST_START 377844 (.714s cast)
+-- 13.714s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
+-- 13.714s SPELL_AURA_APPLIED 377844 (on player)
 do
 	local firstChannel = true
 
