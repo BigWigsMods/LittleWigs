@@ -31,9 +31,9 @@ function mod:GetOptions()
 		377950, -- Greater Healing Rapids
 		377965, -- Bloodlust
 	}, {
-		[377827] = -24732, -- Rira Hackclaw
-		[378029] = -24733, -- Gashtooth
-		[377950] = -24734, -- Tricktotem
+		[381444] = -24732, -- Rira Hackclaw
+		[381694] = -24733, -- Gashtooth
+		[381470] = -24734, -- Tricktotem
 	}
 end
 
