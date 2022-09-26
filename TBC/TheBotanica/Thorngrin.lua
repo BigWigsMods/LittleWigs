@@ -58,7 +58,7 @@ do
 	local prev = 0
 	function mod:HellfireDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > (self:Melee() and 6 or 1.5) then
 				prev = t
 				self:MessageOld(34659, "blue", "alert", CL.you:format(args.spellName))

@@ -87,7 +87,7 @@ end
 do
 	local prev = 0
 	function mod:PrayerOfHealing(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(35943, "orange", self:Interrupter() and "long", CL.casting:format(args.spellName))

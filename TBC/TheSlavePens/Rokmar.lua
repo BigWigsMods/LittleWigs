@@ -27,9 +27,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "EnsnaringMossRemoved", 31948)
 	self:Log("SPELL_AURA_APPLIED", "GrievousWound", 31956, 38801)
 
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
-
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:Death("Win", 17991)
+end
+
+function mod:OnEngage()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterEvent("UNIT_HEALTH")
 end
 
 --------------------------------------------------------------------------------
@@ -57,9 +61,9 @@ end
 
 function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 17991 then
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		local hp = self:GetHealth(unit)
 		if hp < 26 then
-			self:UnregisterUnitEvent(event, "target", "focus")
+			self:UnregisterEvent(event)
 			self:MessageOld(34970, "green", nil, CL.soon:format(self:SpellName(34970)), false)
 		end
 	end

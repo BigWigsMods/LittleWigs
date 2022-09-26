@@ -5,4 +5,5 @@ if L then
 	L.wave_desc = "Anuncia mensagens de aviso da aproximação das ondas."
 
 	L.medivh = "Medivh"
+	L.rift = "Fenda Temporal"
 end

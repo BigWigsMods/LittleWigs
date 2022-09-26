@@ -23,7 +23,7 @@ local L = mod:GetLocale()
 if L then
 	L.fixate = CL.fixate
 	L.fixate_desc = "Causes the caster to fixate on a random target."
-	L.fixate_icon = "ability_fixated_state_red"
+	L.fixate_icon = "spell_shadow_charm"
 end
 
 --------------------------------------------------------------------------------
@@ -70,10 +70,7 @@ function mod:OnEngage()
 	mobCollector = {}
 end
 
-function mod:OnBossDisable()
-	mobsFound = 0
-	mobCollector = {}
-end
+mod.OnBossDisable = mod.OnEngage
 
 --------------------------------------------------------------------------------
 -- Event Handlers
@@ -111,7 +108,7 @@ do
 	local prev = 0
 	function mod:PeriodicDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:MessageOld(args.spellId == 35283 and -5488 or args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
@@ -192,7 +189,7 @@ do
 
 	function mod:Inferno(args)
 		infernoCasts = infernoCasts + 1
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(-5488, "cyan", "info", CL.casting:format(args.spellName))

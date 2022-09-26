@@ -30,6 +30,7 @@ if L then
 	L.wave_desc = "Announce approximate warning messages for the waves."
 
 	L.medivh = "Medivh"
+	L.rift = "Time Rift"
 end
 
 --------------------------------------------------------------------------------
@@ -64,8 +65,7 @@ function mod:UpdateWaveTimers(id, text)
 		local currentWave = tonumber(wave)
 		if currentWave and currentWave ~= prevWave then
 			prevWave = currentWave
-			local rift = self:SpellName(147840) -- Time Rift
-			self:Bar("wave", 15, CL.count:format(rift, currentWave), "INV_Misc_ShadowEgg")
+			self:Bar("wave", 15, CL.count:format(L.rift, currentWave), "INV_Misc_ShadowEgg")
 			if currentWave == 6 then
 				local chronoLordDeja = self:BossName(552) -- Chrono Lord Deja
 				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(chronoLordDeja, 15), false)
@@ -77,20 +77,19 @@ function mod:UpdateWaveTimers(id, text)
 				local aeonus = self:BossName(554) -- Aeonus
 				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(aeonus, 15), false)
 			else
-				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(CL.count:format(rift, currentWave), 15), false)
-				self:Bar("wave", 135, CL.count:format(rift, currentWave+1), "INV_Misc_ShadowEgg") -- 120s + 15s
+				self:MessageOld("wave", "yellow", "info", CL.custom_sec:format(CL.count:format(L.rift, currentWave), 15), false)
+				self:Bar("wave", self:Classic() and 137 or 135, CL.count:format(L.rift, currentWave+1), "INV_Misc_ShadowEgg") -- (Retail 120s, Classic 122s) + 15s
 			end
 		end
 	end
 end
 
 function mod:BossDeath(args)
-	self:Bar("wave", 45, CL.count:format(self:SpellName(147840), args.mobId == 17879 and 7 or 13), "INV_Misc_ShadowEgg") -- 30s + 15s
+	self:Bar("wave", self:Classic() and 137 or 45, CL.count:format(L.rift, args.mobId == 17879 and 7 or 13), "INV_Misc_ShadowEgg") -- (Retail 30s, Classic 122s) + 15s
 end
 
 function mod:MedivhDies()
 	self:SimpleTimer(function() prevWave = 0 end, 15)
 	self:SendMessage("BigWigs_StopBars", self)
-	self:Bar("wave", 300, L.medivh, "achievement_bg_returnxflags_def_wsg")
+	self:Bar("wave", 300, L.medivh, "spell_nature_timestop")
 end
-

@@ -6,7 +6,6 @@ on:
       - master
     tags:
       - '*'
-      - '!**-classic'
     paths-ignore:
       - '.github/**'
 

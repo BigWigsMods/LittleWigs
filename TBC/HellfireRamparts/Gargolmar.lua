@@ -49,7 +49,7 @@ end
 do
 	local prev = 0
 	function mod:Heal(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(args.spellId, "red", self:Interrupter() and "warning", CL.casting:format(args.spellName))
@@ -60,7 +60,7 @@ end
 do
 	local prev = 0
 	function mod:Renew(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(args.spellId, "yellow", self:Interrupter() and "warning", CL.casting:format(args.spellName))
@@ -73,7 +73,7 @@ do
 	function mod:RenewApplied(args)
 		if not self:Dispeller("magic", true) then return end
 
-		local t = GetTime()
+		local t = args.time
 		local isANewPairOfCasts = t - prev > 1
 		if isANewPairOfCasts or (prevGUID ~= args.destGUID) then
 			prev = t

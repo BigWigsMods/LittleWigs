@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
+	self:RegisterEvent("UNIT_HEALTH")
 end
 
 --------------------------------------------------------------------------------
@@ -67,9 +67,9 @@ end
 
 function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) ~= 19220 then return end
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < 28 then
-		self:UnregisterUnitEvent(event, "target", "focus")
+		self:UnregisterEvent(event)
 		self:MessageOld(35285, "red", nil, L.despawn_message)
 	end
 end

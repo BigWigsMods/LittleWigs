@@ -32,7 +32,7 @@ do
 	local prev = 0
 	function mod:Cleave(args)
 		if self:Me(args.destGUID) and not self:Tank() then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
 				self:MessageOld(args.spellId, "blue", "alert", CL.you:format(args.spellName))

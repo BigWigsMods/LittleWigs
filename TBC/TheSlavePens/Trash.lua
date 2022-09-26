@@ -82,7 +82,7 @@ end
 do
 	local prev = 0
 	function mod:SpellReflection(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:TargetMessageOld(args.spellId, args.destName, "yellow", "long", nil, nil, true)
@@ -114,7 +114,7 @@ end
 do
 	local prev = 0
 	function mod:Heal(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(39378, "orange", "alarm", CL.casting:format(args.spellName))

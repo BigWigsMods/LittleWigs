@@ -44,6 +44,8 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_DAMAGE", "JackhammersDamage", 39195)
 	self:Log("SPELL_MISSED", "JackhammersDamage", 39195)
+
+	self:Death("Win", 19710)
 end
 
 --------------------------------------------------------------------------------
@@ -93,7 +95,7 @@ do
 	local prev = 0
 	function mod:JackhammersDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > (self:Melee() and 6 or 1.5) then
 				prev = t
 				self:MessageOld(39194, "blue", "alert", CL.you:format(self:SpellName(39194))) -- args.spellName is "Jackhammer Effect"

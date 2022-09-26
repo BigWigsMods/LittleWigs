@@ -1,0 +1,25 @@
+## Interface: 20504
+
+## Title: LittleWigs
+## Notes: Boss warnings for 5-man dungeons & scenarios.
+## Notes-deDE: Boss Warnungen für 5-Spieler Dungeons & Szenarien.
+## Notes-esES: Boss warnings for 5-man dungeons & scenarios.
+## Notes-esMX: Boss warnings for 5-man dungeons & scenarios.
+## Notes-frFR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
+## Notes-koKR: 5인 던전 & 시나리오의 우두머리 경보입니다.
+## Notes-ptBR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-ruRU: Boss warnings for 5-man dungeons & scenarios.
+## Notes-zhCN: 5人地下城和场景战役首领警报。
+## Notes-zhTW: 5人地城和情境地圖首領警報。
+## Author: Funkydude
+## X-Category: Party
+## X-Credits: Ulic
+## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
+## X-Curse-Project-ID: 4383
+## X-WoWI-ID: 9577
+## X-Wago-ID: 5bGolnN0
+
+## Dependencies: BigWigs
+## LoadOnDemand: 1
+## Version: @project-version@

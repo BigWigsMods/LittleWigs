@@ -28,7 +28,11 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Stomp", 34716)
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	end
 	self:Death("AddDeath", 19949)
 end
 
@@ -51,12 +55,16 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 34741 then -- Summon Saplings
-		addsAlive = 6 -- when they despawn to heal him, they don't fire any events; fortunately, no 2 waves can be alive at the same time
-		self:MessageOld(-5478, "red", "alarm")
-		self:Bar(-5478, 25, CL.onboss:format(self:SpellName(2060)), 38658) -- text is "Heal on BOSS", icon is that of druids' Healing Touch
-		self:CDBar(-5478, 45)
+do
+	local prev
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
+		if spellId == 34741 and castId ~= prev then -- Summon Saplings
+			prev = castId
+			addsAlive = 6 -- when they despawn to heal him, they don't fire any events; fortunately, no 2 waves can be alive at the same time
+			self:MessageOld(-5478, "red", "alarm")
+			self:Bar(-5478, 25, CL.onboss:format(self:SpellName(12039)), 38658) -- text is "Heal on BOSS", icon is that of druids' Healing Touch
+			self:CDBar(-5478, 45)
+		end
 	end
 end
 
@@ -64,6 +72,6 @@ function mod:AddDeath()
 	addsAlive = addsAlive - 1
 	self:MessageOld(-5478, "green", "info", CL.add_remaining:format(addsAlive))
 	if addsAlive == 0 then
-		self:StopBar(CL.onboss:format(self:SpellName(2060))) -- "Heal on BOSS"
+		self:StopBar(CL.onboss:format(self:SpellName(12039))) -- "Heal on BOSS"
 	end
 end

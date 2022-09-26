@@ -5,4 +5,5 @@ if L then
 	--L.wave_desc = "Announce approximate warning messages for the waves."
 
 	L.medivh = "麦迪文" -- zhCN?
+	--L.rift = "Time Rift"
 end
