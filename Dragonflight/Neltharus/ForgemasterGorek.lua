@@ -30,10 +30,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	-- TODO these timers are all wrong
-	self:Bar(374635, 2.3) -- Might of the Forge
-	self:Bar(374969, 25.5) -- Forgestorm
-	self:Bar(374533, 18.9) -- Heated Swings
+	self:Bar(374635, 3.4) -- Might of the Forge
+	self:Bar(374969, 27.8) -- Forgestorm
+	self:Bar(374533, 20.5) -- Heated Swings
 end
 
 --------------------------------------------------------------------------------
