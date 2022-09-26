@@ -4,7 +4,7 @@ if L then
 	L.energy_discharged = "%s descarregado" -- %s = Pure Energy (npc ID = 24745)
 end
 
-L = BigWigs:NewBossLocale("Kael'thas Sunstrider ", "ptBR")
+L = BigWigs:NewBossLocale("Kael'thas Sunstrider Magisters' Terrace", "ptBR")
 if L then
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
 	L.warmup_trigger = "Não fiquem aí, com essa cara de arrogância!"

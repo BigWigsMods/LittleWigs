@@ -17,7 +17,7 @@ BigWigs:AddColors("Priestess Delrissa", {
 	[46193] = {"blue","yellow"},
 })
 
-BigWigs:AddColors("Kael'thas Sunstrider ", {
+BigWigs:AddColors("Kael'thas Sunstrider Magisters' Terrace", {
 	[-5180] = "yellow",
 	[-5167] = "red",
 	[36819] = "red",
