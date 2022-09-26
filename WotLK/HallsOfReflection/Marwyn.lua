@@ -28,7 +28,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CorruptedTouch", 72383)
 	self:Log("SPELL_AURA_REMOVED", "CorruptedTouchRemoved", 72383)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	if self:Classic() then
+		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	else
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	end
 	self:Death("Win", 38113)
 end
 

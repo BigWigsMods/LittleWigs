@@ -31,7 +31,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	if self:Classic() then
+		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	else
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	end
 
 	self:Log("SPELL_CAST_START", "Smash", 42723, 42669, 59706) -- Dark Smash; normal / heroic Smash
 	self:Log("SPELL_CAST_START", "Roar", 42708, 42729, 59708, 59734) -- Staggering Roar, Dreadful Roar on normal / heroic
