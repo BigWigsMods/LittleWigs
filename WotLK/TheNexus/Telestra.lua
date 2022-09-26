@@ -39,7 +39,8 @@ end
 --
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if self:MobId(self:UnitGUID(unit)) ~= 26731 then return end
+	local hp = self:GetHealth(unit)
 	if (hp < 56 and splitPhase == 0) or (hp < 16 and splitPhase == 1) then
 		splitPhase = splitPhase + 1
 		if splitPhase > 1 or self:Normal() then -- No 2nd split on Normal mode

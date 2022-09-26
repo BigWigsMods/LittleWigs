@@ -91,7 +91,8 @@ function mod:ShadowsOfThePast(args)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if self:MobId(self:UnitGUID(unit)) ~= 34928 then return end
+	local hp = self:GetHealth(unit)
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)
 		if self:CheckOption("confess", "MESSAGE") then -- both happen at the same time, just display one message depending on the user's settings
@@ -102,8 +103,12 @@ function mod:UNIT_HEALTH(event, unit)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 43979 then -- Full Heal
-		self:Win()
+do
+	local prev = 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
+		if spellId == 43979 and castId ~= prev then -- Full Heal
+			prev = castId
+			self:Win()
+		end
 	end
 end

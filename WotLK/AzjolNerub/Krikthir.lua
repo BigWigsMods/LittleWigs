@@ -42,7 +42,8 @@ function mod:Frenzy(args)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local health = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if self:MobId(self:UnitGUID(unit)) ~= 28684 then return end
+	local health = self:GetHealth(unit)
 	if health > 10 and health <= 15 then
 		self:UnregisterUnitEvent(event, unit)
 		self:MessageOld(28747, "red", nil, CL.soon:format(self:SpellName(28747))) -- Frenzy

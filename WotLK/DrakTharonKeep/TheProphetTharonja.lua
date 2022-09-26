@@ -36,7 +36,8 @@ end
 --
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if self:MobId(self:UnitGUID(unit)) ~= 26632 then return end
+	local hp = self:GetHealth(unit)
 	if hp < 60 then
 		self:UnregisterUnitEvent(event, unit)
 		self:MessageOld("stages", "cyan", nil, CL.soon:format(CL.phase:format(2)), false)

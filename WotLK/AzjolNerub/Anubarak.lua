@@ -45,18 +45,27 @@ function mod:Pound(args)
 	self:MessageOld(53472, "yellow", "warning", CL.casting:format(args.spellName))
 end
 
-function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	-- Submerge
-	if UnitCanAttack("player", unit) then
-		self:MessageOld(-6359, "cyan", nil, CL.over:format(self:SpellName(-6359)))
-	else
-		self:MessageOld(-6359, "cyan")
-		self:Bar(-6359, self:Normal() and 41 or 62)
+do
+	local prev = 0
+	function mod:UNIT_TARGETABLE_CHANGED(_, unit)
+		if self:MobId(self:UnitGUID(unit)) ~= 29120 then return end
+		local t = GetTime()
+		if t - prev < 3 then return end
+		prev = t
+
+		-- Submerge
+		if UnitCanAttack("player", unit) then
+			self:MessageOld(-6359, "cyan", nil, CL.over:format(self:SpellName(-6359)))
+		else
+			self:MessageOld(-6359, "cyan")
+			self:Bar(-6359, self:Normal() and 41 or 62)
+		end
 	end
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	if self:MobId(self:UnitGUID(unit)) ~= 29120 then return end
+	local hp = self:GetHealth(unit)
 	if hp < nextSubmergeWarning then
 		self:MessageOld(-6359, "cyan", nil, CL.soon:format(self:SpellName(-6359))) -- Submerge
 		nextSubmergeWarning = nextSubmergeWarning - 25

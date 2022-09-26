@@ -50,13 +50,19 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 55297 then -- Rhino Form
-		self:CDBar("forms", 34.1, L.form_troll, "achievement_character_troll_male")
-		self:DelayedMessage("forms", 29, "yellow", CL.soon:format(L.form_troll))
-	elseif spellId == 55299 then -- Troll Form
-		self:CDBar("forms", 33.6, L.form_rhino, "ability_hunter_pet_rhino")
-		self:DelayedMessage("forms", 28.5, "yellow", CL.soon:format(L.form_rhino))
+do
+	local prev = 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
+		if castId == prev then return end
+		if spellId == 55297 then -- Rhino Form
+			prev = castId
+			self:CDBar("forms", 34.1, L.form_troll, "achievement_character_troll_male")
+			self:DelayedMessage("forms", 29, "yellow", CL.soon:format(L.form_troll))
+		elseif spellId == 55299 then -- Troll Form
+			prev = castId
+			self:CDBar("forms", 33.6, L.form_rhino, "ability_hunter_pet_rhino")
+			self:DelayedMessage("forms", 28.5, "yellow", CL.soon:format(L.form_rhino))
+		end
 	end
 end
 
