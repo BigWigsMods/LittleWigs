@@ -102,7 +102,7 @@ end
 do
 	local prev = 0
 	function mod:SightlessTouch(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(38815, "yellow", self:Interrupter() and "alarm", CL.casting:format(args.spellName))
@@ -148,7 +148,7 @@ do
 			self:OpenProximity(args.spellId, 10) -- not possible to detect its target, no helpful visual circle either
 		end
 
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(args.spellId, "red", "warning", CL.incoming:format(args.spellName))

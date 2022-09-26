@@ -28,7 +28,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "ConsumptionDamage", 35951)
 	self:Log("SPELL_AURA_APPLIED", "DarkSpin", 30502)
 
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_HEALTH")
+	else
+		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -47,7 +51,7 @@ do
 	local prev = 0
 	function mod:ConsumptionDamage(args) -- Lesser Shadow Fissure spellcast
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
 				self:MessageOld(30496, "blue", "alarm", CL.underyou:format(self:SpellName(30496)))
@@ -61,9 +65,15 @@ function mod:DarkSpin(args)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 30 then
-		self:UnregisterUnitEvent(event, unit)
-		self:MessageOld(30502, "green", nil, CL.soon:format(self:SpellName(30502)), false) -- Dark Spin
+	if self:MobId(self:UnitGUID(unit)) == 16807 then
+		local hp = self:GetHealth(unit)
+		if hp < 30 then
+			if self:Classic() then
+				self:UnregisterEvent(event)
+			else
+				self:UnregisterUnitEvent(event, unit)
+			end
+			self:MessageOld(30502, "green", nil, CL.soon:format(self:SpellName(30502)), false) -- Dark Spin
+		end
 	end
 end

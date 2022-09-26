@@ -25,15 +25,24 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ArcaneResonance", 34794)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ArcaneResonancePrint", 34794)
 	self:Log("SPELL_CAST_START", "GreaterHeal", 35096)
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	end
 end
 
 function mod:OnEngage()
 	-- Summon Reinforcements:
 	if self:Normal() then -- at 55%
-		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+		if self:Classic() then
+			self:RegisterEvent("UNIT_HEALTH")
+		else
+			self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+		end
 	else -- every minute
 		self:CDBar(-5411, 60)
 		self:DelayedMessage(-5411, 55, "yellow", CL.soon:format(self:SpellName(-5411)))
@@ -48,24 +57,38 @@ function mod:ArcaneResonance(args)
 	self:TargetMessageOld(args.spellId, args.spellName, "red")
 end
 
+function mod:ArcaneResonancePrint(args)
+	BigWigs:Error("Arcane Resonance stacked to ".. args.amount .." tell the BigWigs Devs! ".. (self:Classic() and "classic" or "retail"))
+end
+
 function mod:GreaterHeal(args)
 	self:MessageOld(args.spellId, "orange", self:Interrupter() and "warning" or "alarm", CL.casting:format(args.spellName))
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-	if hp < 60 then
-		self:UnregisterUnitEvent(event, unit)
-		self:MessageOld(-5411, "cyan", nil, CL.soon:format(self:SpellName(-5411))) -- Summon Reinforcements
+	if self:MobId(self:UnitGUID(unit)) == 17976 then
+		local hp = self:GetHealth(unit)
+		if hp < 60 then
+			if self:Classic() then
+				self:UnregisterEvent(event)
+			else
+				self:UnregisterUnitEvent(event, unit)
+			end
+			self:MessageOld(-5411, "cyan", nil, CL.soon:format(self:SpellName(-5411))) -- Summon Reinforcements
+		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 34803 then -- Summon Reinforcements
-		self:MessageOld(-5411, "yellow", "info")
-		if not self:Normal() then
-			self:CDBar(-5411, 60)
-			self:DelayedMessage(-5411, 55, "yellow", CL.soon:format(self:SpellName(-5411)))
+do
+	local prev
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
+		if spellId == 34803 and castId ~= prev then -- Summon Reinforcements
+			prev = castId
+			self:MessageOld(-5411, "yellow", "info")
+			if not self:Normal() then
+				self:CDBar(-5411, 60)
+				self:DelayedMessage(-5411, 55, "yellow", CL.soon:format(self:SpellName(-5411)))
+			end
 		end
 	end
 end

@@ -76,7 +76,7 @@ end
 do
 	local prev = 0
 	function mod:Heal(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(22883, "orange", "long", CL.casting:format(args.spellName))

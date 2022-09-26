@@ -41,7 +41,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SuperShrinkRay", 31485)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL") -- no locale-independent events
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_HEALTH")
+	else
+		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+	end
 end
 
 function mod:OnEngage()
@@ -68,20 +72,22 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	end
 end
 
-do
-	function mod:UNIT_HEALTH(event, unit)
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+function mod:UNIT_HEALTH(event, unit)
+	if self:MobId(self:UnitGUID(unit)) == 17796 then
+		local hp = self:GetHealth(unit)
 		if hp < nextAddWarning then
 			nextAddWarning = nextAddWarning - 25
 			self:Message("mechanics", "red", CL.soon:format(self:SpellName(-5999)), false) -- Steamrigger Mechanics
-
 			while nextAddWarning >= 25 and hp < nextAddWarning do
 				-- account for high-level characters hitting multiple thresholds
 				nextAddWarning = nextAddWarning - 25
 			end
-
 			if nextAddWarning < 25 then
-				self:UnregisterUnitEvent(event, unit)
+				if self:Classic() then
+					self:UnregisterEvent(event)
+				else
+					self:UnregisterUnitEvent(event, unit)
+				end
 			end
 		end
 	end

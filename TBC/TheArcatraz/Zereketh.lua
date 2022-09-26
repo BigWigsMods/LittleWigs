@@ -23,8 +23,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowNova", 36127, 39005) -- normal, heroic
-	self:Log("SPELL_DAMAGE", "VoidZone", 36121, 39004) -- normal, heroic
-	self:Log("SPELL_MISSED", "VoidZone", 36121, 39004)
+	self:Log("SPELL_DAMAGE", "Consumption", 36121, 39004) -- normal, heroic
+	self:Log("SPELL_MISSED", "Consumption", 36121, 39004)
 	self:Log("SPELL_AURA_APPLIED", "SeedOfCorruption", 36123, 39367) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "SeedOfCorruptionRemoved", 36123, 39367)
 end
@@ -39,12 +39,12 @@ end
 
 do
 	local prev = 0
-	function mod:VoidZone(args)
+	function mod:Consumption(args) -- Void Zone
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(36119, "blue", "alert", CL.underyou:format(self:SpellName(36119))) -- args.spellName is "Consumption"
+				self:MessageOld(36119, "blue", "alert", CL.underyou:format(self:SpellName(36119))) -- 36119 = Void Zone
 			end
 		end
 	end

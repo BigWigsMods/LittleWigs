@@ -20,16 +20,24 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 30738 then -- Blade Dance Targeting
-		self:MessageOld(-5899, "yellow", "warning")
-		self:CDBar(-5899, 30)
+do
+	local prev
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
+		if spellId == 30738 and castId ~= prev then -- Blade Dance Targeting
+			prev = castId
+			self:MessageOld(-5899, "yellow", "warning")
+			self:CDBar(-5899, 30)
+		end
 	end
 end

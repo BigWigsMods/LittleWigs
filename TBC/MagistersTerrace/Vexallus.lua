@@ -34,7 +34,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "EnergyFeedback", 44335)
 	self:Log("SPELL_AURA_REMOVED", "EnergyFeedbackRemoved", 44335)
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -50,8 +54,12 @@ function mod:EnergyFeedbackRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 44322 or spellId == 46154 then -- Summon Pure Energy (normal / heroic)
-		self:MessageOld(-5085, "red", nil, L.energy_discharged:format(self:SpellName(-5085)), false)
+do
+	local prev
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
+		if (spellId == 44322 or spellId == 46154) and castId ~= prev then -- Summon Pure Energy (normal / heroic)
+			prev = castId
+			self:MessageOld(-5085, "red", nil, L.energy_discharged:format(self:SpellName(-5085)), false)
+		end
 	end
 end

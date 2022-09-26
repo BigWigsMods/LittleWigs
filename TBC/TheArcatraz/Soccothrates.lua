@@ -21,9 +21,13 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:Log("SPELL_CAST_SUCCESS", "FelfireKnockback", 36512) -- Knockback before the charge that leaves a trail of fire
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	end
 
+	self:Log("SPELL_CAST_SUCCESS", "FelfireKnockback", 36512) -- Knockback before the charge that leaves a trail of fire
 	self:Log("SPELL_AURA_APPLIED", "FelfireShock", 35759, 39006) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "FelfireShockRemoved", 35759, 39006)
 end
@@ -45,9 +49,15 @@ do
 		self:TargetMessageOld(-5293, player, "orange", nil, 100, -5293)
 	end
 
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-		if spellId == 36038 then -- Charge Targeting
-			self:GetBossTarget(printTarget, 0.4, self:UnitGUID(unit))
+	local prev
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castId, spellId)
+		if spellId == 36038 and castId ~= prev then -- Charge Targeting
+			prev = castId
+			if self:Classic() then
+				self:GetUnitTarget(printTarget, 0.4, self:UnitGUID(unit))
+			else
+				self:GetBossTarget(printTarget, 0.4, self:UnitGUID(unit))
+			end
 		end
 	end
 end

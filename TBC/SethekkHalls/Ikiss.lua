@@ -27,7 +27,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_HEALTH", nil,  "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_HEALTH")
+	else
+		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+	end
 	self:Log("SPELL_CAST_SUCCESS", "ArcaneExplosion", 38197, 40425) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "Polymorph", 38245, 43309) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "PolymorphRemoved", 38245, 43309)
@@ -101,18 +105,24 @@ end
 do
 	local warnAt = { 85, 55, 30 }
 	function mod:UNIT_HEALTH(event, unit)
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
-		if hp < warnAt[explosionWarnings] then
-			explosionWarnings = explosionWarnings + 1
-			self:MessageOld(38197, "orange", nil, CL.soon:format(self:SpellName(38197))) -- Arcane Explosion
-
-			while explosionWarnings <= #warnAt and hp < warnAt[explosionWarnings] do
-				-- account for high-level characters hitting multiple thresholds
+		if self:MobId(self:UnitGUID(unit)) == 18473 then
+			local hp = self:GetHealth(unit)
+			if hp < warnAt[explosionWarnings] then
 				explosionWarnings = explosionWarnings + 1
-			end
+				self:MessageOld(38197, "orange", nil, CL.soon:format(self:SpellName(38197))) -- Arcane Explosion
 
-			if explosionWarnings > #warnAt then
-				self:UnregisterUnitEvent(event, unit)
+				while explosionWarnings <= #warnAt and hp < warnAt[explosionWarnings] do
+					-- account for high-level characters hitting multiple thresholds
+					explosionWarnings = explosionWarnings + 1
+				end
+
+				if explosionWarnings > #warnAt then
+					if self:Classic() then
+						self:UnregisterEvent(event)
+					else
+						self:UnregisterUnitEvent(event, unit)
+					end
+				end
 			end
 		end
 	end

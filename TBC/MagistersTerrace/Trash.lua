@@ -63,7 +63,7 @@ end
 do
 	local prev = 0
 	function mod:ArcaneNova(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(44644, "orange", self:Ranged() and "warning" or "alert", CL.casting:format(args.spellName))
