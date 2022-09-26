@@ -51,7 +51,7 @@ end
 do
 	local prev = 0
 	function mod:ChargedFlurry(args)
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 1 then
 			prev = t
 			self:MessageOld(args.spellId, "red", self:Interrupter() and "warning" or "long", CL.casting:format(args.spellName))

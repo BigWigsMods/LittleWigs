@@ -57,7 +57,7 @@ do
 	local prev = 0
 	function mod:RainOfFire(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:MessageOld(59971, "blue", "alert", CL.you:format(args.spellName))

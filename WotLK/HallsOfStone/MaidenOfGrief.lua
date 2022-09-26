@@ -79,7 +79,7 @@ do
 	local prev = 0
 	function mod:StormOfGrief(args)
 		if self:Me(args.destGUID) and not shouldBeTakingDamage then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 2 then
 				prev = t
 				self:MessageOld(59772, "blue", "alert", CL.underyou:format(args.spellName))

@@ -81,7 +81,7 @@ do
 	local prev = 0
 	function mod:GroundDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:MessageOld(args.spellId == 59854 and 49034 or args.spellId, "blue", "alert", CL.you:format(args.spellName))

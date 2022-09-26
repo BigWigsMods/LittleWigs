@@ -74,7 +74,7 @@ do
 	local prev = 0
 	function mod:WhirlingSlash(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
 				self:MessageOld(59825, "blue", "alarm", CL.underyou:format(args.spellName))
