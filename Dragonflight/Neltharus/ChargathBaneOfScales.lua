@@ -72,12 +72,12 @@ do
 
 	function mod:DragonStrike(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 21.9)
+		self:CDBar(args.spellId, 20.9)
 	end
 end
 
 function mod:MagmaWave(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO bar
+	self:CDBar(args.spellId, 22.4)
 end
