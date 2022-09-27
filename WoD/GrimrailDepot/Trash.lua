@@ -210,8 +210,10 @@ end
 -- Grom'kar Far Seer
 
 function mod:StormShield(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+	if self:Interrupter() then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:StormShieldApplied(args)
