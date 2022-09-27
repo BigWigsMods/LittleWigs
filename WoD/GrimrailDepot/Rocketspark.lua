@@ -16,6 +16,7 @@ mod:SetRespawnTime(8)
 --
 
 local borkaDefeated = false
+local rocketsparkBelow20 = false
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -54,6 +55,7 @@ end
 
 function mod:OnEngage()
 	borkaDefeated = false
+	rocketsparkBelow20 = false
 	self:CDBar(161090, 28) -- Mad Dash
 	self:CDBar(162617, 7) -- Slam
 	self:Bar(162500, 3) -- VX18-B Target Eliminator
@@ -71,6 +73,7 @@ function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 77803 then -- Railmaster Rocketspark
 		-- Rocketspark stops casting Missile Barrage below 20% HP
 		if self:GetHealth(unit) < 20 then
+			rocketsparkBelow20 = true
 			self:StopBar(162407) -- X21-01A Missile Barrage
 			self:StopBar(161090) -- Mad Dash
 			self:UnregisterUnitEvent(event, unit)
@@ -106,6 +109,8 @@ do
 		self:PlaySound(args.spellId, "alert")
 		if borkaDefeated then
 			self:Bar(args.spellId, 13.4)
+		elseif rocketsparkBelow20 then
+			self:Bar(args.spellId, 8.5)
 		elseif firstBetterPosition then
 			self:Bar(args.spellId, 9)
 			firstBetterPosition = false
@@ -115,7 +120,9 @@ do
 	function mod:VX18BTargetEliminator(args)
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alarm")
-		if firstVX18BTargetEliminator then
+		if rocketsparkBelow20 then
+			self:Bar(args.spellId, 8.5)
+		elseif firstVX18BTargetEliminator then
 			self:Bar(args.spellId, 7.5)
 			firstVX18BTargetEliminator = false
 		end
