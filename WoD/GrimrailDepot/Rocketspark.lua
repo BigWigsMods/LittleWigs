@@ -39,6 +39,7 @@ end
 
 function mod:OnBossEnable()
 	-- Railmaster Rocketspark
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1", "boss2")
 	self:Log("SPELL_CAST_START", "X2101AMissileBarrage", 162407)
 	self:Log("SPELL_AURA_APPLIED", "RecoveringApplied", 163947)
 	self:Log("SPELL_CAST_START", "BetterPosition", 162171)
@@ -64,6 +65,20 @@ end
 --
 
 -- Railmaster Rocketspark
+
+function mod:UNIT_HEALTH(event, unit)
+	-- have to register both boss1 and boss2 because boss1 is whichever is aggro'd first
+	if self:MobId(self:UnitGUID(unit)) == 77803 then -- Railmaster Rocketspark
+		-- Rocketspark stops casting Missile Barrage below 20% HP
+		if self:GetHealth(unit) < 20 then
+			self:StopBar(162407) -- X21-01A Missile Barrage
+			self:UnregisterUnitEvent(event, unit)
+		end
+	else
+		-- don't need to watch Borka's health
+		self:UnregisterUnitEvent(event, unit)
+	end
+end
 
 function mod:X2101AMissileBarrage(args)
 	self:Message(args.spellId, "orange")
