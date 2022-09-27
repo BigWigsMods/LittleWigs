@@ -51,7 +51,7 @@ end
 
 function mod:FetterApplied(args)
 	-- TODO confirm this spell ID only applies to Chargath, else check is not player
-	self:Message(args.spellId, "green", CL.on:format(args.spellName, args.destName))
+	self:Message(args.spellId, "green", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 	self:TargetBar(args.spellId, 14, args.destName)
 end
