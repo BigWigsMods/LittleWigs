@@ -99,8 +99,10 @@ do
 		self:Bar(args.spellId, 8)
 		self:Bar(162171, 8) -- Better Position
 		self:Bar(162500, 12) -- VX18-B Target Eliminator
-		self:CDBar(161090, 35.2) -- Mad Dash
-		self:Bar(162407, 26.2) -- X21-01A Missile Barrage
+		if not rocketsparkBelow20 then
+			self:CDBar(161090, 35.2) -- Mad Dash
+			self:Bar(162407, 26.2) -- X21-01A Missile Barrage
+		end
 		firstBetterPosition = true
 		firstVX18BTargetEliminator = true
 	end
