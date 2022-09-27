@@ -56,7 +56,7 @@ end
 function mod:OnEngage()
 	borkaDefeated = false
 	rocketsparkBelow20 = false
-	self:CDBar(161090, 28) -- Mad Dash
+	self:Bar(161090, 28) -- Mad Dash
 	self:CDBar(162617, 7) -- Slam
 	self:Bar(162500, 3) -- VX18-B Target Eliminator
 	self:Bar(162407, 19) -- X21-01A Missile Barrage
@@ -87,7 +87,6 @@ end
 function mod:X2101AMissileBarrage(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 40.4)
 end
 
 do
@@ -100,6 +99,8 @@ do
 		self:Bar(args.spellId, 8)
 		self:Bar(162171, 8) -- Better Position
 		self:Bar(162500, 12) -- VX18-B Target Eliminator
+		self:CDBar(161090, 35.2) -- Mad Dash
+		self:Bar(162407, 26.2) -- X21-01A Missile Barrage
 		firstBetterPosition = true
 		firstVX18BTargetEliminator = true
 	end
@@ -145,7 +146,6 @@ end
 function mod:MadDash(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 41.2)
 	self:CastBar(args.spellId, 2.5)
 end
 
