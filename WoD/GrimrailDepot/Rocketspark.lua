@@ -17,6 +17,8 @@ mod:SetRespawnTime(8)
 
 local borkaDefeated = false
 local rocketsparkBelow20 = false
+local firstBetterPosition = true
+local firstVX18BTargetEliminator = true
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -45,6 +47,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RecoveringApplied", 163947)
 	self:Log("SPELL_CAST_START", "BetterPosition", 162171)
 	self:Log("SPELL_CAST_START", "VX18BTargetEliminator", 162500)
+	self:Log("SPELL_CAST_SUCCESS", "VX18BTargetEliminatorSuccess", 162500)
 	self:Log("SPELL_AURA_APPLIED", "NewPlan", 161091)
 
 	-- Borka the Brute
@@ -56,9 +59,11 @@ end
 function mod:OnEngage()
 	borkaDefeated = false
 	rocketsparkBelow20 = false
+	firstBetterPosition = true
+	firstVX18BTargetEliminator = true
 	self:Bar(161090, 28) -- Mad Dash
 	self:CDBar(162617, 7) -- Slam
-	self:Bar(162500, 3) -- VX18-B Target Eliminator
+	self:Bar(162500, 6) -- VX18-B Target Eliminator
 	self:Bar(162407, 19) -- X21-01A Missile Barrage
 end
 
@@ -89,46 +94,44 @@ function mod:X2101AMissileBarrage(args)
 	self:PlaySound(args.spellId, "long")
 end
 
-do
-	local firstBetterPosition = true
-	local firstVX18BTargetEliminator = true
-
-	function mod:RecoveringApplied(args)
-		self:Message(args.spellId, "green")
-		self:PlaySound(args.spellId, "info")
-		self:Bar(args.spellId, 8)
-		self:Bar(162171, 8) -- Better Position
-		self:Bar(162500, 12) -- VX18-B Target Eliminator
-		if not rocketsparkBelow20 then
-			self:CDBar(161090, 35.2) -- Mad Dash
-			self:Bar(162407, 26.2) -- X21-01A Missile Barrage
-		end
-		firstBetterPosition = true
-		firstVX18BTargetEliminator = true
+function mod:RecoveringApplied(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 8)
+	self:Bar(162171, 8) -- Better Position
+	self:Bar(162500, 15) -- VX18-B Target Eliminator
+	if not rocketsparkBelow20 then
+		self:CDBar(161090, 35.2) -- Mad Dash
+		self:Bar(162407, 26.2) -- X21-01A Missile Barrage
 	end
+	firstBetterPosition = true
+	firstVX18BTargetEliminator = true
+end
 
-	function mod:BetterPosition(args)
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alert")
-		if borkaDefeated then
-			self:Bar(args.spellId, 13.4)
-		elseif rocketsparkBelow20 then
-			self:Bar(args.spellId, 8.5)
-		elseif firstBetterPosition then
-			self:Bar(args.spellId, 9)
-			firstBetterPosition = false
-		end
+function mod:BetterPosition(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	if borkaDefeated then
+		self:Bar(args.spellId, 13.4)
+	elseif rocketsparkBelow20 then
+		self:Bar(args.spellId, 8.5)
+	elseif firstBetterPosition then
+		self:Bar(args.spellId, 9)
+		firstBetterPosition = false
 	end
+end
 
-	function mod:VX18BTargetEliminator(args)
-		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "alarm")
-		if rocketsparkBelow20 then
-			self:Bar(args.spellId, 8.5)
-		elseif firstVX18BTargetEliminator then
-			self:Bar(args.spellId, 7.5)
-			firstVX18BTargetEliminator = false
-		end
+function mod:VX18BTargetEliminator(args)
+	-- correct any error in the remaining time
+	self:Bar(args.spellId, 3)
+end
+
+function mod:VX18BTargetEliminatorSuccess(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	if rocketsparkBelow20 or firstVX18BTargetEliminator then
+		self:Bar(args.spellId, 8.5)
+		firstVX18BTargetEliminator = false
 	end
 end
 
