@@ -146,7 +146,7 @@ function mod:MadDash(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 41.2)
-	self:CastBar(args.spellId, 3)
+	self:CastBar(args.spellId, 2.5)
 end
 
 function mod:Slam(args)
