@@ -123,7 +123,7 @@ end
 
 function mod:VX18BTargetEliminator(args)
 	-- correct any error in the remaining time
-	self:Bar(args.spellId, 3)
+	self:Bar(args.spellId, {3, 8.5})
 end
 
 function mod:VX18BTargetEliminatorSuccess(args)
