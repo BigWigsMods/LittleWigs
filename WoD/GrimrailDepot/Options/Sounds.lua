@@ -36,7 +36,7 @@ BigWigs:AddSounds("Grimrail Depot Trash", {
 	[166335] = "warning",
 	[166341] = "alert",
 	[166380] = "alarm",
-	[166397] = "alert",
+	[166397] = "long",
 	[166675] = {"alert","underyou"},
 	[176032] = {"alarm","underyou"},
 	[176127] = "alarm",

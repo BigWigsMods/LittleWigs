@@ -93,7 +93,7 @@ function mod:OnBossEnable()
 	-- Grom'kar Captain
 	self:Log("SPELL_CAST_START", "RecklessSlash", 166380)
 	-- Grimrail Scout
-	self:Log("SPELL_CAST_START", "ArcaneBlitz", 166397)
+	self:Log("SPELL_CAST_SUCCESS", "ArcaneBlitz", 166397)
 end
 
 --------------------------------------------------------------------------------
@@ -226,5 +226,5 @@ end
 
 function mod:ArcaneBlitz(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "long")
 end
