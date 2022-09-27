@@ -89,6 +89,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CannonBarrage", 176127)
 	-- Grom'kar Far Seer
 	self:Log("SPELL_CAST_START", "StormShield", 166335)
+	self:Log("SPELL_AURA_APPLIED", "StormShieldApplied", 166335)
 	self:Log("SPELL_CAST_START", "ThunderZone", 166341)
 	self:Log("SPELL_AURA_APPLIED", "ThunderZoneDamage", 166340)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ThunderZoneDamage", 166340)
@@ -211,6 +212,13 @@ end
 function mod:StormShield(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:StormShieldApplied(args)
+	if self:Dispeller("magic", true) and not self:Player(args.destFlags) then
+		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:ThunderZone(args)
