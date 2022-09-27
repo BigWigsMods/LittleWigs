@@ -72,6 +72,7 @@ function mod:UNIT_HEALTH(event, unit)
 		-- Rocketspark stops casting Missile Barrage below 20% HP
 		if self:GetHealth(unit) < 20 then
 			self:StopBar(162407) -- X21-01A Missile Barrage
+			self:StopBar(161090) -- Mad Dash
 			self:UnregisterUnitEvent(event, unit)
 		end
 	else
