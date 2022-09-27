@@ -90,6 +90,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE()
 	self:StopBar(353706) -- Rowdy
+	self:StopBar(350922) -- Menacing Shout
 
 	-- There is one performance phase immediately at the start of the fight and then one after each add wave
 	if addWave >= 1 then
