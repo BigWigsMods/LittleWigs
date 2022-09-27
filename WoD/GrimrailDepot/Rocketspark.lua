@@ -63,7 +63,7 @@ function mod:OnEngage()
 	firstVX18BTargetEliminator = true
 	self:Bar(161090, 28) -- Mad Dash
 	self:CDBar(162617, 7) -- Slam
-	self:Bar(162500, 6) -- VX18-B Target Eliminator
+	self:CDBar(162500, 3) -- VX18-B Target Eliminator
 	self:Bar(162407, 19) -- X21-01A Missile Barrage
 end
 
@@ -99,7 +99,7 @@ function mod:RecoveringApplied(args)
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 8)
 	self:Bar(162171, 8) -- Better Position
-	self:Bar(162500, 15) -- VX18-B Target Eliminator
+	self:CDBar(162500, 10.9) -- VX18-B Target Eliminator
 	if not rocketsparkBelow20 then
 		self:CDBar(161090, 35.2) -- Mad Dash
 		self:Bar(162407, 26.2) -- X21-01A Missile Barrage
@@ -122,15 +122,15 @@ function mod:BetterPosition(args)
 end
 
 function mod:VX18BTargetEliminator(args)
-	-- correct any error in the remaining time
-	self:Bar(args.spellId, {3, 8.5})
+	self:StopBar(args.spellId)
+	self:CastBar(args.spellId, 3)
 end
 
 function mod:VX18BTargetEliminatorSuccess(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	if rocketsparkBelow20 or firstVX18BTargetEliminator then
-		self:Bar(args.spellId, 8.5)
+		self:CDBar(args.spellId, 5.3)
 		firstVX18BTargetEliminator = false
 	end
 end
