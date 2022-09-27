@@ -50,7 +50,6 @@ function mod:GetOptions()
 		167233, -- Bladestorm
 		-- Grom'kar Flameslinger
 		164632, -- Burning Arrows
-		173148, -- Flaming Arrows
 		-- Grom'kar Technician
 		172636, -- Slippery Grease
 		-- Siegemaster Olugar
@@ -95,9 +94,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BurningArrowsDamage", 164632)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BurningArrowsDamage", 164632)
 	self:Log("SPELL_MISSED", "BurningArrowsDamage", 164632)
-	self:Log("SPELL_AURA_APPLIED", "FlamingArrowsDamage", 173149)
-	self:Log("SPELL_PERIODIC_DAMAGE", "FlamingArrowsDamage", 173149)
-	self:Log("SPELL_MISSED", "FlamingArrowsDamage", 173149)
 	-- Grom'kar Flameslinger
 	self:Log("SPELL_AURA_APPLIED", "SlipperyGreaseApplied", 172636, 172631) -- Slippery Grease, Knocked Down
 	-- Siegemaster Olugar
@@ -166,20 +162,6 @@ do
 				prev = t
 				self:PersonalMessage(args.spellId, "near")
 				self:PlaySound(args.spellId, "underyou")
-			end
-		end
-	end
-end
-
-do
-	local prev = 0
-	function mod:FlamingArrowsDamage(args)
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 1.5 then
-				prev = t
-				self:PersonalMessage(173148, "near")
-				self:PlaySound(173148, "underyou")
 			end
 		end
 	end
