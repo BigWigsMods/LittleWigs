@@ -90,6 +90,9 @@ function mod:OnBossEnable()
 	-- Grom'kar Far Seer
 	self:Log("SPELL_CAST_START", "StormShield", 166335)
 	self:Log("SPELL_CAST_START", "ThunderZone", 166341)
+	self:Log("SPELL_AURA_APPLIED", "ThunderZoneDamage", 166340)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ThunderZoneDamage", 166340)
+	self:Log("SPELL_MISSED", "ThunderZoneDamage", 166340)
 	-- Grom'kar Captain
 	self:Log("SPELL_CAST_START", "RecklessSlash", 166380)
 	-- Grimrail Scout
@@ -214,6 +217,21 @@ function mod:ThunderZone(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
+
+do
+	local prev = 0
+	function mod:ThunderZoneDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(166341, "near")
+				self:PlaySound(166341, "underyou")
+			end
+		end
+	end
+end
+
 
 -- Grom'kar Captain
 
