@@ -91,7 +91,7 @@ end
 function mod:BarbedArrowBarrage(args)
 	self:Message(166923, "yellow")
 	self:PlaySound(166923, "alert")
-	self:Bar(166923, self:GetStage() == 1 and 32 or 42.6)
+	self:Bar(166923, self:GetStage() == 1 and 32.4 or 42.6)
 end
 
 function mod:RecklessProvocationInc(args)
