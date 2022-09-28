@@ -66,7 +66,7 @@ end
 do
 	local t = 0
 	function mod:TimeToFeed(args)
-		t = GetTime()
+		t = args.time
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "long", nil, args.destName)
 		self:TargetBar(args.spellId, 20, args.destName)
@@ -75,7 +75,7 @@ do
 	end
 
 	function mod:TimeToFeedOver(args)
-		self:Message(args.spellId, "green", L.freed:format(GetTime()-t))
+		self:Message(args.spellId, "green", L.freed:format(args.time - t))
 		self:PlaySound(args.spellId, "info")
 		self:PrimaryIcon(args.spellId)
 		self:StopBar(args.spellId, args.destName)
