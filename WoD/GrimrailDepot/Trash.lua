@@ -185,7 +185,7 @@ do
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
-				self:PersonalMessage(176032, "near")
+				self:PersonalMessage(176032, "underyou")
 				self:PlaySound(176032, "underyou")
 			end
 		end
@@ -256,7 +256,7 @@ do
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
-				self:PersonalMessage(166341, "near")
+				self:PersonalMessage(166341, "underyou")
 				self:PlaySound(166341, "underyou")
 			end
 		end
