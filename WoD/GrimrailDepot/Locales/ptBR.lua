@@ -28,6 +28,7 @@ if L then
 	L.gromkar_gunner = "Artilheira Grom'kar"
 	L.gromkar_cinderseer = "Mirabrasa Grom'kar"
 	L.gromkar_boomer = "Detonador Grom'kar"
+	L.gromkar_hulk = "Grandalhão de Grom'kar"
 	L.gromkar_far_seer = "Clarividente Grom'kar"
 	L.gromkar_captain = "Capitã Grom'kar"
 	L.grimrail_scout = "Batedora do Carrilcruel"
