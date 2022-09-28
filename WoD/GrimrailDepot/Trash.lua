@@ -127,7 +127,7 @@ end
 do
 	local prev = 0
 	function mod:Dash(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "purple")
@@ -141,7 +141,7 @@ end
 do
 	local prev = 0
 	function mod:ShrapnelBlast(args)
-		local t = GetTime()
+		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "red")
@@ -198,7 +198,7 @@ do
 	local prev = 0
 	function mod:BlackrockMortar(args)
 		if self:MobId(args.sourceGUID) == 80935 then -- Grom'kar Boomer trash version, Nitrogg has adds that cast this spell
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:Message(args.spellId, "yellow")
