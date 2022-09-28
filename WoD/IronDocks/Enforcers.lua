@@ -108,7 +108,7 @@ do
 	local prev = 0
 	function mod:AbruptRestoration(args)
 		self:StopBar(CL.shield, args.destName) -- Shield on <boss>
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 10 then
 			prev = t
 			self:Message(args.spellId, "yellow", L.sphere_fail_message) -- Shield was broken - They're all healing :(
