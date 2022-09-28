@@ -40,6 +40,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 
 	-- Dreadfang
+	self:Log("SPELL_CAST_SUCCESS", "ShreddingSwipes", 164734)
 	self:Log("SPELL_CAST_SUCCESS", "SavageMauling", 164837)
 	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 164837)
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
@@ -74,10 +75,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:CDBar(164426, 16) -- Reckless Provocation
 		self:Bar(164632, 14.6) -- Burning Arrows
 		self:CDBar(164837, 10) -- Savage Mauling
-	elseif spellId == 164730 then -- Shredding Swipes
-		self:Message(164734, "yellow")
-		self:PlaySound(164734, "alarm")
-		self:CDBar(164734, 17)
 	end
 end
 
@@ -134,6 +131,12 @@ end
 function mod:SavageMaulingRemoved(args)
 	self:StopBar(args.spellId, args.destName)
 	self:PrimaryIcon(args.spellId)
+end
+
+function mod:ShreddingSwipes(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 17)
 end
 
 function mod:DreadfangDeath()
