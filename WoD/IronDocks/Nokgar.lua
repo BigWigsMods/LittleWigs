@@ -91,11 +91,11 @@ end
 function mod:BarbedArrowBarrage(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, self:GetStage() == 1 and 32.4 or 42.6)
+	self:Bar(args.spellId, self:GetStage() == 1 and 32.4 or 42.5)
 end
 
 function mod:RecklessProvocationInc(args)
-	self:Bar(args.spellId, 42.2)
+	self:Bar(args.spellId, 42.5)
 	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	self:Flash(args.spellId)
@@ -126,7 +126,7 @@ function mod:BloodlettingHowl(args)
 end
 
 function mod:SavageMauling(args)
-	self:CDBar(args.spellId, 10)
+	self:CDBar(args.spellId, 10.7)
 end
 
 function mod:SavageMaulingApplied(args)
