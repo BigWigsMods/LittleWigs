@@ -29,19 +29,21 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Stages
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss2")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
 
+	-- Fleshrender Nok'gar
+	self:Log("SPELL_CAST_SUCCESS", "BurningArrows", 164635)
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 
+	-- Dreadfang
 	self:Log("SPELL_CAST_SUCCESS", "SavageMauling", 164837)
 	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 164837)
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
-
 	self:Log("SPELL_CAST_SUCCESS", "BloodlettingHowl", 164835)
-
 	self:Death("DreadfangDeath", 81297)
 end
 
@@ -72,10 +74,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:CDBar(164426, 16) -- Reckless Provocation
 		self:Bar(164632, 14.6) -- Burning Arrows
 		self:CDBar(164837, 10) -- Savage Mauling
-	elseif spellId == 164635 then -- Burning Arrows
-		self:Message(164632, "red")
-		self:PlaySound(164632, "long")
-		self:Bar(164632, self:GetStage() == 1 and 30.4 or 40.1)
 	elseif spellId == 164730 then -- Shredding Swipes
 		self:Message(164734, "yellow")
 		self:PlaySound(164734, "alarm")
@@ -84,6 +82,12 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 -- Fleshrender Nok'gar
+
+function mod:BurningArrows(args)
+	self:Message(164632, "red")
+	self:PlaySound(164632, "long")
+	self:Bar(164632, self:GetStage() == 1 and 30.4 or 40.1)
+end
 
 function mod:RecklessProvocationInc(args)
 	self:Bar(args.spellId, 42.2)
