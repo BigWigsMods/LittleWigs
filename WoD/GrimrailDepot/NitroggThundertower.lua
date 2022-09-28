@@ -70,7 +70,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2") -- Nitrogg becomes boss2 after cannon activates, cannon doesn't fire this event
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089)
 
 	-- Nitrogg Thundertower
 	self:Log("SPELL_CAST_START", "BlackrockMortar", 163550)
@@ -108,17 +108,20 @@ end
 
 -- Stages
 
-function mod:UNIT_TARGETABLE_CHANGED(_, unit)
-	if UnitCanAttack("player", unit) then
-		self:SetStage(3)
-		self:Message("stages", "cyan", CL.stage:format(3), false)
-		self:PlaySound("stages", "long")
-		self:StopBar(166570) -- Slag Blast
-	else
+function mod:EncounterEvent(args)
+	-- this spell is cast twice during the encounter. the first time is when the boss jumps
+	-- into the cannon at 60% health. the second time is when the boss exits the cannon as
+	-- the cannon reaches 0% health.
+	if self:GetStage() == 1 then
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)), false)
 		self:PlaySound("stages", "long")
 		self:StopBar(163550) -- Blackrock Mortar
+	else
+		self:SetStage(3)
+		self:Message("stages", "cyan", CL.stage:format(3), false)
+		self:PlaySound("stages", "long")
+		self:StopBar(166570) -- Slag Blast
 	end
 end
 
