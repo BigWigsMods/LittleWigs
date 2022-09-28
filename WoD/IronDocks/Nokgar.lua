@@ -31,7 +31,7 @@ end
 function mod:OnBossEnable()
 	-- Stages
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss2")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	self:Log("SPELL_CAST_SUCCESS", "Dismount", 175755)
 
 	-- Fleshrender Nok'gar
 	self:Log("SPELL_CAST_SUCCESS", "BurningArrows", 164635)
@@ -67,15 +67,13 @@ function mod:UNIT_HEALTH(event, unit)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 175755 then -- Dismount
-		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stage:format(2), false)
-		self:PlaySound("stages", "long")
-		self:CDBar(164426, 16) -- Reckless Provocation
-		self:Bar(164632, 14.6) -- Burning Arrows
-		self:CDBar(164837, 10) -- Savage Mauling
-	end
+function mod:Dismount(args)
+	self:SetStage(2)
+	self:Message("stages", "cyan", CL.stage:format(2), false)
+	self:PlaySound("stages", "long")
+	self:CDBar(164426, 16) -- Reckless Provocation
+	self:Bar(164632, 14.6) -- Burning Arrows
+	self:CDBar(164837, 10) -- Savage Mauling
 end
 
 -- Fleshrender Nok'gar
