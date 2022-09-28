@@ -36,7 +36,6 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "ThunderousBreath")
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
 	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
 	self:Log("SPELL_AURA_APPLIED", "FreezingSnareApplied", 162065)
 	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
