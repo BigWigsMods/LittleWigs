@@ -16,11 +16,6 @@ if L then
 	L.waves[9] = "3x 그롬카르 폭파병, 1x 그롬카르 사수"
 end
 
-L = BigWigs:NewBossLocale("Skylord Tovra", "koKR")
-if L then
-	L.rakun = "라쿤"
-end
-
 L = BigWigs:NewBossLocale("Grimrail Depot Trash", "koKR")
 if L then
 	L.grimrail_technician = "파멸철로 기술자"

@@ -16,11 +16,6 @@ if L then
 	L.waves[9] = "3x Kanonenschütze der Grom'kar, 1x Schützin der Grom'kar"
 end
 
-L = BigWigs:NewBossLocale("Skylord Tovra", "deDE")
-if L then
-	L.rakun = "Rakun"
-end
-
 L = BigWigs:NewBossLocale("Grimrail Depot Trash", "deDE")
 if L then
 	L.grimrail_technician = "Techniker des Grimmgleises"
