@@ -18,6 +18,7 @@ function mod:GetOptions()
 		"stages",
 		{164426, "FLASH"}, -- Reckless Provocation
 		164632, -- Burning Arrows
+		166923, -- Barbed Arrow Barrage
 		{164837, "ICON"}, -- Savage Mauling
 		164835, -- Bloodletting Howl
 		164734, -- Shredding Swipes
@@ -35,6 +36,7 @@ function mod:OnBossEnable()
 
 	-- Fleshrender Nok'gar
 	self:Log("SPELL_CAST_SUCCESS", "BurningArrows", 164635)
+	self:Log("SPELL_CAST_SUCCESS", "BarbedArrowBarrage", 166923)
 	self:Log("SPELL_CAST_START", "RecklessProvocationInc", 164426)
 	self:Log("SPELL_AURA_APPLIED", "RecklessProvocation", 164426)
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
@@ -51,6 +53,7 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	self:Bar(164632, 15.9) -- Burning Arrows
+	self:Bar(166923, 32.4) -- Barbed Arrow Barrage
 end
 
 --------------------------------------------------------------------------------
@@ -73,6 +76,7 @@ function mod:Dismount(args)
 	self:PlaySound("stages", "long")
 	self:CDBar(164426, 16) -- Reckless Provocation
 	self:Bar(164632, 14.6) -- Burning Arrows
+	self:Bar(166923, 28) -- Barbed Arrow Barrage
 	self:CDBar(164837, 10) -- Savage Mauling
 end
 
@@ -82,6 +86,12 @@ function mod:BurningArrows(args)
 	self:Message(164632, "red")
 	self:PlaySound(164632, "long")
 	self:Bar(164632, self:GetStage() == 1 and 30.4 or 40.1)
+end
+
+function mod:BarbedArrowBarrage(args)
+	self:Message(166923, "yellow")
+	self:PlaySound(166923, "alert")
+	self:Bar(166923, self:GetStage() == 1 and 32 or 42.6)
 end
 
 function mod:RecklessProvocationInc(args)
