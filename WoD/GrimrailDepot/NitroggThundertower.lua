@@ -109,6 +109,9 @@ end
 -- Stages
 
 function mod:EncounterEvent(args)
+	-- this spell is cast twice during the encounter. the first time is when the boss jumps
+	-- into the cannon at 60% health. the second time is when the boss exits the cannon as
+	-- the cannon reaches 0% health.
 	if self:GetStage() == 1 then
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)), false)
