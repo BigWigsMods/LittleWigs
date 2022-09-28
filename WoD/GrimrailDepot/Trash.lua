@@ -99,7 +99,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "StormShieldApplied", 166335)
 	self:Log("SPELL_CAST_START", "ThunderZone", 166341)
 	self:Log("SPELL_AURA_APPLIED", "ThunderZoneDamage", 166340)
-	self:Log("SPELL_PERIODIC_DAMAGE", "ThunderZoneDamage", 166340)
 	self:Log("SPELL_MISSED", "ThunderZoneDamage", 166340)
 	-- Grom'kar Captain
 	self:Log("SPELL_CAST_START", "RecklessSlash", 166380)
