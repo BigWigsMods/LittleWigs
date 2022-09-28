@@ -90,6 +90,8 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE()
 	self:StopBar(353706) -- Rowdy
+	self:StopBar(350922) -- Menacing Shout
+	self:StopBar(350916) -- Security Slam
 
 	-- There is one performance phase immediately at the start of the fight and then one after each add wave
 	if addWave >= 1 then
@@ -111,34 +113,39 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
-		self:Bar(350916, 8.8) -- Security Slam
-		self:Bar(350922, 12.5) -- Menacing Shout
-		self:Bar(350919, 18.5) -- Crowd Control
-		self:Bar(355438, 27.1) -- Suppression Spark
+		self:CDBar(350916, 8.8) -- Security Slam
+		self:CDBar(350922, 12.5) -- Menacing Shout
+		self:CDBar(350919, 18.5) -- Crowd Control
+		self:CDBar(355438, 27.1) -- Suppression Spark
 	end
 end
 
 function mod:MenacingShout(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 20.7)
+	self:CDBar(args.spellId, 21.8)
 end
 
 function mod:SecuritySlam(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	if args.spellId == 350916 then -- Cast by Oasis Security
+		self:CDBar(args.spellId, 14.6)
+	else -- Zo'gron
+		self:CDBar(args.spellId, 15.8)
+	end
 end
 
 function mod:CrowdControl(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 21.8)
+	self:CDBar(args.spellId, 21.8)
 end
 
 function mod:SuppressionSpark(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 38.9)
+	self:CDBar(args.spellId, 37.7)
 end
 
 do
@@ -166,6 +173,7 @@ end
 do
 	local prev = 0
 	function mod:RowdyApplied(args)
+		self:StopBar(args.spellId)
 		local t = args.time
 		if t-prev > 4 then
 			prev = t
