@@ -9,15 +9,6 @@ mod:SetEncounterID(1736)
 mod:SetRespawnTime(5)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.rakun = "Rakun"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -34,9 +25,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "ThunderousBreath")
+	self:Log("SPELL_CAST_SUCCESS", "ThunderousBreath", 181089) -- Encounter Event
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "DiffusedEnergy", 161588)
 	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
 	self:Log("SPELL_AURA_APPLIED", "FreezingSnareApplied", 162065)
 	self:Log("SPELL_CAST_START", "SpinningSpear", 162058)
@@ -49,7 +39,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(162066, 5.7) -- Freezing Snare
-	self:Bar(161801, 8.6) -- Thunderous Breath
+	self:Bar(161801, 7.9) -- Thunderous Breath
 	self:Bar(162058, 14.2) -- Spinning Spear
 end
 
@@ -57,12 +47,10 @@ end
 -- Event Handlers
 --
 
-function mod:ThunderousBreath(_, _, _, _, _, target)
-	if target == L.rakun then
-		self:Message(161801, "red", CL.incoming:format(self:SpellName(161801)))
-		self:PlaySound(161801, "long")
-		self:Bar(161801, 17.4)
-	end
+function mod:ThunderousBreath(args)
+	self:Message(161801, "red", CL.incoming:format(self:SpellName(161801)))
+	self:PlaySound(161801, "long")
+	self:Bar(161801, 17.4)
 end
 
 function mod:DiffusedEnergy(args)
