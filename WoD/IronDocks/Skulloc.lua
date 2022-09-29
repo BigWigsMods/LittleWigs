@@ -67,7 +67,7 @@ end
 function mod:CannonBarrageOver()
 	self:Message(168929, "green", CL.over:format(self:SpellName(168929)))
 	self:PlaySound(168929, "info")
-	self:Bar(168227, 40.8) -- Gronn Smash
+	self:Bar(168227, 40.7) -- Gronn Smash
 end
 
 function mod:SkullocDeath()
