@@ -16,6 +16,7 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		376780, -- Magma Shield
+		377014, -- Backdraft
 		377477, -- Burning Ember
 		377522, -- Burning Pursuit
 		377204, -- Berserk Barrage
@@ -59,6 +60,7 @@ do
 		local duration = args.time - magmaShieldStart
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, duration))
 		self:PlaySound(args.spellId, "info")
+		self:Bar(377014, 10) -- Backdraft
 	end
 end
 
