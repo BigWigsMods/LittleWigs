@@ -13,6 +13,7 @@ BigWigs:AddColors("Warlord Sargha", {
 	[377204] = "red",
 	[377477] = "yellow",
 	[377522] = "blue",
+	["magical_implements"] = {"blue","green"},
 })
 
 BigWigs:AddColors("Neltharus Trash", {

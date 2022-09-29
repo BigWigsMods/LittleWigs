@@ -13,6 +13,7 @@ BigWigs:AddSounds("Warlord Sargha", {
 	[377204] = "alarm",
 	[377477] = "alert",
 	[377522] = "warning",
+	["magical_implements"] = "info",
 })
 
 BigWigs:AddSounds("Neltharus Trash", {

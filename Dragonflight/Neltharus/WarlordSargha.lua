@@ -10,18 +10,30 @@ mod:SetEncounterID(2611)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.magical_implements = -25983 -- Magical Implements
+	L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete |cFF2959D3|Hspell:376780|h[Magma Shield]|h|r."
+	L.magical_implements_icon = "inv_wand_06"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"magical_implements",
 		376780, -- Magma Shield
 		377014, -- Backdraft
 		377477, -- Burning Ember
 		377204, -- Berserk Barrage
 		377522, -- Burning Pursuit
 	}, {
-		[376780] = self.displayName, -- Warlord Sargha
+		["magical_implements"] = self.displayName, -- Warlord Sargha
 		[377522] = -25270, -- Raging Ember
 	}, {
 		[377522] = CL.fixate, -- Burning Pursuit (Fixate)
@@ -29,6 +41,13 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Magical Implements:
+	-- 376762 Wand of Negation
+	-- 384595 Anti-Magic Bomb
+	-- 392164 Azure Stone of Might
+	-- 392170 Rose of the Vale
+	-- 392258 Seismic Boots
+	self:Log("SPELL_AURA_APPLIED", "MagicalImplementsPickedUp", 376762, 384595, 392164, 392170, 392258)
 	self:Log("SPELL_AURA_APPLIED", "MagmaShieldApplied", 376780)
 	self:Log("SPELL_AURA_REMOVED", "MagmaShieldRemoved", 376780)
 	self:Log("SPELL_CAST_START", "BerserkBarrage", 377204)
@@ -45,6 +64,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:MagicalImplementsPickedUp(args)
+	self:TargetMessage("magical_implements", "green", args.destName, args.spellId, args.spellId)
+	self:PlaySound("magical_implements", "info", nil, args.destName)
+end
 
 do
 	local magmaShieldStart = 0
