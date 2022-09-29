@@ -72,17 +72,20 @@ function mod:HiddenFlameCannon(args)
 	self:Bar(args.spellId, 47.3)
 end
 
-function mod:Discombombulator(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 18.2)
-end
-
 do
-	local playerList = mod:NewTargetList()
+	local playerList = {}
+
+	function mod:Discombombulator(args)
+		playerList = {}
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "info")
+		self:Bar(args.spellId, 18.2)
+	end
+
 	function mod:DiscombombulatorApplied(args)
+		playerList[#playerList+1] = args.destName
 		if self:Dispeller("magic", nil, 285454) then
-			self:TargetsMessageOld(285454, "orange", playerList)
+			self:TargetsMessage(285454, "orange", playerList, 5)
 			self:PlaySound(285454, "alert", nil, playerList)
 		end
 	end
