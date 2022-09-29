@@ -28,6 +28,7 @@ if L then
 	L.gromkar_gunner = "Artigliere Grom'kar"
 	L.gromkar_cinderseer = "Veggente delle Braci Grom'kar"
 	L.gromkar_boomer = "Bombarolo Grom'kar"
+	L.gromkar_hulk = "Energumeno Grom'kar"
 	L.gromkar_far_seer = "Chiaroveggente Grom'kar"
 	L.gromkar_captain = "Capitano Grom'kar"
 	L.grimrail_scout = "Esploratore del Frecciacupa"

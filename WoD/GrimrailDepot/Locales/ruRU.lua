@@ -28,6 +28,7 @@ if L then
 	L.gromkar_gunner = "Гром'карская опалительница"
 	L.gromkar_cinderseer = "Гром'карская пророчица на пепле"
 	L.gromkar_boomer = "Гром'карский подрывник"
+	L.gromkar_hulk = "Гром'карский исполин"
 	L.gromkar_far_seer = "Гром'карский ясновидящий"
 	L.gromkar_captain = "Гром'карский капитан"
 	L.grimrail_scout = "Разведчица Мрачных Путей"

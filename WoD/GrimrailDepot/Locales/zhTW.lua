@@ -28,6 +28,7 @@ if L then
 	L.gromkar_gunner = "格羅姆卡槍手"
 	--L.gromkar_cinderseer = "Grom'kar Cinderseer"
 	L.gromkar_boomer = "格羅姆卡砲手"
+	--L.gromkar_hulk = "Grom'kar Hulk"
 	--L.gromkar_far_seer = "Grom'kar Far Seer"
 	--L.gromkar_captain = "Grom'kar Captain"
 	--L.grimrail_scout = "Grimrail Scout"
