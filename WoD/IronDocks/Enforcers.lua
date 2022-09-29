@@ -47,11 +47,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-
 	-- Makogg Emberblade
 	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
+	self:Log("SPELL_CAST_SUCCESS", "LavaSweep", 181089) -- Encounter Event
 	self:Death("MakoggDeath", 80805)
 
 	-- Ahri'ok Dugru
@@ -73,21 +71,13 @@ function mod:OnEngage()
 	self:CDBar(163689, 28, CL.shield) -- Shield
 	self:Bar(163665, 4.9) -- Flaming Slash
 	self:Bar(163390, 12.9) -- Ogre Traps
-	self:Bar(165152, 16.6) -- Lava Sweep
+	self:Bar(165152, 14.6) -- Lava Sweep
 	self:Bar(163376, 24.3) -- Malfunctioning Jumper Cables 9000-XL
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 164956 then -- Lava Swipe
-		self:Message(165152, "red") -- Lava Sweep
-		self:PlaySound(165152, "alarm") -- Lava Sweep
-		self:Bar(165152, 29.2) -- Lava Sweep
-	end
-end
 
 -- Ahri'ok Dugru
 
@@ -118,7 +108,7 @@ do
 	local prev = 0
 	function mod:AbruptRestoration(args)
 		self:StopBar(CL.shield, args.destName) -- Shield on <boss>
-		local t = GetTime()
+		local t = args.time
 		if t-prev > 10 then
 			prev = t
 			self:Message(args.spellId, "yellow", L.sphere_fail_message) -- Shield was broken - They're all healing :(
@@ -144,6 +134,12 @@ function mod:FlamingSlash(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 29.2)
+end
+
+function mod:LavaSweep(args)
+	self:Message(165152, "red")
+	self:PlaySound(165152, "alarm")
+	self:Bar(165152, 29.2)
 end
 
 function mod:MakoggDeath()
