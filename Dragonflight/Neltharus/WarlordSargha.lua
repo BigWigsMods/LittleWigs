@@ -18,8 +18,8 @@ function mod:GetOptions()
 		376780, -- Magma Shield
 		377014, -- Backdraft
 		377477, -- Burning Ember
-		377522, -- Burning Pursuit
 		377204, -- Berserk Barrage
+		377522, -- Burning Pursuit
 	}, {
 		[376780] = self.displayName, -- Warlord Sargha
 		[377522] = -25270, -- Raging Ember
