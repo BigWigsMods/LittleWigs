@@ -32,8 +32,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-
+	self:Log("SPELL_CAST_SUCCESS", "ActivatePlant", 294853)
 	self:Log("SPELL_CAST_SUCCESS", "BlossomBlast", 294855)
 	self:Log("SPELL_CAST_SUCCESS", "HiddenFlameCannon", 285440)
 	self:Log("SPELL_CAST_SUCCESS", "Discombombulator", 285454)
@@ -50,12 +49,10 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 294853 then -- Activate Plant
-		self:Message("activate_plant", "orange", L.activate_plant, L.activate_plant_icon)
-		self:PlaySound("activate_plant", "long")
-		self:Bar("activate_plant", 45.1, L.activate_plant, L.activate_plant_icon)
-	end
+function mod:ActivatePlant(args)
+	self:Message("activate_plant", "orange", L.activate_plant, L.activate_plant_icon)
+	self:PlaySound("activate_plant", "long")
+	self:Bar("activate_plant", 45.1, L.activate_plant, L.activate_plant_icon)
 end
 
 function mod:BlossomBlast(args)
