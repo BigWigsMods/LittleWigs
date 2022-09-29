@@ -141,10 +141,16 @@ function mod:SavageMaulingRemoved(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:ShreddingSwipes(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17)
+do
+	local prev = 0
+	function mod:ShreddingSwipes(args)
+		local t = args.time
+		if t - prev > 5 then
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alarm")
+			self:CDBar(args.spellId, 17)
+		end
+	end
 end
 
 function mod:DreadfangDeath()
