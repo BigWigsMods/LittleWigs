@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "RecklessProvocationOver", 164426)
 
 	-- Dreadfang
-	self:Log("SPELL_CAST_SUCCESS", "ShreddingSwipes", 164734)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss2")
 	self:Log("SPELL_CAST_SUCCESS", "SavageMauling", 164837)
 	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 164837)
 	self:Log("SPELL_AURA_REMOVED", "SavageMaulingRemoved", 164837)
@@ -141,10 +141,12 @@ function mod:SavageMaulingRemoved(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:ShreddingSwipes(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 164730 then
+		self:Message(164734, "yellow")
+		self:PlaySound(164734, "alarm")
+		self:CDBar(164734, 17)
+	end
 end
 
 function mod:DreadfangDeath()
