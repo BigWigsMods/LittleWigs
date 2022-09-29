@@ -38,7 +38,7 @@ end
 function mod:OnEngage()
 	self:CDBar(377204, 7.1) -- Berserk Barrage
 	self:CDBar(377477, 21.5) -- Burning Ember
-	self:CDBar(376780, 38.6) -- Magma Shield
+	self:CDBar(376780, 37.7) -- Magma Shield
 end
 
 --------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ do
 		magmaShieldStart = args.time
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "long")
-		-- TODO bar
+		self:Bar(args.spellId, 46.1)
 	end
 
 	function mod:MagmaShieldRemoved(args)
