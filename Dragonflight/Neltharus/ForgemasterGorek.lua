@@ -25,7 +25,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MightOfTheForge", 374635)
 	self:Log("SPELL_AURA_APPLIED", "BlazingAegis", 374842)
-	self:Log("SPELL_CAST_START", "Forgestorm", 374969) -- TODO on SUCCESS better?
+	self:Log("SPELL_CAST_SUCCESS", "Forgestorm", 374969)
 	self:Log("SPELL_CAST_START", "HeatedSwings", 374533)
 end
 
