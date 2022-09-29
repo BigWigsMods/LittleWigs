@@ -16,9 +16,9 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		376780, -- Magma Shield
-		377204, -- The Dragon's Kiln
 		377477, -- Burning Ember
 		377522, -- Burning Pursuit
+		377204, -- Berserk Barrage
 	}, {
 		[376780] = self.displayName, -- Warlord Sargha
 		[377522] = -25270, -- Raging Ember
@@ -30,13 +30,13 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MagmaShieldApplied", 376780)
 	self:Log("SPELL_AURA_REMOVED", "MagmaShieldRemoved", 376780)
-	self:Log("SPELL_CAST_START", "TheDragonsKiln", 377204)
+	self:Log("SPELL_CAST_START", "BerserkBarrage", 377204)
 	self:Log("SPELL_CAST_START", "BurningEmber", 377473)
 	self:Log("SPELL_AURA_APPLIED", "BurningPursuit", 377522)
 end
 
 function mod:OnEngage()
-	self:CDBar(377204, 11.1) -- The Dragon's Kiln
+	self:CDBar(377204, 7.1) -- Berserk Barrage
 	self:CDBar(377477, 21.5) -- Burning Ember
 	self:CDBar(376780, 38.6) -- Magma Shield
 end
@@ -62,7 +62,7 @@ do
 	end
 end
 
-function mod:TheDragonsKiln(args)
+function mod:BerserkBarrage(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 21.8)
