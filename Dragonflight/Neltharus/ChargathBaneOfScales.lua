@@ -10,6 +10,12 @@ mod:SetEncounterID(2613)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local recalculateBladeLock = false
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -24,8 +30,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_POWER_UPDATE", nil, "boss1")
 	self:Log("SPELL_CAST_START", "GroundingSpear", 373424)
-	self:Log("SPELL_AURA_APPLIED", "FetterApplied", 388523)
+	-- 3 different fetter debuffs: 388523=long, 374655=short, 374638=player
+	self:Log("SPELL_AURA_APPLIED", "FetterApplied", 388523, 374655)
 	self:Log("SPELL_CAST_START", "BladeLock", 375056)
 	self:Log("SPELL_CAST_START", "DragonStrike", 373733)
 	self:Log("SPELL_CAST_START", "MagmaWave", 373742)
@@ -42,6 +50,17 @@ end
 -- Event Handlers
 --
 
+function mod:UNIT_POWER_UPDATE(_, unit)
+	if recalculateBladeLock then
+		-- ~29 seconds between Blade Lock casts, cast at max Energy
+		local nextBladeLock = 29 * ceil(1 - UnitPower(unit) / 100)
+		if nextBladeLock > 0 then
+			self:Bar(375056, {nextBladeLock + .2, 29.2}) -- Blade Lock, ~.2s delay at max energy
+			recalculateBladeLock = false
+		end
+	end
+end
+
 function mod:GroundingSpear(args)
 	-- targets all players in Mythic, but just one player in Normal/Heroic
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
@@ -50,16 +69,22 @@ function mod:GroundingSpear(args)
 end
 
 function mod:FetterApplied(args)
-	-- TODO confirm this spell ID only applies to Chargath, else check is not player
-	self:Message(args.spellId, "green", CL.onboss:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
-	self:TargetBar(args.spellId, 14, args.destName)
+	if args.spellId == 388523 then -- 14s long Fetter on boss
+		self:Message(388523, "green", CL.onboss:format(args.spellName))
+		self:PlaySound(388523, "info")
+		self:TargetBar(388523, 14, CL.onboss:format(args.spellName))
+	else -- 5s Short Fetter on boss
+		self:TargetBar(388523, 5, CL.onboss:format(args.spellName))
+		self:PauseBar(375056) -- Blade Lock, Chargath doesn't gain energy during Fetter
+		recalculateBladeLock = true
+	end
 end
 
 function mod:BladeLock(args)
+	self:StopBar(args.spellId)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	-- TODO bar, possibly started off of Blade Lock over. cast at 100 energy
+	recalculateBladeLock = true
 end
 
 do
