@@ -32,7 +32,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(374635, 3.4) -- Might of the Forge
-	self:Bar(374969, 27.8) -- Forgestorm
+	self:Bar(374969, 29.8) -- Forgestorm
 	self:Bar(374533, 20.5) -- Heated Swings
 end
 
@@ -73,11 +73,11 @@ end
 function mod:Forgestorm(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO bar
+	self:CDBar(args.spellId, 30.8)
 end
 
 function mod:HeatedSwings(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 30.4)
+	self:CDBar(args.spellId, 30.4)
 end
