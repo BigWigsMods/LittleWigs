@@ -53,13 +53,13 @@ do
 		magmaShieldStart = args.time
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "long")
-		self:Bar(args.spellId, 46.1)
 	end
 
 	function mod:MagmaShieldRemoved(args)
 		local duration = args.time - magmaShieldStart
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, duration))
 		self:PlaySound(args.spellId, "info")
+		self:Bar(args.spellId, 32.6) -- 30s energy gain, 2.5s cast time, ~.1s delay
 		self:Bar(377014, 10) -- Backdraft
 	end
 end
