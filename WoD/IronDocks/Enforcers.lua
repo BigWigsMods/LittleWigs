@@ -49,7 +49,7 @@ end
 function mod:OnBossEnable()
 	-- Makogg Emberblade
 	self:Log("SPELL_CAST_START", "FlamingSlash", 163665)
-	self:Log("SPELL_CAST_SUCCESS", "LavaSweep", 181089) -- Encounter Event
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Lava Sweep
 	self:Death("MakoggDeath", 80805)
 
 	-- Ahri'ok Dugru
@@ -136,7 +136,7 @@ function mod:FlamingSlash(args)
 	self:Bar(args.spellId, 29.2)
 end
 
-function mod:LavaSweep(args)
+function mod:EncounterEvent(args) -- Lava Sweep
 	self:Message(165152, "red")
 	self:PlaySound(165152, "alarm")
 	self:Bar(165152, 29.2)

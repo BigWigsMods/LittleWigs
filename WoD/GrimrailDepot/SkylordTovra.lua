@@ -25,7 +25,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "ThunderousBreath", 181089) -- Encounter Event
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Thunderous Breath
 	self:Log("SPELL_AURA_APPLIED", "DiffusedEnergy", 161588)
 	self:Log("SPELL_CAST_START", "FreezingSnare", 162066)
 	self:Log("SPELL_AURA_APPLIED", "FreezingSnareApplied", 162065)
@@ -47,7 +47,7 @@ end
 -- Event Handlers
 --
 
-function mod:ThunderousBreath(args)
+function mod:EncounterEvent(args) -- Thunderous Breath
 	self:Message(161801, "red", CL.incoming:format(self:SpellName(161801)))
 	self:PlaySound(161801, "long")
 	self:Bar(161801, 17.4)

@@ -29,7 +29,7 @@ function mod:OnBossEnable()
 	-- Skulloc
 	self:Log("SPELL_CAST_START", "GronnSmash", 168227)
 	self:Log("SPELL_CAST_START", "CannonBarrage", 168929)
-	self:Log("SPELL_CAST_SUCCESS", "CannonBarrageOver", 181089) -- Encounter Event
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Cannon Barrage ends
 	self:Death("SkullocDeath", 83612)
 
 	-- Koramar
@@ -64,7 +64,7 @@ function mod:CannonBarrage(args)
 	self:Flash(args.spellId)
 end
 
-function mod:CannonBarrageOver()
+function mod:EncounterEvent() -- Cannon Barrage ends
 	self:Message(168929, "green", CL.over:format(self:SpellName(168929)))
 	self:PlaySound(168929, "info")
 	self:Bar(168227, 40.7) -- Gronn Smash
