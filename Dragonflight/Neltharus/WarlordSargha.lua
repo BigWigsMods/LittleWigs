@@ -31,6 +31,7 @@ function mod:GetOptions()
 		377014, -- Backdraft
 		377477, -- Burning Ember
 		377204, -- Berserk Barrage
+		377018, -- Molten Gold
 		377522, -- Burning Pursuit
 	}, {
 		["magical_implements"] = self.displayName, -- Warlord Sargha
@@ -48,15 +49,18 @@ function mod:OnBossEnable()
 	-- 392170 Rose of the Vale
 	-- 392258 Seismic Boots
 	self:Log("SPELL_AURA_APPLIED", "MagicalImplementsPickedUp", 376762, 384595, 392164, 392170, 392258)
+
 	self:Log("SPELL_AURA_APPLIED", "MagmaShieldApplied", 376780)
 	self:Log("SPELL_AURA_REMOVED", "MagmaShieldRemoved", 376780)
 	self:Log("SPELL_CAST_START", "BerserkBarrage", 377204)
+	self:Log("SPELL_CAST_START", "MoltenGold", 377017)
 	self:Log("SPELL_CAST_START", "BurningEmber", 377473)
 	self:Log("SPELL_AURA_APPLIED", "BurningPursuit", 377522)
 end
 
 function mod:OnEngage()
 	self:CDBar(377204, 7.1) -- Berserk Barrage
+	self:CDBar(377018, 14.2) -- Molten Gold
 	self:CDBar(377477, 21.5) -- Burning Ember
 	self:CDBar(376780, 37.7) -- Magma Shield
 end
@@ -92,6 +96,20 @@ function mod:BerserkBarrage(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 21.8)
+end
+
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) or self:Healer() then
+			self:TargetMessage(377018, "orange", name)
+			self:PlaySound(377018, "alert", nil, name)
+		end
+	end
+
+	function mod:MoltenGold(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(377018, 42.8)
+	end
 end
 
 function mod:BurningEmber(args)

@@ -10,6 +10,7 @@ BigWigs:AddColors("Magmatusk", {
 
 BigWigs:AddColors("Warlord Sargha", {
 	[376780] = {"green","orange"},
+	[377018] = {"blue","orange"},
 	[377204] = "red",
 	[377477] = "yellow",
 	[377522] = "blue",
