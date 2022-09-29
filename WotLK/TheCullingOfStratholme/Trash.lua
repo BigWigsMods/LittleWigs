@@ -59,7 +59,11 @@ function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") then
 		local mobId = self:MobId(self:UnitGUID("npc"))
 		if mobId == 26527 or mobId == 27915 then -- Chromie
-			if C_GossipInfo.GetNumAvailableQuests() > 0 or C_GossipInfo.GetNumActiveQuests() > 0 then return end -- let the player take / turn in the quest
+			if self:Classic() then
+				if GetNumGossipAvailableQuests() > 0 or GetNumGossipActiveQuests() > 0 then return end -- let the player take / turn in the quest
+			else
+				if C_GossipInfo.GetNumAvailableQuests() > 0 or C_GossipInfo.GetNumActiveQuests() > 0 then return end -- let the player take / turn in the quest
+			end
 
 			local gossipTbl = self:GetGossipOptions()
 			if gossipTbl then
