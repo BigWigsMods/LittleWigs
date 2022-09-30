@@ -73,6 +73,7 @@ function mod:FetterApplied(args)
 		self:Message(388523, "green", CL.onboss:format(args.spellName))
 		self:PlaySound(388523, "info")
 		self:TargetBar(388523, 14, CL.onboss:format(args.spellName))
+		recalculateBladeLock = true
 	else -- 5s Short Fetter on boss
 		self:TargetBar(388523, 5, CL.onboss:format(args.spellName))
 		self:PauseBar(375056) -- Blade Lock, Chargath doesn't gain energy during Fetter
