@@ -49,11 +49,18 @@ end
 -- Event Handlers
 --
 
-function mod:VolatileMutation(args)
-	volatileMutationCount = volatileMutationCount + 1
-	self:Message(args.spellId, "orange", CL.count:format(args.spellName, volatileMutationCount))
-	self:PlaySound(args.spellId, "long")
-	-- TODO timer, cast at full Magma (energy)
+do
+	local prev = 0
+	function mod:VolatileMutation(args)
+		-- sometimes gets double cast, only second cast succeeds
+		local t = args.time
+		if t - prev > 3 then
+			volatileMutationCount = volatileMutationCount + 1
+			self:Message(args.spellId, "orange", CL.count:format(args.spellName, volatileMutationCount))
+			self:PlaySound(args.spellId, "long")
+		end
+		self:Bar(args.spellId, 31.6) -- TODO needs confirmation, casts at full Magma (Energy)
+	end
 end
 
 function mod:MagmaEruption(args)
