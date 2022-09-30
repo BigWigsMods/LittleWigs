@@ -94,7 +94,7 @@ do
 end
 
 function mod:BlazingCharge(args)
-	--no debuff on the target, and Magamtusk doesn't target them during cast
+	-- TODO use GetBossTarget if boss frames get added for Magmatusk
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 3)
