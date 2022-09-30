@@ -65,10 +65,16 @@ function mod:MagmaEruption(args)
 	end
 end
 
-function mod:MagmaLob(args)
-	-- TODO might need spam control
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:MagmaLob(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 do
