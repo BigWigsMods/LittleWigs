@@ -64,6 +64,7 @@ do
 end
 
 function mod:MagmaEruption(args)
+	-- lasts for 5 seconds per extra Magma Tentacle spawned (first Magma Eruption lasts 0 seconds)
 	local magmaEruptionDuration = (volatileMutationCount - 1) * 5
 	if magmaEruptionDuration > 0 then
 		self:Message(375890, "red", CL.duration:format(self:SpellName(375890), magmaEruptionDuration)) -- Magma Eruption for x sec
@@ -84,20 +85,12 @@ do
 	end
 end
 
-do
-	--local function printTarget(self, name, guid)
-		--self:TargetMessage(375251, "yellow", name)
-		--self:PlaySound(375251, "alarm", nil, name)
-	--end
-
-	function mod:LavaSpray(args)
-		-- TODO use GetBossTarget if boss frames get added for Magmatusk
-		--self:GetUnitTarget(printTarget, 2, args.sourceGUID) TODO doesn't work
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alarm")
-		self:CastBar(args.spellId, 3.5)
-		self:CDBar(args.spellId, 24.3)
-	end
+function mod:LavaSpray(args)
+	-- TODO use GetBossTarget if boss frames get added for Magmatusk
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+	self:CastBar(args.spellId, 3.5)
+	self:CDBar(args.spellId, 24.3)
 end
 
 function mod:BlazingCharge(args)
