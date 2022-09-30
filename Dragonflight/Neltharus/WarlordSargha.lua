@@ -119,8 +119,8 @@ function mod:BurningEmber(args)
 end
 
 function mod:BurningPursuit(args)
+	self:TargetMessage(args.spellId, "blue", args.destName, CL.fixate)
 	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, "blue", args.destName, CL.fixate)
 		self:PlaySound(args.spellId, "warning")
 	end
 end
