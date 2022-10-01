@@ -32,7 +32,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_POWER_UPDATE", nil, "boss1")
 	self:Log("SPELL_CAST_START", "GroundingSpear", 373424)
-	-- 3 different fetter debuffs: 388523=long, 374655=short, 374638=player
+	-- 3 different Fetter debuffs: 388523=long, 374655=short, 374638=player
 	self:Log("SPELL_AURA_APPLIED", "FetterApplied", 388523, 374655)
 	self:Log("SPELL_CAST_START", "BladeLock", 375056)
 	self:Log("SPELL_CAST_SUCCESS", "BladeLockOver", 375056)
@@ -69,6 +69,9 @@ function mod:GroundingSpear(args)
 	self:CDBar(args.spellId, 9.7)
 end
 
+-- TODO might need to be redone for Mythic depending on spell IDs
+-- Normal/Heroic: 1 stack of Fetter always stuns
+-- Mythic: 1 or 2 hits of Fetter just slows, 3 hits stuns
 function mod:FetterApplied(args)
 	if args.spellId == 388523 then -- 14s long Fetter on boss
 		self:Message(388523, "green", CL.onboss:format(args.spellName))
