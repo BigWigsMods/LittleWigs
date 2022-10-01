@@ -53,7 +53,7 @@ end
 function mod:UNIT_POWER_UPDATE(_, unit)
 	if recalculateBladeLock then
 		-- ~29 seconds between Blade Lock casts, cast at max Energy
-		local nextBladeLock = 29 * ceil(1 - UnitPower(unit) / 100)
+		local nextBladeLock = ceil(29 * (1 - UnitPower(unit) / 100))
 		if nextBladeLock > 0 then
 			self:Bar(375056, {nextBladeLock + .2, 29.2}) -- Blade Lock, ~.2s delay at max energy
 			recalculateBladeLock = false
