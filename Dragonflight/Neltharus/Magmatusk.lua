@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		374365, -- Volatile Mutation
 		375890, -- Magma Eruption
-		375068, -- Magma Lob
+		375068, -- Magma Lob -- TODO maybe remove, might just be noise
 		-- TODO Lava Empowerment (mythic only)
 		375251, -- Lava Spray
 		375439, -- Blazing Charge
