@@ -35,6 +35,7 @@ function mod:OnBossEnable()
 	-- 3 different fetter debuffs: 388523=long, 374655=short, 374638=player
 	self:Log("SPELL_AURA_APPLIED", "FetterApplied", 388523, 374655)
 	self:Log("SPELL_CAST_START", "BladeLock", 375056)
+	self:Log("SPELL_CAST_SUCCESS", "BladeLockOver", 375056)
 	self:Log("SPELL_CAST_START", "DragonStrike", 373733)
 	self:Log("SPELL_CAST_START", "MagmaWave", 373742)
 end
@@ -85,6 +86,9 @@ function mod:BladeLock(args)
 	self:StopBar(args.spellId)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:BladeLockOver(args)
 	recalculateBladeLock = true
 end
 
