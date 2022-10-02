@@ -6,5 +6,5 @@ end
 
 L = BigWigs:NewBossLocale("Warlord Sargha", "deDE")
 if L then
-	--L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete |cFF2959D3|Hspell:376780|h[Magma Shield]|h|r."
+	--L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
 end

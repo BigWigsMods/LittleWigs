@@ -16,7 +16,7 @@ mod:SetRespawnTime(30)
 local L = mod:GetLocale()
 if L then
 	L.magical_implements = -25983 -- Magical Implements
-	L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete |cFF2959D3|Hspell:376780|h[Magma Shield]|h|r."
+	L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
 	L.magical_implements_icon = "inv_wand_06"
 end
 
