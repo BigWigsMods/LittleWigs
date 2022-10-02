@@ -18,7 +18,19 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-
+		392198, -- Ancestral Bond
+		-- Teera
+		382670, -- Gale Arrow
+		384808, -- Guardian Wind (or Repel 386547?)
+		385434, -- Spirit Leap
+		-- Maruuk
+		385339, -- Earthsplitter
+		386063, -- Frightful Roar
+		{382836, "TANK_HEALER"}, -- Brutalize
+	}, {
+		[392198] = CL.general,
+		[382670] = -25552, -- Teera
+		[385339] = -25546, -- Maruuk
 	}
 end
 
