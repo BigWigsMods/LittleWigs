@@ -5,7 +5,7 @@ if not IsTestBuild() then return end
 
 local mod, CL = BigWigs:NewBoss("Overgrown Ancient", 2526, 2512)
 if not mod then return end
-mod:RegisterEnableMob(186951) -- Overgrown Ancient
+mod:RegisterEnableMob(196482) -- Overgrown Ancient
 mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
 
