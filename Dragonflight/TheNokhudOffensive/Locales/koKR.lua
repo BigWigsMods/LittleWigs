@@ -3,3 +3,8 @@ if not L then return end
 if L then
 
 end
+
+L = BigWigs:NewBossLocale("Granyth", "koKR")
+if L then
+	--L.lance_ready = "Lance Ready"
+end
