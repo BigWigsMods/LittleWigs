@@ -55,6 +55,7 @@ do
 		-- sometimes gets double cast, only second cast succeeds
 		local t = args.time
 		if t - prev > 3 then
+			prev = t
 			volatileMutationCount = volatileMutationCount + 1
 			self:Message(args.spellId, "orange", CL.count:format(args.spellName, volatileMutationCount))
 			self:PlaySound(args.spellId, "long")
