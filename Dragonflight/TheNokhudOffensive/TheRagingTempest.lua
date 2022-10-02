@@ -65,6 +65,7 @@ function mod:SurgeOfPowerAppliedDoseToPlayer(args)
 end
 
 function mod:SurgeOfPowerRefreshOnPlayer(args)
+	-- stack maximum is 10, then APPLIED_DOSE doesn't fire anymore but REFRESH does
 	if self:Me(args.destGUID) then
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
@@ -80,7 +81,7 @@ end
 function mod:ElectricalStorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 63.2) -- TODO guess, cast at 100 energy, 60s energy gain + 3s cast + ~.2s delay?
+	self:CDBar(args.spellId, 63.2) -- TODO guess, cast at 100 energy, 3s cast + 60s energy gain + ~.2s delay?
 end
 
 function mod:LightningStrike(args)
