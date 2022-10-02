@@ -8,6 +8,7 @@ if not mod then return end
 mod:RegisterEnableMob(186151) -- Balakar Khan
 mod:SetEncounterID(2580)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,33 +16,131 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
+		"stages",
 		-- Stage One: Balakar's Might
-		376644, -- Iron Spear
-		-- TODO Upheaval
-		375937, -- Rending Strike
+		{376644, "SAY"}, -- Iron Spear
+		375943, -- Upheaval
+		{375937, "TANK_HEALER"}, -- Rending Strike
 		-- Intermission: Stormwinds
-		376730, -- Stormwinds
+		376727, -- Siphon Power
 		-- TODO Lightning?
 		-- Stage Two: The Storm Unleashed
-		376865, -- Static Spear
+		{376865, "SAY"}, -- Static Spear
 		376892, -- Crackling Upheaval
-		376827, -- Conductive Strike
+		{376827, "TANK_HEALER"}, -- Conductive Strike
 	}, {
 		[376644] = -25185, -- Stage One: Balakar's Might
-		[376730] = -25192, -- Intermission: Stormwinds
+		[376727] = -25192, -- Intermission: Stormwinds
 		[376865] = -25187, -- Stage Two: The Storm Unleashed
 	}
 end
 
 function mod:OnBossEnable()
+	-- Stage One: Balakar's Might
+	self:Log("SPELL_CAST_START", "IronSpear", 376644)
+	self:Log("SPELL_CAST_START", "Upheaval", 375943)
+	self:Log("SPELL_CAST_START", "RendingStrike", 375937)
 
+	-- Intermission: Stormwinds
+	self:Log("SPELL_CAST_START", "SiphonPower", 376727)
+	self:Log("SPELL_AURA_APPLIED", "CracklingShieldApplied", 376724)
+
+	-- Stage Two: The Storm Unleashed
+	self:Log("SPELL_AURA_REMOVED", "CracklingShieldRemoved", 376724)
+	self:Log("SPELL_CAST_START", "StaticSpear", 376865)
+	self:Log("SPELL_CAST_START", "CracklingUpheaval", 376892)
+	self:Log("SPELL_CAST_START", "ConductiveStrike", 376827)
 end
 
 function mod:OnEngage()
-
+	self:SetStage(1)
+	self:Bar(375937, 8) -- Rending Strike
+	self:Bar(376644, 21.5) -- Iron Spear
+	self:Bar(375943, 37) -- Upheaval TODO confirm
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+-- Stage One: Balakar's Might
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(376644, "yellow", name)
+		self:PlaySound(376644, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(376644)
+		end
+	end
+
+	function mod:IronSpear(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		-- TODO unknown CD
+	end
+end
+
+function mod:Upheaval(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	-- TODO unknown CD
+end
+
+function mod:RendingStrike(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 22)
+end
+
+-- Intermission: Stormwinds
+
+function mod:SiphonPower(args)
+	self:CastBar(args.spellId, 6)
+	self:StopBar(376644) -- Iron Spear
+	self:StopBar(375937) -- Rending Strike
+	self:StopBar(375943) -- Upheaval
+end
+
+function mod:CracklingShieldApplied(args)
+	self:SetStage(2)
+	self:Message("stages", "cyan", self:SpellName(-25192), args.spellId)
+	self:PlaySound("stages", "long")
+end
+
+-- Stage Two: The Storm Unleashed
+
+function mod:CracklingShieldRemoved(args)
+	self:SetStage(3)
+	self:Message("stages", "cyan", self:SpellName(-25187), args.spellId)
+	self:PlaySound("stages", "long")
+	self:Bar(376827, 8) -- Conductive Strike
+	self:Bar(376865, 21.5) -- Static Spear
+	self:Bar(376892, 37) -- Crackling Upheaval
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(376865, "yellow", name)
+		self:PlaySound(376865, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(376865)
+		end
+	end
+
+	function mod:StaticSpear(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		-- TODO unknown CD
+	end
+end
+
+function mod:CracklingUpheaval(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	-- TODO unknown CD
+end
+
+function mod:ConductiveStrike(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 22)
+end
