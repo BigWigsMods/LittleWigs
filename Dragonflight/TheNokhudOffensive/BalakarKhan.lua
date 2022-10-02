@@ -11,6 +11,12 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local tankComboCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -23,11 +29,11 @@ function mod:GetOptions()
 		{375937, "TANK_HEALER"}, -- Rending Strike
 		-- Intermission: Stormwinds
 		376727, -- Siphon Power
-		-- TODO Lightning?
 		-- Stage Two: The Storm Unleashed
 		{376864, "SAY"}, -- Static Spear
 		376892, -- Crackling Upheaval
-		{376827, "TANK_HEALER"}, -- Conductive Strike
+		-- TODO Crackling Cloud (Mythic only)
+		{376827, "DISPEL"}, -- Conductive Strike
 	}, {
 		[376660] = -25185, -- Stage One: Balakar's Might
 		[376727] = -25192, -- Intermission: Stormwinds
@@ -50,9 +56,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StaticSpear", 376865)
 	self:Log("SPELL_CAST_START", "CracklingUpheaval", 376892)
 	self:Log("SPELL_CAST_START", "ConductiveStrike", 376827)
+	self:Log("SPELL_AURA_APPLIED", "ConductiveStrikeApplied", 376827)
 end
 
 function mod:OnEngage()
+	tankComboCount = 0
 	self:SetStage(1)
 	self:Bar(375937, 8) -- Rending Strike
 	self:Bar(376660, 21.5) -- Iron Spear
@@ -87,21 +95,23 @@ function mod:Upheaval(args)
 end
 
 function mod:RendingStrike(args)
+	tankComboCount = tankComboCount + 1
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 22)
+	self:Bar(args.spellId, tankComboCount == 1 and 22 or 17) -- TODO confirm exact pattern
 end
 
 -- Intermission: Stormwinds
 
 function mod:SiphonPower(args)
-	self:CastBar(args.spellId, 6)
 	self:StopBar(376644) -- Iron Spear
 	self:StopBar(375937) -- Rending Strike
 	self:StopBar(375943) -- Upheaval
+	self:CastBar(args.spellId, 6)
 end
 
 function mod:CracklingShieldApplied(args)
+	tankComboCount = 0
 	self:SetStage(2)
 	self:Message("stages", "cyan", self:SpellName(-25192), args.spellId)
 	self:PlaySound("stages", "long")
@@ -140,7 +150,17 @@ function mod:CracklingUpheaval(args)
 end
 
 function mod:ConductiveStrike(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 22)
+	if self:Tank or self:Healer() or self:Dispeller("magic", false, args.spellId) then
+		tankComboCount = tankComboCount + 1
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
+		self:Bar(args.spellId, tankComboCount == 1 and 22 or 17) -- TODO confirm exact pattern
+	end
+end
+
+function mod:ConductiveStrikeApplied(args)
+	if self:Dispeller("magic", false, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
 end
