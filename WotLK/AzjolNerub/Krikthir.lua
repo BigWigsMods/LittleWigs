@@ -29,7 +29,7 @@ end
 --  Event Handlers
 
 function mod:CurseOfFatigue(args)
-	self:TargetMessageOld(52592, args.destName, "yellow")
+	self:TargetMessage(52592, "yellow", args.destName)
 	self:TargetBar(52592, 10, args.destName)
 end
 
@@ -38,14 +38,16 @@ function mod:CurseOfFatigueRemoved(args)
 end
 
 function mod:Frenzy(args)
-	self:MessageOld(args.spellId, "red", nil, CL.percent:format(10, args.spellName))
+	self:Message(args.spellId, "red", CL.percent:format(20, args.spellName))
 end
 
 function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) ~= 28684 then return end
-	local health = self:GetHealth(unit)
-	if health > 10 and health <= 15 then
+	local hp = self:GetHealth(unit)
+	if hp < 26 then
 		self:UnregisterUnitEvent(event, unit)
-		self:MessageOld(28747, "red", nil, CL.soon:format(self:SpellName(28747))) -- Frenzy
+		if hp > 20 then
+			self:Message(28747, "red", CL.soon:format(self:SpellName(28747))) -- Frenzy
+		end
 	end
 end
