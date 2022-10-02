@@ -51,7 +51,7 @@ end
 
 function mod:SurgeOfPowerAppliedToPlayer(args)
 	if self:Me(args.destGUID) then
-		self:StackMessage(args.spellId, "blue", args.destName, args.amount, 1)
+		self:StackMessage(args.spellId, "blue", args.destName, 1, 1)
 		self:PlaySound(args.spellId, "info")
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
