@@ -100,6 +100,7 @@ end
 function mod:Lanced(args)
 	self:Message(386530, "green", args.spellName) -- Dragonkiller Lance
 	self:PlaySound(386530, "info") -- Dragonkiller Lance
+	self:StopBar(CL.cast:format(self:SpellName(388283))) -- Eruption
 	self:CDBar(388283, 35) -- Eruption TODO 25s energy gain, 10s delay?
 end
 
