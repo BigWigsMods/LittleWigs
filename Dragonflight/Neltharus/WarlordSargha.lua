@@ -18,7 +18,7 @@ if L then
 	L.magical_implements = -25983 -- Magical Implements
 	L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
 	L.magical_implements_icon = "inv_wand_06"
-	L.magma_shield = "Search gold piles for magic items to deplete Magma Shield."
+	L.magma_shield = "Magma Shield - Get items from gold piles"
 end
 
 --------------------------------------------------------------------------------
