@@ -28,7 +28,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SurgeOfPowerAppliedToPlayer", 382628)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "SurgeOfPowerAppliedToPlayer", 382628)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SurgeOfPowerAppliedDoseToPlayer", 382628)
+	self:Log("SPELL_AURA_REFRESH", "SurgeOfPowerRefreshOnPlayer", 382628)
 	self:Log("SPELL_AURA_APPLIED", "SurgeOfPowerAppliedToBoss", 394875)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SurgeOfPowerAppliedToBoss", 394875)
 	self:Log("SPELL_CAST_START", "ElectricalStorm", 384620)
@@ -52,6 +53,19 @@ function mod:SurgeOfPowerAppliedToPlayer(args)
 	if self:Me(args.destGUID) then
 		self:StackMessage(args.spellId, "blue", args.destName, args.amount, 1)
 		self:PlaySound(args.spellId, "info")
+		self:TargetBar(args.spellId, 15, args.destName)
+	end
+end
+
+function mod:SurgeOfPowerAppliedDoseToPlayer(args)
+	if self:Me(args.destGUID) then
+		self:StackMessage(args.spellId, "blue", args.destName, args.amount, 1)
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:SurgeOfPowerRefreshOnPlayer(args)
+	if self:Me(args.destGUID) then
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 end
