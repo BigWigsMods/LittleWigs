@@ -57,6 +57,8 @@ end
 
 function mod:OnEngage()
 	self:CDBar(388283, 28.9) -- Eruption
+	self:CDBar(388817, 10.6) -- Shards of Stone
+	self:CDBar(385916, 15.5) -- Tectonic Stomp
 end
 
 --------------------------------------------------------------------------------
@@ -70,7 +72,6 @@ function mod:Eruption(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 6)
-	-- TODO stopbars?
 end
 
 function mod:ShardsOfStone(args)
