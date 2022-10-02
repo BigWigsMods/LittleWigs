@@ -25,6 +25,7 @@ function mod:GetOptions()
 		"stages",
 		-- Stage One: Balakar's Might
 		{376660, "SAY"}, -- Iron Spear
+		376683, -- Iron Stampede
 		375943, -- Upheaval
 		{375937, "TANK_HEALER"}, -- Rending Strike
 		-- Intermission: Stormwinds
@@ -44,6 +45,7 @@ end
 function mod:OnBossEnable()
 	-- Stage One: Balakar's Might
 	self:Log("SPELL_CAST_START", "IronSpear", 376644)
+	self:Log("SPELL_CAST_START", "IronStampede", 376683)
 	self:Log("SPELL_CAST_START", "Upheaval", 375943)
 	self:Log("SPELL_CAST_START", "RendingStrike", 375937)
 
@@ -86,6 +88,11 @@ do
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		-- TODO unknown CD
 	end
+end
+
+function mod:IronStampede(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Upheaval(args)

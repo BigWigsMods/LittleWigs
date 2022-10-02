@@ -12,6 +12,7 @@ BigWigs:AddSounds("Balakar Khan", {
 	[375937] = "alert",
 	[375943] = "alarm",
 	[376660] = "alarm",
+	[376683] = "alarm",
 	[376827] = {"alert","warning"},
 	[376864] = "alarm",
 	[376892] = "alarm",
