@@ -40,9 +40,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(384686, 8.1) -- Energy Surge
+	self:CDBar(384686, 7.3) -- Energy Surge
 	self:CDBar(384316, 10.5) -- Lightning Strike
-	self:Bar(384620, 31.2) -- Electrical Storm
+	self:CDBar(384620, 30.4) -- Electrical Storm
 end
 
 --------------------------------------------------------------------------------
@@ -80,13 +80,13 @@ end
 function mod:ElectricalStorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 64.2) -- TODO guess, cast at 100 energy, 60s energy gain + 3s cast + ~1.2s delay?
+	self:CDBar(args.spellId, 63.2) -- TODO guess, cast at 100 energy, 60s energy gain + 3s cast + ~.2s delay?
 end
 
 function mod:LightningStrike(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 38.9)
+	self:CDBar(args.spellId, 21.8)
 end
 
 function mod:EnergySurge(args)
