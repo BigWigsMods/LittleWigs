@@ -157,7 +157,7 @@ function mod:CracklingUpheaval(args)
 end
 
 function mod:ConductiveStrike(args)
-	if self:Tank or self:Healer() or self:Dispeller("magic", false, args.spellId) then
+	if self:Tank() or self:Healer() or self:Dispeller("magic", false, args.spellId) then
 		tankComboCount = tankComboCount + 1
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alert")
