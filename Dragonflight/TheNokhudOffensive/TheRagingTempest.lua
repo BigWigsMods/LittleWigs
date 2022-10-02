@@ -81,6 +81,7 @@ end
 function mod:ElectricalStorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
+	self:CastBar(args.spellId, 18) -- 3s cast, 15s channel
 	self:CDBar(args.spellId, 63.2) -- TODO guess, cast at 100 energy, 3s cast + 60s energy gain + ~.2s delay?
 end
 
