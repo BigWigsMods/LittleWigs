@@ -54,12 +54,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(382836, 8.7) -- Brutalize
-	self:Bar(385434, 11.1) -- Spirit Leap
+	self:Bar(382836, 8.6) -- Brutalize
+	self:Bar(385434, 11.0) -- Spirit Leap
 	self:Bar(386063, 12.2) -- Frightful Roar
-	self:Bar(382670, 14.8) -- Gale Arrow
+	self:Bar(382670, 14.6) -- Gale Arrow
 	self:Bar(386547, 20.4) -- Repel
-	self:Bar(385339, 21.6) -- Earthsplitter
+	self:Bar(385339, 21.5) -- Earthsplitter
 end
 
 --------------------------------------------------------------------------------
@@ -71,13 +71,13 @@ end
 function mod:GaleArrow(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO CD, cast at 100 energy, ~20 seconds
+	self:CDBar(args.spellId, 26.7)
 end
 
 function mod:Repel(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	-- TODO CD
+	self:CDBar(args.spellId, 31)
 end
 
 function mod:GuardianWind(args)
@@ -88,7 +88,7 @@ end
 function mod:SpiritLeap(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 27.5)
+	self:CDBar(args.spellId, 26.7)
 end
 
 -- Maruuk
@@ -96,13 +96,13 @@ end
 function mod:Earthsplitter(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	-- TODO CD, cast at 100 energy, ~20 seconds
+	self:CDBar(args.spellId, 30.4)
 end
 
 function mod:FrightfulRoar(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO CD
+	self:CDBar(args.spellId, 25.6)
 end
 
 function mod:Brutalize(args)
