@@ -92,9 +92,11 @@ function mod:LightningStrike(args)
 end
 
 function mod:EnergySurge(args)
-	if self:Dispeller("magic", true, args.spellId) or self:Tank() or self:Healer() then
+	if self:Dispeller("magic", true, args.spellId) then
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
+		self:CDBar(args.spellId, 17)
+	elseif self:Tank() or self:Healer() then
 		self:CDBar(args.spellId, 17)
 	end
 end
