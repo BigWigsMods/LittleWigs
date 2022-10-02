@@ -86,7 +86,7 @@ function mod:FetterApplied(args)
 end
 
 function mod:BladeLock(args)
-	self:StopBar(args.spellId)
+	self:StopBar(args.spellName)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 end
