@@ -34,6 +34,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GroundingSpear", 373424)
 	-- 3 different Fetter debuffs: 388523=long, 374655=short, 374638=player
 	self:Log("SPELL_AURA_APPLIED", "FetterApplied", 388523, 374655)
+	self:Log("SPELL_AURA_REMOVED", "FetterRemoved", 388523, 374655)
 	self:Log("SPELL_CAST_START", "BladeLock", 375056)
 	self:Log("SPELL_CAST_SUCCESS", "BladeLockOver", 375056)
 	self:Log("SPELL_CAST_START", "DragonStrike", 373733)
@@ -56,8 +57,8 @@ function mod:UNIT_POWER_UPDATE(_, unit)
 		-- ~29 seconds between Blade Lock casts, cast at max Energy
 		local nextBladeLock = ceil(29 * (1 - UnitPower(unit) / 100))
 		if nextBladeLock > 0 then
-			self:Bar(375056, {nextBladeLock + .2, 29.2}) -- Blade Lock, ~.2s delay at max energy
 			recalculateBladeLock = false
+			self:Bar(375056, {nextBladeLock + .2, 29.2}) -- Blade Lock, ~.2s delay at max energy
 		end
 	end
 end
@@ -73,16 +74,19 @@ end
 -- Normal/Heroic: 1 stack of Fetter always stuns
 -- Mythic: 1 or 2 hits of Fetter just slows, 3 hits stuns
 function mod:FetterApplied(args)
+	recalculateBladeLock = true
 	if args.spellId == 388523 then -- 14s long Fetter on boss
 		self:Message(388523, "green", CL.onboss:format(args.spellName))
 		self:PlaySound(388523, "info")
 		self:Bar(388523, 14, CL.onboss:format(args.spellName))
-		recalculateBladeLock = true
 	else -- 5s Short Fetter on boss
 		self:Bar(388523, 5, CL.onboss:format(args.spellName))
 		self:PauseBar(375056) -- Blade Lock, Chargath doesn't gain energy during Fetter
-		recalculateBladeLock = true
 	end
+end
+
+function mod:FetterRemoved(args)
+	recalculateBladeLock = true
 end
 
 function mod:BladeLock(args)
