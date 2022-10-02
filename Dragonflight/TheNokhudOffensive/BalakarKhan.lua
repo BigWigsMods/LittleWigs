@@ -52,9 +52,9 @@ function mod:OnBossEnable()
 	-- Intermission: Stormwinds
 	self:Log("SPELL_CAST_START", "SiphonPower", 376727)
 	self:Log("SPELL_AURA_APPLIED", "CracklingShieldApplied", 376724)
+	self:Log("SPELL_AURA_REMOVED", "CracklingShieldRemoved", 376724)
 
 	-- Stage Two: The Storm Unleashed
-	self:Log("SPELL_AURA_REMOVED", "CracklingShieldRemoved", 376724)
 	self:Log("SPELL_CAST_START", "StaticSpear", 376865)
 	self:Log("SPELL_CAST_START", "CracklingUpheaval", 376892)
 	self:Log("SPELL_CAST_START", "ConductiveStrike", 376827)
@@ -124,8 +124,6 @@ function mod:CracklingShieldApplied(args)
 	self:PlaySound("stages", "long")
 end
 
--- Stage Two: The Storm Unleashed
-
 function mod:CracklingShieldRemoved(args)
 	self:SetStage(3)
 	self:Message("stages", "cyan", self:SpellName(-25187), args.spellId)
@@ -134,6 +132,8 @@ function mod:CracklingShieldRemoved(args)
 	self:Bar(376864, 21.5) -- Static Spear
 	self:Bar(376892, 37) -- Crackling Upheaval
 end
+
+-- Stage Two: The Storm Unleashed
 
 do
 	local function printTarget(self, name, guid)
