@@ -18,8 +18,6 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		-- General
-		392198, -- Ancestral Bond
 		-- Teera
 		382670, -- Gale Arrow
 		386547, -- Repel
@@ -29,18 +27,16 @@ function mod:GetOptions()
 		385339, -- Earthsplitter
 		386063, -- Frightful Roar
 		{382836, "TANK_HEALER"}, -- Brutalize
+		-- Mythic
+		392198, -- Ancestral Bond
 	}, {
-		[392198] = CL.general,
 		[382670] = -25552, -- Teera
 		[385339] = -25546, -- Maruuk
+		[392198] = "mythic",
 	}
 end
 
 function mod:OnBossEnable()
-	-- General
-	self:Log("SPELL_AURA_APPLIED", "AncestralBondApplied", 392198)
-	self:Log("SPELL_AURA_REMOVED", "AncestralBondRemoved", 392198)
-
 	-- Teera
 	self:Log("SPELL_CAST_START", "GaleArrow", 382670)
 	self:Log("SPELL_CAST_START", "Repel", 386547)
@@ -51,6 +47,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Earthsplitter", 385339)
 	self:Log("SPELL_CAST_START", "FrightfulRoar", 386063)
 	self:Log("SPELL_CAST_START", "Brutalize", 382836)
+
+	-- Mythic
+	self:Log("SPELL_AURA_APPLIED", "AncestralBondApplied", 392198)
+	self:Log("SPELL_AURA_REMOVED", "AncestralBondRemoved", 392198)
 end
 
 function mod:OnEngage()
@@ -65,32 +65,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- General
-
-do
-	local prev = 0
-	function mod:AncestralBondApplied(args)
-		local t = args.time
-		if t-prev > 1 then
-			prev = t
-			self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
-			self:PlaySound(args.spellId, "warning")
-		end
-	end
-end
-
-do
-	local prev = 0
-	function mod:AncestralBondRemoved(args)
-		local t = args.time
-		if t-prev > 1 then
-			prev = t
-			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
-			self:PlaySound(args.spellId, "info")
-		end
-	end
-end
 
 -- Teera
 
@@ -135,4 +109,31 @@ function mod:Brutalize(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 30)
+end
+
+-- Mythic
+
+do
+	local prev = 0
+	function mod:AncestralBondApplied(args)
+		-- bosses enrage if more than 20 yards apart
+		local t = args.time
+		if t-prev > 1 then
+			prev = t
+			self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:AncestralBondRemoved(args)
+		local t = args.time
+		if t-prev > 1 then
+			prev = t
+			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
