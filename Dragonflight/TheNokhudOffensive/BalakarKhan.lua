@@ -18,20 +18,20 @@ function mod:GetOptions()
 	return {
 		"stages",
 		-- Stage One: Balakar's Might
-		{376644, "SAY"}, -- Iron Spear
+		{376660, "SAY"}, -- Iron Spear
 		375943, -- Upheaval
 		{375937, "TANK_HEALER"}, -- Rending Strike
 		-- Intermission: Stormwinds
 		376727, -- Siphon Power
 		-- TODO Lightning?
 		-- Stage Two: The Storm Unleashed
-		{376865, "SAY"}, -- Static Spear
+		{376864, "SAY"}, -- Static Spear
 		376892, -- Crackling Upheaval
 		{376827, "TANK_HEALER"}, -- Conductive Strike
 	}, {
-		[376644] = -25185, -- Stage One: Balakar's Might
+		[376660] = -25185, -- Stage One: Balakar's Might
 		[376727] = -25192, -- Intermission: Stormwinds
-		[376865] = -25187, -- Stage Two: The Storm Unleashed
+		[376864] = -25187, -- Stage Two: The Storm Unleashed
 	}
 end
 
@@ -55,7 +55,7 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	self:Bar(375937, 8) -- Rending Strike
-	self:Bar(376644, 21.5) -- Iron Spear
+	self:Bar(376660, 21.5) -- Iron Spear
 	self:Bar(375943, 37) -- Upheaval TODO confirm
 end
 
@@ -67,10 +67,10 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(376644, "yellow", name)
-		self:PlaySound(376644, "alarm", nil, name)
+		self:TargetMessage(376660, "yellow", name)
+		self:PlaySound(376660, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(376644)
+			self:Say(376660)
 		end
 	end
 
@@ -114,16 +114,16 @@ function mod:CracklingShieldRemoved(args)
 	self:Message("stages", "cyan", self:SpellName(-25187), args.spellId)
 	self:PlaySound("stages", "long")
 	self:Bar(376827, 8) -- Conductive Strike
-	self:Bar(376865, 21.5) -- Static Spear
+	self:Bar(376864, 21.5) -- Static Spear
 	self:Bar(376892, 37) -- Crackling Upheaval
 end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(376865, "yellow", name)
-		self:PlaySound(376865, "alarm", nil, name)
+		self:TargetMessage(376864, "yellow", name)
+		self:PlaySound(376864, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(376865)
+			self:Say(376864)
 		end
 	end
 
