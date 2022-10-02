@@ -76,10 +76,10 @@ function mod:FetterApplied(args)
 	if args.spellId == 388523 then -- 14s long Fetter on boss
 		self:Message(388523, "green", CL.onboss:format(args.spellName))
 		self:PlaySound(388523, "info")
-		self:TargetBar(388523, 14, CL.onboss:format(args.spellName))
+		self:Bar(388523, 14, CL.onboss:format(args.spellName))
 		recalculateBladeLock = true
 	else -- 5s Short Fetter on boss
-		self:TargetBar(388523, 5, CL.onboss:format(args.spellName))
+		self:Bar(388523, 5, CL.onboss:format(args.spellName))
 		self:PauseBar(375056) -- Blade Lock, Chargath doesn't gain energy during Fetter
 		recalculateBladeLock = true
 	end
