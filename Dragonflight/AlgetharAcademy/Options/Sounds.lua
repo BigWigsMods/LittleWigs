@@ -1,5 +1,10 @@
 
 BigWigs:AddSounds("Vexamus", {
+	[385958] = "alarm",
+	[386173] = "alarm",
+	[386544] = "long",
+	[388537] = "long",
+	[391977] = "alert",
 })
 
 BigWigs:AddSounds("Overgrown Ancient", {
