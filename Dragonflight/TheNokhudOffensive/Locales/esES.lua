@@ -8,3 +8,9 @@ L = BigWigs:NewBossLocale("Granyth", "esES") or BigWigs:NewBossLocale("Granyth",
 if L then
 	--L.lance_ready = "Lance Ready"
 end
+
+L = BigWigs:NewBossLocale("The Raging Tempest", "esES") or BigWigs:NewBossLocale("The Raging Tempest", "esMX")
+if L then
+	--L.on_you = "On you"
+	--L.on_boss = "On the boss"
+end

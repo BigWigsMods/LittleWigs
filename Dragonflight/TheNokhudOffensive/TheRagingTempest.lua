@@ -10,6 +10,16 @@ mod:SetEncounterID(2636)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.on_you = "On you"
+	L.on_boss = "On the boss"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -23,6 +33,9 @@ function mod:GetOptions()
 	}, {
 		[382628] = CL.general,
 		[394875] = self.displayName,
+	}, {
+		[382628] = L.on_you,
+		[394875] = L.on_boss,
 	}
 end
 
