@@ -120,13 +120,13 @@ end
 function mod:CracklingShieldApplied(args)
 	tankComboCount = 0
 	self:SetStage(2)
-	self:Message("stages", "cyan", self:SpellName(-25192), args.spellId)
+	self:Message("stages", "cyan", self:SpellName(-25192), args.spellId) -- Intermission: Stormwinds
 	self:PlaySound("stages", "long")
 end
 
 function mod:CracklingShieldRemoved(args)
 	self:SetStage(3)
-	self:Message("stages", "cyan", self:SpellName(-25187), args.spellId)
+	self:Message("stages", "cyan", self:SpellName(-25187), args.spellId) -- Stage Two: The Storm Unleashed
 	self:PlaySound("stages", "long")
 	self:Bar(376827, 8) -- Conductive Strike
 	self:Bar(376864, 21.5) -- Static Spear
