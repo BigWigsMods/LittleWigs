@@ -94,7 +94,7 @@ end]]--
 function mod:ArcaneFissure(args)
 	self:StopBar(args.spellId)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "long")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ArcaneFissureSuccess(args)
