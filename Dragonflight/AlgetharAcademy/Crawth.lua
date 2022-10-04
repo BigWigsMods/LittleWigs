@@ -51,6 +51,7 @@ function mod:OnBossEnable()
 	-- Lish Llrath
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:RegisterWidgetEvent(4183, "GoalOfTheSearingBlaze")
+	self:Log("SPELL_AURA_APPLIED", "FirestormApplied", 376781)
 	self:RegisterWidgetEvent(4184, "GoalOfTheRushingWinds")
 
 	-- Crawth
@@ -97,6 +98,12 @@ function mod:GoalOfTheSearingBlaze(_, _, info)
 	else
 		searingBlazeGoals = barValue
 	end
+end
+
+function mod:FirestormApplied(args)
+	self:Bar(376448, 12, CL.onboss:format(args.spellName))
+	self:Message(376448, "green", CL.onboss:format(args.spellName))
+	self:PlaySound(376448, "info")
 end
 
 -- [UPDATE_UI_WIDGET] widgetID:4184, shownState:1, text:Goal of the Rushing Winds, barValue:0
