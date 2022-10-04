@@ -72,13 +72,13 @@ function mod:AstralBreath(args)
 end
 
 function mod:PowerVacuum(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 24.3)
 end
 
 function mod:EnergyBombApplied(args)
-	self:TargetMessage(374352, "red", args.destName)
+	self:TargetMessage(374352, "yellow", args.destName)
 	self:PlaySound(374352, "alert", nil, args.destName)
 	self:CDBar(374352, 14.3)
 	if self:Me(args.destGUID) then
