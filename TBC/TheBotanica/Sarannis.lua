@@ -25,7 +25,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ArcaneResonance", 34794)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "ArcaneResonancePrint", 34794)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "ArcaneResonance", 34794)
 	self:Log("SPELL_CAST_START", "GreaterHeal", 35096)
 
 	if self:Classic() then
@@ -54,11 +54,7 @@ end
 --
 
 function mod:ArcaneResonance(args)
-	self:TargetMessageOld(args.spellId, args.spellName, "red")
-end
-
-function mod:ArcaneResonancePrint(args)
-	BigWigs:Error("Arcane Resonance stacked to ".. args.amount .." tell the BigWigs Devs! ".. (self:Classic() and "classic" or "retail"))
+	self:StackMessage(args.spellId, "red", args.destName, args.amount, 0)
 end
 
 function mod:GreaterHeal(args)
