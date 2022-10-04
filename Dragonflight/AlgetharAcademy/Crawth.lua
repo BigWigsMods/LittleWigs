@@ -53,6 +53,7 @@ function mod:OnBossEnable()
 	self:RegisterWidgetEvent(4183, "GoalOfTheSearingBlaze")
 	self:Log("SPELL_AURA_APPLIED", "FirestormApplied", 376781)
 	self:RegisterWidgetEvent(4184, "GoalOfTheRushingWinds")
+	-- TODO Gale Force applied? 376760?
 
 	-- Crawth
 	self:Log("SPELL_CAST_START", "OverpoweringGust", 377034)
