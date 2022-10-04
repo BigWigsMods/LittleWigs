@@ -13,4 +13,6 @@ L = BigWigs:NewBossLocale("The Violet Hold Trash", "zhTW")
 if L then
 	-- L.portals = "Portals"
 	-- L.portals_desc = "Information about portals."
+	L.boss_message = "首領"
+	--L.portal_bar = "Portal"
 end
