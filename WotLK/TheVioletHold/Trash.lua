@@ -55,7 +55,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterWidgetEvent(566, "UpdateWaveTimers")
+	self:RegisterWidgetEvent(self:Classic() and 3895 or 566, "UpdateWaveTimers")
 	self:Death("BossDeaths", 29315, 29316, 29313, 29266, 29312, 29314, 32226, 32230, 32231, 32234, 32235, 32237)
 	self:Death("Disable", 31134)
 end
@@ -94,6 +94,10 @@ end
 
 function mod:BossDeaths()
 	local count = prevWave+1
-	self:Bar("portals", count == 7 and 35 or 30, CL.count:format(L.portal_bar, count), "spell_arcane_portaldalaran") -- (20s or 15s) + 15s
+	if self:Classic() then
+		self:Bar("portals", 48, CL.count:format(L.portal_bar, count), "spell_arcane_portaldalaran") -- 33s + 15s
+	else
+		self:Bar("portals", count == 7 and 35 or 30, CL.count:format(L.portal_bar, count), "spell_arcane_portaldalaran") -- (20s or 15s) + 15s
+	end
 end
 
