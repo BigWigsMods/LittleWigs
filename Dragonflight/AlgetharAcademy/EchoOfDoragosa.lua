@@ -58,8 +58,8 @@ do
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
-				self:PersonalMessage(388901, "underyou")
-				self:PlaySound(388901, "underyou")
+				self:PersonalMessage(388901, "underyou") -- Arcane Rift
+				self:PlaySound(388901, "underyou") -- Arcane Rift
 			end
 		end
 	end
