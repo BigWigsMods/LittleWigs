@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Xevozz", "deDE")
 if not L then return end
 if L then
-	L.summon_sphere = "Beschwört Sphäre des Astraleums"
+	L.sphere_name = "Sphäre des Astraleums"
 end
 
 L = BigWigs:NewBossLocale("Zuramat the Obliterator", "deDE")

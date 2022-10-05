@@ -41,7 +41,7 @@ function mod:OnEngage()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:CDBar(58688, 7) -- Uncontrollable Energy
-	self:CDBar(58694, 26.7) -- Arcane Vacuum
+	self:CDBar(58694, 26) -- Arcane Vacuum
 
 	-- if self:Heroic and self:Dispeller("magic", nil, 59374) then
 	-- 	self:CDBar(59374, 0) -- Mana Destruction
@@ -74,7 +74,7 @@ do
 end
 
 function mod:ArcaneVacuum(args)
-	self:Message(args.spellId, "cyan")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 26.7)
 end

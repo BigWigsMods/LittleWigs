@@ -46,7 +46,7 @@ end
 function mod:LavaBurn(args)
 	self:TargetMessage(54249, "orange", args.destName)
 	self:PlaySound(54249, "alarm", nil, args.destName)
-	self:CDBar(54249, 15)
+	self:CDBar(54249, 14.5)
 end
 
 function mod:CauterizingFlames(args)
