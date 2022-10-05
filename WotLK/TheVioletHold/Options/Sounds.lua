@@ -16,6 +16,7 @@ BigWigs:AddSounds("Ichoron", {
 
 BigWigs:AddSounds("Xevozz", {
 	[54102] = "alert",
+	[54160] = {"info","warning"},
 })
 
 BigWigs:AddSounds("Lavanthor", {

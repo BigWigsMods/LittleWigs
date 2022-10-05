@@ -17,6 +17,7 @@ BigWigs:AddColors("Ichoron", {
 
 BigWigs:AddColors("Xevozz", {
 	[54102] = "red",
+	[54160] = "purple",
 })
 
 BigWigs:AddColors("Lavanthor", {
@@ -33,7 +34,7 @@ BigWigs:AddColors("Zuramat the Obliterator", {
 BigWigs:AddColors("Cyanigosa", {
 	[58688] = "purple",
 	[58693] = "blue",
-	[58694] = "cyan",
+	[58694] = "yellow",
 	[59374] = {"blue","red"},
 })
 
