@@ -100,11 +100,12 @@ end
 function mod:ArcaneFissureSuccess(args)
 	-- Cast at 100 energy, gains 2.5 energy per second
 	self:Bar(args.spellId, 40)
+	arcaneFissureTime = GetTime() + 40
 end
 
 function mod:ArcaneOrbAbsorbed(args)
 	-- Vexamus gains 20 energy (8s worth) when it absorbs an orb
-	arcaneFissureTime = nextArcaneFissure - 8
+	arcaneFissureTime = arcaneFissureTime - 8
 	local timeLeft = arcaneFissureTime - GetTime()
 	if timeLeft > 0 then
 		self:Bar(388537, {timeLeft, 40}) -- Arcane Fissure
