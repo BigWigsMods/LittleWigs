@@ -34,9 +34,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(374352, 14.7) -- Energy Bomb
+	self:CDBar(374352, 16.3) -- Energy Bomb
 	self:Bar(388822, 24.2) -- Power Vacuum
-	self:CDBar(374361, 29.3) -- Astral Breath
+	self:CDBar(374361, 28.8) -- Astral Breath
 end
 
 --------------------------------------------------------------------------------
