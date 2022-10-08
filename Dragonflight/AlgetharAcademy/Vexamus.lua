@@ -52,10 +52,10 @@ end
 function mod:OnEngage()
 	self:Bar(386544, 4.1) -- Arcane Orbs
 	self:CDBar(385958, 13) -- Arcane Expulsion
-	self:CDBar(386173, 27.7) -- Mana Bombs
+	self:CDBar(386173, 24) -- Mana Bombs
 	self:CDBar(388537, 40.9) -- Arcane Fissure
+	-- 40 second energy gain + .9 seconds until energy gain is initially turned on
 	arcaneFissureTime = GetTime() + 40.9
-	-- TODO make sure this .9s delay is consistent else use UNIT_POWER_UPDATE
 end
 
 --------------------------------------------------------------------------------
