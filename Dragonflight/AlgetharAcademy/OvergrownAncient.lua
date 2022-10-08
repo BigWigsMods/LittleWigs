@@ -46,10 +46,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(388544, 5.9) -- Barkbreaker
+	self:CDBar(388544, 4.6) -- Barkbreaker
 	self:CDBar(388796, 13.4) -- Germinate
-	self:CDBar(388623, 32.8) -- Branch Out
-	self:CDBar(388923, 49.4) -- Burst Forth
+	self:CDBar(388623, 30.3) -- Branch Out
+	self:CDBar(388923, 47.4) -- Burst Forth
 end
 
 --------------------------------------------------------------------------------
@@ -61,13 +61,14 @@ end
 function mod:Germinate(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 29.1)
+	self:CDBar(args.spellId, 29.1) -- TODO 13.1, 29.1, 20.6 pattern consistent?
 end
 
 function mod:BurstForth(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	-- TODO unknown CD
+	-- cast at 100 energy, 45s energy gain + 2s cast
+	self:CDBar(args.spellId, 47)
 end
 
 function mod:BranchOut(args)
@@ -79,7 +80,7 @@ end
 function mod:Barkbreaker(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 30.4)
+	self:CDBar(args.spellId, 29.1) -- TODO 4.6, 29.1, 19.4 pattern consistent?
 end
 
 -- Hungry Lasher
