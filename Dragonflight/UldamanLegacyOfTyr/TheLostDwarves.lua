@@ -5,11 +5,11 @@ if not IsTestBuild() then return end
 
 local mod, CL = BigWigs:NewBoss("The Lost Dwarves", 2451, 2475)
 if not mod then return end
---[[mod:RegisterEnableMob(
-	-- Baelog
-	-- Eric "The Swift"
-	-- Olaf
-)]]-- TODO correct mob IDs
+mod:RegisterEnableMob(
+	184581, -- Baelog
+	184582, -- Eric "The Swift"
+	184580  -- Olaf
+)
 mod:SetEncounterID(2555)
 mod:SetRespawnTime(30)
 
