@@ -42,6 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LasherToxinApplied", 389033)
 
 	-- Ancient Branch
+	self:Log("SPELL_CAST_START", "EntanglingRoots", 371453)
 	self:Log("SPELL_AURA_APPLIED", "EntanglingRootsApplied", 371453)
 end
 
@@ -101,6 +102,11 @@ do
 end
 
 -- Ancient Branch
+
+function mod:EntanglingRoots(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
 
 function mod:EntanglingRootsApplied(args)
 	if self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then

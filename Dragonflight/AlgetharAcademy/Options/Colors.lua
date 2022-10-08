@@ -3,7 +3,7 @@ BigWigs:AddColors("Vexamus", {
 })
 
 BigWigs:AddColors("Overgrown Ancient", {
-	[371453] = {"blue","red"},
+	[371453] = {"blue","red","yellow"},
 	[388544] = "purple",
 	[388623] = "red",
 	[388796] = "yellow",
