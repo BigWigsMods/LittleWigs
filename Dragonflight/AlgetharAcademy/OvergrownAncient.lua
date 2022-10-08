@@ -19,7 +19,7 @@ function mod:GetOptions()
 		388796, -- Germinate
 		388923, -- Burst Forth
 		388623, -- Branch Out
-		388544, -- Barkbreaker
+		{388544, "TANK_HEALER"}, -- Barkbreaker
 		-- Hungry Lasher
 		{389033, "DISPEL"}, -- Lasher Toxin (Mythic only)
 		-- Ancient Branch
