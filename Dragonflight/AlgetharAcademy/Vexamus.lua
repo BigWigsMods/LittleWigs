@@ -81,6 +81,7 @@ end
 
 -- Vexamus
 
+-- TODO is this a more reliable way to calculate the arcane fissure timer?
 --[[function mod:UNIT_POWER_UPDATE(_, unit)
 	if recalculateArcaneFissure then
 		-- 40 seconds between Arcane Fissure casts, cast at max Energy
