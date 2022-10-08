@@ -51,7 +51,7 @@ end
 
 function mod:OnEngage()
 	self:Bar(386544, 4.1) -- Arcane Orbs
-	self:CDBar(385958, 13) -- Arcane Expulsion
+	self:Bar(385958, 13.1) -- Arcane Expulsion
 	self:CDBar(386173, 24) -- Mana Bombs
 	self:CDBar(388537, 40.9) -- Arcane Fissure
 	-- 40 second energy gain + .9 seconds until energy gain is initially turned on
@@ -119,7 +119,7 @@ do
 
 	function mod:ManaBombs(args)
 		playerList = {}
-		self:CDBar(args.spellId, 23.1)
+		self:CDBar(args.spellId, 23)
 	end
 
 	function mod:ManaBombApplied(args)
