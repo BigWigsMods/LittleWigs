@@ -73,8 +73,10 @@ end
 function mod:OversurgeApplied(args)
 	-- TODO does this apply to players (probably) or boss?
 	-- TODO does this stack?
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	if self:Me(args.destGUID) or self:Dispeller("magic", false, args.spellId) then
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
 
 -- Vexamus
