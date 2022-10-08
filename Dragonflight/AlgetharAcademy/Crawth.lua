@@ -65,9 +65,9 @@ function mod:OnEngage()
 	searingBlazeGoals = 0
 	rushingWindsGoals = 0
 	self:CDBar(376997, 3.7) -- Savage Peck
-	self:CDBar(377004, 10.9) -- Deafening Screech
-	self:CDBar(377034, 15.8) -- Overpowering Gust
-	self:Bar(377182, 23.3) -- Play Ball
+	self:Bar(377004, 10.9) -- Deafening Screech
+	self:Bar(377034, 15.8) -- Overpowering Gust
+	self:CDBar(377182, 14.0) -- Play Ball
 end
 
 --------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("377182", nil, true) then -- Play Ball
 		self:Message(377182, "cyan")
 		self:PlaySound(377182, "long")
-		self:Bar(377182, 38.9) -- TODO timer might be started off Firestorm/Gale Force?
+		self:CDBar(377182, 18.2)
 	end
 end
 
@@ -135,7 +135,7 @@ end
 function mod:DeafeningScreech(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 23.1)
+	self:CDBar(args.spellId, 22.7)
 end
 
 function mod:SavagePeck(args)
