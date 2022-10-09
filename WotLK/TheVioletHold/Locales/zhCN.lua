@@ -1,12 +1,12 @@
 local L = BigWigs:NewBossLocale("Xevozz", "zhCN")
 if not L then return end
 if L then
-	--L.sphere_name = "Ethereal Sphere"
+	L.sphere_name = "灵体之球"
 end
 
 L = BigWigs:NewBossLocale("Zuramat the Obliterator", "zhCN")
 if L then
-	--L.short_name = "Zuramat"
+	L.short_name = "祖拉玛特"
 end
 
 L = BigWigs:NewBossLocale("The Violet Hold Trash", "zhCN")

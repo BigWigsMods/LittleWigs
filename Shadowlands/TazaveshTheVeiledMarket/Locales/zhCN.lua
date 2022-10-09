@@ -13,7 +13,7 @@ end
 L = BigWigs:NewBossLocale("Mailroom Mayhem", "zhCN")
 if L then
 	L.delivery_portal = "投递传送门"
-	L.delivery_portal_desc = "显示投递传送门何时更改位置的计时器"
+	L.delivery_portal_desc = "显示投递传送门何时更改位置的计时器。"
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "zhCN")
