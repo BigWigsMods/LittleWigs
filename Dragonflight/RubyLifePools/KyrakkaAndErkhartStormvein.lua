@@ -31,8 +31,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss2")
-	--self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089)
+	self:Log("SPELL_AURA_APPLIED", "EncounterEvent", 181089)
 	self:Death("BossDeath", 190484, 190485)
 
 	-- Kyrakka
@@ -57,22 +56,13 @@ end
 
 -- Stages
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 382521 then -- Kyrakka
-		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stage:format(2), false)
-		self:PlaySound("stages", "long")
-		-- TODO stopbars?
-	end
-end
-
--- TODO uncomment this and delete UNIT_SPELLCAST_SUCCEEDED when this boss starts firing 181089 for the phase change
---[[function mod:EncounterEvent()
+function mod:EncounterEvent()
+	-- when either boss reaches 50%, Kyrakka lands so Erkhart can remount
 	self:SetStage(2)
 	self:Message("stages", "cyan", CL.stage:format(2), false)
 	self:PlaySound("stages", "long")
 	-- TODO stopbars?
-end]]--
+end
 
 function mod:BossDeath(args)
 	if self:GetStage() ~= 3 then
