@@ -31,7 +31,7 @@ end
 L = BigWigs:NewBossLocale("Moroes", "zhCN")
 if L then
 	L.cc = "群体控制"
-	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+	L.cc_desc = "群体控制晚餐客人的计时器和警报。"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "zhCN")
