@@ -21,13 +21,14 @@ function mod:GetOptions()
 	return {
 		"stages",
 		-- Kyrakka
+		381862, -- Infernocore
 		381525, -- Roaring Firebreath
 		-- Erkhart Stormvein
 		381517, -- Winds of Change
 		381516, -- Interrupting Cloudburst
 		{381512, "TANK_HEALER"}, -- Stormslam
 	}, {
-		[381525] = -25365, -- Kyrakka
+		[381862] = -25365, -- Kyrakka
 		[381517] = -25369, -- Erkhart Stormvein
 	}
 end
@@ -39,6 +40,8 @@ function mod:OnBossEnable()
 	self:Death("BossDeath", 190484, 190485)
 
 	-- Kyrakka
+	self:Log("SPELL_AURA_APPLIED", "InfernocoreApplied", 381862)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "InfernocoreApplied", 381862)
 	self:Log("SPELL_CAST_START", "RoaringFirebreath", 381525)
 
 	-- Erkhart Stormvein
@@ -99,6 +102,19 @@ function mod:BossDeath(args)
 end
 
 -- Kyrakka
+
+do
+	function mod:InfernocoreApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1 then
+				self:StackMessage(args.spellId, "blue", args.destName, args.amount, 2)
+				self:PlaySound(args.spellId, "alert")
+			end
+			self:TargetBar(args.spellId, 3)
+		end
+	end
+end
 
 function mod:RoaringFirebreath(args)
 	self:Message(args.spellId, "orange")

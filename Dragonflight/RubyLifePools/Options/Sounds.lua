@@ -18,6 +18,7 @@ BigWigs:AddSounds("Kyrakka and Erkhart Stormvein", {
 	[381516] = "warning",
 	[381517] = "alert",
 	[381525] = "alarm",
+	[381862] = "alert",
 	["stages"] = "long",
 })
 
