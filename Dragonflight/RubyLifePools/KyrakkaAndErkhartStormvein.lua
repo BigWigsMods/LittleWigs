@@ -20,7 +20,9 @@ mod:SetStage(1)
 function mod:GetOptions()
 	return {
 		"stages",
+		-- Kyrakka
 		381525, -- Roaring Firebreath
+		-- Erkhart Stormvein
 		381517, -- Winds of Change
 		381516, -- Interrupting Cloudburst
 		{381512, "TANK_HEALER"}, -- Stormslam
