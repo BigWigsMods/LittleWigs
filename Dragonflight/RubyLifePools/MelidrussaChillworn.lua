@@ -78,7 +78,7 @@ do
 
 	function mod:FrostOverload(args)
 		frostOverloadStart = args.time
-		self:Message(args.spellId, "orange")
+		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "long")
 		self:CDBar(args.spellId, 18.4)
 	end
