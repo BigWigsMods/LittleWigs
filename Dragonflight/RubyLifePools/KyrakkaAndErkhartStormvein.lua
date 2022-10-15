@@ -104,10 +104,13 @@ end
 -- Kyrakka
 
 do
+	local prev = 0
+
 	function mod:InfernocoreApplied(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
 			if t - prev > 1 then
+				prev = t
 				self:StackMessage(args.spellId, "blue", args.destName, args.amount, 2)
 				self:PlaySound(args.spellId, "alert")
 			end
