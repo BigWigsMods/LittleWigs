@@ -6,7 +6,7 @@ BigWigs:AddColors("Bromach", {
 })
 
 BigWigs:AddColors("Sentinel Talondras", {
-	[372600] = {"green","red"},
+	[372600] = {"green","red","yellow"},
 	[372623] = {"blue","green","yellow"},
 	[372701] = "orange",
 	[372718] = {"blue","red"},

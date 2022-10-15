@@ -10,15 +10,6 @@ mod:SetEncounterID(2557)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.halfway = "%s (1/2)"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -56,7 +47,7 @@ end
 --
 
 function mod:InexorableRemovedDose(args)
-	self:Message(args.spellId, "green", L.halfway:format(CL.removed:format(args.spellName)))
+	self:Message(args.spellId, "yellow", CL.stack:format(1, args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -66,7 +57,7 @@ function mod:InexorableRemoved(args)
 end
 
 function mod:InexorableApplied(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.stack:format(2, args.spellName, args.destName))
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -101,7 +92,7 @@ do
 
 	function mod:ResonatingOrbFixate(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(372623, "yellow", playerList, 2) -- TODO always 2 fixates? what about the 3rd orb
+		self:TargetsMessage(372623, "yellow", playerList, 2)
 		self:PlaySound(372623, "alert", nil, playerList)
 	end
 end
@@ -111,7 +102,7 @@ function mod:ResonatingOrbApplied(args)
 		self:Message(372623, "green", CL.onboss:format(args.spellName))
 		self:PlaySound(372623, "info")
 
-		-- energy resets when Resonating Orb is applied to boss (TODO confirm)
+		-- energy resets when Resonating Orb is applied to boss
 		-- 3s stun + 25s energy gain + 5s cast
 		self:Bar(372719, 33) -- Titanic Empowerment
 	end
