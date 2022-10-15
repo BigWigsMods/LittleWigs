@@ -42,6 +42,8 @@ function mod:OnEngage()
 	addsNeeded = self:Normal() and 3 or 4
 	purgingFlameCount = 0
 	self:SetStage(1)
+	self:CDBar(369061, 4.6) -- Searing Clap
+	self:CDBar(369110, 13.1) -- Unstable Embers
 end
 
 --------------------------------------------------------------------------------
