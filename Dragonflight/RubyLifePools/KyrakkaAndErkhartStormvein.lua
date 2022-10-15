@@ -22,6 +22,7 @@ function mod:GetOptions()
 		"stages",
 		381525, -- Roaring Firebreath
 		381517, -- Winds of Change
+		381516, -- Interrupting Cloudburst
 		{381512, "TANK_HEALER"}, -- Stormslam
 	}, {
 		[381525] = -25365, -- Kyrakka
@@ -40,6 +41,7 @@ function mod:OnBossEnable()
 
 	-- Erkhart Stormvein
 	self:Log("SPELL_CAST_START", "WindsOfChange", 381517)
+	self:Log("SPELL_CAST_START", "InterruptingCloudburst", 381516)
 	self:Log("SPELL_CAST_START", "Stormslam", 381512)
 	self:Log("SPELL_AURA_APPLIED", "StormslamApplied", 381515)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "StormslamApplied", 381515)
@@ -49,6 +51,9 @@ function mod:OnEngage()
 	self:SetStage(1)
 	self:Bar(381525, 1.6) -- Roaring Firebreath
 	self:Bar(381512, 6.1) -- Stormslam
+	if self:Mythic() then
+		self:Bar(381516, 9.7) -- Interrupting Cloudburst
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -103,6 +108,12 @@ function mod:WindsOfChange(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 18.2)
+end
+
+function mod:InterruptingCloudburst(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+	self:Bar(args.spellId, 17)
 end
 
 function mod:Stormslam(args)

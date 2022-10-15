@@ -15,6 +15,7 @@ BigWigs:AddColors("Kokia Blazehoof", {
 
 BigWigs:AddColors("Kyrakka and Erkhart Stormvein", {
 	[381512] = {"blue","purple"},
+	[381516] = "red",
 	[381517] = "yellow",
 	[381525] = "orange",
 	["stages"] = "cyan",
