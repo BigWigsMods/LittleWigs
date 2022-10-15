@@ -118,6 +118,7 @@ function mod:InterruptingCloudburst(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:Bar(args.spellId, 17)
+	self:CastBar(args.spellId, 3)
 end
 
 function mod:Stormslam(args)
