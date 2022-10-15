@@ -37,9 +37,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(372718, 4.7) -- Earthen Shards
-	self:Bar(372701, 10.4) -- Crushing Stomp
-	self:Bar(372719, 30) -- Titanic Empowerment
+	self:Bar(372718, 4.6) -- Earthen Shards
+	self:CDBar(372701, 8.1) -- Crushing Stomp
+	self:Bar(372719, 30.1) -- Titanic Empowerment
 end
 
 --------------------------------------------------------------------------------
