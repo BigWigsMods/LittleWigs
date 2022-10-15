@@ -54,6 +54,7 @@ function mod:OnEngage()
 	if self:Mythic() then
 		self:Bar(381516, 9.7) -- Interrupting Cloudburst
 	end
+	self:Bar(381517, 17) -- Winds of Change
 end
 
 --------------------------------------------------------------------------------
@@ -99,7 +100,7 @@ end
 function mod:RoaringFirebreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18.2)
+	self:CDBar(args.spellId, 19.1)
 end
 
 -- Erkhart Stormvein
@@ -107,7 +108,7 @@ end
 function mod:WindsOfChange(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 18.2)
+	self:Bar(args.spellId, 17)
 end
 
 function mod:InterruptingCloudburst(args)
