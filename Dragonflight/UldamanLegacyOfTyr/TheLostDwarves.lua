@@ -142,7 +142,7 @@ do
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "long")
-			-- how does the CD work on this? independent per dwarf? how do they come down?
+			-- TODO how does the CD work on this? how/when do they come down?
 		end
 	end
 end
