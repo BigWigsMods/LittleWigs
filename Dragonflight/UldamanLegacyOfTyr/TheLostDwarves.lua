@@ -60,8 +60,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(369791, 7.3) -- Skullcracker
-	self:Bar(369563, 8.5) -- Wild Cleave
+	self:CDBar(369791, 6.1) -- Skullcracker
+	self:CDBar(369563, 8.5) -- Wild Cleave
 	self:Bar(369677, 12.1) -- Ricocheting Shield
 	self:Bar(369602, 17.3) -- Defensive Bulwark
 	self:Bar(369573, 20.6) -- Heavy Arrow
@@ -94,10 +94,9 @@ end
 -- Eric "The Swift"
 
 function mod:Skullcracker(args)
-	-- TODO target?
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 42.5)
+	self:CDBar(args.spellId, 42.5)
 end
 
 function mod:EricTheSwiftDeath()
