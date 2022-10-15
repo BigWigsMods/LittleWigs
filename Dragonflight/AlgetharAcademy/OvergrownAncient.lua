@@ -23,11 +23,12 @@ function mod:GetOptions()
 		-- Hungry Lasher
 		{389033, "DISPEL"}, -- Lasher Toxin (Mythic only)
 		-- Ancient Branch
-		{371453, "DISPEL"}, -- Entangling Roots
+		396640, -- Healing Touch
+		-- TODO Abundance
 	}, {
 		[388796] = self.displayName,
 		[389033] = -25730, -- Hungry Lasher
-		[371453] = -25688, -- Ancient Branch
+		[396640] = -25688, -- Ancient Branch
 	}
 end
 
@@ -42,8 +43,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LasherToxinApplied", 389033)
 
 	-- Ancient Branch
-	self:Log("SPELL_CAST_START", "EntanglingRoots", 371453)
-	self:Log("SPELL_AURA_APPLIED", "EntanglingRootsApplied", 371453)
+	self:Log("SPELL_CAST_START", "HealingTouch", 396640)
 end
 
 function mod:OnEngage()
@@ -103,14 +103,7 @@ end
 
 -- Ancient Branch
 
-function mod:EntanglingRoots(args)
+function mod:HealingTouch(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:EntanglingRootsApplied(args)
-	if self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
-	end
+	self:PlaySound(args.spellId, "warning")
 end
