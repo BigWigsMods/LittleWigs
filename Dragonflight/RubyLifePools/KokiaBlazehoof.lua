@@ -50,13 +50,13 @@ end
 
 function mod:MoltenBoulder(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 17)
 end
 
 function mod:SearingBlows(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 32.9)
 end
 
