@@ -26,6 +26,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EternityZoneApplied", 376325)
 	self:Log("SPELL_CAST_START", "RewindTimeflow", 376208)
+	self:Log("SPELL_CAST_SUCCESS", "RewindTimeflowStart", 376208)
 	self:Log("SPELL_AURA_REMOVED", "RewindTimeflowOver", 376208)
 	self:Log("SPELL_CAST_START", "WingBuffet", 376049)
 	self:Log("SPELL_AURA_APPLIED", "TimeSinkApplied", 377405)
@@ -58,8 +59,11 @@ end
 function mod:RewindTimeflow(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CastBar(args.spellId, 12)
 	self:Bar(args.spellId, 46.1)
+end
+
+function mod:RewindTimeflowStart(args)
+	self:CastBar(args.spellId, 12)
 end
 
 function mod:RewindTimeflowOver(args)
