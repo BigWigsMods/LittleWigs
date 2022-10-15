@@ -36,6 +36,7 @@ end
 function mod:OnEngage()
 	self:Bar(372863, 7.6) -- Ritual of Blazebinding
 	self:Bar(372107, 14.5) -- Molten Boulder
+	self:Bar(372858, 21.6) -- Searing Blows
 end
 
 --------------------------------------------------------------------------------
