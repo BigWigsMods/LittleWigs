@@ -87,7 +87,6 @@ do
 
 	function mod:ResonatingOrb(args)
 		playerList = {}
-		--self:CDBar(args.spellId, 31.4) -- TODO is this timer invalid? probably based on the dynamo resetting?
 	end
 
 	function mod:ResonatingOrbFixate(args)
