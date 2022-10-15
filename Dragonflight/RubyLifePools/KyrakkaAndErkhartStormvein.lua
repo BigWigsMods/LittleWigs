@@ -89,8 +89,9 @@ function mod:BossDeath(args)
 		if args.mobId == 190484 then -- Kyrakka
 			self:StopBar(381525) -- Roaring Firebreath
 		else -- Erkhart Stormvein
-			self:StopBar(381512) -- Stormslam
 			self:StopBar(381517) -- Winds of Change
+			self:StopBar(381516) -- Interrupting Cloudburst
+			self:StopBar(381512) -- Stormslam
 		end
 	end
 end
