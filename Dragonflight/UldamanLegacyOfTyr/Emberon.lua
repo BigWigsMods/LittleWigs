@@ -85,11 +85,10 @@ function mod:UnstableEmbers(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 12.2)
-	-- TODO start 3s eruption bar? say?
 end
 
 function mod:SearingClap(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 44.9) -- TODO this is probably way too high
+	self:CDBar(args.spellId, 38) -- TODO this is probably way too high
 end
