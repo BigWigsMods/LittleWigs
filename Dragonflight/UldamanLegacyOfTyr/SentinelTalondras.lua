@@ -107,12 +107,14 @@ do
 end
 
 function mod:ResonatingOrbApplied(args)
-	self:Message(372623, "green", CL.onboss:format(args.spellName))
-	self:PlaySound(372623, "info")
+	if self:MobId(args.destGUID) == 184124 then -- Sentinel Talondras
+		self:Message(372623, "green", CL.onboss:format(args.spellName))
+		self:PlaySound(372623, "info")
 
-	-- energy resets when Resonating Orb is applied to boss (TODO confirm)
-	-- 3s stun + 25s energy gain + 5s cast
-	self:Bar(372719, 33) -- Titanic Empowerment
+		-- energy resets when Resonating Orb is applied to boss (TODO confirm)
+		-- 3s stun + 25s energy gain + 5s cast
+		self:Bar(372719, 33) -- Titanic Empowerment
+	end
 end
 
 function mod:CrushingStomp(args)
