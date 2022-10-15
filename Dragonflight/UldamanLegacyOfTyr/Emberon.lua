@@ -52,7 +52,7 @@ end
 
 function mod:PurgingFlames(args)
 	-- cast at 70% and then 30% health
-	local perecent = purgingFlameCount == 0 and 70 or 30
+	local percent = purgingFlameCount == 0 and 70 or 30
 	purgingFlameCount = purgingFlameCount + 1
 	self:SetStage(2)
 	self:Message(args.spellId, "cyan", CL.percent:format(percent, args.spellName))
@@ -71,7 +71,7 @@ do
 	function mod:InfusionRemoved(args)
 		addsKilled = addsKilled + 1
 		if addsKilled == addsNeeded then
-			self:Message(368990, "cyan", CL.over:format(self:spellName(368990))) -- Purging Flames Over
+			self:Message(368990, "cyan", CL.over:format(self:SpellName(368990))) -- Purging Flames Over
 			self:PlaySound(368990, "long")
 			self:SetStage(1)
 		else
