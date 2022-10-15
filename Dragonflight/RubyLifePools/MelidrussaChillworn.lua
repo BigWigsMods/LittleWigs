@@ -29,11 +29,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FrostOverload", 373680)
 	self:Log("SPELL_AURA_REMOVED", "FrostOverloadOver", 373680)
 	self:Log("SPELL_CAST_START", "Chillstorm", 372851)
-	self:Log("SPELL_CAST_START", "Hailbombs", 396044)
+	self:Log("SPELL_CAST_SUCCESS", "Hailbombs", 396044)
 end
 
 function mod:OnEngage()
-	self:CDBar(396044, 4.8) -- Hailbombs
+	self:CDBar(396044, 6.8) -- Hailbombs
 	self:CDBar(372851, 12.1) -- Chillstorm
 	self:CDBar(373046, 15.6) -- Awaken Whelps
 	if self:Mythic() then
