@@ -36,6 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CallOfTheDeep", 369605)
 	self:Log("SPELL_CAST_START", "QuakingTotem", 382303)
 	self:Log("SPELL_CAST_START", "Bloodlust", 369754)
+	self:Log("SPELL_CAST_SUCCESS", "BloodlustSuccess", 369754)
 	self:Log("SPELL_CAST_START", "ThunderingSlam", 369703)
 
 	-- Stonevault Geomancer
@@ -46,10 +47,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(369605, 5.9) -- Call of the Deep
-	self:CDBar(369700, 20.8) -- Quaking Totem
-	self:CDBar(369703, 12.3) -- Thundering Slam
-	-- TODO bloodlust health percentage trigger? timer?
+	self:Bar(369605, 5.9) -- Call of the Deep
+	self:Bar(369700, 20.8) -- Quaking Totem
+	self:Bar(369703, 12.3) -- Thundering Slam
+	-- TODO bloodlust timer? 28.1?
 end
 
 --------------------------------------------------------------------------------
@@ -73,6 +74,10 @@ end
 function mod:Bloodlust(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
+	-- TODO unknown CD
+end
+
+function mod:BloodlustSuccess(args)
 	self:Bar(args.spellId, 20, CL.onboss:format(args.spellName))
 end
 
