@@ -25,7 +25,7 @@ function mod:GetOptions()
 		-- Eric "The Swift"
 		369791, -- Skullcracker
 		-- Olaf
-		369677, -- Ricocheting Shield
+		{369677, "SAY"}, -- Ricocheting Shield
 		369602, -- Defensive Bulwark
 		-- Longboat Raid!
 		375924, -- Longboat Raid!
@@ -75,7 +75,6 @@ end
 -- Baelog
 
 function mod:HeavyArrow(args)
-	-- TODO target?
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 	-- TOOD unknown CD
@@ -107,11 +106,19 @@ end
 
 -- Olaf
 
-function mod:RicochetingShield(args)
-	-- TODO target?
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	-- TODO unknown CD
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(369677, "yellow", name)
+		self:PlaySound(369677, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(369677)
+		end
+	end
+
+	function mod:RicochetingShield(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		-- TODO unknown CD
+	end
 end
 
 function mod:DefensiveBulwark(args)
