@@ -99,4 +99,5 @@ end
 function mod:Tremor(args)
 	self:Message(args.spellId, "green")
 	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 10)
 end
