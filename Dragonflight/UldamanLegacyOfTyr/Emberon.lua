@@ -8,11 +8,13 @@ if not mod then return end
 mod:RegisterEnableMob(184422) -- Emberon
 mod:SetEncounterID(2558)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
+local addsNeeded = 0
 local purgingFlameCount = 0
 
 --------------------------------------------------------------------------------
@@ -37,7 +39,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	addsNeeded = self:Normal() and 3 or 4
 	purgingFlameCount = 0
+	self:SetStage(1)
 end
 
 --------------------------------------------------------------------------------
@@ -48,7 +52,8 @@ function mod:PurgingFlames(args)
 	-- cast at 70% and then 30% health
 	local perecent = purgingFlameCount == 0 and 70 or 30
 	purgingFlameCount = purgingFlameCount + 1
-	self:Message(args.spellId, "orange", CL.percent:format(percent, args.spellName))
+	self:SetStage(2)
+	self:Message(args.spellId, "cyan", CL.percent:format(percent, args.spellName))
 	self:PlaySound(args.spellId, "long")
 	self:StopBar(369110) -- Unstable Embers
 	self:StopBar(369061) -- Searing Clap
@@ -63,8 +68,14 @@ do
 
 	function mod:InfusionRemoved(args)
 		addsKilled = addsKilled + 1
-		self:Message(args.spellId, "green", CL.add_killed:format(addsKilled, self:Normal() and 3 or 4))
-		self:PlaySound(args.spellId, "info")
+		if addsKilled == addsNeeded then
+			self:Message(368990, "cyan", CL.over:format(self:spellName(368990))) -- Purging Flames Over
+			self:PlaySound(368990, "long")
+			self:SetStage(1)
+		else
+			self:Message(args.spellId, "green", CL.add_killed:format(addsKilled, addsNeeded))
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 
