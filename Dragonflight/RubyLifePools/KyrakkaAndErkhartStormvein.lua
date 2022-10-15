@@ -61,7 +61,6 @@ function mod:EncounterEvent()
 	self:SetStage(2)
 	self:Message("stages", "cyan", CL.stage:format(2), false)
 	self:PlaySound("stages", "long")
-	-- TODO stopbars?
 end
 
 function mod:BossDeath(args)
