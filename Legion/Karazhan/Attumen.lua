@@ -39,6 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DismountedApplied", 227474)
 	self:Log("SPELL_AURA_REMOVED", "DismountedRemoved", 227474)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 
 	-- Attumen
 	self:Log("SPELL_CAST_START", "MortalStrike", 227493)
@@ -101,6 +102,16 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:PlaySound("stages", "info")
 		self:Bar(227365, 12.3) -- Spectral Charge
 		self:CDBar(227363, 17.2) -- Mighty Stomp
+	end
+end
+
+function mod:UNIT_HEALTH(event, unit)
+	if self:MobId(self:UnitGUID(unit)) == 114262 then -- Attumen
+		if self:GetHealth(unit) < 20 then
+			-- no longer remounts below 20%
+			self:StopBar(227474) -- Dismounted
+			self:UnregisterUnitEvent(event, unit)
+		end
 	end
 end
 
