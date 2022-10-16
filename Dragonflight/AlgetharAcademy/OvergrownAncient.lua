@@ -95,7 +95,7 @@ function mod:Barkbreaker(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	-- 4.6, 29.2, 19.5, 29.2, 20.6 pattern
-	self:CDBar(args.spellId, barkbreakerCount % 2 == 0 and 19.5 or 29.1)
+	self:CDBar(args.spellId, barkbreakerCount % 2 == 0 and 19.5 or 29.2)
 end
 
 -- Hungry Lasher
@@ -106,7 +106,7 @@ do
 		if args.amount >= 5 and args.amount % 5 == 0 and self:Dispeller("poison", nil, args.spellId) then
 			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
 			local t = args.time
-			if t - prev > 1 then
+			if t - prev > 2 then
 				prev = t
 				self:StackMessage(args.spellId, "red", args.destName, args.amount, 10)
 				self:PlaySound(args.spellId, "alert", nil, args.destName)
