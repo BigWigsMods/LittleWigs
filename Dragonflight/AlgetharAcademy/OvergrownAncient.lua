@@ -102,12 +102,12 @@ end
 do
 	local prev = 0
 	function mod:LasherToxinApplied(args)
-		if args.amount >= 3 and self:Dispeller("poison", nil, args.spellId) then
+		if args.amount >= 5 and args.amount % 5 == 0 and self:Dispeller("poison", nil, args.spellId) then
 			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
 			local t = args.time
 			if t - prev > 1 then
 				prev = t
-				self:StackMessage(args.spellId, "red", args.destName, args.amount, 5)
+				self:StackMessage(args.spellId, "red", args.destName, args.amount, 10)
 				self:PlaySound(args.spellId, "alert", nil, args.destName)
 			end
 		end
