@@ -100,8 +100,8 @@ end
 
 function mod:ArcaneFissureSuccess(args)
 	-- Cast at 100 energy, gains 2.5 energy per second
-	self:Bar(args.spellId, 40)
-	arcaneFissureTime = GetTime() + 40
+	self:Bar(args.spellId, 40.7)
+	arcaneFissureTime = GetTime() + 40.7
 end
 
 function mod:ArcaneOrbAbsorbed(args)
@@ -109,7 +109,7 @@ function mod:ArcaneOrbAbsorbed(args)
 	arcaneFissureTime = arcaneFissureTime - 8
 	local timeLeft = arcaneFissureTime - GetTime()
 	if timeLeft > 0 then
-		self:Bar(388537, {timeLeft, 40}) -- Arcane Fissure
+		self:Bar(388537, {timeLeft, 40.7}) -- Arcane Fissure
 	else
 		self:StopBar(388537) -- Arcane Fissure
 	end
@@ -137,5 +137,5 @@ end
 function mod:ArcaneExpulsion(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 19.4)
+	self:CDBar(args.spellId, 19.4) -- either 19.4 or 23.1, usually alternating
 end
