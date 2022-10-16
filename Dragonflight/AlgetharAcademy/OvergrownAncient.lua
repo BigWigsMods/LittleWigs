@@ -10,6 +10,13 @@ mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local germinateCount = 0
+local barkbreakerCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -47,6 +54,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	germinateCount = 0
+	barkbreakerCount = 0
 	self:CDBar(388544, 4.6) -- Barkbreaker
 	self:Bar(388796, 13.3) -- Germinate
 	self:Bar(388623, 30.3) -- Branch Out
@@ -60,28 +69,32 @@ end
 -- Overgrown Ancient
 
 function mod:Germinate(args)
+	germinateCount = germinateCount + 1
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 29.1) -- TODO 13.1, 29.1, 20.6 pattern consistent?
+	-- 13.3, 29.1, 20.6, 29.1, 20.6 pattern
+	self:Bar(args.spellId, germinateCount % 2 == 0 and 20.6 or 29.1)
 end
 
 function mod:BurstForth(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	-- cast at 100 energy, 45s energy gain + 2s cast
-	self:CDBar(args.spellId, 47)
+	-- cast at 100 energy, 2s cast + 45s energy gain + delay
+	self:Bar(args.spellId, 49.8)
 end
 
 function mod:BranchOut(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO unknown CD
+	self:Bar(args.spellId, 49.8)
 end
 
 function mod:Barkbreaker(args)
+	barkbreakerCount = barkbreakerCount + 1
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 29.1) -- TODO 4.6, 29.1, 19.4 pattern consistent?
+	-- 4.6, 29.2, 19.5, 29.2, 20.6 pattern
+	self:CDBar(args.spellId, barkbreakerCount % 2 == 0 and 19.5 or 29.1)
 end
 
 -- Hungry Lasher
