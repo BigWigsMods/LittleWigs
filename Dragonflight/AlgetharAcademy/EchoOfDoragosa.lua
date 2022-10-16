@@ -34,8 +34,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(374352, 16.3) -- Energy Bomb
-	self:Bar(388822, 24.2) -- Power Vacuum
+	self:CDBar(374352, 14.9) -- Energy Bomb
+	self:CDBar(388822, 24.2) -- Power Vacuum
 	self:CDBar(374361, 28.8) -- Astral Breath
 end
 
@@ -74,13 +74,13 @@ end
 function mod:PowerVacuum(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 24.3)
+	self:CDBar(args.spellId, 23.1)
 end
 
 function mod:EnergyBombApplied(args)
 	self:TargetMessage(374352, "yellow", args.destName)
 	self:PlaySound(374352, "alert", nil, args.destName)
-	self:CDBar(374352, 14.3)
+	self:CDBar(374352, 13.8)
 	if self:Me(args.destGUID) then
 		self:Say(374352)
 		self:SayCountdown(374352, 6)
