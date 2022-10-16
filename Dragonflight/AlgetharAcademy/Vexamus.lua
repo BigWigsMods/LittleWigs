@@ -37,7 +37,7 @@ end
 function mod:OnBossEnable()
 	-- Professor Maxdormu
 	self:Log("SPELL_CAST_SUCCESS", "ArcaneOrbs", 386544)
-	self:Log("SPELL_AURA_APPLIED", "OversurgeApplied", 391977)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "OversurgeApplied", 391977)
 
 	-- Vexamus
 	--self:RegisterUnitEvent("UNIT_POWER_UPDATE", nil, "boss1")
@@ -71,10 +71,8 @@ function mod:ArcaneOrbs(args)
 end
 
 function mod:OversurgeApplied(args)
-	-- TODO does this apply to players (probably) or boss?
-	-- TODO does this stack?
-	if self:Me(args.destGUID) or self:Dispeller("magic", false, args.spellId) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
+	if args.amount % 2 == 0 and (self:Me(args.destGUID) or self:Dispeller("magic", false, args.spellId)) then
+		self:StackMessage(args.spellId, "orange", args.destName, args.amount, 4)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
