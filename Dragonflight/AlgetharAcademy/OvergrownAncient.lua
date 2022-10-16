@@ -48,9 +48,9 @@ end
 
 function mod:OnEngage()
 	self:CDBar(388544, 4.6) -- Barkbreaker
-	self:CDBar(388796, 13.4) -- Germinate
-	self:CDBar(388623, 30.3) -- Branch Out
-	self:CDBar(388923, 47.4) -- Burst Forth
+	self:Bar(388796, 13.3) -- Germinate
+	self:Bar(388623, 30.3) -- Branch Out
+	self:Bar(388923, 47.4) -- Burst Forth
 end
 
 --------------------------------------------------------------------------------
