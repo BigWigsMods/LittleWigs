@@ -31,7 +31,7 @@ function mod:GetOptions()
 		{389033, "DISPEL"}, -- Lasher Toxin (Mythic only)
 		-- Ancient Branch
 		396640, -- Healing Touch
-		-- TODO Abundance
+		396721, -- Abundance
 	}, {
 		[388796] = self.displayName,
 		[389033] = -25730, -- Hungry Lasher
@@ -51,6 +51,7 @@ function mod:OnBossEnable()
 
 	-- Ancient Branch
 	self:Log("SPELL_CAST_START", "HealingTouch", 396640)
+	self:Death("AncientBranchDeath", 196548)
 end
 
 function mod:OnEngage()
@@ -119,4 +120,10 @@ end
 function mod:HealingTouch(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:AncientBranchDeath(args)
+	self:Message(396721, "green") -- Abundance
+	self:PlaySound(396721, "info")
+	self:Bar(396721, 3)
 end

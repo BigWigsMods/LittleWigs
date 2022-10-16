@@ -9,6 +9,7 @@ BigWigs:AddColors("Overgrown Ancient", {
 	[388923] = "orange",
 	[389033] = {"blue","red"},
 	[396640] = "yellow",
+	[396721] = "green",
 })
 
 BigWigs:AddColors("Crawth", {

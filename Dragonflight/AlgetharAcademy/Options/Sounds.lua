@@ -9,6 +9,7 @@ BigWigs:AddSounds("Overgrown Ancient", {
 	[388923] = "long",
 	[389033] = "alert",
 	[396640] = "warning",
+	[396721] = "info",
 })
 
 BigWigs:AddSounds("Crawth", {
