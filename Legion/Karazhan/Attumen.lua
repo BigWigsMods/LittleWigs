@@ -45,6 +45,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MortalStrikeApplied", 227493)
 	self:Log("SPELL_AURA_REMOVED", "MortalStrikeRemoved", 227493)
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
+	self:Log("SPELL_CAST_SUCCESS", "SharedSufferingSuccess", 228852)
 
 	-- Midnight
 	self:Log("SPELL_CAST_SUCCESS", "SpectralCharge", 227365)
@@ -80,6 +81,7 @@ function mod:DismountedRemoved(args)
 	self:SetStage(1)
 	self:Message("stages", "cyan", 227584, 244457) -- Mounted
 	self:PlaySound("stages", "long")
+	self:StopBar(228852) -- Shared Suffering
 	if intermissionOver then
 		self:Bar(227365, 12.3) -- Spectral Charge
 		self:CDBar(227363, 17.2) -- Mighty Stomp
@@ -122,6 +124,10 @@ end
 function mod:SharedSuffering(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:SharedSufferingSuccess(args)
+	self:Bar(args.spellId, 18) -- 21.8s - 3.8s cast time to next start
 end
 
 -- Midnight
