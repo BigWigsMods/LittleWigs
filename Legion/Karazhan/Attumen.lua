@@ -153,6 +153,7 @@ function mod:SpectralCharge(args)
 end
 
 function mod:Enrage(args)
+	self:SetStage(3)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 end
@@ -160,5 +161,9 @@ end
 function mod:MightyStomp(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18.2)
+	if self:GetStage() == 3 then
+		self:CDBar(args.spellId, 10.9) -- shorter CD in stage 3
+	else
+		self:CDBar(args.spellId, 18.2)
+	end
 end
