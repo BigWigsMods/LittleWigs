@@ -71,7 +71,8 @@ function mod:DismountedApplied(args)
 	self:SetStage(2)
 	self:Message("stages", "cyan", args.spellName, 164558) -- Dismounted
 	self:PlaySound("stages", "long")
-	self:CDBar(228852, 18.2) -- Shared Suffering
+	self:CDBar(227493, 8.5) -- Mortal Strike
+	self:CDBar(228852, 15.8) -- Shared Suffering
 	self:StopBar(227363) -- Mighty Stomp
 	self:StopBar(227365) -- Spectral Charge
 	-- Midnight is unattackable and recovers 2% HP per second, phase ends when Midnight reaches 100% HP
@@ -83,6 +84,7 @@ function mod:DismountedRemoved(args)
 	self:Message("stages", "cyan", 227584, 244457) -- Mounted
 	self:PlaySound("stages", "long")
 	self:StopBar(228852) -- Shared Suffering
+	self:StopBar(227493) -- Mortal Strike
 	if intermissionOver then
 		self:Bar(227365, 12.3) -- Spectral Charge
 		self:CDBar(227363, 17.2) -- Mighty Stomp
@@ -122,6 +124,7 @@ end
 function mod:MortalStrike(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 9.7)
 end
 
 function mod:MortalStrikeApplied(args)
