@@ -61,7 +61,7 @@ function mod:OnBossEnable()
 	self:Log("SWING_MISSED", "BossSwing", "*")
 
 	-- [[ Stages 1 & 2 ]] --
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Command: Bombardment
+	self:Log("SPELL_CAST_SUCCESS", "CommandBombardment", 229284)
 
 	-- [[ Stage 1 ]] --
 	self:Log("SPELL_AURA_APPLIED", "AcquiringTarget", 229241) -- Fel Beam
@@ -185,11 +185,9 @@ function mod:BossSwing(args)
 end
 
 -- [[ Stages 1 & 2 ]] --
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 229284 then -- Command: Bombardment
-		self:Message(spellId, "orange", CL.incoming:format(self:SpellName(229287))) -- 229287 = Bombardment
-		self:CDBar(spellId, self:GetStage() == 1 and 40.1 or 25.5)
-	end
+function mod:CommandBombardment(args)
+	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
+	self:CDBar(args.spellId, self:GetStage() == 1 and 40.1 or 25.5)
 end
 
 -- [[ Stage 1 ]] --
