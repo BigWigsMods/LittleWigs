@@ -14,7 +14,6 @@ mod:SetStage(1)
 -- Locals
 --
 
-local addsNeeded = 0
 local purgingFlameCount = 0
 
 --------------------------------------------------------------------------------
@@ -39,7 +38,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	addsNeeded = self:Normal() and 3 or 4
 	purgingFlameCount = 0
 	self:SetStage(1)
 	self:CDBar(369061, 4.6) -- Searing Clap
@@ -69,6 +67,7 @@ do
 	end
 
 	function mod:InfusionRemoved(args)
+		local addsNeeded = self:Normal() and 3 or 4
 		addsKilled = addsKilled + 1
 		if addsKilled == addsNeeded then
 			self:Message(368990, "cyan", CL.over:format(self:SpellName(368990))) -- Purging Flames Over
