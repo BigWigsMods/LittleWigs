@@ -98,6 +98,8 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:CDBar("stages", 13.3, spellId, 227365) -- Intermission bar, Spectral Charge icon
 	elseif spellId == 227603 then -- Intermission End
 		intermissionOver = true
+		-- if you push Attumen really fast in the first phase he will never enter an Intermission
+		-- but the Intermission End spell will still be cast
 		if inIntermission then
 			inIntermission = false
 			self:StopBar(227601) -- Intermission
