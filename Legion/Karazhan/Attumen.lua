@@ -39,12 +39,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DismountedApplied", 227474)
 	self:Log("SPELL_AURA_REMOVED", "DismountedRemoved", 227474)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 
 	-- Attumen
 	self:Log("SPELL_CAST_START", "MortalStrike", 227493)
 	self:Log("SPELL_AURA_APPLIED", "MortalStrikeApplied", 227493)
 	self:Log("SPELL_AURA_REMOVED", "MortalStrikeRemoved", 227493)
 	self:Log("SPELL_CAST_START", "SharedSuffering", 228852)
+	self:Log("SPELL_CAST_SUCCESS", "SharedSufferingSuccess", 228852)
 
 	-- Midnight
 	self:Log("SPELL_CAST_SUCCESS", "SpectralCharge", 227365)
@@ -69,7 +71,8 @@ function mod:DismountedApplied(args)
 	self:SetStage(2)
 	self:Message("stages", "cyan", args.spellName, 164558) -- Dismounted
 	self:PlaySound("stages", "long")
-	self:CDBar(228852, 18.2) -- Shared Suffering
+	self:CDBar(227493, 8.5) -- Mortal Strike
+	self:CDBar(228852, 15.8) -- Shared Suffering
 	self:StopBar(227363) -- Mighty Stomp
 	self:StopBar(227365) -- Spectral Charge
 	-- Midnight is unattackable and recovers 2% HP per second, phase ends when Midnight reaches 100% HP
@@ -80,6 +83,8 @@ function mod:DismountedRemoved(args)
 	self:SetStage(1)
 	self:Message("stages", "cyan", 227584, 244457) -- Mounted
 	self:PlaySound("stages", "long")
+	self:StopBar(228852) -- Shared Suffering
+	self:StopBar(227493) -- Mortal Strike
 	if intermissionOver then
 		self:Bar(227365, 12.3) -- Spectral Charge
 		self:CDBar(227363, 17.2) -- Mighty Stomp
@@ -89,16 +94,30 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227601 then -- Intermission, starts Spectral Charges
 		inIntermission = true
-		self:Message("stages", "cyan", spellId, 227365) -- Intermission message, Spectral Charge icon
-		self:CDBar("stages", 13.3, spellId, 227365) -- Intermission bar, Spectral Charge icon
+		self:Message("stages", "cyan", CL.intermission, 227365) -- Spectral Charge icon
+		self:CDBar("stages", 13.3, CL.intermission, 227365) -- Spectral Charge icon
 	elseif spellId == 227603 then -- Intermission End
-		inIntermission = false
 		intermissionOver = true
-		self:StopBar(227601) -- Intermission
-		self:Message("stages", "cyan", CL.over:format(self:SpellName(227601)), 227365) -- Intermission Over, Spectral Charge icon
-		self:PlaySound("stages", "info")
-		self:Bar(227365, 12.3) -- Spectral Charge
-		self:CDBar(227363, 17.2) -- Mighty Stomp
+		-- if you push Attumen really fast in the first phase he will never enter an Intermission
+		-- but the Intermission End spell will still be cast
+		if inIntermission then
+			inIntermission = false
+			self:StopBar(CL.intermission)
+			self:Message("stages", "cyan", CL.over:format(CL.intermission), 227365) -- Intermission Over, Spectral Charge icon
+			self:PlaySound("stages", "info")
+			self:Bar(227365, 12.3) -- Spectral Charge
+			self:CDBar(227363, 17.2) -- Mighty Stomp
+		end
+	end
+end
+
+function mod:UNIT_HEALTH(event, unit)
+	if self:MobId(self:UnitGUID(unit)) == 114262 then -- Attumen
+		if self:GetHealth(unit) < 20 then
+			-- no longer remounts below 20%
+			self:StopBar(227474) -- Dismounted
+			self:UnregisterUnitEvent(event, unit)
+		end
 	end
 end
 
@@ -107,6 +126,7 @@ end
 function mod:MortalStrike(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 9.7)
 end
 
 function mod:MortalStrikeApplied(args)
@@ -124,6 +144,10 @@ function mod:SharedSuffering(args)
 	self:PlaySound(args.spellId, "info")
 end
 
+function mod:SharedSufferingSuccess(args)
+	self:Bar(args.spellId, 18) -- 21.8s - 3.8s cast time to next start
+end
+
 -- Midnight
 
 function mod:SpectralCharge(args)
@@ -136,6 +160,7 @@ function mod:SpectralCharge(args)
 end
 
 function mod:Enrage(args)
+	self:SetStage(3)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 end
@@ -143,5 +168,9 @@ end
 function mod:MightyStomp(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18.2)
+	if self:GetStage() == 3 then
+		self:CDBar(args.spellId, 10.9) -- shorter CD in stage 3
+	else
+		self:CDBar(args.spellId, 18.2)
+	end
 end
