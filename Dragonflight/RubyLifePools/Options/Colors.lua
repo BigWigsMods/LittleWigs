@@ -2,8 +2,9 @@
 BigWigs:AddColors("Melidrussa Chillworn", {
 	[372682] = {"blue","red"},
 	[372851] = {"blue","yellow"},
-	[373046] = "orange",
-	[373528] = "red",
+	[373046] = "yellow",
+	[373680] = {"green","red"},
+	[396044] = "orange",
 })
 
 BigWigs:AddColors("Kokia Blazehoof", {
