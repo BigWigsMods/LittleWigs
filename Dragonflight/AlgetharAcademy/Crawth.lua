@@ -17,15 +17,6 @@ local searingBlazeGoals = 0
 local rushingWindsGoals = 0
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.goal = "%s (%d/3)"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -94,7 +85,7 @@ function mod:GoalOfTheSearingBlaze(_, _, info)
 		self:PlaySound(376448, "long")
 	elseif shownState == 1 and barValue > 0 and barValue ~= searingBlazeGoals then
 		searingBlazeGoals = barValue
-		self:Message(389481, "cyan", L.goal:format(info.text, barValue)) -- Goal of the Searing Blaze (n/3)
+		self:Message(389481, "cyan", CL.count_amount:format(info.text, barValue, 3)) -- Goal of the Searing Blaze (n/3)
 		self:PlaySound(389481, "info")
 	else
 		searingBlazeGoals = barValue
@@ -117,7 +108,7 @@ function mod:GoalOfTheRushingWinds(_, _, info)
 		self:PlaySound(376467, "long")
 	elseif shownState == 1 and barValue > 0 and barValue ~= rushingWindsGoals then
 		rushingWindsGoals = barValue
-		self:Message(389483, "cyan", L.goal:format(info.text, barValue)) -- Goal of the Rushing Winds (n/3)
+		self:Message(389483, "cyan", CL.count_amount:format(info.text, barValue, 3)) -- Goal of the Rushing Winds (n/3)
 		self:PlaySound(389483, "info")
 	else
 		rushingWindsGoals = barValue
