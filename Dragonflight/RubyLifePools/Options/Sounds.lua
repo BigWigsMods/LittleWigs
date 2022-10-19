@@ -8,7 +8,8 @@ BigWigs:AddSounds("Melidrussa Chillworn", {
 })
 
 BigWigs:AddSounds("Kokia Blazehoof", {
-	[372107] = "alert",
+	[372107] = "alarm",
+	[372858] = "alert",
 	[372863] = "long",
 	[373017] = "warning",
 	[373087] = "alarm",
