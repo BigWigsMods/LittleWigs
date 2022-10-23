@@ -103,7 +103,7 @@ do
 				self:StackMessage(args.spellId, "blue", args.destName, args.amount, 2)
 				self:PlaySound(args.spellId, "alert")
 			end
-			self:TargetBar(args.spellId, 3)
+			self:TargetBar(args.spellId, 3, args.destName)
 		end
 	end
 end
