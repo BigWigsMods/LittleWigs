@@ -127,9 +127,17 @@ end
 -- Barnes
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 114339 then
-		if self:GetGossipOptions() then
-			self:SelectGossipOption(1)
+	if self:GetOption("custom_on_autotalk") then
+		-- Opera Event gossip
+		-- you have to gossip with Barnes twice to start the RP which spawns the first boss
+		if self:GetGossipID(46684) then
+			-- Barnes's first line 
+			-- 46684: I'm not an actor.
+			self:SelectGossipID(46684)
+		elseif self:GetGossipID(46685) then
+			-- Barnes's second line 
+			-- 46685: Ok, I'll give it a try then.
+			self:SelectGossipID(46685)
 		end
 	end
 end
