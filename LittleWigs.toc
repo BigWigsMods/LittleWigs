@@ -20,7 +20,7 @@
 ## X-WoWI-ID: 9577
 ## X-Wago-ID: 5bGolnN0
 
-## X-BigWigs-LoadOn-InstanceId: 2284, 2285, 2286, 2287, 2289, 2290, 2291, 2293, 2441, 2520, 2527, 2519, 2521, 2526, 2515, 2516, 2451
+## X-BigWigs-LoadOn-InstanceId: 2520, 2527, 2519, 2521, 2526, 2515, 2516, 2451
 #@do-not-package@
 ## X-BigWigs-ExtraMenu: 1716
 ## X-BigWigs-NoMenu: 1616, 1673, 1684, 1698, 1702, 1703, 1710
