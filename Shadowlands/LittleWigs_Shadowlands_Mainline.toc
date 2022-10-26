@@ -6,11 +6,11 @@
 ## Title-esMX: LittleWigs [|cffeda55fShadowlands|r]
 ## Title-frFR: LittleWigs [|cffeda55fShadowlands|r]
 ## Title-itIT: LittleWigs [|cffeda55fShadowlands|r]
-## Title-koKR: LittleWigs [|cffeda55fShadowlands|r]
+## Title-koKR: LittleWigs [|cffeda55f어둠땅|r]
 ## Title-ptBR: LittleWigs [|cffeda55fShadowlands|r]
 ## Title-ruRU: LittleWigs [|cffeda55fShadowlands|r]
-## Title-zhCN: LittleWigs [|cffeda55fShadowlands|r]
-## Title-zhTW: LittleWigs [|cffeda55fShadowlands|r]
+## Title-zhCN: LittleWigs [|cffeda55f暗影国度|r]
+## Title-zhTW: LittleWigs [|cffeda55f暗影之境|r]
 
 ## LoadOnDemand: 1
 ## Dependencies: BigWigs
