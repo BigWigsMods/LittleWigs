@@ -30,16 +30,16 @@ if L then
 	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		["상아색 껍질"] = true,
-		["사파이어 오아시스"] = true,
-		["비취 손바닥"] = true,
-		["금빛 모래"] = true,
-		["호박색 석양"] = true,
-		["에메랄드빛 바다"] = true,
-		["루비 보석"] = true,
-		["땜납 돌"] = true,
-		["창백한 꽃"] = true,
-		["진홍색 손칼"] = true
+		["상아색 껍질"] = 53259,
+		["사파이어 오아시스"] = 53260,
+		["비취 손바닥"] = 53261,
+		["금빛 모래"] = 53262,
+		["호박색 석양"] = 53263,
+		["에메랄드빛 바다"] = 53264,
+		["루비 보석"] = 53265,
+		["땜납 돌"] = 53266,
+		["창백한 꽃"] = 53267,
+		["진홍색 손칼"] = 53268
 	}
 
 	L.interrogation_specialist = "심문 전문가"

@@ -48,16 +48,16 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		["Ivory Shell"] = true,
-		["Sapphire Oasis"] = true,
-		["Jade Palm"] = true,
-		["Golden Sands"] = true,
-		["Amber Sunset"] = true,
-		["Emerald Ocean"] = true,
-		["Ruby Gem"] = true,
-		["Pewter Stone"] = true,
-		["Pale Flower"] = true,
-		["Crimson Knife"] = true
+		["Ivory Shell"] = 53259,
+		["Sapphire Oasis"] = 53260,
+		["Jade Palm"] = 53261,
+		["Golden Sands"] = 53262,
+		["Amber Sunset"] = 53263,
+		["Emerald Ocean"] = 53264,
+		["Ruby Gem"] = 53265,
+		["Pewter Stone"] = 53266,
+		["Pale Flower"] = 53267,
+		["Crimson Knife"] = 53268
 	}
 	L.interrogation_specialist = "Interrogation Specialist"
 	L.portalmancer_zohonn = "Portalmancer Zo'honn"
@@ -91,7 +91,7 @@ end
 -- Locals
 --
 
-local password = nil
+local passwordId = nil
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -191,7 +191,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	password = nil
+	passwordId = nil
 
 	------ Streets of Wonder ------
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
@@ -254,9 +254,9 @@ end
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if L.password_triggers[msg] then
 		-- Market Trading Game
-		password = msg
+		passwordId = L.password_triggers[msg]
 		if self:GetOption("trading_game") then
-			self:Message("trading_game", "green", password, "achievement_dungeon_brokerdungeon")
+			self:Message("trading_game", "green", msg, "achievement_dungeon_brokerdungeon")
 			self:PlaySound("trading_game", "info")
 		end
 	elseif msg == L.menagerie_warmup_trigger then
@@ -278,17 +278,9 @@ end
 
 -- Auto-gossip
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 176564 and password ~= nil then
-		local gossipTbl = self:GetGossipOptions()
-		if gossipTbl then
-			for i = 1, #gossipTbl do
-				if gossipTbl[i] == password then
-					self:UnregisterEvent(event)
-					self:SelectGossipOption(i)
-					break
-				end
-			end
-		end
+	if self:GetOption("custom_on_autotalk") and passwordId ~= nil and self:GetGossipID(passwordId) then
+		self:UnregisterEvent(event)
+		self:SelectGossipID(passwordId)
 	end
 end
 

@@ -30,16 +30,16 @@ if L then
 	L.custom_on_autotalk = "Hablar automáticamente"
 	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		["Caparazón de marfil"] = true,
-		["Oasis de zafiro"] = true,
-		["Palma de jade"] = true,
-		["Arenas doradas"] = true,
-		["Amanecer ámbar"] = true,
-		["Océano esmeralda"] = true,
-		["Gema rubí"] = true,
-		["Piedra de peltre"] = true,
-		["Flor pálida"] = true,
-		["Cuchillo carmesí"] = true
+		["Caparazón de marfil"] = 53259,
+		["Oasis de zafiro"] = 53260,
+		["Palma de jade"] = 53261,
+		["Arenas doradas"] = 53262,
+		["Amanecer ámbar"] = 53263,
+		["Océano esmeralda"] = 53264,
+		["Gema rubí"] = 53265,
+		["Piedra de peltre"] = 53266,
+		["Flor pálida"] = 53267,
+		["Cuchillo carmesí"] = 53268
 	}
 
 	L.interrogation_specialist = "Especialista en interrogatorios"

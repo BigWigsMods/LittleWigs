@@ -30,16 +30,16 @@ if L then
 	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt das korrekte Passwort nach Abschluss des Handels-Events."
 	L.password_triggers = {
-		["Elfenbeinmuschel"] = true,
-		["Saphiroase"] = true,
-		["Jadepalme"] = true,
-		["Goldsand"] = true,
-		["Berndämmerung"] = true,
-		["Smaragdozean"] = true,
-		["Rubinedelstein"] = true,
-		["Zinngestein"] = true,
-		["Fahlblume"] = true,
-		["Purpurmesser"] = true
+		["Elfenbeinmuschel"] = 53259,
+		["Saphiroase"] = 53260,
+		["Jadepalme"] = 53261,
+		["Goldsand"] = 53262,
+		["Berndämmerung"] = 53263,
+		["Smaragdozean"] = 53264,
+		["Rubinedelstein"] = 53265,
+		["Zinngestein"] = 53266,
+		["Fahlblume"] = 53267,
+		["Purpurmesser"] = 53268
 	}
 	L.interrogation_specialist = "Verhörspezialist"
 	L.portalmancer_zohonn = "Portalmagier Zo'honn"
