@@ -54,14 +54,14 @@ do
 	local prev = 0
 	function mod:PrimalChillApplied(args)
 		local amount = args.amount
-		if amount >= 5 and amount < 10 and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)) then
+		if amount >= 3 and amount < 5 and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)) then
 			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
 			local t = args.time
 			if t - prev > 1 then
 				prev = t
-				-- Stuns at 10 stacks
-				self:StackMessage(args.spellId, "red", args.destName, amount, 8)
-				if amount >= 8 then
+				-- Stuns at 5 stacks
+				self:StackMessage(args.spellId, "red", args.destName, amount, 4)
+				if amount == 4 then
 					self:PlaySound(args.spellId, "warning", nil, args.destName)
 				else
 					self:PlaySound(args.spellId, "alert", nil, args.destName)
