@@ -25,10 +25,13 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "esES")
 if L then
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno." -- TODO unverified
+	L.portal_authority = "Jefatura de Portales de Tazavesh"
+	L.portal_autotalk = "Hablar automáticamente"
+	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.custom_on_autotalk = "Hablar automáticamente"
-	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.trading_game_autotalk = "Hablar automáticamente"
+	--L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
 		["Caparazón de marfil"] = 53259,
 		["Oasis de zafiro"] = 53260,
