@@ -25,21 +25,24 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "zhCN")
 if L then
 	L.menagerie_warmup_trigger = "现在是大家期待已久的拍品！传说中被恶魔诅咒的湮灭之刃！"
 	L.soazmi_warmup_trigger = "不好意思打扰了，索·莉亚。希望我们没耽误你什么大事。"
+	L.portal_authority = "塔扎维什传送局"
+	L.portal_autotalk = "自动对话"
+	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	L.trading_game = "交易游戏"
 	L.trading_game_desc = "在交易游戏期间使用正确的密码发出警报。"
-	L.custom_on_autotalk = "自动对话"
-	L.custom_on_autotalk_desc = "交易游戏结束后，立即选择正确的密码。"
+	L.trading_game_autotalk = "自动对话"
+	L.trading_game_autotalk_desc = "交易游戏结束后，立即选择正确的密码。"
 	L.password_triggers = {
-		["乳白贝壳？"] = true,
-		["蓝宝石绿洲？"] = true,
-		["翠玉棕榈"] = true,
-		["金色砂砾"] = true,
-		["琥珀日落"] = true,
-		["翡翠海洋"] = true,
-		["红玉宝石"] = true,
-		["青灰岩石"] = true,
-		["苍白花朵"] = true,
-		["猩红匕首"] = true
+		["乳白贝壳？"] = 53259,
+		["蓝宝石绿洲？"] = 53260,
+		["翠玉棕榈"] = 53261,
+		["金色砂砾"] = 53262,
+		["琥珀日落"] = 53263,
+		["翡翠海洋"] = 53264,
+		["红玉宝石"] = 53265,
+		["青灰岩石"] = 53266,
+		["苍白花朵"] = 53267,
+		["猩红匕首"] = 53268
 	}
 
 	L.interrogation_specialist = "审讯专员"

@@ -25,21 +25,24 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "ptBR")
 if L then
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Lamento a intrusão, So'leah. Espero que o momento seja bem inoportuno."
+	L.portal_authority = "Autoridade do Portal de Tazavesh"
+	L.portal_autotalk = "Conversa automática"
+	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.custom_on_autotalk = "Conversa automática"
-	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.trading_game_autotalk = "Conversa automática"
+	--L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		["Concha de Marfim"] = true,
-		["Oásis de Safira"] = true,
-		["Palmeira de Jade"] = true,
-		["Areia Dourada"] = true,
-		["Âmbar Crepúsculo"] = true,
-		["Oceano Esmeralda"] = true,
-		["Gema de Rubi"] = true,
-		["Pedra de Estanho"] = true,
-		["Flor Pálida"] = true,
-		["Faca Carmesim"] = true
+		["Concha de Marfim"] = 53259,
+		["Oásis de Safira"] = 53260,
+		["Palmeira de Jade"] = 53261,
+		["Areia Dourada"] = 53262,
+		["Âmbar Crepúsculo"] = 53263,
+		["Oceano Esmeralda"] = 53264,
+		["Gema de Rubi"] = 53265,
+		["Pedra de Estanho"] = 53266,
+		["Flor Pálida"] = 53267,
+		["Faca Carmesim"] = 53268
 	}
 
 	L.interrogation_specialist = "Especialista em Interrogatório"

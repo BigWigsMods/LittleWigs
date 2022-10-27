@@ -25,21 +25,24 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "ruRU")
 if L then
 	L.menagerie_warmup_trigger = "А теперь лот, которого все ждали! Топор, якобы проклятый демонами – Грань Забвения!"
 	L.soazmi_warmup_trigger = "Прости нас за вторжение, Со'лея. Кажется, сейчас не самое подходящее время."
+	L.portal_authority = "Служба порталов Тазавеша"
+	L.portal_autotalk = "Авторазговор"
+	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.custom_on_autotalk = "Авторазговор"
-	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.trading_game_autotalk = "Авторазговор"
+	--L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		["Палевый панцирь"] = true,
-		["Сапфировый оазис"] = true,
-		["Нефритовая пальма"] = true,
-		["Золотые пески"] = true,
-		["Янтарный закат"] = true,
-		["Изумрудный океан"] = true,
-		["Рубиновый самоцвет"] = true,
-		["Оловянный камень"] = true,
-		["Бледный цветок"] = true,
-		["Багровый нож"] = true
+		["Палевый панцирь"] = 53259,
+		["Сапфировый оазис"] = 53260,
+		["Нефритовая пальма"] = 53261,
+		["Золотые пески"] = 53262,
+		["Янтарный закат"] = 53263,
+		["Изумрудный океан"] = 53264,
+		["Рубиновый самоцвет"] = 53265,
+		["Оловянный камень"] = 53266,
+		["Бледный цветок"] = 53267,
+		["Багровый нож"] = 53268
 	}
 
 	L.interrogation_specialist = "Специалист по допросу"

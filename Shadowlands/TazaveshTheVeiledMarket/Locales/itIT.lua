@@ -25,21 +25,24 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "itIT")
 if L then
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	L.portal_authority = "Amministratrice del Portale di Tazavesh"
+	--L.portal_autotalk = "Autotalk"
+	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	--L.trading_game_autotalk = "Autotalk"
+	--L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		["Guscio d'Avorio"] = true,
-		["Oasi di Zaffiro"] = true,
-		["Palma di Giada"] = true,
-		["Sabbia Dorata"] = true,
-		["Tramonto d'Ambra"] = true,
-		["Oceano di Smeraldo"] = true,
-		["Gemma Rubino"] = true,
-		["Pietra di Peltro"] = true,
-		["Fiore Pallido"] = true,
-		["Coltello Cremisi"] = true
+		["Guscio d'Avorio"] = 53259,
+		["Oasi di Zaffiro"] = 53260,
+		["Palma di Giada"] = 53261,
+		["Sabbia Dorata"] = 53262,
+		["Tramonto d'Ambra"] = 53263,
+		["Oceano di Smeraldo"] = 53264,
+		["Gemma Rubino"] = 53265,
+		["Pietra di Peltro"] = 53266,
+		["Fiore Pallido"] = 53267,
+		["Coltello Cremisi"] = 53268
 	}
 
 	L.interrogation_specialist = "Specialista in Interrogatori"

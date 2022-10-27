@@ -43,21 +43,24 @@ if L then
 	------ Streets of Wonder ------
 	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	L.portal_authority = "Tazavesh Portal Authority"
+	L.portal_autotalk = "Autotalk"
+	L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	L.trading_game = "Trading Game"
 	L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.custom_on_autotalk = "Autotalk"
-	L.custom_on_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.trading_game_autotalk = "Autotalk"
+	L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
-		["Ivory Shell"] = true,
-		["Sapphire Oasis"] = true,
-		["Jade Palm"] = true,
-		["Golden Sands"] = true,
-		["Amber Sunset"] = true,
-		["Emerald Ocean"] = true,
-		["Ruby Gem"] = true,
-		["Pewter Stone"] = true,
-		["Pale Flower"] = true,
-		["Crimson Knife"] = true
+		["Ivory Shell"] = 53259,
+		["Sapphire Oasis"] = 53260,
+		["Jade Palm"] = 53261,
+		["Golden Sands"] = 53262,
+		["Amber Sunset"] = 53263,
+		["Emerald Ocean"] = 53264,
+		["Ruby Gem"] = 53265,
+		["Pewter Stone"] = 53266,
+		["Pale Flower"] = 53267,
+		["Crimson Knife"] = 53268
 	}
 	L.interrogation_specialist = "Interrogation Specialist"
 	L.portalmancer_zohonn = "Portalmancer Zo'honn"
@@ -91,7 +94,7 @@ end
 -- Locals
 --
 
-local password = nil
+local passwordId = nil
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -100,8 +103,9 @@ local password = nil
 function mod:GetOptions()
 	return {
 		------ Streets of Wonder ------
+		"portal_autotalk",
 		"trading_game",
-		"custom_on_autotalk",
+		"trading_game_autotalk",
 		-- Interrogation Specialist
 		356031, -- Stasis Beam
 		-- Portalmancer Zo'honn
@@ -160,6 +164,7 @@ function mod:GetOptions()
 		357284, -- Reinvigorate
 	}, {
 		------ Streets of Wonder ------
+		["portal_autotalk"] = L.portal_authority,
 		["trading_game"] = L.trading_game,
 		[356031] = L.interrogation_specialist,
 		[356324] = L.portalmancer_zohonn,
@@ -191,7 +196,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	password = nil
+	passwordId = nil
 
 	------ Streets of Wonder ------
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
@@ -254,9 +259,9 @@ end
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if L.password_triggers[msg] then
 		-- Market Trading Game
-		password = msg
+		passwordId = L.password_triggers[msg]
 		if self:GetOption("trading_game") then
-			self:Message("trading_game", "green", password, "achievement_dungeon_brokerdungeon")
+			self:Message("trading_game", "green", msg, "achievement_dungeon_brokerdungeon")
 			self:PlaySound("trading_game", "info")
 		end
 	elseif msg == L.menagerie_warmup_trigger then
@@ -278,16 +283,24 @@ end
 
 -- Auto-gossip
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 176564 and password ~= nil then
-		local gossipTbl = self:GetGossipOptions()
-		if gossipTbl then
-			for i = 1, #gossipTbl do
-				if gossipTbl[i] == password then
-					self:UnregisterEvent(event)
-					self:SelectGossipOption(i)
-					break
-				end
-			end
+	if self:GetOption("trading_game_autotalk") and passwordId ~= nil and self:GetGossipID(passwordId) then
+		self:SelectGossipID(passwordId)
+	elseif self:GetOption("portal_autotalk") then
+		if self:GetGossipID(53719) then
+			-- right after first boss
+			self:SelectGossipID(53719)
+		elseif self:GetGossipID(53721) then
+			-- outside myza's oasis
+			self:SelectGossipID(53721)
+		elseif self:GetGossipID(53722) then
+			-- outside the p.o.s.t.
+			self:SelectGossipID(53722)
+		elseif self:GetGossipID(53723) then
+			-- before so'azmi
+			self:SelectGossipID(53723)
+		elseif self:GetGossipID(53724) then
+			-- on the way to grand menagerie
+			self:SelectGossipID(53724)
 		end
 	end
 end
