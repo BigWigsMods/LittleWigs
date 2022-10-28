@@ -27,7 +27,7 @@ if L then
 	L.soazmi_warmup_trigger = "Entschuldigt unser Eindringen, So'leah. Ich hoffe, wir stören."
 	L.portal_authority = "Portalbehörde von Tazavesh"
 	L.portal_autotalk = "Automatisch ansprechen"
-	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.portal_autotalk_desc = "Portale zurück zum Eingang sofort öffnen wenn mit Mittlern gesprochen wird."
 	L.trading_game = "Handels-Event"
 	L.trading_game_desc = "Warnungen mit korrektem Password während des Handels-Event."
 	L.trading_game_autotalk = "Automatisch ansprechen"
