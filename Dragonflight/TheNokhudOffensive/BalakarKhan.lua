@@ -114,7 +114,7 @@ function mod:SiphonPower(args)
 	self:StopBar(376644) -- Iron Spear
 	self:StopBar(375937) -- Rending Strike
 	self:StopBar(375943) -- Upheaval
-	self:CastBar(args.spellId, 6)
+	self:CastBar(args.spellId, 4)
 end
 
 function mod:CracklingShieldApplied(args)
