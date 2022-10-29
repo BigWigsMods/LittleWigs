@@ -54,6 +54,7 @@ do
 	local prev = 0
 	function mod:PrimalChillApplied(args)
 		-- TODO dungeon journal seems to indicate we'd need to branch on difficulty... 5 mythic or 10 for normal/heroic
+		-- TODO hotfixed 10/28 to 8 stacks? needs confirmation
 		local amount = args.amount
 		if amount >= 3 and amount < 5 and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)) then
 			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
