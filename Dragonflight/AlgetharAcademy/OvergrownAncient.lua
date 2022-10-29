@@ -130,5 +130,5 @@ end
 function mod:AncientBranchDeath(args)
 	self:Message(396721, "green") -- Abundance
 	self:PlaySound(396721, "info")
-	self:Bar(396721, 3)
+	self:Bar(396721, 3.5)
 end
