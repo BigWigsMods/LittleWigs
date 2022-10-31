@@ -11,7 +11,13 @@ mod:RegisterEnableMob(
 )
 --mod:SetEncounterID(1957) -- Same for every opera event. So it's basically useless.
 mod:SetStage(1)
-mod:SetRespawnTime(30)
+mod:SetRespawnTime(33)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local burningLegSweepCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -42,9 +48,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	burningLegSweepCount = 0
 	self:SetStage(1)
-	self:Bar(227568, 8.5) -- Burning Leg Sweep
-	self:Bar(227453, 6.1) -- Dashing Flame Gale TODO confirm, changed by hotfix
+	self:Bar(227568, 8.3) -- Burning Leg Sweep
+	self:Bar(227453, 19.5) -- Dashing Flame Gale
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
@@ -55,6 +62,8 @@ end
 function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 	if engageId == 1957 then
 		if status == 0 then
+			-- this is needed because we're overriding the IEEU hooked up to CheckBossStatus in OnEngage
+			self:Wipe()
 			-- force a respawn timer
 			self:SendMessage("BigWigs_EncounterEnd", self, engageId, self.displayName, self:Difficulty(), 5, status)
 		else
@@ -77,7 +86,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:Message("stages", "cyan", CL.stage:format(3), false)
 		self:PlaySound("stages", "long")
 		self:Bar(227568, 8) -- Burning Leg Sweep
-		self:Bar(227453, 19.7) -- Dashing Flame Gale TODO confirm, changed by hotfix
+		self:Bar(227453, 19.7) -- Dashing Flame Gale
 	end
 end
 
@@ -85,14 +94,15 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227449 then -- Dashing Flame Gale
 		self:Message(227453, "orange")
 		self:PlaySound(227453, "alert")
-		self:CDBar(227453, 36.8) -- TODO confirm, changed by hotfix
+		self:Bar(227453, 37.6)
 	end
 end
 
 function mod:BurningLegSweep(args)
+	burningLegSweepCount = burningLegSweepCount + 1
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 19.4)
+	self:Bar(args.spellId, burningLegSweepCount % 2 == 0 and 18.2 or 19.4)
 end
 
 function mod:ThunderRitual(args)
