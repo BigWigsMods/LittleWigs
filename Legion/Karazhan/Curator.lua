@@ -32,9 +32,9 @@ end
 function mod:OnEngage()
 	self:Bar(227267, 5) -- Summon Volatile Energy
 	self:CDBar(227279, 12) -- Power Discharge
-	-- Mythic Plus:   900 energy, loses 18/second => 50.0 seconds
+	-- Mythic Plus:   900 energy, loses 13/second => 69.2 seconds
 	-- Heroic/Mythic: 575 energy, loses 10/second => 57.5 seconds
-	self:Bar(227254, self:MythicPlus() and 50 or 57.3) -- Evocation
+	self:Bar(227254, self:MythicPlus() and 69.2 or 57.3) -- Evocation
 end
 
 --------------------------------------------------------------------------------
@@ -90,9 +90,9 @@ do
 			self:StopBar(CL.cast:format(args.spellName))
 			self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
-			-- Mythic Plus:   900 energy, loses 18/second => 50.0 seconds
+			-- Mythic Plus:   900 energy, loses 13/second => 69.2 seconds
 			-- Heroic/Mythic: 575 energy, loses 10/second => 57.5 seconds
-			self:Bar(args.spellId, self:MythicPlus() and 49.25 or 56.5)
+			self:Bar(args.spellId, self:MythicPlus() and 68.7 or 56.5)
 		end
 	end
 end
