@@ -34,7 +34,7 @@ function mod:OnEngage()
 	self:CDBar(227279, 12) -- Power Discharge
 	-- Mythic Plus:   900 energy, loses 13/second => 69.2 seconds
 	-- Heroic/Mythic: 575 energy, loses 10/second => 57.5 seconds
-	self:Bar(227254, self:MythicPlus() and 69.2 or 57.3) -- Evocation
+	self:Bar(227254, self:MythicPlus() and 69.4 or 57.3) -- Evocation
 end
 
 --------------------------------------------------------------------------------
