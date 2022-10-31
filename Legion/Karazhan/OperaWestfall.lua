@@ -50,8 +50,8 @@ end
 function mod:OnEngage()
 	burningLegSweepCount = 0
 	self:SetStage(1)
-	self:Bar(227568, 8.5) -- Burning Leg Sweep
-	self:Bar(227453, 6.1) -- Dashing Flame Gale TODO confirm, changed by hotfix
+	self:Bar(227568, 8.3) -- Burning Leg Sweep
+	self:Bar(227453, 19.5) -- Dashing Flame Gale
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
@@ -86,7 +86,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:Message("stages", "cyan", CL.stage:format(3), false)
 		self:PlaySound("stages", "long")
 		self:Bar(227568, 8) -- Burning Leg Sweep
-		self:Bar(227453, 19.7) -- Dashing Flame Gale TODO confirm, changed by hotfix
+		self:Bar(227453, 19.7) -- Dashing Flame Gale
 	end
 end
 
@@ -94,7 +94,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 227449 then -- Dashing Flame Gale
 		self:Message(227453, "orange")
 		self:PlaySound(227453, "alert")
-		self:CDBar(227453, 36.8) -- TODO confirm, changed by hotfix
+		self:Bar(227453, 37.6)
 	end
 end
 
