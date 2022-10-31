@@ -80,6 +80,10 @@ function mod:DismountedApplied(args)
 end
 
 function mod:DismountedRemoved(args)
+	if self:GetStage() == 3 then
+		-- don't alert here if Dismounted is removed after Attumen's defeat
+		return
+	end
 	self:SetStage(1)
 	self:Message("stages", "cyan", 227584, 244457) -- Mounted
 	self:PlaySound("stages", "long")
