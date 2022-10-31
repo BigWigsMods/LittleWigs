@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(114247)
 mod:SetEncounterID(1964)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -30,6 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:SetStage(1)
 	self:Bar(227267, 5) -- Summon Volatile Energy
 	self:CDBar(227279, 12) -- Power Discharge
 	-- Mythic Plus:   900 energy, loses 13/second => 69.2 seconds
@@ -77,6 +79,7 @@ do
 		local t = args.time
 		if t - prev > 3 then
 			prev = t
+			self:SetStage(2)
 			self:Message(args.spellId, "green")
 			self:PlaySound(args.spellId, "long")
 			self:StopBar(227267) -- Summon Volatile Energy
@@ -87,6 +90,7 @@ do
 
 	function mod:EvocationOver(args)
 		if args.time - prev > 3 then
+			self:SetStage(1)
 			self:StopBar(CL.cast:format(args.spellName))
 			self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
