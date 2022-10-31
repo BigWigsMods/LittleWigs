@@ -14,6 +14,12 @@ mod:SetStage(1)
 mod:SetRespawnTime(33)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local burningLegSweepCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -42,6 +48,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	burningLegSweepCount = 0
 	self:SetStage(1)
 	self:Bar(227568, 8.5) -- Burning Leg Sweep
 	self:Bar(227453, 6.1) -- Dashing Flame Gale TODO confirm, changed by hotfix
@@ -92,9 +99,10 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:BurningLegSweep(args)
+	burningLegSweepCount = burningLegSweepCount + 1
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 19.4)
+	self:Bar(args.spellId, burningLegSweepCount % 2 == 0 and 18.2 or 19.4)
 end
 
 function mod:ThunderRitual(args)
