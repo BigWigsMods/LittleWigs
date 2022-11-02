@@ -40,14 +40,28 @@ end
 --
 
 function mod:GOSSIP_SHOW()
-	local mobId = self:MobId(self:UnitGUID("npc"))
-	if self:GetOption("custom_on_autotalk") and (mobId == 35004 or mobId == 35005) then
-		local gossipTbl = self:GetGossipOptions()
-		if gossipTbl then
-			if gossipTbl[2] then
-				self:SelectGossipOption(2) -- skip roleplay on Grand Champions if possible
-			elseif gossipTbl[1] then
-				self:SelectGossipOption(1)
+	if self:Classic() then
+		local mobId = self:MobId(self:UnitGUID("npc"))
+		if self:GetOption("custom_on_autotalk") and (mobId == 35004 or mobId == 35005) then
+			local gossipTbl = self:GetGossipOptions()
+			if gossipTbl then
+				if gossipTbl[2] then
+					self:SelectGossipOption(2) -- skip roleplay on Grand Champions if possible
+				elseif gossipTbl[1] then
+					self:SelectGossipOption(1)
+				end
+			end
+		end
+	else
+		if self:GetOption("custom_on_autotalk") then
+			if self:GetGossipID(38517) then -- "I am ready.  However, I'd like to skip the pageantry." (Skips long dialog prior to boss 1)
+				self:SelectGossipID(38517) -- This special option only becomes available after clearing the dungeon at least once.
+			elseif self:GetGossipID(38514) then -- "I am ready" (prior to boss 1)
+				self:SelectGossipID(38514)
+			elseif self:GetGossipID(38515) then -- "I am ready for the next challenge." (prior to boss 2)
+				self:SelectGossipID(38515)
+			elseif self:GetGossipID(38516) then -- "I am ready." (prior to boss 3)
+				self:SelectGossipID(38516)
 			end
 		end
 	end
