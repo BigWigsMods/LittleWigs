@@ -12,6 +12,9 @@ mod:RegisterEnableMob(
 	-- Alliance NPCs
 	35569, 35570, 35571, 35572, 35617
 )
+-- Buggy, can trigger _START sometimes during the mounted phase.
+-- Can also trigger _END as a wipe, when actually it was a win. The bosses will respawn and you'll also get loot..
+-- Leaving it enabled since the alternative (counting kills) isn't perfect either.
 mod.engageId = 2022
 mod.respawnTime = 30
 
