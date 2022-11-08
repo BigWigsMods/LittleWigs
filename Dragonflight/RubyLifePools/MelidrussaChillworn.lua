@@ -53,17 +53,17 @@ end
 do
 	local prev = 0
 	function mod:PrimalChillApplied(args)
-		-- TODO dungeon journal seems to indicate we'd need to branch on difficulty... 5 mythic or 10 for normal/heroic
-		-- TODO hotfixed 10/28 to 8 stacks? needs confirmation
+		-- stuns at 10 stacks in normal/heroic, 8 stacks on mythic
+		local primalChillMax = self:Mythic() and 8 or 10
 		local amount = args.amount
-		if amount >= 3 and amount < 5 and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)) then
+		if amount >= primalChillMax / 2 and amount < primalChillMax and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)) then
 			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
 			local t = args.time
 			if t - prev > 1 then
 				prev = t
-				-- Stuns at 5 stacks
-				self:StackMessage(args.spellId, "red", args.destName, amount, 4)
-				if amount == 4 then
+				-- stuns at 8/10 stacks
+				self:StackMessage(args.spellId, "red", args.destName, amount, self:Mythic() and 6 or 8)
+				if amount >= self:Mythic() and 6 or 8 then
 					self:PlaySound(args.spellId, "warning", nil, args.destName)
 				else
 					self:PlaySound(args.spellId, "alert", nil, args.destName)
