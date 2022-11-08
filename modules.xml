@@ -10,8 +10,8 @@
 <Include file="WoD\modules.xml"/>
 <Include file="Legion\modules.xml"/>
 <Include file="BfA\modules.xml"/>
-<!--@end-do-not-package@-->
 <Include file="Shadowlands\modules.xml"/>
+<!--@end-do-not-package@-->
 <Include file="Dragonflight\modules.xml"/>
 
 </Ui>
