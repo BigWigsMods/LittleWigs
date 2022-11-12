@@ -124,7 +124,7 @@ do
 
 	function mod:ManaBombApplied(args)
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(386173, "yellow", playerList, 2)
+		self:TargetsMessage(386173, "yellow", playerList, 3)
 		self:PlaySound(386173, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(386173, args.spellName)
