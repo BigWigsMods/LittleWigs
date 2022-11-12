@@ -128,7 +128,12 @@ end
 
 function mod:DeafeningScreech(args)
 	sonicVulnerabilityStacks = sonicVulnerabilityStacks + 1
-	self:Message(args.spellId, "yellow", CL.count:format(CL.casting:format(args.spellName), sonicVulnerabilityStacks))
+	if self:Mythic() then
+		-- in Mythic difficulty each subsequent cast does more damage, reset whenever Firestorm or Gale Force are activated
+		self:Message(args.spellId, "yellow", CL.count:format(CL.casting:format(args.spellName), sonicVulnerabilityStacks))
+	else
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	end
 	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 22.7)
 end
