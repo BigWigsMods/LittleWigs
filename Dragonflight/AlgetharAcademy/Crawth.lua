@@ -44,7 +44,7 @@ function mod:OnBossEnable()
 	self:RegisterWidgetEvent(4183, "GoalOfTheSearingBlaze")
 	self:Log("SPELL_AURA_APPLIED", "FirestormApplied", 376781)
 	self:RegisterWidgetEvent(4184, "GoalOfTheRushingWinds")
-	-- TODO Gale Force applied? 376760? doesn't spawn as of build 46157
+	self:Log("SPELL_AURA_APPLIED", "GaleForceApplied", 376760)
 
 	-- Crawth
 	self:Log("SPELL_CAST_START", "OverpoweringGust", 377034)
@@ -115,6 +115,14 @@ function mod:GoalOfTheRushingWinds(_, _, info)
 		self:PlaySound(389483, "info")
 	else
 		rushingWindsGoals = barValue
+	end
+end
+
+function mod:GaleForceApplied(args)
+	if self:Me(args.destGUID) then
+		self:Bar(376467, 20, CL.you:format(args.spellName), args.spellId)
+		self:Message(376467, "green", CL.you:format(args.spellName), args.spellId)
+		self:PlaySound(376467, "info")
 	end
 end
 
