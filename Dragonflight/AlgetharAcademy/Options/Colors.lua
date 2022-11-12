@@ -37,4 +37,9 @@ BigWigs:AddColors("Echo of Doragosa", {
 })
 
 BigWigs:AddColors("Algeth'ar Academy Trash", {
+	[389501] = "green",
+	[389512] = "green",
+	[389516] = "green",
+	[389521] = "green",
+	[389536] = "green",
 })

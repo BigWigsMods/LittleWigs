@@ -37,4 +37,9 @@ BigWigs:AddSounds("Echo of Doragosa", {
 })
 
 BigWigs:AddSounds("Algeth'ar Academy Trash", {
+	[389501] = "info",
+	[389512] = "info",
+	[389516] = "info",
+	[389521] = "info",
+	[389536] = "info",
 })
