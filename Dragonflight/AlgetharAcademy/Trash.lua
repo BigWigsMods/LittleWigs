@@ -10,7 +10,18 @@ mod:RegisterEnableMob(
 	196977, -- Bronze Dragonflight Recruiter
 	196978, -- Blue Dragonflight Recruiter
 	196979, -- Green Dragonflight Recruiter
-	196981 -- Red Dragonflight Recruiter
+	196981, -- Red Dragonflight Recruiter
+	196045, -- Corrupted Manafiend
+	196576, -- Spellbound Scepter
+	196671, -- Arcane Ravager
+	196044, -- Unruly Textbook
+	192680, -- Guardian Sentry
+	192333, -- Alpha Eagle
+	197219, -- Vile Lasher
+	196198, -- Algeth'ar Security
+	196200, -- Algeth'ar Echoknight
+	196202, -- Spectral Invoker
+	196203 -- Ethereal Restorer
 )
 
 --------------------------------------------------------------------------------
@@ -28,6 +39,16 @@ if L then
 	L.healing_taken = "+10% Healing taken"
 
 	L.corrupted_manafiend = "Corrupted Manafiend"
+	L.spellbound_scepter = "Spellbound Scepter"
+	L.arcane_ravager = "Arcane Ravager"
+	L.unruly_textbook = "Unruly Textbook"
+	L.guardian_sentry = "Guardian Sentry"
+	L.alpha_eagle = "Alpha Eagle"
+	L.vile_lasher = "Vile Lasher"
+	L.algethar_security = "Algeth'ar Security"
+	L.algethar_echoknight = "Algeth'ar Echoknight"
+	L.spectral_invoker = "Spectral Invoker"
+	L.ethereal_restorer = "Ethereal Restorer"
 end
 
 --------------------------------------------------------------------------------
@@ -45,9 +66,40 @@ function mod:GetOptions()
 		389501, -- Red Dragonflight Pledge Pin
 		-- Corrupted Manafiend
 		388863, -- Mana Void
+		-- Spellbound Scepter
+		396812, -- Mystic Blast
+		388886, -- Arcane Rain
+		-- Arcane Ravager
+		388976, -- Riftbreath
+		-- Unruly Textbook
+		388392, -- Monotonous Lecture
+		-- Guardian Sentry
+		377912, -- Expel Intruders
+		-- Alpha Eagle
+		377389, -- Call of the Flock
+		-- Vile Lasher
+		390912, -- Detonation Seeds
+		-- Algeth'ar Security
+		387862, -- Disrupting Pulse
+		-- Algeth'ar Echoknight
+		387910, -- Astral Whirlwind
+		-- Spectral Invoker
+		{387843, "SAY", "SAY_COUNTDOWN"}, -- Astral Bomb
+		-- Ethereal Restorer
+		{387955, "DISPEL"}, -- Celestial Shield
 	}, {
 		["recruiter_autotalk"] = CL.general,
 		[388863] = L.corrupted_manafiend,
+		[396812] = L.spellbound_scepter,
+		[388976] = L.arcane_ravager,
+		[388392] = L.unruly_textbook,
+		[377912] = L.guardian_sentry,
+		[377389] = L.alpha_eagle,
+		[390912] = L.vile_lasher,
+		[387862] = L.algethar_security,
+		[387910] = L.algethar_echoknight,
+		[387843] = L.spectral_invoker,
+		[387955] = L.ethereal_restorer,
 	}
 end
 
@@ -62,6 +114,40 @@ function mod:OnBossEnable()
 
 	-- Corrupted Manafiend
 	self:Log("SPELL_CAST_START", "ManaVoid", 388863)
+
+	-- Spellbound Scepter
+	self:Log("SPELL_CAST_START", "MysticBlast", 396812)
+	self:Log("SPELL_CAST_START", "ArcaneRain", 388886)
+	self:Log("SPELL_CAST_SUCCESS", "ArcaneRainSuccess", 388886)
+
+	-- Arcane Ravager
+	self:Log("SPELL_CAST_START", "Riftbreath", 388976)
+
+	-- Unruly Textbook
+	self:Log("SPELL_CAST_START", "MonotonousLecture", 388392)
+
+	-- Guardian Sentry
+	self:Log("SPELL_CAST_START", "ExpelIntruders", 377912)
+
+	-- Alpha Eagle
+	self:Log("SPELL_CAST_START", "CallOfTheFlock", 377389)
+
+	-- Vile Lasher
+	self:Log("SPELL_CAST_SUCCESS", "DetonationSeeds", 390912)
+
+	-- Algeth'ar Security
+	self:Log("SPELL_CAST_START", "DisruptingPulse", 387862)
+
+	-- Algeth'ar Echoknight
+	self:Log("SPELL_CAST_SUCCESS", "AstralWhirlwind", 387910)
+
+	-- Spectral Invoker
+	self:Log("SPELL_CAST_START", "AstralBomb", 387843)
+	self:Log("SPELL_AURA_APPLIED", "AstralBombApplied", 387843)
+
+	-- Ethereal Restorer
+	self:Log("SPELL_CAST_START", "CelestialShield", 387955)
+	self:Log("SPELL_AURA_APPLIED", "CelestialShieldApplied", 387955)
 end
 
 --------------------------------------------------------------------------------
@@ -130,7 +216,110 @@ end
 
 -- Corrupted Manafiend
 
-function mod:ManaVoid(args)
+do
+	local prev = 0
+	function mod:ManaVoid(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+-- Spellbound Scepter
+
+function mod:MysticBlast(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:ArcaneRain(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ArcaneRainSuccess(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "long")
+end
+
+-- Arcane Ravager
+
+function mod:Riftbreath(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Unruly Textbook
+
+function mod:MonotonousLecture(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
+-- Guardian Sentry
+
+function mod:ExpelIntruders(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Alpha Eagle
+
+function mod:CallOfTheFlock(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
+-- Vile Lasher
+
+function mod:DetonationSeeds(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Algeth'ar Security
+
+function mod:DisruptingPulse(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+end
+
+-- Algeth'ar Echoknight
+
+function mod:AstralWhirlwind(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Spectral Invoker
+
+function mod:AstralBomb(args)
+	self:Message(args.spellId, "yellow", CL.cast:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:AstralBombApplied(args)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alert")
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+		self:SayCountdown(args.spellId, 5)
+	end
+end
+
+-- Ethereal Restorer
+
+function mod:CelestialShield(args)
+	self:Message(args.spellId, "red", CL.cast:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:CelestialShieldApplied(args)
+	if self:Dispeller("magic", true, args.spellId) then
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "warning")
+	end
 end
