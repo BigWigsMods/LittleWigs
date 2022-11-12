@@ -26,6 +26,8 @@ if L then
 	L.mastery = "+Mastery"
 	L.versatility = "+5% Versatility"
 	L.healing_taken = "+10% Healing taken"
+
+	L.corrupted_manafiend = "Corrupted Manafiend"
 end
 
 --------------------------------------------------------------------------------
@@ -34,24 +36,32 @@ end
 
 function mod:GetOptions()
 	return {
+		-- General
 		"recruiter_autotalk",
 		389516, -- Black Dragonflight Pledge Pin
 		389512, -- Bronze Dragonflight Pledge Pin
 		389521, -- Blue Dragonflight Pledge Pin
 		389536, -- Green Dragonflight Pledge Pin
 		389501, -- Red Dragonflight Pledge Pin
+		-- Corrupted Manafiend
+		388863, -- Mana Void
 	}, {
 		["recruiter_autotalk"] = CL.general,
+		[388863] = L.corrupted_manafiend,
 	}
 end
 
 function mod:OnBossEnable()
+	-- General
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_AURA_APPLIED", "BlackPledgeApplied", 389516)
 	self:Log("SPELL_AURA_APPLIED", "BronzePledgeApplied", 389512)
 	self:Log("SPELL_AURA_APPLIED", "BluePledgeApplied", 389521)
 	self:Log("SPELL_AURA_APPLIED", "GreenPledgeApplied", 389536)
 	self:Log("SPELL_AURA_APPLIED", "RedPledgeApplied", 389501)
+
+	-- Corrupted Manafiend
+	self:Log("SPELL_CAST_START", "ManaVoid", 388863)
 end
 
 --------------------------------------------------------------------------------
@@ -116,4 +126,11 @@ function mod:RedPledgeApplied(args)
 		self:Message(args.spellId, "green", L.versatility)
 		self:PlaySound(args.spellId, "info")
 	end
+end
+
+-- Corrupted Manafiend
+
+function mod:ManaVoid(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 end
