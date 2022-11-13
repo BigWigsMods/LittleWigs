@@ -375,7 +375,7 @@ function mod:CelestialShield(args)
 end
 
 function mod:CelestialShieldApplied(args)
-	if self:Dispeller("magic", true, args.spellId) then
+	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "warning")
 	end
