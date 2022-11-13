@@ -57,7 +57,7 @@ function mod:OnEngage()
 	addDeaths = 0
 	corruptedVortexCount = 0
 	if self:Mythic() then
-		self:CDBar(397783, 21) -- Wash Away
+		self:CDBar(397785, 21) -- Wash Away
 		self:CDBar(397797, 8.5) -- Corrupted Vortex
 	end
 end
@@ -85,7 +85,7 @@ end
 function mod:CorruptedVortexApplied(args)
 	corruptedVortexCount = corruptedVortexCount + 1
 	self:CDBar(args.spellId, corruptedVortexCount % 2 == 0 and 28.2 or 13)
-	self:TargetMessage(args.spellId, "yellow" args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alarm")
 		self:Say(args.spellId)
