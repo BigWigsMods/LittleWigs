@@ -25,4 +25,15 @@ BigWigs:AddColors("Sha of Doubt", {
 })
 
 BigWigs:AddColors("Temple of the Jade Serpent Trash", {
+	[395859] = "red",
+	[395872] = {"blue","yellow"},
+	[396001] = "orange",
+	[396018] = {"red","yellow"},
+	[396020] = "yellow",
+	[396073] = "yellow",
+	[397881] = "orange",
+	[397889] = "yellow",
+	[397899] = "orange",
+	[397914] = "red",
+	[398300] = "orange",
 })
