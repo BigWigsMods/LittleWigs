@@ -7,3 +7,8 @@ if L then
 	-- Oh, my. If I am not mistaken, it appears that the tale of Zao Sunseeker has come to life before us.
 	L.five_suns_warmup_trigger = "Es scheint mir"
 end
+
+L = BigWigs:NewBossLocale("Temple of the Jade Serpent Trash", "deDE")
+if L then
+
+end

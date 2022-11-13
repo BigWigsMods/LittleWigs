@@ -7,3 +7,8 @@ if L then
 	-- 噢，天哪。如果我没搞错的话，这似乎是在演绎赵·追日者的故事。
 	L.five_suns_warmup_trigger = "如果我没搞错的话"
 end
+
+L = BigWigs:NewBossLocale("Temple of the Jade Serpent Trash", "zhCN")
+if L then
+
+end

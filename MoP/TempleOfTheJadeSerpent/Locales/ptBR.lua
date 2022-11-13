@@ -7,3 +7,8 @@ if L then
 	-- Oh. Se não estou enganado, parece que o conto de Zao Anélion veio à vida antes de nós.
 	L.five_suns_warmup_trigger = "Se não estou enganado"
 end
+
+L = BigWigs:NewBossLocale("Temple of the Jade Serpent Trash", "ptBR")
+if L then
+
+end
