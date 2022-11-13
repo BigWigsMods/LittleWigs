@@ -140,6 +140,9 @@ function mod:OnBossEnable()
 
 	-- Algeth'ar Echoknight
 	self:Log("SPELL_CAST_SUCCESS", "AstralWhirlwind", 387910)
+	self:Log("SPELL_AURA_APPLIED", "AstralWhirlwindDamage", 387932)
+	self:Log("SPELL_PERIODIC_DAMAGE", "AstralWhirlwindDamage", 387932)
+	self:Log("SPELL_PERIODIC_MISSED", "AstralWhirlwindDamage", 387932)
 
 	-- Spectral Invoker
 	self:Log("SPELL_CAST_START", "AstralBomb", 387843)
@@ -296,9 +299,30 @@ end
 
 -- Algeth'ar Echoknight
 
-function mod:AstralWhirlwind(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:AstralWhirlwind(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:AstralWhirlwindDamage(args)
+		if self:Me(args.destGUID) and not self:Tank() then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PlaySound(387910, "underyou")
+				self:PersonalMessage(387910, "near")
+			end
+		end
+	end
 end
 
 -- Spectral Invoker
