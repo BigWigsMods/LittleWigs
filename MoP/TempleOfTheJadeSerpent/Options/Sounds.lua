@@ -3,6 +3,8 @@ BigWigs:AddSounds("Wise Mari", {
 	[-6327] = {"alarm","info"},
 	[106653] = "underyou",
 	[115167] = "underyou",
+	[397785] = "warning",
+	[397797] = {"alarm","alert","underyou"},
 	["stages"] = "info",
 })
 

@@ -3,6 +3,8 @@ BigWigs:AddColors("Wise Mari", {
 	[-6327] = {"green","red"},
 	[106653] = "blue",
 	[115167] = "blue",
+	[397785] = "red",
+	[397797] = "blue",
 	["stages"] = "green",
 })
 

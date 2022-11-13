@@ -13,6 +13,7 @@ mod:SetRespawnTime(20)
 --
 
 local addDeaths = 0
+local corruptedVortexCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,17 +21,27 @@ local addDeaths = 0
 
 function mod:GetOptions()
 	return {
+		-- Mythic+
+		397785, -- Wash Away
+		{397797, "SAY", "SAY_COUNTDOWN"}, -- Corrupted Vortex
 		-- Normal / Heroic
 		"stages",
 		-6327, -- Call Water
 		106653, -- Sha Residue
 		115167, -- Corrupted Waters
 	}, {
-		["stages"] = CL.normal.." / "..CL.heroic
+		[397785] = CL.mythic,
+		["stages"] = CL.normal.." / "..CL.heroic,
 	}
 end
 
 function mod:OnBossEnable()
+	-- Mythic+
+	self:Log("SPELL_CAST_START", "WashAway", 397783)
+	self:Log("SPELL_CAST_SUCCESS", "WashAwayChannelStart", 397783)
+	self:Log("SPELL_AURA_APPLIED", "CorruptedVortexApplied", 397797)
+	self:Log("SPELL_PERIODIC_DAMAGE", "CorruptedVortexDamage", 397799)
+	self:Log("SPELL_PERIODIC_MISSED", "CorruptedVortexDamage", 397799)
 
 	-- Normal / Heroic
 	self:Log("SPELL_CAST_START", "BubbleBurst", 106612)
@@ -44,11 +55,52 @@ end
 
 function mod:OnEngage()
 	addDeaths = 0
+	corruptedVortexCount = 0
+	if self:Mythic() then
+		self:CDBar(397783, 21) -- Wash Away
+		self:CDBar(397797, 8.5) -- Corrupted Vortex
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Mythic+
+
+function mod:WashAway(args)
+	self:Message(397785, "red", CL.casting:format(args.spellName))
+	self:PlaySound(397785, "warning")
+	self:CastBar(397785, 3)
+	self:CDBar(397785, 41.3)
+	-- either wash away or the second corrupted vortex can occur first,
+	-- but the pattern is wash away, vortex, vortex, repeat
+	corruptedVortexCount = 0
+end
+
+function mod:WashAwayChannelStart(args)
+	self:CastBar(397785, 12.75)
+end
+
+function mod:CorruptedVortexApplied(args)
+	corruptedVortexCount = corruptedVortexCount + 1
+	self:CDBar(args.spellId, corruptedVortexCount % 2 == 0 and 28.2 or 13)
+	self:TargetMessage(args.spellId, "yellow" args.destName)
+	if self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "alarm")
+		self:Say(args.spellId)
+		self:SayCountdown(args.spellId, 6)
+	else
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+function mod:CorruptedVortexDamage(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(397797, "underyou")
+		self:PlaySound(397797, "underyou")
+	end
+end
 
 -- Normal / Heroic
 
