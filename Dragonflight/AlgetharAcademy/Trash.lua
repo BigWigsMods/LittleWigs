@@ -222,7 +222,7 @@ do
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -231,12 +231,12 @@ end
 -- Spellbound Scepter
 
 function mod:MysticBlast(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:ArcaneRain(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -248,28 +248,28 @@ end
 -- Arcane Ravager
 
 function mod:Riftbreath(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Unruly Textbook
 
 function mod:MonotonousLecture(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
 -- Guardian Sentry
 
 function mod:ExpelIntruders(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Alpha Eagle
 
 function mod:CallOfTheFlock(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -290,7 +290,7 @@ end
 -- Algeth'ar Security
 
 function mod:DisruptingPulse(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -304,7 +304,7 @@ end
 -- Spectral Invoker
 
 function mod:AstralBomb(args)
-	self:Message(args.spellId, "yellow", CL.cast:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -320,7 +320,7 @@ end
 -- Ethereal Restorer
 
 function mod:CelestialShield(args)
-	self:Message(args.spellId, "red", CL.cast:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
