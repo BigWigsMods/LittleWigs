@@ -8,4 +8,16 @@ if L then
 	L.mastery = "+Maestria"
 	L.versatility = "+5% Versatilità"
 	L.healing_taken = "+10% Cure ricevute"
+
+	--L.corrupted_manafiend = "Corrupted Manafiend"
+	--L.spellbound_scepter = "Spellbound Scepter"
+	--L.arcane_ravager = "Arcane Ravager"
+	--L.unruly_textbook = "Unruly Textbook"
+	--L.guardian_sentry = "Guardian Sentry"
+	--L.alpha_eagle = "Alpha Eagle"
+	--L.vile_lasher = "Vile Lasher"
+	--L.algethar_security = "Algeth'ar Security"
+	--L.algethar_echoknight = "Algeth'ar Echoknight"
+	--L.spectral_invoker = "Spectral Invoker"
+	--L.ethereal_restorer = "Ethereal Restorer"
 end
