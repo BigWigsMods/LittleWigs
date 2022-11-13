@@ -303,17 +303,31 @@ end
 
 -- Spectral Invoker
 
-function mod:AstralBomb(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:AstralBomb(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:AstralBombApplied(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alert")
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:SayCountdown(args.spellId, 5)
+do
+	local prev = 0
+	function mod:AstralBombApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:TargetMessage(args.spellId, "orange", args.destName)
+				self:PlaySound(args.spellId, "alarm")
+				self:Say(args.spellId)
+				self:SayCountdown(args.spellId, 5)
+			end
+		end
 	end
 end
 
