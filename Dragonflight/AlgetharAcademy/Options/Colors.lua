@@ -47,6 +47,7 @@ BigWigs:AddColors("Algeth'ar Academy Trash", {
 	[388863] = "yellow",
 	[388886] = {"orange","yellow"},
 	[388976] = "orange",
+	[388984] = {"blue","red"},
 	[389501] = "green",
 	[389512] = "green",
 	[389516] = "green",

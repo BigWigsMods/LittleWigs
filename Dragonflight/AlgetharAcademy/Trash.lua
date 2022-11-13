@@ -71,6 +71,7 @@ function mod:GetOptions()
 		388886, -- Arcane Rain
 		-- Arcane Ravager
 		388976, -- Riftbreath
+		{388984, "SAY"}, -- Vicious Ambush
 		-- Unruly Textbook
 		388392, -- Monotonous Lecture
 		-- Guardian Sentry
@@ -122,6 +123,7 @@ function mod:OnBossEnable()
 
 	-- Arcane Ravager
 	self:Log("SPELL_CAST_START", "Riftbreath", 388976)
+	self:Log("SPELL_AURA_APPLIED", "ViciousAmbush", 388984)
 
 	-- Unruly Textbook
 	self:Log("SPELL_CAST_START", "MonotonousLecture", 388392)
@@ -253,6 +255,16 @@ end
 function mod:Riftbreath(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:ViciousAmbush(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	if self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "alarm")
+		self:Say(args.spellId)
+	else
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
 
 -- Unruly Textbook
