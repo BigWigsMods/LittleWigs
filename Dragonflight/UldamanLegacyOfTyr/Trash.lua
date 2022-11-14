@@ -9,7 +9,8 @@ mod:RegisterEnableMob(
 	184020, -- Hulking Berserker
 	184023, -- Vicious Basilisk
 	184132, -- Earthen Warder
-	184301  -- Cavern Seeker
+	184301, -- Cavern Seeker
+	184107  -- Runic Protector
 )
 
 --------------------------------------------------------------------------------
@@ -22,6 +23,7 @@ if L then
 	L.vicious_basilisk = "Vicious Basilisk"
 	L.earthen_warder = "Earthen Warder"
 	L.cavern_seeker = "Cavern Seeker"
+	L.runic_protector = "Runic Protector"
 end
 
 --------------------------------------------------------------------------------
@@ -40,10 +42,14 @@ function mod:GetOptions()
 		{369366, "DISPEL"}, -- Trapped in Stone
 		-- Cavern Seeker
 		369411, -- Sonic Burst
+		-- Runic Protector
+		369337, -- Difficult Terrain
 	}, {
 		[369811] = L.hulking_berserker,
+		[369823] = L.vicious_basilisk,
+		[369400] = L.earthen_warder,
 		[369411] = L.cavern_seeker,
-		[369823] = L.cavern_seeker,
+		[369337] = L.runic_protector,
 	}
 end
 
@@ -63,6 +69,9 @@ function mod:OnBossEnable()
 
 	-- Cavern Seeker
 	self:Log("SPELL_CAST_START", "SonicBurst", 369411)
+
+	-- Runic Protector
+	self:Log("SPELL_AURA_APPLIED", "DifficultTerrainApplied", 369337)
 end
 
 --------------------------------------------------------------------------------
@@ -121,4 +130,13 @@ end
 function mod:SonicBurst(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Runic Protector
+
+function mod:DifficultTerrainApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou")
+	end
 end
