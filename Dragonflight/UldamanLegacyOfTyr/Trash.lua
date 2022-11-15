@@ -35,7 +35,7 @@ function mod:GetOptions()
 		-- Hulking Berserker
 		369811, -- Brutal Slam
 		-- Vicious Basilisk
-		369823, -- Spiked Carapace
+		{369823, "DISPEL"}, -- Spiked Carapace
 		-- Earthen Warder
 		{369400, "DISPEL"}, -- Earthen Ward
 		{369365, "DISPEL"}, -- Curse of Stone
@@ -59,6 +59,7 @@ function mod:OnBossEnable()
 
 	-- Vicious Basilisk
 	self:Log("SPELL_CAST_START", "SpikedCarapace", 369823)
+	self:Log("SPELL_AURA_APPLIED", "SpikedCarapaceApplied", 369823)
 
 	-- Earthen Warder
 	self:Log("SPELL_CAST_START", "EarthenWard", 369400)
@@ -105,6 +106,19 @@ do
 		end
 	end
 end
+do
+	local prev = 0
+	function mod:SpikedCarapaceApplied(args)
+		if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
+			local t = args.time
+			if t - prev > 1 then
+				prev = t
+				self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+				self:PlaySound(args.spellId, "warning")
+			end
+		end
+	end
+end
 
 -- Earthen Warder
 
@@ -128,14 +142,14 @@ end
 function mod:CurseOfStoneApplied(args)
 	if self:Dispeller("curse", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "warning")
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
 
 function mod:TrappedInStoneApplied(args)
 	if self:Dispeller("curse", nil, args.spellId) or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "warning")
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
 
