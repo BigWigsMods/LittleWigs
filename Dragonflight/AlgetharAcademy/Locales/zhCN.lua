@@ -5,7 +5,7 @@ if L then
 	L.recruiter_autotalk_desc = "立即找巨龙招募人员获取增益"
 	L.critical_strike = "+5% 爆击"
 	L.haste = "+5% 急速"
-	L.mastery = "+97精通"
+	L.mastery = "+精通"
 	L.versatility = "+5% 全能"
 	L.healing_taken = "+10% 治疗效果"
 
