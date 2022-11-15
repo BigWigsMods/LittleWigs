@@ -2,7 +2,7 @@ local L = BigWigs:NewBossLocale("Halls of Infusion Trash", "zhCN")
 if not L then return end
 if L then
         L.primalist_ravager = "拜荒掠夺者"
-	L.primalist_geomancer = "拜荒地卜师"
+        L.primalist_geomancer = "拜荒地卜师"
 	L.containment_apparatus = "抑制装置"
 	L.refti_defender = "莱弗提防御者"
 	L.dazzling_dragonfly = "炫目蜻蜓"
