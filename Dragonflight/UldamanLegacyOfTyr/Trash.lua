@@ -80,16 +80,30 @@ end
 
 -- Hulking Berserker
 
-function mod:BrutalSlam(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:BrutalSlam(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Vicious Basilisk
 
-function mod:SpikedCarapace(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:SpikedCarapace(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Earthen Warder
@@ -127,9 +141,16 @@ end
 
 -- Cavern Seeker
 
-function mod:SonicBurst(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:SonicBurst(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Runic Protector
