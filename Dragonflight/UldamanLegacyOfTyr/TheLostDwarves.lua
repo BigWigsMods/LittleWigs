@@ -41,16 +41,13 @@ function mod:OnBossEnable()
 	-- Baelog
 	self:Log("SPELL_CAST_START", "HeavyArrow", 369573)
 	self:Log("SPELL_CAST_START", "WildCleave", 369563)
-	self:Death("BaelogDeath", 184581)
 
 	-- Eric "The Swift"
 	self:Log("SPELL_CAST_START", "Skullcracker", 369791)
-	self:Death("EricTheSwiftDeath", 184582)
 
 	-- Olaf
 	self:Log("SPELL_CAST_START", "RicochetingShield", 369677)
 	self:Log("SPELL_AURA_APPLIED", "DefensiveBulwark", 369602)
-	self:Death("OlafDeath", 184580)
 
 	-- Longboat Raid!
 	self:Log("SPELL_CAST_START", "LongboatRaid", 375924)
@@ -62,8 +59,8 @@ function mod:OnEngage()
 	self:CDBar(369791, 6.1) -- Skullcracker
 	self:CDBar(369563, 8.5) -- Wild Cleave
 	self:Bar(369677, 12.1) -- Ricocheting Shield
-	self:Bar(369602, 17.3) -- Defensive Bulwark
-	self:Bar(369573, 20.6) -- Heavy Arrow
+	self:Bar(369602, 17.2) -- Defensive Bulwark
+	self:CDBar(369573, 20.6) -- Heavy Arrow
 	self:Bar(375924, 24.8) -- Longboat Raid
 end
 
@@ -76,18 +73,13 @@ end
 function mod:HeavyArrow(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	-- TOOD unknown CD
+	self:CDBar(args.spellId, 20.7)
 end
 
 function mod:WildCleave(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 42.5)
-end
-
-function mod:BaelogDeath()
-	self:StopBar(369573) -- Heavy Arrow
-	self:StopBar(369563) -- Wild Cleave
+	self:CDBar(args.spellId, 17)
 end
 
 -- Eric "The Swift"
@@ -95,11 +87,7 @@ end
 function mod:Skullcracker(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 42.5)
-end
-
-function mod:EricTheSwiftDeath()
-	self:StopBar(369791) -- Skullcracker
+	self:CDBar(args.spellId, 26.7)
 end
 
 -- Olaf
@@ -115,19 +103,14 @@ do
 
 	function mod:RicochetingShield(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		-- TODO unknown CD
+		self:CDBar(args.spellId, 17)
 	end
 end
 
 function mod:DefensiveBulwark(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
-	-- TODO unknown CD
-end
-
-function mod:OlafDeath()
-	self:StopBar(369677) -- Ricocheting Shield
-	self:StopBar(369602) -- Defensive Bulwark
+	self:CDBar(args.spellId, 34)
 end
 
 -- Longboat Raid!
@@ -137,11 +120,11 @@ do
 	function mod:LongboatRaid(args)
 		-- throttle because all 3 bosses cast this, usually around the same time
 		local t = args.time
-		if t - prev > 3 then
+		if t - prev > 6 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "long")
-			-- TODO how does the CD work on this? how/when do they come down?
+			self:CDBar(args.spellId, 52.1)
 		end
 	end
 end
