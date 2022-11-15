@@ -1,4 +1,4 @@
-## Interface: 100000
+## Interface: 100002
 
 ## Title: LittleWigs [|cffeda55fCataclysm|r]
 ## Title-deDE: LittleWigs [|cffeda55fCataclysm|r]

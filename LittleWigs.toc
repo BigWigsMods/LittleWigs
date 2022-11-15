@@ -1,4 +1,4 @@
-## Interface: 100000
+## Interface: 100002
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
