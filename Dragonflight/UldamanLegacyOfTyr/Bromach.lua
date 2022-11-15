@@ -96,7 +96,7 @@ end
 -- Quaking Totem
 
 function mod:Tremor(args)
-	self:Message(args.spellId, "green")
+	self:Message(args.spellId, "green", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 10)
+	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
 end
