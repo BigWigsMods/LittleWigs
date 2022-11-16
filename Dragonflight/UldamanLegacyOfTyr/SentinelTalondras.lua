@@ -28,6 +28,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "InexorableApplied", 372600)
 	self:Log("SPELL_CAST_START", "TitanicEmpowerment", 372719)
 	self:Log("SPELL_AURA_APPLIED", "TitanicEmpowermentApplied", 372719)
+	self:Log("SPELL_AURA_REMOVED", "TitanicEmpowermentRemoved", 372719)
 	self:Log("SPELL_CAST_START", "ResonatingOrb", 372623)
 	self:Log("SPELL_AURA_APPLIED", "ResonatingOrbFixate", 382071)
 	self:Log("SPELL_AURA_APPLIED", "ResonatingOrbApplied", 372652)
@@ -36,8 +37,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(372718, 4.6) -- Earthen Shards
+	self:Bar(372718, 4.5) -- Earthen Shards
 	self:CDBar(372701, 8.1) -- Crushing Stomp
+	-- 25s energy gain, 5s cast
 	self:Bar(372719, 30.1) -- Titanic Empowerment
 end
 
@@ -79,6 +81,11 @@ function mod:TitanicEmpowermentApplied(args)
 	end
 
 	self:Bar(args.spellId, duration, CL.onboss:format(args.spellName))
+end
+
+function mod:TitanicEmpowermentRemoved(args)
+	-- 25s energy gain + 5s cast
+	self:Bar(args.spellId, 30)
 end
 
 do
