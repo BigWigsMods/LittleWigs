@@ -38,4 +38,6 @@ BigWigs:AddSounds("Balakar Khan", {
 })
 
 BigWigs:AddSounds("The Nokhud Offensive Trash", {
+	[384336] = "alarm",
+	[384365] = "warning",
 })
