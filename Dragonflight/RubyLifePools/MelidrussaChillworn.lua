@@ -9,6 +9,12 @@ mod:SetEncounterID(2609)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local awakenWhelpsCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -32,12 +38,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	awakenWhelpsCount = 0
 	self:CDBar(396044, 6.8) -- Hailbombs
 	self:CDBar(372851, 12.1) -- Chillstorm
-	self:CDBar(373046, 15.6) -- Awaken Whelps
-	if self:Mythic() then
-		self:CDBar(373680, 31.6) -- Frost Overload
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -45,9 +48,11 @@ end
 --
 
 function mod:AwakenWhelps(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 13.4)
+	awakenWhelpsCount = awakenWhelpsCount + 1
+	local percent = awakenWhelpsCount == 1 and 75 or 45
+	self:Message(args.spellId, "yellow", CL.percent:format(percent, args.spellName))
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(373680, 8.5) -- Frost Overload
 end
 
 do
@@ -83,7 +88,6 @@ do
 		frostOverloadStart = args.time
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "long")
-		self:CDBar(args.spellId, 18.4)
 	end
 
 	function mod:FrostOverloadOver(args)
