@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Ruby Life Pools Trash", 2521)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	188244, -- Primal Juggernaut
 	187897, -- Defier Draghar
 	190034, -- Blazebound Destroyer
 	195119, -- Primalist Shockcaster
@@ -19,6 +20,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.primal_juggernaut = "Primal Juggernaut"
 	L.defier_draghar = "Defier Draghar"
 	L.blazebound_destroyer = "Blazebound Destroyer"
 	L.primalist_shockcaster = "Primalist Shockcaster"
@@ -32,6 +34,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Primal Juggernaut
+		372696, -- Excavating Blast
 		-- Defier Draghar
 		372087, -- Blazing Rush
 		372047, -- Steel Barrage
@@ -48,6 +52,7 @@ function mod:GetOptions()
 		-- Flamegullet
 		391723, -- Flame Breath
 	}, {
+		[372696] = L.primal_juggernaut,
 		[372087] = L.defier_draghar,
 		[373693] = L.blazebound_destroyer,
 		[385313] = L.primalist_shockcaster,
@@ -57,6 +62,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Primal Juggernaut
+	self:Log("SPELL_CAST_START", "ExcavatingBlast", 372696)
+
 	-- Defier Draghar
 	self:Log("SPELL_CAST_START", "BlazingRush", 372087)
 	self:Log("SPELL_CAST_START", "SteelBarrage", 372047)
@@ -85,6 +93,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Primal Juggernaut
+
+function mod:ExcavatingBlast(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+end
 
 -- Defier Draghar
 
