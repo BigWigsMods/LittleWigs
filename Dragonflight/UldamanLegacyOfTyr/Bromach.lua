@@ -24,7 +24,7 @@ function mod:GetOptions()
 		-- Quaking Totem
 		369660, -- Tremor
 	}, {
-		[369605] = self.moduleName,
+		[369605] = self.displayName,
 		[369675] = -24988, -- Stonevault Geomancer
 		[369660] = 369700, -- Quaking Totem
 	}
