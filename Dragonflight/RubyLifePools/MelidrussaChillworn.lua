@@ -23,7 +23,7 @@ function mod:GetOptions()
 		373046, -- Awaken Whelps
 		{372682, "DISPEL"}, -- Primal Chill
 		373680, -- Frost Overload
-		{372851, "SAY"}, -- Chillstorm
+		{372851, "SAY", "SAY_COUNTDOWN"}, -- Chillstorm
 		396044, -- Hailbombs
 	}
 end
@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PrimalChillApplied", 372682)
 	self:Log("SPELL_AURA_APPLIED", "FrostOverload", 373680)
 	self:Log("SPELL_AURA_REMOVED", "FrostOverloadOver", 373680)
-	self:Log("SPELL_CAST_START", "Chillstorm", 372851)
+	self:Log("SPELL_AURA_APPLIED", "Chillstorm", 385518)
 	self:Log("SPELL_CAST_SUCCESS", "Hailbombs", 396044)
 end
 
@@ -97,20 +97,16 @@ do
 	end
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(372851, "yellow", name)
-		self:PlaySound(372851, "alarm", nil, name)
-		if self:Me(guid) then
-			self:Say(372851)
-		end
+function mod:Chillstorm(args)
+	self:TargetMessage(372851, "yellow", args.destName)
+	if self:Me(args.destGUID) then
+		self:PlaySound(372851, "alarm")
+		self:Say(372851)
+		self:SayCountdown(372851, 3.5)
+	else
+		self:PlaySound(372851, "alert", nil, args.destName)
 	end
-
-	function mod:Chillstorm(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-		self:CastBar(args.spellId, 3.5)
-		self:CDBar(args.spellId, 22.6)
-	end
+	self:CDBar(372851, 22.6)
 end
 
 function mod:Hailbombs(args)

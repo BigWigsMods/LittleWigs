@@ -1,8 +1,8 @@
 
 BigWigs:AddSounds("Melidrussa Chillworn", {
 	[372682] = {"alert","warning"},
-	[372851] = "alarm",
-	[373046] = "alert",
+	[372851] = {"alarm","alert"},
+	[373046] = "long",
 	[373680] = {"info","long"},
 	[396044] = "alarm",
 })
