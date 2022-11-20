@@ -53,17 +53,20 @@ end
 do
 	local prev = 0
 	function mod:PrimalChillApplied(args)
-		-- stuns at 10 stacks in normal/heroic, 8 stacks on mythic
+		-- stuns at 8 stacks on mythic, 10 stacks in normal/heroic
 		local primalChillMax = self:Mythic() and 8 or 10
+		local emphasizeAmount = self:Mythic() and 6 or 8
 		local amount = args.amount
-		if amount >= primalChillMax / 2 and amount < primalChillMax and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)) then
+		-- start warning at half the required stacks to stun
+		local aboveThreshold = amount >= primalChillMax / 2 and amount < primalChillMax
+		local shouldWarn = self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)
+		if aboveThreshold and shouldWarn then
 			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
 			local t = args.time
 			if t - prev > 1 then
 				prev = t
-				-- stuns at 8/10 stacks
-				self:StackMessage(args.spellId, "red", args.destName, amount, self:Mythic() and 6 or 8)
-				if amount >= self:Mythic() and 6 or 8 then
+				self:StackMessage(args.spellId, "red", args.destName, amount, emphasizeAmount)
+				if amount >= emphasizeAmount then
 					self:PlaySound(args.spellId, "warning", nil, args.destName)
 				else
 					self:PlaySound(args.spellId, "alert", nil, args.destName)
