@@ -52,7 +52,9 @@ function mod:AwakenWhelps(args)
 	local percent = awakenWhelpsCount == 1 and 75 or 45
 	self:Message(args.spellId, "yellow", CL.percent:format(percent, args.spellName))
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(373680, 8.5) -- Frost Overload
+	if self:Mythic() then
+		self:CDBar(373680, 8.5) -- Frost Overload
+	end
 end
 
 do
