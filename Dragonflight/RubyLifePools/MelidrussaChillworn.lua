@@ -107,14 +107,14 @@ do
 	end
 
 	function mod:Chillstorm(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 		self:CastBar(args.spellId, 3.5)
-		self:CDBar(args.spellId, 32.8)
+		self:CDBar(args.spellId, 22.6)
 	end
 end
 
 function mod:Hailbombs(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 57.3)
+	self:CDBar(args.spellId, 23)
 end
