@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	188244, -- Primal Juggernaut
+	188067, -- Flashfrost Chillweaver
 	187897, -- Defier Draghar
 	190034, -- Blazebound Destroyer
 	195119, -- Primalist Shockcaster
@@ -21,6 +22,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.primal_juggernaut = "Primal Juggernaut"
+	L.flashfrost_chillweaver = "Flashfrost Chillweaver"
 	L.defier_draghar = "Defier Draghar"
 	L.blazebound_destroyer = "Blazebound Destroyer"
 	L.primalist_shockcaster = "Primalist Shockcaster"
@@ -36,6 +38,8 @@ function mod:GetOptions()
 	return {
 		-- Primal Juggernaut
 		372696, -- Excavating Blast
+		-- Flashfrost Chillweaver
+		372743, -- Ice Shield
 		-- Defier Draghar
 		372087, -- Blazing Rush
 		372047, -- Steel Barrage
@@ -53,6 +57,7 @@ function mod:GetOptions()
 		391723, -- Flame Breath
 	}, {
 		[372696] = L.primal_juggernaut,
+		[372743] = L.flashfrost_chillweaver,
 		[372087] = L.defier_draghar,
 		[373693] = L.blazebound_destroyer,
 		[385313] = L.primalist_shockcaster,
@@ -64,6 +69,9 @@ end
 function mod:OnBossEnable()
 	-- Primal Juggernaut
 	self:Log("SPELL_CAST_START", "ExcavatingBlast", 372696)
+
+	-- Flashfrost Chillweaver
+	self:Log("SPELL_CAST_SUCCESS", "IceShield", 372743)
 
 	-- Defier Draghar
 	self:Log("SPELL_CAST_START", "BlazingRush", 372087)
@@ -99,6 +107,20 @@ end
 function mod:ExcavatingBlast(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Flashfrost Chillweaver
+
+do
+	local prev = 0
+	function mod:IceShield(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Defier Draghar
