@@ -7,6 +7,9 @@ end
 L = BigWigs:NewBossLocale("Granyth", "deDE")
 if L then
 	--L.lance_ready = "Lance Ready"
+	--L.W = "W"
+	--L.NE = "NE"
+	--L.SE = "SE"
 end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "deDE")
