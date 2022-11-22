@@ -15,9 +15,9 @@ mod:SetRespawnTime(30)
 local L = mod:GetLocale()
 if L then
 	L.lance_ready = "Lance Ready"
-	L.W = "W"
-	L.NE = "NE"
-	L.SE = "SE"
+	L.west = "W"
+	L.northeast = "NE"
+	L.southeast = "SE"
 end
 
 --------------------------------------------------------------------------------
@@ -95,11 +95,11 @@ end
 function mod:SummonSaboteur(args)
 	local direction -- 386320 = W Lance, 386747 = NE Lance, 386748 = SE Lance
 	if args.spellId == 386320 then
-		direction = L.W
+		direction = L.west
 	elseif args.spellId == 386747 then
-		direction = L.NE
+		direction = L.northeast
 	else -- 386748
-		direction = L.SE
+		direction = L.southeast
 	end
 	self:Message(386320, "red", CL.other:format(args.spellName, direction))
 	self:PlaySound(386320, "alert")
