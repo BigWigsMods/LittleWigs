@@ -1,6 +1,7 @@
 
 BigWigs:AddSounds("Granyth", {
 	[385916] = "alarm",
+	[386320] = "alert",
 	[386490] = "warning",
 	[386530] = "info",
 	[388283] = "long",

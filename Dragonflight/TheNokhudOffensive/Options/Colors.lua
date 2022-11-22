@@ -1,6 +1,7 @@
 
 BigWigs:AddColors("Granyth", {
 	[385916] = "orange",
+	[386320] = "red",
 	[386490] = "red",
 	[386530] = "green",
 	[388283] = "red",

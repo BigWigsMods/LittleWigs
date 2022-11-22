@@ -15,6 +15,9 @@ mod:SetRespawnTime(30)
 local L = mod:GetLocale()
 if L then
 	L.lance_ready = "Lance Ready"
+	L.west = "W"
+	L.northeast = "NE"
+	L.southeast = "SE"
 end
 
 --------------------------------------------------------------------------------
@@ -27,6 +30,7 @@ function mod:GetOptions()
 		388283, -- Eruption
 		388817, -- Shards of Stone
 		385916, -- Tectonic Stomp
+		386320, -- Summon Saboteur
 		-- Dragonkiller Lance
 		386530, -- Dragonkiller Lance
 		-- Nokhud Saboteur
@@ -43,6 +47,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Eruption", 388283)
 	self:Log("SPELL_CAST_START", "ShardsOfStone", 388817)
 	self:Log("SPELL_CAST_START", "TectonicStomp", 385916)
+	self:Log("SPELL_CAST_SUCCESS", "SummonSaboteur", 386320, 386747, 386748)
 
 	-- Dragonkiller Lance
 	self:Log("SPELL_CAST_START", "Reload", 386921)
@@ -50,14 +55,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Lanced", 387155)
 	
 	-- Nokhud Saboteur (Mythic-only)
-	-- TODO summon/activate saboteur?
 	self:Log("SPELL_AURA_APPLIED", "Dismantle", 386490)
 end
 
 function mod:OnEngage()
-	self:CDBar(388283, 28.9) -- Eruption
-	self:CDBar(388817, 10.6) -- Shards of Stone
+	self:Bar(388283, 28.8) -- Eruption
+	self:Bar(388817, 10.6) -- Shards of Stone
 	self:CDBar(385916, 15.5) -- Tectonic Stomp
+	if self:Mythic() then
+		self:Bar(386320, 15) -- Summon Saboteur
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -85,6 +92,20 @@ function mod:TectonicStomp(args)
 	self:CDBar(args.spellId, 19.4)
 end
 
+function mod:SummonSaboteur(args)
+	local direction -- 386320 = W Lance, 386747 = NE Lance, 386748 = SE Lance
+	if args.spellId == 386320 then
+		direction = L.west
+	elseif args.spellId == 386747 then
+		direction = L.northeast
+	else -- 386748
+		direction = L.southeast
+	end
+	self:Message(386320, "red", CL.other:format(args.spellName, direction))
+	self:PlaySound(386320, "alert")
+	self:Bar(386320, 15)
+end
+
 -- Dragonkiller Lance
 
 function mod:Reload(args)
@@ -100,7 +121,7 @@ function mod:Lanced(args)
 	self:Message(386530, "green", args.spellName) -- Dragonkiller Lance
 	self:PlaySound(386530, "info") -- Dragonkiller Lance
 	self:StopBar(CL.cast:format(self:SpellName(388283))) -- Eruption
-	self:CDBar(388283, 35) -- Eruption TODO 25s energy gain, 10s delay?
+	self:CDBar(388283, 33.1) -- Eruption 5s stun, 27s energy gain, ~1s delay
 end
 
 -- Nokhud Saboteur

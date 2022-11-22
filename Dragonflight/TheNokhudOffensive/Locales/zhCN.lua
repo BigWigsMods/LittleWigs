@@ -7,6 +7,9 @@ end
 L = BigWigs:NewBossLocale("Granyth", "zhCN")
 if L then
 	L.lance_ready = "屠龙者之矛就绪"
+	L.west = "西"
+	L.northeast = "东北"
+	L.southeast = "东南"
 end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "zhCN")
