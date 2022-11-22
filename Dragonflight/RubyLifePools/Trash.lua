@@ -80,6 +80,7 @@ function mod:OnBossEnable()
 
 	-- Blazebound Destroyer
 	self:Log("SPELL_AURA_APPLIED", "LivingBombApplied", 373693)
+	self:Log("SPELL_AURA_REMOVED", "LivingBombRemoved", 373693)
 	self:Log("SPELL_CAST_START", "Inferno", 373692)
 	self:Log("SPELL_CAST_START", "Burnout", 373614)
 
@@ -150,6 +151,12 @@ function mod:LivingBombApplied(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 6)
+	end
+end
+
+function mod:LivingBombRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
 	end
 end
 
