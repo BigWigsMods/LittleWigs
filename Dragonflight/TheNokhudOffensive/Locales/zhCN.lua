@@ -1,7 +1,9 @@
 local L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "zhCN")
 if not L then return end
 if L then
-
+	--L.nokhud_plainstomper = "Nokhud Plainstomper"
+	--L.soulharvester_galtmaa = "Soulharvester Galtmaa"
+	--L.nokhud_defender = "Nokhud Defender"
 end
 
 L = BigWigs:NewBossLocale("Granyth", "zhCN")
