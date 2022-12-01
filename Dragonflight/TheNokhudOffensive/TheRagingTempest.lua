@@ -114,14 +114,14 @@ function mod:EnergySurge(args)
 end
 
 function mod:EnergySurgeApplied(args)
-	if self:Dispeller("magic", true, args.spellId) or self:Tank() or self:Healer() then
+	if not self:Player(args.destFlags) and (self:Dispeller("magic", true, args.spellId) or self:Tank() or self:Healer()) then
 		self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
 end
 
 function mod:EnergySurgeRemoved(args)
-	if self:Dispeller("magic", true, args.spellId) or self:Tank() or self:Healer() then
+	if not self:Player(args.destFlags) and (self:Dispeller("magic", true, args.spellId) or self:Tank() or self:Healer()) then
 		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
