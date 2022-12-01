@@ -4,6 +4,7 @@ if L then
 	L.nokhud_plainstomper = "Foule-plaine nokhud"
 	L.soulharvester_galtmaa = "Moissonneuse d'âmes Galtmaa"
 	L.nokhud_defender = "Défenseur nokhud"
+	L.nokhud_thunderfist = "Tonnepoing nokhud"
 end
 
 L = BigWigs:NewBossLocale("Granyth", "frFR")

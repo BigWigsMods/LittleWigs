@@ -42,4 +42,5 @@ BigWigs:AddSounds("The Nokhud Offensive Trash", {
 	[384336] = "alarm",
 	[384365] = {"alert","warning"},
 	[395035] = "alert",
+	[397394] = {"alert","warning"},
 })

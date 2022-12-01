@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	195929, -- Soulharvester Tumen
 	195930, -- Soulharvester Mandakh
 	199717, -- Nokhud Defender
+	193373, -- Nokhud Thunderfist
 	193462  -- Batak
 )
 
@@ -25,6 +26,7 @@ if L then
 	L.nokhud_plainstomper = "Nokhud Plainstomper"
 	L.soulharvester_galtmaa = "Soulharvester Galtmaa"
 	L.nokhud_defender = "Nokhud Defender"
+	L.nokhud_thunderfist = "Nokhud Thunderfist"
 end
 
 --------------------------------------------------------------------------------
@@ -40,10 +42,13 @@ function mod:GetOptions()
 		395035, -- Shatter Soul
 		-- Nokhud Defender
 		373395, -- Bloodcurdling Shout
+		-- Nokhud Thunderfist
+		397394, -- Deadly Thunder
 	}, {
 		[384365] = L.nokhud_plainstomper,
 		[395035] = L.soulharvester_galtmaa,
 		[373395] = L.nokhud_defender,
+		[397394] = L.nokhud_thunderfist,
 	}
 end
 
@@ -57,6 +62,9 @@ function mod:OnBossEnable()
 
 	-- Nokhud Defender
 	self:Log("SPELL_CAST_START", "BloodcurdlingShout", 373395)
+
+	-- Nokhud Thunderfist
+	self:Log("SPELL_CAST_START", "DeadlyThunder", 397394)
 end
 
 --------------------------------------------------------------------------------
@@ -92,6 +100,17 @@ end
 
 function mod:BloodcurdlingShout(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "warning")
+	else
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+-- Nokhud Thunderfist
+
+function mod:DeadlyThunder(args)
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "warning")
 	else
