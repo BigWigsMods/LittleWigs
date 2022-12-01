@@ -39,4 +39,9 @@ BigWigs:AddColors("Balakar Khan", {
 })
 
 BigWigs:AddColors("The Nokhud Offensive Trash", {
+	[373395] = "red",
+	[384336] = "orange",
+	[384365] = "red",
+	[395035] = "blue",
+	[397394] = "purple",
 })
