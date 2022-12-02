@@ -18,5 +18,5 @@ end
 L = BigWigs:NewBossLocale("The Raging Tempest", "deDE")
 if L then
 	L.on_you = "Auf Dir"
-	-L.on_boss = "Auf dem Boss"
+	L.on_boss = "Auf dem Boss"
 end
