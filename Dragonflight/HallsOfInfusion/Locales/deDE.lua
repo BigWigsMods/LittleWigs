@@ -1,16 +1,16 @@
 local L = BigWigs:NewBossLocale("Halls of Infusion Trash", "deDE")
 if not L then return end
 if L then
-	--L.primalist_ravager = "Primalist Ravager"
-	--L.primalist_geomancer = "Primalist Geomancer"
-	--L.containment_apparatus = "Containment Apparatus"
-	--L.refti_defender = "Refti Defender"
-	--L.dazzling_dragonfly = "Dazzling Dragonfly"
-	--L.curious_swoglet = "Curious Swoglet"
-	--L.flamecaller_aymi = "Flamecaller Aymi"
-	--L.primalist_earthshaker = "Primalist Earthshaker"
-	--L.gusting_protodragon = "Gusting Proto-Dragon"
+	L.primalist_ravager = "Verheererin der Primalisten"
+	L.primalist_geomancer = "Geomant der Primalisten"
+	L.containment_apparatus = "Eindämmungsvorrichtungs"
+	L.refti_defender = "Reftiverteidiger"
+	L.dazzling_dragonfly = "Blendende Libelle"
+	L.curious_swoglet = "Neugieriges Flunkerchen"
+	L.flamecaller_aymi = "Flammenruferin Aymi"
+	L.primalist_earthshaker = "Erderschütterer der Primalisten"
+	L.gusting_protodragon = "Stürmender Protodrache"
 	--L.oceanic_protodragon = "Oceanic Proto-Dragon"
-	--L.earthen_protodragon = "Earthen Proto-Dragon"
-	--L.infuser_sariya = "Infuser Sariya"
+	L.earthen_protodragon = "Unterirdischer Protodrache"
+	L.infuser_sariya = "Einflößerin Sariya"
 end

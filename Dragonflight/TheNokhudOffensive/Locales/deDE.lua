@@ -9,14 +9,14 @@ end
 
 L = BigWigs:NewBossLocale("Granyth", "deDE")
 if L then
-	--L.lance_ready = "Lance Ready"
-	--L.west = "W"
-	--L.northeast = "NE"
-	--L.southeast = "SE"
+	L.lance_ready = "Lanze bereit"
+	L.west = "W"
+	L.northeast = "NO"
+	L.southeast = "SO"
 end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "deDE")
 if L then
-	--L.on_you = "On you"
-	--L.on_boss = "On the boss"
+	L.on_you = "Auf Dir"
+	L.on_boss = "Auf dem Boss"
 end
