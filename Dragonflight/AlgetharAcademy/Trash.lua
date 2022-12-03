@@ -149,6 +149,7 @@ function mod:OnBossEnable()
 	-- Spectral Invoker
 	self:Log("SPELL_CAST_START", "AstralBomb", 387843)
 	self:Log("SPELL_AURA_APPLIED", "AstralBombApplied", 387843)
+	self:Log("SPELL_AURA_REMOVED", "AstralBombRemoved", 387843)
 
 	-- Ethereal Restorer
 	self:Log("SPELL_CAST_START", "CelestialShield", 387955)
@@ -365,12 +366,18 @@ do
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
-				self:TargetMessage(args.spellId, "orange", args.destName)
+				self:TargetMessage(args.spellId, "blue", args.destName)
 				self:PlaySound(args.spellId, "alarm")
 				self:Say(args.spellId)
 				self:SayCountdown(args.spellId, 5)
 			end
 		end
+	end
+end
+
+function mod:AstralBombRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
 	end
 end
 
