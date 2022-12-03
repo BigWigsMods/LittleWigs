@@ -16,6 +16,7 @@ mod:RegisterEnableMob(
 	195432,
 	195434,
 	199545,
+	196115, -- Arcane Tender
 	186741, -- Arcane Elemental
 	187155  -- Rune Seal Keeper
 )
@@ -30,6 +31,7 @@ if L then
 	L.book_autotalk = "Autotalk"
 	L.book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 	
+	L.arcane_tender = "Arcane Tender"
 	L.arcane_elemental = "Arcane Elemental"
 	L.rune_seal_keeper = "Rune Seal Keeper"
 end
@@ -42,6 +44,8 @@ function mod:GetOptions()
 	return {
 		-- Book of Translocation
 		"book_autotalk",
+		-- Arcane Tender
+		375596, -- Erratic Growth
 		-- Arcane Elemental
 		386546, -- Waking Bane
 		-- Rune Seal Keeper
@@ -56,6 +60,9 @@ end
 function mod:OnBossEnable()
 	-- Book of Translocation
 	self:RegisterEvent("GOSSIP_SHOW")
+
+	-- Arcane Tender
+	self:Log("SPELL_CAST_START", "ErraticGrowth", 375596)
 
 	-- Arcane Elemental
 	self:Log("SPELL_CAST_START", "WakingBane", 386546)
@@ -91,13 +98,19 @@ function mod:GOSSIP_SHOW(event)
 	end
 end
 
+-- Arcane Tender
+
+function mod:ErraticGrowth(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
 -- Arcane Elemental
 
 function mod:WakingBane(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
-
 
 -- Rune Seal Keeper
 

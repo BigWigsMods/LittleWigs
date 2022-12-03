@@ -29,6 +29,7 @@ BigWigs:AddColors("Umbrelskul", {
 })
 
 BigWigs:AddColors("The Azure Vault Trash", {
+	[375596] = "yellow",
 	[377488] = "red",
 	[386546] = "yellow",
 })
