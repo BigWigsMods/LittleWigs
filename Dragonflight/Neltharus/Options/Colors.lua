@@ -32,4 +32,5 @@ BigWigs:AddColors("Warlord Sargha", {
 })
 
 BigWigs:AddColors("Neltharus Trash", {
+	[372223] = "yellow",
 })
