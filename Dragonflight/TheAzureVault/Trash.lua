@@ -6,16 +6,15 @@ local mod, CL = BigWigs:NewBoss("The Azure Vault Trash", 2515)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	197300, -- TODO book of translocation npc IDs (which ones are right)
-	194714,
-	194602,
-	194618,
-	194712,
-	194713,
-	194715,
-	195432,
-	195434,
-	199545,
+	194602, -- Book of Translocation (Proceed to Upper Chambers)
+	194618, -- Book of Translocation (Return from Upper Chambers)
+	194712, -- Book of Translocation (Proceed to Middle Chambers)
+	195434, -- Book of Translocation (Return from Middle Chambers)
+	194713, -- Book of Translocation (Proceed to Mausoleum of Legends)
+	195432, -- Book of Translocation (Return from Mausoleum of Legends)
+	194714, -- Book of Translocation (Proceed to Lower Chambers)
+	199545, -- Book of Translocation (Return from Lower Chambers)
+	194715, -- Book of Translocation (Proceed to Crystal Chambers)
 	191164, -- Arcane Tender
 	196115, -- Arcane Tender
 	186741, -- Arcane Elemental
@@ -82,19 +81,19 @@ end
 function mod:GOSSIP_SHOW(event)
 	if self:GetOption("book_autotalk") then
 		if self:GetGossipID(56056) then
-			-- after first boss, to ring
+			-- Proceed to Upper Chambers
 			self:SelectGossipID(56056)
 		elseif self:GetGossipID(56247) then
-			-- ring layer 1, to ring layer 2
+			-- Proceed to Middle Chambers
 			self:SelectGossipID(56247)
 		elseif self:GetGossipID(56248) then
-			-- ring layer 2 book, to next area
+			-- Proceed to Mausoleum of Legends
 			self:SelectGossipID(56248)
 		elseif self:GetGossipID(56250) then
-			-- to third boss platform
+			-- Proceed to Lower Chambers
 			self:SelectGossipID(56250)
 		elseif self:GetGossipID(56251) then
-			-- to leave third boss platform
+			-- Proceed to Crystal Chambers
 			self:SelectGossipID(56251)
 		end
 	end
