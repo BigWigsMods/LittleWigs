@@ -33,7 +33,7 @@ if L then
 	L.book_of_translocation = "Book of Translocation"
 	L.book_autotalk = "Autotalk"
 	L.book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
-	
+
 	L.arcane_tender = "Arcane Tender"
 	L.arcane_elemental = "Arcane Elemental"
 	L.unstable_curator = "Unstable Curator"
