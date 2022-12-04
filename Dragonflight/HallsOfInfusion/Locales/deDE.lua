@@ -10,7 +10,7 @@ if L then
 	L.flamecaller_aymi = "Flammenruferin Aymi"
 	L.primalist_earthshaker = "Erderschütterer der Primalisten"
 	L.gusting_protodragon = "Stürmender Protodrache"
-	L.oceanic_protodragon = "Gletscherprotodrache"
-	L.earthen_protodragon = "Unterirdischer Protodrache"
+	L.glacial_protodragon = "Gletscherprotodrache"
+	L.subterranean_protodragon = "Unterirdischer Protodrache"
 	L.infuser_sariya = "Einflößerin Sariya"
 end

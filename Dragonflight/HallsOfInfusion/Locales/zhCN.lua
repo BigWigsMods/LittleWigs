@@ -10,7 +10,7 @@ if L then
 	L.flamecaller_aymi = "召焰者艾米"
 	L.primalist_earthshaker = "拜荒震地者"
 	L.gusting_protodragon = "劲风始祖龙"
-	L.oceanic_protodragon = "冰川始祖龙"
-	L.earthen_protodragon = "土地始祖龙"
+	L.glacial_protodragon = "冰川始祖龙"
+	L.subterranean_protodragon = "土地始祖龙"
 	L.infuser_sariya = "注能者萨莉亚"
 end
