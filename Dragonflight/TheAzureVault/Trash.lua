@@ -20,7 +20,8 @@ mod:RegisterEnableMob(
 	186741, -- Arcane Elemental
 	187154, -- Unstable Curator
 	187155, -- Rune Seal Keeper
-	196117  -- Crystal Thrasher
+	196117, -- Crystal Thrasher
+	186740  -- Arcane Construct
 )
 
 --------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ if L then
 	L.unstable_curator = "Unstable Curator"
 	L.rune_seal_keeper = "Rune Seal Keeper"
 	L.crystal_thrasher = "Crystal Thrasher"
+	L.arcane_construct = "Arcane Construct"
 end
 
 --------------------------------------------------------------------------------
@@ -58,6 +60,8 @@ function mod:GetOptions()
 		377488, -- Icy Bindings
 		-- Crystal Thrasher
 		370766, -- Crystalline Rupture
+		-- Arcane Construct
+		{387067, "TANK"}, -- Arcane Bash
 	}, {
 		["book_autotalk"] = L.book_of_translocation,
 		[375596] = L.arcane_tender,
@@ -65,6 +69,7 @@ function mod:GetOptions()
 		[371358] = L.unstable_curator,
 		[377488] = L.rune_seal_keeper,
 		[370766] = L.crystal_thrasher,
+		[387067] = L.arcane_construct,
 	}
 end
 
@@ -86,6 +91,9 @@ function mod:OnBossEnable()
 
 	-- Crystal Thrasher
 	self:Log("SPELL_CAST_START", "CrystallineRupture", 370766)
+
+	-- Arcane Construct
+	self:Log("SPELL_CAST_START", "ArcaneBash", 387067)
 end
 
 --------------------------------------------------------------------------------
@@ -148,5 +156,12 @@ end
 
 function mod:CrystallineRupture(args)
 	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Arcane Construct
+
+function mod:ArcaneBash(args)
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end

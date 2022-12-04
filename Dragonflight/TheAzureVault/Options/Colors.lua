@@ -34,4 +34,5 @@ BigWigs:AddColors("The Azure Vault Trash", {
 	[375596] = "yellow",
 	[377488] = "yellow",
 	[386546] = "yellow",
+	[387067] = "purple",
 })
