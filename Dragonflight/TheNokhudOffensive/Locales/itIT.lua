@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "itIT")
 if not L then return end
 if L then
 	L.nokhud_plainstomper = "Pestapianure Nokhud"
+	L.nokhud_hornsounder = "Spaccacorna Nokhud"
 	L.soulharvester_galtmaa = "Mietitrice d'Anime Galtmaa"
 	L.nokhud_defender = "Difensore Nokhud"
 	L.nokhud_thunderfist = "Tuonapugni Nokhud"

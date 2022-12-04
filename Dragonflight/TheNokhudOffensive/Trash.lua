@@ -8,6 +8,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	191847, -- Nokhud Plainstomper
 	192800, -- Nokhud Lancemaster
+	192796, -- Nokhud Hornsounder
 	195927, -- Soulharvester Galtmaa
 	195928, -- Soulharvester Duuren
 	195929, -- Soulharvester Tumen
@@ -24,6 +25,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.nokhud_plainstomper = "Nokhud Plainstomper"
+	L.nokhud_hornsounder = "Nokhud Hornsounder"
 	L.soulharvester_galtmaa = "Soulharvester Galtmaa"
 	L.nokhud_defender = "Nokhud Defender"
 	L.nokhud_thunderfist = "Nokhud Thunderfist"
@@ -38,6 +40,8 @@ function mod:GetOptions()
 		-- Nokhud Plainstomper
 		384365, -- Disruptive Shout
 		384336, -- War Stomp
+		-- Nokhud Hornsounder
+		383823, -- Rally the Clan
 		-- Soulharvester Galtmaa
 		395035, -- Shatter Soul
 		387411, -- Death Bolt Volley
@@ -47,6 +51,7 @@ function mod:GetOptions()
 		397394, -- Deadly Thunder
 	}, {
 		[384365] = L.nokhud_plainstomper,
+		[383823] = L.nokhud_hornsounder,
 		[395035] = L.soulharvester_galtmaa,
 		[373395] = L.nokhud_defender,
 		[397394] = L.nokhud_thunderfist,
@@ -57,6 +62,9 @@ function mod:OnBossEnable()
 	-- Nokhud Plainstomper
 	self:Log("SPELL_CAST_START", "DisruptiveShout", 384365)
 	self:Log("SPELL_CAST_START", "WarStomp", 384336)
+
+	-- Nokhud Hornsounder
+	self:Log("SPELL_CAST_START", "RallyTheClan", 383823)
 
 	-- Soulharvester Galtmaa
 	self:Log("SPELL_AURA_APPLIED", "ShatterSoulApplied", 395035)
@@ -87,6 +95,13 @@ end
 function mod:WarStomp(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Nokhud Hornsounder
+
+function mod:RallyTheClan(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Soulharvester Galtmaa
