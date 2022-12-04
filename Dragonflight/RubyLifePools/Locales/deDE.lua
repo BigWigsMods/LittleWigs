@@ -6,6 +6,6 @@ if L then
 	L.defier_draghar = "Trotzer Draghar"
 	L.blazebound_destroyer = "Lohengebundener Zerstörer"
 	L.primalist_shockcaster = "Schockwirker der Primalisten"
-	--L.thunderhead = "Thunderhead"
-	--L.flamegullet = "Flamegullet"
+	L.thunderhead = "Donnerkopf"
+	L.flamegullet = "Feuerschlund"
 end
