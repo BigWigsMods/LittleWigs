@@ -29,4 +29,10 @@ BigWigs:AddSounds("Umbrelskul", {
 })
 
 BigWigs:AddSounds("The Azure Vault Trash", {
+	[370766] = "alarm",
+	[371358] = "long",
+	[375596] = "alert",
+	[377488] = "alert",
+	[386546] = "alert",
+	[387067] = "alarm",
 })
