@@ -18,7 +18,9 @@ mod:RegisterEnableMob(
 	191164, -- Arcane Tender
 	196115, -- Arcane Tender
 	186741, -- Arcane Elemental
-	187155  -- Rune Seal Keeper
+	187154, -- Unstable Curator
+	187155, -- Rune Seal Keeper
+	196117  -- Crystal Thrasher
 )
 
 --------------------------------------------------------------------------------
@@ -33,7 +35,9 @@ if L then
 	
 	L.arcane_tender = "Arcane Tender"
 	L.arcane_elemental = "Arcane Elemental"
+	L.unstable_curator = "Unstable Curator"
 	L.rune_seal_keeper = "Rune Seal Keeper"
+	L.crystal_thrasher = "Crystal Thrasher"
 end
 
 --------------------------------------------------------------------------------
@@ -48,13 +52,19 @@ function mod:GetOptions()
 		375596, -- Erratic Growth
 		-- Arcane Elemental
 		386546, -- Waking Bane
+		-- Unstable Curator
+		371358, -- Forbidden Knowledge
 		-- Rune Seal Keeper
 		377488, -- Icy Bindings
+		-- Crystal Thrasher
+		370766, -- Crystalline Rupture
 	}, {
 		["book_autotalk"] = L.book_of_translocation,
 		[375596] = L.arcane_tender,
 		[386546] = L.arcane_elemental,
+		[371358] = L.unstable_curator,
 		[377488] = L.rune_seal_keeper,
+		[370766] = L.crystal_thrasher,
 	}
 end
 
@@ -68,8 +78,14 @@ function mod:OnBossEnable()
 	-- Arcane Elemental
 	self:Log("SPELL_CAST_START", "WakingBane", 386546)
 
+	-- Unstable Curator
+	self:Log("SPELL_CAST_START", "ForbiddenKnowledge", 371358)
+
 	-- Rune Seal Keeper
 	self:Log("SPELL_CAST_START", "IcyBindings", 377488)
+
+	-- Crystal Thrasher
+	self:Log("SPELL_CAST_START", "CrystallineRupture", 370766)
 end
 
 --------------------------------------------------------------------------------
@@ -104,6 +120,7 @@ end
 function mod:ErraticGrowth(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	-- TODO does this need a countdown? "transforms nearby players into sprouts after 6s"
 end
 
 -- Arcane Elemental
@@ -113,9 +130,23 @@ function mod:WakingBane(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Unstable Curator
+
+function mod:ForbiddenKnowledge(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+end
+
 -- Rune Seal Keeper
 
 function mod:IcyBindings(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Crystal Thrasher
+
+function mod:CrystallineRupture(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
