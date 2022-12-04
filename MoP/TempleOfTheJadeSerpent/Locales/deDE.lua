@@ -19,6 +19,6 @@ if L then
 	L.the_nodding_tiger = "Der Nickende Tiger"
 	L.the_golden_beetle = "Der Goldkäfer"
 	L.sha_touched_guardian = "Sha-berührter Wächter"
-	L.depraved_mistweaver = "Verkommener Nebelwirkerr"
+	L.depraved_mistweaver = "Verkommener Nebelwirker"
 	L.shambling_infester = "Schlurfender Verseucher"
 end
