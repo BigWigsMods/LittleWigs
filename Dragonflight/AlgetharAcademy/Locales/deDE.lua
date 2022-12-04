@@ -16,7 +16,7 @@ if L then
 	L.guardian_sentry = "Wachposten"
 	L.alpha_eagle = "Alphaadler"
 	L.vile_lasher = "Übler Peitscher"
-	--L.algethar_security = "Algeth'ar Security"
+	L.algethar_security = "Sicherheitsdienst von Algeth'ar"
 	L.algethar_echoknight = "Echoritterin von Algeth'ar"
 	L.spectral_invoker = "Spektralherbeiruferin"
 	L.ethereal_restorer = "Ätherischer Wiederhersteller"
