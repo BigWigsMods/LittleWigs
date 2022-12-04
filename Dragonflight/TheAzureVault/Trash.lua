@@ -64,7 +64,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Arcane Tender
-	self:Log("SPELL_CAST_START", "ErraticGrowth", 375596)
+	self:Log("SPELL_CAST_SUCCESS", "ErraticGrowth", 375596)
 
 	-- Arcane Elemental
 	self:Log("SPELL_CAST_START", "WakingBane", 386546)
