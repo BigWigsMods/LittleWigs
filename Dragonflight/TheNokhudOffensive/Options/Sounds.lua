@@ -40,8 +40,10 @@ BigWigs:AddSounds("Balakar Khan", {
 
 BigWigs:AddSounds("The Nokhud Offensive Trash", {
 	[373395] = {"alert","warning"},
+	[383823] = "alert",
 	[384336] = "alarm",
 	[384365] = {"alert","warning"},
+	[387411] = "alert",
 	[395035] = "alert",
 	[397394] = {"alert","warning"},
 })
