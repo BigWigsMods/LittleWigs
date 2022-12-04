@@ -16,6 +16,7 @@ mod:RegisterEnableMob(
 	195432,
 	195434,
 	199545,
+	191164, -- Arcane Tender
 	196115, -- Arcane Tender
 	186741, -- Arcane Elemental
 	187155  -- Rune Seal Keeper
@@ -52,6 +53,7 @@ function mod:GetOptions()
 		377488, -- Icy Bindings
 	}, {
 		["book_autotalk"] = L.book_of_translocation,
+		[375596] = L.arcane_tender,
 		[386546] = L.arcane_elemental,
 		[377488] = L.rune_seal_keeper,
 	}
