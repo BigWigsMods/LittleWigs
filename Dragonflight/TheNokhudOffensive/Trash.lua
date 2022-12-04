@@ -40,6 +40,7 @@ function mod:GetOptions()
 		384336, -- War Stomp
 		-- Soulharvester Galtmaa
 		395035, -- Shatter Soul
+		387411, -- Death Bolt Volley
 		-- Nokhud Defender
 		373395, -- Bloodcurdling Shout
 		-- Nokhud Thunderfist
@@ -59,6 +60,7 @@ function mod:OnBossEnable()
 
 	-- Soulharvester Galtmaa
 	self:Log("SPELL_AURA_APPLIED", "ShatterSoulApplied", 395035)
+	self:Log("SPELL_CAST_START", "DeathBoltVolley", 387411)
 
 	-- Nokhud Defender
 	self:Log("SPELL_CAST_START", "BloodcurdlingShout", 373395)
@@ -94,6 +96,11 @@ function mod:ShatterSoulApplied(args)
 		self:TargetMessage(args.spellId, "blue", args.destName)
 		self:PlaySound(args.spellId, "alert")
 	end
+end
+
+function mod:DeathBoltVolley(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Nokhud Defender
