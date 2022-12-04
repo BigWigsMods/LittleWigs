@@ -84,7 +84,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WakingBane", 386546)
 
 	-- Unstable Curator
-	self:Log("SPELL_CAST_START", "ForbiddenKnowledge", 371358)
+	self:Log("SPELL_CAST_SUCCESS", "ForbiddenKnowledge", 371358)
 
 	-- Rune Seal Keeper
 	self:Log("SPELL_CAST_START", "IcyBindings", 377488)
