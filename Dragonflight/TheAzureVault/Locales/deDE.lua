@@ -3,7 +3,7 @@ if not L then return end
 if L then
 	L.book_of_translocation = "Buch der Translokation"
 	L.book_autotalk = "Automatisch ansprechen"
-	--L.book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
+	L.book_autotalk_desc = "Beim Interagieren mit Büchern der Translokation umgehend mit dem nächsten Bereich fortfahren."
 
 	L.arcane_tender = "Arkanpfleger"
 	L.arcane_elemental = "Arkanelementar"
