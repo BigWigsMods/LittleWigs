@@ -30,6 +30,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AstralBreath", 374361)
 	self:Log("SPELL_CAST_START", "PowerVacuum", 388822)
 	self:Log("SPELL_AURA_APPLIED", "EnergyBombApplied", 374350)
+	self:Log("SPELL_AURA_REMOVED", "EnergyBombRemoved", 374350)
 end
 
 function mod:OnEngage()
@@ -83,5 +84,11 @@ function mod:EnergyBombApplied(args)
 	if self:Me(args.destGUID) then
 		self:Say(374352)
 		self:SayCountdown(374352, 6)
+	end
+end
+
+function mod:EnergyBombRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(374352)
 	end
 end
