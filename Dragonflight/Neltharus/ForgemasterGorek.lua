@@ -25,6 +25,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MightOfTheForge", 374635)
 	self:Log("SPELL_CAST_SUCCESS", "BlazingAegisStart", 374842)
 	self:Log("SPELL_AURA_APPLIED", "BlazingAegis", 374842)
+	self:Log("SPELL_AURA_REMOVED", "BlazingAegisRemoved", 374842)
 	self:Log("SPELL_CAST_SUCCESS", "Forgestorm", 374969)
 	self:Log("SPELL_CAST_START", "HeatedSwings", 374533)
 end
@@ -50,7 +51,9 @@ do
 	local playerList = {}
 
 	function mod:BlazingAegisStart(args)
-		playerList = {}
+		if self:Mythic() then
+			playerList = {}
+		end
 	end
 
 	function mod:BlazingAegis(args)
@@ -58,13 +61,20 @@ do
 			-- on mythic this "bounces" to 2 additional players
 			playerList[#playerList + 1] = args.destName
 			self:TargetsMessage(374839, "yellow", playerList, 3)
+			self:PlaySound(374839, "alert", nil, playerList)
 		else
 			self:TargetMessage(374839, "yellow", args.destName)
+			self:PlaySound(374839, "alert", nil, args.destName)
 		end
-		self:PlaySound(374839, "alert", nil, args.destName)
 		if self:Me(args.destGUID) then
 			self:Say(374839)
 			self:SayCountdown(374839, 3.5)
+		end
+	end
+
+	function mod:BlazingAegisRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(374839)
 		end
 	end
 end
