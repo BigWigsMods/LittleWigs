@@ -14,14 +14,14 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		388008, -- Below Zero
+		388008, -- Absolute Zero
 		386781, -- Frost Bomb
 		{387151, "SAY"}, -- Icy Devastator
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "BelowZero", 387928)
+	self:Log("SPELL_CAST_START", "AbsoluteZero", 388008)
 	self:Log("SPELL_CAST_START", "FrostBomb", 386781)
 	self:Log("SPELL_AURA_APPLIED", "FrostBombApplied", 386881)
 	self:Log("SPELL_CAST_START", "IcyDevastator", 387151)
@@ -29,24 +29,28 @@ end
 
 function mod:OnEngage()
 	self:Bar(386781, 3.6) -- Frost Bomb
-	self:CDBar(387151, 10.9) -- Icy Devastator
-	self:Bar(388008, 22.9) -- Below Zero
+	self:CDBar(387151, 14.6) -- Icy Devastator
+	-- cast at 100 energy, 20s energy gain + 1.2s delay
+	self:Bar(388008, 21.2) -- Absolute Zero
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:BelowZero(args)
-	self:Message(388008, "red")
-	self:PlaySound(388008, "long")
-	self:Bar(388008, 60.7)
-	self:CastBar(388008, 9) -- 1s delay, 8s cast
+function mod:AbsoluteZero(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+	self:CastBar(args.spellId, 8) -- 8s cast
+	-- cast at 100 energy, 8s cast + 50s energy gain + ~5.1s delay
+	self:Bar(args.spellId, 63.1)
 end
 
 function mod:FrostBomb(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	-- TODO pattern seems to be FB->AZ then FB->FB->FB->AZ repeating
+	-- if this pattern is consistent then timers can be improved
 	self:CDBar(args.spellId, 15.8)
 end
 
@@ -69,6 +73,6 @@ do
 
 	function mod:IcyDevastator(args)
 		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
-		self:CDBar(args.spellId, 23.1)
+		self:CDBar(args.spellId, 30.3)
 	end
 end
