@@ -369,7 +369,7 @@ do
 				self:TargetMessage(args.spellId, "blue", args.destName)
 				self:PlaySound(args.spellId, "alarm")
 				self:Say(args.spellId)
-				self:SayCountdown(args.spellId, 5)
+				self:SayCountdown(args.spellId, 3)
 			end
 		end
 	end
