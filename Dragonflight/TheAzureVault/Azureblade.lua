@@ -32,9 +32,10 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	self:Bar(384223, 3.7) -- Summon Draconic Image
-	self:CDBar(372222, 6.1) -- Arcane Cleave
-	self:CDBar(385578, 10.9) -- Ancient Orb
+	self:CDBar(384223, 3.3) -- Summon Draconic Image
+	self:CDBar(372222, 5.2) -- Arcane Cleave
+	self:CDBar(385578, 10.6) -- Ancient Orb
+	-- 20s energy loss + ~3.1s delay
 	self:CDBar(384132, 23.1) -- Overwhelming Energy
 end
 
@@ -50,19 +51,19 @@ do
 		self:SetStage(2)
 		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "long")
-		-- TODO unknown CD
 		-- TODO stopbars?
 	end
 
 	function mod:DraconicIllusionDeath(args)
 		addKills = addKills + 1
-		-- TODO confirm adds required is still 4 in Normal/Mythic
 		if addKills < 4 then
 			self:Message(384132, "cyan", CL.add_killed:format(addKills, 4))
 		else
 			self:SetStage(1)
 			self:Message(384132, "green", CL.over:format(self:SpellName(384132))) -- Overwhelming Energy Over
 			self:PlaySound(384132, "info")
+			-- 40s energy loss + ~3.1s delay (TODO confirm delay)
+			self:CDBar(384132, 43.1) -- Overwhelming Energy
 		end
 	end
 end
