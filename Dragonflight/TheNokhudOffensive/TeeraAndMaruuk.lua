@@ -53,12 +53,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(382836, 8.6) -- Brutalize
-	self:Bar(385434, 11.0) -- Spirit Leap
-	self:Bar(386063, 12.2) -- Frightful Roar
-	self:Bar(382670, 14.6) -- Gale Arrow
-	self:Bar(386547, 20.4) -- Repel
-	self:Bar(385339, 21.5) -- Earthsplitter
+	self:Bar(386063, 5.5) -- Frightful Roar
+	self:Bar(385434, 6.0) -- Spirit Leap
+	self:Bar(382836, 13.5) -- Brutalize
+	self:Bar(382670, 21.5) -- Gale Arrow
+	self:Bar(386547, 50) -- Repel
+	self:Bar(385339, 51) -- Earthsplitter
 end
 
 --------------------------------------------------------------------------------
@@ -87,7 +87,8 @@ end
 function mod:SpiritLeap(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 26.7)
+	-- TODO is there a pattern? pull:6.0, 24.0, 13.5
+	self:CDBar(args.spellId, 13.5)
 end
 
 -- Maruuk
@@ -101,13 +102,14 @@ end
 function mod:FrightfulRoar(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 25.6)
+	self:CDBar(args.spellId, 38.5)
 end
 
 function mod:Brutalize(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 30)
+	-- TODO is there a pattern? pull:13.5, 7.5, 16.0
+	self:Bar(args.spellId, 7.5)
 end
 
 -- Mythic
@@ -117,7 +119,7 @@ do
 	function mod:AncestralBondApplied(args)
 		-- bosses enrage if more than 20 yards apart
 		local t = args.time
-		if t-prev > 1 then
+		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
@@ -129,7 +131,7 @@ do
 	local prev = 0
 	function mod:AncestralBondRemoved(args)
 		local t = args.time
-		if t-prev > 1 then
+		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
