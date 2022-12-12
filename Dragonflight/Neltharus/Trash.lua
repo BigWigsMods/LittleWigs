@@ -8,7 +8,9 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	189235, -- Overseer Lahar
 	189265, -- Qalashi Bonetender
-	193293  -- Qalashi Warden
+	193293, -- Qalashi Warden
+	193291, -- Apex Blazewing
+	193944  -- Qalashi Lavamancer
 )
 
 --------------------------------------------------------------------------------
@@ -20,6 +22,8 @@ if L then
 	L.overseer_lahar = "Overseer Lahar"
 	L.qalashi_bonetender = "Qalashi Bonetender"
 	L.qalashi_warden = "Qalashi Warden"
+	L.apex_blazewing = "Apex Blazewing"
+	L.qalashi_lavamancer = "Qalahsi Lavamancer"
 end
 
 --------------------------------------------------------------------------------
@@ -35,10 +39,16 @@ function mod:GetOptions()
 		372223, -- Mending Clay
 		-- Qalashi Warden
 		382708, -- Volcanic Guard
+		-- Apex Blazewing
+		381663, -- Candescent Tempest
+		-- Qalashi Lavamancer
+		383651, -- Molten Army
 	}, {
 		[395427] = L.overseer_lahar,
 		[372223] = L.qalashi_bonetender,
 		[382708] = L.qalashi_warden,
+		[381663] = L.apex_blazewing,
+		[383651] = L.qalashi_lavamancer,
 	}
 end
 
@@ -52,6 +62,12 @@ function mod:OnBossEnable()
 	
 	-- Qalashi Warden
 	self:Log("SPELL_CAST_START", "VolcanicGuard", 382708)
+	
+	-- Apex Blazewing
+	self:Log("SPELL_AURA_APPLIED", "CandescentTempest", 381663)
+	
+	-- Qalashi Lavamancer
+	self:Log("SPELL_CAST_START", "MoltenArmy", 383651)
 end
 
 --------------------------------------------------------------------------------
@@ -82,4 +98,18 @@ end
 function mod:VolcanicGuard(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Apex Blazewing
+
+function mod:CandescentTempest(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+end
+
+-- Qalashi Lavamancer
+
+function mod:MoltenArmy(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 end
