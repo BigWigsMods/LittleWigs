@@ -33,6 +33,7 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "UnleashedDestruction", 385399)
 	self:Log("SPELL_CAST_START", "ArcaneEruption", 385075)
+	self:Log("SPELL_CAST_SUCCESS", "CrystallineRoar", 384696)
 	self:Log("SPELL_CAST_START", "DragonStrike", 384978)
 	self:Log("SPELL_AURA_APPLIED", "DragonStrikeApplied", 384978)
 end
@@ -40,9 +41,9 @@ end
 function mod:OnEngage()
 	brittleCount = 0
 	self:CDBar(384978, 7.4) -- Dragon Strike
-	self:CDBar(384699, 12.4) -- Crystalline Roar
-	self:CDBar(385399, 35.5) -- Unleashed Destruction
-	self:CDBar(385075, 68.3) -- Arcane Eruption
+	self:CDBar(384699, 12.2) -- Crystalline Roar
+	self:CDBar(385075, 28.2) -- Arcane Eruption
+	self:CDBar(385399, 54.8) -- Unleashed Destruction
 end
 
 --------------------------------------------------------------------------------
@@ -50,7 +51,6 @@ end
 --
 
 -- TODO Brittle 386746 no CLEU
--- TODO Crystalline Roar 384696 and 384699 no CLEU
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 386746 then -- Brittle
 		brittleCount = brittleCount + 1
@@ -59,10 +59,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		-- After a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture
 		-- TODO no way to clean up this bar when conditions met? (no UNIT_DIED on crystals)
 		self:Bar(385331, 22.4) -- Fracture
-	elseif spellId == 384696 then -- Crystalline Roar
-		self:Message(384699, "red")
-		self:PlaySound(384699, "alarm")
-		self:CDBar(384699, 25.5)
 	end
 end
 
@@ -75,7 +71,13 @@ end
 function mod:ArcaneEruption(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 61.9)
+	self:CDBar(args.spellId, 55.9)
+end
+
+function mod:CrystallineRoar(args)
+	self:Message(384699, "red")
+	self:PlaySound(384699, "alarm")
+	self:CDBar(384699, 25.5)
 end
 
 function mod:DragonStrike(args)
