@@ -15,8 +15,8 @@ mod:RegisterEnableMob(
 	190368, -- Flamecaller Aymi
 	190371, -- Primalist Earthshaker
 	190401, -- Gusting Proto-Dragon
-	190403, -- Oceanic Proto-Dragon
-	190404, -- Earthen Proto-Dragon
+	190403, -- Glacial Proto-Dragon
+	190404, -- Subterranean Proto-Dragon
 	190405  -- Infuser Sariya
 )
 
@@ -35,8 +35,8 @@ if L then
 	L.flamecaller_aymi = "Flamecaller Aymi"
 	L.primalist_earthshaker = "Primalist Earthshaker"
 	L.gusting_protodragon = "Gusting Proto-Dragon"
-	L.oceanic_protodragon = "Oceanic Proto-Dragon"
-	L.earthen_protodragon = "Earthen Proto-Dragon"
+	L.glacial_protodragon = "Glacial Proto-Dragon"
+	L.subterranean_protodragon = "Subterranean Proto-Dragon"
 	L.infuser_sariya = "Infuser Sariya"
 end
 
@@ -47,7 +47,7 @@ end
 function mod:GetOptions()
 	return {
 		-- Primalist Ravager
-		374080, -- Interrupting Gust
+		374080, -- Blasting Gust
 		-- Primalist Geomancer
 		--374066, -- Earth Shield
 		-- Containment Apparatus
@@ -64,9 +64,9 @@ function mod:GetOptions()
 		375384, -- Rumbling Earth
 		-- Gusting Proto-Dragon
 		375348, -- Gusting Breath
-		-- Oceanic Proto-Dragon
+		-- Glacial Proto-Dragon
 		375351, -- Oceanic Breath
-		-- Earthen Proto-Dragon
+		-- Subterranean Proto-Dragon
 		375327, -- Tectonic Breath
 		-- Infuser Sariya
 		377402, -- Aqueous Barrier
@@ -81,15 +81,15 @@ function mod:GetOptions()
 		[374724] = L.flamecaller_aymi,
 		[375384] = L.primalist_earthshaker,
 		[375348] = L.gusting_protodragon,
-		[375351] = L.oceanic_protodragon,
-		[375327] = L.earthen_protodragon,
+		[375351] = L.glacial_protodragon,
+		[375327] = L.subterranean_protodragon,
 		[377402] = L.infuser_sariya,
 	}
 end
 
 function mod:OnBossEnable()
 	-- Primalist Ravager
-	self:Log("SPELL_CAST_START", "InterruptingGust", 374080)
+	self:Log("SPELL_CAST_START", "BlastingGust", 374080)
 
 	-- Primalist Geomancer
 	--self:Log("SPELL_CAST_START", "EarthShield", 374066)
@@ -115,10 +115,10 @@ function mod:OnBossEnable()
 	-- Gusting Proto-Dragon
 	self:Log("SPELL_CAST_START", "GustingBreath", 375348)
 
-	-- Oceanic Proto-Dragon
+	-- Glacial Proto-Dragon
 	self:Log("SPELL_CAST_START", "OceanicBreath", 375351)
 
-	-- Earthen Proto-Dragon
+	-- Subterranean Proto-Dragon
 	self:Log("SPELL_CAST_START", "TectonicBreath", 375327)
 
 	-- Infuser Sariya
@@ -132,7 +132,7 @@ end
 
 -- Primalist Ravager
 
-function mod:InterruptingGust(args)
+function mod:BlastingGust(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
 end
@@ -225,14 +225,14 @@ function mod:GustingBreath(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
--- Oceanic Proto-Dragon
+-- Glacial Proto-Dragon
 
 function mod:OceanicBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
--- Earthen Proto-Dragon
+-- Subterranean Proto-Dragon
 
 function mod:TectonicBreath(args)
 	self:Message(args.spellId, "orange")

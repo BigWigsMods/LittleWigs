@@ -15,7 +15,7 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		385551, -- Gulp
-		385181, -- Overpowering Croak
+		385187, -- Overpowering Croak
 		385531, -- Belly Slam
 		385442, -- Toxic Effluvia
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(385181, 8.5) -- Overpowering Croak
+	self:Bar(385187, 8.5) -- Overpowering Croak
 	self:CDBar(385551, 18.2) -- Gulp
 	self:CDBar(385442, 30.3) -- Toxic Effluvia
 	self:CDBar(385531, 38.9) -- Belly Slam
@@ -48,9 +48,9 @@ function mod:Gulp(args)
 end
 
 function mod:OverpoweringCroak(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 38.8)
+	self:Message(385187, "yellow")
+	self:PlaySound(385187, "long")
+	self:CDBar(385187, 38.8)
 end
 
 function mod:BellySlam(args)

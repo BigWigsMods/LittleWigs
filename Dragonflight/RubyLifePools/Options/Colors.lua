@@ -25,4 +25,16 @@ BigWigs:AddColors("Kyrakka and Erkhart Stormvein", {
 })
 
 BigWigs:AddColors("Ruby Life Pools Trash", {
+	[372047] = "red",
+	[372087] = "orange",
+	[372696] = "orange",
+	[372743] = "yellow",
+	[373614] = "orange",
+	[373692] = "red",
+	[373693] = {"blue","yellow"},
+	[385313] = {"blue","yellow"},
+	[391723] = "orange",
+	[391726] = "orange",
+	[392395] = "purple",
+	[392640] = {"blue","red"},
 })

@@ -17,7 +17,7 @@ if L then
 	L.alpha_eagle = "头领鹰隼"
 	L.vile_lasher = "恶毒的鞭笞者"
 	L.algethar_security = "艾杰斯亚保安"
-	L.algethar_echoknight = "艾杰斯亚执行者"
-	L.spectral_invoker = "艾杰斯亚教育者"
-	L.ethereal_restorer = "艾杰斯亚护士"
+	L.algethar_echoknight = "艾杰斯亚回声骑士"
+	L.spectral_invoker = "幽魂唤魔师"
+	L.ethereal_restorer = "虚无修复者"
 end

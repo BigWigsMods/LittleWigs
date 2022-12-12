@@ -44,7 +44,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BurstForth", 388923)
 	self:Log("SPELL_CAST_START", "BranchOut", 388623)
 	self:Log("SPELL_CAST_START", "Barkbreaker", 388544)
-	self:Log("SPELL_AURA_APPLIED", "BarkbreakerApplied", 388544)
 
 	-- Hungry Lasher
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LasherToxinApplied", 389033)
@@ -96,10 +95,6 @@ function mod:Barkbreaker(args)
 	self:PlaySound(args.spellId, "alert")
 	-- 4.6, 29.2, 19.5, 29.2, 20.6 pattern
 	self:CDBar(args.spellId, barkbreakerCount % 2 == 0 and 19.5 or 29.2)
-end
-
-function mod:BarkbreakerApplied(args)
-	self:TargetBar(args.spellId, 9, args.destName)
 end
 
 -- Hungry Lasher

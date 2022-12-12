@@ -124,6 +124,7 @@ do
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "long")
+			-- 50s energy gain + 2s cast
 			self:CDBar(args.spellId, 52.1)
 		end
 	end
