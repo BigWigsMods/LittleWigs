@@ -9,6 +9,7 @@ mod:RegisterEnableMob(
 	189235, -- Overseer Lahar
 	189265, -- Qalashi Bonetender
 	193293, -- Qalashi Warden
+	189464, -- Qalashi Irontorch
 	194816, -- Forgewrought Monstrosity
 	193291, -- Apex Blazewing
 	193944  -- Qalashi Lavamancer
@@ -23,6 +24,7 @@ if L then
 	L.overseer_lahar = "Overseer Lahar"
 	L.qalashi_bonetender = "Qalashi Bonetender"
 	L.qalashi_warden = "Qalashi Warden"
+	L.qalashi_irontorch = "Qalashi Irontorch"
 	L.forgewrought_monstrosity = "Forgewrought Monstrosity"
 	L.apex_blazewing = "Apex Blazewing"
 	L.qalashi_lavamancer = "Qalahsi Lavamancer"
@@ -41,6 +43,8 @@ function mod:GetOptions()
 		372223, -- Mending Clay
 		-- Qalashi Warden
 		382708, -- Volcanic Guard
+		-- Qalashi Irontorch
+		372201, -- Scorching Breath
 		-- Forgewrought Monstrosity
 		376200, -- Blazing Detonation
 		-- Apex Blazewing
@@ -51,6 +55,7 @@ function mod:GetOptions()
 		[395427] = L.overseer_lahar,
 		[372223] = L.qalashi_bonetender,
 		[382708] = L.qalashi_warden,
+		[372201] = L.qalashi_irontorch,
 		[376200] = L.forgewrought_monstrosity,
 		[381663] = L.apex_blazewing,
 		[383651] = L.qalashi_lavamancer,
@@ -67,6 +72,9 @@ function mod:OnBossEnable()
 	
 	-- Qalashi Warden
 	self:Log("SPELL_CAST_START", "VolcanicGuard", 382708)
+
+	-- Qalashi Irontorch
+	self:Log("SPELL_CAST_START", "ScorchingBreath", 372201)
 	
 	-- Forgewrought Monstrosity
 	self:Log("SPELL_CAST_START", "BlazingDetonation", 376200)
@@ -104,6 +112,13 @@ end
 -- Qalashi Warden
 
 function mod:VolcanicGuard(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Qalashi Irontorch
+
+function mod:ScorchingBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
