@@ -1,7 +1,13 @@
 local L = BigWigs:NewBossLocale("Neltharus Trash", "ruRU")
 if not L then return end
 if L then
-
+	L.overseer_lahar = "Надзиратель Лахар"
+	L.qalashi_bonetender = "Куалаши-костестраж"
+	L.qalashi_warden = "Куалаши-страж"
+	L.qalashi_irontorch = "Куалаши-факельщица"
+	L.forgewrought_monstrosity = "Выкованное чудовище"
+	L.apex_blazewing = "Жарокрыл-вожак"
+	L.qalashi_lavamancer = "Куалаши-лавамант"
 end
 
 L = BigWigs:NewBossLocale("Warlord Sargha", "ruRU")
