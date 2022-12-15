@@ -5,6 +5,17 @@ if L then
 	L.custom_on_markadd_desc = "Markiert das durch die Dunkle Kommunion beschworene Add mit {rt8}, benötigt Assistent oder Leiter."
 end
 
+L = BigWigs:NewBossLocale("Bonemaw", "deDE")
+if L then
+	--L.summon_worms = "Summon Carrion Worms"
+	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
+	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
+
+	--L.submerge = "Submerge"
+	--L.submerge_desc = "Bonemaw submerges and repositions."
+	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
+end
+
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "deDE")
 if L then
 	L.shadowmoon_bonemender = "Knochenrenkerin des Schattenmondklans"

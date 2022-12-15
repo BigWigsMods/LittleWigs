@@ -5,6 +5,17 @@ if L then
 	L.custom_on_markadd_desc = "用 {rt8} 標記黑暗共融召喚的靈魂，需要權限。"
 end
 
+L = BigWigs:NewBossLocale("Bonemaw", "zhTW")
+if L then
+	--L.summon_worms = "Summon Carrion Worms"
+	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
+	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
+
+	--L.submerge = "Submerge"
+	--L.submerge_desc = "Bonemaw submerges and repositions."
+	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
+end
+
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "zhTW")
 if L then
 	L.shadowmoon_bonemender = "影月修骨者"

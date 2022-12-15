@@ -16,8 +16,11 @@ BigWigs:AddColors("Nhallish", {
 })
 
 BigWigs:AddColors("Bonemaw", {
-	[153804] = "orange",
-	[154175] = "yellow",
+	[153804] = {"green","orange","yellow"},
+	[154175] = "orange",
+	[165578] = "red",
+	["submerge"] = "cyan",
+	["summon_worms"] = "cyan",
 })
 
 BigWigs:AddColors("Ner'zhul", {

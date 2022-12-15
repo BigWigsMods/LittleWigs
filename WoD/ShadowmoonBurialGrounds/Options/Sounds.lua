@@ -16,8 +16,11 @@ BigWigs:AddSounds("Nhallish", {
 })
 
 BigWigs:AddSounds("Bonemaw", {
-	[153804] = {"alarm","warning"},
-	[154175] = "alert",
+	[153804] = {"info","long","warning"},
+	[154175] = "alarm",
+	[165578] = "alert",
+	["submerge"] = "info",
+	["summon_worms"] = "info",
 })
 
 BigWigs:AddSounds("Ner'zhul", {
