@@ -128,9 +128,16 @@ end
 
 -- Qalashi Irontorch
 
-function mod:ScorchingBreath(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:ScorchingBreath(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Irontorch Commander
