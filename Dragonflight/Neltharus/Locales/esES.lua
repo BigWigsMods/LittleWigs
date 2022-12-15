@@ -7,6 +7,7 @@ if L then
 	L.qalashi_irontorch = "Antorchaférrea qalashi"
 	L.irontorch_commander = "Antorchaférrea comandante"
 	L.forgewrought_monstrosity = "Monstruosidad forjada"
+	L.qalashi_thaumaturge = "Taumaturga qalashi"
 	L.apex_blazewing = "Alardiente alfa"
 	L.qalashi_lavamancer = "Lavamántico qalashi"
 end

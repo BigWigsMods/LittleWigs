@@ -7,6 +7,7 @@ if L then
 	L.qalashi_irontorch = "칼라시 무쇠횃불"
 	L.irontorch_commander = "무쇠횃불 사령관"
 	L.forgewrought_monstrosity = "제련벼림 괴수"
+	L.qalashi_thaumaturge = "칼라시 마력술사"
 	L.apex_blazewing = "최정상 화염날개"
 	L.qalashi_lavamancer = "칼라시 용암술사"
 end

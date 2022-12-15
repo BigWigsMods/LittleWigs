@@ -8,6 +8,7 @@ if L then
 	--L.qalashi_irontorch = "Qalashi Irontorch"
 	--L.irontorch_commander = "Irontorch Commander"
 	--L.forgewrought_monstrosity = "Forgewrought Monstrosity"
+	--L.qalashi_thaumaturge = "Qalashi Thaumaturge"
 	--L.apex_blazewing = "Apex Blazewing"
 	--L.qalashi_lavamancer = "Qalahsi Lavamancer"
 end
