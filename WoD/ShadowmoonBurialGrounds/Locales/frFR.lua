@@ -7,5 +7,11 @@ end
 
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "frFR")
 if L then
-
+	L.shadowmoon_bonemender = "Répare-os ombrelune"
+	L.void_spawn = "Rejeton du Vide"
+	L.shadowmoon_loyalist = "Loyaliste ombrelune"
+	L.shadowmoon_exhumer = "Exhumeuse d’âmes ombrelune"
+	L.exhumed_spirit = "Esprit exhumé"
+	L.monstrous_corpse_spider = "Araignée nécrophage monstrueuse"
+	L.carrion_worm = "Ver putride"
 end
