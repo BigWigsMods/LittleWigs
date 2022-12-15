@@ -63,7 +63,7 @@ function mod:OnEngage()
 	self:Bar(388817, 10.6) -- Shards of Stone
 	self:CDBar(385916, 15.5) -- Tectonic Stomp
 	if self:Mythic() then
-		self:Bar(386320, 15) -- Summon Saboteur
+		self:Bar(386320, 5.5) -- Summon Saboteur
 	end
 end
 
@@ -103,7 +103,7 @@ function mod:SummonSaboteur(args)
 	end
 	self:Message(386320, "red", CL.other:format(args.spellName, direction))
 	self:PlaySound(386320, "alert")
-	self:Bar(386320, 15)
+	self:CDBar(386320, 29.1)
 end
 
 -- Dragonkiller Lance
