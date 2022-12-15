@@ -1,13 +1,14 @@
 local L = BigWigs:NewBossLocale("Neltharus Trash", "zhCN")
 if not L then return end
 if L then
-	--L.overseer_lahar = "Overseer Lahar"
-	--L.qalashi_bonetender = "Qalashi Bonetender"
-	--L.qalashi_warden = "Qalashi Warden"
-	--L.qalashi_irontorch = "Qalashi Irontorch"
-	--L.forgewrought_monstrosity = "Forgewrought Monstrosity"
-	--L.apex_blazewing = "Apex Blazewing"
-	--L.qalashi_lavamancer = "Qalahsi Lavamancer"
+	L.qalashi_warden = "卡拉希守卫者"
+	L.overseer_lahar = "监视者拉哈尔"
+	L.qalashi_bonetender = "卡拉希护骨者"
+	L.qalashi_irontorch = "卡拉希焚钢者"
+	L.irontorch_commander = "焚钢指挥官"
+	L.forgewrought_monstrosity = "炉铸巨怪"
+	L.apex_blazewing = "绝顶焰翼鸦"
+	L.qalashi_lavamancer = "卡拉希熔岩术师"
 end
 
 L = BigWigs:NewBossLocale("Warlord Sargha", "zhCN")
