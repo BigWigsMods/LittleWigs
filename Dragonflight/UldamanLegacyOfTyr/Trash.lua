@@ -9,8 +9,10 @@ mod:RegisterEnableMob(
 	184020, -- Hulking Berserker
 	184023, -- Vicious Basilisk
 	184132, -- Earthen Warder
+	186420, -- Earthen Weaver
 	184301, -- Cavern Seeker
-	184107  -- Runic Protector
+	184107, -- Runic Protector
+	184300  -- Ebonstone Golem
 )
 
 --------------------------------------------------------------------------------
@@ -22,8 +24,10 @@ if L then
 	L.hulking_berserker = "Hulking Berserker"
 	L.vicious_basilisk = "Vicious Basilisk"
 	L.earthen_warder = "Earthen Warder"
+	L.earthen_weaver = "Earthen Weaver"
 	L.cavern_seeker = "Cavern Seeker"
 	L.runic_protector = "Runic Protector"
+	L.ebonstone_golem = "Ebonstone Golem"
 end
 
 --------------------------------------------------------------------------------
@@ -40,16 +44,22 @@ function mod:GetOptions()
 		{369400, "DISPEL"}, -- Earthen Ward
 		{369365, "DISPEL"}, -- Curse of Stone
 		{369366, "DISPEL"}, -- Trapped in Stone
+		-- Earthen Weaver
+		369465, -- Hail of Stone
 		-- Cavern Seeker
 		369411, -- Sonic Burst
 		-- Runic Protector
 		369337, -- Difficult Terrain
+		-- Ebonstone Golem
+		381593, -- Thunderous Clap
 	}, {
 		[369811] = L.hulking_berserker,
 		[369823] = L.vicious_basilisk,
 		[369400] = L.earthen_warder,
+		[369465] = L.earthen_weaver,
 		[369411] = L.cavern_seeker,
 		[369337] = L.runic_protector,
+		[381593] = L.ebonstone_golem,
 	}
 end
 
@@ -68,11 +78,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CurseOfStoneApplied", 369365)
 	self:Log("SPELL_AURA_APPLIED", "TrappedInStoneApplied", 369366)
 
+	-- Earthen Weaver
+	self:Log("SPELL_CAST_SUCCESS", "HailOfStone", 369465)
+
 	-- Cavern Seeker
 	self:Log("SPELL_CAST_START", "SonicBurst", 369411)
 
 	-- Runic Protector
 	self:Log("SPELL_AURA_APPLIED", "DifficultTerrainApplied", 369337)
+
+	-- Runic Protector
+	self:Log("SPELL_CAST_START", "ThunderousClap", 381593)
 end
 
 --------------------------------------------------------------------------------
@@ -106,6 +122,7 @@ do
 		end
 	end
 end
+
 do
 	local prev = 0
 	function mod:SpikedCarapaceApplied(args)
@@ -153,6 +170,13 @@ function mod:TrappedInStoneApplied(args)
 	end
 end
 
+-- Earthen Weaver
+
+function mod:HailOfStone(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 -- Cavern Seeker
 
 do
@@ -173,5 +197,19 @@ function mod:DifficultTerrainApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId, "underyou")
 		self:PlaySound(args.spellId, "underyou")
+	end
+end
+
+-- Ebonstone Golem
+
+do
+	local prev = 0
+	function mod:ThunderousClap(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
