@@ -9,7 +9,7 @@ mod:RegisterEnableMob(
 	75713, -- Shadowmoon Bone-Mender
 	75652, -- Void Spawn
 	75506, -- Shadowmoon Loyalist
-	-- TODO Shadowmoon Enslaver?
+	76446, -- Shadowmoon Dominator
 	77700, -- Shadowmoon Exhumer
 	75979, -- Exhumed Spirit
 	76104, -- Monstrous Corpse Spider
