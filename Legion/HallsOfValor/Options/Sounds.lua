@@ -40,7 +40,7 @@ BigWigs:AddSounds("Halls of Valor Trash", {
 	[192563] = "alarm",
 	[198745] = "alert",
 	[198888] = "alarm",
-	[198931] = "alarm",
+	[198931] = "alert",
 	[198934] = "alarm",
 	[199050] = "alarm",
 	[199210] = "alarm",

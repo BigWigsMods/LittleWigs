@@ -99,14 +99,23 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
-	-- Cleansing Flames, Unruly Yell, Sanctify, Blast of Light, Healing Light, Rune of Healing, Holy Radiance, Lightning Breath, Penetrating Shot, Bear Trap, Charged Pulse
-	self:Log("SPELL_CAST_START", "Casts", 192563, 199726, 192158, 191508, 198931, 198934, 215433, 198888, 199210, 199341, 210875)
-
 	-- Valarjar Thundercaller
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
 	self:Log("SPELL_AURA_REMOVED", "ThunderstrikeRemoved", 215430)
 
+	-- Storm Drake
+	self:Log("SPELL_CAST_START", "LightningBreath", 198888)
+
+	-- Valarjar Mystic
+	self:Log("SPELL_CAST_START", "HealingLight", 198931)
+	self:Log("SPELL_CAST_START", "RuneOfHealing", 198934)
+	self:Log("SPELL_CAST_START", "HolyRadiance", 215433)
+
+	-- Valarjar Purifier
+	self:Log("SPELL_CAST_START", "CleansingFlames", 192563)
+
 	-- Stormforged Sentinel
+	self:Log("SPELL_CAST_START", "ChargedPulse", 210875)
 	self:Log("SPELL_CAST_START", "Crackle", 199805)
 	self:Log("SPELL_AURA_APPLIED", "CrackleDamage", 199818)
 	self:Log("SPELL_PERIODIC_DAMAGE", "CrackleDamage", 199818)
@@ -115,6 +124,21 @@ function mod:OnBossEnable()
 
 	-- Valarjar Shieldmaiden
 	self:Log("SPELL_CAST_START", "MortalHew", 199050)
+
+	-- Valarjar Aspirant
+	self:Log("SPELL_CAST_START", "BlastOfLight", 191508)
+
+	-- Olmyr the Enlightened
+	self:Log("SPELL_CAST_START", "Sanctify", 192158)
+
+	-- Valarjar Marksman
+	self:Log("SPELL_CAST_START", "PenetratingShot", 199210)
+
+	-- Valarjar Trapper
+	self:Log("SPELL_CAST_START", "BearTrap", 199341)
+
+	-- The Four Kings
+	self:Log("SPELL_CAST_START", "UnrulyYell", 199726)
 end
 
 --------------------------------------------------------------------------------
@@ -141,11 +165,6 @@ do
 	end
 end
 
-function mod:Casts(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
-
 -- Valarjar Thundercaller
 
 function mod:Thunderstrike(args)
@@ -165,7 +184,43 @@ function mod:ThunderstrikeRemoved(args)
 	end
 end
 
+-- Storm Drake
+
+function mod:LightningBreath(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Valarjar Mystic
+
+function mod:HealingLight(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:RuneOfHealing(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:HolyRadiance(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Valarjar Purifier
+
+function mod:CleansingFlames(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 -- Stormforged Sentinel
+
+function mod:ChargedPulse(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
 
 do
 	local function printTarget(self, _, guid)
@@ -175,7 +230,6 @@ do
 			self:Say(199805)
 		end
 	end
-
 	function mod:Crackle(args)
 		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
 	end
@@ -206,5 +260,40 @@ end
 
 function mod:MortalHew(args)
 	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Valarjar Aspirant
+
+function mod:BlastOfLight(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Olmyr the Enlightened
+
+function mod:Sanctify(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Valarjar Marksman
+
+function mod:PenetratingShot(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Valarjar Trapper
+
+function mod:BearTrap(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- The Four Kings
+
+function mod:UnrulyYell(args)
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
