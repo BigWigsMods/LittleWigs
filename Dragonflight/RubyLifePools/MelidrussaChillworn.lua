@@ -25,7 +25,7 @@ function mod:GetOptions()
 		373680, -- Frost Overload
 		{ 372851, "SAY", "SAY_COUNTDOWN" }, -- Chillstorm
 		396044, -- Hailbombs
-		{ 372808, "TANK_HEALER" }, -- FrigidShard
+		{ 372808, "TANK_HEALER" }, -- Frigid Shard
 	}
 end
 
