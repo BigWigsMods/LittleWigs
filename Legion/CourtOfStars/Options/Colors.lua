@@ -50,6 +50,7 @@ BigWigs:AddColors("Court of Stars Trash", {
 	[216110] = "yellow",
 	[224377] = "red",
 	[225100] = "yellow",
+	[397892] = "red",
 	["announce_buff_items"] = "cyan",
 	["spy_helper"] = {"cyan","green"},
 })

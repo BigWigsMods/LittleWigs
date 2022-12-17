@@ -50,6 +50,7 @@ BigWigs:AddSounds("Court of Stars Trash", {
 	[216110] = "alert",
 	[224377] = "alarm",
 	[225100] = "alert",
+	[397892] = "alarm",
 	["announce_buff_items"] = "info",
 	["spy_helper"] = "info",
 })
