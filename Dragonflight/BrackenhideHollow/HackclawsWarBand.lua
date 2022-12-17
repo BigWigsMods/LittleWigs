@@ -28,7 +28,7 @@ function mod:GetOptions()
 		-- Tricktotem
 		381470, -- Hextrick Totem
 		377950, -- Greater Healing Rapids
-		377965, -- Bloodlust
+		377965, -- Bloodfrenzy
 	}, {
 		[381444] = -24732, -- Rira Hackclaw
 		[381694] = -24733, -- Gashtooth
@@ -55,7 +55,7 @@ function mod:OnBossEnable()
 	-- Tricktotem
 	self:Log("SPELL_CAST_START", "HextrickTotem", 381470)
 	self:Log("SPELL_CAST_START", "GreaterHealingRapids", 377950)
-	self:Log("SPELL_CAST_SUCCESS", "Bloodlust", 377965)
+	self:Log("SPELL_CAST_SUCCESS", "Bloodfrenzy", 377965)
 	self:Death("TricktotemDeath", 186125)
 end
 
@@ -111,7 +111,7 @@ end
 -- 8s SPELL_CAST_START 377844 (1s cast)
 -- 9s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
 -- 9s SPELL_AURA_APPLIED 377844 (on player)
--- gains bloodlust (40% haste)
+-- gains Bloodfrenzy (40% haste)
 -- 13s SPELL_AURA_REMOVED 377844 (from player)
 -- 13s SPELL_CAST_START 377844 (.714s cast)
 -- 13.714s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
@@ -194,7 +194,7 @@ function mod:GreaterHealingRapids(args)
 	self:Bar(args.spellId, 22.7)
 end
 
-function mod:Bloodlust(args)
+function mod:Bloodfrenzy(args)
 	self:Message(args.spellId, "orange", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 end
