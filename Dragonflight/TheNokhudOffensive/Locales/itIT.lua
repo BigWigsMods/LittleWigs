@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.nokhud_plainstomper = "Pestapianure Nokhud"
 	L.nokhud_hornsounder = "Spaccacorna Nokhud"
+	L.primal_stormshield = "Scudo del Vento Primordiale"
 	L.soulharvester_galtmaa = "Mietitrice d'Anime Galtmaa"
 	L.nokhud_defender = "Difensore Nokhud"
 	L.nokhud_thunderfist = "Tuonapugni Nokhud"

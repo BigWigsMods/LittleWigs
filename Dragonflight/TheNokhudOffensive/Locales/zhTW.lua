@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	--L.nokhud_plainstomper = "Nokhud Plainstomper"
 	--L.nokhud_hornsounder = "Nokhud Hornsounder"
+	--L.primal_stormshield = "Primal Stormshield"
 	--L.soulharvester_galtmaa = "Soulharvester Galtmaa"
 	--L.nokhud_defender = "Nokhud Defender"
 	--L.nokhud_thunderfist = "Nokhud Thunderfist"
