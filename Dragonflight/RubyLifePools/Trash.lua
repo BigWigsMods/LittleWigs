@@ -38,6 +38,7 @@ function mod:GetOptions()
 	return {
 		-- Primal Juggernaut
 		372696, -- Excavating Blast
+		{372730, "TANK_HEALER"}, -- Crushing Smash
 		-- Flashfrost Chillweaver
 		372743, -- Ice Shield
 		-- Defier Draghar
@@ -107,6 +108,11 @@ end
 
 function mod:ExcavatingBlast(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:CrushingSmash(args)
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end
 
