@@ -21,11 +21,10 @@ local awakenWhelpsCount = 0
 function mod:GetOptions()
 	return {
 		373046, -- Awaken Whelps
-		{ 372682, "DISPEL" }, -- Primal Chill
+		{372682, "DISPEL"}, -- Primal Chill
 		373680, -- Frost Overload
-		{ 372851, "SAY", "SAY_COUNTDOWN" }, -- Chillstorm
+		{372851, "SAY", "SAY_COUNTDOWN"}, -- Chillstorm
 		396044, -- Hailbombs
-		{ 372808, "TANK_HEALER" }, -- Frigid Shard
 	}
 end
 
@@ -67,8 +66,7 @@ do
 		local amount = args.amount
 		-- start warning at half the required stacks to stun
 		local aboveThreshold = amount >= primalChillMax / 2 and amount < primalChillMax
-		local shouldWarn = self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or
-			self:Me(args.destGUID)
+		local shouldWarn = self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID)
 		if aboveThreshold and shouldWarn then
 			-- this can sometimes apply rapidly or to more than one person, so add a short throttle.
 			local t = args.time
