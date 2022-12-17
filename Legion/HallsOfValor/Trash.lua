@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,20 +6,22 @@ local mod, CL = BigWigs:NewBoss("Halls of Valor Trash", 1477)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	97081, -- King Bjorn
-	95843, -- King Haldor
-	97083, -- King Ranulf
-	97084, -- King Tor
-	97202, -- Olmyr the Enlightened
-	95834, -- Valarjar Mystic
-	95842, -- Valarjar Thundercaller
-	97197, -- Valarjar Purifier
+	95842,  -- Valarjar Thundercaller
+	97068,  -- Storm Drake
+	96574,  -- Stormforged Sentinel
+	95834,  -- Valarjar Mystic
+	97197,  -- Valarjar Purifier
+	95832,  -- Valarjar Shieldmaiden
+	101639, -- Valarjar Shieldmaiden
 	101637, -- Valarjar Aspirant
-	97068, -- Storm Drake
-	99891, -- Storm Drake
-	96640, -- Valarjar Marksman
-	96934, -- Valarjar Trapper
-	96574 -- Stormforged Sentinel
+	97202,  -- Olmyr the Enlightened
+	96640,  -- Valarjar Marksman
+	99891,  -- Storm Drake
+	96934,  -- Valarjar Trapper
+	97083,  -- King Ranulf
+	95843,  -- King Haldor
+	97084,  -- King Tor
+	97081   -- King Bjorn
 )
 
 --------------------------------------------------------------------------------
@@ -32,16 +33,17 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."
 
-	L.fourkings = "The Four Kings"
-	L.olmyr = "Olmyr the Enlightened"
-	L.purifier = "Valarjar Purifier"
 	L.thundercaller = "Valarjar Thundercaller"
-	L.mystic = "Valarjar Mystic"
-	L.aspirant = "Valarjar Aspirant"
 	L.drake = "Storm Drake"
+	L.sentinel = "Stormforged Sentinel"
+	L.mystic = "Valarjar Mystic"
+	L.purifier = "Valarjar Purifier"
+	L.shieldmaiden = "Valarjar Shieldmaiden"
+	L.aspirant = "Valarjar Aspirant"
+	L.olmyr = "Olmyr the Enlightened"
 	L.marksman = "Valarjar Marksman"
 	L.trapper = "Valarjar Trapper"
-	L.sentinel = "Stormforged Sentinel"
+	L.fourkings = "The Four Kings"
 end
 
 --------------------------------------------------------------------------------
@@ -50,33 +52,45 @@ end
 
 function mod:GetOptions()
 	return {
+		-- General
 		"custom_on_autotalk",
-		192563, -- Cleansing Flames
-		199726, -- Unruly Yell
-		192158, -- Sanctify
-		191508, -- Blast of Light
+		-- Valarjar Thundercaller
 		{215430, "SAY", "FLASH", "PROXIMITY"}, -- Thunderstrike
-		198931, -- Healing Light (replaced by Holy Radiance in mythic difficulty)
-		198934, -- Rune of Healing
-		215433, -- Holy Radiance
+		-- Storm Drake
 		198888, -- Lightning Breath
-		199210, -- Penetrating Shot
-		199341, -- Bear Trap
+		-- Stormforged Sentinel
 		210875, -- Charged Pulse
 		{199805, "SAY"}, -- Crackle
 		{198745, "DISPEL"}, -- Protective Light
+		-- Valarjar Mystic
+		198931, -- Healing Light (replaced by Holy Radiance in mythic difficulty)
+		198934, -- Rune of Healing
+		215433, -- Holy Radiance
+		-- Valarjar Purifier
+		192563, -- Cleansing Flames
+		-- Valarjar Shieldmaiden
+		-- Valarjar Aspirant
+		191508, -- Blast of Light
+		-- Olmyr the Enlightened
+		192158, -- Sanctify
+		-- Valarjar Marksman
+		199210, -- Penetrating Shot
+		-- Valarjar Trapper
+		199341, -- Bear Trap
+		-- The Four Kings
+		199726, -- Unruly Yell
 	}, {
 		["custom_on_autotalk"] = "general",
-		[192563] = L.purifier,
-		[199726] = L.fourkings,
-		[192158] = L.olmyr,
-		[191508] = L.aspirant,
 		[215430] = L.thundercaller,
-		[198931] = L.mystic,
 		[198888] = L.drake,
+		[210875] = L.sentinel,
+		[198931] = L.mystic,
+		[192563] = L.purifier,
+		[191508] = L.aspirant,
+		[192158] = L.olmyr,
 		[199210] = L.marksman,
 		[199341] = L.trapper,
-		[210875] = L.sentinel,
+		[199726] = L.fourkings,
 	}
 end
 
