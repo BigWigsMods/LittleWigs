@@ -118,13 +118,15 @@ end
 --
 
 function mod:Casts(args)
-	self:MessageOld(args.spellId, "red", "alarm")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
-			self:MessageOld(199805, "orange", "warning", CL.you:format(self:SpellName(199805)))
+			self:Message(199805, "orange", CL.you:format(self:SpellName(199805)))
+			self:PlaySound(199805, "warning")
 			self:Say(199805)
 		end
 	end
@@ -135,11 +137,15 @@ do
 end
 
 function mod:ProtectiveShield(args)
-	self:MessageOld(args.spellId, "yellow", self:Dispeller("magic", true, args.spellId) and "info", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
+	self:Message(args.spellId, "yellow", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
+	if self:Dispeller("magic", true, args.spellId) then
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 function mod:Thunderstrike(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning")
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
@@ -159,9 +165,10 @@ do
 	function mod:GroundEffectDamage(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
-			if t-prev > 1.5 then
+			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(199805, "blue", "alert", CL.underyou:format(args.spellName))
+				self:Message(199805, "blue", CL.underyou:format(args.spellName))
+				self:PlaySound(199805, "alert")
 			end
 		end
 	end
