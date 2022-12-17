@@ -7,7 +7,7 @@ if L then
 	L.qalashi_irontorch = "卡拉希焚钢者"
 	L.irontorch_commander = "焚钢指挥官"
 	L.forgewrought_monstrosity = "炉铸巨怪"
-	--L.qalashi_thaumaturge = "Qalashi Thaumaturge"
+	L.qalashi_thaumaturge = "卡拉希奇术师"
 	L.apex_blazewing = "绝顶焰翼鸦"
 	L.qalashi_lavamancer = "卡拉希熔岩术师"
 end
