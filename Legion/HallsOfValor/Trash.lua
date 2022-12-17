@@ -95,20 +95,20 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("GOSSIP_SHOW")
+
 	-- Cleansing Flames, Unruly Yell, Sanctify, Blast of Light, Healing Light, Rune of Healing, Holy Radiance, Lightning Breath, Penetrating Shot, Bear Trap, Charged Pulse
 	self:Log("SPELL_CAST_START", "Casts", 192563, 199726, 192158, 191508, 198931, 198934, 215433, 198888, 199210, 199341, 210875)
 
-	--[[ Stormforged Sentinel ]]--
+	-- Stormforged Sentinel
 	self:Log("SPELL_CAST_START", "CrackleCast", 199805)
 	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 199818) -- Crackle
 	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 199818)
 	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 199818)
-	self:Log("SPELL_AURA_APPLIED", "ProtectiveShield", 198745)
+	self:Log("SPELL_AURA_APPLIED", "ProtectiveLight", 198745)
 
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
 	self:Log("SPELL_AURA_REMOVED", "ThunderstrikeRemoved", 215430)
-
-	self:RegisterEvent("GOSSIP_SHOW")
 end
 
 --------------------------------------------------------------------------------
@@ -117,14 +117,14 @@ end
 
 function mod:Casts(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "alert")
 end
 
 do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
 			self:Message(199805, "orange", CL.you:format(self:SpellName(199805)))
-			self:PlaySound(199805, "warning")
+			self:PlaySound(199805, "alarm")
 			self:Say(199805)
 		end
 	end
@@ -134,16 +134,16 @@ do
 	end
 end
 
-function mod:ProtectiveShield(args)
+function mod:ProtectiveLight(args)
 	self:Message(args.spellId, "yellow", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
 	if self:Dispeller("magic", true, args.spellId) then
-		self:PlaySound(args.spellId, "info")
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:Thunderstrike(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "warning", nil, args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
@@ -165,8 +165,8 @@ do
 			local t = GetTime()
 			if t - prev > 1.5 then
 				prev = t
-				self:Message(199805, "blue", CL.underyou:format(args.spellName))
-				self:PlaySound(199805, "alert")
+				self:PersonalMessage(199805, "underyou")
+				self:PlaySound(199805, "underyou")
 			end
 		end
 	end
