@@ -69,6 +69,7 @@ function mod:GetOptions()
 		-- Valarjar Purifier
 		192563, -- Cleansing Flames
 		-- Valarjar Shieldmaiden
+		199050, -- Mortal Hew
 		-- Valarjar Aspirant
 		191508, -- Blast of Light
 		-- Olmyr the Enlightened
@@ -86,6 +87,7 @@ function mod:GetOptions()
 		[210875] = L.sentinel,
 		[198931] = L.mystic,
 		[192563] = L.purifier,
+		[199050] = L.shieldmaiden,
 		[191508] = L.aspirant,
 		[192158] = L.olmyr,
 		[199210] = L.marksman,
@@ -100,46 +102,51 @@ function mod:OnBossEnable()
 	-- Cleansing Flames, Unruly Yell, Sanctify, Blast of Light, Healing Light, Rune of Healing, Holy Radiance, Lightning Breath, Penetrating Shot, Bear Trap, Charged Pulse
 	self:Log("SPELL_CAST_START", "Casts", 192563, 199726, 192158, 191508, 198931, 198934, 215433, 198888, 199210, 199341, 210875)
 
-	-- Stormforged Sentinel
-	self:Log("SPELL_CAST_START", "CrackleCast", 199805)
-	self:Log("SPELL_AURA_APPLIED", "GroundEffectDamage", 199818) -- Crackle
-	self:Log("SPELL_PERIODIC_DAMAGE", "GroundEffectDamage", 199818)
-	self:Log("SPELL_PERIODIC_MISSED", "GroundEffectDamage", 199818)
-	self:Log("SPELL_AURA_APPLIED", "ProtectiveLight", 198745)
-
+	-- Valarjar Thundercaller
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
 	self:Log("SPELL_AURA_REMOVED", "ThunderstrikeRemoved", 215430)
+
+	-- Stormforged Sentinel
+	self:Log("SPELL_CAST_START", "Crackle", 199805)
+	self:Log("SPELL_AURA_APPLIED", "CrackleDamage", 199818)
+	self:Log("SPELL_PERIODIC_DAMAGE", "CrackleDamage", 199818)
+	self:Log("SPELL_PERIODIC_MISSED", "CrackleDamage", 199818)
+	self:Log("SPELL_AURA_APPLIED", "ProtectiveLight", 198745)
+
+	-- Valarjar Shieldmaiden
+	self:Log("SPELL_CAST_START", "MortalHew", 199050)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Casts(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
-end
+-- General
 
 do
-	local function printTarget(self, _, guid)
-		if self:Me(guid) then
-			self:Message(199805, "orange", CL.you:format(self:SpellName(199805)))
-			self:PlaySound(199805, "alarm")
-			self:Say(199805)
+	local autoTalk = {
+		[97081] = true, -- King Bjorn
+		[95843] = true, -- King Haldor
+		[97083] = true, -- King Ranulf
+		[97084] = true, -- King Tor
+	}
+
+	function mod:GOSSIP_SHOW()
+		local mobId = self:MobId(self:UnitGUID("npc"))
+		if self:GetOption("custom_on_autotalk") and autoTalk[mobId] then
+			if self:GetGossipOptions() then
+				self:SelectGossipOption(1)
+			end
 		end
 	end
-
-	function mod:CrackleCast(args)
-		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
-	end
 end
 
-function mod:ProtectiveLight(args)
-	self:Message(args.spellId, "yellow", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
-	if self:Dispeller("magic", true, args.spellId) then
-		self:PlaySound(args.spellId, "alert")
-	end
+function mod:Casts(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
+
+-- Valarjar Thundercaller
 
 function mod:Thunderstrike(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
@@ -158,9 +165,32 @@ function mod:ThunderstrikeRemoved(args)
 	end
 end
 
+-- Stormforged Sentinel
+
+do
+	local function printTarget(self, _, guid)
+		if self:Me(guid) then
+			self:Message(199805, "orange", CL.you:format(self:SpellName(199805)))
+			self:PlaySound(199805, "alarm")
+			self:Say(199805)
+		end
+	end
+
+	function mod:Crackle(args)
+		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+	end
+end
+
+function mod:ProtectiveLight(args)
+	self:Message(args.spellId, "yellow", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
+	if self:Dispeller("magic", true, args.spellId) then
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
 do
 	local prev = 0
-	function mod:GroundEffectDamage(args)
+	function mod:CrackleDamage(args)
 		if self:Me(args.destGUID) then
 			local t = GetTime()
 			if t - prev > 1.5 then
@@ -172,20 +202,9 @@ do
 	end
 end
 
-do
-	local autoTalk = {
-		[97081] = true, -- King Bjorn
-		[95843] = true, -- King Haldor
-		[97083] = true, -- King Ranulf
-		[97084] = true, -- King Tor
-	}
+-- Valarjar Shieldmaiden
 
-	function mod:GOSSIP_SHOW()
-		local mobId = self:MobId(self:UnitGUID("npc"))
-		if self:GetOption("custom_on_autotalk") and autoTalk[mobId] then
-			if self:GetGossipOptions() then
-				self:SelectGossipOption(1)
-			end
-		end
-	end
+function mod:MortalHew(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
 end
