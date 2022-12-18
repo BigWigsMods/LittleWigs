@@ -26,12 +26,12 @@ if L then
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	L.portal_authority = "타자베쉬 차원문 관리국"
-	L.portal_autotalk = "자동 대화"
-	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.custom_on_portal_autotalk = "자동 대화"
+	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.trading_game_autotalk = "자동 대화"
-	--L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.custom_on_trading_game_autotalk = "자동 대화"
+	--L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
 		["상아색 껍질"] = 53259,
 		["사파이어 오아시스"] = 53260,

@@ -26,12 +26,12 @@ if L then
 	L.menagerie_warmup_trigger = "接下來，是你們千呼萬喚的東西！據說是被惡魔詛咒的湮滅之鋒！"
 	L.soazmi_warmup_trigger = "索利亞，抱歉打擾啦。看來我們來的時機不太對啊。"
 	--L.portal_authority = "Tazavesh Portal Authority"
-	L.portal_autotalk = "自動對話"
-	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.custom_on_portal_autotalk = "自動對話"
+	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	L.trading_game = "交易游戲"
 	L.trading_game_desc = "在交易游戲期間使用正確的密碼發出警報。"
-	L.trading_game_autotalk = "自動對話"
-	L.trading_game_autotalk_desc = "交易游戲結束後，立即選擇正確的密碼。"
+	L.custom_on_trading_game_autotalk = "自動對話"
+	L.custom_on_trading_game_autotalk_desc = "交易游戲結束後，立即選擇正確的密碼。"
 	L.password_triggers = {
 		["象牙貝殼"] = 53259,
 		["寶藍綠洲"] = 53260,

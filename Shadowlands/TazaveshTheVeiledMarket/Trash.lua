@@ -44,12 +44,12 @@ if L then
 	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	L.portal_authority = "Tazavesh Portal Authority"
-	L.portal_autotalk = "Autotalk"
-	L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.custom_on_portal_autotalk = "Autotalk"
+	L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	L.trading_game = "Trading Game"
 	L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.trading_game_autotalk = "Autotalk"
-	L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.custom_on_trading_game_autotalk = "Autotalk"
+	L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
 		["Ivory Shell"] = 53259,
 		["Sapphire Oasis"] = 53260,
@@ -103,9 +103,9 @@ local passwordId = nil
 function mod:GetOptions()
 	return {
 		------ Streets of Wonder ------
-		"portal_autotalk",
+		"custom_on_portal_autotalk",
 		"trading_game",
-		"trading_game_autotalk",
+		"custom_on_trading_game_autotalk",
 		-- Interrogation Specialist
 		356031, -- Stasis Beam
 		-- Portalmancer Zo'honn
@@ -164,7 +164,7 @@ function mod:GetOptions()
 		357284, -- Reinvigorate
 	}, {
 		------ Streets of Wonder ------
-		["portal_autotalk"] = L.portal_authority,
+		["custom_on_portal_autotalk"] = L.portal_authority,
 		["trading_game"] = L.trading_game,
 		[356031] = L.interrogation_specialist,
 		[356324] = L.portalmancer_zohonn,
@@ -283,9 +283,9 @@ end
 
 -- Auto-gossip
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("trading_game_autotalk") > 0 and passwordId ~= nil and self:GetGossipID(passwordId) then
+	if self:GetOption("custom_on_trading_game_autotalk") and passwordId ~= nil and self:GetGossipID(passwordId) then
 		self:SelectGossipID(passwordId)
-	elseif self:GetOption("portal_autotalk") > 0 then
+	elseif self:GetOption("custom_on_portal_autotalk") then
 		if self:GetGossipID(53719) then
 			-- right after first boss
 			self:SelectGossipID(53719)

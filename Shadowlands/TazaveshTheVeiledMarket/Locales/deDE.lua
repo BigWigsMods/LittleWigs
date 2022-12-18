@@ -26,12 +26,12 @@ if L then
 	L.menagerie_warmup_trigger = "Und nun zu dem Posten, auf den alle warten! Die angeblich dämonenverfluchte Schneide des Vergessens!"
 	L.soazmi_warmup_trigger = "Entschuldigt unser Eindringen, So'leah. Ich hoffe, wir stören."
 	L.portal_authority = "Portalbehörde von Tazavesh"
-	L.portal_autotalk = "Automatisch ansprechen"
-	L.portal_autotalk_desc = "Portale zurück zum Eingang sofort öffnen wenn mit Mittlern gesprochen wird."
+	L.custom_on_portal_autotalk = "Automatisch ansprechen"
+	L.custom_on_portal_autotalk_desc = "Portale zurück zum Eingang sofort öffnen wenn mit Mittlern gesprochen wird."
 	L.trading_game = "Handels-Event"
 	L.trading_game_desc = "Warnungen mit korrektem Password während des Handels-Event."
-	L.trading_game_autotalk = "Automatisch ansprechen"
-	L.trading_game_autotalk_desc = "Wählt direkt das korrekte Passwort nach Abschluss des Handels-Events."
+	L.custom_on_trading_game_autotalk = "Automatisch ansprechen"
+	L.custom_on_trading_game_autotalk_desc = "Wählt direkt das korrekte Passwort nach Abschluss des Handels-Events."
 	L.password_triggers = {
 		["Elfenbeinmuschel"] = 53259,
 		["Saphiroase"] = 53260,

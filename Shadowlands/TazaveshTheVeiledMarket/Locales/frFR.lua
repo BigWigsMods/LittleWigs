@@ -26,12 +26,12 @@ if L then
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Pardonnez notre intrusion, So’leah. J’espère que nous ne vous dérangeons pas."
 	L.portal_authority = "Garde des portails de Tazavesh"
-	L.portal_autotalk = "Parler automatiquement"
-	--L.portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.custom_on_portal_autotalk = "Parler automatiquement"
+	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	--L.trading_game = "Trading Game"
 	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.trading_game_autotalk = "Parler automatiquement"
-	--L.trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.custom_on_trading_game_autotalk = "Parler automatiquement"
+	--L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
 	L.password_triggers = {
 		["Coquillage d’ivoire"] = 53259,
 		["Oasis de saphir"] = 53260,
