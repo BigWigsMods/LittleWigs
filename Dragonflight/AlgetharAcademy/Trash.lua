@@ -163,7 +163,7 @@ end
 -- Auto-gossip
 
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("recruiter_autotalk") then
+	if self:GetOption("recruiter_autotalk") > 0 then
 		if self:GetGossipID(107065) then
 			-- Black Dragonflight Recruiter (+Critical Strike)
 			self:SelectGossipID(107065)
