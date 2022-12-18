@@ -35,6 +35,7 @@ if L then
 	L.aspirant = "Aspirante Valarjar"
 	L.olmyr = "Olmyr l'Illuminato"
 	L.marksman = "Tiratrice Valarjar"
+	L.angerhoof = "Zoccolofurioso Adulto"
 	L.trapper = "Mastro Bracconiere Valarjar"
 	L.fourkings = "I quattro re"
 end

@@ -35,6 +35,7 @@ if L then
 	L.aspirant = "瓦拉加尔候选者"
 	L.olmyr = "启迪者奥米尔"
 	L.marksman = "瓦拉加尔神射手"
+	L.angerhoof = "怒蹄公牛"
 	L.trapper = "瓦拉加尔捕兽者"
 	L.fourkings = "四王"
 end

@@ -35,6 +35,7 @@ if L then
 	L.aspirant = "Aspirantin der Valarjar"
 	L.olmyr = "Olmyr der Erleuchtete"
 	L.marksman = "Schützin der Valarjar"
+	L.angerhoof = "Zornhufbulle"
 	L.trapper = "Fallensteller der Valarjar"
 	L.fourkings = "Die Vier Könige"
 end

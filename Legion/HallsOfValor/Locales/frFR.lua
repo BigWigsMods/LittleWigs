@@ -35,6 +35,7 @@ if L then
 	L.aspirant = "Aspirante valarjar"
 	L.olmyr = "Olmyr l’Éclairé"
 	L.marksman = "Tireuse d’élite valarjar"
+	L.angerhoof = "Taureau sabot-furieux"
 	L.trapper = "Trappeur valarjar"
 	L.fourkings = "Les quatre rois"
 end

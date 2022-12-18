@@ -35,6 +35,7 @@ if L then
 	L.aspirant = "Валарьяр-претендентка"
 	L.olmyr = "Олмир Просвещенный"
 	L.marksman = "Валарьяр-лучница"
+	L.angerhoof = "Сердитый бык"
 	L.trapper = "Валарьяр-зверолов"
 	L.fourkings = "Четыре Короля"
 end

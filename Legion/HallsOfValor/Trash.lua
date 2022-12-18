@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	97202,  -- Olmyr the Enlightened
 	96640,  -- Valarjar Marksman
 	99891,  -- Storm Drake
+	96611,  -- Angerhoof Bull
 	96934,  -- Valarjar Trapper
 	97083,  -- King Ranulf
 	95843,  -- King Haldor
@@ -42,6 +43,7 @@ if L then
 	L.aspirant = "Valarjar Aspirant"
 	L.olmyr = "Olmyr the Enlightened"
 	L.marksman = "Valarjar Marksman"
+	L.angerhoof = "Angerhoof Bull"
 	L.trapper = "Valarjar Trapper"
 	L.fourkings = "The Four Kings"
 end
@@ -60,8 +62,8 @@ function mod:GetOptions()
 		198888, -- Lightning Breath
 		-- Stormforged Sentinel
 		210875, -- Charged Pulse
-		{199805, "SAY"}, -- Crackle
 		{198745, "DISPEL"}, -- Protective Light
+		{199805, "SAY"}, -- Crackle
 		-- Valarjar Mystic
 		198931, -- Healing Light (replaced by Holy Radiance in mythic difficulty)
 		198934, -- Rune of Healing
@@ -76,6 +78,8 @@ function mod:GetOptions()
 		192158, -- Sanctify
 		-- Valarjar Marksman
 		199210, -- Penetrating Shot
+		-- Angerhoof Bull
+		199090, -- Rumbling Stomp
 		-- Valarjar Trapper
 		199341, -- Bear Trap
 		-- The Four Kings
@@ -91,8 +95,11 @@ function mod:GetOptions()
 		[191508] = L.aspirant,
 		[192158] = L.olmyr,
 		[199210] = L.marksman,
+		[199090] = L.angerhoof,
 		[199341] = L.trapper,
 		[199726] = L.fourkings,
+	}, {
+		[198745] = CL.shield,
 	}
 end
 
@@ -116,11 +123,11 @@ function mod:OnBossEnable()
 
 	-- Stormforged Sentinel
 	self:Log("SPELL_CAST_START", "ChargedPulse", 210875)
+	self:Log("SPELL_AURA_APPLIED", "ProtectiveLight", 198745)
 	self:Log("SPELL_CAST_START", "Crackle", 199805)
 	self:Log("SPELL_AURA_APPLIED", "CrackleDamage", 199818)
 	self:Log("SPELL_PERIODIC_DAMAGE", "CrackleDamage", 199818)
 	self:Log("SPELL_PERIODIC_MISSED", "CrackleDamage", 199818)
-	self:Log("SPELL_AURA_APPLIED", "ProtectiveLight", 198745)
 
 	-- Valarjar Shieldmaiden
 	self:Log("SPELL_CAST_START", "MortalHew", 199050)
@@ -133,6 +140,9 @@ function mod:OnBossEnable()
 
 	-- Valarjar Marksman
 	self:Log("SPELL_CAST_START", "PenetratingShot", 199210)
+
+	-- Angerhoof Bull
+	self:Log("SPELL_CAST_START", "RumblingStomp", 199090)
 
 	-- Valarjar Trapper
 	self:Log("SPELL_CAST_START", "BearTrap", 199341)
@@ -222,6 +232,13 @@ function mod:ChargedPulse(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+function mod:ProtectiveLight(args)
+	self:Message(args.spellId, "yellow", CL.on:format(CL.shield, args.sourceName))
+	if self:Dispeller("magic", true, args.spellId) then
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
 do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
@@ -232,13 +249,6 @@ do
 	end
 	function mod:Crackle(args)
 		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
-	end
-end
-
-function mod:ProtectiveLight(args)
-	self:Message(args.spellId, "yellow", CL.on:format(self:SpellName(182405), args.sourceName)) -- Shield
-	if self:Dispeller("magic", true, args.spellId) then
-		self:PlaySound(args.spellId, "alert")
 	end
 end
 
@@ -281,13 +291,20 @@ end
 
 function mod:Sanctify(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "long")
 end
 
 -- Valarjar Marksman
 
 function mod:PenetratingShot(args)
 	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Angerhoof Bull
+
+function mod:RumblingStomp(args)
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -302,5 +319,5 @@ end
 
 function mod:UnrulyYell(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "alert")
 end

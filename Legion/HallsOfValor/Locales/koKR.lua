@@ -35,6 +35,7 @@ if L then
 	L.aspirant = "발라리아르 지원자"
 	L.olmyr = "깨달은 자 올미르"
 	L.marksman = "발라리아르 명사수"
+	L.angerhoof = "화난발굽 황소"
 	L.trapper = "발라리아르 덫사냥꾼"
 	L.fourkings = "네명의 왕"
 end

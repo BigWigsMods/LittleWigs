@@ -35,6 +35,7 @@ if L then
 	--L.aspirant = "Valarjar Aspirant"
 	--L.olmyr = "Olmyr the Enlightened"
 	--L.marksman = "Valarjar Marksman"
+	--L.angerhoof = "Angerhoof Bull"
 	--L.trapper = "Valarjar Trapper"
 	--L.fourkings = "The Four Kings"
 end
