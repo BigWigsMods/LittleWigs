@@ -163,22 +163,22 @@ end
 -- Event Handlers
 --
 
--- General
+-- Autotalk
 
-do
-	local autoTalk = {
-		[97081] = true, -- King Bjorn
-		[95843] = true, -- King Haldor
-		[97083] = true, -- King Ranulf
-		[97084] = true, -- King Tor
-	}
-
-	function mod:GOSSIP_SHOW()
-		local mobId = self:MobId(self:UnitGUID("npc"))
-		if self:GetOption("custom_on_autotalk") and autoTalk[mobId] then
-			if self:GetGossipOptions() then
-				self:SelectGossipOption(1)
-			end
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_on_autotalk") then
+		if self:GetGossipID(44755) then
+			-- King Ranulf
+			self:SelectGossipID(44755)
+		elseif self:GetGossipID(44801) then
+			-- King Haldor
+			self:SelectGossipID(44801)
+		elseif self:GetGossipID(44802) then
+			-- King Bjorn
+			self:SelectGossipID(44802)
+		elseif self:GetGossipID(44754) then
+			-- King Tor
+			self:SelectGossipID(44754)
 		end
 	end
 end
