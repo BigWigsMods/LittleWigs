@@ -1,12 +1,15 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("God-King Skovald", 1477, 1488)
 if not mod then return end
-mod:RegisterEnableMob(95675)
-mod.engageId = 1808
+mod:RegisterEnableMob(
+	98364, -- Aegis of Aggramar
+	95675  -- God-King Skovald
+)
+mod:SetEncounterID(1808)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
