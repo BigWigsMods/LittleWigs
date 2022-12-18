@@ -33,6 +33,7 @@ if L then
 	L.purifier = "瓦拉加尔净化者"
 	L.shieldmaiden = "瓦拉加尔女武神"
 	L.aspirant = "瓦拉加尔候选者"
+	L.solsten = "索斯坦"
 	L.olmyr = "启迪者奥米尔"
 	L.marksman = "瓦拉加尔神射手"
 	L.angerhoof = "怒蹄公牛"

@@ -33,6 +33,7 @@ if L then
 	--L.purifier = "Valarjar Purifier"
 	--L.shieldmaiden = "Valarjar Shieldmaiden"
 	--L.aspirant = "Valarjar Aspirant"
+	--L.solsten = "Solsten"
 	--L.olmyr = "Olmyr the Enlightened"
 	--L.marksman = "Valarjar Marksman"
 	--L.angerhoof = "Angerhoof Bull"

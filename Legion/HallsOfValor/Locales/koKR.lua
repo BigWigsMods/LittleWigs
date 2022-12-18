@@ -33,6 +33,7 @@ if L then
 	L.purifier = "발라리아르 정화자"
 	L.shieldmaiden = "발라리아르 방패여전사"
 	L.aspirant = "발라리아르 지원자"
+	L.solsten = "솔스텐"
 	L.olmyr = "깨달은 자 올미르"
 	L.marksman = "발라리아르 명사수"
 	L.angerhoof = "화난발굽 황소"

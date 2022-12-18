@@ -38,7 +38,7 @@ BigWigs:AddColors("Odyn", {
 
 BigWigs:AddColors("Halls of Valor Trash", {
 	[191508] = "red",
-	[192158] = "red",
+	[192158] = "orange",
 	[192563] = "red",
 	[198745] = "yellow",
 	[198888] = "purple",
@@ -50,6 +50,7 @@ BigWigs:AddColors("Halls of Valor Trash", {
 	[199341] = "red",
 	[199726] = "red",
 	[199805] = {"blue","orange"},
+	[200901] = "orange",
 	[210875] = "red",
 	[215430] = {"blue","orange"},
 	[215433] = "red",

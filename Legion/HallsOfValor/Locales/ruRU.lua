@@ -33,6 +33,7 @@ if L then
 	L.purifier = "Валарьяр-очиститель"
 	L.shieldmaiden = "Валарьяр - дева щита"
 	L.aspirant = "Валарьяр-претендентка"
+	L.solsten = "Солстен"
 	L.olmyr = "Олмир Просвещенный"
 	L.marksman = "Валарьяр-лучница"
 	L.angerhoof = "Сердитый бык"

@@ -33,6 +33,7 @@ if L then
 	L.purifier = "Purificador Valarjar"
 	L.shieldmaiden = "Dama Escudeira Valarjar"
 	L.aspirant = "Aspirante Valarjar"
+	L.solsten = "Solsten"
 	L.olmyr = "Olmyr, o Iluminado"
 	L.marksman = "Atiradora Perita Valarjar"
 	L.angerhoof = "Touro Casca da Fúria"

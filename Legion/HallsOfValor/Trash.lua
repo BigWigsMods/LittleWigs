@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	95832,  -- Valarjar Shieldmaiden
 	101639, -- Valarjar Shieldmaiden
 	101637, -- Valarjar Aspirant
+	97219,  -- Solsten
 	97202,  -- Olmyr the Enlightened
 	96640,  -- Valarjar Marksman
 	99891,  -- Storm Drake
@@ -41,6 +42,7 @@ if L then
 	L.purifier = "Valarjar Purifier"
 	L.shieldmaiden = "Valarjar Shieldmaiden"
 	L.aspirant = "Valarjar Aspirant"
+	L.solsten = "Solsten"
 	L.olmyr = "Olmyr the Enlightened"
 	L.marksman = "Valarjar Marksman"
 	L.angerhoof = "Angerhoof Bull"
@@ -74,6 +76,8 @@ function mod:GetOptions()
 		199050, -- Mortal Hew
 		-- Valarjar Aspirant
 		191508, -- Blast of Light
+		-- Solsten
+		200901, -- Eye of the Storm
 		-- Olmyr the Enlightened
 		192158, -- Sanctify
 		-- Valarjar Marksman
@@ -93,6 +97,7 @@ function mod:GetOptions()
 		[192563] = L.purifier,
 		[199050] = L.shieldmaiden,
 		[191508] = L.aspirant,
+		[200901] = L.solsten,
 		[192158] = L.olmyr,
 		[199210] = L.marksman,
 		[199090] = L.angerhoof,
@@ -134,6 +139,9 @@ function mod:OnBossEnable()
 
 	-- Valarjar Aspirant
 	self:Log("SPELL_CAST_START", "BlastOfLight", 191508)
+
+	-- Solsten
+	self:Log("SPELL_CAST_START", "EyeOfTheStorm", 200901)
 
 	-- Olmyr the Enlightened
 	self:Log("SPELL_CAST_START", "Sanctify", 192158)
@@ -287,10 +295,19 @@ function mod:BlastOfLight(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+-- Solsten
+
+function mod:EyeOfTheStorm(args)
+	if self:MobId(args.sourceGUID) == 97219 then -- Solsten
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "long")
+	end
+end
+
 -- Olmyr the Enlightened
 
 function mod:Sanctify(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
 end
 

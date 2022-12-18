@@ -33,6 +33,7 @@ if L then
 	L.purifier = "Purificateur valarjar"
 	L.shieldmaiden = "Vierge guerrière valarjar"
 	L.aspirant = "Aspirante valarjar"
+	L.solsten = "Solsten"
 	L.olmyr = "Olmyr l’Éclairé"
 	L.marksman = "Tireuse d’élite valarjar"
 	L.angerhoof = "Taureau sabot-furieux"
