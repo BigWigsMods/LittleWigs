@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "frFR")
 if not L then return end
 if L then
-	L.recruiter_autotalk = "Parler automatiquement"
-	--L.recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
+	L.custom_on_recruiter_autotalk = "Parler automatiquement"
+	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
 	L.critical_strike = "+5% Coup critique"
 	L.haste = "+5% Hâte"
 	L.mastery = "+Maîtrise"

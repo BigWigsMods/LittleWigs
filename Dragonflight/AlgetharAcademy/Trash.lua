@@ -30,8 +30,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.recruiter_autotalk = "Autotalk"
-	L.recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
+	L.custom_on_recruiter_autotalk = "Autotalk"
+	L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
 	L.critical_strike = "+5% Critical Strike"
 	L.haste = "+5% Haste"
 	L.mastery = "+Mastery"
@@ -58,7 +58,7 @@ end
 function mod:GetOptions()
 	return {
 		-- General
-		"recruiter_autotalk",
+		"custom_on_recruiter_autotalk",
 		389516, -- Black Dragonflight Pledge Pin
 		389512, -- Bronze Dragonflight Pledge Pin
 		389521, -- Blue Dragonflight Pledge Pin
@@ -89,7 +89,7 @@ function mod:GetOptions()
 		-- Ethereal Restorer
 		{387955, "DISPEL"}, -- Celestial Shield
 	}, {
-		["recruiter_autotalk"] = CL.general,
+		["custom_on_recruiter_autotalk"] = CL.general,
 		[388863] = L.corrupted_manafiend,
 		[396812] = L.spellbound_scepter,
 		[388976] = L.arcane_ravager,
@@ -163,7 +163,7 @@ end
 -- Auto-gossip
 
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("recruiter_autotalk") > 0 then
+	if self:GetOption("custom_on_recruiter_autotalk") then
 		if self:GetGossipID(107065) then
 			-- Black Dragonflight Recruiter (+Critical Strike)
 			self:SelectGossipID(107065)
