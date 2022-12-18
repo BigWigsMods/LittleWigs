@@ -108,8 +108,8 @@ function mod:OnBossEnable()
 
 	-- Valarjar Mystic
 	self:Log("SPELL_CAST_START", "HealingLight", 198931)
-	self:Log("SPELL_CAST_START", "RuneOfHealing", 198934)
 	self:Log("SPELL_CAST_START", "HolyRadiance", 215433)
+	self:Log("SPELL_CAST_START", "RuneOfHealing", 198934)
 
 	-- Valarjar Purifier
 	self:Log("SPELL_CAST_START", "CleansingFlames", 192563)
@@ -198,12 +198,12 @@ function mod:HealingLight(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:RuneOfHealing(args)
+function mod:HolyRadiance(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:HolyRadiance(args)
+function mod:RuneOfHealing(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -246,7 +246,7 @@ do
 	local prev = 0
 	function mod:CrackleDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:PersonalMessage(199805, "underyou")
@@ -258,9 +258,16 @@ end
 
 -- Valarjar Shieldmaiden
 
-function mod:MortalHew(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:MortalHew(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Valarjar Aspirant
