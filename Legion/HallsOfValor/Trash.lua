@@ -88,6 +88,7 @@ function mod:GetOptions()
 		199341, -- Bear Trap
 		-- The Four Kings
 		199726, -- Unruly Yell
+		200969, -- Call Ancestor
 	}, {
 		["custom_on_autotalk"] = "general",
 		[215430] = L.thundercaller,
@@ -157,6 +158,7 @@ function mod:OnBossEnable()
 
 	-- The Four Kings
 	self:Log("SPELL_CAST_START", "UnrulyYell", 199726)
+	self:Log("SPELL_CAST_SUCCESS", "CallAncestor", 200969)
 end
 
 --------------------------------------------------------------------------------
@@ -222,7 +224,7 @@ function mod:HolyRadiance(args)
 end
 
 function mod:RuneOfHealing(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -337,4 +339,9 @@ end
 function mod:UnrulyYell(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:CallAncestor(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
