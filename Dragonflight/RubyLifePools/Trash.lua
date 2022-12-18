@@ -9,10 +9,14 @@ mod:RegisterEnableMob(
 	188244, -- Primal Juggernaut
 	188067, -- Flashfrost Chillweaver
 	187897, -- Defier Draghar
+	190206, -- Primalist Flamedancer
 	190034, -- Blazebound Destroyer
 	195119, -- Primalist Shockcaster
 	197698, -- Thunderhead
-	197697  -- Flamegullet
+	197697, -- Flamegullet
+	198047, -- Tempest Channeler
+	197985, -- Flame Channeler
+	197535  -- High Channeler Ryvati
 )
 
 --------------------------------------------------------------------------------
@@ -24,10 +28,13 @@ if L then
 	L.primal_juggernaut = "Primal Juggernaut"
 	L.flashfrost_chillweaver = "Flashfrost Chillweaver"
 	L.defier_draghar = "Defier Draghar"
+	L.primalist_flamedancer = "Primalist Flamedancer"
 	L.blazebound_destroyer = "Blazebound Destroyer"
 	L.primalist_shockcaster = "Primalist Shockcaster"
 	L.thunderhead = "Thunderhead"
 	L.flamegullet = "Flamegullet"
+	L.tempest_channeler = "Tempest Channeler"
+	L.flame_channeler = "Flame Channeler"
 end
 
 --------------------------------------------------------------------------------
