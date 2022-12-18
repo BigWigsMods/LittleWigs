@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Fenryr", 1477, 1487)
 if not mod then return end
 mod:RegisterEnableMob(95674, 99868) -- Phase 1 Fenryr, Phase 2 Fenryr
-mod.engageId = 1807
+mod:SetEncounterID(1807)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,7 +24,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Stealth", 196567)
 	self:Log("SPELL_CAST_START", "UnnervingHowl", 196543)
-	self:Log("SPELL_AURA_APPLIED", "RavenousLeap", 197556)
+	self:Log("SPELL_CAST_START", "RavenousLeap", 197558)
+	self:Log("SPELL_AURA_APPLIED", "RavenousLeapApplied", 197556)
 	self:Log("SPELL_AURA_REMOVED", "RavenousLeapRemoved", 197556)
 	self:Log("SPELL_CAST_SUCCESS", "ClawFrenzy", 196512)
 	self:Log("SPELL_CAST_START", "ScentOfBlood", 196838)
@@ -43,25 +43,29 @@ end
 --
 
 function mod:Stealth()
-	self:MessageOld("stages", "cyan", nil, CL.stage:format(2), false)
+	self:Message("stages", "cyan", CL.stage:format(2), false)
 	-- Prevent the module wiping when moving to phase 2 and ENCOUNTER_END fires.
 	self:ScheduleTimer("Reboot", 0.5) -- Delay a little
 end
 
 function mod:UnnervingHowl(args)
-	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 30)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 28)
 end
 
 do
-	local list = mod:NewTargetList()
+	local playerList = {}
+
 	function mod:RavenousLeap(args)
-		--"pull:10.1, 36.0" p2
-		list[#list+1] = args.destName
-		if #list == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "yellow", "info", nil, nil, true)
-			self:CDBar(args.spellId, 31)
-		end
+		playerList = {}
+		self:CDBar(197556, 31.7)
+	end
+
+	function mod:RavenousLeapApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "yellow", playerList, 4)
+		self:PlaySound(args.spellId, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:OpenProximity(args.spellId, 10)
 			self:Say(args.spellId)
@@ -76,16 +80,17 @@ do
 end
 
 function mod:ClawFrenzy(args)
-	self:MessageOld(args.spellId, "red")
+	self:Message(args.spellId, "red")
 end
 
 do
-	local function printTarget(self, player, guid)
+	local function printTarget(self, name, guid)
+		self:PrimaryIcon(196838, name)
+		self:TargetMessage(196838, "orange", name)
 		if self:Me(guid) then
 			self:Say(196838)
+			self:PlaySound(196838, "warning")
 		end
-		self:PrimaryIcon(196838, player)
-		self:TargetMessageOld(196838, player, "orange", "warning")
 	end
 	function mod:ScentOfBlood(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
