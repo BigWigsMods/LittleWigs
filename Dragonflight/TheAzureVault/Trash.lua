@@ -103,7 +103,7 @@ end
 -- Book of Translocation
 
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("book_autotalk") then
+	if self:GetOption("book_autotalk") > 0 then
 		if self:GetGossipID(56056) then
 			-- Proceed to Upper Chambers
 			self:SelectGossipID(56056)
