@@ -243,9 +243,11 @@ function mod:ChargedPulse(args)
 end
 
 function mod:ProtectiveLight(args)
-	self:Message(args.spellId, "yellow", CL.on:format(CL.shield, args.sourceName))
-	if self:Dispeller("magic", true, args.spellId) then
-		self:PlaySound(args.spellId, "alert")
+	if not self:Player(args.destFlags) then
+		self:Message(args.spellId, "yellow", CL.on:format(CL.shield, args.sourceName))
+		if self:Dispeller("magic", true, args.spellId) then
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 
