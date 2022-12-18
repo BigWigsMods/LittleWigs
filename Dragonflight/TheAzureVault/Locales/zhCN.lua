@@ -2,8 +2,8 @@ local L = BigWigs:NewBossLocale("The Azure Vault Trash", "zhCN")
 if not L then return end
 if L then
 	L.book_of_translocation = "转移之书"
-	L.book_autotalk = "自动对话"
-	L.book_autotalk_desc = "在与转移之书对话时立即选择传送到下一区域。"
+	L.custom_on_book_autotalk = "自动对话"
+	L.custom_on_book_autotalk_desc = "在与转移之书对话时立即选择传送到下一区域。"
 
 	L.arcane_tender = "奥术看护者"
 	L.arcane_elemental = "奥术元素"

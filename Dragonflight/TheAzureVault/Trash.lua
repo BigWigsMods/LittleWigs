@@ -31,8 +31,8 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.book_of_translocation = "Book of Translocation"
-	L.book_autotalk = "Autotalk"
-	L.book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
+	L.custom_on_book_autotalk = "Autotalk"
+	L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 
 	L.arcane_tender = "Arcane Tender"
 	L.arcane_elemental = "Arcane Elemental"
@@ -49,7 +49,7 @@ end
 function mod:GetOptions()
 	return {
 		-- Book of Translocation
-		"book_autotalk",
+		"custom_on_book_autotalk",
 		-- Arcane Tender
 		375596, -- Erratic Growth
 		-- Arcane Elemental
@@ -63,7 +63,7 @@ function mod:GetOptions()
 		-- Arcane Construct
 		{387067, "TANK"}, -- Arcane Bash
 	}, {
-		["book_autotalk"] = L.book_of_translocation,
+		["custom_on_book_autotalk"] = L.book_of_translocation,
 		[375596] = L.arcane_tender,
 		[386546] = L.arcane_elemental,
 		[371358] = L.unstable_curator,
@@ -103,7 +103,7 @@ end
 -- Book of Translocation
 
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("book_autotalk") > 0 then
+	if self:GetOption("custom_on_book_autotalk") then
 		if self:GetGossipID(56056) then
 			-- Proceed to Upper Chambers
 			self:SelectGossipID(56056)

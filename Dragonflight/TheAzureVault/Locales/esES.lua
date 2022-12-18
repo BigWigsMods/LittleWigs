@@ -2,8 +2,8 @@ local L = BigWigs:NewBossLocale("The Azure Vault Trash", "esES") or BigWigs:NewB
 if not L then return end
 if L then
 	L.book_of_translocation = "Libro de traslado"
-	L.book_autotalk = "Hablar automáticamente"
-	--L.book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
+	L.custom_on_book_autotalk = "Hablar automáticamente"
+	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 
 	L.arcane_tender = "Cuidador Arcano"
 	L.arcane_elemental = "Elemental Arcano"
