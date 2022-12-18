@@ -50,6 +50,8 @@ function mod:GetOptions()
 		-- Defier Draghar
 		372087, -- Blazing Rush
 		372047, -- Steel Barrage
+		-- Primalist Flamedancer
+		385536, -- Flame Dance
 		-- Blazebound Destroyer
 		{373693, "SAY", "SAY_COUNTDOWN"}, -- Living Bomb
 		373692, -- Inferno
@@ -62,14 +64,22 @@ function mod:GetOptions()
 		{392395, "TANK_HEALER"}, -- Thunder Jaw
 		-- Flamegullet
 		391723, -- Flame Breath
+		392569, -- Molten Blood
+		-- Tempest Channeler
+		392486, -- Lightning Storm
+		-- Flame Channeler
+		392451, -- Flashfire
 	}, {
 		[372696] = L.primal_juggernaut,
 		[372743] = L.flashfrost_chillweaver,
 		[372087] = L.defier_draghar,
+		[385536] = L.primalist_flamedancer,
 		[373693] = L.blazebound_destroyer,
 		[385313] = L.primalist_shockcaster,
 		[392640] = L.thunderhead,
 		[391723] = L.flamegullet,
+		[392486] = L.tempest_channeler,
+		[392451] = L.flame_channeler,
 	}
 end
 
@@ -84,6 +94,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BlazingRush", 372087)
 	self:Log("SPELL_CAST_START", "SteelBarrage", 372047)
 	self:Death("DefierDragharDeath", 187897)
+
+	-- Primalist Flamedancer
+	self:Log("SPELL_CAST_SUCCESS", "FlameDance", 385536)
 
 	-- Blazebound Destroyer
 	self:Log("SPELL_AURA_APPLIED", "LivingBombApplied", 373693)
@@ -103,7 +116,14 @@ function mod:OnBossEnable()
 
 	-- Flamegullet
 	self:Log("SPELL_CAST_START", "FlameBreath", 391723)
+	self:Log("SPELL_AURA_APPLIED", "MoltenBlood", 392569)
 	self:Death("FlamegulletDeath", 197697)
+
+	-- Tempest Channeler
+	self:Log("SPELL_CAST_START", "LightningStorm", 392486)
+
+	-- Flame Channeler
+	self:Log("SPELL_CAST_START", "Flashfire", 392451)
 end
 
 --------------------------------------------------------------------------------
@@ -148,6 +168,13 @@ end
 function mod:DefierDragharDeath(args)
 	self:StopBar(372087) -- Blazing Rush
 	self:StopBar(372047) -- Steel Barrage
+end
+
+-- Primalist Flamedancer
+
+function mod:FlameDance(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Blazebound Destroyer
@@ -229,6 +256,25 @@ function mod:FlameBreath(args)
 	self:Bar(args.spellId, 14.5)
 end
 
+function mod:MoltenBlood(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+end
+
 function mod:FlamegulletDeath(args)
 	self:StopBar(391723) -- Flame Breath
+end
+
+-- Tempest Channeler
+
+function mod:LightningStorm(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
+end
+
+-- Flame Channeler
+
+function mod:Flashfire(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
