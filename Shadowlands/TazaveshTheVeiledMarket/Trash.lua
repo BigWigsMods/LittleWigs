@@ -260,7 +260,7 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if L.password_triggers[msg] then
 		-- Market Trading Game
 		passwordId = L.password_triggers[msg]
-		if self:GetOption("trading_game") then
+		if self:GetOption("trading_game") > 0 then
 			self:Message("trading_game", "green", msg, "achievement_dungeon_brokerdungeon")
 			self:PlaySound("trading_game", "info")
 		end
@@ -283,9 +283,9 @@ end
 
 -- Auto-gossip
 function mod:GOSSIP_SHOW(event)
-	if self:GetOption("trading_game_autotalk") and passwordId ~= nil and self:GetGossipID(passwordId) then
+	if self:GetOption("trading_game_autotalk") > 0 and passwordId ~= nil and self:GetGossipID(passwordId) then
 		self:SelectGossipID(passwordId)
-	elseif self:GetOption("portal_autotalk") then
+	elseif self:GetOption("portal_autotalk") > 0 then
 		if self:GetGossipID(53719) then
 			-- right after first boss
 			self:SelectGossipID(53719)
