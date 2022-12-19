@@ -18,6 +18,6 @@ if L then
 	L.vile_lasher = "暗邪鞭笞者"
 	--L.algethar_security = "Algeth'ar Security"
 	L.algethar_echoknight = "阿爾蓋薩回音騎士"
-	L.spectral_invoker = "Spectral Invoker"
+	--L.spectral_invoker = "Spectral Invoker"
 	L.ethereal_restorer = "以太復原者"
 end
