@@ -21,7 +21,8 @@ mod:RegisterEnableMob(
 	187154, -- Unstable Curator
 	187155, -- Rune Seal Keeper
 	196117, -- Crystal Thrasher
-	186740  -- Arcane Construct
+	186740, -- Arcane Construct
+	196116 -- Crystal Fury
 )
 
 --------------------------------------------------------------------------------
@@ -40,6 +41,7 @@ if L then
 	L.rune_seal_keeper = "Rune Seal Keeper"
 	L.crystal_thrasher = "Crystal Thrasher"
 	L.arcane_construct = "Arcane Construct"
+	L.crystal_fury = "Crystal Fury"
 end
 
 --------------------------------------------------------------------------------
@@ -62,6 +64,8 @@ function mod:GetOptions()
 		370766, -- Crystalline Rupture
 		-- Arcane Construct
 		{387067, "TANK"}, -- Arcane Bash
+		-- Crystal Fury
+		{370764, "TANK"}, -- Piercing Shards
 	}, {
 		["custom_on_book_autotalk"] = L.book_of_translocation,
 		[375596] = L.arcane_tender,
@@ -70,6 +74,7 @@ function mod:GetOptions()
 		[377488] = L.rune_seal_keeper,
 		[370766] = L.crystal_thrasher,
 		[387067] = L.arcane_construct,
+		[370764] = L.crystal_fury,
 	}
 end
 
@@ -94,6 +99,9 @@ function mod:OnBossEnable()
 
 	-- Arcane Construct
 	self:Log("SPELL_CAST_START", "ArcaneBash", 387067)
+
+	-- Crystal Fury
+	self:Log("SPELL_CAST_START", "PiercingShards", 370764)
 end
 
 --------------------------------------------------------------------------------
@@ -162,6 +170,13 @@ end
 -- Arcane Construct
 
 function mod:ArcaneBash(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Crystal Fury
+
+function mod:PiercingShards(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end
