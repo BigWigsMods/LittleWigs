@@ -1,14 +1,14 @@
 local L = BigWigs:NewBossLocale("The Azure Vault Trash", "zhTW")
 if not L then return end
 if L then
-	--L.book_of_translocation = "Book of Translocation"
+	L.book_of_translocation = "移位之書"
 	L.custom_on_book_autotalk = "自動對話"
-	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
+	L.custom_on_book_autotalk_desc = "與移位之書對話時自動確認傳送選項。"
 
-	--L.arcane_tender = "Arcane Tender"
-	--L.arcane_elemental = "Arcane Elemental"
-	--L.unstable_curator = "Unstable Curator"
-	--L.rune_seal_keeper = "Rune Seal Keeper"
-	--L.crystal_thrasher = "Crystal Thrasher"
-	--L.arcane_construct = "Arcane Construct"
+	L.arcane_tender = "秘法看管者"
+	L.arcane_elemental = "秘法元素"
+	L.unstable_curator = "不穩定的監管者"
+	L.rune_seal_keeper = "符文封印守衛者"
+	L.crystal_thrasher = "水晶痛擊者"
+	L.arcane_construct = "秘法傀儡"
 end
