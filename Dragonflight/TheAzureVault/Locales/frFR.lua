@@ -9,6 +9,7 @@ if L then
 	L.arcane_elemental = "Elémentaire des arcanes"
 	L.unstable_curator = "Conservateur instable"
 	L.rune_seal_keeper = "Gardienne du sceau draconique"
+	L.crystal_fury = "Fureur de cristal"
 	L.crystal_thrasher = "Cogneur de cristal"
 	L.arcane_construct = "Assemblage arcanique"
 end

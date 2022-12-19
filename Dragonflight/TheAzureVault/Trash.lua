@@ -20,9 +20,9 @@ mod:RegisterEnableMob(
 	186741, -- Arcane Elemental
 	187154, -- Unstable Curator
 	187155, -- Rune Seal Keeper
+	196116, -- Crystal Fury
 	196117, -- Crystal Thrasher
-	186740, -- Arcane Construct
-	196116 -- Crystal Fury
+	186740 -- Arcane Construct
 )
 
 --------------------------------------------------------------------------------
@@ -39,9 +39,9 @@ if L then
 	L.arcane_elemental = "Arcane Elemental"
 	L.unstable_curator = "Unstable Curator"
 	L.rune_seal_keeper = "Rune Seal Keeper"
+	L.crystal_fury = "Crystal Fury"
 	L.crystal_thrasher = "Crystal Thrasher"
 	L.arcane_construct = "Arcane Construct"
-	L.crystal_fury = "Crystal Fury"
 end
 
 --------------------------------------------------------------------------------
@@ -60,21 +60,21 @@ function mod:GetOptions()
 		371358, -- Forbidden Knowledge
 		-- Rune Seal Keeper
 		377488, -- Icy Bindings
+		-- Crystal Fury
+		{370764, "TANK"}, -- Piercing Shards
 		-- Crystal Thrasher
 		370766, -- Crystalline Rupture
 		-- Arcane Construct
 		{387067, "TANK"}, -- Arcane Bash
-		-- Crystal Fury
-		{370764, "TANK"}, -- Piercing Shards
 	}, {
 		["custom_on_book_autotalk"] = L.book_of_translocation,
 		[375596] = L.arcane_tender,
 		[386546] = L.arcane_elemental,
 		[371358] = L.unstable_curator,
 		[377488] = L.rune_seal_keeper,
+		[370764] = L.crystal_fury,
 		[370766] = L.crystal_thrasher,
 		[387067] = L.arcane_construct,
-		[370764] = L.crystal_fury,
 	}
 end
 
@@ -94,14 +94,14 @@ function mod:OnBossEnable()
 	-- Rune Seal Keeper
 	self:Log("SPELL_CAST_START", "IcyBindings", 377488)
 
+	-- Crystal Fury
+	self:Log("SPELL_CAST_START", "PiercingShards", 370764)
+
 	-- Crystal Thrasher
 	self:Log("SPELL_CAST_START", "CrystallineRupture", 370766)
 
 	-- Arcane Construct
 	self:Log("SPELL_CAST_START", "ArcaneBash", 387067)
-
-	-- Crystal Fury
-	self:Log("SPELL_CAST_START", "PiercingShards", 370764)
 end
 
 --------------------------------------------------------------------------------
@@ -160,6 +160,13 @@ function mod:IcyBindings(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Crystal Fury
+
+function mod:PiercingShards(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 -- Crystal Thrasher
 
 function mod:CrystallineRupture(args)
@@ -170,13 +177,6 @@ end
 -- Arcane Construct
 
 function mod:ArcaneBash(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-end
-
--- Crystal Fury
-
-function mod:PiercingShards(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end

@@ -9,6 +9,7 @@ if L then
 	L.arcane_elemental = "奥术元素"
 	L.unstable_curator = "动荡的管理员"
 	L.rune_seal_keeper = "符文封印守护者"
+	L.crystal_fury = "水晶之怒"
 	L.crystal_thrasher = "水晶痛击者"
 	L.arcane_construct = "奥术构造体"
 end

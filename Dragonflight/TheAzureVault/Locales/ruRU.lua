@@ -9,7 +9,7 @@ if L then
 	L.arcane_elemental = "Чародейский элементаль"
 	L.unstable_curator = "Нестабильный смотритель"
 	L.rune_seal_keeper = "Хранительница печати"
+	L.crystal_fury = "Кристальная ярость"
 	L.crystal_thrasher = "Кристальный крушитель"
 	L.arcane_construct = "Чародейское создание"
-	L.crystal_fury = "Кристальная ярость"
 end
