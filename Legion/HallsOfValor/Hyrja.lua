@@ -62,6 +62,11 @@ function mod:ShieldOfLight(args)
 end
 
 function mod:EyeOfTheStormOrSanctify(args)
+	if self:MobId(args.sourceGUID) ~= 95833 then
+		-- don't alert for trash versions
+		return
+	end
+
 	self:MessageOld(args.spellId, "orange", "long")
 	self:CDBar(192018, 15.8) -- 192018 = Shield of Light. Yes, I checked both EotS and Sanctify.
 
