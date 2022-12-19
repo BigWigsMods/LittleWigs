@@ -74,7 +74,7 @@ function mod:GetOptions()
 		[377488] = L.rune_seal_keeper,
 		[370766] = L.crystal_thrasher,
 		[387067] = L.arcane_construct,
-		[370764] = L.crystal_fury
+		[370764] = L.crystal_fury,
 	}
 end
 
