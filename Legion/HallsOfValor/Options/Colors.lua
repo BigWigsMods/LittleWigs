@@ -49,7 +49,7 @@ BigWigs:AddColors("Halls of Valor Trash", {
 	[199210] = "red",
 	[199341] = "red",
 	[199726] = "red",
-	[199805] = {"blue","orange"},
+	[199805] = "blue",
 	[200901] = "orange",
 	[200969] = "yellow",
 	[210875] = "red",

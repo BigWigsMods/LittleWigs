@@ -254,7 +254,7 @@ end
 do
 	local function printTarget(self, _, guid)
 		if self:Me(guid) then
-			self:Message(199805, "orange", CL.you:format(self:SpellName(199805)))
+			self:PersonalMessage(199805)
 			self:PlaySound(199805, "alarm")
 			self:Say(199805)
 		end
