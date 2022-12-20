@@ -5,6 +5,8 @@ if L then
 	L.custom_on_book_autotalk = "Automatisch ansprechen"
 	L.custom_on_book_autotalk_desc = "Beim Interagieren mit Büchern der Translokation umgehend mit dem nächsten Bereich fortfahren."
 
+	L.shrieking_whelp = "Kreischender Welpe"
+	L.conjured_lasher = "Herbeigezauberter Peitscher"
 	L.arcane_tender = "Arkanpfleger"
 	L.arcane_elemental = "Arkanelementar"
 	L.unstable_curator = "Instabiler Kurator"

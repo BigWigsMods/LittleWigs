@@ -5,6 +5,8 @@ if L then
 	--L.custom_on_book_autotalk = "Autotalk"
 	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 
+	L.shrieking_whelp = "Draghetto Stridente"
+	L.conjured_lasher = "Pianta Sferzante Evocata"
 	L.arcane_tender = "Guardialbero Arcano"
 	L.arcane_elemental = "Elementale Arcano"
 	L.unstable_curator = "Curatore Instabile"
