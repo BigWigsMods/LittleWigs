@@ -94,13 +94,13 @@ function mod:ElectricalStorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 18) -- 3s cast, 15s channel
-	self:CDBar(args.spellId, 63.2) -- TODO guess, cast at 100 energy, 3s cast + 60s energy gain + ~.2s delay?
+	self:CDBar(args.spellId, 78.9) -- cast at 100 energy: 3s cast + 15s channel + 60s energy gain + ~.9s delay
 end
 
 function mod:LightningStrike(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 21.8)
+	self:CDBar(args.spellId, 20.7)
 end
 
 function mod:EnergySurge(args)
@@ -114,14 +114,14 @@ function mod:EnergySurge(args)
 end
 
 function mod:EnergySurgeApplied(args)
-	if not self:Player(args.destFlags) and (self:Dispeller("magic", true, args.spellId) or self:Tank() or self:Healer()) then
+	if not self:Player(args.destFlags) and self:Dispeller("magic", true, args.spellId) then
 		self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
 end
 
 function mod:EnergySurgeRemoved(args)
-	if not self:Player(args.destFlags) and (self:Dispeller("magic", true, args.spellId) or self:Tank() or self:Healer()) then
+	if not self:Player(args.destFlags) and self:Dispeller("magic", true, args.spellId) then
 		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
