@@ -56,7 +56,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(198263, self:Mythic() and 8 or 24) -- Radiant Tempest
+	self:Bar(198263, self:Normal() and 8 or 24) -- Radiant Tempest
 	self:Bar(198077, 40) -- Shatter Spears
 	self:Bar(197961, 44) -- Runic Brand
 end
@@ -89,7 +89,7 @@ end
 
 function mod:RadiantTempest(args)
 	self:MessageOld(args.spellId, "red", "long")
-	self:CDBar(args.spellId, self:Mythic() and 80 or 56) -- hc pull:24.0 / m pull:8.0, 80.0
+	self:CDBar(args.spellId, self:Normal() and 80 or 56) -- normal pull:8.0 / heroic & mythic: pull:24.0, 56.0
 end
 
 function mod:ShatterSpears(args)
