@@ -5,18 +5,18 @@ if L then
 	--L.custom_on_autotalk_desc = "Instantly select Chromie's and Arthas's gossip options."
 
 	--L.gossip_available = "Gossip available"
-	--L.gossip_timer_trigger = "Glad you could make it, Uther."
+	L.gossip_timer_trigger = "Я рад, что ты пришел, Утер!"
 end
 
 L = BigWigs:NewBossLocale("Mal'Ganis", "ruRU")
 if L then
-	--L.warmup_trigger = "We're going to finish this right now, Mal'Ganis. Just you... and me."
+	L.warmup_trigger = "Мы покончим с этим сейчас же, Мал'Ганис. Один на один."
 end
 
 L = BigWigs:NewBossLocale("Chrono-Lord Epoch", "ruRU")
 if L then
-	-- Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul. The death you are destined to visit upon others will this day be your own.
-	--L.warmup_trigger = "on this day"
+	-- Принц Артас Менетил, в этот самый день могущественное зло поглотило твою душу. Смерть, которую ты должен был принести другим, сегодня придет за тобой.
+	L.warmup_trigger = "в этот самый день"
 end
 
 L = BigWigs:NewBossLocale("Infinite Corruptor", "ruRU")
