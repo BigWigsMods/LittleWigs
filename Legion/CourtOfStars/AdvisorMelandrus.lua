@@ -96,6 +96,7 @@ end
 
 function mod:SlicingMaelstrom(args)
 	self:MessageOld(args.spellId, "yellow", "warning",  CL.count:format(args.spellName, slicingMaelstromCount))
+	self:StopBar(CL.count:format(args.spellName, slicingMaelstromCount))
 	slicingMaelstromCount = slicingMaelstromCount + 1
 	self:CDBar(args.spellId, 24, CL.count:format(args.spellName, slicingMaelstromCount))
 end
