@@ -5,8 +5,8 @@ if L then
 	L.defeat_trigger = "Мои старые добрые пальцы" --  Ха! Мои старые добрые пальцы наконец-то одолели эту преграду! Теперь, перейдем к...
 	L.fail_trigger = "Еще не время... еще не..."
 
-	L.timers = "Timers"
-	L.timers_desc = "Timers for various events that take place."
+	--L.timers = "Timers"
+	--L.timers_desc = "Timers for various events that take place."
 
 	L.victory = "Победа"
 end
