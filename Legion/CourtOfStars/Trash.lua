@@ -501,23 +501,6 @@ do
 		return ("|T%d:0|t"):format(id)
 	end
 
-	local dbmClues = {
-		["cape"] = 1,
-		["no cape"] = 2,
-		["pouch"] = 3,
-		["potions"] = 4,
-		["long sleeves"] = 5,
-		["short sleeves"] = 6,
-		["gloves"] = 7,
-		["no gloves"] = 8,
-		["male"] = 9,
-		["female"] = 10,
-		["light vest"] = 11,
-		["dark vest"] = 12,
-		["no potion"] = 13,
-		["book"] = 14,
-	}
-
 	local knownClues, clueCount, timer = {}, 0, nil
 
 	function mod:OnBossDisable()
@@ -545,8 +528,8 @@ do
 	end
 
 	function mod:DBM_AddonMessage(_, _, prefix, _, _, event, clue)
-		if prefix == "M" and event == "CoS" and dbmClues[clue] then
-			self:BigWigs_BossComm(nil, "clue", dbmClues[clue])
+		if prefix == "M" and event == "CoS" and tonumber(clue) then
+			self:BigWigs_BossComm(nil, "clue", clueNum)
 		end
 	end
 
