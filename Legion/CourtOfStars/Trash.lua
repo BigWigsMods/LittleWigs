@@ -529,7 +529,7 @@ do
 
 	function mod:DBM_AddonMessage(_, _, prefix, _, _, event, clue)
 		if prefix == "M" and event == "CoS" and tonumber(clue) then
-			self:BigWigs_BossComm(nil, "clue", clueNum)
+			self:BigWigs_BossComm(nil, "clue", clue)
 		end
 	end
 
