@@ -25,6 +25,7 @@ end
 --
 
 local bladeSurgeCount = 0
+local slicingMaelstromCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -50,10 +51,11 @@ end
 
 function mod:OnEngage()
 	bladeSurgeCount = 1
+	slicingMaelstromCount = 1
 	self:CDBar(209628, 11) -- Piercing Gale
 	self:CDBar(224333, 8.4) -- Enveloping Winds
 	self:CDBar(209602, 5.2, CL.count:format(self:SpellName(209602), bladeSurgeCount)) -- Blade Surge
-	self:CDBar(209676, 23) -- Slicing Maelstrom
+	self:CDBar(209676, 23, CL.count:format(self:SpellName(209676), slicingMaelstromCount)) -- Slicing Maelstrom
 end
 
 --------------------------------------------------------------------------------
@@ -93,6 +95,8 @@ do
 end
 
 function mod:SlicingMaelstrom(args)
-	self:MessageOld(args.spellId, "yellow", "warning", CL.incoming:format(args.spellName))
-	self:CDBar(args.spellId, 24)
+	self:MessageOld(args.spellId, "yellow", "warning",  CL.count:format(args.spellName, slicingMaelstromCount))
+	self:StopBar(CL.count:format(args.spellName, slicingMaelstromCount))
+	slicingMaelstromCount = slicingMaelstromCount + 1
+	self:CDBar(args.spellId, 24, CL.count:format(args.spellName, slicingMaelstromCount))
 end
