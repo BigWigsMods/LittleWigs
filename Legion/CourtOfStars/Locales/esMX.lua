@@ -8,7 +8,7 @@ if L then
 	L.Mistress = "Señora de las Sombras"
 	--L.Gerenth = "Gerenth the Vile"
 	--L.Jazshariu = "Jazshariu"
-	--L.Imacutya = "Imacutya"
+	--L.Imacutya = "Imacu'tya"
 	--L.Baalgar = "Baalgar the Watchful"
 	--L.Inquisitor = "Watchful Inquisitor"
 	--L.BlazingImp = "Blazing Imp"

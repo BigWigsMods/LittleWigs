@@ -21,11 +21,11 @@ BigWigs:AddColors("Advisor Melandrus", {
 })
 
 BigWigs:AddColors("Court of Stars Trash", {
-	[207979] = "yellow",
+	[207979] = "orange",
 	[207980] = "yellow",
 	[209027] = "red",
 	[209033] = {"blue","orange","yellow"},
-	[209378] = "yellow",
+	[209378] = "orange",
 	[209404] = {"blue","orange","yellow"},
 	[209410] = "yellow",
 	[209413] = {"blue","orange","red"},
@@ -51,6 +51,8 @@ BigWigs:AddColors("Court of Stars Trash", {
 	[224377] = "red",
 	[225100] = "yellow",
 	[397892] = "red",
+	[397897] = "red",
+	[397907] = {"blue","yellow"},
 	["announce_buff_items"] = "cyan",
 	["spy_helper"] = {"cyan","green"},
 })

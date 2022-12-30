@@ -1,4 +1,3 @@
-
 -- GLOBALS: BigWigs, table
 
 --------------------------------------------------------------------------------
@@ -39,7 +38,7 @@ mod:RegisterEnableMob(
 	106108, -- Starlight Rose Brew: +HP & Mana reg
 	105340, -- Umbral Bloom: +10% Haste
 	106110, -- Waterlogged Scroll: +30% Movement speed
-	108154 -- Arcane Keys
+	108154  -- Arcane Keys
 )
 
 --------------------------------------------------------------------------------
@@ -78,7 +77,7 @@ if L then
 	L.Mistress = "Shadow Mistress"
 	L.Gerenth = "Gerenth the Vile"
 	L.Jazshariu = "Jazshariu"
-	L.Imacutya = "Imacutya"
+	L.Imacutya = "Imacu'tya"
 	L.Baalgar = "Baalgar the Watchful"
 	L.Inquisitor = "Watchful Inquisitor"
 	L.BlazingImp = "Blazing Imp"
@@ -238,9 +237,11 @@ function mod:GetOptions()
 		214688, -- Carrion Swarm (Gerenth the Vile)
 		214690, -- Cripple (Gerenth the Vile)
 		207979, -- Shockwave (Jazshariu)
+		397897, -- Crushing Leap (Jazshariu)
 		209378, -- Whirling Blades (Imacu'tya)
 		397892, -- Scream of Pain (Imacu'tya)
 		207980, -- Disintegration Beam (Baalgar the Watchful)
+		{397907, "SAY"}, -- Impending Doom (Baalgar the Watchful)
 		211299, -- Searing Glare (Watchful Inquisitor)
 		212784, -- Eye Storm (Watchful Inquisitor)
 		211401, -- Drifting Embers (Blazing Imp)
@@ -293,11 +294,10 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Shockwave, Whirling Blades, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
-	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 207979, 209378, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006, 211470)
-	-- Quelling Strike, Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers, Scream of Pain
-	self:Log("SPELL_CAST_START", "AlarmCasts", 209027, 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377, 397892)
+	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
+	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006, 211470)
+	-- Quelling Strike, Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers
+	self:Log("SPELL_CAST_START", "AlarmCasts", 209027, 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377)
 	-- Felblaze Puddle, Disrupting Energy
 	self:Log("SPELL_AURA_APPLIED", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PeriodicDamage", 211391, 209512)
@@ -308,10 +308,26 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Suppress", 209413)
 	self:Log("SPELL_AURA_APPLIED", "SingleTargetDebuffs", 214690, 211470) -- Cripple, Bewitch
 	self:Log("SPELL_AURA_REMOVED", "SingleTargetDebuffsRemoved", 209413, 214690, 211470) -- Suppress, Cripple, Bewitch
-	-- Disintegration Beam
-	self:Log("SPELL_AURA_APPLIED", "DisintegrationBeam", 207980)
 	-- Eye Storm
 	self:Log("SPELL_CAST_SUCCESS", "EyeStorm", 212784)
+
+	-- Imacu'tya
+	self:Log("SPELL_CAST_START", "WhirlingBlades", 209378)
+	self:Log("SPELL_CAST_START", "ScreamOfPain", 397892)
+	self:Death("ImacutyaDeath", 104275)
+
+	-- Baalgar the Watchful
+	self:Log("SPELL_CAST_START", "DisintegrationBeam", 207980)
+	self:Log("SPELL_AURA_APPLIED", "DisintegrationBeamApplied", 207980)
+	self:Log("SPELL_CAST_START", "ImpendingDoom", 397907)
+	self:Log("SPELL_AURA_APPLIED", "ImpendingDoomApplied", 397907)
+	self:Death("BaalgarDeath", 104274)
+
+	-- Jazshariu
+	self:Log("SPELL_CAST_START", "Shockwave", 207979)
+	self:Log("SPELL_CAST_SUCCESS", "CrushingLeap", 397897)
+	self:Death("JazshariuDeath", 104273)
+
 	-- Picking Up
 	self:Log("SPELL_CAST_START", "PickingUp", 214697)
 	self:Log("SPELL_CAST_SUCCESS", "PickingUpSuccess", 214697)
@@ -798,14 +814,79 @@ do
 	end
 end
 
+-- Watchful Inquisitor
+
+function mod:EyeStorm(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:CastBar(args.spellId, 8)
+end
+
+-- Imacu'tya
+
+function mod:WhirlingBlades(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 18.2)
+end
+
+function mod:ScreamOfPain(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 14.6)
+end
+
+function mod:ImacutyaDeath(args)
+	self:StopBar(209378) -- Whirling Blades
+	self:StopBar(397892) -- Scream of Pain
+end
+
+-- Baalgar the Watchful
+
 function mod:DisintegrationBeam(args)
-	self:MessageOld(args.spellId, "yellow", "long")
+	self:CDBar(args.spellId, 6.1)
+end
+
+function mod:DisintegrationBeamApplied(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 5)
 end
 
-function mod:EyeStorm(args)
-	self:MessageOld(args.spellId, "yellow", "long")
-	self:CastBar(args.spellId, 8)
+function mod:ImpendingDoom(args)
+	self:CDBar(args.spellId, 14.6)
+end
+
+function mod:ImpendingDoomApplied(args)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
+end
+
+function mod:BaalgarDeath(args)
+	self:StopBar(207980) -- Disintegration Beam
+	self:StopBar(397907) -- Impending Doom
+end
+
+-- Jazshariu
+
+function mod:Shockwave(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 8.5)
+end
+
+function mod:CrushingLeap(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 17)
+end
+
+function mod:JazshariuDeath(args)
+	self:StopBar(207979) -- Shockwave
+	self:StopBar(397897) -- Crushing Leap
 end
 
 do

@@ -8,7 +8,7 @@ if L then
 	L.Mistress = "Donzela Sombria"
 	L.Gerenth = "Gerenth, o Torpe"
 	L.Jazshariu = "Jazshariu"
-	L.Imacutya = "Imacutya"
+	L.Imacutya = "Imacu'tya"
 	L.Baalgar = "Baalgar, o Vigilante"
 	L.Inquisitor = "Inquisidor Vigilante"
 	L.BlazingImp = "Diabrete Fulgurante"

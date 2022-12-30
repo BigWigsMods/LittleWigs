@@ -21,11 +21,11 @@ BigWigs:AddSounds("Advisor Melandrus", {
 })
 
 BigWigs:AddSounds("Court of Stars Trash", {
-	[207979] = "alert",
+	[207979] = "alarm",
 	[207980] = "long",
 	[209027] = "alarm",
 	[209033] = "alert",
-	[209378] = "alert",
+	[209378] = "alarm",
 	[209404] = "alert",
 	[209410] = "alert",
 	[209413] = {"alarm","alert"},
@@ -51,6 +51,8 @@ BigWigs:AddSounds("Court of Stars Trash", {
 	[224377] = "alarm",
 	[225100] = "alert",
 	[397892] = "alarm",
+	[397897] = "alert",
+	[397907] = "alert",
 	["announce_buff_items"] = "info",
 	["spy_helper"] = "info",
 })
