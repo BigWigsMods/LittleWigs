@@ -1,6 +1,3 @@
---TO DO
---Timers for ArcaneLockdown and SignalBeacon
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -8,12 +5,17 @@
 local mod, CL = BigWigs:NewBoss("Patrol Captain Gerdo", 1571, 1718)
 if not mod then return end
 mod:RegisterEnableMob(104215)
-mod.engageId = 1868
+mod:SetEncounterID(1868)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local slashCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-local slashCount = 0
 
 function mod:GetOptions()
 	return {
@@ -30,14 +32,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Streetsweeper", 219488)
 	self:Log("SPELL_CAST_START", "ArcaneLockdown", 207278)
 	self:Log("SPELL_CAST_START", "SignalBeacon", 207806)
-	self:Log("SPELL_CAST_START", "FlaskoftheSolemnNight", 207815)
+	self:Log("SPELL_CAST_START", "FlaskOfTheSolemnNight", 207815)
 end
 
 function mod:OnEngage()
 	slashCount = 0
 	self:CDBar(219488, 11) -- Streetsweeper
-	self:CDBar(207261, 7) -- Resonant Slash
-	self:CDBar(207278, 15.5) -- Arcane Lockdown
+	self:CDBar(207261, 6.1) -- Resonant Slash
+	self:CDBar(207278, 14.6) -- Arcane Lockdown
 end
 
 --------------------------------------------------------------------------------
@@ -45,25 +47,30 @@ end
 --
 
 function mod:ResonantSlash(args)
-	self:MessageOld(args.spellId, "orange", "alarm")
-	self:Bar(args.spellId, slashCount % 2 == 0 and 16 or 12)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, slashCount % 2 == 0 and 15.8 or 12.1)
 	slashCount = slashCount + 1
 end
 
 function mod:Streetsweeper(args)
-	self:MessageOld(args.spellId, "red", "info")
-	self:CDBar(args.spellId, 7)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 6.1)
 end
 
 function mod:ArcaneLockdown(args)
-	self:MessageOld(args.spellId, "yellow", "long", CL.incoming:format(args.spellName))
-	self:CDBar(args.spellId, 28)
+	self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
+	self:Bar(args.spellId, 27.9)
 end
 
 function mod:SignalBeacon(args)
-	self:MessageOld(args.spellId, "yellow", "alert")
+	self:Message(args.spellId, "yellow", CL.percent:format(75, args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:FlaskoftheSolemnNight(args)
-	self:MessageOld(args.spellId, "yellow", "info")
+function mod:FlaskOfTheSolemnNight(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
