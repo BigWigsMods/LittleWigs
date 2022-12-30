@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Patrol Captain Gerdo", 1571, 1718)
 if not mod then return end
 mod:RegisterEnableMob(104215)
 mod:SetEncounterID(1868)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
