@@ -8,7 +8,8 @@
 local mod, CL = BigWigs:NewBoss("Talixae Flamewreath", 1571, 1719)
 if not mod then return end
 mod:RegisterEnableMob(104217)
-mod.engageId = 1869
+mod:SetEncounterID(1869)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -46,17 +47,20 @@ end
 --
 
 function mod:InfernalEruption(args)
-	self:MessageOld(args.spellId, "orange", "long")
-	self:CDBar(args.spellId, 18)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 20.3)
 end
 
 function mod:BurningIntensity(args)
 	burningIntensityCount = burningIntensityCount + 1
-	self:MessageOld(args.spellId, "red", "info", CL.count:format(args.spellName, burningIntensityCount))
-	self:CDBar(args.spellId, 22)
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, burningIntensityCount))
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, burningIntensityCount % 2 == 0 and 23.1 or 26.8)
 end
 
 function mod:WitheringSoul(args)
-	self:MessageOld(args.spellId, "yellow", "alert")
-	self:CDBar(args.spellId, 14)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 14.2)
 end
