@@ -10,16 +10,16 @@ end
 
 L = BigWigs:NewBossLocale("Temple of the Jade Serpent Trash", "itIT")
 if L then
-	--L.corrupt_living_water = "Corrupt Living Water"
-	--L.fallen_waterspeaker = "Fallen Waterspeaker"
-	--L.haunting_sha = "Haunting Sha"
-	--L.the_talking_fish = "The Talking Fish"
-	--L.the_songbird_queen = "The Songbird Queen"
-	--L.the_crybaby_hozen = "The Crybaby Hozen"
-	--L.the_nodding_tiger = "The Nodding Tiger"
-	--L.the_golden_beetle = "The Golden Beetle"
-	--L.sha_touched_guardian = "Sha-Touched Guardian"
-	--L.depraved_mistweaver = "Depraved Mistweaver"
-	--L.shambling_infester = "Shambling Infester"
+	L.corrupt_living_water = "Acqua Vivente Corrotta"
+	L.fallen_waterspeaker = "Oratore dell'Acqua Caduto"
+	L.haunting_sha = "Sha Infestante"
+	L.the_talking_fish = "Il Pesce Parlante"
+	L.the_songbird_queen = "La Gru Cantante"
+	L.the_crybaby_hozen = "L'Hozen Piangente"
+	L.the_nodding_tiger = "La Tigre Ondeggiante"
+	L.the_golden_beetle = "La Blatta Dorata"
+	L.sha_touched_guardian = "Guardiano Toccato dallo Sha"
+	L.depraved_mistweaver = "Teurga del Misticismo Degenerata"
+	L.shambling_infester = "Infestatore Barcollante"
 	L.minion_of_doubt = "Servitore del Dubbio"
 end
