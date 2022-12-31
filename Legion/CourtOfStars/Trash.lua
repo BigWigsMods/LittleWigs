@@ -263,7 +263,7 @@ do
 		[45636] = 11, -- Light Vest
 		[45635] = 12, -- Dark Vest
 		[45667] = 13, -- No Potions
-		[45659] = 14  -- Book
+		[45659] = 14, -- Book
 	}
 
 	local buffItems = {
@@ -461,30 +461,18 @@ do
 		if self:GetOption("custom_on_use_buff_items") and buffItems[mobId] then
 			self:SelectGossipOption(1)
 		elseif mobId == 107486 then -- Chatty Rumormonger
-			local clue = self:GetGossipID(45674) -- Cape
-					or self:GetGossipID(45675)   -- No Cape
-					or self:GetGossipID(45660)   -- Pouch
-					or self:GetGossipID(45666)   -- Potions
-					or self:GetGossipID(45676)   -- Long Sleeves
-					or self:GetGossipID(45677)   -- Short Sleeves
-					or self:GetGossipID(45673)   -- Gloves
-					or self:GetGossipID(45672)   -- No Gloves
-					or self:GetGossipID(45657)   -- Male
-					or self:GetGossipID(45658)   -- Female
-					or self:GetGossipID(45636)   -- Light Vest
-					or self:GetGossipID(45635)   -- Dark Vest
-					or self:GetGossipID(45667)   -- No Potions
-					or self:GetGossipID(45659)   -- Book
-			local num = clue and clueIds[clue.gossipOptionID]
-			if num then
-				if spyHelperEnabled then
-					self:SelectGossipID(clue.gossipOptionID)
-					if not knownClues[num] then
-						local text = L.hints[num]
-						sendChatMessage(text, englishClueNames[num] ~= text and englishClueNames[num])
+			for gossipId, clueId in pairs(clueIds) do
+				if self:GetGossipID(gossipId) then
+					if spyHelperEnabled then
+						self:SelectGossipID(gossipId)
+						if not knownClues[clueId] then
+							local text = L.hints[clueId]
+							sendChatMessage(text, englishClueNames[clueId] ~= text and englishClueNames[clueId])
+						end
 					end
+					mod:Sync("clue", clueId)
+					break
 				end
-				mod:Sync("clue", num)
 			end
 		elseif spyHelperEnabled then
 			if self:GetGossipID(45624) then
