@@ -457,24 +457,25 @@ do
 
 	function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(self:UnitGUID("npc"))
-		local spyHelperEnabled = self:GetOption("spy_helper") > 0
 		if self:GetOption("custom_on_use_buff_items") and buffItems[mobId] then
 			self:SelectGossipOption(1)
-		elseif mobId == 107486 then -- Chatty Rumormonger
-			for gossipId, clueId in pairs(clueIds) do
-				if self:GetGossipID(gossipId) then
-					if spyHelperEnabled then
-						self:SelectGossipID(gossipId)
-						if not knownClues[clueId] then
-							local text = L.hints[clueId]
-							sendChatMessage(text, englishClueNames[clueId] ~= text and englishClueNames[clueId])
-						end
+			return
+		end
+		local spyHelperEnabled = self:GetOption("spy_helper") > 0
+		for gossipId, clueId in pairs(clueIds) do
+			if self:GetGossipID(gossipId) then
+				if spyHelperEnabled then
+					self:SelectGossipID(gossipId)
+					if not knownClues[clueId] then
+						local text = L.hints[clueId]
+						sendChatMessage(text, englishClueNames[clueId] ~= text and englishClueNames[clueId])
 					end
-					mod:Sync("clue", clueId)
-					break
 				end
+				mod:Sync("clue", clueId)
+				return
 			end
-		elseif spyHelperEnabled then
+		end
+		if spyHelperEnabled then
 			if self:GetGossipID(45624) then
 				-- Use the Signal Lantern to start the boat RP
 				self:SelectGossipID(45624)
