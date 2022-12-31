@@ -33,9 +33,12 @@ BigWigs:AddSounds("Temple of the Jade Serpent Trash", {
 	[396018] = {"alert","warning"},
 	[396020] = "alert",
 	[396073] = "warning",
+	[397878] = "long",
 	[397881] = "alarm",
 	[397889] = "alert",
 	[397899] = "alarm",
+	[397911] = {"alert","warning"},
 	[397914] = "alert",
+	[397931] = "alert",
 	[398300] = "alarm",
 })

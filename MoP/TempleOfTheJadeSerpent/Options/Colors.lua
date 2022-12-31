@@ -33,9 +33,12 @@ BigWigs:AddColors("Temple of the Jade Serpent Trash", {
 	[396018] = {"red","yellow"},
 	[396020] = "yellow",
 	[396073] = "yellow",
+	[397878] = "red",
 	[397881] = "orange",
 	[397889] = "yellow",
 	[397899] = "orange",
+	[397911] = {"blue","yellow"},
 	[397914] = "red",
+	[397931] = "purple",
 	[398300] = "orange",
 })

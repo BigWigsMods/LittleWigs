@@ -21,4 +21,5 @@ if L then
 	--L.sha_touched_guardian = "Sha-Touched Guardian"
 	--L.depraved_mistweaver = "Depraved Mistweaver"
 	--L.shambling_infester = "Shambling Infester"
+	--L.minion_of_doubt = "Minion of Doubt"
 end

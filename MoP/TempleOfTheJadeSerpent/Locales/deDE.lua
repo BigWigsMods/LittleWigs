@@ -21,4 +21,5 @@ if L then
 	L.sha_touched_guardian = "Sha-berührter Wächter"
 	L.depraved_mistweaver = "Verkommener Nebelwirker"
 	L.shambling_infester = "Schlurfender Verseucher"
+	L.minion_of_doubt = "Diener des Zweifels"
 end

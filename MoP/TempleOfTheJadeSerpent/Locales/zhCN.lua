@@ -21,4 +21,5 @@ if L then
 	L.sha_touched_guardian = "染煞守卫"
 	L.depraved_mistweaver = "堕落的织雾者"
 	L.shambling_infester = "蹒跚感染者"
+	L.minion_of_doubt = "疑之爪牙"
 end
