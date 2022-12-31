@@ -233,7 +233,8 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_BossComm")
 	self:RegisterMessage("DBM_AddonMessage") -- Catch DBM clues
 
-	-- Purely because DBM, and maybe others, call CloseGossip. That is just sooooo useful.
+	-- ensure LittleWigs handles this event first - this prevents other addons from advancing
+	-- the gossip or closing the frame before we have a chance to read the gossip ID
 	local frames = {GetFramesRegisteredForEvent("GOSSIP_SHOW")}
 	for i = 1, #frames do
 		frames[i]:UnregisterEvent("GOSSIP_SHOW")
