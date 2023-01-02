@@ -1,6 +1,8 @@
 
 BigWigs:AddSounds("Sadana Bloodfury", {
-	[153153] = "info",
+	[153094] = "alarm",
+	[153153] = "alert",
+	[153224] = "underyou",
 	[153240] = "alert",
 	[164974] = "warning",
 })
