@@ -30,9 +30,9 @@ function mod:GetOptions()
 		396907, -- Jade Fire Breath
 		107110, -- Jade Fire
 	}, {
-		[106823] = CL.other:format(CL.stage:format(1), self:SpellName(-5501)), -- Serpent Dance
-		[106841] = CL.other:format(CL.stage:format(2), self:SpellName(-5505)), -- Jade Serpent Dance
-		[396907] = CL.other:format(CL.stage:format(3), self:SpellName(-5509)), -- The Jade Serpent
+		[106823] = CL.other:format(CL.stage:format(1), self:SpellName(-5501)), -- Stage 1: Serpent Dance
+		[106841] = CL.other:format(CL.stage:format(2), self:SpellName(-5505)), -- Stage 2: Jade Serpent Dance
+		[396907] = CL.other:format(CL.stage:format(3), self:SpellName(-5509)), -- Stage 3: The Jade Serpent
 	}
 end
 
