@@ -14,11 +14,14 @@ BigWigs:AddColors("Lorewalker Stonestep", {
 })
 
 BigWigs:AddColors("Liu Flameheart", {
-	[106823] = {"blue","orange"},
-	[106841] = {"blue","orange"},
-	[107110] = "blue",
+	[106823] = {"blue","purple"},
+	[106841] = {"blue","purple"},
+	[106856] = "orange",
+	[106864] = "orange",
+	[107110] = {"blue","orange"},
 	[118540] = "blue",
-	["stages"] = {"green","yellow"},
+	[396907] = "purple",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Sha of Doubt", {

@@ -14,11 +14,14 @@ BigWigs:AddSounds("Lorewalker Stonestep", {
 })
 
 BigWigs:AddSounds("Liu Flameheart", {
-	[106823] = "alarm",
-	[106841] = "alarm",
-	[107110] = "alert",
-	[118540] = "alert",
-	["stages"] = "info",
+	[106823] = "alert",
+	[106841] = "alert",
+	[106856] = "alarm",
+	[106864] = "alarm",
+	[107110] = {"alarm","underyou"},
+	[118540] = "underyou",
+	[396907] = "alarm",
+	["stages"] = {"info","long"},
 })
 
 BigWigs:AddSounds("Sha of Doubt", {
