@@ -25,6 +25,7 @@ if L then
 	L.shadowmoon_bonemender = "Shadowmoon Bone-Mender"
 	L.void_spawn = "Void Spawn"
 	L.shadowmoon_loyalist = "Shadowmoon Loyalist"
+	L.shadowmoon_dominator = "Shadowmoon Dominator"
 	L.shadowmoon_exhumer = "Shadowmoon Exhumer"
 	L.exhumed_spirit = "Exhumed Spirit"
 	L.monstrous_corpse_spider = "Monstrous Corpse Spider"
@@ -39,11 +40,14 @@ function mod:GetOptions()
 	return {
 		-- Shadowmoon Bone-Mender
 		152818, -- Shadow Mend
+		{152819, "DISPEL"}, -- Shadow Word: Frailty
 		-- Void Spawn
 		152964, -- Void Pulse
 		394512, -- Void Eruptions
 		-- Shaodwmoon Loyalist
-		398151, -- Sinister Focus
+		{398151, "DISPEL"}, -- Sinister Focus
+		-- Shaodwmoon Dominator
+		398150, -- Domination
 		-- Shadowmoon Exhumer
 		153268, -- Exhume the Crypts
 		-- Exhumed Spirit
@@ -56,6 +60,7 @@ function mod:GetOptions()
 		[152818] = L.shadowmoon_bonemender,
 		[152964] = L.void_spawn,
 		[398151] = L.shadowmoon_loyalist,
+		[398150] = L.shadowmoon_dominator,
 		[153268] = L.shadowmoon_exhumer,
 		[398206] = L.exhumed_spirit,
 		[156718] = L.monstrous_corpse_spider,
@@ -66,6 +71,7 @@ end
 function mod:OnBossEnable()
 	-- Shadowmoon Bone-Mender
 	self:Log("SPELL_CAST_START", "ShadowMend", 152818)
+	self:Log("SPELL_AURA_APPLIED", "ShadowWordFrailtyApplied", 152819)
 
 	-- Void Spawn
 	self:Log("SPELL_CAST_START", "VoidPulse", 152964)
@@ -73,6 +79,10 @@ function mod:OnBossEnable()
 
 	-- Shadowmoon Loyalist
 	self:Log("SPELL_AURA_APPLIED", "SinisterFocusApplied", 398151)
+
+	-- Shadowmoon Dominator
+	self:Log("SPELL_CAST_START", "Domination", 398150)
+	self:Log("SPELL_AURA_APPLIED", "DominationApplied", 398150)
 
 	-- Shadowmoon Exhumer
 	self:Log("SPELL_CAST_START", "ExhumeTheCrypts", 153268)
@@ -98,6 +108,13 @@ function mod:ShadowMend(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+function mod:ShadowWordFrailtyApplied(args)
+	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
 -- Void Spawn
 
 function mod:VoidPulse(args)
@@ -113,13 +130,25 @@ end
 -- Shadowmoon Loyalist
 
 function mod:SinisterFocusApplied(args)
-	if self:Dispeller("magic", true) and not self:Player(args.destFlags) then
+	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
 		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
--- Exhume the Crypts
+-- Shadowmoon Dominator
+
+function mod:Domination(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:DominationApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
+end
+
+-- Shadowmoon Exhumer
 
 function mod:ExhumeTheCrypts(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))

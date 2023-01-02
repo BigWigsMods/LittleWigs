@@ -28,11 +28,13 @@ BigWigs:AddSounds("Ner'zhul", {
 
 BigWigs:AddSounds("Shadowmoon Burial Grounds Trash", {
 	[152818] = "alert",
+	[152819] = "alert",
 	[152964] = "alert",
 	[153268] = "alert",
 	[153395] = "alarm",
 	[156718] = "warning",
 	[394512] = "long",
+	[398150] = {"alarm","warning"},
 	[398151] = "alert",
 	[398206] = "warning",
 })

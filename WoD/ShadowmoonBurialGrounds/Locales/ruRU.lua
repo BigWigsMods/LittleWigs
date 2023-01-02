@@ -10,6 +10,7 @@ if L then
 	L.shadowmoon_bonemender = "Подчинитель костей из клана Призрачной Луны"
 	L.void_spawn = "Дитя Бездны"
 	L.shadowmoon_loyalist = "Верная служительница из клана Призрачной Луны"
+	L.shadowmoon_dominator = "Поработитель из клана Призрачной Луны"
 	L.shadowmoon_exhumer = "Извлекатель душ из клана Призрачной Луны"
 	L.exhumed_spirit = "Эксгумированный дух"
 	L.monstrous_corpse_spider = "Чудовищный трупный паук"

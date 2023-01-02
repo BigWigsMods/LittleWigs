@@ -28,11 +28,13 @@ BigWigs:AddColors("Ner'zhul", {
 
 BigWigs:AddColors("Shadowmoon Burial Grounds Trash", {
 	[152818] = "yellow",
+	[152819] = {"blue","yellow"},
 	[152964] = "red",
 	[153268] = "yellow",
 	[153395] = "red",
 	[156718] = "orange",
 	[394512] = "orange",
+	[398150] = {"blue","red"},
 	[398151] = "yellow",
 	[398206] = "red",
 })

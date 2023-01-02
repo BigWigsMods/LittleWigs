@@ -10,6 +10,7 @@ if L then
 	L.shadowmoon_bonemender = "Curaossa Torvaluna"
 	L.void_spawn = "Creatura del Vuoto"
 	L.shadowmoon_loyalist = "Lealista Torvaluna"
+	L.shadowmoon_dominator = "Dominatore di Torvaluna"
 	L.shadowmoon_exhumer = "Esumatore Torvaluna"
 	L.exhumed_spirit = "Spirito Riesumato"
 	L.monstrous_corpse_spider = "Ragno Cadaverico Mostruoso"

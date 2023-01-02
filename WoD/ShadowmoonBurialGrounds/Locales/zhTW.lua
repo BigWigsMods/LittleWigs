@@ -10,6 +10,7 @@ if L then
 	L.shadowmoon_bonemender = "影月修骨者"
 	L.void_spawn = "虛無生靈"
 	L.shadowmoon_loyalist = "影月忠誠者"
+	--L.shadowmoon_dominator = "Shadowmoon Dominator"
 	L.shadowmoon_exhumer = "影月挖掘者"
 	L.exhumed_spirit = "掘出的靈魂"
 	L.monstrous_corpse_spider = "巨型屍蛛"

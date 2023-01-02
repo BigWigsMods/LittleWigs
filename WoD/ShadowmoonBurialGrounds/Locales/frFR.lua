@@ -10,6 +10,7 @@ if L then
 	L.shadowmoon_bonemender = "Répare-os ombrelune"
 	L.void_spawn = "Rejeton du Vide"
 	L.shadowmoon_loyalist = "Loyaliste ombrelune"
+	L.shadowmoon_dominator = "Dominateur ombrelune"
 	L.shadowmoon_exhumer = "Exhumeuse d’âmes ombrelune"
 	L.exhumed_spirit = "Esprit exhumé"
 	L.monstrous_corpse_spider = "Araignée nécrophage monstrueuse"

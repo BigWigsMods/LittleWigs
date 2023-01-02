@@ -10,6 +10,7 @@ if L then
 	L.shadowmoon_bonemender = "Cola-osso da Lua Negra"
 	L.void_spawn = "Rebento do Caos"
 	L.shadowmoon_loyalist = "Legalista da Lua Negra"
+	L.shadowmoon_dominator = "Dominador da Lua Negra"
 	L.shadowmoon_exhumer = "Exumadora da Lua Negra"
 	L.exhumed_spirit = "Espírito Exumado"
 	L.monstrous_corpse_spider = "Aranha Carniceira Monstruosa"
