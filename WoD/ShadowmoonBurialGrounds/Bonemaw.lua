@@ -43,6 +43,8 @@ function mod:GetOptions()
 		{153804, "FLASH"}, -- Inhale
 		"summon_worms",
 		"submerge",
+	}, nil, {
+		["summon_worms"] = CL.adds,
 	}
 end
 
@@ -147,7 +149,6 @@ end
 
 do
 	local prev = 0
-
 	function mod:InhaleInc()
 		local t = GetTime()
 		if t - prev > 5 then

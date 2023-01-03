@@ -11,7 +11,7 @@ if L then
 	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
 	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
 
-	--L.submerge = "Submerge"
+	L.submerge = "Submergir"
 	--L.submerge_desc = "Bonemaw submerges and repositions."
 	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
 end
