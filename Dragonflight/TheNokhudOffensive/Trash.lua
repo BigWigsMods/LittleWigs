@@ -215,8 +215,12 @@ function mod:Tempest(args)
 end
 
 function mod:SummonSquall(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	-- this is also cast when you first go near these mobs, so check for combat status before alerting
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Stormsurge Totem
