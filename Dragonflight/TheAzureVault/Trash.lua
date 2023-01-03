@@ -71,11 +71,11 @@ function mod:GetOptions()
 		-- Rune Seal Keeper
 		377488, -- Icy Bindings
 		-- Crystal Fury
-		{370764, "TANK"}, -- Piercing Shards
+		370764, -- Piercing Shards
 		-- Crystal Thrasher
 		370766, -- Crystalline Rupture
 		-- Arcane Construct
-		{387067, "TANK"}, -- Arcane Bash
+		387067, -- Arcane Bash
 	}, {
 		["custom_on_book_autotalk"] = L.book_of_translocation,
 		[397726] = L.shrieking_whelp,
@@ -243,6 +243,6 @@ end
 -- Arcane Construct
 
 function mod:ArcaneBash(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
