@@ -4,6 +4,7 @@ BigWigs:AddSounds("Patrol Captain Gerdo", {
 	[207278] = "long",
 	[207806] = "alert",
 	[207815] = "info",
+	[215204] = {"alert","warning"},
 	[219488] = "info",
 })
 

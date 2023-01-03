@@ -3,7 +3,8 @@ BigWigs:AddColors("Patrol Captain Gerdo", {
 	[207261] = "orange",
 	[207278] = "yellow",
 	[207806] = "yellow",
-	[207815] = "yellow",
+	[207815] = "cyan",
+	[215204] = {"blue","red"},
 	[219488] = "red",
 })
 
