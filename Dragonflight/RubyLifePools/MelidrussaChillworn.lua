@@ -34,6 +34,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FrostOverload", 373680)
 	self:Log("SPELL_AURA_REMOVED", "FrostOverloadOver", 373680)
 	self:Log("SPELL_AURA_APPLIED", "Chillstorm", 385518)
+	self:Log("SPELL_AURA_REMOVED", "ChillstormRemoved", 385518)
 	self:Log("SPELL_CAST_SUCCESS", "Hailbombs", 396044)
 end
 
@@ -109,6 +110,12 @@ function mod:Chillstorm(args)
 		self:PlaySound(372851, "alert", nil, args.destName)
 	end
 	self:CDBar(372851, 22.6)
+end
+
+function mod:ChillstormRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(372851)
+	end
 end
 
 function mod:Hailbombs(args)
