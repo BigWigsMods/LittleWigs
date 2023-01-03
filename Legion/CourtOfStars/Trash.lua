@@ -241,7 +241,7 @@ function mod:GetOptions()
 		209378, -- Whirling Blades (Imacu'tya)
 		397892, -- Scream of Pain (Imacu'tya)
 		207980, -- Disintegration Beam (Baalgar the Watchful)
-		{397907, "SAY"}, -- Impending Doom (Baalgar the Watchful)
+		{397907, "SAY", "SAY_COUNTDOWN"}, -- Impending Doom (Baalgar the Watchful)
 		211299, -- Searing Glare (Watchful Inquisitor)
 		212784, -- Eye Storm (Watchful Inquisitor)
 		211401, -- Drifting Embers (Blazing Imp)
@@ -319,8 +319,9 @@ function mod:OnBossEnable()
 	-- Baalgar the Watchful
 	self:Log("SPELL_CAST_START", "DisintegrationBeam", 207980)
 	self:Log("SPELL_AURA_APPLIED", "DisintegrationBeamApplied", 207980)
-	self:Log("SPELL_CAST_START", "ImpendingDoom", 397907)
+	self:Log("SPELL_CAST_SUCCESS", "ImpendingDoom", 397907)
 	self:Log("SPELL_AURA_APPLIED", "ImpendingDoomApplied", 397907)
+	self:Log("SPELL_AURA_REMOVED", "ImpendingDoomRemoved", 397907)
 	self:Death("BaalgarDeath", 104274)
 
 	-- Jazshariu
@@ -844,24 +845,38 @@ end
 -- Baalgar the Watchful
 
 function mod:DisintegrationBeam(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 6.1)
 end
 
 function mod:DisintegrationBeamApplied(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-	self:CastBar(args.spellId, 5)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "long", nil, args.destName)
 end
 
-function mod:ImpendingDoom(args)
-	self:CDBar(args.spellId, 14.6)
-end
+do
+	local playerList = {}
 
-function mod:ImpendingDoomApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+	function mod:ImpendingDoom(args)
+		playerList = {}
+		self:Bar(args.spellId, 14.6)
+	end
+
+	function mod:ImpendingDoomApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "orange", playerList, 2)
+		self:PlaySound(args.spellId, "alarm", nil, playerList)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 6)
+		end
+	end
+
+	function mod:ImpendingDoomRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(args.spellId)
+		end
 	end
 end
 
