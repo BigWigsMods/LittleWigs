@@ -62,7 +62,7 @@ function mod:OnEngage()
 	rushingWindsGoals = 0
 	sonicVulnerabilityStacks = 0
 	self:CDBar(376997, 3.7) -- Savage Peck
-	self:Bar(377004, 10.9) -- Deafening Screech
+	self:CDBar(377004, 10.1, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
 	self:Bar(377034, 15.8) -- Overpowering Gust
 end
 
@@ -87,6 +87,15 @@ function mod:GoalOfTheSearingBlaze(_, _, info)
 	local shownState = info.shownState
 	local barValue = info.barValue
 	if shownState == 1 and barValue == 3 then
+		if self:Mythic() then
+			-- reset the count in the Deafening Screech bar back to 1
+			local oldBarText = CL.count:format(self:SpellName(377004), sonicVulnerabilityStacks + 1) -- Deafening Screech (n)
+			local barTimeLeft = self:BarTimeLeft(oldBarText)
+			if barTimeLeft > .1 then
+				self:StopBar(oldBarText)
+				self:CDBar(377004, {barTimeLeft, 22.7}, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
+			end
+		end
 		sonicVulnerabilityStacks = 0
 		searingBlazeGoals = barValue
 		self:Message(376448, "red") -- Firestorm
@@ -111,6 +120,15 @@ function mod:GoalOfTheRushingWinds(_, _, info)
 	local shownState = info.shownState
 	local barValue = info.barValue
 	if shownState == 1 and barValue == 3 then
+		if self:Mythic() then
+			-- reset the count in the Deafening Screech bar back to 1
+			local oldBarText = CL.count:format(self:SpellName(377004), sonicVulnerabilityStacks + 1) -- Deafening Screech (n)
+			local barTimeLeft = self:BarTimeLeft(oldBarText)
+			if barTimeLeft > .1 then
+				self:StopBar(oldBarText)
+				self:CDBar(377004, {barTimeLeft, 22.7}, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
+			end
+		end
 		sonicVulnerabilityStacks = 0
 		rushingWindsGoals = barValue
 		self:Message(376467, "red") -- Gale Force
@@ -137,7 +155,7 @@ end
 function mod:OverpoweringGust(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 14.2)
+	self:CDBar(args.spellId, 28.6)
 end
 
 function mod:DeafeningScreech(args)
@@ -145,11 +163,13 @@ function mod:DeafeningScreech(args)
 		-- in Mythic difficulty each subsequent cast does more damage, reset whenever Firestorm or Gale Force are activated
 		sonicVulnerabilityStacks = sonicVulnerabilityStacks + 1
 		self:Message(args.spellId, "yellow", CL.count:format(CL.casting:format(args.spellName), sonicVulnerabilityStacks))
+		self:StopBar(CL.count:format(args.spellName, sonicVulnerabilityStacks))
+		self:CDBar(args.spellId, 22.7, CL.count:format(args.spellName, sonicVulnerabilityStacks + 1))
 	else
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:CDBar(args.spellId, 22.7)
 	end
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 22.7)
 end
 
 function mod:SavagePeck(args)
