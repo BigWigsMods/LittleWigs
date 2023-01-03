@@ -45,6 +45,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_ENERGIZE", "ArcaneOrbAbsorbed", 386088)
 	self:Log("SPELL_CAST_START", "ManaBombs", 386173)
 	self:Log("SPELL_AURA_APPLIED", "ManaBombApplied", 386181)
+	self:Log("SPELL_AURA_REMOVED", "ManaBombRemoved", 386181)
 	self:Log("SPELL_CAST_START", "ArcaneExpulsion", 385958)
 end
 
@@ -123,12 +124,18 @@ do
 	end
 
 	function mod:ManaBombApplied(args)
-		playerList[#playerList+1] = args.destName
+		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(386173, "yellow", playerList, 3)
 		self:PlaySound(386173, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(386173, args.spellName)
 			self:SayCountdown(386173, 4, args.spellName)
+		end
+	end
+
+	function mod:ManaBombRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(386173)
 		end
 	end
 end
