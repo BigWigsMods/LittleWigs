@@ -8,8 +8,11 @@ BigWigs:AddSounds("Sadana Bloodfury", {
 })
 
 BigWigs:AddSounds("Nhallish", {
+	[152792] = "alarm",
 	[152801] = "alarm",
-	[153067] = "warning",
+	[152979] = "info",
+	[153067] = "long",
+	[153623] = "alert",
 })
 
 BigWigs:AddSounds("Bonemaw", {
