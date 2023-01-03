@@ -62,7 +62,6 @@ local englishClueNames = {
 	"No Potions",
 	"Book",
 }
-local localized_clues = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -123,96 +122,6 @@ if L then
 	L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
 	L.hints = englishClueNames
-
-	-- Cape
-	L.clue_1_1 = "I heard the spy enjoys wearing capes."
-	L.clue_1_2 = "Someone mentioned the spy came in earlier wearing a cape."
-
-	-- No Cape
-	L.clue_2_1 = "I heard that the spy left their cape in the palace before coming here."
-	L.clue_2_2 = "I heard the spy dislikes capes and refuses to wear one."
-
-	-- Pouch
-	L.clue_3_1 = "A friend said the spy loves gold and a belt pouch filled with it."
-	L.clue_3_2 = "I heard the spy's belt pouch is filled with gold to show off extravagance."
-	L.clue_3_3 = "I heard the spy carries a magical pouch around at all times."
-	L.clue_3_4 = "I heard the spy's belt pouch is lined with fancy threading."
-	L.clue_3_5 = "" -- for ruRU
-	L.clue_3_6 = "" -- for ruRU
-
-	-- Potions
-	L.clue_4_1 = "I heard the spy brought along some potions... just in case."
-	L.clue_4_2 = "I'm pretty sure the spy has potions at the belt."
-	L.clue_4_3 = "I heard the spy brought along potions, I wonder why?"
-	L.clue_4_4 = "I didn't tell you this... but the spy is masquerading as an alchemist and carrying potions at the belt."
-	L.clue_4_5 = "" -- for ruRU
-	L.clue_4_6 = "" -- for ruRU
-
-	-- Long Sleeves
-	L.clue_5_1 = "I just barely caught a glimpse of the spy's long sleeves earlier in the evening."
-	L.clue_5_2 = "I heard the spy's outfit has long sleeves tonight."
-	L.clue_5_3 = "Someone said the spy is covering up their arms with long sleeves tonight."
-	L.clue_5_4 = "A friend of mine mentioned the spy has long sleeves on."
-	L.clue_5_5 = "" -- for ruRU
-
-	-- Short Sleeves
-	L.clue_6_1 = "I heard the spy enjoys the cool air and is not wearing long sleeves tonight."
-	L.clue_6_2 = "A friend of mine said she saw the outfit the spy was wearing. It did not have long sleeves."
-	L.clue_6_3 = "Someone told me the spy hates wearing long sleeves."
-	L.clue_6_4 = "I heard the spy wears short sleeves to keep their arms unencumbered."
-	L.clue_6_5 = "" -- for ruRU
-
-	-- Gloves
-	L.clue_7_1 = "I heard the spy always dons gloves."
-	L.clue_7_2 = "There's a rumor that the spy always wears gloves."
-	L.clue_7_3 = "Someone said the spy wears gloves to cover obvious scars."
-	L.clue_7_4 = "I heard the spy carefully hides their hands."
-	L.clue_7_5 = "" -- for ruRU
-	L.clue_7_6 = "" -- for ruRU
-
-	-- No Gloves
-	L.clue_8_1 = "There's a rumor that the spy never has gloves on."
-	L.clue_8_2 = "I heard the spy dislikes wearing gloves."
-	L.clue_8_3 = "I heard the spy avoids having gloves on, in case some quick actions are needed."
-	L.clue_8_4 = "You know... I found an extra pair of gloves in the back room. The spy is likely to be bare handed somewhere around here."
-	L.clue_8_5 = "" -- for ruRU
-	L.clue_8_6 = "" -- for ruRU
-	L.clue_8_7 = "" -- for ruRU
-
-	-- Male
-	L.clue_9_1 = "A guest said she saw him entering the manor alongside the Grand Magistrix."
-	L.clue_9_2 = "I heard somewhere that the spy isn't female."
-	L.clue_9_3 = "I heard the spy is here and he's very good looking."
-	L.clue_9_4 = "One of the musicians said he would not stop asking questions about the district."
-	L.clue_9_5 = "" -- for ruRU
-	L.clue_9_6 = "" -- for ruRU
-
-	-- Female
-	L.clue_10_1 = "A guest saw both her and Elisande arrive together earlier."
-	L.clue_10_2 = "I hear some woman has been constantly asking about the district..."
-	L.clue_10_3 = "Someone's been saying that our new guest isn't male."
-	L.clue_10_4 = "They say that the spy is here and she's quite the sight to behold."
-	L.clue_10_5 = "" -- for ruRU
-
-	-- Light Vest
-	L.clue_11_1 = "The spy definitely prefers the style of light colored vests."
-	L.clue_11_2 = "I heard that the spy is wearing a lighter vest to tonight's party."
-	L.clue_11_3 = "People are saying the spy is not wearing a darker vest tonight."
-
-	-- Dark Vest
-	L.clue_12_1 = "I heard the spy's vest is a dark, rich shade this very night."
-	L.clue_12_2 = "The spy enjoys darker colored vests... like the night."
-	L.clue_12_3 = "Rumor has it the spy is avoiding light colored clothing to try and blend in more."
-	L.clue_12_4 = "The spy definitely prefers darker clothing."
-
-	-- No Potions
-	L.clue_13_1 = "I heard the spy is not carrying any potions around."
-	L.clue_13_2 = "A musician told me she saw the spy throw away their last potion and no longer has any left."
-
-	-- Book
-	L.clue_14_1 = "I heard the spy always has a book of written secrets at the belt."
-	L.clue_14_2 = "Rumor has is the spy loves to read and always carries around at least one book."
-	L.clue_14_3 = "" -- for ruRU
 end
 
 --------------------------------------------------------------------------------
@@ -280,19 +189,6 @@ function mod:GetOptions()
 	}
 end
 
-function mod:OnRegister()
-	-- populate our clue lookup table
-	for i = 1, 14 do
-		local j = 1
-		local clue = L[("clue_%d_%d"):format(i, j)]
-		while clue and clue ~= "" do
-			localized_clues[clue] = i
-			j = j + 1
-			clue = L[("clue_%d_%d"):format(i, j)]
-		end
-	end
-end
-
 function mod:OnBossEnable()
 	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
 	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006, 211470)
@@ -338,7 +234,8 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_BossComm")
 	self:RegisterMessage("DBM_AddonMessage") -- Catch DBM clues
 
-	-- Purely because DBM, and maybe others, call CloseGossip. That is just sooooo useful.
+	-- ensure LittleWigs handles this event first - this prevents other addons from advancing
+	-- the gossip or closing the frame before we have a chance to read the gossip ID
 	local frames = {GetFramesRegisteredForEvent("GOSSIP_SHOW")}
 	for i = 1, #frames do
 		frames[i]:UnregisterEvent("GOSSIP_SHOW")
@@ -354,10 +251,21 @@ end
 --
 
 do
-	local autoTalk = {
-		[107486] = true, -- Chatty Rumormonger
-		[106468] = true, -- Ly'leth Lunastre
-		[105729] = true, -- Signal Lantern: Boat at the start
+	local clueIds = {
+		[45674] = 1,  -- Cape
+		[45675] = 2,  -- No Cape
+		[45660] = 3,  -- Pouch
+		[45666] = 4,  -- Potions
+		[45676] = 5,  -- Long Sleeves
+		[45677] = 6,  -- Short Sleeves
+		[45673] = 7,  -- Gloves
+		[45672] = 8,  -- No Gloves
+		[45657] = 9,  -- Male
+		[45658] = 10, -- Female
+		[45636] = 11, -- Light Vest
+		[45635] = 12, -- Dark Vest
+		[45667] = 13, -- No Potions
+		[45659] = 14, -- Book
 	}
 
 	local buffItems = {
@@ -518,11 +426,10 @@ do
 		return ("|T%d:0|t"):format(id)
 	end
 
-	local knownClues, clueCount, timer = {}, 0, nil
+	local knownClues, clueCount = {}, 0
 
 	function mod:OnBossDisable()
 		clueCount = 0
-		timer = nil
 		knownClues = {}
 	end
 
@@ -550,45 +457,33 @@ do
 		end
 	end
 
-	local function printNew(locale, clue)
-		timer = nil
-		knownClues[clue] = true -- Throttle to only show once per new message
-		if clue == C_GossipInfo.GetText() then -- Extra safety
-			RaidNotice_AddMessage(RaidWarningFrame, "LittleWigs: Unknown clue detected, see chat for info.", {r=1,g=1,b=1})
-			BigWigs:Print("LittleWigs has found an unknown clue, please report it on Discord or GitHub so we can add it and shorten the message.")
-			BigWigs:Error(("|cffffff00TELL THE AUTHORS:|r New clue '%s' with '%s'"):format(clue, locale))
-		end
-	end
-
-	local prev = 0
 	function mod:GOSSIP_SHOW()
-		if timer then
-			self:CancelTimer(timer)
-			timer = nil
-		end
-
 		local mobId = self:MobId(self:UnitGUID("npc"))
-		local spyEventHelper = self:GetOption("spy_helper") > 0
-		if autoTalk[mobId] or buffItems[mobId] then
-			if not self:GetGossipOptions() and mobId == 107486 then -- Chatty Rumormonger
-				local clue = C_GossipInfo.GetText()
-				local num = localized_clues[clue]
-				if num then
-					prev = GetTime()
-					if spyEventHelper and not knownClues[num] then
-						local text = L.hints[num]
-						sendChatMessage(text, englishClueNames[num] ~= text and englishClueNames[num])
-					end
-					mod:Sync("clue", num)
-				else
-					-- GetTime: Sometimes it's 1st screen (chat) > 2nd screen (clue) > 1st screen (chat, no gossip selection) and would trigger this
-					if spyEventHelper and not knownClues[clue] and (GetTime()-prev) > 2 then
-						timer = self:ScheduleTimer(printNew, 2, GetLocale(), clue)
+		if self:GetOption("custom_on_use_buff_items") and buffItems[mobId] then
+			self:SelectGossipOption(1)
+			return
+		end
+		local spyHelperEnabled = self:GetOption("spy_helper") > 0
+		for gossipId, clueId in pairs(clueIds) do
+			if self:GetGossipID(gossipId) then
+				if spyHelperEnabled then
+					self:SelectGossipID(gossipId)
+					if not knownClues[clueId] then
+						local text = L.hints[clueId]
+						sendChatMessage(text, englishClueNames[clueId] ~= text and englishClueNames[clueId])
 					end
 				end
+				mod:Sync("clue", clueId)
+				return
 			end
-			if (spyEventHelper and autoTalk[mobId]) or (self:GetOption("custom_on_use_buff_items") and buffItems[mobId]) then
-				self:SelectGossipOption(1)
+		end
+		if spyHelperEnabled then
+			if self:GetGossipID(45624) then
+				-- Use the Signal Lantern to start the boat RP
+				self:SelectGossipID(45624)
+			elseif self:GetGossipID(45656) then
+				-- Get the costume from Ly'leth
+				self:SelectGossipID(45656)
 			end
 		end
 	end
@@ -597,6 +492,8 @@ do
 		if msg:find(L.spyFoundPattern) and self:GetOption("spy_helper") > 0 then
 			self:MessageOld("spy_helper", "green", "info", L.spyFound:format(self:ColorName(target)), false)
 			self:CloseInfo("spy_helper")
+			clueCount = 0
+			knownClues = {}
 			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat, englishSpyFound ~= L.spyFoundChat and englishSpyFound)
 				self:CustomIcon(false, "target", 8)
