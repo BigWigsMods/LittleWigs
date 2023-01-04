@@ -78,6 +78,7 @@ function mod:GetOptions()
 		377912, -- Expel Intruders
 		-- Alpha Eagle
 		377389, -- Call of the Flock
+		377383, -- Gust
 		-- Vile Lasher
 		390912, -- Detonation Seeds
 		-- Algeth'ar Security
@@ -133,6 +134,7 @@ function mod:OnBossEnable()
 
 	-- Alpha Eagle
 	self:Log("SPELL_CAST_START", "CallOfTheFlock", 377389)
+	self:Log("SPELL_CAST_START", "Gust", 377383)
 
 	-- Vile Lasher
 	self:Log("SPELL_CAST_SUCCESS", "DetonationSeeds", 390912)
@@ -294,6 +296,11 @@ end
 function mod:CallOfTheFlock(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:Gust(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Vile Lasher
