@@ -200,7 +200,7 @@ end
 -- Nokhud Beastmaster
 
 function mod:HuntPreyApplied(args)
-	if self:Me(args.destGUID) then
+	if self:Me(args.destGUID) and not self:Tank() then
 		self:PersonalMessage(args.spellId, nil, CL.fixate)
 		self:PlaySound(args.spellId, "warning")
 	end
