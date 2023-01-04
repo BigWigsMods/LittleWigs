@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("Ruby Life Pools Trash", "koKR")
 if not L then return end
 if L then
 	L.primal_juggernaut = "원시 강력거수"
+	L.flashfrost_earthshaper = "섬광서리 대지창조자"
 	L.flashfrost_chillweaver = "섬광서리 한기술사"
 	L.defier_draghar = "반항자 드라가르"
 	L.primalist_flamedancer = "원시술사 불꽃무용가"

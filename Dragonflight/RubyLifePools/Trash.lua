@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	188244, -- Primal Juggernaut
+	187969, -- Flashfrost Earthshaper
 	188067, -- Flashfrost Chillweaver
 	187897, -- Defier Draghar
 	190206, -- Primalist Flamedancer
@@ -26,6 +27,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.primal_juggernaut = "Primal Juggernaut"
+	L.flashfrost_earthshaper = "Flashfrost Earthshaper"
 	L.flashfrost_chillweaver = "Flashfrost Chillweaver"
 	L.defier_draghar = "Defier Draghar"
 	L.primalist_flamedancer = "Primalist Flamedancer"
@@ -45,6 +47,8 @@ function mod:GetOptions()
 	return {
 		-- Primal Juggernaut
 		372696, -- Excavating Blast
+		-- Flashfrost Earthshaper
+		372735, -- Tectonic Slam
 		-- Flashfrost Chillweaver
 		372743, -- Ice Shield
 		-- Defier Draghar
@@ -65,12 +69,14 @@ function mod:GetOptions()
 		-- Flamegullet
 		391723, -- Flame Breath
 		392569, -- Molten Blood
+		{392394, "TANK_HEALER"}, -- Fire Maw
 		-- Tempest Channeler
 		392486, -- Lightning Storm
 		-- Flame Channeler
 		392451, -- Flashfire
 	}, {
 		[372696] = L.primal_juggernaut,
+		[372735] = L.flashfrost_earthshaper,
 		[372743] = L.flashfrost_chillweaver,
 		[372087] = L.defier_draghar,
 		[385536] = L.primalist_flamedancer,
@@ -86,6 +92,9 @@ end
 function mod:OnBossEnable()
 	-- Primal Juggernaut
 	self:Log("SPELL_CAST_START", "ExcavatingBlast", 372696)
+
+	-- Flashfrost Earthshaper
+	self:Log("SPELL_CAST_START", "TectonicSlam", 372735)
 
 	-- Flashfrost Chillweaver
 	self:Log("SPELL_CAST_SUCCESS", "IceShield", 372743)
@@ -116,6 +125,7 @@ function mod:OnBossEnable()
 
 	-- Flamegullet
 	self:Log("SPELL_CAST_START", "FlameBreath", 391723)
+	self:Log("SPELL_CAST_START", "FireMaw", 392394)
 	self:Log("SPELL_AURA_APPLIED", "MoltenBlood", 392569)
 	self:Death("FlamegulletDeath", 197697)
 
@@ -135,6 +145,13 @@ end
 function mod:ExcavatingBlast(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Flashfrost Earthshaper
+
+function mod:TectonicSlam(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Flashfrost Chillweaver
@@ -160,7 +177,7 @@ function mod:BlazingRush(args)
 end
 
 function mod:SteelBarrage(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 18.2)
 end
@@ -256,6 +273,12 @@ function mod:FlameBreath(args)
 	self:Bar(args.spellId, 14.5)
 end
 
+function mod:FireMaw(args)
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 23.0)
+end
+
 function mod:MoltenBlood(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
@@ -263,6 +286,7 @@ end
 
 function mod:FlamegulletDeath(args)
 	self:StopBar(391723) -- Flame Breath
+	self:StopBar(392394) -- Fire Maw
 end
 
 -- Tempest Channeler

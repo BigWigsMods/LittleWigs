@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("Ruby Life Pools Trash", "esES") or BigWigs:NewB
 if not L then return end
 if L then
 	L.primal_juggernaut = "Gigante primigenio"
+	L.flashfrost_earthshaper = "Modelador de tierra Raudoescarcha"
 	L.flashfrost_chillweaver = "Tejefrío Raudoescarcha"
 	L.defier_draghar = "Desafiador Draghar"
 	L.primalist_flamedancer = "Primalista danzallamas"

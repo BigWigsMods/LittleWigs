@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("Ruby Life Pools Trash", "ruRU")
 if not L then return end
 if L then
 	L.primal_juggernaut = "Изначальный исполин"
+	L.flashfrost_earthshaper = "Демиург Морозной Вспышки"
 	L.flashfrost_chillweaver = "Ткач Холода Морозной Вспышки"
 	L.defier_draghar = "Драгхар Отрицатель"
 	L.primalist_flamedancer = "Воин стихий – танцор пламени"
