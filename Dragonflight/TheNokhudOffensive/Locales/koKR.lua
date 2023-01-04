@@ -4,6 +4,7 @@ if L then
 	L.nokhud_plainstomper = "노쿠드 평야활보자"
 	L.nokhud_hornsounder = "노두크 뿔피리꾼"
 	L.nokhud_beastmaster = "노쿠드 야수조련사"
+	L.nokhud_longbow = "노쿠드 장궁"
 	L.primal_stormshield = "원시 폭풍방패"
 	L.primalist_stormspeaker = "원시술사 폭풍예언자"
 	L.stormsurge_totem = "폭풍쇄도 토템"

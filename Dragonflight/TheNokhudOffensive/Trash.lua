@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	192796, -- Nokhud Hornsounder
 	192794, -- Nokhud Beastmaster
 	192803, -- War Ohuna
+	192789, -- Nokhud Longbow
 	194896, -- Primal Stormshield
 	194894, -- Primalist Stormspeaker
 	194897, -- Stormsurge Totem
@@ -41,6 +42,7 @@ if L then
 	L.nokhud_plainstomper = "Nokhud Plainstomper"
 	L.nokhud_hornsounder = "Nokhud Hornsounder"
 	L.nokhud_beastmaster = "Nokhud Beastmaster"
+	L.nokhud_longbow = "Nokhud Longbow"
 	L.primal_stormshield = "Primal Stormshield"
 	L.primalist_stormspeaker = "Primalist Stormspeaker"
 	L.stormsurge_totem = "Stormsurge Totem"
@@ -67,6 +69,8 @@ function mod:GetOptions()
 		383823, -- Rally the Clan
 		-- Nokhud Beastmaster
 		334610, -- Hunt Prey
+		-- Nokhud Longbow
+		384476, -- Rain of Arrows
 		-- Primal Stormshield
 		{386223, "DISPEL"}, -- Stormshield
 		-- Primalist Stormspeaker
@@ -97,6 +101,7 @@ function mod:GetOptions()
 		[384365] = L.nokhud_plainstomper,
 		[383823] = L.nokhud_hornsounder,
 		[334610] = L.nokhud_beastmaster,
+		[384476] = L.nokhud_longbow,
 		[386223] = L.primal_stormshield,
 		[386024] = L.primalist_stormspeaker,
 		[386694] = L.stormsurge_totem,
@@ -123,6 +128,9 @@ function mod:OnBossEnable()
 
 	-- Nokhud Beastmaster
 	self:Log("SPELL_AURA_APPLIED", "HuntPreyApplied", 334610)
+
+	-- Nokhud Longbow
+	self:Log("SPELL_CAST_START", "RainOfArrows", 384476)
 
 	-- Primal Stormshield
 	self:Log("SPELL_AURA_APPLIED", "StormshieldApplied", 386223)
@@ -194,8 +202,15 @@ end
 function mod:HuntPreyApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId, nil, CL.fixate)
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "warning")
 	end
+end
+
+-- Nokhud Longbow
+
+function mod:RainOfArrows(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
 end
 
 -- Primal Stormshield

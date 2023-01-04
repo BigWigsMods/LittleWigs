@@ -4,6 +4,7 @@ if L then
 	L.nokhud_plainstomper = "諾庫德平原踐踏者"
 	L.nokhud_hornsounder = "諾庫德號角手"
 	--L.nokhud_beastmaster = "Nokhud Beastmaster"
+	--L.nokhud_longbow = "Nokhud Longbow"
 	L.primal_stormshield = "洪荒風暴盾衛"
 	--L.primalist_stormspeaker = "Primalist Stormspeaker"
 	--L.stormsurge_totem = "Stormsurge Totem"

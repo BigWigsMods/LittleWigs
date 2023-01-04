@@ -4,6 +4,7 @@ if L then
 	L.nokhud_plainstomper = "Равнинный топотун из клана Нокхуд"
 	L.nokhud_hornsounder = "Трубач из клана Нокхуд"
 	L.nokhud_beastmaster = "Повелительница зверей из клана Нокхуд"
+	L.nokhud_longbow = "Лучница из клана Нокхуд"
 	L.primal_stormshield = "Изначальный щит бури"
 	L.primalist_stormspeaker = "Воин стихий – буревестник"
 	L.stormsurge_totem = "Тотем энергии бури"

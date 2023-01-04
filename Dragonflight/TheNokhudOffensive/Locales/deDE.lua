@@ -4,6 +4,7 @@ if L then
 	L.nokhud_plainstomper = "Ebenenstampfer der Nokhud"
 	L.nokhud_hornsounder = "Horntöner der Nokhud"
 	L.nokhud_beastmaster = "Bestienmeister der Nokhud"
+	L.nokhud_longbow = "Langbogen der Nokhud"
 	L.primal_stormshield = "Ursturmschild"
 	L.primalist_stormspeaker = "Sturmsprecher der Primalisten"
 	L.stormsurge_totem = "Totem der Sturmwoge"

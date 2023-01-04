@@ -4,6 +4,7 @@ if L then
 	L.nokhud_plainstomper = "Planiça Nokhid"
 	L.nokhud_hornsounder = "Corneteira Nokhid"
 	L.nokhud_beastmaster = "Senhora das Feras Nokhid"
+	L.nokhud_longbow = "Arco Longo Nokhid"
 	L.primal_stormshield = "Escudo Tonante Primevo"
 	L.primalist_stormspeaker = "Voz da Tempestade Primevista"
 	L.stormsurge_totem = "Totem de Torrente de Tempestade"
