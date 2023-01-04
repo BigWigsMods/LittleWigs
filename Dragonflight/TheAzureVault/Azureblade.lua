@@ -35,8 +35,8 @@ function mod:OnEngage()
 	self:CDBar(384223, 3.3) -- Summon Draconic Image
 	self:CDBar(372222, 5.2) -- Arcane Cleave
 	self:CDBar(385578, 10.6) -- Ancient Orb
-	-- 20s energy loss + ~3.1s delay
-	self:CDBar(384132, 23.1) -- Overwhelming Energy
+	-- 25s energy loss + ~1.8s delay
+	self:CDBar(384132, 26.8) -- Overwhelming Energy
 end
 
 --------------------------------------------------------------------------------
@@ -62,8 +62,8 @@ do
 			self:SetStage(1)
 			self:Message(384132, "green", CL.over:format(self:SpellName(384132))) -- Overwhelming Energy Over
 			self:PlaySound(384132, "info")
-			-- 40s energy loss + ~3.1s delay (TODO confirm delay)
-			self:CDBar(384132, 43.1) -- Overwhelming Energy
+			-- 50s energy loss + ~4.1s delay
+			self:CDBar(384132, 54.1) -- Overwhelming Energy
 		end
 	end
 end
