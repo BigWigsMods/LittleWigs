@@ -7,13 +7,13 @@ end
 
 L = BigWigs:NewBossLocale("Bonemaw", "zhCN")
 if L then
-	--L.summon_worms = "Summon Carrion Worms"
-	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
-	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
+	L.summon_worms = "召唤食腐蛆虫"
+	L.summon_worms_desc = "骨喉召唤两个食腐蛆虫。"
+	L.summon_worms_trigger = "骨喉刺耳的尖叫声引来了附近的食腐蛆虫！"
 
 	L.submerge = "下潜"
-	--L.submerge_desc = "Bonemaw submerges and repositions."
-	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
+	L.submerge_desc = "骨喉下潜和重现。"
+	L.submerge_trigger = "骨喉嘶鸣着退回了暗影深渊！"
 end
 
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "zhCN")
