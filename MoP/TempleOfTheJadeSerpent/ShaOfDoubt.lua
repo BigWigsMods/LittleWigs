@@ -63,7 +63,7 @@ do
 
 	function mod:TouchOfNothingness(args)
 		playerList = {}
-		self:CDBar(args.spellId, 15)
+		self:CDBar(args.spellId, 20.5)
 	end
 
 	function mod:TouchOfNothingnessApplied(args)
