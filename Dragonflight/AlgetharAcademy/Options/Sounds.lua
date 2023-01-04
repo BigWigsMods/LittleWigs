@@ -40,6 +40,8 @@ BigWigs:AddSounds("Algeth'ar Academy Trash", {
 	[377383] = "alarm",
 	[377389] = "warning",
 	[377912] = "alarm",
+	[377991] = "alert",
+	[378003] = "alarm",
 	[387843] = {"alarm","alert"},
 	[387862] = "warning",
 	[387910] = {"alarm","underyou"},
