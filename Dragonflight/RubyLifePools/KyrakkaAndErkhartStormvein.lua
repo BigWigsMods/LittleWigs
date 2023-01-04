@@ -118,20 +118,19 @@ end
 function mod:WindsOfChange(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 17)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:InterruptingCloudburst(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 17)
-	self:CastBar(args.spellId, 3)
+	self:CDBar(args.spellId, 19)
 end
 
 function mod:Stormslam(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 9.7)
+	self:CDBar(args.spellId, 17)
 end
 
 function mod:StormslamApplied(args)
