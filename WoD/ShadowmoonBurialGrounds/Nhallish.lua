@@ -45,7 +45,7 @@ end
 function mod:PlanarShift(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:weBar(args.spellId, 77.7)
+	self:Bar(args.spellId, 77.7)
 end
 
 function mod:VoidVortex(args)
