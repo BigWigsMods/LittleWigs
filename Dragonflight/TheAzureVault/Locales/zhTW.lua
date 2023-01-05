@@ -14,4 +14,5 @@ if L then
 	--L.crystal_fury = "Crystal Fury"
 	L.crystal_thrasher = "水晶痛擊者"
 	L.arcane_construct = "秘法傀儡"
+	--L.drakonid_breaker = "Drakonid Breaker"
 end

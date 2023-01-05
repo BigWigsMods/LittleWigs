@@ -25,7 +25,8 @@ mod:RegisterEnableMob(
 	187155, -- Rune Seal Keeper
 	196116, -- Crystal Fury
 	196117, -- Crystal Thrasher
-	186740  -- Arcane Construct
+	186740, -- Arcane Construct
+	187240  -- Drakonid Breaker
 )
 
 --------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ if L then
 	L.crystal_fury = "Crystal Fury"
 	L.crystal_thrasher = "Crystal Thrasher"
 	L.arcane_construct = "Arcane Construct"
+	L.drakonid_breaker = "Drakonid Breaker"
 end
 
 --------------------------------------------------------------------------------
@@ -76,6 +78,8 @@ function mod:GetOptions()
 		370766, -- Crystalline Rupture
 		-- Arcane Construct
 		387067, -- Arcane Bash
+		-- Drakonid Breaker
+		396991, -- Bestial Roar
 	}, {
 		["custom_on_book_autotalk"] = L.book_of_translocation,
 		[397726] = L.shrieking_whelp,
@@ -87,6 +91,7 @@ function mod:GetOptions()
 		[370764] = L.crystal_fury,
 		[370766] = L.crystal_thrasher,
 		[387067] = L.arcane_construct,
+		[396991] = L.drakonid_breaker,
 	}
 end
 
@@ -125,6 +130,9 @@ function mod:OnBossEnable()
 
 	-- Arcane Construct
 	self:Log("SPELL_CAST_START", "ArcaneBash", 387067)
+
+	-- Drakonid Breaker
+	self:Log("SPELL_CAST_START", "BestialRoar", 396991)
 end
 
 --------------------------------------------------------------------------------
@@ -243,6 +251,13 @@ end
 -- Arcane Construct
 
 function mod:ArcaneBash(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Drakonid Breaker
+
+function mod:BestialRoar(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end

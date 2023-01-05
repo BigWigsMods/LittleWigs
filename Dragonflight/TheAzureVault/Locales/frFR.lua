@@ -14,4 +14,5 @@ if L then
 	L.crystal_fury = "Fureur de cristal"
 	L.crystal_thrasher = "Cogneur de cristal"
 	L.arcane_construct = "Assemblage arcanique"
+	L.drakonid_breaker = "Briseuse drakônide"
 end

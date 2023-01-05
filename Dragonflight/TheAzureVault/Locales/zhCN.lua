@@ -14,4 +14,5 @@ if L then
 	L.crystal_fury = "水晶之怒"
 	L.crystal_thrasher = "水晶痛击者"
 	L.arcane_construct = "奥术构造体"
+	L.drakonid_breaker = "龙人破坏者"
 end
