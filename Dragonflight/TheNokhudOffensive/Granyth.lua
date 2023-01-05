@@ -141,7 +141,9 @@ function mod:Lanced(args)
 	self:Message(386530, "green", args.spellName) -- Dragonkiller Lance
 	self:PlaySound(386530, "info") -- Dragonkiller Lance
 	self:StopBar(CL.cast:format(self:SpellName(388283))) -- Eruption
-	self:CDBar(386320, 5.3) -- Summon Saboteur
+	if self:Mythic() then
+		self:CDBar(386320, 5.3) -- Summon Saboteur
+	end
 	self:CDBar(388817, 15.4) -- Shards of Stone
 	self:CDBar(385916, 20.1) -- Tectonic Stomp
 	self:CDBar(388283, 33.1) -- Eruption 5s stun, 27s energy gain, ~1s delay
