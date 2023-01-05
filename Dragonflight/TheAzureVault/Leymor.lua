@@ -35,9 +35,9 @@ end
 
 function mod:OnEngage()
 	self:Bar(374364, 3.6) -- Ley-Line Sprouts
-	self:Bar(374789, 10.7) -- Infused Strike
-	self:Bar(386660, 20.5) -- Erupting Fissure
-	self:Bar(374567, 30.2) -- Explosive Brand
+	self:Bar(374789, 10.6) -- Infused Strike
+	self:Bar(386660, 20.3) -- Erupting Fissure
+	self:Bar(374567, 30.1) -- Explosive Brand
 	self:Bar(374720, 45.8) -- Consuming Stomp
 end
 
@@ -48,13 +48,13 @@ end
 function mod:LeyLineSprouts(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 49.4)
+	self:Bar(args.spellId, 48.7)
 end
 
 function mod:ExplosiveBrand(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 49.4)
+	self:Bar(args.spellId, 48.7)
 end
 
 function mod:ExplosiveBrandApplied(args)
@@ -66,17 +66,17 @@ end
 function mod:EruptingFissure(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 49.4)
+	self:Bar(args.spellId, 48.7)
 end
 
 function mod:ConsumingStomp(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 49.4) -- TODO assumed, needs confirmation
+	self:Bar(args.spellId, 48.7)
 end
 
 function mod:InfusedStrike(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 49.4)
+	self:Bar(args.spellId, 48.7)
 end
