@@ -30,7 +30,7 @@ BigWigs:AddColors("Teera And Maruuk", {
 BigWigs:AddColors("Balakar Khan", {
 	[375937] = "purple",
 	[375943] = "red",
-	[376660] = {"blue","yellow"},
+	[376634] = {"blue","yellow"},
 	[376683] = "orange",
 	[376827] = {"blue","purple","red"},
 	[376864] = {"blue","yellow"},

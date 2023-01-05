@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		-- Stage One: Balakar's Might
-		{376660, "SAY"}, -- Iron Spear
+		{376634, "SAY"}, -- Iron Spear
 		376683, -- Iron Stampede
 		375943, -- Upheaval
 		{375937, "TANK_HEALER"}, -- Rending Strike
@@ -32,10 +32,9 @@ function mod:GetOptions()
 		-- Stage Two: The Storm Unleashed
 		{376864, "SAY"}, -- Static Spear
 		376892, -- Crackling Upheaval
-		-- TODO Crackling Cloud (Mythic only)
 		{376827, "DISPEL"}, -- Conductive Strike
 	}, {
-		[376660] = -25185, -- Stage One: Balakar's Might
+		[376634] = -25185, -- Stage One: Balakar's Might
 		[376727] = -25192, -- Intermission: Stormwinds
 		[376864] = -25187, -- Stage Two: The Storm Unleashed
 	}
@@ -43,6 +42,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stage One: Balakar's Might
+	self:Log("SPELL_AURA_APPLIED", "IronSpearApplied", 376634)
 	self:Log("SPELL_CAST_START", "IronSpear", 376644)
 	self:Log("SPELL_CAST_START", "IronStampede", 376683)
 	self:Log("SPELL_CAST_START", "Upheaval", 375943)
@@ -54,6 +54,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CracklingShieldRemoved", 376724)
 
 	-- Stage Two: The Storm Unleashed
+	self:Log("SPELL_AURA_APPLIED", "StaticSpearApplied", 376864)
 	self:Log("SPELL_CAST_START", "StaticSpear", 376865)
 	self:Log("SPELL_CAST_START", "CracklingUpheaval", 376892)
 	self:Log("SPELL_CAST_START", "ConductiveStrike", 376827)
@@ -64,8 +65,8 @@ function mod:OnEngage()
 	tankComboCount = 0
 	self:SetStage(1)
 	self:Bar(375937, 8) -- Rending Strike
-	self:Bar(376660, 21.5) -- Iron Spear
-	self:Bar(375943, 37) -- Upheaval TODO confirm
+	self:Bar(376634, 21.5) -- Iron Spear
+	self:Bar(375943, 37) -- Upheaval
 end
 
 --------------------------------------------------------------------------------
@@ -75,17 +76,19 @@ end
 -- Stage One: Balakar's Might
 
 do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(376660, "yellow", name)
-		self:PlaySound(376660, "alarm", nil, name)
-		if self:Me(guid) then
-			self:Say(376660)
+	local playerName
+
+	function mod:IronSpearApplied(args)
+		playerName = args.destName
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
 		end
 	end
 
 	function mod:IronSpear(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		-- TODO unknown CD
+		self:TargetMessage(376634, "yellow", playerName)
+		self:PlaySound(376634, "alarm", nil, playerName)
+		self:Bar(376634, 37)
 	end
 end
 
@@ -97,14 +100,19 @@ end
 function mod:Upheaval(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO unknown CD
+	self:Bar(args.spellId, 37)
 end
 
 function mod:RendingStrike(args)
-	tankComboCount = tankComboCount + 1
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, tankComboCount == 1 and 22 or 17) -- TODO confirm exact pattern
+	-- pull:8.0, 22.0, 15.0, 22.0, 15.0
+	tankComboCount = tankComboCount + 1
+	if tankComboCount % 2 == 1 then
+		self:Bar(args.spellId, 22)
+	else
+		self:Bar(args.spellId, 15)
+	end
 end
 
 -- Intermission: Stormwinds
@@ -135,37 +143,44 @@ end
 -- Stage Two: The Storm Unleashed
 
 do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(376864, "yellow", name)
-		self:PlaySound(376864, "alarm", nil, name)
-		if self:Me(guid) then
-			self:Say(376864)
+	local playerName
+
+	function mod:StaticSpearApplied(args)
+		playerName = args.destName
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
 		end
 	end
 
 	function mod:StaticSpear(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		-- TODO unknown CD
+		self:TargetMessage(376864, "yellow", playerName)
+		self:PlaySound(376864, "alarm", nil, playerName)
+		self:Bar(376864, 39)
 	end
 end
 
 function mod:CracklingUpheaval(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO unknown CD
+	self:Bar(args.spellId, 39)
 end
 
 function mod:ConductiveStrike(args)
-	if self:Tank() or self:Healer() or self:Dispeller("magic", false, args.spellId) then
-		tankComboCount = tankComboCount + 1
+	if self:Tank() or self:Healer() or self:Dispeller("magic", nil, args.spellId) then
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alert")
-		self:Bar(args.spellId, tankComboCount == 1 and 22 or 17) -- TODO confirm exact pattern
+		-- pull:8, 22.0, 17.0, 22.0, 17.0
+		tankComboCount = tankComboCount + 1
+		if tankComboCount % 2 == 1 then
+			self:Bar(args.spellId, 22)
+		else
+			self:Bar(args.spellId, 17)
+		end
 	end
 end
 
 function mod:ConductiveStrikeApplied(args)
-	if self:Dispeller("magic", false, args.spellId) then
+	if self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
