@@ -30,11 +30,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:Log("SPELL_CAST_START", "UnleashedDestruction", 385399)
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Brittle
+	self:Log("SPELL_CAST_START", "UnleashedDestruction", 385399, 388804) -- Normal/Heroic, Mythic/Mythic+
 	self:Log("SPELL_CAST_START", "ArcaneEruption", 385075)
 	self:Log("SPELL_CAST_SUCCESS", "CrystallineRoar", 384696)
 	self:Log("SPELL_CAST_START", "DragonStrike", 384978)
+	self:Log("SPELL_CAST_SUCCESS", "DragonStrikeSuccess", 384978)
 	self:Log("SPELL_AURA_APPLIED", "DragonStrikeApplied", 384978)
 end
 
@@ -42,6 +43,7 @@ function mod:OnEngage()
 	brittleCount = 0
 	self:CDBar(384978, 7.4) -- Dragon Strike
 	self:CDBar(384699, 12.2) -- Crystalline Roar
+	-- cast at 100 energy, 27.4s energy gain + .8s delay
 	self:CDBar(385075, 28.2) -- Arcane Eruption
 	self:CDBar(385399, 54.8) -- Unleashed Destruction
 end
@@ -50,34 +52,40 @@ end
 -- Event Handlers
 --
 
--- TODO Brittle 386746 no CLEU
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 386746 then -- Brittle
-		brittleCount = brittleCount + 1
-		self:Message(spellId, "orange", CL.percent:format(100 - brittleCount * 25, self:SpellName(spellId)))
-		self:PlaySound(spellId, "long")
-		-- After a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture
-		-- TODO no way to clean up this bar when conditions met? (no UNIT_DIED on crystals)
-		self:Bar(385331, 22.4) -- Fracture
-	end
+function mod:EncounterEvent(args) -- Brittle
+	brittleCount = brittleCount + 1
+	self:Message(386746, "orange", CL.percent:format(100 - brittleCount * 25, self:SpellName(386746)))
+	self:PlaySound(386746, "long")
+	-- after a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture
+	-- no way to clean up this bar when conditions met (no UNIT_DIED on crystals)
+	self:Bar(385331, 22.4) -- Fracture
 end
 
 function mod:UnleashedDestruction(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 66.8)
+	self:Message(385399, "yellow")
+	self:PlaySound(385399, "alarm")
+	if args.spellId == 385399 then -- Normal/Heroic
+		-- cast at ~50 energy, 54.7s energy gain + optional delay
+		self:CDBar(385399, 54.7)
+	else -- 388804, Mythic/Mythic+
+		-- the timer in Mythic is ~double and has larger variance
+		self:CDBar(385399, 114.1)
+	end
 end
 
 function mod:ArcaneEruption(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 55.9)
+	-- cast at 100 energy, 54.7s energy gain + optional delay
+	-- this can be interrupted by Brittle and it won't be recast
+	self:CDBar(args.spellId, 54.7)
 end
 
 function mod:CrystallineRoar(args)
 	self:Message(384699, "red")
 	self:PlaySound(384699, "alarm")
-	self:CDBar(384699, 25.5)
+	-- this can be interrupted by Brittle and it won't be recast
+	self:CDBar(384699, 23.1)
 end
 
 function mod:DragonStrike(args)
@@ -85,7 +93,18 @@ function mod:DragonStrike(args)
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:CDBar(args.spellId, 7.3)
+end
+
+function mod:DragonStrikeSuccess(args)
+	-- this can be interrupted by Brittle but it will be recast, so only start the timer on success
+	-- CD seems longer in Mythic, and it's possible there's a pattern but Brittle throws it off
+	-- Normal: pull:7.5, 18.2, 10.9, 18.2, 24.3, 13.4, 18.2, 24.3, 13.4, 18.3, 24.3, 13.4, 18.3, 24.3, 13.4, 18.2, 24.3, 12.2, 18.2, 24.3, 12.2, 18.2, 24.3, 18.2, 18.2, 24.3
+	-- Mythic: pull:7.6, 18.2, 26.7, 18.2, 24.3, 17.8, 24.3, 18.2, 20.8
+	if self:Mythic() then
+		self:CDBar(args.spellId, 15.3) -- 17.8-2.5 cast time
+	else
+		self:CDBar(args.spellId, 8.4) -- 10.9-2.5 cast time
+	end
 end
 
 function mod:DragonStrikeApplied(args)
