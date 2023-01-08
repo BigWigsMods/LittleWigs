@@ -36,6 +36,7 @@ function mod:GetOptions()
 		{382836, "TANK_HEALER"}, -- Brutalize
 		-- Mythic
 		392198, -- Ancestral Bond
+		395669, -- Aftershock
 	}, {
 		[382670] = -25552, -- Teera
 		[385339] = -25546, -- Maruuk
@@ -56,8 +57,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Brutalize", 382836)
 
 	-- Mythic
-	self:Log("SPELL_AURA_APPLIED", "AncestralBondApplied", 392198) -- TODO dose with throttling?
+	self:Log("SPELL_AURA_APPLIED_DOSE", "AncestralBondApplied", 392198)
 	self:Log("SPELL_AURA_REMOVED", "AncestralBondRemoved", 392198)
+	self:Log("SPELL_AURA_APPLIED", "AftershockDamage", 395669)
+	self:Log("SPELL_PERIODIC_DAMAGE", "AftershockDamage", 395669)
+	self:Log("SPELL_PERIODIC_MISSED", "AftershockDamage", 395669)
 end
 
 function mod:OnEngage()
@@ -147,27 +151,41 @@ end
 -- Mythic
 
 do
-	local prev = 0
+	local stacks = 0
+
 	function mod:AncestralBondApplied(args)
-		-- bosses enrage if more than 20 yards apart
-		local t = args.time
-		if t - prev > 1 then
-			prev = t
-			-- TODO stack message? only on every couple stacks?
+		-- bosses get stacking enrage if more than 20 yards apart
+		if args.amount % 4 == 0 and self:MobId(args.destGUID) == 186338 then -- alert every 4th stack on Maruuk
+			stacks = args.amount
 			self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
-			self:PlaySound(args.spellId, "warning")
+			if self:Tank() then
+				self:PlaySound(args.spellId, "warning")
+			else
+				self:PlaySound(args.spellId, "alert")
+			end
+		end
+	end
+
+	function mod:AncestralBondRemoved(args)
+		-- only alert removal if we sent an alert for applied
+		if stacks > 0 and self:MobId(args.destGUID) == 186338 then -- Maruuk
+			stacks = 0
+			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
 		end
 	end
 end
 
 do
 	local prev = 0
-	function mod:AncestralBondRemoved(args)
-		local t = args.time
-		if t - prev > 1 then
-			prev = t
-			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
-			self:PlaySound(args.spellId, "info")
+	function mod:AftershockDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PlaySound(args.spellId, "underyou")
+				self:PersonalMessage(args.spellId, "underyou")
+			end
 		end
 	end
 end
