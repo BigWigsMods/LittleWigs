@@ -13,7 +13,7 @@ if L then
 
 	L.submerge = "Untertauchen"
 	L.submerge_desc = "Knochenschlund taucht unter und positioniert sich neu."
-	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
+	L.submerge_trigger = "zischt und zieht sich in die finsteren Tiefen zurück!"
 end
 
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "deDE")
