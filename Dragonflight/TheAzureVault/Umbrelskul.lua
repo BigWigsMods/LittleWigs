@@ -64,12 +64,13 @@ end
 function mod:UnleashedDestruction(args)
 	self:Message(385399, "yellow")
 	self:PlaySound(385399, "alarm")
-	if args.spellId == 385399 then -- Normal/Heroic
-		-- cast at ~50 energy, 54.7s energy gain + optional delay
-		self:CDBar(385399, 54.7)
-	else -- 388804, Mythic/Mythic+
+	-- this can be interrupted by Brittle and it won't be recast
+	if args.spellId == 388804 then -- Mythic/Mythic+
 		-- the timer in Mythic is ~double and has larger variance
 		self:CDBar(385399, 114.1)
+	else -- 385399, Normal/Heroic
+		-- cast at ~50 energy, 54.7s energy gain + optional delay
+		self:CDBar(385399, 54.7)
 	end
 end
 
@@ -84,8 +85,11 @@ end
 function mod:CrystallineRoar(args)
 	self:Message(384699, "red")
 	self:PlaySound(384699, "alarm")
-	-- this can be interrupted by Brittle and it won't be recast
-	self:CDBar(384699, 23.1)
+	if self:Mythic() then
+		self:CDBar(384699, 105.6)
+	else
+		self:CDBar(384699, 23.1)
+	end
 end
 
 function mod:DragonStrike(args)
