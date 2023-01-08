@@ -416,7 +416,7 @@ end
 
 function mod:CelestialShield(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:CelestialShieldApplied(args)
