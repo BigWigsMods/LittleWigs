@@ -143,5 +143,5 @@ end
 function mod:ArcaneExpulsion(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 19.4) -- either 19.4 or 23.1, usually alternating
+	self:CDBar(args.spellId, 23.1) -- 23.1 to 30.4
 end
