@@ -117,7 +117,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "GoldenBarrierApplied", 396020)
 
 	-- Sha-Touched Guardian
-	self:Log("SPELL_AURA_APPLIED", "TouchOfRuinApplied", 397911, 397936) -- 397911 turns into 397936 after 5s
+	self:Log("SPELL_AURA_APPLIED", "TouchOfRuinApplied", 397911)
+	self:Log("SPELL_AURA_APPLIED", "TouchOfRuinAbsorbApplied", 397936)
 	self:Log("SPELL_CAST_START", "LegSweep", 397899)
 
 	-- Depraved Mistweaver
@@ -214,13 +215,18 @@ end
 -- Sha-Touched Guardian
 
 function mod:TouchOfRuinApplied(args)
+	-- curse which turns into a heal absorb after 5 seconds
 	if self:Dispeller("curse", nil, 397911) then
 		self:TargetMessage(397911, "yellow", args.destName)
-		if args.spellId == 397911 then -- 5-second curse which turns into a heal absorb
-			self:PlaySound(397911, "alert", nil, args.destName)
-		else -- 397936, 30-second heal absorb
-			self:PlaySound(397911, "warning", nil, args.destName)
-		end
+		self:PlaySound(397911, "alert", nil, args.destName)
+	end
+end
+
+function mod:TouchOfRuinAbsorbApplied(args)
+	-- heal absorb curse of the same name, result of not decursing the initial Touch of Ruin
+	if self:Dispeller("curse", nil, 397911) or self:Healer() or self:Me(args.destGUID) then
+		self:TargetMessage(397911, "yellow", args.destName)
+		self:PlaySound(397911, "warning", nil, args.destName)
 	end
 end
 
