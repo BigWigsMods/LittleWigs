@@ -17,7 +17,7 @@ BigWigs:AddSounds("Azureblade", {
 BigWigs:AddSounds("Telash Greywing", {
 	[386781] = "alert",
 	[387151] = {"alarm","alert"},
-	[388008] = "long",
+	[388008] = {"alert","long"},
 })
 
 BigWigs:AddSounds("Umbrelskul", {

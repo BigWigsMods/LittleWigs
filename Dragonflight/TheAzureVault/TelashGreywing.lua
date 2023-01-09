@@ -31,6 +31,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AbsoluteZero", 388008)
 	self:Log("SPELL_CAST_SUCCESS", "AbsoluteZeroSuccess", 388008)
+	self:Log("SPELL_AURA_APPLIED", "AbsoluteZeroApplied", 396722)
 	self:Log("SPELL_CAST_START", "FrostBomb", 386781)
 	self:Log("SPELL_AURA_APPLIED", "FrostBombApplied", 386881)
 	self:Log("SPELL_CAST_START", "IcyDevastator", 387151)
@@ -50,23 +51,36 @@ end
 -- Event Handlers
 --
 
-function mod:AbsoluteZero(args)
-	absoluteZeroCount = absoluteZeroCount + 1
-	self:StopBar(386781) -- Frost Bomb
-	self:StopBar(387151) -- Icy Devastator
-	self:StopBar(CL.count:format(args.spellName, absoluteZeroCount)) -- Absolute Zero (n)
-	self:Message(args.spellId, "red", CL.count:format(args.spellName, absoluteZeroCount)) -- Absolute Zero (n)
-	self:PlaySound(args.spellId, "long")
-	self:CastBar(args.spellId, 8)
-end
+do
+	local playerList = {}
 
-function mod:AbsoluteZeroSuccess(args)
-	frostBombRemaining = 3
-	icyDevastatorRemaining = 2
-	self:Bar(386781, 4.3) -- Frost Bomb
-	self:Bar(387151, 15.2) -- Icy Devastator
-	-- 8s cast at 100 energy: 50s energy gain + 2.8s or 6.4s delay
-	self:Bar(args.spellId, 52.8, CL.count:format(args.spellName, absoluteZeroCount + 1)) -- or 56.4
+	function mod:AbsoluteZero(args)
+		playerList = {}
+		absoluteZeroCount = absoluteZeroCount + 1
+		self:StopBar(386781) -- Frost Bomb
+		self:StopBar(387151) -- Icy Devastator
+		self:StopBar(CL.count:format(args.spellName, absoluteZeroCount)) -- Absolute Zero (n)
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, absoluteZeroCount)) -- Absolute Zero (n)
+		self:PlaySound(args.spellId, "long")
+		self:CastBar(args.spellId, 8)
+	end
+
+	function mod:AbsoluteZeroSuccess(args)
+		frostBombRemaining = 3
+		icyDevastatorRemaining = 2
+		self:Bar(386781, 4.3) -- Frost Bomb
+		self:Bar(387151, 15.2) -- Icy Devastator
+		-- 8s cast at 100 energy: 50s energy gain + 2.8s or 6.4s delay
+		self:Bar(args.spellId, 52.8, CL.count:format(args.spellName, absoluteZeroCount + 1)) -- or 56.4
+	end
+
+	function mod:AbsoluteZeroApplied(args)
+		if self:Dispeller("magic") or self:Dispeller("movement") or self:Me(args.destGUID) then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(388008, "orange", playerList, 5)
+			self:PlaySound(388008, "alert", nil, playerList)
+		end
+	end
 end
 
 function mod:FrostBomb(args)
