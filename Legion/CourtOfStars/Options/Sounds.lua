@@ -18,7 +18,7 @@ BigWigs:AddSounds("Advisor Melandrus", {
 	[209602] = "info",
 	[209628] = "alarm",
 	[209676] = "warning",
-	[224333] = "info",
+	[224333] = "alert",
 })
 
 BigWigs:AddSounds("Court of Stars Trash", {
