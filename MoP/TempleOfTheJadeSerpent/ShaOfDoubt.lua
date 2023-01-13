@@ -116,8 +116,7 @@ function mod:AddDeath(args)
 		mobCollector[args.destGUID] = nil
 		addsAlive = addsAlive - 1
 		if addsAlive > 0 then
-			self:Message(117665, "green", CL.add_remaining:format(addsAlive), false)
-			self:PlaySound(117665, "info")
+			self:Message(117665, "cyan", CL.add_remaining:format(addsAlive), false)
 		end
 	end
 end
