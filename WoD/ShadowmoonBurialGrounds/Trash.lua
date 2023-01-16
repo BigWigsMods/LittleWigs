@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	75713, -- Shadowmoon Bone-Mender
+	75715, -- Reanimated Ritual Bones
 	75652, -- Void Spawn
 	75506, -- Shadowmoon Loyalist
 	76446, -- Shadowmoon Dominator
@@ -23,6 +24,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.shadowmoon_bonemender = "Shadowmoon Bone-Mender"
+	L.reanimated_ritual_bones = "Reanimated Ritual Bones"
 	L.void_spawn = "Void Spawn"
 	L.shadowmoon_loyalist = "Shadowmoon Loyalist"
 	L.shadowmoon_dominator = "Shadowmoon Dominator"
@@ -41,6 +43,8 @@ function mod:GetOptions()
 		-- Shadowmoon Bone-Mender
 		152818, -- Shadow Mend
 		{152819, "DISPEL"}, -- Shadow Word: Frailty
+		-- Reanimated Ritual Bones
+		{164907, "TANK_HEALER"}, -- Void Slash
 		-- Void Spawn
 		152964, -- Void Pulse
 		394512, -- Void Eruptions
@@ -58,6 +62,7 @@ function mod:GetOptions()
 		153395, -- Body Slam
 	}, {
 		[152818] = L.shadowmoon_bonemender,
+		[164907] = L.reanimated_ritual_bones,
 		[152964] = L.void_spawn,
 		[398151] = L.shadowmoon_loyalist,
 		[398150] = L.shadowmoon_dominator,
@@ -72,6 +77,9 @@ function mod:OnBossEnable()
 	-- Shadowmoon Bone-Mender
 	self:Log("SPELL_CAST_START", "ShadowMend", 152818)
 	self:Log("SPELL_AURA_APPLIED", "ShadowWordFrailtyApplied", 152819)
+
+	-- Reanimated Ritual Bones
+	self:Log("SPELL_CAST_START", "VoidSlash", 164907)
 
 	-- Void Spawn
 	self:Log("SPELL_CAST_START", "VoidPulse", 152964)
@@ -112,6 +120,17 @@ function mod:ShadowWordFrailtyApplied(args)
 	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+-- Reanimated Ritual Bones
+
+function mod:VoidSlash(args)
+	self:Message(args.spellId, "purple")
+	if self:Tank() then
+		self:PlaySound(args.spellId, "alarm")
+	else
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
@@ -157,9 +176,16 @@ end
 
 -- Exhumed Spirit
 
-function mod:DeathBlast(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:DeathBlast(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 -- Monstrous Corpse Spider

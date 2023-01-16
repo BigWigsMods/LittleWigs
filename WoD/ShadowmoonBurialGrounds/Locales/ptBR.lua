@@ -19,6 +19,7 @@ end
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "ptBR")
 if L then
 	L.shadowmoon_bonemender = "Cola-osso da Lua Negra"
+	L.reanimated_ritual_bones = "Ossos do Ritual Reanimados"
 	L.void_spawn = "Rebento do Caos"
 	L.shadowmoon_loyalist = "Legalista da Lua Negra"
 	L.shadowmoon_dominator = "Dominador da Lua Negra"

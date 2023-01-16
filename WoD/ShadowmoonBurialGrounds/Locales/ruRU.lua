@@ -19,6 +19,7 @@ end
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "ruRU")
 if L then
 	L.shadowmoon_bonemender = "Подчинитель костей из клана Призрачной Луны"
+	L.reanimated_ritual_bones = "Оживленные ритуальные кости"
 	L.void_spawn = "Дитя Бездны"
 	L.shadowmoon_loyalist = "Верная служительница из клана Призрачной Луны"
 	L.shadowmoon_dominator = "Поработитель из клана Призрачной Луны"

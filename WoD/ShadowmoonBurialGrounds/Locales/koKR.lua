@@ -19,6 +19,7 @@ end
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "koKR")
 if L then
 	L.shadowmoon_bonemender = "어둠달 뼛조각치유사"
+	L.reanimated_ritual_bones = "되살린 의식 해골"
 	L.void_spawn = "공허의 피조물"
 	L.shadowmoon_loyalist = "어둠달 충성주의자"
 	L.shadowmoon_dominator = "어둠달 통솔자"

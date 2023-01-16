@@ -19,6 +19,7 @@ end
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "zhCN")
 if L then
 	L.shadowmoon_bonemender = "影月塑骨者"
+	L.reanimated_ritual_bones = "复苏的祭祀之骨"
 	L.void_spawn = "虚空爪牙"
 	L.shadowmoon_loyalist = "影月死忠者"
 	L.shadowmoon_dominator = "影月统御者"

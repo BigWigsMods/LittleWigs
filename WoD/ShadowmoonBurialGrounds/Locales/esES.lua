@@ -19,6 +19,7 @@ end
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "esES") or BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "esMX")
 if L then
 	L.shadowmoon_bonemender = "Ensalmadora de huesos Sombraluna"
+	L.reanimated_ritual_bones = "Huesos de ritual reanimados"
 	L.void_spawn = "Engendro del Vacío"
 	L.shadowmoon_loyalist = "Leal Sombraluna"
 	L.shadowmoon_dominator = "Dominador Sombraluna"
