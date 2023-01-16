@@ -13,3 +13,11 @@ if L then
 	L.tempest_channeler = "폭풍우의 역술사"
 	L.flame_channeler = "불꽃의 역술사"
 end
+
+L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "koKR")
+if L then
+	--L.northwest = "NW"
+	--L.northeast = "NE"
+	--L.southeast = "SE"
+	--L.southwest = "SW"
+end
