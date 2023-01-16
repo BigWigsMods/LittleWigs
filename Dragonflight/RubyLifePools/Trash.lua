@@ -56,6 +56,7 @@ function mod:GetOptions()
 		372047, -- Steel Barrage
 		-- Primalist Flamedancer
 		385536, -- Flame Dance
+		{373972, "DISPEL"}, -- Blaze of Glory
 		-- Blazebound Destroyer
 		{373693, "SAY", "SAY_COUNTDOWN"}, -- Living Bomb
 		373692, -- Inferno
@@ -106,6 +107,7 @@ function mod:OnBossEnable()
 
 	-- Primalist Flamedancer
 	self:Log("SPELL_CAST_SUCCESS", "FlameDance", 385536)
+	self:Log("SPELL_AURA_APPLIED", "BlazeOfGloryApplied", 373972)
 
 	-- Blazebound Destroyer
 	self:Log("SPELL_AURA_APPLIED", "LivingBombApplied", 373693)
@@ -194,6 +196,13 @@ function mod:FlameDance(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+function mod:BlazeOfGloryApplied(args)
+	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
+		self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
 -- Blazebound Destroyer
 
 function mod:LivingBombApplied(args)
@@ -280,7 +289,7 @@ function mod:FireMaw(args)
 end
 
 function mod:MoltenBlood(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.percent:format(50, args.spellName))
 	self:PlaySound(args.spellId, "long")
 end
 

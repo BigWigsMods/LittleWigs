@@ -33,6 +33,7 @@ BigWigs:AddColors("Ruby Life Pools Trash", {
 	[373614] = "orange",
 	[373692] = "red",
 	[373693] = {"blue","yellow"},
+	[373972] = "red",
 	[385313] = {"blue","yellow"},
 	[385536] = "yellow",
 	[391723] = "orange",
