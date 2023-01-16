@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -16,8 +15,8 @@ mod:RegisterEnableMob(
 	58826, -- Zao Sunseeker
 	56915 -- Sun
 )
-mod.engageId = 1417
-mod.respawnTime = 30
+mod:SetEncounterID(1417)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -54,8 +53,8 @@ function mod:GetOptions()
 		"stages",
 	}, {
 		["warmup"] = "general",
-		[-5549] = -5537, -- The Trial of the Yaungol
-		["stages"] = -5536, -- The Champion of the Five Suns
+		[-5549] = -5536, -- The Trial of the Yaungol
+		["stages"] = -5537, -- The Champion of the Five Suns
 	}
 end
 
@@ -151,7 +150,8 @@ end
 -- [[ The Champion of the Five Suns ]] --
 function mod:SunDeath(args)
 	sunsDead = sunsDead + 1
-	self:MessageOld("stages", "green", "info", CL.mob_killed:format(args.destName, sunsDead, 4), false)
+	self:Message("stages", "green", CL.mob_killed:format(args.destName, sunsDead, 4), false)
+	self:PlaySound("stages", "info")
 end
 
 function mod:ShaDeath(args)
@@ -162,7 +162,8 @@ function mod:ShaDeath(args)
 		sunsDead = shaDead
 	end
 
-	self:MessageOld("stages", "green", "info", CL.mob_killed:format(args.destName, shaDead, 4), false)
+	self:Message("stages", "green", CL.mob_killed:format(args.destName, shaDead, 4), false)
+	self:PlaySound("stages", "info")
 	if shaDead == 4 then
 		self:Bar("stages", 9.5, CL.stage:format(2), "inv_summerfest_firespirit")
 	end
@@ -173,5 +174,6 @@ end
 -- when IEEU fires.
 function mod:HellfireArrows(args)
 	self:RemoveLog("SPELL_CAST_START", args.spellId)
-	self:MessageOld("stages", "green", "info", CL.stage:format(2), false)
+	self:Message("stages", "green", CL.stage:format(2), false)
+	self:PlaySound("stages", "info")
 end
