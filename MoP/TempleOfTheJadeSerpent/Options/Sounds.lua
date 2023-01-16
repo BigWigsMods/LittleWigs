@@ -30,6 +30,7 @@ BigWigs:AddSounds("Sha of Doubt", {
 })
 
 BigWigs:AddSounds("Temple of the Jade Serpent Trash", {
+	[114646] = "alert",
 	[395859] = "warning",
 	[395872] = {"alert","warning"},
 	[396001] = "alarm",

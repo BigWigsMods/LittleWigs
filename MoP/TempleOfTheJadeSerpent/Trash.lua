@@ -53,6 +53,7 @@ function mod:GetOptions()
 		397889, -- Tidal Burst
 		-- Haunting Sha
 		395859, -- Haunting Scream
+		{114646, "TANK"}, -- Haunting Gaze
 		-- The Talking Fish
 		{395872, "DISPEL"}, -- Sleepy Soliloquy
 		-- The Songbird Queen
@@ -98,6 +99,7 @@ function mod:OnBossEnable()
 
 	-- Haunting Sha
 	self:Log("SPELL_CAST_START", "HauntingScream", 395859)
+	self:Log("SPELL_CAST_START", "HauntingGaze", 114646)
 
 	-- The Talking Fish
 	self:Log("SPELL_CAST_START", "SleepySoliloquy", 395872)
@@ -159,6 +161,11 @@ end
 function mod:HauntingScream(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:HauntingGaze(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- The Talking Fish
