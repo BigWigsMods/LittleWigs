@@ -24,6 +24,7 @@ function mod:GetOptions()
 		-- Mythic+
 		397785, -- Wash Away
 		{397797, "SAY", "SAY_COUNTDOWN"}, -- Corrupted Vortex
+		397793, -- Corrupted Geyser
 		-- Normal / Heroic
 		"stages",
 		-6327, -- Call Water
@@ -76,6 +77,9 @@ function mod:WashAway(args)
 	-- either wash away or the second corrupted vortex can occur first,
 	-- but the pattern is wash away, vortex, vortex, repeat
 	corruptedVortexCount = 0
+	self:Bar(397793, 3.4, CL.count:format(self:SpellName(397793), 1)) -- Corrupted Geyser (1)
+	self:Bar(397793, 8.4, CL.count:format(self:SpellName(397793), 2)) -- Corrupted Geyser (2)
+	self:Bar(397793, 13.4, CL.count:format(self:SpellName(397793), 3)) -- Corrupted Geyser (3)
 end
 
 function mod:WashAwayChannelStart(args)
@@ -93,6 +97,7 @@ function mod:CorruptedVortexApplied(args)
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
+	self:Bar(397793, 3.4) -- Corrupted Geyser
 end
 
 function mod:CorruptedVortexDamage(args)
@@ -125,7 +130,7 @@ do
 	local prev = 0
 	function mod:GroundEffectDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
 				self:PersonalMessage(args.spellId, "underyou")
