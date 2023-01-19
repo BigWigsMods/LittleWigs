@@ -229,6 +229,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PickingUp", 214697)
 	self:Log("SPELL_CAST_SUCCESS", "PickingUpSuccess", 214697)
 
+	self:RegisterEvent("CHALLENGE_MODE_START")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
 	self:RegisterMessage("BigWigs_BossComm")
@@ -433,6 +434,12 @@ do
 		knownClues = {}
 	end
 
+	function mod:CHALLENGE_MODE_START()
+		-- clear the clues when M+ starts, in case clues were found in regular mythic without leaving
+		clueCount = 0
+		knownClues = {}
+	end
+
 	local function sendChatMessage(msg, english)
 		if IsInGroup() then
 			BigWigsLoader.SendChatMessage(english and ("[LittleWigs] %s / %s"):format(msg, english) or ("[LittleWigs] %s"):format(msg), IsInGroup(2) and "INSTANCE_CHAT" or "PARTY")
@@ -490,10 +497,9 @@ do
 
 	function mod:CHAT_MSG_MONSTER_SAY(_, msg, _, _, _, target)
 		if msg:find(L.spyFoundPattern) and self:GetOption("spy_helper") > 0 then
-			self:MessageOld("spy_helper", "green", "info", L.spyFound:format(self:ColorName(target)), false)
+			self:Message("spy_helper", "green", L.spyFound:format(self:ColorName(target)), false)
+			self:PlaySound("spy_helper", "info")
 			self:CloseInfo("spy_helper")
-			clueCount = 0
-			knownClues = {}
 			if target == self:UnitName("player") then
 				sendChatMessage(L.spyFoundChat, englishSpyFound ~= L.spyFoundChat and englishSpyFound)
 				self:CustomIcon(false, "target", 8)
@@ -717,7 +723,6 @@ end
 function mod:EyeStorm(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CastBar(args.spellId, 8)
 end
 
 -- Imacu'tya
