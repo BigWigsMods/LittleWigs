@@ -10,6 +10,8 @@ BigWigs:AddColors("Wise Mari", {
 
 BigWigs:AddColors("Lorewalker Stonestep", {
 	[-5549] = {"green","orange","red"},
+	[396150] = "blue",
+	[396152] = {"blue","green"},
 	["stages"] = "green",
 })
 

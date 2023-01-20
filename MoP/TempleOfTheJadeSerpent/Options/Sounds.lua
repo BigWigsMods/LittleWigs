@@ -9,7 +9,9 @@ BigWigs:AddSounds("Wise Mari", {
 })
 
 BigWigs:AddSounds("Lorewalker Stonestep", {
-	[-5549] = {"alert","info","warning"},
+	[-5549] = {"alert","info","long","warning"},
+	[396150] = {"alarm","alert","info"},
+	[396152] = "info",
 	["stages"] = "info",
 })
 

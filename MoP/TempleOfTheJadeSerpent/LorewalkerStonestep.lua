@@ -50,6 +50,8 @@ function mod:GetOptions()
 	return {
 		"warmup",
 		-5549, -- Intensity
+		{396150, "SAY"}, -- Feeling of Superiority
+		396152, -- Feeling of Inferiority
 		"stages",
 	}, {
 		["warmup"] = "general",
@@ -66,6 +68,10 @@ function mod:OnBossEnable()
 	-- [[ The Trial of the Yaungol ]] --
 	self:RegisterUnitEvent("UNIT_AURA", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "UltimatePower", 113309)
+	self:Log("SPELL_AURA_APPLIED", "FeelingOfSuperiorityApplied", 396150)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "FeelingOfSuperiorityAppliedDose", 396150)
+	self:Log("SPELL_AURA_APPLIED", "FeelingOfInferiorityApplied", 396152)
+	self:Log("SPELL_AURA_REMOVED", "FeelingOfInferiorityRemoved", 396152)
 
 	-- [[ The Champion of the Five Suns ]] --
 	self:Log("SPELL_CAST_START", "HellfireArrows", 113017)
@@ -131,20 +137,63 @@ function mod:UNIT_AURA(event, unit)
 		if stacksOfIntensity[guid] and stacksOfIntensity[guid] > 0 then
 			stacksOfIntensity[guid] = 0
 			if not UnitIsDead(unit) and not self:UnitBuff(unit, 113309) then -- Ultimate Power
-				self:MessageOld(-5549, "green", "info", CL.removed_from:format(spellName, destName))
+				self:Message(-5549, "green", CL.removed_from:format(spellName, destName))
+				self:PlaySound(-5549, "info")
 			end
 		end
 	elseif not stacksOfIntensity[guid] or stacksOfIntensity[guid] < stacks then
 		stacksOfIntensity[guid] = stacks
 		if (stacks % 3 == 1 or stacks > 7) and stacks ~= 10 then
-			self:MessageOld(-5549, "orange", stacks > 7 and self:UnitGUID("target") == guid and "warning" or "alert", CL.stack:format(stacks, spellName, destName))
+			self:Message(-5549, "orange", CL.stack:format(stacks, spellName, destName))
+			if stacks > 7 and self:UnitGUID("target") == guid then
+				self:PlaySound(-5549, "warning")
+			else
+				self:PlaySound(-5549, "alert")
+			end
 		end
 	end
 end
 
 function mod:UltimatePower(args)
-	self:MessageOld(-5549, "red", "warning", CL.other:format(args.spellName, args.destName), args.spellId)
+	self:Message(-5549, "red", CL.other:format(args.spellName, args.destName), args.spellId)
+	self:PlaySound(-5549, "long")
 	self:TargetBar(-5549, 15, args.destName, args.spellId)
+end
+
+function mod:FeelingOfSuperiorityApplied(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, "blue", args.destName)
+		self:PlaySound(args.spellId, "info")
+		self:Say(args.spellId)
+	end
+end
+
+function mod:FeelingOfSuperiorityAppliedDose(args)
+	local amount = args.amount
+	if self:Me(args.destGUID) and amount >= 20 and amount % 10 == 0 then
+		self:StackMessage(args.spellId, "blue", args.destName, amount, 30)
+		if amount >= 30 then
+			self:PlaySound(args.spellId, "alarm")
+		else
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:FeelingOfInferiorityApplied(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, "blue", args.destName)
+		self:TargetBar(args.spellId, 20, args.destName)
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:FeelingOfInferiorityRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+		self:StopBar(args.spellName, args.destName)
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 -- [[ The Champion of the Five Suns ]] --
