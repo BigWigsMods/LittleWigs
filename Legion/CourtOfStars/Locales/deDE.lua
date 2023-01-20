@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Court of Stars Trash", "deDE")
 if not L then return end
 if L then
+	L.duskwatch_sentry = "Wächter der Dämmerwache"
+	L.duskwatch_reinforcement = "Verstärkung der Dämmerwache"
 	L.Guard = "Wachposten der Dämmerwache"
 	L.Construct = "Wächterkonstrukt"
 	L.Enforcer = "Dämonenversklavte Vollstreckerin"

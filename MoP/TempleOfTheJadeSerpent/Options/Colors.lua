@@ -10,6 +10,8 @@ BigWigs:AddColors("Wise Mari", {
 
 BigWigs:AddColors("Lorewalker Stonestep", {
 	[-5549] = {"green","orange","red"},
+	[396150] = "blue",
+	[396152] = {"blue","green"},
 	["stages"] = "green",
 })
 
@@ -30,6 +32,8 @@ BigWigs:AddColors("Sha of Doubt", {
 })
 
 BigWigs:AddColors("Temple of the Jade Serpent Trash", {
+	[110125] = {"blue","red"},
+	[114646] = "purple",
 	[395859] = "red",
 	[395872] = {"blue","yellow"},
 	[396001] = "orange",

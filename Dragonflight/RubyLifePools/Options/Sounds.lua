@@ -2,6 +2,7 @@
 BigWigs:AddSounds("Melidrussa Chillworn", {
 	[372682] = {"alert","warning"},
 	[372851] = {"alarm","alert"},
+	[372988] = "info",
 	[373046] = "long",
 	[373680] = {"info","long"},
 	[396044] = "alarm",
@@ -20,7 +21,8 @@ BigWigs:AddSounds("Kyrakka and Erkhart Stormvein", {
 	[381516] = "warning",
 	[381517] = "alert",
 	[381525] = "alarm",
-	[381862] = "alert",
+	[381602] = "alert",
+	[381862] = "alarm",
 	["stages"] = "long",
 })
 
@@ -33,6 +35,7 @@ BigWigs:AddSounds("Ruby Life Pools Trash", {
 	[373614] = "alarm",
 	[373692] = "alert",
 	[373693] = "alert",
+	[373972] = "alert",
 	[385313] = "alert",
 	[385536] = "alert",
 	[391723] = "alarm",

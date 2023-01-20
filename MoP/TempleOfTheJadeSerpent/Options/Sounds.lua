@@ -9,7 +9,9 @@ BigWigs:AddSounds("Wise Mari", {
 })
 
 BigWigs:AddSounds("Lorewalker Stonestep", {
-	[-5549] = {"alert","info","warning"},
+	[-5549] = {"alert","info","long","warning"},
+	[396150] = {"alarm","alert","info"},
+	[396152] = "info",
 	["stages"] = "info",
 })
 
@@ -30,6 +32,8 @@ BigWigs:AddSounds("Sha of Doubt", {
 })
 
 BigWigs:AddSounds("Temple of the Jade Serpent Trash", {
+	[110125] = "alert",
+	[114646] = "alert",
 	[395859] = "warning",
 	[395872] = {"alert","warning"},
 	[396001] = "alarm",

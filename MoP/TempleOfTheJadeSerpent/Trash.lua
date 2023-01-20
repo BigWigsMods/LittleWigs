@@ -53,6 +53,7 @@ function mod:GetOptions()
 		397889, -- Tidal Burst
 		-- Haunting Sha
 		395859, -- Haunting Scream
+		{114646, "TANK"}, -- Haunting Gaze
 		-- The Talking Fish
 		{395872, "DISPEL"}, -- Sleepy Soliloquy
 		-- The Songbird Queen
@@ -72,6 +73,7 @@ function mod:GetOptions()
 		398300, -- Flames of Doubt
 		-- Minion of Doubt
 		{397931, "TANK"}, -- Dark Claw
+		{110125, "DISPEL"}, -- Shattered Resolve
 	}, {
 		[397881] = L.corrupt_living_water,
 		[397889] = L.fallen_waterspeaker,
@@ -98,6 +100,7 @@ function mod:OnBossEnable()
 
 	-- Haunting Sha
 	self:Log("SPELL_CAST_START", "HauntingScream", 395859)
+	self:Log("SPELL_CAST_START", "HauntingGaze", 114646)
 
 	-- The Talking Fish
 	self:Log("SPELL_CAST_START", "SleepySoliloquy", 395872)
@@ -129,6 +132,7 @@ function mod:OnBossEnable()
 
 	-- Minion of Doubt
 	self:Log("SPELL_CAST_START", "DarkClaw", 397931)
+	self:Log("SPELL_AURA_APPLIED", "ShatteredResolveApplied", 110125)
 end
 
 --------------------------------------------------------------------------------
@@ -159,6 +163,11 @@ end
 function mod:HauntingScream(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:HauntingGaze(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- The Talking Fish
@@ -254,4 +263,11 @@ end
 function mod:DarkClaw(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ShatteredResolveApplied(args)
+	if self:Dispeller("curse", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end

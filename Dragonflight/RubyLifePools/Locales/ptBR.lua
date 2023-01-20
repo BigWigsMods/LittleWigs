@@ -13,3 +13,11 @@ if L then
 	L.tempest_channeler = "Canalizadora de Tormenta"
 	L.flame_channeler = "Canalizador de Chamas"
 end
+
+L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "ptBR")
+if L then
+	--L.northwest = "NW"
+	--L.northeast = "NE"
+	--L.southeast = "SE"
+	--L.southwest = "SW"
+end

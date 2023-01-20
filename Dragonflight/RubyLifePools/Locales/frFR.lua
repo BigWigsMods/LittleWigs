@@ -13,3 +13,11 @@ if L then
 	L.tempest_channeler = "Invocatrice de tempêtes"
 	L.flame_channeler = "Invocateur de flammes"
 end
+
+L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "frFR")
+if L then
+	L.northwest = "NO"
+	L.northeast = "NE"
+	L.southeast = "SE"
+	L.southwest = "SO"
+end

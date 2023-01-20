@@ -2,6 +2,7 @@
 BigWigs:AddColors("Melidrussa Chillworn", {
 	[372682] = {"blue","red"},
 	[372851] = {"blue","yellow"},
+	[372988] = "green",
 	[373046] = "yellow",
 	[373680] = {"green","red"},
 	[396044] = "orange",
@@ -20,6 +21,7 @@ BigWigs:AddColors("Kyrakka and Erkhart Stormvein", {
 	[381516] = "red",
 	[381517] = "yellow",
 	[381525] = "orange",
+	[381602] = "red",
 	[381862] = "blue",
 	["stages"] = "cyan",
 })
@@ -33,6 +35,7 @@ BigWigs:AddColors("Ruby Life Pools Trash", {
 	[373614] = "orange",
 	[373692] = "red",
 	[373693] = {"blue","yellow"},
+	[373972] = "red",
 	[385313] = {"blue","yellow"},
 	[385536] = "yellow",
 	[391723] = "orange",
