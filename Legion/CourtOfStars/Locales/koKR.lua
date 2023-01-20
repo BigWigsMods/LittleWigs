@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Court of Stars Trash", "koKR")
 if not L then return end
 if L then
+	L.duskwatch_sentry = "황혼감시대 보초병"
+	L.duskwatch_reinforcement = "황혼감시대 지원병"
 	L.Guard = "황혼감시대 경비병"
 	L.Construct = "수호의 피조물"
 	L.Enforcer = "지옥결속 집행자"

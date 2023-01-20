@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Court of Stars Trash", "frFR")
 if not L then return end
 if L then
+	L.duskwatch_sentry = "Factionnaire de la Garde crépusculaire"
+	L.duskwatch_reinforcement = "Renfort de la Garde crépusculaire"
 	L.Guard = "Vigile de la Garde crépusculaire"
 	L.Construct = "Assemblage gardien"
 	L.Enforcer = "Massacreur gangre-lié"
