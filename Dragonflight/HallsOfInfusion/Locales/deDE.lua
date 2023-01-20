@@ -12,5 +12,6 @@ if L then
 	L.gusting_protodragon = "Stürmender Protodrache"
 	L.glacial_protodragon = "Gletscherprotodrache"
 	L.subterranean_protodragon = "Unterirdischer Protodrache"
+	L.aqua_rager = "Aquawüter"
 	L.infuser_sariya = "Einflößerin Sariya"
 end

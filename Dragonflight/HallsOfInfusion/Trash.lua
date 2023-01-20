@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	190401, -- Gusting Proto-Dragon
 	190403, -- Glacial Proto-Dragon
 	190404, -- Subterranean Proto-Dragon
+	190407, -- Aqua Rager
 	190405  -- Infuser Sariya
 )
 
@@ -37,6 +38,7 @@ if L then
 	L.gusting_protodragon = "Gusting Proto-Dragon"
 	L.glacial_protodragon = "Glacial Proto-Dragon"
 	L.subterranean_protodragon = "Subterranean Proto-Dragon"
+	L.aqua_rager = "Aqua Rager"
 	L.infuser_sariya = "Infuser Sariya"
 end
 
@@ -68,6 +70,8 @@ function mod:GetOptions()
 		375351, -- Oceanic Breath
 		-- Subterranean Proto-Dragon
 		375327, -- Tectonic Breath
+		-- Aqua Rager
+		377341, -- Tidal Divergence
 		-- Infuser Sariya
 		377402, -- Aqueous Barrier
 		390290, -- Flash Flood
@@ -83,6 +87,7 @@ function mod:GetOptions()
 		[375348] = L.gusting_protodragon,
 		[375351] = L.glacial_protodragon,
 		[375327] = L.subterranean_protodragon,
+		[377341] = L.aqua_rager,
 		[377402] = L.infuser_sariya,
 	}
 end
@@ -120,6 +125,9 @@ function mod:OnBossEnable()
 
 	-- Subterranean Proto-Dragon
 	self:Log("SPELL_CAST_START", "TectonicBreath", 375327)
+
+	-- Aqua Rager
+	self:Log("SPELL_CAST_START", "TidalDivergence", 377341)
 
 	-- Infuser Sariya
 	self:Log("SPELL_CAST_START", "AqueousBarrier", 377402)
@@ -213,10 +221,21 @@ end
 
 -- Primalist Earthshaker
 
-function mod:RumblingEarth(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:RumblingEarth(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
+
+-- Primalist Icecaller
+
+-- TODO Refreshing Tides?
 
 -- Gusting Proto-Dragon
 
@@ -237,6 +256,13 @@ end
 function mod:TectonicBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Aqua Rager
+
+function mod:TidalDivergence(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Infuser Sariya

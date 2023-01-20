@@ -12,5 +12,6 @@ if L then
 	--L.gusting_protodragon = "Gusting Proto-Dragon"
 	--L.glacial_protodragon = "Glacial Proto-Dragon"
 	--L.subterranean_protodragon = "Subterranean Proto-Dragon"
+	L.aqua_rager = "Furiante Aquático"
 	--L.infuser_sariya = "Infuser Sariya"
 end

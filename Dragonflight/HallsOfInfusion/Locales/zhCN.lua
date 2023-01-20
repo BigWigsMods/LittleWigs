@@ -12,5 +12,6 @@ if L then
 	L.gusting_protodragon = "劲风始祖龙"
 	L.glacial_protodragon = "冰川始祖龙"
 	L.subterranean_protodragon = "土地始祖龙"
+	--L.aqua_rager = "Aqua Rager"
 	L.infuser_sariya = "注能者萨莉亚"
 end
