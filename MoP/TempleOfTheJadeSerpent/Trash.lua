@@ -73,6 +73,7 @@ function mod:GetOptions()
 		398300, -- Flames of Doubt
 		-- Minion of Doubt
 		{397931, "TANK"}, -- Dark Claw
+		{110125, "DISPEL"}, -- Shattered Resolve
 	}, {
 		[397881] = L.corrupt_living_water,
 		[397889] = L.fallen_waterspeaker,
@@ -131,6 +132,7 @@ function mod:OnBossEnable()
 
 	-- Minion of Doubt
 	self:Log("SPELL_CAST_START", "DarkClaw", 397931)
+	self:Log("SPELL_AURA_APPLIED", "ShatteredResolveApplied", 110125)
 end
 
 --------------------------------------------------------------------------------
@@ -261,4 +263,11 @@ end
 function mod:DarkClaw(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ShatteredResolveApplied(args)
+	if self:Dispeller("curse", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
