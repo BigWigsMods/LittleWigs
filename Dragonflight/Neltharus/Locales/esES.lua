@@ -14,6 +14,6 @@ end
 
 L = BigWigs:NewBossLocale("Warlord Sargha", "esES") or BigWigs:NewBossLocale("Warlord Sargha", "esMX")
 if L then
-	--L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
-	--L.magma_shield = "Magma Shield - Get items from gold piles"
+	L.magical_implements_desc = "El tesoro contiene objetos mágicos que pueden ayudarte a consumir Escudo de Magma."
+	L.magma_shield = "Escudo de Magma - Consigue objetos del montón de oro"
 end
