@@ -2,10 +2,10 @@ local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "esES") or BigWigs:Ne
 if not L then return end
 if L then
 	L.custom_on_recruiter_autotalk = "Hablar automáticamente"
-	L.custom_on_recruiter_autotalk_desc = "Ofrece instantánemante un beneficio a los reclutadores Dragonflight"
+	L.custom_on_recruiter_autotalk_desc = "Ofrece instantánemante un beneficio a los reclutadores Dragonflight."
 	L.critical_strike = "+5% Golpe crítico"
 	L.haste = "+5% Celeridad"
-	L.mastery = "+Maestría" --did you mean "+5% Maestría"?
+	L.mastery = "+Maestría"
 	L.versatility = "+5% Versatilidad"
 	L.healing_taken = "+10% Sanación recibida"
 

@@ -3,7 +3,7 @@ if not L then return end
 if L then
 	L.book_of_translocation = "Libro de traslado"
 	L.custom_on_book_autotalk = "Hablar automáticamente"
-	L.custom_on_book_autotalk_desc = "Accede directamente al siguiente área al hablar con el boss de translocación."
+	L.custom_on_book_autotalk_desc = "Accede directamente al siguiente área al hablar con los Libros de traslado."
 
 	L.shrieking_whelp = "Cría aullante"
 	L.conjured_lasher = "Azotador conjurado"
