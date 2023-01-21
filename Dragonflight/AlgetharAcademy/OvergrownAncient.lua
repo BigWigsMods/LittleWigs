@@ -21,6 +21,8 @@ local barkbreakerCount = 0
 
 function mod:GetOptions()
 	return {
+		-- General
+		"warmup",
 		-- Overgrown Ancient
 		388796, -- Germinate
 		388923, -- Burst Forth
@@ -32,6 +34,7 @@ function mod:GetOptions()
 		396640, -- Healing Touch
 		396721, -- Abundance
 	}, {
+		["warmup"] = CL.general,
 		[388796] = self.displayName,
 		[389033] = -25730, -- Hungry Lasher
 		[396640] = -25688, -- Ancient Branch
@@ -65,6 +68,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:Warmup() -- called from trash module
+	self:Bar("warmup", 16.8, CL.active, "achievement_dungeon_dragonacademy")
+end
 
 -- Overgrown Ancient
 

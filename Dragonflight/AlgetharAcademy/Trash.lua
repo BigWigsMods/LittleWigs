@@ -38,6 +38,13 @@ if L then
 	L.versatility = "+5% Versatility"
 	L.healing_taken = "+10% Healing taken"
 
+	-- Ah! Here we are! Ahem--long ago, members of the blue dragonflight accidentally overloaded an arcane elemental and created a powerful construct named Vexamus that quickly started to wreak havoc!
+	L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
+	-- Perfect, we are just about--wait, Ichistrasz! There is too much life magic! What are you doing?
+	L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"
+	-- At least we know that works. Watch yourselves.
+	L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
+
 	L.corrupted_manafiend = "Corrupted Manafiend"
 	L.spellbound_scepter = "Spellbound Scepter"
 	L.arcane_ravager = "Arcane Ravager"
@@ -109,6 +116,7 @@ end
 
 function mod:OnBossEnable()
 	-- General
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_AURA_APPLIED", "BlackPledgeApplied", 389516)
 	self:Log("SPELL_AURA_APPLIED", "BronzePledgeApplied", 389512)
@@ -166,6 +174,33 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup timers
+
+function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+	if msg:find(L.vexamus_warmup_trigger, nil, true) then
+		-- Vexamus warmup
+		local vexamusModule = BigWigs:GetBossModule("Vexamus", true)
+		if vexamusModule then
+			vexamusModule:Enable()
+			vexamusModule:Warmup()
+		end
+	elseif msg:find(L.overgrown_ancient_warmup_trigger, nil, true) then
+		-- Overgrown Ancient warmup
+		local overgrownAncientModule = BigWigs:GetBossModule("Overgrown Ancient", true)
+		if overgrownAncientModule then
+			overgrownAncientModule:Enable()
+			overgrownAncientModule:Warmup()
+		end
+	elseif msg:find(L.crawth_warmup_trigger, nil, true) then
+		-- Crawth warmup
+		local crawthModule = BigWigs:GetBossModule("Crawth", true)
+		if crawthModule then
+			crawthModule:Enable()
+			crawthModule:Warmup()
+		end
+	end
+end
 
 -- Auto-gossip
 

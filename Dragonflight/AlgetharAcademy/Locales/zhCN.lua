@@ -9,6 +9,10 @@ if L then
 	L.versatility = "+5% 全能"
 	L.healing_taken = "+10% 治疗效果"
 
+	--L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
+	--L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"
+	--L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
+
 	L.corrupted_manafiend = "被腐化的嗜魔者"
 	L.spellbound_scepter = "缚法节杖"
 	L.arcane_ravager = "奥术抢劫者"

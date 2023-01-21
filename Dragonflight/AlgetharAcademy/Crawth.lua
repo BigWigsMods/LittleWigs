@@ -26,6 +26,8 @@ local sonicVulnerabilityStacks = 0
 
 function mod:GetOptions()
 	return {
+		-- General
+		"warmup",
 		-- Lish Llrath
 		377182, -- Play Ball
 		389481, -- Goal of the Searing Blaze
@@ -37,6 +39,7 @@ function mod:GetOptions()
 		377004, -- Deafening Screech
 		{376997, "TANK_HEALER"}, -- Savage Peck
 	}, {
+		["warmup"] = CL.general,
 		[377182] = 377182, -- Play Ball
 		[377034] = self.displayName,
 	}
@@ -69,6 +72,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:Warmup() -- called from trash module
+	-- this can take slightly longer depending on where Crawth is in her patrol
+	self:CDBar("warmup", 10.7, CL.active, "achievement_dungeon_dragonacademy")
+end
 
 -- Lish Llrath
 

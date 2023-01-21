@@ -20,6 +20,8 @@ local arcaneFissureTime = 0
 
 function mod:GetOptions()
 	return {
+		-- General
+		"warmup",
 		-- Professor Maxdormu
 		386544, -- Arcane Orbs
 		{391977, "DISPEL"}, -- Oversurge (Mythic only)
@@ -28,6 +30,7 @@ function mod:GetOptions()
 		{386173, "SAY", "SAY_COUNTDOWN"}, -- Mana Bombs
 		385958, -- Arcane Expulsion
 	}, {
+		["warmup"] = CL.general,
 		[386544] = -25622, -- Professor Maxdormu
 		[388537] = -25623, -- Vexamus
 	}
@@ -61,6 +64,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:Warmup() -- called from trash module
+	self:Bar("warmup", 19.7, CL.active, "achievement_dungeon_dragonacademy")
+end
 
 -- Professor Maxdormu
 
