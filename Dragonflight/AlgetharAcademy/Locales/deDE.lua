@@ -5,13 +5,13 @@ if L then
 	L.custom_on_recruiter_autotalk_desc = "Umgehend den Stärkungszauber der Dragonflight Rekrutierer bestätigen."
 	L.critical_strike = "+5% Kritische Trefferchance"
 	L.haste = "+5% Tempo"
-	L.mastery = "+Meisterschaft"
+	L.mastery = "+ Meisterschaft"
 	L.versatility = "+5% Vielseitigkeit"
 	L.healing_taken = "+10% Erhaltene Heilung"
 
-	--L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
-	--L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"
-	--L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
+	L.vexamus_warmup_trigger = "erschufen ein mächtiges Konstrukt namens Vexamus"
+	L.overgrown_ancient_warmup_trigger = "Ichistrasz! Das ist zu viel Lebensmagie"
+	L.crawth_warmup_trigger = "Zumindest wissen wir, dass es funktioniert. Passt auf."
 
 	L.corrupted_manafiend = "Verderbter Manageist"
 	L.spellbound_scepter = "Verzaubertes Szepter"
