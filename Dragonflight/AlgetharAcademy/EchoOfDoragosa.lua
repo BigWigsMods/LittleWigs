@@ -23,7 +23,7 @@ function mod:GetOptions()
 		389011, -- Overwhelming Power
 		388901, -- Arcane Rift
 		374361, -- Astral Breath
-		388820, -- Power Vacuum
+		388822, -- Power Vacuum
 		{374352, "SAY", "SAY_COUNTDOWN"}, -- Energy Bomb
 	}
 end
@@ -42,7 +42,7 @@ end
 function mod:OnEngage()
 	powervacuumCount = 0
 	self:CDBar(374352, 14.9) -- Energy Bomb
-	self:CDBar(388820, 22.6) -- Power Vacuum
+	self:CDBar(388822, 22.6) -- Power Vacuum
 	self:CDBar(374361, 28.8) -- Astral Breath
 end
 
@@ -81,10 +81,10 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 388820 then -- Power Vacuum
 		powervacuumCount = powervacuumCount + 1
-		self:StopBar(spellId)
-		self:Message(spellId, "red")
-		self:PlaySound(spellId, "alarm")
-		self:CDBar(spellId, powervacuumCount == 1 and 24 or 29)
+		self:StopBar(388822)
+		self:Message(388822, "red")
+		self:PlaySound(388822, "alarm")
+		self:CDBar(388822, powervacuumCount == 1 and 24 or 29)
 	end
 end
 
