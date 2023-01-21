@@ -40,6 +40,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	powervacuumCount = 0
 	self:CDBar(374352, 14.9) -- Energy Bomb
 	self:CDBar(388820, 22.6) -- Power Vacuum
 	self:CDBar(374361, 28.8) -- Astral Breath
