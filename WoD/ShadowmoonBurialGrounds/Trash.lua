@@ -190,9 +190,16 @@ end
 
 -- Monstrous Corpse Spider
 
-function mod:NecroticBurst(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:NecroticBurst(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 -- Carrion Worm
