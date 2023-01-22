@@ -21,8 +21,9 @@ BigWigs:AddSounds("Fenryr", {
 
 BigWigs:AddSounds("God-King Skovald", {
 	[193659] = "alarm",
-	[193668] = "warning",
-	[193702] = "alarm",
+	[193668] = {"alarm","alert"},
+	[193702] = "underyou",
+	[193783] = "info",
 	[193826] = "long",
 })
 

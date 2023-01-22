@@ -23,8 +23,9 @@ BigWigs:AddColors("Fenryr", {
 
 BigWigs:AddColors("God-King Skovald", {
 	[193659] = {"blue","red"},
-	[193668] = "yellow",
+	[193668] = "purple",
 	[193702] = "blue",
+	[193783] = {"cyan","green"},
 	[193826] = "orange",
 })
 
