@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		154442, -- Malevolence
 		154350, -- Omen of Death
-		-9680, -- Ritual of Bones
+		154469, -- Ritual of Bones
 	}
 end
 
@@ -29,7 +29,7 @@ end
 function mod:OnEngage()
 	self:CDBar(154442, 5.7) -- Malevolence
 	self:CDBar(154350, 6.1) -- Omen of Death
-	self:CDBar(-9680, 20.6) -- Ritual of Bones
+	self:CDBar(154469, 20.6) -- Ritual of Bones
 end
 
 --------------------------------------------------------------------------------
@@ -49,9 +49,9 @@ function mod:OmenOfDeath(args)
 end
 
 function mod:RitualOfBones(args)
-	self:Message(-9680, "orange")
-	self:PlaySound(-9680, "warning")
-	self:CDBar(-9680, 50.5)
-	-- ritual of bones puts a CD on omen of death
+	self:Message(154469, "orange")
+	self:PlaySound(154469, "warning")
+	self:CDBar(154469, 50.5)
+	-- Ritual of Bones puts Omen of Death on a longer cooldown
 	self:CDBar(154350, 25.4) -- Omen of Death
 end

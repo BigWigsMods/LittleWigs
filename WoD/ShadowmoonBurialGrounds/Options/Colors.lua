@@ -24,9 +24,9 @@ BigWigs:AddColors("Bonemaw", {
 })
 
 BigWigs:AddColors("Ner'zhul", {
-	[-9680] = "orange",
 	[154350] = "red",
 	[154442] = "yellow",
+	[154469] = "orange",
 })
 
 BigWigs:AddColors("Shadowmoon Burial Grounds Trash", {
