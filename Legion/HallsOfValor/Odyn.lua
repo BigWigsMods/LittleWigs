@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Odyn", 1477, 1489)
 if not mod then return end
-mod:RegisterEnableMob(95676)
-mod.engageId = 1809
-mod.respawnTime = 30
+mod:RegisterEnableMob(95676) -- Odyn
+mod:SetEncounterID(1809)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -62,7 +61,7 @@ function mod:OnEngage()
 end
 
 function mod:VerifyEnable(unit)
-	return UnitCanAttack("player", unit) or (UnitHealth(unit) / UnitHealthMax(unit) > 0.8)
+	return UnitCanAttack("player", unit) or self:GetHealth(unit) > 80
 end
 
 --------------------------------------------------------------------------------
@@ -77,43 +76,54 @@ function mod:Warmup(event, msg)
 end
 
 function mod:RunicBrand(args)
-	self:MessageOld(args.spellId, "yellow", "alarm", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 56) -- m pull:44.0, 56.0
 end
 
 function mod:RunicBrandYou(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(197961, "orange", "warning", L[args.spellId], args.spellId)
+		self:Message(197961, "orange", L[args.spellId], args.spellId)
+		self:PlaySound(197961, "warning")
 	end
 end
 
 function mod:RadiantTempest(args)
-	self:MessageOld(args.spellId, "red", "long")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, self:Normal() and 80 or 56) -- normal pull:8.0 / heroic & mythic: pull:24.0, 56.0
 end
 
 function mod:ShatterSpears(args)
-	self:MessageOld(args.spellId, "red", "alert", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", CL.incoming:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 56) -- m pull:40.0, 56.0
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 198396 then -- Spear of Light
-		self:MessageOld(200988, "orange", "alert")
+		self:Message(200988, "orange")
+		self:PlaySound(200988, "alert")
 	end
 end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") and self:GetGossipID(44910) then
 		self:SelectGossipID(44910, true) -- auto confirm it
-		mod:Sync("odyn")
+		self:Sync("odyn")
 	end
 end
 
-function mod:BigWigs_BossComm(_, msg)
-	if msg == "odyn" then
-		local name = self:BossName(1489) -- Odyn
-		self:MessageOld("warmup", "cyan", "info", CL.incoming:format(name), false)
-		self:CDBar("warmup", 2.7, name, "achievement_boss_odyn")
+do
+	local prev = 0
+	function mod:BigWigs_BossComm(_, msg)
+		local t = GetTime()
+		if msg == "odyn" and t - prev > 3 then
+			prev = t
+			local name = self:BossName(1489) -- Odyn
+			self:Message("warmup", "cyan", CL.incoming:format(name), false)
+			self:PlaySound("warmup", "info")
+			self:CDBar("warmup", 2.7, name, "achievement_boss_odyn")
+		end
 	end
 end
