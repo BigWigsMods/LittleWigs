@@ -1,4 +1,4 @@
-## Interface: 100002
+## Interface: 100005
 
 ## Title: LittleWigs [|cffeda55fMists of Pandaria|r]
 ## Title-deDE: LittleWigs [|cffeda55fMists of Pandaria|r]
