@@ -47,6 +47,7 @@ mod:RegisterEnableMob(
 -- Locals
 --
 
+local knownClues, clueCount = {}, 0
 local englishSpyFound = "I found the spy!"
 local englishClueNames = {
 	"Cape",
@@ -261,6 +262,11 @@ function mod:OnBossEnable()
 	end
 end
 
+function mod:OnBossDisable()
+	clueCount = 0
+	knownClues = {}
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -439,13 +445,6 @@ do
 
 	local function getIconById(id)
 		return ("|T%d:0|t"):format(id)
-	end
-
-	local knownClues, clueCount = {}, 0
-
-	function mod:OnBossDisable()
-		clueCount = 0
-		knownClues = {}
 	end
 
 	local function sendChatMessage(msg, english)
