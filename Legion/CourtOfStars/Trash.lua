@@ -244,7 +244,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PickingUp", 214697)
 	self:Log("SPELL_CAST_SUCCESS", "PickingUpSuccess", 214697)
 
-	self:RegisterEvent("CHALLENGE_MODE_START")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
 	self:RegisterMessage("BigWigs_BossComm")
@@ -445,12 +444,6 @@ do
 	local knownClues, clueCount = {}, 0
 
 	function mod:OnBossDisable()
-		clueCount = 0
-		knownClues = {}
-	end
-
-	function mod:CHALLENGE_MODE_START()
-		-- clear the clues when M+ starts, in case clues were found in regular mythic without leaving
 		clueCount = 0
 		knownClues = {}
 	end
