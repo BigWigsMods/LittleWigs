@@ -42,6 +42,15 @@ function mod:OnEngage()
 	self:CDBar(207881, 19) -- Infernal Eruption
 end
 
+function mod:OnWin()
+	local trashModule = BigWigs:GetBossModule("Court of Stars Trash", true)
+	if trashModule then
+		-- reboot the trash module to clear clues and reassert gossip event handling
+		-- order ahead of the Spy event
+		trashModule:Reboot()
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --

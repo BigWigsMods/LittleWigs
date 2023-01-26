@@ -47,6 +47,7 @@ mod:RegisterEnableMob(
 -- Locals
 --
 
+local knownClues, clueCount = {}, 0
 local englishSpyFound = "I found the spy!"
 local englishClueNames = {
 	"Cape",
@@ -244,7 +245,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PickingUp", 214697)
 	self:Log("SPELL_CAST_SUCCESS", "PickingUpSuccess", 214697)
 
-	self:RegisterEvent("CHALLENGE_MODE_START")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
 	self:RegisterMessage("BigWigs_BossComm")
@@ -260,6 +260,11 @@ function mod:OnBossEnable()
 	for i = 1, #frames do
 		frames[i]:RegisterEvent("GOSSIP_SHOW")
 	end
+end
+
+function mod:OnBossDisable()
+	clueCount = 0
+	knownClues = {}
 end
 
 --------------------------------------------------------------------------------
@@ -440,19 +445,6 @@ do
 
 	local function getIconById(id)
 		return ("|T%d:0|t"):format(id)
-	end
-
-	local knownClues, clueCount = {}, 0
-
-	function mod:OnBossDisable()
-		clueCount = 0
-		knownClues = {}
-	end
-
-	function mod:CHALLENGE_MODE_START()
-		-- clear the clues when M+ starts, in case clues were found in regular mythic without leaving
-		clueCount = 0
-		knownClues = {}
 	end
 
 	local function sendChatMessage(msg, english)
