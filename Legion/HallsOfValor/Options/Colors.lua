@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Hymdall", {
 	[191284] = "red",
-	[193092] = "yellow",
+	[193092] = "purple",
 	[193235] = {"blue","orange"},
 })
 
