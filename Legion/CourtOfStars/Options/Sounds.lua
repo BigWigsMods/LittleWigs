@@ -40,6 +40,7 @@ BigWigs:AddSounds("Court of Stars Trash", {
 	[211401] = "alarm",
 	[211464] = "alarm",
 	[211470] = "alert",
+	[211473] = "alarm",
 	[212031] = "alarm",
 	[212773] = {"alarm","warning"},
 	[212784] = {"alarm","long"},

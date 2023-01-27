@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	104270, -- Guardian Construct
 	104278, -- Felbound Enforcer
 	104277, -- Legion Hound
+	104300, -- Shadow Mistress
 	107435, -- Gerenth the Vile & Suspicious Noble
 	104273, -- Jazshariu
 	104275, -- Imacu'tya
@@ -149,6 +150,7 @@ function mod:GetOptions()
 		211464, -- Fel Detonation (Felbound Enforcer)
 		211391, -- Felblaze Puddle (Legion Hound)
 		211470, -- Bewitch (Shadow Mistress)
+		{211473, "TANK_HEALER"}, -- Shadow Slash (Shadow Mistress)
 		214692, -- Shadow Bolt Volley (Gerenth the Vile)
 		214688, -- Carrion Swarm (Gerenth the Vile)
 		214690, -- Cripple (Gerenth the Vile)
@@ -222,6 +224,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SingleTargetDebuffsRemoved", 209413, 214690, 211470) -- Suppress, Cripple, Bewitch
 	-- Eye Storm
 	self:Log("SPELL_CAST_SUCCESS", "EyeStorm", 212784)
+
+	-- Shadow Mistress
+	self:Log("SPELL_CAST_START", "ShadowSlash", 211473)
 
 	-- Imacu'tya
 	self:Log("SPELL_CAST_START", "WhirlingBlades", 209378)
@@ -756,6 +761,13 @@ end
 function mod:EyeStorm(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+end
+
+-- Shadow Mistress
+
+function mod:ShadowSlash(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Imacu'tya

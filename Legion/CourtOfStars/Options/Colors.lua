@@ -40,6 +40,7 @@ BigWigs:AddColors("Court of Stars Trash", {
 	[211401] = "red",
 	[211464] = "red",
 	[211470] = {"blue","orange","yellow"},
+	[211473] = "purple",
 	[212031] = "red",
 	[212773] = {"blue","orange","red"},
 	[212784] = {"red","yellow"},
