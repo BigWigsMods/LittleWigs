@@ -83,7 +83,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		powerVacuumCount = powerVacuumCount + 1
 		self:Message(388822, "red")
 		self:PlaySound(388822, "alarm")
-		self:CDBar(388822, powerVacuumCount == 1 and 24 or 29)
+		self:Bar(388822, powerVacuumCount == 1 and 24 or 29)
 	end
 end
 
