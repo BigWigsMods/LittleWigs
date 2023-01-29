@@ -12,7 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local powervacuumCount = 0
+local powerVacuumCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	powervacuumCount = 0
+	powerVacuumCount = 0
 	self:CDBar(374352, 14.9) -- Energy Bomb
 	self:CDBar(388822, 22.6) -- Power Vacuum
 	self:CDBar(374361, 28.8) -- Astral Breath
@@ -80,11 +80,11 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 388820 then -- Power Vacuum
-		powervacuumCount = powervacuumCount + 1
+		powerVacuumCount = powerVacuumCount + 1
 		self:StopBar(388822)
 		self:Message(388822, "red")
 		self:PlaySound(388822, "alarm")
-		self:CDBar(388822, powervacuumCount == 1 and 24 or 29)
+		self:CDBar(388822, powerVacuumCount == 1 and 24 or 29)
 	end
 end
 
