@@ -9,6 +9,12 @@ mod:SetEncounterID(2565)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local powerVacuumCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -23,19 +29,20 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "OverwhelmingPowerApplied", 389011)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "OverwhelmingPowerApplied", 389011)
 	self:Log("SPELL_AURA_APPLIED", "WildEnergyDamage", 389007)
 	self:Log("SPELL_PERIODIC_DAMAGE", "WildEnergyDamage", 389007)
 	self:Log("SPELL_CAST_START", "AstralBreath", 374361)
-	self:Log("SPELL_CAST_START", "PowerVacuum", 388822)
 	self:Log("SPELL_AURA_APPLIED", "EnergyBombApplied", 374350)
 	self:Log("SPELL_AURA_REMOVED", "EnergyBombRemoved", 374350)
 end
 
 function mod:OnEngage()
+	powerVacuumCount = 0
 	self:CDBar(374352, 14.9) -- Energy Bomb
-	self:CDBar(388822, 24.2) -- Power Vacuum
+	self:Bar(388822, 22.6) -- Power Vacuum
 	self:CDBar(374361, 28.8) -- Astral Breath
 end
 
@@ -71,10 +78,13 @@ function mod:AstralBreath(args)
 	self:CDBar(args.spellId, 32.8)
 end
 
-function mod:PowerVacuum(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 23.1)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 388820 then -- Power Vacuum
+		powerVacuumCount = powerVacuumCount + 1
+		self:Message(388822, "red")
+		self:PlaySound(388822, "alarm")
+		self:Bar(388822, powerVacuumCount == 1 and 24 or 29)
+	end
 end
 
 function mod:EnergyBombApplied(args)
