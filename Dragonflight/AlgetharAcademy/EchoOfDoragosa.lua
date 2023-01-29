@@ -42,7 +42,7 @@ end
 function mod:OnEngage()
 	powerVacuumCount = 0
 	self:CDBar(374352, 14.9) -- Energy Bomb
-	self:CDBar(388822, 22.6) -- Power Vacuum
+	self:Bar(388822, 22.6) -- Power Vacuum
 	self:CDBar(374361, 28.8) -- Astral Breath
 end
 
