@@ -46,7 +46,7 @@ function mod:VerifyEnable(unit, mobId)
 	if mobId == 70052 then -- Always enable on Soulwell
 		return true
 	else
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		local hp = self:GetHealth(unit)
 		if hp > 8 and UnitCanAttack("player", unit) then
 			return true
 		end

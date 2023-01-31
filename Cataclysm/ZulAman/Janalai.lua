@@ -60,7 +60,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < 40 then
 		self:UnregisterUnitEvent(event, unit)
 		self:MessageOld(-2625, "yellow", nil, CL.soon:format(self:SpellName(-2628)), false) -- Hatch All Eggs Soon

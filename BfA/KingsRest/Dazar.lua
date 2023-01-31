@@ -70,8 +70,7 @@ function mod:OnEngage()
 end
 
 function mod:VerifyEnable(unit)
-	local hp = UnitHealthMax(unit)
-	return hp > 0 and (UnitHealth(unit) / hp) > 0.1 -- 10%
+	return self:GetHealth(unit) > 10
 end
 
 function mod:OnBossDisable()
@@ -115,7 +114,7 @@ do
 		268796, -- Impaling Spear
 	}
 	function mod:UNIT_HEALTH(event, unit)
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		local hp = self:GetHealth(unit)
 		if hp < nextHPWarning then
 			local index = 3 - (nextHPWarning - 45) / 20 -- 85 -> 1, 65 -> 2, 45 -> 3
 			nextHPWarning = nextHPWarning - 20

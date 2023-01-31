@@ -68,7 +68,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 end
 
 function mod:StageWarn(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < 70 and stage == 1 then
 		stage = 2
 		self:MessageOld("blades", "green", nil, CL.soon:format(self:SpellName(L.blades)), false)

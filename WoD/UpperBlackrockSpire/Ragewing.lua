@@ -66,7 +66,7 @@ function mod:EngulfingFire(_, _, _, spellId)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextAddsWarning then
 		nextAddsWarning = nextAddsWarning - 30
 		self:MessageOld(-10740, "green", nil, CL.soon:format(self:SpellName(93679)), false)

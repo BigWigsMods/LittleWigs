@@ -62,7 +62,7 @@ function mod:SabotageRemoved(args)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextExplosionWarning then
 		nextExplosionWarning = nextExplosionWarning - 40
 		self:MessageOld(-5394, "yellow", nil, CL.soon:format(self:SpellName(-5394)))

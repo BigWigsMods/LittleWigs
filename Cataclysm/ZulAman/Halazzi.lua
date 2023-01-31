@@ -86,7 +86,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextPhaseWarning then
 		nextPhaseWarning = nextPhaseWarning - 30
 		self:MessageOld("stages", "yellow", nil, CL.soon:format(L.spirit_message), false)

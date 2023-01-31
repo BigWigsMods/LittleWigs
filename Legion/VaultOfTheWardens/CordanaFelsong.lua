@@ -149,7 +149,7 @@ function mod:AvatarDeath()
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < 80 and not warnedForStealLight then
 		warnedForStealLight = true
 		self:MessageOld(206567, "yellow", nil, CL.soon:format(self:SpellName(206387))) -- Steal Light soon

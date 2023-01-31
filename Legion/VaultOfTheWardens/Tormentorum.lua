@@ -114,7 +114,7 @@ do
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextTeleportSoonWarning then
 		self:MessageOld(200898, "yellow", nil, CL.soon:format(self:SpellName(200898)))
 		nextTeleportSoonWarning = nextTeleportSoonWarning - 30 -- Teleport at 40%

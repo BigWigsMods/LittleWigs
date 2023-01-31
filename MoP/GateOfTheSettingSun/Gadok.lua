@@ -76,7 +76,7 @@ do
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextStrafingWarning then
 		nextStrafingWarning = nextStrafingWarning - 40
 		self:MessageOld(-5660, "yellow", nil, CL.soon:format(self:SpellName(-5660)), false)

@@ -64,7 +64,7 @@ function mod:BlackIronCycloneOver(args)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < 65 then
 		self:UnregisterUnitEvent(event, unit)
 		self:MessageOld("stages", "green", nil, CL.soon:format(CL.intermission), false)

@@ -57,7 +57,7 @@ function mod:ReinforcementsPhase()
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextReinforcementsWarning then
 		nextReinforcementsWarning = nextReinforcementsWarning - 30
 		self:MessageOld(-5946, "yellow", nil, CL.soon:format(self:SpellName(-5946)))

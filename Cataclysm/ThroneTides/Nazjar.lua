@@ -48,7 +48,7 @@ function mod:WaterspoutRemoved(args) -- if all 3 adds die, she stops casting
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextSpoutWarning then
 		self:MessageOld(75683, "yellow", nil, CL.soon:format(self:SpellName(75683)), false)
 		nextSpoutWarning = nextSpoutWarning - 30

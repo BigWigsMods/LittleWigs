@@ -42,7 +42,7 @@ end
 --
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextShieldOfLightWarning then
 		self:MessageOld(74938, "yellow", nil, CL.soon:format(self:SpellName(74938))) -- Shield of Light
 		nextShieldOfLightWarning = nextShieldOfLightWarning - 33

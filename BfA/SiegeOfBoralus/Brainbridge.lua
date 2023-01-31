@@ -83,7 +83,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		self:CDBar(257585, 60)
 		self:Bar(277965, 42, CL.count:format(self:SpellName(277965), bombsRemaining)) -- Heavy Ordnance
 	elseif spellId == 274002 then -- Call Adds
-		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		local hp = self:GetHealth(unit)
 		if hp > 33 then -- Spams every second under 33% but doesn't actually spawn adds
 			self:Message("adds", "yellow", CL.incoming:format(CL.adds), false)
 			self:PlaySound("adds", "long")

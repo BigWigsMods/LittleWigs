@@ -40,7 +40,7 @@ end
 --
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp <= 50 then
 		self:UnregisterUnitEvent(event, unit)
 
