@@ -4,7 +4,8 @@ BigWigs:AddSounds("Slad'ran", {
 })
 
 BigWigs:AddSounds("Drakkari Colossus", {
-	[59451] = "alarm",
+	[59451] = "underyou",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Moorabi", {
