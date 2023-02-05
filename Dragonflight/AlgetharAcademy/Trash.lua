@@ -12,13 +12,13 @@ mod:RegisterEnableMob(
 	196979, -- Green Dragonflight Recruiter
 	196981, -- Red Dragonflight Recruiter
 	196045, -- Corrupted Manafiend
+	196577, -- Spellbound Battleaxe
 	196576, -- Spellbound Scepter
 	196671, -- Arcane Ravager
 	196044, -- Unruly Textbook
 	192680, -- Guardian Sentry
 	192333, -- Alpha Eagle
 	197219, -- Vile Lasher
-	196198, -- Algeth'ar Security
 	196200, -- Algeth'ar Echoknight
 	196202, -- Spectral Invoker
 	196203 -- Ethereal Restorer
@@ -46,13 +46,13 @@ if L then
 	L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
 
 	L.corrupted_manafiend = "Corrupted Manafiend"
+	L.spellbound_battleaxe = "Spellbound Battleaxe"
 	L.spellbound_scepter = "Spellbound Scepter"
 	L.arcane_ravager = "Arcane Ravager"
 	L.unruly_textbook = "Unruly Textbook"
 	L.guardian_sentry = "Guardian Sentry"
 	L.alpha_eagle = "Alpha Eagle"
 	L.vile_lasher = "Vile Lasher"
-	L.algethar_security = "Algeth'ar Security"
 	L.algethar_echoknight = "Algeth'ar Echoknight"
 	L.spectral_invoker = "Spectral Invoker"
 	L.ethereal_restorer = "Ethereal Restorer"
@@ -73,6 +73,8 @@ function mod:GetOptions()
 		389501, -- Red Dragonflight Pledge Pin
 		-- Corrupted Manafiend
 		388863, -- Mana Void
+		-- Spellbound Battleaxe
+		{388911, "TANK"}, -- Severing Slice
 		-- Spellbound Scepter
 		396812, -- Mystic Blast
 		388886, -- Arcane Rain
@@ -90,8 +92,6 @@ function mod:GetOptions()
 		377383, -- Gust
 		-- Vile Lasher
 		390912, -- Detonation Seeds
-		-- Algeth'ar Security
-		387862, -- Disrupting Pulse
 		-- Algeth'ar Echoknight
 		387910, -- Astral Whirlwind
 		-- Spectral Invoker
@@ -101,13 +101,13 @@ function mod:GetOptions()
 	}, {
 		["custom_on_recruiter_autotalk"] = CL.general,
 		[388863] = L.corrupted_manafiend,
+		[388911] = L.spellbound_battleaxe,
 		[396812] = L.spellbound_scepter,
 		[388976] = L.arcane_ravager,
 		[388392] = L.unruly_textbook,
 		[377912] = L.guardian_sentry,
 		[377389] = L.alpha_eagle,
 		[390912] = L.vile_lasher,
-		[387862] = L.algethar_security,
 		[387910] = L.algethar_echoknight,
 		[387843] = L.spectral_invoker,
 		[387955] = L.ethereal_restorer,
@@ -126,6 +126,9 @@ function mod:OnBossEnable()
 
 	-- Corrupted Manafiend
 	self:Log("SPELL_CAST_START", "ManaVoid", 388863)
+
+	-- Spellbound Battleaxe
+	self:Log("SPELL_CAST_START", "SeveringSlice", 388911)
 
 	-- Spellbound Scepter
 	self:Log("SPELL_CAST_START", "MysticBlast", 396812)
@@ -152,22 +155,17 @@ function mod:OnBossEnable()
 	-- Vile Lasher
 	self:Log("SPELL_CAST_SUCCESS", "DetonationSeeds", 390912)
 
-	-- Algeth'ar Security
-	self:Log("SPELL_CAST_START", "DisruptingPulse", 387862)
-
 	-- Algeth'ar Echoknight
-	self:Log("SPELL_CAST_SUCCESS", "AstralWhirlwind", 387910)
+	self:Log("SPELL_CAST_START", "AstralWhirlwind", 387910)
 	self:Log("SPELL_AURA_APPLIED", "AstralWhirlwindDamage", 387932)
 	self:Log("SPELL_PERIODIC_DAMAGE", "AstralWhirlwindDamage", 387932)
 	self:Log("SPELL_PERIODIC_MISSED", "AstralWhirlwindDamage", 387932)
 
 	-- Spectral Invoker
-	self:Log("SPELL_CAST_START", "AstralBomb", 387843)
 	self:Log("SPELL_AURA_APPLIED", "AstralBombApplied", 387843)
 	self:Log("SPELL_AURA_REMOVED", "AstralBombRemoved", 387843)
 
 	-- Ethereal Restorer
-	self:Log("SPELL_CAST_START", "CelestialShield", 387955)
 	self:Log("SPELL_AURA_APPLIED", "CelestialShieldApplied", 387955)
 end
 
@@ -276,6 +274,13 @@ do
 	end
 end
 
+-- Spellbound Battleaxe
+
+function mod:SeveringSlice(args)
+	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+end
+
 -- Spellbound Scepter
 
 function mod:MysticBlast(args)
@@ -376,13 +381,6 @@ do
 	end
 end
 
--- Algeth'ar Security
-
-function mod:DisruptingPulse(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-end
-
 -- Algeth'ar Echoknight
 
 do
@@ -415,27 +413,18 @@ end
 
 do
 	local prev = 0
-	function mod:AstralBomb(args)
-		local t = args.time
-		if t - prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-do
-	local prev = 0
 	function mod:AstralBombApplied(args)
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 1.5 then
-				prev = t
-				self:TargetMessage(args.spellId, "blue", args.destName)
+		local t = args.time
+		local onMe = self:Me(args.destGUID)
+		if t - prev > 1 or onMe then
+			prev = t
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			if onMe then
 				self:PlaySound(args.spellId, "alarm")
 				self:Say(args.spellId)
 				self:SayCountdown(args.spellId, 3, nil, 2)
+			else
+				self:PlaySound(args.spellId, "alert", nil, args.destName)
 			end
 		end
 	end
@@ -449,14 +438,11 @@ end
 
 -- Ethereal Restorer
 
-function mod:CelestialShield(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-end
-
+-- no longer alerting on start cast, it's stunnable but not interruptible. but most importantly
+-- this doesn't scale with key level as of 2023-02-05.
 function mod:CelestialShieldApplied(args)
 	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
 		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "warning")
+		self:PlaySound(args.spellId, "alert")
 	end
 end
