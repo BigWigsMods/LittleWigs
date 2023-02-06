@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Wise Mari", 960, 672)
 if not mod then return end
 mod:RegisterEnableMob(56448) -- Wise Mari
 mod:SetEncounterID(1418)
-mod:SetRespawnTime(20)
+mod:SetRespawnTime(25)
 
 --------------------------------------------------------------------------------
 -- Locals
