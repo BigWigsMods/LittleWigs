@@ -16,8 +16,8 @@ end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "zhCN")
 if L then
-	--L.northwest = "NW"
-	--L.northeast = "NE"
-	--L.southeast = "SE"
-	--L.southwest = "SW"
+	L.northwest = "西北"
+	L.northeast = "东北"
+	L.southeast = "东南"
+	L.southwest = "西南"
 end
