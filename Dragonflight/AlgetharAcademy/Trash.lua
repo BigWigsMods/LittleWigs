@@ -358,8 +358,11 @@ end
 -- Alpha Eagle
 
 function mod:CallOfTheFlock(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	local _, interruptReady = self:Interrupter()
+	if interruptReady then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:Gust(args)
