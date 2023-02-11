@@ -9,6 +9,7 @@ mod:RegisterEnableMob(
 	95842,  -- Valarjar Thundercaller
 	97068,  -- Storm Drake
 	96574,  -- Stormforged Sentinel
+	96664,  -- Valarjar Runecarver
 	95834,  -- Valarjar Mystic
 	97197,  -- Valarjar Purifier
 	95832,  -- Valarjar Shieldmaiden
@@ -35,18 +36,19 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."
 
-	L.thundercaller = "Valarjar Thundercaller"
-	L.drake = "Storm Drake"
-	L.sentinel = "Stormforged Sentinel"
-	L.mystic = "Valarjar Mystic"
-	L.purifier = "Valarjar Purifier"
-	L.shieldmaiden = "Valarjar Shieldmaiden"
-	L.aspirant = "Valarjar Aspirant"
+	L.valarjar_thundercaller = "Valarjar Thundercaller"
+	L.storm_drake = "Storm Drake"
+	L.stormforged_sentinel = "Stormforged Sentinel"
+	L.valarjar_runecarver = "Valarjar Runecarver"
+	L.valarjar_mystic = "Valarjar Mystic"
+	L.valarjar_purifier = "Valarjar Purifier"
+	L.valarjar_shieldmaiden = "Valarjar Shieldmaiden"
+	L.valarjar_aspirant = "Valarjar Aspirant"
 	L.solsten = "Solsten"
 	L.olmyr = "Olmyr the Enlightened"
-	L.marksman = "Valarjar Marksman"
-	L.angerhoof = "Angerhoof Bull"
-	L.trapper = "Valarjar Trapper"
+	L.valarjar_marksman = "Valarjar Marksman"
+	L.angerhoof_bull = "Angerhoof Bull"
+	L.valarjar_trapper = "Valarjar Trapper"
 	L.fourkings = "The Four Kings"
 end
 
@@ -66,6 +68,8 @@ function mod:GetOptions()
 		210875, -- Charged Pulse
 		{198745, "DISPEL"}, -- Protective Light
 		{199805, "SAY"}, -- Crackle
+		-- Valarjar Runecarver
+		198959, -- Etch
 		-- Valarjar Mystic
 		198931, -- Healing Light (replaced by Holy Radiance in mythic difficulty)
 		198934, -- Rune of Healing
@@ -91,18 +95,19 @@ function mod:GetOptions()
 		200969, -- Call Ancestor
 	}, {
 		["custom_on_autotalk"] = "general",
-		[215430] = L.thundercaller,
-		[198888] = L.drake,
-		[210875] = L.sentinel,
-		[198931] = L.mystic,
-		[192563] = L.purifier,
-		[199050] = L.shieldmaiden,
-		[191508] = L.aspirant,
+		[215430] = L.valarjar_thundercaller,
+		[198888] = L.storm_drake,
+		[210875] = L.stormforged_sentinel,
+		[198959] = L.valarjar_runecarver,
+		[198931] = L.valarjar_mystic,
+		[192563] = L.valarjar_purifier,
+		[199050] = L.valarjar_shieldmaiden,
+		[191508] = L.valarjar_aspirant,
 		[200901] = L.solsten,
 		[192158] = L.olmyr,
-		[199210] = L.marksman,
-		[199090] = L.angerhoof,
-		[199341] = L.trapper,
+		[199210] = L.valarjar_marksman,
+		[199090] = L.angerhoof_bull,
+		[199341] = L.valarjar_trapper,
 		[199726] = L.fourkings,
 	}, {
 		[198745] = CL.shield,
@@ -118,6 +123,9 @@ function mod:OnBossEnable()
 
 	-- Storm Drake
 	self:Log("SPELL_CAST_START", "LightningBreath", 198888)
+
+	-- Valarjar Runecarver
+	self:Log("SPELL_CAST_START", "Etch", 198959)
 
 	-- Valarjar Mystic
 	self:Log("SPELL_CAST_START", "HealingLight", 198931)
@@ -211,27 +219,41 @@ function mod:LightningBreath(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+-- Valarjar Runecarver
+
+do
+	local prev = 0
+	function mod:Etch(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
 -- Valarjar Mystic
 
 function mod:HealingLight(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HolyRadiance(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:RuneOfHealing(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Valarjar Purifier
 
 function mod:CleansingFlames(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -318,7 +340,7 @@ end
 -- Valarjar Marksman
 
 function mod:PenetratingShot(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -339,7 +361,7 @@ end
 -- The Four Kings
 
 function mod:UnrulyYell(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
