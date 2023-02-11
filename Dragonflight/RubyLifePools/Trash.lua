@@ -152,6 +152,9 @@ end
 -- Flashfrost Earthshaper
 
 function mod:TectonicSlam(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 end
@@ -192,6 +195,9 @@ end
 -- Primalist Flamedancer
 
 function mod:FlameDance(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
