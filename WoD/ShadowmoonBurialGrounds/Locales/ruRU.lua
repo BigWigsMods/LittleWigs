@@ -1,19 +1,19 @@
 local L = BigWigs:NewBossLocale("Sadana Bloodfury", "ruRU")
 if not L then return end
 if L then
-	--L.custom_on_markadd = "Mark the Dark Communion Add"
-	--L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with {rt8}, requires promoted or leader."
+	L.custom_on_markadd = "Ставить метку на адда от Темного контакта"
+	L.custom_on_markadd_desc = "Ставит {rt8} на адда, призванного Темным контактом, нужно быть лидером группы или помощником."
 end
 
 L = BigWigs:NewBossLocale("Bonemaw", "ruRU")
 if L then
-	--L.summon_worms = "Summon Carrion Worms"
-	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
-	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
+	L.summon_worms = "Призыв помощников"
+	L.summon_worms_desc = "Костебрюх призывает двух червей-трупоедов"
+	L.summon_worms_trigger = "привлекает ближайших червей-трупоедов"
 
 	L.submerge = "Погружение"
-	--L.submerge_desc = "Bonemaw submerges and repositions."
-	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
+	L.submerge_desc = "Костебрюх погружается и появляется в другом месте"
+	L.submerge_trigger = "шипит и уползает обратно в темные глубины!"
 end
 
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "ruRU")

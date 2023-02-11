@@ -20,7 +20,7 @@ end
 
 L = BigWigs:NewBossLocale("Granyth", "ruRU")
 if L then
-	--L.lance_ready = "Lance Ready"
+	L.lance_ready = "Копье готово"
 	--L.west = "W"
 	--L.northeast = "NE"
 	--L.southeast = "SE"
@@ -28,6 +28,6 @@ end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "ruRU")
 if L then
-	--L.on_you = "On you"
-	--L.on_boss = "On the boss"
+	L.on_you = "На тебе"
+	L.on_boss = "На боссе"
 end
