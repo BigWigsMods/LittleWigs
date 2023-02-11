@@ -225,6 +225,9 @@ end
 -- Primalist Stormspeaker
 
 function mod:Tempest(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -279,6 +282,9 @@ end
 do
 	local prev = 0
 	function mod:RottingWind(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -298,6 +304,9 @@ end
 -- Risen Mystic
 
 function mod:SwiftWind(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -305,6 +314,9 @@ end
 -- Ukhel Beastcaller
 
 function mod:DesecratingRoar(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -337,6 +349,9 @@ end
 -- Nokhud Thunderfist
 
 function mod:DeadlyThunder(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "warning")
