@@ -208,16 +208,23 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Subdue", 212773)
 	self:Log("SPELL_AURA_APPLIED", "SubdueApplied", 212773)
 
-	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
-	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006, 211470)
-	-- Quelling Strike, Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers
-	self:Log("SPELL_CAST_START", "AlarmCasts", 209027, 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377)
+	-- Duskwatch Guard
+	self:Log("SPELL_CAST_START", "QuellingStrike", 209027)
+	self:Log("SPELL_CAST_START", "Fortification", 209033)
+	self:Log("SPELL_AURA_APPLIED", "FortificationApplied", 209033)
+
+	-- Mana Wyrm
+	self:Log("SPELL_CAST_START", "WildDetonation", 209477)
+
+	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Drain Magic, Nightfall Orb, Seal Magic, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
+	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 209485, 209410, 209404, 216110, 216096, 216000, 216006, 211470)
+	-- Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers
+	self:Log("SPELL_CAST_START", "AlarmCasts", 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377)
 	-- Felblaze Puddle, Disrupting Energy
 	self:Log("SPELL_AURA_APPLIED", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_MISSED", "PeriodicDamage", 211391, 209512)
 	-- Dispellable stuff
-	self:Log("SPELL_AURA_APPLIED", "Fortification", 209033)
 	self:Log("SPELL_AURA_APPLIED", "SealMagic", 209404)
 	self:Log("SPELL_AURA_APPLIED", "Suppress", 209413)
 	self:Log("SPELL_AURA_APPLIED", "SingleTargetDebuffs", 214690, 211470) -- Cripple, Bewitch
@@ -696,6 +703,49 @@ function mod:SubdueApplied(args)
 	end
 end
 
+-- Duskwatch Guard
+
+do
+	local prev = 0
+	function mod:QuellingStrike(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+function mod:Fortification(args)
+	if throttleMessages(args.spellId) then return end
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:FortificationApplied(args)
+	if self:Dispeller("magic", true) and not self:Player(args.destFlags) then -- Mages can spellsteal it
+		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
+		if not throttleMessages(args.spellId) then
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+-- Mana Wyrm
+
+do
+	local prev = 0
+	function mod:WildDetonation(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
 -- Generic Casts
 
 function mod:AlertCasts(args)
@@ -721,12 +771,6 @@ do
 				self:PlaySound(args.spellId, "underyou")
 			end
 		end
-	end
-end
-
-function mod:Fortification(args)
-	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then -- mages can spellsteal it
-		self:TargetMessageOld(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "alert", nil, nil, true)
 	end
 end
 
