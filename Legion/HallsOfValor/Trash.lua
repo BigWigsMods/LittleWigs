@@ -224,6 +224,9 @@ end
 do
 	local prev = 0
 	function mod:Etch(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -241,11 +244,17 @@ function mod:HealingLight(args)
 end
 
 function mod:HolyRadiance(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:RuneOfHealing(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -305,6 +314,9 @@ end
 do
 	local prev = 0
 	function mod:MortalHew(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
@@ -347,6 +359,9 @@ end
 -- Angerhoof Bull
 
 function mod:RumblingStomp(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
