@@ -83,7 +83,7 @@ function mod:WashAway(args)
 end
 
 function mod:WashAwayChannelStart(args)
-	self:CastBar(397785, 12.75)
+	self:CastBar(397785, 12)
 end
 
 function mod:CorruptedVortexApplied(args)
