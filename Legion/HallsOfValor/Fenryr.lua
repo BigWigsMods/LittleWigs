@@ -52,6 +52,9 @@ function mod:UnnervingHowl(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 28)
+	if self:MobId(args.sourceGUID) == 95674 then -- Stage 1
+		self:CDBar(196512, {4.9, 9.7}) -- Claw Frenzy
+	end
 end
 
 do
@@ -81,6 +84,9 @@ end
 
 function mod:ClawFrenzy(args)
 	self:Message(args.spellId, "red")
+	if self:MobId(args.sourceGUID) == 95674 then -- Stage 1
+		self:CDBar(args.spellId, 9.7)
+	end
 end
 
 do
