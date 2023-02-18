@@ -6,8 +6,7 @@ BigWigs:AddColors("Hymdall", {
 })
 
 BigWigs:AddColors("Hyrja", {
-	[191976] = {"blue","yellow"},
-	[192018] = "red",
+	[192018] = "purple",
 	[192048] = {"blue","yellow"},
 	[192307] = "orange",
 	[200901] = "orange",

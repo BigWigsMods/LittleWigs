@@ -6,7 +6,6 @@ BigWigs:AddSounds("Hymdall", {
 })
 
 BigWigs:AddSounds("Hyrja", {
-	[191976] = "alarm",
 	[192018] = "alert",
 	[192048] = "alarm",
 	[192307] = "long",
