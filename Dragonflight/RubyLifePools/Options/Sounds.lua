@@ -23,7 +23,7 @@ BigWigs:AddSounds("Kyrakka and Erkhart Stormvein", {
 	[381525] = "alarm",
 	[381602] = "alert",
 	[381862] = "alarm",
-	["stages"] = "long",
+	["stages"] = {"info","long"},
 })
 
 BigWigs:AddSounds("Ruby Life Pools Trash", {

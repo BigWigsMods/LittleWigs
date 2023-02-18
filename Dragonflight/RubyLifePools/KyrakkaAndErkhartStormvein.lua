@@ -54,6 +54,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "EncounterEvent", 181089)
 	self:Death("BossDeath", 190484, 190485)
 
@@ -89,6 +90,16 @@ end
 --
 
 -- Stages
+
+function mod:UNIT_HEALTH(event, unit)
+	-- stage 2 trigger is either boss hitting 50%, but it takes some time for the bosses to get in position
+	if self:GetHealth(unit) <= 50 then
+		self:UnregisterUnitEvent(event, "boss1")
+		self:UnregisterUnitEvent(event, "boss2")
+		self:Message("stages", "cyan", CL.soon:format(CL.stage:format(2)), false)
+		self:PlaySound("stages", "info")
+	end
+end
 
 function mod:EncounterEvent()
 	-- when either boss reaches 50%, Kyrakka lands so Erkhart can remount
@@ -206,11 +217,7 @@ end
 function mod:InterruptingCloudburst(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	if self:Mythic() then
-		self:Bar(args.spellId, 19.4)
-	else
-		self:Bar(args.spellId, 18.2)
-	end
+	self:Bar(args.spellId, 19.4)
 end
 
 function mod:Stormslam(args)
