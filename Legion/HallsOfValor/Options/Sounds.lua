@@ -31,6 +31,7 @@ BigWigs:AddSounds("Odyn", {
 	[198077] = "alert",
 	[198263] = "long",
 	[200988] = "alert",
+	[201215] = "info",
 	["warmup"] = "info",
 })
 

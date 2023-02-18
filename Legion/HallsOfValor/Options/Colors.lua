@@ -33,6 +33,7 @@ BigWigs:AddColors("Odyn", {
 	[198077] = "red",
 	[198263] = "red",
 	[200988] = "orange",
+	[201215] = "yellow",
 	["warmup"] = "cyan",
 })
 
