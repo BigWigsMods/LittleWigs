@@ -33,6 +33,19 @@ BigWigs:AddSounds("Decatriarch Wratheye", {
 })
 
 BigWigs:AddSounds("Brackenhide Hollow Trash", {
+	[367484] = "long",
 	[367500] = "warning",
+	[368287] = "alarm",
+	[373897] = "alert",
+	[373943] = "alarm",
+	[374057] = "alert",
+	[374544] = "alarm",
+	[382435] = "alert",
+	[382555] = {"alarm","underyou"},
+	[382712] = "alarm",
+	[383399] = "underyou",
+	[385029] = "alert",
+	[385832] = "alert",
+	[388046] = "alarm",
 	[388060] = "alarm",
 })
