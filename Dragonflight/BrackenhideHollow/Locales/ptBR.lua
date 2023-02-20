@@ -1,6 +1,19 @@
 local L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "ptBR")
 if not L then return end
 if L then
-	--L.bracken_warscourge = "Bracken Warscourge"
-	--L.stinkbreath = "Stinkbreath"
+	L.custom_on_cauldron_autotalk = "Conversa Automática"
+	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
+
+	L.decaying_cauldron = "Caldeirão Decadente"
+	L.decay_speaker = "Mensageira da Decomposição"
+	L.claw_fighter = "Lutador de Garras"
+	L.bonebolt_hunter = "Caçador Raiosso"
+	L.bracken_warscourge = "Flagelo de Guerra das Samambaias"
+	L.decayed_elder = "Ancião Decomposto"
+	L.wilted_oak = "Carvalho Murcho"
+	L.stinkbreath = "Bafedora"
+	L.rageclaw = "Patafúria"
+	L.fleshripper_vulture = "Urubu Ripa-carne"
+	L.filth_caller = "Arauto da Imundície"
+	L.fetid_rotsinger = "Cantapodre Fétida"
 end
