@@ -2,7 +2,7 @@ local L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "deDE")
 if not L then return end
 if L then
 	L.custom_on_cauldron_autotalk = "Automatisch ansprechen"
-	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
+	L.custom_on_cauldron_autotalk_desc = "[Alchemie] Verfallende Kessel sofort entgiften für einen Krankheit Dispel Buff."
 
 	L.decaying_cauldron = "Verfallender Kessel"
 	L.decay_speaker = "Fäulnissprecherin"
