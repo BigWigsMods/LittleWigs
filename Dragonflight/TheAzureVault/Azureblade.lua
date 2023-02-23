@@ -75,6 +75,7 @@ do
 		addKills = addKills + 1
 		if addKills < 4 then
 			self:Message(384132, "cyan", CL.add_killed:format(addKills, 4))
+			self:PlaySound(384132, "alert")
 		else
 			self:SetStage(1)
 			self:Message(384132, "green", CL.over:format(self:SpellName(384132))) -- Overwhelming Energy Over
