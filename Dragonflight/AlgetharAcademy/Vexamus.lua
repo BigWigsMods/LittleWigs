@@ -13,6 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local arcaneFissureTime = 0
+local arcaneFissureCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -53,12 +54,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	arcaneFissureCount = 0
+	-- 40 second energy gain + ~.9 seconds until energy gain is initially turned on
+	arcaneFissureTime = GetTime() + 40.9
 	self:CDBar(386544, 4.1) -- Arcane Orbs
 	self:CDBar(385958, 12.1) -- Arcane Expulsion
 	self:CDBar(386173, 22.1) -- Mana Bombs
-	self:CDBar(388537, 40.9) -- Arcane Fissure
-	-- 40 second energy gain + .9 seconds until energy gain is initially turned on
-	arcaneFissureTime = GetTime() + 40.9
+	self:CDBar(388537, 40.9, CL.count:format(self:SpellName(388537), 1)) -- Arcane Fissure (1)
 end
 
 --------------------------------------------------------------------------------
@@ -97,14 +99,15 @@ end
 		arcaneFissureTime = GetTime() + nextArcaneFissure
 		if nextArcaneFissure > 0 then
 			recalculateArcaneFissure = false
-			self:Bar(388537, {nextArcaneFissure, 40}) -- Arcane Fissure
+			self:Bar(388537, {nextArcaneFissure, 40}, CL.count:format(args.spellName, arcaneFissureCount + 1)) -- Arcane Fissure
 		end
 	end
 end]]--
 
 function mod:ArcaneFissure(args)
-	self:StopBar(args.spellId)
-	self:Message(args.spellId, "red")
+	arcaneFissureCount = arcaneFissureCount + 1
+	self:StopBar(CL.count:format(self:SpellName(args.spellId, arcaneFissureCount)))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, arcaneFissureCount))
 	self:PlaySound(args.spellId, "alert")
 	-- Arcane Fissure adds 3.6 seconds to all other timers
 	local arcaneExpulsionTimeLeft = self:BarTimeLeft(385958)
@@ -123,7 +126,7 @@ end
 
 function mod:ArcaneFissureSuccess(args)
 	-- cast at 100 energy, gains 2.5 energy per second
-	self:CDBar(args.spellId, 40.7)
+	self:CDBar(args.spellId, 40.7, CL.count:format(self:SpellName(388537), arcaneFissureCount + 1))
 	arcaneFissureTime = GetTime() + 40.7
 end
 
@@ -132,9 +135,9 @@ function mod:ArcaneOrbAbsorbed(args)
 	arcaneFissureTime = arcaneFissureTime - 8
 	local timeLeft = arcaneFissureTime - GetTime()
 	if timeLeft > 0 then
-		self:CDBar(388537, {timeLeft, 40.7}) -- Arcane Fissure
+		self:CDBar(388537, {timeLeft, 40.7}, CL.count:format(self:SpellName(388537), arcaneFissureCount + 1)) -- Arcane Fissure
 	else
-		self:StopBar(388537) -- Arcane Fissure
+		self:StopBar(CL.count:format(self:SpellName(388537), arcaneFissureCount + 1)) -- Arcane Fissure
 	end
 end
 
