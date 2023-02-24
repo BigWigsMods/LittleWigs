@@ -16,6 +16,8 @@ if L then
 	L.soulharvester_galtmaa = "Moissonneuse d'âmes Galtmaa"
 	L.nokhud_defender = "Défenseur nokhud"
 	L.nokhud_thunderfist = "Tonnepoing nokhud"
+	L.balara = "Balara"
+	L.batak = "Batak"
 end
 
 L = BigWigs:NewBossLocale("Granyth", "frFR")

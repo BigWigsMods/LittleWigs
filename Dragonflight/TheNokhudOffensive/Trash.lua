@@ -30,6 +30,7 @@ mod:RegisterEnableMob(
 	195930, -- Soulharvester Mandakh
 	199717, -- Nokhud Defender
 	193373, -- Nokhud Thunderfist
+	193457, -- Balara
 	193462  -- Batak
 )
 
@@ -54,6 +55,8 @@ if L then
 	L.soulharvester_galtmaa = "Soulharvester Galtmaa"
 	L.nokhud_defender = "Nokhud Defender"
 	L.nokhud_thunderfist = "Nokhud Thunderfist"
+	L.balara = "Balara"
+	L.batak = "Batak"
 end
 
 --------------------------------------------------------------------------------
@@ -97,6 +100,11 @@ function mod:GetOptions()
 		373395, -- Bloodcurdling Shout
 		-- Nokhud Thunderfist
 		397394, -- Deadly Thunder
+		-- Balara
+		382277, -- Vehement Charge
+		372147, -- Ravaging Spear
+		-- Batak
+		382233, -- Broad Stomp
 	}, {
 		[384365] = L.nokhud_plainstomper,
 		[383823] = L.nokhud_hornsounder,
@@ -113,6 +121,8 @@ function mod:GetOptions()
 		[395035] = L.soulharvester_galtmaa,
 		[373395] = L.nokhud_defender,
 		[397394] = L.nokhud_thunderfist,
+		[382277] = L.balara,
+		[382233] = L.batak,
 	}, {
 		[334610] = CL.fixate,
 	}
@@ -168,6 +178,13 @@ function mod:OnBossEnable()
 
 	-- Nokhud Thunderfist
 	self:Log("SPELL_CAST_START", "DeadlyThunder", 397394)
+
+	-- Balara
+	self:Log("SPELL_CAST_START", "VehementCharge", 382277)
+	self:Log("SPELL_CAST_START", "RavagingSpear", 372147)
+
+	-- Batak
+	self:Log("SPELL_CAST_START", "BroadStomp", 382233)
 end
 
 --------------------------------------------------------------------------------
@@ -358,4 +375,23 @@ function mod:DeadlyThunder(args)
 	else
 		self:PlaySound(args.spellId, "alert")
 	end
+end
+
+-- Balara
+
+function mod:VehementCharge(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Batak
+
+function mod:RavagingSpear(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BroadStomp(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
