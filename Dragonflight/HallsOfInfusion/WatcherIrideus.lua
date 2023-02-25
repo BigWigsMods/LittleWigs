@@ -25,13 +25,13 @@ end
 function mod:GetOptions()
 	return {
 		-- Stage 1
-		389179, -- Power Overload
+		{389179, "SAY", "SAY_COUNTDOWN"}, -- Power Overload
 		384351, -- Spark Volley
 		384014, -- Static Surge
 		384524, -- Titanic Fist
 		-- Stage 2
-		389446, -- Nullifying Pulse
 		383840, -- Ablative Barrier
+		389446, -- Nullifying Pulse
 	}, {
 		[389179] = -25745, -- Stage One: A Chance at Redemption
 		[389446] = -25744, -- Stage Two: Watcher's Last Stand
@@ -40,24 +40,27 @@ end
 
 function mod:OnBossEnable()
 	-- Stage 1
-	self:Log("SPELL_CAST_START", "PowerOverload", 389179)
+	self:Log("SPELL_CAST_SUCCESS", "PowerOverload", 389179)
+	self:Log("SPELL_AURA_APPLIED", "PowerOverloadApplied", 389179)
+	self:Log("SPELL_AURA_REMOVED", "PowerOverloadRemoved", 389179)
 	self:Log("SPELL_CAST_START", "SparkVolley", 384351)
 	self:Log("SPELL_CAST_START", "StaticSurge", 384014)
 	self:Log("SPELL_CAST_START", "TitanicFist", 384524)
 
 	-- Stage 2
-	self:Log("SPELL_CAST_START", "NullifyingPulse", 389446)
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "AblativeBarrierApplied", 383840)
 	self:Log("SPELL_AURA_REMOVED_DOSE", "AblativeBarrierRemovedDose", 383840)
 	self:Log("SPELL_AURA_REMOVED", "AblativeBarrierRemoved", 383840)
+	self:Log("SPELL_CAST_START", "NullifyingPulse", 389446)
 end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	self:Bar(384524, 5.7) -- Titanic Fist
+	self:CDBar(384524, 6.3) -- Titanic Fist
 	self:CDBar(384014, 10.5) -- Static Surge
-	self:CDBar(389179, 21.4) -- Power Overload
-	self:CDBar(383840, 27.5) -- Ablative Barrier
+	self:CDBar(389179, 21.3) -- Power Overload
+	self:CDBar(384351, 28.1) -- Spark Volley
 end
 
 --------------------------------------------------------------------------------
@@ -66,55 +69,92 @@ end
 
 -- Stage 1
 
-function mod:PowerOverload(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 57.1) -- TODO maybe this is some time (16.84, 17.2?) after barrier removed instead
+do
+	local playerList = {}
+
+	function mod:PowerOverload(args)
+		playerList = {}
+		self:Bar(args.spellId, 33.9)
+	end
+
+	function mod:PowerOverloadApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "red", playerList, 3)
+		self:PlaySound(args.spellId, "alert", nil, playerList)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 6)
+		end
+	end
+
+	function mod:PowerOverloadRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(args.spellId)
+		end
+	end
 end
 
 function mod:SparkVolley(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	-- TODO bar?
+	self:Bar(args.spellId, 33.9)
 end
 
 function mod:StaticSurge(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, self:Interrupter() and "warning" or "alert")
-	self:CDBar(args.spellId, 17)
+	self:PlaySound(args.spellId, "alert")
+	self:Bar(args.spellId, 17.0)
 end
 
 function mod:TitanicFist(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO bar?
+	self:Bar(args.spellId, 17.0)
 end
 
 -- Stage 2
 
+function mod:UNIT_HEALTH(event, unit)
+	-- stage 2 trigger is the boss hitting 15%, but it takes some time for the boss to get in position
+	if self:GetHealth(unit) <= 15 then
+		self:UnregisterUnitEvent(event, unit)
+		self:Message(383840, "cyan", CL.soon:format(self:SpellName(383840))) -- Ablative Barrier Soon
+		self:PlaySound(383840, "info")
+	end
+end
+
+do
+	local ablativeBarrierStart = 0
+
+	function mod:AblativeBarrierApplied(args)
+		ablativeBarrierStart = args.time
+		self:SetStage(2)
+		self:Message(args.spellId, "yellow", CL.percent:format(15, args.spellName))
+		self:PlaySound(args.spellId, "long")
+		self:StopBar(384524) -- Titanic Fist
+		self:StopBar(384014) -- Static Surge
+		self:StopBar(389179) -- Power Overload
+		self:StopBar(384351) -- Spark Volley
+	end
+
+	function mod:AblativeBarrierRemovedDose(args)
+		self:Message(args.spellId, "yellow", L.stacks_left:format(args.spellName, args.amount, 3))
+		self:PlaySound(args.spellId, "info")
+	end
+
+	function mod:AblativeBarrierRemoved(args)
+		local ablativeBarrierDuration = args.time - ablativeBarrierStart
+		self:SetStage(1)
+		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, ablativeBarrierDuration))
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(384524, 6.2) -- Titanic Fist
+		self:CDBar(384014, 11.7) -- Static Surge
+		self:CDBar(389179, 22.3) -- Power Overload
+		self:CDBar(384351, 28.1) -- Spark Volley
+	end
+end
+
 function mod:NullifyingPulse(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:AblativeBarrierApplied(args)
-	self:SetStage(2)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-	-- TODO more stopbars?
-	self:StopBar(384014) -- Static Surge
-	-- TODO add spawn bar?
-end
-
-function mod:AblativeBarrierRemovedDose(args)
-	local stacksRemaining = 3 - args.amount
-	self:Message(args.spellId, "yellow", L.stacks_left:format(CL.removed:format(args.spellName), stacksRemaining, 3))
-	self:PlaySound(args.spellId, "info")
-end
-
-function mod:AblativeBarrierRemoved(args)
-	self:SetStage(1)
-	self:Message(args.spellId, "green", CL.removed:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
-	-- TODO restart bars?
 end

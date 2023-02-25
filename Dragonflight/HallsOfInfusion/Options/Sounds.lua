@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Watcher Irideus", {
 	[383840] = {"info","long"},
-	[384014] = {"alert","warning"},
+	[384014] = "alert",
 	[384351] = "alert",
 	[384524] = "alarm",
 	[389179] = "alert",

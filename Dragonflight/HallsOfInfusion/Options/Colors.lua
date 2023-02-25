@@ -1,10 +1,10 @@
 
 BigWigs:AddColors("Watcher Irideus", {
-	[383840] = {"green","yellow"},
+	[383840] = {"cyan","green","yellow"},
 	[384014] = "orange",
 	[384351] = "yellow",
 	[384524] = "purple",
-	[389179] = "red",
+	[389179] = {"blue","red"},
 	[389446] = "red",
 })
 
