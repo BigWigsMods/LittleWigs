@@ -23,14 +23,14 @@ function mod:GetOptions()
 	return {
 		"stages",
 		-- Stage One: Balakar's Might
-		{376634, "SAY"}, -- Iron Spear
+		{376634, "SAY", "SAY_COUNTDOWN"}, -- Iron Spear
 		376683, -- Iron Stampede
 		375943, -- Upheaval
 		{375937, "TANK_HEALER"}, -- Rending Strike
 		-- Intermission: Stormwinds
 		376727, -- Siphon Power
 		-- Stage Two: The Storm Unleashed
-		{376864, "SAY"}, -- Static Spear
+		{376864, "SAY", "SAY_COUNTDOWN"}, -- Static Spear
 		376892, -- Crackling Upheaval
 		{376827, "DISPEL"}, -- Conductive Strike
 	}, {
@@ -43,6 +43,7 @@ end
 function mod:OnBossEnable()
 	-- Stage One: Balakar's Might
 	self:Log("SPELL_AURA_APPLIED", "IronSpearApplied", 376634)
+	self:Log("SPELL_AURA_REMOVED", "IronSpearRemoved", 376634)
 	self:Log("SPELL_CAST_START", "IronSpear", 376644)
 	self:Log("SPELL_CAST_START", "IronStampede", 376683)
 	self:Log("SPELL_CAST_START", "Upheaval", 375943)
@@ -55,6 +56,7 @@ function mod:OnBossEnable()
 
 	-- Stage Two: The Storm Unleashed
 	self:Log("SPELL_AURA_APPLIED", "StaticSpearApplied", 376864)
+	self:Log("SPELL_AURA_REMOVED", "StaticSpearRemoved", 376864)
 	self:Log("SPELL_CAST_START", "StaticSpear", 376865)
 	self:Log("SPELL_CAST_START", "CracklingUpheaval", 376892)
 	self:Log("SPELL_CAST_START", "ConductiveStrike", 376827)
@@ -82,6 +84,13 @@ do
 		playerName = args.destName
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 6)
+		end
+	end
+
+	function mod:IronSpearRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(args.spellId)
 		end
 	end
 
@@ -149,6 +158,13 @@ do
 		playerName = args.destName
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 6)
+		end
+	end
+
+	function mod:StaticSpearRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(args.spellId)
 		end
 	end
 
