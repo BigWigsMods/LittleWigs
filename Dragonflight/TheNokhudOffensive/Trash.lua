@@ -40,6 +40,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?"
+
 	L.nokhud_plainstomper = "Nokhud Plainstomper"
 	L.nokhud_hornsounder = "Nokhud Hornsounder"
 	L.nokhud_beastmaster = "Nokhud Beastmaster"
@@ -129,6 +131,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- General
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
 	-- Nokhud Plainstomper
 	self:Log("SPELL_CAST_START", "DisruptiveShout", 384365)
 	self:Log("SPELL_CAST_START", "WarStomp", 384336)
@@ -190,6 +195,20 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.teera_and_maruuk_warmup_trigger then
+		-- Teera and Maruuk warmup
+		local teeraAndMaruukModule = BigWigs:GetBossModule("Teera and Maruuk", true)
+		if teeraAndMaruukModule then
+			teeraAndMaruukModule:Enable()
+			teeraAndMaruukModule:Warmup()
+			self:UnregisterEvent(event)
+		end
+	end
+end
 
 -- Nokhud Plainstomper
 

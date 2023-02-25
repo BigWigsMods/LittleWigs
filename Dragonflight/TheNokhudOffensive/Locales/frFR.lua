@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "frFR")
 if not L then return end
 if L then
+	--L.teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?"
+
 	L.nokhud_plainstomper = "Foule-plaine nokhud"
 	L.nokhud_hornsounder = "Sonneuse nokhud"
 	L.nokhud_beastmaster = "Belluaire nokhud"

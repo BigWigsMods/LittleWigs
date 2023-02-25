@@ -25,6 +25,8 @@ local brutalizeCount = 0
 
 function mod:GetOptions()
 	return {
+		-- General
+		"warmup",
 		-- Teera
 		382670, -- Gale Arrow
 		386547, -- Repel
@@ -38,6 +40,7 @@ function mod:GetOptions()
 		392198, -- Ancestral Bond
 		395669, -- Aftershock
 	}, {
+		["warmup"] = CL.general,
 		[382670] = -25552, -- Teera
 		[385339] = -25546, -- Maruuk
 		[392198] = "mythic",
@@ -79,6 +82,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:Warmup() -- called from trash module
+	self:Bar("warmup", 26.2, CL.active, "achievement_dungeon_centaurplains")
+end
 
 -- Teera
 
