@@ -56,7 +56,7 @@ function mod:GetOptions()
 		372047, -- Steel Barrage
 		-- Primalist Flamedancer
 		385536, -- Flame Dance
-		{373972, "DISPEL"}, -- Blaze of Glory
+		373972, -- Blaze of Glory
 		-- Blazebound Destroyer
 		{373693, "SAY", "SAY_COUNTDOWN"}, -- Living Bomb
 		373692, -- Inferno
@@ -203,9 +203,9 @@ function mod:FlameDance(args)
 end
 
 function mod:BlazeOfGloryApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
+	if not self:Player(args.destFlags) then
 		self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "long")
 	end
 end
 
