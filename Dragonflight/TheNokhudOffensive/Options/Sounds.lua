@@ -16,7 +16,7 @@ BigWigs:AddSounds("The Raging Tempest", {
 	[394875] = "warning",
 })
 
-BigWigs:AddSounds("Teera And Maruuk", {
+BigWigs:AddSounds("Teera and Maruuk", {
 	[382670] = "alarm",
 	[382836] = "alert",
 	[384808] = "alert",

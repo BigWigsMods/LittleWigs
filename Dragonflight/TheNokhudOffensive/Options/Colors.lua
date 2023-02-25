@@ -16,7 +16,7 @@ BigWigs:AddColors("The Raging Tempest", {
 	[394875] = {"blue","red"},
 })
 
-BigWigs:AddColors("Teera And Maruuk", {
+BigWigs:AddColors("Teera and Maruuk", {
 	[382670] = "red",
 	[382836] = "purple",
 	[384808] = "orange",
