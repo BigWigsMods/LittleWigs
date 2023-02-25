@@ -37,6 +37,7 @@ if L then
 	L.solsten = "Solsten"
 	L.olmyr = "Olmyr l'Illuminato"
 	L.valarjar_marksman = "Tiratrice Valarjar"
+	L.gildedfur_stag = "Cervo Peldorato"
 	L.angerhoof_bull = "Zoccolofurioso Adulto"
 	L.valarjar_trapper = "Mastro Bracconiere Valarjar"
 	L.fourkings = "I quattro re"

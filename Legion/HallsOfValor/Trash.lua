@@ -19,6 +19,7 @@ mod:RegisterEnableMob(
 	97202,  -- Olmyr the Enlightened
 	96640,  -- Valarjar Marksman
 	99891,  -- Storm Drake
+	96609,  -- Gildedfur Stag
 	96611,  -- Angerhoof Bull
 	96934,  -- Valarjar Trapper
 	97083,  -- King Ranulf
@@ -47,6 +48,7 @@ if L then
 	L.solsten = "Solsten"
 	L.olmyr = "Olmyr the Enlightened"
 	L.valarjar_marksman = "Valarjar Marksman"
+	L.gildedfur_stag = "Gildedfur Stag"
 	L.angerhoof_bull = "Angerhoof Bull"
 	L.valarjar_trapper = "Valarjar Trapper"
 	L.fourkings = "The Four Kings"
@@ -86,6 +88,8 @@ function mod:GetOptions()
 		192158, -- Sanctify
 		-- Valarjar Marksman
 		199210, -- Penetrating Shot
+		-- Gildedfur Stag
+		199146, -- Bucking Charge
 		-- Angerhoof Bull
 		199090, -- Rumbling Stomp
 		-- Valarjar Trapper
@@ -106,6 +110,7 @@ function mod:GetOptions()
 		[200901] = L.solsten,
 		[192158] = L.olmyr,
 		[199210] = L.valarjar_marksman,
+		[199146] = L.gildedfur_stag,
 		[199090] = L.angerhoof_bull,
 		[199341] = L.valarjar_trapper,
 		[199726] = L.fourkings,
@@ -157,6 +162,9 @@ function mod:OnBossEnable()
 
 	-- Valarjar Marksman
 	self:Log("SPELL_CAST_START", "PenetratingShot", 199210)
+
+	-- Gildedfur Stag
+	self:Log("SPELL_CAST_START", "BuckingCharge", 199146)
 
 	-- Angerhoof Bull
 	self:Log("SPELL_CAST_START", "RumblingStomp", 199090)
@@ -352,7 +360,20 @@ end
 -- Valarjar Marksman
 
 function mod:PenetratingShot(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Gildedfur Stag
+
+function mod:BuckingCharge(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 end
 

@@ -37,6 +37,7 @@ if L then
 	L.solsten = "솔스텐"
 	L.olmyr = "깨달은 자 올미르"
 	L.valarjar_marksman = "발라리아르 명사수"
+	L.gildedfur_stag = "금빛털가죽 순록"
 	L.angerhoof_bull = "화난발굽 황소"
 	L.valarjar_trapper = "발라리아르 덫사냥꾼"
 	L.fourkings = "네명의 왕"

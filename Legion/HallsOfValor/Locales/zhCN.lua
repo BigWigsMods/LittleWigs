@@ -37,6 +37,7 @@ if L then
 	L.solsten = "索斯坦"
 	L.olmyr = "启迪者奥米尔"
 	L.valarjar_marksman = "瓦拉加尔神射手"
+	L.gildedfur_stag = "金鬃雄鹿"
 	L.angerhoof_bull = "怒蹄公牛"
 	L.valarjar_trapper = "瓦拉加尔捕兽者"
 	L.fourkings = "四王"

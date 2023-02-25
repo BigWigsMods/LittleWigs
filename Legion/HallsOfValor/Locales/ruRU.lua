@@ -37,6 +37,7 @@ if L then
 	L.solsten = "Солстен"
 	L.olmyr = "Олмир Просвещенный"
 	L.valarjar_marksman = "Валарьяр-лучница"
+	L.gildedfur_stag = "Золотистый олень"
 	L.angerhoof_bull = "Сердитый бык"
 	L.valarjar_trapper = "Валарьяр-зверолов"
 	L.fourkings = "Четыре Короля"

@@ -37,6 +37,7 @@ if L then
 	--L.solsten = "Solsten"
 	--L.olmyr = "Olmyr the Enlightened"
 	--L.valarjar_marksman = "Valarjar Marksman"
+	--L.gildedfur_stag = "Gildedfur Stag"
 	--L.angerhoof_bull = "Angerhoof Bull"
 	--L.valarjar_trapper = "Valarjar Trapper"
 	--L.fourkings = "The Four Kings"
