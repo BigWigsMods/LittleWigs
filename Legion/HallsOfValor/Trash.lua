@@ -12,6 +12,7 @@ mod:RegisterEnableMob(
 	96664,  -- Valarjar Runecarver
 	95834,  -- Valarjar Mystic
 	97197,  -- Valarjar Purifier
+	102423, -- Mug of Mead
 	95832,  -- Valarjar Shieldmaiden
 	101639, -- Valarjar Shieldmaiden
 	101637, -- Valarjar Aspirant
@@ -37,6 +38,7 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."
 
+	L.mug_of_mead = "Mug of Mead"
 	L.valarjar_thundercaller = "Valarjar Thundercaller"
 	L.storm_drake = "Storm Drake"
 	L.stormforged_sentinel = "Stormforged Sentinel"
@@ -62,6 +64,8 @@ function mod:GetOptions()
 	return {
 		-- General
 		"custom_on_autotalk",
+		-- Mug of Mead
+		202298, -- Mug of Mead
 		-- Valarjar Thundercaller
 		{215430, "SAY", "FLASH", "PROXIMITY"}, -- Thunderstrike
 		-- Storm Drake
@@ -99,6 +103,7 @@ function mod:GetOptions()
 		200969, -- Call Ancestor
 	}, {
 		["custom_on_autotalk"] = "general",
+		[202298] = L.mug_of_mead,
 		[215430] = L.valarjar_thundercaller,
 		[198888] = L.storm_drake,
 		[210875] = L.stormforged_sentinel,
@@ -120,7 +125,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- General
 	self:RegisterEvent("GOSSIP_SHOW")
+
+	-- Mug of Mead
+	self:Log("SPELL_AURA_APPLIED", "MugOfMeadApplied", 202298)
+	self:Log("SPELL_AURA_REMOVED", "MugOfMeadRemoved", 202298)
 
 	-- Valarjar Thundercaller
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
@@ -181,7 +191,7 @@ end
 -- Event Handlers
 --
 
--- Autotalk
+-- General
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") then
@@ -199,6 +209,16 @@ function mod:GOSSIP_SHOW()
 			self:SelectGossipID(44754)
 		end
 	end
+end
+
+-- Mug of Mead
+
+function mod:MugOfMeadApplied(args)
+	self:TargetBar(args.spellId, 20, args.destName)
+end
+
+function mod:MugOfMeadRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 end
 
 -- Valarjar Thundercaller

@@ -26,6 +26,7 @@ if L then
 	L.custom_on_autotalk = "Авторазговор"
 	L.custom_on_autotalk_desc = "Мгновенный выбор опций в диалогах."
 
+	L.mug_of_mead = "Кружка меда"
 	L.valarjar_thundercaller = "Валарьяр - призыватель молний"
 	L.storm_drake = "Штормовой дракон"
 	L.stormforged_sentinel = "Закаленный бурей страж"
