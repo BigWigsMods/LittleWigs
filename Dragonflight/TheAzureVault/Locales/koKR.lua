@@ -14,5 +14,6 @@ if L then
 	L.crystal_fury = "수정의 격노"
 	L.crystal_thrasher = "수정 투사"
 	L.arcane_construct = "비전 피조물"
+	L.scalebane_lieutenant = "비늘파멸 부관"
 	L.drakonid_breaker = "용기병 파괴자"
 end

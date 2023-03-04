@@ -26,6 +26,7 @@ mod:RegisterEnableMob(
 	196116, -- Crystal Fury
 	196117, -- Crystal Thrasher
 	186740, -- Arcane Construct
+	191739, -- Scalebane Lieutenant
 	187240  -- Drakonid Breaker
 )
 
@@ -48,6 +49,7 @@ if L then
 	L.crystal_fury = "Crystal Fury"
 	L.crystal_thrasher = "Crystal Thrasher"
 	L.arcane_construct = "Arcane Construct"
+	L.scalebane_lieutenant = "Scalebane Lieutenant"
 	L.drakonid_breaker = "Drakonid Breaker"
 end
 
@@ -65,6 +67,7 @@ function mod:GetOptions()
 		387564, -- Mystic Vapors
 		-- Arcane Tender
 		{375596, "SAY"}, -- Erratic Growth
+		375652, -- Wild Eruption
 		375649, -- Infused Ground
 		-- Arcane Elemental
 		386546, -- Waking Bane
@@ -78,6 +81,8 @@ function mod:GetOptions()
 		370766, -- Crystalline Rupture
 		-- Arcane Construct
 		387067, -- Arcane Bash
+		-- Scalebane Lieutenant
+		391118, -- Spellfrost Breath
 		-- Drakonid Breaker
 		396991, -- Bestial Roar
 	}, {
@@ -91,6 +96,7 @@ function mod:GetOptions()
 		[370764] = L.crystal_fury,
 		[370766] = L.crystal_thrasher,
 		[387067] = L.arcane_construct,
+		[391118] = L.scalebane_lieutenant,
 		[396991] = L.drakonid_breaker,
 	}
 end
@@ -109,6 +115,7 @@ function mod:OnBossEnable()
 	-- Arcane Tender
 	self:Log("SPELL_CAST_SUCCESS", "ErraticGrowth", 375596)
 	self:Log("SPELL_AURA_APPLIED", "ErraticGrowthApplied", 375602)
+	self:Log("SPELL_CAST_SUCCESS", "WildEruption", 375652)
 	self:Log("SPELL_AURA_APPLIED", "InfusedGroundDamage", 375649)
 	self:Log("SPELL_PERIODIC_DAMAGE", "InfusedGroundDamage", 375649)
 	self:Log("SPELL_PERIODIC_MISSED", "InfusedGroundDamage", 375649)
@@ -130,6 +137,9 @@ function mod:OnBossEnable()
 
 	-- Arcane Construct
 	self:Log("SPELL_CAST_START", "ArcaneBash", 387067)
+
+	-- Scalebane Lieutenant
+	self:Log("SPELL_CAST_START", "SpellfrostBreath", 391118)
 
 	-- Drakonid Breaker
 	self:Log("SPELL_CAST_START", "BestialRoar", 396991)
@@ -158,6 +168,9 @@ function mod:GOSSIP_SHOW(event)
 		elseif self:GetGossipID(56251) then
 			-- Proceed to Crystal Chambers
 			self:SelectGossipID(56251)
+		elseif self:GetGossipID(56378) then
+			-- Return from Mausoleum of Legends
+			self:SelectGossipID(56378)
 		end
 	end
 end
@@ -197,6 +210,11 @@ function mod:ErraticGrowthApplied(args)
 			self:Say(375596)
 		end
 	end
+end
+
+function mod:WildEruption(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 end
 
 do
@@ -252,6 +270,13 @@ end
 
 function mod:ArcaneBash(args)
 	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Scalebane Lieutenant
+
+function mod:SpellfrostBreath(args)
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end
 

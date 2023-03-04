@@ -34,10 +34,12 @@ BigWigs:AddSounds("The Azure Vault Trash", {
 	[371358] = "long",
 	[375596] = "alarm",
 	[375649] = "underyou",
+	[375652] = "alert",
 	[377488] = "alert",
 	[386546] = "alert",
 	[387067] = "alarm",
 	[387564] = "alert",
+	[391118] = "alarm",
 	[396991] = "alarm",
 	[397726] = {"long","warning"},
 })

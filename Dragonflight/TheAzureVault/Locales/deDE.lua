@@ -14,5 +14,6 @@ if L then
 	L.crystal_fury = "Kristallzorn"
 	L.crystal_thrasher = "Kristalldrescher"
 	L.arcane_construct = "Arkanes Konstrukt"
+	L.scalebane_lieutenant = "Bannschuppenleutnant"
 	L.drakonid_breaker = "Brecherin der Drakoniden"
 end

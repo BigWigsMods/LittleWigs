@@ -14,5 +14,6 @@ if L then
 	L.crystal_fury = "Кристальная ярость"
 	L.crystal_thrasher = "Кристальный крушитель"
 	L.arcane_construct = "Чародейское создание"
+	L.scalebane_lieutenant = "Лейтенант чешуйчатых губителей"
 	L.drakonid_breaker = "Драконид-разрушительница"
 end
