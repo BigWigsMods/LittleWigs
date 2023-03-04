@@ -70,6 +70,7 @@ function mod:GetOptions()
 		{215430, "SAY", "FLASH", "PROXIMITY"}, -- Thunderstrike
 		-- Storm Drake
 		198888, -- Lightning Breath
+		198892, -- Crackling Storm
 		-- Stormforged Sentinel
 		210875, -- Charged Pulse
 		{198745, "DISPEL"}, -- Protective Light
@@ -86,6 +87,7 @@ function mod:GetOptions()
 		199050, -- Mortal Hew
 		-- Valarjar Aspirant
 		191508, -- Blast of Light
+		{199034, "SAY"}, -- Valkyra's Advance
 		-- Solsten
 		200901, -- Eye of the Storm
 		-- Olmyr the Enlightened
@@ -138,6 +140,10 @@ function mod:OnBossEnable()
 
 	-- Storm Drake
 	self:Log("SPELL_CAST_START", "LightningBreath", 198888)
+	self:Log("SPELL_CAST_START", "CracklingStorm", 198892)
+	self:Log("SPELL_AURA_APPLIED", "CracklingStormDamage", 198903)
+	self:Log("SPELL_PERIODIC_DAMAGE", "CracklingStormDamage", 198903)
+	self:Log("SPELL_PERIODIC_MISSED", "CracklingStormDamage", 198903)
 
 	-- Valarjar Runecarver
 	self:Log("SPELL_CAST_START", "Etch", 198959)
@@ -163,6 +169,7 @@ function mod:OnBossEnable()
 
 	-- Valarjar Aspirant
 	self:Log("SPELL_CAST_START", "BlastOfLight", 191508)
+	self:Log("SPELL_CAST_START", "ValkyrasAdvance", 199034)
 
 	-- Solsten
 	self:Log("SPELL_CAST_START", "EyeOfTheStorm", 200901)
@@ -247,6 +254,30 @@ function mod:LightningBreath(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(198892, "red", name)
+		self:PlaySound(198892, "alert", nil, name)
+	end
+	function mod:CracklingStorm(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:CracklingStormDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(198892, "near")
+				self:PlaySound(198892, "underyou")
+			end
+		end
+	end
+end
+
 -- Valarjar Runecarver
 
 do
@@ -319,7 +350,7 @@ do
 		end
 	end
 	function mod:Crackle(args)
-		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 
@@ -359,6 +390,19 @@ end
 function mod:BlastOfLight(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(199034, "yellow", name)
+		self:PlaySound(199034, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(199034)
+		end
+	end
+	function mod:ValkyrasAdvance(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
 end
 
 -- Solsten
