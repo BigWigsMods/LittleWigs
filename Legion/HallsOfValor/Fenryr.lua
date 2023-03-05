@@ -42,9 +42,6 @@ function mod:OnEngage()
 	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
 		self:SetStage(2)
 		self:CDBar(196838, 16.9) -- Scent of Blood
-	else
-		-- sometimes boss frames are slow
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	end
 	self:CDBar(196543, 4.5) -- Unnerving Howl
 	self:CDBar(197558, 6.0) -- Ravenous Leap
@@ -54,18 +51,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
-	if self:GetBossId(95674) then -- Stage 1 Fenryr
-		self:RegisterEvent("ENCOUNTER_END")
-		self:SetStage(1)
-	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
-		self:SetStage(2)
-		self:CDBar(196838, 16.9) -- Scent of Blood
-	end
-	-- restore listener
-	self:RegisterEvent(event, "CheckBossStatus")
-end
 
 do
 	local stealthed = false
@@ -97,7 +82,6 @@ do
 		end
 	end
 end
-
 
 do
 	local prev = 0
