@@ -16,7 +16,7 @@ BigWigs:AddColors("Fenryr", {
 	[196512] = "red",
 	[196543] = "orange",
 	[196838] = {"blue","orange"},
-	[197556] = {"blue","yellow"},
+	[197558] = {"blue","yellow"},
 	["stages"] = "cyan",
 })
 

@@ -13,9 +13,10 @@ BigWigs:AddSounds("Hyrja", {
 })
 
 BigWigs:AddSounds("Fenryr", {
+	[196512] = "alert",
 	[196543] = "alert",
 	[196838] = "warning",
-	[197556] = "alert",
+	[197558] = "alarm",
 	["stages"] = "long",
 })
 

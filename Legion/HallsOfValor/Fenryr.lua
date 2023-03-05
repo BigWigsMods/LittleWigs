@@ -16,37 +16,39 @@ mod:SetStage(1)
 function mod:GetOptions()
 	return {
 		"stages",
-		196543, -- Unnerving Howl
-		{197556, "SAY", "PROXIMITY"}, -- Ravenous Leap
 		196512, -- Claw Frenzy
+		196543, -- Unnerving Howl
+		{197558, "SAY", "PROXIMITY"}, -- Ravenous Leap
 		{196838, "SAY", "ICON"}, -- Scent of Blood
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Stealth", 196567)
+	self:Log("SPELL_CAST_START", "ClawFrenzy", 196512)
+	self:Log("SPELL_CAST_SUCCESS", "ClawFrenzy", 196512)
 	self:Log("SPELL_CAST_START", "UnnervingHowl", 196543)
 	self:Log("SPELL_CAST_START", "RavenousLeap", 197558)
 	self:Log("SPELL_AURA_APPLIED", "RavenousLeapApplied", 197556)
 	self:Log("SPELL_AURA_REMOVED", "RavenousLeapRemoved", 197556)
-	self:Log("SPELL_CAST_SUCCESS", "ClawFrenzy", 196512)
 	self:Log("SPELL_CAST_START", "ScentOfBlood", 196838)
 	self:Log("SPELL_AURA_REMOVED", "ScentOfBloodRemoved", 196838)
 end
 
 function mod:OnEngage()
-	--self:CDBar(196543, 4.5) -- Unnerving Howl
-	--self:CDBar(197556, 9.5) -- Ravenous Leap
-	--self:CDBar(196838, 20) -- Scent of Blood
 	if self:GetBossId(95674) then -- Stage 1 Fenryr
 		self:RegisterEvent("ENCOUNTER_END")
 		self:SetStage(1)
 	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
 		self:SetStage(2)
+		self:CDBar(196838, 16.9) -- Scent of Blood
 	else
 		-- sometimes boss frames are slow
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	end
+	self:CDBar(196543, 4.5) -- Unnerving Howl
+	self:CDBar(197558, 6.0) -- Ravenous Leap
+	self:CDBar(196512, 10.6) -- Claw Frenzy
 end
 
 --------------------------------------------------------------------------------
@@ -59,6 +61,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 		self:SetStage(1)
 	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
 		self:SetStage(2)
+		self:CDBar(196838, 16.9) -- Scent of Blood
 	end
 	-- restore listener
 	self:RegisterEvent(event, "CheckBossStatus")
@@ -95,12 +98,49 @@ do
 	end
 end
 
+
+do
+	local prev = 0
+	function mod:ClawFrenzy(args)
+		-- in Mythic a SPELL_CAST_START was recently added with a 1s cast, so we can alert earlier.
+		-- throttle because we keep the SPELL_CAST_SUCCESS event for other difficulties.
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+			self:CDBar(args.spellId, 9.7)
+			-- soonest any ability can happen after this is 3.2s
+			if self:BarTimeLeft(196543) < 3.2 then -- Unnerving Howl
+				self:CDBar(196543, {3.2, 27.9})
+			end
+			if self:BarTimeLeft(197558) < 3.2 then -- Ravenous Leap
+				self:CDBar(197558, {3.2, self:GetStage() == 1 and 35.2 or 31.6})
+			end
+			if self:GetStage() == 2 then
+				if self:BarTimeLeft(196838) < 3.2 then -- Scent of Blood
+					self:CDBar(196838, {3.2, 34.1})
+				end
+			end
+		end
+	end
+end
+
 function mod:UnnervingHowl(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 28)
-	if self:MobId(args.sourceGUID) == 95674 then -- Stage 1
-		self:CDBar(196512, {4.9, 9.7}) -- Claw Frenzy
+	self:CDBar(args.spellId, 27.9)
+	-- soonest any ability can happen after this is 4.8s
+	if self:BarTimeLeft(196512) < 4.8 then -- Claw Frenzy
+		self:CDBar(196512, {4.8, 9.7})
+	end
+	if self:BarTimeLeft(197558) < 4.8 then -- Ravenous Leap
+		self:CDBar(197558, {4.8, 31.6})
+	end
+	if self:GetStage() == 2 then
+		if self:BarTimeLeft(196838) < 4.8 then -- Scent of Blood
+			self:CDBar(196838, {4.8, 34.1})
+		end
 	end
 end
 
@@ -109,30 +149,37 @@ do
 
 	function mod:RavenousLeap(args)
 		playerList = {}
-		self:CDBar(197556, 31.7)
+		if self:GetStage() == 1 then
+			self:CDBar(args.spellId, 35.2)
+		else -- Stage 2
+			self:CDBar(args.spellId, 31.6)
+		end
+		-- soonest any ability can happen after this is 10.9s
+		self:CDBar(196512, 10.9) -- Claw Frenzy
+		if self:BarTimeLeft(196543) < 10.9 then -- Unnerving Howl
+			self:CDBar(196543, {10.9, 27.9})
+		end
+		if self:GetStage() == 2 then
+			if self:BarTimeLeft(196838) < 10.9 then -- Scent of Blood
+				self:CDBar(196838, {10.9, 34.1})
+			end
+		end
 	end
 
 	function mod:RavenousLeapApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(args.spellId, "yellow", playerList, 4)
-		self:PlaySound(args.spellId, "alert", nil, playerList)
+		self:TargetsMessage(197558, "yellow", playerList, 4)
+		self:PlaySound(197558, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:OpenProximity(args.spellId, 10)
-			self:Say(args.spellId)
+			self:OpenProximity(197558, 10)
+			self:Say(197558)
 		end
 	end
 
 	function mod:RavenousLeapRemoved(args)
 		if self:Me(args.destGUID) then
-			self:CloseProximity(args.spellId)
+			self:CloseProximity(197558)
 		end
-	end
-end
-
-function mod:ClawFrenzy(args)
-	self:Message(args.spellId, "red")
-	if self:MobId(args.sourceGUID) == 95674 then -- Stage 1
-		self:CDBar(args.spellId, 9.7)
 	end
 end
 
@@ -148,7 +195,15 @@ do
 
 	function mod:ScentOfBlood(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 34)
+		self:CDBar(args.spellId, 34.1)
+		-- soonest any ability can happen after this is 18.2s
+		self:CDBar(196512, 18.2) -- Claw Frenzy
+		if self:BarTimeLeft(196543) < 18.2 then -- Unnerving Howl
+			self:CDBar(196543, {18.2, 27.9})
+		end
+		if self:BarTimeLeft(197558) < 18.2 then -- Ravenous Leap
+			self:CDBar(197558, {18.2, 31.6})
+		end
 	end
 
 	function mod:ScentOfBloodRemoved(args)
