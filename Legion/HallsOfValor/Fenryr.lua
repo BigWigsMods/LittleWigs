@@ -6,6 +6,8 @@ local mod, CL = BigWigs:NewBoss("Fenryr", 1477, 1487)
 if not mod then return end
 mod:RegisterEnableMob(95674, 99868) -- Phase 1 Fenryr, Phase 2 Fenryr
 mod:SetEncounterID(1807)
+mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -36,16 +38,61 @@ function mod:OnEngage()
 	--self:CDBar(196543, 4.5) -- Unnerving Howl
 	--self:CDBar(197556, 9.5) -- Ravenous Leap
 	--self:CDBar(196838, 20) -- Scent of Blood
+	if self:GetBossId(95674) then -- Stage 1 Fenryr
+		self:RegisterEvent("ENCOUNTER_END")
+		self:SetStage(1)
+	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
+		self:SetStage(2)
+	else
+		-- sometimes boss frames are slow
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Stealth()
-	self:Message("stages", "cyan", CL.stage:format(2), false)
-	-- Prevent the module wiping when moving to phase 2 and ENCOUNTER_END fires.
-	self:ScheduleTimer("Reboot", 0.5) -- Delay a little
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+	if self:GetBossId(95674) then -- Stage 1 Fenryr
+		self:RegisterEvent("ENCOUNTER_END")
+		self:SetStage(1)
+	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
+		self:SetStage(2)
+	end
+	-- restore listener
+	self:RegisterEvent(event, "CheckBossStatus")
+end
+
+do
+	local stealthed = false
+
+	function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
+		if engageId == self.engageId then
+			stealthed = false
+			if status == 0 then
+				-- wait some seconds to see if Fenryr stealths
+				self:ScheduleTimer("CheckForStealth", 2)
+			else
+				self:Win()
+			end
+		end
+	end
+
+	function mod:Stealth()
+		stealthed = true
+		self:Message("stages", "cyan", CL.stage:format(2), false)
+		self:PlaySound("stages", "long")
+		self:Reboot()
+	end
+
+	function mod:CheckForStealth()
+		if not stealthed then
+			self:Wipe()
+			-- force a respawn timer
+			self:SendMessage("BigWigs_EncounterEnd", self, self.engageId, self.displayName, self:Difficulty(), 5, 0)
+		end
+	end
 end
 
 function mod:UnnervingHowl(args)
@@ -98,10 +145,12 @@ do
 			self:PlaySound(196838, "warning")
 		end
 	end
+
 	function mod:ScentOfBlood(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 34)
 	end
+
 	function mod:ScentOfBloodRemoved(args)
 		self:PrimaryIcon(args.spellId)
 	end

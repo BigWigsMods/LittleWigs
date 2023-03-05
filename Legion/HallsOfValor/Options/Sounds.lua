@@ -16,6 +16,7 @@ BigWigs:AddSounds("Fenryr", {
 	[196543] = "alert",
 	[196838] = "warning",
 	[197556] = "alert",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("God-King Skovald", {
