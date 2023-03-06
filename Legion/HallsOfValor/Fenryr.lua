@@ -38,10 +38,10 @@ end
 function mod:OnEngage()
 	if self:GetBossId(95674) then -- Stage 1 Fenryr
 		self:RegisterEvent("ENCOUNTER_END")
-		self:SetRespawnTime(30)
+		self:SetRespawnTime(25) -- 5s shorter because of the 5s delayed bar on wipe
 		self:SetStage(1)
 	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
-		self:SetRespawnTime(25) -- 5s shorter because of the 5s delayed bar on wipe
+		self:SetRespawnTime(30)
 		self:SetStage(2)
 		self:CDBar(196838, 16.9) -- Scent of Blood
 	end
