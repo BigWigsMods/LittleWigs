@@ -57,6 +57,7 @@ end
 do
 	local stealthed = false
 
+	-- Custom ENCOUNTER_END only used for stage 1, stage 2 will use normal one, replaced by :Reboot()
 	function mod:ENCOUNTER_END(_, engageId, _, _, _, status)
 		if engageId == self.engageId then
 			stealthed = false
