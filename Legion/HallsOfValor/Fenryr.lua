@@ -38,8 +38,10 @@ end
 function mod:OnEngage()
 	if self:GetBossId(95674) then -- Stage 1 Fenryr
 		self:RegisterEvent("ENCOUNTER_END")
+		self:SetRespawnTime(30)
 		self:SetStage(1)
 	elseif self:GetBossId(99868) then -- Stage 2 Fenryr
+		self:SetRespawnTime(25) -- 5s shorter because of the 5s delayed bar on wipe
 		self:SetStage(2)
 		self:CDBar(196838, 16.9) -- Scent of Blood
 	end
@@ -60,9 +62,8 @@ do
 			stealthed = false
 			if status == 0 then
 				-- wait some seconds to see if Fenryr stealths
-				self:ScheduleTimer("CheckForStealth", 2)
-			else
-				self:Win()
+				self:ScheduleTimer("CheckForStealth", 5)
+				self:SendMessage("BigWigs_StopBars", self)
 			end
 		end
 	end
@@ -71,7 +72,6 @@ do
 		stealthed = true
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
-		self:Reboot()
 	end
 
 	function mod:CheckForStealth()
@@ -79,6 +79,9 @@ do
 			self:Wipe()
 			-- force a respawn timer
 			self:SendMessage("BigWigs_EncounterEnd", self, self.engageId, self.displayName, self:Difficulty(), 5, 0)
+		else
+			-- reset module for Stage 2
+			self:Reboot()
 		end
 	end
 end
