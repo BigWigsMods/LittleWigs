@@ -156,7 +156,7 @@ do
 		self:PlaySound(386173, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(386173, args.spellName)
-			self:SayCountdown(386173, 4, args.spellName)
+			self:SayCountdown(386173, 4)
 		end
 	end
 
