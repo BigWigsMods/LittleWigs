@@ -64,7 +64,7 @@ function mod:GOSSIP_SHOW()
 			local gossipTbl = self:GetGossipOptions()
 			if gossipTbl then
 				if gossipTbl[2] then
-					self:SelectGossipOption(2) -- skip the roleplay if possible
+					self:SelectGossipOption(1) -- skip the roleplay if possible
 					self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 				elseif gossipTbl[1] then
 					self:SelectGossipOption(1)
