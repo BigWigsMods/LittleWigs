@@ -41,6 +41,10 @@ mod:RegisterEnableMob(
 	106108, -- Starlight Rose Brew: +HP & Mana reg
 	105340, -- Umbral Bloom: +10% Haste
 	106110, -- Waterlogged Scroll: +30% Movement speed
+	106018, -- Bazaar Goods
+	106112, -- Wounded Nightborne Civilian
+	106113, -- Lifesized Nightborne Statue
+	105215, -- Discarded Junk
 	108154  -- Arcane Keys
 )
 
@@ -305,21 +309,25 @@ do
 		[105157] = { -- Arcane Power Conduit: Disables Constructs
 			["name"] = 210466,
 			["professions"] = {
-				[136243] = 100, -- Engineering
+				--[136243] = 100, -- Engineering
+				[4620673] = 1, -- Engineering
 			},
 			["races"] = {
 				["Gnome"] = true,
 				["Goblin"] = true,
 			},
+			--["gossipIds"] = {45332}, -- Engineering
 		},
 		[105117] = { -- Flask of the Solemn Night: Poisons first boss
 			["name"] = 207815,
 			["professions"] = {
-				[136240] = 100, -- Alchemy
+				--[136240] = 100, -- Alchemy
+				[4620669] = 1, -- Alchemy
 			},
 			["classes"] = {
 				["ROGUE"] = true,
 			},
+			--["gossipIds"] = {45329, 45331}, -- Alchemy, Rogue
 		},
 		[105160] = { -- Fel Orb: 10% Crit
 			["name"] = 208275,
@@ -329,6 +337,7 @@ do
 				["PRIEST"] = true,
 				["PALADIN"] = true,
 			},
+			--["gossipIds"] = {45327}, -- Priest
 		},
 		[105831] = { -- Infernal Tome: -10% Dmg taken
 			["name"] = "InfernalTome",
@@ -337,6 +346,7 @@ do
 				["PRIEST"] = true,
 				["PALADIN"] = true,
 			},
+			--["gossipIds"] = {45200}, -- Priest
 		},
 		[106024] = { -- Magical Lantern: +10% Dmg dealt
 			["name"] = "MagicalLantern",
@@ -344,7 +354,8 @@ do
 				["MAGE"] = true,
 			},
 			["professions"] = {
-				[136244] = 100, -- Enchanting
+				--[136244] = 100, -- Enchanting
+				[4620672] = 1, -- Enchanting
 			},
 			["races"] = {
 				["BloodElf"] = true,
@@ -354,12 +365,15 @@ do
 		[105249] = { -- Nightshade Refreshments: +25% HP
 			["name"] = "NightshadeRefreshments",
 			["professions"] = {
-				[133971] = 800, -- Cooking
-				[136246] = 100, -- Herbalism
+				--[133971] = 800, -- Cooking
+				[4620671] = 1, -- Cooking
+				--[136246] = 100, -- Herbalism
+				[4620675] = 1, -- Herbalism
 			},
 			["races"] = {
 				["Pandaren"] = true,
 			},
+			--["gossipIds"] = {45168}, -- Cooking
 		},
 		[106108] = { -- Starlight Rose Brew: +HP & Mana reg
 			["name"] = "StarlightRoseBrew",
@@ -367,6 +381,7 @@ do
 				["DEATHKNIGHT"] = true,
 				["MONK"] = true,
 			},
+			--["gossipIds"] = {45217}, -- Monk
 		},
 		[105340] = { -- Umbral Bloom: +10% Haste
 			["name"] = "UmbralBloom",
@@ -374,8 +389,11 @@ do
 				["DRUID"] = true,
 			},
 			["professions"] = {
-				[136246] = 100, -- Herbalism
-			}
+				--[136246] = 100, -- Herbalism
+				[4620675] = 1, -- Herbalism
+				[4620671] = 1, -- Cooking
+			},
+			--["gossipIds"] = {45278}, -- Cooking
 		},
 		[106110] = { -- Waterlogged Scroll: +30% Movement speed
 			["name"] = "WaterloggedScroll",
@@ -383,9 +401,12 @@ do
 				["SHAMAN"] = true,
 			},
 			["professions"] = {
-				[134366] = 100, -- Skinning
-				[237171] = 100, -- Inscription
-			}
+				--[134366] = 100, -- Skinning
+				[4620680] = 1, -- Skinning
+				--[237171] = 100, -- Inscription
+				[4620676] = 1, -- Inscription
+			},
+			--["gossipIds"] = {45152}, -- Skinning
 		},
 	}
 
@@ -407,14 +428,18 @@ do
 				["WARRIOR"] = true,
 			},
 			["professions"] = {
-				[136247] = 100, -- Leatherworking
+				--[136247] = 100, -- Leatherworking
+				[4620678] = 1, -- Leatherworking
 			},
+			--["gossipIds"] = {45474}, -- Rogue
 		},
 		[106113] = { -- Lifesized Nightborne Statue
 			["name"] = "LifesizedNightborneStatue",
 			["professions"] = {
-				[134708] = 100, -- Mining
-				[134071] = 100, -- Jewelcrafting
+				--[134708] = 100, -- Mining
+				[4620679] = 1, -- Mining
+				--[134071] = 100, -- Jewelcrafting
+				[4620677] = 1, -- Jewelcrafting
 			},
 		},
 		[105215] = { -- Discarded Junk
@@ -423,7 +448,8 @@ do
 				["HUNTER"] = true,
 			},
 			["professions"] = {
-				[136241] = 100, -- Blacksmithing
+				--[136241] = 100, -- Blacksmithing
+				[4620670] = 1, -- Blacksmithing
 			},
 		},
 		[106112] = { -- Wounded Nightborne Civilian
@@ -432,8 +458,10 @@ do
 				["Healer"] = true,
 			},
 			["professions"] = {
-				[136249] = 100, -- Tailoring
+				--[136249] = 100, -- Tailoring
+				[4620681] = 1, -- Tailoring
 			},
+			--["gossipIds"] = {45155}, -- Healer
 		},
 	}
 
