@@ -147,9 +147,9 @@ do
 		self:SetStage(1)
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, ablativeBarrierDuration))
 		self:PlaySound(args.spellId, "info")
-		self:CDBar(384524, 6.2) -- Titanic Fist
-		self:CDBar(384014, 11.7) -- Static Surge
-		self:CDBar(389179, 22.3) -- Power Overload
+		self:CDBar(384524, 6.1) -- Titanic Fist
+		self:CDBar(384014, 11.0) -- Static Surge
+		self:CDBar(389179, 22.2) -- Power Overload
 		self:CDBar(384351, 28.1) -- Spark Volley
 	end
 end
