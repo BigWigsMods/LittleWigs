@@ -17,6 +17,7 @@ mod:SetRespawnTime(30)
 local playersWithTouch = {} -- can have multiple players affected if dispellers aren't doing their job
 local mobCollector = {} -- adds from "Bonds of Reality" fire UNIT_DIED twice in a row (and the debuff they apply doesn't fire SPELL_AURA_REMOVED)
 local addsAlive = 0
+local touchOfNothingnessRemaining = 3
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,6 +27,10 @@ function mod:GetOptions()
 	return {
 		{106113, "SAY", "PROXIMITY"}, -- Touch of Nothingness
 		117665, -- Bounds of Reality
+		117570, -- Gathering Doubt
+	}, {
+		[106113] = self.displayName,
+		[117570] = -4076, -- Figments of Doubt
 	}
 end
 
@@ -34,6 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TouchOfNothingnessApplied", 106113)
 	self:Log("SPELL_AURA_REMOVED", "TouchOfNothingnessRemoved", 106113)
 
+	self:Log("SPELL_CAST_START", "BoundsOfRealityStart", 117665)
 	self:Log("SPELL_AURA_APPLIED", "BoundsOfReality", 117665)
 	self:Log("SPELL_AURA_REMOVED", "BoundsOfRealityOver", 117665)
 
@@ -42,6 +48,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	touchOfNothingnessRemaining = 1
 	addsAlive = 0
 	playersWithTouch = {}
 	mobCollector = {}
@@ -62,14 +69,17 @@ do
 	local playerList = {}
 
 	function mod:TouchOfNothingness(args)
+		touchOfNothingnessRemaining = touchOfNothingnessRemaining - 1
 		playerList = {}
-		self:CDBar(args.spellId, 20.5)
+		if touchOfNothingnessRemaining > 0 then
+			self:CDBar(args.spellId, 20.5)
+		end
 	end
 
 	function mod:TouchOfNothingnessApplied(args)
 		-- playerList contains players affected by the most recent cast
 		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 1)
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 
 		-- playersWithTouch includes all players with the debuff
@@ -93,22 +103,35 @@ function mod:TouchOfNothingnessRemoved(args)
 	end
 end
 
+function mod:BoundsOfRealityStart(args)
+	touchOfNothingnessRemaining = 3
+	self:StopBar(106113) -- Touch of Nothingness
+end
+
 function mod:BoundsOfReality(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	self:CastBar(args.spellId, 30)
 	self:CDBar(args.spellId, 69.2)
 end
 
 function mod:BoundsOfRealityOver(args)
 	self:Message(args.spellId, "green", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
-	self:StopBar(CL.cast:format(args.spellName))
+	self:StopBar(117570) -- Gathering Doubt
 end
 
-function mod:GatheringDoubt(args)
-	addsAlive = addsAlive + 1
-	mobCollector[args.sourceGUID] = true
+do
+	local prev = 0
+	function mod:GatheringDoubt(args)
+		addsAlive = addsAlive + 1
+		mobCollector[args.sourceGUID] = true
+		local t = args.time
+		if t - prev > 3 then
+			prev = t
+			-- adds explode in 20s
+			self:Bar(args.spellId, 20)
+		end
+	end
 end
 
 function mod:AddDeath(args)
