@@ -155,8 +155,8 @@ end
 -- Primalist Ravager
 
 function mod:BlastingGust(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "warning")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Primalist Geomancer
@@ -172,9 +172,16 @@ end
 
 -- Containment Apparatus
 
-function mod:Expulse(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:Expulse(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 -- Refti Defender
@@ -194,7 +201,7 @@ end
 -- Dazzling Dragonfly
 
 function mod:Dazzle(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -212,7 +219,7 @@ do
 				if amount == 9 or t - prev > 1 then
 					prev = t
 
-					-- Insta-kill at 10 stacks
+					-- insta-kill at 10 stacks
 					self:StackMessage(args.spellId, "red", args.destName, amount, 8)
 					if amount < 8 then
 						self:PlaySound(args.spellId, "alert", nil, args.destName)
