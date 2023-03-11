@@ -92,6 +92,7 @@ function mod:GetOptions()
 		200901, -- Eye of the Storm
 		-- Olmyr the Enlightened
 		192158, -- Sanctify
+		192288, -- Searing Light
 		-- Valarjar Marksman
 		199210, -- Penetrating Shot
 		-- Gildedfur Stag
@@ -176,6 +177,7 @@ function mod:OnBossEnable()
 
 	-- Olmyr the Enlightened
 	self:Log("SPELL_CAST_START", "Sanctify", 192158)
+	self:Log("SPELL_CAST_START", "SearingLight", 192288)
 
 	-- Valarjar Marksman
 	self:Log("SPELL_CAST_START", "PenetratingShot", 199210)
@@ -419,6 +421,11 @@ end
 function mod:Sanctify(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:SearingLight(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Valarjar Marksman

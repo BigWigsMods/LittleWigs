@@ -40,6 +40,7 @@ BigWigs:AddSounds("Odyn", {
 BigWigs:AddSounds("Halls of Valor Trash", {
 	[191508] = "alarm",
 	[192158] = "long",
+	[192288] = "alert",
 	[192563] = "alarm",
 	[198745] = "alert",
 	[198888] = "alarm",
