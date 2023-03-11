@@ -8,6 +8,7 @@ if L then
 	L.dazzling_dragonfly = "현란한 쐐기벌레"
 	L.curious_swoglet = "호기심 많은 새끼 용뿔두꺼비"
 	L.flamecaller_aymi = "불꽃소환사 아이미"
+	L.squallbringer_cyraz = "돌풍술사 시라즈"
 	L.primalist_earthshaker = "원시술사 지진술사"
 	L.gusting_protodragon = "몰아치는 원시용"
 	L.glacial_protodragon = "빙하의 원시용"

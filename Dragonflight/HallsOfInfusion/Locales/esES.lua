@@ -8,6 +8,7 @@ if L then
 	L.dazzling_dragonfly = "Libélula deslumbrante"
 	L.curious_swoglet = "Cornisapito curioso"
 	L.flamecaller_aymi = "Invocallamas Aymi"
+	L.squallbringer_cyraz = "Portapesares Cyraz"
 	L.primalist_earthshaker = "Sacudetierras primalista"
 	L.gusting_protodragon = "Protodragón de ráfagas"
 	L.glacial_protodragon = "Protodragón glacial"

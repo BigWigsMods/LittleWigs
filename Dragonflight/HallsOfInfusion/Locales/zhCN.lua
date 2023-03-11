@@ -8,6 +8,7 @@ if L then
 	L.dazzling_dragonfly = "炫目蜻蜓"
 	L.curious_swoglet = "好奇的小龙哇"
 	L.flamecaller_aymi = "召焰者艾米"
+	--L.squallbringer_cyraz = "Squallbringer Cyraz"
 	L.primalist_earthshaker = "拜荒震地者"
 	L.gusting_protodragon = "劲风始祖龙"
 	L.glacial_protodragon = "冰川始祖龙"

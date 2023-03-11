@@ -8,6 +8,7 @@ if L then
 	L.dazzling_dragonfly = "Ослепительная стрекоза"
 	L.curious_swoglet = "Любопытный детеныш рогоплава"
 	L.flamecaller_aymi = "Призывательница пламени Аюми"
+	L.squallbringer_cyraz = "Вестник бури Сайраз"
 	L.primalist_earthshaker = "Воин стихий – землетряс"
 	L.gusting_protodragon = "Воздушный протодракон"
 	L.glacial_protodragon = "Ледниковый протодракон"

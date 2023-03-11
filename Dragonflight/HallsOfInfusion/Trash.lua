@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	190362, -- Dazzling Dragonfly
 	190366, -- Curious Swoglet
 	190368, -- Flamecaller Aymi
+	190370, -- Squallbringer Cyraz
 	190371, -- Primalist Earthshaker
 	190401, -- Gusting Proto-Dragon
 	190403, -- Glacial Proto-Dragon
@@ -34,6 +35,7 @@ if L then
 	L.dazzling_dragonfly = "Dazzling Dragonfly"
 	L.curious_swoglet = "Curious Swoglet"
 	L.flamecaller_aymi = "Flamecaller Aymi"
+	L.squallbringer_cyraz = "Squallbringer Cyraz"
 	L.primalist_earthshaker = "Primalist Earthshaker"
 	L.gusting_protodragon = "Gusting Proto-Dragon"
 	L.glacial_protodragon = "Glacial Proto-Dragon"
@@ -62,6 +64,10 @@ function mod:GetOptions()
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
 		-- Flamecaller Aymi
 		374724, -- Molten Subduction
+		374735, -- Magma Crush
+		-- Squallbringer Cyraz
+		375079, -- Whirling Fury
+		374823, -- Zephyr's Call
 		-- Primalist Earthshaker
 		375384, -- Rumbling Earth
 		-- Gusting Proto-Dragon
@@ -83,6 +89,7 @@ function mod:GetOptions()
 		[374563] = L.dazzling_dragonfly,
 		[374389] = L.curious_swoglet,
 		[374724] = L.flamecaller_aymi,
+		[375079] = L.squallbringer_cyraz,
 		[375384] = L.primalist_earthshaker,
 		[375348] = L.gusting_protodragon,
 		[375351] = L.glacial_protodragon,
@@ -113,6 +120,13 @@ function mod:OnBossEnable()
 
 	-- Flamecaller Aymi
 	self:Log("SPELL_AURA_APPLIED", "MoltenSubductionApplied", 374724)
+	self:Log("SPELL_CAST_SUCCESS", "MagmaCrush", 374735)
+	self:Death("FlamecallerAymiDeath", 190368)
+
+	-- Squallbringer Cyraz
+	self:Log("SPELL_CAST_START", "WhirlingFury", 375079)
+	self:Log("SPELL_CAST_START", "ZephyrsCall", 374823)
+	self:Death("SquallbringerCyrazDeath", 190370)
 
 	-- Primalist Earthshaker
 	self:Log("SPELL_CAST_START", "RumblingEarth", 375384)
@@ -214,9 +228,39 @@ end
 -- Flamecaller Aymi
 
 function mod:MoltenSubductionApplied(args)
-	-- either movement dispel the target, target immunes, or everyone stacks on target (meteor)
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	-- either movement dispel the target, target immunes/moves out, or everyone stacks on target (meteor)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	self:CDBar(args.spellId, 19.4)
+end
+
+function mod:MagmaCrush(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:FlamecallerAymiDeath(args)
+	self:StopBar(374724) -- Molten Subduction
+end
+
+-- Squallbringer Cyraz
+
+function mod:WhirlingFury(args)
+	-- this is cast only immediately after Gale Force Charge which has a minimum range
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 22.5)
+end
+
+function mod:ZephyrsCall(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 21.8)
+end
+
+function mod:SquallbringerCyrazDeath(args)
+	self:StopBar(375079) -- Whirling Fury
+	self:StopBar(374823) -- Zephyr's Call
 end
 
 -- Primalist Earthshaker

@@ -8,6 +8,7 @@ if L then
 	L.dazzling_dragonfly = "Blendende Libelle"
 	L.curious_swoglet = "Neugieriges Flunkerchen"
 	L.flamecaller_aymi = "Flammenruferin Aymi"
+	L.squallbringer_cyraz = "Schwallbringer Cyraz"
 	L.primalist_earthshaker = "Erderschütterer der Primalisten"
 	L.gusting_protodragon = "Stürmender Protodrache"
 	L.glacial_protodragon = "Gletscherprotodrache"

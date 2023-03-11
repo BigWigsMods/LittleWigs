@@ -8,6 +8,7 @@ if L then
 	--L.dazzling_dragonfly = "Dazzling Dragonfly"
 	--L.curious_swoglet = "Curious Swoglet"
 	--L.flamecaller_aymi = "Flamecaller Aymi"
+	--L.squallbringer_cyraz = "Squallbringer Cyraz"
 	--L.primalist_earthshaker = "Primalist Earthshaker"
 	--L.gusting_protodragon = "Gusting Proto-Dragon"
 	--L.glacial_protodragon = "Glacial Proto-Dragon"
