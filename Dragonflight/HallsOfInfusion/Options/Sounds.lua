@@ -19,8 +19,9 @@ BigWigs:AddSounds("Gulping Goliath", {
 
 BigWigs:AddSounds("Khajin the Unyielding", {
 	[385963] = "alert",
-	[386559] = "alarm",
+	[386559] = "long",
 	[386757] = "warning",
+	[390111] = "alarm",
 })
 
 BigWigs:AddSounds("Primal Tsunami", {
