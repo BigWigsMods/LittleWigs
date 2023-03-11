@@ -178,6 +178,7 @@ function mod:OnBossEnable()
 
 	-- Infuser Sariya
 	self:Log("SPELL_CAST_START", "AqueousBarrier", 377402)
+	self:Log("SPELL_AURA_APPLIED", "AqueousBarrierApplied", 377402)
 	self:Log("SPELL_CAST_START", "FlashFlood", 390290)
 end
 
@@ -413,16 +414,30 @@ end
 
 -- Aqua Rager
 
-function mod:TidalDivergence(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:TidalDivergence(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Infuser Sariya
 
 function mod:AqueousBarrier(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:AqueousBarrierApplied(args)
+	if self:Dispeller("magic", true) and not self:Player(args.destFlags) then
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:FlashFlood(args)
