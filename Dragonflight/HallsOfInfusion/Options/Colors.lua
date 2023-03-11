@@ -14,6 +14,7 @@ BigWigs:AddColors("Gulping Goliath", {
 	[385442] = "yellow",
 	[385531] = "red",
 	[385551] = "orange",
+	[385743] = "orange",
 })
 
 BigWigs:AddColors("Khajin the Unyielding", {
