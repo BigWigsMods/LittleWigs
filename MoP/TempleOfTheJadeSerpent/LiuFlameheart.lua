@@ -81,15 +81,17 @@ end
 -- Stages
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = self:GetHealth(unit)
-	if hp < 35 and hp > 30 then
-		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "cyan", CL.soon:format(CL.stage:format(3)), false)
-		self:PlaySound("stages", "info")
-	elseif hp < 75 and hp > 70 then
-		self:UnregisterUnitEvent(event, unit)
-		self:Message("stages", "cyan", CL.soon:format(CL.stage:format(2)), false)
-		self:PlaySound("stages", "info")
+	if self:MobId(self:UnitGUID(unit)) == 56732 then -- Liu Flameheart
+		local hp = self:GetHealth(unit)
+		if hp < 35 and hp > 30 then
+			self:UnregisterUnitEvent(event, unit)
+			self:Message("stages", "cyan", CL.soon:format(CL.stage:format(3)), false)
+			self:PlaySound("stages", "info")
+		elseif hp < 75 and hp > 70 then
+			self:UnregisterUnitEvent(event, unit)
+			self:Message("stages", "cyan", CL.soon:format(CL.stage:format(2)), false)
+			self:PlaySound("stages", "info")
+		end
 	end
 end
 
