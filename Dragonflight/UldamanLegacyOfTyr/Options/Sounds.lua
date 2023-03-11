@@ -12,7 +12,7 @@ BigWigs:AddSounds("The Lost Dwarves", {
 BigWigs:AddSounds("Bromach", {
 	[369605] = "long",
 	[369660] = "info",
-	[369675] = "warning",
+	[369675] = "alarm",
 	[369700] = "alert",
 	[369703] = "alarm",
 	[369754] = "alert",

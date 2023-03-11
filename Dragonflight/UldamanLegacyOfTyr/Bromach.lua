@@ -42,11 +42,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ChainLightning", 369675)
 
 	-- Quaking Totem
-	self:Log("SPELL_CAST_SUCCESS", "Tremor", 369660)
+	self:Log("SPELL_AURA_APPLIED", "TremorApplied", 369725)
 end
 
 function mod:OnEngage()
-	self:CDBar(369605, 5.9) -- Call of the Deep
+	self:CDBar(369605, 5.1) -- Call of the Deep
 	self:Bar(369700, 20.6) -- Quaking Totem
 	self:Bar(369703, 12.3) -- Thundering Slam
 	self:Bar(369754, 27.9) -- Bloodlust
@@ -61,19 +61,19 @@ end
 function mod:CallOfTheDeep(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 27.9)
+	self:CDBar(args.spellId, 28.0)
 end
 
 function mod:QuakingTotem(args)
 	self:Message(369700, "yellow")
 	self:PlaySound(369700, "alert")
-	self:Bar(369700, 40)
+	self:Bar(369700, 30.3)
 end
 
 function mod:Bloodlust(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 30.3)
+	self:Bar(args.spellId, 30.3)
 end
 
 function mod:BloodlustSuccess(args)
@@ -83,20 +83,47 @@ end
 function mod:ThunderingSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 11.6)
+	self:CDBar(args.spellId, 18.2)
 end
 
 -- Stonevault Geomancer
 
 function mod:ChainLightning(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Quaking Totem
 
-function mod:Tremor(args)
-	self:Message(args.spellId, "green", CL.onboss:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
+function mod:TremorApplied(args)
+	if self:MobId(args.destGUID) == 184018 then -- Bromach
+		self:Message(369660, "green", CL.onboss:format(args.spellName))
+		self:PlaySound(369660, "info")
+		self:Bar(369660, 10, CL.onboss:format(args.spellName))
+		-- Tremor being applied to Bromach adds 9.8 seconds to timers
+		local callOfTheDeepTimeLeft = self:BarTimeLeft(369605)
+		if callOfTheDeepTimeLeft > .1 then
+			self:CDBar(369605, {callOfTheDeepTimeLeft + 9.8, 37.8})
+		else
+			self:CDBar(369605, {9.8, 37.8})
+		end
+		local quakingTotemTimeLeft = self:BarTimeLeft(369700)
+		if quakingTotemTimeLeft > .1 then
+			self:Bar(369700, {quakingTotemTimeLeft + 9.8, 40.1})
+		else
+			self:Bar(369700, {9.8, 40.1})
+		end
+		local bloodlustTimeLeft = self:BarTimeLeft(369754)
+		if bloodlustTimeLeft > .1 then
+			self:Bar(369754, {bloodlustTimeLeft + 9.8, 40.1})
+		else
+			self:Bar(369754, {9.8, 40.1})
+		end
+		local thunderingSlamTimeLeft = self:BarTimeLeft(369703)
+		if thunderingSlamTimeLeft > .1 then
+			self:CDBar(369703, {thunderingSlamTimeLeft + 9.8, 28})
+		else
+			self:CDBar(369703, {9.8, 28})
+		end
+	end
 end
