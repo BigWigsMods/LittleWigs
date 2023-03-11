@@ -27,8 +27,10 @@ BigWigs:AddColors("Khajin the Unyielding", {
 BigWigs:AddColors("Primal Tsunami", {
 	[387504] = "purple",
 	[387559] = "yellow",
-	[388424] = "orange",
+	[388424] = "red",
+	[388760] = "orange",
 	[388882] = "yellow",
+	[389875] = "purple",
 	["stages"] = "cyan",
 })
 
