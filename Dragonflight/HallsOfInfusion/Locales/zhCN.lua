@@ -1,6 +1,9 @@
 local L = BigWigs:NewBossLocale("Halls of Infusion Trash", "zhCN")
 if not L then return end
 if L then
+	L.custom_on_autotalk = "自动对话"
+	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+
 	L.primalist_ravager = "拜荒掠夺者"
 	L.primalist_geomancer = "拜荒地卜师"
 	L.containment_apparatus = "抑制装置"
@@ -10,6 +13,8 @@ if L then
 	L.flamecaller_aymi = "召焰者艾米"
 	--L.squallbringer_cyraz = "Squallbringer Cyraz"
 	L.primalist_earthshaker = "拜荒震地者"
+	--L.primalist_galesinger = "Primalist Galesinger"
+	--L.primalist_icecaller = "Primalist Icecaller"
 	L.gusting_protodragon = "劲风始祖龙"
 	L.glacial_protodragon = "冰川始祖龙"
 	L.subterranean_protodragon = "土地始祖龙"

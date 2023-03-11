@@ -1,6 +1,9 @@
 local L = BigWigs:NewBossLocale("Halls of Infusion Trash", "deDE")
 if not L then return end
 if L then
+	L.custom_on_autotalk = "Automatisch ansprechen"
+	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+
 	L.primalist_ravager = "Verheererin der Primalisten"
 	L.primalist_geomancer = "Geomant der Primalisten"
 	L.containment_apparatus = "Eindämmungsvorrichtungs"
@@ -10,6 +13,8 @@ if L then
 	L.flamecaller_aymi = "Flammenruferin Aymi"
 	L.squallbringer_cyraz = "Schwallbringer Cyraz"
 	L.primalist_earthshaker = "Erderschütterer der Primalisten"
+	L.primalist_galesinger = "Sturmsänger der Primalisten"
+	L.primalist_icecaller = "Eisruferin der Primalisten"
 	L.gusting_protodragon = "Stürmender Protodrache"
 	L.glacial_protodragon = "Gletscherprotodrache"
 	L.subterranean_protodragon = "Unterirdischer Protodrache"
