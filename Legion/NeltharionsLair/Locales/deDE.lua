@@ -17,5 +17,4 @@ end
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "deDE")
 if L then
 	L.totems = "Götzen"
-	L.bellow = "{193375} (Götzen)" -- Bellow of the Deeps (Totems)
 end
