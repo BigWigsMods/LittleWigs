@@ -74,7 +74,7 @@ function mod:GetOptions()
 		-- Corrupted Manafiend
 		388863, -- Mana Void
 		-- Spellbound Battleaxe
-		{388911, "TANK"}, -- Severing Slice
+		{388911, "TANK"}, -- Severing Slash
 		-- Spellbound Scepter
 		396812, -- Mystic Blast
 		388886, -- Arcane Rain
@@ -128,7 +128,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ManaVoid", 388863)
 
 	-- Spellbound Battleaxe
-	self:Log("SPELL_CAST_START", "SeveringSlice", 388911)
+	self:Log("SPELL_CAST_START", "SeveringSlash", 388911)
 
 	-- Spellbound Scepter
 	self:Log("SPELL_CAST_START", "MysticBlast", 396812)
@@ -276,9 +276,16 @@ end
 
 -- Spellbound Battleaxe
 
-function mod:SeveringSlice(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:SeveringSlash(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Spellbound Scepter
