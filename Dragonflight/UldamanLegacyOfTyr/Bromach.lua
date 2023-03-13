@@ -102,28 +102,28 @@ function mod:TremorApplied(args)
 		self:Bar(369660, 10, CL.onboss:format(args.spellName))
 		-- Tremor being applied to Bromach adds 9.8 seconds to timers
 		local callOfTheDeepTimeLeft = self:BarTimeLeft(369605)
-		if callOfTheDeepTimeLeft > .1 then
+		if callOfTheDeepTimeLeft >= .2 then
 			self:CDBar(369605, {callOfTheDeepTimeLeft + 9.8, 37.8})
 		else
-			self:CDBar(369605, {9.8, 37.8})
+			self:CDBar(369605, {10, 37.8})
 		end
 		local quakingTotemTimeLeft = self:BarTimeLeft(369700)
-		if quakingTotemTimeLeft > .1 then
+		if quakingTotemTimeLeft >= .2 then
 			self:Bar(369700, {quakingTotemTimeLeft + 9.8, 40.1})
 		else
-			self:Bar(369700, {9.8, 40.1})
+			self:Bar(369700, {10, 40.1})
 		end
 		local bloodlustTimeLeft = self:BarTimeLeft(369754)
-		if bloodlustTimeLeft > .1 then
+		if bloodlustTimeLeft >= .2 then
 			self:Bar(369754, {bloodlustTimeLeft + 9.8, 40.1})
 		else
-			self:Bar(369754, {9.8, 40.1})
+			self:Bar(369754, {10, 40.1})
 		end
 		local thunderingSlamTimeLeft = self:BarTimeLeft(369703)
-		if thunderingSlamTimeLeft > .1 then
+		if thunderingSlamTimeLeft >= .2 then
 			self:CDBar(369703, {thunderingSlamTimeLeft + 9.8, 28})
 		else
-			self:CDBar(369703, {9.8, 28})
+			self:CDBar(369703, {10, 28})
 		end
 	end
 end
