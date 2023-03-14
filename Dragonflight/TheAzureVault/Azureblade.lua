@@ -14,8 +14,8 @@ mod:SetStage(1)
 --
 
 local summonDraconicImageRemaining = 3
-local ancientOrbRemaining = 3
-local arcaneCleaveRemaining = 4
+local ancientOrbRemaining = 4
+local arcaneCleaveRemaining = 5
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,14 +40,14 @@ end
 
 function mod:OnEngage()
 	summonDraconicImageRemaining = 2
-	ancientOrbRemaining = 1
+	ancientOrbRemaining = 2
 	arcaneCleaveRemaining = 2
 	self:SetStage(1)
 	self:CDBar(384223, 3.3) -- Summon Draconic Image
 	self:CDBar(372222, 5.2) -- Arcane Cleave
 	self:CDBar(385578, 10.6) -- Ancient Orb
-	-- 25s energy loss + ~1.8s delay
-	self:CDBar(384132, 26.8) -- Overwhelming Energy
+	-- 30s energy loss + ~2.9s delay
+	self:CDBar(384132, 32.9) -- Overwhelming Energy
 end
 
 --------------------------------------------------------------------------------
@@ -60,8 +60,8 @@ do
 	function mod:OverwhelmingEnergy(args)
 		addKills = 0
 		summonDraconicImageRemaining = 3
-		ancientOrbRemaining = 3
-		arcaneCleaveRemaining = 4
+		ancientOrbRemaining = 4
+		arcaneCleaveRemaining = 5
 		self:SetStage(2)
 		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "long")
@@ -83,8 +83,8 @@ do
 			self:CDBar(384223, 4.7) -- Summon Draconic Image
 			self:CDBar(372222, 7.2) -- Arcane Cleave
 			self:CDBar(385578, 12.5) -- Ancient Orb
-			-- 50s energy loss + ~4.1s delay (can be longer because boss runs to middle first)
-			self:CDBar(384132, 54.1) -- Overwhelming Energy
+			-- 60s energy loss + ~1.7s delay (usually longer because boss runs to middle first)
+			self:CDBar(384132, 61.7) -- Overwhelming Energy
 		end
 	end
 end
@@ -102,19 +102,19 @@ end
 function mod:AncientOrb(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	-- 1 before 1st Overwhelming Energy, then 3 per stage 1
+	-- 2 before 1st Overwhelming Energy, then 3-4 per stage 1
 	ancientOrbRemaining = ancientOrbRemaining - 1
 	if ancientOrbRemaining > 0 then
-		self:CDBar(args.spellId, 15.4)
+		self:CDBar(args.spellId, 15.8)
 	end
 end
 
 function mod:ArcaneCleave(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	-- 2 before 1st Overwhelming Energy, then 4 per stage 1
+	-- 2 before 1st Overwhelming Energy, then 4-5 per stage 1
 	arcaneCleaveRemaining = arcaneCleaveRemaining - 1
 	if arcaneCleaveRemaining > 0 then
-		self:CDBar(args.spellId, 13.3)
+		self:CDBar(args.spellId, 13.4)
 	end
 end
