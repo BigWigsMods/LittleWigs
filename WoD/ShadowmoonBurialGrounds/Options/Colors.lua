@@ -40,5 +40,6 @@ BigWigs:AddColors("Shadowmoon Burial Grounds Trash", {
 	[394512] = "orange",
 	[398150] = {"blue","red"},
 	[398151] = "yellow",
+	[398154] = "orange",
 	[398206] = "red",
 })

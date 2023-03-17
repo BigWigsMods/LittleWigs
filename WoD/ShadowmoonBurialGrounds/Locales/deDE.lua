@@ -22,6 +22,7 @@ if L then
 	L.reanimated_ritual_bones = "Reanimierte Ritualknochen"
 	L.void_spawn = "Ausgeburt der Leere"
 	L.shadowmoon_loyalist = "Getreue des Schattenmondklans"
+	L.defiled_spirit = "Entweihter Geist"
 	L.shadowmoon_dominator = "Beherrscher des Schattenmondklans"
 	L.shadowmoon_exhumer = "Erweckerin des Schattenmondklans"
 	L.exhumed_spirit = "Exhumierter Geist"

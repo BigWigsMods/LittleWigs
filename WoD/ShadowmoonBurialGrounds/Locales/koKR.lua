@@ -22,6 +22,7 @@ if L then
 	L.reanimated_ritual_bones = "되살린 의식 해골"
 	L.void_spawn = "공허의 피조물"
 	L.shadowmoon_loyalist = "어둠달 충성주의자"
+	L.defiled_spirit = "더럽혀진 영혼"
 	L.shadowmoon_dominator = "어둠달 통솔자"
 	L.shadowmoon_exhumer = "어둠달 도굴꾼"
 	L.exhumed_spirit = "도굴된 영혼"

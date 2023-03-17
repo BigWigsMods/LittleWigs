@@ -40,5 +40,6 @@ BigWigs:AddSounds("Shadowmoon Burial Grounds Trash", {
 	[394512] = "long",
 	[398150] = {"alarm","warning"},
 	[398151] = "alert",
+	[398154] = "alarm",
 	[398206] = "warning",
 })

@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	75715, -- Reanimated Ritual Bones
 	75652, -- Void Spawn
 	75506, -- Shadowmoon Loyalist
+	75451, -- Defiled Spirit
 	76446, -- Shadowmoon Dominator
 	77700, -- Shadowmoon Exhumer
 	75979, -- Exhumed Spirit
@@ -27,6 +28,7 @@ if L then
 	L.reanimated_ritual_bones = "Reanimated Ritual Bones"
 	L.void_spawn = "Void Spawn"
 	L.shadowmoon_loyalist = "Shadowmoon Loyalist"
+	L.defiled_spirit = "Defiled Spirit"
 	L.shadowmoon_dominator = "Shadowmoon Dominator"
 	L.shadowmoon_exhumer = "Shadowmoon Exhumer"
 	L.exhumed_spirit = "Exhumed Spirit"
@@ -50,6 +52,8 @@ function mod:GetOptions()
 		394512, -- Void Eruptions
 		-- Shaodwmoon Loyalist
 		{398151, "DISPEL"}, -- Sinister Focus
+		-- Defiled Spirit
+		398154, -- Cry of Anguish
 		-- Shaodwmoon Dominator
 		398150, -- Domination
 		-- Shadowmoon Exhumer
@@ -65,6 +69,7 @@ function mod:GetOptions()
 		[164907] = L.reanimated_ritual_bones,
 		[152964] = L.void_spawn,
 		[398151] = L.shadowmoon_loyalist,
+		[398154] = L.defiled_spirit,
 		[398150] = L.shadowmoon_dominator,
 		[153268] = L.shadowmoon_exhumer,
 		[398206] = L.exhumed_spirit,
@@ -87,6 +92,9 @@ function mod:OnBossEnable()
 
 	-- Shadowmoon Loyalist
 	self:Log("SPELL_AURA_APPLIED", "SinisterFocusApplied", 398151)
+
+	-- Defiled Spirit
+	self:Log("SPELL_CAST_START", "CryOfAnguish", 398154)
 
 	-- Shadowmoon Dominator
 	self:Log("SPELL_CAST_START", "Domination", 398150)
@@ -153,6 +161,13 @@ function mod:SinisterFocusApplied(args)
 		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
+end
+
+-- Defiled Spirit
+
+function mod:CryOfAnguish(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Shadowmoon Dominator

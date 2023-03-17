@@ -22,6 +22,7 @@ if L then
 	L.reanimated_ritual_bones = "Huesos de ritual reanimados"
 	L.void_spawn = "Engendro del Vacío"
 	L.shadowmoon_loyalist = "Leal Sombraluna"
+	L.defiled_spirit = "Espíritu profanado"
 	L.shadowmoon_dominator = "Dominador Sombraluna"
 	L.shadowmoon_exhumer = "Exhumadora Sombraluna"
 	L.exhumed_spirit = "Espíritu exhumado"

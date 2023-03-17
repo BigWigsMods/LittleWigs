@@ -22,6 +22,7 @@ if L then
 	L.reanimated_ritual_bones = "Ossements rituels ranimés"
 	L.void_spawn = "Rejeton du Vide"
 	L.shadowmoon_loyalist = "Loyaliste ombrelune"
+	L.defiled_spirit = "Esprit profané"
 	L.shadowmoon_dominator = "Dominateur ombrelune"
 	L.shadowmoon_exhumer = "Exhumeuse d’âmes ombrelune"
 	L.exhumed_spirit = "Esprit exhumé"
