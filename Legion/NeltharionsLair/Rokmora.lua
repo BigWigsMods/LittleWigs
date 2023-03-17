@@ -15,8 +15,6 @@ mod:SetRespawnTime(15)
 local L = mod:GetLocale()
 if L then
 	L.warmup_text = "Rokmora Active"
-	L.warmup_trigger = "Navarrogg?! Betrayer! You would lead these intruders against us?!"
-	L.warmup_trigger_2 = "Either way, I will enjoy every moment of it. Rokmora, crush them!"
 end
 
 --------------------------------------------------------------------------------
@@ -33,7 +31,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
 	self:Log("SPELL_CAST_START", "RazorShards", 188169)
 	self:Log("SPELL_CAST_START", "Shatter", 188114)
 
@@ -51,15 +48,14 @@ end
 -- Event Handlers
 --
 
--- TODO trigger this from trash for higher reliability
-function mod:Warmup(event, msg)
-	if msg == L.warmup_trigger then
-		self:UnregisterEvent(event)
-		self:Bar("warmup", 18.9, L.warmup_text, "achievement_dungeon_neltharionslair")
-	elseif msg == L.warmup_trigger_2 then
-		self:UnregisterEvent(event)
-		self:Bar("warmup", 4.95, L.warmup_text, "achievement_dungeon_neltharionslair")
-	end
+-- called from trash module
+function mod:WarmupLong()
+	self:Bar("warmup", 18.9, L.warmup_text, "achievement_dungeon_neltharionslair")
+end
+
+-- called from trash module
+function mod:WarmupShort()
+	self:Bar("warmup", 4.95, L.warmup_text, "achievement_dungeon_neltharionslair")
 end
 
 function mod:RazorShards(args)

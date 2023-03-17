@@ -1,6 +1,9 @@
 local L = BigWigs:NewBossLocale("Neltharions Lair Trash", "ptBR")
 if not L then return end
 if L then
+	L.rokmora_first_warmup_trigger = "Navarrogg?! Traidor! Você liderou esses intrusos contra nós?!"
+	L.rokmora_second_warmup_trigger = "De qualquer forma, vou curtir cada momento. Rokmora, esmague-os!"
+
 	L.tarspitter_lurker = "Tocaieiro Cospiche"
 	L.rockback_gnasher = "Triscadente Costapétrea"
 	L.vileshard_hulk = "Gigante Estilhavil"
@@ -18,8 +21,6 @@ end
 L = BigWigs:NewBossLocale("Rokmora", "ptBR")
 if L then
 	L.warmup_text = "Rokmora Ativo"
-	L.warmup_trigger = "Navarrogg?! Traidor! Você liderou esses intrusos contra nós?!"
-	L.warmup_trigger_2 = "De qualquer forma, vou curtir cada momento. Rokmora, esmague-os!"
 end
 
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "ptBR")
