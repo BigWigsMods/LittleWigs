@@ -14,7 +14,8 @@ BigWigs:AddColors("Ularogg Cragshaper", {
 
 BigWigs:AddColors("Naraxas", {
 	[-12527] = "yellow",
-	[199178] = {"blue","green","orange"},
+	[199178] = {"blue","green","orange","red"},
+	[199246] = {"blue","red"},
 	[199775] = "yellow",
 	[205549] = "red",
 	[210150] = "orange",
