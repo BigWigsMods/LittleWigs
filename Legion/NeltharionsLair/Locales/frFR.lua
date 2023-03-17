@@ -1,10 +1,18 @@
 local L = BigWigs:NewBossLocale("Neltharions Lair Trash", "frFR")
 if not L then return end
 if L then
-	L.breaker = "Briseur pierre-puissance"
-	--L.hulk = "Vileshard Hulk"
-	--L.gnasher = "Rockback Gnasher"
-	--L.trapper = "Rockbound Trapper"
+	L.tarspitter_lurker = "Rôdeur crache-goudron"
+	L.rockback_gnasher = "Mâcheur pierre-peau"
+	L.vileshard_hulk = "Mastodonte vil-éclat"
+	L.vileshard_chunk = "Bris vil-éclat"
+	L.understone_drummer = "Batteur pierre-basse"
+	L.mightstone_breaker = "Briseur pierre-puissance"
+	L.blightshard_shaper = "Sculpteur éclat-chancreux"
+	L.stoneclaw_grubmaster = "Maître des larves pierre-griffe"
+	L.tarspitter_grub = "Larve crache-goudron"
+	L.rotdrool_grabber = "Saisisseur bave-pourrie"
+	L.rockbound_trapper = "Trappeur pierre-lié"
+	L.emberhusk_dominator = "Dominateur braise-chitine"
 end
 
 L = BigWigs:NewBossLocale("Rokmora", "frFR")
