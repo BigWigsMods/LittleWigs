@@ -26,6 +26,7 @@ BigWigs:AddColors("Dargrul", {
 	[200404] = "red",
 	[200551] = "yellow",
 	[200637] = "yellow",
+	[200672] = "green",
 	[200700] = "orange",
 	[200732] = "purple",
 	[216407] = "blue",

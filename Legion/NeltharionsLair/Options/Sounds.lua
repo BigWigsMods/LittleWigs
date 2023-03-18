@@ -26,8 +26,9 @@ BigWigs:AddSounds("Dargrul", {
 	[200404] = "long",
 	[200551] = "alarm",
 	[200637] = "alert",
+	[200672] = "info",
 	[200700] = "alarm",
-	[200732] = "alarm",
+	[200732] = "alert",
 	[216407] = "underyou",
 })
 
