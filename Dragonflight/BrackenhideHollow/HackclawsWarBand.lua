@@ -13,18 +13,26 @@ mod:SetEncounterID(2570)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local greaterHealingRapidsCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
+local savageChargeMarker = mod:AddMarkerOption(true, "player", 1, 381444, 1) -- Savage Charge
 function mod:GetOptions()
 	return {
 		-- Rira Hackclaw
-		{381444, "SAY", "SAY_COUNTDOWN"}, -- Savage Charge
+		{381444, "SAY"}, -- Savage Charge
+		savageChargeMarker,
 		377827, -- Bladestorm
 		-- Gashtooth
 		381694, -- Decayed Senses
 		378029, -- Gash Frenzy
-		-- TODO Marked for Butchery (Mythic-only)
+		378208, -- Marked for Butchery (Mythic-only)
 		-- Tricktotem
 		381470, -- Hextrick Totem
 		377950, -- Greater Healing Rapids
@@ -40,6 +48,7 @@ function mod:OnBossEnable()
 	-- Rira Hackclaw
 	self:Log("SPELL_AURA_APPLIED", "SavageChargeApplied", 381461)
 	self:Log("SPELL_AURA_REMOVED", "SavageChargeRemoved", 381461)
+	self:Log("SPELL_CAST_SUCCESS", "SavageChargeRemoved", 381416)
 	self:Log("SPELL_AURA_APPLIED", "BladestormStarting", 381835)
 	self:Log("SPELL_AURA_APPLIED", "BladestormFixateApplied", 377844)
 	self:Log("SPELL_AURA_REMOVED", "BladestormFixateRemoved", 377844)
@@ -50,6 +59,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DecayedSensesApplied", 381379)
 	self:Log("SPELL_AURA_REMOVED", "DecayedSensesRemoved", 381379)
 	self:Log("SPELL_CAST_START", "GashFrenzy", 378029)
+	self:Log("SPELL_CAST_START", "MarkedForButchery", 378208)
 	self:Death("GashtoothDeath", 186124)
 
 	-- Tricktotem
@@ -60,12 +70,16 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(378029, 3.6) -- Gash Frenzy
-	self:Bar(377950, 12.2) -- Greater Healing Rapids
+	greaterHealingRapidsCount = 0
+	self:Bar(378029, 3.5) -- Gash Frenzy
+	self:Bar(377950, 12.1) -- Greater Healing Rapids
+	if self:Mythic() then
+		self:Bar(378208, 13.3) -- Marked For Butchery
+	end
 	self:Bar(377827, 20.3) -- Bladestorm
 	self:Bar(381470, 45.8) -- Hextrick Totem
 	self:Bar(381694, 46.8) -- Decayed Senses
-	self:Bar(381444, 49.3) -- Savage Charge
+	self:Bar(381444, 49.6) -- Savage Charge
 end
 
 --------------------------------------------------------------------------------
@@ -75,28 +89,24 @@ end
 -- Rira Hackclaw
 
 function mod:SavageChargeApplied(args)
-	-- charge debuff applies to a random player, boss starts 10 second cast
+	-- charge debuff applies to a random player, boss starts variable length cast
 	-- tank must intercept or target must immune
 	local onMe = self:Me(args.destGUID)
 	self:TargetMessage(381444, "red", args.destName)
-	self:TargetBar(381444, 10, args.destName)
+	self:CustomIcon(savageChargeMarker, args.destName, 1)
 	if self:Tank() or onMe then
 		self:PlaySound(381444, "warning", nil, args.destName)
 		if onMe then
 			self:Say(381444)
-			self:SayCountdown(381444, 10)
 		end
 	else
 		self:PlaySound(381444, "alert", nil, args.destName)
 	end
-	-- TODO unknown CD
+	self:Bar(381444, 59.5)
 end
 
 function mod:SavageChargeRemoved(args)
-	self:StopBar(381444, args.destName)
-	if self:Me(args.destGUID) then
-		self:CancelSayCountdown(381444)
-	end
+	self:CustomIcon(savageChargeMarker, args.destName)
 end
 
 -- example Bladestorm sequence:
@@ -111,7 +121,7 @@ end
 -- 8s SPELL_CAST_START 377844 (1s cast)
 -- 9s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
 -- 9s SPELL_AURA_APPLIED 377844 (on player)
--- gains Bloodfrenzy (40% haste)
+-- gains Bloodfrenzy (30% haste)
 -- 13s SPELL_AURA_REMOVED 377844 (from player)
 -- 13s SPELL_CAST_START 377844 (.714s cast)
 -- 13.714s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
@@ -122,14 +132,14 @@ do
 	function mod:BladestormStarting(args)
 		firstChannel = true
 		-- fixate debuff applies to a random player, boss starts 3 second cast
-		self:TargetMessage(377827, "red", args.destName, CL.casting:format(args.spellName))
+		self:TargetMessage(377827, "orange", args.destName, CL.casting:format(args.spellName))
 		self:PlaySound(377827, "long", nil, args.destName)
-		-- TODO unknown CD
+		self:Bar(377827, 59.5)
 	end
 
 	function mod:BladestormFixateApplied(args)
 		-- fixate debuff applies to a random player, boss starts 5 or 4 second channel
-		self:TargetMessage(377827, "red", args.destName)
+		self:TargetMessage(377827, "orange", args.destName)
 		self:PlaySound(377827, "alarm", nil, args.destName)
 		if firstChannel then
 			firstChannel = false
@@ -154,7 +164,7 @@ end
 function mod:DecayedSenses(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	-- TODO unknown CD
+	self:Bar(args.spellId, 59.5)
 end
 
 function mod:DecayedSensesApplied(args)
@@ -170,32 +180,54 @@ function mod:DecayedSensesRemoved(args)
 end
 
 function mod:GashFrenzy(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 59)
+	self:Bar(args.spellId, 59.5)
+end
+
+do
+	local function printTarget(self, name, guid)
+		if self:Healer() or self:Me(guid) then
+			self:TargetMessage(378208, "red", name)
+			self:PlaySound(378208, "alarm", nil, name)
+		end
+	end
+
+	function mod:MarkedForButchery(args)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+	end
 end
 
 function mod:GashtoothDeath(args)
 	self:StopBar(381694) -- Decayed Senses
 	self:StopBar(378029) -- Gash Frenzy
+	if self:Mythic() then
+		self:StopBar(378208) -- Marked For Butchery
+	end
 end
 
 -- Tricktotem
 
 function mod:HextrickTotem(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	-- TODO unknown CD
+	self:Bar(args.spellId, 59.5)
 end
 
 function mod:GreaterHealingRapids(args)
+	greaterHealingRapidsCount = greaterHealingRapidsCount + 1
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 22.7)
+	-- 59.5s cycle: pull:12.2, [21.8, 21.8, 15.8]
+	if greaterHealingRapidsCount % 3 ~= 0 then -- 1, 2
+		self:Bar(args.spellId, 21.8)
+	else -- 3
+		self:Bar(args.spellId, 15.8)
+	end
 end
 
 function mod:Bloodfrenzy(args)
-	self:Message(args.spellId, "orange", CL.onboss:format(args.spellName))
+	self:Message(args.spellId, "red", CL.percent:format(15, args.spellName))
 	self:PlaySound(args.spellId, "long")
 end
 

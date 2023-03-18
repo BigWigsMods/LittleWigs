@@ -4,6 +4,7 @@ BigWigs:AddSounds("Hackclaw's War-Band", {
 	[377950] = "warning",
 	[377965] = "long",
 	[378029] = "alert",
+	[378208] = "alarm",
 	[381444] = {"alert","warning"},
 	[381470] = "alert",
 	[381694] = {"info","warning"},
