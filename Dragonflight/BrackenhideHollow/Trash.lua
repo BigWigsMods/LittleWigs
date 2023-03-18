@@ -53,6 +53,7 @@ function mod:GetOptions()
 		"custom_on_cauldron_autotalk",
 		-- Decay Speaker
 		382435, -- Rotchanting Totem
+		{367503, "SAY"}, -- Withering Burst
 		-- Claw Fighter
 		367484, -- Vicious Clawmangle
 		-- Bonebolt Hunter
@@ -103,8 +104,8 @@ function mod:OnBossEnable()
 	-- [UPDATE_UI_WIDGET] widgetID:4267, widgetType:8, widgetSetID:1, scriptedAnimationEffectID:0, modelSceneLayer:0, widgetScale:0, tooltipLoc:0, fontType:1, shownState:1, widgetSizeSetting:0, bottomPadding:0, enabledState:1, textSizeType:4, text:Tuskarr Freed: 4/5, orderIndex:0, layoutDirection:0, inAnimType:0, widgetTag:, hasTimer:false, outAnimType:0, tooltip:Free Tuskarr to goad Hackclaw's War-Band out into the open., hAlign:1
 
 	-- Decay Speaker
-	-- TODO can this mob be stunned to stop the totem spawn?
 	self:Log("SPELL_SUMMON", "RotchantingTotemSummoned", 382435)
+	self:Log("SPELL_CAST_START", "WitheringBurst", 367503)
 
 	-- Claw Fighter
 	self:Log("SPELL_AURA_APPLIED", "ViciousClawmangleApplied", 367484)
@@ -114,7 +115,7 @@ function mod:OnBossEnable()
 
 	-- Bracken Warscourge
 	self:Log("SPELL_CAST_START", "HideousCackle", 367500)
-	self:Log("SPELL_CAST_SUCCESS", "Ragestorm", 382555)
+	self:Log("SPELL_CAST_START", "Ragestorm", 382555)
 	self:Log("SPELL_DAMAGE", "RagestormDamage", 382556)
 	self:Log("SPELL_MISSED", "RagestormDamage", 382556)
 
@@ -165,6 +166,20 @@ end
 function mod:RotchantingTotemSummoned(args)
 	self:Message(args.spellId, "yellow", CL.spawned:format(args.destName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(367503, "orange", name)
+		self:PlaySound(367503, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(367503)
+		end
+	end
+
+	function mod:WitheringBurst(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+	end
 end
 
 -- Claw Fighter
