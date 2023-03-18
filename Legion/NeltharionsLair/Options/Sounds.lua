@@ -22,11 +22,13 @@ BigWigs:AddSounds("Naraxas", {
 })
 
 BigWigs:AddSounds("Dargrul", {
-	[200154] = "alarm",
+	[200154] = {"alert","warning"},
 	[200404] = "long",
 	[200551] = "alarm",
-	[200700] = "alert",
-	[200732] = "warning",
+	[200637] = "alert",
+	[200700] = "alarm",
+	[200732] = "alarm",
+	[216407] = "underyou",
 })
 
 BigWigs:AddSounds("Neltharions Lair Trash", {

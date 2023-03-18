@@ -22,11 +22,13 @@ BigWigs:AddColors("Naraxas", {
 })
 
 BigWigs:AddColors("Dargrul", {
-	[200154] = {"blue","yellow"},
-	[200404] = "green",
-	[200551] = "green",
+	[200154] = {"blue","red"},
+	[200404] = "red",
+	[200551] = "yellow",
+	[200637] = "yellow",
 	[200700] = "orange",
-	[200732] = "red",
+	[200732] = "purple",
+	[216407] = "blue",
 })
 
 BigWigs:AddColors("Neltharions Lair Trash", {
