@@ -31,7 +31,7 @@ BigWigs:AddSounds("Gutshot", {
 BigWigs:AddSounds("Decatriarch Wratheye", {
 	[373917] = "alert",
 	[373944] = "alert",
-	[373960] = "long",
+	[373960] = {"info","long"},
 	[376170] = "alarm",
 })
 
