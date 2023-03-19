@@ -20,6 +20,7 @@ local volatileMutationCount = 0
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		374365, -- Volatile Mutation
 		375890, -- Magma Eruption
 		375068, -- Magma Lob -- TODO maybe remove, might just be noise
@@ -47,6 +48,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 10.6, CL.active, "achievement_dungeon_neltharus")
+end
 
 do
 	local prev = 0

@@ -74,6 +74,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- General
+	self:Log("SPELL_CAST_START", "ThrowExperimentalConcoction", 376169)
+
 	-- Qalashi Warden
 	self:Log("SPELL_CAST_START", "VolcanicGuard", 382708)
 
@@ -107,6 +110,17 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:ThrowExperimentalConcoction(args)
+	-- Magmatusk warmup
+	local magmatuskModule = BigWigs:GetBossModule("Magmatusk", true)
+	if magmatuskModule then
+		magmatuskModule:Enable()
+		magmatuskModule:Warmup()
+	end
+end
 
 -- Qalashi Warden
 
