@@ -10,6 +10,13 @@ mod.engageId = 2112
 mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local upheavalCount = 0
+local volatilePodsCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -38,12 +45,14 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	upheavalCount = 0
+	volatilePodsCount = 0
 	self:Bar(272457, 10.5) -- Shockwave
 	self:ScheduleTimer("Bar", 10.5, 272457, 14) -- Second Shockwave, 24.5 sec total
-	self:Bar(259718, 16) -- Upheaval
+	self:Bar(259718, 16.6) -- Upheaval
 	self:Bar(259732, 45) -- Festering Harvest
 	if not self:Normal() then
-		self:Bar(273285, 46) -- Volatile Pods
+		self:Bar(273285, 21.6) -- Volatile Pods
 	end
 end
 
@@ -55,7 +64,6 @@ function mod:FesteringHarvest(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 51)
-	self:Bar(259718, 15) -- Upheaval
 	self:Bar(272457, 24.3) -- Shockwave
 	self:ScheduleTimer("Bar", 24.3, 272457, 20.6) -- Second Shockwave, 44.9 sec total
 end
@@ -73,9 +81,14 @@ end
 do
 	local playerList = mod:NewTargetList()
 	function mod:Upheaval(args)
+		upheavalCount = upheavalCount + 1
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:Bar(args.spellId, 20)
+			if self:Normal() then
+				self:Bar(args.spellId, (upheavalCount == 2 and 30.4) or (upheavalCount % 3 == 2 and 24.3) or 15.8)
+			else
+				self:Bar(args.spellId, (upheavalCount == 2 and 24.3) or (upheavalCount % 2 == 0 and 30.4) or 20.6)
+			end
 		end
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning", "runout")
@@ -99,9 +112,10 @@ do
 		local t = args.time
 		if t-prev > 2 then
 			prev = t
+			volatilePodsCount = volatilePodsCount + 1
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "long")
-			self:CDBar(args.spellId, 25)
+			self:CDBar(args.spellId, volatilePodsCount == 3 and 27.9 or 25.5)
 		end
 	end
 end
