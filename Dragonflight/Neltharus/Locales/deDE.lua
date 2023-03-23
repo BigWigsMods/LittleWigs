@@ -7,6 +7,7 @@ if L then
 	L.qalashi_irontorch = "Eisenfackel der Qalashi"
 	L.irontorch_commander = "Eisenfackelkommandant"
 	L.forgewrought_monstrosity = "Geschmiedetes Monstrum"
+	L.qalashi_plunderer = "Plünderer der Qalashi"
 	L.qalashi_thaumaturge = "Thaumaturgin der Qalashi"
 	L.apex_blazewing = "Apexflammenschwinge"
 	L.qalashi_lavamancer = "Lavamagier der Qalashi"
