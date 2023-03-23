@@ -20,6 +20,7 @@ BigWigs:AddSounds("Magmatusk", {
 	[375251] = "alarm",
 	[375439] = "alarm",
 	[375890] = "alert",
+	[391457] = {"alert","info"},
 })
 
 BigWigs:AddSounds("Warlord Sargha", {
