@@ -77,7 +77,7 @@ do
 		end
 		-- pull:25.3, 31.5, 27.9, 31.6, 26.8, 31.6, 28.0, 31.6, 26.8, 31.6, 28.0, 28.0
 		-- pull:26.8, 31.7, 27.9, 27.9, 31.6, 27.9, 27.9, 31.6, 27.9, 31.6, 28.0
-		-- casts at full Magma: 2.5s cast + 25s energy gain + .4s to 4.1s delay
+		-- casts at full Magma: 2.5s cast + 25s energy gain + .4s minimum delay
 		self:CDBar(args.spellId, 27.9, CL.count:format(args.spellName, volatileMutationCount + 1))
 	end
 end
@@ -117,10 +117,10 @@ function mod:LavaSpray(args)
 	else
 		self:CDBar(args.spellId, 19.4)
 	end
-	-- soonest Volatile Mutation can happen after this is 6.06s
+	-- soonest Volatile Mutation can happen after this is ~6.06s
 	local volatileMutationBarText = CL.count:format(self:SpellName(374365), volatileMutationCount + 1) -- Volatile Mutation (n)
-	if self:BarTimeLeft(volatileMutationBarText) < 6 then -- Volatile Mutation
-		self:CDBar(374365, {6, 27.9}, volatileMutationBarText)
+	if self:BarTimeLeft(volatileMutationBarText) < 6 then
+		self:CDBar(374365, {6, 27.9}, volatileMutationBarText) -- Volatile Mutation
 	end
 end
 
@@ -150,6 +150,7 @@ do
 	function mod:LavaEmpowermentRemoved(args)
 		if timer then
 			self:CancelTimer(timer)
+			timer = nil
 		else
 			-- alert when removed only if we've previously shown an application alert
 			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
