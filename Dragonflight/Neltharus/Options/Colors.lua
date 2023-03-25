@@ -29,6 +29,7 @@ BigWigs:AddColors("Warlord Sargha", {
 	[377204] = "red",
 	[377477] = "yellow",
 	[377522] = {"blue","red"},
+	[391762] = {"blue","orange"},
 	["magical_implements"] = {"blue","green"},
 })
 
