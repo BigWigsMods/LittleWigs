@@ -40,8 +40,8 @@ function mod:OnEngage()
 	mightOfTheForgeCount = 0
 	self:Bar(374635, 3.6, CL.count:format(self:SpellName(374635), 1)) -- Might of the Forge (1)
 	self:Bar(374839, 12.1) -- Blazing Aegis
-	self:Bar(374533, 20.5) -- Heated Swings
-	self:Bar(374969, 29.5) -- Forgestorm
+	self:CDBar(374533, 20.5) -- Heated Swings
+	self:CDBar(374969, 29.5) -- Forgestorm
 end
 
 --------------------------------------------------------------------------------
@@ -58,12 +58,12 @@ function mod:MightOfTheForge(args)
 	-- so if this is delayed we should adjust other timers
 	if mightOfTheForgeCount == 1 then
 		self:Bar(374839, {8.3, 12.1}) -- Blazing Aegis
-		self:Bar(374533, {17.0, 20.5}) -- Heated Swings
-		self:Bar(374969, {25.5, 29.5}) -- Forgestorm
+		self:CDBar(374533, {16.6, 20.5}) -- Heated Swings
+		self:CDBar(374969, {25.2, 29.5}) -- Forgestorm
 	else
 		self:Bar(374839, {8.3, 30.4}) -- Blazing Aegis
-		self:Bar(374533, {17.0, 30.4}) -- Heated Swings
-		self:Bar(374969, {25.5, 30.4}) -- Forgestorm
+		self:CDBar(374533, {15.8, 30.4}) -- Heated Swings
+		self:CDBar(374969, {24.3, 30.4}) -- Forgestorm
 	end
 end
 
@@ -103,11 +103,11 @@ end
 function mod:Forgestorm(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 30.4)
+	self:CDBar(args.spellId, 30.4)
 end
 
 function mod:HeatedSwings(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 30.4)
+	self:CDBar(args.spellId, 30.4)
 end
