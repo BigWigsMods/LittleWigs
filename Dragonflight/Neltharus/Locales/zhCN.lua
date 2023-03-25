@@ -16,6 +16,12 @@ if L then
 	L.qalashi_lavamancer = "卡拉希熔岩术师"
 end
 
+L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "zhCN")
+if L then
+	L.slow = "减速"
+	L.boss = "首领"
+end
+
 L = BigWigs:NewBossLocale("Warlord Sargha", "zhCN")
 if L then
 	L.magical_implements_desc = "在周围的黄金堆中寻找魔法物品，以此帮助消除岩浆护盾。"

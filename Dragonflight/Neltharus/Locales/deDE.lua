@@ -16,6 +16,12 @@ if L then
 	L.qalashi_lavamancer = "Lavamagier der Qalashi"
 end
 
+L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "deDE")
+if L then
+	L.slow = "Verlangsamen"
+	L.boss = "BOSS"
+end
+
 L = BigWigs:NewBossLocale("Warlord Sargha", "deDE")
 if L then
 	L.magical_implements_desc = "Die umliegenden Schatzhaufen enthalten magische Gegenstände, welche beim Entfernen des Magmaschildes helfen."

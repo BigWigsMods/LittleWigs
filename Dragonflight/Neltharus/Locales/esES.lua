@@ -15,6 +15,12 @@ if L then
 	L.qalashi_lavamancer = "Lavamántico qalashi"
 end
 
+L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "esES") or BigWigs:NewBossLocale("Chargath, Bane of Scales", "esMX")
+if L then
+	L.slow = "Ralentizar"
+	L.boss = "JEFE"
+end
+
 L = BigWigs:NewBossLocale("Warlord Sargha", "esES") or BigWigs:NewBossLocale("Warlord Sargha", "esMX")
 if L then
 	L.magical_implements_desc = "El tesoro contiene objetos mágicos que pueden ayudarte a consumir Escudo de Magma."

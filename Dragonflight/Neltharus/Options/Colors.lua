@@ -1,9 +1,9 @@
 
 BigWigs:AddColors("Chargath, Bane of Scales", {
 	[373424] = "yellow",
-	[373733] = {"blue","yellow"},
+	[373733] = "yellow",
 	[373742] = "orange",
-	[375056] = "red",
+	[375056] = {"green","red"},
 	[388523] = "green",
 })
 

@@ -16,6 +16,12 @@ if L then
 	L.qalashi_lavamancer = "Куалаши-лавамант"
 end
 
+L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "ruRU")
+if L then
+	L.slow = "Замедление"
+	L.boss = "БОССЕ"
+end
+
 L = BigWigs:NewBossLocale("Warlord Sargha", "ruRU")
 if L then
 	L.magical_implements_desc = "Находящиеся рядом кучи сокровищ содержат магические предметы, которые могут помочь истощить Щит магмы."

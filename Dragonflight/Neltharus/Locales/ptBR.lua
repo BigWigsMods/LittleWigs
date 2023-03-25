@@ -16,6 +16,12 @@ if L then
 	L.qalashi_lavamancer = "Lavamante Qalashi"
 end
 
+L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "ptBR")
+if L then
+	L.slow = "Retardar"
+	L.boss = "CHEFE"
+end
+
 L = BigWigs:NewBossLocale("Warlord Sargha", "ptBR")
 if L then
 	--L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
