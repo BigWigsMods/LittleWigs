@@ -9,6 +9,14 @@ mod:SetEncounterID(2559)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local rewindTimeflowCount = 0
+local wingBuffetCount = 0
+local sandBreathCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -18,7 +26,7 @@ function mod:GetOptions()
 		376325, -- Eternity Zone
 		376208, -- Rewind Timeflow
 		376049, -- Wing Buffet
-		{377405, "DISPEL", "SAY"}, -- Time Sink
+		{377405, "SAY"}, -- Time Sink
 		375727, -- Sand Breath
 	}
 end
@@ -34,9 +42,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(376049, 6.3) -- Wing Buffet
-	self:CDBar(375727, 12.3) -- Sand Breath
-	self:Bar(376208, 25.3) -- Rewind Timeflow
+	rewindTimeflowCount = 0
+	wingBuffetCount = 0
+	sandBreathCount = 0
+	self:CDBar(377405, 5.0) -- Time Sink
+	self:CDBar(376049, 6.0) -- Wing Buffet
+	self:CDBar(375727, 12.1) -- Sand Breath
+	self:CDBar(376208, 25.3, CL.count:format(self:SpellName(376208), 1)) -- Rewind Timeflow (1)
 end
 
 --------------------------------------------------------------------------------
@@ -63,9 +75,11 @@ do
 end
 
 function mod:RewindTimeflow(args)
-	self:Message(args.spellId, "yellow")
+	rewindTimeflowCount = rewindTimeflowCount + 1
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, rewindTimeflowCount))
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 46.1)
+	self:StopBar(CL.count:format(args.spellName, rewindTimeflowCount))
+	self:Bar(args.spellId, 42.4, CL.count:format(args.spellName, rewindTimeflowCount + 1))
 end
 
 function mod:RewindTimeflowStart(args)
@@ -78,24 +92,34 @@ function mod:RewindTimeflowOver(args)
 end
 
 function mod:WingBuffet(args)
-	self:Message(args.spellId, "red")
+	wingBuffetCount = wingBuffetCount + 1
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17)
-end
-
-function mod:TimeSinkApplied(args)
-	local onMe = self:Me(args.destGUID)
-	if self:Dispeller("magic", false, args.spellId) or onMe then
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
-		if onMe then
-			self:Say(args.spellId)
-		end
+	if wingBuffetCount == 1 then
+		self:Bar(args.spellId, 37.5)
+	else
+		self:Bar(args.spellId, 42.4)
 	end
 end
 
+function mod:TimeSinkApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
+	self:Bar(args.spellId, 42.4)
+end
+
 function mod:SandBreath(args)
+	sandBreathCount = sandBreathCount + 1
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17.8)
+	if sandBreathCount == 1 then
+		self:Bar(args.spellId, 27.8)
+	elseif sandBreathCount % 2 == 0 then
+		self:Bar(args.spellId, 18.2)
+	else
+		self:Bar(args.spellId, 24.2)
+	end
 end
