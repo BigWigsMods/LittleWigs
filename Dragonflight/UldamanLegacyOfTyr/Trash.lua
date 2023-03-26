@@ -13,7 +13,9 @@ mod:RegisterEnableMob(
 	186420, -- Earthen Weaver
 	184301, -- Cavern Seeker
 	184107, -- Runic Protector
-	184300  -- Ebonstone Golem
+	184300, -- Ebonstone Golem
+	184131, -- Earthen Guardian
+	184335  -- Infinite Agent
 )
 
 --------------------------------------------------------------------------------
@@ -29,6 +31,8 @@ if L then
 	L.cavern_seeker = "Cavern Seeker"
 	L.runic_protector = "Runic Protector"
 	L.ebonstone_golem = "Ebonstone Golem"
+	L.earthen_guardian = "Earthen Guardian"
+	L.infinite_agent = "Infinite Agent"
 end
 
 --------------------------------------------------------------------------------
@@ -39,6 +43,7 @@ function mod:GetOptions()
 	return {
 		-- General
 		386104, -- Lost Tome of Tyr
+		375500, -- Time Lock
 		-- Hulking Berserker
 		369811, -- Brutal Slam
 		-- Vicious Basilisk
@@ -46,7 +51,7 @@ function mod:GetOptions()
 		-- Earthen Warder
 		{369400, "DISPEL"}, -- Earthen Ward
 		{369365, "DISPEL"}, -- Curse of Stone
-		{369366, "DISPEL"}, -- Trapped in Stone
+		{369366, "DISPEL", "SAY"}, -- Trapped in Stone
 		-- Earthen Weaver
 		369465, -- Hail of Stone
 		-- Cavern Seeker
@@ -55,6 +60,10 @@ function mod:GetOptions()
 		369337, -- Difficult Terrain
 		-- Ebonstone Golem
 		381593, -- Thunderous Clap
+		-- Earthen Guardian
+		382578, -- Blessing of Tyr
+		-- Infinite Agent
+		{377500, "DISPEL"}, -- Hasten
 	}, {
 		[386104] = CL.general,
 		[369811] = L.hulking_berserker,
@@ -64,12 +73,15 @@ function mod:GetOptions()
 		[369411] = L.cavern_seeker,
 		[369337] = L.runic_protector,
 		[381593] = L.ebonstone_golem,
+		[382578] = L.earthen_guardian,
+		[377500] = L.infinite_agent,
 	}
 end
 
 function mod:OnBossEnable()
 	-- General
 	self:Log("SPELL_AURA_APPLIED", "LostTomeOfTyr", 386104)
+	self:Log("SPELL_AURA_APPLIED", "TimeLock", 375500)
 
 	-- Hulking Berserker
 	self:Log("SPELL_CAST_START", "BrutalSlam", 369811)
@@ -86,7 +98,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TrappedInStoneApplied", 369366)
 
 	-- Earthen Weaver
-	self:Log("SPELL_CAST_SUCCESS", "HailOfStone", 369465)
+	self:Log("SPELL_CAST_SUCCESS", "HailOfStone", 369465) -- doesn't go on CD until the channel starts
 
 	-- Cavern Seeker
 	self:Log("SPELL_CAST_START", "SonicBurst", 369411)
@@ -96,6 +108,13 @@ function mod:OnBossEnable()
 
 	-- Runic Protector
 	self:Log("SPELL_CAST_START", "ThunderousClap", 381593)
+
+	-- Earthen Guardian
+	self:Log("SPELL_CAST_START", "BlessingOfTyr", 382578)
+
+	-- Infinite Agent
+	self:Log("SPELL_CAST_START", "Hasten", 377500)
+	self:Log("SPELL_AURA_APPLIED", "HastenApplied", 377500)
 end
 
 --------------------------------------------------------------------------------
@@ -104,9 +123,25 @@ end
 
 -- General
 
-function mod:LostTomeOfTyr(args)
-	self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+
+	function mod:LostTomeOfTyr(args)
+		-- for some reason this buff gets reapplied when you gain Time Lock, suppress alert
+		if args.time - prev > 25 and self:Me(args.destGUID) then
+			self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+
+	function mod:TimeLock(args)
+		local t = args.time
+		-- very long throttle
+		if t - prev > 25 then
+			prev = t
+			self:Bar(args.spellId, 22.1)
+		end
+	end
 end
 
 -- Hulking Berserker
@@ -161,7 +196,7 @@ end
 function mod:EarthenWardApplied(args)
 	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
 		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
@@ -178,17 +213,25 @@ function mod:CurseOfStoneApplied(args)
 end
 
 function mod:TrappedInStoneApplied(args)
-	if self:Dispeller("curse", nil, args.spellId) or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
 	end
 end
 
 -- Earthen Weaver
 
-function mod:HailOfStone(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:HailOfStone(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Cavern Seeker
@@ -224,6 +267,41 @@ do
 			prev = t
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+-- Earthen Guardian
+
+function mod:BlessingOfTyr(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Infinite Agent
+
+do
+	local prev = 0
+	function mod:Hasten(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:HastenApplied(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
+				self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+				self:PlaySound(args.spellId, "alert")
+			end
 		end
 	end
 end

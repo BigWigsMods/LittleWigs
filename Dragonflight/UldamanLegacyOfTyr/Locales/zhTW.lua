@@ -8,6 +8,8 @@ if L then
 	--L.cavern_seeker = "Cavern Seeker"
 	--L.runic_protector = "Runic Protector"
 	--L.ebonstone_golem = "Ebonstone Golem"
+	--L.earthen_guardian = "Earthen Guardian"
+	--L.infinite_agent = "Infinite Agent"
 end
 
 L = BigWigs:NewBossLocale("Sentinel Talondras", "zhTW")

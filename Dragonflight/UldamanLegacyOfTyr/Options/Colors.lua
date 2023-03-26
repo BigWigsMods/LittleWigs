@@ -50,6 +50,8 @@ BigWigs:AddColors("Uldaman: Legacy of Tyr Trash", {
 	[369465] = "orange",
 	[369811] = "orange",
 	[369823] = {"red","yellow"},
+	[377500] = {"red","yellow"},
 	[381593] = "yellow",
+	[382578] = "orange",
 	[386104] = "green",
 })

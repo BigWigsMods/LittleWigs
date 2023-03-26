@@ -8,6 +8,8 @@ if L then
 	L.cavern_seeker = "동굴 수색자"
 	L.runic_protector = "룬 수호자"
 	L.ebonstone_golem = "칠흑바위 골렘"
+	L.earthen_guardian = "토석인 수호자"
+	L.infinite_agent = "무한의 대리인"
 end
 
 L = BigWigs:NewBossLocale("Sentinel Talondras", "koKR")
