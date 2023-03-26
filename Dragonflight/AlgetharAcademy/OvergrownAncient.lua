@@ -13,6 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local germinateCount = 0
+local burstForthCount = 0
 local barkbreakerCount = 0
 
 --------------------------------------------------------------------------------
@@ -58,11 +59,12 @@ end
 
 function mod:OnEngage()
 	germinateCount = 0
+	burstForthCount = 0
 	barkbreakerCount = 0
 	self:Bar(388544, 9.7) -- Barkbreaker
 	self:Bar(388796, 18.2) -- Germinate
 	self:Bar(388623, 30.4) -- Branch Out
-	self:Bar(388923, 56.4) -- Burst Forth
+	self:Bar(388923, 56.4, CL.count:format(self:SpellName(388923), 1)) -- Burst Forth (1)
 end
 
 --------------------------------------------------------------------------------
@@ -86,10 +88,13 @@ function mod:Germinate(args)
 end
 
 function mod:BurstForth(args)
-	self:Message(args.spellId, "orange")
+	burstForthCount = burstForthCount + 1
+	local burstForthMessage = CL.count:format(args.spellName, burstForthCount)
+	self:StopBar(burstForthMessage)
+	self:Message(args.spellId, "orange", burstForthMessage)
 	self:PlaySound(args.spellId, "long")
 	-- cast at 100 energy, 2s cast + 54s energy gain + delay
-	self:Bar(args.spellId, 59.5)
+	self:Bar(args.spellId, 59.5, CL.count:format(args.spellName, burstForthCount + 1))
 end
 
 function mod:BranchOut(args)
