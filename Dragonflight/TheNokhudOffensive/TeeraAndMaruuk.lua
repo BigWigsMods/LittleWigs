@@ -15,6 +15,7 @@ mod:SetRespawnTime(40.5) -- 30s respawn + 10.5s RP run
 -- Locals
 --
 
+local galeArrowCount = 0
 local spiritLeapCount = 0
 local frightfulRoarCount = 0
 local brutalizeCount = 0
@@ -68,13 +69,14 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	galeArrowCount = 0
 	spiritLeapCount = 0
 	frightfulRoarCount = 0
 	brutalizeCount = 0
 	self:Bar(386063, 5.5) -- Frightful Roar
 	self:Bar(385434, 6.0) -- Spirit Leap
 	self:Bar(382836, 13.5) -- Brutalize
-	self:Bar(382670, 21.5) -- Gale Arrow
+	self:Bar(382670, 21.5, CL.count:format(self:SpellName(382670), 1)) -- Gale Arrow (1)
 	self:Bar(386547, 50) -- Repel
 	self:Bar(385339, 52) -- Earthsplitter
 end
@@ -92,9 +94,12 @@ end
 -- Teera
 
 function mod:GaleArrow(args)
-	self:Message(args.spellId, "red")
+	galeArrowCount = galeArrowCount + 1
+	local galeArrowMessage = CL.count:format(args.spellName, galeArrowCount)
+	self:StopBar(galeArrowMessage)
+	self:Message(args.spellId, "red", galeArrowMessage)
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 57.5)
+	self:Bar(args.spellId, 57.5, CL.count:format(args.spellName, galeArrowCount + 1))
 end
 
 function mod:Repel(args)
