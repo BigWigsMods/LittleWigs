@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Uldaman: Legacy of Tyr Trash", 2451)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	184134, -- Scavenging Leaper
 	184020, -- Hulking Berserker
 	184023, -- Vicious Basilisk
 	184132, -- Earthen Warder
@@ -36,6 +37,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- General
+		386104, -- Lost Tome of Tyr
 		-- Hulking Berserker
 		369811, -- Brutal Slam
 		-- Vicious Basilisk
@@ -53,6 +56,7 @@ function mod:GetOptions()
 		-- Ebonstone Golem
 		381593, -- Thunderous Clap
 	}, {
+		[386104] = CL.general,
 		[369811] = L.hulking_berserker,
 		[369823] = L.vicious_basilisk,
 		[369400] = L.earthen_warder,
@@ -64,6 +68,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- General
+	self:Log("SPELL_AURA_APPLIED", "LostTomeOfTyr", 386104)
+
 	-- Hulking Berserker
 	self:Log("SPELL_CAST_START", "BrutalSlam", 369811)
 
@@ -94,6 +101,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:LostTomeOfTyr(args)
+	self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
+end
 
 -- Hulking Berserker
 
