@@ -14,6 +14,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		376325, -- Eternity Zone
 		376208, -- Rewind Timeflow
 		376049, -- Wing Buffet
@@ -41,6 +42,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 16.9, CL.active, "achievement_dungeon_uldaman")
+end
 
 do
 	local prev = 0

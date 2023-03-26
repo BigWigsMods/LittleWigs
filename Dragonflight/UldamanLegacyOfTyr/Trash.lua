@@ -15,7 +15,8 @@ mod:RegisterEnableMob(
 	184107, -- Runic Protector
 	184300, -- Ebonstone Golem
 	184131, -- Earthen Guardian
-	184335  -- Infinite Agent
+	184335, -- Infinite Agent
+	191220  -- Chrono-Lord Deios (RP version)
 )
 
 --------------------------------------------------------------------------------
@@ -82,6 +83,7 @@ function mod:OnBossEnable()
 	-- General
 	self:Log("SPELL_AURA_APPLIED", "LostTomeOfTyr", 386104)
 	self:Log("SPELL_AURA_APPLIED", "TimeLock", 375500)
+	self:Log("SPELL_CAST_SUCCESS", "TemporalTheft", 382264)
 
 	-- Hulking Berserker
 	self:Log("SPELL_CAST_START", "BrutalSlam", 369811)
@@ -141,6 +143,15 @@ do
 			prev = t
 			self:Bar(args.spellId, 22.1)
 		end
+	end
+end
+
+function mod:TemporalTheft(args)
+	-- Chrono-Lord Deios warmup
+	local chronoLordDeiosModule = BigWigs:GetBossModule("Chrono-Lord Deios", true)
+	if chronoLordDeiosModule then
+		chronoLordDeiosModule:Enable()
+		chronoLordDeiosModule:Warmup()
 	end
 end
 
