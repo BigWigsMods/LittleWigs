@@ -9,3 +9,8 @@ if L then
 	L.runic_protector = "룬 수호자"
 	L.ebonstone_golem = "칠흑바위 골렘"
 end
+
+L = BigWigs:NewBossLocale("Sentinel Talondras", "koKR")
+if L then
+	L.boss = "우두머리"
+end

@@ -9,3 +9,8 @@ if L then
 	L.runic_protector = "Protector rúnico"
 	L.ebonstone_golem = "Gólem de ébano"
 end
+
+L = BigWigs:NewBossLocale("Sentinel Talondras", "esES") or BigWigs:NewBossLocale("Sentinel Talondras", "esMX")
+if L then
+	L.boss = "JEFE"
+end
