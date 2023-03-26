@@ -5,7 +5,7 @@ BigWigs:AddSounds("The Lost Dwarves", {
 	[369602] = "warning",
 	[369677] = "alert",
 	[369791] = "alarm",
-	[375286] = "alert",
+	[375286] = {"alert","underyou"},
 	[375924] = "long",
 })
 
