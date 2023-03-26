@@ -89,8 +89,8 @@ end
 -- Stonevault Geomancer
 
 function mod:ChainLightning(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Quaking Totem
