@@ -227,7 +227,7 @@ end
 function mod:SearingCannonfireApplied(args)
 	if self:Me(args.destGUID) then
 		self:StackMessage(args.spellId, "blue", args.destName, args.amount, 1)
-		self:PlaySound(args.spellId, "underyou", nil, args.destName)
+		self:PlaySound(args.spellId, "underyou")
 	elseif self:Dispeller("magic", nil, args.spellId) then
 		self:StackMessage(args.spellId, "red", args.destName, args.amount, 1)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
