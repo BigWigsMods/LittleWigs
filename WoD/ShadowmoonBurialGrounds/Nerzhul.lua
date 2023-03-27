@@ -24,6 +24,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Malevolence", 154442)
 	self:Log("SPELL_SUMMON", "OmenOfDeath", 154350)
 	self:Log("SPELL_CAST_SUCCESS", "RitualOfBones", 154671)
+	self:Log("SPELL_AURA_APPLIED", "RitualOfBonesApplied", 154469)
 end
 
 function mod:OnEngage()
@@ -54,4 +55,14 @@ function mod:RitualOfBones(args)
 	self:CDBar(154469, 50.5)
 	-- Ritual of Bones puts Omen of Death on a longer cooldown
 	self:CDBar(154350, 25.4) -- Omen of Death
+end
+
+function mod:RitualOfBonesApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "underyou")
+	elseif self:Healer() then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
