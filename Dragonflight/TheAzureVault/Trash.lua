@@ -177,14 +177,25 @@ end
 
 -- Shrieking Whelp
 
-function mod:Shriek(args)
-	self:Message(397726, "red", CL.casting:format(args.spellName))
-	self:PlaySound(397726, "warning")
-end
+do
+	local prev = 0
 
-function mod:ShriekSuccess(args)
-	self:Message(397726, "cyan", CL.incoming:format(CL.adds))
-	self:PlaySound(397726, "long")
+	function mod:Shriek(args)
+		-- no need to alert on Shriek if adds were already activated in the last 5 seconds
+		if args.time - prev > 5 then
+			self:Message(397726, "red", CL.casting:format(args.spellName))
+			self:PlaySound(397726, "warning")
+		end
+	end
+
+	function mod:ShriekSuccess(args)
+		local t = args.time
+		if t - prev > 8 then
+			prev = t
+			self:Message(397726, "cyan", CL.incoming:format(CL.adds))
+			self:PlaySound(397726, "long")
+		end
+	end
 end
 
 -- Conjured Lasher
