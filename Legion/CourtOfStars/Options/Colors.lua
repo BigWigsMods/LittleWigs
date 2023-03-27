@@ -18,7 +18,7 @@ BigWigs:AddColors("Advisor Melandrus", {
 	[209602] = "red",
 	[209628] = "orange",
 	[209676] = "yellow",
-	[224333] = "yellow",
+	[224333] = {"blue","red","yellow"},
 })
 
 BigWigs:AddColors("Court of Stars Trash", {
