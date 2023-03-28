@@ -9,6 +9,12 @@ mod:SetEncounterID(2582)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local consumingStompCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -34,11 +40,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	consumingStompCount = 0
 	self:Bar(374364, 3.6) -- Ley-Line Sprouts
 	self:Bar(374789, 10.6) -- Infused Strike
 	self:Bar(386660, 20.3) -- Erupting Fissure
 	self:Bar(374567, 30.1) -- Explosive Brand
-	self:Bar(374720, 45.8) -- Consuming Stomp
+	self:Bar(374720, 45.8, CL.count:format(self:SpellName(374720), 1)) -- Consuming Stomp (1)
 end
 
 --------------------------------------------------------------------------------
@@ -70,9 +77,12 @@ function mod:EruptingFissure(args)
 end
 
 function mod:ConsumingStomp(args)
-	self:Message(args.spellId, "red")
+	consumingStompCount = consumingStompCount + 1
+	local consumingStompMessage = CL.count:format(args.spellName, consumingStompCount)
+	self:StopBar(consumingStompMessage)
+	self:Message(args.spellId, "red", consumingStompMessage)
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 48.7)
+	self:Bar(args.spellId, 48.7, CL.count:format(args.spellName, consumingStompCount + 1))
 end
 
 function mod:InfusedStrike(args)
