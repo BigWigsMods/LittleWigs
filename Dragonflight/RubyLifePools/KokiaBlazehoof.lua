@@ -9,6 +9,12 @@ mod:SetEncounterID(2606)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local ritualOfBlazebindingCount = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -16,7 +22,7 @@ function mod:GetOptions()
 	return {
 		-- Kokia Blazehoof
 		372863, -- Ritual of Blazebinding
-		372107, -- Molten Boulder
+		{372107, "SAY"}, -- Molten Boulder
 		{372858, "TANK_HEALER"}, -- Searing Blows
 		-- Blazebound Firestorm
 		373017, -- Roaring Blaze
@@ -39,7 +45,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(372863, 7.3) -- Ritual of Blazebinding
+	ritualOfBlazebindingCount = 0
+	self:Bar(372863, 7.3, CL.count:format(self:SpellName(372863), 1)) -- Ritual of Blazebinding (1)
 	self:Bar(372107, 14.5) -- Molten Boulder
 	self:Bar(372858, 21.6) -- Searing Blows
 end
@@ -51,15 +58,27 @@ end
 -- Kokia Blazehoof
 
 function mod:RitualOfBlazebinding(args)
-	self:Message(args.spellId, "orange")
+	ritualOfBlazebindingCount = ritualOfBlazebindingCount + 1
+	local ritualOfBlazebindingMessage = CL.count:format(args.spellName, ritualOfBlazebindingCount)
+	self:StopBar(ritualOfBlazebindingMessage)
+	self:Message(args.spellId, "orange", ritualOfBlazebindingMessage)
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 33.9)
+	self:CDBar(args.spellId, 33.9, CL.count:format(args.spellName, ritualOfBlazebindingCount + 1))
 end
 
-function mod:MoltenBoulder(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 17)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(372107, "yellow", name)
+		self:PlaySound(372107, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(372107)
+		end
+	end
+
+	function mod:MoltenBoulder(args)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:Bar(args.spellId, 17)
+	end
 end
 
 function mod:SearingBlows(args)
