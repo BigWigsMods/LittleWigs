@@ -28,6 +28,8 @@ function mod:GetOptions()
 		373680, -- Frost Overload
 	}, {
 		[372988] = CL.mythic,
+	}, {
+		[372851] = CL.knockback,
 	}
 end
 
@@ -109,6 +111,7 @@ function mod:ChillstormRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(372851)
 	end
+	self:Bar(372851, 6, CL.knockback)
 end
 
 function mod:Hailbombs(args)
