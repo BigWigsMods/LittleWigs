@@ -13,6 +13,7 @@ mod:SetStage(1)
 -- Locals
 --
 
+local overwhelmingEnergyCount = 0
 local summonDraconicImageRemaining = 3
 local ancientOrbRemaining = 4
 local arcaneCleaveRemaining = 5
@@ -31,6 +32,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "OverwhelmingEnergy", 384132)
 	self:Death("DraconicIllusionDeath", 192955)
 	self:Log("SPELL_CAST_START", "SummonDraconicImage", 384223)
@@ -39,6 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	overwhelmingEnergyCount = 0
 	summonDraconicImageRemaining = 2
 	ancientOrbRemaining = 2
 	arcaneCleaveRemaining = 2
@@ -47,25 +50,37 @@ function mod:OnEngage()
 	self:CDBar(372222, 5.2) -- Arcane Cleave
 	self:CDBar(385578, 10.6) -- Ancient Orb
 	-- 30s energy loss + ~2.9s delay
-	self:CDBar(384132, 32.9) -- Overwhelming Energy
+	self:CDBar(384132, 32.9, CL.count:format(self:SpellName(384132), 1)) -- Overwhelming Energy (1)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 378734 then -- Draconic Ritual
+		-- this is cast when the boss runs to the center, we can clean up extra
+		-- timers for skipped abilities a little early
+		self:StopBar(384223) -- Summon Draconic Image
+		self:StopBar(372222) -- Arcane Cleave
+		self:StopBar(385578) -- Ancient Orb
+	end
+end
+
 do
 	local addKills = 0
 
 	function mod:OverwhelmingEnergy(args)
+		overwhelmingEnergyCount = overwhelmingEnergyCount + 1
 		addKills = 0
 		summonDraconicImageRemaining = 3
 		ancientOrbRemaining = 4
 		arcaneCleaveRemaining = 5
+		local overwhelmingEnergyMessage = CL.count:format(args.spellName, overwhelmingEnergyCount)
 		self:SetStage(2)
-		self:Message(args.spellId, "cyan")
+		self:Message(args.spellId, "cyan", overwhelmingEnergyMessage)
 		self:PlaySound(args.spellId, "long")
-		self:StopBar(384132) -- Overwhelming Energy
+		self:StopBar(overwhelmingEnergyMessage) -- Overwhelming Energy (n)
 		self:StopBar(384223) -- Summon Draconic Image
 		self:StopBar(372222) -- Arcane Cleave
 		self:StopBar(385578) -- Ancient Orb
@@ -77,14 +92,15 @@ do
 			self:Message(384132, "cyan", CL.add_killed:format(addKills, 4))
 			self:PlaySound(384132, "alert")
 		else
+			local overwhemingEnergySpellName = self:SpellName(384132)
 			self:SetStage(1)
-			self:Message(384132, "green", CL.over:format(self:SpellName(384132))) -- Overwhelming Energy Over
+			self:Message(384132, "green", CL.over:format(overwhemingEnergySpellName)) -- Overwhelming Energy Over
 			self:PlaySound(384132, "info")
 			self:CDBar(384223, 4.7) -- Summon Draconic Image
 			self:CDBar(372222, 7.2) -- Arcane Cleave
 			self:CDBar(385578, 12.5) -- Ancient Orb
 			-- 60s energy loss + ~1.7s delay (usually longer because boss runs to middle first)
-			self:CDBar(384132, 61.7) -- Overwhelming Energy
+			self:CDBar(384132, 61.7, CL.count:format(overwhemingEnergySpellName, overwhelmingEnergyCount + 1)) -- Overwhelming Energy (n)
 		end
 	end
 end
