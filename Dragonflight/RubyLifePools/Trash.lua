@@ -71,7 +71,7 @@ function mod:GetOptions()
 		391723, -- Flame Breath
 		392569, -- Molten Blood
 		{392394, "TANK_HEALER"}, -- Fire Maw
-		-- Tempest Channeler
+		-- Tempest Channeler / High Channeler Ryvati
 		392486, -- Lightning Storm
 		-- Flame Channeler
 		392451, -- Flashfire
@@ -131,8 +131,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MoltenBlood", 392569)
 	self:Death("FlamegulletDeath", 197697)
 
-	-- Tempest Channeler
+	-- Tempest Channeler / High Channeler Ryvati
 	self:Log("SPELL_CAST_START", "LightningStorm", 392486)
+	self:Death("TempestChannelerDeath", 198047)
+	self:Death("TempestChannelerDeath", 197535)
 
 	-- Flame Channeler
 	self:Log("SPELL_CAST_START", "Flashfire", 392451)
@@ -304,11 +306,16 @@ function mod:FlamegulletDeath(args)
 	self:StopBar(392394) -- Fire Maw
 end
 
--- Tempest Channeler
+-- Tempest Channeler / High Channeler Ryvati
 
 function mod:LightningStorm(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 20.0)
+end
+
+function mod:TempestChannelerDeath(args)
+	self:StopBar(392486) -- Lightning Storm
 end
 
 -- Flame Channeler
