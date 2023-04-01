@@ -9,6 +9,7 @@ if L then
 	-- L.duelist = "Cutwater Duelist"
 	-- L.oarsman = "Irontide Oarsman"
 	-- L.juggler = "Cutwater Knife Juggler"
+	L.bilge_rat_brinescale = "항만의 시궁쥐단 소금비늘"
 	-- L.scrapper = "Blacktooth Scrapper"
 	-- L.knuckleduster = "Blacktooth Knuckleduster"
 	-- L.swabby = "Bilge Rat Swabby"

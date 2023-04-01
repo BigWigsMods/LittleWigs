@@ -9,6 +9,7 @@ if L then
 	L.duelist = "Duellante Sferzamaree"
 	L.oarsman = "Rematore Marferreo"
 	L.juggler = "Lanciatore di Coltelli Sferzamaree"
+	L.bilge_rat_brinescale = "Scagliasalmastra dei Ratti di Sentina"
 	L.scrapper = "Attaccabrighe Dentineri"
 	L.knuckleduster = "Spezzanocche Dentineri"
 	L.swabby = "Sgobbone dei Ratti di Sentina"

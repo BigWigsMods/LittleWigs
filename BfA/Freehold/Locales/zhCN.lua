@@ -9,6 +9,7 @@ if L then
 	L.duelist = "破浪格斗家"
 	L.oarsman = "铁潮桨手"
 	L.juggler = "破浪飞刀手"
+	L.bilge_rat_brinescale = "水鼠帮盐鳞战士"
 	L.scrapper = "黑齿拳手"
 	L.knuckleduster = "黑齿暴徒"
 	L.swabby = "水鼠帮水兵"

@@ -9,6 +9,7 @@ if L then
 	L.duelist = "Duellant der Schwertwasserkorsaren"
 	L.oarsman = "Ruderer der Eisenfluträuber"
 	L.juggler = "Messerwerfer der Schwertwasserkorsaren"
+	L.bilge_rat_brinescale = "Salzschuppe der Bilgeratten"
 	L.scrapper = "Klopper der Schwarzzahnvandalen"
 	L.knuckleduster = "Prügler der Schwarzzahnvandalen"
 	L.swabby = "Deckschrubber der Bilgeratten"

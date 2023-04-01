@@ -9,6 +9,7 @@ if L then
 	L.duelist = "Duelista Corta-água"
 	L.oarsman = "Remador Maré-férrea"
 	L.juggler = "Malabarista de Facas Corta-água"
+	L.bilge_rat_brinescale = "Escamoura Rato de Porão"
 	L.scrapper = "Arruaceiro Dentenegro"
 	L.knuckleduster = "Rúfio Dentenegro"
 	L.swabby = "Grumete Rato de Porão"

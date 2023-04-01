@@ -9,6 +9,7 @@ if L then
 	L.duelist = "Duelliste des Eperonneurs"
 	L.oarsman = "Rameur des Lamineurs"
 	L.juggler = "Jongleur de couteaux des Eperonneurs"
+	L.bilge_rat_brinescale = "Ecaille-de-mer des Soutaillons"
 	L.scrapper = "Bastonneur des Mort-aux-Dents"
 	L.knuckleduster = "Truand des Mort-aux-Dents"
 	L.swabby = "Mousse des Soutaillons"
