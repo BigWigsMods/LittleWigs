@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -12,8 +11,8 @@ mod:RegisterEnableMob(
 	129699, -- Ludwig Von Tortollan
 	126969 -- Trothak
 )
-mod.engageId = 2095
-mod.respawnTime = 25
+mod:SetEncounterID(2095)
+mod:SetRespawnTime(25)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -48,7 +47,7 @@ function mod:GetOptions()
 		-- Ludwig Von Tortollen
 		257904, -- Shell Bounce
 		-- Trothak
-		256405, -- Sharknado
+		256405, -- Shark Tornado
 		{256358, "SAY"}, -- Shark Toss
 		256489, -- Rearm
 	}, {
@@ -73,7 +72,7 @@ function mod:OnBossEnable()
 	self:Death("TortollanDeath", 129699)
 
 	-- Trothak
-	self:Log("SPELL_CAST_START", "Sharknado", 256405)
+	self:Log("SPELL_CAST_START", "SharkTornado", 256405)
 	self:Log("SPELL_CAST_SUCCESS", "SharkToss", 256358)
 	self:Log("SPELL_CAST_START", "Rearm", 256489)
 end
@@ -82,9 +81,9 @@ function mod:OnEngage()
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
-	self:CDBar(256358, 14) -- Shark Toss
-	self:CDBar(256405, 23) -- Sharknado
-	self:CDBar(256489, 46) -- Rearm
+	self:CDBar(256358, 14.5) -- Shark Toss
+	self:CDBar(256405, 23.1) -- Shark Tornado
+	--self:CDBar(256489, 46) -- Rearm TODO this doesn't log anymore
 end
 
 function mod:VerifyEnable(_, mobId)
@@ -100,10 +99,9 @@ end
 --
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 130086 then
-		if self:GetGossipOptions() then
-			self:SelectGossipOption(1, true) -- auto confirm it
-		end
+	if self:GetOption("custom_on_autotalk") and self:GetGossipID(48039) then
+		-- A fight? Bring it on!
+		self:SelectGossipID(48039, true) -- auto-confirm
 	end
 end
 
@@ -121,18 +119,17 @@ function mod:Warmup(_, msg)
 end
 
 do
-	local seconds = 0
+	local start = 0
 	function mod:GreasyApplied(args)
-		seconds = args.time
+		start = args.time
 	end
 
 	function mod:GreasyRemoved(args)
 		if args.amount then -- Slippery when oily
-			self:StackMessageOld(args.spellId, args.destName, args.amount, "cyan")
+			self:StackMessage(args.spellId, "cyan", args.destName, args.amount, 1)
 			self:PlaySound(args.spellId, "info")
 		else -- Caught!
-			seconds = math.floor((args.time - seconds) * 100)/100
-			self:Message(args.spellId, "green", L.lightning_caught:format(seconds))
+			self:Message(args.spellId, "green", L.lightning_caught:format(args.time - start))
 			self:Bar("warmup", 24, L.ludwig, "achievement_dungeon_freehold")
 			self:PlayVictorySound()
 		end
@@ -141,7 +138,8 @@ end
 
 -- Ludwig Von Tortollan
 function mod:ShellBounce(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	-- cast at 90%, 70%, 50%, 30% health
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -150,10 +148,10 @@ function mod:TortollanDeath()
 end
 
 -- Trothak
-function mod:Sharknado(args)
+function mod:SharkTornado(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "runout")
-	self:Bar(args.spellId, 40)
+	self:Bar(args.spellId, 26.7)
 end
 
 do
@@ -166,12 +164,13 @@ do
 		end
 		local t = args.time
 		-- Starts with either 20s or 30s timer and then alternates
-		self:CDBar(args.spellId, t-prev < 25 and 30 or 20)
+		self:CDBar(args.spellId, t-prev < 25 and 28.0 or 20.7)
 		prev = t
 	end
 end
 
 function mod:Rearm(args)
+	-- TODO this doesn't log anymore
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 40)
