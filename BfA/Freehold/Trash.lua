@@ -39,26 +39,26 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.sharkbait = "Sharkbait"
-	L.enforcer = "Irontide Enforcer"
-	L.bonesaw = "Irontide Bonesaw"
-	L.crackshot = "Irontide Crackshot"
-	L.corsair = "Irontide Corsair"
-	L.duelist = "Cutwater Duelist"
-	L.oarsman = "Irontide Oarsman"
-	L.juggler = "Cutwater Knife Juggler"
+	L.irontide_enforcer = "Irontide Enforcer"
+	L.irontide_bonesaw = "Irontide Bonesaw"
+	L.irontide_crackshot = "Irontide Crackshot"
+	L.irontide_corsair = "Irontide Corsair"
+	L.cutwater_duelist = "Cutwater Duelist"
+	L.irontide_oarsman = "Irontide Oarsman"
+	L.cutwater_knife_juggler = "Cutwater Knife Juggler"
 	L.bilge_rat_brinescale = "Bilge Rat Brinescale"
-	L.scrapper = "Blacktooth Scrapper"
-	L.knuckleduster = "Blacktooth Knuckleduster"
-	L.swabby = "Bilge Rat Swabby"
-	L.trapper = "Vermin Trapper"
-	L.rat_buccaneer = "Bilge Rat Buccaneer"
-	L.padfoot = "Bilge Rat Padfoot"
-	L.rat = "Soggy Shiprat"
-	L.crusher = "Irontide Crusher"
-	L.buccaneer = "Irontide Buccaneer"
-	L.ravager = "Irontide Ravager"
-	L.officer = "Irontide Officer"
-	L.stormcaller = "Irontide Stormcaller"
+	L.blacktooth_scrapper = "Blacktooth Scrapper"
+	L.blacktooth_knuckleduster = "Blacktooth Knuckleduster"
+	L.bilge_rat_swabby = "Bilge Rat Swabby"
+	L.vermin_trapper = "Vermin Trapper"
+	L.bilge_rat_buccaneer = "Bilge Rat Buccaneer"
+	L.bilge_rat_padfoot = "Bilge Rat Padfoot"
+	L.soggy_shiprat = "Soggy Shiprat"
+	L.irontide_crusher = "Irontide Crusher"
+	L.irontide_buccaneer = "Irontide Buccaneer"
+	L.irontide_ravager = "Irontide Ravager"
+	L.irontide_officer = "Irontide Officer"
+	L.irontide_stormcaller = "Irontide Stormcaller"
 end
 
 --------------------------------------------------------------------------------
@@ -113,26 +113,26 @@ function mod:GetOptions()
 		257736, -- Thundering Squal
 	}, {
 		[257272] = L.sharkbait,
-		[257426] = L.enforcer,
-		[257397] = L.bonesaw,
-		[258672] = L.crackshot,
-		[257436] = L.corsair,
-		[274400] = L.duelist,
-		[258777] = L.oarsman,
-		[272402] = L.juggler,
+		[257426] = L.irontide_enforcer,
+		[257397] = L.irontide_bonesaw,
+		[258672] = L.irontide_crackshot,
+		[257436] = L.irontide_corsair,
+		[274400] = L.cutwater_duelist,
+		[258777] = L.irontide_oarsman,
+		[272402] = L.cutwater_knife_juggler,
 		[257784] = L.bilge_rat_brinescale,
-		[257739] = L.scrapper,
-		[257732] = L.knuckleduster,
-		[274507] = L.swabby,
-		[274383] = L.trapper,
-		[257756] = L.rat_buccaneer,
-		[257775] = L.padfoot,
-		[274555] = L.rat,
-		[258181] = L.crusher,
-		[257870] = L.buccaneer,
-		[257899] = L.ravager,
-		[257908] = L.officer,
-		[257736] = L.stormcaller,
+		[257739] = L.blacktooth_scrapper,
+		[257732] = L.blacktooth_knuckleduster,
+		[274507] = L.bilge_rat_swabby,
+		[274383] = L.vermin_trapper,
+		[257756] = L.bilge_rat_buccaneer,
+		[257775] = L.bilge_rat_padfoot,
+		[274555] = L.soggy_shiprat,
+		[258181] = L.irontide_crusher,
+		[257870] = L.irontide_buccaneer,
+		[257899] = L.irontide_ravager,
+		[257908] = L.irontide_officer,
+		[257736] = L.irontide_stormcaller,
 	}, {
 		[257739] = CL.fixate, -- Blind Rage (Fixate)
 	}
