@@ -1,13 +1,18 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Elder Leaxa", 1841, 2157)
 if not mod then return end
-mod:RegisterEnableMob(131318)
-mod.engageId = 2111
-mod.respawnTime = 30
+mod:RegisterEnableMob(131318) -- Elder Leaxa
+mod:SetEncounterID(2111)
+mod:SetRespawnTime(30)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local bloodMirrorCount = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,11 +40,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(260894, 12) -- Creeping Rot
-	self:CDBar(264603, 15.5) -- Blood Mirror
+	bloodMirrorCount = 0
 	if not self:Normal() then
-		self:Bar(264757, 9) -- Sanguine Feast
+		self:CDBar(264757, 6.2) -- Sanguine Feast
 	end
+	self:CDBar(260894, 12.2) -- Creeping Rot
+	self:CDBar(264603, 15.5, CL.count:format(self:SpellName(264603), 1)) -- Blood Mirror (1)
 end
 
 --------------------------------------------------------------------------------
@@ -50,10 +56,11 @@ do
 	local prev = 0
 	function mod:BloodBolt(args)
 		local t = args.time
-		if t-prev > 2 then
+		if t - prev > 2 then
 			prev = t
-			self:Message(args.spellId, "orange")
-			if self:Interrupter() then
+			self:Message(args.spellId, "red")
+			local _, interruptReady = self:Interrupter()
+			if interruptReady then
 				self:PlaySound(args.spellId, "alert", "interrupt")
 			end
 		end
@@ -64,26 +71,29 @@ do
 	local prev = 0
 	function mod:CreepingRot(args)
 		local t = args.time
-		if t-prev > 2 then
+		if t - prev > 2 then
 			prev = t
-			self:Message(args.spellId, "yellow")
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm", "watchstep")
 		end
-		local mobID = self:MobId(args.sourceGUID)
-		if mobID == 131318 then -- Actual Boss
-			self:CDBar(args.spellId, 15.8)
+		if self:MobId(args.sourceGUID) == 131318 then -- Elder Leaxa, Effigies cast this too
+			self:Bar(args.spellId, 15.4)
 		end
 	end
 end
 
 function mod:BloodMirror(args)
-	self:Message(args.spellId, "red")
+	bloodMirrorCount = bloodMirrorCount + 1
+	self:StopBar(CL.count:format(self:SpellName(args.spellId, bloodMirrorCount)))
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, bloodMirrorCount))
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 47.4)
+	self:Bar(args.spellId, 47.4, CL.count:format(self:SpellName(264603), bloodMirrorCount + 1))
 end
 
 function mod:SanguineFeast(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm", "watchstep")
-	self:Bar(args.spellId, 30.5)
+	if self:MobId(args.sourceGUID) == 131318 then -- Elder Leaxa, Effigies cast this too
+		self:CDBar(args.spellId, 30.1)
+	end
 end
