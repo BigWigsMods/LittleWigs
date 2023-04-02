@@ -11,4 +11,9 @@ BigWigs:AddSounds("Altairus", {
 })
 
 BigWigs:AddSounds("Asaad", {
+	[-2434] = "alert",
+	[86911] = "info",
+	[86930] = "alarm",
+	[87618] = "warning",
+	[87622] = "alarm",
 })
