@@ -4,8 +4,9 @@
 <Script file="Ertan.lua"/>
 <Script file="Altairus.lua"/>
 <Script file="Asaad.lua"/>
+<Script file="Trash.lua"/>
 
-<!-- <Include file="Locales\locales.xml"/> -->
+<Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
 
 </Ui>
