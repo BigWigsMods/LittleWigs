@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -86,6 +85,8 @@ function mod:GetOptions()
 		[272183] = L.deathspeaker,
 		[265487] = L.defiler,
 		[272592] = L.corruptor,
+	}, {
+		[266107] = CL.fixate,
 	}
 end
 
@@ -237,9 +238,9 @@ do
 	function mod:ThirstForBloodApplied(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t-prev > 1.5 then
+			if not self:Tank() and t - prev > 1.5 then
 				prev = t
-				self:PersonalMessage(args.spellId)
+				self:PersonalMessage(args.spellId, nil, CL.fixate)
 				self:PlaySound(args.spellId, "alarm")
 			end
 			if self:GetOption("custom_on_fixate_plates") then
@@ -339,12 +340,14 @@ end
 do
 	local prev = 0
 	function mod:WaveOfDecayDamage(args)
+		-- TODO on 10.1 PTR this is doing negligible damage
+		-- if that continues on live then this should not even alert
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t-prev > 1.5 then
+			if t - prev > 2 then
 				prev = t
 				self:PersonalMessage(265668, "underyou")
-				self:PlaySound(265668, "alarm", "gtfo")
+				self:PlaySound(265668, "underyou", "gtfo")
 			end
 		end
 	end
