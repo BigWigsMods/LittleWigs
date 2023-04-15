@@ -1,5 +1,3 @@
--- XXX remove when 10.1 is live everywhere
-if select(4, GetBuildInfo()) < 100100 then return end
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -14,6 +12,8 @@ mod:SetRespawnTime(30)
 -- Initialization
 --
 
+--[[ XXX uncomment this block when 10.1 is live everywhere
+-- this commented block is to make gen_option_values work
 function mod:GetOptions()
 	return {
 		86292, -- Cyclone Shield
@@ -23,6 +23,31 @@ function mod:GetOptions()
 		[86292] = self.displayName, -- Grand Vizier Ertan
 		[411001] = -2423, -- Lurking Tempest
 	}
+end
+--]]
+-- XXX delete this entire if block below when 10.1 is live everywhere
+if select(4, GetBuildInfo()) >= 100100 then
+	-- 10.1 and up
+	function mod:GetOptions()
+		return {
+			86292, -- Cyclone Shield
+			-2422, -- Summon Tempest
+			411001, -- Lethal Current
+		}, {
+			[86292] = self.displayName, -- Grand Vizier Ertan
+			[411001] = -2423, -- Lurking Tempest
+		}
+	end
+else
+	-- before 10.1
+	function mod:GetOptions()
+		return {
+			86292, -- Cyclone Shield
+			-2422, -- Summon Tempest
+		}, {
+			[86292] = self.displayName, -- Grand Vizier Ertan
+		}
+	end
 end
 
 function mod:OnBossEnable()
