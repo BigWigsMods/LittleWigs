@@ -1,5 +1,3 @@
--- XXX remove when 10.1 is live everywhere
-if select(4, GetBuildInfo()) < 100100 then return end
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -44,6 +42,8 @@ end
 -- Initialization
 --
 
+--[[ XXX uncomment this block when 10.1 is live everywhere
+-- this commented block is to make gen_option_values work
 function mod:GetOptions()
 	return {
 		-- Armored Mistral
@@ -85,6 +85,83 @@ function mod:GetOptions()
 		[87779] = L.temple_adept,
 		[87772] = L.servant_of_asaad,
 	}
+end
+--]]
+-- XXX delete this entire if block below when 10.1 is live everywhere
+if select(4, GetBuildInfo()) >= 100100 then
+	-- 10.1 and up
+	function mod:GetOptions()
+		return {
+			-- Armored Mistral
+			410999, -- Pressurized Blast
+			-- Wild Vortex
+			410870, -- Cyclone
+			-- Lurking Tempest
+			411001, -- Lethal Current
+			-- Cloud Prince
+			411002, -- Turbulence
+			411005, -- Bomb Cyclone
+			-- Turbulent Squall
+			88171, -- Hurricane
+			-- Empyrean Assassin
+			88186, -- Vapor Form
+			{88182, "DISPEL"}, -- Lethargic Poison
+			-- Young Storm Dragon
+			411012, -- Chilling Breath
+			88194, -- Icy Buffet
+			-- Executor of the Caliph
+			87759, -- Shockwave
+			87761, -- Rally
+			-- Minister of Air
+			87762, -- Lightning Lash
+			-- Temple Adept
+			87779, -- Greater Heal
+			-- Servant of Asaad
+			87772, -- Hand of Protection
+		}, {
+			[410999] = L.armored_mistral,
+			[410870] = L.wild_vortex,
+			[411001] = L.lurking_tempest,
+			[411002] = L.cloud_prince,
+			[88171] = L.turbulent_squall,
+			[88186] = L.empyrean_assassin,
+			[411012] = L.young_storm_dragon,
+			[87759] = L.executor_of_the_caliph,
+			[87762] = L.minister_of_air,
+			[87779] = L.temple_adept,
+			[87772] = L.servant_of_asaad,
+		}
+	end
+else
+	-- before 10.1
+	function mod:GetOptions()
+		return {
+			-- Turbulent Squall
+			88171, -- Hurricane
+			-- Empyrean Assassin
+			88186, -- Vapor Form
+			{88182, "DISPEL"}, -- Lethargic Poison
+			-- Young Storm Dragon
+			88194, -- Icy Buffet
+			-- Executor of the Caliph
+			87759, -- Shockwave
+			87761, -- Rally
+			-- Minister of Air
+			87762, -- Lightning Lash
+			-- Temple Adept
+			87779, -- Greater Heal
+			-- Servant of Asaad
+			87772, -- Hand of Protection
+		}, {
+			[88171] = L.turbulent_squall,
+			[88186] = L.empyrean_assassin,
+			[88194] = L.young_storm_dragon,
+			[87759] = L.executor_of_the_caliph,
+			[87762] = L.minister_of_air,
+			[87779] = L.temple_adept,
+			[87772] = L.servant_of_asaad,
+		}
+	end
 end
 
 function mod:OnBossEnable()
