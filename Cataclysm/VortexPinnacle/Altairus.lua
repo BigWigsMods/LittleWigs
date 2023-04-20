@@ -12,7 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local callTheWindCount = 0
+local callTheWindCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	callTheWindCount = 0
+	callTheWindCount = 1
 	self:Bar(-2425, 5.9, nil, 88276) -- Call the Wind
 	self:Bar(88308, 10.7) -- Chilling Breath
 end
@@ -49,10 +49,10 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 88276 then -- Call the Wind
-		callTheWindCount = callTheWindCount + 1
 		self:Message(-2425, "cyan", nil, spellId)
 		self:PlaySound(-2425, "long")
-		self:Bar(-2425, callTheWindCount == 5 and 26.7 or 20.6, nil, spellId)
+		callTheWindCount = callTheWindCount + 1
+		self:Bar(-2425, callTheWindCount == 6 and 26.7 or 20.6, nil, spellId)
 	end
 end
 
