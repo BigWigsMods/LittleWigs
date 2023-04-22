@@ -182,7 +182,7 @@ end
 do
 	local prev = 0
 	function mod:LethalCurrent(args)
-		if self:MobId(args.sourceGUID) == 131492 then -- Lurking Tempest (trash version)
+		if self:MobId(args.sourceGUID) == 45704 then -- Lurking Tempest (trash version)
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
