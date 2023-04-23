@@ -1,6 +1,8 @@
 
 BigWigs:AddColors("Grand Vizier Ertan", {
-	[86340] = "yellow",
+	[-2422] = "yellow",
+	[86292] = {"blue","green","orange","yellow"},
+	[413562] = "red",
 })
 
 BigWigs:AddColors("Altairus", {
