@@ -360,6 +360,7 @@ do
 			["races"] = {
 				["BloodElf"] = true,
 				["NightElf"] = true,
+				["Dracthyr"] = true,
 			},
 		},
 		[105249] = { -- Nightshade Refreshments: +25% HP
@@ -473,6 +474,7 @@ do
 		["BloodElf"] = "|T236439:0|t",
 		["Gnome"] = "|T236445:0|t",
 		["Goblin"] = "|T632354:0|t",
+		["Dracthyr"] = "|T4696175:0|t",
 	}
 
 	local roleIcons = {
