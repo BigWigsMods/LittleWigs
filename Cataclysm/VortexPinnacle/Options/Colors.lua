@@ -18,8 +18,8 @@ BigWigs:AddColors("Asaad", {
 	[-2434] = "cyan",
 	[86911] = "green",
 	[86930] = "red",
-	[87618] = "yellow",
-	[87622] = "orange",
+	[87618] = {"blue","red","yellow"},
+	[87622] = {"blue","orange"},
 })
 
 BigWigs:AddColors("The Vortex Pinnacle Trash", {
