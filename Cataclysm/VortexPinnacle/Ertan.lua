@@ -16,10 +16,10 @@ function mod:GetOptions()
 	return {
 		86292, -- Cyclone Shield
 		-2422, -- Summon Tempest
-		411001, -- Lethal Current
+		413562, -- Lethal Current
 	}, {
 		[86292] = self.displayName, -- Grand Vizier Ertan
-		[411001] = -2423, -- Lurking Tempest
+		[413562] = -2423, -- Lurking Tempest
 	}
 end
 
@@ -37,29 +37,37 @@ if select(4, GetBuildInfo()) < 100100 then
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Cyclone Shield
+	-- Grand Vizier Ertan
+	self:Log("SPELL_AURA_REMOVED", "StormsEdgeRemoved", 86295, 86310)
 	self:Log("SPELL_AURA_APPLIED", "CycloneShieldApplied", 86292)
-	self:Log("SPELL_CAST_START", "SummonTempest", 86340)
-	self:Log("SPELL_CAST_START", "LethalCurrent", 411001)
+	self:Log("SPELL_CAST_START", "SummonTempest", 86340, 413151) -- pre 10.1, 10.1
+
+	-- Lurking Tempest
+	self:Log("SPELL_CAST_START", "LethalCurrent", 413562)
 end
 
 function mod:OnEngage()
-	if not self:Normal() then
-		self:CDBar(-2422, 5.7, nil, 86340) -- Summon Tempest
+	if self:Heroic() then
+		-- TODO post 10.1 confirm if the old spell still exists in Heroic
+		self:CDBar(-2422, 4.6, nil, 86340) -- Summon Tempest
 	end
-	self:CDBar(86292, 22.9) -- Cyclone Shield
+	self:CDBar(86292, 31.4) -- Cyclone Shield
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source)
-	-- %s retracts her cyclone shield!#Grand Vizier Ertan#####0#0##0#28#nil#0#false#false#false#false
-	if source == self.displayName then
+-- Grand Vizier Ertan
+
+function mod:StormsEdgeRemoved(args)
+	if args.spellId == 86295 then -- Cyclone Shield starts
 		self:Message(86292, "orange")
 		self:PlaySound(86292, "long")
-		self:CDBar(86292, 30.3)
+		self:CDBar(86292, 40.1)
+	else -- 86310,  Cyclone Shield Ends
+		self:Message(86292, "green", CL.over:format(self:SpellName(86292)))
+		self:PlaySound(86292, "info")
 	end
 end
 
@@ -83,7 +91,9 @@ end
 function mod:SummonTempest(args)
 	self:Message(-2422, "yellow", nil, args.spellId)
 	self:PlaySound(-2422, "info")
-	self:CDBar(-2422, 17.0, nil, args.spellId)
+	if not self:Mythic() then -- TODO post 10.1 confirm if the old spell still exists in Heroic
+		self:CDBar(-2422, 17.0, nil, args.spellId)
+	end
 end
 
 -- Lurking Tempest
