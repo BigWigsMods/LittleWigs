@@ -9,7 +9,7 @@ if L then
 	--L.empyrean_assassin = "Empyrean Assassin"
 	--L.young_storm_dragon = "Young Storm Dragon"
 	--L.executor_of_the_caliph = "Executor of the Caliph"
-	--L.minister_of_air = "Minister of Air"
 	--L.temple_adept = "Temple Adept"
 	--L.servant_of_asaad = "Servant of Asaad"
+	--L.minister_of_air = "Minister of Air"
 end

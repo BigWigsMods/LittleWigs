@@ -9,7 +9,7 @@ if L then
 	L.empyrean_assassin = "Assassino Empireo"
 	L.young_storm_dragon = "Drago della Tempesta Giovane"
 	L.executor_of_the_caliph = "Esecutore del Califfo"
-	L.minister_of_air = "Ministro dell'Aria"
 	L.temple_adept = "Adepto del Tempio"
 	L.servant_of_asaad = "Servo di Asaad"
+	L.minister_of_air = "Ministro dell'Aria"
 end

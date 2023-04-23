@@ -9,7 +9,7 @@ if L then
 	L.empyrean_assassin = "창공의 암살자"
 	L.young_storm_dragon = "어린 폭풍 용"
 	L.executor_of_the_caliph = "통치자의 집행관"
-	L.minister_of_air = "바람의 대신"
 	L.temple_adept = "사원 숙련사제"
 	L.servant_of_asaad = "아사드의 하수인"
+	L.minister_of_air = "바람의 대신"
 end

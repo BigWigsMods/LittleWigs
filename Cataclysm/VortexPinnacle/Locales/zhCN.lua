@@ -9,7 +9,7 @@ if L then
 	L.empyrean_assassin = "云巅刺客"
 	L.young_storm_dragon = "风暴幼龙"
 	L.executor_of_the_caliph = "西风君王的执行者"
-	L.minister_of_air = "空气司祭"
 	L.temple_adept = "神殿助祭"
 	L.servant_of_asaad = "阿萨德的仆从"
+	L.minister_of_air = "空气司祭"
 end

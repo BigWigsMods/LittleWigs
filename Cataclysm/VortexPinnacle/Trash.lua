@@ -14,9 +14,9 @@ mod:RegisterEnableMob(
 	45922, -- Empyrean Assassin
 	45919, -- Young Storm Dragon
 	45928, -- Executor of the Caliph
-	45930, -- Minister of Air
 	45935, -- Temple Adept
-	45926  -- Servant of Asaad
+	45926, -- Servant of Asaad
+	45930  -- Minister of Air
 )
 
 --------------------------------------------------------------------------------
@@ -33,9 +33,9 @@ if L then
 	L.empyrean_assassin = "Empyrean Assassin"
 	L.young_storm_dragon = "Young Storm Dragon"
 	L.executor_of_the_caliph = "Executor of the Caliph"
-	L.minister_of_air = "Minister of Air"
 	L.temple_adept = "Temple Adept"
 	L.servant_of_asaad = "Servant of Asaad"
+	L.minister_of_air = "Minister of Air"
 end
 
 --------------------------------------------------------------------------------
@@ -54,34 +54,37 @@ function mod:GetOptions()
 		411002, -- Turbulence
 		411005, -- Bomb Cyclone
 		-- Turbulent Squall
+		88170, -- Cloudburst
 		88171, -- Hurricane
 		-- Empyrean Assassin
 		88186, -- Vapor Form
 		{88182, "DISPEL"}, -- Lethargic Poison
 		-- Young Storm Dragon
+		411910, -- Healing Well
 		411012, -- Chilling Breath
 		88194, -- Icy Buffet
 		-- Executor of the Caliph
+		413387, -- Crashing Stone
 		87759, -- Shockwave
-		87761, -- Rally
-		-- Minister of Air
-		87762, -- Lightning Lash
 		-- Temple Adept
 		87779, -- Greater Heal
 		-- Servant of Asaad
 		87772, -- Hand of Protection
+		-- Minister of Air
+		87762, -- Lightning Lash
+		413385, -- Overload Grounding Field
 	}, {
 		[410999] = L.armored_mistral,
 		[410870] = L.wild_vortex,
 		[411001] = L.lurking_tempest,
 		[411002] = L.cloud_prince,
-		[88171] = L.turbulent_squall,
+		[88170] = L.turbulent_squall,
 		[88186] = L.empyrean_assassin,
-		[411012] = L.young_storm_dragon,
-		[87759] = L.executor_of_the_caliph,
-		[87762] = L.minister_of_air,
+		[411910] = L.young_storm_dragon,
+		[413387] = L.executor_of_the_caliph,
 		[87779] = L.temple_adept,
 		[87772] = L.servant_of_asaad,
+		[87762] = L.minister_of_air,
 	}
 end
 -- XXX delete this entire if block below when 10.1 is live everywhere
@@ -90,6 +93,7 @@ if select(4, GetBuildInfo()) < 100100 then
 	function mod:GetOptions()
 		return {
 			-- Turbulent Squall
+			88170, -- Cloudburst
 			88171, -- Hurricane
 			-- Empyrean Assassin
 			88186, -- Vapor Form
@@ -98,7 +102,6 @@ if select(4, GetBuildInfo()) < 100100 then
 			88194, -- Icy Buffet
 			-- Executor of the Caliph
 			87759, -- Shockwave
-			87761, -- Rally
 			-- Minister of Air
 			87762, -- Lightning Lash
 			-- Temple Adept
@@ -106,7 +109,7 @@ if select(4, GetBuildInfo()) < 100100 then
 			-- Servant of Asaad
 			87772, -- Hand of Protection
 		}, {
-			[88171] = L.turbulent_squall,
+			[88170] = L.turbulent_squall,
 			[88186] = L.empyrean_assassin,
 			[88194] = L.young_storm_dragon,
 			[87759] = L.executor_of_the_caliph,
@@ -132,6 +135,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BombCyclone", 411004)
 
 	-- Turbulent Squall
+	self:Log("SPELL_CAST_START", "Cloudburst", 88170)
+	-- TODO post-10.1 see if Hurricane was removed from normal/heroic as well
 	self:Log("SPELL_AURA_APPLIED", "HurricaneDamage", 88171)
 	self:Log("SPELL_PERIODIC_DAMAGE", "HurricaneDamage", 88171)
 	self:Log("SPELL_PERIODIC_MISSED", "HurricaneDamage", 88171)
@@ -139,24 +144,30 @@ function mod:OnBossEnable()
 	-- Empyrean Assassin
 	self:Log("SPELL_CAST_START", "VaporForm", 88186)
 	self:Log("SPELL_AURA_APPLIED", "VaporFormApplied", 88186)
+	-- TODO post-10.1 see if Lethargic Poison was removed from normal/heroic as well
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LethargicPoisonApplied", 88182)
 
 	-- Young Storm Dragon
+	self:Log("SPELL_CAST_START", "HealingWell", 411910)
 	self:Log("SPELL_CAST_START", "ChillingBreath", 411012)
 	self:Log("SPELL_CAST_START", "IcyBuffet", 88194)
 
 	-- Executor of the Caliph
-	self:Log("SPELL_CAST_SUCCESS", "Shockwave", 87759) -- TODO this has no cast time, change to _START if that ever gets fixed
-	self:Log("SPELL_CAST_START", "Rally", 87761)
-
-	-- Minister of Air
-	self:Log("SPELL_CAST_START", "LightningLash", 87762)
+	self:Log("SPELL_CAST_START", "CrashingStone", 413387)
+	-- TODO post-10.1 see if Shockwave was removed from normal/heroic as well
+	self:Log("SPELL_CAST_SUCCESS", "Shockwave", 87759)
 
 	-- Temple Adept
 	self:Log("SPELL_CAST_START", "GreaterHeal", 87779)
 
 	-- Servant of Asaad
+	-- TODO post-10.1 see if Hand of Protection was removed from normal/heroic as well
 	self:Log("SPELL_AURA_APPLIED", "HandOfProtectionApplied", 87772)
+
+	-- Minister of Air
+	self:Log("SPELL_CAST_START", "LightningLash", 87762)
+	self:Log("SPELL_CAST_START", "OverloadGroundingField", 413385)
+	self:Log("SPELL_DAMAGE", "OverloadGroundingFieldDamage", 413386)
 end
 
 --------------------------------------------------------------------------------
@@ -209,6 +220,18 @@ end
 
 do
 	local prev = 0
+	function mod:Cloudburst(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+do
+	local prev = 0
 	function mod:HurricaneDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
@@ -246,6 +269,11 @@ end
 
 -- Young Storm Dragon
 
+function mod:HealingWell(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+end
+
 function mod:ChillingBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
@@ -260,7 +288,7 @@ end
 
 do
 	local prev = 0
-	function mod:Shockwave(args)
+	function mod:CrashingStone(args)
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
@@ -270,16 +298,16 @@ do
 	end
 end
 
-function mod:Rally(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "long")
-end
-
--- Minister of Air
-
-function mod:LightningLash(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Shockwave(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Temple Adept
@@ -302,5 +330,34 @@ function mod:HandOfProtectionApplied(args)
 	if not self:Player(args.destFlags) and self:Dispeller("magic", true) then
 		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+-- Minister of Air
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(87762, "red", name)
+		if self:Me(guid) then
+			self:PlaySound(87762, "warning")
+		else
+			self:PlaySound(87762, "alert", nil, name)
+		end
+	end
+
+	function mod:LightningLash(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+	end
+end
+
+function mod:OverloadGroundingField(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:OverloadGroundingFieldDamage(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(413385, "near")
+		self:PlaySound(413385, "underyou")
 	end
 end
