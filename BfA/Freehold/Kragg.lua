@@ -31,7 +31,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_AURA_APPLIED", "EncounterEvent", 181089) -- Spawn Parrot
 
 	-- Stage 1: Mounted Assault
 	self:Log("SPELL_CAST_START", "Charrrrrge", 255952)
@@ -56,17 +56,14 @@ end
 
 -- Stages
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 256056 then -- Spawn Parrot
-		self:StopBar(255952) -- Charrrrrge
-		self:Message("stages", "cyan", CL.percent:format(75, CL.stage:format(2)), false)
-		self:PlaySound("stages", "long", "stage2")
-
-		self:CDBar(256005, 6.1) -- Vile Bombardment
-		self:CDBar(256106, 5.3) -- Azerite Powder Shot
-		if not self:Normal() then
-			self:Bar(272046, 17.7) -- Dive Bomb
-		end
+function mod:EncounterEvent(args) -- Spawn Parrot
+	self:StopBar(255952) -- Charrrrrge
+	self:Message("stages", "cyan", CL.percent:format(75, CL.stage:format(2)), false)
+	self:PlaySound("stages", "long", "stage2")
+	self:CDBar(256005, 2.4) -- Vile Bombardment
+	self:CDBar(256106, 5.3) -- Azerite Powder Shot
+	if not self:Normal() then
+		self:Bar(272046, 14.0) -- Dive Bomb
 	end
 end
 
@@ -75,36 +72,32 @@ end
 function mod:Charrrrrge(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	self:Bar(args.spellId, 8.5)
+	-- either 8.5 or 10.9, seemingly no pattern
+	self:CDBar(args.spellId, 8.5)
 end
 
 -- Stage 2: Death Rains from Above
 
 do
-	local prevBombardment = 0
-	local prevDamage = 0
+	local prev = 0
 	function mod:VileBombardment(args)
+		-- so we don't show another message for the first tick after vile bombardment lands
+		prev = args.time
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "info")
 		if self:Normal() then
+			-- TODO verify post 10.1
 			self:Bar(args.spellId, 6.0)
 		else
-			local t = args.time
-			if t - prevBombardment > 8 then
-				self:Bar(args.spellId, 6.0)
-			else
-				self:Bar(args.spellId, 10.9)
-			end
-			prevBombardment = t
+			self:Bar(args.spellId, 17.0)
 		end
 	end
 
 	function mod:VileCoatingDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			-- Don't show message for the first tick after vile bombardment lands
-			if t - prevDamage > 2 and t - prevBombardment > 2 then
-				prevDamage = t
+			if t - prev > 2 then
+				prev = t
 				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "underyou", "gtfo")
 			end
@@ -122,7 +115,7 @@ function mod:RevitalizingBrew(args)
 	-- this ability is only cast if the boss is < 50% health
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "interrupt")
-	self:CDBar(args.spellId, 21.9)
+	self:CDBar(args.spellId, 20.7)
 end
 
 function mod:AzeritePowderShot(args)
