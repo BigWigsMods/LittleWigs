@@ -10,7 +10,8 @@ BigWigs:AddColors("Altairus", {
 	[88282] = "green",
 	[88286] = "red",
 	[88308] = "orange",
-	[88357] = "red",
+	[413275] = "blue",
+	[413295] = "yellow",
 })
 
 BigWigs:AddColors("Asaad", {
