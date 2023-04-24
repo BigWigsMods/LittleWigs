@@ -91,7 +91,7 @@ function mod:GetOptions()
 		-- Blacktooth Knuckleduster
 		257732, -- Shattering Bellow
 		-- Bilge Rat Swabby
-		274507, -- Slippery Suds
+		{274507, "DISPEL"}, -- Slippery Suds
 		-- Vermin Trapper
 		274383, -- Rat Traps
 		-- Bilge Rat Buccaneer
@@ -227,7 +227,7 @@ end
 -- Irontide Bonesaw
 
 function mod:HealingBalm(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -340,21 +340,21 @@ end
 -- Blacktooth Knuckleduster
 
 function mod:ShatteringBellow(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Bilge Rat Swabby
 
 function mod:SlipperySuds(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "long")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SlipperySudsApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alarm")
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
 
