@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(255952, 4.5) -- Charrrrrge
+	self:CDBar(255952, 3.6) -- Charrrrrge
 end
 
 --------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ end
 function mod:Charrrrrge(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	-- either 8.5 or 10.9, seemingly no pattern
+	-- between 8.5 and 10.9, seemingly no pattern
 	self:CDBar(args.spellId, 8.5)
 end
 
