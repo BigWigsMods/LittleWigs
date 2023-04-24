@@ -73,13 +73,13 @@ function mod:GetOptions()
 		257426, -- Brutal Backhand
 		-- Irontide Bonesaw
 		257397, -- Healing Balm
-		258323, -- Infected Wound
+		{258323, "DISPEL"}, -- Infected Wound
 		-- Irontide Crackshot
 		258672, -- Azerite Grenade
 		-- Irontide Corsair
 		257436, -- Poisoning Strike
 		-- Cutwater Duelist
-		{274400, "SAY"}, -- Duelist Dash
+		274400, -- Duelist Dash
 		--Irontide Oarsman
 		258777, -- Sea Spout
 		-- Cutwater Knife Juggler
@@ -97,20 +97,20 @@ function mod:GetOptions()
 		-- Bilge Rat Buccaneer
 		257756, -- Goin' Bananas
 		-- Bilge Rat Padfoot
-		257775, -- Plague Step
+		{257775, "DISPEL"}, -- Plague Step
 		-- Soggy Shiprat
 		274555, -- Scabrous Bite
 		-- Irontide Crusher
-		{258181, "NAMEPLATEBAR"}, -- Boulder Throw
+		258181, -- Boulder Throw
 		258199, -- Ground Shatter
 		-- Irontide Buccaneer
 		257870, -- Blade Barrage
 		-- Irontide Ravager
 		257899, -- Painful Motivation
 		-- Irontide Officer
-		257908, -- Oiled Blade
+		{257908, "DISPEL"}, -- Oiled Blade
 		-- Irontide Stormcaller
-		257736, -- Thundering Squal
+		257736, -- Thundering Squall
 	}, {
 		[257272] = L.sharkbait,
 		[257426] = L.irontide_enforcer,
@@ -156,9 +156,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PoisoningStrikeApplied", 257437)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PoisoningStrikeApplied", 257437)
 	-- Cutwater Duelist
-	self:Log("SPELL_CAST_START", "DuelistDash", 274400)
+	self:RegisterEvent("UNIT_SPELLCAST_START") -- for Duelist Dash
 	-- Irontide Oarsman
-	self:Log("SPELL_CAST_START", "SeaSpout", 258777)
 	self:Log("SPELL_CAST_SUCCESS", "SeaSpoutSuccess", 258777)
 	-- Cutwater Knife Juggler
 	self:Log("SPELL_CAST_START", "RicochetingThrow", 272402)
@@ -241,10 +240,9 @@ function mod:HealingBalmApplied(args)
 end
 
 function mod:InfectedWoundApplied(args)
-	-- TODO or poison dispel?
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alert")
+	if self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
 
@@ -268,26 +266,18 @@ end
 -- Cutwater Duelist
 
 do
-	local function printTarget(self, name, guid)
-		if self:Me(guid) then
-			self:Say(274400)
+	local prev = nil
+	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
+		-- this is needed because Duelist Dash does not log SPELL_CAST_START
+		if spellId == 274400 and castGUID ~= prev then -- Duelist Dash
+			prev = castGUID
+			self:Message(274400, "red")
+			self:PlaySound(274400, "alarm")
 		end
-		self:TargetMessage(274400, "red", name)
-		self:PlaySound(274400, "alarm", nil, name)
-	end
-
-	function mod:DuelistDash(args)
-		-- TODO this is broken on PTR, SPELL_CAST_START never fires
-		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 	end
 end
 
 -- Irontide Oarsman
-
-function mod:SeaSpout(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-end
 
 function mod:SeaSpoutSuccess(args)
 	self:Message(args.spellId, "orange")
@@ -326,7 +316,7 @@ do
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
-			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -385,9 +375,9 @@ end
 -- Bilge Rat Padfoot
 
 function mod:PlagueStepApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alert")
+	if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
 
@@ -412,12 +402,11 @@ end
 function mod:BoulderThrow(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:NameplateCDBar(args.spellId, 14, args.sourceGUID)
 end
 
 function mod:GroundShatter(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Irontide Buccaneer
@@ -448,7 +437,7 @@ do
 		if t - prev > 2 then
 			prev = t
 			self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
-			self:PlaySound(args.spellId, "warning")
+			self:PlaySound(args.spellId, "info")
 		end
 	end
 end
@@ -456,8 +445,8 @@ end
 -- Irontide Officer
 
 function mod:OiledBladeApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, "blue", args.destName)
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "purple", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
