@@ -60,6 +60,6 @@ BigWigs:AddColors("Freehold Trash", {
 	[272402] = {"blue","orange"},
 	[274383] = "yellow",
 	[274400] = "red",
-	[274507] = {"blue","red","yellow"},
+	[274507] = {"blue","yellow"},
 	[274555] = "blue",
 })

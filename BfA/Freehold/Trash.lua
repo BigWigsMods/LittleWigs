@@ -222,6 +222,7 @@ end
 function mod:BrutalBackhand(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
 
 -- Irontide Bonesaw
@@ -229,6 +230,7 @@ end
 function mod:HealingBalm(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	--self:NameplateBar(args.spellId, 25.5, args.sourceGUID)
 end
 
 function mod:HealingBalmApplied(args)
@@ -251,6 +253,7 @@ end
 function mod:AzeriteGrenade(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateBar(args.spellId, 23.0, args.sourceGUID)
 end
 
 -- Irontide Corsair
@@ -267,12 +270,13 @@ end
 
 do
 	local prev = nil
-	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
+	function mod:UNIT_SPELLCAST_START(_, unit, castGUID, spellId)
 		-- this is needed because Duelist Dash does not log SPELL_CAST_START
 		if spellId == 274400 and castGUID ~= prev then -- Duelist Dash
 			prev = castGUID
 			self:Message(274400, "red")
 			self:PlaySound(274400, "alarm")
+			--self:NameplateBar(274400, 17.0, self:UnitGUID(unit))
 		end
 	end
 end
@@ -282,6 +286,7 @@ end
 function mod:SeaSpoutSuccess(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateBar(args.spellId, 17.0, args.sourceGUID)
 end
 
 -- Cutwater Knife Juggler
@@ -305,6 +310,7 @@ do
 
 	function mod:RicochetingThrow(args)
 		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
+		--self:NameplateBar(args.spellId, 8.5, args.sourceGUID)
 	end
 end
 
@@ -319,6 +325,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alarm")
 		end
+		--self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
 	end
 end
 
@@ -334,6 +341,7 @@ do
 				self:PlaySound(args.spellId, "alarm")
 			end
 		end
+		--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
 	end
 end
 
@@ -342,19 +350,33 @@ end
 function mod:ShatteringBellow(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateBar(args.spellId, 27.9, args.sourceGUID)
 end
 
 -- Bilge Rat Swabby
 
-function mod:SlipperySuds(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:SlipperySuds(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+		--self:NameplateCDBar(args.spellId, 20.7, args.sourceGUID)
+	end
 end
 
-function mod:SlipperySudsApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+do
+	local prev = 0
+	function mod:SlipperySudsApplied(args)
+		local t = args.time
+		if self:Me(args.destGUID) and t - prev > 2 then
+			prev = t
+			self:PersonalMessage(args.spellId)
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
@@ -363,6 +385,7 @@ end
 function mod:RatTraps(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateBar(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Bilge Rat Buccaneer
@@ -370,6 +393,7 @@ end
 function mod:GoinBananas(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
 end
 
 -- Bilge Rat Padfoot
@@ -379,6 +403,8 @@ function mod:PlagueStepApplied(args)
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
+	-- TODO if nameplate CD bars are uncommented, this should move to SUCCESS
+	--self:NameplateBar(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Soggy Shiprat
@@ -402,11 +428,13 @@ end
 function mod:BoulderThrow(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 function mod:GroundShatter(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 -- Irontide Buccaneer
@@ -420,6 +448,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 	end
 end
 
@@ -428,6 +457,7 @@ end
 function mod:PainfulMotivation(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
 
 do
@@ -449,6 +479,8 @@ function mod:OiledBladeApplied(args)
 		self:TargetMessage(args.spellId, "purple", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
+	-- TODO if nameplate CD bars are uncommented, this should move to SUCCESS
+	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
 end
 
 -- Irontide Stormcaller
@@ -462,5 +494,6 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "long")
 		end
+		--self:NameplateCDBar(args.spellId, 21.8, args.sourceGUID)
 	end
 end
