@@ -171,7 +171,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SlipperySuds", 274507)
 	self:Log("SPELL_AURA_APPLIED", "SlipperySudsApplied", 274507)
 	-- Vermin Trapper
-	self:Log("SPELL_CAST_START", "RatTraps", 274383)
+	self:Log("SPELL_CAST_SUCCESS", "RatTraps", 274383)
 	-- Bilge Rat Buccaneer
 	self:Log("SPELL_CAST_START", "GoinBananas", 257756)
 	-- Bilge Rat Padfoot
@@ -200,6 +200,8 @@ end
 -- Sharkbait
 
 function mod:VileBombardment(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 16.0)
 end
 
