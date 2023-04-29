@@ -43,10 +43,10 @@ end
 function mod:OnEngage()
 	gulpCount = 0
 	toxicEffluviaCount = 0
-	self:Bar(385187, 8.5) -- Overpowering Croak
-	self:Bar(385551, 18.3) -- Gulp
-	self:Bar(385442, 30.4) -- Toxic Effluvia
-	self:Bar(385531, 38.9) -- Belly Slam
+	self:Bar(385187, 8.4) -- Overpowering Croak
+	self:Bar(385551, 18.1) -- Gulp
+	self:Bar(385442, 30.3) -- Toxic Effluvia
+	self:Bar(385531, 38.8) -- Belly Slam
 end
 
 --------------------------------------------------------------------------------
@@ -60,20 +60,20 @@ function mod:Gulp(args)
 	if gulpCount == 1 then
 		self:Bar(args.spellId, 47.3)
 	else
-		self:Bar(args.spellId, 38.9)
+		self:Bar(args.spellId, 38.8)
 	end
 end
 
 function mod:OverpoweringCroak(args)
 	self:Message(385187, "yellow")
 	self:PlaySound(385187, "long")
-	self:Bar(385187, 38.9)
+	self:Bar(385187, 38.8)
 end
 
 function mod:BellySlam(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 38.9)
+	self:Bar(args.spellId, 38.8)
 end
 
 function mod:ToxicEffluvia(args)
@@ -83,7 +83,7 @@ function mod:ToxicEffluvia(args)
 	if toxicEffluviaCount == 1 then
 		self:Bar(args.spellId, 26.7)
 	else
-		self:Bar(args.spellId, 38.9)
+		self:Bar(args.spellId, 38.8)
 	end
 end
 
