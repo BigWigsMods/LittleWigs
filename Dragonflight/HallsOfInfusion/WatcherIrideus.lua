@@ -57,10 +57,10 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	self:CDBar(384524, 6.3) -- Titanic Fist
-	self:CDBar(384014, 10.5) -- Static Surge
-	self:CDBar(389179, 21.3) -- Power Overload
-	self:CDBar(384351, 28.1) -- Spark Volley
+	self:CDBar(384524, 6.1) -- Titanic Fist
+	self:CDBar(384014, 10.6) -- Static Surge
+	self:CDBar(389179, 25.5) -- Power Overload
+	self:CDBar(384351, 29.2) -- Spark Volley
 end
 
 --------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ do
 
 	function mod:PowerOverload(args)
 		playerList = {}
-		self:Bar(args.spellId, 33.9)
+		self:Bar(args.spellId, 27.7)
 	end
 
 	function mod:PowerOverloadApplied(args)
@@ -97,19 +97,19 @@ end
 function mod:SparkVolley(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 33.9)
+	self:Bar(args.spellId, 31.5)
 end
 
 function mod:StaticSurge(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 17.0)
+	self:Bar(args.spellId, 27.9)
 end
 
 function mod:TitanicFist(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 17.0)
+	self:CDBar(args.spellId, 17.0)
 end
 
 -- Stage 2
@@ -149,8 +149,8 @@ do
 		self:PlaySound(args.spellId, "info")
 		self:CDBar(384524, 6.1) -- Titanic Fist
 		self:CDBar(384014, 11.0) -- Static Surge
-		self:CDBar(389179, 22.2) -- Power Overload
-		self:CDBar(384351, 28.1) -- Spark Volley
+		self:CDBar(389179, 28.1) -- Power Overload
+		self:CDBar(384351, 28.9) -- Spark Volley
 	end
 end
 
