@@ -12,8 +12,10 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local hailstormCount = 0
-local glacialSurgeCount = 0
+local hailstormCount = 1
+local glacialSurgeCount = 1
+local frostShockCount = 1
+local frostCycloneCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -39,13 +41,15 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	hailstormCount = 0
-	glacialSurgeCount = 0
+	hailstormCount = 1
+	glacialSurgeCount = 1
+	frostShockCount = 1
+	frostCycloneCount = 1
 	self:Bar(385963, 6.0) -- Frost Shock
 	if self:Mythic() then
 		self:Bar(390111, 10.0) -- Frost Cyclone
 		self:Bar(386757, 20.0) -- Hailstorm
-		self:Bar(386559, 27.0) -- Glacial Surge
+		self:Bar(386559, 32.0) -- Glacial Surge
 	else
 		self:Bar(386757, 10.0) -- Hailstorm
 		self:Bar(386559, 22.0) -- Glacial Surge
@@ -57,47 +61,49 @@ end
 --
 
 function mod:Hailstorm(args)
-	hailstormCount = hailstormCount + 1
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
+	hailstormCount = hailstormCount + 1
 	if self:Mythic() then
-		if hailstormCount % 2 == 1 then
-			self:Bar(args.spellId, 23.0)
+		if hailstormCount % 2 == 0 then
+			self:Bar(args.spellId, 30.0)
 		else
-			self:Bar(args.spellId, 37.0)
+			self:Bar(args.spellId, 42.0)
 		end
 	else
-		-- TODO find pattern
+		-- TODO check post-10.1
 		self:CDBar(args.spellId, 22)
 	end
 end
 
 function mod:GlacialSurge(args)
-	glacialSurgeCount = glacialSurgeCount + 1
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+	glacialSurgeCount = glacialSurgeCount + 1
 	if self:Mythic() then
-		if glacialSurgeCount % 2 == 1 then
-			self:Bar(args.spellId, 25.0)
+		if glacialSurgeCount % 2 == 0 then
+			self:Bar(args.spellId, 30.0)
 		else
-			self:Bar(args.spellId, 35.0)
+			self:Bar(args.spellId, 42.0)
 		end
 	else
-		-- TODO find pattern
+		-- TODO check post-10.1
 		self:CDBar(args.spellId, 22)
 	end
 end
 
 function mod:FrostShock(args)
-	-- mythic pull:6.0, 12.0, 24.1, 23.9, 12.0, 48.0, 12.0, 22.1, 25.9, 12.0, 24.1, 23.9, 12.0, 60.0, 22.0
-	-- mythic pull:6.0, 12.0, 22.1, 25.9, 12.0, 24.1, 23.9, 12.0, 22.0, 26.0, 12.0, 24.2, 23.9, 12.0, 24.1
-	-- mythic pull:6.0, 12.0, 24.1, 23.9, 12.0, 22.1, 25.9, 12.0, 24.2, 23.9, 12.0, 22.1, 25.9, 12.0
-	-- TODO is there a reliable pattern? can skip casts if out of range
-	-- mythic 8s after frost cyclone?
-	-- mythic 13 or 14s after glacial surge
-	-- heroic 7s after hailstorm?
-	-- heroic 17s after glacial surge?
-	self:CDBar(args.spellId, 12.0)
+	frostShockCount = frostShockCount + 1
+	if self:Mythic() then
+		if frostShockCount % 2 == 0 then
+			self:Bar(args.spellId, 12.0)
+		else
+			self:Bar(args.spellId, 60.0)
+		end
+	else
+		-- TODO check post-10.1
+		self:CDBar(args.spellId, 12.0)
+	end
 end
 
 function mod:FrostShockApplied(args)
@@ -110,5 +116,10 @@ end
 function mod:FrostCyclone(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 30.0)
+	frostCycloneCount = frostCycloneCount + 1
+	if frostCycloneCount % 2 == 0 then
+		self:Bar(args.spellId, 35.0)
+	else
+		self:Bar(args.spellId, 37.0)
+	end
 end
