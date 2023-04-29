@@ -10,6 +10,7 @@ if L then
 	L.refti_defender = "Reftiverteidiger"
 	L.dazzling_dragonfly = "Blendende Libelle"
 	L.curious_swoglet = "Neugieriges Flunkerchen"
+	L.primalist_shocktrooper = "Sturmsoldat der Primalisten"
 	L.flamecaller_aymi = "Flammenruferin Aymi"
 	L.squallbringer_cyraz = "Schwallbringer Cyraz"
 	L.primalist_earthshaker = "Erderschütterer der Primalisten"

@@ -36,10 +36,12 @@ BigWigs:AddSounds("Primal Tsunami", {
 
 BigWigs:AddSounds("Halls of Infusion Trash", {
 	[374045] = "warning",
+	[374073] = "alarm",
 	[374080] = "alarm",
 	[374339] = "alert",
 	[374389] = {"alert","warning"},
 	[374563] = "alarm",
+	[374699] = "warning",
 	[374724] = "alert",
 	[374741] = "alarm",
 	[374823] = "long",
@@ -51,8 +53,12 @@ BigWigs:AddSounds("Halls of Infusion Trash", {
 	[376171] = "alert",
 	[377341] = "alert",
 	[377402] = {"alert","warning"},
-	[385141] = {"alarm","underyou"},
+	[385141] = "underyou",
 	[390290] = "alarm",
+	[391241] = "info",
+	[391471] = "info",
 	[391610] = {"alert","warning"},
 	[391613] = "alert",
+	[391634] = "long",
+	[395694] = {"alarm","alert"},
 })

@@ -10,6 +10,7 @@ if L then
 	L.refti_defender = "레프티 수호병"
 	L.dazzling_dragonfly = "현란한 쐐기벌레"
 	L.curious_swoglet = "호기심 많은 새끼 용뿔두꺼비"
+	L.primalist_shocktrooper = "원시술사 돌격병"
 	L.flamecaller_aymi = "불꽃소환사 아이미"
 	L.squallbringer_cyraz = "돌풍술사 시라즈"
 	L.primalist_earthshaker = "원시술사 지진술사"

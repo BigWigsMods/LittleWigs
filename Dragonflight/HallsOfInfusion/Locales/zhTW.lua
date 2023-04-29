@@ -10,6 +10,7 @@ if L then
 	--L.refti_defender = "Refti Defender"
 	--L.dazzling_dragonfly = "Dazzling Dragonfly"
 	--L.curious_swoglet = "Curious Swoglet"
+	--L.primalist_shocktrooper = "Primalist Shocktrooper"
 	--L.flamecaller_aymi = "Flamecaller Aymi"
 	--L.squallbringer_cyraz = "Squallbringer Cyraz"
 	--L.primalist_earthshaker = "Primalist Earthshaker"

@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	197560, -- Limited Immortality Device
 	190362, -- Dazzling Dragonfly
 	190366, -- Curious Swoglet
+	199037, -- Primalist Shocktrooper
 	190368, -- Flamecaller Aymi
 	190370, -- Squallbringer Cyraz
 	197654, -- Infused Mushroom
@@ -41,6 +42,7 @@ if L then
 	L.refti_defender = "Refti Defender"
 	L.dazzling_dragonfly = "Dazzling Dragonfly"
 	L.curious_swoglet = "Curious Swoglet"
+	L.primalist_shocktrooper = "Primalist Shocktrooper"
 	L.flamecaller_aymi = "Flamecaller Aymi"
 	L.squallbringer_cyraz = "Squallbringer Cyraz"
 	L.primalist_earthshaker = "Primalist Earthshaker"
@@ -61,10 +63,12 @@ function mod:GetOptions()
 	return {
 		-- General
 		"custom_on_autotalk",
+		391241, -- Limited Immortality
+		391471, -- Cleansing Spores
 		-- Primalist Ravager
 		374080, -- Blasting Gust
 		-- Primalist Geomancer
-		--374066, -- Earth Shield
+		374073, -- Seismic Slam
 		-- Containment Apparatus
 		374045, -- Expulse
 		-- Refti Defender
@@ -73,9 +77,12 @@ function mod:GetOptions()
 		374563, -- Dazzle
 		-- Curious Swoglet
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
+		-- Primalist Shocktrooper
+		{395694, "DISPEL"}, -- Elemental Focus
 		-- Flamecaller Aymi
 		374724, -- Molten Subduction
 		374741, -- Magma Crush
+		374699, -- Cauterize
 		-- Squallbringer Cyraz
 		375079, -- Whirling Fury
 		374823, -- Zephyr's Call
@@ -90,6 +97,7 @@ function mod:GetOptions()
 		{391610, "DISPEL"}, -- Binding Winds
 		-- Glacial Proto-Dragon
 		375351, -- Oceanic Breath
+		391634, -- Deep Chill
 		-- Subterranean Proto-Dragon
 		375327, -- Tectonic Breath
 		391613, -- Creeping Mold
@@ -101,11 +109,12 @@ function mod:GetOptions()
 	}, {
 		["custom_on_autotalk"] = CL.general,
 		[374080] = L.primalist_ravager,
-		--[374066] = L.primalist_geomancer,
+		[374073] = L.primalist_geomancer,
 		[374045] = L.containment_apparatus,
 		[374339] = L.refti_defender,
 		[374563] = L.dazzling_dragonfly,
 		[374389] = L.curious_swoglet,
+		[395694] = L.primalist_shocktrooper,
 		[374724] = L.flamecaller_aymi,
 		[375079] = L.squallbringer_cyraz,
 		[375384] = L.primalist_earthshaker,
@@ -120,13 +129,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- General
 	self:RegisterEvent("GOSSIP_SHOW")
+	self:Log("SPELL_AURA_APPLIED", "LimitedImmortalityApplied", 391241)
+	self:Log("SPELL_AURA_REMOVED", "LimitedImmortalityRemoved", 391241)
+	self:Log("SPELL_AURA_APPLIED", "CleansingSporesApplied", 391471)
 
 	-- Primalist Ravager
 	self:Log("SPELL_CAST_START", "BlastingGust", 374080)
 
 	-- Primalist Geomancer
-	--self:Log("SPELL_CAST_START", "EarthShield", 374066)
+	self:Log("SPELL_CAST_SUCCESS", "SeismicSlam", 374073)
 
 	-- Containment Apparatus
 	self:Log("SPELL_CAST_START", "Expulse", 374045)
@@ -140,9 +153,14 @@ function mod:OnBossEnable()
 	-- Curious Swoglet
 	self:Log("SPELL_AURA_APPLIED_DOSE", "GulpSwogToxinApplied", 374389)
 
+	-- Primalist Shocktrooper
+	self:Log("SPELL_CAST_START", "ElementalFocus", 395694)
+	self:Log("SPELL_AURA_APPLIED", "ElementalFocusApplied", 395694)
+
 	-- Flamecaller Aymi
 	self:Log("SPELL_AURA_APPLIED", "MoltenSubductionApplied", 374724)
 	self:Log("SPELL_CAST_SUCCESS", "MagmaCrush", 374735)
+	self:Log("SPELL_CAST_START", "Cauterize", 374699)
 	self:Death("FlamecallerAymiDeath", 190368)
 
 	-- Squallbringer Cyraz
@@ -151,10 +169,9 @@ function mod:OnBossEnable()
 	self:Death("SquallbringerCyrazDeath", 190370)
 
 	-- Primalist Earthshaker
-	self:Log("SPELL_CAST_START", "RumblingEarth", 375384)
+	self:Log("SPELL_CAST_SUCCESS", "RumblingEarth", 408388)
 
 	-- Primalist Galesinger
-	self:Log("SPELL_CAST_START", "Thunderstorm", 385141)
 	self:Log("SPELL_AURA_APPLIED", "ThunderstormDamage", 385168)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ThunderstormDamage", 385168)
 	self:Log("SPELL_PERIODIC_MISSED", "ThunderstormDamage", 385168)
@@ -168,6 +185,7 @@ function mod:OnBossEnable()
 
 	-- Glacial Proto-Dragon
 	self:Log("SPELL_CAST_START", "OceanicBreath", 375351)
+	self:Log("SPELL_CAST_START", "DeepChill", 391634)
 
 	-- Subterranean Proto-Dragon
 	self:Log("SPELL_CAST_START", "TectonicBreath", 375327)
@@ -194,12 +212,32 @@ function mod:GOSSIP_SHOW()
 			-- Limited Immortality Device (gives Limited Immortality buff, prevents next death)
 			-- requires 25 skill in Dragon Isles Engineering
 			self:SelectGossipID(107192)
-		elseif self:GetGossipID(107205) then
+		elseif self:GetGossipID(107206) then
 			-- Infused Mushroom (gives Cleansing Spores buff, auto-poison/disease dispel)
 			-- requires 25 skill in Dragon Isles Herbalism
-			-- TODO confirm gossip ID
-			self:SelectGossipID(107205)
+			self:SelectGossipID(107206)
 		end
+	end
+end
+
+function mod:LimitedImmortalityApplied(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:LimitedImmortalityRemoved(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "cyan", CL.removed:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:CleansingSporesApplied(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
@@ -212,12 +250,15 @@ end
 
 -- Primalist Geomancer
 
--- TODO this is cast during rp fighting and UnitAffectingCombat is always true
-function mod:EarthShield(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		--self:Message(args.spellId, "orange")
-		--self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:SeismicSlam(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
@@ -243,7 +284,7 @@ do
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			self:Message(args.spellId, "red")
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -283,11 +324,25 @@ do
 	end
 end
 
+-- Primalist Shocktrooper
+
+function mod:ElementalFocus(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ElementalFocusApplied(args)
+	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
+		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
 -- Flamecaller Aymi
 
 function mod:MoltenSubductionApplied(args)
 	-- either movement dispel the target, target immunes/moves out, or everyone stacks on target (meteor)
-	self:TargetMessage(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	self:CDBar(args.spellId, 19.4)
 end
@@ -297,8 +352,16 @@ function mod:MagmaCrush(args)
 	self:PlaySound(374741, "alarm")
 end
 
+function mod:Cauterize(args)
+	-- this only starts being cast when one of the mini-bosses gets low (~40%)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 18.2)
+end
+
 function mod:FlamecallerAymiDeath(args)
 	self:StopBar(374724) -- Molten Subduction
+	self:StopBar(374699) -- Cauterize
 end
 
 -- Squallbringer Cyraz
@@ -311,7 +374,7 @@ function mod:WhirlingFury(args)
 end
 
 function mod:ZephyrsCall(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 21.8)
 end
@@ -329,27 +392,13 @@ do
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "alarm")
+			self:Message(375384, "orange")
+			self:PlaySound(375384, "alarm")
 		end
 	end
 end
 
 -- Primalist Galesinger
-
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(385141, "orange", name)
-		self:PlaySound(385141, "alarm", nil, name)
-		if self:Me(guid) then
-			self:Say(385141)
-		end
-	end
-
-	function mod:Thunderstorm(args)
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-	end
-end
 
 do
 	local prev = 0
@@ -370,6 +419,7 @@ end
 function mod:RefreshingTides(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	--self:CDBar(args.spellId, 30.3)
 end
 
 -- Gusting Proto-Dragon
@@ -395,6 +445,13 @@ end
 function mod:OceanicBreath(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
+	--self:Bar(args.spellId, 18.2)
+end
+
+function mod:DeepChill(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+	--self:Bar(args.spellId, 32.8)
 end
 
 -- Subterranean Proto-Dragon
@@ -429,8 +486,9 @@ end
 -- Infuser Sariya
 
 function mod:AqueousBarrier(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 19.4)
 end
 
 function mod:AqueousBarrierApplied(args)
@@ -443,4 +501,5 @@ end
 function mod:FlashFlood(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 23.1)
 end

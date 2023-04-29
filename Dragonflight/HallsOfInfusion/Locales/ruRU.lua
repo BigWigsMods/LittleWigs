@@ -10,6 +10,7 @@ if L then
 	L.refti_defender = "Рефти-защитник"
 	L.dazzling_dragonfly = "Ослепительная стрекоза"
 	L.curious_swoglet = "Любопытный детеныш рогоплава"
+	L.primalist_shocktrooper = "Воин стихий – штурмовик"
 	L.flamecaller_aymi = "Призывательница пламени Аюми"
 	L.squallbringer_cyraz = "Вестник бури Сайраз"
 	L.primalist_earthshaker = "Воин стихий – землетряс"
