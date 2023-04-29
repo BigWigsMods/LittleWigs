@@ -45,4 +45,7 @@ if L then
 	L.lightning_caught = "Blitz nach %.1f Sekunden gefangen!"
 	L.ludwig = "Ludwig Von Tortollen"
 	L.trothak = "Trothak"
+
+	--L.left = "%s (Left)"
+	--L.right = "%s (Right)"
 end

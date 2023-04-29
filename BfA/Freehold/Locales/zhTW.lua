@@ -45,4 +45,7 @@ if L then
 	L.lightning_caught = "用 %.1f 秒抓到閃電！"
 	L.ludwig = "路德威‧馮‧托爾托"
 	L.trothak = "托鯊客"
+
+	--L.left = "%s (Left)"
+	--L.right = "%s (Right)"
 end

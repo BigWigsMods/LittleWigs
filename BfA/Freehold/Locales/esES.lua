@@ -37,12 +37,15 @@ if L then
 	L.custom_on_autotalk_desc = "Selecciona instantáneamente la opción de charla para comenzar la pelea."
 
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
-	-- L.lightning_warmup = "new set of vict--"
+	--L.lightning_warmup = "new set of vict--"
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
-	-- L.lightning_warmup_2 = "not a professional setup"
+	--L.lightning_warmup_2 = "not a professional setup"
 
 	L.lightning = "Relámpago"
 	L.lightning_caught = "¡Relámpago atrapado después de %.1f segundos!"
 	L.ludwig = "Ludwig Von Tortollan"
 	L.trothak = "Trothak"
+
+	--L.left = "%s (Left)"
+	--L.right = "%s (Right)"
 end

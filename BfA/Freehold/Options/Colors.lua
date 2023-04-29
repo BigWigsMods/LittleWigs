@@ -24,6 +24,7 @@ BigWigs:AddColors("Council o' Captains", {
 
 BigWigs:AddColors("Ring of Booty", {
 	[256358] = {"blue","yellow"},
+	[256363] = {"blue","orange"},
 	[256405] = "red",
 	[256489] = "cyan",
 	[257829] = {"blue","cyan","green"},
