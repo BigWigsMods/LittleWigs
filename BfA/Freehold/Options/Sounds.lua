@@ -16,7 +16,7 @@ BigWigs:AddSounds("Council o' Captains", {
 	[258381] = "warning",
 	[264608] = {"alarm","info"},
 	[265088] = {"alarm","info"},
-	[265168] = {"alarm","info"},
+	[265168] = {"alarm","info","underyou"},
 	[267522] = "alert",
 	[267533] = "alert",
 	[272902] = "info",
