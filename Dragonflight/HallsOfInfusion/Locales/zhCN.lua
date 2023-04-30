@@ -10,7 +10,7 @@ if L then
 	L.refti_defender = "莱弗提防御者"
 	L.dazzling_dragonfly = "炫目蜻蜓"
 	L.curious_swoglet = "好奇的小龙哇"
-	--L.primalist_shocktrooper = "Primalist Shocktrooper"
+	L.primalist_shocktrooper = "拜荒突击者"
 	L.flamecaller_aymi = "召焰者艾米"
 	L.squallbringer_cyraz = "暴风使者西拉兹"
 	L.primalist_earthshaker = "拜荒震地者"
