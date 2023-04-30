@@ -66,7 +66,7 @@ function mod:OnEngage()
 	self:Bar(388424, 4.0) -- Tempest's Fury
 	self:Bar(387559, 8.0) -- Infused Globules
 	self:Bar(387504, 16.0) -- Squall Buffet
-	self:Bar("stages", 51.9, CL.stage:format(2), 387585) -- Stage 2 (Submerge)
+	self:Bar("stages", 51.9, self:SpellName(387585), 387585) -- Submerge
 end
 
 --------------------------------------------------------------------------------
@@ -78,8 +78,8 @@ end
 function mod:Submerge(args)
 	addsAlive = 4
 	self:SetStage(2)
-	self:StopBar(CL.stage:format(2))
-	self:Message("stages", "cyan", CL.stage:format(2), args.spellId)
+	self:StopBar(args.spellName)
+	self:Message("stages", "cyan", args.spellName, args.spellId)
 	self:PlaySound("stages", "long")
 	self:CDBar("stages", 131.1, CL.onboss:format(args.spellName), args.spellId)
 end
@@ -91,12 +91,12 @@ function mod:SubmergeOver(args)
 	tempestsFuryRemaining = 2
 	self:SetStage(1)
 	self:StopBar(CL.onboss:format(args.spellName))
-	self:Message("stages", "cyan", CL.stage:format(1), args.spellId)
+	self:Message("stages", "cyan", CL.over:format(args.spellName), args.spellId)
 	self:PlaySound("stages", "info")
 	self:CDBar(388424, 7.6) -- Tempest's Fury
 	self:CDBar(387559, 11.6) -- Infused Globules
 	self:CDBar(387504, 19.6) -- Squall Buffet
-	self:Bar("stages", 56.5, CL.stage:format(2), 387585) -- Stage 2 (Submerge)
+	self:Bar("stages", 56.5, args.spellName, args.spellId)
 end
 
 -- Stage 1
