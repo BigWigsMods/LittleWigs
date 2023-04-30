@@ -28,7 +28,6 @@ BigWigs:AddColors("Primal Tsunami", {
 	[387504] = "purple",
 	[387559] = "yellow",
 	[388424] = "red",
-	[388760] = "orange",
 	[388882] = "yellow",
 	[389875] = "purple",
 	["stages"] = "cyan",
