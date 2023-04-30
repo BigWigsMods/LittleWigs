@@ -46,6 +46,6 @@ if L then
 	L.ludwig = "路德维希·冯·托尔托伦"
 	L.trothak = "托萨克"
 
-	--L.left = "%s (Left)"
-	--L.right = "%s (Right)"
+	L.left = "%s (左)"
+	L.right = "%s (右)"
 end
