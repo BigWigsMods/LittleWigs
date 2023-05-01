@@ -102,13 +102,23 @@ function mod:WingBuffet(args)
 	end
 end
 
-function mod:TimeSinkApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+do
+	local playerList = {}
+	local prev = 0
+	function mod:TimeSinkApplied(args)
+		local t = args.time
+		if t - prev > 3 then -- detect new round of debuffs, no SPELL_CAST_SUCCESS
+			prev = t
+			playerList = {}
+			self:CDBar(args.spellId, 42.4)
+		end
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "red", playerList, 3)
+		self:PlaySound(args.spellId, "alert", nil, playerList)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+		end
 	end
-	self:Bar(args.spellId, 42.4)
 end
 
 function mod:SandBreath(args)
