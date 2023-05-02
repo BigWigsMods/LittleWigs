@@ -43,7 +43,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "OversurgeApplied", 391977)
 
 	-- Vexamus
-	--self:RegisterUnitEvent("UNIT_POWER_UPDATE", nil, "boss1")
 	self:Log("SPELL_CAST_START", "ArcaneFissure", 388537)
 	self:Log("SPELL_CAST_SUCCESS", "ArcaneFissureSuccess", 388537)
 	self:Log("SPELL_ENERGIZE", "ArcaneOrbAbsorbed", 386088)
@@ -91,22 +90,9 @@ end
 
 -- Vexamus
 
--- TODO is this a more reliable way to calculate the arcane fissure timer?
---[[function mod:UNIT_POWER_UPDATE(_, unit)
-	if recalculateArcaneFissure then
-		-- 40 seconds between Arcane Fissure casts, cast at max Energy
-		local nextArcaneFissure = ceil(40 * (1 - UnitPower(unit) / 100))
-		arcaneFissureTime = GetTime() + nextArcaneFissure
-		if nextArcaneFissure > 0 then
-			recalculateArcaneFissure = false
-			self:Bar(388537, {nextArcaneFissure, 40}, CL.count:format(args.spellName, arcaneFissureCount + 1)) -- Arcane Fissure
-		end
-	end
-end]]--
-
 function mod:ArcaneFissure(args)
 	arcaneFissureCount = arcaneFissureCount + 1
-	self:StopBar(CL.count:format(self:SpellName(args.spellId, arcaneFissureCount)))
+	self:StopBar(CL.count:format(args.spellName, arcaneFissureCount))
 	self:Message(args.spellId, "red", CL.count:format(args.spellName, arcaneFissureCount))
 	self:PlaySound(args.spellId, "alert")
 	-- Arcane Fissure adds 3.6 seconds to all other timers
