@@ -97,6 +97,8 @@ function mod:ShardsOfStone(args)
 	self:PlaySound(args.spellId, "alert")
 	if shardsOfStoneRemaining > 0 then
 		self:CDBar(args.spellId, 13.3)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
