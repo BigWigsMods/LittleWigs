@@ -112,6 +112,8 @@ function mod:SummonDraconicImage(args)
 	summonDraconicImageRemaining = summonDraconicImageRemaining - 1
 	if summonDraconicImageRemaining > 0 then
 		self:CDBar(args.spellId, 14.6)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -122,6 +124,8 @@ function mod:AncientOrb(args)
 	ancientOrbRemaining = ancientOrbRemaining - 1
 	if ancientOrbRemaining > 0 then
 		self:CDBar(args.spellId, 15.8)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -132,5 +136,7 @@ function mod:ArcaneCleave(args)
 	arcaneCleaveRemaining = arcaneCleaveRemaining - 1
 	if arcaneCleaveRemaining > 0 then
 		self:CDBar(args.spellId, 13.4)
+	else
+		self:StopBar(args.spellId)
 	end
 end
