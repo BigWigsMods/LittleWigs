@@ -36,10 +36,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(205549, 7.2) -- Rancid Maw
+	self:CDBar(205549, 7.0) -- Rancid Maw
 	self:CDBar(-12527, 9.8, -12527, 209906) -- Wormspeaker Devout: spell_shadow_ritualofsacrifice / Fanatic's Sacrifice / icon 136189
 	self:CDBar(210150, 12.1) -- Toxic Retch
-	self:Bar(199178, 50.8) -- Spiked Tongue
+	self:Bar(199178, 50.7) -- Spiked Tongue
 end
 
 --------------------------------------------------------------------------------
