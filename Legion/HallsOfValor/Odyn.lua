@@ -104,7 +104,7 @@ do
 			local name = self:BossName(1489) -- Odyn
 			self:Message("warmup", "cyan", CL.incoming:format(name), false)
 			self:PlaySound("warmup", "info")
-			self:CDBar("warmup", 2.7, name, "achievement_boss_odyn")
+			self:Bar("warmup", 2.7, name, "achievement_boss_odyn")
 		end
 	end
 end
