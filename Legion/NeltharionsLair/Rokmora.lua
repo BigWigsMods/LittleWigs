@@ -40,8 +40,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(188114, 20.7) -- Shatter
-	self:Bar(188169, 25.6) -- Razor Shards
+	self:Bar(188114, 20.4) -- Shatter
+	self:Bar(188169, 25.3) -- Razor Shards
 end
 
 --------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ end
 function mod:RazorShards(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 29.2) -- pull:25.6, 29.2, 29.2, 29.2, 34.1
+	self:CDBar(args.spellId, 29.1) -- pull:25.6, 29.2, 29.2, 29.2, 34.1
 	-- correct timers
 	if self:BarTimeLeft(188114) < 4.87 then -- Shatter
 		self:Bar(188114, {4.87, 24.3})
@@ -74,7 +74,7 @@ function mod:Shatter(args)
 	self:Bar(args.spellId, 24.3) -- pull:20.7, 24.4, 24.3, 24.4, 24.3
 	-- correct timers
 	if self:BarTimeLeft(188169) < 4.87 then -- Razor Shards
-		self:Bar(188169, {4.87, 29.2})
+		self:Bar(188169, {4.87, 29.1})
 	end
 end
 
