@@ -92,6 +92,8 @@ function mod:UnstableEmbers(args)
 	unstableEmbersRemaining = unstableEmbersRemaining - 1
 	if unstableEmbersRemaining > 0 then
 		self:CDBar(args.spellId, 11.7)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -101,5 +103,7 @@ function mod:SearingClap(args)
 	searingClapRemaining = searingClapRemaining - 1
 	if searingClapRemaining > 0 then
 		self:CDBar(args.spellId, 23.0)
+	else
+		self:StopBar(args.spellId)
 	end
 end
