@@ -151,6 +151,8 @@ function mod:TheDragonsKiln(args)
 	self:PlaySound(args.spellId, "alarm")
 	if theDragonsKilnRemaining > 0 then
 		self:CDBar(args.spellId, magmaShieldCount == 0 and 21.5 or 25.5)
+	else
+		self:StopBar(args.spellId)
 	end
 	-- soonest ability can be is 6.1
 	if moltenGoldRemaining > 0 and self:BarTimeLeft(377018) < 6.1 then -- Molten Gold
@@ -174,6 +176,8 @@ do
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		if moltenGoldRemaining > 0 then
 			self:CDBar(377018, 26.7)
+		else
+			self:StopBar(377018)
 		end
 		-- soonest ability can be is 4.7
 		if theDragonsKilnRemaining > 0 and self:BarTimeLeft(377204) < 4.7 then -- The Dragon's Kiln
