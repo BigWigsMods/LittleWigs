@@ -73,6 +73,8 @@ do
 		playerList = {}
 		if touchOfNothingnessRemaining > 0 then
 			self:CDBar(args.spellId, 20.5)
+		else
+			self:StopBar(args.spellId)
 		end
 	end
 
