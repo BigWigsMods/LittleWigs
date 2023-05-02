@@ -108,6 +108,8 @@ function mod:InfusedGlobules(args)
 	if infusedGlobulesRemaining > 0 then
 		-- often slightly delayed
 		self:CDBar(args.spellId, 17.0)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
