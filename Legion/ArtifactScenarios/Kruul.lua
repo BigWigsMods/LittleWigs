@@ -108,7 +108,7 @@ end
 
 function mod:SayTriggers(_, msg)
 	if msg == L.warmup_trigger then
-		self:CDBar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
+		self:Bar("warmup", 25, CL.active, "inv_pet_inquisitoreye")
 	elseif msg == L.win_trigger then
 		self:Win()
 	end
