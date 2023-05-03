@@ -23,19 +23,6 @@ function mod:GetOptions()
 	}
 end
 
--- XXX delete this entire if block below when 10.1 is live everywhere
-if select(4, GetBuildInfo()) < 100100 then
-	-- before 10.1
-	function mod:GetOptions()
-		return {
-			86292, -- Cyclone Shield
-			-2422, -- Summon Tempest
-		}, {
-			[86292] = self.displayName, -- Grand Vizier Ertan
-		}
-	end
-end
-
 function mod:OnBossEnable()
 	-- Grand Vizier Ertan
 	self:Log("SPELL_AURA_REMOVED", "StormsEdgeRemoved", 86295, 86310)
