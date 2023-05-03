@@ -65,11 +65,11 @@ function mod:GetOptions()
 		88194, -- Icy Buffet
 		-- Executor of the Caliph
 		413387, -- Crashing Stone
-		87759, -- Shockwave
+		87761, -- Rally
 		-- Temple Adept
 		87779, -- Greater Heal
 		-- Servant of Asaad
-		87772, -- Hand of Protection
+		{87772, "DISPEL"}, -- Hand of Protection
 		-- Minister of Air
 		87762, -- Lightning Lash
 		413385, -- Overload Grounding Field
@@ -104,16 +104,14 @@ function mod:OnBossEnable()
 
 	-- Turbulent Squall
 	self:Log("SPELL_CAST_START", "Cloudburst", 88170)
-	-- TODO post-10.1 see if Hurricane was removed from normal/heroic as well
-	self:Log("SPELL_AURA_APPLIED", "HurricaneDamage", 88171)
-	self:Log("SPELL_PERIODIC_DAMAGE", "HurricaneDamage", 88171)
-	self:Log("SPELL_PERIODIC_MISSED", "HurricaneDamage", 88171)
+	self:Log("SPELL_AURA_APPLIED", "HurricaneDamage", 88171) -- non-Mythic only
+	self:Log("SPELL_PERIODIC_DAMAGE", "HurricaneDamage", 88171) -- non-Mythic only
+	self:Log("SPELL_PERIODIC_MISSED", "HurricaneDamage", 88171) -- non-Mythic only
 
 	-- Empyrean Assassin
 	self:Log("SPELL_CAST_START", "VaporForm", 88186)
 	self:Log("SPELL_AURA_APPLIED", "VaporFormApplied", 88186)
-	-- TODO post-10.1 see if Lethargic Poison was removed from normal/heroic as well
-	self:Log("SPELL_AURA_APPLIED_DOSE", "LethargicPoisonApplied", 88182)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "LethargicPoisonApplied", 88182) -- non-Mythic only
 
 	-- Young Storm Dragon
 	self:Log("SPELL_CAST_START", "HealingWell", 411910)
@@ -122,8 +120,7 @@ function mod:OnBossEnable()
 
 	-- Executor of the Caliph
 	self:Log("SPELL_CAST_START", "CrashingStone", 413387)
-	-- TODO post-10.1 see if Shockwave was removed from normal/heroic as well
-	self:Log("SPELL_CAST_SUCCESS", "Shockwave", 87759)
+	self:Log("SPELL_CAST_START", "Rally", 87761)
 
 	-- Temple Adept
 	self:Log("SPELL_CAST_START", "GreaterHeal", 87779)
@@ -203,7 +200,7 @@ do
 	function mod:HurricaneDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t - prev > 2 then
+			if t - prev > 3 then
 				prev = t
 				self:PersonalMessage(args.spellId, "near")
 				self:PlaySound(args.spellId, "underyou")
@@ -245,11 +242,13 @@ end
 function mod:ChillingBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
 
 function mod:IcyBuffet(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+	--self:NameplateCDBar(args.spellId, 23.0, args.sourceGUID)
 end
 
 -- Executor of the Caliph
@@ -263,18 +262,20 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		--self:NameplateCDBar(args.spellId, 14.6, args.sourceGUID)
 	end
 end
 
 do
 	local prev = 0
-	function mod:Shockwave(args)
+	function mod:Rally(args)
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
 		end
+		--self:NameplateCDBar(args.spellId, 29.2, args.sourceGUID)
 	end
 end
 
@@ -295,7 +296,7 @@ end
 -- Servant of Asaad
 
 function mod:HandOfProtectionApplied(args)
-	if not self:Player(args.destFlags) and self:Dispeller("magic", true) then
+	if not self:Player(args.destFlags) and self:Dispeller("magic", true, args.spellId) then
 		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -315,6 +316,7 @@ do
 
 	function mod:LightningLash(args)
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		--self:NameplateCDBar(args.spellId, 6.9, args.sourceGUID)
 	end
 end
 

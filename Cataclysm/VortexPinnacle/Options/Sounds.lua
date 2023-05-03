@@ -23,7 +23,7 @@ BigWigs:AddSounds("Asaad", {
 })
 
 BigWigs:AddSounds("The Vortex Pinnacle Trash", {
-	[87759] = "alarm",
+	[87761] = "alert",
 	[87762] = {"alert","warning"},
 	[87772] = "alert",
 	[87779] = "warning",
