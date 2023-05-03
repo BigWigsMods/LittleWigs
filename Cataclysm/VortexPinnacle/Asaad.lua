@@ -12,8 +12,6 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
--- Skyfall Star pre 10.1, renamed to Skyfall Nova in 10.1
-local skyfallNovaSpellId = select(4, GetBuildInfo()) < 100100 and 96260 or 413263
 local skyfallNovaCount = 1
 
 --------------------------------------------------------------------------------
@@ -43,7 +41,7 @@ end
 function mod:OnEngage()
 	skyfallNovaCount = 1
 	self:CDBar(87622, 10.6) -- Chain Lightning
-	self:Bar(-2434, 15.5, nil, skyfallNovaSpellId) -- Skyfall Nova
+	self:Bar(-2434, 15.5, nil, 413263) -- Skyfall Nova
 	if not self:Normal() then
 		self:Bar(87618, 25.5) -- Static Cling
 	end
@@ -108,14 +106,14 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 96260 then -- Summon Skyfall Star
-		self:Message(-2434, "cyan", CL.spawned:format(self:SpellName(skyfallNovaSpellId)), skyfallNovaSpellId) -- Skyfall Nova
+		self:Message(-2434, "cyan", CL.spawned:format(self:SpellName(413263)), 413263) -- Skyfall Nova
 		self:PlaySound(-2434, "alert")
 		-- pull:16.0, 47.4, 30.4, 49.8, 47.4, 30.4, 48.2, 49.8, 30.4, 49.0, 49.8, 31.1
 		skyfallNovaCount = skyfallNovaCount + 1
 		if skyfallNovaCount % 3 == 0 then
-			self:CDBar(-2434, 30.4, nil, skyfallNovaSpellId)
+			self:CDBar(-2434, 30.4, nil, 413263)
 		else
-			self:CDBar(-2434, 47.4, nil, skyfallNovaSpellId)
+			self:CDBar(-2434, 47.4, nil, 413263)
 		end
 	end
 end
