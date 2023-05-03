@@ -87,38 +87,6 @@ function mod:GetOptions()
 		[87762] = L.minister_of_air,
 	}
 end
--- XXX delete this entire if block below when 10.1 is live everywhere
-if select(4, GetBuildInfo()) < 100100 then
-	-- before 10.1
-	function mod:GetOptions()
-		return {
-			-- Turbulent Squall
-			88170, -- Cloudburst
-			88171, -- Hurricane
-			-- Empyrean Assassin
-			88186, -- Vapor Form
-			{88182, "DISPEL"}, -- Lethargic Poison
-			-- Young Storm Dragon
-			88194, -- Icy Buffet
-			-- Executor of the Caliph
-			87759, -- Shockwave
-			-- Minister of Air
-			87762, -- Lightning Lash
-			-- Temple Adept
-			87779, -- Greater Heal
-			-- Servant of Asaad
-			87772, -- Hand of Protection
-		}, {
-			[88170] = L.turbulent_squall,
-			[88186] = L.empyrean_assassin,
-			[88194] = L.young_storm_dragon,
-			[87759] = L.executor_of_the_caliph,
-			[87762] = L.minister_of_air,
-			[87779] = L.temple_adept,
-			[87772] = L.servant_of_asaad,
-		}
-	end
-end
 
 function mod:OnBossEnable()
 	-- Armored Mistral
