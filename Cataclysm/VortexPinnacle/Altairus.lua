@@ -37,7 +37,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Call the Wind
 	self:Log("SPELL_AURA_APPLIED", "UpwindOfAltairus", 88282)
 	self:Log("SPELL_AURA_APPLIED", "DownwindOfAltairus", 88286)
-	self:Log("SPELL_AURA_REMOVED", "DownwindOfAltairusRemoved", 88286)
 	self:Log("SPELL_CAST_START", "ChillingBreath", 88308)
 	self:Log("SPELL_AURA_APPLIED", "ColdFrontDamage", 413275)
 	self:Log("SPELL_CAST_SUCCESS", "Downburst", 413295)
@@ -48,7 +47,7 @@ function mod:OnEngage()
 	chillingBreathCount = 1
 	downburstCount = 1
 	self:Bar(-2425, 5.9, nil, 88276) -- Call the Wind
-	self:Bar(88308, 13.2) -- Chilling Breath
+	self:Bar(88308, 12.0) -- Chilling Breath
 	if self:Mythic() then
 		self:Bar(413295, 20.4) -- Downburst
 	end
@@ -62,6 +61,8 @@ function mod:EncounterEvent(args) -- Call the Wind
 	self:Message(-2425, "cyan", nil, 88276)
 	self:PlaySound(-2425, "alert")
 	callTheWindCount = callTheWindCount + 1
+	-- actual CD is 15.8 but gets delayed by Chilling Breath (and/or Downburst)
+	-- TODO revisit this timer on non-Mythic if Chiling Breath is ever fixed there
 	if callTheWindCount % 4 == 3 then
 		self:Bar(-2425, 19.4, nil, 88276)
 	else
@@ -69,29 +70,17 @@ function mod:EncounterEvent(args) -- Call the Wind
 	end
 end
 
-do
-	-- TODO this is no longer needed in 10.1+
-	local haveDownwind = false -- for some reason players get spammed by SPELL_AURA_APPLIED events from Upwind when they have Downwind
-
-	function mod:UpwindOfAltairus(args)
-		if self:Me(args.destGUID) and not haveDownwind then
-			self:Message(args.spellId, "green", CL.you:format(args.spellName))
-			self:PlaySound(args.spellId, "info")
-		end
+function mod:UpwindOfAltairus(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.you:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
 	end
+end
 
-	function mod:DownwindOfAltairus(args)
-		if self:Me(args.destGUID) then
-			haveDownwind = true
-			self:Message(args.spellId, "red", CL.you:format(args.spellName))
-			self:PlaySound(args.spellId, "underyou")
-		end
-	end
-
-	function mod:DownwindOfAltairusRemoved(args)
-		if self:Me(args.destGUID) then
-			haveDownwind = false
-		end
+function mod:DownwindOfAltairus(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "red", CL.you:format(args.spellName))
+		self:PlaySound(args.spellId, "underyou")
 	end
 end
 
@@ -108,7 +97,8 @@ function mod:ChillingBreath(args)
 			self:Bar(args.spellId, 21.8)
 		end
 	else
-		-- TODO confirm once 10.1 is live
+		-- TODO needs confirmation:
+		-- as of May 3 2023 this is broken and casts once then never again in Heroic
 		self:Bar(args.spellId, 12)
 	end
 end
