@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Grand Vizier Ertan", {
-	[-2422] = "yellow",
 	[86292] = {"blue","green","orange","yellow"},
+	[413151] = "yellow",
 	[413562] = "red",
 })
 

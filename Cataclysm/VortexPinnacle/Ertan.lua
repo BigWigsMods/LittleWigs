@@ -15,7 +15,7 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		86292, -- Cyclone Shield
-		-2422, -- Summon Tempest
+		413151, -- Summon Tempest
 		413562, -- Lethal Current
 	}, {
 		[86292] = self.displayName, -- Grand Vizier Ertan
@@ -27,17 +27,13 @@ function mod:OnBossEnable()
 	-- Grand Vizier Ertan
 	self:Log("SPELL_AURA_REMOVED", "StormsEdgeRemoved", 86295, 86310)
 	self:Log("SPELL_AURA_APPLIED", "CycloneShieldApplied", 86292)
-	self:Log("SPELL_CAST_START", "SummonTempest", 86340, 413151) -- pre 10.1, 10.1
+	self:Log("SPELL_CAST_START", "SummonTempest", 413151)
 
 	-- Lurking Tempest
 	self:Log("SPELL_CAST_START", "LethalCurrent", 413562)
 end
 
 function mod:OnEngage()
-	if self:Heroic() then
-		-- TODO post 10.1 confirm if the old spell still exists in Heroic
-		self:CDBar(-2422, 4.6, nil, 86340) -- Summon Tempest
-	end
 	self:CDBar(86292, 31.4) -- Cyclone Shield
 end
 
@@ -76,11 +72,8 @@ do
 end
 
 function mod:SummonTempest(args)
-	self:Message(-2422, "yellow", nil, args.spellId)
-	self:PlaySound(-2422, "info")
-	if not self:Mythic() then -- TODO post 10.1 confirm if the old spell still exists in Heroic
-		self:CDBar(-2422, 17.0, nil, args.spellId)
-	end
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Lurking Tempest
