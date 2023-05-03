@@ -117,6 +117,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CatNap", 396073)
 
 	-- The Golden Beetle
+	self:Log("SPELL_CAST_START", "GoldenBarrier", 396020)
 	self:Log("SPELL_AURA_APPLIED", "GoldenBarrierApplied", 396020)
 
 	-- Sha-Touched Guardian
@@ -199,9 +200,9 @@ function mod:FitOfRage(args)
 end
 
 function mod:FitOfRageApplied(args)
-	if self:Dispeller("enrage", true, args.spellId) then
-		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
+	if self:Tank() or self:Dispeller("enrage", true, args.spellId) then
+		self:Message(args.spellId, "purple", CL.buff_other:format(args.destName, args.spellName))
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
@@ -214,10 +215,16 @@ end
 
 -- The Golden Beetle
 
+function mod:GoldenBarrier(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
 function mod:GoldenBarrierApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
+	-- cannot be spellstolen, explodes unless dispelled
+	if self:Healer() or self:Dispeller("magic", true, args.spellId) then
 		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
