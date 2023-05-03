@@ -1,4 +1,4 @@
-## Interface: 100007
+## Interface: 100100
 
 ## Title: LittleWigs [|cffeda55fBattle for Azeroth|r]
 ## Title-deDE: LittleWigs [|cffeda55fBattle for Azeroth|r]
