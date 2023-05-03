@@ -33,19 +33,6 @@ function mod:GetOptions()
 	}
 end
 
--- XXX delete this entire if block below when 10.1 is live everywhere
-if select(4, GetBuildInfo()) < 100100 then
-	-- before 10.1
-	function mod:GetOptions()
-		return {
-			-2425, -- Call the Wind
-			88282, -- Upwind of Altairus
-			88286, -- Downwind of Altairus
-			88308, -- Chilling Breath
-		}
-	end
-end
-
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Call the Wind
 	self:Log("SPELL_AURA_APPLIED", "UpwindOfAltairus", 88282)
