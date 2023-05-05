@@ -94,10 +94,13 @@ function mod:FrostBomb(args)
 		self:Bar(args.spellId, 18.2)
 	elseif frostBombRemaining == 1 then
 		self:CDBar(args.spellId, 15.8) -- or 23.1
-	elseif frostBombRemaining == 0 and icyDevastatorRemaining == 1 and absoluteZeroCount > 0 then
-		-- fix final timers for the FB -> ID -> FB -> FB -> ID -> AZ variation
-		self:Bar(387151, 10.8) -- Icy Devastator
-		self:Bar(388008, {18.1, 52.8}, CL.count:format(self:SpellName(388008), absoluteZeroCount + 1)) -- Absolute Zero (n)
+	elseif frostBombRemaining == 0 then
+		self:StopBar(args.spellId)
+		if icyDevastatorRemaining == 1 and absoluteZeroCount > 0 then
+			-- fix final timers for the FB -> ID -> FB -> FB -> ID -> AZ variation
+			self:Bar(387151, 10.8) -- Icy Devastator
+			self:Bar(388008, {18.1, 52.8}, CL.count:format(self:SpellName(388008), absoluteZeroCount + 1)) -- Absolute Zero (n)
+		end
 	end
 end
 
@@ -126,9 +129,12 @@ do
 		icyDevastatorRemaining = icyDevastatorRemaining - 1
 		if icyDevastatorRemaining == 1 then
 			self:CDBar(args.spellId, 23.1) -- or 33.9
-		elseif icyDevastatorRemaining == 0 and frostBombRemaining == 1 then
-			-- fix final timers for the FB -> ID -> FB -> ID -> FB -> AZ variation
-			self:Bar(386781, 7.3) -- Frost Bomb
+		elseif icyDevastatorRemaining == 0 then
+			self:StopBar(args.spellId)
+			if frostBombRemaining == 1 then
+				-- fix final timers for the FB -> ID -> FB -> ID -> FB -> AZ variation
+				self:Bar(386781, 7.3) -- Frost Bomb
+			end
 		end
 	end
 end
