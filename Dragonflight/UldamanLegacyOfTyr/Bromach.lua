@@ -36,6 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "QuakingTotem", 382303)
 	self:Log("SPELL_CAST_START", "Bloodlust", 369754)
 	self:Log("SPELL_CAST_START", "ThunderingSlam", 369703)
+	self:Log("SPELL_CAST_SUCCESS", "ThunderingSlamSuccess", 369703)
 
 	-- Stonevault Geomancer
 	self:Log("SPELL_CAST_START", "ChainLightning", 369675)
@@ -78,7 +79,12 @@ end
 function mod:ThunderingSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18.2)
+	-- this doesn't go on cooldown if interrupted with Tremor
+end
+
+function mod:ThunderingSlamSuccess(args)
+	-- 18.2s CD - 3.5s cast
+	self:CDBar(args.spellId, 14.7)
 end
 
 -- Stonevault Geomancer
