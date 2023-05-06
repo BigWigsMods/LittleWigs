@@ -78,14 +78,14 @@ function mod:OnEngage()
 	skullcrackerRemaining = 1
 	ricochetingShieldRemaining = 1
 	defensiveBulwarkRemaining = 1
-	self:Bar(369791, 6.1) -- Skullcracker
-	self:Bar(369563, 8.5) -- Wild Cleave
-	self:Bar(369677, 12.1) -- Ricocheting Shield
-	self:Bar(369602, 17.2) -- Defensive Bulwark
-	self:Bar(369573, 20.6) -- Heavy Arrow
+	self:CDBar(369791, 6.1) -- Skullcracker
+	self:CDBar(369563, 8.5) -- Wild Cleave
+	self:CDBar(369677, 12.1) -- Ricocheting Shield
+	self:CDBar(369602, 17.2) -- Defensive Bulwark
+	self:CDBar(369573, 20.6) -- Heavy Arrow
 	-- cast at 100 energy, starts at 60/100
 	-- 24s energy gain + .8s delay
-	self:Bar(375924, 24.8) -- Longboat Raid
+	self:CDBar(375924, 24.8) -- Longboat Raid
 end
 
 --------------------------------------------------------------------------------
@@ -100,6 +100,8 @@ function mod:HeavyArrow(args)
 	heavyArrowRemaining = heavyArrowRemaining - 1
 	if heavyArrowRemaining > 0 then
 		self:Bar(args.spellId, 20.6)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -108,7 +110,9 @@ function mod:WildCleave(args)
 	self:PlaySound(args.spellId, "alert")
 	wildCleaveRemaining = wildCleaveRemaining - 1
 	if wildCleaveRemaining > 0 then
-		self:Bar(args.spellId, 17.0)
+		self:CDBar(args.spellId, 17.0)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -119,7 +123,9 @@ function mod:Skullcracker(args)
 	self:PlaySound(args.spellId, "alarm")
 	skullcrackerRemaining = skullcrackerRemaining - 1
 	if skullcrackerRemaining > 0 then
-		self:Bar(args.spellId, 26.6)
+		self:CDBar(args.spellId, 26.6)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -139,6 +145,8 @@ do
 		ricochetingShieldRemaining = ricochetingShieldRemaining - 1
 		if ricochetingShieldRemaining > 0 then
 			self:Bar(args.spellId, 17.0)
+		else
+			self:StopBar(args.spellId)
 		end
 	end
 end
@@ -149,6 +157,8 @@ function mod:DefensiveBulwark(args)
 	defensiveBulwarkRemaining = defensiveBulwarkRemaining - 1
 	if defensiveBulwarkRemaining > 0 then
 		self:Bar(args.spellId, 33.9)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -188,14 +198,14 @@ do
 			if not baelogDefeated then
 				heavyArrowRemaining = 2
 				wildCleaveRemaining = 3
-				self:Bar(369563, 24.9) -- Wild Cleave
+				self:CDBar(369563, 24.9) -- Wild Cleave
 				self:Bar(369573, 35.8) -- Heavy Arrow
 			end
 		elseif mobId == 184582 then -- Eric "The Swift"
 			castingBossDefeated = ericDefeated
 			if not ericDefeated then
 				skullcrackerRemaining = 3
-				self:Bar(369791, 24.9) -- Skullcracker
+				self:CDBar(369791, 24.9) -- Skullcracker
 			end
 		elseif mobId == 184580 then -- Olaf
 			castingBossDefeated = olafDefeated
@@ -218,7 +228,7 @@ do
 				-- cast at 100 energy: 60s energy gain + 2s cast + 1.8s delay + 15s duration
 				self:Message(args.spellId, "orange")
 				self:PlaySound(args.spellId, "long")
-				self:Bar(args.spellId, 78.8)
+				self:CDBar(args.spellId, 78.8)
 			end
 		end
 	end
