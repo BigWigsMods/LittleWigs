@@ -13,7 +13,7 @@ BigWigs:AddSounds("Bromach", {
 	[369605] = "long",
 	[369660] = "info",
 	[369675] = "alert",
-	[369700] = "alert",
+	[369700] = "info",
 	[369703] = "alarm",
 	[369754] = "alert",
 })
