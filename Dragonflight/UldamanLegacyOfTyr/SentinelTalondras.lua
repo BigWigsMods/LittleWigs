@@ -54,13 +54,19 @@ end
 
 function mod:OnEngage()
 	titanicEmpowermentActive = false
-	lastTitanicEmpowermentCooldown = 30.4
 	if self:Healer() then
 		self:CDBar(372718, 4.5) -- Earthen Shards
 	end
 	self:CDBar(372701, 5.1) -- Crushing Stomp
-	-- 25s energy gain, 5s cast, .4s delay
-	self:CDBar(372719, 30.4) -- Titanic Empowerment
+	if self:Normal() then
+		-- 30s energy gain + 5s cast + .4s delay
+		lastTitanicEmpowermentCooldown = 35.4
+		self:CDBar(372719, 35.4) -- Titanic Empowerment
+	else -- Heroic, Mythic
+		-- 25s energy gain + 5s cast + .4s delay
+		lastTitanicEmpowermentCooldown = 30.4
+		self:CDBar(372719, 30.4) -- Titanic Empowerment
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -74,9 +80,15 @@ function mod:UNIT_POWER_UPDATE(_, unit)
 		self:Message(372719, "green", CL.interrupted:format(self:SpellName(372719))) -- Titanic Empowerment Interrupted
 		self:PlaySound(372719, "info")
 		-- energy gain is paused for 3s out of the 5.5s while stunned
-		-- 3s pause + 25s energy gain + 5s cast + .6 delay
-		lastTitanicEmpowermentCooldown = 33.6
-		self:Bar(372719, 33.6) -- Titanic Empowerment
+		if self:Normal() then
+			-- 3s pause + 30s energy gain + 5s cast + .6 delay
+			lastTitanicEmpowermentCooldown = 38.6
+			self:CDBar(372719, 38.6) -- Titanic Empowerment
+		else -- Heroic, Mythic
+			-- 3s pause + 25s energy gain + 5s cast + .6 delay
+			lastTitanicEmpowermentCooldown = 33.6
+			self:CDBar(372719, 33.6) -- Titanic Empowerment
+		end
 		-- 5.5s stun, abilities can't happen while stunned
 		if self:Healer() and self:BarTimeLeft(372718) < 5.5 then -- Earthen Shards
 			self:CDBar(372718, {5.5, 9.7})
@@ -106,8 +118,13 @@ function mod:InexorableCast(args)
 	if self:IsEngaged() then
 		titanicEmpowermentActive = false
 		-- after a stun, her energy gain starts when this is cast
-		-- 25s energy gain + 5s cast + ~.6s delay
-		self:CDBar(372719, {30.6, lastTitanicEmpowermentCooldown}) -- Titanic Empowerment
+		if self:Normal() then
+			-- 30s energy gain + 5s cast + ~.6s delay
+			self:CDBar(372719, {35.6, lastTitanicEmpowermentCooldown}) -- Titanic Empowerment
+		else -- Heroic, Mythic
+			-- 25s energy gain + 5s cast + ~.6s delay
+			self:CDBar(372719, {30.6, lastTitanicEmpowermentCooldown}) -- Titanic Empowerment
+		end
 	end
 end
 
@@ -116,9 +133,15 @@ function mod:InexorableApplied(args)
 		if titanicEmpowermentActive then
 			titanicEmpowermentActive = false
 			-- after Titanic Empowerment, her energy gain starts when this is applied (no cast)
-			-- 25s energy gain + 5s cast + ~.6s delay
-			lastTitanicEmpowermentCooldown = 30.6
-			self:CDBar(372719, 30.6) -- Titanic Empowerment
+			if self:Normal() then
+				-- 30s energy gain + 5s cast + ~.6s delay
+				lastTitanicEmpowermentCooldown = 35.6
+				self:CDBar(372719, 35.6) -- Titanic Empowerment
+			else -- Heroic, Mythic
+				-- 25s energy gain + 5s cast + ~.6s delay
+				lastTitanicEmpowermentCooldown = 30.6
+				self:CDBar(372719, 30.6) -- Titanic Empowerment
+			end
 		end
 		self:Message(args.spellId, "red", CL.stack:format(2, args.spellName, L.boss))
 		self:PlaySound(args.spellId, "long")
