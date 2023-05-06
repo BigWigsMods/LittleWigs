@@ -11,8 +11,8 @@ mod:RegisterEnableMob(
 	184023, -- Vicious Basilisk
 	184132, -- Earthen Warder
 	186420, -- Earthen Weaver
-	184301, -- Cavern Seeker
 	184107, -- Runic Protector
+	184301, -- Cavern Seeker
 	184300, -- Ebonstone Golem
 	184131, -- Earthen Guardian
 	184335, -- Infinite Agent
@@ -29,8 +29,8 @@ if L then
 	L.vicious_basilisk = "Vicious Basilisk"
 	L.earthen_warder = "Earthen Warder"
 	L.earthen_weaver = "Earthen Weaver"
-	L.cavern_seeker = "Cavern Seeker"
 	L.runic_protector = "Runic Protector"
+	L.cavern_seeker = "Cavern Seeker"
 	L.ebonstone_golem = "Ebonstone Golem"
 	L.earthen_guardian = "Earthen Guardian"
 	L.infinite_agent = "Infinite Agent"
@@ -55,10 +55,12 @@ function mod:GetOptions()
 		{369366, "DISPEL", "SAY"}, -- Trapped in Stone
 		-- Earthen Weaver
 		369465, -- Hail of Stone
+		-- Runic Protector
+		369335, -- Fissuring Slam
+		369337, -- Difficult Terrain
+		369328, -- Earthquake
 		-- Cavern Seeker
 		369411, -- Sonic Burst
-		-- Runic Protector
-		369337, -- Difficult Terrain
 		-- Ebonstone Golem
 		381593, -- Thunderous Clap
 		-- Earthen Guardian
@@ -71,8 +73,8 @@ function mod:GetOptions()
 		[369823] = L.vicious_basilisk,
 		[369400] = L.earthen_warder,
 		[369465] = L.earthen_weaver,
+		[369335] = L.runic_protector,
 		[369411] = L.cavern_seeker,
-		[369337] = L.runic_protector,
 		[381593] = L.ebonstone_golem,
 		[382578] = L.earthen_guardian,
 		[377500] = L.infinite_agent,
@@ -102,13 +104,15 @@ function mod:OnBossEnable()
 	-- Earthen Weaver
 	self:Log("SPELL_CAST_SUCCESS", "HailOfStone", 369465) -- doesn't go on CD until the channel starts
 
+	-- Runic Protector
+	self:Log("SPELL_CAST_START", "FissuringSlam", 369335)
+	self:Log("SPELL_AURA_APPLIED", "DifficultTerrainApplied", 369337)
+	self:Log("SPELL_CAST_SUCCESS", "Earthquake", 369328)
+
 	-- Cavern Seeker
 	self:Log("SPELL_CAST_START", "SonicBurst", 369411)
 
-	-- Runic Protector
-	self:Log("SPELL_AURA_APPLIED", "DifficultTerrainApplied", 369337)
-
-	-- Runic Protector
+	-- Ebonstone Golem
 	self:Log("SPELL_CAST_START", "ThunderousClap", 381593)
 
 	-- Earthen Guardian
@@ -166,7 +170,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 20.3, args.sourceGUID)
+		--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
 	end
 end
 
@@ -214,10 +218,17 @@ function mod:EarthenWardApplied(args)
 	end
 end
 
-function mod:CurseOfStone(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 46.0, args.sourceGUID)
+do
+	local prev = 0
+	function mod:CurseOfStone(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		--self:NameplateCDBar(args.spellId, 46.0, args.sourceGUID)
+	end
 end
 
 function mod:CurseOfStoneApplied(args)
@@ -250,26 +261,38 @@ do
 	end
 end
 
+-- Runic Protector
+
+function mod:FissuringSlam(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
+end
+
+function mod:DifficultTerrainApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou")
+	end
+end
+
+function mod:Earthquake(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+end
+
 -- Cavern Seeker
 
 do
 	local prev = 0
 	function mod:SonicBurst(args)
 		local t = args.time
-		if t - prev > 1.5 then
+		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alarm")
 		end
-	end
-end
-
--- Runic Protector
-
-function mod:DifficultTerrainApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou")
 	end
 end
 
@@ -281,8 +304,8 @@ do
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "alert")
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
 		end
 		--self:NameplateCDBar(args.spellId, 19.0, args.sourceGUID)
 	end
@@ -293,6 +316,7 @@ end
 function mod:BlessingOfTyr(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 48.6, args.sourceGUID)
 end
 
 -- Infinite Agent
