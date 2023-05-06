@@ -13,6 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local titanicEmpowermentActive = false
+local lastTitanicEmpowermentCooldown = 30.4
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -46,17 +47,20 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TitanicEmpowerment", 372719)
 	self:Log("SPELL_AURA_APPLIED", "TitanicEmpowermentApplied", 372719)
 	self:Log("SPELL_CAST_START", "ResonatingOrb", 372623)
-	self:Log("SPELL_AURA_APPLIED", "ResonatingOrbFixate", 382071)
+	self:Log("SPELL_AURA_APPLIED", "ResonatingOrbApplied", 382071)
 	self:Log("SPELL_CAST_START", "CrushingStomp", 372701)
 	self:Log("SPELL_CAST_SUCCESS", "EarthenShardsApplied", 372718)
 end
 
 function mod:OnEngage()
 	titanicEmpowermentActive = false
-	self:Bar(372718, 4.5) -- Earthen Shards
+	lastTitanicEmpowermentCooldown = 30.4
+	if self:Healer() then
+		self:CDBar(372718, 4.5) -- Earthen Shards
+	end
 	self:CDBar(372701, 5.1) -- Crushing Stomp
-	-- 15s energy gain, 5s cast, .4s delay
-	self:CDBar(372719, 20.4) -- Titanic Empowerment
+	-- 25s energy gain, 5s cast, .4s delay
+	self:CDBar(372719, 30.4) -- Titanic Empowerment
 end
 
 --------------------------------------------------------------------------------
@@ -64,10 +68,25 @@ end
 --
 
 function mod:UNIT_POWER_UPDATE(_, unit)
+	-- use UNIT_POWER_UPDATE instead of something like Resonating Orb applying to boss because
+	-- you can actually stun the boss to reset her energy with player abilities as well.
 	if not titanicEmpowermentActive and UnitPower(unit) == 0 then
 		self:Message(372719, "green", CL.interrupted:format(self:SpellName(372719))) -- Titanic Empowerment Interrupted
 		self:PlaySound(372719, "info")
-		self:StopBar(372719) -- Titanic Empowerment
+		-- energy gain is paused for 3s out of the 5.5s while stunned
+		-- 3s pause + 25s energy gain + 5s cast + .6 delay
+		lastTitanicEmpowermentCooldown = 33.6
+		self:Bar(372719, 33.6) -- Titanic Empowerment
+		-- 5.5s stun, abilities can't happen while stunned
+		if self:Healer() and self:BarTimeLeft(372718) < 5.5 then -- Earthen Shards
+			self:CDBar(372718, {5.5, 9.7})
+		end
+		if self:BarTimeLeft(372701) < 5.5 then -- Crushing Stomp
+			self:CDBar(372701, {5.5, 12.1})
+		end
+		if self:BarTimeLeft(372623) < 5.5 then -- Resonating Orb
+			self:CDBar(372623, {5.5, 26.7})
+		end
 	end
 end
 
@@ -87,8 +106,8 @@ function mod:InexorableCast(args)
 	if self:IsEngaged() then
 		titanicEmpowermentActive = false
 		-- after a stun, her energy gain starts when this is cast
-		-- 15s energy gain + 5s cast + ~.6s delay
-		self:CDBar(372719, 20.6) -- Titanic Empowerment
+		-- 25s energy gain + 5s cast + ~.6s delay
+		self:CDBar(372719, {30.6, lastTitanicEmpowermentCooldown}) -- Titanic Empowerment
 	end
 end
 
@@ -97,8 +116,9 @@ function mod:InexorableApplied(args)
 		if titanicEmpowermentActive then
 			titanicEmpowermentActive = false
 			-- after Titanic Empowerment, her energy gain starts when this is applied (no cast)
-			-- 15s energy gain + 5s cast + ~.6s delay
-			self:CDBar(372719, 20.6) -- Titanic Empowerment
+			-- 25s energy gain + 5s cast + ~.6s delay
+			lastTitanicEmpowermentCooldown = 30.6
+			self:CDBar(372719, 30.6) -- Titanic Empowerment
 		end
 		self:Message(args.spellId, "red", CL.stack:format(2, args.spellName, L.boss))
 		self:PlaySound(args.spellId, "long")
@@ -109,19 +129,27 @@ function mod:TitanicEmpowerment(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	-- correct the bar
-	self:Bar(args.spellId, {5, 20.6})
+	self:Bar(args.spellId, {5, lastTitanicEmpowermentCooldown})
+	-- 5s cast, abilities can't happen while casting
+	if self:Healer() and self:BarTimeLeft(372718) < 5 then -- Earthen Shards
+		self:CDBar(372718, {5, 9.7})
+	end
+	if self:BarTimeLeft(372701) < 5 then -- Crushing Stomp
+		self:CDBar(372701, {5, 12.1})
+	end
+	if self:BarTimeLeft(372623) < 5 then -- Resonating Orb
+		self:CDBar(372623, {5, 26.7})
+	end
 end
 
 function mod:TitanicEmpowermentApplied(args)
 	titanicEmpowermentActive = true
 	self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
-	if self:Mythic() then
-		self:Bar(args.spellId, 40, CL.onboss:format(args.spellName))
-	elseif self:Heroic() then
-		self:Bar(args.spellId, 30, CL.onboss:format(args.spellName))
-	else -- Normal
+	if self:Normal() then
 		self:Bar(args.spellId, 20, CL.onboss:format(args.spellName))
+	else -- Heroic, Mythic
+		self:Bar(args.spellId, 30, CL.onboss:format(args.spellName))
 	end
 end
 
@@ -133,7 +161,7 @@ do
 		self:CDBar(args.spellId, 26.7)
 	end
 
-	function mod:ResonatingOrbFixate(args)
+	function mod:ResonatingOrbApplied(args)
 		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(372623, "yellow", playerList, 2)
 		self:PlaySound(372623, "alert", nil, playerList)
@@ -151,5 +179,8 @@ function mod:EarthenShardsApplied(args)
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
-	self:CDBar(args.spellId, 9.7)
+	if self:Healer() then
+		-- mostly noise, so scope the bar to just healers
+		self:CDBar(args.spellId, 9.7)
+	end
 end
