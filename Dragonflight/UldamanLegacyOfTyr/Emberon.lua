@@ -13,6 +13,7 @@ mod:SetStage(1)
 -- Locals
 --
 
+local purgingFlamesActive = false
 local unstableEmbersRemaining = 4
 local searingClapRemaining = 2
 
@@ -30,7 +31,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "PurgingFlames", 368990)
+	self:Log("SPELL_AURA_REMOVED", "PurgingFlamesRemoved", 368990)
 	self:Log("SPELL_AURA_APPLIED", "InfusionApplied", 369043)
 	self:Log("SPELL_AURA_REMOVED", "InfusionRemoved", 369043)
 	self:Log("SPELL_CAST_START", "UnstableEmbers", 369110)
@@ -38,6 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	purgingFlamesActive = false
 	unstableEmbersRemaining = 2
 	searingClapRemaining = 2
 	self:SetStage(1)
@@ -51,12 +55,28 @@ end
 -- Event Handlers
 --
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 369022 then -- Purging Flames
+		-- this is cast when the boss runs to the center, we can clean up extra
+		-- timers for skipped abilities a little early
+		self:StopBar(369110) -- Unstable Embers
+		self:StopBar(369061) -- Searing Clap
+	end
+end
+
 function mod:PurgingFlames(args)
+	-- TODO Emberon won't cast Purging Flames below a certain % HP,
+	-- figure out what that % is and fix up timers when it's hit.
+	-- he also resumes casting his other abilities which are normally limited
+	purgingFlamesActive = true
 	self:SetStage(2)
+	self:StopBar(args.spellId)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
-	self:StopBar(369110) -- Unstable Embers
-	self:StopBar(369061) -- Searing Clap
+end
+
+function mod:PurgingFlamesRemoved()
+	purgingFlamesActive = false
 end
 
 do
@@ -67,6 +87,10 @@ do
 	end
 
 	function mod:InfusionRemoved(args)
+		if not purgingFlamesActive then
+			-- avoid spamming alerts on a Stage 2 wipe
+			return
+		end
 		local addsNeeded = self:Normal() and 3 or 4
 		addsKilled = addsKilled + 1
 		if addsKilled == addsNeeded then
