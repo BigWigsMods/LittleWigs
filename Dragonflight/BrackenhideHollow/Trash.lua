@@ -240,12 +240,21 @@ do
 	end
 end
 
-function mod:WitheringApplied(args)
-	-- TODO needs throttling / targetsmessage?
-	-- TODO on live not dispelled by movement (bug), check PTR
-	if self:Dispeller("disease", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+do
+	local playerList = {}
+	local prev = 0
+	function mod:WitheringApplied(args)
+		-- 10.1: this is currently bugged and cannot be dispelled by movement dispelling effects
+		if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId) then
+			local t = args.time
+			if t - prev > .5 then -- throttle alerts to .5s intervals
+				prev = t
+				playerList = {}
+			end
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(args.spellId, "yellow", playerList, 5, nil, nil, .5)
+			self:PlaySound(args.spellId, "alert", nil, playerList)
+		end
 	end
 end
 
