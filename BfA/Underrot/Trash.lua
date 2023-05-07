@@ -94,42 +94,49 @@ function mod:OnBossEnable()
 	-- Befouled Spirit
 	self:Log("SPELL_CAST_START", "DarkOmen", 265568)
 	self:Log("SPELL_AURA_APPLIED", "DarkOmenApplied", 265568)
+
 	-- Devout Blood Priest
 	self:Log("SPELL_CAST_START", "DarkReconstitution", 265089)
 	self:Log("SPELL_CAST_START", "GiftOfGhuun", 265091)
 	self:Log("SPELL_AURA_APPLIED", "GiftOfGhuunApplied", 265091)
+
 	-- Fetid Maggot
 	self:Log("SPELL_CAST_START", "RottenBile", 265540)
+
 	-- Chosen Blood Matron
 	self:Log("SPELL_CAST_SUCCESS", "BloodHarvest", 265016) -- charge that Matron does right before casting Savage Cleave
 	self:Log("SPELL_CAST_START", "SavageCleave", 265019)
 	self:Log("SPELL_AURA_APPLIED", "SavageCleaveApplied", 265019)
 	self:Log("SPELL_CAST_START", "Warcry", 265081)
+
 	-- Diseased Lasher
 	self:Log("SPELL_CAST_START", "DecayingMind", 278961)
 	self:Log("SPELL_AURA_APPLIED", "DecayingMindApplied", 278961)
 	self:Log("SPELL_AURA_REMOVED", "DecayingMindRemoved", 278961)
+
 	-- Feral Bloodswarmer
 	self:Log("SPELL_AURA_APPLIED", "ThirstForBloodApplied", 266107)
 	self:Log("SPELL_AURA_REMOVED", "ThirstForBloodRemoved", 266107)
 	self:Log("SPELL_CAST_START", "SonicScreech", 266106)
-	-- Fallen Deathspeaker
-	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
-	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
-	self:Log("SPELL_AURA_APPLIED", "WickedFrenzyApplied", 266209)
-	self:Log("SPELL_AURA_REMOVED", "WickedFrenzyRemoved", 266209)
-	self:Log("SPELL_DISPEL", "WickedFrenzySoothed", "*")
-	-- Bloodsworn Defiler
-	self:Log("SPELL_CAST_START", "ShadowBoltVolley", 265487)
-	self:Log("SPELL_CAST_START", "WitheringCurse", 265433)
-	self:Log("SPELL_CAST_START", "SummonSpiritDrainTotem", 265523)
-	-- Faceless Corruptor
-	self:Log("SPELL_CAST_START", "AbyssalReach", 272592)
-	self:Log("SPELL_CAST_START", "MaddeningGaze", 272609)
+
 	-- Living Rot
 	self:Log("SPELL_AURA_APPLIED", "WaveOfDecayDamage", 278789)
 	self:Log("SPELL_PERIODIC_DAMAGE", "WaveOfDecayDamage", 278789)
 	self:Log("SPELL_PERIODIC_MISSED", "WaveOfDecayDamage", 278789)
+
+	-- Fallen Deathspeaker
+	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
+	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
+	self:Log("SPELL_AURA_APPLIED", "WickedFrenzyApplied", 266209)
+
+	-- Bloodsworn Defiler
+	self:Log("SPELL_CAST_START", "ShadowBoltVolley", 265487)
+	self:Log("SPELL_CAST_START", "WitheringCurse", 265433)
+	self:Log("SPELL_CAST_START", "SummonSpiritDrainTotem", 265523)
+
+	-- Faceless Corruptor
+	self:Log("SPELL_CAST_START", "AbyssalReach", 272592)
+	self:Log("SPELL_CAST_START", "MaddeningGaze", 272609)
 
 	if self:GetOption("custom_on_fixate_plates") then
 		self:ShowPlates()
@@ -147,6 +154,7 @@ end
 --
 
 -- Befouled Spirit
+
 function mod:DarkOmen(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "alert")
@@ -161,6 +169,7 @@ function mod:DarkOmenApplied(args)
 end
 
 -- Devout Blood Priest
+
 function mod:DarkReconstitution(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "warning")
@@ -180,12 +189,15 @@ function mod:GiftOfGhuunApplied(args)
 end
 
 -- Fetid Maggot
+
 function mod:RottenBile(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 10.1, args.sourceGUID)
 end
 
 -- Chosen Blood Matron
+
 do
 	local lastChargeTarget = nil
 	function mod:BloodHarvest(args)
@@ -215,15 +227,17 @@ function mod:Warcry(args)
 end
 
 -- Diseased Lasher
+
 function mod:DecayingMind(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 27.1, args.sourceGUID)
 end
 
 function mod:DecayingMindApplied(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("disease") then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "info", nil, args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:TargetBar(args.spellId, 30, args.destName)
 	end
 end
@@ -233,6 +247,7 @@ function mod:DecayingMindRemoved(args)
 end
 
 -- Feral Bloodswarmer
+
 do
 	local prev = 0
 	function mod:ThirstForBloodApplied(args)
@@ -247,6 +262,8 @@ do
 				self:AddPlateIcon(args.spellId, args.sourceGUID)
 			end
 		end
+		-- if this is uncommented, move to SPELL_CAST_SUCCESS
+		--self:NameplateCDBar(args.spellId, 31.6, args.sourceGUID)
 	end
 end
 
@@ -259,44 +276,56 @@ end
 function mod:SonicScreech(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+end
+
+-- Living Rot
+
+do
+	local prev = 0
+	function mod:WaveOfDecayDamage(args)
+		-- TODO on 10.1 PTR this is doing negligible damage
+		-- if that continues on live then this should not even alert
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(265668, "underyou")
+				self:PlaySound(265668, "underyou", "gtfo")
+			end
+		end
+	end
 end
 
 -- Fallen Deathspeaker
+
 function mod:RaiseDead(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:WickedFrenzy(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:WickedFrenzyApplied(args)
-	local isTank = self:Tank()
-	if isTank or self:Dispeller("enrage", true) then
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, isTank and "alarm" or "alert")
-		if isTank then
-			self:TargetBar(args.spellId, 8, args.destName)
+do
+	local prev = 0
+	function mod:WickedFrenzyApplied(args)
+		if self:Tank() or self:Dispeller("enrage", true) then
+			local t = args.time
+			-- throttle, as this applies on all nearby enemies
+			if t - prev > 1 then
+				prev = t
+				self:TargetMessage(args.spellId, "red", args.destName)
+				self:PlaySound(args.spellId, "alarm")
+			end
 		end
 	end
 end
 
-function mod:WickedFrenzyRemoved(args)
-	if self:Tank() then
-		self:StopBar(args.spellId, args.destName)
-	end
-end
-
-function mod:WickedFrenzySoothed(args)
-	if args.extraSpellId == 266209 and self:Tank() then
-		self:Message(266209, "green", CL.removed:format(args.extraSpellName))
-		self:PlaySound(266209, "info")
-	end
-end
-
 -- Bloodsworn Defiler
+
 function mod:ShadowBoltVolley(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
@@ -313,6 +342,7 @@ function mod:SummonSpiritDrainTotem(args)
 end
 
 -- Faceless Corruptor
+
 do
 	local prev = 0
 	function mod:AbyssalReach(args)
@@ -333,22 +363,6 @@ do
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
-		end
-	end
-end
-
-do
-	local prev = 0
-	function mod:WaveOfDecayDamage(args)
-		-- TODO on 10.1 PTR this is doing negligible damage
-		-- if that continues on live then this should not even alert
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 2 then
-				prev = t
-				self:PersonalMessage(265668, "underyou")
-				self:PlaySound(265668, "underyou", "gtfo")
-			end
 		end
 	end
 end
