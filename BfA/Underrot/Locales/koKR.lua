@@ -16,7 +16,7 @@ if L then
 	-- L.corruptor = "Faceless Corruptor"
 end
 
-L = BigWigs:NewBossLocale("Infested Crawg", "koKR")
+L = BigWigs:NewBossLocale("Cragmaw the Infested", "koKR")
 if L then
 	-- L.random_cast = "Charge or Indigestion"
     -- L.random_cast_desc = "The first cast after each Tantrum is random."

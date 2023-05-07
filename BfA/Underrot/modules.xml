@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Leaxa.lua"/>
-<Script file="Crawg.lua"/>
+<Script file="Cragmaw.lua"/>
 <Script file="Zancha.lua"/>
 <Script file="Abomination.lua"/>
 <Script file="Trash.lua"/>

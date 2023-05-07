@@ -16,7 +16,7 @@ if L then
 	L.corruptor = "無面墮落者"
 end
 
-L = BigWigs:NewBossLocale("Infested Crawg", "zhTW")
+L = BigWigs:NewBossLocale("Cragmaw the Infested", "zhTW")
 if L then
 	L.random_cast = "衝鋒或噴吐"
 	L.random_cast_desc = "每次暴怒後施放的第一個技能是隨機的。"

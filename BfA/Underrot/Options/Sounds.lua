@@ -6,7 +6,7 @@ BigWigs:AddSounds("Elder Leaxa", {
 	[264757] = "alarm",
 })
 
-BigWigs:AddSounds("Infested Crawg", {
+BigWigs:AddSounds("Cragmaw the Infested", {
 	[260292] = "alert",
 	[260333] = "long",
 	[260793] = "warning",

@@ -16,7 +16,7 @@ if L then
 	L.corruptor = "Безликий осквернитель"
 end
 
-L = BigWigs:NewBossLocale("Infested Crawg", "ruRU")
+L = BigWigs:NewBossLocale("Cragmaw the Infested", "ruRU")
 if L then
 	L.random_cast = "Рывок или Несварение"
 	L.random_cast_desc = "Первая способность после Припадка случайна."

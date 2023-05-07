@@ -6,7 +6,7 @@ BigWigs:AddColors("Elder Leaxa", {
 	[264757] = "yellow",
 })
 
-BigWigs:AddColors("Infested Crawg", {
+BigWigs:AddColors("Cragmaw the Infested", {
 	[260292] = "yellow",
 	[260333] = "orange",
 	[260793] = "red",
