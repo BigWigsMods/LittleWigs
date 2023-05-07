@@ -9,7 +9,7 @@ BigWigs:AddSounds("Elder Leaxa", {
 BigWigs:AddSounds("Cragmaw the Infested", {
 	[260292] = "alert",
 	[260333] = "long",
-	[260793] = "warning",
+	[260793] = "alarm",
 })
 
 BigWigs:AddSounds("Sporecaller Zancha", {

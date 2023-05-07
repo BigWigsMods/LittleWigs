@@ -9,7 +9,7 @@ BigWigs:AddColors("Elder Leaxa", {
 BigWigs:AddColors("Cragmaw the Infested", {
 	[260292] = "yellow",
 	[260333] = "orange",
-	[260793] = "red",
+	[260793] = "purple",
 })
 
 BigWigs:AddColors("Sporecaller Zancha", {

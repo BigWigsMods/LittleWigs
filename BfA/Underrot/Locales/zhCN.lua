@@ -15,9 +15,3 @@ if L then
 	L.defiler = "血誓污染者"
 	L.corruptor = "无面腐蚀者"
 end
-
-L = BigWigs:NewBossLocale("Cragmaw the Infested", "zhCN")
-if L then
-	L.random_cast = "冲锋或消化不良"
-	L.random_cast_desc = "每次发脾气之后施放的第一个技能是随机的。"
-end

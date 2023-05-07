@@ -15,9 +15,3 @@ if L then
 	L.defiler = "Corruptor Jurassangue"
 	L.corruptor = "Corruptor Sem-rosto"
 end
-
-L = BigWigs:NewBossLocale("Cragmaw the Infested", "ptBR")
-if L then
-	L.random_cast = "Investida ou Indigestão"
-	L.random_cast_desc = "A primeira conjuração de cada Birra é aleatória."
-end

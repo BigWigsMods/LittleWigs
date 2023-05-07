@@ -1,31 +1,20 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Cragmaw the Infested", 1841, 2131)
 if not mod then return end
-mod:RegisterEnableMob(131817)
-mod.engageId = 2118
-mod.respawnTime = 25
+mod:RegisterEnableMob(131817) -- Cragmaw the Infested
+mod:SetEncounterID(2118)
+mod:SetRespawnTime(25)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local randomCast = true
-local tantrumCount = 0
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.random_cast = "Charge or Indigestion"
-	L.random_cast_desc = "The first cast after each Tantrum is random."
-	L.random_cast_icon = "inv_misc_questionmark"
-end
+local chargeCount = 1
+local tantrumCount = 1
+local timeAddedToCharge = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -33,12 +22,11 @@ end
 
 function mod:GetOptions()
 	return {
-		"random_cast",
 		260292, -- Charge
 		260793, -- Indigestion
 		260333, -- Tantrum
 	}, {
-		["random_cast"] = "general",
+		[260292] = "general",
 		[260333] = "heroic",
 	}
 end
@@ -52,11 +40,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	randomCast = true
-	tantrumCount = 0
-	self:CDBar("random_cast", 8, L.random_cast, "inv_misc_questionmark") -- Charge
+	chargeCount = 1
+	tantrumCount = 1
+	timeAddedToCharge = 0
+	self:CDBar(260292, 8.2) -- Charge
+	self:CDBar(260793, 8.2) -- Indigestion
 	if not self:Normal() then
-		self:CDBar(260333, 45) -- Tantrum estimate, updated after the first Charge or Indigestion
+		self:CDBar(260333, 45.0, CL.count:format(self:SpellName(260333), tantrumCount)) -- Tantrum
 	end
 end
 
@@ -65,37 +55,60 @@ end
 --
 
 function mod:Charge(args)
+	timeAddedToCharge = 0
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert", "watchstep")
-	if randomCast then
-		randomCast = false
-		self:Bar(args.spellId, 23)
-		self:Bar(260793, 11) -- Indigestion
-		self:Bar(260333, tantrumCount == 0 and 37.6 or 34) -- Tantrum
+	chargeCount = chargeCount + 1
+	self:CDBar(args.spellId, 20.6)
+	-- minimum 10.5s before Indigestion after Charge
+	if self:BarTimeLeft(260793) < 10.5 then -- Indigestion
+		self:CDBar(260793, {10.5, 44.9})
 	end
 end
 
 function mod:Indigestion(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning", "mobsoon")
-	if randomCast then
-		randomCast = false
-		if tantrumCount == 0 then -- He'll do two charges if he hasn't tantrumed yet
-			self:Bar(260292, 12, CL.count:format(self:SpellName(260292), 1)) -- Charge
-			self:Bar(260292, 32, CL.count:format(self:SpellName(260292), 2)) -- Charge
-			self:Bar(260333, 43.6) -- Tantrum
-		else
-			self:Bar(260292, 12) -- Charge
-			self:Bar(260333, 26.7) -- Tantrum
-		end
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm", "mobsoon")
+	self:CDBar(args.spellId, 44.9)
+	-- minimum 12.15s before Charge after Indigestion
+	local chargeTimeLeft = self:BarTimeLeft(260292) -- Charge
+	if chargeTimeLeft < 12.15 then -- Charge
+		timeAddedToCharge = 12.15 - chargeTimeLeft
+		self:CDBar(260292, {12.15, 20.6})
+	end
+	-- if Indigestion is the very first ability in the fight, the first Tantrum will be delayed ~6.8s
+	if not self:Normal() and chargeCount == 1 and tantrumCount == 1 then
+		self:CDBar(260333, {43.3, 45.0}, CL.count:format(self:SpellName(260333), tantrumCount))
 	end
 end
 
 function mod:Tantrum(args)
-	self:Message(args.spellId, "orange")
+	local tantrumMessage = CL.count:format(args.spellName, tantrumCount)
+	self:StopBar(tantrumMessage)
+	self:Message(args.spellId, "orange", tantrumMessage)
 	self:PlaySound(args.spellId, "long", "mobsoon")
-	self:CDBar(args.spellId, 45) -- Estimate, updated after the next Charge or Indigestion
-	self:Bar("random_cast", 18, L.random_cast, "inv_misc_questionmark") -- Charge
-	randomCast = true
 	tantrumCount = tantrumCount + 1
+	self:CDBar(args.spellId, 44.9, CL.count:format(args.spellName, tantrumCount))
+	if self:MythicPlus() then
+		-- minimum 18.2 seconds before either ability can be cast
+		if self:BarTimeLeft(260292) < 18.2 then -- Charge
+			self:CDBar(260292, {18.2, 20.6})
+		end
+		if self:BarTimeLeft(260793) < 18.2 then -- Indigestion
+			self:CDBar(260793, {18.2, 44.9})
+		end
+	else
+		-- minimum 7.26 seconds before either ability can be cast, and
+		-- additionally 7.26s is added to the Charge timer.
+		local chargeTimeLeft = self:BarTimeLeft(260292) -- Charge
+		if chargeTimeLeft > .1 and chargeTimeLeft > timeAddedToCharge then
+			-- subtract any time added to Charge by Indigestion
+			self:CDBar(260292, {chargeTimeLeft - timeAddedToCharge + 7.26, 27.86})
+		else
+			self:CDBar(260292, {7.26, 20.6})
+		end
+		if self:BarTimeLeft(260793) < 7.26 then -- Indigestion
+			self:CDBar(260793, {7.26, 44.9})
+		end
+	end
 end

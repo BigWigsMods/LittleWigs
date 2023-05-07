@@ -15,9 +15,3 @@ if L then
 	L.defiler = "Profanatore Giurasangue"
 	L.corruptor = "Corruttore Senzavolto"
 end
-
-L = BigWigs:NewBossLocale("Cragmaw the Infested", "itIT")
-if L then
-	-- L.random_cast = "Charge or Indigestion"
-	-- L.random_cast_desc = "The first cast after each Tantrum is random."
-end

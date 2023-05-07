@@ -15,9 +15,3 @@ if L then
 	L.defiler = "Кровавый осквернитель"
 	L.corruptor = "Безликий осквернитель"
 end
-
-L = BigWigs:NewBossLocale("Cragmaw the Infested", "ruRU")
-if L then
-	L.random_cast = "Рывок или Несварение"
-	L.random_cast_desc = "Первая способность после Припадка случайна."
-end
