@@ -12,7 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local bloodMirrorCount = 0
+local bloodMirrorCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,12 +40,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	bloodMirrorCount = 0
+	bloodMirrorCount = 1
 	if not self:Normal() then
 		self:CDBar(264757, 6.2) -- Sanguine Feast
 	end
 	self:CDBar(260894, 12.2) -- Creeping Rot
-	self:CDBar(264603, 15.5, CL.count:format(self:SpellName(264603), 1)) -- Blood Mirror (1)
+	self:CDBar(264603, 15.5, CL.count:format(self:SpellName(264603), bloodMirrorCount)) -- Blood Mirror (1)
 end
 
 --------------------------------------------------------------------------------
@@ -77,17 +77,18 @@ do
 			self:PlaySound(args.spellId, "alarm", "watchstep")
 		end
 		if self:MobId(args.sourceGUID) == 131318 then -- Elder Leaxa, Effigies cast this too
-			self:Bar(args.spellId, 15.4)
+			self:CDBar(args.spellId, 15.4)
 		end
 	end
 end
 
 function mod:BloodMirror(args)
-	bloodMirrorCount = bloodMirrorCount + 1
-	self:StopBar(CL.count:format(self:SpellName(args.spellId, bloodMirrorCount)))
-	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, bloodMirrorCount))
+	local bloodMirrorMessage = CL.count:format(args.spellName, bloodMirrorCount)
+	self:StopBar(bloodMirrorMessage)
+	self:Message(args.spellId, "cyan", bloodMirrorMessage)
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 47.4, CL.count:format(self:SpellName(264603), bloodMirrorCount + 1))
+	bloodMirrorCount = bloodMirrorCount + 1
+	self:CDBar(args.spellId, 47.4, CL.count:format(args.spellName, bloodMirrorCount))
 end
 
 function mod:SanguineFeast(args)
