@@ -12,6 +12,7 @@ if L then
 	L.bloodswarmer = "狂野的群居血虱"
 	L.rot = "生命腐质"
 	L.deathspeaker = "堕落的亡语者"
+	L.grotesque_horror = "怪诞恐魔"
 	L.defiler = "血誓污染者"
 	L.corruptor = "无面腐蚀者"
 end

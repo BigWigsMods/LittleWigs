@@ -12,6 +12,7 @@ if L then
 	L.bloodswarmer = "Enxameador Sanguíneo Feral"
 	L.rot = "Putrefação Viva"
 	L.deathspeaker = "Morta-voz Caído"
+	L.grotesque_horror = "Horror Grotesco"
 	L.defiler = "Corruptor Jurassangue"
 	L.corruptor = "Corruptor Sem-rosto"
 end

@@ -12,6 +12,7 @@ if L then
 	L.bloodswarmer = "Дикий кровавый роевик"
 	L.rot = "Живая гниль"
 	L.deathspeaker = "Падший вестник смерти"
+	L.grotesque_horror = "Искаженный ужас"
 	L.defiler = "Кровавый осквернитель"
 	L.corruptor = "Безликий осквернитель"
 end

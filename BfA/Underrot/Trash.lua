@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	133835, -- Feral Bloodswarmer
 	133852, -- Living Rot
 	134284, -- Fallen Deathspeaker
+	138187, -- Grotesque Horror
 	133912, -- Bloodsworn Defiler
 	138281 -- Faceless Corruptor
 )
@@ -36,6 +37,7 @@ if L then
 	L.bloodswarmer = "Feral Bloodswarmer"
 	L.rot = "Living Rot"
 	L.deathspeaker = "Fallen Deathspeaker"
+	L.grotesque_horror = "Grotesque Horror"
 	L.defiler = "Bloodsworn Defiler"
 	L.corruptor = "Faceless Corruptor"
 end
@@ -67,6 +69,8 @@ function mod:GetOptions()
 		-- Fallen Deathspeaker
 		272183, -- Raise Dead
 		266209, -- Wicked Frenzy
+		-- Grotesque Horror
+		413044, -- Dark Echoes
 		-- Bloodsworn Defiler
 		265487, -- Shadow Bolt Volley
 		265433, -- Withering Curse
@@ -83,6 +87,7 @@ function mod:GetOptions()
 		[266107] = L.bloodswarmer,
 		[265668] = L.rot,
 		[272183] = L.deathspeaker,
+		[413044] = L.grotesque_horror,
 		[265487] = L.defiler,
 		[272592] = L.corruptor,
 	}, {
@@ -128,6 +133,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
 	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
 	self:Log("SPELL_AURA_APPLIED", "WickedFrenzyApplied", 266209)
+
+	-- Grotesque Horror
+	self:Log("SPELL_CAST_START", "DarkEchoes", 413044)
 
 	-- Bloodsworn Defiler
 	self:Log("SPELL_CAST_START", "ShadowBoltVolley", 265487)
@@ -324,21 +332,28 @@ do
 	end
 end
 
+-- Grotesque Horror
+
+function mod:DarkEchoes(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alarm")
+end
+
 -- Bloodsworn Defiler
 
 function mod:ShadowBoltVolley(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:WitheringCurse(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SummonSpiritDrainTotem(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Faceless Corruptor

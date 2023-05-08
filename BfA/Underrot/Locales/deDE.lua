@@ -12,6 +12,7 @@ if L then
 	L.bloodswarmer = "Wilder Blutschwärmer"
 	L.rot = "Lebendige Fäulnis"
 	L.deathspeaker = "Gefallener Todessprecher"
+	L.grotesque_horror = "Grotesker Schrecken"
 	L.defiler = "Blutverschworener Schänder"
 	L.corruptor = "Gesichtsloser Verderber"
 end
