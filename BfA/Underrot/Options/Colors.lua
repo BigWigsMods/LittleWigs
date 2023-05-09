@@ -22,7 +22,7 @@ BigWigs:AddColors("Sporecaller Zancha", {
 
 BigWigs:AddColors("Unbound Abomination", {
 	[269301] = {"blue","orange"},
-	[269310] = {"blue","green"},
+	[269310] = "green",
 	[269843] = "red",
 	["stages"] = "cyan",
 })

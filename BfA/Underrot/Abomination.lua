@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Unbound Abomination", 1841, 2158)
 if not mod then return end
 mod:RegisterEnableMob(133007, 134419) -- Unbound Abomination, Titan Keeper Hezrel
-mod.engageId = 2123
+mod:SetEncounterID(2123)
+mod:SetRespawnTime(20)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -24,15 +24,13 @@ function mod:GetOptions()
 		"stages",
 		{269301, "INFOBOX"}, -- Putrid Blood
 		269843, -- Vile Expulsion
-		{269310, "SAY", "ICON", "PROXIMITY"}, -- Cleansing Light
+		269310, -- Cleansing Light
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VileExpulsion", 269843)
 	self:Log("SPELL_CAST_START", "CleansingLight", 269310)
-	self:Log("SPELL_CAST_SUCCESS", "CleansingLightSuccess", 269310)
-
 	self:Log("SPELL_AURA_APPLIED", "PutridBloodApplied", 269301)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PutridBloodAppliedDose", 269301)
 	self:Log("SPELL_AURA_REMOVED", "PutridBloodRemoved", 269301)
@@ -43,8 +41,8 @@ end
 function mod:OnEngage()
 	putridBloodList = {}
 	visageRemaining = 6
-	self:Bar(269843, 8.5) -- Vile Expulsion
-	self:Bar(269310, 18) -- Cleansing Light
+	self:Bar(269843, 8.3) -- Vile Expulsion
+	self:Bar(269310, 18.0) -- Cleansing Light
 end
 
 --------------------------------------------------------------------------------
@@ -54,32 +52,17 @@ end
 function mod:VileExpulsion(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "watchwave")
-	self:Bar(args.spellId, 15.5)
+	self:Bar(args.spellId, 15.8)
 end
 
-do
-	local startTime = 0
-	local function printTarget(self, player, guid)
-		self:TargetMessage(269310, "green", player)
-		self:PlaySound(269310, "long", "runin", player)
-		local elapsed = GetTime() - startTime -- Subtract time spent scanning for the target
-		self:TargetBar(269310, 5 - elapsed, player)
-		self:SecondaryIcon(269310, player)
-		if self:Me(guid) then
-			self:Say(269310)
-			self:OpenProximity(269310, 10, nil, true)
-		else
-			self:OpenProximity(269310, 10, player, true)
-		end
-	end
-	function mod:CleansingLight(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:Bar(args.spellId, 26)
-		startTime = GetTime()
-	end
-	function mod:CleansingLightSuccess(args)
-		self:SecondaryIcon(args.spellId)
-		self:CloseProximity(args.spellId)
+function mod:CleansingLight(args)
+	-- the boss frame for Titan Keeper Hezrel was removed, so target scanning is no longer possible
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "long")
+	if self:Normal() then
+		self:CDBar(args.spellId, 16.2)
+	else
+		self:Bar(args.spellId, 17.0)
 	end
 end
 
@@ -97,7 +80,7 @@ function mod:PutridBloodAppliedDose(args)
 
 	-- 1 stack is applied every 8 seconds
 	if self:Me(args.destGUID) and args.amount >= 4 and args.amount % 2 == 0 then
-		self:StackMessageOld(args.spellId, args.destName, args.amount, "orange")
+		self:StackMessage(args.spellId, "orange", args.destName, args.amount, 10)
 		if args.amount < 9 then
 			self:PlaySound(args.spellId, "alarm")
 		else
