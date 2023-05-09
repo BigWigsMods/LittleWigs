@@ -166,6 +166,7 @@ end
 function mod:DarkOmen(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "alert")
+	-- seems not to have a CD
 end
 
 function mod:DarkOmenApplied(args)
@@ -292,8 +293,6 @@ end
 do
 	local prev = 0
 	function mod:WaveOfDecayDamage(args)
-		-- TODO on 10.1 PTR this is doing negligible damage
-		-- if that continues on live then this should not even alert
 		if self:Me(args.destGUID) then
 			local t = args.time
 			if t - prev > 2 then
@@ -308,6 +307,7 @@ end
 -- Fallen Deathspeaker
 
 function mod:RaiseDead(args)
+	-- only cast in non-Mythic
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
@@ -315,6 +315,7 @@ end
 function mod:WickedFrenzy(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
 end
 
 do
@@ -337,6 +338,7 @@ end
 function mod:DarkEchoes(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Bloodsworn Defiler
@@ -344,16 +346,19 @@ end
 function mod:ShadowBoltVolley(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 29.1, args.sourceGUID)
 end
 
 function mod:WitheringCurse(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
 end
 
 function mod:SummonSpiritDrainTotem(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
+	--self:NameplateCDBar(args.spellId, 35.2, args.sourceGUID)
 end
 
 -- Faceless Corruptor
@@ -362,11 +367,12 @@ do
 	local prev = 0
 	function mod:AbyssalReach(args)
 		local t = args.time
-		if t-prev > 1.5 then
+		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "cyan")
 			self:PlaySound(args.spellId, "long")
 		end
+		--self:NameplateCDBar(args.spellId, 16.2, args.sourceGUID)
 	end
 end
 
@@ -374,10 +380,11 @@ do
 	local prev = 0
 	function mod:MaddeningGaze(args)
 		local t = args.time
-		if t-prev > 1.5 then
+		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 	end
 end
