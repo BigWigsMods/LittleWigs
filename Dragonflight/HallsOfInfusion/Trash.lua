@@ -198,6 +198,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AqueousBarrier", 377402)
 	self:Log("SPELL_AURA_APPLIED", "AqueousBarrierApplied", 377402)
 	self:Log("SPELL_CAST_START", "FlashFlood", 390290)
+	self:Death("InfuserSariyaDeath", 190405)
 end
 
 --------------------------------------------------------------------------------
@@ -419,7 +420,7 @@ end
 function mod:RefreshingTides(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	--self:CDBar(args.spellId, 30.3)
+	--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
 end
 
 -- Gusting Proto-Dragon
@@ -445,13 +446,13 @@ end
 function mod:OceanicBreath(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	--self:Bar(args.spellId, 18.2)
+	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
 
 function mod:DeepChill(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	--self:Bar(args.spellId, 32.8)
+	--self:NameplateCDBar(args.spellId, 32.8, args.sourceGUID)
 end
 
 -- Subterranean Proto-Dragon
@@ -502,4 +503,9 @@ function mod:FlashFlood(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 23.1)
+end
+
+function mod:InfuserSariyaDeath(args)
+	self:StopBar(377402) -- Aqueous Barrier
+	self:StopBar(390290) -- Flash Flood
 end
