@@ -119,7 +119,7 @@ function mod:RevitalizingBrew(args)
 end
 
 function mod:AzeritePowderShot(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 10.9)
 end
