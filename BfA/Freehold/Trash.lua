@@ -222,7 +222,7 @@ end
 -- Irontide Enforcer
 
 function mod:BrutalBackhand(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end

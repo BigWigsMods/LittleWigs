@@ -42,7 +42,7 @@ BigWigs:AddColors("Harlan Sweete", {
 BigWigs:AddColors("Freehold Trash", {
 	[257272] = {"blue","yellow"},
 	[257397] = {"red","yellow"},
-	[257426] = "purple",
+	[257426] = "orange",
 	[257436] = "blue",
 	[257732] = "red",
 	[257736] = "orange",
