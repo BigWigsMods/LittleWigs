@@ -27,6 +27,7 @@ BigWigs:AddSounds("Ring of Booty", {
 	[256363] = "alert",
 	[256405] = "warning",
 	[256489] = "info",
+	[256552] = "underyou",
 	[257829] = "info",
 	[257904] = "alert",
 })

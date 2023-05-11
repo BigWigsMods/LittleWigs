@@ -27,6 +27,7 @@ BigWigs:AddColors("Ring of Booty", {
 	[256363] = {"blue","orange"},
 	[256405] = "red",
 	[256489] = "cyan",
+	[256552] = "blue",
 	[257829] = {"blue","cyan","green"},
 	[257904] = "yellow",
 })

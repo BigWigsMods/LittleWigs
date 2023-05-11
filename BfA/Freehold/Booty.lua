@@ -58,6 +58,7 @@ function mod:GetOptions()
 		-- Trothak
 		256405, -- Shark Tornado
 		{256358, "SAY"}, -- Shark Toss
+		256552, -- Flailing Shark
 		256489, -- Rearm
 		256363, -- Ripper Punch
 	}, {
@@ -84,6 +85,8 @@ function mod:OnBossEnable()
 	-- Trothak
 	self:Log("SPELL_CAST_START", "SharkTornado", 256405)
 	self:Log("SPELL_CAST_SUCCESS", "SharkToss", 256358, 256477) -- Boss cast, Shark cast
+	self:Log("SPELL_DAMAGE", "FlailingSharkDamage", 256552)
+	self:Log("SPELL_MISSED", "FlailingSharkDamage", 256552)
 	self:Log("SPELL_CAST_START", "Rearm", 256489, 256494) -- Left, Right
 	self:Log("SPELL_CAST_SUCCESS", "RipperPunch", 256363)
 end
@@ -200,6 +203,20 @@ do
 				self:CDBar(256358, 19.5, L.left:format(args.spellName))
 			else -- 129359, Sawtooth Shark (Right)
 				self:CDBar(256358, 19.5, L.right:format(args.spellName))
+			end
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:FlailingSharkDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "near")
+				self:PlaySound(args.spellId, "underyou")
 			end
 		end
 	end
