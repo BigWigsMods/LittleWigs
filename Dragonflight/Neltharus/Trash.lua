@@ -51,6 +51,7 @@ function mod:GetOptions()
 	return {
 		-- Qalashi Warden
 		382708, -- Volcanic Guard
+		{384597, "TANK_HEALER"}, -- Blazing Slash
 		-- Qalashi Hunter
 		372561, -- Binding Spear
 		-- Overseer Lahar
@@ -101,6 +102,7 @@ function mod:OnBossEnable()
 
 	-- Qalashi Warden
 	self:Log("SPELL_CAST_START", "VolcanicGuard", 382708)
+	self:Log("SPELL_CAST_START", "BlazingSlash", 384597)
 
 	-- Qalashi Hunter
 	self:Log("SPELL_CAST_START", "BindingSpear", 372561)
@@ -109,6 +111,7 @@ function mod:OnBossEnable()
 	-- Overseer Lahar
 	self:Log("SPELL_CAST_START", "BurningRoar", 395427)
 	self:Log("SPELL_CAST_START", "EruptiveCrush", 376186)
+	self:Death("OverseerLaharDeath", 189235)
 
 	-- Qalashi Trainee
 	self:Log("SPELL_CAST_START", "MagmaFist", 372311)
@@ -165,6 +168,22 @@ end
 function mod:VolcanicGuard(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:BlazingSlash(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+		-- technically outrangeable if you're fast and it won't go on CD unless it hits, so 
+		-- if this is uncommented it should probably be moved to SUCCESS.
+		--self:NameplateCDBar(args.spellId, 13.4, args.sourceGUID)
+	end
 end
 
 -- Qalashi Hunter
@@ -192,11 +211,18 @@ end
 function mod:BurningRoar(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 20.6)
 end
 
 function mod:EruptiveCrush(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 20.6)
+end
+
+function mod:OverseerLaharDeath(args)
+	self:StopBar(395427) -- Burning Roar
+	self:StopBar(376186) -- Eruptive Crush
 end
 
 -- Qalashi Trainee
@@ -269,13 +295,13 @@ end
 function mod:ConflagrantBattery(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 23.1)
+	self:CDBar(args.spellId, 23.1)
 end
 
 function mod:ScorchingFusillade(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 23.1)
+	self:CDBar(args.spellId, 23.1)
 end
 
 function mod:IrontorchCommanderDeath(args)

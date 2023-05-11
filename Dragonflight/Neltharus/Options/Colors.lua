@@ -49,5 +49,6 @@ BigWigs:AddColors("Neltharus Trash", {
 	[382708] = "orange",
 	[383651] = "yellow",
 	[384161] = {"blue","red","yellow"},
+	[384597] = "purple",
 	[395427] = "red",
 })

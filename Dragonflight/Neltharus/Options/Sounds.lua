@@ -49,5 +49,6 @@ BigWigs:AddSounds("Neltharus Trash", {
 	[382708] = "alarm",
 	[383651] = "alert",
 	[384161] = "alert",
+	[384597] = "alert",
 	[395427] = "warning",
 })
