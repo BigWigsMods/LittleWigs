@@ -224,7 +224,8 @@ do
 end
 
 function mod:RipperPunch(args)
-	if self:Me(args.destGUID) or self:Healer() then
+	-- this can target pets, don't alert in that case
+	if self:Me(args.destGUID) or (self:Healer() and self:Player(args.destFlags)) then
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
