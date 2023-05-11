@@ -73,6 +73,7 @@ function mod:GetOptions()
 		374045, -- Expulse
 		-- Refti Defender
 		374339, -- Demoralizing Shout
+		393432, -- Spear Flurry
 		-- Dazzling Dragonfly
 		374563, -- Dazzle
 		-- Curious Swoglet
@@ -89,7 +90,7 @@ function mod:GetOptions()
 		-- Primalist Earthshaker
 		375384, -- Rumbling Earth
 		-- Primalist Galesinger
-		{385141, "SAY"}, -- Thunderstorm
+		385141, -- Thunderstorm
 		-- Primalist Icecaller
 		376171, -- Refreshing Tides
 		-- Gusting Proto-Dragon
@@ -146,6 +147,7 @@ function mod:OnBossEnable()
 
 	-- Refti Defender
 	self:Log("SPELL_CAST_START", "DemoralizingShout", 374339)
+	self:Log("SPELL_CAST_START", "SpearFlurry", 393432)
 
 	-- Dazzling Dragonfly
 	self:Log("SPELL_CAST_START", "Dazzle", 374563)
@@ -287,6 +289,18 @@ do
 			prev = t
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:SpearFlurry(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 end
