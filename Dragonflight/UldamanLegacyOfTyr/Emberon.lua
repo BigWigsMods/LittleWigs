@@ -13,9 +13,12 @@ mod:SetStage(1)
 -- Locals
 --
 
+local purgingFlamesDisabled = false
 local purgingFlamesActive = false
 local unstableEmbersRemaining = 4
 local searingClapRemaining = 2
+local nextUnstableEmbers = 0
+local nextSearingClap = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -31,6 +34,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "PurgingFlames", 368990)
 	self:Log("SPELL_AURA_REMOVED", "PurgingFlamesRemoved", 368990)
@@ -41,9 +45,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	purgingFlamesDisabled = false
 	purgingFlamesActive = false
 	unstableEmbersRemaining = 2
 	searingClapRemaining = 2
+	nextUnstableEmbers = 0
+	nextSearingClap = 0
 	self:SetStage(1)
 	self:CDBar(369061, 4.5) -- Searing Clap
 	self:CDBar(369110, 12.1) -- Unstable Embers
@@ -55,19 +62,38 @@ end
 -- Event Handlers
 --
 
+function mod:UNIT_HEALTH(event, unit)
+	-- Emberon won't cast Purging Flames below 10%, but he also resumes
+	-- casting his other abilities which are normally limited.
+	if self:GetHealth(unit) < 10 then
+		purgingFlamesDisabled = true
+		self:UnregisterUnitEvent(event, unit)
+		self:StopBar(368990) -- Purging Flames
+		-- resume timers for Unstable Embers and Searing Clap
+		local t = GetTime()
+		local unstableEmbersTimer = nextUnstableEmbers - t
+		if unstableEmbersTimer > 0 then
+			self:CDBar(369110, {unstableEmbersTimer, 11.7}) -- Unstable Embers
+		end
+		local searingClapTimer = nextSearingClap - t
+		if searingClapTimer > 0 then
+			self:CDBar(369061, {searingClapTimer, 23.0}) -- Searing Clap
+		end
+	end
+end
+
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 369022 then -- Purging Flames
 		-- this is cast when the boss runs to the center, we can clean up extra
 		-- timers for skipped abilities a little early
+		nextUnstableEmbers = 0
+		nextSearingClap = 0
 		self:StopBar(369110) -- Unstable Embers
 		self:StopBar(369061) -- Searing Clap
 	end
 end
 
 function mod:PurgingFlames(args)
-	-- TODO Emberon won't cast Purging Flames below a certain % HP,
-	-- figure out what that % is and fix up timers when it's hit.
-	-- he also resumes casting his other abilities which are normally limited
 	purgingFlamesActive = true
 	self:SetStage(2)
 	self:StopBar(args.spellId)
@@ -99,10 +125,12 @@ do
 			self:SetStage(1)
 			self:Message(368990, "cyan", CL.over:format(self:SpellName(368990))) -- Purging Flames Over
 			self:PlaySound(368990, "long")
-			self:CDBar(369110, 3.6) -- Unstable Embers
-			self:CDBar(369061, 6.2) -- Searing Clap
-			-- 35s energy gain + ~2.7s delay
-			self:CDBar(368990, 37.7) -- Purging Flames
+			self:CDBar(369110, 1.8) -- Unstable Embers
+			self:CDBar(369061, 5.4) -- Searing Clap
+			if not purgingFlamesDisabled then
+				-- 35s energy gain + ~2.7s delay
+				self:CDBar(368990, 37.7) -- Purging Flames
+			end
 		else
 			self:Message(args.spellId, "green", CL.add_killed:format(addsKilled, addsNeeded))
 			self:PlaySound(args.spellId, "info")
@@ -114,9 +142,10 @@ function mod:UnstableEmbers(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	unstableEmbersRemaining = unstableEmbersRemaining - 1
-	if unstableEmbersRemaining > 0 then
+	if purgingFlamesDisabled or unstableEmbersRemaining > 0 then
 		self:CDBar(args.spellId, 11.7)
 	else
+		nextUnstableEmbers = GetTime() + 11.7
 		self:StopBar(args.spellId)
 	end
 end
@@ -125,9 +154,10 @@ function mod:SearingClap(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	searingClapRemaining = searingClapRemaining - 1
-	if searingClapRemaining > 0 then
+	if purgingFlamesDisabled or searingClapRemaining > 0 then
 		self:CDBar(args.spellId, 23.0)
 	else
+		nextSearingClap = GetTime() + 23.0
 		self:StopBar(args.spellId)
 	end
 end
