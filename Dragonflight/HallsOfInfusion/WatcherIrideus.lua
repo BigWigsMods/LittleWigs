@@ -96,7 +96,7 @@ end
 
 function mod:SparkVolley(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "long")
 	self:Bar(args.spellId, 31.5)
 end
 
@@ -120,6 +120,10 @@ function mod:UNIT_HEALTH(event, unit)
 		self:UnregisterUnitEvent(event, unit)
 		self:Message(383840, "cyan", CL.soon:format(self:SpellName(383840))) -- Ablative Barrier Soon
 		self:PlaySound(383840, "info")
+		self:StopBar(384524) -- Titanic Fist
+		self:StopBar(384014) -- Static Surge
+		self:StopBar(389179) -- Power Overload
+		self:StopBar(384351) -- Spark Volley
 	end
 end
 
@@ -139,7 +143,7 @@ do
 
 	function mod:AblativeBarrierRemovedDose(args)
 		self:Message(args.spellId, "yellow", L.stacks_left:format(args.spellName, args.amount, 3))
-		self:PlaySound(args.spellId, "info")
+		-- no sound, gets spammy combined with AblativeBarrierRemoved
 	end
 
 	function mod:AblativeBarrierRemoved(args)
@@ -154,7 +158,15 @@ do
 	end
 end
 
-function mod:NullifyingPulse(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:NullifyingPulse(args)
+		self:Message(args.spellId, "red")
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			-- throttle sound to avoid spam
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
