@@ -179,6 +179,7 @@ function mod:OnBossEnable()
 	-- Stinkbreath
 	self:Log("SPELL_CAST_START", "StinkBreath", 388060)
 	self:Log("SPELL_CAST_START", "ViolentWhirlwind", 388046)
+	self:Death("StinkbreathDeath", 187033)
 
 	-- Rageclaw
 	self:Log("SPELL_CAST_START", "BloodthirstyCharge", 385832)
@@ -366,11 +367,18 @@ end
 function mod:StinkBreath(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:ViolentWhirlwind(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 23.1)
+end
+
+function mod:StinkbreathDeath(args)
+	self:StopBar(388060) -- Stink Breath
+	self:StopBar(388046) -- Violent Whirlwind
 end
 
 -- Rageclaw
