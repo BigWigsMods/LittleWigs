@@ -75,7 +75,6 @@ function mod:OnBossEnable()
 	-- 392258 Seismic Boots
 	self:Log("SPELL_AURA_APPLIED", "MagicalImplementsPickedUp", 376762, 384595, 392164, 392170, 392258)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfTheDragonHoardApplied", 391762)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "CurseOfTheDragonHoardApplied", 391762)
 end
 
 function mod:OnEngage()
@@ -140,6 +139,7 @@ do
 end
 
 function mod:BurningEmber(args)
+	self:StopBar(377477)
 	burningEmberRemaining = burningEmberRemaining - 1
 	self:Message(377477, "yellow")
 	self:PlaySound(377477, "alert")
@@ -208,9 +208,8 @@ function mod:MagicalImplementsPickedUp(args)
 end
 
 function mod:CurseOfTheDragonHoardApplied(args)
-	local stacks = args.amount or 1
-	if stacks % 2 == 1 and (self:Me(args.destGUID) or self:Dispeller("curse", false, args.spellId)) then
-		self:StackMessage(args.spellId, "orange", args.destName, stacks, 3)
+	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
