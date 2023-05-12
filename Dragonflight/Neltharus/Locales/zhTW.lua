@@ -1,6 +1,9 @@
 local L = BigWigs:NewBossLocale("Neltharus Trash", "zhTW")
 if not L then return end
 if L then
+	L.custom_on_autotalk = "自动对话"
+	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+
 	--L.qalashi_warden = "Qalashi Warden"
 	--L.qalashi_hunter = "Qalashi Hunter"
 	--L.overseer_lahar = "Overseer Lahar"

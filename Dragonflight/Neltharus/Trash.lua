@@ -12,10 +12,12 @@ mod:RegisterEnableMob(
 	189235, -- Overseer Lahar
 	189266, -- Qalashi Trainee
 	189265, -- Qalashi Bonetender
+	189219, -- Qalashi Goulash
 	189464, -- Qalashi Irontorch
 	189472, -- Qalashi Lavabearer
 	189466, -- Irontorch Commander
 	194816, -- Forgewrought Monstrosity
+	189786, -- Blazing Aegis
 	192786, -- Qalashi Plunderer
 	192788, -- Qalashi Thaumaturge
 	193291, -- Apex Blazewing
@@ -28,6 +30,9 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+
 	L.qalashi_warden = "Qalashi Warden"
 	L.qalashi_hunter = "Qalashi Hunter"
 	L.overseer_lahar = "Overseer Lahar"
@@ -49,6 +54,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- General
+		"custom_on_autotalk",
 		-- Qalashi Warden
 		382708, -- Volcanic Guard
 		{384597, "TANK_HEALER"}, -- Blazing Slash
@@ -80,6 +87,7 @@ function mod:GetOptions()
 		-- Qalashi Lavamancer
 		383651, -- Molten Army
 	}, {
+		["custom_on_autotalk"] = CL.general,
 		[382708] = L.qalashi_warden,
 		[372561] = L.qalashi_hunter,
 		[395427] = L.overseer_lahar,
@@ -98,6 +106,7 @@ end
 
 function mod:OnBossEnable()
 	-- General
+	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "ThrowExperimentalConcoction", 376169)
 
 	-- Qalashi Warden
@@ -153,6 +162,22 @@ end
 --
 
 -- General
+
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_on_autotalk") then
+		if self:GetGossipID(55886) then
+			-- Qalashi Goulash (gives Qalashi Goulash buff, three-use extra action button)
+			-- give entire party an ability to increase movement speed until next combat
+			-- requires 25 skill in Dragon Isles Cooking
+			self:SelectGossipID(55886)
+		elseif self:GetGossipID(107310) then
+			-- Blazing Aegis (gives Blazing Aegis buff, one-use extra action button)
+			-- gives the Blacksmith an ability which does damage
+			-- requires 25 skill in Dragon Isles Blacksmithing
+			self:SelectGossipID(107310)
+		end
+	end
+end
 
 function mod:ThrowExperimentalConcoction(args)
 	-- Magmatusk warmup

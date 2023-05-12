@@ -1,6 +1,9 @@
 local L = BigWigs:NewBossLocale("Neltharus Trash", "koKR")
 if not L then return end
 if L then
+	L.custom_on_autotalk = "자동 대화"
+	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+
 	L.qalashi_warden = "칼라시 감시관"
 	L.qalashi_hunter = "칼라시 사냥꾼"
 	L.overseer_lahar = "감독관 라하르"
