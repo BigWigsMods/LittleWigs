@@ -43,7 +43,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(377559, 5.7) -- Vine Whip
+	self:CDBar(377559, 5.0) -- Vine Whip
 	self:CDBar(376811, 12.1) -- Decay Spray
 	self:CDBar(376934, 15.7) -- Grasping Vines
 	self:CDBar(377859, 26.2) -- Infectious Spit
@@ -59,6 +59,16 @@ function mod:GraspingVines(args)
 	if not self:Mythic() then
 		-- there are more reliable ways to trigger this in Mythic
 		self:CDBar(args.spellId, 41.3)
+	end
+	-- takes 10s to fully cast + .2 delay
+	if self:BarTimeLeft(376811) < 10.2 then -- Decay Spray
+		self:CDBar(376811, {10.2, 20.6})
+	end
+	if self:BarTimeLeft(377859) < 10 then -- Infectious Spit
+		self:CDBar(377859, {10.2, 20.6})
+	end
+	if self:BarTimeLeft(377559) < 10 then -- Vine Whip
+		self:CDBar(377559, {10.2, 13.3})
 	end
 end
 
