@@ -37,6 +37,7 @@ BigWigs:AddColors("Harlan Sweete", {
 	[257305] = {"blue","orange"},
 	[257314] = {"blue","yellow"},
 	[257316] = "red",
+	[413136] = {"blue","yellow"},
 	["stages"] = "cyan",
 })
 

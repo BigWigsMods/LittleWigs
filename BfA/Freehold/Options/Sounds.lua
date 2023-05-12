@@ -37,6 +37,7 @@ BigWigs:AddSounds("Harlan Sweete", {
 	[257305] = "alarm",
 	[257314] = {"alert","warning"},
 	[257316] = "info",
+	[413136] = "alert",
 	["stages"] = "long",
 })
 

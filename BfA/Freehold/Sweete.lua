@@ -18,6 +18,7 @@ function mod:GetOptions()
 		"stages", -- Loaded Dice
 		257278, -- Swiftwind Saber
 		{257305, "SAY"}, -- Cannon Barrage
+		413136, -- Whirling Dagger
 		257316, -- Avast, ye!
 		{257314, "SAY", "FLASH"}, -- Black Powder Bomb
 	}, nil, {
@@ -31,6 +32,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "LoadedDiceManOWar", 257458)
 	self:Log("SPELL_CAST_START", "SwiftwindSaber", 413147, 413145) -- Regular version, All Hands version
 	self:Log("SPELL_AURA_APPLIED", "CannonBarrage", 257305)
+	self:Log("SPELL_CAST_START", "WhirlingDagger", 413131, 413136) -- Regular version, All Hands version
 	self:Log("SPELL_CAST_SUCCESS", "AvastYe", 257316)
 	self:Log("SPELL_AURA_APPLIED", "BlackPowderBomb", 257314)
 end
@@ -38,6 +40,7 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(257278, 10.9) -- Swiftwind Saber
+	self:CDBar(413136, 14.1) -- Whirling Dagger
 	self:CDBar(257305, 20.6) -- Cannon Barrage
 	self:CDBar(257316, 31.9, CL.next_add) -- Avast, ye!
 end
@@ -51,6 +54,7 @@ function mod:LoadedDiceAllHands(args)
 	self:Message("stages", "cyan", CL.percent:format(60, args.spellName), args.spellId)
 	self:PlaySound("stages", "long", "stage")
 	self:Bar(257278, 10.9) -- Swiftwind Saber
+	self:Bar(413136, 14.6) -- Whirling Dagger
 	self:Bar(257305, 15.8) -- Cannon Barrage
 	self:CDBar(257316, 21.9, CL.next_add) -- Avast, ye!
 end
@@ -60,6 +64,7 @@ function mod:LoadedDiceManOWar(args)
 	self:Message("stages", "cyan", CL.percent:format(30, args.spellName), args.spellId)
 	self:PlaySound("stages", "long", "stage")
 	self:Bar(257278, 10.9) -- Swiftwind Saber
+	self:Bar(413136, 14.6) -- Whirling Dagger
 	self:Bar(257305, 15.8) -- Cannon Barrage
 	self:CDBar(257316, 21.9, CL.next_add) -- Avast, ye!
 end
@@ -100,6 +105,31 @@ do
 			else -- Stage 3
 				self:CDBar(args.spellId, 15.8)
 			end
+		end
+	end
+end
+
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) or self:Healer() then
+			self:TargetMessage(413136, "yellow", name)
+			self:PlaySound(413136, "alert", nil, name)
+		end
+	end
+
+	function mod:WhirlingDagger(args)
+		if args.spellId == 413131 then -- Stage 1
+			-- just applies the debuff to the targeted player in stage 1
+			self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		else -- 413136, Stage 2, 3
+			-- this chains to other players in stage 2 and 3 so target scanning isn't useful
+			self:Message(413136, "yellow")
+			self:PlaySound(413136, "alert")
+		end
+		if self:GetStage() ~= 3 then -- Stage 1, 2
+			self:CDBar(413136, 17.6)
+		else -- Stage 3
+			self:CDBar(413136, 13.4)
 		end
 	end
 end
