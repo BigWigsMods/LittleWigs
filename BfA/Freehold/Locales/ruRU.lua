@@ -46,6 +46,6 @@ if L then
 	L.ludwig = "Людвиг фон Тортоллен"
 	L.trothak = "Тротак"
 
-	--L.left = "%s (Left)"
-	--L.right = "%s (Right)"
+	L.left = "%s (Левая)"
+	L.right = "%s (Правая)"
 end

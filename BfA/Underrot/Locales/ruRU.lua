@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Underrot Trash", "ruRU")
 if not L then return end
 if L then
-	-- L.custom_on_fixate_plates = "Thirst For Blood icon on Enemy Nameplate"
-	-- L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+	L.custom_on_fixate_plates = "Иконка преследования на вражеской полосе здоровья"
+	L.custom_on_fixate_plates_desc = "Показывать иконку преследования на полоске здоровья врага."
 
 	L.spirit = "Оскверненный дух"
 	L.priest = "Преданная жрица крови"
