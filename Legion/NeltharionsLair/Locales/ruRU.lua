@@ -25,5 +25,5 @@ end
 
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "ruRU")
 if L then
-	--L.totems = "Totems"
+	L.totems = "Тотемы"
 end
