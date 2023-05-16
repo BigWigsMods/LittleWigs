@@ -10,6 +10,7 @@ if L then
 	L.bonebolt_hunter = "骨箭猎手"
 	L.bracken_warscourge = "蕨斑战灾者"
 	L.brackenhide_shaper = "蕨皮塑形者"
+	L.fishface = "鱼脸"
 	L.decayed_elder = "腐朽老树"
 	L.wilted_oak = "萎蔫橡树"
 	L.fetid_rotsinger = "腐臭的颂朽者"

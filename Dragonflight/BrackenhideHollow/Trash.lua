@@ -12,6 +12,7 @@ mod:RegisterEnableMob(
 	185534, -- Bonebolt Hunter
 	185529, -- Bracken Warscourge
 	186220, -- Brackenhide Shaper
+	191926, -- Fishface
 	189531, -- Decayed Elder
 	186229, -- Wilted Oak
 	186226, -- Fetid Rotsinger
@@ -44,6 +45,7 @@ if L then
 	L.bonebolt_hunter = "Bonebolt Hunter"
 	L.bracken_warscourge = "Bracken Warscourge"
 	L.brackenhide_shaper = "Brackenhide Shaper"
+	L.fishface = "Fishface"
 	L.decayed_elder = "Decayed Elder"
 	L.wilted_oak = "Wilted Oak"
 	L.fetid_rotsinger = "Fetid Rotsinger"
@@ -80,6 +82,9 @@ function mod:GetOptions()
 		382555, -- Ragestorm
 		-- Brackenhide Shaper
 		372711, -- Infuse Corruption
+		-- Fishface
+		384854, -- Fish Slap!
+		384847, -- Fresh Catch
 		-- Decayed Elder
 		373897, -- Decaying Roots
 		-- Wilted Oak
@@ -115,6 +120,7 @@ function mod:GetOptions()
 		[368287] = L.bonebolt_hunter,
 		[367500] = L.bracken_warscourge,
 		[372711] = L.brackenhide_shaper,
+		[384854] = L.fishface,
 		[373897] = L.decayed_elder,
 		[373943] = L.wilted_oak,
 		[374057] = L.fetid_rotsinger,
@@ -159,6 +165,10 @@ function mod:OnBossEnable()
 
 	-- Brackenhide Shaper
 	self:Log("SPELL_CAST_SUCCESS", "InfuseCorruption", 372711)
+
+	-- Fishface
+	self:Log("SPELL_CAST_START", "FishSlap", 384854)
+	self:Log("SPELL_CAST_START", "FreshCatch", 384847)
 
 	-- Decayed Elder
 	self:Log("SPELL_CAST_START", "DecayingRoots", 373897)
@@ -307,6 +317,20 @@ end
 function mod:InfuseCorruption(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Fishface
+
+function mod:FishSlap(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+end
+
+function mod:FreshCatch(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 end
 
 -- Decayed Elder

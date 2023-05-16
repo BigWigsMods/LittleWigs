@@ -10,6 +10,7 @@ if L then
 	--L.bonebolt_hunter = "Bonebolt Hunter"
 	--L.bracken_warscourge = "Bracken Warscourge"
 	--L.brackenhide_shaper = "Brackenhide Shaper"
+	--L.fishface = "Fishface"
 	--L.decayed_elder = "Decayed Elder"
 	--L.wilted_oak = "Wilted Oak"
 	--L.fetid_rotsinger = "Fetid Rotsinger"

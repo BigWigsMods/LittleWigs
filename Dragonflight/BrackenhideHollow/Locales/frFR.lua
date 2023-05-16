@@ -10,6 +10,7 @@ if L then
 	L.bonebolt_hunter = "Chasseur flèche-d'os"
 	L.bracken_warscourge = "Fléau-de-guerre des fougères"
 	L.brackenhide_shaper = "Façonneuse fougerobe"
+	L.fishface = "Face-de-Rascasse"
 	L.decayed_elder = "Ancien putréfié"
 	L.wilted_oak = "Chêne flétri"
 	L.fetid_rotsinger = "Chante-pourriture fétide"

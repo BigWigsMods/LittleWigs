@@ -10,6 +10,7 @@ if L then
 	L.bonebolt_hunter = "Caçador Raiosso"
 	L.bracken_warscourge = "Flagelo de Guerra das Samambaias"
 	L.brackenhide_shaper = "Moldadora de Courambaia"
+	L.fishface = "Cara-de-peixe"
 	L.decayed_elder = "Ancião Decomposto"
 	L.wilted_oak = "Carvalho Murcho"
 	L.fetid_rotsinger = "Cantapodre Fétida"

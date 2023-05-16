@@ -53,6 +53,8 @@ BigWigs:AddColors("Brackenhide Hollow Trash", {
 	[382712] = "red",
 	[383087] = {"blue","orange","yellow"},
 	[383399] = {"blue","yellow"},
+	[384847] = "yellow",
+	[384854] = "orange",
 	[384974] = {"blue","red"},
 	[385029] = "yellow",
 	[385058] = {"blue","yellow"},

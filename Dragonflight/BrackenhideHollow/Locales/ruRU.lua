@@ -10,6 +10,7 @@ if L then
 	L.bonebolt_hunter = "Охотник-костестрел"
 	L.bracken_warscourge = "Бурая бичевательница"
 	L.brackenhide_shaper = "Бурошкур-заклинательница"
+	L.fishface = "Рыбоморд"
 	L.decayed_elder = "Разложившийся старый древень"
 	L.wilted_oak = "Увядший дуб"
 	L.fetid_rotsinger = "Зловонная певица гнили"

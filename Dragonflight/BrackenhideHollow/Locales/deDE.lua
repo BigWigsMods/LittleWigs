@@ -10,6 +10,7 @@ if L then
 	L.bonebolt_hunter = "Knochengeschossjäger"
 	L.bracken_warscourge = "Brackenkriegsgeißel"
 	L.brackenhide_shaper = "Formerin von Brackenfell"
+	L.fishface = "Fischgesicht"
 	L.decayed_elder = "Verrotteter Ältester"
 	L.wilted_oak = "Welke Eiche"
 	L.fetid_rotsinger = "Stinkende Fäulnissängerin"

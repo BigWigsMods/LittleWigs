@@ -10,6 +10,7 @@ if L then
 	L.bonebolt_hunter = "뼈화살 사냥꾼"
 	L.bracken_warscourge = "담쟁이 전쟁파멸자"
 	L.brackenhide_shaper = "담쟁이가죽 구체자"
+	L.fishface = "생선얼굴"
 	L.decayed_elder = "부패한 장로"
 	L.wilted_oak = "시들어버린 떡갈나무"
 	L.fetid_rotsinger = "악취 나는 부패노래꾼"
