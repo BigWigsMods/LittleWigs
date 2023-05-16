@@ -33,15 +33,15 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RazorShards", 188169)
 	self:Log("SPELL_CAST_START", "Shatter", 188114)
-
 	self:Log("SPELL_AURA_APPLIED", "ChokingDustDamage", 192800)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ChokingDustDamage", 192800)
 	self:Log("SPELL_PERIODIC_MISSED", "ChokingDustDamage", 192800)
 end
 
 function mod:OnEngage()
-	self:Bar(188114, 20.4) -- Shatter
-	self:Bar(188169, 25.3) -- Razor Shards
+	-- cast at 100 energy, 20s energy gain + ~.4s delay
+	self:CDBar(188114, 20.4) -- Shatter
+	self:CDBar(188169, 25.3) -- Razor Shards
 end
 
 --------------------------------------------------------------------------------
@@ -64,17 +64,18 @@ function mod:RazorShards(args)
 	self:CDBar(args.spellId, 29.1) -- pull:25.6, 29.2, 29.2, 29.2, 34.1
 	-- correct timers
 	if self:BarTimeLeft(188114) < 4.87 then -- Shatter
-		self:Bar(188114, {4.87, 24.3})
+		self:CDBar(188114, {4.87, 24.3})
 	end
 end
 
 function mod:Shatter(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 24.3) -- pull:20.7, 24.4, 24.3, 24.4, 24.3
+	-- cast at 100 energy, 20s energy gain + 4.3s cast
+	self:CDBar(args.spellId, 24.3) -- pull:20.7, 24.4, 24.3, 24.4, 24.3
 	-- correct timers
 	if self:BarTimeLeft(188169) < 4.87 then -- Razor Shards
-		self:Bar(188169, {4.87, 29.1})
+		self:CDBar(188169, {4.87, 29.1})
 	end
 end
 
