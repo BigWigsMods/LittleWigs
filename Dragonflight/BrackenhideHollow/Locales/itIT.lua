@@ -13,6 +13,7 @@ if L then
 	L.decayed_elder = "Anziano Decaduto"
 	L.wilted_oak = "Quercia Appassita"
 	L.fetid_rotsinger = "Cantamarcio Fetida"
+	L.decay_totem = "Totem del Decadimento"
 	L.monstrous_decay = "Decadimento Mostruoso"
 	L.infected_bear = "Orso Infetto"
 	L.stinkbreath = "Puzzosoffio"

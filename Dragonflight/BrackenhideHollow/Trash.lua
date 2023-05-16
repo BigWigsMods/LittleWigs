@@ -47,6 +47,7 @@ if L then
 	L.decayed_elder = "Decayed Elder"
 	L.wilted_oak = "Wilted Oak"
 	L.fetid_rotsinger = "Fetid Rotsinger"
+	L.decay_totem = "Decay Totem"
 	L.monstrous_decay = "Monstrous Decay"
 	L.infected_bear = "Infected Bear"
 	L.stinkbreath = "Stinkbreath"
@@ -167,7 +168,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NecroticBreath", 382712)
 
 	-- Fetid Rotsinger
-	self:Log("SPELL_SUMMON", "DecayTotemSummoned", 374057)
+	self:Log("SPELL_CAST_SUCCESS", "SummonDecayTotem", 375065) -- Summon Totem
 	self:Log("SPELL_CAST_START", "BurstOfDecay", 374544)
 
 	-- Monstrous Decay
@@ -329,9 +330,9 @@ end
 
 -- Fetid Rotsinger
 
-function mod:DecayTotemSummoned(args)
-	self:Message(args.spellId, "yellow", CL.spawned:format(args.destName))
-	self:PlaySound(args.spellId, "alert")
+function mod:SummonDecayTotem(args)
+	self:Message(374057, "yellow", CL.incoming:format(L.decay_totem))
+	self:PlaySound(374057, "warning")
 end
 
 do

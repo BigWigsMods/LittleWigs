@@ -13,6 +13,7 @@ if L then
 	L.decayed_elder = "부패한 장로"
 	L.wilted_oak = "시들어버린 떡갈나무"
 	L.fetid_rotsinger = "악취 나는 부패노래꾼"
+	L.decay_totem = "부패 토템"
 	L.monstrous_decay = "기괴한 부패"
 	L.infected_bear = "감염된 곰"
 	L.stinkbreath = "고약숨결"

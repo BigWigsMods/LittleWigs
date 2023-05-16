@@ -13,6 +13,7 @@ if L then
 	L.decayed_elder = "Ancien putréfié"
 	L.wilted_oak = "Chêne flétri"
 	L.fetid_rotsinger = "Chante-pourriture fétide"
+	L.decay_totem = "Totem de putréfaction"
 	L.monstrous_decay = "Putréfaction monstrueuse"
 	L.infected_bear = "Ours infecté"
 	L.stinkbreath = "Pudubek"

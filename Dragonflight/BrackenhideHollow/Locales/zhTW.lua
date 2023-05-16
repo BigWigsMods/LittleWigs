@@ -13,6 +13,7 @@ if L then
 	--L.decayed_elder = "Decayed Elder"
 	--L.wilted_oak = "Wilted Oak"
 	--L.fetid_rotsinger = "Fetid Rotsinger"
+	--L.decay_totem = "Decay Totem"
 	--L.monstrous_decay = "Monstrous Decay"
 	--L.infected_bear = "Infected Bear"
 	--L.stinkbreath = "Stinkbreath"

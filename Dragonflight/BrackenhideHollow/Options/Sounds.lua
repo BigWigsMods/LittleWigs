@@ -45,7 +45,7 @@ BigWigs:AddSounds("Brackenhide Hollow Trash", {
 	[373897] = "alert",
 	[373929] = "alarm",
 	[373943] = "alarm",
-	[374057] = "alert",
+	[374057] = "warning",
 	[374544] = "alarm",
 	[374569] = "alarm",
 	[382435] = "alert",

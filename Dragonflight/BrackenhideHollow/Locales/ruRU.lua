@@ -13,6 +13,7 @@ if L then
 	L.decayed_elder = "Разложившийся старый древень"
 	L.wilted_oak = "Увядший дуб"
 	L.fetid_rotsinger = "Зловонная певица гнили"
+	L.decay_totem = "Тотем разложения"
 	L.monstrous_decay = "Гнилое чудовище"
 	L.infected_bear = "Зараженный медведь"
 	L.stinkbreath = "Мерзорот"

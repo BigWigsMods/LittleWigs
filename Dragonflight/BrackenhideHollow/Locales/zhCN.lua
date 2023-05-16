@@ -13,6 +13,7 @@ if L then
 	L.decayed_elder = "腐朽老树"
 	L.wilted_oak = "萎蔫橡树"
 	L.fetid_rotsinger = "腐臭的颂朽者"
+	L.decay_totem = "腐朽图腾"
 	L.monstrous_decay = "巨型腐朽"
 	L.infected_bear = "被感染的熊"
 	L.stinkbreath = "臭息"
