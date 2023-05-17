@@ -126,8 +126,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GreaterHeal", 87779)
 
 	-- Servant of Asaad
-	-- TODO post-10.1 see if Hand of Protection was removed from normal/heroic as well
-	self:Log("SPELL_AURA_APPLIED", "HandOfProtectionApplied", 87772)
+	self:Log("SPELL_AURA_APPLIED", "HandOfProtectionApplied", 87772) -- non-Mythic only
 
 	-- Minister of Air
 	self:Log("SPELL_CAST_START", "LightningLash", 87762)
@@ -256,6 +255,9 @@ end
 do
 	local prev = 0
 	function mod:CrashingStone(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
@@ -269,6 +271,9 @@ end
 do
 	local prev = 0
 	function mod:Rally(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
@@ -284,6 +289,9 @@ end
 do
 	local prev = 0
 	function mod:GreaterHeal(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
