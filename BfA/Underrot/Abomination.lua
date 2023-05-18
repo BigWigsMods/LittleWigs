@@ -34,7 +34,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PutridBloodApplied", 269301)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PutridBloodAppliedDose", 269301)
 	self:Log("SPELL_AURA_REMOVED", "PutridBloodRemoved", 269301)
-
+	self:RegisterUnitEvent("UNIT_POWER_UPDATE", nil, "boss1")
 	self:Death("VisageDeath", 137103)
 end
 
@@ -98,8 +98,17 @@ function mod:PutridBloodRemoved(args)
 	end
 end
 
+function mod:UNIT_POWER_UPDATE(_, unit)
+	if UnitPower(unit) == 0 then
+		self:Message("stages", "yellow", CL.spawning:format(CL.adds), false)
+		self:PlaySound("stages", "info")
+	end
+end
+
 function mod:VisageDeath()
 	visageRemaining = visageRemaining - 1
-	self:Message("stages", "cyan", CL.add_remaining:format(visageRemaining), false)
-	self:PlaySound("stages", "info")
+	if visageRemaining > 0 then
+		self:Message("stages", "cyan", CL.add_remaining:format(visageRemaining), false)
+		self:PlaySound("stages", "info")
+	end
 end
