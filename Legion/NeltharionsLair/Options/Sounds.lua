@@ -3,6 +3,7 @@ BigWigs:AddSounds("Rokmora", {
 	[188114] = "alert",
 	[188169] = "alarm",
 	[192800] = "underyou",
+	[198024] = "alert",
 })
 
 BigWigs:AddSounds("Ularogg Cragshaper", {

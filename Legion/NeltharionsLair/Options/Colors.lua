@@ -1,8 +1,9 @@
 
 BigWigs:AddColors("Rokmora", {
 	[188114] = "yellow",
-	[188169] = "orange",
+	[188169] = "purple",
 	[192800] = "blue",
+	[198024] = "orange",
 })
 
 BigWigs:AddColors("Ularogg Cragshaper", {
