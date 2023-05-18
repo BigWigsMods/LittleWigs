@@ -85,6 +85,7 @@ function mod:UNIT_POWER_UPDATE(_, unit)
 end
 
 function mod:GroundingSpear(args)
+	self:StopBar(args.spellId)
 	-- targets all players in Mythic, but just one player in Normal/Heroic
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
