@@ -10,6 +10,7 @@ if L then
 	L.qalashi_trainee = "Куалаши-новобранец"
 	L.qalashi_bonetender = "Куалаши-костестраж"
 	L.qalashi_irontorch = "Куалаши-факельщица"
+	L.qalashi_bonesplitter = "Куалаши-костедробительница"
 	L.qalashi_lavabearer = "Куалаши - воин лавы"
 	L.irontorch_commander = "Командир Железного Факела"
 	L.forgewrought_monstrosity = "Выкованное чудовище"

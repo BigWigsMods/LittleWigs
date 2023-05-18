@@ -10,6 +10,7 @@ if L then
 	L.qalashi_trainee = "Recrue qalashi"
 	L.qalashi_bonetender = "Désosseur qalashi"
 	L.qalashi_irontorch = "Flambe-fer qalashi"
+	L.qalashi_bonesplitter = "Craque-les-os qalashi"
 	L.qalashi_lavabearer = "Porte-lave qalashi"
 	L.irontorch_commander = "Commandant des flambe-fer"
 	L.forgewrought_monstrosity = "Monstruosité forgée"

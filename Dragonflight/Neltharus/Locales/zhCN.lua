@@ -10,6 +10,7 @@ if L then
 	L.qalashi_trainee = "卡拉希新兵"
 	L.qalashi_bonetender = "卡拉希护骨者"
 	L.qalashi_irontorch = "卡拉希焚钢者"
+	L.qalashi_bonesplitter = "卡拉希裂骨者"
 	L.qalashi_lavabearer = "卡拉希熔岩承载者"
 	L.irontorch_commander = "焚钢指挥官"
 	L.forgewrought_monstrosity = "炉铸巨怪"

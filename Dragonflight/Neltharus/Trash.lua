@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	189265, -- Qalashi Bonetender
 	189219, -- Qalashi Goulash
 	189464, -- Qalashi Irontorch
+	189467, -- Qalashi Bonesplitter
 	189472, -- Qalashi Lavabearer
 	189466, -- Irontorch Commander
 	194816, -- Forgewrought Monstrosity
@@ -39,6 +40,7 @@ if L then
 	L.qalashi_trainee = "Qalashi Trainee"
 	L.qalashi_bonetender = "Qalashi Bonetender"
 	L.qalashi_irontorch = "Qalashi Irontorch"
+	L.qalashi_bonesplitter = "Qalashi Bonesplitter"
 	L.qalashi_lavabearer = "Qalashi Lavabearer"
 	L.irontorch_commander = "Irontorch Commander"
 	L.forgewrought_monstrosity = "Forgewrought Monstrosity"
@@ -71,6 +73,8 @@ function mod:GetOptions()
 		-- Qalashi Irontorch
 		372201, -- Scorching Breath
 		384161, -- Mote of Combustion
+		-- Qalashi Bonesplitter
+		372225, -- Dragonbone Axe
 		-- Qalashi Lavabearer
 		379406, -- Throw Lava
 		-- Irontorch Commander
@@ -94,6 +98,7 @@ function mod:GetOptions()
 		[372311] = L.qalashi_trainee,
 		[372223] = L.qalashi_bonetender,
 		[372201] = L.qalashi_irontorch,
+		[372225] = L.qalashi_bonesplitter,
 		[379406] = L.qalashi_lavabearer,
 		[372296] = L.irontorch_commander,
 		[376200] = L.forgewrought_monstrosity,
@@ -132,6 +137,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ScorchingBreath", 372201)
 	self:Log("SPELL_CAST_START", "MoteOfCombustion", 384161)
 	self:Log("SPELL_AURA_APPLIED", "MoteOfCombustionApplied", 384161)
+
+	-- Qalashi Bonesplitter
+	self:Log("SPELL_CAST_START", "DragonboneAxe", 372225)
 
 	-- Qalashi Lavabearer
 	self:Log("SPELL_CAST_START", "ThrowLava", 379406)
@@ -298,6 +306,20 @@ function mod:MoteOfCombustionApplied(args)
 	if self:Dispeller("magic") and self:Friendly(args.destFlags) then
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+-- Qalashi Bonesplitter
+
+do
+	local prev = 0
+	function mod:DragonboneAxe(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 
