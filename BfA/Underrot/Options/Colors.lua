@@ -28,7 +28,7 @@ BigWigs:AddColors("Unbound Abomination", {
 })
 
 BigWigs:AddColors("Underrot Trash", {
-	[265019] = {"blue","red","yellow"},
+	[265019] = "red",
 	[265081] = "red",
 	[265089] = "orange",
 	[265091] = {"red","yellow"},

@@ -109,9 +109,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RottenBile", 265540)
 
 	-- Chosen Blood Matron
-	self:Log("SPELL_CAST_SUCCESS", "BloodHarvest", 265016) -- charge that Matron does right before casting Savage Cleave
 	self:Log("SPELL_CAST_START", "SavageCleave", 265019)
-	self:Log("SPELL_AURA_APPLIED", "SavageCleaveApplied", 265019)
 	self:Log("SPELL_CAST_START", "Warcry", 265081)
 
 	-- Diseased Lasher
@@ -180,7 +178,7 @@ end
 -- Devout Blood Priest
 
 function mod:DarkReconstitution(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -207,32 +205,18 @@ end
 
 -- Chosen Blood Matron
 
-do
-	local lastChargeTarget = nil
-	function mod:BloodHarvest(args)
-		lastChargeTarget = args.destName
-	end
-
-	function mod:SavageCleave(args)
-		if IsItemInRange(33278, lastChargeTarget) then -- 11 yards
-			self:Message(args.spellId, "red", CL.near:format(args.spellName))
-			self:PlaySound(args.spellId, "warning")
-		else
-			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-		end
-	end
-end
-
-function mod:SavageCleaveApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "info")
-	end
+function mod:SavageCleave(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 12.3, args.sourceGUID)
 end
 
 function mod:Warcry(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "long")
+	if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
+		self:Message(args.spellId, "red")
+		self:PlaySound(args.spellId, "long")
+		--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	end
 end
 
 -- Diseased Lasher
