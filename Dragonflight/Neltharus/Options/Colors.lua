@@ -19,6 +19,7 @@ BigWigs:AddColors("Magmatusk", {
 	[375068] = "orange",
 	[375251] = "yellow",
 	[375439] = {"blue","red"},
+	[375535] = "orange",
 	[375890] = "red",
 	[391457] = {"green","purple"},
 })

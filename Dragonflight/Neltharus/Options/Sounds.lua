@@ -19,6 +19,7 @@ BigWigs:AddSounds("Magmatusk", {
 	[375068] = "alert",
 	[375251] = "alarm",
 	[375439] = "alarm",
+	[375535] = "alarm",
 	[375890] = "alert",
 	[391457] = {"alert","info"},
 })
