@@ -33,7 +33,7 @@ BigWigs:AddColors("Ring of Booty", {
 })
 
 BigWigs:AddColors("Harlan Sweete", {
-	[257278] = "yellow",
+	[257278] = {"purple","yellow"},
 	[257305] = {"blue","orange"},
 	[257314] = {"blue","yellow"},
 	[257316] = "red",

@@ -70,13 +70,20 @@ function mod:LoadedDiceManOWar(args)
 end
 
 function mod:SwiftwindSaber(args)
-	self:Message(257278, "yellow")
-	self:PlaySound(257278, "alert", "watchstep")
-	if self:GetStage() ~= 3 then -- Stage 1, 2
+	if self:GetStage() == 1 then
+		-- aims at tank
+		self:Message(257278, "purple")
+		self:CDBar(257278, 18.2)
+	elseif self:GetStage() == 2 then
+		-- aims in 5 directions but not at tank
+		self:Message(257278, "yellow")
 		self:CDBar(257278, 18.2)
 	else -- Stage 3
+		-- aims in 5 directions but not at tank, shorter CD
+		self:Message(257278, "yellow")
 		self:CDBar(257278, 13.4)
 	end
+	self:PlaySound(257278, "alert", "watchstep")
 end
 
 do
