@@ -33,6 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ConsumingStart", 378022)
 	self:Log("SPELL_AURA_REMOVED", "ConsumingRemoved", 378022)
 	self:Log("SPELL_CAST_START", "DecaySpray", 376811)
+	-- Infectious Spit is no longer cast in Mythic only since 2023-05-13
 	self:Log("SPELL_CAST_SUCCESS", "InfectiousSpit", 377859)
 	self:Log("SPELL_CAST_START", "VineWhip", 377559)
 
@@ -45,7 +46,9 @@ end
 function mod:OnEngage()
 	self:CDBar(377559, 5.0) -- Vine Whip
 	self:CDBar(376811, 12.1) -- Decay Spray
-	self:CDBar(377859, 20.9) -- Infectious Spit
+	if not self:Mythic() then
+		self:CDBar(377859, 20.9) -- Infectious Spit
+	end
 	-- 23s energy gain + .2s delay
 	self:CDBar(376934, 23.2) -- Grasping Vines
 end
@@ -55,14 +58,15 @@ end
 --
 
 function mod:GraspingVines(args)
-	self:StopBar(args.spellName)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "info")
+	-- 5s cast + 4s channel before Consume + 45s energy gain + .5s delay
+	self:CDBar(args.spellId, 54.5)
 	-- takes 10s to fully cast + .2 delay
 	if self:BarTimeLeft(376811) < 10.2 then -- Decay Spray
 		self:CDBar(376811, {10.2, 42.5})
 	end
-	if self:BarTimeLeft(377859) < 10.2 then -- Infectious Spit
+	if not self:Mythic() and self:BarTimeLeft(377859) < 10.2 then -- Infectious Spit
 		self:CDBar(377859, {10.2, 20.6})
 	end
 	if self:BarTimeLeft(377559) < 10.2 then -- Vine Whip
@@ -86,8 +90,6 @@ do
 		local consumingDuration = args.time - consumingStart
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, consumingDuration))
 		self:PlaySound(args.spellId, "info")
-		-- 45s energy gain + ~.2s delay
-		self:CDBar(376934, 45.2) -- Grasping Vines
 	end
 end
 
@@ -110,7 +112,7 @@ do
 		end
 		self:CDBar(args.spellId, 42.5)
 		-- Treemouth won't cast other abilities for 8.3 seconds after Decay Spray
-		if self:BarTimeLeft(377859) < 8.3 then -- Infectious Spit
+		if not self:Mythic() and self:BarTimeLeft(377859) < 8.3 then -- Infectious Spit
 			self:CDBar(377859, {8.3, 20.6})
 		end
 		if self:BarTimeLeft(377559) < 8.3 then -- Vine Whip
@@ -147,7 +149,7 @@ do
 		if self:BarTimeLeft(376811) < 4.85 then -- Decay Spray
 			self:CDBar(376811, {4.85, 42.5})
 		end
-		if self:BarTimeLeft(377859) < 4.85 then -- Infectious Spit
+		if not self:Mythic() and self:BarTimeLeft(377859) < 4.85 then -- Infectious Spit
 			self:CDBar(377859, {4.85, 20.6})
 		end
 	end
@@ -166,6 +168,4 @@ end
 function mod:StarvingFrenzy(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	-- 45s energy gain + ~.2s delay
-	self:CDBar(376934, 45.2) -- Grasping Vines
 end
