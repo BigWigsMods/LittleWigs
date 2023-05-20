@@ -83,7 +83,7 @@ function mod:OnBossEnable()
 	-- Grom'kar Gunner
 	self:Log("SPELL_CAST_START", "ShrapnelBlast", 166675)
 	self:Log("SPELL_DAMAGE", "ShrapnelBlastDamage", 166676)
-	self:Log("SPELL_MISSED", "ShrapnelBlastDamage", 166676)	
+	self:Log("SPELL_MISSED", "ShrapnelBlastDamage", 166676)
 	-- Grom'kar Cinderseer
 	self:Log("SPELL_CAST_START", "Flametongue", 176032)
 	self:Log("SPELL_AURA_APPLIED", "FlametongueDamage", 176033)

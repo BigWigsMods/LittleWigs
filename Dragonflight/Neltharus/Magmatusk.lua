@@ -169,7 +169,7 @@ do
 		mod:Message(391457, "purple", CL.onboss:format(spellName))
 		mod:PlaySound(391457, "alert")
 	end
-	
+
 	function mod:LavaEmpowermentApplied(args)
 		-- allow 2 seconds of Magmatusk standing in lava before alerting
 		timer = self:ScheduleTimer(alertLavaEmpowerment, 2, args.spellName)

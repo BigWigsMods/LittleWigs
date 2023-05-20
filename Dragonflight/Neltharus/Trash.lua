@@ -129,7 +129,7 @@ function mod:OnBossEnable()
 
 	-- Qalashi Trainee
 	self:Log("SPELL_CAST_START", "MagmaFist", 372311)
-	
+
 	-- Qalashi Bonetender
 	self:Log("SPELL_CAST_START", "MendingClay", 372223)
 
@@ -148,19 +148,19 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ConflagrantBattery", 372296)
 	self:Log("SPELL_CAST_START", "ScorchingFusillade", 373084)
 	self:Death("IrontorchCommanderDeath", 189466)
-	
+
 	-- Forgewrought Monstrosity
 	self:Log("SPELL_CAST_START", "BlazingDetonation", 376200)
 
 	-- Qalashi Plunderer
 	self:Log("SPELL_CAST_START", "ExplosiveConcoction", 378827)
-	
+
 	-- Qalashi Thaumaturge
 	self:Log("SPELL_CAST_START", "MoltenCore", 378282)
-	
+
 	-- Apex Blazewing
 	self:Log("SPELL_AURA_APPLIED", "CandescentTempest", 381663)
-	
+
 	-- Qalashi Lavamancer
 	self:Log("SPELL_CAST_START", "MoltenArmy", 383651)
 end
@@ -213,7 +213,7 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alert")
 		end
-		-- technically outrangeable if you're fast and it won't go on CD unless it hits, so 
+		-- technically outrangeable if you're fast and it won't go on CD unless it hits, so
 		-- if this is uncommented it should probably be moved to SUCCESS.
 		--self:NameplateCDBar(args.spellId, 13.4, args.sourceGUID)
 	end

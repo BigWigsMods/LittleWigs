@@ -10,14 +10,6 @@ mod.toggleOptions = {
 }
 
 -------------------------------------------------------------------------------
---  Localization
-
-local L = mod:GetLocale()
-if L then
-
-end
-
--------------------------------------------------------------------------------
 --  Initialization
 
 function mod:OnBossEnable()

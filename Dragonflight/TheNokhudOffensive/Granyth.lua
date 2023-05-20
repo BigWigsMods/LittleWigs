@@ -61,7 +61,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Reload", 386921)
 	self:Log("SPELL_CAST_SUCCESS", "ReloadSuccess", 386921)
 	self:Log("SPELL_AURA_APPLIED", "Lanced", 387155)
-	
+
 	-- Nokhud Saboteur (Mythic-only)
 	self:Log("SPELL_CAST_START", "Dismantle", 386490)
 	self:Log("SPELL_AURA_APPLIED", "DismantleApplied", 386490)

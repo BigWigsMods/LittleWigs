@@ -560,7 +560,7 @@ do
 	function mod:InvigoratingFishStick(args)
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
-		
+
 		-- if for some reason this mob isn't registered already, register it so this bar won't be overwritten
 		registeredMobs[args.sourceGUID] = true
 		self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)

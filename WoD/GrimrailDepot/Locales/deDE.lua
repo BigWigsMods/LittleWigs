@@ -4,7 +4,7 @@ if L then
 	L.dropped = "%s fallen gelassen!"
 	L.add_trigger1 = "Zeigt es ihnen, Jungs!"
 	L.add_trigger2 = "Immer feste drauf!"
-	
+
 	L.waves[1] = "1x Kanonenschütze der Grom'kar, 1x Schützin der Grom'kar"
 	L.waves[2] = "1x Schützin der Grom'kar, 1x Grenadier der Grom'kar"
 	L.waves[3] = "Eiserne Infanteristen"

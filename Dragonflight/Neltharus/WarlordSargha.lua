@@ -66,7 +66,7 @@ function mod:OnBossEnable()
 
 	-- Raging Ember
 	self:Log("SPELL_AURA_APPLIED", "BurningPursuit", 377522)
-	
+
 	-- Magical Implements
 	-- 376762 Wand of Negation
 	-- 384595 Anti-Magic Bomb

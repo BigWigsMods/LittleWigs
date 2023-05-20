@@ -7,7 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(
 	191631, -- Ball
 	191736  -- Crawth
-) 
+)
 mod:SetEncounterID(2564)
 mod:SetRespawnTime(30)
 

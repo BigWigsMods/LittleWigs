@@ -76,7 +76,7 @@ function mod:CallEarthrager(args)
 	self:PlaySound(args.spellId, "info", "mobsoon")
 	-- The boss casts "Set Energy to 0" (280479) every 60 sec.
 	-- There is a chance that the boss will cast Call Earthrager afterwards,
-	-- but it is not guaranteed, so a timer for this can't be accurate. 
+	-- but it is not guaranteed, so a timer for this can't be accurate.
 end
 
 do

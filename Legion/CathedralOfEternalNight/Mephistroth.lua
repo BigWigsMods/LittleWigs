@@ -70,10 +70,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 234283 and phase == 2 then -- Expel Shadows
 		self:MessageOld(233206, "yellow", "warning", 234283)
-		local timeLeft = 0
+		local timeLeft
 		if timeLost == 0 or not self:GetOption("custom_on_time_lost") then
 			timeLeft = self:BarTimeLeft(233206) -- Shadow Fade
 		else

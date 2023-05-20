@@ -113,7 +113,7 @@ function mod:BossDeath(args)
 		self:SetStage(3)
 		self:Message("stages", "cyan", CL.stage:format(3), false)
 		self:PlaySound("stages", "long")
-		
+
 		if args.mobId == 190484 then -- Kyrakka
 			self:StopBar(381525) -- Roaring Firebreath
 			self:StopBar(381602) -- Flamespit

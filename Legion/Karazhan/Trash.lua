@@ -131,11 +131,11 @@ function mod:GOSSIP_SHOW()
 		-- Opera Event gossip
 		-- you have to gossip with Barnes twice to start the RP which spawns the first boss
 		if self:GetGossipID(46684) then
-			-- Barnes's first line 
+			-- Barnes's first line
 			-- 46684: I'm not an actor.
 			self:SelectGossipID(46684)
 		elseif self:GetGossipID(46685) then
-			-- Barnes's second line 
+			-- Barnes's second line
 			-- 46685: Ok, I'll give it a try then.
 			self:SelectGossipID(46685)
 		end

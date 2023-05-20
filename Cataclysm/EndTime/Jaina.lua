@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module declaration
 --
@@ -8,15 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(54445)
 mod.engageId = 1883
 mod.respawnTime = 30
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
