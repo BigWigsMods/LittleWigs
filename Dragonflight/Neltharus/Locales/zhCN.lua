@@ -13,6 +13,7 @@ if L then
 	L.qalashi_bonesplitter = "卡拉希裂骨者"
 	L.qalashi_lavabearer = "卡拉希熔岩承载者"
 	L.irontorch_commander = "焚钢指挥官"
+	L.qalashi_blacksmith = "卡拉希铁匠"
 	L.forgewrought_monstrosity = "炉铸巨怪"
 	L.qalashi_plunderer = "卡拉希抢夺者"
 	L.qalashi_thaumaturge = "卡拉希奇术师"

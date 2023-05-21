@@ -13,6 +13,7 @@ if L then
 	L.qalashi_bonesplitter = "Partehuesos qalashi"
 	L.qalashi_lavabearer = "Portalava qalashi"
 	L.irontorch_commander = "Antorchaférrea comandante"
+	L.qalashi_blacksmith = "Herrero qalashi"
 	L.forgewrought_monstrosity = "Monstruosidad forjada"
 	L.qalashi_plunderer = "Desvalijador qalashi"
 	L.qalashi_thaumaturge = "Taumaturga qalashi"

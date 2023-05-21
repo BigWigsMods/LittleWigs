@@ -13,6 +13,7 @@ if L then
 	L.qalashi_bonesplitter = "칼라시 뼈분리자"
 	L.qalashi_lavabearer = "칼라시 용암운반자"
 	L.irontorch_commander = "무쇠횃불 사령관"
+	L.qalashi_blacksmith = "칼라시 대장장이"
 	L.forgewrought_monstrosity = "제련벼림 괴수"
 	L.qalashi_plunderer = "칼라시 약탈꾼"
 	L.qalashi_thaumaturge = "칼라시 마력술사"

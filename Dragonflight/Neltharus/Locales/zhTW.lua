@@ -13,6 +13,7 @@ if L then
 	--L.qalashi_bonesplitter = "Qalashi Bonesplitter"
 	--L.qalashi_lavabearer = "Qalashi Lavabearer"
 	--L.irontorch_commander = "Irontorch Commander"
+	--L.qalashi_blacksmith = "Qalashi Blacksmith"
 	--L.forgewrought_monstrosity = "Forgewrought Monstrosity"
 	--L.qalashi_plunderer = "Qalashi Plunderer"
 	--L.qalashi_thaumaturge = "Qalashi Thaumaturge"

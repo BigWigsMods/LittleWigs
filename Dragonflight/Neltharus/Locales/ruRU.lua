@@ -13,6 +13,7 @@ if L then
 	L.qalashi_bonesplitter = "Куалаши-костедробительница"
 	L.qalashi_lavabearer = "Куалаши - воин лавы"
 	L.irontorch_commander = "Командир Железного Факела"
+	L.qalashi_blacksmith = "Куалаши-кузнец"
 	L.forgewrought_monstrosity = "Выкованное чудовище"
 	L.qalashi_plunderer = "Куалаши-расхититель"
 	L.qalashi_thaumaturge = "Куалаши-чудотворица"

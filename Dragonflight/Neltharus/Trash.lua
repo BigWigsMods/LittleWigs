@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	189467, -- Qalashi Bonesplitter
 	189472, -- Qalashi Lavabearer
 	189466, -- Irontorch Commander
+	189471, -- Qalashi Blacksmith
 	194816, -- Forgewrought Monstrosity
 	189786, -- Blazing Aegis
 	192786, -- Qalashi Plunderer
@@ -43,6 +44,7 @@ if L then
 	L.qalashi_bonesplitter = "Qalashi Bonesplitter"
 	L.qalashi_lavabearer = "Qalashi Lavabearer"
 	L.irontorch_commander = "Irontorch Commander"
+	L.qalashi_blacksmith = "Qalashi Blacksmith"
 	L.forgewrought_monstrosity = "Forgewrought Monstrosity"
 	L.qalashi_plunderer = "Qalashi Plunderer"
 	L.qalashi_thaumaturge = "Qalashi Thaumaturge"
@@ -80,15 +82,19 @@ function mod:GetOptions()
 		-- Irontorch Commander
 		372296, -- Conflagrant Battery
 		373084, -- Scorching Fusillade
+		-- Qalashi Blacksmith
+		{372971, "TANK_HEALER"}, -- Reverberating Slam
 		-- Forgewrought Monstrosity
 		376200, -- Blazing Detonation
 		-- Qalashi Plunderer
 		378827, -- Explosive Concoction
 		-- Qalashi Thaumaturge
 		378282, -- Molten Core
+		378818, -- Magma Conflagration
 		-- Apex Blazewing
 		381663, -- Candescent Tempest
 		-- Qalashi Lavamancer
+		382791, -- Molten Barrier
 		383651, -- Molten Army
 	}, {
 		["custom_on_autotalk"] = CL.general,
@@ -101,11 +107,12 @@ function mod:GetOptions()
 		[372225] = L.qalashi_bonesplitter,
 		[379406] = L.qalashi_lavabearer,
 		[372296] = L.irontorch_commander,
+		[372971] = L.qalashi_blacksmith,
 		[376200] = L.forgewrought_monstrosity,
 		[378827] = L.qalashi_plunderer,
 		[378282] = L.qalashi_thaumaturge,
 		[381663] = L.apex_blazewing,
-		[383651] = L.qalashi_lavamancer,
+		[382791] = L.qalashi_lavamancer,
 	}
 end
 
@@ -149,6 +156,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ScorchingFusillade", 373084)
 	self:Death("IrontorchCommanderDeath", 189466)
 
+	-- Qalashi Blacksmith
+	self:Log("SPELL_CAST_START", "ReverberatingSlam", 372971)
+
 	-- Forgewrought Monstrosity
 	self:Log("SPELL_CAST_START", "BlazingDetonation", 376200)
 
@@ -157,11 +167,13 @@ function mod:OnBossEnable()
 
 	-- Qalashi Thaumaturge
 	self:Log("SPELL_CAST_START", "MoltenCore", 378282)
+	self:Log("SPELL_CAST_START", "MagmaConflagration", 378818)
 
 	-- Apex Blazewing
 	self:Log("SPELL_AURA_APPLIED", "CandescentTempest", 381663)
 
 	-- Qalashi Lavamancer
+	self:Log("SPELL_CAST_START", "MoltenBarrier", 382791)
 	self:Log("SPELL_CAST_START", "MoltenArmy", 383651)
 end
 
@@ -356,6 +368,16 @@ function mod:IrontorchCommanderDeath(args)
 	self:StopBar(373084) -- Scorching Fusillade
 end
 
+-- Qalashi Blacksmith
+
+function mod:ReverberatingSlam(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
+	-- technically outrangeable if you're fast and it won't go on CD unless it hits, so
+	-- if this is uncommented it should probably be moved to SUCCESS.
+	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
+end
+
 -- Forgewrought Monstrosity
 
 function mod:BlazingDetonation(args)
@@ -373,6 +395,11 @@ end
 -- Qalashi Thaumaturge
 
 function mod:MoltenCore(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:MagmaConflagration(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
@@ -385,6 +412,12 @@ function mod:CandescentTempest(args)
 end
 
 -- Qalashi Lavamancer
+
+function mod:MoltenBarrier(args)
+	-- cast just once at 50% health, must burn shield to interrupt Molten Army
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "info")
+end
 
 function mod:MoltenArmy(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))

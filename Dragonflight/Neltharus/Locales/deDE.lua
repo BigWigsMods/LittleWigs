@@ -13,6 +13,7 @@ if L then
 	L.qalashi_bonesplitter = "Knochenspalterin der Qalashi"
 	L.qalashi_lavabearer = "Lavaträger der Qalashi"
 	L.irontorch_commander = "Eisenfackelkommandant"
+	L.qalashi_blacksmith = "Schmied der Qalashi"
 	L.forgewrought_monstrosity = "Geschmiedetes Monstrum"
 	L.qalashi_plunderer = "Plünderer der Qalashi"
 	L.qalashi_thaumaturge = "Thaumaturgin der Qalashi"
