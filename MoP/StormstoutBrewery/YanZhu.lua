@@ -40,7 +40,7 @@ function mod:GetOptions()
 		106563, -- Bubble Shield
 		"summon",
 		114451, -- Ferment
-		115003, -- Carbonation
+		{115003, "CASTBAR"}, -- Carbonation
 		-5658, -- Wall of Suds
 	}, {
 		[114548] = "general",

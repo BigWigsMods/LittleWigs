@@ -17,7 +17,7 @@ function mod:GetOptions()
 	return {
 		-5960, -- Sap Residue
 		-5958, -- Summon Sap Globule
-		-5959, -- Detonate
+		{-5959, "CASTBAR"}, -- Detonate
 	}
 end
 

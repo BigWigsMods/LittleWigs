@@ -20,7 +20,7 @@ local nextSubmergeWarning = 80
 
 function mod:GetOptions()
 	return {
-		53472, -- Pound
+		{53472, "CASTBAR"}, -- Pound
 		-6359, -- Submerge
 	}
 end

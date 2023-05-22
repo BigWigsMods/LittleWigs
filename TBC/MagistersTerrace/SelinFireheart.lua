@@ -15,7 +15,7 @@ mod.engageId = 1897
 
 function mod:GetOptions()
 	return {
-		44320, -- Mana Rage
+		{44320, "CASTBAR"}, -- Mana Rage
 	}
 end
 

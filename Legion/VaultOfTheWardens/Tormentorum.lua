@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		200898, -- Teleport
 		202455, -- Void Shield
-		212564, -- Inquisitive Stare
+		{212564, "CASTBAR"}, -- Inquisitive Stare
 		{200904, "FLASH"}, -- Sapped Soul
 		196208, -- Seed of Corruption
 		201488, -- Frightening Shout

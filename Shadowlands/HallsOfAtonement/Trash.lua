@@ -52,7 +52,7 @@ function mod:GetOptions()
 		{325876, "SAY", "SAY_COUNTDOWN"}, -- Curse of Obliteration
 		325700, -- Collect Sins
 		325701, -- Siphon Life
-		326409, -- Thrash
+		{326409, "CASTBAR"}, -- Thrash
 		326441, -- Sin Quake
 		326607, -- Turn to Stone
 		{326997, "TANK"}, -- Powerful Swipe

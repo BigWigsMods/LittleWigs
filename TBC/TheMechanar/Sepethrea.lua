@@ -35,7 +35,7 @@ function mod:GetOptions()
 		35250, -- Dragon's Breath
 		35314, -- Arcane Blast
 		{"fixate", "SAY"}, -- Fixate
-		-5488, -- Inferno
+		{-5488, "CASTBAR"}, -- Inferno
 		35312, -- Raging Flames (the trail of fire the adds leave behind them)
 	}, {
 		[35250] = "general",

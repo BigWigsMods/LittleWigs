@@ -39,7 +39,7 @@ function mod:GetOptions()
 	return {
 		194657, -- Soul Siphon
 		198405, -- Bone Chilling Scream
-		192019, -- Lantern of Darkness
+		{192019, "CASTBAR"}, -- Lantern of Darkness
 		194615, -- Sea Legs
 		199514, -- Torrent of Souls
 		199589, -- Whirlpool of Souls

@@ -21,7 +21,7 @@ local nextSplitWarning = 71
 function mod:GetOptions()
 	return {
 		74373, -- Veil of Sky
-		74137, -- Supernova
+		{74137, "CASTBAR"}, -- Supernova
 		74135, -- Astral Rain
 		74045, -- Energy Flux
 		-2556, -- Mirror Images

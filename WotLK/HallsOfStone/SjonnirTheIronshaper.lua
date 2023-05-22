@@ -15,7 +15,7 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		50834, -- Static Charge
-		50840, -- Lightning Ring
+		{50840, "CASTBAR"}, -- Lightning Ring
 	}
 end
 

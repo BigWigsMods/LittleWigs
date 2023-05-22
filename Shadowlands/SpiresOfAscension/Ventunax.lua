@@ -21,8 +21,8 @@ local darkStrideCount = 0
 function mod:GetOptions()
 	return {
 		324146, -- Dark Stride
-		324205, -- Blinding Flash
-		334485, -- Recharge
+		{324205, "CASTBAR"}, -- Blinding Flash
+		{334485, "CASTBAR"}, -- Recharge
 	}
 end
 

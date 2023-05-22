@@ -26,7 +26,7 @@ function mod:GetOptions()
 		191941, -- Darkstrikes
 		191853, -- Furious Flames
 		191823, -- Furious Blast
-		190830, -- Hatred
+		{190830, "CASTBAR"}, -- Hatred
 		192504, -- Metamorphosis (Havoc)
 		202740, -- Metamorphosis (Vengeance)
 	}, {

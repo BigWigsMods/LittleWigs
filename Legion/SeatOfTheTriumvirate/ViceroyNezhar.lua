@@ -37,10 +37,10 @@ function mod:GetOptions()
 		"infobox",
 		-15926, -- Umbral Tentacles
 		244751, -- Howling Dark
-		246324, -- Entropic Force
+		{246324, "CASTBAR"}, -- Entropic Force
 		244906, -- Collapsing Void
 		248804, -- Dark Bulwark
-		248736, -- Eternal Twilight
+		{248736, "CASTBAR"}, -- Eternal Twilight
 	}, {
 		["infobox"] = "general",
 		[248804] = "mythic",

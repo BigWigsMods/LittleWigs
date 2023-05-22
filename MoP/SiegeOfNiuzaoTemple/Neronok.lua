@@ -24,7 +24,7 @@ function mod:GetOptions()
 		"stages",
 		121443, -- Caustic Pitch
 		-6205, -- Quick-Dry Resin (EJ entry mentions Invigorated)
-		121284, -- Gusting Winds
+		{121284, "CASTBAR"}, -- Gusting Winds
 	}
 end
 

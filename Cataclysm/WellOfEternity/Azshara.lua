@@ -15,7 +15,7 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		-3968, -- Servant of the Queen
-		-3969, -- Total Obedience
+		{-3969, "CASTBAR"}, -- Total Obedience
 	}
 end
 

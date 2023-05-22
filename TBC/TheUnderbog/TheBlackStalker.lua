@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		31704, -- Levitate
 		{31715, "SAY", "ICON", "PROXIMITY"}, -- Static Charge
-		{31717, "SAY", "ICON"}, -- Chain Lightning
+		{31717, "SAY", "ICON", "CASTBAR"}, -- Chain Lightning
 	}
 end
 

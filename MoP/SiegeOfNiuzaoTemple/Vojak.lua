@@ -34,7 +34,7 @@ function mod:GetOptions()
 		"custom_on_autotalk",
 		120778, -- Caustic Tar
 		{120789, "SAY"}, -- Dashing Strike
-		-6287, -- Thousand Blades
+		{-6287, "CASTBAR"}, -- Thousand Blades
 	}
 end
 

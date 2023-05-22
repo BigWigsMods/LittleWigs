@@ -27,7 +27,7 @@ function mod:GetOptions()
 		{260805, "ICON"}, -- Focusing Iris
 		260773, -- Dire Ritual
 		-- Sister Solena
-		{260907, "ICON"}, -- Soul Manipulation
+		{260907, "ICON", "CASTBAR"}, -- Soul Manipulation
 		-- Sister Malady
 		{260703, "SAY", "SAY_COUNTDOWN", "FLASH", "PROXIMITY"}, -- Unstable Runic Mark
 		268086, -- Aura of Dread

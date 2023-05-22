@@ -24,7 +24,7 @@ function mod:GetOptions()
 		298940, -- Bolt Buster
 		298571, -- Burnout
 		298898, -- Roll Out
-		298651, -- Pedal to the Metal
+		{298651, "CASTBAR"}, -- Pedal to the Metal
 	}
 end
 
@@ -35,7 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BoltBuster", 298940)
 	self:Log("SPELL_CAST_SUCCESS", "Burnout", 298571)
 	self:Log("SPELL_CAST_SUCCESS", "RollOut", 298898)
-	self:Log("SPELL_CAST_START", "PedaltotheMetal", 298651, 299164) -- First cast, second cast
+	self:Log("SPELL_CAST_START", "PedalToTheMetal", 298651, 299164) -- First cast, second cast
 
 	self:Death("TrixieDeath", 150712)
 	self:Death("NaenoDeath", 153755)
@@ -95,7 +95,7 @@ function mod:RollOut(args)
 	self:Bar(298651, 2) -- Pedal to the Metal
 end
 
-function mod:PedaltotheMetal(args)
+function mod:PedalToTheMetal(args)
 	self:Message(298651, "red")
 	self:PlaySound(298651, "alert")
 	self:CastBar(298651, 4.5) -- Pedal to the Metal

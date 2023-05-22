@@ -23,7 +23,7 @@ function mod:GetOptions()
 		324449, -- Manifest Death
 		-- Mythic
 		339573, -- Echoes of Carnage
-		339706, -- Ghostly Charge
+		{339706, "CASTBAR"}, -- Ghostly Charge
 		339550, -- Echo of Battle
 	}, {
 		[324079] = "general",

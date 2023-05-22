@@ -31,7 +31,7 @@ function mod:GetOptions()
 		"warmup",
 		38385, -- Consecration
 		13005, -- Hammer of Justice
-		29427, -- Holy Light
+		{29427, "CASTBAR"}, -- Holy Light
 	}
 end
 

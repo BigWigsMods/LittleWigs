@@ -15,7 +15,7 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
-		{112992, "SAY"}, -- Furlwind
+		{112992, "SAY", "CASTBAR"}, -- Furlwind
 		112944, -- Carrot Breath
 		114291, -- Explosive Brew
 	}

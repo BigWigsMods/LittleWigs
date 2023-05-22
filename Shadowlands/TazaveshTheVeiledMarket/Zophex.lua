@@ -27,7 +27,7 @@ end
 function mod:GetOptions()
 	return {
 		"warmup",
-		347949, -- Interrogation
+		{347949, "CASTBAR"}, -- Interrogation
 		345990, -- Containment Cell
 		345770, -- Impound Contraband
 		346204, -- Armed Security

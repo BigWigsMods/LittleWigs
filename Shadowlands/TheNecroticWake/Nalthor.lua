@@ -23,7 +23,7 @@ end
 
 function mod:GetOptions()
 	return {
-		320772, -- Comet Storm
+		{320772, "CASTBAR"}, -- Comet Storm
 		321368, -- Icebound Aegis
 		{320788, "ICON", "SAY"}, -- Frozen Binds
 		321894, -- Dark Exile

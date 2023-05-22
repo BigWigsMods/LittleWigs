@@ -17,7 +17,7 @@ function mod:GetOptions()
 		"stages",
 		{320966, "TANK_HEALER"}, -- Overhead Slash
 		{327481, "DISPEL"}, -- Dark Lance
-		{321009, "ICON", "SAY", "SAY_COUNTDOWN"}, -- Charged Spear
+		{321009, "ICON", "SAY", "SAY_COUNTDOWN", "CASTBAR"}, -- Charged Spear
 		324368, -- Attenuated Barrage
 		331251, -- Deep Connection
 	}, {

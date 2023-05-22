@@ -16,7 +16,7 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		256970, -- Ignition
-		256955, -- Cinderflame
+		{256955, "CASTBAR"}, -- Cinderflame
 		257028, -- Fuselighter
 	}
 end

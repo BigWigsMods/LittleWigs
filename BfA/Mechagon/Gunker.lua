@@ -14,7 +14,7 @@ mod.engageId = 2292
 function mod:GetOptions()
 	return {
 		297985, -- Splatter
-		297834, -- Toxic Wave
+		{297834, "CASTBAR"}, -- Toxic Wave
 		297835, -- Coalesce
 		298259, -- Gooped
 		{298212, "TANK"}, -- Sludge Bolt

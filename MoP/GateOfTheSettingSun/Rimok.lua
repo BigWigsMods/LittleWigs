@@ -16,7 +16,7 @@ mod.respawnTime = 20
 function mod:GetOptions()
 	return {
 		-5666, -- Viscous Fluid
-		107120, -- Frenzied Assault
+		{107120, "CASTBAR"}, -- Frenzied Assault
 		106874, -- Fire Bomb
 	}
 end

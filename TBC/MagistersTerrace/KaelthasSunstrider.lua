@@ -29,7 +29,7 @@ function mod:GetOptions()
 		44194, -- Phoenix
 		-5167, -- Flame Strike
 		-5180, -- Shock Barrier
-		36819, -- Pyroblast
+		{36819, "CASTBAR"}, -- Pyroblast
 	}, {
 		[44224] = "general",
 		[-5180] = "heroic",

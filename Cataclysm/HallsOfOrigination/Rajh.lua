@@ -23,7 +23,7 @@ function mod:GetOptions()
 		-2861, -- Sun Strike
 		-2862, -- Summon Sun Orb
 		{-2863, "FLASH"}, -- Inferno Leap
-		76355, -- Blessing of the Sun
+		{76355, "CASTBAR"}, -- Blessing of the Sun
 	}
 end
 

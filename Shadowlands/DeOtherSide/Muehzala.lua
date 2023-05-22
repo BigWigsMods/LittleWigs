@@ -23,8 +23,8 @@ function mod:GetOptions()
 		{327646, "TANK_HEALER"}, -- Soulcrusher
 		{325725, "SAY_COUNTDOWN"}, -- Cosmic Artifice
 		325258, -- Master of Death
-		{326171, "EMPHASIZE"}, -- Shatter Reality
-		334970, -- Coalescing
+		{326171, "EMPHASIZE", "CASTBAR"}, -- Shatter Reality
+		{334970, "CASTBAR"}, -- Coalescing
 	}
 end
 

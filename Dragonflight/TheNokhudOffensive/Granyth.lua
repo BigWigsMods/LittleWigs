@@ -34,7 +34,7 @@ local saboteurMarker = mod:AddMarkerOption(true, "npc", 8, -25612, 8) -- Nokhud 
 function mod:GetOptions()
 	return {
 		-- Granyth
-		388283, -- Eruption
+		{388283, "CASTBAR"}, -- Eruption
 		388817, -- Shards of Stone
 		385916, -- Tectonic Stomp
 		386320, -- Summon Saboteur

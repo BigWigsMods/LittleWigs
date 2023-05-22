@@ -24,7 +24,7 @@ function mod:GetOptions()
 	return {
 		270028, -- Azerite Catalyst
 		259853, -- Chemical Burn
-		{260669, "SAY", "FLASH"}, -- Propellant Blast
+		{260669, "SAY", "FLASH", "CASTBAR"}, -- Propellant Blast
 	}
 end
 

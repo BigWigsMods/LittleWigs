@@ -20,7 +20,7 @@ local nextChainsWarning = 71
 
 function mod:GetOptions()
 	return {
-		75543, -- The Skullcracker
+		{75543, "CASTBAR"}, -- The Skullcracker
 		75272, -- Quake
 		75539, -- Chains of Woe
 	}

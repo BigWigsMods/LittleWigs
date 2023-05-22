@@ -26,7 +26,7 @@ function mod:GetOptions()
 	return {
 		382628, -- Surge of Power (player version)
 		394875, -- Surge of Power (boss version)
-		384620, -- Electrical Storm
+		{384620, "CASTBAR"}, -- Electrical Storm
 		384316, -- Lightning Strike
 		{384686, "DISPEL"}, -- Energy Surge
 	}, {

@@ -38,11 +38,11 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
-		291865, -- Recalibrate
+		{291865, "CASTBAR"}, -- Recalibrate
 		{291928, "SAY", "FLASH"}, -- Giga-Zap
 		291613, -- Take Off!
-		291626, -- Cutting Beam
-		283551, -- Magneto-Arm
+		{291626, "CASTBAR"}, -- Cutting Beam
+		{283551, "CASTBAR"}, -- Magneto-Arm
 		292290, -- Protocol: Ninety-Nine
 		-- Hard Mode
 		{"hardmode", "COUNTDOWN"}, -- H.A.R.D.M.O.D.E.

@@ -14,7 +14,7 @@ mod.engageId = 2016
 
 function mod:GetOptions()
 	return {
-		50774, -- Thundering Stomp
+		{50774, "CASTBAR"}, -- Thundering Stomp
 	}
 end
 

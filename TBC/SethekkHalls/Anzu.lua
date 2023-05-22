@@ -22,7 +22,7 @@ local castingScreech = false
 
 function mod:GetOptions()
 	return {
-		{40184, "FLASH"}, -- Paralyzing Screech
+		{40184, "FLASH", "CASTBAR"}, -- Paralyzing Screech
 		40303, -- Spell Bomb
 		-5252, -- Cyclone of Feathers
 		-5253, -- Brood of Anzu

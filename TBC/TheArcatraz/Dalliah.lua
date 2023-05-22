@@ -16,7 +16,7 @@ mod.engageId = 1913
 function mod:GetOptions()
 	return {
 		39013, -- Heal
-		36175, -- Whirlwind
+		{36175, "CASTBAR"}, -- Whirlwind
 		39009, -- Gift of the Doomsayer
 	}
 end

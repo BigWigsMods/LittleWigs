@@ -28,7 +28,7 @@ function mod:GetOptions()
 		375943, -- Upheaval
 		{375937, "TANK_HEALER"}, -- Rending Strike
 		-- Intermission: Stormwinds
-		376727, -- Siphon Power
+		{376727, "CASTBAR"}, -- Siphon Power
 		-- Stage Two: The Storm Unleashed
 		{376864, "SAY", "SAY_COUNTDOWN"}, -- Static Spear
 		376892, -- Crackling Upheaval

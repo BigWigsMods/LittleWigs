@@ -21,8 +21,8 @@ local deaths = 0
 function mod:GetOptions()
 	return {
 		"stages",
-		42669, -- Smash
-		42708, -- Staggering Roar
+		{42669, "CASTBAR"}, -- Smash
+		{42708, "CASTBAR"}, -- Staggering Roar
 		42730, -- Woe Strike
 	}, {
 		[42669] = "general",

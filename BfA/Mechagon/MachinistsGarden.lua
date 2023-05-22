@@ -26,7 +26,7 @@ function mod:GetOptions()
 	return {
 		"activate_plant", -- Activate Plant
 		294855, -- Blossom Blast
-		285440, -- "Hidden" Flame Cannon
+		{285440, "CASTBAR"}, -- "Hidden" Flame Cannon
 		{285454, "DISPEL"}, -- Discom-BOMB-ulator
 	}
 end

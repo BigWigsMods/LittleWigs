@@ -25,7 +25,7 @@ function mod:GetOptions()
 	return {
 		39193, -- Shadow Power
 		35311, -- Stream of Machine Fluid
-		39194, -- Jackhammer
+		{39194, "CASTBAR"}, -- Jackhammer
 	}
 end
 

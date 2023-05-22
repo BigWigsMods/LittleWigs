@@ -45,7 +45,7 @@ function mod:GetOptions()
 		{249081, "SAY"}, -- Suppression Field
 		{245510, "SAY"}, -- Corrupting Void
 		249078, -- Void Diffusion
-		248227, -- Dark Matter
+		{248227, "CASTBAR"}, -- Dark Matter
 		matterMarker,
 	}, {
 		["custom_on_autotalk"] = L.alleria,

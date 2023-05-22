@@ -13,9 +13,9 @@ mod.engageId = 2290
 
 function mod:GetOptions()
 	return {
-		297254, -- Charged Smash
+		{297254, "CASTBAR"}, -- Charged Smash
 		{297257, "ME_ONLY"}, -- Electrical Charge
-		297261, -- Rumble
+		{297261, "CASTBAR"}, -- Rumble
 	}
 end
 

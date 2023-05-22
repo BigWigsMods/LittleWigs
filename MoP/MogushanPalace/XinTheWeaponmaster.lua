@@ -34,7 +34,7 @@ end
 
 function mod:GetOptions()
 	return {
-		119684, -- Ground Slam
+		{119684, "CASTBAR"}, -- Ground Slam
 		"blades",
 		"crossbows",
 	}

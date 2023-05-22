@@ -68,7 +68,7 @@ function mod:GetOptions()
 		242841, -- Throw Silence Tome
 		239101, -- Throw Arcane Tome
 		-- Gazerax
-		239232, -- Blinding Glare
+		{239232, "CASTBAR"}, -- Blinding Glare
 		-- Vilebark Walker
 		242760, -- Lumbering Crash
 	}, {

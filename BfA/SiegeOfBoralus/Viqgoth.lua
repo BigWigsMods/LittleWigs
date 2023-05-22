@@ -41,7 +41,7 @@ function mod:GetOptions()
 		{275014, "PROXIMITY", "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Putrid Waters
 		putridWatersMarker,
 		270185, -- Call of the Deep
-		269366, -- Repair
+		{269366, "CASTBAR"}, -- Repair
 		"demolishing", -- Demolishing Terror
 		269266, -- Slam
 		270590, -- Hull Cracker

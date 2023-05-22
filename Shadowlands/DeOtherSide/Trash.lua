@@ -73,9 +73,9 @@ function mod:GetOptions()
 		{333227, "NAMEPLATEBAR"}, -- Undying Rage
 		333250, -- Reaver
 		-- Enraged Spirit
-		333787, -- Rage
+		{333787, "CASTBAR"}, -- Rage
 		-- Death Speaker
-		334051, -- Erupting Darkness
+		{334051, "CASTBAR"}, -- Erupting Darkness
 
 		-- [[ Path to Hakkar ]] --
 		-- Atal'ai Deathwalker
@@ -90,10 +90,10 @@ function mod:GetOptions()
 
 		-- [[ Path to the Manastorms ]] --
 		-- Defunct Dental Drill
-		{331927, "NAMEPLATEBAR"}, -- Haywire
+		{331927, "NAMEPLATEBAR", "CASTBAR"}, -- Haywire
 		-- 4.RF-4.RF
 		{331548, "TANK_HEALER"}, -- Metallic Jaws
-		{331846, "SAY", "SAY_COUNTDOWN"}, -- W-00F
+		{331846, "SAY", "SAY_COUNTDOWN", "CASTBAR"}, -- W-00F
 		-- Lubricator
 		332084, -- Self-Cleaning Cycle
 		-- Headless Client
@@ -103,7 +103,7 @@ function mod:GetOptions()
 		-- Weald Shimmermoth
 		"soporific_shimmerdust",
 		-- Mythresh, Sky's Talons
-		340026, -- Wailing Grief
+		{340026, "CASTBAR"}, -- Wailing Grief
 	}, {
 		[328740] = L.cultist,
 		[333227] = L.warlord,

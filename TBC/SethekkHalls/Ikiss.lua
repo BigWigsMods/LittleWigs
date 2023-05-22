@@ -20,7 +20,7 @@ local explosionWarnings = 1
 
 function mod:GetOptions()
 	return {
-		38197, -- Arcane Explosion
+		{38197, "CASTBAR"}, -- Arcane Explosion
 		38245, -- Polymorph
 		35032, -- Slow
 	}

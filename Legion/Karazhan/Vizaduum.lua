@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		-- [[ General ]] --
 		"stages",
-		229151, -- Disintegrate
+		{229151, "CASTBAR"}, -- Disintegrate
 		{229159, "SAY", "SAY_COUNTDOWN"}, -- Chaotic Shadows
 		229083, -- Burning Blast
 
@@ -37,7 +37,7 @@ function mod:GetOptions()
 		229905, -- Soul Harvest
 
 		-- [[ Stage 3 ]] --
-		230084, -- Stabilize Rift
+		{230084, "CASTBAR"}, -- Stabilize Rift
 		230066, -- Shadow Phlegm
 	}, {
 		["stages"] = "general",

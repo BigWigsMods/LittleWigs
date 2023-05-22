@@ -14,7 +14,7 @@ mod:RegisterEnableMob(18667)
 
 function mod:GetOptions()
 	return {
-		33676, -- Incite Chaos
+		{33676, "CASTBAR"}, -- Incite Chaos
 	}
 end
 

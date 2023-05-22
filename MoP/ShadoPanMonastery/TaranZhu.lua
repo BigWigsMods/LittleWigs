@@ -26,7 +26,7 @@ function mod:GetOptions()
 	return {
 		115002, -- Summon Gripping Hatred
 		{107087, "FLASH"}, -- Haze of Hate
-		107356, -- Rising Hate
+		{107356, "CASTBAR"}, -- Rising Hate
 	}
 end
 

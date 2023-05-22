@@ -51,7 +51,7 @@ function mod:GetOptions()
 		240790, -- Nether Storm
 
 		--[[ Prophet Velen ]]--
-		233473, -- Holy Ward
+		{233473, "CASTBAR"}, -- Holy Ward
 
 		--[[ Inquisitor Variss ]]--
 		234423, -- Drain Life

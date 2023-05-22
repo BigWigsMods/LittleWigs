@@ -47,7 +47,7 @@ function mod:GetOptions()
 		"custom_on_autotalk", -- Aegis of Aggramar
 		238410, -- Aegis of Aggramar
 		236543, -- Felsoul Cleave
-		234107, -- Chaotic Energy
+		{234107, "CASTBAR"}, -- Chaotic Energy
 		-15076, -- Fel Portal Guardian
 		241622, -- Approaching Doom
 	},{

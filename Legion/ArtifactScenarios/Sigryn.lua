@@ -44,7 +44,7 @@ function mod:GetOptions()
 		"warmup",
 		-- "infobox", -- CC DR?
 		--[[ Sigryn ]]--
-		{237945, "EMPHASIZE", "COUNTDOWN"}, -- (Empowered) Blood of the Father
+		{237945, "EMPHASIZE", "COUNTDOWN", "CASTBAR"}, -- (Empowered) Blood of the Father
 		237730, -- Dark Wings
 		238694, -- Throw Spear
 		238691, -- Spear of Vengeance (Damage)

@@ -29,9 +29,9 @@ function mod:GetOptions()
 		162407, -- X21-01A Missile Barrage
 		163947, -- Recovering
 		162171, -- Better Position
-		162500, -- VX18-B Target Eliminator
+		{162500, "CASTBAR"}, -- VX18-B Target Eliminator
 		161091, -- New Plan!
-		161090, -- Mad Dash
+		{161090, "CASTBAR"}, -- Mad Dash
 		162617, -- Slam
 		161092, -- Unmanaged Aggression
 	}, {

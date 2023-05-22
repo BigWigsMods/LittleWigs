@@ -76,7 +76,7 @@ function mod:GetOptions()
 		-- Skeletal Monstrosity
 		324394, -- Shatter
 		324387, -- Frigid Spikes
-		324372, -- Reaping Winds
+		{324372, "CASTBAR"}, -- Reaping Winds
 		-- Corpse Collector
 		338353, -- Goresplatter
 		-- Kyrian Stitchwerk

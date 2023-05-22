@@ -15,7 +15,7 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
-		255371, -- Terrifying Visage
+		{255371, "CASTBAR"}, -- Terrifying Visage
 		{257407, "SAY"}, -- Pursuit
 		{255434, "TANK"}, -- Serrated Teeth
 	}

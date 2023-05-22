@@ -12,7 +12,7 @@ mod.engageId = 2021
 
 function mod:GetOptions()
 	return {
-		-7598, -- Ghoul Explode
+		{-7598, "CASTBAR"}, -- Ghoul Explode
 		67781, -- Desecration
 	}
 end

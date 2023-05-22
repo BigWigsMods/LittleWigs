@@ -107,7 +107,7 @@ function mod:GetOptions()
 		269931, -- Gust Slash
 
 		-- King Timalji
-		{270928, "SAY"}, -- Bladestorm
+		{270928, "SAY", "CASTBAR"}, -- Bladestorm
 
 		-- Queen Wasi
 		270920, -- Seduction

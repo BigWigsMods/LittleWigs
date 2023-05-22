@@ -26,7 +26,7 @@ function mod:GetOptions()
 	return {
 		-7534,  -- Poison Bottle
 		67534, -- Hex of Mending
-		67528, -- Healing Wave
+		{67528, "CASTBAR"}, -- Healing Wave
 		66043, -- Polymorph
 	}
 end

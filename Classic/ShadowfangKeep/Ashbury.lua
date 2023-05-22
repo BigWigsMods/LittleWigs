@@ -16,7 +16,7 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		93581, -- Pain and Suffering
-		93423, -- Asphyxiate
+		{93423, "CASTBAR"}, -- Asphyxiate
 		93757, -- Dark Archangel Form
 	}, {
 		[93581] = "general",

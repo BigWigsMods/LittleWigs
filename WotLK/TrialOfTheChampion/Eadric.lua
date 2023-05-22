@@ -11,7 +11,7 @@ mod:RegisterEnableMob(35119)
 
 function mod:GetOptions()
 	return {
-		66935, -- Radiance
+		{66935, "CASTBAR"}, -- Radiance
 	}
 end
 

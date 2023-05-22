@@ -12,7 +12,7 @@ mod:RegisterEnableMob(17770)
 
 function mod:GetOptions()
 	return {
-		-6008, -- Foul Spores
+		{-6008, "CASTBAR"}, -- Foul Spores
 		{31689, "ME_ONLY"}, -- Spore Cloud
 	}, {
 		[-6008] = "general",

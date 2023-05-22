@@ -15,7 +15,7 @@ mod.engageId = 1928
 function mod:GetOptions()
 	return {
 		34661, -- Sacrifice
-		34659, -- Hellfire
+		{34659, "CASTBAR"}, -- Hellfire
 		34670, -- Enrage
 	}
 end

@@ -22,7 +22,7 @@ local corruptedVortexCount = 0
 function mod:GetOptions()
 	return {
 		-- Mythic+
-		397785, -- Wash Away
+		{397785, "CASTBAR"}, -- Wash Away
 		{397797, "SAY", "SAY_COUNTDOWN"}, -- Corrupted Vortex
 		397793, -- Corrupted Geyser
 		-- Normal / Heroic

@@ -21,7 +21,7 @@ local nextReinforcementsWarning = 70
 
 function mod:GetOptions()
 	return {
-		124283, -- Blade Rush
+		{124283, "CASTBAR"}, -- Blade Rush
 		{119875, "HEALER"}, -- Tempest
 		-5946, -- Call Reinforcements
 	}

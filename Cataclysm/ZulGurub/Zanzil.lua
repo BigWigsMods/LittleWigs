@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		96914, -- Zanzili Fire
 		{96316, "ICON", "FLASH"}, -- Zanzil's (Blue) Resurrection Elixir
-		96338, -- Zanzil's Graveyard Gas
+		{96338, "CASTBAR"}, -- Zanzil's Graveyard Gas
 	}
 end
 

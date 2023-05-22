@@ -21,7 +21,7 @@ local airDropCount = 0
 function mod:GetOptions()
 	return {
 		291930, -- Air Drop
-		291946, -- Venting Flames
+		{291946, "CASTBAR"}, -- Venting Flames
 		{291973, "PROXIMITY", "SAY"}, -- Explosive Leap
 		{294929, "TANK_HEALER"}, -- Blazing Chomp
 	}

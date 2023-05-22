@@ -12,7 +12,7 @@ mod:RegisterEnableMob(17377)
 
 function mod:GetOptions()
 	return {
-		-5388, -- Burning Nova
+		{-5388, "CASTBAR"}, -- Burning Nova
 	}
 end
 

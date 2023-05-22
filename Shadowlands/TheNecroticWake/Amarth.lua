@@ -16,7 +16,7 @@ function mod:GetOptions()
 	return {
 		"warmup",
 		321226, -- Land of the Dead
-		321247, -- Final Harvest
+		{321247, "CASTBAR"}, -- Final Harvest
 		333488, -- Necrotic Breath
 		{320012, "TANK_HEALER"}, -- Unholy Frenzy
 		320171, -- Necrotic Bolt

@@ -49,11 +49,11 @@ function mod:GetOptions()
 	return {
 		"warmup",
 		202081, -- Fixate
-		235308, -- Purgatory
+		{235308, "CASTBAR"}, -- Purgatory
 
 		--[[ Stage 2 ]]--
 		"handFromBeyond",
-		{235578, "FLASH"}, -- Grasp from Beyond
+		{235578, "FLASH", "CASTBAR"}, -- Grasp from Beyond
 
 		--[[ Stage 3 ]]--
 		{"rune", "FLASH"},

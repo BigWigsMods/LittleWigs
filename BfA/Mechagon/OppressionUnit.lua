@@ -19,7 +19,7 @@ mod.engageId = 2291
 function mod:GetOptions()
 	return {
 		"stages",
-		295536, -- Cannon Blast
+		{295536, "CASTBAR"}, -- Cannon Blast
 		302274, -- Fulminating Zap
 		{295445, "TANK_HEALER"}, -- Wreck
 		301351, -- Reinforcement Relay

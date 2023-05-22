@@ -40,7 +40,7 @@ function mod:GetOptions()
 		"stages",
 		118988, -- Reckless Inspiration
 		118963, -- Shank
-		"heal",
+		{"heal", "CASTBAR"},
 		{118903, "DISPEL"}, -- Hex of Lethargy
 	}, {
 		["stages"] = CL.general,

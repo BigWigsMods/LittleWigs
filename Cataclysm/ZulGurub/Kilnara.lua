@@ -15,7 +15,7 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		"stages",
-		96435, -- Tears of Blood
+		{96435, "CASTBAR"}, -- Tears of Blood
 		96423, -- Lash of Anguish
 		96457, -- Wave of Agony
 		-2702, -- Camouflage

@@ -62,17 +62,17 @@ end
 function mod:GetOptions()
 	return {
 		-- Ashvane Cannoneer
-		268260, -- Broadside
+		{268260, "CASTBAR"}, -- Broadside
 		-- Ashvane Commander
-		272874, -- Trample
+		{272874, "CASTBAR"}, -- Trample
 		275826, -- Bolstering Shout
 		-- Ashvane Invader
 		275835, -- Stinging Venom Coating
 		-- Ashvane Spotter
 		{272421, "SAY"}, -- Sighted Artillery
 		-- Bilge Rat Demolisher
-		257169, -- Terrifying Roar
-		272711, -- Crushing Slam
+		{257169, "CASTBAR"}, -- Terrifying Roar
+		{272711, "CASTBAR"}, -- Crushing Slam
 		-- Bilge Rat Pillager
 		272827, -- Viscous Slobber
 		-- Bilge Rat Tempest
@@ -86,7 +86,7 @@ function mod:GetOptions()
 		-- Kul Tiran Halberd
 		256627, -- Slobber Knocker
 		-- Kul Tiran Vanguard
-		257288, -- Heavy Slash
+		{257288, "CASTBAR"}, -- Heavy Slash
 		-- Kul Tiran Marksman
 		257641, -- Molten Slug
 		-- Snarling Dockhound

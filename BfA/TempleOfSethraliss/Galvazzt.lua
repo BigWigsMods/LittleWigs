@@ -32,7 +32,7 @@ end
 function mod:GetOptions()
 	return {
 		{266923, "INFOBOX"}, -- Galvanize
-		266512, -- Consume Charge
+		{266512, "CASTBAR"}, -- Consume Charge
 	}
 end
 

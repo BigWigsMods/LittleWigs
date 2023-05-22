@@ -112,12 +112,12 @@ function mod:GetOptions()
 		{299438, "TANK_HEALER"}, -- Sledgehammer
 		-- Weaponized Crawler
 		{300188, "SAY", "FLASH"}, -- Scrap Cannon
-		300207, -- Shock Coil
+		{300207, "CASTBAR"}, -- Shock Coil
 		-- Slime ELemental
 		300764, -- Slimebolt
 		300777, -- Slimewave
 		-- Toxic Monstrosity
-		300687, -- Consume
+		{300687, "CASTBAR"}, -- Consume
 		-- Toxic Lurker
 		{300650, "DISPEL"}, -- Suffocating Smog
 		-- Pistonhead Mechanic
@@ -137,7 +137,7 @@ function mod:GetOptions()
 		-- Bomb Tonk
 		301088, -- Detonate
 		-- Rocket Tonk
-		294103, -- Rocket Barrage
+		{294103, "CASTBAR"}, -- Rocket Barrage
 		-- Waste Processing Unit
 		294324, -- Mega Drill
 		294290, -- Process Waste
@@ -150,7 +150,7 @@ function mod:GetOptions()
 		-- Defense Bot Mk III
 		{294195, "DISPEL"}, -- Arcing Zap
 		{297133, "DISPEL"}, -- Defensive Countermeasure
-		297128, -- Short Out
+		{297128, "CASTBAR"}, -- Short Out
 		-- Blastatron X-80
 		294015, -- Launch High-Explosive Rockets
 		293986, -- Sonic Pulse

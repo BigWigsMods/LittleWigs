@@ -16,7 +16,7 @@ mod.respawnTime = 32
 function mod:GetOptions()
 	return {
 		261563, -- Crashing Tide
-		257882, -- Break Water
+		{257882, "CASTBAR"}, -- Break Water
 		276068, -- Tidal Surge
 	}
 end

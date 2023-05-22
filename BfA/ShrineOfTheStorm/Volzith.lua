@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -22,18 +21,18 @@ function mod:GetOptions()
 	return {
 		267037, -- Whispers of Power
 		269399, -- Yawning Gate
-		267385, -- Tentacle Slam
-		267360, -- Grasp of the Sunken City
+		{267385, "CASTBAR"}, -- Tentacle Slam
+		{267360, "CASTBAR"}, -- Grasp of the Sunken City
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "WhispersofPower", 267034)
-	self:Log("SPELL_AURA_APPLIED", "WhispersofPowerApplied", 267037)
+	self:Log("SPELL_CAST_SUCCESS", "WhispersOfPower", 267034)
+	self:Log("SPELL_AURA_APPLIED", "WhispersOfPowerApplied", 267037)
 	self:Log("SPELL_CAST_START", "YawningGate", 269399)
 	self:Log("SPELL_CAST_START", "TentacleSlam", 267385)
-	self:Log("SPELL_CAST_START", "GraspoftheSunkenCity", 267360)
-	self:Log("SPELL_AURA_REMOVED", "GraspoftheSunkenCityOver", 267444)
+	self:Log("SPELL_CAST_START", "GraspOfTheSunkenCity", 267360)
+	self:Log("SPELL_AURA_REMOVED", "GraspOfTheSunkenCityOver", 267444)
 end
 
 function mod:OnEngage()
@@ -47,14 +46,14 @@ end
 -- Event Handlers
 --
 
-function mod:WhispersofPower()
+function mod:WhispersOfPower()
 	local timer = 21.5
 	if nextStage - (GetTime() + timer) < 0 then
 		self:Bar(267037, timer) -- Whispers of Power
 	end
 end
 
-function mod:WhispersofPowerApplied(args)
+function mod:WhispersOfPowerApplied(args)
 	self:TargetMessage(args.spellId, "cyan", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
@@ -74,13 +73,13 @@ function mod:TentacleSlam(args)
 	self:CastBar(args.spellId, 4)
 end
 
-function mod:GraspoftheSunkenCity(args)
+function mod:GraspOfTheSunkenCity(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 4)
 end
 
-function mod:GraspoftheSunkenCityOver()
+function mod:GraspOfTheSunkenCityOver()
 	self:Bar(269399, 4) -- Yawning Gate _start
 	self:Bar(267037, 11.5) -- Whispers of Power _success
 	nextStage = GetTime() + 50.2

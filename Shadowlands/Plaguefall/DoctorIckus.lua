@@ -25,7 +25,7 @@ function mod:GetOptions()
 		329217, -- Slime Lunge
 		329110, -- Slime Injection
 		332617, -- Pestilence Surge
-		321406, -- Virulent Explosion
+		{321406, "CASTBAR"}, -- Virulent Explosion
 	}
 end
 

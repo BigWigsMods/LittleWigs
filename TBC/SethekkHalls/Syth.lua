@@ -20,7 +20,7 @@ local elementalsWarnings = 1
 
 function mod:GetOptions()
 	return {
-		{15659, "SAY", "ICON"}, -- Chain Lightning
+		{15659, "SAY", "ICON", "CASTBAR"}, -- Chain Lightning
 		12548, -- Frost Shock
 		-5235, -- Summon Elementals
 	}

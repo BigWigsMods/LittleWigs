@@ -17,7 +17,7 @@ function mod:GetOptions()
 	return {
 		257092, -- Sand Trap
 		257495, -- Sandstorm
-		{257608, "SAY"}, -- Upheaval
+		{257608, "SAY", "CASTBAR"}, -- Upheaval
 		257609, -- Enrage
 	}
 end

@@ -22,10 +22,10 @@ local cycloneStrikeCount = 0
 function mod:GetOptions()
 	return {
 		{263246, "ICON"}, -- Lightning Shield
-		263257, -- Static Shock
+		{263257, "CASTBAR"}, -- Static Shock
 		{263371, "SAY", "SAY_COUNTDOWN"}, -- Conduction
 		263424, -- Arc Dash
-		{263309, "SAY", "FLASH"}, -- Cyclone Strike
+		{263309, "SAY", "FLASH", "CASTBAR"}, -- Cyclone Strike
 	}, {
 		[263246] = "general",
 		[263257] = -18484, -- Aspix

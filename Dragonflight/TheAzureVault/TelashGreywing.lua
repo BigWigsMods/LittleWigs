@@ -22,7 +22,7 @@ local icyDevastatorRemaining = 2
 
 function mod:GetOptions()
 	return {
-		388008, -- Absolute Zero
+		{388008, "CASTBAR"}, -- Absolute Zero
 		386781, -- Frost Bomb
 		{387151, "SAY"}, -- Icy Devastator
 	}

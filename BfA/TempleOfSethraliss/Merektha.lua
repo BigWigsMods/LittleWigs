@@ -17,7 +17,7 @@ function mod:GetOptions()
 	return {
 		263912, -- Noxious Breath
 		263927, -- Toxic Pool
-		263914, -- Blinding Sand
+		{263914, "CASTBAR"}, -- Blinding Sand
 		264239, -- Hatch
 		264206, -- Burrow
 		{263958, "SAY", "ICON"}, -- A Knot of Snakes

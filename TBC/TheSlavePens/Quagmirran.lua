@@ -15,7 +15,7 @@ mod:RegisterEnableMob(17942)
 
 function mod:GetOptions()
 	return {
-		{38153, "SAY", "ICON"}, -- Acid Spray
+		{38153, "SAY", "ICON", "CASTBAR"}, -- Acid Spray
 	}
 end
 

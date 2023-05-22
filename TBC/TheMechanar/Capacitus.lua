@@ -26,7 +26,7 @@ function mod:GetOptions()
 	return {
 		35158, -- Reflective Magic Shield
 		35159, -- Reflective Damage Shield
-		{39096, "PROXIMITY"}, -- Polarity Shift
+		{39096, "PROXIMITY", "CASTBAR"}, -- Polarity Shift
 		"berserk",
 	}, {
 		[35158] = "normal",

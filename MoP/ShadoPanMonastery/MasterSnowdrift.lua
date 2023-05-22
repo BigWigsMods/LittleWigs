@@ -31,7 +31,7 @@ end
 
 function mod:GetOptions()
 	return {
-		106434, -- Tornado Kick
+		{106434, "CASTBAR"}, -- Tornado Kick
 		118961, -- Chase Down
 		106747, -- Shado-pan Mirror Image
 		"stages"

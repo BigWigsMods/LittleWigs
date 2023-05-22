@@ -43,7 +43,7 @@ function mod:GetOptions()
 		285344, -- Lay Mine
 		-- Gnomercy 4.U.
 		{285152, "SAY", "FLASH"}, -- Foe Flipper
-		285388, -- Vent Jets
+		{285388, "CASTBAR"}, -- Vent Jets
 		{283422, "SAY", "FLASH"}, -- Maximum Thrust
 	}, {
 		["warmup"] = "general",

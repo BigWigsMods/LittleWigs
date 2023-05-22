@@ -20,7 +20,7 @@ local addsAlive = 0
 
 function mod:GetOptions()
 	return {
-		34550, -- Tranquility
+		{34550, "CASTBAR"}, -- Tranquility
 		34752, -- Freezing Touch
 	}, {
 		[34550] = "general",

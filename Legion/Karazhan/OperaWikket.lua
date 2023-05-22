@@ -17,7 +17,7 @@ function mod:GetOptions()
 		227477, -- Summon Assistants
 		227447, -- Defy Gravity
 		227410, -- Wondrous Radiance
-		227776, -- Magic Magnificent
+		{227776, "CASTBAR"}, -- Magic Magnificent
 	}, {
 		[227477] = -14020, -- Elfyra
 		[227410] = -14028, -- Galindre

@@ -24,10 +24,10 @@ function mod:GetOptions()
 	return {
 		256198, -- Azerite Rounds: Incendiary
 		256199, -- Azerite Rounds: Blast
-		256083, -- Cross Ignition
+		{256083, "CASTBAR"}, -- Cross Ignition
 		{256105, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Explosive Burst
-		{256038, "INFOBOX"}, -- Deadeye
-		263345, -- Massive Blast
+		{256038, "INFOBOX", "CASTBAR"}, -- Deadeye
+		{263345, "CASTBAR"}, -- Massive Blast
 	}
 end
 

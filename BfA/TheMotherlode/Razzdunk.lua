@@ -17,7 +17,7 @@ function mod:GetOptions()
 		"stages",
 		260280, -- Gatling Gun
 		{260829, "ICON", "SAY"}, -- Homing Missile
-		276229, -- Micro Missiles
+		{276229, "CASTBAR"}, -- Micro Missiles
 		271456, -- Drill Smash
 	}, {
 		[260280] = -18916, -- Stage One: Big Guns

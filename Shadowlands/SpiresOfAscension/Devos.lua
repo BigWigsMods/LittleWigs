@@ -23,7 +23,7 @@ local lostConfidenceCount = 1
 function mod:GetOptions()
 	return {
 		"stages",
-		{334625, "EMPHASIZE"}, -- Abyssal Detonation
+		{334625, "EMPHASIZE", "CASTBAR"}, -- Abyssal Detonation
 		{322818, "SAY", "SAY_COUNTDOWN"}, -- Lost Confidence
 		{323943, "SAY"}, -- Run Through
 	}

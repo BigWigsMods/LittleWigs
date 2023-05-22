@@ -17,7 +17,7 @@ function mod:GetOptions()
 	return {
 		227267, -- Summon Volatile Energy
 		227279, -- Power Discharge
-		227254, -- Evocation
+		{227254, "CASTBAR"}, -- Evocation
 	}
 end
 

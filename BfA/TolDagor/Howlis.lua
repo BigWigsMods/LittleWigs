@@ -15,7 +15,7 @@ mod.engageId = 2102
 function mod:GetOptions()
 	return {
 		257791, -- Howling Fear
-		257785, -- Flashing Daggers
+		{257785, "CASTBAR"}, -- Flashing Daggers
 		257777, -- Crippling Shiv
 		257793, -- Smoke Powder
 		257827, -- Motivating Cry

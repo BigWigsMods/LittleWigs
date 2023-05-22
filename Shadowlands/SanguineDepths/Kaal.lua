@@ -25,7 +25,7 @@ function mod:GetOptions()
 	return {
 		{323845, "SAY", "FLASH"}, -- Wicked Rush
 		323821, -- Piercing Blur
-		322903, -- Gloom Squall
+		{322903, "CASTBAR"}, -- Gloom Squall
 	}
 end
 

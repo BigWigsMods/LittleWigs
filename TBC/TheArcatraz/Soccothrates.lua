@@ -15,7 +15,7 @@ mod.engageId = 1915
 
 function mod:GetOptions()
 	return {
-		{-5293, "SAY"}, -- Felfire
+		{-5293, "SAY", "CASTBAR"}, -- Felfire
 		35759, -- Felfire Shock
 	}
 end
