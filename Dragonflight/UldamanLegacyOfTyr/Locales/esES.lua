@@ -2,9 +2,12 @@ local L = BigWigs:NewBossLocale("Uldaman: Legacy of Tyr Trash", "esES") or BigWi
 if not L then return end
 if L then
 	L.hulking_berserker = "Rabioso descomunal"
+	L.stonevault_geomancer = "Geomántico Grutacanto"
 	L.vicious_basilisk = "Basilisco sañoso"
-	L.earthen_warder = "Depositario terráneo"
+	L.refti_custodian = "Custodio refti"
+	L.earthen_custodian = "Custodio terráneo"
 	L.earthen_weaver = "Tejedor terráneo"
+	L.earthen_warder = "Depositario terráneo"
 	L.runic_protector = "Protector rúnico"
 	L.cavern_seeker = "Buscador de la caverna"
 	L.ebonstone_golem = "Gólem de ébano"
