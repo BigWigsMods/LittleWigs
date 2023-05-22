@@ -98,7 +98,7 @@ function mod:GetOptions()
 		-- Infected Bear
 		{373929, "TANK"}, -- Bash
 		-- Stinkbreath
-		388060, -- Stink Breath
+		{388060, "SAY"}, -- Stink Breath
 		388046, -- Violent Whirlwind
 		-- Rageclaw
 		{385832, "SAY"}, -- Bloodthirsty Charge
@@ -152,6 +152,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "WitheringApplied", 368081)
 
 	-- Claw Fighter
+	self:Log("SPELL_CAST_START", "ViciousClawmangle", 367484)
 	self:Log("SPELL_AURA_APPLIED", "ViciousClawmangleApplied", 367484)
 
 	-- Bonebolt Hunter
@@ -272,10 +273,22 @@ end
 
 -- Claw Fighter
 
+do
+	local prev = 0
+	function mod:ViciousClawmangle(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
 function mod:ViciousClawmangleApplied(args)
 	if self:Me(args.destGUID) and not self:Tank() then
 		self:PersonalMessage(args.spellId, nil, CL.fixate)
-		self:PlaySound(args.spellId, "long")
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 
@@ -389,10 +402,19 @@ end
 
 -- Stinkbreath
 
-function mod:StinkBreath(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17.0)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(388060, "red", name)
+		self:PlaySound(388060, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(388060)
+		end
+	end
+
+	function mod:StinkBreath(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:CDBar(args.spellId, 17.0)
+	end
 end
 
 function mod:ViolentWhirlwind(args)
@@ -444,8 +466,8 @@ end
 -- Skulking Gutstabber
 
 function mod:WitheringPoisonApplied(args)
-	-- TODO on live not dispelled by movement (bug), check PTR
-	if self:Dispeller("poison", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) or self:Me(args.destGUID) then
+	-- not dispelled by movement (presumably bugged)
+	if self:Dispeller("poison", nil, args.spellId) or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
@@ -464,7 +486,7 @@ function mod:RottingSurge(args)
 	-- this is triggered on cast success (there's a channel after) because
 	-- interrupting this during the pre-cast doesn't put it on CD
 	self:Message(383399, "yellow")
-	self:PlaySound(383399, "alert")
+	self:PlaySound(383399, "long")
 end
 
 do

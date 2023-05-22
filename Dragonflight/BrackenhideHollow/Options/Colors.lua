@@ -36,7 +36,7 @@ BigWigs:AddColors("Decatriarch Wratheye", {
 })
 
 BigWigs:AddColors("Brackenhide Hollow Trash", {
-	[367484] = "blue",
+	[367484] = {"blue","red"},
 	[367500] = "red",
 	[367503] = {"blue","orange"},
 	[368081] = {"blue","yellow"},
@@ -61,5 +61,5 @@ BigWigs:AddColors("Brackenhide Hollow Trash", {
 	[385827] = "yellow",
 	[385832] = {"blue","red"},
 	[388046] = "orange",
-	[388060] = "red",
+	[388060] = {"blue","red"},
 })
