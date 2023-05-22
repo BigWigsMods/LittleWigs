@@ -118,7 +118,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "JaggedBite", 377732)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AncientPowerApplied", 377738)
 	self:Log("SPELL_AURA_APPLIED", "SystemicVulnerabilityApplied", 377724)
-		
+
 	-- Earthen Custodian
 	self:Log("SPELL_CAST_START", "Cleave", 369409)
 
@@ -287,7 +287,7 @@ do
 		end
 	end
 end
-	
+
 -- Earthen Custodian
 
 do
