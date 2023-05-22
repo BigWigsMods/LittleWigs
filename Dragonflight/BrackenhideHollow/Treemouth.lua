@@ -33,7 +33,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ConsumingStart", 378022)
 	self:Log("SPELL_AURA_REMOVED", "ConsumingRemoved", 378022)
 	self:Log("SPELL_CAST_START", "DecaySpray", 376811)
-	-- Infectious Spit is no longer cast in Mythic only since 2023-05-13
+	-- Infectious Spit is only cast in non-Mythic difficulties as of 2023-05-13
 	self:Log("SPELL_CAST_SUCCESS", "InfectiousSpit", 377859)
 	self:Log("SPELL_CAST_START", "VineWhip", 377559)
 
