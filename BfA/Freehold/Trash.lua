@@ -230,9 +230,12 @@ end
 -- Irontide Bonesaw
 
 function mod:HealingBalm(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-	--self:NameplateBar(args.spellId, 25.5, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
 end
 
 function mod:HealingBalmApplied(args)
@@ -253,9 +256,12 @@ end
 -- Irontide Crackshot
 
 function mod:AzeriteGrenade(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateBar(args.spellId, 23.0, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 23.0, args.sourceGUID)
 end
 
 -- Irontide Corsair
@@ -278,7 +284,7 @@ do
 			prev = castGUID
 			self:Message(274400, "red")
 			self:PlaySound(274400, "alarm")
-			--self:NameplateBar(274400, 17.0, self:UnitGUID(unit))
+			--self:NameplateCDBar(274400, 17.0, self:UnitGUID(unit))
 		end
 	end
 end
@@ -288,7 +294,7 @@ end
 function mod:SeaSpoutSuccess(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateBar(args.spellId, 17.0, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
 end
 
 -- Cutwater Knife Juggler
@@ -311,8 +317,11 @@ do
 	end
 
 	function mod:RicochetingThrow(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
-		--self:NameplateBar(args.spellId, 8.5, args.sourceGUID)
+		--self:NameplateCDBar(args.spellId, 8.5, args.sourceGUID)
 	end
 end
 
@@ -321,6 +330,9 @@ end
 do
 	local prev = 0
 	function mod:FrostBlast(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
@@ -332,6 +344,7 @@ do
 end
 
 -- Blacktooth Scrapper
+
 do
 	local prev = 0
 	function mod:BlindRageApplied(args)
@@ -352,7 +365,7 @@ end
 function mod:ShatteringBellow(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateBar(args.spellId, 27.9, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
 end
 
 -- Bilge Rat Swabby
@@ -387,12 +400,15 @@ end
 function mod:RatTraps(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateBar(args.spellId, 20.6, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Bilge Rat Buccaneer
 
 function mod:GoinBananas(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
@@ -406,7 +422,7 @@ function mod:PlagueStepApplied(args)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 	-- TODO if nameplate CD bars are uncommented, this should move to SUCCESS
-	--self:NameplateBar(args.spellId, 20.6, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Soggy Shiprat
@@ -430,13 +446,13 @@ end
 function mod:BoulderThrow(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateBar(args.spellId, 19.4, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 function mod:GroundShatter(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateBar(args.spellId, 19.4, args.sourceGUID)
+	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 -- Irontide Buccaneer
@@ -444,6 +460,9 @@ end
 do
 	local prev = 0
 	function mod:BladeBarrage(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
