@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		385551, -- Gulp
 		385187, -- Overpowering Croak
-		385531, -- Belly Slam
+		{385531, "SAY"}, -- Belly Slam
 		385442, -- Toxic Effluvia
 		{374389, "DISPEL"}, -- Gulp Swog Toxin
 		385743, -- Hangry
@@ -70,10 +70,20 @@ function mod:OverpoweringCroak(args)
 	self:Bar(385187, 38.8)
 end
 
-function mod:BellySlam(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 38.8)
+
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(385531, "red", player)
+		self:PlaySound(385531, "alarm", nil, player)
+		if self:Me(guid) then
+			self:Say(385531)
+		end
+	end
+
+	function mod:BellySlam(args)
+		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
+		self:Bar(args.spellId, 38.8)
+	end
 end
 
 function mod:ToxicEffluvia(args)

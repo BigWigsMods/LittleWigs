@@ -12,7 +12,7 @@ BigWigs:AddColors("Gulping Goliath", {
 	[374389] = {"blue","red"},
 	[385187] = "yellow",
 	[385442] = "yellow",
-	[385531] = "red",
+	[385531] = {"blue","red"},
 	[385551] = "orange",
 	[385743] = "orange",
 })
