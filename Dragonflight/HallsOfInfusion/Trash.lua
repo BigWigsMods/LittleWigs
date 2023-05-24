@@ -256,12 +256,16 @@ end
 do
 	local prev = 0
 	function mod:SeismicSlam(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
 	end
 end
 
@@ -284,12 +288,16 @@ end
 do
 	local prev = 0
 	function mod:DemoralizingShout(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
+		--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
 	end
 end
 
@@ -302,12 +310,16 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 	end
 end
 
 -- Dazzling Dragonfly
 
 function mod:Dazzle(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -342,12 +354,15 @@ end
 -- Primalist Shocktrooper
 
 function mod:ElementalFocus(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ElementalFocusApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
+	if self:Dispeller("magic", true, args.spellId) and not self:Friendly(args.destFlags) then
 		self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -404,6 +419,9 @@ end
 do
 	local prev = 0
 	function mod:RumblingEarth(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
@@ -432,7 +450,10 @@ end
 -- Primalist Icecaller
 
 function mod:RefreshingTides(args)
-	self:Message(args.spellId, "yellow")
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
 end
