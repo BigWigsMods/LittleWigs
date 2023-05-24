@@ -178,6 +178,9 @@ end
 -- Devout Blood Priest
 
 function mod:DarkReconstitution(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
@@ -267,6 +270,9 @@ function mod:ThirstForBloodRemoved(args)
 end
 
 function mod:SonicScreech(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
@@ -297,6 +303,9 @@ function mod:RaiseDead(args)
 end
 
 function mod:WickedFrenzy(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
@@ -305,7 +314,7 @@ end
 do
 	local prev = 0
 	function mod:WickedFrenzyApplied(args)
-		if self:Tank() or self:Dispeller("enrage", true) then
+		if not self:Friendly(args.destFlags) and self:Tank() or self:Dispeller("enrage", true) then
 			local t = args.time
 			-- throttle, as this applies on all nearby enemies
 			if t - prev > 1 then
@@ -320,6 +329,9 @@ end
 -- Grotesque Horror
 
 function mod:DarkEchoes(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
