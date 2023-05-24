@@ -65,8 +65,6 @@ function mod:GetOptions()
 		"custom_on_autotalk",
 		391241, -- Limited Immortality
 		391471, -- Cleansing Spores
-		-- Primalist Ravager
-		374080, -- Blasting Gust
 		-- Primalist Geomancer
 		374073, -- Seismic Slam
 		-- Containment Apparatus
@@ -93,15 +91,9 @@ function mod:GetOptions()
 		385141, -- Thunderstorm
 		-- Primalist Icecaller
 		376171, -- Refreshing Tides
-		-- Gusting Proto-Dragon
-		375348, -- Gusting Breath
-		{391610, "DISPEL"}, -- Binding Winds
 		-- Glacial Proto-Dragon
 		375351, -- Oceanic Breath
 		391634, -- Deep Chill
-		-- Subterranean Proto-Dragon
-		375327, -- Tectonic Breath
-		391613, -- Creeping Mold
 		-- Aqua Rager
 		377341, -- Tidal Divergence
 		-- Infuser Sariya
@@ -109,7 +101,6 @@ function mod:GetOptions()
 		390290, -- Flash Flood
 	}, {
 		["custom_on_autotalk"] = CL.general,
-		[374080] = L.primalist_ravager,
 		[374073] = L.primalist_geomancer,
 		[374045] = L.containment_apparatus,
 		[374339] = L.refti_defender,
@@ -121,9 +112,7 @@ function mod:GetOptions()
 		[375384] = L.primalist_earthshaker,
 		[385141] = L.primalist_galesinger,
 		[376171] = L.primalist_icecaller,
-		[375348] = L.gusting_protodragon,
 		[375351] = L.glacial_protodragon,
-		[375327] = L.subterranean_protodragon,
 		[377341] = L.aqua_rager,
 		[377402] = L.infuser_sariya,
 	}
@@ -135,9 +124,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LimitedImmortalityApplied", 391241)
 	self:Log("SPELL_AURA_REMOVED", "LimitedImmortalityRemoved", 391241)
 	self:Log("SPELL_AURA_APPLIED", "CleansingSporesApplied", 391471)
-
-	-- Primalist Ravager
-	self:Log("SPELL_CAST_START", "BlastingGust", 374080)
 
 	-- Primalist Geomancer
 	self:Log("SPELL_CAST_SUCCESS", "SeismicSlam", 374073)
@@ -181,17 +167,9 @@ function mod:OnBossEnable()
 	-- Primalist Galesinger
 	self:Log("SPELL_CAST_START", "RefreshingTides", 376171)
 
-	-- Gusting Proto-Dragon
-	self:Log("SPELL_CAST_START", "GustingBreath", 375348)
-	self:Log("SPELL_AURA_APPLIED", "BindingWindsApplied", 391610)
-
 	-- Glacial Proto-Dragon
 	self:Log("SPELL_CAST_START", "OceanicBreath", 375351)
 	self:Log("SPELL_CAST_START", "DeepChill", 391634)
-
-	-- Subterranean Proto-Dragon
-	self:Log("SPELL_CAST_START", "TectonicBreath", 375327)
-	self:Log("SPELL_AURA_APPLIED", "CreepingMoldApplied", 391613)
 
 	-- Aqua Rager
 	self:Log("SPELL_CAST_START", "TidalDivergence", 377341)
@@ -242,13 +220,6 @@ function mod:CleansingSporesApplied(args)
 		self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
-end
-
--- Primalist Ravager
-
-function mod:BlastingGust(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Primalist Geomancer
@@ -458,24 +429,6 @@ function mod:RefreshingTides(args)
 	--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
 end
 
--- Gusting Proto-Dragon
-
-function mod:GustingBreath(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:BindingWindsApplied(args)
-	-- there is a cast but is not interruptible
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alert")
-	elseif self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
-	end
-end
-
 -- Glacial Proto-Dragon
 
 function mod:OceanicBreath(args)
@@ -488,21 +441,6 @@ function mod:DeepChill(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	--self:NameplateCDBar(args.spellId, 32.8, args.sourceGUID)
-end
-
--- Subterranean Proto-Dragon
-
-function mod:TectonicBreath(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:CreepingMoldApplied(args)
-	-- there is a cast but is not interruptible
-	if self:Dispeller("disease", nil, args.spellId) or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
-	end
 end
 
 -- Aqua Rager
