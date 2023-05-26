@@ -275,6 +275,9 @@ end
 do
 	local prev = 0
 	function mod:MagmaFist(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		-- this is cast during RP fighting, filter unless in combat
 		local unit = self:GetUnitIdByGUID(args.sourceGUID)
 		if unit and UnitAffectingCombat(unit) then
@@ -291,6 +294,9 @@ end
 -- Qalashi Bonetender
 
 function mod:MendingClay(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -300,6 +306,9 @@ end
 do
 	local prev = 0
 	function mod:ScorchingBreath(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
@@ -310,6 +319,9 @@ do
 end
 
 function mod:MoteOfCombustion(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -326,6 +338,9 @@ end
 do
 	local prev = 0
 	function mod:DragonboneAxe(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
@@ -400,6 +415,9 @@ function mod:MoltenCore(args)
 end
 
 function mod:MagmaConflagration(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
