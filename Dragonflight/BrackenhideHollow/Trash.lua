@@ -276,6 +276,9 @@ end
 do
 	local prev = 0
 	function mod:ViciousClawmangle(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -483,6 +486,9 @@ end
 -- Filth Caller
 
 function mod:RottingSurge(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	-- this is triggered on cast success (there's a channel after) because
 	-- interrupting this during the pre-cast doesn't put it on CD
 	self:Message(383399, "yellow")
