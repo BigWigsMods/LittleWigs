@@ -106,7 +106,7 @@ function mod:GetOptions()
 		-- Irontide Buccaneer
 		257870, -- Blade Barrage
 		-- Irontide Ravager
-		257899, -- Painful Motivation
+		{257899, "DISPEL"}, -- Painful Motivation
 		-- Irontide Officer
 		{257908, "DISPEL"}, -- Oiled Blade
 		-- Irontide Stormcaller
@@ -188,6 +188,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PainfulMotivation", 257899)
 	self:Log("SPELL_AURA_APPLIED", "PainfulMotivationApplied", 257899)
 	-- Irontide Officer
+	self:Log("SPELL_CAST_START", "OiledBlade", 257908)
 	self:Log("SPELL_AURA_APPLIED", "OiledBladeApplied", 257908)
 	-- Irontide Stormcaller
 	self:Log("SPELL_CAST_START", "ThunderingSquall", 257736)
@@ -484,24 +485,33 @@ end
 do
 	local prev = 0
 	function mod:PainfulMotivationApplied(args)
-		local t = args.time
-		if t - prev > 2 then
-			prev = t
-			self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
-			self:PlaySound(args.spellId, "info")
+		if self:Dispeller("enrage", nil, args.spellId) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
+				self:PlaySound(args.spellId, "info")
+			end
 		end
 	end
 end
 
 -- Irontide Officer
 
+function mod:OiledBlade(args)
+	if self:Tank() then
+		-- alerting on cast start because this can be spell reflected
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
+	end
+	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
+end
+
 function mod:OiledBladeApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+	if self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "purple", args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
-	-- TODO if nameplate CD bars are uncommented, this should move to SUCCESS
-	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
 end
 
 -- Irontide Stormcaller
@@ -512,8 +522,8 @@ do
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "long")
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
 		end
 		--self:NameplateCDBar(args.spellId, 21.8, args.sourceGUID)
 	end
