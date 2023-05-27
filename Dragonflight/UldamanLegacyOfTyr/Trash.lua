@@ -123,7 +123,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Cleave", 369409)
 
 	-- Earthen Weaver
-	self:Log("SPELL_CAST_SUCCESS", "HailOfStone", 369465) -- doesn't go on CD until the channel starts
+	self:Log("SPELL_CAST_START", "HailOfStone", 369465)
 
 	-- Earthen Warder
 	self:Log("SPELL_CAST_START", "EarthenWard", 369400)
