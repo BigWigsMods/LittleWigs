@@ -88,6 +88,11 @@ function mod:OnEngage()
 	self:CDBar(375924, 24.8) -- Longboat Raid
 end
 
+function mod:VerifyEnable(unit)
+	-- each of the three bosses is defeated and becomes friendly at 10% HP remaining
+	return UnitCanAttack("player", unit) or self:GetHealth(unit) > 10
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
