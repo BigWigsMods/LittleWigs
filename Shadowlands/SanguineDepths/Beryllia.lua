@@ -60,7 +60,7 @@ function mod:RiteOfSupremacy(args)
 end
 
 function mod:FragmentOfRadianceApplied(args)
-	if self:Me(args.destName) then
+	if self:Me(args.destGUID) then
 		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
 		self:PlaySound(args.spellId, "info", nil, self.destName)
 	end
