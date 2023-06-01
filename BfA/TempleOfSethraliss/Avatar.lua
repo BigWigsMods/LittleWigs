@@ -163,7 +163,7 @@ function mod:SnakeCharm(args)
 end
 
 function mod:SnakeCharmApplied(args)
-	if self:Me(args.destName) or self:Dispeller("magic", nil, args.spellId) then
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
