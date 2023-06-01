@@ -50,6 +50,7 @@ function mod:GetOptions()
 	return {
 		-- Befouled Spirit
 		{265568, "SAY"}, -- Dark Omen
+		278755, -- Harrowing Despair
 		-- Devout Blood Priest
 		265089, -- Dark Reconstitution
 		265091, -- Gift of G'huun
@@ -99,6 +100,7 @@ function mod:OnBossEnable()
 	-- Befouled Spirit
 	self:Log("SPELL_CAST_START", "DarkOmen", 265568)
 	self:Log("SPELL_AURA_APPLIED", "DarkOmenApplied", 265568)
+	self:Log("SPELL_CAST_START", "HarrowingDespair", 278755)
 
 	-- Devout Blood Priest
 	self:Log("SPELL_CAST_START", "DarkReconstitution", 265089)
@@ -173,6 +175,12 @@ function mod:DarkOmenApplied(args)
 		self:PlaySound(args.spellId, "alarm")
 		self:Say(args.spellId)
 	end
+end
+
+function mod:HarrowingDespair(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+	--self:NameplateCDBar(args.spellId, 32.8, args.sourceGUID)
 end
 
 -- Devout Blood Priest
