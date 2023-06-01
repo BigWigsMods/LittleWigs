@@ -331,11 +331,20 @@ end
 
 function mod:WickedEmbraceApplied(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("magic") then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "info", args.destName)
+		local healthPercent = (UnitHealth(args.destName) / UnitHealthMax(args.destName)) * 100
+		if healthPercent <= 50 then
+			-- If the player's health is below or equal to 50%, play the low health warning
+			self:TargetMessage(args.spellId, "red", args.destName)
+			self:PlaySound(args.spellId, "alert")
+		else
+			-- If the player's health is above 50%, play the regular warning
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
 		self:TargetBar(args.spellId, 12, args.destName)
 	end
 end
+
 
 -- Grotesque Horror
 
