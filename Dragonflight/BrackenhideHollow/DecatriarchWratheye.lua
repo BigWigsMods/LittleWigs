@@ -47,6 +47,11 @@ function mod:OnEngage()
 	self:CDBar(373960, 40.1) -- Decaying Strength
 end
 
+function mod:VerifyEnable(unit)
+	-- encounter ends at 5% HP remaining
+	return self:GetHealth(unit) > 5
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
