@@ -322,7 +322,7 @@ end
 do
 	local prev = 0
 	function mod:WickedFrenzyApplied(args)
-		if not self:Friendly(args.destFlags) and self:Tank() or self:Dispeller("enrage", true) then
+		if not self:Friendly(args.destFlags) and (self:Tank() or self:Dispeller("enrage", true)) then
 			local t = args.time
 			-- throttle, as this applies on all nearby enemies
 			if t - prev > 1 then
