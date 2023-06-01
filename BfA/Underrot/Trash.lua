@@ -69,6 +69,7 @@ function mod:GetOptions()
 		-- Fallen Deathspeaker
 		272183, -- Raise Dead
 		266209, -- Wicked Frenzy
+		266265, -- Wicked Embrace
 		-- Grotesque Horror
 		413044, -- Dark Echoes
 		-- Bloodsworn Defiler
@@ -130,6 +131,7 @@ function mod:OnBossEnable()
 	-- Fallen Deathspeaker
 	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
 	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
+	self:Log("SPELL_AURA_APPLIED", "WickedEmbraceApplied", 266265)
 	self:Log("SPELL_AURA_APPLIED", "WickedFrenzyApplied", 266209)
 
 	-- Grotesque Horror
@@ -323,6 +325,15 @@ do
 				self:PlaySound(args.spellId, "alarm")
 			end
 		end
+	end
+end
+
+
+function mod:WickedEmbraceApplied(args)
+	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("magic") then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+		self:TargetBar(args.spellId, 12, args.destName)
 	end
 end
 
