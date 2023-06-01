@@ -74,7 +74,7 @@ function mod:GetOptions()
 		{367503, "SAY"}, -- Withering Burst
 		{368081, "DISPEL"}, -- Withering
 		-- Claw Fighter
-		367484, -- Vicious Clawmangle
+		{367484, "ME_ONLY"}, -- Vicious Clawmangle
 		-- Bonebolt Hunter
 		368287, -- Toxic Trap
 		-- Bracken Warscourge
@@ -207,7 +207,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Screech", 385029)
 
 	-- Filth Caller
-	self:Log("SPELL_CAST_SUCCESS", "RottingSurge", 383385)
+	self:Log("SPELL_CAST_START", "RottingSurge", 383385)
 	self:Log("SPELL_AURA_APPLIED", "RottingSurgeDamage", 383399)
 	self:Log("SPELL_PERIODIC_DAMAGE", "RottingSurgeDamage", 383399)
 	self:Log("SPELL_PERIODIC_MISSED", "RottingSurgeDamage", 383399)
@@ -289,9 +289,18 @@ do
 end
 
 function mod:ViciousClawmangleApplied(args)
-	if self:Me(args.destGUID) and not self:Tank() then
-		self:PersonalMessage(args.spellId, nil, CL.fixate)
-		self:PlaySound(args.spellId, "warning")
+	if self:Friendly(args.destFlags) then
+		local onMe = self:Me(args.destGUID)
+		if onMe and self:Tank() then
+			-- tanks don't care about being fixated
+			return
+		end
+		self:TargetMessage(args.spellId, "yellow", args.destName, CL.fixate)
+		if onMe then
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
+		else
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
 	end
 end
 
@@ -489,8 +498,6 @@ function mod:RottingSurge(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
 	end
-	-- this is triggered on cast success (there's a channel after) because
-	-- interrupting this during the pre-cast doesn't put it on CD
 	self:Message(383399, "yellow")
 	self:PlaySound(383399, "long")
 end
