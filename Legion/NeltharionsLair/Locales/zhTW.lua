@@ -14,6 +14,7 @@ if L then
 	--L.stoneclaw_grubmaster = "Stoneclaw Grubmaster"
 	--L.tarspitter_grub = "Tarspitter Grub"
 	--L.rotdrool_grabber = "Rotdrool Grabber"
+	--L.understone_demolisher = "Understone Demolisher"
 	--L.rockbound_trapper = "Rockbound Trapper"
 	--L.emberhusk_dominator = "Emberhusk Dominator"
 end

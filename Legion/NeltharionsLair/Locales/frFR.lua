@@ -14,6 +14,7 @@ if L then
 	L.stoneclaw_grubmaster = "Maître des larves pierre-griffe"
 	L.tarspitter_grub = "Larve crache-goudron"
 	L.rotdrool_grabber = "Saisisseur bave-pourrie"
+	L.understone_demolisher = "Démolisseur pierre-basse"
 	L.rockbound_trapper = "Trappeur pierre-lié"
 	L.emberhusk_dominator = "Dominateur braise-chitine"
 end

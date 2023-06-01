@@ -21,6 +21,7 @@ mod:RegisterEnableMob(
 	102404, -- Stoneclaw Grubmaster
 	92538,  -- Tarspitter Grub
 	91002,  -- Rotdrool Grabber
+	102253, -- Understone Demolisher
 	102232, -- Rockbound Trapper
 	113537, -- Emberhusk Dominator
 	102287  -- Emberhusk Dominator
@@ -45,6 +46,7 @@ if L then
 	L.stoneclaw_grubmaster = "Stoneclaw Grubmaster"
 	L.tarspitter_grub = "Tarspitter Grub"
 	L.rotdrool_grabber = "Rotdrool Grabber"
+	L.understone_demolisher = "Understone Demolisher"
 	L.rockbound_trapper = "Rockbound Trapper"
 	L.emberhusk_dominator = "Emberhusk Dominator"
 end
@@ -78,6 +80,9 @@ function mod:GetOptions()
 		193803, -- Metamorphosis
 		-- Rotdrool Grabber
 		183539, -- Barbed Tongue
+		-- Understone Demolisher
+		188587, -- Charskin
+		200154, -- Burning Hatred
 		-- Rockbound Trapper
 		193585, -- Bound
 		-- Emberhusk Dominator
@@ -94,8 +99,11 @@ function mod:GetOptions()
 		[183548] = L.stoneclaw_grubmaster,
 		[193803] = L.tarspitter_grub,
 		[183539] = L.rotdrool_grabber,
+		[188587] = L.understone_demolisher,
 		[193585] = L.rockbound_trapper,
 		[226406] = L.emberhusk_dominator,
+	}, {
+		[200154] = CL.fixate,
 	}
 end
 
@@ -136,6 +144,11 @@ function mod:OnBossEnable()
 
 	-- Rotdrool Grabber
 	self:Log("SPELL_CAST_START", "BarbedTongue", 183539)
+
+	-- Understone Demolisher
+	self:Log("SPELL_CAST_START", "Charskin", 188587)
+	self:Log("SPELL_CAST_START", "BurningHatred", 200154)
+	self:Log("SPELL_AURA_APPLIED", "BurningHatredApplied", 200154)
 
 	-- Rockbound Trapper
 	self:Log("SPELL_CAST_START", "Bound", 193585)
@@ -276,6 +289,25 @@ end
 function mod:BarbedTongue(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Understone Demolisher
+
+function mod:Charskin(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:BurningHatred(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BurningHatredApplied(args)
+	if not self:Tank() and self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, nil, CL.fixate)
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 -- Rockbound Trapper

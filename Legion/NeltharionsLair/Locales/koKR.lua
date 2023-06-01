@@ -14,6 +14,7 @@ if L then
 	L.stoneclaw_grubmaster = "돌발톱 벌레 조련사"
 	L.tarspitter_grub = "타르쐐기 유충"
 	L.rotdrool_grabber = "올가미 부식벌레"
+	L.understone_demolisher = "아랫돌 파괴자"
 	L.rockbound_trapper = "돌갑옷 속박투사"
 	L.emberhusk_dominator = "잿불껍질 통솔자"
 end

@@ -14,6 +14,7 @@ if L then
 	L.stoneclaw_grubmaster = "石爪虫王"
 	L.tarspitter_grub = "喷油蛆虫"
 	L.rotdrool_grabber = "腐涎劫掠者"
+	L.understone_demolisher = "顶石粉碎者"
 	L.rockbound_trapper = "缚石捕兽者"
 	L.emberhusk_dominator = "烬壳统御者"
 end
