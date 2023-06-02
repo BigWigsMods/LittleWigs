@@ -23,7 +23,7 @@ end
 
 L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "zhCN")
 if L then
-	L.slow = "减速"
+	L.slow = "锁链"
 	L.boss = "首领"
 end
 
