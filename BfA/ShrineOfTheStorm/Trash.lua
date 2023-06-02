@@ -292,7 +292,7 @@ function mod:VoidSeedApplied(args)
 			if spellId == args.spellId then
 				count = count + 1
 				if count > 1 then
-					BigWigs:Error(string.format(
+					self:Error(string.format(
 						"Void seed applied: count: %d, duration: %d, previous max duration: %d. Tell the authors!",
 						count, expirationTime - GetTime(), maxExpirationTime - GetTime()
 					))
