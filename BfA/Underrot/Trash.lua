@@ -131,9 +131,9 @@ function mod:OnBossEnable()
 	-- Fallen Deathspeaker
 	self:Log("SPELL_CAST_START", "RaiseDead", 272183)
 	self:Log("SPELL_CAST_START", "WickedFrenzy", 266209)
-	self:Log("SPELL_AURA_APPLIED", "WickedEmbraceApplied", 266265)
 	self:Log("SPELL_AURA_APPLIED", "WickedFrenzyApplied", 266209)
-
+	self:Log("SPELL_AURA_APPLIED", "WickedEmbraceApplied", 266265)
+	self:Log("SPELL_AURA_REMOVED", "WickedEmbraceRemoved", 266265)
 	-- Grotesque Horror
 	self:Log("SPELL_CAST_START", "DarkEchoes", 413044)
 
@@ -331,20 +331,15 @@ end
 
 function mod:WickedEmbraceApplied(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("magic") then
-		local healthPercent = (UnitHealth(args.destName) / UnitHealthMax(args.destName)) * 100
-		if healthPercent <= 50 then
-			-- If the player's health is below or equal to 50%, play the low health warning
-			self:TargetMessage(args.spellId, "red", args.destName)
-			self:PlaySound(args.spellId, "alert")
-		else
-			-- If the player's health is above 50%, play the regular warning
-			self:TargetMessage(args.spellId, "yellow", args.destName)
-			self:PlaySound(args.spellId, "info", nil, args.destName)
-		end
-		self:TargetBar(args.spellId, 12, args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+		self:TargetBar(args.spellId, 30, args.destName)
 	end
 end
 
+function mod:WickedEmbraceRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+end
 
 -- Grotesque Horror
 
