@@ -77,7 +77,9 @@ function mod:OnEngage()
 		self:Bar(378208, 13.3) -- Marked For Butchery
 	end
 	self:Bar(377827, 20.3) -- Bladestorm
-	self:Bar(381470, 45.8) -- Hextrick Totem
+	if not self:Solo() then
+		self:Bar(381470, 45.8) -- Hextrick Totem
+	end
 	self:Bar(381694, 46.8) -- Decayed Senses
 	self:Bar(381444, 49.6) -- Savage Charge
 end
@@ -157,6 +159,9 @@ end
 function mod:RiraHackclawDeath(args)
 	self:StopBar(381444) -- Savage Charge
 	self:StopBar(377827) -- Bladestorm
+	-- Gashtooth will no longer cast Decayed Senses if Rira dies
+	self:StopBar(381694) -- Decayed Senses
+	-- TODO does Rira dying prevent Hextrick Totem as well?
 end
 
 -- Gashtooth
@@ -168,15 +173,21 @@ function mod:DecayedSenses(args)
 end
 
 function mod:DecayedSensesApplied(args)
-	if self:Dispeller("magic") then
+	-- can be spell reflected by Warriors
+	if self:Player(args.destFlags) and self:Dispeller("magic") then
 		self:TargetMessage(381694, "red", args.destName)
 		self:PlaySound(381694, "warning", nil, args.destName)
+	elseif self:Hostile(args.destFlags) then -- on boss
+		self:Message(381694, "green", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(381694, "info")
 	end
 end
 
 function mod:DecayedSensesRemoved(args)
-	self:Message(381694, "green", CL.removed:format(args.spellName))
-	self:PlaySound(381694, "info")
+	if self:Player(args.destFlags) then
+		self:Message(381694, "green", CL.removed:format(args.spellName))
+		self:PlaySound(381694, "info")
+	end
 end
 
 function mod:GashFrenzy(args)
