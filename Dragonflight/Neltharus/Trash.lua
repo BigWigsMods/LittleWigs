@@ -174,6 +174,7 @@ function mod:OnBossEnable()
 
 	-- Qalashi Lavamancer
 	self:Log("SPELL_CAST_START", "MoltenBarrier", 382791)
+	self:Log("SPELL_AURA_REMOVED", "MoltenBarrierRemoved", 382791)
 	self:Log("SPELL_CAST_START", "MoltenArmy", 383651)
 end
 
@@ -434,6 +435,11 @@ end
 function mod:MoltenBarrier(args)
 	-- cast just once at 50% health, must burn shield to interrupt Molten Army
 	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:MoltenBarrierRemoved(args)
+	self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
