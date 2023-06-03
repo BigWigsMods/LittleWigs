@@ -100,6 +100,7 @@ end
 
 function mod:OnBossEnable()
 	-- General
+	self:RegisterMessage("BigWigs_OnBossWin")
 	self:Log("SPELL_AURA_APPLIED", "LostTomeOfTyr", 386104)
 	self:Log("SPELL_AURA_APPLIED", "TimeLock", 375500)
 	self:Log("SPELL_CAST_SUCCESS", "TemporalTheft", 382264)
@@ -157,6 +158,14 @@ end
 
 -- General
 
+function mod:BigWigs_OnBossWin(event, module)
+	if module:GetJournalID() == 2479 then -- Chrono-Lord Deios
+		-- disable the trash module when defeating the last boss, this avoids some
+		-- spam from LostTomeofTyr when someone leaves the group.
+		self:Disable()
+	end
+end
+
 do
 	local prev = 0
 
@@ -173,7 +182,10 @@ do
 		-- very long throttle
 		if t - prev > 25 then
 			prev = t
-			self:Bar(args.spellId, 22.1)
+			if not self:MythicPlus() then
+				-- the RP starts automatically in Mythic+ and Time Lock ends when the RP ends
+				self:Bar(args.spellId, 22.1)
+			end
 		end
 	end
 end
