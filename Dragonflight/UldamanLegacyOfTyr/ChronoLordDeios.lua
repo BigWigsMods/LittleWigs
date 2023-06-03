@@ -54,6 +54,11 @@ function mod:OnEngage()
 	self:CDBar(376208, 39.1, CL.count:format(self:SpellName(376208), 1)) -- Rewind Timeflow (1)
 end
 
+function mod:VerifyEnable(unit)
+	-- the boss sticks around for a little RP after being defeated
+	return self:GetHealth(unit) > 1
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
