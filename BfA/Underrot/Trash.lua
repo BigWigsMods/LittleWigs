@@ -384,7 +384,7 @@ do
 	local prev = 0
 	function mod:MaddeningGaze(args)
 		local t = args.time
-		if t - prev > 1.5 then
+		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
