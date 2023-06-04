@@ -93,7 +93,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Untwist", 413529)
 	self:Log("SPELL_CAST_START", "Bloom", 413544)
 	self:Log("SPELL_AURA_APPLIED", "BloomApplied", 413547)
-	
+
 	-- Infinite Infiltrator
 	self:Log("SPELL_CAST_SUCCESS", "TimelessCurse", 413621)
 	self:Log("SPELL_CAST_START", "InfiniteFury", 413622)
