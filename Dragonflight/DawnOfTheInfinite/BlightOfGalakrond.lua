@@ -45,7 +45,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:Log("SPELL_AURA_APPLIED", "MalignantTransferal", 415097)
+	self:Log("SPELL_AURA_APPLIED", "MalignantTransferal", 415097, 415114) -- Stage 2, Stage 3
 
 	-- Blight of Galakrond
 	self:Log("SPELL_CAST_START", "CorrosiveInfusion", 406886)
@@ -76,7 +76,7 @@ end
 -- Stages
 
 function mod:MalignantTransferal(args)
-	if self:GetStage() == 1 then
+	if args.spellId == 415097 then -- Stage 2
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.percent:format(75, CL.stage:format(2)), args.spellId)
 		self:PlaySound("stages", "long")
@@ -85,15 +85,15 @@ function mod:MalignantTransferal(args)
 		self:CDBar(407159, 9.7) -- Blight Reclamation
 		self:CDBar(406886, 18.1) -- Corrosive Infusion
 		self:CDBar(407978, 27.8) -- Necrotic Winds
-	else -- Stage 2 to 3
+	else -- 415114, Stage 3
 		self:SetStage(3)
 		self:Message("stages", "cyan", CL.percent:format(40, CL.stage:format(3)), args.spellId)
 		self:PlaySound("stages", "long")
-		-- TODO confirm timings for these bars
-		self:CDBar(407159, 9.7) -- Blight Reclamation
-		self:CDBar(406886, 18.1) -- Corrosive Infusion
-		self:CDBar(408029, 27.8) -- Necrofrost
-		self:CDBar(408141, 27.8) -- Incinerating Blightbreath
+		self:StopBar(407978) -- Necrotic Winds
+		self:CDBar(407159, 12.4) -- Blight Reclamation
+		self:CDBar(408141, 17.2) -- Incinerating Blightbreath
+		self:CDBar(406886, 24.2) -- Corrosive Infusion
+		self:CDBar(408029, 41.2) -- Necrofrost
 	end
 end
 
@@ -107,8 +107,7 @@ function mod:CorrosiveInfusion(args)
 	elseif self:GetStage() == 2 then
 		self:CDBar(args.spellId, 31.6)
 	else -- Stage 3
-		-- TODO confirm
-		self:CDBar(args.spellId, 31.6)
+		self:CDBar(args.spellId, 32.8)
 	end
 end
 
@@ -128,8 +127,7 @@ function mod:BlightReclamation(args)
 	elseif self:GetStage() == 2 then
 		self:CDBar(args.spellId, 31.6)
 	else -- Stage 3
-		-- TODO confirm
-		self:CDBar(args.spellId, 31.6)
+		self:CDBar(args.spellId, 32.7)
 	end
 end
 
@@ -154,8 +152,7 @@ function mod:Necrofrost(args)
 	-- TODO get target, get debuff id, and show an alert for target switch / movement dispel
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	-- TODO placeholder timer
-	self:CDBar(args.spellId, 31.6)
+	self:CDBar(args.spellId, 32.7)
 end
 
 -- Dazhak
@@ -163,6 +160,6 @@ end
 function mod:IncineratingBlightbreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO placeholder timer
-	self:CDBar(args.spellId, 31.6)
+	-- TODO pattern? pull:227.2, 18.2, 14.7, 16.9, 15.5, 18.5, 14.4
+	self:CDBar(args.spellId, 14.4)
 end
