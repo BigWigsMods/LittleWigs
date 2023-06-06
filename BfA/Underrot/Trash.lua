@@ -333,7 +333,7 @@ function mod:WickedEmbraceApplied(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("magic") then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
-		self:TargetBar(args.spellId, 30, args.destName)
+		self:TargetBar(args.spellId, 12, args.destName)
 	end
 end
 
