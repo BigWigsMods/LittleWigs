@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("The Vortex Pinnacle Trash", "deDE")
 if not L then return end
 if L then
 	L.armored_mistral = "Gepanzerter Mistral"
+	L.gust_soldier = "Windstoßsoldat"
 	L.wild_vortex = "Wilder Vortex"
 	L.lurking_tempest = "Lauernder Sturm"
 	L.cloud_prince = "Wolkenprinz"

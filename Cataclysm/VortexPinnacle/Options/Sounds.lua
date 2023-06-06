@@ -33,6 +33,7 @@ BigWigs:AddSounds("The Vortex Pinnacle Trash", {
 	[88186] = "alert",
 	[88194] = "long",
 	[410870] = "alert",
+	[410873] = "alert",
 	[410999] = "alarm",
 	[411001] = "alarm",
 	[411002] = "long",

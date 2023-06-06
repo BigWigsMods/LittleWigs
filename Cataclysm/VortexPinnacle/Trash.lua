@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	45915, -- Armored Mistral
+	45477, -- Gust Soldier
 	45912, -- Wild Vortex
 	45704, -- Lurking Tempest
 	45917, -- Cloud Prince
@@ -26,6 +27,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.armored_mistral = "Armored Mistral"
+	L.gust_soldier = "Gust Soldier"
 	L.wild_vortex = "Wild Vortex"
 	L.lurking_tempest = "Lurking Tempest"
 	L.cloud_prince = "Cloud Prince"
@@ -46,6 +48,8 @@ function mod:GetOptions()
 	return {
 		-- Armored Mistral
 		410999, -- Pressurized Blast
+		-- Gust Soldier
+		{410873, "DISPEL"}, -- Rushing Wind
 		-- Wild Vortex
 		410870, -- Cyclone
 		-- Lurking Tempest
@@ -91,6 +95,9 @@ end
 function mod:OnBossEnable()
 	-- Armored Mistral
 	self:Log("SPELL_CAST_START", "PressurizedBlast", 410999)
+
+	-- Gust Soldier
+	self:Log("SPELL_CAST_SUCCESS", "RushingWind", 410873)
 
 	-- Wild Vortex
 	self:Log("SPELL_CAST_START", "Cyclone", 410870)
@@ -143,6 +150,15 @@ end
 function mod:PressurizedBlast(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Gust Soldier
+
+function mod:RushingWind(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
 
 -- Wild Vortex

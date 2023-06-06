@@ -33,6 +33,7 @@ BigWigs:AddColors("The Vortex Pinnacle Trash", {
 	[88186] = {"orange","red"},
 	[88194] = "yellow",
 	[410870] = "yellow",
+	[410873] = {"blue","red"},
 	[410999] = "orange",
 	[411001] = "red",
 	[411002] = "yellow",
