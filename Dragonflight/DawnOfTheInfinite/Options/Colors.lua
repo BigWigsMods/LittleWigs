@@ -7,6 +7,10 @@ BigWigs:AddColors("Chronikar", {
 })
 
 BigWigs:AddColors("Manifested Timeways", {
+	[405431] = "yellow",
+	[405696] = {"blue","orange"},
+	[414303] = "purple",
+	[414307] = "purple",
 })
 
 BigWigs:AddColors("Blight of Galakrond", {

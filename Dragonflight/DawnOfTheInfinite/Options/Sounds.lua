@@ -7,6 +7,10 @@ BigWigs:AddSounds("Chronikar", {
 })
 
 BigWigs:AddSounds("Manifested Timeways", {
+	[405431] = "long",
+	[405696] = "alert",
+	[414303] = "alarm",
+	[414307] = "warning",
 })
 
 BigWigs:AddSounds("Blight of Galakrond", {
