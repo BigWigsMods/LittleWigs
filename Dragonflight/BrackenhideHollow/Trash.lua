@@ -18,6 +18,9 @@ mod:RegisterEnableMob(
 	186226, -- Fetid Rotsinger
 	190426, -- Decay Totem
 	186227, -- Monstrous Decay
+	189299, -- Decaying Slime (regular mob)
+	199916, -- Decaying Slime (infinitely spawning mob)
+	194330, -- Decaying Slime (summoned by Monstrous Decay)
 	189318, -- Infected Bear
 	187033, -- Stinkbreath
 	187192, -- Rageclaw
@@ -46,11 +49,13 @@ if L then
 	L.bracken_warscourge = "Bracken Warscourge"
 	L.brackenhide_shaper = "Brackenhide Shaper"
 	L.fishface = "Fishface"
+	L.rotting_creek = "Rotting Creek"
 	L.decayed_elder = "Decayed Elder"
 	L.wilted_oak = "Wilted Oak"
 	L.fetid_rotsinger = "Fetid Rotsinger"
 	L.decay_totem = "Decay Totem"
 	L.monstrous_decay = "Monstrous Decay"
+	L.decaying_slime = "Decaying Slime"
 	L.infected_bear = "Infected Bear"
 	L.stinkbreath = "Stinkbreath"
 	L.rageclaw = "Rageclaw"
@@ -85,6 +90,8 @@ function mod:GetOptions()
 		-- Fishface
 		384854, -- Fish Slap!
 		384847, -- Fresh Catch
+		-- Rotting Creek
+		374245, -- Rotting Creek
 		-- Decayed Elder
 		373897, -- Decaying Roots
 		-- Wilted Oak
@@ -95,6 +102,8 @@ function mod:GetOptions()
 		{374544, "SAY"}, -- Burst of Decay
 		-- Monstrous Decay
 		374569, -- Burst
+		-- Decaying Slime
+		378054, -- Withering Away!
 		-- Infected Bear
 		{373929, "TANK"}, -- Bash
 		-- Stinkbreath
@@ -121,10 +130,12 @@ function mod:GetOptions()
 		[367500] = L.bracken_warscourge,
 		[372711] = L.brackenhide_shaper,
 		[384854] = L.fishface,
+		[374245] = L.rotting_creek,
 		[373897] = L.decayed_elder,
 		[373943] = L.wilted_oak,
 		[374057] = L.fetid_rotsinger,
 		[374569] = L.monstrous_decay,
+		[378054] = L.decaying_slime,
 		[373929] = L.infected_bear,
 		[388060] = L.stinkbreath,
 		[385832] = L.rageclaw,
@@ -157,6 +168,9 @@ function mod:OnBossEnable()
 
 	-- Bonebolt Hunter
 	self:Log("SPELL_CAST_SUCCESS", "ToxicTrap", 368287)
+	self:Log("SPELL_DAMAGE", "ToxicTrapDamage", 368297) -- triggering the trap
+	self:Log("SPELL_AURA_APPLIED", "ToxicTrapDamage", 368299) -- standing in the trap
+	self:Log("SPELL_PERIODIC_DAMAGE", "ToxicTrapDamage", 368299) -- standing in the trap for >1s
 
 	-- Bracken Warscourge
 	self:Log("SPELL_CAST_START", "HideousCackle", 367500)
@@ -171,6 +185,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FishSlap", 384854)
 	self:Log("SPELL_CAST_START", "FreshCatch", 384847)
 
+	-- Rotting Creek
+	self:Log("SPELL_PERIODIC_DAMAGE", "RottingCreekDamage", 374245) -- don't trigger on application, it's unavoidable and doesn't do damage
+
 	-- Decayed Elder
 	self:Log("SPELL_CAST_START", "DecayingRoots", 373897)
 
@@ -184,6 +201,10 @@ function mod:OnBossEnable()
 
 	-- Monstrous Decay
 	self:Log("SPELL_CAST_START", "Burst", 374569)
+
+	-- Decaying Slime
+	self:Log("SPELL_AURA_APPLIED", "WitheringAwayDamage", 378054, 372141)
+	self:Log("SPELL_PERIODIC_DAMAGE", "WitheringAwayDamage", 372141)
 
 	-- Infected Bear
 	self:Log("SPELL_CAST_START", "Bash", 373929)
@@ -311,6 +332,20 @@ function mod:ToxicTrap(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+do
+	local prev = 0
+	function mod:ToxicTrapDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(368287, "underyou")
+				self:PlaySound(368287, "underyou")
+			end
+		end
+	end
+end
+
 -- Bracken Warscourge
 
 function mod:HideousCackle(args)
@@ -356,6 +391,22 @@ function mod:FreshCatch(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+end
+
+-- Rotting Creek
+
+do
+	local prev = 0
+	function mod:RottingCreekDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
+	end
 end
 
 -- Decayed Elder
@@ -405,6 +456,22 @@ function mod:Burst(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+-- Decaying Slime
+
+do
+	local prev = 0
+	function mod:WitheringAwayDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(378054, "underyou")
+				self:PlaySound(378054, "underyou")
+			end
+		end
+	end
+end
+
 -- Infected Bear
 
 function mod:Bash(args)
@@ -415,6 +482,10 @@ end
 -- Stinkbreath
 
 do
+	-- use this timer to schedule StopBars on both abilities, this way if you pull
+	-- and reset the mob (or wipe) the bars won't be stuck for the rest of the dungeon.
+	local timer
+
 	local function printTarget(self, name, guid)
 		self:TargetMessage(388060, "red", name)
 		self:PlaySound(388060, "alarm", nil, name)
@@ -424,20 +495,32 @@ do
 	end
 
 	function mod:StinkBreath(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 		self:CDBar(args.spellId, 17.0)
+		timer = self:ScheduleTimer("StinkbreathDeath", 30)
 	end
-end
 
-function mod:ViolentWhirlwind(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 23.1)
-end
+	function mod:ViolentWhirlwind(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 23.1)
+		timer = self:ScheduleTimer("StinkbreathDeath", 30)
+	end
 
-function mod:StinkbreathDeath(args)
-	self:StopBar(388060) -- Stink Breath
-	self:StopBar(388046) -- Violent Whirlwind
+	function mod:StinkbreathDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(388060) -- Stink Breath
+		self:StopBar(388046) -- Violent Whirlwind
+	end
 end
 
 -- Rageclaw
