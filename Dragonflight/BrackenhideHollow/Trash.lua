@@ -103,7 +103,7 @@ function mod:GetOptions()
 		-- Monstrous Decay
 		374569, -- Burst
 		-- Decaying Slime
-		378054, -- Withering Away!
+		372141, -- Withering Away!
 		-- Infected Bear
 		{373929, "TANK"}, -- Bash
 		-- Stinkbreath
@@ -135,7 +135,7 @@ function mod:GetOptions()
 		[373943] = L.wilted_oak,
 		[374057] = L.fetid_rotsinger,
 		[374569] = L.monstrous_decay,
-		[378054] = L.decaying_slime,
+		[372141] = L.decaying_slime,
 		[373929] = L.infected_bear,
 		[388060] = L.stinkbreath,
 		[385832] = L.rageclaw,
@@ -203,7 +203,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Burst", 374569)
 
 	-- Decaying Slime
-	self:Log("SPELL_AURA_APPLIED", "WitheringAwayDamage", 378054, 372141)
+	self:Log("SPELL_AURA_APPLIED", "WitheringAwayDamage", 372141)
 	self:Log("SPELL_PERIODIC_DAMAGE", "WitheringAwayDamage", 372141)
 
 	-- Infected Bear
@@ -465,8 +465,8 @@ do
 			local t = args.time
 			if t - prev > 2 then
 				prev = t
-				self:PersonalMessage(378054, "underyou")
-				self:PlaySound(378054, "underyou")
+				self:PersonalMessage(372141, "underyou")
+				self:PlaySound(372141, "underyou")
 			end
 		end
 	end
