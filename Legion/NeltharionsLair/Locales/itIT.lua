@@ -4,6 +4,7 @@ if L then
 	--L.rokmora_first_warmup_trigger = "Navarrogg?! Betrayer! You would lead these intruders against us?!"
 	--L.rokmora_second_warmup_trigger = "Either way, I will enjoy every moment of it. Rokmora, crush them!"
 
+	L.vileshard_crawler = "Strisciatore Scheggiavile"
 	L.tarspitter_lurker = "Guardingo Sputapece"
 	L.rockback_gnasher = "Masticatore Dorsorigido"
 	L.vileshard_hulk = "Colosso Scheggiavile"

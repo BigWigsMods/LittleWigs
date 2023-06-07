@@ -4,6 +4,7 @@ if L then
 	L.rokmora_first_warmup_trigger = "纳瓦罗格？！叛徒！你想带领这些入侵者对抗我们吗？！"
 	L.rokmora_second_warmup_trigger = "无论如何，我都会好好享受它每一刻的。洛克莫拉，碾碎他们！"
 
+	L.vileshard_crawler = "邪裂蜘蛛"
 	L.tarspitter_lurker = "喷油潜伏者"
 	L.rockback_gnasher = "岩背啮咬者"
 	L.vileshard_hulk = "邪裂巨人"

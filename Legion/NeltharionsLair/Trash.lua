@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Neltharions Lair Trash", 1458)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	96247,  -- Vileshard Crawler
 	91001,  -- Tarspitter Lurker
 	91006,  -- Rockback Gnasher
 	91000,  -- Vileshard Hulk
@@ -36,6 +37,7 @@ if L then
 	L.rokmora_first_warmup_trigger = "Navarrogg?! Betrayer! You would lead these intruders against us?!"
 	L.rokmora_second_warmup_trigger = "Either way, I will enjoy every moment of it. Rokmora, crush them!"
 
+	L.vileshard_crawler = "Vileshard Crawler"
 	L.tarspitter_lurker = "Tarspitter Lurker"
 	L.rockback_gnasher = "Rockback Gnasher"
 	L.vileshard_hulk = "Vileshard Hulk"
@@ -57,8 +59,11 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Vileshard Crawler
+		183407, -- Acid Splatter
 		-- Tarspitter Lurker
 		183465, -- Viscid Bile
+		226388, -- Rancid Ooze
 		-- Rockback Gnasher
 		202181, -- Stone Gaze
 		-- Vileshard Hulk
@@ -89,6 +94,7 @@ function mod:GetOptions()
 		226406, -- Ember Swipe
 		{201983, "DISPEL"}, -- Frenzy
 	}, {
+		[183407] = L.vileshard_crawler,
 		[183465] = L.tarspitter_lurker,
 		[202181] = L.rockback_gnasher,
 		[226296] = L.vileshard_hulk,
@@ -111,8 +117,14 @@ function mod:OnBossEnable()
 	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
+	-- Vileshard Crawler
+	self:Log("SPELL_AURA_APPLIED", "AcidSplatterDamage", 183407)
+	self:Log("SPELL_PERIODIC_DAMAGE", "AcidSplatterDamage", 183407)
+
 	-- Tarspitter Lurker
 	self:Log("SPELL_CAST_START", "ViscidBile", 183465)
+	self:Log("SPELL_AURA_APPLIED", "RancidOozeDamage", 226388)
+	self:Log("SPELL_PERIODIC_DAMAGE", "RancidOozeDamage", 226388)
 
 	-- Rockback Gnasher
 	self:Log("SPELL_CAST_START", "StoneGaze", 202181)
@@ -184,6 +196,22 @@ function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	end
 end
 
+-- Vileshard Crawler
+
+do
+	local prev = 0
+	function mod:AcidSplatterDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
+	end
+end
+
 -- Tarspitter Lurker
 
 do
@@ -194,6 +222,20 @@ do
 			prev = t
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:RancidOozeDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
 		end
 	end
 end

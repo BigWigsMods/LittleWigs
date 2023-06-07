@@ -4,6 +4,7 @@ if L then
 	L.rokmora_first_warmup_trigger = "Наваррогг?! Предатель, ты привел к нам чужаков?!"
 	L.rokmora_second_warmup_trigger = "Меня устроят оба варианта! Рокмора, убей их!"
 
+	L.vileshard_crawler = "Злобнозем-ползун"
 	L.tarspitter_lurker = "Смолоплюй-ползун"
 	L.rockback_gnasher = "Камнеспинный щелкозуб"
 	L.vileshard_hulk = "Злобнозем-исполин"

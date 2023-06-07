@@ -35,6 +35,7 @@ BigWigs:AddColors("Dargrul", {
 
 BigWigs:AddColors("Neltharions Lair Trash", {
 	[183088] = "orange",
+	[183407] = "blue",
 	[183465] = "red",
 	[183526] = "yellow",
 	[183539] = "red",
@@ -51,5 +52,6 @@ BigWigs:AddColors("Neltharions Lair Trash", {
 	[202181] = {"blue","red"},
 	[226287] = "orange",
 	[226296] = "purple",
+	[226388] = "blue",
 	[226406] = "orange",
 })

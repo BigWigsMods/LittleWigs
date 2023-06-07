@@ -4,6 +4,7 @@ if L then
 	L.rokmora_first_warmup_trigger = "나바로그? 이 배신자! 감히 침입자들을 끌고 여기 오다니!"
 	L.rokmora_second_warmup_trigger = "어느 쪽이든, 매 순간을 다 즐겨 주지. 로크모라, 박살내라!"
 
+	L.vileshard_crawler = "악성수정 게"
 	L.tarspitter_lurker = "타르쐐기 잠복벌레"
 	L.rockback_gnasher = "돌가죽 뾰족니악어"
 	L.vileshard_hulk = "악성수정 괴수"
