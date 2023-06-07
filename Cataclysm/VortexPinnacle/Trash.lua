@@ -79,6 +79,7 @@ function mod:GetOptions()
 		413385, -- Overload Grounding Field
 	}, {
 		[410999] = L.armored_mistral,
+		[410873] = L.gust_soldier,
 		[410870] = L.wild_vortex,
 		[411001] = L.lurking_tempest,
 		[411002] = L.cloud_prince,
