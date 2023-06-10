@@ -8,7 +8,7 @@ BigWigs:AddSounds("Grand Vizier Ertan", {
 BigWigs:AddSounds("Altairus", {
 	[-2425] = "alert",
 	[88282] = "info",
-	[88286] = "underyou",
+	[88286] = "alarm",
 	[88308] = "alarm",
 	[413275] = "underyou",
 	[413295] = "long",

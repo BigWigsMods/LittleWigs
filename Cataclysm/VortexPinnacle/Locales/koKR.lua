@@ -14,3 +14,9 @@ if L then
 	L.servant_of_asaad = "아사드의 하수인"
 	L.minister_of_air = "바람의 대신"
 end
+
+L = BigWigs:NewBossLocale("Altairus", "koKR")
+if L then
+	--L.upwind = "Upwind on you (safe)"
+	--L.downwind = "Downwind on you (unsafe)"
+end

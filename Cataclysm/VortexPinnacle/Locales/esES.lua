@@ -14,3 +14,9 @@ if L then
 	L.servant_of_asaad = "Sirviente de Asaad"
 	L.minister_of_air = "Ministro del Aire"
 end
+
+L = BigWigs:NewBossLocale("Altairus", "esES") or BigWigs:NewBossLocale("Altairus", "esMX")
+if L then
+	--L.upwind = "Upwind on you (safe)"
+	--L.downwind = "Downwind on you (unsafe)"
+end
