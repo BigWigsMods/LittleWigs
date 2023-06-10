@@ -102,15 +102,13 @@ function mod:ChillingBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	chillingBreathCount = chillingBreathCount + 1
+	-- as of May 3 2023 this is broken and casts once then never again in Normal/Heroic
 	if self:Mythic() then
 		if chillingBreathCount % 3 == 0 then
 			self:Bar(args.spellId, 23.0)
 		else
 			self:Bar(args.spellId, 21.8)
 		end
-	else
-		-- as of May 3 2023 this is broken and casts once then never again in Normal/Heroic
-		--self:Bar(args.spellId, 12)
 	end
 end
 
