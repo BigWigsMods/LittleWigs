@@ -87,7 +87,7 @@ function mod:GetOptions()
 		183539, -- Barbed Tongue
 		-- Understone Demolisher
 		188587, -- Charskin
-		200154, -- Burning Hatred
+		{200154, "ME_ONLY"}, -- Burning Hatred
 		-- Rockbound Trapper
 		193585, -- Bound
 		-- Emberhusk Dominator
@@ -341,14 +341,25 @@ function mod:Charskin(args)
 end
 
 function mod:BurningHatred(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	if self:MobId(args.sourceGUID) ~= 101476 then -- Molten Charskin, Dargrul's summon
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:BurningHatredApplied(args)
-	if not self:Tank() and self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, nil, CL.fixate)
-		self:PlaySound(args.spellId, "alarm")
+	local onMe = self:Me(args.destGUID)
+	if self:MobId(args.sourceGUID) == 101476 -- Molten Charskin, Dargrul's summon
+		or (onMe and self:Tank()) then
+		-- Dargrul's adds cast this too, filter those mobs out
+		-- tanks don't care about being fixated
+		return
+	end
+	self:TargetMessage(args.spellId, "yellow", args.destName, CL.fixate)
+	if onMe then
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	else
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 

@@ -46,7 +46,7 @@ BigWigs:AddSounds("Neltharions Lair Trash", {
 	[193505] = "alert",
 	[193585] = "warning",
 	[193803] = "warning",
-	[200154] = {"alarm","alert"},
+	[200154] = {"alert","info","warning"},
 	[201983] = "warning",
 	[202108] = "alarm",
 	[202181] = {"alert","warning"},
