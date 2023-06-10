@@ -164,9 +164,16 @@ end
 
 -- Wild Vortex
 
-function mod:Cyclone(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Cyclone(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Lurking Tempest
@@ -315,6 +322,7 @@ do
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		end
+		--self:NameplateCDBar(args.spellId, 14.2, args.sourceGUID)
 	end
 end
 
