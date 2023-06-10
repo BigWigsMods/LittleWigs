@@ -12,7 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local skyfallNovaCount = 1
+local skyfallNovaRemaining = 2
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -39,7 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	skyfallNovaCount = 1
+	skyfallNovaRemaining = 1
 	self:CDBar(87622, 12.1) -- Chain Lightning
 	self:CDBar(-2434, 18.0, nil, 413263) -- Skyfall Nova
 	if not self:Normal() then
@@ -63,16 +63,32 @@ do
 			self:Message(args.spellId, "green")
 			self:PlaySound(args.spellId, "info")
 			self:CDBar(args.spellId, 63.2)
-			self:StopBar(87622) -- Chain Lightning
 			self:CDBar(86930, 10) -- Supremacy of the Storm
+			if self:Mythic() then
+				-- this starts a 17s sequence, restart timers
+				-- scoped to Mythic because in other difficulties you can interrupt the boss
+				self:CDBar(87622, 17.0) -- Chain Lightning
+				-- puts Skyfall Nova and Static Cling on CD
+				self:CDBar(-2434, {25.5, 37.7}, nil, 413263) -- Skyfall Nova
+				self:CDBar(87618, 32.7) -- Static Cling
+			end
 		end
 	end
 end
 
 function mod:SupremacyOfTheStorm(args)
+	skyfallNovaRemaining = 2
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 63.2)
+	-- start timers, (in Mythic these are initially started in UnstableGroundingField)
+	if self:Mythic() then
+		self:CDBar(-2434, {15.8, 37.7}, nil, 413263) -- Skyfall Nova
+		self:CDBar(87618, {23.0, 32.7}) -- Static Cling
+	else
+		self:CDBar(-2434, 15.8, nil, 413263) -- Skyfall Nova
+		self:CDBar(87618, 23.0) -- Static Cling
+	end
 end
 
 do
@@ -89,30 +105,31 @@ do
 
 	function mod:ChainLightning(args)
 		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
-		self:StopBar(args.spellId)
+		if not self:Mythic() then
+			-- this is interruptible in non-Mythic so need to restart bar here
+			self:CDBar(args.spellId, 18.2)
+		end
 	end
 end
 
 function mod:ChainLightningSuccess(args)
-	-- have to start the timer on success because the boss can interrupt his own cast
-	-- pull:13.1, 35.3, 19.5, 18.2, 29.1, 19.4, 18.2, 25.7, 19.5
-	-- 18.2s CD - 2.75s cast
-	self:CDBar(args.spellId, 15.5)
+	if self:Mythic() then
+		-- start the timer on success because the boss can interrupt his own cast
+		-- 18.2s CD - 2.75s cast
+		self:CDBar(args.spellId, 15.5)
+	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 96260 then -- Summon Skyfall Star
 		self:Message(-2434, "cyan", CL.spawned:format(self:SpellName(413263)), 413263) -- Skyfall Nova
 		self:PlaySound(-2434, "alert")
-		-- pull:18.0, 38.9, 25.5, 41.2, 25.6, 37.8
 		-- pull:18.2, 39.0, 25.6, 37.7, 25.5, 41.3, 25.5, 41.3, 26.0, 41.3
-		skyfallNovaCount = skyfallNovaCount + 1
-		if skyfallNovaCount == 2 then
-			self:CDBar(-2434, 38.9, nil, 413263)
-		elseif skyfallNovaCount % 2 == 0 then
-			self:CDBar(-2434, 37.7, nil, 413263)
-		else
+		skyfallNovaRemaining = skyfallNovaRemaining - 1
+		if skyfallNovaRemaining > 0 then
 			self:CDBar(-2434, 25.5, nil, 413263)
+		else -- delayed until after Supremacy of the Storm
+			self:CDBar(-2434, 37.7, nil, 413263)
 		end
 	end
 end
@@ -124,10 +141,7 @@ do
 		playerList = {}
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
-		-- TODO pattern?
-		-- pull:25.3, 38.9, 29.2, 37.6, 63.4
-		-- pull:25.5, 39.0, 63.2, 29.2, 37.7, 28.3, 37.7, 29.2, 38.9
-		self:CDBar(args.spellId, 28.3)
+		self:CDBar(args.spellId, 29.1)
 	end
 
 	function mod:StaticClingApplied(args)
