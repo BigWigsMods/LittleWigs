@@ -23,7 +23,7 @@ function mod:GetOptions()
 		200700, -- Landslide
 		{200732, "TANK_HEALER"}, -- Molten Crash
 		200637, -- Magma Sculptor
-		200404, -- Magma Wave
+		{200404, "CASTBAR"}, -- Magma Wave
 		200551, -- Crystal Spikes
 		216407, -- Lava Geyser
 		-- Molten Charskin
@@ -99,6 +99,7 @@ function mod:MagmaWavePreCast(args)
 end
 
 function mod:MagmaWave(args)
+	self:CastBar(200404, 6)
 	-- soonest other abilties can be after this is 6.2s, but only correct once the cast
 	-- actually starts because RARELY Dargrul will skip the Magma Wave cast after emoting
 	if self:BarTimeLeft(200551) < 6.2 then -- Crystal Spikes
