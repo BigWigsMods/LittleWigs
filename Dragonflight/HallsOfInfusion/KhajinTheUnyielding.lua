@@ -23,7 +23,7 @@ local frostCycloneCount = 1
 
 function mod:GetOptions()
 	return {
-		386757, -- Hailstorm
+		{386757, "CASTBAR"}, -- Hailstorm
 		386559, -- Glacial Surge
 		{385963, "DISPEL"}, -- Frost Shock
 		390111, -- Frost Cyclone
@@ -64,6 +64,7 @@ function mod:Hailstorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	hailstormCount = hailstormCount + 1
+	self:CastBar(args.spellId, 7)
 	if self:Mythic() then
 		if hailstormCount % 2 == 0 then
 			self:Bar(args.spellId, 30.0)
