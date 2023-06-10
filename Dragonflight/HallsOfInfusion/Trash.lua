@@ -276,7 +276,7 @@ do
 	local prev = 0
 	function mod:SpearFlurry(args)
 		local t = args.time
-		if t - prev > 1 then
+		if t - prev > self:Tank() and 1 or 2 then
 			prev = t
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
