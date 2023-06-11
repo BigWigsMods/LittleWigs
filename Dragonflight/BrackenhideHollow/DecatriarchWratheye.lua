@@ -20,10 +20,12 @@ local lastRotburstTotemCD = 15.5
 -- Initialization
 --
 
+local totemMarker = mod:AddMarkerOption(true, "npc", 8, 373944, 8) -- Rotburst Totem
 function mod:GetOptions()
 	return {
 		373960, -- Decaying Strength
 		373944, -- Rotburst Totem
+		totemMarker,
 		376170, -- Choking Rotcloud
 		{373917, "TANK_HEALER"}, -- Decaystrike
 	}
@@ -32,6 +34,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DecayingStrength", 373960)
 	self:Log("SPELL_CAST_START", "RotburstTotem", 373942)
+	self:Log("SPELL_SUMMON", "RotburstTotemSummon", 373944)
 	self:Log("SPELL_CAST_START", "ChokingRotcloud", 376170)
 	self:Log("SPELL_CAST_START", "Decaystrike", 373912)
 end
@@ -73,6 +76,26 @@ function mod:RotburstTotem(args)
 	else
 		lastRotburstTotemCD = 26.7
 		self:CDBar(373944, 26.7) -- 26.7 to 27.1
+	end
+end
+
+do
+	local totemGUID = nil
+
+	function mod:RotburstTotemSummon(args)
+		-- register events to auto-mark totem
+		if self:GetOption(totemMarker) then
+			totemGUID = args.destGUID
+			self:RegisterTargetEvents("MarkTotem")
+		end
+	end
+
+	function mod:MarkTotem(_, unit, guid)
+		if totemGUID == guid then
+			totemGUID = nil
+			self:CustomIcon(totemMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
 	end
 end
 
