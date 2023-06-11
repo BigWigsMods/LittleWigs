@@ -40,6 +40,7 @@ BigWigs:AddSounds("Chrono-Lord Deios and the Infinite Dragonflight", {
 })
 
 BigWigs:AddSounds("Dawn of the Infinite Trash", {
+	[411994] = "alert",
 	[412012] = "alert",
 	[412063] = "alarm",
 	[412806] = "alarm",

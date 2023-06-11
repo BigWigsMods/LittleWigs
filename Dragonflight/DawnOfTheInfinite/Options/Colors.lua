@@ -40,6 +40,7 @@ BigWigs:AddColors("Chrono-Lord Deios and the Infinite Dragonflight", {
 })
 
 BigWigs:AddColors("Dawn of the Infinite Trash", {
+	[411994] = "red",
 	[412012] = "yellow",
 	[412063] = "orange",
 	[412806] = "orange",

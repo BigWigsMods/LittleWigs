@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Dawn of the Infinite Trash", 2579)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	205384, -- Infinite Chronoweaver
 	205408, -- Infinite Timeslicer
 	205435, -- Epoch Ripper
 	206140, -- Coalesced Time
@@ -23,6 +24,7 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.infinite_chronoweaver = "Infinite Chronoweaver"
 	L.infinite_timeslicer = "Infinite Timeslicer"
 	L.epoch_ripper = "Epoch Ripper"
 	L.coalesced_time = "Coalesced Time"
@@ -39,6 +41,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Infinite Chronoweaver
+		411994, -- Chronomelt
 		-- Infinite Timeslicer
 		{412012, "DISPEL"}, -- Temposlice
 		-- Epoch Ripper
@@ -59,6 +63,7 @@ function mod:GetOptions()
 		-- Risen Dragon
 		412806, -- Blight Spew
 	}, {
+		[411994] = L.infinite_chronoweaver,
 		[412012] = L.infinite_timeslicer,
 		[412063] = L.epoch_ripper,
 		[415769] = L.coalesced_time,
@@ -71,7 +76,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- TODO might as well add the one channel in the beginning
+	-- Infinite Chronoweaver
+	self:Log("SPELL_CAST_SUCCESS", "Chronomelt", 411994)
 
 	-- Infinite Timeslicer
 	self:Log("SPELL_AURA_APPLIED", "Temposlice", 412012)
@@ -106,6 +112,14 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Infinite Chronoweaver
+
+function mod:Chronomelt(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+end
 
 -- Infinite Timeslicer
 
