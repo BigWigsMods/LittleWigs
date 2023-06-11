@@ -41,7 +41,7 @@ function mod:GetOptions()
 		258381, -- Grapeshot
 		272902, -- Chain Shot
 		-- Captain Raoul
-		{258338, "SAY"}, -- Blackout Barrel
+		{258338, "SAY", "DISPEL"}, -- Blackout Barrel
 		256589, -- Barrel Smash
 		-- Captain Jolly
 		267522, -- Cutting Surge
@@ -68,6 +68,7 @@ function mod:OnBossEnable()
 
 	-- Captain Raoul
 	self:Log("SPELL_CAST_START", "BlackoutBarrel", 258338)
+	self:Log("SPELL_AURA_APPLIED", "BlackoutBarrelApplied", 258875)
 	self:Log("SPELL_CAST_START", "BarrelSmash", 256589)
 	self:Death("CaptainRaoulDeath", 126847)
 
@@ -170,7 +171,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(258338, "yellow", name)
+		self:TargetMessage(258338, "yellow", name, CL.casting:format(self:SpellName(258338)))
 		if self:Me(guid) then
 			self:Say(258338)
 			self:PlaySound(258338, "alert")
@@ -182,6 +183,14 @@ do
 	function mod:BlackoutBarrel(args)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 		self:CDBar(args.spellId, 46.1)
+	end
+end
+
+function mod:BlackoutBarrelApplied(args)
+	if self:Dispeller("movement", nil, 258338) then
+		-- can be dispelled by movement dispellers, so alert on application
+		self:TargetMessage(258338, "cyan", name)
+		self:PlaySound(258338, "info", nil, name)
 	end
 end
 
