@@ -23,7 +23,7 @@ local frostCycloneCount = 1
 
 function mod:GetOptions()
 	return {
-		{386757, "CASTBAR"}, -- Hailstorm
+		{386757, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Hailstorm
 		386559, -- Glacial Surge
 		{385963, "DISPEL"}, -- Frost Shock
 		390111, -- Frost Cyclone
