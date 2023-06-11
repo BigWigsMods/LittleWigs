@@ -70,12 +70,15 @@ end
 -- Initialization
 --
 
+local rotchantingTotemMarker = mod:AddMarkerOption(true, "npc", 7, 382435, 7) -- Rotchanting Totem
+local decayTotemMarker = mod:AddMarkerOption(true, "npc", 7, 381821, 7) -- Decay Totem
 function mod:GetOptions()
 	return {
 		-- Decaying Cauldron
 		"custom_on_cauldron_autotalk",
 		-- Decay Speaker
 		382435, -- Rotchanting Totem
+		rotchantingTotemMarker,
 		{367503, "SAY"}, -- Withering Burst
 		{368081, "DISPEL"}, -- Withering
 		-- Claw Fighter
@@ -99,6 +102,7 @@ function mod:GetOptions()
 		382712, -- Necrotic Breath
 		-- Fetid Rotsinger
 		374057, -- Summon Totem
+		decayTotemMarker,
 		{374544, "SAY"}, -- Burst of Decay
 		-- Monstrous Decay
 		374569, -- Burst
@@ -158,7 +162,7 @@ function mod:OnBossEnable()
 	-- [UPDATE_UI_WIDGET] widgetID:4267, widgetType:8, widgetSetID:1, scriptedAnimationEffectID:0, modelSceneLayer:0, widgetScale:0, tooltipLoc:0, fontType:1, shownState:1, widgetSizeSetting:0, bottomPadding:0, enabledState:1, textSizeType:4, text:Tuskarr Freed: 4/5, orderIndex:0, layoutDirection:0, inAnimType:0, widgetTag:, hasTimer:false, outAnimType:0, tooltip:Free Tuskarr to goad Hackclaw's War-Band out into the open., hAlign:1
 
 	-- Decay Speaker
-	self:Log("SPELL_SUMMON", "RotchantingTotemSummoned", 382435)
+	self:Log("SPELL_SUMMON", "RotchantingTotemSummon", 382435)
 	self:Log("SPELL_CAST_START", "WitheringBurst", 367503)
 	self:Log("SPELL_AURA_APPLIED", "WitheringApplied", 368081)
 
@@ -197,6 +201,7 @@ function mod:OnBossEnable()
 
 	-- Fetid Rotsinger
 	self:Log("SPELL_CAST_SUCCESS", "SummonDecayTotem", 375065) -- Summon Totem
+	self:Log("SPELL_SUMMON", "DecayTotemSummon", 374057)
 	self:Log("SPELL_CAST_START", "BurstOfDecay", 374544)
 
 	-- Monstrous Decay
@@ -255,9 +260,26 @@ end
 
 -- Decay Speaker
 
-function mod:RotchantingTotemSummoned(args)
-	self:Message(args.spellId, "yellow", CL.spawned:format(args.destName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local totemGUID = nil
+
+	function mod:RotchantingTotemSummon(args)
+		self:Message(args.spellId, "yellow", CL.spawned:format(args.destName))
+		self:PlaySound(args.spellId, "alert")
+		-- register events to auto-mark totem
+		if self:GetOption(rotchantingTotemMarker) then
+			totemGUID = args.destGUID
+			self:RegisterTargetEvents("MarkRotchantingTotem")
+		end
+	end
+
+	function mod:MarkRotchantingTotem(_, unit, guid)
+		if totemGUID == guid then
+			totemGUID = nil
+			self:CustomIcon(rotchantingTotemMarker, unit, 7)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 do
@@ -433,6 +455,26 @@ end
 function mod:SummonDecayTotem(args)
 	self:Message(374057, "yellow", CL.incoming:format(L.decay_totem))
 	self:PlaySound(374057, "warning")
+end
+
+do
+	local totemGUID = nil
+
+	function mod:DecayTotemSummon(args)
+		-- register events to auto-mark totem
+		if self:GetOption(decayTotemMarker) then
+			totemGUID = args.destGUID
+			self:RegisterTargetEvents("MarkDecayTotem")
+		end
+	end
+
+	function mod:MarkDecayTotem(_, unit, guid)
+		if totemGUID == guid then
+			totemGUID = nil
+			self:CustomIcon(decayTotemMarker, unit, 7)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 do
