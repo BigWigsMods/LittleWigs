@@ -57,6 +57,7 @@ function mod:GetOptions()
 		-- Fetid Maggot
 		265540, -- Rotten Bile
 		-- Chosen Blood Matron
+		{265016, "ME_ONLY", "SAY"}, -- Blood Harvest
 		265019, -- Savage Cleave
 		265081, -- Warcry
 		-- Diseased Lasher
@@ -84,7 +85,7 @@ function mod:GetOptions()
 		[265568] = L.spirit,
 		[265089] = L.priest,
 		[265540] = L.maggot,
-		[265019] = L.matron,
+		[265016] = L.matron,
 		[278961] = L.lasher,
 		[266107] = L.bloodswarmer,
 		[265668] = L.rot,
@@ -112,6 +113,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RottenBile", 265540)
 
 	-- Chosen Blood Matron
+	self:Log("SPELL_CAST_SUCCESS", "BloodHarvest", 265016)
 	self:Log("SPELL_CAST_START", "SavageCleave", 265019)
 	self:Log("SPELL_CAST_START", "Warcry", 265081)
 
@@ -136,6 +138,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "WickedFrenzyApplied", 266209)
 	self:Log("SPELL_AURA_APPLIED", "WickedEmbraceApplied", 266265)
 	self:Log("SPELL_AURA_REMOVED", "WickedEmbraceRemoved", 266265)
+
 	-- Grotesque Horror
 	self:Log("SPELL_CAST_START", "DarkEchoes", 413044)
 
@@ -217,6 +220,17 @@ function mod:RottenBile(args)
 end
 
 -- Chosen Blood Matron
+
+function mod:BloodHarvest(args)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
+	if self:Me(args.destGUID) then
+		-- :Say here, because if Blood Harvest hits its target a
+		-- Savage Cleave will be immediately cast in their direction.
+		self:Say(args.spellId)
+	end
+	--self:NameplateCDBar(args.spellId, 12.1, args.sourceGUID)
+end
 
 function mod:SavageCleave(args)
 	self:Message(args.spellId, "red")

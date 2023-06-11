@@ -28,6 +28,7 @@ BigWigs:AddSounds("Unbound Abomination", {
 })
 
 BigWigs:AddSounds("Underrot Trash", {
+	[265016] = "info",
 	[265019] = "alarm",
 	[265081] = "long",
 	[265089] = "warning",
