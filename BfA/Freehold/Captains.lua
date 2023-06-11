@@ -189,8 +189,8 @@ end
 function mod:BlackoutBarrelApplied(args)
 	if self:Dispeller("movement", nil, 258338) then
 		-- can be dispelled by movement dispellers, so alert on application
-		self:TargetMessage(258338, "cyan", name)
-		self:PlaySound(258338, "info", nil, name)
+		self:TargetMessage(258338, "cyan", args.destName)
+		self:PlaySound(258338, "info", nil, args.destName)
 	end
 end
 
