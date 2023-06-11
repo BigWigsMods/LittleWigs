@@ -17,6 +17,6 @@ end
 
 L = BigWigs:NewBossLocale("Altairus", "zhCN")
 if L then
-	--L.upwind = "Upwind on you (safe)"
-	--L.downwind = "Downwind on you (unsafe)"
+	L.upwind = "你在顺风（安全）"
+	L.downwind = "你在逆风（不安全）"
 end
