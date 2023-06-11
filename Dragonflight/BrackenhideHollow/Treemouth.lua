@@ -19,10 +19,13 @@ function mod:GetOptions()
 		{376811, "SAY"}, -- Decay Spray
 		377859, -- Infectious Spit
 		377559, -- Vine Whip
+		-- Decaying Slime
+		378054, -- Withering Away!
 		-- Mythic
 		383875, -- Partially Digested
 		390968, -- Starving Frenzy
 	}, {
+		[378054] = -25302, -- Decaying Slime
 		[383875] = CL.mythic,
 	}
 end
@@ -36,6 +39,10 @@ function mod:OnBossEnable()
 	-- Infectious Spit is only cast in non-Mythic difficulties as of 2023-05-13
 	self:Log("SPELL_CAST_SUCCESS", "InfectiousSpit", 377859)
 	self:Log("SPELL_CAST_START", "VineWhip", 377559)
+
+	-- Decaying Slime
+	self:Log("SPELL_AURA_APPLIED", "WitheringAwayDamage", 378054)
+	self:Log("SPELL_PERIODIC_DAMAGE", "WitheringAwayDamage", 378054)
 
 	-- Mythic
 	self:Log("SPELL_AURA_APPLIED", "PartiallyDigestedApplied", 383875)
@@ -151,6 +158,22 @@ do
 		end
 		if not self:Mythic() and self:BarTimeLeft(377859) < 4.85 then -- Infectious Spit
 			self:CDBar(377859, {4.85, 20.6})
+		end
+	end
+end
+
+-- Decaying Slime
+
+do
+	local prev = 0
+	function mod:WitheringAwayDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
 		end
 	end
 end

@@ -16,6 +16,7 @@ BigWigs:AddColors("Treemouth", {
 	[377559] = "purple",
 	[377859] = "orange",
 	[378022] = {"blue","green","red"},
+	[378054] = "blue",
 	[383875] = "blue",
 	[390968] = "red",
 })

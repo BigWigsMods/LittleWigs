@@ -16,6 +16,7 @@ BigWigs:AddSounds("Treemouth", {
 	[377559] = "alarm",
 	[377859] = "alarm",
 	[378022] = {"info","long"},
+	[378054] = "underyou",
 	[383875] = "info",
 	[390968] = "warning",
 })
