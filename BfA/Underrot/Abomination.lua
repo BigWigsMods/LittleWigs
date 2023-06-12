@@ -42,7 +42,7 @@ function mod:OnEngage()
 	putridBloodList = {}
 	visageRemaining = 6
 	self:Bar(269843, 8.3) -- Vile Expulsion
-	self:Bar(269310, 18.0) -- Cleansing Light
+	self:CDBar(269310, 18.0) -- Cleansing Light
 end
 
 --------------------------------------------------------------------------------
@@ -59,10 +59,11 @@ function mod:CleansingLight(args)
 	-- the boss frame for Titan Keeper Hezrel was removed, so target scanning is no longer possible
 	self:Message(args.spellId, "green")
 	self:PlaySound(args.spellId, "long")
+	-- use a CDBar because the Hezrel's casts can be delayed by the Purge Corruption channel
 	if self:Normal() then
 		self:CDBar(args.spellId, 16.2)
 	else
-		self:Bar(args.spellId, 17.0)
+		self:CDBar(args.spellId, 17.0)
 	end
 end
 
