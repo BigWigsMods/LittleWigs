@@ -114,7 +114,9 @@ end
 function mod:RevitalizingBrew(args)
 	-- this ability is only cast if the boss is < 50% health
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning", "interrupt")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "warning", "interrupt")
+	end
 	self:CDBar(args.spellId, 20.7)
 end
 
