@@ -12,11 +12,13 @@ mod:SetRespawnTime(30)
 -- Initialization
 --
 
+local totemMarker = mod:AddMarkerOption(true, "npc", 7, 369700, 7) -- Quaking Totem
 function mod:GetOptions()
 	return {
 		-- Bromach
 		369605, -- Call of the Deep
 		369700, -- Quaking Totem
+		totemMarker,
 		369754, -- Bloodlust
 		369703, -- Thundering Slam
 		-- Stonevault Geomancer
@@ -34,6 +36,7 @@ function mod:OnBossEnable()
 	-- Bromach
 	self:Log("SPELL_CAST_SUCCESS", "CallOfTheDeep", 369605)
 	self:Log("SPELL_CAST_START", "QuakingTotem", 382303)
+	self:Log("SPELL_CAST_SUCCESS", "QuakingTotemSuccess", 382303)
 	self:Log("SPELL_CAST_START", "Bloodlust", 369754)
 	self:Log("SPELL_CAST_START", "ThunderingSlam", 369703)
 	self:Log("SPELL_CAST_SUCCESS", "ThunderingSlamSuccess", 369703)
@@ -68,6 +71,22 @@ function mod:QuakingTotem(args)
 	self:Message(369700, "yellow")
 	self:PlaySound(369700, "info")
 	self:Bar(369700, 30.3)
+end
+
+function mod:QuakingTotemSuccess(args)
+	-- register events to auto-mark totem
+	if self:GetOption(totemMarker) then
+		self:RegisterTargetEvents("MarkTotem")
+	end
+end
+
+function mod:MarkTotem(_, unit, guid)
+	-- there is no SUMMON event and CAST_SUCCESS doesn't have a target,
+	-- so we have to match on the mob ID for Quaking Totem
+	if self:MobId(guid) == 186696 then -- Quaking Totem
+		self:CustomIcon(totemMarker, unit, 7)
+		self:UnregisterTargetEvents()
+	end
 end
 
 function mod:Bloodlust(args)
