@@ -33,6 +33,7 @@ if L then
 	L.priest = "Devout Blood Priest"
 	L.maggot = "Fetid Maggot"
 	L.matron = "Chosen Blood Matron"
+	L.fanatical_headhunter = "Fanatical Headhunter"
 	L.lasher = "Diseased Lasher"
 	L.bloodswarmer = "Feral Bloodswarmer"
 	L.rot = "Living Rot"
@@ -60,6 +61,8 @@ function mod:GetOptions()
 		{265016, "ME_ONLY", "SAY"}, -- Blood Harvest
 		265019, -- Savage Cleave
 		265081, -- Warcry
+		-- Fanatical Headhunter
+		{265377, "DISPEL"}, -- Hooked Snare
 		-- Diseased Lasher
 		278961, -- Decaying Mind
 		-- Feral Bloodswarmer
@@ -86,6 +89,7 @@ function mod:GetOptions()
 		[265089] = L.priest,
 		[265540] = L.maggot,
 		[265016] = L.matron,
+		[265377] = L.fanatical_headhunter,
 		[278961] = L.lasher,
 		[266107] = L.bloodswarmer,
 		[265668] = L.rot,
@@ -116,6 +120,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BloodHarvest", 265016)
 	self:Log("SPELL_CAST_START", "SavageCleave", 265019)
 	self:Log("SPELL_CAST_START", "Warcry", 265081)
+
+	-- Fanatical Headhunter
+	self:Log("SPELL_AURA_APPLIED", "HookedSnareApplied", 265377)
 
 	-- Diseased Lasher
 	self:Log("SPELL_CAST_START", "DecayingMind", 278961)
@@ -245,6 +252,15 @@ function mod:Warcry(args)
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "long")
 		--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	end
+end
+
+-- Fanatical Headhunter
+
+function mod:HookedSnareApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("movement", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
 

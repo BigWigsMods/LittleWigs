@@ -8,6 +8,7 @@ if L then
 	L.priest = "虔誠的鮮血祭司"
 	L.maggot = "惡臭蛆蟲"
 	L.matron = "受選之血族母"
+	--L.fanatical_headhunter = "Fanatical Headhunter"
 	L.lasher = "染病的鞭笞者"
 	L.bloodswarmer = "野生鮮血蟲"
 	L.rot = "活體腐質"

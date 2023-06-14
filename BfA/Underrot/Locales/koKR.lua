@@ -8,6 +8,7 @@ if L then
 	L.priest = "기원의 혈사제"
 	L.maggot = "악취 나는 구더기"
 	L.matron = "선택받은 혈어미"
+	L.fanatical_headhunter = "광신적인 인간사냥꾼"
 	L.lasher = "감염된 덩굴손"
 	L.bloodswarmer = "야수 혈공포거미"
 	L.rot = "살아있는 부패물"

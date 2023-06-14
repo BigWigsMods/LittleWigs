@@ -8,6 +8,7 @@ if L then
 	L.priest = "Sacerdotisa de sangre devota"
 	L.maggot = "Cresa fétida"
 	L.matron = "Matriarca de sangre elegida"
+	L.fanatical_headhunter = "Rebanacabezas fanático"
 	L.lasher = "Azotador malsano"
 	L.bloodswarmer = "Enjambrista de sangre feral"
 	L.rot = "Putrefacción viva"
