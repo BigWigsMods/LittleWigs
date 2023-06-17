@@ -23,6 +23,7 @@ local greaterHealingRapidsCount = 0
 --
 
 local savageChargeMarker = mod:AddMarkerOption(true, "player", 1, 381444, 1) -- Savage Charge
+local totemMarker = mod:AddMarkerOption(true, "npc", 8, 381470, 8) -- Hextrick Totem
 function mod:GetOptions()
 	return {
 		-- Rira Hackclaw
@@ -35,6 +36,7 @@ function mod:GetOptions()
 		378208, -- Marked for Butchery (Mythic-only)
 		-- Tricktotem
 		381470, -- Hextrick Totem
+		totemMarker,
 		377950, -- Greater Healing Rapids
 		377965, -- Bloodfrenzy
 	}, {
@@ -64,6 +66,7 @@ function mod:OnBossEnable()
 
 	-- Tricktotem
 	self:Log("SPELL_CAST_START", "HextrickTotem", 381470)
+	self:Log("SPELL_SUMMON", "HextrickTotemSummon", 381470)
 	self:Log("SPELL_CAST_START", "GreaterHealingRapids", 377950)
 	self:Log("SPELL_CAST_SUCCESS", "Bloodfrenzy", 377965)
 	self:Death("TricktotemDeath", 186125)
@@ -223,6 +226,26 @@ function mod:HextrickTotem(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 	self:Bar(args.spellId, 59.5)
+end
+
+do
+	local totemGUID = nil
+
+	function mod:HextrickTotemSummon(args)
+		-- register events to auto-mark totem
+		if self:GetOption(totemMarker) then
+			totemGUID = args.destGUID
+			self:RegisterTargetEvents("MarkTotem")
+		end
+	end
+
+	function mod:MarkTotem(_, unit, guid)
+		if totemGUID == guid then
+			totemGUID = nil
+			self:CustomIcon(totemMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 function mod:GreaterHealingRapids(args)
