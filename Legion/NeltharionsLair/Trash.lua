@@ -291,8 +291,8 @@ end
 -- Blightshard Shaper
 
 function mod:PetrifyingTotem(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:PetrifyingCloudApplied(args)

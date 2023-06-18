@@ -48,7 +48,7 @@ BigWigs:AddColors("Neltharions Lair Trash", {
 	[193803] = "red",
 	[200154] = {"blue","orange","yellow"},
 	[201983] = "yellow",
-	[202108] = "orange",
+	[202108] = "yellow",
 	[202181] = {"blue","red"},
 	[226287] = "orange",
 	[226296] = "purple",
