@@ -2,7 +2,7 @@ local L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "zhTW")
 if not L then return end
 if L then
 	L.custom_on_cauldron_autotalk = "自動對話"
-	--L.custom_on_cauldron_autotalk_desc = "[鍊金術] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
+	L.custom_on_cauldron_autotalk_desc = "[鍊金術] 使用腐朽大鍋移除疾病。"
 
 	L.decaying_cauldron = "腐朽大鍋"
 	L.decay_speaker = "腐朽代言者"
@@ -10,7 +10,7 @@ if L then
 	L.bonebolt_hunter = "骨箭獵人"
 	L.bracken_warscourge = "蕨皮戰譴者"
 	L.brackenhide_shaper = "蕨皮塑造者"
-	--L.fishface = "Fishface"
+	L.fishface = "魚臉"
 	L.rotting_creek = "腐爛溪流"
 	L.decayed_elder = "腐朽長者"
 	L.wilted_oak = "凋零橡木樹人"
