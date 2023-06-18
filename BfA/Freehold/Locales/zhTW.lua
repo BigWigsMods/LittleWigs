@@ -9,7 +9,7 @@ if L then
 	L.cutwater_duelist = "分水決鬥者"
 	L.irontide_oarsman = "鐵潮划槳手"
 	L.cutwater_knife_juggler = "分水飛刀手"
-	--L.bilge_rat_brinescale = "Bilge Rat Brinescale"
+	L.bilge_rat_brinescale = "污鼠會鹽鱗"
 	L.blacktooth_scrapper = "黑牙拳匪"
 	L.blacktooth_knuckleduster = "黑牙挑釁者"
 	L.bilge_rat_swabby = "污鼠會海員"
@@ -46,6 +46,6 @@ if L then
 	L.ludwig = "路德威‧馮‧托爾托"
 	L.trothak = "托鯊客"
 
-	--L.left = "%s (Left)"
-	--L.right = "%s (Right)"
+	L.left = "%s（左手）"
+	L.right = "%s（右手）"
 end
