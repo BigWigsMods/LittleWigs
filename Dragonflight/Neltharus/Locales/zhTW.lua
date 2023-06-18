@@ -30,5 +30,5 @@ end
 L = BigWigs:NewBossLocale("Warlord Sargha", "zhTW")
 if L then
 	L.magical_implements_desc = "寶藏堆中藏著可以削減熔岩護盾的魔法器具。"
-	L.magma_shield = "熔岩護盾：找出魔法器具"
+	L.magma_shield = "熔岩護盾：使用魔法器具"
 end
