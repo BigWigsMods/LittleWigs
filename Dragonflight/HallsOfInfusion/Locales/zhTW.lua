@@ -20,5 +20,5 @@ if L then
 	L.glacial_protodragon = "冰結元龍"
 	--L.subterranean_protodragon = "Subterranean Proto-Dragon"
 	L.aqua_rager = "水怒者"
-	L.infuser_sariya = "灌注者莎麗亞Infuser Sariya"
+	L.infuser_sariya = "灌注者莎麗亞"
 end
