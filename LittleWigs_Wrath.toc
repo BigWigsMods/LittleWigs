@@ -1,4 +1,4 @@
-## Interface: 30401
+## Interface: 30402
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
