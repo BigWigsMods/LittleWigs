@@ -103,7 +103,6 @@ function mod:OnBossEnable()
 	-- Infinite Infiltrator
 	self:Log("SPELL_CAST_SUCCESS", "TimelessCurse", 413621)
 	self:Log("SPELL_CAST_START", "InfiniteFury", 413622)
-	self:Death("InfiniteInfiltratorDeath", 206214)
 
 	-- Risen Dragon
 	self:Log("SPELL_CAST_START", "BlightSpew", 412806)
@@ -221,18 +220,13 @@ end
 function mod:TimelessCurse(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 20.6)
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
 end
 
 function mod:InfiniteFury(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 20.6)
-end
-
-function mod:InfiniteInfiltratorDeath(args)
-	self:StopBar(413621) -- Timeless Curse
-	self:StopBar(413622) -- Infinite Fury
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Risen Dragon
