@@ -24,6 +24,7 @@ BigWigs:AddColors("Treemouth", {
 BigWigs:AddColors("Gutshot", {
 	[384353] = "purple",
 	[384416] = {"blue","orange"},
+	[384577] = {"blue","purple"},
 	[384633] = "red",
 	[384827] = "orange",
 	[385359] = {"blue","green","red","yellow"},
