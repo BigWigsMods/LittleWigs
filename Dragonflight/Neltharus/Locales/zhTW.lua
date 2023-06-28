@@ -4,6 +4,7 @@ if L then
 	L.custom_on_autotalk = "自動對話"
 	L.custom_on_autotalk_desc = "自動對話獲得專業增益。"
 
+	--L.burning_chain = "Burning Chain"
 	L.qalashi_warden = "喀拉希守望者"
 	L.qalashi_hunter = "喀拉希獵人"
 	L.overseer_lahar = "監督者來哈爾"

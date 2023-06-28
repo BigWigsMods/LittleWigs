@@ -4,6 +4,7 @@ if L then
 	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt die Dialogoptionen um Berufs-Stärkungszauber zu erhalten."
 
+	L.burning_chain = "Brennende Kette"
 	L.qalashi_warden = "Wächter der Qalashi"
 	L.qalashi_hunter = "Jäger der Qalashi"
 	L.overseer_lahar = "Aufseher Lahar"

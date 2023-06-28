@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Neltharus Trash", 2519)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	189342, -- Burning Chain
 	193293, -- Qalashi Warden
 	189227, -- Qalashi Hunter
 	189669, -- Binding Spear
@@ -35,6 +36,7 @@ if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
+	L.burning_chain = "Burning Chain"
 	L.qalashi_warden = "Qalashi Warden"
 	L.qalashi_hunter = "Qalashi Hunter"
 	L.overseer_lahar = "Overseer Lahar"
@@ -60,6 +62,8 @@ function mod:GetOptions()
 	return {
 		-- General
 		"custom_on_autotalk",
+		-- Burning Chain
+		374451, -- Burning Chain
 		-- Qalashi Warden
 		382708, -- Volcanic Guard
 		{384597, "TANK_HEALER"}, -- Blazing Slash
@@ -68,13 +72,14 @@ function mod:GetOptions()
 		-- Overseer Lahar
 		395427, -- Burning Roar
 		376186, -- Eruptive Crush
+		{372461, "DISPEL"}, -- Imbued Magma
 		-- Qalashi Trainee
 		372311, -- Magma Fist
 		-- Qalashi Bonetender
 		372223, -- Mending Clay
 		-- Qalashi Irontorch
 		372201, -- Scorching Breath
-		384161, -- Mote of Combustion
+		{384161, "DISPEL"}, -- Mote of Combustion
 		-- Qalashi Bonesplitter
 		372225, -- Dragonbone Axe
 		-- Qalashi Lavabearer
@@ -98,6 +103,7 @@ function mod:GetOptions()
 		383651, -- Molten Army
 	}, {
 		["custom_on_autotalk"] = CL.general,
+		[374451] = L.burning_chain,
 		[382708] = L.qalashi_warden,
 		[372561] = L.qalashi_hunter,
 		[395427] = L.overseer_lahar,
@@ -121,6 +127,9 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "ThrowExperimentalConcoction", 376169)
 
+	-- Burning Chain
+	self:Log("SPELL_CAST_SUCCESS", "BurningChainPickedUp", 374451)
+
 	-- Qalashi Warden
 	self:Log("SPELL_CAST_START", "VolcanicGuard", 382708)
 	self:Log("SPELL_CAST_START", "BlazingSlash", 384597)
@@ -132,6 +141,7 @@ function mod:OnBossEnable()
 	-- Overseer Lahar
 	self:Log("SPELL_CAST_START", "BurningRoar", 395427)
 	self:Log("SPELL_CAST_START", "EruptiveCrush", 376186)
+	self:Log("SPELL_AURA_APPLIED", "ImbuedMagmaApplied", 372461)
 	self:Death("OverseerLaharDeath", 189235)
 
 	-- Qalashi Trainee
@@ -209,6 +219,13 @@ function mod:ThrowExperimentalConcoction(args)
 	end
 end
 
+-- Burning Chain
+
+function mod:BurningChainPickedUp(args)
+	self:TargetMessage(args.spellId, "green", args.destName)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
+end
+
 -- Qalashi Warden
 
 function mod:VolcanicGuard(args)
@@ -264,6 +281,13 @@ function mod:EruptiveCrush(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 20.6)
+end
+
+function mod:ImbuedMagmaApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
 
 function mod:OverseerLaharDeath(args)
@@ -328,7 +352,7 @@ function mod:MoteOfCombustion(args)
 end
 
 function mod:MoteOfCombustionApplied(args)
-	if self:Dispeller("magic") and self:Friendly(args.destFlags) then
+	if self:Me(args.destGUID) or (self:Dispeller("magic", nil, args.spellId) and self:Friendly(args.destFlags)) then
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end

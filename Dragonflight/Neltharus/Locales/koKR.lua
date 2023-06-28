@@ -4,6 +4,7 @@ if L then
 	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
+	L.burning_chain = "불타는 사슬"
 	L.qalashi_warden = "칼라시 감시관"
 	L.qalashi_hunter = "칼라시 사냥꾼"
 	L.overseer_lahar = "감독관 라하르"

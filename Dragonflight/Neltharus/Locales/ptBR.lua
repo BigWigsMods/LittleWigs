@@ -4,6 +4,7 @@ if L then
 	L.custom_on_autotalk = "Conversa Automática"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
+	L.burning_chain = "Corrente Ardente"
 	L.qalashi_warden = "Guardião Qalashi"
 	L.qalashi_hunter = "Caçador Qalashi"
 	L.overseer_lahar = "Feitor Lahar"
