@@ -59,7 +59,7 @@ function mod:OnEngage()
 	self:Bar(-2425, 5.9, nil, 88276) -- Call the Wind
 	self:Bar(88308, 12.0) -- Chilling Breath
 	if self:Mythic() then
-		self:Bar(413295, 20.4) -- Downburst
+		self:Bar(413295, 20.4, CL.count:format(self:SpellName(413295), downburstCount)) -- Downburst
 	end
 end
 
@@ -120,12 +120,13 @@ function mod:ColdFrontDamage(args)
 end
 
 function mod:Downburst(args)
-	self:Message(args.spellId, "yellow")
+	self:StopBar(CL.count:format(args.spellName, downburstCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, downburstCount))
 	self:PlaySound(args.spellId, "long")
 	downburstCount = downburstCount + 1
 	if downburstCount % 3 == 0 then
-		self:CDBar(args.spellId, 43.7)
+		self:CDBar(args.spellId, 43.7, CL.count:format(args.spellName, downburstCount))
 	else
-		self:CDBar(args.spellId, 44.8)
+		self:CDBar(args.spellId, 44.8, CL.count:format(args.spellName, downburstCount))
 	end
 end
