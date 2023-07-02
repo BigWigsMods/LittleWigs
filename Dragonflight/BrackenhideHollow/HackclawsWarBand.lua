@@ -209,6 +209,7 @@ do
 
 	function mod:MarkedForButchery(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:Bar(args.spellId, 59.5)
 	end
 end
 
