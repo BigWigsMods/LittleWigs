@@ -47,11 +47,11 @@ function mod:OnEngage()
 	timeSinkCount = 1
 	sandBreathCount = 1
 	if not self:Normal() then
-		self:CDBar(377405, 5.4) -- Time Sink
+		self:CDBar(377405, 5.4, CL.count:format(self:SpellName(377405), timeSinkCount)) -- Time Sink
 	end
-	self:CDBar(376049, 6.3) -- Wing Buffet
+	self:CDBar(376049, 6.3, CL.count:format(self:SpellName(376049), wingBuffetCount)) -- Wing Buffet
 	self:CDBar(375727, 12.1) -- Sand Breath
-	self:CDBar(376208, 39.1, CL.count:format(self:SpellName(376208), 1)) -- Rewind Timeflow (1)
+	self:CDBar(376208, 39.1, CL.count:format(self:SpellName(376208), rewindTimeflowCount)) -- Rewind Timeflow (1)
 end
 
 function mod:VerifyEnable(unit)
@@ -83,21 +83,21 @@ do
 end
 
 function mod:RewindTimeflow(args)
+	self:StopBar(CL.count:format(args.spellName, rewindTimeflowCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, rewindTimeflowCount))
 	self:PlaySound(args.spellId, "long")
-	self:StopBar(CL.count:format(args.spellName, rewindTimeflowCount))
 	rewindTimeflowCount = rewindTimeflowCount + 1
 	self:Bar(args.spellId, 57.1, CL.count:format(args.spellName, rewindTimeflowCount))
 	-- extend other timers if needed, 2s cast + 12s channel + .5s delay
 	if self:BarTimeLeft(375727) < 14.5 then -- Sand Breath
-		self:CDBar(375727, {14.5, 18.2})
+		self:CDBar(375727, {14.5, 18.2}) -- Sand Breath
 		-- Sand Breath always happens before Wing Buffet, and the
 		-- soonest Wing Buffet can be after Sand Breath is 3.6s
-		if self:BarTimeLeft(376049) < 18.1 then -- Wing Buffet
-			self:CDBar(376049, {18.1, 23.1})
+		if self:BarTimeLeft(CL.count:format(self:SpellName(376049), wingBuffetCount)) < 18.1 then -- Wing Buffet
+			self:CDBar(376049, {18.1, 23.1}, CL.count:format(self:SpellName(376049), wingBuffetCount))
 		end
-	elseif self:BarTimeLeft(376049) < 14.5 then -- Wing Buffet
-		self:CDBar(376049, {14.5, 23.1})
+	elseif self:BarTimeLeft(CL.count:format(self:SpellName(376049), wingBuffetCount)) < 14.5 then -- Wing Buffet
+		self:CDBar(376049, {14.5, 23.1}, CL.count:format(self:SpellName(376049), wingBuffetCount))
 	end
 end
 
@@ -107,16 +107,17 @@ function mod:RewindTimeflowOver(args)
 end
 
 function mod:WingBuffet(args)
-	self:Message(args.spellId, "orange")
+	self:StopBar(CL.count:format(args.spellName, wingBuffetCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, wingBuffetCount))
 	self:PlaySound(args.spellId, "alarm")
 	wingBuffetCount = wingBuffetCount + 1
 	-- pull:6.9, 23.0, 27.9, 23.0, 34.0, 23.0, 34.0, 23.0
 	if wingBuffetCount == 3 then
-		self:CDBar(args.spellId, 27.9)
+		self:CDBar(args.spellId, 27.9, CL.count:format(args.spellName, wingBuffetCount))
 	elseif wingBuffetCount % 2 == 0 then
-		self:CDBar(args.spellId, 23.0)
+		self:CDBar(args.spellId, 23.0, CL.count:format(args.spellName, wingBuffetCount))
 	else
-		self:CDBar(args.spellId, 34.0)
+		self:CDBar(args.spellId, 34.0, CL.count:format(args.spellName, wingBuffetCount))
 	end
 end
 
@@ -128,16 +129,17 @@ do
 		if t - prev > 3 then -- detect new round of debuffs, no SPELL_CAST_SUCCESS
 			prev = t
 			playerList = {}
+			self:StopBar(CL.count:format(args.spellName, timeSinkCount))
 			timeSinkCount = timeSinkCount + 1
 			-- pull:6.1, 20.6, 35.2, 23.1, 34.0, 23.1, 34.0
 			if timeSinkCount == 2 then
-				self:CDBar(args.spellId, 20.6)
+				self:CDBar(args.spellId, 20.6, CL.count:format(args.spellName, timeSinkCount))
 			elseif timeSinkCount == 3 then
-				self:CDBar(args.spellId, 35.2)
+				self:CDBar(args.spellId, 35.2, CL.count:format(args.spellName, timeSinkCount))
 			elseif timeSinkCount % 2 == 0 then
-				self:CDBar(args.spellId, 23.1)
+				self:CDBar(args.spellId, 23.1, CL.count:format(args.spellName, timeSinkCount))
 			else
-				self:CDBar(args.spellId, 34.0)
+				self:CDBar(args.spellId, 34.0, CL.count:format(args.spellName, timeSinkCount))
 			end
 		end
 		playerList[#playerList + 1] = args.destName
