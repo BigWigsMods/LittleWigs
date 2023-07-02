@@ -47,7 +47,7 @@ end
 function mod:OnEngage()
 	purgingFlamesDisabled = false
 	purgingFlamesActive = false
-	unstableEmbersRemaining = 2
+	unstableEmbersRemaining = 3
 	searingClapRemaining = 2
 	nextUnstableEmbers = 0
 	nextSearingClap = 0
