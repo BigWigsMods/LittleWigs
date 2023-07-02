@@ -12,6 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
+local skyfallNovaCount = 1
 local skyfallNovaRemaining = 2
 
 --------------------------------------------------------------------------------
@@ -39,9 +40,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	skyfallNovaCount = 1
 	skyfallNovaRemaining = 1
 	self:CDBar(87622, 12.1) -- Chain Lightning
-	self:CDBar(-2434, 18.0, nil, 413263) -- Skyfall Nova
+	self:CDBar(-2434, 18.0, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
 	if not self:Normal() then
 		self:CDBar(87618, 25.2) -- Static Cling
 	end
@@ -69,7 +71,7 @@ do
 				-- scoped to Mythic because in other difficulties you can interrupt the boss
 				self:CDBar(87622, 17.0) -- Chain Lightning
 				-- puts Skyfall Nova and Static Cling on CD
-				self:CDBar(-2434, {25.5, 37.7}, nil, 413263) -- Skyfall Nova
+				self:CDBar(-2434, {25.5, 37.7}, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
 				self:CDBar(87618, 32.7) -- Static Cling
 			end
 		end
@@ -83,10 +85,10 @@ function mod:SupremacyOfTheStorm(args)
 	self:CDBar(args.spellId, 63.2)
 	-- start timers, (in Mythic these are initially started in UnstableGroundingField)
 	if self:Mythic() then
-		self:CDBar(-2434, {15.8, 37.7}, nil, 413263) -- Skyfall Nova
+		self:CDBar(-2434, {15.8, 37.7}, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
 		self:CDBar(87618, {23.0, 32.7}) -- Static Cling
 	else
-		self:CDBar(-2434, 15.8, nil, 413263) -- Skyfall Nova
+		self:CDBar(-2434, 15.8, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
 		self:CDBar(87618, 23.0) -- Static Cling
 	end
 end
@@ -122,14 +124,16 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 96260 then -- Summon Skyfall Star
-		self:Message(-2434, "cyan", CL.spawned:format(self:SpellName(413263)), 413263) -- Skyfall Nova
+		self:StopBar(CL.count:format(self:SpellName(-2434), skyfallNovaCount))
+		self:Message(-2434, "cyan", CL.count:format(CL.spawned:format(self:SpellName(-2434)), skyfallNovaCount), 413263) -- Skyfall Nova
 		self:PlaySound(-2434, "alert")
 		-- pull:18.2, 39.0, 25.6, 37.7, 25.5, 41.3, 25.5, 41.3, 26.0, 41.3
+		skyfallNovaCount = skyfallNovaCount + 1
 		skyfallNovaRemaining = skyfallNovaRemaining - 1
 		if skyfallNovaRemaining > 0 then
-			self:CDBar(-2434, 25.5, nil, 413263)
+			self:CDBar(-2434, 25.5, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263)
 		else -- delayed until after Supremacy of the Storm
-			self:CDBar(-2434, 37.7, nil, 413263)
+			self:CDBar(-2434, 37.7, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263)
 		end
 	end
 end
