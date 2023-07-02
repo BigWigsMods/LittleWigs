@@ -9,6 +9,12 @@ mod:SetEncounterID(2556)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local quakingTotemCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -49,8 +55,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	quakingTotemCount = 1
 	self:CDBar(369605, 5.1) -- Call of the Deep
-	self:Bar(369700, 20.4) -- Quaking Totem
+	self:Bar(369700, 20.4, CL.count:format(self:SpellName(369700), quakingTotemCount)) -- Quaking Totem
 	self:CDBar(369703, 12.1) -- Thundering Slam
 	self:Bar(369754, 27.9) -- Bloodlust
 end
@@ -68,9 +75,11 @@ function mod:CallOfTheDeep(args)
 end
 
 function mod:QuakingTotem(args)
-	self:Message(369700, "yellow")
+	self:StopBar(CL.count:format(args.spellName, quakingTotemCount))
+	self:Message(369700, "yellow", CL.count:format(args.spellName, quakingTotemCount))
 	self:PlaySound(369700, "info")
-	self:Bar(369700, 30.3)
+	quakingTotemCount = quakingTotemCount + 1
+	self:Bar(369700, 30.3, CL.count:format(args.spellName, quakingTotemCount))
 end
 
 function mod:QuakingTotemSuccess(args)
@@ -130,11 +139,11 @@ function mod:TremorApplied(args)
 		else
 			self:CDBar(369605, {10, 37.8})
 		end
-		local quakingTotemTimeLeft = self:BarTimeLeft(369700) -- Quaking Totem
+		local quakingTotemTimeLeft = self:BarTimeLeft(CL.count:format(self:SpellName(369700), quakingTotemCount)) -- Quaking Totem
 		if quakingTotemTimeLeft >= .2 then
-			self:Bar(369700, {quakingTotemTimeLeft + 9.8, 40.1})
+			self:Bar(369700, {quakingTotemTimeLeft + 9.8, 40.1}, CL.count:format(self:SpellName(369700), quakingTotemCount))
 		else
-			self:Bar(369700, {10, 40.1})
+			self:Bar(369700, {10, 40.1}, CL.count:format(self:SpellName(369700), quakingTotemCount))
 		end
 		local bloodlustTimeLeft = self:BarTimeLeft(369754) -- Bloodlust
 		if bloodlustTimeLeft >= .2 then
