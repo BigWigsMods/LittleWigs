@@ -19,6 +19,13 @@ if L then
 end
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local powerOverloadCount = 1
+local staticSurgeCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -56,10 +63,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	powerOverloadCount = 1
+	staticSurgeCount = 1
 	self:SetStage(1)
 	self:CDBar(384524, 6.1) -- Titanic Fist
-	self:CDBar(384014, 10.6) -- Static Surge
-	self:CDBar(389179, 25.5) -- Power Overload
+	self:CDBar(384014, 10.6, CL.count:format(self:SpellName(384014), staticSurgeCount)) -- Static Surge
+	self:CDBar(389179, 25.5, CL.count:format(self:SpellName(389179), powerOverloadCount)) -- Power Overload
 	self:CDBar(384351, 29.2) -- Spark Volley
 end
 
@@ -73,8 +82,10 @@ do
 	local playerList = {}
 
 	function mod:PowerOverload(args)
+		self:StopBar(CL.count:format(args.spellName, powerOverloadCount))
 		playerList = {}
-		self:Bar(args.spellId, 27.7)
+		powerOverloadCount = powerOverloadCount + 1
+		self:CDBar(args.spellId, 27.7, CL.count:format(args.spellName, powerOverloadCount))
 	end
 
 	function mod:PowerOverloadApplied(args)
@@ -97,13 +108,15 @@ end
 function mod:SparkVolley(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 31.5)
+	self:CDBar(args.spellId, 31.5)
 end
 
 function mod:StaticSurge(args)
-	self:Message(args.spellId, "orange")
+	self:StopBar(CL.count:format(args.spellName, staticSurgeCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, staticSurgeCount))
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 27.9)
+	staticSurgeCount = staticSurgeCount + 1
+	self:CDBar(args.spellId, 27.9, CL.count:format(args.spellName, staticSurgeCount))
 end
 
 function mod:TitanicFist(args)
@@ -121,8 +134,8 @@ function mod:UNIT_HEALTH(event, unit)
 		self:Message(383840, "cyan", CL.soon:format(self:SpellName(383840))) -- Ablative Barrier Soon
 		self:PlaySound(383840, "info")
 		self:StopBar(384524) -- Titanic Fist
-		self:StopBar(384014) -- Static Surge
-		self:StopBar(389179) -- Power Overload
+		self:StopBar(CL.count:format(self:SpellName(384014), staticSurgeCount)) -- Static Surge
+		self:StopBar(CL.count:format(self:SpellName(389179), powerOverloadCount)) -- Power Overload
 		self:StopBar(384351) -- Spark Volley
 	end
 end
@@ -136,8 +149,8 @@ do
 		self:Message(args.spellId, "yellow", CL.percent:format(15, args.spellName))
 		self:PlaySound(args.spellId, "long")
 		self:StopBar(384524) -- Titanic Fist
-		self:StopBar(384014) -- Static Surge
-		self:StopBar(389179) -- Power Overload
+		self:StopBar(CL.count:format(self:SpellName(384014), staticSurgeCount)) -- Static Surge
+		self:StopBar(CL.count:format(self:SpellName(389179), powerOverloadCount)) -- Power Overload
 		self:StopBar(384351) -- Spark Volley
 	end
 
@@ -152,8 +165,8 @@ do
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, ablativeBarrierDuration))
 		self:PlaySound(args.spellId, "info")
 		self:CDBar(384524, 6.1) -- Titanic Fist
-		self:CDBar(384014, 11.0) -- Static Surge
-		self:CDBar(389179, 28.1) -- Power Overload
+		self:CDBar(384014, 11.0, CL.count:format(self:SpellName(384014), staticSurgeCount)) -- Static Surge
+		self:CDBar(389179, 28.1, CL.count:format(self:SpellName(389179), powerOverloadCount)) -- Power Overload
 		self:CDBar(384351, 28.9) -- Spark Volley
 	end
 end
