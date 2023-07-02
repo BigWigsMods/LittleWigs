@@ -9,6 +9,12 @@ mod:SetEncounterID(1792)
 mod:SetRespawnTime(15)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local toxicRetchCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -36,9 +42,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	toxicRetchCount = 1
 	self:CDBar(205549, 7.0) -- Rancid Maw
 	self:CDBar(-12527, 9.8, -12527, 209906) -- Wormspeaker Devout: spell_shadow_ritualofsacrifice / Fanatic's Sacrifice / icon 136189
-	self:CDBar(210150, 12.1) -- Toxic Retch
+	self:CDBar(210150, 12.1, CL.count:format(self:SpellName(210150), toxicRetchCount)) -- Toxic Retch
 	self:Bar(199178, 50.7) -- Spiked Tongue
 end
 
@@ -53,9 +60,11 @@ function mod:RancidMaw(args)
 end
 
 function mod:ToxicRetch(args)
-	self:Message(args.spellId, "orange")
+	self:StopBar(CL.count:format(args.spellName, toxicRetchCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, toxicRetchCount))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 14.6) -- pull:12.1, 17.0, 14.6, 24.3, 14.5, 14.6
+	toxicRetchCount = toxicRetchCount + 1
+	self:CDBar(args.spellId, 14.6, CL.count:format(args.spellName, toxicRetchCount)) -- pull:12.1, 17.0, 14.6, 24.3, 14.5, 14.6
 end
 
 function mod:SpikedTongue(args)
