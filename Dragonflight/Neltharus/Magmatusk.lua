@@ -171,8 +171,8 @@ do
 	end
 
 	function mod:LavaEmpowermentApplied(args)
-		-- allow 2 seconds of Magmatusk standing in lava before alerting
-		timer = self:ScheduleTimer(alertLavaEmpowerment, 2, args.spellName)
+		-- allow 1.5 seconds of Magmatusk standing in lava before alerting
+		timer = self:ScheduleTimer(alertLavaEmpowerment, 1.5, args.spellName)
 	end
 
 	function mod:LavaEmpowermentRemoved(args)
