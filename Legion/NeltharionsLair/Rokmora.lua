@@ -9,6 +9,12 @@ mod:SetEncounterID(1790)
 mod:SetRespawnTime(15)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local shatterCount = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -41,11 +47,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	shatterCount = 1
 	if not self:Normal() then
 		self:CDBar(198024, 4.4) -- Crystalline Ground
 	end
 	-- cast at 100 energy, 20s energy gain + ~.4s delay
-	self:CDBar(188114, 20.4) -- Shatter
+	self:CDBar(188114, 20.4, CL.count:format(self:SpellName(188114), shatterCount)) -- Shatter
 	self:CDBar(188169, 25.3) -- Razor Shards
 end
 
@@ -64,10 +71,12 @@ function mod:WarmupShort()
 end
 
 function mod:Shatter(args)
-	self:Message(args.spellId, "yellow")
+	self:StopBar(CL.count:format(args.spellName, shatterCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, shatterCount))
 	self:PlaySound(args.spellId, "alert")
+	shatterCount = shatterCount + 1
 	-- cast at 100 energy, 20s energy gain + 4.3s cast
-	self:CDBar(args.spellId, 24.3) -- pull:20.7, 24.4, 24.3, 24.4, 24.3
+	self:CDBar(args.spellId, 24.3, CL.count:format(args.spellName, shatterCount)) -- pull:20.7, 24.4, 24.3, 24.4, 24.3
 	-- correct timers
 	if self:BarTimeLeft(188169) < 4.87 then -- Razor Shards
 		self:CDBar(188169, {4.87, 29.1})
@@ -93,8 +102,8 @@ function mod:RazorShards(args)
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 29.1) -- pull:25.6, 29.2, 29.2, 29.2, 34.1
 	-- correct timers
-	if self:BarTimeLeft(188114) < 4.87 then -- Shatter
-		self:CDBar(188114, {4.87, 24.3})
+	if self:BarTimeLeft(CL.count:format(self:SpellName(188114), shatterCount)) < 4.87 then -- Shatter
+		self:CDBar(188114, {4.87, 24.3}, CL.count:format(self:SpellName(188114), shatterCount))
 	end
 end
 
