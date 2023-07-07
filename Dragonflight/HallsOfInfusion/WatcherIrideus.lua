@@ -90,7 +90,7 @@ do
 
 	function mod:PowerOverloadApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(args.spellId, "red", playerList, 3)
+		self:TargetsMessage(args.spellId, "red", playerList, 2)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId)
