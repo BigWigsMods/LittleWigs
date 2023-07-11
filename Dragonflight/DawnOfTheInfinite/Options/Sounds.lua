@@ -43,6 +43,12 @@ BigWigs:AddSounds("Tyr, the Infinite Keeper", {
 })
 
 BigWigs:AddSounds("Morchie", {
+	[401667] = "alert",
+	[403891] = "long",
+	[404364] = "alarm",
+	[404916] = "alarm",
+	[405279] = "alert",
+	[406481] = "info",
 })
 
 BigWigs:AddSounds("Time-Lost Battlefield", {

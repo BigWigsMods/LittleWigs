@@ -43,6 +43,12 @@ BigWigs:AddColors("Tyr, the Infinite Keeper", {
 })
 
 BigWigs:AddColors("Morchie", {
+	[401667] = {"blue","red"},
+	[403891] = "cyan",
+	[404364] = "orange",
+	[404916] = "purple",
+	[405279] = "yellow",
+	[406481] = "green",
 })
 
 BigWigs:AddColors("Time-Lost Battlefield", {
