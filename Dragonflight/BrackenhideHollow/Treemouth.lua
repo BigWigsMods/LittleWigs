@@ -32,7 +32,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GraspingVines", 376934)
-	self:Log("SPELL_AURA_APPLIED", "ConsumingApplied", 377187)
+	self:Log("SPELL_AURA_APPLIED", "ConsumingApplied", 377222)
 	self:Log("SPELL_AURA_APPLIED", "ConsumingStart", 378022)
 	self:Log("SPELL_AURA_REMOVED", "ConsumingRemoved", 378022)
 	self:Log("SPELL_CAST_START", "DecaySpray", 376811)
@@ -81,16 +81,19 @@ function mod:GraspingVines(args)
 	end
 end
 
-function mod:ConsumingApplied(args)
-	self:TargetMessage(378022, "red", args.sourceName)
-	self:PlaySound(378022, "long", nil, args.sourceName)
-end
-
 do
 	local consumingStart = 0
+	local playerList = {}
 
 	function mod:ConsumingStart(args)
 		consumingStart = args.time
+		playerList = {}
+	end
+
+	function mod:ConsumingApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(378022, "red", playerList, 5, nil, nil, .1)
+		self:PlaySound(378022, "long", nil, playerList)
 	end
 
 	function mod:ConsumingRemoved(args)
