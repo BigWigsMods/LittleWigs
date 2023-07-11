@@ -16,7 +16,9 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local greaterHealingRapidsCount = 0
+local gashFrenzyCount = 1
+local markedForButcheryCount = 1
+local greaterHealingRapidsCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -33,7 +35,7 @@ function mod:GetOptions()
 		-- Gashtooth
 		381694, -- Decayed Senses
 		378029, -- Gash Frenzy
-		378208, -- Marked for Butchery (Mythic-only)
+		{378208, "ME_ONLY"}, -- Marked for Butchery (Mythic-only)
 		-- Tricktotem
 		381470, -- Hextrick Totem
 		totemMarker,
@@ -73,18 +75,20 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	greaterHealingRapidsCount = 0
-	self:Bar(378029, 3.5) -- Gash Frenzy
-	self:Bar(377950, 12.1) -- Greater Healing Rapids
+	gashFrenzyCount = 1
+	markedForButcheryCount = 1
+	greaterHealingRapidsCount = 1
+	self:CDBar(378029, 3.5, CL.count:format(self:SpellName(378029), gashFrenzyCount)) -- Gash Frenzy
+	self:CDBar(377950, 12.1) -- Greater Healing Rapids
 	if self:Mythic() then
-		self:Bar(378208, 13.3) -- Marked For Butchery
+		self:CDBar(378208, 13.3, CL.count:format(self:SpellName(378208), markedForButcheryCount)) -- Marked For Butchery
 	end
-	self:Bar(377827, 20.3) -- Bladestorm
+	self:CDBar(377827, 20.3) -- Bladestorm
 	if not self:Solo() then
-		self:Bar(381470, 45.8) -- Hextrick Totem
+		self:CDBar(381470, 45.8) -- Hextrick Totem
 	end
-	self:Bar(381694, 46.8) -- Decayed Senses
-	self:Bar(381444, 49.6) -- Savage Charge
+	self:CDBar(381694, 46.8) -- Decayed Senses
+	self:CDBar(381444, 49.6) -- Savage Charge
 end
 
 --------------------------------------------------------------------------------
@@ -107,7 +111,7 @@ function mod:SavageChargeApplied(args)
 	else
 		self:PlaySound(381444, "alert", nil, args.destName)
 	end
-	self:Bar(381444, 59.5)
+	self:CDBar(381444, 59.5)
 end
 
 function mod:SavageChargeRemoved(args)
@@ -139,7 +143,7 @@ do
 		-- fixate debuff applies to a random player, boss starts 3 second cast
 		self:TargetMessage(377827, "orange", args.destName, CL.casting:format(args.spellName))
 		self:PlaySound(377827, "long", nil, args.destName)
-		self:Bar(377827, 59.5)
+		self:CDBar(377827, 59.5)
 	end
 
 	function mod:BladestormFixateApplied(args)
@@ -172,7 +176,7 @@ end
 function mod:DecayedSenses(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 59.5)
+	self:CDBar(args.spellId, 59.5)
 end
 
 function mod:DecayedSensesApplied(args)
@@ -194,30 +198,37 @@ function mod:DecayedSensesRemoved(args)
 end
 
 function mod:GashFrenzy(args)
-	self:Message(args.spellId, "red")
+	self:StopBar(CL.count:format(args.spellName, gashFrenzyCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, gashFrenzyCount))
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 59.5)
+	gashFrenzyCount = gashFrenzyCount + 1
+	self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, gashFrenzyCount))
 end
 
 do
 	local function printTarget(self, name, guid)
-		if self:Healer() or self:Me(guid) then
-			self:TargetMessage(378208, "red", name)
+		if self:Healer() and not self:Me(guid) then -- always show an alert for healers
+			self:Message(378208, "red", CL.other:format(CL.count:format(self:SpellName(378208), markedForButcheryCount - 1), self:ColorName(name)))
+			self:PlaySound(378208, "alarm")
+		else -- this has ME_ONLY scope by default
+			self:TargetMessage(378208, "red", name, CL.count:format(self:SpellName(378208), markedForButcheryCount - 1))
 			self:PlaySound(378208, "alarm", nil, name)
 		end
 	end
 
 	function mod:MarkedForButchery(args)
+		self:StopBar(CL.count:format(args.spellName, markedForButcheryCount))
+		markedForButcheryCount = markedForButcheryCount + 1
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:Bar(args.spellId, 59.5)
+		self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, markedForButcheryCount))
 	end
 end
 
 function mod:GashtoothDeath(args)
 	self:StopBar(381694) -- Decayed Senses
-	self:StopBar(378029) -- Gash Frenzy
+	self:StopBar(CL.count:format(self:SpellName(378029), gashFrenzyCount)) -- Gash Frenzy
 	if self:Mythic() then
-		self:StopBar(378208) -- Marked For Butchery
+		self:StopBar(CL.count:format(self:SpellName(378208), markedForButcheryCount)) -- Marked For Butchery
 	end
 end
 
@@ -226,7 +237,7 @@ end
 function mod:HextrickTotem(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 59.5)
+	self:CDBar(args.spellId, 59.5)
 end
 
 do
@@ -250,14 +261,14 @@ do
 end
 
 function mod:GreaterHealingRapids(args)
-	greaterHealingRapidsCount = greaterHealingRapidsCount + 1
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "warning")
+	greaterHealingRapidsCount = greaterHealingRapidsCount + 1
 	-- 59.5s cycle: pull:12.2, [21.8, 21.8, 15.8]
-	if greaterHealingRapidsCount % 3 ~= 0 then -- 1, 2
-		self:Bar(args.spellId, 21.8)
-	else -- 3
-		self:Bar(args.spellId, 15.8)
+	if greaterHealingRapidsCount % 3 ~= 1 then -- 2, 3, 5, 6, etc
+		self:CDBar(args.spellId, 21.8)
+	else -- 4, 7, etc
+		self:CDBar(args.spellId, 15.8)
 	end
 end
 
