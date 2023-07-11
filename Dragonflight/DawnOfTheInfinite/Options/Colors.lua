@@ -18,8 +18,9 @@ BigWigs:AddColors("Blight of Galakrond", {
 	[407159] = "purple",
 	[407406] = {"blue","red"},
 	[407978] = "yellow",
-	[408029] = "yellow",
-	[408141] = "orange",
+	[408029] = {"blue","cyan","yellow"},
+	[408141] = {"blue","orange"},
+	[418346] = {"blue","yellow"},
 	["stages"] = "cyan",
 })
 

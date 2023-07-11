@@ -18,8 +18,9 @@ BigWigs:AddSounds("Blight of Galakrond", {
 	[407159] = "alarm",
 	[407406] = "info",
 	[407978] = "long",
-	[408029] = "info",
+	[408029] = {"alert","info"},
 	[408141] = "alarm",
+	[418346] = "warning",
 	["stages"] = "long",
 })
 
