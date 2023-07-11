@@ -13,7 +13,7 @@ if L then
 
 	--L.iridikron_warmup_trigger = "So the Titans' puppets have come to face me."
 
-	------ Murozond's Rise ------	
+	------ Murozond's Rise ------
 	--L.infinite_twilight_magus = "Infinite Twilight Magus"
 	--L.spurlok = "Spurlok, Timesworn Sentinel"
 	--L.lerai = "Lerai, Timesworn Maiden"

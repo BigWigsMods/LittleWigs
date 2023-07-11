@@ -48,7 +48,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InfinityOrb", 410904)
 	-- TODO Infinity Nova duration?
 	self:Log("SPELL_CAST_START", "TemporalBreath", 416139)
-	
+
 	-- Stage 2: Lord of the Infinite
 	self:Log("SPELL_CAST_START", "InfiniteCorruption", 416264)
 end

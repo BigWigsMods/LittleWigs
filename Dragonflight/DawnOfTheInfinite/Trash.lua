@@ -56,7 +56,7 @@ if L then
 
 	L.iridikron_warmup_trigger = "So the Titans' puppets have come to face me."
 
-	------ Murozond's Rise ------	
+	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "Infinite Twilight Magus"
 	L.spurlok = "Spurlok, Timesworn Sentinel"
 	L.lerai = "Lerai, Timesworn Maiden"
@@ -201,7 +201,7 @@ function mod:OnBossEnable()
 
 	-- Risen Dragon
 	self:Log("SPELL_CAST_START", "BlightSpew", 412806)
-	
+
 	------ Murozond's Rise ------
 
 	-- Infinite Twilight Magus
@@ -213,7 +213,7 @@ function mod:OnBossEnable()
 
 	-- Lerai, Timesworn Maiden
 	self:Log("SPELL_CAST_START", "OrbOfContemplation", 412129)
-	
+
 	-- Valow, Timesworn Keeper
 	self:Log("SPELL_CAST_START", "MultiversalFist", 412136)
 	self:Log("SPELL_CAST_START", "TitanicBulwark", 413024)
@@ -431,7 +431,7 @@ function mod:OrbOfContemplation(args)
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 13.4, args.sourceGUID)
 end
-	
+
 -- Valow, Timesworn Keeper
 
 function mod:MultiversalFist(args)

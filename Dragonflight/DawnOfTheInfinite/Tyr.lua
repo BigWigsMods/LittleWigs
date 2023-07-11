@@ -164,7 +164,7 @@ end
 
 do
 	local playerList = {}
-	
+
 	function mod:SparkOfTyr(args)
 		playerList = {}
 		self:StopBar(400681)
