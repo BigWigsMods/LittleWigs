@@ -52,6 +52,11 @@ BigWigs:AddColors("Morchie", {
 })
 
 BigWigs:AddColors("Time-Lost Battlefield", {
+	[410234] = "red",
+	[418047] = "cyan",
+	[418054] = "orange",
+	[418059] = "purple",
+	[418062] = "yellow",
 })
 
 BigWigs:AddColors("Chrono-Lord Deios and the Infinite Dragonflight", {

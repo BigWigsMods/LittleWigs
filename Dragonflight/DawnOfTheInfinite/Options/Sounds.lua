@@ -52,6 +52,11 @@ BigWigs:AddSounds("Morchie", {
 })
 
 BigWigs:AddSounds("Time-Lost Battlefield", {
+	[410234] = "alarm",
+	[418047] = "info",
+	[418054] = "alarm",
+	[418059] = "alert",
+	[418062] = "alert",
 })
 
 BigWigs:AddSounds("Chrono-Lord Deios and the Infinite Dragonflight", {
