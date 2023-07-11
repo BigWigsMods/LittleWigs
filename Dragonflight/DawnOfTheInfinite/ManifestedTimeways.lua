@@ -31,9 +31,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(414303, 5.9) -- Unwind
-	self:CDBar(405431, 15.6) -- Fragments of Time
-	self:CDBar(405696, 30.2) -- Chrono-faded
+	self:CDBar(414303, 5.8) -- Unwind
+	self:CDBar(405431, 15.5) -- Fragments of Time
+	self:CDBar(405696, 30.1) -- Chrono-faded
 end
 
 --------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ do
 
 	function mod:Chronofaded(args)
 		playerList = {}
-		self:CDBar(args.spellId, 30.4)
+		self:CDBar(args.spellId, 30.3)
 	end
 
 	function mod:ChronofadedApplied(args)
@@ -54,6 +54,7 @@ do
 		self:PlaySound(405696, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(405696)
+			-- ticks 4x as fast when standing in Accelerating Time so can't really do a countdown
 		end
 	end
 end
