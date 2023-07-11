@@ -59,7 +59,13 @@ BigWigs:AddColors("Time-Lost Battlefield", {
 	[418062] = "yellow",
 })
 
-BigWigs:AddColors("Chrono-Lord Deios and the Infinite Dragonflight", {
+BigWigs:AddColors("The Infinite Dragonflight", {
+	[410904] = "yellow",
+	[412027] = {"blue","yellow"},
+	[416139] = "orange",
+	[416152] = "red",
+	[416264] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Dawn of the Infinite Trash", {

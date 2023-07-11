@@ -8,7 +8,7 @@
 <Script file="Tyr.lua"/>
 <Script file="Morchie.lua"/>
 <Script file="TimeLostBattlefield.lua"/>
-<Script file="TheInfiniteDragonflight.lua"/>
+<Script file="ChronoLordDeios.lua"/>
 <Script file="Trash.lua"/>
 
 <Include file="Locales\locales.xml"/>

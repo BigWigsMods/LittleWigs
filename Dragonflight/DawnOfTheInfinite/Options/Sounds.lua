@@ -59,7 +59,13 @@ BigWigs:AddSounds("Time-Lost Battlefield", {
 	[418062] = "alert",
 })
 
-BigWigs:AddSounds("Chrono-Lord Deios and the Infinite Dragonflight", {
+BigWigs:AddSounds("The Infinite Dragonflight", {
+	[410904] = "alert",
+	[412027] = "alert",
+	[416139] = "alarm",
+	[416152] = "info",
+	[416264] = "long",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Dawn of the Infinite Trash", {
