@@ -22,7 +22,6 @@ local sandStompCount = 1
 function mod:GetOptions()
 	return {
 		{413105, "SAY"}, -- Eon Shatter
-		{416096, "ME_ONLY"}, -- Eon Overload
 		{413013, "TANK_HEALER"}, -- Chronoshear
 		401421, -- Sand Stomp
 	}
@@ -31,7 +30,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EonShatterApplied", 413142)
 	self:Log("SPELL_AURA_REMOVED", "EonShatterRemoved", 413142)
-	self:Log("SPELL_AURA_APPLIED", "EonOverloadApplied", 416096)
 	self:Log("SPELL_CAST_START", "Chronoshear", 413013)
 	self:Log("SPELL_AURA_REMOVED", "ChronoshearRemoved", 413013)
 	self:Log("SPELL_CAST_START", "SandStomp", 401421)
@@ -39,27 +37,35 @@ end
 
 function mod:OnEngage()
 	sandStompCount = 1
-	self:CDBar(401421, 4.7) -- Sand Stomp
-	self:CDBar(413013, 11.0) -- Chronoshear
+	self:CDBar(401421, 7.2) -- Sand Stomp
 	-- cast at 100 energy
-	self:CDBar(413105, 30.2) -- Eon Shatter
+	self:CDBar(413105, 19.3) -- Eon Shatter
+	self:CDBar(413013, 48.4) -- Chronoshear
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:EonShatterApplied(args)
-	-- this ability is always cast twice. this is the first cast will be wherever
-	-- the boss is, but the second will be targeted on a player (with 413142 debuff).
-	self:Message(413105, "yellow")
-	self:PlaySound(413105, "long")
-	if self:Me(args.destGUID) then
-		-- this will be from the target of the second cast
-		self:Say(413105) -- Eon Shatter
+do
+	local prev = 0
+	function mod:EonShatterApplied(args)
+		-- this ability is always cast multiple times in a row.
+		-- first cast is on the boss, but the rest will be targeted on a player (with 413142 debuff).
+		local t = args.time
+		if t - prev > 15 then
+			prev = t
+			-- alert here for the first cast in a cycle
+			self:Message(413105, "yellow")
+			self:PlaySound(413105, "alert")
+			-- cast at 100 energy: 3s cast + 2s delay + 3s cast + 2s delay + 3s cast + 1s delay + 1.7s delay + 36.1s gain + .3 delay
+			self:CDBar(413105, 52.1)
+		end
+		if self:Me(args.destGUID) then
+			-- this will be from the target of the next cast
+			self:Say(413105) -- Eon Shatter
+		end
 	end
-	-- cast at 100 energy
-	self:CDBar(413105, 44.9)
 end
 
 function mod:EonShatterRemoved(args)
@@ -69,15 +75,10 @@ function mod:EonShatterRemoved(args)
 	self:PlaySound(413105, "long", nil, args.destName)
 end
 
-function mod:EonOverloadApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
-end
-
 function mod:Chronoshear(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 44.7)
+	self:CDBar(args.spellId, 52.1)
 end
 
 function mod:ChronoshearRemoved(args)
@@ -89,9 +90,10 @@ function mod:SandStomp(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	sandStompCount = sandStompCount + 1
+	-- pull:7.2, 35.2, 18.2, 34.0, 18.2
 	if sandStompCount % 2 == 0 then
-		self:CDBar(args.spellId, 14.6)
+		self:CDBar(args.spellId, 34.0)
 	else
-		self:CDBar(args.spellId, 30.3)
+		self:CDBar(args.spellId, 18.2)
 	end
 end

@@ -3,7 +3,6 @@ BigWigs:AddColors("Chronikar", {
 	[401421] = "orange",
 	[413013] = {"green","purple"},
 	[413105] = {"blue","yellow"},
-	[416096] = {"blue","red"},
 })
 
 BigWigs:AddColors("Manifested Timeways", {
