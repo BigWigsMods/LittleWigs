@@ -33,6 +33,13 @@ BigWigs:AddSounds("Iridikron the Stonescaled", {
 })
 
 BigWigs:AddSounds("Tyr, the Infinite Keeper", {
+	[400641] = "alert",
+	[400642] = {"info","long"},
+	[400681] = "alert",
+	[401248] = "alarm",
+	[401482] = "alarm",
+	[406543] = "info",
+	[408183] = "warning",
 })
 
 BigWigs:AddSounds("Morchie", {

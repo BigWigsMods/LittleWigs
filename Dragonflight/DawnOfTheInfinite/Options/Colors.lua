@@ -33,6 +33,13 @@ BigWigs:AddColors("Iridikron the Stonescaled", {
 })
 
 BigWigs:AddColors("Tyr, the Infinite Keeper", {
+	[400641] = "yellow",
+	[400642] = "cyan",
+	[400681] = {"blue","red"},
+	[401248] = "purple",
+	[401482] = "orange",
+	[406543] = "blue",
+	[408183] = {"blue","red"},
 })
 
 BigWigs:AddColors("Morchie", {
