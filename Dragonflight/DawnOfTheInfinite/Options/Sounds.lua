@@ -25,6 +25,11 @@ BigWigs:AddSounds("Blight of Galakrond", {
 })
 
 BigWigs:AddSounds("Iridikron the Stonescaled", {
+	[409261] = {"alert","warning"},
+	[409456] = {"alert","info"},
+	[409635] = "alarm",
+	[414184] = {"long","warning"},
+	[414535] = "long",
 })
 
 BigWigs:AddSounds("Tyr, the Infinite Keeper", {

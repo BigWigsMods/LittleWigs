@@ -25,6 +25,11 @@ BigWigs:AddColors("Blight of Galakrond", {
 })
 
 BigWigs:AddColors("Iridikron the Stonescaled", {
+	[409261] = {"blue","orange"},
+	[409456] = {"green","red"},
+	[409635] = "orange",
+	[414184] = "red",
+	[414535] = "yellow",
 })
 
 BigWigs:AddColors("Tyr, the Infinite Keeper", {
