@@ -84,7 +84,8 @@ end
 function mod:InfiniteKeeperDeath(args)
 	infiniteKeeperDeaths = infiniteKeeperDeaths + 1
 	if infiniteKeeperDeaths == 4 then
-		self:Message("stages", "cyan", -26757, false)
+		self:SetStage(2)
+		self:Message("stages", "cyan", -26757, false) -- Stage 2: Lord of the Infinite
 		self:PlaySound("stages", "info")
 		-- TODO low sample size on these timers
 		self:CDBar(416264, 5.1) -- Infinite Corruption
@@ -143,7 +144,7 @@ end
 -- Stage 2: Lord of the Infinite
 
 function mod:InfiniteCorruption(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 24.3)
 end
