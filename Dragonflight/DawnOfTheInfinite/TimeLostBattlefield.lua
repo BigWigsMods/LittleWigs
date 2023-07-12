@@ -18,58 +18,52 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		410234, -- Bladestorm
+		-- Anduin Lothar
 		{418059, "TANK_HEALER"}, -- Mortal Strikes
-		418054, -- Shockwave
+		418054, -- Shockwave (Anduin's)
 		418047, -- FOR THE ALLIANCE!
 		418062, -- Battle Cry
-	}, nil, {
-		[418059] = self:SpellName(410254), -- Mortal Strikes / Decapitate
-		[418054] = self:SpellName(408227), -- Shockwave / Shockwave
-		[418047] = self:SpellName(418046), -- FOR THE ALLIANCE! / FOR THE HORDE!
-		[418062] = self:SpellName(410496), -- Battle Cry / War Cry
+		-- Grommash Hellscream
+		{410254, "TANK_HEALER"}, -- Decapitate
+		408227, -- Shockwave (Grommash's)
+		418046, -- FOR THE HORDE!
+		410496, -- War Cry
+	}, {
+		[418059] = -27260, -- Anduin Lothar
+		[410254] = -26525, -- Grommash Hellscream
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Bladestorm", 410234)
-	self:Log("SPELL_CAST_START", "MortalStrikes", 418059, 410254) -- Anduin, Grommash
+	self:Log("SPELL_CAST_START", "MortalStrikes", 418059, 410254) -- Mortal Strikes / Decapitate
 	self:Log("SPELL_CAST_SUCCESS", "Shockwave", 418054, 408227) -- Anduin, Grommash
-	self:Log("SPELL_CAST_START", "ForTheAlliance", 418047, 418046) -- Anduin, Grommash
-	-- TODO this no longer logs?
-	self:Log("SPELL_CAST_SUCCESS", "BattleCry", 418062, 410496) -- Anduin, Grommash
-	-- TODO for Grommash he (supposedly) gains Thirst for Battle stacking buff if an "enemy" dies
-	-- TODO for Lothar he (supposedly) gains Battle Senses stacking buff if an "enemy" dies
+	self:Log("SPELL_CAST_START", "ForTheAlliance", 418047, 418046) -- For the Alliance / For the Horde
+	-- TODO this SPELL_CAST_SUCCESS no longer logs?
+	self:Log("SPELL_CAST_SUCCESS", "BattleCry", 418062, 410496) -- Battle Cry / War Cry
+	self:Log("SPELL_DAMAGE", "BattleCry", 418062, 410496) -- Battle Cry / War Cry
+	-- TODO for Lothar he gains Battle Senses stacking buff if an "enemy" dies
+	-- TODO for Grommash he gains Thirst for Battle stacking buff if an "enemy" dies
 end
 
 function mod:OnEngage()
-	-- timers started in IEEU
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
+	self:CDBar(410234, 21.8) -- Bladestorm
+	if self:GetBossId(203679) then -- Anduin Lothar
+		self:CDBar(418059, 2.4) -- Mortal Strikes
+		self:CDBar(418054, 9.7) -- Shockwave (Anduin's)
+		self:CDBar(418047, 19.3) -- FOR THE ALLIANCE!
+		self:CDBar(418062, 30.4) -- Battle Cry
+	elseif self:GetBossId(203678) then -- Grommash Hellscream
+		self:CDBar(410254, 2.4) -- Decapitate
+		self:CDBar(408227, 9.7) -- Shockwave (Grommash's)
+		self:CDBar(418046, 19.3) -- FOR THE HORDE!
+		self:CDBar(410496, 30.4) -- War Cry
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- TODO is there a better way?
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	local mobId = self:MobId(self:UnitGUID("boss1"))
-	if mobId == 203679 then -- Anduin Lothar
-		self:UnregisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-		self:CDBar(418059, 2.4) -- Mortal Strikes
-		self:CDBar(418054, 9.7) -- Shockwave
-		self:CDBar(418047, 19.3) -- FOR THE ALLIANCE!
-		self:CDBar(410234, 21.8) -- Bladestorm
-		self:CDBar(418062, 30.4) -- Battle Cry
-	elseif mobId == 203678 then -- Grommash Hellscream
-		self:UnregisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-		self:CDBar(418059, 2.4, 410254, 410254) -- Decapitate
-		self:CDBar(418054, 9.7, 408227, 408227) -- Shockwave
-		self:CDBar(418047, 19.3, 418046, 418046) -- FOR THE HORDE!
-		self:CDBar(410234, 21.8) -- Bladestorm
-		self:CDBar(418062, 30.4, 410496, 410496) -- War Cry
-	end
-end
 
 function mod:Bladestorm(args)
 	self:Message(args.spellId, "red")
@@ -78,25 +72,32 @@ function mod:Bladestorm(args)
 end
 
 function mod:MortalStrikes(args) -- or Decapitate
-	self:Message(418059, "purple", args.spellId, args.spellId)
-	self:PlaySound(418059, "alert")
-	self:CDBar(418059, 20.1, args.spellId, args.spellId)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 19.5)
 end
 
-function mod:Shockwave(args) -- or Shockwave
-	self:Message(418054, "orange", args.spellId, args.spellId)
-	self:PlaySound(418054, "alarm")
-	self:CDBar(418054, 35.2, args.spellId, args.spellId)
+function mod:Shockwave(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 35.2)
 end
 
 function mod:ForTheAlliance(args) -- or ForTheHorde
-	self:Message(418047, "cyan", args.spellId, args.spellId)
-	self:PlaySound(418047, "info")
-	self:CDBar(418047, 21.3, args.spellId, args.spellId)
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 21.3)
 end
 
-function mod:BattleCry(args) -- or WarCry
-	self:Message(418062, "yellow", args.spellId, args.spellId)
-	self:PlaySound(418062, "alert")
-	self:CDBar(418062, 28.0, args.spellId, args.spellId)
+do
+	local prev = 0
+	function mod:BattleCry(args) -- or WarCry
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+			self:CDBar(args.spellId, 28.0)
+		end
+	end
 end
