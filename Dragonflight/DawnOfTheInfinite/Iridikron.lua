@@ -1,4 +1,3 @@
-if select(4, GetBuildInfo()) < 100105 then return end
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
