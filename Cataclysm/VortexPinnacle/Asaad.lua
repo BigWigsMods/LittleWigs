@@ -19,12 +19,14 @@ local skyfallNovaRemaining = 2
 -- Initialization
 --
 
+local skyfallNovaMarker = mod:AddMarkerOption(true, "npc", 8, 413264, 8) -- Skyfall Nova
 function mod:GetOptions()
 	return {
 		86911, -- Unstable Grounding Field
 		86930, -- Supremacy of the Storm
 		{87622, "SAY"}, -- Chain Lightning
-		-2434, -- Skyfall Nova
+		413264, -- Skyfall Nova
+		skyfallNovaMarker,
 		87618, -- Static Cling
 	}
 end
@@ -34,7 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SupremacyOfTheStorm", 86930)
 	self:Log("SPELL_CAST_START", "ChainLightning", 87622)
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 87622)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Summon Skyfall Star
+	self:Log("SPELL_SUMMON", "SummonSkyfallNova", 96260)
 	self:Log("SPELL_CAST_START", "StaticCling", 87618)
 	self:Log("SPELL_AURA_APPLIED", "StaticClingApplied", 87618)
 end
@@ -43,7 +45,7 @@ function mod:OnEngage()
 	skyfallNovaCount = 1
 	skyfallNovaRemaining = 1
 	self:CDBar(87622, 12.1) -- Chain Lightning
-	self:CDBar(-2434, 18.0, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
+	self:CDBar(413264, 18.0, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
 	if not self:Normal() then
 		self:CDBar(87618, 25.2) -- Static Cling
 	end
@@ -71,7 +73,7 @@ do
 				-- scoped to Mythic because in other difficulties you can interrupt the boss
 				self:CDBar(87622, 17.0) -- Chain Lightning
 				-- puts Skyfall Nova and Static Cling on CD
-				self:CDBar(-2434, {25.5, 37.7}, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
+				self:CDBar(413264, {25.5, 37.7}, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
 				self:CDBar(87618, 32.7) -- Static Cling
 			end
 		end
@@ -85,10 +87,10 @@ function mod:SupremacyOfTheStorm(args)
 	self:CDBar(args.spellId, 63.2)
 	-- start timers, (in Mythic these are initially started in UnstableGroundingField)
 	if self:Mythic() then
-		self:CDBar(-2434, {15.8, 37.7}, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
+		self:CDBar(413264, {15.8, 37.7}, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
 		self:CDBar(87618, {23.0, 32.7}) -- Static Cling
 	else
-		self:CDBar(-2434, 15.8, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263) -- Skyfall Nova
+		self:CDBar(413264, 15.8, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
 		self:CDBar(87618, 23.0) -- Static Cling
 	end
 end
@@ -122,18 +124,33 @@ function mod:ChainLightningSuccess(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 96260 then -- Summon Skyfall Star
-		self:StopBar(CL.count:format(self:SpellName(-2434), skyfallNovaCount))
-		self:Message(-2434, "cyan", CL.count:format(CL.spawned:format(self:SpellName(-2434)), skyfallNovaCount), 413263) -- Skyfall Nova
-		self:PlaySound(-2434, "alert")
+do
+	local skyfallNovaGUID = nil
+
+	function mod:SummonSkyfallNova(args)
+		self:StopBar(CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
+		self:Message(413264, "cyan", CL.count:format(self:SpellName(413264), skyfallNovaCount))
+		self:PlaySound(413264, "alert")
 		-- pull:18.2, 39.0, 25.6, 37.7, 25.5, 41.3, 25.5, 41.3, 26.0, 41.3
 		skyfallNovaCount = skyfallNovaCount + 1
 		skyfallNovaRemaining = skyfallNovaRemaining - 1
 		if skyfallNovaRemaining > 0 then
-			self:CDBar(-2434, 25.5, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263)
+			self:CDBar(413264, 25.5, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
 		else -- delayed until after Supremacy of the Storm
-			self:CDBar(-2434, 37.7, CL.count:format(self:SpellName(-2434), skyfallNovaCount), 413263)
+			self:CDBar(413264, 37.7, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
+		end
+		-- register events to auto-mark Skyfall Nova
+		if self:GetOption(skyfallNovaMarker) then
+			skyfallNovaGUID = args.destGUID
+			self:RegisterTargetEvents("MarkSkyfallNova")
+		end
+	end
+
+	function mod:MarkSkyfallNova(_, unit, guid)
+		if skyfallNovaGUID == guid then
+			skyfallNovaGUID = nil
+			self:CustomIcon(skyfallNovaMarker, unit, 8)
+			self:UnregisterTargetEvents()
 		end
 	end
 end
