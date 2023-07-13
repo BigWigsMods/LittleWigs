@@ -24,7 +24,7 @@ function mod:GetOptions()
 	return {
 		86911, -- Unstable Grounding Field
 		86930, -- Supremacy of the Storm
-		{87622, "SAY"}, -- Chain Lightning
+		{87622, "SAY", "ME_ONLY_EMPHASIZE"}, -- Chain Lightning
 		413264, -- Skyfall Nova
 		skyfallNovaMarker,
 		87618, -- Static Cling
@@ -97,13 +97,10 @@ end
 
 do
 	local function printTarget(self, player, guid)
+		self:TargetMessage(87622, "orange", player)
+		self:PlaySound(87622, "alarm", nil, player)
 		if self:Me(guid) then
-			self:PersonalMessage(87622)
-			self:PlaySound(87622, "alarm")
 			self:Say(87622)
-		else
-			self:TargetMessage(87622, "orange", player)
-			self:PlaySound(87622, "alarm", nil, player)
 		end
 	end
 
