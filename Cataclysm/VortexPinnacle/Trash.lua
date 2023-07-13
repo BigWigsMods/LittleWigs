@@ -75,7 +75,7 @@ function mod:GetOptions()
 		-- Servant of Asaad
 		{87772, "DISPEL"}, -- Hand of Protection
 		-- Minister of Air
-		87762, -- Lightning Lash
+		{87762, "ME_ONLY_EMPHASIZE"}, -- Lightning Lash
 		413385, -- Overload Grounding Field
 	}, {
 		[410999] = L.armored_mistral,
