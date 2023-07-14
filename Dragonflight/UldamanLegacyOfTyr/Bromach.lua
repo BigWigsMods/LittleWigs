@@ -18,7 +18,7 @@ local quakingTotemCount = 1
 -- Initialization
 --
 
-local totemMarker = mod:AddMarkerOption(true, "npc", 7, 369700, 7) -- Quaking Totem
+local totemMarker = mod:AddMarkerOption(true, "npc", 8, 369700, 8) -- Quaking Totem
 function mod:GetOptions()
 	return {
 		-- Bromach
@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 	-- Bromach
 	self:Log("SPELL_CAST_SUCCESS", "CallOfTheDeep", 369605)
 	self:Log("SPELL_CAST_START", "QuakingTotem", 382303)
-	self:Log("SPELL_CAST_SUCCESS", "QuakingTotemSuccess", 382303)
+	self:Log("SPELL_SUMMON", "QuakingTotemSummon", 382302)
 	self:Log("SPELL_CAST_START", "Bloodlust", 369754)
 	self:Log("SPELL_CAST_START", "ThunderingSlam", 369703)
 	self:Log("SPELL_CAST_SUCCESS", "ThunderingSlamSuccess", 369703)
@@ -82,19 +82,23 @@ function mod:QuakingTotem(args)
 	self:Bar(369700, 30.3, CL.count:format(args.spellName, quakingTotemCount))
 end
 
-function mod:QuakingTotemSuccess(args)
-	-- register events to auto-mark totem
-	if self:GetOption(totemMarker) then
-		self:RegisterTargetEvents("MarkTotem")
-	end
-end
+do
+	local totemGUID = nil
 
-function mod:MarkTotem(_, unit, guid)
-	-- there is no SUMMON event and CAST_SUCCESS doesn't have a target,
-	-- so we have to match on the mob ID for Quaking Totem
-	if self:MobId(guid) == 186696 then -- Quaking Totem
-		self:CustomIcon(totemMarker, unit, 7)
-		self:UnregisterTargetEvents()
+	function mod:QuakingTotemSummon(args)
+		-- register events to auto-mark totem
+		if self:GetOption(totemMarker) then
+			totemGUID = args.destGUID
+			self:RegisterTargetEvents("MarkTotem")
+		end
+	end
+
+	function mod:MarkTotem(_, unit, guid)
+		if totemGUID == guid then
+			totemGUID = nil
+			self:CustomIcon(totemMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
 	end
 end
 
