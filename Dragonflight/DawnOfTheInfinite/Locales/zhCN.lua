@@ -11,7 +11,7 @@ if L then
 	L.infinite_infiltrator = "永恒渗透者"
 	L.risen_dragon = "复生的巨龙"
 
-	--L.iridikron_warmup_trigger = "So the Titans' puppets have come to face me."
+	L.iridikron_warmup_trigger = "没想到泰坦的傀儡居然要挑战我。"
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "永恒暮光大法师"
