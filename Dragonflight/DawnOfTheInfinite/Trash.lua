@@ -30,10 +30,10 @@ mod:RegisterEnableMob(
 	203861, -- Horde Destroyer
 	208208, -- Alliance Destroyer
 	204206, -- Horde Farseer
-	-- TODO Alliance equivalent to Horde Farseer
+	208193, -- Paladin of the Silver Hand
 	207969, -- Horde Raider
-	-- TODO Alliance equivalent to Horde Raider
-	205337 -- Infinite Timebender
+	208165, -- Alliance Knight
+	205337  -- Infinite Timebender
 )
 
 --------------------------------------------------------------------------------
@@ -66,8 +66,9 @@ if L then
 	L.chronaxie = "Chronaxie"
 	L.horde_destroyer = "Horde Destroyer"
 	L.alliance_destroyer = "Alliance Destroyer"
-	L.horde_farseer = "Horde Farseer" -- TODO alliance version
-	L.horde_raider = "Horde Raider" -- TODO alliance version
+	L.horde_farseer = "Horde Farseer"
+	L.paladin_of_the_silver_hand = "Paladin of the Silver Hand"
+	L.horde_raider_alliance_knight = "Horde Raider / Alliance Knight"
 	L.infinite_timebender = "Infinite Timebender"
 end
 
@@ -93,7 +94,7 @@ function mod:GetOptions()
 		415437, -- Enervate
 		-- Timestream Anomaly
 		413529, -- Untwist
-		{413544, "TANK_HEALER", "DISPEL"}, -- Bloom
+		{413544, "DISPEL"}, -- Bloom
 		-- Infinite Infiltrator
 		413621, -- Timeless Curse
 		413622, -- Infinite Fury
@@ -124,15 +125,14 @@ function mod:GetOptions()
 		407535, -- Deploy Goblin Sappers
 		407205, -- Volatile Mortar
 		-- Alliance Destroyer
-		-- TODO Deploy Dwarven Bombers
-		-- TODO mortar?
+		418684, -- Deploy Dwarven Bombers
 		-- Horde Farseer
 		407891, -- Healing Wave
-		-- TODO alliance version of Horde Farseer
-		-- Horde Raider
+		-- Paladin of the Silver Hand
+		417011, -- Holy Light
+		-- Horde Raider / Alliance Knight
 		407124, -- Rallying Shout
 		407125, -- Sundering Slam
-		-- TODO alliance version of Horde Raider
 		-- Infinite Timebender
 		412378, -- Dizzying Sands
 	}, {
@@ -157,9 +157,10 @@ function mod:GetOptions()
 		[418200] = L.infinite_riftmage,
 		[419516] = L.chronaxie,
 		[407535] = L.horde_destroyer,
-		-- TODO [?] = L.alliance_destroyer,
+		[418684] = L.alliance_destroyer,
 		[407891] = L.horde_farseer,
-		[407124] = L.horde_raider,
+		[417011] = L.paladin_of_the_silver_hand,
+		[407124] = L.horde_raider_alliance_knight,
 		[412378] = L.infinite_timebender,
 	}
 end
@@ -239,12 +240,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VolatileMortar", 407205)
 
 	-- Alliance Destroyer
-	-- TODO
+	self:Log("SPELL_CAST_START", "DeployDwarvenBombers", 418684)
 
 	-- Horde Farseer
 	self:Log("SPELL_CAST_START", "HealingWave", 407891)
 
-	-- Horde Raider
+	-- Paladin of the Silver Hand
+	self:Log("SPELL_CAST_START", "HolyLight", 417011)
+
+	-- Horde Raider / Alliance Knight
 	self:Log("SPELL_CAST_START", "RallyingShout", 407124)
 	self:Log("SPELL_CAST_START", "SunderingSlam", 407125)
 
@@ -360,17 +364,25 @@ function mod:Untwist(args)
 end
 
 function mod:Bloom(args)
-	if self:Tank() then
-		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 end
 
-function mod:BloomApplied(args)
-	if self:Dispeller("magic", nil, 413544) then
-		self:TargetMessage(413544, "purple", args.destName)
-		self:PlaySound(413544, "warning", nil, args.destName)
+do
+	local playerList = {}
+	local prev = 0
+	function mod:BloomApplied(args)
+		if self:Me(args.destGUID) or self:Dispeller("magic", nil, 413544) then
+			local t = args.time
+			if t - prev > .7 then -- throttle alerts to .7s intervals
+				prev = t
+				playerList = {}
+			end
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(413544, "yellow", playerList, 2, nil, nil, .7)
+			self:PlaySound(413544, "alert", nil, playerList)
+		end
 	end
 end
 
@@ -516,9 +528,25 @@ function mod:VolatileMortar(args)
 	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
 end
 
+-- Alliance Destroyer
+
+function mod:DeployDwarvenBombers(args)
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
+	--self:NameplateCDBar(args.spellId, 26.7, args.sourceGUID)
+end
+
 -- Horde Farseer
 
 function mod:HealingWave(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	-- TODO unknown CD
+end
+
+-- Paladin of the Silver Hand
+
+function mod:HolyLight(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	-- TODO unknown CD

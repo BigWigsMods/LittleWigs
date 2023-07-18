@@ -25,6 +25,7 @@ if L then
 	--L.horde_destroyer = "Horde Destroyer"
 	--L.alliance_destroyer = "Alliance Destroyer"
 	--L.horde_farseer = "Horde Farseer"
-	--L.horde_raider = "Horde Raider"
+	--L.paladin_of_the_silver_hand = "Paladin of the Silver Hand"
+	--L.horde_raider_alliance_knight = "Horde Raider / Alliance Knight"
 	--L.infinite_timebender = "Infinite Timebender"
 end
