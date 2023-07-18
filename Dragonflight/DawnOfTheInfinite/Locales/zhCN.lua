@@ -25,7 +25,7 @@ if L then
 	L.horde_destroyer = "部落驱除坦克"
 	L.alliance_destroyer = "联盟驱逐舰"
 	L.horde_farseer = "部落先知"
-	--L.paladin_of_the_silver_hand = "Paladin of the Silver Hand"
-	--L.horde_raider_alliance_knight = "部落狼骑兵 / Alliance Knight"
+	L.paladin_of_the_silver_hand = "白银之手圣骑士"
+	L.horde_raider_alliance_knight = "部落狼骑兵 / 联盟骑士"
 	L.infinite_timebender = "永恒曲时者"
 end
