@@ -122,7 +122,7 @@ end
 function mod:Downburst(args)
 	self:StopBar(CL.count:format(args.spellName, downburstCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, downburstCount))
-	self:PlaySound(args.spellId, "long")
+	self:PlaySound(args.spellId, "warning")
 	downburstCount = downburstCount + 1
 	if downburstCount % 3 == 0 then
 		self:CDBar(args.spellId, 43.7, CL.count:format(args.spellName, downburstCount))
