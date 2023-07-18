@@ -27,7 +27,7 @@ function mod:GetOptions()
 	return {
 		404916, -- Sand Blast
 		403891, -- More Problems!
-		{404364, "CASTBAR"}, -- Dragon's Breath
+		{404364, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Dragon's Breath
 		405279, -- Familiar Faces
 		406481, -- Time Traps
 		{401667, "DISPEL"}, -- Time Stasis
@@ -51,7 +51,7 @@ function mod:OnEngage()
 	self:CDBar(404916, 4.8) -- Sand Blast
 	self:CDBar(403891, 10.1) -- More Problems!
 	self:CDBar(406481, 30.3) -- Time Traps
-	self:CDBar(405279, 38.8) -- Familiar Faces
+	self:CDBar(405279, 38.5) -- Familiar Faces
 end
 
 --------------------------------------------------------------------------------
@@ -78,7 +78,7 @@ function mod:MoreProblems(args)
 	moreProblemsCount = moreProblemsCount + 1
 	-- pull:10.1, 40.0, 47.4, 51.1, 52.2, 51.0, 51.0
 	if moreProblemsCount == 2 then
-		self:CDBar(args.spellId, 40.0)
+		self:CDBar(args.spellId, 39.7)
 	elseif moreProblemsCount == 3 then
 		self:CDBar(args.spellId, 47.4)
 	else
@@ -94,7 +94,7 @@ do
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
-			self:CastBar(args.spellId, 6)
+			self:CastBar(args.spellId, 8)
 		end
 	end
 end
