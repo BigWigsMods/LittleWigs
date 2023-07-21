@@ -50,7 +50,7 @@ BigWigs:AddSounds("Uldaman: Legacy of Tyr Trash", {
 	[369400] = "alert",
 	[369409] = "alarm",
 	[369411] = "alarm",
-	[369465] = "alarm",
+	[369465] = "info",
 	[369675] = "alert",
 	[369811] = "alarm",
 	[369823] = {"alert","warning"},

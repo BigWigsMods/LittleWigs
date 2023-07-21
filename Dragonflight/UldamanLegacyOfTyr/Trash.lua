@@ -122,6 +122,8 @@ function mod:OnBossEnable()
 
 	-- Earthen Custodian
 	self:Log("SPELL_CAST_START", "Cleave", 369409)
+	self:Log("SPELL_DAMAGE", "CleaveDamage", 369409)
+	self:Log("SPELL_MISSED", "CleaveDamage", 369409)
 
 	-- Earthen Weaver
 	self:Log("SPELL_CAST_START", "HailOfStone", 369465)
@@ -311,9 +313,23 @@ do
 			if t - prev > 1 then
 				prev = t
 				self:Message(args.spellId, "purple")
-				self:PlaySound(args.spellId, "alarm")
 			end
 			--self:NameplateCDBar(args.spellId, 15.0, args.sourceGUID)
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:CleaveDamage(args)
+		-- trivial damage for tanks, deadly for others
+		if not self:Tank() and self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId, "near")
+				self:PlaySound(args.spellId, "alarm")
+			end
 		end
 	end
 end
@@ -327,7 +343,7 @@ do
 		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
+			self:PlaySound(args.spellId, "info")
 		end
 		--self:NameplateCDBar(args.spellId, 21.7, args.sourceGUID)
 	end
@@ -384,10 +400,17 @@ function mod:FissuringSlam(args)
 	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
 end
 
-function mod:DifficultTerrainApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou")
+do
+	local prev = 0
+	function mod:DifficultTerrainApplied(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
 	end
 end
 
