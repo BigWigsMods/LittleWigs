@@ -27,5 +27,5 @@ end
 
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "zhTW")
 if L then
-	L.totems = "圖騰"
+	--L.hands = "Hands" -- Short for "Stone Hands"
 end

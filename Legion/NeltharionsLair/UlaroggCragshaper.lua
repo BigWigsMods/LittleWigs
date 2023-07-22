@@ -22,7 +22,7 @@ local stanceOfTheMountainCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.totems = "Totems"
+	L.hands = "Hands" -- Short for "Stone Hands"
 end
 
 --------------------------------------------------------------------------------
@@ -36,7 +36,9 @@ function mod:GetOptions()
 		198428, -- Strike of the Mountain
 		{198496, "TANK_HEALER"}, -- Sunder
 	}, nil, {
-		[193375] = L.totems,
+		[198564] = CL.intermission,
+		[193375] = CL.totems,
+		[198428] = L.hands,
 	}
 end
 
@@ -53,14 +55,14 @@ function mod:OnEngage()
 	stanceOfTheMountainCount = 1
 	self:SetStage(1)
 	self:CDBar(198496, 7.1) -- Sunder
-	self:CDBar(198428, 15.5) -- Strike of the Mountain
-	self:CDBar(193375, 20.4, L.totems) -- Bellow of the Deeps
+	self:CDBar(198428, 15.5, L.hands) -- Strike of the Mountain
+	self:CDBar(193375, 20.4, CL.totems) -- Bellow of the Deeps
 	if self:Mythic() then
 		-- 50s energy gain + .2s to ~10s delay
-		self:CDBar(198564, 50.2, CL.count:format(self:SpellName(198564), stanceOfTheMountainCount)) -- Stance of the Mountain
+		self:CDBar(198564, 50.2, CL.count:format(CL.intermission, stanceOfTheMountainCount)) -- Stance of the Mountain
 	else
 		-- 70s energy gain + delay
-		self:CDBar(198564, 70.3, CL.count:format(self:SpellName(198564), stanceOfTheMountainCount)) -- Stance of the Mountain
+		self:CDBar(198564, 70.3, CL.count:format(CL.intermission, stanceOfTheMountainCount)) -- Stance of the Mountain
 	end
 end
 
@@ -72,11 +74,11 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("198510", nil, true) then -- Stance of the Mountain
 		self:SetStage(2)
 		totemsAlive = self:Normal() and 3 or 5
-		self:StopBar(L.totems) -- Bellow of the Deeps
-		self:StopBar(198428) -- Strike of the Mountain
+		self:StopBar(CL.totems) -- Bellow of the Deeps
+		self:StopBar(L.hands) -- Strike of the Mountain
 		self:StopBar(198496) -- Sunder
-		self:StopBar(CL.count:format(self:SpellName(198564), stanceOfTheMountainCount)) -- Stance of the Mountain
-		self:Message(198564, "cyan", CL.count:format(self:SpellName(198564), stanceOfTheMountainCount))
+		self:StopBar(CL.count:format(CL.intermission, stanceOfTheMountainCount)) -- Stance of the Mountain
+		self:Message(198564, "cyan", CL.count:format(CL.intermission, stanceOfTheMountainCount))
 		self:PlaySound(198564, "long")
 	end
 end
@@ -85,30 +87,30 @@ function mod:IntermissionTotemsDeath()
 	totemsAlive = totemsAlive - 1
 	if totemsAlive == 0 then -- all of them fire UNIT_DIED
 		self:SetStage(1)
-		self:Message(198564, "green", CL.over:format(self:SpellName(198564))) -- Stance of the Mountain
+		self:Message(198564, "green", CL.over:format(CL.intermission)) -- Stance of the Mountain
 		self:PlaySound(198564, "info")
 		stanceOfTheMountainCount = stanceOfTheMountainCount + 1
 		if self:Mythic() then
 			-- 50s energy gain + delay
-			self:CDBar(198564, 50.6, CL.count:format(self:SpellName(198564), stanceOfTheMountainCount)) -- Stance of the Mountain
+			self:CDBar(198564, 50.6, CL.count:format(CL.intermission, stanceOfTheMountainCount)) -- Stance of the Mountain
 		else
 			-- 70s energy gain + delay
-			self:CDBar(198564, 70.7, CL.count:format(self:SpellName(198564), stanceOfTheMountainCount)) -- Stance of the Mountain
+			self:CDBar(198564, 70.7, CL.count:format(CL.intermission, stanceOfTheMountainCount)) -- Stance of the Mountain
 		end
 		-- all abilities available
-		self:CDBar(193375, .1, L.totems) -- Bellow of the Deeps
-		self:CDBar(198428, .1) -- Strike of the Mountain
+		self:CDBar(193375, .1, CL.totems) -- Bellow of the Deeps
+		self:CDBar(198428, .1, L.hands) -- Strike of the Mountain
 		self:CDBar(198496, .1) -- Sunder
 	end
 end
 
 function mod:BellowOfTheDeeps(args)
-	self:Message(args.spellId, "orange", CL.incoming:format(L.totems))
+	self:Message(args.spellId, "orange", CL.incoming:format(CL.totems))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 33.6, L.totems)
+	self:CDBar(args.spellId, 33.6, CL.totems)
 	-- soonest another ability can be is 6.06s
-	if self:BarTimeLeft(198428) < 6.06 then -- Strike of the Mountain
-		self:CDBar(198428, {6.06, 15.7})
+	if self:BarTimeLeft(L.hands) < 6.06 then -- Strike of the Mountain
+		self:CDBar(198428, {6.06, 15.7}, L.hands)
 	end
 	if self:BarTimeLeft(198496) < 6.06 then -- Sunder
 		self:CDBar(198496, {6.06, 8.1})
@@ -116,12 +118,12 @@ function mod:BellowOfTheDeeps(args)
 end
 
 function mod:StrikeOfTheMountain(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 15.7)
+	self:Message(args.spellId, "red", L.hands)
+	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 15.7, L.hands)
 	-- soonest another ability can be is 4.82s
-	if self:BarTimeLeft(L.totems) < 4.82 then -- Bellow of the Deeps
-		self:CDBar(193375, {4.82, 33.6}, L.totems)
+	if self:BarTimeLeft(CL.totems) < 4.82 then -- Bellow of the Deeps
+		self:CDBar(193375, {4.82, 33.6}, CL.totems)
 	end
 	if self:BarTimeLeft(198496) < 4.82 then -- Sunder
 		self:CDBar(198496, {4.82, 8.1})
@@ -133,10 +135,10 @@ function mod:Sunder(args)
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 8.1)
 	-- soonest another ability can be is 4.82s
-	if self:BarTimeLeft(L.totems) < 4.82 then -- Bellow of the Deeps
-		self:CDBar(193375, {4.82, 33.6}, L.totems)
+	if self:BarTimeLeft(CL.totems) < 4.82 then -- Bellow of the Deeps
+		self:CDBar(193375, {4.82, 33.6}, CL.totems)
 	end
-	if self:BarTimeLeft(198428) < 4.82 then -- Strike of the Mountain
-		self:CDBar(198428, {4.82, 15.7})
+	if self:BarTimeLeft(L.hands) < 4.82 then -- Strike of the Mountain
+		self:CDBar(198428, {4.82, 15.7}, L.hands)
 	end
 end
