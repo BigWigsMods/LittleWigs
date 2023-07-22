@@ -18,10 +18,7 @@ mod:SetStage(1)
 
 local L = mod:GetLocale()
 if L then
-	L.northwest = "NW"
-	L.northeast = "NE"
-	L.southeast = "SE"
-	L.southwest = "SW"
+	L.winds = "Winds"
 end
 
 --------------------------------------------------------------------------------
@@ -49,6 +46,8 @@ function mod:GetOptions()
 	}, {
 		[381862] = -25365, -- Kyrakka
 		[381517] = -25369, -- Erkhart Stormvein
+	},{
+		[381517] = L.winds, -- Winds of Change (Winds)
 	}
 end
 
@@ -82,7 +81,7 @@ function mod:OnEngage()
 	if self:Mythic() then
 		self:Bar(381516, 9.7) -- Interrupting Cloudburst
 	end
-	self:Bar(381517, 17, CL.other:format(self:SpellName(381517), L.northwest), "misc_arrowlup") -- Winds of Change
+	self:Bar(381517, 17, CL.other:format(L.winds, CL.north_west), "misc_arrowlup") -- Winds of Change
 end
 
 --------------------------------------------------------------------------------
@@ -120,15 +119,15 @@ function mod:BossDeath(args)
 		else -- Erkhart Stormvein
 			local nextDirection
 			if windsOfChangeCount % 4 == 1 then
-				nextDirection = L.southwest
+				nextDirection = CL.south_west
 			elseif windsOfChangeCount % 4 == 2 then
-				nextDirection = L.southeast
+				nextDirection = CL.south_east
 			elseif windsOfChangeCount % 4 == 3 then
-				nextDirection = L.northeast
+				nextDirection = CL.north_east
 			elseif windsOfChangeCount % 4 == 0 then
-				nextDirection = L.northwest
+				nextDirection = CL.north_west
 			end
-			self:StopBar(CL.other:format(self:SpellName(381517), nextDirection)) -- Winds of Change
+			self:StopBar(CL.other:format(L.winds, nextDirection)) -- Winds of Change
 			self:StopBar(381516) -- Interrupting Cloudburst
 			self:StopBar(381512) -- Stormslam
 		end
@@ -188,30 +187,30 @@ function mod:WindsOfChange(args)
 	windsOfChangeCount = windsOfChangeCount + 1
 	local direction, nextDirection, icon, nextIcon
 	if windsOfChangeCount % 4 == 1 then
-		direction = L.northwest
-		nextDirection = L.southwest
+		direction = CL.north_west
+		nextDirection = CL.south_west
 		icon = "misc_arrowlup"
 		nextIcon = "misc_arrowleft"
 	elseif windsOfChangeCount % 4 == 2 then
-		direction = L.southwest
-		nextDirection = L.southeast
+		direction = CL.south_west
+		nextDirection = CL.south_east
 		icon = "misc_arrowleft"
 		nextIcon = "misc_arrowdown"
 	elseif windsOfChangeCount % 4 == 3 then
-		direction = L.southeast
-		nextDirection = L.northeast
+		direction = CL.south_east
+		nextDirection = CL.north_east
 		icon = "misc_arrowdown"
 		nextIcon = "misc_arrowright"
 	elseif windsOfChangeCount % 4 == 0 then
-		direction = L.northeast
-		nextDirection = L.northwest
+		direction = CL.north_east
+		nextDirection = CL.north_west
 		icon = "misc_arrowright"
 		nextIcon = "misc_arrowlup"
 	end
-	self:Message(args.spellId, "yellow", CL.other:format(args.spellName, direction), icon)
+	self:Message(args.spellId, "yellow", CL.other:format(L.winds, direction), icon)
 	self:PlaySound(args.spellId, "alert")
-	self:StopBar(CL.other:format(args.spellName, direction))
-	self:CDBar(args.spellId, 19.4, CL.other:format(args.spellName, nextDirection), nextIcon)
+	self:StopBar(CL.other:format(L.winds, direction))
+	self:CDBar(args.spellId, 19.4, CL.other:format(L.winds, nextDirection), nextIcon)
 end
 
 function mod:InterruptingCloudburst(args)

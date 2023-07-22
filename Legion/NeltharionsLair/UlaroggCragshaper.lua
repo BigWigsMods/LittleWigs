@@ -36,9 +36,9 @@ function mod:GetOptions()
 		198428, -- Strike of the Mountain
 		{198496, "TANK_HEALER"}, -- Sunder
 	}, nil, {
-		[198564] = CL.intermission,
-		[193375] = CL.totems,
-		[198428] = L.hands,
+		[198564] = CL.intermission, -- Stance of the Mountain (Intermission)
+		[193375] = CL.totems, -- Bellow of the Deeps (Totems)
+		[198428] = L.hands, -- Strike of the Mountain (Hands)
 	}
 end
 

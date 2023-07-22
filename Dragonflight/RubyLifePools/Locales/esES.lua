@@ -16,8 +16,5 @@ end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "esES") or BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "esMX")
 if L then
-	--L.northwest = "NW"
-	--L.northeast = "NE"
-	--L.southeast = "SE"
-	--L.southwest = "SW"
+	L.winds = "Vientos"
 end
