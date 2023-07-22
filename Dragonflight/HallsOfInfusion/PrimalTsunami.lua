@@ -147,13 +147,15 @@ end
 do
 	local prev = 0
 	function mod:Inundate(args)
+		if self:Friendly(args.sourceFlags) -- these NPCs can be mind-controlled by Priests
+			or self:MobId(args.sourceGUID) ~= 196043 then -- Primalist Infuser
+			return
+		end
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			if self:MobId(args.sourceGUID) == 196043 then -- Primalist Infuser
-				self:Message(args.spellId, "yellow")
-				self:PlaySound(args.spellId, "alert")
-			end
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
