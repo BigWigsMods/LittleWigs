@@ -15,15 +15,6 @@ mod:SetRespawnTime(15)
 local shatterCount = 1
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.warmup_text = "Rokmora Active"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -62,12 +53,12 @@ end
 
 -- called from trash module
 function mod:WarmupLong()
-	self:Bar("warmup", 18.9, L.warmup_text, "achievement_dungeon_neltharionslair")
+	self:Bar("warmup", 18.9, CL.active, "achievement_dungeon_neltharionslair")
 end
 
 -- called from trash module
 function mod:WarmupShort()
-	self:Bar("warmup", 4.95, L.warmup_text, "achievement_dungeon_neltharionslair")
+	self:Bar("warmup", 4.95, CL.active, "achievement_dungeon_neltharionslair")
 end
 
 function mod:Shatter(args)

@@ -20,11 +20,6 @@ if L then
 	L.emberhusk_dominator = "烬壳统御者"
 end
 
-L = BigWigs:NewBossLocale("Rokmora", "zhCN")
-if L then
-	L.warmup_text = "洛克莫拉激活"
-end
-
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "zhCN")
 if L then
 	--L.hands = "Hands" -- Short for "Stone Hands"
