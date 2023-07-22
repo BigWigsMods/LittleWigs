@@ -376,8 +376,8 @@ end
 -- Emberhusk Dominator
 
 function mod:EmberSwipe(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:FrenzyApplied(args)
