@@ -30,5 +30,5 @@ if L then
 	L.infinite_timebender = "Ewige Zeitkrümmerin"
 
 	L.custom_on_rift_autotalk = "Automatisch ansprechen"
-	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
+	L.custom_on_rift_autotalk_desc = "Sofort den Temporalriss öffnen lassen."
 end
