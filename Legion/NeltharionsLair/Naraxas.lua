@@ -26,6 +26,7 @@ function mod:GetOptions()
 		199775, -- Frenzy
 		-12527, -- Wormspeaker Devout
 		199246, -- Ravenous
+		198963, -- Putrid Skies
 	}
 end
 
@@ -39,6 +40,7 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_AURA_APPLIED", "RavenousApplied", 199246)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "RavenousApplied", 199246)
+	self:Log("SPELL_CAST_START", "PutridSkies", 198963)
 end
 
 function mod:OnEngage()
@@ -117,4 +119,10 @@ end
 function mod:RavenousApplied(args)
 	self:StackMessage(args.spellId, "red", args.destName, args.amount, 1)
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:PutridSkies(args)
+	-- only cast when no one is in melee range
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "warning")
 end
