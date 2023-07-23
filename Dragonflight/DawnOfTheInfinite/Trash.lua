@@ -23,6 +23,7 @@ mod:RegisterEnableMob(
 	205152, -- Lerai, Timesworn Maiden
 	201222, -- Valow, Timesworn Keeper
 	199748, -- Timeline Marauder
+	208061, -- Temporal Rift
 	208438, -- Infinite Saboteur
 	206230, -- Infinite Diversionist
 	208698, -- Infinite Riftmage
@@ -70,6 +71,9 @@ if L then
 	L.paladin_of_the_silver_hand = "Paladin of the Silver Hand"
 	L.horde_raider_alliance_knight = "Horde Raider / Alliance Knight"
 	L.infinite_timebender = "Infinite Timebender"
+
+	L.custom_on_rift_autotalk = "Autotalk"
+	L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 end
 
 --------------------------------------------------------------------------------
@@ -78,6 +82,9 @@ end
 
 function mod:GetOptions()
 	return {
+		-- General
+		"custom_on_rift_autotalk",
+
 		------ Galakrond's Fall ------
 		-- Infinite Chronoweaver
 		411994, -- Chronomelt
@@ -136,6 +143,9 @@ function mod:GetOptions()
 		-- Infinite Timebender
 		412378, -- Dizzying Sands
 	}, {
+		-- General
+		["custom_on_rift_autotalk"] = CL.general,
+
 		------ Galakrond's Fall ------
 		[411994] = L.infinite_chronoweaver,
 		[412012] = L.infinite_timeslicer,
@@ -168,6 +178,9 @@ end
 function mod:OnBossEnable()
 	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
+	-- Autotalk
+	self:RegisterEvent("GOSSIP_SHOW")
 
 	------ Galakrond's Fall ------
 
@@ -269,6 +282,17 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		if iridikronModule then
 			iridikronModule:Enable()
 			iridikronModule:Warmup()
+		end
+	end
+end
+
+-- Autotalk
+
+function mod:GOSSIP_SHOW(event)
+	if self:GetOption("custom_on_rift_autotalk") then
+		if self:GetGossipID(110513) then
+			-- <Attempt to open the rift.>
+			self:SelectGossipID(110513)
 		end
 	end
 end
@@ -552,19 +576,32 @@ function mod:HolyLight(args)
 	-- TODO unknown CD
 end
 
--- Horde Raider
+-- Horde Raider / Alliance Knight
 
-function mod:RallyingShout(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
+do
+	local prev = 0
+	function mod:RallyingShout(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
+	end
 end
 
-function mod:SunderingSlam(args)
-	-- TODO purple?
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 14.5, args.sourceGUID)
+do
+	local prev = 0
+	function mod:SunderingSlam(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+		--self:NameplateCDBar(args.spellId, 14.5, args.sourceGUID)
+	end
 end
 
 -- Infinite Timebender

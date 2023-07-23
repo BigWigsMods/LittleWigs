@@ -28,4 +28,7 @@ if L then
 	L.paladin_of_the_silver_hand = "Paladin der Silbernen Hand"
 	L.horde_raider_alliance_knight = "Räuber der Horde / Ritter der Allianz"
 	L.infinite_timebender = "Ewige Zeitkrümmerin"
+
+	L.custom_on_rift_autotalk = "Automatisch ansprechen"
+	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 end

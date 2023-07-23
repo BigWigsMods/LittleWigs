@@ -28,4 +28,7 @@ if L then
 	--L.paladin_of_the_silver_hand = "Paladin of the Silver Hand"
 	--L.horde_raider_alliance_knight = "Horde Raider / Alliance Knight"
 	--L.infinite_timebender = "Infinite Timebender"
+
+	L.custom_on_rift_autotalk = "Conversa Automática"
+	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 end

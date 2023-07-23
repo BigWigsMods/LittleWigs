@@ -28,4 +28,7 @@ if L then
 	L.paladin_of_the_silver_hand = "白银之手圣骑士"
 	L.horde_raider_alliance_knight = "部落狼骑兵 / 联盟骑士"
 	L.infinite_timebender = "永恒曲时者"
+
+	L.custom_on_rift_autotalk = "自动对话"
+	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 end
