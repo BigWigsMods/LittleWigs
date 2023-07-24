@@ -13,7 +13,7 @@
 ## Notes-zhCN: 5人地下城和场景战役首领警报。
 ## Notes-zhTW: 5人地城和情境地圖首領警報。
 ## Author: Funkydude
-## IconTexture: Interface\AddOns\BigWigs\Media\Icons\core-enabled
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
 ## X-Category: Party
 ## X-Credits: Ulic
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.

@@ -11,7 +11,7 @@
 ## Title-ruRU: LittleWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: LittleWigs [|cffeda55f燃烧的远征|r]
 ## Title-zhTW: LittleWigs [|cffeda55f燃燒的遠征|r]
-## IconTexture: Interface\AddOns\BigWigs\Media\Icons\core-enabled
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
 
 ## LoadOnDemand: 1
 ## Dependencies: BigWigs
