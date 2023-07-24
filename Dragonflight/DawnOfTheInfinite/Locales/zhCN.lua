@@ -30,5 +30,5 @@ if L then
 	L.infinite_timebender = "永恒曲时者"
 
 	L.custom_on_rift_autotalk = "自动对话"
-	L.custom_on_rift_autotalk_desc = "立即开始引导来打开裂隙稳定度。"
+	L.custom_on_rift_autotalk_desc = "立即开始引导来打开时光裂隙。"
 end
