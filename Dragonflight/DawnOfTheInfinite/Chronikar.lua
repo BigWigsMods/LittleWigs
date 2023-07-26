@@ -20,9 +20,12 @@ local sandStompCount = 1
 
 function mod:GetOptions()
 	return {
-		{413105, "SAY"}, -- Eon Shatter
+		{413142, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Eon Shatter
 		{413013, "TANK_HEALER"}, -- Chronoshear
 		401421, -- Sand Stomp
+	},nil,{
+		[413142] = CL.leap, -- Eon Shatter (Leap)
+		[401421] = CL.pools, -- Sand Stomp (Pools)
 	}
 end
 
@@ -36,9 +39,9 @@ end
 
 function mod:OnEngage()
 	sandStompCount = 1
-	self:CDBar(401421, 7.2) -- Sand Stomp
+	self:CDBar(401421, 7.2, CL.pools) -- Sand Stomp
 	-- cast at 100 energy
-	self:CDBar(413105, 19.3) -- Eon Shatter
+	self:CDBar(413142, 19.3, CL.leap) -- Eon Shatter
 	self:CDBar(413013, 48.4) -- Chronoshear
 end
 
@@ -49,29 +52,29 @@ end
 do
 	local prev = 0
 	function mod:EonShatterApplied(args)
-		-- this ability is always cast multiple times in a row.
-		-- first cast is on the boss, but the rest will be targeted on a player (with 413142 debuff).
+		-- this ability is always cast 3 times in a row
+		-- first cast is on the floor near the boss, but the remaining 2 will target players, and can be positioned
 		local t = args.time
 		if t - prev > 15 then
 			prev = t
-			-- alert here for the first cast in a cycle
-			self:Message(413105, "yellow")
-			self:PlaySound(413105, "alert")
+			-- alert here for the first cast (the one that cannot be positioned)
+			self:Message(args.spellId, "yellow", CL.leap)
+			self:PlaySound(args.spellId, "alert")
 			-- cast at 100 energy: 3s cast + 2s delay + 3s cast + 2s delay + 3s cast + 1s delay + 1.7s delay + 36.1s gain + .3 delay
-			self:CDBar(413105, 52.1)
+			self:CDBar(args.spellId, 52.1, CL.leap)
 		end
 		if self:Me(args.destGUID) then
-			-- this will be from the target of the next cast
-			self:Say(413105) -- Eon Shatter
+			-- The circle is applied on you and you can run away and position it
+			self:Say(args.spellId, CL.leap) -- Eon Shatter
+			self:SayCountdown(args.spellId, 5)
 		end
 	end
 end
 
 function mod:EonShatterRemoved(args)
-	-- this is the second cast of Eon Shatter, cast when the debuff is removed
-	-- from the targeted player.
-	self:TargetMessage(413105, "yellow", args.destName)
-	self:PlaySound(413105, "long", nil, args.destName)
+	-- When the debuff is removed is when you drop the circle and need to run out, as he will begin his leap on the player
+	self:TargetMessage(args.spellId, "yellow", args.destName, CL.leap)
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
 
 function mod:Chronoshear(args)
@@ -86,13 +89,13 @@ function mod:ChronoshearRemoved(args)
 end
 
 function mod:SandStomp(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.pools)
 	self:PlaySound(args.spellId, "alarm")
 	sandStompCount = sandStompCount + 1
 	-- pull:7.2, 35.2, 18.2, 34.0, 18.2
 	if sandStompCount % 2 == 0 then
-		self:CDBar(args.spellId, 34.0)
+		self:CDBar(args.spellId, 34.0, CL.pools)
 	else
-		self:CDBar(args.spellId, 18.2)
+		self:CDBar(args.spellId, 18.2, CL.pools)
 	end
 end
