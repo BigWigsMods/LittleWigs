@@ -2,7 +2,7 @@
 BigWigs:AddSounds("Chronikar", {
 	[401421] = "alarm",
 	[413013] = {"alarm","info"},
-	[413105] = {"alert","long"},
+	[413142] = {"alert","warning"},
 })
 
 BigWigs:AddSounds("Manifested Timeways", {
