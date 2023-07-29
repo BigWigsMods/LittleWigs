@@ -18,6 +18,7 @@ local moltenCrashNext = false
 -- Initialization
 --
 
+local moltenCharskinMarker = mod:AddMarkerOption(true, "npc", 8, -12596, 8) -- Molten Charskin
 function mod:GetOptions()
 	return {
 		200700, -- Landslide
@@ -27,10 +28,14 @@ function mod:GetOptions()
 		200551, -- Crystal Spikes
 		216407, -- Lava Geyser
 		-- Molten Charskin
-		200154, -- Burning Hatred
+		{200154, "SAY", "ME_ONLY_EMPHASIZE"}, -- Burning Hatred
 		200672, -- Crystal Cracked
+		moltenCharskinMarker,
 	}, {
 		[200154] = -12596, -- Molten Charskin
+	}, {
+		[200637] = CL.big_add, -- Magma Sculptor (Big Add)
+		[200154] = CL.fixate, -- Burning Hatred (Fixate)
 	}
 end
 
@@ -45,12 +50,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "LavaGeyserDamage", 216407)
 	self:Log("SPELL_AURA_APPLIED", "BurningHatred", 200154)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- for Crystal Cracked
+	self:Log("SPELL_SUMMON", "MagmaSculptorSummon", 200637)
 end
 
 function mod:OnEngage()
 	moltenCrashNext = false
 	self:CDBar(200551, 5.1) -- Crystal Spikes
-	self:CDBar(200637, 9.7) -- Magma Sculptor
+	self:CDBar(200637, 9.7, CL.big_add) -- Magma Sculptor
 	self:CDBar(200700, 15.8) -- Landslide
 	self:CDBar(200732, 18.9) -- Molten Crash
 	-- cast at 100 energy, 60s energy gain + .8s delay
@@ -80,15 +86,15 @@ function mod:MoltenCrash(args)
 	if self:BarTimeLeft(200551) < 2.87 then -- Crystal Spikes
 		self:CDBar(200551, {2.87, 21.8})
 	end
-	if self:BarTimeLeft(200637) < 2.87 then -- Magma Sculptor
-		self:CDBar(200637, {2.87, 71.6})
+	if self:BarTimeLeft(CL.big_add) < 2.87 then -- Magma Sculptor
+		self:CDBar(200637, {2.87, 71.6}, CL.big_add)
 	end
 end
 
 function mod:MagmaSculptor(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.incoming:format(CL.big_add))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 71.6)
+	self:CDBar(args.spellId, 71.6, CL.big_add)
 end
 
 function mod:MagmaWavePreCast(args)
@@ -144,9 +150,10 @@ end
 
 function mod:BurningHatred(args)
 	if self:MobId(args.sourceGUID) == 101476 then -- Molten Charskin
-		self:TargetMessage(args.spellId, "red", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
 		if self:Me(args.destGUID) then
-			self:PlaySound(args.spellId, "warning")
+			self:Say(args.spellId, CL.fixate)
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
 		else
 			self:PlaySound(args.spellId, "alert", nil, args.destName)
 		end
@@ -157,5 +164,24 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("200672", nil, true) then -- Crystal Cracked
 		self:Message(200672, "green")
 		self:PlaySound(200672, "info")
+	end
+end
+
+do
+	local moltenCharskinGUID = nil
+
+	function mod:MagmaSculptorSummon(args)
+		if self:GetOption(moltenCharskinMarker) then
+			moltenCharskinGUID = args.destGUID
+			self:RegisterTargetEvents("MarkMoltenCharskin")
+		end
+	end
+
+	function mod:MarkMoltenCharskin(_, unit, guid)
+		if moltenCharskinGUID == guid then
+			moltenCharskinGUID = nil
+			self:CustomIcon(moltenCharskinMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
 	end
 end
