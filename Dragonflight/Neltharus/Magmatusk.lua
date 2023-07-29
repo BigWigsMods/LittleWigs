@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MagmaLob", 375068)
 	self:Log("SPELL_CAST_START", "LavaSpray", 375251)
 	self:Log("SPELL_CAST_SUCCESS", "BlazingCharge", 375436)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Lava Wave
+	self:Log("SPELL_AURA_APPLIED", "BlazingChargeApplied", 375455)
 	self:Log("SPELL_AURA_APPLIED", "LavaEmpowermentApplied", 391457)
 	self:Log("SPELL_AURA_REMOVED", "LavaEmpowermentRemoved", 391457)
 end
@@ -154,11 +154,10 @@ function mod:BlazingCharge(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 375455 then -- Blazing Charge, when boss hits the wall
-		self:Message(375535, "orange") -- Lava Wave
-		self:PlaySound(375535, "alarm")
-	end
+function mod:BlazingChargeApplied(args)
+	-- when Magmatusk hits the wall it gets the Blazing Charge debuff and sends out a Lava Wave
+	self:Message(375535, "orange") -- Lava Wave
+	self:PlaySound(375535, "alarm")
 end
 
 do
