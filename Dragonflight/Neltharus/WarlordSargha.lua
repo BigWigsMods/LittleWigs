@@ -16,6 +16,7 @@ local magmaShieldCount = 1
 local burningEmberRemaining = 1
 local theDragonsKilnRemaining = 2
 local moltenGoldRemaining = 1
+local magicalImplementsList = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -44,7 +45,7 @@ function mod:GetOptions()
 		-- Raging Ember
 		377522, -- Burning Pursuit
 		-- Magical Implements
-		"magical_implements",
+		{"magical_implements", "INFOBOX"},
 		{391762, "DISPEL"}, -- Curse of the Dragon Hoard
 	}, {
 		[376780] = self.displayName, -- Warlord Sargha
@@ -73,6 +74,7 @@ function mod:OnBossEnable()
 	-- 392164 Azure Stone of Might
 	-- 392170 Rose of the Vale
 	self:Log("SPELL_AURA_APPLIED", "MagicalImplementsPickedUp", 376762, 384595, 392164, 392170)
+	self:Log("SPELL_AURA_REMOVED", "MagicalImplementsRemoved", 376762, 384595, 392164, 392170)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfTheDragonHoardApplied", 391762)
 end
 
@@ -209,7 +211,7 @@ end
 function mod:BurningPursuit(args)
 	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
 	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "warning")
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
 
@@ -219,6 +221,33 @@ function mod:MagicalImplementsPickedUp(args)
 	if self:Me(args.destGUID) then
 		self:TargetMessage("magical_implements", "green", args.destName, args.spellId, args.spellId)
 		self:PlaySound("magical_implements", "info", nil, args.destName)
+	end
+	if not next(magicalImplementsList) then
+		self:OpenInfo("magical_implements", self:SpellName(-25983)) -- Magical Implements
+	end
+	local magicalImplementsForPlayer = magicalImplementsList[args.destName]
+	if not magicalImplementsForPlayer then
+		magicalImplementsList[args.destName] = 1
+	else
+		-- can have more than 1 weapon each
+		magicalImplementsList[args.destName] = magicalImplementsForPlayer + 1
+	end
+	self:SetInfoByTable("magical_implements", magicalImplementsList)
+end
+
+function mod:MagicalImplementsRemoved(args)
+	local magicalImplementsForPlayer = magicalImplementsList[args.destName]
+	if magicalImplementsForPlayer then
+		if magicalImplementsForPlayer == 1 then
+			magicalImplementsList[args.destName] = nil
+		else
+			magicalImplementsList[args.destName] = magicalImplementsForPlayer - 1
+		end
+	end
+	if not next(magicalImplementsList) then
+		self:CloseInfo("magical_implements")
+	else
+		self:SetInfoByTable("magical_implements", magicalImplementsList)
 	end
 end
 
