@@ -476,10 +476,17 @@ end
 
 -- Irontide Ravager
 
-function mod:PainfulMotivation(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+do
+	local prev = 0
+	function mod:PainfulMotivation(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+	end
 end
 
 do
