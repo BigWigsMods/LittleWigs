@@ -91,9 +91,9 @@ function mod:GetOptions()
 		-- Blacktooth Knuckleduster
 		257732, -- Shattering Bellow
 		-- Bilge Rat Swabby
-		{274507, "DISPEL"}, -- Slippery Suds
+		274507, -- Slippery Suds
 		-- Vermin Trapper
-		274383, -- Rat Traps
+		{274383, "DISPEL"}, -- Rat Traps
 		-- Bilge Rat Buccaneer
 		257756, -- Goin' Bananas
 		-- Bilge Rat Padfoot
@@ -172,6 +172,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SlipperySudsApplied", 274507)
 	-- Vermin Trapper
 	self:Log("SPELL_CAST_SUCCESS", "RatTraps", 274383)
+	self:Log("SPELL_AURA_APPLIED", "RatTrapsApplied", 274389)
 	-- Bilge Rat Buccaneer
 	self:Log("SPELL_CAST_START", "GoinBananas", 257756)
 	-- Bilge Rat Padfoot
@@ -354,7 +355,7 @@ do
 			if t - prev > 2 then
 				prev = t
 				self:PersonalMessage(args.spellId, nil, CL.fixate)
-				self:PlaySound(args.spellId, "alarm")
+				self:PlaySound(args.spellId, "warning")
 			end
 		end
 		--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
@@ -402,6 +403,13 @@ function mod:RatTraps(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+end
+
+function mod:RatTrapsApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("movement", nil, 274383) then
+		self:TargetMessage(274383, "yellow", args.destName)
+		self:PlaySound(274383, "info", nil, args.destName)
+	end
 end
 
 -- Bilge Rat Buccaneer
