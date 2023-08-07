@@ -351,16 +351,28 @@ end
 
 -- Earthen Warder
 
-function mod:EarthenWard(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 32.6, args.sourceGUID)
+do
+	local prev = 0
+	function mod:EarthenWard(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		--self:NameplateCDBar(args.spellId, 32.6, args.sourceGUID)
+	end
 end
 
-function mod:EarthenWardApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
-		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:EarthenWardApplied(args)
+		local t = args.time
+		if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) and t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 
