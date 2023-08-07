@@ -34,7 +34,7 @@ function mod:GetOptions()
 		372719, -- Titanic Empowerment
 		372623, -- Resonating Orb
 		372701, -- Crushing Stomp
-		372718, -- Earthen Shards
+		{372718, "ME_ONLY_EMPHASIZE"}, -- Earthen Shards
 	}
 end
 
