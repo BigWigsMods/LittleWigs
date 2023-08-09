@@ -51,7 +51,7 @@ BigWigs:AddSounds("Freehold Trash", {
 	[257739] = "warning",
 	[257756] = "alarm",
 	[257775] = "alert",
-	[257784] = "alarm",
+	[257784] = "warning",
 	[257870] = "alarm",
 	[257899] = {"alert","info"},
 	[257908] = {"alert","warning"},
@@ -64,5 +64,5 @@ BigWigs:AddSounds("Freehold Trash", {
 	[274383] = {"alarm","info"},
 	[274400] = "alarm",
 	[274507] = {"alarm","alert"},
-	[274555] = "alert",
+	[274555] = {"alert","warning"},
 })
