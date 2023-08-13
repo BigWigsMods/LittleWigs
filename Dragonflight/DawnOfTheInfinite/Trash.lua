@@ -135,8 +135,10 @@ function mod:GetOptions()
 		418684, -- Deploy Dwarven Bombers
 		-- Horde Farseer
 		407891, -- Healing Wave
+		407906, -- Earthquake
 		-- Paladin of the Silver Hand
 		417011, -- Holy Light
+		417002, -- Consecration
 		-- Horde Raider / Alliance Knight
 		407124, -- Rallying Shout
 		407125, -- Sundering Slam
@@ -257,9 +259,13 @@ function mod:OnBossEnable()
 
 	-- Horde Farseer
 	self:Log("SPELL_CAST_START", "HealingWave", 407891)
+	self:Log("SPELL_AURA_APPLIED", "EarthquakeDamage", 407906)
+	self:Log("SPELL_PERIODIC_DAMAGE", "EarthquakeDamage", 407906)
 
 	-- Paladin of the Silver Hand
 	self:Log("SPELL_CAST_START", "HolyLight", 417011)
+	self:Log("SPELL_AURA_APPLIED", "ConsecrationDamage", 417002)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ConsecrationDamage", 417002)
 
 	-- Horde Raider / Alliance Knight
 	self:Log("SPELL_CAST_START", "RallyingShout", 407124)
@@ -503,7 +509,7 @@ end
 -- Infinite Saboteur
 
 function mod:BronzeExhalation(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
@@ -568,12 +574,40 @@ function mod:HealingWave(args)
 	-- TODO unknown CD
 end
 
+do
+	local prev = 0
+	function mod:EarthquakeDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou", nil, args.destName)
+			end
+		end
+	end
+end
+
 -- Paladin of the Silver Hand
 
 function mod:HolyLight(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	-- TODO unknown CD
+end
+
+do
+	local prev = 0
+	function mod:ConsecrationDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou", nil, args.destName)
+			end
+		end
+	end
 end
 
 -- Horde Raider / Alliance Knight
