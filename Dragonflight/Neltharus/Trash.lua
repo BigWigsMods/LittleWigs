@@ -436,7 +436,7 @@ end
 
 function mod:MoltenCore(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:MagmaConflagration(args)
