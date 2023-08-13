@@ -17,7 +17,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		410234, -- Bladestorm
+		{410234, "SAY"}, -- Bladestorm
 		-- Anduin Lothar
 		{418059, "TANK_HEALER"}, -- Mortal Strikes
 		418054, -- Shockwave (Anduin's)
@@ -35,7 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Bladestorm", 410234)
+	self:Log("SPELL_AURA_APPLIED", "Bladestorm", 410235)
 	self:Log("SPELL_CAST_START", "MortalStrikes", 418059, 410254) -- Mortal Strikes / Decapitate
 	self:Log("SPELL_CAST_SUCCESS", "Shockwave", 418054, 408227) -- Anduin, Grommash
 	self:Log("SPELL_CAST_START", "ForTheAlliance", 418047, 418046) -- For the Alliance / For the Horde
@@ -66,9 +66,12 @@ end
 --
 
 function mod:Bladestorm(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 35.2)
+	self:TargetMessage(410234, "red", args.destName)
+	self:PlaySound(410234, "alarm", nil, args.destName)
+	self:CDBar(410234, 35.2)
+	if self:Me(args.destGUID) then
+		self:Say(410234)
+	end
 end
 
 function mod:MortalStrikes(args) -- or Decapitate
