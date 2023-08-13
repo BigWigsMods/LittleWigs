@@ -15,7 +15,7 @@ mod:SetStage(1)
 
 local purgingFlamesDisabled = false
 local purgingFlamesActive = false
-local unstableEmbersRemaining = 4
+local unstableEmbersRemaining = 3
 local searingClapRemaining = 2
 local nextUnstableEmbers = 0
 local nextSearingClap = 0
@@ -120,13 +120,20 @@ do
 		local addsNeeded = self:Normal() and 3 or 4
 		addsKilled = addsKilled + 1
 		if addsKilled == addsNeeded then
-			unstableEmbersRemaining = 4
-			searingClapRemaining = 2
+			if self:Mythic() then
+				unstableEmbersRemaining = 3 -- usually 2, rarely 3
+				searingClapRemaining = 2
+				self:CDBar(369061, 5.9) -- Searing Clap
+				self:CDBar(369110, 13.3) -- Unstable Embers
+			else
+				unstableEmbersRemaining = 4 -- usually 3, rarely 4
+				searingClapRemaining = 2
+				self:CDBar(369110, 1.8) -- Unstable Embers
+				self:CDBar(369061, 5.4) -- Searing Clap
+			end
 			self:SetStage(1)
 			self:Message(368990, "cyan", CL.over:format(self:SpellName(368990))) -- Purging Flames Over
 			self:PlaySound(368990, "long")
-			self:CDBar(369110, 1.8) -- Unstable Embers
-			self:CDBar(369061, 5.4) -- Searing Clap
 			if not purgingFlamesDisabled then
 				-- 35s energy gain + ~2.7s delay
 				self:CDBar(368990, 37.7) -- Purging Flames
