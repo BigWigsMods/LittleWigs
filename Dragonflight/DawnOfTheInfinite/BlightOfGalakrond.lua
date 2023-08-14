@@ -18,13 +18,14 @@ mod:SetStage(1)
 -- Initialization
 --
 
+local necrofrostMarker = mod:AddMarkerOption(true, "npc", 8, 408029, 8) -- Necrofrost
 function mod:GetOptions()
 	return {
 		-- General
 		"stages",
 		-- Blight of Galakrond
 		406886, -- Corrosive Infusion
-		{407406, "SAY", "SAY_COUNTDOWN"}, -- Corrosion
+		{407406, "ICON", "SAY", "SAY_COUNTDOWN"}, -- Corrosion
 		418346, -- Corrupted Mind
 		407159, -- Blight Reclamation
 		407147, -- Blight Seep
@@ -32,6 +33,7 @@ function mod:GetOptions()
 		407978, -- Necrotic Winds
 		-- Loszkeleth
 		{408029, "SAY", "DISPEL"}, -- Necrofrost
+		necrofrostMarker,
 		-- Dazhak
 		{408141, "SAY"}, -- Incinerating Blightbreath
 	}, {
@@ -115,25 +117,26 @@ function mod:CorrosiveInfusion(args)
 end
 
 function mod:CorrosionApplied(args)
-	-- TODO icon on corrosion player?
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
+	self:SecondaryIcon(args.spellId, args.destName)
 	if self:Mythic() then
 		self:TargetBar(args.spellId, 12, args.destName)
 	end
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		if self:Mythic() then
-			self:SayCountdown(args.spellId, 12)
+			self:YellCountdown(args.spellId, 12, nil, 5)
 		end
 	end
 end
 
 function mod:CorrosionRemoved(args)
+	self:SecondaryIcon(args.spellId)
 	if self:Mythic() then
 		self:StopBar(args.spellId, args.destName)
 		if self:Me(args.destGUID) then
-			self:CancelSayCountdown(args.spellId)
+			self:CancelYellCountdown(args.spellId)
 		end
 	end
 end
@@ -187,14 +190,28 @@ do
 	end
 end
 
-function mod:NecrofrostApplied(args)
-	if self:Dispeller("movement", nil, 408029) then
-		-- can be dispelled by movement dispellers, so alert on application
-		self:TargetMessage(408029, "cyan", args.destName)
-		self:PlaySound(408029, "info", nil, args.destName)
+do
+	local necrofrostGUID = nil
+
+	function mod:NecrofrostApplied(args)
+		if self:Dispeller("movement", nil, 408029) then
+			-- can be dispelled by movement dispellers, so alert on application
+			self:TargetMessage(408029, "cyan", args.destName)
+			self:PlaySound(408029, "info", nil, args.destName)
+		end
+		if self:Me(args.destGUID) then
+			self:Say(408029)
+		end
+		necrofrostGUID = args.sourceGUID
+		self:RegisterTargetEvents("MarkNecrofrost")
 	end
-	if self:Me(args.destGUID) then
-		self:Say(408029)
+
+	function mod:MarkNecrofrost(_, unit, guid)
+		if necrofrostGUID == guid then
+			necrofrostGUID = nil
+			self:CustomIcon(necrofrostMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
 	end
 end
 
