@@ -23,10 +23,12 @@ local familiarFacesCount = 1
 -- Initialization
 --
 
+local moreProblemsMarker = mod:AddMarkerOption(true, "npc", 1, 403902, 1, 2, 3, 4, 5, 6) -- More Problems
 function mod:GetOptions()
 	return {
 		404916, -- Sand Blast
 		403891, -- More Problems!
+		moreProblemsMarker,
 		{404364, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Dragon's Breath
 		405279, -- Familiar Faces
 		406481, -- Time Traps
@@ -38,6 +40,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SandBlast", 404916)
 	self:Log("SPELL_CAST_START", "MoreProblems", 403891)
+	self:Log("SPELL_SUMMON", "MoreProblemsSummon", 403902)
 	self:Log("SPELL_CAST_START", "DragonsBreath", 404364)
 	self:Log("SPELL_CAST_START", "FamiliarFaces", 405279, 407504) -- initial summon, reactivation
 	self:Log("SPELL_CAST_START", "TimeTraps", 406481)
@@ -72,17 +75,46 @@ function mod:SandBlast(args)
 	end
 end
 
-function mod:MoreProblems(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "long")
-	moreProblemsCount = moreProblemsCount + 1
-	-- pull:10.1, 40.0, 47.4, 51.1, 52.2, 51.0, 51.0
-	if moreProblemsCount == 2 then
-		self:CDBar(args.spellId, 39.7)
-	elseif moreProblemsCount == 3 then
-		self:CDBar(args.spellId, 47.4)
-	else
-		self:CDBar(args.spellId, 51.0)
+do
+	local morchieCollector = {}
+	local morchieCount = 1
+
+	function mod:MoreProblems(args)
+		if self:GetOption(moreProblemsMarker) then
+			morchieCollector = {}
+			morchieCount = 1
+			self:RegisterTargetEvents("MorchieMarking")
+		end
+		self:Message(args.spellId, "cyan")
+		self:PlaySound(args.spellId, "long")
+		moreProblemsCount = moreProblemsCount + 1
+		-- pull:10.1, 40.0, 47.4, 51.1, 52.2, 51.0, 51.0
+		if moreProblemsCount == 2 then
+			self:CDBar(args.spellId, 39.7)
+		elseif moreProblemsCount == 3 then
+			self:CDBar(args.spellId, 47.4)
+		else
+			self:CDBar(args.spellId, 51.0)
+		end
+	end
+
+	function mod:MoreProblemsSummon(args)
+		if self:GetOption(moreProblemsMarker) then
+			if not morchieCollector[args.destGUID] then
+				morchieCollector[args.destGUID] = morchieCount
+				morchieCount = morchieCount + 1
+			end
+		end
+	end
+
+	function mod:MorchieMarking(_, unit, guid)
+		if morchieCollector[guid] then
+			self:CustomIcon(moreProblemsMarker, unit, morchieCollector[guid])
+			morchieCollector[guid] = nil
+			if not next(morchieCollector) then
+				self:UnregisterTargetEvents()
+			end
+		end
 	end
 end
 
