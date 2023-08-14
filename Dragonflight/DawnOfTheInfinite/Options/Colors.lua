@@ -53,7 +53,7 @@ BigWigs:AddColors("Morchie", {
 
 BigWigs:AddColors("Time-Lost Battlefield", {
 	[408227] = "orange",
-	[410234] = {"blue","red"},
+	[410235] = {"blue","red"},
 	[410254] = "purple",
 	[410496] = "yellow",
 	[418046] = "cyan",

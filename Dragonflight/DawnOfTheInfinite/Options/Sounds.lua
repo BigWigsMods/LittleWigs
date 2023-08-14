@@ -53,7 +53,7 @@ BigWigs:AddSounds("Morchie", {
 
 BigWigs:AddSounds("Time-Lost Battlefield", {
 	[408227] = "alarm",
-	[410234] = "alarm",
+	[410235] = "alarm",
 	[410254] = "alert",
 	[410496] = "alert",
 	[418046] = "info",

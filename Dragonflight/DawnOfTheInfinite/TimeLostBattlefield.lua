@@ -17,7 +17,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		{410234, "SAY"}, -- Bladestorm
+		{410235, "SAY"}, -- Bladestorm
 		-- Anduin Lothar
 		{418059, "TANK_HEALER"}, -- Mortal Strikes
 		418054, -- Shockwave (Anduin's)
@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(410234, 21.8) -- Bladestorm
+	self:CDBar(410235, 21.8) -- Bladestorm
 	if self:GetBossId(203679) then -- Anduin Lothar
 		self:CDBar(418059, 2.4) -- Mortal Strikes
 		self:CDBar(418054, 9.7) -- Shockwave (Anduin's)
@@ -66,11 +66,11 @@ end
 --
 
 function mod:Bladestorm(args)
-	self:TargetMessage(410234, "red", args.destName)
-	self:PlaySound(410234, "alarm", nil, args.destName)
-	self:CDBar(410234, 35.2)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	self:CDBar(args.spellId, 35.2)
 	if self:Me(args.destGUID) then
-		self:Say(410234)
+		self:Say(args.spellId)
 	end
 end
 
