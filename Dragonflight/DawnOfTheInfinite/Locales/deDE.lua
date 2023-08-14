@@ -21,6 +21,7 @@ if L then
 	L.timeline_marauder = "Zeitlinienmarodeur"
 	L.infinite_saboteur = "Ewiger Saboteur"
 	L.infinite_riftmage = "Unendliche Rissmagierin"
+	L.timelost_waveshaper = "Zeitverlorener Wellenformer"
 	L.chronaxie = "Chronaxie"
 	L.horde_destroyer = "Zerstörer der Horde"
 	L.alliance_destroyer = "Zerstörer der Allianz"

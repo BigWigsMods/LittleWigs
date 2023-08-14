@@ -79,6 +79,7 @@ BigWigs:AddColors("Dawn of the Infinite Trash", {
 	[407535] = "cyan",
 	[407891] = "yellow",
 	[407906] = "blue",
+	[411300] = "yellow",
 	[411994] = "red",
 	[412012] = "yellow",
 	[412063] = "orange",

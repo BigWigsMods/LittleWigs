@@ -27,6 +27,7 @@ mod:RegisterEnableMob(
 	208438, -- Infinite Saboteur
 	206230, -- Infinite Diversionist
 	208698, -- Infinite Riftmage
+	205363, -- Time-Lost Waveshaper
 	206070, -- Chronaxie
 	203861, -- Horde Destroyer
 	208208, -- Alliance Destroyer
@@ -64,6 +65,7 @@ if L then
 	L.timeline_marauder = "Timeline Marauder"
 	L.infinite_saboteur = "Infinite Saboteur"
 	L.infinite_riftmage = "Infinite Riftmage"
+	L.timelost_waveshaper = "Time-Lost Waveshaper"
 	L.chronaxie = "Chronaxie"
 	L.horde_destroyer = "Horde Destroyer"
 	L.alliance_destroyer = "Alliance Destroyer"
@@ -125,6 +127,8 @@ function mod:GetOptions()
 		419351, -- Bronze Exhalation
 		-- Infinite Riftmage
 		418200, -- Infinite Burn
+		-- Time-Lost Waveshaper
+		411300, -- Fish Bolt Volley
 		-- Chronaxie
 		419516, -- Chronal Eruption
 		419511, -- Temporal Link
@@ -167,6 +171,7 @@ function mod:GetOptions()
 		[417481] = L.timeline_marauder,
 		[419351] = L.infinite_saboteur,
 		[418200] = L.infinite_riftmage,
+		[411300] = L.timelost_waveshaper,
 		[419516] = L.chronaxie,
 		[407535] = L.horde_destroyer,
 		[418684] = L.alliance_destroyer,
@@ -244,6 +249,9 @@ function mod:OnBossEnable()
 
 	-- Infinite Riftmage
 	self:Log("SPELL_CAST_START", "InfiniteBurn", 418200)
+
+	-- Time-Lost Waveshaper
+	self:Log("SPELL_CAST_START", "FishBoltVolley", 411300)
 
 	-- Chronaxie
 	self:Log("SPELL_CAST_START", "ChronalEruption", 419516)
@@ -522,6 +530,14 @@ function mod:InfiniteBurn(args)
 	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
 end
 
+-- Time-Lost Waveshaper
+
+function mod:FishBoltVolley(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
+end
+
 -- Chronaxie
 
 function mod:ChronalEruption(args)
@@ -642,6 +658,6 @@ end
 
 function mod:DizzyingSands(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "warning")
 	--self:NameplateCDBar(args.spellId, 29.1, args.sourceGUID)
 end

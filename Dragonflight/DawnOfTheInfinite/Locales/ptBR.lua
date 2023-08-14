@@ -21,6 +21,7 @@ if L then
 	--L.timeline_marauder = "Timeline Marauder"
 	--L.infinite_saboteur = "Infinite Saboteur"
 	--L.infinite_riftmage = "Infinite Riftmage"
+	L.timelost_waveshaper = "Moldaonda Perdido no Tempo"
 	--L.chronaxie = "Chronaxie"
 	--L.horde_destroyer = "Horde Destroyer"
 	--L.alliance_destroyer = "Alliance Destroyer"
