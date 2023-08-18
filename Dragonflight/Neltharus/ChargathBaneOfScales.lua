@@ -24,7 +24,6 @@ local fieryFocusCount = 1
 local L = mod:GetLocale()
 if L then
 	L.slow = "Slow"
-	L.boss = "BOSS"
 end
 
 --------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ do
 	function mod:FetterApplied(args)
 		if self:Mythic() then
 			if args.spellId == 388523 then -- Long Fetter on boss (12s stun)
-				self:StopBar(CL.stack:format(2, L.slow, L.boss))
+				self:StopBar(CL.stack:format(2, L.slow, CL.boss))
 				self:StopBar(CL.cast:format(self:SpellName(375056))) -- Fiery Focus
 				bossStunned = true
 				self:Message(388523, "green", CL.onboss:format(args.spellName))
@@ -108,12 +107,12 @@ do
 				-- this is for 1 or 2 stacks
 				local stacks = args.amount or 1
 				if stacks < 3 then -- 3rd stack briefly applies before long stun, ignore it
-					self:Message(388523, "green", CL.stack:format(stacks, L.slow, L.boss))
+					self:Message(388523, "green", CL.stack:format(stacks, L.slow, CL.boss))
 					self:PlaySound(388523, "info")
 					if stacks == 2 then
-						self:StopBar(CL.stack:format(1, L.slow, L.boss))
+						self:StopBar(CL.stack:format(1, L.slow, CL.boss))
 					end
-					self:Bar(388523, 12, CL.stack:format(stacks, L.slow, L.boss))
+					self:Bar(388523, 12, CL.stack:format(stacks, L.slow, CL.boss))
 				end
 			end
 		else

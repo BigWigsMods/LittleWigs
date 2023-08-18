@@ -25,7 +25,6 @@ end
 L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "frFR")
 if L then
 	L.slow = "Lenteur"
-	L.boss = "BOSS"
 end
 
 L = BigWigs:NewBossLocale("Warlord Sargha", "frFR")

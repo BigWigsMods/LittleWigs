@@ -14,8 +14,3 @@ if L then
 	L.earthen_guardian = "Guardiano Terrigeno"
 	L.infinite_agent = "Agente dell'Infinito"
 end
-
-L = BigWigs:NewBossLocale("Sentinel Talondras", "itIT")
-if L then
-	L.boss = "BOSS"
-end
