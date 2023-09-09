@@ -155,6 +155,8 @@ end
 function mod:UpheavalRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
 
