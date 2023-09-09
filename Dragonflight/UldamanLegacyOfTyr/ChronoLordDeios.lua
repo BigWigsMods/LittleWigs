@@ -37,6 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RewindTimeflow", 376208)
 	self:Log("SPELL_AURA_REMOVED", "RewindTimeflowOver", 376208)
 	self:Log("SPELL_CAST_START", "WingBuffet", 376049)
+	self:Log("SPELL_CAST_SUCCESS", "TimeSink", 377395)
 	self:Log("SPELL_AURA_APPLIED", "TimeSinkApplied", 377405)
 	self:Log("SPELL_CAST_START", "SandBreath", 375727)
 end
@@ -123,25 +124,28 @@ end
 
 do
 	local playerList = {}
-	local prev = 0
-	function mod:TimeSinkApplied(args)
-		local t = args.time
-		if t - prev > 3 then -- detect new round of debuffs, no SPELL_CAST_SUCCESS
-			prev = t
-			playerList = {}
-			self:StopBar(CL.count:format(args.spellName, timeSinkCount))
-			timeSinkCount = timeSinkCount + 1
-			-- pull:6.1, 20.6, 35.2, 23.1, 34.0, 23.1, 34.0
-			if timeSinkCount == 2 then
-				self:CDBar(args.spellId, 20.6, CL.count:format(args.spellName, timeSinkCount))
-			elseif timeSinkCount == 3 then
-				self:CDBar(args.spellId, 35.2, CL.count:format(args.spellName, timeSinkCount))
-			elseif timeSinkCount % 2 == 0 then
-				self:CDBar(args.spellId, 23.1, CL.count:format(args.spellName, timeSinkCount))
-			else
-				self:CDBar(args.spellId, 34.0, CL.count:format(args.spellName, timeSinkCount))
-			end
+
+	function mod:TimeSink(args)
+		if self:Normal() then
+			-- this event fires on normal but no debuffs go out, ignore it
+			return
 		end
+		playerList = {}
+		self:StopBar(CL.count:format(args.spellName, timeSinkCount))
+		timeSinkCount = timeSinkCount + 1
+		-- pull:6.1, 20.6, 35.2, 23.1, 34.0, 23.1, 34.0
+		if timeSinkCount == 2 then
+			self:CDBar(377405, 20.6, CL.count:format(args.spellName, timeSinkCount))
+		elseif timeSinkCount == 3 then
+			self:CDBar(377405, 35.2, CL.count:format(args.spellName, timeSinkCount))
+		elseif timeSinkCount % 2 == 0 then
+			self:CDBar(377405, 23.1, CL.count:format(args.spellName, timeSinkCount))
+		else
+			self:CDBar(377405, 34.0, CL.count:format(args.spellName, timeSinkCount))
+		end
+	end
+
+	function mod:TimeSinkApplied(args)
 		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(args.spellId, "red", playerList, 3)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
