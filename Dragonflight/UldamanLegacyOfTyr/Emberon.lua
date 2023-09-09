@@ -28,15 +28,19 @@ function mod:GetOptions()
 	return {
 		368990, -- Purging Flames
 		369043, -- Infusion
+		369038, -- Titanic Ward
 		369110, -- Unstable Embers
 		369061, -- Searing Clap
+	}, nil, {
+		[369043] = CL.adds,
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_SUCCESS", "PurgingFlamesPrecast", 369022)
 	self:Log("SPELL_CAST_START", "PurgingFlames", 368990)
+	self:Log("SPELL_CAST_SUCCESS", "HeatEngine", 369026)
 	self:Log("SPELL_AURA_REMOVED", "PurgingFlamesRemoved", 368990)
 	self:Log("SPELL_AURA_APPLIED", "InfusionApplied", 369043)
 	self:Log("SPELL_AURA_REMOVED", "InfusionRemoved", 369043)
@@ -82,15 +86,13 @@ function mod:UNIT_HEALTH(event, unit)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 369022 then -- Purging Flames
-		-- this is cast when the boss runs to the center, we can clean up extra
-		-- timers for skipped abilities a little early
-		nextUnstableEmbers = 0
-		nextSearingClap = 0
-		self:StopBar(369110) -- Unstable Embers
-		self:StopBar(369061) -- Searing Clap
-	end
+function mod:PurgingFlamesPrecast(args)
+	-- this is cast when the boss runs to the center, we can clean up extra
+	-- timers for skipped abilities a little early
+	nextUnstableEmbers = 0
+	nextSearingClap = 0
+	self:StopBar(369110) -- Unstable Embers
+	self:StopBar(369061) -- Searing Clap
 end
 
 function mod:PurgingFlames(args)
@@ -99,6 +101,11 @@ function mod:PurgingFlames(args)
 	self:StopBar(args.spellId)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:HeatEngine(args)
+	self:Message(369038, "green", CL.removed:format(self:SpellName(369038))) -- Titanic Ward
+	self:PlaySound(369038, "info")
 end
 
 function mod:PurgingFlamesRemoved()

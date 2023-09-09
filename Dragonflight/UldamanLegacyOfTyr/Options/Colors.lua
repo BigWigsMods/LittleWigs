@@ -28,6 +28,7 @@ BigWigs:AddColors("Sentinel Talondras", {
 
 BigWigs:AddColors("Emberon", {
 	[368990] = "cyan",
+	[369038] = "green",
 	[369043] = "green",
 	[369061] = "purple",
 	[369110] = "orange",
