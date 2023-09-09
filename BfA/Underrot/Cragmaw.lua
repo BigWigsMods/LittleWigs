@@ -44,7 +44,7 @@ function mod:OnEngage()
 	tantrumCount = 1
 	timeAddedToCharge = 0
 	self:CDBar(260292, 8.2) -- Charge
-	self:CDBar(260793, 8.2) -- Indigestion
+	self:CDBar(260793, 19.3) -- Indigestion
 	if not self:Normal() then
 		self:CDBar(260333, 45.0, CL.count:format(self:SpellName(260333), tantrumCount)) -- Tantrum
 	end
@@ -62,23 +62,19 @@ function mod:Charge(args)
 	self:CDBar(args.spellId, 20.6)
 	-- minimum 10.5s before Indigestion after Charge
 	if self:BarTimeLeft(260793) < 10.5 then -- Indigestion
-		self:CDBar(260793, {10.5, 44.9})
+		self:CDBar(260793, {10.5, 43.0})
 	end
 end
 
 function mod:Indigestion(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm", "mobsoon")
-	self:CDBar(args.spellId, 44.9)
+	self:CDBar(args.spellId, 43.0)
 	-- minimum 12.15s before Charge after Indigestion
 	local chargeTimeLeft = self:BarTimeLeft(260292) -- Charge
 	if chargeTimeLeft < 12.15 then -- Charge
 		timeAddedToCharge = 12.15 - chargeTimeLeft
 		self:CDBar(260292, {12.15, 20.6})
-	end
-	-- if Indigestion is the very first ability in the fight, the first Tantrum will be delayed ~6.8s
-	if not self:Normal() and chargeCount == 1 and tantrumCount == 1 then
-		self:CDBar(260333, {43.3, 45.0}, CL.count:format(self:SpellName(260333), tantrumCount))
 	end
 end
 
@@ -95,7 +91,7 @@ function mod:Tantrum(args)
 			self:CDBar(260292, {18.2, 20.6})
 		end
 		if self:BarTimeLeft(260793) < 18.2 then -- Indigestion
-			self:CDBar(260793, {18.2, 44.9})
+			self:CDBar(260793, {18.2, 43.0})
 		end
 	else
 		-- minimum 7.26 seconds before either ability can be cast, and
@@ -108,7 +104,7 @@ function mod:Tantrum(args)
 			self:CDBar(260292, {7.26, 20.6})
 		end
 		if self:BarTimeLeft(260793) < 7.26 then -- Indigestion
-			self:CDBar(260793, {7.26, 44.9})
+			self:CDBar(260793, {7.26, 43.0})
 		end
 	end
 end
