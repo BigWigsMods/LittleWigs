@@ -43,7 +43,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:Log("SPELL_CAST_SUCCESS", "StanceOfTheMountain", 198509)
 	self:Death("IntermissionTotemsDeath", 100818)
 	self:Log("SPELL_CAST_START", "BellowOfTheDeeps", 193375)
 	self:Log("SPELL_CAST_START", "StrikeOfTheMountain", 198428)
@@ -70,17 +70,15 @@ end
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("198510", nil, true) then -- Stance of the Mountain
-		self:SetStage(2)
-		totemsAlive = self:Normal() and 3 or 5
-		self:StopBar(CL.totems) -- Bellow of the Deeps
-		self:StopBar(L.hands) -- Strike of the Mountain
-		self:StopBar(198496) -- Sunder
-		self:StopBar(CL.count:format(CL.intermission, stanceOfTheMountainCount)) -- Stance of the Mountain
-		self:Message(198564, "cyan", CL.count:format(CL.intermission, stanceOfTheMountainCount))
-		self:PlaySound(198564, "long")
-	end
+function mod:StanceOfTheMountain(args)
+	self:SetStage(2)
+	totemsAlive = self:Normal() and 3 or 5
+	self:StopBar(CL.totems) -- Bellow of the Deeps
+	self:StopBar(L.hands) -- Strike of the Mountain
+	self:StopBar(198496) -- Sunder
+	self:StopBar(CL.count:format(CL.intermission, stanceOfTheMountainCount)) -- Stance of the Mountain
+	self:Message(198564, "cyan", CL.count:format(CL.intermission, stanceOfTheMountainCount))
+	self:PlaySound(198564, "long")
 end
 
 function mod:IntermissionTotemsDeath()
