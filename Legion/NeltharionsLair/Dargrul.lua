@@ -49,7 +49,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LavaGeyserDamage", 216407)
 	self:Log("SPELL_PERIODIC_DAMAGE", "LavaGeyserDamage", 216407)
 	self:Log("SPELL_AURA_APPLIED", "BurningHatred", 200154)
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- for Crystal Cracked
+	self:Log("SPELL_AURA_APPLIED", "CrystalCracked", 200672)
 	self:Log("SPELL_SUMMON", "MagmaSculptorSummon", 200637)
 end
 
@@ -160,11 +160,9 @@ function mod:BurningHatred(args)
 	end
 end
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("200672", nil, true) then -- Crystal Cracked
-		self:Message(200672, "green")
-		self:PlaySound(200672, "info")
-	end
+function mod:CrystalCracked(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
 end
 
 do
