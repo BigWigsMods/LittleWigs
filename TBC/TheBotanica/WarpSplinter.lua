@@ -48,9 +48,11 @@ end
 do
 	local playerList = mod:NewTargetList()
 	function mod:Stomp(args)
-		playerList[#playerList+1] = args.destName
-		if #playerList == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "alert", nil, nil, self:Healer())
+		if self:Player(args.destFlags) then -- stuns pets too
+			playerList[#playerList+1] = args.destName
+			if #playerList == 1 then
+				self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "alert", nil, nil, self:Healer())
+			end
 		end
 	end
 end
