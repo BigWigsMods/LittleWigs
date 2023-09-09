@@ -174,7 +174,7 @@ end
 -- Gashtooth
 
 function mod:DecayedSenses(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 59.5)
 end
@@ -182,7 +182,7 @@ end
 function mod:DecayedSensesApplied(args)
 	-- can be spell reflected by Warriors
 	if self:Player(args.destFlags) and self:Dispeller("magic") then
-		self:TargetMessage(381694, "red", args.destName)
+		self:TargetMessage(381694, "purple", args.destName)
 		self:PlaySound(381694, "warning", nil, args.destName)
 	elseif self:Hostile(args.destFlags) then -- on boss
 		self:Message(381694, "green", CL.on:format(args.spellName, args.destName))
