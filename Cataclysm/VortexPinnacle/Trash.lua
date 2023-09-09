@@ -108,9 +108,7 @@ function mod:OnBossEnable()
 
 	-- Cloud Prince
 	self:Log("SPELL_CAST_START", "Turbulence", 411002)
-	-- TODO this no longer logs
-	--self:Log("SPELL_CAST_SUCCESS", "BombCyclone", 411004)
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- for Bomb Cyclone
+	self:Log("SPELL_CAST_SUCCESS", "BombCyclone", 411004)
 
 	-- Turbulent Squall
 	self:Log("SPELL_CAST_START", "Cloudburst", 88170)
@@ -205,19 +203,6 @@ function mod:BombCyclone(args)
 	self:Message(411005, "orange")
 	self:PlaySound(411005, "alarm")
 	--self:NameplateCDBar(411005, 15.8, self:UnitGUID(unit))
-end
-
-do
-	local prev = nil
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		-- this is needed because Bomb Cyclone no longer logs SPELL_CAST_SUCCESS
-		if spellId == 411004 and castGUID ~= prev then -- Bomb Cyclone
-			prev = castGUID
-			self:Message(411005, "orange")
-			self:PlaySound(411005, "alarm")
-			--self:NameplateCDBar(411005, 15.8, self:UnitGUID(unit))
-		end
-	end
 end
 
 -- Turbulent Squall
