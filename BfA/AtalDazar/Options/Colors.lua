@@ -8,9 +8,10 @@ BigWigs:AddColors("Priestess Alun'za", {
 })
 
 BigWigs:AddColors("Vol'kaal", {
-	[250241] = "green",
-	[250258] = "yellow",
+	[250241] = "cyan",
+	[250258] = "orange",
 	[250585] = "blue",
+	[259531] = "yellow",
 	[259572] = "red",
 })
 
