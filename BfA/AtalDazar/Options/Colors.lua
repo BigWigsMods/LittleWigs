@@ -23,9 +23,9 @@ BigWigs:AddColors("Rezan", {
 })
 
 BigWigs:AddColors("Yazma", {
-	[249919] = "yellow",
+	[249919] = "purple",
 	[250036] = "blue",
-	[250050] = "yellow",
+	[250050] = "cyan",
 	[250096] = "orange",
 	[259187] = "red",
 })

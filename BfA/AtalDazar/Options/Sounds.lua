@@ -24,7 +24,7 @@ BigWigs:AddSounds("Rezan", {
 
 BigWigs:AddSounds("Yazma", {
 	[249919] = "alert",
-	[250036] = "alarm",
+	[250036] = "underyou",
 	[250050] = "info",
 	[250096] = "alert",
 	[259187] = "warning",
