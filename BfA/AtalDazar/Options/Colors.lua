@@ -16,8 +16,9 @@ BigWigs:AddColors("Vol'kaal", {
 
 BigWigs:AddColors("Rezan", {
 	[255371] = "red",
-	[255434] = "yellow",
-	[257407] = {"blue","orange"},
+	[255421] = {"blue","yellow"},
+	[255434] = "purple",
+	[257407] = {"blue","green","orange"},
 })
 
 BigWigs:AddColors("Yazma", {
