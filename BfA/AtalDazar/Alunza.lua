@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Priestess Alun'za", 1763, 2082)
 if not mod then return end
 mod:RegisterEnableMob(122967)
-mod.engageId = 2084
-mod.respawnTime = 30
+mod:SetEncounterID(2084)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -16,10 +15,10 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		255558, -- Tainted Blood
-		255577, -- Transfusion
+		{255577, "CASTBAR"}, -- Transfusion
 		{255579, "TANK"}, -- Gilded Claws
 		255582, -- Molten Gold
-		258709, -- Corrupted Gold
+		277072, -- Corrupted Gold
 	}
 end
 
@@ -30,14 +29,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "TransfusionSuccess", 255577)
 	self:Log("SPELL_CAST_START", "GildedClaws", 255579)
 	self:Log("SPELL_AURA_APPLIED", "MoltenGold", 255582)
-	self:Log("SPELL_DAMAGE", "CorruptedGold", 258709)
-	self:Log("SPELL_ABSORBED", "CorruptedGold", 258709)
+	self:Log("SPELL_AURA_APPLIED", "CorruptedGold", 277072)
+	-- TODO no event at all for Spirit of Gold
 end
 
 function mod:OnEngage()
-	self:Bar(255579, 11) -- Gilded Claws
-	self:Bar(255582, 19) -- Molten Gold
-	self:Bar(255577, 25) -- Transfusion
+	self:CDBar(255579, 10.7) -- Gilded Claws
+	self:CDBar(255582, 18.8) -- Molten Gold
+	self:CDBar(255577, 25.3) -- Transfusion
 end
 
 --------------------------------------------------------------------------------
@@ -61,8 +60,8 @@ do
 	function mod:Transfusion(args)
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning") -- voice warning is in the Taunted Blood check if needed
-		self:Bar(args.spellId, 34)
-		self:Bar(args.spellId, 4, CL.cast:format(args.spellName))
+		self:CDBar(args.spellId, 34.0)
+		self:CastBar(args.spellId, 4)
 		checkForTaintedBlood(self)
 	end
 
@@ -91,9 +90,9 @@ do
 end
 
 function mod:GildedClaws(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert", "defensive")
-	self:Bar(args.spellId, 34)
+	self:CDBar(args.spellId, 34.0)
 end
 
 function mod:MoltenGold(args)
@@ -101,9 +100,9 @@ function mod:MoltenGold(args)
 	if self:Dispeller("magic") then
 		self:PlaySound(args.spellId, "info", "dispelnow", args.destName)
 	elseif self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "info")
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
-	self:Bar(args.spellId, 34)
+	self:CDBar(args.spellId, 34.0)
 end
 
 do
@@ -113,7 +112,7 @@ do
 			local t = args.time
 			if t - prev > 2 then
 				prev = t
-				self:PersonalMessage(args.spellId, "underyou")
+				self:PersonalMessage(args.spellId)
 				self:PlaySound(args.spellId, "alarm", "gtfo")
 			end
 		end
