@@ -7,10 +7,10 @@ BigWigs:AddColors("Archdruid Glaidalis", {
 })
 
 BigWigs:AddColors("Oakheart", {
-	[204574] = "yellow",
-	[204646] = {"blue","orange"},
+	[204574] = {"blue","yellow"},
+	[204611] = "purple",
 	[204666] = "red",
-	[204667] = "red",
+	[204667] = "orange",
 })
 
 BigWigs:AddColors("Dresaron", {
