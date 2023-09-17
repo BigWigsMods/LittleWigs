@@ -14,9 +14,10 @@ BigWigs:AddSounds("Oakheart", {
 })
 
 BigWigs:AddSounds("Dresaron", {
-	[191325] = "info",
-	[199345] = "warning",
-	[199460] = "alarm",
+	[191325] = "alarm",
+	[199345] = "long",
+	[199389] = "alert",
+	[199460] = "underyou",
 })
 
 BigWigs:AddSounds("Shade of Xavius", {

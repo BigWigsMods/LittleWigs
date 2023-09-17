@@ -14,8 +14,9 @@ BigWigs:AddColors("Oakheart", {
 })
 
 BigWigs:AddColors("Dresaron", {
-	[191325] = "yellow",
-	[199345] = "red",
+	[191325] = "orange",
+	[199345] = "yellow",
+	[199389] = "red",
 	[199460] = "blue",
 })
 
