@@ -65,7 +65,7 @@ do
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 27.9)
 	end
-	
+
 	function mod:GrowingParanoiaApplied(args)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
