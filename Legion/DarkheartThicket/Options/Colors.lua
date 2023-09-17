@@ -21,10 +21,12 @@ BigWigs:AddColors("Dresaron", {
 })
 
 BigWigs:AddColors("Shade of Xavius", {
-	[200050] = "yellow",
-	[200185] = {"blue","orange"},
+	[200050] = "cyan",
+	[200182] = {"blue","purple"},
+	[200185] = {"blue","yellow"},
 	[200238] = {"blue","red"},
-	[200289] = {"blue","yellow"},
+	[200243] = "blue",
+	[200289] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Darkheart Thicket Trash", {

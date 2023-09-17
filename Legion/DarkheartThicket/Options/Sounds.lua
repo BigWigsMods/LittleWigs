@@ -21,9 +21,11 @@ BigWigs:AddSounds("Dresaron", {
 })
 
 BigWigs:AddSounds("Shade of Xavius", {
-	[200050] = "info",
-	[200185] = "alert",
-	[200238] = "warning",
+	[200050] = "long",
+	[200182] = "alert",
+	[200185] = "info",
+	[200238] = "alert",
+	[200243] = "alarm",
 	[200289] = "alarm",
 })
 
