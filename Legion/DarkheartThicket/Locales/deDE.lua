@@ -1,10 +1,18 @@
 local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "deDE")
 if not L then return end
 if L then
-	L.ruiner = "Verheerer der Schreckensseele"
-	L.poisoner = "Vergifter der Schreckensseele"
-	L.razorbeak = "Wahnsinniger Klingenschnabel"
-	L.grizzly = "Eiterpelzgrizzly"
-	L.fury = "Blutbesudelter Zornbrodler"
-	L.imp = "Schreckensfeuerwichtel"
+	L.mindshattered_screecher = "Gebrochener Kreischer"
+	L.dreadsoul_ruiner = "Verheerer der Schreckensseele"
+	L.dreadsoul_poisoner = "Vergifter der Schreckensseele"
+	L.crazed_razorbeak = "Wahnsinniger Klingenschnabel"
+	L.festerhide_grizzly = "Eiterpelzgrizzly"
+	L.vilethorn_blossom = "Garststachelblüte"
+	L.rotheart_dryad = "Moderherzdryade"
+	L.rotheart_keeper = "Moderherzbewahrer"
+	L.nightmare_dweller = "Alptraumbewohner"
+	L.bloodtainted_fury = "Blutbesudelter Zornbrodler"
+	L.bloodtainted_burster = "Blutbesudelter Sprudler"
+	L.taintheart_summoner = "Pestherzbeschwörer"
+	L.dreadfire_imp = "Schreckensfeuerwichtel"
+	L.tormented_bloodseeker = "Gequälter Blutsucher"
 end

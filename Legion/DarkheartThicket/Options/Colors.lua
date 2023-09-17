@@ -30,13 +30,21 @@ BigWigs:AddColors("Shade of Xavius", {
 })
 
 BigWigs:AddColors("Darkheart Thicket Trash", {
-	[200580] = "orange",
+	[198904] = {"blue","yellow"},
+	[198910] = "red",
+	[200580] = "red",
+	[200630] = "red",
 	[200658] = "yellow",
 	[200684] = {"blue","red"},
 	[200768] = "orange",
+	[201129] = "orange",
 	[201226] = "orange",
-	[201272] = "orange",
-	[201399] = "yellow",
+	[201272] = "red",
+	[201365] = {"blue","yellow"},
+	[201399] = "red",
+	[201839] = {"blue","orange"},
+	[204243] = "red",
+	[204246] = {"blue","yellow"},
 	[218759] = "blue",
-	[225562] = "orange",
+	[225562] = "red",
 })
