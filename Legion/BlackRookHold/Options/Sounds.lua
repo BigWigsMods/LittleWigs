@@ -1,7 +1,11 @@
 
 BigWigs:AddSounds("Amalgam of Souls", {
-	[194956] = "warning",
-	[196587] = {"alert","warning"},
+	[194956] = {"alert","warning"},
+	[194966] = "alarm",
+	[195254] = "alarm",
+	[196078] = "long",
+	[196587] = "alarm",
+	[196930] = "alert",
 })
 
 BigWigs:AddSounds("Illysanna Ravencrest", {
