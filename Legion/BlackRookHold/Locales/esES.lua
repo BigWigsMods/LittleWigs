@@ -1,11 +1,19 @@
 local L = BigWigs:NewBossLocale("Black Rook Hold Trash", "esES") or BigWigs:NewBossLocale("Black Rook Hold Trash", "esMX")
 if not L then return end
 if L then
-	--L.arcanist = "Risen Arcanist"
-	--L.champion = "Soul-torn Champion"
-	--L.swordsman = "Risen Swordsman"
-	--L.archer = "Risen Archer"
-	--L.scout = "Risen Scout"
-	--L.councilor = "Ghostly Councilor"
-	--L.dominator = "Felspite Dominator"
+	L.ghostly_retainer = "Criado fantasmal"
+	L.ghostly_protector = "Protector fantasmal"
+	L.ghostly_councilor = "Consejero fantasmal"
+	L.lord_etheldrin_ravencrest = "Lord Etheldrin Cresta Cuervo"
+	L.lady_velandras_ravencrest = "Lady Velandras Cresta Cuervo"
+	L.rook_spiderling = "Arañita del torreón"
+	L.soultorn_champion = "Campeón infausto"
+	L.risen_scout = "Explorador resucitado"
+	L.risen_archer = "Arquera resucitada"
+	L.risen_arcanist = "Arcanista resucitado"
+	L.wyrmtongue_scavenger = "Carroñero Lenguavermis"
+	L.bloodscent_felhound = "Can manáfago Sangresencia"
+	L.felspite_dominator = "Dominador Flemavil"
+	L.risen_swordsman = "Espadachín resucitado"
+	L.risen_lancer = "Lancero resucitado"
 end

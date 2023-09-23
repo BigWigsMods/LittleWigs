@@ -32,13 +32,20 @@ BigWigs:AddSounds("Kurtalos Ravencrest", {
 })
 
 BigWigs:AddSounds("Black Rook Hold Trash", {
-	[197974] = "alarm",
+	[194966] = "alarm",
+	[196916] = "alarm",
+	[200084] = "alert",
+	[200105] = "info",
 	[200248] = "alert",
 	[200261] = "alarm",
 	[200291] = "alert",
-	[200343] = "warning",
-	[203163] = "warning",
-	[214003] = "alarm",
-	[225573] = "alarm",
-	[227913] = "alarm",
+	[200343] = "alarm",
+	[200913] = "alarm",
+	[203163] = {"alert","warning"},
+	[204896] = "alert",
+	[214001] = "alarm",
+	[214003] = "alert",
+	[225573] = "warning",
+	[225908] = {"alert","warning"},
+	[227913] = "alert",
 })

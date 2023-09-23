@@ -32,13 +32,20 @@ BigWigs:AddColors("Kurtalos Ravencrest", {
 })
 
 BigWigs:AddColors("Black Rook Hold Trash", {
-	[197974] = "orange",
+	[194966] = {"blue","orange"},
+	[196916] = "orange",
+	[200084] = {"blue","orange"},
+	[200105] = "yellow",
 	[200248] = "yellow",
 	[200261] = "orange",
-	[200291] = "red",
-	[200343] = "yellow",
+	[200291] = "yellow",
+	[200343] = "red",
+	[200913] = "orange",
 	[203163] = {"blue","orange"},
-	[214003] = "red",
-	[225573] = "yellow",
+	[204896] = "red",
+	[214001] = "orange",
+	[214003] = "purple",
+	[225573] = "red",
+	[225908] = {"blue","yellow"},
 	[227913] = "yellow",
 })
