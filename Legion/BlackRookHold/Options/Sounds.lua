@@ -19,10 +19,10 @@ BigWigs:AddSounds("Illysanna Ravencrest", {
 })
 
 BigWigs:AddSounds("Smashspite", {
-	[198073] = "info",
-	[198079] = "warning",
-	[198245] = "alarm",
-	[198446] = "alert",
+	[198073] = "alert",
+	[198079] = "alarm",
+	[198245] = "alert",
+	[198446] = {"alarm","alert"},
 })
 
 BigWigs:AddSounds("Kurtalos Ravencrest", {
