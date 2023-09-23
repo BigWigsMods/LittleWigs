@@ -9,8 +9,13 @@ BigWigs:AddColors("Amalgam of Souls", {
 })
 
 BigWigs:AddColors("Illysanna Ravencrest", {
-	[197797] = {"blue","yellow"},
-	[197974] = "red",
+	[197418] = "purple",
+	[197478] = {"blue","red"},
+	[197546] = "yellow",
+	[197696] = {"blue","red"},
+	[197797] = "yellow",
+	[197974] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Smashspite", {
