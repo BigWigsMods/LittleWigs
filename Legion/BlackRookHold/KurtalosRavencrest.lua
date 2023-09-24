@@ -16,6 +16,7 @@ mod:SetStage(1)
 -- Locals
 --
 
+local unerringShearCount = 1
 local shadowBoltVolleyCount = 1
 
 --------------------------------------------------------------------------------
@@ -56,9 +57,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	unerringShearCount = 1
 	shadowBoltVolleyCount = 1
 	self:SetStage(1)
-	self:CDBar(198635, 5.9) -- Unerring Shear
+	self:CDBar(198635, 5.9, CL.count:format(self:SpellName(198635), unerringShearCount)) -- Unerring Shear
 	self:CDBar(198641, 10.8) -- Whirling Blade
 	self:CDBar(198820, 11.3) -- Dark Blast
 end
@@ -70,9 +72,11 @@ end
 -- Stage One: Lord of the Keep
 
 function mod:UnerringShear(args)
-	self:Message(args.spellId, "purple")
+	self:StopBar(CL.count:format(args.spellName, unerringShearCount))
+	self:Message(args.spellId, "purple", CL.count:format(args.spellName, unerringShearCount))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 12.1)
+	unerringShearCount = unerringShearCount + 1
+	self:CDBar(args.spellId, 12.1, CL.count:format(args.spellName, unerringShearCount))
 end
 
 function mod:WhirlingBlade(args)
@@ -88,13 +92,14 @@ function mod:DarkBlast(args)
 end
 
 function mod:KurtalosDeath()
-	self:StopBar(198635) -- Unerring Shear
+	-- TODO could clean up stage 1 bars earlier using [CHAT_MSG_MONSTER_SAY] Enough! I tire of this.#Latosius
+	self:StopBar(CL.count:format(self:SpellName(198635), unerringShearCount)) -- Unerring Shear
 	self:StopBar(198641) -- Whirling Blade
 	self:StopBar(198820) -- Dark Blast
 	self:SetStage(2)
 	self:Message("stages", "cyan", -12509, false) -- Stage Two: Vengeance of the Ancients
 	self:PlaySound("stages", "long")
-	self:CDBar(202019, 17.5) -- Shadow Bolt Volley
+	self:CDBar(202019, 17.5, CL.count:format(self:SpellName(202019), shadowBoltVolleyCount)) -- Shadow Bolt Volley
 	self:CDBar(201733, 22.3) -- Stinging Swarm
 	self:CDBar(199143, 27.2) -- Cloud of Hypnosis
 	self:CDBar(199193, 38.2) -- Dreadlord's Guile
@@ -128,12 +133,13 @@ function mod:DreadlordsGuile(args)
 end
 
 function mod:ShadowBoltVolley(args)
-	self:Message(args.spellId, "yellow")
+	self:StopBar(CL.count:format(args.spellName, shadowBoltVolleyCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, shadowBoltVolleyCount))
 	if shadowBoltVolleyCount == 1 then
 		self:PlaySound(args.spellId, "warning")
 	else
 		self:PlaySound(args.spellId, "alert")
 	end
 	shadowBoltVolleyCount = shadowBoltVolleyCount + 1
-	self:CDBar(args.spellId, 9.7)
+	self:CDBar(args.spellId, 9.7, CL.count:format(args.spellName, shadowBoltVolleyCount))
 end
