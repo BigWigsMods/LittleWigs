@@ -26,9 +26,14 @@ BigWigs:AddSounds("Smashspite", {
 })
 
 BigWigs:AddSounds("Kurtalos Ravencrest", {
-	[198641] = "info",
-	[198820] = "warning",
-	[202019] = {"info","warning"},
+	[198635] = "alert",
+	[198641] = "alert",
+	[198820] = "alarm",
+	[199143] = "info",
+	[199193] = "long",
+	[201733] = "alert",
+	[202019] = {"alert","warning"},
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Black Rook Hold Trash", {

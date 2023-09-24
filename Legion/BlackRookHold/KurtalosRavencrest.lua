@@ -2,17 +2,21 @@
 -- Module Declaration
 --
 
---TO DO List
---Timers work fine couldnt test Say mechanic stinging swarm due to rng targetting.
 local mod, CL = BigWigs:NewBoss("Kurtalos Ravencrest", 1501, 1672)
 if not mod then return end
-mod:RegisterEnableMob(98965,98970)
+mod:RegisterEnableMob(
+	98965, -- Kur'talos Ravencrest
+	98970  -- Latosius / Dantalionax
+)
+mod:SetEncounterID(1835)
+mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local shadowBoltCount = 1
+local shadowBoltVolleyCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,85 +24,116 @@ local shadowBoltCount = 1
 
 function mod:GetOptions()
 	return {
-		{198635, "TANK"}, -- Unerring Sheer
-		198820, -- Dark Blast
+		"stages",
+		-- Stage One: Lord of the Keep
+		{198635, "TANK"}, -- Unerring Shear
 		198641, -- Whirling Blade
-		199193, -- Dreadlords Guise
-		202019, -- Shadow Bolt Volley
+		198820, -- Dark Blast
+		-- Stage Two: Vengeance of the Ancients
 		{201733, "SAY"}, -- Stinging Swarm
 		199143, -- Cloud of Hypnosis
+		199193, -- Dreadlord's Guile
+		202019, -- Shadow Bolt Volley
+	}, {
+		[198635] = -12502, -- Stage One: Lord of the Keep
+		[201733] = -12509, -- Stage Two: Vengeance of the Ancients
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "DarkBlast", 198820)
+	-- Stage One: Lord of the Keep
+	self:Log("SPELL_CAST_SUCCESS", "UnerringShear", 198635)
 	self:Log("SPELL_CAST_START", "WhirlingBlade", 198641)
-	self:Log("SPELL_CAST_START", "ShadowBoltValley", 202019) -- First one only
-	self:Log("SPELL_CAST_START", "StingingSwarm", 201733)
-	self:Log("SPELL_CAST_SUCCESS", "CloudOfHypnosis", 199143)
-	self:Log("SPELL_CAST_START", "DreadlordsGuise", 199193)
-	self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:Log("SPELL_CAST_START", "DarkBlast", 198820)
 	self:Death("KurtalosDeath", 98965)
-	self:Death("Win", 98970)
+
+	-- Stage Two: Vengeance of the Ancients
+	self:Log("SPELL_CAST_START", "StingingSwarm", 201733)
+	self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
+	self:Log("SPELL_CAST_START", "CloudOfHypnosis", 199143)
+	self:Log("SPELL_CAST_START", "DreadlordsGuile", 199193)
+	self:Log("SPELL_CAST_START", "ShadowBoltVolley", 202019)
 end
 
 function mod:OnEngage()
-	shadowBoltCount = 1
-	self:CDBar(198635, 5.5) -- Unerring Sheer
-	self:CDBar(198641, 11) -- Whirling Blade
-	self:CDBar(198820, 12) -- Dark Blast
+	shadowBoltVolleyCount = 1
+	self:SetStage(1)
+	self:CDBar(198635, 5.9) -- Unerring Shear
+	self:CDBar(198641, 10.8) -- Whirling Blade
+	self:CDBar(198820, 11.3) -- Dark Blast
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:DarkBlast(args)
-	self:MessageOld(args.spellId, "yellow", "warning", CL.incoming:format(args.spellName))
+-- Stage One: Lord of the Keep
+
+function mod:UnerringShear(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 12.1)
 end
 
 function mod:WhirlingBlade(args)
-	self:MessageOld(args.spellId, "yellow", "info", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 23.0)
 end
 
-function mod:ShadowBoltValley(args)
-	if shadowBoltCount == 1 then
-		self:MessageOld(args.spellId, "red", "warning", CL.incoming:format(args.spellName))
-	else
-		self:MessageOld(args.spellId, "yellow", "info", CL.incoming:format(args.spellName))
-	end
-	self:Bar(args.spellId, 8.5)
-	shadowBoltCount = shadowBoltCount + 1
+function mod:DarkBlast(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 18.2)
 end
 
-function mod:DreadlordsGuise(args)
-	self:StopBar(201733) -- Stinging Swarm
+function mod:KurtalosDeath()
+	self:StopBar(198635) -- Unerring Shear
 	self:StopBar(198641) -- Whirling Blade
-	self:StopBar(202019) -- Shadow Bolt Volley
-	self:StopBar(199143) -- Cloud of Hypnosis
-	if mod:Mythic() then
-		self:Bar(args.spellId, 22) -- 27 on normal
-		self:ScheduleTimer("CDBar", 22, 201733, 5.5) -- Stinging Swarm
-	else
-		self:Bar(args.spellId, 27) -- longer than 23 on Norm/hc
-	end
+	self:StopBar(198820) -- Dark Blast
+	self:SetStage(2)
+	self:Message("stages", "cyan", -12509, false) -- Stage Two: Vengeance of the Ancients
+	self:PlaySound("stages", "long")
+	self:CDBar(202019, 17.5) -- Shadow Bolt Volley
+	self:CDBar(201733, 22.3) -- Stinging Swarm
+	self:CDBar(199143, 27.2) -- Cloud of Hypnosis
+	self:CDBar(199193, 38.2) -- Dreadlord's Guile
 end
 
-function mod:CloudOfHypnosis(args)
-	self:Bar(args.spellId, 30.8)
-end
+-- Stage Two: Vengeance of the Ancients
 
 function mod:StingingSwarm(args)
-	self:CDBar(args.spellId, 17)
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:StingingSwarmApplied(args)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
 end
 
-function mod:KurtalosDeath()
-	self:Bar(202019, 17.5) -- Shadow Bolt Volley
+function mod:CloudOfHypnosis(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 32.8)
+end
+
+function mod:DreadlordsGuile(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 83.8)
+	-- TODO delay / reset other timers
+end
+
+function mod:ShadowBoltVolley(args)
+	self:Message(args.spellId, "yellow")
+	if shadowBoltVolleyCount == 1 then
+		self:PlaySound(args.spellId, "warning")
+	else
+		self:PlaySound(args.spellId, "alert")
+	end
+	shadowBoltVolleyCount = shadowBoltVolleyCount + 1
+	self:CDBar(args.spellId, 9.7)
 end

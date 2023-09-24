@@ -26,9 +26,14 @@ BigWigs:AddColors("Smashspite", {
 })
 
 BigWigs:AddColors("Kurtalos Ravencrest", {
-	[198641] = "yellow",
+	[198635] = "purple",
+	[198641] = "orange",
 	[198820] = "yellow",
-	[202019] = {"red","yellow"},
+	[199143] = "orange",
+	[199193] = "red",
+	[201733] = {"blue","yellow"},
+	[202019] = "yellow",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Black Rook Hold Trash", {
