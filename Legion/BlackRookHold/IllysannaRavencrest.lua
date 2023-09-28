@@ -16,6 +16,7 @@ mod:SetStage(1)
 local vengefulShearRemaining = 6
 local darkRushRemaining = 2
 local brutalGlaiveRemaining = 6
+local eyeBeamsRemaining = 3
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -45,6 +46,7 @@ function mod:OnBossEnable()
 	-- Stage One: Vengeance
 	self:Log("SPELL_CAST_START", "VengefulShear", 197418)
 	self:Log("SPELL_AURA_APPLIED", "DarkRushApplied", 197478)
+	self:Log("SPELL_AURA_REMOVED", "DarkRushRemoved", 197478)
 	self:Log("SPELL_CAST_START", "BrutalGlaive", 197546)
 
 	-- Stage Two: Fury
@@ -60,6 +62,7 @@ function mod:OnEngage()
 	vengefulShearRemaining = 2
 	darkRushRemaining = 1
 	brutalGlaiveRemaining = 2
+	eyeBeamsRemaining = 3
 	self:SetStage(1)
 	self:CDBar(197546, 5.1) -- Brutal Glaive
 	self:CDBar(197418, 8.3) -- Vengeful Shear
@@ -76,6 +79,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 	if spellId == 197622 then -- Phase 2 Jump (Stage Two)
+		eyeBeamsRemaining = 3
 		self:StopBar(-12281) -- Stage Two: Fury
 		self:StopBar(197418) -- Vengeful Shear
 		self:StopBar(197478) -- Dark Rush
@@ -130,6 +134,12 @@ function mod:DarkRushApplied(args)
 	end
 end
 
+function mod:DarkRushRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
+	end
+end
+
 function mod:BrutalGlaive(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
@@ -149,7 +159,12 @@ function mod:EyeBeams(args)
 	if self:Me(args.destGUID) then
 		self:Say(197696)
 	end
-	self:CDBar(197696, 13.5)
+	eyeBeamsRemaining = eyeBeamsRemaining - 1
+	if eyeBeamsRemaining > 0 then
+		self:CDBar(197696, 13.5)
+	else
+		self:StopBar(197696)
+	end
 end
 
 function mod:BonecrushingStrike(args)
