@@ -1,8 +1,9 @@
 
 BigWigs:AddColors("Witherbark", {
-	[164275] = {"cyan","yellow"},
-	[164294] = {"blue","orange"},
-	[164357] = "red",
+	[-10098] = "orange",
+	[164275] = "cyan",
+	[164294] = {"blue","yellow"},
+	[164357] = "purple",
 })
 
 BigWigs:AddColors("Ancient Protectors", {

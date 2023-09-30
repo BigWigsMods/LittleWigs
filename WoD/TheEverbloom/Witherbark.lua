@@ -1,19 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Witherbark", 1279, 1214)
 if not mod then return end
-mod:RegisterEnableMob(81522)
-mod.engageId = 1746
-mod.respawnTime = 20
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local energy = 0
+mod:RegisterEnableMob(81522) -- Witherbark
+mod:SetEncounterID(1746)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -30,64 +23,90 @@ end
 
 function mod:GetOptions()
 	return {
-		164294, -- Unchecked Growth
 		164275, -- Brittle Bark
-		{164357, "TANK"}, -- Parched Gasp
+		164357, -- Parched Gasp
+		{164294, "ME_ONLY"}, -- Unchecked Growth
+		{-10098, "OFF"}, -- Unchecked Growth (Add Spawned)
+	}, nil, {
+		[-10098] = CL.add_spawned,
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "UncheckedGrowth", 164294)
 	self:Log("SPELL_AURA_APPLIED", "BrittleBark", 164275)
+	self:Log("SPELL_ENERGIZE", "Energize", 164438)
 	self:Log("SPELL_AURA_REMOVED", "BrittleBarkOver", 164275)
-	self:Log("SPELL_CAST_SUCCESS", "Energize", 164438)
 	self:Log("SPELL_CAST_START", "ParchedGasp", 164357)
-
-	self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSpawned", 181113) -- Encounter Spawn
+	self:Log("SPELL_AURA_APPLIED", "UncheckedGrowthApplied", 164302)
+	self:Log("SPELL_PERIODIC_DAMAGE", "UncheckedGrowthDamage", 164294)
+	self:Log("SPELL_PERIODIC_MISSED", "UncheckedGrowthDamage", 164294)
+	self:Log("SPELL_CAST_SUCCESS", "EncounterSpawn", 181113) -- Unchecked Growth
 end
 
 function mod:OnEngage()
-	energy = 0
-	self:CDBar(164357, 7) -- Parched Gasp
-	self:Bar(164275, 30) -- Brittle Bark
+	self:CDBar(164294, 5.8) -- Unchecked Growth
+	self:CDBar(164357, 9.7) -- Parched Gasp
+	-- cast at 0 energy, 39s energy loss + delay
+	self:CDBar(164275, 39.2) -- Brittle Bark
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UncheckedGrowth(args)
-	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "alarm", CL.you:format(args.spellName))
+do
+	local energy = 0
+
+	function mod:BrittleBark(args)
+		energy = 0
+		self:Message(args.spellId, "cyan", CL.other:format(args.spellName, CL.incoming:format(self:SpellName(-10100)))) -- 10100 = Aqueous Globules
+		self:PlaySound(args.spellId, "long")
+		self:StopBar(args.spellId)
+		self:StopBar(164357) -- Parched Gasp
+		if self:Normal() then
+			self:StopBar(164294) -- Unchecked Growth
+		end
 	end
-end
 
-function mod:BrittleBark(args)
-	energy = 0
-	self:MessageOld(args.spellId, "yellow", "info", ("%s - %s"):format(args.spellName, CL.incoming:format(self:SpellName(-10100)))) -- 10100 = Aqueous Globules
-	self:StopBar(164357) -- Parched Gasp
-end
-
-function mod:BrittleBarkOver(args)
-	self:MessageOld(args.spellId, "yellow", "info", CL.over:format(args.spellName))
-	self:Bar(args.spellId, 30)
-	self:CDBar(164357, 4) -- Parched Gasp
-end
-
-function mod:Energize()
-	if self.isEngaged then -- This happens when killing the trash, we only want it during the encounter.
-		energy = energy + 25
-		if energy < 101 then
-			self:MessageOld(164275, "cyan", nil, L.energyStatus:format(energy), "spell_lightning_lightningbolt01")
+	function mod:Energize(args)
+		if self:IsEngaged() then -- This happens when killing the trash, we only want it during the encounter.
+			energy = energy + args.extraSpellId -- args.extraSpellId is the energy gained from SPELL_ENERGIZE
+			if energy < 100 then
+				self:Message(164275, "cyan", L.energyStatus:format(energy), "spell_lightning_lightningbolt01")
+				self:PlaySound(164275, "info")
+			end
 		end
 	end
 end
 
-function mod:ParchedGasp(args)
-	self:MessageOld(args.spellId, "red")
-	self:CDBar(args.spellId, 11) -- 10-13s
+function mod:BrittleBarkOver(args)
+	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
+	-- cast at 0 energy, 39s energy loss + delay
+	self:Bar(args.spellId, 39.3)
+	self:CDBar(164357, 3.6) -- Parched Gasp
 end
 
-function mod:UncheckedGrowthSpawned()
-	self:MessageOld(164294, "orange", nil, CL.add_spawned)
+function mod:ParchedGasp(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 17.0)
+end
+
+function mod:UncheckedGrowthApplied(args)
+	self:TargetMessage(164294, "yellow", args.destName)
+	self:PlaySound(164294, "alert", nil, args.destName)
+	self:CDBar(164294, 12.1)
+end
+
+function mod:UncheckedGrowthDamage(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou", nil, args.destName)
+	end
+end
+
+function mod:EncounterSpawn() -- Unchecked Growth
+	self:Message(-10098, "orange", CL.add_spawned)
+	self:PlaySound(-10098, "info")
 end
