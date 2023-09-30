@@ -42,3 +42,17 @@ BigWigs:AddColors("Yalnu", {
 	[169251] = "green",
 	[169613] = "yellow",
 })
+
+BigWigs:AddColors("The Everbloom Trash", {
+	[164886] = {"blue","purple"},
+	[164887] = "red",
+	[164965] = {"blue","orange","yellow"},
+	[165123] = {"blue","red"},
+	[165213] = "red",
+	[169494] = {"blue","yellow"},
+	[172578] = "orange",
+	[426500] = {"blue","orange"},
+	[426845] = "yellow",
+	[426974] = "red",
+	[427223] = "orange",
+})
