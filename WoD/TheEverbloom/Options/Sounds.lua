@@ -29,6 +29,9 @@ BigWigs:AddSounds("Archmage Sol", {
 	[166492] = "alert",
 	[166726] = "alarm",
 	[168885] = "warning",
+	[427899] = "long",
+	[428082] = "alarm",
+	[428139] = "info",
 })
 
 BigWigs:AddSounds("Yalnu", {
