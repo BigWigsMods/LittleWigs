@@ -128,7 +128,10 @@ end
 function mod:TorrentialFury(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 52.1)
+	if not earthshaperTeluDefeated then
+		-- this will not be cast again if Earthshaper Telu has been defeated
+		self:CDBar(args.spellId, 52.1)
+	end
 end
 
 function mod:LifeWardenGolaDeath(args)
@@ -155,7 +158,10 @@ end
 function mod:TerrestrialFury(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 52.1)
+	if not lifeWardenGolaDefeated then
+		-- this will not be cast again if Life Warden Gola has been defeated
+		self:CDBar(args.spellId, 52.1)
+	end
 end
 
 function mod:EarthshaperTeluDeath(args)
