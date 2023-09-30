@@ -7,9 +7,14 @@ BigWigs:AddSounds("Witherbark", {
 })
 
 BigWigs:AddSounds("Ancient Protectors", {
+	[167977] = "underyou",
 	[168041] = "alert",
 	[168082] = "warning",
 	[168105] = "alarm",
+	[427459] = "warning",
+	[427498] = "alarm",
+	[427509] = "alarm",
+	[427510] = "alert",
 })
 
 BigWigs:AddSounds("Xeri'tac", {
