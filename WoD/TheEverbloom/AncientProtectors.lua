@@ -53,7 +53,7 @@ function mod:OnBossEnable()
 	-- Life Warden Gola
 	self:Log("SPELL_CAST_START", "Revitalize", 168082)
 	-- XXX bring these listeners outside the if block when 10.2 is live everywhere
-    if isTenDotTwo then
+	if isTenDotTwo then
 		self:Log("SPELL_CAST_START", "TorrentialFury", 427498)
 		self:Death("LifeWardenGolaDeath", 83892)
 

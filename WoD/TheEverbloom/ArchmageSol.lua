@@ -28,7 +28,7 @@ end
 
 function mod:OnBossEnable()
 	-- XXX bring these listeners outside the if block when 10.2 is live everywhere
-    if isTenDotTwo then
+	if isTenDotTwo then
 		self:Log("SPELL_AURA_APPLIED", "CinderboltStorm", 427899)
 		self:Log("SPELL_AURA_APPLIED", "GlacialFusion", 428082)
 		self:Log("SPELL_CAST_START", "SpatialCompression", 428139)

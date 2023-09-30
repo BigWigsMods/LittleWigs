@@ -8,7 +8,7 @@ L = BigWigs:NewBossLocale("The Everbloom Trash", "deDE")
 if L then
 	L.dreadpetal = "Schreckensblüte"
 	L.everbloom_naturalist = "Naturalist des Immergrünen Flors"
-    --L.everbloom_cultivator = "Everbloom Cultivator"
+	--L.everbloom_cultivator = "Everbloom Cultivator"
 	L.rockspine_stinger = "Felsstachelstecher"
 	L.everbloom_mender = "Heiler des Immergrünen Flors"
 	L.gnarlroot = "Knorrenwurzel"
