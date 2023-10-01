@@ -175,6 +175,7 @@ do
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		end
+		--self:NameplateCDBar(args.spellId, 21.8, args.sourceGUID)
 	end
 end
 
@@ -196,6 +197,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
+		--self:NameplateCDBar(args.spellId, 14.6, args.sourceGUID)
 	end
 end
 
@@ -224,6 +226,7 @@ end
 function mod:HealingWaters(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 -- Gnarlroot
@@ -231,6 +234,7 @@ end
 function mod:LivingLeaves(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
+	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
 
 function mod:LivingLeavesApplied(args)
@@ -244,6 +248,8 @@ function mod:GnarledRootsApplied(args)
 	-- can be movement dispelled, else you have to attack the roots
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	-- TODO if this is uncommented it should be moved to SPELL_CAST_START
+	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 -- Melded Berserker
@@ -258,6 +264,7 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
+	--self:NameplateCDBar(args.spellId, 16.9, args.sourceGUID)
 end
 
 -- Infested Icecaller
@@ -265,6 +272,7 @@ end
 function mod:ColdFusion(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 21.8, args.sourceGUID)
 end
 
 -- Putrid Pyromancer
@@ -272,6 +280,7 @@ end
 function mod:CinderboltSalvo(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
 
 -- Addled Arcanomancer
@@ -279,4 +288,5 @@ end
 function mod:SpatialDisruption(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
