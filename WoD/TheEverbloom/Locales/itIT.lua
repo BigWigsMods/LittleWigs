@@ -4,6 +4,12 @@ if L then
 	--L.energyStatus = "A Globule reached Witherbark: %d%% energy"
 end
 
+L = BigWigs:NewBossLocale("Yalnu", "itIT")
+if L then
+	--L.kirin_tor = "Kirin Tor"
+	--L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
+end
+
 L = BigWigs:NewBossLocale("The Everbloom Trash", "itIT")
 if L then
 	L.dreadpetal = "Petalotruce"

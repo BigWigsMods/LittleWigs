@@ -4,6 +4,12 @@ if L then
 	L.energyStatus = "Eine Sphäre hat Bleichborke erreicht: %d%% Energie"
 end
 
+L = BigWigs:NewBossLocale("Yalnu", "deDE")
+if L then
+	--L.kirin_tor = "Kirin Tor"
+	--L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
+end
+
 L = BigWigs:NewBossLocale("The Everbloom Trash", "deDE")
 if L then
 	L.dreadpetal = "Schreckensblüte"

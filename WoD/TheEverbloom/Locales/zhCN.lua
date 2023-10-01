@@ -4,6 +4,12 @@ if L then
 	L.energyStatus = "小水滴到达枯木：%d%% 能量"
 end
 
+L = BigWigs:NewBossLocale("Yalnu", "zhCN")
+if L then
+	--L.kirin_tor = "Kirin Tor"
+	--L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
+end
+
 L = BigWigs:NewBossLocale("The Everbloom Trash", "zhCN")
 if L then
 	L.dreadpetal = "恐瓣"
