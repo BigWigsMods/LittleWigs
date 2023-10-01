@@ -12,11 +12,14 @@ mod:SetRespawnTime(15)
 -- Initialization
 --
 
+local nightmareAbominationMarker = mod:AddMarkerOption(true, "npc", 8, -13302, 8) -- Nightmare Abomination
 function mod:GetOptions()
 	return {
 		198379, -- Primal Rampage
 		198408, -- Nightfall
+		nightmareAbominationMarker,
 		{198477, "SAY", "ME_ONLY"}, -- Fixate
+		196346, -- Grievous Leap
 		196376, -- Grievous Tear
 	}
 end
@@ -24,15 +27,17 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PrimalRampage", 198379)
 	self:Log("SPELL_CAST_SUCCESS", "Nightfall", 212464)
+	self:Log("SPELL_SUMMON", "NightfallSummon", 198432)
 	self:Log("SPELL_AURA_APPLIED", "NightfallDamage", 198408)
 	self:Log("SPELL_PERIODIC_DAMAGE", "NightfallDamage", 198408)
 	self:Log("SPELL_PERIODIC_MISSED", "NightfallDamage", 198408)
 	self:Log("SPELL_AURA_APPLIED", "FixateApplied", 198477)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Grievous Leap
 	self:Log("SPELL_AURA_APPLIED", "GrievousTearApplied", 196376)
 end
 
 function mod:OnEngage()
-	self:CDBar(196376, 5.0) -- Grievous Tear
+	self:CDBar(196346, 4.6) -- Grievous Leap
 	self:CDBar(198379, 12.4) -- Primal Rampage
 	self:CDBar(198408, 26.8) -- Nightfall
 end
@@ -48,10 +53,29 @@ function mod:PrimalRampage(args)
 end
 
 function mod:Nightfall(args)
-	self:Message(198408, "yellow")
+	self:Message(198408, "cyan")
 	self:PlaySound(198408, "info")
 	self:CDBar(198408, 21.9) -- pull:26.8, 21.9, 30.4, 31.6
-	-- TODO mark add? no summon event
+end
+
+do
+	local nightmareAbominationGUID = nil
+
+	function mod:NightfallSummon(args)
+		-- register events to auto-mark the add
+		if self:GetOption(nightmareAbominationMarker) then
+			nightmareAbominationGUID = args.destGUID
+			self:RegisterTargetEvents("MarkNightmareAbomination")
+		end
+	end
+
+	function mod:MarkNightmareAbomination(_, unit, guid)
+		if nightmareAbominationGUID == guid then
+			nightmareAbominationGUID = nil
+			self:CustomIcon(nightmareAbominationMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 do
@@ -68,12 +92,19 @@ do
 	end
 end
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 196346 then -- Grievous Leap
+		self:Message(spellId, "yellow")
+		self:PlaySound(spellId, "alarm")
+		self:CDBar(spellId, 12.1)
+	end
+end
+
 function mod:GrievousTearApplied(args)
 	if self:Healer() or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
-	self:CDBar(args.spellId, 13.3) -- pull:5.7, 14.5, 13.3 / m pull:6.8, 15.5, 16.1, 15.3, 12.5, 14.3
 end
 
 function mod:FixateApplied(args)

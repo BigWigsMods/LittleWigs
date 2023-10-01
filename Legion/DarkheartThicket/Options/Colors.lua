@@ -1,8 +1,9 @@
 
 BigWigs:AddColors("Archdruid Glaidalis", {
+	[196346] = "yellow",
 	[196376] = {"blue","red"},
 	[198379] = "orange",
-	[198408] = {"blue","yellow"},
+	[198408] = {"blue","cyan"},
 	[198477] = {"blue","red"},
 })
 
