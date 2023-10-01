@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Operation: Mechagon Trash", "zhTW")
 if not L then return end
 if L then
-    -- L.scrapbone_shaman = "Scrapbone Shaman"
+	-- L.scrapbone_shaman = "Scrapbone Shaman"
 	-- L.scrapbone_bully = "Scrapbone Bully"
 	-- L.scrapbone_grinder = "Scrapbone Grinder"
 	-- L.saurolisk_bonenipper = "Saurolisk Bonenipper"

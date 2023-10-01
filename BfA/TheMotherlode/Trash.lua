@@ -414,7 +414,7 @@ function mod:ChargedShot(args)
 end
 
 function mod:EnergyShield(args)
-    self:NameplateBar(args.spellId, 22.5, args.sourceGUID)
+	self:NameplateBar(args.spellId, 22.5, args.sourceGUID)
 end
 
 function mod:ChargedClaw(args)
