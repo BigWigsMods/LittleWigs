@@ -4,6 +4,7 @@ BigWigs:AddColors("Priestess Alun'za", {
 	[255577] = "red",
 	[255579] = "purple",
 	[255582] = {"blue","orange"},
+	[259205] = "cyan",
 	[277072] = "blue",
 })
 

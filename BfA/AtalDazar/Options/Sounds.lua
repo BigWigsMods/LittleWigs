@@ -3,8 +3,9 @@ BigWigs:AddSounds("Priestess Alun'za", {
 	[255558] = "warning",
 	[255577] = "warning",
 	[255579] = "alert",
-	[255582] = "info",
-	[277072] = "alarm",
+	[255582] = "alert",
+	[259205] = "info",
+	[277072] = "underyou",
 })
 
 BigWigs:AddSounds("Vol'kaal", {
