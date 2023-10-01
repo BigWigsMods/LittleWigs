@@ -12,6 +12,7 @@ BigWigs:AddSounds("Oakheart", {
 	[204611] = "alert",
 	[204666] = "alert",
 	[204667] = "alarm",
+	[212786] = "long",
 })
 
 BigWigs:AddSounds("Dresaron", {
