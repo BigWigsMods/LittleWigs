@@ -8,7 +8,7 @@ L = BigWigs:NewBossLocale("The Everbloom Trash", "zhCN")
 if L then
 	L.dreadpetal = "恐瓣"
 	L.everbloom_naturalist = "永茂博学者"
-	--L.everbloom_cultivator = "Everbloom Cultivator"
+	L.everbloom_cultivator = "永茂栽培者"
 	L.rockspine_stinger = "石脊钉刺者"
 	L.everbloom_mender = "永茂栽培者"
 	L.gnarlroot = "瘤根"
