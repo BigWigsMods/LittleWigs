@@ -16,7 +16,7 @@ local nightmareAbominationMarker = mod:AddMarkerOption(true, "npc", 8, -13302, 8
 function mod:GetOptions()
 	return {
 		198379, -- Primal Rampage
-		198408, -- Nightfall
+		212464, -- Nightfall
 		nightmareAbominationMarker,
 		{198477, "SAY", "ME_ONLY"}, -- Fixate
 		196346, -- Grievous Leap
@@ -39,7 +39,7 @@ end
 function mod:OnEngage()
 	self:CDBar(196346, 4.6) -- Grievous Leap
 	self:CDBar(198379, 12.4) -- Primal Rampage
-	self:CDBar(198408, 26.8) -- Nightfall
+	self:CDBar(212464, 26.8) -- Nightfall
 end
 
 --------------------------------------------------------------------------------
@@ -53,9 +53,9 @@ function mod:PrimalRampage(args)
 end
 
 function mod:Nightfall(args)
-	self:Message(198408, "cyan")
-	self:PlaySound(198408, "info")
-	self:CDBar(198408, 21.9) -- pull:26.8, 21.9, 30.4, 31.6
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 21.9) -- pull:26.8, 21.9, 30.4, 31.6
 end
 
 do
@@ -85,8 +85,8 @@ do
 			local t = args.time
 			if t - prev > 2 then
 				prev = t
-				self:PersonalMessage(args.spellId, "underyou")
-				self:PlaySound(args.spellId, "underyou", nil, args.destName)
+				self:PersonalMessage(212464, "underyou")
+				self:PlaySound(212464, "underyou", nil, args.destName)
 			end
 		end
 	end
