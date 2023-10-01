@@ -99,10 +99,17 @@ function mod:UncheckedGrowthApplied(args)
 	self:CDBar(164294, 12.1)
 end
 
-function mod:UncheckedGrowthDamage(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou", nil, args.destName)
+do
+	local prev = 0
+	function mod:UncheckedGrowthDamage(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou", nil, args.destName)
+			end
+		end
 	end
 end
 
