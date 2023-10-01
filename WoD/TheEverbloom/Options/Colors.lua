@@ -14,8 +14,8 @@ BigWigs:AddColors("Ancient Protectors", {
 	[168383] = "yellow",
 	[168520] = "yellow",
 	[427459] = "yellow",
-	[427498] = "orange",
-	[427509] = "orange",
+	[427498] = "cyan",
+	[427509] = "cyan",
 	[427510] = "purple",
 })
 

@@ -12,8 +12,8 @@ BigWigs:AddSounds("Ancient Protectors", {
 	[168082] = "warning",
 	[168105] = "alarm",
 	[427459] = "warning",
-	[427498] = "alarm",
-	[427509] = "alarm",
+	[427498] = "long",
+	[427509] = "long",
 	[427510] = "alert",
 })
 

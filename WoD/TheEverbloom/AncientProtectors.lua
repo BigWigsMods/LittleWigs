@@ -80,10 +80,10 @@ function mod:OnEngage()
 	earthshaperTeluDefeated = false
 	revitalizeCount = 1
 	toxicBloomCount = 1
-	self:CDBar(427498, 1.2) -- Torrential Fury
-	self:CDBar(427459, 7.3) -- Toxic Bloom
+	self:CDBar(427498, 1.0) -- Torrential Fury
+	self:CDBar(427459, 7.1) -- Toxic Bloom
 	self:CDBar(427510, 12.1) -- Noxious Charge
-	self:CDBar(427509, 27.9) -- Terrestrial Fury
+	self:CDBar(427509, 26.5) -- Terrestrial Fury
 	self:CDBar(168082, 31.5) -- Revitalize
 end
 
@@ -118,7 +118,7 @@ function mod:Revitalize(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	revitalizeCount = revitalizeCount + 1
-	if revitalizeCount % 2 == 0 or earthshaperTeluDefeated then
+	if earthshaperTeluDefeated or revitalizeCount % 2 == 0 then
 		self:CDBar(args.spellId, 17.0)
 	else
 		self:CDBar(args.spellId, 31.6)
@@ -126,8 +126,8 @@ function mod:Revitalize(args)
 end
 
 function mod:TorrentialFury(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "long")
 	if not earthshaperTeluDefeated then
 		-- this will not be cast again if Earthshaper Telu has been defeated
 		self:CDBar(args.spellId, 52.1)
@@ -148,7 +148,7 @@ function mod:ToxicBloom(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	toxicBloomCount = toxicBloomCount + 1
-	if toxicBloomCount % 2 == 0 or lifeWardenGolaDefeated then
+	if lifeWardenGolaDefeated or toxicBloomCount % 2 == 0 then
 		self:CDBar(args.spellId, 17.0)
 	else
 		self:CDBar(args.spellId, 31.6)
@@ -156,8 +156,8 @@ function mod:ToxicBloom(args)
 end
 
 function mod:TerrestrialFury(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "long")
 	if not lifeWardenGolaDefeated then
 		-- this will not be cast again if Life Warden Gola has been defeated
 		self:CDBar(args.spellId, 52.1)
