@@ -22,7 +22,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	-- TODO: self:Log("SPELL_CAST_START", "BreathOfCorruption", 191325)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Breath of Corruption
 	self:Log("SPELL_CAST_START", "EarthshakingRoar", 199389)
 	self:Log("SPELL_CAST_START", "DownDraft", 199345)
 	self:Log("SPELL_AURA_APPLIED", "FallingRocksDamage", 199460)
@@ -44,16 +45,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 199332 then -- Breath of Corruption
 		self:Message(191325, "orange")
 		self:PlaySound(191325, "alarm")
-		-- TODO casts are randomly skipped here, suspect this is throwing
-		-- off the timers for the whole fight.
-		self:CDBar(191325, 13.3)
+		self:CDBar(191325, 29.1)
 	end
 end
 
 function mod:EarthshakingRoar(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 22.7)
+	self:CDBar(args.spellId, 29.1)
 end
 
 function mod:DownDraft(args)
