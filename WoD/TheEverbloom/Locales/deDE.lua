@@ -6,15 +6,15 @@ end
 
 L = BigWigs:NewBossLocale("Yalnu", "deDE")
 if L then
-	--L.kirin_tor = "Kirin Tor"
-	--L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
+	L.kirin_tor = "Kirin Tor"
+	L.warmup_trigger = "Das Portal ist verloren. Wir müssen diese Bestie aufhalten, bevor sie entkommt!"
 end
 
 L = BigWigs:NewBossLocale("The Everbloom Trash", "deDE")
 if L then
 	L.dreadpetal = "Schreckensblüte"
 	L.everbloom_naturalist = "Naturalist des Immergrünen Flors"
-	--L.everbloom_cultivator = "Everbloom Cultivator"
+	L.everbloom_cultivator = "Kultivator des Immergrünen Flors"
 	L.rockspine_stinger = "Felsstachelstecher"
 	L.everbloom_mender = "Heiler des Immergrünen Flors"
 	L.gnarlroot = "Knorrenwurzel"
