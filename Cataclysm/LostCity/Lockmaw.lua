@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module declaration
 --
@@ -41,10 +40,11 @@ end
 --
 
 function mod:Deaths(args)
-	if self:Heroic() then
+	if not self:Normal() then
+		-- in Heroic and Timewalking difficulty you have to fight Augh after Lockmaw
 		if args.mobId == 49045 then -- Augh
 			self:Win()
-		else
+		else -- Lockmaw
 			self:Bar("stages", 17, -2442, "spell_nature_sleep")
 		end
 	elseif args.mobId == 43614 then -- Lockmaw
