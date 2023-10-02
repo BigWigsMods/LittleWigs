@@ -6,7 +6,7 @@ end
 
 L = BigWigs:NewBossLocale("Yalnu", "itIT")
 if L then
-	--L.kirin_tor = "Kirin Tor"
+	L.kirin_tor = "Kirin Tor"
 	--L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end
 
