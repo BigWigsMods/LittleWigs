@@ -13,7 +13,7 @@ mod:RegisterEnableMob(17879)
 
 function mod:GetOptions()
 	return {
-		31467, -- Time Lapse, XXX revise this module
+		-- 31467, -- Time Lapse, XXX revise this module
 	}
 end
 

@@ -41,4 +41,6 @@ BigWigs:AddColors("Cathedral of Eternal Night Trash", {
 	[241598] = "yellow",
 	[241772] = "orange",
 	[242760] = "red",
+	[242839] = "orange",
+	[242841] = "orange",
 })

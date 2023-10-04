@@ -6,6 +6,7 @@ BigWigs:AddColors("Trollgore", {
 })
 
 BigWigs:AddColors("Novos the Summoner", {
+	[47346] = "blue",
 	[49034] = "blue",
 	[50089] = {"blue","orange"},
 	[59910] = "yellow",

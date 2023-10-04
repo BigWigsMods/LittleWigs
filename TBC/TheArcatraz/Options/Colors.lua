@@ -24,9 +24,10 @@ BigWigs:AddColors("Harbinger Skyriss", {
 })
 
 BigWigs:AddColors("The Arcatraz Trash", {
+	[36700] = {"blue","orange"},
 	[36778] = {"blue","yellow"},
 	[36866] = {"blue","red"},
 	[36886] = {"blue","orange"},
 	[38815] = "yellow",
-	[38903] = {"blue","orange","red"},
+	[38903] = "red",
 })

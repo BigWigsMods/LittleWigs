@@ -20,7 +20,6 @@ local sacredGroundOnMe = false
 
 function mod:GetOptions()
 	return {
-		227817, -- Holy Bulwark
 		227823, -- Holy Wrath
 		227800, -- Holy Shock
 		{227809, "PROXIMITY"}, -- Holy Bolt

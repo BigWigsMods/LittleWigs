@@ -29,7 +29,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus") -- XXX Is this still needed or would the default CheckForEncounterEngage work?
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_SUCCESS", "ArcaneBomb", 227618)
 	self:Log("SPELL_CAST_SUCCESS", "EnergyVoid", 227523)

@@ -7,6 +7,7 @@ BigWigs:AddColors("Saboteur Kip'tilak", {
 BigWigs:AddColors("Striker Ga'dok", {
 	[-5660] = {"blue","yellow"},
 	[106933] = {"blue","red"},
+	[115458] = "blue",
 })
 
 BigWigs:AddColors("Commander Ri'mok", {

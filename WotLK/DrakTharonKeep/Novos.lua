@@ -85,7 +85,7 @@ do
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId == 59854 and 49034 or args.spellId, "blue", "alert", CL.you:format(args.spellName))
+				self:MessageOld(args.spellId == 59854 and 49034 or args.spellId, "blue", "alert", CL.you:format(args.spellName)) -- SetOption:47346,49034:::
 			end
 		end
 	end

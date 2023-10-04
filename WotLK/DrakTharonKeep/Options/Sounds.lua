@@ -3,6 +3,7 @@ BigWigs:AddSounds("Trollgore", {
 })
 
 BigWigs:AddSounds("Novos the Summoner", {
+	[47346] = "alert",
 	[49034] = "alert",
 	["adds"] = "info",
 })

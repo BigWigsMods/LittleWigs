@@ -13,7 +13,7 @@ mod:RegisterEnableMob(47739)
 
 function mod:GetOptions()
 	return {
-		89252, -- Cauldron Fire
+		-- 89252, -- Cauldron Fire
 	}
 end
 

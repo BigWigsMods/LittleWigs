@@ -41,4 +41,6 @@ BigWigs:AddSounds("Cathedral of Eternal Night Trash", {
 	[241598] = "long",
 	[241772] = "warning",
 	[242760] = "alarm",
+	[242839] = "warning",
+	[242841] = "warning",
 })

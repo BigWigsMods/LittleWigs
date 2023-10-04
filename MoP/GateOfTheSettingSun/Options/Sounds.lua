@@ -6,6 +6,7 @@ BigWigs:AddSounds("Saboteur Kip'tilak", {
 BigWigs:AddSounds("Striker Ga'dok", {
 	[-5660] = "alert",
 	[106933] = "alarm",
+	[115458] = "alert",
 })
 
 BigWigs:AddSounds("Commander Ri'mok", {

@@ -61,7 +61,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
 
-	self:Log("SPELL_AURA_APPLIED", "Hex", 38903)
+	self:Log("SPELL_AURA_APPLIED", "Hex", 36700)
 
 	self:Log("SPELL_CAST_START", "SightlessTouch", 36646, 38815) -- normal, heroic
 

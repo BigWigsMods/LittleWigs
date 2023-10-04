@@ -178,7 +178,7 @@ do
 		local t = GetTime()
 		if t-prev > 1 then
 			prev = t
-			self:MessageOld(args.spellId == 242837 and 239101 or args.spellId, "orange", "warning", CL.casting:format(L.throw_tome)) -- using a different ID for Arcane Tome's options because 242837 has no description
+			self:MessageOld(args.spellId == 242837 and 239101 or args.spellId, "orange", "warning", CL.casting:format(L.throw_tome)) -- SetOption:242839,242841,239101:::
 		end
 	end
 end

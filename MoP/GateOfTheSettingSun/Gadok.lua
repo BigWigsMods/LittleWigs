@@ -69,7 +69,7 @@ do
 			local t = GetTime()
 			if t-prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId == 115458 and args.spellId or -5660, "blue", "alert", CL.underyou:format(args.spellName))
+				self:MessageOld(args.spellId == 115458 and args.spellId or -5660, "blue", "alert", CL.underyou:format(args.spellName)) -- SetOption:-5660,115458:::
 			end
 		end
 	end

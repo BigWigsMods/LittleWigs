@@ -112,7 +112,7 @@ function mod:GetOptions()
 		331237, -- Bone Spikes
 	}, {
 		[333241] = L.raging_bloodhorn,
-		[341977] = L.diseased_horror,
+		[319290] = L.diseased_horror,
 		[341969] = L.blighted_sludge_spewer,
 		[330586] = L.putrid_butcher,
 		[330614] = L.rancid_gasbag,

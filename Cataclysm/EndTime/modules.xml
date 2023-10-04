@@ -2,10 +2,10 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Baine.lua"/>
-<Script file="Jaina.lua"/>
-<Script file="Sylvanas.lua"/>
-<Script file="Tyrande.lua"/>
-<Script file="Murozond.lua"/>
+<!-- <Script file="Jaina.lua"/> -->
+<!-- <Script file="Sylvanas.lua"/> -->
+<!-- <Script file="Tyrande.lua"/> -->
+<!-- <Script file="Murozond.lua"/> -->
 
 <Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
