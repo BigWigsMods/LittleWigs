@@ -205,6 +205,7 @@ end
 
 do
 	local prev = 0
+	local prevSay = 0
 	function mod:VenomBurstApplied(args)
 		local onMe = self:Me(args.destGUID)
 		local t = args.time
@@ -213,10 +214,13 @@ do
 			self:TargetMessage(args.spellId, "red", args.destName)
 			if onMe then
 				self:PlaySound(args.spellId, "alert", nil, args.destName)
-				self:Say(args.spellId)
 			else
 				self:PlaySound(args.spellId, "alarm", nil, args.destName)
 			end
+		end
+		if onMe and t - prevSay > 3 then
+			prevSay = t
+			self:Say(args.spellId)
 		end
 	end
 end
