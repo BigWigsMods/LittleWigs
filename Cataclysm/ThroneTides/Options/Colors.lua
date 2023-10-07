@@ -13,6 +13,10 @@ BigWigs:AddColors("Commander Ulthok", {
 	[76047] = "red",
 	[76094] = {"blue","yellow"},
 	[76100] = "yellow",
+	[427456] = "cyan",
+	[427668] = "red",
+	[427670] = "purple",
+	[427672] = "orange",
 })
 
 BigWigs:AddColors("Mindbender Ghur'sha", {

@@ -9,6 +9,10 @@ BigWigs:AddSounds("Lady Naz'jar", {
 })
 
 BigWigs:AddSounds("Commander Ulthok", {
+	[427456] = "long",
+	[427668] = "alarm",
+	[427670] = "alert",
+	[427672] = "alarm",
 })
 
 BigWigs:AddSounds("Mindbender Ghur'sha", {
