@@ -1,6 +1,11 @@
 
 BigWigs:AddColors("Lady Naz'jar", {
-	[75683] = "yellow",
+	[75683] = "cyan",
+	[427771] = "orange",
+	[428054] = "purple",
+	[428263] = "red",
+	[428293] = "orange",
+	[428374] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Commander Ulthok", {
