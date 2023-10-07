@@ -1,3 +1,4 @@
+local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -13,6 +14,7 @@ mod:SetEncounterID(1756)
 --
 
 local colossalBlowCount = 1
+local verdantEruptionCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -20,7 +22,6 @@ local colossalBlowCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.kirin_tor = "Kirin Tor"
 	L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end
 
@@ -28,26 +29,50 @@ end
 -- Initialization
 --
 
+local flourishingAncientMarker = mod:AddMarkerOption(true, "npc", 8, -10537, 8) -- Flourishing Ancient
 function mod:GetOptions()
 	return {
 		"warmup",
 		-- Yalnu
 		169179, -- Colossal Blow
-		169120, -- Font of Life
+		428823, -- Verdant Eruption
+		flourishingAncientMarker,
 		{169613, "CASTBAR"}, -- Genesis
-		169240, -- Entanglement (Kirin Tor)
-		170132, -- Entanglement (Player)
-		-- Vicious Mandragora
-		169878, -- Noxious Breath
-		-- Gnarled Ancient
+		-- Flourishing Ancient
 		169929, -- Lumbering Swipe
+		-- XXX delete these when 10.2 is live everywhere
+		not isTenDotTwo and 169120 or nil, -- Font of Life
+		not isTenDotTwo and 169240 or nil, -- Entanglement (Player)
+		not isTenDotTwo and 170132 or nil, -- Entanglement (Kirin Tor)
+		not isTenDotTwo and 169878 or nil, -- Noxious Breath
 	}, {
 		[169179] = self.displayName, -- Yalnu
-		[169878] = -10535, -- Vicious Mandragora
-		[169929] = -10537, -- Gnarled Ancient
-	}, {
-		[169240] = L.kirin_tor, -- Entanglement (Kirin Tor)
+		[169929] = -10537, -- Flourishing Ancient
 	}
+end
+
+-- XXX delete this entire block below when 10.2 is live everywhere
+if not isTenDotTwo then
+	-- before 10.2
+	function mod:GetOptions()
+		return {
+			"warmup",
+			-- Yalnu
+			169179, -- Colossal Blow
+			169120, -- Font of Life
+			{169613, "CASTBAR"}, -- Genesis
+			169240, -- Entanglement (Kirin Tor)
+			170132, -- Entanglement (Player)
+			-- Vicious Mandragora
+			169878, -- Noxious Breath
+			-- Flourishing Ancient
+			169929, -- Lumbering Swipe
+		}, {
+			[169179] = self.displayName, -- Yalnu
+			[169878] = -10535, -- Vicious Mandragora
+			[169929] = -10537, -- Flourishing Ancient
+		}
+	end
 end
 
 function mod:OnBossEnable()
@@ -56,29 +81,32 @@ function mod:OnBossEnable()
 
 	-- Yalnu
 	self:Log("SPELL_CAST_START", "ColossalBlow", 169179)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Font of Life
-	-- TODO add spawns (Font of Life) have no summon events
+	-- XXX bring these listeners outside the if block when 10.2 is live everywhere
+	if isTenDotTwo then
+		self:Log("SPELL_CAST_START", "VerdantEruption", 428823)
+		self:Log("SPELL_CAST_SUCCESS", "VibrantFlourish", 428948)
+	else
+		-- XXX delete these listeners when 10.2 is live everywhere
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Font of Life
+		self:Log("SPELL_CAST_SUCCESS", "EntanglementKirinTor", 169251) -- aura is 169240
+		self:Log("SPELL_AURA_APPLIED", "EntanglementPlayer", 170132) -- cast is 170124
+		self:Log("SPELL_CAST_START", "NoxiousBreath", 169878)
+	end
 	self:Log("SPELL_CAST_START", "Genesis", 169613)
-	self:Log("SPELL_CAST_SUCCESS", "EntanglementKirinTor", 169251) -- aura is 169240
-	self:Log("SPELL_AURA_APPLIED", "EntanglementPlayer", 170132) -- cast is 170124
 
-	-- Vicious Mandragora
-	self:Log("SPELL_CAST_START", "NoxiousBreath", 169878)
-
-	-- Gnarled Ancient
+	-- Flourishing Ancient
 	self:Log("SPELL_CAST_START", "LumberingSwipe", 169929)
 end
 
 function mod:OnEngage()
 	colossalBlowCount = 1
-	self:CDBar(169179, 5.3) -- Colossal Blow
-	self:CDBar(169240, 12.4, CL.other:format(self:SpellName(169240), L.kirin_tor)) -- Entanglement (Kirin Tor)
-	self:CDBar(169120, 15.0) -- Font of Life
-	self:CDBar(169613, 25.6) -- Genesis
-	if self:MythicPlus() then
-		-- dungeon journal says "In Heroic and Challenge difficulty" but only observed in M+
-		self:CDBar(170132, 53.8) -- Entanglement (Player)
+	verdantEruptionCount = 1
+	self:CDBar(169179, 2.4) -- Colossal Blow
+	-- XXX bring this bar outside the if block when 10.2 is live everywhere
+	if isTenDotTwo then
+		self:CDBar(428823, 23.0, CL.count:format(self:SpellName(428823), verdantEruptionCount)) -- Verdant Eruption
 	end
+	self:CDBar(169613, 40.1) -- Genesis
 end
 
 --------------------------------------------------------------------------------
@@ -101,44 +129,76 @@ function mod:ColossalBlow(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	colossalBlowCount = colossalBlowCount + 1
-	-- TODO timer is different in other difficulties? (this is from M+)
-	if colossalBlowCount % 2 == 0 then
-		self:CDBar(args.spellId, 40.1)
-	else
-		self:CDBar(args.spellId, 20.6)
+	if colossalBlowCount % 3 ~= 1 then -- 2, 3, 5, 6...
+		self:CDBar(args.spellId, 15.8)
+	else -- 4, 7 ...
+		self:CDBar(args.spellId, 23.0)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 169120 then -- Font of Life
-		-- this summons either 1 Gnarled Ancient, 2 Vicious Mandragoras, or 8 Swift Sproutlings
-		self:Message(spellId, "cyan")
-		self:PlaySound(spellId, "alert")
-		self:CDBar(spellId, 15.0)
+function mod:VerdantEruption(args)
+	self:StopBar(CL.count:format(args.spellName, verdantEruptionCount))
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, verdantEruptionCount))
+	self:PlaySound(args.spellId, "info")
+	verdantEruptionCount = verdantEruptionCount + 1
+	self:CDBar(args.spellId, 54.5, CL.count:format(args.spellName, verdantEruptionCount))
+end
+
+do
+	local flourishingAncientGUID = nil
+
+	function mod:VibrantFlourish(args)
+		-- register events to auto-mark the add
+		if self:GetOption(flourishingAncientMarker) then
+			flourishingAncientGUID = args.sourceGUID
+			self:RegisterTargetEvents("MarkFlourishingAncient")
+		end
+	end
+
+	function mod:MarkFlourishingAncient(_, unit, guid)
+		if flourishingAncientGUID == guid then
+			flourishingAncientGUID = nil
+			self:CustomIcon(flourishingAncientMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
 	end
 end
 
 function mod:Genesis(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CastBar(args.spellId, 17) -- 2s cast + 15s channel
-	self:CDBar(args.spellId, 60.7)
+	self:CastBar(args.spellId, 14) -- 2s cast + 12s channel
+	self:CDBar(args.spellId, 54.6)
+end
+
+-- Flourishing Ancient
+
+function mod:LumberingSwipe(args)
+	-- this AOE will hit a small area around Lady Baihu
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	-- self:CDBar(args.spellId, 13.3) -- probably not useful
+end
+
+-- XXX pre 10.2, delete everything below this comment when 10.2 is live everywhere
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 169120 then -- Font of Life
+		-- this summons either 1 Flourishing Ancient, 2 Vicious Mandragoras, or 8 Swift Sproutlings
+		self:Message(spellId, "cyan")
+		self:PlaySound(spellId, "alert")
+		self:CDBar(spellId, 15.0)
+	end
 end
 
 function mod:EntanglementKirinTor(args)
-	self:Message(169240, "red", CL.other:format(args.spellName, L.kirin_tor))
+	self:Message(169240, "red")
 	self:PlaySound(169240, "info")
-	-- TODO timer is lower in other difficulties? (this is from M+)
-	-- TODO this won't be cast if all the friendly NPCs are dead...
-	-- UNIT_DIED##nil#Creature-0-5770-1279-9671-84358-0000188F23#Lady Baihu
-	-- no UNIT_DIED for Kirin Tor Battle-Mage though
-	self:CDBar(169240, 60.7, CL.other:format(args.spellName, L.kirin_tor))
 end
 
 function mod:EntanglementPlayer(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
-	self:CDBar(args.spellId, 60.7)
 end
 
 -- Vicious Mandragora
@@ -153,11 +213,4 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
-end
-
--- Gnarled Ancient
-
-function mod:LumberingSwipe(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
 end

@@ -42,6 +42,7 @@ BigWigs:AddSounds("Yalnu", {
 	[169878] = "alarm",
 	[169929] = "alarm",
 	[170132] = "info",
+	[428823] = "info",
 })
 
 BigWigs:AddSounds("The Everbloom Trash", {
