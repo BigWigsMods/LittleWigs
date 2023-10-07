@@ -5,9 +5,10 @@ local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2
 
 local mod, CL = BigWigs:NewBoss("Lady Naz'jar", 643, 101)
 if not mod then return end
-mod:RegisterEnableMob(40586)
+mod:RegisterEnableMob(40586) -- Lady Naz'jar
 mod:SetEncounterID(1045)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -58,11 +59,12 @@ end
 
 function mod:OnEngage()
 	highTideCount = 1
+	self:SetStage(1)
 	-- XXX remove these timers from the if block when 10.2 is live everywhere
 	if isTenDotTwo then
-		self:CDBar(428374, 7.4) -- Focused Tempest
+		self:CDBar(428374, 7.1) -- Focused Tempest
 		self:CDBar(427771, 16.1) -- Geysers
-		self:CDBar(428054, 19.7) -- Shock Blast
+		self:CDBar(428054, 18.0) -- Shock Blast
 	end
 end
 
@@ -88,6 +90,7 @@ function mod:HighTideStarting(args)
 end
 
 function mod:HighTide(args)
+	self:SetStage(2)
 	local percent = highTideCount == 1 and 60 or 30
 	self:Message(args.spellId, "cyan", CL.percent:format(percent, args.spellName))
 	self:PlaySound(args.spellId, "long")
@@ -95,6 +98,7 @@ function mod:HighTide(args)
 end
 
 function mod:HighTideOver(args)
+	self:SetStage(1)
 	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 	-- XXX remove these timers from the if block when 10.2 is live everywhere
