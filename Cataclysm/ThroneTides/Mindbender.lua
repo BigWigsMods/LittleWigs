@@ -96,7 +96,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stage:format(2), nil)
 		self:PlaySound("stages", "long")
-		self:CDBar(429172, 10.5) -- Terrifying Vision
+		self:CDBar(429172, 9.8) -- Terrifying Vision
 		self:UnregisterUnitEvent(event, unit)
 	end
 end
