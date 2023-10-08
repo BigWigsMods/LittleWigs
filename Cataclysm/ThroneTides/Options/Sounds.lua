@@ -18,6 +18,11 @@ BigWigs:AddSounds("Commander Ulthok", {
 BigWigs:AddSounds("Mindbender Ghur'sha", {
 	[76207] = "alert",
 	[76230] = "alarm",
+	[429037] = "info",
+	[429048] = "alert",
+	[429051] = "alarm",
+	[429172] = "warning",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Ozumat", {

@@ -23,7 +23,11 @@ BigWigs:AddColors("Mindbender Ghur'sha", {
 	[76207] = {"blue","red"},
 	[76230] = "blue",
 	[76307] = "orange",
-	["stages"] = "green",
+	[429037] = "yellow",
+	[429048] = {"blue","red"},
+	[429051] = "orange",
+	[429172] = "red",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Ozumat", {
