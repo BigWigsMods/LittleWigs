@@ -10,4 +10,5 @@ if L then
 	L.stalker = "Inseguitore Lama dell'Ombra"
 	L.confessor = "Confessore Dazar'ai"
 	L.augur = "Divinatore Dazar'ai"
+	L.reanimated_honor_guard = "Guardia d'Onore Rianimata"
 end

@@ -1,13 +1,14 @@
 local L = BigWigs:NewBossLocale("Atal'Dazar Trash", "koKR")
 if not L then return end
 if L then
-	-- L.skyscreamer = "Feasting Skyscreamer"
-	-- L.tlonja = "T'lonja"
-	-- L.shieldbearer = "Shieldbearer of Zul"
-	-- L.witchdoctor = "Zanchuli Witch-Doctor"
-	-- L.kisho = "Dinomancer Kish'o"
-	-- L.priestess = "Gilded Priestess"
-	-- L.stalker = "Shadowblade Stalker"
+	L.skyscreamer = "탐식의 하늘공포"
+	L.tlonja = "트론자"
+	L.shieldbearer = "줄의 방패병"
+	L.witchdoctor = "잔추리 의술사"
+	L.kisho = "공룡술사 키쉬오"
+	L.priestess = "호화로운 여사제"
+	L.stalker = "그림자칼날 추적자"
 	L.confessor = "다자르아이 고해사제"
 	L.augur = "다자르아이 점술가"
+	L.reanimated_honor_guard = "되살아난 근위병"
 end

@@ -10,4 +10,5 @@ if L then
 	L.stalker = "Крадущийся теневой клинок"
 	L.confessor = "Дазар'айский духовник"
 	L.augur = "Дазар'айский авгур"
+	L.reanimated_honor_guard = "Оживленный почетный страж"
 end

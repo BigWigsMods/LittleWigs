@@ -10,4 +10,5 @@ if L then
 	L.stalker = "影刃追猎者"
 	L.confessor = "达萨莱神官"
 	L.augur = "达萨莱占卜师"
+	L.reanimated_honor_guard = "复活的荣誉卫士"
 end
