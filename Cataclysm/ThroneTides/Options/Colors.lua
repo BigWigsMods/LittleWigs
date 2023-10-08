@@ -31,7 +31,13 @@ BigWigs:AddColors("Mindbender Ghur'sha", {
 })
 
 BigWigs:AddColors("Ozumat", {
-	["stages"] = {"green","yellow"},
+	[428407] = {"blue","red"},
+	[428530] = "purple",
+	[428594] = "orange",
+	[428668] = {"blue","green"},
+	[428868] = "yellow",
+	[428889] = "purple",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Throne of the Tides Trash", {

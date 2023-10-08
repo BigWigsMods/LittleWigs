@@ -26,7 +26,13 @@ BigWigs:AddSounds("Mindbender Ghur'sha", {
 })
 
 BigWigs:AddSounds("Ozumat", {
-	["stages"] = "info",
+	[428407] = "alarm",
+	[428530] = "alarm",
+	[428594] = "alarm",
+	[428668] = "info",
+	[428868] = "alert",
+	[428889] = "warning",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Throne of the Tides Trash", {
