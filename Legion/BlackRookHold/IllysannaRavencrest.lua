@@ -41,7 +41,8 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_SUCCESS", "Leap", 197622)
+	self:Log("SPELL_CAST_SUCCESS", "GainingEnergy", 197394)
 
 	-- Stage One: Vengeance
 	self:Log("SPELL_CAST_START", "VengefulShear", 197418)
@@ -68,7 +69,7 @@ function mod:OnEngage()
 	self:CDBar(197418, 8.3) -- Vengeful Shear
 	self:CDBar(197478, 11.9) -- Dark Rush
 	-- cast at 100 energy, starts at 65 energy, 32s energy gain + 3.2s delay
-	self:CDBar("stages", 35.2, -12281, "Ability_demonhunter_specdps") -- Stage Two: Fury
+	self:CDBar("stages", 35.2, -12281, 197622) -- Stage Two: Fury, Leap
 end
 
 --------------------------------------------------------------------------------
@@ -77,33 +78,37 @@ end
 
 -- Stages
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
-	if spellId == 197622 then -- Phase 2 Jump (Stage Two)
-		eyeBeamsRemaining = 3
-		self:StopBar(-12281) -- Stage Two: Fury
-		self:StopBar(197418) -- Vengeful Shear
-		self:StopBar(197478) -- Dark Rush
-		self:StopBar(197546) -- Brutal Glaive
-		self:SetStage(2)
-		self:Message("stages", "cyan", -12281, "Ability_demonhunter_specdps") -- Stage Two: Fury
-		self:PlaySound("stages", "long")
-		self:CDBar(197696, 1.5) -- Eye Beams
-		self:CDBar("stages", 45.0, -12277, "Ability_demonhunter_spectank") -- Stage One: Vengeance
-	elseif spellId == 197394 then -- Periodic Energize (Stage One)
-		vengefulShearRemaining = 6
-		darkRushRemaining = 2
-		brutalGlaiveRemaining = 6
-		self:StopBar(197696) -- Eye Beams
-		self:StopBar(-12277) -- Stage One: Vengeance
-		self:SetStage(1)
-		self:Message("stages", "cyan", -12277, "Ability_demonhunter_spectank") -- Stage One: Vengeance
-		self:PlaySound("stages", "long")
-		self:CDBar(197546, 6.1) -- Brutal Glaive
-		self:CDBar(197478, 12.2) -- Dark Rush
-		self:CDBar(197418, 13.0) -- Vengeful Shear
-		-- cast at 100 energy, 90s energy gain + 3.4s delay
-		self:CDBar("stages", 93.4, -12281, "Ability_demonhunter_specdps") -- Stage Two: Fury
+function mod:Leap(args)
+	eyeBeamsRemaining = 3
+	self:StopBar(197418) -- Vengeful Shear
+	self:StopBar(197478) -- Dark Rush
+	self:StopBar(197546) -- Brutal Glaive
+	self:StopBar(-12281) -- Stage Two: Fury
+	self:SetStage(2)
+	self:Message("stages", "cyan", -12281, args.spellId) -- Stage Two: Fury
+	self:PlaySound("stages", "long")
+	self:CDBar(197696, 1.5) -- Eye Beams
+	self:CDBar("stages", 45.0, -12277, 197394) -- Stage One: Vengeance, Gaining Energy
+end
+
+function mod:GainingEnergy(args)
+	if not self:IsEngaged() then
+		-- this is cast upon respawn
+		return
 	end
+	vengefulShearRemaining = 6
+	darkRushRemaining = 2
+	brutalGlaiveRemaining = 6
+	self:StopBar(197696) -- Eye Beams
+	self:StopBar(-12277) -- Stage One: Vengeance
+	self:SetStage(1)
+	self:Message("stages", "cyan", -12277, args.spellId) -- Stage One: Vengeance
+	self:PlaySound("stages", "long")
+	self:CDBar(197546, 6.1) -- Brutal Glaive
+	self:CDBar(197478, 12.2) -- Dark Rush
+	self:CDBar(197418, 13.0) -- Vengeful Shear
+	-- cast at 100 energy, 90s energy gain + 3.4s delay
+	self:CDBar("stages", 93.4, -12281, 197622) -- Stage Two: Fury, Leap
 end
 
 -- Stage One: Vengeance
