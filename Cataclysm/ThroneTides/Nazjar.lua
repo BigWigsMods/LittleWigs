@@ -111,6 +111,8 @@ end
 
 do
 	local function printTarget(self, player, guid)
+		self:TargetMessage(428054, "red", player)
+		self:PlaySound(428054, "alarm", nil, player)
 		if self:Me(guid) then
 			self:Say(428054) -- Shock Blast
 		end
@@ -118,8 +120,6 @@ do
 
 	function mod:ShockBlast(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 26.7)
 	end
 end
