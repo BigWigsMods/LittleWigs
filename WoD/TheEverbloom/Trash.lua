@@ -45,7 +45,7 @@ function mod:GetOptions()
 		-- Dreadpetal
 		{164886, "DISPEL"}, -- Dreadpetal Pollen
 		-- Everbloom Naturalist
-		{164965, "DISPEL"}, -- Choking Vines
+		164965, -- Choking Vines
 		-- Everbloom Cultivator
 		165213, -- Enraged Growth
 		-- Rockspine Stinger
@@ -76,6 +76,7 @@ function mod:GetOptions()
 		[426974] = L.addled_arcanomancer,
 	}
 end
+
 -- XXX delete this entire if block below when 10.2 is live everywhere
 if select(4, GetBuildInfo()) < 100200 then
 	-- before 10.2
@@ -84,7 +85,7 @@ if select(4, GetBuildInfo()) < 100200 then
 			-- Dreadpetal
 			{164886, "DISPEL"}, -- Dreadpetal Pollen
 			-- Everbloom Naturalist
-			{164965, "DISPEL"}, -- Choking Vines
+			164965, -- Choking Vines
 			-- Everbloom Cultivator
 			165213, -- Enraged Growth
 			-- Rockspine Stinger
@@ -131,6 +132,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LivingLeavesApplied", 169495)
 	-- XXX remove this line from the if block when 10.2 is live everywhere
 	if select(4, GetBuildInfo()) >= 100200 then
+		self:Log("SPELL_CAST_SUCCESS", "GnarledRoots", 426500)
 		self:Log("SPELL_AURA_APPLIED", "GnarledRootsApplied", 426500)
 	end
 
@@ -173,16 +175,18 @@ do
 		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "warning")
+			self:PlaySound(args.spellId, "alert")
 		end
 		--self:NameplateCDBar(args.spellId, 21.8, args.sourceGUID)
 	end
 end
 
 function mod:ChokingVinesApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "info", nil, args.destName)
+	else
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
 
@@ -248,12 +252,23 @@ function mod:LivingLeavesApplied(args)
 	end
 end
 
-function mod:GnarledRootsApplied(args)
-	-- can be movement dispelled, else you have to attack the roots
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alarm", nil, args.destName)
-	-- TODO if this is uncommented it should be moved to SPELL_CAST_START
-	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
+do
+	local playerList = {}
+
+	function mod:GnarledRoots(args)
+		playerList = {}
+		--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
+	end
+
+	function mod:GnarledRootsApplied(args)
+		-- can be movement dispelled, else you have to attack the roots
+		-- currently applies to pets as well as players
+		if self:Player(args.destFlags) then
+			playerList[#playerList + 1] = args.destName
+			self:PlaySound(args.spellId, "alarm", nil, playerList)
+			self:TargetsMessage(args.spellId, "orange", playerList, 5)
+		end
+	end
 end
 
 -- Melded Berserker
