@@ -9,7 +9,8 @@ BigWigs:AddSounds("Varos Cloudstrider", {
 })
 
 BigWigs:AddSounds("Mage-Lord Urom", {
-	[51103] = "alert",
+	[51103] = "underyou",
+	[51110] = "alarm",
 	[51121] = "alert",
 })
 

@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Mage-Lord Urom", 578, 624)
 if not mod then return end
 mod:RegisterEnableMob(27655)
-mod.engageId = 2014
--- mod.respawnTime = 0 -- resets, doesn't respawn
+mod:SetEncounterID(mod:Classic() and 532 or 2014)
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -25,10 +25,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "TimeBomb", 51121, 59376)
 	self:Log("SPELL_CAST_START", "EmpoweredArcaneExplosion", 51110, 59377) -- normal, heroic
 
-
-	self:Log("SPELL_AURA_APPLIED", "Frostbomb", 51103)
-	self:Log("SPELL_PERIODIC_DAMAGE", "Frostbomb", 51103)
-	self:Log("SPELL_PERIODIC_MISSED", "Frostbomb", 51103)
+	self:Log("SPELL_AURA_APPLIED", "FrostbombDamage", 51103)
+	self:Log("SPELL_PERIODIC_DAMAGE", "FrostbombDamage", 51103)
+	self:Log("SPELL_PERIODIC_MISSED", "FrostbombDamage", 51103)
 end
 
 function mod:OnEngage()
@@ -70,20 +69,21 @@ function mod:TimeBombRemoved(args)
 end
 
 function mod:EmpoweredArcaneExplosion(args)
-	self:MessageOld(51110, "yellow", nil, CL.casting:format(args.spellName))
+	self:Message(51110, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(51110, "alarm")
 	self:CastBar(51110, self:Normal() and 8 or 6, 1449) -- 1449 = Arcane Explosion, to prevent the bar's text overlapping with its timer
 	self:CDBar(51110, 38.9)
 end
 
-
 do
 	local prev = 0
-	function mod:Frostbomb(args)
+	function mod:FrostbombDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t - prev > 1.5 then
+			if t - prev > 2 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou", nil, args.destName)
 			end
 		end
 	end
