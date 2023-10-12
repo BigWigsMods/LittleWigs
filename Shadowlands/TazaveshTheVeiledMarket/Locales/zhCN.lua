@@ -27,7 +27,7 @@ if L then
 	L.soazmi_warmup_trigger = "不好意思打扰了，索·莉亚。希望我们没耽误你什么大事。"
 	L.portal_authority = "塔扎维什传送局"
 	L.custom_on_portal_autotalk = "自动对话"
-	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.custom_on_portal_autotalk_desc = "与经纪人 NPC 交谈时立即打开传送门可以在副本内传送。"
 	L.trading_game = "交易游戏"
 	L.trading_game_desc = "在交易游戏期间使用正确的密码发出警报。"
 	L.custom_on_trading_game_autotalk = "自动对话"
