@@ -1,5 +1,6 @@
 
 BigWigs:AddSounds("Drakos the Interrogator", {
+	[50774] = "alarm",
 })
 
 BigWigs:AddSounds("Varos Cloudstrider", {
