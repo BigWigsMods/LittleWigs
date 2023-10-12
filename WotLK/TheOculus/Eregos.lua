@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Ley-Guardian Eregos", 578, 625)
 if not mod then return end
 mod:RegisterEnableMob(27656)
-mod.engageId = 2013
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 534 or 2013)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -32,12 +32,11 @@ end
 --
 
 function mod:EnragedAssault(args)
-	self:MessageOld(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 12)
 end
 
 function mod:PlanarShift(args)
-	self:MessageOld(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 18)
 end
-
