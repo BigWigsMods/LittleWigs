@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Varos Cloudstrider", 578, 623)
 if not mod then return end
 mod:RegisterEnableMob(27447)
-mod.engageId = 2015
--- mod.respawnTime = 0 -- resets, doesn't respawn
+mod:SetEncounterID(mod:Classic() and 530 or 2015)
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -41,7 +41,7 @@ end
 --
 
 function mod:AmplifyMagic(args)
-	self:TargetMessageOld(51054, args.destName, "red")
+	self:TargetMessage(51054, "red", args.destName)
 	self:TargetBar(51054, 30, args.destName)
 end
 
@@ -50,7 +50,8 @@ function mod:AmplifyMagicRemoved(args)
 end
 
 function mod:CallAzureRingCaptain()
-	self:MessageOld(-7442, "orange", nil, CL.spawned:format(self:SpellName(-7443))) -- -7443 = Azure Ring Captain
+	self:Message(-7442, "cyan", CL.spawned:format(self:SpellName(-7443))) -- -7443 = Azure Ring Captain
+	self:PlaySound(-7442, "info")
 	self:CDBar(-7442, 13.3) -- 13-18s, most are ~15s
 end
 
@@ -61,7 +62,8 @@ do
 			local t = args.time
 			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou", nil, args.destName)
 			end
 		end
 	end

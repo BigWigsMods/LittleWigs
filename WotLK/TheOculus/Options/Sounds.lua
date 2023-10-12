@@ -4,7 +4,8 @@ BigWigs:AddSounds("Drakos the Interrogator", {
 })
 
 BigWigs:AddSounds("Varos Cloudstrider", {
-	[51021] = "alert",
+	[-7442] = "info",
+	[51021] = "underyou",
 })
 
 BigWigs:AddSounds("Mage-Lord Urom", {
