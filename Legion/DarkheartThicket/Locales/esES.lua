@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "esES") or BigWigs:NewBossLocale("Darkheart Thicket Trash", "esMX")
 if not L then return end
 if L then
+	--L.archdruid_glaidalis_warmup_trigger = "Defilers... I can smell the Nightmare in your blood. Be gone from these woods or suffer nature's wrath!"
+
 	L.mindshattered_screecher = "Estridador Mentequebrada"
 	L.dreadsoul_ruiner = "Arruinador Almaespanto"
 	L.dreadsoul_poisoner = "Envenenador Almaespanto"

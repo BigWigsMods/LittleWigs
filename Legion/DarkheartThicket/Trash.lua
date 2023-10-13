@@ -28,6 +28,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.archdruid_glaidalis_warmup_trigger = "Defilers... I can smell the Nightmare in your blood. Be gone from these woods or suffer nature's wrath!"
+
 	L.mindshattered_screecher = "Mindshattered Screecher"
 	L.dreadsoul_ruiner = "Dreadsoul Ruiner"
 	L.dreadsoul_poisoner = "Dreadsoul Poisoner"
@@ -100,6 +102,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Warmup
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
 	-- Mindshattered Screecher
 	self:Log("SPELL_CAST_START", "UnnervingScreech", 200630)
 
@@ -151,6 +156,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.archdruid_glaidalis_warmup_trigger then
+		-- Archdruid Glaidalis Warmup
+		local archdruidGlaidalisModule = BigWigs:GetBossModule("Archdruid Glaidalis", true)
+		if archdruidGlaidalisModule then
+			archdruidGlaidalisModule:Enable()
+			archdruidGlaidalisModule:Warmup()
+		end
+		self:UnregisterEvent(event)
+	end
+end
 
 -- Mindshattered Screecher
 

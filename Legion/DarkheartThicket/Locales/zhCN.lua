@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "zhCN")
 if not L then return end
 if L then
+	--L.archdruid_glaidalis_warmup_trigger = "Defilers... I can smell the Nightmare in your blood. Be gone from these woods or suffer nature's wrath!"
+
 	L.mindshattered_screecher = "精神错乱的尖啸夜枭"
 	L.dreadsoul_ruiner = "恐魂毁灭者"
 	L.dreadsoul_poisoner = "恐魂施毒者"

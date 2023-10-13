@@ -15,6 +15,7 @@ mod:SetRespawnTime(15)
 local nightmareAbominationMarker = mod:AddMarkerOption(true, "npc", 8, -13302, 8) -- Nightmare Abomination
 function mod:GetOptions()
 	return {
+		"warmup",
 		198379, -- Primal Rampage
 		212464, -- Nightfall
 		nightmareAbominationMarker,
@@ -45,6 +46,11 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- called from trash module
+function mod:Warmup()
+	self:Bar("warmup", 8.0, CL.active, "achievement_dungeon_darkheartthicket")
+end
 
 function mod:PrimalRampage(args)
 	self:Message(args.spellId, "orange")
