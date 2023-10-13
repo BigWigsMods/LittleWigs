@@ -1,9 +1,10 @@
 
 BigWigs:AddSounds("Witherbark", {
 	[-10098] = "info",
-	[164275] = {"info","long"},
+	[164275] = "long",
 	[164294] = {"alert","underyou"},
 	[164357] = "alarm",
+	[164438] = "info",
 })
 
 BigWigs:AddSounds("Ancient Protectors", {

@@ -4,6 +4,7 @@ BigWigs:AddColors("Witherbark", {
 	[164275] = "cyan",
 	[164294] = {"blue","yellow"},
 	[164357] = "purple",
+	[164438] = "cyan",
 })
 
 BigWigs:AddColors("Ancient Protectors", {

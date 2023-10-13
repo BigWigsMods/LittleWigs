@@ -1,3 +1,4 @@
+local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,6 +8,7 @@ if not mod then return end
 mod:RegisterEnableMob(81522) -- Witherbark
 mod:SetEncounterID(1746)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -24,6 +26,7 @@ end
 function mod:GetOptions()
 	return {
 		164275, -- Brittle Bark
+		164438, -- Energize
 		164357, -- Parched Gasp
 		{164294, "ME_ONLY"}, -- Unchecked Growth
 		{-10098, "OFF"}, -- Unchecked Growth (Add Spawned)
@@ -34,16 +37,22 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BrittleBark", 164275)
-	self:Log("SPELL_ENERGIZE", "Energize", 164438)
 	self:Log("SPELL_AURA_REMOVED", "BrittleBarkOver", 164275)
+	self:Log("SPELL_ENERGIZE", "Energize", 164438)
 	self:Log("SPELL_CAST_START", "ParchedGasp", 164357)
 	self:Log("SPELL_AURA_APPLIED", "UncheckedGrowthApplied", 164302)
 	self:Log("SPELL_PERIODIC_DAMAGE", "UncheckedGrowthDamage", 164294)
 	self:Log("SPELL_PERIODIC_MISSED", "UncheckedGrowthDamage", 164294)
-	self:Log("SPELL_CAST_SUCCESS", "EncounterSpawn", 181113) -- Unchecked Growth
+	if isTenDotTwo then
+		self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSummon", 164556)
+	else
+		-- XXX delete when 10.2 is live everywhere
+		self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSummon", 181113) -- Encounter Spawn
+	end
 end
 
 function mod:OnEngage()
+	self:SetStage(1)
 	self:CDBar(164294, 5.8) -- Unchecked Growth
 	self:CDBar(164357, 9.7) -- Parched Gasp
 	-- cast at 0 energy, 39s energy loss + delay
@@ -58,6 +67,7 @@ do
 	local energy = 0
 
 	function mod:BrittleBark(args)
+		self:SetStage(2)
 		energy = 0
 		self:Message(args.spellId, "cyan", CL.other:format(args.spellName, CL.incoming:format(self:SpellName(-10100)))) -- 10100 = Aqueous Globules
 		self:PlaySound(args.spellId, "long")
@@ -68,23 +78,24 @@ do
 		end
 	end
 
+	function mod:BrittleBarkOver(args)
+		self:SetStage(1)
+		self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
+		self:PlaySound(args.spellId, "long")
+		-- cast at 0 energy, 39s energy loss + delay
+		self:Bar(args.spellId, 39.3)
+		self:CDBar(164357, 3.6) -- Parched Gasp
+	end
+
 	function mod:Energize(args)
 		if self:IsEngaged() then -- This happens when killing the trash, we only want it during the encounter.
 			energy = energy + args.extraSpellId -- args.extraSpellId is the energy gained from SPELL_ENERGIZE
 			if energy < 100 then
-				self:Message(164275, "cyan", L.energyStatus:format(energy), "spell_lightning_lightningbolt01")
-				self:PlaySound(164275, "info")
+				self:Message(args.spellId, "cyan", L.energyStatus:format(energy))
+				self:PlaySound(args.spellId, "info")
 			end
 		end
 	end
-end
-
-function mod:BrittleBarkOver(args)
-	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
-	-- cast at 0 energy, 39s energy loss + delay
-	self:Bar(args.spellId, 39.3)
-	self:CDBar(164357, 3.6) -- Parched Gasp
 end
 
 function mod:ParchedGasp(args)
@@ -113,7 +124,7 @@ do
 	end
 end
 
-function mod:EncounterSpawn() -- Unchecked Growth
-	self:Message(-10098, "orange", CL.add_spawned)
+function mod:UncheckedGrowthSummon()
+	self:Message(-10098, "orange", CL.add_spawned, false)
 	self:PlaySound(-10098, "info")
 end
