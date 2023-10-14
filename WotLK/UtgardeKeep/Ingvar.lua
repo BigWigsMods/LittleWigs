@@ -1,21 +1,21 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ingvar the Plunderer", 574, 640)
 if not mod then return end
 mod:RegisterEnableMob(23954)
---mod.engageId = 2025 -- no ENCOUNTER_END on a successful kill
---mod.respawnTime = 30
+--mod:SetEncounterID(mod:Classic() and 575 or 2025) -- no ENCOUNTER_END on a successful kill
+--mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local deaths = 0
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -52,7 +52,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:Smash(args)

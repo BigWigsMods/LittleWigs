@@ -1,20 +1,22 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Skarvald & Dalronn", 574, 639)
 if not mod then return end
 mod:RegisterEnableMob(24200, 24201) -- Skarvald the Constructor, Dalronn the Controller
-mod.engageId = 2024
-mod.respawnTime = 10
+mod:SetEncounterID(mod:Classic() and 573 or 2024)
+mod:SetRespawnTime(10)
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local deaths = 0
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -33,7 +35,8 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
+--
 
 function mod:Debilitate(args)
 	self:TargetMessageOld(args.spellId, args.destName, "yellow")

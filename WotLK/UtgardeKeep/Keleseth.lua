@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Prince Keleseth", 574, 638)
 if not mod then return end
 mod:RegisterEnableMob(23953)
-mod.engageId = 2026
--- mod.respawnTime = 0 -- resets, doesn't respawn
+mod:SetEncounterID(mod:Classic() and 571 or 2026)
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -24,7 +24,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:FrostTomb(args)
