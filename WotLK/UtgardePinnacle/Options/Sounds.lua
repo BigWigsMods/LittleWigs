@@ -11,6 +11,7 @@ BigWigs:AddSounds("Skadi the Ruthless", {
 })
 
 BigWigs:AddSounds("King Ymiron", {
+	[59301] = {"alert","info"},
 })
 
 BigWigs:AddSounds("Utgarde Pinnacle Trash", {
