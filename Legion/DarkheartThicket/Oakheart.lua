@@ -36,7 +36,10 @@ function mod:OnEngage()
 	self:CDBar(204574, 14.2) -- Strangling Roots
 	self:CDBar(204667, 18.2) -- Nightmare Breath
 	self:CDBar(204611, 24.0) -- Crushing Grip
-	self:CDBar(212786, 30.2) -- Uproot
+	if self:Mythic() then
+		 -- dungeon journal says Heroic+, in reality it's Mythic-only
+		self:CDBar(212786, 30.2) -- Uproot
+	end
 end
 
 --------------------------------------------------------------------------------
