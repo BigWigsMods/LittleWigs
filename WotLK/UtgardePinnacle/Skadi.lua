@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Skadi the Ruthless", 575, 643)
 if not mod then return end
 mod:RegisterEnableMob(26693)
-mod.engageId = 2029
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 581 or 2029)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -31,7 +30,8 @@ end
 
 do
 	local function printTarget(self, player, guid)
-		self:TargetMessageOld(59322, player, "orange", "info", nil, nil, true)
+		self:TargetMessage(59322, "orange", player)
+		self:PlaySound(59322, "info", nil, player)
 		if self:Me(guid) then
 			self:Say(59322)
 		end
@@ -49,9 +49,10 @@ do
 	function mod:WhirlwindDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t-prev > 1.5 then
+			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(59322, "blue", "alarm", CL.underyou:format(args.spellName))
+				self:PersonalMessage(59322, "underyou")
+				self:PlaySound(59322, "underyou", nil, args.destName)
 			end
 		end
 	end

@@ -7,7 +7,7 @@ BigWigs:AddSounds("Gortok Palehoof", {
 })
 
 BigWigs:AddSounds("Skadi the Ruthless", {
-	[59322] = {"alarm","info"},
+	[59322] = {"info","underyou"},
 })
 
 BigWigs:AddSounds("King Ymiron", {
