@@ -1,6 +1,6 @@
 
 BigWigs:AddSounds("Archdruid Glaidalis", {
-	[196346] = "alarm",
+	[196354] = "alarm",
 	[196376] = "alert",
 	[198379] = "alarm",
 	[198477] = "alert",
