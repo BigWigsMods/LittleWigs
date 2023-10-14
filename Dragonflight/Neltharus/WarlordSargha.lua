@@ -61,7 +61,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MagmaShield", 376780)
 	self:Log("SPELL_AURA_APPLIED", "MagmaShieldApplied", 376780)
 	self:Log("SPELL_AURA_REMOVED", "MagmaShieldRemoved", 376780)
-	self:Log("SPELL_CAST_START", "BurningEmber", 377473)
+	--self:Log("SPELL_CAST_START", "BurningEmber", 377473) -- this no longer logs
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Burning Ember
 	self:Log("SPELL_CAST_START", "TheDragonsKiln", 377204)
 	self:Log("SPELL_CAST_START", "MoltenGold", 377017)
 
@@ -148,7 +149,13 @@ do
 	end
 end
 
-function mod:BurningEmber(args)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 377469 then -- Burning Ember
+		self:BurningEmber()
+	end
+end
+
+function mod:BurningEmber()
 	self:StopBar(377477)
 	burningEmberRemaining = burningEmberRemaining - 1
 	self:Message(377477, "yellow")
