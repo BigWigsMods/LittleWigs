@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Meathook", 595, 611)
 if not mod then return end
 mod:RegisterEnableMob(26529)
-mod.engageId = 2002
---mod.respawnTime = 0 -- resets instead of respawning
+mod:SetEncounterID(mod:Classic() and 293 or 2002)
+--mod:SetRespawnTime(0) -- resets instead of respawning
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -23,10 +23,10 @@ function mod:OnEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:ConstrictingChains(args)
-	self:TargetMessageOld(52696, args.destName, "red")
+	self:TargetMessage(52696, "red", args.destName)
 	self:TargetBar(52696, 5, args.destName)
 end

@@ -1,14 +1,16 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Salramm the Fleshcrafter", 595, 612)
 if not mod then return end
 mod:RegisterEnableMob(26530)
-mod.engageId = 2004
---mod.respawnTime = 0 -- resets instead of respawning
+mod:SetEncounterID(mod:Classic() and 294 or 2004)
+--mod:SetRespawnTime(0) -- resets instead of respawning
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -22,10 +24,11 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
+--
 
 function mod:TwistedFlesh(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red")
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:Bar(args.spellId, 30, args.destName)
 end
 

@@ -1,14 +1,16 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", 595, 613)
 if not mod then return end
 mod:RegisterEnableMob(26532)
-mod.engageId = 2003
---mod.respawnTime = 0 -- couldn't wipe, Arthas refuses to die
+mod:SetEncounterID(mod:Classic() and 295 or 2003)
+--mod:SetRespawnTime(0) -- couldn't wipe, Arthas refuses to die
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
+--
 
 local L = mod:GetLocale()
 if L then
@@ -17,7 +19,8 @@ if L then
 end
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -33,7 +36,8 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
+--
 
 function mod:Warmup(event, msg)
 	if msg:find(L.warmup_trigger, nil, true) then
@@ -43,7 +47,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:CurseOfExertion(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red")
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:Bar(args.spellId, 10, args.destName)
 end
 

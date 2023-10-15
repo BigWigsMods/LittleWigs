@@ -1,14 +1,16 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Mal'Ganis", 595, 614)
 if not mod then return end
 mod:RegisterEnableMob(26533)
-mod.engageId = 2005
---mod.respawnTime = 0 -- couldn't wipe, Arthas refuses to die
+mod:SetEncounterID(mod:Classic() and 296 or 2005)
+--mod:SetRespawnTime(0) -- couldn't wipe, Arthas refuses to die
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
+--
 
 local L = mod:GetLocale()
 if L then
@@ -16,7 +18,8 @@ if L then
 end
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -35,7 +38,8 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
+--
 
 function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
@@ -45,7 +49,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:Sleep(args)
-	self:TargetMessageOld(52721, args.destName, "red")
+	self:TargetMessage(52721, "red", args.destName)
 	self:TargetBar(52721, args.spellId == 52721 and 10 or 8, args.destName)
 end
 
@@ -55,7 +59,8 @@ end
 
 function mod:VampiricTouch(args)
 	if self:MobId(args.destGUID) ~= 26533 then return end -- mages can spellsteal it
-	self:MessageOld(args.spellId, "red", "info", CL.onboss:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.onboss:format(args.spellName))
+	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 30)
 end
 

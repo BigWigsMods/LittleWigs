@@ -13,7 +13,7 @@ BigWigs:AddColors("Chrono-Lord Epoch", {
 
 BigWigs:AddColors("Mal'Ganis", {
 	[52721] = {"blue","red"},
-	[52723] = "red",
+	[52723] = "orange",
 })
 
 BigWigs:AddColors("Infinite Corruptor", {
