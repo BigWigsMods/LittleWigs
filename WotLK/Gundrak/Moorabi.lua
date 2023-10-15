@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Moorabi", 604, 594)
 if not mod then return end
-mod:RegisterEnableMob(29305)
+mod:RegisterEnableMob(29305) -- Moorabi
 mod:SetEncounterID(mod:Classic() and 387 or 1980)
 mod:SetRespawnTime(30)
 
@@ -14,7 +14,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		55098, -- Transformation
+		{55098, "CASTBAR"}, -- Transformation
 	}
 end
 
@@ -34,13 +34,13 @@ function mod:Transformation(args)
 	if boss then
 		local _, _, _, _, endTime = UnitCastingInfo(boss) -- cast time is different on each cast, at least on heroic/tw
 		local remaining = endTime / 1000 - GetTime()
-		self:Bar(args.spellId, remaining)
+		self:CastBar(args.spellId, remaining)
 	end
 end
 
 function mod:Interrupt(args)
 	if args.extraSpellId == 55098 then -- Transformation
 		self:Message(55098, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
-		self:StopBar(args.extraSpellName) -- Name of interrupted spell
+		self:StopBar(CL.cast:format(args.extraSpellName)) -- Name of interrupted spell
 	end
 end
