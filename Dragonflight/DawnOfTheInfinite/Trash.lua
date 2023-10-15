@@ -28,6 +28,7 @@ mod:RegisterEnableMob(
 	206230, -- Infinite Diversionist
 	208698, -- Infinite Riftmage
 	205363, -- Time-Lost Waveshaper
+	205723, -- Time-Lost Aerobot
 	206070, -- Chronaxie
 	203861, -- Horde Destroyer
 	208208, -- Alliance Destroyer
@@ -66,6 +67,7 @@ if L then
 	L.infinite_saboteur = "Infinite Saboteur"
 	L.infinite_riftmage = "Infinite Riftmage"
 	L.timelost_waveshaper = "Time-Lost Waveshaper"
+	L.timelost_aerobot = "Time-Lost Aerobot"
 	L.chronaxie = "Chronaxie"
 	L.horde_destroyer = "Horde Destroyer"
 	L.alliance_destroyer = "Alliance Destroyer"
@@ -129,6 +131,9 @@ function mod:GetOptions()
 		418200, -- Infinite Burn
 		-- Time-Lost Waveshaper
 		411300, -- Fish Bolt Volley
+		-- Time-Lost Aerobot
+		412156, -- Bombing Run
+		412200, -- Electro-Juiced Gigablast
 		-- Chronaxie
 		419516, -- Chronal Eruption
 		419511, -- Temporal Link
@@ -172,6 +177,7 @@ function mod:GetOptions()
 		[419351] = L.infinite_saboteur,
 		[418200] = L.infinite_riftmage,
 		[411300] = L.timelost_waveshaper,
+		[412156] = L.timelost_aerobot,
 		[419516] = L.chronaxie,
 		[407535] = L.horde_destroyer,
 		[418684] = L.alliance_destroyer,
@@ -252,6 +258,10 @@ function mod:OnBossEnable()
 
 	-- Time-Lost Waveshaper
 	self:Log("SPELL_CAST_START", "FishBoltVolley", 411300)
+
+	-- Time-Lost Aerobot
+	self:Log("SPELL_CAST_START", "BombingRun", 412156)
+	self:Log("SPELL_CAST_START", "ElectroJuicedGigablast", 412200)
 
 	-- Chronaxie
 	self:Log("SPELL_CAST_START", "ChronalEruption", 419516)
@@ -464,18 +474,21 @@ function mod:ShroudingSandstorm(args)
 	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
-function mod:BindingGrasp(args)
-	-- TODO get target? can be movement dispelled?
-	-- it's interruptible so maybe doesn't matter?
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(412922, "yellow", name)
+		self:PlaySound(412922, "info", nil, name)
+	end
+
+	function mod:BindingGrasp(args)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
+	end
 end
 
 -- Spurlok, Timesworn Sentinel
 
 function mod:OrbOfContemplation(args)
-	-- TODO get target?
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 13.4, args.sourceGUID)
@@ -538,6 +551,20 @@ function mod:FishBoltVolley(args)
 	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
 end
 
+-- Time-Lost Aerobot
+
+function mod:BombingRun(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 23.0, args.sourceGUID)
+end
+
+function mod:ElectroJuicedGigablast(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+end
+
 -- Chronaxie
 
 function mod:ChronalEruption(args)
@@ -586,8 +613,8 @@ end
 
 function mod:HealingWave(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	-- TODO unknown CD
+	self:PlaySound(args.spellId, "warning")
+	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
 end
 
 do
@@ -595,7 +622,7 @@ do
 	function mod:EarthquakeDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t - prev > 1.5 then
+			if t - prev > 2 then
 				prev = t
 				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "underyou", nil, args.destName)
@@ -608,8 +635,8 @@ end
 
 function mod:HolyLight(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	-- TODO unknown CD
+	self:PlaySound(args.spellId, "warning")
+	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
 end
 
 do
@@ -617,7 +644,7 @@ do
 	function mod:ConsecrationDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t - prev > 1.5 then
+			if t - prev > 2 then
 				prev = t
 				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "underyou", nil, args.destName)

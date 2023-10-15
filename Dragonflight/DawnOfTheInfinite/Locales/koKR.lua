@@ -22,6 +22,7 @@ if L then
 	L.infinite_saboteur = "무한의 파괴자"
 	L.infinite_riftmage = "무한의 균열법사"
 	L.timelost_waveshaper = "잃어버린 시간의 물결구체자"
+	--L.timelost_aerobot = "Time-Lost Aerobot"
 	L.chronaxie = "크로나시"
 	L.horde_destroyer = "호드 구축함"
 	L.alliance_destroyer = "얼라이언스 구축함"

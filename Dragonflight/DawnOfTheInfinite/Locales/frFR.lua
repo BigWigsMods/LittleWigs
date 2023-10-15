@@ -22,6 +22,7 @@ if L then
 	L.infinite_saboteur = "Saboteur infini"
 	L.infinite_riftmage = "Mage de faille infini"
 	L.timelost_waveshaper = "Sculpte-vagues perdu dans le temps"
+	L.timelost_aerobot = "Aérobot perdu dans le temps"
 	L.chronaxie = "Chronaxie"
 	L.horde_destroyer = "Destructeur de la Horde"
 	L.alliance_destroyer = "Destructeur de l'Alliance"

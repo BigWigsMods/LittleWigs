@@ -22,6 +22,7 @@ if L then
 	--L.infinite_saboteur = "Infinite Saboteur"
 	--L.infinite_riftmage = "Infinite Riftmage"
 	--L.timelost_waveshaper = "Time-Lost Waveshaper"
+	--L.timelost_aerobot = "Time-Lost Aerobot"
 	--L.chronaxie = "Chronaxie"
 	--L.horde_destroyer = "Horde Destroyer"
 	--L.alliance_destroyer = "Alliance Destroyer"

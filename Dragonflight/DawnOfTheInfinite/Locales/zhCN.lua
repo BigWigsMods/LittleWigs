@@ -22,6 +22,7 @@ if L then
 	L.infinite_saboteur = "永恒破坏者"
 	L.infinite_riftmage = "永恒裂隙法师"
 	L.timelost_waveshaper = "迷时塑波者"
+	L.timelost_aerobot = "迷时翔机"
 	L.chronaxie = "克罗纳克西"
 	L.horde_destroyer = "部落驱除坦克"
 	L.alliance_destroyer = "联盟驱逐舰"

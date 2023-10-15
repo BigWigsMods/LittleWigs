@@ -22,6 +22,7 @@ if L then
 	L.infinite_saboteur = "Саботажник из рода Бесконечности"
 	L.infinite_riftmage = "Маг портала бесконечности"
 	L.timelost_waveshaper = "Затерянный во времени заклинатель моря"
+	L.timelost_aerobot = "Затерянный во времени аэробот"
 	L.chronaxie = "Хронакси"
 	L.horde_destroyer = "Эсминец Орды"
 	L.alliance_destroyer = "Эсминец Альянса"
