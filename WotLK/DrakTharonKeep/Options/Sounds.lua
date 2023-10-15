@@ -13,5 +13,5 @@ BigWigs:AddSounds("King Dred", {
 })
 
 BigWigs:AddSounds("The Prophet Tharon'ja", {
-	[59971] = "alert",
+	[59971] = "underyou",
 })
