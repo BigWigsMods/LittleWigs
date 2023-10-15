@@ -43,6 +43,7 @@ BigWigs:AddColors("Tyr, the Infinite Keeper", {
 })
 
 BigWigs:AddColors("Morchie", {
+	[401200] = "blue",
 	[401667] = {"blue","red"},
 	[403891] = "cyan",
 	[404364] = "orange",
