@@ -65,7 +65,7 @@ BigWigs:AddColors("Time-Lost Battlefield", {
 BigWigs:AddColors("The Infinite Dragonflight", {
 	[410904] = "yellow",
 	[412027] = {"blue","yellow"},
-	[416139] = "orange",
+	[416139] = "purple",
 	[416152] = "red",
 	[416264] = "red",
 	["stages"] = "cyan",
