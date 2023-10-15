@@ -1,11 +1,11 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Scourgelord Tyrannus", 658, 610)
 if not mod then return end
 mod:RegisterEnableMob(36658, 36661)
+mod:SetEncounterID(mod:Classic() and 837 or 2000)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,7 +25,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "MarkRemoved", 69275)
 	self:Log("SPELL_AURA_REMOVED", "BrandRemoved", 69172)
 	self:Log("SPELL_AURA_APPLIED", "Power", 69167)
-	self:Death("Win", 36658)
 end
 
 --------------------------------------------------------------------------------
@@ -33,13 +32,15 @@ end
 --
 
 function mod:Brand(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	self:TargetBar(args.spellId, 8, args.destName)
 	self:SecondaryIcon(args.spellId, args.destName)
 end
 
 function mod:Mark(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "alarm")
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	self:TargetBar(args.spellId, 7, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
@@ -48,15 +49,16 @@ function mod:Mark(args)
 end
 
 function mod:MarkRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 	self:PrimaryIcon(args.spellId)
 end
 
 function mod:BrandRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 	self:SecondaryIcon(args.spellId)
 end
 
 function mod:Power(args)
-	self:MessageOld(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 10)
 end
-

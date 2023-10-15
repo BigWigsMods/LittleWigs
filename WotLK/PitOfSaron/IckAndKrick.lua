@@ -1,11 +1,11 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ick & Krick", 658, 609)
 if not mod then return end
 mod:RegisterEnableMob(36476, 36477)
+mod:SetEncounterID(mod:Classic() and 835 or 2001)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -32,9 +32,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "BarrageEnd", 69263)
 	self:Log("SPELL_AURA_APPLIED", "ToxicWaste", 69024, 70274)
 	self:Log("SPELL_CAST_START", "PoisonNova", 68989)
-	self:Death("Win", 36476)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("UNIT_AURA")
 end
 
@@ -49,7 +47,7 @@ end
 function mod:Barrage(args)
 	if barrage then return end
 	barrage = true
-	self:MessageOld(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 18)
 end
 
@@ -66,7 +64,7 @@ function mod:ToxicWaste(args)
 end
 
 function mod:PoisonNova(args)
-	self:MessageOld(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 5)
 end
 
