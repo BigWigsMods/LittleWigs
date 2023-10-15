@@ -6,8 +6,8 @@ if not mod then return end
 mod:RegisterEnableMob(38113)
 -- Sometimes he resets and then respawns few seconds after instead of
 -- respawning immediately, when that happens he doesn't fire ENCOUNTER_END
--- mod.engageId = 1993
--- mod.respawnTime = 30 -- you have to actually walk towards the altar, nothing will respawn on its own
+-- mod:SetEncounterID(mod:Classic() and 839 or 1993)
+-- mod:SetRespawnTime(30) -- you have to actually walk towards the altar, nothing will respawn on its own
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -47,12 +47,12 @@ function mod:Warmup()
 end
 
 function mod:CorruptedFlesh(args)
-	self:MessageOld(args.spellId, "red")
+	self:Message(args.spellId, "red")
 end
 
 function mod:SharedSuffering(args)
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow")
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 12, args.destName)
 end
 
@@ -63,7 +63,7 @@ end
 
 function mod:CorruptedTouch(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessageOld(args.spellId, args.destName, "orange")
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end

@@ -4,8 +4,8 @@
 local mod, CL = BigWigs:NewBoss("Falric", 668, 601)
 if not mod then return end
 mod:RegisterEnableMob(38112)
-mod.engageId = 1992
-mod.respawnTime = 30 -- you have to actually walk towards the altar, nothing will respawn on its own
+mod:SetEncounterID(mod:Classic() and 841 or 1992)
+mod:SetRespawnTime(30) -- you have to actually walk towards the altar, nothing will respawn on its own
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -37,7 +37,7 @@ end
 
 function mod:QuiveringStrike(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessageOld(args.spellId, args.destName, "orange")
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:TargetBar(args.spellId, 5, args.destName)
 	end
 end
@@ -48,7 +48,8 @@ end
 
 function mod:ImpendingDespair(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
-		self:TargetMessageOld(args.spellId, args.destName, "red", "warning", nil, nil, true)
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:TargetBar(args.spellId, 6, args.destName)
 	end
 end
