@@ -15,6 +15,6 @@ BigWigs:AddColors("Tribunal of Ages", {
 })
 
 BigWigs:AddColors("Sjonnir The Ironshaper", {
-	[50834] = "blue",
+	[50834] = {"blue","yellow"},
 	[50840] = "orange",
 })

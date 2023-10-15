@@ -29,7 +29,8 @@ end
 --
 
 function mod:StaticCharge(args)
-	self:TargetMessageOld(50834, args.destName, "blue", "alarm")
+	self:TargetMessage(50834, "yellow", args.destName)
+	self:PlaySound(50834, "alarm")
 	self:TargetBar(50834, 10, args.destName)
 end
 
