@@ -1,11 +1,11 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Anomalus", 576, 619)
 if not mod then return end
 mod:RegisterEnableMob(26763)
+mod:SetEncounterID(mod:Classic() and 522 or 2009)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -19,8 +19,6 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "CreateRift", 47743)
-
-	self:Death("Win", 26763)
 end
 
 --------------------------------------------------------------------------------
@@ -28,6 +26,5 @@ end
 --
 
 function mod:CreateRift(args)
-	self:MessageOld(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 end
-

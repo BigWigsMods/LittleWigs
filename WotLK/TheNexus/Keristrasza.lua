@@ -1,11 +1,11 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Keristrasza", 576, 621)
 if not mod then return end
 mod:RegisterEnableMob(26723)
+mod:SetEncounterID(mod:Classic() and 526 or 2011)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,8 +26,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CrystalChains", 50997)
 	self:Log("SPELL_AURA_REMOVED", "CrystalChainsRemoved", 50997)
 	self:Log("SPELL_CAST_SUCCESS", "Enrage", 8599)
-
-	self:Death("Win", 26723)
 end
 
 --------------------------------------------------------------------------------
@@ -36,16 +34,19 @@ end
 
 function mod:IntenseCold(args)
 	if self:Me(args.destGUID) then
-		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue", args.amount > 3 and "alarm")
+		self:StackMessage(args.spellId, "blue", args.destName, args.amount, 4)
+		if args.amount > 3 then
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
 function mod:Crystallize(args)
-	self:MessageOld(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 end
 
 function mod:CrystalChains(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow")
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
@@ -54,6 +55,8 @@ function mod:CrystalChainsRemoved(args)
 end
 
 function mod:Enrage(args)
-	self:MessageOld(args.spellId, "red", self:Dispeller("enrage", true) and "info", CL.percent:format(25, args.spellName))
+	self:Message(args.spellId, "red", CL.percent:format(25, args.spellName))
+	if self:Dispeller("enrage", true) then
+		self:PlaySound(args.spellId, "info")
+	end
 end
-

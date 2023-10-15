@@ -1,6 +1,5 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Commander Kolurg/Stoutbeard", 576, UnitFactionGroup("player") == "Horde" and 617 or 833)
@@ -28,7 +27,7 @@ end
 --
 
 function mod:Whirlwind(args)
-	self:MessageOld(args.spellId, "orange", "info")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 14.5)
 end
-

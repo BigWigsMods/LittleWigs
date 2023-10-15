@@ -1,12 +1,11 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Grand Magus Telestra", 576, 618)
 if not mod then return end
 mod:RegisterEnableMob(26731)
-mod.engageId = 2010
+mod:SetEncounterID(mod:Classic() and 520 or 2010)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -46,7 +45,7 @@ function mod:UNIT_HEALTH(event, unit)
 		if splitPhase > 1 or self:Normal() then -- No 2nd split on Normal mode
 			self:UnregisterUnitEvent(event, unit)
 		end
-		self:MessageOld(-7395, "green", nil, CL.soon:format(self:SpellName(-7395)), false)
+		self:Message(-7395, "green", CL.soon:format(self:SpellName(-7395)), false)
 	end
 end
 
