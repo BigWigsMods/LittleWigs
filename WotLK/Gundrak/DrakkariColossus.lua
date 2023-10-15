@@ -4,8 +4,12 @@
 
 local mod, CL = BigWigs:NewBoss("Drakkari Colossus", 604, 593)
 if not mod then return end
-mod:RegisterEnableMob(29307)
+mod:RegisterEnableMob(
+	29307, -- Drakkari Colossus
+	29573  -- Drakkari Elemental
+)
 mod:SetEncounterID(mod:Classic() and 385 or 1983)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -27,16 +31,22 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "MojoPuddle", 59451)
 end
 
+function mod:OnEngage()
+	self:SetStage(1)
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
 function mod:Emerge()
+	self:SetStage(2)
 	self:Message("stages", "yellow", -6421, 54850) -- Phase 2: The Elemental
 	self:PlaySound("stages", "long")
 end
 
 function mod:Merge()
+	self:SetStage(1)
 	self:Message("stages", "red", -6418, 54878) -- Phase 1: The Colossus
 	self:PlaySound("stages", "long")
 end
@@ -46,7 +56,7 @@ do
 	function mod:MojoPuddle(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t - prev > 1.5 then
+			if t - prev > 2 then
 				prev = t
 				self:PersonalMessage(args.spellId, "underyou")
 				self:PlaySound(args.spellId, "underyou")
