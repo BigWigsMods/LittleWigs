@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Trollgore", 600, 588)
 if not mod then return end
 mod:RegisterEnableMob(26630)
--- mod.engageId = 1974 - starts randomly when other trash mobs attack him
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod:SetEncounterID(mod:Classic() and 369 or 1974) -- starts randomly when other trash mobs attack him
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -15,7 +15,7 @@ mod:RegisterEnableMob(26630)
 function mod:GetOptions()
 	return {
 		{49639, "TANK"}, -- Crush
-		49637, -- Infected Wound
+		{49637, "DISPEL"}, -- Infected Wound
 		59803, -- Consume
 	}
 end
@@ -47,8 +47,8 @@ end
 --
 
 function mod:InfectedWound(args)
-	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("disease") then
-		self:TargetMessageOld(args.spellId, args.destName, "orange")
+	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("disease", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:TargetBar(args.spellId, 10, args.destName)
 	end
 end
@@ -62,9 +62,11 @@ function mod:InfectedWoundCastSuccess(args)
 end
 
 function mod:Crush(args)
+	self:Message(args.spellId, "red")
 	self:CDBar(args.spellId, 8) -- 8 - 15.2s
 end
 
 function mod:Consume()
+	self:Message(59803, "yellow")
 	self:CDBar(59803, 15.8)
 end
