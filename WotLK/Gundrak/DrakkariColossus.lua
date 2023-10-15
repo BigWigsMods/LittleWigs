@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Drakkari Colossus", 604, 593)
 if not mod then return end
 mod:RegisterEnableMob(29307)
-mod:SetEncounterID(1983)
+mod:SetEncounterID(mod:Classic() and 385 or 1983)
 
 --------------------------------------------------------------------------------
 -- Initialization

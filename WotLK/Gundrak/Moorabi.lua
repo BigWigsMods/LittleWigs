@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Moorabi", 604, 594)
 if not mod then return end
 mod:RegisterEnableMob(29305)
-mod.engageId = 1980
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 387 or 1980)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -29,7 +28,8 @@ end
 --
 
 function mod:Transformation(args)
-	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 	local boss = self:GetUnitIdByGUID(args.sourceGUID)
 	if boss then
 		local _, _, _, _, endTime = UnitCastingInfo(boss) -- cast time is different on each cast, at least on heroic/tw
@@ -40,7 +40,7 @@ end
 
 function mod:Interrupt(args)
 	if args.extraSpellId == 55098 then -- Transformation
-		self:MessageOld(55098, "green", nil, CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+		self:Message(55098, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:StopBar(args.extraSpellName) -- Name of interrupted spell
 	end
 end

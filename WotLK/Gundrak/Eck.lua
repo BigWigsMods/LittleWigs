@@ -1,12 +1,11 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Eck the Ferocious", 604, 595)
 if not mod then return end
 mod:RegisterEnableMob(29932)
-mod.engageId = 1988
+mod:SetEncounterID(1988)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -28,6 +27,7 @@ end
 
 function mod:EckResidue(args)
 	if self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "blue", "info")
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end

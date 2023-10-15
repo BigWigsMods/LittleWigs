@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Gal'darah", 604, 596)
 if not mod then return end
 mod:RegisterEnableMob(29306)
-mod.engageId = 1981
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 390 or 1981)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -67,7 +66,8 @@ do
 end
 
 function mod:ImpalingCharge(args)
-	self:TargetMessageOld(59827, args.destName, "yellow", "info", nil, nil, true)
+	self:TargetMessage(59827, "yellow", args.destName)
+	self:PlaySound(59827, "info", nil, args.destName)
 end
 
 do
@@ -75,9 +75,10 @@ do
 	function mod:WhirlingSlash(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t-prev > 1.5 then
+			if t - prev > 1.5 then
 				prev = t
-				self:MessageOld(59825, "blue", "alarm", CL.underyou:format(args.spellName))
+				self:PersonalMessage(59825, "underyou")
+				self:PlaySound(59825, "alarm")
 			end
 		end
 	end
