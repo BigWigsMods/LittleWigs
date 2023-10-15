@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("King Dred", 600, 590)
 if not mod then return end
 mod:RegisterEnableMob(27483)
-mod.engageId = 1977
--- mod.respawnTime = 0 -- resets, doesn't respawn
+mod:SetEncounterID(mod:Classic() and 373 or 1977)
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -21,8 +21,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PiercingSlash", 48878)
-	self:Log("SPELL_AURA_REMOVED", "PiercingSlashRemoved", 48878)
-	self:Log("SPELL_CAST_SUCCESS", "PiercingSlashCastSuccess", 48878)
+	self:Log("SPELL_CAST_SUCCESS", "PiercingSlashSuccess", 48878)
 	self:Log("SPELL_CAST_START", "RaptorCall", 59416)
 end
 
@@ -36,21 +35,16 @@ end
 --
 
 function mod:PiercingSlash(args)
-	if self:Me(args.destGUID) or self:Healer() then
-		self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, true)
-		self:TargetBar(args.spellId, 10, args.destName)
-	end
+	self:TargetMessage(args.spellId, "purple", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
 
-function mod:PiercingSlashRemoved(args)
-	self:StopBar(args.spellName, args.destName)
-end
-
-function mod:PiercingSlashCastSuccess(args)
+function mod:PiercingSlashSuccess(args)
 	self:CDBar(args.spellId, 18.3) -- 18.3 - 27.9s
 end
 
 function mod:RaptorCall(args)
-	self:MessageOld(args.spellId, "yellow")
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 30.4) -- can randomly skip one cast
 end

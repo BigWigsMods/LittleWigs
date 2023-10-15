@@ -9,6 +9,7 @@ BigWigs:AddSounds("Novos the Summoner", {
 
 BigWigs:AddSounds("King Dred", {
 	[48878] = "alarm",
+	[59416] = "info",
 })
 
 BigWigs:AddSounds("The Prophet Tharon'ja", {
