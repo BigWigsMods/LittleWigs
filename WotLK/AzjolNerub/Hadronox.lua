@@ -4,7 +4,7 @@
 local mod, CL = BigWigs:NewBoss("Hadronox", 601, 586)
 if not mod then return end
 mod:RegisterEnableMob(28921)
--- mod.engageId = 1972 -- ENCOUNTER_START fires when you enter the area, not when you actually pull the boss. Also it doesn't get assigned a boss1 unit.
+--mod:SetEncounterID(mod:Classic() and 217 or 1972) -- ENCOUNTER_START fires when you enter the area, not when you actually pull the boss. Also it doesn't get assigned a boss1 unit.
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -26,9 +26,9 @@ end
 --  Event Handlers
 
 function mod:AcidCloud()
-	self:MessageOld(53400, "yellow")
+	self:Message(53400, "yellow")
 end
 
 function mod:LeechPoison()
-	self:MessageOld(53030, "orange")
+	self:Message(53030, "orange")
 end

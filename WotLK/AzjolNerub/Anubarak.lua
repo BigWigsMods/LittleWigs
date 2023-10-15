@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Anub'arakAN", 601, 587) -- AN (Azjol-Nerub) is intentional to prevent conflict with Anub'arak from Trial of the Crusader
 if not mod then return end
 mod:RegisterEnableMob(29120)
-mod.engageId = 1973
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 218 or 1973)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
 --  Locals

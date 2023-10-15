@@ -4,8 +4,8 @@
 local mod, CL = BigWigs:NewBoss("Krik'thir the Gatewatcher", 601, 585)
 if not mod then return end
 mod:RegisterEnableMob(28684)
-mod.engageId = 1971
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 216 or 1971)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
 --  Initialization
