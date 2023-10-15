@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Maiden of Grief", 599, 605)
 if not mod then return end
 mod:RegisterEnableMob(27975)
-mod.engageId = 1996
---mod.respawnTime = 0 -- resets, doesn't respawn
+mod:SetEncounterID(mod:Classic() and 565 or 1996)
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Locals

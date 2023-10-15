@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Tribunal of Ages", 599, 606)
 if not mod then return end
 mod:RegisterEnableMob(28070) -- Brann Bronzebeard
--- mod.engageId = 0 -- not a real encounter, apparently
-mod.respawnTime = 30
+--mod:SetEncounterID(mod:Classic() and 567 or 1995) -- not a real encounter, apparently
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals

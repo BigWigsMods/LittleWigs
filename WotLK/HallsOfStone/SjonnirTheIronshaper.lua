@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Sjonnir The Ironshaper", 599, 607)
 if not mod then return end
 mod:RegisterEnableMob(27978)
-mod.engageId = 1998
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 569 or 1998)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -34,6 +34,6 @@ function mod:StaticCharge(args)
 end
 
 function mod:LightningRing(args)
-	self:MessageOld(50840, "orange", nil, CL.casting:format(args.spellName))
+	self:Message(50840, "orange", CL.casting:format(args.spellName))
 	self:CastBar(50840, 10)
 end
