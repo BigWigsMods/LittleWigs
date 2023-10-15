@@ -1,14 +1,16 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Bronjahm", 632, 615)
 if not mod then return end
 mod:RegisterEnableMob(36497)
-mod.engageId = 2006
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 829 or 2006)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -24,19 +26,21 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
+--
 
 function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) ~= 36497 then return end
 	local hp = self:GetHealth(unit)
 	if hp < 35 then
 		self:UnregisterUnitEvent(event, unit)
-		self:MessageOld(68872, "red", nil, CL.soon:format(self:SpellName(68872))) -- Soulstorm
+		self:Message(68872, "red", CL.soon:format(self:SpellName(68872))) -- Soulstorm
 	end
 end
 
 function mod:CorruptSoul(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "alert")
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	self:TargetBar(args.spellId, 4, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

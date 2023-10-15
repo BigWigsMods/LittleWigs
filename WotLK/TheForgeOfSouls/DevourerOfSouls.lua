@@ -1,14 +1,16 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Devourer of Souls", 632, 616)
 if not mod then return end
 mod:RegisterEnableMob(36502)
-mod.engageId = 2007
-mod.respawnTime = 30
+mod:SetEncounterID(mod:Classic() and 831 or 2007)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -24,11 +26,13 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
+--
 
 function mod:MirroredSoul(args)
 	if self:MobId(args.destGUID) ~= 36502 then -- both the boss and its target get this debuff
-		self:TargetMessageOld(args.spellId, args.destName, "orange", "alert")
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 		self:TargetBar(args.spellId, 8, args.destName)
 		self:PrimaryIcon(args.spellId, args.destName)
 	end
@@ -42,6 +46,6 @@ function mod:MirroredSoulRemoved(args)
 end
 
 function mod:WailingSouls(args)
-	self:MessageOld(args.spellId, "red")
+	self:Message(args.spellId, "red")
 	self:Bar(args.spellId, 15)
 end
