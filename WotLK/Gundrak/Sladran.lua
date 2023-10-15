@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Slad'ran", 604, 592)
 if not mod then return end
-mod:RegisterEnableMob(29304)
+mod:RegisterEnableMob(29304) -- Slad'ran
 mod:SetEncounterID(mod:Classic() and 383 or 1978)
 
 --------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ mod:SetEncounterID(mod:Classic() and 383 or 1978)
 
 function mod:GetOptions()
 	return {
-		59842, -- Poison Nova
+		{59842, "CASTBAR"}, -- Poison Nova
 	}
 end
 
@@ -30,7 +30,7 @@ end
 function mod:PoisonNova(args)
 	self:Message(59842, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(59842, "info")
-	self:Bar(59842, 3.5)
+	self:CastBar(59842, 3.5)
 end
 
 function mod:PoisonNovaApplied(args)
