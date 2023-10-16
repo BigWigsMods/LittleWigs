@@ -46,6 +46,7 @@ function mod:OnBossEnable()
 
 	-- Stage One: Vengeance
 	self:Log("SPELL_CAST_START", "VengefulShear", 197418)
+	self:Log("SPELL_CAST_SUCCESS", "DarkRush", 197478)
 	self:Log("SPELL_AURA_APPLIED", "DarkRushApplied", 197478)
 	self:Log("SPELL_AURA_REMOVED", "DarkRushRemoved", 197478)
 	self:Log("SPELL_CAST_START", "BrutalGlaive", 197546)
@@ -124,18 +125,27 @@ function mod:VengefulShear(args)
 	end
 end
 
-function mod:DarkRushApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "alarm", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
-		self:SayCountdown(args.spellId, 6)
+do
+	local playerList = {}
+
+	function mod:DarkRush(args)
+		playerList = {}
+		darkRushRemaining = darkRushRemaining - 1
+		if darkRushRemaining > 0 then
+			self:CDBar(args.spellId, 31.0)
+		else
+			self:StopBar(args.spellId)
+		end
 	end
-	darkRushRemaining = darkRushRemaining - 1
-	if darkRushRemaining > 0 then
-		self:CDBar(args.spellId, 31.0)
-	else
-		self:StopBar(args.spellId)
+
+	function mod:DarkRushApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:PlaySound(args.spellId, "alarm", nil, playerList)
+		self:TargetsMessage(args.spellId, "red", playerList, 3)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId)
+			self:SayCountdown(args.spellId, 6)
+		end
 	end
 end
 
