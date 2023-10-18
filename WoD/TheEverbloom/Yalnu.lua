@@ -84,7 +84,7 @@ function mod:OnBossEnable()
 	-- XXX bring these listeners outside the if block when 10.2 is live everywhere
 	if isTenDotTwo then
 		self:Log("SPELL_CAST_START", "VerdantEruption", 428823)
-		self:Log("SPELL_CAST_SUCCESS", "VibrantFlourish", 428948)
+		self:Log("SPELL_CAST_SUCCESS", "EncounterSpawn", 181113)
 	else
 		-- XXX delete these listeners when 10.2 is live everywhere
 		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Font of Life
@@ -147,7 +147,7 @@ end
 do
 	local flourishingAncientGUID = nil
 
-	function mod:VibrantFlourish(args)
+	function mod:EncounterSpawn(args)
 		-- register events to auto-mark the add
 		if self:GetOption(flourishingAncientMarker) then
 			flourishingAncientGUID = args.sourceGUID
@@ -177,7 +177,7 @@ function mod:LumberingSwipe(args)
 	-- this AOE will hit a small area around Lady Baihu
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	-- self:CDBar(args.spellId, 13.3) -- probably not useful
+	--self:CDBar(args.spellId, 13.3) -- probably not useful
 end
 
 -- XXX pre 10.2, delete everything below this comment when 10.2 is live everywhere
