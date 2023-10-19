@@ -149,7 +149,7 @@ end
 function mod:TerrifyingVision(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:CastBar(args.spellId, 4)
+	self:CastBar(args.spellId, 5)
 	self:CDBar(args.spellId, 24.2)
 end
 
