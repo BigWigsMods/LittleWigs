@@ -38,7 +38,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Transfusion", 255577)
 	self:Log("SPELL_CAST_SUCCESS", "TransfusionSuccess", 255577)
 	self:Log("SPELL_CAST_START", "GildedClaws", 255579)
-	self:Log("SPELL_AURA_APPLIED", "MoltenGold", 255582)
+	self:Log("SPELL_CAST_SUCCESS", "MoltenGold", 255591)
+	self:Log("SPELL_AURA_APPLIED", "MoltenGoldApplied", 255582)
 	self:Log("SPELL_AURA_APPLIED", "CorruptedGold", 277072)
 	self:Log("SPELL_SUMMON", "SpiritOfGoldSummon", 259209)
 end
@@ -46,10 +47,12 @@ end
 function mod:OnEngage()
 	transfusionCount = 1
 	spiritOfGoldCount = 1
-	self:CDBar(259205, 9.0, CL.count:format(self:SpellName(259205), spiritOfGoldCount)) -- Spirit of Gold
-	self:CDBar(255579, 10.7) -- Gilded Claws
-	self:CDBar(255582, 18.8) -- Molten Gold
-	self:CDBar(255577, 25.3, CL.count:format(self:SpellName(255577), transfusionCount)) -- Transfusion
+	if not self:Normal() then
+		self:CDBar(259205, 9.0, CL.count:format(self:SpellName(259205), spiritOfGoldCount)) -- Spirit of Gold
+	end
+	self:CDBar(255579, 10.6) -- Gilded Claws
+	self:CDBar(255582, 16.6) -- Molten Gold
+	self:CDBar(255577, 25.1, CL.count:format(self:SpellName(255577), transfusionCount)) -- Transfusion
 end
 
 --------------------------------------------------------------------------------
@@ -113,13 +116,16 @@ function mod:GildedClaws(args)
 end
 
 function mod:MoltenGold(args)
+	self:CDBar(255582, 34.0)
+end
+
+function mod:MoltenGoldApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	if self:Dispeller("magic") then
 		self:PlaySound(args.spellId, "alert", "dispelnow", args.destName)
 	elseif self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
-	self:CDBar(args.spellId, 34.0)
 end
 
 do
