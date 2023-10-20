@@ -5,11 +5,13 @@
 local mod, CL = BigWigs:NewBoss("The Headless Horseman", 1004)
 if not mod then return end
 mod:RegisterEnableMob(
+	209640, -- Suzannah
 	207927, -- Wicker Man of Embers
 	207860, -- Wicker Man of Thorns
 	207827, -- Wicker Man of Shadows
 	207854, -- Wicker Man of Delusions
 	207798, -- Ominous Wicker Man
+	211824, -- Pumpkin Shrine
 	207438  -- The Headless Horseman
 )
 mod:SetAllowWin(true)
@@ -109,6 +111,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(111387) then
 			-- 111387:I accept all of your curses.
 			self:SelectGossipID(111387, true)
+		elseif self:GetGossipID(36316) then
+			-- 36316:Call the Headless Horseman.
+			self:SelectGossipID(36316, true)
 		end
 	end
 end
