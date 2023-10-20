@@ -94,29 +94,7 @@ end
 -- Event Handlers
 --
 
-function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_off_autotalk") then
-		if self:GetGossipID(110383) then
-			-- 110383:I accept your curse. (Embers)
-			self:SelectGossipID(110383, true)
-		elseif self:GetGossipID(110379) then
-			-- 110379:I accept your curse. (Thorns)
-			self:SelectGossipID(110379, true)
-		elseif self:GetGossipID(110372) then
-			-- 110372:I accept your curse. (Shadows)
-			self:SelectGossipID(110372, true)
-		elseif self:GetGossipID(110377) then
-			-- 110377:I accept your curse. (Delusions)
-			self:SelectGossipID(110377, true)
-		elseif self:GetGossipID(111387) then
-			-- 111387:I accept all of your curses.
-			self:SelectGossipID(111387, true)
-		elseif self:GetGossipID(36316) then
-			-- 36316:Call the Headless Horseman.
-			self:SelectGossipID(36316, true)
-		end
-	end
-end
+-- Normal
 
 function mod:PumpkinBreath(args)
 	self:Message(args.spellId, "orange")
@@ -156,6 +134,32 @@ function mod:HotHead(args)
 	self:PlaySound(args.spellId, "long")
 	-- unknown CD
 	self:StopBar(args.spellId)
+end
+
+-- Hard Mode
+
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_off_autotalk") then
+		if self:GetGossipID(110383) then
+			-- 110383:I accept your curse. (Embers)
+			self:SelectGossipID(110383, true)
+		elseif self:GetGossipID(110379) then
+			-- 110379:I accept your curse. (Thorns)
+			self:SelectGossipID(110379, true)
+		elseif self:GetGossipID(110372) then
+			-- 110372:I accept your curse. (Shadows)
+			self:SelectGossipID(110372, true)
+		elseif self:GetGossipID(110377) then
+			-- 110377:I accept your curse. (Delusions)
+			self:SelectGossipID(110377, true)
+		elseif self:GetGossipID(111387) then
+			-- 111387:I accept all of your curses.
+			self:SelectGossipID(111387, true)
+		elseif self:GetGossipID(36316) then
+			-- 36316:Call the Headless Horseman.
+			self:SelectGossipID(36316, true)
+		end
+	end
 end
 
 function mod:WickerMansCurseApplied(args)
