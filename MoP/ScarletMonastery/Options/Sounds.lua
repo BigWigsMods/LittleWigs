@@ -12,3 +12,12 @@ BigWigs:AddSounds("Brother Korloff", {
 BigWigs:AddSounds("High Inquisitor Whitemane", {
 	[113134] = "alarm",
 })
+
+BigWigs:AddSounds("The Headless Horseman", {
+	[414844] = "alarm",
+	[415047] = "alert",
+	[415262] = "alarm",
+	[415864] = "info",
+	[418228] = "info",
+	[423626] = "long",
+})

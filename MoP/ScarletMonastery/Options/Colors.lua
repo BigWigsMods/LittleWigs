@@ -15,3 +15,13 @@ BigWigs:AddColors("High Inquisitor Whitemane", {
 	["stages"] = "green",
 	["steel"] = "yellow",
 })
+
+BigWigs:AddColors("The Headless Horseman", {
+	[414844] = "orange",
+	[415047] = "red",
+	[415262] = "yellow",
+	[415864] = "blue",
+	[418228] = "green",
+	[423626] = "orange",
+	["curses"] = "blue",
+})

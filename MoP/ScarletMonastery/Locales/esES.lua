@@ -15,3 +15,12 @@ if not L then return end
 if L then
 	--L.engage_yell = "My legend begins NOW!"
 end
+
+local L = BigWigs:NewBossLocale("The Headless Horseman", "esES") or BigWigs:NewBossLocale("The Headless Horseman", "esMX")
+if not L then return end
+if L then
+	L.the_headless_horseman = "El Jinete decapitado"
+	L.custom_off_autotalk = "Hablar automáticamente"
+	--L.custom_off_autotalk_desc = "Automatically accept the curses from the Wicker Men."
+	--L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
+end
