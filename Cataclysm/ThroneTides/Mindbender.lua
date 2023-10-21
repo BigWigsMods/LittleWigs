@@ -41,12 +41,12 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089)
 
 	-- Erunak Stonespeaker
 	self:Log("SPELL_CAST_SUCCESS", "Earthfury", 429051)
 	self:Log("SPELL_CAST_START", "StormflurryTotem", 429037)
-	self:Log("SPELL_CAST_SUCCESS", "StormflurryTotemSuccess", 429037)
+	self:Log("SPELL_SUMMON", "StormflurryTotemSummon", 429036)
 	self:Log("SPELL_CAST_SUCCESS", "FlameShock", 429048)
 	self:Log("SPELL_AURA_APPLIED", "FlameShockApplied", 429048)
 
@@ -88,17 +88,14 @@ end
 
 -- Stages
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
-	if spellId == 68442 then -- Kneel
-		self:StopBar(429048) -- Flame Shock
-		self:StopBar(429037) -- Stormflurry Totem
-		self:StopBar(429051) -- Earthfury
-		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stage:format(2), nil)
-		self:PlaySound("stages", "long")
-		self:CDBar(429172, 9.8) -- Terrifying Vision
-		self:UnregisterUnitEvent(event, unit)
-	end
+function mod:EncounterEvent()
+	self:StopBar(429048) -- Flame Shock
+	self:StopBar(429037) -- Stormflurry Totem
+	self:StopBar(429051) -- Earthfury
+	self:SetStage(2)
+	self:Message("stages", "cyan", CL.stage:format(2), nil)
+	self:PlaySound("stages", "long")
+	self:CDBar(429172, 3.2) -- Terrifying Vision
 end
 
 -- Erunak Stonespeaker
@@ -116,17 +113,19 @@ function mod:StormflurryTotem(args)
 end
 
 do
-	function mod:StormflurryTotemSuccess(args)
+	local stormflurryTotemGUID = nil
+
+	function mod:StormflurryTotemSummon(args)
 		-- register events to auto-mark the totem
 		if self:GetOption(stormflurryTotemMarker) then
+			stormflurryTotemGUID = args.destGUID
 			self:RegisterTargetEvents("MarkStormflurryTotem")
 		end
 	end
 
 	function mod:MarkStormflurryTotem(_, unit, guid)
-		-- there is no SUMMON event and CAST_SUCCESS doesn't have a target,
-		-- so we have to match on the mob ID for Stormflurry Totem
-		if self:MobId(guid) == 214117 then -- Stormflurry Totem
+		if stormflurryTotemGUID == guid then
+			stormflurryTotemGUID = nil
 			self:CustomIcon(stormflurryTotemMarker, unit, 8)
 			self:UnregisterTargetEvents()
 		end
@@ -150,7 +149,7 @@ function mod:TerrifyingVision(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 5)
-	self:CDBar(args.spellId, 24.2)
+	self:CDBar(args.spellId, 23.0)
 end
 
 -- XXX delete everything below this comment when 10.2 is live everywhere
