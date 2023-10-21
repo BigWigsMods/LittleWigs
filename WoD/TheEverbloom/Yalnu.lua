@@ -127,7 +127,7 @@ end
 
 function mod:ColossalBlow(args)
 	self:StopBar(CL.count:format(args.spellName, colossalBlowCount))
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, colossalBlowCount))
 	self:PlaySound(args.spellId, "alarm")
 	colossalBlowCount = colossalBlowCount + 1
 	if colossalBlowCount % 3 ~= 1 then -- 2, 3, 5, 6...
