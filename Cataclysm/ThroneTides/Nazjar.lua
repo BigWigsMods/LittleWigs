@@ -15,6 +15,10 @@ mod:SetStage(1)
 --
 
 local highTideCount = 1
+local nextShockBlast = 0
+local shockBlastCD = 0
+local nextGeysers = 0
+local geysersCD = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -38,15 +42,15 @@ end
 
 function mod:OnBossEnable()
 	-- Lady Naz'jar
-	-- XXX remove this listener from the if block when 10.2 is live everywhere
+	-- XXX convert to self:Classic() when 10.2 is live everywhere
 	if isTenDotTwo then
 		self:Log("SPELL_CAST_START", "HighTideStarting", 75683)
 	end
 	self:Log("SPELL_AURA_APPLIED", "HighTide", 75683)
 	self:Log("SPELL_AURA_REMOVED", "HighTideOver", 75683)
-	-- XXX remove these listeners from the if block when 10.2 is live everywhere
+	-- XXX convert to self:Classic() when 10.2 is live everywhere
 	if isTenDotTwo then
-		self:Log("SPELL_CAST_START", "ShockBlast", 428054)
+		self:Log("SPELL_AURA_APPLIED", "ShockBlast", 429263)
 		self:Log("SPELL_CAST_START", "Geysers", 427771)
 		self:Log("SPELL_CAST_START", "FocusedTempest", 428374)
 		self:Log("SPELL_CAST_START", "WaterBolt", 428263)
@@ -62,13 +66,18 @@ function mod:OnEngage()
 	self:SetStage(1)
 	-- XXX remove these timers from the if block when 10.2 is live everywhere
 	if isTenDotTwo then
-		self:CDBar(428374, 7.1) -- Focused Tempest
-		self:CDBar(427771, 16.1) -- Geysers
-		self:CDBar(428054, 18.0) -- Shock Blast
+		local t = GetTime()
+		shockBlastCD = 18.0
+		nextShockBlast = t + shockBlastCD
+		geysersCD = 16.1
+		nextGeysers = t + geysersCD
+		self:CDBar(428374, 7.0) -- Focused Tempest
+		self:CDBar(427771, geysersCD) -- Geysers
+		self:CDBar(428054, shockBlastCD) -- Shock Blast
 	end
 end
 
--- XXX delete this entire block below when 10.2 is live everywhere
+-- XXX convert to mod:Classic() when 10.2 is live everywhere
 if not isTenDotTwo then
 	function mod:GetOptions()
 		return {
@@ -101,33 +110,38 @@ function mod:HighTideOver(args)
 	self:SetStage(1)
 	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
-	-- XXX remove these timers from the if block when 10.2 is live everywhere
+	-- XXX convert to self:Classic() when 10.2 is live everywhere
 	if isTenDotTwo then
+		local t = GetTime()
+		shockBlastCD = 24.3
+		nextShockBlast = t + shockBlastCD
+		geysersCD = 28.0
+		nextGeysers = t + geysersCD
 		self:CDBar(428374, 2.4) -- Focused Tempest
-		self:CDBar(428054, 24.3) -- Shock Blast
-		self:CDBar(427771, 28.0) -- Geysers
+		self:CDBar(428054, shockBlastCD) -- Shock Blast
+		self:CDBar(427771, geysersCD) -- Geysers
 	end
 end
 
-do
-	local function printTarget(self, player, guid)
-		self:TargetMessage(428054, "red", player)
-		self:PlaySound(428054, "alarm", nil, player)
-		if self:Me(guid) then
-			self:Say(428054) -- Shock Blast
-		end
+function mod:ShockBlast(args)
+	self:TargetMessage(428054, "red", args.destName)
+	self:PlaySound(428054, "alarm", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(428054)
 	end
-
-	function mod:ShockBlast(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 26.7)
-	end
+	local t = GetTime()
+	shockBlastCD = 21.8
+	nextShockBlast = t + shockBlastCD
+	self:CDBar(428054, shockBlastCD)
 end
 
 function mod:Geysers(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 29.1)
+	local t = GetTime()
+	geysersCD = 23.0
+	nextGeysers = t + geysersCD
+	self:CDBar(args.spellId, geysersCD)
 end
 
 do
@@ -140,7 +154,15 @@ do
 
 	function mod:FocusedTempest(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 14.5)
+		self:CDBar(args.spellId, 17.0)
+		-- 7.3s delay after this spell before anything else can be cast
+		local t = GetTime()
+		if nextShockBlast - t < 7.3 then
+			self:CDBar(428054, {7.3, shockBlastCD}) -- Shock Blast
+		end
+		if nextGeysers - t < 7.3 then
+			self:CDBar(427771, {7.3, geysersCD}) -- Geysers
+		end
 	end
 end
 
