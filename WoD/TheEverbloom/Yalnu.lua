@@ -101,7 +101,7 @@ end
 function mod:OnEngage()
 	colossalBlowCount = 1
 	verdantEruptionCount = 1
-	self:CDBar(169179, 2.4) -- Colossal Blow
+	self:CDBar(169179, 2.4, CL.count:format(self:SpellName(169179), colossalBlowCount)) -- Colossal Blow
 	-- XXX bring this bar outside the if block when 10.2 is live everywhere
 	if isTenDotTwo then
 		self:CDBar(428823, 23.0, CL.count:format(self:SpellName(428823), verdantEruptionCount)) -- Verdant Eruption
@@ -130,9 +130,9 @@ function mod:ColossalBlow(args)
 	self:PlaySound(args.spellId, "alarm")
 	colossalBlowCount = colossalBlowCount + 1
 	if colossalBlowCount % 3 ~= 1 then -- 2, 3, 5, 6...
-		self:CDBar(args.spellId, 15.8)
+		self:CDBar(args.spellId, 15.8, CL.count:format(args.spellName, colossalBlowCount))
 	else -- 4, 7 ...
-		self:CDBar(args.spellId, 23.0)
+		self:CDBar(args.spellId, 23.0, CL.count:format(args.spellName, colossalBlowCount))
 	end
 end
 
