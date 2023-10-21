@@ -55,6 +55,7 @@ function mod:GetOptions()
 		{75992, "SAY"}, -- Lightning Surge
 		-- Faceless Seer
 		426783, -- Mind Flay
+		426808, -- Null Blast
 		-- Faceless Watcher
 		76590, -- Shadow Smash
 		{429021, "TANK", "OFF"}, -- Crush
@@ -122,6 +123,7 @@ function mod:OnBossEnable()
 	if isTenDotTwo then
 		-- Faceless Seer
 		self:Log("SPELL_CAST_START", "MindFlay", 426783)
+		self:Log("SPELL_CAST_START", "NullBlast", 426808)
 	end
 
 	-- Faceless Watcher
@@ -239,6 +241,19 @@ do
 			self:PlaySound(args.spellId, "alert")
 		end
 		--self:NameplateCDBar(args.spellId, 8.5, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:NullBlast(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alarm")
+		end
+		--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
 	end
 end
 

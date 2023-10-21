@@ -46,6 +46,7 @@ BigWigs:AddSounds("Throne of the Tides Trash", {
 	[426684] = "alarm",
 	[426741] = "alert",
 	[426783] = "alert",
+	[426808] = "alarm",
 	[428542] = "alarm",
 	[429021] = "alert",
 })
