@@ -126,6 +126,7 @@ end
 -- Yalnu
 
 function mod:ColossalBlow(args)
+	self:StopBar(CL.count:format(args.spellName, colossalBlowCount))
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	colossalBlowCount = colossalBlowCount + 1
