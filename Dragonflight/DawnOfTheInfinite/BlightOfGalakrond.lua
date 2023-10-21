@@ -189,7 +189,6 @@ end
 function mod:BlightReclamation(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO these need to be revisited
 	if self:GetStage() == 1 then
 		self:CDBar(args.spellId, 17)
 	elseif self:GetStage() == 2 then
@@ -265,7 +264,6 @@ end
 
 function mod:IncineratingBlightbreath(args)
 	-- can't use GetBossTarget, Dazhak targets a player ~1s before the cast and detargets them as the cast starts
-	incineratingBlightbreathCount = incineratingBlightbreathCount + 1
 	local name = self:UnitName("boss2target")
 	local guid = self:UnitGUID("boss2target")
 	if name then
@@ -279,5 +277,6 @@ function mod:IncineratingBlightbreath(args)
 	if self:Me(guid) then
 		self:Say(args.spellId)
 	end
+	incineratingBlightbreathCount = incineratingBlightbreathCount + 1
 	self:CDBar(args.spellId, timers[args.spellId][incineratingBlightbreathCount] or 17) -- might need more timers?
 end
