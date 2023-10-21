@@ -87,7 +87,7 @@ function mod:OnEngage()
 	self:CDBar(414844, 6.0) -- Pumpkin Breath
 	self:CDBar(415047, 20.6) -- Vine March
 	self:CDBar(415262, 35.2) -- Insidious Cackle
-	self:CDBar(423626, 62.7) -- Hot Head
+	self:CDBar(423626, 61.9) -- Hot Head
 end
 
 --------------------------------------------------------------------------------
@@ -101,8 +101,8 @@ function mod:PumpkinBreath(args)
 	self:PlaySound(args.spellId, "alarm")
 	pumpkinBreathCount = pumpkinBreathCount + 1
 	if pumpkinBreathCount == 2 then
-		self:CDBar(args.spellId, 42.1)
-	else -- 3 (no data beyond 3)
+		self:CDBar(args.spellId, 41.3)
+	else -- 3+
 		self:CDBar(args.spellId, 54.7)
 	end
 end
@@ -111,11 +111,7 @@ function mod:VineMarch(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 	vineMarchCount = vineMarchCount + 1
-	if vineMarchCount == 2 then
-		self:CDBar(args.spellId, 42.4)
-	else -- 3 (no data beyond 3)
-		self:CDBar(args.spellId, 54.7)
-	end
+	self:CDBar(args.spellId, 42.4)
 end
 
 function mod:InsidiousCackle(args)
@@ -124,7 +120,7 @@ function mod:InsidiousCackle(args)
 	insidiousCackleCount = insidiousCackleCount + 1
 	if insidiousCackleCount == 2 then
 		self:CDBar(args.spellId, 54.6)
-	else -- 3 (no data beyond 3)
+	else -- 3+
 		self:CDBar(args.spellId, 46.2)
 	end
 end
@@ -132,8 +128,7 @@ end
 function mod:HotHead(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	-- unknown CD
-	self:StopBar(args.spellId)
+	self:CDBar(args.spellId, 70.4)
 end
 
 -- Hard Mode
@@ -157,7 +152,7 @@ function mod:GOSSIP_SHOW()
 			self:SelectGossipID(111387, true)
 		elseif self:GetGossipID(36316) then
 			-- 36316:Call the Headless Horseman.
-			self:SelectGossipID(36316, true)
+			self:SelectGossipID(36316)
 		end
 	end
 end
