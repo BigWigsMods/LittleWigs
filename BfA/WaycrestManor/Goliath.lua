@@ -36,8 +36,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(260508, 5.9) -- Crush
-	self:Bar(267907, 9.9) -- Soul Thorns
+	self:CDBar(260508, 5.9) -- Crush
+	self:CDBar(267907, 9.9) -- Soul Thorns
 end
 
 --------------------------------------------------------------------------------
