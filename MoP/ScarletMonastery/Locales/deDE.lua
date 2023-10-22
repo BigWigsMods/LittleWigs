@@ -20,7 +20,7 @@ local L = BigWigs:NewBossLocale("The Headless Horseman", "deDE")
 if not L then return end
 if L then
 	L.the_headless_horseman = "Der kopflose Reiter"
-	L.custom_off_autotalk = "Automatisch ansprechen"
-	--L.custom_off_autotalk_desc = "Automatically accept the curses from the Wicker Men."
+	L.custom_on_autotalk = "Automatisch ansprechen"
+	--L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
 	--L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
 end

@@ -32,8 +32,8 @@ local insidiousCackleCount = 1
 local L = mod:GetLocale()
 if L then
 	L.the_headless_horseman = "The Headless Horseman"
-	L.custom_off_autotalk = "Autotalk"
-	L.custom_off_autotalk_desc = "Automatically accept the curses from the Wicker Men."
+	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
 	L.curses = 418990
 	L.curses_icon = 418990
 	L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
@@ -49,19 +49,19 @@ end
 
 function mod:GetOptions()
 	return {
+		"custom_on_autotalk",
 		-- Normal
 		414844, -- Pumpkin Breath
 		415047, -- Vine March
 		415262, -- Insidious Cackle
 		423626, -- Hot Head
 		-- Hard Mode
-		"custom_off_autotalk",
 		"curses",
 		415864, -- Wicker Man's Shadow
 		418228, -- Wicker Man's Protection
 	}, {
 		[414844] = CL.normal,
-		["custom_off_autotalk"] = CL.hard,
+		["curses"] = CL.hard,
 	}
 end
 
@@ -134,7 +134,7 @@ end
 -- Hard Mode
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_off_autotalk") then
+	if self:GetOption("custom_on_autotalk") then
 		if self:GetGossipID(110383) then
 			-- 110383:I accept your curse. (Embers)
 			self:SelectGossipID(110383, true)
