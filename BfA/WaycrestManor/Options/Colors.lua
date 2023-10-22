@@ -25,9 +25,9 @@ BigWigs:AddColors("Raal the Gluttonous", {
 })
 
 BigWigs:AddColors("Lord and Lady Waycrest", {
-	[261438] = "yellow",
+	[261438] = "purple",
 	[261440] = {"blue","red"},
-	[261447] = {"blue","cyan"},
+	[261447] = "cyan",
 	[268278] = "red",
 	[268306] = "orange",
 	["stages"] = "cyan",
