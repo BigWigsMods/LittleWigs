@@ -9,7 +9,7 @@ BigWigs:AddColors("Heartsbane Triad", {
 })
 
 BigWigs:AddColors("Soulbound Goliath", {
-	[260508] = "yellow",
+	[260508] = "purple",
 	[260512] = {"blue","yellow"},
 	[260541] = "cyan",
 	[260569] = "blue",

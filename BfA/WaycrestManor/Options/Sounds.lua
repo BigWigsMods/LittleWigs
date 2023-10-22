@@ -12,7 +12,7 @@ BigWigs:AddSounds("Soulbound Goliath", {
 	[260508] = "alert",
 	[260512] = "alert",
 	[260541] = "long",
-	[260569] = "alarm",
+	[260569] = "underyou",
 	[267907] = "alarm",
 })
 

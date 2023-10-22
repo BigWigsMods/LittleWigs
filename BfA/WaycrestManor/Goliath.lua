@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Soulbound Goliath", 1862, 2126)
 if not mod then return end
 mod:RegisterEnableMob(131667) -- Soulbound Goliath
-mod.engageId = 2114
-mod.respawnTime = 30
+mod:SetEncounterID(2114)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -33,12 +32,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SoulThornsRemoved", 267907)
 	self:Log("SPELL_CAST_START", "Crush", 260508)
 	self:Log("SPELL_AURA_APPLIED", "BurningBrush", 260541)
-	self:Log("SPELL_AURA_APPLIED", "Wildfire", 260569) -- XXX Is there more events?
+	self:Log("SPELL_AURA_APPLIED", "WildfireDamage", 260569)
 end
 
 function mod:OnEngage()
-	self:Bar(260508, 6) -- Crush
-	self:Bar(267907, 10) -- Soul Thorns
+	self:Bar(260508, 5.9) -- Crush
+	self:Bar(267907, 9.9) -- Soul Thorns
 end
 
 --------------------------------------------------------------------------------
@@ -53,36 +52,34 @@ function mod:SoulHarvest(args)
 end
 
 function mod:SoulThorns()
-	self:CDBar(267907, 22)
+	self:CDBar(267907, 21.8)
+end
+
+function mod:SoulThornsApplied(args)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId)
+	end
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	self:TargetBar(args.spellId, 15, args.destName)
 end
 
 do
 	local soulThornsGUID = nil
+
+	function mod:SoulThornsSummon(args)
+		-- register events to auto-mark Soul Thorns
+		if self:GetOption(soulThornsMarker) then
+			soulThornsGUID = args.destGUID
+			self:RegisterTargetEvents("MarkSoulThorns")
+		end
+	end
 
 	function mod:MarkSoulThorns(_, unit, guid)
 		if soulThornsGUID == guid then
 			soulThornsGUID = nil
 			self:CustomIcon(soulThornsMarker, unit, 8)
 			self:UnregisterTargetEvents()
-		end
-	end
-
-	function mod:SoulThornsSummon(args)
-		if self:GetOption(soulThornsMarker) then
-			soulThornsGUID = args.destGUID
-		end
-	end
-
-	function mod:SoulThornsApplied(args)
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
-		end
-		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "alarm", nil, args.destName)
-		self:TargetBar(args.spellId, 15, args.destName)
-		if self:GetOption(soulThornsMarker) then
-			soulThornsGUID = nil
-			self:RegisterTargetEvents("MarkSoulThorns")
 		end
 	end
 end
@@ -92,9 +89,9 @@ function mod:SoulThornsRemoved(args)
 end
 
 function mod:Crush(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 17)
+	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:BurningBrush(args)
@@ -102,9 +99,9 @@ function mod:BurningBrush(args)
 	self:PlaySound(args.spellId, "long")
 end
 
-function mod:Wildfire(args)
+function mod:WildfireDamage(args)
 	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alarm")
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou")
 	end
 end
