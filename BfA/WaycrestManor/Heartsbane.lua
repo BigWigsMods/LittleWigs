@@ -171,7 +171,7 @@ function mod:ClaimTheIris(args)
 	end
 	self:StopBar(260741) -- Jagged Nettles
 	self:StopBar(260703) -- Unstable Runic Mark
-	self:StopBar(260907) -- Soul Manipulation 
+	self:StopBar(260907) -- Soul Manipulation
 end
 
 function mod:FocusingIris(args)
