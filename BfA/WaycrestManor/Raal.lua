@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Raal the Gluttonous", 1862, 2127)
 if not mod then return end
-mod:RegisterEnableMob(131863)
-mod.engageId = 2115
-mod.respawnTime = 20
+mod:RegisterEnableMob(131863) -- Raal the Gluttonous
+mod:SetEncounterID(2115)
+mod:SetRespawnTime(20)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -40,7 +39,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RottenExpulsionDamage", 264712)
 	self:Log("SPELL_PERIODIC_DAMAGE", "RottenExpulsionDamage", 264712)
 	self:Log("SPELL_PERIODIC_MISSED", "RottenExpulsionDamage", 264712)
-
 end
 
 function mod:OnEngage()
