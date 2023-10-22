@@ -17,11 +17,11 @@ BigWigs:AddSounds("Soulbound Goliath", {
 })
 
 BigWigs:AddSounds("Raal the Gluttonous", {
-	[264694] = "alarm",
+	[264694] = {"alert","underyou"},
 	[264734] = "warning",
-	[264923] = "warning",
+	[264923] = "alarm",
 	[264931] = "long",
-	[265005] = "alert",
+	[265005] = "info",
 })
 
 BigWigs:AddSounds("Lord and Lady Waycrest", {
