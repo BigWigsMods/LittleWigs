@@ -199,7 +199,6 @@ function mod:OnBossEnable()
 
 	-- Matron Alma
 	self:Log("SPELL_CAST_START", "RuinousVolley", 265876)
-	self:Log("SPELL_CAST_SUCCESS", "DreadMark", 265880)
 	self:Log("SPELL_AURA_APPLIED", "DreadMarkApplied", 265880)
 	self:Log("SPELL_AURA_REMOVED", "DreadMarkRemoved", 265880)
 	self:Log("SPELL_CAST_START", "DecayingTouch", 265881)
@@ -490,16 +489,13 @@ end
 -- Matron Alma
 
 function mod:RuinousVolley(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
-function mod:DreadMark(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-end
-
 function mod:DreadMarkApplied(args)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 6)
