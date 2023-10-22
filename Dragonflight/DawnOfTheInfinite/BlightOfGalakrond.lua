@@ -63,8 +63,8 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:Log("SPELL_AURA_REMOVED", "MalignantTransferal", 415097, 415114) -- Stage 2, Stage 3
-	self:Log("SPELL_AURA_APPLIED", "MalignantTransferalApplied", 415097, 415114) -- Stage 2, Stage 3
+	self:Log("SPELL_AURA_APPLIED", "MalignantTransferal", 415097, 415114) -- Stage 2, Stage 3
+	self:Log("SPELL_AURA_REMOVED", "MalignantTransferalOver", 415097, 415114) -- Stage 2, Stage 3
 
 	-- Blight of Galakrond
 	self:Log("SPELL_CAST_START", "CorrosiveInfusion", 406886)
@@ -102,19 +102,6 @@ end
 
 function mod:MalignantTransferal(args)
 	if args.spellId == 415097 then -- Stage 2
-		self:CDBar(407159, 30.4) -- Blight Reclamation
-		self:CDBar(406886, 6.9) -- Corrosive Infusion
-		self:CDBar(407978, 16.8) -- Necrotic Winds
-	else -- 415114, Stage 3
-		self:CDBar(407159, 63.8) -- Blight Reclamation
-		self:CDBar(408141, timers[408141][incineratingBlightbreathCount]) -- Incinerating Blightbreath
-		self:CDBar(406886, 15) -- Corrosive Infusion
-		self:CDBar(408029, 31.2) -- Necrofrost
-	end
-end
-
-function mod:MalignantTransferalApplied(args)
-	if args.spellId == 415097 then -- Stage 2
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.percent:format(80, CL.stage:format(2)), args.spellId)
 		self:PlaySound("stages", "long")
@@ -128,6 +115,19 @@ function mod:MalignantTransferalApplied(args)
 		self:StopBar(406886) -- Corrosive Infusion
 		self:StopBar(407159) -- Blight Reclamation
 		self:StopBar(407978) -- Necrotic Winds
+	end
+end
+
+function mod:MalignantTransferalOver(args)
+	if args.spellId == 415097 then -- Stage 2
+		self:CDBar(407159, 30.4) -- Blight Reclamation
+		self:CDBar(406886, 6.9) -- Corrosive Infusion
+		self:CDBar(407978, 16.8) -- Necrotic Winds
+	else -- 415114, Stage 3
+		self:CDBar(407159, 63.8) -- Blight Reclamation
+		self:CDBar(408141, timers[408141][incineratingBlightbreathCount]) -- Incinerating Blightbreath
+		self:CDBar(406886, 15) -- Corrosive Infusion
+		self:CDBar(408029, 31.2) -- Necrofrost
 	end
 end
 
