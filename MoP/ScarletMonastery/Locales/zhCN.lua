@@ -19,6 +19,6 @@ if not L then return end
 if L then
 	L.the_headless_horseman = "无头骑士"
 	L.custom_on_autotalk = "自动对话"
-	--L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
-	--L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
+	L.custom_on_autotalk_desc = "自动接受柳魔人的诅咒，并自动开始首领战。"
+	L.curses_desc = "获得柳魔人的诅咒时通知你。"
 end
