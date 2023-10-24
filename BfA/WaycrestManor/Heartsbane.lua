@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SoulManipulationRemovedFromBoss", 260923)
 
 	-- Focusing Iris
-	self:Log("SPELL_CAST_SUCCESS", "ClaimTheIris", 260852)
+	self:Log("SPELL_CAST_START", "ClaimTheIris", 260852)
 	self:Log("SPELL_AURA_APPLIED", "FocusingIris", 260805)
 	self:Log("SPELL_CAST_START", "DireRitual", 260773)
 	self:Log("SPELL_CAST_SUCCESS", "DireRitualSuccess", 260773)
