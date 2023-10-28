@@ -4,9 +4,16 @@
 
 local mod, CL = BigWigs:NewBoss("Grand Vizier Ertan", 657, 114)
 if not mod then return end
-mod:RegisterEnableMob(43878)
+mod:RegisterEnableMob(43878) -- Grand Vizier Ertan
 mod:SetEncounterID(1043)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local scheduledCycloneShield = nil
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -14,7 +21,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		86292, -- Cyclone Shield
+		{86292, "CASTBAR"}, -- Cyclone Shield
 		413151, -- Summon Tempest
 		413562, -- Lethal Current
 	}, {
@@ -25,7 +32,8 @@ end
 
 function mod:OnBossEnable()
 	-- Grand Vizier Ertan
-	self:Log("SPELL_AURA_REMOVED", "StormsEdgeRemoved", 86295, 86310)
+	self:Log("SPELL_AURA_APPLIED", "StormsEdgeApplied", 86295)
+	self:Log("SPELL_AURA_REMOVED", "StormsEdgeRemoved", 86295)
 	self:Log("SPELL_AURA_APPLIED", "CycloneShieldApplied", 86292)
 	self:Log("SPELL_CAST_START", "SummonTempest", 413151)
 
@@ -34,7 +42,16 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	scheduledCycloneShield = nil
+	self:SetStage(1)
 	self:CDBar(86292, 31.4) -- Cyclone Shield
+end
+
+function mod:OnWin()
+	if scheduledCycloneShield then
+		self:CancelTimer(scheduledCycloneShield)
+		scheduledCycloneShield = nil
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -43,15 +60,29 @@ end
 
 -- Grand Vizier Ertan
 
-function mod:StormsEdgeRemoved(args)
-	if args.spellId == 86295 then -- Cyclone Shield starts
-		self:Message(86292, "orange")
-		self:PlaySound(86292, "long")
-		self:CDBar(86292, 40.1)
-	else -- 86310,  Cyclone Shield Ends
-		self:Message(86292, "green", CL.over:format(self:SpellName(86292)))
-		self:PlaySound(86292, "info")
+function mod:StormsEdgeApplied(args)
+	if self:GetStage() == 1 then
+		-- this applies immediately after pull, skip the alert
+		return
 	end
+	self:SetStage(1)
+	self:Message(86292, "green", CL.over:format(self:SpellName(86292))) -- Cyclone Shield Over
+	self:PlaySound(86292, "info")
+end
+
+function mod:CycloneShield()
+	scheduledCycloneShield = nil
+	self:SetStage(2)
+	self:Message(86292, "orange")
+	self:PlaySound(86292, "long")
+	self:CastBar(86292, 9)
+	self:CDBar(86292, 40.1)
+end
+
+function mod:StormsEdgeRemoved(args)
+	-- the buff is also removed if the the boss is defeated in Stage 1, this scheduled timer
+	-- will be immediately canceled in :OnWin in that scenario.
+	scheduledCycloneShield = self:ScheduleTimer("CycloneShield", 0.1)
 end
 
 do
