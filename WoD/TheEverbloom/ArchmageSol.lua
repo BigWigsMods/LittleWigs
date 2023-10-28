@@ -47,6 +47,14 @@ function mod:OnEngage()
 	self:CDBar(428139, 43.3) -- Spatial Compression
 end
 
+function mod:OnWin()
+    local trashMod = BigWigs:GetBossModule("The Everbloom Trash", true)
+    if trashMod then
+        trashMod:Enable()
+        trashMod:ArchmageSolDefeated()
+    end
+end
+
 -- XXX delete this entire block below when 10.2 is live everywhere
 if not isTenDotTwo then
 	-- before 10.2

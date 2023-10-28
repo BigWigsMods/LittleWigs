@@ -1,3 +1,4 @@
+local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -34,6 +35,10 @@ if L then
 	L.infested_icecaller = "Infested Icecaller"
 	L.putrid_pyromancer = "Putrid Pyromancer"
 	L.addled_arcanomancer = "Addled Arcanomancer"
+
+	L.gate_opens = "Gate Opens"
+	L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	L.gate_opens_icon = "spell_fire_fireball02"
 end
 
 --------------------------------------------------------------------------------
@@ -42,6 +47,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- RP Timers
+		"gate_opens",
 		-- Dreadpetal
 		{164886, "DISPEL"}, -- Dreadpetal Pollen
 		-- Everbloom Naturalist
@@ -78,10 +85,12 @@ function mod:GetOptions()
 end
 
 -- XXX delete this entire if block below when 10.2 is live everywhere
-if select(4, GetBuildInfo()) < 100200 then
+if not isTenDotTwo then
 	-- before 10.2
 	function mod:GetOptions()
 		return {
+			-- RP Timers
+			"gate_opens",
 			-- Dreadpetal
 			{164886, "DISPEL"}, -- Dreadpetal Pollen
 			-- Everbloom Naturalist
@@ -109,8 +118,6 @@ if select(4, GetBuildInfo()) < 100200 then
 end
 
 function mod:OnBossEnable()
-	-- TODO Undermage Kesalon RP timer opening gate to Yalnu after defeating Archmage Sol
-
 	-- Dreadpetal
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DreadpetalPollenApplied", 164886)
 
@@ -131,7 +138,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "LivingLeaves", 169494)
 	self:Log("SPELL_AURA_APPLIED", "LivingLeavesApplied", 169495)
 	-- XXX remove this line from the if block when 10.2 is live everywhere
-	if select(4, GetBuildInfo()) >= 100200 then
+	if isTenDotTwo then
 		self:Log("SPELL_CAST_SUCCESS", "GnarledRoots", 426500)
 		self:Log("SPELL_AURA_APPLIED", "GnarledRootsApplied", 426500)
 	end
@@ -140,7 +147,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BoundingWhirl", 172578)
 
 	-- XXX remove these lines from the if block when 10.2 is live everywhere
-	if select(4, GetBuildInfo()) >= 100200 then
+	if isTenDotTwo then
 		-- Infested Icecaller
 		self:Log("SPELL_CAST_SUCCESS", "ColdFusion", 426845)
 
@@ -155,6 +162,17 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- RP Timers
+
+-- triggered from Archmage Sol's OnWin
+function mod:ArchmageSolDefeated()
+	-- 7.26 [ENCOUNTER_END] 1751#Archmage Sol
+	-- 38.84 [CLEU] SPELL_CAST_SUCCESS#Undermage Kesalon#170741#Pyroblast
+	-- 40.27 [CHAT_MSG_MONSTER_SAY] If that beast crosses through, the unchecked growth will choke the whole of Azeroth! Hurry!#Undermage Kesalon
+	-- ~42.26 Gate Despawns
+	self:Bar("gate_opens", 35.0, L.gate_opens, L.gate_opens_icon)
+end
 
 -- Dreadpetal
 

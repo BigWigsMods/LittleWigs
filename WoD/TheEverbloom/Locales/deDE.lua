@@ -21,4 +21,7 @@ if L then
 	L.infested_icecaller = "Infizierte Eisruferin"
 	L.putrid_pyromancer = "Eitriger Pyromant"
 	L.addled_arcanomancer = "Verwirrter Arkanomant"
+
+	--L.gate_opens = "Gate Opens"
+	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
 end

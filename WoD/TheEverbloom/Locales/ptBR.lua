@@ -21,4 +21,7 @@ if L then
 	L.infested_icecaller = "Chamagelo Infestada"
 	L.putrid_pyromancer = "Piromante Podre"
 	L.addled_arcanomancer = "Arcanomante Atordoado"
+
+	--L.gate_opens = "Gate Opens"
+	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
 end

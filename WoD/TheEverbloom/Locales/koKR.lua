@@ -21,4 +21,7 @@ if L then
 	L.infested_icecaller = "감염된 얼음소환사"
 	L.putrid_pyromancer = "타락의 화염술사"
 	L.addled_arcanomancer = "정신이상의 비전역술사"
+
+	--L.gate_opens = "Gate Opens"
+	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
 end
