@@ -21,11 +21,15 @@ BigWigs:AddColors("Ancient Protectors", {
 })
 
 BigWigs:AddColors("Xeri'tac", {
-	[-10502] = "yellow",
+	[-10502] = "cyan",
+	[-10492] = "yellow",
 	[169233] = "red",
-	[169248] = "orange",
+	[169248] = "yellow",
+	[169376] = "red",
+	[169382] = "orange",
+	[172643] = "orange",
 	[173080] = "blue",
-	["stages"] = {"cyan","red"},
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Archmage Sol", {
