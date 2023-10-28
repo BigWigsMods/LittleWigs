@@ -260,9 +260,16 @@ end
 
 -- Rotheart Keeper
 
-function mod:VileMushroom(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:VileMushroom(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 -- Nightmare Dweller
