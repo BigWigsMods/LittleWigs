@@ -16,4 +16,7 @@ if L then
 	L.felspite_dominator = "Dominateur gangrefiel"
 	L.risen_swordsman = "Epéiste ressuscité"
 	L.risen_lancer = "Lancier ressuscité"
+
+	--L.gate_opens = "Gate Opens"
+	--L.gate_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
 end

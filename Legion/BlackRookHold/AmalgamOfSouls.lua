@@ -58,6 +58,14 @@ function mod:OnEngage()
 	self:CDBar(194956, 20.2) -- Reap Soul
 end
 
+function mod:OnWin()
+    local trashMod = BigWigs:GetBossModule("Black Rook Hold Trash", true)
+    if trashMod then
+        trashMod:Enable()
+        trashMod:AmalgamOfSoulsDefeated()
+    end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --

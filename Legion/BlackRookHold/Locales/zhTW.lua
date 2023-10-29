@@ -16,4 +16,7 @@ if L then
 	L.felspite_dominator = "魔恨支配者"
 	L.risen_swordsman = "復活的劍兵"
 	L.risen_lancer = "復活的矛兵"
+
+	--L.gate_opens = "Gate Opens"
+	--L.gate_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
 end
