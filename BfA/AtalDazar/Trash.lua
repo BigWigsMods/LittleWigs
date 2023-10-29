@@ -35,6 +35,11 @@ if L then
 	L.confessor = "Dazar'ai Confessor"
 	L.augur = "Dazar'ai Augur"
 	L.reanimated_honor_guard = "Reanimated Honor Guard"
+
+	L.stairs_open = "Stairs Open"
+	L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
+	L.stairs_open_icon = "achievement_dungeon_ataldazar"
+	L.stairs_open_msg = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
 end
 
 --------------------------------------------------------------------------------
@@ -43,6 +48,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- RP Timers
+		"stairs_open",
 		-- Feasting Skyscreamer
 		255041, -- Terrifying Screech
 		-- T'lonja
@@ -79,6 +86,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- RP Timers
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 	-- Feasting Skyscreamer
 	self:Log("SPELL_CAST_START", "TerrifyingScreech", 255041)
 
@@ -123,6 +133,14 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+--RP Timers
+
+function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+	if msg == L.stairs_open_msg then
+		self:Bar("stairs_open", 12.3, L.stairs_open, L.stairs_open_icon)
+	end
+end
 
 -- Feasting Skyscreamer
 
