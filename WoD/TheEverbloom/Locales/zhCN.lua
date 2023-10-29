@@ -22,6 +22,6 @@ if L then
 	L.putrid_pyromancer = "腐烂的炎术士"
 	L.addled_arcanomancer = "疯狂的奥法师"
 
-	--L.gate_opens = "Gate Opens"
-	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	L.gate_opens = "大门开启"
+	L.gate_opens_desc = "显示下级法师克萨伦何时打开通往雅努大门的计时条。"
 end
