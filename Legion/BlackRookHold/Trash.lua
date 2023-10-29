@@ -46,9 +46,9 @@ if L then
 	L.risen_swordsman = "Risen Swordsman"
 	L.risen_lancer = "Risen Lancer"
 
-	L.gate_opens = "Gate Opens"
-	L.gate_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
-	L.gate_opens_icon = "Achievement_dungeon_blackrookhold"
+	L.door_opens = "Door Opens"
+	L.door_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
+	L.door_opens_icon = "achievement_dungeon_blackrookhold"
 end
 
 --------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ end
 function mod:GetOptions()
 	return {
 		-- RP Timers
-		"gate_opens",
+		"door_opens",
 		-- Ghostly Retainer
 		{200084, "DISPEL"}, -- Soul Blade
 		-- Ghostly Protector
@@ -170,7 +170,7 @@ end
 
 -- triggered from Amalgam of Souls OnWin
 function mod:AmalgamOfSoulsDefeated()
-	self:Bar("gate_opens", 35, L.gate_opens, L.gate_opens_icon)
+	self:Bar("door_opens", 35, L.door_opens, L.door_opens_icon)
 end
 
 -- Ghostly Retainer
