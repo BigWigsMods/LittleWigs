@@ -17,7 +17,7 @@ BigWigs:AddColors("Forgemaster Gorek", {
 BigWigs:AddColors("Magmatusk", {
 	[374365] = "orange",
 	[375068] = "orange",
-	[375251] = "yellow",
+	[375251] = {"blue","yellow"},
 	[375439] = {"blue","red"},
 	[375535] = "orange",
 	[375890] = "red",
