@@ -22,6 +22,6 @@ if L then
 	L.putrid_pyromancer = "Eitriger Pyromant"
 	L.addled_arcanomancer = "Verwirrter Arkanomant"
 
-	--L.gate_opens = "Gate Opens"
-	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	L.gate_opens = "Portal geöffnet"
+	L.gate_opens_desc = "Zeigt eine Leiste wann Untermagier Kesalon das Portal zu Yalnu öffnet."
 end
