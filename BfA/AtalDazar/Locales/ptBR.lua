@@ -11,4 +11,8 @@ if L then
 	L.confessor = "Confessor Dazar'ai"
 	L.augur = "Áugure Dazar'ai"
 	L.reanimated_honor_guard = "Guarda de Honra Reanimado"
+
+	--L.stairs_open = "Stairs Open"
+	--L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
+	--L.stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
 end

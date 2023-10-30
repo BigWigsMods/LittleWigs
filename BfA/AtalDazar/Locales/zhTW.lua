@@ -11,4 +11,8 @@ if L then
 	L.confessor = "達薩萊告解者"
 	L.augur = "達薩萊占兆師"
 	--L.reanimated_honor_guard = "Reanimated Honor Guard"
+
+	--L.stairs_open = "Stairs Open"
+	--L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
+	--L.stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
 end
