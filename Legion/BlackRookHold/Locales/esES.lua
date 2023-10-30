@@ -16,4 +16,7 @@ if L then
 	L.felspite_dominator = "Dominador Flemavil"
 	L.risen_swordsman = "Espadachín resucitado"
 	L.risen_lancer = "Lancero resucitado"
+
+	--L.door_opens = "Door Opens"
+	--L.door_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
 end

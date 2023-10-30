@@ -16,4 +16,7 @@ if L then
 	L.felspite_dominator = "Teufelsgrollunterwerfer"
 	L.risen_swordsman = "Auferstandener Schwertkämpfer"
 	L.risen_lancer = "Auferstandener Lanzer"
+
+	--L.door_opens = "Door Opens"
+	--L.door_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
 end
