@@ -12,7 +12,7 @@ if L then
 	L.augur = "Augur der Dazar'ai"
 	L.reanimated_honor_guard = "Reanimierte Ehrenwache"
 
-	--L.stairs_open = "Stairs Open"
-	--L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
-	--L.stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
+	L.stairs_open = "Treppen geöffnet"
+	L.stairs_open_desc = "Zeigt eine Leiste wann die Treppen zu Yazma geöffnet sind."
+	L.stairs_open_trigger = "Beeindruckend. Ihr seid weiter gekomm', als ich gedacht hab... aber ich werd trotzdem Euer Blut trink'n."
 end
