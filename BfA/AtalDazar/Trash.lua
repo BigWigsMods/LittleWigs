@@ -39,7 +39,7 @@ if L then
 	L.stairs_open = "Stairs Open"
 	L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
 	L.stairs_open_icon = "achievement_dungeon_ataldazar"
-	L.stairs_open_msg = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
+	L.stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
 end
 
 --------------------------------------------------------------------------------
@@ -136,8 +136,9 @@ end
 
 --RP Timers
 
-function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-	if msg == L.stairs_open_msg then
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.stairs_open_trigger then
+		self:UnregisterEvent(event)
 		self:Bar("stairs_open", 12.3, L.stairs_open, L.stairs_open_icon)
 	end
 end
