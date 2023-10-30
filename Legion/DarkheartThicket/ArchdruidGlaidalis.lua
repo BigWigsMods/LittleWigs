@@ -19,7 +19,7 @@ local nextNightfall = 0
 -- Initialization
 --
 
-local nightmareAbominationMarker = mod:AddMarkerOption(true, "npc", 8, -13302, 8) -- Nightmare Abomination
+local nightmareAbominationMarker = mod:AddMarkerOption(true, "npc", 1, -13302, 1, 2) -- Nightmare Abomination
 function mod:GetOptions()
 	return {
 		"warmup",
@@ -41,6 +41,7 @@ function mod:OnBossEnable()
 	-- Archdruid Glaidalis
 	self:Log("SPELL_CAST_START", "PrimalRampage", 198379)
 	self:Log("SPELL_CAST_SUCCESS", "Nightfall", 212464, 198401) -- Mythic, Normal/Heroic
+	self:Log("SPELL_SUMMON", "NightfallSummon", 198432)
 	self:Log("SPELL_AURA_APPLIED", "NightfallDamage", 198408)
 	self:Log("SPELL_PERIODIC_DAMAGE", "NightfallDamage", 198408)
 	self:Log("SPELL_PERIODIC_MISSED", "NightfallDamage", 198408)
@@ -53,7 +54,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "GrievousTearApplied", 196376)
 
 	-- Nightmare Abomination
-	self:Log("SPELL_SUMMON", "NightfallSummon", 198432)
 	self:Log("SPELL_AURA_APPLIED", "FixateApplied", 198477)
 end
 
@@ -83,11 +83,47 @@ function mod:PrimalRampage(args)
 	end
 end
 
-function mod:Nightfall(args)
-	nextNightfall = GetTime() + 21.9
-	self:Message(212464, "cyan")
-	self:PlaySound(212464, "info")
-	self:CDBar(212464, 21.9) -- pull:26.8, 21.9, 30.4, 31.6
+do
+	local prev = 0
+	local nightmareAbominationCollector = {}
+	local nightmareAbominationMark = 1
+
+	function mod:Nightfall(args)
+		-- this is cast twice if not solo, throttle
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			nextNightfall = GetTime() + 21.9
+			self:Message(212464, "cyan")
+			self:PlaySound(212464, "info")
+			self:CDBar(212464, 21.9) -- pull:26.8, 21.9, 30.4, 31.6
+			if self:Mythic() and self:GetOption(nightmareAbominationMarker) then
+				-- register events to auto-mark the adds
+				nightmareAbominationCollector = {}
+				nightmareAbominationMark = 1
+				self:RegisterTargetEvents("MarkNightmareAbomination")
+			end
+		end
+	end
+
+	function mod:NightfallSummon(args)
+		if self:GetOption(nightmareAbominationMarker) then
+			if not nightmareAbominationCollector[args.destGUID] then
+				nightmareAbominationCollector[args.destGUID] = nightmareAbominationMark
+				nightmareAbominationMark = nightmareAbominationMark + 1
+			end
+		end
+	end
+
+	function mod:MarkNightmareAbomination(_, unit, guid)
+		if nightmareAbominationCollector[guid] then
+			self:CustomIcon(nightmareAbominationMarker, unit, nightmareAbominationCollector[guid])
+			nightmareAbominationCollector[guid] = nil
+			if not next(nightmareAbominationCollector) then
+				self:UnregisterTargetEvents()
+			end
+		end
+	end
 end
 
 do
@@ -127,26 +163,6 @@ function mod:GrievousTearApplied(args)
 end
 
 -- Nightmare Abomination
-
-do
-	local nightmareAbominationGUID = nil
-
-	function mod:NightfallSummon(args)
-		-- register events to auto-mark the add
-		if self:GetOption(nightmareAbominationMarker) then
-			nightmareAbominationGUID = args.destGUID
-			self:RegisterTargetEvents("MarkNightmareAbomination")
-		end
-	end
-
-	function mod:MarkNightmareAbomination(_, unit, guid)
-		if nightmareAbominationGUID == guid then
-			nightmareAbominationGUID = nil
-			self:CustomIcon(nightmareAbominationMarker, unit, 8)
-			self:UnregisterTargetEvents()
-		end
-	end
-end
 
 do
 	local prev = 0
