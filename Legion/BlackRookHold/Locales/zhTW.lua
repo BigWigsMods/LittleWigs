@@ -17,6 +17,6 @@ if L then
 	L.risen_swordsman = "復活的劍兵"
 	L.risen_lancer = "復活的矛兵"
 
-	--L.door_opens = "Door Opens"
-	--L.door_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
+	L.door_opens = "門開啟"
+	L.door_opens_desc = "顯示開啟通往密道門的計時條。"
 end
