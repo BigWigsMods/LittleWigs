@@ -13,13 +13,17 @@ mod:SetRespawnTime(15)
 -- Locals
 --
 
+local nextPrimalRampage = 0
+local primalRampageCD = 0
+local nightfallCount = 1
 local nextNightfall = 0
+local nextGrievousLeap = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
-local nightmareAbominationMarker = mod:AddMarkerOption(true, "npc", 1, -13302, 1, 2) -- Nightmare Abomination
+local nightmareAbominationMarker = mod:AddMarkerOption(true, "npc", 8, -13302, 8, 7) -- Nightmare Abomination
 function mod:GetOptions()
 	return {
 		"warmup",
@@ -58,10 +62,15 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	nextNightfall = GetTime() + 21.9
+	local t = GetTime()
+	primalRampageCD = 12.4
+	nextPrimalRampage = t + primalRampageCD
+	nightfallCount = 1
+	nextNightfall = t + 25.8
+	nextGrievousLeap = t + 4.6
 	self:CDBar(196354, 4.6) -- Grievous Leap
-	self:CDBar(198379, 12.4) -- Primal Rampage
-	self:CDBar(212464, 25.8) -- Nightfall
+	self:CDBar(198379, primalRampageCD) -- Primal Rampage
+	self:CDBar(212464, 25.8, CL.count:format(self:SpellName(212464), nightfallCount)) -- Nightfall
 end
 
 --------------------------------------------------------------------------------
@@ -77,30 +86,49 @@ end
 function mod:PrimalRampage(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 29.2) -- pull:12.7, 30.3 / m pull:12.6, 31.6, 29.9, 27.9
-	if nextNightfall - GetTime() < 5.8 then
-		self:CDBar(212464, {5.8, 21.9}) -- Nightfall
+	local t = GetTime()
+	primalRampageCD = 27.9
+	nextPrimalRampage = t + primalRampageCD
+	self:CDBar(args.spellId, primalRampageCD)
+	if nextNightfall - t < 5.8 then
+		nextNightfall = t + 5.8
+		self:CDBar(212464, {5.8, 21.9}, CL.count:format(self:SpellName(212464), nightfallCount)) -- Nightfall
+	end
+	if nextGrievousLeap - t < 5.8 then
+		nextGrievousLeap = t + 5.8
+		self:CDBar(196354, {5.8, 13.4}) -- Grievous Leap
 	end
 end
 
 do
 	local prev = 0
 	local nightmareAbominationCollector = {}
-	local nightmareAbominationMark = 1
+	local nightmareAbominationMark = 8
 
 	function mod:Nightfall(args)
 		-- this is cast twice if not solo, throttle
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			nextNightfall = GetTime() + 21.9
-			self:Message(212464, "cyan")
+			self:StopBar(CL.count:format(args.spellName, nightfallCount))
+			self:Message(212464, "cyan", CL.count:format(args.spellName, nightfallCount))
 			self:PlaySound(212464, "info")
-			self:CDBar(212464, 21.9) -- pull:26.8, 21.9, 30.4, 31.6
+			nightfallCount = nightfallCount + 1
+			t = GetTime()
+			nextNightfall = t + 21.9
+			self:CDBar(212464, 21.9, CL.count:format(args.spellName, nightfallCount)) -- pull:26.8, 21.9, 30.4, 31.6
+			if nextPrimalRampage - t < 2.43 then
+				nextPrimalRampage = t + 2.43
+				self:CDBar(198379, {2.43, primalRampageCD}) -- Primal Rampage
+			end
+			if nextGrievousLeap - t < 2.43 then
+				nextGrievousLeap = t + 2.43
+				self:CDBar(196354, {2.43, 13.4}) -- Grievous Leap
+			end
 			if self:Mythic() and self:GetOption(nightmareAbominationMarker) then
 				-- register events to auto-mark the adds
 				nightmareAbominationCollector = {}
-				nightmareAbominationMark = 1
+				nightmareAbominationMark = 8
 				self:RegisterTargetEvents("MarkNightmareAbomination")
 			end
 		end
@@ -110,7 +138,7 @@ do
 		if self:GetOption(nightmareAbominationMarker) then
 			if not nightmareAbominationCollector[args.destGUID] then
 				nightmareAbominationCollector[args.destGUID] = nightmareAbominationMark
-				nightmareAbominationMark = nightmareAbominationMark + 1
+				nightmareAbominationMark = nightmareAbominationMark - 1
 			end
 		end
 	end
@@ -152,7 +180,17 @@ end
 function mod:GrievousLeap(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 12.1)
+	local t = GetTime()
+	nextGrievousLeap = t + 13.4
+	self:CDBar(args.spellId, 13.4)
+	if nextPrimalRampage - t < 5.38 then
+		nextPrimalRampage = t + 5.38
+		self:CDBar(198379, {5.38, primalRampageCD}) -- Primal Rampage
+	end
+	if nextNightfall - t < 5.38 then
+		nextNightfall = t + 5.38
+		self:CDBar(212464, {5.38, 21.9}, CL.count:format(self:SpellName(212464), nightfallCount)) -- Nightfall
+	end
 end
 
 function mod:GrievousTearApplied(args)
