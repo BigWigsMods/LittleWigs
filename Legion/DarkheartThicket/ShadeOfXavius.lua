@@ -24,6 +24,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "FesteringRip", 200182)
 	self:Log("SPELL_AURA_APPLIED", "FesteringRipApplied", 200182)
 	self:Log("SPELL_CAST_START", "GrowingParanoia", 200289)
 	self:Log("SPELL_AURA_APPLIED", "GrowingParanoiaApplied", 200289)
@@ -31,14 +32,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NightmareBolt", 212834, 200185) -- Normal, Heroic+
 	self:Log("SPELL_AURA_APPLIED", "WakingNightmareApplied", 200243)
 	self:Log("SPELL_AURA_REMOVED", "WakingNightmareRemoved", 200243)
+	self:Log("SPELL_CAST_SUCCESS", "FeedOnTheWeak", 200238)
 	self:Log("SPELL_AURA_APPLIED", "FeedOnTheWeakApplied", 200238)
 	self:Log("SPELL_CAST_START", "ApocalypticNightmare", 200050)
 end
 
 function mod:OnEngage()
-	self:CDBar(200182, 3.5) -- Festering Rip
-	self:CDBar(200185, 6.2) -- Nightmare Bolt
-	self:CDBar(200238, 16.9) -- Feed on the Weak
+	self:CDBar(200182, 3.4) -- Festering Rip
+	if not self:Solo() then
+		self:CDBar(200185, 6.2) -- Nightmare Bolt
+	end
+	self:CDBar(200238, 16.7) -- Feed on the Weak
 	self:CDBar(200289, 25.5) -- Growing Paranoia
 end
 
@@ -46,10 +50,13 @@ end
 -- Event Handlers
 --
 
+function mod:FesteringRip(args)
+	self:CDBar(args.spellId, 19.4)
+end
+
 function mod:FesteringRipApplied(args)
 	self:TargetMessage(args.spellId, "purple", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	self:CDBar(args.spellId, 19.4)
 end
 
 do
@@ -75,12 +82,15 @@ do
 	end
 end
 
+function mod:FeedOnTheWeak(args)
+	self:CDBar(args.spellId, 30.3)
+end
+
 function mod:FeedOnTheWeakApplied(args)
 	if self:Me(args.destGUID) or self:Healer() then
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
-	self:CDBar(args.spellId, 30.3)
 end
 
 do
