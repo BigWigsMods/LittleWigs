@@ -56,7 +56,7 @@ if L then
 	L.infinite_infiltrator = "Infinite Infiltrator"
 	L.risen_dragon = "Risen Dragon"
 
-	L.iridikron_warmup_trigger = "So the Titans' puppets have come to face me."
+	L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "Infinite Twilight Magus"

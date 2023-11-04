@@ -11,7 +11,7 @@ if L then
 	L.infinite_infiltrator = "Infiltrateur de l'Infini"
 	L.risen_dragon = "Dragon ressuscité"
 
-	--L.iridikron_warmup_trigger = "So the Titans' puppets have come to face me."
+	--L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "Maga du crépuscule de l'Infini"
