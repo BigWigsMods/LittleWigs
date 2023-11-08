@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -161,12 +160,12 @@ function mod:CorrosionApplied(args)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 	self:SecondaryIcon(args.spellId, args.destName)
 	if self:Mythic() then
-		self:TargetBar(args.spellId, isTenDotTwo and 15 or 12, args.destName) -- XXX remove isTenDotTwo
+		self:TargetBar(args.spellId, 15, args.destName)
 	end
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		if self:Mythic() then
-			self:YellCountdown(args.spellId, isTenDotTwo and 15 or 12, nil, 5) -- XXX remove isTenDotTwo
+			self:YellCountdown(args.spellId, 15, nil, 5)
 		end
 	end
 end
