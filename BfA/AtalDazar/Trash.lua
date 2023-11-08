@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -122,12 +121,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "FieryEnchant", 253583)
 
 	-- Reanimated Honor Guard
-	if isTenDotTwo then
-		self:Log("SPELL_CAST_SUCCESS", "FesteringEruption", 255626)
-	else
-		-- XXX remove when 10.2 is live everywhere
-		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-	end
+	self:Log("SPELL_CAST_SUCCESS", "FesteringEruption", 255626)
 end
 
 --------------------------------------------------------------------------------
@@ -259,18 +253,6 @@ do
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
-		end
-	end
-end
-
--- XXX delete when 10.2 is live everywhere
-do
-	local prev = nil
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if spellId == 255626 and castGUID ~= prev then -- Festering Eruption
-			prev = castGUID
-			self:Message(spellId, "orange")
-			self:PlaySound(spellId, "alarm")
 		end
 	end
 end
