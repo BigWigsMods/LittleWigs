@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -62,12 +61,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MagmaShield", 376780)
 	self:Log("SPELL_AURA_APPLIED", "MagmaShieldApplied", 376780)
 	self:Log("SPELL_AURA_REMOVED", "MagmaShieldRemoved", 376780)
-	if isTenDotTwo then
-		self:Log("SPELL_CAST_START", "BurningEmber", 377473)
-	else
-		-- XXX delete when 10.2 is live everywhere
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Burning Ember
-	end
+	self:Log("SPELL_CAST_START", "BurningEmber", 377473)
 	self:Log("SPELL_CAST_START", "TheDragonsKiln", 377204)
 	self:Log("SPELL_CAST_START", "MoltenGold", 377017)
 
@@ -151,12 +145,6 @@ do
 			-- cast at 100 energy: 30s energy gain + ~.1s delay + 2.5s cast time
 			self:Bar(args.spellId, 32.6, CL.count:format(args.spellName, magmaShieldCount))
 		end
-	end
-end
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 377469 then -- Burning Ember
-		self:BurningEmber()
 	end
 end
 
