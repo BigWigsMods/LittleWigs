@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -31,11 +30,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	if not isTenDotTwo then
-		-- not cast in M+, removed from dungeon journal in all difficulties
-		-- TODO is this still cast in hardmode in 10.2? any way to detect hardmode?
-		self:CDBar(414303, 5.8) -- Unwind
-	end
+	-- Unwind is not cast in M+, removed from dungeon journal in all difficulties
+	-- TODO apparently still cast in hardmode in 10.2 - any way to detect hardmode?
+	--self:CDBar(414303, 5.8) -- Unwind
 	self:CDBar(405431, 15.5) -- Fragments of Time
 	self:CDBar(405696, 30.1) -- Chrono-faded
 end
