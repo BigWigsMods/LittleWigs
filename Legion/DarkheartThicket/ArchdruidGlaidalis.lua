@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -49,12 +48,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "NightfallDamage", 198408)
 	self:Log("SPELL_PERIODIC_DAMAGE", "NightfallDamage", 198408)
 	self:Log("SPELL_PERIODIC_MISSED", "NightfallDamage", 198408)
-	if isTenDotTwo then
-		self:Log("SPELL_CAST_SUCCESS", "GrievousLeap", 196354)
-	else
-		-- XXX delete when 10.2 is live everywhere
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Grievous Leap
-	end
+	self:Log("SPELL_CAST_SUCCESS", "GrievousLeap", 196354)
 	self:Log("SPELL_AURA_APPLIED", "GrievousTearApplied", 196376)
 
 	-- Nightmare Abomination
@@ -165,15 +159,6 @@ do
 				self:PlaySound(212464, "underyou", nil, args.destName)
 			end
 		end
-	end
-end
-
--- XXX pre-10.2 Grievous Leap compat
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 196354 then -- Grievous Leap
-		self:GrievousLeap({
-			spellId = spellId,
-		})
 	end
 end
 
