@@ -46,7 +46,7 @@ BigWigs:AddColors("Throne of the Tides Trash", {
 	[76634] = "yellow",
 	[76813] = "yellow",
 	[76820] = {"blue","orange","red"},
-	[426645] = "red",
+	[426645] = "purple",
 	[426663] = {"blue","red"},
 	[426684] = "orange",
 	[426741] = "purple",

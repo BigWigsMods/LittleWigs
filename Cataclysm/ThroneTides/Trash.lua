@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -73,9 +72,49 @@ function mod:GetOptions()
 	}
 end
 
--- XXX delete this entire if block below when 10.2 is live everywhere
-if not isTenDotTwo then
-	-- before 10.2
+function mod:OnBossEnable()
+	-- Naz'jar Oracle
+	self:Log("SPELL_CAST_START", "Hex", 76820)
+	self:Log("SPELL_AURA_APPLIED", "HexApplied", 76820)
+	self:Log("SPELL_CAST_START", "HealingWave", 76813)
+
+	if self:Retail() then
+		-- Vicious Snap Dragon
+		self:Log("SPELL_AURA_APPLIED", "RavenousPursuitApplied", 426663)
+
+		-- Naz'jar Sentinel
+		self:Log("SPELL_CAST_START", "Shellbreaker", 426741)
+		self:Log("SPELL_AURA_APPLIED", "CrushingDepthsApplied", 428542)
+
+		-- Naz'jar Ravager
+		self:Log("SPELL_CAST_START", "VolatileBolt", 426684)
+		self:Log("SPELL_CAST_START", "AcidBarrage", 426645)
+	end
+
+	-- Naz'jar Tempest Witch
+	self:Log("SPELL_AURA_APPLIED", "LightningSurgeApplied", 75992)
+
+	if self:Retail() then
+		-- Faceless Seer
+		self:Log("SPELL_CAST_START", "MindFlay", 426783)
+		self:Log("SPELL_CAST_START", "NullBlast", 426808)
+	end
+
+	-- Faceless Watcher
+	self:Log("SPELL_CAST_START", "ShadowSmash", 76590)
+	if self:Retail() then
+		self:Log("SPELL_CAST_START", "Crush", 429021)
+	end
+
+	-- Tainted Sentry
+	self:Log("SPELL_CAST_START", "Swell", 76634)
+end
+
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if mod:Classic() then
 	function mod:GetOptions()
 		return {
 			-- Naz'jar Oracle
@@ -94,47 +133,6 @@ if not isTenDotTwo then
 			[76634] = L.tainted_sentry,
 		}
 	end
-end
-
-function mod:OnBossEnable()
-	-- Naz'jar Oracle
-	self:Log("SPELL_CAST_START", "Hex", 76820)
-	self:Log("SPELL_AURA_APPLIED", "HexApplied", 76820)
-	self:Log("SPELL_CAST_START", "HealingWave", 76813)
-
-	-- XXX remove these lines from the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		-- Vicious Snap Dragon
-		self:Log("SPELL_AURA_APPLIED", "RavenousPursuitApplied", 426663)
-
-		-- Naz'jar Sentinel
-		self:Log("SPELL_CAST_START", "Shellbreaker", 426741)
-		self:Log("SPELL_AURA_APPLIED", "CrushingDepthsApplied", 428542)
-
-		-- Naz'jar Ravager
-		self:Log("SPELL_CAST_START", "VolatileBolt", 426684)
-		self:Log("SPELL_CAST_START", "AcidBarrage", 426645)
-	end
-
-	-- Naz'jar Tempest Witch
-	self:Log("SPELL_AURA_APPLIED", "LightningSurgeApplied", 75992)
-
-	-- XXX remove these lines from the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		-- Faceless Seer
-		self:Log("SPELL_CAST_START", "MindFlay", 426783)
-		self:Log("SPELL_CAST_START", "NullBlast", 426808)
-	end
-
-	-- Faceless Watcher
-	self:Log("SPELL_CAST_START", "ShadowSmash", 76590)
-	-- XXX remove this line from the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		self:Log("SPELL_CAST_START", "Crush", 429021)
-	end
-
-	-- Tainted Sentry
-	self:Log("SPELL_CAST_START", "Swell", 76634)
 end
 
 --------------------------------------------------------------------------------
@@ -209,7 +207,7 @@ function mod:VolatileBolt(args)
 end
 
 function mod:AcidBarrage(args)
-	self:Message(args.spellId, "red") -- TODO purple?
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
 end
