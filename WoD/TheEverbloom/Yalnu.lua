@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -40,39 +39,10 @@ function mod:GetOptions()
 		{169613, "CASTBAR"}, -- Genesis
 		-- Flourishing Ancient
 		169929, -- Lumbering Swipe
-		-- XXX delete these when 10.2 is live everywhere
-		not isTenDotTwo and 169120 or nil, -- Font of Life
-		not isTenDotTwo and 169240 or nil, -- Entanglement (Player)
-		not isTenDotTwo and 170132 or nil, -- Entanglement (Kirin Tor)
-		not isTenDotTwo and 169878 or nil, -- Noxious Breath
 	}, {
 		[169179] = self.displayName, -- Yalnu
 		[169929] = -10537, -- Flourishing Ancient
 	}
-end
-
--- XXX delete this entire block below when 10.2 is live everywhere
-if not isTenDotTwo then
-	-- before 10.2
-	function mod:GetOptions()
-		return {
-			"warmup",
-			-- Yalnu
-			169179, -- Colossal Blow
-			169120, -- Font of Life
-			{169613, "CASTBAR"}, -- Genesis
-			169240, -- Entanglement (Kirin Tor)
-			170132, -- Entanglement (Player)
-			-- Vicious Mandragora
-			169878, -- Noxious Breath
-			-- Flourishing Ancient
-			169929, -- Lumbering Swipe
-		}, {
-			[169179] = self.displayName, -- Yalnu
-			[169878] = -10535, -- Vicious Mandragora
-			[169929] = -10537, -- Flourishing Ancient
-		}
-	end
 end
 
 function mod:OnBossEnable()
@@ -81,17 +51,8 @@ function mod:OnBossEnable()
 
 	-- Yalnu
 	self:Log("SPELL_CAST_START", "ColossalBlow", 169179)
-	-- XXX bring these listeners outside the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		self:Log("SPELL_CAST_START", "VerdantEruption", 428823)
-		self:Log("SPELL_CAST_SUCCESS", "EncounterSpawn", 181113)
-	else
-		-- XXX delete these listeners when 10.2 is live everywhere
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Font of Life
-		self:Log("SPELL_CAST_SUCCESS", "EntanglementKirinTor", 169251) -- aura is 169240
-		self:Log("SPELL_AURA_APPLIED", "EntanglementPlayer", 170132) -- cast is 170124
-		self:Log("SPELL_CAST_START", "NoxiousBreath", 169878)
-	end
+	self:Log("SPELL_CAST_START", "VerdantEruption", 428823)
+	self:Log("SPELL_CAST_SUCCESS", "EncounterSpawn", 181113)
 	self:Log("SPELL_CAST_START", "Genesis", 169613)
 
 	-- Flourishing Ancient
@@ -102,10 +63,7 @@ function mod:OnEngage()
 	colossalBlowCount = 1
 	verdantEruptionCount = 1
 	self:CDBar(169179, 2.4, CL.count:format(self:SpellName(169179), colossalBlowCount)) -- Colossal Blow
-	-- XXX bring this bar outside the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		self:CDBar(428823, 23.0, CL.count:format(self:SpellName(428823), verdantEruptionCount)) -- Verdant Eruption
-	end
+	self:CDBar(428823, 23.0, CL.count:format(self:SpellName(428823), verdantEruptionCount)) -- Verdant Eruption
 	self:CDBar(169613, 40.1) -- Genesis
 end
 
@@ -179,39 +137,4 @@ function mod:LumberingSwipe(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	--self:CDBar(args.spellId, 13.3) -- probably not useful
-end
-
--- XXX pre 10.2, delete everything below this comment when 10.2 is live everywhere
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 169120 then -- Font of Life
-		-- this summons either 1 Flourishing Ancient, 2 Vicious Mandragoras, or 8 Swift Sproutlings
-		self:Message(spellId, "cyan")
-		self:PlaySound(spellId, "alert")
-		self:CDBar(spellId, 15.0)
-	end
-end
-
-function mod:EntanglementKirinTor(args)
-	self:Message(169240, "red")
-	self:PlaySound(169240, "info")
-end
-
-function mod:EntanglementPlayer(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
-end
-
--- Vicious Mandragora
-
-do
-	local prev = 0
-	function mod:NoxiousBreath(args)
-		local t = args.time
-		if t - prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "purple")
-			self:PlaySound(args.spellId, "alarm")
-		end
-	end
 end

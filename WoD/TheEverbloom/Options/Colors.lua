@@ -34,13 +34,9 @@ BigWigs:AddColors("Archmage Sol", {
 })
 
 BigWigs:AddColors("Yalnu", {
-	[169120] = "cyan",
 	[169179] = "orange",
-	[169240] = "red",
 	[169613] = "yellow",
-	[169878] = "purple",
 	[169929] = "red",
-	[170132] = {"blue","red"},
 	[428823] = "cyan",
 })
 
