@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -43,12 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "UncheckedGrowthApplied", 164302)
 	self:Log("SPELL_PERIODIC_DAMAGE", "UncheckedGrowthDamage", 164294)
 	self:Log("SPELL_PERIODIC_MISSED", "UncheckedGrowthDamage", 164294)
-	if isTenDotTwo then
-		self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSummon", 164556)
-	else
-		-- XXX delete when 10.2 is live everywhere
-		self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSummon", 181113) -- Encounter Spawn
-	end
+	self:Log("SPELL_CAST_SUCCESS", "UncheckedGrowthSummon", 164556)
 end
 
 function mod:OnEngage()
