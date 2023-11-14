@@ -27,10 +27,6 @@ function mod:GetOptions()
 		{429048, "DISPEL", "OFF"}, -- Flame Shock
 		-- Mindbender Ghur'sha
 		{429172, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Terrifying Vision
-		-- Classic options declared here as well for gen_option_values
-		not mod and {76207, "ICON"} or nil, -- Enslave
-		not mod and 76307 or nil, -- Absorb Magic
-		not mod and 76230 or nil, -- Mind Fog
 	}, {
 		[429051] = -2194, -- Erunak Stonespeaker
 		[429172] = -2199, -- Mindbender Ghur'sha
