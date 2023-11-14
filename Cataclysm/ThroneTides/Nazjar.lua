@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -42,14 +41,12 @@ end
 
 function mod:OnBossEnable()
 	-- Lady Naz'jar
-	-- XXX convert to self:Classic() when 10.2 is live everywhere
-	if isTenDotTwo then
+	if self:Retail() then
 		self:Log("SPELL_CAST_START", "HighTideStarting", 75683)
 	end
 	self:Log("SPELL_AURA_APPLIED", "HighTide", 75683)
 	self:Log("SPELL_AURA_REMOVED", "HighTideOver", 75683)
-	-- XXX convert to self:Classic() when 10.2 is live everywhere
-	if isTenDotTwo then
+	if self:Retail() then
 		self:Log("SPELL_AURA_APPLIED", "ShockBlast", 429263)
 		self:Log("SPELL_CAST_START", "Geysers", 427771)
 		self:Log("SPELL_CAST_START", "FocusedTempest", 428374)
@@ -62,27 +59,32 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	highTideCount = 1
+	local t = GetTime()
 	self:SetStage(1)
-	-- XXX remove these timers from the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		local t = GetTime()
-		shockBlastCD = 18.0
-		nextShockBlast = t + shockBlastCD
-		geysersCD = 16.1
-		nextGeysers = t + geysersCD
-		self:CDBar(428374, 7.0) -- Focused Tempest
-		self:CDBar(427771, geysersCD) -- Geysers
-		self:CDBar(428054, shockBlastCD) -- Shock Blast
-	end
+	highTideCount = 1
+	shockBlastCD = 18.0
+	nextShockBlast = t + shockBlastCD
+	geysersCD = 16.1
+	nextGeysers = t + geysersCD
+	self:CDBar(428374, 7.0) -- Focused Tempest
+	self:CDBar(427771, geysersCD) -- Geysers
+	self:CDBar(428054, shockBlastCD) -- Shock Blast
 end
 
--- XXX convert to mod:Classic() when 10.2 is live everywhere
-if not isTenDotTwo then
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if mod:Classic() then
 	function mod:GetOptions()
 		return {
 			75683, -- Waterspout
 		}
+	end
+
+	function mod:OnEngage()
+		self:SetStage(1)
+		highTideCount = 1
 	end
 end
 
@@ -110,8 +112,7 @@ function mod:HighTideOver(args)
 	self:SetStage(1)
 	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
-	-- XXX convert to self:Classic() when 10.2 is live everywhere
-	if isTenDotTwo then
+	if self:Retail() then
 		local t = GetTime()
 		shockBlastCD = 24.3
 		nextShockBlast = t + shockBlastCD
