@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 -- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Xeri'tac", 1279, 1209)
 if not mod then return end
 mod:RegisterEnableMob(84550) -- Xeri'tac
 mod:SetEncounterID(1752)
-mod:SetRespawnTime(isTenDotTwo and 30 or 20) -- XXX 30s when 10.2 is live everywhere
+mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
@@ -74,9 +73,6 @@ function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(172643, 8.6) -- Descend
 	self:Bar(-10502, 19.6, CL.spawning:format(self:SpellName(-10502)), "spell_festergutgas") -- Venom-Crazed Pale One
-	if not isTenDotTwo then
-		self:ScheduleTimer("AddSpawn", 19.6) -- XXX delete when 10.2 is live everywhere
-	end
 	if self:Normal() then
 		-- Normal is 40s or when you kill the last set, whichever comes first
 		self:Bar(-10492, 40, CL.spawning:format(self:SpellName(-10492)), "ability_hunter_pet_spider") -- Toxic Spiderling
@@ -145,11 +141,6 @@ function mod:EncounterSpawn()
 	self:Message(-10502, "cyan", CL.spawned:format(self:SpellName(-10502)), "spell_festergutgas") -- Venom-Crazed Pale One
 	self:PlaySound(-10502, "info")
 	self:Bar(-10502, 30, CL.spawning:format(self:SpellName(-10502)), "spell_festergutgas")
-end
-
-function mod:AddSpawn() -- XXX delete when 10.2 is live everywhere
-	self:EncounterSpawn()
-	self:ScheduleTimer("AddSpawn", 30)
 end
 
 do
