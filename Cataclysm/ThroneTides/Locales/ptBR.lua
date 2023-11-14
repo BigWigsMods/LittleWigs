@@ -10,3 +10,9 @@ if L then
 	--L.faceless_watcher = "Faceless Watcher"
 	--L.tainted_sentry = "Tainted Sentry"
 end
+
+L = BigWigs:NewBossLocale("Ozumat", "ptBR")
+if L then
+	L.custom_on_autotalk = "Conversa Automática"
+	L.custom_on_autotalk_desc = "Instantaneamente seleciona a opção de conversa para iniciar a luta."
+end
