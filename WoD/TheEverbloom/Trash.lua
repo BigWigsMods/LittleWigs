@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -84,39 +83,6 @@ function mod:GetOptions()
 	}
 end
 
--- XXX delete this entire if block below when 10.2 is live everywhere
-if not isTenDotTwo then
-	-- before 10.2
-	function mod:GetOptions()
-		return {
-			-- RP Timers
-			"gate_opens",
-			-- Dreadpetal
-			{164886, "DISPEL"}, -- Dreadpetal Pollen
-			-- Everbloom Naturalist
-			164965, -- Choking Vines
-			-- Everbloom Cultivator
-			165213, -- Enraged Growth
-			-- Rockspine Stinger
-			{165123, "DISPEL", "SAY"}, -- Venom Burst
-			-- Everbloom Mender
-			164887, -- Healing Waters
-			-- Gnarlroot
-			169494, -- Living Leaves
-			-- Melded Berserker
-			172578, -- Bounding Whirl
-		}, {
-			[164886] = L.dreadpetal,
-			[164965] = L.everbloom_naturalist,
-			[165213] = L.everbloom_cultivator,
-			[165123] = L.rockspine_stinger,
-			[164887] = L.everbloom_mender,
-			[169494] = L.gnarlroot,
-			[172578] = L.melded_berserker,
-		}
-	end
-end
-
 function mod:OnBossEnable()
 	-- Dreadpetal
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DreadpetalPollenApplied", 164886)
@@ -137,26 +103,20 @@ function mod:OnBossEnable()
 	-- Gnarlroot
 	self:Log("SPELL_CAST_START", "LivingLeaves", 169494)
 	self:Log("SPELL_AURA_APPLIED", "LivingLeavesApplied", 169495)
-	-- XXX remove this line from the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		self:Log("SPELL_CAST_SUCCESS", "GnarledRoots", 426500)
-		self:Log("SPELL_AURA_APPLIED", "GnarledRootsApplied", 426500)
-	end
+	self:Log("SPELL_CAST_SUCCESS", "GnarledRoots", 426500)
+	self:Log("SPELL_AURA_APPLIED", "GnarledRootsApplied", 426500)
 
 	-- Melded Berserker
 	self:Log("SPELL_CAST_SUCCESS", "BoundingWhirl", 172578)
 
-	-- XXX remove these lines from the if block when 10.2 is live everywhere
-	if isTenDotTwo then
-		-- Infested Icecaller
-		self:Log("SPELL_CAST_SUCCESS", "ColdFusion", 426845)
+	-- Infested Icecaller
+	self:Log("SPELL_CAST_SUCCESS", "ColdFusion", 426845)
 
-		-- Putrid Pyromancer
-		self:Log("SPELL_CAST_SUCCESS", "CinderboltSalvo", 427223)
+	-- Putrid Pyromancer
+	self:Log("SPELL_CAST_SUCCESS", "CinderboltSalvo", 427223)
 
-		-- Addled Arcanomancer
-		self:Log("SPELL_CAST_SUCCESS", "SpatialDisruption", 426974)
-	end
+	-- Addled Arcanomancer
+	self:Log("SPELL_CAST_SUCCESS", "SpatialDisruption", 426974)
 end
 
 --------------------------------------------------------------------------------
