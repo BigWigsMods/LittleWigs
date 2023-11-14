@@ -1,4 +1,3 @@
-local isTenDotTwo = select(4, GetBuildInfo()) >= 100200 --- XXX delete when 10.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -26,10 +25,6 @@ function mod:GetOptions()
 		427456, -- Awaken Ooze
 		427668, -- Festering Shockwave
 		{427670, "TANK_HEALER"}, -- Crushing Claw
-		not isTenDotTwo and 76047 or nil, -- Dark Fissure
-		not isTenDotTwo and {76026, "ICON"} or nil, -- Squeeze
-		not isTenDotTwo and 76094 or nil, -- Curse of Fatigue
-		not isTenDotTwo and 76100 or nil, -- Enrage
 	}
 end
 
@@ -49,8 +44,11 @@ function mod:OnEngage()
 	self:CDBar(427456, 30.1) -- Awaken Ooze
 end
 
--- XXX delete this entire block below when 10.2 is live everywhere
-if not isTenDotTwo then
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if mod:Classic() then
 	function mod:GetOptions()
 		return {
 			76047, -- Dark Fissure
@@ -59,6 +57,7 @@ if not isTenDotTwo then
 			76100, -- Enrage
 		}
 	end
+
 	function mod:OnBossEnable()
 		self:Log("SPELL_CAST_START", "DarkFissure", 76047)
 		self:Log("SPELL_AURA_APPLIED", "Squeeze", 76026)
@@ -66,6 +65,7 @@ if not isTenDotTwo then
 		self:Log("SPELL_AURA_APPLIED", "CurseOfFatigue", 76094)
 		self:Log("SPELL_AURA_APPLIED", "Enrage", 76100)
 	end
+
 	function mod:OnEngage()
 	end
 end
@@ -107,14 +107,16 @@ function mod:CrushingClaw(args)
 	end
 end
 
--- XXX delete everything below this comment when 10.2 is live everywhere
+--------------------------------------------------------------------------------
+-- Classic Event Handlers
+--
 
 function mod:DarkFissure(args)
-	self:MessageOld(args.spellId, "red", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red")
 end
 
 function mod:Squeeze(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange")
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -124,10 +126,10 @@ end
 
 function mod:CurseOfFatigue(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessageOld(args.spellId, args.destName, "yellow")
+		self:TargetMessage(args.spellId, "yellow", args.destName)
 	end
 end
 
 function mod:Enrage(args)
-	self:MessageOld(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 end
