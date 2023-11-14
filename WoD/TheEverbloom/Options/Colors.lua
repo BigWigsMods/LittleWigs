@@ -28,13 +28,9 @@ BigWigs:AddColors("Xeri'tac", {
 })
 
 BigWigs:AddColors("Archmage Sol", {
-	[166492] = "red",
-	[166726] = "blue",
-	[168885] = "orange",
 	[427899] = "red",
 	[428082] = "orange",
 	[428139] = "yellow",
-	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Yalnu", {
