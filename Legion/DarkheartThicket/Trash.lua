@@ -345,9 +345,15 @@ end
 
 -- Tormented Bloodseeker
 
-function mod:DarksoulDrain(args)
-	if self:Dispeller("disease", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+do
+	local prev = 0
+	function mod:DarksoulDrain(args)
+		-- this can apply to pets, and can be double-applied by a second mob (but doesn't stack)
+		local t = args.time
+		if t - prev > 2 and self:Player(args.destFlags) and self:Dispeller("disease", nil, args.spellId) then
+			prev = t
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
 	end
 end
