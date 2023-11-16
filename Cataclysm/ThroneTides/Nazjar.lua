@@ -29,7 +29,7 @@ function mod:GetOptions()
 		75683, -- High Tide
 		{428054, "SAY"}, -- Shock Blast
 		427771, -- Geysers
-		{428374, "ME_ONLY_EMPHASIZE"}, -- Focused Tempest
+		428374, -- Focused Tempest
 		{428263, "OFF"}, -- Water Bolt
 		-- Naz'jar Honor Guard
 		428293, -- Trident Flurry
@@ -145,25 +145,17 @@ function mod:Geysers(args)
 	self:CDBar(args.spellId, geysersCD)
 end
 
-do
-	local function printTarget(self, player, guid)
-		if self:Healer() or self:Me(guid) then
-			self:TargetMessage(428374, "yellow", player)
-			self:PlaySound(428374, "alert", nil, player)
-		end
+function mod:FocusedTempest(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 17.0)
+	-- 7.3s delay after this spell before anything else can be cast
+	local t = GetTime()
+	if nextShockBlast - t < 7.3 then
+		self:CDBar(428054, {7.3, shockBlastCD}) -- Shock Blast
 	end
-
-	function mod:FocusedTempest(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 17.0)
-		-- 7.3s delay after this spell before anything else can be cast
-		local t = GetTime()
-		if nextShockBlast - t < 7.3 then
-			self:CDBar(428054, {7.3, shockBlastCD}) -- Shock Blast
-		end
-		if nextGeysers - t < 7.3 then
-			self:CDBar(427771, {7.3, geysersCD}) -- Geysers
-		end
+	if nextGeysers - t < 7.3 then
+		self:CDBar(427771, {7.3, geysersCD}) -- Geysers
 	end
 end
 
