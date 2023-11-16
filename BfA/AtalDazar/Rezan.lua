@@ -30,8 +30,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TerrifyingVisage", 255371)
 	--self:Log("SPELL_CAST_SUCCESS", "Tail", 255372)
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "CHAT_MSG_RAID_BOSS_WHISPER") -- XXX pre 10.2 compat
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Pursuit
+	self:Log("SPELL_CAST_START", "PursuitStart", 257407)
 	self:Log("SPELL_AURA_APPLIED", "DevourApplied", 255421)
 	self:Log("SPELL_AURA_REMOVED", "PursuitRemoved", 257407)
 	self:Log("SPELL_CAST_SUCCESS", "SerratedTeeth", 255434)
@@ -61,16 +61,41 @@ function mod:TerrifyingVisage(args)
 	end
 end
 
-function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg, _, _, _, destName) -- Pursuit
-	-- the whisper for Pursuit happens sooner than the SPELL_CAST_START and it has target info
-	if msg:find("255421") then -- Devour
-		self:TargetMessage(257407, "orange", destName)
-		if self:Me(self:UnitGUID(destName)) then
-			self:PlaySound(257407, "alarm", "runaway", destName)
-			self:Say(257407)
-		else
-			self:PlaySound(257407, "alert", nil, destName)
+do
+	local prev = 0
+
+	function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg, _, _, _, destName) -- Pursuit
+		if msg:find("255421") then -- Devour
+			-- the whisper for Pursuit contains the target, but only the targeted
+			-- player receives this event. throttle in case the boss target scan is faster
+			-- than the whisper.
+			local t = GetTime()
+			if t - prev > 2 then
+				prev = t
+				self:PersonalMessage(257407)
+				self:PlaySound(257407, "alarm", "runaway", destName)
+				self:Say(257407)
+			end
 		end
+	end
+
+	local function printTarget(self, name, guid)
+		-- throttle in case the whisper is faster than the boss target scan.
+		local t = GetTime()
+		if t - prev > 2 then
+			prev = t
+			self:TargetMessage(257407, "orange", name)
+			if self:Me(guid) then
+				self:PlaySound(257407, "alarm", "runaway", name)
+				self:Say(257407)
+			else
+				self:PlaySound(257407, "alert", nil, name)
+			end
+		end
+	end
+
+	function mod:PursuitStart(args)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 		pursuitCount = pursuitCount + 1
 		self:CDBar(257407, 35.2)
 	end
@@ -84,9 +109,6 @@ do
 		if self:Player(args.destFlags) then -- also applied to Rezan
 			self:TargetMessage(args.spellId, "yellow", args.destName)
 			self:PlaySound(args.spellId, "long", nil, args.destName)
-			-- TODO lasts 8 seconds where nothing else can happen
-			-- but what happens if an immunity is used during devour?
-			-- 20.3, 20.7, 20.9 to terrifying visage (or should be -8 from devour removed?)
 		end
 	end
 
@@ -95,7 +117,6 @@ do
 		if args.time - prev > 1 then
 			self:Message(args.spellId, "green", CL.over:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
-			-- TODO 23.45, 22.8, 31.39 (feigned/etc) to pursuit (so not reliable to start any timers here)
 		end
 	end
 end
