@@ -69,7 +69,7 @@ function mod:OnBossEnable()
 
 	-- Neptulon
 	self:Log("SPELL_CAST_SUCCESS", "CleansingFlux", 428674)
-	self:Log("SPELL_AURA_APPLIED", "CleansingFluxApplied", 428668)
+	self:Log("SPELL_AURA_APPLIED", "CleansingFluxApplied", 428668, 431368) -- first player, second player
 
 	-- Ozumat
 	self:Log("SPELL_CAST_SUCCESS", "DelugeOfFilth", 428594)
@@ -181,8 +181,8 @@ do
 
 	function mod:CleansingFluxApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(args.spellId, "green", playerList, 2)
-		self:PlaySound(args.spellId, "info", nil, playerList)
+		self:PlaySound(428668, "info", nil, playerList)
+		self:TargetsMessage(428668, "green", playerList, 2)
 	end
 end
 
