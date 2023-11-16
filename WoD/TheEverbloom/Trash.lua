@@ -150,7 +150,7 @@ do
 	local prev = 0
 	function mod:ChokingVines(args)
 		local t = args.time
-		if t - prev > 1 then
+		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
@@ -159,12 +159,19 @@ do
 	end
 end
 
-function mod:ChokingVinesApplied(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "info", nil, args.destName)
-	else
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
+do
+	local prev = 0
+	function mod:ChokingVinesApplied(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:TargetMessage(args.spellId, "orange", args.destName)
+			if self:Me(args.destGUID) then
+				self:PlaySound(args.spellId, "info", nil, args.destName)
+			else
+				self:PlaySound(args.spellId, "alarm", nil, args.destName)
+			end
+		end
 	end
 end
 
@@ -211,7 +218,11 @@ end
 
 function mod:HealingWaters(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "warning")
+	else
+		self:PlaySound(args.spellId, "alert")
+	end
 	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
