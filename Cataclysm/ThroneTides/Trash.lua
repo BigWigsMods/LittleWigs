@@ -207,7 +207,7 @@ function mod:VolatileBolt(args)
 end
 
 function mod:AcidBarrage(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
 end
@@ -217,7 +217,7 @@ end
 function mod:LightningSurgeApplied(args)
 	local onMe = self:Me(args.destGUID)
 	if onMe or self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		if onMe then
 			self:Say(args.spellId)
