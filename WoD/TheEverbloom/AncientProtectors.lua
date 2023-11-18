@@ -34,7 +34,7 @@ function mod:GetOptions()
 		427459, -- Toxic Bloom
 		{427509, "OFF"}, -- Terrestrial Fury
 		-- Dulhu
-		427510, -- Noxious Charge
+		{427510, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Noxious Charge
 	}, {
 		[168082] = -10409, -- Life Warden Gola
 		[427459] = -10413, -- Earthshaper Telu
@@ -139,9 +139,11 @@ end
 function mod:NoxiousCharge(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
+	self:CastBar(args.spellId, 4)
 	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:DulhuDeath(args)
+	self:StopBar(CL.cast:format(self:SpellName(427510))) -- Noxious Charge
 	self:StopBar(427510) -- Noxious Charge
 end
