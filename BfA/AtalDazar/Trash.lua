@@ -217,10 +217,15 @@ end
 
 -- Shadowblade Stalker
 
-function mod:VenomfangStrikeApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId) then
-		self:StackMessage(args.spellId, "orange", args.destName, args.amount, 1)
-		self:PlaySound(args.spellId, "info", nil, args.destName)
+do
+	local prev = 0
+	function mod:VenomfangStrikeApplied(args)
+		local t = args.time
+		if t - prev > 2 and (self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId)) then
+			prev = t
+			self:StackMessage(args.spellId, "orange", args.destName, args.amount, 1)
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
 	end
 end
 
