@@ -30,7 +30,7 @@ function mod:GetOptions()
 		268278, -- Wracking Chord
 		-- Lord Waycrest
 		{261438, "TANK_HEALER"}, -- Wasting Strike
-		{261440, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Virulent Pathogen
+		{261440, "SAY", "SAY_COUNTDOWN"}, -- Virulent Pathogen
 		261447, -- Putrid Vitality
 	}, {
 		[268306] = -17773, -- Lady Waycrest
@@ -121,7 +121,7 @@ function mod:WastingStrike(args)
 end
 
 do
-	local playerList, isOnMe, proxList = {}, false, {}
+	local playerList = {}
 
 	function mod:VirulentPathogen(args)
 		self:CDBar(args.spellId, 15.8)
@@ -129,29 +129,17 @@ do
 
 	function mod:VirulentPathogenApplied(args)
 		if self:Me(args.destGUID) then
-			isOnMe = true
 			self:Say(args.spellId)
 			self:SayCountdown(args.spellId, 5)
 		end
-
 		playerList[#playerList + 1] = args.destName
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		self:TargetsMessage(args.spellId, "red", playerList, 5)
-
-		proxList[#proxList + 1] = args.destName
-		self:OpenProximity(args.spellId, 5, not isOnMe and proxList)
 	end
 
 	function mod:VirulentPathogenRemoved(args)
 		if self:Me(args.destGUID) then
-			isOnMe = false
 			self:CancelSayCountdown(args.spellId)
-		end
-		tDeleteItem(proxList, args.destName)
-		if #proxList == 0 then
-			self:CloseProximity(args.spellId)
-		else
-			self:OpenProximity(args.spellId, 5, not isOnMe and proxList)
 		end
 	end
 end
