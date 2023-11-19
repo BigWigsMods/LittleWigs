@@ -20,6 +20,15 @@ local unerringShearCount = 1
 local shadowBoltVolleyCount = 1
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.phase_2_trigger = "Enough! I tire of this."
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -46,6 +55,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "UnerringShear", 198635)
 	self:Log("SPELL_CAST_START", "WhirlingBlade", 198641)
 	self:Log("SPELL_CAST_START", "DarkBlast", 198820)
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:Death("KurtalosDeath", 98965)
 
 	-- Stage Two: Vengeance of the Ancients
@@ -91,8 +101,16 @@ function mod:DarkBlast(args)
 	self:CDBar(args.spellId, 18.2)
 end
 
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.phase_2_trigger then
+		self:UnregisterEvent(event)
+		self:StopBar(CL.count:format(self:SpellName(198635), unerringShearCount)) -- Unerring Shear
+		self:StopBar(198641) -- Whirling Blade
+		self:StopBar(198820) -- Dark Blast
+	end
+end
+
 function mod:KurtalosDeath()
-	-- TODO could clean up stage 1 bars earlier using [CHAT_MSG_MONSTER_SAY] Enough! I tire of this.#Latosius
 	self:StopBar(CL.count:format(self:SpellName(198635), unerringShearCount)) -- Unerring Shear
 	self:StopBar(198641) -- Whirling Blade
 	self:StopBar(198820) -- Dark Blast

@@ -20,3 +20,8 @@ if L then
 	L.door_opens = "門開啟"
 	L.door_opens_desc = "顯示開啟通往密道門的計時條。"
 end
+
+L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "zhTW")
+if L then
+	--L.phase_2_trigger = "Enough! I tire of this."
+end
