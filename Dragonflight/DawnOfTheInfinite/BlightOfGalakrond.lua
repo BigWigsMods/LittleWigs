@@ -23,14 +23,6 @@ local incineratingBlightbreathCount = 1
 local necrofrostCount = 1
 
 --------------------------------------------------------------------------------
--- Timers
---
-
-local timers = {
-	[408141] = {22.3, 16.8, 17.4, 29.2, 16.6, 18.4, 24.8, 16.8, 17.2}, -- Incinerating Blightbreath
-}
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -82,7 +74,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "NecrofrostApplied", 408084)
 
 	-- Dazhak
-	self:Log("SPELL_CAST_START", "IncineratingBlightbreath", 408141)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss2") -- Incinerating Blightbreath
 end
 
 function mod:OnEngage()
@@ -125,8 +117,8 @@ function mod:MalignantTransferalOver(args)
 		self:CDBar(407978, 16.8) -- Necrotic Winds
 	else -- 415114, Stage 3
 		self:CDBar(407159, 63.8) -- Blight Reclamation
-		self:CDBar(408141, timers[408141][incineratingBlightbreathCount]) -- Incinerating Blightbreath
-		self:CDBar(406886, 15) -- Corrosive Infusion
+		self:CDBar(406886, 15.0) -- Corrosive Infusion
+		self:CDBar(408141, 22.4) -- Incinerating Blightbreath
 		self:CDBar(408029, 31.2) -- Necrofrost
 	end
 end
@@ -137,20 +129,20 @@ function mod:CorrosiveInfusion(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	if self:GetStage() == 1 then
-		self:CDBar(args.spellId, 17)
+		self:CDBar(args.spellId, 17.0)
 	elseif self:GetStage() == 2 then
 		corrosiveInfusionCount = corrosiveInfusionCount + 1
 		if corrosiveInfusionCount == 2 then
-			self:CDBar(args.spellId, 34)
+			self:CDBar(args.spellId, 34.0)
 		else
 			self:CDBar(args.spellId, 31.6)
 		end
 	else -- Stage 3
 		corrosiveInfusionCount = corrosiveInfusionCount + 1
 		if corrosiveInfusionCount == 2 then
-			self:CDBar(args.spellId, 62)
+			self:CDBar(args.spellId, 62.0)
 		else
-			self:CDBar(args.spellId, 60)
+			self:CDBar(args.spellId, 60.0)
 		end
 	end
 end
@@ -190,18 +182,25 @@ function mod:BlightReclamation(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	if self:GetStage() == 1 then
-		self:CDBar(args.spellId, 17)
+		self:CDBar(args.spellId, 17.0)
 	elseif self:GetStage() == 2 then
 		self:CDBar(args.spellId, 31.6)
 	else -- Stage 3
-		self:CDBar(args.spellId, 60)
+		self:CDBar(args.spellId, 60.0)
 	end
 end
 
-function mod:BlightSeepDamage(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou")
+do
+	local prev = 0
+	function mod:BlightSeepDamage(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			if self:Me(args.destGUID) then
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
 	end
 end
 
@@ -230,7 +229,7 @@ do
 		elseif necrofrostCount % 2 == 0 then
 			self:CDBar(args.spellId, 19.4)
 		else
-			self:CDBar(args.spellId, 40)
+			self:CDBar(args.spellId, 40.0)
 		end
 	end
 end
@@ -262,21 +261,24 @@ end
 
 -- Dazhak
 
-function mod:IncineratingBlightbreath(args)
-	-- can't use GetBossTarget, Dazhak targets a player ~1s before the cast and detargets them as the cast starts
-	local name = self:UnitName("boss2target")
-	local guid = self:UnitGUID("boss2target")
-	if name then
-		self:TargetMessage(args.spellId, "orange", name)
-		self:PlaySound(args.spellId, "alarm", nil, name)
-	else
-		-- just in case?
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(408141, "orange", name)
+		self:PlaySound(408141, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(408141)
+		end
+		incineratingBlightbreathCount = incineratingBlightbreathCount + 1
+		if incineratingBlightbreathCount % 3 == 1 then -- 4, 7...
+			self:CDBar(408141, 25.5)
+		else -- 2, 3, 5, 6...
+			self:CDBar(408141, 17.0)
+		end
 	end
-	if self:Me(guid) then
-		self:Say(args.spellId)
+
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+		if spellId == 413596 then -- Incinerating Blightbreath
+			self:GetNextBossTarget(printTarget, self:UnitGUID(unit), 1)
+		end
 	end
-	incineratingBlightbreathCount = incineratingBlightbreathCount + 1
-	self:CDBar(args.spellId, timers[args.spellId][incineratingBlightbreathCount] or 17) -- might need more timers?
 end
