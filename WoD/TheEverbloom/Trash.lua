@@ -132,6 +132,11 @@ function mod:ArchmageSolDefeated()
 	-- 40.27 [CHAT_MSG_MONSTER_SAY] If that beast crosses through, the unchecked growth will choke the whole of Azeroth! Hurry!#Undermage Kesalon
 	-- ~42.26 Gate Despawns
 	self:Bar("gate_opens", 35.0, L.gate_opens, L.gate_opens_icon)
+	-- enable Yalnu's mod so that it will always pick up the RP yell
+	local yalnuMod = BigWigs:GetBossModule("Yalnu", true)
+	if yalnuMod then
+		yalnuMod:Enable()
+	end
 end
 
 -- Dreadpetal
