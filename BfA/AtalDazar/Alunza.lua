@@ -25,7 +25,7 @@ function mod:GetOptions()
 		255558, -- Tainted Blood
 		{255577, "CASTBAR"}, -- Transfusion
 		{255579, "TANK"}, -- Gilded Claws
-		255582, -- Molten Gold
+		{255582, "DISPEL"}, -- Molten Gold
 		277072, -- Corrupted Gold
 		259205, -- Spirit of Gold
 		spiritOfGoldMarker,
@@ -120,10 +120,8 @@ function mod:MoltenGold(args)
 end
 
 function mod:MoltenGoldApplied(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	if self:Dispeller("magic") then
-		self:PlaySound(args.spellId, "alert", "dispelnow", args.destName)
-	elseif self:Me(args.destGUID) then
+	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
