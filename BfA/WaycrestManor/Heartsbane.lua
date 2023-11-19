@@ -127,9 +127,9 @@ end
 function mod:AuraOfDread(args)
 	if self:Me(args.destGUID) then
 		local amount = args.amount
-		if amount % 3 == 0 or amount > 6 then
-			self:StackMessage(args.spellId, "blue", args.destName, amount, 6)
-			if amount > 6 then
+		if amount % 2 == 0 or amount >= 4 then
+			self:StackMessage(args.spellId, "blue", args.destName, amount, 4)
+			if amount >= 4 then
 				self:PlaySound(args.spellId, "warning", nil, args.destName)
 			else
 				self:PlaySound(args.spellId, "alert", nil, args.destName)
