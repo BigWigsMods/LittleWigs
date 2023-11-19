@@ -49,7 +49,7 @@ function mod:Soulrend(args)
 end
 
 function mod:WrackingPain(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	local _, ready = self:Interrupter()
 	if ready then
 		self:PlaySound(args.spellId, "alert", "interrupt")
