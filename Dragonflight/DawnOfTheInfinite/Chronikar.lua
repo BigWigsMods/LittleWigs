@@ -59,7 +59,7 @@ do
 			prev = t
 			-- alert here for the first cast (the one that cannot be positioned)
 			self:Message(args.spellId, "yellow", CL.leap)
-			self:PlaySound(args.spellId, "alert")
+			self:PlaySound(args.spellId, "alarm")
 			-- cast at 100 energy: 3s cast + 2s delay + 3s cast + 2s delay + 3s cast + 1s delay + 1.7s delay + 36.1s gain + .3 delay
 			self:CDBar(args.spellId, 52.1, CL.leap)
 		end
@@ -74,7 +74,7 @@ end
 function mod:EonShatterRemoved(args)
 	-- When the debuff is removed is when you drop the circle and need to run out, as he will begin his leap on the player
 	self:TargetMessage(args.spellId, "yellow", args.destName, CL.leap)
-	self:PlaySound(args.spellId, "warning", nil, args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
 
 function mod:Chronoshear(args)
@@ -90,7 +90,7 @@ end
 
 function mod:SandStomp(args)
 	self:Message(args.spellId, "orange", CL.pools)
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "alert")
 	sandStompCount = sandStompCount + 1
 	-- pull:7.2, 35.2, 18.2, 34.0, 18.2
 	if sandStompCount % 2 == 0 then
