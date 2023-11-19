@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Yalnu", 1279, 1210)
 if not mod then return end
-mod:RegisterEnableMob(83846) -- Yalnu
+mod:RegisterEnableMob(
+	85496, -- Undermage Kesalon
+	83846  -- Yalnu
+)
 mod:SetEncounterID(1756)
 --mod:SetRespawnTime(0) -- wiping teleports you out, then you can retry immediately
 
@@ -38,7 +41,7 @@ function mod:GetOptions()
 		flourishingAncientMarker,
 		{169613, "CASTBAR"}, -- Genesis
 		-- Flourishing Ancient
-		169929, -- Lumbering Swipe
+		{169929, "OFF"}, -- Lumbering Swipe
 	}, {
 		[169179] = self.displayName, -- Yalnu
 		[169929] = -10537, -- Flourishing Ancient
