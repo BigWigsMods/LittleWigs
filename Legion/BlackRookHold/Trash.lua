@@ -84,7 +84,7 @@ function mod:GetOptions()
 		-- Bloodscent Felhound
 		204896, -- Drain Life
 		-- Felspite Dominator
-		{203163, "ME_ONLY"}, -- Sic Bats!
+		203163, -- Sic Bats!
 		227913, -- Felfrenzy
 		-- Risen Swordsman
 		{214003, "TANK"}, -- Coup de Grace
@@ -288,7 +288,7 @@ do
 	function mod:ArcaneBlitz(args)
 		-- only show a message if stacks are getting high
 		local amount = blitzTracker[args.sourceGUID]
-		if amount and amount > 5 and (self:Interrupter() or self:Dispeller("magic", true)) then
+		if amount and amount > 2 and (self:Interrupter() or self:Dispeller("magic", true)) then
 			self:Message(args.spellId, "yellow", CL.count:format(args.spellName, amount))
 			self:PlaySound(args.spellId, "alert")
 		end
@@ -353,7 +353,7 @@ do
 	local prev = 0
 	function mod:CoupDeGrace(args)
 		local t = args.time
-		if t - prev > 1.5 then
+		if t - prev > 2 then
 			prev = t
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alert")
