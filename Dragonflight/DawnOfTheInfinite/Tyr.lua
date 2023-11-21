@@ -14,7 +14,7 @@ mod:SetStage(1)
 --
 
 local siphonOathstoneCount = 1
-local abilitiesUntilRecharge = 4
+local infiniteHandCastCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -54,12 +54,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "SiphonOathstoneRemoved", 400642)
 	self:Log("SPELL_AURA_APPLIED", "StolenTimeApplied", 406543)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "StolenTimeApplied", 406543)
-	-- TODO barrier empowered?
 end
 
 function mod:OnEngage()
 	siphonOathstoneCount = 1
-	abilitiesUntilRecharge = 4
+	infiniteHandCastCount = 1
 	self:SetStage(1)
 	self:CDBar(400681, 6.0) -- Spark of Tyr
 	self:CDBar(401248, 12.5) -- Titanic Blow
@@ -81,78 +80,79 @@ end
 
 -- Stage 1: Infinite Hand Technique
 
-function mod:TitanicBlow(args)
-	abilitiesUntilRecharge = abilitiesUntilRecharge - 1
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-	if abilitiesUntilRecharge >= 2 then
-		-- same ability is never cast twice in a row, so only show the bar
-		-- if there are at least 2 abilities left in the phase.
-		self:CDBar(args.spellId, 16.0)
-	else
-		self:StopBar(args.spellId)
-	end
-	if abilitiesUntilRecharge >= 1 then
-		-- minimum of 8s until Infinite Annihilation or Dividing Strike
-		if self:BarTimeLeft(401482) < 8.0 then -- Infinite Annihilation
-			self:CDBar(401482, 8.0)
-		end
-		if self:BarTimeLeft(400641) < 8.0 then -- Dividing Strike
-			self:CDBar(400641, 8.0)
-		end
-	else
-		self:StopBar(401482) -- Infinite Annihiliation
-		self:StopBar(400641) -- Dividing Strike
-	end
-end
+do
+	local firstInfiniteHandCast = nil
 
-function mod:InfiniteAnnihilation(args)
-	abilitiesUntilRecharge = abilitiesUntilRecharge - 1
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	if abilitiesUntilRecharge >= 2 then
-		-- same ability is never cast twice in a row, so only show the bar
-		-- if there are at least 2 abilities left in the phase.
-		self:CDBar(args.spellId, 16.0)
-	else
+	function mod:TitanicBlow(args)
 		self:StopBar(args.spellId)
-	end
-	if abilitiesUntilRecharge >= 1 then
-		-- minimum of 8s until Titanic Blow or Dividing Strike
-		if self:BarTimeLeft(401248) < 8.0 then -- Titanic Blow
-			self:CDBar(401248, 8.0)
+		self:Message(args.spellId, "purple", CL.count_amount:format(args.spellName, infiniteHandCastCount, 4))
+		self:PlaySound(args.spellId, "alarm")
+		infiniteHandCastCount = infiniteHandCastCount + 1
+		if infiniteHandCastCount == 2 then
+			-- the first ability in the sequence will not be cast again, either of the other two
+			-- abilities can happen 8s after the first ability.
+			firstInfiniteHandCast = args.spellId
+			self:CDBar(401482, 8.0) -- Infinite Annihilation
+			self:CDBar(400641, 8.0) -- Dividing Strike
+		elseif infiniteHandCastCount == 3 then
+			-- the second ability in the sequence will be the fourth ability as well
+			self:CDBar(args.spellId, 16.0)
+			-- the ability which was not the first or second ability will be the third ability
+			if firstInfiniteHandCast ~= 401482 then -- Infinite Annihilation
+				self:CDBar(401482, 8.0)
+			else -- Dividing Strike
+				self:CDBar(400641, 8.0)
+			end
+			firstInfiniteHandCast = nil
 		end
-		if self:BarTimeLeft(400641) < 8.0 then -- Dividing Strike
-			self:CDBar(400641, 8.0)
-		end
-	else
-		self:StopBar(401248) -- Titanic Blow
-		self:StopBar(400641) -- Dividing Strike
 	end
-end
 
-function mod:DividingStrike(args)
-	abilitiesUntilRecharge = abilitiesUntilRecharge - 1
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	if abilitiesUntilRecharge >= 2 then
-		-- same ability is never cast twice in a row, so only show the bar
-		-- if there are at least 2 abilities left in the phase.
-		self:CDBar(args.spellId, 16.0)
-	else
+	function mod:InfiniteAnnihilation(args)
 		self:StopBar(args.spellId)
+		self:Message(args.spellId, "orange", CL.count_amount:format(args.spellName, infiniteHandCastCount, 4))
+		self:PlaySound(args.spellId, "alarm")
+		infiniteHandCastCount = infiniteHandCastCount + 1
+		if infiniteHandCastCount == 2 then
+			-- the first ability in the sequence will not be cast again, either of the other two
+			-- abilities can happen 8s after the first ability.
+			firstInfiniteHandCast = args.spellId
+			self:CDBar(401248, 8.0) -- Titanic Blow
+			self:CDBar(400641, 8.0) -- Dividing Strike
+		elseif infiniteHandCastCount == 3 then
+			-- the second ability in the sequence will be the fourth ability as well
+			self:CDBar(args.spellId, 16.0)
+			-- the ability which was not the first or second ability will be the third ability
+			if firstInfiniteHandCast ~= 401248 then -- Titanic Blow
+				self:CDBar(401248, 8.0)
+			else -- Dividing Strike
+				self:CDBar(400641, 8.0)
+			end
+			firstInfiniteHandCast = nil
+		end
 	end
-	if abilitiesUntilRecharge >= 1 then
-		-- minimum of 8s until Titanic Blow or Infinite Annihilation
-		if self:BarTimeLeft(401248) < 8.0 then -- Titanic Blow
-			self:CDBar(401248, 8.0)
+
+	function mod:DividingStrike(args)
+		self:StopBar(args.spellId)
+		self:Message(args.spellId, "yellow", CL.count_amount:format(args.spellName, infiniteHandCastCount, 4))
+		self:PlaySound(args.spellId, "alert")
+		infiniteHandCastCount = infiniteHandCastCount + 1
+		if infiniteHandCastCount == 2 then
+			-- the first ability in the sequence will not be cast again, either of the other two
+			-- abilities can happen 8s after the first ability.
+			firstInfiniteHandCast = args.spellId
+			self:CDBar(401248, 8.0) -- Titanic Blow
+			self:CDBar(401482, 8.0) -- Infinite Annihilation
+		elseif infiniteHandCastCount == 3 then
+			-- the second ability in the sequence will be the fourth ability as well
+			self:CDBar(args.spellId, 16.0)
+			-- the ability which was not the first or second ability will be the third ability
+			if firstInfiniteHandCast ~= 401248 then -- Titanic Blow
+				self:CDBar(401248, 8.0)
+			else -- Infinite Annihilation
+				self:CDBar(401482, 8.0)
+			end
+			firstInfiniteHandCast = nil
 		end
-		if self:BarTimeLeft(401482) < 8.0 then -- Infinite Annihilation
-			self:CDBar(401482, 8.0)
-		end
-	else
-		self:StopBar(401248) -- Titanic Blow
-		self:StopBar(401482) -- Infinite Annihiliation
 	end
 end
 
@@ -200,7 +200,7 @@ function mod:SiphonOathstone(args)
 end
 
 function mod:SiphonOathstoneRemoved(args)
-	abilitiesUntilRecharge = 4
+	infiniteHandCastCount = 1
 	self:StopBar(CL.cast:format(args.spellName))
 	self:SetStage(1)
 	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
