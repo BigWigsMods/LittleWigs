@@ -163,7 +163,7 @@ do
 			self:Say(197546)
 		end
 	end
-	
+
 	function mod:BrutalGlaive(args)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 		brutalGlaiveRemaining = brutalGlaiveRemaining - 1
