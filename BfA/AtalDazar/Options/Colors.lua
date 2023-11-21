@@ -27,7 +27,7 @@ BigWigs:AddColors("Yazma", {
 	[249919] = "purple",
 	[250036] = "blue",
 	[250050] = "cyan",
-	[250096] = "orange",
+	[250096] = {"blue","orange"},
 	[259187] = "red",
 })
 

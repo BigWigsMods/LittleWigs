@@ -17,7 +17,7 @@ function mod:GetOptions()
 		259187, -- Soulrend
 		250050, -- Echoes of Shadra
 		250036, -- Shadowy Remains
-		250096, -- Wracking Pain
+		{250096, "ME_ONLY_EMPHASIZE"}, -- Wracking Pain
 		{249919, "TANK_HEALER"}, -- Skewer
 	}
 end
@@ -68,10 +68,24 @@ do
 	end
 end
 
-function mod:WrackingPain(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 17.0) -- 17-24
+do
+	local function printTarget(self, name, guid)
+		if self:Me(guid) or self:Healer() then
+			self:TargetMessage(250096, "orange", name)
+			self:PlaySound(250096, "alert", nil, name)
+		end
+	end
+
+	function mod:WrackingPain(args)
+		if self:MythicPlus() then
+			-- not interruptible in Mythic+, get target instead
+			self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		else -- Normal, Heroic, Mythic
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		self:CDBar(args.spellId, 17.0) -- 17-24
+	end
 end
 
 function mod:Skewer(args)
