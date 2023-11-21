@@ -30,8 +30,8 @@ BigWigs:AddColors("Kurtalos Ravencrest", {
 	[198641] = "orange",
 	[198820] = "yellow",
 	[199143] = "orange",
-	[199193] = "red",
-	[201733] = {"blue","yellow"},
+	[199193] = "cyan",
+	[201733] = {"blue","red"},
 	[202019] = "yellow",
 	["stages"] = "cyan",
 })
