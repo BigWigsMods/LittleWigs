@@ -45,6 +45,7 @@ BigWigs:AddSounds("Black Rook Hold Trash", {
 	[200261] = "alarm",
 	[200291] = "alert",
 	[200343] = "alarm",
+	[200784] = "alert",
 	[200913] = "alarm",
 	[203163] = {"alert","warning"},
 	[204896] = "alert",
