@@ -8,9 +8,11 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	128434, -- Feasting Skyscreamer
 	128455, -- T'lonja
+	129552, -- Monzumi
 	127879, -- Shieldbearer of Zul
 	122969, -- Zanchuli Witch-Doctor
 	129553, -- Dinomancer Kish'o
+	122971, -- Dazar'ai Juggernaut
 	132126, -- Gilded Priestess
 	122970, -- Shadowblade Stalker
 	122973, -- Dazar'ai Confessor
@@ -26,9 +28,11 @@ local L = mod:GetLocale()
 if L then
 	L.skyscreamer = "Feasting Skyscreamer"
 	L.tlonja = "T'lonja"
+	L.monzumi = "Monzumi"
 	L.shieldbearer = "Shieldbearer of Zul"
 	L.witchdoctor = "Zanchuli Witch-Doctor"
 	L.kisho = "Dinomancer Kish'o"
+	L.dazarai_juggernaut = "Dazar'ai Juggernaut"
 	L.priestess = "Gilded Priestess"
 	L.stalker = "Shadowblade Stalker"
 	L.confessor = "Dazar'ai Confessor"
@@ -53,12 +57,16 @@ function mod:GetOptions()
 		255041, -- Terrifying Screech
 		-- T'lonja
 		{255567, "SAY"}, -- Frenzied Charge
+		-- Monzumi
+		256882, -- Wild Thrash
 		-- Shieldbearer of Zul
 		253721, -- Bulwark of Juju
 		-- Zanchuli Witch-Doctor
 		{252781, "SAY", "SAY_COUNTDOWN"}, -- Unstable Hex
 		-- Dinomancer Kish'o
 		{256849, "DISPEL"}, -- Dino Might
+		-- Dazar'ai Juggernaut
+		253239, -- Merciless Assault
 		-- Gilded Priestess
 		260666, -- Transfusion
 		-- Shadowblade Stalker
@@ -73,9 +81,11 @@ function mod:GetOptions()
 	}, {
 		[255041] = L.skyscreamer,
 		[255567] = L.tlonja,
+		[256882] = L.monzumi,
 		[253721] = L.shieldbearer,
 		[252781] = L.witchdoctor,
 		[256849] = L.kisho,
+		[253239] = L.dazarai_juggernaut,
 		[260666] = L.priestess,
 		[252687] = L.stalker,
 		[253544] = L.confessor,
@@ -94,6 +104,9 @@ function mod:OnBossEnable()
 	-- T'lonja
 	self:Log("SPELL_CAST_START", "FrenziedCharge", 255567)
 
+	-- Monzumi
+	self:Log("SPELL_CAST_START", "WildThrash", 256882)
+
 	-- Shieldbearer of Zul
 	self:Log("SPELL_CAST_SUCCESS", "BulwarkofJuju", 253721)
 
@@ -105,6 +118,9 @@ function mod:OnBossEnable()
 	-- Dinomancer Kish'o
 	self:Log("SPELL_CAST_START", "DinoMight", 256849)
 	self:Log("SPELL_AURA_APPLIED", "DinoMightApplied", 256849)
+
+	-- Dazar'ai Juggernaut
+	self:Log("SPELL_CAST_START", "MercilessAssault", 253239)
 
 	-- Gilded Priestess
 	self:Log("SPELL_CAST_START", "Transfusion", 260666)
@@ -128,7 +144,7 @@ end
 -- Event Handlers
 --
 
---RP Timers
+-- RP Timers
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if msg == L.stairs_open_trigger then
@@ -148,8 +164,8 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(255567, "yellow", name)
-		self:PlaySound(255567, "alert", "watchstep", name)
+		self:TargetMessage(255567, "orange", name)
+		self:PlaySound(255567, "alarm", "watchstep", name)
 		if self:Me(guid) then
 			self:Say(255567)
 		end
@@ -157,14 +173,23 @@ do
 
 	function mod:FrenziedCharge(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
 	end
+end
+
+-- Monzumi
+
+function mod:WildThrash(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
 end
 
 -- Shieldbearer of Zul
 
 function mod:BulwarkofJuju(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long", "mobout")
+	self:PlaySound(args.spellId, "long")
 end
 
 -- Zanchuli Witch-Doctor
@@ -198,13 +223,27 @@ end
 
 function mod:DinoMight(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert", "interrupt")
+	self:PlaySound(args.spellId, "warning", "interrupt")
 end
 
 function mod:DinoMightApplied(args)
 	if self:Dispeller("magic", true, args.spellId) then
 		self:Message(args.spellId, "orange", CL.other:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "warning")
+	end
+end
+
+-- Dazar'ai Juggernaut
+
+do
+	local prev = 0
+	function mod:MercilessAssault(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 

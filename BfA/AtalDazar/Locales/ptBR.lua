@@ -3,9 +3,11 @@ if not L then return end
 if L then
 	L.skyscreamer = "Gritacéu Devorante"
 	L.tlonja = "T'lonja"
+	L.monzumi = "Monzumi"
 	L.shieldbearer = "Escudeiro de Zul"
 	L.witchdoctor = "Mandingueira Zanchuli"
 	L.kisho = "Dinomante Kish'o"
+	L.dazarai_juggernaut = "Jaganata Dazar'ai"
 	L.priestess = "Sacerdotisa Dourada"
 	L.stalker = "Espreitador Umbralâmina"
 	L.confessor = "Confessor Dazar'ai"

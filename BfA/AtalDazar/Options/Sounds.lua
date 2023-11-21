@@ -34,13 +34,15 @@ BigWigs:AddSounds("Yazma", {
 BigWigs:AddSounds("Atal'Dazar Trash", {
 	[252687] = "info",
 	[252781] = {"alarm","warning"},
+	[253239] = "alert",
 	[253517] = "alert",
 	[253544] = "warning",
 	[253583] = "alarm",
 	[253721] = "long",
 	[255041] = "warning",
-	[255567] = "alert",
+	[255567] = "alarm",
 	[255626] = "alarm",
-	[256849] = {"alert","warning"},
+	[256849] = "warning",
+	[256882] = "alert",
 	[260666] = "alert",
 })

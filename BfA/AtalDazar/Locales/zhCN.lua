@@ -3,9 +3,11 @@ if not L then return end
 if L then
 	L.skyscreamer = "飨宴的啸天龙"
 	L.tlonja = "特隆加"
+	L.monzumi = "蒙祖米"
 	L.shieldbearer = "祖尔的持盾卫士"
 	L.witchdoctor = "赞枢利巫医"
 	L.kisho = "恐龙首领吉什奥"
+	L.dazarai_juggernaut = "达萨莱战神"
 	L.priestess = "鎏金女祭司"
 	L.stalker = "影刃追猎者"
 	L.confessor = "达萨莱神官"
