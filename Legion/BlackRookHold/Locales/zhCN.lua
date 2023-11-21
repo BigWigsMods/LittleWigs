@@ -23,5 +23,5 @@ end
 
 L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "zhCN")
 if L then
-	--L.phase_2_trigger = "Enough! I tire of this."
+	L.phase_2_trigger = "够了！我受够了。"
 end
