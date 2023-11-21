@@ -28,7 +28,7 @@ function mod:GetOptions()
 		-- Stage One: Vengeance
 		{197418, "TANK_HEALER"}, -- Vengeful Shear
 		{197478, "SAY", "SAY_COUNTDOWN"}, -- Dark Rush
-		197546, -- Brutal Glaive
+		{197546, "SAY"}, -- Brutal Glaive
 		-- Stage Two: Fury
 		{197696, "SAY"}, -- Eye Beams
 		197797, -- Arcane Blitz
@@ -155,14 +155,23 @@ function mod:DarkRushRemoved(args)
 	end
 end
 
-function mod:BrutalGlaive(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	brutalGlaiveRemaining = brutalGlaiveRemaining - 1
-	if brutalGlaiveRemaining > 0 then
-		self:CDBar(args.spellId, 14.5)
-	else
-		self:StopBar(args.spellId)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(197546, "yellow", name)
+		self:PlaySound(197546, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(197546)
+		end
+	end
+	
+	function mod:BrutalGlaive(args)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		brutalGlaiveRemaining = brutalGlaiveRemaining - 1
+		if brutalGlaiveRemaining > 0 then
+			self:CDBar(args.spellId, 14.5)
+		else
+			self:StopBar(args.spellId)
+		end
 	end
 end
 
@@ -193,11 +202,11 @@ do
 	function mod:ArcaneBlitz(args)
 		local amount = blitzTracker[args.sourceGUID] or 0
 		local _, interruptReady = self:Interrupter()
-		if interruptReady or (self:Dispeller("magic") and amount >= 3) then
+		if interruptReady or (self:Dispeller("magic") and amount >= 2) then
 			if amount >= 1 then
-				self:Message(args.spellId, "yellow", CL.count:format(args.spellName, amount))
+				self:Message(args.spellId, "yellow", CL.casting:format(CL.count:format(args.spellName, amount)))
 			else
-				self:Message(args.spellId, "yellow")
+				self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			end
 			self:PlaySound(args.spellId, "alert")
 		end
