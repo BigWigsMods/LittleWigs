@@ -1,18 +1,18 @@
 local L = BigWigs:NewBossLocale("Throne of the Tides Trash", "zhTW")
 if not L then return end
 if L then
-	--L.nazjar_oracle = "Naz'jar Oracle"
-	--L.vicious_snap_dragon = "Vicious Snap Dragon"
-	--L.nazjar_sentinel = "Naz'jar Sentinel"
-	--L.nazjar_ravager = "Naz'jar Ravager"
-	--L.nazjar_tempest_witch = "Naz'jar Tempest Witch"
-	--L.faceless_seer = "Faceless Seer"
-	--L.faceless_watcher = "Faceless Watcher"
-	--L.tainted_sentry = "Tainted Sentry"
+	L.nazjar_oracle = "納茲賈爾神諭者"
+	L.vicious_snap_dragon = "兇惡嚙龍"
+	L.nazjar_sentinel = "納茲賈爾哨兵"
+	L.nazjar_ravager = "納茲賈爾掠奪者"
+	L.nazjar_tempest_witch = "納茲賈爾風暴女巫"
+	L.faceless_seer = "無面先知"
+	L.faceless_watcher = "無面看守者"
+	L.tainted_sentry = "被感染的哨衛"
 end
 
 L = BigWigs:NewBossLocale("Ozumat", "zhTW")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
+	L.custom_on_autotalk = "自動對話"
+	L.custom_on_autotalk_desc = "立即選擇對話選項以開始戰鬥。"
 end
