@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Yazma", 1763, 2030)
 if not mod then return end
-mod:RegisterEnableMob(122968)
+mod:RegisterEnableMob(122968) -- Yazma
 mod:SetEncounterID(2087)
 mod:SetRespawnTime(30)
 
@@ -15,25 +15,25 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		259187, -- Soulrend
-		250096, -- Wracking Pain
 		250050, -- Echoes of Shadra
 		250036, -- Shadowy Remains
+		250096, -- Wracking Pain
 		{249919, "TANK_HEALER"}, -- Skewer
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Soulrend", 259187)
-	self:Log("SPELL_CAST_START", "WrackingPain", 250096)
 	self:Log("SPELL_CAST_START", "EchoesofShadra", 250050)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ShadowyRemains", 250036) -- don't track APPLIED - doesn't damage on application
 	self:Log("SPELL_PERIODIC_MISSED", "ShadowyRemains", 250036)
+	self:Log("SPELL_CAST_START", "WrackingPain", 250096)
 	self:Log("SPELL_CAST_START", "Skewer", 249919)
 end
 
 function mod:OnEngage()
 	self:CDBar(250096, 3.3) -- Wracking Pain
-	self:CDBar(249919, 5.7) -- Skewer
+	self:CDBar(249919, 5.1) -- Skewer
 	self:CDBar(259187, 9.7) -- Soulrend
 	self:CDBar(250050, 15.4) -- Echoes of Shadra
 end
@@ -46,15 +46,6 @@ function mod:Soulrend(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "runaway")
 	self:CDBar(args.spellId, 41.2)
-end
-
-function mod:WrackingPain(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	local _, ready = self:Interrupter()
-	if ready then
-		self:PlaySound(args.spellId, "alert", "interrupt")
-	end
-	self:CDBar(args.spellId, 17.0) -- 17-24
 end
 
 function mod:EchoesofShadra(args)
@@ -77,8 +68,18 @@ do
 	end
 end
 
+function mod:WrackingPain(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 17.0) -- 17-24
+end
+
 function mod:Skewer(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert", "defensive")
+	if self:Tank() then
+		self:PlaySound(args.spellId, "alarm", "defensive")
+	else
+		self:PlaySound(args.spellId, "alert")
+	end
 	self:CDBar(args.spellId, 12.1) -- 12-17
 end
