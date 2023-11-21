@@ -612,8 +612,10 @@ end
 -- Horde Farseer
 
 function mod:HealingWave(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	if self:Interrupter() then
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
 end
 
@@ -634,8 +636,10 @@ end
 -- Paladin of the Silver Hand
 
 function mod:HolyLight(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	if self:Interrupter() then
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+	end
 	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
 end
 
