@@ -280,6 +280,7 @@ function mod:OnBossEnable()
 	-- Workshop Defender
 	self:Log("SPELL_AURA_APPLIED", "ChainbladeApplied", 293670)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ChainbladeApplied", 293670)
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- for Shield Generator
 	-- Junkyard D.0.G.
 	self:Log("SPELL_AURA_APPLIED", "FlamingRefuseApplied", 294180)
 end
