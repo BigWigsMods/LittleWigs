@@ -44,5 +44,5 @@ BigWigs:AddColors("Atal'Dazar Trash", {
 	[255626] = "orange",
 	[256849] = {"orange","yellow"},
 	[256882] = "red",
-	[260666] = "yellow",
+	[260666] = {"blue","yellow"},
 })

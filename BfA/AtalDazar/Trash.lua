@@ -124,6 +124,7 @@ function mod:OnBossEnable()
 
 	-- Gilded Priestess
 	self:Log("SPELL_CAST_START", "Transfusion", 260666)
+	self:Log("SPELL_AURA_APPLIED", "TransfusionApplied", 260666)
 
 	-- Shadowblade Stalker
 	self:Log("SPELL_AURA_APPLIED", "VenomfangStrikeApplied", 252687)
@@ -252,6 +253,13 @@ end
 function mod:Transfusion(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert", "interrupt")
+end
+
+function mod:TransfusionApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 -- Shadowblade Stalker
