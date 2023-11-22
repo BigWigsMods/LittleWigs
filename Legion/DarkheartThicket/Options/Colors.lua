@@ -24,7 +24,7 @@ BigWigs:AddColors("Dresaron", {
 
 BigWigs:AddColors("Shade of Xavius", {
 	[200050] = "cyan",
-	[200182] = {"blue","purple"},
+	[200182] = {"blue","yellow"},
 	[200185] = {"blue","yellow"},
 	[200238] = {"blue","red"},
 	[200243] = "blue",
