@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Viq'Goth", 1822, 2140)
 if not mod then return end
 mod:RegisterEnableMob(128652) -- Viq'Goth
-mod.engageId = 2100
-mod.respawnTime = 30
+mod:SetEncounterID(2100)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -15,7 +14,6 @@ mod.respawnTime = 30
 
 local stage = 1
 local markCount = 1
-local playersWithPutridWaters = {}
 local engagedGripping = true
 local demolisherCount = 1
 
@@ -38,7 +36,7 @@ local putridWatersMarker = mod:AddMarkerOption(false, "player", 1, 275014, 1, 2,
 function mod:GetOptions()
 	return {
 		"stages",
-		{275014, "PROXIMITY", "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Putrid Waters
+		{275014, "FLASH", "SAY", "SAY_COUNTDOWN"}, -- Putrid Waters
 		putridWatersMarker,
 		270185, -- Call of the Deep
 		{269366, "CASTBAR"}, -- Repair
@@ -70,14 +68,9 @@ function mod:OnEngage()
 	markCount = 1
 	demolisherCount = 1
 	engagedGripping = true
-	playersWithPutridWaters = {}
 	self:CDBar(275014, 5) -- Putrid Waters
 	self:CDBar(270185, 6) -- Call of the Deep
 	self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 2), L.demolishing_icon) -- Summon Demolisher
-end
-
-function mod:OnBossDisable()
-	playersWithPutridWaters = {}
 end
 
 --------------------------------------------------------------------------------
@@ -125,45 +118,30 @@ do
 		local playerListCount = #playerList+1
 		playerList[playerListCount] = args.destName
 		playerIcons[playerListCount] = markCount
-		playersWithPutridWaters[#playersWithPutridWaters + 1] = args.destName
-
 		self:CustomIcon(putridWatersMarker, args.destName, markCount)
 		if markCount == 4 then
 			markCount = 1
 		else
 			markCount = markCount + 1
 		end
-
 		if #playerList == 1 then
 			self:CDBar(args.spellId, 20)
 		end
 		if self:Me(args.destGUID) then
 			isOnMe = true
-			self:OpenProximity(args.spellId, 10)
 			self:PlaySound(args.spellId, "warning")
 			self:Say(args.spellId)
 			self:Flash(args.spellId)
 			self:SayCountdown(args.spellId, 30)
-		elseif not isOnMe then
-			self:OpenProximity(args.spellId, 10, playersWithPutridWaters)
 		end
 		self:TargetsMessageOld(args.spellId, "yellow", playerList, 2, nil, nil, 0.6, playerIcons)
 	end
 
 	function mod:PutridWatersRemoved(args)
-		tDeleteItem(playersWithPutridWaters, args.destName)
-
 		self:CustomIcon(putridWatersMarker, args.destName)
-
 		if self:Me(args.destGUID) then
 			isOnMe = false
 			self:CancelSayCountdown(args.spellId)
-		end
-
-		if #playersWithPutridWaters == 0 then
-			self:CloseProximity(args.spellId)
-		elseif not isOnMe then
-			self:OpenProximity(args.spellId, 10, playersWithPutridWaters)
 		end
 	end
 end
