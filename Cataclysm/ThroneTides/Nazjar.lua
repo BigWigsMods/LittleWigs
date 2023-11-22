@@ -124,16 +124,25 @@ function mod:HighTideOver(args)
 	end
 end
 
-function mod:ShockBlast(args)
-	self:TargetMessage(428054, "red", args.destName)
-	self:PlaySound(428054, "alarm", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(428054)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(428054, "red", name)
+		self:PlaySound(428054, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(428054)
+		end
 	end
-	local t = GetTime()
-	shockBlastCD = 21.8
-	nextShockBlast = t + shockBlastCD
-	self:CDBar(428054, shockBlastCD)
+
+	function mod:ShockBlast(args)
+		-- this debuff is sometimes applied to the tank instead of the targeted player,
+		-- so we have to revert back to target scanning to get the real target. if this
+		-- is ever fixed we can just check who gets the debuff instead.
+		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
+		local t = GetTime()
+		shockBlastCD = 21.8
+		nextShockBlast = t + shockBlastCD
+		self:CDBar(428054, shockBlastCD)
+	end
 end
 
 function mod:Geysers(args)
