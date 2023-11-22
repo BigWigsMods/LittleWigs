@@ -235,7 +235,7 @@ function mod:OnBossEnable()
 
 	-- Spurlok, Timesworn Sentinel
 	self:Log("SPELL_CAST_START", "ShroudingSandstorm", 412215)
-	self:Log("SPELL_CAST_START", "BindingGrasp", 412922)
+	self:Log("SPELL_AURA_APPLIED", "BindingGraspApplied", 412922)
 
 	-- Lerai, Timesworn Maiden
 	self:Log("SPELL_CAST_START", "OrbOfContemplation", 412129)
@@ -474,16 +474,11 @@ function mod:ShroudingSandstorm(args)
 	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(412922, "yellow", name)
-		self:PlaySound(412922, "info", nil, name)
-	end
-
-	function mod:BindingGrasp(args)
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-		--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
-	end
+function mod:BindingGraspApplied(args)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
+	-- if this is uncommented, move to SUCCESS
+	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 -- Spurlok, Timesworn Sentinel
