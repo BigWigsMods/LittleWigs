@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Overseer Korgus", 1771, 2096)
 if not mod then return end
 mod:RegisterEnableMob(127503)
-mod.engageId = 2104
+mod:SetEncounterID(2104)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -25,7 +24,7 @@ function mod:GetOptions()
 		256198, -- Azerite Rounds: Incendiary
 		256199, -- Azerite Rounds: Blast
 		{256083, "CASTBAR"}, -- Cross Ignition
-		{256105, "SAY", "SAY_COUNTDOWN", "PROXIMITY"}, -- Explosive Burst
+		{256105, "SAY", "SAY_COUNTDOWN"}, -- Explosive Burst
 		{256038, "INFOBOX", "CASTBAR"}, -- Deadeye
 		{263345, "CASTBAR"}, -- Massive Blast
 	}
@@ -93,11 +92,9 @@ do
 		if isOnMe then
 			self:PersonalMessage(256105)
 			self:PlaySound(256105, "warning", "moveout")
-			self:OpenProximity(256105, 5)
 		else
 			self:Message(256105, "orange")
 			self:PlaySound(256105, "alarm")
-			self:OpenProximity(256105, 5, playerList)
 		end
 		playerList = {}
 		isOnMe = nil
@@ -120,7 +117,6 @@ function mod:ExplosiveBurstRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
 	end
-	self:CloseProximity(args.spellId)
 end
 
 function mod:Deadeye(args)
