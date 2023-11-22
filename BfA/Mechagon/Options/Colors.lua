@@ -44,7 +44,7 @@ BigWigs:AddColors("Tussle Tonks", {
 BigWigs:AddColors("K.U.-J.0.", {
 	[291930] = "yellow",
 	[291946] = "red",
-	[291973] = "orange",
+	[291973] = {"blue","orange"},
 	[294929] = {"blue","purple"},
 })
 
