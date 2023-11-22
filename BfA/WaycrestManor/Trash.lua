@@ -424,7 +424,7 @@ do
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "red")
-			self:PlaySound(args.spellId, "warning")
+			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 end
