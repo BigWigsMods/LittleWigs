@@ -166,8 +166,8 @@ end
 
 function mod:StranglingRootsApplied(args)
 	if self:Player(args.destFlags) and (self:Dispeller("movement", nil, 204574) or self:Me(args.destGUID)) then
-		self:TargetMessage(204574, "yellow", args.destName)
-		self:PlaySound(204574, "info", nil, args.destName)
+		self:TargetMessage(204574, "red", args.destName)
+		self:PlaySound(204574, "alert", nil, args.destName)
 	end
 end
 

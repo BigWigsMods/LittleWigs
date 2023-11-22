@@ -8,7 +8,7 @@ BigWigs:AddSounds("Archdruid Glaidalis", {
 })
 
 BigWigs:AddSounds("Oakheart", {
-	[204574] = "info",
+	[204574] = {"alert","info"},
 	[204611] = "alert",
 	[204666] = "alert",
 	[204667] = "alarm",
