@@ -61,16 +61,23 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	vengefulShearRemaining = 2
 	darkRushRemaining = 1
-	brutalGlaiveRemaining = 2
 	eyeBeamsRemaining = 3
 	self:SetStage(1)
 	self:CDBar(197546, 5.1) -- Brutal Glaive
 	self:CDBar(197418, 8.3) -- Vengeful Shear
 	self:CDBar(197478, 11.9) -- Dark Rush
-	-- cast at 100 energy, starts at 65 energy, 32s energy gain + 3.2s delay
-	self:CDBar("stages", 35.2, -12281, 197622) -- Stage Two: Fury, Leap
+	if self:Mythic() then
+		vengefulShearRemaining = 2
+		brutalGlaiveRemaining = 2
+		-- cast at 100 energy, starts at 65 energy: 32s energy gain + 3.2s delay
+		self:CDBar("stages", 35.2, -12281, 197622) -- Stage Two: Fury, Leap
+	else -- Heroic, Normal
+		vengefulShearRemaining = 3
+		brutalGlaiveRemaining = 3
+		-- cast at 100 energy, starts at 50 energy: 45s energy gain + 3.2s delay
+		self:CDBar("stages", 48.2, -12281, 197622) -- Stage Two: Fury, Leap
+	end
 end
 
 --------------------------------------------------------------------------------
