@@ -33,6 +33,7 @@ end
 -- Initialization
 --
 
+local stingingSwarmMarker = mod:AddMarkerOption(true, "npc", 8, 201733, 8) -- Stinging Swarm
 function mod:GetOptions()
 	return {
 		"stages",
@@ -42,6 +43,7 @@ function mod:GetOptions()
 		198820, -- Dark Blast
 		-- Stage Two: Vengeance of the Ancients
 		{201733, "SAY"}, -- Stinging Swarm
+		stingingSwarmMarker,
 		199143, -- Cloud of Hypnosis
 		{199193, "CASTBAR"}, -- Dreadlord's Guile
 		202019, -- Shadow Bolt Volley
@@ -138,6 +140,19 @@ function mod:StingingSwarmApplied(args)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
+	end
+	-- register events to auto-mark Stinging Swarm
+	if self:GetOption(stingingSwarmMarker) then
+		self:RegisterTargetEvents("MarkStingingSwarm")
+	end
+end
+
+function mod:MarkStingingSwarm(_, unit, guid)
+	-- there is no SUMMON event and the debuff is applied by Dantalionax,
+	-- so we have to match on the mob ID for Stinging Swarm
+	if self:MobId(guid) == 101008 then -- Stinging Swarm
+		self:CustomIcon(stingingSwarmMarker, unit, 8)
+		self:UnregisterTargetEvents()
 	end
 end
 
