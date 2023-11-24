@@ -92,7 +92,7 @@ function mod:EncounterEvent()
 	self:StopBar(429037) -- Stormflurry Totem
 	self:StopBar(429051) -- Earthfury
 	self:SetStage(2)
-	self:Message("stages", "cyan", CL.stage:format(2), nil)
+	self:Message("stages", "cyan", CL.percent:format(25, CL.stage:format(2)), false)
 	self:PlaySound("stages", "long")
 	self:CDBar(429172, 3.2) -- Terrifying Vision
 end
