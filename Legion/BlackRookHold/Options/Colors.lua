@@ -23,6 +23,7 @@ BigWigs:AddColors("Smashspite", {
 	[198079] = {"blue","orange"},
 	[198245] = "purple",
 	[198446] = {"blue","red"},
+	[224188] = "green",
 })
 
 BigWigs:AddColors("Kurtalos Ravencrest", {

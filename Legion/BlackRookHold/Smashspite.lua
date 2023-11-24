@@ -9,6 +9,14 @@ mod:SetEncounterID(1834)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local earthshakingStompCount = 1
+local hatefulGazeCount = 1
+local playersWithHatefulCharge = {}
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -33,10 +41,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	earthshakingStompCount = 1
 	if not self:Normal() then -- Heroic+
-		self:CDBar(198079, 5.8) -- Hateful Gaze
+		hatefulGazeCount = 1
+		playersWithHatefulCharge = {}
+		self:CDBar(198079, 5.1, CL.count:format(self:SpellName(198079), hatefulGazeCount)) -- Hateful Gaze
 	end
-	self:CDBar(198073, 12.1) -- Earthshaking Stomp
+	self:CDBar(198073, 12.1, CL.count:format(self:SpellName(198073), earthshakingStompCount)) -- Earthshaking Stomp
 end
 
 --------------------------------------------------------------------------------
@@ -44,31 +55,41 @@ end
 --
 
 function mod:EarthshakingStomp(args)
-	self:Message(args.spellId, "yellow")
+	self:StopBar(CL.count:format(args.spellName, earthshakingStompCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, earthshakingStompCount))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 25.5)
+	earthshakingStompCount = earthshakingStompCount + 1
+	self:CDBar(args.spellId, 25.5, CL.count:format(args.spellName, earthshakingStompCount))
 end
 
 function mod:HatefulGaze(args)
+	self:StopBar(CL.count:format(args.spellName, hatefulGazeCount))
+	self:TargetMessage(args.spellId, "orange", args.destName, CL.count:format(args.spellName, hatefulGazeCount))
+	-- play warning sound if the targeted player already has the debuff
+	if playersWithHatefulCharge[args.destName] then
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	else
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	end
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	-- TODO alert differently if the target has the debuff or not?
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alarm", nil, args.destName)
-	self:CDBar(args.spellId, 25.5)
+	hatefulGazeCount = hatefulGazeCount + 1
+	self:CDBar(args.spellId, 25.5, CL.count:format(args.spellName, hatefulGazeCount))
 end
 
 function mod:HatefulChargeApplied(args)
+	playersWithHatefulCharge[args.destName] = true
 	if self:Me(args.destGUID) then
-		-- TODO show for everyone?
 		self:TargetBar(args.spellId, 60, args.destName)
 	end
-	-- TODO infotable?
 end
 
 function mod:HatefulChargeRemoved(args)
+	playersWithHatefulCharge[args.destName] = nil
 	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
 		self:StopBar(args.spellId, args.destName)
 	end
 end
@@ -87,5 +108,4 @@ function mod:FelVomit(args)
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
-	-- TODO might need a CD table if it's consistent pull to pull?
 end
