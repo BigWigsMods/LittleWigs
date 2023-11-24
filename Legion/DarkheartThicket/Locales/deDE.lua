@@ -21,5 +21,5 @@ end
 
 L = BigWigs:NewBossLocale("Oakheart", "deDE")
 if L then
-	--L.throw = "Throw"
+	L.throw = "Wurf"
 end
