@@ -21,21 +21,34 @@ local nextNightmareBreath = 0
 local nextShatteredEarth = 0
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.throw = "Throw"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		204611, -- Crushing Grip
+		{204611, "SAY"}, -- Crushing Grip
 		212786, -- Uproot
 		{204574, "DISPEL"}, -- Strangling Roots
 		204667, -- Nightmare Breath
 		204666, -- Shattered Earth
+	}, nil, {
+		[204611] = L.throw,
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrushingGrip", 204611)
+	self:Log("SPELL_CAST_SUCCESS", "CrushingGripSuccess", 204611)
+	self:Log("SPELL_CAST_START", "CrushingGripThrow", 204646)
 	self:Log("SPELL_CAST_START", "Uproot", 212786)
 	self:Log("SPELL_CAST_START", "StranglingRoots", 204574)
 	self:Log("SPELL_AURA_APPLIED", "StranglingRootsApplied", 199063)
@@ -76,7 +89,9 @@ end
 function mod:CrushingGrip(args)
 	local t = GetTime()
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
+	if self:Tank() then
+		self:PlaySound(args.spellId, "alert")
+	end
 	if self:Mythic() then
 		self:CDBar(args.spellId, 31.2)
 		nextCrushingGrip = t + 31.2
@@ -101,6 +116,38 @@ function mod:CrushingGrip(args)
 	if nextNightmareBreath - t < 15.7 then
 		nextNightmareBreath = t + 15.7
 		self:CDBar(204667, {15.7, 31.2}) -- Nightmare Breath
+	end
+end
+
+do
+	local pickedUpPlayerGUID
+
+	function mod:CrushingGripSuccess(args)
+		pickedUpPlayerGUID = args.destGUID
+	end
+
+	local function printTarget(self, name, guid)
+		if guid == pickedUpPlayerGUID then
+			-- tank (possibly only one standing) is just being dropped
+			if not self:Tank() then -- tank gets notified in :CrushingGrip
+				self:Message(204611, "orange", L.throw)
+				self:PlaySound(204611, "alarm", nil, name)
+			end
+		else
+			-- tank is being thrown at another player
+			self:TargetMessage(204611, "orange", name, L.throw)
+			if not self:Tank() then -- sound played for tank in :CrushingGrip
+				self:PlaySound(204611, "alarm", nil, name)
+			end
+			if self:Me(guid) then
+				self:Say(204611, L.throw)
+			end
+		end
+		pickedUpPlayerGUID = nil
+	end
+
+	function mod:CrushingGripThrow(args)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 
@@ -173,7 +220,7 @@ end
 
 function mod:NightmareBreath(args)
 	local t = GetTime()
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 	if self:Mythic() then
 		self:CDBar(args.spellId, 31.2)

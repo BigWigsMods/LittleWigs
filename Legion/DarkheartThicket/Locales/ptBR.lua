@@ -18,3 +18,8 @@ if L then
 	L.dreadfire_imp = "Diabrete do Fogo Mórbido"
 	L.tormented_bloodseeker = "Sanguinário Atormentado"
 end
+
+L = BigWigs:NewBossLocale("Oakheart", "ptBR")
+if L then
+	--L.throw = "Throw"
+end

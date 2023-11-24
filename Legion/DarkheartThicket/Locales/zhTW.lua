@@ -18,3 +18,8 @@ if L then
 	L.dreadfire_imp = "懼火小鬼"
 	L.tormented_bloodseeker = "痛苦的覓血蝙蝠"
 end
+
+L = BigWigs:NewBossLocale("Oakheart", "zhTW")
+if L then
+	--L.throw = "Throw"
+end
