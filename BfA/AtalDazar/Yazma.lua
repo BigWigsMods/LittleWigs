@@ -9,6 +9,14 @@ mod:SetEncounterID(2087)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local nextEchoesOfShadra = 0
+local nextWrackingPain = 0
+local nextSkewer = 0
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -23,6 +31,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Soulrend", 259187)
 	self:Log("SPELL_CAST_START", "EchoesofShadra", 250050)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ShadowyRemains", 250036) -- don't track APPLIED - doesn't damage on application
@@ -32,26 +41,59 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	local t = GetTime()
 	self:CDBar(250096, 3.3) -- Wracking Pain
+	nextWrackingPain = t + 3.3
 	self:CDBar(249919, 5.1) -- Skewer
+	nextSkewer = t + 5.1
 	self:CDBar(259187, 9.7) -- Soulrend
 	self:CDBar(250050, 15.4) -- Echoes of Shadra
+	nextEchoesOfShadra = t + 15.4
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 259186 then -- Soulrend
+		-- use this event instead of SPELL_CAST_START for timer adjustments. if the tank is the only
+		-- one alive Yazma will still attempt to cast Soulrend with this spell ID and the other spells
+		-- will be delayed even in the absense of the usual SPELL_CAST_START for Soulrend.
+		local t = GetTime()
+		self:CDBar(259187, 41.2)
+		-- 6.04 minimum to Echoes of Shadra or Skewer
+		if nextEchoesOfShadra - t < 6.04 then
+			nextEchoesOfShadra = t + 6.04
+			self:CDBar(250050, {6.04, 31.5}) -- Echoes of Shadra
+		end
+		if nextSkewer - t < 6.04 then
+			nextSkewer = t + 6.04
+			self:CDBar(249919, {6.04, 12.1}) -- Skewer
+		end
+	end
+end
+
 function mod:Soulrend(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning", "runaway")
-	self:CDBar(args.spellId, 41.2)
 end
 
 function mod:EchoesofShadra(args)
+	local t = GetTime()
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info", "watchstep")
-	self:CDBar(args.spellId, 31.6) -- 31-35
+	self:CDBar(args.spellId, 31.5)
+	nextEchoesOfShadra = t + 31.5
+	-- 3.62 minimum to Wracking Pain or Skewer
+	if nextWrackingPain - t < 3.62 then
+		nextWrackingPain = t + 3.62
+		self:CDBar(250096, {3.62, 17.0}) -- Wracking Pain
+	end
+	if nextSkewer - t < 3.62 then
+		nextSkewer = t + 3.62
+		self:CDBar(249919, {3.62, 12.1}) -- Skewer
+	end
 end
 
 do
@@ -77,6 +119,7 @@ do
 	end
 
 	function mod:WrackingPain(args)
+		local t = GetTime()
 		if self:MythicPlus() then
 			-- not interruptible in Mythic+, get target instead
 			self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
@@ -84,16 +127,28 @@ do
 			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		self:CDBar(args.spellId, 17.0) -- 17-24
+		self:CDBar(args.spellId, 17.0)
+		nextWrackingPain = t + 17.0
 	end
 end
 
 function mod:Skewer(args)
+	local t = GetTime()
 	self:Message(args.spellId, "purple")
 	if self:Tank() then
 		self:PlaySound(args.spellId, "alarm", "defensive")
 	else
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:CDBar(args.spellId, 12.1) -- 12-17
+	-- 3.62 minimum to Echoes of Shadra or Wracking Pain
+	self:CDBar(args.spellId, 12.1)
+	nextSkewer = t + 12.1
+	if nextEchoesOfShadra - t < 3.62 then
+		nextEchoesOfShadra = t + 3.62
+		self:CDBar(250050, {3.62, 31.5}) -- Echoes of Shadra
+	end
+	if nextWrackingPain - t < 3.62 then
+		nextWrackingPain = t + 3.62
+		self:CDBar(250096, {3.62, 17.0}) -- Wracking Pain
+	end
 end
