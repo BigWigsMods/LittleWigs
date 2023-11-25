@@ -4,11 +4,6 @@ if L then
 	L.energyStatus = "Um glóbulo alcançou Cascasseca: %d%% energia"
 end
 
-L = BigWigs:NewBossLocale("Yalnu", "ptBR")
-if L then
-	--L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
-end
-
 L = BigWigs:NewBossLocale("The Everbloom Trash", "ptBR")
 if L then
 	L.dreadpetal = "Medônia"
@@ -24,4 +19,5 @@ if L then
 
 	--L.gate_opens = "Gate Opens"
 	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	--L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end

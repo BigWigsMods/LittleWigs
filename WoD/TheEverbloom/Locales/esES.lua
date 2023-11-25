@@ -4,11 +4,6 @@ if L then
 	--L.energyStatus = "A Globule reached Witherbark: %d%% energy"
 end
 
-L = BigWigs:NewBossLocale("Yalnu", "esES") or BigWigs:NewBossLocale("Yalnu", "esMX")
-if L then
-	--L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
-end
-
 L = BigWigs:NewBossLocale("The Everbloom Trash", "esES") or BigWigs:NewBossLocale("The Everbloom Trash", "esMX")
 if L then
 	L.dreadpetal = "Horripétalo"
@@ -24,4 +19,5 @@ if L then
 
 	--L.gate_opens = "Gate Opens"
 	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	--L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end

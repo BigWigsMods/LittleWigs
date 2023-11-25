@@ -38,6 +38,8 @@ if L then
 	L.gate_opens = "Gate Opens"
 	L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
 	L.gate_opens_icon = "spell_fire_fireball02"
+
+	L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end
 
 --------------------------------------------------------------------------------
@@ -84,6 +86,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- RP Timers
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
 	-- Dreadpetal
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DreadpetalPollenApplied", 164886)
 
@@ -132,10 +137,16 @@ function mod:ArchmageSolDefeated()
 	-- 40.27 [CHAT_MSG_MONSTER_SAY] If that beast crosses through, the unchecked growth will choke the whole of Azeroth! Hurry!#Undermage Kesalon
 	-- ~42.26 Gate Despawns
 	self:Bar("gate_opens", 35.0, L.gate_opens, L.gate_opens_icon)
-	-- enable Yalnu's mod so that it will always pick up the RP yell
-	local yalnuMod = BigWigs:GetBossModule("Yalnu", true)
-	if yalnuMod then
-		yalnuMod:Enable()
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(_, msg, sender)
+	if msg == L.yalnu_warmup_trigger then
+		-- The portal is lost! We must stop this beast before it can escape!#Lady Baihu
+		local yalnuMod = BigWigs:GetBossModule("Yalnu", true)
+		if yalnuMod then
+			yalnuMod:Enable()
+			yalnuMod:Warmup()
+		end
 	end
 end
 

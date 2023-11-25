@@ -4,11 +4,6 @@ if L then
 	L.energyStatus = "小水滴到达枯木：%d%% 能量"
 end
 
-L = BigWigs:NewBossLocale("Yalnu", "zhCN")
-if L then
-	L.warmup_trigger = "传送门失守了！我们必须在这头野兽逃跑前阻止它！"
-end
-
 L = BigWigs:NewBossLocale("The Everbloom Trash", "zhCN")
 if L then
 	L.dreadpetal = "恐瓣"
@@ -24,4 +19,5 @@ if L then
 
 	L.gate_opens = "大门开启"
 	L.gate_opens_desc = "显示下级法师克萨伦何时打开通往雅努大门的计时条。"
+	L.yalnu_warmup_trigger = "传送门失守了！我们必须在这头野兽逃跑前阻止它！"
 end

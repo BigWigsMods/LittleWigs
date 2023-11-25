@@ -4,11 +4,6 @@ if L then
 	L.energyStatus = "元水之珠到達枯木: %d%% 能量"
 end
 
-L = BigWigs:NewBossLocale("Yalnu", "zhTW")
-if L then
-	L.warmup_trigger = "我們一定要阻止這隻怪物，不能讓他逃脫！"
-end
-
 L = BigWigs:NewBossLocale("The Everbloom Trash", "zhTW")
 if L then
 	L.dreadpetal = "恐瓣花"
@@ -24,4 +19,5 @@ if L then
 
 	L.gate_opens = "傳送門開啟"
 	L.gate_opens_desc = "顯示一個計時條指示黑暗法師克薩隆將開啟往亞爾努的傳送門。"
+	L.yalnu_warmup_trigger = "我們一定要阻止這隻怪物，不能讓他逃脫！"
 end

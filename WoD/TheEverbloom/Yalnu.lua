@@ -19,15 +19,6 @@ local colossalBlowCount = 1
 local verdantEruptionCount = 1
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -49,9 +40,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- Warmup
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
-
 	-- Yalnu
 	self:Log("SPELL_CAST_START", "ColossalBlow", 169179)
 	self:Log("SPELL_CAST_START", "VerdantEruption", 428823)
@@ -65,6 +53,7 @@ end
 function mod:OnEngage()
 	colossalBlowCount = 1
 	verdantEruptionCount = 1
+	self:StopBar(CL.active)
 	self:CDBar(169179, 2.4, CL.count:format(self:SpellName(169179), colossalBlowCount)) -- Colossal Blow
 	self:CDBar(428823, 23.0, CL.count:format(self:SpellName(428823), verdantEruptionCount)) -- Verdant Eruption
 	self:CDBar(169613, 40.1) -- Genesis
@@ -76,12 +65,8 @@ end
 
 -- Warmup
 
-function mod:Warmup(event, msg)
-	-- [CHAT_MSG_MONSTER_YELL] The portal is lost! We must stop this beast before it can escape!#Lady Baihu
-	if msg == L.warmup_trigger then
-		self:Bar("warmup", 8.0, CL.active, "inv_enchant_shaperessence")
-		self:UnregisterEvent(event)
-	end
+function mod:Warmup() -- called from trash module
+	self:Bar("warmup", 8.0, CL.active, "inv_enchant_shaperessence")
 end
 
 -- Yalnu
