@@ -18,6 +18,7 @@ mod:SetRespawnTime(30)
 
 local lifeWardenGolaDefeated = false
 local earthshaperTeluDefeated = false
+local dulhuDefeated = false
 local revitalizeCount = 1
 local toxicBloomCount = 1
 
@@ -61,6 +62,7 @@ end
 function mod:OnEngage()
 	lifeWardenGolaDefeated = false
 	earthshaperTeluDefeated = false
+	dulhuDefeated = false
 	revitalizeCount = 1
 	toxicBloomCount = 1
 	self:CDBar(427498, 1.0) -- Torrential Fury
@@ -83,16 +85,22 @@ function mod:Revitalize(args)
 	if earthshaperTeluDefeated or revitalizeCount % 2 == 0 then
 		self:CDBar(args.spellId, 17.0)
 	else
+		-- will be delayed by Torrential Fury
 		self:CDBar(args.spellId, 31.6)
 	end
 end
 
 function mod:TorrentialFury(args)
+	revitalizeCount = 1
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	if not earthshaperTeluDefeated then
 		-- this will not be cast again if Earthshaper Telu has been defeated
 		self:CDBar(args.spellId, 52.1)
+	end
+	if not earthshaperTeluDefeated and not dulhuDefeated then
+		-- this will not be cast as usual if either of the other two bosses have been defeated
+		self:CDBar(168082, {30.4, 31.6}) -- Revitalize
 	end
 end
 
@@ -113,25 +121,29 @@ function mod:ToxicBloom(args)
 	if lifeWardenGolaDefeated or toxicBloomCount % 2 == 0 then
 		self:CDBar(args.spellId, 17.0)
 	else
+		-- will be delayed by Terrestrial Fury
 		self:CDBar(args.spellId, 31.6)
 	end
 end
 
 function mod:TerrestrialFury(args)
+	toxicBloomCount = 1
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
 	if not lifeWardenGolaDefeated then
 		-- this will not be cast again if Life Warden Gola has been defeated
 		self:CDBar(args.spellId, 52.1)
 	end
+	self:CDBar(427459, {30.4, 31.6}) -- Toxic Bloom
 end
 
 function mod:EarthshaperTeluDeath(args)
 	earthshaperTeluDefeated = true
 	self:StopBar(427459) -- Toxic Bloom
 	self:StopBar(427509) -- Terrestrial Fury
-	-- Earthshaper Telu dying stops Life Warden Gola from casting Torrential Fury
+	-- Earthshaper Telu dying stops Life Warden Gola from casting Torrential Fury and Revitalize
 	self:StopBar(427498) -- Torrential Fury
+	self:StopBar(168082) -- Revitalize
 end
 
 -- Dulhu
@@ -144,6 +156,9 @@ function mod:NoxiousCharge(args)
 end
 
 function mod:DulhuDeath(args)
+	dulhuDefeated = true
 	self:StopBar(CL.cast:format(self:SpellName(427510))) -- Noxious Charge
 	self:StopBar(427510) -- Noxious Charge
+	-- Dulhu dying stops Life Warden Gola from casting Revitalize
+	self:StopBar(168082) -- Revitalize
 end
