@@ -56,6 +56,7 @@ function mod:GetOptions()
 		200630, -- Unnerving Screech
 		-- Dreadsoul Ruiner
 		200658, -- Star Shower
+		{200642, "DISPEL"}, -- Despair
 		-- Dreadsoul Poisoner
 		{200684, "SAY"}, -- Nightmare Toxin
 		-- Crazed Razorbeak
@@ -110,6 +111,7 @@ function mod:OnBossEnable()
 
 	-- Dreadsoul Ruiner
 	self:Log("SPELL_CAST_START", "StarShower", 200658)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "DespairApplied", 200642)
 
 	-- Dreadsoul Poisoner
 	self:Log("SPELL_AURA_APPLIED", "NightmareToxinApplied", 200684)
@@ -185,9 +187,36 @@ end
 
 -- Dreadsoul Ruiner
 
-function mod:StarShower(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:StarShower(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:DespairApplied(args)
+		local t = args.time
+		local amount = args.amount
+		-- 10% heal reduction per stack in M+
+		-- alert at 3, increase severity at 6 and up
+		if --[[self:MythicPlus() and]] t - prev > 2 and (amount == 3 or amount >= 6)
+				and (self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId)) then
+			prev = t
+			self:StackMessage(args.spellId, "yellow", args.destName, amount, 6)
+			if amount >= 6 then
+				self:PlaySound(args.spellId, "warning", nil, args.destName)
+			else
+				self:PlaySound(args.spellId, "alert", nil, args.destName)
+			end
+		end
+	end
 end
 
 -- Dreadsoul Poisoner

@@ -36,6 +36,7 @@ BigWigs:AddSounds("Darkheart Thicket Trash", {
 	[198910] = "info",
 	[200580] = "alarm",
 	[200630] = "alert",
+	[200642] = {"alert","warning"},
 	[200658] = "alert",
 	[200684] = "alert",
 	[200768] = "alarm",

@@ -36,6 +36,7 @@ BigWigs:AddColors("Darkheart Thicket Trash", {
 	[198910] = "red",
 	[200580] = "red",
 	[200630] = "red",
+	[200642] = {"blue","yellow"},
 	[200658] = "yellow",
 	[200684] = {"blue","red"},
 	[200768] = "orange",
