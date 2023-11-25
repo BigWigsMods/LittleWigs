@@ -128,7 +128,7 @@ function mod:GetOptions()
 		-- Infinite Saboteur
 		419351, -- Bronze Exhalation
 		-- Infinite Riftmage
-		418200, -- Infinite Burn
+		{418200, "DISPEL"}, -- Infinite Burn
 		-- Time-Lost Waveshaper
 		411300, -- Fish Bolt Volley
 		-- Time-Lost Aerobot
@@ -255,6 +255,7 @@ function mod:OnBossEnable()
 
 	-- Infinite Riftmage
 	self:Log("SPELL_CAST_START", "InfiniteBurn", 418200)
+	self:Log("SPELL_AURA_APPLIED", "InfiniteBurnApplied", 418200)
 
 	-- Time-Lost Waveshaper
 	self:Log("SPELL_CAST_START", "FishBoltVolley", 411300)
@@ -536,6 +537,18 @@ function mod:InfiniteBurn(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:InfiniteBurnApplied(args)
+		local t = args.time
+		if t - prev > 2 and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId)) then
+			prev = t
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
+	end
 end
 
 -- Time-Lost Waveshaper
