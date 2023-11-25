@@ -54,8 +54,8 @@ end
 
 function mod:OnBossEnable()
 	-- TODO intial RP? probably from trash module
-	-- "<0.77 01:31:41> [CHAT_MSG_MONSTER_SAY] The beast has returned! It must not pollute my waters!#Neptulon###Delko##0#0##0#146#nil#0#false#false#false#false", -- [2]
-	-- "<12.05 01:31:53> [NAME_PLATE_UNIT_ADDED] Ink of Ozumat#Creature-0-5770-643-4692-213770-00001F9BC6", -- [10]
+	-- 0.77 [CHAT_MSG_MONSTER_SAY] The beast has returned! It must not pollute my waters!#Neptulon
+	-- 12.05 [NAME_PLATE_UNIT_ADDED] Ink of Ozumat
 
 	-- Stages
 	self:Death("InkOfOzumatDeath", 213770)
@@ -78,11 +78,11 @@ end
 function mod:OnEngage()
 	putridRoarCount = 1
 	self:SetStage(1)
-	self:CDBar(428407, 5.1) -- Blotting Barrage
-	self:CDBar(428530, 10.7) -- Murk Spew
+	self:CDBar(428407, 5.7) -- Blotting Barrage
+	self:CDBar(428530, 10.6) -- Murk Spew
 	self:CDBar(428668, 15.0) -- Cleansing Flux
-	self:CDBar(428594, 20.8) -- Deluge of Filth
-	self:CDBar(428868, 25.3, CL.count:format(self:SpellName(428868), putridRoarCount)) -- Putrid Roar
+	self:CDBar(428868, 18.2, CL.count:format(self:SpellName(428868), putridRoarCount)) -- Putrid Roar
+	self:CDBar(428594, 20.6) -- Deluge of Filth
 end
 
 --------------------------------------------------------------------------------
@@ -136,7 +136,7 @@ do
 
 	function mod:BlottingBarrage(args)
 		playerList = {}
-		self:CDBar(428407, 30.3)
+		self:CDBar(428407, 35.2)
 	end
 
 	function mod:BlottingBarrageApplied(args)
@@ -154,13 +154,13 @@ function mod:PutridRoar(args)
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, putridRoarCount))
 	self:PlaySound(args.spellId, "alert")
 	putridRoarCount = putridRoarCount + 1
-	self:CDBar(args.spellId, 30.3, CL.count:format(args.spellName, putridRoarCount))
+	self:CDBar(args.spellId, 35.2, CL.count:format(args.spellName, putridRoarCount))
 end
 
 function mod:MurkSpew(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 32.7)
+	self:CDBar(args.spellId, 37.6)
 end
 
 function mod:FoulBolt(args)
@@ -176,7 +176,7 @@ do
 
 	function mod:CleansingFlux(args)
 		playerList = {}
-		self:CDBar(428668, 30.3)
+		self:CDBar(428668, 35.2)
 	end
 
 	function mod:CleansingFluxApplied(args)
@@ -191,7 +191,7 @@ end
 function mod:DelugeOfFilth(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 30.3)
+	self:CDBar(args.spellId, 35.2)
 end
 
 --------------------------------------------------------------------------------
