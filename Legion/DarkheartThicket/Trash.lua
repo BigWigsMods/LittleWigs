@@ -204,9 +204,9 @@ do
 	function mod:DespairApplied(args)
 		local t = args.time
 		local amount = args.amount
-		-- 10% heal reduction per stack in M+
+		-- 10% heal reduction per stack in M+ (2% otherwise)
 		-- alert at 3, increase severity at 6 and up
-		if --[[self:MythicPlus() and]] t - prev > 2 and (amount == 3 or amount >= 6)
+		if self:MythicPlus() and t - prev > 2 and (amount == 3 or amount >= 6)
 				and (self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId)) then
 			prev = t
 			self:StackMessage(args.spellId, "yellow", args.destName, amount, 6)
