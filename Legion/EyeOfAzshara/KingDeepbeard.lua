@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("King Deepbeard", 1456, 1491)
 if not mod then return end
 mod:RegisterEnableMob(91797)
-mod.engageId = 1812
+mod:SetEncounterID(1812)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -23,7 +22,7 @@ function mod:GetOptions()
 		193051, -- Call the Seas
 		{193018, "FLASH"}, -- Gaseous Bubbles
 		193093, -- Ground Slam
-		{193152, "PROXIMITY"}, -- Quake
+		193152, -- Quake
 	}
 end
 
@@ -44,7 +43,6 @@ function mod:OnEngage()
 	self:CDBar(193018, 12) -- Gaseous Bubbles
 	self:CDBar(193093, 6) -- Ground Slam
 	self:Bar(193152, 15) -- Quake
-	self:OpenProximity(193152, 5) -- Quake
 end
 
 --------------------------------------------------------------------------------

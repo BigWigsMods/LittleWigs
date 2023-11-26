@@ -1,6 +1,5 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Helix Gearbreaker", 36, 90)
@@ -13,7 +12,7 @@ mod:RegisterEnableMob(47296, 47297) -- Helix Gearbreaker, Lumbering Oaf
 
 function mod:GetOptions()
 	return {
-		{88352, "ICON", "SAY", "FLASH", "PROXIMITY"}, -- Chest Bomb
+		{88352, "ICON", "SAY", "FLASH"}, -- Chest Bomb
 	}
 end
 
@@ -37,15 +36,10 @@ function mod:ChestBomb(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:Flash(args.spellId)
-		self:OpenProximity(args.spellId, 10)
 	end
 end
 
 function mod:ChestBombRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 	self:PrimaryIcon(args.spellId)
-	if self:Me(args.destGUID) then
-		self:CloseProximity(args.spellId)
-	end
 end
-

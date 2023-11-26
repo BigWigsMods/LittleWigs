@@ -1,6 +1,5 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ionar", 602, 599)
@@ -13,7 +12,7 @@ mod:RegisterEnableMob(28546)
 
 function mod:GetOptions()
 	return {
-		{59795, "SAY", "FLASH", "PROXIMITY"}, -- Static Overload
+		{59795, "SAY", "FLASH"}, -- Static Overload
 		52770, -- Disperse
 	}
 end
@@ -35,19 +34,14 @@ function mod:StaticOverload(args)
 	self:TargetBar(59795, 10, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(59795)
-		self:OpenProximity(59795, 10)
 		self:Flash(59795)
 	end
 end
 
 function mod:StaticOverloadRemoved(args)
 	self:StopBar(args.spellName, args.destName)
-	if self:Me(args.destGUID) then
-		self:CloseProximity(59795)
-	end
 end
 
 function mod:Disperse(args)
 	self:MessageOld(args.spellId, "orange", "info")
 end
-

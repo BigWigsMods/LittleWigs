@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Naltira", 1516, 1500)
 if not mod then return end
 mod:RegisterEnableMob(98207, 98759) -- Naltira, Vicious Manafang
-mod.engageId = 1826
+mod:SetEncounterID(1826)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -34,7 +33,7 @@ function mod:GetOptions()
 	return {
 		-12687, -- Blink Strikes
 		{200040, "FLASH"}, -- Nether Venom
-		{200284, "PROXIMITY"}, -- Tangled Web
+		200284, -- Tangled Web
 		-- "vicious_manafang", -- Vicious Manafang
 		211543, -- Devour
 	}, {
@@ -91,13 +90,9 @@ function mod:Devour(args)
 end
 
 do
-	local targets, isOnMe = {}, nil
+	local targets = {}
 	local function printTarget(self, spellId)
-		if isOnMe then
-			self:OpenProximity(spellId, 30, targets)
-		end
 		self:TargetMessageOld(spellId, self:ColorName(targets), "yellow", "warning")
-		isOnMe = nil
 	end
 
 	function mod:TangledWebApplied(args)
@@ -107,15 +102,11 @@ do
 			self:CDBar(args.spellId, webCount == 1 and 26 or 21)
 			webCount = webCount + 1
 		end
-		if self:Me(args.destGUID) then
-			isOnMe = true
-		end
 	end
 
 	function mod:TangledWebRemoved(args)
 		if self:Me(args.destGUID) then
 			self:MessageOld(args.spellId, "green", nil, CL.removed:format(args.spellName))
-			self:CloseProximity(args.spellId)
 		end
 	end
 end

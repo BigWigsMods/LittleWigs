@@ -18,7 +18,7 @@ function mod:GetOptions()
 		162058, -- Spinning Spear
 		161588, -- Diffused Energy
 		{162066, "SAY", "FLASH"}, -- Freezing Snare
-		{163447, "PROXIMITY"}, -- Hunter's Mark
+		163447, -- Hunter's Mark
 	}, {
 		[163447] = CL.heroic,
 	}
@@ -34,7 +34,6 @@ function mod:OnBossEnable()
 	-- Heroic-only mechanic (not present in Mythic, M+, or Timewalking)
 	self:Log("SPELL_CAST_START", "HuntersMark", 163447)
 	self:Log("SPELL_AURA_APPLIED", "HuntersMarkApplied", 163447)
-	self:Log("SPELL_AURA_REMOVED", "HuntersMarkRemoved", 163447)
 end
 
 function mod:OnEngage()
@@ -75,6 +74,7 @@ do
 		self:TargetMessage(162066, "orange", player)
 		self:PlaySound(162066, "info", nil, player)
 	end
+
 	function mod:FreezingSnare(args)
 		self:Bar(args.spellId, 17)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
@@ -93,19 +93,15 @@ do
 		self:TargetMessage(163447, "orange", player)
 		self:PlaySound(163447, "info", nil, player)
 	end
+
 	function mod:HuntersMark(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 20)
 	end
+
 	function mod:HuntersMarkApplied(args)
 		if self:Me(args.destGUID) then
-			self:OpenProximity(args.spellId, 8)
 			self:TargetBar(args.spellId, 6, args.destName)
-		else
-			self:OpenProximity(args.spellId, 8, args.destName)
 		end
-	end
-	function mod:HuntersMarkRemoved(args)
-		self:CloseProximity(args.spellId)
 	end
 end

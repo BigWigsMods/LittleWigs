@@ -67,7 +67,7 @@ function mod:GetOptions()
 		-- Mug of Mead
 		202298, -- Mug of Mead
 		-- Valarjar Thundercaller
-		{215430, "SAY", "FLASH", "PROXIMITY"}, -- Thunderstrike
+		{215430, "SAY", "FLASH"}, -- Thunderstrike
 		-- Storm Drake
 		198888, -- Lightning Breath
 		198892, -- Crackling Storm
@@ -137,7 +137,6 @@ function mod:OnBossEnable()
 
 	-- Valarjar Thundercaller
 	self:Log("SPELL_AURA_APPLIED", "Thunderstrike", 215430)
-	self:Log("SPELL_AURA_REMOVED", "ThunderstrikeRemoved", 215430)
 
 	-- Storm Drake
 	self:Log("SPELL_CAST_START", "LightningBreath", 198888)
@@ -239,13 +238,6 @@ function mod:Thunderstrike(args)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 		self:Say(args.spellId)
-		self:OpenProximity(args.spellId, 8)
-	end
-end
-
-function mod:ThunderstrikeRemoved(args)
-	if self:Me(args.destGUID) then
-		self:CloseProximity(args.spellId)
 	end
 end
 

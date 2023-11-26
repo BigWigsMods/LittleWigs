@@ -14,12 +14,6 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local meteorsGoingOff, castersCollector = 0, {}
-
---------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -48,7 +42,7 @@ function mod:GetOptions()
 		36866, -- Domination
 		36886, -- Spiteful Fury
 		--[[ Gargantuan Abyssal ]]--
-		{38903, "PROXIMITY"}, -- Meteor
+		38903, -- Meteor
 	}, {
 		[36700] = L.entropic_eye,
 		[38815] = L.sightless_eye,
@@ -74,13 +68,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "DebuffRemoved", 36778, 36866, 36886) -- Soul Steal, Domination, Spiteful Fury
 
 	self:Log("SPELL_CAST_START", "Meteor", 38903)
-	self:Log("SPELL_CAST_SUCCESS", "MeteorSuccess", 38903)
-	self:Death("AbyssalDeath", 20898)
-end
-
-function mod:OnBossDisable()
-	meteorsGoingOff = 0
-	castersCollector = {}
 end
 
 --------------------------------------------------------------------------------
@@ -142,35 +129,11 @@ end
 do
 	local prev = 0
 	function mod:Meteor(args)
-		meteorsGoingOff = meteorsGoingOff + 1 -- just in case both Abyssals are pulled
-		castersCollector[args.sourceGUID] = true
-		if meteorsGoingOff == 1 then
-			self:OpenProximity(args.spellId, 10) -- not possible to detect its target, no helpful visual circle either
-		end
-
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
 			self:MessageOld(args.spellId, "red", "warning", CL.incoming:format(args.spellName))
 		end
 		self:Bar(args.spellId, 2)
-	end
-
-	function mod:MeteorSuccess(args)
-		meteorsGoingOff = meteorsGoingOff - 1
-		castersCollector[args.sourceGUID] = nil
-		if meteorsGoingOff == 0 then
-			self:CloseProximity(args.spellId)
-		end
-	end
-
-	function mod:AbyssalDeath(args)
-		if castersCollector[args.destGUID] then
-			meteorsGoingOff = meteorsGoingOff - 1
-			castersCollector[args.destGUID] = nil
-			if meteorsGoingOff == 0 then
-				self:CloseProximity(38903)
-			end
-		end
 	end
 end

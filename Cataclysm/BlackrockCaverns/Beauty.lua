@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Beauty", 645, 108)
 if not mod then return end
 mod:RegisterEnableMob(39700)
-mod.engageId = 1037
-mod.respawnTime = 30
+mod:SetEncounterID(1037)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -14,7 +14,7 @@ mod.respawnTime = 30
 
 function mod:GetOptions()
 	return {
-		{76031, "SAY", "SAY_COUNTDOWN", "ICON", "PROXIMITY"}, -- Magma Spit
+		{76031, "SAY", "SAY_COUNTDOWN", "ICON"}, -- Magma Spit
 		76028, -- Terrifying Roar
 		76628, -- Lava Drool
 	}, {
@@ -26,10 +26,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "MagmaSpit", 76031)
 	self:Log("SPELL_AURA_REMOVED", "MagmaSpitRemoved", 76031)
-
 	self:Log("SPELL_CAST_SUCCESS", "TerrifyingRoar", 76028)
 	self:Log("SPELL_AURA_APPLIED", "TerrifyingRoarApplied", 76028)
-
 	self:Log("SPELL_AURA_APPLIED", "LavaDrool", 76628) -- this might be bugged, does not fire any _DAMAGE events but it's supposed to do damage
 end
 
@@ -41,9 +39,6 @@ function mod:MagmaSpit(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 9)
-		self:OpenProximity(args.spellId, 5)
-	else
-		self:OpenProximity(args.spellId, 5, args.destName)
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:TargetBar(args.spellId, 9, args.destName)
@@ -54,7 +49,6 @@ function mod:MagmaSpitRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
 	end
-	self:CloseProximity(args.spellId)
 	self:StopBar(args.spellName, args.destName)
 	self:PrimaryIcon(args.spellId)
 end

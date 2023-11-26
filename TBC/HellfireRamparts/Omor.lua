@@ -14,7 +14,7 @@ mod:RegisterEnableMob(17308)
 
 function mod:GetOptions()
 	return {
-		{30695, "SAY", "ICON", "PROXIMITY"}, -- Treacherous Aura
+		{30695, "SAY", "ICON"}, -- Treacherous Aura
 	}
 end
 
@@ -31,9 +31,6 @@ end
 function mod:TreacherousAura(args)
 	if self:Me(args.destGUID) then
 		self:Say(30695)
-		self:OpenProximity(30695, 15)
-	else
-		self:OpenProximity(30695, 15, args.destName)
 	end
 	self:TargetMessageOld(30695, args.destName, "orange", nil, args.spellName)
 	self:TargetBar(30695, 15, args.destName, args.spellName)
@@ -42,6 +39,5 @@ end
 
 function mod:TreacherousAuraRemoved(args)
 	self:PrimaryIcon(30695)
-	self:CloseProximity(30695)
 	self:StopBar(args.spellName, args.destName)
 end

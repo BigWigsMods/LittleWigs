@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Teron'gor", 1182, 1225)
 if not mod then return end
 mod:RegisterEnableMob(77734)
-mod.engageId = 1714
-mod.respawnTime = 33
+mod:SetEncounterID(1714)
+mod:SetRespawnTime(33)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -32,7 +31,7 @@ function mod:GetOptions()
 		156854, -- Drain Life
 		156856, -- Rain of Fire
 		{157168, "ICON"}, -- Fixate
-		{156921, "FLASH", "PROXIMITY"}, -- Seed of Malevolence
+		{156921, "FLASH"}, -- Seed of Malevolence
 		{157001, "SAY"}, -- Chaos Wave
 		{157039, "SAY", "FLASH"}, -- Demonic Leap
 		156975, -- Chaos Bolt
@@ -79,15 +78,11 @@ function mod:SeedOfMalevolence(args)
 	self:TargetBar(args.spellId, 18, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
-		self:OpenProximity(args.spellId, 10)
 	end
 end
 
 function mod:SeedOfMalevolenceRemoved(args)
 	self:StopBar(args.spellId, args.destName) -- on death
-	if self:Me(args.destGUID) then
-		self:CloseProximity(args.spellId)
-	end
 end
 
 function mod:Fixate(args)

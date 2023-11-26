@@ -28,7 +28,7 @@ function mod:GetOptions()
 		"stages",
 		227568, -- Burning Leg Sweep
 		227453, -- Dashing Flame Gale
-		{227777, "PROXIMITY"}, -- Thunder Ritual
+		227777, -- Thunder Ritual
 		227783, -- Wash Away
 	}, {
 		[227568] = -14118, -- Toe Knee
@@ -43,7 +43,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BurningLegSweep", 227568)
 	self:Log("SPELL_CAST_START", "ThunderRitual", 227777)
 	self:Log("SPELL_AURA_APPLIED", "ThunderRitualApplied", 227777)
-	self:Log("SPELL_AURA_REMOVED", "ThunderRitualRemoved", 227777)
 	self:Log("SPELL_CAST_START", "WashAway", 227783)
 end
 
@@ -113,15 +112,8 @@ end
 
 function mod:ThunderRitualApplied(args)
 	if self:Me(args.destGUID) then
-		self:OpenProximity(args.spellId, 5)
 		local _, _, duration = self:UnitDebuff("player", args.spellId) -- Random duration
 		self:TargetBar(args.spellId, duration or 8, args.destName)
-	end
-end
-
-function mod:ThunderRitualRemoved(args)
-	if self:Me(args.destGUID) then
-		self:CloseProximity(args.spellId)
 	end
 end
 

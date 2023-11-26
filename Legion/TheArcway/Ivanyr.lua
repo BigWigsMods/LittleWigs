@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Ivanyr", 1516, 1497)
 if not mod then return end
 mod:RegisterEnableMob(98203)
-mod.engageId = 1827
+mod:SetEncounterID(1827)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,7 +14,7 @@ mod.engageId = 1827
 function mod:GetOptions()
 	return {
 		196805, -- Nether Link
-		{196562, "PROXIMITY"}, -- Volatile Magic
+		196562, -- Volatile Magic
 		196392, -- Overcharge Mana
 	}
 end
@@ -23,7 +22,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "NetherLink", 196805)
 	self:Log("SPELL_AURA_APPLIED", "VolatileMagicApplied", 196562)
-	self:Log("SPELL_AURA_REMOVED", "VolatileMagicRemoved", 196562)
 	self:Log("SPELL_CAST_SUCCESS", "OverchargeMana", 196392)
 end
 
@@ -49,15 +47,10 @@ do
 end
 
 do
-	local targets, isOnMe = {}, nil
+	local targets = {}
+
 	local function printTarget(self, spellId)
-		if isOnMe then
-			self:OpenProximity(spellId, 8)
-		else
-			self:OpenProximity(spellId, 8, targets)
-		end
 		self:TargetMessageOld(spellId, self:ColorName(targets), "orange", "alarm", nil, nil, true)
-		isOnMe = nil
 	end
 
 	function mod:VolatileMagicApplied(args)
@@ -71,10 +64,6 @@ do
 			self:TargetBar(args.spellId, 5, args.destName)
 			isOnMe = true
 		end
-	end
-
-	function mod:VolatileMagicRemoved(args)
-		self:CloseProximity(args.spellId)
 	end
 end
 

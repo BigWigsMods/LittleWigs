@@ -1,5 +1,3 @@
--- GLOBALS: tContains, tDeleteItem
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -14,7 +12,6 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local playersWithTouch = {} -- can have multiple players affected if dispellers aren't doing their job
 local mobCollector = {} -- adds from "Bonds of Reality" fire UNIT_DIED twice in a row (and the debuff they apply doesn't fire SPELL_AURA_REMOVED)
 local addsAlive = 0
 local touchOfNothingnessRemaining = 3
@@ -25,7 +22,7 @@ local touchOfNothingnessRemaining = 3
 
 function mod:GetOptions()
 	return {
-		{106113, "SAY", "PROXIMITY"}, -- Touch of Nothingness
+		{106113, "SAY"}, -- Touch of Nothingness
 		117665, -- Bounds of Reality
 		117570, -- Gathering Doubt
 	}, {
@@ -37,12 +34,9 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "TouchOfNothingness", 106113)
 	self:Log("SPELL_AURA_APPLIED", "TouchOfNothingnessApplied", 106113)
-	self:Log("SPELL_AURA_REMOVED", "TouchOfNothingnessRemoved", 106113)
-
 	self:Log("SPELL_CAST_START", "BoundsOfRealityStart", 117665)
 	self:Log("SPELL_AURA_APPLIED", "BoundsOfReality", 117665)
 	self:Log("SPELL_AURA_REMOVED", "BoundsOfRealityOver", 117665)
-
 	self:Log("SPELL_AURA_APPLIED", "GatheringDoubt", 117570)
 	self:Death("AddDeath", 56792) -- Figment of Doubt
 end
@@ -50,14 +44,12 @@ end
 function mod:OnEngage()
 	touchOfNothingnessRemaining = 1
 	addsAlive = 0
-	playersWithTouch = {}
 	mobCollector = {}
 	self:CDBar(106113, 10.6) -- Touch of Nothingness
 	self:CDBar(117665, 20.3) -- Bounds of Reality
 end
 
 function mod:OnBossDisable()
-	playersWithTouch = {}
 	mobCollector = {}
 end
 
@@ -80,28 +72,12 @@ do
 
 	function mod:TouchOfNothingnessApplied(args)
 		-- playerList contains players affected by the most recent cast
-		playerList[#playerList+1] = args.destName
+		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 1)
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
-
-		-- playersWithTouch includes all players with the debuff
-		playersWithTouch[#playersWithTouch+1] = args.destName
 		if self:Me(args.destGUID) then
-			self:OpenProximity(args.spellId, 10) -- 10 is a guesstimate, there's no info in the EJ
 			self:Say(args.spellId)
-		elseif not tContains(playersWithTouch, self:UnitName("player")) then
-			self:OpenProximity(args.spellId, 10, playersWithTouch)
 		end
-	end
-end
-
-function mod:TouchOfNothingnessRemoved(args)
-	tDeleteItem(playersWithTouch, args.destName)
-
-	if #playersWithTouch == 0 then
-		self:CloseProximity(args.spellId)
-	elseif not tContains(playersWithTouch, self:UnitName("player")) then
-		self:OpenProximity(args.spellId, 10, playersWithTouch)
 	end
 end
 

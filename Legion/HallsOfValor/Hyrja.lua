@@ -27,7 +27,7 @@ function mod:GetOptions()
 		200901, -- Eye of the Storm
 		{191976, "ICON", "SAY"}, -- Arcing Bolt
 		192307, -- Sanctify
-		{192048, "ICON", "FLASH", "PROXIMITY"}, -- Expel Light
+		{192048, "ICON", "FLASH"}, -- Expel Light
 		192018, -- Shield of Light
 	}
 end
@@ -163,10 +163,7 @@ function mod:ExpelLight(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:OpenProximity(args.spellId, 8)
 		self:Flash(args.spellId)
-	else
-		self:OpenProximity(args.spellId, 8, args.destName)
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
 	nextExpelLight = GetTime() + 20.7
@@ -174,7 +171,6 @@ function mod:ExpelLight(args)
 end
 
 function mod:ExpelLightRemoved(args)
-	self:CloseProximity(args.spellId)
 	self:PrimaryIcon(args.spellId)
 end
 

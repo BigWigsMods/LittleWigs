@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Shivermaw", 1544, 1694)
 if not mod then return end
 mod:RegisterEnableMob(101951)
-mod.engageId = 1845
+mod:SetEncounterID(1845)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -26,7 +25,7 @@ function mod:GetOptions()
 		201672, -- Relentless Storm
 		201354, -- Tail Sweep
 		201355, -- Wing Buffet
-		{202062, "PROXIMITY"}, -- Frigid Winds
+		202062, -- Frigid Winds
 		201960, -- Ice Bomb
 	}
 end
@@ -90,14 +89,13 @@ end
 
 function mod:FrigidWindsApplied(args)
 	if self:Me(args.destGUID) then
-		self:OpenProximity(args.spellId, 8)
 		self:TargetBar(args.spellId, 18, args.destName)
 	end
 end
 
 function mod:FrigidWindsRemoved(args)
 	if self:Me(args.destGUID) then
-		self:CloseProximity(args.spellId)
+		self:StopBar(args.spellId, args.destName)
 	end
 end
 

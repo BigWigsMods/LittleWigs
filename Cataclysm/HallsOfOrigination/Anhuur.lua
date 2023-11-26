@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Temple Guardian Anhuur", 644, 124)
 if not mod then return end
 mod:RegisterEnableMob(39425)
-mod.engageId = 1080
-mod.respawnTime = 30
+mod:SetEncounterID(1080)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -21,7 +21,7 @@ local nextShieldOfLightWarning = 0
 function mod:GetOptions()
 	return {
 		74938, -- Shield of Light
-		{75592, "FLASH", "SAY", "SAY_COUNTDOWN", "PROXIMITY", "ICON"}, -- Divine Reckoning
+		{75592, "FLASH", "SAY", "SAY_COUNTDOWN", "ICON"}, -- Divine Reckoning
 	}
 end
 
@@ -59,11 +59,8 @@ end
 function mod:DivineReckoning(args)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
-		self:OpenProximity(args.spellId, 7)
 		self:Say(args.spellId)
 		self:SayCountdown(args.spellId, 8)
-	else
-		self:OpenProximity(args.spellId, 7, args.destName)
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 8, args.destName)
@@ -74,7 +71,6 @@ function mod:DivineReckoningRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
 	end
-	self:CloseProximity(args.spellId)
 	self:PrimaryIcon(args.spellId)
 	self:StopBar(args.spellName, args.destName)
 end
