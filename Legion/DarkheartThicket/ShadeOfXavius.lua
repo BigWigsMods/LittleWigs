@@ -109,7 +109,7 @@ end
 
 function mod:WakingNightmareApplied(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Yell(args.spellId)
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alarm")
 	end
