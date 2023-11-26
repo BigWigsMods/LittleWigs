@@ -15,9 +15,9 @@ if L then
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "永恒暮光大法师"
+	L.valow = "瓦罗，时誓守护者"
 	L.spurlok = "斯普洛克，时誓戒卫"
 	L.lerai = "勒莱，时誓圣女"
-	L.valow = "瓦罗，时誓守护者"
 	L.timeline_marauder = "时间线掠夺者"
 	L.infinite_saboteur = "永恒破坏者"
 	L.infinite_riftmage = "永恒裂隙法师"

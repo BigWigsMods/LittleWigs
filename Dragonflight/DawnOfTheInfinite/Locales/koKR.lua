@@ -15,9 +15,9 @@ if L then
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "무한의 황혼의 학자"
+	L.valow = "시간서약 수호자 발로우"
 	L.spurlok = "시간서약 파수꾼 스퍼로크"
 	L.lerai = "시간서약 여신 레라이"
-	L.valow = "시간서약 수호자 발로우"
 	L.timeline_marauder = "시간선 약탈자"
 	L.infinite_saboteur = "무한의 파괴자"
 	L.infinite_riftmage = "무한의 균열법사"

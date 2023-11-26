@@ -15,9 +15,9 @@ if L then
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "Maga du crépuscule de l'Infini"
+	L.valow = "Valow, gardien lige-du-temps"
 	L.spurlok = "Spurlok, sentinelle lige-du-temps"
 	L.lerai = "Lerai, vierge lige-du-temps"
-	L.valow = "Valow, gardien lige-du-temps"
 	L.timeline_marauder = "Maraudeuse des lignes temporelles"
 	L.infinite_saboteur = "Saboteur infini"
 	L.infinite_riftmage = "Mage de faille infini"

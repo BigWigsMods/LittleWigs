@@ -15,9 +15,9 @@ if L then
 
 	------ Murozond's Rise ------
 	--L.infinite_twilight_magus = "Infinite Twilight Magus"
+	--L.valow = "Valow, Timesworn Keeper"
 	--L.spurlok = "Spurlok, Timesworn Sentinel"
 	--L.lerai = "Lerai, Timesworn Maiden"
-	--L.valow = "Valow, Timesworn Keeper"
 	--L.timeline_marauder = "Timeline Marauder"
 	--L.infinite_saboteur = "Infinite Saboteur"
 	--L.infinite_riftmage = "Infinite Riftmage"

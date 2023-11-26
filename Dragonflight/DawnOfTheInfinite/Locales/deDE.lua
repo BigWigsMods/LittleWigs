@@ -15,9 +15,9 @@ if L then
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "Ewige Zwielichtmagistrix"
+	L.valow = "Valow, zeitverschworener Hüter"
 	L.spurlok = "Spurlok, zeitverschworene Wächterin"
 	L.lerai = "Lerai, zeitverschworene Maid"
-	L.valow = "Valow, zeitverschworener Hüter"
 	L.timeline_marauder = "Zeitlinienmarodeur"
 	L.infinite_saboteur = "Ewiger Saboteur"
 	L.infinite_riftmage = "Unendliche Rissmagierin"

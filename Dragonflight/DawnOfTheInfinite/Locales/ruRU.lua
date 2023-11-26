@@ -15,9 +15,9 @@ if L then
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "Сумеречный волхв из рода Бесконечности"
+	L.valow = "Валов Хранитель Времени"
 	L.spurlok = "Шпорлок Часовой Времени"
 	L.lerai = "Лерай Служительница Времени"
-	L.valow = "Валов Хранитель Времени"
 	L.timeline_marauder = "Темпоральный мародер"
 	L.infinite_saboteur = "Саботажник из рода Бесконечности"
 	L.infinite_riftmage = "Маг портала бесконечности"

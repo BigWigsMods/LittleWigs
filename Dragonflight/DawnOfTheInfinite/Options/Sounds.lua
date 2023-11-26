@@ -89,7 +89,7 @@ BigWigs:AddSounds("Dawn of the Infinite Trash", {
 	[412215] = "alert",
 	[412378] = "warning",
 	[412806] = "alarm",
-	[412922] = "info",
+	[412922] = {"alarm","info"},
 	[413024] = "info",
 	[413529] = "alarm",
 	[413544] = "alert",

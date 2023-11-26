@@ -19,9 +19,9 @@ mod:RegisterEnableMob(
 
 	------ Murozond's Rise ------
 	201223, -- Infinite Twilight Magus
+	201222, -- Valow, Timesworn Keeper
 	205158, -- Spurlok, Timesworn Sentinel
 	205152, -- Lerai, Timesworn Maiden
-	201222, -- Valow, Timesworn Keeper
 	199748, -- Timeline Marauder
 	208061, -- Temporal Rift
 	208438, -- Infinite Saboteur
@@ -60,9 +60,9 @@ if L then
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "Infinite Twilight Magus"
+	L.valow = "Valow, Timesworn Keeper"
 	L.spurlok = "Spurlok, Timesworn Sentinel"
 	L.lerai = "Lerai, Timesworn Maiden"
-	L.valow = "Valow, Timesworn Keeper"
 	L.timeline_marauder = "Timeline Marauder"
 	L.infinite_saboteur = "Infinite Saboteur"
 	L.infinite_riftmage = "Infinite Riftmage"
@@ -115,14 +115,14 @@ function mod:GetOptions()
 		------ Murozond's Rise ------
 		-- Infinite Twilight Magus
 		413607, -- Corroding Volley
+		-- Valow, Timesworn Keeper
+		412136, -- Temporal Strike
+		413024, -- Titanic Bulwark
 		-- Spurlok, Timesworn Sentinel
 		412215, -- Shrouding Sandstorm
 		412922, -- Binding Grasp
 		-- Lerai, Timesworn Maiden
 		412129, -- Orb of Contemplation
-		-- Valow, Timesworn Keeper
-		412136, -- Multiversal Fist
-		413024, -- Titanic Bulwark
 		-- Timeline Marauder
 		417481, -- Displace Chronosequence
 		-- Infinite Saboteur
@@ -170,9 +170,9 @@ function mod:GetOptions()
 
 		------ Murozond's Rise ------
 		[413607] = L.infinite_twilight_magus,
+		[412136] = L.valow,
 		[412215] = L.spurlok,
 		[412129] = L.lerai,
-		[412136] = L.valow,
 		[417481] = L.timeline_marauder,
 		[419351] = L.infinite_saboteur,
 		[418200] = L.infinite_riftmage,
@@ -233,16 +233,20 @@ function mod:OnBossEnable()
 	-- Infinite Twilight Magus
 	self:Log("SPELL_CAST_START", "CorrodingVolley", 413607)
 
+	-- Valow, Timesworn Keeper
+	self:Log("SPELL_CAST_START", "TemporalStrike", 412136)
+	self:Log("SPELL_CAST_START", "TitanicBulwark", 413024)
+	self:Death("ValowDeath", 201222)
+
 	-- Spurlok, Timesworn Sentinel
 	self:Log("SPELL_CAST_START", "ShroudingSandstorm", 412215)
+	self:Log("SPELL_CAST_START", "BindingGrasp", 412922)
 	self:Log("SPELL_AURA_APPLIED", "BindingGraspApplied", 412922)
+	self:Death("SpurlokDeath", 205158)
 
 	-- Lerai, Timesworn Maiden
 	self:Log("SPELL_CAST_START", "OrbOfContemplation", 412129)
-
-	-- Valow, Timesworn Keeper
-	self:Log("SPELL_CAST_START", "MultiversalFist", 412136)
-	self:Log("SPELL_CAST_START", "TitanicBulwark", 413024)
+	self:Death("LeraiDeath", 205152)
 
 	-- Tyr
 	self:Log("SPELL_AURA_REMOVED", "PonderingTheOathstoneRemoved", 413595)
@@ -367,7 +371,6 @@ do
 			playerList = {}
 		end
 		playerList[#playerList + 1] = args.destName
-		-- TODO confirm max 2 targets
 		self:TargetsMessage(415769, "yellow", playerList, 2, nil, nil, .5)
 		self:PlaySound(415769, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
@@ -467,41 +470,106 @@ function mod:CorrodingVolley(args)
 	--self:NameplateCDBar(args.spellId, 7.3, args.sourceGUID)
 end
 
--- Spurlok, Timesworn Sentinel
-
-function mod:ShroudingSandstorm(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
-end
-
-function mod:BindingGraspApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
-	-- if this is uncommented, move to SUCCESS
-	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
-end
-
--- Spurlok, Timesworn Sentinel
-
-function mod:OrbOfContemplation(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 13.4, args.sourceGUID)
-end
-
 -- Valow, Timesworn Keeper
 
-function mod:MultiversalFist(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+do
+	-- timer used to clean up bars in case of a wipe
+	local timer
+
+	function mod:TemporalStrike(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 12.1)
+		timer = self:ScheduleTimer("ValowDeath", 30)
+	end
+
+	function mod:TitanicBulwark(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 26.7)
+		timer = self:ScheduleTimer("ValowDeath", 30)
+	end
+
+	function mod:ValowDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(412136) -- Temporal Strike
+		self:StopBar(413024) -- Titanic Bulwark
+	end
 end
 
-function mod:TitanicBulwark(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
-	--self:NameplateCDBar(args.spellId, 26.7, args.sourceGUID)
+-- Spurlok, Timesworn Sentinel
+
+do
+	-- timer used to clean up bars in case of a wipe
+	local timer
+
+	function mod:ShroudingSandstorm(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alert")
+		self:CDBar(args.spellId, 19.4)
+		timer = self:ScheduleTimer("SpurlokDeath", 30)
+	end
+
+	function mod:BindingGrasp(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 19.4)
+		timer = self:ScheduleTimer("SpurlokDeath", 30)
+	end
+
+	function mod:BindingGraspApplied(args)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	end
+
+	function mod:SpurlokDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(412215) -- Shrouding Sandstorm
+		self:StopBar(412922) -- Binding Grasp
+	end
+end
+
+-- Lerai, Timesworn Maiden
+
+do
+	-- timer used to clean up bars in case of a wipe
+	local timer
+
+	function mod:OrbOfContemplation(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 13.4)
+		timer = self:ScheduleTimer("LeraiDeath", 30)
+	end
+
+	function mod:LeraiDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(412129) -- Orb of Contemplation
+	end
 end
 
 -- Tyr
