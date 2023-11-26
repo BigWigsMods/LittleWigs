@@ -36,8 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "WellFedApplied", 265005)
 	self:Log("SPELL_CAST_START", "Tenderize", 264923)
 	self:Log("SPELL_CAST_START", "RottenExpulsion", 264694)
-	self:Log("SPELL_AURA_APPLIED", "RottenExpulsionDamage", 264712)
-	self:Log("SPELL_PERIODIC_DAMAGE", "RottenExpulsionDamage", 264712)
+	self:Log("SPELL_PERIODIC_DAMAGE", "RottenExpulsionDamage", 264712) -- no alert on APPLIED, doesn't damage right away
 	self:Log("SPELL_PERIODIC_MISSED", "RottenExpulsionDamage", 264712)
 end
 
