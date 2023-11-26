@@ -108,8 +108,8 @@ function mod:OnBossEnable()
 	-- Gnarlroot
 	self:Log("SPELL_CAST_START", "LivingLeaves", 169494)
 	self:Log("SPELL_AURA_APPLIED", "LivingLeavesApplied", 169495)
-	self:Log("SPELL_CAST_SUCCESS", "GnarledRoots", 426500)
-	self:Log("SPELL_AURA_APPLIED", "GnarledRootsApplied", 426500)
+	self:Log("SPELL_CAST_START", "GnarledRoots", 426500)
+	self:Death("GnarlrootDeath", 81984)
 
 	-- Melded Berserker
 	self:Log("SPELL_CAST_SUCCESS", "BoundingWhirl", 172578)
@@ -232,47 +232,64 @@ end
 
 -- Everbloom Mender
 
-function mod:HealingWaters(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	if self:Interrupter() then
-		self:PlaySound(args.spellId, "warning")
-	else
-		self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:HealingWaters(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			if self:Interrupter() then
+				self:PlaySound(args.spellId, "warning")
+			else
+				self:PlaySound(args.spellId, "alert")
+			end
+		end
+		--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 	end
-	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
 end
 
 -- Gnarlroot
 
-function mod:LivingLeaves(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
-	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
-end
-
-function mod:LivingLeavesApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(169494, "underyou")
-		self:PlaySound(169494, "underyou", nil, args.destName)
-	end
-end
-
 do
-	local playerList = {}
+	-- use this timer to schedule StopBars on both abilities, this way if you pull
+	-- and reset the mob (or wipe) the bars won't be stuck for the rest of the dungeon.
+	local timer
+
+	function mod:LivingLeaves(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 18.2)
+		timer = self:ScheduleTimer("GnarlrootDeath", 30)
+	end
+
+	function mod:LivingLeavesApplied(args)
+		if self:Me(args.destGUID) then
+			self:PersonalMessage(169494, "underyou")
+			self:PlaySound(169494, "underyou", nil, args.destName)
+		end
+	end
 
 	function mod:GnarledRoots(args)
-		playerList = {}
-		--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 18.2)
+		timer = self:ScheduleTimer("GnarlrootDeath", 30)
 	end
 
-	function mod:GnarledRootsApplied(args)
-		-- can be movement dispelled, else you have to attack the roots
-		-- currently applies to pets as well as players
-		if self:Player(args.destFlags) then
-			playerList[#playerList + 1] = args.destName
-			self:PlaySound(args.spellId, "alarm", nil, playerList)
-			self:TargetsMessage(args.spellId, "orange", playerList, 5)
+	function mod:GnarlrootDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
 		end
+		self:StopBar(169494) -- Living Leaves
+		self:StopBar(426500) -- Gnarled Roots
 	end
 end
 
