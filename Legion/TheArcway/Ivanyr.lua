@@ -62,7 +62,6 @@ do
 		end
 		if self:Me(args.destGUID) then
 			self:TargetBar(args.spellId, 5, args.destName)
-			isOnMe = true
 		end
 	end
 end
