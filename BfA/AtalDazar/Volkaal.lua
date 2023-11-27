@@ -33,9 +33,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "NoxiousStench", 259572)
 	self:Log("SPELL_CAST_START", "Reanimate", 259531)
 	self:Log("SPELL_CAST_SUCCESS", "RapidDecay", 250241) -- Stage 2 start
-	self:Log("SPELL_AURA_APPLIED", "ToxicPool", 250585)
-	self:Log("SPELL_PERIODIC_DAMAGE", "ToxicPool", 250585)
-	self:Log("SPELL_PERIODIC_MISSED", "ToxicPool", 250585)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ToxicPoolDamage", 250585) -- no alert on APPLIED, doesn't damage right away
+	self:Log("SPELL_PERIODIC_MISSED", "ToxicPoolDamage", 250585)
 end
 
 function mod:OnEngage()
@@ -57,7 +56,7 @@ function mod:ToxicLeap(args)
 end
 
 function mod:NoxiousStench(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning", "interrupt")
 	-- TODO delayed slightly by toxic leap in stage 1?
 	self:CDBar(args.spellId, 18.2)
@@ -77,13 +76,13 @@ end
 
 do
 	local prev = 0
-	function mod:ToxicPool(args)
+	function mod:ToxicPoolDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
 			if t - prev > 2.5 then
 				prev = t
 				self:PersonalMessage(args.spellId, "underyou")
-				self:PlaySound(args.spellId, "underyou", "gtfo")
+				self:PlaySound(args.spellId, "underyou", "gtfo", args.destName)
 			end
 		end
 	end
