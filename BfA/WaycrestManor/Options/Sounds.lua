@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Heartsbane Triad", {
 	[260703] = "alarm",
-	[260741] = "alert",
+	[260741] = {"alarm","alert"},
 	[260773] = "warning",
 	[260805] = "long",
 	[260907] = "alarm",
