@@ -45,8 +45,8 @@ end
 --
 
 function mod:SoulHarvest(args)
-	if args.amount % 3 == 0 then
-		self:StackMessageOld(args.spellId, args.destName, args.amount, "yellow")
+	if args.amount >= 10 and args.amount % 5 == 0 then
+		self:Message(args.spellId, "yellow", CL.stack:format(args.amount, args.spellName, CL.boss))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
