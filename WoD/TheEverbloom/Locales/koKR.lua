@@ -13,6 +13,7 @@ if L then
 	L.everbloom_mender = "상록숲 치유사"
 	L.gnarlroot = "옹이뿌리"
 	L.melded_berserker = "식물에 잠식당한 광전사"
+	L.twisted_abomination = "뒤틀린 흉물"
 	L.infested_icecaller = "감염된 얼음소환사"
 	L.putrid_pyromancer = "타락의 화염술사"
 	L.addled_arcanomancer = "정신이상의 비전역술사"

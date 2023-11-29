@@ -13,6 +13,7 @@ if L then
 	L.everbloom_mender = "Soigneur de la Flore éternelle"
 	L.gnarlroot = "Racine-Noueuse"
 	L.melded_berserker = "Berserker assimilé"
+	L.twisted_abomination = "Abomination distordue"
 	L.infested_icecaller = "Mandeglace infesté"
 	L.putrid_pyromancer = "Pyromancien putride"
 	L.addled_arcanomancer = "Arcanomancien perturbé"

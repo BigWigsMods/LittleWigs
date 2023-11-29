@@ -45,6 +45,7 @@ BigWigs:AddSounds("The Everbloom Trash", {
 	[164965] = {"alarm","alert","info"},
 	[165123] = {"alarm","alert"},
 	[165213] = "alert",
+	[169445] = "alert",
 	[169494] = {"info","underyou"},
 	[172578] = "alarm",
 	[426500] = "alarm",

@@ -13,6 +13,7 @@ if L then
 	L.everbloom_mender = "Heiler des Immergrünen Flors"
 	L.gnarlroot = "Knorrenwurzel"
 	L.melded_berserker = "Befallener Berserker"
+	L.twisted_abomination = "Verzerrte Monstrosität"
 	L.infested_icecaller = "Infizierte Eisruferin"
 	L.putrid_pyromancer = "Eitriger Pyromant"
 	L.addled_arcanomancer = "Verwirrter Arkanomant"

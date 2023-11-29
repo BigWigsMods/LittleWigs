@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	81820, -- Everbloom Mender
 	81984, -- Gnarlroot
 	86372, -- Melded Berserker
+	84767, -- Twisted Abomination
 	84989, -- Infested Icecaller
 	84957, -- Putrid Pyromancer
 	84990  -- Addled Arcanomancer
@@ -31,6 +32,7 @@ if L then
 	L.everbloom_mender = "Everbloom Mender"
 	L.gnarlroot = "Gnarlroot"
 	L.melded_berserker = "Melded Berserker"
+	L.twisted_abomination = "Twisted Abomination"
 	L.infested_icecaller = "Infested Icecaller"
 	L.putrid_pyromancer = "Putrid Pyromancer"
 	L.addled_arcanomancer = "Addled Arcanomancer"
@@ -65,6 +67,8 @@ function mod:GetOptions()
 		426500, -- Gnarled Roots
 		-- Melded Berserker
 		172578, -- Bounding Whirl
+		-- Twisted Abomination
+		169445, -- Noxious Eruption
 		-- Infested Icecaller
 		426845, -- Cold Fusion
 		-- Putrid Pyromancer
@@ -79,6 +83,7 @@ function mod:GetOptions()
 		[164887] = L.everbloom_mender,
 		[169494] = L.gnarlroot,
 		[172578] = L.melded_berserker,
+		[169445] = L.twisted_abomination,
 		[426845] = L.infested_icecaller,
 		[427223] = L.putrid_pyromancer,
 		[426974] = L.addled_arcanomancer,
@@ -113,6 +118,9 @@ function mod:OnBossEnable()
 
 	-- Melded Berserker
 	self:Log("SPELL_CAST_SUCCESS", "BoundingWhirl", 172578)
+
+	-- Twisted Abomination
+	self:Log("SPELL_CAST_START", "NoxiousEruption", 169445)
 
 	-- Infested Icecaller
 	self:Log("SPELL_CAST_SUCCESS", "ColdFusion", 426845)
@@ -266,10 +274,15 @@ do
 		timer = self:ScheduleTimer("GnarlrootDeath", 30)
 	end
 
-	function mod:LivingLeavesApplied(args)
-		if self:Me(args.destGUID) then
-			self:PersonalMessage(169494, "underyou")
-			self:PlaySound(169494, "underyou", nil, args.destName)
+	do
+		local prev = 0
+		function mod:LivingLeavesApplied(args)
+			local t = args.time
+			if t - prev > 2 and self:Me(args.destGUID) then
+				prev = t
+				self:PersonalMessage(169494, "underyou")
+				self:PlaySound(169494, "underyou", nil, args.destName)
+			end
 		end
 	end
 
@@ -306,6 +319,21 @@ do
 		end
 	end
 	--self:NameplateCDBar(args.spellId, 16.9, args.sourceGUID)
+end
+
+-- Twisted Abomination
+
+do
+	local prev = 0
+	function mod:NoxiousEruption(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
 end
 
 -- Infested Icecaller

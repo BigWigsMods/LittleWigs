@@ -13,6 +13,7 @@ if L then
 	L.everbloom_mender = "永茂林治癒者"
 	L.gnarlroot = "瘤根"
 	L.melded_berserker = "混形狂戰士"
+	--L.twisted_abomination = "Twisted Abomination"
 	L.infested_icecaller = "被感染的喚冰師"
 	L.putrid_pyromancer = "腐爛的火占師"
 	L.addled_arcanomancer = "混亂的秘卜師"

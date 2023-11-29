@@ -46,6 +46,7 @@ BigWigs:AddColors("The Everbloom Trash", {
 	[164965] = {"blue","orange","yellow"},
 	[165123] = {"blue","red"},
 	[165213] = "red",
+	[169445] = "red",
 	[169494] = {"blue","yellow"},
 	[172578] = "orange",
 	[426500] = "orange",

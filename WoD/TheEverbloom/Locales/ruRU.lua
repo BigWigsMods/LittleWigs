@@ -13,6 +13,7 @@ if L then
 	L.everbloom_mender = "Лекарь Вечного Цветения"
 	L.gnarlroot = "Кривокорень"
 	L.melded_berserker = "Зараженный берсерк"
+	L.twisted_abomination = "Искаженное поганище"
 	L.infested_icecaller = "Зараженная сотворительница льда"
 	L.putrid_pyromancer = "Гнилостный пиромант"
 	L.addled_arcanomancer = "Одурманенный маг"
