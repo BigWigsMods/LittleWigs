@@ -1,14 +1,14 @@
 local L = BigWigs:NewBossLocale("Throne of the Tides Trash", "esES") or BigWigs:NewBossLocale("Throne of the Tides Trash", "esMX")
 if not L then return end
 if L then
-	--L.nazjar_oracle = "Naz'jar Oracle"
-	--L.vicious_snap_dragon = "Vicious Snap Dragon"
-	--L.nazjar_sentinel = "Naz'jar Sentinel"
-	--L.nazjar_ravager = "Naz'jar Ravager"
-	--L.nazjar_tempest_witch = "Naz'jar Tempest Witch"
-	--L.faceless_seer = "Faceless Seer"
-	--L.faceless_watcher = "Faceless Watcher"
-	--L.tainted_sentry = "Tainted Sentry"
+	L.nazjar_oracle = "Oráculo Naz'jar"
+	L.vicious_snap_dragon = "Bocadragón sañoso"
+	L.nazjar_sentinel = "Centinela Naz'jar"
+	L.nazjar_ravager = "Devastador Naz'jar"
+	L.nazjar_tempest_witch = "Bruja de la tempestad Naz'jar"
+	L.faceless_seer = "Vidente ignoto"
+	L.faceless_watcher = "Vigía ignoto"
+	L.tainted_sentry = "Avizor corrupto"
 end
 
 L = BigWigs:NewBossLocale("Ozumat", "esES") or BigWigs:NewBossLocale("Ozumat", "esMX")
