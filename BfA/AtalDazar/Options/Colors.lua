@@ -12,7 +12,7 @@ BigWigs:AddColors("Vol'kaal", {
 	[250241] = "cyan",
 	[250258] = "orange",
 	[250585] = "blue",
-	[259531] = "yellow",
+	[259531] = "cyan",
 	[259572] = "red",
 })
 
