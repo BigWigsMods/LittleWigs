@@ -29,7 +29,10 @@ function mod:GetOptions()
 		414535, -- Stonecracker Barrage
 		409456, -- Earthsurge
 		409635, -- Pulverizing Exhalation
+		{409879, "SAY"}, -- Pulverizing Creations
 		{414184, "CASTBAR"}, -- Cataclysmic Obliteration
+	}, nil, {
+		[409879] = CL.adds,
 	}
 end
 
@@ -40,6 +43,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EarthsurgeApplied", 409456)
 	self:Log("SPELL_AURA_REMOVED", "EarthsurgeRemoved", 409456)
 	self:Log("SPELL_CAST_START", "PulverizingExhalation", 409635)
+	self:Log("SPELL_AURA_APPLIED", "PulverizingCreationsApplied", 409879)
 	self:Log("SPELL_CAST_START", "CataclysmicObliteration", 414184, 414652) -- Stage 2, wiping because Chromie died
 	self:Log("SPELL_AURA_REMOVED", "CatacylsmicObliterationRemoved", 414177)
 end
@@ -58,8 +62,8 @@ end
 
 function mod:Warmup()
 	-- triggered from trash module
-	-- <267.93 22:54:16> [CHAT_MSG_MONSTER_YELL] So the titans' puppets have come to face me.#Iridikron###Delko##0#0##0#161#nil#0#false#false#false#false
-	-- <301.78 22:54:50> [NAME_PLATE_UNIT_ADDED] Iridikron#Creature-0-5770-2579-4813-198933-00007D4749
+	-- 267.93 [CHAT_MSG_MONSTER_YELL] So the titans' puppets have come to face me.#Iridikron
+	-- 301.78 [NAME_PLATE_UNIT_ADDED] Iridikron
 	self:Bar("warmup", 33.8, CL.active, "achievement_boss_infinitecorruptor")
 end
 
@@ -112,6 +116,14 @@ function mod:PulverizingExhalation(args)
 	self:StopBar(args.spellId)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:PulverizingCreationsApplied(args)
+	-- happens simultaneously with Pulverizing Exhalation
+	-- affects 0 players in Heroic, 2 players in Mythic+, all players in hard mode
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, CL.spawning:format(CL.add))
+	end
 end
 
 function mod:CataclysmicObliteration(args)
