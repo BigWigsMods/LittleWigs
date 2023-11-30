@@ -89,21 +89,20 @@ do
 		self:PlaySound(args.spellId, "alarm")
 		infiniteHandCastCount = infiniteHandCastCount + 1
 		if infiniteHandCastCount == 2 then
-			-- the first ability in the sequence will not be cast again, either of the other two
-			-- abilities can happen 8s after the first ability.
-			firstInfiniteHandCast = args.spellId
+			-- the first ability in the sequence will not be cast again. since Dividing Strike will never be the
+			-- second cast, we know the full sequence aleady:
+			-- Titanic Blow -> Infinite Annihilation -> Dividing Strike -> Infinite Annihilation
 			self:CDBar(401482, 8.0) -- Infinite Annihilation
-			self:CDBar(400641, 8.0) -- Dividing Strike
+			self:CDBar(400641, 16.0) -- Dividing Strike
 		elseif infiniteHandCastCount == 3 then
 			-- the second ability in the sequence will be the fourth ability as well
 			self:CDBar(args.spellId, 16.0)
-			-- the ability which was not the first or second ability will be the third ability
-			if firstInfiniteHandCast ~= 401482 then -- Infinite Annihilation
-				self:CDBar(401482, 8.0)
-			else -- Dividing Strike
-				self:CDBar(400641, 8.0)
+			-- the ability which was not the first or second ability will be the third ability.
+			-- we only need to start the timer for it if the first ability was Dividing Strike.
+			if firstInfiniteHandCast == 400641 then -- Dividing Strike
+				self:CDBar(401482, 8.0) -- Infinite Annihilation
+				firstInfiniteHandCast = nil
 			end
-			firstInfiniteHandCast = nil
 		end
 	end
 
@@ -113,21 +112,20 @@ do
 		self:PlaySound(args.spellId, "alarm")
 		infiniteHandCastCount = infiniteHandCastCount + 1
 		if infiniteHandCastCount == 2 then
-			-- the first ability in the sequence will not be cast again, either of the other two
-			-- abilities can happen 8s after the first ability.
-			firstInfiniteHandCast = args.spellId
+			-- the first ability in the sequence will not be cast again. since Dividing Strike will never be the
+			-- second cast, we know the full sequence aleady:
+			-- Infinite Annihilation -> Titanic Blow -> Dividing Strike -> Titanic Blow
 			self:CDBar(401248, 8.0) -- Titanic Blow
-			self:CDBar(400641, 8.0) -- Dividing Strike
+			self:CDBar(400641, 16.0) -- Dividing Strike
 		elseif infiniteHandCastCount == 3 then
 			-- the second ability in the sequence will be the fourth ability as well
 			self:CDBar(args.spellId, 16.0)
-			-- the ability which was not the first or second ability will be the third ability
-			if firstInfiniteHandCast ~= 401248 then -- Titanic Blow
-				self:CDBar(401248, 8.0)
-			else -- Dividing Strike
-				self:CDBar(400641, 8.0)
+			-- the ability which was not the first or second ability will be the third ability.
+			-- we only need to start the timer for it if the first ability was Dividing Strike.
+			if firstInfiniteHandCast == 400641 then -- Dividing Strike
+				self:CDBar(401248, 8.0) -- Titanic Blow
+				firstInfiniteHandCast = nil
 			end
-			firstInfiniteHandCast = nil
 		end
 	end
 
@@ -136,22 +134,14 @@ do
 		self:Message(args.spellId, "yellow", CL.count_amount:format(args.spellName, infiniteHandCastCount, 4))
 		self:PlaySound(args.spellId, "alert")
 		infiniteHandCastCount = infiniteHandCastCount + 1
+		-- Dividing Strike can only be the first or third ability
 		if infiniteHandCastCount == 2 then
-			-- the first ability in the sequence will not be cast again, either of the other two
-			-- abilities can happen 8s after the first ability.
+			-- if Dividing Strike is the first ability there are two possible combinations:
+			-- Dividing Strike -> Titanic Blow -> Infinite Annihilation -> Titanic Blow
+			-- Dividing Strike -> Infinite Annihilation -> Titanic Blow -> Infinite Annihilation
 			firstInfiniteHandCast = args.spellId
 			self:CDBar(401248, 8.0) -- Titanic Blow
 			self:CDBar(401482, 8.0) -- Infinite Annihilation
-		elseif infiniteHandCastCount == 3 then
-			-- the second ability in the sequence will be the fourth ability as well
-			self:CDBar(args.spellId, 16.0)
-			-- the ability which was not the first or second ability will be the third ability
-			if firstInfiniteHandCast ~= 401248 then -- Titanic Blow
-				self:CDBar(401248, 8.0)
-			else -- Infinite Annihilation
-				self:CDBar(401482, 8.0)
-			end
-			firstInfiniteHandCast = nil
 		end
 	end
 end
