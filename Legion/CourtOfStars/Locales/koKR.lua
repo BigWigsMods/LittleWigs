@@ -52,22 +52,20 @@ if L then
 	L.spyFoundChat = "첩자 찾았어요!"
 	L.spyFoundPattern = "자, 너무 그렇게 다그치지 마십시오" -- 자, 너무 그렇게 다그치지 마십시오, [player] 님. 어디 조용한 곳으로 가서 다시 얘기해 보는 게 어떻겠습니까? 따라오시죠...
 
-	L.hints = {
-		"망토",
-		"망토 없음",
-		"주머니",
-		"물약",
-		"긴 소매",
-		"짧은 소매",
-		"장갑",
-		"장갑 없음",
-		"남자",
-		"여자",
-		"밝은색 조끼",
-		"어두운색 조끼",
-		"물약 없음",
-		"책",
-	}
+	L.hints[1] = "망토"
+	L.hints[2] = "망토 없음"
+	L.hints[3] = "주머니"
+	L.hints[4] = "물약"
+	L.hints[5] = "긴 소매"
+	L.hints[6] = "짧은 소매"
+	L.hints[7] = "장갑"
+	L.hints[8] = "장갑 없음"
+	L.hints[9] = "남자"
+	L.hints[10] = "여자"
+	L.hints[11] = "밝은색 조끼"
+	L.hints[12] = "어두운색 조끼"
+	L.hints[13] = "물약 없음"
+	L.hints[14] = "책"
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "koKR")

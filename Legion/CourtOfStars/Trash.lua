@@ -53,23 +53,8 @@ mod:RegisterEnableMob(
 --
 
 local knownClues, clueCount = {}, 0
-local englishSpyFound = "I found the spy!"
-local englishClueNames = {
-	"Cape",
-	"No Cape",
-	"Pouch",
-	"Potions",
-	"Long Sleeves",
-	"Short Sleeves",
-	"Gloves",
-	"No Gloves",
-	"Male",
-	"Female",
-	"Light Vest",
-	"Dark Vest",
-	"No Potions",
-	"Book",
-}
+local englishSpyFound
+local englishClueNames
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -128,11 +113,28 @@ if L then
 
 	L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
 	L.spyFound = "Spy found by %s!"
-	L.spyFoundChat = englishSpyFound
+	L.spyFoundChat = "I found the spy!"
 	L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	L.hints = englishClueNames
+	L.hints = {}
+	L.hints[1] = "Cape"
+	L.hints[2] = "No Cape"
+	L.hints[3] = "Pouch"
+	L.hints[4] = "Potions"
+	L.hints[5] = "Long Sleeves"
+	L.hints[6] = "Short Sleeves"
+	L.hints[7] = "Gloves"
+	L.hints[8] = "No Gloves"
+	L.hints[9] = "Male"
+	L.hints[10] = "Female"
+	L.hints[11] = "Light Vest"
+	L.hints[12] = "Dark Vest"
+	L.hints[13] = "No Potions"
+	L.hints[14] = "Book"
 end
+
+englishSpyFound = L.spyFoundChat
+englishClueNames = L.hints
 
 --------------------------------------------------------------------------------
 -- Initialization

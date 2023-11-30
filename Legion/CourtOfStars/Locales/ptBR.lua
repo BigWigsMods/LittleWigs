@@ -52,22 +52,20 @@ if L then
 	L.spyFoundChat = "Eu encontrei o espião!"
 	L.spyFoundPattern = "Ora, ora, não sejamos apressados" -- Ora, ora, não sejamos apressados, [playername]. Que tal me seguir e conversar em um local mais reservado...
 
-	L.hints =  {
-		"Capa",
-		"Sem capa",
-		"Bolsa",
-		"Poções",
-		"Mangas longas",
-		"Mangas curtas",
-		"Luvas",
-		"Sem luvas",
-		"Masculino",
-		"Feminino",
-		"Roupa clara",
-		"Roupa escura",
-		"Sem poções",
-		"Livro",
-	}
+	L.hints[1] = "Capa"
+	L.hints[2] = "Sem capa"
+	L.hints[3] = "Bolsa"
+	L.hints[4] = "Poções"
+	L.hints[5] = "Mangas longas"
+	L.hints[6] = "Mangas curtas"
+	L.hints[7] = "Luvas"
+	L.hints[8] = "Sem luvas"
+	L.hints[9] = "Masculino"
+	L.hints[10] = "Feminino"
+	L.hints[11] = "Roupa clara"
+	L.hints[12] = "Roupa escura"
+	L.hints[13] = "Sem poções"
+	L.hints[14] = "Livro"
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "ptBR")

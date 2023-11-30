@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.custom_on_time_lost = "Tempo perdido durante Desvanecer nas Sombras"
 	L.custom_on_time_lost_desc = "Mostra o tempo perdido durante o Desvanecer nas Sombras na barra em |cffff0000red|r."
+	--L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "ptBR")

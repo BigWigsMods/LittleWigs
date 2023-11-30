@@ -29,6 +29,7 @@ if L then
 	L.blastatron_x80 = "Devastatrônico X-80"
 	L.mechagon_mechanic = "Mecânico de Gnomecan"
 	L.workshop_defender = "Defensor da Oficina"
+	--L.junkyard_d0g = "Junkyard D.0.G."
 end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "ptBR")

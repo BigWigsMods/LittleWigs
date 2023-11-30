@@ -52,22 +52,20 @@ if L then
 	L.spyFoundChat = "Шпион найден!"
 	L.spyFoundPattern = "Ну-ну" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	L.hints = {
-		"С накидкой",
-		"Без накидки",
-		"Кошель",
-		"Зелья",
-		"Длинные рукава",
-		"Короткие рукава",
-		"В перчатках",
-		"Без перчаток",
-		"Мужчина",
-		"Женщина",
-		"Светлый жилет",
-		"Темный жилет",
-		"Без зелий",
-		"Книга",
-	}
+	L.hints[1] = "С накидкой"
+	L.hints[2] = "Без накидки"
+	L.hints[3] = "Кошель"
+	L.hints[4] = "Зелья"
+	L.hints[5] = "Длинные рукава"
+	L.hints[6] = "Короткие рукава"
+	L.hints[7] = "В перчатках"
+	L.hints[8] = "Без перчаток"
+	L.hints[9] = "Мужчина"
+	L.hints[10] = "Женщина"
+	L.hints[11] = "Светлый жилет"
+	L.hints[12] = "Темный жилет"
+	L.hints[13] = "Без зелий"
+	L.hints[14] = "Книга"
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "ruRU")

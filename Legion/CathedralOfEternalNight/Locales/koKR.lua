@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.custom_on_time_lost = "그림자 소실 단계 동안 잃어버린 시간"
 	L.custom_on_time_lost_desc = "그림자 소실 단계 동안 잃어버린 시간을 바에 |cffff0000붉은색|r으로 표시합니다."
+	--L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "koKR")

@@ -52,22 +52,20 @@ if L then
 	L.spyFoundChat = "间谍已找到，快来！"
 	L.spyFoundPattern = "喂喂，别急着下结论" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	L.hints = {
-		"斗篷",
-		"没斗篷",
-		"腰包",
-		"药水",
-		"长袖",
-		"短袖",
-		"手套",
-		"没手套",
-		"男性",
-		"女性",
-		"浅色上衣",
-		"深色上衣",
-		"没药水",
-		"带书",
-	}
+	L.hints[1] = "斗篷"
+	L.hints[2] = "没斗篷"
+	L.hints[3] = "腰包"
+	L.hints[4] = "药水"
+	L.hints[5] = "长袖"
+	L.hints[6] = "短袖"
+	L.hints[7] = "手套"
+	L.hints[8] = "没手套"
+	L.hints[9] = "男性"
+	L.hints[10] = "女性"
+	L.hints[11] = "浅色上衣"
+	L.hints[12] = "深色上衣"
+	L.hints[13] = "没药水"
+	L.hints[14] = "带书"
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "zhCN")

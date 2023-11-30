@@ -63,6 +63,8 @@ L = BigWigs:NewBossLocale("Archmage Xylem", "koKR")
 if L then
 	L.name = "대마법사 실렘"
 	L.corruptingShadows = "타락의 그림자"
+
+	--L.warmup_trigger1 = "You are too late, warrior! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!"
 end
 
 L = BigWigs:NewBossLocale("Agatha", "koKR")

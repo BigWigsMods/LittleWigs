@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.custom_on_time_lost = "Verlorene Zeit während Schattenverblassen"
 	L.custom_on_time_lost_desc = "Zeigt die verlorene Zeit während Schattenverblassen in der Leiste in |cffff0000red|r."
+	--L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "deDE")
