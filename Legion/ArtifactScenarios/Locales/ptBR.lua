@@ -64,7 +64,8 @@ if L then
 	L.name = "Arquimago Tauriel"
 	L.corruptingShadows = "Sombras Corruptoras"
 
-	--L.warmup_trigger1 = "You are too late, warrior! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!"
+	--L.warmup_trigger1 = "With the Focusing Iris under my control" -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
+	--L.warmup_trigger2 = "Drained of magic, your world will be ripe" -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
 end
 
 L = BigWigs:NewBossLocale("Agatha", "ptBR")

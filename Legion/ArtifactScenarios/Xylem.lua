@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -38,8 +37,8 @@ if L then
 	L.name = "Archmage Xylem"
 	L.corruptingShadows = "Corrupting Shadows"
 
-	L.warmup_trigger1 = "You are too late, warrior! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!"
-	-- L.warmup_trigger2 = "Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!"
+	L.warmup_trigger1 = "With the Focusing Iris under my control" -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
+	L.warmup_trigger2 = "Drained of magic, your world will be ripe" -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
 end
 
 --------------------------------------------------------------------------------
@@ -128,15 +127,19 @@ end
 -- Archmage Xylem
 
 function mod:Warmup(event, msg)
-	if msg == L.warmup_trigger1 then
+	if msg:find(L.warmup_trigger1, nil, true) then
 		self:UnregisterEvent(event)
-		self:Bar("warmup", 28, CL.active, "spell_mage_focusingcrystal")
+		self:Bar("warmup", 27.6, CL.active, "spell_mage_focusingcrystal")
+	elseif msg:find(L.warmup_trigger2, nil, true) then
+		self:UnregisterEvent(event)
+		self:Bar("warmup", 13.3, CL.active, "spell_mage_focusingcrystal")
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 242015 then -- Blink
 		local spellName = self:SpellName(spellId)
+		self:StopBar(blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
 		self:MessageOld(242015, "yellow", nil, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
 		blinkCount = blinkCount + 1
 		self:CDBar(242015, 26, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
