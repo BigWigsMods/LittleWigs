@@ -64,8 +64,8 @@ if L then
 	L.name = "大法师克希雷姆"
 	L.corruptingShadows = "腐蚀暗影"
 
-	--L.warmup_trigger1 = "With the Focusing Iris under my control" -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
-	--L.warmup_trigger2 = "Drained of magic, your world will be ripe" -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
+	L.warmup_trigger1 = "掌握了聚焦之虹" -- 你太迟了，恶魔猎手！掌握了聚焦之虹，我就能直接从艾泽拉斯的魔网中抽取奥术能量来强化自身的法力！
+	L.warmup_trigger2 = "被抽干魔力后，我的恶魔主人" -- 被抽干魔力后，我的恶魔主人就能占领你们的世界……我也将获得无穷的力量！
 end
 
 L = BigWigs:NewBossLocale("Agatha", "zhCN")
