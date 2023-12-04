@@ -8,7 +8,7 @@ L = BigWigs:NewBossLocale("The Everbloom Trash", "ptBR")
 if L then
 	L.dreadpetal = "Medônia"
 	L.everbloom_naturalist = "Naturalista de Floretérnia"
-	--L.everbloom_cultivator = "Everbloom Cultivator"
+	L.everbloom_cultivator = "Cultivador de Floretérnia"
 	L.rockspine_stinger = "Aguilhoador Costapedra"
 	L.everbloom_mender = "Reparador de Floretérnia"
 	L.gnarlroot = "Rugirraiz"
