@@ -131,6 +131,7 @@ function mod:GetOptions()
 		{418200, "DISPEL"}, -- Infinite Burn
 		-- Time-Lost Waveshaper
 		411300, -- Fish Bolt Volley
+		411407, -- Bubbly Barrage
 		-- Time-Lost Aerobot
 		412156, -- Bombing Run
 		412200, -- Electro-Juiced Gigablast
@@ -153,6 +154,7 @@ function mod:GetOptions()
 		407125, -- Sundering Slam
 		-- Infinite Timebender
 		412378, -- Dizzying Sands
+		411952, -- Millenium Aid
 	}, {
 		-- General
 		["custom_on_rift_autotalk"] = CL.general,
@@ -263,6 +265,7 @@ function mod:OnBossEnable()
 
 	-- Time-Lost Waveshaper
 	self:Log("SPELL_CAST_START", "FishBoltVolley", 411300)
+	self:Log("SPELL_CAST_START", "BubblyBarrage", 411407)
 
 	-- Time-Lost Aerobot
 	self:Log("SPELL_CAST_START", "BombingRun", 412156)
@@ -296,6 +299,7 @@ function mod:OnBossEnable()
 
 	-- Infinite Timebender
 	self:Log("SPELL_CAST_START", "DizzyingSands", 412378)
+	self:Log("SPELL_CAST_START", "MillenniumAid", 411952)
 end
 
 --------------------------------------------------------------------------------
@@ -627,6 +631,12 @@ function mod:FishBoltVolley(args)
 	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
 end
 
+function mod:BubblyBarrage(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "long")
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+end
+
 -- Time-Lost Aerobot
 
 function mod:BombingRun(args)
@@ -767,4 +777,9 @@ function mod:DizzyingSands(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 	--self:NameplateCDBar(args.spellId, 29.1, args.sourceGUID)
+end
+
+function mod:MillenniumAid(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
