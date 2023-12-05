@@ -42,6 +42,7 @@ function mod:GetOptions()
 		198641, -- Whirling Blade
 		198820, -- Dark Blast
 		-- Stage Two: Vengeance of the Ancients
+		199368, -- Legacy of the Ravencrest
 		{201733, "SAY"}, -- Stinging Swarm
 		stingingSwarmMarker,
 		199143, -- Cloud of Hypnosis
@@ -62,6 +63,7 @@ function mod:OnBossEnable()
 	self:Death("KurtalosDeath", 98965)
 
 	-- Stage Two: Vengeance of the Ancients
+	self:Log("SPELL_CAST_SUCCESS", "LegacyOfTheRavencrest", 199368)
 	self:Log("SPELL_CAST_START", "StingingSwarm", 201733)
 	self:Log("SPELL_AURA_APPLIED", "StingingSwarmApplied", 201733)
 	self:Log("SPELL_CAST_START", "CloudOfHypnosis", 199143)
@@ -125,11 +127,18 @@ function mod:KurtalosDeath()
 	if not self:Normal() then
 		self:CDBar(201733, 22.3) -- Stinging Swarm
 	end
+	self:CDBar(199368, 22.7) -- Legacy of the Ravencrest
 	self:CDBar(199143, 27.2) -- Cloud of Hypnosis
 	self:CDBar(199193, 38.2) -- Dreadlord's Guile
 end
 
 -- Stage Two: Vengeance of the Ancients
+
+function mod:LegacyOfTheRavencrest(args)
+	self:StopBar(args.spellId)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
+end
 
 function mod:StingingSwarm(args)
 	self:CDBar(args.spellId, 17.0)

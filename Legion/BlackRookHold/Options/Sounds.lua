@@ -32,6 +32,7 @@ BigWigs:AddSounds("Kurtalos Ravencrest", {
 	[198820] = "alarm",
 	[199143] = "info",
 	[199193] = "long",
+	[199368] = "info",
 	[201733] = "alert",
 	[202019] = {"alert","warning"},
 	["stages"] = "long",
