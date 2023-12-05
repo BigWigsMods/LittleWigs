@@ -10,6 +10,7 @@ if L then
 	L.timestream_anomaly = "Anomalía de la línea temporal"
 	L.infinite_infiltrator = "Infiltrado del Infinito"
 	L.risen_dragon = "Dragón resucitado"
+	L.iridikrons_creation = "Creación de Iridikron"
 
 	--L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
 

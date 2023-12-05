@@ -10,6 +10,7 @@ if L then
 	L.timestream_anomaly = "时流畸体"
 	L.infinite_infiltrator = "永恒渗透者"
 	L.risen_dragon = "复生的巨龙"
+	L.iridikrons_creation = "伊律迪孔的造物"
 
 	L.iridikron_warmup_trigger = "没想到泰坦的傀儡居然要挑战我。"
 

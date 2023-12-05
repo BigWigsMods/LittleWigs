@@ -16,6 +16,7 @@ mod:RegisterEnableMob(
 	199749, -- Timestream Anomaly
 	206214, -- Infinite Infiltrator
 	205804, -- Risen Dragon
+	205691, -- Iridikron's Creation
 
 	------ Murozond's Rise ------
 	201223, -- Infinite Twilight Magus
@@ -55,6 +56,7 @@ if L then
 	L.timestream_anomaly = "Timestream Anomaly"
 	L.infinite_infiltrator = "Infinite Infiltrator"
 	L.risen_dragon = "Risen Dragon"
+	L.iridikrons_creation = "Iridikron's Creation"
 
 	L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
 
@@ -111,6 +113,8 @@ function mod:GetOptions()
 		413622, -- Infinite Fury
 		-- Risen Dragon
 		412806, -- Blight Spew
+		-- Iridikron's Creation
+		411958, -- Stonebolt
 
 		------ Murozond's Rise ------
 		-- Infinite Twilight Magus
@@ -169,6 +173,7 @@ function mod:GetOptions()
 		[413529] = L.timestream_anomaly,
 		[413621] = L.infinite_infiltrator,
 		[412806] = L.risen_dragon,
+		[411958] = L.iridikrons_creation,
 
 		------ Murozond's Rise ------
 		[413607] = L.infinite_twilight_magus,
@@ -229,6 +234,9 @@ function mod:OnBossEnable()
 
 	-- Risen Dragon
 	self:Log("SPELL_CAST_START", "BlightSpew", 412806)
+
+	-- Iridikron's Creation
+	self:Log("SPELL_CAST_START", "Stonebolt", 411958)
 
 	------ Murozond's Rise ------
 
@@ -353,7 +361,6 @@ end
 -- Epoch Ripper
 
 function mod:Timerip(args)
-	-- TODO get teleport target somehow? there is no SPELL_CAST_SUCCESS
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 34.0, args.sourceGUID)
@@ -462,6 +469,20 @@ function mod:BlightSpew(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
+end
+
+-- Iridikron's Creation
+
+do
+	local prev = 0
+	function mod:Stonebolt(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 ------ Murozond's Rise ------

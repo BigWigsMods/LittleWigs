@@ -10,6 +10,7 @@ if L then
 	L.timestream_anomaly = "Zeitstromanomalie"
 	L.infinite_infiltrator = "Ewiger Infiltrator"
 	L.risen_dragon = "Erweckter Drache"
+	L.iridikrons_creation = "Iridikrons Schöpfung"
 
 	L.iridikron_warmup_trigger = "Die Marionetten wollen sich mir also stellen."
 

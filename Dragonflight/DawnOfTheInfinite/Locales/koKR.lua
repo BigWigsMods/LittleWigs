@@ -10,6 +10,7 @@ if L then
 	L.timestream_anomaly = "시간의 흐름 변형물"
 	L.infinite_infiltrator = "무한의 침투요원"
 	L.risen_dragon = "되살아난 용"
+	L.iridikrons_creation = "이리디크론의 창조물"
 
 	--L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
 
