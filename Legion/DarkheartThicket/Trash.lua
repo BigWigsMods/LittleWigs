@@ -330,7 +330,7 @@ function mod:BloodAssault(args)
 end
 
 function mod:BloodBomb(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 end
 
