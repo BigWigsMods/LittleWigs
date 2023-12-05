@@ -50,6 +50,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DarkRushApplied", 197478)
 	self:Log("SPELL_AURA_REMOVED", "DarkRushRemoved", 197478)
 	self:Log("SPELL_CAST_START", "BrutalGlaive", 197546)
+	self:Log("SPELL_CAST_SUCCESS", "BrutalGlaiveSuccess", 197546)
 
 	-- Stage Two: Fury
 	self:Log("SPELL_CAST_SUCCESS", "EyeBeams", 197687)
@@ -173,13 +174,18 @@ do
 
 	function mod:BrutalGlaive(args)
 		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
-		brutalGlaiveRemaining = brutalGlaiveRemaining - 1
-		if brutalGlaiveRemaining > 0 then
+		-- only decrement brutalGlaiveRemaining in SUCCESS as this will just be recast if the target
+		-- uses invisibility/vanish/etc
+		if brutalGlaiveRemaining > 1 then
 			self:CDBar(args.spellId, 14.5)
 		else
 			self:StopBar(args.spellId)
 		end
 	end
+end
+
+function mod:BrutalGlaiveSuccess(args)
+	brutalGlaiveRemaining = brutalGlaiveRemaining - 1
 end
 
 -- Stage Two: Fury
