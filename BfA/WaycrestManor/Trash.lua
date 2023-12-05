@@ -464,9 +464,16 @@ end
 
 -- Faceless Maiden
 
-function mod:HorrificVisage(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:HorrificVisage(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 -- Marked Sister
