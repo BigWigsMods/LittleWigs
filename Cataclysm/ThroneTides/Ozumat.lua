@@ -144,7 +144,7 @@ do
 		self:TargetsMessage(args.spellId, "red", playerList, 3)
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Blotting Barrage")
 		end
 	end
 end

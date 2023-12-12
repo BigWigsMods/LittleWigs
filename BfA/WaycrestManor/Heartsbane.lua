@@ -111,7 +111,7 @@ end
 
 function mod:UnstableRunicMarkApplied(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Unstable Runic Mark")
 		self:SayCountdown(args.spellId, 6)
 	end
 end

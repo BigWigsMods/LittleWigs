@@ -65,7 +65,7 @@ do
 		end
 		if self:Me(args.destGUID) then
 			-- The circle is applied on you and you can run away and position it
-			self:Say(args.spellId, CL.leap) -- Eon Shatter
+			self:Say(args.spellId, CL.leap, nil, "Leap") -- Eon Shatter
 			self:SayCountdown(args.spellId, 5)
 		end
 	end

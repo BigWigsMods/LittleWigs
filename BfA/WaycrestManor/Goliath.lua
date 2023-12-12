@@ -57,7 +57,7 @@ end
 
 function mod:SoulThornsApplied(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Soul Thorns")
 	end
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)

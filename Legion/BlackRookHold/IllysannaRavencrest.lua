@@ -151,7 +151,7 @@ do
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		self:TargetsMessage(args.spellId, "red", playerList, 3)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Dark Rush")
 			self:SayCountdown(args.spellId, 6)
 		end
 	end
@@ -168,7 +168,7 @@ do
 		self:TargetMessage(197546, "yellow", name)
 		self:PlaySound(197546, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(197546)
+			self:Say(197546, nil, nil, "Brutal Glaive")
 		end
 	end
 
@@ -194,7 +194,7 @@ function mod:EyeBeams(args)
 	self:TargetMessage(197696, "red", args.destName)
 	self:PlaySound(197696, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(197696)
+		self:Say(197696, nil, nil, "Eye Beams")
 	end
 	eyeBeamsRemaining = eyeBeamsRemaining - 1
 	if eyeBeamsRemaining > 0 then

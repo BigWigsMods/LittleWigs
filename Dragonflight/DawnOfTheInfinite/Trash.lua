@@ -385,7 +385,7 @@ do
 		self:TargetsMessage(415769, "yellow", playerList, 2, nil, nil, .5)
 		self:PlaySound(415769, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(415769)
+			self:Say(415769, nil, nil, "Chronoburst")
 		end
 	end
 end

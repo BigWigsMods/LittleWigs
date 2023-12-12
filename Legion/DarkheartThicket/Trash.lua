@@ -223,7 +223,7 @@ end
 
 function mod:NightmareToxinApplied(args)
 	if self:Me(args.destGUID) and self:MythicPlus() then -- avoid spamming in trivial difficulties
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Nightmare Toxin")
 	end
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
@@ -354,7 +354,7 @@ function mod:CurseOfIsolation(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Curse of Isolation")
 	end
 end
 

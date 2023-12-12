@@ -72,7 +72,7 @@ function mod:HatefulGaze(args)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Hateful Gaze")
 	end
 	hatefulGazeCount = hatefulGazeCount + 1
 	self:CDBar(args.spellId, 25.5, CL.count:format(args.spellName, hatefulGazeCount))
@@ -104,7 +104,7 @@ function mod:FelVomit(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Fel Vomit")
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end

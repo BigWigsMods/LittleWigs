@@ -227,7 +227,7 @@ function mod:SoulEchoesApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Soul Echoes")
 	end
 end
 

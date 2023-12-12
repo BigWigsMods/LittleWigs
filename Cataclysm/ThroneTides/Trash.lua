@@ -220,7 +220,7 @@ function mod:LightningSurgeApplied(args)
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		if onMe then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Lightning Surge")
 		end
 	end
 	-- if this is uncommented, move to SPELL_CAST_SUCCESS

@@ -73,7 +73,7 @@ function mod:Bladestorm(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:CDBar(args.spellId, 35.2)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Bladestorm")
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	else
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)

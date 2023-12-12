@@ -54,7 +54,7 @@ do
 		self:TargetsMessage(405696, "orange", playerList, 2)
 		self:PlaySound(405696, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(405696)
+			self:Say(405696, nil, nil, "Chronofaded")
 			-- ticks 4x as fast when standing in Accelerating Time so can't really do a countdown
 		end
 	end

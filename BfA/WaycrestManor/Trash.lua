@@ -332,7 +332,7 @@ do
 		self:TargetMessage(264038, "orange", name) -- Uproot
 		self:PlaySound(264038, "alarm", nil, name) -- Uproot
 		if self:Me(guid) then
-			self:Say(264038) -- Uproot
+			self:Say(264038, nil, nil, "Uproot") -- Uproot
 		end
 	end
 
@@ -482,7 +482,7 @@ function mod:RunicMarkApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Runic Mark")
 		self:SayCountdown(args.spellId, 6)
 	end
 end
@@ -504,7 +504,7 @@ function mod:DreadMarkApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Dread Mark")
 		self:SayCountdown(args.spellId, 6)
 	end
 end

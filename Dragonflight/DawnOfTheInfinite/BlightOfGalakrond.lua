@@ -155,7 +155,7 @@ function mod:CorrosionApplied(args)
 		self:TargetBar(args.spellId, 15, args.destName)
 	end
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Corrosion")
 		if self:Mythic() then
 			self:YellCountdown(args.spellId, 15, nil, 5)
 		end
@@ -244,7 +244,7 @@ do
 			self:PlaySound(408029, "info", nil, args.destName)
 		end
 		if self:Me(args.destGUID) then
-			self:Say(408029)
+			self:Say(408029, nil, nil, "Necrofrost")
 		end
 		necrofrostGUID = args.sourceGUID
 		self:RegisterTargetEvents("MarkNecrofrost")
@@ -266,7 +266,7 @@ do
 		self:TargetMessage(408141, "orange", name)
 		self:PlaySound(408141, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(408141)
+			self:Say(408141, nil, nil, "Incinerating Blightbreath")
 		end
 		incineratingBlightbreathCount = incineratingBlightbreathCount + 1
 		if incineratingBlightbreathCount % 3 == 1 then -- 4, 7...

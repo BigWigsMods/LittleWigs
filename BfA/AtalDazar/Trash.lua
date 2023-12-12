@@ -168,7 +168,7 @@ do
 		self:TargetMessage(255567, "orange", name)
 		self:PlaySound(255567, "alarm", "watchstep", name)
 		if self:Me(guid) then
-			self:Say(255567)
+			self:Say(255567, nil, nil, "Frenzied Charge")
 		end
 	end
 
@@ -208,7 +208,7 @@ do
 			prev = t
 			self:PersonalMessage(args.spellId)
 			self:PlaySound(args.spellId, "alarm", "moveout")
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Unstable Hex")
 			self:SayCountdown(args.spellId, 5)
 		end
 	end

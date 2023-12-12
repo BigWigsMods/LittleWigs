@@ -233,7 +233,7 @@ do
 		end
 		if onMe and t - prevSay > 3 then
 			prevSay = t
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Venom Burst")
 		end
 	end
 end

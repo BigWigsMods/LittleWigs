@@ -140,7 +140,7 @@ do
 				self:PlaySound(204611, "alarm", nil, name)
 			end
 			if self:Me(guid) then
-				self:Say(204611, L.throw)
+				self:Say(204611, L.throw, nil, "Throw")
 			end
 		end
 		pickedUpPlayerGUID = nil

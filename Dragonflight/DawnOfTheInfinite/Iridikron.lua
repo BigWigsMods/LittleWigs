@@ -72,7 +72,7 @@ function mod:ExtinctionBlast(args)
 	self:TargetMessage(409261, "orange", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(409261, "warning", nil, args.destName)
-		self:Say(409261)
+		self:Say(409261, nil, nil, "Extinction Blast")
 	else
 		self:PlaySound(409261, "alert", nil, args.destName)
 	end
@@ -122,7 +122,7 @@ function mod:PulverizingCreationsApplied(args)
 	-- happens simultaneously with Pulverizing Exhalation
 	-- affects 0 players in Heroic, 2 players in Mythic+, all players in hard mode
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, CL.spawning:format(CL.add))
+		self:Say(args.spellId, CL.spawning:format(CL.add), nil, "Add Spawning")
 	end
 end
 

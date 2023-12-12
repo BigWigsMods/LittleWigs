@@ -129,7 +129,7 @@ do
 
 	function mod:VirulentPathogenApplied(args)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Virulent Pathogen")
 			self:SayCountdown(args.spellId, 5)
 		end
 		playerList[#playerList + 1] = args.destName

@@ -66,7 +66,7 @@ do
 		self:TargetMessage(200289, "orange", player)
 		self:PlaySound(200289, "alarm", nil, player)
 		if self:Me(guid) then
-			self:Say(200289)
+			self:Say(200289, nil, nil, "Growing Paranoia")
 		end
 	end
 
@@ -74,14 +74,14 @@ do
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 27.9)
 	end
+end
 
-	function mod:GrowingParanoiaApplied(args)
-		self:PrimaryIcon(args.spellId, args.destName)
-	end
+function mod:GrowingParanoiaApplied(args)
+	self:PrimaryIcon(args.spellId, args.destName)
+end
 
-	function mod:GrowingParanoiaRemoved(args)
-		self:PrimaryIcon(args.spellId)
-	end
+function mod:GrowingParanoiaRemoved(args)
+	self:PrimaryIcon(args.spellId)
 end
 
 function mod:FeedOnTheWeak(args)
@@ -109,7 +109,7 @@ end
 
 function mod:WakingNightmareApplied(args)
 	if self:Me(args.destGUID) then
-		self:Yell(args.spellId)
+		self:Yell(args.spellId, nil, nil, "Waking Nightmare")
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alarm")
 	end

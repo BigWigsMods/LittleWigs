@@ -129,7 +129,7 @@ do
 		self:TargetMessage(428054, "red", name)
 		self:PlaySound(428054, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(428054)
+			self:Say(428054, nil, nil, "Shock Blast")
 		end
 	end
 

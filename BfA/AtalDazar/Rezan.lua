@@ -74,7 +74,7 @@ do
 				prev = t
 				self:PersonalMessage(257407)
 				self:PlaySound(257407, "alarm", "runaway", destName)
-				self:Say(257407)
+				self:Say(257407, nil, nil, "Pursuit")
 			end
 		end
 	end
@@ -87,7 +87,7 @@ do
 			self:TargetMessage(257407, "orange", name)
 			if self:Me(guid) then
 				self:PlaySound(257407, "alarm", "runaway", name)
-				self:Say(257407)
+				self:Say(257407, nil, nil, "Pursuit")
 			else
 				self:PlaySound(257407, "alert", nil, name)
 			end

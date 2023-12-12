@@ -148,7 +148,7 @@ function mod:StingingSwarmApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Stinging Swarm")
 	end
 	-- register events to auto-mark Stinging Swarm
 	if self:GetOption(stingingSwarmMarker) then
