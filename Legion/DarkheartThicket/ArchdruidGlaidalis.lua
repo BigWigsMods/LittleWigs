@@ -90,7 +90,7 @@ function mod:PrimalRampage(args)
 	end
 	if nextGrievousLeap - t < 5.8 then
 		nextGrievousLeap = t + 5.8
-		self:CDBar(196354, {5.8, 13.4}) -- Grievous Leap
+		self:CDBar(196354, {5.8, 12.0}) -- Grievous Leap
 	end
 end
 
@@ -117,7 +117,7 @@ do
 			end
 			if nextGrievousLeap - t < 2.43 then
 				nextGrievousLeap = t + 2.43
-				self:CDBar(196354, {2.43, 13.4}) -- Grievous Leap
+				self:CDBar(196354, {2.43, 12.0}) -- Grievous Leap
 			end
 			if self:Mythic() and self:GetOption(nightmareAbominationMarker) then
 				-- register events to auto-mark the adds
@@ -166,8 +166,8 @@ function mod:GrievousLeap(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 	local t = GetTime()
-	nextGrievousLeap = t + 13.4
-	self:CDBar(args.spellId, 13.4)
+	nextGrievousLeap = t + 12.0
+	self:CDBar(args.spellId, 12.0)
 	if nextPrimalRampage - t < 5.38 then
 		nextPrimalRampage = t + 5.38
 		self:CDBar(198379, {5.38, primalRampageCD}) -- Primal Rampage
