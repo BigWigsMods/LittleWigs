@@ -151,6 +151,14 @@ end
 -- Stage 2: Lord of the Infinite
 
 function mod:InfiniteCorruption(args)
+	if self:GetStage() == 1 then
+		-- rarely a UNIT_DIED will not be logged for Infinite Keeper, so the stage will never
+		-- be incremented. this check ensures that the stage 2 timers will be used for other
+		-- abilities if Infinite Corruption (the first stage 2 ability) is ever cast while
+		-- the module is still in stage 1.
+		self:SetStage(2)
+		self:CDBar(416139, 11.8) -- Temporal Breath
+	end
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	infiniteCorruptionCount = infiniteCorruptionCount + 1
