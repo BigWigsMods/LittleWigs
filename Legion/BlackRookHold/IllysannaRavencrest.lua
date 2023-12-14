@@ -213,6 +213,9 @@ do
 	local blitzTracker = {}
 
 	function mod:ArcaneBlitz(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local amount = blitzTracker[args.sourceGUID] or 0
 		local _, interruptReady = self:Interrupter()
 		if interruptReady or (self:Dispeller("magic") and amount >= 2) then
