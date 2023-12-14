@@ -181,6 +181,9 @@ end
 do
 	local prev = 0
 	function mod:SoulBlade(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
@@ -193,6 +196,9 @@ end
 do
 	local prev = 0
 	function mod:SoulBladeApplied(args)
+		if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
+			return
+		end
 		local t = args.time
 		if t - prev > 3 and (self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID)) then
 			prev = t
@@ -205,7 +211,7 @@ end
 -- Ghostly Protector
 
 function mod:SacrificeSoul(args)
-	self:Message(args.spellId, "cyan", CL.on:format(args.spellName, args.sourceName))
+	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -278,6 +284,9 @@ end
 do
 	local prev = 0
 	function mod:KnifeDance(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -307,6 +316,9 @@ do
 	local blitzTracker = {}
 
 	function mod:ArcaneBlitz(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local amount = blitzTracker[args.sourceGUID] or 0
 		local _, interruptReady = self:Interrupter()
 		if interruptReady or (self:Dispeller("magic") and amount >= 2) then
@@ -389,6 +401,9 @@ end
 do
 	local prev = 0
 	function mod:CoupDeGrace(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
@@ -403,6 +418,9 @@ end
 do
 	local prev = 0
 	function mod:RavensDive(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
