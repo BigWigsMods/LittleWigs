@@ -79,10 +79,8 @@ function mod:GetOptions()
 		264390, -- Spellbind
 		-- Coven Thornshaper
 		264050, -- Infected Thorn
-		278474, -- Effigy Reconstruction
 		{264038, "SAY"}, -- Uproot
 		-- Thornguard
-		264556, -- Tearing Strike
 		264150, -- Shatter
 		-- Matron Bryndle
 		265759, -- Splinter Spike
@@ -119,7 +117,7 @@ function mod:GetOptions()
 		[263891] = L.heartsbane_vinetwister,
 		[264396] = L.runic_disciple,
 		[264050] = L.coven_thornshaper,
-		[264556] = L.thornguard,
+		[264150] = L.thornguard,
 		[265759] = L.matron_bryndle,
 		[278444] = L.devouring_maggot,
 		[271174] = L.pallid_gorger,
@@ -162,11 +160,9 @@ function mod:OnBossEnable()
 
 	-- Coven Thornshaper
 	self:Log("SPELL_CAST_START", "InfectedThorn", 264050)
-	self:Log("SPELL_CAST_START", "EffigyReconstruction", 278474)
 	self:Log("SPELL_CAST_START", "Uproot", 264038)
 
 	-- Thornguard
-	self:Log("SPELL_AURA_APPLIED", "TearingStrike", 264556)
 	self:Log("SPELL_CAST_START", "Shatter", 264150)
 
 	-- Matron Bryndle
@@ -322,11 +318,6 @@ do
 	end
 end
 
-function mod:EffigyReconstruction(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
-end
-
 do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(264038, "orange", name) -- Uproot
@@ -342,21 +333,6 @@ do
 end
 
 -- Thornguard
-
-do
-	local prev = 0
-	function mod:TearingStrike(args)
-		-- TODO seems to just go on tank, very frequently, probably just remove this
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 1.5 then
-				prev = t
-				self:PersonalMessage(args.spellId)
-				self:PlaySound(args.spellId, "alert")
-			end
-		end
-	end
-end
 
 do
 	local prev = 0

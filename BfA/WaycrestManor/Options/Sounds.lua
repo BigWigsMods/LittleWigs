@@ -57,7 +57,6 @@ BigWigs:AddSounds("Waycrest Manor Trash", {
 	[264456] = "alert",
 	[264520] = "alert",
 	[264525] = "alarm",
-	[264556] = "alert",
 	[265346] = "alarm",
 	[265352] = "alarm",
 	[265368] = "alert",
@@ -72,5 +71,4 @@ BigWigs:AddSounds("Waycrest Manor Trash", {
 	[266036] = "alert",
 	[271174] = "alarm",
 	[278444] = "warning",
-	[278474] = "alert",
 })
