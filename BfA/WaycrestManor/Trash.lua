@@ -244,6 +244,9 @@ end
 -- Thistle Acolyte
 
 function mod:DrainEssence(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -265,6 +268,9 @@ end
 -- Dreadwing Raven
 
 function mod:PallidGlare(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -295,11 +301,17 @@ end
 -- Runic Disciple
 
 function mod:SpectralTalisman(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Spellbind(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
@@ -309,6 +321,9 @@ end
 do
 	local prev = 0
 	function mod:InfectedThorn(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -328,6 +343,9 @@ do
 	end
 
 	function mod:Uproot(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
@@ -382,10 +400,13 @@ end
 do
 	local prev = 0
 	function mod:Retch(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange") -- TODO purple?
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -417,6 +438,8 @@ end
 do
 	local prev = 0
 	function mod:ShrapnelTrap(args)
+		-- these NPCs can be mind-controlled by Priests and this ability can be cast,
+		-- but don't suppress alerts as the traps still only harm players.
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -443,6 +466,9 @@ end
 do
 	local prev = 0
 	function mod:HorrificVisage(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
