@@ -155,6 +155,9 @@ function mod:HexApplied(args)
 end
 
 function mod:HealingWave(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 3.6, args.sourceGUID)
@@ -216,7 +219,8 @@ end
 
 function mod:LightningSurgeApplied(args)
 	local onMe = self:Me(args.destGUID)
-	if onMe or self:Dispeller("magic", nil, args.spellId) then
+	-- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
+	if onMe or (self:Player(args.destFlags) and self:Dispeller("magic", nil, args.spellId)) then
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		if onMe then
@@ -232,6 +236,9 @@ end
 do
 	local prev = 0
 	function mod:MindFlay(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -245,6 +252,8 @@ end
 do
 	local prev = 0
 	function mod:NullBlast(args)
+		-- these NPCs can be mind-controlled by Priests and this ability can be cast,
+		-- but don't suppress alerts as the ability still only harms players.
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
