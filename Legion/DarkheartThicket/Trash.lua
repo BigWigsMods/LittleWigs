@@ -231,9 +231,16 @@ end
 
 -- Crazed Razorbeak
 
-function mod:PropellingCharge(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:PropellingCharge(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Festerhide Grizzly
