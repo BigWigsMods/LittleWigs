@@ -11,6 +11,12 @@ if L then
 	L.tainted_sentry = "被感染的哨衛"
 end
 
+L = BigWigs:NewBossLocale("Lady Naz'jar", "zhTW")
+if L then
+	--L.high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!"
+	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
+end
+
 L = BigWigs:NewBossLocale("Ozumat", "zhTW")
 if L then
 	L.custom_on_autotalk = "自動對話"

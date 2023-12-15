@@ -11,6 +11,12 @@ if L then
 	L.tainted_sentry = "Avizor corrupto"
 end
 
+L = BigWigs:NewBossLocale("Lady Naz'jar", "esES") or BigWigs:NewBossLocale("Lady Naz'jar", "esMX")
+if L then
+	--L.high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!"
+	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
+end
+
 L = BigWigs:NewBossLocale("Ozumat", "esES") or BigWigs:NewBossLocale("Ozumat", "esMX")
 if L then
 	--L.custom_on_autotalk = "Autotalk"

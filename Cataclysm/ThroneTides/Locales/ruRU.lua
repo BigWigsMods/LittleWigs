@@ -11,6 +11,12 @@ if L then
 	L.tainted_sentry = "Опороченный часовой"
 end
 
+L = BigWigs:NewBossLocale("Lady Naz'jar", "ruRU")
+if L then
+	--L.high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!"
+	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
+end
+
 L = BigWigs:NewBossLocale("Ozumat", "ruRU")
 if L then
 	L.custom_on_autotalk = "Авторазговор"
