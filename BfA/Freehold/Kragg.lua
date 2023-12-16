@@ -31,7 +31,6 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:Log("SPELL_AURA_APPLIED", "EncounterEvent", 181089) -- XXX pre-10.2 Spawn Parrot compat
 	self:Log("SPELL_CAST_SUCCESS", "SpawnParrot", 256056)
 
 	-- Stage 1: Mounted Assault
@@ -56,13 +55,6 @@ end
 --
 
 -- Stages
-
-function mod:EncounterEvent() -- XXX pre-10.2 Spawn Parrot compat
-	self:SpawnParrot({
-		spellId = 256056,
-		spellName = self:SpellName(256056),
-	})
-end
 
 function mod:SpawnParrot(args)
 	self:Message(args.spellId, "cyan", CL.percent:format(75, args.spellName))
