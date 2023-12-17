@@ -13,8 +13,8 @@ end
 
 L = BigWigs:NewBossLocale("Lady Naz'jar", "zhTW")
 if L then
-	--L.high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!"
-	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
+	L.high_tide_trigger1 = "武裝吧，手下們!從冰冷的深海竄起!"
+	L.high_tide_trigger2 = "消滅這些入侵讓他們被渾沌黑暗吞噬!"
 end
 
 L = BigWigs:NewBossLocale("Ozumat", "zhTW")
