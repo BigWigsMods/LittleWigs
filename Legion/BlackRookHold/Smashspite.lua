@@ -23,10 +23,10 @@ local playersWithHatefulCharge = {}
 function mod:GetOptions()
 	return {
 		198073, -- Earthshaking Stomp
-		{198079, "SAY"}, -- Hateful Gaze
+		{198079, "SAY", "EMPHASIZE"}, -- Hateful Gaze
 		224188, -- Hateful Charge
 		{198245, "TANK_HEALER"}, -- Brutal Haymaker
-		{198446, "SAY"}, -- Fel Vomit
+		{198446, "SAY", "ME_ONLY"}, -- Fel Vomit
 	}
 end
 
@@ -64,9 +64,15 @@ end
 
 function mod:HatefulGaze(args)
 	self:StopBar(CL.count:format(args.spellName, hatefulGazeCount))
-	self:TargetMessage(args.spellId, "orange", args.destName, CL.count:format(args.spellName, hatefulGazeCount))
+	local hatefulChargeStacks = playersWithHatefulCharge[args.destName] or 0
+	-- include stack count of the targeted player in message:
+	-- 0 stacks: 1x Hateful Gaze: destName (no emphasis, alarm sound)
+	-- 1 stacks: 2x Hateful Gaze: destName (emphasize, warning sound)
+	-- 2 stacks: 3x Hateful Gaze: destName (emphasize, warning sound)
+	-- etc
+	self:StackMessage(args.spellId, "orange", args.destName, hatefulChargeStacks + 1, 2)
 	-- play warning sound if the targeted player already has the debuff
-	if playersWithHatefulCharge[args.destName] then
+	if hatefulChargeStacks > 0 then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	else
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
@@ -79,7 +85,7 @@ function mod:HatefulGaze(args)
 end
 
 function mod:HatefulChargeApplied(args)
-	playersWithHatefulCharge[args.destName] = true
+	playersWithHatefulCharge[args.destName] = args.amount or 1
 	if self:Me(args.destGUID) then
 		self:TargetBar(args.spellId, 60, args.destName)
 	end
@@ -89,7 +95,7 @@ function mod:HatefulChargeRemoved(args)
 	playersWithHatefulCharge[args.destName] = nil
 	if self:Me(args.destGUID) then
 		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
-		self:PlaySound(args.spellId, "info")
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 		self:StopBar(args.spellId, args.destName)
 	end
 end
