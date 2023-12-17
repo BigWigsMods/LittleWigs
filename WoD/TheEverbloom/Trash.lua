@@ -162,7 +162,8 @@ end
 
 function mod:DreadpetalPollenApplied(args)
 	-- stacks relatively quickly, only dispels with movement (or by kiting)
-	if args.amount >= 6 and args.amount % 3 == 0 and (self:Me(args.destGUID) or self:Dispeller("movement", nil, args.spellId)) then
+	-- can be applied to NPCs by mind-controlled mobs
+	if args.amount >= 6 and args.amount % 3 == 0 and (self:Me(args.destGUID) or (self:Player(args.destFlags) and self:Dispeller("movement", nil, args.spellId))) then
 		self:StackMessage(args.spellId, "purple", args.destName, args.amount, 9)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
@@ -173,6 +174,9 @@ end
 do
 	local prev = 0
 	function mod:ChokingVines(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -186,6 +190,9 @@ end
 do
 	local prev = 0
 	function mod:ChokingVinesApplied(args)
+		if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
+			return
+		end
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
@@ -204,6 +211,9 @@ end
 do
 	local prev = 0
 	function mod:EnragedGrowth(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -243,6 +253,9 @@ end
 do
 	local prev = 0
 	function mod:HealingWaters(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
