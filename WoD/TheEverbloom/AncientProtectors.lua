@@ -29,7 +29,7 @@ local toxicBloomCount = 1
 function mod:GetOptions()
 	return {
 		-- Life Warden Gola
-		168082, -- Revitalize
+		{168082, "DISPEL"}, -- Revitalize
 		{427498, "OFF"}, -- Torrential Fury
 		-- Earthshaper Telu
 		427459, -- Toxic Bloom
@@ -46,6 +46,7 @@ end
 function mod:OnBossEnable()
 	-- Life Warden Gola
 	self:Log("SPELL_CAST_START", "Revitalize", 168082)
+	self:Log("SPELL_AURA_APPLIED", "RevitalizeApplied", 168082)
 	self:Log("SPELL_CAST_START", "TorrentialFury", 427498)
 	self:Death("LifeWardenGolaDeath", 83892)
 
@@ -87,6 +88,13 @@ function mod:Revitalize(args)
 	else
 		-- will be delayed by Torrential Fury
 		self:CDBar(args.spellId, 31.6)
+	end
+end
+
+function mod:RevitalizeApplied(args)
+	if self:Dispeller("magic", true, args.spellId) then
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 
