@@ -80,6 +80,8 @@ if L then
 
 	L.custom_on_rift_autotalk = "Autotalk"
 	L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
+
+	L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
 end
 
 --------------------------------------------------------------------------------
@@ -323,6 +325,13 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		if iridikronModule then
 			iridikronModule:Enable()
 			iridikronModule:Warmup()
+		end
+	elseif msg == L.manifested_timeways_warmup_trigger then
+		-- Manifested Timeways warmup
+		local manifestedTimewaysModule = BigWigs:GetBossModule("Manifested Timeways", true)
+		if manifestedTimewaysModule then
+			manifestedTimewaysModule:Enable()
+			manifestedTimewaysModule:Warmup()
 		end
 	end
 end

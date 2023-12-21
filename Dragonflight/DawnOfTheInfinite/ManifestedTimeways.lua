@@ -14,6 +14,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		{405696, "SAY"}, -- Chrono-faded
 		405431, -- Fragments of Time
 		414303, -- Unwind
@@ -40,6 +41,17 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup()
+	-- triggered from trash module on CHAT_MSG_MONSTER_YELL
+	-- 11.22 [CLEU] SPELL_AURA_REMOVED#Creature-198996#Manifested Timeways#413329#Sand Zone
+	-- 12.85 [CHAT_MSG_MONSTER_YELL] Even the Aspect of Time cannot be allowed to disrupt the timeways!#Manifested Timeways
+	-- 25.01 [UNIT_SPELLCAST_SUCCEEDED] Manifested Timeways -Timeways- [417483]
+	-- 26.24 [UNIT_SPELLCAST_SUCCEEDED] Manifested Timeways -Anchor Here- [45313]
+	-- 26.24 [UNIT_SPELLCAST_SUCCEEDED] Manifested Timeways -Timeways- [415269]
+	-- 26.24 [ENCOUNTER_START] 2667#Manifested Timeways
+	self:Bar("warmup", 13.4, CL.active, "spell_holy_borrowedtime")
+end
 
 do
 	local playerList = {}

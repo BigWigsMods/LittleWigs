@@ -34,4 +34,6 @@ if L then
 
 	L.custom_on_rift_autotalk = "자동 대화"
 	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
+
+	--L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
 end

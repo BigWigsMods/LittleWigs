@@ -34,4 +34,6 @@ if L then
 
 	L.custom_on_rift_autotalk = "自动对话"
 	L.custom_on_rift_autotalk_desc = "立即开始引导裂隙稳定度来打开时光裂隙。"
+
+	--L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
 end

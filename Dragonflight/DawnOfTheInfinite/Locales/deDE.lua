@@ -34,4 +34,6 @@ if L then
 
 	L.custom_on_rift_autotalk = "Automatisch ansprechen"
 	L.custom_on_rift_autotalk_desc = "Sofort den Temporalriss öffnen lassen."
+
+	--L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
 end
