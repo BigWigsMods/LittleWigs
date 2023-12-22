@@ -42,7 +42,7 @@ function mod:OnEngage()
 	self:CDBar(401421, 7.2, CL.pools) -- Sand Stomp
 	-- cast at 100 energy
 	self:CDBar(413142, 19.3, CL.leap) -- Eon Shatter
-	self:CDBar(413013, 48.4) -- Chronoshear
+	self:CDBar(413013, 43.8) -- Chronoshear
 end
 
 --------------------------------------------------------------------------------
@@ -52,16 +52,16 @@ end
 do
 	local prev = 0
 	function mod:EonShatterApplied(args)
-		-- this ability is always cast 3 times in a row
-		-- first cast is on the floor near the boss, but the remaining 2 will target players, and can be positioned
+		-- this ability is always cast 2 times in a row
+		-- first cast is on the floor near the boss, but the second cast will target players, and can be positioned
 		local t = args.time
 		if t - prev > 15 then
 			prev = t
 			-- alert here for the first cast (the one that cannot be positioned)
 			self:Message(args.spellId, "yellow", CL.leap)
 			self:PlaySound(args.spellId, "alarm")
-			-- cast at 100 energy: 3s cast + 2s delay + 3s cast + 2s delay + 3s cast + 1s delay + 1.7s delay + 36.1s gain + .3 delay
-			self:CDBar(args.spellId, 52.1, CL.leap)
+			-- cast at 100 energy: 3s cast + 2s delay + 3s cast + 1s delay + 2s delay + 36s gain + .4 delay
+			self:CDBar(args.spellId, 47.4, CL.leap)
 		end
 		if self:Me(args.destGUID) then
 			-- The circle is applied on you and you can run away and position it
@@ -80,7 +80,7 @@ end
 function mod:Chronoshear(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 52.1)
+	self:CDBar(args.spellId, 47.4)
 end
 
 function mod:ChronoshearRemoved(args)
@@ -92,10 +92,10 @@ function mod:SandStomp(args)
 	self:Message(args.spellId, "orange", CL.pools)
 	self:PlaySound(args.spellId, "alert")
 	sandStompCount = sandStompCount + 1
-	-- pull:7.2, 35.2, 18.2, 34.0, 18.2
+	-- pull:7.2, 30.4, 17.0, 30.4, 17.0, 30.4, 18.2, 29.2
 	if sandStompCount % 2 == 0 then
-		self:CDBar(args.spellId, 34.0, CL.pools)
+		self:CDBar(args.spellId, 29.2, CL.pools)
 	else
-		self:CDBar(args.spellId, 18.2, CL.pools)
+		self:CDBar(args.spellId, 17.0, CL.pools)
 	end
 end
