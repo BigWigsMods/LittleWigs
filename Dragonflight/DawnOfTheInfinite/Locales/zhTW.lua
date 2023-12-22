@@ -10,7 +10,7 @@ if L then
 	L.timestream_anomaly = "時間流異象"
 	L.infinite_infiltrator = "恆龍滲透者"
 	L.risen_dragon = "復生的龍"
-	--L.iridikrons_creation = "Iridikron's Creation"
+	L.iridikrons_creation = "伊律迪孔的造物"
 
 	L.iridikron_warmup_trigger = "泰坦的傀儡居然膽敢挑戰我。"
 
@@ -27,7 +27,7 @@ if L then
 	L.chronaxie = "克羅納希"
 	L.horde_destroyer = "部落驅逐艦"
 	L.alliance_destroyer = "聯盟驅逐艦"
-	--L.horde_farseer = "Horde Farseer"
+	L.horde_farseer = "部落先知"
 	L.paladin_of_the_silver_hand = "白銀之手聖騎士"
 	L.horde_raider_alliance_knight = "部落狼騎士 / 聯盟騎士"
 	L.infinite_timebender = "恆龍時間彎曲者"
@@ -35,5 +35,5 @@ if L then
 	L.custom_on_rift_autotalk = "自動對話"
 	L.custom_on_rift_autotalk_desc = "立即開始引導裂隙穩定度來打開時光裂隙。"
 
-	--L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
+	L.manifested_timeways_warmup_trigger = "就算是時間守護者也不能肆意干擾時間之道！"
 end
