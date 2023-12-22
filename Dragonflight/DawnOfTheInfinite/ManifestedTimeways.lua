@@ -50,7 +50,9 @@ function mod:Warmup()
 	-- 26.24 [UNIT_SPELLCAST_SUCCEEDED] Manifested Timeways -Anchor Here- [45313]
 	-- 26.24 [UNIT_SPELLCAST_SUCCEEDED] Manifested Timeways -Timeways- [415269]
 	-- 26.24 [ENCOUNTER_START] 2667#Manifested Timeways
-	self:Bar("warmup", 13.4, CL.active, "spell_holy_borrowedtime")
+	if self:MythicPlus() then -- the RP is longer in other difficulties
+		self:Bar("warmup", 13.4, CL.active, "spell_holy_borrowedtime")
+	end
 end
 
 do
