@@ -64,7 +64,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CorrosionRemoved", 407406)
 	self:Log("SPELL_AURA_APPLIED", "CorruptedMindApplied", 418346)
 	self:Log("SPELL_CAST_START", "BlightReclamation", 407159)
-	self:Log("SPELL_AURA_APPLIED", "BlightSeepDamage", 407147)
+	self:Log("SPELL_PERIODIC_DAMAGE", "BlightSeepDamage", 407147)
+	self:Log("SPELL_PERIODIC_MISSED", "BlightSeepDamage", 407147)
 
 	-- Ahnzon
 	self:Log("SPELL_CAST_SUCCESS", "NecroticWinds", 407978)
