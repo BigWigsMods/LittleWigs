@@ -65,7 +65,11 @@ function mod:OnEngage()
 	rushingWindsGoals = 0
 	sonicVulnerabilityStacks = 0
 	self:CDBar(376997, 3.7) -- Savage Peck
-	self:CDBar(377004, 10.1, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
+	if self:Mythic() then
+		self:CDBar(377004, 10.1, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech
+	else
+		self:CDBar(377004, 10.1) -- Deafening Screech
+	end
 	self:Bar(377034, 15.8) -- Overpowering Gust
 end
 
