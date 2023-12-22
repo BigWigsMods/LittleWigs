@@ -352,6 +352,9 @@ end
 -- Infinite Chronoweaver
 
 function mod:Chronomelt(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
@@ -485,6 +488,8 @@ end
 do
 	local prev = 0
 	function mod:Stonebolt(args)
+		-- these can be mind controlled but Stonebolt can only be cast on players,
+		-- so don't filter the alert
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -499,6 +504,9 @@ end
 -- Infinite Twilight Magus
 
 function mod:CorrodingVolley(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 7.3, args.sourceGUID)
@@ -656,12 +664,18 @@ end
 -- Time-Lost Waveshaper
 
 function mod:FishBoltVolley(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
 end
 
 function mod:BubblyBarrage(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
