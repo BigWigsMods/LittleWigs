@@ -111,4 +111,5 @@ BigWigs:AddSounds("Dawn of the Infinite Trash", {
 	[419351] = "alarm",
 	[419511] = "alert",
 	[419516] = {"alarm","alert"},
+	["rift_stability"] = "info",
 })

@@ -80,6 +80,10 @@ if L then
 
 	L.custom_on_rift_autotalk = "Autotalk"
 	L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
+	L.rift_opened = "Temporal Rift Opened"
+	L.rift_stability = "Rift Stability"
+	L.rift_stability_desc = "Show an alert when the Temporal Rift has been opened."
+	L.rift_stability_icon = 416882
 
 	L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
 end
@@ -92,6 +96,7 @@ function mod:GetOptions()
 	return {
 		-- General
 		"custom_on_rift_autotalk",
+		"rift_stability",
 
 		------ Galakrond's Fall ------
 		-- Infinite Chronoweaver
@@ -203,6 +208,9 @@ function mod:OnBossEnable()
 
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
+
+	-- Rift Stability
+	self:RegisterWidgetEvent(5021, "RiftStability", true)
 
 	------ Galakrond's Fall ------
 
@@ -344,6 +352,19 @@ function mod:GOSSIP_SHOW(event)
 			-- <Attempt to open the rift.>
 			self:SelectGossipID(110513)
 		end
+	end
+end
+
+-- Rift Stability
+
+function mod:RiftStability(id, _, info)
+	-- [UPDATE_UI_WIDGET] widgetID:5021, barValue:100
+	if info.barValue == 100 then
+		-- shownState will only be 1 if you are at the Rift, so don't check it here. just unregister
+		-- when alerting so it doesn't alert again if shownState is toggled to 0.
+		self:UnregisterWidgetEvent(id)
+		self:Message("rift_stability", "green", L.rift_opened, L.rift_stability_icon) -- Open Rift
+		self:PlaySound("rift_stability", "info")
 	end
 end
 

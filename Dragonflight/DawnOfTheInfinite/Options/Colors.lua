@@ -111,4 +111,5 @@ BigWigs:AddColors("Dawn of the Infinite Trash", {
 	[419351] = "purple",
 	[419511] = "red",
 	[419516] = {"blue","orange","yellow"},
+	["rift_stability"] = "green",
 })

@@ -34,6 +34,9 @@ if L then
 
 	L.custom_on_rift_autotalk = "自动对话"
 	L.custom_on_rift_autotalk_desc = "立即开始引导裂隙稳定度来打开时光裂隙。"
+	--L.rift_opened = "Temporal Rift Opened"
+	--L.rift_stability = "Rift Stability"
+	--L.rift_stability_desc = "Show an alert when the Temporal Rift has been opened."
 
 	L.manifested_timeways_warmup_trigger = "就算是时光的守护者也不能扰乱时间之流！"
 end
