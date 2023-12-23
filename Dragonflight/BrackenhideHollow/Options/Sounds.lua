@@ -66,4 +66,5 @@ BigWigs:AddSounds("Brackenhide Hollow Trash", {
 	[385832] = "alert",
 	[388046] = "alarm",
 	[388060] = "alarm",
+	["captive_tuskarr_freed"] = "info",
 })

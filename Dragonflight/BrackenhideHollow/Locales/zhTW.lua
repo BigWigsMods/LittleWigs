@@ -3,8 +3,11 @@ if not L then return end
 if L then
 	L.custom_on_cauldron_autotalk = "自動對話"
 	L.custom_on_cauldron_autotalk_desc = "[鍊金術] 使用腐朽大鍋移除疾病。"
+	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
+	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
 
 	L.decaying_cauldron = "腐朽大鍋"
+	--L.captive_tuskarr = "Captive Tuskarr"
 	L.decay_speaker = "腐朽代言者"
 	L.claw_fighter = "利爪戰鬥者"
 	L.bonebolt_hunter = "骨箭獵人"

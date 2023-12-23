@@ -3,8 +3,11 @@ if not L then return end
 if L then
 	L.custom_on_cauldron_autotalk = "Automatisch ansprechen"
 	L.custom_on_cauldron_autotalk_desc = "[Alchemie] Verfallende Kessel sofort entgiften für einen Krankheit Dispel Buff."
+	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
+	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
 
 	L.decaying_cauldron = "Verfallender Kessel"
+	L.captive_tuskarr = "Gefangener Tuskarr"
 	L.decay_speaker = "Fäulnissprecherin"
 	L.claw_fighter = "Klauenkämpfer"
 	L.bonebolt_hunter = "Knochengeschossjäger"

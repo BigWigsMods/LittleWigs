@@ -3,8 +3,11 @@ if not L then return end
 if L then
 	L.custom_on_cauldron_autotalk = "自动对话"
 	L.custom_on_cauldron_autotalk_desc = "[炼金术] 使用腐蚀坩埚来移除疾病。"
+	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
+	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
 
 	L.decaying_cauldron = "腐朽坩埚"
+	L.captive_tuskarr = "海象人俘虏"
 	L.decay_speaker = "腐朽代言人"
 	L.claw_fighter = "利爪斗士"
 	L.bonebolt_hunter = "骨箭猎手"

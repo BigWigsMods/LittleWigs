@@ -66,4 +66,5 @@ BigWigs:AddColors("Brackenhide Hollow Trash", {
 	[385832] = {"blue","red"},
 	[388046] = "orange",
 	[388060] = {"blue","red"},
+	["captive_tuskarr_freed"] = "green",
 })

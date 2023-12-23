@@ -3,8 +3,11 @@ if not L then return end
 if L then
 	--L.custom_on_cauldron_autotalk = "Autotalk"
 	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
+	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
+	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
 
 	L.decaying_cauldron = "Calderone Decaduto"
+	L.captive_tuskarr = "Tuskarr Prigioniero"
 	L.decay_speaker = "Oratrice del Decadimento"
 	L.claw_fighter = "Combattente dell'Artiglio"
 	L.bonebolt_hunter = "Cacciatore Tiro d'Ossa"
