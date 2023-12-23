@@ -34,9 +34,9 @@ if L then
 
 	L.custom_on_rift_autotalk = "自动对话"
 	L.custom_on_rift_autotalk_desc = "立即开始引导裂隙稳定度来打开时光裂隙。"
-	L.rift_opened = "开启时光裂隙"
+	L.rift_opened = "时光裂隙已打开"
 	L.rift_stability = "时光裂隙"
-	L.rift_stability_desc = "时光裂隙开启时显示警报。"
+	L.rift_stability_desc = "时光裂隙已打开时显示警报。"
 
 	L.manifested_timeways_warmup_trigger = "就算是时光的守护者也不能扰乱时间之流！"
 end
