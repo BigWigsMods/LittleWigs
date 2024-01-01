@@ -14,6 +14,7 @@ mod:SetStage(1)
 --
 
 local highTideCount = 1
+local focusedTempestCount = 1
 local nextShockBlast = 0
 local shockBlastCD = 0
 local nextGeysers = 0
@@ -75,13 +76,14 @@ function mod:OnEngage()
 	local t = GetTime()
 	self:SetStage(1)
 	highTideCount = 1
+	focusedTempestCount = 1
 	focusedTempestCD = 7.0
 	nextFocusedTempest = t + focusedTempestCD
 	shockBlastCD = 18.0
 	nextShockBlast = t + shockBlastCD
 	geysersCD = 16.1
 	nextGeysers = t + geysersCD
-	self:CDBar(428374, focusedTempestCD) -- Focused Tempest
+	self:CDBar(428374, focusedTempestCD, CL.count:format(self:SpellName(428374), focusedTempestCount)) -- Focused Tempest
 	self:CDBar(427771, geysersCD) -- Geysers
 	self:CDBar(428054, shockBlastCD) -- Shock Blast
 end
@@ -117,7 +119,7 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 end
 
 function mod:HighTideStarting()
-	self:StopBar(428374) -- Focused Tempest
+	self:StopBar(CL.count:format(self:SpellName(428374), focusedTempestCount)) -- Focused Tempest
 	self:StopBar(427771) -- Geysers
 	self:StopBar(428054) -- Shock Blast
 end
@@ -142,7 +144,7 @@ function mod:HighTideOver(args)
 		nextShockBlast = t + shockBlastCD
 		geysersCD = 28.0
 		nextGeysers = t + geysersCD
-		self:CDBar(428374, focusedTempestCD) -- Focused Tempest
+		self:CDBar(428374, focusedTempestCD, CL.count:format(self:SpellName(428374), focusedTempestCount)) -- Focused Tempest
 		self:CDBar(428054, shockBlastCD) -- Shock Blast
 		self:CDBar(427771, geysersCD) -- Geysers
 	end
@@ -158,11 +160,11 @@ do
 	end
 
 	function mod:ShockBlast(args)
+		local t = GetTime()
 		-- this debuff is sometimes applied to the tank instead of the targeted player,
 		-- so we have to revert back to target scanning to get the real target. if this
 		-- is ever fixed we can just check who gets the debuff instead.
 		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
-		local t = GetTime()
 		shockBlastCD = 21.8
 		nextShockBlast = t + shockBlastCD
 		self:CDBar(428054, shockBlastCD)
@@ -176,15 +178,15 @@ do
 			if focusedTempestCD < 3.67 then
 				focusedTempestCD = 3.67
 			end
-			self:CDBar(428374, {3.67, focusedTempestCD}) -- Focused Tempest
+			self:CDBar(428374, {3.67, focusedTempestCD}, CL.count:format(self:SpellName(428374), focusedTempestCount)) -- Focused Tempest
 		end
 	end
 end
 
 function mod:Geysers(args)
+	local t = GetTime()
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	local t = GetTime()
 	geysersCD = 23.0
 	nextGeysers = t + geysersCD
 	self:CDBar(args.spellId, geysersCD)
@@ -198,17 +200,19 @@ function mod:Geysers(args)
 		if focusedTempestCD < 3.67 then
 			focusedTempestCD = 3.67
 		end
-		self:CDBar(428374, {3.67, focusedTempestCD}) -- Focused Tempest
+		self:CDBar(428374, {3.67, focusedTempestCD}, CL.count:format(self:SpellName(428374), focusedTempestCount)) -- Focused Tempest
 	end
 end
 
 function mod:FocusedTempest(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
 	local t = GetTime()
+	self:StopBar(CL.count:format(args.spellName, focusedTempestCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, focusedTempestCount))
+	self:PlaySound(args.spellId, "alert")
+	focusedTempestCount = focusedTempestCount + 1
 	focusedTempestCD = 17.0
 	nextFocusedTempest = t + focusedTempestCD
-	self:CDBar(args.spellId, focusedTempestCD)
+	self:CDBar(args.spellId, focusedTempestCD, CL.count:format(args.spellName, focusedTempestCount))
 	-- 7.3s delay after this spell before anything else can be cast
 	if nextShockBlast - t < 7.3 then
 		nextShockBlast = t + 7.3
@@ -222,7 +226,9 @@ end
 
 function mod:WaterBolt(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Naz'jar Honor Guard
