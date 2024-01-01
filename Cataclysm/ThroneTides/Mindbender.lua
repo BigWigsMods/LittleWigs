@@ -13,6 +13,12 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local stormflurryTotemCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -49,9 +55,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	stormflurryTotemCount = 1
 	self:SetStage(1)
 	self:CDBar(429048, 6.1) -- Flame Shock
-	self:CDBar(429037, 12.0) -- Stormflurry Totem
+	self:CDBar(429037, 12.0, CL.count:format(self:SpellName(429037), stormflurryTotemCount)) -- Stormflurry Totem
 	self:CDBar(429051, 22.9) -- Earthfury
 end
 
@@ -89,7 +96,7 @@ end
 
 function mod:EncounterEvent()
 	self:StopBar(429048) -- Flame Shock
-	self:StopBar(429037) -- Stormflurry Totem
+	self:StopBar(CL.count:format(self:SpellName(429037), stormflurryTotemCount)) -- Stormflurry Totem
 	self:StopBar(429051) -- Earthfury
 	self:SetStage(2)
 	self:Message("stages", "cyan", CL.percent:format(25, CL.stage:format(2)), false)
@@ -106,9 +113,11 @@ function mod:Earthfury(args)
 end
 
 function mod:StormflurryTotem(args)
-	self:Message(args.spellId, "yellow")
+	self:StopBar(CL.count:format(args.spellName, stormflurryTotemCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, stormflurryTotemCount))
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 26.7)
+	stormflurryTotemCount = stormflurryTotemCount + 1
+	self:CDBar(args.spellId, 26.7, CL.count:format(args.spellName, stormflurryTotemCount))
 end
 
 do
