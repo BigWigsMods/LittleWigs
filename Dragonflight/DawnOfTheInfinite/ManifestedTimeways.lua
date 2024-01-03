@@ -9,6 +9,15 @@ mod:SetEncounterID(2667)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "spell_holy_borrowedtime"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -31,8 +40,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	-- Unwind is not cast in M+, removed from dungeon journal in all difficulties
-	-- TODO apparently still cast in hardmode in 10.2 - any way to detect hardmode?
+	self:StopBar(CL.active) -- Warmup
+	-- Unwind is not cast in M+, removed from dungeon journal in all difficulties.
+	-- apparently still cast in hardmode in 10.2 - but no way to detect hardmode.
 	--self:CDBar(414303, 5.8) -- Unwind
 	self:CDBar(405431, 15.5) -- Fragments of Time
 	self:CDBar(405696, 30.1) -- Chrono-faded
@@ -51,7 +61,7 @@ function mod:Warmup()
 	-- 26.24 [UNIT_SPELLCAST_SUCCEEDED] Manifested Timeways -Timeways- [415269]
 	-- 26.24 [ENCOUNTER_START] 2667#Manifested Timeways
 	if self:MythicPlus() then -- the RP is longer in other difficulties
-		self:Bar("warmup", 13.4, CL.active, "spell_holy_borrowedtime")
+		self:Bar("warmup", 13.4, CL.active, L.warmup_icon)
 	end
 end
 
