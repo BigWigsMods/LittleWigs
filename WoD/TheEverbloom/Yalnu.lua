@@ -19,6 +19,15 @@ local colossalBlowCount = 1
 local verdantEruptionCount = 1
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_enchant_shaperessence"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -53,7 +62,7 @@ end
 function mod:OnEngage()
 	colossalBlowCount = 1
 	verdantEruptionCount = 1
-	self:StopBar(CL.active)
+	self:StopBar(CL.active) -- Warmup
 	self:CDBar(169179, 2.4, CL.count:format(self:SpellName(169179), colossalBlowCount)) -- Colossal Blow
 	self:CDBar(428823, 23.0, CL.count:format(self:SpellName(428823), verdantEruptionCount)) -- Verdant Eruption
 	self:CDBar(169613, 40.1) -- Genesis
@@ -66,7 +75,7 @@ end
 -- Warmup
 
 function mod:Warmup() -- called from trash module
-	self:Bar("warmup", 8.0, CL.active, "inv_enchant_shaperessence")
+	self:Bar("warmup", 8.0, CL.active, L.warmup_icon)
 end
 
 -- Yalnu
