@@ -17,6 +17,15 @@ local siphonOathstoneCount = 1
 local infiniteHandCastCount = 1
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "achievement_dungeon_ulduarraid_titan_01"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -59,6 +68,7 @@ end
 function mod:OnEngage()
 	siphonOathstoneCount = 1
 	infiniteHandCastCount = 1
+	self:StopBar(CL.active) -- Warmup
 	self:SetStage(1)
 	self:CDBar(400681, 6.0) -- Spark of Tyr
 	self:CDBar(401248, 12.5) -- Titanic Blow
@@ -75,7 +85,7 @@ function mod:Warmup()
 	-- triggered from trash module
 	-- 15:14:41 [CLEU] SPELL_AURA_REMOVED#Creature-0-5773-2579-1018-198998-000029B459#Tyr, the Infinite Keeper#Creature-0-5773-2579-1018-198998-000029B459#Tyr, the Infinite Keeper#413595#Pondering the Oathstone#BUFF#nil
 	-- 15:15:15 [NAME_PLATE_UNIT_ADDED] Tyr, the Infinite Keeper#Creature-0-5773-2579-1018-198998-000029B459
-	self:Bar("warmup", 34, CL.active, "achievement_dungeon_dawnoftheinfinite")
+	self:Bar("warmup", 34, CL.active, L.warmup_icon)
 end
 
 -- Stage 1: Infinite Hand Technique
