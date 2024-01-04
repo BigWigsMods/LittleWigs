@@ -13,6 +13,7 @@ mod:SetRespawnTime(25)
 --
 
 local breathOfCorruptionCount = 1
+local earthshakingRoarCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -38,9 +39,10 @@ end
 
 function mod:OnEngage()
 	breathOfCorruptionCount = 1
+	earthshakingRoarCount = 1
 	self:CDBar(191325, 13.0) -- Breath of Corruption
 	self:CDBar(199345, 19.3) -- Down Draft
-	self:CDBar(199389, 31.4) -- Earthshaking Roar
+	self:CDBar(199389, 31.4, CL.count:format(self:SpellName(199389), earthshakingRoarCount)) -- Earthshaking Roar
 end
 
 --------------------------------------------------------------------------------
@@ -64,9 +66,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:EarthshakingRoar(args)
-	self:Message(args.spellId, "red")
+	self:StopBar(CL.count:format(args.spellName, earthshakingRoarCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, earthshakingRoarCount))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 30.4)
+	earthshakingRoarCount = earthshakingRoarCount + 1
+	self:CDBar(args.spellId, 30.4, CL.count:format(args.spellName, earthshakingRoarCount))
 	-- 3.62s before any ability can be cast
 end
 
