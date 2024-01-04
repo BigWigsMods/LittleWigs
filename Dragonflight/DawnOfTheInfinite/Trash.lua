@@ -150,8 +150,8 @@ function mod:GetOptions()
 		419516, -- Chronal Eruption
 		419511, -- Temporal Link
 		-- Horde Destroyer
+		{407205, "SAY"}, -- Volatile Mortar
 		407535, -- Deploy Goblin Sappers
-		407205, -- Volatile Mortar
 		-- Alliance Destroyer
 		418684, -- Deploy Dwarven Bombers
 		-- Horde Farseer
@@ -193,7 +193,7 @@ function mod:GetOptions()
 		[411300] = L.timelost_waveshaper,
 		[412156] = L.timelost_aerobot,
 		[419516] = L.chronaxie,
-		[407535] = L.horde_destroyer,
+		[407205] = L.horde_destroyer,
 		[418684] = L.alliance_destroyer,
 		[407891] = L.horde_farseer,
 		[417011] = L.paladin_of_the_silver_hand,
@@ -294,12 +294,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ChronalEruptionApplied", 419517)
 	self:Log("SPELL_CAST_START", "TemporalLink", 419511)
 
-	-- Horde Destroyer
+	-- Horde Destroyer / Alliance Destroyer
+	self:Log("SPELL_CAST_SUCCESS", "VolatileMortar", 407205)
+	self:Log("SPELL_AURA_APPLIED", "VolatileMortarApplied", 407205)
 	self:Log("SPELL_CAST_START", "DeployGoblinSappers", 407535)
-	self:Log("SPELL_CAST_START", "VolatileMortar", 407205)
-
-	-- Alliance Destroyer
 	self:Log("SPELL_CAST_START", "DeployDwarvenBombers", 418684)
+	self:Death("HordeDestroyerDeath", 203861)
+	self:Death("AllianceDestroyerDeath", 208208)
 
 	-- Horde Farseer
 	self:Log("SPELL_CAST_START", "HealingWave", 407891)
@@ -738,26 +739,71 @@ function mod:TemporalLink(args)
 	-- TODO unknown CD
 end
 
--- Horde Destroyer
+-- Horde Destroyer / Alliance Destroyer
 
-function mod:DeployGoblinSappers(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
-	--self:NameplateCDBar(args.spellId, 26.7, args.sourceGUID)
-end
+do
+	-- timer used to clean up bars in case of a wipe
+	local timer
 
-function mod:VolatileMortar(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
-end
+	function mod:VolatileMortar(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(args.spellId, 19.4)
+		if self:MobId(args.sourceGUID) == 203861 then -- Horde Destroyer
+			timer = self:ScheduleTimer("HordeDestroyerDeath", 30)
+		else -- Alliance Destroyer
+			timer = self:ScheduleTimer("AllianceDestroyerDeath", 30)
+		end
+	end
 
--- Alliance Destroyer
+	function mod:VolatileMortarApplied(args)
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		if self:Me(args.destGUID) then
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
+			self:Say(args.spellId)
+		else
+			self:PlaySound(args.spellId, "alarm", nil, args.destName)
+		end
+	end
 
-function mod:DeployDwarvenBombers(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
-	--self:NameplateCDBar(args.spellId, 26.7, args.sourceGUID)
+	function mod:DeployGoblinSappers(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "cyan")
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 26.3)
+		timer = self:ScheduleTimer("HordeDestroyerDeath", 30)
+	end
+
+	function mod:DeployDwarvenBombers(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "cyan")
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 26.3)
+		timer = self:ScheduleTimer("AllianceDestroyerDeath", 30)
+	end
+
+	function mod:HordeDestroyerDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(407535) -- Deploy Goblin Sappers
+		self:StopBar(407205) -- Volatile Mortar
+	end
+
+	function mod:AllianceDestroyerDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(418684) -- Deploy Dwarven Bombers
+		self:StopBar(407205) -- Volatile Mortar
+	end
 end
 
 -- Horde Farseer

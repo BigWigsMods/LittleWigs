@@ -74,7 +74,7 @@ BigWigs:AddColors("The Infinite Dragonflight", {
 BigWigs:AddColors("Dawn of the Infinite Trash", {
 	[407124] = "red",
 	[407125] = "orange",
-	[407205] = "orange",
+	[407205] = {"blue","orange"},
 	[407535] = "cyan",
 	[407891] = "yellow",
 	[407906] = "blue",

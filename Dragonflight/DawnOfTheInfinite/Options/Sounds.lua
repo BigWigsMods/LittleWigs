@@ -74,7 +74,7 @@ BigWigs:AddSounds("The Infinite Dragonflight", {
 BigWigs:AddSounds("Dawn of the Infinite Trash", {
 	[407124] = "alert",
 	[407125] = "alarm",
-	[407205] = "alarm",
+	[407205] = {"alarm","warning"},
 	[407535] = "info",
 	[407891] = "warning",
 	[407906] = "underyou",
