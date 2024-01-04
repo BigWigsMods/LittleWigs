@@ -80,6 +80,7 @@ if L then
 
 	L.custom_on_rift_autotalk = "Autotalk"
 	L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
+	L.rift_opening = CL.casting:format(mod:SpellName(416882)) -- Open Rift
 	L.rift_opened = "Temporal Rift Opened"
 	L.rift_stability = "Rift Stability"
 	L.rift_stability_desc = "Show an alert when the Temporal Rift has been opened."
@@ -358,14 +359,27 @@ end
 
 -- Rift Stability
 
-function mod:RiftStability(id, _, info)
-	-- [UPDATE_UI_WIDGET] widgetID:5021, barValue:100
-	if info.barValue == 100 then
-		-- shownState will only be 1 if you are at the Rift, so don't check it here. just unregister
-		-- when alerting so it doesn't alert again if shownState is toggled to 0.
-		self:UnregisterWidgetEvent(id)
-		self:Message("rift_stability", "green", L.rift_opened, L.rift_stability_icon) -- Open Rift
-		self:PlaySound("rift_stability", "info")
+do
+	local prev = 0
+	function mod:RiftStability(_, _, info)
+		-- [UPDATE_UI_WIDGET] widgetID:5021, widgetType:2, barValue:100
+		local barValue = info.barValue
+		-- shownState will only be 1 if you are at the Rift, so don't check it here - we
+		-- want to alert even if the player is not at the Rift.
+		if barValue == 3 and prev ~= 3 then
+			-- first tick of progress will always be 3. throttle because it could become
+			-- visible or hide at 3 if the player moves into or out of range.
+			prev = barValue
+			self:Message("rift_stability", "green", L.rift_opening, L.rift_stability_icon)
+			self:PlaySound("rift_stability", "info")
+		elseif barValue == 100 and prev ~= 100 then
+			-- throttle because the bar will hide at 100 for any player already through.
+			prev = barValue
+			self:Message("rift_stability", "green", L.rift_opened, L.rift_stability_icon)
+			self:PlaySound("rift_stability", "info")
+		else
+			prev = barValue
+		end
 	end
 end
 
