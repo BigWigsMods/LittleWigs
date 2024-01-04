@@ -775,7 +775,7 @@ do
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning", nil, args.destName)
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Volatile Mortar")
 		else
 			self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		end
