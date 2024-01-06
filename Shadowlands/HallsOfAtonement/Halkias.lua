@@ -75,6 +75,8 @@ function mod:CrumblingSlam(args)
 	if refractedSinlightTime - GetTime() > 12.1 then
 		-- only the second Crumbling Slam of the fight is delayed
 		self:CDBar(args.spellId, crumblingSlamCount == 1 and 13.4 or 12.1)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -83,6 +85,8 @@ function mod:HeaveDebris(args)
 	self:PlaySound(args.spellId, "alarm")
 	if refractedSinlightTime - GetTime() > 12.1 then
 		self:CDBar(args.spellId, 12.1)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -90,7 +94,7 @@ function mod:RefractedSinlight(args)
 	refractedSinlightTime = GetTime() + 45
 	self:Message(args.spellId, "red", CL.beams)
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 47.3, CL.beams)
+	self:CDBar(args.spellId, 47.3, CL.beams)
 	self:CDBar(322936, 15.7) -- Crumbling Slam
 	self:CDBar(322943, 17.2) -- Heave Debris
 end
