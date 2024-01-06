@@ -139,7 +139,7 @@ function mod:AuraOfDread(args)
 end
 
 function mod:SisterMaladyDeath(args)
-	self:StopBar(260703) -- Unstable Runic Mark
+	self:StopBar(CL.marks) -- Unstable Runic Mark
 end
 
 -- Sister Solena (Stage 1)
@@ -180,7 +180,7 @@ function mod:ClaimTheIris(args)
 	-- stop and start boss ability timers
 	local mobId = self:MobId(bossWithIris)
 	if mobId == 131825 then -- Sister Briar
-		self:StopBar(260703) -- Unstable Runic Mark
+		self:StopBar(CL.marks) -- Unstable Runic Mark
 		self:StopBar(260907) -- Soul Manipulation
 		self:SetStage(3)
 		self:CDBar(260741, 7.3) -- Jagged Nettles
@@ -188,10 +188,10 @@ function mod:ClaimTheIris(args)
 		self:StopBar(260741) -- Jagged Nettles
 		self:StopBar(260907) -- Soul Manipulation
 		self:SetStage(2)
-		self:CDBar(260703, 7.7) -- Unstable Runic Mark
+		self:CDBar(260703, 7.7, CL.marks) -- Unstable Runic Mark
 	else -- 131824, Sister Solena
 		self:StopBar(260741) -- Jagged Nettles
-		self:StopBar(260703) -- Unstable Runic Mark
+		self:StopBar(CL.marks) -- Unstable Runic Mark
 		self:SetStage(1)
 		if not self:Solo() then
 			-- won't be cast if solo
