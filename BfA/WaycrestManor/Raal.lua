@@ -25,7 +25,7 @@ function mod:GetOptions()
 		264931, -- Call Servant
 		265005, -- Well-Fed
 		264923, -- Tenderize
-		264694, -- Rotten Expulsion
+		{264694, "SAY"}, -- Rotten Expulsion
 	}
 end
 
@@ -83,15 +83,23 @@ function mod:TenderizeSuccess(args)
 	tenderizeCount = tenderizeCount % 3 + 1
 end
 
-function mod:RottenExpulsion(args)
-	-- TODO can detect target?
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	rottenExpulsionCount = rottenExpulsionCount + 1
-	if rottenExpulsionCount == 2 then
-		self:CDBar(args.spellId, 29.2)
-	else
-		self:CDBar(args.spellId, 20.6)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(264694, "yellow", name)
+		self:PlaySound(264694, "alert", nil, name)
+		if self:Me(guid) then
+			self:Say(264694, nil, nil, "Rotten Expulsion")
+		end
+	end
+
+	function mod:RottenExpulsion(args)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		rottenExpulsionCount = rottenExpulsionCount + 1
+		if rottenExpulsionCount == 2 then
+			self:CDBar(args.spellId, 29.2)
+		else
+			self:CDBar(args.spellId, 20.6)
+		end
 	end
 end
 
@@ -103,7 +111,7 @@ do
 			if t - prev > 2 then
 				prev = t
 				self:PersonalMessage(264694, "underyou")
-				self:PlaySound(264694, "underyou", "gtfo")
+				self:PlaySound(264694, "underyou", nil, args.destName)
 			end
 		end
 	end
