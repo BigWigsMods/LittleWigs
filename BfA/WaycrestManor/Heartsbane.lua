@@ -36,11 +36,13 @@ function mod:GetOptions()
 		-- Focusing Iris
 		{260805, "ICON"}, -- Focusing Iris
 		260773, -- Dire Ritual
-	}, {
+	},{
 		[260741] = -17738, -- Sister Briar
 		[260703] = -17739, -- Sister Malady
 		[260907] = -17740, -- Sister Solena
 		[260805] = 260805, -- Focusing Iris
+	},{
+		[260703] = CL.mark, -- Unstable Runic Mark (Mark)
 	}
 end
 
@@ -104,14 +106,14 @@ end
 -- Sister Malady (Stage 2)
 
 function mod:UnstableRunicMark(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.marks)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 12.1)
+	self:CDBar(args.spellId, 12.1, CL.marks)
 end
 
 function mod:UnstableRunicMarkApplied(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Unstable Runic Mark")
+		self:Say(args.spellId, CL.mark, nil, "Mark")
 		self:SayCountdown(args.spellId, 6)
 	end
 end
