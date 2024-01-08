@@ -9,6 +9,8 @@ if L then
 	L.faceless_seer = "Безликий провидец"
 	L.faceless_watcher = "Безликий дозорный"
 	L.tainted_sentry = "Опороченный часовой"
+
+	--L.ozumat_warmup_trigger = "The beast has returned! It must not pollute my waters!"
 end
 
 L = BigWigs:NewBossLocale("Lady Naz'jar", "ruRU")

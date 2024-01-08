@@ -31,6 +31,8 @@ if L then
 	L.faceless_seer = "Faceless Seer"
 	L.faceless_watcher = "Faceless Watcher"
 	L.tainted_sentry = "Tainted Sentry"
+
+	L.ozumat_warmup_trigger = "The beast has returned! It must not pollute my waters!"
 end
 
 --------------------------------------------------------------------------------
@@ -73,6 +75,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Retail() then
+		-- Warmups
+		self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	end
+
 	-- Naz'jar Oracle
 	self:Log("SPELL_CAST_START", "Hex", 76820)
 	self:Log("SPELL_AURA_APPLIED", "HexApplied", 76820)
@@ -138,6 +145,19 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmups
+
+function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+	if msg == L.ozumat_warmup_trigger then
+		-- Ozumat warmup
+		local ozumatModule = BigWigs:GetBossModule("Ozumat", true)
+		if ozumatModule then
+			ozumatModule:Enable()
+			ozumatModule:Warmup()
+		end
+	end
+end
 
 -- Naz'jar Oracle
 

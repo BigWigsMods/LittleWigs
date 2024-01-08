@@ -27,6 +27,7 @@ local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
+	L.warmup_icon = "achievement_dungeon_throne of the tides"
 end
 
 --------------------------------------------------------------------------------
@@ -35,6 +36,7 @@ end
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		"stages",
 		-- Ink of Ozumat
 		{428407, "SAY"}, -- Blotting Barrage
@@ -53,10 +55,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- TODO intial RP? probably from trash module
-	-- 0.77 [CHAT_MSG_MONSTER_SAY] The beast has returned! It must not pollute my waters!#Neptulon
-	-- 12.05 [NAME_PLATE_UNIT_ADDED] Ink of Ozumat
-
 	-- Stages
 	self:Death("InkOfOzumatDeath", 213770)
 
@@ -77,6 +75,7 @@ end
 
 function mod:OnEngage()
 	putridRoarCount = 1
+	self:StopBar(CL.active) -- Warmup
 	self:SetStage(1)
 	self:CDBar(428407, 5.7) -- Blotting Barrage
 	self:CDBar(428530, 10.6) -- Murk Spew
@@ -107,7 +106,7 @@ if mod:Classic() then
 	function mod:OnEngage()
 		self:SetStage(1)
 		-- this stage lasts 1:40 on both difficulties, EJ's entry is incorrect
-		self:Bar("stages", 100, CL.stage:format(1), "Achievement_Dungeon_Throne of the Tides") -- Yes, " " is the correct delimiter.
+		self:Bar("stages", 100, CL.stage:format(1), L.warmup_icon)
 		self:DelayedMessage("stages", 90, "cyan", CL.soon:format(CL.stage:format(2)))
 	end
 end
@@ -115,6 +114,15 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+
+function mod:Warmup()
+	-- triggered from trash module on CHAT_MSG_MONSTER_SAY
+	-- 0.77 [CHAT_MSG_MONSTER_SAY] The beast has returned! It must not pollute my waters!#Neptulon
+	-- 12.05 [NAME_PLATE_UNIT_ADDED] Ink of Ozumat
+	self:Bar("warmup", 11.3, CL.active, L.warmup_icon)
+end
 
 -- Stages
 
