@@ -10,7 +10,7 @@ if L then
 	L.faceless_watcher = "Gesichtsloser Beobachter"
 	L.tainted_sentry = "Besudelter Wachposten"
 
-	--L.ozumat_warmup_trigger = "The beast has returned! It must not pollute my waters!"
+	L.ozumat_warmup_trigger = "Die Bestie ist zurück! Das Wasser darf nicht verschmutzt werden!"
 end
 
 L = BigWigs:NewBossLocale("Lady Naz'jar", "deDE")
