@@ -19,11 +19,21 @@ local nextForTheFaction = 0
 local nextTankBuster = 0
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "factionchange"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		{410235, "SAY"}, -- Bladestorm
 		-- Anduin Lothar
 		{418059, "TANK_HEALER"}, -- Mortal Strikes
@@ -42,7 +52,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- TODO Battle Senses 419609 SUCCESS as warmup trigger?
 	self:Log("SPELL_AURA_APPLIED", "Bladestorm", 410235)
 	self:Log("SPELL_CAST_START", "MortalStrikes", 418059, 410254) -- Mortal Strikes / Decapitate
 	self:Log("SPELL_CAST_SUCCESS", "Shockwave", 418054, 408227) -- Anduin, Grommash
@@ -53,6 +62,7 @@ function mod:OnEngage()
 	local t = GetTime()
 	nextForTheFaction = t + 19.3
 	nextTankBuster = t + 2.4
+	self:StopBar(CL.active) -- Warmup
 	self:CDBar(410235, 21.8) -- Bladestorm
 	if self:GetBossId(203679) then -- Anduin Lothar
 		self:CDBar(418059, 6.1) -- Mortal Strikes
@@ -68,6 +78,22 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:WarmupAnduinLothar() -- called from trash module
+	-- 0.00 [CLEU] SPELL_CAST_SUCCESS#Creature-0-4218-2579-5855-203679#Anduin Lothar##nil#419609#Battle Senses
+	-- 0.18 [CHAT_MSG_MONSTER_YELL] We need reinforcements!#Anduin Lothar
+	-- 2.20 [CHAT_MSG_MONSTER_YELL] Rally together!#Anduin Lothar
+	-- 6.00 [ENCOUNTER_START] 2672#Time-Lost Battlefield
+	self:Bar("warmup", 6.0, CL.active, "ui_alliance_7legionmedal")
+end
+
+function mod:WarmupGrommashHellscream() -- called from trash module
+	-- 0.00 [CLEU] SPELL_CAST_SUCCESS#Creature-0-4229-2579-2662-203678#Grommash Hellscream##nil#419602#Thirst for Battle
+	-- 0.11 [CHAT_MSG_MONSTER_YELL] I need fighters!#Grommash Hellscream
+	-- 2.15 [CHAT_MSG_MONSTER_YELL] Warriors! Attack!#Grommash Hellscream
+	-- 5.99 [ENCOUNTER_START] 2672#Time-Lost Battlefield
+	self:Bar("warmup", 6.0, CL.active, "ui_horde_honorboundmedal")
+end
 
 function mod:Bladestorm(args)
 	self:TargetMessage(args.spellId, "red", args.destName)

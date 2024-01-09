@@ -207,6 +207,8 @@ end
 function mod:OnBossEnable()
 	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:Log("SPELL_CAST_SUCCESS", "BattleSenses", 419609)
+	self:Log("SPELL_CAST_SUCCESS", "ThirstForBlood", 419602)
 
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
@@ -344,6 +346,24 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 			manifestedTimewaysModule:Enable()
 			manifestedTimewaysModule:Warmup()
 		end
+	end
+end
+
+function mod:BattleSenses(args)
+	-- Time-Lost Battlefield (Anduin Lothar version) warmup
+	local timelostBattlefieldModule = BigWigs:GetBossModule("Time-Lost Battlefield", true)
+	if timelostBattlefieldModule then
+		timelostBattlefieldModule:Enable()
+		timelostBattlefieldModule:WarmupAnduinLothar()
+	end
+end
+
+function mod:ThirstForBlood(args)
+	-- Time-Lost Battlefield (Grommash Hellscream version) warmup
+	local timelostBattlefieldModule = BigWigs:GetBossModule("Time-Lost Battlefield", true)
+	if timelostBattlefieldModule then
+		timelostBattlefieldModule:Enable()
+		timelostBattlefieldModule:WarmupGrommashHellscream()
 	end
 end
 
