@@ -46,10 +46,12 @@ if L then
 	L.portal_authority = "Tazavesh Portal Authority"
 	L.custom_on_portal_autotalk = "Autotalk"
 	L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.custom_on_portal_autotalk_icon = "ui_chat"
 	L.trading_game = "Trading Game"
 	L.trading_game_desc = "Alerts with the right password during the Trading Game."
 	L.custom_on_trading_game_autotalk = "Autotalk"
 	L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.custom_on_trading_game_autotalk_icon = "ui_chat"
 	L.password_triggers = {
 		["Ivory Shell"] = 53259,
 		["Sapphire Oasis"] = 53260,

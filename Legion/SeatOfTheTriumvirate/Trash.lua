@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -22,7 +21,7 @@ local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunners gossip option."
-	L.custom_on_autotalk_icon = "inv_bow_1h_artifactwindrunner_d_03"
+	L.custom_on_autotalk_icon = "ui_chat"
 	L.gossip_available = "Gossip available"
 	L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated
 

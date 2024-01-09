@@ -22,6 +22,7 @@ local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
+	L.custom_on_autotalk_icon = "ui_chat"
 
 	L.gossip_available = "Gossip available"
 	L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."

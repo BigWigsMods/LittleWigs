@@ -42,6 +42,7 @@ local L = mod:GetLocale()
 if L then
 	L.custom_on_cauldron_autotalk = "Autotalk"
 	L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
+	L.custom_on_cauldron_autotalk_icon = "ui_chat"
 	L.captive_tuskarr_freed = "Captive Tuskarr Freed"
 	L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
 	L.captive_tuskarr_freed_icon = "inv_10_dungeonjewelry_primitive_trinket_tuskarrplushie_color1"

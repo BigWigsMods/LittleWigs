@@ -18,6 +18,7 @@ local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly select gossip option to start encounters."
+	L.custom_on_autotalk_icon = "ui_chat"
 end
 
 --------------------------------------------------------------------------------

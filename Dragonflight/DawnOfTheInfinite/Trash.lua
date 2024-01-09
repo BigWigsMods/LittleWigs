@@ -80,6 +80,7 @@ if L then
 
 	L.custom_on_rift_autotalk = "Autotalk"
 	L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
+	L.custom_on_rift_autotalk_icon = "ui_chat"
 	L.rift_opening = CL.casting:format(mod:SpellName(416882)) -- Open Rift
 	L.rift_opened = "Temporal Rift Opened"
 	L.rift_stability = "Rift Stability"

@@ -34,6 +34,7 @@ if L then
 	L.the_headless_horseman = "The Headless Horseman"
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
+	L.custom_on_autotalk_icon = "ui_chat"
 	L.curses = 418990
 	L.curses_icon = 418990
 	L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."

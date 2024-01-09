@@ -23,6 +23,7 @@ local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects Lieutenant Sinclaris gossip option to start the Assault on Violet Hold."
+	L.custom_on_autotalk_icon = "ui_chat"
 	L.keeper = "Portal Keeper"
 	L.guardian = "Portal Guardian"
 	L.infernal = "Blazing Infernal"

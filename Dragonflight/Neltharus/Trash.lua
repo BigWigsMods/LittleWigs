@@ -35,6 +35,7 @@ local L = mod:GetLocale()
 if L then
 	L.custom_on_autotalk = "Autotalk"
 	L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+	L.custom_on_autotalk_icon = "ui_chat"
 
 	L.burning_chain = "Burning Chain"
 	L.qalashi_warden = "Qalashi Warden"
