@@ -118,7 +118,7 @@ function mod:GetOptions()
 		413529, -- Untwist
 		{413544, "DISPEL"}, -- Bloom
 		-- Infinite Infiltrator
-		413621, -- Timeless Curse
+		{413621, "DISPEL"}, -- Timeless Curse
 		413622, -- Infinite Fury
 		-- Risen Dragon
 		412806, -- Blight Spew
@@ -244,6 +244,7 @@ function mod:OnBossEnable()
 
 	-- Infinite Infiltrator
 	self:Log("SPELL_CAST_SUCCESS", "TimelessCurse", 413621)
+	self:Log("SPELL_AURA_APPLIED", "TimelessCurseApplied", 413618)
 	self:Log("SPELL_CAST_START", "InfiniteFury", 413622)
 
 	-- Risen Dragon
@@ -520,10 +521,23 @@ end
 
 -- Infinite Infiltrator
 
-function mod:TimelessCurse(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+do
+	local playerList = {}
+
+	function mod:TimelessCurse(args)
+		playerList = {}
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+	end
+
+	function mod:TimelessCurseApplied(args)
+		if self:Dispeller("curse", nil, 413621) then
+			playerList[#playerList + 1] = args.destName
+			self:PlaySound(413621, "info", nil, playerList)
+			self:TargetsMessage(413621, "red", playerList, 5)
+		end
+	end
 end
 
 function mod:InfiniteFury(args)
