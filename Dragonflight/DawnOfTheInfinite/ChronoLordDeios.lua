@@ -35,6 +35,7 @@ function mod:GetOptions()
 		416139, -- Temporal Breath
 		-- Stage 2: Lord of the Infinite
 		416264, -- Infinite Corruption
+		417413, -- Temporal Scar
 	}, {
 		["stages"] = CL.general,
 		[416152] = -26751, -- Stage 1: We Are Infinite
@@ -54,6 +55,7 @@ function mod:OnBossEnable()
 
 	-- Stage 2: Lord of the Infinite
 	self:Log("SPELL_CAST_START", "InfiniteCorruption", 416264)
+	self:Log("SPELL_PERIODIC_DAMAGE", "TemporalScarDamage", 417413) -- don't alert on APPLIED
 end
 
 function mod:OnEngage()
@@ -169,5 +171,17 @@ function mod:InfiniteCorruption(args)
 	if infiniteCorruptionCount == 2 then
 		-- the first Infinite Corruption resets the CD of Infinity Orb
 		self:CDBar(410904, 19.2) -- Infinity Orb
+	end
+end
+
+do
+	local prev = 0
+	function mod:TemporalScarDamage(args)
+		local t = args.time
+		if self:Me(args.destGUID) and t - prev > 2.25 then
+			prev = t
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou", nil, args.destName)
+		end
 	end
 end

@@ -68,6 +68,7 @@ BigWigs:AddColors("The Infinite Dragonflight", {
 	[416139] = "purple",
 	[416152] = "red",
 	[416264] = "red",
+	[417413] = "blue",
 	["stages"] = "cyan",
 })
 

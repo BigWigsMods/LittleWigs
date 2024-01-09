@@ -68,6 +68,7 @@ BigWigs:AddSounds("The Infinite Dragonflight", {
 	[416139] = "alarm",
 	[416152] = "info",
 	[416264] = "long",
+	[417413] = "underyou",
 	["stages"] = "info",
 })
 
