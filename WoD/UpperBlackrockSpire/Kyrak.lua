@@ -57,6 +57,10 @@ function mod:VilebloodSerum(args)
 end
 
 function mod:Eruption(args)
-	local raidIcon = CombatLog_String_GetIcon(args.sourceRaidFlags)
-	self:MessageOld(args.spellId, "red", "info", raidIcon.. args.spellName)
+	local raidIcon = self:GetIconTexture(self:GetIcon(args.sourceRaidFlags))
+	if raidIcon then
+		self:MessageOld(args.spellId, "red", "info", raidIcon.. args.spellName)
+	else
+		self:MessageOld(args.spellId, "red", "info")
+	end
 end
