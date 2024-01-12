@@ -24,7 +24,7 @@ function mod:GetOptions()
 	return {
 		255558, -- Tainted Blood
 		{255577, "CASTBAR"}, -- Transfusion
-		{255579, "TANK"}, -- Gilded Claws
+		{255579, "DISPEL"}, -- Gilded Claws
 		{255582, "DISPEL"}, -- Molten Gold
 		277072, -- Corrupted Gold
 		259205, -- Spirit of Gold
@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "TaintedBloodRemoved", 255558)
 	self:Log("SPELL_CAST_START", "Transfusion", 255577)
 	self:Log("SPELL_CAST_SUCCESS", "TransfusionSuccess", 255577)
-	self:Log("SPELL_CAST_START", "GildedClaws", 255579)
+	self:Log("SPELL_CAST_SUCCESS", "GildedClaws", 255579)
 	self:Log("SPELL_CAST_SUCCESS", "MoltenGold", 255591)
 	self:Log("SPELL_AURA_APPLIED", "MoltenGoldApplied", 255582)
 	self:Log("SPELL_AURA_APPLIED", "CorruptedGold", 277072)
@@ -50,7 +50,9 @@ function mod:OnEngage()
 	if not self:Normal() then
 		self:CDBar(259205, 9.0, CL.count:format(self:SpellName(259205), spiritOfGoldCount)) -- Spirit of Gold
 	end
-	self:CDBar(255579, 10.6) -- Gilded Claws
+	if self:Tank() or self:Dispeller("magic", true, 255579) then
+		self:CDBar(255579, 12.6) -- Gilded Claws
+	end
 	self:CDBar(255582, 16.6) -- Molten Gold
 	self:CDBar(255577, 25.1, CL.count:format(self:SpellName(255577), transfusionCount)) -- Transfusion
 end
@@ -110,9 +112,12 @@ do
 end
 
 function mod:GildedClaws(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert", "defensive")
-	self:CDBar(args.spellId, 34.0)
+	-- can be spellstolen, but using CAST_SUCCESS so don't have to filter based on destFlags
+	if self:Tank() or self:Dispeller("magic", true, args.spellId) then
+		self:Message(args.spellId, "purple", CL.onboss:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+		self:CDBar(args.spellId, 34.0)
+	end
 end
 
 function mod:MoltenGold(args)
