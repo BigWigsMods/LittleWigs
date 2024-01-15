@@ -37,9 +37,9 @@ if L then
 	L.putrid_pyromancer = "Putrid Pyromancer"
 	L.addled_arcanomancer = "Addled Arcanomancer"
 
-	L.gate_opens = "Gate Opens"
-	L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
-	L.gate_opens_icon = "spell_fire_fireball02"
+	L.gate_open = CL.gate_open
+	L.gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	L.gate_open_icon = "spell_fire_fireball02"
 
 	L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end
@@ -51,7 +51,7 @@ end
 function mod:GetOptions()
 	return {
 		-- RP Timers
-		"gate_opens",
+		"gate_open",
 		-- Dreadpetal
 		{164886, "DISPEL"}, -- Dreadpetal Pollen
 		-- Everbloom Naturalist
@@ -144,7 +144,7 @@ function mod:ArchmageSolDefeated()
 	-- 38.84 [CLEU] SPELL_CAST_SUCCESS#Undermage Kesalon#170741#Pyroblast
 	-- 40.27 [CHAT_MSG_MONSTER_SAY] If that beast crosses through, the unchecked growth will choke the whole of Azeroth! Hurry!#Undermage Kesalon
 	-- ~42.26 Gate Despawns
-	self:Bar("gate_opens", 35.0, L.gate_opens, L.gate_opens_icon)
+	self:Bar("gate_open", 35.0, L.gate_open, L.gate_open_icon)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg, sender)

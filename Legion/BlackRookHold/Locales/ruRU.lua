@@ -17,8 +17,7 @@ if L then
 	L.risen_swordsman = "Восставший мечник"
 	L.risen_lancer = "Восставший копейщик"
 
-	--L.door_opens = "Door Opens"
-	--L.door_opens_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
+	--L.door_open_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
 end
 
 L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "ruRU")

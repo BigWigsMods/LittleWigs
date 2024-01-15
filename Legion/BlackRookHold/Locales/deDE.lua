@@ -17,8 +17,7 @@ if L then
 	L.risen_swordsman = "Auferstandener Schwertkämpfer"
 	L.risen_lancer = "Auferstandener Lanzer"
 
-	L.door_opens = "Tür öffnet"
-	L.door_opens_desc = "Zeigt eine Leiste wann die Tür zum versteckten Durchgang geöffnet ist."
+	L.door_open_desc = "Zeigt eine Leiste wann die Tür zum versteckten Durchgang geöffnet ist."
 end
 
 L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "deDE")

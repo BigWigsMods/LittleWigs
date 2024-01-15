@@ -18,7 +18,6 @@ if L then
 	L.putrid_pyromancer = "타락의 화염술사"
 	L.addled_arcanomancer = "정신이상의 비전역술사"
 
-	--L.gate_opens = "Gate Opens"
-	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	--L.gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
 	--L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end

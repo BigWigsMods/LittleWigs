@@ -17,8 +17,7 @@ if L then
 	L.risen_swordsman = "复活的剑士"
 	L.risen_lancer = "复活的长枪兵"
 
-	L.door_opens = "门打开"
-	L.door_opens_desc = "显示通往隐秘小径门打开的计时条。"
+	L.door_open_desc = "显示通往隐秘小径门打开的计时条。"
 end
 
 L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "zhCN")

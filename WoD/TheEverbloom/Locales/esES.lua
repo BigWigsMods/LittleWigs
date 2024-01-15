@@ -18,7 +18,6 @@ if L then
 	L.putrid_pyromancer = "Piromántico pútrido"
 	L.addled_arcanomancer = "Arcanomántico desconcertado"
 
-	--L.gate_opens = "Gate Opens"
-	--L.gate_opens_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
+	--L.gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
 	--L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
 end
