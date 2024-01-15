@@ -127,7 +127,7 @@ do
 		self:TargetsMessage(args.spellId, "red", playerList, expectedTargets)
 		self:PlaySound(args.spellId, "warning", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Chaotic Shadows")
 			self:SayCountdown(args.spellId, 10)
 		end
 	end
@@ -192,11 +192,11 @@ end
 
 -- [[ Stage 1 ]] --
 function mod:AcquiringTarget(args)
-	self:TargetMessage(229248, "orange", args.destName)
+	self:TargetMessage(229248, "orange", args.destName) -- Fel Beam
 	self:PlaySound(229248, "alarm", nil, args.destName)
 	self:CDBar(229248, 41.2)
 	if self:Me(args.destGUID) then
-		self:Say(229248)
+		self:Say(229248, nil, nil, "Fel Beam")
 	end
 end
 

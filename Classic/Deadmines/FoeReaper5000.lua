@@ -46,7 +46,7 @@ do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
 			self:Flash(88495)
-			self:Say(88495)
+			self:Say(88495, nil, nil, "Harvest")
 		end
 		self:TargetMessageOld(88495, player, "red", "alert")
 	end

@@ -33,7 +33,7 @@ do
 		self:TargetMessage(59322, "orange", player)
 		self:PlaySound(59322, "info", nil, player)
 		if self:Me(guid) then
-			self:Say(59322)
+			self:Say(59322, nil, nil, "Whirlwind")
 		end
 	end
 

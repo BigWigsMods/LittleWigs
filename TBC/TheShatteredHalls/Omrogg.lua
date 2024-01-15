@@ -34,7 +34,7 @@ end
 do
 	local function announce(self, target, guid)
 		if self:Me(guid) then
-			self:Say(-5894)
+			self:Say(-5894, nil, nil, "Beatdown")
 			self:Flash(-5894)
 		end
 		self:TargetMessageOld(-5894, target, "yellow", "warning", nil, nil, true)

@@ -47,7 +47,7 @@ do
 		self:TargetMessage(307863, "orange", name)
 		self:PlaySound(307863, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(307863)
+			self:Say(307863, nil, nil, "Void Torrent")
 		end
 	end
 

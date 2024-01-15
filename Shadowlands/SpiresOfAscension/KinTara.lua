@@ -152,7 +152,7 @@ do
 
 		local guid = self:UnitGUID(destName)
 		if self:Me(guid) then
-			self:Say(321009)
+			self:Say(321009, nil, nil, "Charged Spear")
 			self:SayCountdown(321009, 2.7 + offset, nil, 2)
 		end
 	end

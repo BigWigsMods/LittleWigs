@@ -33,7 +33,7 @@ end
 function mod:MurmursTouch(args)
 	local duration = self:Normal() and 14 or 7
 	if self:Me(args.destGUID) then
-		self:Say(38794)
+		self:Say(38794, nil, nil, "Murmur's Touch")
 		self:SayCountdown(38794, duration)
 	end
 	self:TargetMessageOld(38794, args.destName, "yellow", "alarm")

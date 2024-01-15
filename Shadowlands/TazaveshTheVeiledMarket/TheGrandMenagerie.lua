@@ -190,7 +190,7 @@ do
 		self:PlaySound(350101, "alert", nil, name)
 
 		if self:Me(guid) then
-			self:Say(350101)
+			self:Say(350101, nil, nil, "Chains of Damnation")
 		end
 	end
 

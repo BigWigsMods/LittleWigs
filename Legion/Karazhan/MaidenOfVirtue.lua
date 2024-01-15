@@ -57,7 +57,7 @@ do
 		self:TargetMessage(227789, "red", player)
 		self:PlaySound(227789, "alarm", nil, player)
 		if self:Me(guid) then
-			self:Say(227789)
+			self:Say(227789, nil, nil, "Sacred Ground")
 			self:Flash(227789)
 		end
 	end

@@ -115,7 +115,7 @@ end
 function mod:TaintOfTheSea(args)
 	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert", nil, nil, self:Dispeller("magic"))
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Taint of the Sea")
 	end
 end
 

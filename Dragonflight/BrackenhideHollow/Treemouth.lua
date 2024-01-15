@@ -117,7 +117,7 @@ do
 		self:TargetMessage(376811, "yellow", name)
 		self:PlaySound(376811, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(376811)
+			self:Say(376811, nil, nil, "Decay Spray")
 		end
 	end
 

@@ -188,7 +188,7 @@ do
 				self:PlaySound(256358, "alarm", "watchstep", args.destName)
 			end
 			if self:Me(args.destGUID) then
-				self:Say(256358)
+				self:Say(256358, nil, nil, "Shark Toss")
 			end
 		else -- 256477, Shark ability, used for timers
 			if self:MobId(args.sourceGUID) == 129448 then -- Hammer Shark (Left)

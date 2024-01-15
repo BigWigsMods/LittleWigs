@@ -196,7 +196,7 @@ function mod:SightedArtillery(args)
 	self:PlaySound(args.spellId, "info")
 	self:TargetBar(args.spellId, 6, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Sighted Artillery")
 	end
 end
 
@@ -284,7 +284,7 @@ do
 		self:TargetMessage(257036, "orange", name)
 		self:PlaySound(257036, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(257036)
+			self:Say(257036, nil, nil, "Feral Charge")
 		end
 	end
 

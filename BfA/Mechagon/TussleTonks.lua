@@ -107,7 +107,7 @@ do
 		self:TargetMessage(285152, "yellow", name)
 		self:PlaySound(285152, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(285152)
+			self:Say(285152, nil, nil, "Foe Flipper")
 			self:Flash(285152)
 		end
 	end
@@ -132,7 +132,7 @@ do
 		self:TargetMessage(283422, "yellow", name)
 		self:PlaySound(283422, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(283422)
+			self:Say(283422, nil, nil, "Maximum Thrust")
 			self:Flash(283422)
 		end
 	end

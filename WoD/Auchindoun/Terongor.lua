@@ -100,7 +100,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(157001)
+			self:Say(157001, nil, nil, "Chaos Wave")
 		end
 		self:TargetMessageOld(157001, player, "red", "alert")
 	end
@@ -113,7 +113,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(157039)
+			self:Say(157039, nil, nil, "Demonic Leap")
 			self:Flash(157039)
 		end
 		self:TargetMessageOld(157039, player, "orange", "alarm")

@@ -173,7 +173,7 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(258338, "yellow", name, CL.casting:format(self:SpellName(258338)))
 		if self:Me(guid) then
-			self:Say(258338)
+			self:Say(258338, nil, nil, "Blackout Barrel")
 			self:PlaySound(258338, "alert")
 		else
 			self:PlaySound(258338, "alert", "killadd", name)

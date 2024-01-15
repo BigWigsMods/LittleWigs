@@ -145,7 +145,7 @@ do
 		playerList[#playerList + 1] = args.destName
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning", "runout")
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Upheaval")
 			self:SayCountdown(args.spellId, 6)
 		end
 		self:TargetsMessage(args.spellId, "orange", playerList, 2)

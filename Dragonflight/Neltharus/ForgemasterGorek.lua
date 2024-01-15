@@ -88,7 +88,7 @@ do
 			self:PlaySound(374839, "alert", nil, args.destName)
 		end
 		if self:Me(args.destGUID) then
-			self:Say(374839)
+			self:Say(374839, nil, nil, "Blazing Aegis")
 			self:SayCountdown(374839, 3.5)
 		end
 	end

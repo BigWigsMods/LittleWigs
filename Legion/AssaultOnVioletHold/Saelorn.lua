@@ -48,7 +48,7 @@ do
 			self:CDBar(args.spellId, 22)
 		end
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Venom Spray")
 		end
 	end
 end

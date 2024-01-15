@@ -87,7 +87,7 @@ end
 
 function mod:SpiritWarriorsGaze(args)
 	if self:Me(args.destGUID) then
-		self:Say(-2910, args.spellId)
+		self:Say(-2910, args.spellId, nil, "Spirit Warrior's Gaze")
 		self:Flash(-2910, args.spellId)
 	end
 	self:TargetMessageOld(-2910, args.destName, "red", "alert", args.spellId)

@@ -120,7 +120,7 @@ do
 		self:TargetMessage(375251, "yellow", name)
 		self:PlaySound(375251, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(375251)
+			self:Say(375251, nil, nil, "Lava Spray")
 		end
 	end
 
@@ -148,7 +148,7 @@ function mod:BlazingCharge(args)
 	self:TargetMessage(375439, "red", args.destName)
 	self:PlaySound(375439, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(375439)
+		self:Say(375439, nil, nil, "Blazing Charge")
 	end
 	blazingChargeCount = blazingChargeCount + 1
 	if blazingChargeCount == 2 then

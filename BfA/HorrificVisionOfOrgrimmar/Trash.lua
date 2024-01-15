@@ -265,7 +265,7 @@ do
 		self:PlaySound(299055, "alarm", nil, name)
 		self:Bar(299055, 12.1)
 		if self:Me(guid) then
-			self:Say(299055)
+			self:Say(299055, nil, nil, "Dark Force")
 		end
 	end
 

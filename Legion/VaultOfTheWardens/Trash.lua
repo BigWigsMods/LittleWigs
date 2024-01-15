@@ -124,7 +124,7 @@ end
 function mod:NightmaresApplied(args)
 	self:TargetMessageOld(args.spellId, args.destName, "orange", self:Healer() and "alarm")
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Nightmares")
 	end
 end
 
@@ -186,7 +186,7 @@ end
 function mod:Torment(args)
 	if self:Me(args.destGUID) then
 		tormentOnMe = true
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Torment")
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, true)
 	self:TargetBar(args.spellId, 6, args.destName)

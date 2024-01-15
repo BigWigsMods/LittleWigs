@@ -106,7 +106,7 @@ function mod:SavageChargeApplied(args)
 	if self:Tank() or onMe then
 		self:PlaySound(381444, "warning", nil, args.destName)
 		if onMe then
-			self:Say(381444)
+			self:Say(381444, nil, nil, "Savage Charge")
 		end
 	else
 		self:PlaySound(381444, "alert", nil, args.destName)

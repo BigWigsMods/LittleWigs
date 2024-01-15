@@ -129,7 +129,7 @@ do
 	local function fixateAnnounce(self, target, guid)
 		if self:Me(guid) and not isOnMe then
 			isOnMe = true
-			self:Say("fixate", L.fixate)
+			self:Say("fixate", L.fixate, nil, "Fixate")
 		end
 
 		if #fixatedTargets > 0 and fixatedTargets[#fixatedTargets] == self:ColorName(target) then return end -- don't announce the same player twice

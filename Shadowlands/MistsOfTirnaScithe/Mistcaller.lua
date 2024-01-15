@@ -90,6 +90,6 @@ function mod:FreezeTagFixation(args)
 	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-		self:Say(args.spellId)
+		self:Say(args.spellId, CL.fixate, nil, "Fixate")
 	end
 end

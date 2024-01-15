@@ -74,7 +74,7 @@ do
 		self:PlaySound(291973, "alert", nil, playerList)
 		self:TargetsMessage(291973, "orange", playerList, 4)
 		if self:Me(args.destGUID) then
-			self:Say(291973)
+			self:Say(291973, nil, nil, "Explosive Leap")
 		end
 	end
 end

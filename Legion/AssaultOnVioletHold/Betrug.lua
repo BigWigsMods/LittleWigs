@@ -64,7 +64,7 @@ function mod:Execution(args)
 	self:CDBar(args.spellId, 48)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Execution")
 	end
 end
 
@@ -85,7 +85,7 @@ do
 			self:CDBar(args.spellId, 22)
 		end
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Seed of Destruction")
 		end
 	end
 end

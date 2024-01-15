@@ -54,7 +54,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 
 		local guid = self:UnitGUID(destName)
 		if self:Me(guid) then
-			self:Say(319713)
+			self:Say(319713, nil, nil, "Juggernaut Rush")
 		end
 	end
 end

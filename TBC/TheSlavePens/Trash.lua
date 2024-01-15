@@ -135,7 +135,7 @@ end
 
 function mod:PsychicHorror(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId) -- helps prioritizing dispelling those who are about to run into some pack
+		self:Say(args.spellId, nil, nil, "Psychic Horror") -- helps prioritizing dispelling those who are about to run into some pack
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "red", "alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 3, args.destName)

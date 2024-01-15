@@ -95,7 +95,7 @@ function mod:FrostbiteApplied(args)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 	frostbiteTarget = args.destName
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Frostbite")
 	end
 end
 
@@ -167,7 +167,7 @@ do
 			self:Bar(228269, 20)
 		end
 		if self:Me(args.destGUID) then
-			self:Say(228269)
+			self:Say(228269, nil, nil, "Flame Wreath")
 		end
 	end
 end

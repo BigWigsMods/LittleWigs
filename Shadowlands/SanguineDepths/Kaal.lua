@@ -83,7 +83,7 @@ do
 		self:TargetsMessageOld(args.spellId, "orange", playerList, 2)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Wicked Rush")
 			self:Flash(args.spellId)
 		end
 	end

@@ -54,7 +54,7 @@ function mod:ScornfulGaze(args)
 	self:TargetBar(args.spellId, 7, args.destName)
 	self:CDBar(args.spellId, 37)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Scornful Gaze")
 		self:Flash(args.spellId)
 	end
 end

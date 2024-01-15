@@ -71,7 +71,7 @@ do
 		self:TargetMessage(372107, "yellow", name)
 		self:PlaySound(372107, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(372107)
+			self:Say(372107, nil, nil, "Molten Boulder")
 		end
 	end
 

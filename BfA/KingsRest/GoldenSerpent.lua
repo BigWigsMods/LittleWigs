@@ -57,7 +57,7 @@ end
 
 function mod:SpitGoldApplied(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Spit Gold")
 		self:SayCountdown(args.spellId, 9)
 	end
 end

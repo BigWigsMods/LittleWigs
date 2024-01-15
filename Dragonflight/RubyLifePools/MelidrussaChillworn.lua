@@ -99,7 +99,7 @@ function mod:Chillstorm(args)
 	self:TargetMessage(372851, "yellow", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(372851, "alarm")
-		self:Say(372851)
+		self:Say(372851, nil, nil, "Chillstorm")
 		self:SayCountdown(372851, 3.5)
 	else
 		self:PlaySound(372851, "alert", nil, args.destName)

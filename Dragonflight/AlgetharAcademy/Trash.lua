@@ -317,7 +317,7 @@ function mod:ViciousAmbush(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alarm")
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Vicious Ambush")
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
@@ -432,7 +432,7 @@ do
 			self:TargetMessage(args.spellId, "yellow", args.destName)
 			if onMe then
 				self:PlaySound(args.spellId, "alarm")
-				self:Say(args.spellId)
+				self:Say(args.spellId, nil, nil, "Astral Bomb")
 				self:SayCountdown(args.spellId, 3, nil, 2)
 			else
 				self:PlaySound(args.spellId, "alert", nil, args.destName)

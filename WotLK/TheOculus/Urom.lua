@@ -52,7 +52,7 @@ end
 
 function mod:TimeBomb(args)
 	if self:Me(args.destGUID) then
-		self:Say(51121)
+		self:Say(51121, nil, nil, "Time Bomb")
 		self:SayCountdown(51121, 6)
 	end
 	self:TargetMessageOld(51121, args.destName, "orange", "alert", nil, nil, self:Healer()) -- damage is based on missing health

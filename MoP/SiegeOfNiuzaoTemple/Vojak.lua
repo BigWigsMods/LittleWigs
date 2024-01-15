@@ -81,7 +81,7 @@ do
 		if not self:Tanking("boss1", player) then
 			self:TargetMessageOld(120789, player, "yellow", "alarm")
 			if self:Me(guid) then
-				self:Say(120789)
+				self:Say(120789, nil, nil, "Dashing Strike")
 			end
 		else -- either incorrect (cast time depends on distance between the boss and the target) or only one player is alive
 			self:MessageOld(120789, "yellow")

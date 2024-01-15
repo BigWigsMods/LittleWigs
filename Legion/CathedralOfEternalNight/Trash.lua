@@ -125,7 +125,7 @@ do
 		if self:Me(guid) then
 			prev = t
 			self:TargetMessageOld(236737, name, "blue", "alert")
-			self:Say(236737)
+			self:Say(236737, nil, nil, "Fel Strike")
 		elseif t-prev > 1.5 then
 			prev = t
 			self:MessageOld(236737, "yellow", "alert")

@@ -53,7 +53,7 @@ end
 
 function mod:HomingMissile(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Homing Missile")
 	end
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)

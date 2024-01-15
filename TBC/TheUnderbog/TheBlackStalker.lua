@@ -45,7 +45,7 @@ end
 
 function mod:StaticCharge(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Static Charge")
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	self:TargetBar(args.spellId, 12, args.destName)
@@ -61,16 +61,16 @@ function mod:StaticChargeRemoved(args)
 end
 
 do
-	local function announce(self, target, guid)
+	local function printTarget(self, name, guid)
 		if self:Me(guid) then
-			self:Say(31717)
+			self:Say(31717, nil, nil, "Chain Lightning")
 		end
-		self:TargetMessageOld(31717, target, "yellow")
-		self:PrimaryIcon(31717, target)
+		self:TargetMessageOld(31717, name, "yellow")
+		self:PrimaryIcon(31717, name)
 	end
 
 	function mod:ChainLightning(args)
-		self:GetBossTarget(announce, 0.4, args.sourceGUID)
+		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CastBar(args.spellId, 3)
 	end
 

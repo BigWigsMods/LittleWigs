@@ -146,7 +146,7 @@ do
 		self:TargetsMessageOld(args.spellId, "red", playerList, 2, laser)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning")
-			self:Say(args.spellId, laser)
+			self:Say(args.spellId, laser, nil, "Laser")
 			self:TargetBar(args.spellId, 5, args.destName, laser)
 		end
 	end
@@ -171,7 +171,7 @@ do
 		self:TargetMessage(320132, "red", name)
 		self:PlaySound(320132, onMe and "warning" or "alert", nil, name)
 		if onMe then
-			self:Say(320132)
+			self:Say(320132, nil, nil, "Shadowfury")
 			self:SayCountdown(320132, 4.9)
 		end
 	end

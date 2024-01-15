@@ -316,7 +316,7 @@ function mod:Fixate(args)
 	if self:Me(args.destGUID) and not isThrottled(args.spellId) then
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alert")
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Fixate")
 	end
 end
 
@@ -357,7 +357,7 @@ function mod:Bladestorm(args)
 	self:PlaySound(270928, "alarm", nil, args.destName)
 
 	if self:Me(args.destGUID) then
-		self:Say(270928)
+		self:Say(270928, nil, nil, "Bladestorm")
 	end
 end
 
@@ -410,7 +410,7 @@ function mod:HiddenBladeApplied(args)
 	local isOnMe = self:Me(args.destGUID)
 
 	if isOnMe then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Hidden Blade")
 	end
 
 	if isOnMe or self:Dispeller("poison") or self:Healer() then
@@ -522,7 +522,7 @@ do
 		if self:Me(guid) then
 			self:Message(270507, "red", L.casting_on_you:format(self:SpellName(270507)))
 			self:Flash(270507)
-			self:Say(270507)
+			self:Say(270507, nil, nil, "Poison Barrage")
 		else
 			self:Message(270507, "red", L.casting_on_other:format(self:SpellName(270507), self:ColorName(name)))
 		end
@@ -584,7 +584,7 @@ function mod:DarkRevelation(args)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Dark Revelation")
 		self:SayCountdown(args.spellId, 10)
 	end
 end

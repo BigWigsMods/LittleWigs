@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module declaration
 --
@@ -44,9 +43,9 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(-5293, 100) -- 100 = Charge
+			self:Say(-5293, CL.charge, nil, "Charge")
 		end
-		self:TargetMessageOld(-5293, player, "orange", nil, 100, -5293)
+		self:TargetMessageOld(-5293, player, "orange", nil, CL.charge, -5293)
 	end
 
 	local prev

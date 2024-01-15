@@ -164,7 +164,7 @@ function mod:FeelingOfSuperiorityApplied(args)
 	if self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, "blue", args.destName)
 		self:PlaySound(args.spellId, "info")
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Feeling of Superiority")
 	end
 end
 

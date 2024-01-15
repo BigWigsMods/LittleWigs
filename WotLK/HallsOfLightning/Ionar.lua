@@ -33,7 +33,7 @@ function mod:StaticOverload(args)
 	self:TargetMessageOld(59795, args.destName, "yellow", "alarm")
 	self:TargetBar(59795, 10, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(59795)
+		self:Say(59795, nil, nil, "Static Overload")
 		self:Flash(59795)
 	end
 end

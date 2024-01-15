@@ -52,7 +52,7 @@ function mod:ToxicWound(args)
 	--self:CDBar(args.spellId, 25) -- pull:27.8, 25.5, 29.2 -- pull:5.9, 25.1, 41.0
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Toxic Wound")
 	end
 end
 

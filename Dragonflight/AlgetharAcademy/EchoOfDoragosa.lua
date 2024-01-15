@@ -93,7 +93,7 @@ function mod:EnergyBomb(args)
 	self:PlaySound(374352, "alert", nil, args.destName)
 	self:CDBar(374352, 14.5)
 	if self:Me(args.destGUID) then
-		self:Say(374352)
+		self:Say(374352, nil, nil, "Energy Bomb")
 	end
 end
 

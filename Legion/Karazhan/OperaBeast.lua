@@ -101,7 +101,7 @@ function mod:SevereDustingApplied(args)
 	self:TargetBar(args.spellId, 12, args.destName)
 	if onMe then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Severe Dusting")
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end

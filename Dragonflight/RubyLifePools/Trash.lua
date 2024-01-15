@@ -215,7 +215,7 @@ function mod:LivingBombApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Living Bomb")
 		self:SayCountdown(args.spellId, 6)
 	end
 end

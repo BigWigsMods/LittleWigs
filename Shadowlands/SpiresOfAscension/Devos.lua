@@ -93,7 +93,7 @@ do
 	function mod:LostConfidenceApplied(args)
 		playerList[#playerList+1] = args.destName
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Lost Confidence")
 			self:SayCountdown(args.spellId, 15)
 			self:PlaySound(args.spellId, "alarm")
 		end
@@ -123,12 +123,12 @@ function mod:CHAT_MSG_MONSTER_YELL(event, _, _, _, _, target)
 	if target then
 		self:UnregisterEvent(event)
 
-		self:TargetMessage(323943, "orange", target)
+		self:TargetMessage(323943, "orange", target) -- Run Through
 		self:PlaySound(323943, "alert", nil, target)
 
 		local guid = self:UnitGUID(target)
 		if self:Me(guid) then
-			self:Say(323943)
+			self:Say(323943, nil, nil, "Run Through")
 		end
 	end
 end

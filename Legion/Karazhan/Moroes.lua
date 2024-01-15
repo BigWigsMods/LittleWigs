@@ -261,7 +261,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(227463)
+			self:Say(227463, nil, nil, "Whirling Edge")
 		end
 		self:TargetMessage(227463, "orange", player)
 		self:PlaySound(227463, "warning", nil, player)

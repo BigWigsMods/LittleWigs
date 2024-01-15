@@ -93,7 +93,7 @@ do
 			if t-prev > 0.3 then -- Only run once per targetsmessage
 				prev = t
 				self:PlaySound(args.spellId, "warning", "fixate")
-				self:Say(args.spellId)
+				self:Say(args.spellId, nil, nil, "Raging Gaze")
 			end
 		end
 	end

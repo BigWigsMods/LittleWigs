@@ -59,7 +59,7 @@ end
 function mod:DivineReckoning(args)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Divine Reckoning")
 		self:SayCountdown(args.spellId, 8)
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert", nil, nil, self:Dispeller("magic"))

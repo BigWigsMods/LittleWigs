@@ -185,7 +185,7 @@ function mod:DarkOmenApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "alarm")
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Dark Omen")
 	end
 end
 
@@ -236,7 +236,7 @@ function mod:BloodHarvest(args)
 	if self:Me(args.destGUID) then
 		-- :Say here, because if Blood Harvest hits its target a
 		-- Savage Cleave will be immediately cast in their direction.
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Blood Harvest")
 	end
 	--self:NameplateCDBar(args.spellId, 12.1, args.sourceGUID)
 end

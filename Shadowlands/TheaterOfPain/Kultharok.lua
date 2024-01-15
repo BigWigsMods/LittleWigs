@@ -67,7 +67,7 @@ do
 		self:TargetsMessageOld(args.spellId, "orange", playerList, 2, nil, nil, 0.8)
 		self:PlaySound(args.spellId, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Phantasmal Parasite")
 			self:Flash(args.spellId)
 		end
 	end

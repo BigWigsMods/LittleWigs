@@ -143,7 +143,7 @@ end
 
 function mod:GiveNoQuarter(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Give No Quarter")
 		self:Flash(args.spellId)
 		self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	else

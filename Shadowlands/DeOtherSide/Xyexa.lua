@@ -44,7 +44,7 @@ function mod:LocalizedExplosiveContrivance(args)
 	self:TargetMessage(args.spellId, "red", args.destName, CL.bomb)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-		self:Say(args.spellId, CL.bomb)
+		self:Say(args.spellId, CL.bomb, nil, "Bomb")
 		self:SayCountdown(args.spellId, 5)
 	end
 end

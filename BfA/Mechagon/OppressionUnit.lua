@@ -107,7 +107,7 @@ function mod:FulminatingBurstApplied(args)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 	self:TargetBar(args.spellId, 9)
 	if self:Me(args.destGUID) then
-		self:Yell(args.spellId)
+		self:Yell(args.spellId, nil, nil, "Fulminating Burst")
 		self:YellCountdown(args.spellId, 9, nil, 5)
 	end
 end

@@ -387,7 +387,7 @@ function mod:VolatileAcidApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Volatile Acid")
 	end
 end
 

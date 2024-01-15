@@ -152,7 +152,7 @@ function mod:BurningHatred(args)
 	if self:MobId(args.sourceGUID) == 101476 then -- Molten Charskin
 		self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId, CL.fixate)
+			self:Say(args.spellId, CL.fixate, nil, "Fixate")
 			self:PlaySound(args.spellId, "warning", nil, args.destName)
 		else
 			self:PlaySound(args.spellId, "alert", nil, args.destName)

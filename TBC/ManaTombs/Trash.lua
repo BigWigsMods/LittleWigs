@@ -89,7 +89,7 @@ do
 
 	function mod:PsychicScream(args)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId) -- helps prioritizing dispelling those who are about to run into some pack
+			self:Say(args.spellId, nil, nil, "Psychic Scream") -- helps prioritizing dispelling those who are about to run into some pack
 		end
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then

@@ -141,7 +141,7 @@ do
 		self:TargetMessage(369677, "yellow", name)
 		self:PlaySound(369677, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(369677)
+			self:Say(369677, nil, nil, "Ricocheting Shield")
 		end
 	end
 

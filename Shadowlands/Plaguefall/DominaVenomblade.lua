@@ -66,7 +66,7 @@ function mod:ShadowwhirlApplied(args)
 	self:Bar(325245, 22)
 	if self:Me(args.destGUID) then
 		self:PlaySound(325245, "warning")
-		self:Say(325245)
+		self:Say(325245, nil, nil, "Shadow Ambush")
 		self:SayCountdown(325245, 6)
 	end
 end

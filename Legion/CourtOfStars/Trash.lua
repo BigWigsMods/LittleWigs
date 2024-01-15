@@ -891,7 +891,7 @@ do
 		self:TargetsMessage(args.spellId, "orange", playerList, 2)
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Impending Doom")
 			self:SayCountdown(args.spellId, 6)
 		end
 	end

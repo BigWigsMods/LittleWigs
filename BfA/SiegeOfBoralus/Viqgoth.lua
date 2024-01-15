@@ -130,7 +130,7 @@ do
 		if self:Me(args.destGUID) then
 			isOnMe = true
 			self:PlaySound(args.spellId, "warning")
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Putrid Waters")
 			self:Flash(args.spellId)
 			self:SayCountdown(args.spellId, 30)
 		end

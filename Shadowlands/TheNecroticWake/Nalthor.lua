@@ -90,7 +90,7 @@ function mod:FrozenBindsSuccess(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Frozen Binds")
 	end
 	self:Bar(args.spellId, 25.5)
 	self:PrimaryIcon(args.spellId, args.destName)

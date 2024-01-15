@@ -185,7 +185,7 @@ do
 		self:TargetMessage(291928, "red", name)
 		self:PlaySound(291928, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(291928)
+			self:Say(291928, nil, nil, "Giga-Zap")
 			self:Flash(291928)
 		end
 	end

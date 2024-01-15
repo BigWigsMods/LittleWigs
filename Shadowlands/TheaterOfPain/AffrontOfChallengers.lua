@@ -113,7 +113,7 @@ function mod:SearingDeathApplied(args)
 	self:TargetMessage(args.spellId, isOnMe and "red" or "yellow", args.destName)
 	self:PlaySound(args.spellId, isOnMe and "alarm" or "info", nil, args.destName)
 	if isOnMe then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Searing Death")
 		self:Flash(args.spellId)
 	end
 end

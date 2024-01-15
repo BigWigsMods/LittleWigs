@@ -37,7 +37,7 @@ end
 
 function mod:MagmaSpit(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Magma Spit")
 		self:SayCountdown(args.spellId, 9)
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "orange")

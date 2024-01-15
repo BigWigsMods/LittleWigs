@@ -73,7 +73,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(197365)
+			self:Say(197365, nil, nil, "Crushing Depths")
 		end
 		self:SecondaryIcon(197365, player)
 		self:TargetMessageOld(197365, player, "red", "alarm", nil, nil, true)

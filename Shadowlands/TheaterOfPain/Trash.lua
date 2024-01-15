@@ -348,7 +348,7 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(333861, "red", name)
 		if self:Me(guid) then
-			self:Say(333861)
+			self:Say(333861, nil, nil, "Ricocheting Blade")
 			self:PlaySound(333861, "warning", nil, name)
 		else
 			self:PlaySound(333861, "alert", nil, name)

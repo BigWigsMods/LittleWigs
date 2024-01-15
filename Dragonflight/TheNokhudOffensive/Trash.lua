@@ -291,7 +291,7 @@ do
 		self:TargetMessage(387127, "red", name)
 		self:PlaySound(387127, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(387127)
+			self:Say(387127, nil, nil, "Chain Lightning")
 		end
 	end
 

@@ -304,7 +304,7 @@ do
 		self:TargetMessage(367503, "orange", name)
 		self:PlaySound(367503, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(367503)
+			self:Say(367503, nil, nil, "Withering Burst")
 		end
 	end
 
@@ -499,7 +499,7 @@ do
 		self:TargetMessage(374544, "red", name)
 		self:PlaySound(374544, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(374544)
+			self:Say(374544, nil, nil, "Burst of Decay")
 		end
 	end
 
@@ -549,7 +549,7 @@ do
 		self:TargetMessage(388060, "red", name)
 		self:PlaySound(388060, "alarm", nil, name)
 		if self:Me(guid) then
-			self:Say(388060)
+			self:Say(388060, nil, nil, "Stink Breath")
 		end
 	end
 
@@ -589,7 +589,7 @@ do
 		self:TargetMessage(385832, "red", name)
 		self:PlaySound(385832, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(385832)
+			self:Say(385832, nil, nil, "Bloodthirsty Charge")
 		end
 	end
 
@@ -665,7 +665,7 @@ function mod:WitheringContagion(args)
 	self:TargetMessage(args.spellId, "orange", args.destName, CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Withering Contagion")
 	end
 end
 

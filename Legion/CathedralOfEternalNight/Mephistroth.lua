@@ -117,7 +117,7 @@ do
 				self:ScheduleTimer("TargetMessageOld", 1, 233196, list, "red", "warning", 233963) -- Travel time
 			end
 			if self:Me(guid) then
-				self:Say(233196)
+				self:Say(233196, nil, nil, "Demonic Upheaval")
 				self:Flash(233196)
 			end
 			upheavalWarned[n] = true

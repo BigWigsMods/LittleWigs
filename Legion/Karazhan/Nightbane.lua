@@ -159,7 +159,7 @@ function mod:IgniteSoul(args)
 	self:TargetBar(args.spellId, 9, args.destName)
 	if self:Me(args.destGUID) then
 		igniteSoulOnMe = true
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Ignite Soul")
 		self:Flash(args.spellId)
 		self:SayCountdown(args.spellId, 9)
 	end

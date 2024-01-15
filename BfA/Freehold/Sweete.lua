@@ -102,7 +102,7 @@ do
 
 	function mod:CannonBarrage(args)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Cannon Barrage")
 			onMe = true
 		end
 		if not scheduled then
@@ -156,8 +156,8 @@ function mod:BlackPowderBomb(args)
 		self:TargetMessage(args.spellId, "yellow", args.destName, CL.fixate, args.spellId)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning", "fixate")
-			self:Say(args.spellId, CL.fixate)
 			self:Flash(args.spellId)
+			self:Say(args.spellId, CL.fixate, nil, "Fixate")
 		else
 			self:PlaySound(args.spellId, "alert", nil, args.destName)
 		end

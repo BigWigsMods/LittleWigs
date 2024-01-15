@@ -196,7 +196,7 @@ function mod:CurseOfObliterationApplied(args)
 	self:PlaySound(args.spellId, isOnMe and "alarm" or "info", nil, args.destName)
 
 	if isOnMe then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Curse of Obliteration")
 		self:SayCountdown(args.spellId, 6)
 	end
 end

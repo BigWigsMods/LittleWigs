@@ -34,7 +34,7 @@ function mod:ChestBomb(args)
 	self:TargetBar(args.spellId, 10, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Chest Bomb")
 		self:Flash(args.spellId)
 	end
 end

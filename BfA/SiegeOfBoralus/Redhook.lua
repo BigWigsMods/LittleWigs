@@ -109,7 +109,7 @@ do
 		self:TargetMessage(257348, "red", name)
 		self:PlaySound(257348, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(257348)
+			self:Say(257348, nil, nil, "Meat Hook")
 		end
 	end
 	function mod:MeatHook(args)

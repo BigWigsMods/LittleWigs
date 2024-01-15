@@ -219,7 +219,7 @@ function mod:ErraticGrowthApplied(args)
 		self:TargetMessage(375596, "orange", args.destName)
 		self:PlaySound(375596, "alarm", nil, args.destName)
 		if onMe then
-			self:Say(375596)
+			self:Say(375596, nil, nil, "Erratic Growth")
 		end
 	end
 end

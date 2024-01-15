@@ -47,7 +47,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(194325)
+			self:Say(194325, nil, nil, "Fragment")
 		end
 		self:TargetMessageOld(194325, player, "red", "warning")
 	end

@@ -61,7 +61,7 @@ do
 		self:TargetsMessageOld(args.spellId, "red", playerList, 2)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning")
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Corrupted Blood")
 			self:TargetBar(args.spellId, 8, args.destName)
 		end
 	end

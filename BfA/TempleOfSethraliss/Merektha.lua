@@ -34,8 +34,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "ToxicPool", 263927)
 	self:Log("SPELL_CAST_START", "BlindingSand", 263914)
 	self:Log("SPELL_CAST_START", "Hatch", 264239, 264233) -- different sides
-	self:Log("SPELL_AURA_APPLIED", "KnotOfSnakes", 263958)
-	self:Log("SPELL_AURA_REMOVED", "KnotOfSnakesRemoved", 263958)
+	self:Log("SPELL_AURA_APPLIED", "AKnotOfSnakes", 263958)
+	self:Log("SPELL_AURA_REMOVED", "AKnotOfSnakesRemoved", 263958)
 
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 end
@@ -102,9 +102,9 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	end
 end
 
-function mod:KnotOfSnakes(args)
+function mod:AKnotOfSnakes(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "A Knot of Snakes")
 	end
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
@@ -112,7 +112,7 @@ function mod:KnotOfSnakes(args)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:KnotOfSnakesRemoved(args)
+function mod:AKnotOfSnakesRemoved(args)
 	self:PrimaryIcon(args.spellId)
 	self:StopBar(args.spellName, args.destName)
 end

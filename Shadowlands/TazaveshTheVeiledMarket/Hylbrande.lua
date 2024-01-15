@@ -106,20 +106,20 @@ do
 	function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, _, _, _, _, playerName)
 		-- "Titanic Defense Turret acquires a new target."
 		prev = GetTime()
-		self:TargetMessage(346959, "blue", playerName) -- Purged By Fire
-		self:PlaySound(346959, "warning") -- Purged By Fire
-		self:Say(346959) -- Purged By Fire
+		self:TargetMessage(346959, "blue", playerName) -- Purged by Fire
+		self:PlaySound(346959, "warning") -- Purged by Fire
+		self:Say(346959, nil, nil, "Purged by Fire") -- Purged by Fire
 	end
 	local function warnPurgedByFire()
 		if GetTime() - prev > 1 then
-			mod:Message(346959, "orange") -- Purged By Fire
-			mod:PlaySound(346959, "alert") -- Purged By Fire
+			mod:Message(346959, "orange") -- Purged by Fire
+			mod:PlaySound(346959, "alert") -- Purged by Fire
 		end
 	end
 	function mod:PurgedByFire(args)
 		self:SimpleTimer(warnPurgedByFire, 0.1)
 		if sanitizingCycleTime - GetTime() > 17 then -- Sanitizing Cycle
-			self:Bar(346959, 17) -- Purged By Fire
+			self:Bar(346959, 17) -- Purged by Fire
 		end
 	end
 end

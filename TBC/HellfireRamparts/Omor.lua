@@ -30,7 +30,7 @@ end
 
 function mod:TreacherousAura(args)
 	if self:Me(args.destGUID) then
-		self:Say(30695)
+		self:Say(30695, nil, nil, "Treacherous Aura")
 	end
 	self:TargetMessageOld(30695, args.destName, "orange", nil, args.spellName)
 	self:TargetBar(30695, 15, args.destName, args.spellName)

@@ -48,7 +48,7 @@ function mod:Sabotage(args)
 	self:CDBar(args.spellId, 13.4)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Sabotage")
 		self:SayCountdown(args.spellId, 5)
 	end
 end

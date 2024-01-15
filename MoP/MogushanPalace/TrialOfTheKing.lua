@@ -111,7 +111,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, player)
 		self:PrimaryIcon(120195, player)
 		if UnitIsUnit(player, "player") then
 			self:Flash(120195)
-			self:Say(120195)
+			self:Say(120195, nil, nil, "Meteor")
 		end
 	end
 end

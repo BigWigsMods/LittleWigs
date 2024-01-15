@@ -65,7 +65,7 @@ function mod:MeatHookApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-		self:Say(args.spellId, args.spellName)
+		self:Say(args.spellId, nil, nil, "Meat Hook")
 		self:SayCountdown(args.spellId, 4)
 		self:Flash(args.spellId)
 	end
@@ -124,7 +124,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		if self:Me(guid) then
-			self:Say(343556)
+			self:Say(343556, nil, nil, "Morbid Fixation")
 			self:PlaySound(343556, "warning")
 		end
 		self:TargetMessage(343556, "red", name)

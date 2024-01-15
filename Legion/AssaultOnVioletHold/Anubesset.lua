@@ -59,7 +59,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(202341)
+			self:Say(202341, nil, nil, "Impale")
 			self:Flash(202341)
 		end
 		self:TargetMessageOld(202341, player, "red", "long")
@@ -70,6 +70,7 @@ do
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 22)
 	end
+
 	function mod:ImpaleEnd(args)
 		self:PrimaryIcon(args.spellId)
 	end

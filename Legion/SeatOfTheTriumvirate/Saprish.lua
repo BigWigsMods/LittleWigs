@@ -88,7 +88,7 @@ do
 			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "orange", "alert")
 		end
 		if self:Me(args.destGUID)then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Umbral Flanking")
 		end
 	end
 end

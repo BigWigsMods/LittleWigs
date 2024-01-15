@@ -83,7 +83,7 @@ do
 	function mod:IronSpearApplied(args)
 		playerName = args.destName
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Iron Spear")
 			self:SayCountdown(args.spellId, 6)
 		end
 	end
@@ -157,7 +157,7 @@ do
 	function mod:StaticSpearApplied(args)
 		playerName = args.destName
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Static Spear")
 			self:SayCountdown(args.spellId, 6)
 		end
 	end

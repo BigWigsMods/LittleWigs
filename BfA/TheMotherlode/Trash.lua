@@ -362,7 +362,7 @@ function mod:BrainFreezeApplied(args)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 		self:TargetBar(args.spellId, 6, args.destName)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Brain Freeze")
 		end
 	end
 end

@@ -406,7 +406,7 @@ do
 		self:TargetMessage(357512, "red", name)
 		self:PlaySound(357512, onMe and "warning" or "alert", nil, name)
 		if onMe then
-			self:Say(357512)
+			self:Say(357512, nil, nil, "Frenzied Charge")
 		end
 	end
 	function mod:FrenziedCharge(args)
@@ -430,7 +430,7 @@ do
 				prev = t
 				self:PersonalMessage(args.spellId)
 				self:PlaySound(args.spellId, "alarm")
-				self:Say(args.spellId, CL.bomb)
+				self:Say(args.spellId, CL.bomb, nil, "Bomb")
 				self:SayCountdown(args.spellId, 5)
 			end
 		end

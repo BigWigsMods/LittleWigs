@@ -68,7 +68,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(162066)
+			self:Say(162066, nil, nil, "Freezing Snare")
 			self:Flash(162066)
 		end
 		self:TargetMessage(162066, "orange", player)

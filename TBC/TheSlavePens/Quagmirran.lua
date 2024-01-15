@@ -34,7 +34,7 @@ function mod:AcidSpray(args)
 	if self:MobId(args.destGUID) == 17942 then return end -- applies this to himself and to his target when he starts channeling
 
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Acid Spray")
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:CastBar(args.spellId, 8)

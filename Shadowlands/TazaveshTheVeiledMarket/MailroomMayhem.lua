@@ -92,7 +92,7 @@ function mod:MoneyOrderApplied(args)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	self:Bar(args.spellId, 50.5)
 	if self:Me(args.destGUID) then
-		self:Yell(args.spellId)
+		self:Yell(args.spellId, nil, nil, "Money Order")
 		self:YellCountdown(args.spellId, 7)
 	end
 end

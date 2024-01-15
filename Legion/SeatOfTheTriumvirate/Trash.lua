@@ -60,7 +60,8 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
-	self:Log("SPELL_AURA_APPLIED", "PersonalAurasWithSay", 249081, 245510) -- Suppression Field, Corrupting Void
+	self:Log("SPELL_AURA_APPLIED", "SuppressionFieldApplied", 249081)
+	self:Log("SPELL_AURA_APPLIED", "CorruptingVoidApplied", 245510)
 	self:Log("SPELL_CAST_START", "VoidDiffusionCast", 249078)
 	self:Log("SPELL_CAST_START", "DarkMatterCast", 248227)
 	self:Log("SPELL_CAST_START", "CollapseCast", 248228)
@@ -78,10 +79,17 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	end
 end
 
-function mod:PersonalAurasWithSay(args)
+function mod:SuppressionFieldApplied(args)
 	if self:Me(args.destGUID) then
 		self:TargetMessageOld(args.spellId, args.destName, "blue", "alarm")
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Suppression Field")
+	end
+end
+
+function mod:CorruptingVoidApplied(args)
+	if self:Me(args.destGUID) then
+		self:TargetMessageOld(args.spellId, args.destName, "blue", "alarm")
+		self:Say(args.spellId, nil, nil, "Corrupting Void")
 	end
 end
 

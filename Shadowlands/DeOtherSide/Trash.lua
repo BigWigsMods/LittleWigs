@@ -270,7 +270,7 @@ do
 		self:PlaySound(332608, "alarm", nil, name)
 
 		if self:Me(guid) then
-			self:Say(332608)
+			self:Say(332608, nil, nil, "Lightning Discharge")
 		end
 	end
 
@@ -316,7 +316,7 @@ do
 		self:CastBar(331846, left)
 
 		if isOnMe then
-			self:Say(331846)
+			self:Say(331846, nil, nil, "Woof")
 			self:SayCountdown(331846, left, nil, 2)
 		end
 	end

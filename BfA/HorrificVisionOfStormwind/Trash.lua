@@ -210,7 +210,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		if self:Me(guid) then
-			self:Say(308308)
+			self:Say(308308, nil, nil, "Piercing Shot")
 		end
 	end
 
@@ -299,7 +299,7 @@ function mod:BlightEruption(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	if self:UnitDebuff("player", 308265) then -- Corrupted Blight
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Blight Eruption")
 	end
 end
 

@@ -400,7 +400,7 @@ function mod:TrappedInStoneApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Trapped in Stone")
 	end
 end
 

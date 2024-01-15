@@ -277,7 +277,7 @@ function mod:GrimFateApplied(args)
 		self:CDBar(args.spellId, 17.4)
 	end
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Grim Fate")
 		self:SayCountdown(args.spellId, 4)
 	end
 end
@@ -354,7 +354,7 @@ do
 		self:TargetMessage(323496, "yellow", name)
 		self:PlaySound(323496, "info", nil, name)
 		if self:Me(guid) then
-			self:Say(323496)
+			self:Say(323496, nil, nil, "Throw Cleaver")
 		end
 	end
 
@@ -388,7 +388,7 @@ do
 		self:TargetMessage(333479, "yellow", name)
 		self:PlaySound(333479, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(333479)
+			self:Say(333479, nil, nil, "Spew Disease")
 		end
 	end
 

@@ -238,7 +238,7 @@ function mod:Thunderstrike(args)
 	self:TargetBar(args.spellId, 3, args.destName)
 	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Thunderstrike")
 	end
 end
 
@@ -341,7 +341,7 @@ do
 		if self:Me(guid) then
 			self:PersonalMessage(199805)
 			self:PlaySound(199805, "alarm")
-			self:Say(199805)
+			self:Say(199805, nil, nil, "Crackle")
 		end
 	end
 	function mod:Crackle(args)
@@ -392,7 +392,7 @@ do
 		self:TargetMessage(199034, "yellow", name)
 		self:PlaySound(199034, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(199034)
+			self:Say(199034, nil, nil, "Valkyra's Advance")
 		end
 	end
 	function mod:ValkyrasAdvance(args)

@@ -76,7 +76,7 @@ do
 		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 1)
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Touch of Nothingness")
 		end
 	end
 end

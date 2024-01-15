@@ -333,7 +333,7 @@ do
 			self:TargetMessage(328429, "yellow", name)
 			self:PlaySound(328429, "alert", nil, name)
 			if self:Me(guid) then
-				self:Say(328429)
+				self:Say(328429, nil, nil, "Crushing Embrace")
 			end
 		end
 	end
@@ -342,7 +342,7 @@ do
 		self:TargetMessage(328429, "yellow", name)
 		self:PlaySound(328429, "alert", nil, name)
 		if self:Me(guid) then
-			self:Say(328429)
+			self:Say(328429, nil, nil, "Crushing Embrace")
 		end
 	end
 

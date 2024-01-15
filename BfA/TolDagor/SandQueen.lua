@@ -63,7 +63,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 		self:PlaySound(257608, "alarm", nil, destName)
 		local guid = self:UnitGUID(destName)
 		if self:Me(guid) then
-			self:Say(257608)
+			self:Say(257608, nil, nil, "Upheaval")
 		end
 	end
 end

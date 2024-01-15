@@ -65,12 +65,12 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(319941, "orange", name) -- Sinlight Visions
+		self:TargetMessage(319941, "orange", name)
 		if self:Me(guid) then
 			self:Flash(319941)
-			self:Say(319941)
+			self:Say(319941, nil, nil, "Stone Shattering Leap")
 			self:SayCountdown(319941, 5)
-			self:PlaySound(319941, "warning") -- Sinlight Visions
+			self:PlaySound(319941, "warning")
 		end
 	end
 

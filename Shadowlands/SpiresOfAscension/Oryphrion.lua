@@ -116,7 +116,7 @@ end
 do
 	local function printTarget(self, name, guid)
 		if self:Me(guid) then
-			self:Say(334053)
+			self:Say(334053, nil, nil, "Purifying Blast")
 			self:PlaySound(334053, "warning")
 		end
 		self:TargetMessage(334053, "red", name)

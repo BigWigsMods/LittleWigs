@@ -108,7 +108,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(193659)
+			self:Say(193659, nil, nil, "Felblaze Rush")
 		end
 		self:PrimaryIcon(193659, player)
 		self:TargetMessage(193659, "red", player)

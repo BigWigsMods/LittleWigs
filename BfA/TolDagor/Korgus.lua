@@ -104,7 +104,7 @@ do
 		playerList[#playerList + 1] = args.destName
 		if self:Me(args.destGUID) then
 			isOnMe = true
-			self:Say(args.spellId)
+			self:Say(args.spellId, nil, nil, "Explosive Burst")
 			self:SayCountdown(args.spellId, 4)
 		end
 		if #playerList == 1 then

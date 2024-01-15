@@ -308,7 +308,7 @@ do
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:Say(272402)
+				self:Say(272402, nil, nil, "Ricocheting Throw")
 				self:TargetMessage(272402, "blue", name)
 				self:PlaySound(272402, "alert", nil, name)
 			end

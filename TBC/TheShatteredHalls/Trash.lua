@@ -97,7 +97,7 @@ end
 
 function mod:Fear(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId) -- helps prioritizing dispelling those who are about to run into some pack
+		self:Say(args.spellId, nil, nil, "Fear") -- helps prioritizing dispelling those who are about to run into some pack
 	end
 	self:TargetMessageOld(args.spellId, args.destName, "red", "alert", nil, nil, self:Dispeller("magic"))
 	self:TargetBar(args.spellId, 4, args.destName)

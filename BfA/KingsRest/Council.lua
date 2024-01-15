@@ -126,7 +126,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 		self:PlaySound(266951, "warning", nil, destName)
 		local guid = self:UnitGUID(destName)
 		if self:Me(guid) then
-			self:Say(266951)
+			self:Say(266951, nil, nil, "Barrel Through")
 			self:SayCountdown(266951, 8)
 		end
 		local mobId = self:MobId(self:UnitGUID("boss1"))

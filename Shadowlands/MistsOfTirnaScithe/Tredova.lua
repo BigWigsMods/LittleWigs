@@ -138,6 +138,6 @@ function mod:ParasiteSuccess(args)
 	self:TargetMessage(args.spellId, "red", args.destName, L.parasite)
 	self:PlaySound(args.spellId, "warning")
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, L.parasite, nil, "Parasite")
 	end
 end

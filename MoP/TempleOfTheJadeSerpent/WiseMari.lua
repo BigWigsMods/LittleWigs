@@ -92,7 +92,7 @@ function mod:CorruptedVortexApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "alarm")
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Corrupted Vortex")
 		self:SayCountdown(args.spellId, 6)
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)

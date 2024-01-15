@@ -139,7 +139,7 @@ do
 		self:PlaySound(268932, "long", nil, player)
 		self:PrimaryIcon(268932, player)
 		if self:Me(guid) then
-			self:Say(268932)
+			self:Say(268932, nil, nil, "Quaking Leap")
 		end
 	end
 
