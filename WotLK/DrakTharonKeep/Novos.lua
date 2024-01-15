@@ -143,6 +143,6 @@ function mod:WrathOfMiseryCastSuccess()
 end
 
 function mod:SummonMinions(args)
-	self:Message(args.spellId, "yellow", CL.spawned:format(CL.adds))
+	self:Message(args.spellId, "yellow", CL.adds_spawned)
 	self:CDBar(args.spellId, 39.8) -- time until the next SPELL_CAST_START, 39.8 - 42.3s
 end

@@ -78,7 +78,7 @@ function mod:FrostShockRemoved(args)
 end
 
 function mod:SummonElementals()
-	self:MessageOld(-5235, "red", nil, CL.spawned:format(CL.adds))
+	self:MessageOld(-5235, "red", nil, CL.adds_spawned)
 end
 
 do
