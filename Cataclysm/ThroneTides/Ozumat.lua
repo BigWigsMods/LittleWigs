@@ -41,6 +41,7 @@ function mod:GetOptions()
 		"stages",
 		-- Ink of Ozumat
 		{428407, "SAY"}, -- Blotting Barrage
+		428404, -- Blotting Darkness
 		428868, -- Putrid Roar
 		428530, -- Murk Spew
 		{428889, "TANK"}, -- Foul Bolt
@@ -62,6 +63,10 @@ function mod:OnBossEnable()
 	-- Ink of Ozumat
 	self:Log("SPELL_CAST_START", "BlottingBarrage", 428401)
 	self:Log("SPELL_AURA_APPLIED", "BlottingBarrageApplied", 428407)
+	self:Log("SPELL_AURA_REMOVED", "BlottingBarrageRemoved", 428407)
+	-- do not register AURA_APPLIED or PERIODIC_MISSED for Blotting Darkness, those events
+	-- are expected when you have Cleansing Flux.
+	self:Log("SPELL_PERIODIC_DAMAGE", "BlottingDarknessDamage", 428404)
 	self:Log("SPELL_CAST_START", "PutridRoar", 428868)
 	self:Log("SPELL_CAST_START", "MurkSpew", 428530)
 	self:Log("SPELL_CAST_START", "FoulBolt", 428889)
@@ -154,6 +159,28 @@ do
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, nil, nil, "Blotting Barrage")
+		end
+	end
+end
+
+do
+	local prev = 0
+
+	function mod:BlottingBarrageRemoved(args)
+		if self:Me(args.destGUID) then
+			-- Blotting Darkness spawns under each player that Blotting Barrage is removed from.
+			-- give some time to run out of Blotting Darkness by resetting prev here.
+			prev = args.time
+		end
+	end
+
+	function mod:BlottingDarknessDamage(args)
+		local t = args.time
+		-- suppress alerts for the tank, who is not allowed to leave melee range
+		if not self:Tank() and self:Me(args.destGUID) and t - prev > 2.1 then
+			prev = t
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou", nil, args.destName)
 		end
 	end
 end
