@@ -57,7 +57,7 @@ function mod:GetOptions()
 		326607, -- Turn to Stone
 		{326997, "TANK"}, -- Powerful Swipe
 		326891, -- Anguish
-	}, {
+	},{
 		[326450] = L.houndmaster,
 		[344993] = L.gargon,
 		[346866] = L.loyalstoneborn,
@@ -68,6 +68,8 @@ function mod:GetOptions()
 		[326607] = L.reaver,
 		[326997] = L.slasher,
 		[326891] = L.sigar,
+	},{
+		[325876] = CL.curse, -- Curse of Obliteration (Curse)
 	}
 end
 
@@ -189,20 +191,19 @@ do
 end
 
 function mod:CurseOfObliterationApplied(args)
-	local isOnMe = self:Me(args.destGUID)
-
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:TargetBar(args.spellId, 6, args.destName)
-	self:PlaySound(args.spellId, isOnMe and "alarm" or "info", nil, args.destName)
-
-	if isOnMe then
-		self:Say(args.spellId, nil, nil, "Curse of Obliteration")
+	self:TargetMessage(args.spellId, "orange", args.destName, CL.curse)
+	self:TargetBar(args.spellId, 6, args.destName, CL.curse)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, CL.curse, nil, "Curse")
 		self:SayCountdown(args.spellId, 6)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	else
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
 function mod:CurseOfObliterationRemoved(args)
-	self:StopBar(args.spellName, args.destName)
+	self:StopBar(CL.curse, args.destName)
 
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)

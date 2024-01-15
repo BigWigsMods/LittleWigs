@@ -43,12 +43,14 @@ function mod:GetOptions()
 		33787, -- Cripple
 		--[[ Coilfang Ray ]]--
 		{34984, "SAY"}, -- Psychic Horror
-	}, {
+	},{
 		[15655] = L.defender,
 		[32173] = L.enchantress,
 		[39378] = L.healer,
 		[33787] = L.collaborator,
 		[34984] = L.ray,
+	},{
+		[34984] = CL.fear, -- Psychic Horror (Fear)
 	}
 end
 
@@ -135,12 +137,12 @@ end
 
 function mod:PsychicHorror(args)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Psychic Horror") -- helps prioritizing dispelling those who are about to run into some pack
+		self:Say(args.spellId, CL.fear, nil, "Fear") -- helps prioritizing dispelling those who are about to run into some pack
 	end
-	self:TargetMessageOld(args.spellId, args.destName, "red", "alert", nil, nil, self:Dispeller("magic"))
-	self:TargetBar(args.spellId, 3, args.destName)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert", CL.fear, nil, self:Dispeller("magic"))
+	self:TargetBar(args.spellId, 3, args.destName, CL.fear)
 end
 
 function mod:PsychicHorrorRemoved(args)
-	self:StopBar(args.spellName, args.destName)
+	self:StopBar(CL.fear, args.destName)
 end

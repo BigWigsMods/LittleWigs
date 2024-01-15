@@ -29,9 +29,11 @@ function mod:GetOptions()
 		320823, -- Experimental Squirrel Bomb
 		{320132, "SAY", "SAY_COUNTDOWN"}, -- Shadowfury
 		321061, -- Aerial Rocket Chicken Barrage
-	}, {
+	},{
 		[320787] = CL.stage:format(1),
 		[320823] = CL.stage:format(2),
+	},{
+		[323877] = CL.laser, -- Echo Finger Laser X-treme (Lazer)
 	}
 end
 
@@ -57,7 +59,7 @@ function mod:OnEngage()
 	shadowfuryCount = 0
 	self:CDBar(320787, 9) -- Summon Power Crystal
 	if self:Mythic() then
-		self:CDBar(323877, 17) -- Echo Finger Laser X-treme
+		self:CDBar(323877, 17, CL.laser) -- Echo Finger Laser X-treme
 		self:Bar(320141, 45.6) -- Diabolical Dooooooom!
 	end
 end
@@ -85,7 +87,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Bar(320787, 10.3) -- Summon Power Crystal
 		if self:Mythic() then
 			if not millificentDefeated then
-				self:Bar(323877, 17) -- Echo Finger Laser X-treme
+				self:Bar(323877, 17, CL.laser) -- Echo Finger Laser X-treme
 			end
 			self:Bar(320141, 45.6) -- Diabolical Dooooooom!
 		end
@@ -93,7 +95,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		-- stop stage 1
 		self:StopBar(320787) -- Summon Power Crystal
 		if self:Mythic() then
-			self:StopBar(323877) -- Echo Finger Laser X-treme
+			self:StopBar(CL.laser) -- Echo Finger Laser X-treme
 			self:StopBar(320141) -- Diabolical Dooooooom!
 		end
 
@@ -122,7 +124,7 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	elseif self:MobId(self:UnitGUID(unit)) == 164555 and not UnitExists(unit) then -- Millificent Manastorm
 		millificentDefeated = true
 		if self:Mythic() then
-			self:StopBar(323877) -- Echo Finger Laser X-treme
+			self:StopBar(CL.laser) -- Echo Finger Laser X-treme
 		end
 	end
 end
@@ -138,16 +140,15 @@ end
 do
 	local playerList = mod:NewTargetList()
 	function mod:EchoFingerLaserXtreme(args)
-		local laser = self:SpellName(143444)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
 			self:Bar(args.spellId, 15)
 		end
-		self:TargetsMessageOld(args.spellId, "red", playerList, 2, laser)
+		self:TargetsMessageOld(args.spellId, "red", playerList, 2, CL.laser)
 		if self:Me(args.destGUID) then
 			self:PlaySound(args.spellId, "warning")
-			self:Say(args.spellId, laser, nil, "Laser")
-			self:TargetBar(args.spellId, 5, args.destName, laser)
+			self:Say(args.spellId, CL.laser, nil, "Laser")
+			self:TargetBar(args.spellId, 5, args.destName, CL.laser)
 		end
 	end
 end
