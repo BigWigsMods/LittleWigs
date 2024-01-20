@@ -26,6 +26,7 @@ BigWigs:AddSounds("Mindbender Ghur'sha", {
 })
 
 BigWigs:AddSounds("Ozumat", {
+	[428404] = "underyou",
 	[428407] = "alarm",
 	[428530] = "alarm",
 	[428594] = "alarm",
