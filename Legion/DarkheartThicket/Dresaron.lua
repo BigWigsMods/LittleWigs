@@ -56,7 +56,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		breathOfCorruptionCount = breathOfCorruptionCount + 1
 		-- 21.9 is likely the "true" cooldown, but after the first one
 		-- this will always be delayed by the other two casts.
-		if breathOfCorruptionCount == 1 then
+		if breathOfCorruptionCount == 2 then
 			self:CDBar(191325, 21.9)
 		else
 			self:CDBar(191325, 30.4)
