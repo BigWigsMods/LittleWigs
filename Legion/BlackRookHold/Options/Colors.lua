@@ -2,7 +2,7 @@
 BigWigs:AddColors("Amalgam of Souls", {
 	[194956] = "purple",
 	[194966] = {"blue","orange"},
-	[195254] = "yellow",
+	[195254] = {"blue","yellow"},
 	[196078] = "cyan",
 	[196587] = "orange",
 	[196930] = "yellow",

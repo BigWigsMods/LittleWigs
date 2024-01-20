@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		-- Stage One: The Amalgam of Souls
 		194956, -- Reap Soul
-		195254, -- Swirling Scythe
+		{195254, "SAY"}, -- Swirling Scythe
 		{194966, "SAY"}, -- Soul Echoes
 		-- Stage Two: The Call of Souls
 		196078, -- Call Souls
@@ -82,10 +82,19 @@ function mod:ReapSoul(args)
 	self:CDBar(args.spellId, 13.4)
 end
 
-function mod:SwirlingScythe(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 20.6)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(195254, "yellow", name)
+		self:PlaySound(195254, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(195254, nil, nil, "Swirling Scythe")
+		end
+	end
+
+	function mod:SwirlingScythe(args)
+		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:CDBar(args.spellId, 20.6)
+	end
 end
 
 function mod:SoulEchoes(args)
