@@ -29,7 +29,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Breath of Corruption
+	self:Log("SPELL_CAST_SUCCESS", "BreathOfCorruption", 199329)
 	self:Log("SPELL_CAST_START", "EarthshakingRoar", 199389)
 	self:Log("SPELL_CAST_START", "DownDraft", 199345)
 	self:Log("SPELL_AURA_APPLIED", "FallingRocksDamage", 199460)
@@ -49,20 +49,18 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 199332 then -- Breath of Corruption
-		self:Message(191325, "orange")
-		self:PlaySound(191325, "alarm")
-		breathOfCorruptionCount = breathOfCorruptionCount + 1
-		-- 21.9 is likely the "true" cooldown, but after the first one
-		-- this will always be delayed by the other two casts.
-		if breathOfCorruptionCount == 2 then
-			self:CDBar(191325, 21.9)
-		else
-			self:CDBar(191325, 30.4)
-		end
-		-- 6.1s before any ability can be cast
+function mod:BreathOfCorruption(args)
+	self:Message(191325, "orange")
+	self:PlaySound(191325, "alarm")
+	breathOfCorruptionCount = breathOfCorruptionCount + 1
+	-- 21.9 is likely the "true" cooldown, but after the second cast
+	-- this will always be delayed by the other two abilities.
+	if breathOfCorruptionCount == 2 then
+		self:CDBar(191325, 21.9)
+	else
+		self:CDBar(191325, 30.4)
 	end
+	-- 6.1s before any ability can be cast
 end
 
 function mod:EarthshakingRoar(args)
