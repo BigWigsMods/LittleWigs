@@ -108,9 +108,8 @@ do
 
 	function mod:Interrupted(args)
 		if blessingActive and self:MobId(args.destGUID) == 134058 then -- Galecaller Faye
-			local bossId = self:GetBossId(args.destGUID)
-			-- Tempest spawns close to the boss, so warnings aren't needed for ranged
-			if IsItemInRange(63427, bossId) then -- Worgsaw, 8yd
+			local unit = self:UnitTokenFromGUID(args.destGUID)
+			if unit and self:UnitWithinRange(unit, 10) then -- Tempest spawns close to the boss, so warnings aren't needed for ranged
 				self:Message(267830, "yellow", self:SpellName(274437), 274437) -- Tempest
 				self:PlaySound(267830, "info")
 			end

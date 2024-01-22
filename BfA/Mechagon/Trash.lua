@@ -644,8 +644,8 @@ end
 -- Anti-Personnel Squirrel
 
 function mod:AntiPersonnelSquirrel(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if not unit or IsItemInRange(33278, unit) then -- Burning Torch, 11yd
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if not unit or self:UnitWithinRange(unit, 10) then
 		-- Display mesage without "near YOU" if the unit is not found
 		self:Message(args.spellId, "yellow", unit and CL.near:format(args.spellName))
 		self:PlaySound(args.spellId, "alarm")

@@ -233,18 +233,13 @@ end
 
 do
 	local prev = 0
-	local function printTarget(self, name, guid)
-		local t = GetTime()
-		if t-prev > 1.5 and IsItemInRange(37727, name) then -- Ruby Acorn, 5yd
-			prev = t
-			self:Message(308481, "blue", CL.near:format(self:SpellName(308481)))
-			self:PlaySound(308481, "alarm")
-		end
-	end
-
 	function mod:RiftStrike(args)
 		-- Does an AoE around the target
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		if args.time-prev > 1 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
