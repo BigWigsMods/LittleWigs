@@ -84,7 +84,7 @@ function mod:GetOptions()
 		264150, -- Shatter
 		-- Matron Bryndle
 		265759, -- Splinter Spike
-		265760, -- Thorned Barrage
+		{265760, "TANK"}, -- Thorned Barrage
 		265741, -- Drain Soul Essence
 		-- Devouring Maggot
 		278444, -- Infest
@@ -372,8 +372,8 @@ function mod:SplinterSpike(args)
 end
 
 function mod:ThornedBarrage(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:DrainSoulEssence(args)

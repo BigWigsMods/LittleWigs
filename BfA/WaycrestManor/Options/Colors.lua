@@ -64,7 +64,7 @@ BigWigs:AddColors("Waycrest Manor Trash", {
 	[265407] = "red",
 	[265741] = "yellow",
 	[265759] = "orange",
-	[265760] = "red",
+	[265760] = "purple",
 	[265876] = "red",
 	[265880] = {"blue","orange"},
 	[265881] = "yellow",
