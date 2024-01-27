@@ -13,6 +13,7 @@ BigWigs:AddSounds("Ancient Protectors", {
 	[427498] = "long",
 	[427509] = "long",
 	[427510] = "alert",
+	[427513] = "underyou",
 })
 
 BigWigs:AddSounds("Xeri'tac", {

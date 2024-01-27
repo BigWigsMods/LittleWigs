@@ -36,6 +36,7 @@ function mod:GetOptions()
 		{427509, "OFF"}, -- Terrestrial Fury
 		-- Dulhu
 		{427510, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Noxious Charge
+		427513, -- Noxious Discharge
 	}, {
 		[168082] = -10409, -- Life Warden Gola
 		[427459] = -10413, -- Earthshaper Telu
@@ -57,6 +58,8 @@ function mod:OnBossEnable()
 
 	-- Dulhu
 	self:Log("SPELL_AURA_APPLIED", "NoxiousCharge", 427510)
+	self:Log("SPELL_PERIODIC_DAMAGE", "NoxiousDischargeDamage", 427513) -- no alert on APPLIED, doesn't damage right away
+	self:Log("SPELL_PERIODIC_MISSED", "NoxiousDischargeDamage", 427513)
 	self:Death("DulhuDeath", 83894)
 end
 
@@ -161,6 +164,20 @@ function mod:NoxiousCharge(args)
 	self:PlaySound(args.spellId, "alert")
 	self:CastBar(args.spellId, 4)
 	self:CDBar(args.spellId, 17.0)
+end
+
+do
+	local prev = 0
+	function mod:NoxiousDischargeDamage(args)
+		local t = args.time
+		-- don't alert for tanks, this spawns instantly under them after Noxious Charge,
+		-- while other roles have the projectile's travel time to move away.
+		if t - prev > 1.5 and not self:Tank() and self:Me(args.destGUID) then
+			prev = t
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou", nil, args.destName)
+		end
+	end
 end
 
 function mod:DulhuDeath(args)
