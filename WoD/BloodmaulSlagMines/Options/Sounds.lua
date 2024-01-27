@@ -6,6 +6,7 @@ BigWigs:AddSounds("Slave Watcher Crushto", {
 })
 
 BigWigs:AddSounds("Magmolatus", {
+	[150023] = "info",
 	[150038] = "warning",
 	[150076] = "info",
 	[150078] = "info",

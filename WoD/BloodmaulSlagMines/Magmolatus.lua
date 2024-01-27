@@ -19,13 +19,14 @@ function mod:GetOptions()
 		150076, -- Throw Earth
 		150078, -- Throw Fire
 		150038, -- Molten Impact
+		150023, -- Slag Smash
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SpawnAdd", 150076, 150078) -- Throw Earth, Throw Fire
-
 	self:Log("SPELL_CAST_START", "MoltenImpact", 150038)
+	self:Log("SPELL_CAST_START", "SlagSmash", 150023)
 	self:Death("Stage2", 74366)
 end
 
@@ -43,6 +44,10 @@ end
 
 function mod:MoltenImpact(args)
 	self:MessageOld(args.spellId, "orange", "warning")
+end
+
+function mod:SlagSmash(args)
+	self:MessageOld(args.spellId, "orange", "info")
 end
 
 function mod:Stage2()
