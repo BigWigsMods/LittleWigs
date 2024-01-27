@@ -160,7 +160,7 @@ function mod:SoulManipulationRemovedFromBoss(args)
 	isMCApplied = false
 	if bossWithIris then -- safety-check for occasional disconnects
 		-- Move the icon away from the player and back to the boss
-		self:PrimaryIcon(260805, self:GetBossId(bossWithIris)) -- Focusing Iris
+		self:PrimaryIcon(260805, self:UnitTokenFromGUID(bossWithIris)) -- Focusing Iris
 	end
 end
 
@@ -175,7 +175,7 @@ function mod:ClaimTheIris(args)
 	self:Message(260805, "cyan", CL.other:format(self:SpellName(260805), args.sourceName)) -- Focusing Iris
 	self:PlaySound(260805, "long") -- Focusing Iris
 	if not isMCApplied then
-		self:PrimaryIcon(260805, self:GetBossId(bossWithIris)) -- Focusing Iris
+		self:PrimaryIcon(260805, self:UnitTokenFromGUID(bossWithIris)) -- Focusing Iris
 	end
 	-- stop and start boss ability timers
 	local mobId = self:MobId(bossWithIris)
@@ -199,7 +199,7 @@ function mod:ClaimTheIris(args)
 		end
 	end
 	-- start Dire Ritual timer based on the energy of the boss claiming the Focusing Iris
-	local unit = self:GetBossId(bossWithIris)
+	local unit = self:UnitTokenFromGUID(bossWithIris)
 	local timeUntilDireRitual = 75 * (1 - UnitPower(unit) / UnitPowerMax(unit))
 	if timeUntilDireRitual > 0 then
 		-- add 1.5s Claim the Iris cast time
