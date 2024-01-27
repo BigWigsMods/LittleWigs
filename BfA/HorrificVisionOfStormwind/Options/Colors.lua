@@ -37,7 +37,7 @@ BigWigs:AddColors("Horrific Vision of Stormwind Trash", {
 	[308366] = "red",
 	[308375] = "orange",
 	[308380] = "orange",
-	[308481] = "blue",
+	[308481] = "orange",
 	[308575] = "orange",
 	[308801] = "red",
 	[308967] = "orange",
