@@ -57,30 +57,36 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 259186 then -- Soulrend
-		-- use this event instead of SPELL_CAST_START for timer adjustments. if the tank is the only
-		-- one alive Yazma will still attempt to cast Soulrend with this spell ID and the other spells
-		-- will be delayed even in the absense of the usual SPELL_CAST_START for Soulrend.
-		local t = GetTime()
-		self:StopBar(CL.count:format(self:SpellName(259187), soulrendCount))
-		soulrendCount = soulrendCount + 1
-		self:CDBar(259187, 41.2, CL.count:format(self:SpellName(259187), soulrendCount))
-		-- 6.04 minimum to Echoes of Shadra or Skewer
-		if nextEchoesOfShadra - t < 6.04 then
-			nextEchoesOfShadra = t + 6.04
-			self:CDBar(250050, {6.04, 31.5}) -- Echoes of Shadra
-		end
-		if nextSkewer - t < 6.04 then
-			nextSkewer = t + 6.04
-			self:CDBar(249919, {6.04, 12.1}) -- Skewer
+do
+	local prev = 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+		if spellId == 259186 then -- Soulrend
+			-- use this event instead of SPELL_CAST_START for timer adjustments. if the tank is the only
+			-- one alive Yazma will still attempt to cast Soulrend with this spell ID and the other spells
+			-- will be delayed even in the absense of the usual SPELL_CAST_START for Soulrend.
+			local t = GetTime()
+			prev = t
+			self:StopBar(CL.count:format(self:SpellName(259187), soulrendCount))
+			soulrendCount = soulrendCount + 1
+			self:CDBar(259187, 41.2, CL.count:format(self:SpellName(259187), soulrendCount))
+			-- 6.04 minimum to Echoes of Shadra or Skewer
+			if nextEchoesOfShadra - t < 6.04 then
+				nextEchoesOfShadra = t + 6.04
+				self:CDBar(250050, {6.04, 31.5}) -- Echoes of Shadra
+			end
+			if nextSkewer - t < 6.04 then
+				nextSkewer = t + 6.04
+				self:CDBar(249919, {6.04, 12.1}) -- Skewer
+			end
 		end
 	end
-end
 
-function mod:Soulrend(args)
-	self:Message(args.spellId, "red", CL.count:format(args.spellName, soulrendCount - 1))
-	self:PlaySound(args.spellId, "warning")
+	function mod:Soulrend(args)
+		-- correct the count for the message, decrement if this event occurs after 259186
+		local soulrendMessageCount = GetTime() - prev > 3 and soulrendCount or soulrendCount - 1
+		self:Message(args.spellId, "red", CL.count:format(args.spellName, soulrendMessageCount))
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:EchoesofShadra(args)
