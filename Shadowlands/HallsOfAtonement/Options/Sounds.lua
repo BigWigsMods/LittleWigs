@@ -15,6 +15,7 @@ BigWigs:AddSounds("Echelon", {
 })
 
 BigWigs:AddSounds("High Adjudicator Aleez", {
+	[323538] = "alert",
 	[323552] = "warning",
 	[323650] = "warning",
 	[329340] = "alarm",
