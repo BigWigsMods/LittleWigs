@@ -100,6 +100,7 @@ function mod:ShardsOfStone(args)
 end
 
 function mod:TectonicStomp(args)
+	self:StopBar(args.spellId)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -108,6 +109,7 @@ do
 	local saboteurGUID = nil
 
 	function mod:SummonSaboteur(args)
+		self:StopBar(386320)
 		local direction -- 386320 = W Lance, 386747 = NE Lance, 386748 = SE Lance
 		if args.spellId == 386320 then
 			direction = CL.west
