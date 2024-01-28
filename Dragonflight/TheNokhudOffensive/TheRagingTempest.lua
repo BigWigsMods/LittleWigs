@@ -52,7 +52,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(384686, 7.3) -- Energy Surge
+	if self:Tank() or self:Healer() or self:Dispeller("magic", true, 384686) then
+		self:CDBar(384686, 7.3) -- Energy Surge
+	end
 	self:CDBar(384316, 10.5) -- Lightning Strike
 	self:CDBar(384620, 30.4) -- Electrical Storm
 end
