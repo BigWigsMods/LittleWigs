@@ -27,7 +27,7 @@ BigWigs:AddColors("Lord Chamberlain", {
 	[323437] = {"blue","yellow"},
 	[327885] = "red",
 	[328791] = "red",
-	[329104] = "yellow",
+	[329104] = "cyan",
 })
 
 BigWigs:AddColors("Halls of Atonement Trash", {
