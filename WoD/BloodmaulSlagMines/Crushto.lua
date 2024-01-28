@@ -38,6 +38,7 @@ end
 
 function mod:OnEngage()
 	yellCount = 0
+	self:MessageOld("stages", "cyan", nil, CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
