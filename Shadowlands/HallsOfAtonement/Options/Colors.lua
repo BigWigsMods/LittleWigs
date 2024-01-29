@@ -16,9 +16,9 @@ BigWigs:AddColors("Echelon", {
 
 BigWigs:AddColors("High Adjudicator Aleez", {
 	[323538] = "yellow",
-	[323552] = "yellow",
+	[323552] = "red",
 	[323650] = {"blue","cyan"},
-	[329340] = "red",
+	[329340] = "orange",
 })
 
 BigWigs:AddColors("Lord Chamberlain", {
@@ -27,7 +27,7 @@ BigWigs:AddColors("Lord Chamberlain", {
 	[323437] = {"blue","yellow"},
 	[327885] = "red",
 	[328791] = "red",
-	[329104] = "yellow",
+	[329104] = "cyan",
 })
 
 BigWigs:AddColors("Halls of Atonement Trash", {

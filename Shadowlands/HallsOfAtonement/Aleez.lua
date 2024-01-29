@@ -14,39 +14,45 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		323538, -- Bolt of Power
+		-- High Adjudicator Aleez
+		{323538, "OFF"}, -- Bolt of Power
 		323552, -- Volley of Power
-		{323650, "FLASH"}, -- Haunting Fixation
 		329340, -- Anima Fountain
+		-- Ghastly Parishioner
+		323650, -- Haunting Fixation
+	}, {
+		[323538] = self.displayName, -- High Adjudicator Aleez
+		[323650] = -21861, -- Ghastly Parishioner
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "BoltofPower", 323538)
-	self:Log("SPELL_CAST_START", "VolleyofPower", 323552)
+	self:Log("SPELL_CAST_START", "BoltOfPower", 323538)
+	self:Log("SPELL_CAST_START", "VolleyOfPower", 323552)
 	self:Log("SPELL_AURA_APPLIED", "HauntingFixation", 323650)
 	self:Log("SPELL_CAST_START", "AnimaFountain", 329340)
 end
 
 function mod:OnEngage()
-	self:CDBar(323552, 12) -- Volley of Power
-	self:CDBar(323650, 16) -- Haunting Fixation
-	self:CDBar(329340, 22) -- Anima Fountain
+	self:CDBar(323552, 12.0) -- Volley of Power
+	self:CDBar(323650, 17.2) -- Haunting Fixation
+	self:CDBar(329340, 19.1) -- Anima Fountain
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:BoltofPower(args)
+function mod:BoltOfPower(args)
 	if self:Interrupter() then
-		self:Message(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
-function mod:VolleyofPower(args)
-	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 14.5)
+function mod:VolleyOfPower(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 10.9)
 	local _, ready = self:Interrupter()
 	if ready then
 		self:PlaySound(args.spellId, "warning")
@@ -57,13 +63,12 @@ function mod:HauntingFixation(args)
 	self:TargetMessage(args.spellId, "cyan", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-		self:Flash(args.spellId)
 	end
 	self:CDBar(args.spellId, 20.5)
 end
 
 function mod:AnimaFountain(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 25)
+	self:CDBar(args.spellId, 24.2)
 end
