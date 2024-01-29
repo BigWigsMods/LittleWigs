@@ -23,6 +23,7 @@ function mod:GetOptions()
 	return {
 		150753, -- Wild Slam
 		150759, -- Ferocious Yell
+		153679, -- Earth Crush
 		{150751, "FLASH", "ICON"}, -- Crushing Leap
 	}
 end
@@ -30,6 +31,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FerociousYell", 150759)
 	self:Log("SPELL_CAST_START", "WildSlam", 150753)
+	self:Log("SPELL_CAST_START", "EarthCrush", 153679)
 	self:Log("SPELL_AURA_APPLIED", "CrushingLeap", 150751)
 	self:Log("SPELL_AURA_REMOVED", "CrushingLeapOver", 150751)
 end
@@ -49,6 +51,10 @@ function mod:FerociousYell(args)
 end
 
 function mod:WildSlam(args)
+	self:MessageOld(args.spellId, "yellow", "long")
+end
+
+function mod:EarthCrush(args)
 	self:MessageOld(args.spellId, "yellow", "long")
 end
 
