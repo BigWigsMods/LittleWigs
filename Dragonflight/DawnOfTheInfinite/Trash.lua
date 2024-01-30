@@ -630,7 +630,7 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 19.4)
 		timer = self:ScheduleTimer("SpurlokDeath", 30)
 	end
