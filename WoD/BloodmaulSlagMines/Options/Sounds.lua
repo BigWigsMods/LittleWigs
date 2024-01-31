@@ -10,6 +10,7 @@ BigWigs:AddSounds("Slave Watcher Crushto", {
 	[150751] = "alert",
 	[150753] = "long",
 	[150759] = "warning",
+	[153679] = "alarm",
 })
 
 BigWigs:AddSounds("Roltall", {
