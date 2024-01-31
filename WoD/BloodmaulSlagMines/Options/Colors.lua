@@ -11,6 +11,7 @@ BigWigs:AddColors("Slave Watcher Crushto", {
 	[150751] = {"blue","red"},
 	[150753] = "yellow",
 	[150759] = "orange",
+	[153679] = "yellow",
 })
 
 BigWigs:AddColors("Roltall", {
