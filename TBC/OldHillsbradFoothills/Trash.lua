@@ -60,7 +60,7 @@ function mod:GOSSIP_SHOW()
 		-- If the player is in a group, do not free Thrall automatically,
 		-- because they may deny others a chance to turn in the quest.
 		local mobId = self:MobId(self:UnitGUID("npc"))
-		if mobId == 17876 and GetNumGroupMembers() > 0 then
+		if mobId == 17876 and not self:Solo() then
 			if self:Classic() then
 				return
 			else
