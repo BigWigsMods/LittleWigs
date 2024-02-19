@@ -66,7 +66,11 @@ end
 
 function mod:NoxiousStench(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning", "interrupt")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "warning", "interrupt")
+	else
+		self:PlaySound(args.spellId, "alert")
+	end
 	self:CDBar(args.spellId, 19.4)
 end
 
