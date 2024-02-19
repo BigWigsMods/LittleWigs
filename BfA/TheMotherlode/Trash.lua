@@ -171,7 +171,7 @@ function mod:EchoBlade(args)
 end
 
 function mod:ForceCannon(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
 		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert", "watchstep")
@@ -241,7 +241,7 @@ end
 
 -- Stonefury
 function mod:FuriousQuake(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
 		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning", "interrupt")
@@ -345,7 +345,7 @@ do
 	function mod:MiningCharge(args)
 		local t = args.time
 		if t-prev > 1.5 then
-			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			local unit = self:UnitTokenFromGUID(args.sourceGUID)
 			if unit and UnitAffectingCombat(unit) then
 				prev = t
 				self:Message(args.spellId, "yellow")

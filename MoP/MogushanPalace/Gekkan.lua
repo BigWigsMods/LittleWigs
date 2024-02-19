@@ -85,7 +85,7 @@ end
 function mod:Shank(args)
 	if self:MobId(args.sourceGUID) ~= 61338 then return end -- Don't announce casts done by trash mobs
 
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and self:Tanking(unit) then
 		self:MessageOld(args.spellId, "purple", "warning", CL.casting:format(args.spellName))
 	end

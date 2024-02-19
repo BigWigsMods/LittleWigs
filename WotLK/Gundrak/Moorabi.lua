@@ -30,7 +30,7 @@ end
 function mod:Transformation(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-	local boss = self:GetUnitIdByGUID(args.sourceGUID)
+	local boss = self:GetUnitIdByGUID(args.sourceGUID) -- No UnitTokenFromGUID on wrath classic
 	if boss then
 		local _, _, _, _, endTime = UnitCastingInfo(boss) -- cast time is different on each cast, at least on heroic/tw
 		local remaining = endTime / 1000 - GetTime()

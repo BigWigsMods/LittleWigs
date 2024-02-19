@@ -270,7 +270,7 @@ end
 
 function mod:SummonSquall(args)
 	-- this is also cast when you first go near these mobs, so check for combat status before alerting
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")

@@ -305,7 +305,7 @@ do
 			return
 		end
 		-- this is cast during RP fighting, filter unless in combat
-		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
 		if unit and UnitAffectingCombat(unit) then
 			local t = args.time
 			if t - prev > 1 then

@@ -113,7 +113,7 @@ do
 end
 
 function mod:ArcaneBlitz(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit then
 		local _, amount = self:UnitBuff(unit, args.spellId)
 		if amount and amount > 3 then

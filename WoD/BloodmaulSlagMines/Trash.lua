@@ -83,7 +83,7 @@ end
 do
 	local prev = 0
 	function mod:FrighteningRoar(args)
-		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
 		-- also cast by this NPC when fighting elementals, so add a range check
 		if unit and self:UnitWithinRange(unit, 40) then
 			local t = args.time

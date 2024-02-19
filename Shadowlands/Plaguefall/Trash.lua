@@ -252,7 +252,7 @@ end
 
 -- Decaying Flesh Giant
 function mod:CreepyCrawlers(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
 		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
@@ -273,7 +273,7 @@ end
 
 -- Plaguebelcher
 function mod:BelchPlague(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alarm")
@@ -370,7 +370,7 @@ do
 	local prev = 0
 	function mod:BulwarkOfMaldraxxus(args)
 		local t = args.time
-		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
 		if t-prev > 1.5 and unit and UnitAffectingCombat(unit) then
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alert")
@@ -380,7 +380,7 @@ end
 
 -- Venomous Sniper
 function mod:CallVenomfang(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alert")

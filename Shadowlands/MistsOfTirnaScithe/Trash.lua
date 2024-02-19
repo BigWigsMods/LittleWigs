@@ -194,7 +194,7 @@ do
 		end
 		local t = args.time
 		if t-prev > 1.5 then
-			local unit = self:GetUnitIdByGUID(args.destGUID)
+			local unit = self:UnitTokenFromGUID(args.destGUID)
 			if unit and UnitAffectingCombat(unit) then
 				prev = t
 				self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
@@ -213,7 +213,7 @@ do
 		end
 		local t = args.time
 		if t-prev > 1.5 and self:Tank() then
-			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			local unit = self:UnitTokenFromGUID(args.sourceGUID)
 			if unit and UnitAffectingCombat(unit) then
 				prev = t
 				self:Message(args.spellId, "purple")
@@ -239,7 +239,7 @@ do
 	function mod:SpearFlurry(args)
 		local t = args.time
 		if t-prev > 1.5 then
-			local unit = self:GetUnitIdByGUID(args.sourceGUID)
+			local unit = self:UnitTokenFromGUID(args.sourceGUID)
 			if unit and UnitAffectingCombat(unit) then
 				prev = t
 				self:Message(args.spellId, "orange")
