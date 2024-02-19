@@ -49,7 +49,7 @@ do
 	end
 
 	function mod:FurlwindChanneling(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 
 	function mod:Furlwind(args)

@@ -113,7 +113,7 @@ do
 	end
 
 	function mod:FoeFlipper(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 
@@ -138,7 +138,7 @@ do
 	end
 
 	function mod:MaximumThrust(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 43.7)
 	end
 end

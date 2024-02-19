@@ -147,7 +147,7 @@ do
 	end
 
 	function mod:CrushingGripThrow(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 

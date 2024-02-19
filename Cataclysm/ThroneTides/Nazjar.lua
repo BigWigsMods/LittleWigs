@@ -164,7 +164,7 @@ do
 		-- this debuff is sometimes applied to the tank instead of the targeted player,
 		-- so we have to revert back to target scanning to get the real target. if this
 		-- is ever fixed we can just check who gets the debuff instead.
-		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 		shockBlastCD = 21.8
 		nextShockBlast = t + shockBlastCD
 		self:CDBar(428054, shockBlastCD)

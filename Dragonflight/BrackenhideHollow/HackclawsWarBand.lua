@@ -219,7 +219,7 @@ do
 	function mod:MarkedForButchery(args)
 		self:StopBar(CL.count:format(args.spellName, markedForButcheryCount))
 		markedForButcheryCount = markedForButcheryCount + 1
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, markedForButcheryCount))
 	end
 end

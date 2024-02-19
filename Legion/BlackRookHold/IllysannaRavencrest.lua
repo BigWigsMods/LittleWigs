@@ -173,7 +173,7 @@ do
 	end
 
 	function mod:BrutalGlaive(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		-- only decrement brutalGlaiveRemaining in SUCCESS as this will just be recast if the target
 		-- uses invisibility/vanish/etc
 		if brutalGlaiveRemaining > 1 then

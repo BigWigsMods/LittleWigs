@@ -38,7 +38,7 @@ do
 	end
 
 	function mod:Whirlwind(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(59322, 10, CL.cast:format(args.spellName))
 		self:CDBar(59322, 23)
 	end

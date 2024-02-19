@@ -82,7 +82,7 @@ do
 		end
 	end
 	function mod:SlimeInjection(args)
-		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 	end
 end
 

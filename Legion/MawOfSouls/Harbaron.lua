@@ -52,7 +52,7 @@ do
 		self:TargetMessageOld(194325, player, "red", "warning")
 	end
 	function mod:Fragment(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 30)
 	end
 end

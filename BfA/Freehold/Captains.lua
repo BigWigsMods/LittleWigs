@@ -136,7 +136,7 @@ do
 	end
 
 	function mod:PowderShot(args)
-		self:GetBossTarget(printTarget, 1, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 1, args.sourceGUID)
 		--self:CDBar(args.spellId, 4.0)
 	end
 end
@@ -154,7 +154,7 @@ do
 	end
 
 	function mod:ChainShot(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 15.8)
 	end
 end
@@ -181,7 +181,7 @@ do
 	end
 
 	function mod:BlackoutBarrel(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		self:CDBar(args.spellId, 46.1)
 	end
 end

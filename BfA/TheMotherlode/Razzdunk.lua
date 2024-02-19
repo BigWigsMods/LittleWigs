@@ -83,7 +83,7 @@ do
 	end
 
 	function mod:DrillSmash(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 8.5)
 	end
 end

@@ -195,7 +195,7 @@ do
 	end
 
 	function mod:ChainsOfDamnation(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 25.5)
 	end
 end

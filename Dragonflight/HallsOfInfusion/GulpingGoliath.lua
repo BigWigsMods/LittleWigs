@@ -81,7 +81,7 @@ do
 	end
 
 	function mod:BellySlam(args)
-		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 		self:Bar(args.spellId, 38.8)
 	end
 end

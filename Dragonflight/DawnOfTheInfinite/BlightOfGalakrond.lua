@@ -222,7 +222,7 @@ do
 	end
 
 	function mod:Necrofrost(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		-- pull:133.9, 19.4, 42.5
 		necrofrostCount = necrofrostCount + 1
 		if necrofrostCount == 3 then

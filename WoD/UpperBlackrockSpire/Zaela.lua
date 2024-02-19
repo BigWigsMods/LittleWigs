@@ -50,7 +50,7 @@ do
 		end
 	end
 	function mod:BlackIronCycloneCast(args)
-		self:GetBossTarget(bossTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(bossTarget, 0.3, args.sourceGUID)
 		self:CDBar(args.spellId, 19) -- 18-21
 	end
 end

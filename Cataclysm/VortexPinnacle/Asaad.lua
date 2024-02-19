@@ -105,7 +105,7 @@ do
 	end
 
 	function mod:ChainLightning(args)
-		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 		if not self:Mythic() then
 			-- this is interruptible in non-Mythic so need to restart bar here
 			self:CDBar(args.spellId, 18.2)

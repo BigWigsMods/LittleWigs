@@ -76,7 +76,7 @@ do
 	end
 
 	function mod:MoltenBoulder(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		self:Bar(args.spellId, 17)
 	end
 end

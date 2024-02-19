@@ -52,7 +52,7 @@ do
 	end
 	function mod:Harvest(args)
 		self:Bar(args.spellId, 56)
-		self:GetBossTarget(printTarget, 0.2, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 

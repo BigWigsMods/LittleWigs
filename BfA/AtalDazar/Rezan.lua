@@ -95,7 +95,7 @@ do
 	end
 
 	function mod:PursuitStart(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		pursuitCount = pursuitCount + 1
 		self:CDBar(257407, 35.2)
 	end

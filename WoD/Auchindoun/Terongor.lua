@@ -120,7 +120,7 @@ do
 	end
 	function mod:DemonicLeap(args)
 		self:CDBar(args.spellId, 20) -- 20-23
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 

@@ -79,7 +79,7 @@ do
 	end
 
 	function mod:StoneShatteringLeap(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 29.1)
 	end
 end

@@ -70,7 +70,7 @@ do
 	end
 
 	function mod:ChainLightning(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CastBar(args.spellId, 3)
 	end
 

@@ -52,11 +52,7 @@ do
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castId, spellId)
 		if spellId == 36038 and castId ~= prev then -- Charge Targeting
 			prev = castId
-			if self:Classic() then
-				self:GetUnitTarget(printTarget, 0.4, self:UnitGUID(unit))
-			else
-				self:GetBossTarget(printTarget, 0.4, self:UnitGUID(unit))
-			end
+			self:GetUnitTarget(printTarget, 0.4, self:UnitGUID(unit))
 		end
 	end
 end

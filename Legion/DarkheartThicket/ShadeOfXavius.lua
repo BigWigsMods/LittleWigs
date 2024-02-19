@@ -71,7 +71,7 @@ do
 	end
 
 	function mod:GrowingParanoia(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 22.7)
 	end
 end
@@ -102,7 +102,7 @@ do
 	end
 
 	function mod:NightmareBolt(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(200185, 22.7)
 	end
 end

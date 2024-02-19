@@ -116,7 +116,7 @@ do
 
 	function mod:InfernoBolt(args)
 		if frostbiteTarget then
-			self:GetBossTarget(printTarget, 1, args.sourceGUID)
+			self:GetUnitTarget(printTarget, 1, args.sourceGUID)
 		else
 			self:Message(args.spellId, "red")
 		end

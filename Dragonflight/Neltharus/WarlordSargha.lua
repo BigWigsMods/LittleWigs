@@ -190,7 +190,7 @@ do
 
 	function mod:MoltenGold(args)
 		moltenGoldRemaining = moltenGoldRemaining - 1
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		if moltenGoldRemaining > 0 then
 			self:CDBar(377018, 26.7)
 		else

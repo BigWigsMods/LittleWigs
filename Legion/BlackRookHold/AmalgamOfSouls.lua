@@ -92,7 +92,7 @@ do
 	end
 
 	function mod:SwirlingScythe(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		self:CDBar(args.spellId, 20.6)
 	end
 end

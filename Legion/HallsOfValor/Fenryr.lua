@@ -174,7 +174,7 @@ do
 	end
 
 	function mod:ScentOfBlood(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 34.1)
 		-- soonest any ability can happen after this is 18.2s
 		self:CDBar(196512, 18.2) -- Claw Frenzy

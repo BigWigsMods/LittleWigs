@@ -88,7 +88,7 @@ do
 		end
 	end
 	function mod:DashingStrike(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 14.6)
 	end
 end

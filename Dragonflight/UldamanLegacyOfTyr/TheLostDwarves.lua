@@ -146,7 +146,7 @@ do
 	end
 
 	function mod:RicochetingShield(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		ricochetingShieldRemaining = ricochetingShieldRemaining - 1
 		if ricochetingShieldRemaining > 0 then
 			self:Bar(args.spellId, 17.0)

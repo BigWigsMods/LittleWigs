@@ -42,7 +42,7 @@ do
 		self:PrimaryIcon(97497, player)
 	end
 	function mod:FlameBreath(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 	function mod:FlameBreathSuccess()
 		self:PrimaryIcon(97497)

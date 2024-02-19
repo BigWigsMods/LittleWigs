@@ -51,7 +51,7 @@ do
 		self:TargetMessageOld(153002, player, "orange", "alert", nil, nil, true)
 	end
 	function mod:HolyShield(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 47)
 		self:Bar(153006, 7.4) -- Consecrated Light
 	end

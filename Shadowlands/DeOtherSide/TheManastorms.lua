@@ -177,7 +177,7 @@ do
 		end
 	end
 	function mod:Shadowfury(args)
-		self:GetBossTarget(printTarget, 0.1, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 		if shadowfuryCount == 1 then
 			self:Bar(args.spellId, 15)
 		elseif shadowfuryCount == 2 then

@@ -117,7 +117,7 @@ do
 		if cycloneStrikeCount % 2 == 1 then
 			self:Bar(args.spellId, 13.5)
 		end
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alert")
 		self:CastBar(args.spellId, 2.5)

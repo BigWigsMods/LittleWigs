@@ -93,7 +93,7 @@ do
 	end
 
 	function mod:RottenExpulsion(args)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		rottenExpulsionCount = rottenExpulsionCount + 1
 		if rottenExpulsionCount == 2 then
 			self:CDBar(args.spellId, 29.2)

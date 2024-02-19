@@ -127,7 +127,7 @@ do
 	function mod:WhirlingDagger(args)
 		if args.spellId == 413131 then -- Stage 1
 			-- just applies the debuff to the targeted player in stage 1
-			self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+			self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		else -- 413136, Stage 2, 3
 			-- this chains to other players in stage 2 and 3 so target scanning isn't useful
 			self:Message(413136, "yellow")

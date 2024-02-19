@@ -123,7 +123,7 @@ do
 	end
 
 	function mod:PurifyingBlast(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 13)
 	end
 end

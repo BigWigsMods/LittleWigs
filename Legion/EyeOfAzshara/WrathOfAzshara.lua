@@ -79,7 +79,7 @@ do
 		self:TargetMessageOld(197365, player, "red", "alarm", nil, nil, true)
 	end
 	function mod:CrushingDepths(args) -- Heroic+
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 41) -- pull:20.8, 41.3 / m pull:20.3, 59.5, 36.5 XXX
 	end
 	function mod:CrushingDepthsEnd(args)

@@ -131,7 +131,7 @@ do
 	end
 
 	function mod:MorbidFixation(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 

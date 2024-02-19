@@ -115,7 +115,7 @@ do
 		self:PlaySound(193659, "alarm", nil, player)
 	end
 	function mod:FelblazeRush(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 10.9)
 	end
 	function mod:FelblazeRushEnd(args)

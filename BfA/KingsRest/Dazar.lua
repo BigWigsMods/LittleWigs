@@ -144,7 +144,7 @@ do
 	end
 
 	function mod:QuakingLeap(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 20)
 	end
 

@@ -94,7 +94,7 @@ do
 	end
 
 	function mod:JaggedNettles(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 14.2)
 	end
 end

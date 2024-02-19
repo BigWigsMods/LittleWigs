@@ -67,7 +67,7 @@ do
 	end
 
 	function mod:Impale(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 22)
 	end
 

@@ -50,7 +50,7 @@ do
 	end
 
 	function mod:HeavingRetchStart(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:Bar(args.spellId, 24.5)
 	end
 end

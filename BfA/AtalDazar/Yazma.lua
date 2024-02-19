@@ -132,7 +132,7 @@ do
 		local t = GetTime()
 		if self:MythicPlus() then
 			-- not interruptible in Mythic+, get target instead
-			self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+			self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		else -- Normal, Heroic, Mythic
 			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")

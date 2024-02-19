@@ -77,7 +77,7 @@ do
 
 	function mod:FreezingSnare(args)
 		self:Bar(args.spellId, 17)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 
@@ -95,7 +95,7 @@ do
 	end
 
 	function mod:HuntersMark(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 20)
 	end
 

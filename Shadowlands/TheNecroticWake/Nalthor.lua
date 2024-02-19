@@ -82,7 +82,7 @@ do
 	end
 
 	function mod:FrozenBinds(args)
-		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
 

@@ -50,7 +50,7 @@ do
 	end
 
 	function mod:SpitGold(args)
-		self:GetBossTarget(printTarget, 0.5, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
 		self:CDBar(args.spellId, 11)
 	end
 end

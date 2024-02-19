@@ -268,7 +268,7 @@ do
 	end
 
 	function mod:WhirlingEdge(args)
-		self:GetBossTarget(printTarget, 1.5, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 1.5, args.sourceGUID)
 	end
 end
 

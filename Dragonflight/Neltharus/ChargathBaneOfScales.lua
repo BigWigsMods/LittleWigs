@@ -185,7 +185,7 @@ function mod:FieryFocusOver(args)
 end
 
 function mod:DragonStrike(args)
-	-- boss targets players too slowly to use GetBossTarget
+	-- boss targets players too slowly to use GetUnitTarget
 	self:StopBar(args.spellId)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")

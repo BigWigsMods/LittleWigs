@@ -57,7 +57,7 @@ do
 	end
 
 	function mod:ChainLightning(args)
-		self:GetBossTarget(announce, 0.4, args.sourceGUID)
+		self:GetUnitTarget(announce, 0.4, args.sourceGUID)
 		self:CastBar(15659, 3)
 	end
 

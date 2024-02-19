@@ -64,7 +64,7 @@ do
 
 	function mod:SacredGround(args)
 		self:CDBar(args.spellId, 19.4)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 
@@ -142,6 +142,6 @@ do
 
 	function mod:HolyBolt(args)
 		self:CDBar(args.spellId, 9.7)
-		self:GetBossTarget(printTarget, 0.3, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
