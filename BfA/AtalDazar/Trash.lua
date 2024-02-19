@@ -237,7 +237,9 @@ end
 
 function mod:DinoMight(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning", "interrupt")
+	if self:Interrupter() then
+		self:PlaySound(args.spellId, "warning", "interrupt")
+	end
 end
 
 function mod:DinoMightApplied(args)
