@@ -16,10 +16,9 @@ mod:SetStage(1)
 -- Locals
 --
 
-local stageOneCount = 1
-local infusedGlobulesRemaining = 2
-local tempestsFuryRemaining = 2
-local addsAlive = 0
+local infusedGlobulesCount = 1
+local tempestsFuryCount = 1
+local addsKilled = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -43,6 +42,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "Submerge", 387585)
 	self:Log("SPELL_AURA_REMOVED", "SubmergeOver", 387585)
 
@@ -58,15 +58,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	stageOneCount = 1
-	infusedGlobulesRemaining = 2
-	tempestsFuryRemaining = 2
-	addsAlive = 0
+	infusedGlobulesCount = 1
+	tempestsFuryCount = 1
+	addsKilled = 0
 	self:SetStage(1)
-	self:Bar(388424, 4.0) -- Tempest's Fury
-	self:Bar(387559, 8.0) -- Infused Globules
-	self:Bar(387504, 16.0) -- Squall Buffet
-	self:Bar("stages", 51.9, self:SpellName(387585), 387585) -- Submerge
+	self:CDBar(388424, 4.0, CL.count:format(self:SpellName(388424), tempestsFuryCount)) -- Tempest's Fury
+	self:CDBar(387559, 8.0) -- Infused Globules
+	self:CDBar(387504, 16.0) -- Squall Buffet
 end
 
 --------------------------------------------------------------------------------
@@ -75,61 +73,63 @@ end
 
 -- Stages
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
+	if spellId == 388420 then -- Cast Away
+		-- we can clean up bars a second early, this always precedes submerge
+		self:StopBar(387559) -- Infused Globules
+		self:StopBar(CL.count:format(self:SpellName(388424), tempestsFuryCount)) -- Tempest's Fury
+		self:StopBar(387504) -- Squall Buffet
+		self:UnregisterUnitEvent(event, unit)
+	end
+end
+
 function mod:Submerge(args)
-	addsAlive = 4
+	self:StopBar(387559) -- Infused Globules
+	self:StopBar(CL.count:format(self:SpellName(388424), tempestsFuryCount)) -- Tempest's Fury
+	self:StopBar(387504) -- Squall Buffet
 	self:SetStage(2)
-	self:StopBar(args.spellName)
-	self:Message("stages", "cyan", args.spellName, args.spellId)
+	self:Message("stages", "cyan", CL.percent:format(60, args.spellName), args.spellId)
 	self:PlaySound("stages", "long")
 	self:CDBar("stages", 131.1, CL.onboss:format(args.spellName), args.spellId)
 end
 
 function mod:SubmergeOver(args)
-	addsAlive = 0
-	stageOneCount = stageOneCount + 1
-	infusedGlobulesRemaining = 2
-	tempestsFuryRemaining = 2
-	self:SetStage(1)
+	-- reset infusedGlobulesCount for timer purposes
+	infusedGlobulesCount = 1
 	self:StopBar(CL.onboss:format(args.spellName))
+	self:SetStage(1)
 	self:Message("stages", "cyan", CL.over:format(args.spellName), args.spellId)
 	self:PlaySound("stages", "info")
-	self:CDBar(388424, 7.6) -- Tempest's Fury
+	self:CDBar(388424, 7.6, CL.count:format(self:SpellName(388424), tempestsFuryCount)) -- Tempest's Fury
 	self:CDBar(387559, 11.6) -- Infused Globules
 	self:CDBar(387504, 19.6) -- Squall Buffet
-	self:Bar("stages", 56.5, args.spellName, args.spellId)
 end
 
 -- Stage 1
 
 function mod:InfusedGlobules(args)
-	infusedGlobulesRemaining = infusedGlobulesRemaining - 1
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	if infusedGlobulesRemaining > 0 then
-		-- often slightly delayed
-		self:CDBar(args.spellId, 17.0)
+	infusedGlobulesCount = infusedGlobulesCount + 1
+	if infusedGlobulesCount % 2 == 0 then
+		self:CDBar(args.spellId, 23.2)
 	else
-		self:StopBar(args.spellId)
+		self:CDBar(args.spellId, 8.8)
 	end
 end
 
 function mod:TempestsFury(args)
-	tempestsFuryRemaining = tempestsFuryRemaining - 1
-	self:Message(args.spellId, "red")
+	self:StopBar(CL.count:format(args.spellName, tempestsFuryCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, tempestsFuryCount))
 	self:PlaySound(args.spellId, "alert")
-	if tempestsFuryRemaining > 0 then
-		self:Bar(args.spellId, 31.0)
-		-- fix other bars
-		if stageOneCount > 1 then
-			self:Bar(387559, {4.0, 11.6}) -- Infused Globules
-			self:Bar(387504, {12.0, 19.6}) -- Squall Buffet
-		end
-	end
+	tempestsFuryCount = tempestsFuryCount + 1
+	self:CDBar(args.spellId, 32.0, CL.count:format(args.spellName, tempestsFuryCount))
 end
 
 function mod:SquallBuffet(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 32.0)
 end
 
 function mod:Undertow(args)
@@ -161,9 +161,10 @@ do
 end
 
 function mod:AddDeath(args)
-	addsAlive = addsAlive - 1
-	if addsAlive > 0 then
-		self:Message("stages", "cyan", CL.add_remaining:format(addsAlive), false)
+	addsKilled = addsKilled + 1
+	local addsNeeded = self:Mythic() and 4 or 2
+	if addsKilled < addsNeeded then
+		self:Message("stages", "cyan", CL.add_killed:format(addsKilled, addsNeeded), false)
 		self:PlaySound("stages", "info")
 	end
 end
