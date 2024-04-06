@@ -137,6 +137,7 @@ do
 end
 
 function mod:FrostOverload(args)
+	self:StopBar(args.spellId)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 end
