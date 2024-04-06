@@ -24,7 +24,7 @@ if L then
 	L.infected_bear = "감염된 곰"
 	L.stinkbreath = "고약숨결"
 	L.rageclaw = "분노발톱"
-	L.rotbow_stalker = "부식활 추적기"
+	L.rotbow_ranger = "부식활 추적기"
 	L.skulking_gutstabber = "잠복하는 내장관통자"
 	L.fleshripper_vulture = "살점분리자 시체매"
 	L.filth_caller = "오물 소환사"

@@ -24,7 +24,7 @@ if L then
 	L.infected_bear = "Зараженный медведь"
 	L.stinkbreath = "Мерзорот"
 	L.rageclaw = "Яростный Коготь"
-	L.rotbow_stalker = "Стрелок гнили"
+	L.rotbow_ranger = "Стрелок гнили"
 	L.skulking_gutstabber = "Затаившийся брюхокол"
 	L.fleshripper_vulture = "Стервятник-шкуродер"
 	L.filth_caller = "Призывательница гнили"

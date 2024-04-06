@@ -24,7 +24,7 @@ if L then
 	L.infected_bear = "Infizierter Bär"
 	L.stinkbreath = "Stinkatem"
 	L.rageclaw = "Zornklaue"
-	L.rotbow_stalker = "Fäulnisbogenpirscher"
+	L.rotbow_ranger = "Fäulnisbogenwaldläufer"
 	L.skulking_gutstabber = "Lauernde Organstecherin"
 	L.fleshripper_vulture = "Fleischreißergeier"
 	L.filth_caller = "Dreckruferin"

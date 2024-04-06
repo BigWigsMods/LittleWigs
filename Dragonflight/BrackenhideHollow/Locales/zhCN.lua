@@ -24,7 +24,7 @@ if L then
 	L.infected_bear = "被感染的熊"
 	L.stinkbreath = "臭息"
 	L.rageclaw = "怒爪"
-	L.rotbow_stalker = "腐弓追猎者"
+	L.rotbow_ranger = "腐弓追猎者"
 	L.skulking_gutstabber = "潜伏的捅肠者"
 	L.fleshripper_vulture = "裂肉秃鹫"
 	L.filth_caller = "污秽呼唤者"

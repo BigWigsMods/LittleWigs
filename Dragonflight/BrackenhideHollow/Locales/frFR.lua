@@ -24,7 +24,7 @@ if L then
 	L.infected_bear = "Ours infecté"
 	L.stinkbreath = "Pudubek"
 	L.rageclaw = "Grifferage"
-	L.rotbow_stalker = "Traqueur arc-putride"
+	L.rotbow_ranger = "Traqueur arc-putride"
 	L.skulking_gutstabber = "Tranche-tripes en maraude"
 	L.fleshripper_vulture = "Vautour déchire-chair"
 	L.filth_caller = "Invoque-pourriture"

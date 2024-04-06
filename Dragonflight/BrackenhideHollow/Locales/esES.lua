@@ -24,7 +24,7 @@ if L then
 	L.infected_bear = "Oso infectado"
 	L.stinkbreath = "Tufoaliento"
 	L.rageclaw = "Garrafuria"
-	L.rotbow_stalker = "Acechador putriarco"
+	L.rotbow_ranger = "Acechador putriarco"
 	L.skulking_gutstabber = "Trinchatripas merodeadora"
 	L.fleshripper_vulture = "Buitre desgarracarnes"
 	L.filth_caller = "Clamainmundicia"
