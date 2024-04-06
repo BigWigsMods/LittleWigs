@@ -145,7 +145,7 @@ end
 -- Primal Juggernaut
 
 function mod:ExcavatingBlast(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -155,7 +155,7 @@ function mod:TectonicSlam(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
 	end
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -167,7 +167,7 @@ do
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -176,15 +176,15 @@ end
 -- Defier Draghar
 
 function mod:BlazingRush(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17)
+	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:SteelBarrage(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 18.2)
+	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:DefierDragharDeath(args)
@@ -248,60 +248,100 @@ end
 -- Thunderhead
 
 do
-	local playerList = {}
+	-- this timer is used to schedule StopBars on abilities, this way if you pull and
+	-- reset the mob (or wipe) the bars won't be stuck for the rest of the dungeon.
+	local timer
 
-	function mod:RollingThunder(args)
-		playerList = {}
-		self:CDBar(args.spellId, 22)
+	do
+		local playerList = {}
+
+		function mod:RollingThunder(args)
+			if timer then
+				self:CancelTimer(timer)
+			end
+			playerList = {}
+			self:CDBar(args.spellId, 22)
+			timer = self:ScheduleTimer("ThunderheadDeath", 30)
+		end
+
+		function mod:RollingThunderApplied(args)
+			playerList[#playerList+1] = args.destName
+			self:TargetsMessage(392640, "red", playerList, 2)
+			self:PlaySound(392640, "alert", nil, playerList)
+		end
 	end
 
-	function mod:RollingThunderApplied(args)
-		playerList[#playerList+1] = args.destName
-		self:TargetsMessage(392640, "red", playerList, 2)
-		self:PlaySound(392640, "alert", nil, playerList)
+	function mod:StormBreath(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 14.5)
+		timer = self:ScheduleTimer("ThunderheadDeath", 30)
 	end
-end
 
-function mod:StormBreath(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 14.5)
-end
+	function mod:ThunderJaw(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
+		self:CDBar(args.spellId, 19.3)
+		timer = self:ScheduleTimer("ThunderheadDeath", 30)
+	end
 
-function mod:ThunderJaw(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 19.3)
-end
-
-function mod:ThunderheadDeath(args)
-	self:StopBar(392640) -- Rolling Thunder
-	self:StopBar(391726) -- Storm Breath
-	self:StopBar(392395) -- Thunder Jaw
+	function mod:ThunderheadDeath(args)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(392640) -- Rolling Thunder
+		self:StopBar(391726) -- Storm Breath
+		self:StopBar(392395) -- Thunder Jaw
+	end
 end
 
 -- Flamegullet
 
-function mod:FlameBreath(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 14.5)
-end
+do
+	-- this timer is used to schedule StopBars on abilities, this way if you pull and
+	-- reset the mob (or wipe) the bars won't be stuck for the rest of the dungeon.
+	local timer
 
-function mod:FireMaw(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 23.0)
-end
+	function mod:FlameBreath(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 14.5)
+		timer = self:ScheduleTimer("FlamegulletDeath", 30)
+	end
 
-function mod:MoltenBlood(args)
-	self:Message(args.spellId, "red", CL.percent:format(50, args.spellName))
-	self:PlaySound(args.spellId, "long")
-end
+	function mod:FireMaw(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
+		self:CDBar(args.spellId, 23.0)
+		timer = self:ScheduleTimer("FlamegulletDeath", 30)
+	end
 
-function mod:FlamegulletDeath(args)
-	self:StopBar(391723) -- Flame Breath
-	self:StopBar(392394) -- Fire Maw
+	function mod:MoltenBlood(args)
+		self:Message(args.spellId, "red", CL.percent:format(50, args.spellName))
+		self:PlaySound(args.spellId, "long")
+	end
+
+	function mod:FlamegulletDeath(args)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(391723) -- Flame Breath
+		self:StopBar(392394) -- Fire Maw
+	end
 end
 
 -- Tempest Channeler
