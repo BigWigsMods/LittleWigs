@@ -89,7 +89,7 @@ function mod:GetOptions()
 		-- Primalist Earthshaker
 		375384, -- Rumbling Earth
 		-- Primalist Galesinger
-		385141, -- Thunderstorm
+		437719, -- Thunderstrike
 		-- Primalist Icecaller
 		376171, -- Refreshing Tides
 		-- Glacial Proto-Dragon
@@ -111,7 +111,7 @@ function mod:GetOptions()
 		[374724] = L.flamecaller_aymi,
 		[375079] = L.squallbringer_cyraz,
 		[375384] = L.primalist_earthshaker,
-		[385141] = L.primalist_galesinger,
+		[437719] = L.primalist_galesinger,
 		[376171] = L.primalist_icecaller,
 		[375351] = L.glacial_protodragon,
 		[377341] = L.aqua_rager,
@@ -161,11 +161,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "RumblingEarth", 408388)
 
 	-- Primalist Galesinger
-	self:Log("SPELL_AURA_APPLIED", "ThunderstormDamage", 385168)
-	self:Log("SPELL_PERIODIC_DAMAGE", "ThunderstormDamage", 385168)
-	self:Log("SPELL_PERIODIC_MISSED", "ThunderstormDamage", 385168)
+	self:Log("SPELL_CAST_START", "Thunderstrike", 437719)
 
-	-- Primalist Galesinger
+	-- Primalist Icecaller
 	self:Log("SPELL_CAST_START", "RefreshingTides", 376171)
 
 	-- Glacial Proto-Dragon
@@ -405,18 +403,13 @@ end
 
 -- Primalist Galesinger
 
-do
-	local prev = 0
-	function mod:ThunderstormDamage(args)
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 2 then
-				prev = t
-				self:PersonalMessage(385141, "underyou")
-				self:PlaySound(385141, "underyou")
-			end
-		end
+function mod:Thunderstrike(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
 	end
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 23.1, args.sourceGUID)
 end
 
 -- Primalist Icecaller
@@ -425,7 +418,7 @@ function mod:RefreshingTides(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
 	end
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
 end
