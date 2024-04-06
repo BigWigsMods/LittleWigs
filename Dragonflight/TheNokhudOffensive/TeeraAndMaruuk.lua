@@ -81,6 +81,11 @@ function mod:OnEngage()
 	self:Bar(385339, 52) -- Earthsplitter
 end
 
+function mod:VerifyEnable(unit)
+	-- bosses become unattackable at 1 HP remaining
+	return UnitCanAttack("player", unit) or self:GetHealth(unit) > 1
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
