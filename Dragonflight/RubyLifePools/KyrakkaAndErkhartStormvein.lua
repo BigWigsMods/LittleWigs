@@ -155,7 +155,7 @@ do
 			end
 			if not onMe then
 				onMe = true
-				self:Say(args.spellId)
+				self:Say(args.spellId, nil, nil, "Infernocore")
 			else
 				self:CancelSayCountdown(args.spellId)
 			end
