@@ -57,10 +57,10 @@ BigWigs:AddColors("The Nokhud Offensive Trash", {
 	[387125] = "yellow",
 	[387127] = {"blue","red"},
 	[387411] = "red",
-	[387440] = "red",
+	[387440] = "cyan",
 	[387596] = "yellow",
 	[387614] = "orange",
-	[387629] = "orange",
 	[395035] = "blue",
 	[397394] = "purple",
+	[436841] = "yellow",
 })

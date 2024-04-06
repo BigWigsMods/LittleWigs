@@ -88,7 +88,7 @@ function mod:GetOptions()
 		387125, -- Thunderstrike
 		386028, -- Thunder Clap
 		-- Desecrated Ohuna
-		387629, -- Rotting Wind
+		436841, -- Rotting Wind
 		-- Ukhel Deathspeaker
 		387614, -- Chant of the Dead
 		-- Risen Mystic
@@ -116,7 +116,7 @@ function mod:GetOptions()
 		[386024] = L.primalist_stormspeaker,
 		[386694] = L.stormsurge_totem,
 		[387127] = L.primalist_thunderbeast,
-		[387629] = L.desecrated_ohuna,
+		[436841] = L.desecrated_ohuna,
 		[387614] = L.ukhel_deathspeaker,
 		[387596] = L.risen_mystic,
 		[387440] = L.ukhel_beastcaller,
@@ -163,7 +163,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ThunderClap", 386028)
 
 	-- Desecrated Ohuna
-	self:Log("SPELL_CAST_START", "RottingWind", 387629)
+	self:Log("SPELL_CAST_START", "RottingWind", 436841)
 
 	-- Ukhel Deathspeaker
 	self:Log("SPELL_CAST_START", "ChantOfTheDead", 387614)
@@ -322,10 +322,10 @@ do
 			return
 		end
 		local t = args.time
-		if t - prev > 1.5 then
+		if t - prev > 2 then
 			prev = t
-			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
@@ -353,8 +353,8 @@ function mod:DesecratingRoar(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
 	end
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Soulharvester Galtmaa
@@ -367,7 +367,7 @@ function mod:ShatterSoulApplied(args)
 end
 
 function mod:DeathBoltVolley(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
