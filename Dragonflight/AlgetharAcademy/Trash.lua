@@ -78,7 +78,6 @@ function mod:GetOptions()
 		{388911, "TANK"}, -- Severing Slash
 		-- Spellbound Scepter
 		396812, -- Mystic Blast
-		388886, -- Arcane Rain
 		-- Arcane Ravager
 		388976, -- Riftbreath
 		{388984, "SAY"}, -- Vicious Ambush
@@ -133,8 +132,6 @@ function mod:OnBossEnable()
 
 	-- Spellbound Scepter
 	self:Log("SPELL_CAST_START", "MysticBlast", 396812)
-	self:Log("SPELL_CAST_START", "ArcaneRain", 388886)
-	self:Log("SPELL_CAST_SUCCESS", "ArcaneRainSuccess", 388886)
 
 	-- Arcane Ravager
 	self:Log("SPELL_CAST_START", "Riftbreath", 388976)
@@ -293,23 +290,13 @@ end
 
 function mod:MysticBlast(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-end
-
-function mod:ArcaneRain(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:ArcaneRainSuccess(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "long")
 end
 
 -- Arcane Ravager
 
 function mod:Riftbreath(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 end
 
