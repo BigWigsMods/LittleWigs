@@ -286,12 +286,19 @@ end
 
 -- Dazzling Dragonfly
 
-function mod:Dazzle(args)
-	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
-		return
+do
+	local prev = 0
+	function mod:Dazzle(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Curious Swoglet
@@ -307,7 +314,6 @@ do
 				-- but always display the 9 stack warning for each player since 10 stacks kills instantly.
 				if amount == 9 or t - prev > 1 then
 					prev = t
-
 					-- insta-kill at 10 stacks
 					self:StackMessage(args.spellId, "red", args.destName, amount, 8)
 					if amount < 8 then
@@ -367,16 +373,16 @@ end
 -- Squallbringer Cyraz
 
 function mod:WhirlingFury(args)
-	-- this is cast only immediately after Gale Force Charge which has a minimum range
+	-- this is cast immediately after Gale Force Charge
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 22.5)
+	self:CDBar(args.spellId, 16.9)
 end
 
 function mod:ZephyrsCall(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 21.8)
+	self:CDBar(args.spellId, 24.2)
 end
 
 function mod:SquallbringerCyrazDeath(args)
