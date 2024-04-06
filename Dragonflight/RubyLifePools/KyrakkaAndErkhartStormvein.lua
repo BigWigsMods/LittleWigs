@@ -36,7 +36,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		-- Kyrakka
-		381862, -- Infernocore
+		{381862, "SAY", "SAY_COUNTDOWN"}, -- Infernocore
 		381525, -- Roaring Firebreath
 		381602, -- Flamespit
 		-- Erkhart Stormvein
@@ -60,6 +60,7 @@ function mod:OnBossEnable()
 	-- Kyrakka
 	self:Log("SPELL_AURA_APPLIED", "InfernocoreApplied", 381862)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "InfernocoreApplied", 381862)
+	self:Log("SPELL_AURA_REMOVED", "InfernocoreRemoved", 381862)
 	self:Log("SPELL_CAST_START", "RoaringFirebreath", 381525)
 	self:Log("SPELL_CAST_START", "Flamespit", 381602, 381605) -- P1, P2
 
@@ -138,6 +139,7 @@ end
 
 do
 	local prev = 0
+	local onMe = nil
 
 	function mod:InfernocoreApplied(args)
 		if self:Me(args.destGUID) then
@@ -151,7 +153,22 @@ do
 				end
 				self:PlaySound(args.spellId, "alarm")
 			end
-			self:TargetBar(args.spellId, 3, args.destName)
+			if not onMe then
+				onMe = true
+				self:Say(args.spellId)
+			else
+				self:CancelSayCountdown(args.spellId)
+			end
+			self:SayCountdown(args.spellId, 4, nil, 2)
+			self:TargetBar(args.spellId, 4, args.destName)
+		end
+	end
+
+	function mod:InfernocoreRemoved(args)
+		if self:Me(args.destGUID) then
+			onMe = nil
+			self:StopBar(args.spellId, args.destName)
+			self:CancelSayCountdown(args.spellId)
 		end
 	end
 end
