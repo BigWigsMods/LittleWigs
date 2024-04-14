@@ -25,12 +25,12 @@ local stormflurryTotemCount = 1
 local stormflurryTotemMarker = mod:Retail() and mod:AddMarkerOption(true, "npc", 8, 429037, 8) or nil -- Stormflurry Totem
 function mod:GetOptions()
 	return {
-		"stages",
 		-- Erunak Stonespeaker
 		429051, -- Earthfury
 		429037, -- Stormflurry Totem
 		stormflurryTotemMarker,
 		{429048, "DISPEL", "OFF"}, -- Flame Shock
+		429878, -- Shake It Off
 		-- Mindbender Ghur'sha
 		{429172, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Terrifying Vision
 	}, {
@@ -40,15 +40,13 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- Stages
-	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089)
-
 	-- Erunak Stonespeaker
 	self:Log("SPELL_CAST_SUCCESS", "Earthfury", 429051)
 	self:Log("SPELL_CAST_START", "StormflurryTotem", 429037)
 	self:Log("SPELL_SUMMON", "StormflurryTotemSummon", 429036)
 	self:Log("SPELL_CAST_SUCCESS", "FlameShock", 429048)
 	self:Log("SPELL_AURA_APPLIED", "FlameShockApplied", 429048)
+	self:Log("SPELL_CAST_SUCCESS", "ShakeItOff", 429878)
 
 	-- Mindbender Ghur'sha
 	self:Log("SPELL_CAST_START", "TerrifyingVision", 429172)
@@ -91,18 +89,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- Stages
-
-function mod:EncounterEvent()
-	self:StopBar(429048) -- Flame Shock
-	self:StopBar(CL.count:format(self:SpellName(429037), stormflurryTotemCount)) -- Stormflurry Totem
-	self:StopBar(429051) -- Earthfury
-	self:SetStage(2)
-	self:Message("stages", "cyan", CL.percent:format(25, CL.stage:format(2)), false)
-	self:PlaySound("stages", "long")
-	self:CDBar(429172, 3.2) -- Terrifying Vision
-end
 
 -- Erunak Stonespeaker
 
@@ -149,6 +135,16 @@ function mod:FlameShockApplied(args)
 		self:TargetMessage(args.spellId, "red", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
+end
+
+function mod:ShakeItOff(args)
+	self:StopBar(429048) -- Flame Shock
+	self:StopBar(CL.count:format(self:SpellName(429037), stormflurryTotemCount)) -- Stormflurry Totem
+	self:StopBar(429051) -- Earthfury
+	self:SetStage(2)
+	self:Message(args.spellId, "cyan", CL.percent:format(25, args.spellName))
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(429172, 3.2) -- Terrifying Vision
 end
 
 -- Mindbender Ghur'sha

@@ -22,7 +22,7 @@ BigWigs:AddSounds("Mindbender Ghur'sha", {
 	[429048] = "alert",
 	[429051] = "alarm",
 	[429172] = "warning",
-	["stages"] = "long",
+	[429878] = "long",
 })
 
 BigWigs:AddSounds("Ozumat", {
