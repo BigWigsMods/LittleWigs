@@ -21,3 +21,8 @@ BigWigs:AddSounds("Taran Zhu", {
 	[107356] = "warning",
 	[115002] = "info",
 })
+
+BigWigs:AddSounds("Shado-Pan Monastery Trash", {
+	[106942] = "alarm",
+	[111690] = "info",
+})

@@ -23,3 +23,8 @@ BigWigs:AddColors("Taran Zhu", {
 	[107356] = "red",
 	[115002] = "orange",
 })
+
+BigWigs:AddColors("Shado-Pan Monastery Trash", {
+	[106942] = "orange",
+	[111690] = "green",
+})
