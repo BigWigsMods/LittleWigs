@@ -35,7 +35,7 @@ BigWigs:AddSounds("Ruby Life Pools Trash", {
 	[373614] = "alarm",
 	[373692] = "alert",
 	[373693] = "alert",
-	[373972] = "long",
+	[373972] = "info",
 	[385313] = "alert",
 	[385536] = "alert",
 	[391723] = "alarm",

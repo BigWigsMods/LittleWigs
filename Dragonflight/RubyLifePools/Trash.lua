@@ -204,8 +204,8 @@ end
 
 function mod:BlazeOfGloryApplied(args)
 	if not self:Player(args.destFlags) then
-		self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
-		self:PlaySound(args.spellId, "long")
+		self:Message(args.spellId, "red")
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
