@@ -411,19 +411,23 @@ end
 
 do
 	local prev = 0
+	local prevSay = 0
 	function mod:AstralBombApplied(args)
 		local t = args.time
 		local onMe = self:Me(args.destGUID)
-		if t - prev > 1 or onMe then
+		if t - prev > 1.5 then
 			prev = t
 			self:TargetMessage(args.spellId, "yellow", args.destName)
 			if onMe then
-				self:PlaySound(args.spellId, "alarm")
-				self:Say(args.spellId, nil, nil, "Astral Bomb")
-				self:SayCountdown(args.spellId, 3, nil, 2)
+				self:PlaySound(args.spellId, "alarm", nil, args.destName)
 			else
 				self:PlaySound(args.spellId, "alert", nil, args.destName)
 			end
+		end
+		if onMe and t - prevSay > 3 then
+			prevSay = t
+			self:Say(args.spellId, nil, nil, "Astral Bomb")
+			self:SayCountdown(args.spellId, 3, nil, 2)
 		end
 	end
 end
