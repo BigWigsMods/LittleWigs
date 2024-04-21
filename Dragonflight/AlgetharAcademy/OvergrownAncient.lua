@@ -33,7 +33,7 @@ function mod:GetOptions()
 		{389033, "DISPEL"}, -- Lasher Toxin (Mythic only)
 		-- Ancient Branch
 		396640, -- Healing Touch
-		396721, -- Abundance
+		{396721, "CASTBAR"}, -- Abundance
 	}, {
 		["warmup"] = CL.general,
 		[388796] = self.displayName,
@@ -61,10 +61,11 @@ function mod:OnEngage()
 	germinateCount = 0
 	burstForthCount = 0
 	barkbreakerCount = 0
-	self:Bar(388544, 9.7) -- Barkbreaker
-	self:Bar(388796, 18.2) -- Germinate
-	self:Bar(388623, 30.4) -- Branch Out
-	self:Bar(388923, 56.4, CL.count:format(self:SpellName(388923), 1)) -- Burst Forth (1)
+	self:StopBar(CL.active) -- Warmup
+	self:CDBar(388544, 9.7) -- Barkbreaker
+	self:CDBar(388796, 18.2) -- Germinate
+	self:CDBar(388623, 30.4) -- Branch Out
+	self:CDBar(388923, 56.4, CL.count:format(self:SpellName(388923), 1)) -- Burst Forth (1)
 end
 
 --------------------------------------------------------------------------------
@@ -84,7 +85,7 @@ function mod:Germinate(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	-- 18.3, 34.0, 25.5, 34.0, 25.5 pattern
-	self:Bar(args.spellId, germinateCount % 2 == 0 and 25.5 or 34)
+	self:CDBar(args.spellId, germinateCount % 2 == 0 and 25.5 or 34)
 end
 
 function mod:BurstForth(args)
@@ -94,13 +95,13 @@ function mod:BurstForth(args)
 	self:Message(args.spellId, "orange", burstForthMessage)
 	self:PlaySound(args.spellId, "long")
 	-- cast at 100 energy, 2s cast + 54s energy gain + delay
-	self:Bar(args.spellId, 59.5, CL.count:format(args.spellName, burstForthCount + 1))
+	self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, burstForthCount + 1))
 end
 
 function mod:BranchOut(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 59.5)
+	self:CDBar(args.spellId, 59.5)
 end
 
 function mod:Barkbreaker(args)
@@ -108,7 +109,7 @@ function mod:Barkbreaker(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	-- 10.7, 29.1, 30.4, 29.1, 30.4, 29.1
-	self:Bar(args.spellId, barkbreakerCount % 2 == 0 and 30.4 or 29.1)
+	self:CDBar(args.spellId, barkbreakerCount % 2 == 0 and 30.4 or 29.1)
 end
 
 -- Hungry Lasher
@@ -139,6 +140,6 @@ function mod:AncientBranchDeath(args)
 	if self:Mythic() then
 		self:Message(396721, "green") -- Abundance
 		self:PlaySound(396721, "info")
-		self:Bar(396721, 3.5)
+		self:CastBar(396721, 3.5)
 	end
 end
