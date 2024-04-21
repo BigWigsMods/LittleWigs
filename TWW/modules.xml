@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="AraKara\modules.xml"/>
+<Include file="CinderbrewMeadery\modules.xml"/>
+<Include file="CityOfThreads\modules.xml"/>
+<Include file="DarkflameCleft\modules.xml"/>
+<Include file="PrioryOfTheSacredFlame\modules.xml"/>
+<Include file="TheDawnbreaker\modules.xml"/>
+<Include file="TheRookery\modules.xml"/>
+<Include file="TheStonevault\modules.xml"/>
+
+</Ui>

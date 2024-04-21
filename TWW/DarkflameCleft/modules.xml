@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="OlWaxbeard.lua"/>
+<Script file="Blazikon.lua"/>
+<Script file="TheCandleKing.lua"/>
+<Script file="TheDarkness.lua"/>
+<Script file="Trash.lua"/>
+
+<Include file="Locales\locales.xml"/>
+<Include file="Options\options.xml"/>
+
+</Ui>
