@@ -1,9 +1,9 @@
 
 BigWigs:AddColors("Gu Cloudstrike", {
-	[-5630] = "blue",
+	[-5630] = {"blue","red"},
 	[102573] = "orange",
 	[107140] = "yellow",
-	["stages"] = "green",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Master Snowdrift", {
