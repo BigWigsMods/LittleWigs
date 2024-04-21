@@ -34,6 +34,7 @@ BigWigs:AddSounds("Echo of Doragosa", {
 	[388822] = "alarm",
 	[388901] = "underyou",
 	[389011] = "alert",
+	[439488] = "info",
 })
 
 BigWigs:AddSounds("Algeth'ar Academy Trash", {

@@ -20,6 +20,7 @@ local powerVacuumCount = 0
 
 function mod:GetOptions()
 	return {
+		439488, -- Unleash Energy
 		389011, -- Overwhelming Power
 		388901, -- Arcane Rift
 		374361, -- Astral Breath
@@ -29,12 +30,13 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_START", "UnleashEnergy", 439488)
 	self:Log("SPELL_AURA_APPLIED", "OverwhelmingPowerApplied", 389011)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "OverwhelmingPowerApplied", 389011)
-	self:Log("SPELL_AURA_APPLIED", "WildEnergyDamage", 389007)
-	self:Log("SPELL_PERIODIC_DAMAGE", "WildEnergyDamage", 389007)
+	self:Log("SPELL_PERIODIC_DAMAGE", "WildEnergyDamage", 389007) -- no alert on APPLIED, doesn't damage right away
+	self:Log("SPELL_PERIODIC_MISSED", "WildEnergyDamage", 389007)
 	self:Log("SPELL_CAST_START", "AstralBreath", 374361)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Power Vacuum
 	self:Log("SPELL_CAST_SUCCESS", "EnergyBomb", 374343)
 	self:Log("SPELL_AURA_APPLIED", "EnergyBombApplied", 374350)
 	self:Log("SPELL_AURA_REMOVED", "EnergyBombRemoved", 374350)
@@ -50,6 +52,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UnleashEnergy(args)
+	-- Mythic-only ability, cast just once on pull
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
+end
 
 function mod:OverwhelmingPowerApplied(args)
 	if self:Me(args.destGUID) then
@@ -81,10 +89,11 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 388820 then -- Power Vacuum
+		-- using this event instead of SPELL_CAST_START on 388822 allows us to alert 2s earlier
 		powerVacuumCount = powerVacuumCount + 1
 		self:Message(388822, "red")
 		self:PlaySound(388822, "alarm")
-		self:Bar(388822, powerVacuumCount == 1 and 21.9 or 29.1)
+		self:CDBar(388822, powerVacuumCount == 1 and 21.9 or 29.1)
 	end
 end
 
