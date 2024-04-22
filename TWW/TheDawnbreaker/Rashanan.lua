@@ -3,7 +3,7 @@ if not BigWigsLoader.isBeta then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rasha'nan", 2662, 2593)
+local mod, CL = BigWigs:NewBoss("Rasha'nan Dawnbreaker", 2662, 2593)
 if not mod then return end
 --mod:RegisterEnableMob() -- Rasha'nan
 mod:SetEncounterID(2839)
