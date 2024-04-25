@@ -24,3 +24,7 @@
 ## Dependencies: BigWigs
 ## LoadOnDemand: 1
 ## Version: @project-version@
+
+#@do-not-package@
+## X-LittleWigs-Repo: 1
+#@end-do-not-package@

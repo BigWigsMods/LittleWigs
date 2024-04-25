@@ -26,6 +26,7 @@
 ## Version: @project-version@
 
 #@do-not-package@
+## X-LittleWigs-Repo: 1
 ## X-BigWigs-LoadOn-InstanceId: 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585
 TBC\modules.xml
 #@end-do-not-package@
