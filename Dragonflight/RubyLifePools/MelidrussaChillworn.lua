@@ -22,7 +22,7 @@ function mod:GetOptions()
 	return {
 		373046, -- Awaken Whelps
 		{372682, "DISPEL"}, -- Primal Chill
-		{372851, "SAY", "SAY_COUNTDOWN"}, -- Chillstorm
+		{372851, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Chillstorm
 		396044, -- Hailbombs
 		372988, -- Ice Bulwark
 		373680, -- Frost Overload
@@ -98,9 +98,9 @@ end
 function mod:Chillstorm(args)
 	self:TargetMessage(372851, "yellow", args.destName)
 	if self:Me(args.destGUID) then
-		self:PlaySound(372851, "alarm")
+		self:PlaySound(372851, "alarm", nil, args.destName)
 		self:Say(372851, nil, nil, "Chillstorm")
-		self:SayCountdown(372851, 3.5)
+		self:SayCountdown(372851, 3.5, nil, 2)
 	else
 		self:PlaySound(372851, "alert", nil, args.destName)
 	end
