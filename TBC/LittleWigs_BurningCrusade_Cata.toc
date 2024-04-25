@@ -1,0 +1,22 @@
+## Interface: 40400
+
+## Title: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-deDE: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-esES: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-esMX: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-frFR: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-itIT: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-koKR: LittleWigs [|cffeda55f불타는 성전|r]
+## Title-ptBR: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-ruRU: LittleWigs [|cffeda55fBurning Crusade|r]
+## Title-zhCN: LittleWigs [|cffeda55f燃烧的远征|r]
+## Title-zhTW: LittleWigs [|cffeda55f燃燒的遠征|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 269, 540, 542, 543, 545, 546, 547, 552, 553, 554, 555, 556, 557, 558, 560, 585
+
+modules.xml
