@@ -1,0 +1,22 @@
+## Interface: 40400
+
+## Title: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-deDE: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-esES: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-esMX: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-frFR: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-itIT: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-koKR: LittleWigs [|cffeda55f리치 왕의 분노|r]
+## Title-ptBR: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-ruRU: LittleWigs [|cffeda55fWrath of the Lich King|r]
+## Title-zhCN: LittleWigs [|cffeda55f巫妖王之怒|r]
+## Title-zhTW: LittleWigs [|cffeda55f巫妖王之怒|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 536, 574, 575, 576, 578, 595, 599, 600, 601, 602, 604, 608, 619, 632, 650, 658, 668
+
+modules.xml
