@@ -35,10 +35,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "StormsEdgeApplied", 86295)
 	self:Log("SPELL_AURA_REMOVED", "StormsEdgeRemoved", 86295)
 	self:Log("SPELL_AURA_APPLIED", "CycloneShieldApplied", 86292)
-	self:Log("SPELL_CAST_START", "SummonTempest", 413151)
+	if self:Retail() then
+		self:Log("SPELL_CAST_START", "SummonTempest", 413151)
 
-	-- Lurking Tempest
-	self:Log("SPELL_CAST_START", "LethalCurrent", 413562)
+		-- Lurking Tempest
+		self:Log("SPELL_CAST_START", "LethalCurrent", 413562)
+	else -- Classic
+		self:Log("SPELL_CAST_START", "SummonTempest", 86340)
+	end
 end
 
 function mod:OnEngage()
@@ -51,6 +55,19 @@ function mod:OnWin()
 	if scheduledCycloneShield then
 		self:CancelTimer(scheduledCycloneShield)
 		scheduledCycloneShield = nil
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if mod:Classic() then
+	function mod:GetOptions()
+		return {
+			{86292, "CASTBAR"}, -- Cyclone Shield
+			86340, -- Summon Tempest
+		}
 	end
 end
 

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Asaad", 657, 116)
 if not mod then return end
-mod:RegisterEnableMob(43875)
+mod:RegisterEnableMob(43875) -- Asaad, Caliph of Zephyrs
 mod:SetEncounterID(1042)
 mod:SetRespawnTime(30)
 
@@ -19,7 +19,7 @@ local skyfallNovaRemaining = 2
 -- Initialization
 --
 
-local skyfallNovaMarker = mod:AddMarkerOption(true, "npc", 8, 413264, 8) -- Skyfall Nova
+local skyfallNovaMarker = mod:AddMarkerOption(true, "npc", 8, mod:Retail() and 413264 or 96260, 8) -- Skyfall Nova or Skyfall Star
 function mod:GetOptions()
 	return {
 		86911, -- Unstable Grounding Field
@@ -36,7 +36,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SupremacyOfTheStorm", 86930)
 	self:Log("SPELL_CAST_START", "ChainLightning", 87622)
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 87622)
-	self:Log("SPELL_SUMMON", "SummonSkyfallNova", 96260)
+	if self:Retail() then
+		self:Log("SPELL_SUMMON", "SummonSkyfallNova", 96260)
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Summon Skyfall Star
+	end
 	self:Log("SPELL_CAST_START", "StaticCling", 87618)
 	self:Log("SPELL_AURA_APPLIED", "StaticClingApplied", 87618)
 end
@@ -51,6 +55,32 @@ function mod:OnEngage()
 	end
 	self:CDBar(86911, 30.1) -- Unstable Grounding Field
 	self:CDBar(86930, 40.2) -- Supremacy of the Storm
+end
+
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if mod:Classic() then
+	function mod:GetOptions()
+		return {
+			86911, -- Unstable Grounding Field
+			86930, -- Supremacy of the Storm
+			{87622, "SAY", "ME_ONLY_EMPHASIZE"}, -- Chain Lightning
+			96260, -- Skyfall Star
+			87618, -- Static Cling
+		}
+	end
+
+	function mod:OnEngage()
+		if not self:Normal() then
+			self:CDBar(87618, 10.7) -- Static Cling
+		end
+		self:CDBar(96260, 10.7) -- Skyfall Star
+		self:CDBar(87622, 14.5) -- Chain Lightning
+		self:CDBar(86911, 15.6) -- Unstable Grounding Field
+		self:CDBar(86930, 25.2) -- Supremacy of the Storm
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -89,16 +119,16 @@ function mod:SupremacyOfTheStorm(args)
 	if self:Mythic() then
 		self:CDBar(413264, {15.8, 37.7}, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
 		self:CDBar(87618, {23.0, 32.7}) -- Static Cling
-	else
+	elseif self:Retail() then
 		self:CDBar(413264, 15.8, CL.count:format(self:SpellName(413264), skyfallNovaCount)) -- Skyfall Nova
 		self:CDBar(87618, 23.0) -- Static Cling
 	end
 end
 
 do
-	local function printTarget(self, player, guid)
-		self:TargetMessage(87622, "orange", player)
-		self:PlaySound(87622, "alarm", nil, player)
+	local function printTarget(self, name, guid)
+		self:TargetMessage(87622, "orange", name)
+		self:PlaySound(87622, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Say(87622, nil, nil, "Chain Lightning")
 		end
@@ -159,7 +189,11 @@ do
 		playerList = {}
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
-		self:CDBar(args.spellId, 29.1)
+		if self:Retail() then
+			self:CDBar(args.spellId, 29.1)
+		else -- Classic
+			self:CDBar(args.spellId, 15.8)
+		end
 	end
 
 	function mod:StaticClingApplied(args)
@@ -168,5 +202,17 @@ do
 			self:TargetsMessage(args.spellId, "red", playerList, 5)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
 		end
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Classic Event Handlers
+--
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 96260 then -- Summon Skyfall Star
+		self:Message(96260, "cyan")
+		self:PlaySound(96260, "alert")
+		self:CDBar(96260, 12.1)
 	end
 end

@@ -94,21 +94,23 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- Armored Mistral
-	self:Log("SPELL_CAST_START", "PressurizedBlast", 410999)
+	if self:Retail() then
+		-- Armored Mistral
+		self:Log("SPELL_CAST_START", "PressurizedBlast", 410999)
 
-	-- Gust Soldier
-	self:Log("SPELL_CAST_SUCCESS", "RushingWind", 410873)
+		-- Gust Soldier
+		self:Log("SPELL_CAST_SUCCESS", "RushingWind", 410873)
 
-	-- Wild Vortex
-	self:Log("SPELL_CAST_START", "Cyclone", 410870)
+		-- Wild Vortex
+		self:Log("SPELL_CAST_START", "Cyclone", 410870)
 
-	-- Lurking Tempest
-	self:Log("SPELL_CAST_START", "LethalCurrent", 411001)
+		-- Lurking Tempest
+		self:Log("SPELL_CAST_START", "LethalCurrent", 411001)
 
-	-- Cloud Prince
-	self:Log("SPELL_CAST_START", "Turbulence", 411002)
-	self:Log("SPELL_CAST_SUCCESS", "BombCyclone", 411004)
+		-- Cloud Prince
+		self:Log("SPELL_CAST_START", "Turbulence", 411002)
+		self:Log("SPELL_CAST_SUCCESS", "BombCyclone", 411004)
+	end
 
 	-- Turbulent Squall
 	self:Log("SPELL_CAST_START", "Cloudburst", 88170)
@@ -122,12 +124,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LethargicPoisonApplied", 88182) -- non-Mythic only
 
 	-- Young Storm Dragon
-	self:Log("SPELL_CAST_START", "HealingWell", 411910)
-	self:Log("SPELL_CAST_START", "ChillingBreath", 411012)
+	if self:Retail() then
+		self:Log("SPELL_CAST_START", "HealingWell", 411910)
+		self:Log("SPELL_CAST_START", "ChillingBreath", 411012)
+	end
 	self:Log("SPELL_CAST_START", "IcyBuffet", 88194)
 
 	-- Executor of the Caliph
-	self:Log("SPELL_CAST_START", "CrashingStone", 413387)
+	if self:Retail() then
+		self:Log("SPELL_CAST_START", "CrashingStone", 413387)
+	end
 	self:Log("SPELL_CAST_START", "Rally", 87761)
 
 	-- Temple Adept
@@ -138,8 +144,45 @@ function mod:OnBossEnable()
 
 	-- Minister of Air
 	self:Log("SPELL_CAST_START", "LightningLash", 87762)
-	self:Log("SPELL_CAST_START", "OverloadGroundingField", 413385)
-	self:Log("SPELL_DAMAGE", "OverloadGroundingFieldDamage", 413386)
+	if self:Retail() then
+		self:Log("SPELL_CAST_START", "OverloadGroundingField", 413385)
+		self:Log("SPELL_DAMAGE", "OverloadGroundingFieldDamage", 413386)
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if mod:Classic() then
+	function mod:GetOptions()
+		return {
+			-- Turbulent Squall
+			88170, -- Cloudburst
+			88171, -- Hurricane
+			-- Empyrean Assassin
+			88186, -- Vapor Form
+			{88182, "DISPEL"}, -- Lethargic Poison
+			-- Young Storm Dragon
+			88194, -- Chilling Blast
+			-- Executor of the Caliph
+			87761, -- Rally
+			-- Temple Adept
+			87779, -- Greater Heal
+			-- Servant of Asaad
+			{87772, "DISPEL"}, -- Hand of Protection
+			-- Minister of Air
+			{87762, "ME_ONLY_EMPHASIZE"}, -- Lightning Lash
+		}, {
+			[88170] = L.turbulent_squall,
+			[88186] = L.empyrean_assassin,
+			[88194] = L.young_storm_dragon,
+			[87761] = L.executor_of_the_caliph,
+			[87779] = L.temple_adept,
+			[87772] = L.servant_of_asaad,
+			[87762] = L.minister_of_air,
+		}
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -340,7 +383,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(87762, "red", name)
+		self:TargetMessage(87762, "orange", name)
 		if self:Me(guid) then
 			self:PlaySound(87762, "warning")
 		else
@@ -349,8 +392,13 @@ do
 	end
 
 	function mod:LightningLash(args)
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		--self:NameplateCDBar(args.spellId, 6.9, args.sourceGUID)
+		if self:Retail() then
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+			--self:NameplateCDBar(args.spellId, 6.9, args.sourceGUID)
+		else
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 

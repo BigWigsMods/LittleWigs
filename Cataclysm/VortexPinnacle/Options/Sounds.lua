@@ -1,6 +1,7 @@
 
 BigWigs:AddSounds("Grand Vizier Ertan", {
 	[86292] = {"alert","info","long","underyou"},
+	[86340] = "info",
 	[413151] = "info",
 	[413562] = "alarm",
 })
@@ -19,6 +20,7 @@ BigWigs:AddSounds("Asaad", {
 	[86930] = "alarm",
 	[87618] = {"alert","warning"},
 	[87622] = "alarm",
+	[96260] = "alert",
 	[413264] = "alert",
 })
 
