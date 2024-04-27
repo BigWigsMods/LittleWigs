@@ -37,6 +37,7 @@ if L then
 	L.flamegullet = "Flamegullet"
 	L.tempest_channeler = "Tempest Channeler"
 	L.flame_channeler = "Flame Channeler"
+	L.high_channeler_ryvati = "High Channeler Ryvati"
 end
 
 --------------------------------------------------------------------------------
@@ -75,6 +76,8 @@ function mod:GetOptions()
 		392486, -- Lightning Storm
 		-- Flame Channeler
 		392451, -- Flashfire
+		-- High Channeler Ryvati
+		391050, -- Tempest Stormshield
 	}, {
 		[372696] = L.primal_juggernaut,
 		[372735] = L.flashfrost_earthshaper,
@@ -87,6 +90,7 @@ function mod:GetOptions()
 		[391723] = L.flamegullet,
 		[392486] = L.tempest_channeler,
 		[392451] = L.flame_channeler,
+		[391050] = L.high_channeler_ryvati,
 	}
 end
 
@@ -136,6 +140,9 @@ function mod:OnBossEnable()
 
 	-- Flame Channeler
 	self:Log("SPELL_CAST_START", "Flashfire", 392451)
+
+	-- High Channeler Ryvati
+	self:Log("SPELL_CAST_START", "TempestStormshield", 391050)
 end
 
 --------------------------------------------------------------------------------
@@ -356,4 +363,11 @@ end
 function mod:Flashfire(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- High Channeler Ryvati
+
+function mod:TempestStormshield(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end

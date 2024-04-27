@@ -12,6 +12,7 @@ if L then
 	L.flamegullet = "불꽃탐식자"
 	L.tempest_channeler = "폭풍우의 역술사"
 	L.flame_channeler = "불꽃의 역술사"
+	L.high_channeler_ryvati = "고위 역술사 라이바티"
 end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "koKR")

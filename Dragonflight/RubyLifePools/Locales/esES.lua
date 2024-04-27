@@ -12,6 +12,7 @@ if L then
 	L.flamegullet = "Gargantardiente"
 	L.tempest_channeler = "Canalizadora de la tempestad"
 	L.flame_channeler = "Canalizador de llamas"
+	L.high_channeler_ryvati = "Alta canalizadora Ryvati"
 end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "esES") or BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "esMX")
