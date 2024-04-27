@@ -21,6 +21,6 @@ BigWigs:AddColors("Mana-Tombs Trash", {
 	[22883] = "orange",
 	[33871] = {"blue","yellow"},
 	[34322] = {"blue","red"},
-	[34922] = {"blue","orange"},
+	[34922] = {"blue","red"},
 	[34925] = {"blue","yellow"},
 })

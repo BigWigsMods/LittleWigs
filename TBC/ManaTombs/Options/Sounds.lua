@@ -15,9 +15,10 @@ BigWigs:AddSounds("Nexus-Prince Shaffar", {
 })
 
 BigWigs:AddSounds("Mana-Tombs Trash", {
-	[13323] = "alarm",
-	[22883] = "long",
+	[13323] = "alert",
+	[22883] = "alert",
 	[33871] = "alarm",
 	[34322] = "alert",
-	[34922] = "alarm",
+	[34922] = "alert",
+	[34925] = "alert",
 })

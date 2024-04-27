@@ -30,16 +30,16 @@ end
 
 function mod:GetOptions()
 	return {
-		--[[ Ethereal Scavenger ]]--
+		-- Ethereal Scavenger
 		33871, -- Shield Bash
-		--[[ Ethereal Priest ]]--
+		-- Ethereal Priest
 		22883, -- Heal
-		--[[ Nexus Terror ]]--
+		-- Nexus Terror
 		{34322, "SAY"}, -- Psychic Scream
-		34922, -- Shadows Embrace
-		34925, -- Curse of Impotence
-		--[[ Ethereal Theurgist ]]--
-		13323, -- Polymorph
+		{34922, "DISPEL"}, -- Shadows Embrace
+		{34925, "DISPEL"}, -- Curse of Impotence
+		-- Ethereal Theurgist
+		{13323, "DISPEL"}, -- Polymorph
 	},{
 		[33871] = L.scavenger,
 		[22883] = L.priest,
@@ -70,8 +70,8 @@ end
 
 function mod:ShieldBash(args)
 	if self:Me(args.destGUID) or self:Healer(args.destName) then
-		self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, true)
-		self:TargetBar(args.spellId, 8, args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
 
@@ -81,7 +81,8 @@ do
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			self:MessageOld(22883, "orange", "long", CL.casting:format(args.spellName))
+			self:Message(22883, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(22883, "alert")
 		end
 	end
 end
@@ -101,15 +102,23 @@ do
 end
 
 function mod:ShadowsEmbrace(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", nil, nil, self:Dispeller("magic"))
+	-- can be cast on pets
+	if self:Me(args.destGUID) or (self:Player(args.destFlags) and self:Dispeller("magic", nil, args.spellId)) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
 
 function mod:CurseOfImpotence(args)
-	if self:Me(args.destGUID) or self:Dispeller("curse") then
-		self:TargetMessageOld(args.spellId, args.destName, "yellow")
+	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
 
 function mod:Polymorph(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, self:Dispeller("magic"))
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
