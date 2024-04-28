@@ -12,7 +12,9 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local powerVacuumCount = 0
+local nextAstralBreath = 0
+local nextPowerVacuum = 0
+local nextEnergyBomb = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -37,15 +39,19 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "WildEnergyDamage", 389007)
 	self:Log("SPELL_CAST_START", "AstralBreath", 374361)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Power Vacuum
+	self:Log("SPELL_CAST_START", "EnergyBombStart", 374343)
 	self:Log("SPELL_CAST_SUCCESS", "EnergyBomb", 374343)
 	self:Log("SPELL_AURA_APPLIED", "EnergyBombApplied", 374350)
 	self:Log("SPELL_AURA_REMOVED", "EnergyBombRemoved", 374350)
 end
 
 function mod:OnEngage()
-	powerVacuumCount = 0
-	self:CDBar(374352, 15.9) -- Energy Bomb
+	local t = GetTime()
+	nextEnergyBomb = t + 14.4
+	self:CDBar(374352, 14.4) -- Energy Bomb
+	nextPowerVacuum = t + 22.8
 	self:CDBar(388822, 22.8) -- Power Vacuum
+	nextAstralBreath = t + 28.8
 	self:CDBar(374361, 28.8) -- Astral Breath
 end
 
@@ -82,32 +88,65 @@ do
 end
 
 function mod:AstralBreath(args)
+	local t = GetTime()
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 29.1)
+	nextAstralBreath = t + 27.9
+	self:CDBar(args.spellId, 27.9)
+	-- 4.84s minimum to Power Vacuum or Energy Bomb
+	if nextPowerVacuum - t < 4.84 then
+		nextPowerVacuum = t + 4.84
+		self:CDBar(388822, {4.84, 21.1}) -- Power Vacuum
+	end
+	if nextEnergyBomb - t < 4.84 then
+		nextEnergyBomb = t + 4.84
+		self:CDBar(374352, {4.84, 14.5}) -- Energy Bomb
+	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 388820 then -- Power Vacuum
-		-- using this event instead of SPELL_CAST_START on 388822 allows us to alert 2s earlier
-		powerVacuumCount = powerVacuumCount + 1
+		local t = GetTime()
+		-- using this event (the actual pull in) instead of SPELL_CAST_START on 388822 allows us to alert 2s earlier
 		self:Message(388822, "red")
 		self:PlaySound(388822, "alarm")
-		self:CDBar(388822, powerVacuumCount == 1 and 21.9 or 29.1)
+		nextPowerVacuum = t + 21.1
+		self:CDBar(388822, 21.1)
+		-- 6.07s minimum to Astral Breath or Energy Bomb
+		if nextAstralBreath - t < 6.07 then
+			nextAstralBreath = t + 6.07
+			self:CDBar(374361, {6.07, 27.9}) -- Astral Breath
+		end
+		if nextEnergyBomb - t < 6.07 then
+			nextEnergyBomb = t + 6.07
+			self:CDBar(374352, {6.07, 14.5}) -- Energy Bomb
+		end
+	end
+end
+
+function mod:EnergyBombStart()
+	local t = GetTime()
+	nextEnergyBomb = t + 14.5
+	self:CDBar(374352, 14.5)
+	-- 8.49s minimum to Astral Breath or Power Vacuum
+	if nextAstralBreath - t < 8.49 then
+		nextAstralBreath = t + 8.49
+		self:CDBar(374361, {8.49, 27.9}) -- Astral Breath
+	end
+	if nextPowerVacuum - t < 8.49 then
+		nextPowerVacuum = t + 8.49
+		self:CDBar(388822, {8.49, 21.1}) -- Power Vacuum
 	end
 end
 
 function mod:EnergyBomb(args)
 	self:TargetMessage(374352, "yellow", args.destName)
 	self:PlaySound(374352, "alert", nil, args.destName)
-	self:CDBar(374352, 14.5)
-	if self:Me(args.destGUID) then
-		self:Say(374352, nil, nil, "Energy Bomb")
-	end
 end
 
 function mod:EnergyBombApplied(args)
 	if self:Me(args.destGUID) then
+		self:Say(374352, nil, nil, "Energy Bomb")
 		self:SayCountdown(374352, 6)
 	end
 end
