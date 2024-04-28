@@ -419,7 +419,7 @@ do
 			prev = t
 			self:TargetMessage(args.spellId, "yellow", args.destName)
 			if onMe then
-				self:PlaySound(args.spellId, "alarm", nil, args.destName)
+				self:PlaySound(args.spellId, "info", nil, args.destName)
 			else
 				self:PlaySound(args.spellId, "alert", nil, args.destName)
 			end
