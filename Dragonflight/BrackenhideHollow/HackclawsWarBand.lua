@@ -134,22 +134,30 @@ end
 -- 13s SPELL_CAST_START 377844 (.714s cast)
 -- 13.714s UNIT_SPELLCAST_CHANNEL_START 377844 (4s channel)
 -- 13.714s SPELL_AURA_APPLIED 377844 (on player)
-function mod:BladestormStarting(args)
-	-- fixate debuff applies to a random player, boss starts 3 second cast
-	self:TargetMessage(377827, "orange", args.destName, CL.casting:format(args.spellName))
-	self:PlaySound(377827, "long", nil, args.destName)
-	self:CDBar(377827, 59.5)
-	if self:Me(args.destGUID) then
-		self:Say(377827)
-	end
-end
+do
+	local firstChannel = true
 
-function mod:BladestormFixateApplied(args)
-	-- fixate debuff applies to a random player, boss starts 5 or 4 second channel
-	self:TargetMessage(377827, "orange", args.destName)
-	self:PlaySound(377827, "alarm", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(377827)
+	function mod:BladestormStarting(args)
+		firstChannel = true
+		-- fixate debuff applies to a random player, boss starts 3 second cast
+		self:TargetMessage(377827, "orange", args.destName, CL.casting:format(args.spellName))
+		self:PlaySound(377827, "long", nil, args.destName)
+		self:CDBar(377827, 59.5)
+		if self:Me(args.destGUID) then
+			self:Say(377827)
+		end
+	end
+
+	function mod:BladestormFixateApplied(args)
+		-- fixate debuff applies to a random player, boss starts 5 or 4 second channel
+		self:TargetMessage(377827, "orange", args.destName)
+		self:PlaySound(377827, "alarm", nil, args.destName)
+		if firstChannel then
+			-- no need to repeat the Say on the first channel because it will be the same player as the initial target
+			firstChannel = false
+		elseif self:Me(args.destGUID) then
+			self:Say(377827)
+		end
 	end
 end
 
