@@ -25,7 +25,7 @@ function mod:GetOptions()
 		385399, -- Unleashed Destruction
 		385075, -- Arcane Eruption
 		384699, -- Crystalline Roar
-		{384978, "TANK_HEALER"}, -- Dragon Strike
+		{384978, "DISPEL"}, -- Dragon Strike
 	}
 end
 
@@ -93,7 +93,7 @@ function mod:CrystallineRoar(args)
 end
 
 function mod:DragonStrike(args)
-	if self:Tank() then
+	if self:Tank() or self:Solo() then
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -104,15 +104,17 @@ function mod:DragonStrikeSuccess(args)
 	-- CD seems longer in Mythic, and it's possible there's a pattern but Brittle throws it off
 	-- Normal: pull:7.5, 18.2, 10.9, 18.2, 24.3, 13.4, 18.2, 24.3, 13.4, 18.3, 24.3, 13.4, 18.3, 24.3, 13.4, 18.2, 24.3, 12.2, 18.2, 24.3, 12.2, 18.2, 24.3, 18.2, 18.2, 24.3
 	-- Mythic: pull:7.6, 18.2, 26.7, 18.2, 24.3, 17.8, 24.3, 18.2, 20.8
-	if self:Mythic() then
-		self:CDBar(args.spellId, 15.3) -- 17.8-2.5 cast time
-	else
-		self:CDBar(args.spellId, 8.4) -- 10.9-2.5 cast time
+	if self:Tank() or self:Solo() or self:Dispeller("magic", nil, args.spellId) then
+		if self:Mythic() then
+			self:CDBar(args.spellId, 15.3) -- 17.8-2.5 cast time
+		else
+			self:CDBar(args.spellId, 8.4) -- 10.9-2.5 cast time
+		end
 	end
 end
 
 function mod:DragonStrikeApplied(args)
-	if self:Healer() then
+	if self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "purple", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
