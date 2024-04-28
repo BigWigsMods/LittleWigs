@@ -18,14 +18,18 @@ local brittleCount = 0
 -- Initialization
 --
 
+local hardenedCrystalMarker = mod:AddMarkerOption(true, "npc", 8, -26061, 8) -- Hardened Crystal
 function mod:GetOptions()
 	return {
 		386746, -- Brittle
-		385331, -- Fracture
+		{385331, "OFF"}, -- Fracture
 		385399, -- Unleashed Destruction
 		385075, -- Arcane Eruption
 		384699, -- Crystalline Roar
 		{384978, "DISPEL"}, -- Dragon Strike
+		hardenedCrystalMarker,
+	}, {
+		[hardenedCrystalMarker] = CL.mythic,
 	}
 end
 
@@ -41,7 +45,9 @@ end
 
 function mod:OnEngage()
 	brittleCount = 0
-	self:CDBar(384978, 7.4) -- Dragon Strike
+	if self:Tank() or self:Solo() or self:Dispeller("magic", nil, args.spellId) then
+		self:CDBar(384978, 7.4) -- Dragon Strike
+	end
 	self:CDBar(384699, 12.2) -- Crystalline Roar
 	-- cast at 100 energy, 27.4s energy gain + .8s delay
 	self:CDBar(385075, 28.2) -- Arcane Eruption
@@ -56,9 +62,21 @@ function mod:EncounterEvent(args) -- Brittle
 	brittleCount = brittleCount + 1
 	self:Message(386746, "orange", CL.percent:format(100 - brittleCount * 25, self:SpellName(386746)))
 	self:PlaySound(386746, "long")
-	-- after a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture
-	-- no way to clean up this bar when conditions met (no UNIT_DIED on crystals)
+	-- after a ~2.4 second delay the Detonating Crystals begin to cast 20s Fracture.
+	-- there is no good way to clean up this bar when conditions met (no UNIT_DIED on crystals).
 	self:Bar(385331, 22.4) -- Fracture
+	-- register events to auto-mark Hardened Crystal
+	if self:Mythic() and self:GetOption(hardenedCrystalMarker) then
+		self:RegisterTargetEvents("MarkCrystal")
+	end
+end
+
+function mod:MarkCrystal(_, unit, guid)
+	-- there is no SPELL_SUMMON for the crystals and they don't log casts, so scan for the correct NPC id
+	if self:MobId(guid) == 199368 then -- Hardened Crystal
+		self:CustomIcon(hardenedCrystalMarker, unit, 8)
+		self:UnregisterTargetEvents()
+	end
 end
 
 function mod:UnleashedDestruction(args)
