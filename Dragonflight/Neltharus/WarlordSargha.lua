@@ -71,11 +71,11 @@ function mod:OnBossEnable()
 	-- Magical Implements
 	-- 376762 Wand of Negation
 	-- 384595 Anti-Magic Bomb
-	-- 392164 Azure Stone of Might
 	-- 392170 Rose of the Vale
-	self:Log("SPELL_AURA_APPLIED", "MagicalImplementsPickedUp", 376762, 384595, 392164, 392170)
-	self:Log("SPELL_AURA_REMOVED", "MagicalImplementsRemoved", 376762, 384595, 392164, 392170)
+	self:Log("SPELL_AURA_APPLIED", "MagicalImplementsPickedUp", 376762, 384595, 392170)
+	self:Log("SPELL_AURA_REMOVED", "MagicalImplementsRemoved", 376762, 384595, 392170)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfTheDragonHoardApplied", 391762)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "CurseOfTheDragonHoardApplied", 391762)
 end
 
 function mod:OnEngage()
@@ -252,8 +252,9 @@ function mod:MagicalImplementsRemoved(args)
 end
 
 function mod:CurseOfTheDragonHoardApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
+	-- no need to alert when on you because this is always accompanied by picking up a Magical Implement
+	if not self:Me(args.destGUID) and self:Dispeller("curse", nil, args.spellId) then
+		self:StackMessage(args.spellId, "orange", args.destName, args.amount, 2)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
