@@ -45,7 +45,7 @@ end
 
 function mod:OnEngage()
 	brittleCount = 0
-	if self:Tank() or self:Solo() or self:Dispeller("magic", nil, args.spellId) then
+	if self:Tank() or self:Solo() or self:Dispeller("magic", nil, 384978) then
 		self:CDBar(384978, 7.4) -- Dragon Strike
 	end
 	self:CDBar(384699, 12.2) -- Crystalline Roar
