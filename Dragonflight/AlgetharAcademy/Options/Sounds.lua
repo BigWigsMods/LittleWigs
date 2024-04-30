@@ -33,7 +33,7 @@ BigWigs:AddSounds("Echo of Doragosa", {
 	[374361] = "alarm",
 	[388822] = "alarm",
 	[388901] = "underyou",
-	[389011] = "alert",
+	[389011] = "info",
 	[439488] = "info",
 })
 

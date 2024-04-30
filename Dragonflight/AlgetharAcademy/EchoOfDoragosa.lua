@@ -67,9 +67,9 @@ end
 
 function mod:OverwhelmingPowerApplied(args)
 	if self:Me(args.destGUID) then
-		-- aura removed at 3 stacks, spawning an Arcane Rift
-		self:StackMessage(args.spellId, "blue", args.destName, args.amount, 2)
-		self:PlaySound(args.spellId, "alert")
+		-- aura removed at 4 stacks, spawning an Arcane Rift. don't emphasize until max stack count is reached.
+		self:StackMessage(args.spellId, "blue", args.destName, args.amount, 3)
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
