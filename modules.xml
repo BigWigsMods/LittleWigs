@@ -13,6 +13,6 @@
 <Include file="Shadowlands\modules.xml"/>
 <!--@end-do-not-package@-->
 <Include file="Dragonflight\modules.xml"/>
-<Include file="TWW\modules.xml"/>
+<Include file="WarWithin\modules.xml"/>
 
 </Ui>
