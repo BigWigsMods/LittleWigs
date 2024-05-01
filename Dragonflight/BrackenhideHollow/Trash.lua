@@ -430,9 +430,16 @@ function mod:Stomp(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:NecroticBreath(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:NecroticBreath(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Fetid Rotsinger
