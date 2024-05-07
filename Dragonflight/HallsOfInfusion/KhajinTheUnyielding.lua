@@ -96,10 +96,10 @@ end
 function mod:FrostShock(args)
 	frostShockCount = frostShockCount + 1
 	if self:Mythic() then
-		if frostShockCount % 2 == 0 then
+		if frostShockCount % 3 == 2 then
 			self:Bar(args.spellId, 12.0)
 		else
-			self:Bar(args.spellId, 60.0)
+			self:Bar(args.spellId, 30.0)
 		end
 	else
 		-- TODO check post-10.1
