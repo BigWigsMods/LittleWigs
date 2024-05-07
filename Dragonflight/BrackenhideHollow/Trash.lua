@@ -368,7 +368,7 @@ end
 do
 	local prev = 0
 	function mod:RagestormDamage(args)
-		if self:Me(args.destGUID) and not self:Tank() then
+		if self:Me(args.destGUID) then
 			local t = args.time
 			if t - prev > 2 then
 				prev = t
@@ -533,7 +533,7 @@ do
 			self:CancelTimer(timer)
 		end
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		self:CDBar(args.spellId, 17.0)
+		self:CDBar(args.spellId, 15.8)
 		timer = self:ScheduleTimer("StinkbreathDeath", 30)
 	end
 
@@ -543,7 +543,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 23.1)
+		self:CDBar(args.spellId, 18.2)
 		timer = self:ScheduleTimer("StinkbreathDeath", 30)
 	end
 
