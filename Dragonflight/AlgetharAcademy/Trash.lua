@@ -280,7 +280,7 @@ do
 		local t = args.time
 		if t - prev > 1 then
 			prev = t
-			self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
