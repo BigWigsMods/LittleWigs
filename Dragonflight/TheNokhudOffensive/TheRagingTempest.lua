@@ -96,22 +96,27 @@ function mod:ElectricalStorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 18) -- 3s cast, 15s channel
-	self:CDBar(args.spellId, 78.9) -- cast at 100 energy: 3s cast + 15s channel + 60s energy gain + ~.9s delay
+	self:CDBar(args.spellId, 78.8) -- cast at 100 energy: 3s cast + 15s channel + 60s energy gain + ~.8s delay
+	-- soonest another ability can be is 18.2s (3s cast + 15s channel + .2s delay)
+	self:CDBar(384316, 18.2) -- Lightning Strike
+	if self:Tank() or self:Healer() or self:Dispeller("magic", true, 384686) then
+		self:CDBar(384686, 20.6) -- Energy Surge
+	end
 end
 
 function mod:LightningStrike(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 20.7)
+	self:CDBar(args.spellId, 20.6)
 end
 
 function mod:EnergySurge(args)
 	if self:Dispeller("magic", true, args.spellId) then
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 17)
+		self:CDBar(args.spellId, 16.9)
 	elseif self:Tank() or self:Healer() then
-		self:CDBar(args.spellId, 17)
+		self:CDBar(args.spellId, 16.9)
 	end
 end
 
