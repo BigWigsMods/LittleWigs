@@ -5,7 +5,7 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Izo, the Grand Splicer", 2669, 2596)
 if not mod then return end
---mod:RegisterEnableMob() -- Izo, the Grand Splicer
+mod:RegisterEnableMob(216658) -- Izo, the Grand Splicer
 mod:SetEncounterID(2909)
 mod:SetRespawnTime(30)
 

@@ -5,7 +5,7 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("The Coaglamation", 2669, 2600)
 if not mod then return end
---mod:RegisterEnableMob() -- The Coaglamation
+mod:RegisterEnableMob(216320) -- The Coaglamation
 mod:SetEncounterID(2905)
 mod:SetRespawnTime(30)
 

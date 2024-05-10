@@ -5,7 +5,7 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Blazikon", 2651, 2559)
 if not mod then return end
---mod:RegisterEnableMob() -- Blazikon
+mod:RegisterEnableMob(208743) -- Blazikon
 mod:SetEncounterID(2826)
 mod:SetRespawnTime(30)
 

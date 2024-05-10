@@ -5,7 +5,7 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Orator Krix'vizk", 2669, 2594)
 if not mod then return end
---mod:RegisterEnableMob() -- Orator Krix'vizk
+mod:RegisterEnableMob(216619) -- Orator Krix'vizk
 mod:SetEncounterID(2907)
 mod:SetRespawnTime(30)
 

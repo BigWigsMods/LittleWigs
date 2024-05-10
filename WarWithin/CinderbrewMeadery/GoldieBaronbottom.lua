@@ -5,7 +5,7 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Goldie Baronbottom", 2661, 2589)
 if not mod then return end
---mod:RegisterEnableMob() -- Goldie Baronbottom
+mod:RegisterEnableMob(214661) -- Goldie Baronbottom
 mod:SetEncounterID(2930)
 mod:SetRespawnTime(30)
 

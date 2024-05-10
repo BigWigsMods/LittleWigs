@@ -5,7 +5,7 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Speaker Shadowcrown", 2662, 2580)
 if not mod then return end
---mod:RegisterEnableMob() -- Speaker Shadowcrown
+mod:RegisterEnableMob(211087) -- Speaker Shadowcrown
 mod:SetEncounterID(2837)
 mod:SetRespawnTime(30)
 

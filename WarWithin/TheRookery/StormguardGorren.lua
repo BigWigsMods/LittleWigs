@@ -5,7 +5,7 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Stormguard Gorren", 2648, 2567)
 if not mod then return end
---mod:RegisterEnableMob() -- Stormguard Gorren
+mod:RegisterEnableMob(207205) -- Stormguard Gorren
 mod:SetEncounterID(2861)
 mod:SetRespawnTime(30)
 

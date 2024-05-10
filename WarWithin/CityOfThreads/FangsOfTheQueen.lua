@@ -5,7 +5,10 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Fangs of the Queen", 2669, 2595)
 if not mod then return end
---mod:RegisterEnableMob() -- Fangs of the Queen
+mod:RegisterEnableMob(
+	216648, -- Nx
+	216649 -- Vx
+)
 mod:SetEncounterID(2908)
 mod:SetRespawnTime(30)
 

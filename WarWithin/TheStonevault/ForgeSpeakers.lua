@@ -5,7 +5,10 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Forge Speakers", 2652, 2590)
 if not mod then return end
---mod:RegisterEnableMob() -- Forge Speakers
+mod:RegisterEnableMob(
+	213217, -- Speaker Brokk
+	213216 -- Speaker Dorlita
+)
 mod:SetEncounterID(2888)
 mod:SetRespawnTime(30)
 

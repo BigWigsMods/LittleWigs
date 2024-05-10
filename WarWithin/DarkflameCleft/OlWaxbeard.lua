@@ -5,7 +5,10 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Ol' Waxbeard", 2651, 2569)
 if not mod then return end
---mod:RegisterEnableMob() -- Ol' Waxbeard
+mod:RegisterEnableMob(
+	210149, -- Ol' Waxbeard (boss)
+	210153 -- Ol' Waxbeard (mount)
+)
 mod:SetEncounterID(2829)
 mod:SetRespawnTime(30)
 
