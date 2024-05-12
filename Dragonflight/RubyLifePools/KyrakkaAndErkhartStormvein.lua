@@ -42,7 +42,7 @@ function mod:GetOptions()
 		-- Erkhart Stormvein
 		381517, -- Winds of Change
 		381516, -- Interrupting Cloudburst
-		{381512, "TANK_HEALER"}, -- Stormslam
+		{381512, "DISPEL"}, -- Stormslam
 	}, {
 		[381862] = -25365, -- Kyrakka
 		[381517] = -25369, -- Erkhart Stormvein
@@ -76,13 +76,15 @@ function mod:OnEngage()
 	windsOfChangeCount = 0
 	stageTwoFlamespitCount = 0
 	self:SetStage(1)
-	self:Bar(381525, 1.6) -- Roaring Firebreath
-	self:Bar(381512, 6.1) -- Stormslam
+	self:CDBar(381525, 1.6) -- Roaring Firebreath
+	if self:Tank() or self:Dispeller("magic", nil, 381512) then
+		self:CDBar(381512, 6.1) -- Stormslam
+	end
 	self:CDBar(381602, 15.7) -- Flamespit
 	if self:Mythic() then
-		self:Bar(381516, 9.7) -- Interrupting Cloudburst
+		self:CDBar(381516, 9.7) -- Interrupting Cloudburst
 	end
-	self:Bar(381517, 17, CL.other:format(L.winds, CL.north_west), "misc_arrowlup") -- Winds of Change
+	self:CDBar(381517, 17.0, CL.other:format(L.winds, CL.north_west), "misc_arrowlup") -- Winds of Change
 end
 
 --------------------------------------------------------------------------------
@@ -96,7 +98,7 @@ function mod:UNIT_HEALTH(event, unit)
 	if self:GetHealth(unit) <= 50 then
 		self:UnregisterUnitEvent(event, "boss1")
 		self:UnregisterUnitEvent(event, "boss2")
-		self:Message("stages", "cyan", CL.soon:format(CL.stage:format(2)), false)
+		self:Message("stages", "cyan", CL.percent:format(50, CL.soon:format(CL.stage:format(2))), false)
 		self:PlaySound("stages", "info")
 	end
 end
@@ -191,9 +193,9 @@ function mod:Flamespit(args)
 	else -- 381605, stage 2/3 Flamespit
 		stageTwoFlamespitCount = stageTwoFlamespitCount + 1
 		if stageTwoFlamespitCount == 1 then
-			self:Bar(381602, 15.8)
+			self:CDBar(381602, 15.8)
 		else
-			self:Bar(381602, 18.2)
+			self:CDBar(381602, 18.2)
 		end
 	end
 end
@@ -233,16 +235,22 @@ end
 function mod:InterruptingCloudburst(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 19.4)
+	self:CDBar(args.spellId, 19.4)
 end
 
 function mod:Stormslam(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17)
+	if self:Tank() then
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 17.0)
+	elseif self:Dispeller("magic", nil, args.spellId) then
+		self:CDBar(args.spellId, 17.0)
+	end
 end
 
 function mod:StormslamApplied(args)
-	self:StackMessage(381512, "purple", args.destName, args.amount, 2)
-	self:PlaySound(381512, "alert")
+	if self:Dispeller("magic", nil, 381512) then
+		self:StackMessage(381512, "purple", args.destName, args.amount, 2)
+		self:PlaySound(381512, "alert")
+	end
 end
