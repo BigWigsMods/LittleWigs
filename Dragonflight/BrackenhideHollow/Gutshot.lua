@@ -137,10 +137,17 @@ function mod:GutShotSuccess(args)
 	self:CDBar(args.spellId, 15.7) -- 18.2s CD - 2.5s cast time
 end
 
-function mod:CripplingBite(args)
-	-- cast by the Hyenas ~17.5s after summon, healing reduction + slow on closest player
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:CripplingBite(args)
+		-- cast by the Hyenas ~17.5s after summon, healing reduction + slow on closest player
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:CripplingBiteApplied(args)
