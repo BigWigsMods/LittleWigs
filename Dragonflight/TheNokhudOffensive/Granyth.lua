@@ -22,6 +22,7 @@ end
 --
 
 local shardsOfStoneRemaining = 2
+local reloadingLanceGUID = nil
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -65,6 +66,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	reloadingLanceGUID = nil
 	shardsOfStoneRemaining = 2
 	self:CDBar(388283, 28.8) -- Eruption
 	self:CDBar(388817, 10.6) -- Shards of Stone
@@ -140,18 +142,20 @@ end
 -- Dragonkiller Lance
 
 function mod:Reload(args)
-	self:Bar(386530, 25, args.spellName) -- Dragonkiller Lance
+	reloadingLanceGUID = args.sourceGUID
+	self:Bar(386530, 25, args.spellName)
 end
 
 function mod:ReloadSuccess(args)
-	self:Message(386530, "green", L.lance_ready) -- Dragonkiller Lance
-	self:PlaySound(386530, "info") -- Dragonkiller Lance
+	reloadingLanceGUID = nil
+	self:Message(386530, "green", L.lance_ready)
+	self:PlaySound(386530, "info")
 end
 
 function mod:Lanced(args)
 	shardsOfStoneRemaining = 2
-	self:Message(386530, "green", args.spellName) -- Dragonkiller Lance
-	self:PlaySound(386530, "info") -- Dragonkiller Lance
+	self:Message(386530, "green", args.spellName)
+	self:PlaySound(386530, "info")
 	self:StopBar(CL.cast:format(self:SpellName(388283))) -- Eruption
 	if self:Mythic() then
 		self:CDBar(386320, 5.3) -- Summon Saboteur
@@ -169,5 +173,8 @@ function mod:Dismantle(args)
 end
 
 function mod:DismantleApplied(args)
-	self:StopBar(386921) -- Reload
+	-- only stop the Reload bar if the reloading lance is the one being Dismantled
+	if reloadingLanceGUID == args.destGUID then
+		self:StopBar(386921) -- Reload
+	end
 end
