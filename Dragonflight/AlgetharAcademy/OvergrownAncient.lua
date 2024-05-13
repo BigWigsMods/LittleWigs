@@ -9,6 +9,15 @@ mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "achievement_dungeon_dragonacademy"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -75,7 +84,7 @@ end
 -- General
 
 function mod:Warmup() -- called from trash module
-	self:Bar("warmup", 16.8, CL.active, "achievement_dungeon_dragonacademy")
+	self:Bar("warmup", 16.8, CL.active, L.warmup_icon)
 end
 
 -- Overgrown Ancient
