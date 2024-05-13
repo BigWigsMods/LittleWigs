@@ -9,6 +9,15 @@ mod:SetEncounterID(2559)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "achievement_dungeon_uldaman"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -47,6 +56,7 @@ function mod:OnEngage()
 	wingBuffetCount = 1
 	timeSinkCount = 1
 	sandBreathCount = 1
+	self:StopBar(CL.active)
 	if not self:Normal() then
 		self:CDBar(377405, 5.4, CL.count:format(self:SpellName(377405), timeSinkCount)) -- Time Sink
 	end
@@ -66,7 +76,7 @@ end
 
 -- called from trash module
 function mod:Warmup()
-	self:Bar("warmup", 16.9, CL.active, "achievement_dungeon_uldaman")
+	self:Bar("warmup", 16.9, CL.active, L.warmup_icon)
 end
 
 do
