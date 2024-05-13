@@ -195,7 +195,7 @@ function mod:SiphonOathstone(args)
 	-- cast at 0 energy, during Siphon Oathstone channel he charges back to 100 energy
 	-- each of Titanic Blow, Infinite Annihilation, and Dividing Strike cost 25 energy
 	self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, siphonOathstoneCount))
-	-- 15s channel - TODO can end early if you break shield?
+	-- 15s channel
 	self:CastBar(args.spellId, 15)
 end
 
