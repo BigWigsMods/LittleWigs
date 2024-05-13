@@ -12,6 +12,15 @@ mod:SetEncounterID(2564)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "achievement_dungeon_dragonacademy"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -64,6 +73,7 @@ function mod:OnEngage()
 	searingBlazeGoals = 0
 	rushingWindsGoals = 0
 	sonicVulnerabilityStacks = 0
+	self:StopBar(CL.active)
 	self:CDBar(376997, 3.7) -- Savage Peck
 	if self:Mythic() then
 		self:CDBar(377004, 10.1, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech
@@ -81,7 +91,7 @@ end
 
 function mod:Warmup() -- called from trash module
 	-- this can take slightly longer depending on where Crawth is in her patrol
-	self:Bar("warmup", 10.7, CL.active, "achievement_dungeon_dragonacademy")
+	self:Bar("warmup", 10.7, CL.active, L.warmup_icon)
 end
 
 -- Lish Llrath
