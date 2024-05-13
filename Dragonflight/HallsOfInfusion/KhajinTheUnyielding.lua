@@ -45,14 +45,16 @@ function mod:OnEngage()
 	glacialSurgeCount = 1
 	frostShockCount = 1
 	frostCycloneCount = 1
-	self:Bar(385963, 6.0) -- Frost Shock
+	if self:Tank() or self:Dispeller("magic", nil, 385963) or self:Dispeller("movement", nil, 385963) then
+		self:CDBar(385963, 6.0) -- Frost Shock
+	end
 	if self:Mythic() then
-		self:Bar(390111, 10.0) -- Frost Cyclone
-		self:Bar(386757, 20.0) -- Hailstorm
-		self:Bar(386559, 32.0) -- Glacial Surge
+		self:CDBar(390111, 10.0) -- Frost Cyclone
+		self:CDBar(386757, 20.0) -- Hailstorm
+		self:CDBar(386559, 32.0) -- Glacial Surge
 	else
-		self:Bar(386757, 10.0) -- Hailstorm
-		self:Bar(386559, 22.0) -- Glacial Surge
+		self:CDBar(386757, 10.0) -- Hailstorm
+		self:CDBar(386559, 22.0) -- Glacial Surge
 	end
 end
 
@@ -64,16 +66,24 @@ function mod:Hailstorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	hailstormCount = hailstormCount + 1
-	self:CastBar(args.spellId, 7)
 	if self:Mythic() then
+		self:CastBar(args.spellId, 7)
 		if hailstormCount % 2 == 0 then
-			self:Bar(args.spellId, 30.0)
+			self:CDBar(args.spellId, 30.0)
 		else
-			self:Bar(args.spellId, 42.0)
+			self:CDBar(args.spellId, 42.0)
 		end
 	else
-		-- TODO check post-10.1
-		self:CDBar(args.spellId, 22)
+		if self:Heroic() then
+			self:CastBar(args.spellId, 7)
+		else
+			self:CastBar(args.spellId, 4)
+		end
+		if hailstormCount % 2 == 0 then
+			self:CDBar(args.spellId, 27.0)
+		else
+			self:CDBar(args.spellId, 28.0)
+		end
 	end
 end
 
@@ -83,27 +93,43 @@ function mod:GlacialSurge(args)
 	glacialSurgeCount = glacialSurgeCount + 1
 	if self:Mythic() then
 		if glacialSurgeCount % 2 == 0 then
-			self:Bar(args.spellId, 30.0)
+			self:CDBar(args.spellId, 30.0)
 		else
-			self:Bar(args.spellId, 42.0)
+			self:CDBar(args.spellId, 42.0)
 		end
 	else
-		-- TODO check post-10.1
-		self:CDBar(args.spellId, 22)
+		if glacialSurgeCount % 2 == 0 then
+			self:CDBar(args.spellId, 22.0)
+		else
+			self:CDBar(args.spellId, 33.0)
+		end
 	end
 end
 
 function mod:FrostShock(args)
 	frostShockCount = frostShockCount + 1
-	if self:Mythic() then
-		if frostShockCount % 3 == 2 then
-			self:Bar(args.spellId, 12.0)
+	if self:Tank() or self:Dispeller("magic", nil, 385963) or self:Dispeller("movement", nil, 385963) then
+		if self:Mythic() then
+			if frostShockCount % 3 == 2 then
+				self:CDBar(args.spellId, 12.0)
+			else
+				self:CDBar(args.spellId, 30.0)
+			end
+		elseif self:Heroic() then
+			if frostShockCount % 2 == 0 then
+				self:CDBar(args.spellId, 11.0)
+			else
+				self:CDBar(args.spellId, 44.0)
+			end
 		else
-			self:Bar(args.spellId, 30.0)
+			if frostShockCount % 3 == 2 then
+				self:CDBar(args.spellId, 10.0)
+			elseif frostShockCount % 3 == 0 then
+				self:CDBar(args.spellId, 27.0)
+			else
+				self:CDBar(args.spellId, 18.0)
+			end
 		end
-	else
-		-- TODO check post-10.1
-		self:CDBar(args.spellId, 12.0)
 	end
 end
 
@@ -119,8 +145,8 @@ function mod:FrostCyclone(args)
 	self:PlaySound(args.spellId, "alarm")
 	frostCycloneCount = frostCycloneCount + 1
 	if frostCycloneCount % 2 == 0 then
-		self:Bar(args.spellId, 35.0)
+		self:CDBar(args.spellId, 35.0)
 	else
-		self:Bar(args.spellId, 37.0)
+		self:CDBar(args.spellId, 37.0)
 	end
 end
