@@ -12,6 +12,15 @@ mod:SetEncounterID(2581)
 mod:SetRespawnTime(40.5) -- 30s respawn + 10.5s RP run
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "achievement_dungeon_centaurplains"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -73,6 +82,7 @@ function mod:OnEngage()
 	spiritLeapCount = 0
 	frightfulRoarCount = 0
 	brutalizeCount = 0
+	self:StopBar(CL.active)
 	self:Bar(386063, 5.5) -- Frightful Roar
 	self:Bar(385434, 6.0) -- Spirit Leap
 	self:Bar(382836, 13.5) -- Brutalize
@@ -93,7 +103,7 @@ end
 -- General
 
 function mod:Warmup() -- called from trash module
-	self:Bar("warmup", 26.2, CL.active, "achievement_dungeon_centaurplains")
+	self:Bar("warmup", 26.2, CL.active, L.warmup_icon)
 end
 
 -- Teera
