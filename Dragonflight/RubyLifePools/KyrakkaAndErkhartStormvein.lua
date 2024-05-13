@@ -19,6 +19,7 @@ mod:SetStage(1)
 local L = mod:GetLocale()
 if L then
 	L.winds = "Winds"
+	L.warmup_icon = "achievement_dungeon_lifepools"
 end
 
 --------------------------------------------------------------------------------
@@ -34,6 +35,7 @@ local stageTwoFlamespitCount = 0
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		"stages",
 		-- Kyrakka
 		{381862, "SAY", "SAY_COUNTDOWN"}, -- Infernocore
@@ -75,6 +77,7 @@ end
 function mod:OnEngage()
 	windsOfChangeCount = 0
 	stageTwoFlamespitCount = 0
+	self:StopBar(CL.active)
 	self:SetStage(1)
 	self:CDBar(381525, 1.6) -- Roaring Firebreath
 	if self:Tank() or self:Dispeller("magic", nil, 381512) then
@@ -90,6 +93,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+
+function mod:Warmup() -- called from trash module
+	self:Bar("warmup", 10.7, CL.active, L.warmup_icon)
+end
 
 -- Stages
 

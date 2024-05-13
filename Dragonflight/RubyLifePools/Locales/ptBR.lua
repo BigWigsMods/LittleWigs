@@ -13,6 +13,8 @@ if L then
 	L.tempest_channeler = "Canalizadora de Tormenta"
 	L.flame_channeler = "Canalizador de Chamas"
 	L.high_channeler_ryvati = "Grã Canalizadora Ryvati"
+
+	--L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
 end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "ptBR")

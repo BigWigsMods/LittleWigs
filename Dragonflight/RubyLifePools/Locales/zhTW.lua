@@ -13,6 +13,8 @@ if L then
 	--L.tempest_channeler = "Tempest Channeler"
 	L.flame_channeler = "烈焰傳導者"
 	--L.high_channeler_ryvati = "High Channeler Ryvati"
+
+	--L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
 end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "zhTW")

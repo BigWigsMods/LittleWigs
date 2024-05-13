@@ -13,6 +13,8 @@ if L then
 	L.tempest_channeler = "폭풍우의 역술사"
 	L.flame_channeler = "불꽃의 역술사"
 	L.high_channeler_ryvati = "고위 역술사 라이바티"
+
+	--L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
 end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "koKR")

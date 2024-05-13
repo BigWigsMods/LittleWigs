@@ -38,6 +38,8 @@ if L then
 	L.tempest_channeler = "Tempest Channeler"
 	L.flame_channeler = "Flame Channeler"
 	L.high_channeler_ryvati = "High Channeler Ryvati"
+
+	L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
 end
 
 --------------------------------------------------------------------------------
@@ -95,6 +97,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Warmups
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
 	-- Primal Juggernaut
 	self:Log("SPELL_CAST_START", "ExcavatingBlast", 372696)
 
@@ -148,6 +153,20 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmups
+
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.kyrakka_and_erkhart_warmup_trigger then
+		-- Kyrakka and Erkhart Stormvein warmup
+		local kyrakkaAndErkhartModule = BigWigs:GetBossModule("Kyrakka and Erkhart Stormvein", true)
+		if kyrakkaAndErkhartModule then
+			kyrakkaAndErkhartModule:Enable()
+			kyrakkaAndErkhartModule:Warmup()
+			-- don't unregister the event, because if the boss respawns this will happen again
+		end
+	end
+end
 
 -- Primal Juggernaut
 
