@@ -24,7 +24,8 @@ BigWigs:AddColors("Sha of Violence", {
 BigWigs:AddColors("Taran Zhu", {
 	[107087] = "blue",
 	[107356] = "red",
-	[115002] = "orange",
+	[115002] = "yellow",
+	[131521] = "orange",
 })
 
 BigWigs:AddColors("Shado-Pan Monastery Trash", {
