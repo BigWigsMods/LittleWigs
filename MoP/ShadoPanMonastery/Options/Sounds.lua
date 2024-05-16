@@ -16,8 +16,9 @@ BigWigs:AddSounds("Master Snowdrift", {
 })
 
 BigWigs:AddSounds("Sha of Violence", {
-	[-5813] = {"info","long"},
-	[106872] = "alarm",
+	[38166] = "long",
+	[106826] = "alert",
+	[106872] = {"info","warning"},
 })
 
 BigWigs:AddSounds("Taran Zhu", {

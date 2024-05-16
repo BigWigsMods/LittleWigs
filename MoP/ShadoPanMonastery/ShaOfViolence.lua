@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Sha of Violence", 959, 685)
 if not mod then return end
 mod:RegisterEnableMob(56719)
-mod.engageId = 1305
-mod.respawnTime = 29
+mod:SetEncounterID(1305)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,44 +14,51 @@ mod.respawnTime = 29
 
 function mod:GetOptions()
 	return {
-		-5813, -- Enrage
-		106872, -- Disorienting Smash
+		{106872, "DISPEL"}, -- Disorienting Smash
+		106826, -- Smoke Blades
+		38166, -- Enrage
 	}
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "DisorientingSmash", 106872)
+	self:Log("SPELL_AURA_APPLIED", "DisorientingSmashApplied", 106872)
+	self:Log("SPELL_CAST_SUCCESS", "SmokeBlades", 106826)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 38166)
-	self:Log("SPELL_AURA_REMOVED", "EnrageRemoved", 38166)
-	self:Log("SPELL_AURA_APPLIED", "Smash", 106872)
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH", "EnrageSoon", "boss1")
+	self:CDBar(106826, 11.7) -- Smoke Blades
+	self:CDBar(106872, 16.5) -- Disorienting Smash
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Smash(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange", "alarm", 34618) -- 34618 = Smash
-	self:TargetBar(args.spellId, 4, args.destName, 34618)
-	self:CDBar(args.spellId, 17, 34618) -- 17-19
+function mod:DisorientingSmash(args)
+	self:CDBar(args.spellId, 17.0)
+end
+
+function mod:DisorientingSmashApplied(args)
+	local onMe = self:Me(args.destGUID)
+	if onMe or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "purple", args.destName)
+		if onMe then
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		else
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
+		end
+	end
+end
+
+function mod:SmokeBlades(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 18.2)
 end
 
 function mod:Enrage(args)
-	self:MessageOld(-5813, "red", "long", args.spellId)
-	self:Bar(-5813, 30, args.spellId)
-end
-
-function mod:EnrageRemoved(args)
-	self:StopBar(args.spellName)
-end
-
-function mod:EnrageSoon(event, unit)
-	local hp = self:GetHealth(unit)
-	if hp < 25 then
-		self:UnregisterUnitEvent(event, unit)
-		self:MessageOld(-5813, "green", "info", CL.soon:format(self:SpellName(38166)), false) -- Enrage
-	end
+	self:Message(args.spellId, "red", CL.percent:format(20, args.spellName))
+	self:PlaySound(args.spellId, "long")
 end
