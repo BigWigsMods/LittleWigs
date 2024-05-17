@@ -18,7 +18,9 @@ BigWigs:AddColors("Gekkan", {
 })
 
 BigWigs:AddColors("Xin the Weaponmaster", {
-	[119684] = "orange",
-	["blades"] = {"green","yellow"},
-	["crossbows"] = {"green","yellow"},
+	[-5974] = "cyan",
+	[-5973] = "red",
+	[-5972] = "cyan",
+	[-5971] = "cyan",
+	[119684] = "purple",
 })

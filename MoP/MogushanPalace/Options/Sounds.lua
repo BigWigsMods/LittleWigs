@@ -17,7 +17,9 @@ BigWigs:AddSounds("Gekkan", {
 })
 
 BigWigs:AddSounds("Xin the Weaponmaster", {
-	[119684] = "alert",
-	["blades"] = "info",
-	["crossbows"] = "info",
+	[-5974] = "long",
+	[-5973] = "alert",
+	[-5972] = "long",
+	[-5971] = "long",
+	[119684] = "alarm",
 })
