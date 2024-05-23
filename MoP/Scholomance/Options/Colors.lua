@@ -7,3 +7,8 @@ BigWigs:AddColors("Instructor Chillheart", {
 	[111854] = "cyan",
 })
 
+BigWigs:AddColors("Jandice Barov", {
+	[-5535] = {"cyan","green"},
+	[114059] = "orange",
+	[114062] = "purple",
+})

@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="InstructorChillheart.lua"/>
+<Script file="JandiceBarov.lua"/>
 
 <Include file="Options\options.xml"/>
 
