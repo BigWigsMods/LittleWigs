@@ -29,7 +29,7 @@ function mod:GetOptions()
 		-- Stage One: First Lesson
 		111854, -- Ice Wave
 		111631, -- Wrack Soul
-		{111610, "SAY"}, -- Ice Wrath
+		{111610, "SAY", "ME_ONLY_EMPHASIZE"}, -- Ice Wrath
 		111209, -- Frigid Grasp
 		-- Stage Two: Second Lesson
 		111441, -- Fill Phylactery
@@ -91,6 +91,6 @@ function mod:IceWrathApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Ice Wrath")
 	end
 end
