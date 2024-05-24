@@ -18,3 +18,10 @@ BigWigs:AddSounds("Rattlegore", {
 	[113996] = {"alarm","info"},
 	[113999] = "alert",
 })
+
+BigWigs:AddSounds("Lilian Voss", {
+	[111570] = "long",
+	[111775] = "alert",
+	[115350] = "alert",
+	["stages"] = "long",
+})
