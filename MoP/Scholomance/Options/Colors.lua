@@ -18,3 +18,10 @@ BigWigs:AddColors("Rattlegore", {
 	[113996] = {"green","red"},
 	[113999] = "yellow",
 })
+
+BigWigs:AddColors("Lilian Voss", {
+	[111570] = "orange",
+	[111775] = "red",
+	[115350] = {"blue","yellow"},
+	["stages"] = "cyan",
+})
