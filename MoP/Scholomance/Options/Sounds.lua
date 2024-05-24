@@ -7,3 +7,8 @@ BigWigs:AddSounds("Instructor Chillheart", {
 	[111854] = "info",
 })
 
+BigWigs:AddSounds("Jandice Barov", {
+	[-5535] = {"info","long"},
+	[114059] = "alarm",
+	[114062] = "alarm",
+})
