@@ -56,6 +56,11 @@ function mod:OnEngage()
 	self:CDBar(111570, 30.4) -- Death's Grasp
 end
 
+function mod:VerifyEnable(unit)
+	-- the boss starts as friendly at full HP, after a win the boss becomes friendly again at 1% HP
+	return UnitCanAttack("player", unit) or self:GetHealth(unit) > 1
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
