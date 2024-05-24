@@ -66,8 +66,8 @@ do
 	local prev = 0
 	function mod:GroundEffectDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
-			if t-prev > 1.5 then
+			local t = args.time
+			if t - prev > 3.5 then
 				prev = t
 				self:MessageOld(args.spellId == 115458 and args.spellId or -5660, "blue", "alert", CL.underyou:format(args.spellName)) -- SetOption:-5660,115458:::
 			end
