@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Lilian Voss", 1007, 666)
 if not mod then return end
-mod:RegisterEnableMob(58722) -- Lilian Voss
+mod:RegisterEnableMob(
+	58722, -- Lilian Voss
+	58791 -- Lilian's Soul
+)
 mod:SetEncounterID(1429)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
@@ -27,7 +30,9 @@ function mod:GetOptions()
 		"stages",
 		111570, -- Death's Grasp
 		111775, -- Shadow Shiv
-		115350, -- Fixate Anger
+		{115350, "ME_ONLY_EMPHASIZE"}, -- Fixate Anger
+	}, nil, {
+		[115350] = CL.fixate, -- Fixate Anger (Fixate)
 	}
 end
 
@@ -88,9 +93,13 @@ function mod:UnleashAnger(args)
 end
 
 function mod:FixateAnger(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	self:CDBar(args.spellId, 12.1)
+	self:TargetMessage(args.spellId, "yellow", args.destName, CL.fixate)
+	if self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	else
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+	self:CDBar(args.spellId, 12.1, CL.fixate)
 end
 
 -- Stage Three: A Perfectly Good Corpse

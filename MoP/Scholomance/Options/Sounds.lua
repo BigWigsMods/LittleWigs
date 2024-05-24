@@ -22,6 +22,6 @@ BigWigs:AddSounds("Rattlegore", {
 BigWigs:AddSounds("Lilian Voss", {
 	[111570] = "long",
 	[111775] = "alert",
-	[115350] = "alert",
+	[115350] = {"alert","warning"},
 	["stages"] = "long",
 })
