@@ -31,7 +31,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WondrousRapidity", 114062)
-	self:Log("SPELL_CAST_SUCCESS", "WondrousRapidity", 114062)
+	self:Log("SPELL_AURA_APPLIED", "WondrousRapidityApplied", 114062)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Whirl of Illusion, Gravity Flux
 end
 
@@ -51,18 +51,29 @@ end
 
 do
 	local prev = 0
+
 	function mod:WondrousRapidity(args)
+		prev = args.time
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alarm")
+		if self:Normal() then
+			self:CDBar(args.spellId, 21.8)
+		else -- Heroic
+			self:CDBar(args.spellId, 31.5)
+		end
+	end
+
+	function mod:WondrousRapidityApplied(args)
 		-- immediately after Whirl of Illusion ends she can instant cast this ability with
-		-- no SPELL_CAST_START, so register both START and SUCCESS and throttle the alert.
-		local t = args.time
-		if t - prev > 3 then
-			prev = t
+		-- no SPELL_CAST_START (and sometimes with no SPELL_CAST_SUCCESS), so show the alert
+		-- with an adjusted timer on SPELL_AURA_APPLIED if we didn't get the SPELL_CAST_START.
+		if args.time - prev > 2 then
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 			if self:Normal() then
-				self:CDBar(args.spellId, 21.8)
+				self:CDBar(args.spellId, 20.3)
 			else -- Heroic
-				self:CDBar(args.spellId, 31.5)
+				self:CDBar(args.spellId, 30.0)
 			end
 		end
 	end
@@ -70,7 +81,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 113808 then -- Whirl of Illusion
-		self:StopBar(114062) -- Wondrous Rapidity
+		-- this doesn't affect the CD of Wondrous Rapidity like it does for Gravity Flux
 		self:StopBar(114059) -- Gravity Flux
 		self:SetStage(2)
 		local percent = whirlOfIllusionCount == 1 and 66 or 33
@@ -90,7 +101,6 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:SetStage(1)
 		self:Message(-5535, "green", CL.over:format(self:SpellName(-5535))) -- Whirl of Illusion
 		self:PlaySound(-5535, "info")
-		self:CDBar(114062, 1.0) -- Wondrous Rapidity
 		if not self:Normal() then
 			self:CDBar(114059, 10.4) -- Gravity Flux
 		end
