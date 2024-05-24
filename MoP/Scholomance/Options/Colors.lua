@@ -25,3 +25,8 @@ BigWigs:AddColors("Lilian Voss", {
 	[115350] = {"blue","yellow"},
 	["stages"] = "cyan",
 })
+
+BigWigs:AddColors("Darkmaster Gandling", {
+	[113143] = "cyan",
+	[113395] = {"blue","red"},
+})
