@@ -12,3 +12,9 @@ BigWigs:AddColors("Jandice Barov", {
 	[114059] = "orange",
 	[114062] = "purple",
 })
+
+BigWigs:AddColors("Rattlegore", {
+	[113765] = "purple",
+	[113996] = {"green","red"},
+	[113999] = "yellow",
+})

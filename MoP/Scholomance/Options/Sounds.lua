@@ -12,3 +12,9 @@ BigWigs:AddSounds("Jandice Barov", {
 	[114059] = "alarm",
 	[114062] = "alarm",
 })
+
+BigWigs:AddSounds("Rattlegore", {
+	[113765] = "info",
+	[113996] = {"alarm","info"},
+	[113999] = "alert",
+})
