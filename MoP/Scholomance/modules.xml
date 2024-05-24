@@ -3,6 +3,7 @@
 
 <Script file="InstructorChillheart.lua"/>
 <Script file="JandiceBarov.lua"/>
+<Script file="Rattlegore.lua"/>
 
 <Include file="Options\options.xml"/>
 
