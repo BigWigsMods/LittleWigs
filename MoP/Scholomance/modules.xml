@@ -5,6 +5,7 @@
 <Script file="JandiceBarov.lua"/>
 <Script file="Rattlegore.lua"/>
 <Script file="LilianVoss.lua"/>
+<Script file="DarkmasterGandling.lua"/>
 
 <Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>

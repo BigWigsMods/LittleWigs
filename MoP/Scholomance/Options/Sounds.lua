@@ -25,3 +25,8 @@ BigWigs:AddSounds("Lilian Voss", {
 	[115350] = {"alert","warning"},
 	["stages"] = "long",
 })
+
+BigWigs:AddSounds("Darkmaster Gandling", {
+	[113143] = "long",
+	[113395] = "info",
+})
