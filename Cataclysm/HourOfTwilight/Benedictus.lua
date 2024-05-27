@@ -17,11 +17,11 @@ function mod:GetOptions()
 	return {
 		"stages",
 		-- Stage One: The Light Will Consume You!
-		{103151, "SAY"}, -- Righteous Shear
+		{103151, "SAY", "ME_ONLY_EMPHASIZE"}, -- Righteous Shear
 		103565, -- Purifying Light
 		103678, -- Wave of Virtue
 		-- Stages Two: Drown in Shadow!
-		{103363, "SAY"}, -- Twilight Shear
+		{103363, "SAY", "ME_ONLY_EMPHASIZE"}, -- Twilight Shear
 		103767, -- Corrupting Twilight
 		103780, -- Wave of Twilight
 	}, {
