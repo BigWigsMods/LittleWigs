@@ -28,6 +28,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	-- Mark of Silence is cast on pull, the timer will be started in MarkOfSilence
 	self:CDBar(103558, 10.9) -- Choking Smoke Bomb
 end
 
