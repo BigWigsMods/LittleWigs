@@ -5,7 +5,7 @@
 <Include file="EndTime\modules.xml"/>
 <Include file="GrimBatol\modules.xml"/>
 <Include file="HallsOfOrigination\modules.xml"/>
-<!-- <Include file="HourOfTwilight\modules.xml"/> -->
+<Include file="HourOfTwilight\modules.xml"/>
 <Include file="LostCity\modules.xml"/>
 <Include file="Stonecore\modules.xml"/>
 <Include file="ThroneTides\modules.xml"/>
