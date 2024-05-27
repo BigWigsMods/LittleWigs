@@ -11,7 +11,14 @@ BigWigs:AddColors("Asira Dawnslayer", {
 	[103558] = "orange",
 })
 
-BigWigs:AddColors("Benedictus", {
+BigWigs:AddColors("Archbishop Benedictus", {
+	[103151] = {"blue","red"},
+	[103363] = {"blue","red"},
+	[103565] = "yellow",
+	[103678] = "orange",
+	[103767] = "yellow",
+	[103780] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("The Hour of Twilight Trash", {
