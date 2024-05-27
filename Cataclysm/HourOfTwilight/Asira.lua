@@ -17,6 +17,8 @@ function mod:GetOptions()
 		102726, -- Mark of Silence
 		103558, -- Choking Smoke Bomb
 		103419, -- Blade Barrier
+	}, nil, {
+		[102726] = CL.mark, -- Mark of Silence (Mark)
 	}
 end
 
@@ -41,7 +43,7 @@ do
 
 	function mod:MarkOfSilence(args)
 		playerList = {}
-		self:CDBar(args.spellId, 8.5)
+		self:CDBar(args.spellId, 8.5, CL.mark)
 	end
 
 	function mod:MarkOfSilenceApplied(args)
@@ -50,7 +52,7 @@ do
 			-- only play a sound if on you
 			self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		end
-		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, CL.mark)
 	end
 end
 
