@@ -27,4 +27,5 @@
 
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
+Classic\modules.xml
 #@end-do-not-package@
