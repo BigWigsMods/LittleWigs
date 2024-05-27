@@ -17,6 +17,5 @@
 ## Dependencies: BigWigs
 
 ## X-Category: Party
-# X-BigWigs-LoadOn-InstanceId: 33, 36
 
-#modules.xml
+modules.xml
