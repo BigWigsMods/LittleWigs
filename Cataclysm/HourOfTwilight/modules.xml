@@ -4,8 +4,9 @@
 <Script file="Arcurion.lua"/>
 <Script file="Asira.lua"/>
 <Script file="Benedictus.lua"/>
+<Script file="Trash.lua"/>
 
-<!-- <Include file="Locales\locales.xml"/> -->
-<!-- <Include file="Options\options.xml"/> -->
+<Include file="Locales\locales.xml"/>
+<Include file="Options\options.xml"/>
 
 </Ui>
