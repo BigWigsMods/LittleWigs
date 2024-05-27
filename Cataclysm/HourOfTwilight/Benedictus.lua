@@ -57,8 +57,8 @@ end
 -- Stage One: The Light Will Consume You!
 
 function mod:RighteousShear(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	self:CDBar(args.spellId, 46.1)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Righteous Shear")
@@ -92,8 +92,8 @@ function mod:TwilightEpiphany(args)
 end
 
 function mod:TwilightShear(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	self:CDBar(args.spellId, 46.1)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Twilight Shear")
