@@ -14,7 +14,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		102726, -- Mark of Silence
+		{102726, "ME_ONLY_EMPHASIZE"}, -- Mark of Silence
 		103558, -- Choking Smoke Bomb
 		103419, -- Blade Barrier
 	}, nil, {
