@@ -43,7 +43,7 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_POWER_UPDATE", nil, "boss1")
 	self:Log("SPELL_CAST_START", "GroundingSpear", 373424)
-	-- 2 different Fetter debuffs: 388523=12s stun, 374655=12s slow in mythic, 2s stun otherwise
+	-- 2 different Fetter debuffs: 388523=15s stun, 374655=12s slow in Mythic, 2s stun otherwise
 	self:Log("SPELL_AURA_APPLIED", "FetterApplied", 388523, 374655)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "FetterApplied", 374655)
 	self:Log("SPELL_AURA_REMOVED", "FetterRemoved", 388523, 374655)
@@ -90,20 +90,20 @@ function mod:GroundingSpear(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
--- Normal/Heroic: 1 stack of Fetter always stuns (2s or 12s)
--- Mythic: 1 or 2 hits of Fetter just slows, 3 hits stuns (12s)
+-- Normal/Heroic: 1 stack of Fetter always stuns (2s or 15s)
+-- Mythic: 1 or 2 hits of Fetter just slows (12s), 3 hits stuns (15s)
 do
 	local prev = 0
 	function mod:FetterApplied(args)
 		if self:Mythic() then
-			if args.spellId == 388523 then -- Long Fetter on boss (12s stun)
+			if args.spellId == 388523 then -- Stun Fetter on boss (15s stun)
+				bossStunned = true
 				self:StopBar(CL.stack:format(2, L.slow, CL.boss))
 				self:StopBar(CL.cast:format(self:SpellName(375056))) -- Fiery Focus
-				bossStunned = true
 				self:Message(388523, "green", CL.onboss:format(args.spellName))
 				self:PlaySound(388523, "info")
-				self:Bar(388523, 12, CL.onboss:format(args.spellName))
-			else -- 374655, Short Fetter on boss (12s slow)
+				self:Bar(388523, 15, CL.onboss:format(args.spellName))
+			else -- 374655, Slow Fetter on boss (12s slow)
 				-- this is for 1 or 2 stacks
 				local stacks = args.amount or 1
 				if stacks < 3 then -- 3rd stack briefly applies before long stun, ignore it
@@ -123,9 +123,9 @@ do
 				self:Message(388523, "green", CL.onboss:format(args.spellName))
 				self:PlaySound(388523, "info")
 			end
-			if args.spellId == 388523 then -- Long Fetter on boss (12s stun)
+			if args.spellId == 388523 then -- Long Fetter on boss (15s stun)
 				bossStunned = true
-				self:Bar(388523, 12, CL.onboss:format(args.spellName))
+				self:Bar(388523, 15, CL.onboss:format(args.spellName))
 			else -- 374655, Short Fetter on boss (2s stun)
 				bossStunned = true
 				recalculateFieryFocus = true
