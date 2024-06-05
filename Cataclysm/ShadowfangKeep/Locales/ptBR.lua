@@ -4,5 +4,5 @@ if L then
 	-- %s será "Coagulante Tóxico" ou "Catalisador Tóxico"
 	L.coagulant = "%s: Mova-se para dissipar"
 	L.catalyst = "%s: Buff Crítico"
-	L.toxin_healer_message = "%: DoT em todos"
+	L.toxin_healer_message = "%s: DoT em todos"
 end

@@ -23,7 +23,7 @@ local L = mod:GetLocale()
 if L then
 	L.coagulant = "%s: Move to dispel"
 	L.catalyst = "%s: Crit Buff"
-	L.toxin_healer_message = "%: DoT on everyone"
+	L.toxin_healer_message = "%s: DoT on everyone"
 end
 
 -------------------------------------------------------------------------------
