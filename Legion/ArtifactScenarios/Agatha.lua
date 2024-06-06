@@ -123,7 +123,7 @@ function mod:AddScanner(event, unit, guid)
 	end
 end
 
-function mod:ImpServant(_, msg)
+function mod:ImpServant()
 	self:MessageOld("imp_servant", "yellow", "info", L.imp_servant, false)
 	self:Bar("imp_servant", 46, L.imp_servant, "spell_warlock_demonsoul")
 end

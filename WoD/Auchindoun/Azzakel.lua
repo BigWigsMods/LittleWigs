@@ -13,7 +13,6 @@ mod:SetRespawnTime(33)
 --
 
 local curtainPlayers = {}
-local curtainOnMe = nil
 
 --------------------------------------------------------------------------------
 -- Initialization

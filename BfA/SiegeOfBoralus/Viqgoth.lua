@@ -112,7 +112,6 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 do
-	local isOnMe = false
 	local playerList, playerIcons = mod:NewTargetList(), {}
 	function mod:PutridWatersApplied(args)
 		local playerListCount = #playerList+1
@@ -128,7 +127,6 @@ do
 			self:CDBar(args.spellId, 20)
 		end
 		if self:Me(args.destGUID) then
-			isOnMe = true
 			self:PlaySound(args.spellId, "warning")
 			self:Say(args.spellId, nil, nil, "Putrid Waters")
 			self:Flash(args.spellId)
@@ -140,7 +138,6 @@ do
 	function mod:PutridWatersRemoved(args)
 		self:CustomIcon(putridWatersMarker, args.destName)
 		if self:Me(args.destGUID) then
-			isOnMe = false
 			self:CancelSayCountdown(args.spellId)
 		end
 	end

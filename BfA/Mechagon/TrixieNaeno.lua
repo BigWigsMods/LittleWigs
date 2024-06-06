@@ -67,7 +67,6 @@ do
 	end
 	function mod:MegaTaze(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-		local t = args.time
 		self:CDBar(args.spellId, 25.5)
 	end
 end

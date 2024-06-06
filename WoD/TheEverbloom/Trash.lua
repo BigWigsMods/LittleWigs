@@ -147,7 +147,7 @@ function mod:ArchmageSolDefeated()
 	self:Bar("gate_open", 35.0, L.gate_open, L.gate_open_icon)
 end
 
-function mod:CHAT_MSG_MONSTER_YELL(_, msg, sender)
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.yalnu_warmup_trigger then
 		-- The portal is lost! We must stop this beast before it can escape!#Lady Baihu
 		local yalnuMod = BigWigs:GetBossModule("Yalnu", true)
