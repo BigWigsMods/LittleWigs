@@ -15,6 +15,12 @@ BigWigs:AddSounds("Foe Reaper 5000", {
 	[88522] = "long",
 })
 
+BigWigs:AddSounds("Admiral Ripsnarl", {
+	[88836] = "alarm",
+	[88840] = "long",
+	[92042] = "warning",
+})
+
 BigWigs:AddSounds("Cookie", {
 })
 
