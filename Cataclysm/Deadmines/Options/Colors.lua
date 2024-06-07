@@ -14,7 +14,7 @@ BigWigs:AddColors("Helix Gearbreaker", {
 BigWigs:AddColors("Foe Reaper 5000", {
 	[88481] = "orange",
 	[88495] = {"blue","red"},
-	[88522] = "yellow",
+	[88522] = "cyan",
 })
 
 BigWigs:AddColors("Cookie", {
