@@ -17,6 +17,12 @@ BigWigs:AddColors("Foe Reaper 5000", {
 	[88522] = "cyan",
 })
 
+BigWigs:AddColors("Admiral Ripsnarl", {
+	[88836] = {"blue","red"},
+	[88840] = "cyan",
+	[92042] = "yellow",
+})
+
 BigWigs:AddColors("Cookie", {
 })
 
