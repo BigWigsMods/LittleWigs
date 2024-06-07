@@ -66,7 +66,7 @@ end
 -- Helix Gearbreaker
 
 function mod:ChestBomb(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Chest Bomb")
