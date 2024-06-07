@@ -1,5 +1,8 @@
 
 BigWigs:AddSounds("Glubtok", {
+	[87859] = "alert",
+	[87861] = "alert",
+	[88009] = "long",
 })
 
 BigWigs:AddSounds("Helix Gearbreaker", {

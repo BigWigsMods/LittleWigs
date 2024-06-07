@@ -1,6 +1,8 @@
 
 BigWigs:AddColors("Glubtok", {
-	["stages"] = "cyan",
+	[87859] = "red",
+	[87861] = "yellow",
+	[88009] = "cyan",
 })
 
 BigWigs:AddColors("Helix Gearbreaker", {
