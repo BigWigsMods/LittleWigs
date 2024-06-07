@@ -6,7 +6,9 @@ BigWigs:AddSounds("Glubtok", {
 })
 
 BigWigs:AddSounds("Helix Gearbreaker", {
+	[88300] = "info",
 	[88352] = "alert",
+	["stages"] = "long",
 })
 
 BigWigs:AddSounds("Foe Reaper 5000", {
