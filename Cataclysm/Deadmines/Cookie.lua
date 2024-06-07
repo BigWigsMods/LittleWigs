@@ -22,10 +22,10 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "CauldronFire", 89252) -- Throw Food (first one only)
-	self:Log("SPELL_AURA_APPLIED", "SaitatedApplied", 89267)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "SaitatedApplied", 89267)
-	self:Log("SPELL_AURA_REFRESH", "SaitatedRefresh", 89267)
-	self:Log("SPELL_AURA_REMOVED", "SaitatedRemoved", 89267)
+	self:Log("SPELL_AURA_APPLIED", "SatiatedApplied", 89267)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "SatiatedApplied", 89267)
+	self:Log("SPELL_AURA_REFRESH", "SatiatedRefresh", 89267)
+	self:Log("SPELL_AURA_REMOVED", "SatiatedRemoved", 89267)
 	self:Log("SPELL_AURA_APPLIED", "NauseatedApplied", 89732)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "NauseatedApplied", 89732)
 	self:Log("SPELL_AURA_REMOVED", "NauseatedRemoved", 89732)
@@ -46,21 +46,22 @@ function mod:CauldronFire() -- Throw Food
 	self:PlaySound(89263, "long")
 end
 
-function mod:SaitatedApplied(args)
+function mod:SatiatedApplied(args)
 	if self:Me(args.destGUID) then
+		-- not using StackMessage in order to preserve message color, since all alerts are just for the player
 		self:Message(args.spellId, "green", CL.stackyou:format(args.amount or 1, args.spellName))
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 		self:TargetBar(args.spellId, 30, args.destName)
 	end
 end
 
-function mod:SaitatedRefresh(args)
+function mod:SatiatedRefresh(args)
 	if self:Me(args.destGUID) then
 		self:TargetBar(args.spellId, 30, args.destName)
 	end
 end
 
-function mod:SaitatedRemoved(args)
+function mod:SatiatedRemoved(args)
 	if self:Me(args.destGUID) then
 		self:StopBar(args.spellName, args.destName)
 	end
@@ -68,6 +69,7 @@ end
 
 function mod:NauseatedApplied(args)
 	if self:Me(args.destGUID) then
+		-- not using StackMessage in order to preserve message color, since all alerts are just for the player
 		self:Message(args.spellId, "red", CL.stackyou:format(args.amount or 1, args.spellName))
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		self:TargetBar(args.spellId, 30, args.destName)
