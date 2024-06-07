@@ -16,7 +16,7 @@ mod:SetStage(1)
 function mod:GetOptions()
 	return {
 		88481, -- Overdrive
-		{88495, "SAY"}, -- Harvest
+		{88495, "SAY", "ME_ONLY_EMPHASIZE"}, -- Harvest
 		88522, -- Safety Restrictions Off-line
 	}
 end
