@@ -16,6 +16,9 @@ BigWigs:AddColors("Foe Reaper 5000", {
 })
 
 BigWigs:AddColors("Cookie", {
+	[89263] = "cyan",
+	[89267] = "green",
+	[89732] = "red",
 })
 
 BigWigs:AddColors("Vanessa VanCleef", {

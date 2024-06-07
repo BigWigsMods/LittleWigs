@@ -16,6 +16,9 @@ BigWigs:AddSounds("Foe Reaper 5000", {
 })
 
 BigWigs:AddSounds("Cookie", {
+	[89263] = "long",
+	[89267] = "info",
+	[89732] = "alarm",
 })
 
 BigWigs:AddSounds("Vanessa VanCleef", {
