@@ -19,7 +19,9 @@ function mod:GetOptions()
 		-- Lumbering Oaf
 		88300, -- Oaf Smash
 		-- Helix Gearbreaker
-		{88352, "SAY", "SAY_COUNTDOWN"}, -- Chest Bomb
+		{88352, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Chest Bomb
+	}, nil, {
+		[88352] = CL.bomb, -- Chest Bomb (Bomb)
 	}
 end
 
@@ -37,7 +39,7 @@ function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(88300, 17.0) -- Oaf Smash
 	if self:Heroic() then
-		self:CDBar(88352, 47.7) -- Chest Bomb
+		self:CDBar(88352, 47.7, CL.bomb) -- Chest Bomb
 	end
 end
 
@@ -59,23 +61,23 @@ function mod:LumberingOafDeath()
 	self:Message("stages", "cyan", CL.stage:format(2), false)
 	self:PlaySound("stages", "long")
 	if self:Heroic() then
-		self:CDBar(88352, 12.2) -- Chest Bomb
+		self:CDBar(88352, 12.2, CL.bomb) -- Chest Bomb
 	end
 end
 
 -- Helix Gearbreaker
 
 function mod:ChestBomb(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName, CL.bomb)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Chest Bomb")
+		self:Say(args.spellId, CL.bomb, nil, "Bomb")
 		self:SayCountdown(args.spellId, 10)
 	end
 	if self:GetStage() == 1 then
-		self:CDBar(args.spellId, 51.0)
+		self:CDBar(args.spellId, 51.0, CL.bomb)
 	else
-		self:CDBar(args.spellId, 13.3)
+		self:CDBar(args.spellId, 13.3, CL.bomb)
 	end
 end
 
