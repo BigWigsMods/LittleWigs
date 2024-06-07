@@ -4,7 +4,9 @@ BigWigs:AddColors("Glubtok", {
 })
 
 BigWigs:AddColors("Helix Gearbreaker", {
+	[88300] = {"blue","red"},
 	[88352] = {"blue","red"},
+	["stages"] = "cyan",
 })
 
 BigWigs:AddColors("Foe Reaper 5000", {
