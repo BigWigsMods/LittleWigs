@@ -9,6 +9,9 @@ end
 
 L = BigWigs:NewBossLocale("Kobyss Delve Trash", "esES") or BigWigs:NewBossLocale("Kobyss Delve Trash", "esMX")
 if L then
+	--L.kobyss_necromancer = "Kobyss Necromancer"
+	--L.kobyss_spearfisher = "Kobyss Spearfisher"
+	--L.wandering_gutter = "Wandering Gutter"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "esES") or BigWigs:NewBossLocale("Nerubian Delve Trash", "esMX")
