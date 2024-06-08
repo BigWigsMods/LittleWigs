@@ -27,5 +27,9 @@ BigWigs:AddSounds("Cookie", {
 })
 
 BigWigs:AddSounds("Vanessa VanCleef", {
+	[-2065] = "alarm",
+	[-2063] = "warning",
+	[90932] = "info",
+	[92614] = "alert",
 	[95542] = "long",
 })
