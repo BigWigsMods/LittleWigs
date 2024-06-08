@@ -1,0 +1,15 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Fungarian.lua"/>
+<Script file="Kobold.lua"/>
+<Script file="Kobyss.lua"/>
+<Script file="Nerubian.lua"/>
+<Script file="Nightfall.lua"/>
+<Script file="Underkeep.lua"/>
+<Script file="Rares.lua"/>
+
+<Include file="Locales\locales.xml"/>
+<Include file="Options\options.xml"/>
+
+</Ui>
