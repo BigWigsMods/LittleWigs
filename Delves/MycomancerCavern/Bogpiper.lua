@@ -29,14 +29,23 @@ end
 
 function mod:GetOptions()
 	return {
+		454213, -- Muck Charge
+		449965, -- Swamp Bolt
+		453897, -- Sporesong
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
+	self:Log("SPELL_CAST_START", "MuckCharge", 454213)
+	self:Log("SPELL_CAST_START", "SwampBolt", 449965)
+	self:Log("SPELL_CAST_START", "Sporesong", 453897)
 end
 
 function mod:OnEngage()
+	self:CDBar(454213, 6.1) -- Muck Charge
+	self:CDBar(449965, 11.0) -- Swamp Bolt
+	self:CDBar(453897, 15.8) -- Sporesong
 end
 
 --------------------------------------------------------------------------------
@@ -48,4 +57,22 @@ function mod:ENCOUNTER_START(_, id)
 	if id == self.engageId then
 		self:Engage()
 	end
+end
+
+function mod:MuckCharge(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 25.4)
+end
+
+function mod:SwampBolt(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 26.7)
+end
+
+function mod:Sporesong(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 29.1)
 end
