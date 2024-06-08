@@ -29,14 +29,17 @@ end
 
 function mod:GetOptions()
 	return {
+		445860, -- Drowned Illusions
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
+	self:Log("SPELL_CAST_START", "DrownedIllusions", 445860)
 end
 
 --function mod:OnEngage()
+	-- Drowned Illusions is cast immediately, no point in starting a bar
 --end
 
 --------------------------------------------------------------------------------
@@ -48,4 +51,10 @@ function mod:ENCOUNTER_START(_, id)
 	if id == self.engageId then
 		self:Engage()
 	end
+end
+
+function mod:DrownedIllusions(args)
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 14.6)
 end
