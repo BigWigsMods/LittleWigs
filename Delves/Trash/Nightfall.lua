@@ -13,9 +13,9 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-end
+--local L = mod:GetLocale()
+--if L then
+--end
 
 --------------------------------------------------------------------------------
 -- Initialization
