@@ -9,6 +9,13 @@ BigWigs:AddColors("Kobyss Delve Trash", {
 })
 
 BigWigs:AddColors("Nerubian Delve Trash", {
+	[433410] = "orange",
+	[449318] = "red",
+	[450197] = "yellow",
+	[450509] = "orange",
+	[450546] = "red",
+	[450637] = "yellow",
+	[450714] = "orange",
 })
 
 BigWigs:AddColors("Nightfall Delve Trash", {
