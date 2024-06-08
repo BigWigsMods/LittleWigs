@@ -21,6 +21,8 @@ end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "esES") or BigWigs:NewBossLocale("The Underkeep Trash", "esMX")
 if L then
+	--L.ascended_webfriar = "Ascended Webfriar"
+	--L.deepwalker_guardian = "Deepwalker Guardian"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "esES") or BigWigs:NewBossLocale("Delve Rares", "esMX")
