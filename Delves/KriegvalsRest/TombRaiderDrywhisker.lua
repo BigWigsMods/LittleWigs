@@ -29,14 +29,23 @@ end
 
 function mod:GetOptions()
 	return {
+		449242, -- Flamestorm
+		449295, -- Ground Slam
+		449339, -- Raging Tantrum
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
+	self:Log("SPELL_CAST_START", "Flamestorm", 449242)
+	self:Log("SPELL_CAST_START", "GroundSlam", 449295)
+	self:Log("SPELL_CAST_START", "RagingTantrum", 449339)
 end
 
 function mod:OnEngage()
+	self:CDBar(449242, 6.1) -- Flamestorm
+	self:CDBar(449295, 19.2) -- Ground Slam
+	self:CDBar(449339, 30.1) -- Raging Tantrum
 end
 
 --------------------------------------------------------------------------------
@@ -48,4 +57,22 @@ function mod:ENCOUNTER_START(_, id)
 	if id == self.engageId then
 		self:Engage()
 	end
+end
+
+function mod:Flamestorm(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 17.8)
+end
+
+function mod:GroundSlam(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 27.9)
+end
+
+function mod:RagingTantrum(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 31.6)
 end
