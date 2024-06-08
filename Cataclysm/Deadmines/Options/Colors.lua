@@ -30,6 +30,9 @@ BigWigs:AddColors("Cookie", {
 })
 
 BigWigs:AddColors("Vanessa VanCleef", {
+	[-2065] = "orange",
+	[-2063] = "red",
+	[90932] = "green",
 	[92614] = "orange",
 	[95542] = "yellow",
 })
