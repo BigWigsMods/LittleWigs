@@ -18,23 +18,13 @@ mod:SetRespawnTime(30)
 local powderExplosionNext = nil
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.custom_on_autotalk = "Autotalk"
-	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
-	L.custom_on_autotalk_icon = "ui_chat"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
+local autotalk = mod:AddAutoTalkOption(true, "boss")
 function mod:GetOptions()
 	return {
-		"custom_on_autotalk",
+		autotalk,
 		-- Vanessa VanCleef
 		92614, -- Deflection
 		95542, -- Vengeance of VanCleef
@@ -75,7 +65,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") then
+	if self:GetOption(autotalk) then
 		if self:GetGossipID(39764) then
 			-- 39764:Continue reading... <Note: This will alert Vanessa to your presence!>
 			self:SelectGossipID(39764)
