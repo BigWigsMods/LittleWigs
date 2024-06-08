@@ -55,7 +55,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Kobyss Necromancer
-	self:Log("SPELL_CAST_START", "DefilingBreath", 455932) -- TODO used to be 419211?
+	self:Log("SPELL_CAST_START", "DefilingBreath", 455932)
 	self:Log("SPELL_CAST_SUCCESS", "NecroticEnd", 445252)
 
 	-- Kobyss Spearfisher
