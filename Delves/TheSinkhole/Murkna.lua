@@ -1,0 +1,51 @@
+if not BigWigsLoader.isBeta then return end
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
+
+local mod, CL = BigWigs:NewBoss("Mirror Master Murkna", 2687)
+if not mod then return end
+mod:RegisterEnableMob(219763) -- Mirror Master Murkna
+mod:SetEncounterID(2999)
+mod:SetRespawnTime(15)
+mod:SetAllowWin(true)
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.mirror_master_murkna = "Mirror Master Murkna"
+end
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:OnRegister()
+	self.displayName = L.mirror_master_murkna
+end
+
+function mod:GetOptions()
+	return {
+	}
+end
+
+function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START")
+end
+
+--function mod:OnEngage()
+--end
+
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
+
+-- XXX no boss frames
+function mod:ENCOUNTER_START(_, id)
+	if id == self.engageId then
+		self:Engage()
+	end
+end

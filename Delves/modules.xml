@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Include file="FungalFolly\modules.xml"/>
+<Include file="MycomancerCavern\modules.xml"/>
+<Include file="EarthcrawlMines\modules.xml"/>
+<Include file="KriegvalsRest\modules.xml"/>
+<Include file="TheWaterworks\modules.xml"/>
+<Include file="TheDreadPit\modules.xml"/>
+<Include file="SkitteringBreach\modules.xml"/>
+<Include file="NightfallSanctum\modules.xml"/>
+<Include file="TheSinkhole\modules.xml"/>
+<Include file="TheSpiralWeave\modules.xml"/>
+<Include file="TekRethanAbyss\modules.xml"/>
+<Include file="TheUnderkeep\modules.xml"/>
+<Include file="Trash\modules.xml"/>
+
+</Ui>
