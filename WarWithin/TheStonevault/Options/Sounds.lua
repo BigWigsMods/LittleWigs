@@ -1,5 +1,10 @@
 
 BigWigs:AddSounds("E.D.N.A.", {
+	[424795] = "alarm",
+	[424879] = "long",
+	[424888] = "alert",
+	[424889] = "warning",
+	[424903] = "info",
 })
 
 BigWigs:AddSounds("Skarmorak", {
