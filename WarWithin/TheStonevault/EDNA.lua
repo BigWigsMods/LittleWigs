@@ -32,6 +32,8 @@ function mod:GetOptions()
 		424879, -- Earth Shatterer
 	}, {
 		[424879] = CL.mythic,
+	}, {
+		[424795] = CL.beams,
 	}
 end
 
@@ -47,7 +49,7 @@ end
 function mod:OnEngage()
 	self:StopBar(CL.active)
 	self:CDBar(424903, 8.3) -- Volatile Spike
-	self:CDBar(424795, 11.9) -- Refracting Beam
+	self:CDBar(424795, 11.9, CL.beams) -- Refracting Beam
 	self:CDBar(424888, 15.6) -- Seismic Smash
 	--if self:Mythic() then
 		--self:CDBar(424879, 1) -- Earth Shatterer TODO
@@ -75,12 +77,12 @@ do
 		playerList[#playerList + 1] = args.destName
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		-- TODO dungeon journal says it applies to 3, but it only seems to apply to 2? maybe it's 3 in Mythic
-		self:TargetsMessage(args.spellId, "red", playerList, 2, nil, nil, .8) -- debuff staggers applications in .5s intervals
+		self:TargetsMessage(args.spellId, "red", playerList, 2, CL.beam, nil, .8) -- debuff staggers applications in .5s intervals
 		if self:Me(args.destGUID) then
-			self:Say(args.spellId)
+			self:Say(args.spellId, CL.beam, nil, "Beam")
 		end
 		if #playerList == 1 then
-			self:CDBar(args.spellId, 10.9)
+			self:CDBar(args.spellId, 10.9, CL.beams)
 		end
 	end
 
