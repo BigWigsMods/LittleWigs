@@ -49,9 +49,9 @@ function mod:OnEngage()
 	self:CDBar(424903, 8.3) -- Volatile Spike
 	self:CDBar(424795, 11.9) -- Refracting Beam
 	self:CDBar(424888, 15.6) -- Seismic Smash
-	if self:Mythic() then
+	--if self:Mythic() then
 		--self:CDBar(424879, 1) -- Earth Shatterer TODO
-	end
+	--end
 end
 
 --------------------------------------------------------------------------------
