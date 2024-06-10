@@ -1,14 +1,14 @@
 
-BigWigs:AddSounds("Goldie Baronbottom", {
+BigWigs:AddSounds("Brew Master Aldryr", {
 })
 
 BigWigs:AddSounds("I'pa", {
 })
 
-BigWigs:AddSounds("Brew Master Aldryr", {
+BigWigs:AddSounds("Benk Buzzbee", {
 })
 
-BigWigs:AddSounds("Benk Buzzbee", {
+BigWigs:AddSounds("Goldie Baronbottom", {
 })
 
 BigWigs:AddSounds("Cinderbrew Meadery Trash", {
