@@ -144,7 +144,7 @@ do
 		self:PlaySound(377827, "long", nil, args.destName)
 		self:CDBar(377827, 59.5)
 		if self:Me(args.destGUID) then
-			self:Say(377827)
+			self:Say(377827, nil, nil, "Bladestorm")
 		end
 	end
 
@@ -156,7 +156,7 @@ do
 			-- no need to repeat the Say on the first channel because it will be the same player as the initial target
 			firstChannel = false
 		elseif self:Me(args.destGUID) then
-			self:Say(377827)
+			self:Say(377827, nil, nil, "Bladestorm")
 		end
 	end
 end
