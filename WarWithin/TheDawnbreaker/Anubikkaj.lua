@@ -27,10 +27,9 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TerrifyingSlam", 427001)
-	self:Log("SPELL_CAST_START", "DarkOrb", 426860)
+	--self:Log("SPELL_CAST_START", "DarkOrb", 426860) -- private aura for Dark Orb is 426865
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Dark Orb
 	self:Log("SPELL_CAST_START", "ShadowyDecay", 426787)
-	-- TODO private aura sound on Dark Orb 426865?
-	-- or else the emote started showing targeted player in 55087, possibly unintentional
 
 	-- Mythic
 	self:Log("SPELL_CAST_START", "AnimateShadows", 452127)
@@ -56,11 +55,14 @@ function mod:TerrifyingSlam(args)
 	self:CDBar(args.spellId, 26.0)
 end
 
-function mod:DarkOrb(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	-- TODO almost always 26s, but once it was 16s - why?
-	self:CDBar(args.spellId, 26.0)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
+	if msg:find("426860", nil, true) then -- Dark Orb
+		-- [CHAT_MSG_RAID_BOSS_EMOTE] |TInterface\\ICONS\\Spell_Shadow_SoulGem.blp:20|t %s begins to cast |cFFFF0000|Hspell:426860|h[Dark Orb]|h|r at Foryou!#Anub'ikkaj###playerName
+		self:TargetMessage(426860, "orange", destName)
+		self:PlaySound(426860, "alarm", nil, destName)
+		-- TODO almost always 26s, but once it was 16s - why?
+		self:CDBar(426860, 26.0)
+	end
 end
 
 function mod:ShadowyDecay(args)
