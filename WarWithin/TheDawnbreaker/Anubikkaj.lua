@@ -40,9 +40,9 @@ function mod:OnEngage()
 	self:CDBar(426860, 6.0) -- Dark Orb
 	self:CDBar(427001, 15.0) -- Terrifying Slam
 	self:CDBar(426787, 22.0) -- Shadowy Decay
-	if self:Mythic() then
+	--if self:Mythic() then
 		--TODO self:CDBar(452127, 20.0) -- Animate Shadows
-	end
+	--end
 end
 
 --------------------------------------------------------------------------------
