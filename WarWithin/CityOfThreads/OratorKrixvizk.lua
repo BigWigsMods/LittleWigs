@@ -77,6 +77,6 @@ end
 function mod:LingeringInfluenceDamage(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou", nil, args.destName)
+		self:PlaySound(args.spellId, "underyou")
 	end
 end
