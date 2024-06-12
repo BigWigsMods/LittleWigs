@@ -16,7 +16,7 @@ mod:SetStage(1)
 
 local throwArathiBombCount = 1
 local erosiveSprayCount = 1
-local radiantLightOnGroup = nil
+local radiantLightOnGroup = false
 local acidicEruptionCount = 1
 
 --------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ end
 function mod:OnEngage()
 	throwArathiBombCount = 1
 	erosiveSprayCount = 1
-	radiantLightOnGroup = nil
+	radiantLightOnGroup = false
 	acidicEruptionCount = 1
 	self:SetStage(1)
 	self:CDBar(434407, 9.3) -- Rolling Acid
