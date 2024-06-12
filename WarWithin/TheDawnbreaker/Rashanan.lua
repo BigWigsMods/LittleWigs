@@ -89,9 +89,9 @@ function mod:OnEngage()
 	self:CDBar(434407, 9.3) -- Rolling Acid
 	self:CDBar(434655, 13.5, CL.spawning:format(self:SpellName(434655))) -- Arathi Bomb
 	self:CDBar(448888, 20.0, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
-	if self:Mythic() then
+	--if self:Mythic() then
 		--TODO self:CDBar(448213, 10) -- Expel Webs
-	end
+	--end
 end
 
 --------------------------------------------------------------------------------
@@ -203,9 +203,9 @@ function mod:AcidicEruptionInterrupted(args)
 		self:CDBar(434407, 4.0) -- Rolling Acid
 		self:CDBar(434089, 12.0) -- Spinneret's Strands
 		self:CDBar(448888, 20.0, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
-		if self:Mythic() then
+		--if self:Mythic() then
 			--TODO self:CDBar(448213, 10) -- Expel Webs
-		end
+		--end
 	end
 end
 
