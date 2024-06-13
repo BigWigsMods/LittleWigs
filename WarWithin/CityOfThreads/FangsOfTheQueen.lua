@@ -144,7 +144,7 @@ function mod:RimeDagger(args)
 	if rimeDaggerRemaining > 0 then
 		self:CDBar(args.spellId, 12.0)
 	else
-		self:StopBar(args.spellId)
+		self:CDBar(args.spellId, 73.0)
 	end
 end
 
