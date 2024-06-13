@@ -40,7 +40,8 @@ function mod:OnEngage()
 end
 
 function mod:VerifyEnable()
-	if not UnitInVehicle("player") then return true end
+	-- don't enable if the player is still flying around in a drake
+	return not UnitInVehicle("player")
 end
 
 --------------------------------------------------------------------------------
