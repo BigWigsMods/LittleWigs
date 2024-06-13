@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -137,7 +136,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BananaRampage", 272546)
 	-- Irontide Raider
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
-	self:Log("SPELL_CAST_SUCCESS", "SavageTempestSuccess", 257170)
 	self:Death("IrontideRaiderDeath", 129369)
 	-- Kul Tiran Wavetender
 	self:Log("SPELL_CAST_START", "WatertightShell", 256957)
@@ -161,8 +159,6 @@ function mod:OnBossEnable()
 	-- Bilge Rat Demolisher's Crushing Slam
 	-- Kul Tiran Vanguard's Heavy Slash
 	self:RegisterEvent("UNIT_SPELLCAST_START")
-	-- Bilge Rat Demolisher's Crushing Slam
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 end
 
 --------------------------------------------------------------------------------
@@ -224,10 +220,6 @@ end
 function mod:SavageTempest(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-end
-
-function mod:SavageTempestSuccess(args)
-	self:CDBar(args.spellId, 14)
 end
 
 function mod:IrontideRaiderDeath(args)
@@ -293,9 +285,16 @@ do
 	end
 end
 
-function mod:BurningTar(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:BurningTar(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:Immolation(args)
@@ -329,16 +328,6 @@ do
 			self:Message(spellId, "orange")
 			self:PlaySound(spellId, "alert")
 			self:CastBar(spellId, 2.8)
-		end
-	end
-end
-
-do
-	local prev = nil
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if spellId == 272711 and castGUID ~= prev then -- Crushing Slam
-			prev = castGUID
-			self:CDBar(257169, 6) -- Terrifying Roar
 		end
 	end
 end
