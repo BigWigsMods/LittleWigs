@@ -8,4 +8,9 @@ if L then
 	--L.pale_priest = "Pale Priest"
 	--L.eye_of_the_queen = "Eye of the Queen"
 	--L.covert_webmancer = "Covert Webmancer"
+	--L.royal_venomshell = "Royal Venomshell"
+	--L.unstable_test_subject = "Unstable Test Subject"
+	--L.sureki_unnaturaler = "Sureki Unnaturaler"
+	--L.elder_shadeweaver = "Elder Shadeweaver"
+	--L.hulking_warshell = "Hulking Warshell"
 end
