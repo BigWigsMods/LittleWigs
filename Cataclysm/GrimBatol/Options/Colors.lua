@@ -26,3 +26,15 @@ BigWigs:AddColors("Erudax", {
 	[75763] = "red",
 	["summon"] = "yellow",
 })
+
+BigWigs:AddColors("Grim Batol Trash", {
+	[76711] = "red",
+	[451067] = "yellow",
+	[451387] = "cyan",
+	[451391] = "orange",
+	[451613] = {"blue","red"},
+	[451871] = "red",
+	[451939] = "orange",
+	[456711] = "orange",
+	[456713] = "red",
+})

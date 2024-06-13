@@ -6,3 +6,13 @@ if L then
 	L.summon_message = "얼굴 없는 타락자 소환됨"
 	L.summon_trigger = "가 얼굴 없는 수호자를 소환합니다!"
 end
+
+L = BigWigs:NewBossLocale("Grim Batol Trash", "koKR")
+if L then
+	--L.twilight_earthcaller = "Twilight Earthcaller"
+	--L.twilight_destroyer = "Twilight Destroyer"
+	--L.twilight_beguiler = "Twilight Beguiler"
+	--L.twilight_decapitator = "Twilight Decapitator"
+	--L.twilight_lavabender = "Twilight Lavabender"
+	--L.faceless_corruptor = "Faceless Corruptor"
+end
