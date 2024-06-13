@@ -34,7 +34,7 @@ function mod:GetOptions()
 	}, {
 		--[] = CL.mythic, -- Abyssal Corruption
 	}, {
-		[450088] = CL.spawning:format(CL.adds), -- Void Infusion (Adds)
+		[450088] = CL.spawning:format(CL.adds), -- Void Infusion (Adds spawning)
 	}
 end
 
