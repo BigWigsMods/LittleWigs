@@ -36,8 +36,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	--self:RegisterEvent("ENCOUNTER_START") only happens once
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage") -- XXX because ENCOUNTER_START is not reliable
 	self:Log("SPELL_CAST_SUCCESS", "FungalInfection", 446405)
 	self:Log("SPELL_CAST_START", "DeepseaPolyps", 446300)
 	self:Log("SPELL_CAST_START", "RepellingBlast", 446230)
@@ -45,37 +43,30 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe") -- XXX no ENCOUNTER_END on wipes
-	self:CDBar(446405, 4.7) -- Fungal Infection
-	self:CDBar(446300, 14.2) -- Deepsea Polyps
-	self:CDBar(446230, 27.0) -- RepellingBlast
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe") -- XXX no ENCOUNTER_END
+	self:CDBar(446405, 4.0) -- Fungal Infection
+	self:CDBar(446300, 11.3) -- Deepsea Polyps
+	self:CDBar(446230, 21.0) -- Repelling Blast
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
-
 function mod:FungalInfection(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 34.0)
+	self:CDBar(args.spellId, 21.8)
 end
 
 function mod:DeepseaPolyps(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 16.2)
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:RepellingBlast(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 33.2)
+	self:CDBar(args.spellId, 21.9)
 end
