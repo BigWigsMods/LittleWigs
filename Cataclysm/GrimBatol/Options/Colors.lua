@@ -3,7 +3,10 @@ BigWigs:AddColors("General Umbriss", {
 	[74634] = "orange",
 	[74670] = {"blue","red"},
 	[74846] = {"blue","yellow"},
-	[74853] = "yellow",
+	[74853] = {"cyan","yellow"},
+	[447261] = "purple",
+	[448847] = "yellow",
+	[448877] = "orange",
 })
 
 BigWigs:AddColors("Forgemaster Throngus", {
