@@ -51,10 +51,9 @@ end
 function mod:OnEngage()
 	darknessComesCount = 1
 	if self:Mythic() then
-		-- TODO verify timers
-		self:CDBar(453212, 6.1) -- Obsidian Beam
-		self:CDBar(426735, 11.4) -- Burning Shadows
-		self:CDBar(453140, 12.9) -- Collapsing Night
+		self:CDBar(453212, 7.2) -- Obsidian Beam
+		self:CDBar(426735, 21.2) -- Burning Shadows
+		self:CDBar(453140, 23.4) -- Collapsing Night
 	else -- Normal, Heroic
 		self:CDBar(425264, 6.1) -- Obsidian Blast
 		self:CDBar(426735, 11.4) -- Burning Shadows
@@ -72,10 +71,9 @@ function mod:DarknessComes(args)
 		darknessComesCount = darknessComesCount + 1
 		percent = 50
 		if self:Mythic() then
-			-- TODO verify timers
-			self:CDBar(453212, 21.6) -- Obsidian Beam
-			self:CDBar(426735, 26.3) -- Burning Shadows
-			self:CDBar(453140, 27.5) -- Collapsing Night
+			self:CDBar(453140, 23.8) -- Collapsing Night
+			self:CDBar(426735, 29.2) -- Burning Shadows
+			self:CDBar(453212, 30.9) -- Obsidian Beam
 		else -- Normal, Heroic
 			self:CDBar(425264, 21.6) -- Obsidian Blast
 			self:CDBar(426735, 26.3) -- Burning Shadows
@@ -125,13 +123,11 @@ end
 function mod:ObsidianBeam(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	-- TODO verify timer
-	self:CDBar(args.spellId, 11.6)
+	self:CDBar(args.spellId, 24.3)
 end
 
 function mod:CollapsingNight(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	-- TODO verify timer
-	self:CDBar(args.spellId, 14.7)
+	self:CDBar(args.spellId, 25.9)
 end
