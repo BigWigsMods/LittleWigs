@@ -39,9 +39,9 @@ function mod:OnEngage()
 	self:CDBar(426860, 6.0) -- Dark Orb
 	self:CDBar(427001, 15.0) -- Terrifying Slam
 	self:CDBar(426787, 22.0) -- Shadowy Decay
-	--if self:Mythic() then
-		--TODO self:CDBar(452127, 20.0) -- Animate Shadows
-	--end
+	if self:Mythic() then
+		self:CDBar(452127, 32.1) -- Animate Shadows
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -76,5 +76,5 @@ end
 function mod:AnimateShadows(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
-	--self:CDBar(args.spellId, 26.0) TODO
+	self:CDBar(args.spellId, 40.6)
 end
