@@ -12,7 +12,8 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local consumingStompCount = 0
+local explosiveBrandCount = 1
+local consumingStompCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,12 +41,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	consumingStompCount = 0
-	self:Bar(374364, 3.6) -- Ley-Line Sprouts
-	self:Bar(374789, 10.6) -- Infused Strike
-	self:Bar(386660, 20.3) -- Erupting Fissure
-	self:Bar(374567, 30.1) -- Explosive Brand
-	self:Bar(374720, 45.8, CL.count:format(self:SpellName(374720), 1)) -- Consuming Stomp (1)
+	explosiveBrandCount = 1
+	consumingStompCount = 1
+	self:CDBar(374364, 3.6) -- Ley-Line Sprouts
+	self:CDBar(374789, 10.6) -- Infused Strike
+	self:CDBar(386660, 20.3) -- Erupting Fissure
+	self:CDBar(374567, 30.1, CL.count:format(self:SpellName(374567), explosiveBrandCount)) -- Explosive Brand
+	self:CDBar(374720, 45.8, CL.count:format(self:SpellName(374720), consumingStompCount)) -- Consuming Stomp
 end
 
 --------------------------------------------------------------------------------
@@ -55,13 +57,15 @@ end
 function mod:LeyLineSprouts(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 48.7)
+	self:CDBar(args.spellId, 48.7)
 end
 
 function mod:ExplosiveBrand(args)
-	self:Message(args.spellId, "orange")
+	self:StopBar(CL.count:format(args.spellName, explosiveBrandCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, explosiveBrandCount))
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 48.7)
+	explosiveBrandCount = explosiveBrandCount + 1
+	self:CDBar(args.spellId, 48.7, CL.count:format(args.spellName, explosiveBrandCount))
 end
 
 function mod:ExplosiveBrandApplied(args)
@@ -73,20 +77,19 @@ end
 function mod:EruptingFissure(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 48.7)
+	self:CDBar(args.spellId, 48.7)
 end
 
 function mod:ConsumingStomp(args)
-	consumingStompCount = consumingStompCount + 1
-	local consumingStompMessage = CL.count:format(args.spellName, consumingStompCount)
-	self:StopBar(consumingStompMessage)
-	self:Message(args.spellId, "red", consumingStompMessage)
+	self:StopBar(CL.count:format(args.spellName, consumingStompCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, consumingStompCount))
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 48.7, CL.count:format(args.spellName, consumingStompCount + 1))
+	consumingStompCount = consumingStompCount + 1
+	self:CDBar(args.spellId, 48.7, CL.count:format(args.spellName, consumingStompCount))
 end
 
 function mod:InfusedStrike(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 48.7)
+	self:CDBar(args.spellId, 48.7)
 end
