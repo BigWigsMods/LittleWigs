@@ -19,6 +19,13 @@ if L then
 end
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local lightningStrikeCount = 1
+local electricalStormCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -52,11 +59,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	lightningStrikeCount = 1
+	electricalStormCount = 1
 	if self:Tank() or self:Healer() or self:Dispeller("magic", true, 384686) then
 		self:CDBar(384686, 7.3) -- Energy Surge
 	end
-	self:CDBar(384316, 10.5) -- Lightning Strike
-	self:CDBar(384620, 30.4) -- Electrical Storm
+	self:CDBar(384316, 10.5, CL.count:format(self:SpellName(384316), lightningStrikeCount)) -- Lightning Strike
+	self:CDBar(384620, 30.4, CL.count:format(self:SpellName(384620), electricalStormCount)) -- Electrical Storm
 end
 
 --------------------------------------------------------------------------------
@@ -93,21 +102,25 @@ function mod:SurgeOfPowerAppliedToBoss(args)
 end
 
 function mod:ElectricalStorm(args)
-	self:Message(args.spellId, "red")
+	self:StopBar(CL.count:format(args.spellName, electricalStormCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, electricalStormCount))
 	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 18) -- 3s cast, 15s channel
-	self:CDBar(args.spellId, 78.8) -- cast at 100 energy: 3s cast + 15s channel + 60s energy gain + ~.8s delay
+	electricalStormCount = electricalStormCount + 1
+	self:CDBar(args.spellId, 78.8, CL.count:format(args.spellName, electricalStormCount)) -- cast at 100 energy: 3s cast + 15s channel + 60s energy gain + ~.8s delay
 	-- soonest another ability can be is 18.2s (3s cast + 15s channel + .2s delay)
-	self:CDBar(384316, 18.2) -- Lightning Strike
+	self:CDBar(384316, 18.2, CL.count:format(self:SpellName(384316), lightningStrikeCount)) -- Lightning Strike
 	if self:Tank() or self:Healer() or self:Dispeller("magic", true, 384686) then
 		self:CDBar(384686, 20.6) -- Energy Surge
 	end
 end
 
 function mod:LightningStrike(args)
-	self:Message(args.spellId, "orange")
+	self:StopBar(CL.count:format(args.spellName, lightningStrikeCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, lightningStrikeCount))
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 20.6)
+	lightningStrikeCount = lightningStrikeCount + 1
+	self:CDBar(args.spellId, 20.6, CL.count:format(args.spellName, lightningStrikeCount))
 end
 
 function mod:EnergySurge(args)
