@@ -1,5 +1,3 @@
-if UnitFactionGroup("player") ~= "Alliance" then return end
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -35,7 +33,7 @@ end
 function mod:GetOptions()
 	return {
 		"adds",
-		{257459, "FLASH"}, -- On the Hook
+		257459, -- On the Hook
 		{257348, "SAY"}, -- Meat Hook
 		257326, -- Gore Crash
 		257585, -- Cannon Barrage
@@ -70,7 +68,7 @@ end
 
 function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
 	if spellId == 257288 then -- Heavy Slash
-		self:Message(spellId, "orange")
+		self:Message(spellId, "purple")
 		self:PlaySound(spellId, "alert")
 	end
 end
@@ -96,7 +94,6 @@ function mod:OnTheHook(args)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-		self:Flash(args.spellId)
 	end
 end
 
