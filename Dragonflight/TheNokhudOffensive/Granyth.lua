@@ -21,8 +21,10 @@ end
 -- Locals
 --
 
-local shardsOfStoneRemaining = 2
 local reloadingLanceGUID = nil
+local shardsOfStoneCount = 1
+local shardsOfStoneRemaining = 2
+local eruptionCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -67,13 +69,15 @@ end
 
 function mod:OnEngage()
 	reloadingLanceGUID = nil
+	shardsOfStoneCount = 1
 	shardsOfStoneRemaining = 2
-	self:CDBar(388283, 28.8) -- Eruption
-	self:CDBar(388817, 10.6) -- Shards of Stone
-	self:CDBar(385916, 15.5) -- Tectonic Stomp
+	eruptionCount = 1
 	if self:Mythic() then
 		self:CDBar(386320, 5.1) -- Summon Saboteur
 	end
+	self:CDBar(388817, 10.6, CL.count:format(self:SpellName(388817), shardsOfStoneCount)) -- Shards of Stone
+	self:CDBar(385916, 15.5) -- Tectonic Stomp
+	self:CDBar(388283, 28.8, CL.count:format(self:SpellName(388283), eruptionCount)) -- Eruption
 end
 
 --------------------------------------------------------------------------------
@@ -83,21 +87,21 @@ end
 -- Granyth
 
 function mod:Eruption(args)
-	self:StopBar(388817) -- Shards of Stone
-	self:StopBar(args.spellId)
-	self:Message(args.spellId, "red")
+	self:StopBar(CL.count:format(self:SpellName(388817), shardsOfStoneCount)) -- Shards of Stone
+	self:StopBar(CL.count:format(args.spellName, eruptionCount))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
 	self:CastBar(args.spellId, 6)
 end
 
 function mod:ShardsOfStone(args)
-	shardsOfStoneRemaining = shardsOfStoneRemaining - 1
-	self:Message(args.spellId, "yellow")
+	self:StopBar(CL.count:format(args.spellName, shardsOfStoneCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, shardsOfStoneCount))
 	self:PlaySound(args.spellId, "alert")
+	shardsOfStoneCount = shardsOfStoneCount + 1
+	shardsOfStoneRemaining = shardsOfStoneRemaining - 1
 	if shardsOfStoneRemaining > 0 then
-		self:CDBar(args.spellId, 13.3)
-	else
-		self:StopBar(args.spellId)
+		self:CDBar(args.spellId, 13.3, CL.count:format(args.spellName, shardsOfStoneCount))
 	end
 end
 
@@ -160,9 +164,11 @@ function mod:Lanced(args)
 	if self:Mythic() then
 		self:CDBar(386320, 5.3) -- Summon Saboteur
 	end
-	self:CDBar(388817, 15.4) -- Shards of Stone
+	self:CDBar(388817, 15.4, CL.count:format(self:SpellName(388817), shardsOfStoneCount)) -- Shards of Stone
 	self:CDBar(385916, 20.1) -- Tectonic Stomp
-	self:CDBar(388283, 33.1) -- Eruption 5s stun, 27s energy gain, ~1s delay
+	self:StopBar(CL.count:format(self:SpellName(388283), eruptionCount)) -- Eruption
+	eruptionCount = eruptionCount + 1
+	self:CDBar(388283, 33.1, CL.count:format(self:SpellName(388283), eruptionCount)) -- Eruption: 5s stun, 27s energy gain, ~1s delay
 end
 
 -- Nokhud Saboteur
