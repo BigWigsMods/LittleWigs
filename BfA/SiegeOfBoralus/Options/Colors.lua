@@ -31,7 +31,7 @@ BigWigs:AddColors("Dread Captain Lockwood", {
 
 BigWigs:AddColors("Hadal Darkfathom", {
 	[257882] = "orange",
-	[261563] = "yellow",
+	[261563] = "purple",
 	[276068] = "red",
 })
 

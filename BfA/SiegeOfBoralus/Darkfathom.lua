@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Hadal Darkfathom", 1822, 2134)
 if not mod then return end
 mod:RegisterEnableMob(128651) -- Hadal Darkfathom
-mod.engageId = 2099
-mod.respawnTime = 32
+mod:SetEncounterID(2099)
+mod:SetRespawnTime(32)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -22,38 +21,45 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- XXX pre-TWW compat
+	self:Log("SPELL_CAST_START", "CrashingTide", 257862)
 	self:Log("SPELL_CAST_START", "BreakWater", 257882)
 	self:Log("SPELL_CAST_START", "TidalSurge", 276068)
 end
 
 function mod:OnEngage()
-	self:CDBar(257882, 7) -- Break Water
-	self:CDBar(261563, 12.5) -- Crashing Tide
-	self:CDBar(276068, 23.5) -- Tidal Surge
+	self:CDBar(257882, 7.5) -- Break Water
+	self:CDBar(261563, 12.4) -- Crashing Tide
+	self:CDBar(276068, 23.3) -- Tidal Surge
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- XXX pre-TWW compat
 	if spellId == 257861 then -- Crashing Tide
-		self:Message(261563, "yellow")
+		self:Message(261563, "purple")
 		self:PlaySound(261563, "alert")
-		self:CDBar(261563, 16)
+		self:CDBar(261563, 15.8)
 	end
+end
+
+function mod:CrashingTide()
+	self:Message(261563, "purple")
+	self:PlaySound(261563, "alert")
+	self:CDBar(261563, 21.4)
 end
 
 function mod:BreakWater(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 26)
-	self:CastBar(args.spellId, 4.6)
+	self:CDBar(args.spellId, 26.3)
+	self:CastBar(args.spellId, 4.6) -- time until the group takes damage
 end
 
 function mod:TidalSurge(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 55)
+	self:CDBar(args.spellId, 49.8)
 end
