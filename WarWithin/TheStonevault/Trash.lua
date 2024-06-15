@@ -155,7 +155,7 @@ end
 -- Earth Infused Golem
 
 function mod:SeismicWave(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end
 
