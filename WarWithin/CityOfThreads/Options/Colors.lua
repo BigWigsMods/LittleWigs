@@ -26,6 +26,11 @@ BigWigs:AddColors("The Coaglamation", {
 })
 
 BigWigs:AddColors("Izo, the Grand Splicer", {
+	[437700] = "orange",
+	[438860] = "yellow",
+	[439341] = "red",
+	[439401] = "yellow",
+	[439646] = "purple",
 })
 
 BigWigs:AddColors("City of Threads Trash", {
