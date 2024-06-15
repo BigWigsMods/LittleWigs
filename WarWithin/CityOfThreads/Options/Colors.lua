@@ -4,6 +4,7 @@ BigWigs:AddColors("Orator Krix'vizk", {
 	[434779] = "orange",
 	[434829] = {"green","yellow"},
 	[434926] = "blue",
+	[448561] = {"blue","red"},
 })
 
 BigWigs:AddColors("Fangs of the Queen", {

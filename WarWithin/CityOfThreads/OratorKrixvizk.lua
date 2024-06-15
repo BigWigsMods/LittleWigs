@@ -14,6 +14,8 @@ mod:SetRespawnTime(30)
 --
 
 local vociferousIndoctrinationCount = 1
+local nextSubjugate = 0
+local nextTerrorize = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,7 +27,9 @@ function mod:GetOptions()
 		434779, -- Terrorize
 		434829, -- Vociferous Indoctrination
 		434926, -- Lingering Influence
-		-- TODO Shadows of Doubt (Mythic)
+		448561, -- Shadows of Doubt (Mythic)
+	}, {
+		[448561] = CL.mythic, -- Shadows of Doubt
 	}
 end
 
@@ -35,12 +39,22 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VociferousIndoctrination", 434829)
 	self:Log("SPELL_AURA_REMOVED", "VociferousIndoctrinationOver", 434829)
 	self:Log("SPELL_PERIODIC_DAMAGE", "LingeringInfluenceDamage", 434926)
+
+	-- Mythic
+	self:Log("SPELL_CAST_SUCCESS", "ShadowsOfDoubt", 448560)
+	self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtApplied", 448561)
 end
 
 function mod:OnEngage()
+	local t = GetTime()
 	vociferousIndoctrinationCount = 1
-	self:CDBar(434722, 4.7) -- Subjugate
+	nextSubjugate = t + 4.5
+	self:CDBar(434722, 4.5) -- Subjugate
+	nextTerrorize = t + 8.1
 	self:CDBar(434779, 8.1) -- Terrorize
+	if self:Mythic() then
+		self:CDBar(448561, 15.3) -- Shadows of Doubt
+	end
 	self:CDBar(434829, 25.1, CL.count:format(self:SpellName(434829), vociferousIndoctrinationCount)) -- Vociferous Indoctrination
 end
 
@@ -51,22 +65,34 @@ end
 function mod:Subjugate(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 13.9)
+	nextSubjugate = GetTime() + 12.8
+	self:CDBar(args.spellId, 12.8)
 end
 
 function mod:Terrorize(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 8.5)
+	nextTerrorize = GetTime() + 8.1
+	self:CDBar(args.spellId, 8.1)
 end
 
 function mod:VociferousIndoctrination(args)
+	local t = GetTime()
 	self:StopBar(CL.count:format(args.spellName, vociferousIndoctrinationCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, vociferousIndoctrinationCount))
 	self:PlaySound(args.spellId, "long")
 	vociferousIndoctrinationCount = vociferousIndoctrinationCount + 1
 	self:CDBar(args.spellId, 30.3, CL.count:format(args.spellName, vociferousIndoctrinationCount))
-	-- TODO 10.92 minimum to next ability
+	-- 10.91 minimum to Subjugate
+	if nextSubjugate - t < 10.91 then
+		nextSubjugate = t + 10.91
+		self:CDBar(434722, {10.91, 12.8}) -- Subjugate
+	end
+	-- 15.38 minimum to Terrorize
+	if nextTerrorize - t < 15.38 then
+		nextTerrorize = t + 15.38
+		self:CDBar(434779, 15.38) -- Terrorize
+	end
 end
 
 function mod:VociferousIndoctrinationOver(args)
@@ -74,9 +100,31 @@ function mod:VociferousIndoctrinationOver(args)
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:LingeringInfluenceDamage(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou")
+do
+	local prev = 0
+	function mod:LingeringInfluenceDamage(args)
+		local t = args.time
+		if t - prev > 1.5 and self:Me(args.destGUID) then
+			prev = t
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
+
+-- Mythic
+
+do
+	local playerList = {}
+
+	function mod:ShadowsOfDoubt()
+		playerList = {}
+		self:CDBar(448561, 30.3)
+	end
+
+	function mod:ShadowsOfDoubtApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:PlaySound(args.spellId, "alarm", nil, playerList)
+		self:TargetsMessage(args.spellId, "red", playerList, 2)
 	end
 end
