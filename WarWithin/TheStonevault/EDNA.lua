@@ -38,6 +38,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START") -- XXX no boss frames
 	self:Log("SPELL_AURA_APPLIED", "RefractingBeamApplied", 424795)
 	self:Log("SPELL_AURA_REMOVED", "RefractingBeamRemoved", 424795)
 	self:Log("SPELL_CAST_START", "SeismicSmash", 424888)
@@ -48,17 +49,24 @@ end
 
 function mod:OnEngage()
 	self:StopBar(CL.active)
-	self:CDBar(424903, 8.3) -- Volatile Spike
-	self:CDBar(424795, 11.9, CL.beams) -- Refracting Beam
-	self:CDBar(424888, 15.6) -- Seismic Smash
-	--if self:Mythic() then
-		--self:CDBar(424879, 1) -- Earth Shatterer TODO
-	--end
+	self:CDBar(424903, 6.0) -- Volatile Spike
+	self:CDBar(424795, 9.7, CL.beams) -- Refracting Beam
+	self:CDBar(424888, 15.4) -- Seismic Smash
+	if self:Mythic() then
+		self:CDBar(424879, 25.1) -- Earth Shatterer
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- XXX no boss frames
+function mod:ENCOUNTER_START(_, id)
+	if id == self.engageId then
+		self:Engage()
+	end
+end
 
 function mod:Warmup() -- called from trash module
 	-- 170.41 [CHAT_MSG_MONSTER_SAY] What's this? Is that golem fused with something else?#Dagran Thaurissan II
@@ -76,8 +84,11 @@ do
 		end
 		playerList[#playerList + 1] = args.destName
 		self:PlaySound(args.spellId, "alarm", nil, playerList)
-		-- TODO dungeon journal says it applies to 3, but it only seems to apply to 2? maybe it's 3 in Mythic
-		self:TargetsMessage(args.spellId, "red", playerList, 2, CL.beam, nil, .8) -- debuff staggers applications in .5s intervals
+		if self:Mythic() then
+			self:TargetsMessage(args.spellId, "red", playerList, 3, CL.beam, nil, 1.1) -- debuff staggers applications in .5s intervals
+		else
+			self:TargetsMessage(args.spellId, "red", playerList, 2, CL.beam, nil, 0.6) -- debuff staggers applications in .5s intervals
+		end
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, CL.beam, nil, "Beam")
 		end
@@ -95,7 +106,7 @@ end
 function mod:SeismicSmash(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 23.0)
+	self:CDBar(args.spellId, 22.2)
 end
 
 function mod:SeismicReverberation(args)
@@ -108,11 +119,15 @@ end
 function mod:VolatileSpike(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 14.5)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 27.5)
+	else
+		self:CDBar(args.spellId, 14.5) -- TODO recheck?
+	end
 end
 
 function mod:EarthShatterer(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	--self:CDBar(args.spellId, 1) -- TODO
+	self:CDBar(args.spellId, 54.5)
 end
