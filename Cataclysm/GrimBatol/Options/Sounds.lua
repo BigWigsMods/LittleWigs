@@ -2,6 +2,9 @@
 BigWigs:AddSounds("General Umbriss", {
 	[74670] = "alert",
 	[74853] = "long",
+	[447261] = "alert",
+	[448847] = "long",
+	[448877] = "alarm",
 })
 
 BigWigs:AddSounds("Forgemaster Throngus", {
