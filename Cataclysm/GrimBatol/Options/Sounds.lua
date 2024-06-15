@@ -33,4 +33,8 @@ BigWigs:AddSounds("Erudax", {
 	[75664] = "alert",
 	[75755] = "alarm",
 	[75763] = "warning",
+	[449939] = "info",
+	[450077] = "alert",
+	[450088] = "long",
+	[450100] = "alert",
 })
