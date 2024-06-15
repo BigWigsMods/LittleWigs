@@ -86,12 +86,12 @@ end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 	if self:GetBossId(40320) then -- Valiona
+		self:UnregisterEvent(event)
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
 		self:CDBar(456751, 14.7) -- Twilight Buffet
 		-- TODO adjust other bars?
-		self:UnregisterEvent(event)
 	end
 end
 
