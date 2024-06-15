@@ -53,7 +53,7 @@ do
 	end
 
 	function mod:ChainLightning(args)
-		self:GetUnitTarget(printTarget, 1, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		self:CDBar(args.spellId, 14.5)
 	end
 end
@@ -70,7 +70,7 @@ do
 	end
 
 	function mod:UnstableCharge(args)
-		self:GetUnitTarget(printTarget, 1, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 		self:CDBar(args.spellId, 31.5)
 	end
 end
