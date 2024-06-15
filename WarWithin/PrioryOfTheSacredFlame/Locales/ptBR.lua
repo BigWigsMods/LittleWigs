@@ -14,4 +14,6 @@ if L then
 	--L.fanatical_mage = "Fanatical Mage"
 	--L.lightspawn = "Lightspawn"
 	--L.sir_braunpyke = "Sir Braunpyke"
+
+	--L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
 end
