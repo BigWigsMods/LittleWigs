@@ -117,8 +117,6 @@ end
 --end
 
 function mod:CurseOfEntropyApplied(args)
-	-- Dispeller
-	-- TargetMessage
 	if self:Dispeller("curse", nil, args.spellId) or self:Healer() or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
