@@ -34,7 +34,7 @@ function mod:GetOptions()
 	}, {
 		--[] = CL.mythic, -- Abyssal Corruption
 	}, {
-		[450088] = CL.spawning:format(CL.adds), -- Void Infusion (Adds spawning)
+		[450088] = CL.adds, -- Void Infusion (Adds)
 	}
 end
 
@@ -48,7 +48,7 @@ end
 function mod:OnEngage()
 	self:CDBar(450077, 5.0) -- Void Surge
 	self:CDBar(449939, 12.0) -- Shadow Gale
-	self:CDBar(450088, 39.0, CL.spawning:format(CL.adds)) -- Void Infusion
+	self:CDBar(450088, 39.0, CL.adds) -- Void Infusion
 	self:CDBar(450100, 45.0) -- Crush
 end
 
@@ -99,7 +99,7 @@ end
 function mod:VoidInfusion(args)
 	self:Message(args.spellId, "cyan", CL.spawning:format(CL.adds))
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 50.0, CL.spawning:format(CL.adds))
+	self:CDBar(args.spellId, 50.0, CL.adds)
 end
 
 function mod:Crush(args)
