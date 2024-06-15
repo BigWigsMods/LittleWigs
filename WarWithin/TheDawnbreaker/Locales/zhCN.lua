@@ -1,18 +1,18 @@
 local L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "zhCN")
 if not L then return end
 if L then
-	--L.nightfall_shadowmage = "Nightfall Shadowmage"
-	--L.nightfall_ritualist = "Nightfall Ritualist"
-	--L.nightfall_commander = "Nightfall Commander"
-	--L.sureki_webmage = "Sureki Webmage"
-	--L.arathi_bomb = "Arathi Bomb"
-	--L.ascendant_viscoxria = "Ascendant Vis'coxria"
-	--L.deathscreamer_ikentak = "Deathscreamer Iken'tak"
-	--L.ixkreten_the_unbreakable = "Ixkreten the Unbreakable"
-	--L.sureki_militant = "Sureki Militant"
-	--L.nightfall_tactician = "Nightfall Tactician"
-	--L.manifested_shadow = "Manifested Shadow"
-	--L.nightfall_dark_architect = "Nightfall Dark Architect"
+	L.nightfall_shadowmage = "夜幕影法师"
+	L.nightfall_ritualist = "夜幕祭师"
+	L.nightfall_commander = "夜幕司令官"
+	L.sureki_webmage = "苏雷吉网法师"
+	L.arathi_bomb = "阿拉希炸弹"
+	L.ascendant_viscoxria = "扬升者维斯可里亚"
+	L.deathscreamer_ikentak = "死亡尖啸者艾肯塔克"
+	L.ixkreten_the_unbreakable = "坚不可摧的伊克斯雷腾"
+	L.sureki_militant = "苏雷吉好战者"
+	L.nightfall_tactician = "夜幕战略家"
+	L.manifested_shadow = "暗影具象"
+	L.nightfall_dark_architect = "夜幕黑暗建筑师"
 end
 
 L = BigWigs:NewBossLocale("Rasha'nan Dawnbreaker", "zhCN")
