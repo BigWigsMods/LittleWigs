@@ -85,7 +85,7 @@ function mod:CommandingRoar(args)
 end
 
 function mod:RockSpike(args)
-	-- impossible to get target? maybe targetscan
+	-- impossible to get targets, aura 448870 is hidden
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 25.0)
@@ -120,8 +120,7 @@ function mod:Siege(args)
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = self:GetHealth(unit)
-	if hp < 36 then
+	if self:GetHealth(unit) < 36 then
 		self:UnregisterUnitEvent(event, unit)
 		self:Message(74853, "cyan", CL.soon:format(self:SpellName(74853)))
 	end
