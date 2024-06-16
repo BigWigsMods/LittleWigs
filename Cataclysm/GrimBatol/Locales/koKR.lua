@@ -10,8 +10,10 @@ end
 L = BigWigs:NewBossLocale("Grim Batol Trash", "koKR")
 if L then
 	--L.twilight_earthcaller = "Twilight Earthcaller"
+	--L.twilight_brute = "Twilight Brute"
 	--L.twilight_destroyer = "Twilight Destroyer"
 	--L.twilight_beguiler = "Twilight Beguiler"
+	--L.twilight_warlock = "Twilight Warlock"
 	--L.twilight_decapitator = "Twilight Decapitator"
 	--L.twilight_lavabender = "Twilight Lavabender"
 	--L.faceless_corruptor = "Faceless Corruptor"

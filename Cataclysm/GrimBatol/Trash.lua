@@ -8,8 +8,10 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	224219, -- Twilight Earthcaller
+	224152, -- Twilight Brute
 	224609, -- Twilight Destroyer
 	40167, -- Twilight Beguiler
+	224271, -- Twilight Warlock
 	224240, -- Twilight Decapitator
 	224249, -- Twilight Lavabender
 	39392 -- Faceless Corruptor
@@ -22,8 +24,10 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.twilight_earthcaller = "Twilight Earthcaller"
+	L.twilight_brute = "Twilight Brute"
 	L.twilight_destroyer = "Twilight Destroyer"
 	L.twilight_beguiler = "Twilight Beguiler"
+	L.twilight_warlock = "Twilight Warlock"
 	L.twilight_decapitator = "Twilight Decapitator"
 	L.twilight_lavabender = "Twilight Lavabender"
 	L.faceless_corruptor = "Faceless Corruptor"
@@ -37,11 +41,15 @@ function mod:GetOptions()
 	return {
 		-- Twilight Earthcaller
 		451871, -- Mass Tremor
+		-- Twilight Brute
+		456696, -- Obsidian Stomp
 		-- Twilight Destroyer
 		{451613, "SAY"}, -- Twilight Flame
 		451939, -- Umbral Wind
 		-- Twilight Beguiler
 		76711, -- Sear Mind
+		-- Twilight Warlock
+		{451224, "DISPEL"}, -- Enveloping Shadowflame
 		-- Twilight Decapitator
 		451067, -- Decapitate
 		-- Twilight Lavabender
@@ -52,8 +60,10 @@ function mod:GetOptions()
 		451391, -- Mind Piercer
 	}, {
 		[451871] = L.twilight_earthcaller,
+		[456696] = L.twilight_brute,
 		[451613] = L.twilight_destroyer,
 		[76711] = L.twilight_beguiler,
+		[451224] = L.twilight_warlock,
 		[451067] = L.twilight_decapitator,
 		[456711] = L.twilight_lavabender,
 		[451391] = L.faceless_corruptor,
@@ -64,6 +74,9 @@ function mod:OnBossEnable()
 	-- Twilight Earthcaller
 	self:Log("SPELL_CAST_START", "MassTremor", 451871)
 
+	-- Twilight Brute
+	self:Log("SPELL_CAST_SUCCESS", "ObsidianStomp", 456696)
+
 	-- Twilight Destroyer
 	self:Log("SPELL_AURA_APPLIED", "TwilightFlameApplied", 451613)
 	self:Log("SPELL_CAST_START", "UmbralWind", 451939)
@@ -72,7 +85,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SearMind", 76711)
 
 	-- Twilight Warlock
-	-- TODO Enveloping Shadowflame
+	self:Log("SPELL_AURA_APPLIED", "EnvelopingShadowflameApplied", 451224)
 
 	-- Twilight Decapitator
 	self:Log("SPELL_CAST_START", "Decapitate", 451067)
@@ -97,6 +110,22 @@ function mod:MassTremor(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
+-- Twilight Brute
+
+do
+	local prev = 0
+	function mod:ObsidianStomp(args)
+		-- there are some RP fighting mobs below who cast this, filter them
+		local t = args.time
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
+		if unit and UnitCanAttack("player", unit) and t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
 -- Twilight Destroyer
 
 function mod:TwilightFlameApplied(args)
@@ -108,7 +137,7 @@ function mod:TwilightFlameApplied(args)
 end
 
 function mod:UmbralWind(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -117,6 +146,20 @@ end
 function mod:SearMind(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Twilight Warlock
+
+do
+	local prev = 0
+	function mod:EnvelopingShadowflameApplied(args)
+		local t = args.time
+		if t - prev > 2 and (self:Dispeller("curse", nil, args.spellId) or self:Healer() or self:Me(args.destGUID)) then
+			prev = t
+			self:TargetMessage(args.spellId, "orange", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
+	end
 end
 
 -- Twilight Decapitator
@@ -134,7 +177,6 @@ function mod:ShadowlavaBlast(args)
 end
 
 function mod:DarkEruption(args)
-	-- TODO targetscan?
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
