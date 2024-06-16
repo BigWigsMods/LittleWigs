@@ -18,7 +18,7 @@ function mod:GetOptions()
 		457664, -- Forge Weapon
 		449687, -- Molten Mace
 		449444, -- Molten Flurry
-		{449474, "SAY"}, -- Molten Spark
+		{449474, "SAY", "SAY_COUNTDOWN"}, -- Molten Spark
 		447395, -- Fiery Cleave
 	}
 end
@@ -30,14 +30,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "MoltenMaceRemoved", 449687)
 	self:Log("SPELL_CAST_START", "MoltenFlurry", 449444)
 	self:Log("SPELL_AURA_APPLIED", "MoltenSparkApplied", 449474)
+	self:Log("SPELL_AURA_REFRESH", "MoltenSparkRefresh", 449474)
+	self:Log("SPELL_AURA_REMOVED", "MoltenSparkRemoved", 449474)
 	self:Log("SPELL_CAST_START", "FieryCleave", 447395)
 end
 
 function mod:OnEngage()
 	self:SetStage(0.5)
-	self:CDBar(457664, 8.4) -- Forge Weapon
+	self:CDBar(457664, 8.4, 451996) -- Forge Weapon, Forge Axe
 	self:CDBar(447395, 19.2) -- Fiery Cleave
 	self:CDBar(449444, 38.6) -- Molten Flurry
+	-- TODO according to the dungeon journal Molten Mace is Mythic-only, but it's actually cast in all difficulties
 	self:CDBar(449687, 55.6) -- Molten Mace
 end
 
@@ -76,15 +79,18 @@ end
 --
 
 function mod:ForgeWeapon(args)
+	self:StopBar(args.spellId)
 	self:Message(457664, "cyan", args.spellName, args.spellId)
 	self:PlaySound(457664, "info")
-	self:CDBar(457664, 19.4) -- TODO alter bar text to say which is next?
 	if args.spellId == 451996 then -- Forge Axe
 		self:SetStage(1)
+		self:CDBar(457664, 19.4, 456902) -- Forge Swords
 	elseif args.spellId == 456902 then -- Forge Swords
 		self:SetStage(2)
+		self:CDBar(457664, 20.6, 456900) -- Forge Mace
 	else -- 456900, Forge Mace
 		self:SetStage(3)
+		self:CDBar(457664, 20.6, 451996) -- Forge Axe
 	end
 end
 
@@ -122,9 +128,23 @@ function mod:MoltenSparkApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
-		-- TODO this should probably have a say countdown, but this can be
-		-- SPELL_AURA_REFRESH and that interaction needs to be handled
 		self:Say(args.spellId, nil, nil, "Molten Spark")
+		self:SayCountdown(args.spellId, 6)
+	end
+end
+
+function mod:MoltenSparkRefresh(args)
+	if self:Me(args.destGUID) then
+		-- this debuff usually goes on two players with applications 3s apart. but if you are the only valid
+		-- target this can be refreshed intead, extending the original debuff back to a 6s duration.
+		self:CancelSayCountdown(args.spellId)
+		self:SayCountdown(args.spellId, 6)
+	end
+end
+
+function mod:MoltenSparkRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
 	end
 end
 
