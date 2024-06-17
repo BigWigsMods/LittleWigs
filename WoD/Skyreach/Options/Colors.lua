@@ -21,5 +21,5 @@ BigWigs:AddColors("Rukhran", {
 BigWigs:AddColors("High Sage Viryx", {
 	[153954] = {"blue","yellow"},
 	[154055] = "orange",
-	["add"] = "red",
+	["adds"] = "red",
 })

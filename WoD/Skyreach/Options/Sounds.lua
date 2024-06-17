@@ -20,5 +20,5 @@ BigWigs:AddSounds("Rukhran", {
 BigWigs:AddSounds("High Sage Viryx", {
 	[153954] = "warning",
 	[154055] = "long",
-	["add"] = "info",
+	["adds"] = "info",
 })
