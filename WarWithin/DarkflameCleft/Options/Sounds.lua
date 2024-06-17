@@ -10,6 +10,10 @@ BigWigs:AddSounds("Blazikon", {
 })
 
 BigWigs:AddSounds("The Candle King", {
+	[420659] = "info",
+	[420696] = "alarm",
+	[422648] = {"alarm","warning"},
+	[426145] = "alert",
 })
 
 BigWigs:AddSounds("The Darkness", {
