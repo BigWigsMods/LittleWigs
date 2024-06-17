@@ -73,12 +73,20 @@ function mod:GossamerOnslaught(args)
 	self:CDBar(args.spellId, 40.0)
 end
 
-function mod:InsatiableApplied(args)
-	local stacks = args.amount or 1
-	self:Message(args.spellId, "orange", CL.stack:format(stacks, args.spellName, CL.boss))
-	self:PlaySound(args.spellId, "alarm")
-	if stacks > 1 then
-		self:StopBar(CL.stack:format(stacks - 1, args.spellName, CL.boss))
+do
+	local prev = 0
+	function mod:InsatiableApplied(args)
+		local stacks = args.amount or 1
+		self:Message(args.spellId, "orange", CL.stack:format(stacks, args.spellName, CL.boss))
+		if stacks > 1 then
+			self:StopBar(CL.stack:format(stacks - 1, args.spellName, CL.boss))
+		end
+		self:Bar(args.spellId, 12, CL.stack:format(stacks, args.spellName, CL.boss))
+		-- throttle the sound, if your group is failing the boss can eat several at once
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
-	self:Bar(args.spellId, 12, CL.stack:format(stacks, args.spellName, CL.boss))
 end
