@@ -24,4 +24,16 @@ BigWigs:AddColors("Voidstone Monstrosity", {
 })
 
 BigWigs:AddColors("The Rookery Trash", {
+	[423979] = "orange",
+	[426893] = "orange",
+	[427260] = "red",
+	[427323] = "yellow",
+	[430013] = "orange",
+	[430179] = {"blue","orange"},
+	[430754] = "red",
+	[430812] = "yellow",
+	[432781] = {"green","yellow"},
+	[432959] = "red",
+	[443854] = "orange",
+	[450628] = "cyan",
 })
