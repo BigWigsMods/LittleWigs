@@ -10,10 +10,10 @@ end
 L = BigWigs:NewBossLocale("Grim Batol Trash", "zhCN")
 if L then
 	L.twilight_earthcaller = "暮光唤地者"
-	--L.twilight_brute = "Twilight Brute"
+	L.twilight_brute = "暮光蛮兵"
 	L.twilight_destroyer = "暮光毁灭者"
 	L.twilight_beguiler = "暮光欺诈者"
-	--L.twilight_warlock = "Twilight Warlock"
+	L.twilight_warlock = "暮光术士"
 	L.twilight_decapitator = "暮光斩首者"
 	L.twilight_lavabender = "暮光熔岩操纵使"
 	L.faceless_corruptor = "无面腐蚀者"
