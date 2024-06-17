@@ -13,6 +13,11 @@ BigWigs:AddSounds("The Candle King", {
 })
 
 BigWigs:AddSounds("The Darkness", {
+	[426943] = "warning",
+	[427015] = "alarm",
+	[427025] = "alarm",
+	[427157] = "alert",
+	[427176] = "alert",
 })
 
 BigWigs:AddSounds("Darkflame Cleft Trash", {
