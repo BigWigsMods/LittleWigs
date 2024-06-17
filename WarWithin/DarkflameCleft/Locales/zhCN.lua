@@ -6,5 +6,5 @@ end
 
 L = BigWigs:NewBossLocale("The Darkness", "zhCN")
 if L then
-	--L.wriggling_darkspawn = "Wriggling Darkspawn"
+	L.wriggling_darkspawn = "蠕动暗嗣"
 end
