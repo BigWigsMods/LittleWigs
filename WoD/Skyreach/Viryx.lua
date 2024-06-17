@@ -76,8 +76,8 @@ do
 			self:GetUnitTarget(bossTarget, 0.7, self:UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
 		elseif spellId == 154049 then -- Call Adds
-			self:MessageOld("adds", "red", "info", CL.add_spawned, L.add_icon) -- Cog icon
-			self:CDBar("adds", 58, CL.add, L.add_icon) -- 57-60
+			self:MessageOld("adds", "red", "info", CL.add_spawned, L.adds_icon) -- Cog icon
+			self:CDBar("adds", 58, CL.add, L.adds_icon) -- 57-60
 		end
 	end
 end
