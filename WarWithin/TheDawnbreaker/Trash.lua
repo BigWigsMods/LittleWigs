@@ -59,7 +59,7 @@ function mod:GetOptions()
 		-- Arathi Bomb
 		451091, -- Plant Arathi Bomb
 		-- Ascendant Vis'coxria
-		451102, -- Radiant Decay
+		451102, -- Shadowy Decay
 		-- Deathscreamer Iken'tak
 		450854, -- Dark Orb
 		-- Ixkreten the Unbreakable
@@ -109,7 +109,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PlantArathiBomb", 451091)
 
 	-- Ascendant Vis'coxria
-	self:Log("SPELL_CAST_START", "RadiantDecay", 451102)
+	self:Log("SPELL_CAST_START", "ShadowyDecay", 451102)
 	self:Death("AscendantViscoxriaDeath", 211261)
 
 	-- Deathscreamer Iken'tak
@@ -202,7 +202,7 @@ end
 do
 	local timer
 
-	function mod:RadiantDecay(args)
+	function mod:ShadowyDecay(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
@@ -217,7 +217,7 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(451102) --Radiant Decay
+		self:StopBar(451102) -- Shadowy Decay
 	end
 end
 
