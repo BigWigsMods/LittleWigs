@@ -36,12 +36,13 @@ end
 
 function mod:GetOptions()
 	return {
-		-- TODO confirm these three share/gain abilities (must be mythic-only?)
-		-- Ixin, Nakt, Atik
+		-- Ixin
 		434824, -- Web Spray
-		438826, -- Poisonous Cloud
 		434802, -- Horrifying Shrill
+		-- Nakt
 		438877, -- Call of the Brood
+		-- Atik
+		438826, -- Poisonous Cloud
 		-- Hulking Bloodguard
 		453161, -- Impale
 		434252, -- Massive Slam
@@ -51,7 +52,9 @@ function mod:GetOptions()
 		433845, -- Erupting Webs
 		433841, -- Venom Volley
 	}, {
-		[434824] = L.nakt.." / "..L.ixin.." / "..L.atik,
+		[434824] = L.ixin,
+		[438877] = L.nakt,
+		[438826] = L.atik,
 		[453161] = L.hulking_bloodguard,
 		[448248] = L.bloodstained_webmage,
 		[433845] = L.blood_overseer,
