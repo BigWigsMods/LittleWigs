@@ -111,7 +111,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "PheromoneVeil", 441795)
 
 	-- Pale Priest
-	self:Log("SPELL_CAST_START", "WhatsThat", 442653) -- TODO removed? or normal only
+	self:Log("SPELL_CAST_START", "WhatsThat", 442653) -- Normal only
 	self:Log("SPELL_AURA_APPLIED", "WebWrap", 448047)
 
 	-- Eye of the Queen
