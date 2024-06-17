@@ -20,6 +20,7 @@ if L then
 	L.custom_on_markadd_icon = 8
 
 	L.adds_icon = "icon_petfamily_mechanical"
+	L.construct = "Skyreach Shield Construct" -- NPC ID 76292
 end
 
 --------------------------------------------------------------------------------
@@ -27,14 +28,13 @@ end
 --
 
 function mod:GetOptions()
-	local _, name = EJ_GetCreatureInfo(3, 968)
 	return {
 		153954, -- Cast Down
 		"custom_on_markadd",
 		"adds",
 		154055, -- Shielding
 	},nil,{
-		["adds"] = name, -- Adds (Arakkoa Shield Construct)
+		["adds"] = L.construct, -- Adds (Skyreach Shield Construct)
 	}
 end
 
