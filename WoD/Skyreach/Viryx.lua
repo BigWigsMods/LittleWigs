@@ -19,9 +19,7 @@ if L then
 	L.custom_on_markadd_desc = "Mark the Solar Zealot with {rt8}, requires promoted or leader."
 	L.custom_on_markadd_icon = 8
 
-	L.add = "Add Spawning"
-	L.add_desc = "Warning for when the Skyreach Shield Construct is spawning."
-	L.add_icon = "icon_petfamily_mechanical"
+	L.adds_icon = "icon_petfamily_mechanical"
 end
 
 --------------------------------------------------------------------------------
@@ -29,11 +27,14 @@ end
 --
 
 function mod:GetOptions()
+	local _, name = EJ_GetCreatureInfo(3, 968)
 	return {
 		153954, -- Cast Down
 		"custom_on_markadd",
-		"add",
+		"adds",
 		154055, -- Shielding
+	},nil,{
+		["adds"] = name, -- Adds (Arakkoa Shield Construct)
 	}
 end
 
@@ -46,7 +47,7 @@ end
 function mod:OnEngage()
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	self:CDBar(153954, 15) -- Cast Down
-	self:Bar("add", 32, CL.add, L.add_icon)
+	self:Bar("adds", 32, CL.add, L.adds_icon)
 end
 
 --------------------------------------------------------------------------------
@@ -75,8 +76,8 @@ do
 			self:GetUnitTarget(bossTarget, 0.7, self:UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
 		elseif spellId == 154049 then -- Call Adds
-			self:MessageOld("add", "red", "info", CL.add_spawned, L.add_icon) -- Cog icon
-			self:CDBar("add", 58, CL.add, L.add_icon) -- 57-60
+			self:MessageOld("adds", "red", "info", CL.add_spawned, L.add_icon) -- Cog icon
+			self:CDBar("adds", 58, CL.add, L.add_icon) -- 57-60
 		end
 	end
 end

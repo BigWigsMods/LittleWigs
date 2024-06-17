@@ -101,7 +101,7 @@ end
 
 function mod:UNIT_POWER_UPDATE(_, unit)
 	if UnitPower(unit) == 0 then
-		self:Message("stages", "yellow", CL.spawning:format(CL.adds), false)
+		self:Message("stages", "yellow", CL.adds_spawning, false)
 		self:PlaySound("stages", "info")
 	end
 end

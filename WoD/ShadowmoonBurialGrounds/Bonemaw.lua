@@ -64,7 +64,7 @@ function mod:OnEngage()
 	corpseBreathCount = 0
 	self:CDBar(165578, 6) -- Corpse Breath
 	self:CDBar(153804, 16.7) -- Inhale
-	self:Bar("summon_worms", 26.9, CL.spawning:format(CL.adds), L.summon_worms_icon)
+	self:Bar("summon_worms", 26.9, CL.adds, L.summon_worms_icon)
 	self:CDBar(154175, 31.5) -- Body Slam
 	self:Bar("submerge", 64.8, L.submerge, L.submerge_icon)
 end
@@ -85,7 +85,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	-- %s's piercing screech attracts nearby Carrion Worms!
 	if msg:find(L.summon_worms_trigger, nil, true) then
-		self:Message("summon_worms", "cyan", CL.spawning:format(CL.adds), L.summon_worms_icon)
+		self:Message("summon_worms", "cyan", CL.adds_spawning, L.summon_worms_icon)
 		self:PlaySound("summon_worms", "info")
 		return
 	end

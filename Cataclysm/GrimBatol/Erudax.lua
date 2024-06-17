@@ -97,7 +97,7 @@ function mod:VoidSurge(args)
 end
 
 function mod:VoidInfusion(args)
-	self:Message(args.spellId, "cyan", CL.spawning:format(CL.adds))
+	self:Message(args.spellId, "cyan", CL.adds_spawning)
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 50.0, CL.adds)
 end

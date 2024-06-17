@@ -132,7 +132,7 @@ function mod:PulverizingCreationsApplied(args)
 	-- happens simultaneously with Pulverizing Exhalation
 	-- affects 0 players in Heroic, 2 players in Mythic+, all players in hard mode
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, CL.spawning:format(CL.add), nil, "Add Spawning")
+		self:Say(args.spellId, CL.add_spawning, nil, "Add Spawning")
 	end
 end
 

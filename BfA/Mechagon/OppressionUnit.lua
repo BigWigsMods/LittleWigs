@@ -83,7 +83,7 @@ function mod:Wreck(args)
 end
 
 function mod:ReinforcementRelay(args)
-	self:Message(args.spellId, "orange", CL.spawning:format(CL.adds))
+	self:Message(args.spellId, "orange", CL.adds_spawning)
 	self:PlaySound(args.spellId, "alarm")
 	self:Bar(args.spellId, 32.8)
 	self:CDBar(296522, 15) -- Self-Destruct
