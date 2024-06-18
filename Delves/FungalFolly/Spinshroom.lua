@@ -37,7 +37,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_CAST_START", "Fungalstorm", 415406)
 	self:Log("SPELL_AURA_APPLIED", "Dizzy", 415499)
 	self:Log("SPELL_CAST_START", "FungalCharge", 415492)
@@ -46,20 +45,13 @@ end
 
 function mod:OnEngage()
 	self:CDBar(415406, 5.7) -- Fungalstorm
-	self:CDBar(415492, 20.0) -- Fungal Charge
-	self:CDBar(425315, 26.4) -- Fungsplosion
+	self:CDBar(415492, 19.7) -- Fungal Charge
+	self:CDBar(425315, 26.3) -- Fungsplosion
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:Fungalstorm(args)
 	self:Message(args.spellId, "yellow")
