@@ -236,7 +236,7 @@ end
 
 function mod:DarkBarrage(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "long")
 end
 
 -- Sureki Unnaturaler
