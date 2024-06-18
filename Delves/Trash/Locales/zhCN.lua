@@ -6,6 +6,8 @@ if L then
 	L.gnarled_reviver = "多瘤复生者"
 	L.infected_beast = "被感染的野兽"
 	L.fungal_gutter = "真菌开膛者"
+	--L.fungarian_flinger = "Fungarian Flinger"
+	--L.particularly_bad_guy = "Particularly Bad Guy"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "zhCN")

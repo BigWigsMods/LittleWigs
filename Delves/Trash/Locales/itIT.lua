@@ -6,6 +6,8 @@ if L then
 	--L.gnarled_reviver = "Gnarled Reviver"
 	--L.infected_beast = "Infected Beast"
 	--L.fungal_gutter = "Fungal Gutter"
+	--L.fungarian_flinger = "Fungarian Flinger"
+	--L.particularly_bad_guy = "Particularly Bad Guy"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "itIT")
