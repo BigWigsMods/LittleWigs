@@ -10,13 +10,20 @@ mod:SetEncounterID(2909)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local spliceCount = 1
+local transformCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		439401, -- Shifting Anomalies
-		439341, -- Splice
+		{439341, "HEALER"}, -- Splice
 		437700, -- Tremor Slam
 		438860, -- Umbral Weave
 		439646, -- Process of Elimination
@@ -33,12 +40,16 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	spliceCount = 1
+	transformCount = 1
 	self:CDBar(439401, 4.0) -- Shifting Anomalies
 	self:CDBar(439341, 10.0) -- Splice
+	self:CDBar(437700, 16.0) -- Tremor Slam
 	self:CDBar(438860, 16.0) -- Umbral Weave
-	self:CDBar(437700, 36.0) -- Tremor Slam
-	self:CDBar(439646, 50.0) -- Process of Elimination
+	self:CDBar(439646, 55.0) -- Process of Elimination
 end
+
+-- TODO needs verifyenable
 
 --------------------------------------------------------------------------------
 -- Event Handlers
@@ -47,29 +58,52 @@ end
 function mod:ShiftingAnomalies(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 55.0)
+	self:CDBar(args.spellId, 60.0)
 end
 
 function mod:Splice(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 20.0) -- TODO 20, 35 alternating?
+	spliceCount = spliceCount + 1
+	if spliceCount % 2 == 0 then
+		self:CDBar(args.spellId, 22.0)
+	else
+		self:CDBar(args.spellId, 38.0)
+	end
 end
 
 function mod:TremorSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 35.0) -- TODO 35, 20 alternating?
+	-- Tremor Slam and Umbral Weave share a 60s cycle, where first one ability is cast and then the other.
+	-- the order is random but both will always be cast once each per 22s/38s pair in the cycle.
+	transformCount = transformCount + 1
+	if transformCount % 2 == 0 then
+		self:CDBar(438860, 22.0) -- Umbral Weave
+		self:CDBar(args.spellId, 60.0)
+	else
+		self:CDBar(args.spellId, 38.0)
+		self:CDBar(438860, {38.0, 60.0}) -- Umbral Weave
+	end
 end
 
 function mod:UmbralWeave(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 55.0) -- TODO 55?
+	-- Umbral Weave and Tremor Slam share a 60s cycle, where first one ability is cast and then the other.
+	-- the order is random but both will always be cast once each per 22s/38s pair in the cycle.
+	transformCount = transformCount + 1
+	if transformCount % 2 == 0 then
+		self:CDBar(437700, 22.0) -- Tremor Slam
+		self:CDBar(args.spellId, 60.0)
+	else
+		self:CDBar(437700, {38.0, 60.0}) -- Tremor Slam
+		self:CDBar(args.spellId, 38.0)
+	end
 end
 
 function mod:ProcessOfElimination(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 55.0) -- TODO 55?
+	self:CDBar(args.spellId, 60.0)
 end
