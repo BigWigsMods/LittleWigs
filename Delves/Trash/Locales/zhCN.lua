@@ -6,8 +6,8 @@ if L then
 	L.gnarled_reviver = "多瘤复生者"
 	L.infected_beast = "被感染的野兽"
 	L.fungal_gutter = "真菌开膛者"
-	--L.fungarian_flinger = "Fungarian Flinger"
-	--L.particularly_bad_guy = "Particularly Bad Guy"
+	L.fungarian_flinger = "真菌人投掷者"
+	L.particularly_bad_guy = "特别坏的家伙"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "zhCN")
@@ -31,7 +31,7 @@ if L then
 	L.nerubian_captain = "蛛魔队长"
 	L.chittering_fearmonger = "啾鸣释惧蛛"
 	L.skittering_swarmer = "敏捷的聚生虫"
-	--L.nerubian_webspinner = "Nerubian Webspinner"
+	L.nerubian_webspinner = "蛛魔织网者"
 end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "zhCN")
