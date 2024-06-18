@@ -22,7 +22,6 @@ BigWigs:AddColors("The Coaglamation", {
 	[438658] = "orange",
 	[441289] = "red",
 	[441395] = "yellow",
-	[448185] = "cyan",
 })
 
 BigWigs:AddColors("Izo, the Grand Splicer", {
