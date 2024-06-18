@@ -24,6 +24,7 @@ BigWigs:AddSounds("Kobyss Delve Trash", {
 
 BigWigs:AddSounds("Nerubian Delve Trash", {
 	[433410] = "alarm",
+	[433448] = "info",
 	[449318] = "alert",
 	[450197] = "alarm",
 	[450509] = "alarm",

@@ -29,6 +29,7 @@ if L then
 	L.nerubian_captain = "蛛魔队长"
 	L.chittering_fearmonger = "啾鸣释惧蛛"
 	L.skittering_swarmer = "敏捷的聚生虫"
+	--L.nerubian_webspinner = "Nerubian Webspinner"
 end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "zhCN")

@@ -29,6 +29,7 @@ if L then
 	--L.nerubian_captain = "Nerubian Captain"
 	--L.chittering_fearmonger = "Chittering Fearmonger"
 	--L.skittering_swarmer = "Skittering Swarmer"
+	--L.nerubian_webspinner = "Nerubian Webspinner"
 end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "frFR")
