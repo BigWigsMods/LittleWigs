@@ -36,34 +36,30 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_CAST_START", "InfusionOfPoison", 446832)
+	self:Log("SPELL_AURA_APPLIED", "InfusionOfPoisonApplied", 446832)
 	self:Log("SPELL_CAST_START", "RendVoid", 447187)
 	self:Log("SPELL_CAST_SUCCESS", "EncasingWebs", 447143)
-	-- TODO Poison Glob, no event
 end
 
 function mod:OnEngage()
-	self:CDBar(447187, 6.9) -- Rend Void
-	self:CDBar(447143, 13.0) -- Encasing Webs
-	self:CDBar(446832, 21.5) -- Infusion of Poison
+	self:CDBar(447187, 6.1) -- Rend Void
+	self:CDBar(447143, 12.2) -- Encasing Webs
+	self:CDBar(446832, 18.3) -- Infusion of Poison
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
+function mod:InfusionOfPoison(args)
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
+	self:CDBar(args.spellId, 26.7)
 end
 
-function mod:InfusionOfPoison(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 26.7)
+function mod:InfusionOfPoisonApplied(args)
+	self:Bar(args.spellId, 12, CL.onboss:format(args.spellName))
 end
 
 function mod:RendVoid(args)
@@ -75,5 +71,5 @@ end
 function mod:EncasingWebs(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 32.8)
+	self:CDBar(args.spellId, 31.6)
 end
