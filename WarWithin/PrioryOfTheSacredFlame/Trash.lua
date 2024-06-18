@@ -55,7 +55,7 @@ function mod:GetOptions()
 		autotalk,
 		435088, -- Blessing of the Sacred Flame
 		-- Guard Captain Suleyman
-		448485, -- Shield Slam
+		{448485, "TANK_HEALER"}, -- Shield Slam
 		448492, -- Thunderclap
 		-- Forge Master Damian
 		427897, -- Heat Wave
@@ -210,7 +210,7 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "orange") -- TODO revisit sound/color
+		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 9.7)
 		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30)
@@ -297,7 +297,7 @@ do
 		end
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alert")
-		--self:CDBar(args.spellId, 57.1) -- TODO is it just cast once at 50% now?
+		self:CDBar(args.spellId, 48.6)
 		timer = self:ScheduleTimer("HighPriestAemyaDeath", 30)
 	end
 
