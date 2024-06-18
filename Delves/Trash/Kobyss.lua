@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	210759, -- Brann Bronzebeard
 	214628, -- Partially-Chewed Goblin (Tek-Rethan Abyss gossip NPC)
 	214625, -- Kobyss Necromancer
+	220710, -- Leviathan Manipulator
 	214338, -- Kobyss Spearfisher
 	214551 -- Wandering Gutter
 )
@@ -33,7 +34,7 @@ local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
 		autotalk,
-		-- Kobyss Necromancer
+		-- Kobyss Necromancer / Leviathan Manipulator
 		455932, -- Defiling Breath
 		445252, -- Necrotic End
 		-- Kobyss Spearfisher
@@ -54,7 +55,7 @@ function mod:OnBossEnable()
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
 
-	-- Kobyss Necromancer
+	-- Kobyss Necromancer / Leviathan Manipulator
 	self:Log("SPELL_CAST_START", "DefilingBreath", 455932)
 	self:Log("SPELL_CAST_SUCCESS", "NecroticEnd", 445252)
 
