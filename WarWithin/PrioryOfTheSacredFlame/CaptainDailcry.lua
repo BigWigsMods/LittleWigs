@@ -22,6 +22,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START") --- XXX no boss frames
 	self:Log("SPELL_CAST_START", "BattleCry", 424419)
 	self:Log("SPELL_CAST_START", "HurlSpear", 447270)
 	self:Log("SPELL_CAST_START", "PierceArmor", 424414)
@@ -38,6 +39,13 @@ end
 -- Event Handlers
 --
 
+-- XXX no boss frames
+function mod:ENCOUNTER_START(_, id)
+	if id == self.engageId then
+		self:Engage()
+	end
+end
+
 function mod:BattleCry(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
@@ -45,7 +53,6 @@ function mod:BattleCry(args)
 end
 
 function mod:HurlSpear(args)
-	-- doesn't seem possible to get target
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 15.8)
