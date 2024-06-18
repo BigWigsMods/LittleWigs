@@ -9,6 +9,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	213447, -- Kuvkel (Kriegval's Rest gossip NPC)
 	214143, -- Foreman Bruknar (The Waterworks gossip NPC)
+	214290, -- Pagsly (The Waterworks gossip NPC)
 	204127, -- Kobold Taskfinder
 	213577, -- Spitfire Charger
 	211777 -- Spitfire Fusetender
@@ -35,6 +36,7 @@ function mod:GetOptions()
 		autotalk,
 		-- Kobold Taskfinder
 		449071, -- Blazing Wick
+		448399, -- Battle Cry
 		-- Spitfire Charger
 		445210, -- Fire Charge
 		-- Spitfire Fusetender
@@ -52,6 +54,7 @@ function mod:OnBossEnable()
 
 	-- Kobold Taskfinder
 	self:RegisterEvent("UNIT_SPELLCAST_START") -- Blazing Wick
+	self:Log("SPELL_CAST_START", "BattleCry", 448399)
 
 	-- Spitfire Charger
 	self:Log("SPELL_CAST_START", "FireCharge", 445210)
@@ -68,12 +71,18 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption(autotalk) then
-		if self:GetGossipID(119802) then -- Kriegval's Rest, start Delve
+		if self:GetGossipID(119802) then -- Kriegval's Rest, start Delve (Kuvkel)
 			-- 119802:I'll get your valuables back from the kobolds.
 			self:SelectGossipID(119802)
-		elseif self:GetGossipID(120018) then -- The Waterworks, start Delve
+		elseif self:GetGossipID(120018) then -- The Waterworks, start Delve (Foreman Bruknar)
 			-- 120018:|cFF0000FF(Delve)|r I'll rescue the rest of your workers from the kobolds.
 			self:SelectGossipID(120018)
+		elseif self:GetGossipID(120081) then -- The Waterworks, start Delve (Pagsly)
+			-- 120081:|cFF0000FF(Delve)|r I'll help you recover the earthen treasures.
+			self:SelectGossipID(120081)
+		elseif self:GetGossipID(120082) then -- The Waterworks, continue Delve (Pagsly)
+			-- 120082:|cFF0000FF(Delve)|r I'll fend off any kobolds while you get the treasures.
+			self:SelectGossipID(120082)
 		end
 	end
 end
@@ -89,6 +98,11 @@ do
 			self:PlaySound(spellId, "alarm")
 		end
 	end
+end
+
+function mod:BattleCry(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Spitfire Charger
