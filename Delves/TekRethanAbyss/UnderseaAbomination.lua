@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Undersea Abomination", 2689)
 if not mod then return end
 mod:RegisterEnableMob(214348) -- Undersea Abomination
 mod:SetEncounterID(2895)
--- mod:SetRespawnTime(15) resets, doesn't respawn
+mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
@@ -39,11 +39,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "FungalInfection", 446405)
 	self:Log("SPELL_CAST_START", "DeepseaPolyps", 446300)
 	self:Log("SPELL_CAST_START", "RepellingBlast", 446230)
-	self:Death("Win", 214348) -- XXX no ENCOUNTER_END
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe") -- XXX no ENCOUNTER_END
 	self:CDBar(446405, 4.0) -- Fungal Infection
 	self:CDBar(446300, 11.3) -- Deepsea Polyps
 	self:CDBar(446230, 21.0) -- Repelling Blast
