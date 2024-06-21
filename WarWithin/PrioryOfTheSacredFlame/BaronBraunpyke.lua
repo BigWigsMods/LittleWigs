@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VindictiveWrath", 422969)
 	self:Log("SPELL_CAST_START", "CastigatorsShield", 423015, 446649) -- Standard, Empowered
 	self:Log("SPELL_CAST_START", "BurningLight", 423051, 446657) -- Standard, Empowered
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Hammer of Purity
+	self:Log("SPELL_CAST_START", "HammerOfPurity", 423062, 446598) -- Standard, Empowered
 end
 
 function mod:OnEngage()
@@ -76,10 +76,8 @@ function mod:BurningLight(args)
 	self:CDBar(423051, 31.6)
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 446587 then -- Hammer of Purity
-		self:Message(423062, "yellow")
-		self:PlaySound(423062, "alarm")
-		self:CDBar(423062, 19.4)
-	end
+function mod:HammerOfPurity(args)
+	self:Message(423062, "yellow")
+	self:PlaySound(423062, "alarm")
+	self:CDBar(423062, 19.4)
 end
