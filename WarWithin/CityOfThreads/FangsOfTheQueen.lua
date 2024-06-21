@@ -47,13 +47,14 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:Log("SPELL_CAST_START", "SynergicStep", 441384)
+	self:Log("SPELL_CAST_SUCCESS", "SynergicStep", 439522)
 
 	-- Stage One: Nx, the Shrouded Fang
 	self:Log("SPELL_CAST_START", "ShadeSlash", 439621)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1", "boss2") -- Duskbringer (doesn't log)
 	--self:Log("SPELL_CAST_START", "IceSickles", 440218) TODO this doesn't log consistently?
 	self:Log("SPELL_AURA_APPLIED", "IceSicklesApplied", 440238)
+	-- TODO what about Shadow Shunpo 440419?
 
 	-- Stage Two: Vx, the Frosted Fang
 	self:Log("SPELL_CAST_START", "RimeDagger", 440468)
@@ -67,9 +68,9 @@ function mod:OnEngage()
 	rimeDaggerRemaining = 2
 	self:SetStage(1)
 	self:CDBar(439621, 4.1) -- Shade Slash
-	self:CDBar(439692, 18.5) -- Duskbringer
-	self:CDBar(440238, 23.3) -- Ice Sickles
-	self:CDBar(439522, 26.1) -- Synergic Step
+	self:CDBar(439692, 17.0) -- Duskbringer
+	self:CDBar(440238, 23.0) -- Ice Sickles
+	self:CDBar(439522, 28.6) -- Synergic Step
 	self:CDBar(440468, 47.6) -- Rime Dagger
 	--if self:Mythic() then
 		--TODO self:CDBar(441286, 40) -- Dark Paranoia
@@ -82,17 +83,25 @@ end
 
 -- Stages
 
-function mod:SynergicStep(args)
-	self:Message(439522, "cyan")
-	self:PlaySound(439522, "info")
-	if self:GetStage() == 1 then -- entering stage 2
-		rimeDaggerRemaining = 2
-		self:SetStage(2)
-	else -- entering stage 1
-		shadeSlashRemaining = 2
-		self:SetStage(1)
+do
+	local prev = 0
+	function mod:SynergicStep(args)
+		-- this cast is spammed many times over ~5 seconds, we just care about when the sequence starts
+		local t = args.time
+		if t - prev > 10 then
+			prev = t
+			self:Message(439522, "cyan")
+			self:PlaySound(439522, "info")
+			if self:GetStage() == 1 then -- entering stage 2
+				rimeDaggerRemaining = 2
+				self:SetStage(2)
+			else -- entering stage 1
+				shadeSlashRemaining = 2
+				self:SetStage(1)
+			end
+			self:CDBar(439522, 42.4)
+		end
 	end
-	self:CDBar(439522, 42.5)
 end
 
 -- Stage One: Nx, the Shrouded Fang
