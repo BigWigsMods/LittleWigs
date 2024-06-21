@@ -36,7 +36,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_CAST_START", "ImpalingSpikes", 449038)
 	self:Log("SPELL_CAST_START", "BurrowingTremors", 448644)
 	self:Log("SPELL_CAST_START", "CallDrones", 449072)
@@ -51,13 +50,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:ImpalingSpikes(args)
 	self:Message(args.spellId, "orange")
