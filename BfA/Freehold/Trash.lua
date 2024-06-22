@@ -23,9 +23,6 @@ mod:RegisterEnableMob(
 	129550, -- Bilge Rat Padfoot
 	130024, -- Soggy Shiprat
 	130400, -- Irontide Crusher
-	130086, -- Davey "Two Eyes"
-	130099, -- Lightning
-	129699, -- Ludwig Von Tortollen
 	130011, -- Irontide Buccaneer
 	130012, -- Irontide Ravager
 	127106, -- Irontide Officer
