@@ -147,7 +147,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DisruptingShout", 427609)
 
 	-- Arathi Footman
-	self:Log("SPELL_CAST_START", "Defend", 427342)
+	self:Log("SPELL_CAST_SUCCESS", "Defend", 427342) -- alert on SUCCESS instead of START, it will just recast if you stop the initial cast
 
 	-- Devout Priest
 	self:Log("SPELL_CAST_START", "GreaterHeal", 427356)
