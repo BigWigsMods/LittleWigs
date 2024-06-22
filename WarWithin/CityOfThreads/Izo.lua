@@ -59,7 +59,10 @@ function mod:OnEngage()
 	self:CDBar(439646, 55.0) -- Process of Elimination
 end
 
--- TODO needs verifyenable
+function mod:VerifyEnable(unit)
+	-- boss shows up for some RP just before the 3rd boss
+	return UnitCanAttack("player", unit)
+end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
