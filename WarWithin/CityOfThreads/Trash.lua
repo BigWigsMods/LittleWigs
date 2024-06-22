@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	220401, -- Pale Priest
 	220003, -- Eye of the Queen
 	223844, -- Covert Webmancer
+	224732, -- Covert Webmancer
 	220730, -- Royal Venomshell
 	216328, -- Unstable Test Subject
 	216339, -- Sureki Unnaturaler
