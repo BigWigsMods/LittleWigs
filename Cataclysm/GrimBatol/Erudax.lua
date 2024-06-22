@@ -30,9 +30,9 @@ function mod:GetOptions()
 		450077, -- Void Surge
 		450088, -- Void Infusion
 		{450100, "TANK_HEALER"}, -- Crush
-		-- TODO Abyssal Corruption (Mythic)
+		448057, -- Abyssal Corruption (Mythic)
 	}, {
-		--[] = CL.mythic, -- Abyssal Corruption
+		[448057] = CL.mythic, -- Abyssal Corruption
 	}, {
 		[450088] = CL.adds, -- Void Infusion (Adds)
 	}
@@ -43,11 +43,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VoidSurge", 450077)
 	self:Log("SPELL_CAST_SUCCESS", "VoidInfusion", 450088)
 	self:Log("SPELL_CAST_START", "Crush", 450100)
+	self:Log("SPELL_CAST_START", "AbyssalCorruption", 448057)
 end
 
 function mod:OnEngage()
 	self:CDBar(450077, 5.0) -- Void Surge
 	self:CDBar(449939, 12.0) -- Shadow Gale
+	if self:Mythic() then
+		self:CDBar(448057, 30.0) -- Abyssal Corruption
+	end
 	self:CDBar(450088, 39.0, CL.adds) -- Void Infusion
 	self:CDBar(450100, 45.0) -- Crush
 end
@@ -108,28 +112,38 @@ function mod:Crush(args)
 	self:CDBar(args.spellId, 50.0)
 end
 
+function mod:AbyssalCorruption(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 50.0)
+end
+
 --------------------------------------------------------------------------------
 -- Classic Event Handlers
 --
 
 function mod:ShadowGaleClassic(args)
 	self:Bar(args.spellId, 5)
-	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Summon(_, msg)
 	if msg:find(L.summon_trigger) then
-		self:MessageOld("summon", "yellow", nil, L.summon_message, false)
+		self:Message("summon", "yellow", L.summon_message, false)
 	end
 end
 
 do
 	local prev = 0
 	function mod:UmbralMending(args)
-		local t = GetTime()
-		if t-prev > 1 then
+		local t = args.time
+		if t - prev > 1 then
 			prev = t
-			self:MessageOld(args.spellId, "red", self:Interrupter() and "warning", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			if self:Interrupter() then
+				self:PlaySound(args.spellId, "warning")
+			end
 		end
 	end
 end
@@ -137,10 +151,13 @@ end
 do
 	local prev = 0
 	function mod:SiphonEssence(args)
-		local t = GetTime()
-		if t-prev > 1 then
+		local t = args.time
+		if t - prev > 1 then
 			prev = t
-			self:MessageOld(args.spellId, "red", self:Interrupter() and "alarm", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			if self:Interrupter() then
+				self:PlaySound(args.spellId, "alarm")
+			end
 		end
 	end
 end
