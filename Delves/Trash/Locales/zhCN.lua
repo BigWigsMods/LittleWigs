@@ -53,4 +53,15 @@ end
 
 L = BigWigs:NewBossLocale("Delve Rares", "zhCN")
 if L then
+	--L.rares = "Rares"
+
+	--L.stolen_loader = "Stolen Loader"
+	--L.invasive_sporecap = "Invasive Sporecap"
+	--L.reno_jackson = "Reno Jackson"
+	--L.treasure_wraith = "Treasure Wraith"
+	--L.venombite = "Venombite"
+	--L.kasdru = "Kas'dru"
+	--L.tala = "Tala"
+	--L.velo = "Velo"
+	--L.anubvir = "Anub'vir"
 end
