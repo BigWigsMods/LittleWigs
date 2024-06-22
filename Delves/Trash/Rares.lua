@@ -92,7 +92,6 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Stolen Loader
-	self:MobEngaged("StolenLoaderEngage", 223541)
 	self:Log("SPELL_CAST_START", "LavaBlast", 445781)
 	self:Log("SPELL_CAST_START", "MagmaHammer", 445718)
 	self:Death("StolenLoaderDeath", 223541)
@@ -155,11 +154,6 @@ end
 
 do
 	local timer
-
-	function mod:StolenLoaderEngage()
-		self:CDBar(445781, 9.7) -- Lava Blast
-		self:CDBar(445718, 11.0) -- Magma Hammer
-	end
 
 	function mod:LavaBlast(args)
 		if timer then
