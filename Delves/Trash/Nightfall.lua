@@ -7,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Nightfall Delve Trash", 2686) -- Nightfall Sanc
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	217572, -- Great Kyron (Nightfall Sanctum gossip NPC)
 	217151, -- Dark Bombardier
 	217518, -- Nightfall Inquisitor
 	217870, -- Devouring Shade
@@ -29,8 +30,10 @@ end
 -- Initialization
 --
 
+local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
+		autotalk,
 		-- Dark Bombardier
 		441129, -- Spotted!
 		-- Nightfall Inquisitor
@@ -48,6 +51,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Autotalk
+	self:RegisterEvent("GOSSIP_SHOW")
+
 	-- Dark Bombardier
 	self:Log("SPELL_AURA_APPLIED", "Spotted", 441129)
 
@@ -64,6 +70,17 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Autotalk
+
+function mod:GOSSIP_SHOW()
+	if self:GetOption(autotalk) then
+		if self:GetGossipID(120767) then -- Nightfall Sanctum, start Delve (Great Kyron)
+			-- 120767:|cFF0000FF(Delve)|r I'll hop on a ballista to recover the oil in order to destroy the cult's barrier.
+			self:SelectGossipID(120767)
+		end
+	end
+end
 
 -- Dark Bombardier
 
