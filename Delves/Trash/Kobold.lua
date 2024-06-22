@@ -8,9 +8,11 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	213447, -- Kuvkel (Kriegval's Rest gossip NPC)
+	213775, -- Dagran Thaurissan II (Kriegval's Rest gossip NPC)
 	214143, -- Foreman Bruknar (The Waterworks gossip NPC)
 	214290, -- Pagsly (The Waterworks gossip NPC)
 	204127, -- Kobold Taskfinder
+	225568, -- Kobold Guardian
 	213577, -- Spitfire Charger
 	211777 -- Spitfire Fusetender
 )
@@ -34,7 +36,7 @@ local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
 		autotalk,
-		-- Kobold Taskfinder
+		-- Kobold Taskfinder / Kobold Guardian
 		449071, -- Blazing Wick
 		448399, -- Battle Cry
 		-- Spitfire Charger
@@ -52,7 +54,7 @@ function mod:OnBossEnable()
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
 
-	-- Kobold Taskfinder
+	-- Kobold Taskfinder / Kobold Guardian
 	self:RegisterEvent("UNIT_SPELLCAST_START") -- Blazing Wick
 	self:Log("SPELL_CAST_START", "BattleCry", 448399)
 
@@ -74,6 +76,9 @@ function mod:GOSSIP_SHOW()
 		if self:GetGossipID(119802) then -- Kriegval's Rest, start Delve (Kuvkel)
 			-- 119802:I'll get your valuables back from the kobolds.
 			self:SelectGossipID(119802)
+		elseif self:GetGossipID(119930) then -- Kriegval's Rest, start Delve (Dagran Thaurissan II)
+			-- 119930:|cFF0000FF(Delve)|r <Interrupt Dagran> Let's get going Dagran. We'll collect some wax.
+			self:SelectGossipID(119930)
 		elseif self:GetGossipID(120018) then -- The Waterworks, start Delve (Foreman Bruknar)
 			-- 120018:|cFF0000FF(Delve)|r I'll rescue the rest of your workers from the kobolds.
 			self:SelectGossipID(120018)
