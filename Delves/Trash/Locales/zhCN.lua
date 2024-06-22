@@ -48,6 +48,7 @@ L = BigWigs:NewBossLocale("The Underkeep Trash", "zhCN")
 if L then
 	L.ascended_webfriar = "扬升的蛛网修士"
 	L.deepwalker_guardian = "深渊行者护卫"
+	--L.crazed_abomination = "Crazed Abomination"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "zhCN")

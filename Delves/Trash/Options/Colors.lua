@@ -47,6 +47,9 @@ BigWigs:AddColors("Nightfall Delve Trash", {
 })
 
 BigWigs:AddColors("The Underkeep Trash", {
+	[448155] = "orange",
+	[448161] = "yellow",
+	[448179] = "red",
 	[450637] = "yellow",
 	[450714] = "orange",
 	[451913] = "red",

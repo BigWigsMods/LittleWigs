@@ -48,6 +48,7 @@ L = BigWigs:NewBossLocale("The Underkeep Trash", "frFR")
 if L then
 	--L.ascended_webfriar = "Ascended Webfriar"
 	--L.deepwalker_guardian = "Deepwalker Guardian"
+	--L.crazed_abomination = "Crazed Abomination"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "frFR")
