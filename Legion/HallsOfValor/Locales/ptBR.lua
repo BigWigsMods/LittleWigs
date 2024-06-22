@@ -20,9 +20,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "ptBR")
 if L then
-	L.custom_on_autotalk = "Conversao automática"
-	L.custom_on_autotalk_desc = "Instantaneamente seleciona várias opções de conversa ao redor da masmorra."
-
 	L.mug_of_mead = "Caneco de Hidromel"
 	L.valarjar_thundercaller = "Arauto do Trovão Valarjar"
 	L.storm_drake = "Draco da Tempestade"

@@ -20,9 +20,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
-	L.custom_on_autotalk_desc = "던전 내의 여러 대화 선택지를 즉시 선택합니다."
-
 	L.mug_of_mead = "벌꿀술 잔"
 	L.valarjar_thundercaller = "발라리아르 천둥술사"
 	L.storm_drake = "폭풍 비룡"

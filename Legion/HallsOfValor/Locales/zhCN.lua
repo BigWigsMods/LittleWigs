@@ -20,9 +20,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "zhCN")
 if L then
-	L.custom_on_autotalk = "自动对话"
-	L.custom_on_autotalk_desc = "立即选择地下城内多个对话选项。"
-
 	L.mug_of_mead = "一杯蜜酒"
 	L.valarjar_thundercaller = "瓦拉加尔唤雷者"
 	L.storm_drake = "风暴幼龙"

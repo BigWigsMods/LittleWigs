@@ -20,9 +20,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "itIT")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
-	--L.custom_on_autotalk_desc = "Instantly selects various gossip options around the dungeon."
-
 	L.mug_of_mead = "Boccale di Idromele"
 	L.valarjar_thundercaller = "Evocatuoni Valarjar"
 	L.storm_drake = "Draco della Tempesta"

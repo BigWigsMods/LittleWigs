@@ -20,9 +20,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
-	L.custom_on_autotalk_desc = "Wählt direkt die Dialogoption zum Starten der Kämpfe."
-
 	L.mug_of_mead = "Metkrug"
 	L.valarjar_thundercaller = "Donnerrufer der Valarjar"
 	L.storm_drake = "Sturmdrache"
