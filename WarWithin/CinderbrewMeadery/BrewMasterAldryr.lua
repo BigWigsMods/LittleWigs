@@ -96,7 +96,7 @@ do
 		self:CDBar(432179, 14.2) -- Throw Cinderbrew
 		self:CDBar(432198, 17.8) -- Blazing Belch
 		-- cast at 100 energy, 2.4s delay + 45s energy gain + runs to bar + 1.5s delay
-		self:CDBar(args.spellId, 48.9, CL.count:format(args.spellName, happyHourCount)) -- Happy Hour
+		self:CDBar(args.spellId, 48.9, CL.count:format(args.spellName, happyHourCount))
 	end
 end
 
