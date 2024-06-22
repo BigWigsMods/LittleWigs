@@ -33,9 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
-	L.custom_on_autotalk_desc = "Wählt direkt die Tratsch-Option zum Beginnen des Kampfes."
-
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
 	L.lightning_warmup = "Wir haben Frischflei...."
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win

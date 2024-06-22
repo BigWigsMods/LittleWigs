@@ -33,9 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "zhCN")
 if L then
-	L.custom_on_autotalk = "自动对话"
-	L.custom_on_autotalk_desc = "立即选择对话选项以开始战斗。"
-
 	-- 来来来，下注了！又来了一群受害——呃，参赛者！交给你们了，古尔戈索克和伍迪！
 	L.lightning_warmup = "又来了一群受害"
 	-- 抹了油的猪？我开始对这场比赛的专业性产生怀疑了。好吧……抓到猪就算你赢。

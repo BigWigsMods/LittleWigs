@@ -33,9 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
-	L.custom_on_autotalk_desc = "전투를 시작하는 대화 선택지를 즉시 선택합니다."
-
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
 	--L.lightning_warmup = "new set of vict--"
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win

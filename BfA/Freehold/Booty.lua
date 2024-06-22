@@ -26,10 +26,6 @@ local ripperPunchCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
-	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
-	L.custom_on_autotalk_icon = "ui_chat"
-
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
 	L.lightning_warmup = "new set of vict--"
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
@@ -48,9 +44,10 @@ end
 -- Initialization
 --
 
+local autotalk = mod:AddAutoTalkOption(true, "boss")
 function mod:GetOptions()
 	return {
-		"custom_on_autotalk",
+		autotalk,
 		"warmup",
 		-- Lightning
 		257829, -- Greasy
@@ -107,8 +104,13 @@ end
 
 function mod:VerifyEnable(_, mobId)
 	if mobId == 130086 or mobId == 129350 then -- friendly NPCs
-		local _, _, completed = C_Scenario.GetCriteriaInfo(3)
-		return not completed
+		if C_ScenarioInfo.GetCriteriaInfo then
+			local info = C_ScenarioInfo.GetCriteriaInfo(3)
+			return info and not info.completed
+		else -- XXX pre-TWW compat
+			local _, _, completed = C_Scenario.GetCriteriaInfo(3)
+			return not completed
+		end
 	end
 	return true
 end
@@ -118,7 +120,7 @@ end
 --
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:GetGossipID(48039) then
+	if self:GetOption(autotalk) and self:GetGossipID(48039) then
 		-- A fight? Bring it on!
 		self:SelectGossipID(48039, true) -- auto-confirm
 	end

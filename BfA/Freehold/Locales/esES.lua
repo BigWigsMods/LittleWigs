@@ -33,9 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "esES") or BigWigs:NewBossLocale("Ring of Booty", "esMX")
 if L then
-	L.custom_on_autotalk = "Hablar automáticamente"
-	L.custom_on_autotalk_desc = "Selecciona instantáneamente la opción de charla para comenzar la pelea."
-
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
 	--L.lightning_warmup = "new set of vict--"
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
