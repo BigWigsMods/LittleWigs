@@ -36,7 +36,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_CAST_START", "Flamestorm", 449242)
 	self:Log("SPELL_CAST_START", "GroundSlam", 449295)
 	self:Log("SPELL_CAST_START", "RagingTantrum", 449339)
@@ -44,20 +43,13 @@ end
 
 function mod:OnEngage()
 	self:CDBar(449242, 6.1) -- Flamestorm
-	self:CDBar(449295, 19.2) -- Ground Slam
+	self:CDBar(449295, 18.2) -- Ground Slam
 	self:CDBar(449339, 30.1) -- Raging Tantrum
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:Flamestorm(args)
 	self:Message(args.spellId, "yellow")
