@@ -33,7 +33,7 @@ BigWigs:AddColors("Nerubian Delve Trash", {
 	[433448] = "yellow",
 	[449318] = "red",
 	[450197] = "yellow",
-	[450509] = "orange",
+	[450509] = "purple",
 	[450546] = "red",
 	[450637] = "yellow",
 	[450714] = "orange",

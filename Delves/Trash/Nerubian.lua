@@ -11,9 +11,12 @@ mod:RegisterEnableMob(
 	216632, -- Lamplighter Rathling (Earthcrawl Mines gossip NPC)
 	219680, -- Vant (The Dread Pit gossip NPC)
 	220585, -- Lamplighter Havrik Chayvn (Skittering Breach gossip NPC)
+	220461, -- Weaver's Agent (The Spiral Weave gossip NPC)
+	220462, -- Weaver's Instructions (The Spiral Weave gossip NPC)
 	218103, -- Nerubian Lord
 	208242, -- Nerubian Darkcaster
 	216584, -- Nerubian Captain
+	228954, -- Nerubian Marauder
 	216583, -- Chittering Fearmonger
 	208245, -- Skittering Swarmer
 	216621 -- Nerubian Webspinner
@@ -46,7 +49,7 @@ function mod:GetOptions()
 		450637, -- Leeching Swarm
 		-- Nerubian Darkcaster
 		449318, -- Shadows of Strife
-		-- Nerubian Captain
+		-- Nerubian Captain / Nerubian Marauder
 		450546, -- Webbed Aegis
 		450509, -- Wide Swipe
 		-- Chittering Fearmonger
@@ -76,7 +79,7 @@ function mod:OnBossEnable()
 	-- Nerubian Darkcaster
 	self:Log("SPELL_CAST_START", "ShadowsOfStrife", 449318)
 
-	-- Nerubian Captain
+	-- Nerubian Captain / Nerubian Marauder
 	self:Log("SPELL_CAST_START", "WebbedAegis", 450546)
 	self:Log("SPELL_CAST_START", "WideSwipe", 450509)
 
@@ -119,6 +122,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(120541) then -- Earthcrawl Mines, continue Delve (Lamplighter Rathling)
 			-- 120541:|cFF0000FF(Delve)|r This is the part where we're swarmed by nerubians, isn't it?
 			self:SelectGossipID(120541)
+		elseif self:GetGossipID(121566) then -- The Spiral Weave, start Delve (Weaver's Instructions)
+			-- 121566:|cFF0000FF(Delve)|r <Close the scroll and take the Weaver's web grappling hook.>
+			self:SelectGossipID(121566)
 		end
 	end
 end
@@ -148,16 +154,23 @@ function mod:ShadowsOfStrife(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
--- Nerubian Captain
+-- Nerubian Captain / Nerubian Marauder
 
 function mod:WebbedAegis(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:WideSwipe(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:WideSwipe(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Chittering Fearmonger
