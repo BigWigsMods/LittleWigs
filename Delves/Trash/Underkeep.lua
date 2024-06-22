@@ -60,7 +60,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "JaggedBarbs", 450714)
 	self:RegisterEvent("UNIT_SPELLCAST_START")
 	--self:Log("SPELL_CAST_START", "LeechingSwarm", 450637) -- TODO no CLEU
-	self:Log("SPELL_CAST_START", "LeechingSwarm", 450637)
 
 	-- Crazed Abomination
 	self:Log("SPELL_CAST_START", "ArmoredShell", 448179)
