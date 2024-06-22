@@ -18,7 +18,7 @@ function mod:GetOptions()
 		321226, -- Land of the Dead
 		{321247, "CASTBAR"}, -- Final Harvest
 		333488, -- Necrotic Breath
-		{320012, "TANK_HEALER"}, -- Unholy Frenzy
+		{320012, "DISPEL"}, -- Unholy Frenzy
 		320171, -- Necrotic Bolt
 	}
 end
@@ -32,10 +32,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(320012, 7) -- Unholy Frenzy
-	self:Bar(321226, 12) -- Land of the Dead
-	self:Bar(333488, 29.5) -- Necrotic Breath
-	self:Bar(321247, 41.5) -- Final Harvest
+	self:StopBar(CL.active)
+	if self:Tank() or self:Dispeller("enrage", true, 320012) then
+		self:CDBar(320012, 6.0) -- Unholy Frenzy
+	end
+	self:CDBar(321226, 10.9) -- Land of the Dead
+	self:CDBar(333488, 29.5) -- Necrotic Breath
+	self:CDBar(321247, 41.5) -- Final Harvest
 end
 
 --------------------------------------------------------------------------------
@@ -50,31 +53,34 @@ end
 function mod:LandoftheDead(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 42.5)
+	self:CDBar(args.spellId, 42.5)
 end
 
 function mod:FinalHarvest(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 4)
-	self:Bar(args.spellId, 47.5)
+	self:CDBar(args.spellId, 44.8)
 end
 
 function mod:NecroticBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 46)
+	self:CDBar(args.spellId, 40.9)
 end
 
 function mod:UnholyFrenzy(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "info")
-	self:Bar(args.spellId, 45)
+	if self:Tank() or self:Dispeller("enrage", true, args.spellId) then
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 44.9)
+	end
 end
 
 function mod:NecroticBolt(args)
-	if self:Interrupter() then
-		self:Message(args.spellId, "yellow")
+	local _, interruptReady = self:Interrupter()
+	if interruptReady then
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
