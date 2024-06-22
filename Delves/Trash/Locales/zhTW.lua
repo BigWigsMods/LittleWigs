@@ -54,7 +54,6 @@ end
 L = BigWigs:NewBossLocale("Delve Rares", "zhTW")
 if L then
 	--L.rares = "Rares"
-	--L.reno_jackson_defeat_trigger = "Well done! Take this pack of supplies as my gift for your prowess."
 
 	--L.stolen_loader = "Stolen Loader"
 	--L.invasive_sporecap = "Invasive Sporecap"

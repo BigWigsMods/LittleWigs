@@ -24,7 +24,6 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.rares = "Rares"
-	L.reno_jackson_defeat_trigger = "Well done! Take this pack of supplies as my gift for your prowess."
 
 	L.stolen_loader = "Stolen Loader"
 	L.invasive_sporecap = "Invasive Sporecap"
@@ -104,7 +103,7 @@ function mod:OnBossEnable()
 	-- Reno Jackson
 	self:Log("SPELL_CAST_START", "SkullCracker", 398749)
 	self:Log("SPELL_CAST_START", "SpikeTraps", 400335)
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:Log("SPELL_CREATE", "FeastingNerubianChest", 447392) -- Reno Jackson defeated
 
 	-- Treasure Wraith
 	self:Log("SPELL_CAST_START", "UmbralSlash", 418295)
@@ -210,7 +209,7 @@ do
 		timer = self:ScheduleTimer("InvasiveSporecapDeath", 30)
 	end
 
-	function mod:InvasiveSporecapDeath(args)
+	function mod:InvasiveSporecapDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -245,14 +244,15 @@ do
 		timer = self:ScheduleTimer("RenoJacksonDefeated", 30)
 	end
 
-	function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-		if msg == L.reno_jackson_defeat_trigger then
-			-- Well done! Take this pack of supplies as my gift for your prowess.#Reno Jackson
+	function mod:FeastingNerubianChest(args)
+		-- Reno Jackson creates a "Feasting Nerubian Chest" when you defeat him, we can use
+		-- that event to clean up the bars.
+		if self:MobId(args.sourceGUID) == 228044 then -- Reno Jackson
 			self:RenoJacksonDefeated()
 		end
 	end
 
-	function mod:RenoJacksonDefeated(args)
+	function mod:RenoJacksonDefeated()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -287,7 +287,7 @@ do
 		timer = self:ScheduleTimer("TreasureWraithDeath", 30)
 	end
 
-	function mod:TreasureWraithDeath(args)
+	function mod:TreasureWraithDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -322,7 +322,7 @@ do
 		timer = self:ScheduleTimer("VenombiteDeath", 30)
 	end
 
-	function mod:VenombiteDeath(args)
+	function mod:VenombiteDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -357,7 +357,7 @@ do
 		timer = self:ScheduleTimer("KasdruDeath", 30)
 	end
 
-	function mod:KasdruDeath(args)
+	function mod:KasdruDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -382,7 +382,7 @@ do
 		timer = self:ScheduleTimer("TalaDeath", 30)
 	end
 
-	function mod:TalaDeath(args)
+	function mod:TalaDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -416,7 +416,7 @@ do
 		timer = self:ScheduleTimer("VeloDeath", 30)
 	end
 
-	function mod:VeloDeath(args)
+	function mod:VeloDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -441,7 +441,7 @@ do
 		timer = self:ScheduleTimer("AnubvirDeath", 30)
 	end
 
-	function mod:AnubvirDeath(args)
+	function mod:AnubvirDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
