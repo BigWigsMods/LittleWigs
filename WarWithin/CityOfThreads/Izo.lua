@@ -10,6 +10,15 @@ mod:SetEncounterID(2909)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_achievement_dungeon_cityofthreads"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -22,6 +31,7 @@ local transformCount = 1
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		439401, -- Shifting Anomalies
 		{439341, "HEALER"}, -- Splice
 		437700, -- Tremor Slam
@@ -31,7 +41,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- TODO needs warmup triggered from trash module
 	self:Log("SPELL_CAST_START", "ShiftingAnomalies", 439401)
 	self:Log("SPELL_CAST_START", "Splice", 439341)
 	self:Log("SPELL_CAST_START", "TremorSlam", 437700)
@@ -42,6 +51,7 @@ end
 function mod:OnEngage()
 	spliceCount = 1
 	transformCount = 1
+	self:StopBar(CL.active)
 	self:CDBar(439401, 4.0) -- Shifting Anomalies
 	self:CDBar(439341, 10.0) -- Splice
 	self:CDBar(437700, 16.0) -- Tremor Slam
@@ -54,6 +64,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- called from trash module
+	-- 194.88 [CHAT_MSG_MONSTER_SAY] Enough! You've earned a place in my collection. Let me usher you in.#Izo, the Grand Splicer
+	-- 202.94 [NAME_PLATE_UNIT_ADDED] Izo, the Grand Splicer#Creature-0-2085-2669-27702-216658
+	self:Bar("warmup", 8.0, CL.active, L.warmup_icon)
+end
 
 function mod:ShiftingAnomalies(args)
 	self:Message(args.spellId, "yellow")

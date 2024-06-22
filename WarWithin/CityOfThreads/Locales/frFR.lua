@@ -13,4 +13,6 @@ if L then
 	--L.sureki_unnaturaler = "Sureki Unnaturaler"
 	--L.elder_shadeweaver = "Elder Shadeweaver"
 	--L.hulking_warshell = "Hulking Warshell"
+
+	--L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 end

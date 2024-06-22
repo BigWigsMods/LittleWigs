@@ -13,4 +13,6 @@ if L then
 	L.sureki_unnaturaler = "苏雷吉反自然者"
 	L.elder_shadeweaver = "长者织影"
 	L.hulking_warshell = "魁梧的战甲尉"
+
+	--L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 end

@@ -41,6 +41,8 @@ if L then
 	L.sureki_unnaturaler = "Sureki Unnaturaler"
 	L.elder_shadeweaver = "Elder Shadeweaver"
 	L.hulking_warshell = "Hulking Warshell"
+
+	L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 end
 
 --------------------------------------------------------------------------------
@@ -94,6 +96,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Warmups
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
 
@@ -140,6 +145,19 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmups
+
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.izo_warmup_trigger then
+		-- Izo, the Grand Splicer warmup
+		local izoModule = BigWigs:GetBossModule("Izo, the Grand Splicer", true)
+		if izoModule then
+			izoModule:Enable()
+			izoModule:Warmup()
+		end
+	end
+end
 
 -- Autotalk
 
