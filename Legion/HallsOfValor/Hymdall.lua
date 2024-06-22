@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Hymdall", 1477, 1485)
 if not mod then return end
-mod:RegisterEnableMob(94960)
+mod:RegisterEnableMob(94960) -- Hymdall
 mod:SetEncounterID(1805)
 mod:SetRespawnTime(30)
 
@@ -42,6 +42,11 @@ function mod:OnEngage()
 	self:CDBar(193092, 15.4) -- Bloodletting Sweep
 end
 
+function mod:VerifyEnable(unit)
+	-- boss becomes friendly afer you win
+	return UnitCanAttack("player", unit)
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -53,14 +58,18 @@ function mod:BloodlettingSweep(args)
 end
 
 function mod:DancingBlade(args)
-	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, bladeCount % 2 == 0 and 11 or 31.6)
 	bladeCount = bladeCount + 1
+	if bladeCount % 2 == 0 then
+		self:CDBar(args.spellId, 31.6)
+	else
+		self:CDBar(args.spellId, 10.9)
+	end
 end
 
 function mod:HornOfValor(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 42.6)
 end
