@@ -36,7 +36,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_CAST_START", "MuckCharge", 454213)
 	self:Log("SPELL_CAST_START", "SwampBolt", 449965)
 	self:Log("SPELL_CAST_START", "Sporesong", 453897)
@@ -44,20 +43,13 @@ end
 
 function mod:OnEngage()
 	self:CDBar(454213, 6.1) -- Muck Charge
-	self:CDBar(449965, 11.0) -- Swamp Bolt
-	self:CDBar(453897, 15.8) -- Sporesong
+	self:CDBar(449965, 10.8) -- Swamp Bolt
+	self:CDBar(453897, 15.0) -- Sporesong
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:MuckCharge(args)
 	self:Message(args.spellId, "red")
@@ -74,5 +66,5 @@ end
 function mod:Sporesong(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 29.1)
+	self:CDBar(args.spellId, 28.7)
 end
