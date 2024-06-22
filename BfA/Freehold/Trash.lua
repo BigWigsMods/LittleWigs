@@ -505,7 +505,7 @@ end
 do
 	local prev = 0
 	function mod:PainfulMotivationApplied(args)
-		if self:Dispeller("enrage", nil, args.spellId) then
+		if self:Dispeller("enrage", true, args.spellId) then
 			local t = args.time
 			if t - prev > 2 then
 				prev = t
