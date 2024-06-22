@@ -35,7 +35,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Dark Abatement
 	self:Log("SPELL_CAST_START", "DarkriftSmash", 440806)
 end
@@ -49,13 +48,6 @@ end
 -- Event Handlers
 --
 
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
-
 do
 	local prev
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
@@ -63,7 +55,7 @@ do
 			prev = castGUID
 			self:Message(454762, "red")
 			self:PlaySound(454762, "alert")
-			self:CDBar(454762, 20.7)
+			self:CDBar(454762, 20.1)
 		end
 	end
 end
@@ -71,5 +63,5 @@ end
 function mod:DarkriftSmash(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 13.3)
+	self:CDBar(args.spellId, 12.2)
 end
