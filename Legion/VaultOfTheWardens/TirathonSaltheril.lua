@@ -51,8 +51,13 @@ end
 
 function mod:VerifyEnable(_, mobId)
 	if mobId == 99013 then -- Drelanim is a friendly NPC
-		local _, _, completed = C_Scenario.GetCriteriaInfo(1)
-		return not completed
+		if C_ScenarioInfo.GetCriteriaInfo then
+			local info = C_ScenarioInfo.GetCriteriaInfo(1)
+			return info and not info.completed
+		else -- XXX pre-TWW compat
+			local _, _, completed = C_Scenario.GetCriteriaInfo(1)
+			return not completed
+		end
 	end
 	return true
 end
