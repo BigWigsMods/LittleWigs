@@ -34,7 +34,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_CAST_START", "DrownedIllusions", 445860)
 end
 
@@ -45,13 +44,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:DrownedIllusions(args)
 	self:Message(args.spellId, "cyan")
