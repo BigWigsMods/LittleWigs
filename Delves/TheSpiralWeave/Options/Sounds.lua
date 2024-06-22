@@ -4,3 +4,7 @@ BigWigs:AddSounds("Overseer Kaskel", {
 	[449038] = "alarm",
 	[449072] = "info",
 })
+
+BigWigs:AddSounds("The Puppetmaster", {
+	[451913] = "alarm",
+})
