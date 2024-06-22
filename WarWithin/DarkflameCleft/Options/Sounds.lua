@@ -7,9 +7,11 @@ BigWigs:AddSounds("Ol' Waxbeard", {
 
 BigWigs:AddSounds("Blazikon", {
 	[421817] = "long",
+	[422700] = "info",
 	[423109] = "warning",
 	[424212] = "alarm",
 	[425394] = "info",
+	[443835] = "warning",
 })
 
 BigWigs:AddSounds("The Candle King", {

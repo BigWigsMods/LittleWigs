@@ -7,9 +7,11 @@ BigWigs:AddColors("Ol' Waxbeard", {
 
 BigWigs:AddColors("Blazikon", {
 	[421817] = "yellow",
+	[422700] = "cyan",
 	[423109] = "red",
 	[424212] = "orange",
 	[425394] = "cyan",
+	[443835] = "purple",
 })
 
 BigWigs:AddColors("The Candle King", {
