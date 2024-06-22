@@ -1,9 +1,6 @@
 local L = BigWigs:NewBossLocale("Odyn", "ruRU")
 if not L then return end
 if L then
-	L.custom_on_autotalk = "Авторазговор"
-	L.custom_on_autotalk_desc = "Мгновенный выбор опции запуска боя в диалоге."
-
 	L.gossip_available = "Разговор доступен"
 	L.gossip_trigger = "Удивительно! Я не верил, что кто-то может сравниться с валарьярами... Но вы доказали, что это возможно."
 

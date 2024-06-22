@@ -1,9 +1,6 @@
 local L = BigWigs:NewBossLocale("Odyn", "ptBR")
 if not L then return end
 if L then
-	L.custom_on_autotalk = "Conversa automática"
-	L.custom_on_autotalk_desc = "Seleciona instantaneamente a opção de conversa para iniciar a luta."
-
 	L.gossip_available = "Conversa disponível"
 	L.gossip_trigger = "Muito impressionante! Eu nunca pensei que encontraria alguém capaz de igualar Valarjar em força... porém, aí estão vocês."
 

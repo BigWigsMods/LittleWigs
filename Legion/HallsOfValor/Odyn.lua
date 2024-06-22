@@ -12,7 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local spearOfLightCount = 0
+local spearOfLightCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -20,10 +20,6 @@ local spearOfLightCount = 0
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
-	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
-	L.custom_on_autotalk_icon = "ui_chat"
-
 	L.gossip_available = "Gossip available"
 	L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
 
@@ -38,10 +34,11 @@ end
 -- Initialization
 --
 
+local autotalk = mod:AddAutoTalkOption(true, "boss")
 function mod:GetOptions()
 	return {
 		"warmup",
-		"custom_on_autotalk",
+		autotalk,
 		197961, -- Runic Brand
 		200988, -- Spear of Light
 		198077, -- Shatter Spears
@@ -64,9 +61,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	spearOfLightCount = 0
+	spearOfLightCount = 1
+	self:Bar(200988, 8, CL.count_amount:format(self:SpellName(200988), spearOfLightCount, 3)) -- Spear of Light
 	self:Bar(198263, self:Normal() and 8 or 24) -- Radiant Tempest
-	self:Bar(200988, 8, CL.count_amount:format(self:SpellName(200988), 1, 3)) -- Spear of Light
 	self:Bar(198077, 40) -- Shatter Spears
 	self:Bar(197961, 44) -- Runic Brand
 	if self:Heroic() or self:Mythic() then
@@ -90,8 +87,8 @@ function mod:Warmup(event, msg)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:GetGossipID(44910) then
-		self:SelectGossipID(44910, true) -- auto confirm it
+	if self:GetOption(autotalk) and self:GetGossipID(44910) then
+		self:SelectGossipID(44910, true) -- auto-confirm it
 		self:Sync("odyn")
 	end
 end
@@ -130,15 +127,16 @@ function mod:RadiantTempest(args)
 end
 
 function mod:SpearOfLight(args)
-	self:Message(200988, "orange", CL.count_amount:format(self:SpellName(200988), spearOfLightCount + 1, 3))
-	spearOfLightCount = (spearOfLightCount + 1) % 3
+	self:StopBar(CL.count_amount:format(self:SpellName(200988), spearOfLightCount, 3))
+	self:Message(200988, "orange", CL.count_amount:format(self:SpellName(200988), spearOfLightCount, 3))
 	self:PlaySound(200988, "alert")
-	if spearOfLightCount == 1 then
-		self:Bar(200988, 8, CL.count_amount:format(self:SpellName(200988), spearOfLightCount + 1, 3))
-	elseif spearOfLightCount == 2 then
-		self:Bar(200988, 20, CL.count_amount:format(self:SpellName(200988), spearOfLightCount + 1, 3))
-	elseif spearOfLightCount == 0 then
-		self:Bar(200988, 28, CL.count_amount:format(self:SpellName(200988), spearOfLightCount + 1, 3))
+	spearOfLightCount = spearOfLightCount % 3 + 1
+	if spearOfLightCount == 2 then
+		self:Bar(200988, 8, CL.count_amount:format(self:SpellName(200988), spearOfLightCount, 3))
+	elseif spearOfLightCount == 3 then
+		self:Bar(200988, 20, CL.count_amount:format(self:SpellName(200988), spearOfLightCount, 3))
+	elseif spearOfLightCount == 1 then
+		self:Bar(200988, 28, CL.count_amount:format(self:SpellName(200988), spearOfLightCount, 3))
 	end
 end
 
