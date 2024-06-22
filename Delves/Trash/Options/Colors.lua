@@ -20,9 +20,11 @@ BigWigs:AddColors("Kobold Delve Trash", {
 
 BigWigs:AddColors("Kobyss Delve Trash", {
 	[430037] = "red",
+	[440622] = "yellow",
 	[445252] = "red",
 	[445407] = {"blue","red"},
 	[445492] = "orange",
+	[445774] = "red",
 	[455932] = "orange",
 })
 

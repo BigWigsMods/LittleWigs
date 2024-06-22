@@ -21,7 +21,9 @@ L = BigWigs:NewBossLocale("Kobyss Delve Trash", "frFR")
 if L then
 	--L.kobyss_necromancer = "Kobyss Necromancer"
 	--L.kobyss_spearfisher = "Kobyss Spearfisher"
+	--L.kobyss_witherer = "Kobyss Witherer"
 	--L.wandering_gutter = "Wandering Gutter"
+	--L.crazed_predator = "Crazed Predator"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "frFR")
