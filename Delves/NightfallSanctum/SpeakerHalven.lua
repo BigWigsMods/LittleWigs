@@ -36,28 +36,20 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:Log("SPELL_CAST_START", "ShadowSweep", 443837)
 	self:Log("SPELL_CAST_START", "Fire", 443908)
 	self:RegisterEvent("UNIT_SPELLCAST_START") -- Desolate Surge
 end
 
 function mod:OnEngage()
-	self:CDBar(443837, 6.1) -- Shadow Sweep
-	self:CDBar(443908, 9.7) -- Fire!
+	self:CDBar(443837, 5.9) -- Shadow Sweep
+	self:CDBar(443908, 9.5) -- Fire!
 	self:CDBar(443840, 20.7) -- Desolate Surge
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:ShadowSweep(args)
 	self:Message(args.spellId, "red")
@@ -76,7 +68,7 @@ do
 	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
 		if castGUID ~= prev and spellId == 443840 then -- Desolate Surge
 			prev = castGUID
-			self:Message(spellId, "red")
+			self:Message(spellId, "yellow")
 			self:PlaySound(spellId, "long")
 			self:CDBar(spellId, 26.7)
 		end
