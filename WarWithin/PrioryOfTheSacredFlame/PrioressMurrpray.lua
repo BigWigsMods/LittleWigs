@@ -24,6 +24,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START") --- XXX no boss frames
 	self:Log("SPELL_CAST_SUCCESS", "BarrierOfLight", 423588)
 	self:Log("SPELL_AURA_REMOVED", "BarrierOfLightRemoved", 423588)
 	self:Log("SPELL_AURA_REMOVED", "EmbraceTheLightRemoved", 423664)
@@ -47,6 +48,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- XXX no boss frames
+function mod:ENCOUNTER_START(_, id)
+	if id == self.engageId then
+		self:Engage()
+	end
+end
 
 do
 	local barrierOfLightStart = 0
