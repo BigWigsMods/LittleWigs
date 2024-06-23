@@ -6,5 +6,5 @@ end
 
 L = BigWigs:NewBossLocale("Faceless One", "zhCN")
 if L then
-	--L.faceless_one = "Faceless One"
+	L.faceless_one = "无面者"
 end
