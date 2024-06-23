@@ -62,10 +62,16 @@ function mod:GOSSIP_SHOW()
 		local mobId = self:MobId(self:UnitGUID("npc"))
 		if mobId == 17876 and not self:Solo() then
 			if self:Classic() then
+				-- no scenario APIs in Classic
 				return
 			else
-				local _, _, completed = C_Scenario.GetCriteriaInfo(2)
-				if not completed then return end
+				if C_ScenarioInfo.GetCriteriaInfo then
+					local info = C_ScenarioInfo.GetCriteriaInfo(2)
+					if info and not info.completed then return end
+				else -- XXX pre-TWW compat
+					local _, _, completed = C_Scenario.GetCriteriaInfo(2)
+					if not completed then return end
+				end
 			end
 		end
 
