@@ -21,9 +21,9 @@ L = BigWigs:NewBossLocale("Kobyss Delve Trash", "zhCN")
 if L then
 	L.kobyss_necromancer = "唇鱼人通灵师"
 	L.kobyss_spearfisher = "唇鱼人矛渔夫"
-	--L.kobyss_witherer = "Kobyss Witherer"
+	L.kobyss_witherer = "唇鱼人枯败者"
 	L.wandering_gutter = "游荡的开膛者"
-	--L.crazed_predator = "Crazed Predator"
+	L.crazed_predator = "狂乱掠食者"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "zhCN")
@@ -48,20 +48,20 @@ L = BigWigs:NewBossLocale("The Underkeep Trash", "zhCN")
 if L then
 	L.ascended_webfriar = "扬升的蛛网修士"
 	L.deepwalker_guardian = "深渊行者护卫"
-	--L.crazed_abomination = "Crazed Abomination"
+	L.crazed_abomination = "疯乱憎恶"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "zhCN")
 if L then
-	--L.rares = "Rares"
+	L.rares = "稀有"
 
-	--L.stolen_loader = "Stolen Loader"
-	--L.invasive_sporecap = "Invasive Sporecap"
-	--L.reno_jackson = "Reno Jackson"
-	--L.treasure_wraith = "Treasure Wraith"
-	--L.venombite = "Venombite"
-	--L.kasdru = "Kas'dru"
-	--L.tala = "Tala"
-	--L.velo = "Velo"
-	--L.anubvir = "Anub'vir"
+	L.stolen_loader = "失窃的装货者"
+	L.invasive_sporecap = "入侵的孢菇"
+	L.reno_jackson = "雷诺·杰克逊"
+	L.treasure_wraith = "宝藏怨灵"
+	L.venombite = "剧毒之咬"
+	L.kasdru = "卡斯德鲁"
+	L.tala = "塔拉"
+	L.velo = "威罗"
+	L.anubvir = "阿努布维尔"
 end
