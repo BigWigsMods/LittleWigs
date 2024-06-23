@@ -160,7 +160,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BurstOfLight", 427601)
 
 	-- Sir Braunpyke
-	self:Log("SPELL_CAST_SUCCESS", "CrushingLeap", 451818)
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- XXX the Crushing Leap cast doesn't log
+	--self:Log("SPELL_CAST_SUCCESS", "CrushingLeap", 451817) -- doesn't log
 	self:Death("SirBraunpykeDeath", 217658)
 end
 
@@ -503,15 +504,31 @@ end
 do
 	local timer
 
-	function mod:CrushingLeap(args)
-		if timer then
-			self:CancelTimer(timer)
+	do
+		local prev = nil
+		function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+			if castGUID ~= prev and spellId == 451817 then -- Crushing Leap
+				prev = castGUID
+				if timer then
+					self:CancelTimer(timer)
+				end
+				self:Message(451818, "orange")
+				self:PlaySound(451818, "alarm")
+				self:CDBar(451818, 14.5)
+				timer = self:ScheduleTimer("SirBraunpykeDeath", 30)
+			end
 		end
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 14.5)
-		timer = self:ScheduleTimer("SirBraunpykeDeath", 30)
 	end
+
+	--function mod:CrushingLeap(args)
+		--if timer then
+			--self:CancelTimer(timer)
+		--end
+		--self:Message(args.spellId, "orange")
+		--self:PlaySound(args.spellId, "alarm")
+		--self:CDBar(args.spellId, 14.5)
+		--timer = self:ScheduleTimer("SirBraunpykeDeath", 30)
+	--end
 
 	function mod:SirBraunpykeDeath(args)
 		if timer then
