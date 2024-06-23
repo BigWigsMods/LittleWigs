@@ -6,5 +6,5 @@ end
 
 L = BigWigs:NewBossLocale("Leviathan Caller", "zhCN")
 if L then
-	--L.leviathan_caller = "Leviathan Caller"
+	L.leviathan_caller = "海兽呼唤者"
 end
