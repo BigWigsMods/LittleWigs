@@ -9,9 +9,13 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	217572, -- Great Kyron (Nightfall Sanctum gossip NPC)
 	217151, -- Dark Bombardier
+	217517, -- Nightfall Hopestealer
 	217518, -- Nightfall Inquisitor
+	217519, -- Nightfall Shadeguard
 	217870, -- Devouring Shade
-	217268 -- Weeping Shade
+	217268, -- Weeping Shade
+	217541, -- Nightfall Initiate
+	217485 -- Nightfall Lookout
 )
 
 --------------------------------------------------------------------------------
@@ -106,6 +110,9 @@ end
 -- Weeping Shade
 
 function mod:EchoOfRenilash(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
+	-- also cast by a boss
+	if self:MobId(args.sourceGUID) ~= 218034 then -- Reformed Fury
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
