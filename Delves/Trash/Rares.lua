@@ -126,6 +126,7 @@ function mod:OnBossEnable()
 
 	-- Velo
 	self:Log("SPELL_CAST_START", "VoidSlice", 458090)
+	self:Log("SPELL_CAST_SUCCESS", "VoidSliceSuccess", 458090)
 	self:Log("SPELL_CAST_START", "GraspingDarkness", 458099)
 	self:Death("VeloDeath", 227514)
 
@@ -402,8 +403,12 @@ do
 		end
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 18.2)
 		timer = self:ScheduleTimer("VeloDeath", 30)
+	end
+
+	function mod:VoidSliceSuccess(args)
+		-- doesn't go on cooldown if outranged, 18.2s - 1.5s cast time
+		self:CDBar(args.spellId, 16.7)
 	end
 
 	function mod:GraspingDarkness(args)
