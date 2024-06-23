@@ -14,5 +14,5 @@ if L then
 	L.elder_shadeweaver = "长者织影"
 	L.hulking_warshell = "魁梧的战甲尉"
 
-	--L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
+	L.izo_warmup_trigger = "够了！你们赢得了成为我藏品的机会，让我送你们一程。"
 end
