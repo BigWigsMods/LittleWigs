@@ -50,10 +50,18 @@ function mod:VerifyEnable(_, mobId)
 	if mobId == 17862 then return true end
 
 	-- Durnholde Veteran and Durnholde Warden are trash mobs
-	if not self:Classic() then
-		local _, _, completedFirst = C_Scenario.GetCriteriaInfo(1)
-		local _, _, completedSecond = C_Scenario.GetCriteriaInfo(2)
-		return completedFirst and not completedSecond
+	if not self:Classic() then -- no scenario APIs in Classic
+		if C_ScenarioInfo.GetCriteriaInfo then
+			local info = C_ScenarioInfo.GetCriteriaInfo(1)
+			local completedFirst = info and info.completed
+			info = C_ScenarioInfo.GetCriteriaInfo(2)
+			local completedSecond = info and info.completed
+			return completedFirst and not completedSecond
+		else -- XXX pre-TWW compat
+			local _, _, completedFirst = C_Scenario.GetCriteriaInfo(1)
+			local _, _, completedSecond = C_Scenario.GetCriteriaInfo(2)
+			return completedFirst and not completedSecond
+		end
 	end
 end
 
