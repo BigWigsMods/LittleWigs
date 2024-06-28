@@ -8,3 +8,8 @@ L = BigWigs:NewBossLocale("Faceless One", "itIT")
 if L then
 	--L.faceless_one = "Faceless One"
 end
+
+L = BigWigs:NewBossLocale("Speaker Xanventh", "itIT")
+if L then
+	--L.speaker_xanventh = "Speaker Xanventh"
+end
