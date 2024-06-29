@@ -28,6 +28,8 @@ end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "zhCN")
 if L then
+	--L.nerubian_trash = "Nerubian Trash"
+
 	L.nerubian_lord = "蛛魔领主"
 	L.nerubian_darkcaster = "蛛魔暗法师"
 	L.nerubian_captain = "蛛魔队长"

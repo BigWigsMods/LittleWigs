@@ -5,7 +5,6 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Nerubian Delve Trash", {2680, 2684, 2685, 2688}) -- Earthcrawl Mines, The Dread Pit, Skittering Breach, The Spiral Weave
 if not mod then return end
-mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	215685, -- Foreman Pivk (Earthcrawl Mines gossip NPC)
 	216632, -- Lamplighter Rathling (Earthcrawl Mines gossip NPC)
@@ -19,7 +18,8 @@ mod:RegisterEnableMob(
 	228954, -- Nerubian Marauder
 	216583, -- Chittering Fearmonger
 	208245, -- Skittering Swarmer
-	216621 -- Nerubian Webspinner
+	216621, -- Nerubian Webspinner
+	219810 -- Nerubian Ritualist
 )
 
 --------------------------------------------------------------------------------
@@ -28,6 +28,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.nerubian_trash = "Nerubian Trash"
+
 	L.nerubian_lord = "Nerubian Lord"
 	L.nerubian_darkcaster = "Nerubian Darkcaster"
 	L.nerubian_captain = "Nerubian Captain"
@@ -39,6 +41,10 @@ end
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.nerubian_trash
+end
 
 local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
