@@ -14,6 +14,8 @@ end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "zhCN")
 if L then
+	--L.kobold_trash = "Kobold Trash"
+
 	L.kobold_taskfinder = "狗头人领职者"
 	L.spitfire_charger = "喷火冲锋者"
 	L.spitfire_fusetender = "喷火引线看护者"

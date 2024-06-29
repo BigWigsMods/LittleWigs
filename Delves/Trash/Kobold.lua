@@ -5,7 +5,6 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Kobold Delve Trash", {2681, 2683}) -- Kriegval's Rest, The Waterworks
 if not mod then return end
-mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	213447, -- Kuvkel (Kriegval's Rest gossip NPC)
 	213775, -- Dagran Thaurissan II (Kriegval's Rest gossip NPC)
@@ -23,6 +22,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.kobold_trash = "Kobold Trash"
+
 	L.kobold_taskfinder = "Kobold Taskfinder"
 	L.spitfire_charger = "Spitfire Charger"
 	L.spitfire_fusetender = "Spitfire Fusetender"
@@ -31,6 +32,10 @@ end
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.kobold_trash
+end
 
 local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
