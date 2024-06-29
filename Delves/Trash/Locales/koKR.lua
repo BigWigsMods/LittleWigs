@@ -71,6 +71,7 @@ if L then
 	--L.stolen_loader = "Stolen Loader"
 	--L.invasive_sporecap = "Invasive Sporecap"
 	--L.reno_jackson = "Reno Jackson"
+	--L.sir_finley_mrgglton = "Sir Finley Mrgglton"
 	--L.treasure_wraith = "Treasure Wraith"
 	--L.venombite = "Venombite"
 	--L.kasdru = "Kas'dru"

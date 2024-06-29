@@ -9,6 +9,7 @@ mod:RegisterEnableMob(
 	223541, -- Stolen Loader
 	207482, -- Invasive Sporecap
 	228044, -- Reno Jackson
+	228030, -- Sir Finley Mrgglton
 	208728, -- Treasure Wraith
 	227632, -- Venombite
 	227635, -- Kas'dru
@@ -28,6 +29,7 @@ if L then
 	L.stolen_loader = "Stolen Loader"
 	L.invasive_sporecap = "Invasive Sporecap"
 	L.reno_jackson = "Reno Jackson"
+	L.sir_finley_mrgglton = "Sir Finley Mrgglton"
 	L.treasure_wraith = "Treasure Wraith"
 	L.venombite = "Venombite"
 	L.kasdru = "Kas'dru"
@@ -57,6 +59,9 @@ function mod:GetOptions()
 		-- Reno Jackson
 		398749, -- Skull Cracker
 		400335, -- Spike Traps
+		-- Sir Finley Mrgglton
+		461741, -- Consecration
+		459421, -- Holy Light
 		-- Treasure Wraith
 		418295, -- Umbral Slash
 		418297, -- Castigate
@@ -77,6 +82,7 @@ function mod:GetOptions()
 		[445781] = L.stolen_loader,
 		[415253] = L.invasive_sporecap,
 		[398749] = L.reno_jackson,
+		[461741] = L.sir_finley_mrgglton,
 		[418295] = L.treasure_wraith,
 		[458325] = L.venombite,
 		[458397] = L.kasdru,
@@ -105,6 +111,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SpikeTraps", 400335)
 	self:Log("SPELL_CREATE", "FeastingNerubianChest", 447392) -- Reno Jackson defeated
 
+	-- Sir Finley Mrgglton (pulls with Reno Jackson)
+	self:Log("SPELL_CAST_START", "Consecration", 461741)
+	self:Log("SPELL_CAST_START", "HolyLight", 459421)
+
 	-- Treasure Wraith
 	self:Log("SPELL_CAST_START", "UmbralSlash", 418295)
 	self:Log("SPELL_AURA_APPLIED", "Castigate", 418297)
@@ -115,7 +125,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VenomBite", 458311)
 	self:Death("VenombiteDeath", 227632)
 
-	-- Kas'dru
+	-- Kas'dru (pulls with Venombite)
 	self:Log("SPELL_CAST_START", "InterruptingShout", 458397)
 	self:Log("SPELL_CAST_START", "VenomVolley", 458369)
 	self:Death("KasdruDeath", 227635)
@@ -124,7 +134,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VenomVolley", 458104)
 	self:Death("TalaDeath", 227513)
 
-	-- Velo
+	-- Velo (pulls with Tala)
 	self:Log("SPELL_CAST_START", "VoidSlice", 458090)
 	self:Log("SPELL_CAST_SUCCESS", "VoidSliceSuccess", 458090)
 	self:Log("SPELL_CAST_START", "GraspingDarkness", 458099)
@@ -261,6 +271,19 @@ do
 		self:StopBar(398749) -- Skull Cracker
 		self:StopBar(400335) -- Steel Traps
 	end
+end
+
+-- Sir Finley Mrgglton
+
+function mod:Consecration(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+	--self:CDBar(args.spellId, 17.0)
+end
+
+function mod:HolyLight(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Treasure Wraith

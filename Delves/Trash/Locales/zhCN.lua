@@ -71,6 +71,7 @@ if L then
 	L.stolen_loader = "失窃的装货者"
 	L.invasive_sporecap = "入侵的孢菇"
 	L.reno_jackson = "雷诺·杰克逊"
+	--L.sir_finley_mrgglton = "Sir Finley Mrgglton"
 	L.treasure_wraith = "宝藏怨灵"
 	L.venombite = "剧毒之咬"
 	L.kasdru = "卡斯德鲁"
