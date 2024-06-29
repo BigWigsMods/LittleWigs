@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Fungarian Delve Trash", "zhCN")
 if not L then return end
 if L then
+	--L.fungarian_trash = "Fungarian Trash"
+
 	L.sporbit = "孢点"
 	L.fungal_speartender = "真菌护矛者"
 	L.gnarled_reviver = "多瘤复生者"

@@ -5,7 +5,6 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Fungarian Delve Trash", {2664, 2679}) -- Fungal Folly, Mycomancer Cavern
 if not mod then return end
-mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	210677, -- Stoneguard Benston (Fungal Folly gossip NPC)
 	220293, -- Aliya Hillhelm (Mycomancer Cavern gossip NPC)
@@ -26,6 +25,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.fungarian_trash = "Fungarian Trash"
+
 	L.sporbit = "Sporbit"
 	L.fungal_speartender = "Fungal Speartender"
 	L.gnarled_reviver = "Gnarled Reviver"
@@ -38,6 +39,10 @@ end
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.fungarian_trash
+end
 
 local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
