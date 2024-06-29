@@ -40,6 +40,8 @@ end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "zhCN")
 if L then
+	--L.nightfall_trash = "Nightfall Trash"
+
 	L.dark_bombardier = "黑暗投弹手"
 	L.nightfall_inquisitor = "夜幕审判者"
 	L.devouring_shade = "噬光魔影"

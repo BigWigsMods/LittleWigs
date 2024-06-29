@@ -3,9 +3,8 @@ if not BigWigsLoader.isBeta then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nightfall Delve Trash", 2686) -- Nightfall Sanctum
+local mod, CL = BigWigs:NewBoss("Nightfall Delve Trash", {2685, 2686}) -- Skittering Breach, Nightfall Sanctum
 if not mod then return end
-mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	217572, -- Great Kyron (Nightfall Sanctum gossip NPC)
 	217151, -- Dark Bombardier
@@ -24,6 +23,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.nightfall_trash = "Nightfall Trash"
+
 	L.dark_bombardier = "Dark Bombardier"
 	L.nightfall_inquisitor = "Nightfall Inquisitor"
 	L.devouring_shade = "Devouring Shade"
@@ -34,6 +35,10 @@ end
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.nightfall_trash
+end
 
 local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
