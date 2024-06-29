@@ -42,6 +42,7 @@ BigWigs:AddSounds("Nerubian Delve Trash", {
 BigWigs:AddSounds("Nightfall Delve Trash", {
 	[434281] = "alarm",
 	[434740] = "info",
+	[440205] = "alert",
 	[441129] = "alarm",
 	[443292] = "alarm",
 	[443482] = "alert",

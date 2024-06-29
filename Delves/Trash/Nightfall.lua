@@ -14,7 +14,9 @@ mod:RegisterEnableMob(
 	217870, -- Devouring Shade
 	217268, -- Weeping Shade
 	217541, -- Nightfall Initiate
-	217485 -- Nightfall Lookout
+	217485, -- Nightfall Lookout
+	220572, -- Shadow Elemental
+	220573 -- Shadow Elemental
 )
 
 --------------------------------------------------------------------------------
@@ -30,6 +32,7 @@ if L then
 	L.devouring_shade = "Devouring Shade"
 	L.weeping_shade = "Weeping Shade"
 	L.nightfall_shadeguard = "Nightfall Shadeguard"
+	L.shadow_elemental = "Shadow Elemental"
 end
 
 --------------------------------------------------------------------------------
@@ -54,12 +57,15 @@ function mod:GetOptions()
 		434281, -- Echo of Renilash
 		-- Nightfall Shadeguard
 		443482, -- Blessing of Dusk
+		-- Shadow Elemental
+		440205, -- Inflict Death
 	}, {
 		[441129] = L.dark_bombardier,
 		[434740] = L.nightfall_inquisitor,
 		[443292] = L.devouring_shade,
 		[434281] = L.weeping_shade,
 		[443482] = L.nightfall_shadeguard,
+		[440205] = L.shadow_elemental,
 	}
 end
 
@@ -81,6 +87,9 @@ function mod:OnBossEnable()
 
 	-- Nightfall Shadeguard
 	self:Log("SPELL_CAST_START", "BlessingOfDusk", 443482)
+
+	-- Shadow Elemental
+	self:Log("SPELL_CAST_START", "InflictDeath", 440205)
 end
 
 --------------------------------------------------------------------------------
@@ -122,7 +131,7 @@ end
 -- Weeping Shade
 
 function mod:EchoOfRenilash(args)
-	-- also cast by a boss
+	-- also cast by a boss (Reformed Fury)
 	if self:MobId(args.sourceGUID) ~= 218034 then -- Reformed Fury
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alarm")
@@ -132,9 +141,19 @@ end
 -- Nightfall Shadeguard
 
 function mod:BlessingOfDusk(args)
-	-- also cast by a boss
+	-- also cast by a boss (Speaker Davenruth)
 	if self:MobId(args.sourceGUID) == 217519 then -- Nightfall Shadeguard
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+-- Shadow Elemental
+
+function mod:InflictDeath(args)
+	-- also cast by a boss (Reformed Fury)
+	if self:MobId(args.sourceGUID) ~= 218034 then -- Reformed Fury
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
