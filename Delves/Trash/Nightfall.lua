@@ -28,6 +28,7 @@ if L then
 	L.nightfall_inquisitor = "Nightfall Inquisitor"
 	L.devouring_shade = "Devouring Shade"
 	L.weeping_shade = "Weeping Shade"
+	L.nightfall_shadeguard = "Nightfall Shadeguard"
 end
 
 --------------------------------------------------------------------------------
@@ -46,11 +47,14 @@ function mod:GetOptions()
 		443292, -- Umbral Slam
 		-- Weeping Shade
 		434281, -- Echo of Renilash
+		-- Nightfall Shadeguard
+		443482, -- Blessing of Dusk
 	}, {
 		[441129] = L.dark_bombardier,
 		[434740] = L.nightfall_inquisitor,
 		[443292] = L.devouring_shade,
 		[434281] = L.weeping_shade,
+		[443482] = L.nightfall_shadeguard,
 	}
 end
 
@@ -69,6 +73,9 @@ function mod:OnBossEnable()
 
 	-- Weeping Shade
 	self:Log("SPELL_CAST_START", "EchoOfRenilash", 434281)
+
+	-- Nightfall Shadeguard
+	self:Log("SPELL_CAST_START", "BlessingOfDusk", 443482)
 end
 
 --------------------------------------------------------------------------------
@@ -89,14 +96,14 @@ end
 -- Dark Bombardier
 
 function mod:Spotted(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
+	self:TargetMessage(args.spellId, "cyan", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
 
 -- Nightfall Inquisitor
 
 function mod:ShadowBarrier(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -114,5 +121,15 @@ function mod:EchoOfRenilash(args)
 	if self:MobId(args.sourceGUID) ~= 218034 then -- Reformed Fury
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
+-- Nightfall Shadeguard
+
+function mod:BlessingOfDusk(args)
+	-- also cast by a boss
+	if self:MobId(args.sourceGUID) == 217519 then -- Nightfall Shadeguard
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
 	end
 end

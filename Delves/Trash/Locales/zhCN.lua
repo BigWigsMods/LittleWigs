@@ -42,6 +42,7 @@ if L then
 	L.nightfall_inquisitor = "夜幕审判者"
 	L.devouring_shade = "噬光魔影"
 	L.weeping_shade = "低泣之影"
+	--L.nightfall_shadeguard = "Nightfall Shadeguard"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "zhCN")
