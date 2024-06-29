@@ -19,6 +19,8 @@ end
 
 L = BigWigs:NewBossLocale("Kobyss Delve Trash", "zhCN")
 if L then
+	--L.kobyss_trash = "Kobyss Trash"
+
 	L.kobyss_necromancer = "唇鱼人通灵师"
 	L.kobyss_spearfisher = "唇鱼人矛渔夫"
 	L.kobyss_witherer = "唇鱼人枯败者"

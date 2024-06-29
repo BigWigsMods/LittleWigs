@@ -5,7 +5,6 @@ if not BigWigsLoader.isBeta then return end
 
 local mod, CL = BigWigs:NewBoss("Kobyss Delve Trash", {2687, 2689}) -- The Sinkhole, Tek-Rethan Abyss
 if not mod then return end
-mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	210759, -- Brann Bronzebeard
 	228903, -- Brann Bronzebeard
@@ -25,6 +24,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.kobyss_trash = "Kobyss Trash"
+
 	L.kobyss_necromancer = "Kobyss Necromancer"
 	L.kobyss_spearfisher = "Kobyss Spearfisher"
 	L.kobyss_witherer = "Kobyss Witherer"
@@ -35,6 +36,10 @@ end
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self.displayName = L.kobyss_trash
+end
 
 local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
