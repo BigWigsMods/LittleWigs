@@ -53,6 +53,7 @@ BigWigs:AddColors("The Underkeep Trash", {
 	[450637] = "yellow",
 	[450714] = "orange",
 	[451913] = "red",
+	[453149] = "yellow",
 })
 
 BigWigs:AddColors("Delve Rares", {

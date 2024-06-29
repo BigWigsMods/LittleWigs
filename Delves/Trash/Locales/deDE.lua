@@ -49,6 +49,7 @@ if L then
 	--L.ascended_webfriar = "Ascended Webfriar"
 	--L.deepwalker_guardian = "Deepwalker Guardian"
 	--L.crazed_abomination = "Crazed Abomination"
+	--L.web_marauder = "Web Marauder"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "deDE")

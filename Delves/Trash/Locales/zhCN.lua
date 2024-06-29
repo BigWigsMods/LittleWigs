@@ -49,6 +49,7 @@ if L then
 	L.ascended_webfriar = "扬升的蛛网修士"
 	L.deepwalker_guardian = "深渊行者护卫"
 	L.crazed_abomination = "疯乱憎恶"
+	--L.web_marauder = "Web Marauder"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "zhCN")

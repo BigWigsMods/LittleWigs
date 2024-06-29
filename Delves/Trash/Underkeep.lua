@@ -11,7 +11,8 @@ mod:RegisterEnableMob(
 	220133, -- Weaver's Instructions (The Underkeep gossip NPC)
 	219022, -- Ascended Webfriar
 	219035, -- Deepwalker Guardian
-	219454 -- Crazed Abomination
+	219454, -- Crazed Abomination
+	219034 -- Web Marauder
 )
 
 --------------------------------------------------------------------------------
@@ -23,6 +24,7 @@ if L then
 	L.ascended_webfriar = "Ascended Webfriar"
 	L.deepwalker_guardian = "Deepwalker Guardian"
 	L.crazed_abomination = "Crazed Abomination"
+	L.web_marauder = "Web Marauder"
 end
 
 --------------------------------------------------------------------------------
@@ -42,10 +44,13 @@ function mod:GetOptions()
 		448179, -- Armored Shell
 		448155, -- Shockwave Tremors
 		{448161, "DISPEL"}, -- Enrage
+		-- Web Marauder
+		453149, -- Gossamer Webbing
 	}, {
 		[451913] = L.ascended_webfriar,
 		[450714] = L.deepwalker_guardian,
 		[448179] = L.crazed_abomination,
+		[453149] = L.web_marauder,
 	}
 end
 
@@ -65,6 +70,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ArmoredShell", 448179)
 	self:Log("SPELL_CAST_START", "ShockwaveTremors", 448155)
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 448161)
+
+	-- Web Marauder
+	self:Log("SPELL_CAST_START", "GossamerWebbing", 453149)
 end
 
 --------------------------------------------------------------------------------
@@ -127,4 +135,11 @@ function mod:Enrage(args)
 		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
+end
+
+-- Web Marauder
+
+function mod:GossamerWebbing(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
 end
