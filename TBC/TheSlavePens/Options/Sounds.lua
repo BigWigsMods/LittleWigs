@@ -16,3 +16,8 @@ BigWigs:AddSounds("The Slave Pens Trash", {
 	[34984] = "alert",
 	[39378] = "alarm",
 })
+
+BigWigs:AddSounds("Ahune", {
+	[45954] = {"info","long"},
+	["warmup"] = "info",
+})

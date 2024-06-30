@@ -7,3 +7,9 @@ if L then
 	L.collaborator = "갈퀴송곳니 공모자"
 	L.ray = "갈퀴송곳니 가오리"
 end
+
+L = BigWigs:NewBossLocale("Ahune", "koKR")
+if L then
+	L.ahune = "아훈"
+	--L.warmup_trigger = "The Ice Stone has melted!"
+end
