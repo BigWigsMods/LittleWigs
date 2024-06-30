@@ -52,8 +52,8 @@ if L then
 	L.nightfall_inquisitor = "夜幕审判者"
 	L.devouring_shade = "噬光魔影"
 	L.weeping_shade = "低泣之影"
-	--L.nightfall_shadeguard = "Nightfall Shadeguard"
-	--L.shadow_elemental = "Shadow Elemental"
+	L.nightfall_shadeguard = "夜幕幽卫"
+	L.shadow_elemental = "暗影元素"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "zhCN")
@@ -61,7 +61,7 @@ if L then
 	L.ascended_webfriar = "扬升的蛛网修士"
 	L.deepwalker_guardian = "深渊行者护卫"
 	L.crazed_abomination = "疯乱憎恶"
-	--L.web_marauder = "Web Marauder"
+	L.web_marauder = "掠网者"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "zhCN")
@@ -71,7 +71,7 @@ if L then
 	L.stolen_loader = "失窃的装货者"
 	L.invasive_sporecap = "入侵的孢菇"
 	L.reno_jackson = "雷诺·杰克逊"
-	--L.sir_finley_mrgglton = "Sir Finley Mrgglton"
+	L.sir_finley_mrgglton = "芬利·莫格顿爵士"
 	L.treasure_wraith = "宝藏怨灵"
 	L.venombite = "剧毒之咬"
 	L.kasdru = "卡斯德鲁"
