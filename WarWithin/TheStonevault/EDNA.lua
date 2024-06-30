@@ -10,6 +10,15 @@ mod:SetEncounterID(2854)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local refractingBeamCount = 1
+local seismicSmashCount = 1
+local volatileSpikeCount = 1
+local earthShattererCount = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -48,12 +57,20 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	refractingBeamCount = 1
+	seismicSmashCount = 1
+	volatileSpikeCount = 1
 	self:StopBar(CL.active)
-	self:CDBar(424903, 6.0) -- Volatile Spike
-	self:CDBar(424795, 9.7, CL.beams) -- Refracting Beam
-	self:CDBar(424888, 15.4) -- Seismic Smash
 	if self:Mythic() then
-		self:CDBar(424879, 25.1) -- Earth Shatterer
+		earthShattererCount = 1
+		self:CDBar(424903, 6.0) -- Volatile Spike
+		self:CDBar(424795, 14.0, CL.beams) -- Refracting Beam
+		self:CDBar(424888, 18.0) -- Seismic Smash
+		self:CDBar(424879, 43.0, CL.count:format(self:SpellName(424879), earthShattererCount)) -- Earth Shatterer
+	else
+		self:CDBar(424903, 8.1) -- Volatile Spike
+		self:CDBar(424795, 11.8, CL.beams) -- Refracting Beam
+		self:CDBar(424888, 15.4) -- Seismic Smash
 	end
 end
 
@@ -93,7 +110,16 @@ do
 			self:Say(args.spellId, CL.beam, nil, "Beam")
 		end
 		if #playerList == 1 then
-			self:CDBar(args.spellId, 10.9, CL.beams)
+			if self:Mythic() then
+				refractingBeamCount = refractingBeamCount + 1
+				if refractingBeamCount % 2 == 0 then
+					self:CDBar(args.spellId, 20.0, CL.beams)
+				else
+					self:CDBar(args.spellId, 28.0, CL.beams)
+				end
+			else -- Normal, Heroic
+				self:CDBar(args.spellId, 10.9, CL.beams)
+			end
 		end
 	end
 
@@ -106,7 +132,16 @@ end
 function mod:SeismicSmash(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 22.2)
+	if self:Mythic() then
+		seismicSmashCount = seismicSmashCount + 1
+		if seismicSmashCount % 2 == 0 then
+			self:CDBar(args.spellId, 20.0)
+		else
+			self:CDBar(args.spellId, 28.0)
+		end
+	else -- Normal, Heroic
+		self:CDBar(args.spellId, 23.1)
+	end
 end
 
 function mod:SeismicReverberation(args)
@@ -120,14 +155,21 @@ function mod:VolatileSpike(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 	if self:Mythic() then
-		self:CDBar(args.spellId, 27.5)
-	else
-		self:CDBar(args.spellId, 14.5) -- TODO recheck?
+		volatileSpikeCount = volatileSpikeCount + 1
+		if volatileSpikeCount % 2 == 0 then
+			self:CDBar(args.spellId, 20.0)
+		else
+			self:CDBar(args.spellId, 28.0)
+		end
+	else -- Normal, Heroic
+		self:CDBar(args.spellId, 14.6)
 	end
 end
 
 function mod:EarthShatterer(args)
-	self:Message(args.spellId, "yellow")
+	self:StopBar(CL.count:format(args.spellName, earthShattererCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, earthShattererCount))
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 54.5)
+	earthShattererCount = earthShattererCount + 1
+	self:CDBar(args.spellId, 48.0, CL.count:format(args.spellName, earthShattererCount))
 end
