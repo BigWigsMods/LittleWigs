@@ -1,69 +1,103 @@
---[[
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
-local mod = BigWigs:NewBoss("Lord Ahune", 547)
+local mod, CL = BigWigs:NewBoss("Ahune", 547)
 if not mod then return end
-mod.partyContent = true
-mod.otherMenu = "Coilfang Reservoir"
-mod.RegisterEnableMob(25740, 25697)
-mod.toggleOptions = {
-	"state",
-}
+mod:RegisterEnableMob(
+	40446, -- Skar'this the Summoner
+	25740, -- Ahune
+	25865, -- Frozen Core
+	25697 -- Luma Skymother
+)
+mod:SetStage(1)
+mod:SetAllowWin(true)
 
--------------------------------------------------------------------------------
---  Locals
-
-local standing = nil
-
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
+--
 
 local L = mod:GetLocale()
 if L then
-	L["state"] = "State"
-	L["state_desc"] = "Display information about the state of Ahune (Submerged/Emerged)"
-	L["attack_message"] = "Ahune is Attackable"
-	L["stand_message"] = "Ahune Emerged"
-	L["stand_soon"] = "Emerge Soon"
-	L["submerge_message"] = "Ahune Submerged"
-	L["submerge_soon"] = "Submerge Soon"
+	L.ahune = "Ahune"
+	L.warmup_trigger = "The Ice Stone has melted!"
+	L.warmup_icon = "spell_frost_summonwaterelemental"
 end
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
+
+function mod:OnRegister()
+	self.displayName = L.ahune
+end
+
+local autotalk = mod:AddAutoTalkOption(true, "boss")
+function mod:GetOptions()
+	return {
+		autotalk,
+		"warmup",
+		45954, -- Ahune's Shield
+	}, nil, {
+		[45954] = CL.shield, -- Ahune's Shield (Shield)
+	}
+end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_REMOVED", "Submerge", 45954)
-	self:Log("SPELL_AURA_REMOVED", "Attack", 45954)
-	self:Log("SPELL_AURA_APPLIED", "Stand", 45954)
+	self:RegisterEvent("GOSSIP_SHOW")
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:Log("SPELL_AURA_APPLIED", "AhunesShieldApplied", 45954)
+	self:Log("SPELL_AURA_REMOVED", "AhunesShieldRemoved", 45954)
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 25740)
 end
 
 function mod:OnEngage()
-	standing = false
+	self:StopBar(CL.active)
+	self:SetStage(1)
+	-- Ahune's Shield is cast on pull
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
-function mod:Submerge()
-	self:MessageOld("state", L["submerge_message"], "yellow")
-	self:Bar("state", L["submerge_message"], 39)
-	self:DelayedMessage("state", 29, L["stand_soon"], "yellow")
-	standing = false
+function mod:GOSSIP_SHOW()
+	if self:GetOption(autotalk) and self:GetGossipID(36888) then
+		-- 36888:Disturb the stone and summon Lord Ahune.
+		self:SelectGossipID(36888)
+	end
 end
 
-function mod:Stand()
-	self:MessageOld("state", L["stand_message"], "yellow")
-	self:Bar("state", L["stand_message"], 94)
-	self:DelayedMessage("state", 86, L["submerge_soon"], "yellow")
-	standing = true
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.warmup_trigger then
+		self:UnregisterEvent(event)
+		self:Message("warmup", "cyan", CL.spawning:format(self.displayName), L.warmup_icon)
+		self:PlaySound("warmup", "info")
+		self:Bar("warmup", 8.1, CL.active, L.warmup_icon)
+	end
 end
 
-function mod:Attack()
-	self:MessageOld("state", L["attack_message"], "yellow")
-	self:Bar("state", L["attack_message"], 45)
-	standing = false
+do
+	local prev = 0
+	function mod:AhunesShieldApplied(args)
+		-- can be double cast, ignore the second cast
+		local t = args.time
+		if t - prev > 5 then
+			prev = t
+			self:StopBar(CL.removed:format(CL.shield))
+			self:SetStage(1)
+			self:Message(args.spellId, "red", CL.onboss:format(CL.shield))
+			self:PlaySound(args.spellId, "long")
+			self:Bar(args.spellId, 95.1, CL.onboss:format(CL.shield))
+		end
+	end
 end
-]]
+
+function mod:AhunesShieldRemoved(args)
+	self:StopBar(CL.onboss:format(CL.shield))
+	self:SetStage(2)
+	self:Message(args.spellId, "green", CL.removed:format(CL.shield))
+	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 40.8, CL.removed:format(CL.shield))
+end

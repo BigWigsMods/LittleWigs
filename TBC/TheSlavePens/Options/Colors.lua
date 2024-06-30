@@ -22,3 +22,8 @@ BigWigs:AddColors("The Slave Pens Trash", {
 	[34984] = {"blue","red"},
 	[39378] = "orange",
 })
+
+BigWigs:AddColors("Ahune", {
+	[45954] = {"green","red"},
+	["warmup"] = "cyan",
+})

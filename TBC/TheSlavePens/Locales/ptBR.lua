@@ -7,3 +7,9 @@ if L then
 	L.collaborator = "Colaborador Presacurva"
 	L.ray = "Arraia Presacurva"
 end
+
+L = BigWigs:NewBossLocale("Ahune", "ptBR")
+if L then
+	L.ahune = "Ahune"
+	--L.warmup_trigger = "The Ice Stone has melted!"
+end

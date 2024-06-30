@@ -7,3 +7,9 @@ if L then
 	--L.collaborator = "Coilfang Collaborator"
 	--L.ray = "Coilfang Ray"
 end
+
+L = BigWigs:NewBossLocale("Ahune", "zhTW")
+if L then
+	--L.ahune = "Ahune"
+	--L.warmup_trigger = "The Ice Stone has melted!"
+end
