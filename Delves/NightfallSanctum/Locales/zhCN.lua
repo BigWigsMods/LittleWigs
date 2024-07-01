@@ -6,6 +6,6 @@ end
 
 L = BigWigs:NewBossLocale("Reformed Fury", "zhCN")
 if L then
-	--L.speaker_davenruth = "Speaker Davenruth"
-	--L.reformed_fury = "Reformed Fury"
+	L.speaker_davenruth = "代言人达文鲁兹"
+	L.reformed_fury = "重塑之怒"
 end
