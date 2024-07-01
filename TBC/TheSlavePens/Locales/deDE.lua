@@ -11,5 +11,5 @@ end
 L = BigWigs:NewBossLocale("Ahune", "deDE")
 if L then
 	L.ahune = "Ahune"
-	--L.warmup_trigger = "The Ice Stone has melted!"
+	L.warmup_trigger = "Der Eisbrocken ist geschmolzen!"
 end
