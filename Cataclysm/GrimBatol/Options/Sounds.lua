@@ -43,7 +43,6 @@ BigWigs:AddSounds("Erudax", {
 
 BigWigs:AddSounds("Grim Batol Trash", {
 	[76711] = "alert",
-	[451067] = "alarm",
 	[451224] = "alert",
 	[451387] = "info",
 	[451391] = "alarm",
@@ -53,4 +52,5 @@ BigWigs:AddSounds("Grim Batol Trash", {
 	[456696] = "alarm",
 	[456711] = "alarm",
 	[456713] = "alarm",
+	[462216] = "alarm",
 })

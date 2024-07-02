@@ -14,7 +14,7 @@ if L then
 	--L.twilight_destroyer = "Twilight Destroyer"
 	--L.twilight_beguiler = "Twilight Beguiler"
 	--L.twilight_warlock = "Twilight Warlock"
-	--L.twilight_decapitator = "Twilight Decapitator"
+	--L.twilight_flamerender = "Twilight Flamerender"
 	--L.twilight_lavabender = "Twilight Lavabender"
 	--L.faceless_corruptor = "Faceless Corruptor"
 end

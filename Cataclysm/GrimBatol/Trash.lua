@@ -12,7 +12,7 @@ mod:RegisterEnableMob(
 	224609, -- Twilight Destroyer
 	40167, -- Twilight Beguiler
 	224271, -- Twilight Warlock
-	224240, -- Twilight Decapitator
+	224240, -- Twilight Flamerender
 	224249, -- Twilight Lavabender
 	39392 -- Faceless Corruptor
 )
@@ -28,7 +28,7 @@ if L then
 	L.twilight_destroyer = "Twilight Destroyer"
 	L.twilight_beguiler = "Twilight Beguiler"
 	L.twilight_warlock = "Twilight Warlock"
-	L.twilight_decapitator = "Twilight Decapitator"
+	L.twilight_flamerender = "Twilight Flamerender"
 	L.twilight_lavabender = "Twilight Lavabender"
 	L.faceless_corruptor = "Faceless Corruptor"
 end
@@ -50,8 +50,8 @@ function mod:GetOptions()
 		76711, -- Sear Mind
 		-- Twilight Warlock
 		{451224, "DISPEL"}, -- Enveloping Shadowflame
-		-- Twilight Decapitator
-		451067, -- Decapitate
+		-- Twilight Flamerender
+		462216, -- Blazing Shadowflame
 		-- Twilight Lavabender
 		456711, -- Shadowlava Blast
 		456713, -- Dark Eruption
@@ -64,7 +64,7 @@ function mod:GetOptions()
 		[451613] = L.twilight_destroyer,
 		[76711] = L.twilight_beguiler,
 		[451224] = L.twilight_warlock,
-		[451067] = L.twilight_decapitator,
+		[462216] = L.twilight_flamerender,
 		[456711] = L.twilight_lavabender,
 		[451391] = L.faceless_corruptor,
 	}
@@ -87,8 +87,8 @@ function mod:OnBossEnable()
 	-- Twilight Warlock
 	self:Log("SPELL_AURA_APPLIED", "EnvelopingShadowflameApplied", 451224)
 
-	-- Twilight Decapitator
-	self:Log("SPELL_CAST_START", "Decapitate", 451067)
+	-- Twilight Flamerender
+	self:Log("SPELL_CAST_START", "BlazingShadowflame", 462216)
 
 	-- Twilight Lavabender
 	self:Log("SPELL_CAST_START", "ShadowlavaBlast", 456711)
@@ -162,11 +162,18 @@ do
 	end
 end
 
--- Twilight Decapitator
+-- Twilight Flamerender
 
-function mod:Decapitate(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:BlazingShadowflame(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Twilight Lavabender
