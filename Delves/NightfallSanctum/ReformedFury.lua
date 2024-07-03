@@ -85,7 +85,7 @@ function mod:BlessingOfDusk(args)
 	if self:MobId(args.sourceGUID) == 218022 then -- Speaker Davenruth
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 25.6)
+		self:CDBar(args.spellId, 25.5)
 	end
 end
 
@@ -100,6 +100,17 @@ function mod:SpeakerDavenruthDeath()
 	self:StopBar(443482) -- Blessing of Dusk
 	self:StopBar(444408) -- Speaker's Wrath
 	self:Bar("warmup", 4.7, CL.active, L.warmup_icon) -- time until Reformed Fury spawns
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- to detect Reformed Fury engage
+end
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+	-- Reformed Fury doesn't pull right away, timers start when the boss engages
+	if self:GetBossId(218034) then -- Reformed Fury
+		self:UnregisterEvent(event)
+		self:CDBar(444479, 6.0) -- Darkfire Volley
+		self:CDBar(440205, 8.5) -- Inflict Death
+		self:CDBar(434281, 13.4) -- Echo of Renilash
+	end
 end
 
 -- Reformed Fury
@@ -107,7 +118,7 @@ end
 function mod:DarkfireVolley(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 23.1)
+	self:CDBar(args.spellId, 21.8)
 end
 
 function mod:InflictDeath(args)
