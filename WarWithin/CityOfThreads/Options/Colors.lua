@@ -19,9 +19,10 @@ BigWigs:AddColors("Fangs of the Queen", {
 })
 
 BigWigs:AddColors("The Coaglamation", {
-	[438658] = "orange",
 	[441289] = "red",
 	[441395] = "yellow",
+	[461842] = "purple",
+	[461880] = "orange",
 })
 
 BigWigs:AddColors("Izo, the Grand Splicer", {

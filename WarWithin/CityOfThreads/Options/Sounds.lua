@@ -19,9 +19,10 @@ BigWigs:AddSounds("Fangs of the Queen", {
 })
 
 BigWigs:AddSounds("The Coaglamation", {
-	[438658] = "alarm",
 	[441289] = "long",
 	[441395] = "alert",
+	[461842] = "alert",
+	[461880] = "alarm",
 })
 
 BigWigs:AddSounds("Izo, the Grand Splicer", {
