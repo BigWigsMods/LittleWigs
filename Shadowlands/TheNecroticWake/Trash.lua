@@ -438,11 +438,16 @@ function mod:RepairFlesh(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:ThrowCleaver(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Throw Cleaver")
+do
+	local prevOnMe = 0
+	function mod:ThrowCleaver(args)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+		local t = args.time
+		if self:Me(args.destGUID) and t - prevOnMe > 2 then
+			prevOnMe = t
+			self:Say(args.spellId, nil, nil, "Throw Cleaver")
+		end
 	end
 end
 
