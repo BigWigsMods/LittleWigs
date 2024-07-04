@@ -19,6 +19,7 @@ if L then
 	L.corpse_collector = "屍骸收集者"
 	L.kyrian_stitchwerk = "琪瑞安縫補怪"
 	L.flesh_crafter = "血肉工匠"
+	--L.loyal_creation = "Loyal Creation"
 	L.separation_assistant = "肢解助理"
 	--L.goregrind = "Goregrind"
 	--L.rotspew = "Rotspew"

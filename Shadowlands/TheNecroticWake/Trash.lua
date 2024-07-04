@@ -18,6 +18,8 @@ mod:RegisterEnableMob(
 	173016, -- Corpse Collector
 	172981, -- Kyrian Stitchwerk
 	165872, -- Flesh Crafter
+	165911, -- Loyal Creation
+	173044, -- Stitching Assistant
 	167731, -- Separation Assistant
 	163621, -- Goregrind
 	163620 -- Rotspew
@@ -42,6 +44,7 @@ if L then
 	L.corpse_collector = "Corpse Collector"
 	L.kyrian_stitchwerk = "Kyrian Stitchwerk"
 	L.flesh_crafter = "Flesh Crafter"
+	L.loyal_creation = "Loyal Creation"
 	L.separation_assistant = "Separation Assistant"
 	L.goregrind = "Goregrind"
 	L.rotspew = "Rotspew"
@@ -84,7 +87,9 @@ function mod:GetOptions()
 		{338357, "NAMEPLATEBAR"}, -- Tenderize
 		-- Flesh Crafter
 		327130, -- Repair Flesh
-		{323496, "SAY"}, -- Throw Cleaver
+		{323471, "SAY"}, -- Throw Cleaver
+		-- Loyal Creation
+		327240, -- Spine Crush
 		-- Separation Assistant
 		338606, -- Morbid Fixation
 		-- Goregrind
@@ -104,6 +109,7 @@ function mod:GetOptions()
 		[338353] = L.corpse_collector,
 		[338456] = L.kyrian_stitchwerk,
 		[327130] = L.flesh_crafter,
+		[327240] = L.loyal_creation,
 		[338606] = L.separation_assistant,
 		[333477] = L.goregrind,
 		[333479] = L.rotspew,
@@ -160,8 +166,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Tenderize", 338357)
 
 	-- Flesh Crafter
-	self:Log("SPELL_CAST_START", "RepairFlesh", 327130)
-	self:Log("SPELL_CAST_START", "ThrowCleaver", 323496)
+	self:Log("SPELL_CAST_SUCCESS", "RepairFlesh", 327130) -- SUCCESS on 327130 is when the interruptible channel begins
+	self:Log("SPELL_AURA_APPLIED", "ThrowCleaver", 323471)
+
+	-- Loyal Creation
+	self:Log("SPELL_CAST_START", "SpineCrush", 327240)
 
 	-- Separation Assistant
 	self:Log("SPELL_CAST_START", "MorbidFixation", 338606)
@@ -204,7 +213,7 @@ do
 		local t = args.time
 		if t-prev > 0.5 then
 			prev = t
-			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -407,14 +416,14 @@ end
 
 function mod:Mutilate(args)
 	if self:MobId(args.sourceGUID) ~= 164578 then -- Stitchflesh's Creation, add on Surgeon Stitchflesh
-		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alarm")
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:Tenderize(args)
-	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, self:Tank() and "alert" or "info")
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "info")
 	-- This bar is here in case dps/pets taunt to let the tank drop stacks
 	self:NameplateCDBar(args.spellId, 12.2, args.sourceGUID)
 end
@@ -425,42 +434,55 @@ function mod:RepairFlesh(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
 	end
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(323496, "yellow", name)
-		self:PlaySound(323496, "info", nil, name)
-		if self:Me(guid) then
-			self:Say(323496, nil, nil, "Throw Cleaver")
-		end
+function mod:ThrowCleaver(args)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Throw Cleaver")
 	end
+end
 
-	function mod:ThrowCleaver(args)
-		-- The mob takes a long time to actually target the player
-		self:GetUnitTarget(printTarget, 2, args.sourceGUID)
-	end
+-- Loyal Creation
+
+function mod:SpineCrush(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Separation Assistant
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(338606, "yellow", name) -- Morbid Fixation
-		self:PlaySound(338606, self:Me(guid) and "alarm" or "info", nil, name) -- Morbid Fixation
+		self:TargetMessage(338606, "yellow", name)
+		if self:Me(guid) then
+			self:PlaySound(338606, "alarm", nil, name)
+		else
+			self:PlaySound(338606, "info", nil, name)
+		end
 	end
 
 	function mod:MorbidFixation(args)
+		-- alert earlier using target scanning instead of watching the debuff
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
+end
+
+function mod:MorbidFixationApplied(args)
+	self:TargetBar(args.spellId, 8, args.destName)
+end
+
+function mod:MorbidFixationRemoved(args)
+	self:StopBar(args.spellId, args.destName)
 end
 
 -- Goregrind
 
 function mod:GutSlice(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -478,12 +500,4 @@ do
 	function mod:SpewDisease(args)
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
-end
-
-function mod:MorbidFixationApplied(args)
-	self:TargetBar(args.spellId, 8, args.destName)
-end
-
-function mod:MorbidFixationRemoved(args)
-	self:StopBar(args.spellId, args.destName)
 end

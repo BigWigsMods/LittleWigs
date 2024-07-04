@@ -19,6 +19,7 @@ if L then
 	L.corpse_collector = "Собиратель трупов"
 	L.kyrian_stitchwerk = "Кирийский кадавр"
 	L.flesh_crafter = "Изготовитель кадавров"
+	L.loyal_creation = "Верное создание"
 	L.separation_assistant = "Ассистент-расчленитель"
 	L.goregrind = "Кровомес"
 	L.rotspew = "Тошногнил"

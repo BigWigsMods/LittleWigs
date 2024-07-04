@@ -19,6 +19,7 @@ if L then
 	L.corpse_collector = "Recolector de cadáveres"
 	L.kyrian_stitchwerk = "Remendado kyriano"
 	L.flesh_crafter = "Modelador de carne"
+	L.loyal_creation = "Creación leal"
 	L.separation_assistant = "Asistente de separación"
 	L.goregrind = "Picacrúor"
 	L.rotspew = "Flemapútrida"
