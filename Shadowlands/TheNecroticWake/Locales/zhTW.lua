@@ -1,10 +1,5 @@
-local L = BigWigs:NewBossLocale("Nalthor the Rimebinder", "zhTW")
+local L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "zhTW")
 if not L then return end
-if L then
-	L.aegis = "%s移除，用時 %.1f 秒！"
-end
-
-L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "zhTW")
 if L then
 	L.amarth_warmup_trigger = "正義會制裁你！"
 	L.corpse_harvester = "屍體收割者"

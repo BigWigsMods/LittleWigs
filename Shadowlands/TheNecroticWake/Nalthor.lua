@@ -9,21 +9,12 @@ mod:SetEncounterID(2390)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.aegis = "%s removed after %.1f seconds!"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		{320772, "CASTBAR"}, -- Comet Storm
+		320772, -- Comet Storm
 		321368, -- Icebound Aegis
 		{320788, "ICON", "SAY"}, -- Frozen Binds
 		321894, -- Dark Exile
@@ -32,20 +23,22 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CometStorm", 320772)
-	self:Log("SPELL_AURA_APPLIED", "IceboundAegisApplied", 321368, 321754) -- normal/heroic, mythic
-	self:Log("SPELL_AURA_REMOVED", "IceboundAegisRemoved", 321368, 321754)
+	self:Log("SPELL_AURA_APPLIED", "IceboundAegisApplied", 321368, 321754) -- Normal/Heroic, Mythic
+	self:Log("SPELL_AURA_REMOVED", "IceboundAegisRemoved", 321368, 321754) -- Normal/Heroic, Mythic
 	self:Log("SPELL_CAST_START", "FrozenBinds", 320788)
-	self:Log("SPELL_CAST_SUCCESS", "FrozenBindsSuccess", 320788)
+	self:Log("SPELL_AURA_APPLIED", "FrozenBindsApplied", 320788)
 	self:Log("SPELL_AURA_REMOVED", "FrozenBindsRemoved", 320788)
 	self:Log("SPELL_MISSED", "FrozenBindsRemoved", 320788) -- Anti-Magic Shell, Hand of Freedom, immunities, etc.
 	self:Log("SPELL_CAST_SUCCESS", "DarkExile", 321894)
 end
 
 function mod:OnEngage()
-	self:CDBar(320788, 8) -- Frozen Binds
-	self:CDBar(321368, 13) -- Icebound Aegis
-	self:CDBar(320772, 18) -- Comet Storm
-	self:CDBar(321894, 26) -- Dark Exile
+	self:CDBar(320788, 7.3) -- Frozen Binds
+	self:CDBar(321368, 12.2) -- Icebound Aegis
+	self:CDBar(320772, 18.3) -- Comet Storm
+	if not self:Solo() then
+		self:CDBar(321894, 25.4) -- Dark Exile
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -55,22 +48,23 @@ end
 function mod:CometStorm(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
-	self:CastBar(args.spellId, 6) -- 2s Cast, 4s Channel
-	self:Bar(args.spellId, 25.5)
+	self:CDBar(args.spellId, 24.3)
 end
 
 do
-	local appliedAt = 0
+	local iceboundAegisStart = 0
 	function mod:IceboundAegisApplied(args)
-		appliedAt = args.time
-
+		iceboundAegisStart = args.time
 		self:Message(321368, "cyan")
-		self:PlaySound(321368, "info")
-		self:Bar(321368, 25.5)
+		self:PlaySound(321368, "alert")
+		-- this will not be recast if the shield is still up when it comes off CD, but in this scenario
+		-- it will be cast almost immediately after the shield is finally removed.
+		self:CDBar(321368, 24.3)
 	end
 
 	function mod:IceboundAegisRemoved(args)
-		self:Message(321368, "green", L.aegis:format(args.spellName, args.time - appliedAt))
+		self:Message(321368, "green", CL.removed_after:format(args.spellName, args.time - iceboundAegisStart))
+		self:PlaySound(321368, "info")
 	end
 end
 
@@ -78,21 +72,21 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(320788, "orange", name, CL.casting:format(self:SpellName(320788)))
 		self:PlaySound(320788, "alert", nil, name)
-		self:PrimaryIcon(320788, name)
+		if self:Me(guid) then
+			self:Say(320788, nil, nil, "Frozen Binds")
+		end
 	end
 
 	function mod:FrozenBinds(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		self:CDBar(args.spellId, 24.3)
 	end
 end
 
-function mod:FrozenBindsSuccess(args)
+function mod:FrozenBindsApplied(args)
+	-- doesn't apply if immune
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Frozen Binds")
-	end
-	self:Bar(args.spellId, 25.5)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -103,5 +97,5 @@ end
 function mod:DarkExile(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "long", nil, args.destName)
-	self:CDBar(args.spellId, 35)
+	self:CDBar(args.spellId, 35.2)
 end

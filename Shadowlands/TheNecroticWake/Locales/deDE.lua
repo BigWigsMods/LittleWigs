@@ -1,10 +1,5 @@
-local L = BigWigs:NewBossLocale("Nalthor the Rimebinder", "deDE")
+local L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "deDE")
 if not L then return end
-if L then
-	L.aegis = "%s entfernt nach %.1f Sekunden!"
-end
-
-L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "deDE")
 if L then
 	L.amarth_warmup_trigger = "Ihr bekommt Eure gerechte Strafe!"
 	L.corpse_harvester = "Leichenernter"
