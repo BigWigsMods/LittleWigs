@@ -15,20 +15,29 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		"warmup",
+		-- Amarth
 		321226, -- Land of the Dead
 		{321247, "CASTBAR"}, -- Final Harvest
 		333488, -- Necrotic Breath
 		{320012, "DISPEL"}, -- Unholy Frenzy
-		320171, -- Necrotic Bolt
+		{320171, "OFF"}, -- Necrotic Bolt
+		-- Reanimated Mage
+		328667, -- Frostbolt Volley
+	}, {
+		[328667] = -22042, -- Reanimated Mage
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "LandoftheDead", 321226)
+	-- Amarth
+	self:Log("SPELL_CAST_SUCCESS", "LandOfTheDead", 321226)
 	self:Log("SPELL_CAST_START", "FinalHarvest", 321247)
 	self:Log("SPELL_CAST_START", "NecroticBreath", 333488)
 	self:Log("SPELL_CAST_SUCCESS", "UnholyFrenzy", 320012)
 	self:Log("SPELL_CAST_START", "NecroticBolt", 320171)
+
+	-- Reanimated Mage
+	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
 end
 
 function mod:OnEngage()
@@ -36,9 +45,10 @@ function mod:OnEngage()
 	if self:Tank() or self:Dispeller("enrage", true, 320012) then
 		self:CDBar(320012, 6.0) -- Unholy Frenzy
 	end
-	self:CDBar(321226, 10.9) -- Land of the Dead
+	self:CDBar(321226, 8.8) -- Land of the Dead
+	-- TODO Necrotic Breath is never cast in Normal/Heroic
 	self:CDBar(333488, 29.5) -- Necrotic Breath
-	self:CDBar(321247, 41.5) -- Final Harvest
+	self:CDBar(321247, 38.6) -- Final Harvest
 end
 
 --------------------------------------------------------------------------------
@@ -50,10 +60,12 @@ function mod:Warmup()
 	self:Bar("warmup", 24.75, CL.active, "achievement_dungeon_theneroticwake")
 end
 
-function mod:LandoftheDead(args)
+-- Amarth
+
+function mod:LandOfTheDead(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 42.5)
+	self:CDBar(args.spellId, 42.1)
 end
 
 function mod:FinalHarvest(args)
@@ -73,7 +85,7 @@ function mod:UnholyFrenzy(args)
 	if self:Tank() or self:Dispeller("enrage", true, args.spellId) then
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "info")
-		self:CDBar(args.spellId, 44.9)
+		self:CDBar(args.spellId, 44.5)
 	end
 end
 
@@ -83,4 +95,11 @@ function mod:NecroticBolt(args)
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
+end
+
+-- Reanimated Mage
+
+function mod:FrostboltVolley(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end

@@ -11,6 +11,7 @@ BigWigs:AddSounds("Amarth, The Reanimator", {
 	[320171] = "alert",
 	[321226] = "long",
 	[321247] = "warning",
+	[328667] = "alert",
 	[333488] = "alarm",
 })
 

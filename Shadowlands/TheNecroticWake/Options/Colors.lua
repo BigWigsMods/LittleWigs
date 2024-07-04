@@ -11,6 +11,7 @@ BigWigs:AddColors("Amarth, The Reanimator", {
 	[320171] = "yellow",
 	[321226] = "cyan",
 	[321247] = "red",
+	[328667] = "red",
 	[333488] = "orange",
 })
 
