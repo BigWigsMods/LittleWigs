@@ -22,7 +22,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "HeavingRetchStart", 320596)
+	self:Log("SPELL_CAST_START", "HeavingRetch", 320596)
 	self:Log("SPELL_AURA_APPLIED", "BloodGorgeApplied", 320630)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BloodGorgeApplied", 320630)
 	self:Log("SPELL_CAST_START", "FetidGas", 320637)
@@ -48,28 +48,33 @@ do
 		end
 	end
 
-	function mod:HeavingRetchStart(args)
+	function mod:HeavingRetch(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 24.5)
+		self:CDBar(args.spellId, 32.7)
 	end
 end
 
-function mod:BloodGorgeApplied(args)
-	local amount = args.amount or 0
-	self:StackMessageOld(args.spellId, args.destName, args.amount, "cyan")
-	if amount > 2 then
-		self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:BloodGorgeApplied(args)
+		local amount = args.amount or 0
+		self:StackMessage(args.spellId, "cyan", args.destName, amount, 2)
+		local t = args.time
+		if amount > 2 and t - prev > 1.5 then
+			prev = t
+			self:PlaySound(args.spellId, "warning")
+		end
 	end
 end
 
 function mod:FetidGas(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 25)
+	self:CDBar(args.spellId, 25.5)
 end
 
 function mod:Crunch(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 12.5)
+	self:CDBar(args.spellId, 12.1)
 end
