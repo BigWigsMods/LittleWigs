@@ -330,7 +330,7 @@ do
 		end
 		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "info")
-		self:CDBar(args.spellId, 19.4)
+		-- happens at 75%, 50%, 25%
 		timer = self:ScheduleTimer("NightfallDarkArchitectDeath", 30)
 	end
 
@@ -340,6 +340,5 @@ do
 			timer = nil
 		end
 		self:StopBar(431349) -- Tormenting Eruption
-		self:StopBar(446615) -- Usher Reinforcements
 	end
 end
