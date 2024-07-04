@@ -21,6 +21,7 @@ BigWigs:AddColors("Surgeon Stitchflesh", {
 	[320359] = "cyan",
 	[320376] = "purple",
 	[322681] = {"blue","green","red"},
+	[327100] = "blue",
 	[334476] = "yellow",
 	[334488] = "purple",
 	[343556] = {"blue","red"},

@@ -16,12 +16,13 @@ BigWigs:AddSounds("Amarth, The Reanimator", {
 })
 
 BigWigs:AddSounds("Surgeon Stitchflesh", {
-	[320200] = "alarm",
+	[320200] = "alert",
 	[320358] = "info",
 	[320359] = "long",
 	[320376] = "alert",
-	[322681] = {"long","warning"},
-	[334476] = "alert",
+	[322681] = {"info","warning"},
+	[327100] = "underyou",
+	[334476] = "alarm",
 	[334488] = "alert",
 	[343556] = "warning",
 })
