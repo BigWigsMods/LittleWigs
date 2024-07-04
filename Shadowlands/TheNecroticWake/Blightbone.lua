@@ -30,7 +30,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(320655, 5.5) -- Crunch
+	self:CDBar(320655, 5.2) -- Crunch
 	self:CDBar(320596, 10.5) -- Heaving Retch
 	self:CDBar(320637, 22.5) -- Fetid Gas
 end
@@ -45,6 +45,8 @@ do
 		if self:Me(guid) then
 			self:PlaySound(320596, "warning")
 			self:Say(320596, nil, nil, "Heaving Retch")
+		else
+			self:PlaySound(320596, "alarm", nil, name)
 		end
 	end
 
@@ -57,7 +59,7 @@ end
 do
 	local prev = 0
 	function mod:BloodGorgeApplied(args)
-		local amount = args.amount or 0
+		local amount = args.amount or 1
 		self:StackMessage(args.spellId, "cyan", args.destName, amount, 2)
 		local t = args.time
 		if amount > 2 and t - prev > 1.5 then

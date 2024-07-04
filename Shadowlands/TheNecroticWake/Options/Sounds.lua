@@ -1,6 +1,6 @@
 
 BigWigs:AddSounds("Blightbone", {
-	[320596] = "warning",
+	[320596] = {"alarm","warning"},
 	[320630] = "warning",
 	[320637] = "long",
 	[320655] = "alert",
