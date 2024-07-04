@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	222923, -- Repurposed Loaderbot
 	212453, -- Ghastly Voidsoul
 	212389, -- Cursedheart Invader
+	212403, -- Cursedheart Invader
 	212765, -- Void Bound Despoiler
 	221979, -- Void Bound Howler
 	214350, -- Turned Speaker
