@@ -1,9 +1,10 @@
 local L = BigWigs:NewBossLocale("Mists of Tirna Scithe Trash", "koKR")
 if not L then return end
 if L then
-	L.drust_boughbreaker = "드러스트 가지파괴자"
+	L.tirnenn_villager = "티르넨 주민"
 	L.drust_harvester = "드러스트 수확자"
 	L.drust_soulcleaver = "드러스트 영혼절단자"
+	L.drust_boughbreaker = "드러스트 가지파괴자"
 	L.mistveil_defender = "안개장막 수호병"
 	L.mistveil_gorgegullet = "안개장막 포식귀"
 	L.mistveil_guardian = "안개장막 수호자"
@@ -15,7 +16,7 @@ if L then
 	L.mistveil_tender = "안개장막 숲지기"
 	L.spinemaw_acidgullet = "가시아귀 산성식도"
 	L.spinemaw_staghorn = "가시아귀 사슴뿔"
-	L.tirnenn_villager = "티르넨 주민"
+	L.spinemaw_gorger = "가시아귀 먹보"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "koKR")

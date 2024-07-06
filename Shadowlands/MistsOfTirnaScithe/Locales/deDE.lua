@@ -1,9 +1,10 @@
 local L = BigWigs:NewBossLocale("Mists of Tirna Scithe Trash", "deDE")
 if not L then return end
 if L then
-	L.drust_boughbreaker = "Drustzweigbrecher"
+	L.tirnenn_villager = "Tirnenneinwohner"
 	L.drust_harvester = "Drusternter"
 	L.drust_soulcleaver = "Drustseelenspalter"
+	L.drust_boughbreaker = "Drustzweigbrecher"
 	L.mistveil_defender = "Nebelschleierverteidigerin"
 	L.mistveil_gorgegullet = "Nebelschleierschlingrachen"
 	L.mistveil_guardian = "Nebelschleierwächter"
@@ -15,7 +16,7 @@ if L then
 	L.mistveil_tender = "Nebelschleierhüterin"
 	L.spinemaw_acidgullet = "Stachelschlundsäurerachen"
 	L.spinemaw_staghorn = "Stachelschlundzottelhorn"
-	L.tirnenn_villager = "Tirnenneinwohner"
+	L.spinemaw_gorger = "Stachelschlundfresser"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "deDE")
