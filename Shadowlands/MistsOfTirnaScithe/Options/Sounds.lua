@@ -3,7 +3,8 @@ BigWigs:AddSounds("Ingra Maloch", {
 	[323057] = "alert",
 	[323059] = {"info","long"},
 	[323137] = "alarm",
-	[323177] = "warning",
+	[323149] = "info",
+	[323177] = "alarm",
 	[323250] = "underyou",
 	[328756] = "warning",
 })

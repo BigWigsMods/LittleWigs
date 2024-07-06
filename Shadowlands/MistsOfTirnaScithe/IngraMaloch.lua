@@ -7,6 +7,14 @@ if not mod then return end
 mod:RegisterEnableMob(164567, 164804) -- Ingra Maloch, Droman Oulfarran
 mod:SetEncounterID(2397)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local embraceDarknessCount = 1
+local nextBewilderingPollen = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -14,78 +22,75 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
+		-- Droman Oulfarran
 		323137, -- Bewildering Pollen
 		323177, -- Tears of the Forest
 		323250, -- Anima Puddle
-		323059, -- Droman's Wrath
+		{323059, "CASTBAR"}, -- Droman's Wrath
+		-- Ingra Maloch
 		323057, -- Spirit Bolt
 		328756, -- Repulsive Visage
 		323149, -- Embrace Darkness
 	},{
 		[323137] = -21653, -- Droman Oulfarran
-		[323057] = mod.displayName, -- Ingra Maloch
+		[323057] = self.displayName, -- Ingra Maloch
 	},{
 		[328756] = CL.fear, -- Repulsive Visage (Fear)
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "SpiritBolt", 323057)
-	self:Log("SPELL_CAST_START", "RepulsiveVisage", 328756)
-	self:Log("SPELL_CAST_START", "EmbraceDarkness", 323149)
+	-- Droman Oulfarran
 	self:Log("SPELL_CAST_START", "BewilderingPollen", 323137)
-	self:Log("SPELL_CAST_SUCCESS", "TearsoftheForest", 323177)
+	self:Log("SPELL_CAST_SUCCESS", "TearsOfTheForest", 323177)
 	self:Log("SPELL_PERIODIC_DAMAGE", "AnimaPuddle", 323250)
 	self:Log("SPELL_PERIODIC_MISSED", "AnimaPuddle", 323250)
 	self:Log("SPELL_CAST_START", "DromansWrath", 323059)
 	self:Log("SPELL_AURA_APPLIED", "DromansWrathApplied", 323059)
 	self:Log("SPELL_AURA_REMOVED", "DromansWrathRemoved", 323059)
-	self:Log("SPELL_AURA_APPLIED", "SoulShackleApplied", 321006)
+
+	-- Ingra Maloch
+	self:Log("SPELL_CAST_START", "SpiritBolt", 323057)
+	self:Log("SPELL_CAST_START", "RepulsiveVisage", 328756)
+	self:Log("SPELL_CAST_START", "EmbraceDarkness", 323149)
 end
 
 function mod:OnEngage()
-	self:CDBar(323137, 7) -- Bewildering Pollen
-	self:CDBar(323177, 15) -- Tears of the Forest
+	local t = GetTime()
+	embraceDarknessCount = 1
+	nextBewilderingPollen = t + 7.2
+	self:SetStage(1)
+	self:CDBar(323137, 7.2) -- Bewildering Pollen
+	self:CDBar(323177, 15.5) -- Tears of the Forest
 	if self:Mythic() then
-		self:Bar(328756, 26.5, CL.fear) -- Repulsive Visage
+		self:CDBar(328756, 33.9, CL.fear) -- Repulsive Visage
 	end
-	self:CDBar(323149, 30.5) -- Embrace Darkness
+	self:CDBar(323149, 35.4, CL.count:format(self:SpellName(323149), embraceDarknessCount)) -- Embrace Darkness
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:SpiritBolt(args)
-	local canDo, ready = self:Interrupter()
-	if canDo then
-		self:Message(args.spellId, "orange")
-		if ready then
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:RepulsiveVisage(args)
-	self:Message(args.spellId, "orange", CL.casting:format(CL.fear))
-	self:PlaySound(args.spellId, "warning")
-end
-
-function mod:EmbraceDarkness(args)
-	self:StopBar(args.spellId)
-	self:Message(args.spellId, "orange")
-end
+-- Droman Oulfarran
 
 function mod:BewilderingPollen(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 18)
+	nextBewilderingPollen = GetTime() + 15.8
+	self:CDBar(args.spellId, 15.8)
 end
 
-function mod:TearsoftheForest(args)
+function mod:TearsOfTheForest(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
-	self:Bar(args.spellId, 15)
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 15.8)
+	-- 9.74 minimum to Bewildering Pollen
+	local t = GetTime()
+	if nextBewilderingPollen - t < 9.74 then
+		nextBewilderingPollen = t + 9.74
+		self:CDBar(323137, {9.74, 15.8}) -- Bewildering Pollen
+	end
 end
 
 do
@@ -108,26 +113,43 @@ function mod:DromansWrath(args)
 end
 
 function mod:DromansWrathApplied(args)
-	self:StopBar(323137) -- Bewildering Pollen
-	self:StopBar(323177) -- Tears of the Forest
-	self:StopBar(328756) -- Repulsive Visage
-	self:StopBar(323149) -- Embrace Darkness
-	self:Bar(args.spellId, 15)
+	self:StopBar(CL.count:format(self:SpellName(323149), embraceDarknessCount))
+	self:SetStage(2)
+	self:CastBar(args.spellId, 15)
+	self:CDBar(323137, 27.1) -- Bewildering Pollen
+	self:CDBar(323177, 35.6) -- Tears of the Forest
+	if self:Mythic() then
+		self:CDBar(328756, 52.8, CL.fear) -- Repulsive Visage
+	end
+	-- increment Embrace Darkness count here instead in case the ability is skipped
+	embraceDarknessCount = embraceDarknessCount + 1
+	self:CDBar(323149, 55.1, CL.count:format(self:SpellName(323149), embraceDarknessCount)) -- Embrace Darkness
 end
 
 function mod:DromansWrathRemoved(args)
-	self:Message(args.spellId, "red", CL.removed:format(args.spellName))
+	self:SetStage(1)
+	self:Message(args.spellId, "cyan", CL.removed:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:SoulShackleApplied()
-	-- Soul Shackle is also applied on respawn, so only create timers if the boss is engaged
-	if self:IsEngaged() then
-		self:CDBar(323137, 7.8) -- Bewildering Pollen
-		self:CDBar(323177, 18.5) -- Tears of the Forest
-		if self:Mythic() then
-			self:CDBar(328756, 26.5, CL.fear) -- Repulsive Visage
-		end
-		self:CDBar(323149, 30) -- Embrace Darkness
+-- Ingra Maloch
+
+function mod:SpiritBolt(args)
+	local _, interruptReady = self:Interrupter()
+	if interruptReady then
+		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
 	end
+end
+
+function mod:RepulsiveVisage(args)
+	self:Message(args.spellId, "red", CL.casting:format(CL.fear))
+	self:PlaySound(args.spellId, "warning")
+	self:CDBar(args.spellId, 31.6, CL.fear)
+end
+
+function mod:EmbraceDarkness(args)
+	self:StopBar(CL.count:format(args.spellName, embraceDarknessCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, embraceDarknessCount))
+	self:PlaySound(args.spellId, "info")
 end
