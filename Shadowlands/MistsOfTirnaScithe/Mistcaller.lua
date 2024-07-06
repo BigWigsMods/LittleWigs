@@ -51,8 +51,8 @@ end
 function mod:OnEngage()
 	guessingGameHp = 100
 	self:CDBar(321834, 7) -- Dodge Ball
-	self:CDBar(321828, 13.7) -- Patty Cake
-	self:CDBar(341709, 18.1, L.vulpin) -- Freeze Tag
+	self:CDBar(321828, 13.1) -- Patty Cake
+	self:CDBar(341709, 18.0, L.vulpin) -- Freeze Tag
 end
 
 --------------------------------------------------------------------------------
@@ -63,12 +63,13 @@ function mod:GuessingGame(args)
 	guessingGameHp = guessingGameHp - 30 -- 70, 40, 10
 	self:Message(336499, "cyan", CL.percent:format(guessingGameHp, args.spellName))
 	self:PlaySound(336499, "long")
+	-- TODO in Normal/Heroic stop bars, then restart on guessing game over
 end
 
 function mod:DodgeBall(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 13.5)
+	self:CDBar(args.spellId, 13.4)
 end
 
 function mod:PattyCake(args)
@@ -77,13 +78,13 @@ function mod:PattyCake(args)
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "warning")
 	end
-	self:CDBar(args.spellId, 19.3) -- 19-23
+	self:CDBar(args.spellId, 20.7)
 end
 
 function mod:FreezeTag(args)
 	self:Message(args.spellId, "yellow", CL.incoming:format(L.vulpin))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 23, L.vulpin)
+	self:CDBar(args.spellId, 21.8, L.vulpin)
 end
 
 function mod:FreezeTagFixation(args)
@@ -91,5 +92,7 @@ function mod:FreezeTagFixation(args)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
 		self:Say(args.spellId, CL.fixate, nil, "Fixate")
+	else
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end

@@ -12,7 +12,7 @@ BigWigs:AddSounds("Ingra Maloch", {
 BigWigs:AddSounds("Mistcaller", {
 	[321828] = "warning",
 	[321834] = "alarm",
-	[321891] = "warning",
+	[321891] = {"alert","warning"},
 	[336499] = "long",
 	[341709] = "alert",
 })
