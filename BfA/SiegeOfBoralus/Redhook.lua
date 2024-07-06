@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Chopper Redhook", 1822, 2132)
 if not mod then return end
 mod:RegisterEnableMob(128650) -- Chopper Redhook
-mod.engageId = 2098
-mod.respawnTime = 30
+mod:SetEncounterID(2098)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -20,7 +20,7 @@ local bombsRemaining = 0
 
 local L = mod:GetLocale()
 if L then
-	L.adds = 274002
+	L.adds = 274002 -- Call Adds
 	L.adds_icon = "inv_misc_groupneedmore"
 	L.remaining = "%s on %s, %d remaining"
 	L.remaining_boss = "%s on BOSS, %d remaining"
@@ -49,7 +49,7 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss2", "boss3", "boss4", "boss5")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
-	self:Log("SPELL_AURA_APPLIED", "OnTheHook", 257459)
+	self:Log("SPELL_AURA_APPLIED", "OnTheHookApplied", 257459)
 	self:Log("SPELL_AURA_REMOVED", "OnTheHookRemoved", 257459)
 	self:Log("SPELL_CAST_START", "MeatHook", 257348)
 	self:Log("SPELL_CAST_START", "GoreCrash", 257326)
@@ -59,15 +59,15 @@ end
 
 function mod:OnEngage()
 	bombsRemaining = 0
-	self:Bar(257585, 11) -- Cannon Barrage
+	self:CDBar(257585, 11) -- Cannon Barrage
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
-	if spellId == 257288 then -- Heavy Slash
+function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
+	if spellId == 257288 and self:MobId(self:UnitGUID(unit)) == 129879 then -- Heavy Slash, Irontide Cleaver
 		self:Message(spellId, "purple")
 		self:PlaySound(spellId, "alert")
 	end
@@ -78,22 +78,23 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		bombsRemaining = 3
 		self:Message(257585, "orange")
 		self:PlaySound(257585, "warning")
-		self:CDBar(257585, 60)
+		self:CDBar(257585, 60.7)
 		self:Bar(273721, 43, CL.count:format(self:SpellName(273721), bombsRemaining)) -- Heavy Ordnance
 	elseif spellId == 274002 then -- Call Adds
-		local hp = self:GetHealth(unit)
-		if hp > 33 then -- Spams every second under 33% but doesn't actually spawn adds
+		if self:GetHealth(unit) > 33 then -- Spams every second under 33% but doesn't actually spawn adds
 			self:Message("adds", "yellow", CL.incoming:format(CL.adds), false)
 			self:PlaySound("adds", "long")
 		end
 	end
 end
 
-function mod:OnTheHook(args)
+function mod:OnTheHookApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
+	else
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
 
@@ -148,5 +149,10 @@ function mod:HeavyOrdnanceApplied(args)
 	end
 	self:Message(args.spellId, "green", L.remaining_boss:format(args.spellName, bombsRemaining))
 	self:PlaySound(args.spellId, "alert")
-	self:TargetBar(args.spellId, 6, args.destName)
+	-- 10s TWW, 6s live
+	if BigWigsLoader.isBeta then
+		self:TargetBar(args.spellId, 10, CL.boss)
+	else
+		self:TargetBar(args.spellId, 6, CL.boss)
+	end
 end
