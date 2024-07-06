@@ -18,11 +18,11 @@ BigWigs:AddColors("Mistcaller", {
 })
 
 BigWigs:AddColors("Tred'ova", {
-	[322450] = "red",
+	[322450] = "cyan",
 	[322550] = "yellow",
 	[322563] = {"blue","yellow"},
 	[322614] = {"blue","orange"},
-	[322651] = "yellow",
+	[322654] = "yellow",
 	[326309] = "blue",
 	[337235] = {"blue","red"},
 	[337249] = {"blue","red"},

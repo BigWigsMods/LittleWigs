@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(164517) -- Tred'ova
 mod:SetEncounterID(2393)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -29,12 +30,12 @@ end
 
 function mod:GetOptions()
 	return {
-		322651, -- Acid Expulsion
+		322654, -- Acid Expulsion
 		322450, -- Consumption
 		322550, -- Accelerated Incubation
 		{322563, "ICON", "ME_ONLY_EMPHASIZE"}, -- Marked Prey
 		326309, -- Decomposing Acid
-		322614, -- Mind Link
+		{322614, "SAY"}, -- Mind Link
 		{337235, "SAY"}, -- Parasitic Pacification
 		{337249, "SAY"}, -- Parasitic Incapacitation
 		{337255, "SAY"}, -- Parasitic Domination
@@ -48,8 +49,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-
+	self:Log("SPELL_CAST_SUCCESS", "AcidExpulsion", 322654)
 	self:Log("SPELL_CAST_SUCCESS", "Consumption", 322450)
 	self:Log("SPELL_CAST_START", "AcceleratedIncubation", 322550)
 	self:Log("SPELL_AURA_APPLIED", "MarkedPreyApplied", 322563)
@@ -64,33 +64,44 @@ end
 
 function mod:OnEngage()
 	consumptionHp = 100
-	self:CDBar(322651, 7.9) -- Acid Expulsion
-	self:CDBar(322614, 52) -- Mind Link
-	self:CDBar(322550, 55.9, CL.adds) -- Accelerated Incubation
+	self:SetStage(1)
+	self:CDBar(322654, 7.7) -- Acid Expulsion
+	if self:Mythic() then
+		self:CDBar(337235, 11.1, L.parasite) -- Parasitic Pacification
+	end
+	self:CDBar(322614, 17.9) -- Mind Link
+	self:CDBar(322550, 21.5, CL.adds) -- Accelerated Incubation
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 322651 then -- Acid Expulsion
-		self:Message(322651, "yellow")
-		self:PlaySound(322651, "alert")
-		self:Bar(322651, 19)
+do
+	local prev = 0
+	function mod:AcidExpulsion(args)
+		-- throttle, one event per player
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+			self:CDBar(args.spellId, 19.4)
+		end
 	end
 end
 
 function mod:Consumption(args)
 	consumptionHp = consumptionHp - 30
-	self:Message(args.spellId, "red", CL.percent:format(consumptionHp, args.spellName))
+	self:Message(args.spellId, "cyan", CL.percent:format(consumptionHp, args.spellName))
 	self:PlaySound(args.spellId, "long")
+	self:SetStage(self:GetStage() + 1)
 end
 
 function mod:AcceleratedIncubation(args)
 	self:Message(args.spellId, "yellow", CL.incoming:format(CL.adds))
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 36.5, CL.adds)
+	self:CDBar(args.spellId, 30.4, CL.adds)
 end
 
 function mod:MarkedPreyApplied(args)
@@ -110,7 +121,7 @@ do
 	function mod:DecomposingAcidDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
-			if t-prev > 2 then
+			if t - prev > 2 then
 				prev = t
 				self:PlaySound(args.spellId, "underyou")
 				self:PersonalMessage(args.spellId, "underyou")
@@ -122,12 +133,15 @@ end
 function mod:MindLink(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17)
+	self:CDBar(args.spellId, 15.8)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Mind Link")
+	end
 end
 
 function mod:Parasite(args)
 	self:Message(args.spellId, "red", CL.casting:format(L.parasite))
-	self:CDBar(args.spellId, 22, L.parasite)
+	self:CDBar(args.spellId, 25.5, L.parasite)
 	local _, ready = self:Interrupter()
 	if ready then
 		self:PlaySound(args.spellId, "warning")
