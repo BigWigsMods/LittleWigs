@@ -22,17 +22,22 @@ end
 
 L = BigWigs:NewBossLocale("Sergeant Bainbridge", "koKR")
 if L then
-	-- L.remaining = "%s on %s, %d remaining"
-	-- L.remaining_boss = "%s on BOSS, %d remaining"
+	--L.remaining = "%s on %s, %d remaining"
+	--L.remaining_boss = "%s on BOSS, %d remaining"
 end
 
 L = BigWigs:NewBossLocale("Chopper Redhook", "koKR")
 if L then
-	-- L.remaining = "%s on %s, %d remaining"
-	-- L.remaining_boss = "%s on BOSS, %d remaining"
+	--L.remaining = "%s on %s, %d remaining"
+	--L.remaining_boss = "%s on BOSS, %d remaining"
+end
+
+L = BigWigs:NewBossLocale("Dread Captain Lockwood", "koKR")
+if L then
+	--L.ordnance_dropped = "Unstable Ordnance dropped"
 end
 
 L = BigWigs:NewBossLocale("Viq'Goth", "koKR")
 if L then
-	-- L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
+	--L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
 end

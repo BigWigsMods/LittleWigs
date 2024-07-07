@@ -32,6 +32,11 @@ if L then
 	L.remaining_boss = "%s auf BOSS, %d verbleibend"
 end
 
+L = BigWigs:NewBossLocale("Dread Captain Lockwood", "deDE")
+if L then
+	--L.ordnance_dropped = "Unstable Ordnance dropped"
+end
+
 L = BigWigs:NewBossLocale("Viq'Goth", "deDE")
 if L then
 	L.demolishing_desc = "Warnungen und Timer für das Erscheinen des Verwüstenden Schreckens."

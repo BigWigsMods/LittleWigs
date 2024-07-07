@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -21,7 +20,7 @@ local withdrawn = 0
 
 local L = mod:GetLocale()
 if L then
-	L.ordanance_dropped = "Unstable Ordnance Dropped"
+	L.ordnance_dropped = "Unstable Ordnance dropped"
 end
 
 --------------------------------------------------------------------------------
@@ -38,7 +37,7 @@ function mod:GetOptions()
 		268260, -- Broadside
 		268963, -- Unstable Ordnance
 	}, {
-		[272471] = "general",
+		[272471] = self.displayName, -- Dread Captain Lockwood
 		[268230] = -18230, -- Ashvane Deckhand
 		[268260] = -18232, -- Ashvane Cannoneer
 	}
@@ -94,7 +93,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			self:Bar(268752, 35.7) -- Withdraw
 		end
 	elseif spellId == 268963 then -- Unstable Ordnance (Dropped)
-		self:Message(spellId, "cyan", L.ordanance_dropped)
+		self:Message(spellId, "cyan", L.ordnance_dropped)
 		self:PlaySound(spellId, "info")
 	end
 end

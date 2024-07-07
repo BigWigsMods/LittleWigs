@@ -32,6 +32,11 @@ if L then
 	L.remaining_boss = "王中了%s，場上還剩%d個"
 end
 
+L = BigWigs:NewBossLocale("Dread Captain Lockwood", "zhTW")
+if L then
+	--L.ordnance_dropped = "Unstable Ordnance dropped"
+end
+
 L = BigWigs:NewBossLocale("Viq'Goth", "zhTW")
 if L then
 	L.demolishing_desc = "為滅擊觸鬚的出現顯示警告與計時。"
