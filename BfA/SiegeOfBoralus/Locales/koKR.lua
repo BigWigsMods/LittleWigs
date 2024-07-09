@@ -20,18 +20,6 @@ if L then
 	L.bomber = "검은타르 폭탄마"
 end
 
-L = BigWigs:NewBossLocale("Sergeant Bainbridge", "koKR")
-if L then
-	--L.remaining = "%s on %s, %d remaining"
-	--L.remaining_boss = "%s on BOSS, %d remaining"
-end
-
-L = BigWigs:NewBossLocale("Chopper Redhook", "koKR")
-if L then
-	--L.remaining = "%s on %s, %d remaining"
-	--L.remaining_boss = "%s on BOSS, %d remaining"
-end
-
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "koKR")
 if L then
 	--L.ordnance_dropped = "Unstable Ordnance dropped"

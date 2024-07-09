@@ -25,8 +25,6 @@ local L = mod:GetLocale()
 if L then
 	L.adds = 274002 -- Call Adds
 	L.adds_icon = "inv_misc_groupneedmore"
-	L.remaining = "%s on %s, %d remaining"
-	L.remaining_boss = "%s on BOSS, %d remaining"
 end
 
 --------------------------------------------------------------------------------
@@ -157,7 +155,7 @@ function mod:HeavyOrdnanceDamage(args)
 		if ordnanceRemaining > 0 and ordnanceTimeLeft > 0 then
 			self:Bar(273721, ordnanceTimeLeft, CL.count:format(args.spellName, ordnanceRemaining))
 		end
-		self:Message(273721, "orange", L.remaining:format(args.spellName, args.destName, ordnanceRemaining))
+		self:Message(273721, "orange", CL.extra:format(CL.on:format(args.spellName, args.destName), CL.remaining:format(ordnanceRemaining)))
 		self:PlaySound(273721, "info")
 	end
 end
@@ -169,7 +167,7 @@ function mod:HeavyOrdnanceApplied(args)
 	if ordnanceRemaining > 0 and ordnanceTimeLeft > 0 then
 		self:Bar(args.spellId, ordnanceTimeLeft, CL.count:format(args.spellName, ordnanceRemaining))
 	end
-	self:Message(args.spellId, "green", L.remaining_boss:format(args.spellName, ordnanceRemaining))
+	self:Message(args.spellId, "green", CL.extra:format(CL.onboss:format(args.spellName), CL.remaining:format(ordnanceRemaining)))
 	self:PlaySound(args.spellId, "info")
 	-- 10s TWW, 6s live
 	if BigWigsLoader.isBeta then

@@ -22,10 +22,8 @@ local bombsRemaining = 0
 
 local L = mod:GetLocale()
 if L then
-	L.adds = 274002
+	L.adds = 274002 -- Call Adds
 	L.adds_icon = "inv_misc_groupneedmore"
-	L.remaining = "%s on %s, %d remaining"
-	L.remaining_boss = "%s on BOSS, %d remaining"
 end
 
 --------------------------------------------------------------------------------
@@ -129,7 +127,7 @@ do
 			if bombsRemaining > 0 then
 				self:Bar(277965, timer, CL.count:format(args.spellName, bombsRemaining))
 			end
-			self:Message(277965, "orange", L.remaining:format(args.spellName, args.destName, bombsRemaining))
+			self:Message(277965, "orange", CL.extra:format(CL.on:format(args.spellName, args.destName), CL.remaining:format(bombsRemaining)))
 			self:PlaySound(277965, "info")
 		end
 	end
@@ -143,7 +141,7 @@ function mod:HeavyOrdnanceApplied(args)
 	if bombsRemaining > 0 then
 		self:Bar(args.spellId, timer, CL.count:format(args.spellName, bombsRemaining))
 	end
-	self:Message(args.spellId, "green", L.remaining_boss:format(args.spellName, bombsRemaining))
+	self:Message(args.spellId, "green", CL.extra:format(CL.onboss:format(args.spellName), CL.remaining:format(bombsRemaining)))
 	self:PlaySound(args.spellId, "alert")
 	self:TargetBar(args.spellId, 6, args.destName)
 end

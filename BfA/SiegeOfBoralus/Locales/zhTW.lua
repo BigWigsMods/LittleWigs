@@ -20,18 +20,6 @@ if L then
 	-- L.bomber = "Blackar Bomber"
 end
 
-L = BigWigs:NewBossLocale("Sergeant Bainbridge", "zhTW")
-if L then
-	L.remaining = "%2$s中了%1$s，場上還剩%3$d個"
-	L.remaining_boss = "王中了%s，場上還剩%d個"
-end
-
-L = BigWigs:NewBossLocale("Chopper Redhook", "zhTW")
-if L then
-	L.remaining = "%2$s中了%1$s，場上還剩%3$d個"
-	L.remaining_boss = "王中了%s，場上還剩%d個"
-end
-
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "zhTW")
 if L then
 	--L.ordnance_dropped = "Unstable Ordnance dropped"
