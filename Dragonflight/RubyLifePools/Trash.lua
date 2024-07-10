@@ -201,21 +201,37 @@ end
 
 -- Defier Draghar
 
-function mod:BlazingRush(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 17.0)
-end
+do
+	local timer
 
-function mod:SteelBarrage(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 17.0)
-end
+	function mod:BlazingRush(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 17.0)
+		timer = self:ScheduleTimer("DefierDragharDeath", 30)
+	end
 
-function mod:DefierDragharDeath(args)
-	self:StopBar(372087) -- Blazing Rush
-	self:StopBar(372047) -- Steel Barrage
+	function mod:SteelBarrage(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
+		self:CDBar(args.spellId, 17.0)
+		timer = self:ScheduleTimer("DefierDragharDeath", 30)
+	end
+
+	function mod:DefierDragharDeath(args)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(372087) -- Blazing Rush
+		self:StopBar(372047) -- Steel Barrage
+	end
 end
 
 -- Primalist Flamedancer
