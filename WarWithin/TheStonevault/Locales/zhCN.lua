@@ -6,7 +6,7 @@ if L then
 	L.ghastly_voidsoul = "阴森的虚空之魂"
 	L.cursedheart_invader = "咒心入侵者"
 	L.void_bound_despoiler = "虚缚抢劫者"
-	L.void_bound_howler = "虚缚嗥狼"
+	L.void_bound_howler = "虚缚嗥叫者"
 	L.turned_speaker = "被转化的代言人"
 	L.void_touched_elemental = "虚触元素"
 	L.forgebound_mender = "炉铸愈疗者"
