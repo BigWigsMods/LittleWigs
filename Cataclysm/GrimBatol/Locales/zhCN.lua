@@ -14,7 +14,7 @@ if L then
 	L.twilight_destroyer = "暮光毁灭者"
 	L.twilight_beguiler = "暮光欺诈者"
 	L.twilight_warlock = "暮光术士"
-	--L.twilight_flamerender = "Twilight Flamerender"
+	L.twilight_flamerender = "暮光烈焰粉碎者"
 	L.twilight_lavabender = "暮光熔岩操纵使"
 	L.faceless_corruptor = "无面腐蚀者"
 end
