@@ -19,14 +19,16 @@ BigWigs:AddSounds("Mistcaller", {
 
 BigWigs:AddSounds("Tred'ova", {
 	[322450] = "long",
+	[322527] = "info",
 	[322550] = "info",
 	[322563] = "warning",
-	[322614] = "alarm",
+	[322614] = "alert",
 	[322654] = "alert",
 	[326309] = "underyou",
 	[337235] = "warning",
 	[337249] = "warning",
 	[337255] = "warning",
+	[463602] = "alarm",
 })
 
 BigWigs:AddSounds("Mists of Tirna Scithe Trash", {

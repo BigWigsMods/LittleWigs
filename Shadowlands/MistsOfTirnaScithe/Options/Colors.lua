@@ -19,14 +19,16 @@ BigWigs:AddColors("Mistcaller", {
 
 BigWigs:AddColors("Tred'ova", {
 	[322450] = "cyan",
+	[322527] = "green",
 	[322550] = "yellow",
 	[322563] = {"blue","yellow"},
-	[322614] = {"blue","orange"},
+	[322614] = {"blue","red"},
 	[322654] = "yellow",
 	[326309] = "blue",
 	[337235] = {"blue","red"},
 	[337249] = {"blue","red"},
 	[337255] = {"blue","red"},
+	[463602] = "orange",
 })
 
 BigWigs:AddColors("Mists of Tirna Scithe Trash", {
