@@ -184,7 +184,7 @@ function mod:OnBossEnable()
 	-- Ashvane Invader
 	self:Log("SPELL_CAST_START", "StingingVenomCoating", 275835)
 	-- Ashvane Spotter
-	self:Log("SPELL_AURA_APPLIED", "SightedArtillery", 272421)
+	self:Log("SPELL_AURA_APPLIED", "SightedArtilleryApplied", 272421)
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
 	self:Log("SPELL_CAST_START", "CrushingSlam", 272711)
@@ -252,12 +252,14 @@ do
 	end
 end
 
-function mod:SightedArtillery(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info")
-	self:TargetBar(args.spellId, 6, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Sighted Artillery")
+function mod:SightedArtilleryApplied(args)
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId == 135263 or mobId == 138255 then -- Ashvane Spotter
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, nil, nil, "Sighted Artillery")
+		end
 	end
 end
 
