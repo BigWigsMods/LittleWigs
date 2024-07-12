@@ -1,3 +1,4 @@
+local isTWWS1 = select(4, GetBuildInfo()) >= 110002 -- XXX remove when 11.0.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -67,12 +68,14 @@ function mod:GetOptions()
 		324909, -- Furious Thrashing
 		324923, -- Bramble Burst
 		-- Mistveil Defender
-		331718, -- Spear Flurry
+		463256, -- Mist Ward
+		463248, -- Expel
 		-- Mistveil Gorgegullet
 		340304, -- Poisonous Secretions
 		340305, -- Crushing Leap
 		{340300, "TANK_HEALER"}, -- Tongue Lashing
 		-- Mistveil Guardian
+		{463217, "TANK_HEALER"}, -- Anima Slash
 		331743, -- Bucking Rampage
 		-- Mistveil Matriarch
 		340189, -- Pool of Radiance
@@ -101,9 +104,9 @@ function mod:GetOptions()
 		[322938] = L.drust_harvester,
 		[322569] = L.drust_soulcleaver,
 		[324909] = L.drust_boughbreaker,
-		[331718] = L.mistveil_defender,
+		[463256] = L.mistveil_defender,
 		[340304] = L.mistveil_gorgegullet,
-		[331743] = L.mistveil_guardian,
+		[463217] = L.mistveil_guardian,
 		[340189] = L.mistveil_matriarch,
 		[340289] = L.mistveil_nightblossom,
 		[324776] = L.mistveil_shaper,
@@ -114,6 +117,72 @@ function mod:GetOptions()
 		[340544] = L.spinemaw_staghorn,
 		[326021] = L.spinemaw_gorger,
 	}
+end
+
+-- XXX remove when 11.0.2 is live everywhere
+if not isTWWS1 then
+	function mod:GetOptions()
+		return {
+			-- Tirnenn Villager
+			321968, -- Bewildering Pollen
+			322486, -- Overgrowth
+			-- Drust Harvester
+			322938, -- Harvest Essence
+			-- Drust Soulcleaver
+			{322569, "TANK"}, -- Hand of Thros
+			{322557, "DISPEL"}, -- Soul Split
+			-- Drust Boughbreaker
+			324909, -- Furious Thrashing
+			324923, -- Bramble Burst
+			-- Mistveil Defender
+			331718, -- Spear Flurry
+			-- Mistveil Gorgegullet
+			340304, -- Poisonous Secretions
+			340305, -- Crushing Leap
+			{340300, "TANK_HEALER"}, -- Tongue Lashing
+			-- Mistveil Guardian
+			331743, -- Bucking Rampage
+			-- Mistveil Matriarch
+			340189, -- Pool of Radiance
+			340160, -- Radiant Breath
+			{340208, "TANK_HEALER"}, -- Shred Armor
+			-- Mistveil Nightblossom
+			{340289, "TANK_HEALER"}, -- Triple Bite
+			{340279, "DISPEL"}, -- Poisonous Discharge
+			-- Mistveil Shaper
+			324776, -- Bramblethorn Coat
+			-- Mistveil Stalker
+			{325021, "ME_ONLY"}, -- Mistveil Tear
+			-- Mistveil Stinger
+			{325224, "DISPEL"}, -- Anima Injection
+			-- Mistveil Tender
+			{324914, "DISPEL"}, -- Nourish the Forest
+			-- Spinemaw Acidgullet
+			{325418, "ME_ONLY", "SAY"}, -- Volatile Acid
+			-- Spinemaw Staghorn
+			340544, -- Stimulate Regeneration
+			{326046, "DISPEL"}, -- Stimulate Resistance
+			-- Spinemaw Gorger
+			326021, -- Acid Globule
+		}, {
+			[321968] = L.tirnenn_villager,
+			[322938] = L.drust_harvester,
+			[322569] = L.drust_soulcleaver,
+			[324909] = L.drust_boughbreaker,
+			[331718] = L.mistveil_defender,
+			[340304] = L.mistveil_gorgegullet,
+			[331743] = L.mistveil_guardian,
+			[340189] = L.mistveil_matriarch,
+			[340289] = L.mistveil_nightblossom,
+			[324776] = L.mistveil_shaper,
+			[325021] = L.mistveil_stalker,
+			[325224] = L.mistveil_stinger,
+			[324914] = L.mistveil_tender,
+			[325418] = L.spinemaw_acidgullet,
+			[340544] = L.spinemaw_staghorn,
+			[326021] = L.spinemaw_gorger,
+		}
+	end
 end
 
 function mod:OnBossEnable()
@@ -135,7 +204,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BrambleBurst", 324923)
 
 	-- Mistveil Defender
-	self:Log("SPELL_CAST_START", "SpearFlurry", 331718)
+	if isTWWS1 then
+		self:Log("SPELL_CAST_START", "MistWard", 463256)
+		self:Log("SPELL_CAST_START", "Expel", 463248)
+	else
+		-- XXX remove when 11.0.2 is live everywhere
+		self:Log("SPELL_CAST_START", "SpearFlurry", 331718)
+	end
 
 	-- Mistveil Gorgegullet
 	self:Log("SPELL_CAST_START", "PoisonousSecretions", 340304)
@@ -144,6 +219,9 @@ function mod:OnBossEnable()
 	self:Death("MistveilGorgegulletDeath", 173720)
 
 	-- Mistveil Guardian
+	if isTWWS1 then
+		self:Log("SPELL_CAST_START", "AnimaSlash", 463217)
+	end
 	self:Log("SPELL_CAST_START", "BuckingRampage", 331743)
 
 	-- Mistveil Matriarch
@@ -274,6 +352,17 @@ end
 
 -- Mistveil Defender
 
+function mod:MistWard(args)
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:Expel(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- XXX remove when 11.0.2 is live everywhere
 do
 	local prev = 0
 	function mod:SpearFlurry(args)
@@ -336,6 +425,11 @@ do
 end
 
 -- Mistveil Guardian
+
+function mod:AnimaSlash(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alert")
+end
 
 do
 	local prev = 0

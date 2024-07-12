@@ -57,4 +57,7 @@ BigWigs:AddColors("Mists of Tirna Scithe Trash", {
 	[340304] = "red",
 	[340305] = "orange",
 	[340544] = "red",
+	[463217] = "purple",
+	[463248] = "red",
+	[463256] = "cyan",
 })
