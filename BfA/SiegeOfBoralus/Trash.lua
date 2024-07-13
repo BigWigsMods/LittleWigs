@@ -75,7 +75,8 @@ function mod:GetOptions()
 		-- Bilge Rat Pillager
 		272827, -- Viscous Slobber
 		-- Bilge Rat Tempest
-		274569, -- Revitalizing Mist
+		272571, -- Choking Waters
+		274569, -- Revitalizing Mist (TODO removed in TWW?)
 		-- Bilge Rat Buccaneer
 		272546, -- Banana Rampage
 		-- Irontide Raider
@@ -102,7 +103,7 @@ function mod:GetOptions()
 		[272421] = L.spotter,
 		[257169] = L.demolisher,
 		[272827] = L.pillager,
-		[274569] = L.tempest,
+		[272571] = L.tempest,
 		[272546] = L.buccaneer,
 		[257170] = L.raider,
 		[256957] = L.wavetender,
@@ -191,6 +192,7 @@ function mod:OnBossEnable()
 	-- Bilge Rat Pillager
 	self:Log("SPELL_CAST_START", "ViscousSlobber", 272827)
 	-- Bilge Rat Tempest
+	self:Log("SPELL_CAST_START", "ChokingWaters", 272571)
 	self:Log("SPELL_CAST_START", "RevitalizingMist", 274569)
 	-- Bilge Rat Buccaneer
 	self:Log("SPELL_CAST_START", "BananaRampage", 272546)
@@ -269,12 +271,17 @@ function mod:TerrifyingRoar(args)
 end
 
 function mod:CrushingSlam(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:ViscousSlobber(args)
 	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ChokingWaters(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -283,9 +290,16 @@ function mod:RevitalizingMist(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:BananaRampage(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:BananaRampage(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:SavageTempest(args)
