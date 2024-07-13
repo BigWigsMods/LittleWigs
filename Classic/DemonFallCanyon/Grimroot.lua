@@ -139,7 +139,7 @@ do
 	function mod:NaturesGrip(args)
 		saplingGUID = args.sourceGUID
 		self:RegisterTargetEvents("SaplingMarking")
-		self:Message("adds", "cyan", CL.add_spawned)
+		self:Message("adds", "cyan", CL.add_spawned, false)
 		self:PlaySound("adds", "info")
 	end
 end

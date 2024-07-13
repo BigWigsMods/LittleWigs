@@ -49,12 +49,12 @@ end
 
 function mod:KeroseneKick(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 30.8)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:ChaosChopper(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 25.9)
+	self:PlaySound(args.spellId, "alarm")
 end

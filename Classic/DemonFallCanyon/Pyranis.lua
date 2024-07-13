@@ -56,20 +56,20 @@ end
 
 function mod:SummonDreadFungus(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 21.1)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SummonDreadSeed(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 21.1)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SummonDreadLasher(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 21.1)
+	self:PlaySound(args.spellId, "alert")
 end
 
 do
