@@ -37,10 +37,11 @@ BigWigs:AddColors("Hadal Darkfathom", {
 })
 
 BigWigs:AddColors("Viq'Goth", {
-	[269266] = "purple",
+	[269266] = "orange",
 	[269366] = "cyan",
-	[270185] = "orange",
-	[270590] = "red",
+	[269456] = "red",
+	[270185] = "red",
+	[270590] = "purple",
 	[275014] = {"blue","yellow"},
 	["demolishing"] = "yellow",
 	["stages"] = "green",

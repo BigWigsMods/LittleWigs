@@ -39,6 +39,7 @@ BigWigs:AddSounds("Hadal Darkfathom", {
 BigWigs:AddSounds("Viq'Goth", {
 	[269266] = "alarm",
 	[269366] = "info",
+	[269456] = "warning",
 	[270185] = "alarm",
 	[270590] = "warning",
 	[275014] = "warning",
