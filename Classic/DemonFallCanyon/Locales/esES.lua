@@ -1,30 +1,30 @@
-local L = BigWigs:NewBossLocale("Grimroot", "esES") or BigWigs:NewBossLocale("Grimroot", "esMX")
+local L = BigWigs:NewBossLocale("Grimroot", "esES")
 if not L then return end
 if L then
-	--L.grimroot = "Grimroot"
+	L.grimroot = "Sombrirraíz"
 end
 
-L = BigWigs:NewBossLocale("Destructor's Wraith", "esES") or BigWigs:NewBossLocale("Destructor's Wraith", "esMX")
+L = BigWigs:NewBossLocale("Destructor's Wraith", "esES")
 if L then
-	--L.destructors_wraith = "Destructor's Wraith"
+	L.destructors_wraith = "Ánima del Destructor"
 end
 
-L = BigWigs:NewBossLocale("Zilbagob", "esES") or BigWigs:NewBossLocale("Zilbagob", "esMX")
+L = BigWigs:NewBossLocale("Zilbagob", "esES")
 if L then
-	--L.zilbagob = "Zilbagob"
+	L.zilbagob = "Zilbagob"
 end
 
-L = BigWigs:NewBossLocale("Pyranis", "esES") or BigWigs:NewBossLocale("Pyranis", "esMX")
+L = BigWigs:NewBossLocale("Pyranis", "esES")
 if L then
-	--L.pyranis = "Pyranis"
+	L.pyranis = "Pyranis"
 end
 
-L = BigWigs:NewBossLocale("Diathorus the Seeker", "esES") or BigWigs:NewBossLocale("Diathorus the Seeker", "esMX")
+L = BigWigs:NewBossLocale("Diathorus the Seeker", "esES")
 if L then
-	--L.diathorus_the_seeker = "Diathorus the Seeker"
+	L.diathorus_the_seeker = "Diathorus el Buscador"
 end
 
-L = BigWigs:NewBossLocale("Hellscream's Phantom", "esES") or BigWigs:NewBossLocale("Hellscream's Phantom", "esMX")
+L = BigWigs:NewBossLocale("Hellscream's Phantom", "esES")
 if L then
-	--L.hellscreams_phantom = "Hellscream's Phantom"
+	L.hellscreams_phantom = "Espectro de Grito Infernal"
 end
