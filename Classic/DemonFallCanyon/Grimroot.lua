@@ -36,6 +36,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "CorruptedTears", 460509)
+	self:Log("SPELL_PERIODIC_DAMAGE", "CorruptedTearsDamage", 460515) -- no alert on APPLIED, doesn't damage right away
+	self:Log("SPELL_PERIODIC_MISSED", "CorruptedTearsDamage", 460515)
 	self:Log("SPELL_CAST_SUCCESS", "TendersRage", 460703)
 	self:Log("SPELL_CAST_START", "Gloom", 460727)
 end
@@ -54,6 +56,18 @@ function mod:CorruptedTears(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 11.3)
+end
+
+do
+	local prev = 0
+	function mod:CorruptedTearsDamage(args)
+		local t = args.time
+		if self:Me(args.destGUID) and t - prev > 1.5 then
+			prev = t
+			self:PersonalMessage(460509, "underyou")
+			self:PlaySound(460509, "underyou")
+		end
+	end
 end
 
 function mod:TendersRage(args)

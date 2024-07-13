@@ -1,6 +1,6 @@
 
 BigWigs:AddSounds("Grimroot", {
-	[460509] = "alarm",
+	[460509] = {"alarm","underyou"},
 	[460703] = "alert",
 	[460727] = "long",
 })
