@@ -29,7 +29,7 @@ end
 function mod:GetOptions()
 	return {
 		462226, -- Destructor's Devastation
-		460401, -- Nether Nova
+		{460401, "EMPHASIZE", "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Nether Nova
 		{462250, "DISPEL"}, -- Curse of Agony
 	},nil,{
 		[462250] = CL.curse, -- Curse of Agony (Curse)
@@ -38,7 +38,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DestructorsDevastation", 462222, 462160, 461761) -- first, second, third
-	self:Log("SPELL_CAST_SUCCESS", "NetherNova", 460401)
+	self:Log("SPELL_CAST_START", "NetherNova", 460401)
 	self:Log("SPELL_CAST_SUCCESS", "CurseOfAgony", 462250)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfAgonyApplied", 462250)
 end
@@ -46,7 +46,6 @@ end
 function mod:OnEngage()
 	self:CDBar(462226, 19.3) -- Destructor's Devastation
 	self:CDBar(460401, 30.7) -- Nether Nova
-	self:CDBar(462250, 34.7, CL.curse) -- Curse Of Agony
 end
 
 --------------------------------------------------------------------------------
@@ -68,22 +67,25 @@ end
 function mod:NetherNova(args)
 	self:Message(args.spellId, "red")
 	self:CDBar(args.spellId, 38.9)
-	self:PlaySound(args.spellId, "alarm")
+	self:CastBar(args.spellId, 4)
+	self:PlaySound(args.spellId, "warning")
 end
 
 do
 	local playerList = {}
-
-	function mod:CurseOfAgony(args)
+	function mod:CurseOfAgony()
 		playerList = {}
-		self:CDBar(args.spellId, 38.9, CL.curse)
 	end
-
 	function mod:CurseOfAgonyApplied(args)
-		if self:Dispeller("curse", nil, args.spellId) or self:Me(args.destGUID) then
-			playerList[#playerList + 1] = args.destName
-			self:TargetsMessage(args.spellId, "yellow", playerList, 2, CL.curse)
-			self:PlaySound(args.spellId, "alert", nil, playerList)
+		if self:Player(args.destFlags) then -- Players, not pets
+			if self:Dispeller("curse", nil, args.spellId) then
+				playerList[#playerList + 1] = args.destName
+				self:TargetsMessage(args.spellId, "yellow", playerList, nil, CL.curse)
+				self:PlaySound(args.spellId, "alert", nil, playerList)
+			elseif self:Me(args.destGUID) then
+				self:PersonalMessage(args.spellId, "you", CL.curse)
+				self:PlaySound(args.spellId, "alert", nil, args.destName)
+			end
 		end
 	end
 end
