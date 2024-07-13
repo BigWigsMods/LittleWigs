@@ -35,6 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("ENCOUNTER_START") -- no boss frames
 	self:Log("SPELL_CAST_START", "DestructorsDevastation", 462222, 462160, 461761) -- first, second, third
 	self:Log("SPELL_CAST_SUCCESS", "NetherNova", 460401)
 	self:Log("SPELL_CAST_SUCCESS", "CurseOfAgony", 462250)
@@ -50,6 +51,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:ENCOUNTER_START(_, id)
+	if id == self.engageId then
+		self:Engage()
+	end
+end
 
 function mod:DestructorsDevastation(args)
 	self:Message(462226, "orange")
