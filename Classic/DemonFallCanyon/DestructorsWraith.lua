@@ -10,12 +10,6 @@ mod:SetEncounterID(3028)
 mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local devastationCount = 1
-
---------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -50,7 +44,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	devastationCount = 1
 	self:CDBar(462226, 19.3) -- Destructor's Devastation
 	self:CDBar(460401, 30.7) -- Nether Nova
 	self:CDBar(462250, 34.7, CL.curse) -- Curse Of Agony
@@ -62,10 +55,13 @@ end
 
 function mod:DestructorsDevastation(args)
 	if args.spellId == 462222 then -- first in sequence of 3
-		devastationCount = 1
+		self:Message(462226, "orange", CL.count_amount:format(args.spellName, 1, 3))
 		self:CDBar(462226, 38.9)
+	elseif args.spellId == 462160 then -- second
+		self:Message(462226, "orange", CL.count_amount:format(args.spellName, 2, 3))
+	else -- 461761, third
+		self:Message(462226, "orange", CL.count_amount:format(args.spellName, 3, 3))
 	end
-	self:Message(462226, "orange", CL.count_amount:format(args.spellName, devastationCount, 3))
 	self:PlaySound(462226, "alarm")
 end
 
