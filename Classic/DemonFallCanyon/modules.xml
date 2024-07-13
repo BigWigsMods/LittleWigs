@@ -3,6 +3,10 @@
 
 <Script file="Grimroot.lua"/>
 <Script file="DestructorsWraith.lua"/>
+<Script file="Zilbagob.lua"/>
+<Script file="Pyranis.lua"/>
+<Script file="DiathorusTheSeeker.lua"/>
+<Script file="HellscreamsPhantom.lua"/>
 
 <Include file="Options\options.xml"/>
 <Include file="Locales\locales.xml"/>

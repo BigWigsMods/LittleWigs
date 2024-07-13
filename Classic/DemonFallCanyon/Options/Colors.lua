@@ -11,3 +11,14 @@ BigWigs:AddColors("Destructor's Wraith", {
 	[462250] = {"blue","yellow"},
 })
 
+BigWigs:AddColors("Zilbagob", {
+})
+
+BigWigs:AddColors("Pyranis", {
+})
+
+BigWigs:AddColors("Diathorus the Seeker", {
+})
+
+BigWigs:AddColors("Hellscream's Phantom", {
+})

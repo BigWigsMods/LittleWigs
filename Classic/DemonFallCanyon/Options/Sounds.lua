@@ -11,3 +11,14 @@ BigWigs:AddSounds("Destructor's Wraith", {
 	[462250] = "alert",
 })
 
+BigWigs:AddSounds("Zilbagob", {
+})
+
+BigWigs:AddSounds("Pyranis", {
+})
+
+BigWigs:AddSounds("Diathorus the Seeker", {
+})
+
+BigWigs:AddSounds("Hellscream's Phantom", {
+})
