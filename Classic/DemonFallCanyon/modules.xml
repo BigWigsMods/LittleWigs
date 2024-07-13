@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Grimroot.lua"/>
+<Script file="DestructorsWraith.lua"/>
 
 <Include file="Options\options.xml"/>
 <Include file="Locales\locales.xml"/>

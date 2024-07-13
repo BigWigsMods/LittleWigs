@@ -5,3 +5,9 @@ BigWigs:AddColors("Grimroot", {
 	[460727] = "red",
 })
 
+BigWigs:AddColors("Destructor's Wraith", {
+	[460401] = "red",
+	[462226] = "orange",
+	[462250] = {"blue","yellow"},
+})
+
