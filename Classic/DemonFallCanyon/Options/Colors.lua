@@ -9,6 +9,8 @@ BigWigs:AddColors("Destructor's Wraith", {
 })
 
 BigWigs:AddColors("Zilbagob", {
+	[460403] = "orange",
+	[460408] = "red",
 })
 
 BigWigs:AddColors("Pyranis", {

@@ -9,6 +9,8 @@ BigWigs:AddSounds("Destructor's Wraith", {
 })
 
 BigWigs:AddSounds("Zilbagob", {
+	[460403] = "alarm",
+	[460408] = "alarm",
 })
 
 BigWigs:AddSounds("Pyranis", {
