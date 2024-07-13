@@ -10,6 +10,12 @@ mod:SetEncounterID(3028)
 mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local devastationCount = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -31,6 +37,8 @@ function mod:GetOptions()
 		462226, -- Destructor's Devastation
 		460401, -- Nether Nova
 		{462250, "DISPEL"}, -- Curse of Agony
+	},nil,{
+		[462250] = CL.curse, -- Curse of Agony (Curse)
 	}
 end
 
@@ -42,9 +50,10 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	devastationCount = 1
 	self:CDBar(462226, 19.3) -- Destructor's Devastation
 	self:CDBar(460401, 30.7) -- Nether Nova
-	self:CDBar(462250, 34.7) -- Curse Of Agony
+	self:CDBar(462250, 34.7, CL.curse) -- Curse Of Agony
 end
 
 --------------------------------------------------------------------------------
@@ -52,17 +61,18 @@ end
 --
 
 function mod:DestructorsDevastation(args)
-	self:Message(462226, "orange")
-	self:PlaySound(462226, "alarm")
-	if args.spellId == 462222 then -- first in sequence
+	if args.spellId == 462222 then -- first in sequence of 3
+		devastationCount = 1
 		self:CDBar(462226, 38.9)
 	end
+	self:Message(462226, "orange", CL.count_amount:format(args.spellName, devastationCount, 3))
+	self:PlaySound(462226, "alarm")
 end
 
 function mod:NetherNova(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 38.9)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
@@ -70,14 +80,14 @@ do
 
 	function mod:CurseOfAgony(args)
 		playerList = {}
-		self:CDBar(args.spellId, 38.9)
+		self:CDBar(args.spellId, 38.9, CL.curse)
 	end
 
 	function mod:CurseOfAgonyApplied(args)
 		if self:Dispeller("curse", nil, args.spellId) or self:Me(args.destGUID) then
 			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(args.spellId, "yellow", playerList, 2, CL.curse)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
-			self:TargetsMessage(args.spellId, "yellow", playerList, 2)
 		end
 	end
 end
