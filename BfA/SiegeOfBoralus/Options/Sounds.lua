@@ -22,11 +22,12 @@ BigWigs:AddSounds("Sergeant Bainbridge", {
 BigWigs:AddSounds("Dread Captain Lockwood", {
 	[268230] = "alarm",
 	[268260] = "alarm",
-	[268752] = "long",
+	[268752] = {"info","long"},
 	[268963] = "info",
 	[269029] = "alarm",
-	[272471] = "alert",
-	[273470] = "alert",
+	[273470] = "alarm",
+	[463182] = "alert",
+	[463185] = "info",
 })
 
 BigWigs:AddSounds("Hadal Darkfathom", {
