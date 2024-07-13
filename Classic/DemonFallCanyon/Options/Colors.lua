@@ -15,6 +15,10 @@ BigWigs:AddColors("Zilbagob", {
 })
 
 BigWigs:AddColors("Pyranis", {
+	[460545] = {"cyan","green"},
+	[460577] = "orange",
+	[460666] = "yellow",
+	[460676] = "red",
 })
 
 BigWigs:AddColors("Diathorus the Seeker", {

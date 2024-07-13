@@ -15,6 +15,10 @@ BigWigs:AddSounds("Zilbagob", {
 })
 
 BigWigs:AddSounds("Pyranis", {
+	[460545] = {"info","long"},
+	[460577] = "alert",
+	[460666] = "alert",
+	[460676] = "alert",
 })
 
 BigWigs:AddSounds("Diathorus the Seeker", {
