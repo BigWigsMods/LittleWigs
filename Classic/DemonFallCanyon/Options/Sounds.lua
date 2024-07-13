@@ -18,6 +18,9 @@ BigWigs:AddSounds("Pyranis", {
 })
 
 BigWigs:AddSounds("Diathorus the Seeker", {
+	[460755] = "alert",
+	[460756] = "alert",
+	[460764] = "long",
 })
 
 BigWigs:AddSounds("Hellscream's Phantom", {

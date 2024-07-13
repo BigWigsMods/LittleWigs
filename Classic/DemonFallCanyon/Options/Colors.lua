@@ -18,6 +18,9 @@ BigWigs:AddColors("Pyranis", {
 })
 
 BigWigs:AddColors("Diathorus the Seeker", {
+	[460755] = "red",
+	[460756] = {"blue","yellow"},
+	[460764] = "cyan",
 })
 
 BigWigs:AddColors("Hellscream's Phantom", {
