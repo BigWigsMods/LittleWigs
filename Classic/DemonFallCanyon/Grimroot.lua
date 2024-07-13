@@ -26,11 +26,17 @@ function mod:OnRegister()
 	self.displayName = L.grimroot
 end
 
+local poisonedSaplingMarker = mod:AddMarkerOption(true, "npc", 8, 460664, 8) -- Poisoned Sapling
 function mod:GetOptions()
 	return {
-		460509, -- Corrupted Tears
-		{460703, "DISPEL"}, -- Tender's Rage
+		{460509, "SAY"}, -- Corrupted Tears
+		460703, -- Tender's Rage
 		{460727, "CASTBAR"}, -- Gloom
+		"adds",
+		poisonedSaplingMarker,
+	},nil,{
+		[460727] = CL.interruptible, -- Gloom (Interruptible)
+		["adds"] = self:SpellName(460664), -- Adds (Poisoned Sapling)
 	}
 end
 
@@ -39,7 +45,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "CorruptedTearsDamage", 460515) -- no alert on APPLIED, doesn't damage right away
 	self:Log("SPELL_PERIODIC_MISSED", "CorruptedTearsDamage", 460515)
 	self:Log("SPELL_CAST_SUCCESS", "TendersRage", 460703)
+	self:Log("SPELL_DISPEL", "TendersRageDispelled", "*")
 	self:Log("SPELL_CAST_START", "Gloom", 460727)
+	self:Log("SPELL_INTERRUPT", "GloomInterrupted", "*")
+	self:Log("SPELL_CAST_SUCCESS", "NaturesGrip", 460684)
 end
 
 function mod:OnEngage()
@@ -52,18 +61,38 @@ end
 -- Event Handlers
 --
 
-function mod:CorruptedTears(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 11.3)
+do
+	local function Backup()
+		mod:UnregisterEvent("UNIT_TARGET")
+		mod:Message(460509, "orange")
+		mod:PlaySound(460509, "alarm")
+	end
+
+	function mod:UNIT_TARGET(event, unit)
+		if self:MobId(self:UnitGUID(unit)) == 226923 then -- Grimroot
+			self:UnregisterEvent(event)
+			local targetUnit = unit.."target"
+			if self:Me(self:UnitGUID(targetUnit)) then
+				self:Say(460509, nil, nil, "Corrupted Tears")
+			end
+			local unitName = self:UnitName(targetUnit)
+			self:TargetMessage(460509, "orange", unitName)
+			self:PlaySound(460509, "alarm", nil, unitName)
+		end
+	end
+
+	function mod:CorruptedTears(args)
+		self:RegisterEvent("UNIT_TARGET")
+		self:SimpleTimer(Backup, 0.5)
+		self:CDBar(args.spellId, 11.3)
+	end
 end
 
 do
 	local prev = 0
 	function mod:CorruptedTearsDamage(args)
-		local t = args.time
-		if self:Me(args.destGUID) and t - prev > 1.5 then
-			prev = t
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
 			self:PersonalMessage(460509, "underyou")
 			self:PlaySound(460509, "underyou")
 		end
@@ -71,16 +100,46 @@ do
 end
 
 function mod:TendersRage(args)
-	if self:Dispeller("enrage", true, args.spellId) then
-		self:Message(args.spellId, "yellow", CL.onboss:format(args.spellName))
+	self:CDBar(args.spellId, 34.0)
+	self:Message(args.spellId, "yellow", CL.onboss:format(args.spellName))
+	if self:Dispeller("enrage", true) then
 		self:PlaySound(args.spellId, "alert")
 	end
-	self:CDBar(args.spellId, 34.0)
+end
+
+function mod:TendersRageDispelled(args)
+	if args.extraSpellName == self:SpellName(460703) then
+		self:Message(460703, "green", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+	end
 end
 
 function mod:Gloom(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "long")
+	self:Message(args.spellId, "red", CL.extra:format(CL.casting:format(args.spellName), CL.interruptible))
 	self:CastBar(args.spellId, 8)
 	self:CDBar(args.spellId, 30.7)
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:GloomInterrupted(args)
+	if args.extraSpellName == self:SpellName(460727) then
+		self:StopBar(CL.cast:format(args.extraSpellName))
+		self:Message(460727, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+	end
+end
+
+do
+	local saplingGUID = nil
+	function mod:SaplingMarking(_, unit, guid)
+		if saplingGUID == guid then
+			saplingGUID = nil
+			self:CustomIcon(poisonedSaplingMarker, unit, 8)
+		end
+	end
+
+	function mod:NaturesGrip(args)
+		saplingGUID = args.sourceGUID
+		self:RegisterTargetEvents("SaplingMarking")
+		self:Message("adds", "cyan", CL.add_spawned)
+		self:PlaySound("adds", "info")
+	end
 end
