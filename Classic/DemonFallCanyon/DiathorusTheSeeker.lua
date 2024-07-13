@@ -33,7 +33,7 @@ function mod:GetOptions()
 		"stages",
 		{460756, "DISPEL"}, -- Sleep
 	},nil,{
-		[460755] = CL.curse, -- Veil of Shadow (Curse)
+		[460755] = CL.plus:format(CL.curse, CL.interruptible), -- Veil of Shadow (Curse + Interruptible)
 	}
 end
 
@@ -55,7 +55,7 @@ end
 --
 
 function mod:VeilOfShadow(args)
-	self:Message(args.spellId, "red", CL.incoming:format(CL.curse))
+	self:Message(args.spellId, "red", CL.extra:format(CL.incoming:format(CL.curse), CL.interruptible))
 	self:CDBar(args.spellId, 22.6, CL.curse)
 	self:PlaySound(args.spellId, "alert")
 end
