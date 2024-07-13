@@ -30,4 +30,6 @@ BigWigs:AddColors("Diathorus the Seeker", {
 })
 
 BigWigs:AddColors("Hellscream's Phantom", {
+	[460084] = {"blue","purple"},
+	[460254] = "orange",
 })

@@ -30,4 +30,6 @@ BigWigs:AddSounds("Diathorus the Seeker", {
 })
 
 BigWigs:AddSounds("Hellscream's Phantom", {
+	[460084] = "alert",
+	[460254] = "alarm",
 })
