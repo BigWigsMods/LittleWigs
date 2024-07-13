@@ -30,8 +30,10 @@ end
 function mod:GetOptions()
 	return {
 		460755, -- Veil of Shadow
-		460764, -- Mannoroth's Fury
+		"stages",
 		{460756, "DISPEL"}, -- Sleep
+	},nil,{
+		[460755] = CL.curse, -- Veil of Shadow (Curse)
 	}
 end
 
@@ -44,7 +46,7 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	self:CDBar(460755, 11.3) -- Veil of Shadow
+	self:CDBar(460755, 11.3, CL.curse) -- Veil of Shadow
 	self:CDBar(460756, 24.3) -- Sleep
 end
 
@@ -53,28 +55,28 @@ end
 --
 
 function mod:VeilOfShadow(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.incoming:format(CL.curse))
+	self:CDBar(args.spellId, 22.6, CL.curse)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 22.6)
 end
 
 function mod:MannorothsFury(args)
-	self:StopBar(460755) -- Veil of Shadow
+	self:StopBar(CL.curse) -- Veil of Shadow
 	self:SetStage(2)
-	self:Message(args.spellId, "cyan", CL.other:format(CL.stage:format(2), args.spellName))
-	self:PlaySound(args.spellId, "long")
+	self:Message("stages", "cyan", CL.other:format(CL.stage:format(2), args.spellName), args.spellId)
+	self:PlaySound("stages", "long")
 end
 
 function mod:SleepApplied(args)
+	self:CDBar(args.spellId, 23.9)
 	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
-	self:CDBar(args.spellId, 23.9)
 end
 
 function mod:Sleep(args)
 	self:Message(460756, "yellow", CL.on_group:format(args.spellName))
-	self:PlaySound(460756, "alert")
 	self:CDBar(460756, 38.4)
+	self:PlaySound(460756, "alert")
 end
