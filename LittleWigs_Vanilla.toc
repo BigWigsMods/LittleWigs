@@ -28,5 +28,5 @@
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-LoadOn-InstanceId: 2784
-Classic\modules.xml
+Classic\DemonFallCanyon\modules.xml
 #@end-do-not-package@

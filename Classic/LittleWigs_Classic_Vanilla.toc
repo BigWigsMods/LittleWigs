@@ -19,4 +19,4 @@
 ## X-Category: Party
 ## X-BigWigs-LoadOn-InstanceId: 2784
 
-modules.xml
+DemonFallCanyon\modules.xml
