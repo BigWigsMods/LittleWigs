@@ -31,9 +31,35 @@ jobs:
           mkdir -p Core/Locales
           curl -sS https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/Core/Locales/common.enUS.lua > Core/Locales/common.enUS.lua
 
-      - name: Update option files
+      - name: Update option files (Retail)
         if: always()
         uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_Mainline.toc
+
+      - name: Update option files (Classic Era Vanilla)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_Vanilla.toc
+
+      - name: Update option files (Burning Crusade Classic)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_TBC.toc
+
+      - name: Update option files (Wrath Classic)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_Wrath.toc
+
+      - name: Update option files (Cataclysm Classic)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_Cata.toc
 
       - name: Package
         uses: BigWigsMods/packager@master

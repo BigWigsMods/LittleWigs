@@ -22,9 +22,42 @@ jobs:
           mkdir -p Core/Locales
           curl -sS https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/Core/Locales/common.enUS.lua > Core/Locales/common.enUS.lua
 
-      - name: Lint boss modules
+      - name: Lint boss modules (Retail)
         if: always()
         uses: BigWigsMods/actions/gen-options@master
         with:
+          path: LittleWigs_Mainline.toc
+          quiet: true
+          lint: true
+
+      - name: Lint boss modules (Classic Era Vanilla)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_Vanilla.toc
+          quiet: true
+          lint: true
+
+      - name: Lint boss modules (Burning Crusade Classic)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_TBC.toc
+          quiet: true
+          lint: true
+
+      - name: Lint boss modules (Wrath Classic)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_Wrath.toc
+          quiet: true
+          lint: true
+
+      - name: Lint boss modules (Cataclysm Classic)
+        if: always()
+        uses: BigWigsMods/actions/gen-options@master
+        with:
+          path: LittleWigs_Cata.toc
           quiet: true
           lint: true
