@@ -1,6 +1,9 @@
 package-as: LittleWigs
 wowi-archive-previous: no
 
+plain-copy:
+  - "*.lua"
+
 move-folders:
     LittleWigs/Classic: LittleWigs_Classic
     LittleWigs/TBC: LittleWigs_BurningCrusade
