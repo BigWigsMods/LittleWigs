@@ -44,8 +44,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(462226, 19.3) -- Destructor's Devastation
-	self:CDBar(460401, 30.7) -- Nether Nova
+	self:CDBar(462226, 16.1) -- Destructor's Devastation
+	self:CDBar(460401, 26.3) -- Nether Nova
 end
 
 --------------------------------------------------------------------------------
