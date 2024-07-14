@@ -31,7 +31,8 @@ function mod:GetOptions()
 	return {
 		460755, -- Veil of Shadow
 		"stages",
-		{460756, "DISPEL"}, -- Sleep
+		460756, -- Sleep
+		460766, -- Berserker Charge
 	},nil,{
 		[460755] = CL.plus:format(CL.curse, CL.interruptible), -- Veil of Shadow (Curse + Interruptible)
 	}
@@ -42,6 +43,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MannorothsFury", 460764)
 	self:Log("SPELL_AURA_APPLIED", "SleepApplied", 460756) -- Stage 1 Sleep (single target)
 	self:Log("SPELL_CAST_SUCCESS", "Sleep", 462058) -- Stage 2 Sleep (entire group)
+	self:Log("SPELL_CAST_SUCCESS", "BerserkerCharge", 460766)
 	self:Death("Win", 227019) -- ENCOUNTER_END currently broken
 end
 
@@ -58,7 +60,7 @@ end
 function mod:VeilOfShadow(args)
 	self:Message(args.spellId, "red", CL.extra:format(CL.incoming:format(CL.curse), CL.interruptible))
 	self:CDBar(args.spellId, 22.6, CL.curse)
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:MannorothsFury(args)
@@ -68,16 +70,20 @@ function mod:MannorothsFury(args)
 	self:PlaySound("stages", "long")
 end
 
-function mod:SleepApplied(args)
+function mod:SleepApplied(args) -- Stage 1 Sleep (single target)
 	self:CDBar(args.spellId, 23.9)
-	if self:Dispeller("magic", nil, args.spellId) or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
-	end
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
-function mod:Sleep(args)
+function mod:Sleep(args) -- Stage 2 Sleep (entire group)
 	self:Message(460756, "yellow", CL.on_group:format(args.spellName))
 	self:CDBar(460756, 38.4)
 	self:PlaySound(460756, "alert")
+end
+
+function mod:BerserkerCharge(args)
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:Bar(args.spellId, 11.4)
+	self:PlaySound(args.spellId, "info")
 end
