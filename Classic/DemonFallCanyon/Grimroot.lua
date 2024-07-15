@@ -30,7 +30,7 @@ local poisonedSaplingMarker = mod:AddMarkerOption(true, "npc", 8, 460664, 8) -- 
 function mod:GetOptions()
 	return {
 		{460509, "SAY"}, -- Corrupted Tears
-		460703, -- Tender's Rage
+		{460703, "CASTBAR"}, -- Tender's Rage
 		{460727, "CASTBAR"}, -- Gloom
 		"adds",
 		poisonedSaplingMarker,
@@ -53,8 +53,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(460509, 5.2) -- Corrupted Tears
-	self:CDBar(460703, 22.2) -- Tender's Rage
-	self:CDBar(460727, 31.1) -- Gloom
+	self:CDBar(460727, 30.7) -- Gloom
 end
 
 --------------------------------------------------------------------------------
@@ -62,29 +61,17 @@ end
 --
 
 do
-	local function Backup()
-		mod:UnregisterEvent("UNIT_TARGET")
-		mod:Message(460509, "orange")
-		mod:PlaySound(460509, "alarm")
-	end
-
-	function mod:UNIT_TARGET(event, unit)
-		if self:MobId(self:UnitGUID(unit)) == 226923 then -- Grimroot
-			self:UnregisterEvent(event)
-			local targetUnit = unit.."target"
-			if self:Me(self:UnitGUID(targetUnit)) then
-				self:Say(460509, nil, nil, "Corrupted Tears")
-			end
-			local unitName = self:UnitName(targetUnit)
-			self:TargetMessage(460509, "orange", unitName)
-			self:PlaySound(460509, "alarm", nil, unitName)
+	local function printTarget(self, name, guid)
+		self:TargetMessage(460509, "orange", name)
+		if self:Me(guid) then
+			self:Say(460509, nil, nil, "Corrupted Tears")
+			self:PlaySound(460509, "alarm", nil, name)
 		end
 	end
 
 	function mod:CorruptedTears(args)
-		self:RegisterEvent("UNIT_TARGET")
-		self:SimpleTimer(Backup, 0.5)
-		self:CDBar(args.spellId, 11.3)
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
+		self:Bar(args.spellId, 11.3)
 	end
 end
 
@@ -100,8 +87,8 @@ do
 end
 
 function mod:TendersRage(args)
-	self:CDBar(args.spellId, 34.0)
-	self:Message(args.spellId, "yellow", CL.onboss:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.other:format(CL.killed:format(self:SpellName(460664)), CL.onboss:format(args.spellName))) -- Poisoned Sapling killed: Tender's Rage on BOSS
+	self:CastBar(args.spellId, 8)
 	if self:Dispeller("enrage", true) then
 		self:PlaySound(args.spellId, "alert")
 	end
@@ -109,6 +96,7 @@ end
 
 function mod:TendersRageDispelled(args)
 	if args.extraSpellName == self:SpellName(460703) then
+		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:Message(460703, "green", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 	end
 end
