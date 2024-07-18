@@ -176,6 +176,8 @@ if not BigWigsLoader.isBeta then
 end
 
 function mod:OnBossEnable()
+	-- Ashvane Cannoneer
+	self:Log("SPELL_CAST_START", "Broadside", 268260)
 	-- Ashvane Commander
 	if BigWigsLoader.isBeta then -- XXX remove check when TWW is live
 		self:Log("SPELL_AURA_APPLIED", "AzeriteCharge", 454437)
@@ -203,6 +205,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
 	-- Kul Tiran Halberd
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
+	-- Kul Tiran Vanguard
+	self:Log("SPELL_CAST_START", "HeavySlash", 257288)
 	-- Snarling Dockhound
 	self:Log("SPELL_CAST_SUCCESS", "ClampingJaws", 256897)
 	-- Riptide Shredder
@@ -212,15 +216,22 @@ function mod:OnBossEnable()
 	-- Blacktar Bomber
 	self:Log("SPELL_CAST_SUCCESS", "BurningTar", 256640)
 	self:Log("SPELL_CAST_START", "Immolation", 256673)
-
-	-- Ashvane Cannoneer's Broadside
-	-- Kul Tiran Vanguard's Heavy Slash
-	self:RegisterEvent("UNIT_SPELLCAST_START")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Ashvane Cannoneer
+
+function mod:Broadside(args)
+	if self:MobId(args.sourceGUID) == 138465 then -- trash version
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
+-- Ashvane Commander
 
 function mod:AzeriteCharge(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
@@ -242,6 +253,8 @@ function mod:BolsteringShoutSuccess(args)
 	end
 end
 
+-- Ashvane Invader
+
 do
 	local prev = 0
 	function mod:StingingVenomCoating(args)
@@ -254,6 +267,8 @@ do
 	end
 end
 
+-- Ashvane Spotter
+
 function mod:SightedArtilleryApplied(args)
 	local mobId = self:MobId(args.sourceGUID)
 	if mobId == 135263 or mobId == 138255 then -- Ashvane Spotter
@@ -265,6 +280,8 @@ function mod:SightedArtilleryApplied(args)
 	end
 end
 
+-- Bilge Rat Demolisher
+
 function mod:TerrifyingRoar(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "warning")
@@ -275,10 +292,14 @@ function mod:CrushingSlam(args)
 	self:PlaySound(args.spellId, "info")
 end
 
+-- Bilge Rat Pillager
+
 function mod:ViscousSlobber(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
+
+-- Bilge Rat Tempest
 
 function mod:ChokingWaters(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -289,6 +310,8 @@ function mod:RevitalizingMist(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
 end
+
+-- Bilge Rat Buccaneer
 
 do
 	local prev = 0
@@ -302,10 +325,14 @@ do
 	end
 end
 
+-- Irontide Raider
+
 function mod:SavageTempest(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 end
+
+-- Kul Tiran Wavetender
 
 function mod:WatertightShell(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -319,20 +346,37 @@ function mod:WatertightShellApplied(args)
 	end
 end
 
+-- Kul Tiran Halberd
+
 function mod:SlobberKnocker(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end
+
+-- Kul Tiran Vanguard
+
+function mod:HeavySlash(args)
+	if self:MobId(args.sourceGUID) == 138019 then -- trash version
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+-- Snarling Dockhound
 
 function mod:ClampingJaws(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 
+-- Riptide Shredder
+
 function mod:IronAmbush(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 end
+
+-- Dockhound Packmaster
 
 do
 	local function printTarget(self, name, guid)
@@ -347,6 +391,8 @@ do
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
+
+-- Blacktar Bomber
 
 do
 	local prev = 0
@@ -363,21 +409,4 @@ end
 function mod:Immolation(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-end
-
-do
-	local prev = nil
-	function mod:UNIT_SPELLCAST_START(_, unit, castGUID, spellId)
-		if spellId == 268260 and castGUID ~= prev then -- Broadside
-			if self:MobId(self:UnitGUID(unit)) == 138465 then -- Trash cannoneer, Lockwood cannoneers have a different id
-				prev = castGUID
-				self:Message(spellId, "orange")
-				self:PlaySound(spellId, "alarm")
-			end
-		elseif spellId == 257288 and castGUID ~= prev and self:MobId(self:UnitGUID(unit)) == 138019 then -- Heavy Slash, Kul Tiran Vanguard
-			prev = castGUID
-			self:Message(spellId, "orange")
-			self:PlaySound(spellId, "alert")
-		end
-	end
 end
