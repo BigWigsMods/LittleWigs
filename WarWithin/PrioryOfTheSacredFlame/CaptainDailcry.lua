@@ -27,8 +27,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HurlSpear", 447270)
 	self:Log("SPELL_CAST_START", "PierceArmor", 424414)
 	self:Log("SPELL_CAST_SUCCESS", "PierceArmorSuccess", 424414)
-	self:Log("SPELL_AURA_APPLIED", "SavageMaulingAppliedBoss", 447443)
-	self:Log("SPELL_AURA_APPLIED", "SavageMaulingApplied", 447439)
+	self:Log("SPELL_CAST_SUCCESS", "SavageMauling", 447439)
 end
 
 function mod:OnEngage()
@@ -64,12 +63,8 @@ function mod:PierceArmorSuccess(args)
 	self:CDBar(args.spellId, 7.3)
 end
 
-function mod:SavageMaulingAppliedBoss()
-	-- use this to track the CD because there's no cast event
-	self:CDBar(447439, 33.6)
-end
-
-function mod:SavageMaulingApplied(args)
+function mod:SavageMauling(args)
+	self:CDBar(args.spellId, 33.6)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
