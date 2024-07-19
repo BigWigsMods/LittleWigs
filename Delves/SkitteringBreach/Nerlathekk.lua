@@ -35,7 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Dark Abatement
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Dark Abatement
 	self:Log("SPELL_CAST_START", "DarkriftSmash", 440806)
 end
 
@@ -48,15 +48,11 @@ end
 -- Event Handlers
 --
 
-do
-	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if castGUID ~= prev and spellId == 458183 then -- Dark Abatement
-			prev = castGUID
-			self:Message(454762, "red")
-			self:PlaySound(454762, "alert")
-			self:CDBar(454762, 20.1)
-		end
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 458183 then -- Dark Abatement
+		self:Message(454762, "red")
+		self:PlaySound(454762, "alert")
+		self:CDBar(454762, 20.1)
 	end
 end
 
