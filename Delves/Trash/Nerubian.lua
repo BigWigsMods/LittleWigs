@@ -80,7 +80,7 @@ function mod:OnBossEnable()
 
 	-- Nerubian Lord
 	self:Log("SPELL_CAST_START", "JaggedBarbs", 450714)
-	self:RegisterEvent("UNIT_SPELLCAST_START") -- Leeching Swarm
+	self:Log("SPELL_CAST_START", "LeechingSwarm", 450637)
 
 	-- Nerubian Darkcaster
 	self:Log("SPELL_CAST_START", "ShadowsOfStrife", 449318)
@@ -142,15 +142,9 @@ function mod:JaggedBarbs(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-do
-	local prev = nil
-	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
-		if spellId == 450637 and castGUID ~= prev then -- Leeching Swarm
-			prev = castGUID
-			self:Message(spellId, "yellow")
-			self:PlaySound(spellId, "info")
-		end
-	end
+function mod:LeechingSwarm(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Nerubian Darkcaster
