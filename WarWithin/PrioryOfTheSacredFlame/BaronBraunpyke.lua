@@ -42,10 +42,10 @@ end
 
 function mod:OnEngage()
 	self:StopBar(CL.active)
-	self:CDBar(423062, 9.7) -- Hammer of Purity
+	self:CDBar(423062, 8.5) -- Hammer of Purity
 	self:CDBar(423051, 17.0) -- Burning Light
 	self:CDBar(423015, 23.0) -- Castigator's Shield
-	self:CDBar(422969, 46.1) -- Vindictive Wrath
+	self:CDBar(422969, 45.8) -- Vindictive Wrath
 end
 
 --------------------------------------------------------------------------------
@@ -61,19 +61,19 @@ end
 function mod:VindictiveWrath(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 48.6)
+	self:CDBar(args.spellId, 48.5)
 end
 
 function mod:CastigatorsShield(args)
 	self:Message(423015, "orange")
 	self:PlaySound(423015, "alert")
-	self:CDBar(423015, 25.5)
+	self:CDBar(423015, 23.1)
 end
 
 function mod:BurningLight(args)
 	self:Message(423051, "red", CL.casting:format(args.spellName))
 	self:PlaySound(423051, "warning")
-	self:CDBar(423051, 31.6)
+	self:CDBar(423051, 31.5)
 end
 
 function mod:HammerOfPurity(args)
