@@ -38,11 +38,11 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowSweep", 443837)
 	self:Log("SPELL_CAST_START", "Fire", 443908)
-	self:RegisterEvent("UNIT_SPELLCAST_START") -- Desolate Surge
+	self:Log("SPELL_CAST_START", "DesolateSurge", 443840)
 end
 
 function mod:OnEngage()
-	self:CDBar(443837, 5.9) -- Shadow Sweep
+	self:CDBar(443837, 5.7) -- Shadow Sweep
 	self:CDBar(443908, 9.5) -- Fire!
 	self:CDBar(443840, 20.7) -- Desolate Surge
 end
@@ -60,17 +60,11 @@ end
 function mod:Fire(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 12.2)
+	self:CDBar(args.spellId, 12.1)
 end
 
-do
-	local prev
-	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
-		if castGUID ~= prev and spellId == 443840 then -- Desolate Surge
-			prev = castGUID
-			self:Message(spellId, "yellow")
-			self:PlaySound(spellId, "long")
-			self:CDBar(spellId, 26.7)
-		end
-	end
+function mod:DesolateSurge(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:CDBar(args.spellId, 26.7)
 end
