@@ -14,6 +14,7 @@ if L then
 	L.elder_shadeweaver = "长者织影"
 	L.hulking_warshell = "魁梧的战甲尉"
 
+	--L.xephitik_defeated_trigger = "Enough!"
 	--L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
 	L.izo_warmup_trigger = "够了！你们赢得了成为我藏品的机会，让我送你们一程。"
 end

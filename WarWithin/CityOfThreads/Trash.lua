@@ -44,6 +44,7 @@ if L then
 	L.elder_shadeweaver = "Elder Shadeweaver"
 	L.hulking_warshell = "Hulking Warshell"
 
+	L.xephitik_defeated_trigger = "Enough!"
 	L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
 	L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 end
@@ -100,6 +101,7 @@ end
 function mod:OnBossEnable()
 	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
@@ -170,6 +172,13 @@ function mod:CHAT_MSG_MONSTER_SAY(_, msg)
 	end
 end
 
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.xephitik_defeated_trigger then
+		-- clean up bars a bit early
+		self:PheromoneVeil()
+	end
+end
+
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
@@ -206,22 +215,37 @@ end
 
 -- Xeph'itik
 
-function mod:PerfumeToss(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 15.8)
-end
+do
+	local timer
 
-function mod:GossamerBarrage(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 23.1)
-end
+	function mod:PerfumeToss(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 15.8)
+		timer = self:ScheduleTimer("PheromoneVeil", 30)
+	end
 
-function mod:PheromoneVeil(args)
-	-- TODO could clean up bars a little earlier with [CHAT_MSG_MONSTER_YELL] Enough!#Xeph'itik
-	self:StopBar(450784) -- Perfume Toss
-	self:StopBar(451423) -- Gossamer Barrage
+	function mod:GossamerBarrage(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red")
+		self:PlaySound(args.spellId, "long")
+		self:CDBar(args.spellId, 23.1)
+		timer = self:ScheduleTimer("PheromoneVeil", 30)
+	end
+
+	function mod:PheromoneVeil()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(450784) -- Perfume Toss
+		self:StopBar(451423) -- Gossamer Barrage
+	end
 end
 
 -- Pale Priest
