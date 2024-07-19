@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Kobold Taskfinder / Kobold Guardian
-	self:RegisterEvent("UNIT_SPELLCAST_START") -- Blazing Wick
+	self:Log("SPELL_CAST_START", "BlazingWick", 449071)
 	self:Log("SPELL_CAST_START", "BattleCry", 448399)
 
 	-- Spitfire Charger
@@ -87,6 +87,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(120018) then -- The Waterworks, start Delve (Foreman Bruknar)
 			-- 120018:|cFF0000FF(Delve)|r I'll rescue the rest of your workers from the kobolds.
 			self:SelectGossipID(120018)
+		elseif self:GetGossipID(120096) then
+			-- 120096:|cFF0000FF(Delve)|r I'll take the stomping shoes and use them to get your stolen goods back.
+			self:SelectGossipID(120096)
 		elseif self:GetGossipID(120081) then -- The Waterworks, start Delve (Pagsly)
 			-- 120081:|cFF0000FF(Delve)|r I'll help you recover the earthen treasures.
 			self:SelectGossipID(120081)
@@ -99,15 +102,9 @@ end
 
 -- Kobold Taskfinder
 
-do
-	local prev = nil
-	function mod:UNIT_SPELLCAST_START(_, _, castGUID, spellId)
-		if spellId == 449071 and castGUID ~= prev then -- Blazing Wick
-			prev = castGUID
-			self:Message(spellId, "orange")
-			self:PlaySound(spellId, "alarm")
-		end
-	end
+function mod:BlazingWick(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:BattleCry(args)
