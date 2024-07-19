@@ -20,9 +20,9 @@ mod:RegisterEnableMob(
 	220730, -- Royal Venomshell
 	216328, -- Unstable Test Subject
 	216339, -- Sureki Unnaturaler
+	216329, -- Congealed Droplet
 	221102, -- Elder Shadeweaver
-	221103, -- Hulking Warshell
-	216329 -- Congealed Droplet
+	221103 -- Hulking Warshell
 )
 
 --------------------------------------------------------------------------------
@@ -324,10 +324,10 @@ do
 			deathCount = deathCount + 1
 		else
 			deathCount = 0
-			local coalgamationModule = BigWigs:GetBossModule("The Coaglamation", true)
-			if coalgamationModule then
-				coalgamationModule:Enable()
-				coalgamationModule:Warmup()
+			local coaglamationModule = BigWigs:GetBossModule("The Coaglamation", true)
+			if coaglamationModule then
+				coaglamationModule:Enable()
+				coaglamationModule:Warmup()
 			end
 		end
 		prev = t
