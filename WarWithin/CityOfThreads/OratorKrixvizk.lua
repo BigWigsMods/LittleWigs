@@ -27,7 +27,7 @@ function mod:GetOptions()
 		434779, -- Terrorize
 		434829, -- Vociferous Indoctrination
 		434926, -- Lingering Influence
-		448561, -- Shadows of Doubt (Mythic)
+		{448561, "SAY"}, -- Shadows of Doubt (Mythic)
 	}, {
 		[448561] = CL.mythic, -- Shadows of Doubt
 	}
@@ -124,7 +124,10 @@ do
 
 	function mod:ShadowsOfDoubtApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:PlaySound(args.spellId, "alarm", nil, playerList)
 		self:TargetsMessage(args.spellId, "red", playerList, 2)
+		self:PlaySound(args.spellId, "alarm", nil, playerList)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, nil, nil, "Shadows of Doubt")
+		end
 	end
 end
