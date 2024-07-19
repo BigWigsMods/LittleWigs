@@ -26,7 +26,7 @@ BigWigs:AddColors("Pyranis", {
 })
 
 BigWigs:AddColors("Diathorus the Seeker", {
-	[460755] = "red",
+	[460755] = {"green","red"},
 	[460756] = {"blue","yellow"},
 	[460766] = {"blue","orange"},
 	["stages"] = "cyan",
