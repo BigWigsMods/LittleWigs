@@ -138,18 +138,23 @@ do
 	local playerList = {}
 	local prev = 0
 	function mod:IceSicklesApplied(args)
-		-- TODO this should be able to be dispelled by movement dispelling effects but it's bugged
+		local t = args.time
+		-- there is no reliable cast event for this anymore, so reset the player list using a throttle
+		if t - prev > 2 then
+			prev = t
+			playerList = {}
+			self:CDBar(args.spellId, 92.4)
+		end
+		-- TODO this should be able to be dispelled by movement-dispelling effects but it's bugged
 		if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
-			local t = args.time
-			-- there is no reliable cast event for this anymore, so reset the player list using a throttle
-			if t - prev > 1 then
-				prev = t
-				playerList = {}
+			-- TODO is heroic 2 or 3
+			if self:Normal() then
+				self:TargetsMessage(args.spellId, "yellow", playerList, 2)
+			else -- Mythic
+				self:TargetsMessage(args.spellId, "yellow", playerList, 3)
 			end
 			self:PlaySound(args.spellId, "alert", nil, playerList)
-			self:TargetsMessage(args.spellId, "yellow", playerList, 3)
 		end
-		self:CDBar(args.spellId, 92.4)
 	end
 end
 
