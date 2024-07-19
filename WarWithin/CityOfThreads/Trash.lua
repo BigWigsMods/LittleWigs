@@ -54,7 +54,7 @@ function mod:GetOptions()
 	return {
 		autotalk,
 		-- Herald of Ansurek
-		443437, -- Shadows of Doubt
+		{443437, "SAY"}, -- Shadows of Doubt
 		-- Sureki Silkbinder
 		443430, -- Silk Binding
 		-- Royal Swarmguard
@@ -63,7 +63,6 @@ function mod:GetOptions()
 		450784, -- Perfume Toss
 		451423, -- Gossamer Barrage
 		-- Pale Priest
-		442653, -- What's That?
 		448047, -- Web Wrap
 		-- Eye of the Queen
 		451543, -- Null Slam
@@ -84,7 +83,7 @@ function mod:GetOptions()
 		[443430] = L.sureki_silkbinder,
 		[443500] = L.royal_swarmguard,
 		[450784] = L.xephitik,
-		[442653] = L.pale_priest,
+		[448047] = L.pale_priest,
 		[451543] = L.eye_of_the_queen,
 		[452162] = L.covert_webmancer,
 		[434137] = L.royal_venomshell,
@@ -117,7 +116,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "PheromoneVeil", 441795)
 
 	-- Pale Priest
-	self:Log("SPELL_CAST_START", "WhatsThat", 442653) -- Normal only
 	self:Log("SPELL_AURA_APPLIED", "WebWrap", 448047)
 
 	-- Eye of the Queen
@@ -174,6 +172,9 @@ end
 function mod:ShadowsOfDoubtApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Shadows of Doubt")
+	end
 end
 
 -- Sureki Silkbinder
@@ -211,11 +212,6 @@ function mod:PheromoneVeil(args)
 end
 
 -- Pale Priest
-
-function mod:WhatsThat(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
-end
 
 do
 	local prev = 0
