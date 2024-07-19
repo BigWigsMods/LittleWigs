@@ -40,6 +40,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VeilOfShadow", 460755)
+	self:Log("SPELL_INTERRUPT", "VeilOfShadowInterrupted", "*")
 	self:Log("SPELL_CAST_SUCCESS", "MannorothsFury", 460764)
 	self:Log("SPELL_AURA_APPLIED", "SleepApplied", 460756) -- Stage 1 Sleep (single target)
 	self:Log("SPELL_CAST_SUCCESS", "Sleep", 462058) -- Stage 2 Sleep (entire group)
@@ -61,6 +62,12 @@ function mod:VeilOfShadow(args)
 	self:Message(args.spellId, "red", CL.extra:format(CL.incoming:format(CL.curse), CL.interruptible))
 	self:CDBar(args.spellId, 22.6, CL.curse)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:VeilOfShadowInterrupted(args)
+	if args.extraSpellName == self:SpellName(460755) then
+		self:Message(460755, "green", CL.interrupted_by:format(CL.curse, self:ColorName(args.sourceName)))
+	end
 end
 
 function mod:MannorothsFury(args)
