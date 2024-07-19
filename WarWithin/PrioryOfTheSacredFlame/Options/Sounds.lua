@@ -15,6 +15,7 @@ BigWigs:AddSounds("Baron Braunpyke", {
 
 BigWigs:AddSounds("Prioress Murrpray", {
 	[423588] = {"info","long"},
+	[423664] = "info",
 	[444546] = "alarm",
 	[444608] = "info",
 	[451605] = "alert",
