@@ -16,6 +16,7 @@ mod:RegisterEnableMob(
 	220003, -- Eye of the Queen
 	223844, -- Covert Webmancer
 	224732, -- Covert Webmancer
+	220777, -- Executor Nizrek (warmup NPC)
 	220730, -- Royal Venomshell
 	216328, -- Unstable Test Subject
 	216339, -- Sureki Unnaturaler
@@ -43,6 +44,7 @@ if L then
 	L.elder_shadeweaver = "Elder Shadeweaver"
 	L.hulking_warshell = "Hulking Warshell"
 
+	L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
 	L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 end
 
@@ -150,13 +152,20 @@ end
 
 -- Warmups
 
-function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+function mod:CHAT_MSG_MONSTER_SAY(_, msg)
 	if msg == L.izo_warmup_trigger then
 		-- Izo, the Grand Splicer warmup
 		local izoModule = BigWigs:GetBossModule("Izo, the Grand Splicer", true)
 		if izoModule then
 			izoModule:Enable()
 			izoModule:Warmup()
+		end
+	elseif msg == L.fangs_of_the_queen_warmup_trigger then
+		-- Fangs of the Queen warmup
+		local fangsOfTheQueenModule = BigWigs:GetBossModule("Fangs of the Queen", true)
+		if fangsOfTheQueenModule then
+			fangsOfTheQueenModule:Enable()
+			fangsOfTheQueenModule:Warmup()
 		end
 	end
 end

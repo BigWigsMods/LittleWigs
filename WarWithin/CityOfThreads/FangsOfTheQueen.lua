@@ -14,6 +14,15 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_achievement_dungeon_cityofthreads"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -26,6 +35,7 @@ local rimeDaggerRemaining = 2
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		-- Stages
 		439522, -- Synergic Step
 		-- Stage One: Nx, the Shrouded Fang
@@ -66,6 +76,7 @@ end
 function mod:OnEngage()
 	shadeSlashRemaining = 2
 	rimeDaggerRemaining = 2
+	self:StopBar(CL.active)
 	self:SetStage(1)
 	self:CDBar(439621, 4.1) -- Shade Slash
 	self:CDBar(439692, 18.9) -- Duskbringer
@@ -80,6 +91,14 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+
+function mod:Warmup() -- called from trash module
+	-- 7.94 [CHAT_MSG_MONSTER_SAY] The Transformatory was once the home of our sacred evolution.#Executor Nizrek
+	-- 31.81 [NAME_PLATE_UNIT_ADDED] Nx
+	self:Bar("warmup", 25.7, CL.active, L.warmup_icon)
+end
 
 -- Stages
 

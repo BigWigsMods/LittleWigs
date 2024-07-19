@@ -14,5 +14,6 @@ if L then
 	--L.elder_shadeweaver = "Elder Shadeweaver"
 	--L.hulking_warshell = "Hulking Warshell"
 
+	--L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
 	--L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 end
