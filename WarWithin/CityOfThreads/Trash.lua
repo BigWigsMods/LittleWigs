@@ -20,7 +20,8 @@ mod:RegisterEnableMob(
 	216328, -- Unstable Test Subject
 	216339, -- Sureki Unnaturaler
 	221102, -- Elder Shadeweaver
-	221103 -- Hulking Warshell
+	221103, -- Hulking Warshell
+	216329 -- Congealed Droplet
 )
 
 --------------------------------------------------------------------------------
@@ -138,6 +139,9 @@ function mod:OnBossEnable()
 
 	-- Hulking Warshell
 	self:Log("SPELL_CAST_START", "TremorSlam", 447271)
+
+	-- Congealed Droplet
+	self:Death("CongealedDropletDeath", 216329)
 end
 
 --------------------------------------------------------------------------------
@@ -273,4 +277,26 @@ end
 function mod:TremorSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Congealed Droplet
+
+do
+	local prev, deathCount = 0, 0
+	function mod:CongealedDropletDeath(args)
+		local t = args.time
+		if t - prev > 120 then
+			deathCount = 1
+		elseif deathCount < 9 then
+			deathCount = deathCount + 1
+		else
+			deathCount = 0
+			local coalgamationModule = BigWigs:GetBossModule("The Coaglamation", true)
+			if coalgamationModule then
+				coalgamationModule:Enable()
+				coalgamationModule:Warmup()
+			end
+		end
+		prev = t
+	end
 end

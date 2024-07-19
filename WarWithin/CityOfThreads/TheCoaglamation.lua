@@ -10,6 +10,15 @@ mod:SetEncounterID(2905)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_achievement_dungeon_cityofthreads"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -24,6 +33,7 @@ local bloodSurgeCount = 1
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		441289, -- Viscous Darkness
 		{461842, "TANK_HEALER"}, -- Oozing Smash
 		441395, -- Dark Pulse
@@ -33,7 +43,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START") -- XXX no boss frames
-	-- TODO warmup triggered from trash module? would have to count 10 UNIT_DIED on 216329
 	self:Log("SPELL_CAST_START", "ViscousDarkness", 441289, 447146) -- odd casts, even casts
 	self:Log("SPELL_CAST_START", "OozingSmash", 461842)
 	self:Log("SPELL_CAST_START", "DarkPulse", 441395)
@@ -45,6 +54,7 @@ function mod:OnEngage()
 	oozingSmashCount = 1
 	darkPulseCount = 1
 	bloodSurgeCount = 1
+	self:StopBar(CL.active)
 	if self:Mythic() then
 		self:CDBar(461842, 3.6, CL.count:format(self:SpellName(461842), oozingSmashCount)) -- Oozing Smash
 		self:CDBar(441289, 10.8, CL.count:format(self:SpellName(441289), viscousDarknessCount)) -- Viscous Darkness
@@ -67,6 +77,14 @@ function mod:ENCOUNTER_START(_, id)
 	if id == self.engageId then
 		self:Engage()
 	end
+end
+
+-- Warmup
+
+function mod:Warmup() -- called from trash module
+	-- 15.55 [CLEU] UNIT_DIED##nil#Creature-0-2085-2669-9069-216329#Congealed Droplet
+	-- 25.15 [NAME_PLATE_UNIT_ADDED] The Coaglamation
+	self:Bar("warmup", 9.6, CL.active, L.warmup_icon)
 end
 
 function mod:OozingSmash(args)
