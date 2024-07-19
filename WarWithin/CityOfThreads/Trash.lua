@@ -318,11 +318,11 @@ do
 	local prev, deathCount = 0, 0
 	function mod:CongealedDropletDeath(args)
 		local t = args.time
-		if t - prev > 120 then
+		if t - prev > 120 then -- 1
 			deathCount = 1
-		elseif deathCount < 9 then
+		elseif deathCount < 9 then -- 2 through 9
 			deathCount = deathCount + 1
-		else
+		else -- 10
 			deathCount = 0
 			local coaglamationModule = BigWigs:GetBossModule("The Coaglamation", true)
 			if coaglamationModule then
