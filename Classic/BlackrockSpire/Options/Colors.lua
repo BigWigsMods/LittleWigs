@@ -1,4 +1,3 @@
 
 BigWigs:AddColors("Pyroguard Emberseer", {
-
 })
