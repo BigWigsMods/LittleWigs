@@ -14,6 +14,9 @@ mod:SetRespawnTime(30)
 --
 
 local voraciousBiteCount = 1
+local alertingShrillCount = 1
+local gossamerOnslaughtCount = 1
+local nextVoraciousBite = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,10 +43,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	nextVoraciousBite = GetTime() + 3.0
 	voraciousBiteCount = 1
-	self:CDBar(438471, 3.3) -- Voracious Bite
-	self:CDBar(438476, 10.6) -- Alerting Shrill
-	self:CDBar(438473, 30.1) -- Gossamer Onslaught
+	alertingShrillCount = 1
+	gossamerOnslaughtCount = 1
+	self:CDBar(438471, 3.0, CL.count:format(self:SpellName(438471), voraciousBiteCount)) -- Voracious Bite
+	self:CDBar(438476, 10.6, CL.count:format(self:SpellName(438476), alertingShrillCount)) -- Alerting Shrill
+	self:CDBar(438473, 30.1, CL.count:format(self:SpellName(438473), gossamerOnslaughtCount)) -- Gossamer Onslaught
 end
 
 --------------------------------------------------------------------------------
@@ -51,26 +57,46 @@ end
 --
 
 function mod:VoraciousBite(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
+	local t = GetTime()
+	self:StopBar(CL.count:format(args.spellName, voraciousBiteCount))
+	self:Message(args.spellId, "purple", CL.count:format(args.spellName, voraciousBiteCount))
 	voraciousBiteCount = voraciousBiteCount + 1
-	if voraciousBiteCount % 2 == 0 then
-		self:CDBar(args.spellId, 14.5)
-	else
-		self:CDBar(args.spellId, 24.3)
-	end
+	nextVoraciousBite = t + 13.4
+	self:CDBar(args.spellId, 13.4, CL.count:format(args.spellName, voraciousBiteCount))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:AlertingShrill(args)
-	self:Message(args.spellId, "yellow")
+	local t = GetTime()
+	self:StopBar(CL.count:format(args.spellName, alertingShrillCount))
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, alertingShrillCount))
+	alertingShrillCount = alertingShrillCount + 1
+	if alertingShrillCount == 2 then
+		self:CDBar(args.spellId, 38.4, CL.count:format(args.spellName, alertingShrillCount))
+	else
+		-- syncs up with Gossamer Onslaught timer after the second cast
+		self:CDBar(args.spellId, 40.0, CL.count:format(args.spellName, alertingShrillCount))
+	end
+	-- 7.25 minimum to next Voracious Bite
+	if nextVoraciousBite - t < 7.25 then
+		nextVoraciousBite = t + 7.25
+		self:CDBar(438471, {7.25, 13.4}, CL.count:format(self:SpellName(438471), voraciousBiteCount)) -- Voracious Bite
+	end
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 38.8)
 end
 
 function mod:GossamerOnslaught(args)
-	self:Message(args.spellId, "red")
+	local t = GetTime()
+	self:StopBar(CL.count:format(args.spellName, gossamerOnslaughtCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, gossamerOnslaughtCount))
+	gossamerOnslaughtCount = gossamerOnslaughtCount + 1
+	self:CDBar(args.spellId, 40.0, CL.count:format(args.spellName, gossamerOnslaughtCount))
+	-- 12.1 minimum to next Voracious Bite
+	if nextVoraciousBite - t < 12.1 then
+		nextVoraciousBite = t + 12.1
+		self:CDBar(438471, {12.1, 13.4}, CL.count:format(self:SpellName(438471), voraciousBiteCount)) -- Voracious Bite
+	end
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 40.0)
 end
 
 do
