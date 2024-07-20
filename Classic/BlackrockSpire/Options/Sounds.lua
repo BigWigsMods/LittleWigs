@@ -1,0 +1,4 @@
+
+BigWigs:AddSounds("Pyroguard Emberseer", {
+
+})
