@@ -464,7 +464,7 @@ do
 end
 
 function mod:InnerLightApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then -- filter Spellsteal
+	if self:Dispeller("magic", true, args.spellId) and not self:Friendly(args.destFlags) then -- filter Spellsteal
 		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
