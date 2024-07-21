@@ -125,7 +125,7 @@ end
 
 function mod:SparkingArathiBomb(args)
 	if self:Me(args.destGUID) then
-		self:PersonalMessage(434655, CL.bomb)
+		self:PersonalMessage(434655, nil, CL.bomb)
 		self:PlaySound(434655, "info", nil, args.destName)
 	end
 end
