@@ -44,7 +44,7 @@ end
 function mod:OnEngage()
 	self:CDBar(448443, 6.2) -- Curse of Agony
 	self:CDBar(448412, 12.5) -- Burning Cart
-	self:CDBar(448444, 21.0) -- Runic Shackles
+	self:CDBar(448444, 20.2) -- Runic Shackles
 end
 
 --------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ end
 function mod:CurseOfAgony(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 24.3)
+	self:CDBar(args.spellId, 23.5)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
@@ -68,5 +68,5 @@ end
 function mod:RunicShackles(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 35.2)
+	self:CDBar(args.spellId, 33.2)
 end
