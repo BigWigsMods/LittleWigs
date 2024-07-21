@@ -95,7 +95,7 @@ do
 	local playerList = {}
 
 	function mod:RefractingBeamApplied(args)
-		if not self:Player(args.destFlags) then
+		if not self:Friendly(args.destFlags) then
 			-- the boss RP fights some Skardyn Invaders before becoming active
 			return
 		end
