@@ -33,16 +33,21 @@ if L then
 	L.hulking_bloodguard = "Hulking Bloodguard"
 	L.bloodstained_webmage = "Bloodstained Webmage"
 	L.blood_overseer = "Blood Overseer"
+
+	L.custom_on_autotalk = CL.autotalk
+	L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
+	L.custom_on_autotalk_icon = "Interface\\AddOns\\BigWigs\\Media\\Icons\\Menus\\Say"
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
-local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
-		autotalk,
+		-- Autotalk
+		"custom_on_autotalk",
+		439208, -- Silk Wrap
 		-- Ixin
 		434824, -- Web Spray
 		434802, -- Horrifying Shrill
@@ -59,7 +64,7 @@ function mod:GetOptions()
 		433845, -- Erupting Webs
 		433841, -- Venom Volley
 	}, {
-		[autotalk] = CL.general,
+		["custom_on_autotalk"] = CL.general,
 		[434824] = L.ixin,
 		[438877] = L.nakt,
 		[438826] = L.atik,
@@ -72,6 +77,7 @@ end
 function mod:OnBossEnable()
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
+	self:Log("SPELL_AURA_APPLIED", "SilkThreadApplied", 439201)
 
 	-- Ixin
 	self:Log("SPELL_CAST_START", "WebSpray", 434824)
@@ -103,10 +109,18 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) and self:GetGossipID(121214) then
+	if self:GetOption("custom_on_autotalk") and self:GetGossipID(121214) then
 		-- 121214:<Carefully pull on a bit of thread.> \r\n[Requires at least 25 skill in Khaz Algar Tailoring.]
-		-- gives an extra action button which can stun an enemy
+		-- grants a buff (439201 Silk Thread) which gives an extra action button to stun an enemy (439208 Silk Wrap).
 		self:SelectGossipID(121214)
+	end
+end
+
+function mod:SilkThreadApplied(args)
+	if self:Me(args.destGUID) then
+		-- use Silk Wrap key, which is the stun which can now be applied when you gain this buff
+		self:Message(439208, "green", CL.you:format(args.spellName))
+		self:PlaySound(439208, "info")
 	end
 end
 

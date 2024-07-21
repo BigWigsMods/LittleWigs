@@ -30,6 +30,7 @@ BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
 	[434824] = "orange",
 	[438826] = {"blue","yellow"},
 	[438877] = "cyan",
+	[439208] = "green",
 	[448248] = "red",
 	[453161] = "orange",
 })

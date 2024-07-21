@@ -30,6 +30,7 @@ BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
 	[434824] = "alarm",
 	[438826] = {"alert","underyou"},
 	[438877] = "info",
+	[439208] = "info",
 	[448248] = "alert",
 	[453161] = "alarm",
 })
