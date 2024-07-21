@@ -1,5 +1,6 @@
 
 BigWigs:AddColors("Leviathan Caller", {
+	[442422] = {"green","red"},
 	[446079] = "cyan",
 })
 

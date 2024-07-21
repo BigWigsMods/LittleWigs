@@ -7,4 +7,6 @@ end
 L = BigWigs:NewBossLocale("Leviathan Caller", "zhCN")
 if L then
 	L.leviathan_caller = "海兽呼唤者"
+	--L.guardian_tentacle = "Guardian Tentacle"
+	--L.slamming_tentacles = "Slamming Tentacles" -- plural
 end
