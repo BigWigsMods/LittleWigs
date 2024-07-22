@@ -180,7 +180,7 @@ end
 
 function mod:DecayedSensesApplied(args)
 	-- can be spell reflected by Warriors
-	if self:Player(args.destFlags) and self:Dispeller("magic") then
+	if self:Friendly(args.destFlags) and self:Dispeller("magic") then
 		self:TargetMessage(381694, "purple", args.destName)
 		self:PlaySound(381694, "warning", nil, args.destName)
 	elseif self:Hostile(args.destFlags) then -- on boss
@@ -190,7 +190,7 @@ function mod:DecayedSensesApplied(args)
 end
 
 function mod:DecayedSensesRemoved(args)
-	if self:Player(args.destFlags) then
+	if self:Friendly(args.destFlags) then
 		self:Message(381694, "green", CL.removed:format(args.spellName))
 		self:PlaySound(381694, "info")
 	end
