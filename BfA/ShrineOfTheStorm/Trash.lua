@@ -344,47 +344,38 @@ end
 
 -- Deepsea Ritualist
 
-function mod:UnendingDarkness(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:UnendingDarkness(args)
+		local _, interruptReady = self:Interrupter()
+		local t = args.time
+		if interruptReady and t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:VoidSeedApplied(args)
-	if self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, "blue", args.destName)
-		self:PlaySound(args.spellId, "alarm")
-		-- Duration seems to vary, so we can't hardcode a fixed duration
-		local count = 0
-		local maxExpirationTime = 0
-		for i = 1, 100 do
-			local _, _, _, _, _, expirationTime, _, _, _, spellId = UnitAura(args.destName, i, "HARMFUL")
-			if spellId == args.spellId then
-				count = count + 1
-				if count > 1 then
-					self:Error(string.format(
-						"Void seed applied: count: %d, duration: %d, previous max duration: %d. Tell the authors!",
-						count, expirationTime - GetTime(), maxExpirationTime - GetTime()
-					))
-				end
-				if expirationTime > maxExpirationTime then
-					maxExpirationTime = expirationTime
-				end
-			elseif not spellId then
-				break
+do
+	local prev = 0
+	function mod:VoidSeedApplied(args)
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+		if self:Me(args.destGUID) then
+			self:TargetBar(args.spellId, 12, args.destName)
+			local t = args.time
+			-- this can rarely apply more than once to the same player, so throttle the countdown
+			if t - prev > 12 then
+				prev = t
+				self:SayCountdown(args.spellId, 12)
 			end
-		end
-		local duration = maxExpirationTime - GetTime()
-		if duration >= 0 then
-			self:TargetBar(args.spellId, duration, args.destName)
-			self:SayCountdown(args.spellId, duration)
 		end
 	end
 end
 
 function mod:VoidSeedRemoved(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", CL.removed:format(args.spellName))
-		self:PlaySound(args.spellId, "info")
 		self:StopBar(args.spellId, args.destName)
 		self:CancelSayCountdown(args.spellId)
 	end
