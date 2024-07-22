@@ -34,7 +34,7 @@ end
 function mod:GetOptions()
 	return {
 		"warmup",
-		{424795, "SAY", "ME_ONLY_EMPHASIZE"}, -- Refracting Beam
+		{424795, "SAY"}, -- Refracting Beam
 		{424888, "TANK_HEALER"}, -- Seismic Smash
 		{424889, "DISPEL"}, -- Seismic Reverberation
 		424903, -- Volatile Spike
@@ -48,8 +48,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START") -- XXX no boss frames
-	self:Log("SPELL_AURA_APPLIED", "RefractingBeamApplied", 424795)
-	self:Log("SPELL_AURA_REMOVED", "RefractingBeamRemoved", 424795)
+	self:Log("SPELL_AURA_APPLIED", "RefractingBeamApplied", 424795) -- TODO no SPELL_CAST_SUCCESS
 	self:Log("SPELL_CAST_START", "SeismicSmash", 424888)
 	self:Log("SPELL_AURA_APPLIED", "SeismicReverberation", 424889)
 	self:Log("SPELL_CAST_START", "VolatileSpike", 424903)
@@ -93,39 +92,41 @@ end
 
 do
 	local playerList = {}
+	local prev = 0
 
 	function mod:RefractingBeamApplied(args)
 		if not self:Friendly(args.destFlags) then
 			-- the boss RP fights some Skardyn Invaders before becoming active
 			return
 		end
-		playerList[#playerList + 1] = args.destName
-		self:PlaySound(args.spellId, "alarm", nil, playerList)
+		local t = args.time
 		if self:Mythic() then
-			self:TargetsMessage(args.spellId, "red", playerList, 3, CL.beam, nil, 1.1) -- debuff staggers applications in .5s intervals
-		else
-			self:TargetsMessage(args.spellId, "red", playerList, 2, CL.beam, nil, 0.6) -- debuff staggers applications in .5s intervals
-		end
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId, CL.beam, nil, "Beam")
-		end
-		if #playerList == 1 then
-			if self:Mythic() then
+			if t - prev > 5 then
+				-- applies to all 5 players over 2 seconds, 0.5s apart. just alert on the first debuff.
+				prev = t
+				self:Message(args.spellId, "red", CL.beams)
 				refractingBeamCount = refractingBeamCount + 1
 				if refractingBeamCount % 2 == 0 then
 					self:CDBar(args.spellId, 20.0, CL.beams)
 				else
 					self:CDBar(args.spellId, 28.0, CL.beams)
 				end
-			else -- Normal, Heroic
+				self:PlaySound(args.spellId, "alarm")
+			end
+		else -- Heroic, Normal
+			if t - prev > 5 then
+				prev = t
+				playerList = {}
 				self:CDBar(args.spellId, 10.9, CL.beams)
 			end
+			playerList[#playerList + 1] = args.destName
+			-- TODO reconfirm player count in Heroic
+			self:TargetsMessage(args.spellId, "red", playerList, 2, CL.beam, nil, 0.6) -- debuff applications in .5s intervals
+			self:PlaySound(args.spellId, "alarm", nil, playerList)
+			if self:Me(args.destGUID) then
+				self:Say(args.spellId, CL.beam, nil, "Beam")
+			end
 		end
-	end
-
-	function mod:RefractingBeamRemoved(args)
-		-- TODO there is no SPELL_CAST_SUCCESS
-		playerList = {}
 	end
 end
 
