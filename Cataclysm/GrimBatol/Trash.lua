@@ -1,4 +1,3 @@
-if not BigWigsLoader.isBeta then return end
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -71,32 +70,51 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- Twilight Earthcaller
-	self:Log("SPELL_CAST_START", "MassTremor", 451871)
+	if select(4, GetBuildInfo()) >= 110000 then -- XXX change to self:Retail() when 11.0.0 is live
+		-- Twilight Earthcaller
+		self:Log("SPELL_CAST_START", "MassTremor", 451871)
 
-	-- Twilight Brute
-	self:Log("SPELL_CAST_SUCCESS", "ObsidianStomp", 456696)
+		-- Twilight Brute
+		self:Log("SPELL_CAST_SUCCESS", "ObsidianStomp", 456696)
 
-	-- Twilight Destroyer
-	self:Log("SPELL_AURA_APPLIED", "TwilightFlameApplied", 451613)
-	self:Log("SPELL_CAST_START", "UmbralWind", 451939)
+		-- Twilight Destroyer
+		self:Log("SPELL_AURA_APPLIED", "TwilightFlameApplied", 451613)
+		self:Log("SPELL_CAST_START", "UmbralWind", 451939)
+	end
 
 	-- Twilight Beguiler
-	self:Log("SPELL_CAST_START", "SearMind", 76711)
+	self:Log("SPELL_CAST_START", "SearMind", 76711) -- Chained Mind on classic
 
-	-- Twilight Warlock
-	self:Log("SPELL_AURA_APPLIED", "EnvelopingShadowflameApplied", 451224)
+	if select(4, GetBuildInfo()) >= 110000 then -- XXX change to self:Retail() when 11.0.0 is live
+		-- Twilight Warlock
+		self:Log("SPELL_AURA_APPLIED", "EnvelopingShadowflameApplied", 451224)
 
-	-- Twilight Flamerender
-	self:Log("SPELL_CAST_START", "BlazingShadowflame", 462216)
+		-- Twilight Flamerender
+		self:Log("SPELL_CAST_START", "BlazingShadowflame", 462216)
 
-	-- Twilight Lavabender
-	self:Log("SPELL_CAST_START", "ShadowlavaBlast", 456711)
-	self:Log("SPELL_CAST_START", "DarkEruption", 456713)
-	self:Log("SPELL_CAST_START", "Ascension", 451387)
+		-- Twilight Lavabender
+		self:Log("SPELL_CAST_START", "ShadowlavaBlast", 456711)
+		self:Log("SPELL_CAST_START", "DarkEruption", 456713)
+		self:Log("SPELL_CAST_START", "Ascension", 451387)
 
-	-- Faceless Corruptor
-	self:Log("SPELL_CAST_START", "MindPiercer", 451391)
+		-- Faceless Corruptor
+		self:Log("SPELL_CAST_START", "MindPiercer", 451391)
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if select(4, GetBuildInfo()) < 110000 then -- XXX change to mod:Classic() when 11.0.0 is live
+	function mod:GetOptions()
+		return {
+			-- Twilight Beguiler
+			76711, -- Chained Mind
+		}, {
+			[76711] = L.twilight_beguiler,
+		}
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -143,7 +161,7 @@ end
 
 -- Twilight Beguiler
 
-function mod:SearMind(args)
+function mod:SearMind(args) -- Chained Mind on Classic
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end

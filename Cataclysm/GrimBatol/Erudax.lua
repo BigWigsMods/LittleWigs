@@ -60,7 +60,7 @@ end
 -- Classic Initialization
 --
 
-if not BigWigsLoader.isBeta then
+if select(4, GetBuildInfo()) < 110000 then -- XXX change to mod:Classic() when 11.0.0 is live
 	function mod:GetOptions()
 		return {
 			75664, -- Shadow Gale
