@@ -9,7 +9,7 @@ if L then
 	L.eye_of_the_queen = "高耸虚居居民"
 	L.covert_webmancer = "隐秘网士"
 	L.royal_venomshell = "皇家毒壳者"
-	--L.unstable_test_subject = "Unstable Test Subject"
+	L.unstable_test_subject = "不稳定的测试对象"
 	L.sureki_unnaturaler = "苏雷吉反自然者"
 	L.elder_shadeweaver = "长者织影"
 	L.hulking_warshell = "魁梧的战甲尉"
