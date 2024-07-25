@@ -116,72 +116,11 @@ function mod:GetOptions()
 	}
 end
 
--- XXX remove the block below when TWW is live
-if not BigWigsLoader.isBeta then
-	function mod:GetOptions()
-		return {
-			-- Ashvane Cannoneer
-			268260, -- Broadside
-			-- Ashvane Commander
-			275826, -- Bolstering Shout
-			-- Ashvane Invader
-			275835, -- Stinging Venom Coating
-			-- Ashvane Spotter
-			{272421, "SAY"}, -- Sighted Artillery
-			-- Bilge Rat Demolisher
-			257169, -- Terrifying Roar
-			272711, -- Crushing Slam
-			-- Bilge Rat Pillager
-			272827, -- Viscous Slobber
-			-- Bilge Rat Tempest
-			274569, -- Revitalizing Mist
-			-- Bilge Rat Buccaneer
-			272546, -- Banana Rampage
-			-- Irontide Raider
-			257170, -- Savage Tempest
-			-- Kul Tiran Wavetender
-			256957, -- Watertight Shell
-			-- Kul Tiran Halberd
-			256627, -- Slobber Knocker
-			-- Kul Tiran Vanguard
-			257288, -- Heavy Slash
-			-- Snarling Dockhound
-			256897, -- Clamping Jaws
-			-- Riptide Shredder
-			256866, -- Iron Ambush
-			-- Dockhound Packmaster
-			{257036, "SAY"}, -- Feral Charge
-			-- Blacktar Bomber
-			256640, -- Burning Tar
-			256673, -- Immolation
-		}, {
-			[268260] = L.cannoneer,
-			[275826] = L.commander,
-			[275835] = L.invader,
-			[272421] = L.spotter,
-			[257169] = L.demolisher,
-			[272827] = L.pillager,
-			[274569] = L.tempest,
-			[272546] = L.buccaneer,
-			[257170] = L.raider,
-			[256957] = L.wavetender,
-			[256627] = L.halberd,
-			[257288] = L.vanguard,
-			[256897] = L.dockhound,
-			[256866] = L.shredder,
-			[257036] = L.packmaster,
-			[256640] = L.bomber,
-		}
-	end
-end
-
 function mod:OnBossEnable()
 	-- Ashvane Cannoneer
 	self:Log("SPELL_CAST_START", "Broadside", 268260)
 	-- Ashvane Commander
-	if BigWigsLoader.isBeta then -- XXX remove check when TWW is live
-		self:Log("SPELL_AURA_APPLIED", "AzeriteCharge", 454437)
-	end
+	self:Log("SPELL_AURA_APPLIED", "AzeriteCharge", 454437)
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
 	-- Ashvane Invader
