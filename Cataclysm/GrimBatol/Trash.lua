@@ -70,7 +70,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	if select(4, GetBuildInfo()) >= 110000 then -- XXX change to self:Retail() when 11.0.0 is live
+	if self:Retail() then
 		-- Twilight Earthcaller
 		self:Log("SPELL_CAST_START", "MassTremor", 451871)
 
@@ -85,7 +85,7 @@ function mod:OnBossEnable()
 	-- Twilight Beguiler
 	self:Log("SPELL_CAST_START", "SearMind", 76711) -- Chained Mind on classic
 
-	if select(4, GetBuildInfo()) >= 110000 then -- XXX change to self:Retail() when 11.0.0 is live
+	if self:Retail() then
 		-- Twilight Warlock
 		self:Log("SPELL_AURA_APPLIED", "EnvelopingShadowflameApplied", 451224)
 
@@ -106,7 +106,7 @@ end
 -- Classic Initialization
 --
 
-if select(4, GetBuildInfo()) < 110000 then -- XXX change to mod:Classic() when 11.0.0 is live
+if mod:Classic() then
 	function mod:GetOptions()
 		return {
 			-- Twilight Beguiler

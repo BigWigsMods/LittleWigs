@@ -70,7 +70,7 @@ end
 -- Classic Initialization
 --
 
-if select(4, GetBuildInfo()) < 110000 then -- XXX change to mod:Classic() when 11.0.0 is live
+if mod:Classic() then
 	function mod:GetOptions()
 		return {
 			75218, -- Invocation of Flame
