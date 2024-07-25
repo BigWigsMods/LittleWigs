@@ -169,10 +169,5 @@ function mod:HeavyOrdnanceApplied(args)
 	end
 	self:Message(args.spellId, "green", CL.extra:format(CL.onboss:format(args.spellName), CL.remaining:format(ordnanceRemaining)))
 	self:PlaySound(args.spellId, "info")
-	-- 10s TWW, 6s live
-	if BigWigsLoader.isBeta then
-		self:TargetBar(args.spellId, 10, CL.boss)
-	else
-		self:TargetBar(args.spellId, 6, CL.boss)
-	end
+	self:TargetBar(args.spellId, 10, CL.boss)
 end
