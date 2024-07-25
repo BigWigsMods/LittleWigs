@@ -57,7 +57,7 @@ function mod:GetOptions()
 		-- Ghastly Voidsoul
 		449455, -- Howling Fear
 		-- Cursedheart Invader
-		426308, -- Void Infection
+		{426308, "DISPEL"}, -- Void Infection
 		-- Void Bound Despoiler
 		{426771, "HEALER"}, -- Void Storm
 		-- Void Bound Howler
@@ -106,8 +106,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HowlingFear", 449455)
 
 	-- Cursedheart Invader
-	self:Log("SPELL_CAST_START", "VoidInfection", 426308)
-	-- TODO applied
+	self:Log("SPELL_AURA_APPLIED", "VoidInfectionApplied", 426308)
 
 	-- Void Bound Despoiler
 	self:Log("SPELL_CAST_START", "VoidStorm", 426771)
@@ -185,12 +184,12 @@ end
 
 do
 	local prev = 0
-	function mod:VoidInfection(args)
+	function mod:VoidInfectionApplied(args)
 		local t = args.time
-		if t - prev > 2 then
+		if self:Dispeller("curse", nil, args.spellId) and t - prev > 2 then
 			prev = t
-			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "alert")
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
 		end
 	end
 end
