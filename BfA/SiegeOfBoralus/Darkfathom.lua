@@ -21,7 +21,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- XXX pre-TWW compat
 	self:Log("SPELL_CAST_START", "CrashingTide", 257862)
 	self:Log("SPELL_CAST_START", "BreakWater", 257882)
 	self:Log("SPELL_CAST_START", "TidalSurge", 276068)
@@ -36,14 +35,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- XXX pre-TWW compat
-	if spellId == 257861 then -- Crashing Tide
-		self:Message(261563, "purple")
-		self:PlaySound(261563, "alert")
-		self:CDBar(261563, 15.8)
-	end
-end
 
 function mod:CrashingTide()
 	self:Message(261563, "purple")
