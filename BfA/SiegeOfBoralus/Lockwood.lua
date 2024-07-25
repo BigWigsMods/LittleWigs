@@ -1,4 +1,3 @@
-local isTWWS1 = select(4, GetBuildInfo()) >= 110002 -- XXX remove when 11.0.2 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -49,7 +48,7 @@ function mod:GetOptions()
 	}
 end
 
-if not isTWWS1 then
+if not BigWigsLoader.isBeta then -- XXX remove block when 11.0.2 is live
 	function mod:GetOptions()
 		return {
 			-- Dread Captain Lockwood
@@ -72,7 +71,7 @@ end
 function mod:OnBossEnable()
 	-- Dread Captain Lockwood
 	self:Log("SPELL_CAST_START", "ClearTheDeck", 269029)
-	if isTWWS1 then
+	if BigWigsLoader.isBeta then -- XXX remove check when 11.0.2 is live
 		self:Log("SPELL_CAST_START", "GutShot", 273470)
 		--self:Log("SPELL_CAST_SUCCESS", "MassBombardment", 463185) TODO eventually
 		self:Log("SPELL_AURA_APPLIED", "SightedArtilleryApplied", 272421) -- Mass Bombardment
@@ -89,7 +88,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "CrimsonSwipeDamage", 268230)
 
 	-- Ashvane Cannoneer
-	if isTWWS1 then -- TODO remove check when 11.0.2 is live
+	if BigWigsLoader.isBeta then -- XXX remove check when 11.0.2 is live
 		self:Log("SPELL_CAST_START", "Broadside", 268260)
 		self:Log("SPELL_CAST_SUCCESS", "UnstableOrdnance", 268963) -- Unstable Ordnance dropped
 	else
@@ -101,7 +100,7 @@ function mod:OnEngage()
 	withdrawCount = 1
 	self:SetStage(1)
 	self:CDBar(269029, 4.5) -- Clear the Deck
-	if isTWWS1 then
+	if BigWigsLoader.isBeta then -- XXX remove check when 11.0.2 is live
 		self:CDBar(463182, 8.0) -- Fiery Ricochet
 		if self:Mythic() then
 			self:CDBar(463185, 25.0) -- Mass Bombardment
