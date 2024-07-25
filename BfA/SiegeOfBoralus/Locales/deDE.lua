@@ -24,8 +24,3 @@ L = BigWigs:NewBossLocale("Dread Captain Lockwood", "deDE")
 if L then
 	L.ordnance_dropped = "Instabile Munition fallengelassen"
 end
-
-L = BigWigs:NewBossLocale("Viq'Goth", "deDE")
-if L then
-	L.demolishing_desc = "Warnungen und Timer für das Erscheinen des Verwüstenden Schreckens."
-end

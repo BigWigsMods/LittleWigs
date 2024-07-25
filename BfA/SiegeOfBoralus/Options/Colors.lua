@@ -43,7 +43,6 @@ BigWigs:AddColors("Viq'Goth", {
 	[270185] = "red",
 	[270590] = "purple",
 	[275014] = {"blue","yellow"},
-	["demolishing"] = "yellow",
 	["stages"] = "green",
 })
 

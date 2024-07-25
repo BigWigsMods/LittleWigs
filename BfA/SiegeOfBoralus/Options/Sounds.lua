@@ -43,7 +43,6 @@ BigWigs:AddSounds("Viq'Goth", {
 	[270185] = "alarm",
 	[270590] = "warning",
 	[275014] = "warning",
-	["demolishing"] = "alert",
 	["stages"] = "long",
 })
 

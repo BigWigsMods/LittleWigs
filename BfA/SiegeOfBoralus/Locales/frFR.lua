@@ -24,8 +24,3 @@ L = BigWigs:NewBossLocale("Dread Captain Lockwood", "frFR")
 if L then
 	--L.ordnance_dropped = "Unstable Ordnance dropped"
 end
-
-L = BigWigs:NewBossLocale("Viq'Goth", "frFR")
-if L then
-	--L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
-end

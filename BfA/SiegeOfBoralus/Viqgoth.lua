@@ -1,4 +1,3 @@
-local isTWWS1 = select(4, GetBuildInfo()) >= 110002 -- XXX remove when 11.0.2 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -15,20 +14,6 @@ mod:SetStage(1)
 --
 
 local markCount = 1
-local engagedGripping = true -- XXX remove when 11.0.2 is live
-local demolisherCount = 1 -- XXX remove when 11.0.2 is live
-
---------------------------------------------------------------------------------
--- Localization
---
-
--- XXX remove locale when 11.0.2 is live
-local L = mod:GetLocale()
-if L then
-	L.demolishing = -18340 -- Demolishing Terror
-	L.demolishing_desc = "Warnings and timers for when the Demolishing Terror spawns."
-	L.demolishing_icon = "achievement_boss_yoggsaron_01"
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -53,30 +38,9 @@ function mod:GetOptions()
 	}
 end
 
--- XXX remove when 11.0.2 is live
-if not isTWWS1 then
-	function mod:GetOptions()
-		return {
-			"stages",
-			{275014, "SAY"}, -- Putrid Waters
-			putridWatersMarker,
-			270185, -- Call of the Deep
-			269456, -- Eradication
-			{269366, "CASTBAR"}, -- Repair
-			-- Demolishing Terror
-			"demolishing", -- Demolishing Terror
-			269266, -- Slam
-			270590, -- Hull Cracker
-		}, {
-			[275014] = "general",
-			["demolishing"] = -18340, -- Demolishing Terror
-		}
-	end
-end
-
 function mod:OnBossEnable()
-	-- the tentacles can be any boss besides boss1, which is Viq'goth
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3", "boss4", "boss5")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:Log("SPELL_CAST_SUCCESS", "DamageBoss35", 269984)
 	self:Log("SPELL_CAST_SUCCESS", "PutridWaters", 274991)
 	self:Log("SPELL_AURA_APPLIED", "PutridWatersApplied", 275014)
 	self:Log("SPELL_AURA_REMOVED", "PutridWatersRemoved", 275014)
@@ -84,9 +48,6 @@ function mod:OnBossEnable()
 
 	-- Gripping Terror
 	self:Log("SPELL_CAST_START", "RepairStart", 269366)
-	if not isTWWS1 then
-		self:Death("GrippingTerrorDeath", 137405) -- XXX remove when 11.0.2 is live
-	end
 
 	-- Demolishing Terror
 	self:Log("SPELL_CAST_START", "Slam", 269266)
@@ -96,14 +57,7 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	if not isTWWS1 then
-		-- XXX remove this block when 11.0.2 is live
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-		self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 2), L.demolishing_icon) -- Summon Demolisher
-	end
 	markCount = 1
-	demolisherCount = 1
-	engagedGripping = true
 	self:CDBar(275014, 3.2) -- Putrid Waters
 	self:CDBar(270185, 7.0) -- Call of the Deep
 end
@@ -123,49 +77,35 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		else -- Stage 3
 			self:CDBar(270185, 7.3)
 		end
-	elseif spellId == 269984 then -- Damage Boss 35%
-		self:SetStage(self:GetStage() + 1)
-		engagedGripping = false
-		demolisherCount = 1
+	end
+end
+
+function mod:DamageBoss35()
+	self:SetStage(self:GetStage() + 1)
+	if self:GetStage() <= 3 then -- don't alert on the very last hit
 		self:Message("stages", "green", CL.stage:format(self:GetStage()), false)
 		self:PlaySound("stages", "long")
-	elseif spellId == 270605 then -- Summon Demolisher
-		-- XXX remove this block when 11.0.2 is live
-		demolisherCount = demolisherCount + 1
-		if demolisherCount <= 5 then -- Demolishers stop spawning after the fifth, but the spell is still cast
-			self:Message("demolishing", "yellow", CL.count:format(CL.spawned:format(self:SpellName(L.demolishing)), demolisherCount), L.demolishing_icon)
-			self:PlaySound("demolishing", "alert")
-		end
-		if demolisherCount <= 4 then
-			self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), demolisherCount+1), L.demolishing_icon)
-		end
 	end
-end
-
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT() -- XXX remove when 11.0.2 is live
-	if not engagedGripping and self:GetBossId(137405) then -- Check if Gripping Terror is up
-		engagedGripping = true
-		self:Bar("demolishing", 20, CL.count:format(self:SpellName(L.demolishing), 2), L.demolishing_icon) -- Summon Demolisher
-	end
-end
-
-function mod:PutridWaters(args)
-	self:CDBar(275014, 20.6)
 end
 
 do
-	local playerList, playerIcons = mod:NewTargetList(), {}
+	local playerList = {}
+
+	function mod:PutridWaters(args)
+		playerList = {}
+		self:CDBar(275014, 20.6)
+	end
+
 	function mod:PutridWatersApplied(args)
 		local playerListCount = #playerList+1
 		playerList[playerListCount] = args.destName
-		playerIcons[playerListCount] = markCount
 		self:CustomIcon(putridWatersMarker, args.destName, markCount)
 		markCount = (markCount % 4) + 1
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 0.6)
 		if self:Me(args.destGUID) then
-			self:PlaySound(args.spellId, "warning")
 			self:Say(args.spellId, nil, nil, "Putrid Waters")
+			self:PlaySound(args.spellId, "warning")
 		end
-		self:TargetsMessageOld(args.spellId, "yellow", playerList, 2, nil, nil, 0.6, playerIcons)
 	end
 
 	function mod:PutridWatersRemoved(args)
@@ -174,8 +114,10 @@ do
 end
 
 function mod:Eradication(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
+	if self:GetStage() <= 3 then -- ignore cast if the fight is ending
+		self:Message(args.spellId, "red")
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 -- Gripping Terror
@@ -184,10 +126,6 @@ function mod:RepairStart(args)
 	self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 	self:CastBar(args.spellId, 3)
-end
-
-function mod:GrippingTerrorDeath(args) -- XXX remove when 11.0.2 is live
-	self:StopBar(CL.count:format(self:SpellName(L.demolishing), demolisherCount+1))
 end
 
 -- Demolishing Terror
