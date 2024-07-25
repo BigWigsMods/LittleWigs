@@ -47,7 +47,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START") -- XXX no boss frames
 	self:Log("SPELL_AURA_APPLIED", "RefractingBeamApplied", 424795) -- TODO no SPELL_CAST_SUCCESS
 	self:Log("SPELL_CAST_START", "SeismicSmash", 424888)
 	self:Log("SPELL_AURA_APPLIED", "SeismicReverberation", 424889)
@@ -77,13 +76,6 @@ end
 -- Event Handlers
 --
 
--- XXX no boss frames
-function mod:ENCOUNTER_START(_, id)
-	if id == self.engageId then
-		self:Engage()
-	end
-end
-
 function mod:Warmup() -- called from trash module
 	-- 170.41 [CHAT_MSG_MONSTER_SAY] What's this? Is that golem fused with something else?#Dagran Thaurissan II
 	-- 183.10 [NAME_PLATE_UNIT_ADDED] E.D.N.A
@@ -95,10 +87,6 @@ do
 	local prev = 0
 
 	function mod:RefractingBeamApplied(args)
-		if not self:Friendly(args.destFlags) then
-			-- the boss RP fights some Skardyn Invaders before becoming active
-			return
-		end
 		local t = args.time
 		if self:Mythic() then
 			if t - prev > 5 then
