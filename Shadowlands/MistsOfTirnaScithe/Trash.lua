@@ -1,4 +1,3 @@
-local isTWWS1 = select(4, GetBuildInfo()) >= 110002 -- XXX remove when 11.0.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -120,7 +119,7 @@ function mod:GetOptions()
 end
 
 -- XXX remove when 11.0.2 is live everywhere
-if not isTWWS1 then
+if not BigWigsLoader.isBeta then
 	function mod:GetOptions()
 		return {
 			-- Tirnenn Villager
@@ -204,7 +203,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BrambleBurst", 324923)
 
 	-- Mistveil Defender
-	if isTWWS1 then
+	if BigWigsLoader.isBeta then
 		self:Log("SPELL_CAST_START", "MistWard", 463256)
 		self:Log("SPELL_CAST_START", "Expel", 463248)
 	else
@@ -219,7 +218,7 @@ function mod:OnBossEnable()
 	self:Death("MistveilGorgegulletDeath", 173720)
 
 	-- Mistveil Guardian
-	if isTWWS1 then
+	if BigWigsLoader.isBeta then
 		self:Log("SPELL_CAST_START", "AnimaSlash", 463217)
 	end
 	self:Log("SPELL_CAST_START", "BuckingRampage", 331743)

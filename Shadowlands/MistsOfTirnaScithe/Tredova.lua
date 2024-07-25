@@ -1,4 +1,3 @@
-local isTWWS1 = select(4, GetBuildInfo()) >= 110002 -- XXX remove when 11.0.2 is live everywhere
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -44,7 +43,7 @@ function mod:GetOptions()
 end
 
 -- XXX remove this block when 11.0.2 is live everywhere
-if not isTWWS1 then
+if not BigWigsLoader.isBeta then
 	function mod:GetOptions()
 		return {
 			322654, -- Acid Expulsion
@@ -81,7 +80,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MindLink", 322614)
 
 	-- Mythic
-	if isTWWS1 then
+	if BigWigsLoader.isBeta then
 		self:Log("SPELL_CAST_START", "CoalescingPoison", 463602)
 	else
 		-- XXX remove these when 11.0.2 is live everywhere
@@ -92,7 +91,7 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	if isTWWS1 then
+	if BigWigsLoader.isBeta then
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
 		self:CDBar(322614, 18.0) -- Mind Link
@@ -122,7 +121,7 @@ do
 			prev = t
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
-			if isTWWS1 then
+			if BigWigsLoader.isBeta then
 				self:CDBar(args.spellId, 30.0)
 			else
 				self:CDBar(args.spellId, 19.4)
@@ -139,7 +138,7 @@ function mod:Consumption(args)
 	end
 	self:PlaySound(args.spellId, "long")
 	self:SetStage(self:GetStage() + 1)
-	if isTWWS1 then -- XXX remove check when 10.2 is live
+	if BigWigsLoader.isBeta then -- XXX remove check when 10.2 is live
 		self:StopBar(322654) -- Acid Expulsion
 		self:StopBar(CL.adds) -- Accelerated Incubation
 		self:StopBar(322614) -- Mind Link
@@ -156,7 +155,7 @@ function mod:GorgingShieldRemoved(args)
 end
 
 function mod:ConsumptionRemoved(args)
-	if isTWWS1 then -- XXX remove check when 10.2 is live
+	if BigWigsLoader.isBeta then -- XXX remove check when 10.2 is live
 		self:StopBar(CL.cast:format(args.spellName))
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
@@ -202,7 +201,7 @@ end
 function mod:MindLink(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert")
-	if isTWWS1 then
+	if BigWigsLoader.isBeta then
 		self:CDBar(args.spellId, 30.0)
 	else
 		self:CDBar(args.spellId, 15.8)
