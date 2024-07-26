@@ -169,13 +169,19 @@ end
 -- Twilight Warlock
 
 do
+	local playerList = {}
 	local prev = 0
 	function mod:EnvelopingShadowflameApplied(args)
-		local t = args.time
-		if t - prev > 2 and (self:Dispeller("curse", nil, args.spellId) or self:Healer() or self:Me(args.destGUID)) then
-			prev = t
-			self:TargetMessage(args.spellId, "orange", args.destName)
-			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		if self:Me(args.destGUID) or self:Healer() or self:Dispeller("curse", nil, args.spellId) then
+			local t = args.time
+			if t - prev > .5 then -- throttle alerts to .5s intervals
+				-- can't use SUCCESS to reset playerList because this spell is spammed in RP fighting
+				prev = t
+				playerList = {}
+			end
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(args.spellId, "orange", playerList, 2, nil, nil, .5) -- goes on 2 players at a time
+			self:PlaySound(args.spellId, "alert", nil, playerList)
 		end
 	end
 end
