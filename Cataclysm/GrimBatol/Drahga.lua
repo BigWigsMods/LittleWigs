@@ -27,18 +27,21 @@ function mod:GetOptions()
 	return {
 		"stages",
 		-- Drahga Shadowburner
-		448013, -- Invocation of Shadowflame (Add)
-		--{82850, "ME_ONLY", "ME_ONLY_EMPHASIZE"}, -- Flaming Fixate
+		448013, -- Invocation of Shadowflame (Adds)
 		{450095, "DISPEL"}, -- Curse of Entropy
 		-- Valiona
 		456751, -- Twilight Buffet
 		448105, -- Devouring Flame (Mythic)
+		-- Invoked Shadowflame Spirit
+		{82850, "ME_ONLY", "ME_ONLY_EMPHASIZE", "SAY"}, -- Flaming Fixate
 	}, {
 		[448013] = -29546, -- Drahga Shadowburner
 		[456751] = -29551, -- Valiona
+		[82850] = -29557, -- Invoked Shadowflame Spirit
 	}, {
-		[448013] = CL.add, -- Invocation of Shadowflame (Add)
+		[448013] = CL.adds, -- Invocation of Shadowflame (Adds)
 		[448105] = CL.mythic, -- Devouring Flame (Mythic)
+		[82850] = CL.fixate, -- Flaming Fixate (Fixate)
 	}
 end
 
@@ -48,7 +51,7 @@ function mod:OnBossEnable()
 
 	-- Drahga Shadowburner
 	self:Log("SPELL_CAST_START", "InvocationOfShadowflame", 448013)
-	--self:Log("SPELL_AURA_APPLIED", "FlamingFixateApplied", 82850) -- aura is hidden
+	self:Log("SPELL_AURA_APPLIED", "FlamingFixateApplied", 82850)
 	self:Log("SPELL_CAST_SUCCESS", "CurseOfEntropy", 450095)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfEntropyApplied", 450095)
 
@@ -108,12 +111,13 @@ end
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 	if self:GetBossId(40320) then -- Valiona
 		self:UnregisterEvent(event)
+		self:StopBar(CL.count:format(CL.add, invocationOfShadowflameCount)) -- Invocation of Shadowflame
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
-		self:CDBar(448013, 6.6, CL.count:format(CL.add, invocationOfShadowflameCount)) -- Invocation of Shadowflame
-		self:CDBar(456751, 14.6, CL.count:format(self:SpellName(456751), twilightBuffetCount)) -- Twilight Buffet
-		self:CDBar(450095, 18.6) -- Curse of Entropy
+		self:CDBar(448013, 3.4, CL.count:format(CL.adds, invocationOfShadowflameCount)) -- Invocation of Shadowflame
+		self:CDBar(456751, 11.4, CL.count:format(self:SpellName(456751), twilightBuffetCount)) -- Twilight Buffet
+		self:CDBar(450095, 15.3) -- Curse of Entropy
 		if self:Mythic() then
 			self:CDBar(448105, 21.7) -- Devouring Flame
 		end
@@ -123,25 +127,30 @@ end
 -- Drahga Shadowburner
 
 function mod:InvocationOfShadowflame(args)
-	self:StopBar(CL.count:format(CL.add, invocationOfShadowflameCount))
-	self:Message(args.spellId, "yellow", CL.count:format(CL.add_spawning, invocationOfShadowflameCount))
-	self:PlaySound(args.spellId, "info")
-	invocationOfShadowflameCount = invocationOfShadowflameCount + 1
-	if self:GetStage() == 1 then
+	if self:GetStage() == 1 then -- 1 add spawns
+		self:StopBar(CL.count:format(CL.add, invocationOfShadowflameCount))
+		self:Message(args.spellId, "yellow", CL.count:format(CL.add_spawning, invocationOfShadowflameCount))
+		self:PlaySound(args.spellId, "info")
+		invocationOfShadowflameCount = invocationOfShadowflameCount + 1
 		self:CDBar(args.spellId, 26.0, CL.count:format(CL.add, invocationOfShadowflameCount))
-	else
-		self:CDBar(args.spellId, 30.0, CL.count:format(CL.add, invocationOfShadowflameCount))
+	else -- Stage 2, 2 adds spawn
+		self:StopBar(CL.count:format(CL.adds, invocationOfShadowflameCount))
+		self:Message(args.spellId, "yellow", CL.count:format(CL.adds_spawning, invocationOfShadowflameCount))
+		self:PlaySound(args.spellId, "info")
+		invocationOfShadowflameCount = invocationOfShadowflameCount + 1
+		self:CDBar(args.spellId, 30.0, CL.count:format(CL.adds, invocationOfShadowflameCount))
 	end
 end
 
---function mod:FlamingFixateApplied(args)
-	--self:TargetMessage(args.spellId, "red", args.destName)
-	--if self:Me(args.destGUID) then
-		--self:PlaySound(args.spellId, "warning", nil, args.destName)
-	--else
-		--self:PlaySound(args.spellId, "alert", nil, args.destName)
-	--end
---end
+function mod:FlamingFixateApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
+	if self:Me(args.destGUID) then
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+		self:Say(args.spellId, CL.fixate, nil, "Fixate")
+	else
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
 
 do
 	local playerList = {}
@@ -159,8 +168,8 @@ do
 		-- TODO this slows but is not dispelled by movement-dispelling effects
 		if self:Dispeller("curse", nil, args.spellId) or self:Healer() or self:Me(args.destGUID) then
 			playerList[#playerList + 1] = args.destName
-			self:PlaySound(args.spellId, "alert", nil, playerList)
 			self:TargetsMessage(args.spellId, "red", playerList, 3)
+			self:PlaySound(args.spellId, "alert", nil, playerList)
 		end
 	end
 end

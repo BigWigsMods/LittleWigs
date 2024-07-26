@@ -25,6 +25,7 @@ BigWigs:AddColors("Forgemaster Throngus", {
 
 BigWigs:AddColors("Drahga Shadowburner", {
 	[75218] = "yellow",
+	[82850] = {"blue","red"},
 	[90950] = "red",
 	[448013] = "yellow",
 	[448105] = "red",
