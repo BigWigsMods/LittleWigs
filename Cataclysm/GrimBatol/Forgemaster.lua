@@ -24,7 +24,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "ForgeWeapon", 456900, 456902, 451996) -- Forge Mace, Forge Swords, Forge Axe
+	self:Log("SPELL_CAST_START", "ForgeWeapon", 451996, 456902, 456900) -- Forge Axe, Forge Swords, Forge Mace
 	self:Log("SPELL_CAST_START", "MoltenMace", 449687)
 	self:Log("SPELL_AURA_APPLIED", "MoltenMaceApplied", 449687)
 	self:Log("SPELL_AURA_REMOVED", "MoltenMaceRemoved", 449687)
@@ -40,8 +40,9 @@ function mod:OnEngage()
 	self:CDBar(457664, 8.4, 451996) -- Forge Weapon, Forge Axe
 	self:CDBar(447395, 19.2) -- Fiery Cleave
 	self:CDBar(449444, 38.6) -- Molten Flurry
-	-- TODO according to the dungeon journal Molten Mace is Mythic-only, but it's actually cast in all difficulties
-	self:CDBar(449687, 55.6) -- Molten Mace
+	if self:Mythic() then
+		self:CDBar(449687, 55.6) -- Molten Mace
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -87,7 +88,11 @@ function mod:ForgeWeapon(args)
 		self:CDBar(457664, 19.4, 456902) -- Forge Swords
 	elseif args.spellId == 456902 then -- Forge Swords
 		self:SetStage(2)
-		self:CDBar(457664, 20.6, 456900) -- Forge Mace
+		if self:Mythic() then
+			self:CDBar(457664, 20.6, 456900) -- Forge Mace
+		else -- Heroic, Normal
+			self:CDBar(457664, 24.3, 451996) -- Forge Axe
+		end
 	else -- 456900, Forge Mace
 		self:SetStage(3)
 		self:CDBar(457664, 20.6, 451996) -- Forge Axe
@@ -121,7 +126,11 @@ end
 function mod:MoltenFlurry(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 60.2)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 60.2)
+	else -- Heroic, Normal
+		self:CDBar(args.spellId, 43.7)
+	end
 end
 
 function mod:MoltenSparkApplied(args)
@@ -151,7 +160,11 @@ end
 function mod:FieryCleave(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 60.7)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 60.7)
+	else -- Heroic, Normal
+		self:CDBar(args.spellId, 43.7)
+	end
 end
 
 --------------------------------------------------------------------------------
