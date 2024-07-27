@@ -16,7 +16,9 @@ mod:RegisterEnableMob(
 	223777, -- Blazing Fiend
 	212412, -- Sootsnout
 	212411, -- Torchsnarl
-	208456 -- Shuffling Horror
+	208456, -- Shuffling Horror
+	218475, -- Skitter
+	212129 -- Creaky Mine Cart
 )
 
 --------------------------------------------------------------------------------
@@ -32,6 +34,13 @@ if L then
 	L.sootsnout = "Sootsnout"
 	L.torchsnarl = "Torchsnarl"
 	L.shuffling_horror = "Shuffling Horror"
+	L.creaky_mine_cart = "Creaky Mine Cart"
+
+	L.minecart = "Mine Cart Minigame"
+	L.minecart_desc = 423374 -- Throw Dynamite
+	L.minecart_icon = 423374 -- Throw Dynamite
+	L.hits = "Hits"
+	L.minecart_over = "Winner: %s (%d hits)"
 end
 
 --------------------------------------------------------------------------------
@@ -57,6 +66,8 @@ function mod:GetOptions()
 		-- Shuffling Horror
 		422414, -- Shadow Smash
 		422541, -- Drain Light
+		-- Creaky Mine Cart
+		{"minecart", "INFOBOX"},
 	}, {
 		[423501] = L.rank_overseer,
 		[425536] = L.lowly_moleherd,
@@ -65,6 +76,7 @@ function mod:GetOptions()
 		[426261] = L.sootsnout,
 		[426619] = L.torchsnarl,
 		[422414] = L.shuffling_horror,
+		["minecart"] = L.creaky_mine_cart,
 	}
 end
 
@@ -95,7 +107,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowSmash", 422414)
 	self:Log("SPELL_CAST_START", "DrainLight", 422541)
 
-	-- TODO Creaky Mine Cart minigame
+	-- Creaky Mine Cart
+	self:Log("SPELL_CAST_SUCCESS", "ShadowyCloak", 423566) -- start event
+	self:Log("SPELL_AURA_APPLIED", "Ouch", 423654) -- end event
 end
 
 --------------------------------------------------------------------------------
@@ -220,4 +234,57 @@ end
 function mod:DrainLight(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
+end
+
+-- Creaky Mine Cart
+
+do
+	local playerHits = {}
+
+	function mod:ShadowyCloak() -- start event
+		playerHits = {}
+		self:Log("SPELL_DAMAGE", "ThrowDynamite", 423384)
+		self:Bar("minecart", 38.3, L.minecart_icon, L.minecart_icon)
+		self:Message("minecart", "cyan", L.minecart_icon, L.minecart_icon)
+		self:PlaySound("minecart", "long")
+	end
+
+	function mod:ThrowDynamite(args) -- scored a hit
+		if not next(playerHits) then
+			self:OpenInfo("minecart", L.hits)
+		end
+		local hits = playerHits[args.sourceName]
+		if not hits then
+			playerHits[args.sourceName] = 1
+		else
+			playerHits[args.sourceName] = hits + 1
+		end
+		self:SetInfoByTable("minecart", playerHits)
+	end
+
+	function mod:Ouch(args) -- end event
+		if self:MobId(args.destGUID) == 218475 then -- Skitter
+			self:StopBar(L.minecart_icon)
+			self:RemoveLog("SPELL_DAMAGE", 423384)
+			local winnerList
+			local winnerCount = 0
+			local score = 0
+			for playerName, hits in next, playerHits do
+				if hits > score then
+					score = hits
+					winnerCount = 1
+					winnerList = { self:ColorName(playerName) }
+				elseif hits == score then -- there's a tie
+					winnerCount = winnerCount + 1
+					winnerList[winnerCount] = self:ColorName(playerName)
+				end
+			end
+			if winnerList and score > 0 then
+				self:Message("minecart", "green", L.minecart_over:format(self:TableToString(winnerList, winnerCount), score), L.minecart_icon)
+				self:PlaySound("minecart", "info")
+				-- close infobox after 10 seconds
+				self:SimpleTimer(function() self:CloseInfo("minecart") end, 10)
+			end
+		end
+	end
 end
