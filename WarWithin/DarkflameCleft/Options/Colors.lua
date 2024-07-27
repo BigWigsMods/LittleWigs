@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Ol' Waxbeard", {
-	[421665] = "purple",
 	[422116] = {"blue","orange"},
+	[422245] = "purple",
 	[423693] = {"blue","red"},
 })
 

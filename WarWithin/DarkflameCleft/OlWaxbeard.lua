@@ -19,7 +19,7 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		{422116, "SAY"}, -- Reckless Charge
-		{421665, "TANK_HEALER"}, -- Rock Buster
+		{422245, "TANK_HEALER"}, -- Rock Buster
 		{423693, "ME_ONLY_EMPHASIZE"}, -- Luring Candleflame
 		-- TODO Underhanded Track-tics (Mythic)
 	}
@@ -27,12 +27,12 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1") -- Reckless Charge
-	self:Log("SPELL_CAST_START", "RockBuster", 421665)
-	self:Log("SPELL_AURA_APPLIED", "LuringCandleflame", 423693)
+	self:Log("SPELL_CAST_START", "RockBuster", 422245)
+	self:Log("SPELL_AURA_APPLIED", "LuringCandleflameApplied", 423693)
 end
 
 function mod:OnEngage()
-	self:CDBar(421665, 1.3) -- Rock Buster
+	self:CDBar(422245, 1.3) -- Rock Buster
 	self:CDBar(423693, 11.0) -- Luring Candleflame
 	self:CDBar(422116, 28.8) -- Reckless Charge
 end
@@ -65,7 +65,7 @@ function mod:RockBuster(args)
 	self:CDBar(args.spellId, 13.3)
 end
 
-function mod:LuringCandleflame(args)
+function mod:LuringCandleflameApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
