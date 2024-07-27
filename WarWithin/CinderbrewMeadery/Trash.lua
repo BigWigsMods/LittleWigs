@@ -56,6 +56,7 @@ function mod:GetOptions()
 		434706, -- Cindrewbrew Toss
 		-- Chef Chewie
 		434998, -- High Steaks
+		463206, -- Tenderize
 		-- Flavor Scientist
 		441627, -- Rejuvenating Honey
 		441434, -- Failed Batch
@@ -102,6 +103,7 @@ function mod:OnBossEnable()
 
 	-- Chef Chewie
 	self:Log("SPELL_CAST_START", "HighSteaks", 434998)
+	self:Log("SPELL_CAST_START", "Tenderize", 463206)
 	self:Death("ChefChewieDeath", 214697)
 
 	-- Flavor Scientist
@@ -183,12 +185,23 @@ do
 		timer = self:ScheduleTimer("ChefChewieDeath", 30)
 	end
 
+	function mod:Tenderize(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alert")
+		self:CDBar(args.spellId, 18.2)
+		timer = self:ScheduleTimer("ChefChewieDeath", 30)
+	end
+
 	function mod:ChefChewieDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(434998) -- High Steaks
+		self:StopBar(463206) -- Tenderize
 	end
 end
 
@@ -234,11 +247,16 @@ end
 -- Bee Wrangler
 
 do
+	local prev = 0
 	local function printTarget(self, name, guid)
 		self:TargetMessage(441119, "orange", name)
-		self:PlaySound(441119, "alarm", nil, name)
-		if self:Me(guid) then
-			self:Say(441119, nil, nil, "Bee-Zooka")
+		local t = GetTime()
+		if t - prev > 2 then
+			prev = t
+			if self:Me(guid) then
+				self:Say(441119, nil, nil, "Bee-Zooka")
+			end
+			self:PlaySound(441119, "alarm", nil, name)
 		end
 	end
 
@@ -261,9 +279,16 @@ end
 
 -- Royal Jelly Purveyor
 
-function mod:HoneyVolley(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:HoneyVolley(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:RainOfHoney(args)

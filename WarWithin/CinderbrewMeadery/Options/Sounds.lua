@@ -42,4 +42,5 @@ BigWigs:AddSounds("Cinderbrew Meadery Trash", {
 	[442589] = "alarm",
 	[442995] = "alert",
 	[448619] = "alarm",
+	[463206] = "alert",
 })
