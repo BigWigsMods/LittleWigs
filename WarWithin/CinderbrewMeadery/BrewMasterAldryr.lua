@@ -92,9 +92,9 @@ do
 		self:SetStage(1)
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - happyHourStart))
 		self:PlaySound(args.spellId, "info")
-		self:CDBar(432229, 9.3) -- Keg Smash
-		self:CDBar(432179, 14.2) -- Throw Cinderbrew
-		self:CDBar(432198, 17.8) -- Blazing Belch
+		self:CDBar(432229, 9.1) -- Keg Smash
+		self:CDBar(432179, 14.0) -- Throw Cinderbrew
+		self:CDBar(432198, 17.6) -- Blazing Belch
 		-- cast at 100 energy, 2.4s delay + 45s energy gain + runs to bar + 1.5s delay
 		self:CDBar(args.spellId, 48.9, CL.count:format(args.spellName, happyHourCount))
 	end
