@@ -1,16 +1,12 @@
 --------------------------------------------------------------------------------
--- TODO
--- Mega Taze timer
---
-
---------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Trixie & Naeno", 2097, 2360)
 if not mod then return end
 mod:RegisterEnableMob(150712, 153755) -- Trixie Tazer, Naeno Megacrash
-mod.engageId = 2312
+mod:SetEncounterID(2312)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -19,7 +15,7 @@ mod.engageId = 2312
 function mod:GetOptions()
 	return {
 		299153, -- Turbo Boost
-		{302682, "FLASH", "ME_ONLY_EMPHASIZE"}, -- Mega Taze
+		{302682, "ME_ONLY_EMPHASIZE"}, -- Mega Taze
 		298946, -- Roadkill
 		298940, -- Bolt Buster
 		298571, -- Burnout
@@ -36,7 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Burnout", 298571)
 	self:Log("SPELL_CAST_SUCCESS", "RollOut", 298898)
 	self:Log("SPELL_CAST_START", "PedalToTheMetal", 298651, 299164) -- First cast, second cast
-
 	self:Death("TrixieDeath", 150712)
 	self:Death("NaenoDeath", 153755)
 end
@@ -61,10 +56,8 @@ do
 		self:TargetMessage(302682, "orange", name)
 		self:TargetBar(302682, 8, name)
 		self:PlaySound(302682, "alarm", nil, name)
-		if self:Me(guid) then
-			self:Flash(302682)
-		end
 	end
+
 	function mod:MegaTaze(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 25.5)
