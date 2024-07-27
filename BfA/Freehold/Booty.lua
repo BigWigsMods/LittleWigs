@@ -104,13 +104,8 @@ end
 
 function mod:VerifyEnable(_, mobId)
 	if mobId == 130086 or mobId == 129350 then -- friendly NPCs
-		if C_ScenarioInfo.GetCriteriaInfo then
-			local info = C_ScenarioInfo.GetCriteriaInfo(3)
-			return info and not info.completed
-		else -- XXX pre-TWW compat
-			local _, _, completed = C_Scenario.GetCriteriaInfo(3)
-			return not completed
-		end
+		local info = C_ScenarioInfo.GetCriteriaInfo(3)
+		return info and not info.completed
 	end
 	return true
 end
