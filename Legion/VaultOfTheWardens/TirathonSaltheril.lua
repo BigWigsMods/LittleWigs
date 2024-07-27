@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Tirathon Saltheril", 1493, 1467)
 if not mod then return end
 mod:RegisterEnableMob(95885, 99013) -- Tirathon, Drelanim
-mod.engageId = 1815
+mod:SetEncounterID(1815)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -51,13 +51,8 @@ end
 
 function mod:VerifyEnable(_, mobId)
 	if mobId == 99013 then -- Drelanim is a friendly NPC
-		if C_ScenarioInfo.GetCriteriaInfo then
-			local info = C_ScenarioInfo.GetCriteriaInfo(1)
-			return info and not info.completed
-		else -- XXX pre-TWW compat
-			local _, _, completed = C_Scenario.GetCriteriaInfo(1)
-			return not completed
-		end
+		local info = C_ScenarioInfo.GetCriteriaInfo(1)
+		return info and not info.completed
 	end
 	return true
 end
