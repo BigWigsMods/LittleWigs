@@ -269,12 +269,12 @@ do
 			local winnerList
 			local winnerCount = 0
 			local score = 0
-			for playerName, hits in pairs(playerHits) do
+			for playerName, hits in next, playerHits do
 				if hits > score then
 					score = hits
 					winnerCount = 1
 					winnerList = { self:ColorName(playerName) }
-				elseif hits == score then
+				elseif hits == score then -- there's a tie
 					winnerCount = winnerCount + 1
 					winnerList[winnerCount] = self:ColorName(playerName)
 				end
