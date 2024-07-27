@@ -40,4 +40,5 @@ BigWigs:AddColors("Darkflame Cleft Trash", {
 	[426295] = "red",
 	[426619] = "purple",
 	[440652] = "orange",
+	["minecart"] = {"cyan","green"},
 })
