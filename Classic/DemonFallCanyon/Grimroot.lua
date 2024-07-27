@@ -121,6 +121,7 @@ do
 		if saplingGUID == guid then
 			saplingGUID = nil
 			self:CustomIcon(poisonedSaplingMarker, unit, 8)
+			self:UnregisterTargetEvents()
 		end
 	end
 
