@@ -36,7 +36,7 @@ if L then
 
 	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
-	L.custom_on_autotalk_icon = "Interface\\AddOns\\BigWigs\\Media\\Icons\\Menus\\Say"
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
 --------------------------------------------------------------------------------
