@@ -1,6 +1,7 @@
 local L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "ptBR")
 if not L then return end
 if L then
+	--L.arathi_lamplighter = "Arathi Lamplighter"
 	--L.nightfall_shadowmage = "Nightfall Shadowmage"
 	--L.nightfall_ritualist = "Nightfall Ritualist"
 	--L.nightfall_commander = "Nightfall Commander"
@@ -13,6 +14,8 @@ if L then
 	--L.nightfall_tactician = "Nightfall Tactician"
 	--L.manifested_shadow = "Manifested Shadow"
 	--L.nightfall_dark_architect = "Nightfall Dark Architect"
+
+	L.flying_available = "Pode voar agora"
 end
 
 L = BigWigs:NewBossLocale("Rasha'nan Dawnbreaker", "ptBR")
