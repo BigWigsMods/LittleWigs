@@ -213,6 +213,7 @@ end
 function mod:PlantArathiBomb(args)
 	self:Message(args.spellId, "green", CL.other:format(args.sourceName, args.spellName))
 	self:PlaySound(args.spellId, "info")
+	self:Bar(args.spellId, 15, CL.explosion)
 end
 
 -- Ascendant Vis'coxria
