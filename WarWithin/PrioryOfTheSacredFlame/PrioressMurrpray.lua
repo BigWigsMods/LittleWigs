@@ -18,7 +18,7 @@ function mod:GetOptions()
 	return {
 		423588, -- Barrier of Light
 		423664, -- Embrace the Light
-		444546, -- Purify
+		{444546, "SAY"}, -- Purify
 		{444608, "HEALER"}, -- Inner Fire
 		451605, -- Holy Flame
 	}
@@ -28,7 +28,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BarrierOfLight", 423588)
 	self:Log("SPELL_AURA_REMOVED", "BarrierOfLightRemoved", 423588)
 	self:Log("SPELL_INTERRUPT", "EmbraceTheLightInterrupted", "*")
-	self:Log("SPELL_CAST_START", "Purify", 444546) -- TODO should maybe change to SUCCESS, the beam doesn't appear until ~5.3 seconds after this?
+	self:Log("SPELL_CAST_SUCCESS", "Purify", 444546)
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Purify
 	self:Log("SPELL_CAST_START", "InnerFire", 444608)
 	self:Log("SPELL_CAST_START", "HolyFlame", 451605)
 end
@@ -36,7 +37,7 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(451605, 7.1) -- Holy Flame
-	self:CDBar(444546, 12.0) -- Purify
+	self:CDBar(444546, 13.1) -- Purify
 	self:CDBar(444608, 15.7) -- Inner Fire
 end
 
@@ -81,9 +82,18 @@ function mod:EmbraceTheLightInterrupted(args)
 end
 
 function mod:Purify(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 23.0)
+end
+
+function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
+	if msg:find("425556", nil, true) then -- Purify
+		-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\Ability_Paladin_TowerofLight.BLP:20|t %s targets you with |cFFFF0000|Hspell:425556|h[Purifying Light]|h|r!#Eternal Flame
+		self:PersonalMessage(444546)
+		self:PlaySound(444546, "warning")
+		self:Say(444546, nil, nil, "Purify")
+	end
 end
 
 function mod:InnerFire(args)
