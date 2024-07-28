@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("City of Threads Trash", 2669)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	223254, -- Queen Ansurek (gossip NPC)
+	223254, -- Queen Ansurek / The Vizier (gossip NPC)
 	220196, -- Herald of Ansurek
 	220195, -- Sureki Silkbinder
 	220197, -- Royal Swarmguard
@@ -47,16 +47,18 @@ if L then
 	L.xephitik_defeated_trigger = "Enough!"
 	L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
 	L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
+	L.custom_on_autotalk = CL.autotalk
+	L.custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura.\n\nStolen Power\n{448305}"
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
-local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
-		autotalk,
+		"custom_on_autotalk",
 		-- Herald of Ansurek
 		{443437, "SAY"}, -- Shadows of Doubt
 		-- Sureki Silkbinder
@@ -182,10 +184,17 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) and self:GetGossipID(122352) then
-		-- 122352:<Tinker with the device and steal some of its power.> [Requires Rogue, Priest, or at least 25 skill in Khaz Algar Engineering.]
-		-- gives a temporary damage buff to the group
-		self:SelectGossipID(122352)
+	if self:GetOption("custom_on_autotalk")then
+		if self:GetGossipID(122351) then -- Rogue
+			-- 122351:<Sabotage the device and steal some of its power.>\r\n[Requires Rogue, Priest, or at least 25 skill in Khaz Algar Engineering.]|r
+			self:SelectGossipID(122351)
+		elseif self:GetGossipID(122352) then -- Engineering
+			-- 122352:<Tinker with the device and steal some of its power.>\r\n[Requires Rogue, Priest, or at least 25 skill in Khaz Algar Engineering.]|r
+			self:SelectGossipID(122352)
+		elseif self:GetGossipID(122353) then -- Priest
+			-- 122353:<Manipulate the device with shadow magic and steal some of its power.>\r\n[Requires Rogue, Priest, or at least 25 skill in Khaz Algar Engineering.]|r
+			self:SelectGossipID(122353)
+		end
 	end
 end
 
@@ -202,6 +211,9 @@ end
 -- Sureki Silkbinder
 
 function mod:SilkBinding(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -294,6 +306,9 @@ end
 -- Sureki Unnaturaler
 
 function mod:VoidWave(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
