@@ -8,11 +8,11 @@ if L then
 	L.sootsnout = "灰鼻"
 	L.torchsnarl = "炬龇"
 	L.shuffling_horror = "残步恐魔"
-	--L.creaky_mine_cart = "Creaky Mine Cart"
+	L.creaky_mine_cart = "吱嘎作响的采矿车"
 
-	--L.minecart = "Mine Cart Minigame"
-	--L.hits = "Hits"
-	--L.minecart_over = "Winner: %s (%d hits)"
+	L.minecart = "迷你矿车游戏"
+	L.hits = "命中"
+	L.minecart_over = "获胜者：%s （命中 %d）"
 end
 
 L = BigWigs:NewBossLocale("The Darkness", "zhCN")
