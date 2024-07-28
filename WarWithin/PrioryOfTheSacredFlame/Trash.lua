@@ -18,6 +18,7 @@ mod:RegisterEnableMob(
 	206697, -- Devout Priest
 	206698, -- Fanatical Mage
 	206710, -- Lightspawn
+	221760, -- Risen Mage
 	217658 -- Sir Braunpyke
 )
 
@@ -39,6 +40,7 @@ if L then
 	L.devout_priest = "Devout Priest"
 	L.fanatical_mage = "Fanatical Mage"
 	L.lightspawn = "Lightspawn"
+	L.risen_mage = "Risen Mage"
 	L.sir_braunpyke = "Sir Braunpyke"
 
 	L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
@@ -86,6 +88,8 @@ function mod:GetOptions()
 		427484, -- Flamestrike
 		-- Lightspawn
 		427601, -- Burst of Light
+		-- Risen Mage
+		444743, -- Fireball Volley
 	}, {
 		["custom_on_autotalk"] = L.sacred_flame,
 		[448485] = L.guard_captain_suleyman,
@@ -99,6 +103,7 @@ function mod:GetOptions()
 		[427356] = L.devout_priest,
 		[427484] = L.fanatical_mage,
 		[427601] = L.lightspawn,
+		[444743] = L.risen_mage,
 	}
 end
 
@@ -157,6 +162,9 @@ function mod:OnBossEnable()
 
 	-- Lightspawn
 	self:Log("SPELL_CAST_START", "BurstOfLight", 427601)
+
+	-- Risen Mage
+	self:Log("SPELL_CAST_START", "FireballVolley", 444743)
 end
 
 --------------------------------------------------------------------------------
@@ -494,4 +502,18 @@ end
 function mod:BurstOfLight(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+end
+
+-- Risen Mage
+
+do
+	local prev = 0
+	function mod:FireballVolley(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
