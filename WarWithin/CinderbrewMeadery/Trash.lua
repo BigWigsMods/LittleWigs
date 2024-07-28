@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	210269, -- Hired Muscle
 	214920, -- Tasting Room Attendant
 	214697, -- Chef Chewie
+	219415, -- Cooking Pot
 	219667, -- Flamethrower
 	214673, -- Flavor Scientist
 	223423, -- Careless Hopgoblin
@@ -30,23 +31,33 @@ if L then
 	L.hired_muscle = "Hired Muscle"
 	L.tasting_room_attendant = "Tasting Room Attendant"
 	L.chef_chewie = "Chef Chewie"
+	L.cooking_pot = "Cooking Pot"
+	L.flamethrower = "Flamethrower"
 	L.flavor_scientist = "Flavor Scientist"
 	L.careless_hopgoblin = "Careless Hopgoblin"
 	L.bee_wrangler = "Bee Wrangler"
 	L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
 	L.royal_jelly_purveyor = "Royal Jelly Purveyor"
 	L.yes_man = "Yes Man"
+
+	L.custom_on_cooking_autotalk = CL.autotalk
+	L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Alchemy or Cooking.|r Automatically select the NPC dialog option that grants you 'Sticky Honey' which you can use by clicking your extra action button.\n\nSticky Honey\n{438997}"
+	L.custom_on_cooking_autotalk_icon = mod:GetMenuIcon("SAY")
+	L.custom_on_flamethrower_autotalk = CL.autotalk
+	L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requires Gnome, Goblin, Mechagnome, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you 'Flame On' which you can use by clicking your extra action button.\n\nFlame On\n{439616}"
+	L.custom_on_flamethrower_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
-local autotalk = mod:AddAutoTalkOption(true)
 local failedBatchMarker = mod:AddMarkerOption(true, "npc", 7, 441501, 7) -- Failed Batch
 function mod:GetOptions()
 	return {
-		autotalk,
+		-- Autotalk
+		"custom_on_cooking_autotalk",
+		"custom_on_flamethrower_autotalk",
 		-- Venture Co. Pyromaniac
 		437721, -- Boiling Flames
 		437956, -- Erupting Inferno
@@ -84,6 +95,9 @@ function mod:GetOptions()
 		[442589] = L.venture_co_honey_harvester,
 		[440687] = L.royal_jelly_purveyor,
 		[439467] = L.yes_man,
+	}, {
+		["custom_on_cooking_autotalk"] = L.cooking_pot,
+		["custom_on_flamethrower_autotalk"] = L.flamethrower,
 	}
 end
 
@@ -136,8 +150,18 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) then
-		if self:GetGossipID(121318) then
+	if self:GetGossipID(121210) then -- Cooking Pot, 1st use
+		if self:GetOption("custom_on_cooking_autotalk") then
+			-- 121210:<Carefully boil the mead to extract the pure honey from it.>\r\n\r\n[Requires at least 25 skill in  Khaz Algar Alchemy or Cooking.]
+			self:SelectGossipID(121210)
+		end
+	elseif self:GetGossipID(121215) then -- Cooking Pot, 2nd and 3rd use
+		if self:GetOption("custom_on_cooking_autotalk") then
+			-- 121215:<Carefully boil the mead to extract the pure honey from it.>\r\n\r\n[Requires at least 25 skill in  Khaz Algar Alchemy or Cooking.]
+			self:SelectGossipID(121215)
+		end
+	elseif self:GetGossipID(121318) then -- Flamethrower
+		if self:GetOption("custom_on_flamethrower_autotalk") then
 			-- 121318:<You immediately understand the intricate mechanics of the flamethrower and how to handle it.>\r\n\r\n[Requires Gnome, Goblin, Mechagnome or at least 25 skill in Khaz Algar Engineering.]
 			self:SelectGossipID(121318)
 		end
@@ -261,6 +285,9 @@ do
 	end
 
 	function mod:BeeZooka(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
 	end
 end
@@ -282,6 +309,9 @@ end
 do
 	local prev = 0
 	function mod:HoneyVolley(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
@@ -292,6 +322,9 @@ do
 end
 
 function mod:RainOfHoney(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
 end
