@@ -39,6 +39,7 @@ BigWigs:AddColors("The Stonevault Trash", {
 	[428703] = "orange",
 	[428879] = "purple",
 	[429109] = "red",
+	[429427] = "cyan",
 	[429545] = "yellow",
 	[445207] = "red",
 	[447141] = "orange",

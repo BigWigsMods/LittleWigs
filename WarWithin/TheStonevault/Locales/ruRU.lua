@@ -12,6 +12,7 @@ if L then
 	--L.forgebound_mender = "Forgebound Mender"
 	--L.forge_loader = "Forge Loader"
 	--L.cursedforge_honor_guard = "Cursedforge Honor Guard"
+	--L.cursedforge_stoneshaper = "Cursedforge Stoneshaper"
 	--L.rock_smasher = "Rock Smasher"
 
 	--L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"

@@ -19,6 +19,8 @@ mod:RegisterEnableMob(
 	213338, -- Forgebound Mender
 	213343, -- Forge Loader
 	214264, -- Cursedforge Honor Guard
+	214066, -- Cursedforge Stoneshaper
+	224962, -- Cursedforge Mender
 	213954 -- Rock Smasher
 )
 
@@ -39,6 +41,7 @@ if L then
 	L.forgebound_mender = "Forgebound Mender"
 	L.forge_loader = "Forge Loader"
 	L.cursedforge_honor_guard = "Cursedforge Honor Guard"
+	L.cursedforge_stoneshaper = "Cursedforge Stoneshaper"
 	L.rock_smasher = "Rock Smasher"
 
 	L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
@@ -73,6 +76,8 @@ function mod:GetOptions()
 		{449154, "DISPEL"}, -- Molten Mortar
 		-- Cursedforge Honor Guard
 		448640, -- Shield Stampede
+		-- Cursedforge Stoneshaper
+		429427, -- Earth Burst Totem
 		-- Rock Smasher
 		428879, -- Smash Rock
 		428703, -- Granite Eruption
@@ -88,6 +93,7 @@ function mod:GetOptions()
 		[429109] = L.forgebound_mender,
 		[449130] = L.forge_loader,
 		[448640] = L.cursedforge_honor_guard,
+		[429427] = L.cursedforge_stoneshaper,
 		[428879] = L.rock_smasher,
 	}
 end
@@ -129,6 +135,9 @@ function mod:OnBossEnable()
 
 	-- Cursedforge Honor Guard
 	self:Log("SPELL_CAST_START", "ShieldStampede", 448640)
+
+	-- Cursedforge Stoneshaper
+	self:Log("SPELL_SUMMON", "EarthBurstTotemSummon", 429427)
 
 	-- Rock Smasher
 	self:Log("SPELL_CAST_START", "SmashRock", 428879)
@@ -176,6 +185,9 @@ end
 -- Ghastly Voidsoul
 
 function mod:HowlingFear(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
@@ -206,6 +218,9 @@ end
 do
 	local prev = 0
 	function mod:PiercingWail(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -218,6 +233,9 @@ end
 -- Turned Speaker
 
 function mod:CensoringGear(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -225,6 +243,9 @@ end
 -- Void Touched Elemental
 
 function mod:CrystalSalvo(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -234,6 +255,9 @@ end
 do
 	local prev = 0
 	function mod:RestoringMetals(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -268,6 +292,20 @@ do
 			prev = t
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+-- Cursedforge Stoneshaper
+
+do
+	local prev = 0
+	function mod:EarthBurstTotemSummon(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "cyan", CL.spawned:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
 		end
 	end
 end

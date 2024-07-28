@@ -39,6 +39,7 @@ BigWigs:AddSounds("The Stonevault Trash", {
 	[428703] = "alarm",
 	[428879] = "alarm",
 	[429109] = "warning",
+	[429427] = "info",
 	[429545] = "alert",
 	[445207] = "alert",
 	[447141] = "alarm",
