@@ -28,6 +28,7 @@ BigWigs:AddColors("The Rookery Trash", {
 	[426893] = "orange",
 	[427260] = "red",
 	[427323] = "yellow",
+	[427616] = "red",
 	[430013] = "orange",
 	[430179] = {"blue","orange"},
 	[430754] = "red",

@@ -53,6 +53,7 @@ function mod:GetOptions()
 		427260, -- Enrage Rook
 		-- Unruly Stormrook
 		430013, -- Thunderstrike
+		427616, -- Energized Barrage
 		-- Corrupted Rookguard
 		423979, -- Implosion
 		-- Corrupted Oracle
@@ -94,6 +95,7 @@ function mod:OnBossEnable()
 
 	-- Unruly Stormrook
 	self:Log("SPELL_CAST_START", "Thunderstrike", 430013)
+	self:Log("SPELL_CAST_START", "EnergizedBarrage", 427616)
 
 	-- Corrupted Rookguard
 	self:Log("SPELL_CAST_START", "Implosion", 423979)
@@ -173,6 +175,11 @@ end
 
 function mod:Thunderstrike(args)
 	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:EnergizedBarrage(args)
+	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 end
 
