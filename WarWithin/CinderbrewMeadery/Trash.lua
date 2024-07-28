@@ -41,10 +41,10 @@ if L then
 	L.yes_man = "Yes Man"
 
 	L.custom_on_cooking_autotalk = CL.autotalk
-	L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Alchemy or Cooking.|r Automatically select the NPC dialog option that grants you 'Sticky Honey' which you can use by clicking your extra action button.\n\nSticky Honey\n{438997}"
+	L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Alchemy or Cooking.|r Automatically select the NPC dialog option that grants you 'Sticky Honey' which you can use by clicking your extra action button.\n\n|T451169:16|tSticky Honey\n{438997}"
 	L.custom_on_cooking_autotalk_icon = mod:GetMenuIcon("SAY")
 	L.custom_on_flamethrower_autotalk = CL.autotalk
-	L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requires Gnome, Goblin, Mechagnome, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you 'Flame On' which you can use by clicking your extra action button.\n\nFlame On\n{439616}"
+	L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requires Gnome, Goblin, Mechagnome, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you 'Flame On' which you can use by clicking your extra action button.\n\n|T135789:16|tFlame On\n{439616}"
 	L.custom_on_flamethrower_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
