@@ -42,17 +42,19 @@ if L then
 	L.sir_braunpyke = "Sir Braunpyke"
 
 	L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
+	L.custom_on_autotalk = CL.autotalk
+	L.custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Automatically select the NPC dialog option that grants you the 'Blessing of the Sacred Flame' aura."
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
-local autotalk = mod:AddAutoTalkOption(true) -- TODO buff locale?
 function mod:GetOptions()
 	return {
 		-- Sacred Flame
-		autotalk,
+		"custom_on_autotalk",
 		435088, -- Blessing of the Sacred Flame
 		-- Guard Captain Suleyman
 		{448485, "TANK_HEALER"}, -- Shield Slam
@@ -85,7 +87,7 @@ function mod:GetOptions()
 		-- Lightspawn
 		427601, -- Burst of Light
 	}, {
-		[autotalk] = L.sacred_flame,
+		["custom_on_autotalk"] = L.sacred_flame,
 		[448485] = L.guard_captain_suleyman,
 		[427897] = L.forge_master_damian,
 		[429091] = L.high_priest_aemya,
@@ -174,14 +176,17 @@ function mod:CHAT_MSG_MONSTER_SAY(_, msg)
 	end
 end
 
--- Sacred Flame Autotalk
+-- Sacred Flame
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) then
-		if self:GetGossipID(120716) then
-			-- Paladins and Priests can talk to the Sacred Flame to buff the whole party with
-			-- Blessing of the Sacred Flame, which causes your attacks to deal bonus damage.
-			-- 120716:Harness the power of the Eternal Flame.
+	if self:GetOption("custom_on_autotalk") then
+		-- Priests and Paladins can talk to the Sacred Flame to buff the whole party with
+		-- Blessing of the Sacred Flame, which causes your attacks to deal bonus damage.
+		if self:GetGossipID(120715) then -- Priest
+			-- 120715:Harness the power of the Sacred Flame.
+			self:SelectGossipID(120715)
+		elseif self:GetGossipID(120716) then -- Paladin
+			-- 120716:Harness the power of the Sacred Flame.
 			self:SelectGossipID(120716)
 		end
 	end

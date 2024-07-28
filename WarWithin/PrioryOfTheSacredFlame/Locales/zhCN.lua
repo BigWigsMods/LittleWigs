@@ -16,4 +16,5 @@ if L then
 	L.sir_braunpyke = "布朗派克爵士"
 
 	L.baron_braunpyke_warmup_trigger = "他们已为使命捐躯。男爵，去证明你的实力吧。"
+	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Automatically select the NPC dialog option that grants you the 'Blessing of the Sacred Flame' aura."
 end
