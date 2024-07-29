@@ -11,4 +11,5 @@ if L then
 	L.inflicted_civilian = "痛苦的平民"
 	L.void_ascendant = "虚空晋升者"
 	L.radiating_voidstone = "辐射虚空石"
+	--L.void_fragment = "Void Fragment"
 end

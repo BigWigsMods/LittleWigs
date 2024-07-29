@@ -16,7 +16,8 @@ mod:RegisterEnableMob(
 	214421, -- Corrupted Thunderer
 	219066, -- Inflicted Civilian
 	212793, -- Void Ascendant
-	212739 -- Radiating Voidstone
+	212739, -- Radiating Voidstone
+	207202 -- Void Fragment
 )
 
 --------------------------------------------------------------------------------
@@ -35,6 +36,7 @@ if L then
 	L.inflicted_civilian = "Inflicted Civilian"
 	L.void_ascendant = "Void Ascendant"
 	L.radiating_voidstone = "Radiating Voidstone"
+	L.void_fragment = "Void Fragment"
 end
 
 --------------------------------------------------------------------------------
@@ -67,6 +69,8 @@ function mod:GetOptions()
 		432959, -- Void Volley
 		-- Radiating Voidstone
 		432781, -- Embrace the Void
+		-- Void Fragment
+		430288, -- Crushing Darkness
 	}, {
 		[426893] = L.quartermaster_koratite,
 		[427323] = L.cursed_stormrider,
@@ -78,6 +82,7 @@ function mod:GetOptions()
 		[443854] = L.inflicted_civilian,
 		[432959] = L.void_ascendant,
 		[432781] = L.radiating_voidstone,
+		[430288] = L.void_fragment,
 	}
 end
 
@@ -116,6 +121,9 @@ function mod:OnBossEnable()
 	-- Radiating Voidstone
 	self:Log("SPELL_CAST_START", "EmbraceTheVoid", 432781)
 	self:Log("SPELL_AURA_REMOVED", "EmbraceTheVoidRemoved", 432781)
+
+	-- Void Fragment
+	self:Log("SPELL_CAST_START", "CrushingDarkness", 430288)
 end
 
 --------------------------------------------------------------------------------
@@ -173,14 +181,28 @@ end
 
 -- Unruly Stormrook
 
-function mod:Thunderstrike(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:Thunderstrike(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
-function mod:EnergizedBarrage(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:EnergizedBarrage(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Corrupted Rookguard
@@ -226,6 +248,9 @@ end
 -- Void Ascendant
 
 function mod:VoidVolley(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -252,6 +277,21 @@ do
 			prev = t
 			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+-- Void Fragment
+
+do
+	local prev = 0
+	function mod:CrushingDarkness(args)
+		-- Void Fragments cast this if a nearby Void Ascendant casts Command Void-432638
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 end

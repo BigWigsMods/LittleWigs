@@ -31,6 +31,7 @@ BigWigs:AddSounds("The Rookery Trash", {
 	[427616] = "alarm",
 	[430013] = "alarm",
 	[430179] = "alert",
+	[430288] = "alarm",
 	[430754] = "alert",
 	[430812] = "info",
 	[432781] = {"alert","info"},
