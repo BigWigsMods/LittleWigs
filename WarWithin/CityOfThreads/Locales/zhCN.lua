@@ -17,5 +17,5 @@ if L then
 	L.xephitik_defeated_trigger = "够了！"
 	L.fangs_of_the_queen_warmup_trigger = "蜕躯工厂曾经是我们神圣的进化之家。"
 	L.izo_warmup_trigger = "够了！你们赢得了成为我藏品的机会，让我送你们一程。"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura.\n\n|T135888:16|tStolen Power\n{448305}"
+	L.custom_on_autotalk_desc = "|cFFFF0000需要潜行者、牧师职业或至少25点卡兹阿加工程学技能。|r 自动选择NPC的对话选项，该选项赋予你“窃取之力”光环。\n\n|T135888:16|t窃取之力\n{448305}"
 end
