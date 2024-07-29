@@ -36,9 +36,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(424958, 8.1) -- Crush Reality
-	self:CDBar(425048, 15.8) -- Dark Gravity
-	self:CDBar(424737, 31.6) -- Chaotic Corruption
+	self:CDBar(424958, 9.3) -- Crush Reality
+	self:CDBar(425048, 15.4) -- Dark Gravity
+	self:CDBar(424737, 31.2) -- Chaotic Corruption
 end
 
 --------------------------------------------------------------------------------
@@ -54,13 +54,13 @@ end
 function mod:DarkGravity(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 23.0)
+	self:CDBar(args.spellId, 31.5)
 end
 
 function mod:CrushReality(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 15.8)
+	self:CDBar(args.spellId, 15.7)
 end
 
 -- Mythic
