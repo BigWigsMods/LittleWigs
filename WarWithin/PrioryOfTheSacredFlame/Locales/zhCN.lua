@@ -13,9 +13,9 @@ if L then
 	L.devout_priest = "虔诚的牧师"
 	L.fanatical_mage = "狂热的法师"
 	L.lightspawn = "光耀之子"
-	--L.risen_mage = "Risen Mage"
+	L.risen_mage = "亡灵法师"
 	L.sir_braunpyke = "布朗派克爵士"
 
 	L.baron_braunpyke_warmup_trigger = "他们已为使命捐躯。男爵，去证明你的实力吧。"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Automatically select the NPC dialog option that grants you the 'Blessing of the Sacred Flame' aura."
+	L.custom_on_autotalk_desc = "|cFFFF0000需要牧师或圣骑士。|r 自动选择与NPC的对话，赋予你“神圣烈焰的祝福”光环。"
 end
