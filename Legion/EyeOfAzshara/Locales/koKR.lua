@@ -12,6 +12,8 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "koKR")
 if L then
+	L.blob = "{193682} ({-12139})" -- Beckon Storm (Saltsea Globule)
+
 	L.custom_on_show_helper_messages = "정전기 회오리/집중된 번개 도우미"
 	L.custom_on_show_helper_messages_desc = "이 옵션을 활성화하면 보스가 |cff71d5ff정전기 회오리|r 나 |cff71d5ff집중된 번개|r 를 시전할때 땅/물 중 어디가 안전한지 알려주는 도우미 메세지를 표시합니다."
 
