@@ -12,7 +12,7 @@ if L then
 	L.forgebound_mender = "炉铸愈疗者"
 	L.forge_loader = "熔炉装货工"
 	L.cursedforge_honor_guard = "咒炉荣誉卫兵"
-	--L.cursedforge_stoneshaper = "Cursedforge Stoneshaper"
+	L.cursedforge_stoneshaper = "咒炉塑石者"
 	L.rock_smasher = "击石者"
 
 	L.edna_warmup_trigger = "这是什么？那个魔像与什么洞悉熔接在一起了吗？"
