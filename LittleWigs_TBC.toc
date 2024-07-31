@@ -25,6 +25,7 @@
 ## LoadOnDemand: 1
 ## Version: @project-version@
 
+## X-BigWigs-Minimum: 350
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-LoadOn-InstanceId: 229, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585
