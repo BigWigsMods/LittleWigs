@@ -22,5 +22,5 @@ end
 
 L = BigWigs:NewBossLocale("Fangs of the Queen", "zhCN")
 if L then
-	--L.ice_sickles_trigger = "...and the frost bites!"
+	L.ice_sickles_trigger = "……寒霜啮骨！"
 end
