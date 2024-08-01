@@ -8,13 +8,12 @@ BigWigs:AddSounds("Orator Krix'vizk", {
 })
 
 BigWigs:AddSounds("Fangs of the Queen", {
-	[439522] = "info",
 	[439621] = "alarm",
 	[439692] = "alarm",
-	[440238] = "alert",
+	[440218] = "alert",
 	[440468] = "alarm",
-	[441286] = "alert",
 	[441298] = "info",
+	[441384] = "info",
 	[458741] = "warning",
 })
 

@@ -20,14 +20,18 @@ mod:SetStage(1)
 local L = mod:GetLocale()
 if L then
 	L.warmup_icon = "inv_achievement_dungeon_cityofthreads"
+	L.ice_sickles_trigger = "...and the frost bites!"
 end
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local shadeSlashRemaining = 2
-local rimeDaggerRemaining = 2
+local synergicStepCount = 1
+local shadeSlashCount = 1
+local duskbringerCount = 1
+local iceSicklesCount = 1
+local rimeDaggerCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -37,21 +41,18 @@ function mod:GetOptions()
 	return {
 		"warmup",
 		-- Stages
-		439522, -- Synergic Step
+		441384, -- Synergic Step
 		-- Stage One: Nx, the Shrouded Fang
 		439621, -- Shade Slash (Nx)
 		439692, -- Duskbringer (Nx)
-		{440238, "DISPEL"}, -- Ice Sickles (Vx)
+		{440218, "DISPEL"}, -- Ice Sickles (Vx)
 		-- Stage Two: Vx, the Frosted Fang
 		440468, -- Rime Dagger (Vx)
 		{441298, "SAY"}, -- Freezing Blood (Vx)
 		458741, -- Frozen Solid (Vx)
-		{441286, "SAY"}, -- Dark Paranoia (Nx) (Mythic)
 	}, {
 		[439621] = -29960, -- Stage One: Nx, the Shrouded Fang
 		[440468] = -29961, -- Stage Two: Vx, the Frosted Fang
-	}, {
-		[441286] = CL.mythic, -- Dark Paranoia (Mythic)
 	}
 end
 
@@ -62,30 +63,29 @@ function mod:OnBossEnable()
 	-- Stage One: Nx, the Shrouded Fang
 	self:Log("SPELL_CAST_START", "ShadeSlash", 439621)
 	self:Log("SPELL_CAST_START", "Duskbringer", 439692)
-	--self:Log("SPELL_CAST_START", "IceSickles", 440218) TODO this doesn't log consistently
+	self:Log("SPELL_CAST_START", "IceSickles", 440218)
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL") -- Ice Sickles backup
 	self:Log("SPELL_AURA_APPLIED", "IceSicklesApplied", 440238)
-	-- TODO what about Shadow Shunpo 440419?
 
 	-- Stage Two: Vx, the Frosted Fang
 	self:Log("SPELL_CAST_START", "RimeDagger", 440468)
 	self:Log("SPELL_AURA_APPLIED", "FreezingBloodApplied", 441298)
 	self:Log("SPELL_AURA_APPLIED", "FrozenSolidApplied", 458741)
-	self:Log("SPELL_AURA_APPLIED", "DarkParanoiaApplied", 441286)
 end
 
 function mod:OnEngage()
-	shadeSlashRemaining = 2
-	rimeDaggerRemaining = 2
+	synergicStepCount = 1
+	shadeSlashCount = 1
+	duskbringerCount = 1
+	iceSicklesCount = 1
+	rimeDaggerCount = 1
 	self:StopBar(CL.active)
 	self:SetStage(1)
-	self:CDBar(439621, 4.1) -- Shade Slash
-	self:CDBar(439692, 18.9) -- Duskbringer
-	self:CDBar(440238, 24.7) -- Ice Sickles
-	self:CDBar(439522, 29.0) -- Synergic Step
-	self:CDBar(440468, 51.1) -- Rime Dagger
-	if self:Mythic() then
-		self:CDBar(441286, 69.4) -- Dark Paranoia
-	end
+	self:CDBar(439621, 4.8, CL.count:format(self:SpellName(439621), shadeSlashCount)) -- Shade Slash
+	self:CDBar(439692, 20.1, CL.count:format(self:SpellName(439692), duskbringerCount)) -- Duskbringer
+	self:CDBar(440218, 21.6, CL.count:format(self:SpellName(440218), iceSicklesCount)) -- Ice Sickles
+	self:CDBar(441384, 28.2, CL.count:format(self:SpellName(441384), synergicStepCount)) -- Synergic Step
+	self:CDBar(440468, 54.6, CL.count:format(self:SpellName(440468), rimeDaggerCount)) -- Rime Dagger
 end
 
 --------------------------------------------------------------------------------
@@ -103,57 +103,92 @@ end
 -- Stages
 
 function mod:SynergicStep(args)
-	self:Message(439522, "cyan")
-	self:PlaySound(439522, "info")
+	self:StopBar(CL.count:format(args.spellName, synergicStepCount))
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, synergicStepCount))
+	synergicStepCount = synergicStepCount + 1
 	if self:GetStage() == 1 then -- entering stage 2
-		rimeDaggerRemaining = 2
 		self:SetStage(2)
+		self:CDBar(args.spellId, 47.9, CL.count:format(args.spellName, synergicStepCount))
 	else -- entering stage 1
-		shadeSlashRemaining = 2
 		self:SetStage(1)
+		self:CDBar(args.spellId, 47.6, CL.count:format(args.spellName, synergicStepCount))
 	end
-	self:CDBar(439522, 45.1)
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Stage One: Nx, the Shrouded Fang
 
 function mod:ShadeSlash(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-	shadeSlashRemaining = shadeSlashRemaining - 1
-	if shadeSlashRemaining > 0 then
-		self:CDBar(args.spellId, 7.8)
+	self:StopBar(CL.count:format(args.spellName, shadeSlashCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, shadeSlashCount))
+	shadeSlashCount = shadeSlashCount + 1
+	if shadeSlashCount % 2 == 0 then
+		self:CDBar(args.spellId, 9.4, CL.count:format(args.spellName, shadeSlashCount))
 	else
-		self:CDBar(args.spellId, 85.1)
+		self:CDBar(args.spellId, 87.9, CL.count:format(args.spellName, shadeSlashCount))
 	end
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Duskbringer(args)
-	self:Message(args.spellId, "orange")
+	self:StopBar(CL.count:format(args.spellName, duskbringerCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, duskbringerCount))
+	duskbringerCount = duskbringerCount + 1
+	if duskbringerCount % 2 == 0 then
+		self:CDBar(args.spellId, 44.4, CL.count:format(args.spellName, duskbringerCount))
+	else
+		self:CDBar(args.spellId, 50.8, CL.count:format(args.spellName, duskbringerCount))
+	end
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 92.4)
 end
 
 do
-	local playerList = {}
 	local prev = 0
+
+	function mod:IceSickles(args)
+		prev = GetTime()
+		playerList = {}
+		self:StopBar(CL.count:format(args.spellName, iceSicklesCount))
+		self:Message(args.spellId, "yellow", CL.count:format(args.spellName, iceSicklesCount))
+		iceSicklesCount = iceSicklesCount + 1
+		self:CDBar(args.spellId, 96.2, CL.count:format(args.spellName, iceSicklesCount))
+		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+		if msg == L.ice_sickles_trigger then
+			local t = GetTime()
+			if t - prev > 10 then
+				-- the cast event is unreliable, show the alert a bite late using the yell if it didn't log
+				prev = t
+				playerList = {}
+				self:StopBar(CL.count:format(self:SpellName(440218), iceSicklesCount))
+				self:Message(440218, "yellow", CL.count:format(self:SpellName(440218), iceSicklesCount))
+				iceSicklesCount = iceSicklesCount + 1
+				-- yell is ~1.5s after cast start
+				self:CDBar(440218, 94.7, CL.count:format(self:SpellName(440218), iceSicklesCount))
+				self:PlaySound(440218, "alert")
+			end
+		end
+	end
+
+	local playerList = {}
 	function mod:IceSicklesApplied(args)
-		local t = args.time
-		-- there is no reliable cast event for this anymore, so reset the player list using a throttle
-		if t - prev > 2 then
+		local t = GetTime()
+		if t - prev > 10 then
+			-- the cast event is unreliable, take care of playerList and timers if it didn't log
+			-- and we don't have the yell translated
 			prev = t
 			playerList = {}
-			self:CDBar(args.spellId, 92.4)
+			self:StopBar(CL.count:format(args.spellName, iceSicklesCount))
+			iceSicklesCount = iceSicklesCount + 1
+			-- debuff applied ~4s after cast start
+			self:CDBar(440218, 92.2, CL.count:format(args.spellName, iceSicklesCount))
 		end
-		-- TODO this should be able to be dispelled by movement-dispelling effects but it's bugged
-		if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
-			-- TODO is heroic 2 or 3
-			if self:Normal() then
-				self:TargetsMessage(args.spellId, "yellow", playerList, 2)
-			else -- Mythic
-				self:TargetsMessage(args.spellId, "yellow", playerList, 3)
-			end
-			self:PlaySound(args.spellId, "alert", nil, playerList)
+		-- this slows but cannot be dispelled by movement-dispelling effects
+		if self:Dispeller("magic", nil, 440218) then
+			self:TargetsMessage(440218, "yellow", playerList, 5)
+			self:PlaySound(440218, "alert", nil, playerList)
 		end
 	end
 end
@@ -161,35 +196,27 @@ end
 -- Stage Two: Vx, the Frosted Fang
 
 function mod:RimeDagger(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-	rimeDaggerRemaining = rimeDaggerRemaining - 1
-	if rimeDaggerRemaining > 0 then
-		self:CDBar(args.spellId, 13.4)
+	self:StopBar(CL.count:format(args.spellName, rimeDaggerCount))
+	self:Message(args.spellId, "purple", CL.count:format(args.spellName, rimeDaggerCount))
+	rimeDaggerCount = rimeDaggerCount + 1
+	if rimeDaggerCount % 2 == 0 then
+		self:CDBar(args.spellId, 9.4, CL.count:format(args.spellName, rimeDaggerCount))
 	else
-		self:CDBar(args.spellId, 79.1)
+		self:CDBar(args.spellId, 88.0, CL.count:format(args.spellName, rimeDaggerCount))
 	end
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:FreezingBloodApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Yell(args.spellId, nil, nil, "Freezing Blood")
 	end
+	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 
 function mod:FrozenSolidApplied(args)
 	-- this only happens if Rime Dagger is cast again without the tank removing Freezing Blood
 	self:TargetMessage(args.spellId, "purple", args.destName)
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
-end
-
-function mod:DarkParanoiaApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Dark Paranoia")
-	end
-	self:CDBar(args.spellId, 92.4)
 end

@@ -19,3 +19,8 @@ if L then
 	--L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura.\n\n|T135888:16|tStolen Power\n{448305}"
 end
+
+L = BigWigs:NewBossLocale("Fangs of the Queen", "zhTW")
+if L then
+	--L.ice_sickles_trigger = "...and the frost bites!"
+end

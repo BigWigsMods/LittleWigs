@@ -8,13 +8,12 @@ BigWigs:AddColors("Orator Krix'vizk", {
 })
 
 BigWigs:AddColors("Fangs of the Queen", {
-	[439522] = "cyan",
-	[439621] = "purple",
+	[439621] = "red",
 	[439692] = "orange",
-	[440238] = {"blue","yellow"},
+	[440218] = {"blue","yellow"},
 	[440468] = "purple",
-	[441286] = {"blue","red"},
 	[441298] = {"blue","yellow"},
+	[441384] = "cyan",
 	[458741] = {"blue","purple"},
 })
 
