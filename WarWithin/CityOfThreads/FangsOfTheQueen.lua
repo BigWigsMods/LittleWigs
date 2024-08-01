@@ -144,6 +144,7 @@ end
 
 do
 	local prev = 0
+	local playerList = {}
 
 	function mod:IceSickles(args)
 		prev = GetTime()
@@ -172,7 +173,6 @@ do
 		end
 	end
 
-	local playerList = {}
 	function mod:IceSicklesApplied(args)
 		local t = GetTime()
 		if t - prev > 10 then
