@@ -9,6 +9,10 @@ mod:RegisterEnableMob(213937) -- Rasha'nan
 mod:SetEncounterID(2839)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	434406, -- Rolling Acid
+	434090, -- Spinneret's Strands
+})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -37,7 +41,7 @@ function mod:GetOptions()
 		"stages",
 		-- Stage 1: The Dawnbreaker
 		434655, -- Arathi Bomb
-		434407, -- Rolling Acid
+		{434407, "PRIVATE"}, -- Rolling Acid
 		448888, -- Erosive Spray
 		448213, -- Expel Webs (Mythic)
 		435793, -- Tacky Burst
@@ -46,7 +50,7 @@ function mod:GetOptions()
 		{449332, "COUNTDOWN"}, -- Encroaching Shadows
 		449734, -- Acidic Eruption
 		-- Stage 2: The Veneration Grounds
-		434089, -- Spinneret's Strands
+		{434089, "PRIVATE"}, -- Spinneret's Strands
 	}, {
 		[434655] = -28814, -- Stage 1: The Dawnbreaker
 		[449528] = -29591, -- Intermission: Escape!
@@ -64,7 +68,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SparkingArathiBomb", 434668)
 	self:Log("SPELL_CAST_SUCCESS", "ThrowArathiBomb", 438875)
 	self:Log("SPELL_CAST_START", "RollingAcid", 434407)
-	-- TODO private aura sound on Rolling Acid?
 	self:Log("SPELL_CAST_START", "ErosiveSpray", 448888)
 	self:Log("SPELL_CAST_START", "ExpelWebs", 448213)
 	self:Log("SPELL_CAST_SUCCESS", "TackyBurst", 435793)
@@ -78,7 +81,6 @@ function mod:OnBossEnable()
 
 	-- Stage 2: The Veneration Grounds
 	self:Log("SPELL_CAST_START", "SpinneretsStrands", 434089)
-	-- TODO private aura sound on Spinneret's Strands?
 end
 
 function mod:OnEngage()
@@ -227,7 +229,7 @@ end
 -- Stage 2: The Veneration Grounds
 
 function mod:SpinneretsStrands(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	if self:Mythic() then
 		self:CDBar(args.spellId, 22.1)
