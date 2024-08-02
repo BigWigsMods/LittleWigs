@@ -37,6 +37,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DarknessComes", 451026)
+	self:Log("SPELL_CAST_SUCCESS", "BurningShadows", 426734)
 	self:Log("SPELL_AURA_APPLIED", "BurningShadowsApplied", 426735)
 
 	-- Normal / Heroic
@@ -54,6 +55,9 @@ function mod:OnEngage()
 		self:CDBar(453212, 7.2) -- Obsidian Beam
 		self:CDBar(426735, 21.2) -- Burning Shadows
 		self:CDBar(453140, 23.4) -- Collapsing Night
+	elseif self:Story() then
+		-- Obsidian Blast and Collapsing Darkness are not cast in Follower difficulty
+		self:CDBar(426735, 11.4) -- Burning Shadows
 	else -- Normal, Heroic
 		self:CDBar(425264, 6.1) -- Obsidian Blast
 		self:CDBar(426735, 11.4) -- Burning Shadows
@@ -74,6 +78,8 @@ function mod:DarknessComes(args)
 			self:CDBar(453140, 23.8) -- Collapsing Night
 			self:CDBar(426735, 29.2) -- Burning Shadows
 			self:CDBar(453212, 30.9) -- Obsidian Beam
+		elseif self:Story() then
+			self:CDBar(426735, 26.3) -- Burning Shadows
 		else -- Normal, Heroic
 			self:CDBar(425264, 21.6) -- Obsidian Blast
 			self:CDBar(426735, 26.3) -- Burning Shadows
@@ -95,13 +101,16 @@ function mod:DarknessComes(args)
 	self:CastBar(args.spellId, 15)
 end
 
+function mod:BurningShadows()
+	self:CDBar(426735, 19.1)
+end
+
 function mod:BurningShadowsApplied(args)
-	-- TODO this snares, but isn't dispelled by movement dispelling effects (bug)
+	-- this snares, but isn't dispelled by movement-dispelling effects
 	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
-	self:CDBar(args.spellId, 19.1)
 end
 
 -- Normal / Heroic
