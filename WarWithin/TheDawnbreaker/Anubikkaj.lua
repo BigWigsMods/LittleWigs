@@ -8,6 +8,9 @@ if not mod then return end
 mod:RegisterEnableMob(211089) -- Anub'ikkaj
 mod:SetEncounterID(2838)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	426865, -- Dark Orb
+})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -25,7 +28,7 @@ local nextAnimateShadows = 0
 function mod:GetOptions()
 	return {
 		427001, -- Terrifying Slam
-		{426860, "SAY"}, -- Dark Orb
+		{426860, "SAY", "PRIVATE"}, -- Dark Orb
 		426787, -- Shadowy Decay
 		-- Mythic
 		452127, -- Animate Shadows
@@ -107,9 +110,11 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 		-- private aura for Dark Orb is 426865
 		-- [CHAT_MSG_RAID_BOSS_EMOTE] |TInterface\\ICONS\\Spell_Shadow_SoulGem.blp:20|t %s begins to cast |cFFFF0000|Hspell:426860|h[Dark Orb]|h|r at Foryou!#Anub'ikkaj###playerName
 		self:TargetMessage(426860, "orange", destName)
-		self:PlaySound(426860, "alarm", nil, destName)
 		if self:Me(self:UnitGUID(destName)) then
 			self:Say(426860, nil, nil, "Dark Orb")
+			-- private aura sound plays
+		else
+			self:PlaySound(426860, "alarm", nil, destName)
 		end
 	end
 end
