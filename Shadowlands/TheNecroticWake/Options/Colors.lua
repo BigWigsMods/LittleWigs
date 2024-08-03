@@ -6,7 +6,7 @@ BigWigs:AddColors("Blightbone", {
 	[320655] = "purple",
 })
 
-BigWigs:AddColors("Amarth, The Reanimator", {
+BigWigs:AddColors("Amarth, The Harvester", {
 	[320012] = "purple",
 	[320171] = "yellow",
 	[321226] = "cyan",

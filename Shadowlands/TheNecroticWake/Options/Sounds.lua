@@ -6,7 +6,7 @@ BigWigs:AddSounds("Blightbone", {
 	[320655] = "alert",
 })
 
-BigWigs:AddSounds("Amarth, The Reanimator", {
+BigWigs:AddSounds("Amarth, The Harvester", {
 	[320012] = "info",
 	[320171] = "alert",
 	[321226] = "long",

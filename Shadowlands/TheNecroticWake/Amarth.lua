@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Amarth, The Reanimator", 2286, 2391)
+local mod, CL = BigWigs:NewBoss("Amarth, The Harvester", 2286, 2391)
 if not mod then return end
 mod:RegisterEnableMob(163157) -- Amarth
 mod:SetEncounterID(2388)
@@ -45,10 +45,11 @@ function mod:OnEngage()
 	if self:Tank() or self:Dispeller("enrage", true, 320012) then
 		self:CDBar(320012, 6.0) -- Unholy Frenzy
 	end
-	self:CDBar(321226, 8.8) -- Land of the Dead
-	-- TODO Necrotic Breath is never cast in Normal/Heroic
-	self:CDBar(333488, 29.5) -- Necrotic Breath
-	self:CDBar(321247, 38.6) -- Final Harvest
+	self:CDBar(321226, 8.3) -- Land of the Dead
+	if self:Mythic() then
+		self:CDBar(333488, 29.5) -- Necrotic Breath
+	end
+	self:CDBar(321247, 38.5) -- Final Harvest
 end
 
 --------------------------------------------------------------------------------
