@@ -179,9 +179,11 @@ function mod:OnBossEnable()
 
 	-- Goregrind
 	self:Log("SPELL_CAST_START", "GutSlice", 333477)
+	self:Death("GoregrindDeath", 163621)
 
 	-- Rotspew
 	self:Log("SPELL_CAST_START", "SpewDisease", 333479)
+	self:Death("RotspewDeath", 163620)
 end
 
 --------------------------------------------------------------------------------
@@ -346,7 +348,7 @@ do
 		end
 	end
 
-	function mod:NarzudahDeath(args)
+	function mod:NarzudahDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -391,7 +393,7 @@ do
 		timer = self:ScheduleTimer("SkeletalMonstrosityDeath", 30)
 	end
 
-	function mod:SkeletalMonstrosityDeath(args)
+	function mod:SkeletalMonstrosityDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -486,23 +488,57 @@ end
 
 -- Goregrind
 
-function mod:GutSlice(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local timer
+
+	function mod:GutSlice(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red")
+		self:CDBar(args.spellId, 14.5)
+		self:PlaySound(args.spellId, "alarm")
+		timer = self:ScheduleTimer("GoregrindDeath", 30)
+	end
+
+	function mod:GoregrindDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(333477) -- Gut Slice
+	end
 end
 
 -- Rotspew
 
 do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(333479, "yellow", name)
-		self:PlaySound(333479, "alert", nil, name)
-		if self:Me(guid) then
-			self:Say(333479, nil, nil, "Spew Disease")
+	local timer
+
+	do
+		local function printTarget(self, name, guid)
+			self:TargetMessage(333479, "yellow", name)
+			self:PlaySound(333479, "alert", nil, name)
+			if self:Me(guid) then
+				self:Say(333479, nil, nil, "Spew Disease")
+			end
+		end
+
+		function mod:SpewDisease(args)
+			if timer then
+				self:CancelTimer(timer)
+			end
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+			self:CDBar(args.spellId, 12.1)
+			timer = self:ScheduleTimer("RotspewDeath", 30)
 		end
 	end
 
-	function mod:SpewDisease(args)
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+	function mod:RotspewDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(333479) -- Spew Disease
 	end
 end
