@@ -50,7 +50,7 @@ end
 
 function mod:OnEngage()
 	guessingGameHp = 100
-	self:CDBar(321834, 7) -- Dodge Ball
+	self:CDBar(321834, 6.0) -- Dodge Ball
 	self:CDBar(321828, 13.1) -- Patty Cake
 	self:CDBar(341709, 18.0, L.vulpin) -- Freeze Tag
 end
@@ -69,7 +69,7 @@ end
 function mod:DodgeBall(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 13.4)
+	self:CDBar(args.spellId, 13.3)
 end
 
 function mod:PattyCake(args)
@@ -78,7 +78,7 @@ function mod:PattyCake(args)
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "warning")
 	end
-	self:CDBar(args.spellId, 20.7)
+	self:CDBar(args.spellId, 20.6)
 end
 
 function mod:FreezeTag(args)
