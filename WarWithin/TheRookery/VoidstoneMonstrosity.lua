@@ -16,6 +16,8 @@ mod:SetRespawnTime(30)
 local voidShellCount = 1
 local nextNullUpheaval = 0
 local nextUnleashCorruption = 0
+local nextOblivionWave = 0
+local nextStormridersCharge = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -51,18 +53,24 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StormridersCharge", 458130)
 	self:Log("SPELL_AURA_APPLIED", "StormridersChargeApplied", 458082)
 	self:Log("SPELL_CAST_SUCCESS", "Electrocuted", 423839)
+	self:Log("SPELL_AURA_REMOVED", "ElectrocutedRemoved", 423839)
 end
 
 function mod:OnEngage()
 	local t = GetTime()
 	voidShellCount = 1
 	-- Void Shell is cast immediately on pull
-	self:CDBar(445457, 5.0) -- Oblivion Wave
-	nextUnleashCorruption = t + 12.7
-	self:CDBar(429493, 12.7) -- Unleash Corruption
-	nextNullUpheaval = t + 20.5
-	self:CDBar(423305, 20.5) -- Null Upheaval
-	self:CDBar(429493, 33.5) -- Stormrider's Charge
+	nextOblivionWave = t + 5.2
+	self:CDBar(445457, 5.2) -- Oblivion Wave
+	if self:Mythic() then
+		nextUnleashCorruption = t + 17.4
+		self:CDBar(429493, 17.4) -- Unleash Corruption
+	end
+	nextNullUpheaval = t + 30.1
+	self:CDBar(423305, 30.1) -- Null Upheaval
+	-- TODO sometimes Stormrider's Charge isn't cast for a long time, maybe if Void Shell is removed before Null Upheaval is cast
+	nextStormridersCharge = t + 43.1
+	self:CDBar(429493, 43.1) -- Stormrider's Charge
 end
 
 --------------------------------------------------------------------------------
@@ -70,10 +78,10 @@ end
 --
 
 function mod:NullUpheaval(args)
-	nextNullUpheaval = GetTime() + 43.7
+	nextNullUpheaval = GetTime() + 38.1
 	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 38.1)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 43.7)
 end
 
 function mod:VoidShell(args)
@@ -91,15 +99,15 @@ do
 	local playerList = {}
 
 	function mod:UnleashCorruption(args)
-		nextUnleashCorruption = GetTime() + 37.7
+		nextUnleashCorruption = GetTime() + 32.8
 		playerList = {}
-		self:CDBar(429493, 37.7)
+		self:CDBar(429493, 32.8)
 	end
 
 	function mod:UnleashCorruptionApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:PlaySound(args.spellId, "alert", nil, playerList)
 		self:TargetsMessage(args.spellId, "red", playerList, 2)
+		self:PlaySound(args.spellId, "alert", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, nil, nil, "Unleash Corruption")
 		end
@@ -107,13 +115,14 @@ do
 end
 
 function mod:OblivionWave(args)
+	nextOblivionWave = GetTime() + 17.0
 	self:Message(args.spellId, "purple")
+	self:CDBar(args.spellId, 17.0)
 	if self:Tank() then
 		self:PlaySound(args.spellId, "alert")
 	else
 		self:PlaySound(args.spellId, "alarm")
 	end
-	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:Entropy(args)
@@ -130,9 +139,10 @@ do
 	local playerList = {}
 
 	function mod:StormridersCharge()
+		nextStormridersCharge = GetTime() + 38.0
 		playerList = {}
-		self:StopBar(458082)
-		-- TODO what triggers the timer for the next Stormrider's Charge?
+		-- TODO this usually happens 13s after Null Upheaval, maybe the timer should be based on that
+		self:CDBar(458082, 38.0)
 	end
 
 	function mod:StormridersChargeApplied(args)
@@ -148,24 +158,41 @@ end
 
 function mod:Electrocuted(args)
 	local t = GetTime()
-	self:Message(args.spellId, "green")
+	self:Message(args.spellId, "green", CL.count_amount:format(args.spellName, voidShellCount - 1, 3))
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 10, CL.onboss:format(args.spellName))
-	-- Electrocuted being applied to the boss adds 9.7s to Null Upheaval and Unleash Corruption,
+	-- Electrocuted being applied to the boss adds 9.7s to all other timers,
 	-- but since the stun lasts 10s there is a 10s minimum.
 	local nullUpheavalTimeLeft = nextNullUpheaval - t
 	if nullUpheavalTimeLeft > 0.3 then
-		self:CDBar(423305, {nullUpheavalTimeLeft + 9.7, 53.4}) -- Null Upheaval
+		self:CDBar(423305, {nullUpheavalTimeLeft + 9.7, 47.8}) -- Null Upheaval
 	else
-		self:CDBar(423305, {10, 53.4}) -- Null Upheaval
+		self:CDBar(423305, {10, 38.1}) -- Null Upheaval
 	end
-	local unleashCorruptionTimeLeft = nextUnleashCorruption - t
-	if unleashCorruptionTimeLeft > 0.3 then
-		self:CDBar(429493, {unleashCorruptionTimeLeft + 9.7, 43.4}) -- Unleash Corruption
+	if self:Mythic() then
+		local unleashCorruptionTimeLeft = nextUnleashCorruption - t
+		if unleashCorruptionTimeLeft > 0.3 then
+			self:CDBar(429493, {unleashCorruptionTimeLeft + 9.7, 42.1}) -- Unleash Corruption
+		else
+			self:CDBar(429493, {10, 32.4}) -- Unleash Corruption
+		end
+	end
+	local oblivionWaveTimeLeft = nextOblivionWave - t
+	if oblivionWaveTimeLeft > 0.3 then
+		self:CDBar(445457, {oblivionWaveTimeLeft + 9.7, 26.7}) -- Oblivion Wave
 	else
-		self:CDBar(429493, {10, 43.4}) -- Unleash Corruption
+		self:CDBar(445457, {10, 17.0}) -- Oblivion Wave
 	end
-	-- Electrocuted being applied to the boss resets the cooldown on Oblivion Wave to 10s,
-	-- even if there was more than 10s left on the cooldown.
-	self:CDBar(445457, 10) -- Oblivion Wave
+end
+
+function mod:ElectrocutedRemoved()
+	-- TODO :Electrocuted() is too early to delay this timer, so what about here?
+	-- it's definitely delayed by something, but when?
+	-- probably it should be delayed in :Electrocuted if Null Upheaval was cast less recently than Stormrider's Charge
+	local stormridersChargeTimeLeft = nextStormridersCharge - GetTime()
+	if stormridersChargeTimeLeft > 0.3 then
+		self:CDBar(458082, {stormridersChargeTimeLeft + 9.7, 48.2}) -- Stormrider's Charge
+	else
+		self:CDBar(458082, {10, 38.5}) -- Stormrider's Charge
+	end
 end
