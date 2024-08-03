@@ -219,7 +219,7 @@ do
 	local prev = 0
 	function mod:EarthShieldApplied(args)
 		local t = args.time
-		if t-prev > 1.5 and not UnitIsPlayer(args.destName) and self:Dispeller("magic", true) then
+		if t-prev > 1.5 and not self:Player(args.destFlags) and self:Dispeller("magic", true) then
 			prev = t
 			self:Message(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
 			self:PlaySound(args.spellId, "info")
@@ -261,7 +261,7 @@ do
 end
 
 function mod:TectonicBarrierApplied(args)
-	if not UnitIsPlayer(args.destName) then
+	if not self:Player(args.destFlags) then
 		self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
 		if self:Dispeller("magic", true) then
 			self:PlaySound(args.spellId, "alarm")
@@ -292,7 +292,7 @@ function mod:Repair(args)
 end
 
 function mod:OverchargeApplied(args)
-	if not UnitIsPlayer(args.destName) then
+	if not self:Player(args.destFlags) then
 		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
 		if self:Dispeller("magic", true) then
 			self:PlaySound(args.spellId, "alarm")
@@ -302,7 +302,7 @@ end
 
 -- Venture Co. Mastermind
 function mod:AzeriteInjectionApplied(args)
-	if not UnitIsPlayer(args.destName) then
+	if not self:Player(args.destFlags) then
 		self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
 		if self:Dispeller("magic", true) then
 			self:PlaySound(args.spellId, "alarm")
@@ -401,7 +401,7 @@ end
 
 -- Taskmaster Askari
 function mod:DesperateMeasuresApplied(args)
-	if not UnitIsPlayer(args.destName) then
+	if not self:Player(args.destFlags) then
 		self:Message(args.spellId, "red", CL.other:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "alarm")
 	end
