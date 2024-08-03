@@ -13,8 +13,8 @@ BigWigs:AddSounds("Warlord Parjesh", {
 BigWigs:AddSounds("Lady Hatecoil", {
 	[193597] = "warning",
 	[193611] = "alert",
+	[193682] = "info",
 	[193698] = "alarm",
-	["blob"] = "info",
 })
 
 BigWigs:AddSounds("Serpentrix", {

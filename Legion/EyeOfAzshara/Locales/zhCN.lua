@@ -12,8 +12,6 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "zhCN")
 if L then
-	L.blob = "{193682}（{-12139}）" -- Beckon Storm (Saltsea Globule)
-
 	L.custom_on_show_helper_messages = "静电新星和凝聚闪电帮助信息"
 	L.custom_on_show_helper_messages_desc = "启用此选项当首领开始施放|cff71d5ff静电新星|r或|cff71d5ff凝聚闪电|r时添加告知自身水中或沙丘安全的信息。"
 

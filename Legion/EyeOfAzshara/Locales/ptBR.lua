@@ -12,8 +12,6 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "ptBR")
 if L then
-	L.blob = "{193682} ({-12139})" -- Beckon Storm (Saltsea Globule)
-
 	L.custom_on_show_helper_messages = "Mensagens de ajuda para Nova Estática e Raio Concentrado"
 	L.custom_on_show_helper_messages_desc = "Ative esta opção para adicionar uma mensagem auxiliar informando se a água ou a terra estão seguras quando o chefe começa a castar |cff71d5ffNova Estática|r ou |cff71d5ffRacio concentrado|r."
 

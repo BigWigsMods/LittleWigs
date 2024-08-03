@@ -13,9 +13,9 @@ BigWigs:AddColors("Warlord Parjesh", {
 BigWigs:AddColors("Lady Hatecoil", {
 	[193597] = "orange",
 	[193611] = "yellow",
+	[193682] = "red",
 	[193698] = "blue",
-	[196610] = "green",
-	["blob"] = "red",
+	[196610] = "yellow",
 })
 
 BigWigs:AddColors("Serpentrix", {
