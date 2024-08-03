@@ -138,7 +138,7 @@ function mod:InvocationOfShadowflame(args)
 		self:Message(args.spellId, "yellow", CL.count:format(CL.adds_spawning, invocationOfShadowflameCount))
 		self:PlaySound(args.spellId, "info")
 		invocationOfShadowflameCount = invocationOfShadowflameCount + 1
-		self:CDBar(args.spellId, 30.0, CL.count:format(CL.adds, invocationOfShadowflameCount))
+		self:CDBar(args.spellId, 35.0, CL.count:format(CL.adds, invocationOfShadowflameCount))
 	end
 end
 
@@ -160,7 +160,7 @@ do
 		if self:GetStage() == 1 then
 			self:CDBar(args.spellId, 26.0)
 		else
-			self:CDBar(args.spellId, 30.0)
+			self:CDBar(args.spellId, 35.0)
 		end
 	end
 
@@ -181,13 +181,13 @@ function mod:TwilightBuffet(args)
 	self:Message(args.spellId, "orange", CL.count:format(args.spellName, twilightBuffetCount))
 	self:PlaySound(args.spellId, "alarm")
 	twilightBuffetCount = twilightBuffetCount + 1
-	self:CDBar(args.spellId, 30.0, CL.count:format(args.spellName, twilightBuffetCount))
+	self:CDBar(args.spellId, 35.0, CL.count:format(args.spellName, twilightBuffetCount))
 end
 
 function mod:DevouringFlame(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 30.0)
+	self:CDBar(args.spellId, 35.0)
 end
 
 --------------------------------------------------------------------------------
