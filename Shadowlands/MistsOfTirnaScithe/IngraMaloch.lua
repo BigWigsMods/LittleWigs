@@ -77,19 +77,19 @@ end
 function mod:BewilderingPollen(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	nextBewilderingPollen = GetTime() + 15.8
-	self:CDBar(args.spellId, 15.8)
+	nextBewilderingPollen = GetTime() + 20.6
+	self:CDBar(args.spellId, 20.6)
 end
 
 function mod:TearsOfTheForest(args)
+	local t = GetTime()
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 15.8)
+	self:CDBar(args.spellId, 20.7)
 	-- 9.74 minimum to Bewildering Pollen
-	local t = GetTime()
 	if nextBewilderingPollen - t < 9.74 then
 		nextBewilderingPollen = t + 9.74
-		self:CDBar(323137, {9.74, 15.8}) -- Bewildering Pollen
+		self:CDBar(323137, {9.74, 20.6}) -- Bewildering Pollen
 	end
 end
 
@@ -117,7 +117,7 @@ function mod:DromansWrathApplied(args)
 	self:SetStage(2)
 	self:CastBar(args.spellId, 15)
 	self:CDBar(323137, 27.1) -- Bewildering Pollen
-	self:CDBar(323177, 35.6) -- Tears of the Forest
+	self:CDBar(323177, 44.1) -- Tears of the Forest
 	if self:Mythic() then
 		self:CDBar(328756, 52.8, CL.fear) -- Repulsive Visage
 	end
@@ -145,7 +145,7 @@ end
 function mod:RepulsiveVisage(args)
 	self:Message(args.spellId, "red", CL.casting:format(CL.fear))
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 31.6, CL.fear)
+	self:CDBar(args.spellId, 34.9, CL.fear)
 end
 
 function mod:EmbraceDarkness(args)
