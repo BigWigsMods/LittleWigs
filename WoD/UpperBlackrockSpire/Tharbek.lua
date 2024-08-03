@@ -6,19 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Commander Tharbek", 1358, 1228)
 if not mod then return end
 mod:RegisterEnableMob(79912, 80098) -- Commander Tharbek, Ironbarb Skyreaver
-mod.engageId = 1759
-mod.respawnTime = 26
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.iron_reaver = "{161989} ({100})" -- Iron Reaver (Charge)
-	L.iron_reaver_desc = 161989
-	L.iron_reaver_icon = 161989
-end
+mod:SetEncounterID(1759)
+mod:SetRespawnTime(26)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -29,19 +18,19 @@ function mod:GetOptions()
 		"stages",
 		161833, -- Noxious Spit
 		162090, -- Imbued Iron Axe
-		"iron_reaver",
+		161989, -- Iron Reaver
 		161882, -- Incinerating Breath
+	}, nil, {
+		[161989] = CL.charge, -- Iron Reaver (Charge)
 	}
 end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1", "boss2")
-
 	self:Log("SPELL_AURA_APPLIED", "NoxiousSpit", 161833)
 	self:Log("SPELL_CAST_SUCCESS", "ImbuedIronAxe", 162090)
-
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "IronReaver", "boss1", "boss2")
-	self:Death("DragonDies", 80098)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2")
+	self:Death("IronbarbSkyreaverDeath", 80098) -- Ironbarb Skyreaver
 end
 
 --------------------------------------------------------------------------------
@@ -50,30 +39,34 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED(_, unit)
 	if self:MobId(self:UnitGUID(unit)) == 79912 and UnitCanAttack("player", unit) then
-		self:MessageOld("stages", "cyan", "info", self.displayName, "ability_warrior_endlessrage")
+		self:Message("stages", "cyan", self.displayName, "ability_warrior_endlessrage")
+		self:PlaySound("stages", "info")
 	end
 end
 
 function mod:NoxiousSpit(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "alarm", CL.underyou:format(args.spellName))
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou")
 	end
 end
 
 function mod:ImbuedIronAxe(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
-function mod:IronReaver(_, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 161989 then -- Iron Reaver
-		self:MessageOld("iron_reaver", "red", nil, self:SpellName(100), spellId) -- 100 = "Charge"
-		self:CDBar("iron_reaver", 19, self:SpellName(100), spellId) -- 19.4-22.7s
+		self:Message(spellId, "red", CL.charge) -- 100 = "Charge"
+		self:CDBar(spellId, 19, CL.charge) -- 19.4-22.7s
 	elseif spellId == 161882 then -- Incinerating Breath
-		self:MessageOld(spellId, "orange", "long", CL.incoming:format(self:SpellName(spellId)))
+		self:Message(spellId, "orange", CL.incoming:format(self:SpellName(spellId)))
 		self:CDBar(spellId, 20)
+		self:PlaySound(spellId, "long")
 	end
 end
 
-function mod:DragonDies()
+function mod:IronbarbSkyreaverDeath()
 	self:StopBar(161882) -- Incinerating Breath
 end

@@ -12,7 +12,7 @@ BigWigs:AddSounds("Kyrak", {
 })
 
 BigWigs:AddSounds("Commander Tharbek", {
-	[161833] = "alarm",
+	[161833] = "underyou",
 	[161882] = "long",
 	[162090] = "alert",
 	["stages"] = "info",

@@ -14,8 +14,8 @@ BigWigs:AddColors("Kyrak", {
 BigWigs:AddColors("Commander Tharbek", {
 	[161833] = "blue",
 	[161882] = "orange",
+	[161989] = "red",
 	[162090] = {"blue","yellow"},
-	["iron_reaver"] = "red",
 	["stages"] = "cyan",
 })
 
