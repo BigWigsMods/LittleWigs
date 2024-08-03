@@ -3,9 +3,9 @@ if not BigWigsLoader.isBeta then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("High Speaker Eirich", 2652, 2582)
+local mod, CL = BigWigs:NewBoss("Void Speaker Eirich", 2652, 2582)
 if not mod then return end
-mod:RegisterEnableMob(213119) -- High Speaker Eirich
+mod:RegisterEnableMob(213119) -- Void Speaker Eirich
 mod:SetEncounterID(2883)
 mod:SetRespawnTime(30)
 

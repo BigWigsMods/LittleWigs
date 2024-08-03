@@ -25,7 +25,7 @@ BigWigs:AddSounds("Master Machinists", {
 	[449167] = "alarm",
 })
 
-BigWigs:AddSounds("High Speaker Eirich", {
+BigWigs:AddSounds("Void Speaker Eirich", {
 	[427461] = "info",
 	[427852] = "alert",
 	[427869] = "alarm",
