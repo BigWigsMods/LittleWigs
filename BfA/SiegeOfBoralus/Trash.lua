@@ -173,10 +173,12 @@ end
 -- Ashvane Commander
 
 function mod:AzeriteCharge(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alarm", nil, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Azerite Charge")
+	if self:Player(args.destFlags) then -- can be cast on friendly NPCs during RP fighting
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, nil, nil, "Azerite Charge")
+		end
 	end
 end
 
