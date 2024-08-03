@@ -2,8 +2,9 @@
 BigWigs:AddSounds("High Priest Venoxis", {
 	[96466] = "alert",
 	[96477] = "alarm",
+	[96509] = "alarm",
 	[96653] = "info",
-	[96842] = "alert",
+	[96842] = "long",
 })
 
 BigWigs:AddSounds("Bloodlord Mandokir", {

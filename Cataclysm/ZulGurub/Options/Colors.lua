@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("High Priest Venoxis", {
 	[96466] = "orange",
-	[96477] = {"blue","orange"},
+	[96477] = {"blue","yellow"},
 	[96509] = "red",
 	[96653] = "green",
 	[96842] = "red",

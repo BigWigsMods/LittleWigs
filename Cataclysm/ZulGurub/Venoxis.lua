@@ -5,14 +5,14 @@
 local mod, CL = BigWigs:NewBoss("High Priest Venoxis", 859, 175)
 if not mod then return end
 mod:RegisterEnableMob(52155)
-mod.engageId = 1178
-mod.respawnTime = 30
+mod:SetEncounterID(1178)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 --  Locals
 --
 
-local breathsLeft = 2
+local breathsLeft = 3
 
 -------------------------------------------------------------------------------
 --  Initialization
@@ -20,7 +20,7 @@ local breathsLeft = 2
 
 function mod:GetOptions()
 	return {
-		{96477, "ICON", "FLASH"}, -- Toxic Link
+		{96477, "ICON"}, -- Toxic Link
 		96509, -- Breath of Hethiss
 		96466, -- Whispers of Hethiss
 		96842, -- Bloodvenom
@@ -29,18 +29,24 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "ToxicLink", 96477)
+	self:Log("SPELL_CAST_START", "ToxicLink", 96475)
+	self:Log("SPELL_AURA_APPLIED", "ToxicLinkApplied", 96477)
 	self:Log("SPELL_AURA_REMOVED", "ToxicLinkRemoved", 96477)
-	self:Log("SPELL_AURA_APPLIED", "BreathOfHethiss", 96509)
+	self:Log("SPELL_CAST_START", "BreathOfHethiss", 96509)
 	self:Log("SPELL_AURA_APPLIED", "WhispersOfHethiss", 96466)
 	self:Log("SPELL_AURA_REMOVED", "WhispersOfHethissRemoved", 96466)
 	self:Log("SPELL_CAST_START", "Bloodvenom", 96842)
 	self:Log("SPELL_AURA_APPLIED", "BlessingOfTheSnakeGod", 96512)
 	self:Log("SPELL_AURA_REMOVED", "BlessingOfTheSnakeGodRemoved", 96512)
+	if self:Classic() then
+		-- ENCOUNTER_END doesn't fire on Classic
+		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+		self:Death("Win", 52155)
+	end
 end
 
 function mod:OnEngage()
-	breathsLeft = 2
+	breathsLeft = 3
 end
 
 -------------------------------------------------------------------------------
@@ -48,18 +54,22 @@ end
 --
 
 do
-	local linkTargets = mod:NewTargetList()
+	local playerList = {}
 
-	function mod:ToxicLink(args)
-		if self:Me(args.destGUID) then
-			self:Flash(args.spellId)
-		end
-		linkTargets[#linkTargets + 1] = args.destName
-		if #linkTargets == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.2, args.spellId, linkTargets, "orange", "alarm")
+	function mod:ToxicLink()
+		playerList = {}
+	end
+
+	function mod:ToxicLinkApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
+		if #playerList == 1 then
 			self:PrimaryIcon(args.spellId, args.destName)
 		else
 			self:SecondaryIcon(args.spellId, args.destName)
+		end
+		if self:Me(args.destGUID) then
+			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 
@@ -70,17 +80,21 @@ do
 end
 
 function mod:BreathOfHethiss(args)
+	self:Message(args.spellId, "red")
 	breathsLeft = breathsLeft - 1
-	self:MessageOld(args.spellId, "red")
-	if (breathsLeft > 0) then
-		self:CDBar(args.spellId, 12)
+	if breathsLeft > 0 then
+		self:CDBar(args.spellId, 13.0)
+	else
+		self:StopBar(args.spellId)
 	end
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:WhispersOfHethiss(args)
 	if self:MobId(args.destGUID) == 52155 then return end -- applies this to himself as well
-	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:TargetBar(args.spellId, 8, args.destName)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:WhispersOfHethissRemoved(args)
@@ -89,17 +103,20 @@ function mod:WhispersOfHethissRemoved(args)
 end
 
 function mod:Bloodvenom(args)
-	self:MessageOld(args.spellId, "red", "alert", CL.casting:format(args.spellName))
-	self:ScheduleTimer("Bar", 3, args.spellId, 14)
+	self:StopBar(96509) -- Breath of Hethiss
+	self:StopBar(args.spellId)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:BlessingOfTheSnakeGod()
-	breathsLeft = 2
-	self:CDBar(96842, 38) -- Bloodvenom
+	breathsLeft = 3
 	self:CDBar(96509, 5.5) -- Breath of Hethiss
+	self:CDBar(96842, 38) -- Bloodvenom
 end
 
 function mod:BlessingOfTheSnakeGodRemoved()
-	self:MessageOld(96653, "green", "info") -- Venom Withdrawal
-	self:Bar(96653, 10)
+	self:Message(96653, "green") -- Venom Withdrawal
+	self:Bar(96653, 10, CL.onboss:format(self:SpellName(96653)))
+	self:PlaySound(96653, "info")
 end
