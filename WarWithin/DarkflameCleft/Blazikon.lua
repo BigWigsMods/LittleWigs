@@ -8,6 +8,9 @@ if not mod then return end
 mod:RegisterEnableMob(208743) -- Blazikon
 mod:SetEncounterID(2826)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	423080, -- Extinguishing Gust
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -20,7 +23,7 @@ function mod:GetOptions()
 		423109, -- Enkindling Inferno
 		443835, -- Blazing Storms
 		425394, -- Dousing Breath (Normal / Heroic)
-		422700, -- Extinguishing Gust (Mythic)
+		{422700, "PRIVATE"}, -- Extinguishing Gust (Mythic)
 	}, {
 		[425394] = CL.normal.." / "..CL.heroic,
 		[422700] = CL.mythic,
