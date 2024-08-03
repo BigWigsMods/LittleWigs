@@ -154,11 +154,16 @@ end
 
 -- Arathi Lamplighter
 
-function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
-	if msg:find("449042", nil, true) then -- Radiant Light
-		-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\INV_Ability_HolyFire_Nova.BLP:20|t You have gained |cFFFF0000|Hspell:449042|h[Radiant Light]|h|r. |TInterface\\ICONS\\Ability_DragonRiding_DragonRiding01.BLP:20|t Take flight!
-		self:Message(449042, "green", L.flying_available, "Ability_DragonRiding_DragonRiding01")
-		self:PlaySound(449042, "info")
+do
+	local prev = 0
+	function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
+		local t = GetTime()
+		if t - prev > 10 and msg:find("449042", nil, true) then -- Radiant Light
+			prev = t
+			-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\INV_Ability_HolyFire_Nova.BLP:20|t You have gained |cFFFF0000|Hspell:449042|h[Radiant Light]|h|r. |TInterface\\ICONS\\Ability_DragonRiding_DragonRiding01.BLP:20|t Take flight!
+			self:Message(449042, "green", L.flying_available, "Ability_DragonRiding_DragonRiding01")
+			self:PlaySound(449042, "info")
+		end
 	end
 end
 
@@ -211,7 +216,7 @@ end
 -- Arathi Bomb
 
 function mod:PlantArathiBomb(args)
-	self:Message(args.spellId, "green", CL.other:format(args.sourceName, args.spellName))
+	self:Message(args.spellId, "green", CL.other:format(self:ColorName(args.sourceName), args.spellName))
 	self:PlaySound(args.spellId, "info")
 	self:Bar(args.spellId, 15, CL.explosion)
 end
@@ -231,7 +236,7 @@ do
 		timer = self:ScheduleTimer("AscendantViscoxriaDeath", 30)
 	end
 
-	function mod:AscendantViscoxriaDeath(args)
+	function mod:AscendantViscoxriaDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -255,7 +260,7 @@ do
 		timer = self:ScheduleTimer("DeathscreamerIkentakDeath", 30)
 	end
 
-	function mod:DeathscreamerIkentakDeath(args)
+	function mod:DeathscreamerIkentakDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -279,7 +284,7 @@ do
 		timer = self:ScheduleTimer("IxkretenTheUnbreakableDeath", 30)
 	end
 
-	function mod:IxkretenTheUnbreakableDeath(args)
+	function mod:IxkretenTheUnbreakableDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -353,7 +358,7 @@ do
 		timer = self:ScheduleTimer("NightfallDarkArchitectDeath", 30)
 	end
 
-	function mod:NightfallDarkArchitectDeath(args)
+	function mod:NightfallDarkArchitectDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
