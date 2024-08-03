@@ -13,7 +13,7 @@ BigWigs:AddSounds("Fangs of the Queen", {
 	[440218] = "alert",
 	[440468] = "alarm",
 	[441298] = "info",
-	[441384] = "info",
+	[441384] = "long",
 	[458741] = "warning",
 })
 

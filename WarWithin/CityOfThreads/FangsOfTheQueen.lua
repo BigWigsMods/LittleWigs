@@ -113,7 +113,7 @@ function mod:SynergicStep(args)
 		self:SetStage(1)
 		self:CDBar(args.spellId, 47.6, CL.count:format(args.spellName, synergicStepCount))
 	end
-	self:PlaySound(args.spellId, "info")
+	self:PlaySound(args.spellId, "long")
 end
 
 -- Stage One: Nx, the Shrouded Fang
