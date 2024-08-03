@@ -1,7 +1,7 @@
 
 BigWigs:AddSounds("Houndmaster Braun", {
-	[-5611] = {"alert","info"},
 	[114259] = "alert",
+	[116140] = {"alert","info"},
 })
 
 BigWigs:AddSounds("Armsmaster Harlan", {

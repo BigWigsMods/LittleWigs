@@ -1,7 +1,7 @@
 
 BigWigs:AddColors("Houndmaster Braun", {
-	[-5611] = {"green","yellow"},
 	[114259] = "orange",
+	[116140] = {"green","yellow"},
 })
 
 BigWigs:AddColors("Armsmaster Harlan", {
