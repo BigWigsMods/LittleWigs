@@ -68,6 +68,7 @@ function mod:GetOptions()
 		-- Xeph'itik
 		450784, -- Perfume Toss
 		451423, -- Gossamer Barrage
+		441795, -- Pheromone Veil
 		-- Pale Priest
 		448047, -- Web Wrap
 		-- Eye of the Queen
@@ -109,6 +110,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Herald of Ansurek
+	--self:Log("SPELL_CAST_SUCCESS", "ShadowsOfDoubt", 443436)
 	self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtApplied", 443437)
 
 	-- Sureki Silkbinder
@@ -121,6 +123,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PerfumeToss", 450784)
 	self:Log("SPELL_CAST_START", "GossamerBarrage", 451423)
 	self:Log("SPELL_CAST_SUCCESS", "PheromoneVeil", 441795)
+	self:Log("SPELL_AURA_APPLIED", "PheromoneVeilApplied", 441795)
 
 	-- Pale Priest
 	self:Log("SPELL_AURA_APPLIED", "WebWrap", 448047)
@@ -177,7 +180,7 @@ end
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.xephitik_defeated_trigger then
 		-- clean up bars a bit early
-		self:PheromoneVeil()
+		self:XephitikDefeated()
 	end
 end
 
@@ -200,6 +203,10 @@ end
 
 -- Herald of Ansurek
 
+--function mod:ShadowsOfDoubt()
+	--self:NameplateCDBar(443437, 13.9, args.sourceGUID)
+--end
+
 function mod:ShadowsOfDoubtApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
@@ -216,6 +223,7 @@ function mod:SilkBinding(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 21.8, args.sourceGUID) recast if stunned, needs SUCCESS/INTERRUPT
 end
 
 -- Royal Swarmguard
@@ -223,6 +231,7 @@ end
 function mod:Earthshatter(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 15.5, args.sourceGUID)
 end
 
 -- Xeph'itik
@@ -237,7 +246,7 @@ do
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 15.8)
-		timer = self:ScheduleTimer("PheromoneVeil", 30)
+		timer = self:ScheduleTimer("XephitikDefeated", 30)
 	end
 
 	function mod:GossamerBarrage(args)
@@ -247,10 +256,22 @@ do
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "long")
 		self:CDBar(args.spellId, 23.1)
-		timer = self:ScheduleTimer("PheromoneVeil", 30)
+		timer = self:ScheduleTimer("XephitikDefeated", 30)
 	end
 
 	function mod:PheromoneVeil()
+		-- backup in case xephitik_defeated_trigger isn't translated
+		self:XephitikDefeated()
+	end
+
+	function mod:PheromoneVeilApplied(args)
+		if self:Me(args.destGUID) then
+			self:Message(args.spellId, "green", CL.you:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+
+	function mod:XephitikDefeated()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -280,6 +301,7 @@ end
 function mod:NullSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 26.7, args.sourceGUID)
 end
 
 -- Covert Webmender
@@ -287,6 +309,7 @@ end
 function mod:MendingWeb(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID) recast if stunned, needs SUCCESS/INTERRUPT
 end
 
 -- Royal Venomshell
@@ -294,6 +317,7 @@ end
 function mod:VenomousSpray(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+	--self:NameplateCDBar(args.spellId, 24.2, args.sourceGUID)
 end
 
 -- Unstable Test Subject
@@ -301,6 +325,7 @@ end
 function mod:DarkBarrage(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
+	--self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
 end
 
 -- Sureki Unnaturaler
@@ -311,6 +336,7 @@ function mod:VoidWave(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 16.4, args.sourceGUID) recast if stunned, needs SUCCESS/INTERRUPT
 end
 
 -- Elder Shadeweaver
@@ -318,6 +344,7 @@ end
 function mod:UmbralWeave(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	--self:NameplateCDBar(args.spellId, 23.1, args.sourceGUID)
 end
 
 -- Hulking Warshell
@@ -325,6 +352,7 @@ end
 function mod:TremorSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	--self:NameplateCDBar(args.spellId, 23.0, args.sourceGUID)
 end
 
 -- Congealed Droplet
