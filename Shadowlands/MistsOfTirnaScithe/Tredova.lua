@@ -94,9 +94,9 @@ function mod:OnEngage()
 	if BigWigsLoader.isBeta then
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
-		self:CDBar(322614, 18.0) -- Mind Link
+		self:CDBar(322614, 25.0) -- Mind Link
 		if self:Mythic() then
-			self:CDBar(463602, 21.0) -- Coalescing Poison
+			self:CDBar(463602, 26.0) -- Coalescing Poison
 		end
 	else
 		self:CDBar(322654, 7.7) -- Acid Expulsion
@@ -122,7 +122,7 @@ do
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alert")
 			if BigWigsLoader.isBeta then
-				self:CDBar(args.spellId, 30.0)
+				self:CDBar(args.spellId, 35.0)
 			else
 				self:CDBar(args.spellId, 19.4)
 			end
@@ -159,9 +159,9 @@ function mod:ConsumptionRemoved(args)
 		self:StopBar(CL.cast:format(args.spellName))
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
-		self:CDBar(322614, 18.0) -- Mind Link
+		self:CDBar(322614, 25.0) -- Mind Link
 		if self:Mythic() then
-			self:CDBar(463602, 21.0) -- Coalescing Poison
+			self:CDBar(463602, 26.0) -- Coalescing Poison
 		end
 	end
 end
@@ -169,7 +169,7 @@ end
 function mod:AcceleratedIncubation(args)
 	self:Message(args.spellId, "yellow", CL.incoming:format(CL.adds))
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 30.0, CL.adds)
+	self:CDBar(args.spellId, 35.0, CL.adds)
 end
 
 function mod:MarkedPreyApplied(args)
@@ -202,7 +202,7 @@ function mod:MindLink(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
 	self:PlaySound(args.spellId, "alert")
 	if BigWigsLoader.isBeta then
-		self:CDBar(args.spellId, 30.0)
+		self:CDBar(args.spellId, 35.0)
 	else
 		self:CDBar(args.spellId, 15.8)
 	end
@@ -235,5 +235,5 @@ end
 function mod:CoalescingPoison(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 30.0)
+	self:CDBar(args.spellId, 35.0)
 end
