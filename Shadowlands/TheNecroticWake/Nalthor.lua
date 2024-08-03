@@ -28,12 +28,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FrozenBinds", 320788)
 	self:Log("SPELL_AURA_APPLIED", "FrozenBindsApplied", 320788)
 	self:Log("SPELL_AURA_REMOVED", "FrozenBindsRemoved", 320788)
-	self:Log("SPELL_MISSED", "FrozenBindsRemoved", 320788) -- Anti-Magic Shell, Hand of Freedom, immunities, etc.
+	self:Log("SPELL_MISSED", "FrozenBindsRemoved", 320788) -- Anti-Magic Shell, Blessing of Freedom, immunities, etc.
 	self:Log("SPELL_CAST_SUCCESS", "DarkExile", 321894)
 end
 
 function mod:OnEngage()
-	self:CDBar(320788, 7.3) -- Frozen Binds
+	self:CDBar(320788, 7.0) -- Frozen Binds
 	self:CDBar(321368, 12.2) -- Icebound Aegis
 	self:CDBar(320772, 18.3) -- Comet Storm
 	if not self:Solo() then
