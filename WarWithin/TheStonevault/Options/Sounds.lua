@@ -15,7 +15,7 @@ BigWigs:AddSounds("Skarmorak", {
 	[423572] = "info",
 })
 
-BigWigs:AddSounds("Forge Speakers", {
+BigWigs:AddSounds("Master Machinists", {
 	[428202] = "long",
 	[428508] = "alarm",
 	[428711] = "alert",

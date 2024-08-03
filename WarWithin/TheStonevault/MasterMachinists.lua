@@ -3,7 +3,7 @@ if not BigWigsLoader.isBeta then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Forge Speakers", 2652, 2590)
+local mod, CL = BigWigs:NewBoss("Master Machinists", 2652, 2590)
 if not mod then return end
 mod:RegisterEnableMob(
 	213217, -- Speaker Brokk

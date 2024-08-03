@@ -3,7 +3,7 @@
 
 <Script file="EDNA.lua"/>
 <Script file="Skarmorak.lua"/>
-<Script file="ForgeSpeakers.lua"/>
+<Script file="MasterMachinists.lua"/>
 <Script file="HighSpeakerEirich.lua"/>
 <Script file="Trash.lua"/>
 

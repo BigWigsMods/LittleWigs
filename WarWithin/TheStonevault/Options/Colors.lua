@@ -15,7 +15,7 @@ BigWigs:AddColors("Skarmorak", {
 	[423572] = "green",
 })
 
-BigWigs:AddColors("Forge Speakers", {
+BigWigs:AddColors("Master Machinists", {
 	[428202] = "yellow",
 	[428508] = "red",
 	[428711] = "purple",
