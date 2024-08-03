@@ -5,8 +5,8 @@ BigWigs:AddSounds("Houndmaster Braun", {
 })
 
 BigWigs:AddSounds("Armsmaster Harlan", {
-	["blades"] = "alert",
-	["help"] = "info",
+	[-5378] = "info",
+	[111216] = {"info","warning"},
 })
 
 BigWigs:AddSounds("Flameweaver Koegler", {
