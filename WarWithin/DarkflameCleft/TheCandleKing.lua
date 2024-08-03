@@ -8,6 +8,9 @@ if not mod then return end
 mod:RegisterEnableMob(208745) -- The Candle King
 mod:SetEncounterID(2787)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	420696, -- Throw Darkflame
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -18,7 +21,7 @@ function mod:GetOptions()
 		420659, -- Eerie Molds
 		{422648, "SAY", "ME_ONLY_EMPHASIZE"}, -- Darkflame Pickaxe
 		426145, -- Paranoid Mind
-		420696, -- Throw Darkflame
+		{420696, "PRIVATE"}, -- Throw Darkflame
 		-- TODO Cursed Wax (Mythic)
 	}
 end
@@ -67,7 +70,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 420696 then -- Throw Darkflame
 		self:Message(spellId, "orange")
-		self:PlaySound(spellId, "alarm")
+		--self:PlaySound(spellId, "alarm") private aura sound
 		self:CDBar(spellId, 17.0) -- TODO often delayed
 	end
 end
