@@ -109,7 +109,7 @@ function mod:OnBossEnable()
 	-- Reno Jackson
 	self:Log("SPELL_CAST_START", "SkullCracker", 398749)
 	self:Log("SPELL_CAST_START", "SpikeTraps", 400335)
-	self:Log("SPELL_CREATE", "FeastingNerubianChest", 447392) -- Reno Jackson defeated
+	self:Log("SPELL_CREATE", "SupplyBag", 447392) -- Reno Jackson defeated
 
 	-- Sir Finley Mrgglton (pulls with Reno Jackson)
 	self:Log("SPELL_CAST_START", "Consecration", 461741)
@@ -255,9 +255,8 @@ do
 		timer = self:ScheduleTimer("RenoJacksonDefeated", 30)
 	end
 
-	function mod:FeastingNerubianChest(args)
-		-- Reno Jackson creates a "Feasting Nerubian Chest" when you defeat him, we can use
-		-- that event to clean up the bars.
+	function mod:SupplyBag(args)
+		-- Reno Jackson creates a "Supply Bag" when you defeat him
 		if self:MobId(args.sourceGUID) == 228044 then -- Reno Jackson
 			self:RenoJacksonDefeated()
 		end
