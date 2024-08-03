@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -36,16 +35,12 @@ function mod:GetOptions()
 		-- Arcane Anomaly
 		211217, -- Arcane Slicer
 		226206, -- Arcane Reconstitution
-
 		-- Warp Shade
 		211115, -- Phase Breach
-
 		-- Withered Manawraith
 		210750, -- Collapsing Rift
-
 		-- Wrathguard Felblade
 		211745, -- Fel Strike
-
 		-- Eredar Chaosbringer
 		226285, -- Demonic Ascension
 		211632, -- Brand of the Legion
@@ -109,7 +104,7 @@ do
 	local prev = 0
 	function mod:PeriodicDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
+			local t = args.time
 			if t-prev > 1.5 then
 				prev = t
 				self:MessageOld(args.spellId, "blue", "warning", CL.underyou:format(args.spellName))
@@ -126,8 +121,9 @@ function mod:BrandoftheLegion(args)
 end
 
 function mod:BrandoftheLegionApplied(args)
-	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then
-		self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, true)
+	if self:Dispeller("magic", true) and not self:Friendly(args.destFlags) then
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
@@ -138,8 +134,9 @@ function mod:DemonicAscension(args)
 end
 
 function mod:DemonicAscensionApplied(args)
-	if not UnitIsPlayer(args.destName) then
-		self:TargetMessageOld(args.spellId, args.destName, "orange", "warning", nil, nil, true)
+	if not self:Friendly(args.destFlags) then
+		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 

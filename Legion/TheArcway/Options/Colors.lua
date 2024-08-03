@@ -37,9 +37,9 @@ BigWigs:AddColors("The Arcway Trash", {
 	[210750] = "blue",
 	[211115] = "yellow",
 	[211217] = "orange",
-	[211632] = {"blue","yellow"},
+	[211632] = "yellow",
 	[211745] = "blue",
 	[211757] = "orange",
 	[226206] = "orange",
-	[226285] = {"blue","green","orange"},
+	[226285] = {"green","orange"},
 })
