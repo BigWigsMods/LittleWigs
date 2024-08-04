@@ -14,6 +14,7 @@ mod:SetRespawnTime(30)
 --
 
 local chainLightningCount = 1
+local chainLightningTimerCount = 1
 local lightningTorrentCount = 1
 local lightningDashCount = 1
 local unstableChargeCount = 1
@@ -47,6 +48,7 @@ end
 
 function mod:OnEngage()
 	chainLightningCount = 1
+	chainLightningTimerCount = 1
 	lightningTorrentCount = 1
 	lightningDashCount = 1
 	unstableChargeCount = 1
@@ -67,6 +69,7 @@ function mod:LightningTorrent(args)
 	self:StopBar(CL.count:format(args.spellName, lightningTorrentCount))
 	self:Message(444123, "cyan", CL.count:format(args.spellName, lightningTorrentCount))
 	lightningTorrentCount = lightningTorrentCount + 1
+	self:CDBar(419870, {14.4, 41.2}, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
 	self:CDBar(444123, 60.0, CL.count:format(args.spellName, lightningTorrentCount))
 	self:PlaySound(444123, "long")
 end
@@ -75,24 +78,17 @@ function mod:LightningDash(args)
 	self:StopBar(CL.count:format(args.spellName, lightningDashCount))
 	self:Message(args.spellId, "orange", CL.count:format(args.spellName, lightningDashCount))
 	lightningDashCount = lightningDashCount + 1
-	if self:Story() then
-		if lightningDashCount % 2 == 0 then
-			self:CDBar(args.spellId, 41.2, CL.count:format(args.spellName, lightningDashCount))
-		else
-			self:CDBar(args.spellId, 18.7, CL.count:format(args.spellName, lightningDashCount))
-		end
-	else -- Normal, Heroic
-		-- TODO confirm Mythic
-		if lightningDashCount % 2 == 0 then
-			self:CDBar(args.spellId, 42.0, CL.count:format(args.spellName, lightningDashCount))
-		else
-			self:CDBar(args.spellId, 17.3, CL.count:format(args.spellName, lightningDashCount))
-		end
+	if lightningDashCount % 2 == 0 then
+		self:CDBar(args.spellId, 41.2, CL.count:format(args.spellName, lightningDashCount))
+	else
+		self:CDBar(args.spellId, 17.4, CL.count:format(args.spellName, lightningDashCount))
 	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
 do
+	local timer
+
 	local function printTarget(self, name, guid)
 		self:TargetMessage(424148, "red", name, CL.count:format(self:SpellName(424148), chainLightningCount - 1))
 		if self:Me(guid) then
@@ -101,29 +97,47 @@ do
 		self:PlaySound(424148, "alert", nil, name)
 	end
 
+	function mod:ChainLightningSkipped()
+		-- if this timer hasn't been canceled Chain Lightning it means the cast was skipped and we should move
+		-- on to the next possible timer. note that timers are subtracted by 1s here since that's the extra
+		-- time we waited before determining the cast was skipped.
+		chainLightningTimerCount = chainLightningTimerCount + 1
+		if chainLightningTimerCount % 4 == 2 then
+			self:CDBar(424148, 12.0, CL.count:format(self:SpellName(424148), chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 13.0)
+		elseif chainLightningTimerCount % 4 == 3 then
+			self:CDBar(424148, 27.0, CL.count:format(self:SpellName(424148), chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 28.0)
+		elseif chainLightningTimerCount % 4 == 0 then
+			self:CDBar(424148, 9.0, CL.count:format(self:SpellName(424148), chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 10.0)
+		else
+			self:CDBar(424148, 8.0, CL.count:format(self:SpellName(424148), chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 9.0)
+		end
+	end
+
 	function mod:ChainLightning(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:StopBar(CL.count:format(args.spellName, chainLightningCount))
 		chainLightningCount = chainLightningCount + 1
+		chainLightningTimerCount = chainLightningTimerCount + 1
 		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
-		if self:Story() then
-			if chainLightningCount % 4 == 2 then
-				self:CDBar(args.spellId, 13.0, CL.count:format(args.spellName, chainLightningCount))
-			elseif chainLightningCount % 4 == 3 then
-				self:CDBar(args.spellId, 28.0, CL.count:format(args.spellName, chainLightningCount))
-			elseif chainLightningCount % 4 == 0 then
-				self:CDBar(args.spellId, 10.0, CL.count:format(args.spellName, chainLightningCount))
-			else
-				self:CDBar(args.spellId, 9.0, CL.count:format(args.spellName, chainLightningCount))
-			end
-		else -- Normal, Heroic
-			-- TODO confirm Mythic
-			if chainLightningCount % 3 == 2 then
-				self:CDBar(args.spellId, 13.0, CL.count:format(args.spellName, chainLightningCount))
-			elseif chainLightningCount % 3 == 0 then
-				self:CDBar(args.spellId, 38.0, CL.count:format(args.spellName, chainLightningCount))
-			else
-				self:CDBar(args.spellId, 9.0, CL.count:format(args.spellName, chainLightningCount))
-			end
+		-- this cast (especially the 28s CD one) is often skipped, check 1s after it should have happened
+		if chainLightningTimerCount % 4 == 2 then
+			self:CDBar(args.spellId, 13.0, CL.count:format(args.spellName, chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 14.0)
+		elseif chainLightningTimerCount % 4 == 3 then
+			self:CDBar(args.spellId, 28.0, CL.count:format(args.spellName, chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 29.0)
+		elseif chainLightningTimerCount % 4 == 0 then
+			self:CDBar(args.spellId, 10.0, CL.count:format(args.spellName, chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 11.0)
+		else
+			self:CDBar(args.spellId, 9.0, CL.count:format(args.spellName, chainLightningCount))
+			timer = self:ScheduleTimer("ChainLightningSkipped", 10.0)
 		end
 	end
 end
