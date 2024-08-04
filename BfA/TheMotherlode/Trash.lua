@@ -100,8 +100,8 @@ function mod:GetOptions()
 		-- Venture Co. War Machine
 		{269429, "TANK"}, -- Charged Shot
 		-- Mechanized Peacekeeper
-		{262412, "NAMEPLATEBAR"}, -- Energy Shield
 		263628, -- Charged Claw
+		--{262412, "NAMEPLATEBAR"}, -- Energy Shield
 	}, {
 		[268846] = L.tester,
 		[269302] = L.assassin,
@@ -119,7 +119,7 @@ function mod:GetOptions()
 		[269090] = L.specialist,
 		[263601] = L.taskmaster,
 		[269429] = L.warmachine,
-		[262412] = L.peacekeeper,
+		[263628] = L.peacekeeper,
 	}
 end
 
@@ -155,7 +155,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ArtilleryBarrage", 269090)
 	self:Log("SPELL_AURA_APPLIED", "DesperateMeasuresApplied", 263601)
 	self:Log("SPELL_CAST_START", "ChargedShot", 269429)
-	self:Log("SPELL_CAST_START", "EnergyShield", 262412)
+	--self:Log("SPELL_CAST_START", "EnergyShield", 262412)
 	self:Log("SPELL_CAST_START", "ChargedClaw", 263628)
 	self:Log("SPELL_CAST_SUCCESS", "ChargedClawSuccess", 263628)
 end
@@ -413,9 +413,9 @@ function mod:ChargedShot(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:EnergyShield(args)
+--function mod:EnergyShield(args)
 	--self:Nameplate(args.spellId, 22.5, args.sourceGUID)
-end
+--end
 
 function mod:ChargedClaw(args)
 	self:Message(args.spellId, "red")
