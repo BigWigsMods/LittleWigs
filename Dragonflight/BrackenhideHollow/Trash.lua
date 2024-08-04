@@ -391,13 +391,13 @@ end
 function mod:FishSlap(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+	--self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 end
 
 function mod:FreshCatch(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 end
 
 -- Rotting Creek

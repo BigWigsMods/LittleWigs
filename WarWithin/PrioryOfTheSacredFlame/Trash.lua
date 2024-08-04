@@ -232,7 +232,7 @@ do
 		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30)
 	end
 
-	function mod:GuardCaptainSuleymanDeath(args)
+	function mod:GuardCaptainSuleymanDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -267,7 +267,7 @@ do
 		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
 	end
 
-	function mod:ForgeMasterDamianDeath(args)
+	function mod:ForgeMasterDamianDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -307,7 +307,7 @@ do
 		timer = self:ScheduleTimer("HighPriestAemyaDeath", 30)
 	end
 
-	function mod:HighPriestAemyaDeath(args)
+	function mod:HighPriestAemyaDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -343,7 +343,7 @@ do
 		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
 	end
 
-	function mod:SergeantShaynemailDeath(args)
+	function mod:SergeantShaynemailDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -388,7 +388,7 @@ do
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
-	function mod:ElaenaEmberlanzDeath(args)
+	function mod:ElaenaEmberlanzDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -431,7 +431,7 @@ do
 		timer = self:ScheduleTimer("TaenerDuelmalDeath", 30)
 	end
 
-	function mod:TaenerDuelmalDeath(args)
+	function mod:TaenerDuelmalDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil

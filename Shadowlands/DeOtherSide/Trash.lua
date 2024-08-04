@@ -189,7 +189,7 @@ end
 function mod:UndyingRageApplied(args)
 	self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
 	self:PlaySound(args.spellId, (self:Tank() or self:Dispeller("enrage", true)) and "warning" or "alert")
-	self:NameplateCDBar(args.spellId, 33, args.sourceGUID)
+	--self:Nameplate(args.spellId, 33, args.sourceGUID)
 end
 
 function mod:UndyingRageRemoved(args)
@@ -288,7 +288,7 @@ end
 
 function mod:Haywire(args)
 	self:CastBar(args.spellId, 4)
-	self:NameplateCDBar(args.spellId, 19, args.sourceGUID)
+	--self:Nameplate(args.spellId, 19, args.sourceGUID)
 end
 
 function mod:HaywireOver(args)

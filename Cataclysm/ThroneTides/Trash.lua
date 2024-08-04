@@ -164,7 +164,7 @@ end
 function mod:Hex(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 20.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 20.7, args.sourceGUID)
 end
 
 function mod:HexApplied(args)
@@ -180,7 +180,7 @@ function mod:HealingWave(args)
 	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 3.6, args.sourceGUID)
+	--self:Nameplate(args.spellId, 3.6, args.sourceGUID)
 end
 
 -- Vicious Snap Dragon
@@ -209,7 +209,7 @@ do
 			prev = t
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alert")
-			--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+			--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 		end
 	end
 end
@@ -226,13 +226,13 @@ end
 function mod:VolatileBolt(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 21.9, args.sourceGUID)
+	--self:Nameplate(args.spellId, 21.9, args.sourceGUID)
 end
 
 function mod:AcidBarrage(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
+	--self:Nameplate(args.spellId, 10.9, args.sourceGUID)
 end
 
 -- Naz'jar Tempest Witch
@@ -248,7 +248,7 @@ function mod:LightningSurgeApplied(args)
 		end
 	end
 	-- if this is uncommented, move to SPELL_CAST_SUCCESS
-	--self:NameplateCDBar(args.spellId, 19.4, args.sourceGUID)
+	--self:Nameplate(args.spellId, 19.4, args.sourceGUID)
 end
 
 -- Faceless Seer
@@ -265,7 +265,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 8.5, args.sourceGUID)
+		--self:Nameplate(args.spellId, 8.5, args.sourceGUID)
 	end
 end
 
@@ -280,7 +280,7 @@ do
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
+		--self:Nameplate(args.spellId, 10.9, args.sourceGUID)
 	end
 end
 
@@ -289,13 +289,13 @@ end
 function mod:ShadowSmash(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 24.3, args.sourceGUID)
+	--self:Nameplate(args.spellId, 24.3, args.sourceGUID)
 end
 
 function mod:Crush(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
+	--self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 end
 
 -- Tainted Sentry
@@ -303,5 +303,5 @@ end
 function mod:Swell(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+	--self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 end

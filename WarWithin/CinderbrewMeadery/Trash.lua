@@ -219,7 +219,7 @@ do
 		timer = self:ScheduleTimer("ChefChewieDeath", 30)
 	end
 
-	function mod:ChefChewieDeath(args)
+	function mod:ChefChewieDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil

@@ -232,7 +232,7 @@ end
 function mod:VolcanicGuard(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 end
 
 do
@@ -246,7 +246,7 @@ do
 		end
 		-- technically outrangeable if you're fast and it won't go on CD unless it hits, so
 		-- if this is uncommented it should probably be moved to SUCCESS.
-		--self:NameplateCDBar(args.spellId, 13.4, args.sourceGUID)
+		--self:Nameplate(args.spellId, 13.4, args.sourceGUID)
 	end
 end
 
@@ -449,7 +449,7 @@ function mod:ReverberatingSlam(args)
 	self:PlaySound(args.spellId, "alert")
 	-- technically outrangeable if you're fast and it won't go on CD unless it hits, so
 	-- if this is uncommented it should probably be moved to SUCCESS.
-	--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
+	--self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 end
 
 -- Forgewrought Monstrosity

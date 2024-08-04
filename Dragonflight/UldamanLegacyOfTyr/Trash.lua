@@ -212,7 +212,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+		--self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 	end
 end
 
@@ -228,7 +228,7 @@ do
 				self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 				self:PlaySound(args.spellId, "alert")
 			end
-			--self:NameplateCDBar(args.spellId, 25.0, args.sourceGUID)
+			--self:Nameplate(args.spellId, 25.0, args.sourceGUID)
 		end
 	end
 end
@@ -244,7 +244,7 @@ do
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+		--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	end
 end
 
@@ -273,7 +273,7 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 13.2, args.sourceGUID)
+		--self:Nameplate(args.spellId, 13.2, args.sourceGUID)
 	end
 end
 
@@ -314,7 +314,7 @@ do
 				prev = t
 				self:Message(args.spellId, "purple")
 			end
-			--self:NameplateCDBar(args.spellId, 15.0, args.sourceGUID)
+			--self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 		end
 	end
 end
@@ -345,7 +345,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "info")
 		end
-		--self:NameplateCDBar(args.spellId, 21.7, args.sourceGUID)
+		--self:Nameplate(args.spellId, 21.7, args.sourceGUID)
 	end
 end
 
@@ -360,7 +360,7 @@ do
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 32.6, args.sourceGUID)
+		--self:Nameplate(args.spellId, 32.6, args.sourceGUID)
 	end
 end
 
@@ -385,7 +385,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 46.0, args.sourceGUID)
+		--self:Nameplate(args.spellId, 46.0, args.sourceGUID)
 	end
 end
 
@@ -409,7 +409,7 @@ end
 function mod:FissuringSlam(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 9.7, args.sourceGUID)
 end
 
 do
@@ -429,7 +429,7 @@ end
 function mod:Earthquake(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 end
 
 -- Cavern Seeker
@@ -457,7 +457,7 @@ do
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 19.0, args.sourceGUID)
+		--self:Nameplate(args.spellId, 19.0, args.sourceGUID)
 	end
 end
 
@@ -466,7 +466,7 @@ end
 function mod:BlessingOfTyr(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 48.6, args.sourceGUID)
+	--self:Nameplate(args.spellId, 48.6, args.sourceGUID)
 end
 
 -- Infinite Agent
@@ -480,7 +480,7 @@ do
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 22.6, args.sourceGUID)
+		--self:Nameplate(args.spellId, 22.6, args.sourceGUID)
 	end
 end
 

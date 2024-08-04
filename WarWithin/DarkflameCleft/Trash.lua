@@ -176,7 +176,7 @@ do
 		timer = self:ScheduleTimer("SootsnoutDeath", 30)
 	end
 
-	function mod:SootsnoutDeath(args)
+	function mod:SootsnoutDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -214,7 +214,7 @@ do
 		timer = self:ScheduleTimer("TorchsnarlDeath", 30)
 	end
 
-	function mod:TorchsnarlDeath(args)
+	function mod:TorchsnarlDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil

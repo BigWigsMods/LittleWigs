@@ -415,7 +415,7 @@ function mod:Chronomelt(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 end
 
 -- Infinite Timeslicer
@@ -424,7 +424,7 @@ function mod:Temposlice(args)
 	if not self:Player(args.destFlags) and (self:Tank() or self:Dispeller("magic", true, args.spellId)) then
 		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 		self:PlaySound(args.spellId, "alert")
-		--self:NameplateCDBar(args.spellId, 31.5, args.sourceGUID)
+		--self:Nameplate(args.spellId, 31.5, args.sourceGUID)
 	end
 end
 
@@ -433,13 +433,13 @@ end
 function mod:Timerip(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 34.0, args.sourceGUID)
+	--self:Nameplate(args.spellId, 34.0, args.sourceGUID)
 end
 
 -- Coalesced Time
 
 --function mod:Chronoburst(args)
-	--self:NameplateCDBar(415769, 15.8, args.sourceGUID)
+	--self:Nameplate(415769, 15.8, args.sourceGUID)
 --end
 
 do
@@ -463,7 +463,7 @@ end
 function mod:InfiniteBoltVolley(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 7.3, args.sourceGUID)
+	--self:Nameplate(args.spellId, 7.3, args.sourceGUID)
 end
 
 -- Interval
@@ -485,7 +485,7 @@ end
 function mod:Enervate(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 end
 
 -- Timestream Anomaly
@@ -493,13 +493,13 @@ end
 function mod:Untwist(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
 
 function mod:Bloom(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 end
 
 do
@@ -528,7 +528,7 @@ do
 		playerList = {}
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
-		--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+		--self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 	end
 
 	function mod:TimelessCurseApplied(args)
@@ -543,7 +543,7 @@ end
 function mod:InfiniteFury(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+	--self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Risen Dragon
@@ -551,7 +551,7 @@ end
 function mod:BlightSpew(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
+	--self:Nameplate(args.spellId, 13.3, args.sourceGUID)
 end
 
 -- Iridikron's Creation
@@ -580,7 +580,7 @@ function mod:CorrodingVolley(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 7.3, args.sourceGUID)
+	--self:Nameplate(args.spellId, 7.3, args.sourceGUID)
 end
 
 -- Valow, Timesworn Keeper
@@ -701,7 +701,7 @@ end
 function mod:DisplaceChronosequence(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 end
 
 -- Infinite Saboteur
@@ -709,7 +709,7 @@ end
 function mod:BronzeExhalation(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
 
 -- Infinite Riftmage
@@ -717,7 +717,7 @@ end
 function mod:InfiniteBurn(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 9.7, args.sourceGUID)
 end
 
 do
@@ -740,7 +740,7 @@ function mod:FishBoltVolley(args)
 	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 13.3, args.sourceGUID)
+	--self:Nameplate(args.spellId, 13.3, args.sourceGUID)
 end
 
 function mod:BubblyBarrage(args)
@@ -749,7 +749,7 @@ function mod:BubblyBarrage(args)
 	end
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+	--self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Time-Lost Aerobot
@@ -757,13 +757,13 @@ end
 function mod:BombingRun(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 23.0, args.sourceGUID)
+	--self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 end
 
 function mod:ElectroJuicedGigablast(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 end
 
 -- Chronaxie
@@ -771,7 +771,7 @@ end
 function mod:ChronalEruption(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 9.7, args.sourceGUID)
 end
 
 function mod:ChronalEruptionApplied(args)
@@ -862,7 +862,7 @@ function mod:HealingWave(args)
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
-	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 9.7, args.sourceGUID)
 end
 
 do
@@ -886,7 +886,7 @@ function mod:HolyLight(args)
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "warning")
 	end
-	--self:NameplateCDBar(args.spellId, 9.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 9.7, args.sourceGUID)
 end
 
 do
@@ -914,7 +914,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 10.9, args.sourceGUID)
+		--self:Nameplate(args.spellId, 10.9, args.sourceGUID)
 	end
 end
 
@@ -927,7 +927,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 14.5, args.sourceGUID)
+		--self:Nameplate(args.spellId, 14.5, args.sourceGUID)
 	end
 end
 
@@ -936,7 +936,7 @@ end
 function mod:DizzyingSands(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-	--self:NameplateCDBar(args.spellId, 29.1, args.sourceGUID)
+	--self:Nameplate(args.spellId, 29.1, args.sourceGUID)
 end
 
 function mod:MillenniumAid(args)

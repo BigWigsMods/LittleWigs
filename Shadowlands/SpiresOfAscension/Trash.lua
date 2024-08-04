@@ -223,5 +223,5 @@ end
 function mod:ChargedSpear(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	self:NameplateBar(args.spellId, 16.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 16.5, args.sourceGUID)
 end

@@ -250,7 +250,7 @@ end
 function mod:WrathOfZolramus(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 end
 
 -- Zolramus Necromancer
@@ -427,7 +427,7 @@ function mod:Tenderize(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "info")
 	-- This bar is here in case dps/pets taunt to let the tank drop stacks
-	self:NameplateCDBar(args.spellId, 12.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 12.2, args.sourceGUID)
 end
 
 -- Flesh Crafter

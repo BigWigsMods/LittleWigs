@@ -194,7 +194,7 @@ function mod:HarrowingDespair(args)
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "warning")
 	end
-	--self:NameplateCDBar(args.spellId, 32.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 32.8, args.sourceGUID)
 end
 
 -- Devout Blood Priest
@@ -225,7 +225,7 @@ end
 function mod:RottenBile(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 10.1, args.sourceGUID)
+	--self:Nameplate(args.spellId, 10.1, args.sourceGUID)
 end
 
 -- Chosen Blood Matron
@@ -238,20 +238,20 @@ function mod:BloodHarvest(args)
 		-- Savage Cleave will be immediately cast in their direction.
 		self:Say(args.spellId, nil, nil, "Blood Harvest")
 	end
-	--self:NameplateCDBar(args.spellId, 12.1, args.sourceGUID)
+	--self:Nameplate(args.spellId, 12.1, args.sourceGUID)
 end
 
 function mod:SavageCleave(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 12.3, args.sourceGUID)
+	--self:Nameplate(args.spellId, 12.3, args.sourceGUID)
 end
 
 function mod:Warcry(args)
 	if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "long")
-		--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+		--self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 	end
 end
 
@@ -269,7 +269,7 @@ end
 function mod:DecayingMind(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 27.1, args.sourceGUID)
+	--self:Nameplate(args.spellId, 27.1, args.sourceGUID)
 end
 
 function mod:DecayingMindApplied(args)
@@ -301,7 +301,7 @@ do
 			end
 		end
 		-- if this is uncommented, move to SPELL_CAST_SUCCESS
-		--self:NameplateCDBar(args.spellId, 31.6, args.sourceGUID)
+		--self:Nameplate(args.spellId, 31.6, args.sourceGUID)
 	end
 end
 
@@ -317,7 +317,7 @@ function mod:SonicScreech(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 end
 
 -- Living Rot
@@ -350,7 +350,7 @@ function mod:WickedFrenzy(args)
 	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 end
 
 do
@@ -389,7 +389,7 @@ function mod:DarkEchoes(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID)
+	--self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Bloodsworn Defiler
@@ -397,19 +397,19 @@ end
 function mod:ShadowBoltVolley(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 29.1, args.sourceGUID)
+	--self:Nameplate(args.spellId, 29.1, args.sourceGUID)
 end
 
 function mod:WitheringCurse(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 25.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 end
 
 function mod:SummonSpiritDrainTotem(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
-	--self:NameplateCDBar(args.spellId, 35.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 35.2, args.sourceGUID)
 end
 
 -- Faceless Corruptor
@@ -423,7 +423,7 @@ do
 			self:Message(args.spellId, "cyan")
 			self:PlaySound(args.spellId, "long")
 		end
-		--self:NameplateCDBar(args.spellId, 16.2, args.sourceGUID)
+		--self:Nameplate(args.spellId, 16.2, args.sourceGUID)
 	end
 end
 
@@ -436,6 +436,6 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 15.8, args.sourceGUID)
+		--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 	end
 end

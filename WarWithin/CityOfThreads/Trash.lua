@@ -204,7 +204,7 @@ end
 -- Herald of Ansurek
 
 --function mod:ShadowsOfDoubt()
-	--self:NameplateCDBar(443437, 13.9, args.sourceGUID)
+	--self:Nameplate(443437, 13.9, args.sourceGUID)
 --end
 
 function mod:ShadowsOfDoubtApplied(args)
@@ -223,7 +223,7 @@ function mod:SilkBinding(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 21.8, args.sourceGUID) recast if stunned, needs SUCCESS/INTERRUPT
+	--self:Nameplate(args.spellId, 21.8, args.sourceGUID) -- recast if stunned, needs SUCCESS/INTERRUPT
 end
 
 -- Royal Swarmguard
@@ -231,7 +231,7 @@ end
 function mod:Earthshatter(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 15.5, args.sourceGUID)
+	--self:Nameplate(args.spellId, 15.5, args.sourceGUID)
 end
 
 -- Xeph'itik
@@ -301,7 +301,7 @@ end
 function mod:NullSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 26.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 end
 
 -- Covert Webmender
@@ -309,7 +309,7 @@ end
 function mod:MendingWeb(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 20.6, args.sourceGUID) recast if stunned, needs SUCCESS/INTERRUPT
+	--self:Nameplate(args.spellId, 20.6, args.sourceGUID) -- recast if stunned, needs SUCCESS/INTERRUPT
 end
 
 -- Royal Venomshell
@@ -317,7 +317,7 @@ end
 function mod:VenomousSpray(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	--self:NameplateCDBar(args.spellId, 24.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 24.2, args.sourceGUID)
 end
 
 -- Unstable Test Subject
@@ -325,7 +325,7 @@ end
 function mod:DarkBarrage(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	--self:NameplateCDBar(args.spellId, 27.9, args.sourceGUID)
+	--self:Nameplate(args.spellId, 27.9, args.sourceGUID)
 end
 
 -- Sureki Unnaturaler
@@ -336,7 +336,7 @@ function mod:VoidWave(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 16.4, args.sourceGUID) recast if stunned, needs SUCCESS/INTERRUPT
+	--self:Nameplate(args.spellId, 16.4, args.sourceGUID) -- recast if stunned, needs SUCCESS/INTERRUPT
 end
 
 -- Elder Shadeweaver
@@ -344,7 +344,7 @@ end
 function mod:UmbralWeave(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 23.1, args.sourceGUID)
+	--self:Nameplate(args.spellId, 23.1, args.sourceGUID)
 end
 
 -- Hulking Warshell
@@ -352,7 +352,7 @@ end
 function mod:TremorSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 23.0, args.sourceGUID)
+	--self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 end
 
 -- Congealed Droplet

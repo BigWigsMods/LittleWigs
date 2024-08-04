@@ -177,7 +177,7 @@ do
 
 	function mod:FrenziedCharge(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-		--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
+		--self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 	end
 end
 
@@ -186,7 +186,7 @@ end
 function mod:WildThrash(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
 
 -- Shieldbearer of Zul

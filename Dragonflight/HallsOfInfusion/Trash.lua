@@ -235,7 +235,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 17.0, args.sourceGUID)
+		--self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 	end
 end
 
@@ -267,7 +267,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
+		--self:Nameplate(args.spellId, 30.3, args.sourceGUID)
 	end
 end
 
@@ -280,7 +280,7 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+		--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	end
 end
 
@@ -415,7 +415,7 @@ function mod:Thunderstrike(args)
 	end
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 23.1, args.sourceGUID)
+	--self:Nameplate(args.spellId, 23.1, args.sourceGUID)
 end
 
 -- Primalist Icecaller
@@ -426,7 +426,7 @@ function mod:RefreshingTides(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:NameplateCDBar(args.spellId, 30.3, args.sourceGUID)
+	--self:Nameplate(args.spellId, 30.3, args.sourceGUID)
 end
 
 -- Glacial Proto-Dragon
@@ -434,13 +434,13 @@ end
 function mod:OceanicBreath(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
 
 function mod:DeepChill(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	--self:NameplateCDBar(args.spellId, 32.8, args.sourceGUID)
+	--self:Nameplate(args.spellId, 32.8, args.sourceGUID)
 end
 
 -- Aqua Rager

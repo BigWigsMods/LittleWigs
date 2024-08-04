@@ -90,7 +90,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ThrashingFrenzy", 445774)
 end
 
-function mod:VerifyEnable(_, mobId, mapId)
+function mod:VerifyEnable(_, mobId)
 	-- enable if the mob is not Brann, or if we're in Tek-Rathan Abyss.
 	-- Brann enablement is needed in The Sinkhole because the gossip mob is dead.
 	return (mobId ~= 210759 and mobId ~= 228903) or select(8, GetInstanceInfo()) == 2689

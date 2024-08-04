@@ -245,7 +245,7 @@ end
 function mod:BombCyclone(args)
 	self:Message(411005, "orange")
 	self:PlaySound(411005, "alarm")
-	--self:NameplateCDBar(411005, 15.8, self:UnitGUID(unit))
+	--self:Nameplate(411005, 15.8, self:UnitGUID(unit))
 end
 
 -- Turbulent Squall
@@ -309,13 +309,13 @@ end
 function mod:ChillingBreath(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:NameplateCDBar(args.spellId, 18.2, args.sourceGUID)
+	--self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
 
 function mod:IcyBuffet(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
-	--self:NameplateCDBar(args.spellId, 23.0, args.sourceGUID)
+	--self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 end
 
 -- Executor of the Caliph
@@ -332,7 +332,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		--self:NameplateCDBar(args.spellId, 14.6, args.sourceGUID)
+		--self:Nameplate(args.spellId, 14.6, args.sourceGUID)
 	end
 end
 
@@ -348,7 +348,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		--self:NameplateCDBar(args.spellId, 29.2, args.sourceGUID)
+		--self:Nameplate(args.spellId, 29.2, args.sourceGUID)
 	end
 end
 
@@ -366,7 +366,7 @@ do
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		end
-		--self:NameplateCDBar(args.spellId, 14.2, args.sourceGUID)
+		--self:Nameplate(args.spellId, 14.2, args.sourceGUID)
 	end
 end
 
@@ -394,7 +394,7 @@ do
 	function mod:LightningLash(args)
 		if self:Retail() then
 			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-			--self:NameplateCDBar(args.spellId, 6.9, args.sourceGUID)
+			--self:Nameplate(args.spellId, 6.9, args.sourceGUID)
 		else
 			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
