@@ -75,7 +75,7 @@ function mod:AlertingShrill(args)
 		self:CDBar(args.spellId, 38.4, CL.count:format(args.spellName, alertingShrillCount))
 	else
 		-- syncs up with Gossamer Onslaught timer after the second cast
-		self:CDBar(args.spellId, 40.0, CL.count:format(args.spellName, alertingShrillCount))
+		self:CDBar(args.spellId, 39.2, CL.count:format(args.spellName, alertingShrillCount))
 	end
 	-- 7.25 minimum to next Voracious Bite
 	if nextVoraciousBite - t < 7.25 then
@@ -90,7 +90,7 @@ function mod:GossamerOnslaught(args)
 	self:StopBar(CL.count:format(args.spellName, gossamerOnslaughtCount))
 	self:Message(args.spellId, "red", CL.count:format(args.spellName, gossamerOnslaughtCount))
 	gossamerOnslaughtCount = gossamerOnslaughtCount + 1
-	self:CDBar(args.spellId, 40.0, CL.count:format(args.spellName, gossamerOnslaughtCount))
+	self:CDBar(args.spellId, 39.3, CL.count:format(args.spellName, gossamerOnslaughtCount))
 	-- 12.1 minimum to next Voracious Bite
 	if nextVoraciousBite - t < 12.1 then
 		nextVoraciousBite = t + 12.1
