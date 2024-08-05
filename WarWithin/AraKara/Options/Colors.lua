@@ -18,7 +18,7 @@ BigWigs:AddColors("Ki'katal the Harvester", {
 	[432031] = {"blue","yellow"},
 	[432117] = "cyan",
 	[432130] = "orange",
-	[432227] = "yellow",
+	[432227] = "red",
 	[461487] = "red",
 })
 
