@@ -27,12 +27,15 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.engorged_crawler = "Engorged Crawler"
+	L.trilling_attendant = "Trilling Attendant"
 	L.ixin = "Ixin"
 	L.nakt = "Nakt"
 	L.atik = "Atik"
 	L.hulking_bloodguard = "Hulking Bloodguard"
 	L.bloodstained_webmage = "Bloodstained Webmage"
 	L.blood_overseer = "Blood Overseer"
+	L.nerubian_hauler = "Nerubian Hauler"
 
 	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
@@ -48,40 +51,62 @@ function mod:GetOptions()
 		-- Autotalk
 		"custom_on_autotalk",
 		439208, -- Silk Wrap
+		-- Engorged Crawler
+		438622, -- Toxic Rupture
+		-- Trilling Attendant
+		{434793, "NAMEPLATEBAR"}, -- Resonant Barrage
 		-- Ixin
-		434824, -- Web Spray
-		434802, -- Horrifying Shrill
+		{434824, "NAMEPLATEBAR"}, -- Web Spray
+		{434802, "NAMEPLATEBAR"}, -- Horrifying Shrill
 		-- Nakt
-		438877, -- Call of the Brood
+		{438877, "NAMEPLATEBAR"}, -- Call of the Brood
 		-- Atik
-		438826, -- Poisonous Cloud
+		{438826, "NAMEPLATEBAR"}, -- Poisonous Cloud
 		-- Hulking Bloodguard
-		453161, -- Impale
-		434252, -- Massive Slam
+		{453161, "NAMEPLATEBAR"}, -- Impale
 		-- Bloodstained Webmage
-		448248, -- Revolting Volley
+		{448248, "NAMEPLATEBAR"}, -- Revolting Volley
 		-- Blood Overseer
-		433845, -- Erupting Webs
-		433841, -- Venom Volley
+		{433845, "NAMEPLATEBAR"}, -- Erupting Webs
+		{433841, "NAMEPLATEBAR"}, -- Venom Volley
+		-- Nerubian Hauler
+		{434252, "NAMEPLATEBAR"}, -- Massive Slam
 	}, {
 		["custom_on_autotalk"] = CL.general,
+		[438622] = L.engorged_crawler,
+		[434793] = L.trilling_attendant,
 		[434824] = L.ixin,
 		[438877] = L.nakt,
 		[438826] = L.atik,
 		[453161] = L.hulking_bloodguard,
 		[448248] = L.bloodstained_webmage,
 		[433845] = L.blood_overseer,
+		[434252] = L.nerubian_hauler,
 	}
 end
 
 function mod:OnBossEnable()
+	-- TODO Avanoxx warmup?
+	-- [CHAT_MSG_RAID_BOSS_EMOTE] The Attendants have been silenced... something emerges!#Avanoxx
+	-- ~15s
+
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_AURA_APPLIED", "SilkThreadApplied", 439201)
 
+	-- Interrupts
+	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
+
+	-- Engorged Crawler
+	self:Log("SPELL_CAST_SUCCESS", "ToxicRupture", 438622)
+
+	-- Trilling Attendant
+	self:Log("SPELL_CAST_SUCCESS", "ResonantBarrage", 434793)
+
 	-- Ixin
 	self:Log("SPELL_CAST_START", "WebSpray", 434824)
 	self:Log("SPELL_CAST_START", "HorrifyingShrill", 434802)
+	self:Log("SPELL_CAST_SUCCESS", "HorrifyingShrillSuccess", 434802)
 
 	-- Nakt
 	self:Log("SPELL_CAST_START", "CallOfTheBrood", 438877)
@@ -92,14 +117,18 @@ function mod:OnBossEnable()
 
 	-- Hulking Bloodguard
 	self:Log("SPELL_CAST_START", "Impale", 453161)
-	self:Log("SPELL_CAST_START", "MassiveSlam", 434252)
 
 	-- Bloodstained Webmage
 	self:Log("SPELL_CAST_START", "RevoltingVolley", 448248)
+	self:Log("SPELL_CAST_SUCCESS", "RevoltingVolleySuccess", 448248)
 
 	-- Blood Overseer
 	self:Log("SPELL_CAST_START", "EruptingWebs", 433845)
 	self:Log("SPELL_CAST_START", "VenomVolley", 433841)
+	self:Log("SPELL_CAST_SUCCESS", "VenomVolleySuccess", 433841)
+
+	-- Nerubian Hauler
+	self:Log("SPELL_CAST_START", "MassiveSlam", 434252)
 end
 
 --------------------------------------------------------------------------------
@@ -124,11 +153,54 @@ function mod:SilkThreadApplied(args)
 	end
 end
 
+-- Interrupts
+
+function mod:Interrupt(args)
+	if args.extraSpellId == 434802 then -- Horrifying Shrill
+		self:Nameplate(434802, 13.1, args.destGUID)
+	elseif args.extraSpellId == 448248 then -- Revolting Volley
+		self:Nameplate(448248, 18.0, args.destGUID)
+	elseif args.extraSpellId == 433841 then -- Venom Volley
+		self:Nameplate(433841, 18.6, args.destGUID)
+	end
+end
+
+-- Engorged Crawler
+
+do
+	local prev = 0
+	function mod:ToxicRupture(args)
+		local t = args.time
+		if t - prev > 2.5 then
+			prev = t
+			-- cast at low hp, recast if stopped
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+-- Trilling Attendant
+
+do
+	local prev = 0
+	function mod:ResonantBarrage(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	end
+end
+
 -- Ixin
 
 function mod:WebSpray(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 10.9, args.sourceGUID)
 end
 
 function mod:HorrifyingShrill(args)
@@ -136,11 +208,16 @@ function mod:HorrifyingShrill(args)
 	self:PlaySound(args.spellId, "warning")
 end
 
+function mod:HorrifyingShrillSuccess(args)
+	self:Nameplate(args.spellId, 13.1, args.sourceGUID)
+end
+
 -- Nakt
 
 function mod:CallOfTheBrood(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
+	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 end
 
 -- Atik
@@ -148,6 +225,7 @@ end
 function mod:PoisonousCloud(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 end
 
 function mod:PoisonousCloudDamage(args)
@@ -162,11 +240,7 @@ end
 function mod:Impale(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:MassiveSlam(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
 end
 
 -- Bloodstained Webmage
@@ -183,6 +257,10 @@ do
 	end
 end
 
+function mod:RevoltingVolleySuccess(args)
+	self:Nameplate(args.spellId, 18.0, args.sourceGUID)
+end
+
 -- Blood Overseer
 
 do
@@ -194,6 +272,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	end
 end
 
@@ -207,4 +286,16 @@ do
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
+end
+
+function mod:VenomVolleySuccess(args)
+	self:Nameplate(args.spellId, 18.6, args.sourceGUID)
+end
+
+-- Nerubian Hauler
+
+function mod:MassiveSlam(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
 end
