@@ -206,6 +206,7 @@ end
 function mod:HorrifyingShrill(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 end
 
 function mod:HorrifyingShrillSuccess(args)
@@ -254,6 +255,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
 end
 
@@ -285,6 +287,7 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
 end
 
