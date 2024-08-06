@@ -57,41 +57,42 @@ end
 function mod:GetOptions()
 	return {
 		-- Corpse Harvester
-		334748, -- Drain Fluids
+		{334748, "NAMEPLATEBAR"}, -- Drain Fluids
 		-- Stitched Vanguard
 		323190, -- Meat Shield
 		-- Zolramus Gatekeeper
-		323347, -- Clinging Darkness
+		{323347, "NAMEPLATEBAR"}, -- Clinging Darkness
 		{322756, "NAMEPLATEBAR"}, -- Wrath of Zolramus
 		-- Zolramus Necromancer
-		321780, -- Animate Dead
+		{321780, "NAMEPLATEBAR"}, -- Animate Dead
+		{327396, "SAY", "SAY_COUNTDOWN", "NAMEPLATEBAR"}, -- Grim Fate
 		-- Brittlebone Mage
-		328667, -- Frostbolt Volley
+		{328667, "NAMEPLATEBAR"}, -- Frostbolt Volley
 		-- Skeletal Marauder
-		324293, -- Rasping Scream
-		343470, -- Boneshatter Shield
+		{324293, "NAMEPLATEBAR"}, -- Rasping Scream
+		{343470, "NAMEPLATEBAR"}, -- Boneshatter Shield
 		-- Zolramus Bonemender
-		335143, -- Bonemend
+		{335143, "NAMEPLATEBAR"}, -- Bonemend
 		320822, -- Final Bargain
 		-- Nar'zudah
 		335141, -- Dark Shroud
-		{327396, "SAY", "SAY_COUNTDOWN"}, -- Grim Fate
+		345623, -- Death Burst
 		-- Skeletal Monstrosity
 		{324394, "TANK"}, -- Shatter
 		324387, -- Frigid Spikes
 		324372, -- Reaping Winds
 		-- Corpse Collector
-		338353, -- Goresplatter
+		{338353, "NAMEPLATEBAR"}, -- Goresplatter
 		-- Kyrian Stitchwerk
-		{338456, "TANK_HEALER"}, -- Mutilate
+		{338456, "TANK_HEALER", "NAMEPLATEBAR"}, -- Mutilate
 		{338357, "NAMEPLATEBAR"}, -- Tenderize
 		-- Flesh Crafter
-		327130, -- Repair Flesh
-		{323471, "SAY"}, -- Throw Cleaver
+		{327130, "NAMEPLATEBAR"}, -- Repair Flesh
+		{323471, "SAY", "NAMEPLATEBAR"}, -- Throw Cleaver
 		-- Loyal Creation
-		327240, -- Spine Crush
+		{327240, "NAMEPLATEBAR"}, -- Spine Crush
 		-- Separation Assistant
-		338606, -- Morbid Fixation
+		{338606, "NAMEPLATEBAR"}, -- Morbid Fixation
 		-- Goregrind
 		333477, -- Gut Slice
 		-- Rotspew
@@ -120,36 +121,44 @@ function mod:OnBossEnable()
 	-- Warmup
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 
+	-- Interrupts
+	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
+
 	-- Corpse Harvester
 	self:Log("SPELL_CAST_START", "DrainFluids", 334748)
+	self:Log("SPELL_CAST_SUCCESS", "DrainFluidsSuccess", 334748)
 
 	-- Stitched Vanguard
-	self:Log("SPELL_CAST_START", "MeatShield", 323190)
+	self:Log("SPELL_CAST_START", "MeatShield", 323190) -- TODO removed?
 
 	-- Zolramus Gatekeeper
-	self:Log("SPELL_AURA_APPLIED", "ClingingDarkness", 323347)
-	self:Log("SPELL_CAST_START", "WrathOfZolramus", 322756)
+	self:Log("SPELL_AURA_APPLIED", "ClingingDarkness", 323347) -- Mythic only
+	self:Log("SPELL_CAST_START", "WrathOfZolramus", 322756) -- Mythic only
 
 	-- Zolramus Necromancer
-	self:Log("SPELL_AURA_APPLIED", "AnimateDead", 321780)
+	self:Log("SPELL_CAST_SUCCESS", "AnimateDead", 321780)
+	self:Log("SPELL_CAST_SUCCESS", "GrimFate", 327393)
+	self:Log("SPELL_AURA_APPLIED", "GrimFateApplied", 327396)
+	self:Log("SPELL_AURA_REMOVED", "GrimFateRemoved", 327396)
 
 	-- Brittlebone Mage
-	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
+	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667) -- Mythic only
+	self:Log("SPELL_CAST_SUCCESS", "FrostboltVolleySuccess", 328667)
 
 	-- Skeletal Marauder
 	self:Log("SPELL_CAST_START", "RaspingScream", 324293)
-	self:Log("SPELL_AURA_APPLIED", "BoneshatterShieldApplied", 343470)
+	self:Log("SPELL_CAST_SUCCESS", "RaspingScreamSuccess", 324293)
+	self:Log("SPELL_CAST_SUCCESS", "BoneshatterShield", 343470)
 
 	-- Zolramus Bonemender
 	self:Log("SPELL_CAST_START", "Bonemend", 335143)
+	self:Log("SPELL_CAST_SUCCESS", "BonemendSuccess", 335143)
 	self:Log("SPELL_CAST_START", "FinalBargain", 320822)
 
 	-- Nar'zudah
 	self:Log("SPELL_CAST_START", "DarkShroud", 335141)
 	self:Log("SPELL_AURA_REMOVED", "DarkShroudRemoved", 335141)
-	self:Log("SPELL_CAST_SUCCESS", "GrimFate", 327393)
-	self:Log("SPELL_AURA_APPLIED", "GrimFateApplied", 327396)
-	self:Log("SPELL_AURA_REMOVED", "GrimFateRemoved", 327396)
+	self:Log("SPELL_CAST_SUCCESS", "DeathBurst", 345623)
 	self:Death("NarzudahDeath", 165824)
 
 	-- Skeletal Monstrosity
@@ -160,6 +169,7 @@ function mod:OnBossEnable()
 
 	-- Corpse Collector
 	self:Log("SPELL_CAST_START", "Goresplatter", 338353)
+	self:Log("SPELL_CAST_SUCCESS", "GoresplatterSuccess", 338353)
 
 	-- Kyrian Stitchwerk
 	self:Log("SPELL_CAST_START", "Mutilate", 338456)
@@ -167,10 +177,12 @@ function mod:OnBossEnable()
 
 	-- Flesh Crafter
 	self:Log("SPELL_CAST_SUCCESS", "RepairFlesh", 327130) -- SUCCESS on 327130 is when the interruptible channel begins
-	self:Log("SPELL_AURA_APPLIED", "ThrowCleaver", 323471)
+	self:Log("SPELL_CAST_SUCCESS", "ThrowCleaver", 323496)
+	self:Log("SPELL_AURA_APPLIED", "ThrowCleaverApplied", 323471)
 
 	-- Loyal Creation
 	self:Log("SPELL_CAST_START", "SpineCrush", 327240)
+	self:Log("SPELL_CAST_SUCCESS", "SpineCrushSuccess", 327240)
 
 	-- Separation Assistant
 	self:Log("SPELL_CAST_START", "MorbidFixation", 338606)
@@ -204,6 +216,22 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	end
 end
 
+-- Interrupts
+
+function mod:Interrupt(args)
+	if args.extraSpellId == 334748 then -- Drain Fluids
+		self:Nameplate(334748, 15.0, args.destGUID)
+	elseif args.extraSpellId == 324293 then -- Rasping Scream
+		self:Nameplate(324293, 16.2, args.destGUID)
+	elseif args.extraSpellId == 335143 then -- Bonemend
+		self:Nameplate(335143, 7.0, args.destGUID)
+	elseif args.extraSpellId == 338353 then -- Goresplatter
+		self:Nameplate(338353, 21.0, args.destGUID)
+	elseif args.extraSpellId == 328667 then -- Frostbolt Volley
+		self:Nameplate(328667, 16.1, args.destGUID)
+	end
+end
+
 -- Corpse Harvester
 
 do
@@ -213,12 +241,17 @@ do
 			return
 		end
 		local t = args.time
-		if t-prev > 0.5 then
+		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:DrainFluidsSuccess(args)
+	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 end
 
 -- Stitched Vanguard
@@ -230,7 +263,7 @@ do
 			return
 		end
 		local t = args.time
-		if t-prev > 1 then
+		if t - prev > 1 then
 			prev = t
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
@@ -245,12 +278,13 @@ function mod:ClingingDarkness(args)
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
+	self:Nameplate(args.spellId, 65.5, args.sourceGUID)
 end
 
 function mod:WrathOfZolramus(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
-	--self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 end
 
 -- Zolramus Necromancer
@@ -259,6 +293,30 @@ function mod:AnimateDead(args)
 	-- these NPCs can be mind-controlled by Priests but cannot cast Animate Dead while MC'd
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 29.2, args.sourceGUID)
+end
+
+function mod:GrimFate(args)
+	if self:MobId(args.sourceGUID) == 165824 then -- Nar'zudah
+		self:NarzudahGrimFate()
+	else
+		self:Nameplate(327396, 18.1, args.sourceGUID)
+	end
+end
+
+function mod:GrimFateApplied(args)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Grim Fate")
+		self:SayCountdown(args.spellId, 4)
+	end
+end
+
+function mod:GrimFateRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
+	end
 end
 
 -- Brittlebone Mage
@@ -270,6 +328,13 @@ function mod:FrostboltVolley(args)
 		end
 		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+	end
+end
+
+function mod:FrostboltVolleySuccess(args)
+	if self:MobId(args.sourceGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
+		self:Nameplate(args.spellId, 16.1, args.sourceGUID)
 	end
 end
 
@@ -278,11 +343,17 @@ end
 function mod:RaspingScream(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 end
 
-function mod:BoneshatterShieldApplied(args)
+function mod:RaspingScreamSuccess(args)
+	self:Nameplate(args.spellId, 16.2, args.sourceGUID)
+end
+
+function mod:BoneshatterShield(args)
 	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 end
 
 -- Zolramus Bonemender
@@ -291,15 +362,20 @@ function mod:Bonemend(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
 	end
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:BonemendSuccess(args)
+	self:Nameplate(args.spellId, 7.0, args.sourceGUID)
 end
 
 function mod:FinalBargain(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
 	end
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -312,9 +388,9 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 22.7)
+		self:CDBar(args.spellId, 22.3)
 		timer = self:ScheduleTimer("NarzudahDeath", 30)
 	end
 
@@ -323,29 +399,22 @@ do
 		self:PlaySound(args.spellId, "info")
 	end
 
-	function mod:GrimFate(args)
-		if self:MobId(args.sourceGUID) == 165824 then -- Nar'zudah
-			if timer then
-				self:CancelTimer(timer)
-			end
-			self:CDBar(327396, 20.7)
-			timer = self:ScheduleTimer("NarzudahDeath", 30)
+	function mod:NarzudahGrimFate()
+		if timer then
+			self:CancelTimer(timer)
 		end
+		self:CDBar(327396, 20.7)
+		timer = self:ScheduleTimer("NarzudahDeath", 30)
 	end
 
-	function mod:GrimFateApplied(args)
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alarm", nil, args.destName)
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId, nil, nil, "Grim Fate")
-			self:SayCountdown(args.spellId, 4)
+	function mod:DeathBurst(args)
+		if timer then
+			self:CancelTimer(timer)
 		end
-	end
-
-	function mod:GrimFateRemoved(args)
-		if self:Me(args.destGUID) then
-			self:CancelSayCountdown(args.spellId)
-		end
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:CDBar(args.spellId, 17.0)
+		timer = self:ScheduleTimer("NarzudahDeath", 30)
 	end
 
 	function mod:NarzudahDeath()
@@ -355,6 +424,7 @@ do
 		end
 		self:StopBar(335141) -- Dark Shroud
 		self:StopBar(327396) -- Grim Fate
+		self:StopBar(345623) -- Death Burst
 	end
 end
 
@@ -389,7 +459,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 20.6)
+		self:CDBar(args.spellId, 20.2)
 		timer = self:ScheduleTimer("SkeletalMonstrosityDeath", 30)
 	end
 
@@ -412,22 +482,38 @@ function mod:Goresplatter(args)
 	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:GoresplatterSuccess(args)
+	self:Nameplate(args.spellId, 21.0, args.sourceGUID)
 end
 
 -- Kyrian Stitchwerk
 
 function mod:Mutilate(args)
-	if self:MobId(args.sourceGUID) ~= 164578 then -- Stitchflesh's Creation, add on Surgeon Stitchflesh
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId ~= 164578 then -- Stitchflesh's Creation, add on Surgeon Stitchflesh
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alert")
+		if mobId == 163620 then -- Rotspew
+			self:RotspewMutilate()
+		elseif mobId == 163621 then -- Goregrind
+			self:GoregrindMutilate()
+		else
+			self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+		end
 	end
 end
 
 function mod:Tenderize(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "info")
-	-- This bar is here in case dps/pets taunt to let the tank drop stacks
-	--self:Nameplate(args.spellId, 12.2, args.sourceGUID)
+	if self:MobId(args.sourceGUID) == 163621 then -- Goregrind
+		self:GoregrindTenderize()
+	else
+		self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	end
 end
 
 -- Flesh Crafter
@@ -438,11 +524,16 @@ function mod:RepairFlesh(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 16.3, args.sourceGUID)
+end
+
+function mod:ThrowCleaver(args)
+	self:Nameplate(323471, 13.0, args.sourceGUID)
 end
 
 do
 	local prevOnMe = 0
-	function mod:ThrowCleaver(args)
+	function mod:ThrowCleaverApplied(args)
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 		local t = args.time
@@ -450,6 +541,7 @@ do
 			prevOnMe = t
 			self:Say(args.spellId, nil, nil, "Throw Cleaver")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
 end
 
@@ -458,6 +550,10 @@ end
 function mod:SpineCrush(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:SpineCrushSuccess(args)
+	self:Nameplate(args.spellId, 14.0, args.sourceGUID)
 end
 
 -- Separation Assistant
@@ -475,6 +571,7 @@ do
 	function mod:MorbidFixation(args)
 		-- alert earlier using target scanning instead of watching the debuff
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 	end
 end
 
@@ -501,12 +598,30 @@ do
 		timer = self:ScheduleTimer("GoregrindDeath", 30)
 	end
 
+	function mod:GoregrindTenderize()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(338357, 12.1)
+		timer = self:ScheduleTimer("GoregrindDeath", 30)
+	end
+
+	function mod:GoregrindMutilate()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(338456, 12.1)
+		timer = self:ScheduleTimer("GoregrindDeath", 30)
+	end
+
 	function mod:GoregrindDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(333477) -- Gut Slice
+		self:StopBar(338357) -- Tenderize
+		self:StopBar(338456) -- Mutilate
 	end
 end
 
@@ -529,9 +644,17 @@ do
 				self:CancelTimer(timer)
 			end
 			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-			self:CDBar(args.spellId, 12.1)
+			self:CDBar(args.spellId, 11.7)
 			timer = self:ScheduleTimer("RotspewDeath", 30)
 		end
+	end
+
+	function mod:RotspewMutilate()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(338456, 11.8)
+		timer = self:ScheduleTimer("RotspewDeath", 30)
 	end
 
 	function mod:RotspewDeath()
@@ -540,5 +663,6 @@ do
 			timer = nil
 		end
 		self:StopBar(333479) -- Spew Disease
+		self:StopBar(338456) -- Mutilate
 	end
 end
