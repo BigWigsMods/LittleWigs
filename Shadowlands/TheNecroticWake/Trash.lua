@@ -127,6 +127,7 @@ function mod:OnBossEnable()
 	-- Corpse Harvester
 	self:Log("SPELL_CAST_START", "DrainFluids", 334748)
 	self:Log("SPELL_CAST_SUCCESS", "DrainFluidsSuccess", 334748)
+	self:Death("CorpseHarvesterDeath", 166302)
 
 	-- Stitched Vanguard
 	self:Log("SPELL_CAST_START", "MeatShield", 323190) -- TODO removed?
@@ -134,26 +135,31 @@ function mod:OnBossEnable()
 	-- Zolramus Gatekeeper
 	self:Log("SPELL_AURA_APPLIED", "ClingingDarkness", 323347) -- Mythic only
 	self:Log("SPELL_CAST_START", "WrathOfZolramus", 322756) -- Mythic only
+	self:Death("ZolramusGatekeeperDeath", 165137)
 
 	-- Zolramus Necromancer
 	self:Log("SPELL_CAST_SUCCESS", "AnimateDead", 321780)
 	self:Log("SPELL_CAST_SUCCESS", "GrimFate", 327393)
 	self:Log("SPELL_AURA_APPLIED", "GrimFateApplied", 327396)
 	self:Log("SPELL_AURA_REMOVED", "GrimFateRemoved", 327396)
+	self:Death("ZolramusNecromancerDeath", 163618)
 
 	-- Brittlebone Mage
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667) -- Mythic only
 	self:Log("SPELL_CAST_SUCCESS", "FrostboltVolleySuccess", 328667)
+	self:Death("BrittleboneMageDeath", 163126)
 
 	-- Skeletal Marauder
 	self:Log("SPELL_CAST_START", "RaspingScream", 324293)
 	self:Log("SPELL_CAST_SUCCESS", "RaspingScreamSuccess", 324293)
 	self:Log("SPELL_CAST_SUCCESS", "BoneshatterShield", 343470)
+	self:Death("SkeletalMarauderDeath", 165919)
 
 	-- Zolramus Bonemender
 	self:Log("SPELL_CAST_START", "Bonemend", 335143)
 	self:Log("SPELL_CAST_SUCCESS", "BonemendSuccess", 335143)
 	self:Log("SPELL_CAST_START", "FinalBargain", 320822)
+	self:Death("ZolramusBonemenderDeath", 165222)
 
 	-- Nar'zudah
 	self:Log("SPELL_CAST_START", "DarkShroud", 335141)
@@ -170,24 +176,32 @@ function mod:OnBossEnable()
 	-- Corpse Collector
 	self:Log("SPELL_CAST_START", "Goresplatter", 338353)
 	self:Log("SPELL_CAST_SUCCESS", "GoresplatterSuccess", 338353)
+	self:Death("CorpseCollectorDeath", 173016)
 
 	-- Kyrian Stitchwerk
 	self:Log("SPELL_CAST_START", "Mutilate", 338456)
 	self:Log("SPELL_CAST_START", "Tenderize", 338357)
+	self:Death("KyrianStitchwerkDeath", 172981)
 
 	-- Flesh Crafter
 	self:Log("SPELL_CAST_SUCCESS", "RepairFlesh", 327130) -- SUCCESS on 327130 is when the interruptible channel begins
 	self:Log("SPELL_CAST_SUCCESS", "ThrowCleaver", 323496)
 	self:Log("SPELL_AURA_APPLIED", "ThrowCleaverApplied", 323471)
+	self:Death("FleshCrafterDeath", 165872)
 
 	-- Loyal Creation
 	self:Log("SPELL_CAST_START", "SpineCrush", 327240)
 	self:Log("SPELL_CAST_SUCCESS", "SpineCrushSuccess", 327240)
+	self:Death("LoyalCreationDeath", 165911)
+
+	-- Stitching Assistant
+	self:Death("StitchingAssistantDeath", 173044)
 
 	-- Separation Assistant
 	self:Log("SPELL_CAST_START", "MorbidFixation", 338606)
 	self:Log("SPELL_AURA_APPLIED", "MorbidFixationApplied", 338606)
 	self:Log("SPELL_AURA_REMOVED", "MorbidFixationRemoved", 338606)
+	self:Death("SeparationAssistantDeath", 167731)
 
 	-- Goregrind
 	self:Log("SPELL_CAST_START", "GutSlice", 333477)
@@ -254,6 +268,10 @@ function mod:DrainFluidsSuccess(args)
 	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 end
 
+function mod:CorpseHarvesterDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Stitched Vanguard
 
 do
@@ -285,6 +303,10 @@ function mod:WrathOfZolramus(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+end
+
+function mod:ZolramusGatekeeperDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Zolramus Necromancer
@@ -319,6 +341,10 @@ function mod:GrimFateRemoved(args)
 	end
 end
 
+function mod:ZolramusNecromancerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Brittlebone Mage
 
 function mod:FrostboltVolley(args)
@@ -338,6 +364,10 @@ function mod:FrostboltVolleySuccess(args)
 	end
 end
 
+function mod:BrittleboneMageDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Skeletal Marauder
 
 function mod:RaspingScream(args)
@@ -354,6 +384,10 @@ function mod:BoneshatterShield(args)
 	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+end
+
+function mod:SkeletalMarauderDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Zolramus Bonemender
@@ -377,6 +411,10 @@ function mod:FinalBargain(args)
 	end
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ZolramusBonemenderDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Nar'zudah
@@ -489,6 +527,10 @@ function mod:GoresplatterSuccess(args)
 	self:Nameplate(args.spellId, 21.0, args.sourceGUID)
 end
 
+function mod:CorpseCollectorDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Kyrian Stitchwerk
 
 function mod:Mutilate(args)
@@ -514,6 +556,10 @@ function mod:Tenderize(args)
 	else
 		self:Nameplate(args.spellId, 14.6, args.sourceGUID)
 	end
+end
+
+function mod:KyrianStitchwerkDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Flesh Crafter
@@ -545,6 +591,10 @@ do
 	end
 end
 
+function mod:FleshCrafterDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Loyal Creation
 
 function mod:SpineCrush(args)
@@ -554,6 +604,17 @@ end
 
 function mod:SpineCrushSuccess(args)
 	self:Nameplate(args.spellId, 14.0, args.sourceGUID)
+end
+
+function mod:LoyalCreationDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Stitching Assistant
+
+function mod:StitchingAssistantDeath(args)
+	-- casts Throw Cleaver and Drain Fluids
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Separation Assistant
@@ -581,6 +642,10 @@ end
 
 function mod:MorbidFixationRemoved(args)
 	self:StopBar(args.spellId, args.destName)
+end
+
+function mod:SeparationAssistantDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Goregrind
