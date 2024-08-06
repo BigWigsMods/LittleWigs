@@ -102,33 +102,41 @@ function mod:OnBossEnable()
 
 	-- Trilling Attendant
 	self:Log("SPELL_CAST_SUCCESS", "ResonantBarrage", 434793)
+	self:Death("TrillingAttendantDeath", 216293)
 
 	-- Ixin
 	self:Log("SPELL_CAST_START", "WebSpray", 434824)
 	self:Log("SPELL_CAST_START", "HorrifyingShrill", 434802)
 	self:Log("SPELL_CAST_SUCCESS", "HorrifyingShrillSuccess", 434802)
+	self:Death("IxinDeath", 217531)
 
 	-- Nakt
 	self:Log("SPELL_CAST_START", "CallOfTheBrood", 438877)
+	self:Death("NaktDeath", 218324)
 
 	-- Atik
 	self:Log("SPELL_CAST_START", "PoisonousCloud", 438826)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PoisonousCloudDamage", 438825)
+	self:Death("AtikDeath", 217533)
 
 	-- Hulking Bloodguard
 	self:Log("SPELL_CAST_START", "Impale", 453161)
+	self:Death("HulkingBloodguardDeath", 216338)
 
 	-- Bloodstained Webmage
 	self:Log("SPELL_CAST_START", "RevoltingVolley", 448248)
 	self:Log("SPELL_CAST_SUCCESS", "RevoltingVolleySuccess", 448248)
+	self:Death("BloodstainedWebmageDeath", 223253)
 
 	-- Blood Overseer
 	self:Log("SPELL_CAST_START", "EruptingWebs", 433845)
 	self:Log("SPELL_CAST_START", "VenomVolley", 433841)
 	self:Log("SPELL_CAST_SUCCESS", "VenomVolleySuccess", 433841)
+	self:Death("BloodOverseerDeath", 216364)
 
 	-- Nerubian Hauler
 	self:Log("SPELL_CAST_START", "MassiveSlam", 434252)
+	self:Death("NerubianHaulerDeath", 217039)
 end
 
 --------------------------------------------------------------------------------
@@ -195,6 +203,10 @@ do
 	end
 end
 
+function mod:TrillingAttendantDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Ixin
 
 function mod:WebSpray(args)
@@ -213,12 +225,20 @@ function mod:HorrifyingShrillSuccess(args)
 	self:Nameplate(args.spellId, 13.1, args.sourceGUID)
 end
 
+function mod:IxinDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Nakt
 
 function mod:CallOfTheBrood(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
+end
+
+function mod:NaktDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Atik
@@ -236,12 +256,20 @@ function mod:PoisonousCloudDamage(args)
 	end
 end
 
+function mod:AtikDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Hulking Bloodguard
 
 function mod:Impale(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+end
+
+function mod:HulkingBloodguardDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Bloodstained Webmage
@@ -261,6 +289,10 @@ end
 
 function mod:RevoltingVolleySuccess(args)
 	self:Nameplate(args.spellId, 18.0, args.sourceGUID)
+end
+
+function mod:BloodstainedWebmageDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Blood Overseer
@@ -295,10 +327,18 @@ function mod:VenomVolleySuccess(args)
 	self:Nameplate(args.spellId, 18.6, args.sourceGUID)
 end
 
+function mod:BloodOverseerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Nerubian Hauler
 
 function mod:MassiveSlam(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
 	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
+end
+
+function mod:NerubianHaulerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
