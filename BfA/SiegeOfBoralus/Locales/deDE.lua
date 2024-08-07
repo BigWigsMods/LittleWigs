@@ -1,23 +1,21 @@
 local L = BigWigs:NewBossLocale("Siege of Boralus Trash", "deDE")
 if not L then return end
 if L then
-	L.cannoneer = "Aschenwindkanonier"
-	L.commander = "Aschenwindkommandant"
-	L.spotter = "Aschenwindkundschafter"
-	L.demolisher = "Verwüster der Bilgeratten"
-	L.pillager = "Brandschatzer der Bilgeratten"
-	L.tempest = "Orkan der Bilgeratten"
-	L.wavetender = "Wellenzähmer von Kul Tiras"
+	L.enforcer = "Vollstrecker der Knochenritzer"
 	L.halberd = "Hellebardier von Kul Tiras"
+	L.bomber = "Schwarzteerbomber"
+	L.waveshaper = "Wellenformer der Eisenfluträuber"
+	L.wavetender = "Wellenzähmer von Kul Tiras"
 	L.raider = "Eisenfluträuber"
 	L.vanguard = "Vorhut von Kul Tiras"
-	L.marksman = "Schütze von Kul Tiras"
+	L.commander = "Aschenwindkommandant"
+	L.spotter = "Aschenwindkundschafter"
+	L.cannoneer = "Aschenwindkanonier"
+	L.demolisher = "Verwüster der Bilgeratten"
 	L.buccaneer = "Bukanier der Bilgeratten"
+	L.pillager = "Brandschatzer der Bilgeratten"
+	L.tempest = "Orkan der Bilgeratten"
 	L.invader = "Aschenwindeindringling"
-	L.dockhound = "Knurrender Dockhund"
-	L.shredder = "Springflutschredder"
-	L.packmaster = "Rottenkommandant der Dockhunde"
-	L.bomber = "Schwarzteerbomber"
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "deDE")

@@ -6,27 +6,22 @@ local mod, CL = BigWigs:NewBoss("Siege of Boralus Trash", 1822)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
-	138465, -- Ashvane Cannoneer
+	129374, -- Scrimshaw Enforcer (Alliance)
+	141283, -- Kul Tiran Halberd (Horde)
+	129372, -- Blacktar Bomber
+	129370, -- Irontide Waveshaper
+	141284, -- Kul Tiran Wavetender (Horde)
+	129369, -- Irontide Raider
+	138019, -- Kul Tiran Vanguard (Horde)
 	128969, -- Ashvane Commander
 	135263, -- Ashvane Spotter
 	138255, -- Ashvane Spotter
+	138465, -- Ashvane Cannoneer
 	135245, -- Bilge Rat Demolisher
+	129366, -- Bilge Rat Buccaneer
 	135241, -- Bilge Rat Pillager
 	129367, -- Bilge Rat Tempest
-	129369, -- Irontide Raider
-	141284, -- Kul Tiran Wavetender
-	141283, -- Kul Tiran Halberd
-	138019, -- Kul Tiran Vanguard
-	141285, -- Kul Tiran Marksman
-	129366, -- Bilge Rat Buccaneer
-	137516, -- Ashvane Invader
-	129370, -- Irontide Waveshaper
-	137521, -- Irontide Powdershot
-	129374, -- Scrimshaw Enforcer (Alliance)
-	129371, -- Riptide Shredder (Alliance)
-	129640, -- Snarling Dockhound (Alliance)
-	129373, -- Dockhound Packmaster (Alliance)
-	129372  -- Blacktar Bomber (Alliance)
+	137516 -- Ashvane Invader
 )
 
 --------------------------------------------------------------------------------
@@ -35,23 +30,21 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.cannoneer = "Ashvane Cannoneer"
-	L.commander = "Ashvane Commander"
-	L.spotter = "Ashvane Spotter"
-	L.demolisher = "Bilge Rat Demolisher"
-	L.pillager = "Bilge Rat Pillager"
-	L.tempest = "Bilge Rat Tempest"
-	L.wavetender = "Kul Tiran Wavetender"
+	L.enforcer = "Scrimshaw Enforcer"
 	L.halberd = "Kul Tiran Halberd"
+	L.bomber = "Blackar Bomber"
+	L.waveshaper = "Irontide Waveshaper"
+	L.wavetender = "Kul Tiran Wavetender"
 	L.raider = "Irontide Raider"
 	L.vanguard = "Kul Tiran Vanguard"
-	L.marksman = "Kul Tiran Marksman"
+	L.commander = "Ashvane Commander"
+	L.spotter = "Ashvane Spotter"
+	L.cannoneer = "Ashvane Cannoneer"
+	L.demolisher = "Bilge Rat Demolisher"
 	L.buccaneer = "Bilge Rat Buccaneer"
+	L.pillager = "Bilge Rat Pillager"
+	L.tempest = "Bilge Rat Tempest"
 	L.invader = "Ashvane Invader"
-	L.dockhound = "Snarling Dockhound"
-	L.shredder = "Riptide Shredder"
-	L.packmaster = "Dockhound Packmaster"
-	L.bomber = "Blackar Bomber"
 end
 
 --------------------------------------------------------------------------------
@@ -60,277 +53,139 @@ end
 
 function mod:GetOptions()
 	return {
-		-- Ashvane Cannoneer
-		268260, -- Broadside
-		-- Ashvane Commander
-		{454437, "SAY"}, -- Azerite Charge
-		275826, -- Bolstering Shout
-		-- Ashvane Invader
-		275835, -- Stinging Venom Coating
-		-- Ashvane Spotter
-		{272421, "SAY"}, -- Sighted Artillery
-		-- Bilge Rat Demolisher
-		257169, -- Terrifying Roar
-		272711, -- Crushing Slam
-		-- Bilge Rat Pillager
-		272827, -- Viscous Slobber
-		-- Bilge Rat Tempest
-		272571, -- Choking Waters
-		274569, -- Revitalizing Mist (TODO removed in TWW?)
-		-- Bilge Rat Buccaneer
-		272546, -- Banana Rampage
-		-- Irontide Raider
-		257170, -- Savage Tempest
-		-- Kul Tiran Wavetender
-		256957, -- Watertight Shell
-		-- Kul Tiran Halberd
-		256627, -- Slobber Knocker
-		-- Kul Tiran Vanguard
-		257288, -- Heavy Slash
-		-- Snarling Dockhound
-		256897, -- Clamping Jaws
-		-- Riptide Shredder
-		256866, -- Iron Ambush
-		-- Dockhound Packmaster
-		{257036, "SAY"}, -- Feral Charge
+		-- Scrimshaw Enforcer / Kul Tiran Halberd
+		{256627, "NAMEPLATEBAR"}, -- Slobber Knocker
 		-- Blacktar Bomber
-		256640, -- Burning Tar
-		256673, -- Immolation
+		{256640, "NAMEPLATEBAR"}, -- Burning Tar
+		-- Irontide Waveshaper / Kul Tiran Wavetender
+		{256957, "NAMEPLATEBAR"}, -- Watertight Shell
+		-- Irontide Raider
+		{257170, "NAMEPLATEBAR"}, -- Savage Tempest
+		-- Kul Tiran Vanguard
+		{257288, "NAMEPLATEBAR"}, -- Heavy Slash
+		-- Ashvane Commander
+		{454437, "SAY", "NAMEPLATEBAR"}, -- Azerite Charge
+		-- Ashvane Spotter
+		{272421, "SAY", "NAMEPLATEBAR"}, -- Sighted Artillery
+		-- Ashvane Cannoneer
+		{268260, "NAMEPLATEBAR"}, -- Broadside
+		{275826, "NAMEPLATEBAR"}, -- Bolstering Shout
+		-- Bilge Rat Demolisher
+		{257169, "NAMEPLATEBAR"}, -- Terrifying Roar
+		{272711, "NAMEPLATEBAR"}, -- Crushing Slam
+		-- Bilge Rat Buccaneer
+		{272546, "NAMEPLATEBAR"}, -- Banana Rampage
+		-- Bilge Rat Tempest
+		{272571, "NAMEPLATEBAR"}, -- Choking Waters
+		-- Ashvane Invader
+		{275835, "TANK", "NAMEPLATEBAR"}, -- Stinging Venom Coating
 	}, {
-		[268260] = L.cannoneer,
-		[454437] = L.commander,
-		[275835] = L.invader,
-		[272421] = L.spotter,
-		[257169] = L.demolisher,
-		[272827] = L.pillager,
-		[272571] = L.tempest,
-		[272546] = L.buccaneer,
-		[257170] = L.raider,
-		[256957] = L.wavetender,
-		[256627] = L.halberd,
-		[257288] = L.vanguard,
-		[256897] = L.dockhound,
-		[256866] = L.shredder,
-		[257036] = L.packmaster,
+		[256627] = L.halberd.." / "..L.enforcer,
 		[256640] = L.bomber,
+		[256957] = L.wavetender.." / "..L.waveshaper,
+		[257170] = L.raider,
+		[257288] = L.vanguard,
+		[454437] = L.commander,
+		[272421] = L.spotter,
+		[268260] = L.cannoneer,
+		[257169] = L.demolisher,
+		[272546] = L.buccaneer,
+		[272571] = L.tempest,
+		[275835] = L.invader,
 	}
 end
 
 function mod:OnBossEnable()
-	-- Ashvane Cannoneer
-	self:Log("SPELL_CAST_START", "Broadside", 268260)
+	-- Interrupts
+	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
+
+	-- Scrimshaw Enforcer / Kul Tiran Halberd
+	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
+	self:Log("SPELL_CAST_SUCCESS", "SlobberKnockerSuccess", 256627)
+	self:Death("KulTiranHalberdDeath", 141283, 129374) -- Enforcer, Halberd
+
+	-- Blacktar Bomber
+	self:Log("SPELL_CAST_SUCCESS", "BurningTar", 256640)
+	self:Death("BlacktarBomberDeath", 129372)
+
+	-- Irontide Waveshaper / Kul Tiran Wavetender
+	self:Log("SPELL_CAST_START", "WatertightShell", 256957)
+	self:Log("SPELL_CAST_SUCCESS", "WatertightShellSuccess", 256957)
+	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
+	self:Death("KulTiranWavetenderDeath", 129370, 141284) -- Waveshaper, Wavetender
+
+	-- Irontide Raider
+	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
+	self:Death("IrontideRaiderDeath", 129369)
+
+	-- Kul Tiran Vanguard (Horde-only)
+	self:Log("SPELL_CAST_START", "HeavySlash", 257288)
+	self:Death("KulTiranVanguardDeath", 138019)
+
 	-- Ashvane Commander
 	self:Log("SPELL_AURA_APPLIED", "AzeriteCharge", 454437)
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
-	-- Ashvane Invader
-	self:Log("SPELL_CAST_START", "StingingVenomCoating", 275835)
+	self:Death("AshvaneCommanderDeath", 128969)
+
 	-- Ashvane Spotter
+	self:Log("SPELL_CAST_SUCCESS", "SightedArtillery", 272422)
 	self:Log("SPELL_AURA_APPLIED", "SightedArtilleryApplied", 272421)
+	self:Death("AshvaneSpotterDeath", 135263, 138255)
+
+	-- Ashvane Cannoneer
+	self:Log("SPELL_CAST_START", "Broadside", 268260)
+	self:Death("AshvaneCannoneerDeath", 138465)
+
 	-- Bilge Rat Demolisher
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 257169)
 	self:Log("SPELL_CAST_START", "CrushingSlam", 272711)
-	-- Bilge Rat Pillager
-	self:Log("SPELL_CAST_START", "ViscousSlobber", 272827)
-	-- Bilge Rat Tempest
-	self:Log("SPELL_CAST_START", "ChokingWaters", 272571)
-	self:Log("SPELL_CAST_START", "RevitalizingMist", 274569)
+	self:Death("BilgeRatDemolisherDeath", 135245)
+
 	-- Bilge Rat Buccaneer
 	self:Log("SPELL_CAST_START", "BananaRampage", 272546)
-	-- Irontide Raider
-	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
-	-- Kul Tiran Wavetender
-	self:Log("SPELL_CAST_START", "WatertightShell", 256957)
-	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
-	-- Kul Tiran Halberd
-	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
-	-- Kul Tiran Vanguard
-	self:Log("SPELL_CAST_START", "HeavySlash", 257288)
-	-- Snarling Dockhound
-	self:Log("SPELL_CAST_SUCCESS", "ClampingJaws", 256897)
-	-- Riptide Shredder
-	self:Log("SPELL_CAST_START", "IronAmbush", 256866)
-	-- Dockhound Packmaster
-	self:Log("SPELL_CAST_START", "FeralCharge", 257036)
-	-- Blacktar Bomber
-	self:Log("SPELL_CAST_SUCCESS", "BurningTar", 256640)
-	self:Log("SPELL_CAST_START", "Immolation", 256673)
+	self:Log("SPELL_CAST_SUCCESS", "BananaRampageSuccess", 272546)
+	self:Death("BilgeRatBuccaneerDeath", 129366)
+
+	-- Bilge Rat Tempest
+	self:Log("SPELL_CAST_START", "ChokingWaters", 272571)
+	self:Log("SPELL_CAST_SUCCESS", "ChokingWatersSuccess", 272571)
+	self:Death("BilgeRatTempestDeath", 129367)
+
+	-- Ashvane Invader
+	self:Log("SPELL_CAST_SUCCESS", "StingingVenomCoating", 275835)
+	self:Death("AshvaneInvaderDeath", 137516)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
--- Ashvane Cannoneer
+-- Interrupts
 
-function mod:Broadside(args)
-	if self:MobId(args.sourceGUID) == 138465 then -- trash version
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
+function mod:Interrupt(args)
+	if args.extraSpellId == 256957 then -- Watertight Shell
+		self:Nameplate(256957, 46.3, args.destGUID)
+	elseif args.extraSpellId == 275826 then -- Bolstering Shout
+		self:Nameplate(275826, 15.3, args.destGUID)
+	elseif args.extraSpellId == 272571 then -- Choking Waters
+		self:Nameplate(272571, 21.8, args.destGUID)
 	end
 end
 
--- Ashvane Commander
-
-function mod:AzeriteCharge(args)
-	if self:Player(args.destFlags) then -- can be cast on friendly NPCs during RP fighting
-		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "alarm", nil, args.destName)
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId, nil, nil, "Azerite Charge")
-		end
-	end
-end
-
-function mod:BolsteringShout(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:BolsteringShoutSuccess(args)
-	if self:Dispeller("magic", true) then
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alarm")
-	end
-end
-
--- Ashvane Invader
-
-do
-	local prev = 0
-	function mod:StingingVenomCoating(args)
-		local t = args.time
-		if t - prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "red")
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
--- Ashvane Spotter
-
-function mod:SightedArtilleryApplied(args)
-	local mobId = self:MobId(args.sourceGUID)
-	if mobId == 135263 or mobId == 138255 then -- Ashvane Spotter
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "info", nil, args.destName)
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId, nil, nil, "Sighted Artillery")
-		end
-	end
-end
-
--- Bilge Rat Demolisher
-
-function mod:TerrifyingRoar(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
-end
-
-function mod:CrushingSlam(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
-end
-
--- Bilge Rat Pillager
-
-function mod:ViscousSlobber(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-end
-
--- Bilge Rat Tempest
-
-function mod:ChokingWaters(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:RevitalizingMist(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
-end
-
--- Bilge Rat Buccaneer
-
-do
-	local prev = 0
-	function mod:BananaRampage(args)
-		local t = args.time
-		if t - prev > 2 then
-			prev = t
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "alarm")
-		end
-	end
-end
-
--- Irontide Raider
-
-function mod:SavageTempest(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-end
-
--- Kul Tiran Wavetender
-
-function mod:WatertightShell(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:WatertightShellApplied(args)
-	if not self:Player(args.destFlags) then
-		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
-		self:PlaySound(args.spellId, "warning")
-	end
-end
-
--- Kul Tiran Halberd
+-- Scrimshaw Enforcer / Kul Tiran Halberd
 
 function mod:SlobberKnocker(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
 end
 
--- Kul Tiran Vanguard
-
-function mod:HeavySlash(args)
-	if self:MobId(args.sourceGUID) == 138019 then -- trash version
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alert")
-	end
+function mod:SlobberKnockerSuccess(args)
+	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
 end
 
--- Snarling Dockhound
-
-function mod:ClampingJaws(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
-end
-
--- Riptide Shredder
-
-function mod:IronAmbush(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-end
-
--- Dockhound Packmaster
-
-do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(257036, "orange", name)
-		self:PlaySound(257036, "alert", nil, name)
-		if self:Me(guid) then
-			self:Say(257036, nil, nil, "Feral Charge")
-		end
-	end
-
-	function mod:FeralCharge(args)
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-	end
+function mod:KulTiranHalberdDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Blacktar Bomber
@@ -344,10 +199,203 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 20.3, args.sourceGUID)
 	end
 end
 
-function mod:Immolation(args)
+function mod:BlacktarBomberDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Irontide Waveshaper / Kul Tiran Wavetender
+
+function mod:WatertightShell(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:WatertightShellSuccess(args)
+	self:Nameplate(args.spellId, 46.3, args.sourceGUID)
+end
+
+function mod:WatertightShellApplied(args)
+	if not self:Friendly(args.destFlags) then
+		self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+		self:PlaySound(args.spellId, "warning")
+	end
+end
+
+function mod:KulTiranWavetenderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Irontide Raider
+
+function mod:SavageTempest(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "long")
+	self:Nameplate(args.spellId, 19.4, args.sourceGUID)
+end
+
+function mod:IrontideRaiderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Kul Tiran Vanguard (Horde-only)
+
+function mod:HeavySlash(args)
+	if self:MobId(args.sourceGUID) == 138019 then -- Horde-only trash version
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alert")
+		self:Nameplate(args.spellId, 20.2, args.sourceGUID)
+	end
+end
+
+function mod:KulTiranVanguardDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Ashvane Commander
+
+function mod:AzeriteCharge(args)
+	if self:Player(args.destFlags) then -- can be cast on friendly NPCs during RP fighting
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, nil, nil, "Azerite Charge")
+		end
+		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+	end
+end
+
+function mod:BolsteringShout(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:BolsteringShoutSuccess(args)
+	self:Nameplate(args.spellId, 15.3, args.sourceGUID)
+	if self:Dispeller("magic", true) then
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
+function mod:AshvaneCommanderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Ashvane Spotter
+
+function mod:SightedArtillery(args)
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId == 135263 or mobId == 138255 then -- Ashvane Spotter
+		self:Nameplate(272421, 12.2, args.sourceGUID)
+	end
+end
+
+function mod:SightedArtilleryApplied(args)
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId == 135263 or mobId == 138255 then -- Ashvane Spotter
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, nil, nil, "Sighted Artillery")
+		end
+	end
+end
+
+function mod:AshvaneSpotterDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Ashvane Cannoneer
+
+function mod:Broadside(args)
+	if self:MobId(args.sourceGUID) == 138465 then -- trash version
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+		self:Nameplate(args.spellId, 11.0, args.sourceGUID)
+	end
+end
+
+function mod:AshvaneCannoneerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Bilge Rat Demolisher
+
+function mod:TerrifyingRoar(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "warning")
+	self:Nameplate(args.spellId, 29.2, args.sourceGUID)
+end
+
+function mod:CrushingSlam(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
+	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+end
+
+function mod:BilgeRatDemolisherDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Bilge Rat Buccaneer
+
+do
+	local prev = 0
+	function mod:BananaRampage(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+function mod:BananaRampageSuccess(args)
+	self:Nameplate(args.spellId, 15.5, args.sourceGUID)
+end
+
+function mod:BilgeRatBuccaneerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Bilge Rat Tempest
+
+function mod:ChokingWaters(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:ChokingWatersSuccess(args)
+	self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+end
+
+function mod:BilgeRatTempestDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Ashvane Invader
+
+do
+	local prev = 0
+	function mod:StingingVenomCoating(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "info")
+		end
+		self:Nameplate(args.spellId, 17.1, args.sourceGUID)
+	end
+end
+
+function mod:AshvaneInvaderDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
