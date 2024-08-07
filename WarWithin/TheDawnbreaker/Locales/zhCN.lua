@@ -15,10 +15,10 @@ if L then
 	L.manifested_shadow = "暗影具象"
 	L.nightfall_dark_architect = "夜幕黑暗建筑师"
 
-	L.flying_available = "你现在可以起飞"
+	--L.flying_available = "你现在可以起飞"
 end
 
 L = BigWigs:NewBossLocale("Rasha'nan Dawnbreaker", "zhCN")
 if L then
-	L.flying_available = "你现在可以起飞"
+	--L.flying_available = "你现在可以起飞"
 end
