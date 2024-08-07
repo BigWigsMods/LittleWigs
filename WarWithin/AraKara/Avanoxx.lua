@@ -107,12 +107,12 @@ do
 		if stacks > 1 then
 			self:StopBar(CL.stack:format(stacks - 1, args.spellName, CL.boss))
 		end
-		self:Bar(args.spellId, 12, CL.stack:format(stacks, args.spellName, CL.boss))
+		self:Bar(args.spellId, 60, CL.stack:format(stacks, args.spellName, CL.boss))
 		-- throttle the sound, if your group is failing the boss can eat several at once
 		local t = args.time
-		if t - prev > 2 then
+		if t - prev > 3 then
 			prev = t
-			self:PlaySound(args.spellId, "alarm")
+			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end

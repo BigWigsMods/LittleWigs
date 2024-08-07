@@ -3,7 +3,7 @@ BigWigs:AddSounds("Avanoxx", {
 	[438471] = "alert",
 	[438473] = "long",
 	[438476] = "info",
-	[446794] = "alarm",
+	[446794] = "warning",
 })
 
 BigWigs:AddSounds("Anub'zekt", {
