@@ -14,6 +14,7 @@ mod:SetStage(1)
 --
 
 local markCount = 1
+local eradicationCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -58,6 +59,7 @@ end
 function mod:OnEngage()
 	self:SetStage(1)
 	markCount = 1
+	eradicationCount = 1
 	self:CDBar(275014, 3.2) -- Putrid Waters
 	self:CDBar(270185, 7.0) -- Call of the Deep
 end
@@ -114,9 +116,10 @@ do
 end
 
 function mod:Eradication(args)
-	if self:GetStage() <= 3 then -- ignore cast if the fight is ending
+	if eradicationCount < 3 then -- ignore the 3rd cast, the fight is ending
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "warning")
+		eradicationCount = eradicationCount + 1
 	end
 end
 
