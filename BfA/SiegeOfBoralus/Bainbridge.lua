@@ -1,5 +1,4 @@
 if UnitFactionGroup("player") ~= "Horde" then return end
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,8 +6,8 @@ if UnitFactionGroup("player") ~= "Horde" then return end
 local mod, CL = BigWigs:NewBoss("Sergeant Bainbridge", 1822, 2133)
 if not mod then return end
 mod:RegisterEnableMob(128649) -- Sergeant Bainbridge
-mod.engageId = 2097
-mod.respawnTime = 30
+mod:SetEncounterID(2097)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -30,10 +29,12 @@ end
 -- Initialization
 --
 
+-- TODO sync this whole module with Lockwood at some point? it'll have to be checked first
+-- most changes have not made it to Bainbridge as of aug 6 2024
 function mod:GetOptions()
 	return {
 		"adds",
-		{260954, "FLASH"}, -- Iron Gaze
+		260954, -- Iron Gaze
 		261428, -- Hangman's Noose
 		260924, -- Steel Tempest
 		257585, -- Cannon Barrage
@@ -42,6 +43,8 @@ function mod:GetOptions()
 	}, {
 		["adds"] = "general",
 		[279761] = -17762, -- Kul Tiran Vanguard
+	}, {
+		[260954] = CL.fixate, -- Iron Gaze (Fixate)
 	}
 end
 
@@ -53,7 +56,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "IronGazeRemoved", 260954)
 	self:Log("SPELL_AURA_APPLIED", "HangmansNoose", 261428)
 	self:Log("SPELL_CAST_START", "SteelTempest", 260924)
-	self:Log("SPELL_DAMAGE", "HeavyOrdnanceDamage", 273720, 280933) -- Damage to player, damage to add
+	self:Log("SPELL_DAMAGE", "HeavyOrdnanceDamage", 273720, 280933) -- damage to player, damage to add
+	self:Log("SPELL_MISSED", "HeavyOrdnanceDamage", 273720) -- missed player
 	self:Log("SPELL_AURA_APPLIED", "HeavyOrdnanceApplied", 277965)
 end
 
@@ -90,16 +94,15 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 end
 
 function mod:IronGaze(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:TargetBar(args.spellId, 20, args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName, CL.fixate)
+	self:TargetBar(args.spellId, 20, args.destName, CL.fixate)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-		self:Flash(args.spellId)
 	end
 end
 
 function mod:IronGazeRemoved(args)
-	self:StopBar(args.spellId, args.destName)
+	self:StopBar(CL.fixate, args.destName)
 end
 
 function mod:HangmansNoose(args)

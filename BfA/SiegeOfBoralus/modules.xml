@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Redhook.lua"/>
-<Script file="Brainbridge.lua"/>
+<Script file="Bainbridge.lua"/>
 <Script file="Lockwood.lua"/>
 <Script file="Darkfathom.lua"/>
 <Script file="Viqgoth.lua"/>
