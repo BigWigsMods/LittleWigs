@@ -41,27 +41,27 @@ end
 function mod:GetOptions()
 	return {
 		-- Twilight Earthcaller
-		{451871, "NAMEPLATEBAR"}, -- Mass Tremor
+		{451871, "NAMEPLATE"}, -- Mass Tremor
 		-- Twilight Brute
-		{456696, "NAMEPLATEBAR"}, -- Obsidian Stomp
+		{456696, "NAMEPLATE"}, -- Obsidian Stomp
 		-- Twilight Destroyer
-		{451613, "SAY", "NAMEPLATEBAR"}, -- Twilight Flame
-		{451939, "NAMEPLATEBAR"}, -- Umbral Wind
+		{451613, "SAY", "NAMEPLATE"}, -- Twilight Flame
+		{451939, "NAMEPLATE"}, -- Umbral Wind
 		-- Twilight Beguiler
-		{76711, "NAMEPLATEBAR"}, -- Sear Mind
+		{76711, "NAMEPLATE"}, -- Sear Mind
 		-- Molten Giant
-		{451965, "NAMEPLATEBAR"}, -- Molten Wake
-		{451971, "TANK_HEALER", "NAMEPLATEBAR"}, -- Lava Fist
+		{451965, "NAMEPLATE"}, -- Molten Wake
+		{451971, "TANK_HEALER", "NAMEPLATE"}, -- Lava Fist
 		-- Twilight Warlock
-		{451224, "DISPEL", "NAMEPLATEBAR"}, -- Enveloping Shadowflame
+		{451224, "DISPEL", "NAMEPLATE"}, -- Enveloping Shadowflame
 		-- Twilight Flamerender
-		{462216, "NAMEPLATEBAR"}, -- Blazing Shadowflame
+		{462216, "NAMEPLATE"}, -- Blazing Shadowflame
 		-- Twilight Lavabender
-		{456711, "NAMEPLATEBAR"}, -- Shadowlava Blast
-		{456713, "NAMEPLATEBAR"}, -- Dark Eruption
+		{456711, "NAMEPLATE"}, -- Shadowlava Blast
+		{456713, "NAMEPLATE"}, -- Dark Eruption
 		451387, -- Ascension
 		-- Faceless Corruptor
-		{451391, "NAMEPLATEBAR"}, -- Mind Piercer
+		{451391, "NAMEPLATE"}, -- Mind Piercer
 	}, {
 		[451871] = L.twilight_earthcaller,
 		[456696] = L.twilight_brute,

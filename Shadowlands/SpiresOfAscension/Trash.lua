@@ -64,7 +64,7 @@ function mod:GetOptions()
 		-- Lakesis
 		328458, -- Diminuendo
 		-- Astronos
-		{328462, "NAMEPLATEBAR"}, -- Charged Spear
+		{328462, "NAMEPLATE"}, -- Charged Spear
 	}, {
 		[317661] = L.forsworn_squad_leader,
 		[317963] = L.forsworn_castigator,

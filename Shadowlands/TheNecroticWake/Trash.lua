@@ -57,22 +57,22 @@ end
 function mod:GetOptions()
 	return {
 		-- Corpse Harvester
-		{334748, "NAMEPLATEBAR"}, -- Drain Fluids
+		{334748, "NAMEPLATE"}, -- Drain Fluids
 		-- Stitched Vanguard
 		323190, -- Meat Shield
 		-- Zolramus Gatekeeper
-		{323347, "NAMEPLATEBAR"}, -- Clinging Darkness
-		{322756, "NAMEPLATEBAR"}, -- Wrath of Zolramus
+		{323347, "NAMEPLATE"}, -- Clinging Darkness
+		{322756, "NAMEPLATE"}, -- Wrath of Zolramus
 		-- Zolramus Necromancer
-		{321780, "NAMEPLATEBAR"}, -- Animate Dead
-		{327396, "SAY", "SAY_COUNTDOWN", "NAMEPLATEBAR"}, -- Grim Fate
+		{321780, "NAMEPLATE"}, -- Animate Dead
+		{327396, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Grim Fate
 		-- Brittlebone Mage
-		{328667, "NAMEPLATEBAR"}, -- Frostbolt Volley
+		{328667, "NAMEPLATE"}, -- Frostbolt Volley
 		-- Skeletal Marauder
-		{324293, "NAMEPLATEBAR"}, -- Rasping Scream
-		{343470, "NAMEPLATEBAR"}, -- Boneshatter Shield
+		{324293, "NAMEPLATE"}, -- Rasping Scream
+		{343470, "NAMEPLATE"}, -- Boneshatter Shield
 		-- Zolramus Bonemender
-		{335143, "NAMEPLATEBAR"}, -- Bonemend
+		{335143, "NAMEPLATE"}, -- Bonemend
 		320822, -- Final Bargain
 		-- Nar'zudah
 		335141, -- Dark Shroud
@@ -82,17 +82,17 @@ function mod:GetOptions()
 		324387, -- Frigid Spikes
 		324372, -- Reaping Winds
 		-- Corpse Collector
-		{338353, "NAMEPLATEBAR"}, -- Goresplatter
+		{338353, "NAMEPLATE"}, -- Goresplatter
 		-- Kyrian Stitchwerk
-		{338456, "TANK_HEALER", "NAMEPLATEBAR"}, -- Mutilate
-		{338357, "NAMEPLATEBAR"}, -- Tenderize
+		{338456, "TANK_HEALER", "NAMEPLATE"}, -- Mutilate
+		{338357, "NAMEPLATE"}, -- Tenderize
 		-- Flesh Crafter
-		{327130, "NAMEPLATEBAR"}, -- Repair Flesh
-		{323471, "SAY", "NAMEPLATEBAR"}, -- Throw Cleaver
+		{327130, "NAMEPLATE"}, -- Repair Flesh
+		{323471, "SAY", "NAMEPLATE"}, -- Throw Cleaver
 		-- Loyal Creation
-		{327240, "NAMEPLATEBAR"}, -- Spine Crush
+		{327240, "NAMEPLATE"}, -- Spine Crush
 		-- Separation Assistant
-		{338606, "NAMEPLATEBAR"}, -- Morbid Fixation
+		{338606, "NAMEPLATE"}, -- Morbid Fixation
 		-- Goregrind
 		333477, -- Gut Slice
 		-- Rotspew

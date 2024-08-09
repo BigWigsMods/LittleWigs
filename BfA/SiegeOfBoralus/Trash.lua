@@ -54,31 +54,31 @@ end
 function mod:GetOptions()
 	return {
 		-- Scrimshaw Enforcer / Kul Tiran Halberd
-		{256627, "NAMEPLATEBAR"}, -- Slobber Knocker
+		{256627, "NAMEPLATE"}, -- Slobber Knocker
 		-- Blacktar Bomber
-		{256640, "NAMEPLATEBAR"}, -- Burning Tar
+		{256640, "NAMEPLATE"}, -- Burning Tar
 		-- Irontide Waveshaper / Kul Tiran Wavetender
-		{256957, "NAMEPLATEBAR"}, -- Watertight Shell
+		{256957, "NAMEPLATE"}, -- Watertight Shell
 		-- Irontide Raider
-		{257170, "NAMEPLATEBAR"}, -- Savage Tempest
+		{257170, "NAMEPLATE"}, -- Savage Tempest
 		-- Kul Tiran Vanguard
-		{257288, "NAMEPLATEBAR"}, -- Heavy Slash
+		{257288, "NAMEPLATE"}, -- Heavy Slash
 		-- Ashvane Commander
-		{454437, "SAY", "NAMEPLATEBAR"}, -- Azerite Charge
+		{454437, "SAY", "NAMEPLATE"}, -- Azerite Charge
 		-- Ashvane Spotter
-		{272421, "SAY", "NAMEPLATEBAR"}, -- Sighted Artillery
+		{272421, "SAY", "NAMEPLATE"}, -- Sighted Artillery
 		-- Ashvane Cannoneer
-		{268260, "NAMEPLATEBAR"}, -- Broadside
-		{275826, "NAMEPLATEBAR"}, -- Bolstering Shout
+		{268260, "NAMEPLATE"}, -- Broadside
+		{275826, "NAMEPLATE"}, -- Bolstering Shout
 		-- Bilge Rat Demolisher
-		{257169, "NAMEPLATEBAR"}, -- Terrifying Roar
-		{272711, "NAMEPLATEBAR"}, -- Crushing Slam
+		{257169, "NAMEPLATE"}, -- Terrifying Roar
+		{272711, "NAMEPLATE"}, -- Crushing Slam
 		-- Bilge Rat Buccaneer
-		{272546, "NAMEPLATEBAR"}, -- Banana Rampage
+		{272546, "NAMEPLATE"}, -- Banana Rampage
 		-- Bilge Rat Tempest
-		{272571, "NAMEPLATEBAR"}, -- Choking Waters
+		{272571, "NAMEPLATE"}, -- Choking Waters
 		-- Ashvane Invader
-		{275835, "TANK", "NAMEPLATEBAR"}, -- Stinging Venom Coating
+		{275835, "TANK", "NAMEPLATE"}, -- Stinging Venom Coating
 	}, {
 		[256627] = L.halberd.." / "..L.enforcer,
 		[256640] = L.bomber,

@@ -101,7 +101,7 @@ function mod:GetOptions()
 		{269429, "TANK"}, -- Charged Shot
 		-- Mechanized Peacekeeper
 		263628, -- Charged Claw
-		--{262412, "NAMEPLATEBAR"}, -- Energy Shield
+		--{262412, "NAMEPLATE"}, -- Energy Shield
 	}, {
 		[268846] = L.tester,
 		[269302] = L.assassin,

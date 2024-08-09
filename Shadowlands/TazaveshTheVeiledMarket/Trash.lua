@@ -147,7 +147,7 @@ function mod:GetOptions()
 		-- General
 		358443, -- Blood in the Water
 		-- Murkbrine Scalebinder
-		{355132, "NAMEPLATEBAR"}, -- Invigorating Fish Stick
+		{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
 		-- Murkbrine Shellcrusher
 		355057, -- Cry of Mrrggllrrgg
 		-- Coastwalker Goliath

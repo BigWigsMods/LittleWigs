@@ -54,23 +54,23 @@ function mod:GetOptions()
 		-- Engorged Crawler
 		438622, -- Toxic Rupture
 		-- Trilling Attendant
-		{434793, "NAMEPLATEBAR"}, -- Resonant Barrage
+		{434793, "NAMEPLATE"}, -- Resonant Barrage
 		-- Ixin
-		{434824, "NAMEPLATEBAR"}, -- Web Spray
-		{434802, "NAMEPLATEBAR"}, -- Horrifying Shrill
+		{434824, "NAMEPLATE"}, -- Web Spray
+		{434802, "NAMEPLATE"}, -- Horrifying Shrill
 		-- Nakt
-		{438877, "NAMEPLATEBAR"}, -- Call of the Brood
+		{438877, "NAMEPLATE"}, -- Call of the Brood
 		-- Atik
-		{438826, "NAMEPLATEBAR"}, -- Poisonous Cloud
+		{438826, "NAMEPLATE"}, -- Poisonous Cloud
 		-- Hulking Bloodguard
-		{453161, "NAMEPLATEBAR"}, -- Impale
+		{453161, "NAMEPLATE"}, -- Impale
 		-- Bloodstained Webmage
-		{448248, "NAMEPLATEBAR"}, -- Revolting Volley
+		{448248, "NAMEPLATE"}, -- Revolting Volley
 		-- Blood Overseer
-		{433845, "NAMEPLATEBAR"}, -- Erupting Webs
-		{433841, "NAMEPLATEBAR"}, -- Venom Volley
+		{433845, "NAMEPLATE"}, -- Erupting Webs
+		{433841, "NAMEPLATE"}, -- Venom Volley
 		-- Nerubian Hauler
-		{434252, "NAMEPLATEBAR"}, -- Massive Slam
+		{434252, "NAMEPLATE"}, -- Massive Slam
 	}, {
 		["custom_on_autotalk"] = CL.general,
 		[438622] = L.engorged_crawler,

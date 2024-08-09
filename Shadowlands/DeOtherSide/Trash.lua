@@ -70,7 +70,7 @@ function mod:GetOptions()
 		-- Risen Cultist
 		328740, -- Dark Lotus
 		-- Risen Warlord
-		{333227, "NAMEPLATEBAR"}, -- Undying Rage
+		{333227, "NAMEPLATE"}, -- Undying Rage
 		333250, -- Reaver
 		-- Enraged Spirit
 		{333787, "CASTBAR"}, -- Rage
@@ -90,7 +90,7 @@ function mod:GetOptions()
 
 		-- [[ Path to the Manastorms ]] --
 		-- Defunct Dental Drill
-		{331927, "NAMEPLATEBAR", "CASTBAR"}, -- Haywire
+		{331927, "NAMEPLATE", "CASTBAR"}, -- Haywire
 		-- 4.RF-4.RF
 		{331548, "TANK_HEALER"}, -- Metallic Jaws
 		{331846, "SAY", "SAY_COUNTDOWN", "CASTBAR"}, -- W-00F

@@ -56,25 +56,25 @@ end
 function mod:GetOptions()
 	return {
 		-- Tirnenn Villager
-		{321968, "NAMEPLATEBAR"}, -- Bewildering Pollen
-		{322486, "NAMEPLATEBAR"}, -- Overgrowth
+		{321968, "NAMEPLATE"}, -- Bewildering Pollen
+		{322486, "NAMEPLATE"}, -- Overgrowth
 		-- Drust Harvester
-		{322938, "NAMEPLATEBAR"}, -- Harvest Essence
+		{322938, "NAMEPLATE"}, -- Harvest Essence
 		-- Drust Soulcleaver
-		{322569, "TANK", "NAMEPLATEBAR"}, -- Hand of Thros
-		{322557, "DISPEL", "NAMEPLATEBAR"}, -- Soul Split
+		{322569, "TANK", "NAMEPLATE"}, -- Hand of Thros
+		{322557, "DISPEL", "NAMEPLATE"}, -- Soul Split
 		-- Drust Boughbreaker
 		324909, -- Furious Thrashing
-		{324923, "NAMEPLATEBAR"}, -- Bramble Burst
+		{324923, "NAMEPLATE"}, -- Bramble Burst
 		-- Mistveil Defender
-		{463256, "NAMEPLATEBAR"}, -- Mist Ward
-		{463248, "ME_ONLY", "NAMEPLATEBAR"}, -- Expel
+		{463256, "NAMEPLATE"}, -- Mist Ward
+		{463248, "ME_ONLY", "NAMEPLATE"}, -- Expel
 		-- Mistveil Gorgegullet
 		340304, -- Poisonous Secretions
 		340305, -- Crushing Leap
 		{340300, "TANK_HEALER"}, -- Tongue Lashing
 		-- Mistveil Guardian
-		{463217, "TANK_HEALER", "NAMEPLATEBAR"}, -- Anima Slash
+		{463217, "TANK_HEALER", "NAMEPLATE"}, -- Anima Slash
 		-- Mistveil Matriarch
 		340189, -- Pool of Radiance
 		340160, -- Radiant Breath
@@ -83,20 +83,20 @@ function mod:GetOptions()
 		{340289, "TANK_HEALER"}, -- Triple Bite
 		{340279, "DISPEL"}, -- Poisonous Discharge
 		-- Mistveil Shaper
-		{324776, "NAMEPLATEBAR"}, -- Bramblethorn Coat
+		{324776, "NAMEPLATE"}, -- Bramblethorn Coat
 		-- Mistveil Stalker
-		{325021, "ME_ONLY", "NAMEPLATEBAR"}, -- Mistveil Tear
+		{325021, "ME_ONLY", "NAMEPLATE"}, -- Mistveil Tear
 		-- Mistveil Stinger
-		{325224, "SAY", "NAMEPLATEBAR"}, -- Anima Injection
+		{325224, "SAY", "NAMEPLATE"}, -- Anima Injection
 		-- Mistveil Tender
-		{324914, "DISPEL", "NAMEPLATEBAR"}, -- Nourish the Forest
+		{324914, "DISPEL", "NAMEPLATE"}, -- Nourish the Forest
 		-- Spinemaw Acidgullet
-		{325418, "ME_ONLY", "SAY", "NAMEPLATEBAR"}, -- Volatile Acid
+		{325418, "ME_ONLY", "SAY", "NAMEPLATE"}, -- Volatile Acid
 		-- Spinemaw Staghorn
-		{340544, "NAMEPLATEBAR"}, -- Stimulate Regeneration
-		{326046, "DISPEL", "NAMEPLATEBAR"}, -- Stimulate Resistance
+		{340544, "NAMEPLATE"}, -- Stimulate Regeneration
+		{326046, "DISPEL", "NAMEPLATE"}, -- Stimulate Resistance
 		-- Spinemaw Gorger
-		{326021, "NAMEPLATEBAR"}, -- Acid Globule
+		{326021, "NAMEPLATE"}, -- Acid Globule
 	}, {
 		[321968] = L.tirnenn_villager,
 		[322938] = L.drust_harvester,
@@ -122,16 +122,16 @@ if not BigWigsLoader.isBeta then
 	function mod:GetOptions()
 		return {
 			-- Tirnenn Villager
-			{321968, "NAMEPLATEBAR"}, -- Bewildering Pollen
-			{322486, "NAMEPLATEBAR"}, -- Overgrowth
+			{321968, "NAMEPLATE"}, -- Bewildering Pollen
+			{322486, "NAMEPLATE"}, -- Overgrowth
 			-- Drust Harvester
-			{322938, "NAMEPLATEBAR"}, -- Harvest Essence
+			{322938, "NAMEPLATE"}, -- Harvest Essence
 			-- Drust Soulcleaver
-			{322569, "TANK", "NAMEPLATEBAR"}, -- Hand of Thros
-			{322557, "DISPEL", "NAMEPLATEBAR"}, -- Soul Split
+			{322569, "TANK", "NAMEPLATE"}, -- Hand of Thros
+			{322557, "DISPEL", "NAMEPLATE"}, -- Soul Split
 			-- Drust Boughbreaker
 			324909, -- Furious Thrashing
-			{324923, "NAMEPLATEBAR"}, -- Bramble Burst
+			{324923, "NAMEPLATE"}, -- Bramble Burst
 			-- Mistveil Defender
 			331718, -- Spear Flurry
 			-- Mistveil Gorgegullet
@@ -148,20 +148,20 @@ if not BigWigsLoader.isBeta then
 			{340289, "TANK_HEALER"}, -- Triple Bite
 			{340279, "DISPEL"}, -- Poisonous Discharge
 			-- Mistveil Shaper
-			{324776, "NAMEPLATEBAR"}, -- Bramblethorn Coat
+			{324776, "NAMEPLATE"}, -- Bramblethorn Coat
 			-- Mistveil Stalker
-			{325021, "ME_ONLY", "NAMEPLATEBAR"}, -- Mistveil Tear
+			{325021, "ME_ONLY", "NAMEPLATE"}, -- Mistveil Tear
 			-- Mistveil Stinger
-			{325224, "SAY", "NAMEPLATEBAR"}, -- Anima Injection
+			{325224, "SAY", "NAMEPLATE"}, -- Anima Injection
 			-- Mistveil Tender
-			{324914, "DISPEL", "NAMEPLATEBAR"}, -- Nourish the Forest
+			{324914, "DISPEL", "NAMEPLATE"}, -- Nourish the Forest
 			-- Spinemaw Acidgullet
-			{325418, "ME_ONLY", "SAY", "NAMEPLATEBAR"}, -- Volatile Acid
+			{325418, "ME_ONLY", "SAY", "NAMEPLATE"}, -- Volatile Acid
 			-- Spinemaw Staghorn
-			{340544, "NAMEPLATEBAR"}, -- Stimulate Regeneration
-			{326046, "DISPEL", "NAMEPLATEBAR"}, -- Stimulate Resistance
+			{340544, "NAMEPLATE"}, -- Stimulate Regeneration
+			{326046, "DISPEL", "NAMEPLATE"}, -- Stimulate Resistance
 			-- Spinemaw Gorger
-			{326021, "NAMEPLATEBAR"}, -- Acid Globule
+			{326021, "NAMEPLATE"}, -- Acid Globule
 		}, {
 			[321968] = L.tirnenn_villager,
 			[322938] = L.drust_harvester,
