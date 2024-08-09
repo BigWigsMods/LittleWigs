@@ -153,8 +153,8 @@ function mod:GorgingShieldRemoved(args)
 end
 
 function mod:ConsumptionRemoved(args)
+	self:StopBar(CL.cast:format(args.spellName))
 	if BigWigsLoader.isBeta and self:Mythic() then -- XXX remove isBeta when 10.2 is live
-		self:StopBar(CL.cast:format(args.spellName))
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
 		self:CDBar(322614, 25.0) -- Mind Link
