@@ -60,11 +60,11 @@ function mod:GetOptions()
 	return {
 		"custom_on_autotalk",
 		-- Herald of Ansurek
-		{443437, "SAY", "SAY_COUNTDOWN"}, -- Shadows of Doubt
+		{443437, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Shadows of Doubt
 		-- Sureki Silkbinder
-		443430, -- Silk Binding
+		{443430, "NAMEPLATE"}, -- Silk Binding
 		-- Royal Swarmguard
-		443500, -- Earthshatter
+		{443500, "NAMEPLATE"}, -- Earthshatter
 		-- Xeph'itik
 		450784, -- Perfume Toss
 		451423, -- Gossamer Barrage
@@ -72,9 +72,9 @@ function mod:GetOptions()
 		-- Pale Priest
 		448047, -- Web Wrap
 		-- Eye of the Queen
-		451543, -- Null Slam
+		{451543, "NAMEPLATE"}, -- Null Slam
 		-- Covert Webmancer
-		452162, -- Mending Web
+		{452162, "NAMEPLATE"}, -- Mending Web
 		-- Royal Venomshell
 		434137, -- Venomous Spray
 		-- Unstable Test Subject
@@ -110,12 +110,14 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Herald of Ansurek
-	--self:Log("SPELL_CAST_SUCCESS", "ShadowsOfDoubt", 443436)
+	self:Log("SPELL_CAST_SUCCESS", "ShadowsOfDoubt", 443436)
 	self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtApplied", 443437)
 	self:Log("SPELL_AURA_REMOVED", "ShadowsOfDoubtRemoved", 443437)
 
 	-- Sureki Silkbinder
 	self:Log("SPELL_CAST_START", "SilkBinding", 443430)
+	self:Log("SPELL_INTERRUPT", "SilkBindingInterrupt", 443430)
+	self:Log("SPELL_CAST_SUCCESS", "SilkBindingSuccess", 443430)
 
 	-- Royal Swarmguard
 	self:Log("SPELL_CAST_START", "Earthshatter", 443500)
@@ -134,6 +136,8 @@ function mod:OnBossEnable()
 
 	-- Covert Webmancer
 	self:Log("SPELL_CAST_START", "MendingWeb", 452162)
+	self:Log("SPELL_INTERRUPT", "MendingWebInterrupt", 452162)
+	self:Log("SPELL_CAST_SUCCESS", "MendingWebSuccess", 452162)
 
 	-- Royal Venomshell
 	self:Log("SPELL_CAST_START", "VenomousSpray", 434137)
@@ -204,9 +208,9 @@ end
 
 -- Herald of Ansurek
 
---function mod:ShadowsOfDoubt()
-	--self:Nameplate(443437, 13.9, args.sourceGUID)
---end
+function mod:ShadowsOfDoubt(args)
+	self:Nameplate(443437, 12.2, args.sourceGUID)
+end
 
 function mod:ShadowsOfDoubtApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -231,7 +235,15 @@ function mod:SilkBinding(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:Nameplate(args.spellId, 21.8, args.sourceGUID) -- recast if stunned, needs SUCCESS/INTERRUPT
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:SilkBindingInterrupt(args)
+	self:Nameplate(443430, 20.9, args.destGUID)
+end
+
+function mod:SilkBindingSuccess(args)
+	self:Nameplate(args.spellId, 20.9, args.sourceGUID)
 end
 
 -- Royal Swarmguard
@@ -239,7 +251,7 @@ end
 function mod:Earthshatter(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:Nameplate(args.spellId, 15.5, args.sourceGUID)
+	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
 end
 
 -- Xeph'itik
@@ -309,7 +321,7 @@ end
 function mod:NullSlam(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	--self:Nameplate(args.spellId, 26.7, args.sourceGUID)
+	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 end
 
 -- Covert Webmender
@@ -317,7 +329,15 @@ end
 function mod:MendingWeb(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:Nameplate(args.spellId, 20.6, args.sourceGUID) -- recast if stunned, needs SUCCESS/INTERRUPT
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:MendingWebInterrupt(args)
+	self:Nameplate(452162, 16.5, args.destGUID)
+end
+
+function mod:MendingWebSuccess(args)
+	self:Nameplate(args.spellId, 16.5, args.sourceGUID)
 end
 
 -- Royal Venomshell
