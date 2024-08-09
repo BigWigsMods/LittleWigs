@@ -60,7 +60,7 @@ function mod:GetOptions()
 	return {
 		"custom_on_autotalk",
 		-- Herald of Ansurek
-		{443437, "SAY"}, -- Shadows of Doubt
+		{443437, "SAY", "SAY_COUNTDOWN"}, -- Shadows of Doubt
 		-- Sureki Silkbinder
 		443430, -- Silk Binding
 		-- Royal Swarmguard
@@ -112,6 +112,7 @@ function mod:OnBossEnable()
 	-- Herald of Ansurek
 	--self:Log("SPELL_CAST_SUCCESS", "ShadowsOfDoubt", 443436)
 	self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtApplied", 443437)
+	self:Log("SPELL_AURA_REMOVED", "ShadowsOfDoubtRemoved", 443437)
 
 	-- Sureki Silkbinder
 	self:Log("SPELL_CAST_START", "SilkBinding", 443430)
@@ -212,6 +213,13 @@ function mod:ShadowsOfDoubtApplied(args)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Shadows of Doubt")
+		self:SayCountdown(args.spellId, 8)
+	end
+end
+
+function mod:ShadowsOfDoubtRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
 	end
 end
 
