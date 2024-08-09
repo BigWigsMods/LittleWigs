@@ -61,11 +61,11 @@ function mod:OnEngage()
 	nextBewilderingPollen = t + 7.2
 	self:SetStage(1)
 	self:CDBar(323137, 7.2) -- Bewildering Pollen
-	self:CDBar(323177, 15.5) -- Tears of the Forest
+	self:CDBar(323177, 19.6) -- Tears of the Forest
 	if self:Mythic() then
-		self:CDBar(328756, 33.9, CL.fear) -- Repulsive Visage
+		self:CDBar(328756, 31.2, CL.fear) -- Repulsive Visage
 	end
-	self:CDBar(323149, 35.4, CL.count:format(self:SpellName(323149), embraceDarknessCount)) -- Embrace Darkness
+	self:CDBar(323149, 35.3, CL.count:format(self:SpellName(323149), embraceDarknessCount)) -- Embrace Darkness
 end
 
 --------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ function mod:DromansWrathApplied(args)
 	self:SetStage(2)
 	self:CastBar(args.spellId, 15)
 	self:CDBar(323137, 27.1) -- Bewildering Pollen
-	self:CDBar(323177, 44.1) -- Tears of the Forest
+	self:CDBar(323177, 41.2) -- Tears of the Forest
 	if self:Mythic() then
 		self:CDBar(328756, 52.8, CL.fear) -- Repulsive Visage
 	end
