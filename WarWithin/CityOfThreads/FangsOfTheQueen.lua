@@ -134,10 +134,14 @@ function mod:Duskbringer(args)
 	self:StopBar(CL.count:format(args.spellName, duskbringerCount))
 	self:Message(args.spellId, "orange", CL.count:format(args.spellName, duskbringerCount))
 	duskbringerCount = duskbringerCount + 1
-	if duskbringerCount % 2 == 0 then
-		self:CDBar(args.spellId, 44.4, CL.count:format(args.spellName, duskbringerCount))
+	if self:Mythic() then
+		if duskbringerCount % 2 == 0 then
+			self:CDBar(args.spellId, 44.4, CL.count:format(args.spellName, duskbringerCount))
+		else
+			self:CDBar(args.spellId, 50.8, CL.count:format(args.spellName, duskbringerCount))
+		end
 	else
-		self:CDBar(args.spellId, 50.8, CL.count:format(args.spellName, duskbringerCount))
+		self:CDBar(args.spellId, 96.5, CL.count:format(args.spellName, duskbringerCount))
 	end
 	self:PlaySound(args.spellId, "alarm")
 end
