@@ -41,8 +41,6 @@ if L then
 	L.nightfall_tactician = "Nightfall Tactician"
 	L.manifested_shadow = "Manifested Shadow"
 	L.nightfall_dark_architect = "Nightfall Dark Architect"
-
-	L.flying_available = "You can fly now"
 end
 
 --------------------------------------------------------------------------------
@@ -95,7 +93,7 @@ function mod:GetOptions()
 		[432565] = L.manifested_shadow,
 		[431349] = L.nightfall_dark_architect,
 	}, {
-		[449042] = L.flying_available, -- Radiant Light (You can fly now)
+		[449042] = CL.flying_available, -- Radiant Light (You can fly now)
 	}
 end
 
@@ -161,7 +159,7 @@ do
 		if t - prev > 10 and msg:find("449042", nil, true) then -- Radiant Light
 			prev = t
 			-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\INV_Ability_HolyFire_Nova.BLP:20|t You have gained |cFFFF0000|Hspell:449042|h[Radiant Light]|h|r. |TInterface\\ICONS\\Ability_DragonRiding_DragonRiding01.BLP:20|t Take flight!
-			self:Message(449042, "green", L.flying_available, "Ability_DragonRiding_DragonRiding01")
+			self:Message(449042, "green", CL.flying_available, "Ability_DragonRiding_DragonRiding01")
 			self:PlaySound(449042, "info")
 		end
 	end

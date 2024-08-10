@@ -24,15 +24,6 @@ local radiantLightOnGroup = false
 local acidicEruptionCount = 1
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.flying_available = "You can fly now"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -58,7 +49,7 @@ function mod:GetOptions()
 	}, {
 		[434655] = CL.bombs, -- Arathi Bomb (Bombs)
 		[448213] = CL.mythic, -- Expel Webs (Mythic mode)
-		[449528] = L.flying_available, -- Radiant Light (You can fly now)
+		[449528] = CL.flying_available, -- Radiant Light (You can fly now)
 	}
 end
 
@@ -140,10 +131,10 @@ function mod:ThrowArathiBomb(args)
 	else -- Normal
 		self:Message(434655, "green", CL.count_amount:format(args.spellName, throwArathiBombCount, 3))
 	end
+	throwArathiBombCount = throwArathiBombCount + 1
 	if self:Me(args.sourceGUID) then
 		self:PlaySound(434655, "info", nil, args.sourceName)
 	end
-	throwArathiBombCount = throwArathiBombCount + 1
 end
 
 function mod:RollingAcid(args)
@@ -184,7 +175,7 @@ function mod:RadiantLight()
 	if not radiantLightOnGroup then
 		-- this is cast more than once, and allows you to fly. we only care about the very first cast.
 		radiantLightOnGroup = true
-		self:Message(449528, "green", L.flying_available, "Ability_DragonRiding_DragonRiding01")
+		self:Message(449528, "green", CL.flying_available, "Ability_DragonRiding_DragonRiding01")
 		self:PlaySound(449528, "info")
 	end
 end

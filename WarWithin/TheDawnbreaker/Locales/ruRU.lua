@@ -14,11 +14,4 @@ if L then
 	--L.nightfall_tactician = "Nightfall Tactician"
 	--L.manifested_shadow = "Manifested Shadow"
 	--L.nightfall_dark_architect = "Nightfall Dark Architect"
-
-	L.flying_available = "Можешь лететь"
-end
-
-L = BigWigs:NewBossLocale("Rasha'nan Dawnbreaker", "ruRU")
-if L then
-	L.flying_available = "Можешь лететь"
 end
