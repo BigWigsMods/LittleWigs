@@ -75,12 +75,12 @@ function mod:GetOptions()
 		{449130, "NAMEPLATE"}, -- Lava Cannon
 		{449154, "HEALER", "NAMEPLATE"}, -- Molten Mortar
 		-- Cursedforge Honor Guard
-		448640, -- Shield Stampede
+		{448640, "NAMEPLATE"}, -- Shield Stampede
 		-- Cursedforge Stoneshaper
-		429427, -- Earth Burst Totem
+		{429427, "NAMEPLATE"}, -- Earth Burst Totem
 		-- Rock Smasher
-		428879, -- Smash Rock
-		428703, -- Granite Eruption
+		{428879, "NAMEPLATE"}, -- Smash Rock
+		{428703, "NAMEPLATE"}, -- Granite Eruption
 	}, {
 		[425027] = L.earth_infused_golem,
 		[447141] = L.repurposed_loaderbot,
@@ -150,16 +150,21 @@ function mod:OnBossEnable()
 	-- Forge Loader
 	self:Log("SPELL_CAST_START", "LavaCannon", 449130)
 	self:Log("SPELL_CAST_SUCCESS", "MoltenMortar", 449154)
+	self:Death("ForgeLoaderDeath", 213343)
 
 	-- Cursedforge Honor Guard
 	self:Log("SPELL_CAST_START", "ShieldStampede", 448640)
+	self:Death("CursedforgeHonorGuardDeath", 214264)
 
 	-- Cursedforge Stoneshaper
+	self:Log("SPELL_CAST_SUCCESS", "EarthBurstTotem", 429427)
 	self:Log("SPELL_SUMMON", "EarthBurstTotemSummon", 429427)
+	self:Death("CursedforgeStoneshaperDeath", 214066)
 
 	-- Rock Smasher
 	self:Log("SPELL_CAST_START", "SmashRock", 428879)
 	self:Log("SPELL_CAST_START", "GraniteEruption", 428703)
+	self:Death("RockSmasherDeath", 213954)
 end
 
 --------------------------------------------------------------------------------
@@ -394,10 +399,19 @@ do
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	end
 end
 
+function mod:CursedforgeHonorGuardDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Cursedforge Stoneshaper
+
+function mod:EarthBurstTotem(args)
+	self:Nameplate(args.spellId, 31.6, args.sourceGUID)
+end
 
 do
 	local prev = 0
@@ -411,6 +425,10 @@ do
 	end
 end
 
+function mod:CursedforgeStoneshaperDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Rock Smasher
 
 do
@@ -422,6 +440,7 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 	end
 end
 
@@ -434,5 +453,10 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 24.3, args.sourceGUID)
 	end
+end
+
+function mod:RockSmasherDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
