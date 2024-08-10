@@ -25,7 +25,7 @@ BigWigs:AddColors("Master Machinists", {
 })
 
 BigWigs:AddColors("Void Speaker Eirich", {
-	[427461] = {"green","yellow"},
+	[427461] = {"blue","green","yellow"},
 	[427852] = "red",
 	[427869] = "orange",
 })
