@@ -38,6 +38,7 @@ function mod:GetOptions()
 		{424888, "TANK_HEALER"}, -- Seismic Smash
 		{424889, "DISPEL"}, -- Seismic Reverberation
 		424903, -- Volatile Spike
+		-- Mythic
 		424879, -- Earth Shatterer
 	}, {
 		[424879] = CL.mythic,
@@ -47,10 +48,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "RefractingBeamApplied", 424795) -- TODO no SPELL_CAST_SUCCESS
+	self:Log("SPELL_CAST_SUCCESS", "RefractingBeam", 424795)
 	self:Log("SPELL_CAST_START", "SeismicSmash", 424888)
 	self:Log("SPELL_AURA_APPLIED", "SeismicReverberation", 424889)
 	self:Log("SPELL_CAST_START", "VolatileSpike", 424903)
+
+	-- Mythic
 	self:Log("SPELL_CAST_START", "EarthShatterer", 424879)
 end
 
@@ -86,7 +89,7 @@ do
 	local playerList = {}
 	local prev = 0
 
-	function mod:RefractingBeamApplied(args)
+	function mod:RefractingBeam(args)
 		local t = args.time
 		if self:Mythic() then
 			if t - prev > 5 then
@@ -154,6 +157,8 @@ function mod:VolatileSpike(args)
 		self:CDBar(args.spellId, 14.6)
 	end
 end
+
+-- Mythic
 
 function mod:EarthShatterer(args)
 	self:StopBar(CL.count:format(args.spellName, earthShattererCount))
