@@ -86,7 +86,7 @@ function mod:DarknessComes(args)
 			self:CDBar(445996, 27.5) -- Collapsing Darkness
 		end
 	else
-		percent = 0
+		percent = 1
 		self:StopBar(426735) -- Burning Shadows
 		if self:Mythic() then
 			self:StopBar(453212) -- Obsidian Beam
@@ -102,7 +102,7 @@ function mod:DarknessComes(args)
 end
 
 function mod:BurningShadows()
-	self:CDBar(426735, 19.1)
+	self:CDBar(426735, 15.7)
 end
 
 function mod:BurningShadowsApplied(args)
@@ -118,13 +118,13 @@ end
 function mod:ObsidianBlast(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 11.6)
+	self:CDBar(args.spellId, 13.9)
 end
 
 function mod:CollapsingDarkness(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 14.7)
+	self:CDBar(args.spellId, 15.7)
 end
 
 -- Mythic
@@ -138,5 +138,5 @@ end
 function mod:CollapsingNight(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 25.9)
+	self:CDBar(args.spellId, 24.8)
 end
