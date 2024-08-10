@@ -36,7 +36,7 @@ end
 
 function mod:OnBossEnable()
 	-- Stages
-	self:Log("SPELL_CAST_SUCCESS", "SilencedSpeaker", 439577)
+	self:Log("SPELL_AURA_APPLIED", "SilencedSpeaker", 439577)
 
 	-- Speaker Brokk
 	self:Log("SPELL_CAST_START", "ExhaustVents", 445541)
@@ -70,12 +70,12 @@ function mod:SilencedSpeaker(args)
 	if self:MobId(args.sourceGUID) == 213217 then -- Speaker Brokk defeated
 		self:StopBar(445541) -- Exhaust Vents
 		self:StopBar(430097) -- Molten Metal
-		self:StopBar(428202) -- Scrap Song
 	else -- Speaker Dorlita defeated
-		self:StopBar(428508) -- Blazing Crescendo
 		self:StopBar(428711) -- Igneous Hammer
 		self:StopBar(449167) -- Lava Cannon
 	end
+	self:StopBar(428202) -- Scrap Song
+	self:StopBar(428508) -- Blazing Crescendo
 	self:SetStage(2)
 	self:Message(args.spellId, "cyan", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
