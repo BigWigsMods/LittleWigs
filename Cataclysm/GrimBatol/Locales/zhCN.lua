@@ -13,7 +13,7 @@ if L then
 	L.twilight_brute = "暮光蛮兵"
 	L.twilight_destroyer = "暮光毁灭者"
 	L.twilight_beguiler = "暮光欺诈者"
-	--L.molten_giant = "Molten Giant"
+	L.molten_giant = "熔核巨人"
 	L.twilight_warlock = "暮光术士"
 	L.twilight_flamerender = "暮光烈焰粉碎者"
 	L.twilight_lavabender = "暮光熔岩操纵使"
