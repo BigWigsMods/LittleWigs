@@ -33,6 +33,7 @@ BigWigs:AddColors("The Dawnbreaker Trash", {
 	[431349] = "red",
 	[431494] = "purple",
 	[432448] = {"blue","yellow"},
+	[432520] = "orange",
 	[432565] = "yellow",
 	[446615] = "cyan",
 	[449042] = "green",

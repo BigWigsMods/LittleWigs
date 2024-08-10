@@ -12,12 +12,14 @@ mod:RegisterEnableMob(
 	214761, -- Nightfall Ritualist
 	214762, -- Nightfall Commander
 	225479, -- Sureki Webmage
+	210966, -- Sureki Webmage
 	224325, -- Arathi Bomb
 	211261, -- Ascendant Vis'coxria
 	211263, -- Deathscreamer Iken'tak
 	211262, -- Ixkreten the Unbreakable
 	213932, -- Sureki Militant
 	213934, -- Nightfall Tactician
+	213893, -- Nightfall Darkcaster
 	211341, -- Manifested Shadow
 	213885 -- Nightfall Dark Architect
 )
@@ -39,6 +41,7 @@ if L then
 	L.ixkreten_the_unbreakable = "Ixkreten the Unbreakable"
 	L.sureki_militant = "Sureki Militant"
 	L.nightfall_tactician = "Nightfall Tactician"
+	L.nightfall_darkcaster = "Nightfall Darkcaster"
 	L.manifested_shadow = "Manifested Shadow"
 	L.nightfall_dark_architect = "Nightfall Dark Architect"
 end
@@ -52,14 +55,13 @@ function mod:GetOptions()
 		-- Arathi Lamplighter
 		449042, -- Radiant Light
 		-- Nightfall Shadowmage
-		{431309, "DISPEL"}, -- Ensnaring Shadows
+		{431309, "DISPEL", "NAMEPLATE"}, -- Ensnaring Shadows
 		-- Nightfall Ritualist
-		431304, -- Dark Floes
-		{432448, "SAY"}, -- Stygian Seed
+		{432448, "SAY", "NAMEPLATE"}, -- Stygian Seed
 		-- Nightfall Commander
-		450756, -- Abyssal Howl
+		{450756, "NAMEPLATE"}, -- Abyssal Howl
 		-- Sureki Webmage
-		{451107, "SAY"}, -- Bursting Cocoon
+		{451107, "SAY", "NAMEPLATE"}, -- Bursting Cocoon
 		-- Arathi Bomb
 		451091, -- Plant Arathi Bomb
 		-- Ascendant Vis'coxria
@@ -69,19 +71,22 @@ function mod:GetOptions()
 		-- Ixkreten the Unbreakable
 		451117, -- Terrifying Slam
 		-- Sureki Militant
-		451098, -- Tacky Nova
-		451097, -- Silken Shell
+		{451098, "NAMEPLATE"}, -- Tacky Nova
+		{451097, "NAMEPLATE"}, -- Silken Shell
 		-- Nightfall Tactician
-		431494, -- Black Edge
+		{431494, "NAMEPLATE"}, -- Black Edge
+		-- Nightfall Darkcaster
+		{432520, "NAMEPLATE"}, -- Umbral Barrier
 		-- Manifested Shadow
-		432565, -- Dark Floes
+		{432565, "NAMEPLATE"}, -- Black Hail
+		{431304, "NAMEPLATE"}, -- Dark Floes
 		-- Nightfall Dark Architect
 		431349, -- Tormenting Eruption
 		446615, -- Usher Reinforcements
 	}, {
 		[449042] = L.arathi_lamplighter,
 		[431309] = L.nightfall_shadowmage,
-		[431304] = L.nightfall_ritualist,
+		[432448] = L.nightfall_ritualist,
 		[450756] = L.nightfall_commander,
 		[451107] = L.sureki_webmage,
 		[451091] = L.arathi_bomb,
@@ -90,6 +95,7 @@ function mod:GetOptions()
 		[451117] = L.ixkreten_the_unbreakable,
 		[451098] = L.sureki_militant,
 		[431494] = L.nightfall_tactician,
+		[432520] = L.nightfall_darkcaster,
 		[432565] = L.manifested_shadow,
 		[431349] = L.nightfall_dark_architect,
 	}, {
@@ -103,17 +109,26 @@ function mod:OnBossEnable()
 
 	-- Nightfall Shadowmage
 	self:Log("SPELL_CAST_START", "EnsnaringShadows", 431309)
+	self:Log("SPELL_INTERRUPT", "EnsnaringShadowsInterrupt", 431309)
+	self:Log("SPELL_CAST_SUCCESS", "EnsnaringShadowsSuccess", 431309)
 	self:Log("SPELL_AURA_APPLIED", "EnsnaringShadowsApplied", 431309)
+	self:Death("NightfallShadowmageDeath", 213892)
 
 	-- Nightfall Ritualist
-	self:Log("SPELL_CAST_START", "DarkFloes", 431304)
+	self:Log("SPELL_CAST_SUCCESS", "StygianSeed", 432448)
 	self:Log("SPELL_AURA_APPLIED", "StygianSeedApplied", 432448)
+	self:Death("NightfallRitualistDeath", 214761)
 
 	-- Nightfall Commander
 	self:Log("SPELL_CAST_START", "AbyssalHowl", 450756)
+	self:Log("SPELL_INTERRUPT", "AbyssalHowlInterrupt", 450756)
+	self:Log("SPELL_CAST_SUCCESS", "AbyssalHowlSuccess", 450756)
+	self:Death("NightfallCommanderDeath", 214762)
 
 	-- Sureki Webmage
+	self:Log("SPELL_CAST_SUCCESS", "BurstingCocoon", 451107)
 	self:Log("SPELL_AURA_APPLIED", "BurstingCocoonApplied", 451107)
+	self:Death("SurekiWebmageDeath", 225479, 210966)
 
 	-- Arathi Bomb
 	self:Log("SPELL_CAST_START", "PlantArathiBomb", 451091)
@@ -133,12 +148,24 @@ function mod:OnBossEnable()
 	-- Sureki Militant
 	self:Log("SPELL_CAST_START", "TackyNova", 451098)
 	self:Log("SPELL_CAST_START", "SilkenShell", 451097)
+	self:Log("SPELL_INTERRUPT", "SilkenShellInterrupt", 451097)
+	self:Log("SPELL_CAST_SUCCESS", "SilkenShellSuccess", 451097)
+	self:Death("SurekiMilitantDeath", 213932)
 
 	-- Nightfall Tactician
 	self:Log("SPELL_CAST_START", "BlackEdge", 431494)
+	self:Death("NightfallTacticianDeath", 213934)
+
+	-- Nightfall Darkcaster
+	self:Log("SPELL_CAST_START", "UmbralBarrier", 432520)
+	self:Log("SPELL_INTERRUPT", "UmbralBarrierInterrupt", 432520)
+	self:Log("SPELL_CAST_SUCCESS", "UmbralBarrierSuccess", 432520)
+	self:Death("NightfallDarkcasterDeath", 213893)
 
 	-- Manifested Shadow
 	self:Log("SPELL_CAST_SUCCESS", "BlackHail", 432565)
+	self:Log("SPELL_CAST_START", "DarkFloes", 431304)
+	self:Death("ManifestedShadowDeath", 211341)
 
 	-- Nightfall Dark Architect
 	self:Log("SPELL_CAST_START", "TormentingEruption", 431349)
@@ -170,6 +197,15 @@ end
 function mod:EnsnaringShadows(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:EnsnaringShadowsInterrupt(args)
+	self:Nameplate(431309, 18.1, args.destGUID)
+end
+
+function mod:EnsnaringShadowsSuccess(args)
+	self:Nameplate(args.spellId, 18.1, args.sourceGUID)
 end
 
 function mod:EnsnaringShadowsApplied(args)
@@ -179,11 +215,14 @@ function mod:EnsnaringShadowsApplied(args)
 	end
 end
 
+function mod:NightfallShadowmageDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Nightfall Ritualist
 
-function mod:DarkFloes(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+function mod:StygianSeed(args)
+	self:Nameplate(args.spellId, 21.8, args.sourceGUID)
 end
 
 function mod:StygianSeedApplied(args)
@@ -194,14 +233,36 @@ function mod:StygianSeedApplied(args)
 	end
 end
 
+function mod:NightfallRitualistDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Nightfall Commander
 
 function mod:AbyssalHowl(args)
+	-- only cast if there are nearby injured enemies
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:AbyssalHowlInterrupt(args)
+	self:Nameplate(450756, 25.2, args.destGUID)
+end
+
+function mod:AbyssalHowlSuccess(args)
+	self:Nameplate(args.spellId, 25.2, args.sourceGUID)
+end
+
+function mod:NightfallCommanderDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Sureki Webmage
+
+function mod:BurstingCocoon(args)
+	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+end
 
 function mod:BurstingCocoonApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -209,6 +270,10 @@ function mod:BurstingCocoonApplied(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Bursting Cocoon")
 	end
+end
+
+function mod:SurekiWebmageDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Arathi Bomb
@@ -230,7 +295,7 @@ do
 		end
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 17.0)
+		self:CDBar(args.spellId, 24.4)
 		timer = self:ScheduleTimer("AscendantViscoxriaDeath", 30)
 	end
 
@@ -254,7 +319,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 17.0)
+		self:CDBar(args.spellId, 21.9)
 		timer = self:ScheduleTimer("DeathscreamerIkentakDeath", 30)
 	end
 
@@ -278,7 +343,7 @@ do
 		end
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 17.0)
+		self:CDBar(args.spellId, 24.2)
 		timer = self:ScheduleTimer("IxkretenTheUnbreakableDeath", 30)
 	end
 
@@ -296,11 +361,25 @@ end
 function mod:TackyNova(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 29.2, args.sourceGUID)
 end
 
 function mod:SilkenShell(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:SilkenShellInterrupt(args)
+	self:Nameplate(451097, 15.2, args.destGUID)
+end
+
+function mod:SilkenShellSuccess(args)
+	self:Nameplate(args.spellId, 15.2, args.sourceGUID)
+end
+
+function mod:SurekiMilitantDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Nightfall Tactician
@@ -314,7 +393,39 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
 	end
+end
+
+function mod:NightfallTacticianDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Nightfall Darkcaster
+
+do
+	local prev = 0
+	function mod:UmbralBarrier(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+	end
+end
+
+function mod:UmbralBarrierInterrupt(args)
+	self:Nameplate(432520, 24.2, args.destGUID)
+end
+
+function mod:UmbralBarrierSuccess(args)
+	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
+end
+
+function mod:NightfallDarkcasterDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Manifested Shadow
@@ -326,9 +437,27 @@ do
 		if t - prev > 2 then
 			prev = t
 			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "info")
+			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 14.5, args.sourceGUID)
 	end
+end
+
+do
+	local prev = 0
+	function mod:DarkFloes(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		self:Nameplate(args.spellId, 35.2, args.sourceGUID)
+	end
+end
+
+function mod:ManifestedShadowDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Nightfall Dark Architect

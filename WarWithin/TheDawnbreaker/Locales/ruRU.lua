@@ -12,6 +12,7 @@ if L then
 	--L.ixkreten_the_unbreakable = "Ixkreten the Unbreakable"
 	--L.sureki_militant = "Sureki Militant"
 	--L.nightfall_tactician = "Nightfall Tactician"
+	--L.nightfall_darkcaster = "Nightfall Darkcaster"
 	--L.manifested_shadow = "Manifested Shadow"
 	--L.nightfall_dark_architect = "Nightfall Dark Architect"
 end
