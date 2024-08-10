@@ -12,7 +12,7 @@ if L then
 	L.ixkreten_the_unbreakable = "坚不可摧的伊克斯雷腾"
 	L.sureki_militant = "苏雷吉好战者"
 	L.nightfall_tactician = "夜幕战略家"
-	--L.nightfall_darkcaster = "Nightfall Darkcaster"
+	L.nightfall_darkcaster = "夜幕暗法师"
 	L.manifested_shadow = "暗影具象"
 	L.nightfall_dark_architect = "夜幕黑暗建筑师"
 end
