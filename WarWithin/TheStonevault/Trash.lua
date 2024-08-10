@@ -54,26 +54,26 @@ end
 function mod:GetOptions()
 	return {
 		-- Earth Infused Golem
-		425027, -- Seismic Wave
+		{425027, "NAMEPLATE"}, -- Seismic Wave
 		-- Repurposed Loaderbot
-		447141, -- Pulverizing Pounce
+		{447141, "NAMEPLATE"}, -- Pulverizing Pounce
 		-- Ghastly Voidsoul
-		449455, -- Howling Fear
+		{449455, "NAMEPLATE"}, -- Howling Fear
 		-- Cursedheart Invader
-		{426308, "DISPEL"}, -- Void Infection
+		{426308, "DISPEL", "NAMEPLATE"}, -- Void Infection
 		-- Void Bound Despoiler
-		{426771, "HEALER"}, -- Void Storm
+		{426771, "HEALER", "NAMEPLATE"}, -- Void Outburst
 		-- Void Bound Howler
-		445207, -- Piercing Wail
+		{445207, "NAMEPLATE"}, -- Piercing Wail
 		-- Turned Speaker
-		429545, -- Censoring Gear
+		{429545, "NAMEPLATE"}, -- Censoring Gear
 		-- Void Touched Elemental
-		426345, -- Crystal Salvo
-		-- Forgebound Mender
-		429109, -- Restoring Metals
+		{426345, "NAMEPLATE"}, -- Crystal Salvo
+		-- Forgebound Mender / Cursedforge Mender
+		{429109, "NAMEPLATE"}, -- Restoring Metals
 		-- Forge Loader
-		449130, -- Lava Cannon
-		{449154, "DISPEL"}, -- Molten Mortar
+		{449130, "NAMEPLATE"}, -- Lava Cannon
+		{449154, "HEALER", "NAMEPLATE"}, -- Molten Mortar
 		-- Cursedforge Honor Guard
 		448640, -- Shield Stampede
 		-- Cursedforge Stoneshaper
@@ -104,30 +104,48 @@ function mod:OnBossEnable()
 
 	-- Earth Infused Golem
 	self:Log("SPELL_CAST_START", "SeismicWave", 425027)
+	self:Death("EarthInfusedGolemDeath", 210109)
 
 	-- Repurposed Loaderbot
 	self:Log("SPELL_CAST_START", "PulverizingPounce", 447141)
+	self:Death("RepurposedLoaderbotDeath", 222923)
 
 	-- Ghastly Voidsoul
 	self:Log("SPELL_CAST_START", "HowlingFear", 449455)
+	self:Log("SPELL_INTERRUPT", "HowlingFearInterrupt", 449455)
+	self:Log("SPELL_CAST_SUCCESS", "HowlingFearSuccess", 449455)
+	self:Death("GhastlyVoidsoulDeath", 212453)
 
 	-- Cursedheart Invader
+	self:Log("SPELL_CAST_SUCCESS", "VoidInfection", 426308)
 	self:Log("SPELL_AURA_APPLIED", "VoidInfectionApplied", 426308)
+	self:Death("CursedheartInvaderDeath", 212389, 212403)
 
 	-- Void Bound Despoiler
-	self:Log("SPELL_CAST_START", "VoidStorm", 426771)
+	self:Log("SPELL_CAST_START", "VoidOutburst", 426771)
+	self:Death("VoidBoundDespoilerDeath", 212765)
 
 	-- Void Bound Howler
 	self:Log("SPELL_CAST_START", "PiercingWail", 445207)
+	self:Log("SPELL_INTERRUPT", "PiercingWailInterrupt", 445207)
+	self:Log("SPELL_CAST_SUCCESS", "PiercingWailSuccess", 445207)
+	self:Death("VoidBoundHowlerDeath", 221979)
 
 	-- Turned Speaker
 	self:Log("SPELL_CAST_START", "CensoringGear", 429545)
+	self:Log("SPELL_INTERRUPT", "CensoringGearInterrupt", 429545)
+	self:Log("SPELL_CAST_SUCCESS", "CensoringGearSuccess", 429545)
+	self:Death("TurnedSpeakerDeath", 214350)
 
 	-- Void Touched Elemental
 	self:Log("SPELL_CAST_SUCCESS", "CrystalSalvo", 426345)
+	self:Death("VoidTouchedElementalDeath", 212400)
 
-	-- Forgebound Mender
+	-- Forgebound Mender / Cursedforge Mender
 	self:Log("SPELL_CAST_START", "RestoringMetals", 429109)
+	self:Log("SPELL_INTERRUPT", "RestoringMetalsInterrupt", 429109)
+	self:Log("SPELL_CAST_SUCCESS", "RestoringMetalsSuccess", 429109)
+	self:Death("MenderDeath", 213338, 224962) -- Forgebound Mender, Cursedforge Mender
 
 	-- Forge Loader
 	self:Log("SPELL_CAST_START", "LavaCannon", 449130)
@@ -166,6 +184,11 @@ end
 function mod:SeismicWave(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+end
+
+function mod:EarthInfusedGolemDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Repurposed Loaderbot
@@ -179,7 +202,12 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	end
+end
+
+function mod:RepurposedLoaderbotDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Ghastly Voidsoul
@@ -190,9 +218,26 @@ function mod:HowlingFear(args)
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:HowlingFearInterrupt(args)
+	self:Nameplate(449455, 22.9, args.destGUID)
+end
+
+function mod:HowlingFearSuccess(args)
+	self:Nameplate(args.spellId, 22.9, args.sourceGUID)
+end
+
+function mod:GhastlyVoidsoulDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Cursedheart Invader
+
+function mod:VoidInfection(args)
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+end
 
 do
 	local prev = 0
@@ -206,11 +251,20 @@ do
 	end
 end
 
+function mod:CursedheartInvaderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Void Bound Despoiler
 
-function mod:VoidStorm(args)
+function mod:VoidOutburst(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
+end
+
+function mod:VoidBoundDespoilerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Void Bound Howler
@@ -227,7 +281,20 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:PiercingWailInterrupt(args)
+	self:Nameplate(445207, 20.0, args.destGUID)
+end
+
+function mod:PiercingWailSuccess(args)
+	self:Nameplate(args.spellId, 20.0, args.sourceGUID)
+end
+
+function mod:VoidBoundHowlerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Turned Speaker
@@ -238,6 +305,19 @@ function mod:CensoringGear(args)
 	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:CensoringGearInterrupt(args)
+	self:Nameplate(429545, 15.7, args.destGUID)
+end
+
+function mod:CensoringGearSuccess(args)
+	self:Nameplate(args.spellId, 15.7, args.sourceGUID)
+end
+
+function mod:TurnedSpeakerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Void Touched Elemental
@@ -248,9 +328,14 @@ function mod:CrystalSalvo(args)
 	end
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 end
 
--- Forgebound Mender
+function mod:VoidTouchedElementalDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Forgebound Mender / Cursedforge Mender
 
 do
 	local prev = 0
@@ -264,7 +349,20 @@ do
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:RestoringMetalsInterrupt(args)
+	self:Nameplate(429109, 16.4, args.destGUID)
+end
+
+function mod:RestoringMetalsSuccess(args)
+	self:Nameplate(args.spellId, 16.4, args.sourceGUID)
+end
+
+function mod:MenderDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Forge Loader
@@ -272,14 +370,17 @@ end
 function mod:LavaCannon(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 12.1, args.sourceGUID)
 end
 
 function mod:MoltenMortar(args)
-	-- this applies to 2 targets, can only dispel one
-	if self:Dispeller("magic", nil, args.spellId) or self:Healer() then
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alert")
-	end
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
+end
+
+function mod:ForgeLoaderDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Cursedforge Honor Guard
