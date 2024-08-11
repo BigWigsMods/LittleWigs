@@ -112,6 +112,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 		end
 		self:SetStage(1.5)
 		self:Message("stages", "cyan", self:SpellName(-29591), "INV_Icon_wing07b") -- Intermission: Escape!
+		self:CDBar(449734, 49.3) -- Acidic Eruption
 		self:PlaySound("stages", "long")
 	end
 end
@@ -140,7 +141,15 @@ end
 function mod:RollingAcid(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 20.0)
+	if self:GetStage() == 1 then
+		if self:Mythic() then
+			self:CDBar(args.spellId, 20.0)
+		else
+			self:CDBar(args.spellId, 18.7)
+		end
+	else
+		self:CDBar(args.spellId, 28.0)
+	end
 end
 
 function mod:ErosiveSpray(args)
@@ -148,17 +157,25 @@ function mod:ErosiveSpray(args)
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, erosiveSprayCount))
 	self:PlaySound(args.spellId, "alert")
 	erosiveSprayCount = erosiveSprayCount + 1
-	if self:Mythic() then
-		self:CDBar(args.spellId, 18.7, CL.count:format(args.spellName, erosiveSprayCount))
+	if self:GetStage() == 1 then
+		if self:Mythic() then
+			self:CDBar(args.spellId, 28.0, CL.count:format(args.spellName, erosiveSprayCount))
+		else
+			self:CDBar(args.spellId, 23.3, CL.count:format(args.spellName, erosiveSprayCount))
+		end
 	else
-		self:CDBar(args.spellId, 20.0, CL.count:format(args.spellName, erosiveSprayCount))
+		self:CDBar(args.spellId, 26.0, CL.count:format(args.spellName, erosiveSprayCount))
 	end
 end
 
 function mod:ExpelWebs(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 12.0)
+	if self:GetStage() == 1 then
+		self:CDBar(args.spellId, 10.0)
+	else
+		self:CDBar(args.spellId, 14.0)
+	end
 end
 
 function mod:TackyBurst(args)
@@ -195,6 +212,9 @@ end
 
 function mod:AcidicEruption(args)
 	-- spammed until interrupted
+	if acidicEruptionCount == 1 then
+		self:StopBar(args.spellId)
+	end
 	self:Message(args.spellId, "yellow", CL.count:format(CL.casting:format(args.spellName), acidicEruptionCount))
 	self:PlaySound(args.spellId, "alert")
 	acidicEruptionCount = acidicEruptionCount + 1
@@ -209,10 +229,10 @@ function mod:AcidicEruptionInterrupted(args)
 		self:CDBar(434407, 4.0) -- Rolling Acid
 		self:CDBar(434089, 12.0) -- Spinneret's Strands
 		if self:Mythic() then
-			self:CDBar(448213, 17.4) -- Expel Webs
-			self:CDBar(448888, 21.4, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
+			self:CDBar(448213, 17.3) -- Expel Webs
+			self:CDBar(448888, 21.3, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
 		else
-			self:CDBar(448888, 20.0, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
+			self:CDBar(448888, 29.3, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
 		end
 	end
 end
@@ -223,8 +243,8 @@ function mod:SpinneretsStrands(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
 	if self:Mythic() then
-		self:CDBar(args.spellId, 22.1)
+		self:CDBar(args.spellId, 23.3)
 	else
-		self:CDBar(args.spellId, 20.0)
+		self:CDBar(args.spellId, 27.3)
 	end
 end
