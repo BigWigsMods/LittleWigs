@@ -10,10 +10,15 @@ mod:RegisterEnableMob(
 	211121, -- Rank Overseer
 	210818, -- Lowly Moleherd
 	208450, -- Wandering Candle
-	220815, -- Blazing Fiend
-	223774, -- Blazing Fiend
-	223775, -- Blazing Fiend
-	223777, -- Blazing Fiend
+	220815, -- Blazing Fiend (before Blazikon room)
+	211228, -- Blazing Fiend (in Blazikon room)
+	223770, -- Blazing Fiend (in Blazikon room)
+	223772, -- Blazing Fiend (in Blazikon room)
+	223773, -- Blazing Fiend (in Blazikon room)
+	223774, -- Blazing Fiend (in Blazikon room)
+	223775, -- Blazing Fiend (in Blazikon room)
+	223776, -- Blazing Fiend (in Blazikon room)
+	223777, -- Blazing Fiend (in Blazikon room)
 	212412, -- Sootsnout
 	212411, -- Torchsnarl
 	208456, -- Shuffling Horror
@@ -50,13 +55,13 @@ end
 function mod:GetOptions()
 	return {
 		-- Rank Overseer
-		423501, -- Wild Wallop
+		{423501, "NAMEPLATE"}, -- Wild Wallop
 		-- Lowly Moleherd
-		425536, -- Mole Frenzy
+		{425536, "NAMEPLATE"}, -- Mole Frenzy
 		-- Wandering Candle
-		440652, -- Surging Wax
+		{440652, "NAMEPLATE"}, -- Surging Wax
 		-- Blazing Fiend
-		424322, -- Explosive Flame
+		{424322, "NAMEPLATE"}, -- Explosive Flame
 		-- Sootsnout
 		426261, -- Ceaseless Flame
 		426295, -- Flaming Tether
@@ -64,7 +69,7 @@ function mod:GetOptions()
 		426619, -- One-Hand Headlock
 		426260, -- Pyro-pummel
 		-- Shuffling Horror
-		422414, -- Shadow Smash
+		{422414, "NAMEPLATE"}, -- Shadow Smash
 		422541, -- Drain Light
 		-- Creaky Mine Cart
 		{"minecart", "INFOBOX"},
@@ -83,15 +88,23 @@ end
 function mod:OnBossEnable()
 	-- Rank Overseer
 	self:Log("SPELL_CAST_START", "WildWallop", 423501)
+	self:Death("RankOverseerDeath", 211121)
 
 	-- Lowly Moleherd
 	self:Log("SPELL_CAST_START", "MoleFrenzy", 425536)
+	self:Log("SPELL_INTERRUPT", "MoleFrenzyInterrupt", 425536)
+	self:Log("SPELL_CAST_SUCCESS", "MoleFrenzySuccess", 425536)
+	self:Death("LowlyMoleherdDeath", 210818)
 
 	-- Wandering Candle
 	self:Log("SPELL_CAST_START", "SurgingWax", 440652)
+	self:Death("WanderingCandleDeath", 208450)
 
 	-- Blazing Fiend
 	self:Log("SPELL_CAST_START", "ExplosiveFlame", 424322)
+	self:Log("SPELL_INTERRUPT", "ExplosiveFlameInterrupt", 424322)
+	self:Log("SPELL_CAST_SUCCESS", "ExplosiveFlameSuccess", 424322)
+	self:Death("BlazingFiendDeath", 220815, 211228, 223770, 223772, 223773, 223774, 223775, 223776, 223777)
 
 	-- Sootsnout
 	self:Log("SPELL_CAST_START", "CeaselessFlame", 426261)
@@ -105,7 +118,9 @@ function mod:OnBossEnable()
 
 	-- Shuffling Horror
 	self:Log("SPELL_CAST_START", "ShadowSmash", 422414)
+	self:Log("SPELL_CAST_SUCCESS", "ShadowSmashSuccess", 422414)
 	self:Log("SPELL_CAST_START", "DrainLight", 422541)
+	self:Death("ShufflingHorrorDeath", 208456)
 
 	-- Creaky Mine Cart
 	self:Log("SPELL_CAST_SUCCESS", "ShadowyCloak", 423566) -- start event
@@ -121,6 +136,11 @@ end
 function mod:WildWallop(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 13.4, args.sourceGUID)
+end
+
+function mod:RankOverseerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Lowly Moleherd
@@ -134,7 +154,20 @@ do
 			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:MoleFrenzyInterrupt(args)
+	self:Nameplate(425536, 45.4, args.destGUID)
+end
+
+function mod:MoleFrenzySuccess(args)
+	self:Nameplate(args.spellId, 45.4, args.sourceGUID)
+end
+
+function mod:LowlyMoleherdDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Wandering Candle
@@ -142,6 +175,11 @@ end
 function mod:SurgingWax(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(args.spellId, 21.9, args.sourceGUID)
+end
+
+function mod:WanderingCandleDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Blazing Fiend
@@ -149,6 +187,19 @@ end
 function mod:ExplosiveFlame(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:ExplosiveFlameInterrupt(args)
+	self:Nameplate(424322, 21.3, args.destGUID)
+end
+
+function mod:ExplosiveFlameSuccess(args)
+	self:Nameplate(args.spellId, 21.3, args.sourceGUID)
+end
+
+function mod:BlazingFiendDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Sootsnout
@@ -160,10 +211,10 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
+		-- this is only cast if the tank is grabbed by One-Hand Headlock or if Torchsnarl is dead
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 35.7)
-		timer = self:ScheduleTimer("SootsnoutDeath", 30)
+		timer = self:ScheduleTimer("SootsnoutDeath", 40)
 	end
 
 	function mod:FlamingTether(args)
@@ -173,7 +224,7 @@ do
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 38.9)
-		timer = self:ScheduleTimer("SootsnoutDeath", 30)
+		timer = self:ScheduleTimer("SootsnoutDeath", 40)
 	end
 
 	function mod:SootsnoutDeath()
@@ -181,7 +232,6 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(426261) -- Ceaseless Flame
 		self:StopBar(426295) -- Flaming Tether
 	end
 end
@@ -201,17 +251,17 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 		self:CDBar(args.spellId, 36.4)
-		timer = self:ScheduleTimer("TorchsnarlDeath", 30)
+		timer = self:ScheduleTimer("TorchsnarlDeath", 45)
 	end
 
 	function mod:Pyropummel(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
+		-- this is only cast if someone is rooted by Flaming Tether or if Sootsnout is dead
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
-		--self:CDBar(args.spellId, 38.9) TODO unknown CD
-		timer = self:ScheduleTimer("TorchsnarlDeath", 30)
+		timer = self:ScheduleTimer("TorchsnarlDeath", 45)
 	end
 
 	function mod:TorchsnarlDeath()
@@ -220,7 +270,6 @@ do
 			timer = nil
 		end
 		self:StopBar(426619) -- One-Hand Headlock
-		--self:StopBar(426260) -- Pyro-pummel TODO uncomment when bar added
 	end
 end
 
@@ -231,9 +280,18 @@ function mod:ShadowSmash(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+function mod:ShadowSmashSuccess(args)
+	self:Nameplate(args.spellId, 12.0, args.sourceGUID)
+end
+
 function mod:DrainLight(args)
+	-- just cast once
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ShufflingHorrorDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Creaky Mine Cart
