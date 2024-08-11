@@ -9,10 +9,11 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	223660, -- Arathi Lamplighter
 	213892, -- Nightfall Shadowmage
+	228540, -- Nightfall Shadowmage (summoned)
 	214761, -- Nightfall Ritualist
 	214762, -- Nightfall Commander
-	225479, -- Sureki Webmage
-	210966, -- Sureki Webmage
+	225479, -- Sureki Webmage (on ship)
+	210966, -- Sureki Webmage (in town)
 	224325, -- Arathi Bomb
 	211261, -- Ascendant Vis'coxria
 	211263, -- Deathscreamer Iken'tak
@@ -20,6 +21,7 @@ mod:RegisterEnableMob(
 	213932, -- Sureki Militant
 	213934, -- Nightfall Tactician
 	213893, -- Nightfall Darkcaster
+	228539, -- Nightfall Darkcaster (summoned)
 	211341, -- Manifested Shadow
 	213885 -- Nightfall Dark Architect
 )
@@ -112,7 +114,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "EnsnaringShadowsInterrupt", 431309)
 	self:Log("SPELL_CAST_SUCCESS", "EnsnaringShadowsSuccess", 431309)
 	self:Log("SPELL_AURA_APPLIED", "EnsnaringShadowsApplied", 431309)
-	self:Death("NightfallShadowmageDeath", 213892)
+	self:Death("NightfallShadowmageDeath", 213892, 228540) -- regular trash, Nightfall Dark Architect summon
 
 	-- Nightfall Ritualist
 	self:Log("SPELL_CAST_SUCCESS", "StygianSeed", 432448)
@@ -128,7 +130,7 @@ function mod:OnBossEnable()
 	-- Sureki Webmage
 	self:Log("SPELL_CAST_SUCCESS", "BurstingCocoon", 451107)
 	self:Log("SPELL_AURA_APPLIED", "BurstingCocoonApplied", 451107)
-	self:Death("SurekiWebmageDeath", 225479, 210966)
+	self:Death("SurekiWebmageDeath", 225479, 210966) -- on ship, in town
 
 	-- Arathi Bomb
 	self:Log("SPELL_CAST_START", "PlantArathiBomb", 451091)
@@ -160,7 +162,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "UmbralBarrier", 432520)
 	self:Log("SPELL_INTERRUPT", "UmbralBarrierInterrupt", 432520)
 	self:Log("SPELL_CAST_SUCCESS", "UmbralBarrierSuccess", 432520)
-	self:Death("NightfallDarkcasterDeath", 213893)
+	self:Death("NightfallDarkcasterDeath", 213893, 228539) -- regular trash, Nightfall Dark Architect summon
 
 	-- Manifested Shadow
 	self:Log("SPELL_CAST_SUCCESS", "BlackHail", 432565)
