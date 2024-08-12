@@ -61,7 +61,7 @@ end
 function mod:VindictiveWrath(args)
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 48.5)
+	self:CDBar(args.spellId, 48.1)
 end
 
 function mod:CastigatorsShield(args)
@@ -73,11 +73,11 @@ end
 function mod:BurningLight(args)
 	self:Message(423051, "red", CL.casting:format(args.spellName))
 	self:PlaySound(423051, "warning")
-	self:CDBar(423051, 31.5)
+	self:CDBar(423051, 32.7)
 end
 
 function mod:HammerOfPurity(args)
 	self:Message(423062, "yellow")
 	self:PlaySound(423062, "alarm")
-	self:CDBar(423062, 19.4)
+	self:CDBar(423062, 20.7)
 end
