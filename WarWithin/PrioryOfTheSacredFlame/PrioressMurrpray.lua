@@ -38,7 +38,7 @@ function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(451605, 7.1) -- Holy Flame
 	self:CDBar(444546, 13.1) -- Purify
-	self:CDBar(444608, 15.7) -- Inner Fire
+	self:CDBar(444608, 15.6) -- Inner Fire
 end
 
 function mod:VerifyEnable(unit)
@@ -84,7 +84,7 @@ end
 function mod:Purify(args)
 	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 23.0)
+	self:CDBar(args.spellId, 28.8)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
@@ -99,11 +99,11 @@ end
 function mod:InnerFire(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 23.0)
+	self:CDBar(args.spellId, 22.6)
 end
 
 function mod:HolyFlame(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 9.7)
+	self:CDBar(args.spellId, 12.1)
 end
