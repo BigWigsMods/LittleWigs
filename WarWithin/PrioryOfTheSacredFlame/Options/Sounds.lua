@@ -3,7 +3,7 @@ BigWigs:AddSounds("Captain Dailcry", {
 	[424414] = "alert",
 	[424419] = "warning",
 	[447270] = "alarm",
-	[447439] = "alert",
+	[447439] = {"alert","info"},
 })
 
 BigWigs:AddSounds("Baron Braunpyke", {

@@ -3,7 +3,7 @@ BigWigs:AddColors("Captain Dailcry", {
 	[424414] = "purple",
 	[424419] = "red",
 	[447270] = "orange",
-	[447439] = {"blue","yellow"},
+	[447439] = {"blue","green","yellow"},
 })
 
 BigWigs:AddColors("Baron Braunpyke", {
