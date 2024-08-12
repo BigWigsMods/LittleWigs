@@ -265,7 +265,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 9.7)
+		self:CDBar(args.spellId, 17.0)
 		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
 	end
 
@@ -275,7 +275,7 @@ do
 		end
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 26.7)
+		self:CDBar(args.spellId, 17.0)
 		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
 	end
 
@@ -387,7 +387,7 @@ do
 		end
 		self:Message(args.spellId, "purple")
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 14.5)
+		self:CDBar(args.spellId, 13.4)
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
@@ -396,8 +396,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "long")
-		self:CDBar(args.spellId, 15.8)
+		self:PlaySound(args.spellId, "warning")
+		self:CDBar(args.spellId, 20.6)
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
@@ -580,11 +580,11 @@ do
 end
 
 function mod:FireballVolleyInterrupt(args)
-	self:Nameplate(444743, 13.2, args.destGUID) -- TODO low sample size
+	self:Nameplate(444743, 15.7, args.destGUID)
 end
 
 function mod:FireballVolleySuccess(args)
-	self:Nameplate(args.spellId, 13.2, args.sourceGUID)
+	self:Nameplate(args.spellId, 15.7, args.sourceGUID)
 end
 
 function mod:RisenMageDeath(args)
