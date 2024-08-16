@@ -38,11 +38,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Bloodvenom", 96842)
 	self:Log("SPELL_AURA_APPLIED", "BlessingOfTheSnakeGod", 96512)
 	self:Log("SPELL_AURA_REMOVED", "BlessingOfTheSnakeGodRemoved", 96512)
-	if self:Classic() then
-		-- ENCOUNTER_END doesn't fire on Classic
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-		self:Death("Win", 52155)
-	end
 end
 
 function mod:OnEngage()
