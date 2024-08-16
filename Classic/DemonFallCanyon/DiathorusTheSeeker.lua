@@ -45,7 +45,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SleepApplied", 460756) -- Stage 1 Sleep (single target)
 	self:Log("SPELL_CAST_SUCCESS", "Sleep", 462058) -- Stage 2 Sleep (entire group)
 	self:Log("SPELL_CAST_SUCCESS", "BerserkerCharge", 460766)
-	self:Death("Win", 227019) -- ENCOUNTER_END currently broken
 end
 
 function mod:OnEngage()
