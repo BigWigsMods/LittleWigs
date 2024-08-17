@@ -381,7 +381,7 @@ function mod:RaspingScreamSuccess(args)
 end
 
 function mod:BoneshatterShield(args)
-	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.sourceName))
 	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 end
