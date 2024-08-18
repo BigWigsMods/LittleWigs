@@ -26,7 +26,7 @@
 ## Version: @project-version@
 
 ## X-BigWigs-Minimum: 352
-## X-BigWigs-LoadOn-InstanceId: 2520, 2527, 2519, 2521, 2526, 2515, 2516, 2451, 2579, 2648, 2649, 2651, 2652, 2660, 2661, 2662, 2669, 2664, 2679, 2680, 2681, 2683, 2684, 2685, 2686, 2687, 2688, 2689, 2690
+## X-BigWigs-LoadOn-InstanceId: 2648,2649,2651,2652,2660,2661,2662,2669, 2664,2679,2680,2681,2683,2684,2685,2686,2687,2688,2689,2690
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-ExtraMenu: 1716
@@ -40,8 +40,7 @@ WoD\modules.xml
 Legion\modules.xml
 BfA\modules.xml
 Shadowlands\modules.xml
-#@end-do-not-package@
-
 Dragonflight\modules.xml
+#@end-do-not-package@
 WarWithin\modules.xml
 Delves\modules.xml

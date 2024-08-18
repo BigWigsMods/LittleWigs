@@ -1,0 +1,22 @@
+## Interface: 100207, 110000, 110002
+
+## Title: LittleWigs [|cffeda55fDragonflight|r]
+## Title-deDE: LittleWigs [|cffeda55fDragonflight|r]
+## Title-esES: LittleWigs [|cffeda55fDragonflight|r]
+## Title-esMX: LittleWigs [|cffeda55fDragonflight|r]
+## Title-frFR: LittleWigs [|cffeda55fDragonflight|r]
+## Title-itIT: LittleWigs [|cffeda55fDragonflight|r]
+## Title-koKR: LittleWigs [|cffeda55f용군단|r]
+## Title-ptBR: LittleWigs [|cffeda55fDragonflight|r]
+## Title-ruRU: LittleWigs [|cffeda55fDragonflight|r]
+## Title-zhCN: LittleWigs [|cffeda55f巨龙时代|r]
+## Title-zhTW: LittleWigs [|cffeda55f巨龍崛起|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 2520, 2527, 2519, 2521, 2526, 2515, 2516, 2451, 2579
+
+modules.xml
