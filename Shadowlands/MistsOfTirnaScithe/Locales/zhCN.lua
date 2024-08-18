@@ -23,8 +23,3 @@ L = BigWigs:NewBossLocale("Mistcaller", "zhCN")
 if L then
 	L.vulpin = "仙狐"
 end
-
-L = BigWigs:NewBossLocale("Tred'ova", "zhCN")
-if L then
-	L.parasite = "寄生"
-end

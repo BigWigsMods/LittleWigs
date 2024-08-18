@@ -25,9 +25,6 @@ BigWigs:AddColors("Tred'ova", {
 	[322614] = {"blue","red"},
 	[322654] = "yellow",
 	[326309] = "blue",
-	[337235] = {"blue","red"},
-	[337249] = {"blue","red"},
-	[337255] = {"blue","red"},
 	[463602] = "orange",
 })
 
@@ -46,8 +43,6 @@ BigWigs:AddColors("Mists of Tirna Scithe Trash", {
 	[325418] = {"blue","orange"},
 	[326021] = "yellow",
 	[326046] = {"orange","red"},
-	[331718] = "purple",
-	[331743] = "red",
 	[340160] = "orange",
 	[340189] = "cyan",
 	[340208] = "purple",

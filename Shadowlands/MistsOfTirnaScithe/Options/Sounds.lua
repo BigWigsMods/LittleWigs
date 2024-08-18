@@ -25,9 +25,6 @@ BigWigs:AddSounds("Tred'ova", {
 	[322614] = "alert",
 	[322654] = "alert",
 	[326309] = "underyou",
-	[337235] = "warning",
-	[337249] = "warning",
-	[337255] = "warning",
 	[463602] = "alarm",
 })
 
@@ -46,8 +43,6 @@ BigWigs:AddSounds("Mists of Tirna Scithe Trash", {
 	[325418] = "alert",
 	[326021] = "alarm",
 	[326046] = {"alert","warning"},
-	[331718] = "alert",
-	[331743] = "alarm",
 	[340160] = "alarm",
 	[340189] = "info",
 	[340208] = "alert",

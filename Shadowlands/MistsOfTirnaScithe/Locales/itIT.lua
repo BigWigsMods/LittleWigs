@@ -23,8 +23,3 @@ L = BigWigs:NewBossLocale("Mistcaller", "itIT")
 if L then
 	L.vulpin = "Vulpino"
 end
-
-L = BigWigs:NewBossLocale("Tred'ova", "itIT")
-if L then
-	L.parasite = "Parassita"
-end

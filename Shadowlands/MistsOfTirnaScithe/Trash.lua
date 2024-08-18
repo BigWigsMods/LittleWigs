@@ -117,72 +117,6 @@ function mod:GetOptions()
 	}
 end
 
--- XXX remove when 11.0.2 is live everywhere
-if not BigWigsLoader.isBeta then
-	function mod:GetOptions()
-		return {
-			-- Tirnenn Villager
-			{321968, "NAMEPLATE"}, -- Bewildering Pollen
-			{322486, "NAMEPLATE"}, -- Overgrowth
-			-- Drust Harvester
-			{322938, "NAMEPLATE"}, -- Harvest Essence
-			-- Drust Soulcleaver
-			{322569, "TANK", "NAMEPLATE"}, -- Hand of Thros
-			{322557, "DISPEL", "NAMEPLATE"}, -- Soul Split
-			-- Drust Boughbreaker
-			324909, -- Furious Thrashing
-			{324923, "NAMEPLATE"}, -- Bramble Burst
-			-- Mistveil Defender
-			331718, -- Spear Flurry
-			-- Mistveil Gorgegullet
-			340304, -- Poisonous Secretions
-			340305, -- Crushing Leap
-			{340300, "TANK_HEALER"}, -- Tongue Lashing
-			-- Mistveil Guardian
-			331743, -- Bucking Rampage
-			-- Mistveil Matriarch
-			340189, -- Pool of Radiance
-			340160, -- Radiant Breath
-			{340208, "TANK_HEALER"}, -- Shred Armor
-			-- Mistveil Nightblossom
-			{340289, "TANK_HEALER"}, -- Triple Bite
-			{340279, "DISPEL"}, -- Poisonous Discharge
-			-- Mistveil Shaper
-			{324776, "NAMEPLATE"}, -- Bramblethorn Coat
-			-- Mistveil Stalker
-			{325021, "ME_ONLY", "NAMEPLATE"}, -- Mistveil Tear
-			-- Mistveil Stinger
-			{325224, "SAY", "NAMEPLATE"}, -- Anima Injection
-			-- Mistveil Tender
-			{324914, "DISPEL", "NAMEPLATE"}, -- Nourish the Forest
-			-- Spinemaw Acidgullet
-			{325418, "ME_ONLY", "SAY", "NAMEPLATE"}, -- Volatile Acid
-			-- Spinemaw Staghorn
-			{340544, "NAMEPLATE"}, -- Stimulate Regeneration
-			{326046, "DISPEL", "NAMEPLATE"}, -- Stimulate Resistance
-			-- Spinemaw Gorger
-			{326021, "NAMEPLATE"}, -- Acid Globule
-		}, {
-			[321968] = L.tirnenn_villager,
-			[322938] = L.drust_harvester,
-			[322569] = L.drust_soulcleaver,
-			[324909] = L.drust_boughbreaker,
-			[331718] = L.mistveil_defender,
-			[340304] = L.mistveil_gorgegullet,
-			[331743] = L.mistveil_guardian,
-			[340189] = L.mistveil_matriarch,
-			[340289] = L.mistveil_nightblossom,
-			[324776] = L.mistveil_shaper,
-			[325021] = L.mistveil_stalker,
-			[325224] = L.mistveil_stinger,
-			[324914] = L.mistveil_tender,
-			[325418] = L.spinemaw_acidgullet,
-			[340544] = L.spinemaw_staghorn,
-			[326021] = L.spinemaw_gorger,
-		}
-	end
-end
-
 function mod:OnBossEnable()
 	-- Interrupts
 	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
@@ -212,13 +146,8 @@ function mod:OnBossEnable()
 	self:Death("DrustBoughbreakerDeath", 164926)
 
 	-- Mistveil Defender
-	if BigWigsLoader.isBeta then
-		self:Log("SPELL_CAST_START", "MistWard", 463256)
-		self:Log("SPELL_CAST_START", "Expel", 463248)
-	else
-		-- XXX remove when 11.0.2 is live everywhere
-		self:Log("SPELL_CAST_START", "SpearFlurry", 331718)
-	end
+	self:Log("SPELL_CAST_START", "MistWard", 463256)
+	self:Log("SPELL_CAST_START", "Expel", 463248)
 	self:Death("MistveilDefenderDeath", 171772, 163058)
 
 	-- Mistveil Gorgegullet
@@ -228,11 +157,7 @@ function mod:OnBossEnable()
 	self:Death("MistveilGorgegulletDeath", 173720)
 
 	-- Mistveil Guardian
-	if BigWigsLoader.isBeta then
-		self:Log("SPELL_CAST_START", "AnimaSlash", 463217)
-	else
-		self:Log("SPELL_CAST_START", "BuckingRampage", 331743) -- XXX remove with 11.0.2
-	end
+	self:Log("SPELL_CAST_START", "AnimaSlash", 463217)
 	self:Death("MistveilGuardianDeath", 166276)
 
 	-- Mistveil Matriarch
@@ -459,22 +384,6 @@ function mod:MistveilDefenderDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
--- XXX remove when 11.0.2 is live everywhere
-do
-	local prev = 0
-	function mod:SpearFlurry(args)
-		local t = args.time
-		if t - prev > 1.5 then
-			local unit = self:UnitTokenFromGUID(args.sourceGUID)
-			if unit and UnitAffectingCombat(unit) then
-				prev = t
-				self:Message(args.spellId, "purple")
-				self:PlaySound(args.spellId, "alert")
-			end
-		end
-	end
-end
-
 -- Mistveil Gorgegullet
 
 do
@@ -527,18 +436,6 @@ function mod:AnimaSlash(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
-end
-
-do
-	local prev = 0
-	function mod:BuckingRampage(args) -- XXX remove with 11.0.2
-		local t = args.time
-		if t - prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "red")
-			self:PlaySound(args.spellId, "alarm")
-		end
-	end
 end
 
 function mod:MistveilGuardianDeath(args)

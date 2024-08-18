@@ -10,16 +10,6 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
--- XXX remove locale when 11.0.2 is live everywhere
-local L = mod:GetLocale()
-if L then
-	L.parasite = "Parasite"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -42,30 +32,6 @@ function mod:GetOptions()
 	}
 end
 
--- XXX remove this block when 11.0.2 is live everywhere
-if not BigWigsLoader.isBeta then
-	function mod:GetOptions()
-		return {
-			322654, -- Acid Expulsion
-			322450, -- Consumption
-			322527, -- Gorging Shield
-			322550, -- Accelerated Incubation
-			{322563, "ICON", "ME_ONLY_EMPHASIZE"}, -- Marked Prey
-			326309, -- Decomposing Acid
-			{322614, "SAY"}, -- Mind Link
-			{337235, "SAY"}, -- Parasitic Pacification
-			{337249, "SAY"}, -- Parasitic Incapacitation
-			{337255, "SAY"}, -- Parasitic Domination
-		},nil,{
-			[322550] = CL.adds, -- Accelerated Incubation (Adds)
-			[322563] = CL.fixate, -- Marked Prey (Fixate)
-			[337235] = L.parasite, -- Parasitic Pacification (Parasite)
-			[337249] = L.parasite, -- Parasitic Incapacitation (Parasite)
-			[337255] = L.parasite, -- Parasitic Domination (Parasite)
-		}
-	end
-end
-
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AcidExpulsion", 322654)
 	self:Log("SPELL_CAST_SUCCESS", "Consumption", 322450)
@@ -80,29 +46,18 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MindLink", 322614)
 
 	-- Mythic
-	if BigWigsLoader.isBeta then
-		self:Log("SPELL_CAST_START", "CoalescingPoison", 463602)
-	else
-		-- XXX remove these when 11.0.2 is live everywhere
-		self:Log("SPELL_CAST_START", "Parasite", 337235, 337249, 337255) -- Parasitic Pacification, Parasitic Incapacitation, Parasitic Domination
-		self:Log("SPELL_CAST_SUCCESS", "ParasiteSuccess", 337235, 337249, 337255) -- Parasitic Pacification, Parasitic Incapacitation, Parasitic Domination
-	end
+	self:Log("SPELL_CAST_START", "CoalescingPoison", 463602)
 end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	if BigWigsLoader.isBeta and self:Mythic() then -- XXX remove isBeta when 11.0.2 is live
+	if self:Mythic() then
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
 		self:CDBar(322614, 25.0) -- Mind Link
-		if self:Mythic() then
-			self:CDBar(463602, 26.0) -- Coalescing Poison
-		end
-	else
+		self:CDBar(463602, 26.0) -- Coalescing Poison
+	else -- Normal, Heroic
 		self:CDBar(322654, 7.7) -- Acid Expulsion
-		if self:Mythic() then -- XXX remove this block when 11.0.2 is live
-			self:CDBar(337235, 11.1, L.parasite) -- Parasitic Pacification
-		end
 		self:CDBar(322614, 17.8) -- Mind Link
 		self:CDBar(322550, 21.5, CL.adds) -- Accelerated Incubation
 	end
@@ -131,7 +86,7 @@ do
 end
 
 function mod:Consumption(args)
-	if BigWigsLoader.isBeta and self:Mythic() then -- XXX remove isBeta when 10.2 is live
+	if self:Mythic() then
 		self:StopBar(322654) -- Acid Expulsion
 		self:StopBar(CL.adds) -- Accelerated Incubation
 		self:StopBar(322614) -- Mind Link
@@ -154,13 +109,11 @@ end
 
 function mod:ConsumptionRemoved(args)
 	self:StopBar(CL.cast:format(args.spellName))
-	if BigWigsLoader.isBeta and self:Mythic() then -- XXX remove isBeta when 10.2 is live
+	if self:Mythic() then
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
 		self:CDBar(322614, 25.0) -- Mind Link
-		if self:Mythic() then
-			self:CDBar(463602, 26.0) -- Coalescing Poison
-		end
+		self:CDBar(463602, 26.0) -- Coalescing Poison
 	end
 end
 
@@ -208,25 +161,6 @@ function mod:MindLink(args)
 	self:PlaySound(args.spellId, "alert")
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Mind Link")
-	end
-end
-
--- XXX remove when 11.0.2 is live everywhere
-function mod:Parasite(args)
-	self:Message(args.spellId, "red", CL.casting:format(L.parasite))
-	self:CDBar(args.spellId, 25.5, L.parasite)
-	local _, ready = self:Interrupter()
-	if ready then
-		self:PlaySound(args.spellId, "warning")
-	end
-end
-
--- XXX remove when 11.0.2 is live everywhere
-function mod:ParasiteSuccess(args)
-	self:TargetMessage(args.spellId, "red", args.destName, L.parasite)
-	self:PlaySound(args.spellId, "warning")
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, L.parasite, nil, "Parasite")
 	end
 end
 
