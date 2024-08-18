@@ -15,7 +15,7 @@ BigWigs:AddColors("Azureblade", {
 })
 
 BigWigs:AddColors("Telash Greywing", {
-	[386781] = "orange",
+	[386781] = {"blue","orange"},
 	[387151] = {"blue","orange"},
 	[388008] = {"blue","orange","red"},
 })

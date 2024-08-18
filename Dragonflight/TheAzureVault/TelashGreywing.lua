@@ -24,7 +24,7 @@ local icyDevastatorRemaining = 2
 function mod:GetOptions()
 	return {
 		{388008, "CASTBAR"}, -- Absolute Zero
-		386781, -- Frost Bomb
+		{386781, "SAY_COUNTDOWN"}, -- Frost Bomb
 		{387151, "SAY"}, -- Icy Devastator
 	}
 end
@@ -110,13 +110,14 @@ end
 
 function mod:FrostBombApplied(args)
 	if self:Me(args.destGUID) then
-		self:TargetBar(386781, 5, args.destName)
+		self:PersonalMessage(386781)
+		self:SayCountdown(386781, 5)
 	end
 end
 
 function mod:FrostBombRemoved(args)
 	if self:Me(args.destGUID) then
-		self:StopBar(386781, args.destName)
+		self:CancelSayCountdown(386781)
 	end
 end
 
