@@ -26,7 +26,7 @@ local nextSearingClap = 0
 
 function mod:GetOptions()
 	return {
-		368990, -- Purging Flames
+		{368990, "CASTBAR"}, -- Purging Flames
 		369043, -- Infusion
 		369038, -- Titanic Ward
 		369110, -- Unstable Embers
@@ -42,6 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PurgingFlames", 368990)
 	self:Log("SPELL_CAST_SUCCESS", "HeatEngine", 369026)
 	self:Log("SPELL_AURA_REMOVED", "PurgingFlamesRemoved", 368990)
+	self:Log("SPELL_AURA_REMOVED", "SacredBarrierRemoved", 369031)
 	self:Log("SPELL_AURA_APPLIED", "InfusionApplied", 369043)
 	self:Log("SPELL_AURA_REMOVED", "InfusionRemoved", 369043)
 	self:Log("SPELL_CAST_START", "UnstableEmbers", 369110)
@@ -100,6 +101,10 @@ function mod:PurgingFlames(args)
 	self:SetStage(2)
 	self:StopBar(args.spellId)
 	self:Message(args.spellId, "cyan")
+	if self:Normal() then
+		-- Normal has a fixed cast time instead of needing to kill adds to end the stage
+		self:CastBar(args.spellId, 24.3)
+	end
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -110,6 +115,30 @@ end
 
 function mod:PurgingFlamesRemoved()
 	purgingFlamesActive = false
+end
+
+function mod:SacredBarrierRemoved()
+	if self:Normal() then
+		self:StopBar(CL.cast:format(self:SpellName(368990))) -- Purging Flames
+	end
+	self:SetStage(1)
+	if self:Mythic() then
+		unstableEmbersRemaining = 3 -- usually 2, rarely 3
+		searingClapRemaining = 2
+		self:CDBar(369061, 5.9) -- Searing Clap
+		self:CDBar(369110, 13.3) -- Unstable Embers
+	else
+		unstableEmbersRemaining = 4 -- usually 3, rarely 4
+		searingClapRemaining = 2
+		self:CDBar(369110, 1.2) -- Unstable Embers
+		self:CDBar(369061, 5.4) -- Searing Clap
+	end
+	if not purgingFlamesDisabled then
+		-- 35s energy gain + ~2.7s delay
+		self:CDBar(368990, 37.7) -- Purging Flames
+	end
+	self:Message(368990, "cyan", CL.over:format(self:SpellName(368990))) -- Purging Flames over
+	self:PlaySound(368990, "long")
 end
 
 do
@@ -124,29 +153,9 @@ do
 			-- avoid spamming alerts on a Stage 2 wipe
 			return
 		end
-		local addsNeeded = self:Normal() and 3 or 4
 		addsKilled = addsKilled + 1
-		if addsKilled == addsNeeded then
-			if self:Mythic() then
-				unstableEmbersRemaining = 3 -- usually 2, rarely 3
-				searingClapRemaining = 2
-				self:CDBar(369061, 5.9) -- Searing Clap
-				self:CDBar(369110, 13.3) -- Unstable Embers
-			else
-				unstableEmbersRemaining = 4 -- usually 3, rarely 4
-				searingClapRemaining = 2
-				self:CDBar(369110, 1.8) -- Unstable Embers
-				self:CDBar(369061, 5.4) -- Searing Clap
-			end
-			self:SetStage(1)
-			self:Message(368990, "cyan", CL.over:format(self:SpellName(368990))) -- Purging Flames Over
-			self:PlaySound(368990, "long")
-			if not purgingFlamesDisabled then
-				-- 35s energy gain + ~2.7s delay
-				self:CDBar(368990, 37.7) -- Purging Flames
-			end
-		else
-			self:Message(args.spellId, "green", CL.add_killed:format(addsKilled, addsNeeded))
+		if addsKilled ~= 4 then
+			self:Message(args.spellId, "green", CL.add_killed:format(addsKilled, 4))
 			self:PlaySound(args.spellId, "info")
 		end
 	end
@@ -154,7 +163,6 @@ end
 
 function mod:UnstableEmbers(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
 	unstableEmbersRemaining = unstableEmbersRemaining - 1
 	if purgingFlamesDisabled or unstableEmbersRemaining > 0 then
 		self:CDBar(args.spellId, 11.7)
@@ -162,11 +170,11 @@ function mod:UnstableEmbers(args)
 		nextUnstableEmbers = GetTime() + 11.7
 		self:StopBar(args.spellId)
 	end
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SearingClap(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
 	searingClapRemaining = searingClapRemaining - 1
 	if purgingFlamesDisabled or searingClapRemaining > 0 then
 		self:CDBar(args.spellId, 23.0)
@@ -174,4 +182,5 @@ function mod:SearingClap(args)
 		nextSearingClap = GetTime() + 23.0
 		self:StopBar(args.spellId)
 	end
+	self:PlaySound(args.spellId, "alarm")
 end
