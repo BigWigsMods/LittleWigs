@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		372600, -- Inexorable
 		372719, -- Titanic Empowerment
-		372623, -- Resonating Orb
+		{372623, "SAY", "SAY_COUNTDOWN"}, -- Resonating Orb
 		372701, -- Crushing Stomp
 		{372718, "ME_ONLY_EMPHASIZE"}, -- Earthen Shards
 	}
@@ -39,6 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TitanicEmpowermentApplied", 372719)
 	self:Log("SPELL_CAST_START", "ResonatingOrb", 372623)
 	self:Log("SPELL_AURA_APPLIED", "ResonatingOrbApplied", 382071)
+	self:Log("SPELL_AURA_REMOVED", "ResonatingOrbRemoved", 382071)
 	self:Log("SPELL_CAST_START", "CrushingStomp", 372701)
 	self:Log("SPELL_CAST_SUCCESS", "EarthenShardsApplied", 372718)
 end
@@ -49,11 +50,7 @@ function mod:OnEngage()
 		self:CDBar(372718, 4.5) -- Earthen Shards
 	end
 	self:CDBar(372701, 5.1) -- Crushing Stomp
-	if self:Normal() then
-		-- 30s energy gain + 5s cast + .4s delay
-		lastTitanicEmpowermentCooldown = 35.4
-		self:CDBar(372719, 35.4) -- Titanic Empowerment
-	else -- Heroic, Mythic
+	if not self:Normal() then
 		-- 25s energy gain + 5s cast + .4s delay
 		lastTitanicEmpowermentCooldown = 30.4
 		self:CDBar(372719, 30.4) -- Titanic Empowerment
@@ -71,11 +68,7 @@ function mod:UNIT_POWER_UPDATE(_, unit)
 		self:Message(372719, "green", CL.interrupted:format(self:SpellName(372719))) -- Titanic Empowerment Interrupted
 		self:PlaySound(372719, "info")
 		-- energy gain is paused for 3s out of the 5.5s while stunned
-		if self:Normal() then
-			-- 3s pause + 30s energy gain + 5s cast + .6 delay
-			lastTitanicEmpowermentCooldown = 38.6
-			self:CDBar(372719, 38.6) -- Titanic Empowerment
-		else -- Heroic, Mythic
+		if not self:Normal() then
 			-- 3s pause + 25s energy gain + 5s cast + .6 delay
 			lastTitanicEmpowermentCooldown = 33.6
 			self:CDBar(372719, 33.6) -- Titanic Empowerment
@@ -109,13 +102,8 @@ function mod:InexorableCast(args)
 	if self:IsEngaged() then
 		titanicEmpowermentActive = false
 		-- after a stun, her energy gain starts when this is cast
-		if self:Normal() then
-			-- 30s energy gain + 5s cast + ~.6s delay
-			self:CDBar(372719, {35.6, lastTitanicEmpowermentCooldown}) -- Titanic Empowerment
-		else -- Heroic, Mythic
-			-- 25s energy gain + 5s cast + ~.6s delay
-			self:CDBar(372719, {30.6, lastTitanicEmpowermentCooldown}) -- Titanic Empowerment
-		end
+		-- 25s energy gain + 5s cast + ~.6s delay
+		self:CDBar(372719, {30.6, lastTitanicEmpowermentCooldown}) -- Titanic Empowerment
 	end
 end
 
@@ -124,15 +112,9 @@ function mod:InexorableApplied(args)
 		if titanicEmpowermentActive then
 			titanicEmpowermentActive = false
 			-- after Titanic Empowerment, her energy gain starts when this is applied (no cast)
-			if self:Normal() then
-				-- 30s energy gain + 5s cast + ~.6s delay
-				lastTitanicEmpowermentCooldown = 35.6
-				self:CDBar(372719, 35.6) -- Titanic Empowerment
-			else -- Heroic, Mythic
-				-- 25s energy gain + 5s cast + ~.6s delay
-				lastTitanicEmpowermentCooldown = 30.6
-				self:CDBar(372719, 30.6) -- Titanic Empowerment
-			end
+			-- 25s energy gain + 5s cast + ~.6s delay
+			lastTitanicEmpowermentCooldown = 30.6
+			self:CDBar(372719, 30.6) -- Titanic Empowerment
 		end
 		self:Message(args.spellId, "red", CL.stack:format(2, args.spellName, CL.boss))
 		self:PlaySound(args.spellId, "long")
@@ -160,11 +142,7 @@ function mod:TitanicEmpowermentApplied(args)
 	titanicEmpowermentActive = true
 	self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
-	if self:Normal() then
-		self:Bar(args.spellId, 20, CL.onboss:format(args.spellName))
-	else -- Heroic, Mythic
-		self:Bar(args.spellId, 30, CL.onboss:format(args.spellName))
-	end
+	self:Bar(args.spellId, 30, CL.onboss:format(args.spellName))
 end
 
 do
@@ -179,6 +157,16 @@ do
 		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(372623, "yellow", playerList, 2)
 		self:PlaySound(372623, "alert", nil, playerList)
+		if self:Me(args.destGUID) then
+			self:Say(372623, nil, nil, "Resonating Orb")
+			self:SayCountdown(372623, 5)
+		end
+	end
+
+	function mod:ResonatingOrbRemoved(args)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(372623)
+		end
 	end
 end
 
