@@ -8,6 +8,7 @@ mod:RegisterEnableMob(
 	210677, -- Stoneguard Benston (Fungal Folly gossip NPC)
 	220293, -- Aliya Hillhelm (Mycomancer Cavern gossip NPC)
 	219779, -- Alekk (Mycomancer Cavern gossip NPC)
+	220354, -- Chief Dinaire (Mycomancer Cavern gossip NPC)
 	213434, -- Sporbit
 	225708, -- Sporbit (Bogpiper summon)
 	207456, -- Fungal Speartender
@@ -125,6 +126,12 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(121564) then -- Mycomancer Cavern, continue Delve (Alekk)
 			-- 121564:|cFF0000FF(Delve)|r Goodbye, elekk ten. I'll always remember this.
 			self:SelectGossipID(121564)
+		elseif self:GetGossipID(121539) then -- Mycomancer Cavern, start Delve (Chief Dinaire)
+			-- 121539:|cFF0000FF(Delve)|r I love scavenger hunts AND treasure. I'm in!
+			self:SelectGossipID(121539)
+		elseif self:GetGossipID(121541) then -- Mycomancer Cavern, continue Delve (Chief Dinaire)
+			-- 121541:|cFF0000FF(Delve)|r Go get the treasure while I handle whatever is about to attack us.
+			self:SelectGossipID(121541)
 		end
 	end
 end
