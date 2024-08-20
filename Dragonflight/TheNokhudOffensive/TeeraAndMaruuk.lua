@@ -24,10 +24,10 @@ end
 -- Locals
 --
 
-local galeArrowCount = 0
-local spiritLeapCount = 0
-local frightfulRoarCount = 0
-local brutalizeCount = 0
+local galeArrowCount = 1
+local spiritLeapCount = 1
+local frightfulRoarCount = 1
+local brutalizeCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -60,6 +60,7 @@ end
 function mod:OnBossEnable()
 	-- Teera
 	self:Log("SPELL_CAST_START", "GaleArrow", 382670)
+	self:Log("SPELL_AURA_APPLIED", "GaleArrowApplied", 392151)
 	self:Log("SPELL_CAST_START", "Repel", 386547)
 	self:Log("SPELL_AURA_APPLIED", "GuardianWind", 384808)
 	self:Log("SPELL_CAST_START", "SpiritLeap", 385434)
@@ -78,17 +79,17 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	galeArrowCount = 0
-	spiritLeapCount = 0
-	frightfulRoarCount = 0
-	brutalizeCount = 0
+	galeArrowCount = 1
+	spiritLeapCount = 1
+	frightfulRoarCount = 1
+	brutalizeCount = 1
 	self:StopBar(CL.active)
-	self:Bar(386063, 5.5) -- Frightful Roar
-	self:Bar(385434, 6.0) -- Spirit Leap
-	self:Bar(382836, 13.5) -- Brutalize
-	self:Bar(382670, 21.5, CL.count:format(self:SpellName(382670), 1)) -- Gale Arrow (1)
-	self:Bar(386547, 50) -- Repel
-	self:Bar(385339, 52) -- Earthsplitter
+	self:CDBar(386063, 5.5) -- Frightful Roar
+	self:CDBar(385434, 6.0) -- Spirit Leap
+	self:CDBar(382836, 13.5) -- Brutalize
+	self:CDBar(382670, 21.5, CL.count:format(self:SpellName(382670), galeArrowCount)) -- Gale Arrow
+	self:CDBar(386547, 50.0) -- Repel
+	self:CDBar(385339, 52.0) -- Earthsplitter
 end
 
 function mod:VerifyEnable(unit)
@@ -108,25 +109,34 @@ end
 
 -- Teera
 
-function mod:GaleArrow(args)
-	galeArrowCount = galeArrowCount + 1
-	local galeArrowMessage = CL.count:format(args.spellName, galeArrowCount)
-	self:StopBar(galeArrowMessage)
-	self:Message(args.spellId, "red", galeArrowMessage)
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 57.5, CL.count:format(args.spellName, galeArrowCount + 1))
+do
+	local playerList = {}
+
+	function mod:GaleArrow(args)
+		playerList = {}
+		self:StopBar(CL.count:format(args.spellName, galeArrowCount))
+		galeArrowCount = galeArrowCount + 1
+		self:CDBar(args.spellId, 57.5, CL.count:format(args.spellName, galeArrowCount))
+	end
+
+	function mod:GaleArrowApplied(args)
+		playerList[#playerList + 1] = args.destName
+		local targetCount = self:Normal() and 1 or 4
+		self:TargetsMessage(382670, "red", playerList, targetCount, CL.count:format(args.spellName, galeArrowCount - 1))
+		self:PlaySound(382670, "alarm", nil, playerList)
+	end
 end
 
 function mod:Repel(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 57.5)
+	self:CDBar(args.spellId, 57.5)
 end
 
 function mod:GuardianWind(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
-	--self:Bar(args.spellId, 57.5) basically part 2 of repel, no point in a timer
+	--self:CDBar(args.spellId, 57.5) basically part 2 of repel, no point in a timer
 end
 
 function mod:SpiritLeap(args)
@@ -134,12 +144,12 @@ function mod:SpiritLeap(args)
 	self:PlaySound(args.spellId, "info")
 	-- pull:6.0, 24.0, 13.5, 20, 24.0, 13.5, 20
 	spiritLeapCount = spiritLeapCount + 1
-	if spiritLeapCount % 3 == 1 then
-		self:Bar(args.spellId, 24)
-	elseif spiritLeapCount % 3 == 2 then
-		self:Bar(args.spellId, 13.5)
+	if spiritLeapCount % 3 == 2 then
+		self:CDBar(args.spellId, 24)
+	elseif spiritLeapCount % 3 == 0 then
+		self:CDBar(args.spellId, 13.5)
 	else
-		self:Bar(args.spellId, 20)
+		self:CDBar(args.spellId, 20)
 	end
 end
 
@@ -148,7 +158,7 @@ end
 function mod:Earthsplitter(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 57.5)
+	self:CDBar(args.spellId, 57.5)
 end
 
 function mod:FrightfulRoar(args)
@@ -156,10 +166,10 @@ function mod:FrightfulRoar(args)
 	self:PlaySound(args.spellId, "alarm")
 	-- pull:9.5, 38.5, 19.0, 38.5, 19.0
 	frightfulRoarCount = frightfulRoarCount + 1
-	if frightfulRoarCount % 2 == 1 then
-		self:Bar(args.spellId, 38.5)
+	if frightfulRoarCount % 2 == 0 then
+		self:CDBar(args.spellId, 38.5)
 	else
-		self:Bar(args.spellId, 19)
+		self:CDBar(args.spellId, 19)
 	end
 end
 
@@ -168,12 +178,12 @@ function mod:Brutalize(args)
 	self:PlaySound(args.spellId, "alert")
 	-- pull:13.5, 7.5, 16.0, 34.0, 7.5, 16.0, 34.0
 	brutalizeCount = brutalizeCount + 1
-	if brutalizeCount % 3 == 1 then
-		self:Bar(args.spellId, 7.5)
-	elseif brutalizeCount % 3 == 2 then
-		self:Bar(args.spellId, 16)
+	if brutalizeCount % 3 == 2 then
+		self:CDBar(args.spellId, 7.5)
+	elseif brutalizeCount % 3 == 0 then
+		self:CDBar(args.spellId, 16)
 	else
-		self:Bar(args.spellId, 34)
+		self:CDBar(args.spellId, 34)
 	end
 end
 
