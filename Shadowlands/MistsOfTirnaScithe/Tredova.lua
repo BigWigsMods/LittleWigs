@@ -16,7 +16,7 @@ mod:SetStage(1)
 function mod:GetOptions()
 	return {
 		322654, -- Acid Expulsion
-		{322450, "CASTBAR"}, -- Consumption
+		322450, -- Consumption
 		322527, -- Gorging Shield
 		322550, -- Accelerated Incubation
 		{322563, "ICON", "ME_ONLY_EMPHASIZE"}, -- Marked Prey
@@ -93,12 +93,12 @@ function mod:Consumption(args)
 		self:StopBar(463602) -- Coalescing Poison
 	end
 	if self:GetStage() == 1 then -- first Consumption
+		self:SetStage(2)
 		self:Message(args.spellId, "cyan", CL.percent:format(70, args.spellName))
 	else -- second Consumption
+		self:SetStage(3)
 		self:Message(args.spellId, "cyan", CL.percent:format(40, args.spellName))
 	end
-	self:SetStage(self:GetStage() + 1)
-	self:CastBar(args.spellId, 14)
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -108,7 +108,6 @@ function mod:GorgingShieldRemoved(args)
 end
 
 function mod:ConsumptionRemoved(args)
-	self:StopBar(CL.cast:format(args.spellName))
 	if self:Mythic() then
 		self:CDBar(322654, 7.0) -- Acid Expulsion
 		self:CDBar(322550, 11.0, CL.adds) -- Accelerated Incubation
@@ -158,10 +157,10 @@ function mod:MindLink(args)
 	else
 		self:CDBar(args.spellId, 15.8)
 	end
-	self:PlaySound(args.spellId, "alert")
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Mind Link")
 	end
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
 -- Mythic
