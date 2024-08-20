@@ -87,7 +87,9 @@ function mod:OnEngage()
 	if self:Mythic() then
 		self:CDBar(381516, 9.7) -- Interrupting Cloudburst
 	end
-	self:CDBar(381517, 17.0, CL.other:format(L.winds, CL.north_west), "misc_arrowlup") -- Winds of Change
+	if not self:Normal() then
+		self:CDBar(381517, 17.0, CL.other:format(L.winds, CL.north_west), "misc_arrowlup") -- Winds of Change
+	end
 end
 
 --------------------------------------------------------------------------------
