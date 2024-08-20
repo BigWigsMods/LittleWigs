@@ -141,8 +141,9 @@ end
 do
 	local prev = 0
 	function mod:Sporespolosion(args)
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
 		local t = args.time
-		if t - prev > 2.5 then
+		if t - prev > 2.5 and unit and self:UnitWithinRange(unit, 40) then -- cast while RP fighting, only alert if within range
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
@@ -153,8 +154,11 @@ end
 -- Fungal Speartender
 
 function mod:BattleRoar(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and self:UnitWithinRange(unit, 40) then -- cast while RP fighting, only alert if within range
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:VineSpear(args)
@@ -179,8 +183,11 @@ end
 -- Fungal Gutter
 
 function mod:ViciousStabs(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and self:UnitWithinRange(unit, 40) then -- cast while RP fighting, only alert if within range
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 -- Fungarian Flinger
