@@ -83,7 +83,7 @@ function mod:OnEngage()
 		self:CDBar(378208, 13.3, CL.count:format(self:SpellName(378208), markedForButcheryCount)) -- Marked For Butchery
 	end
 	self:CDBar(377827, 20.3) -- Bladestorm
-	if not self:Solo() then
+	if not self:Solo() and not self:Normal() then
 		self:CDBar(381470, 45.8) -- Hextrick Totem
 	end
 	self:CDBar(381694, 46.8) -- Decayed Senses
