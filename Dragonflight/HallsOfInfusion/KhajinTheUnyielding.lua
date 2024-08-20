@@ -74,9 +74,10 @@ function mod:Hailstorm(args)
 			self:CDBar(args.spellId, 42.0)
 		end
 	else
+		-- skip the castbar (4s) in Normal, there's nothing to hide behind
 		if self:Heroic() then
 			self:CastBar(args.spellId, 7)
-		else
+		elseif self:Mythic() then
 			self:CastBar(args.spellId, 4)
 		end
 		if hailstormCount % 2 == 0 then
