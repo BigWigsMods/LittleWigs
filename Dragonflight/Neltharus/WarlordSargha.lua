@@ -106,7 +106,12 @@ do
 	function mod:MagmaShieldApplied(args)
 		magmaShieldStart = args.time
 		self:StopBar(CL.count:format(args.spellName, magmaShieldCount)) -- Magma Shield (n)
-		self:Message(args.spellId, "orange", L.magma_shield)
+		if self:Normal() then
+			-- there are no Magical Implements in Normal
+			self:Message(args.spellId, "orange")
+		else
+			self:Message(args.spellId, "orange", L.magma_shield)
+		end
 		self:PlaySound(args.spellId, "long")
 	end
 
@@ -115,7 +120,6 @@ do
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, duration))
 		self:PlaySound(args.spellId, "info")
 		magmaShieldCount = magmaShieldCount + 1
-
 		-- timers are based off the shield being removed
 		if args.amount == 0 then
 			burningEmberRemaining = 1
