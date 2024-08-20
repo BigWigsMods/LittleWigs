@@ -73,7 +73,9 @@ function mod:OnEngage()
 	self:StopBar(CL.active) -- Warmup
 	self:CDBar(388544, 9.7) -- Barkbreaker
 	self:CDBar(388796, 18.2) -- Germinate
-	self:CDBar(388623, 30.4) -- Branch Out
+	if not self:Normal() then
+		self:CDBar(388623, 30.4) -- Branch Out
+	end
 	self:CDBar(388923, 56.4, CL.count:format(self:SpellName(388923), 1)) -- Burst Forth (1)
 end
 
