@@ -148,8 +148,11 @@ function mod:CracklingShieldApplied(args)
 	tankComboCount = 1
 	upheavalCount = 1
 	self:SetStage(2)
-	self:Message("stages", "cyan", self:SpellName(-25192), args.spellId) -- Intermission: Stormwinds
-	self:PlaySound("stages", "long")
+	if not self:Normal() then
+		-- this stage ends instantly on Normal, don't bother showing the alert
+		self:Message("stages", "cyan", self:SpellName(-25192), args.spellId) -- Intermission: Stormwinds
+		self:PlaySound("stages", "long")
+	end
 end
 
 function mod:CracklingShieldRemoved(args)
