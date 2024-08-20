@@ -6,6 +6,11 @@ local mod, CL = BigWigs:NewBoss("Fungarian Delve Trash", {2664, 2679}) -- Fungal
 if not mod then return end
 mod:RegisterEnableMob(
 	210677, -- Stoneguard Benston (Fungal Folly gossip NPC)
+	211061, -- Patreux (Fungal Folly gossip NPC)
+	211060, -- One Tusk (Fungal Folly gossip NPC)
+	211027, -- Kasthrik (Fungal Folly gossip NPC)
+	211028, -- Twizzle Runabout (Fungal Folly gossip NPC)
+	211062, -- Bill (Fungal Folly gossip NPC)
 	220293, -- Aliya Hillhelm (Mycomancer Cavern gossip NPC)
 	219779, -- Alekk (Mycomancer Cavern gossip NPC)
 	220354, -- Chief Dinaire (Mycomancer Cavern gossip NPC)
@@ -114,6 +119,21 @@ function mod:GOSSIP_SHOW()
 		if self:GetGossipID(111366) then -- Fungal Folly, start Delve (Stoneguard Benston)
 			-- 111366:I'll dive into this cavern and get your friends back.
 			self:SelectGossipID(111366)
+		elseif self:GetGossipID(113928) then -- Fungal Folly, continue Delve (Patreux)
+			-- 113928:|cFF0000FF(Delve)|r I accept your challenge!
+			self:SelectGossipID(113928)
+		elseif self:GetGossipID(113929) then -- Fungal Folly, continue Delve (One Tusk)
+			-- 113929:|cFF0000FF(Delve)|r I'm ready to face whatever challenge you have.
+			self:SelectGossipID(113929)
+		elseif self:GetGossipID(113937) then -- Fungal Folly, continue Delve (Kasthrik)
+			-- 113937:|cFF0000FF(Delve)|r I'm up for your challenge!
+			self:SelectGossipID(113937)
+		elseif self:GetGossipID(113939) then -- Fungal Folly, continue Delve (Twizzle Runabout)
+			-- 113939:|cFF0000FF(Delve)|r Run in a specific circle on a time limit? Sure. This isn't the weirdest thing I've done today.
+			self:SelectGossipID(113939)
+		elseif self:GetGossipID(113941) then -- Fungal Folly, continue Delve (Bill)
+			-- 113941:|cFF0000FF(Delve)|r I accept your challenge!
+			self:SelectGossipID(113941)
 		elseif self:GetGossipID(121536) then -- Mycomancer Cavern, start Delve (Aliya Hillhelm)
 			-- 121536:|cFF0000FF(Delve)|r I'll get your pigs back and make those fungarians pay for this.
 			self:SelectGossipID(121536)
