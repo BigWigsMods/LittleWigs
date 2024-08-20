@@ -46,7 +46,9 @@ function mod:OnEngage()
 	self:CDBar(384353, 12.0) -- Gut Shot
 	-- this will ony be cast if Hyenas are getting trapped, CD is mostly not useful
 	-- self:CDBar(384633, 15.7) -- Master's Call
-	self:CDBar(384416, 20.6) -- Meat Toss
+	if not self:Normal() then
+		self:CDBar(384416, 20.6) -- Meat Toss
+	end
 	self:CDBar(384827, 31.5) -- Call Hyenas
 end
 
