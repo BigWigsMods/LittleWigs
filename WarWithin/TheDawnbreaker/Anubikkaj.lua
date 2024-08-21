@@ -64,8 +64,8 @@ function mod:OnEngage()
 	self:CDBar(426787, 22.0) -- Shadowy Decay
 	if self:Mythic() then
 		shadowyDecayLast = false
-		nextAnimateShadows = t + 32.0
-		self:CDBar(452127, 32.0) -- Animate Shadows
+		nextAnimateShadows = t + 33.0
+		self:CDBar(452127, 33.0) -- Animate Shadows
 	end
 end
 
@@ -89,20 +89,20 @@ function mod:TerrifyingSlam(args)
 		if shadowyDecayLast then
 			if nextAnimateShadows - t < 7.0 then
 				nextAnimateShadows = t + 7.0
-				self:CDBar(452127, {7.0, 33.5}) -- Animate Shadows
+				self:CDBar(452127, {7.0, 34.5}) -- Animate Shadows
 			end
 			if nextShadowyDecay - t < 14.5 then
 				nextShadowyDecay = t + 14.5
-				self:CDBar(426787, {14.5, 33.5}) -- Shadowy Decay
+				self:CDBar(426787, {14.5, 34.5}) -- Shadowy Decay
 			end
 		else -- Animate Shadows was more recent than Shadowy Decay
 			if nextShadowyDecay - t < 7.0 then
 				nextShadowyDecay = t + 7.0
-				self:CDBar(426787, {7.0, 33.5}) -- Shadowy Decay
+				self:CDBar(426787, {7.0, 34.5}) -- Shadowy Decay
 			end
 			if nextAnimateShadows - t < 17.0 then
 				nextAnimateShadows = t + 17.0
-				self:CDBar(452127, {17.0, 33.5}) -- Animate Shadows
+				self:CDBar(452127, {17.0, 34.5}) -- Animate Shadows
 			end
 		end
 	else -- Normal / Heroic
@@ -112,8 +112,8 @@ function mod:TerrifyingSlam(args)
 			self:CDBar(args.spellId, 16.0)
 		else
 			-- guaranteed Shadowy Decay before the next Terrifying Slam
-			nextTerrifyingSlam = t + 26.0
-			self:CDBar(args.spellId, 26.0)
+			nextTerrifyingSlam = t + 27.0
+			self:CDBar(args.spellId, 27.0)
 		end
 		if nextShadowyDecay - t < 7.0 then
 			nextShadowyDecay = t + 7.0
@@ -138,20 +138,20 @@ function mod:DarkOrb(args)
 		if shadowyDecayLast then
 			if nextAnimateShadows - t < 9.0 then
 				nextAnimateShadows = t + 9.0
-				self:CDBar(452127, {9.0, 33.5}) -- Animate Shadows
+				self:CDBar(452127, {9.0, 34.5}) -- Animate Shadows
 			end
 			if nextShadowyDecay - t < 16.5 then
 				nextShadowyDecay = t + 16.5
-				self:CDBar(426787, {16.5, 33.5}) -- Shadowy Decay
+				self:CDBar(426787, {16.5, 34.5}) -- Shadowy Decay
 			end
 		else -- Animate Shadows was more recent than Shadowy Decay
 			if nextShadowyDecay - t < 9.0 then
 				nextShadowyDecay = t + 9.0
-				self:CDBar(426787, {9.0, 33.5}) -- Shadowy Decay
+				self:CDBar(426787, {9.0, 34.5}) -- Shadowy Decay
 			end
 			if nextAnimateShadows - t < 19.0 then
 				nextAnimateShadows = t + 19.0
-				self:CDBar(452127, {19.0, 33.5}) -- Animate Shadows
+				self:CDBar(452127, {19.0, 34.5}) -- Animate Shadows
 			end
 		end
 	else
@@ -161,8 +161,8 @@ function mod:DarkOrb(args)
 			self:CDBar(args.spellId, 16.0)
 		else
 			-- guaranteed Shadowy Decay before the next Dark Orb
-			nextDarkOrb = t + 26.0
-			self:CDBar(args.spellId, 26.0)
+			nextDarkOrb = t + 27.0
+			self:CDBar(args.spellId, 27.0)
 		end
 		if nextShadowyDecay - t < 9.0 then
 			nextShadowyDecay = t + 9.0
@@ -189,53 +189,53 @@ function mod:ShadowyDecay(args)
 	self:Message(args.spellId, "yellow")
 	slamOrOrbCount = 1
 	shadowyDecayLast = true
-	-- 10.0 minimum to next ability
+	-- 11.0 minimum to next ability
 	if self:Mythic() then
-		nextShadowyDecay = t + 33.5
-		self:CDBar(args.spellId, 33.5)
+		nextShadowyDecay = t + 34.5
+		self:CDBar(args.spellId, 34.5)
 		if terrifyingSlamLast then
-			if nextDarkOrb - t < 10.0 then
-				nextDarkOrb = t + 10.0
-				self:CDBar(426860, {10.0, 16.0}) -- Dark Orb
+			if nextDarkOrb - t < 11.0 then
+				nextDarkOrb = t + 11.0
+				self:CDBar(426860, {11.0, 16.0}) -- Dark Orb
 			end
-			if nextTerrifyingSlam - t < 19.0 then
-				nextTerrifyingSlam = t + 19.0
-				self:CDBar(427001, {19.0, 26.0}) -- Terrifying Slam
+			if nextTerrifyingSlam - t < 20.0 then
+				nextTerrifyingSlam = t + 20.0
+				self:CDBar(427001, {20.0, 26.0}) -- Terrifying Slam
 			end
 		else -- Dark Orb was more recent than Terrifying Slam
-			if nextTerrifyingSlam - t < 10.0 then
-				nextTerrifyingSlam = t + 10.0
-				self:CDBar(427001, {10.0, 16.0}) -- Terrifying Slam
+			if nextTerrifyingSlam - t < 11.0 then
+				nextTerrifyingSlam = t + 11.0
+				self:CDBar(427001, {11.0, 16.0}) -- Terrifying Slam
 			end
-			if nextDarkOrb - t < 17.0 then
-				nextDarkOrb = t + 17.0
-				self:CDBar(426860, {17.0, 26.0}) -- Dark Orb
+			if nextDarkOrb - t < 18.0 then
+				nextDarkOrb = t + 18.0
+				self:CDBar(426860, {18.0, 26.0}) -- Dark Orb
 			end
 		end
-		if nextAnimateShadows - t < 10.0 then
-			nextAnimateShadows = t + 10.0
-			self:CDBar(452127, {10.0, 33.5}) -- Animate Shadows
+		if nextAnimateShadows - t < 11.0 then
+			nextAnimateShadows = t + 11.0
+			self:CDBar(452127, {11.0, 34.5}) -- Animate Shadows
 		end
 	else
-		nextShadowyDecay = t + 26.0
-		self:CDBar(args.spellId, 26.0)
+		nextShadowyDecay = t + 27.0
+		self:CDBar(args.spellId, 27.0)
 		if terrifyingSlamLast then
-			if nextDarkOrb - t < 10.0 then
-				nextDarkOrb = t + 10.0
-				self:CDBar(426860, {10.0, 16.0}) -- Dark Orb
+			if nextDarkOrb - t < 11.0 then
+				nextDarkOrb = t + 11.0
+				self:CDBar(426860, {11.0, 16.0}) -- Dark Orb
 			end
-			if nextTerrifyingSlam - t < 19.0 then
-				nextTerrifyingSlam = t + 19.0
-				self:CDBar(427001, {19.0, 26.0}) -- Terrifying Slam
+			if nextTerrifyingSlam - t < 20.0 then
+				nextTerrifyingSlam = t + 20.0
+				self:CDBar(427001, {20.0, 26.0}) -- Terrifying Slam
 			end
 		else -- Dark Orb was more recent than Terrifying Slam
-			if nextTerrifyingSlam - t < 10.0 then
-				nextTerrifyingSlam = t + 10.0
-				self:CDBar(427001, {10.0, 16.0}) -- Terrifying Slam
+			if nextTerrifyingSlam - t < 11.0 then
+				nextTerrifyingSlam = t + 11.0
+				self:CDBar(427001, {11.0, 16.0}) -- Terrifying Slam
 			end
-			if nextDarkOrb - t < 17.0 then
-				nextDarkOrb = t + 17.0
-				self:CDBar(426860, {17.0, 26.0}) -- Dark Orb
+			if nextDarkOrb - t < 18.0 then
+				nextDarkOrb = t + 18.0
+				self:CDBar(426860, {18.0, 26.0}) -- Dark Orb
 			end
 		end
 	end
@@ -249,8 +249,8 @@ function mod:AnimateShadows(args)
 	self:Message(args.spellId, "cyan")
 	slamOrOrbCount = 1
 	shadowyDecayLast = false
-	nextAnimateShadows = t + 33.5
-	self:CDBar(args.spellId, 33.5)
+	nextAnimateShadows = t + 34.5
+	self:CDBar(args.spellId, 34.5)
 	-- 7.5 minimum to next ability
 	if terrifyingSlamLast then
 		if nextDarkOrb - t < 7.5 then
@@ -261,7 +261,7 @@ function mod:AnimateShadows(args)
 			nextTerrifyingSlam = t + 16.5
 			self:CDBar(427001, 16.5) -- Terrifying Slam
 		end
-	else
+	else -- Dark Orb was more recent than Terrifying Slam
 		if nextTerrifyingSlam - t < 7.5 then
 			nextTerrifyingSlam = t + 7.5
 			self:CDBar(427001, {7.5, 16.0}) -- Terrifying Slam
@@ -273,7 +273,7 @@ function mod:AnimateShadows(args)
 	end
 	if nextShadowyDecay - t < 7.5 then
 		nextShadowyDecay = t + 7.5
-		self:CDBar(426787, {7.5, 33.5}) -- Shadowy Decay
+		self:CDBar(426787, {7.5, 34.5}) -- Shadowy Decay
 	end
 	self:PlaySound(args.spellId, "info")
 end
