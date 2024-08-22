@@ -357,18 +357,22 @@ function mod:AcidicEruptionInterrupted(args)
 	rollingAcidSchedule = 0
 	self:Message(449734, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 	self:SetStage(2)
-	nextRollingAcid = t + 4.0
-	self:CDBar(434407, 4.0, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
-	nextSpinneretsStrands = t + 12.0
-	self:CDBar(434089, 12.0, CL.count:format(self:SpellName(434089), spinneretsStrandsCount)) -- Spinneret's Strands
 	if self:Mythic() then
 		expelWebsCount = 1
 		expelWebsSchedule = 0
-		nextExpelWebs = t + 17.3
-		self:CDBar(448213, 17.3, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
-		nextErosiveSpray = t + 21.3
-		self:CDBar(448888, 21.3, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
+		nextRollingAcid = t + 4.5
+		self:CDBar(434407, 4.5, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
+		nextSpinneretsStrands = t + 13.3
+		self:CDBar(434089, 13.3, CL.count:format(self:SpellName(434089), spinneretsStrandsCount)) -- Spinneret's Strands
+		nextExpelWebs = t + 23.7
+		self:CDBar(448213, 23.7, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
+		nextErosiveSpray = t + 32.6
+		self:CDBar(448888, 32.6, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
 	else
+		nextRollingAcid = t + 4.0
+		self:CDBar(434407, 4.0, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
+		nextSpinneretsStrands = t + 12.0
+		self:CDBar(434089, 12.0, CL.count:format(self:SpellName(434089), spinneretsStrandsCount)) -- Spinneret's Strands
 		nextErosiveSpray = t + 29.3
 		self:CDBar(448888, 29.3, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
 	end
