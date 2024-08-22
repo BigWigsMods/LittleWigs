@@ -15,6 +15,3 @@ move-folders:
     LittleWigs/BfA: LittleWigs_BattleForAzeroth
     LittleWigs/Shadowlands: LittleWigs_Shadowlands
     LittleWigs/Dragonflight: LittleWigs_Dragonflight
-
-ignore:
-  - Core
