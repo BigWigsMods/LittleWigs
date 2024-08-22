@@ -29,11 +29,12 @@ local nextErosiveSpray = 0
 local nextExpelWebs = 0
 local nextSpinneretsStrands = 0
 
--- in Stage 2 Rolling Acid and Erosive Spray cooldowns are not based off the previous cast, but are on a repeating
--- cadence starting from the very first cast in Stage 2. so if either of these abilities is delayed by another ability,
--- the following cast will happen early as if the delay never happened.
-local nextRollingAcidRepeater = 0
-local nextErosiveSprayRepeater = 0
+-- Rolling Acid, Erosive Spray, and Expel Webs cooldowns are not based off the previous cast, but are on a repeating
+-- timer starting from the very first cast in each stage. so if any of these abilities is delayed by another ability,
+-- the subsequent cast will happen "early" as if the delay never happened.
+local rollingAcidSchedule = 0
+local erosiveSpraySchedule = 0
+local expelWebsSchedule = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -94,12 +95,13 @@ function mod:OnEngage()
 	acidicEruptionCount = 1
 	spinneretsStrandsCount = 1
 	radiantLightOnGroup = false
-	nextRollingAcidRepeater = 0
-	nextErosiveSprayRepeater = 0
+	rollingAcidSchedule = 0
+	erosiveSpraySchedule = 0
 	nextSpinneretsStrands = 0
 	self:SetStage(1)
 	if self:Mythic() then
 		expelWebsCount = 1
+		expelWebsSchedule = 0
 		nextExpelWebs = t + 6.7
 		self:CDBar(448213, 6.7, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
 		nextRollingAcid = t + 10.7
@@ -166,32 +168,30 @@ function mod:RollingAcid(args)
 	self:StopBar(CL.count:format(args.spellName, rollingAcidCount))
 	self:Message(args.spellId, "red", CL.count:format(args.spellName, rollingAcidCount))
 	rollingAcidCount = rollingAcidCount + 1
+	local delay = 0
+	if rollingAcidSchedule ~= 0 and rollingAcidSchedule < t then
+		-- Rolling Acid is late, so the next one will be early
+		delay = t - rollingAcidSchedule
+	end
 	if self:GetStage() == 1 then
-		if self:Mythic() then
-			nextRollingAcid = t + 20.0
-			self:CDBar(args.spellId, 20.0, CL.count:format(args.spellName, rollingAcidCount))
-		else
-			nextRollingAcid = t + 18.7
-			self:CDBar(args.spellId, 18.7, CL.count:format(args.spellName, rollingAcidCount))
-		end
+		-- 21.33 repeater, subtract any delay from the timer
+		nextRollingAcid = t + 21.33 - delay
+		rollingAcidSchedule = nextRollingAcid
+		self:CDBar(args.spellId, 21.33 - delay, CL.count:format(args.spellName, rollingAcidCount))
 		-- 6.01 to next ability
 		if nextErosiveSpray - t < 6.01 then
 			nextErosiveSpray = t + 6.01
-			self:CDBar(448888, {6.01, 23.3}, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
+			self:CDBar(448888, {6.01, 28.0}, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
 		end
 		if self:Mythic() and nextExpelWebs - t < 6.01 then
 			nextExpelWebs = t + 6.01
-			self:CDBar(448213, {6.01, 10.0}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
+			self:CDBar(448213, {6.01, 16.0}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
 		end
 	else -- Stage 2
-		local delay = 0
-		if nextRollingAcidRepeater ~= 0 and nextRollingAcidRepeater < t then
-			-- Rolling Acid is late, so the next one will be early
-			delay = t - nextRollingAcidRepeater
-		end
-		nextRollingAcid = t + 37.03 - delay
-		nextRollingAcidRepeater = nextRollingAcid
-		self:CDBar(args.spellId, 37.03 - delay, CL.count:format(args.spellName, rollingAcidCount))
+		-- 37.04 repeater, subtract any delay from the timer
+		nextRollingAcid = t + 37.04 - delay
+		rollingAcidSchedule = nextRollingAcid
+		self:CDBar(args.spellId, 37.04 - delay, CL.count:format(args.spellName, rollingAcidCount))
 		-- 6.67 to next ability
 		if nextErosiveSpray - t < 6.67 then
 			nextErosiveSpray = t + 6.67
@@ -199,7 +199,7 @@ function mod:RollingAcid(args)
 		end
 		if self:Mythic() and nextExpelWebs - t < 6.67 then
 			nextExpelWebs = t + 6.67
-			self:CDBar(448213, {6.67, 14.0}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
+			self:CDBar(448213, {6.67, 22.39}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
 		end
 		-- Rolling Acid adds 5.17 to Spinneret's Strands, but there's still the minimum of 6.67
 		if spinneretsStrandsCount ~= 1 then
@@ -220,40 +220,38 @@ function mod:ErosiveSpray(args)
 	self:StopBar(CL.count:format(args.spellName, erosiveSprayCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, erosiveSprayCount))
 	erosiveSprayCount = erosiveSprayCount + 1
+	local delay = 0
+	if erosiveSpraySchedule ~= 0 and erosiveSpraySchedule < t then
+		-- Erosive Spray is late, so the next one will be early
+		delay = t - erosiveSpraySchedule
+	end
 	if self:GetStage() == 1 then
-		if self:Mythic() then
-			nextErosiveSpray = t + 28.0
-			self:CDBar(args.spellId, 28.0, CL.count:format(args.spellName, erosiveSprayCount))
-		else
-			nextErosiveSpray = t + 23.3
-			self:CDBar(args.spellId, 23.3, CL.count:format(args.spellName, erosiveSprayCount))
-		end
+		-- 28.0 repeater, subtract any delay from the timer
+		nextErosiveSpray = t + 28.0 - delay
+		erosiveSpraySchedule = nextErosiveSpray
+		self:CDBar(args.spellId, 28.0 - delay, CL.count:format(args.spellName, erosiveSprayCount))
 		-- 6.67 to next ability
 		if nextRollingAcid - t < 6.67 then
 			nextRollingAcid = t + 6.67
-			self:CDBar(434407, {6.67, 18.7}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
+			self:CDBar(434407, {6.67, 21.33}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
 		end
 		if self:Mythic() and nextExpelWebs - t < 6.67 then
 			nextExpelWebs = t + 6.67
-			self:CDBar(448213, {6.67, 10.0}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
+			self:CDBar(448213, {6.67, 16.0}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
 		end
 	else -- Stage 2
-		local delay = 0
-		if nextErosiveSprayRepeater ~= 0 and nextErosiveSprayRepeater < t then
-			-- Erosive Spray is late, so the next one will be early
-			delay = t - nextErosiveSprayRepeater
-		end
+		-- 31.11 repeater, subtract any delay from the timer
 		nextErosiveSpray = t + 31.11 - delay
-		nextErosiveSprayRepeater = nextErosiveSpray
+		erosiveSpraySchedule = nextErosiveSpray
 		self:CDBar(args.spellId, 31.11 - delay, CL.count:format(args.spellName, erosiveSprayCount))
 		-- 7.41 to next ability
 		if nextRollingAcid - t < 7.41 then
 			nextRollingAcid = t + 7.41
-			self:CDBar(434407, {7.41, 37.03}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
+			self:CDBar(434407, {7.41, 37.04}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
 		end
 		if self:Mythic() and nextExpelWebs - t < 7.41 then
 			nextExpelWebs = t + 7.41
-			self:CDBar(448213, {7.41, 14.0}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
+			self:CDBar(448213, {7.41, 22.39}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
 		end
 		if nextSpinneretsStrands - t < 7.41 then
 			nextSpinneretsStrands = t + 7.41
@@ -268,25 +266,34 @@ function mod:ExpelWebs(args)
 	self:StopBar(CL.count:format(args.spellName, expelWebsCount))
 	self:Message(args.spellId, "orange", CL.count:format(args.spellName, expelWebsCount))
 	expelWebsCount = expelWebsCount + 1
+	local delay = 0
+	if expelWebsSchedule ~= 0 and expelWebsSchedule < t then
+		-- Expel Webs is late, so the next one will be early
+		delay = t - expelWebsSchedule
+	end
 	if self:GetStage() == 1 then
-		nextExpelWebs = t + 10.0
-		self:CDBar(args.spellId, 10.0, CL.count:format(args.spellName, expelWebsCount))
+		-- 16.0 repeater, subtract any delay from the timer
+		nextExpelWebs = t + 16.0 - delay
+		expelWebsSchedule = nextExpelWebs
+		self:CDBar(args.spellId, 16.0 - delay, CL.count:format(args.spellName, expelWebsCount))
 		-- 4.0 to next ability
 		if nextRollingAcid - t < 4.0 then
 			nextRollingAcid = t + 4.0
-			self:CDBar(434407, {4.0, 20.0}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
+			self:CDBar(434407, {4.0, 21.33}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
 		end
 		if nextErosiveSpray - t < 4.0 then
 			nextErosiveSpray = t + 4.0
 			self:CDBar(448888, {4.0, 28.0}, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
 		end
 	else -- Stage 2
-		nextExpelWebs = t + 15.5
-		self:CDBar(args.spellId, 15.5, CL.count:format(args.spellName, expelWebsCount))
+		-- 22.39 repeater, subtract any delay from the timer
+		nextExpelWebs = t + 22.39 - delay
+		expelWebsSchedule = nextExpelWebs
+		self:CDBar(args.spellId, 22.39 - delay, CL.count:format(args.spellName, expelWebsCount))
 		-- 4.45 to next ability
 		if nextRollingAcid - t < 4.45 then
 			nextRollingAcid = t + 4.45
-			self:CDBar(434407, {4.45, 37.03}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
+			self:CDBar(434407, {4.45, 37.04}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
 		end
 		if nextErosiveSpray - t < 4.45 then
 			nextErosiveSpray = t + 4.45
@@ -346,6 +353,8 @@ function mod:AcidicEruptionInterrupted(args)
 	local t = GetTime()
 	rollingAcidCount = 1
 	erosiveSprayCount = 1
+	erosiveSpraySchedule = 0
+	rollingAcidSchedule = 0
 	self:Message(449734, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 	self:SetStage(2)
 	nextRollingAcid = t + 4.0
@@ -354,6 +363,7 @@ function mod:AcidicEruptionInterrupted(args)
 	self:CDBar(434089, 12.0, CL.count:format(self:SpellName(434089), spinneretsStrandsCount)) -- Spinneret's Strands
 	if self:Mythic() then
 		expelWebsCount = 1
+		expelWebsSchedule = 0
 		nextExpelWebs = t + 17.3
 		self:CDBar(448213, 17.3, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
 		nextErosiveSpray = t + 21.3
@@ -380,7 +390,7 @@ function mod:SpinneretsStrands(args)
 	-- minimum 5.92 to next ability
 	if nextRollingAcid - t < 5.92 then
 		nextRollingAcid = t + 5.92
-		self:CDBar(434407, {5.92, 37.03}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
+		self:CDBar(434407, {5.92, 37.04}, CL.count:format(self:SpellName(434407), rollingAcidCount)) -- Rolling Acid
 	end
 	if nextErosiveSpray - t < 5.92 then
 		nextErosiveSpray = t + 5.92
@@ -388,7 +398,7 @@ function mod:SpinneretsStrands(args)
 	end
 	if self:Mythic() and nextExpelWebs - t < 5.92 then
 		nextExpelWebs = t + 5.92
-		self:CDBar(448213, {5.92, 14.0}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
+		self:CDBar(448213, {5.92, 22.39}, CL.count:format(self:SpellName(448213), expelWebsCount)) -- Expel Webs
 	end
 	self:PlaySound(args.spellId, "alert")
 end
