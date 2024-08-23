@@ -62,6 +62,14 @@ function mod:OnEngage()
 	self:Bar(369754, 27.9) -- Bloodlust
 end
 
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Uldaman: Legacy of Tyr Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:BromachDefeated()
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --

@@ -13,4 +13,6 @@ if L then
 	L.ebonstone_golem = "檀石魔像"
 	L.earthen_guardian = "土灵守护者"
 	L.infinite_agent = "永恒密探"
+
+	--L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
 end

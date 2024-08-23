@@ -13,4 +13,6 @@ if L then
 	L.ebonstone_golem = "Golem di Pietra Nera"
 	L.earthen_guardian = "Guardiano Terrigeno"
 	L.infinite_agent = "Agente dell'Infinito"
+
+	--L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
 end

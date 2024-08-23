@@ -13,4 +13,6 @@ if L then
 	L.ebonstone_golem = "칠흑바위 골렘"
 	L.earthen_guardian = "토석인 수호자"
 	L.infinite_agent = "무한의 대리인"
+
+	--L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
 end

@@ -40,6 +40,10 @@ if L then
 	L.ebonstone_golem = "Ebonstone Golem"
 	L.earthen_guardian = "Earthen Guardian"
 	L.infinite_agent = "Infinite Agent"
+
+	L.door_open = CL.door_open
+	L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
+	L.door_open_icon = "achievement_dungeon_uldaman"
 end
 
 --------------------------------------------------------------------------------
@@ -49,6 +53,7 @@ end
 function mod:GetOptions()
 	return {
 		-- General
+		"door_open",
 		386104, -- Lost Tome of Tyr
 		375500, -- Time Lock
 		-- Hulking Berserker
@@ -82,7 +87,7 @@ function mod:GetOptions()
 		-- Infinite Agent
 		{377500, "DISPEL"}, -- Hasten
 	}, {
-		[386104] = CL.general,
+		["door_open"] = CL.general,
 		[369811] = L.hulking_berserker,
 		[369675] = L.stonevault_geomancer,
 		[369823] = L.vicious_basilisk,
@@ -165,6 +170,20 @@ function mod:BigWigs_OnBossWin(event, module)
 		-- disable the trash module when defeating the last boss, this avoids some
 		-- spam from LostTomeofTyr when someone leaves the group.
 		self:Disable()
+	end
+end
+
+-- triggered from Bromach's OnWin
+function mod:BromachDefeated()
+	-- only start the RP timer if The Lost Dwarves have already been defeated, as they are the ones to open the door.
+	-- don't show the bar in Mythic+ because the wait is much shorter there (~4s).
+	local info = C_ScenarioInfo.GetCriteriaInfo(1)
+	if info and info.completed and not self:MythicPlus() then
+		-- 20.37 [ENCOUNTER_END] 2556#Bromach#1#5#1",
+		-- 31.21 [CHAT_MSG_MONSTER_SAY] Nice work! That trogg has been a real pest.#Olaf
+		-- 36.20 [CHAT_MSG_MONSTER_SAY] We know how ta open the door, but that ugly rockhead always kept us out.#Eric \"The Swift\"
+		-- 38.75 [ZONE_CHANGED_INDOORS] Uldaman#Uldaman#Hall of the Keepers
+		self:Bar("door_open", 18.3, L.door_open, L.door_open_icon)
 	end
 end
 

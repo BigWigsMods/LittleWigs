@@ -13,4 +13,6 @@ if L then
 	L.ebonstone_golem = "Голем из черного камня"
 	L.earthen_guardian = "Земельник-страж"
 	L.infinite_agent = "Посланница из рода Бесконечности"
+
+	--L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
 end
