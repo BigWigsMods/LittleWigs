@@ -105,7 +105,9 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) then
+	local info = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183)
+	local level = info and tonumber(info.tierText)
+	if (not level or level > 3) and self:GetOption(autotalk) then
 		if self:GetGossipID(121408) then -- Skittering Breach, start Delve (Lamplighter Havrik Chayvn)
 			-- 121408:|cFF0000FF(Delve)|r I'll go deeper in and stop the nerubian ritual.
 			self:SelectGossipID(121408)

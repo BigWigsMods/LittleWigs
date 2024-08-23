@@ -98,7 +98,9 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) then
+	local info = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183)
+	local level = info and tonumber(info.tierText)
+	if (not level or level > 3) and self:GetOption(autotalk) then
 		if self:GetGossipID(120767) then -- Nightfall Sanctum, start Delve (Great Kyron)
 			-- 120767:|cFF0000FF(Delve)|r I'll hop on a ballista to recover the oil in order to destroy the cult's barrier.
 			self:SelectGossipID(120767)
