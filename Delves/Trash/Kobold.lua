@@ -76,7 +76,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	local info = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183)
+	local info = self:GetWidgetInfo("delve", 6183)
 	local level = info and tonumber(info.tierText)
 	if (not level or level > 3) and self:GetOption(autotalk) then
 		if self:GetGossipID(119802) then -- Kriegval's Rest, start Delve (Kuvkel)
