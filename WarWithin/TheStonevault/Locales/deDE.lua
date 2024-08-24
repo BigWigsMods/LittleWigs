@@ -1,19 +1,19 @@
 local L = BigWigs:NewBossLocale("The Stonevault Trash", "deDE")
 if not L then return end
 if L then
-	--L.earth_infused_golem = "Earth Infused Golem"
-	--L.repurposed_loaderbot = "Repurposed Loaderbot"
-	--L.ghastly_voidsoul = "Ghastly Voidsoul"
-	--L.cursedheart_invader = "Cursedheart Invader"
-	--L.void_bound_despoiler = "Void Bound Despoiler"
-	--L.void_bound_howler = "Void Bound Howler"
-	--L.turned_speaker = "Turned Speaker"
-	--L.void_touched_elemental = "Void Touched Elemental"
-	--L.forgebound_mender = "Forgebound Mender"
-	--L.forge_loader = "Forge Loader"
-	--L.cursedforge_honor_guard = "Cursedforge Honor Guard"
-	--L.cursedforge_stoneshaper = "Cursedforge Stoneshaper"
-	--L.rock_smasher = "Rock Smasher"
+	L.earth_infused_golem = "Erderfüllter Golem"
+	L.repurposed_loaderbot = "Umfunktionierter Laderbot"
+	L.ghastly_voidsoul = "Geisterhafte Leerenseele"
+	L.cursedheart_invader = "Verfluchter Eindringling"
+	L.void_bound_despoiler = "Leerengebundener Plünderer"
+	L.void_bound_howler = "Leerengebundener Heuler"
+	L.turned_speaker = "Vertriebener Sprecher"
+	L.void_touched_elemental = "Leerenberührter Elementar"
+	L.forgebound_mender = "Schmiedegebundene Heilerin"
+	L.forge_loader = "Schmiedelader"
+	L.cursedforge_honor_guard = "Fluchschmiedenehrenwache"
+	L.cursedforge_stoneshaper = "Fluchschmiedesteinschleifer"
+	L.rock_smasher = "Felsschmetterer"
 
-	--L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
+	L.edna_warmup_trigger = "Was ist das? Ist der Golem mit etwas anderem verbunden?"
 end
