@@ -17,6 +17,7 @@ mod:SetStage(1)
 --
 
 local exhaustVentsCount = 1
+local blazingCrescendoCount = 1
 local nextExhaustVents = 0
 local lastExhaustVentsCd = 0
 local nextScrapSong = 0
@@ -64,19 +65,35 @@ end
 function mod:OnEngage()
 	local t = GetTime()
 	exhaustVentsCount = 1
+	blazingCrescendoCount = 1
 	self:SetStage(1)
-	self:CDBar(430097, 3.2) -- Molten Metal
-	nextExhaustVents = t + 5.7
-	lastExhaustVentsCd = 5.7
-	self:CDBar(445541, 5.7) -- Exhaust Vents
-	nextIgneousHammer = t + 6.1
-	self:CDBar(428711, 6.1) -- Igneous Hammer
-	nextLavaCannon = t + 12.2
-	self:CDBar(449167, 12.2) -- Lava Cannon
-	nextScrapSong = t + 15.5
-	self:CDBar(428202, 15.5) -- Scrap Song
-	nextBlazingCrescendo = t + 45.7
-	self:CDBar(428508, 45.7) -- Blazing Crescendo
+	if self:Mythic() then
+		self:CDBar(430097, 4.6) -- Molten Metal
+		nextIgneousHammer = t + 6.1
+		self:CDBar(428711, 6.1) -- Igneous Hammer
+		nextLavaCannon = t + 12.2
+		self:CDBar(449167, 12.2) -- Lava Cannon
+		nextScrapSong = t + 15.5
+		self:CDBar(428202, 15.5) -- Scrap Song
+		nextExhaustVents = t + 35.3
+		lastExhaustVentsCd = 35.3
+		self:CDBar(445541, 35.3, CL.count:format(self:SpellName(445541), exhaustVentsCount)) -- Exhaust Vents
+		nextBlazingCrescendo = t + 45.7
+		self:CDBar(428508, 45.0, CL.count:format(self:SpellName(428508), blazingCrescendoCount)) -- Blazing Crescendo
+	else -- Normal, Heroic
+		self:CDBar(430097, 3.2) -- Molten Metal
+		nextExhaustVents = t + 5.7
+		lastExhaustVentsCd = 5.7
+		self:CDBar(445541, 5.7, CL.count:format(self:SpellName(445541), exhaustVentsCount)) -- Exhaust Vents
+		nextIgneousHammer = t + 6.1
+		self:CDBar(428711, 6.1) -- Igneous Hammer
+		nextLavaCannon = t + 12.2
+		self:CDBar(449167, 12.2) -- Lava Cannon
+		nextScrapSong = t + 15.5
+		self:CDBar(428202, 15.5) -- Scrap Song
+		nextBlazingCrescendo = t + 45.7
+		self:CDBar(428508, 45.7, CL.count:format(self:SpellName(428508), blazingCrescendoCount)) -- Blazing Crescendo
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -89,10 +106,10 @@ function mod:SilencedSpeaker(args)
 	local t = GetTime()
 	-- neither boss casts their "ultimate" anymore once one boss is defeated
 	self:StopBar(428202) -- Scrap Song
-	self:StopBar(428508) -- Blazing Crescendo
+	self:StopBar(CL.count:format(self:SpellName(428508), blazingCrescendoCount)) -- Blazing Crescendo
 	-- this is cast by the defeated boss on the remaining boss
 	if self:MobId(args.sourceGUID) == 213217 then -- Speaker Brokk defeated
-		self:StopBar(445541) -- Exhaust Vents
+		self:StopBar(CL.count:format(self:SpellName(445541), exhaustVentsCount)) -- Exhaust Vents
 		self:StopBar(430097) -- Molten Metal
 	else -- Speaker Dorlita defeated
 		self:StopBar(428711) -- Igneous Hammer
@@ -101,7 +118,7 @@ function mod:SilencedSpeaker(args)
 		self:CDBar(430097, {2.8, 13.4}) -- Molten Metal
 		nextExhaustVents = t + 5.2
 		lastExhaustVentsCd = 34.0
-		self:CDBar(445541, {5.2, 34.0}) -- Exhaust Vents
+		self:CDBar(445541, {5.2, 34.0}, CL.count:format(self:SpellName(445541), exhaustVentsCount)) -- Exhaust Vents
 	end
 	self:SetStage(2)
 	self:Message(args.spellId, "cyan", CL.onboss:format(args.spellName))
@@ -112,23 +129,13 @@ end
 
 function mod:ExhaustVents(args)
 	local t = GetTime()
-	self:Message(args.spellId, "orange")
+	self:StopBar(CL.count:format(args.spellName, exhaustVentsCount))
+	self:Message(args.spellId, "orange", CL.count:format(args.spellName, exhaustVentsCount))
 	exhaustVentsCount = exhaustVentsCount + 1
-	if self:GetStage() == 1 then
-		if exhaustVentsCount % 2 == 0 then
-			nextExhaustVents = t + 34.0
-			lastExhaustVentsCd = 34.0
-			self:CDBar(args.spellId, 34.0)
-		else
-			nextExhaustVents = t + 15.8
-			lastExhaustVentsCd = 15.8
-			self:CDBar(args.spellId, 15.8)
-		end
-	else -- Stage 2
-		nextExhaustVents = t + 34.0
-		lastExhaustVentsCd = 34.0
-		self:CDBar(args.spellId, 34.0)
-	end
+	-- Exhaust Vents cooldown is set to a shorter duration by Blazing Crescendo
+	nextExhaustVents = t + 34.0
+	lastExhaustVentsCd = 34.0
+	self:CDBar(args.spellId, 34.0, CL.count:format(args.spellName, exhaustVentsCount))
 	-- 9.69 minimum to next ability
 	self:CDBar(430097, {9.69, 13.4}) -- Molten Metal
 	if self:GetStage() == 1 and nextScrapSong - t < 9.69 then
@@ -146,7 +153,7 @@ function mod:MoltenMetal(args)
 	-- 2.43 minimum to next ability
 	if nextExhaustVents - t < 2.43 then
 		nextExhaustVents = t + 2.43
-		self:CDBar(445541, {2.43, lastExhaustVentsCd}) -- Exhaust Vents
+		self:CDBar(445541, {2.43, lastExhaustVentsCd}, CL.count:format(self:SpellName(445541), exhaustVentsCount)) -- Exhaust Vents
 	end
 	if self:GetStage() == 1 and nextScrapSong - t < 2.43 then
 		nextScrapSong = t + 2.43
@@ -160,7 +167,7 @@ function mod:MoltenMetalInterrupt()
 	local t = GetTime()
 	if nextExhaustVents - t < 3.0 then
 		nextExhaustVents = t + 3.0
-		self:CDBar(445541, {3.0, lastExhaustVentsCd}) -- Exhaust Vents
+		self:CDBar(445541, {3.0, lastExhaustVentsCd}, CL.count:format(self:SpellName(445541), exhaustVentsCount)) -- Exhaust Vents
 	end
 	if self:GetStage() == 1 and nextScrapSong - t < 3.0 then
 		nextScrapSong = t + 3.0
@@ -173,13 +180,6 @@ function mod:ScrapSong(args)
 	self:Message(args.spellId, "yellow")
 	-- resets the cooldown of Molten Metal to 7.26
 	self:CDBar(430097, {7.26, 13.4}) -- Molten Metal
-	-- resets the cooldown of Exhaust Vents to 17.0
-	nextExhaustVents = t + 17.0
-	if lastExhaustVentsCd >= 17.0 then
-		self:CDBar(445541, {17.0, lastExhaustVentsCd}) -- Exhaust Vents
-	else
-		self:CDBar(445541, 17.0) -- Exhaust Vents
-	end
 	nextScrapSong = t + 51.9
 	self:CDBar(args.spellId, 51.9)
 	self:PlaySound(args.spellId, "long")
@@ -189,10 +189,12 @@ end
 
 function mod:BlazingCrescendo(args)
 	local t = GetTime()
-	self:Message(args.spellId, "red")
+	self:StopBar(CL.count:format(args.spellName, blazingCrescendoCount))
+	self:Message(args.spellId, "red", CL.count:format(args.spellName, blazingCrescendoCount))
+	blazingCrescendoCount = blazingCrescendoCount + 1
 	-- resets the cooldown of Exhaust Vents to 12.11
 	nextExhaustVents = t + 12.11
-	self:CDBar(445541, {12.11, lastExhaustVentsCd}) -- Exhaust Vents
+	self:CDBar(445541, {12.11, lastExhaustVentsCd}, CL.count:format(self:SpellName(445541), exhaustVentsCount)) -- Exhaust Vents
 	-- resets the cooldown of Igneous Hammer to 13.34
 	nextIgneousHammer = t + 13.34
 	self:CDBar(428711, 13.34) -- Igneous Hammer
@@ -200,7 +202,7 @@ function mod:BlazingCrescendo(args)
 	nextLavaCannon = t + 19.02
 	self:CDBar(449167, 19.02) -- Lava Cannon
 	nextBlazingCrescendo = t + 52.1
-	self:CDBar(args.spellId, 52.1)
+	self:CDBar(args.spellId, 52.1, CL.count:format(args.spellName, blazingCrescendoCount))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -216,7 +218,7 @@ function mod:IgneousHammer(args)
 	end
 	if self:GetStage() == 1 and nextBlazingCrescendo - t < 2.43 then
 		nextBlazingCrescendo = t + 2.43
-		self:CDBar(428508, {2.43, 52.1}) -- Blazing Crescendo
+		self:CDBar(428508, {2.43, 52.1}, CL.count:format(self:SpellName(428508), blazingCrescendoCount)) -- Blazing Crescendo
 	end
 	self:PlaySound(args.spellId, "alert")
 end
@@ -233,7 +235,7 @@ function mod:LavaCannon(args)
 	end
 	if self:GetStage() == 1 and nextBlazingCrescendo - t < 3.61 then
 		nextBlazingCrescendo = t + 3.61
-		self:CDBar(428508, {3.61, 52.1}) -- Blazing Crescendo
+		self:CDBar(428508, {3.61, 52.1}, CL.count:format(self:SpellName(428508), blazingCrescendoCount)) -- Blazing Crescendo
 	end
 	self:PlaySound(args.spellId, "alarm")
 end
