@@ -29,6 +29,7 @@ function mod:GetOptions()
 		-- Drahga Shadowburner
 		448013, -- Invocation of Shadowflame (Adds)
 		{450095, "DISPEL"}, -- Curse of Entropy
+		{447966, "OFF"}, -- Shadowflame Bolt
 		-- Valiona
 		456751, -- Twilight Buffet
 		448105, -- Devouring Flame (Mythic)
@@ -54,6 +55,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FlamingFixateApplied", 82850)
 	self:Log("SPELL_CAST_SUCCESS", "CurseOfEntropy", 450095)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfEntropyApplied", 450095)
+	self:Log("SPELL_CAST_START", "ShadowflameBolt", 447966)
 
 	-- Valiona
 	self:Log("SPELL_CAST_START", "TwilightBuffet", 456751)
@@ -165,12 +167,20 @@ do
 	end
 
 	function mod:CurseOfEntropyApplied(args)
-		-- TODO this slows but is not dispelled by movement-dispelling effects
+		-- this slows but is not dispelled by movement-dispelling effects
 		if self:Dispeller("curse", nil, args.spellId) or self:Healer() or self:Me(args.destGUID) then
 			playerList[#playerList + 1] = args.destName
 			self:TargetsMessage(args.spellId, "red", playerList, 3)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
 		end
+	end
+end
+
+function mod:ShadowflameBolt(args)
+	local _, interruptReady = self:Interrupter()
+	if interruptReady then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 

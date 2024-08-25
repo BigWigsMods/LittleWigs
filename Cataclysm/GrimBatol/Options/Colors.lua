@@ -27,6 +27,7 @@ BigWigs:AddColors("Drahga Shadowburner", {
 	[75218] = "yellow",
 	[82850] = {"blue","red"},
 	[90950] = "red",
+	[447966] = "red",
 	[448013] = "yellow",
 	[448105] = "red",
 	[450095] = {"blue","red"},

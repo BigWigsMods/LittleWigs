@@ -24,6 +24,7 @@ BigWigs:AddSounds("Drahga Shadowburner", {
 	[75218] = "info",
 	[82850] = {"alert","warning"},
 	[90950] = "alarm",
+	[447966] = "alert",
 	[448013] = "info",
 	[448105] = "alarm",
 	[450095] = "alert",
