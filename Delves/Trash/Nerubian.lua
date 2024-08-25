@@ -53,7 +53,7 @@ function mod:GetOptions()
 		450714, -- Jagged Barbs
 		450637, -- Leeching Swarm
 		-- Nerubian Darkcaster
-		449318, -- Shadows of Strife
+		{449318, "SAY", "SAY_COUNTDOWN"}, -- Shadows of Strife
 		-- Nerubian Captain / Nerubian Marauder
 		450546, -- Webbed Aegis
 		450509, -- Wide Swipe
@@ -83,6 +83,8 @@ function mod:OnBossEnable()
 
 	-- Nerubian Darkcaster
 	self:Log("SPELL_CAST_START", "ShadowsOfStrife", 449318)
+	self:Log("SPELL_AURA_APPLIED", "ShadowsOfStrifeApplied", 449318)
+	self:Log("SPELL_AURA_REMOVED", "ShadowsOfStrifeRemoved", 449318)
 
 	-- Nerubian Captain / Nerubian Marauder
 	self:Log("SPELL_CAST_START", "WebbedAegis", 450546)
@@ -153,6 +155,19 @@ end
 function mod:ShadowsOfStrife(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ShadowsOfStrifeApplied(args)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Shadows of Strife")
+		self:SayCountdown(args.spellId, 8)
+	end
+end
+
+function mod:ShadowsOfStrifeRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
+	end
 end
 
 -- Nerubian Captain / Nerubian Marauder
