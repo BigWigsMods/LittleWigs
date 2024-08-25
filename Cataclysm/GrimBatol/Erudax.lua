@@ -30,9 +30,13 @@ function mod:GetOptions()
 		450077, -- Void Surge
 		450088, -- Void Infusion
 		{450100, "TANK_HEALER"}, -- Crush
-		448057, -- Abyssal Corruption (Mythic)
+		-- Void Tendril
+		450087, -- Depth's Grasp
+		-- Mythic
+		448057, -- Abyssal Corruption
 	}, {
-		[448057] = CL.mythic, -- Abyssal Corruption
+		[450087] = -29619, -- Void Tendril
+		[448057] = CL.mythic,
 	}, {
 		[450088] = CL.adds, -- Void Infusion (Adds)
 	}
@@ -43,6 +47,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VoidSurge", 450077)
 	self:Log("SPELL_CAST_SUCCESS", "VoidInfusion", 450088)
 	self:Log("SPELL_CAST_START", "Crush", 450100)
+
+	-- Void Tendril
+	self:Log("SPELL_AURA_APPLIED", "DepthsGraspApplied", 450087)
+
+	-- Mythic
 	self:Log("SPELL_CAST_START", "AbyssalCorruption", 448057)
 end
 
@@ -111,6 +120,17 @@ function mod:Crush(args)
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 50.0)
 end
+
+-- Void Tendril
+
+function mod:DepthsGraspApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
+-- Mythic
 
 function mod:AbyssalCorruption(args)
 	self:Message(args.spellId, "red")

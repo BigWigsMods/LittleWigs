@@ -42,6 +42,7 @@ BigWigs:AddColors("Erudax", {
 	[448057] = "red",
 	[449939] = "orange",
 	[450077] = "yellow",
+	[450087] = "blue",
 	[450088] = "cyan",
 	[450100] = "purple",
 	["summon"] = "yellow",
