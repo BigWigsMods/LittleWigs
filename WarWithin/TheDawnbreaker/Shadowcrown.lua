@@ -22,6 +22,7 @@ function mod:GetOptions()
 	return {
 		{451026, "CASTBAR"}, -- Darkness Comes
 		{426735, "DISPEL"}, -- Burning Shadows
+		{428086, "OFF"}, -- Shadow Bolt
 		-- Normal / Heroic
 		425264, -- Obsidian Blast
 		445996, -- Collapsing Darkness
@@ -38,6 +39,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DarknessComes", 451026)
 	self:Log("SPELL_CAST_SUCCESS", "BurningShadows", 426734)
 	self:Log("SPELL_AURA_APPLIED", "BurningShadowsApplied", 426735)
+	self:Log("SPELL_CAST_START", "ShadowBolt", 428086)
 
 	-- Normal / Heroic
 	self:Log("SPELL_CAST_START", "ObsidianBlast", 425264)
@@ -112,12 +114,20 @@ function mod:BurningShadowsApplied(args)
 	end
 end
 
+function mod:ShadowBolt(args)
+	local _, interruptReady = self:Interrupter()
+	if interruptReady then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
 -- Normal / Heroic
 
 function mod:ObsidianBlast(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 13.9)
+	self:CDBar(args.spellId, 13.3)
 end
 
 function mod:CollapsingDarkness(args)
