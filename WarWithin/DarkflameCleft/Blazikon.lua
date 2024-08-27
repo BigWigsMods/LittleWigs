@@ -31,6 +31,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WicklighterBarrage", 421817)
+	self:Log("SPELL_AURA_APPLIED", "WicklighterBarrageApplied", 421817)
 	self:Log("SPELL_CAST_START", "InciteFlames", 424212)
 	self:Log("SPELL_CAST_START", "EnkindlingInferno", 423109)
 	self:Log("SPELL_CAST_START", "BlazingStorms", 443835)
@@ -56,10 +57,20 @@ end
 -- Event Handlers
 --
 
-function mod:WicklighterBarrage(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 31.6)
+do
+	local playerList = {}
+
+	function mod:WicklighterBarrage(args)
+		playerList = {}
+		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+		self:CDBar(args.spellId, 31.6)
+	end
+
+	function mod:WicklighterBarrageApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "yellow", playerList, 3)
+		self:PlaySound(args.spellId, "long", nil, playerList)
+	end
 end
 
 function mod:InciteFlames(args)
