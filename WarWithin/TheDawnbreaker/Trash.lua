@@ -169,7 +169,8 @@ function mod:OnBossEnable()
 	self:Death("ManifestedShadowDeath", 211341)
 
 	-- Nightfall Dark Architect
-	self:Log("SPELL_CAST_START", "TormentingEruption", 431349)
+	self:Log("SPELL_CAST_SUCCESS", "TormentingEruption", 431349)
+	self:Log("SPELL_AURA_APPLIED", "TormentingEruptionApplied", 431350)
 	self:Log("SPELL_CAST_START", "UsherReinforcements", 446615)
 	self:Death("NightfallDarkArchitectDeath", 213885)
 end
@@ -466,14 +467,23 @@ end
 do
 	local timer
 
-	function mod:TormentingEruption(args)
-		if timer then
-			self:CancelTimer(timer)
+	do
+		local playerList = {}
+
+		function mod:TormentingEruption(args)
+			if timer then
+				self:CancelTimer(timer)
+			end
+			playerList = {}
+			self:CDBar(args.spellId, 14.6)
+			timer = self:ScheduleTimer("NightfallDarkArchitectDeath", 30)
 		end
-		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 14.6)
-		timer = self:ScheduleTimer("NightfallDarkArchitectDeath", 30)
+
+		function mod:TormentingEruptionApplied(args)
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(431349, "red", playerList, 2)
+			self:PlaySound(431349, "alarm", nil, playerList)
+		end
 	end
 
 	function mod:UsherReinforcements(args)

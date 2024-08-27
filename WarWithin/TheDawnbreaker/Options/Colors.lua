@@ -31,7 +31,7 @@ BigWigs:AddColors("Rasha'nan Dawnbreaker", {
 BigWigs:AddColors("The Dawnbreaker Trash", {
 	[431304] = "red",
 	[431309] = {"blue","orange","red"},
-	[431349] = "red",
+	[431349] = {"blue","red"},
 	[431494] = "purple",
 	[432448] = {"blue","yellow"},
 	[432520] = "orange",
