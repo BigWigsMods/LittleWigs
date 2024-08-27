@@ -9,7 +9,7 @@ if L then
 	L.infected_beast = "Infiziertes Wildtier"
 	L.fungal_gutter = "Pilzschlitzer"
 	L.fungarian_flinger = "Fungianischer Werfer"
-	--L.particularly_bad_guy = "Particularly Bad Guy"
+	L.particularly_bad_guy = "Besonders fieser Bösewicht"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "deDE")
@@ -27,9 +27,9 @@ if L then
 
 	L.kobyss_necromancer = "Totenbeschwörer der Kobyss"
 	L.kobyss_spearfisher = "Speerfischer der Kobyss"
-	--L.kobyss_witherer = "Kobyss Witherer"
+	L.kobyss_witherer = "Siecherer der Kobyss"
 	L.wandering_gutter = "Wandernder Ausweider"
-	--L.crazed_predator = "Crazed Predator"
+	L.crazed_predator = "Rasendes Raubtier"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "deDE")
