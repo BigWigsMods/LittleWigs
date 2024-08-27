@@ -59,7 +59,6 @@ BigWigs:AddSounds("The Underkeep Trash", {
 })
 
 BigWigs:AddSounds("Delve Rares", {
-	[398749] = "alert",
 	[400335] = "alarm",
 	[415250] = "alert",
 	[415253] = "alarm",
@@ -77,4 +76,5 @@ BigWigs:AddSounds("Delve Rares", {
 	[458397] = "alarm",
 	[459421] = "alert",
 	[461741] = "alarm",
+	[462686] = "alert",
 })
