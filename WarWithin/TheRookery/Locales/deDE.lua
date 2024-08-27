@@ -2,7 +2,7 @@ local L = BigWigs:NewBossLocale("The Rookery Trash", "deDE")
 if not L then return end
 if L then
 	L.quartermaster_koratite = "Rüstmeister Koratit"
-	--L.cursed_stormrider = "Cursed Stormrider"
+	L.cursed_stormrider = "Leerenreiter"
 	L.cursed_rooktender = "Verfluchter Krähenhüter"
 	L.unruly_stormrook = "Widerspenstige Sturmkrähe"
 	L.corrupted_rookguard = "Verfluchter Krähenwächter"
