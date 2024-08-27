@@ -398,12 +398,19 @@ function mod:HoneyVolleySuccess(args)
 	self:Nameplate(args.spellId, 9.3, args.sourceGUID)
 end
 
-function mod:RainOfHoney(args)
-	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
-		return
+do
+	local prev = 0
+	function mod:RainOfHoney(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:RainOfHoneySuccess(args)
@@ -425,7 +432,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		self:Nameplate(args.spellId, 14.6, args.sourceGUID) -- TODO success?
+		self:Nameplate(args.spellId, 14.6, args.sourceGUID)
 	end
 end
 
