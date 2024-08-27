@@ -6,5 +6,5 @@ end
 
 L = BigWigs:NewBossLocale("The Puppetmaster", "deDE")
 if L then
-	--L.the_puppetmaster = "The Puppetmaster"
+	L.the_puppetmaster = "Der Strippenzieher"
 end
