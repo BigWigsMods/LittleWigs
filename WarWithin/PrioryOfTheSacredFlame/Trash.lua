@@ -558,9 +558,16 @@ end
 
 -- Lightspawn
 
-function mod:BurstOfLight(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
+do
+	local prev = 0
+	function mod:BurstOfLight(args)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "long")
+		end
+	end
 end
 
 -- Risen Mage
