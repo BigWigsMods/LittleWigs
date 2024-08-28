@@ -10,7 +10,7 @@ if L then
 	L.ascendant_viscoxria = "Aszendent Vis'coxria"
 	L.deathscreamer_ikentak = "Todeskreischerin Iken'tak"
 	L.ixkreten_the_unbreakable = "Ixkreten die Unzerstörbare"
-	--L.sureki_militant = "Sureki Militant"
+	L.sureki_militant = "Kämpferin der Sureki"
 	L.nightfall_tactician = "Taktikerin von Nachtsturz"
 	L.nightfall_darkcaster = "Dunkelzauberin von Nachtsturz"
 	L.manifested_shadow = "Manifestierter Schatten"
