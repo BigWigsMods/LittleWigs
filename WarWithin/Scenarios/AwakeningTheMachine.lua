@@ -113,7 +113,7 @@ end
 
 function mod:Waves(_, text)
 	-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
-	self:Message("stages", "green", text, false)
+	self:Message("stages", "cyan", text, false)
 	self:PlaySound("stages", "info")
 end
 
@@ -193,7 +193,7 @@ end
 -- Nullbot
 
 function mod:NullificationBarrier(args)
-	self:Message(args.spellId, "cyan")
+	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "info")
 end
 
