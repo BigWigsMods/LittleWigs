@@ -119,9 +119,16 @@ end
 
 -- Corrupted Machinist
 
-function mod:PurgingFlames(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:PurgingFlames(args)
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 -- Malfunctioning Pylon
