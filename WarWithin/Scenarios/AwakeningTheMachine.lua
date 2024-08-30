@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	229729, -- Nullbot
 	229782 -- Awakened Phalanx
 )
+mod:SetStage(0.5)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -60,8 +61,8 @@ function mod:GetOptions()
 		-- Nullbot
 		462856, -- Nullification Barrier
 		-- Awakened Phalanx
-		{463052, "NAMEPLATE"}, -- Bellowing Slam
-		{463081, "NAMEPLATE"}, -- Earthshaking Charge
+		463052, -- Bellowing Slam
+		463081, -- Earthshaking Charge
 	}, {
 		["stages"] = CL.general,
 		[462802] = L.corrupted_machinist,
@@ -113,8 +114,14 @@ end
 
 function mod:Waves(_, text)
 	-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
-	self:Message("stages", "cyan", text, false)
-	self:PlaySound("stages", "info")
+	local wave = tonumber(text:match("%d+"))
+	if wave then
+		self:SetStage(wave)
+	end
+	if wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
+		self:Message("stages", "cyan", text:trim(), false)
+		self:PlaySound("stages", "info")
+	end
 end
 
 -- Corrupted Machinist
@@ -192,25 +199,33 @@ end
 
 -- Nullbot
 
-function mod:NullificationBarrier(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:NullificationBarrier(args)
+		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 -- Awakened Phalanx
 
 function mod:BellowingSlam(args)
 	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+	self:CDBar(args.spellId, 20.6)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:EarthshakingCharge(args)
 	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	self:CDBar(args.spellId, 25.5)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:AwakenedPhalanxDeath(args)
-	self:ClearNameplate(args.destGUID)
+function mod:AwakenedPhalanxDeath()
+	self:StopBar(463052) -- Bellowing Slam
+	self:StopBar(463081) -- Earthshaking Charge
 end
