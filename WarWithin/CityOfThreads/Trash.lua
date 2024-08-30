@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	220003, -- Eye of the Queen
 	223844, -- Covert Webmancer
 	224732, -- Covert Webmancer
+	220423, -- Retired Lord Vul'azak
 	220777, -- Executor Nizrek (warmup NPC)
 	220730, -- Royal Venomshell
 	216328, -- Unstable Test Subject
@@ -122,7 +123,7 @@ function mod:OnBossEnable()
 
 	-- Royal Swarmguard
 	self:Log("SPELL_CAST_START", "Earthshatter", 443500)
-	self:Death("RoyalSwarmguardDeath", 220197)
+	self:Death("RoyalSwarmguardDeath", 220197, 220423) -- Royal Swarmguard, Retired Lord Vul'azak
 
 	-- Xeph'itik
 	self:Log("SPELL_CAST_START", "PerfumeToss", 450784)
