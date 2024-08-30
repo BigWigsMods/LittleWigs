@@ -7,7 +7,7 @@ if L then
 	L.blazing_fiend = "Lodernder Unhold"
 	L.sootsnout = "Rußschnauze"
 	L.torchsnarl = "Fackelfletscher"
-	--L.shuffling_horror = "Shuffling Horror"
+	L.shuffling_horror = "Schlurfender Horror"
 	L.creaky_mine_cart = "Quietschende Lore"
 
 	L.minecart = "Minenloren Minigame"

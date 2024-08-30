@@ -3,7 +3,7 @@ if not L then return end
 if L then
 	L.awakening_the_machine = "Erweckung der Maschine"
 
-	--L.stages_desc = "Show an alert when a new wave of enemies spawns."
+	L.stages_desc = "Zeigt eine Warnung wenn eine neue Welle von Gegnern erscheint."
 
 	--L.corrupted_machinist = "Corrupted Machinist"
 	--L.malfunctioning_pylon = "Malfunctioning Pylon"
