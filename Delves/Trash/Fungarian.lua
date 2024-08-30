@@ -47,6 +47,10 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.fungarian_trash
+	self:SetSpellRename(414944, CL.roar) -- Battle Roar (Roar)
+	self:SetSpellRename(424798, CL.explosion) -- Bloated Eruption (Explosion)
+	self:SetSpellRename(424704, CL.frontal_cone) -- Vicious Stabs (Frontal Cone)
+	self:SetSpellRename(372529, CL.fear) -- Hideous Laughter (Fear)
 end
 
 local autotalk = mod:AddAutoTalkOption(true)
@@ -69,7 +73,7 @@ function mod:GetOptions()
 		425042, -- Sporewave
 		-- Particularly Bad Guy
 		372529, -- Hideous Laughter
-	}, {
+	},{
 		[427710] = L.sporbit,
 		[414944] = L.fungal_speartender,
 		[424773] = L.gnarled_reviver,
@@ -77,6 +81,11 @@ function mod:GetOptions()
 		[424704] = L.fungal_gutter,
 		[425040] = L.fungarian_flinger,
 		[372529] = L.particularly_bad_guy,
+	},{
+		[414944] = CL.roar, -- Battle Roar (Roar)
+		[424798] = CL.explosion, -- Bloated Eruption (Explosion)
+		[424704] = CL.frontal_cone, -- Vicious Stabs (Frontal Cone)
+		[372529] = CL.fear, -- Hideous Laughter (Fear)
 	}
 end
 
@@ -178,7 +187,7 @@ end
 function mod:BattleRoar(args)
 	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and self:UnitWithinRange(unit, 40) then -- cast while RP fighting, only alert if within range
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "red", CL.casting:format(CL.roar))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
@@ -198,7 +207,7 @@ end
 -- Infected Beast
 
 function mod:BloatedEruption(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.explosion)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -207,7 +216,7 @@ end
 function mod:ViciousStabs(args)
 	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and self:UnitWithinRange(unit, 40) then -- cast while RP fighting, only alert if within range
-		self:Message(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow", CL.frontal_cone)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -227,6 +236,6 @@ end
 -- Particularly Bad Guy
 
 function mod:HideousLaughter(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.fear)
 	self:PlaySound(args.spellId, "alarm")
 end
