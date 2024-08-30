@@ -43,6 +43,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.rares
+	self:SetSpellRename(445781, CL.frontal_cone) -- Lava Blast (Frontal Cone)
 end
 
 local autotalk = mod:AddAutoTalkOption(true, "boss")
@@ -77,7 +78,7 @@ function mod:GetOptions()
 		458099, -- Grasping Darkness
 		-- Anub'vir
 		449038, -- Impaling Spikes
-	}, {
+	},{
 		[445781] = L.stolen_loader,
 		[415253] = L.invasive_sporecap,
 		[462686] = L.reno_jackson,
@@ -88,6 +89,8 @@ function mod:GetOptions()
 		[458104] = L.tala,
 		[458090] = L.velo,
 		[449038] = L.anubvir,
+	},{
+		[445781] = CL.frontal_cone, -- Lava Blast (Frontal Cone)
 	}
 end
 
@@ -170,9 +173,9 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "red")
+		self:Message(args.spellId, "red", CL.frontal_cone)
 		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 17.0)
+		self:CDBar(args.spellId, 17.0, CL.frontal_cone)
 		timer = self:ScheduleTimer("StolenLoaderDeath", 30)
 	end
 
@@ -191,7 +194,7 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(445781) -- Lava Blast
+		self:StopBar(CL.frontal_cone) -- Lava Blast
 		self:StopBar(445718) -- Magma Hammer
 	end
 end
