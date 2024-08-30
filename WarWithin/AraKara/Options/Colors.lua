@@ -1,5 +1,7 @@
 
 BigWigs:AddColors("Avanoxx", {
+	[434830] = "blue",
+	[436614] = {"blue","orange"},
 	[438471] = "purple",
 	[438473] = "red",
 	[438476] = "yellow",

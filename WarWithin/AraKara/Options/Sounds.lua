@@ -1,5 +1,7 @@
 
 BigWigs:AddSounds("Avanoxx", {
+	[434830] = "underyou",
+	[436614] = "warning",
 	[438471] = "alert",
 	[438473] = "long",
 	[438476] = "info",
