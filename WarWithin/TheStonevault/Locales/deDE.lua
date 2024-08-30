@@ -16,5 +16,5 @@ if L then
 	L.rock_smasher = "Felsschmetterer"
 
 	L.edna_warmup_trigger = "Was ist das? Ist der Golem mit etwas anderem verbunden?"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Warrior, Dwarf, or 25 skill in Khaz Algar Blacksmithing.|r Automatically select the NPC dialog option that grants your group the 'Imbued Iron Energy' aura."
+	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt Krieger, Zwerg, oder 25 Fertigkeitspunkte der Schmiedekunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Aura 'Energie verzauberten Eisens' gewährt."
 end
