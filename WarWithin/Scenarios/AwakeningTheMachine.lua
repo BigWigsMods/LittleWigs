@@ -115,11 +115,9 @@ end
 function mod:Waves(_, text)
 	-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
 	local wave = tonumber(text:match("%d+"))
-	if wave then
+	if wave and wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
 		self:SetStage(wave)
-	end
-	if wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
-		self:Message("stages", "cyan", text:trim(), false)
+		self:Message("stages", "cyan", CL.wave_count:format(wave, 20), false)
 		self:PlaySound("stages", "info")
 	end
 end
