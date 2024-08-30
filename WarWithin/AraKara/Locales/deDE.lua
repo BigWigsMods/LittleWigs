@@ -11,6 +11,6 @@ if L then
 	L.blood_overseer = "Blutaufseher"
 	L.nerubian_hauler = "Schlepperin der Neruber"
 
-	--L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
+	L.avanoxx_warmup_trigger = "Die Ritualteilnehmer sind verstummt... Etwas erscheint!"
 	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Schneiderei von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Fähigkeit 'Fangnetz' gewährt. Diese kann mit dem Extra Aktionsbutton genutzt werden."
 end
