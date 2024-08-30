@@ -55,12 +55,12 @@ function mod:GetOptions()
 		-- Trilling Attendant
 		{434793, "NAMEPLATE"}, -- Resonant Barrage
 		-- Ixin
-		{434824, "NAMEPLATE"}, -- Web Spray
-		{434802, "NAMEPLATE"}, -- Horrifying Shrill
+		434824, -- Web Spray
+		434802, -- Horrifying Shrill
 		-- Nakt
-		{438877, "NAMEPLATE"}, -- Call of the Brood
+		438877, -- Call of the Brood
 		-- Atik
-		{438826, "NAMEPLATE"}, -- Poisonous Cloud
+		438826, -- Poisonous Cloud
 		-- Hulking Bloodguard
 		{453161, "NAMEPLATE"}, -- Impale
 		-- Bloodstained Webmage
@@ -93,9 +93,6 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_AURA_APPLIED", "SilkThreadApplied", 439201)
 
-	-- Interrupts
-	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
-
 	-- Engorged Crawler
 	self:Log("SPELL_CAST_SUCCESS", "ToxicRupture", 438622)
 
@@ -103,9 +100,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ResonantBarrage", 434793)
 	self:Death("TrillingAttendantDeath", 216293)
 
-	-- Ixin
+	-- Ixin, Nakt, Atik
 	self:Log("SPELL_CAST_START", "WebSpray", 434824)
+
+	-- Ixin
 	self:Log("SPELL_CAST_START", "HorrifyingShrill", 434802)
+	self:Log("SPELL_INTERRUPT", "HorrifyingShrillInterrupt", 434802)
 	self:Log("SPELL_CAST_SUCCESS", "HorrifyingShrillSuccess", 434802)
 	self:Death("IxinDeath", 217531)
 
@@ -124,12 +124,14 @@ function mod:OnBossEnable()
 
 	-- Bloodstained Webmage
 	self:Log("SPELL_CAST_START", "RevoltingVolley", 448248)
+	self:Log("SPELL_INTERRUPT", "RevoltingVolleyInterrupt", 448248)
 	self:Log("SPELL_CAST_SUCCESS", "RevoltingVolleySuccess", 448248)
 	self:Death("BloodstainedWebmageDeath", 223253)
 
 	-- Blood Overseer
 	self:Log("SPELL_CAST_START", "EruptingWebs", 433845)
 	self:Log("SPELL_CAST_START", "VenomVolley", 433841)
+	self:Log("SPELL_INTERRUPT", "VenomVolleyInterrupt", 433841)
 	self:Log("SPELL_CAST_SUCCESS", "VenomVolleySuccess", 433841)
 	self:Death("BloodOverseerDeath", 216364)
 
@@ -157,18 +159,6 @@ function mod:SilkThreadApplied(args)
 		-- use Silk Wrap key, which is the stun which can now be applied when you gain this buff
 		self:Message(439208, "green", CL.you:format(args.spellName))
 		self:PlaySound(439208, "info")
-	end
-end
-
--- Interrupts
-
-function mod:Interrupt(args)
-	if args.extraSpellId == 434802 then -- Horrifying Shrill
-		self:Nameplate(434802, 13.1, args.destGUID)
-	elseif args.extraSpellId == 448248 then -- Revolting Volley
-		self:Nameplate(448248, 18.0, args.destGUID)
-	elseif args.extraSpellId == 433841 then -- Venom Volley
-		self:Nameplate(433841, 18.6, args.destGUID)
 	end
 end
 
@@ -206,57 +196,130 @@ function mod:TrillingAttendantDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
--- Ixin
+-- Ixin, Nakt, Atik
 
 function mod:WebSpray(args)
 	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 10.9)
 	self:PlaySound(args.spellId, "alarm")
-	self:Nameplate(args.spellId, 10.9, args.sourceGUID)
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId == 217531 then -- Ixin
+		self:IxinWebSpray()
+	elseif mobId == 218324 then -- Nakt
+		self:NaktWebSpray()
+	else -- 217533, Atik
+		self:AtikWebSpray()
+	end
 end
 
-function mod:HorrifyingShrill(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-end
+-- Ixin
 
-function mod:HorrifyingShrillSuccess(args)
-	self:Nameplate(args.spellId, 13.1, args.sourceGUID)
-end
+do
+	local timer
 
-function mod:IxinDeath(args)
-	self:ClearNameplate(args.destGUID)
+	function mod:IxinWebSpray()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		timer = self:ScheduleTimer("IxinDeath", 30)
+	end
+
+	function mod:HorrifyingShrill(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "warning")
+		timer = self:ScheduleTimer("IxinDeath", 30)
+	end
+
+	function mod:HorrifyingShrillInterrupt()
+		self:CDBar(434802, 13.1)
+	end
+
+	function mod:HorrifyingShrillSuccess(args)
+		self:CDBar(args.spellId, 13.1)
+	end
+
+	function mod:IxinDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(434824) -- Web Spray
+		self:StopBar(434802) -- Horrifying Shrill
+	end
 end
 
 -- Nakt
 
-function mod:CallOfTheBrood(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
-	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
-end
+do
+	local timer
 
-function mod:NaktDeath(args)
-	self:ClearNameplate(args.destGUID)
+	function mod:NaktWebSpray()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		timer = self:ScheduleTimer("NaktDeath", 30)
+	end
+
+	function mod:CallOfTheBrood(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "cyan")
+		self:CDBar(args.spellId, 26.7)
+		self:PlaySound(args.spellId, "info")
+		timer = self:ScheduleTimer("NaktDeath", 30)
+	end
+
+	function mod:NaktDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(434824) -- Web Spray
+		self:StopBar(438877) -- Call of the Brood
+	end
 end
 
 -- Atik
 
-function mod:PoisonousCloud(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
-end
+do
+	local timer
 
-function mod:PoisonousCloudDamage(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(438826, "underyou")
-		self:PlaySound(438826, "underyou", nil, args.destName)
+	function mod:AtikWebSpray()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		timer = self:ScheduleTimer("AtikDeath", 30)
 	end
-end
 
-function mod:AtikDeath(args)
-	self:ClearNameplate(args.destGUID)
+	function mod:PoisonousCloud(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:CDBar(args.spellId, 15.8)
+		self:PlaySound(args.spellId, "alert")
+		timer = self:ScheduleTimer("AtikDeath", 30)
+	end
+
+	function mod:PoisonousCloudDamage(args)
+		if self:Me(args.destGUID) then
+			self:PersonalMessage(438826, "underyou")
+			self:PlaySound(438826, "underyou")
+		end
+	end
+
+	function mod:AtikDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(434824) -- Web Spray
+		self:StopBar(438826) -- Poisonous Cloud
+	end
 end
 
 -- Hulking Bloodguard
@@ -284,6 +347,10 @@ do
 		end
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:RevoltingVolleyInterrupt(args)
+	self:Nameplate(448248, 18.0, args.destGUID)
 end
 
 function mod:RevoltingVolleySuccess(args)
@@ -320,6 +387,10 @@ do
 		end
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:VenomVolleyInterrupt(args)
+	self:Nameplate(433841, 18.6, args.destGUID)
 end
 
 function mod:VenomVolleySuccess(args)
