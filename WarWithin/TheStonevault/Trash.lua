@@ -44,6 +44,9 @@ if L then
 	L.rock_smasher = "Rock Smasher"
 
 	L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
+	L.custom_on_autotalk = CL.autotalk
+	L.custom_on_autotalk_desc = "|cFFFF0000Requires Warrior, Dwarf, or 25 skill in Khaz Algar Blacksmithing.|r Automatically select the NPC dialog option that grants your group the 'Imbued Iron Energy' aura."
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
 --------------------------------------------------------------------------------
@@ -52,6 +55,9 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Autotalk
+		"custom_on_autotalk",
+		462500, -- Imbued Iron Energy
 		-- Earth Infused Golem
 		{425027, "NAMEPLATE"}, -- Seismic Wave
 		-- Repurposed Loaderbot
@@ -81,6 +87,7 @@ function mod:GetOptions()
 		{428879, "NAMEPLATE"}, -- Smash Rock
 		{428703, "NAMEPLATE"}, -- Granite Eruption
 	}, {
+		["custom_on_autotalk"] = CL.general,
 		[425027] = L.earth_infused_golem,
 		[447141] = L.repurposed_loaderbot,
 		[449455] = L.ghastly_voidsoul,
@@ -101,9 +108,9 @@ function mod:OnBossEnable()
 	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 
-	-- TODO gossip with 229507 Imbued Iron Bar (Requires Warrior, Dwarf, or at least 25 skill in Khaz Algar Blacksmithing.)
-	-- gives 10% vers buff to party 462500 Imbued Iron Energy
-	-- [GOSSIP_SHOW] Creature-0-3779-2652-507-229507-00005116DA#124027:<Sometimes iron is just iron.> \r\n|cFFFF0000[Requires Warrior, Dwarf, or at least 25 skill in Khaz Algar Blacksmithing.]|r",
+	-- Autotalk
+	self:RegisterEvent("GOSSIP_SHOW")
+	self:Log("SPELL_AURA_APPLIED", "ImbuedIronEnergyApplied", 462500)
 
 	-- Earth Infused Golem
 	self:Log("SPELL_CAST_START", "SeismicWave", 425027)
@@ -184,6 +191,30 @@ function mod:CHAT_MSG_MONSTER_SAY(_, msg)
 			ednaModule:Enable()
 			ednaModule:Warmup()
 		end
+	end
+end
+
+-- Autotalk
+
+function mod:GOSSIP_SHOW()
+	if self:GetOption("custom_on_autotalk") then
+		if self:GetGossipID(124023) then -- Dwarf (Dark Iron Dwarf, Dwarf, Earthen)
+			-- 124023:<The Earthen Bar resonates with you, allowing you to absorb its power.>\r\n|cFFFF0000[Requires Warrior, Dwarf, or at least 25 skill in Khaz Algar Blacksmithing.]
+			self:SelectGossipID(124023)
+		elseif self:GetGossipID(124024) then -- Blacksmithing
+			-- 124024:<Malleate the imbued iron bar down, and release the energy contained within. >\r\n|cFFFF0000[Requires Warrior, Dwarf, or at least 25 skill in Khaz Algar Blacksmithing.]
+			self:SelectGossipID(124024)
+		elseif self:GetGossipID(124025) then -- Warrior
+			-- 124025:<Smash the imbued iron bar and let loose the energies contained within.>\r\n|cFFFF0000[Requires Warrior, Dwarf, or at least 25 skill in Khaz Algar Blacksmithing.]
+			self:SelectGossipID(124025)
+		end
+	end
+end
+
+function mod:ImbuedIronEnergyApplied(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
 	end
 end
 

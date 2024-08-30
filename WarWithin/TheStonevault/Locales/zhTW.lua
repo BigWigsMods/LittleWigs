@@ -16,4 +16,5 @@ if L then
 	--L.rock_smasher = "Rock Smasher"
 
 	--L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
+	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Warrior, Dwarf, or 25 skill in Khaz Algar Blacksmithing.|r Automatically select the NPC dialog option that grants your group the 'Imbued Iron Energy' aura."
 end
