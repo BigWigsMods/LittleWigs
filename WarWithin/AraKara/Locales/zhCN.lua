@@ -11,5 +11,6 @@ if L then
 	L.blood_overseer = "鲜血监督者"
 	L.nerubian_hauler = "蛛魔搬运者"
 
+	--L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
 	L.custom_on_autotalk_desc = "|cFFFF0000需要至少25点卡兹阿加裁缝技能。|r 自动选择和NPC对话选项，拉扯蛛丝获得“缠丝束缚”使用时点击额外快捷键。"
 end

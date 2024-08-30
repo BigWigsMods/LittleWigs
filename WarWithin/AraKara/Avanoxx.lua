@@ -18,11 +18,21 @@ local gossamerOnslaughtCount = 1
 local nextVoraciousBite = 0
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_achievement_dungeon_arak-ara"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		{438471, "TANK_HEALER"}, -- Voracious Bite
 		438476, -- Alerting Shrill
 		438473, -- Gossamer Onslaught
@@ -46,6 +56,7 @@ function mod:OnEngage()
 	voraciousBiteCount = 1
 	alertingShrillCount = 1
 	gossamerOnslaughtCount = 1
+	self:StopBar(CL.active)
 	self:CDBar(438471, 3.0, CL.count:format(self:SpellName(438471), voraciousBiteCount)) -- Voracious Bite
 	self:CDBar(438476, 10.6, CL.count:format(self:SpellName(438476), alertingShrillCount)) -- Alerting Shrill
 	self:CDBar(438473, 30.1, CL.count:format(self:SpellName(438473), gossamerOnslaughtCount)) -- Gossamer Onslaught
@@ -54,6 +65,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- triggered from trash module on CHAT_MSG_RAID_BOSS_EMOTE
+	-- 0.0 [CHAT_MSG_RAID_BOSS_EMOTE] The Attendants have been silenced... something emerges!#Avanoxx
+	-- 17.3 [NAME_PLATE_UNIT_ADDED] Avanoxx
+	self:Bar("warmup", 17.3, CL.active, L.warmup_icon)
+end
 
 function mod:VoraciousBite(args)
 	local t = GetTime()
