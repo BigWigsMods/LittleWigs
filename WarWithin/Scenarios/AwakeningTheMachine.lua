@@ -42,6 +42,9 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.awakening_the_machine
+	self:SetSpellRename(462892, CL.beam) -- Hazardous Beam (Beam)
+	self:SetSpellRename(462983, CL.bomb) -- Volatile Magma (Bomb)
+	self:SetSpellRename(463081, CL.charge) -- Earthshaking Charge (Charge)
 end
 
 function mod:GetOptions()
@@ -63,7 +66,7 @@ function mod:GetOptions()
 		-- Awakened Phalanx
 		463052, -- Bellowing Slam
 		463081, -- Earthshaking Charge
-	}, {
+	},{
 		["stages"] = CL.general,
 		[462802] = L.corrupted_machinist,
 		[462892] = L.malfunctioning_pylon,
@@ -72,6 +75,10 @@ function mod:GetOptions()
 		[462936] = L.medbot,
 		[462856] = L.nullbot,
 		[463052] = L.awakened_phalanx,
+	},{
+		[462892] = CL.beam, -- Hazardous Beam (Beam)
+		[462983] = CL.bomb, -- Volatile Magma (Bomb)
+		[463081] = CL.charge, -- Earthshaking Charge (Charge)
 	}
 end
 
@@ -139,7 +146,7 @@ end
 -- Malfunctioning Pylon
 
 function mod:HazardousBeam(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.beam)
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -164,7 +171,7 @@ function mod:VolatileMagma(args)
 end
 
 function mod:VolatileMagmaApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName, CL.bomb)
 	if self:Me(args.destGUID) then
 		self:SayCountdown(args.spellId, 8)
 	end
@@ -218,12 +225,12 @@ function mod:BellowingSlam(args)
 end
 
 function mod:EarthshakingCharge(args)
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 25.5)
+	self:Message(args.spellId, "red", CL.charge)
+	self:CDBar(args.spellId, 25.5, CL.charge)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:AwakenedPhalanxDeath()
 	self:StopBar(463052) -- Bellowing Slam
-	self:StopBar(463081) -- Earthshaking Charge
+	self:StopBar(CL.charge) -- Earthshaking Charge
 end
