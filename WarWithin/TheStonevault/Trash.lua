@@ -101,6 +101,10 @@ function mod:OnBossEnable()
 	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 
+	-- TODO gossip with 229507 Imbued Iron Bar (Requires Warrior, Dwarf, or at least 25 skill in Khaz Algar Blacksmithing.)
+	-- gives 10% vers buff to party 462500 Imbued Iron Energy
+	-- [GOSSIP_SHOW] Creature-0-3779-2652-507-229507-00005116DA#124027:<Sometimes iron is just iron.> \r\n|cFFFF0000[Requires Warrior, Dwarf, or at least 25 skill in Khaz Algar Blacksmithing.]|r",
+
 	-- Earth Infused Golem
 	self:Log("SPELL_CAST_START", "SeismicWave", 425027)
 	self:Death("EarthInfusedGolemDeath", 210109)
@@ -371,16 +375,30 @@ end
 
 -- Forge Loader
 
-function mod:LavaCannon(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+do
+	local prev = 0
+	function mod:LavaCannon(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+	end
 end
 
-function mod:MoltenMortar(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
-	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
+do
+	local prev = 0
+	function mod:MoltenMortar(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+		self:Nameplate(args.spellId, 24.2, args.sourceGUID)
+	end
 end
 
 function mod:ForgeLoaderDeath(args)
