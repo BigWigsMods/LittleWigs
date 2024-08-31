@@ -73,7 +73,7 @@ function mod:GetOptions()
 		426261, -- Ceaseless Flame
 		426295, -- Flaming Tether
 		-- Torchsnarl
-		426619, -- One-Hand Headlock
+		{426619, "SAY"}, -- One-Hand Headlock
 		426260, -- Pyro-pummel
 		-- Skittering Darkness
 		422393, -- Suffocating Darkness
@@ -198,7 +198,7 @@ function mod:Bonk(args)
 end
 
 function mod:BonkSuccess(args)
-	self:Nameplate(args.spellId, 19.8, args.sourceGUID)
+	self:Nameplate(args.spellId, 17.4, args.sourceGUID)
 end
 
 function mod:KoboldTaskworkerDeath(args)
@@ -290,17 +290,23 @@ end
 do
 	local timer
 
-	function mod:OneHandHeadlock(args)
-		if timer then
-			self:CancelTimer(timer)
+	do
+		local function printTarget(self, name, guid)
+			self:TargetMessage(426619, "red", name, CL.casting:format(self:SpellName(426619)))
+			if self:Me(guid) then
+				self:Say(426619, nil, nil, "One-Hand Headlock")
+			end
+			self:PlaySound(426619, "alarm", nil, name)
 		end
-		self:Message(args.spellId, "purple")
-		if self:Tank() then
-			-- spell description says random enemy but actually only targets the tank
-			self:PlaySound(args.spellId, "alarm")
+
+		function mod:OneHandHeadlock(args)
+			if timer then
+				self:CancelTimer(timer)
+			end
+			self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
+			self:CDBar(args.spellId, 36.4)
+			timer = self:ScheduleTimer("TorchsnarlDeath", 45)
 		end
-		self:CDBar(args.spellId, 36.4)
-		timer = self:ScheduleTimer("TorchsnarlDeath", 45)
 	end
 
 	function mod:Pyropummel(args)
