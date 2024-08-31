@@ -18,7 +18,7 @@ mod:SetPrivateAuraSounds({
 function mod:GetOptions()
 	return {
 		420659, -- Eerie Molds
-		{422648, "SAY", "ME_ONLY_EMPHASIZE"}, -- Darkflame Pickaxe
+		{422648, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Darkflame Pickaxe
 		426145, -- Paranoid Mind
 		{420696, "PRIVATE"}, -- Throw Darkflame
 		-- TODO Cursed Wax (Mythic)
@@ -28,6 +28,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EerieMolds", 420659)
 	self:Log("SPELL_CAST_SUCCESS", "DarkflamePickaxe", 422648)
+	self:Log("SPELL_AURA_REMOVED", "DarkflamePickaxeRemoved", 422648)
 	self:Log("SPELL_CAST_START", "ParanoidMind", 426145)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Throw Darkflame
 end
@@ -54,10 +55,17 @@ function mod:DarkflamePickaxe(args)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 		self:Say(args.spellId, nil, nil, "Darkflame Pickaxe")
+		self:SayCountdown(args.spellId, 6)
 	else
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 	self:CDBar(args.spellId, 17.0) -- TODO often delayed
+end
+
+function mod:DarkflamePickaxeRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
+	end
 end
 
 function mod:ParanoidMind(args)
