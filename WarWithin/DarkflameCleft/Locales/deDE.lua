@@ -3,10 +3,12 @@ if not L then return end
 if L then
 	L.rank_overseer = "Unverschämter Aufseher"
 	L.lowly_moleherd = "Einfacher Maulwurfhirte"
+	L.kobold_taskworker = "Koboldauftragnehmer"
 	L.wandering_candle = "Wandernde Kerze"
 	L.blazing_fiend = "Lodernder Unhold"
 	L.sootsnout = "Rußschnauze"
 	L.torchsnarl = "Fackelfletscher"
+	L.skittering_darkness = "Huschende Finsternis"
 	L.shuffling_horror = "Schlurfender Horror"
 	L.creaky_mine_cart = "Quietschende Lore"
 

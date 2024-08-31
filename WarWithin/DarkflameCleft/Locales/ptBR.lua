@@ -3,10 +3,12 @@ if not L then return end
 if L then
 	--L.rank_overseer = "Rank Overseer"
 	--L.lowly_moleherd = "Lowly Moleherd"
+	L.kobold_taskworker = "Mão de Obra Kobold"
 	--L.wandering_candle = "Wandering Candle"
 	--L.blazing_fiend = "Blazing Fiend"
 	--L.sootsnout = "Sootsnout"
 	--L.torchsnarl = "Torchsnarl"
+	L.skittering_darkness = "Escuridão Rastejante"
 	--L.shuffling_horror = "Shuffling Horror"
 	--L.creaky_mine_cart = "Creaky Mine Cart"
 

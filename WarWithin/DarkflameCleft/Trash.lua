@@ -8,6 +8,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	211121, -- Rank Overseer
 	210818, -- Lowly Moleherd
+	212383, -- Kobold Taskworker
 	208450, -- Wandering Candle
 	220815, -- Blazing Fiend (before Blazikon room)
 	211228, -- Blazing Fiend (in Blazikon room)
@@ -20,8 +21,10 @@ mod:RegisterEnableMob(
 	223777, -- Blazing Fiend (in Blazikon room)
 	212412, -- Sootsnout
 	212411, -- Torchsnarl
+	208457, -- Skittering Darkness
 	208456, -- Shuffling Horror
 	218475, -- Skitter
+	209439, -- Creaky Mine Cart
 	212129 -- Creaky Mine Cart
 )
 
@@ -33,10 +36,12 @@ local L = mod:GetLocale()
 if L then
 	L.rank_overseer = "Rank Overseer"
 	L.lowly_moleherd = "Lowly Moleherd"
+	L.kobold_taskworker = "Kobold Taskworker"
 	L.wandering_candle = "Wandering Candle"
 	L.blazing_fiend = "Blazing Fiend"
 	L.sootsnout = "Sootsnout"
 	L.torchsnarl = "Torchsnarl"
+	L.skittering_darkness = "Skittering Darkness"
 	L.shuffling_horror = "Shuffling Horror"
 	L.creaky_mine_cart = "Creaky Mine Cart"
 
@@ -57,8 +62,11 @@ function mod:GetOptions()
 		{423501, "NAMEPLATE"}, -- Wild Wallop
 		-- Lowly Moleherd
 		{425536, "NAMEPLATE"}, -- Mole Frenzy
+		-- Kobold Taskworker
+		{426883, "NAMEPLATE"}, -- Bonk!
 		-- Wandering Candle
 		{440652, "NAMEPLATE"}, -- Surging Wax
+		{428650, "DISPEL"}, -- Burning Backlash
 		-- Blazing Fiend
 		{424322, "NAMEPLATE"}, -- Explosive Flame
 		-- Sootsnout
@@ -67,6 +75,8 @@ function mod:GetOptions()
 		-- Torchsnarl
 		426619, -- One-Hand Headlock
 		426260, -- Pyro-pummel
+		-- Skittering Darkness
+		422393, -- Suffocating Darkness
 		-- Shuffling Horror
 		{422414, "NAMEPLATE"}, -- Shadow Smash
 		422541, -- Drain Light
@@ -75,10 +85,12 @@ function mod:GetOptions()
 	}, {
 		[423501] = L.rank_overseer,
 		[425536] = L.lowly_moleherd,
+		[426883] = L.kobold_taskworker,
 		[440652] = L.wandering_candle,
 		[424322] = L.blazing_fiend,
 		[426261] = L.sootsnout,
 		[426619] = L.torchsnarl,
+		[422393] = L.skittering_darkness,
 		[422414] = L.shuffling_horror,
 		["minecart"] = L.creaky_mine_cart,
 	}
@@ -95,8 +107,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MoleFrenzySuccess", 425536)
 	self:Death("LowlyMoleherdDeath", 210818)
 
+	-- Kobold Taskworker
+	self:Log("SPELL_CAST_START", "Bonk", 426883)
+	self:Log("SPELL_CAST_SUCCESS", "BonkSuccess", 426883)
+	self:Death("KoboldTaskworkerDeath", 212383)
+
 	-- Wandering Candle
 	self:Log("SPELL_CAST_START", "SurgingWax", 440652)
+	self:Log("SPELL_AURA_APPLIED", "BurningBacklashApplied", 428650)
 	self:Death("WanderingCandleDeath", 208450)
 
 	-- Blazing Fiend
@@ -114,6 +132,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "OneHandHeadlock", 426619)
 	self:Log("SPELL_CAST_START", "Pyropummel", 426260)
 	self:Death("TorchsnarlDeath", 212411)
+
+	-- Skittering Darkness
+	self:Log("SPELL_CAST_START", "SuffocatingDarkness", 422393)
 
 	-- Shuffling Horror
 	self:Log("SPELL_CAST_START", "ShadowSmash", 422414)
@@ -169,12 +190,41 @@ function mod:LowlyMoleherdDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
+-- Kobold Taskworker
+
+function mod:Bonk(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BonkSuccess(args)
+	self:Nameplate(args.spellId, 19.8, args.sourceGUID)
+end
+
+function mod:KoboldTaskworkerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Wandering Candle
 
 function mod:SurgingWax(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 21.9, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:BurningBacklashApplied(args)
+		if self:Me(args.destGUID) or (self:Dispeller("magic", nil, args.spellId) and self:Player(args.destFlags)) then
+			self:TargetMessage(args.spellId, "red", args.destName)
+			local t = args.time
+			if t - prev > 1.5 then -- throttle sound in the unlikely event that more than one player is affected
+				prev = t
+				self:PlaySound(args.spellId, "warning", nil, args.destName)
+			end
+		end
+	end
 end
 
 function mod:WanderingCandleDeath(args)
@@ -269,6 +319,20 @@ do
 			timer = nil
 		end
 		self:StopBar(426619) -- One-Hand Headlock
+	end
+end
+
+-- Skittering Darkness
+
+do
+	local prev = 0
+	function mod:SuffocatingDarkness(args)
+		local t = args.time
+		if t - prev > 3.5 then
+			prev = t
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 
