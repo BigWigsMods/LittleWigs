@@ -17,7 +17,7 @@ mod:SetRespawnTime(30)
 
 function mod:GetOptions()
 	return {
-		{422116, "SAY"}, -- Reckless Charge
+		{422116, "SAY", "SAY_COUNTDOWN"}, -- Reckless Charge
 		{422245, "TANK_HEALER"}, -- Rock Buster
 		{423693, "ME_ONLY_EMPHASIZE"}, -- Luring Candleflame
 		-- TODO Underhanded Track-tics (Mythic)
@@ -41,16 +41,22 @@ end
 --
 
 do
+	local startTime = 0
+
 	local function printTarget(self, name, guid)
 		self:TargetMessage(422116, "orange", name)
 		self:PlaySound(422116, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Say(422116, nil, nil, "Reckless Charge")
+			-- reduce the countdown duration by the scan length because we had to target scan
+			local remainingDuration = 5 + startTime - GetTime()
+			self:SayCountdown(422116, remainingDuration)
 		end
 	end
 
 	function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
 		if spellId == 422116 then -- Reckless Charge
+			startTime = GetTime()
 			-- there is an emote for this with a target, but the emote often lists the wrong player
 			self:GetUnitTarget(printTarget, 0.1, self:UnitGUID(unit))
 			self:CDBar(spellId, 35.2)
