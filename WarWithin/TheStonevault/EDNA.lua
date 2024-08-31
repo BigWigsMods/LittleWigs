@@ -110,8 +110,11 @@ do
 				self:CDBar(args.spellId, 10.9, CL.beams)
 			end
 			playerList[#playerList + 1] = args.destName
-			-- TODO reconfirm player count in Heroic
-			self:TargetsMessage(args.spellId, "red", playerList, 2, CL.beam, nil, 0.6) -- debuff applications in .5s intervals
+			if self:Heroic() then
+				self:TargetsMessage(args.spellId, "red", playerList, 3, CL.beam, nil, 1.1) -- debuff applications in .5s intervals
+			else -- Normal
+				self:TargetsMessage(args.spellId, "red", playerList, 2, CL.beam, nil, 0.6) -- debuff applications in .5s intervals
+			end
 			self:PlaySound(args.spellId, "alarm", nil, playerList)
 			if self:Me(args.destGUID) then
 				self:Say(args.spellId, CL.beam, nil, "Beam")
