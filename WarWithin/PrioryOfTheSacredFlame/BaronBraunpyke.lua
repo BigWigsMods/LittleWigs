@@ -52,9 +52,9 @@ end
 --
 
 function mod:Warmup() -- called from trash module
-	-- 239.65 00:07:04 [CHAT_MSG_MONSTER_SAY] They've served their purpose. Baron, demonstrate your worth.#Prioress Murrpray
-	-- 247.58 00:07:12 [NAME_PLATE_UNIT_ADDED] Baron Braunpyke
-	self:Bar("warmup", 7.9, CL.active, L.warmup_icon)
+	-- 0.00 [CHAT_MSG_MONSTER_SAY] They've served their purpose. Baron, demonstrate your worth.#Prioress Murrpray
+	-- 10.63 [NAME_PLATE_UNIT_ADDED] Baron Braunpyke
+	self:Bar("warmup", 10.6, CL.active, L.warmup_icon)
 end
 
 function mod:VindictiveWrath(args)
