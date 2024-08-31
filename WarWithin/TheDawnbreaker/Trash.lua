@@ -59,6 +59,7 @@ function mod:GetOptions()
 		{431309, "DISPEL", "NAMEPLATE"}, -- Ensnaring Shadows
 		-- Nightfall Ritualist
 		{432448, "SAY", "NAMEPLATE"}, -- Stygian Seed
+		{431364, "NAMEPLATE"}, -- Tormenting Ray
 		-- Nightfall Commander
 		{450756, "NAMEPLATE"}, -- Abyssal Howl
 		-- Sureki Webmage
@@ -118,6 +119,8 @@ function mod:OnBossEnable()
 	-- Nightfall Ritualist
 	self:Log("SPELL_CAST_SUCCESS", "StygianSeed", 432448)
 	self:Log("SPELL_AURA_APPLIED", "StygianSeedApplied", 432448)
+	self:Log("SPELL_CAST_SUCCESS", "TormentingRay", 431364)
+	self:Log("SPELL_AURA_APPLIED", "TormentingRayApplied", 431365)
 	self:Death("NightfallRitualistDeath", 214761)
 
 	-- Nightfall Commander
@@ -228,10 +231,27 @@ function mod:StygianSeed(args)
 end
 
 function mod:StygianSeedApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Stygian Seed")
+	end
+end
+
+do
+	local playerList = {}
+
+	function mod:TormentingRay(args)
+		playerList = {}
+		self:Nameplate(args.spellId, 10.9, args.sourceGUID)
+	end
+
+	function mod:TormentingRayApplied(args)
+		if self:Healer() or self:Me(args.destGUID) then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(431364, "yellow", playerList, 2)
+			self:PlaySound(431364, "alert", nil, playerList)
+		end
 	end
 end
 
