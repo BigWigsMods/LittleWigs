@@ -41,22 +41,17 @@ end
 --
 
 do
-	local startTime = 0
-
-	local function printTarget(self, name, guid)
+	local function printTarget(self, name, guid, elapsed)
 		self:TargetMessage(422116, "orange", name)
 		self:PlaySound(422116, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Say(422116, nil, nil, "Reckless Charge")
-			-- reduce the countdown duration by the scan length because we had to target scan
-			local remainingDuration = 5 + startTime - GetTime()
-			self:SayCountdown(422116, remainingDuration)
+			self:SayCountdown(422116, 5 - elapsed)
 		end
 	end
 
 	function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
 		if spellId == 422116 then -- Reckless Charge
-			startTime = GetTime()
 			-- there is an emote for this with a target, but the emote often lists the wrong player
 			self:GetUnitTarget(printTarget, 0.1, self:UnitGUID(unit))
 			self:CDBar(spellId, 35.2)
