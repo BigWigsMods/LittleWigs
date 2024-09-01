@@ -149,8 +149,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "HaywireOver", 331927)
 	self:Log("SPELL_CAST_START", "MetallicJaws", 331548)
 	self:Log("SPELL_CAST_SUCCESS", "MetallicJawsSuccess", 331548)
-	self:Log("SPELL_CAST_START", "Woof", 331846)
-	self:Log("SPELL_CAST_SUCCESS", "WoofSuccess", 331846)
+	self:Log("SPELL_CAST_START", "W00F", 331846)
+	self:Log("SPELL_CAST_SUCCESS", "W00FSuccess", 331846)
 	self:Log("SPELL_CAST_START", "SelfCleaningCycle", 332084)
 	self:Death("ArfArfDeath", 167964)
 
@@ -282,7 +282,7 @@ end
 -- [[ Path to the Manastorms ]] --
 -- Defunct Dental Drill
 function mod:HaywirePreCast(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -306,28 +306,24 @@ function mod:MetallicJawsSuccess(args)
 end
 
 do
-	local startedAt = 0
-	local function printTarget(self, name, guid)
-		local left = startedAt + 3 - GetTime()
-		local isOnMe = self:Me(guid)
-
+	local function printTarget(self, name, guid, elapsed)
 		self:TargetMessage(331846, "orange", name)
-		self:PlaySound(331846, isOnMe and "warning" or "alert", nil, name)
-		self:CastBar(331846, left)
-
-		if isOnMe then
-			self:Say(331846, nil, nil, "Woof")
-			self:SayCountdown(331846, left, nil, 2)
+		if self:Me(guid) then
+			self:Say(331846, nil, nil, "W-OOF")
+			self:SayCountdown(331846, 3 - elapsed, nil, 2)
+			self:PlaySound(331846, "alarm", nil, name)
+		else
+			self:PlaySound(331846, "alert", nil, name)
 		end
 	end
 
-	function mod:Woof(args)
-		startedAt = GetTime()
+	function mod:W00F(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		self:CastBar(args.spellId, 3)
 	end
 end
 
-function mod:WoofSuccess(args)
+function mod:W00FSuccess(args)
 	self:CDBar(args.spellId, 6.7)
 end
 

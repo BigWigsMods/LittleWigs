@@ -33,7 +33,7 @@ BigWigs:AddSounds("Mueh'zala", {
 BigWigs:AddSounds("De Other Side Trash", {
 	[328740] = "alarm",
 	[331548] = "alert",
-	[331846] = {"alert","warning"},
+	[331846] = {"alarm","alert"},
 	[331927] = "warning",
 	[332084] = "warning",
 	[332157] = "alarm",
