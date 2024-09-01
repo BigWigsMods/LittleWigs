@@ -204,7 +204,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk")then
+	if self:GetOption("custom_on_autotalk") then
 		if self:GetGossipID(122351) then -- Rogue
 			-- 122351:<Sabotage the device and steal some of its power.>\r\n[Requires Rogue, Priest, or at least 25 skill in Khaz Algar Engineering.]|r
 			self:SelectGossipID(122351)

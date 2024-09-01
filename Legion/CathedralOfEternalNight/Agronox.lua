@@ -95,7 +95,7 @@ function mod:TimberSmash(args)
 end
 
 function mod:ChokingVines(args)
-	if self:Me(args.destGUID)then
+	if self:Me(args.destGUID) then
 		self:TargetMessageOld(236650, args.destName, "blue", "warning")
 	end
 end

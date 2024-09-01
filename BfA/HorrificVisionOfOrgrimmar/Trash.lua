@@ -248,7 +248,7 @@ function mod:DecimatorShiqvothDeath(args)
 end
 
 function mod:ShadowBrandApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId)then
+	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
