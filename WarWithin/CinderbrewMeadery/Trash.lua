@@ -281,7 +281,7 @@ function mod:RejuvenatingHoney(args)
 end
 
 function mod:FailedBatch(args)
-	self:Message(args.spellId, "yellow", CL.spawning:format(args.spellName))
+	self:Message(args.spellId, "cyan", CL.spawning:format(args.spellName))
 	self:PlaySound(args.spellId, "info")
 	self:Nameplate(args.spellId, 23.1, args.sourceGUID)
 end
