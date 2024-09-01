@@ -142,7 +142,7 @@ do
 	function mod:EchoFingerLaserXtreme(args)
 		playerList[#playerList+1] = args.destName
 		if #playerList == 1 then
-			self:Bar(args.spellId, 15)
+			self:Bar(args.spellId, 15, CL.laser)
 		end
 		self:TargetsMessageOld(args.spellId, "red", playerList, 2, CL.laser)
 		if self:Me(args.destGUID) then
@@ -167,15 +167,17 @@ function mod:ExperimentalSquirrelBomb(args)
 end
 
 do
-	local function printTarget(self, name, guid)
-		local onMe = self:Me(guid)
+	local function printTarget(self, name, guid, elapsed)
 		self:TargetMessage(320132, "red", name)
-		self:PlaySound(320132, onMe and "warning" or "alert", nil, name)
-		if onMe then
+		if self:Me(guid) then
 			self:Say(320132, nil, nil, "Shadowfury")
-			self:SayCountdown(320132, 4.9)
+			self:SayCountdown(320132, 5 - elapsed)
+			self:PlaySound(320132, "warning", nil, name)
+		else
+			self:PlaySound(320132, "alert", nil, name)
 		end
 	end
+
 	function mod:Shadowfury(args)
 		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 		if shadowfuryCount == 1 then
