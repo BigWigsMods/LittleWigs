@@ -67,11 +67,11 @@ function mod:CurseOfStone(args)
 end
 
 do
-	local function printTarget(self, name, guid)
+	local function printTarget(self, name, guid, elapsed)
 		self:TargetMessage(319941, "orange", name)
 		if self:Me(guid) then
 			self:Say(319941, nil, nil, "Stone Shattering Leap")
-			self:SayCountdown(319941, 5)
+			self:SayCountdown(319941, 5 - elapsed)
 			self:PlaySound(319941, "warning", nil, name)
 		else
 			self:PlaySound(319941, "alarm", nil, name)
