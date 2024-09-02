@@ -115,6 +115,9 @@ function mod:OnBossEnable()
 
 	-- Sir Finley Mrgglton (pulls with Reno Jackson)
 	self:Log("SPELL_CAST_START", "Consecration", 461741)
+	self:Log("SPELL_AURA_APPLIED", "ConsecrationDamage", 461742)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ConsecrationDamage", 461742)
+	self:Log("SPELL_PERIODIC_MISSED", "ConsecrationDamage", 461742)
 	self:Log("SPELL_CAST_START", "HolyLight", 459421)
 
 	-- Treasure Wraith
@@ -282,6 +285,17 @@ function mod:Consecration(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
 	--self:CDBar(args.spellId, 17.0)
+end
+
+do
+	local prev = 0
+	function mod:ConsecrationDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(461741, "underyou")
+			self:PlaySound(461741, "underyou")
+		end
+	end
 end
 
 function mod:HolyLight(args)
