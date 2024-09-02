@@ -33,7 +33,7 @@ local slamOrOrbCount = 1 -- currently only used in non-Mythic
 function mod:GetOptions()
 	return {
 		427001, -- Terrifying Slam
-		{426860, "SAY", "PRIVATE"}, -- Dark Orb
+		{426860, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE", "PRIVATE"}, -- Dark Orb
 		426787, -- Shadowy Decay
 		-- Mythic
 		452127, -- Animate Shadows
@@ -123,63 +123,69 @@ function mod:TerrifyingSlam(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:DarkOrb(args)
-	local t = GetTime()
-	terrifyingSlamLast = false
-	slamOrOrbCount = slamOrOrbCount + 1
-	-- 9.0 minimum to next ability
-	if self:Mythic() then
-		nextDarkOrb = t + 16.0
-		self:CDBar(args.spellId, 16.0)
-		if nextTerrifyingSlam - t < 9.0 then
-			nextTerrifyingSlam = t + 9.0
-			self:CDBar(427001, {9.0, 16.0}) -- Terrifying Slam
-		end
-		if shadowyDecayLast then
-			if nextAnimateShadows - t < 9.0 then
-				nextAnimateShadows = t + 9.0
-				self:CDBar(452127, {9.0, 34.5}) -- Animate Shadows
-			end
-			if nextShadowyDecay - t < 16.5 then
-				nextShadowyDecay = t + 16.5
-				self:CDBar(426787, {16.5, 34.5}) -- Shadowy Decay
-			end
-		else -- Animate Shadows was more recent than Shadowy Decay
-			if nextShadowyDecay - t < 9.0 then
-				nextShadowyDecay = t + 9.0
-				self:CDBar(426787, {9.0, 34.5}) -- Shadowy Decay
-			end
-			if nextAnimateShadows - t < 19.0 then
-				nextAnimateShadows = t + 19.0
-				self:CDBar(452127, {19.0, 34.5}) -- Animate Shadows
-			end
-		end
-	else
-		if slamOrOrbCount == 2 then
-			-- Dark Orb will race Shadowy Decay in 16.0
+do
+	local startTime = 0
+
+	function mod:DarkOrb(args)
+		local t = GetTime()
+		startTime = t
+		terrifyingSlamLast = false
+		slamOrOrbCount = slamOrOrbCount + 1
+		-- 9.0 minimum to next ability
+		if self:Mythic() then
 			nextDarkOrb = t + 16.0
 			self:CDBar(args.spellId, 16.0)
+			if nextTerrifyingSlam - t < 9.0 then
+				nextTerrifyingSlam = t + 9.0
+				self:CDBar(427001, {9.0, 16.0}) -- Terrifying Slam
+			end
+			if shadowyDecayLast then
+				if nextAnimateShadows - t < 9.0 then
+					nextAnimateShadows = t + 9.0
+					self:CDBar(452127, {9.0, 34.5}) -- Animate Shadows
+				end
+				if nextShadowyDecay - t < 16.5 then
+					nextShadowyDecay = t + 16.5
+					self:CDBar(426787, {16.5, 34.5}) -- Shadowy Decay
+				end
+			else -- Animate Shadows was more recent than Shadowy Decay
+				if nextShadowyDecay - t < 9.0 then
+					nextShadowyDecay = t + 9.0
+					self:CDBar(426787, {9.0, 34.5}) -- Shadowy Decay
+				end
+				if nextAnimateShadows - t < 19.0 then
+					nextAnimateShadows = t + 19.0
+					self:CDBar(452127, {19.0, 34.5}) -- Animate Shadows
+				end
+			end
 		else
-			-- guaranteed Shadowy Decay before the next Dark Orb
-			nextDarkOrb = t + 27.0
-			self:CDBar(args.spellId, 27.0)
-		end
-		if nextShadowyDecay - t < 9.0 then
-			nextShadowyDecay = t + 9.0
-			self:CDBar(426787, {9.0, 26.0}) -- Shadowy Decay
+			if slamOrOrbCount == 2 then
+				-- Dark Orb will race Shadowy Decay in 16.0
+				nextDarkOrb = t + 16.0
+				self:CDBar(args.spellId, 16.0)
+			else
+				-- guaranteed Shadowy Decay before the next Dark Orb
+				nextDarkOrb = t + 27.0
+				self:CDBar(args.spellId, 27.0)
+			end
+			if nextShadowyDecay - t < 9.0 then
+				nextShadowyDecay = t + 9.0
+				self:CDBar(426787, {9.0, 26.0}) -- Shadowy Decay
+			end
 		end
 	end
-end
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-	if msg:find("426860", nil, true) then -- Dark Orb
-		-- [CHAT_MSG_RAID_BOSS_EMOTE] |TInterface\\ICONS\\Spell_Shadow_SoulGem.blp:20|t %s begins to cast |cFFFF0000|Hspell:426860|h[Dark Orb]|h|r at Foryou!#Anub'ikkaj###playerName
-		self:TargetMessage(426860, "orange", destName)
-		if self:Me(self:UnitGUID(destName)) then
-			self:Say(426860, nil, nil, "Dark Orb")
-			-- private aura sound (426865) plays
-		else
-			self:PlaySound(426860, "alarm", nil, destName)
+	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
+		if msg:find("426860", nil, true) then -- Dark Orb
+			-- [CHAT_MSG_RAID_BOSS_EMOTE] |TInterface\\ICONS\\Spell_Shadow_SoulGem.blp:20|t %s begins to cast |cFFFF0000|Hspell:426860|h[Dark Orb]|h|r at Foryou!#Anub'ikkaj###playerName
+			self:TargetMessage(426860, "orange", destName)
+			if self:Me(self:UnitGUID(destName)) then
+				self:Say(426860, nil, nil, "Dark Orb")
+				self:SayCountdown(426860, 4 + startTime - GetTime())
+				-- private aura sound (426865) plays
+			else
+				self:PlaySound(426860, "alarm", nil, destName)
+			end
 		end
 	end
 end
