@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	214673, -- Flavor Scientist
 	222964, -- Flavor Scientist
 	223423, -- Careless Hopgoblin
+	223562, -- Brew Drop
 	210264, -- Bee Wrangler
 	220946, -- Venture Co. Honey Harvester
 	220141, -- Royal Jelly Purveyor
@@ -35,6 +36,7 @@ if L then
 	L.flamethrower = "Flamethrower"
 	L.flavor_scientist = "Flavor Scientist"
 	L.careless_hopgoblin = "Careless Hopgoblin"
+	L.brew_drop = "Brew Drop"
 	L.bee_wrangler = "Bee Wrangler"
 	L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
 	L.royal_jelly_purveyor = "Royal Jelly Purveyor"
@@ -73,7 +75,9 @@ function mod:GetOptions()
 		{441434, "NAMEPLATE"}, -- Failed Batch
 		failedBatchMarker,
 		-- Careless Hopgoblin
-		{448619, "NAMEPLATE"}, -- Reckless Delivery
+		{448619, "SAY", "NAMEPLATE"}, -- Reckless Delivery
+		-- Brew Drop
+		441179, -- Oozing Honey
 		-- Bee Wrangler
 		{441119, "SAY", "NAMEPLATE"}, -- Bee-Zooka
 		-- Venture Co. Honey Harvester
@@ -91,6 +95,7 @@ function mod:GetOptions()
 		[434998] = L.chef_chewie,
 		[441627] = L.flavor_scientist,
 		[448619] = L.careless_hopgoblin,
+		[441179] = L.brew_drop,
 		[441119] = L.bee_wrangler,
 		[442589] = L.venture_co_honey_harvester,
 		[440687] = L.royal_jelly_purveyor,
@@ -135,6 +140,10 @@ function mod:OnBossEnable()
 	-- Careless Hopgoblin
 	self:Log("SPELL_CAST_START", "RecklessDelivery", 448619)
 	self:Death("CarelessHopgoblinDeath", 223423)
+
+	-- Brew Drop
+	self:Log("SPELL_PERIODIC_DAMAGE", "OozingHoneyDamage", 441179) -- no alert on APPLIED, doesn't damage for 1.5s
+	self:Log("SPELL_PERIODIC_MISSED", "OozingHoneyDamage", 441179)
 
 	-- Bee Wrangler
 	self:Log("SPELL_CAST_START", "BeeZooka", 441119)
@@ -274,10 +283,16 @@ end
 
 -- Flavor Scientist
 
-function mod:RejuvenatingHoney(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	self:Nameplate(args.spellId, 15.8, args.sourceGUID) -- CD triggers on cast start
+do
+	local prev = 0
+	function mod:RejuvenatingHoney(args)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID) -- CD triggers on cast start
+	end
 end
 
 function mod:FailedBatch(args)
@@ -312,14 +327,36 @@ end
 
 -- Careless Hopgoblin
 
-function mod:RecklessDelivery(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(448619, "orange", name)
+		self:PlaySound(448619, "alarm", nil, name)
+		if self:Me(guid) then
+			self:Say(448619, nil, nil, "Reckless Delivery")
+		end
+	end
+
+	function mod:RecklessDelivery(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	end
 end
 
 function mod:CarelessHopgoblinDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Brew Drop
+
+do
+	local prev = 0
+	function mod:OozingHoneyDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end
 
 -- Bee Wrangler

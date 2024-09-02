@@ -9,6 +9,7 @@ if L then
 	--L.flamethrower = "Flamethrower"
 	--L.flavor_scientist = "Flavor Scientist"
 	--L.careless_hopgoblin = "Careless Hopgoblin"
+	L.brew_drop = "Goutte de bière"
 	--L.bee_wrangler = "Bee Wrangler"
 	--L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
 	--L.royal_jelly_purveyor = "Royal Jelly Purveyor"
