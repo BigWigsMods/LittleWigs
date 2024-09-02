@@ -13,6 +13,7 @@ if L then
 	--L.devout_priest = "Devout Priest"
 	--L.fanatical_mage = "Fanatical Mage"
 	--L.lightspawn = "Lightspawn"
+	L.ardent_paladin = "열정적인 성기사"
 	--L.risen_mage = "Risen Mage"
 	--L.sir_braunpyke = "Sir Braunpyke"
 

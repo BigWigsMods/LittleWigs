@@ -13,6 +13,7 @@ if L then
 	L.devout_priest = "Frommer Priester"
 	L.fanatical_mage = "Fanatische Herbeizauberin"
 	L.lightspawn = "Lichtbrut"
+	L.ardent_paladin = "Inbrünstiger Paladin"
 	L.risen_mage = "Auferstandener Magier"
 	L.sir_braunpyke = "Sir Braunspyß"
 
