@@ -12,8 +12,9 @@ BigWigs:AddColors("Fungarian Delve Trash", {
 })
 
 BigWigs:AddColors("Kobold Delve Trash", {
-	[445210] = "red",
-	[448399] = "red",
+	[445191] = {"blue","red"},
+	[445210] = "orange",
+	[448399] = {"red","yellow"},
 	[448528] = "orange",
 	[449071] = "orange",
 })
@@ -75,6 +76,6 @@ BigWigs:AddColors("Delve Rares", {
 	[458369] = {"red","yellow"},
 	[458397] = "yellow",
 	[459421] = "yellow",
-	[461741] = "orange",
+	[461741] = {"blue","orange"},
 	[462686] = "red",
 })
