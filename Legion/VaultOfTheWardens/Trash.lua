@@ -62,7 +62,7 @@ function mod:GetOptions()
 		193164, -- Gift of the Doomsayer
 
 		--[[ Dreadlord Mendacius ]]--
-		{196249, "FLASH"}, -- Meteor
+		196249, -- Meteor
 
 		--[[ Grimhorn the Enslaver ]]--
 		{202615, "SAY"}, -- Torment

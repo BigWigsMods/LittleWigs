@@ -32,7 +32,7 @@ end
 function mod:GetOptions()
 	return {
 		{227592, "SAY"}, -- Frostbite
-		{227615, "SAY"}, -- Inferno Bolt
+		227615, -- Inferno Bolt
 		227628, -- Piercing Missiles
 		"focused_power",
 		228334, -- Guardian's Image

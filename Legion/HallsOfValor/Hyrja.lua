@@ -25,7 +25,7 @@ local specialCount = 0
 function mod:GetOptions()
 	return {
 		200901, -- Eye of the Storm
-		{191976, "ICON", "SAY"}, -- Arcing Bolt
+		{191976, "ICON"}, -- Arcing Bolt
 		192307, -- Sanctify
 		{192048, "ICON", "FLASH"}, -- Expel Light
 		192018, -- Shield of Light
