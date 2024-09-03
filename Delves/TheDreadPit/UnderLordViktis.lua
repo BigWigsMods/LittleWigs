@@ -31,6 +31,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.under_lord_viktis
+	self:SetSpellRename(448634, CL.frontal_cone) -- Impale (Frontal Cone)
 end
 
 function mod:GetOptions()
@@ -38,6 +39,8 @@ function mod:GetOptions()
 		448634, -- Impale
 		448644, -- Burrowing Tremors
 		448663, -- Stinging Swarm
+	},nil,{
+		[448634] = CL.frontal_cone, -- Impale (Frontal Cone)
 	}
 end
 
@@ -51,7 +54,7 @@ function mod:OnEngage()
 	local t = GetTime()
 	nextImpale = t + 6.0
 	nextStingingSwarm = t + 26.6
-	self:CDBar(448634, 6.0) -- Impale
+	self:CDBar(448634, 6.0, CL.frontal_cone) -- Impale
 	self:CDBar(448644, 12.0) -- Burrowing Tremors
 	self:CDBar(448663, 26.6) -- Stinging Swarm
 end
@@ -61,10 +64,10 @@ end
 --
 
 function mod:Impale(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.frontal_cone)
 	self:PlaySound(args.spellId, "alarm")
 	nextImpale = GetTime() + 14.5
-	self:CDBar(args.spellId, 14.5)
+	self:CDBar(args.spellId, 14.5, CL.frontal_cone)
 end
 
 function mod:BurrowingTremors(args)

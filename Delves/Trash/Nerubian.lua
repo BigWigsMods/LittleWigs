@@ -43,6 +43,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.nerubian_trash
+	self:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
 	self:SetSpellRename(449318, CL.bomb) -- Shadows of Strife (Bomb)
 	self:SetSpellRename(450546, CL.shield) -- Webbed Aegis (Shield)
 	self:SetSpellRename(450509, CL.frontal_cone) -- Wide Swipe (Frontal Cone)
@@ -76,6 +77,7 @@ function mod:GetOptions()
 		[450197] = L.skittering_swarmer,
 		[433448] = L.nerubian_webspinner,
 	},{
+		[450714] = CL.frontal_cone, -- Jagged Barbs (Frontal Cone)
 		[449318] = CL.bomb, -- Shadows of Strife (Bomb)
 		[450546] = CL.shield, -- Webbed Aegis (Shield)
 		[450509] = CL.frontal_cone, -- Wide Swipe (Frontal Cone)
@@ -153,7 +155,7 @@ end
 -- Nerubian Lord
 
 function mod:JaggedBarbs(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.frontal_cone)
 	self:PlaySound(args.spellId, "alarm")
 end
 
