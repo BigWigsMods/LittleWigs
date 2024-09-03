@@ -15,8 +15,8 @@ mod:RegisterEnableMob(
 	163520, -- Forsworn Squad-Leader
 	168718, -- Forsworn Warden
 	168845, -- Astronos
-	168843, -- Klotos
-	168844 -- Lakesis
+	168844, -- Lakesis
+	168843 -- Klotos
 )
 
 --------------------------------------------------------------------------------
@@ -61,10 +61,10 @@ function mod:GetOptions()
 		-- Forsworn Warden
 		328295, -- Greater Mending
 		328288, -- Bless Weapon
+		-- Astronos
+		328462, -- Charged Spear
 		-- Lakesis
 		328458, -- Diminuendo
-		-- Astronos
-		{328462, "NAMEPLATE"}, -- Charged Spear
 	}, {
 		[317661] = L.forsworn_squad_leader,
 		[317963] = L.forsworn_castigator,
@@ -74,8 +74,8 @@ function mod:GetOptions()
 		[317936] = L.forsworn_mender,
 		[317985] = L.forsworn_squad_leader,
 		[328295] = L.forsworn_warden,
-		[328458] = L.lakesis,
 		[328462] = L.astronos,
+		[328458] = L.lakesis,
 	}
 end
 
@@ -102,11 +102,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GreaterMending", 328295)
 	self:Log("SPELL_CAST_START", "BlessWeapon", 328288)
 	self:Log("SPELL_AURA_APPLIED", "BlessWeaponApplied", 328288)
+	-- Astronos
+	self:Log("SPELL_CAST_START", "ChargedSpear", 328462)
+	self:Death("AstronosDeath", 168845)
 	-- Lakesis
 	self:Log("SPELL_CAST_START", "Diminuendo", 328458)
 	self:Death("LakesisDeath", 168844)
-	-- Astronos
-	self:Log("SPELL_CAST_START", "ChargedSpear", 328462)
 end
 
 --------------------------------------------------------------------------------
@@ -208,20 +209,24 @@ function mod:BlessWeaponApplied(args)
 	end
 end
 
--- Lakesis
-function mod:Diminuendo(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 16)
-end
-
-function mod:LakesisDeath(args)
-	self:StopBar(328458) -- Diminuendo
-end
-
 -- Astronos
 function mod:ChargedSpear(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alert")
-	--self:Nameplate(args.spellId, 16.5, args.sourceGUID)
+	self:Bar(args.spellId, 16.5)
+end
+
+function mod:AstronosDeath(args)
+	self:StopBar(328462) -- Charged Spear
+end
+
+-- Lakesis
+function mod:Diminuendo(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+	self:Bar(args.spellId, 15.8)
+end
+
+function mod:LakesisDeath(args)
+	self:StopBar(328458) -- Diminuendo
 end
