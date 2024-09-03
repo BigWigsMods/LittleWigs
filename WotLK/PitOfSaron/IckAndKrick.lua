@@ -20,7 +20,7 @@ local pursuitWarned = {}
 
 function mod:GetOptions()
 	return {
-		{70274, "ICON", "FLASH"}, -- Toxic Waste
+		70274, -- Toxic Waste
 		68989, -- Poison Nova
 		69263, -- Explosive Barrage
 		68987, -- Pursuit
@@ -58,8 +58,8 @@ end
 
 function mod:ToxicWaste(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(70274, "blue", "alarm", CL.underyou:format(args.spellName))
-		self:Flash(70274)
+		self:PersonalMessage(70274, "underyou")
+		self:PlaySound(70274, "underyou")
 	end
 end
 
