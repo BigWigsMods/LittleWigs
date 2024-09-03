@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="CrowdPummeler.lua"/>
-<Script file="Tikali.lua"/>
+<Script file="Azerokk.lua"/>
 <Script file="Rixxa.lua"/>
 <Script file="Razzdunk.lua"/>
 <Script file="Trash.lua"/>

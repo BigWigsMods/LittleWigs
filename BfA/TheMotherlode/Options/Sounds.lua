@@ -8,7 +8,7 @@ BigWigs:AddSounds("Coin-Operated Crowd Pummeler", {
 	[271867] = "alarm",
 })
 
-BigWigs:AddSounds("Tik'ali", {
+BigWigs:AddSounds("Azerokk", {
 	[257582] = "warning",
 	[257593] = "info",
 	[258622] = "long",

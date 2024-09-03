@@ -1,28 +1,23 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Tik'ali", 1594, 2114)
+local mod, CL = BigWigs:NewBoss("Azerokk", 1594, 2114)
 if not mod then return end
-mod:RegisterEnableMob(129227)
-mod.engageId = 2106
-mod.respawnTime = 30
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.custom_on_fixate_plates = "Raging Gaze icon on Enemy Nameplate"
-	L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
-	L.custom_on_fixate_plates_icon = 257582
-end
+mod:RegisterEnableMob(
+	129227, -- Azerokk
+	129802 -- Earthrager
+)
+mod:SetEncounterID(2106)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:OnRegister()
+	self:SetSpellRename(257582, CL.fixate) -- Raging Gaze (Fixate)
+end
 
 function mod:GetOptions()
 	return {
@@ -30,13 +25,14 @@ function mod:GetOptions()
 		271698, -- Azerite Infusion
 		258622, -- Resonant Pulse
 		257593, -- Call Earthrager
-		{257582, "SAY"}, -- Raging Gaze
-		"custom_on_fixate_plates",
+		{257582, "SAY", "NAMEPLATE"}, -- Raging Gaze
 		-- Heroic
 		275907, -- Tectonic Smash
 	}, {
 		[271698] = "general",
 		[275907] = "heroic",
+	}, {
+		[257582] = CL.fixate, -- Raging Gaze (Fixate)
 	}
 end
 
@@ -56,15 +52,6 @@ function mod:OnEngage()
 	if not self:Normal() then
 		self:Bar(275907, 5) -- Tectonic Smash
 	end
-	if self:GetOption("custom_on_fixate_plates") then
-		self:ShowPlates()
-	end
-end
-
-function mod:OnBossDisable()
-	if self:GetOption("custom_on_fixate_plates") then
-		self:HidePlates()
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -80,28 +67,26 @@ function mod:CallEarthrager(args)
 end
 
 do
-	local playerList = mod:NewTargetList()
+	local playerList = {}
 	local prev = 0
 	function mod:RagingGazeApplied(args)
-		playerList[#playerList+1] = args.destName
-		self:TargetsMessageOld(args.spellId, "red", playerList)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "red", playerList, 4, CL.fixate)
 		if self:Me(args.destGUID) then
-			if self:GetOption("custom_on_fixate_plates") then
-				self:AddPlateIcon(args.spellId, args.sourceGUID)
-			end
+			self:Nameplate(args.spellId, 60, args.sourceGUID, CL.fixate)
 			local t = args.time
-			if t-prev > 0.3 then -- Only run once per targetsmessage
+			if t - prev > 1 then -- you can be fixated more than once
 				prev = t
-				self:PlaySound(args.spellId, "warning", "fixate")
-				self:Say(args.spellId, nil, nil, "Raging Gaze")
+				self:PlaySound(args.spellId, "warning")
+				self:Say(args.spellId, CL.fixate, nil, "Fixate")
 			end
 		end
 	end
 end
 
 function mod:RagingGazeRemoved(args)
-	if self:GetOption("custom_on_fixate_plates") and self:Me(args.destGUID) then
-		self:RemovePlateIcon(args.spellId, args.sourceGUID)
+	if self:Me(args.destGUID) then
+		self:StopNameplate(args.spellId, args.sourceGUID, CL.fixate)
 	end
 end
 

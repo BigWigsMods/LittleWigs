@@ -17,11 +17,5 @@ if L then
 	L.specialist = "爆裂物專家"
 	L.taskmaster = "監工阿斯卡利"
 	L.warmachine = "風險投資公司戰爭機器"
-	-- L.peacekeeper = "Mechanized Peacekeeper"
-end
-
-L = BigWigs:NewBossLocale("Tik'ali", "zhTW")
-if L then
-	-- L.custom_on_fixate_plates = "Raging Gaze icon on Enemy Nameplate"
-	-- L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
+	--L.peacekeeper = "Mechanized Peacekeeper"
 end

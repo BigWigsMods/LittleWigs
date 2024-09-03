@@ -19,9 +19,3 @@ if L then
 	L.warmachine = "Máquina de guerra de Ventura y Cía."
 	L.peacekeeper = "Pacificador mecanizado"
 end
-
-L = BigWigs:NewBossLocale("Tik'ali", "esES") or BigWigs:NewBossLocale("Tik'ali", "esMX")
-if L then
-	-- L.custom_on_fixate_plates = "Raging Gaze icon on Enemy Nameplate"
-	-- L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
-end

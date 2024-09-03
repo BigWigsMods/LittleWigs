@@ -19,9 +19,3 @@ if L then
 	L.warmachine = "Máquina de Guerra da Empreendimentos S.A."
 	L.peacekeeper = "Pacificador Mecanizado"
 end
-
-L = BigWigs:NewBossLocale("Tik'ali", "ptBR")
-if L then
-	L.custom_on_fixate_plates = "Ícone de Olhar da Fúria na barra de identificação inimiga"
-	L.custom_on_fixate_plates_desc = "Mostra um ícone na barra de identificação do alvo que está fixado em você.\nRequer o uso de barra de identificação inimiga. Essa função é suportada pelo addon KuiNameplates."
-end
