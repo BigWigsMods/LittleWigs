@@ -25,10 +25,6 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_fixate_plates = "Thirst For Blood icon on Enemy Nameplate"
-	L.custom_on_fixate_plates_desc = "Show an icon on the target nameplate that is fixating on you.\nRequires the use of Enemy Nameplates. This feature is currently only supported by KuiNameplates."
-	L.custom_on_fixate_plates_icon = 266107
-
 	L.spirit = "Befouled Spirit"
 	L.priest = "Devout Blood Priest"
 	L.maggot = "Fetid Maggot"
@@ -66,8 +62,7 @@ function mod:GetOptions()
 		-- Diseased Lasher
 		278961, -- Decaying Mind
 		-- Feral Bloodswarmer
-		266107, -- Thirst For Blood
-		"custom_on_fixate_plates",
+		{266107, "NAMEPLATE"}, -- Thirst For Blood
 		266106, -- Sonic Screech
 		-- Living Rot
 		265668, -- Wave of Decay
@@ -157,16 +152,6 @@ function mod:OnBossEnable()
 	-- Faceless Corruptor
 	self:Log("SPELL_CAST_START", "AbyssalReach", 272592)
 	self:Log("SPELL_CAST_START", "MaddeningGaze", 272609)
-
-	if self:GetOption("custom_on_fixate_plates") then
-		self:ShowPlates()
-	end
-end
-
-function mod:OnBossDisable()
-	if self:GetOption("custom_on_fixate_plates") then
-		self:HidePlates()
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -296,9 +281,7 @@ do
 				self:PersonalMessage(args.spellId, nil, CL.fixate)
 				self:PlaySound(args.spellId, "alarm")
 			end
-			if self:GetOption("custom_on_fixate_plates") then
-				self:AddPlateIcon(args.spellId, args.sourceGUID)
-			end
+			self:Nameplate(args.spellId, 15, args.sourceGUID, CL.fixate)
 		end
 		-- if this is uncommented, move to SPELL_CAST_SUCCESS
 		--self:Nameplate(args.spellId, 31.6, args.sourceGUID)
@@ -306,8 +289,8 @@ do
 end
 
 function mod:ThirstForBloodRemoved(args)
-	if self:Me(args.destGUID) and self:GetOption("custom_on_fixate_plates") then
-		self:RemovePlateIcon(args.spellId, args.sourceGUID)
+	if self:Me(args.destGUID) then
+		self:StopNameplate(args.spellId, args.sourceGUID, CL.fixate)
 	end
 end
 

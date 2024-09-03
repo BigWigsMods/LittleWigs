@@ -1,9 +1,6 @@
 local L = BigWigs:NewBossLocale("Underrot Trash", "ruRU")
 if not L then return end
 if L then
-	L.custom_on_fixate_plates = "Иконка преследования на вражеской полосе здоровья"
-	L.custom_on_fixate_plates_desc = "Показывать иконку преследования на полоске здоровья врага."
-
 	L.spirit = "Оскверненный дух"
 	L.priest = "Преданная жрица крови"
 	L.maggot = "Смрадная личинка"

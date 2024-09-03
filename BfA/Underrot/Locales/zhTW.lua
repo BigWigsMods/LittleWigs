@@ -1,9 +1,6 @@
 local L = BigWigs:NewBossLocale("Underrot Trash", "zhTW")
 if not L then return end
 if L then
-	L.custom_on_fixate_plates = "在名條上顯示追擊圖示"
-	L.custom_on_fixate_plates_desc = "當你被鮮血渴求鎖定時，在名條上顯示追擊圖示。\n需要開啟敵方名條，並使用支援此功能的名條插件（如KuiNameplates、Plater）。"
-
 	L.spirit = "被玷污的靈魂"
 	L.priest = "虔誠的鮮血祭司"
 	L.maggot = "惡臭蛆蟲"
