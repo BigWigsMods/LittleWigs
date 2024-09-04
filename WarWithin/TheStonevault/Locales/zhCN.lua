@@ -16,5 +16,5 @@ if L then
 	L.rock_smasher = "击石者"
 
 	L.edna_warmup_trigger = "这是什么？那个魔像与什么洞悉熔接在一起了吗？"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Warrior, Dwarf, or 25 skill in Khaz Algar Blacksmithing.|r Automatically select the NPC dialog option that grants your group the 'Imbued Iron Energy' aura."
+	L.custom_on_autotalk_desc = "|cFFFF0000需要战士、矮人或至少25点卡兹阿加锻造技能。|r 自动选择NPC对话框选项，为您的队伍赋予“灌魔铁之能” 光环。"
 end
