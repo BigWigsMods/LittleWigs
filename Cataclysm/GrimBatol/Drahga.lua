@@ -34,7 +34,7 @@ function mod:GetOptions()
 		456751, -- Twilight Buffet
 		448105, -- Devouring Flame (Mythic)
 		-- Invoked Shadowflame Spirit
-		{82850, "ME_ONLY", "ME_ONLY_EMPHASIZE", "SAY"}, -- Flaming Fixate
+		{82850, "ME_ONLY_EMPHASIZE", "SAY", "NAMEPLATE"}, -- Flaming Fixate
 	}, {
 		[448013] = -29546, -- Drahga Shadowburner
 		[456751] = -29551, -- Valiona
@@ -53,6 +53,7 @@ function mod:OnBossEnable()
 	-- Drahga Shadowburner
 	self:Log("SPELL_CAST_START", "InvocationOfShadowflame", 448013)
 	self:Log("SPELL_AURA_APPLIED", "FlamingFixateApplied", 82850)
+	self:Log("SPELL_AURA_REMOVED", "FlamingFixateRemoved", 82850)
 	self:Log("SPELL_CAST_SUCCESS", "CurseOfEntropy", 450095)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfEntropyApplied", 450095)
 	self:Log("SPELL_CAST_START", "ShadowflameBolt", 447966)
@@ -132,25 +133,30 @@ function mod:InvocationOfShadowflame(args)
 	if self:GetStage() == 1 then -- 1 add spawns
 		self:StopBar(CL.count:format(CL.add, invocationOfShadowflameCount))
 		self:Message(args.spellId, "yellow", CL.count:format(CL.add_spawning, invocationOfShadowflameCount))
-		self:PlaySound(args.spellId, "info")
 		invocationOfShadowflameCount = invocationOfShadowflameCount + 1
 		self:CDBar(args.spellId, 26.0, CL.count:format(CL.add, invocationOfShadowflameCount))
+		self:PlaySound(args.spellId, "info")
 	else -- Stage 2, 2 adds spawn
 		self:StopBar(CL.count:format(CL.adds, invocationOfShadowflameCount))
 		self:Message(args.spellId, "yellow", CL.count:format(CL.adds_spawning, invocationOfShadowflameCount))
-		self:PlaySound(args.spellId, "info")
 		invocationOfShadowflameCount = invocationOfShadowflameCount + 1
 		self:CDBar(args.spellId, 35.0, CL.count:format(CL.adds, invocationOfShadowflameCount))
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
 function mod:FlamingFixateApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
 	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
+		self:Nameplate(args.spellId, 60, args.sourceGUID, CL.fixate)
 		self:Say(args.spellId, CL.fixate, nil, "Fixate")
-	else
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
+end
+
+function mod:FlamingFixateRemoved(args)
+	if self:Me(args.destGUID) then
+		self:StopNameplate(args.spellId, args.sourceGUID, CL.fixate)
 	end
 end
 
@@ -189,15 +195,15 @@ end
 function mod:TwilightBuffet(args)
 	self:StopBar(CL.count:format(args.spellName, twilightBuffetCount))
 	self:Message(args.spellId, "orange", CL.count:format(args.spellName, twilightBuffetCount))
-	self:PlaySound(args.spellId, "alarm")
 	twilightBuffetCount = twilightBuffetCount + 1
 	self:CDBar(args.spellId, 35.0, CL.count:format(args.spellName, twilightBuffetCount))
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:DevouringFlame(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 35.0)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 --------------------------------------------------------------------------------

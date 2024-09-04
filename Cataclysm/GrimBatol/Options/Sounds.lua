@@ -22,7 +22,7 @@ BigWigs:AddSounds("Forgemaster Throngus", {
 
 BigWigs:AddSounds("Drahga Shadowburner", {
 	[75218] = "info",
-	[82850] = {"alert","warning"},
+	[82850] = "warning",
 	[90950] = "alarm",
 	[447966] = "alert",
 	[448013] = "info",
