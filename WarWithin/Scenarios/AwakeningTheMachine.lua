@@ -170,11 +170,12 @@ do
 		self:PlaySound("stages", "info")
 	end
 
-	function mod:MobDeath(args)
+	function mod:MobDeath()
 		mobsKilled = mobsKilled + 1
 		local stage = self:GetStage()
 		if mobsKilled == mobsNeeded[stage] then
-			-- repeating 10s timer, 2s minimum duration
+			-- the next wave check is a repeating 10s timer based on the wave start. there is a 2s minimum duration
+			-- between killing the last mob and starting the next wave, so the bar will range from 2-12s.
 			local nextWave = 12 - (GetTime() - waveStart + 2) % 10
 			if stage % 5 == 0 then
 				self:Bar("stages", nextWave, CL.intermission, L.stages_icon)
@@ -242,7 +243,7 @@ function mod:VolatileMagmaRemoved(args)
 end
 
 function mod:AutomaticIronstriderDeath(args)
-	self:MobDeath(args)
+	self:MobDeath()
 	self:ClearNameplate(args.destGUID)
 end
 
