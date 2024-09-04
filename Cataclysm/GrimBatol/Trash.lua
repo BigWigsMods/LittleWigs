@@ -79,11 +79,9 @@ end
 
 function mod:OnBossEnable()
 	if self:Retail() then
-		-- Interrupts
-		self:Log("SPELL_INTERRUPT", "Interrupt", "*")
-
 		-- Twilight Earthcaller
 		self:Log("SPELL_CAST_START", "MassTremor", 451871)
+		self:Log("SPELL_INTERRUPT", "MassTremorInterrupt", 451871)
 		self:Log("SPELL_CAST_SUCCESS", "MassTremorSuccess", 451871)
 		self:Death("TwilightEarthcallerDeath", 224219)
 
@@ -102,6 +100,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SearMind", 76711) -- Chained Mind on classic
 
 	if self:Retail() then
+		self:Log("SPELL_INTERRUPT", "SearMindInterrupt", 76711)
 		self:Log("SPELL_CAST_SUCCESS", "SearMindSuccess", 76711)
 		self:Death("TwilightBeguilerDeath", 40167)
 
@@ -152,22 +151,16 @@ end
 -- Event Handlers
 --
 
--- Interrupts
-
-function mod:Interrupt(args)
-	if args.extraSpellId == 451871 then -- Mass Tremor
-		self:Nameplate(451871, 22.5, args.destGUID)
-	elseif args.extraSpellId == 76711 then -- Sear Mind
-		self:Nameplate(76711, 18.3, args.destGUID)
-	end
-end
-
 -- Twilight Earthcaller
 
 function mod:MassTremor(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:MassTremorInterrupt(args)
+	self:Nameplate(451871, 22.5, args.destGUID)
 end
 
 function mod:MassTremorSuccess(args)
@@ -233,6 +226,10 @@ function mod:SearMind(args) -- Chained Mind on Classic
 	if self:Retail() then
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:SearMindInterrupt(args)
+	self:Nameplate(76711, 18.3, args.destGUID)
 end
 
 function mod:SearMindSuccess(args)
