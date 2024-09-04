@@ -8,5 +8,5 @@ BigWigs:AddColors("Awakening the Machine", {
 	[462983] = {"blue","yellow"},
 	[463052] = "yellow",
 	[463081] = "red",
-	["stages"] = "cyan",
+	["stages"] = {"cyan","green"},
 })

@@ -8,14 +8,42 @@ mod:RegisterEnableMob(
 	210318, -- Speaker Kuldas
 	229691, -- Swarmbot
 	229695, -- Corrupted Machinist
-	229739, -- Malfunctioning Pylon
 	229706, -- Explosive Bomberbot
+	229739, -- Malfunctioning Pylon
 	229778, -- Automatic Ironstrider
 	229769, -- Medbot
 	229729, -- Nullbot
 	229782 -- Awakened Phalanx
 )
 mod:SetStage(0.5)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local mobsKilled = 0
+local mobsNeeded = {
+	3, -- Wave 1: 3x Swarmbot
+	3, -- Wave 2: 2x Swarmbot 1x Corrupted Machinist
+	4, -- Wave 3: 3x Swarmbot 1x Corrupted Machinist
+	5, -- Wave 4: 5x Swarmbot
+	5, -- Wave 5: 2x Swarmbot 2x Corrupted Machinist 1x Explosive Bomberbot
+	3, -- Wave 6: 2x Swarmbot 1x Malfunctioning Pylon
+	3, -- Wave 7: 2x Swarmbot 1x Malfunctioning Pylon
+	5, -- Wave 8: 2x Swarmbot 2x Corrupted Machinist 1x Malfunctioning Pylon
+	5, -- Wave 9: 3x Swarmbot 1x Corrupted Machinist 1x Malfunctioning Pylon
+	4, -- Wave 10: 3x Swarmbot 1x Automatic Ironstrider
+	5, -- Wave 11: 4x Swarmbot 1x Medbot
+	5, -- Wave 12: 1x Swarmbot 1x Corrupted Machinist 1x Malfunctioning Pylon 1x Medbot 1x Nullbot
+	4, -- Wave 13: 1x Swarmbot 2x Explosive Bomberbot 1x Nullbot
+	5, -- Wave 14: 1x Swarmbot 2x Explosive Bomberbot 1x Medbot 1x Nullbot
+	7, -- Wave 15: 2x Swarmbot 2x Explosive Bomberbot 1x Malfunctioning Pylon 1x Automatic Ironstrider 1x Medbot
+	8, -- Wave 16: 3x Swarmbot 3x Explosive Bomberbot 2x Medbot
+	6, -- Wave 17: 1x Corrupted Machinist 2x Explosive Bomberbot 1x Malfunctioning Pylon 1x Automatic Ironstrider 1x Medbot
+	10, -- Wave 18: 5x Swarmbot 1x Corrupted Machinist 1x Explosive Bomberbot 1x Malfunctioning Pylon 1x Automatic Ironstrider 1x Nullbot
+	14, -- Wave 19: 5x Swarmbot 2x Explosive Bomberbot 1x Automatic Ironstrider 4x Medbot 2x Nullbot
+	-- Wave 20: 1x Awakened Phalanx
+}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -26,10 +54,11 @@ if L then
 	L.awakening_the_machine = "Awakening the Machine"
 
 	L.stages_desc = "Show an alert when a new wave of enemies spawns."
+	L.stages_icon = "inv_cape_armor_earthencivilian_d_02_silver"
 
 	L.corrupted_machinist = "Corrupted Machinist"
-	L.malfunctioning_pylon = "Malfunctioning Pylon"
 	L.explosive_bomberbot = "Explosive Bomberbot"
+	L.malfunctioning_pylon = "Malfunctioning Pylon"
 	L.automatic_ironstrider = "Automatic Ironstrider"
 	L.medbot = "Medbot"
 	L.nullbot = "Nullbot"
@@ -53,10 +82,10 @@ function mod:GetOptions()
 		"stages",
 		-- Corrupted Machinist
 		462802, -- Purging Flames
-		-- Malfunctioning Pylon
-		462892, -- Hazardous Beam
 		-- Explosive Bomberbot
 		462826, -- Self Destruct
+		-- Malfunctioning Pylon
+		462892, -- Hazardous Beam
 		-- Automatic Ironstrider
 		{462983, "SAY_COUNTDOWN", "NAMEPLATE"}, -- Volatile Magma
 		-- Medbot
@@ -69,8 +98,8 @@ function mod:GetOptions()
 	},{
 		["stages"] = CL.general,
 		[462802] = L.corrupted_machinist,
-		[462892] = L.malfunctioning_pylon,
 		[462826] = L.explosive_bomberbot,
+		[462892] = L.malfunctioning_pylon,
 		[462983] = L.automatic_ironstrider,
 		[462936] = L.medbot,
 		[462856] = L.nullbot,
@@ -85,15 +114,17 @@ end
 function mod:OnBossEnable()
 	-- Waves
 	self:RegisterWidgetEvent(5573, "Waves")
+	self:Death("MobDeath", 229691, 229695, 229769, 229729) -- 229778 is covered in :AutomaticIronstriderDeath
+	self:Log("SPELL_CAST_SUCCESS", "MobDeath", 288774, 462826) -- Shutdown, Self Destruct
 
 	-- Corrupted Machinist
 	self:Log("SPELL_CAST_START", "PurgingFlames", 462802)
 
-	-- Malfunctioning Pylon
-	self:Log("SPELL_CAST_START", "HazardousBeam", 462892)
-
 	-- Explosive Bomberbot
 	self:Log("SPELL_CAST_START", "SelfDestruct", 462826)
+
+	-- Malfunctioning Pylon
+	self:Log("SPELL_CAST_START", "HazardousBeam", 462892)
 
 	-- Automatic Ironstrider
 	self:Log("SPELL_CAST_SUCCESS", "VolatileMagma", 462983)
@@ -119,13 +150,39 @@ end
 
 -- Waves
 
-function mod:Waves(_, text)
-	-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
-	local wave = tonumber(text:match("%d+"))
-	if wave and wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
-		self:SetStage(wave)
-		self:Message("stages", "cyan", CL.wave_count:format(wave, 20), false)
+do
+	local waveStart = 0
+
+	function mod:Waves(_, text)
+		waveStart = GetTime()
+		mobsKilled = 0
+		-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
+		local wave = tonumber(text:match("%d+"))
+		if wave and wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
+			self:SetStage(wave)
+			self:Message("stages", "cyan", CL.wave_count:format(wave, 20), L.stages_icon)
+			self:PlaySound("stages", "info")
+		end
+	end
+
+	function mod:Intermission()
+		self:Message("stages", "green", CL.intermission, L.stages_icon)
 		self:PlaySound("stages", "info")
+	end
+
+	function mod:MobDeath(args)
+		mobsKilled = mobsKilled + 1
+		local stage = self:GetStage()
+		if mobsKilled == mobsNeeded[stage] then
+			-- repeating 10s timer, 2s minimum duration
+			local nextWave = 12 - (GetTime() - waveStart + 2) % 10
+			if stage % 5 == 0 then
+				self:Bar("stages", nextWave, CL.intermission, L.stages_icon)
+				self:ScheduleTimer("Intermission", nextWave)
+			else
+				self:Bar("stages", nextWave, CL.wave:format(stage + 1), L.stages_icon)
+			end
+		end
 	end
 end
 
@@ -143,13 +200,6 @@ do
 	end
 end
 
--- Malfunctioning Pylon
-
-function mod:HazardousBeam(args)
-	self:Message(args.spellId, "yellow", CL.beam)
-	self:PlaySound(args.spellId, "alert")
-end
-
 -- Explosive Bomberbot
 
 do
@@ -162,6 +212,13 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
+end
+
+-- Malfunctioning Pylon
+
+function mod:HazardousBeam(args)
+	self:Message(args.spellId, "yellow", CL.beam)
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Automatic Ironstrider
@@ -185,6 +242,7 @@ function mod:VolatileMagmaRemoved(args)
 end
 
 function mod:AutomaticIronstriderDeath(args)
+	self:MobDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
