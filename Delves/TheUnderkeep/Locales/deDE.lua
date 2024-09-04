@@ -6,5 +6,5 @@ end
 
 L = BigWigs:NewBossLocale("Researcher Xik'vik", "deDE")
 if L then
-	--L.researcher_xikvik = "Researcher Xik'vik"
+	L.researcher_xikvik = "Forscher Xik'vik"
 end
