@@ -11,5 +11,5 @@ end
 
 L = BigWigs:NewBossLocale("Speaker Xanventh", "deDE")
 if L then
-	--L.speaker_xanventh = "Speaker Xanventh"
+	L.speaker_xanventh = "Sprecher Xanventh"
 end
