@@ -5,11 +5,11 @@ if L then
 
 	L.stages_desc = "Zeigt eine Warnung wenn eine neue Welle von Gegnern erscheint."
 
-	--L.corrupted_machinist = "Corrupted Machinist"
-	--L.malfunctioning_pylon = "Malfunctioning Pylon"
-	--L.explosive_bomberbot = "Explosive Bomberbot"
-	--L.automatic_ironstrider = "Automatic Ironstrider"
-	--L.medbot = "Medbot"
-	--L.nullbot = "Nullbot"
+	L.corrupted_machinist = "Verderbter Maschinist"
+	L.malfunctioning_pylon = "Defekter Pylon"
+	L.explosive_bomberbot = "Explosiver Bomberbot"
+	L.automatic_ironstrider = "Automatischer Eisenschreiter"
+	L.medbot = "Medbot"
+	L.nullbot = "Nullbot"
 	L.awakened_phalanx = "Erweckte Phalanx"
 end
