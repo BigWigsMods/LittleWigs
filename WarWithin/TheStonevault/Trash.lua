@@ -68,6 +68,7 @@ function mod:GetOptions()
 		{426308, "DISPEL", "NAMEPLATE"}, -- Void Infection
 		-- Void Bound Despoiler
 		{426771, "HEALER", "NAMEPLATE"}, -- Void Outburst
+		{459210, "TANK", "NAMEPLATE"}, -- Shadow Claw
 		-- Void Bound Howler
 		{445207, "NAMEPLATE"}, -- Piercing Wail
 		-- Turned Speaker
@@ -133,6 +134,7 @@ function mod:OnBossEnable()
 
 	-- Void Bound Despoiler
 	self:Log("SPELL_CAST_START", "VoidOutburst", 426771)
+	self:Log("SPELL_CAST_START", "ShadowClaw", 459210)
 	self:Death("VoidBoundDespoilerDeath", 212765)
 
 	-- Void Bound Howler
@@ -222,8 +224,8 @@ end
 
 function mod:SeismicWave(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:EarthInfusedGolemDeath(args)
@@ -256,8 +258,8 @@ function mod:HowlingFear(args)
 		return
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:HowlingFearInterrupt(args)
@@ -298,8 +300,14 @@ end
 
 function mod:VoidOutburst(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ShadowClaw(args)
+	self:Message(args.spellId, "purple")
+	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:VoidBoundDespoilerDeath(args)
@@ -343,8 +351,8 @@ function mod:CensoringGear(args)
 		return
 	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:CensoringGearInterrupt(args)
@@ -366,8 +374,8 @@ function mod:CrystalSalvo(args)
 		return
 	end
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:VoidTouchedElementalDeath(args)
