@@ -11,6 +11,6 @@ if L then
 	L.blood_overseer = "Surveillant du sang"
 	L.nerubian_hauler = "Haleuse nérubienne"
 
-	--L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
+	L.avanoxx_warmup_trigger = "Les voix des auxiliaires ont été réduites au silence… Quelque chose apparaît !"
+	L.custom_on_autotalk_desc = "|cFFFF0000Nécessite au moins 25 en couture de Khaz Algar.|r Sélectionne automatiquement le dialogue avec le PNJ qui vous octroie 'Enveloppement de soie' que vous pourrez utilisez en cliquant sur l'extra bouton."
 end

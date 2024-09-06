@@ -3,13 +3,13 @@ if not L then return end
 if L then
 	L.awakening_the_machine = "L’éveil de la machine"
 
-	--L.stages_desc = "Show an alert when a new wave of enemies spawns."
+	L.stages_desc = "Affiche une alerte lorsqu'une nouvelle vague d'ennemis apparaît."
 
-	--L.corrupted_machinist = "Corrupted Machinist"
-	--L.malfunctioning_pylon = "Malfunctioning Pylon"
-	--L.explosive_bomberbot = "Explosive Bomberbot"
-	--L.automatic_ironstrider = "Automatic Ironstrider"
-	--L.medbot = "Medbot"
-	--L.nullbot = "Nullbot"
+	L.corrupted_machinist = "Machiniste corrompu(e)"
+	L.malfunctioning_pylon = "Pylône défectueux"
+	L.explosive_bomberbot = "Robot bombardier explosif"
+	L.automatic_ironstrider = "Marchefer automatique"
+	L.medbot = "Robot médica"
+	L.nullbot = "Robot nul"
 	L.awakened_phalanx = "Phalange éveillée"
 end
