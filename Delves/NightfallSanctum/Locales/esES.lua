@@ -1,11 +1,11 @@
-local L = BigWigs:NewBossLocale("Speaker Halven", "esES") or BigWigs:NewBossLocale("Speaker Halven", "esMX")
+local L = BigWigs:NewBossLocale("Speaker Halven", "esES")
 if not L then return end
 if L then
-	--L.speaker_halven = "Speaker Halven"
+	L.speaker_halven = "Oradora Halven"
 end
 
-L = BigWigs:NewBossLocale("Reformed Fury", "esES") or BigWigs:NewBossLocale("Reformed Fury", "esMX")
+L = BigWigs:NewBossLocale("Reformed Fury", "esES")
 if L then
-	--L.speaker_davenruth = "Speaker Davenruth"
-	--L.reformed_fury = "Reformed Fury"
+	L.speaker_davenruth = "Oradora Davenruth"
+	L.reformed_fury = "Furia reformada"
 end

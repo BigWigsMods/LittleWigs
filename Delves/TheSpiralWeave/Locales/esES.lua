@@ -1,10 +1,10 @@
-local L = BigWigs:NewBossLocale("Overseer Kaskel", "esES") or BigWigs:NewBossLocale("Overseer Kaskel", "esMX")
+local L = BigWigs:NewBossLocale("Overseer Kaskel", "esES")
 if not L then return end
 if L then
-	--L.overseer_kaskel = "Overseer Kaskel"
+	L.overseer_kaskel = "Sobrestante Kaskel"
 end
 
-L = BigWigs:NewBossLocale("The Puppetmaster", "esES") or BigWigs:NewBossLocale("The Puppetmaster", "esMX")
+L = BigWigs:NewBossLocale("The Puppetmaster", "esES")
 if L then
-	--L.the_puppetmaster = "The Puppetmaster"
+	L.the_puppetmaster = "El titiritero"
 end

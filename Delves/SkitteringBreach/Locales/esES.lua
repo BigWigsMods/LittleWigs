@@ -1,15 +1,15 @@
-local L = BigWigs:NewBossLocale("Nerl'athekk the Skulking", "esES") or BigWigs:NewBossLocale("Nerl'athekk the Skulking", "esMX")
+local L = BigWigs:NewBossLocale("Nerl'athekk the Skulking", "esES")
 if not L then return end
 if L then
-	--L.nerlathekk_the_skulking = "Nerl'athekk the Skulking"
+	L.nerlathekk_the_skulking = "Nerl'athekk el Merodeador"
 end
 
-L = BigWigs:NewBossLocale("Faceless One", "esES") or BigWigs:NewBossLocale("Faceless One", "esMX")
+L = BigWigs:NewBossLocale("Faceless One", "esES")
 if L then
-	--L.faceless_one = "Faceless One"
+	L.faceless_one = "Ignoto"
 end
 
-L = BigWigs:NewBossLocale("Speaker Xanventh", "esES") or BigWigs:NewBossLocale("Speaker Xanventh", "esMX")
+L = BigWigs:NewBossLocale("Speaker Xanventh", "esES")
 if L then
-	--L.speaker_xanventh = "Speaker Xanventh"
+	L.speaker_xanventh = "Orador Xanventh"
 end

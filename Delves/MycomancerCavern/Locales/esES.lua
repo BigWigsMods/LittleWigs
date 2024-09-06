@@ -1,5 +1,5 @@
-local L = BigWigs:NewBossLocale("Bogpiper", "esES") or BigWigs:NewBossLocale("Bogpiper", "esMX")
+local L = BigWigs:NewBossLocale("Bogpiper", "esES")
 if not L then return end
 if L then
-	--L.bogpiper = "Bogpiper"
+	L.bogpiper = "Cienoflautista"
 end

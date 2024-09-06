@@ -1,5 +1,5 @@
-local L = BigWigs:NewBossLocale("Spinshroom", "esES") or BigWigs:NewBossLocale("Spinshroom", "esMX")
+local L = BigWigs:NewBossLocale("Spinshroom", "esES")
 if not L then return end
 if L then
-	--L.spinshroom = "Spinshroom"
+	L.spinshroom = "Tejepiñón"
 end

@@ -1,12 +1,12 @@
-local L = BigWigs:NewBossLocale("Mirror Master Murkna", "esES") or BigWigs:NewBossLocale("Mirror Master Murkna", "esMX")
+local L = BigWigs:NewBossLocale("Mirror Master Murkna", "esES")
 if not L then return end
 if L then
-	--L.mirror_master_murkna = "Mirror Master Murkna"
+	L.mirror_master_murkna = "Maestro de los espejos Murkna"
 end
 
-L = BigWigs:NewBossLocale("Leviathan Caller", "esES") or BigWigs:NewBossLocale("Leviathan Caller", "esMX")
+L = BigWigs:NewBossLocale("Leviathan Caller", "esES")
 if L then
-	--L.leviathan_caller = "Leviathan Caller"
-	--L.guardian_tentacle = "Guardian Tentacle"
+	L.leviathan_caller = "Invocador de leviatán"
+	L.guardian_tentacle = "Tentáculo guardián"
 	--L.slamming_tentacles = "Slamming Tentacles" -- plural
 end
