@@ -18,5 +18,5 @@ if L then
 	L.sir_braunpyke = "Baron Braunpique"
 
 	L.baron_braunpyke_warmup_trigger = "Leur mission est remplie. Baron, montrez votre valeur."
-	L.custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Sélectionne automatiquement le dialogue avec le PNJ qui octroie à votre groupe l'amélioration 'Bénédiction de la Flamme sacrée'."
+	L.custom_on_autotalk_desc = "|cFFFF0000Nécessite Prêtre ou Paladin.|r Sélectionne automatiquement le dialogue avec le PNJ qui octroie à votre groupe l'amélioration 'Bénédiction de la Flamme sacrée'."
 end
