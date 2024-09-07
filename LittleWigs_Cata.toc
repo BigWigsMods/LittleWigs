@@ -1,4 +1,4 @@
-## Interface: 40400
+## Interface: 40400, 40401
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
