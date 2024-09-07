@@ -17,7 +17,9 @@
 ## Dependencies: BigWigs
 
 ## X-Category: Party
-## X-BigWigs-LoadOn-InstanceId: 229, 2784
+## X-BigWigs-LoadOn-InstanceId: 36, 209, 229, 329, 429, 2784
 
 BlackrockSpire\modules.xml
+Deadmines\modules.xml
 DemonFallCanyon\modules.xml
+modules.xml

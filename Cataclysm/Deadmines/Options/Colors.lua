@@ -23,7 +23,7 @@ BigWigs:AddColors("Admiral Ripsnarl", {
 	[92042] = "yellow",
 })
 
-BigWigs:AddColors("Cookie", {
+BigWigs:AddColors("Captain Cookie", {
 	[89263] = "cyan",
 	[89267] = "green",
 	[89732] = "red",

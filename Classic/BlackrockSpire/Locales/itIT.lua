@@ -1,5 +1,5 @@
 local L = BigWigs:NewBossLocale("Pyroguard Emberseer", "itIT")
 if not L then return end
 if L then
-	L.bossName = "Piroguardia Mirabraci"
+	L.pyroguard_emberseer = "Piroguardia Mirabraci"
 end

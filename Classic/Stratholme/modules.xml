@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="HearthsingerForresten.lua"/>
+<Script file="TheUnforgiven.lua"/>
+<Script file="TimmyTheCruel.lua"/>
+<Script file="CommanderMalor.lua"/>
+<Script file="WilleyHopebreaker.lua"/>
+<Script file="InstructorGalford.lua"/>
+<Script file="Balnazzar.lua"/>
+<Script file="BaronessAnastari.lua"/>
+<Script file="Nerubenkan.lua"/>
+<Script file="MalekiThePallid.lua"/>
+<Script file="MagistrateBarthilas.lua"/>
+<Script file="RamsteinTheGorger.lua"/>
+<Script file="PostmasterMalown.lua"/>
+<Script file="LordAuriusRivendare.lua"/>
+
+<Include file="Options\options.xml"/>
+
+</Ui>
