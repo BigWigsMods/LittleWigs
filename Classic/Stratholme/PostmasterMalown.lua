@@ -1,4 +1,4 @@
-if not BigWigsLoader.isVanilla or not (BigWigsLoader.isRetail and select(4, GetBuildInfo()) >= 110005) then return end
+if not BigWigsLoader.isVanilla and not (BigWigsLoader.isRetail and select(4, GetBuildInfo()) >= 110005) then return end -- XXX remove build check when 11.0.5 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +6,7 @@ if not BigWigsLoader.isVanilla or not (BigWigsLoader.isRetail and select(4, GetB
 local mod, CL = BigWigs:NewBoss("Postmaster Malown", 329, BigWigsLoader.isRetail and 2633)
 if not mod then return end
 mod:RegisterEnableMob(11143) -- Postmaster Malown
-mod:SetEncounterID(1885)
+mod:SetEncounterID(mod:Retail() and 1885 or 2798)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
