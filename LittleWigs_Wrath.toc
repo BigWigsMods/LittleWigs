@@ -12,10 +12,10 @@
 ## Notes-ruRU: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-zhCN: 5人地下城和场景战役首领警报。
 ## Notes-zhTW: 5人地城和情境地圖首領警報。
-## Author: Funkydude
+## Author: Funkeh, Delk
 ## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
 ## X-Category: Party
-## X-Credits: Ulic
+## X-Credits: Ulic, Oppzippy, Zirael
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
 ## X-Curse-Project-ID: 4383
 ## X-WoWI-ID: 9577
