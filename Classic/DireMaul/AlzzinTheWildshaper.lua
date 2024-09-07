@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Alzzin the Wildshaper", 429, BigWigsLoader.isRetail and 405)
 if not mod then return end
 mod:RegisterEnableMob(11492) -- Alzzin the Wildshaper
-mod:SetEncounterID(	346)
+mod:SetEncounterID(346)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
