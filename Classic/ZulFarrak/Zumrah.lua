@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Witch Doctor Zum'rah", 209, 486)
 if not mod then return end
-mod:RegisterEnableMob(7795) -- Witch Doctor Zum'rah
+mod:RegisterEnableMob(7271) -- Witch Doctor Zum'rah
 mod:SetEncounterID(597)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
