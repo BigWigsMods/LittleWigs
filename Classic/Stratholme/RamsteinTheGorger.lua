@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ramstein the Gorger", 329, BigWigsLoader.isRetail and 455)
+local mod, CL = BigWigs:NewBoss("Ramstein the Gorger", 329, 455)
 if not mod then return end
 mod:RegisterEnableMob(10439) -- Ramstein the Gorger
 mod:SetEncounterID(483)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.ramstein_the_gorger = "Ramstein the Gorger"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.ramstein_the_gorger
-	end
-end
 
 function mod:GetOptions()
 	return {

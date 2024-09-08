@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("King Gordok", 429, BigWigsLoader.isRetail and 417)
+local mod, CL = BigWigs:NewBoss("King Gordok", 429, 417)
 if not mod then return end
 mod:RegisterEnableMob(11501) -- King Gordok
 mod:SetEncounterID(368)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.king_gordok = "King Gordok"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.king_gordok
-	end
-end
 
 function mod:GetOptions()
 	return {

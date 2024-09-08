@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Zevrim Thornhoof", 429, BigWigsLoader.isRetail and 402)
+local mod, CL = BigWigs:NewBoss("Zevrim Thornhoof", 429, 402)
 if not mod then return end
 mod:RegisterEnableMob(11490) -- Zevrim Thornhoof
 mod:SetEncounterID(343)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.zevrim_thornhoof = "Zevrim Thornhoof"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.zevrim_thornhoof
-	end
-end
 
 function mod:GetOptions()
 	return {

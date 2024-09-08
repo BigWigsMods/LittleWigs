@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Lord Aurius Rivendare", 329, BigWigsLoader.isRetail and 456)
+local mod, CL = BigWigs:NewBoss("Lord Aurius Rivendare", 329, 456)
 if not mod then return end
 mod:RegisterEnableMob(mod:Retail() and 45412 or 10440) -- Lord Aurius Rivendare, Baron Rivendare
 mod:SetEncounterID(484)
@@ -14,18 +14,13 @@ mod:SetEncounterID(484)
 
 local L = mod:GetLocale()
 if L then
-	L.baron_rivendare = "Baron Rivendare"
+	L.raise_dead_trigger = "raises an undead servant back to life!"
+	L.death_pact_trigger = "attempts to cast Death Pact on his servants!"
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.baron_rivendare
-	end
-end
 
 function mod:GetOptions()
 	return {

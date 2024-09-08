@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Hearthsinger Forresten", 329, BigWigsLoader.isRetail and 443)
+local mod, CL = BigWigs:NewBoss("Hearthsinger Forresten", 329, 443)
 if not mod then return end
 mod:RegisterEnableMob(10558) -- Hearthsinger Forresten
 mod:SetEncounterID(473)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.hearthsinger_forresten = "Hearthsinger Forresten"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.hearthsinger_forresten
-	end
-end
 
 function mod:GetOptions()
 	return {

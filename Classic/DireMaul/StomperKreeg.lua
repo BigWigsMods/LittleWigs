@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Stomper Kreeg", 429, BigWigsLoader.isRetail and 412)
+local mod, CL = BigWigs:NewBoss("Stomper Kreeg", 429, 412)
 if not mod then return end
 mod:RegisterEnableMob(14322) -- Stomper Kreeg
 mod:SetEncounterID(363)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.stomper_kreeg = "Stomper Kreeg"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.stomper_kreeg
-	end
-end
 
 function mod:GetOptions()
 	return {

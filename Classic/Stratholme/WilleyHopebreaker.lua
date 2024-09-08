@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Willey Hopebreaker", 329, BigWigsLoader.isRetail and 446)
+local mod, CL = BigWigs:NewBoss("Willey Hopebreaker", 329, 446)
 if not mod then return end
 mod:RegisterEnableMob(10997) -- Willey Hopebreaker
 mod:SetEncounterID(475)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.cannon_master_willey = "Cannon Master Willey"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.cannon_master_willey
-	end
-end
 
 function mod:GetOptions()
 	return {

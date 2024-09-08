@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Timmy the Cruel", 329, BigWigsLoader.isRetail and 445)
+local mod, CL = BigWigs:NewBoss("Timmy the Cruel", 329, 445)
 if not mod then return end
 mod:RegisterEnableMob(10808) -- Timmy the Cruel
 mod:SetEncounterID(474)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.timmy_the_cruel = "Timmy the Cruel"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.timmy_the_cruel
-	end
-end
 
 function mod:GetOptions()
 	return {

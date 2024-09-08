@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Witch Doctor Zum'rah", 209, BigWigsLoader.isRetail and 486)
+local mod, CL = BigWigs:NewBoss("Witch Doctor Zum'rah", 209, 486)
 if not mod then return end
 mod:RegisterEnableMob(7795) -- Witch Doctor Zum'rah
 mod:SetEncounterID(597)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.witch_doctor_zumrah = "Witch Doctor Zum'rah"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.witch_doctor_zumrah
-	end
-end
 
 function mod:GetOptions()
 	return {

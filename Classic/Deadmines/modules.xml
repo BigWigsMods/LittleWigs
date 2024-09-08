@@ -10,6 +10,5 @@
 <Script file="Cookie.lua"/>
 
 <Include file="Options\options.xml"/>
-<Include file="Locales\locales.xml"/>
 
 </Ui>

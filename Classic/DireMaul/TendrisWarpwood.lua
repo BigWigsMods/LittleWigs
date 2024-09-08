@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Tendris Warpwood", 429, BigWigsLoader.isRetail and 406)
+local mod, CL = BigWigs:NewBoss("Tendris Warpwood", 429, 406)
 if not mod then return end
 mod:RegisterEnableMob(11489) -- Tendris Warpwood
 mod:SetEncounterID(350)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.tendris_warpwood = "Tendris Warpwood"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.tendris_warpwood
-	end
-end
 
 function mod:GetOptions()
 	return {

@@ -3,30 +3,15 @@ if not BigWigsLoader.isVanilla and not (BigWigsLoader.isRetail and select(4, Get
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Postmaster Malown", 329, BigWigsLoader.isRetail and 2633)
+local mod, CL = BigWigs:NewBoss("Postmaster Malown", 329, 2633)
 if not mod then return end
 mod:RegisterEnableMob(11143) -- Postmaster Malown
 mod:SetEncounterID(mod:Retail() and 1885 or 2798)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.postmaster_malown = "Postmaster Malown"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.postmaster_malown
-	end
-end
 
 function mod:GetOptions()
 	return {

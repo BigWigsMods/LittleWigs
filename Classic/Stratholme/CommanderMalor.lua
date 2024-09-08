@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Commander Malor", 329, BigWigsLoader.isRetail and 749)
+local mod, CL = BigWigs:NewBoss("Commander Malor", 329, 749)
 if not mod then return end
 mod:RegisterEnableMob(11032) -- Commander Malor
 mod:SetEncounterID(476)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.malor_the_zealous = "Malor the Zealous" -- renamed since Classic
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.malor_the_zealous
-	end
-end
 
 function mod:GetOptions()
 	return {

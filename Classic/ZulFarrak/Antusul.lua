@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Antu'sul", 209, BigWigsLoader.isRetail and 484)
+local mod, CL = BigWigs:NewBoss("Antu'sul", 209, 484)
 if not mod then return end
 mod:RegisterEnableMob(8127) -- Antu'sul
 mod:SetEncounterID(595)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.antusul = "Antu'sul"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.antusul
-	end
-end
 
 function mod:GetOptions()
 	return {

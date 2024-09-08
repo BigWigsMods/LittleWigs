@@ -2,9 +2,12 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Lethtendris", 429, BigWigsLoader.isRetail and 404)
+local mod, CL = BigWigs:NewBoss("Lethtendris", 429, 404)
 if not mod then return end
-mod:RegisterEnableMob(14327) -- Lethtendris
+mod:RegisterEnableMob(
+	14327, -- Lethtendris
+	14349 -- Pimgib
+)
 mod:SetEncounterID(345)
 --mod:SetRespawnTime(0)
 
@@ -14,18 +17,12 @@ mod:SetEncounterID(345)
 
 local L = mod:GetLocale()
 if L then
-	L.lethtendris = "Lethtendris"
+	L.pimgib = "Pimgib"
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.lethtendris
-	end
-end
 
 function mod:GetOptions()
 	return {

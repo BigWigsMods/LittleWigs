@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Magister Kalendris", 429, BigWigsLoader.isRetail and 408)
+local mod, CL = BigWigs:NewBoss("Magister Kalendris", 429, 408)
 if not mod then return end
 mod:RegisterEnableMob(11487) -- Magister Kalendris
 mod:SetEncounterID(348)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.magister_kalendris = "Magister Kalendris"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.magister_kalendris
-	end
-end
 
 function mod:GetOptions()
 	return {

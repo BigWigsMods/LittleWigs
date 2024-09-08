@@ -3,30 +3,15 @@ if BigWigsLoader.isRetail and select(4, GetBuildInfo()) < 110005 then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Edwin VanCleef", 36, BigWigsLoader.isRetail and 2631)
+local mod, CL = BigWigs:NewBoss("Edwin VanCleef", 36, 2631)
 if not mod then return end
 mod:RegisterEnableMob(639) -- Edwin VanCleef
 mod:SetEncounterID(mod:Retail() and 2972 or 2747)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.edwin_vancleef = "Edwin VanCleef"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.edwin_vancleef
-	end
-end
 
 function mod:GetOptions()
 	return {

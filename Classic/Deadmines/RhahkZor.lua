@@ -3,30 +3,15 @@ if BigWigsLoader.isRetail and select(4, GetBuildInfo()) < 110005 then return end
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rhahk'Zor", 36, BigWigsLoader.isRetail and 2613)
+local mod, CL = BigWigs:NewBoss("Rhahk'Zor", 36, 2613)
 if not mod then return end
 mod:RegisterEnableMob(644) -- Rhahk'Zor
 mod:SetEncounterID(mod:Retail() and 2967 or 2741)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.rhahkzor = "Rhahk'Zor"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.rhahkzor
-	end
-end
 
 function mod:GetOptions()
 	return {

@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Baroness Anastari", 329, BigWigsLoader.isRetail and 451)
+local mod, CL = BigWigs:NewBoss("Baroness Anastari", 329, 451)
 if not mod then return end
 mod:RegisterEnableMob(10436) -- Baroness Anastari
 mod:SetEncounterID(479)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.baroness_anastari = "Baroness Anastari"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.baroness_anastari
-	end
-end
 
 function mod:GetOptions()
 	return {

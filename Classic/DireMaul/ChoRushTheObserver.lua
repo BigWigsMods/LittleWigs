@@ -2,30 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Cho'Rush the Observer", 429, BigWigsLoader.isRetail and 416)
+local mod, CL = BigWigs:NewBoss("Cho'Rush the Observer", 429, 416)
 if not mod then return end
 mod:RegisterEnableMob(14324) -- Cho'Rush the Observer
 mod:SetEncounterID(367)
 --mod:SetRespawnTime(0)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.chorush_the_observer = "Cho'Rush the Observer"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	if self:Classic() then
-		self.displayName = L.chorush_the_observer
-	end
-end
 
 function mod:GetOptions()
 	return {
