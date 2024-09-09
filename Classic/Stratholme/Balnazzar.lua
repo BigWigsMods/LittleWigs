@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Balnazzar", 329, 449)
 if not mod then return end
-mod:RegisterEnableMob(10813) -- Balnazzar
+mod:RegisterEnableMob(
+	10812, -- Grand Crusader Dathrohan (Classic only)
+	10813 -- Balnazzar
+)
 mod:SetEncounterID(478)
 --mod:SetRespawnTime(0)
 

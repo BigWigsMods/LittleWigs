@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Chief Ukorz Sandscalp", 209, 489)
 if not mod then return end
-mod:RegisterEnableMob(7267) -- Chief Ukorz Sandscalp
+mod:RegisterEnableMob(
+	7267, -- Chief Ukorz Sandscalp
+	7797 -- Ruuzlu
+)
 mod:SetEncounterID(600)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
