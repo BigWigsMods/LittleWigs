@@ -14,6 +14,5 @@ end
 
 L = BigWigs:NewBossLocale("Lord Aurius Rivendare", "frFR")
 if L then
-	--L.raise_dead_trigger = "raises an undead servant back to life!"
 	--L.death_pact_trigger = "attempts to cast Death Pact on his servants!"
 end
