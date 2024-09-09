@@ -1,4 +1,4 @@
-if not BigWigsLoader.isVanilla or not (BigWigsLoader.isRetail and select(4, GetBuildInfo()) >= 110005) then return end
+if BigWigsLoader.isRetail and select(4, GetBuildInfo()) < 110005 then return end -- XXX remove when 11.0.5 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
