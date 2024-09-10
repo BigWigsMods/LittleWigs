@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Theka the Martyr", 209, 485)
 if not mod then return end
-mod:RegisterEnableMob(8127) -- Theka the Martyr
+mod:RegisterEnableMob(7272) -- Theka the Martyr
 mod:SetEncounterID(596)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
