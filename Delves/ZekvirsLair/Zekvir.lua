@@ -29,7 +29,7 @@ end
 function mod:GetOptions()
 	return {
 		450451, -- Claw Smash
-		450505, -- Enfeebling Spittle (can interrupt)
+		450505, -- Enfeebling Spittle
 		450492, -- Horrendous Roar
 		450568, -- Call Web Terror
 		450519, -- Angler's Web
