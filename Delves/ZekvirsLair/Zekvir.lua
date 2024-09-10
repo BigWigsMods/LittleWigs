@@ -95,7 +95,7 @@ function mod:CallWebTerror(args)
 	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, callWebTerrorCount))
 	callWebTerrorCount = callWebTerrorCount + 1
 	self:CDBar(args.spellId, 41.3, CL.count:format(args.spellName, callWebTerrorCount))
-	self:PlaySound(args.spellId, "info")
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:AnglersWeb(args)

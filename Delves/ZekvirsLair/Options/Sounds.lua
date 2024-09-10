@@ -4,5 +4,5 @@ BigWigs:AddSounds("Zekvir", {
 	[450492] = "alarm",
 	[450505] = "alert",
 	[450519] = "alarm",
-	[450568] = "info",
+	[450568] = "long",
 })
