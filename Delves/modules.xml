@@ -13,6 +13,9 @@
 <Include file="TheSpiralWeave\modules.xml"/>
 <Include file="TekRethanAbyss\modules.xml"/>
 <Include file="TheUnderkeep\modules.xml"/>
+<Include file="ZekvirsLair\modules.xml"/>
 <Include file="Trash\modules.xml"/>
+
+<Include file="Locales\locales.xml"/>
 
 </Ui>

@@ -1,4 +1,4 @@
-## Interface: 100207, 110000, 110002
+## Interface: 110005, 110000, 110002
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
@@ -12,10 +12,10 @@
 ## Notes-ruRU: Boss warnings for 5-man dungeons & scenarios.
 ## Notes-zhCN: 5人地下城和场景战役首领警报。
 ## Notes-zhTW: 5人地城和情境地圖首領警報。
-## Author: Funkydude
+## Author: Funkeh, Delk
 ## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
 ## X-Category: Party
-## X-Credits: Ulic
+## X-Credits: Ulic, Oppzippy, Zirael
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
 ## X-Curse-Project-ID: 4383
 ## X-WoWI-ID: 9577
@@ -26,7 +26,7 @@
 ## Version: @project-version@
 
 ## X-BigWigs-Minimum: 356
-## X-BigWigs-LoadOn-InstanceId: 2648,2649,2651,2652,2660,2661,2662,2669, 2710, 2664,2679,2680,2681,2683,2684,2685,2686,2687,2688,2689,2690
+## X-BigWigs-LoadOn-InstanceId: 2648,2649,2651,2652,2660,2661,2662,2669, 2710, 2664,2679,2680,2681,2682,2683,2684,2685,2686,2687,2688,2689,2690
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-ExtraMenu: 1716

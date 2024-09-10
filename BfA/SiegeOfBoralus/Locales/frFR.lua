@@ -20,5 +20,5 @@ end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "frFR")
 if L then
-	--L.ordnance_dropped = "Unstable Ordnance dropped"
+	L.ordnance_dropped = "Munition instable lâchée"
 end
